@@ -1,28 +1,36 @@
 """Romanian (ro) — grapheme→IPA and allophone mappings.
 
 Sources:
-- Chițoran, I. (2001). *The Phonology of Romanian*.
+- Chițoran, I. (2001). *The Phonology of Romanian*. Mouton de Gruyter.
 - Sarlin, M. (2014). Romanian. *JIPA* 44(1).
+- Rosetti, A. (1986). *Istoria limbii române*. 7th ed. Ed. Știintifică.
+- Sala, M. (2005). *From Latin to Romanian*. U of Mississippi Press.
+- Nandriș, O. (1963). *Phonétique historique du roumain*. Klincksieck.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 
 GRAPHEMES = {
     # --- Vowels ---
     "a": ["a"],
-    "ă": ["ə"],
-    "â": ["ɨ"],
+    "ă": ["ə"],         # central vowel (Balkan Romance innovation)
+    "â": ["ɨ"],          # central vowel (Balkan Romance innovation)
     "e": ["e", "ɛ"],
     "i": ["i"],
-    "î": ["ɨ"],  # same phoneme as ⟨â⟩
+    "î": ["ɨ"],          # same phoneme as ⟨â⟩
     "o": ["o"],
     "u": ["u"],
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "tʃ"],  # /tʃ/ before e,i
+    "c": ["k", "tʃ"],   # /tʃ/ before e,i
     "d": ["d"],
     "f": ["f"],
-    "g": ["ɡ", "dʒ"],  # /dʒ/ before e,i
+    "g": ["ɡ", "dʒ"],   # /dʒ/ before e,i
     "h": ["h"],
     "j": ["ʒ"],
     "k": ["k"],
@@ -43,8 +51,8 @@ GRAPHEMES = {
     "z": ["z"],
 
     # --- Digraphs ---
-    "ch": ["k"],  # before e,i: ⟨che⟩ = [ke]
-    "gh": ["ɡ"],  # before e,i: ⟨ghe⟩ = [ɡe]
+    "ch": ["k"],         # before e,i: ⟨che⟩ = [ke]
+    "gh": ["ɡ"],         # before e,i: ⟨ghe⟩ = [ɡe]
     "ce": ["tʃe"], "ci": ["tʃi"],
     "ge": ["dʒe"], "gi": ["dʒi"],
 
@@ -86,10 +94,44 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
-        parent="la",
+        parent="la-x-balkans",
+        ancestors=(
+            Ancestor("la-x-balkans", P, 0.65,
+                     "Balkan Romance Vulgar Latin: Eastern Romance "
+                     "branch with no lenition, central vowels, "
+                     "postposed article."),
+            Ancestor("sla", SUP, 0.20,
+                     "Slavic superstrate (7th c. onwards): massive "
+                     "lexical influence (~40% of vocabulary), "
+                     "some phonological impact (palatalisation "
+                     "patterns, possible influence on central vowels). "
+                     "Old Church Slavonic was the literary/liturgical "
+                     "language until 16th–17th c."),
+            Ancestor("xda", SUB, 0.05,
+                     "Dacian/Thracian substrate: ~100+ words shared "
+                     "with Albanian of unknown origin (copil, moș, "
+                     "viezure). Possible influence on central vowels "
+                     "/ə, ɨ/ and postposed article."),
+            Ancestor("grc", AD, 0.03,
+                     "Greek adstrate: Byzantine influence, shared "
+                     "Balkan sprachbund features."),
+            Ancestor("tr", AD, 0.04,
+                     "Turkish adstrate (14th–19th c.): lexical "
+                     "borrowings from Ottoman period."),
+            Ancestor("hu", AD, 0.03,
+                     "Hungarian adstrate: centuries of contact in "
+                     "Transylvania. Lexical exchange."),
+        ),
         notes=(
-            "Standard Romanian. Notable for central vowels /ə, ɨ/, "
-            "and rich diphthong/triphthong system."
+            "Standard Romanian. Eastern Romance, the ONLY Romance "
+            "language east of the Adriatic. Key features: (1) Central "
+            "vowels /ə/ (⟨ă⟩) and /ɨ/ (⟨â/î⟩) — unique in Romance. "
+            "(2) NO intervocalic lenition (lup, foc — not *lub, *fogo). "
+            "(3) Postposed definite article (lupul 'the wolf'). "
+            "(4) Rich diphthong/triphthong system. (5) Rhotacism: "
+            "intervocalic /l/ → /r/ in some words (soare < SOLEM). "
+            "(6) Massive Slavic vocabulary layer (~40%). "
+            "(7) Balkan sprachbund member (Chițoran 2001, Sala 2005)."
         ),
     ),
 }

@@ -20,7 +20,12 @@ Conventions:
 - Western: ast-x-occidental. Eastern: ast-x-oriental.
 - Leonese (Spain): ast-ES-x-leon.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Central Asturian (standard — ALLA norms)
@@ -185,6 +190,18 @@ SPECS = {
         graphemes=GRAPHEMES_AST,
         allophones=ALLOPHONES_AST,
         parent="la",
+        ancestors=(
+            Ancestor("la-x-hispania", P, 0.80,
+                     "Primary descent from Hispanic Vulgar Latin"),
+            Ancestor("cel", SUB, 0.06,
+                     "Celtic (Astures) substrate: tribal name itself is Celtic; "
+                     "strong NW Iberian Celtic presence; cf. García Arias (2003)"),
+            Ancestor("got", SUP, 0.04,
+                     "Visigothic superstrate: Kingdom of Asturias (718-924 CE) "
+                     "was the first Christian successor state"),
+            Ancestor("xaa", AD, 0.02,
+                     "Arabic adstrate: minimal — Asturias never fully conquered"),
+        ),
         notes=(
             "Central Asturian per ALLA (Academia de la Llingua Asturiana) "
             "norms. ~100,000+ speakers. 5-vowel system, apico-alveolar [s̺], "

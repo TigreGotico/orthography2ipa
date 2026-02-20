@@ -4,7 +4,13 @@ Sources:
 - Grønnum, N. (1998). Danish. *JIPA* 28(1-2).
 - Basbøll, H. (2005). *The Phonology of Danish*.
 """
-from orthography2ipa.types import LanguageSpec
+
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 
 GRAPHEMES = {
     # --- Vowels ---
@@ -113,6 +119,13 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="gem",
+        ancestors=(
+            Ancestor("non", P, 0.90,
+                     "Descent from Old Norse (East Norse branch)"),
+            Ancestor("de", AD, 0.07,
+                     "Low German / Hanseatic adstrate: even stronger than Swedish "
+                     "due to geographic proximity and political union"),
+        ),
         notes=(
             "Standard Danish (rigsdansk). The 'soft d' [ð̞] is an "
             "approximant unique to Danish. Stød (glottal prosody) not "

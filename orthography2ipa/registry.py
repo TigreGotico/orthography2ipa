@@ -7,11 +7,95 @@ from typing import Dict, List
 from orthography2ipa.types import LanguageSpec
 
 # module path inside orthography2ipa.languages for each code
-_LANG_MODULES: Dict[str, str] = {
-    # Romance
-    "pt": "orthography2ipa.languages.pt",
+_LATIN: Dict[str, str] = {
+
+    "la": "orthography2ipa.languages.la",
+
+    "la-x-hispania": "orthography2ipa.languages.iberian_medieval",
+    "la-x-gallia": "orthography2ipa.languages.la_galloromance",
+
+    # ── Italo-Romance Vulgar Latin (intermediate ancestor) ───────────────
+    "la-x-italia": "orthography2ipa.languages.la_italoromance",
+
+    # ── Balkan Romance Vulgar Latin (intermediate ancestor) ──────────────
+    "la-x-balkans": "orthography2ipa.languages.la_balkanromance",
+
+    # ── Sardinian (own primary branch of Romance) ────────────────────────
+    "sc": "orthography2ipa.languages.sc",
+}
+
+_CELTIC = {
+
+    # Celtic (ancestry for Celtiberian)
+    "cel": "orthography2ipa.languages.celtic",
+    "xcg": "orthography2ipa.languages.celtic",
+}
+
+_IBERIAN = {
+    # Pre-Roman Iberian Peninsula
+    "xce": "orthography2ipa.languages.iberian_preroman",
+    "xib": "orthography2ipa.languages.iberian_preroman",
+    "xlg": "orthography2ipa.languages.iberian_preroman",
+    "txr": "orthography2ipa.languages.iberian_preroman",
+    "xaq": "orthography2ipa.languages.iberian_preroman",
+
+    # Phoenician (Iberian trading colonies)
+    "phn": "orthography2ipa.languages.phoenician",
+
+    # Medieval Iberian
+    "mxi": "orthography2ipa.languages.iberian_medieval",
+    "xaa": "orthography2ipa.languages.iberian_medieval",
+
+    # Portuguese speaking countries
     "pt-BR": "orthography2ipa.languages.pt",
     "pt-AO": "orthography2ipa.languages.pt",
+
+    # Languages of spain
+    "gl": "orthography2ipa.languages.gl",
+    "eu": "orthography2ipa.languages.eu",
+    "ca": "orthography2ipa.languages.ca",
+
+    # Minority Languages (Portugal)
+    "mwl": "orthography2ipa.languages.mwl",  # Mirandese
+    "mwl-x-sendim": "orthography2ipa.languages.mwl",
+    "ext-PT-x-barrancos": "orthography2ipa.languages.barranquenho", # Barranquenho
+    "ast-PT-x-rionor": "orthography2ipa.languages.rionorese", # Rionorese
+    "ast-PT-x-guadramil": "orthography2ipa.languages.guadramilese", # Guadramilese
+
+    # Minority Languages (Spain)
+    "ast": "orthography2ipa.languages.ast",
+    "fax": "orthography2ipa.languages.gl", # Fala
+    "ext": "orthography2ipa.languages.ext",
+    "an": "orthography2ipa.languages.an",
+    "oc-x-aranes": "orthography2ipa.languages.ca", # Aranese (Gascon Occitan)
+
+    # Asturian (Spain)
+    "ast-x-occidental": "orthography2ipa.languages.ast",
+    "ast-x-oriental": "orthography2ipa.languages.ast",
+    "ast-ES-x-leon": "orthography2ipa.languages.ast",
+    # Aragonese
+    "an-x-occidental": "orthography2ipa.languages.an",
+    "an-x-oriental": "orthography2ipa.languages.an",
+    # Extremaduran (Spain)
+    "ext-x-septentrional": "orthography2ipa.languages.ext",
+    # Galician dialects
+    "gl-x-occidental": "orthography2ipa.languages.gl",
+    "gl-x-central": "orthography2ipa.languages.gl",
+    "gl-x-oriental": "orthography2ipa.languages.gl",
+
+    # Portuguese dialects
+    "pt-PT-x-minho": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-porto": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-alfena": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-viana": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-aveiro": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-lisbon": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-alentejo": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-algarve": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-acores": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-madeira": "orthography2ipa.languages.pt_dialects",
+    "pt-PT-x-trasosmontes": "orthography2ipa.languages.pt_dialects",
+
     # Brazilian Portuguese dialects
     "pt-BR-x-sp": "orthography2ipa.languages.pt_br_dialects",
     "pt-BR-x-caipira": "orthography2ipa.languages.pt_br_dialects",
@@ -25,49 +109,17 @@ _LANG_MODULES: Dict[str, str] = {
     "pt-BR-x-sul": "orthography2ipa.languages.pt_br_dialects",
     "pt-BR-x-pr": "orthography2ipa.languages.pt_br_dialects",
     "pt-BR-x-brasilia": "orthography2ipa.languages.pt_br_dialects",
-    # Portuguese dialects
-    "pt-PT-x-minho": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-porto": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-alfena": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-viana": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-aveiro": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-lisbon": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-alentejo": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-algarve": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-acores": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-madeira": "orthography2ipa.languages.pt_dialects",
-    "pt-PT-x-trasosmontes": "orthography2ipa.languages.pt_dialects",
-    # Barranquenho
-    "ext-PT-x-barrancos": "orthography2ipa.languages.barranquenho",
-    # Mirandese
-    "mwl": "orthography2ipa.languages.mwl",
-    "mwl-x-sendim": "orthography2ipa.languages.mwl",
-    # RionorÃªs
-    "ast-PT-x-rionor": "orthography2ipa.languages.rionorese",
-    # GuadramilÃªs
-    "ast-PT-x-guadramil": "orthography2ipa.languages.guadramilese",
-    # Asturian (Spain)
-    "ast": "orthography2ipa.languages.ast",
-    "ast-x-occidental": "orthography2ipa.languages.ast",
-    "ast-x-oriental": "orthography2ipa.languages.ast",
-    "ast-ES-x-leon": "orthography2ipa.languages.ast",
-    # Aragonese
-    "an": "orthography2ipa.languages.an",
-    "an-x-occidental": "orthography2ipa.languages.an",
-    "an-x-oriental": "orthography2ipa.languages.an",
-    # Extremaduran (Spain)
-    "ext": "orthography2ipa.languages.ext",
-    "ext-x-septentrional": "orthography2ipa.languages.ext",
-    "gl": "orthography2ipa.languages.gl",
-    # Galician dialects
-    "gl-x-occidental": "orthography2ipa.languages.gl_dialects",
-    "gl-x-central": "orthography2ipa.languages.gl_dialects",
-    "gl-x-oriental": "orthography2ipa.languages.gl_dialects",
-    "fax": "orthography2ipa.languages.gl_dialects",
-    "es": "orthography2ipa.languages.es",
-    "es-419": "orthography2ipa.languages.es",
-    "es-AR": "orthography2ipa.languages.es",
+
+    # Spanish dialects of Spain
+    "es-ES-x-andalusia-w": "orthography2ipa.languages.es",
+    "es-ES-x-andalusia-e": "orthography2ipa.languages.es",
+    "es-ES-x-murcia": "orthography2ipa.languages.es",
+    "es-ES-x-canarias": "orthography2ipa.languages.es",
+    "es-ES-x-cantabria": "orthography2ipa.languages.es",
+
     # Latin American Spanish dialects
+    "es-419": "orthography2ipa.languages.es_latam",
+    "es-AR": "orthography2ipa.languages.es_latam",
     "es-MX": "orthography2ipa.languages.es_latam",
     "es-MX-x-costa": "orthography2ipa.languages.es_latam",
     "es-CU": "orthography2ipa.languages.es_latam",
@@ -89,47 +141,36 @@ _LANG_MODULES: Dict[str, str] = {
     "es-PY": "orthography2ipa.languages.es_latam",
     "es-UY": "orthography2ipa.languages.es_latam",
     "es-GQ": "orthography2ipa.languages.es_latam",
-    # Spanish dialects of Spain
-    "es-ES-x-andalusia-w": "orthography2ipa.languages.es_dialects",
-    "es-ES-x-andalusia-e": "orthography2ipa.languages.es_dialects",
-    "es-ES-x-murcia": "orthography2ipa.languages.es_dialects",
-    "es-ES-x-canarias": "orthography2ipa.languages.es_dialects",
-    "es-ES-x-cantabria": "orthography2ipa.languages.es_dialects",
-    "ca": "orthography2ipa.languages.ca",
+
     # Catalan dialects
-    "ca-x-valencia": "orthography2ipa.languages.ca_dialects",
-    "ca-x-balear": "orthography2ipa.languages.ca_dialects",
-    "ca-x-nord": "orthography2ipa.languages.ca_dialects",
-    "ca-x-occidental": "orthography2ipa.languages.ca_dialects",
-    "oc": "orthography2ipa.languages.oc",
-    # Aranese (Gascon Occitan)
-    "oc-x-aranes": "orthography2ipa.languages.ca_dialects",
-    "fr": "orthography2ipa.languages.fr",
-    "it": "orthography2ipa.languages.it",
-    "ro": "orthography2ipa.languages.ro",
-    # Classical / reconstructed
-    "la": "orthography2ipa.languages.la",
-    "grc": "orthography2ipa.languages.grc",
-    "ine": "orthography2ipa.languages.ine",
-    # Pre-Roman Iberian Peninsula
-    "xce": "orthography2ipa.languages.iberian_preroman",
-    "xib": "orthography2ipa.languages.iberian_preroman",
-    "xlg": "orthography2ipa.languages.iberian_preroman",
-    "txr": "orthography2ipa.languages.iberian_preroman",
-    "xaq": "orthography2ipa.languages.iberian_preroman",
-    # Celtic (ancestry for Celtiberian)
-    "cel": "orthography2ipa.languages.celtic",
-    "xcg": "orthography2ipa.languages.celtic",
-    # Proto-Germanic and Gothic (Visigoths in Iberia)
-    "gem": "orthography2ipa.languages.germanic_historical",
-    "got": "orthography2ipa.languages.germanic_historical",
-    # Phoenician (Iberian trading colonies)
-    "phn": "orthography2ipa.languages.phoenician",
-    # Medieval Iberian
-    "la-x-hispania": "orthography2ipa.languages.iberian_medieval",
-    "la-x-gallia": "orthography2ipa.languages.la_galloromance",
-    "mxi": "orthography2ipa.languages.iberian_medieval",
-    "xaa": "orthography2ipa.languages.iberian_medieval",
+    "ca-x-valencia": "orthography2ipa.languages.ca",
+    "ca-x-balear": "orthography2ipa.languages.ca",
+    "ca-x-nord": "orthography2ipa.languages.ca",
+    "ca-x-occidental": "orthography2ipa.languages.ca",
+
+    # Basque dialects
+    "eu-x-bizkaiera": "orthography2ipa.languages.eu",
+    "eu-x-gipuzkera": "orthography2ipa.languages.eu",
+    "eu-x-nafarra-garaia": "orthography2ipa.languages.eu",
+    "eu-x-zuberera": "orthography2ipa.languages.eu",
+    "eu-x-nafarra-beherea": "orthography2ipa.languages.eu",
+}
+
+_GERMANIC = {
+    # Proto-Germanic and Gothic
+    "gem": "orthography2ipa.languages.germanic_ancestral",
+    "gem-x-north": "orthography2ipa.languages.germanic_ancestral",
+    "gem-x-northwest": "orthography2ipa.languages.germanic_ancestral",
+    "gem-x-ingvaeonic": "orthography2ipa.languages.germanic_ancestral",
+    "got": "orthography2ipa.languages.germanic_ancestral",
+
+    # Historical/Medieval
+    "non": "orthography2ipa.languages.germanic_ancestral",
+    "ang": "orthography2ipa.languages.germanic_ancestral",
+    "goh": "orthography2ipa.languages.germanic_ancestral",
+    "osx": "orthography2ipa.languages.germanic_ancestral",
+    "enm": "orthography2ipa.languages.germanic_ancestral",
+
     # Germanic
     "en": "orthography2ipa.languages.en",
     "de": "orthography2ipa.languages.de",
@@ -137,6 +178,38 @@ _LANG_MODULES: Dict[str, str] = {
     "sv": "orthography2ipa.languages.sv",
     "da": "orthography2ipa.languages.da",
     "no": "orthography2ipa.languages.no",
+}
+
+_ROMANCE = {
+    "pt": "orthography2ipa.languages.pt",
+    "es": "orthography2ipa.languages.es",
+    "oc": "orthography2ipa.languages.oc",
+    "fr": "orthography2ipa.languages.fr",
+    "it": "orthography2ipa.languages.it",
+    "ro": "orthography2ipa.languages.ro",
+
+    # ── Franco-Provençal / Arpitan ───────────────────────────────────────
+    "frp": "orthography2ipa.languages.romance_galloromance",
+
+    # ── Rhaeto-Romance ───────────────────────────────────────────────────
+    "rm": "orthography2ipa.languages.romance_galloromance",
+    "lld": "orthography2ipa.languages.romance_galloromance",
+    "fur": "orthography2ipa.languages.romance_galloromance",
+
+    # ── Southern Italo-Romance ───────────────────────────────────────────
+    "nap": "orthography2ipa.languages.romance_italo",
+    "scn": "orthography2ipa.languages.romance_italo",
+    "co": "orthography2ipa.languages.romance_italo",
+
+    # ── Sardinian dialects ────────────────────────
+    "sc-x-logudorese": "orthography2ipa.languages.sc",
+    "sc-x-campidanese": "orthography2ipa.languages.sc",
+}
+
+_SLAVIC = {
+    # Balkan substrates
+    "xda": "orthography2ipa.languages.balkan_ancestral",
+    "hu": "orthography2ipa.languages.balkan_ancestral",
 
     # ── Slavic: Proto and OCS ────────────────────────────────────────────────
     "sla": "orthography2ipa.languages.sla",
@@ -165,6 +238,9 @@ _LANG_MODULES: Dict[str, str] = {
     "sl": "orthography2ipa.languages.sl",
     "bg": "orthography2ipa.languages.bg",
     "mk": "orthography2ipa.languages.mk",
+}
+
+_SEMITIC = {
     # ── Semitic: Proto chain ──────────────────────────────────────────────
     "sem": "orthography2ipa.languages.ar_proto",
     "sem-x-west": "orthography2ipa.languages.ar_proto",
@@ -207,6 +283,9 @@ _LANG_MODULES: Dict[str, str] = {
     "ar-TD": "orthography2ipa.languages.ar_peripheral",
     "ar-NG": "orthography2ipa.languages.ar_peripheral",
     "acy": "orthography2ipa.languages.ar_peripheral",
+}
+
+_IRANIAN = {
     # ── Iranian: Proto chain ──────────────────────────────────────────────
     "iir": "orthography2ipa.languages.fa_proto",
     "ira": "orthography2ipa.languages.fa_proto",
@@ -227,6 +306,9 @@ _LANG_MODULES: Dict[str, str] = {
     "fa-AF": "orthography2ipa.languages.fa_dialects",
     "fa-x-hazaragi": "orthography2ipa.languages.fa_dialects",
     "tg": "orthography2ipa.languages.fa_dialects",
+}
+
+_INDO_ARIAN = {
     # ── Indo-Aryan: Proto and Classical ─────────────────────────────────────
     "sa": "orthography2ipa.languages.sa",  # Sanskrit
     "sa-x-vedic": "orthography2ipa.languages.sa",  # Vedic Sanskrit
@@ -237,11 +319,13 @@ _LANG_MODULES: Dict[str, str] = {
     "ur": "orthography2ipa.languages.ur",  # Urdu
     "bho": "orthography2ipa.languages.indic_other",  # Bhojpuri
 
+    # ── Indo-Aryan: Dardic ───────────────────────────────────────────────────
+    "ks": "orthography2ipa.languages.indic_east",  # Kashmiri
+
     # ── Indo-Aryan: Northwest ────────────────────────────────────────────────
     "pa": "orthography2ipa.languages.pa",  # Punjabi (Gurmukhi)
     "pa-PK": "orthography2ipa.languages.pa",  # Western Punjabi (Shahmukhi)
     "sd": "orthography2ipa.languages.indic_east",  # Sindhi
-    "ks": "orthography2ipa.languages.indic_east",  # Kashmiri
 
     # ── Indo-Aryan: West ────────────────────────────────────────────────────
     "gu": "orthography2ipa.languages.gu_mr_ne",  # Gujarati
@@ -258,8 +342,10 @@ _LANG_MODULES: Dict[str, str] = {
     "ne": "orthography2ipa.languages.gu_mr_ne",  # Nepali
     "si": "orthography2ipa.languages.indic_other",  # Sinhala
 
-    # ── Indo-Aryan: Dardic ───────────────────────────────────────────────────
-    # ks already registered above
+
+}
+
+_DRAVIDIAN = {
 
     # ── Dravidian: Proto ─────────────────────────────────────────────────────
     "ta-x-proto-dravidian": "orthography2ipa.languages.indic_misc",
@@ -272,6 +358,39 @@ _LANG_MODULES: Dict[str, str] = {
 
     # ── Dravidian: South II ──────────────────────────────────────────────────
     "te": "orthography2ipa.languages.te_kn_ml",  # Telugu
+}
+
+_ASIAN = {
+    # CJK
+    "zh": "orthography2ipa.languages.zh",
+    "ja": "orthography2ipa.languages.ja",
+    "ko": "orthography2ipa.languages.ko",
+}
+
+_LANG_MODULES: Dict[str, str] = {
+    **_LATIN,
+    **_ROMANCE,
+    **_IBERIAN,
+    **_CELTIC,
+    **_SLAVIC,
+    **_GERMANIC,
+    **_SEMITIC,
+    **_IRANIAN,
+    **_INDO_ARIAN,
+    **_DRAVIDIAN,
+    **_ASIAN,
+
+    # Classical / reconstructed
+    "grc": "orthography2ipa.languages.grc",
+    "ine": "orthography2ipa.languages.ine",
+
+    # Turkic
+    "tr": "orthography2ipa.languages.tr",
+    # Uralic
+    "fi": "orthography2ipa.languages.fi",
+    # Hellenic
+    "el": "orthography2ipa.languages.el",
+
 
     # ── Austroasiatic: Munda ─────────────────────────────────────────────────
     "sat": "orthography2ipa.languages.munda_tb",  # Santali
@@ -284,25 +403,6 @@ _LANG_MODULES: Dict[str, str] = {
     "mni": "orthography2ipa.languages.munda_tb",  # Meitei/Manipuri
     "brx": "orthography2ipa.languages.munda_tb",  # Bodo
 
-    # CJK
-    "zh": "orthography2ipa.languages.zh",
-    "ja": "orthography2ipa.languages.ja",
-    "ko": "orthography2ipa.languages.ko",
-    # Isolate
-    "eu": "orthography2ipa.languages.eu",
-    # Basque dialects
-    "eu-x-bizkaiera": "orthography2ipa.languages.eu_dialects",
-    "eu-x-gipuzkera": "orthography2ipa.languages.eu_dialects",
-    "eu-x-nafarra-garaia": "orthography2ipa.languages.eu_dialects",
-    "eu-x-zuberera": "orthography2ipa.languages.eu_dialects",
-    "eu-x-nafarra-beherea": "orthography2ipa.languages.eu_dialects",
-    # Turkic
-    "tr": "orthography2ipa.languages.tr",
-    # Uralic
-    "fi": "orthography2ipa.languages.fi",
-    # Hellenic
-    "el": "orthography2ipa.languages.el",
-
 }
 
 _cache: Dict[str, LanguageSpec] = {}
@@ -310,6 +410,7 @@ _cache: Dict[str, LanguageSpec] = {}
 
 def _resolve_code(code: str) -> str:
     """Normalise common aliases."""
+    # TODO - use langcodes library
     aliases = {
         "por": "pt", "eng": "en", "spa": "es", "fra": "fr", "deu": "de",
         "ita": "it", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",

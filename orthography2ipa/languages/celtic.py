@@ -107,7 +107,7 @@ ALLOPHONES_CEL = {
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
-# GAULISH (xcg)
+# GAULISH (xga)
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # Classification: Celtic > Continental Celtic > Gallo-Brittonic (debated)
@@ -136,14 +136,25 @@ ALLOPHONES_CEL = {
 #   - Tau Gallicum: /ts/ (a distinctive Gaulish sound, possibly [θ] or [ts])
 #   - /x/ attested (from lenition of /k/)
 #   - Long vowels well-established from Greek-alphabet spellings
+#
+# Sources:
+# - Lambert, P.-Y. (2003). *La langue gauloise*. 2nd ed. Errance.
+# - Delamarre, X. (2003). *Dictionnaire de la langue gauloise*. Errance.
+# - Schrijver, P. (1995). *Studies in British Celtic Historical
+#   Phonology*. Rodopi.
+# - Meid, W. (1992). *Gaulish Inscriptions*. Akad. d. Wiss.
 
 GRAPHEMES_XCG = {
     # --- Vowels ---
     "a": ["a"], "ā": ["aː"],
     "e": ["e"], "ē": ["eː"],
-    "i": ["i"], "ī": ["iː"],
+    "ī": ["iː"],
     "o": ["o"], "ō": ["oː"],
-    "u": ["u"], "ū": ["uː"],
+    "ū": ["uː"],
+
+    # --- Glides ---
+    "u": ["u", "w"],
+    "i": ["i", "j"],
 
     # --- Nasal vowels (attested through spelling) ---
     "an": ["ã"],  # word-final nasalisation
@@ -184,10 +195,6 @@ GRAPHEMES_XCG = {
     "l": ["l"],
     "r": ["r"],
 
-    # --- Glides ---
-    "u": ["u", "w"],
-    "i": ["i", "j"],
-
     # --- Geminates ---
     "ss": ["sː"],
     "ll": ["lː"],
@@ -220,6 +227,48 @@ ALLOPHONES_XCG = {
     "dː": ["dː"], "kː": ["kː"], "tː": ["tː"],
 }
 
+
+# ═══════════════════════════════════════════════════════════════════════════
+# BRYTHONIC (xbr) — Celtic substrate in English
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Common Brythonic / Proto-Brythonic: ancestor of Welsh, Cornish, Breton.
+# Substrate language of Roman and post-Roman Britain before Anglo-Saxon.
+#
+# Sources:
+# - Jackson, K.H. (1953). *Language and History in Early Britain*. Edinburgh UP.
+# - Schrijver, P. (1995). *Studies in British Celtic Historical Phonology*.
+
+GRAPHEMES_XBR = {
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
+    "ā": ["aː"], "ē": ["eː"], "ī": ["iː"], "ō": ["oː"], "ū": ["uː"],
+    "y": ["ɨ"],  # from Common Celtic *ū in some environments
+    "b": ["b"], "p": ["p"],
+    "d": ["d"], "t": ["t"],
+    "g": ["ɡ"], "c": ["k"],
+    "s": ["s"], "h": ["h"],
+    "m": ["m"], "n": ["n"],
+    "l": ["l"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "ll": ["ɬ"],  # voiceless lateral (shared with Welsh)
+    "rh": ["r̥"],  # voiceless rhotic
+}
+
+ALLOPHONES_XBR = {
+    "a": ["a"], "aː": ["aː"], "e": ["e"], "eː": ["eː"],
+    "i": ["i"], "iː": ["iː"], "o": ["o"], "oː": ["oː"],
+    "u": ["u"], "uː": ["uː"], "ɨ": ["ɨ"],
+    "b": ["b", "β"], "p": ["p"],
+    "d": ["d", "ð"], "t": ["t"],
+    "ɡ": ["ɡ", "ɣ"], "k": ["k"],
+    "s": ["s"], "h": ["h"],
+    "m": ["m"], "n": ["n", "ŋ"],
+    "l": ["l"], "ɬ": ["ɬ"],
+    "r": ["r"], "r̥": ["r̥"],
+    "w": ["w"], "j": ["j"],
+}
+
+
 SPECS = {
     "cel": LanguageSpec(
         code="cel", name="Proto-Celtic (reconstructed)",
@@ -235,17 +284,36 @@ SPECS = {
             "intervocalic stops. Source: Matasović (2009)."
         ),
     ),
-    "xcg": LanguageSpec(
-        code="xcg", name="Gaulish",
+    "xga": LanguageSpec(
+        code="xga", name="Gaulish",
         family="Celtic", script="Latin",
         graphemes=GRAPHEMES_XCG, allophones=ALLOPHONES_XCG,
         parent="cel", notes=(
-            "Gaulish (3rd c. BCE – 5th c. CE). Best-attested Continental "
-            "Celtic language, ~800+ inscriptions. Primary comparandum for "
-            "Celtiberian. Distinctive 'tau gallicum' [ts] < *t (fronting). "
+            "Gaulish (6th c. BCE – 6th c. CE). Continental Celtic language "
+            "of Gaul, Cisalpine Gaul, and parts of Iberia. ~800 inscriptions. "
+            "THE key substrate for French and Gallo-Romance. Celtic p-loss "
+            "partially, 5 vowels + length, two sibilants. Evidence for late "
+            "palatalisation of velars. Vigesimal counting system inherited by "
+            "French (quatre-vingts). Massive lexical contribution: ~200 words "
+            "in French (Lambert 2003, Delamarre 2003)."
+            "Distinctive 'tau gallicum' [ts] < *t (fronting). "
             "Nasal vowels attested. Celtic p-loss. Lenition well-developed. "
             "Written in Greek, Latin, and Lepontic alphabets. Key texts: "
             "Larzac tablet, Chamalières tablet, Coligny calendar."
+        ),
+    ),
+    "xbr": LanguageSpec(
+        code="xbr", name="Common Brythonic",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_XBR, allophones=ALLOPHONES_XBR,
+        parent="cel",
+        notes=(
+            "Common Brythonic / Proto-Brythonic. Celtic language of "
+            "pre-Roman and Roman Britain. Ancestor of Welsh, Cornish, "
+            "Breton. Substrate in English: place names (London, Thames, "
+            "Kent, Dover), possibly influence on English phonology. "
+            "Voiceless lateral /ɬ/ and voiceless rhotic /r̥/ are "
+            "diagnostic features (Jackson 1953, Schrijver 1995)."
         ),
     ),
 }

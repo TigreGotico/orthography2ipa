@@ -4,7 +4,12 @@ Sources:
 - Gussenhoven, C. (1999). Dutch. *Handbook of the IPA*.
 - Booij, G. (1995). *The Phonology of Dutch*.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 
 GRAPHEMES = {
     # --- Vowels (short / long distinguished by open/closed syllable) ---
@@ -124,6 +129,15 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="gem",
+        ancestors=(
+            Ancestor("gem", P, 0.90,
+                     "Descent from Proto-Germanic via Old Low Franconian"),
+            Ancestor("la", AD, 0.04,
+                     "Latin adstrate: ecclesiastical vocabulary"),
+            Ancestor("fr", AD, 0.04,
+                     "French adstrate: centuries of Burgundian/French influence "
+                     "in S. Netherlands; cf. van der Wal (2008)"),
+        ),
         notes=(
             "Standard Dutch (ABN / Algemeen Nederlands). "
             "⟨g⟩ realisation is [ɣ] in northern NL and [x] in "

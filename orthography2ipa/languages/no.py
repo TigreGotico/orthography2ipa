@@ -7,8 +7,13 @@ Sources:
 Conventions:
 - Based on Urban East Norwegian (standard Bokmål pronunciation).
 """
-from orthography2ipa.types import LanguageSpec
 
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 GRAPHEMES = {
     # --- Vowels ---
     "a": ["ɑ", "ɑː"],
@@ -116,6 +121,13 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="gem",
+        ancestors=(
+            Ancestor("non", P, 0.92,
+                     "Descent from Old Norse (West Norse branch)"),
+            Ancestor("da", AD, 0.06,
+                     "Danish adstrate: 400+ years of Danish rule (1380-1814); "
+                     "Bokmål is essentially Norwegianised Danish"),
+        ),
         notes=(
             "Urban East Norwegian (standard Bokmål pronunciation). "
             "Retroflex assimilation shared with Swedish. "

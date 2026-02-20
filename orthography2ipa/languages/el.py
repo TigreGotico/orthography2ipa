@@ -4,7 +4,13 @@ Sources:
 - Arvaniti, A. (1999). Standard Modern Greek. *JIPA* 29(2).
 - Holton, D. et al. (2012). *Greek: A Comprehensive Grammar*, 2nd ed.
 """
-from orthography2ipa.types import LanguageSpec
+
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 
 GRAPHEMES = {
     # --- Vowels (5-vowel system) ---
@@ -87,6 +93,16 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="grc",
+        ancestors=(
+            Ancestor("grc", P, 0.90,
+                     "Direct descent from Ancient Greek via Koine and Medieval Greek"),
+            Ancestor("tr", AD, 0.05,
+                     "Turkish adstrate: Ottoman period (~1453-1821), ~500 loanwords, "
+                     "some phonological influence"),
+            Ancestor("sla", AD, 0.03,
+                     "Slavic adstrate: medieval Balkan settlements (6th-9th c.), "
+                     "place names, some vocabulary"),
+        ),
         notes=(
             "Standard Modern Greek (Demotic). 5-vowel system despite "
             "many graphemic representations. Digraphs ⟨μπ⟩, ⟨ντ⟩, ⟨γκ⟩ "

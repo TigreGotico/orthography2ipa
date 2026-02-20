@@ -13,6 +13,13 @@ Conventions:
 - Allophones list positional and free variants attested in GA and/or RP.
 """
 from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
+
 
 # ── Graphemes ──────────────────────────────────────────────────────────────
 GRAPHEMES = {
@@ -173,6 +180,19 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="gem",
+        ancestors=(
+            Ancestor("enm", P, 0.85,
+                     "Descent from Middle English (Chaucerian stage)"),
+            Ancestor("xbr", SUB, 0.03,
+                     "Brythonic Celtic substrate: place names (London, Thames, "
+                     "Kent, Dover, Avon); cf. Jackson (1953)"),
+            Ancestor("non", SUP, 0.05,
+                     "Old Norse Danelaw superstrate (8th-11th c.): they/their/them, "
+                     "sky, take, give, window, egg; cf. Townend (2002)"),
+            Ancestor("fr", SUP, 0.07,
+                     "Norman French superstrate (post-1066): ~10,000 words; "
+                     "/v/ phonemicised, /ʒ/ introduced; cf. Pope (1934)"),
+        ),
         notes=(
             "Vowel inventory biased toward General American (GA). "
             "RP / Southern British variants noted in allophone map. "

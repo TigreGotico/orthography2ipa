@@ -18,6 +18,13 @@ Conventions:
 """
 from orthography2ipa.types import LanguageSpec
 
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
+
 GRAPHEMES_AN = {
     # --- Vowels (5-vowel system) ---
     "a": ["a"],
@@ -121,6 +128,21 @@ SPECS = {
         graphemes=GRAPHEMES_AN,
         allophones=ALLOPHONES_AN,
         parent="la",
+        ancestors= (
+            Ancestor("la-x-hispania", P, 0.80,
+                     "Primary descent from Hispanic Vulgar Latin"),
+            Ancestor("xaq", SUB, 0.06,
+                     "Basque substrate: Pyrenean areas; shared f→h in some "
+                     "western Aragonese; cf. Saroïhandy (1913)"),
+            Ancestor("xib", SUB, 0.03,
+                     "Iberian substrate: eastern Aragonese territory overlaps "
+                     "with ancient Iberian-speaking areas"),
+            Ancestor("got", SUP, 0.03,
+                     "Visigothic superstrate"),
+            Ancestor("xaa", AD, 0.04,
+                     "Arabic adstrate: Ebro valley under Islamic rule until "
+                     "12th c.; more than Asturian, less than Castilian"),
+        ),
         notes=(
             "Central/standard Aragonese (Alto Aragonés). ~10,000–25,000 "
             "speakers in Huesca Pyrenean valleys. Conservative Romance "

@@ -5,7 +5,12 @@ Sources:
 - Hall, T.A. (2011). *Phonologie: Eine Einführung*, 2nd ed.
 - Wiese, R. (1996). *The Phonology of German*.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 
 GRAPHEMES = {
     # --- Vowels ---
@@ -143,6 +148,16 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="gem",
+        ancestors=(
+            Ancestor("goh", P, 0.92,
+                     "Descent from Old High German via Middle High German"),
+            Ancestor("la", AD, 0.05,
+                     "Latin adstrate: ecclesiastical & scholarly vocabulary "
+                     "(Fenster, Mauer, Kloster); cf. Wolff (1999)"),
+            Ancestor("fr", AD, 0.03,
+                     "French adstrate: courtly vocabulary (Abenteuer, Turnier); "
+                     "17th-18th c. prestige influence"),
+        ),
         notes=(
             "Standard German (Hochdeutsch / Bühnendeutsch). "
             "Auslautverhärtung (final obstruent devoicing) is reflected "

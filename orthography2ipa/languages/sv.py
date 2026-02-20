@@ -4,6 +4,13 @@ Sources:
 - Engstrand, O. (1999). Swedish. *Handbook of the IPA*.
 - Riad, T. (2014). *The Phonology of Swedish*.
 """
+
+from orthography2ipa.types import Ancestor, AncestorRole
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 from orthography2ipa.types import LanguageSpec
 
 GRAPHEMES = {
@@ -111,6 +118,15 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="gem",
+        ancestors=(
+            Ancestor("non", P, 0.90,
+                     "Descent from Old Norse (East Norse branch)"),
+            Ancestor("de", AD, 0.06,
+                     "Low German / Hanseatic adstrate: massive vocabulary "
+                     "borrowing in late medieval period"),
+            Ancestor("fi", AD, 0.02,
+                     "Finnish adstrate: minor, in border areas"),
+        ),
         notes=(
             "Central Standard Swedish. Retroflex assimilation "
             "(⟨rd⟩→[ɖ] etc.) is characteristic of Central/Northern "

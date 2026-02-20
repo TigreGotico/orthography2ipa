@@ -12,7 +12,12 @@ Conventions:
 - Digraphs ⟨lh⟩, ⟨nh⟩, ⟨ch⟩, ⟨rr⟩, ⟨ss⟩, ⟨qu⟩, ⟨gu⟩ are the
   officially recognised Portuguese digraphs per the *Acordo Ortográfico*.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+AD = AncestorRole.ADSTRATE
+SUP = AncestorRole.SUPERSTRATE
 
 # ═══════════════════════════════════════════════════════════════════════════
 # European Portuguese (PT-PT)
@@ -188,14 +193,37 @@ ALLOPHONES_PT_AO = {
 # ── Specs ──────────────────────────────────────────────────────────────────
 SPECS = {
     "pt": LanguageSpec(
-        code="pt",
+        code="pt-PT",
         name="European Portuguese",
         family="Romance",
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_PT,
-        parent="la",
-        notes="Based on standard Lisbon pronunciation.",
+        parent="la-x-hispania",
+        ancestors=(
+            Ancestor("la-x-hispania", P, 0.78,
+                     "Primary descent from Hispanic Vulgar Latin"),
+            Ancestor("xlg", SUB, 0.05,
+                     "Lusitanian substrate: possibly reinforced "
+                     "preservation of /v/ distinct from /b/ (unlike Castilian)"),
+            Ancestor("cel", SUB, 0.04,
+                     "Celtic (Gallaecian) substrate in NW Iberia: "
+                     "toponyms, possible influence on nasal vowel development"),
+            Ancestor("xsb", SUP, 0.04,
+                     "Suebi (Germanic) superstrate in Gallaecia (411-585 CE): "
+                     "~200 place names, vocabulary (guerra, roubar, branco)"),
+            Ancestor("got", SUP, 0.03,
+                     "Visigothic superstrate shared with all Ibero-Romance"),
+            Ancestor("xaa", AD, 0.06,
+                     "Andalusi Arabic adstrate: ~1000 loanwords, "
+                     "less influence than in Spanish due to earlier Reconquista"),
+        ),
+        notes=(
+            "European Portuguese (PT-PT). Base mapping uses Lisbon standard. "
+            "Digraphs per Acordo Ortográfico. Portuguese preserves the "
+            "/v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). "
+            "Nasal vowels and extreme vowel reduction are diagnostic features."
+        ),
     ),
     "pt-BR": LanguageSpec(
         code="pt-BR",
@@ -204,7 +232,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT_BR,
         allophones=ALLOPHONES_PT_BR,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Key differences from PT-PT: palatalisation of /t,d/ before /i/, "
             "coda /l/ → [w], onset /r/ → [h] in most dialects, no coda /ʃ/."
@@ -217,7 +245,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT_AO,
         allophones=ALLOPHONES_PT_AO,
-        parent="pt",
+        parent="pt-PT",
         notes="Based on Luanda educated speech.",
     ),
 }

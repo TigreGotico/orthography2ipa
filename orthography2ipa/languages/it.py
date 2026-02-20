@@ -1,79 +1,81 @@
 """Italian (it) — grapheme→IPA and allophone mappings.
 
+Standard Italian based on Florentine/Tuscan.
+
 Sources:
-- Rogers, D. & d'Arcangeli, L. (2004). Italian. *JIPA* 34(1).
-- Bertinetto, P.M. & Loporcaro, M. (2005). The sound pattern of Standard Italian.
+- Krämer, M. (2009). *The Phonology of Italian*. OUP.
+- Bertinetto, P.M. & Loporcaro, M. (2005). 'The sound pattern of
+  Standard Italian.' *JIPA* 35(2).
+- Canepari, L. (2005). *A Handbook of Pronunciation*. Lincom Europa.
+- Rohlfs, G. (1966–1969). *Grammatica storica della lingua italiana*.
+  Einaudi. 3 vols.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
 
 GRAPHEMES = {
-    # --- Vowels (7-vowel system in stressed position) ---
+    # --- Vowels (7-vowel system) ---
     "a": ["a"],
-    "e": ["e", "ɛ"],
+    "e": ["e", "ɛ"],    # open/close lexically determined
     "i": ["i"],
-    "o": ["o", "ɔ"],
+    "o": ["o", "ɔ"],    # open/close lexically determined
     "u": ["u"],
-    "à": ["a"],
-    "è": ["ɛ"],
-    "é": ["e"],
-    "ì": ["i"],
-    "ò": ["ɔ"],
-    "ó": ["o"],
-    "ù": ["u"],
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "tʃ"],  # /k/ before a,o,u; /tʃ/ before e,i
+    "c": ["k", "tʃ"],   # [tʃ] before e,i
+    "ch": ["k"],         # before e,i: ⟨che⟩ = [ke]
     "d": ["d"],
     "f": ["f"],
-    "g": ["ɡ", "dʒ"],  # /ɡ/ before a,o,u; /dʒ/ before e,i
-    "h": [""],  # always silent (disambiguates c/g)
-    "j": ["j"],  # rare, older orthography / loanwords
-    "k": ["k"],  # loanwords
+    "g": ["ɡ", "dʒ"],   # [dʒ] before e,i
+    "gh": ["ɡ"],         # before e,i: ⟨ghe⟩ = [ɡe]
+    "h": ["∅"],          # always silent
+    "j": ["j"],
+    "k": ["k"],          # foreign words
     "l": ["l"],
     "m": ["m"],
     "n": ["n"],
     "p": ["p"],
-    "q": ["k"],  # only in ⟨qu⟩
-    "r": ["r"],  # alveolar trill
-    "s": ["s", "z"],  # /z/ before voiced C and intervocalic (N. Italy)
+    "qu": ["kw"],
+    "r": ["r"],
+    "s": ["s", "z"],     # [z] between vowels
     "t": ["t"],
     "v": ["v"],
-    "w": ["w"],  # loanwords
-    "x": ["ks"],  # loanwords
-    "y": ["i"],  # loanwords
-    "z": ["ts", "dz"],  # distribution partly lexical
+    "w": ["v", "w"],     # foreign words
+    "x": ["ks"],         # foreign words
+    "y": ["i", "j"],     # foreign words
+    "z": ["ts", "dz"],   # lexically determined
 
-    # --- Consonant digraphs ---
-    "ch": ["k"],  # hard c before e,i: ⟨che⟩, ⟨chi⟩
-    "gh": ["ɡ"],  # hard g before e,i: ⟨ghe⟩, ⟨ghi⟩
-    "ci": ["tʃ"],  # soft c before a,o,u: ⟨cia⟩, ⟨cio⟩, ⟨ciu⟩
-    "gi": ["dʒ"],  # soft g before a,o,u: ⟨gia⟩, ⟨gio⟩, ⟨giu⟩
-    "gl": ["ʎ"],  # before i: ⟨gli⟩
-    "gn": ["ɲ"],
-    "qu": ["kw"],
-    "sc": ["ʃ", "sk"],  # /ʃ/ before e,i; /sk/ before a,o,u
-    "ss": ["s"],  # always voiceless
-    "zz": ["tts", "ddz"],  # geminate affricates
+    # --- Digraphs / trigraphs ---
+    "ci": ["tʃ"],        # before a,o,u: ⟨cia⟩ = [tʃa]
+    "gi": ["dʒ"],        # before a,o,u: ⟨gia⟩ = [dʒa]
+    "sc": ["ʃ", "sk"],   # [ʃ] before e,i; [sk] before a,o,u
+    "sci": ["ʃ"],        # before a,o,u: ⟨scia⟩ = [ʃa]
+    "gl": ["ʎ", "ɡl"],   # [ʎ] before i; [ɡl] elsewhere
+    "gli": ["ʎ"],        # palatal lateral
+    "gn": ["ɲ"],         # palatal nasal
 
-    # --- Geminate consonants (orthographic doubling) ---
-    "bb": ["bː"], "cc": ["kk", "ttʃ"], "dd": ["dː"], "ff": ["fː"],
-    "gg": ["ɡɡ", "ddʒ"], "ll": ["lː"], "mm": ["mː"], "nn": ["nː"],
-    "pp": ["pː"], "rr": ["rː"], "tt": ["tː"], "vv": ["vː"],
+    # --- Geminates ---
+    "bb": ["bː"], "cc": ["kː", "tːʃ"], "dd": ["dː"],
+    "ff": ["fː"], "gg": ["ɡː", "dːʒ"], "ll": ["lː"],
+    "mm": ["mː"], "nn": ["nː"], "pp": ["pː"],
+    "rr": ["rː"], "ss": ["sː"], "tt": ["tː"],
+    "zz": ["tːs", "dːz"],
 
-    # --- Diphthongs (rising, with glide) ---
+    # --- Diphthongs ---
+    "ai": ["aj"], "ei": ["ej"], "oi": ["oj"], "ui": ["uj"],
+    "au": ["aw"], "eu": ["ew"],
     "ia": ["ja"], "ie": ["je"], "io": ["jo"], "iu": ["ju"],
-    "ua": ["wa"], "ue": ["we"], "uo": ["wɔ"], "ui": ["wi"],
-
-    # --- Trigraph ---
-    "sci": ["ʃ"],  # ⟨sci⟩ before a,o,u: ⟨scia⟩ → [ʃa]
-    "gli": ["ʎi", "ʎ"],  # palatal lateral
+    "ua": ["wa"], "ue": ["we"], "uo": ["wo"],
 }
 
 ALLOPHONES = {
     "p": ["p"],
     "b": ["b"],
-    "t": ["t", "t̪"],  # dental before dental
+    "t": ["t", "t̪"],     # dental before dental
     "d": ["d", "d̪"],
     "k": ["k"],
     "ɡ": ["ɡ"],
@@ -89,14 +91,14 @@ ALLOPHONES = {
     "tʃ": ["tʃ"],
     "dʒ": ["dʒ"],
 
-    "m": ["m", "ɱ"],  # labiodental before /f, v/
+    "m": ["m", "ɱ"],     # labiodental before /f, v/
     "n": ["n", "m", "ɱ", "ŋ", "ɲ"],  # assimilates to following place
     "ɲ": ["ɲ"],
-    "ŋ": ["ŋ"],  # allophone of /n/
+    "ŋ": ["ŋ"],          # allophone of /n/
 
     "l": ["l"],
     "ʎ": ["ʎ"],
-    "r": ["r", "ɾ"],  # tap in fast speech / unstressed
+    "r": ["r", "ɾ"],     # tap in fast speech / unstressed
     "j": ["j"],
     "w": ["w"],
 
@@ -107,6 +109,14 @@ ALLOPHONES = {
     "o": ["o"],
     "ɔ": ["ɔ"],
     "u": ["u"],
+
+    # Geminates
+    "bː": ["bː"], "dː": ["dː"], "ɡː": ["ɡː"],
+    "pː": ["pː"], "tː": ["tː"], "kː": ["kː"],
+    "fː": ["fː"], "sː": ["sː"],
+    "lː": ["lː"], "mː": ["mː"], "nː": ["nː"], "rː": ["rː"],
+    "tːʃ": ["tːʃ"], "dːʒ": ["dːʒ"],
+    "tːs": ["tːs"], "dːz": ["dːz"],
 }
 
 SPECS = {
@@ -117,11 +127,28 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
-        parent="la",
+        parent="la-x-italia",
+        ancestors=(
+            Ancestor("la-x-italia", P, 0.85,
+                     "Italo-Romance Vulgar Latin: gemination preserved, "
+                     "7-vowel system, -s lost, standard based on Tuscan."),
+            Ancestor("gem", SUP, 0.05,
+                     "Lombardic superstrate (6th–8th c.): vocabulary "
+                     "(guancia, stinco, schiena), some N. Italian "
+                     "phonological influence."),
+            Ancestor("got", SUP, 0.03,
+                     "Ostrogothic superstrate (5th–6th c.): limited "
+                     "phonological impact, some vocabulary."),
+            Ancestor("grc", SUB, 0.04,
+                     "Greek substrate (Magna Graecia): mainly affects "
+                     "southern dialects; limited in Tuscan standard."),
+        ),
         notes=(
             "Standard Italian (based on Florentine/Tuscan). "
             "Open/close mid-vowel distinction (e/ɛ, o/ɔ) is lexically "
-            "determined and varies by region."
+            "determined and varies by region. Gemination is phonemic "
+            "(fato/fatto). Gorgia toscana (intervocalic stop aspiration) "
+            "is a regional Tuscan feature, not standard."
         ),
     ),
 }

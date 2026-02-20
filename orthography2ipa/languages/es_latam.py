@@ -30,6 +30,11 @@ _GRAPHEMES_LA = {
     "ll": ["ʝ"],
     "y": ["ʝ", "i"],
 }
+_ALLOPHONES_LA = {
+    **ALLOPHONES_ES,
+    # no /θ/ phoneme
+    "s": ["s", "z", "h"],  # aspiration in Caribbean, coda weakening
+}
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Mexican Spanish (es-MX)
@@ -331,6 +336,22 @@ ALLOPHONES_UY = {
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Rioplatense Spanish (es-AR)
+# ═══════════════════════════════════════════════════════════════════════════
+
+GRAPHEMES_ES_AR = {
+    **_GRAPHEMES_LA,
+    "ll": ["ʃ", "ʒ"],  # žeísmo / šeísmo
+    "y": ["ʃ", "ʒ", "i"],
+}
+
+ALLOPHONES_ES_AR = {
+    **_ALLOPHONES_LA,
+    "ʝ": ["ʃ", "ʒ"],  # devoiced in younger Buenos Aires speakers
+}
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Equatoguinean Spanish (es-GQ)
 # Only Spanish-speaking country in Africa; Bantu substrate
 # ═══════════════════════════════════════════════════════════════════════════
@@ -356,6 +377,18 @@ ALLOPHONES_GQ = {
 # ═══════════════════════════════════════════════════════════════════════════
 
 SPECS = {
+
+    "es-419": LanguageSpec(
+        code="es-419",
+        name="Latin American Spanish",
+        family="Romance",
+        script="Latin",
+        graphemes=_GRAPHEMES_LA,
+        allophones=_ALLOPHONES_LA,
+        parent="es",
+        notes="Seseo, yeísmo. Coda /s/ aspiration noted in allophone map.",
+    ),
+
     # --- Mexico ---
     "es-MX": LanguageSpec(
         code="es-MX", name="Mexican Spanish (Highland)",
@@ -576,6 +609,17 @@ SPECS = {
             "Border dialects show Portuguese influence (DPU — Dialectos "
             "Portugueses del Uruguay)."
         ),
+    ),
+    # Argentina
+    "es-AR": LanguageSpec(
+        code="es-AR",
+        name="Rioplatense Spanish",
+        family="Romance",
+        script="Latin",
+        graphemes=GRAPHEMES_ES_AR,
+        allophones=ALLOPHONES_ES_AR,
+        parent="es",
+        notes="Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩.",
     ),
     # --- Equatorial Guinea ---
     "es-GQ": LanguageSpec(

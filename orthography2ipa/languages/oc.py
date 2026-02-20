@@ -4,7 +4,12 @@ Sources:
 - Sumien, D. (2006). *La standardisation pluricentrique de l'occitan*.
 - Bec, P. (1973). *Manuel pratique d'occitan moderne*.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+
+P = AncestorRole.PARENT
+SUB = AncestorRole.SUBSTRATE
+SUP = AncestorRole.SUPERSTRATE
+AD = AncestorRole.ADSTRATE
 
 GRAPHEMES = {
     # --- Vowels ---
@@ -79,6 +84,22 @@ SPECS = {
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
         parent="la",
+        ancestors=(
+            Ancestor("la-x-gallia", P, 0.80,
+                     "Gallo-Romance Vulgar Latin"),
+            Ancestor("xga", SUB, 0.06,
+                     "Gaulish substrate: S. Gaul varieties, less Frankish "
+                     "overlay than N. French; cf. Lambert (2003)"),
+            Ancestor("got", SUP, 0.04,
+                     "Visigothic superstrate: Toulouse kingdom (418-507 CE), "
+                     "strongest Germanic influence on Occitan"),
+            Ancestor("xaq", SUB, 0.03,
+                     "Basque substrate: primarily in Gascon dialect area; "
+                     "h- aspiration, loss of Latin f-, unique definite article "
+                     "eth/era; cf. Rohlfs (1970)"),
+            Ancestor("xaa", AD, 0.03,
+                     "Arabic adstrate: minor, via Iberian transmission"),
+        ),
         notes=(
             "Based on Languedocien/general Occitan norms. "
             "Substantial dialectal variation across Gascon, Provençal, "
