@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "orthography2ipa"
-version = "0.1.0"
+dynamic = ["version", "dependencies"]
 description = "Linguistically motivated grapheme-to-IPA and allophone mappings for 20+ languages"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -24,6 +24,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 keywords = ["ipa", "phonetics", "phonology", "grapheme", "allophone", "linguistics", "nlp"]
+
+[tool.setuptools.dynamic]
+version = {attr = "orthography2ipa.version.VERSION_STR"}
+dependencies = {file = ["requirements.txt"]}
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"
