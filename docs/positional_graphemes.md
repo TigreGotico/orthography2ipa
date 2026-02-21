@@ -2,9 +2,10 @@
 
 ## Overview
 
-The **positional grapheme system** extends the base `graphemes` mapping with optional context-sensitive IPA overrides. Many languages have graphemes whose pronunciation depends systematically on position within a word or syllable. Rather than listing all possible realisations in the flat `graphemes` dict (leaving consumers to guess which applies), `positional_graphemes` encodes exactly which IPA mapping applies in each phonological environment.
+The **positional grapheme system** extends the base `graphemes` mapping with optional context-sensitive IPA overrides. 
+Many languages have graphemes whose pronunciation depends systematically on position within a word or syllable. Rather than listing all possible realisations in the flat `graphemes` dict (leaving consumers to guess which applies), `positional_graphemes` encodes exactly which IPA mapping applies in each phonological environment.
 
-This feature is **fully backward-compatible** — existing `LanguageSpec` objects without positional data continue to work identically.
+> NOTE: This is provided as utility for downstream G2P tasks, but it's not within the scope of this repo to perform full phonemization
 
 ---
 
@@ -186,22 +187,6 @@ SPECS = {
 }
 ```
 
-### Example: English onset/coda split
-
-```python
-POSITIONAL_GRAPHEMES_EN = {
-    "l": {
-        GraphemePosition.ONSET: ["l"],     # clear l
-        GraphemePosition.CODA: ["ɫ"],      # dark l (velarised)
-    },
-    "t": {
-        GraphemePosition.WORD_INITIAL: ["t"],     # aspirated [tʰ] is allophonic
-        GraphemePosition.INTERVOCALIC: ["ɾ"],     # flapping (GA)
-        GraphemePosition.WORD_FINAL: ["t"],
-    },
-}
-```
-
 ### Example: Brazilian Portuguese coda vocalization
 
 ```python
@@ -245,18 +230,6 @@ Some phenomena (like English /t/ flapping) could be modelled at either level. As
 - If the orthography→phoneme step is ambiguous → use `positional_graphemes`
 - If the phoneme→surface step varies → use `allophones`
 - If both apply, use both
-
----
-
-## Backward Compatibility
-
-The positional system is designed to be fully backward-compatible:
-
-- `positional_graphemes` defaults to `{}` (empty dict) when not provided
-- `LanguageSpec` with `positional_graphemes=None` automatically normalises to `{}`
-- `resolve_grapheme("x")` without a position argument returns the same result as `graphemes["x"]` when no positional data exists
-- All existing `LanguageSpec` objects continue to work without modification
-- The `PhonetokTokenizer` falls back gracefully when positional data is absent
 
 ---
 
