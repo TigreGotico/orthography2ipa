@@ -19,8 +19,8 @@ Conventions:
 - All inherit base es-419 graphemes (seseo + yeísmo).
 - Private-use subtags: es-{COUNTRY} or es-{COUNTRY}-x-{region}.
 """
-from orthography2ipa.languages.es import GRAPHEMES_ES, ALLOPHONES_ES
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.languages.es import GRAPHEMES_ES, ALLOPHONES_ES, POSITIONAL_ES_ES
+from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
 
 # Shared base: seseo + yeísmo
 _GRAPHEMES_LA = {
@@ -34,6 +34,13 @@ _ALLOPHONES_LA = {
     **ALLOPHONES_ES,
     # no /θ/ phoneme
     "s": ["s", "z", "h"],  # aspiration in Caribbean, coda weakening
+}
+
+# Lipski (1994). All LatAm varieties share seseo and yeísmo.
+
+POSITIONAL_ES_419 = {
+    **POSITIONAL_ES_ES,
+    # Same lenition as Castilian
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -73,6 +80,16 @@ ALLOPHONES_MX_COAST = {
     "d": ["d", "ð", "∅"],  # -d deletion
 }
 
+# ── Highland conservative (Mexico City, Bogotá, Andean) ──────────────────
+# Full coda /s/, no aspiration
+POSITIONAL_ES_HIGHLAND = {
+    **POSITIONAL_ES_ES,
+    "s": {
+        GP.DEFAULT: ["s"],
+        GP.CODA: ["s", "z"],  # fully retained
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Caribbean Spanish (es-CU, es-DO, es-PR)
 # Shared: aspiration, velar [ŋ], liquid neutralisation, -d deletion
@@ -97,6 +114,27 @@ ALLOPHONES_CARIB = {
     "b": ["b", "β"],
     "ɡ": ["ɡ", "ɣ"],
     "ʝ": ["ʝ", "ɟʝ"],
+}
+
+# ── Caribbean (Cuba, Dominican Republic, Puerto Rico, Venezuela) ─────────
+# Defining feature: coda /s/ aspiration/deletion, /x/ → [h]
+POSITIONAL_ES_CARIBBEAN = {
+    **POSITIONAL_ES_ES,
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["s"],
+        GP.CODA: ["h", "∅"],
+        GP.WORD_FINAL: ["h", "∅"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð", "∅"],
+        GP.WORD_FINAL: ["∅"],
+    },
+    "n": {
+        GP.DEFAULT: ["n"],
+        GP.WORD_FINAL: ["ŋ"],  # velarisation
+    },
 }
 
 # Puerto Rico-specific: uvular /r/, extreme lateralisation
@@ -289,6 +327,22 @@ ALLOPHONES_CL = {
     "n": ["n"],
 }
 
+# ── Chilean ──────────────────────────────────────────────────────────────
+POSITIONAL_ES_CL = {
+    **POSITIONAL_ES_ES,
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["s"],
+        GP.CODA: ["h", "s"],  # moderate aspiration
+        GP.WORD_FINAL: ["h"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+        GP.WORD_FINAL: ["∅"],
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Paraguayan Spanish (es-PY)
 # Guaraní substrate; unique phonological features
@@ -350,6 +404,11 @@ ALLOPHONES_ES_AR = {
     "ʝ": ["ʃ", "ʒ"],  # devoiced in younger Buenos Aires speakers
 }
 
+# ── Rioplatense (Argentina, Uruguay) ─────────────────────────────────────
+POSITIONAL_ES_AR = {
+    **POSITIONAL_ES_ES,
+    # ⟨ll⟩/⟨y⟩ → [ʃ]/[ʒ] — handled in base graphemes, not positional
+}
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Equatoguinean Spanish (es-GQ)

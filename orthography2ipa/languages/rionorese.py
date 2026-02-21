@@ -19,6 +19,7 @@ Conventions:
 - Key features: betacism, affricate [tʃ] for Pt. [ʃ], Leonese diphthongs
   (Ĕ → [je], Ŏ → [wo]/[wa]), article ⟨al⟩, x- for j- [ʃ].
 """
+from orthography2ipa.languages.ast import POSITIONAL_AST
 from orthography2ipa.types import LanguageSpec
 
 GRAPHEMES_RION = {
@@ -145,6 +146,8 @@ ALLOPHONES_RION = {
     "õ": ["õ"],
     "ũ": ["ũ"],
 }
+
+POSITIONAL_RIONORESE = {**POSITIONAL_AST}
 
 SPECS = {
     "ast-PT-x-rionor": LanguageSpec(

@@ -12,7 +12,7 @@ Conventions:
 - Digraphs ⟨lh⟩, ⟨nh⟩, ⟨ch⟩, ⟨rr⟩, ⟨ss⟩, ⟨qu⟩, ⟨gu⟩ are the
   officially recognised Portuguese digraphs per the *Acordo Ortográfico*.
 """
-from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec, GraphemePosition as GP
 
 P = AncestorRole.PARENT
 SUB = AncestorRole.SUBSTRATE
@@ -151,6 +151,71 @@ ALLOPHONES_PT = {
     "ũ": ["ũ"],
 }
 
+# Portuguese has the richest positional grapheme variation of any Iberian
+# language. The ⟨s⟩/⟨z⟩ system, ⟨r⟩ distribution, ⟨l⟩ velarisation,
+# and ⟨b⟩/⟨d⟩/⟨g⟩ lenition are all highly position-dependent.
+#
+# Mateus & d'Andrade (2000), ch. 2–4.
+
+POSITIONAL_PT_PT = {
+    # ── ⟨s⟩: the most position-sensitive grapheme in Portuguese ─────────
+    # Word-initial: always voiceless [s]
+    # Intervocalic: always voiced [z]  (casa [kazɐ])
+    # Coda before voiceless C: [ʃ]  (estar [ɨʃtar])
+    # Coda before voiced C: [ʒ]  (mesmo [meʒmu])
+    # Word-final: [ʃ]  (gatos [gatuʃ])
+    # Cross-word before vowel: [z]  (os amigos [uz‿ɐmiɡuʃ])
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["z"],
+        GP.CODA: ["ʃ", "ʒ"],  # [ʃ] default; [ʒ] before voiced C
+        GP.WORD_FINAL: ["ʃ"],
+        GP.INTERVOCALIC_CROSS_WORD: ["z"],
+    },
+    # ── ⟨z⟩: voiced sibilant with coda devoicing ────────────────────────
+    "z": {
+        GP.DEFAULT: ["z"],
+        GP.WORD_FINAL: ["ʃ"],  # devoiced and postalveolar in EP
+        GP.CODA: ["ʒ", "ʃ"],
+    },
+    # ── ⟨r⟩: uvular vs. tap distribution ────────────────────────────────
+    # Word-initial: uvular [ʁ]  (rato [ʁatu])
+    # Intervocalic: tap [ɾ]  (caro [kaɾu])
+    # Coda: tap [ɾ] or uvular depending on dialect
+    "r": {
+        GP.WORD_INITIAL: ["ʁ"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.CODA: ["ɾ"],
+        GP.ONSET: ["ɾ"],  # post-consonantal onset: tap (pr, tr, cr)
+    },
+    # ── ⟨l⟩: clear onset vs. dark/velarised coda ─────────────────────────
+    "l": {
+        GP.ONSET: ["l"],
+        GP.CODA: ["ɫ"],  # velarised (dark l)
+    },
+    # ── Voiced stops: lenition intervocalically ──────────────────────────
+    # Mateus & d'Andrade (2000): "voiced stops are realised as
+    # approximants in intervocalic position in casual speech"
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    # ── ⟨e⟩: stressed vs. unstressed vowel reduction ────────────────────
+    # Unstressed /e/ → [ɨ] or [ə] in EP (nucleus position = unstressed)
+    "e": {
+        GP.DEFAULT: ["e", "ɛ", "ə"],
+        GP.NUCLEUS: ["ɨ", "ə"],  # unstressed reduction
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Brazilian Portuguese (pt-BR)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -173,6 +238,116 @@ ALLOPHONES_PT_BR = {
     "ʁ": ["h", "x", "ɦ", "ʁ"],  # glottal/velar dominant in most dialects
     "ɾ": ["ɾ", "ɹ"],  # retroflex tap in paulista/caipira dialects
     "ə": ["ə", "i"],  # word-final unstressed /e/ → [i]
+}
+
+# Bisol (2005), Cristófaro Silva (2012).
+
+POSITIONAL_PT_BR = {
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["z"],
+        GP.CODA: ["s", "z"],  # alveolar [s] before voiceless, [z] before voiced
+        GP.WORD_FINAL: ["s"],  # no postalveolar in most dialects
+        GP.INTERVOCALIC_CROSS_WORD: ["z"],
+    },
+    "z": {
+        GP.DEFAULT: ["z"],
+        GP.WORD_FINAL: ["s"],  # devoiced: voz [vos]
+        GP.CODA: ["z", "s"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["h", "x", "ʁ"],  # glottal/velar dominant
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.CODA: ["ɾ", "h", "x"],  # varies by dialect
+        GP.ONSET: ["ɾ"],  # post-consonantal: tap
+    },
+    "l": {
+        GP.ONSET: ["l"],
+        GP.CODA: ["w"],  # l-vocalisation: [w]
+    },
+    # ── ⟨t⟩/⟨d⟩: palatalisation before /i/ (modelled as onset) ──────────
+    # This is arguably the strongest north/south isogloss in Brazil
+    "t": {
+        GP.DEFAULT: ["t"],
+        GP.ONSET: ["t", "tʃ"],  # [tʃ] before /i/
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.ONSET: ["d", "dʒ"],  # [dʒ] before /i/
+    },
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "e": {
+        GP.DEFAULT: ["e", "ɛ"],
+        GP.WORD_FINAL: ["i"],  # final raising: leite [ˈlejtʃi]
+    },
+    "o": {
+        GP.DEFAULT: ["o", "ɔ"],
+        GP.WORD_FINAL: ["u"],  # final raising: livro [ˈlivɾu]
+    },
+}
+
+# ── Carioca (pt-BR-x-rj): palatal coda sibilants like EP ────────────────
+POSITIONAL_PT_BR_RJ = {
+    **POSITIONAL_PT_BR,
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["z"],
+        GP.CODA: ["ʃ", "ʒ"],  # palatal sibilants (unique in Brazil)
+        GP.WORD_FINAL: ["ʃ"],
+        GP.INTERVOCALIC_CROSS_WORD: ["z"],
+    },
+    "z": {
+        GP.DEFAULT: ["z"],
+        GP.WORD_FINAL: ["ʃ"],
+        GP.CODA: ["ʒ", "ʃ"],
+    },
+}
+
+# ── Caipira (pt-BR-x-caipira): retroflex coda r ─────────────────────────
+POSITIONAL_PT_BR_CAIPIRA = {
+    **POSITIONAL_PT_BR,
+    "r": {
+        GP.WORD_INITIAL: ["h", "x"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.CODA: ["ɻ", "ɹ"],  # retroflex 'erre caipira'
+        GP.ONSET: ["ɾ"],
+    },
+}
+
+# ── Gaúcho/Sulista (pt-BR-x-sul): alveolar trill in onset ───────────────
+POSITIONAL_PT_BR_SUL = {
+    **POSITIONAL_PT_BR,
+    "r": {
+        GP.WORD_INITIAL: ["r", "ɾ"],  # alveolar trill or tap (not glottal)
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.CODA: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+    },
+}
+
+# ── Nordeste (Recife, Bahia, Ceará): no t/d palatalisation ──────────────
+POSITIONAL_PT_BR_NE = {
+    **POSITIONAL_PT_BR,
+    "t": {
+        GP.DEFAULT: ["t"],
+        GP.ONSET: ["t"],  # NO palatalisation before /i/
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.ONSET: ["d"],  # NO palatalisation before /i/
+    },
+    # Pretonic vowel opening (Northeastern isogloss)
+    "e": {
+        GP.DEFAULT: ["ɛ", "e"],  # open pretonic /e/ → [ɛ]
+        GP.WORD_FINAL: ["i"],
+    },
+    "o": {
+        GP.DEFAULT: ["ɔ", "o"],  # open pretonic /o/ → [ɔ]
+        GP.WORD_FINAL: ["u"],
+    },
 }
 
 # ═══════════════════════════════════════════════════════════════════════════

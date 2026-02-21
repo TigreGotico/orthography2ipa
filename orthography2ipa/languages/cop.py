@@ -52,40 +52,40 @@ from orthography2ipa.types import LanguageSpec
 GRAPHEMES = {
     # --- Coptic alphabet letters (Greek-derived) ---
     # Vowels
-    "ⲁ": ["a"],       # alpha
-    "ⲉ": ["ɛ"],       # ei
-    "ⲏ": ["eː"],      # eta
-    "ⲓ": ["i"],       # iota
-    "ⲟ": ["ɔ"],       # omicron
-    "ⲱ": ["oː"],      # omega
-    "ⲩ": ["u"],       # upsilon (also [w] in diphthongs)
+    "ⲁ": ["a"],  # alpha
+    "ⲉ": ["ɛ"],  # ei
+    "ⲏ": ["eː"],  # eta
+    "ⲓ": ["i"],  # iota
+    "ⲟ": ["ɔ"],  # omicron
+    "ⲱ": ["oː"],  # omega
+    "ⲩ": ["u"],  # upsilon (also [w] in diphthongs)
 
     # Consonants (Greek-derived)
-    "ⲃ": ["b"],       # beta (= /b/ not /v/ in Coptic)
-    "ⲅ": ["ɡ"],       # gamma
-    "ⲇ": ["d"],       # delta
-    "ⲍ": ["z"],       # zeta (= /z/ in Sahidic)
-    "ⲑ": ["tʰ"],      # theta (aspirated)
-    "ⲕ": ["k"],       # kappa
-    "ⲗ": ["l"],       # lambda
-    "ⲙ": ["m"],       # mu
-    "ⲛ": ["n"],       # nu
-    "ⲝ": ["ks"],      # ksi
-    "ⲡ": ["p"],       # pi
-    "ⲣ": ["ɾ"],       # rho
-    "ⲥ": ["s"],       # sigma
-    "ⲧ": ["t"],       # tau
-    "ⲫ": ["pʰ"],      # phi (aspirated in Coptic)
-    "ⲭ": ["kʰ"],      # khi (aspirated)
-    "ⲯ": ["ps"],      # psi
+    "ⲃ": ["b"],  # beta (= /b/ not /v/ in Coptic)
+    "ⲅ": ["ɡ"],  # gamma
+    "ⲇ": ["d"],  # delta
+    "ⲍ": ["z"],  # zeta (= /z/ in Sahidic)
+    "ⲑ": ["tʰ"],  # theta (aspirated)
+    "ⲕ": ["k"],  # kappa
+    "ⲗ": ["l"],  # lambda
+    "ⲙ": ["m"],  # mu
+    "ⲛ": ["n"],  # nu
+    "ⲝ": ["ks"],  # ksi
+    "ⲡ": ["p"],  # pi
+    "ⲣ": ["ɾ"],  # rho
+    "ⲥ": ["s"],  # sigma
+    "ⲧ": ["t"],  # tau
+    "ⲫ": ["pʰ"],  # phi (aspirated in Coptic)
+    "ⲭ": ["kʰ"],  # khi (aspirated)
+    "ⲯ": ["ps"],  # psi
 
     # Consonants (Demotic-derived, unique to Coptic)
-    "ϣ": ["ʃ"],       # shai
-    "ϥ": ["f"],       # fai
-    "ϩ": ["h"],       # hori
-    "ϫ": ["tʃ"],      # djandja (< Eg. *tj palatalisation)
-    "ϭ": ["kʲ"],      # tshima (palatalised velar)
-    "ϯ": ["ti"],      # ti (ligature)
+    "ϣ": ["ʃ"],  # shai
+    "ϥ": ["f"],  # fai
+    "ϩ": ["h"],  # hori
+    "ϫ": ["tʃ"],  # djandja (< Eg. *tj palatalisation)
+    "ϭ": ["kʲ"],  # tshima (palatalised velar)
+    "ϯ": ["ti"],  # ti (ligature)
 
     # Supralinear stroke marks syllabic consonants:
     # ⲛ̄ = syllabic [n̩], ⲙ̄ = syllabic [m̩]
@@ -93,8 +93,8 @@ GRAPHEMES = {
     "ⲙ̄": ["m̩"],
 
     # --- Common digraphs ---
-    "ⲟⲩ": ["uː"],     # ou digraph = /uː/
-    "ⲉⲓ": ["iː"],     # ei digraph = /iː/ (raised)
+    "ⲟⲩ": ["uː"],  # ou digraph = /uː/
+    "ⲉⲓ": ["iː"],  # ei digraph = /iː/ (raised)
 }
 
 ALLOPHONES = {
@@ -139,7 +139,6 @@ ALLOPHONES = {
     "uː": ["uː"],
     "ə": ["ə"],  # reduced vowel in unstressed syllables
 }
-
 
 SPECS = {
     "cop": LanguageSpec(

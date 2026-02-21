@@ -31,6 +31,7 @@ from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, Token, TokenKin
 from orthography2ipa.registry import available_codes, available_families, get
 from orthography2ipa.types import (
     AllophoneMap, Ancestor, AncestorRole, Grapheme2IPA, LanguageSpec,
+    PositionalGrapheme2IPA,
 )
 
 __all__ = [
@@ -42,6 +43,7 @@ __all__ = [
     "AllophoneMap",
     "Ancestor",
     "AncestorRole",
+    "PositionalGrapheme2IPA",
     "PhonetokTokenizer",
     "Token",
     "TokenKind",

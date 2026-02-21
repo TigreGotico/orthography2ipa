@@ -14,13 +14,12 @@ Conventions:
 - Eastern: gl-x-oriental (closest to Portuguese).
 - Fala: fax (ISO 639-3: fax) — Galician-Portuguese in Extremadura.
 """
-from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec, GraphemePosition as GP
 
 P = AncestorRole.PARENT
 SUB = AncestorRole.SUBSTRATE
 SUP = AncestorRole.SUPERSTRATE
 AD = AncestorRole.ADSTRATE
-
 
 GRAPHEMES = {
     # --- Vowels (7-vowel system) ---
@@ -93,6 +92,44 @@ ALLOPHONES = {
     "u": ["u"],
 }
 
+# Regueira (1996), Fernández Rei (1990).
+# Galician shares many positional patterns with Portuguese (common ancestor).
+
+POSITIONAL_GL_ES = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "v": {
+        GP.DEFAULT: ["b"],  # betacism in standard
+        GP.INTERVOCALIC: ["β"],
+    },
+    # ⟨s⟩: voicing in standard is variable, less systematic than Portuguese
+    "s": {
+        GP.DEFAULT: ["s"],
+        GP.INTERVOCALIC: ["s", "z"],  # some voicing
+        GP.CODA: ["s"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],  # trill (not uvular like Portuguese)
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+    "n": {
+        GP.DEFAULT: ["n"],
+        GP.CODA: ["n", "ŋ"],
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Western Galician — gheada and seseo
 # ═══════════════════════════════════════════════════════════════════════════
@@ -114,6 +151,15 @@ GRAPHEMES_GL_W = {
     "g": ["ɡ", "h", "ʃ"],  # gheada: [h] before a,o,u
     "z": ["s"],  # seseo
     "c": ["k", "s"],  # before e,i: seseo
+}
+
+# ── Western Galician: gheada zone ────────────────────────────────────────
+POSITIONAL_GL_OCCIDENTAL = {
+    **POSITIONAL_GL_ES,
+    "g": {
+        GP.DEFAULT: ["h", "ħ"],  # gheada: /ɡ/ → [h] everywhere
+        GP.INTERVOCALIC: ["h", "ɣ"],
+    },
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -166,6 +212,35 @@ ALLOPHONES_FALA = {
     "ʎ": ["ʎ"],  # conservative
     "ɾ": ["ɾ"],
     "r": ["r"],
+}
+
+POSITIONAL_FALA = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "f": {
+        GP.DEFAULT: ["f"],
+        GP.WORD_INITIAL: ["f", "h"],  # some Leonese-type f→h
+    },
+    "s": {
+        GP.DEFAULT: ["s"],
+        GP.INTERVOCALIC: ["s", "z"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
 }
 
 SPECS = {

@@ -83,29 +83,29 @@ SUP = AncestorRole.SUPERSTRATE
 GRAPHEMES = {
     # --- Vowels (7-vowel system, /u/ preserved) ---
     "a": ["a"],
-    "e": ["e"],       # < ĭ, ē
-    "ɛ": ["ɛ"],       # < ĕ (open e)
-    "i": ["i"],       # < ī
-    "o": ["o"],       # < ŭ, ō
-    "ɔ": ["ɔ"],       # < ŏ (open o)
-    "u": ["u"],       # PRESERVED (not fronted to /y/)
+    "e": ["e"],  # < ĭ, ē
+    "ɛ": ["ɛ"],  # < ĕ (open e)
+    "i": ["i"],  # < ī
+    "o": ["o"],  # < ŭ, ō
+    "ɔ": ["ɔ"],  # < ŏ (open o)
+    "u": ["u"],  # PRESERVED (not fronted to /y/)
 
     # --- Consonants ---
     "p": ["p"],
     "b": ["b"],
     "t": ["t"],
     "d": ["d"],
-    "c": ["k", "tʃ"],   # [tʃ] before e,i
-    "g": ["ɡ", "dʒ"],   # [dʒ] before e,i
-    "f": ["f"],          # PRESERVED
+    "c": ["k", "tʃ"],  # [tʃ] before e,i
+    "g": ["ɡ", "dʒ"],  # [dʒ] before e,i
+    "f": ["f"],  # PRESERVED
     "v": ["v"],
-    "s": ["s", "z"],     # voiced between vowels in some areas
-    "h": ["∅"],          # silent (lost in late Latin)
+    "s": ["s", "z"],  # voiced between vowels in some areas
+    "h": ["∅"],  # silent (lost in late Latin)
 
     # --- Palatals ---
-    "gn": ["ɲ"],         # < -gn-, -ni-
-    "gl-ES": ["ʎ"],         # < -li-, -gl- before i
-    "sc": ["ʃ"],         # < SCI, SCE
+    "gn": ["ɲ"],  # < -gn-, -ni-
+    "gl-ES": ["ʎ"],  # < -li-, -gl- before i
+    "sc": ["ʃ"],  # < SCI, SCE
 
     # --- Nasals ---
     "m": ["m"],
@@ -114,7 +114,7 @@ GRAPHEMES = {
     # --- Liquids ---
     "l": ["l"],
     "r": ["ɾ"],
-    "rr": ["r"],         # geminate trill preserved
+    "rr": ["r"],  # geminate trill preserved
 
     # --- Geminates (PRESERVED — hallmark of Italo-Romance) ---
     "pp": ["pː"],
@@ -133,8 +133,8 @@ GRAPHEMES = {
     "z": ["ts", "dz"],
 
     # --- Diphthongs ---
-    "ie": ["je"],        # < /ɛ/ diphthongisation
-    "uo": ["wo"],        # < /ɔ/ diphthongisation
+    "ie": ["je"],  # < /ɛ/ diphthongisation
+    "uo": ["wo"],  # < /ɔ/ diphthongisation
     "ai": ["aj"],
     "au": ["aw"],
     "ei": ["ej"],
@@ -142,11 +142,11 @@ GRAPHEMES = {
 }
 
 ALLOPHONES = {
-    "p": ["p", "ɸ"],       # [ɸ] in gorgia toscana area
+    "p": ["p", "ɸ"],  # [ɸ] in gorgia toscana area
     "b": ["b", "β"],
-    "t": ["t", "θ"],       # [θ] in gorgia toscana area
+    "t": ["t", "θ"],  # [θ] in gorgia toscana area
     "d": ["d", "ð"],
-    "k": ["k", "h"],       # [h] in gorgia toscana area
+    "k": ["k", "h"],  # [h] in gorgia toscana area
     "ɡ": ["ɡ", "ɣ"],
     "tʃ": ["tʃ"],
     "dʒ": ["dʒ"],

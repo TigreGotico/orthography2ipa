@@ -24,7 +24,7 @@ Conventions:
   system (/s z ɕ ʑ/), Leonese diphthongs (-iê- [je], -uô- [wo]),
   initial ei- diphthongization, -ōnis → -on [õ].
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Central Mirandese (standard / normative)
@@ -166,6 +166,35 @@ ALLOPHONES_MWL = {
     "ĩ": ["ĩ"],
     "õ": ["õ"],
     "ũ": ["ũ"],
+}
+
+POSITIONAL_MWL = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+    "l": {
+        GP.ONSET: ["l"],
+        GP.CODA: ["l", "ɫ"],
+    },
+    "n": {
+        GP.DEFAULT: ["n"],
+        GP.CODA: ["n", "ŋ"],
+    },
 }
 
 # ═══════════════════════════════════════════════════════════════════════════

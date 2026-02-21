@@ -19,44 +19,44 @@ SUP = AncestorRole.SUPERSTRATE
 GRAPHEMES = {
     # --- Vowels (7-vowel system) ---
     "a": ["a"],
-    "e": ["e", "ɛ"],    # open/close lexically determined
+    "e": ["e", "ɛ"],  # open/close lexically determined
     "i": ["i"],
-    "o": ["o", "ɔ"],    # open/close lexically determined
+    "o": ["o", "ɔ"],  # open/close lexically determined
     "u": ["u"],
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "tʃ"],   # [tʃ] before e,i
-    "ch": ["k"],         # before e,i: ⟨che⟩ = [ke]
+    "c": ["k", "tʃ"],  # [tʃ] before e,i
+    "ch": ["k"],  # before e,i: ⟨che⟩ = [ke]
     "d": ["d"],
     "f": ["f"],
-    "g": ["ɡ", "dʒ"],   # [dʒ] before e,i
-    "gh": ["ɡ"],         # before e,i: ⟨ghe⟩ = [ɡe]
-    "h": ["∅"],          # always silent
+    "g": ["ɡ", "dʒ"],  # [dʒ] before e,i
+    "gh": ["ɡ"],  # before e,i: ⟨ghe⟩ = [ɡe]
+    "h": ["∅"],  # always silent
     "j": ["j"],
-    "k": ["k"],          # foreign words
+    "k": ["k"],  # foreign words
     "l": ["l"],
     "m": ["m"],
     "n": ["n"],
     "p": ["p"],
     "qu": ["kw"],
     "r": ["r"],
-    "s": ["s", "z"],     # [z] between vowels
+    "s": ["s", "z"],  # [z] between vowels
     "t": ["t"],
     "v": ["v"],
-    "w": ["v", "w"],     # foreign words
-    "x": ["ks"],         # foreign words
-    "y": ["i", "j"],     # foreign words
-    "z": ["ts", "dz"],   # lexically determined
+    "w": ["v", "w"],  # foreign words
+    "x": ["ks"],  # foreign words
+    "y": ["i", "j"],  # foreign words
+    "z": ["ts", "dz"],  # lexically determined
 
     # --- Digraphs / trigraphs ---
-    "ci": ["tʃ"],        # before a,o,u: ⟨cia⟩ = [tʃa]
-    "gi": ["dʒ"],        # before a,o,u: ⟨gia⟩ = [dʒa]
-    "sc": ["ʃ", "sk"],   # [ʃ] before e,i; [sk] before a,o,u
-    "sci": ["ʃ"],        # before a,o,u: ⟨scia⟩ = [ʃa]
-    "gl-ES": ["ʎ", "ɡl"],   # [ʎ] before i; [ɡl] elsewhere
-    "gli": ["ʎ"],        # palatal lateral
-    "gn": ["ɲ"],         # palatal nasal
+    "ci": ["tʃ"],  # before a,o,u: ⟨cia⟩ = [tʃa]
+    "gi": ["dʒ"],  # before a,o,u: ⟨gia⟩ = [dʒa]
+    "sc": ["ʃ", "sk"],  # [ʃ] before e,i; [sk] before a,o,u
+    "sci": ["ʃ"],  # before a,o,u: ⟨scia⟩ = [ʃa]
+    "gl-ES": ["ʎ", "ɡl"],  # [ʎ] before i; [ɡl] elsewhere
+    "gli": ["ʎ"],  # palatal lateral
+    "gn": ["ɲ"],  # palatal nasal
 
     # --- Geminates ---
     "bb": ["bː"], "cc": ["kː", "tːʃ"], "dd": ["dː"],
@@ -75,7 +75,7 @@ GRAPHEMES = {
 ALLOPHONES = {
     "p": ["p"],
     "b": ["b"],
-    "t": ["t", "t̪"],     # dental before dental
+    "t": ["t", "t̪"],  # dental before dental
     "d": ["d", "d̪"],
     "k": ["k"],
     "ɡ": ["ɡ"],
@@ -91,14 +91,14 @@ ALLOPHONES = {
     "tʃ": ["tʃ"],
     "dʒ": ["dʒ"],
 
-    "m": ["m", "ɱ"],     # labiodental before /f, v/
+    "m": ["m", "ɱ"],  # labiodental before /f, v/
     "n": ["n", "m", "ɱ", "ŋ", "ɲ"],  # assimilates to following place
     "ɲ": ["ɲ"],
-    "ŋ": ["ŋ"],          # allophone of /n/
+    "ŋ": ["ŋ"],  # allophone of /n/
 
     "l": ["l"],
     "ʎ": ["ʎ"],
-    "r": ["r", "ɾ"],     # tap in fast speech / unstressed
+    "r": ["r", "ɾ"],  # tap in fast speech / unstressed
     "j": ["j"],
     "w": ["w"],
 

@@ -19,8 +19,7 @@ Conventions:
 - Base graphemes inherited from Castilian Spanish (es).
 - Allophone maps capture systematic regional differences.
 """
-from orthography2ipa.types import LanguageSpec
-from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec, GraphemePosition as GP
 
 P = AncestorRole.PARENT
 SUB = AncestorRole.SUBSTRATE
@@ -135,7 +134,49 @@ ALLOPHONES_ES = {
     "u": ["u"],
 }
 
+# Spanish lenition is the most systematic positional process:
+# /b d ɡ/ → [β ð ɣ] intervocalically and after continuants.
+# Hualde (2005), RAE (2011).
 
+POSITIONAL_ES_ES = {
+    # ── Voiced stops: lenition ───────────────────────────────────────────
+    "b": {
+        GP.DEFAULT: ["b"],  # post-pausal, post-nasal: occlusive
+        GP.INTERVOCALIC: ["β"],  # spirantised
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+        GP.WORD_FINAL: ["ð", "∅"],  # weakened or deleted: Madrid [maðɾið] ~ [maðɾi]
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    # ── ⟨v⟩: merged with /b/ but same lenition ──────────────────────────
+    "v": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    # ── ⟨s⟩: voicing assimilation ────────────────────────────────────────
+    "s": {
+        GP.DEFAULT: ["s"],
+        GP.CODA: ["s", "z"],  # [z] before voiced C: mismo [mizmo]
+    },
+    # ── ⟨r⟩: tap vs. trill distribution ─────────────────────────────────
+    # Single ⟨r⟩ is always tap except word-initially (where it's trill)
+    "r": {
+        GP.WORD_INITIAL: ["r"],  # trill: rosa [rosa]
+        GP.INTERVOCALIC: ["ɾ"],  # tap: caro [kaɾo]
+        GP.ONSET: ["ɾ"],  # post-consonantal: prado [pɾaðo]
+        GP.CODA: ["ɾ"],  # coda: carta [kaɾta]
+    },
+    # ── ⟨n⟩: place assimilation ──────────────────────────────────────────
+    "n": {
+        GP.DEFAULT: ["n"],
+        GP.CODA: ["n", "m", "ŋ"],  # assimilates to following C place
+    },
+}
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Andalusian Spanish (es-ES-x-andalusia)
@@ -178,6 +219,27 @@ ALLOPHONES_ANDALUSIA_W = {
     "o": ["o", "ɔ"],
 }
 
+# ── Western Andalusian (es-ES-x-andalusia-w) ────────────────────────────
+# Most innovative: aspiration, seseo/ceceo, deaffrication, deletion
+POSITIONAL_ES_ANDALUSIA_W = {
+    **POSITIONAL_ES_ES,
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["s"],  # or [θ] in ceceo zones
+        GP.CODA: ["h", "∅"],  # aspiration or deletion
+        GP.WORD_FINAL: ["h", "∅"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð", "∅"],  # heavy deletion
+        GP.WORD_FINAL: ["∅"],  # universal -d deletion
+    },
+    "n": {
+        GP.DEFAULT: ["n"],
+        GP.WORD_FINAL: ["ŋ", "∅"],  # velarisation or deletion
+    },
+}
+
 GRAPHEMES_ANDALUSIA_E = {
     **GRAPHEMES_ES,
     # Eastern Andalusian: distinción maintained but with aspiration
@@ -202,6 +264,23 @@ ALLOPHONES_ANDALUSIA_E = {
     "o": ["o", "ɔ"],
     "i": ["i", "ɪ"],
     "u": ["u", "ʊ"],
+}
+
+# ── Eastern Andalusian (es-ES-x-andalusia-e) ────────────────────────────
+# Maintains distinción but shares aspiration
+POSITIONAL_ES_ANDALUSIA_E = {
+    **POSITIONAL_ES_ES,
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["s"],
+        GP.CODA: ["h", "∅"],
+        GP.WORD_FINAL: ["h", "∅"],  # deletion triggers vowel opening
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð", "∅"],
+        GP.WORD_FINAL: ["∅"],
+    },
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -229,6 +308,22 @@ ALLOPHONES_MURCIA = {
     "o": ["o"],
 }
 
+# ── Murcian (es-ES-x-murcia) ────────────────────────────────────────────
+POSITIONAL_ES_MURCIA = {
+    **POSITIONAL_ES_ES,
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["s"],
+        GP.CODA: ["h", "s"],
+        GP.WORD_FINAL: ["h"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð", "∅"],
+        GP.WORD_FINAL: ["∅"],
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Canarian Spanish (es-ES-x-canarias)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -249,6 +344,22 @@ ALLOPHONES_CANARIAS = {
     "d": ["d", "ð", "∅"],
     "tʃ": ["tʃ"],  # affricate preserved (sometimes tensed [tːʃ])
     # No /θ/ — seseo throughout
+}
+
+# ── Canarian (es-ES-x-canarias) ─────────────────────────────────────────
+POSITIONAL_ES_CANARIAS = {
+    **POSITIONAL_ES_ES,
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["s"],
+        GP.CODA: ["h", "s"],  # aspiration less extreme than Andalusian
+        GP.WORD_FINAL: ["h"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+        GP.WORD_FINAL: ["ð", "∅"],
+    },
 }
 
 # ═══════════════════════════════════════════════════════════════════════════

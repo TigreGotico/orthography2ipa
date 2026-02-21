@@ -15,7 +15,7 @@ Conventions:
 - Northern Extremaduran (ext-x-septentrional): strongest Leonese features.
 - ext = standard/general variety.
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
 
 GRAPHEMES_EXT = {
     # --- Vowels ---
@@ -91,6 +91,33 @@ ALLOPHONES_EXT = {
     "w": ["w"],
     "a": ["a"], "e": ["e"], "ɛ": ["ɛ"],
     "i": ["i"], "o": ["o"], "ɔ": ["ɔ"], "u": ["u"],
+}
+
+POSITIONAL_EXT = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+        GP.WORD_FINAL: ["∅"],  # heavy deletion
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["s"],
+        GP.CODA: ["h", "s"],  # aspiration (southern influence)
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
 }
 
 # Northern Extremaduran — strongest Leonese traits

@@ -58,8 +58,8 @@ GRAPHEMES_FRP = {
     "i": ["i"],
     "o": ["o", "ɔ"],
     "ô": ["o"],
-    "u": ["y"],       # fronted (Gallo-Romance innovation)
-    "ou": ["u"],      # back /u/ preserved here
+    "u": ["y"],  # fronted (Gallo-Romance innovation)
+    "ou": ["u"],  # back /u/ preserved here
 
     # --- Nasal vowels (fewer than French) ---
     "an": ["ã"],
@@ -69,7 +69,7 @@ GRAPHEMES_FRP = {
     # --- Consonants ---
     "b": ["b"],
     "c": ["k", "s"],  # /s/ before e,i (like French)
-    "ch": ["tʃ"],     # < CA- (intermediate: not [k] like Oc, not [ʃ] like Fr.)
+    "ch": ["tʃ"],  # < CA- (intermediate: not [k] like Oc, not [ʃ] like Fr.)
     "d": ["d"],
     "f": ["f"],
     "g": ["ɡ", "dʒ"],
@@ -140,20 +140,20 @@ GRAPHEMES_RM = {
     "i": ["i"],
     "o": ["o", "ɔ"],
     "u": ["u"],
-    "ü": ["y"],       # front rounded (Gallo-Romance)
+    "ü": ["y"],  # front rounded (Gallo-Romance)
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "ts"],   # [ts] before e,i
+    "c": ["k", "ts"],  # [ts] before e,i
     "ch": ["k", "tɕ"],  # [tɕ] < CA- in some idioms
     "d": ["d"],
     "f": ["f"],
     "g": ["ɡ", "dʒ"],
     "gl": ["ʎ"],
     "gn": ["ɲ"],
-    "h": ["h"],        # in German loans
+    "h": ["h"],  # in German loans
     "j": ["j"],
-    "k": ["k"],        # in loans
+    "k": ["k"],  # in loans
     "l": ["l"],
     "m": ["m"],
     "n": ["n"],
@@ -163,7 +163,7 @@ GRAPHEMES_RM = {
     "s": ["s", "z"],
     "sch": ["ʃ"],
     "t": ["t"],
-    "tg": ["dʒ"],       # < Latin CA- (Sursilvan)
+    "tg": ["dʒ"],  # < Latin CA- (Sursilvan)
     "tsch": ["tʃ"],
     "v": ["v"],
     "z": ["ts"],
@@ -205,23 +205,23 @@ GRAPHEMES_LLD = {
     # --- Vowels ---
     "a": ["a"],
     "e": ["e", "ɛ"],
-    "ë": ["ə"],        # central vowel (some varieties)
+    "ë": ["ə"],  # central vowel (some varieties)
     "i": ["i"],
     "o": ["o", "ɔ"],
-    "ö": ["ø"],         # front rounded
+    "ö": ["ø"],  # front rounded
     "u": ["u"],
-    "ü": ["y"],         # front rounded
+    "ü": ["y"],  # front rounded
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "tʃ"],   # [tʃ] before e,i
+    "c": ["k", "tʃ"],  # [tʃ] before e,i
     "ch": ["k"],
     "d": ["d"],
     "f": ["f"],
     "g": ["ɡ", "dʒ"],
     "gh": ["ɡ"],
     "gn": ["ɲ"],
-    "gl": ["ʎ"],         # < Latin -LI-
+    "gl": ["ʎ"],  # < Latin -LI-
     "h": ["∅"],
     "j": ["dʒ"],
     "l": ["l"],
@@ -231,7 +231,7 @@ GRAPHEMES_LLD = {
     "qu": ["kw"],
     "r": ["r"],
     "s": ["s", "z"],
-    "sc": ["ʃ"],        # before e,i
+    "sc": ["ʃ"],  # before e,i
     "t": ["t"],
     "v": ["v"],
     "z": ["ts", "dz"],
@@ -275,7 +275,7 @@ ALLOPHONES_LLD = {
 GRAPHEMES_FUR = {
     # --- Vowels (with phonemic length) ---
     "a": ["a"],
-    "â": ["aː"],       # long vowels (phonemic!)
+    "â": ["aː"],  # long vowels (phonemic!)
     "e": ["e", "ɛ"],
     "ê": ["eː"],
     "i": ["i"],
@@ -287,13 +287,13 @@ GRAPHEMES_FUR = {
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "tʃ"],   # [tʃ] before e,i
+    "c": ["k", "tʃ"],  # [tʃ] before e,i
     "ch": ["k"],
-    "cj": ["tʃ"],       # palatalised (< CA-)
+    "cj": ["tʃ"],  # palatalised (< CA-)
     "d": ["d"],
     "f": ["f"],
     "g": ["ɡ", "dʒ"],
-    "gj": ["dʒ"],       # palatalised (< GA-)
+    "gj": ["dʒ"],  # palatalised (< GA-)
     "gl": ["ʎ"],
     "gn": ["ɲ"],
     "h": ["∅"],

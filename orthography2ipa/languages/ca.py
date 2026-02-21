@@ -12,7 +12,7 @@ Conventions:
 - ca-x-occidental = Northwestern (Lleidatà).
 - oc-x-aranes = Aranese (Gascon Occitan, co-official in Catalonia).
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
 
 GRAPHEMES = {
     # --- Vowels (7 stressed, reduced unstressed) ---
@@ -92,6 +92,54 @@ ALLOPHONES = {
     "u": ["u"],
 }
 
+# Wheeler (2005), Recasens (1993).
+# Central Catalan has strong vowel reduction: unstressed /a,e,ɛ/ → [ə],
+# unstressed /o,ɔ/ → [u].
+
+POSITIONAL_CA = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    # ── Vowel reduction (Central Catalan) ────────────────────────────────
+    # Stressed: full 7-vowel system; unstressed: reduced to [ə, i, u]
+    "a": {
+        GP.DEFAULT: ["a"],
+        GP.NUCLEUS: ["ə"],  # unstressed reduction
+    },
+    "e": {
+        GP.DEFAULT: ["ɛ", "e"],
+        GP.NUCLEUS: ["ə"],  # unstressed → [ə]
+    },
+    "o": {
+        GP.DEFAULT: ["ɔ", "o"],
+        GP.NUCLEUS: ["u"],  # unstressed → [u]
+    },
+    # ── Sibilant voicing ─────────────────────────────────────────────────
+    "s": {
+        GP.DEFAULT: ["s"],
+        GP.INTERVOCALIC: ["z"],  # single ⟨s⟩ between vowels = [z]
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],  # trill
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+    # ── ⟨l⟩: some velarisation in coda ───────────────────────────────────
+    "l": {
+        GP.ONSET: ["l"],
+        GP.CODA: ["l", "ɫ"],  # light velarisation
+    },
+}
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Valencian (ca-x-valencia)
@@ -128,6 +176,23 @@ ALLOPHONES_VAL = {
     "ʒ": ["dʒ", "ʒ"],  # word-initial [dʒ] more robust
 }
 
+# ── Valencian: no unstressed vowel reduction ─────────────────────────────
+POSITIONAL_CA_VALENCIA = {
+    **POSITIONAL_CA,
+    "a": {
+        GP.DEFAULT: ["a"],
+        GP.NUCLEUS: ["a"],  # NO reduction (unlike Central)
+    },
+    "e": {
+        GP.DEFAULT: ["ɛ", "e"],
+        GP.NUCLEUS: ["e"],  # preserved
+    },
+    "o": {
+        GP.DEFAULT: ["ɔ", "o"],
+        GP.NUCLEUS: ["o"],  # preserved (not → [u])
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Balearic (ca-x-balear)
 # Eastern block; most archaic variety, articles salat, schwa system
@@ -155,6 +220,16 @@ ALLOPHONES_BAL = {
     # Yodization of coda laterals: /ʎ/ robust
     "ʎ": ["ʎ"],
     # Article salat (es/sa) reflected in morphology, not phonology
+}
+
+# ── Balearic: partial reduction ──────────────────────────────────────────
+POSITIONAL_CA_BALEAR = {
+    **POSITIONAL_CA,
+    # Balearic has a fuller unstressed system than Central
+    "o": {
+        GP.DEFAULT: ["ɔ", "o"],
+        GP.NUCLEUS: ["o"],  # less reduction than Central
+    },
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -269,7 +344,6 @@ ALLOPHONES_ARANES = {
     "i": ["i"],
     "o": ["o"], "u": ["u"], "y": ["y"],
 }
-
 
 SPECS = {
     "ca": LanguageSpec(

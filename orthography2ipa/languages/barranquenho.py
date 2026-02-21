@@ -21,7 +21,7 @@ Conventions:
   (/s/→[h] in coda), loss of final /-l/ and /-ɾ/, diphthong
   monophthongization (/ej/→[e], /ow/→[o]), unstressed final [ɐ̃w̃]→[õ].
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
 
 GRAPHEMES_BRQ = {
     # --- Single vowels ---
@@ -157,6 +157,37 @@ ALLOPHONES_BRQ = {
     "ĩ": ["ĩ"],
     "õ": ["õ"],
     "ũ": ["ũ"],
+}
+
+POSITIONAL_BARRANQUENHO = {
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["z"],  # Portuguese-like voicing
+        GP.CODA: ["h", "ʃ"],  # Spanish aspiration + Portuguese palatalisation
+        GP.WORD_FINAL: ["h", "ʃ"],
+    },
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+        GP.WORD_FINAL: ["ð", "∅"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+    "l": {
+        GP.ONSET: ["l"],
+        GP.CODA: ["l", "ɫ"],
+    },
 }
 
 SPECS = {

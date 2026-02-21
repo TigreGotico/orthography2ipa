@@ -19,7 +19,7 @@ Conventions:
 - eu-x-zuberera = Souletin (easternmost, France — included for completeness).
 - eu-x-nafarra-beherea = Lower Navarrese (France).
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
 
 GRAPHEMES = {
     # --- Vowels (5-vowel system) ---
@@ -83,6 +83,24 @@ ALLOPHONES = {
     "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
 }
 
+# Hualde (2003). Basque has less positional variation than Romance
+# languages (no lenition cycle), but some graphemes are position-sensitive.
+
+POSITIONAL_EU = {
+    # ── ⟨r⟩: tap vs. trill ──────────────────────────────────────────────
+    # Like Spanish: word-initial trill, intervocalic tap
+    "r": {
+        GP.WORD_INITIAL: ["r"],  # trill
+        GP.INTERVOCALIC: ["ɾ"],  # tap
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+    # ── ⟨n⟩: place assimilation ──────────────────────────────────────────
+    "n": {
+        GP.DEFAULT: ["n"],
+        GP.CODA: ["n", "m", "ŋ"],  # assimilates to following C
+    },
+}
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Biscayan / Bizkaiera (Western Basque)
@@ -174,6 +192,17 @@ ALLOPHONES_ZUB = {
     "ɡ": ["ɡ", "ɣ"],
 }
 
+# ── Souletin/Zuberoan (eu-x-zuberera): aspiration ───────────────────────
+POSITIONAL_EU_ZUBERERA = {
+    **POSITIONAL_EU,
+    # Zuberoan has phonemic aspiration (unique among Basque dialects)
+    # ⟨h⟩ is pronounced, unlike other dialects
+    "h": {
+        GP.DEFAULT: ["h"],
+        GP.ONSET: ["h"],  # pronounced in onset: hau, hori
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Lower Navarrese / Nafar-Beherea (France)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -192,7 +221,6 @@ ALLOPHONES_NAV_BH = {
     "d": ["d", "ð"],
     "ɡ": ["ɡ", "ɣ"],
 }
-
 
 SPECS = {
     "eu": LanguageSpec(

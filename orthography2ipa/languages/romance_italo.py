@@ -50,14 +50,14 @@ GRAPHEMES_NAP = {
     # --- Vowels ---
     "a": ["a"],
     "e": ["e", "ɛ"],
-    "ë": ["ə"],          # schwa (common in unstressed positions)
+    "ë": ["ə"],  # schwa (common in unstressed positions)
     "i": ["i"],
     "o": ["o", "ɔ"],
     "u": ["u"],
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "tʃ"],    # [tʃ] before e,i
+    "c": ["k", "tʃ"],  # [tʃ] before e,i
     "ch": ["k"],
     "d": ["d"],
     "f": ["f"],
@@ -133,17 +133,17 @@ ALLOPHONES_NAP = {
 GRAPHEMES_SCN = {
     # --- Vowels (5-vowel system) ---
     "a": ["a"],
-    "e": ["ɛ"],          # always open (no /e/ vs /ɛ/ contrast)
-    "i": ["i"],           # < ĭ, ē, ī (all merged)
-    "o": ["ɔ"],           # always open (no /o/ vs /ɔ/ contrast)
-    "u": ["u"],           # < ŭ, ō, ū (all merged)
+    "e": ["ɛ"],  # always open (no /e/ vs /ɛ/ contrast)
+    "i": ["i"],  # < ĭ, ē, ī (all merged)
+    "o": ["ɔ"],  # always open (no /o/ vs /ɔ/ contrast)
+    "u": ["u"],  # < ŭ, ō, ū (all merged)
 
     # --- Consonants ---
-    "b": ["b", "v"],      # /v/ or /b/ initially (varies)
+    "b": ["b", "v"],  # /v/ or /b/ initially (varies)
     "c": ["k", "tʃ"],
     "ch": ["k"],
     "d": ["d"],
-    "dd": ["ɖː"],        # retroflex geminate! (< Latin -LL-)
+    "dd": ["ɖː"],  # retroflex geminate! (< Latin -LL-)
     "f": ["f"],
     "g": ["ɡ", "dʒ"],
     "gh": ["ɡ"],
@@ -157,20 +157,20 @@ GRAPHEMES_SCN = {
     "n": ["n"],
     "p": ["p"],
     "qu": ["kw"],
-    "r": ["r", "ɽ"],     # retroflex tap in some positions
+    "r": ["r", "ɽ"],  # retroflex tap in some positions
     "rr": ["rː"],
     "s": ["s", "z"],
     "sc": ["ʃ"],
-    "str": ["ʂʈɽ"],      # retroflex cluster
+    "str": ["ʂʈɽ"],  # retroflex cluster
     "t": ["t"],
-    "tr": ["ʈɽ"],        # retroflex cluster
+    "tr": ["ʈɽ"],  # retroflex cluster
     "v": ["v"],
     "z": ["ts", "dz"],
 
     # --- Geminates ---
     "bb": ["bː"], "cc": ["kː", "tːʃ"],
     "ff": ["fː"], "gg": ["ɡː", "dːʒ"],
-    "ll": ["ɖː"],        # -LL- → retroflex! (THE Sicilian feature)
+    "ll": ["ɖː"],  # -LL- → retroflex! (THE Sicilian feature)
     "mm": ["mː"], "nn": ["nː"], "pp": ["pː"],
     "ss": ["sː"], "tt": ["tː"], "zz": ["tːs", "dːz"],
 }
@@ -256,7 +256,7 @@ GRAPHEMES_CO = {
 ALLOPHONES_CO = {
     "p": ["p"], "b": ["b", "β"],
     "t": ["t"], "d": ["d", "ð"],
-    "k": ["k", "h"],   # [h] in gorgia (Tuscan heritage)
+    "k": ["k", "h"],  # [h] in gorgia (Tuscan heritage)
     "ɡ": ["ɡ", "ɣ"],
     "tʃ": ["tʃ"], "dʒ": ["dʒ"],
     "ts": ["ts"], "dz": ["dz"],

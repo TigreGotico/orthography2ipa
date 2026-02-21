@@ -12,14 +12,12 @@ Conventions:
   spelling pedagogy (e.g. ⟨th⟩, ⟨sh⟩, ⟨tch⟩, ⟨igh⟩).
 - Allophones list positional and free variants attested in GA and/or RP.
 """
-from orthography2ipa.types import LanguageSpec
 from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
 
 P = AncestorRole.PARENT
 SUB = AncestorRole.SUBSTRATE
 SUP = AncestorRole.SUPERSTRATE
 AD = AncestorRole.ADSTRATE
-
 
 # ── Graphemes ──────────────────────────────────────────────────────────────
 GRAPHEMES = {
