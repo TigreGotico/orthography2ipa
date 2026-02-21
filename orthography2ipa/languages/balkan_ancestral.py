@@ -63,8 +63,8 @@ ALLOPHONES_XDA = {
 
 GRAPHEMES_HU = {
     # --- Vowels (14-vowel system with length) ---
-    "a": ["ɒ"],          # short open rounded
-    "á": ["aː"],         # long open unrounded
+    "a": ["ɒ"],  # short open rounded
+    "á": ["aː"],  # long open unrounded
     "e": ["ɛ"],
     "é": ["eː"],
     "i": ["i"],
@@ -93,8 +93,8 @@ GRAPHEMES_HU = {
     "ny": ["ɲ"],
     "l": ["l"],
     "r": ["r"],
-    "gy": ["ɟ"],          # palatal stop
-    "ty": ["c"],          # palatal stop
+    "gy": ["ɟ"],  # palatal stop
+    "ty": ["c"],  # palatal stop
 
     # --- Geminates (written doubled) ---
     "bb": ["bː"], "pp": ["pː"], "dd": ["dː"], "tt": ["tː"],

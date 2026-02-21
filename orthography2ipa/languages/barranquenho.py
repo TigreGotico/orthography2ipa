@@ -21,7 +21,7 @@ Conventions:
   (/s/→[h] in coda), loss of final /-l/ and /-ɾ/, diphthong
   monophthongization (/ej/→[e], /ow/→[o]), unstressed final [ɐ̃w̃]→[õ].
 """
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
 
 GRAPHEMES_BRQ = {
     # --- Single vowels ---
@@ -159,6 +159,37 @@ ALLOPHONES_BRQ = {
     "ũ": ["ũ"],
 }
 
+POSITIONAL_BARRANQUENHO = {
+    "s": {
+        GP.WORD_INITIAL: ["s"],
+        GP.INTERVOCALIC: ["z"],  # Portuguese-like voicing
+        GP.CODA: ["h", "ʃ"],  # Spanish aspiration + Portuguese palatalisation
+        GP.WORD_FINAL: ["h", "ʃ"],
+    },
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+        GP.WORD_FINAL: ["ð", "∅"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+    "l": {
+        GP.ONSET: ["l"],
+        GP.CODA: ["l", "ɫ"],
+    },
+}
+
 SPECS = {
     "ext-PT-x-barrancos": LanguageSpec(
         code="ext-PT-x-barrancos",
@@ -167,6 +198,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_BRQ,
         allophones=ALLOPHONES_BRQ,
+        positional_graphemes=POSITIONAL_BARRANQUENHO,
         parent="ext",
         notes=(
             "Contact language of Barrancos, Portugal (Lei nº 97/2021). "

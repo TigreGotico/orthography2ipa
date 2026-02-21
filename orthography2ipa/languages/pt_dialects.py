@@ -21,7 +21,7 @@ Conventions:
   for each zone, extending the base PT-PT inventory.
 """
 # Import base PT-PT mappings
-from orthography2ipa.languages.pt import GRAPHEMES_PT, ALLOPHONES_PT
+from orthography2ipa.languages.pt import GRAPHEMES_PT, ALLOPHONES_PT, POSITIONAL_PT_PT
 from orthography2ipa.types import LanguageSpec
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -276,6 +276,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_MINHO,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Northern interior dialect (Vizela, Braga). Extreme unstressed vowel "
@@ -291,6 +292,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_PORTO,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Porto city and Greater Porto (Gaia, Miragaia, Leça, Vitória). "
@@ -307,6 +309,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALFENA,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Greater Porto suburban dialect with unique vowel breaking "
@@ -322,6 +325,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALTO_MINHO,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Viana do Castelo / Ponte de Lima. Systematic retroflex lateral [ɭ] "
@@ -336,6 +340,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_BEIRA_LITORAL,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Vagos, Aveiro area. Heaviest attestation of retroflex lateral [ɭ] "
@@ -350,6 +355,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_LISBON,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Standard Lisbon reference dialect. Consistent voiced uvular [ʁ]. "
@@ -365,6 +371,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALTO_ALENTEJO,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Portalegre/Crato transitional zone between northern and southern "
@@ -379,6 +386,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALGARVE,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Quarteira, Faro. Southern dialect, standard-adjacent. Consistent "
@@ -393,6 +401,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AZORES,
         allophones=ALLOPHONES_AZORES,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Terceira, Azores. Diagnostic raised nasal diphthong [õw̃] for "
@@ -408,6 +417,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_MADEIRA,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Ribeira Brava, Madeira. Systematic aspiration of voiceless stops "
@@ -424,6 +434,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_TRAS_OS_MONTES,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes=(
             "Rural northern interior (Alvarenga, Penafiel). Most extreme "

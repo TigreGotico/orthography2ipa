@@ -85,19 +85,19 @@ AD = AncestorRole.ADSTRATE
 GRAPHEMES = {
     # --- Vowels (7-vowel + central vowels) ---
     "a": ["a"],
-    "e": ["e"],       # < ĭ, ē
-    "ɛ": ["ɛ"],       # < ĕ (but no diphthongisation to [je] in most contexts)
-    "i": ["i"],       # < ī
-    "o": ["o"],       # < ŭ, ō
-    "ɔ": ["ɔ"],       # < ŏ (diphthongises to [o̯a] in Romanian)
-    "u": ["u"],       # < ū (preserved, not fronted)
-    "ə": ["ə"],       # CENTRAL — Balkan innovation
-    "ɨ": ["ɨ"],       # CENTRAL — Balkan innovation
+    "e": ["e"],  # < ĭ, ē
+    "ɛ": ["ɛ"],  # < ĕ (but no diphthongisation to [je] in most contexts)
+    "i": ["i"],  # < ī
+    "o": ["o"],  # < ŭ, ō
+    "ɔ": ["ɔ"],  # < ŏ (diphthongises to [o̯a] in Romanian)
+    "u": ["u"],  # < ū (preserved, not fronted)
+    "ə": ["ə"],  # CENTRAL — Balkan innovation
+    "ɨ": ["ɨ"],  # CENTRAL — Balkan innovation
 
     # --- Consonants ---
-    "p": ["p"],        # PRESERVED intervocalically (no lenition!)
+    "p": ["p"],  # PRESERVED intervocalically (no lenition!)
     "b": ["b"],
-    "t": ["t"],        # PRESERVED
+    "t": ["t"],  # PRESERVED
     "d": ["d"],
     "c": ["k", "tʃ"],  # [tʃ] before e,i
     "g": ["ɡ", "dʒ"],  # [dʒ] before e,i
@@ -105,13 +105,13 @@ GRAPHEMES = {
     "v": ["v"],
     "s": ["s"],
     "z": ["z"],
-    "h": ["h"],        # /h/ preserved or restored (unlike W. Romance)
+    "h": ["h"],  # /h/ preserved or restored (unlike W. Romance)
 
     # --- Palatals ---
-    "gn": ["ɲ"],       # < -gn-, -ni-
+    "gn": ["ɲ"],  # < -gn-, -ni-
 
     # --- Affricates (richer than W. Romance) ---
-    "ts": ["ts"],       # from Latin /k/ before e,i in some contexts
+    "ts": ["ts"],  # from Latin /k/ before e,i in some contexts
     "dz": ["dz"],
 
     # --- Nasals ---
@@ -120,11 +120,11 @@ GRAPHEMES = {
 
     # --- Liquids ---
     "l": ["l"],
-    "r": ["r", "ɾ"],   # rhotacism: /l/ → /r/ in some words
+    "r": ["r", "ɾ"],  # rhotacism: /l/ → /r/ in some words
 
     # --- Diphthongs ---
-    "ea": ["e̯a"],      # < /ɛ/ or /e/ + /a/
-    "oa": ["o̯a"],      # < /ɔ/ (THE Romanian diphthongisation)
+    "ea": ["e̯a"],  # < /ɛ/ or /e/ + /a/
+    "oa": ["o̯a"],  # < /ɔ/ (THE Romanian diphthongisation)
     "ai": ["aj"],
     "au": ["aw"],
     "ei": ["ej"],

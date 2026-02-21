@@ -18,6 +18,7 @@ Conventions:
 - Key features: betacism, L-palatalization (lhuna), Leonese diphthongs
   (fiesta, almuorço), imperfect -aba, 3pl -n, negator nun, pronoun you.
 """
+from orthography2ipa.languages.ast import POSITIONAL_AST
 from orthography2ipa.types import LanguageSpec
 
 GRAPHEMES_GUAD = {
@@ -143,6 +144,8 @@ ALLOPHONES_GUAD = {
     "ũ": ["ũ"],
 }
 
+POSITIONAL_GUADRAMILESE = {**POSITIONAL_AST}
+
 SPECS = {
     "ast-PT-x-guadramil": LanguageSpec(
         code="ast-PT-x-guadramil",
@@ -151,6 +154,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_GUAD,
         allophones=ALLOPHONES_GUAD,
+        positional_graphemes=POSITIONAL_GUADRAMILESE,
         parent="ast",
         notes=(
             "Nearly extinct Leonese dialect of Guadramil, Bragança. ~0–5 "

@@ -4,7 +4,7 @@ Sources:
 - Sumien, D. (2006). *La standardisation pluricentrique de l'occitan*.
 - Bec, P. (1973). *Manuel pratique d'occitan moderne*.
 """
-from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec, GraphemePosition as GP
 
 P = AncestorRole.PARENT
 SUB = AncestorRole.SUBSTRATE
@@ -75,6 +75,27 @@ ALLOPHONES = {
     "u": ["u"], "y": ["y"],
 }
 
+POSITIONAL_OC = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+}
+
 SPECS = {
     "oc": LanguageSpec(
         code="oc",
@@ -83,6 +104,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
+        positional_graphemes=POSITIONAL_OC,
         parent="la",
         ancestors=(
             Ancestor("la-x-gallia", P, 0.80,

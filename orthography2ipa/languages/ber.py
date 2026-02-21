@@ -138,7 +138,6 @@ ALLOPHONES = {
     "lː": ["lː"], "mː": ["mː"], "nː": ["nː"], "rː": ["rː"],
 }
 
-
 SPECS = {
     "ber": LanguageSpec(
         code="ber",

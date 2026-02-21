@@ -16,9 +16,7 @@ Conventions:
 - Western (an-x-occidental): transitional to Castilian.
 - Eastern (an-x-oriental): transitional to Catalan (Benasquese).
 """
-from orthography2ipa.types import LanguageSpec
-
-from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec, GraphemePosition as GP
 
 P = AncestorRole.PARENT
 SUB = AncestorRole.SUBSTRATE
@@ -104,6 +102,29 @@ ALLOPHONES_AN = {
     "i": ["i"], "o": ["o"], "ɔ": ["ɔ"], "u": ["u"],
 }
 
+# Standard Ibero-Romance lenition plus conservative features.
+
+POSITIONAL_AN = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+}
+
 # Eastern (Benasquese / Ribagorçan transition)
 GRAPHEMES_AN_E = {
     **GRAPHEMES_AN,
@@ -127,8 +148,9 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AN,
         allophones=ALLOPHONES_AN,
+        positional_graphemes=POSITIONAL_AN,
         parent="la",
-        ancestors= (
+        ancestors=(
             Ancestor("la-x-hispania", P, 0.80,
                      "Primary descent from Hispanic Vulgar Latin"),
             Ancestor("xaq", SUB, 0.06,
@@ -160,6 +182,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AN,
         allophones=ALLOPHONES_AN,
+        positional_graphemes=POSITIONAL_AN,
         parent="an",
         notes=(
             "Western Aragonese (Jacetania, Cinco Villas). Transitional "
@@ -175,6 +198,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AN_E,
         allophones=ALLOPHONES_AN_E,
+        positional_graphemes=POSITIONAL_AN,
         parent="an",
         notes=(
             "Eastern Aragonese / Ribagorçan / Benasquese transition zone. "

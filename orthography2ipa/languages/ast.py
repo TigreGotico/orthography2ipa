@@ -20,7 +20,7 @@ Conventions:
 - Western: ast-x-occidental. Eastern: ast-x-oriental.
 - Leonese (Spain): ast-ES-x-leon.
 """
-from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec, GraphemePosition as GP
 
 P = AncestorRole.PARENT
 SUB = AncestorRole.SUBSTRATE
@@ -130,6 +130,33 @@ ALLOPHONES_AST = {
     "u": ["u"],
 }
 
+# Cano González (2009). Asturian shares Ibero-Romance lenition.
+
+POSITIONAL_AST = {
+    "b": {
+        GP.DEFAULT: ["b"],
+        GP.INTERVOCALIC: ["β"],
+    },
+    "d": {
+        GP.DEFAULT: ["d"],
+        GP.INTERVOCALIC: ["ð"],
+    },
+    "g": {
+        GP.DEFAULT: ["ɡ"],
+        GP.INTERVOCALIC: ["ɣ"],
+    },
+    "r": {
+        GP.WORD_INITIAL: ["r"],
+        GP.INTERVOCALIC: ["ɾ"],
+        GP.ONSET: ["ɾ"],
+        GP.CODA: ["ɾ"],
+    },
+    "n": {
+        GP.DEFAULT: ["n"],
+        GP.CODA: ["n", "ŋ"],
+    },
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Western Asturian (asturianu oucidental)
 # Strongest archaic features: aspirated f-, -l.l- geminate, etc.
@@ -147,6 +174,15 @@ ALLOPHONES_AST_W = {
     "h": ["h"],  # aspiration from Lat. F-: forno→hornu, filu→hilu
     "lː": ["lː"],  # geminate: -LL- → [lː] not [ʎ]
     "f": ["f", "h"],  # F- → h- is the western hallmark
+}
+
+# ── Western Asturian: f→h aspiration ─────────────────────────────────────
+POSITIONAL_AST_W = {
+    **POSITIONAL_AST,
+    "f": {
+        GP.WORD_INITIAL: ["h", "f"],  # Latin F- → [h] (forno → hornu)
+        GP.INTERVOCALIC: ["f"],  # retained intervocalically
+    },
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -189,6 +225,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AST,
         allophones=ALLOPHONES_AST,
+        positional_graphemes=POSITIONAL_AST,
         parent="la",
         ancestors=(
             Ancestor("la-x-hispania", P, 0.80,
@@ -217,6 +254,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AST_W,
         allophones=ALLOPHONES_AST_W,
+        positional_graphemes=POSITIONAL_AST_W,
         parent="ast",
         notes=(
             "Western Asturian (asturianu oucidental). Most archaic variety. "
@@ -233,6 +271,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AST,
         allophones=ALLOPHONES_AST_E,
+        positional_graphemes=POSITIONAL_AST,
         parent="ast",
         notes=(
             "Eastern Asturian, transitional to Cantabrian/Castilian. "
@@ -248,6 +287,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_LEON,
         allophones=ALLOPHONES_LEON,
+        positional_graphemes=POSITIONAL_AST,
         parent="ast",
         notes=(
             "Leonese (Llionés), spoken in the provinces of León, Zamora, "

@@ -1,8 +1,7 @@
 """Extinct substrate and superstrate languages from Italian Peninsula."""
-from orthography2ipa.types import Ancestor, AncestorRole, LanguageSpec
+from orthography2ipa.types import AncestorRole, LanguageSpec
 
 P = AncestorRole.PARENT
-
 
 # ═══════════════════════════════════════════════════════════════════════════
 # OSCAN (osc) — Italic, substrate in S. Italy

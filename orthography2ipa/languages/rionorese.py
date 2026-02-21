@@ -19,6 +19,7 @@ Conventions:
 - Key features: betacism, affricate [tʃ] for Pt. [ʃ], Leonese diphthongs
   (Ĕ → [je], Ŏ → [wo]/[wa]), article ⟨al⟩, x- for j- [ʃ].
 """
+from orthography2ipa.languages.ast import POSITIONAL_AST
 from orthography2ipa.types import LanguageSpec
 
 GRAPHEMES_RION = {
@@ -146,6 +147,8 @@ ALLOPHONES_RION = {
     "ũ": ["ũ"],
 }
 
+POSITIONAL_RIONORESE = {**POSITIONAL_AST}
+
 SPECS = {
     "ast-PT-x-rionor": LanguageSpec(
         code="ast-PT-x-rionor",
@@ -154,6 +157,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_RION,
         allophones=ALLOPHONES_RION,
+        positional_graphemes=POSITIONAL_RIONORESE,
         parent="ast",
         notes=(
             "Moribund Leonese dialect of Rio de Onor, Bragança. ~0–5 active "

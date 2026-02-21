@@ -56,65 +56,65 @@ P = AncestorRole.PARENT
 GRAPHEMES = {
     # --- Arabic-script letters with Pashto values ---
     # Vowels (mostly unwritten as in Arabic; some marked)
-    "ا": ["ɑː", "a"],   # alef: long /ɑː/ or initial /a/
-    "آ": ["ɑː"],         # alef-madda
+    "ا": ["ɑː", "a"],  # alef: long /ɑː/ or initial /a/
+    "آ": ["ɑː"],  # alef-madda
     "و": ["w", "u", "o"],  # waw: consonant or vowel
     "ی": ["j", "i", "e"],  # ya: consonant or vowel
-    "ې": ["e"],           # ye with hamza below — /e/ vowel
-    "ۍ": ["əi"],          # feminine marker (final -əi)
-    "ئ": ["ai", "əi"],    # hamza-ye
+    "ې": ["e"],  # ye with hamza below — /e/ vowel
+    "ۍ": ["əi"],  # feminine marker (final -əi)
+    "ئ": ["ai", "əi"],  # hamza-ye
 
     # --- Stops ---
     "ب": ["b"],
     "پ": ["p"],
     "ت": ["t"],
-    "ټ": ["ʈ"],           # retroflex t — KEY Pashto letter
+    "ټ": ["ʈ"],  # retroflex t — KEY Pashto letter
     "د": ["d"],
-    "ډ": ["ɖ"],           # retroflex d — KEY Pashto letter
+    "ډ": ["ɖ"],  # retroflex d — KEY Pashto letter
     "ک": ["k"],
-    "ګ": ["ɡ"],           # Pashto form of gaf
-    "ق": ["q"],           # in Arabic loanwords
+    "ګ": ["ɡ"],  # Pashto form of gaf
+    "ق": ["q"],  # in Arabic loanwords
 
     # --- Affricates ---
-    "څ": ["ts"],          # KEY PASHTO: < Proto-Iranian *č
-    "ځ": ["dz"],          # KEY PASHTO: < Proto-Iranian *ǰ
-    "چ": ["tʃ"],          # in loanwords / some dialects
-    "ج": ["dʒ"],          # in loanwords / some dialects
+    "څ": ["ts"],  # KEY PASHTO: < Proto-Iranian *č
+    "ځ": ["dz"],  # KEY PASHTO: < Proto-Iranian *ǰ
+    "چ": ["tʃ"],  # in loanwords / some dialects
+    "ج": ["dʒ"],  # in loanwords / some dialects
 
     # --- Fricatives ---
-    "ف": ["f"],           # mostly in loanwords
-    "ث": ["s"],           # merged with /s/ (like Persian)
+    "ف": ["f"],  # mostly in loanwords
+    "ث": ["s"],  # merged with /s/ (like Persian)
     "س": ["s"],
     "ز": ["z"],
-    "ص": ["s"],           # merged with /s/
-    "ض": ["z"],           # merged with /z/
+    "ص": ["s"],  # merged with /s/
+    "ض": ["z"],  # merged with /z/
     "ش": ["ʃ"],
-    "ښ": ["ʂ"],           # KEY PASHTO: retroflex fricative (Southern)
+    "ښ": ["ʂ"],  # KEY PASHTO: retroflex fricative (Southern)
     "ژ": ["ʒ"],
-    "ږ": ["ʐ"],           # KEY PASHTO: voiced retroflex fricative (Southern)
+    "ږ": ["ʐ"],  # KEY PASHTO: voiced retroflex fricative (Southern)
     "خ": ["x"],
     "غ": ["ɣ"],
-    "ح": ["h"],           # merged with /h/ (no pharyngeal)
-    "ه": ["h", "a"],      # /h/ or silent (marking final vowel)
-    "ع": ["ʔ"],           # glottal stop (pharyngeal lost)
-    "ذ": ["z"],           # merged with /z/
-    "ظ": ["z"],           # merged with /z/
-    "ط": ["t"],           # merged with /t/
+    "ح": ["h"],  # merged with /h/ (no pharyngeal)
+    "ه": ["h", "a"],  # /h/ or silent (marking final vowel)
+    "ع": ["ʔ"],  # glottal stop (pharyngeal lost)
+    "ذ": ["z"],  # merged with /z/
+    "ظ": ["z"],  # merged with /z/
+    "ط": ["t"],  # merged with /t/
 
     # --- Nasals ---
     "م": ["m"],
     "ن": ["n"],
-    "ڼ": ["ɳ"],           # retroflex n — KEY Pashto letter
+    "ڼ": ["ɳ"],  # retroflex n — KEY Pashto letter
 
     # --- Liquids ---
     "ل": ["l"],
     "ر": ["ɾ"],
-    "ړ": ["ɻ"],           # retroflex flap — KEY Pashto letter
+    "ړ": ["ɻ"],  # retroflex flap — KEY Pashto letter
 
     # --- Short vowel diacritics (usually unwritten) ---
-    "\u064E": ["a"],      # fatha
-    "\u0650": ["i"],      # kasra
-    "\u064F": ["u"],      # damma
+    "\u064E": ["a"],  # fatha
+    "\u0650": ["i"],  # kasra
+    "\u064F": ["u"],  # damma
 }
 
 ALLOPHONES = {
@@ -127,7 +127,7 @@ ALLOPHONES = {
     "ɖ": ["ɖ"],
     "k": ["k", "kʰ"],
     "ɡ": ["ɡ"],
-    "q": ["q"],         # in Arabic loanwords only
+    "q": ["q"],  # in Arabic loanwords only
 
     # Affricates
     "ts": ["ts"],
@@ -139,21 +139,21 @@ ALLOPHONES = {
     "f": ["f"],
     "s": ["s"], "z": ["z"],
     "ʃ": ["ʃ"], "ʒ": ["ʒ"],
-    "ʂ": ["ʂ", "ʃ"],   # Southern ʂ; Northern → ʃ or x
-    "ʐ": ["ʐ", "ʒ"],   # Southern ʐ; Northern → ʒ or ɡ
+    "ʂ": ["ʂ", "ʃ"],  # Southern ʂ; Northern → ʃ or x
+    "ʐ": ["ʐ", "ʒ"],  # Southern ʐ; Northern → ʒ or ɡ
     "x": ["x"], "ɣ": ["ɣ"],
     "h": ["h"],
     "ʔ": ["ʔ"],
 
     # Nasals
     "m": ["m"],
-    "n": ["n", "ŋ"],   # assimilation before velars
+    "n": ["n", "ŋ"],  # assimilation before velars
     "ɳ": ["ɳ"],
 
     # Liquids
     "l": ["l"],
-    "ɾ": ["ɾ", "r"],   # trill in emphatic/geminate
-    "ɻ": ["ɻ"],        # retroflex flap
+    "ɾ": ["ɾ", "r"],  # trill in emphatic/geminate
+    "ɻ": ["ɻ"],  # retroflex flap
 
     # Glides
     "j": ["j"], "w": ["w"],
@@ -167,7 +167,6 @@ ALLOPHONES = {
     "o": ["o"],
     "ə": ["ə"],
 }
-
 
 SPECS = {
     "ps": LanguageSpec(

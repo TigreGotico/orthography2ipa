@@ -69,21 +69,21 @@ AD = AncestorRole.ADSTRATE
 GRAPHEMES_SC = {
     # --- Vowels (5-vowel system — THE archaic feature) ---
     "a": ["a"],
-    "e": ["e"],       # NO /ɛ/ distinction (all mid-front → /e/)
+    "e": ["e"],  # NO /ɛ/ distinction (all mid-front → /e/)
     "i": ["i"],
-    "o": ["o"],       # NO /ɔ/ distinction (all mid-back → /o/)
+    "o": ["o"],  # NO /ɔ/ distinction (all mid-back → /o/)
     "u": ["u"],
 
     # --- Consonants ---
-    "b": ["b", "β"],    # lenition in some contexts
-    "c": ["k"],          # /k/ EVEN before e,i — the archaic feature!
-    "ch": ["k"],         # orthographic variant for /k/ before e,i
+    "b": ["b", "β"],  # lenition in some contexts
+    "c": ["k"],  # /k/ EVEN before e,i — the archaic feature!
+    "ch": ["k"],  # orthographic variant for /k/ before e,i
     "d": ["d"],
     "f": ["f"],
-    "g": ["ɡ"],          # /ɡ/ EVEN before e,i (archaic)
-    "gh": ["ɡ"],         # orthographic variant for /ɡ/ before e,i
+    "g": ["ɡ"],  # /ɡ/ EVEN before e,i (archaic)
+    "gh": ["ɡ"],  # orthographic variant for /ɡ/ before e,i
     "h": ["∅"],
-    "j": ["dʒ"],         # in loanwords
+    "j": ["dʒ"],  # in loanwords
     "k": ["k"],
     "l": ["l"],
     "m": ["m"],
@@ -92,20 +92,20 @@ GRAPHEMES_SC = {
     "qu": ["kw"],
     "r": ["r"],
     "rr": ["rː"],
-    "s": ["s", "z"],     # [z] between vowels
+    "s": ["s", "z"],  # [z] between vowels
     "t": ["t"],
     "v": ["v", "β"],
-    "x": ["ʃ"],          # retroflex fricative in some areas
+    "x": ["ʃ"],  # retroflex fricative in some areas
     "z": ["ts", "dz"],
 
     # --- Digraphs ---
-    "sc": ["sk", "ʃ"],   # /ʃ/ before e,i in Campidanese
-    "tz": ["tː s"],      # Sardinian-specific affricate
-    "dd": ["ɖː"],        # retroflex stop (Sardinian hallmark)
+    "sc": ["sk", "ʃ"],  # /ʃ/ before e,i in Campidanese
+    "tz": ["tː s"],  # Sardinian-specific affricate
+    "dd": ["ɖː"],  # retroflex stop (Sardinian hallmark)
     "ng": ["ŋɡ"],
     "gn": ["ɲ"],
-    "gl": ["ʎ"],         # in some varieties
-    "ll": ["lː", "ɖː"], # can be retroflex in Campidanese
+    "gl": ["ʎ"],  # in some varieties
+    "ll": ["lː", "ɖː"],  # can be retroflex in Campidanese
 
     # --- Diphthongs ---
     "ai": ["aj"],
@@ -128,7 +128,7 @@ ALLOPHONES_SC = {
     "ts": ["ts"],
     "dz": ["dz"],
     "dʒ": ["dʒ"],
-    "ɖː": ["ɖː"],        # retroflex geminate (cacuminal)
+    "ɖː": ["ɖː"],  # retroflex geminate (cacuminal)
     "m": ["m"],
     "n": ["n", "ŋ", "ɱ"],
     "ɲ": ["ɲ"],
@@ -147,9 +147,9 @@ ALLOPHONES_SC = {
 
 ALLOPHONES_LOG = {
     **ALLOPHONES_SC,
-    "p": ["p"],          # preserved intervocalically (more archaic)
-    "t": ["t", "θ"],     # some lenition but less than Campidanese
-    "k": ["k"],          # preserved
+    "p": ["p"],  # preserved intervocalically (more archaic)
+    "t": ["t", "θ"],  # some lenition but less than Campidanese
+    "k": ["k"],  # preserved
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -158,11 +158,11 @@ ALLOPHONES_LOG = {
 
 ALLOPHONES_CAMP = {
     **ALLOPHONES_SC,
-    "p": ["p", "β"],     # more lenition than Logudorese
+    "p": ["p", "β"],  # more lenition than Logudorese
     "t": ["t", "ð"],
     "k": ["k", "ɣ"],
-    "ʃ": ["ʃ"],          # palatalisation of /sk/ before e,i
-    "ɖː": ["ɖː"],       # more extensive retroflex
+    "ʃ": ["ʃ"],  # palatalisation of /sk/ before e,i
+    "ɖː": ["ɖː"],  # more extensive retroflex
 }
 
 SPECS = {

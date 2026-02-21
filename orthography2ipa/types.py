@@ -4,12 +4,17 @@ The core data model supports:
 - Single-parent inheritance (simple dialect trees)
 - Multi-ancestor relationships (contact languages, creoles, transitional dialects)
 - Weighted ancestry for distance calculations
+- Positional grapheme-to-IPA mappings for context-sensitive G2P
 """
 from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List, Tuple
+from typing import Dict, FrozenSet, List, Optional, Tuple
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Type aliases
+# ═══════════════════════════════════════════════════════════════════════════
 
 # Grapheme key → list of IPA transcription strings.
 Grapheme2IPA = Dict[str, List[str]]
@@ -17,6 +22,94 @@ Grapheme2IPA = Dict[str, List[str]]
 # Phoneme key → list of allophonic surface realisations.
 AllophoneMap = Dict[str, List[str]]
 
+
+# ═══════════════════════════════════════════════════════════════════════════
+# GraphemePosition — positional contexts for grapheme→IPA disambiguation
+# ═══════════════════════════════════════════════════════════════════════════
+
+class GraphemePosition(Enum):
+    """Positional context in which a grapheme occurs.
+
+    These positions are standard in phonological descriptions and cover
+    the major environments where grapheme-to-phoneme mappings diverge.
+    They correspond to well-established concepts in phonology:
+
+    - **Word boundaries** (WORD_INITIAL, WORD_FINAL): Documented in
+      virtually every phonology textbook. E.g., German Auslautverhärtung
+      (final devoicing), English aspiration of word-initial stops.
+
+    - **Intervocalic** (INTERVOCALIC): The V_V environment is the most
+      important single context for lenition processes cross-linguistically.
+      E.g., Spanish /b d ɡ/ → [β ð ɣ] between vowels; Portuguese
+      intervocalic /s/ → [z]; Latin intervocalic voicing > Romance.
+
+    - **Cross-word intervocalic** (INTERVOCALIC_CROSS_WORD): Sandhi
+      environments where a consonant at a word boundary is flanked by
+      vowels across words. E.g., French liaison, Portuguese resyllabification
+      of final /s/ before a vowel-initial word.
+
+    - **Syllable positions** (ONSET, NUCLEUS, CODA): The three structural
+      positions of a syllable. E.g., English /l/ is clear [l] in onset
+      but dark [ɫ] in coda; Korean obstruent neutralisation in coda.
+
+    - **DEFAULT**: Fallback when no specific positional context applies.
+      Equivalent to the existing context-free ``graphemes`` mapping.
+
+    References
+    ----------
+    - Kenstowicz, M. (1994). *Phonology in Generative Grammar*. Blackwell.
+    - Hayes, B. (2009). *Introductory Phonology*. Wiley-Blackwell.
+    - Zsiga, E. (2013). *The Sounds of Language*. Wiley-Blackwell.
+    """
+
+    DEFAULT = "default"
+    """Context-free default — equivalent to the base ``graphemes`` mapping.
+    Used when no positional override exists or when position is unknown."""
+
+    WORD_INITIAL = "word_initial"
+    """Absolute word-initial position (#_).
+    E.g., English ⟨k⟩ → [kʰ] word-initially (aspiration);
+    German ⟨s⟩ → [z] word-initially before vowels."""
+
+    WORD_FINAL = "word_final"
+    """Absolute word-final position (_#).
+    E.g., German ⟨d⟩ → [t] word-finally (Auslautverhärtung);
+    Portuguese ⟨s⟩ → [ʃ] word-finally (Lisbon)."""
+
+    INTERVOCALIC = "intervocalic"
+    """Between two vowels within the same word (V_V).
+    E.g., Spanish ⟨b⟩ → [β] intervocalically (lenition);
+    Portuguese ⟨s⟩ → [z] between vowels; American English ⟨t⟩ → [ɾ]."""
+
+    INTERVOCALIC_CROSS_WORD = "intervocalic_cross_word"
+    """Between vowels across a word boundary (V#_V or V_#V).
+    E.g., French liaison ⟨s⟩ → [z] before vowel-initial word;
+    Portuguese coda ⟨s⟩ → [z] before vowel-initial next word."""
+
+    ONSET = "onset"
+    """Syllable onset position (beginning of syllable).
+    E.g., English ⟨l⟩ → [l] (clear l) in onset;
+    Korean aspirated stops in onset."""
+
+    NUCLEUS = "nucleus"
+    """Syllable nucleus position (typically a vowel).
+    E.g., reduced vowels in unstressed nuclei — Portuguese ⟨e⟩ → [ɨ]
+    vs. [ɛ] in stressed nucleus; English ⟨a⟩ → [ə] in unstressed."""
+
+    CODA = "coda"
+    """Syllable coda position (end of syllable).
+    E.g., English ⟨l⟩ → [ɫ] (dark l) in coda;
+    Korean obstruent neutralisation in coda;
+    Portuguese ⟨l⟩ → [w] in coda (Brazilian)."""
+
+
+# Positional mapping: grapheme → {position → [IPA candidates]}
+PositionalGrapheme2IPA = Dict[str, Dict[GraphemePosition, List[str]]]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# AncestorRole
+# ═══════════════════════════════════════════════════════════════════════════
 
 class AncestorRole(Enum):
     """How an ancestor language relates to its descendant."""
@@ -45,6 +138,10 @@ class AncestorRole(Enum):
     """Substrate language contributing to creole formation.
     E.g. West African languages as base for Atlantic creoles."""
 
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Ancestor
+# ═══════════════════════════════════════════════════════════════════════════
 
 @dataclass(frozen=True)
 class Ancestor:
@@ -77,9 +174,19 @@ class Ancestor:
         return f"Ancestor({self.code!r}, {self.role.value}, w={self.weight:.2f})"
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# LanguageSpec
+# ═══════════════════════════════════════════════════════════════════════════
+
 @dataclass(frozen=True)
 class LanguageSpec:
-    """Complete phonological specification for one language / variety."""
+    """Complete phonological specification for one language / variety.
+
+    The ``positional_graphemes`` field provides optional context-sensitive
+    IPA mappings that override the base ``graphemes`` for specific
+    phonological positions.  When absent or empty, the base ``graphemes``
+    mapping is used for all positions (backward-compatible).
+    """
 
     code: str
     """BCP-47 or ISO 639 code."""
@@ -94,7 +201,9 @@ class LanguageSpec:
     """Primary script."""
 
     graphemes: Grapheme2IPA
-    """Orthographic grapheme -> canonical IPA phoneme(s)."""
+    """Orthographic grapheme -> canonical IPA phoneme(s).
+    This is the context-free DEFAULT mapping, used when no positional
+    override is available."""
 
     allophones: AllophoneMap
     """Phoneme -> contextual surface realisations."""
@@ -108,8 +217,104 @@ class LanguageSpec:
     substrates, superstrates, contact languages, creole origins.
     If empty but parent is set, a default PARENT ancestor is inferred."""
 
+    positional_graphemes: PositionalGrapheme2IPA = None  # type: ignore[assignment]
+    """Optional positional grapheme→IPA overrides.
+
+    Maps grapheme keys to dicts of ``{GraphemePosition: [IPA candidates]}``.
+    Only graphemes whose IPA mapping changes by position need entries here.
+    For any grapheme+position combination not present, the base ``graphemes``
+    mapping is used as fallback.
+
+    Example::
+
+        positional_graphemes = {
+            "s": {
+                GraphemePosition.WORD_INITIAL: ["s"],
+                GraphemePosition.INTERVOCALIC: ["z"],
+                GraphemePosition.WORD_FINAL: ["ʃ"],
+            },
+            "l": {
+                GraphemePosition.ONSET: ["l"],
+                GraphemePosition.CODA: ["w"],
+            },
+        }
+    """
+
     notes: str = ""
     """Free-form notes."""
+
+    def __post_init__(self) -> None:
+        # Normalise None to empty dict for positional_graphemes
+        if self.positional_graphemes is None:
+            object.__setattr__(self, "positional_graphemes", {})
+
+    # ─── Positional grapheme resolution ─────────────────────────────
+
+    def resolve_grapheme(
+        self,
+        grapheme: str,
+        position: GraphemePosition = GraphemePosition.DEFAULT,
+    ) -> List[str]:
+        """Resolve a grapheme to its IPA candidates for a given position.
+
+        Lookup order:
+        1. ``positional_graphemes[grapheme][position]`` — exact match
+        2. ``positional_graphemes[grapheme][DEFAULT]`` — positional default
+        3. ``graphemes[grapheme]`` — base mapping fallback
+
+        Parameters
+        ----------
+        grapheme : str
+            The orthographic grapheme key.
+        position : GraphemePosition
+            The phonological position to resolve for.
+
+        Returns
+        -------
+        List[str]
+            IPA candidates, ordered from most to least common.
+
+        Raises
+        ------
+        KeyError
+            If the grapheme is not found in any mapping.
+        """
+        # Check positional overrides first
+        if self.positional_graphemes and grapheme in self.positional_graphemes:
+            pos_map = self.positional_graphemes[grapheme]
+            if position in pos_map:
+                return pos_map[position]
+            if GraphemePosition.DEFAULT in pos_map:
+                return pos_map[GraphemePosition.DEFAULT]
+
+        # Fallback to base graphemes
+        if grapheme in self.graphemes:
+            return self.graphemes[grapheme]
+
+        raise KeyError(
+            f"Grapheme {grapheme!r} not found in {self.code} mappings"
+        )
+
+    def has_positional_data(self) -> bool:
+        """Return True if this spec has any positional grapheme overrides."""
+        return bool(self.positional_graphemes)
+
+    def positional_grapheme_keys(self) -> FrozenSet[str]:
+        """Return the set of graphemes that have positional overrides."""
+        if not self.positional_graphemes:
+            return frozenset()
+        return frozenset(self.positional_graphemes.keys())
+
+    def positions_for_grapheme(self, grapheme: str) -> Tuple[GraphemePosition, ...]:
+        """Return the positions defined for a grapheme in positional data.
+
+        Returns empty tuple if the grapheme has no positional overrides.
+        """
+        if not self.positional_graphemes or grapheme not in self.positional_graphemes:
+            return ()
+        return tuple(self.positional_graphemes[grapheme].keys())
+
+    # ─── Ancestry accessors ─────────────────────────────────────────
 
     def get_ancestors(self, role: AncestorRole | None = None) -> Tuple[Ancestor, ...]:
         """Return ancestors, optionally filtered by role.

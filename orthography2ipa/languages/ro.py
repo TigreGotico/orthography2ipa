@@ -17,20 +17,20 @@ AD = AncestorRole.ADSTRATE
 GRAPHEMES = {
     # --- Vowels ---
     "a": ["a"],
-    "ă": ["ə"],         # central vowel (Balkan Romance innovation)
-    "â": ["ɨ"],          # central vowel (Balkan Romance innovation)
+    "ă": ["ə"],  # central vowel (Balkan Romance innovation)
+    "â": ["ɨ"],  # central vowel (Balkan Romance innovation)
     "e": ["e", "ɛ"],
     "i": ["i"],
-    "î": ["ɨ"],          # same phoneme as ⟨â⟩
+    "î": ["ɨ"],  # same phoneme as ⟨â⟩
     "o": ["o"],
     "u": ["u"],
 
     # --- Consonants ---
     "b": ["b"],
-    "c": ["k", "tʃ"],   # /tʃ/ before e,i
+    "c": ["k", "tʃ"],  # /tʃ/ before e,i
     "d": ["d"],
     "f": ["f"],
-    "g": ["ɡ", "dʒ"],   # /dʒ/ before e,i
+    "g": ["ɡ", "dʒ"],  # /dʒ/ before e,i
     "h": ["h"],
     "j": ["ʒ"],
     "k": ["k"],
@@ -51,8 +51,8 @@ GRAPHEMES = {
     "z": ["z"],
 
     # --- Digraphs ---
-    "ch": ["k"],         # before e,i: ⟨che⟩ = [ke]
-    "gh": ["ɡ"],         # before e,i: ⟨ghe⟩ = [ɡe]
+    "ch": ["k"],  # before e,i: ⟨che⟩ = [ke]
+    "gh": ["ɡ"],  # before e,i: ⟨ghe⟩ = [ɡe]
     "ce": ["tʃe"], "ci": ["tʃi"],
     "ge": ["dʒe"], "gi": ["dʒi"],
 
