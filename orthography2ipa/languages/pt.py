@@ -192,7 +192,7 @@ ALLOPHONES_PT_AO = {
 
 # ── Specs ──────────────────────────────────────────────────────────────────
 SPECS = {
-    "pt": LanguageSpec(
+    "pt-PT": LanguageSpec(
         code="pt-PT",
         name="European Portuguese",
         family="Romance",

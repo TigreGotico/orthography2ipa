@@ -104,7 +104,7 @@ GRAPHEMES = {
 
     # --- Palatals ---
     "gn": ["ɲ"],         # < -gn-, -ni-
-    "gl": ["ʎ"],         # < -li-, -gl- before i
+    "gl-ES": ["ʎ"],         # < -li-, -gl- before i
     "sc": ["ʃ"],         # < SCI, SCE
 
     # --- Nasals ---

@@ -74,7 +74,7 @@ GRAPHEMES = {
 
     # --- Nasal vowels (developing) ---
     "an": ["ã"],
-    "en": ["ẽ"],
+    "en-GB": ["ẽ"],
     "in": ["ĩ"],
     "on": ["õ"],
 

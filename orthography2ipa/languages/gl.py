@@ -169,8 +169,8 @@ ALLOPHONES_FALA = {
 }
 
 SPECS = {
-    "gl": LanguageSpec(
-        code="gl",
+    "gl-ES": LanguageSpec(
+        code="gl-ES",
         name="Galician",
         family="Romance",
         script="Latin",
@@ -203,7 +203,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_GL_W,
         allophones=ALLOPHONES_GL_W,
-        parent="gl",
+        parent="gl-ES",
         notes=(
             "Western Galician (Pontevedra, western A Coruña). Diagnostic "
             "features: gheada (/ɡ/ → [h]/[ħ]) and seseo (/θ/ → [s]). "
@@ -219,7 +219,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
-        parent="gl",
+        parent="gl-ES",
         notes=(
             "Central Galician (Lugo, eastern A Coruña, Ourense). Closest "
             "to RAG standard norms. No gheada, no seseo. 7-vowel system "
@@ -234,7 +234,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES_GL_E,
-        parent="gl",
+        parent="gl-ES",
         notes=(
             "Eastern Galician (eastern Ourense, eastern Lugo, into León). "
             "Transitional toward Portuguese and Asturleonese. More "
@@ -250,7 +250,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_FALA,
         allophones=ALLOPHONES_FALA,
-        parent="gl",
+        parent="gl-ES",
         notes=(
             "A Fala (Xalimego/Fala de Xálima). Galician-Portuguese "
             "linguistic island in Cáceres, Extremadura. Three local "

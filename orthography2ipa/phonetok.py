@@ -31,7 +31,7 @@ Usage
     >>> paths[0]
     ['ʃ', 'u', 'v', 'a']
 
-    >>> tok_en = PhonetokTokenizer(get("en"))
+    >>> tok_en = PhonetokTokenizer(get("en-GB"))
     >>> tokens = tok_en.tokenize("the cat")
     >>> [(t.kind.name, t.grapheme) for t in tokens]
     [('GRAPHEME', 'th'), ('GRAPHEME', 'e'), ('WHITESPACE', ' '),

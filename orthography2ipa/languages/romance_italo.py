@@ -299,7 +299,7 @@ SPECS = {
                      "consonant system and prosody."),
             Ancestor("got", SUP, 0.04,
                      "Ostrogothic/Lombardic superstrate."),
-            Ancestor("fr", SUP, 0.05,
+            Ancestor("fr-FR", SUP, 0.05,
                      "Norman French superstrate (11th–13th c.): "
                      "Norman conquest of S. Italy and Sicily. "
                      "Lexical influence, some structural."),
@@ -333,7 +333,7 @@ SPECS = {
                      "Arabic adstrate (9th–11th c.): Emirate of "
                      "Sicily. Lexical influence (~500 words), some "
                      "phonological influence."),
-            Ancestor("fr", SUP, 0.05,
+            Ancestor("fr-FR", SUP, 0.05,
                      "Norman French superstrate (11th–13th c.): "
                      "Norman conquest. Administrative/legal lexicon."),
         ),
@@ -359,7 +359,7 @@ SPECS = {
             Ancestor("la-x-italia", P, 0.80,
                      "Italo-Romance parent: closest to medieval "
                      "Tuscan."),
-            Ancestor("fr", SUP, 0.12,
+            Ancestor("fr-FR", SUP, 0.12,
                      "French superstrate (from 1769): official "
                      "language, educational system, media. Heavy "
                      "lexical influence increasing over time."),

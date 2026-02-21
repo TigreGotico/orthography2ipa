@@ -389,8 +389,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-mashriqi", P, 0.88,
                      "Eastern Arabic base"),
-            Ancestor("arb", P, 0.85,
-                     "Classical Arabic descent"),
             Ancestor("fa", AD, 0.05,
                      "Persian adstrate: extensive loanwords; /p/, /v/, /tʃ/, /ʒ/ "
                      "phonemes; some phonological calques"),
@@ -420,7 +418,7 @@ SPECS = {
         parent="ar-IQ",
         ancestors=(
             Ancestor("ar-IQ", P, 0.88, "Iraqi Arabic base"),
-            Ancestor("ar-x-mashriqi", P, 0.85, "Eastern Arabic lineage"),
+            Ancestor("ar-x-mashriqi", AD, 0.85, "Eastern Arabic lineage"),
         ),
         notes=(
             "Northern Iraqi 'qəltu' Arabic — Mosul, Tikrit, Christian Baghdad, "
@@ -445,8 +443,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-maghrebi", P, 0.75,
                      "Maghrebi/peripheral Arabic base"),
-            Ancestor("arb", P, 0.78,
-                     "Classical Arabic via trans-Saharan and Nilotic routes"),
         ),
         notes=(
             "Chadian Arabic (ʕarabī šuwā). Spoken in Chad, northern Cameroon, "
@@ -472,8 +468,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-TD", P, 0.85,
                      "Closely related to Chadian Arabic"),
-            Ancestor("arb", P, 0.75,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Nigerian Shuwa Arabic. Spoken in Borno and Yobe states (NE Nigeria), "

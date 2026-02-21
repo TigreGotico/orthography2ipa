@@ -87,8 +87,8 @@ ALLOPHONES = {
 }
 
 SPECS = {
-    "ro": LanguageSpec(
-        code="ro",
+    "ro-RO": LanguageSpec(
+        code="ro-RO",
         name="Romanian",
         family="Romance",
         script="Latin",

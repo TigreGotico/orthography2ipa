@@ -38,9 +38,9 @@ Usage
     0.0625
     >>> segment_distance("p", "a")      # consonant vs vowel
     0.75
-    >>> inventory_distance(get("es"), get("pt-BR"))
+    >>> inventory_distance(get("es-ES"), get("pt-BR"))
     InventoryDistance(jaccard=0.23, ...)
-    >>> phonological_distance(get("la"), get("it"))
+    >>> phonological_distance(get("la"), get("it-IT"))
     PhonologicalDistance(combined=0.31, ...)
 """
 from __future__ import annotations
@@ -49,6 +49,8 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.types import LanguageSpec
+from orthography2ipa.feats import NUM_FEATURES, phonetic_distance, vectorize_phones
+
 
 __all__ = [
     "Feature",
@@ -69,11 +71,10 @@ __all__ = [
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Distinctive feature system — delegated to phonematcher
+# Distinctive feature system
 # ═══════════════════════════════════════════════════════════════════════════
 #
-# We use phonematcher's 21-feature SPE/IPA system as the canonical source
-# for phonetic feature vectors and segment distances.  phonematcher provides:
+# We use 21-feature SPE/IPA system as the canonical source for phonetic feature vectors and segment distances.
 #
 #   - 21 distinctive features:
 #       syllabic, sonorant, consonantal, continuant, delayed_release,
@@ -85,15 +86,6 @@ __all__ = [
 #   - Native diacritic/modifier handling (ː, ˤ, ˞, ̻)
 #   - Vowel/consonant-aware scoring
 #
-# Our public API (feature_vector, segment_distance) wraps phonematcher,
-# normalising outputs to [0.0, 1.0] and providing graceful fallback for
-# segments not in phonematcher's database.
-
-from phonematcher.distance import (
-    NUM_FEATURES as _PM_NUM_FEATURES,
-    phonetic_distance,
-    vectorize_phones,
-)
 
 Feature = str
 FeatureVector = Tuple[float, ...]
@@ -122,12 +114,11 @@ _FEATURE_NAMES: Tuple[Feature, ...] = (
     "long",  # 20
 )
 
-_NUM_FEATURES = _PM_NUM_FEATURES  # 21
-_NEUTRAL: FeatureVector = tuple(0.5 for _ in range(_NUM_FEATURES))
+_NEUTRAL: FeatureVector = tuple(0.5 for _ in range(NUM_FEATURES))
 
 
 def _pm_vec_to_floats(vec: List) -> FeatureVector:
-    """Convert phonematcher's True/False/None vector to our 0.0/1.0/0.5 floats."""
+    """Convert True/False/None vector to 0.0/1.0/0.5 floats."""
     return tuple(
         1.0 if v is True else (0.0 if v is False else 0.5)
         for v in vec
@@ -141,8 +132,8 @@ def _pm_vec_to_floats(vec: List) -> FeatureVector:
 def feature_vector(segment: str) -> FeatureVector:
     """Return the 21-element distinctive feature vector for an IPA *segment*.
 
-    Delegates to phonematcher, which handles composite phones (diacritics,
-    modifiers like ˤ ˞ ː) natively.  Returns the neutral vector (all 0.5)
+    handles composite phones (diacritics,  modifiers like ˤ ˞ ː) natively.
+    Returns the neutral vector (all 0.5)
     if the segment is unknown, so distance calculations degrade gracefully.
     """
     if not segment or segment == "∅":
@@ -175,7 +166,7 @@ def feature_names() -> Tuple[str, ...]:
 def segment_distance(seg_a: str, seg_b: str) -> float:
     """Phonetic distance between two IPA segments, normalised to [0.0, 1.0].
 
-    Uses phonematcher's weighted feature distance, which gives higher
+    Uses a weighted feature distance, which gives higher
     weight to major-class features (syllabic, sonorant, consonantal)
     and lower weight to minor features (strident, distributed, long).
 
@@ -187,7 +178,7 @@ def segment_distance(seg_a: str, seg_b: str) -> float:
         return 1.0
     try:
         d = phonetic_distance(seg_a, seg_b)
-        # phonematcher returns 0–1 for vowels, 0–2 for consonants.
+        # returns 0–1 for vowels, 0–2 for consonants.
         # Normalise to [0, 1].
         return min(d, 1.0)
     except (ValueError, KeyError):
@@ -195,7 +186,7 @@ def segment_distance(seg_a: str, seg_b: str) -> float:
         va = feature_vector(seg_a)
         vb = feature_vector(seg_b)
         diff = sum(abs(a - b) for a, b in zip(va, vb))
-        return diff / _NUM_FEATURES
+        return diff / NUM_FEATURES
 
 
 # ═══════════════════════════════════════════════════════════════════════════

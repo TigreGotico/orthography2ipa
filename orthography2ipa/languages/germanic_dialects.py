@@ -693,7 +693,7 @@ SPECS = {
         code="en-GB", name="British English (RP)",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_EN_GB, allophones=ALLOPHONES_EN_GB,
-        parent="en",
+        parent="en-GB",
         ancestors=(Ancestor("enm", P, 0.95, "Middle English descent"),),
         notes=(
             "Received Pronunciation (RP) — traditional prestige accent of England. "
@@ -708,7 +708,7 @@ SPECS = {
         code="en-US", name="American English (General American)",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_EN_US, allophones=ALLOPHONES_EN_US,
-        parent="en",
+        parent="en-GB",
         ancestors=(Ancestor("enm", P, 0.93, "Middle English descent via colonial English"),),
         notes=(
             "General American (GA) — reference accent for US media/education. "
@@ -724,7 +724,7 @@ SPECS = {
         code="en-AU", name="Australian English",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_EN_GB, allophones=ALLOPHONES_EN_AU,
-        parent="en",
+        parent="en-GB",
         notes=(
             "Australian English. Non-rhotic. "
             "FACE raising: /eɪ/ → [æɪ] (the 'Strine' stereotype). "
@@ -737,7 +737,7 @@ SPECS = {
         code="en-CA", name="Canadian English",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_EN_US, allophones=ALLOPHONES_EN_CA,
-        parent="en",
+        parent="en-GB",
         notes=(
             "Canadian English. Rhotic; close to GA with: "
             "CANADIAN RAISING: /aɪ/ → [ʌɪ] before voiceless C (knife, ice); "
@@ -750,7 +750,7 @@ SPECS = {
         code="en-IE", name="Irish English (Hiberno-English)",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_EN, allophones=ALLOPHONES_EN_IE,
-        parent="en",
+        parent="en-GB",
         ancestors=(
             Ancestor("enm", P, 0.80, "Middle English descent"),
             Ancestor("ga", SUB, 0.12,
@@ -770,7 +770,7 @@ SPECS = {
         code="en-ZA", name="South African English",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_EN, allophones=ALLOPHONES_EN_ZA,
-        parent="en",
+        parent="en-GB",
         ancestors=(
             Ancestor("enm", P, 0.82, "Middle English descent via British colonial English"),
             Ancestor("af", AD, 0.08, "Afrikaans adstrate: vowel qualities, some phonological calques"),
@@ -808,7 +808,7 @@ SPECS = {
         code="de-AT", name="Austrian German",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_DE, allophones=ALLOPHONES_DE_AT,
-        parent="de",
+        parent="de-DE",
         notes=(
             "Austrian Standard German (Österreichisches Hochdeutsch). "
             "ä [ɛ] → [eː] in most Austrian (merged with e:). "
@@ -822,7 +822,7 @@ SPECS = {
         code="de-CH", name="Swiss Standard German (Hochdeutsch)",
         family="Germanic", script="Latin",
         graphemes=GRAPHEMES_DE, allophones=ALLOPHONES_DE_CH,
-        parent="de",
+        parent="de-DE",
         notes=(
             "Swiss Standard German (Schweizer Hochdeutsch). "
             "NO glottal stop /ʔ/ — absent from Swiss German phonology. "

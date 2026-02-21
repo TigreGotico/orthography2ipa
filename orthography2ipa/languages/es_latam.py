@@ -385,7 +385,7 @@ SPECS = {
         script="Latin",
         graphemes=_GRAPHEMES_LA,
         allophones=_ALLOPHONES_LA,
-        parent="es",
+        parent="es-ES",
         notes="Seseo, yeísmo. Coda /s/ aspiration noted in allophone map.",
     ),
 
@@ -393,7 +393,7 @@ SPECS = {
     "es-MX": LanguageSpec(
         code="es-MX", name="Mexican Spanish (Highland)",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_MX, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_MX, parent="es-ES",
         notes=(
             "Highland Mexican (Mexico City / Central Plateau). Conservative: "
             "full coda /s/, velar [x], no aspiration. Distinctive unstressed "
@@ -404,7 +404,7 @@ SPECS = {
     "es-MX-x-costa": LanguageSpec(
         code="es-MX-x-costa", name="Mexican Spanish (Coastal)",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_MX_COAST, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_MX_COAST, parent="es-ES",
         notes=(
             "Coastal Mexican (Veracruz, Tabasco, Gulf/Pacific lowlands). "
             "Caribbean-influenced: coda /s/ aspiration, /x/ → [h], "
@@ -415,7 +415,7 @@ SPECS = {
     "es-CU": LanguageSpec(
         code="es-CU", name="Cuban Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CU, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CU, parent="es-ES",
         notes=(
             "Cuban Spanish. Caribbean type: coda aspiration/deletion, "
             "/x/ → [h], final [ŋ], -d deletion. Some deaffrication of "
@@ -426,7 +426,7 @@ SPECS = {
     "es-DO": LanguageSpec(
         code="es-DO", name="Dominican Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_DO, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_DO, parent="es-ES",
         notes=(
             "Dominican Spanish. Most extreme Caribbean phonology: "
             "pervasive coda /s/ deletion, heavy -d deletion, "
@@ -437,7 +437,7 @@ SPECS = {
     "es-PR": LanguageSpec(
         code="es-PR", name="Puerto Rican Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_PR, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_PR, parent="es-ES",
         notes=(
             "Puerto Rican Spanish. Caribbean base with distinctive "
             "uvular /rr/ [ʁ~χ] ('erre puertorriqueña'), extreme coda "
@@ -448,7 +448,7 @@ SPECS = {
     "es-VE": LanguageSpec(
         code="es-VE", name="Venezuelan Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_VE, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_VE, parent="es-ES",
         notes=(
             "Venezuelan Spanish. Caribbean type: coda aspiration, "
             "/x/ → [h], final [ŋ], -d deletion. Alveolar trill [r] "
@@ -459,7 +459,7 @@ SPECS = {
     "es-GT": LanguageSpec(
         code="es-GT", name="Guatemalan Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_GT, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_GT, parent="es-ES",
         notes=(
             "Guatemalan/highland Central American Spanish. Conservative: "
             "coda /s/ largely retained, velar [x]. Mayan substrate "
@@ -469,7 +469,7 @@ SPECS = {
     "es-NI": LanguageSpec(
         code="es-NI", name="Nicaraguan Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_NI, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_NI, parent="es-ES",
         notes=(
             "Nicaraguan/lowland Central American Spanish. Coda aspiration, "
             "/x/ → [h], -d deletion. Voseo universal (shared with most "
@@ -480,7 +480,7 @@ SPECS = {
     "es-CR": LanguageSpec(
         code="es-CR", name="Costa Rican Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CR, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CR, parent="es-ES",
         notes=(
             "Costa Rican Spanish. Distinctive assibilated /rr/ → [ɹ̝] "
             "or [ɹ] (the 'erre tica') — strongest diagnostic feature. "
@@ -491,7 +491,7 @@ SPECS = {
     "es-PA": LanguageSpec(
         code="es-PA", name="Panamanian Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_PA, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_PA, parent="es-ES",
         notes=(
             "Panamanian Spanish. Caribbean type: aspiration, /x/ → [h], "
             "final [ŋ], -d deletion. Canal Zone English contact influence. "
@@ -502,7 +502,7 @@ SPECS = {
     "es-CO": LanguageSpec(
         code="es-CO", name="Colombian Spanish (Bogotá)",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CO_BOG, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CO_BOG, parent="es-ES",
         notes=(
             "Bogotá highland Spanish (rolo). Very conservative: full coda "
             "/s/, alveolar /n/, no aspiration. Strong [ɟʝ] affricate for "
@@ -513,7 +513,7 @@ SPECS = {
     "es-CO-x-costa": LanguageSpec(
         code="es-CO-x-costa", name="Colombian Spanish (Coastal)",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CO_COAST, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CO_COAST, parent="es-ES",
         notes=(
             "Colombian coastal (costeño — Cartagena, Barranquilla, Santa Marta). "
             "Full Caribbean phonology: aspiration, [ŋ], liquid neutralisation, "
@@ -523,7 +523,7 @@ SPECS = {
     "es-CO-x-paisa": LanguageSpec(
         code="es-CO-x-paisa", name="Colombian Spanish (Paisa/Medellín)",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CO_PAISA, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CO_PAISA, parent="es-ES",
         notes=(
             "Paisa/Antioqueño (Medellín). Conservative coda /s/, strong "
             "[ɟʝ] affrication, distinctive voseo. Sometimes apicoalveolar "
@@ -534,7 +534,7 @@ SPECS = {
     "es-PE": LanguageSpec(
         code="es-PE", name="Peruvian Spanish (Andean)",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_ANDEAN, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_ANDEAN, parent="es-ES",
         notes=(
             "Andean Peruvian Spanish (highland). Very conservative: full "
             "coda /s/, velar [x]. Possible /ʎ/ retention in rural lleísta "
@@ -545,7 +545,7 @@ SPECS = {
     "es-PE-x-lima": LanguageSpec(
         code="es-PE-x-lima", name="Peruvian Spanish (Lima)",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_PE_LIMA, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_PE_LIMA, parent="es-ES",
         notes=(
             "Lima coastal Peruvian Spanish. Conservative coda /s/, "
             "yeísmo universal (no /ʎ/). Less Quechua influence than "
@@ -555,7 +555,7 @@ SPECS = {
     "es-BO": LanguageSpec(
         code="es-BO", name="Bolivian Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_ANDEAN, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_ANDEAN, parent="es-ES",
         notes=(
             "Bolivian Spanish (highland). Andean type: conservative coda "
             "/s/, velar [x], possible /ʎ/ in rural areas, assibilated /rr/. "
@@ -566,7 +566,7 @@ SPECS = {
     "es-EC": LanguageSpec(
         code="es-EC", name="Ecuadorian Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_ANDEAN, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_ANDEAN, parent="es-ES",
         notes=(
             "Ecuadorian Spanish (highland, Quito). Andean type: conservative "
             "coda /s/, assibilated /rr/ → [ɹ̝] in highland. Quechua "
@@ -578,7 +578,7 @@ SPECS = {
     "es-CL": LanguageSpec(
         code="es-CL", name="Chilean Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CL, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_CL, parent="es-ES",
         notes=(
             "Chilean Spanish. Moderate coda aspiration. /x/ → [x] with "
             "[ç] allophone before front vowels (gente [ˈçente]) — distinctive "
@@ -589,7 +589,7 @@ SPECS = {
     "es-PY": LanguageSpec(
         code="es-PY", name="Paraguayan Spanish",
         family="Romance", script="Latin",
-        graphemes=GRAPHEMES_PY, allophones=ALLOPHONES_PY, parent="es",
+        graphemes=GRAPHEMES_PY, allophones=ALLOPHONES_PY, parent="es-ES",
         notes=(
             "Paraguayan Spanish. Uniquely influenced by Guaraní bilingualism "
             "(90%+ of population bilingual). Guaraní substrate: prenasalised "
@@ -601,7 +601,7 @@ SPECS = {
     "es-UY": LanguageSpec(
         code="es-UY", name="Uruguayan Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_UY, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_UY, parent="es-ES",
         notes=(
             "Uruguayan Spanish. Rioplatense base: žeísmo/šeísmo for "
             "⟨ll⟩/⟨y⟩ (devoicing trend toward [ʃ] in younger speakers). "
@@ -618,14 +618,14 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_ES_AR,
         allophones=ALLOPHONES_ES_AR,
-        parent="es",
+        parent="es-ES",
         notes="Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩.",
     ),
     # --- Equatorial Guinea ---
     "es-GQ": LanguageSpec(
         code="es-GQ", name="Equatoguinean Spanish",
         family="Romance", script="Latin",
-        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_GQ, parent="es",
+        graphemes=_GRAPHEMES_LA, allophones=ALLOPHONES_GQ, parent="es-ES",
         notes=(
             "Equatoguinean Spanish. Only Spanish-speaking country in "
             "sub-Saharan Africa. Bantu substrate (Fang, Bubi): possible "

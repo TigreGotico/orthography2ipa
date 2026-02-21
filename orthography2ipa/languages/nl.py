@@ -134,7 +134,7 @@ SPECS = {
                      "Descent from Proto-Germanic via Old Low Franconian"),
             Ancestor("la", AD, 0.04,
                      "Latin adstrate: ecclesiastical vocabulary"),
-            Ancestor("fr", AD, 0.04,
+            Ancestor("fr-FR", AD, 0.04,
                      "French adstrate: centuries of Burgundian/French influence "
                      "in S. Netherlands; cf. van der Wal (2008)"),
         ),

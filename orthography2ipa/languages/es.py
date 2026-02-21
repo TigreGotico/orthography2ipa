@@ -277,7 +277,7 @@ ALLOPHONES_CANTABRIA = {
 # ═══════════════════════════════════════════════════════════════════════════
 
 SPECS = {
-    "es": LanguageSpec(
+    "es-ES": LanguageSpec(
         code="es-ES",
         name="Spanish (Castilian)",
         family="Romance",
@@ -304,7 +304,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_ANDALUSIA_W,
         allophones=ALLOPHONES_ANDALUSIA_W,
-        parent="es",
+        parent="es-ES",
         notes=(
             "Western Andalusian (Sevilla, Cádiz, Huelva, Córdoba, Málaga). "
             "Most phonologically innovative Castilian variety. Hallmarks: "
@@ -323,7 +323,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_ANDALUSIA_E,
         allophones=ALLOPHONES_ANDALUSIA_E,
-        parent="es",
+        parent="es-ES",
         notes=(
             "Eastern Andalusian (Granada, Almería, Jaén). Maintains "
             "distinción (/θ/ vs /s/) but shares aspiration with west. "
@@ -340,7 +340,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_MURCIA,
         allophones=ALLOPHONES_MURCIA,
-        parent="es",
+        parent="es-ES",
         notes=(
             "Murcian Spanish (Panocho/Murciano). Transitional between "
             "Castilian and Andalusian: shares coda aspiration, -d deletion, "
@@ -356,7 +356,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_CANARIAS,
         allophones=ALLOPHONES_CANARIAS,
-        parent="es",
+        parent="es-ES",
         notes=(
             "Canarian Spanish (Islas Canarias). Systematic seseo (no /θ/), "
             "yeísmo, coda /s/ aspiration (less extreme than Andalusian), "
@@ -372,7 +372,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_CANTABRIA,
         allophones=ALLOPHONES_CANTABRIA,
-        parent="es",
+        parent="es-ES",
         notes=(
             "Cantabrian Spanish (Montañés). Northern conservative dialect "
             "with Asturleonese substrate. Apico-alveolar [s̺] (northern "

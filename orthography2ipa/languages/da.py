@@ -122,7 +122,7 @@ SPECS = {
         ancestors=(
             Ancestor("non", P, 0.90,
                      "Descent from Old Norse (East Norse branch)"),
-            Ancestor("de", AD, 0.07,
+            Ancestor("de-DE", AD, 0.07,
                      "Low German / Hanseatic adstrate: even stronger than Swedish "
                      "due to geographic proximity and political union"),
         ),

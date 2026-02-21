@@ -54,7 +54,7 @@ GRAPHEMES = {
     "gi": ["dʒ"],        # before a,o,u: ⟨gia⟩ = [dʒa]
     "sc": ["ʃ", "sk"],   # [ʃ] before e,i; [sk] before a,o,u
     "sci": ["ʃ"],        # before a,o,u: ⟨scia⟩ = [ʃa]
-    "gl": ["ʎ", "ɡl"],   # [ʎ] before i; [ɡl] elsewhere
+    "gl-ES": ["ʎ", "ɡl"],   # [ʎ] before i; [ɡl] elsewhere
     "gli": ["ʎ"],        # palatal lateral
     "gn": ["ɲ"],         # palatal nasal
 
@@ -120,8 +120,8 @@ ALLOPHONES = {
 }
 
 SPECS = {
-    "it": LanguageSpec(
-        code="it",
+    "it-IT": LanguageSpec(
+        code="it-IT",
         name="Italian",
         family="Romance",
         script="Latin",

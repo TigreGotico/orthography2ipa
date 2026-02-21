@@ -460,8 +460,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-peninsular", P, 0.90,
                      "Peninsular Arabic base"),
-            Ancestor("arb", P, 0.88,
-                     "Classical Arabic descent — born in the Hejaz"),
         ),
         notes=(
             "Hejazi Arabic (حجازي). Western Saudi Arabia: Mecca, Medina, Jeddah. "
@@ -485,8 +483,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-peninsular", P, 0.92,
                      "Peninsular Arabic base — most conservative"),
-            Ancestor("arb", P, 0.90,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Najdi Arabic (نجدي). Central Arabia, including Riyadh. "
@@ -511,8 +507,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-peninsular", P, 0.90,
                      "Peninsular Arabic base"),
-            Ancestor("arb", P, 0.87,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Proto-Gulf Arabic — abstract ancestor node for Kuwaiti, "
@@ -535,8 +529,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-gulf", P, 0.92,
                      "Gulf Arabic base"),
-            Ancestor("arb", P, 0.88,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Kuwaiti Arabic. Best-documented Gulf variety. "
@@ -559,8 +551,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-gulf", P, 0.90,
                      "Gulf Arabic base"),
-            Ancestor("arb", P, 0.87,
-                     "Classical Arabic descent"),
             Ancestor("fa", AD, 0.05,
                      "Persian adstrate: Shia community historical ties; "
                      "/p/ in some older loanwords predating English"),
@@ -586,8 +576,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-gulf", P, 0.91,
                      "Gulf Arabic base"),
-            Ancestor("arb", P, 0.88,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Qatari Arabic. Tribal/Bedouin character somewhat stronger than "
@@ -608,8 +596,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-gulf", P, 0.88,
                      "Gulf Arabic base"),
-            Ancestor("arb", P, 0.85,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Emirati Arabic (إماراتي). UAE: Abu Dhabi, Dubai, Sharjah, RAK. "
@@ -633,8 +619,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-peninsular", P, 0.88,
                      "Peninsular Arabic base"),
-            Ancestor("arb", P, 0.87,
-                     "Classical Arabic descent"),
             Ancestor("fa", AD, 0.05,
                      "Persian adstrate from Hormuz Strait trade and Muscat contacts"),
         ),
@@ -662,8 +646,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-peninsular", P, 0.90,
                      "Peninsular Arabic base"),
-            Ancestor("arb", P, 0.88,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Yemeni Arabic — Ṣanʿānī (North Yemeni) as reference variety. "
