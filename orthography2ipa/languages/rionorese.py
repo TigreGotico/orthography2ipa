@@ -157,6 +157,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_RION,
         allophones=ALLOPHONES_RION,
+        positional_graphemes=POSITIONAL_RIONORESE,
         parent="ast",
         notes=(
             "Moribund Leonese dialect of Rio de Onor, Bragança. ~0–5 active "

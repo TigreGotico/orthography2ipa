@@ -198,6 +198,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_BRQ,
         allophones=ALLOPHONES_BRQ,
+        positional_graphemes=POSITIONAL_BARRANQUENHO,
         parent="ext",
         notes=(
             "Contact language of Barrancos, Portugal (Lei nº 97/2021). "

@@ -374,6 +374,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_PT,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="la-x-hispania",
         ancestors=(
             Ancestor("la-x-hispania", P, 0.78,
@@ -407,6 +408,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT_BR,
         allophones=ALLOPHONES_PT_BR,
+        positional_graphemes=POSITIONAL_PT_BR,
         parent="pt-PT",
         notes=(
             "Key differences from PT-PT: palatalisation of /t,d/ before /i/, "
@@ -420,6 +422,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT_AO,
         allophones=ALLOPHONES_PT_AO,
+        positional_graphemes=POSITIONAL_PT_PT,
         parent="pt-PT",
         notes="Based on Luanda educated speech.",
     ),

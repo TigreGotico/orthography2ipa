@@ -231,6 +231,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_MWL,
         allophones=ALLOPHONES_MWL,
+        positional_graphemes=POSITIONAL_MWL,
         parent="la",
         notes=(
             "Central Mirandese (standard normative variety). Asturleonese "
@@ -252,6 +253,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_MWL_SENDIM,
         allophones=ALLOPHONES_MWL_SENDIM,
+        positional_graphemes=POSITIONAL_MWL,
         parent="mwl",
         notes=(
             "Sendinês subdialect of Mirandese, spoken in Vila de Sendim "

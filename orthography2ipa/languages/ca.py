@@ -13,7 +13,7 @@ Conventions:
 - oc-x-aranes = Aranese (Gascon Occitan, co-official in Catalonia).
 """
 from orthography2ipa.types import LanguageSpec, GraphemePosition as GP
-
+from orthography2ipa.languages.oc import POSITIONAL_OC
 GRAPHEMES = {
     # --- Vowels (7 stressed, reduced unstressed) ---
     "a": ["a", "ə"],
@@ -353,6 +353,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
+        positional_graphemes=POSITIONAL_CA,
         parent="la",
         notes=(
             "Central Catalan (Barcelona standard). Vowel reduction "
@@ -367,6 +368,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_VAL,
         allophones=ALLOPHONES_VAL,
+        positional_graphemes=POSITIONAL_CA_VALENCIA,
         parent="ca",
         notes=(
             "Valencian (Valencià). Western Catalan block, co-official in "
@@ -385,6 +387,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_BAL,
         allophones=ALLOPHONES_BAL,
+        positional_graphemes=POSITIONAL_CA_BALEAR,
         parent="ca",
         notes=(
             "Balearic (Mallorquí/Menorquí/Eivissenc). Eastern block, "
@@ -402,6 +405,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES_NORD,
+        positional_graphemes=POSITIONAL_CA,
         parent="ca",
         notes=(
             "Northern Catalan (Rossellonès/Septentrional). Spoken in "
@@ -418,6 +422,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES_OCCI,
+        positional_graphemes=POSITIONAL_CA,
         parent="ca",
         notes=(
             "Northwestern Catalan (Lleidatà/Pallarès). Western block, "
@@ -434,6 +439,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_ARANES,
         allophones=ALLOPHONES_ARANES,
+        positional_graphemes=POSITIONAL_OC,
         parent="oc",
         notes=(
             "Aranese (Aranès). Gascon variety of Occitan spoken in Val "

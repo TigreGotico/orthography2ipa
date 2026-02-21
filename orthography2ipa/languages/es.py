@@ -395,6 +395,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_ES,
         allophones=ALLOPHONES_ES,
+        positional_graphemes=POSITIONAL_ES_ES,
         parent="la-x-hispania",
         ancestors=(
             Ancestor("la-x-hispania", P, 0.80,
@@ -415,6 +416,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_ANDALUSIA_W,
         allophones=ALLOPHONES_ANDALUSIA_W,
+        positional_graphemes=POSITIONAL_ES_ANDALUSIA_W,
         parent="es-ES",
         notes=(
             "Western Andalusian (Sevilla, Cádiz, Huelva, Córdoba, Málaga). "
@@ -434,6 +436,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_ANDALUSIA_E,
         allophones=ALLOPHONES_ANDALUSIA_E,
+        positional_graphemes=POSITIONAL_ES_ANDALUSIA_E,
         parent="es-ES",
         notes=(
             "Eastern Andalusian (Granada, Almería, Jaén). Maintains "
@@ -451,6 +454,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_MURCIA,
         allophones=ALLOPHONES_MURCIA,
+        positional_graphemes=POSITIONAL_ES_MURCIA,
         parent="es-ES",
         notes=(
             "Murcian Spanish (Panocho/Murciano). Transitional between "
@@ -467,6 +471,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_CANARIAS,
         allophones=ALLOPHONES_CANARIAS,
+        positional_graphemes=POSITIONAL_ES_CANARIAS,
         parent="es-ES",
         notes=(
             "Canarian Spanish (Islas Canarias). Systematic seseo (no /θ/), "
@@ -483,6 +488,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_CANTABRIA,
         allophones=ALLOPHONES_CANTABRIA,
+        positional_graphemes=POSITIONAL_ES_ES,
         parent="es-ES",
         notes=(
             "Cantabrian Spanish (Montañés). Northern conservative dialect "

@@ -148,6 +148,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AN,
         allophones=ALLOPHONES_AN,
+        positional_graphemes=POSITIONAL_AN,
         parent="la",
         ancestors=(
             Ancestor("la-x-hispania", P, 0.80,
@@ -181,6 +182,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AN,
         allophones=ALLOPHONES_AN,
+        positional_graphemes=POSITIONAL_AN,
         parent="an",
         notes=(
             "Western Aragonese (Jacetania, Cinco Villas). Transitional "
@@ -196,6 +198,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AN_E,
         allophones=ALLOPHONES_AN_E,
+        positional_graphemes=POSITIONAL_AN,
         parent="an",
         notes=(
             "Eastern Aragonese / Ribagorçan / Benasquese transition zone. "

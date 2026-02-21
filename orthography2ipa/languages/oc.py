@@ -104,6 +104,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
+        positional_graphemes=POSITIONAL_OC,
         parent="la",
         ancestors=(
             Ancestor("la-x-gallia", P, 0.80,

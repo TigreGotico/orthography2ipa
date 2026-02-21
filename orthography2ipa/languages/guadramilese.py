@@ -154,6 +154,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_GUAD,
         allophones=ALLOPHONES_GUAD,
+        positional_graphemes=POSITIONAL_GUADRAMILESE,
         parent="ast",
         notes=(
             "Nearly extinct Leonese dialect of Guadramil, Bragança. ~0–5 "

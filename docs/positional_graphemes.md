@@ -82,8 +82,6 @@ Maps grapheme keys to dicts of `{GraphemePosition: [IPA candidates]}`. Only grap
 
 ## `LanguageSpec` Integration
 
-### New field
-
 ```python
 @dataclass(frozen=True)
 class LanguageSpec:

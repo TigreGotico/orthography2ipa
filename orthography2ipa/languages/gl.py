@@ -251,6 +251,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
+        positional_graphemes=POSITIONAL_GL_ES,
         parent="la",
         ancestors=(
             Ancestor("la-x-hispania", P, 0.78,
@@ -278,6 +279,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_GL_W,
         allophones=ALLOPHONES_GL_W,
+        positional_graphemes=POSITIONAL_GL_OCCIDENTAL,
         parent="gl-ES",
         notes=(
             "Western Galician (Pontevedra, western A Coruña). Diagnostic "
@@ -294,6 +296,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES,
+        positional_graphemes=POSITIONAL_GL_ES,
         parent="gl-ES",
         notes=(
             "Central Galician (Lugo, eastern A Coruña, Ourense). Closest "
@@ -309,6 +312,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES,
         allophones=ALLOPHONES_GL_E,
+        positional_graphemes=POSITIONAL_GL_ES,
         parent="gl-ES",
         notes=(
             "Eastern Galician (eastern Ourense, eastern Lugo, into León). "
@@ -325,6 +329,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_FALA,
         allophones=ALLOPHONES_FALA,
+        positional_graphemes=POSITIONAL_FALA,
         parent="gl-ES",
         notes=(
             "A Fala (Xalimego/Fala de Xálima). Galician-Portuguese "

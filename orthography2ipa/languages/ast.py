@@ -225,6 +225,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AST,
         allophones=ALLOPHONES_AST,
+        positional_graphemes=POSITIONAL_AST,
         parent="la",
         ancestors=(
             Ancestor("la-x-hispania", P, 0.80,
@@ -253,6 +254,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AST_W,
         allophones=ALLOPHONES_AST_W,
+        positional_graphemes=POSITIONAL_AST_W,
         parent="ast",
         notes=(
             "Western Asturian (asturianu oucidental). Most archaic variety. "
@@ -269,6 +271,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AST,
         allophones=ALLOPHONES_AST_E,
+        positional_graphemes=POSITIONAL_AST,
         parent="ast",
         notes=(
             "Eastern Asturian, transitional to Cantabrian/Castilian. "
@@ -284,6 +287,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_LEON,
         allophones=ALLOPHONES_LEON,
+        positional_graphemes=POSITIONAL_AST,
         parent="ast",
         notes=(
             "Leonese (Llionés), spoken in the provinces of León, Zamora, "
