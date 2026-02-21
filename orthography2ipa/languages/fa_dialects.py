@@ -541,7 +541,6 @@ SPECS = {
         allophones=ALLOPHONES_ISFAHANI,
         parent="fa-x-tehran",
         ancestors=(
-            Ancestor("fa-x-tehran", P, 0.90, "Tehran standard base"),
             Ancestor("fa-x-early", P, 0.88, "New Persian descent"),
         ),
         notes=(
@@ -562,7 +561,6 @@ SPECS = {
         allophones=ALLOPHONES_SHIRAZI,
         parent="fa-x-tehran",
         ancestors=(
-            Ancestor("fa-x-tehran", P, 0.85, "Tehran standard base"),
             Ancestor("fa-x-early", P, 0.88, "New Persian descent"),
         ),
         notes=(
@@ -584,7 +582,6 @@ SPECS = {
         allophones=ALLOPHONES_KERMANI,
         parent="fa-x-tehran",
         ancestors=(
-            Ancestor("fa-x-tehran", P, 0.83, "Tehran standard base"),
             Ancestor("fa-x-early", P, 0.85, "New Persian descent"),
         ),
         notes=(
@@ -605,7 +602,6 @@ SPECS = {
         allophones=ALLOPHONES_KHORASANI,
         parent="fa-x-tehran",
         ancestors=(
-            Ancestor("fa-x-tehran", P, 0.82, "Tehran standard; northeastern reference"),
             Ancestor("fa-x-early", P, 0.88, "New Persian; Khorasan is its cradle"),
             Ancestor("tg", AD, 0.05,
                      "Tajik adstrate: geographic continuum; "
@@ -631,8 +627,7 @@ SPECS = {
         allophones=ALLOPHONES_YAZDI,
         parent="fa-x-tehran",
         ancestors=(
-            Ancestor("fa-x-tehran", P, 0.82, "Tehran standard base"),
-            Ancestor("fa-x-early", P, 0.85, "New Persian descent"),
+            Ancestor("fa-x-tehran", AD, 0.82, "Tehran standard base"),
         ),
         notes=(
             "Yazdi Persian (Yazdī). Yazd — central Iranian plateau. "
@@ -653,7 +648,6 @@ SPECS = {
         parent="fa-x-khorasani",
         ancestors=(
             Ancestor("fa-x-khorasani", P, 0.88, "Khorasani base"),
-            Ancestor("fa-x-tehran", P, 0.75, "Tehran standard influence"),
         ),
         notes=(
             "Mashhadi Persian (Mašhadī). Iran's second-largest city; "
@@ -702,7 +696,6 @@ SPECS = {
         parent="fa-AF",
         ancestors=(
             Ancestor("fa-AF", P, 0.80, "Dari base"),
-            Ancestor("fa-x-early", P, 0.78, "New Persian descent"),
         ),
         notes=(
             "Hazaragi (هزارگی). Dari dialect of Hazara people of "

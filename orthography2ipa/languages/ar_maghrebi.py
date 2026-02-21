@@ -333,8 +333,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-maghrebi", P, 0.78,
                      "Maghrebi Arabic base"),
-            Ancestor("arb", P, 0.75,
-                     "Classical Arabic descent via 7th–8th c. Umayyad expansion"),
             Ancestor("ber", SUB, 0.15,
                      "Berber (Tamazight/Tachelhit) substrate: "
                      "CHIEF cause of vowel deletion; emphatic system reinforced; "
@@ -368,8 +366,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-maghrebi", P, 0.80,
                      "Maghrebi Arabic base"),
-            Ancestor("arb", P, 0.78,
-                     "Classical Arabic descent"),
             Ancestor("ber", SUB, 0.12,
                      "Berber (Tamazight/Kabyle) substrate: vowel reduction, "
                      "consonant cluster tolerance; dense Berber-speaking areas "
@@ -401,8 +397,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-maghrebi", P, 0.83,
                      "Maghrebi Arabic base"),
-            Ancestor("arb", P, 0.80,
-                     "Classical Arabic descent"),
             Ancestor("ber", SUB, 0.08,
                      "Berber substrate (less dense than Morocco/Kabylie)"),
             Ancestor("fr-FR", AD, 0.04,
@@ -430,8 +424,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-maghrebi", P, 0.85,
                      "Maghrebi Arabic base"),
-            Ancestor("arb", P, 0.83,
-                     "Classical Arabic descent"),
             Ancestor("ber", SUB, 0.07,
                      "Berber substrate (Nafusa plateau / interior)"),
         ),
@@ -457,8 +449,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-maghrebi", P, 0.80,
                      "Maghrebi Arabic base (but more conservative)"),
-            Ancestor("arb", P, 0.82,
-                     "Classical Arabic descent — most conservative Maghrebi"),
             Ancestor("ber", SUB, 0.10,
                      "Berber (Znaga/Sanhaja) substrate"),
         ),

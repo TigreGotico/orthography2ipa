@@ -355,8 +355,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-mashriqi", P, 0.90,
                      "Eastern Arabic base"),
-            Ancestor("arb", P, 0.85,
-                     "Classical Arabic descent via Nile Valley settlement"),
             Ancestor("cop", SUB, 0.07,
                      "Coptic substrate: some lexical items, vowel patterns; "
                      "Coptic extinct by ~17th c. as spoken language"),
@@ -385,7 +383,6 @@ SPECS = {
         parent="ar-EG",
         ancestors=(
             Ancestor("ar-EG", P, 0.85, "Shares Egyptian Arabic base"),
-            Ancestor("arb", P, 0.80, "Classical Arabic descent"),
         ),
         notes=(
             "Saʿidi (Upper Egyptian) Arabic. "
@@ -406,8 +403,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-mashriqi", P, 0.88,
                      "Eastern Arabic descent"),
-            Ancestor("arb", P, 0.85,
-                     "Classical Arabic via 7th–8th c. expansion"),
         ),
         notes=(
             "Sudanese Arabic (ʕarabī masārī). "
@@ -432,8 +427,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-mashriqi", P, 0.88,
                      "Eastern Arabic base"),
-            Ancestor("arb", P, 0.85,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Damascus Arabic (ʕarabī šāmi). Prestige Levantine variety. "
@@ -456,8 +449,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-mashriqi", P, 0.85,
                      "Eastern Arabic base"),
-            Ancestor("arb", P, 0.83,
-                     "Classical Arabic descent"),
             Ancestor("fr-FR", AD, 0.05,
                      "French adstrate: established /p/ and /v/ phonemes, "
                      "heavy loanword influence"),
@@ -483,8 +474,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-mashriqi", P, 0.87,
                      "Eastern Arabic base"),
-            Ancestor("arb", P, 0.85,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Palestinian Arabic (ʕarabī filasṭīnī) — urban variety "
@@ -509,8 +498,6 @@ SPECS = {
         ancestors=(
             Ancestor("ar-x-mashriqi", P, 0.87,
                      "Eastern Arabic base"),
-            Ancestor("arb", P, 0.85,
-                     "Classical Arabic descent"),
         ),
         notes=(
             "Jordanian Arabic — complex dialect landscape. "

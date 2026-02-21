@@ -235,9 +235,36 @@ ALLOPHONES_XTG = {
     "dː": ["dː"], "kː": ["kː"], "tː": ["tː"],
 }
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# CISALPINE GAULISH (xcg) — Celtic of N. Italy, distinct from Lepontic
+# ═══════════════════════════════════════════════════════════════════════════════
+# Attested from ~4th c. BCE; the "Gaulish" brought by La Tène Gauls
+# into the Po valley, overlaying the earlier Lepontic.
+# Shares most features with Transalpine but in Cisalpine epigraphic context.
+# Written in both Lugano and Latin alphabets.
+
+GRAPHEMES_XCG = {
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
+    "ā": ["aː"], "ē": ["eː"], "ī": ["iː"], "ō": ["oː"], "ū": ["uː"],
+    "b": ["b"], "t": ["t"], "d": ["d"], "c": ["k"], "g": ["ɡ"],
+    "s": ["s"], "x": ["x"], "θ": ["ts"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
+    "u": ["u", "w"], "i": ["i", "j"],
+    "ss": ["sː"], "ll": ["lː"], "nn": ["nː"], "rr": ["rː"],
+}
+ALLOPHONES_XCG = {
+    "b": ["b", "β"], "t": ["t", "θ"], "d": ["d", "ð"],
+    "k": ["k", "x"], "ɡ": ["ɡ", "ɣ"],
+    "s": ["s", "z"], "x": ["x"], "ts": ["ts"],
+    "m": ["m"], "n": ["n", "ŋ"], "l": ["l"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
+    "aː": ["aː"], "eː": ["eː"], "iː": ["iː"], "oː": ["oː"], "uː": ["uː"],
+    "sː": ["sː"], "lː": ["lː"], "nː": ["nː"], "rː": ["rː"],
+}
 
 # ═══════════════════════════════════════════════════════════════════════════
-# LEPONTIC (xlp)
+# LEPONTIC (xlp) — earliest attested Celtic (~575 BCE)
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # ISO 639-3: xlp (Lepontic)
@@ -315,7 +342,7 @@ ALLOPHONES_XLP = {
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# GALATIAN (xga)
+# GALATIAN (xga)) — Anatolian Celtic, very fragmentary
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # ISO 639-3: xga (Galatian)
@@ -430,6 +457,307 @@ ALLOPHONES_XBR = {
 }
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# WELSH (cy) — modern Brythonic
+# ═══════════════════════════════════════════════════════════════════════════════
+# Sources: Ball & Müller (2009), Thomas (1996), Jones (1984)
+
+GRAPHEMES_CY = {
+    "a": ["a"], "e": ["ɛ"], "i": ["ɪ"], "o": ["ɔ"], "u": ["ɨ", "i"],
+    "w": ["ʊ", "w"], "y": ["ə", "ɨ"],
+    "â": ["aː"], "ê": ["eː"], "î": ["iː"], "ô": ["oː"],
+    "û": ["ɨː"], "ŵ": ["uː"], "ŷ": ["əː"],
+    "b": ["b"], "c": ["k"], "d": ["d"],
+    "f": ["v"], "ff": ["f"], "g": ["ɡ"],
+    "ng": ["ŋ"], "h": ["h"],
+    "l": ["l"], "ll": ["ɬ"],
+    "m": ["m"], "n": ["n"],
+    "p": ["p"], "ph": ["f"],
+    "r": ["r"], "rh": ["r̥"],
+    "s": ["s"], "t": ["t"], "th": ["θ"],
+    "ch": ["x"],
+    "dd": ["ð"],
+    "j": ["dʒ"],  # loanwords
+    "si": ["ʃ"],  # before vowels
+    "mh": ["m̥"], "nh": ["n̥"],
+}
+ALLOPHONES_CY = {
+    "p": ["p", "pʰ"], "b": ["b"],
+    "t": ["t", "tʰ"], "d": ["d"],
+    "k": ["k", "kʰ"], "ɡ": ["ɡ"],
+    "f": ["f"], "v": ["v"],
+    "θ": ["θ"], "ð": ["ð"],
+    "s": ["s"], "ʃ": ["ʃ"],
+    "x": ["x"], "h": ["h"],
+    "ɬ": ["ɬ"],
+    "m": ["m"], "m̥": ["m̥"],
+    "n": ["n"], "n̥": ["n̥"], "ŋ": ["ŋ"],
+    "l": ["l"], "r": ["r"], "r̥": ["r̥"],
+    "w": ["w"], "j": ["j"],
+    "dʒ": ["dʒ"],
+    "a": ["a"], "aː": ["aː"],
+    "ɛ": ["ɛ"], "eː": ["eː"],
+    "ɪ": ["ɪ"], "iː": ["iː"],
+    "ɔ": ["ɔ"], "oː": ["oː"],
+    "ɨ": ["ɨ"], "ɨː": ["ɨː"],
+    "ʊ": ["ʊ"], "uː": ["uː"],
+    "ə": ["ə"], "əː": ["əː"],
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BRETON (br) — modern Brythonic, spoken in Brittany
+# ═══════════════════════════════════════════════════════════════════════════════
+# Sources: Hemon (1975), Press (1986), Ball & Müller (2009)
+
+GRAPHEMES_BR = {
+    "a": ["a"], "e": ["e", "ɛ"], "i": ["i"], "o": ["o", "ɔ"], "u": ["y"],
+    "ou": ["u"],
+    "â": ["aː"], "ê": ["eː"], "ô": ["oː"],
+    "b": ["b"], "d": ["d"], "g": ["ɡ"],
+    "p": ["p"], "t": ["t"], "k": ["k"],
+    "f": ["f"], "v": ["v"],
+    "s": ["s"], "z": ["z"],
+    "ch": ["ʃ"], "j": ["ʒ"],
+    "c'h": ["x", "h"],
+    "gn": ["ɲ"],
+    "lh": ["ʎ"],  # some dialects
+    "m": ["m"], "n": ["n"],
+    "l": ["l"], "r": ["ʁ", "r"],
+    "w": ["w"],
+    "zh": ["z", "h"],  # varies by dialect: KLT [z], Vannetais [h]
+    "h": ["h"],
+    "nn": ["n"], "mm": ["m"],
+}
+ALLOPHONES_BR = {
+    "p": ["p"], "b": ["b"],
+    "t": ["t"], "d": ["d"],
+    "k": ["k"], "ɡ": ["ɡ"],
+    "f": ["f"], "v": ["v"],
+    "s": ["s"], "z": ["z"],
+    "ʃ": ["ʃ"], "ʒ": ["ʒ"],
+    "x": ["x"], "h": ["h"],
+    "ɲ": ["ɲ"],
+    "m": ["m"], "n": ["n"], "ŋ": ["ŋ"],
+    "l": ["l"], "ʎ": ["ʎ"],
+    "ʁ": ["ʁ", "r"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "aː": ["aː"],
+    "e": ["e"], "ɛ": ["ɛ"], "eː": ["eː"],
+    "i": ["i"], "o": ["o"], "ɔ": ["ɔ"], "oː": ["oː"],
+    "y": ["y"], "u": ["u"],
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CORNISH (kw) — revived Brythonic
+# ═══════════════════════════════════════════════════════════════════════════════
+# Sources: George (1993), Brown (2001) *A Grammar of Modern Cornish*
+
+GRAPHEMES_KW = {
+    "a": ["a", "æ"], "e": ["ɛ"], "i": ["ɪ"], "o": ["ɔ"], "u": ["ʊ"],
+    "y": ["ɪ", "ə"],
+    "b": ["b"], "d": ["d"], "g": ["ɡ"],
+    "p": ["p"], "t": ["t"], "k": ["k"],
+    "f": ["f"], "v": ["v"],
+    "s": ["s"], "z": ["z"],
+    "th": ["θ"], "dh": ["ð"],
+    "ch": ["tʃ"], "j": ["dʒ"],
+    "gh": ["x", "h"],
+    "m": ["m"], "n": ["n"],
+    "l": ["l"], "r": ["r"],
+    "w": ["w"], "h": ["h"],
+    "hw": ["ʍ"],
+}
+ALLOPHONES_KW = {
+    "p": ["p"], "b": ["b"],
+    "t": ["t"], "d": ["d"],
+    "k": ["k"], "ɡ": ["ɡ"],
+    "f": ["f"], "v": ["v"],
+    "θ": ["θ"], "ð": ["ð"],
+    "s": ["s"], "z": ["z"],
+    "tʃ": ["tʃ"], "dʒ": ["dʒ"],
+    "x": ["x"], "h": ["h"], "ʍ": ["ʍ"],
+    "m": ["m"], "n": ["n"], "ŋ": ["ŋ"],
+    "l": ["l"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "æ": ["æ"], "ɛ": ["ɛ"], "ɪ": ["ɪ"],
+    "ɔ": ["ɔ"], "ʊ": ["ʊ"], "ə": ["ə"],
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PROTO-GOIDELIC (cel-x-goidelic) — ancestor of Irish, Scots Gaelic, Manx
+# ═══════════════════════════════════════════════════════════════════════════════
+# Not an ISO code; uses BCP-47 private-use tag.
+# Splits from Proto-Celtic by kʷ → k (vs. Brythonic kʷ → p).
+
+GRAPHEMES_GOI = {
+    "a": ["a"], "ā": ["aː"], "e": ["e"], "ē": ["eː"],
+    "i": ["i"], "ī": ["iː"], "o": ["o"], "ō": ["oː"],
+    "u": ["u"], "ū": ["uː"],
+    "b": ["b"], "t": ["t"], "d": ["d"],
+    "k": ["k"], "g": ["ɡ"],
+    "s": ["s"], "f": ["f"],  # f < *sw- or Latin loans
+    "h": ["h"],
+    "m": ["m"], "n": ["n"], "ŋ": ["ŋ"],
+    "l": ["l"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+}
+ALLOPHONES_GOI = {
+    "b": ["b", "β", "v"], "t": ["t", "θ"], "d": ["d", "ð"],
+    "k": ["k", "x"], "ɡ": ["ɡ", "ɣ"],
+    "s": ["s", "ʃ"], "f": ["f"], "h": ["h"],
+    "m": ["m"], "n": ["n"], "ŋ": ["ŋ"],
+    "l": ["l", "ʎ"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "aː": ["aː"], "e": ["e"], "eː": ["eː"],
+    "i": ["i"], "iː": ["iː"], "o": ["o"], "oː": ["oː"],
+    "u": ["u"], "uː": ["uː"],
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# IRISH (ga) — modern Goidelic
+# ═══════════════════════════════════════════════════════════════════════════════
+# Sources: Ó Siadhail (1989), Ní Chasaide (1999), de Bhaldraithe (1966)
+# Standard Irish (An Caighdeán Oifigiúil) phonology
+
+GRAPHEMES_GA = {
+    "a": ["a", "ɑ"], "á": ["aː"], "e": ["ɛ"], "é": ["eː"],
+    "i": ["ɪ"], "í": ["iː"], "o": ["ɔ"], "ó": ["oː"],
+    "u": ["ʊ"], "ú": ["uː"],
+    "b": ["bˠ", "bʲ"], "bh": ["w", "vʲ"],
+    "c": ["k", "c"], "ch": ["x", "ç"],
+    "d": ["d̪ˠ", "dʲ"], "dh": ["ɣ", "j"],
+    "f": ["fˠ", "fʲ"], "fh": [""],  # silent
+    "g": ["ɡ", "ɟ"], "gh": ["ɣ", "j"],
+    "h": ["h"],
+    "l": ["l̪ˠ", "lʲ"],
+    "m": ["mˠ", "mʲ"], "mh": ["w", "vʲ"],
+    "n": ["n̪ˠ", "nʲ"],
+    "p": ["pˠ", "pʲ"], "ph": ["fˠ", "fʲ"],
+    "r": ["ɾˠ", "ɾʲ"],
+    "s": ["sˠ", "ʃ"], "sh": ["h"],
+    "t": ["t̪ˠ", "tʲ"], "th": ["h"],
+    "ng": ["ŋ", "ɲ"],
+}
+ALLOPHONES_GA = {
+    "pˠ": ["pˠ"], "pʲ": ["pʲ"],
+    "bˠ": ["bˠ"], "bʲ": ["bʲ"],
+    "t̪ˠ": ["t̪ˠ"], "tʲ": ["tʲ"],
+    "d̪ˠ": ["d̪ˠ"], "dʲ": ["dʲ"],
+    "k": ["k"], "c": ["c"],
+    "ɡ": ["ɡ"], "ɟ": ["ɟ"],
+    "fˠ": ["fˠ"], "fʲ": ["fʲ"],
+    "sˠ": ["sˠ"], "ʃ": ["ʃ"],
+    "x": ["x"], "ç": ["ç"],
+    "ɣ": ["ɣ"], "h": ["h"],
+    "w": ["w"], "vʲ": ["vʲ"], "j": ["j"],
+    "l̪ˠ": ["l̪ˠ"], "lʲ": ["lʲ"],
+    "mˠ": ["mˠ"], "mʲ": ["mʲ"],
+    "n̪ˠ": ["n̪ˠ"], "nʲ": ["nʲ"],
+    "ŋ": ["ŋ"], "ɲ": ["ɲ"],
+    "ɾˠ": ["ɾˠ"], "ɾʲ": ["ɾʲ"],
+    "a": ["a"], "ɑ": ["ɑ"], "aː": ["aː"],
+    "ɛ": ["ɛ"], "eː": ["eː"],
+    "ɪ": ["ɪ"], "iː": ["iː"],
+    "ɔ": ["ɔ"], "oː": ["oː"],
+    "ʊ": ["ʊ"], "uː": ["uː"],
+    "ə": ["ə"],
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SCOTTISH GAELIC (gd) — modern Goidelic
+# ═══════════════════════════════════════════════════════════════════════════════
+# Sources: Ó Baoill (2010), Gillies (2009), Ó Maolalaigh (2008)
+# Broad/slender distinction as in Irish but different realisations.
+
+GRAPHEMES_GD = {
+    "a": ["a"], "à": ["aː"], "e": ["e", "ɛ"], "è": ["ɛː"],
+    "é": ["eː"],
+    "i": ["i", "ɪ"], "ì": ["iː"], "o": ["ɔ"], "ò": ["ɔː"],
+    "ó": ["oː"],
+    "u": ["u", "ʊ"], "ù": ["uː"],
+    "b": ["p", "b"], "bh": ["v"],
+    "c": ["kʰ", "cʰ"], "ch": ["x", "ç"],
+    "d": ["t̪", "dʲ"], "dh": ["ɣ", "j"],
+    "f": ["f"], "fh": [""],  # silent
+    "g": ["k", "ɟ"], "gh": ["ɣ", "j"],
+    "h": ["h"],
+    "l": ["l̪ˠ", "lʲ"],
+    "m": ["m"], "mh": ["v"],
+    "n": ["n̪ˠ", "nʲ"], "nn": ["n̪ˠː"],
+    "p": ["pʰ"], "ph": ["f"],
+    "r": ["r", "ɾ"],
+    "s": ["s", "ʃ"], "sh": ["h"],
+    "t": ["t̪ʰ", "tʲ"], "th": ["h"],
+    "ng": ["ŋ"],
+}
+ALLOPHONES_GD = {
+    "p": ["p", "pʰ"], "b": ["b"],
+    "t̪": ["t̪", "t̪ʰ"], "tʲ": ["tʲ"],
+    "k": ["k"], "kʰ": ["kʰ"], "cʰ": ["cʰ"],
+    "ɟ": ["ɟ"],
+    "f": ["f"], "v": ["v"],
+    "s": ["s"], "ʃ": ["ʃ"],
+    "x": ["x"], "ç": ["ç"],
+    "ɣ": ["ɣ"], "h": ["h"], "j": ["j"],
+    "l̪ˠ": ["l̪ˠ"], "lʲ": ["lʲ"],
+    "m": ["m"], "n̪ˠ": ["n̪ˠ"], "nʲ": ["nʲ"],
+    "n̪ˠː": ["n̪ˠː"],
+    "ŋ": ["ŋ"],
+    "r": ["r"], "ɾ": ["ɾ"],
+    "w": ["w"],
+    "a": ["a"], "aː": ["aː"],
+    "e": ["e"], "ɛ": ["ɛ"], "eː": ["eː"], "ɛː": ["ɛː"],
+    "i": ["i"], "ɪ": ["ɪ"], "iː": ["iː"],
+    "ɔ": ["ɔ"], "ɔː": ["ɔː"], "oː": ["oː"],
+    "u": ["u"], "ʊ": ["ʊ"], "uː": ["uː"],
+    "ə": ["ə"],
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# MANX (gv) — Goidelic, extinct as L1 in 1974, revived
+# ═══════════════════════════════════════════════════════════════════════════════
+# Sources: Thomson (1992), Broderick (1984), Jackson (1955)
+# English-influenced orthography (unlike Irish/Scots Gaelic).
+
+GRAPHEMES_GV = {
+    "a": ["a", "æ"], "aa": ["eː"], "e": ["ɛ"], "ee": ["iː"],
+    "i": ["ɪ", "ə"], "oo": ["uː"], "o": ["ɔ"],
+    "u": ["ʊ", "ɤ"],
+    "b": ["b"], "d": ["d"], "g": ["ɡ"],
+    "p": ["p"], "t": ["t"], "k": ["k"],
+    "c": ["k"], "ck": ["k"],
+    "f": ["f"], "v": ["v"],
+    "s": ["s"], "sh": ["ʃ"],
+    "th": ["θ", "ð"],  # varies
+    "ch": ["x"], "gh": ["ɣ"],
+    "m": ["m"], "n": ["n"],
+    "l": ["l"], "r": ["r", "ɾ"],
+    "w": ["w"], "y": ["j"],
+    "h": ["h"],
+    "j": ["dʒ"],
+    "qu": ["kw"],
+}
+ALLOPHONES_GV = {
+    "p": ["p"], "b": ["b"],
+    "t": ["t"], "d": ["d"],
+    "k": ["k"], "ɡ": ["ɡ"],
+    "f": ["f"], "v": ["v"],
+    "θ": ["θ"], "ð": ["ð"],
+    "s": ["s"], "ʃ": ["ʃ"],
+    "x": ["x"], "ɣ": ["ɣ"],
+    "h": ["h"],
+    "dʒ": ["dʒ"],
+    "m": ["m"], "n": ["n"], "ŋ": ["ŋ"],
+    "l": ["l"], "r": ["r"], "ɾ": ["ɾ"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "æ": ["æ"],
+    "ɛ": ["ɛ"], "eː": ["eː"],
+    "ɪ": ["ɪ"], "iː": ["iː"],
+    "ɔ": ["ɔ"], "oː": ["oː"],
+    "ʊ": ["ʊ"], "uː": ["uː"],
+    "ə": ["ə"], "ɤ": ["ɤ"],
+}
+
 # ═══════════════════════════════════════════════════════════════════════════
 # SPECS
 # ═══════════════════════════════════════════════════════════════════════════
@@ -474,6 +802,19 @@ SPECS = {
             "Vigesimal counting inherited by French (quatre-vingts). "
             "~200 words in French (Lambert 2003, Delamarre 2003). "
             "Written in Greek (south), Latin (north), and Lugano alphabets. "
+        ),
+    ),
+    "xcg": LanguageSpec(
+        code="xcg", name="Cisalpine Gaulish",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_XCG, allophones=ALLOPHONES_XCG,
+        parent="cel",
+        notes=(
+            "Cisalpine Gaulish (4th–1st c. BCE). Celtic of the Po valley "
+            "(northern Italy), brought by La Tène Gauls. Overlays earlier "
+            "Lepontic. Written in Lugano and Latin alphabets. Shares "
+            "phonology with Transalpine but distinct epigraphic tradition. "
+            "Refs: Lejeune (1971), Eska (2006)."
         ),
     ),
     # ── Lepontic (Cisalpine Celtic) ──────────────────────────────────────
@@ -545,6 +886,130 @@ SPECS = {
             "Voiceless lateral /ɬ/ and voiceless rhotic /r̥/ are "
             "diagnostic features. "
             "Refs: Jackson (1953), Schrijver (1995)."
+        ),
+    ),
+    "cy": LanguageSpec(
+        code="cy", name="Welsh",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_CY, allophones=ALLOPHONES_CY,
+        parent="xbr",
+        ancestors=(
+            Ancestor("xbr", P, 0.90, "Descent from Common Brythonic"),
+            Ancestor("la", AD, 0.05, "Latin adstrate: heavy lexical borrowing from Roman period"),
+            Ancestor("en", AD, 0.03, "English adstrate: loanwords, contact influence"),
+        ),
+        notes=(
+            "Welsh (Cymraeg). ~880,000 speakers (2021 census). "
+            "Voiceless lateral /ɬ/ (⟨ll⟩), voiceless nasal /m̥ n̥/ (⟨mh nh⟩), "
+            "voiceless rhotic /r̥/ (⟨rh⟩), velar fricative /x/ (⟨ch⟩). "
+            "Initial consonant mutation: soft, nasal, aspirate. "
+            "Stress on penultimate syllable. "
+            "Refs: Thomas (1996), Ball & Müller (2009)."
+        ),
+    ),
+    "br": LanguageSpec(
+        code="br", name="Breton",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_BR, allophones=ALLOPHONES_BR,
+        parent="xbr",
+        ancestors=(
+            Ancestor("xbr", P, 0.85, "Descent from Common Brythonic via insular settlers"),
+            Ancestor("fr", AD, 0.08, "French adstrate: heavy lexical and phonological influence"),
+            Ancestor("xtg", SUB, 0.03, "Gaulish substrate traces in Armorican territory"),
+        ),
+        notes=(
+            "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. "
+            "Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). "
+            "Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, "
+            "Vannetais (most divergent). ⟨c'h⟩ = /x/; ⟨zh⟩ = /z/ (KLT) or /h/ (Vannetais). "
+            "French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). "
+            "Refs: Hemon (1975), Press (1986)."
+        ),
+    ),
+    "kw": LanguageSpec(
+        code="kw", name="Cornish",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_KW, allophones=ALLOPHONES_KW,
+        parent="xbr",
+        ancestors=(
+            Ancestor("xbr", P, 0.88, "Descent from Common Brythonic"),
+            Ancestor("en", AD, 0.07, "English adstrate: heavy contact influence pre-extinction"),
+        ),
+        notes=(
+            "Cornish (Kernewek). Revived language; last native speaker died 1777. "
+            "Revival since early 20th c.; ~3,000 speakers (est. 2020). "
+            "Three main revival orthographies: Kernewek Standard, Kernewek Unys, Spellyans. "
+            "This spec follows revived Kernewek Standard pronunciation. "
+            "Refs: George (1993), Brown (2001)."
+        ),
+    ),
+
+    # ── Insular Celtic: Goidelic ─────────────────────────────────────────────
+    "cel-x-goidelic": LanguageSpec(
+        code="cel-x-goidelic", name="Proto-Goidelic (reconstructed)",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_GOI, allophones=ALLOPHONES_GOI,
+        parent="cel",
+        notes=(
+            "Proto-Goidelic. Ancestral to Irish, Scottish Gaelic, Manx. "
+            "Key split from Proto-Celtic: PIE *kʷ → /k/ (Q-Celtic), "
+            "vs. Brythonic *kʷ → /p/ (P-Celtic). "
+            "Developed /f/ from *sw- and Latin loans. "
+            "Broad/slender consonant distinction incipient."
+        ),
+    ),
+    "ga": LanguageSpec(
+        code="ga", name="Irish",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_GA, allophones=ALLOPHONES_GA,
+        parent="cel-x-goidelic",
+        ancestors=(
+            Ancestor("cel-x-goidelic", P, 0.90, "Goidelic descent"),
+        ),
+        notes=(
+            "Irish (Gaeilge). ~1.7M speakers (2016 census; ~80K daily L1). "
+            "PERVASIVE BROAD/SLENDER DISTINCTION: every consonant has two "
+            "versions (velarised 'broad' vs. palatalised 'slender'). "
+            "Initial mutation: lenition (séimhiú) and eclipsis (urú). "
+            "Three main dialects: Munster, Connacht, Ulster. "
+            "An Caighdeán Oifigiúil = written standard. "
+            "Substrate of Hiberno-English (dental stops for θ/ð). "
+            "Refs: Ó Siadhail (1989), Ní Chasaide (1999)."
+        ),
+    ),
+    "gd": LanguageSpec(
+        code="gd", name="Scottish Gaelic",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_GD, allophones=ALLOPHONES_GD,
+        parent="cel-x-goidelic",
+        ancestors=(
+            Ancestor("cel-x-goidelic", P, 0.88, "Goidelic descent"),
+        ),
+        notes=(
+            "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). "
+            "Highlands and Islands of Scotland. "
+            "Pre-aspiration of voiceless stops (diagnostic feature vs. Irish). "
+            "Broad/slender distinction as in Irish. "
+            "Lenition system similar to Irish. "
+            "Substrate of Scottish English (/x/ in 'loch'). "
+            "Refs: Ó Baoill (2010), Gillies (2009)."
+        ),
+    ),
+    "gv": LanguageSpec(
+        code="gv", name="Manx",
+        family="Celtic", script="Latin",
+        graphemes=GRAPHEMES_GV, allophones=ALLOPHONES_GV,
+        parent="cel-x-goidelic",
+        ancestors=(
+            Ancestor("cel-x-goidelic", P, 0.85, "Goidelic descent"),
+            Ancestor("en", AD, 0.10, "English adstrate: heavy influence, English-based orthography"),
+        ),
+        notes=(
+            "Manx (Gaelg). Isle of Man. Last native speaker (Ned Maddrell) "
+            "died 1974. Revival since 1970s; ~1,800 speakers (est. 2020). "
+            "English-based orthography (unlike Irish/Scots Gaelic). "
+            "Simplified mutation system vs. Irish/Scots Gaelic. "
+            "Refs: Thomson (1992), Broderick (1984)."
         ),
     ),
 }
