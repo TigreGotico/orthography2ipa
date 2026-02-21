@@ -32,7 +32,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt install python3-dev
-          python -m pip install build wheel
+          python -m pip install build wheel numpy
       - name: Install core repo
         run: |
           pip install -e .
