@@ -1,71 +1,72 @@
-# Examples
+# orthography2ipa — Documentation
 
-This folder contains runnable demonstration scripts for the `orthography2ipa` package.
-
----
-
-## Scripts
-
-### `01_basic_usage.py`
-**Basic usage** — loading language specs, exploring grapheme→IPA mappings, allophone inventories, inventory sizes, and available language families.
-
-```bash
-python examples/01_basic_usage.py
-```
-
-### `02_tokenizer.py`
-**Tokenizer** — using `PhonetokTokenizer` to segment text by grapheme, generate IPA transcription paths via beam search, handle mixed content (digits, punctuation, unknowns), and expand allophones.
-
-```bash
-python examples/02_tokenizer.py
-```
-
-### `03_distance_metrics.py`
-**Distance metrics** — segment-level feature vectors and distances, inventory distance, grapheme divergence, allophone overlap, combined phonological distance, pairwise distance matrices, and ancestry similarity.
-
-```bash
-python examples/03_distance_metrics.py
-```
-
-### `04_dialect_comparison.py`
-**Dialect comparison** — comparing phonological properties across dialect families (Spanish varieties, Portuguese varieties, Catalan dialects, Basque dialects), with distance tables and per-grapheme comparisons.
-
-```bash
-python examples/04_dialect_comparison.py
-```
-
-### `05_ancestry_and_history.py`
-**Ancestry and history** — tracing language lineages through the ancestry system, exploring pre-Roman Iberian substrate languages, Barranquenho as a contact language, and historical time depth via phonological distance from Latin.
-
-```bash
-python examples/05_ancestry_and_history.py
-```
-
-### `06_advanced_nlp.py`
-**Advanced NLP integration** — building phonemic transcription pipelines, tracking cognates across Romance languages, finding closest languages, analyzing phoneme inventories, building pronunciation dictionaries, and cross-lingual phoneme correspondence.
-
-```bash
-python examples/06_advanced_nlp.py
-```
+**orthography2ipa** is a Python package providing linguistically motivated grapheme-to-IPA (International Phonetic Alphabet) mappings and allophone inventories for 50+ languages and dialects. It is designed for researchers, NLP engineers, and computational linguists who need accurate orthographic-to-phonemic conversion grounded in the phonological literature.
 
 ---
 
-## Running All Examples
+## Documentation Contents
 
-```bash
-for f in examples/0*.py; do
-    echo "==============================="
-    echo "Running: $f"
-    echo "==============================="
-    python "$f"
-    echo
-done
+| Document | Description |
+|---|---|
+| [Getting Started](getting_started.md) | Installation, quickstart, and first examples |
+| [Architecture](architecture.md) | Package structure, modules, design decisions |
+| [Data Model](data_model.md) | `LanguageSpec`, `Grapheme2IPA`, `AllophoneMap`, ancestry types |
+| [Language Registry](registry.md) | All supported languages, codes, families |
+| [Tokenizer](tokenizer.md) | `PhonetokTokenizer`, beam search, `Token`, `IPAPath` |
+| [Distance Metrics](distance.md) | Segment, inventory, grapheme, allophone, and combined distances |
+| [Ancestry System](ancestry.md) | `Ancestor`, `AncestorRole`, phylogenetic distance, substrate/superstrate |
+| [Adding a Language](adding_a_language.md) | Step-by-step guide to contributing a new language mapping |
+| [Linguistic Accuracy Guide](linguistic_accuracy.md) | Standards, sources, and methodology for phonological data |
+| [IPA Reference](ipa_reference.md) | IPA symbols used in the package and their feature values |
+
+---
+
+## Package at a Glance
+
+```python
+import orthography2ipa
+
+# Fetch a language spec
+en = orthography2ipa.get("en")
+es = orthography2ipa.get("es")
+pt_br = orthography2ipa.get("pt-BR")
+
+# Inspect grapheme→IPA mappings
+en.graphemes["th"]         # ['θ', 'ð']
+es.graphemes["ll"]         # ['ʎ', 'ʝ']
+pt_br.graphemes["lh"]      # ['ʎ']
+
+# Inspect allophone inventories
+en.allophones["t"]         # ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
+es.allophones["b"]         # ['b', 'β']
+
+# Tokenize and get IPA paths
+from orthography2ipa.phonetok import PhonetokTokenizer
+tok = PhonetokTokenizer(es)
+paths = tok.ipa_beam("ciudad", beam_width=4)
+
+# Measure phonological distance
+from orthography2ipa.distance import phonological_distance
+d = phonological_distance(orthography2ipa.get("la"), orthography2ipa.get("it"))
+print(d.combined)   # ~0.31
+
+# List available languages
+orthography2ipa.available_codes()
+orthography2ipa.available_families()
 ```
 
 ---
 
-## Expected Output Notes
+## Design Goals
 
-- Some outputs involve distance calculations that run the full feature-vector comparison; allow a few seconds for large pairwise matrices.
-- A few codes may be absent from distance tables if their modules are not yet installed — those rows are silently skipped.
-- IPA characters are printed as-is and require a UTF-8 capable terminal.
+1. **Linguistic accuracy over simplicity** — every mapping is grounded in published phonological descriptions. Sources are cited in each module.
+2. **Dialect coverage** — standard varieties are not enough; the package covers dozens of regional dialects with their own phonological quirks.
+3. **Layered ancestry** — languages carry structured ancestry metadata (parent, substrate, superstrate, adstrate) that enables phylogenetically-informed distance calculations.
+4. **Separation of concerns** — grapheme mappings, allophone inventories, tokenization, and distance metrics are cleanly separated.
+5. **Composability** — dialect modules extend parent modules rather than duplicating data.
+
+---
+
+## Version
+
+Current version: **0.1.0**
