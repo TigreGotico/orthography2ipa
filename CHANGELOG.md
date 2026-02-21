@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- feat: positional graphemmes [\#4](https://github.com/TigreGotico/orthography2ipa/pull/4) ([JarbasAl](https://github.com/JarbasAl))
 - add release automations [\#3](https://github.com/TigreGotico/orthography2ipa/pull/3) ([JarbasAl](https://github.com/JarbasAl))
 - celtic [\#2](https://github.com/TigreGotico/orthography2ipa/pull/2) ([JarbasAl](https://github.com/JarbasAl))
 - add tests [\#1](https://github.com/TigreGotico/orthography2ipa/pull/1) ([JarbasAl](https://github.com/JarbasAl))
