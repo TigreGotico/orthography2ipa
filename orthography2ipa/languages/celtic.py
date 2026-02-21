@@ -166,7 +166,7 @@ GRAPHEMES_XTG = {
 
     # --- Nasal vowels (attested through spelling) ---
     "an": ["ã"],  # word-final nasalisation
-    "en": ["ẽ"],
+    "en-GB": ["ẽ"],
     "on": ["õ"],
 
     # --- Diphthongs ---
@@ -896,7 +896,7 @@ SPECS = {
         ancestors=(
             Ancestor("xbr", P, 0.90, "Descent from Common Brythonic"),
             Ancestor("la", AD, 0.05, "Latin adstrate: heavy lexical borrowing from Roman period"),
-            Ancestor("en", AD, 0.03, "English adstrate: loanwords, contact influence"),
+            Ancestor("en-GB", AD, 0.03, "English adstrate: loanwords, contact influence"),
         ),
         notes=(
             "Welsh (Cymraeg). ~880,000 speakers (2021 census). "
@@ -914,7 +914,7 @@ SPECS = {
         parent="xbr",
         ancestors=(
             Ancestor("xbr", P, 0.85, "Descent from Common Brythonic via insular settlers"),
-            Ancestor("fr", AD, 0.08, "French adstrate: heavy lexical and phonological influence"),
+            Ancestor("fr-FR", AD, 0.08, "French adstrate: heavy lexical and phonological influence"),
             Ancestor("xtg", SUB, 0.03, "Gaulish substrate traces in Armorican territory"),
         ),
         notes=(
@@ -933,7 +933,7 @@ SPECS = {
         parent="xbr",
         ancestors=(
             Ancestor("xbr", P, 0.88, "Descent from Common Brythonic"),
-            Ancestor("en", AD, 0.07, "English adstrate: heavy contact influence pre-extinction"),
+            Ancestor("en-GB", AD, 0.07, "English adstrate: heavy contact influence pre-extinction"),
         ),
         notes=(
             "Cornish (Kernewek). Revived language; last native speaker died 1777. "
@@ -1002,7 +1002,7 @@ SPECS = {
         parent="cel-x-goidelic",
         ancestors=(
             Ancestor("cel-x-goidelic", P, 0.85, "Goidelic descent"),
-            Ancestor("en", AD, 0.10, "English adstrate: heavy influence, English-based orthography"),
+            Ancestor("en-GB", AD, 0.10, "English adstrate: heavy influence, English-based orthography"),
         ),
         notes=(
             "Manx (Gaelg). Isle of Man. Last native speaker (Ned Maddrell) "

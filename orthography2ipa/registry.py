@@ -26,9 +26,21 @@ _LATIN: Dict[str, str] = {
 
 _CELTIC = {
 
-    # Celtic (ancestry for Celtiberian)
+    # Celtic (ancestral)
     "cel": "orthography2ipa.languages.celtic",
+    "xtg": "orthography2ipa.languages.celtic",
     "xcg": "orthography2ipa.languages.celtic",
+    "xlp": "orthography2ipa.languages.celtic",
+    "xga": "orthography2ipa.languages.celtic",
+    "xbr": "orthography2ipa.languages.celtic",
+    "cel-x-goidelic": "orthography2ipa.languages.celtic",
+
+    "cy": "orthography2ipa.languages.celtic",
+    "br": "orthography2ipa.languages.celtic",
+    "kw": "orthography2ipa.languages.celtic",
+    "ga": "orthography2ipa.languages.celtic",
+    "gd": "orthography2ipa.languages.celtic",
+    "gv": "orthography2ipa.languages.celtic",
 }
 
 _IBERIAN = {
@@ -402,6 +414,11 @@ _LANG_MODULES: Dict[str, str] = {
     # ── Tibeto-Burman ────────────────────────────────────────────────────────
     "mni": "orthography2ipa.languages.munda_tb",  # Meitei/Manipuri
     "brx": "orthography2ipa.languages.munda_tb",  # Bodo
+
+    "ber": "orthography2ipa.languages.ber",
+    "cop": "orthography2ipa.languages.cop",
+    "ps": "orthography2ipa.languages.ps",
+    "brx-x-proto-boro-garo": "orthography2ipa.languages.proto_areal",
 
 }
 
