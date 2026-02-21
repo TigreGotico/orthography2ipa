@@ -1204,7 +1204,7 @@ SPECS = {
         ancestors=(
             Ancestor("ang", P, 0.80,
                      "Descent from Old English"),
-            Ancestor("fr", SUP, 0.15,
+            Ancestor("fr-FR", SUP, 0.15,
                      "Norman French superstrate (post-1066): "
                      "/v/ becomes phonemic; /dʒ/ and /ʒ/ extended; "
                      "massive vocabulary influx (~10,000 French words); "

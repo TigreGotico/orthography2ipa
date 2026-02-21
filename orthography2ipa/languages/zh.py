@@ -32,7 +32,7 @@ GRAPHEMES = {
     "üe": ["ye"],
 
     # --- Nasal finals ---
-    "an": ["an"], "en": ["ən"], "in": ["in"],
+    "an": ["an"], "en-GB": ["ən"], "in": ["in"],
     "un": ["uən"], "ün": ["yn"],
     "ang": ["ɑŋ"], "eng": ["əŋ"], "ing": ["iŋ"], "ong": ["uŋ"],
 

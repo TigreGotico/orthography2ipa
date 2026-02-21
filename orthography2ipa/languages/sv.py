@@ -121,7 +121,7 @@ SPECS = {
         ancestors=(
             Ancestor("non", P, 0.90,
                      "Descent from Old Norse (East Norse branch)"),
-            Ancestor("de", AD, 0.06,
+            Ancestor("de-DE", AD, 0.06,
                      "Low German / Hanseatic adstrate: massive vocabulary "
                      "borrowing in late medieval period"),
             Ancestor("fi", AD, 0.02,

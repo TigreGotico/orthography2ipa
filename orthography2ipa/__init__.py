@@ -3,7 +3,7 @@
 Quick start::
 
     >>> import orthography2ipa
-    >>> en = orthography2ipa.get("en")
+    >>> en = orthography2ipa.get("en-GB")
     >>> en.graphemes["th"]
     ['θ', 'ð']
     >>> en.allophones["t"]

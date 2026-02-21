@@ -458,7 +458,7 @@ SPECS = {
                      "Eastern Arabic base"),
             Ancestor("arb", P, 0.83,
                      "Classical Arabic descent"),
-            Ancestor("fr", AD, 0.05,
+            Ancestor("fr-FR", AD, 0.05,
                      "French adstrate: established /p/ and /v/ phonemes, "
                      "heavy loanword influence"),
         ),

@@ -380,7 +380,7 @@ SPECS = {
             Ancestor("cel", SUB, 0.08,
                      "Celtic (Raetian/Lepontic) substrate: Alpine "
                      "Celtic may have influenced consonant clusters."),
-            Ancestor("de", AD, 0.15,
+            Ancestor("de-DE", AD, 0.15,
                      "German adstrate: centuries of bilingualism. "
                      "Massive lexical influence, some phonological "
                      "(aspiration of stops, /h/ restoration)."),
@@ -408,9 +408,9 @@ SPECS = {
                      "Gallo-Romance parent: Rhaeto-Romance branch."),
             Ancestor("cel", SUB, 0.06,
                      "Celtic (Raetian) substrate."),
-            Ancestor("de", AD, 0.10,
+            Ancestor("de-DE", AD, 0.10,
                      "German adstrate: South Tyrol bilingualism."),
-            Ancestor("it", AD, 0.08,
+            Ancestor("it-IT", AD, 0.08,
                      "Italian adstrate: Trentino-Belluno contact."),
         ),
         notes=(
@@ -439,7 +439,7 @@ SPECS = {
                      "some vowel features with Rhaeto-Romance."),
             Ancestor("cel", SUB, 0.05,
                      "Celtic (Carnic) substrate."),
-            Ancestor("de", AD, 0.05,
+            Ancestor("de-DE", AD, 0.05,
                      "German adstrate: Friuli-Carinthia contact."),
         ),
         notes=(

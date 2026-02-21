@@ -341,7 +341,7 @@ SPECS = {
                      "consonant cluster tolerance from Berber phonotactics"),
             Ancestor("xaa", AD, 0.04,
                      "Andalusi Arabic adstrate from Moriscos (post-1492/1609)"),
-            Ancestor("fr", AD, 0.03,
+            Ancestor("fr-FR", AD, 0.03,
                      "French adstrate: /p/, /v/, /e/, /o/ phonemes"),
         ),
         notes=(
@@ -374,7 +374,7 @@ SPECS = {
                      "Berber (Tamazight/Kabyle) substrate: vowel reduction, "
                      "consonant cluster tolerance; dense Berber-speaking areas "
                      "especially Kabylie"),
-            Ancestor("fr", AD, 0.05,
+            Ancestor("fr-FR", AD, 0.05,
                      "French adstrate (1830–1962): /p/, /v/ phonemes, "
                      "heavy loanword influence"),
         ),
@@ -405,7 +405,7 @@ SPECS = {
                      "Classical Arabic descent"),
             Ancestor("ber", SUB, 0.08,
                      "Berber substrate (less dense than Morocco/Kabylie)"),
-            Ancestor("fr", AD, 0.04,
+            Ancestor("fr-FR", AD, 0.04,
                      "French adstrate: /p/, /v/ established"),
         ),
         notes=(

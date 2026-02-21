@@ -140,8 +140,8 @@ ALLOPHONES = {
 }
 
 SPECS = {
-    "de": LanguageSpec(
-        code="de",
+    "de-DE": LanguageSpec(
+        code="de-DE",
         name="German",
         family="Germanic",
         script="Latin",
@@ -154,7 +154,7 @@ SPECS = {
             Ancestor("la", AD, 0.05,
                      "Latin adstrate: ecclesiastical & scholarly vocabulary "
                      "(Fenster, Mauer, Kloster); cf. Wolff (1999)"),
-            Ancestor("fr", AD, 0.03,
+            Ancestor("fr-FR", AD, 0.03,
                      "French adstrate: courtly vocabulary (Abenteuer, Turnier); "
                      "17th-18th c. prestige influence"),
         ),

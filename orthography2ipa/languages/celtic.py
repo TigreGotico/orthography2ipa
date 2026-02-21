@@ -158,7 +158,7 @@ GRAPHEMES_XCG = {
 
     # --- Nasal vowels (attested through spelling) ---
     "an": ["ã"],  # word-final nasalisation
-    "en": ["ẽ"],
+    "en-GB": ["ẽ"],
     "on": ["õ"],
 
     # --- Diphthongs ---

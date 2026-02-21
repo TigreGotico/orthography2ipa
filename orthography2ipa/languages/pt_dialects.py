@@ -276,7 +276,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_MINHO,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Northern interior dialect (Vizela, Braga). Extreme unstressed vowel "
             "reduction (deletion, devoicing). Voiceless uvular [χ] in coda. "
@@ -291,7 +291,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_PORTO,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Porto city and Greater Porto (Gaia, Miragaia, Leça, Vitória). "
             "Heavy vowel reduction but syllable structure more preserved than "
@@ -307,7 +307,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALFENA,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Greater Porto suburban dialect with unique vowel breaking "
             "(Brechung): stressed mid vowels develop centering offglide — "
@@ -322,7 +322,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALTO_MINHO,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Viana do Castelo / Ponte de Lima. Systematic retroflex lateral [ɭ] "
             "in onset and clusters. Retroflex sibilants [ʂ, ʐ] in final position. "
@@ -336,7 +336,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_BEIRA_LITORAL,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Vagos, Aveiro area. Heaviest attestation of retroflex lateral [ɭ] "
             "of all Portuguese dialects — systematic in onset, post-consonantal, "
@@ -350,7 +350,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_LISBON,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Standard Lisbon reference dialect. Consistent voiced uvular [ʁ]. "
             "Centralized [ɨ] for unstressed /e/. Moderate vowel reduction with "
@@ -365,7 +365,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALTO_ALENTEJO,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Portalegre/Crato transitional zone between northern and southern "
             "dialects. Vowel breaking [ɛ͡ɐ] shared with Alfena (Greater Porto). "
@@ -379,7 +379,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_ALGARVE,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Quarteira, Faro. Southern dialect, standard-adjacent. Consistent "
             "voiced uvular [ʁ]. Minimal vowel reduction. Southern [ɐ] quality. "
@@ -393,7 +393,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_AZORES,
         allophones=ALLOPHONES_AZORES,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Terceira, Azores. Diagnostic raised nasal diphthong [õw̃] for "
             "mainland [ɐ̃w̃] (não → [nõw̃]). Preserved full vowels in unstressed "
@@ -408,7 +408,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_MADEIRA,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Ribeira Brava, Madeira. Systematic aspiration of voiceless stops "
             "[pʰ, tʰ, kʰ] — unique among all Portuguese dialects, completely "
@@ -424,7 +424,7 @@ SPECS = {
         script="Latin",
         graphemes=GRAPHEMES_PT,
         allophones=ALLOPHONES_TRAS_OS_MONTES,
-        parent="pt",
+        parent="pt-PT",
         notes=(
             "Rural northern interior (Alvarenga, Penafiel). Most extreme "
             "retroflex sibilants [ʂ, ʐ] of all EP dialects — nearly every "

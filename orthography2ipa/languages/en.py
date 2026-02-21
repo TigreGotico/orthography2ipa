@@ -172,8 +172,8 @@ ALLOPHONES = {
 
 # ── Spec ───────────────────────────────────────────────────────────────────
 SPECS = {
-    "en": LanguageSpec(
-        code="en",
+    "en-GB": LanguageSpec(
+        code="en-GB",
         name="English",
         family="Germanic",
         script="Latin",
@@ -189,7 +189,7 @@ SPECS = {
             Ancestor("non", SUP, 0.05,
                      "Old Norse Danelaw superstrate (8th-11th c.): they/their/them, "
                      "sky, take, give, window, egg; cf. Townend (2002)"),
-            Ancestor("fr", SUP, 0.07,
+            Ancestor("fr-FR", SUP, 0.07,
                      "Norman French superstrate (post-1066): ~10,000 words; "
                      "/v/ phonemicised, /ʒ/ introduced; cf. Pope (1934)"),
         ),

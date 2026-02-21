@@ -51,7 +51,7 @@ _IBERIAN = {
     "pt-AO": "orthography2ipa.languages.pt",
 
     # Languages of spain
-    "gl": "orthography2ipa.languages.gl",
+    "gl-ES": "orthography2ipa.languages.gl",
     "eu": "orthography2ipa.languages.eu",
     "ca": "orthography2ipa.languages.ca",
 
@@ -172,8 +172,8 @@ _GERMANIC = {
     "enm": "orthography2ipa.languages.germanic_ancestral",
 
     # Germanic
-    "en": "orthography2ipa.languages.en",
-    "de": "orthography2ipa.languages.de",
+    "en-GB": "orthography2ipa.languages.en",
+    "de-DE": "orthography2ipa.languages.de",
     "nl": "orthography2ipa.languages.nl",
     "sv": "orthography2ipa.languages.sv",
     "da": "orthography2ipa.languages.da",
@@ -181,12 +181,12 @@ _GERMANIC = {
 }
 
 _ROMANCE = {
-    "pt": "orthography2ipa.languages.pt",
-    "es": "orthography2ipa.languages.es",
+    "pt-PT": "orthography2ipa.languages.pt",
+    "es-ES": "orthography2ipa.languages.es",
+    "fr-FR": "orthography2ipa.languages.fr",
+    "it-IT": "orthography2ipa.languages.it",
+    "ro-RO": "orthography2ipa.languages.ro",
     "oc": "orthography2ipa.languages.oc",
-    "fr": "orthography2ipa.languages.fr",
-    "it": "orthography2ipa.languages.it",
-    "ro": "orthography2ipa.languages.ro",
 
     # ── Franco-Provençal / Arpitan ───────────────────────────────────────
     "frp": "orthography2ipa.languages.romance_galloromance",
@@ -412,12 +412,12 @@ def _resolve_code(code: str) -> str:
     """Normalise common aliases."""
     # TODO - use langcodes library
     aliases = {
-        "por": "pt", "eng": "en", "spa": "es", "fra": "fr", "deu": "de",
-        "ita": "it", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",
+        "por": "pt-PT", "eng": "en-GB", "spa": "es-ES", "fra": "fr-FR", "deu": "de-DE",
+        "ita": "it-IT", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",
         "rus": "ru", "ukr": "uk", "ara": "ar", "fas": "fa", "hin": "hi",
         "zho": "zh", "jpn": "ja", "kor": "ko", "eus": "eu", "cat": "ca",
-        "glg": "gl", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
-        "pol": "pl", "ces": "cs", "ron": "ro",
+        "glg": "gl-ES", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
+        "pol": "pl", "ces": "cs", "ron": "ro-RO",
         "mwl": "mwl",  # Mirandese ISO 639-3
         "arg": "an",  # Aragonese ISO 639-3
         "lat": "la",  # Classical Latin ISO 639-2
