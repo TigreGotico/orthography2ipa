@@ -1,4 +1,4 @@
-# ipa-mappings
+# orthography2ipa
 
 Linguistically motivated **grapheme→IPA** and **allophone** mappings for 25+ languages.
 
@@ -14,7 +14,7 @@ Only linguistically motivated mappings based on official orthography and grammar
 ## Installation
 
 ```bash
-pip install ipa-mappings
+pip install orthography2ipa
 ```
 
 ## Quick start
