@@ -17,9 +17,10 @@ def _resolve_code(code: str) -> str:
         "ita": "it-IT", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",
         "rus": "ru", "ukr": "uk", "ara": "ar", "fas": "fa", "hin": "hi",
         "zho": "zh", "jpn": "ja", "kor": "ko", "eus": "eu", "cat": "ca",
-        "glg": "gl-ES", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
+        "glg": "gl", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
         "pol": "pl", "ces": "cs", "ron": "ro-RO",
         "mwl": "mwl",  # Mirandese ISO 639-3
+        "ast": "ast",  # Asturian ISO 639-3
         "arg": "an",  # Aragonese ISO 639-3
         "lat": "la",  # Classical Latin ISO 639-2
         # Semitic proto-languages and contact varieties
