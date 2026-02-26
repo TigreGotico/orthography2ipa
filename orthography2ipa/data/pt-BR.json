@@ -1,0 +1,97 @@
+{
+  "code": "pt-BR",
+  "name": "Brazilian Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+
+  "parent": "pt-PT-x-medieval",
+
+  "graphemes_base": "pt-PT-x-medieval",
+  "allophones_base": "pt-PT-x-medieval",
+  "positional_graphemes_base": "pt-PT-x-medieval",
+
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "s": ["s", "z"],
+    "z": ["z"],
+    "ch": ["ʃ"],
+    "r": ["ɾ", "ʁ"],
+    "rr": ["ʁ"],
+    "x": ["ʃ", "s", "z", "ks", "gz"],
+    "e": ["e", "ɛ"],
+    "o": ["o", "ɔ", "u"],
+    "t": ["t", "t͡ʃ"],
+    "d": ["d", "d͡ʒ"],
+
+    "ph": null,
+    "th": null,
+    "rh": null,
+    "ü": null,
+    "qü": null,
+    "gü": null
+  },
+
+  "allophones": {
+    "ɾ": ["ɾ"],
+    "ʁ": ["ʁ", "χ", "h", "ɦ"],
+    "s": ["s"],
+    "z": ["z"],
+    "t͡ʃ": ["t͡ʃ"],
+    "d͡ʒ": ["d͡ʒ"],
+
+    "e": ["e", "i", "ɛ"],
+    "o": ["o", "u", "ɔ"],
+    "l": ["l", "w"]
+  },
+
+  "positional_graphemes": {
+    "r": {
+      "word_initial": ["ʁ"],
+      "intervocalic": ["ɾ"],
+      "coda": ["∅"]
+    },
+
+    "s": {
+      "word_initial": ["s"],
+      "intervocalic": ["z"],
+      "coda": ["s"],
+      "word_final": ["s"],
+      "intervocalic_cross_word": ["z"]
+    },
+
+    "z": {
+      "coda": ["s"],
+      "word_final": ["s"]
+    },
+
+    "l": {
+      "onset": ["l"],
+      "coda": ["w"]
+    },
+
+    "t": {
+      "before_i": ["t͡ʃ"]
+    },
+
+    "d": {
+      "before_i": ["d͡ʒ"]
+    },
+
+    "e": {
+      "nucleus_unstressed": ["e"],
+      "word_final": ["i"]
+    },
+
+    "o": {
+      "word_final": ["u"]
+    }
+  },
+
+  "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation."
+}
