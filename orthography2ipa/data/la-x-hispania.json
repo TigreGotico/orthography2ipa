@@ -3,39 +3,111 @@
   "name": "Hispanic Vulgar Latin",
   "family": "Italic",
   "script": "Latin",
-  "graphemes_base": "la-x-late",
-  "allophones_base": "la-x-late",
+
   "parent": "la-x-late",
+  "graphemes_base": "la-x-late",
+
+  "graphemes": {
+    "f": ["f", "h"],
+    "h": ["h", "∅"],
+
+    "v": ["β", "w"],
+    "b": ["b", "β"],
+    "p": ["p"],
+
+    "d": ["d", "ð"],
+    "t": ["t"],
+
+    "g": ["g", "ɣ"],
+    "c": ["k"],
+
+    "j": ["j", "ʝ"],
+    "i": ["i", "j"],
+
+    "s": ["s", "z"]
+  },
+
+  "allophones": {
+    "h": ["h", "∅"]
+  },
+
+  "positional_graphemes": {
+    "k": {
+      "before_e": ["t͡ʃ"],
+      "before_i": ["t͡ʃ"]
+    },
+    "f": {
+      "word_initial": ["h"],
+      "intervocalic": ["h"]
+    },
+
+    "v": {
+      "intervocalic": ["β"]
+    },
+
+    "b": {
+      "intervocalic": ["β"]
+    },
+
+    "d": {
+      "intervocalic": ["ð"]
+    },
+
+    "g": {
+      "intervocalic": ["ɣ"],
+      "before_e": ["d͡ʒ"],
+      "before_i": ["d͡ʒ"]
+    },
+
+    "c": {
+      "before_e": ["t͡ʃ"],
+      "before_i": ["t͡ʃ"],
+      "default": ["k"]
+    },
+
+    "s": {
+      "intervocalic": ["z"],
+      "default": ["s"]
+    },
+
+    "m": {
+      "coda": ["m", "̃"]
+    },
+    "n": {
+      "coda": ["n", "̃"]
+    }
+  },
+
   "ancestors": [
     {
       "code": "cel",
       "role": "substrate",
       "weight": 0.02,
-      "notes": "Celtic substrate."
+      "notes": "Celtic substrate (Gallaecian / Celtiberian). Likely contributed to retention of /w/, initial f- weakening, and prosodic tendencies."
     },
     {
       "code": "xce",
       "role": "substrate",
       "weight": 0.02,
-      "notes": "Celtiberian substrate."
+      "notes": "Celtiberian substrate of central Hispania."
     },
     {
       "code": "xaq",
       "role": "substrate",
       "weight": 0.02,
-      "notes": "Aquitanian substrate."
+      "notes": "Aquitanian / proto-Basque substrate: probable source of f- → h- weakening."
     },
     {
       "code": "txr",
       "role": "substrate",
       "weight": 0.02,
-      "notes": "Tartessian substrate."
+      "notes": "Tartessian substrate (southern SW Iberia)."
     },
     {
       "code": "xlg",
       "role": "substrate",
       "weight": 0.02,
-      "notes": "Lusitanian substrate: pre-Celtic IE language of western Iberia. Possible influence on /v/≠/b/ preservation."
+      "notes": "Lusitanian substrate: possible influence on preservation of /w/ and /v/~/b/ distinction."
     },
     {
       "code": "xib",
@@ -44,5 +116,6 @@
       "notes": "Iberian substrate: language isolate of Mediterranean Iberia. ~2000+ inscriptions in Iberian semi-syllabary and Greek alphabet."
     }
   ],
-  "notes": "Hispanic Vulgar Latin (~3rd–7th c. CE). Reconstructed spoken Latin of Roman Hispania, transitional to Ibero-Romance. Key changes from Classical Latin: (1) 10-vowel → 7-vowel merger (by quality not quantity). (2) Intervocalic lenition (-p- → -b- → -β-). (3) Palatalisation (CE/CI → [tʃ], GE/GI → [dʒ]). (4) F- → [h] (Hispanic specific; Basque substrate?). (5) -CT- → [jt] (→ [tʃ] in Castilian). (6) Diphthongisation of /ɛ/ → [je], /ɔ/ → [we] in Castilian area. The ancestor of ALL Ibero-Romance languages."
+
+  "notes": "Hispanic Vulgar Latin (~3rd–7th c.). Transitional spoken Latin in Roman Hispania. Phonological innovations: (1) Classical vowel-length distinction lost; 10-vowel → 7-vowel merger by quality. (2) Lenition: intervocalic P/T/C → B/D/G → β/ð/ɣ. (3) Early palatalisation: /k/→[tʃ] before e/i; /g/→[dʒ] before e/i. (4) Initial /f/ weakening to [h] in much of Iberia. (5) /s/ → [z] intervocalically. (6) Nasal assimilation producing [ŋ] in coda. (7) Diphthong developments setting up later Romance outcomes. This is the immediate ancestor of all Ibero-Romance languages, including Galaico-Portuguese."
 }

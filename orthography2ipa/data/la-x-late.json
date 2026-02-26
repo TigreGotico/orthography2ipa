@@ -3,9 +3,41 @@
   "name": "Late Latin",
   "family": "Italic",
   "script": "Latin",
-  "graphemes_base": "la",
-  "allophones_base": "la",
+
   "parent": "la",
+  "graphemes_base": "la",
+
+  "graphemes": {
+    "ae": ["ɛ"],
+    "oe": ["e"],
+    "au": ["aw"],
+
+    "h": ["∅"],
+
+    "v": ["w", "β"],
+
+    "ph": ["f"],
+    "th": ["t"],
+    "ch": ["k"],
+
+    "c": ["k", "kʲ"],
+    "g": ["g", "gʲ"]
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_e": ["kʲ"],
+      "before_i": ["kʲ"]
+    },
+    "g": {
+      "before_e": ["gʲ"],
+      "before_i": ["gʲ"]
+    },
+    "v": {
+      "intervocalic": ["β"],
+      "default": ["w"]
+    }
+  },
+
   "ancestors": [
     {
       "code": "la",
