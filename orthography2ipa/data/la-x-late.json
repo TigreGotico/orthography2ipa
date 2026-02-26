@@ -33,8 +33,7 @@
       "before_i": ["gʲ"]
     },
     "v": {
-      "intervocalic": ["β"],
-      "default": ["w"]
+      "intervocalic": ["β"]
     }
   },
 

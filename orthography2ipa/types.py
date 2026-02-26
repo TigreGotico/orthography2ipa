@@ -65,10 +65,6 @@ class GraphemePosition(str, Enum):
     - Hayes, B. (2009). *Introductory Phonology*. Wiley-Blackwell.
     - Zsiga, E. (2013). *The Sounds of Language*. Wiley-Blackwell.
     """
-    DEFAULT = "default"
-    """Context-free default — equivalent to the base ``graphemes`` mapping.
-    Used when no positional override exists or when position is unknown."""
-
     WORD_INITIAL = "word_initial"
     """Absolute word-initial position (#_).
     E.g., English ⟨k⟩ → [kʰ] word-initially (aspiration);
@@ -338,7 +334,7 @@ class LanguageSpec:
     def resolve_grapheme(
             self,
             grapheme: str,
-            position: GraphemePosition = GraphemePosition.DEFAULT,
+            position: GraphemePosition | None = None,
     ) -> List[str]:
         """Resolve a grapheme to its IPA candidates for a given position.
 
@@ -365,12 +361,11 @@ class LanguageSpec:
             If the grapheme is not found in any mapping.
         """
         # Check positional overrides first
-        if self.positional_graphemes and grapheme in self.positional_graphemes:
-            pos_map = self.positional_graphemes[grapheme]
-            if position in pos_map:
-                return pos_map[position]
-            if GraphemePosition.DEFAULT in pos_map:
-                return pos_map[GraphemePosition.DEFAULT]
+        if position is not None:
+            if self.positional_graphemes and grapheme in self.positional_graphemes:
+                pos_map = self.positional_graphemes[grapheme]
+                if position in pos_map:
+                    return pos_map[position]
 
         # Fallback to base graphemes
         if grapheme in self.graphemes:

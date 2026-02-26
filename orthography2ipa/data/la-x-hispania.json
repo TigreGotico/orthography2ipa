@@ -61,13 +61,11 @@
 
     "c": {
       "before_e": ["t͡ʃ"],
-      "before_i": ["t͡ʃ"],
-      "default": ["k"]
+      "before_i": ["t͡ʃ"]
     },
 
     "s": {
-      "intervocalic": ["z"],
-      "default": ["s"]
+      "intervocalic": ["z"]
     },
 
     "m": {

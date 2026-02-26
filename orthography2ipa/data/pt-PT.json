@@ -129,25 +129,16 @@
       ]
     },
     "b": {
-      "default": [
-        "b"
-      ],
       "intervocalic": [
         "β"
       ]
     },
     "d": {
-      "default": [
-        "d"
-      ],
       "intervocalic": [
         "ð"
       ]
     },
     "g": {
-      "default": [
-        "ɡ"
-      ],
       "intervocalic": [
         "ɣ"
       ]

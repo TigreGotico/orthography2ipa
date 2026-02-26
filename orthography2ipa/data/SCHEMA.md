@@ -30,9 +30,6 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
   "positional_graphemes_base": null,
   "positional_graphemes": {
     "b": {
-      "default": [
-        "b"
-      ],
       "intervocalic": [
         "β"
       ]
@@ -114,7 +111,6 @@ matching the `GraphemePosition` enum:
 
 | JSON key                    | Enum value                                 |
 |-----------------------------|--------------------------------------------|
-| `"default"`                 | `GraphemePosition.DEFAULT`                 |
 | `"pretonic"`                | `GraphemePosition.PRETONIC`                |
 | `"posttonic"`               | `GraphemePosition.POSTTONIC`               |
 | `"onset"`                   | `GraphemePosition.ONSET`                   |
