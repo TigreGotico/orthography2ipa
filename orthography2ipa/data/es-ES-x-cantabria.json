@@ -1,0 +1,88 @@
+{
+  "code": "es-ES-x-cantabria",
+  "name": "Cantabrian Spanish",
+  "family": "Castilian",
+  "script": "Latin",
+  "parent": "es-ES",
+  "graphemes_base": "es-ES",
+  "allophones_base": "es-ES",
+  "positional_graphemes_base": "es-ES",
+
+  "graphemes": {
+    "ll": ["j", "ʝ", "ʎ"]
+  },
+
+  "allophones": {
+    "s": ["s", "s̺", "h"],
+    "ʝ": ["j", "ʝ", "ʎ"]
+  },
+
+  "positional_graphemes": {
+    "b": {
+      "intervocalic": ["β"]
+    },
+    "d": {
+      "intervocalic": ["ð"],
+      "word_final": ["ð", "∅"]
+    },
+    "g": {
+      "before_e": ["x"],
+      "before_i": ["x"],
+      "intervocalic": ["ɣ"]
+    },
+    "c": {
+      "before_e": ["θ"],
+      "before_i": ["θ"]
+    },
+    "s": {
+      "coda": ["s̺", "h"],
+      "word_final": ["s̺", "h"]
+    },
+    "r": {
+      "word_initial": ["r"],
+      "intervocalic": ["ɾ"],
+      "coda": ["ɾ"]
+    },
+    "n": {
+      "coda": ["n", "ŋ"]
+    },
+    "x": {
+      "before_consonant": ["s"]
+    }
+  },
+
+  "ancestors": [
+    {
+      "code": "es-ES",
+      "role": "parent",
+      "weight": 0.80,
+      "notes": "Standard Castilian Spanish: dominant prestige norm. Cantabrian Spanish is essentially conservative northern Castilian, the variety closest geographically to the historical Castilian homeland (County of Castile, Burgos). Cantabria is sometimes considered the 'cradle of Castilian'."
+    },
+    {
+      "code": "ast",
+      "role": "adstrate",
+      "weight": 0.10,
+      "notes": "Asturian/Asturleonese adstrate: Cantabria borders Asturias to the west; the transition zone shows Asturian features, particularly in Liébana and western Cantabria. Asturian influence accounts for some conservative features (partial /ʎ/ preservation in rural western areas, resistance to full yeísmo, some prosodic features)."
+    },
+    {
+      "code": "xaq",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Basque/Aquitanian substrate: eastern Cantabria (Trasmiera, Castro-Urdiales) was historically Basque-speaking. The Cantabrian substrate includes Basque influence on phonology: possible contribution to the robust apico-alveolar /s/ [s̺] and certain prosodic patterns."
+    },
+    {
+      "code": "xce",
+      "role": "substrate",
+      "weight": 0.03,
+      "notes": "Cantabrian Celtic/Paleo-Hispanic substrate: the pre-Roman Cantabri people gave the region its name. Some lexical items and toponyns reflect this substrate."
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.02,
+      "notes": "Visigothic superstrate: shared with all Castilian varieties."
+    }
+  ],
+
+  "notes": "Cantabrian Spanish (español cántabro) — the Castilian dialect of the Autonomous Community of Cantabria. One of the most conservative northern Castilian varieties, Cantabrian occupies a geographically and historically privileged position as the region adjacent to the original heartland of Castilian (Old Castile, County of Castile, ~9th c.). KEY FEATURES: (1) DISTINCIÓN PRESERVED: /θ/ ≠ /s/ — standard Castilian distinción maintained; ⟨c⟩ before e/i and ⟨z⟩ = /θ/. (2) APICO-ALVEOLAR /s/ [s̺]: strongly preserved, one of the most characteristic northern features. (3) YEÍSMO VARIABLE: ⟨ll⟩ = /j/ or /ʝ/ in urban/younger speakers; partial /ʎ/ retention in older rural western (Liébana) registers. Cantabria is transitional in this respect. (4) PARTIAL ASPIRATION OF CODA /s/: in some western varieties (Liébana, Pas valley) word-final /s/ may aspirate [h] under Asturian contact; eastern speakers maintain full [s̺]. (5) WORD-FINAL /d/ → [ð] or [∅]: as in standard Castilian, but elision rates intermediate between Madrid and Andalusia. (6) CONSERVATIVE PROSODY: Cantabrian intonation is characteristically 'cantado' (sing-song), with a falling-rising pattern described as 'montañés' — likely related to Basque contact in the east and Celtic substrate prosody. (7) LIÉBANA SUBDIALECT: the Liébana valley shows particularly strong Asturian contact features including /ʎ/ retention and some lexical Asturianisms. Sources: García de Diego (1959) *Manual de dialectología española*, Penny (2000) *Variation and Change in Spanish*, Alvar (1999) *Manual de dialectología hispánica*."
+}
