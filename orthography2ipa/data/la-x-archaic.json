@@ -3,6 +3,78 @@
   "name": "Old Latin",
   "family": "Italic",
   "script": "Latin",
+
   "parent": "ine-x-italic",
+
+  "graphemes": {
+    "a": ["a", "aː"],
+    "e": ["e", "eː"],
+    "i": ["i", "iː"],
+    "o": ["o", "oː"],
+    "u": ["u", "uː"],
+    "y": ["y", "yː"],
+
+    "ai": ["aj"],
+    "ei": ["ej"],
+    "oi": ["oj"],
+    "ou": ["ow"],
+    "au": ["aw"],
+
+    "c": ["k"],
+    "k": ["k"],
+    "q": ["kʷ"],
+    "qu": ["kʷ"],
+
+    "g": ["ɡ"],
+    "gu": ["ɡʷ"],
+
+    "p": ["p"],
+    "t": ["t"],
+    "d": ["d"],
+    "b": ["b"],
+
+    "ph": ["pʰ"],
+    "th": ["tʰ"],
+    "kh": ["kʰ"],
+
+    "f": ["f"],
+    "h": ["h"],
+
+    "s": ["s"],
+    "z": ["z"],
+    "r": ["r"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "gn": ["ŋn"],
+
+    "x": ["ks"],
+    "ps": ["ps"],
+    "pt": ["pt"],
+
+    "ll": ["lː"],
+    "rr": ["rː"],
+    "nn": ["nː"],
+    "mm": ["mː"],
+    "ss": ["sː"],
+    "ff": ["fː"],
+    "pp": ["pː"],
+    "tt": ["tː"],
+    "cc": ["kː"],
+    "gg": ["ɡː"]
+  },
+
+  "positional_graphemes": {
+    "s": {
+      "intervocalic": ["s"]
+    },
+    "d": {
+      "word_final": ["d"]
+    },
+    "h": {
+      "onset": ["h"]
+    }
+  },
+
   "notes": "Old Latin (~240–75 BC). The literary language of Plautus, Ennius, and Cato. Key differences from Classical: (1) Richer diphthong inventory: /ej/, /ow/, /oj/ still distinct (later monophthongised to ī, ū, ū). (2) Rhotacism ongoing: intervocalic /s/ → /r/ not yet complete in all forms. (3) Final -d on ablatives. (4) /h/ probably stronger. (5) Same 10-vowel quantity system as Classical. Epigraphy: Praenestine fibula (if genuine), Duenos inscription, Forum cippus, SC de Bacchanalibus (186 BC). Source: Weiss (2020), Sihler (1995)."
 }

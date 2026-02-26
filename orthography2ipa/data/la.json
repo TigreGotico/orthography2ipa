@@ -3,8 +3,37 @@
   "name": "Classical Latin",
   "family": "Italic",
   "script": "Latin",
-  "graphemes_base": "la-x-archaic",
-  "allophones_base": "la-x-archaic",
+
   "parent": "la-x-archaic",
+  "graphemes_base": "la-x-archaic",
+
+  "graphemes": {
+    "ai": ["aj"],
+    "au": ["aw"],
+
+    "ei": ["iː"],
+    "oi": ["uː"],
+    "ou": ["uː"],
+
+    "qu": ["k", "kw"],
+
+    "s": ["s"],
+    "h": ["h"],
+
+    "v": ["w"]
+  },
+
+  "positional_graphemes": {
+    "s": {
+      "intervocalic": ["r"]
+    },
+    "h": {
+      "word_initial": ["h"]
+    },
+    "m": {
+      "word_final": ["̃"]
+    }
+  },
+
   "notes": "Reconstructed Classical Latin pronunciation (1st c. BCE – 2nd c. CE) per Allen (1965/2003). Key features: (1) ⟨c⟩ always [k], ⟨g⟩ always [ɡ] — NO palatalisation. (2) ⟨v⟩ = [w], NOT [v]. (3) Vowel length phonemic (5 short + 5 long + 2 Greek). (4) Diphthongs [aj, oj, aw] preserved. (5) Geminate consonants phonemic. (6) Aspirated stops only in Greek loans. (7) Word-final -m weakened (probably nasalised vowel). (8) /h/ weak. (9) /s/ always voiceless. (10) /r/ always trilled."
 }

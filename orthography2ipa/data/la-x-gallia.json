@@ -3,9 +3,74 @@
   "name": "Gallo-Romance Vulgar Latin",
   "family": "Italic",
   "script": "Latin",
+
   "parent": "la-x-late",
   "graphemes_base": "la-x-late",
-  "allophones_base": "la-x-late",
+
+  "graphemes": {
+    "u": ["y", "u"],
+    "v": ["v", "β", "w"],
+
+    "b": ["b", "β"],
+    "p": ["p"],
+
+    "d": ["d", "ð"],
+    "t": ["t"],
+
+    "g": ["g", "ɣ"],
+    "c": ["k"],
+
+    "s": ["s", "z"],
+
+    "i": ["i", "j"],
+    "j": ["j", "ʝ"],
+
+    "ca": ["t͡ʃa"],
+    "ce": ["t͡ʃe"],
+    "ci": ["t͡ʃi"]
+  },
+
+  "positional_graphemes": {
+    "v": {
+      "intervocalic": ["β"],
+      "before_vowel": ["w"]
+    },
+
+    "b": {
+      "intervocalic": ["β"]
+    },
+
+    "d": {
+      "intervocalic": ["ð"]
+    },
+
+    "g": {
+      "intervocalic": ["ɣ"],
+      "before_e": ["d͡ʒ"],
+      "before_i": ["d͡ʒ"]
+    },
+
+    "c": {
+      "before_e": ["ts"],
+      "before_i": ["ts"],
+      "before_a": ["t͡ʃ"]
+    },
+
+    "s": {
+      "intervocalic": ["z"]
+    },
+
+    "a": {
+      "word_final": ["ə", "∅"]
+    },
+    "e": {
+      "word_final": ["ə", "∅"]
+    },
+    "o": {
+      "word_final": ["u", "∅"]
+    }
+  },
+
   "ancestors": [
     {
       "code": "la",

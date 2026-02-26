@@ -65,10 +65,6 @@ class GraphemePosition(str, Enum):
     - Hayes, B. (2009). *Introductory Phonology*. Wiley-Blackwell.
     - Zsiga, E. (2013). *The Sounds of Language*. Wiley-Blackwell.
     """
-    DEFAULT = "default"
-    """Context-free default — equivalent to the base ``graphemes`` mapping.
-    Used when no positional override exists or when position is unknown."""
-
     WORD_INITIAL = "word_initial"
     """Absolute word-initial position (#_).
     E.g., English ⟨k⟩ → [kʰ] word-initially (aspiration);
@@ -114,6 +110,23 @@ class GraphemePosition(str, Enum):
 
     POSTTONIC = "posttonic"
     """default value when after the stressed/tonic syllable."""
+
+    BEFORE_VOWEL = "before_vowel"
+
+    AFTER_VOWEL = "after_vowel"
+
+    BEFORE_CONSONANT = "before_consonant"
+
+    AFTER_CONSONANT = "after_consonant"
+
+    BEFORE_A = "before_a"
+    BEFORE_E = "before_e"
+    BEFORE_I = "before_i"
+    BEFORE_O = "before_o"
+    BEFORE_U = "before_u"
+
+    CONSONANTAL = "consonantal"
+    VOCALIC = "vocalic"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -283,6 +296,17 @@ class LanguageSpec:
         if self.allophones is None:
             object.__setattr__(self, "allophones", {})
 
+        # filter values explicitly nulled during inheritance
+        for graph in set(self.graphemes.keys()):
+            if self.graphemes[graph] is None:
+                self.graphemes.pop(graph)
+        for graph in set(self.positional_graphemes.keys()):
+            if self.positional_graphemes[graph] is None:
+                self.positional_graphemes.pop(graph)
+        for graph in set(self.allophones.keys()):
+            if self.allophones[graph] is None:
+                self.allophones.pop(graph)
+
         # Normalise list to str
         if isinstance(self.notes, list):
             object.__setattr__(self, "notes", "\n".join(self.notes))
@@ -310,7 +334,7 @@ class LanguageSpec:
     def resolve_grapheme(
             self,
             grapheme: str,
-            position: GraphemePosition = GraphemePosition.DEFAULT,
+            position: GraphemePosition | None = None,
     ) -> List[str]:
         """Resolve a grapheme to its IPA candidates for a given position.
 
@@ -337,12 +361,11 @@ class LanguageSpec:
             If the grapheme is not found in any mapping.
         """
         # Check positional overrides first
-        if self.positional_graphemes and grapheme in self.positional_graphemes:
-            pos_map = self.positional_graphemes[grapheme]
-            if position in pos_map:
-                return pos_map[position]
-            if GraphemePosition.DEFAULT in pos_map:
-                return pos_map[GraphemePosition.DEFAULT]
+        if position is not None:
+            if self.positional_graphemes and grapheme in self.positional_graphemes:
+                pos_map = self.positional_graphemes[grapheme]
+                if position in pos_map:
+                    return pos_map[position]
 
         # Fallback to base graphemes
         if grapheme in self.graphemes:

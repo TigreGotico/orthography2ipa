@@ -5,19 +5,32 @@
   "script": "Latin",
   "graphemes_base": "pt-PT-x-medieval",
   "graphemes": {
-    "r": [
-      "ɾ",
-      "ʁ"
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
     ],
     "s": [
       "s",
-      "z",
-      "ʃ",
-      "ʒ"
+      "z"
     ],
-    "y": [
-      "j",
-      "i"
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+
+    "e": [
+      "e",
+      "ɨ",
+      "ɛ"
+    ],
+    "r": [
+      "ɾ",
+      "ʁ"
     ],
     "w": [
       "w",
@@ -30,10 +43,6 @@
       "s",
       "gz"
     ],
-    "z": [
-      "z",
-      "ʃ"
-    ],
     "rr": [
       "ʁ"
     ],
@@ -43,10 +52,21 @@
     "ou": [
       "ow",
       "o"
-    ]
+    ],
+    "ph": null,
+    "th": null,
+    "rh": null,
+    "ü": null,
+    "qü": null,
+    "gü": null
   },
   "allophones_base": "pt-PT-x-medieval",
   "allophones": {
+    "v": ["v"],
+    "ɨ": [
+      "ɨ",
+      "ə"
+    ],
     "ʁ": [
       "ʁ",
       "χ",
@@ -56,22 +76,22 @@
     "f": [
       "f",
       "ɸ"
-    ]
+    ],
+    "t͡ʃ": null
   },
   "positional_graphemes_base": "pt-PT-x-medieval",
   "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
+    },
     "r": {
       "word_initial": [
         "ʁ"
-      ],
-      "intervocalic": [
-        "ɾ"
-      ],
-      "coda": [
-        "ɾ"
-      ],
-      "onset": [
-        "ɾ"
       ]
     },
     "s": {
@@ -82,25 +102,21 @@
         "z"
       ],
       "coda": [
-        "ʃ"
+        "ʒ"
       ],
       "word_final": [
-        "ʃ",
-        "ʒ"
+        "ʃ"
       ],
       "intervocalic_cross_word": [
         "z"
       ]
     },
     "z": {
-      "default": [
+      "word_final": [
+        "ʃ",
         "z"
       ],
-      "word_final": [
-        "ʃ"
-      ],
       "coda": [
-        "ʒ",
         "ʃ"
       ]
     },
@@ -113,59 +129,24 @@
       ]
     },
     "b": {
-      "default": [
-        "b"
-      ],
       "intervocalic": [
         "β"
       ]
     },
     "d": {
-      "default": [
-        "d"
-      ],
       "intervocalic": [
         "ð"
       ]
     },
     "g": {
-      "default": [
-        "ɡ"
-      ],
       "intervocalic": [
         "ɣ"
       ]
     },
-
-    "a": {
-      "nucleus_stressed": [
-        "a"
-      ],
-      "default": [
-        "ɐ",
-        "a"
-      ],
-      "nucleus_unstressed": [
-        "a"
-      ],
-      "coda": [
-        "ɐ"
-      ],
-      "word_initial": [
-        "ɐ",
-        "a"
-      ],
-      "word_final": [
-        "ɐ"
-      ]
-    },
     "e": {
+      "pretonic": ["i"],
       "nucleus_stressed": [
         "ɛ"
-      ],
-      "default": [
-        "e",
-        "i"
       ],
       "nucleus_unstressed": [
         "ɨ"
@@ -182,16 +163,11 @@
       ]
     },
     "o": {
+      "pretonic": ["u"],
       "nucleus_stressed": [
         "ɔ"
       ],
-      "default": [
-        "o",
-        "ɔ",
-        "u"
-      ],
       "nucleus_unstressed": [
-        "ɔ",
         "o"
       ],
       "coda": [
@@ -199,7 +175,8 @@
         "o"
       ],
       "word_initial": [
-        "o"
+        "o",
+        "ɔ"
       ],
       "word_final": [
         "u"
