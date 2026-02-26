@@ -1,7 +1,7 @@
 {
   "code": "gl-x-occidental",
   "name": "Western Galician",
-  "family": "Galician-Portuguese",
+  "family": "Romance",
   "script": "Latin",
   "parent": "gl",
   "graphemes_base": "gl",
