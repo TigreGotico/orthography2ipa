@@ -1,0 +1,90 @@
+{
+  "code": "ast-ES-x-leon",
+  "name": "Leonese",
+  "family": "Asturleonese",
+  "script": "Latin",
+  "parent": "ast",
+  "graphemes_base": "ast",
+  "allophones_base": "ast",
+  "positional_graphemes_base": "ast",
+
+  "graphemes": {
+    "c": ["k", "t͡s"],
+    "ç": ["t͡s"],
+    "z": ["d͡z", "z̻"],
+    "s": ["s̺", "z̺"],
+    "ss": ["s̺"],
+    "ñ": ["ɲ"],
+    "lh": ["ʎ"],
+    "nh": ["ɲ"]
+  },
+
+  "allophones": {
+    "θ": null,
+    "t͡s": ["t͡s", "s̻"],
+    "d͡z": ["d͡z", "z̻"],
+    "s̺": ["s̺"],
+    "z̺": ["z̺"],
+    "s̻": ["s̻"],
+    "z̻": ["z̻"],
+    "ʎ": ["ʎ"]
+  },
+
+  "positional_graphemes": {
+    "c": {
+      "before_e": ["t͡s"],
+      "before_i": ["t͡s"]
+    },
+    "s": {
+      "word_initial": ["s̺"],
+      "intervocalic": ["z̺"],
+      "coda": ["s̺"]
+    },
+    "z": {
+      "word_initial": ["d͡z"],
+      "intervocalic": ["d͡z"],
+      "word_final": ["z̻"]
+    }
+  },
+
+  "ancestors": [
+    {
+      "code": "ast",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Common Asturleonese trunk. Leonese diverged southward during the Reconquista, developing its own written tradition in the Kingdom of León."
+    },
+    {
+      "code": "cel-x-gallaecia",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Celtic substrate of the Asturian-Leonese highlands, shared with central Asturian."
+    },
+    {
+      "code": "xsb",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Suebi superstrate, somewhat lighter in León than in the Asturian coast."
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Visigothic superstrate: the Leonese meseta was more thoroughly Visigothic than coastal Asturias."
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Andalusi Arabic: more intense in León than in Asturias, given the longer Moorish occupation of the meseta and the Reconquista repopulation from south."
+    },
+    {
+      "code": "mxi",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Mozarabic adstrate: significant in the repopulation of the Leonese meseta, as Mozarabic-speaking Christians from al-Andalus joined the Reconquista settlements."
+    }
+  ],
+
+  "notes": "Medieval Leonese (llingua llionesa / leonés), the Asturleonese variety of the Kingdom of León (~10th–15th c. CE). Attested: Fuero de Avilés (1085), Fuero Juzgo leonés, Fuero de Zamora, and extensive notarial documents from León, Zamora, Salamanca, and the Trás-os-Montes border region. KEY FEATURES distinguishing Leonese from modern central Asturian: (1) 4-WAY SIBILANT CONTRAST preserved: voiceless apical /s̺/ ⟨-ss-/s-⟩ vs. voiced apical /z̺/ ⟨-s-⟩ vs. voiceless predorsal /t͡s/ ⟨ç,c-⟩ vs. voiced predorsal /d͡z/ ⟨z⟩ — identical to contemporary Galaico-Portuguese. (2) ⟨lh⟩ = /ʎ/ digraph (alongside ⟨ll⟩) in southern Leonese and border documents under Portuguese influence. (3) ⟨nh⟩ = /ɲ/ similarly. (4) Intervocalic -l- and -n- PRESERVED (unlike Portuguese: 'salir' not *'sair', 'lhana' not *'lã'). (5) F- initial preserved throughout. (6) No vowel reduction. (7) Leonese diphthongs: ie, ue inherited from ast. This variety is the immediate ancestor of ast-PT-x-medieval and the modern Mirandese-group languages. Sources: Menéndez Pidal (1906), Staaff (1907), Williams (1962), Martínez Álvarez (1967)."
+}

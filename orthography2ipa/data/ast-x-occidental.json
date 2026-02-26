@@ -1,0 +1,50 @@
+{
+  "code": "ast-x-occidental",
+  "name": "Western Asturian",
+  "family": "Asturleonese",
+  "script": "Latin",
+  "parent": "ast",
+  "graphemes_base": "ast",
+  "allophones_base": "ast",
+  "positional_graphemes_base": "ast",
+
+  "graphemes": {
+    "h": ["h"],
+    "ḷḷ": ["tʃ"],
+    "l.l": ["tʃ"]
+  },
+
+  "allophones": {
+    "h": ["h"]
+  },
+
+  "positional_graphemes": {
+    "f": {
+      "word_initial": ["h", "f"],
+      "intervocalic": ["f"]
+    }
+  },
+
+  "ancestors": [
+    {
+      "code": "ast",
+      "role": "parent",
+      "weight": 0.90,
+      "notes": "Central/Standard Asturian, immediate parent variety."
+    },
+    {
+      "code": "cel-x-gallaecia",
+      "role": "substrate",
+      "weight": 0.07,
+      "notes": "Stronger Gallaecian Celtic substrate in the western areas, bordering Galician-speaking territory."
+    },
+    {
+      "code": "xsb",
+      "role": "superstrate",
+      "weight": 0.03,
+      "notes": "Suebi superstrate, stronger in western Asturias (Suebi kingdom centred in Gallaecia)."
+    }
+  ],
+
+  "notes": "Western Asturian (Asturianu occidental). Spoken in the western parishes of Asturias, bordering Galicia. KEY DIALECTAL FEATURES: (1) Latin F- aspiration: word-initial /f/ → [h] (e.g. 'filu' → [hiɾu]), written ⟨h⟩ in this dialect — shared with Western Galician, Gascon, and Medieval Castilian. (2) Che vaqueira: ⟨ḷḷ⟩ / ⟨l.l⟩ = a palato-alveolar affricate [tʃ] from Latin PL-, CL-, FL- (e.g. 'ḷḷover' < PLOVERE), a hallmark of the vaqueiros de alzada. (3) ⟨h⟩ = [h] (phonemic aspiration, unlike silent h of Central). (4) Some degree of l-frication absent in central varieties. Sources: García Arias (1974), Neira Martínez (1955), Canellada (1944)."
+}

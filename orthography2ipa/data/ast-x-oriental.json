@@ -1,0 +1,25 @@
+{
+  "code": "ast-x-oriental",
+  "name": "Eastern Asturian",
+  "family": "Asturleonese",
+  "script": "Latin",
+  "parent": "ast",
+  "graphemes_base": "ast",
+  "allophones_base": "ast",
+  "positional_graphemes_base": "ast",
+
+  "allophones": {
+    "ʎ": ["ʎ", "ʝ"]
+  },
+
+  "ancestors": [
+    {
+      "code": "ast",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Central/Standard Asturian, immediate parent."
+    }
+  ],
+
+  "notes": "Eastern Asturian (Asturianu oriental). Spoken in the eastern parishes of Asturias bordering Cantabria. KEY DIALECTAL FEATURES: (1) Incipient yeísmo: /ʎ/ shows variation with [ʝ], particularly among younger and urban speakers — influence from Cantabrian Spanish and prestige Castilian. (2) Some phonological convergence with Castilian. (3) Otherwise very similar to Central Asturian. Source: Cano González (2009), Penny (2002)."
+}
