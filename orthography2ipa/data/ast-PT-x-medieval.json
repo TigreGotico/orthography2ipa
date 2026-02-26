@@ -3,10 +3,10 @@
   "name": "Medieval Asturian-Leonese of Portugal",
   "family": "Asturleonese",
   "script": "Latin",
-  "parent": "ast-ES-x-leon",
-  "graphemes_base": "ast-ES-x-leon",
-  "allophones_base": "ast-ES-x-leon",
-  "positional_graphemes_base": "ast-ES-x-leon",
+  "parent": "ast-x-leon",
+  "graphemes_base": "ast-x-leon",
+  "allophones_base": "ast-x-leon",
+  "positional_graphemes_base": "ast-x-leon",
 
   "graphemes": {
     "ã": ["ɐ̃"],
