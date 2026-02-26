@@ -48,9 +48,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Tuple
 
-from orthography2ipa.types import LanguageSpec
 from orthography2ipa.feats import NUM_FEATURES, phonetic_distance, vectorize_phones
-
+from orthography2ipa.types import LanguageSpec
 
 __all__ = [
     "Feature",

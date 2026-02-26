@@ -1,0 +1,40 @@
+{
+  "code": "oc",
+  "name": "Occitan",
+  "family": "Romance",
+  "script": "Latin",
+  "parent": "la-x-late",
+  "ancestors": [
+    {
+      "code": "la-x-gallia",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Gallo-Romance Vulgar Latin"
+    },
+    {
+      "code": "xtg",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Gaulish substrate: S. Gaul varieties, less Frankish overlay than N. French; cf. Lambert (2003)"
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Visigothic superstrate: Toulouse kingdom (418-507 CE), strongest Germanic influence on Occitan"
+    },
+    {
+      "code": "xaq",
+      "role": "substrate",
+      "weight": 0.03,
+      "notes": "Basque substrate: primarily in Gascon dialect area; h- aspiration, loss of Latin f-, unique definite article eth/era; cf. Rohlfs (1970)"
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Arabic adstrate: minor, via Iberian transmission"
+    }
+  ],
+  "notes": "Based on Languedocien/general Occitan norms. Substantial dialectal variation across Gascon, Provençal, Limousin, Auvergnat, and Vivaro-Alpine."
+}

@@ -5,6 +5,7 @@ The core data model supports:
 - Multi-ancestor relationships (contact languages, creoles, transitional dialects)
 - Weighted ancestry for distance calculations
 - Positional grapheme-to-IPA mappings for context-sensitive G2P
+- Glottolog classification codes for interoperability
 """
 from __future__ import annotations
 
@@ -16,18 +17,21 @@ from typing import Dict, FrozenSet, List, Optional, Tuple
 # Type aliases
 # ═══════════════════════════════════════════════════════════════════════════
 
-# Grapheme key → list of IPA transcription strings.
 Grapheme2IPA = Dict[str, List[str]]
+"""Orthographic grapheme → list of IPA phoneme candidates."""
 
-# Phoneme key → list of allophonic surface realisations.
 AllophoneMap = Dict[str, List[str]]
+"""Underlying phoneme → list of surface realisations."""
+
+PositionalGrapheme2IPA = Dict[str, Dict["GraphemePosition", List[str]]]
+"""Grapheme → {position: IPA candidates} for context-sensitive mappings."""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
 # GraphemePosition — positional contexts for grapheme→IPA disambiguation
 # ═══════════════════════════════════════════════════════════════════════════
 
-class GraphemePosition(Enum):
+class GraphemePosition(str, Enum):
     """Positional context in which a grapheme occurs.
 
     These positions are standard in phonological descriptions and cover
@@ -61,7 +65,6 @@ class GraphemePosition(Enum):
     - Hayes, B. (2009). *Introductory Phonology*. Wiley-Blackwell.
     - Zsiga, E. (2013). *The Sounds of Language*. Wiley-Blackwell.
     """
-
     DEFAULT = "default"
     """Context-free default — equivalent to the base ``graphemes`` mapping.
     Used when no positional override exists or when position is unknown."""
@@ -91,7 +94,11 @@ class GraphemePosition(Enum):
     E.g., English ⟨l⟩ → [l] (clear l) in onset;
     Korean aspirated stops in onset."""
 
-    NUCLEUS = "nucleus"
+    NUCLEUS_STRESSED = "nucleus_stressed"
+    """Syllable nucleus position (typically a vowel).
+    This is the defining sound of the syllable."""
+
+    NUCLEUS_UNSTRESSED = "nucleus_unstressed"
     """Syllable nucleus position (typically a vowel).
     E.g., reduced vowels in unstressed nuclei — Portuguese ⟨e⟩ → [ɨ]
     vs. [ɛ] in stressed nucleus; English ⟨a⟩ → [ə] in unstressed."""
@@ -102,16 +109,18 @@ class GraphemePosition(Enum):
     Korean obstruent neutralisation in coda;
     Portuguese ⟨l⟩ → [w] in coda (Brazilian)."""
 
+    PRETONIC = "pretonic"
+    """default value when before the stressed/tonic syllable."""
 
-# Positional mapping: grapheme → {position → [IPA candidates]}
-PositionalGrapheme2IPA = Dict[str, Dict[GraphemePosition, List[str]]]
+    POSTTONIC = "posttonic"
+    """default value when after the stressed/tonic syllable."""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
 # AncestorRole
 # ═══════════════════════════════════════════════════════════════════════════
 
-class AncestorRole(Enum):
+class AncestorRole(str, Enum):
     """How an ancestor language relates to its descendant."""
 
     PARENT = "parent"
@@ -170,6 +179,16 @@ class Ancestor:
     weight: float = 0.5
     notes: str = ""
 
+    def __post_init__(self):
+
+        # Normalise str to AncestorRole
+        if not isinstance(self.role, AncestorRole):
+            object.__setattr__(self, "role", AncestorRole(self.role))
+
+        # Normalise list to str
+        if isinstance(self.notes, list):
+            object.__setattr__(self, "notes", "\n".join(self.notes))
+
     def __repr__(self) -> str:
         return f"Ancestor({self.code!r}, {self.role.value}, w={self.weight:.2f})"
 
@@ -186,6 +205,12 @@ class LanguageSpec:
     IPA mappings that override the base ``graphemes`` for specific
     phonological positions.  When absent or empty, the base ``graphemes``
     mapping is used for all positions (backward-compatible).
+
+    The ``glottolog_code`` field provides an optional Glottolog languoid
+    identifier for cross-referencing with the Glottolog classification
+    (e.g. ``'cast1244'`` for Castilian). This enables interoperability
+    with Glottolog's genealogical database while keeping our own BCP-47
+    codes as primary identifiers.
     """
 
     code: str
@@ -208,7 +233,7 @@ class LanguageSpec:
     allophones: AllophoneMap
     """Phoneme -> contextual surface realisations."""
 
-    parent: str | None = None
+    parent: Optional[str] = None
     """Primary parent code (backward-compatible shorthand).
     If ancestors is also set, should match the PARENT-role ancestor."""
 
@@ -240,20 +265,52 @@ class LanguageSpec:
         }
     """
 
+    glottolog_code: str | None = None
+    """Optional Glottolog languoid code (e.g. 'cast1244' for Castilian,
+    'west2813' for West Iberian). Enables cross-referencing with
+    Glottolog's genealogical classification database.
+    See https://glottolog.org for the full catalogue."""
+
     notes: str = ""
     """Free-form notes."""
 
     def __post_init__(self) -> None:
-        # Normalise None to empty dict for positional_graphemes
+        # Normalise None to empty dict
         if self.positional_graphemes is None:
             object.__setattr__(self, "positional_graphemes", {})
+        if self.graphemes is None:
+            object.__setattr__(self, "graphemes", {})
+        if self.allophones is None:
+            object.__setattr__(self, "allophones", {})
+
+        # Normalise list to str
+        if isinstance(self.notes, list):
+            object.__setattr__(self, "notes", "\n".join(self.notes))
+
+        # Normalize positional_graphemes to use Enum
+        for grapheme, pos_map in self.positional_graphemes.items():
+            for pos in set(pos_map.keys()):
+                if not isinstance(pos, GraphemePosition):
+                    new_pos = GraphemePosition(pos)
+                    self.positional_graphemes[grapheme][new_pos] = self.positional_graphemes[grapheme].pop(pos)
+
+        # ensure main parent is set
+        if not self.ancestors and self.parent:
+            object.__setattr__(self, "ancestors", [Ancestor(code=self.parent, role=AncestorRole.PARENT, weight=1.0,
+                                                            notes="primary parent")])
+        # if "parent" is not set, check if it is defined in "ancestors"
+        #  this is technically incomplete json, but handle it
+        elif not self.parent and self.ancestors:
+            for a in self.ancestors:
+                if a.role == AncestorRole.PARENT:
+                    object.__setattr__(self, "parent", a.code)
+                    break
 
     # ─── Positional grapheme resolution ─────────────────────────────
-
     def resolve_grapheme(
-        self,
-        grapheme: str,
-        position: GraphemePosition = GraphemePosition.DEFAULT,
+            self,
+            grapheme: str,
+            position: GraphemePosition = GraphemePosition.DEFAULT,
     ) -> List[str]:
         """Resolve a grapheme to its IPA candidates for a given position.
 

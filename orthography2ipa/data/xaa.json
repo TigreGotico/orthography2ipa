@@ -1,0 +1,11 @@
+{
+  "code": "xaa",
+  "name": "Andalusi Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "allophones": {},
+  "parent": "arb",
+  "notes": "Andalusi Arabic (8th–17th c. CE). Western Arabic dialect of Al-Andalus. Best-documented through Ibn Quzmān, kharjas, Pedro de Alcalá (1505), Vocabulista. Per Corriente (2013): (1) IMĀLA: /aː/ → [eː] (diagnostic feature). (2) Interdental merger: /θ/ → /t/ or /s/. (3) Emphatic merger: /ḍ/ and /ḏ̣/ conflate. (4) Romance-origin /p/ added. (5) Heavy Romance substrate/adstrate. ~4000 Andalusi Arabic loanwords survive in Ibero-Romance (alcalde, algodón, azúcar, alfombra...)."
+}

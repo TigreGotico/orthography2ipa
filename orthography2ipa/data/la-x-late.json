@@ -1,0 +1,24 @@
+{
+  "code": "la-x-late",
+  "name": "Late Latin",
+  "family": "Italic",
+  "script": "Latin",
+  "graphemes_base": "la",
+  "allophones_base": "la",
+  "parent": "la",
+  "ancestors": [
+    {
+      "code": "la",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Direct continuation of Classical Latin"
+    },
+    {
+      "code": "grc",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Greek adstrate: Eastern Empire bilingualism, liturgical vocabulary, phonological influence on aspiration loss (ph→f, th→t, ch→k)"
+    }
+  ],
+  "notes": "Late Latin (~3rd–6th c. CE). The written Latin of the late Empire and early medieval period, coexisting with diverging spoken Vulgar Latin varieties. Key features: (1) Vowel quantity → quality: the 10→7 vowel merger underway (ĭ/ē→/e/, ĕ→/ɛ/, ŭ/ō→/o/, ŏ→/ɔ/). (2) ae→[ɛ(ː)], oe→[e(ː)] monophthongisation complete. (3) /h/ effectively silent. (4) B/V merger (betacism) visible in misspellings. (5) Palatalisation beginning: /k/ before e,i → [kʲ]; /t/ + i + V → [tsʲ]. (6) Greek aspirated stops → fricatives (ph→[f], th→[t]). Attested: Vulgate, Peregrinatio Aetheriae, Gregory of Tours, Isidore of Seville, Lex Salica. Source: Herman (2000), Väänänen (1981), Adams (2013)."
+}

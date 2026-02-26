@@ -1,0 +1,16 @@
+{
+  "code": "xpa",
+  "name": "Proto-Arabic (Old Arabic)",
+  "family": "Semitic",
+  "script": null,
+  "parent": "sem-x-central",
+  "ancestors": [
+    {
+      "code": "sem-x-central",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Proto-Central-Semitic"
+    }
+  ],
+  "notes": "Proto-Arabic / Old Arabic (~500 BCE – 500 CE). Reconstructed from Old North Arabian inscriptions (Safaitic, Hismaic, Dadanitic, Taymanitic) and backward reconstruction from Classical Arabic. DEFINING INNOVATIONS vs. Proto-Central-Semitic: (1) *p → /f/ uniformly — THE diagnostic Arabic innovation; (2) *ś /ɬ/ → /s/ (merged completely with *s); (3) *ṣ́ /ɬˤ/ → /ðˤ~ɮˤ/ (= Arabic ض, the 'emphatic lateral'); (4) *g /ɡ/ still present (→ /dʒ/ only in Classical period or later); (5) the 28-consonant Classical system nearly established. Vowel system: three short (/a i u/) + three long (/aː iː uː/) + diphthongs /aj/ and /aw/. Emphatics triggered vowel backing in adjacent syllables (same as Classical and modern dialects). Script: notation follows Al-Jallad (2015) ONA romanization system."
+}

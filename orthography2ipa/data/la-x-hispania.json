@@ -1,0 +1,48 @@
+{
+  "code": "la-x-hispania",
+  "name": "Hispanic Vulgar Latin",
+  "family": "Italic",
+  "script": "Latin",
+  "graphemes_base": "la-x-late",
+  "allophones_base": "la-x-late",
+  "parent": "la-x-late",
+  "ancestors": [
+    {
+      "code": "cel",
+      "role": "substrate",
+      "weight": 0.02,
+      "notes": "Celtic substrate."
+    },
+    {
+      "code": "xce",
+      "role": "substrate",
+      "weight": 0.02,
+      "notes": "Celtiberian substrate."
+    },
+    {
+      "code": "xaq",
+      "role": "substrate",
+      "weight": 0.02,
+      "notes": "Aquitanian substrate."
+    },
+    {
+      "code": "txr",
+      "role": "substrate",
+      "weight": 0.02,
+      "notes": "Tartessian substrate."
+    },
+    {
+      "code": "xlg",
+      "role": "substrate",
+      "weight": 0.02,
+      "notes": "Lusitanian substrate: pre-Celtic IE language of western Iberia. Possible influence on /v/≠/b/ preservation."
+    },
+    {
+      "code": "xib",
+      "role": "substrate",
+      "weight": 0.02,
+      "notes": "Iberian substrate: language isolate of Mediterranean Iberia. ~2000+ inscriptions in Iberian semi-syllabary and Greek alphabet."
+    }
+  ],
+  "notes": "Hispanic Vulgar Latin (~3rd–7th c. CE). Reconstructed spoken Latin of Roman Hispania, transitional to Ibero-Romance. Key changes from Classical Latin: (1) 10-vowel → 7-vowel merger (by quality not quantity). (2) Intervocalic lenition (-p- → -b- → -β-). (3) Palatalisation (CE/CI → [tʃ], GE/GI → [dʒ]). (4) F- → [h] (Hispanic specific; Basque substrate?). (5) -CT- → [jt] (→ [tʃ] in Castilian). (6) Diphthongisation of /ɛ/ → [je], /ɔ/ → [we] in Castilian area. The ancestor of ALL Ibero-Romance languages."
+}

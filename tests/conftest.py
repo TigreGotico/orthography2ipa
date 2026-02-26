@@ -2,7 +2,6 @@
 import pytest
 
 import orthography2ipa
-from orthography2ipa.types import LanguageSpec
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -25,7 +24,7 @@ def all_families():
 
 @pytest.fixture(scope="session")
 def spec_en():
-    return orthography2ipa.get("en-GB")
+    return orthography2ipa.get("pt-PT")
 
 
 @pytest.fixture(scope="session")

@@ -3,15 +3,14 @@
 Validates the core data model: immutability, accessor methods, convenience
 properties, and edge-case handling.
 """
-import pytest
 from dataclasses import FrozenInstanceError
+
+import pytest
 
 from orthography2ipa.types import (
     Ancestor,
     AncestorRole,
     LanguageSpec,
-    Grapheme2IPA,
-    AllophoneMap,
 )
 
 

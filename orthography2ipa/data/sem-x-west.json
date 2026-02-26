@@ -1,0 +1,18 @@
+{
+  "code": "sem-x-west",
+  "name": "Proto-West-Semitic",
+  "family": "Afroasiatic",
+  "script": null,
+  "graphemes_base": "sem",
+  "allophones_base": "sem",
+  "parent": "sem",
+  "ancestors": [
+    {
+      "code": "sem",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Direct descent from Proto-Semitic"
+    }
+  ],
+  "notes": "Proto-West-Semitic (~3500–3000 BCE). Excludes Akkadian and Eblaite (East Semitic). Ancestor of all surviving Semitic languages. Consonant inventory nearly identical to Proto-Semitic; differences are primarily morphological and accentual. *ś /ɬ/ lateral fricative still distinct. Spirantisation of stops (bgdkpt pattern) is a LATER innovation (Canaanite/Hebrew) and NOT a Proto-West-Semitic feature."
+}

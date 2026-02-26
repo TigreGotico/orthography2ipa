@@ -1,0 +1,319 @@
+{
+  "code": "roa-x-galaicopt",
+  "name": "Galaico-Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ã": [
+      "ɐ̃"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "ts"
+    ],
+    "ç": [
+      "ts"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "z": [
+      "dz"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "ss": [
+      "s"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "gu": [
+      "ɡ",
+      "ɡw"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "y": [
+      "i"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɐ̃": [
+      "ɐ̃"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ]
+  },
+  "parent": "la-x-hispania",
+  "ancestors": [
+    {
+      "code": "la-x-hispania",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Primary descent from Hispanic Vulgar Latin. The NW Iberian development of spoken Latin."
+    },
+    {
+      "code": "cel-x-gallaecia",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Gallaecian Celtic substrate: strongest in NW Iberia. Castro culture, toponyms, possible influence on nasal vowel development."
+    },
+    {
+      "code": "xlg",
+      "role": "substrate",
+      "weight": 0.04,
+      "notes": "Lusitanian substrate: pre-Celtic IE language of western Iberia. Possible influence on /v/≠/b/ preservation."
+    },
+    {
+      "code": "xsb",
+      "role": "superstrate",
+      "weight": 0.05,
+      "notes": "Suebi (Germanic) superstrate in Gallaecia (411–585 CE): Kingdom of the Suebi. ~200 place names, vocabulary (guerra, roubar, branco)."
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.03,
+      "notes": "Visigothic superstrate shared with all Ibero-Romance."
+    },
+    {
+      "code": "oc",
+      "role": "adstrate",
+      "weight": 0.01,
+      "notes": "Occitan adstrate: nh and lh digraphs inherited from occitan"
+    },
+    {
+      "code": "mxi",
+      "role": "adstrate",
+      "weight": 0.02,
+      "notes": "Mozarabic adstrate: less intense in the NW than in central/southern Iberia due to shorter Moorish presence."
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.02,
+      "notes": "Andalusi Arabic adstrate: less intense in the NW than in central/southern Iberia due to shorter Moorish presence."
+    }
+  ],
+  "notes": "Galaico-Portuguese (~9th–14th c. CE). The shared ancestor of modern Galician and Portuguese. Attested in troubadour lyric poetry (Cantigas de Santa Maria, cantigas de amigo, cantigas de amor — >1,600 texts), early legal documents (Notícia de Torto ~1214, Testamento de D. Afonso II ~1214). KEY FEATURES: (1) Medieval 4-way sibilant contrast: /ts/ ⟨ç⟩ vs /dz/ ⟨z⟩ vs /s/ ⟨ss⟩ vs /z/ ⟨-s-⟩. (2) /ʎ/ ⟨lh⟩, /ɲ/ ⟨nh⟩ digraph convention from Occitan. (3) /b/ ≠ /v/ preserved. (4) F- preserved (filho, not hijo). (5) /ou/ still a true diphthong. (6) Nasal vowels developing but not fully phonemicised. The split into Galician and Portuguese is conventionally dated to ~mid-14th c. when the Portuguese court settled in Lisbon and Galician fell under Castilian influence. Source: Maia (1986), Castro (2006), Teyssier (1982)."
+}

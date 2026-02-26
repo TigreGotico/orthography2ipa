@@ -1,0 +1,211 @@
+{
+  "code": "pt-PT",
+  "name": "European Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT-x-medieval",
+  "graphemes": {
+    "r": [
+      "ɾ",
+      "ʁ"
+    ],
+    "s": [
+      "s",
+      "z",
+      "ʃ",
+      "ʒ"
+    ],
+    "y": [
+      "j",
+      "i"
+    ],
+    "w": [
+      "w",
+      "v"
+    ],
+    "x": [
+      "ʃ",
+      "ks",
+      "z",
+      "s",
+      "gz"
+    ],
+    "z": [
+      "z",
+      "ʃ"
+    ],
+    "rr": [
+      "ʁ"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "ou": [
+      "ow",
+      "o"
+    ]
+  },
+  "allophones_base": "pt-PT-x-medieval",
+  "allophones": {
+    "ʁ": [
+      "ʁ",
+      "χ",
+      "h",
+      "ɦ"
+    ],
+    "f": [
+      "f",
+      "ɸ"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT-x-medieval",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "ʁ"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ],
+      "onset": [
+        "ɾ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ",
+        "ʒ"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "default": [
+        "z"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʒ",
+        "ʃ"
+      ]
+    },
+    "l": {
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "ɫ"
+      ]
+    },
+    "b": {
+      "default": [
+        "b"
+      ],
+      "intervocalic": [
+        "β"
+      ]
+    },
+    "d": {
+      "default": [
+        "d"
+      ],
+      "intervocalic": [
+        "ð"
+      ]
+    },
+    "g": {
+      "default": [
+        "ɡ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    },
+
+    "a": {
+      "nucleus_stressed": [
+        "a"
+      ],
+      "default": [
+        "ɐ",
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "a"
+      ],
+      "coda": [
+        "ɐ"
+      ],
+      "word_initial": [
+        "ɐ",
+        "a"
+      ],
+      "word_final": [
+        "ɐ"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "ɛ"
+      ],
+      "default": [
+        "e",
+        "i"
+      ],
+      "nucleus_unstressed": [
+        "ɨ"
+      ],
+      "coda": [
+        "ɨ"
+      ],
+      "word_initial": [
+        "e",
+        "i"
+      ],
+      "word_final": [
+        "ɨ"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "ɔ"
+      ],
+      "default": [
+        "o",
+        "ɔ",
+        "u"
+      ],
+      "nucleus_unstressed": [
+        "ɔ",
+        "o"
+      ],
+      "coda": [
+        "u",
+        "o"
+      ],
+      "word_initial": [
+        "o"
+      ],
+      "word_final": [
+        "u"
+      ]
+    }
+  },
+  "parent": "pt-PT-x-medieval",
+  "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features."
+}

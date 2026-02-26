@@ -5,8 +5,8 @@ LanguageSpec.resolve_grapheme(), and backward compatibility.
 
 Uses stdlib unittest — no external dependencies required.
 """
-import sys
 import os
+import sys
 import unittest
 from dataclasses import FrozenInstanceError
 
@@ -103,7 +103,8 @@ class TestGraphemePosition(unittest.TestCase):
         expected = {
             "default", "word_initial", "word_final",
             "intervocalic", "intervocalic_cross_word",
-            "onset", "nucleus", "coda",
+            "onset", "nucleus_stressed", "nucleus_unstressed", "coda",
+            "pretonic", "posttonic"
         }
         actual = {p.value for p in GraphemePosition}
         self.assertEqual(actual, expected)
@@ -314,9 +315,9 @@ class TestEdgeCases(unittest.TestCase):
         spec = LanguageSpec(
             code="xx", name="Test", family="TestFamily", script="Latin",
             graphemes={"e": ["e", "ɛ"]}, allophones={"e": ["e", "ɛ", "ɨ"]},
-            positional_graphemes={"e": {GraphemePosition.NUCLEUS: ["ɨ"]}},
+            positional_graphemes={"e": {GraphemePosition.NUCLEUS_UNSTRESSED: ["ɨ"]}},
         )
-        self.assertEqual(spec.resolve_grapheme("e", GraphemePosition.NUCLEUS), ["ɨ"])
+        self.assertEqual(spec.resolve_grapheme("e", GraphemePosition.NUCLEUS_UNSTRESSED), ["ɨ"])
         self.assertEqual(spec.resolve_grapheme("e", GraphemePosition.ONSET), ["e", "ɛ"])
 
 
@@ -365,7 +366,7 @@ class TestLinguisticRealism(unittest.TestCase):
 
     def test_english_l_allophony(self):
         spec = LanguageSpec(
-            code="en-GB", name="English", family="Germanic", script="Latin",
+            code="pt-PT", name="European Portuguese", family="Romance", script="Latin",
             graphemes={"l": ["l"]},
             allophones={"l": ["l", "ɫ"]},
             positional_graphemes={

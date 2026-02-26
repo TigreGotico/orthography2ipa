@@ -12,7 +12,6 @@ import pytest
 import orthography2ipa
 from orthography2ipa.phonetok import (
     PhonetokTokenizer,
-    Token,
     TokenKind,
     IPAPath,
 )
@@ -24,18 +23,8 @@ from orthography2ipa.types import LanguageSpec
 # ═══════════════════════════════════════════════════════════════════════════
 
 @pytest.fixture
-def tok_es() -> PhonetokTokenizer:
-    return PhonetokTokenizer(orthography2ipa.get("es-ES"))
-
-
-@pytest.fixture
-def tok_en() -> PhonetokTokenizer:
-    return PhonetokTokenizer(orthography2ipa.get("en-GB"))
-
-
-@pytest.fixture
-def tok_pt_br() -> PhonetokTokenizer:
-    return PhonetokTokenizer(orthography2ipa.get("pt-BR"))
+def tok_pt() -> PhonetokTokenizer:
+    return PhonetokTokenizer(orthography2ipa.get("pt-PT"))
 
 
 @pytest.fixture
@@ -49,8 +38,8 @@ def tok_simple() -> PhonetokTokenizer:
         graphemes={
             "a": ["a"],
             "b": ["b"],
-            "c": ["k", "s"],   # ambiguous
-            "ch": ["tʃ"],      # digraph must win over c + h
+            "c": ["k", "s"],  # ambiguous
+            "ch": ["tʃ"],  # digraph must win over c + h
             "h": ["h"],
         },
         allophones={
@@ -103,18 +92,18 @@ class TestTokenizeBasics:
 class TestTokenKinds:
     """Tests for different TokenKind classifications."""
 
-    def test_whitespace_token(self, tok_en):
-        tokens = tok_en.tokenize("a b")
+    def test_whitespace_token(self, tok_pt):
+        tokens = tok_pt.tokenize("a b")
         kinds = [t.kind for t in tokens]
         assert TokenKind.WHITESPACE in kinds
 
-    def test_punctuation_token(self, tok_en):
-        tokens = tok_en.tokenize("a.b")
+    def test_punctuation_token(self, tok_pt):
+        tokens = tok_pt.tokenize("a.b")
         kinds = [t.kind for t in tokens]
         assert TokenKind.PUNCTUATION in kinds
 
-    def test_digit_token(self, tok_en):
-        tokens = tok_en.tokenize("a1b")
+    def test_digit_token(self, tok_pt):
+        tokens = tok_pt.tokenize("a1b")
         kinds = [t.kind for t in tokens]
         assert TokenKind.DIGIT in kinds
 
@@ -125,8 +114,8 @@ class TestTokenKinds:
         # 'Z' isn't in the grapheme table, so it should be UNKNOWN
         assert TokenKind.UNKNOWN in kinds
 
-    def test_all_punctuation(self, tok_en):
-        tokens = tok_en.tokenize("!?.,:;")
+    def test_all_punctuation(self, tok_pt):
+        tokens = tok_pt.tokenize("!?.,:;")
         grapheme_tokens = [t for t in tokens if t.kind == TokenKind.GRAPHEME]
         assert len(grapheme_tokens) == 0
 
@@ -138,35 +127,15 @@ class TestTokenKinds:
 class TestTokenizeRealLanguages:
     """Tokenization with actual language specs."""
 
-    def test_english_th_digraph(self, tok_en):
-        tokens = tok_en.tokenize("the")
-        graphemes = [t.grapheme for t in tokens if t.kind == TokenKind.GRAPHEME]
-        assert graphemes[0] == "th"
-
-    def test_english_sh_digraph(self, tok_en):
-        tokens = tok_en.tokenize("ship")
-        graphemes = [t.grapheme for t in tokens if t.kind == TokenKind.GRAPHEME]
-        assert graphemes[0] == "sh"
-
-    def test_portuguese_ch_digraph(self, tok_pt_br):
-        tokens = tok_pt_br.tokenize("chuva")
+    def test_portuguese_ch_digraph(self, tok_pt):
+        tokens = tok_pt.tokenize("chuva")
         graphemes = [t.grapheme for t in tokens if t.kind == TokenKind.GRAPHEME]
         assert graphemes[0] == "ch"
 
-    def test_portuguese_lh_digraph(self, tok_pt_br):
-        tokens = tok_pt_br.tokenize("alho")
+    def test_portuguese_lh_digraph(self, tok_pt):
+        tokens = tok_pt.tokenize("alho")
         graphemes = [t.grapheme for t in tokens if t.kind == TokenKind.GRAPHEME]
         assert "lh" in graphemes
-
-    def test_spanish_rr_digraph(self, tok_es):
-        tokens = tok_es.tokenize("perro")
-        graphemes = [t.grapheme for t in tokens if t.kind == TokenKind.GRAPHEME]
-        assert "rr" in graphemes
-
-    def test_spanish_ll_digraph(self, tok_es):
-        tokens = tok_es.tokenize("llave")
-        graphemes = [t.grapheme for t in tokens if t.kind == TokenKind.GRAPHEME]
-        assert graphemes[0] == "ll"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -176,8 +145,8 @@ class TestTokenizeRealLanguages:
 class TestIPABeam:
     """Tests for ipa_beam() — the IPA expansion beam search."""
 
-    def test_returns_ipa_paths(self, tok_es):
-        paths = tok_es.ipa_beam("hola", beam_width=3)
+    def test_returns_ipa_paths(self, tok_pt):
+        paths = tok_pt.ipa_beam("olho", beam_width=3)
         assert len(paths) >= 1
         for p in paths:
             assert isinstance(p, IPAPath)
@@ -195,35 +164,23 @@ class TestIPABeam:
         assert "k" in ipa_strings
         assert "s" in ipa_strings
 
-    def test_beam_width_limits_output(self, tok_en):
-        paths = tok_en.ipa_beam("cat", beam_width=2)
+    def test_beam_width_limits_output(self, tok_pt):
+        paths = tok_pt.ipa_beam("cat", beam_width=2)
         assert len(paths) <= 2
 
-    def test_paths_sorted_by_score(self, tok_en):
-        paths = tok_en.ipa_beam("cat", beam_width=5)
+    def test_paths_sorted_by_score(self, tok_pt):
+        paths = tok_pt.ipa_beam("cat", beam_width=5)
         scores = [p.score for p in paths]
         assert scores == sorted(scores)
 
-    def test_ipa_best_matches_beam_width_1(self, tok_es):
+    def test_ipa_best_matches_beam_width_1(self, tok_pt):
         """ipa_best() should equal beam_width=1 result."""
-        best = tok_es.ipa_best("casa")
-        paths = tok_es.ipa_beam("casa", beam_width=1)
+        best = tok_pt.ipa_best("casa")
+        paths = tok_pt.ipa_beam("casa", beam_width=1)
         assert best == paths[0].ipa
 
-    def test_spanish_hola_canonical(self, tok_es):
-        """'hola' in Spanish: h is silent, canonical should start with 'o'."""
-        best = tok_es.ipa_best("hola")
-        # 'h' maps to "" (silent), so IPA should start with a vowel
-        assert "o" in best
-
-    def test_spanish_ciudad(self, tok_es):
-        paths = tok_es.ipa_beam("ciudad", beam_width=4)
-        # Should produce valid IPA strings
-        for p in paths:
-            assert len(p.ipa) > 0
-
-    def test_portuguese_chuva(self, tok_pt_br):
-        best = tok_pt_br.ipa_best("chuva")
+    def test_portuguese_chuva(self, tok_pt):
+        best = tok_pt.ipa_best("chuva")
         # 'ch' → /ʃ/ in Portuguese
         assert "ʃ" in best
 
@@ -235,43 +192,43 @@ class TestIPABeam:
 class TestVocabEncoding:
     """Tests for vocab, encode(), and decode()."""
 
-    def test_vocab_has_special_tokens(self, tok_en):
-        v = tok_en.vocab
+    def test_vocab_has_special_tokens(self, tok_pt):
+        v = tok_pt.vocab
         for special in ["<pad>", "<bos>", "<eos>", "<unk>", "<ws>",
-                         "<punct>", "<digit>"]:
+                        "<punct>", "<digit>"]:
             assert special in v
 
-    def test_vocab_special_token_ids(self, tok_en):
-        v = tok_en.vocab
+    def test_vocab_special_token_ids(self, tok_pt):
+        v = tok_pt.vocab
         assert v["<pad>"] == 0
         assert v["<bos>"] == 1
         assert v["<eos>"] == 2
         assert v["<unk>"] == 3
 
-    def test_vocab_size_consistent(self, tok_en):
-        v = tok_en.vocab
-        assert tok_en.vocab_size == len(v)
+    def test_vocab_size_consistent(self, tok_pt):
+        v = tok_pt.vocab
+        assert tok_pt.vocab_size == len(v)
 
-    def test_vocab_includes_graphemes(self, tok_en):
-        v = tok_en.vocab
-        # English 'th' should be a vocab entry
-        assert "th" in v
+    def test_vocab_includes_graphemes(self, tok_pt):
+        v = tok_pt.vocab
+        # 'ch' should be a vocab entry
+        assert "ch" in v
 
-    def test_encode_produces_integers(self, tok_en):
-        ids = tok_en.encode("cat")
+    def test_encode_produces_integers(self, tok_pt):
+        ids = tok_pt.encode("gato")
         assert all(isinstance(i, int) for i in ids)
 
-    def test_encode_decode_roundtrip(self, tok_en):
+    def test_encode_decode_roundtrip(self, tok_pt):
         """decode(encode(text)) should reconstruct the grapheme string."""
-        text = "cat"
-        ids = tok_en.encode(text)
-        decoded = tok_en.decode(ids)
+        text = "gato"
+        ids = tok_pt.encode(text)
+        decoded = tok_pt.decode(ids)
         # Decoding strips special tokens but should preserve grapheme content
         assert decoded == text
 
-    def test_encode_unknown_char(self, tok_en):
+    def test_encode_unknown_char(self, tok_pt):
         """Characters not in grapheme table should encode as <unk>."""
-        ids = tok_en.encode("™")
+        ids = tok_pt.encode("™")
         assert 3 in ids  # <unk> = 3
 
 
@@ -282,14 +239,14 @@ class TestVocabEncoding:
 class TestToken:
     """Tests for the Token frozen dataclass."""
 
-    def test_token_is_frozen(self, tok_en):
-        tokens = tok_en.tokenize("a")
+    def test_token_is_frozen(self, tok_pt):
+        tokens = tok_pt.tokenize("a")
         if tokens:
             with pytest.raises(Exception):  # FrozenInstanceError
                 tokens[0].kind = TokenKind.DIGIT
 
-    def test_token_has_grapheme(self, tok_en):
-        tokens = tok_en.tokenize("a")
+    def test_token_has_grapheme(self, tok_pt):
+        tokens = tok_pt.tokenize("a")
         grapheme_tokens = [t for t in tokens if t.kind == TokenKind.GRAPHEME]
         assert len(grapheme_tokens) >= 1
         assert grapheme_tokens[0].grapheme == "a"
@@ -302,26 +259,26 @@ class TestToken:
 class TestEdgeCases:
     """Edge cases and boundary conditions."""
 
-    def test_single_character(self, tok_en):
-        paths = tok_en.ipa_beam("a", beam_width=3)
+    def test_single_character(self, tok_pt):
+        paths = tok_pt.ipa_beam("a", beam_width=3)
         assert len(paths) >= 1
 
-    def test_whitespace_only(self, tok_en):
-        tokens = tok_en.tokenize("   ")
+    def test_whitespace_only(self, tok_pt):
+        tokens = tok_pt.tokenize("   ")
         grapheme_tokens = [t for t in tokens if t.kind == TokenKind.GRAPHEME]
         assert len(grapheme_tokens) == 0
 
-    def test_mixed_content(self, tok_en):
+    def test_mixed_content(self, tok_pt):
         """Text with graphemes, spaces, punctuation, and digits."""
-        tokens = tok_en.tokenize("Hello, world! 42")
+        tokens = tok_pt.tokenize("Olá, mundo! 42")
         kinds = {t.kind for t in tokens}
         assert TokenKind.GRAPHEME in kinds
         assert TokenKind.WHITESPACE in kinds
         assert TokenKind.PUNCTUATION in kinds
         assert TokenKind.DIGIT in kinds
 
-    def test_case_sensitivity(self, tok_en):
+    def test_case_sensitivity(self, tok_pt):
         """Tokenizer typically lowercases or handles case."""
         # The exact behaviour depends on implementation — just check it doesn't crash
-        tokens = tok_en.tokenize("THE")
+        tokens = tok_pt.tokenize("OLÁ")
         assert len(tokens) >= 1

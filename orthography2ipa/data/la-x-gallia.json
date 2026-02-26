@@ -1,0 +1,30 @@
+{
+  "code": "la-x-gallia",
+  "name": "Gallo-Romance Vulgar Latin",
+  "family": "Italic",
+  "script": "Latin",
+  "parent": "la-x-late",
+  "graphemes_base": "la-x-late",
+  "allophones_base": "la-x-late",
+  "ancestors": [
+    {
+      "code": "la",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Primary descent from Classical Latin"
+    },
+    {
+      "code": "xcg",
+      "role": "substrate",
+      "weight": 0.12,
+      "notes": "Gaulish substrate: vigesimal counting, u-fronting [u]>[y], lexicon (briser, chemin, char). Heaviest Celtic substrate in any Romance language."
+    },
+    {
+      "code": "gem",
+      "role": "superstrate",
+      "weight": 0.08,
+      "notes": "Early Germanic superstrate (Visigoths, Burgundians in S. Gaul; Franks in N. Gaul). Lexicon: blanc, guerre, jardin."
+    }
+  ],
+  "notes": "Gallo-Romance Vulgar Latin (~3rd–7th c. CE). Spoken Latin of Gaul and NE Hispania. Ancestral to French, Occitan, Catalan, Franco-Provençal. Key innovations vs Ibero-Romance: (1) /u/ → /y/ fronting (mūrum → [myːr]). (2) More aggressive lenition (intervocalic stops → ∅). (3) CA- → [tʃ] palatalisation. (4) F- PRESERVED (not → [h]). (5) Nasal vowels develop. (6) Final vowel loss more extreme. (7) Voiced /v/ preserved (not merged with /b/). Gaulish substrate is the strongest Celtic substrate in any Romance language (Price 1971, Bec 1970)."
+}
