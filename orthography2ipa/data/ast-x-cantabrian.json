@@ -1,9 +1,11 @@
 {
-  "code": "es-ES-x-cantabria",
-  "name": "Cantabrian Spanish",
-  "family": "Castilian",
+  "code": "ast-x-cantabrian",
+  "glottolog_code": "cant1245",
+  "IETF_code": "ast-u-sd-escb",
+  "name": "Cantabrian",
+  "family": "Romance",
   "script": "Latin",
-  "parent": "es-ES",
+  "parent": "ast",
   "graphemes_base": "es-ES",
   "allophones_base": "es-ES",
   "positional_graphemes_base": "es-ES",
@@ -84,5 +86,5 @@
     }
   ],
 
-  "notes": "Cantabrian Spanish (español cántabro) — the Castilian dialect of the Autonomous Community of Cantabria. One of the most conservative northern Castilian varieties, Cantabrian occupies a geographically and historically privileged position as the region adjacent to the original heartland of Castilian (Old Castile, County of Castile, ~9th c.). KEY FEATURES: (1) DISTINCIÓN PRESERVED: /θ/ ≠ /s/ — standard Castilian distinción maintained; ⟨c⟩ before e/i and ⟨z⟩ = /θ/. (2) APICO-ALVEOLAR /s/ [s̺]: strongly preserved, one of the most characteristic northern features. (3) YEÍSMO VARIABLE: ⟨ll⟩ = /j/ or /ʝ/ in urban/younger speakers; partial /ʎ/ retention in older rural western (Liébana) registers. Cantabria is transitional in this respect. (4) PARTIAL ASPIRATION OF CODA /s/: in some western varieties (Liébana, Pas valley) word-final /s/ may aspirate [h] under Asturian contact; eastern speakers maintain full [s̺]. (5) WORD-FINAL /d/ → [ð] or [∅]: as in standard Castilian, but elision rates intermediate between Madrid and Andalusia. (6) CONSERVATIVE PROSODY: Cantabrian intonation is characteristically 'cantado' (sing-song), with a falling-rising pattern described as 'montañés' — likely related to Basque contact in the east and Celtic substrate prosody. (7) LIÉBANA SUBDIALECT: the Liébana valley shows particularly strong Asturian contact features including /ʎ/ retention and some lexical Asturianisms. Sources: García de Diego (1959) *Manual de dialectología española*, Penny (2000) *Variation and Change in Spanish*, Alvar (1999) *Manual de dialectología hispánica*."
+  "notes": "Cantabrian (cántabru) — the Castilian dialect of the Autonomous Community of Cantabria. One of the most conservative northern Castilian varieties, Cantabrian occupies a geographically and historically privileged position as the region adjacent to the original heartland of Castilian (Old Castile, County of Castile, ~9th c.). KEY FEATURES: (1) DISTINCIÓN PRESERVED: /θ/ ≠ /s/ — standard Castilian distinción maintained; ⟨c⟩ before e/i and ⟨z⟩ = /θ/. (2) APICO-ALVEOLAR /s/ [s̺]: strongly preserved, one of the most characteristic northern features. (3) YEÍSMO VARIABLE: ⟨ll⟩ = /j/ or /ʝ/ in urban/younger speakers; partial /ʎ/ retention in older rural western (Liébana) registers. Cantabria is transitional in this respect. (4) PARTIAL ASPIRATION OF CODA /s/: in some western varieties (Liébana, Pas valley) word-final /s/ may aspirate [h] under Asturian contact; eastern speakers maintain full [s̺]. (5) WORD-FINAL /d/ → [ð] or [∅]: as in standard Castilian, but elision rates intermediate between Madrid and Andalusia. (6) CONSERVATIVE PROSODY: Cantabrian intonation is characteristically 'cantado' (sing-song), with a falling-rising pattern described as 'montañés' — likely related to Basque contact in the east and Celtic substrate prosody. (7) LIÉBANA SUBDIALECT: the Liébana valley shows particularly strong Asturian contact features including /ʎ/ retention and some lexical Asturianisms. Sources: García de Diego (1959) *Manual de dialectología española*, Penny (2000) *Variation and Change in Spanish*, Alvar (1999) *Manual de dialectología hispánica*."
 }

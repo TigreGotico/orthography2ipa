@@ -1,9 +1,11 @@
 {
-  "code": "es-ES-x-extremadura",
-  "name": "Extremaduran Spanish",
-  "family": "Castilian",
+  "code": "ext",
+  "glottolog_code": "extr1243",
+  "ISO_639-3": "ext",
+  "name": "Extremaduran",
+  "family": "Romance",
   "script": "Latin",
-  "parent": "es-ES",
+  "parent": "ast",
   "graphemes_base": "es-ES",
   "allophones_base": "es-ES",
   "positional_graphemes_base": "es-ES",
@@ -103,5 +105,5 @@
     }
   ],
 
-  "notes": "Extremaduran Spanish (español extremeño or hablas extremeñas) — the transitional Castilian-Leonese dialect of the Autonomous Community of Extremadura (Badajoz and Cáceres provinces). Classified variously as a southern dialect of Castilian or as an independent Ibero-Romance variety. KEY FEATURES: (1) SESEO (complete in most areas): /θ/ = /s/ — ⟨c⟩ before e/i and ⟨z⟩ → /s/, merging distinción into seseo. Some northern Cáceres retains partial distinción under Castilian prestige pressure. (2) ASPIRATION OF WORD-FINAL AND PRE-CONSONANTAL /s/: coda /s/ → [h] or [∅] — one of the most salient features; 'estos hombres' [ˈehtoh ˈõmbɾeh]. (3) F- ASPIRATION (rural/archaic): Latin F- → [h] in many rural areas (hacer [ˈhaθeɾ], hijo [ˈhiho]) — shared with Andalusian and attributed to Leonese substrate (Basque-contact F→H change). (4) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /j/ or /ʝ/ (majority of speakers; some older rural registers retain /ʎ/). (5) WORD-FINAL /d/ → [∅]: verdad [berˈdá] (complete elision more frequent than standard Castilian [ð]). (6) STRONG INTERVOCALIC LENITION: continued from Castilian, with further weakening in rapid speech. (7) /x/ → [h]: the velar fricative weakens to [h] in many Extremaduran registers — 'jota' [ˈhota]. Note: Extremaduran (estremeñu) is also used to refer to a distinct Asturleonese-descendant dialect spoken in the Sierra de Gata/Campo Arañuelo area (closer to ast-PT-x-medieval); this JSON models the Castilian-base variety. Sources: González Salgado (2000) *Cartografía lingüística de Extremadura*, Martínez González (2002), Zamora Vicente (1960) *Dialectología española*."
+  "notes": "Extremaduran (extremeñu) — the transitional Castilian-Leonese dialect of the Autonomous Community of Extremadura (Badajoz and Cáceres provinces). Classified variously as a southern dialect of Castilian or as an independent Ibero-Romance variety. KEY FEATURES: (1) SESEO (complete in most areas): /θ/ = /s/ — ⟨c⟩ before e/i and ⟨z⟩ → /s/, merging distinción into seseo. Some northern Cáceres retains partial distinción under Castilian prestige pressure. (2) ASPIRATION OF WORD-FINAL AND PRE-CONSONANTAL /s/: coda /s/ → [h] or [∅] — one of the most salient features; 'estos hombres' [ˈehtoh ˈõmbɾeh]. (3) F- ASPIRATION (rural/archaic): Latin F- → [h] in many rural areas (hacer [ˈhaθeɾ], hijo [ˈhiho]) — shared with Andalusian and attributed to Leonese substrate (Basque-contact F→H change). (4) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /j/ or /ʝ/ (majority of speakers; some older rural registers retain /ʎ/). (5) WORD-FINAL /d/ → [∅]: verdad [berˈdá] (complete elision more frequent than standard Castilian [ð]). (6) STRONG INTERVOCALIC LENITION: continued from Castilian, with further weakening in rapid speech. (7) /x/ → [h]: the velar fricative weakens to [h] in many Extremaduran registers — 'jota' [ˈhota]. Note: Extremaduran (estremeñu) is also used to refer to a distinct Asturleonese-descendant dialect spoken in the Sierra de Gata/Campo Arañuelo area (closer to ast-PT-x-medieval); this JSON models the Castilian-base variety. Sources: González Salgado (2000) *Cartografía lingüística de Extremadura*, Martínez González (2002), Zamora Vicente (1960) *Dialectología española*."
 }
