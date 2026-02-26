@@ -3,10 +3,10 @@
   "name": "Medieval Asturian-Leonese of Portugal",
   "family": "Asturleonese",
   "script": "Latin",
-  "parent": "ast-ES-x-leon",
-  "graphemes_base": "ast-ES-x-leon",
-  "allophones_base": "ast-ES-x-leon",
-  "positional_graphemes_base": "ast-ES-x-leon",
+  "parent": "ast-x-leon",
+  "graphemes_base": "ast-x-leon",
+  "allophones_base": "ast-x-leon",
+  "positional_graphemes_base": "ast-x-leon",
 
   "graphemes": {
     "ã": ["ɐ̃"],
@@ -66,7 +66,7 @@
 
   "ancestors": [
     {
-      "code": "ast-ES-x-leon",
+      "code": "ast-x-leon",
       "role": "parent",
       "weight": 0.65,
       "notes": "Medieval Leonese: the direct genetic ancestor, brought to Portucale during the Reconquista resettlement of the Trás-os-Montes region (9th–11th c. CE). This variety is the trunk from which Mirandese, Rionorese, and Guadramilese descend."
