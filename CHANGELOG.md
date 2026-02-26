@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Latin graphemes + portuguese 4way sibilant distinction [\#7](https://github.com/TigreGotico/orthography2ipa/pull/7) ([JarbasAl](https://github.com/JarbasAl))
 - refactor to json [\#6](https://github.com/TigreGotico/orthography2ipa/pull/6) ([JarbasAl](https://github.com/JarbasAl))
 - feat: positional graphemmes [\#4](https://github.com/TigreGotico/orthography2ipa/pull/4) ([JarbasAl](https://github.com/JarbasAl))
 - add release automations [\#3](https://github.com/TigreGotico/orthography2ipa/pull/3) ([JarbasAl](https://github.com/JarbasAl))
