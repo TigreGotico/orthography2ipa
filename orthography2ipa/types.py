@@ -115,6 +115,23 @@ class GraphemePosition(str, Enum):
     POSTTONIC = "posttonic"
     """default value when after the stressed/tonic syllable."""
 
+    BEFORE_VOWEL = "before_vowel"
+
+    AFTER_VOWEL = "after_vowel"
+
+    BEFORE_CONSONANT = "before_consonant"
+
+    AFTER_CONSONANT = "after_consonant"
+
+    BEFORE_A = "before_a"
+    BEFORE_E = "before_e"
+    BEFORE_I = "before_i"
+    BEFORE_O = "before_o"
+    BEFORE_U = "before_u"
+
+    CONSONANTAL = "consonantal"
+    VOCALIC = "vocalic"
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # AncestorRole
@@ -282,6 +299,17 @@ class LanguageSpec:
             object.__setattr__(self, "graphemes", {})
         if self.allophones is None:
             object.__setattr__(self, "allophones", {})
+
+        # filter values explicitly nulled during inheritance
+        for graph in set(self.graphemes.keys()):
+            if self.graphemes[graph] is None:
+                self.graphemes.pop(graph)
+        for graph in set(self.positional_graphemes.keys()):
+            if self.positional_graphemes[graph] is None:
+                self.positional_graphemes.pop(graph)
+        for graph in set(self.allophones.keys()):
+            if self.allophones[graph] is None:
+                self.allophones.pop(graph)
 
         # Normalise list to str
         if isinstance(self.notes, list):
