@@ -16,16 +16,20 @@ See ``data/SCHEMA.md`` for the JSON schema reference.
 """
 from __future__ import annotations
 
+import csv
 import json
 import warnings
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from orthography2ipa.types import (
     Ancestor,
     AncestorRole,
     GraphemePosition,
     LanguageSpec,
+    QualityTier,
+    SandhiRule,
+    ScriptType,
 )
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -99,15 +103,38 @@ def load_json_spec(code: str) -> LanguageSpec:
     parent_allophones_lang = raw.get("allophones_base")
     ancestors = raw.get("ancestors", [])
     ancestor_langs = [ancestor["code"] for ancestor in ancestors]
+    # Base specs (graphemes_base etc.) MUST be loadable — they provide data.
+    # Ancestor-only references are best-effort (ancestors may be proto-languages
+    # that exist only as stubs or not at all).
+    _base_parents = {parent_graphemes_lang, parent_allophones_lang,
+                     parent_positional_graphemes_lang}
+
     for parent in (parent_lang, parent_graphemes_lang, parent_positional_graphemes_lang,
                    parent_allophones_lang, *ancestor_langs):
         if parent == code:
-            continue  # TODO - error log, illegal
+            continue  # Skip self-reference cycles (parent == code); invalid per schema
         if parent and parent not in _specs:
             try:
                 _specs[parent] = load_json_spec(parent)
             except (KeyError, ValueError) as e:
-                raise ValueError(f"Failed to load '{parent}' (requested by '{code}'): {e}")
+                is_base_dep = parent in _base_parents
+                if is_base_dep:
+                    # Base dependency is required for data inheritance — clear it
+                    import warnings
+                    warnings.warn(f"Could not load base '{parent}' (requested by '{code}'): {e}")
+                    if parent == parent_graphemes_lang:
+                        parent_graphemes_lang = None
+                        raw["graphemes_base"] = None
+                    elif parent == parent_allophones_lang:
+                        parent_allophones_lang = None
+                        raw["allophones_base"] = None
+                    elif parent == parent_positional_graphemes_lang:
+                        parent_positional_graphemes_lang = None
+                        raw["positional_graphemes_base"] = None
+                elif parent == parent_lang:
+                    # Parent language is needed for ancestry but not data — tolerate
+                    parent_lang = None
+                # else: ancestor-only reference — silently skip
 
     # merge parent data
     graphemes = raw.get("graphemes", {})
@@ -139,6 +166,23 @@ def load_json_spec(code: str) -> LanguageSpec:
     except Exception as e:
         raise ValueError(f"Failed to load ancestors for '{code}'") from e
 
+    # Parse sandhi rules
+    sandhi_rules = ()
+    raw_sandhi = raw.get("sandhi_rules", [])
+    if raw_sandhi:
+        sandhi_rules = tuple(
+            SandhiRule(
+                id=sr["id"],
+                name=sr["name"],
+                left_context=sr["left_context"],
+                right_context=sr["right_context"],
+                transform=sr["transform"],
+                obligatory=sr.get("obligatory", True),
+                notes=sr.get("notes", ""),
+            )
+            for sr in raw_sandhi
+        )
+
     spec = LanguageSpec(
         code=raw["code"],
         name=raw["name"],
@@ -150,6 +194,12 @@ def load_json_spec(code: str) -> LanguageSpec:
         parent=parent_lang,
         ancestors=ancestors,
         notes=raw.get("notes", ""),
+        quality=raw.get("quality", QualityTier.RESEARCH),
+        script_type=raw.get("script_type", ScriptType.ALPHABET),
+        inherent_vowel=raw.get("inherent_vowel"),
+        iso639_3=raw.get("iso639_3"),
+        sandhi_rules=sandhi_rules,
+        tone_inventory=raw.get("tone_inventory"),
     )
 
     _specs[code] = spec
@@ -180,6 +230,56 @@ def load_all_json_specs() -> Dict[str, LanguageSpec]:
 def available_json_codes() -> List[str]:
     """Return sorted list of all language codes with JSON data files."""
     return sorted(_index.keys())
+
+
+def load_lexicon(code: str) -> Optional[Dict[str, str]]:
+    """Load the bundled IPA lexicon for a language code, if one exists.
+
+    Reads the CSV file declared in the language's JSON ``lexicon_csv`` field.
+    The CSV must have at minimum ``word`` and ``ipa`` columns; additional
+    columns (``source``, ``pt_equivalent``) are ignored.
+
+    Parameters
+    ----------
+    code : str
+        BCP-47 language code (e.g. ``"ast-PT-x-rionor"``).
+
+    Returns
+    -------
+    Dict[str, str] or None
+        Mapping of orthographic word → best IPA string, or ``None`` if the
+        language has no bundled lexicon or the file cannot be found.
+
+    Examples
+    --------
+    >>> lex = load_lexicon("ast-PT-x-rionor")
+    >>> lex["abajo"]
+    'aˈbaʒo'
+    """
+    if code not in _index:
+        return None
+    lang_file: Path = _index[code]
+    with lang_file.open() as f:
+        raw = json.load(f)
+    csv_rel = raw.get("lexicon_csv")
+    if not csv_rel:
+        return None
+    csv_path = _DATA_DIR / csv_rel
+    if not csv_path.exists():
+        warnings.warn(
+            f"lexicon_csv '{csv_rel}' declared for '{code}' but file not found at {csv_path}",
+            stacklevel=2,
+        )
+        return None
+    lexicon: Dict[str, str] = {}
+    with csv_path.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            word = row.get("word", "").strip().lower()
+            ipa = row.get("ipa", "").strip()
+            if word and ipa:
+                lexicon[word] = ipa
+    return lexicon
 
 
 _index_files()

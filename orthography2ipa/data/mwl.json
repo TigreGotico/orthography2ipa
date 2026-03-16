@@ -1,0 +1,27 @@
+{
+  "code": "ast-PT-x-rionor",
+  "name": "Rionorese",
+  "family": "Asturleonese",
+  "script": "Latin",
+  "parent": "ast-PT-x-medieval",
+  "graphemes_base": "ast-PT-x-medieval",
+  "allophones_base": "ast-PT-x-medieval",
+  "positional_graphemes_base": "ast-PT-x-medieval",
+
+  "ancestors": [
+    {
+      "code": "ast-PT-x-medieval",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": ""
+    },
+    {
+      "code": "pt-PT-x-medieval",
+      "role": "adstrate",
+      "weight": 0.10,
+      "notes": "Old Portuguese (Aviz-period) adstrate: as Portuguese consolidated as the state language, the Leonese-speaking communities of Miranda, Rionor, and Guadramil faced intensifying pressure. Portuguese orthographic conventions (lh, nh, ã) penetrated the writing tradition."
+    }
+  ],
+
+  "notes": ""
+}

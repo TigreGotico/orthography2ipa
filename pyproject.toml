@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "orthography2ipa"
 dynamic = ["version", "dependencies"]
-description = "Linguistically motivated grapheme-to-IPA and allophone mappings for 20+ languages"
+description = "Linguistically motivated grapheme-to-IPA and allophone mappings for 308+ language codes"
 readme = "README.md"
 license = {text = "Apache-2.0"}
 requires-python = ">=3.9"
@@ -29,9 +29,18 @@ keywords = ["ipa", "phonetics", "phonology", "grapheme", "allophone", "linguisti
 version = {attr = "orthography2ipa.version.VERSION_STR"}
 dependencies = {file = ["requirements.txt"]}
 
+[project.optional-dependencies]
+arabic = ["onnxruntime"]
+
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"
 Issues = "https://github.com/TigreGotico/orthography2ipa/issues"
 
+[project.entry-points."orthography2ipa.g2p"]
+arabic = "orthography2ipa.plugins.arabic_g2p:ArabicG2PPlugin"
+
 [tool.setuptools.packages.find]
 include = ["orthography2ipa*"]
+
+[tool.setuptools.package-data]
+"orthography2ipa" = ["data/*.json", "data/SCHEMA.md", "data/lexicons/*.csv"]
