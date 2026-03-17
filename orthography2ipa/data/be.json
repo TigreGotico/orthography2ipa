@@ -275,5 +275,37 @@
   "parent": "sla",
   "notes": "Standard Belarusian (Tarashkevitsa/Narkamaŭka). Distinctive features: ⟨г⟩ = [ɣ] (voiced velar fricative, not plosive), ⟨ў⟩ = [w] (unique letter for non-syllabic /w/), pervasive аканне (unstressed /ɔ/ → [a]), яканне (unstressed /ɛ/ → [i] after soft consonants), full affricate writing: ⟨дз⟩ = [dz], ⟨дж⟩ = [dʒ].",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mayo1993",
+      "author": "Mayo, P.",
+      "year": 1993,
+      "title": "Belorussian",
+      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+      "url": "Routledge",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "timberlake2004",
+      "author": "Timberlake, A.",
+      "year": 2004,
+      "title": "A Reference Grammar of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

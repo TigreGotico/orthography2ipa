@@ -285,5 +285,37 @@
   "notes": "Reconstructed Late Proto-Slavic (c. 600–800 CE). Key features: open syllable law (no closed syllables), palatalisation alternations (three Slavic palatalisations), nasal vowels /ẽ õ/, yers /ĭ ŭ/, yat /æː/. Transcription follows standard Slavicist convention.",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "sla"
+  "iso639_3": "sla",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "carlton1991",
+      "author": "Carlton, T.R.",
+      "year": 1991,
+      "title": "Introduction to the Phonological History of the Slavic Languages",
+      "publisher": "Slavica",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

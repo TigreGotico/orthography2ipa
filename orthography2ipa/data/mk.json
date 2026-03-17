@@ -210,5 +210,37 @@
   "parent": "sla",
   "notes": "Standard Macedonian, codified 1945. South Slavic, closely related to Bulgarian. Analytic case system (lost inflection). Fixed antepenultimate stress (third-from-last syllable). Unique letters: ⟨ѕ⟩ = [dz], ⟨ѓ⟩ = [ɟ], ⟨ќ⟩ = [c]. Definite article suffixed in three forms: -от/-та/-то (definite), -ов/-ва/-во (proximal), -он/-на/-но (distal). ⟨љ⟩ = [ʎ], ⟨њ⟩ = [ɲ].",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "friedman2001",
+      "author": "Friedman, V.A.",
+      "year": 2001,
+      "title": "Macedonian",
+      "publisher": "Lincom Europa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

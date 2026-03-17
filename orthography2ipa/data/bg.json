@@ -231,5 +231,37 @@
   "parent": "sla",
   "notes": "Standard Bulgarian. Analytic Slavic language (lost case system). ⟨ъ⟩ represents the unique phoneme /ɤ/ (back unrounded mid vowel). ⟨щ⟩ = [ʃt] (South Slavic, contrasting with East Slavic [ɕː]). Soft consonants occur mainly before /ɛ/ and /i/. Definite article is a suffix, not a separate word.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "leafgren2011",
+      "author": "Leafgren, J.",
+      "year": 2011,
+      "title": "A Concise Bulgarian Grammar",
+      "publisher": "University of Wisconsin",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

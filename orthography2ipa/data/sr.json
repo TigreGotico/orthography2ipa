@@ -292,5 +292,37 @@
   "parent": "sla",
   "notes": "Standard Serbian (Štokavian dialect, Ekavian variant in Serbia). Written in Cyrillic (primary) and Latin (Gaj) scripts. Four-accent system: short/long × falling/rising pitch accent. Two palatal affricate pairs: ⟨ћ/ć⟩ = [tɕ], ⟨ч/č⟩ = [tʃ]; ⟨ђ/đ⟩ = [dʑ], ⟨џ/dž⟩ = [dʒ]. No vowel reduction (unlike Russian). Syllabic /r̩/.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "browne_1993",
+      "author": "Browne, W.",
+      "year": 1993,
+      "title": "Serbo-Croat",
+      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+      "url": "Routledge",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

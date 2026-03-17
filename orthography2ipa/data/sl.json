@@ -224,5 +224,37 @@
   "parent": "sla",
   "notes": "Standard Slovenian. Unique among Slavic languages: retains a dual number in grammar. ⟨l⟩ → [w] in syllable coda (e.g. *delal* [dɛˈlaw]). ⟨v⟩ is variable [v ~ ʋ ~ w ~ f] depending on context. Standard language has phonemic pitch accent (tone); many dialects are toneless. No palatal stops (unlike Czech/Slovak), but ⟨lj nj⟩ = [ʎ ɲ].",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "priestly1993",
+      "author": "Priestly, T.M.S.",
+      "year": 1993,
+      "title": "Slovenian",
+      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+      "url": "Routledge",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

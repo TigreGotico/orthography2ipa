@@ -251,5 +251,37 @@
   "parent": "sla",
   "notes": "Old Church Slavonic (also called Old Bulgarian), the first literary Slavic language, codified by Sts Cyril & Methodius (9th c.). South Slavic base with nasal vowels /ẽ õ/, yers /ĭ ŭ/, yat /æː/. ⟨щ⟩ has South Slavic value [ʃt] (vs East Slavic [ɕː]). Graphemes follow early Cyrillic; Glagolitic equivalents omitted.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lunt2001",
+      "author": "Lunt, H.G.",
+      "year": 2001,
+      "title": "Old Church Slavonic Grammar (7th ed.)",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

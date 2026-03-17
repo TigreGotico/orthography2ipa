@@ -300,5 +300,37 @@
   "parent": "sla",
   "notes": "Standard Slovak. Close to Czech but distinct in several ways: ⟨h⟩ = [ɦ] (like Czech, not [h]); diphthongs ⟨ia ie iu ô⟩; syllabic liquids ⟨r l⟩ and their long counterparts ⟨ŕ ĺ⟩; rhythmic law: two consecutive long syllables not permitted (second long vowel shortens). Palatal consonant pair: ⟨ď ť⟩ = [ɟ c].",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "short1993b",
+      "author": "Short, D.",
+      "year": 1993,
+      "title": "Slovak",
+      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+      "url": "Routledge",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

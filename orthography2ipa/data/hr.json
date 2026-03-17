@@ -203,5 +203,37 @@
   "parent": "sla",
   "notes": "Standard Croatian (Štokavian Ijekavian dialect basis). Latin script only (unlike Serbian). Shares the two palatal affricate pairs with Serbian: ⟨ć⟩ = [tɕ] (softer), ⟨č⟩ = [tʃ] (harder); ⟨đ⟩ = [dʑ], ⟨dž⟩ = [dʒ]. Four-pitch-accent system. Syllabic /r̩/ (e.g. *prst* 'finger'). Ijekavian: Proto-Slavic yat /æː/ → ije/je (vs Serbian Ekavian e).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "browne_1993",
+      "author": "Browne, W.",
+      "year": 1993,
+      "title": "Serbo-Croat",
+      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+      "url": "Routledge",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

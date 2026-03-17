@@ -285,5 +285,37 @@
   "parent": "sla",
   "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o/ → [ɐ]), г = [ɡ] plosive, final obstruent devoicing.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "timberlake2004",
+      "author": "Timberlake, A.",
+      "year": 2004,
+      "title": "A Reference Grammar of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "padgett_tabain2005",
+      "author": "Padgett, J. & Tabain, M.",
+      "year": 2005,
+      "title": "Adaptive Dispersion Theory and Phonological Vowel Reduction in Russian",
+      "publisher": "Phonetica",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

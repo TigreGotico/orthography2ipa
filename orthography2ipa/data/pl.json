@@ -267,5 +267,37 @@
   "parent": "ine",
   "notes": "Standard Polish. Three sibilant series: alveolar /s z ts dz/, retroflex /ʂ ʐ tʂ dʐ/, alveolo-palatal /ɕ ʑ tɕ dʑ/. Nasal vowels ⟨ą ę⟩ realise as VN sequences before stops.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "swan2002",
+      "author": "Swan, O.",
+      "year": 2002,
+      "title": "A Grammar of Contemporary Polish",
+      "publisher": "Slavica Publishers",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "szpyra_kozlowski2002",
+      "author": "Szpyra-Kozłowski, J.",
+      "year": 2002,
+      "title": "Wprowadzenie do współczesnej fonologii",
+      "publisher": "Wydawnictwo UMCS",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
