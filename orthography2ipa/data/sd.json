@@ -325,5 +325,37 @@
   ],
   "notes": "Standard Sindhi (Pakistan/India). Typologically remarkable: four implosives /ɓ ɗ ʄ ɠ/ — rare in Indo-Aryan. Full four-way laryngeal contrast plus implosives. Written in Perso-Arabic (Pakistan), Devanagari (India), and the Khudabadi script (traditional).",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "trump1872",
+      "author": "Trump, E.",
+      "year": 1872,
+      "title": "Grammar of the Sindhi Language",
+      "publisher": "Trübner",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

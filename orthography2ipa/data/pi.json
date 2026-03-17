@@ -265,5 +265,37 @@
   ],
   "notes": "Pali — canonical language of Theravāda Buddhism (c. 3rd c. BCE). Middle Indo-Aryan: simplifies Sanskrit consonant clusters (geminates instead of heteroorganic clusters), loses distinction between palatal sibilant ⟨ś⟩ and retroflex ⟨ṣ⟩ (both → /s/). Romanisation follows PTS/Velthuis convention.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "warder1963",
+      "author": "Warder, A.K.",
+      "year": 1963,
+      "title": "Introduction to Pali",
+      "publisher": "Pali Text Society",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

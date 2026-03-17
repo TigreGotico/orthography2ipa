@@ -325,5 +325,37 @@
   "notes": "Standard Nepali (Nepal's national language). Closely related to Hindi; ⟨ह⟩ = [h] (voiceless, not [ɦ]). No Perso-Arabic loan phonemes /q x ɣ/. Four-way laryngeal contrast; retroflex series phonemic.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "matthews1984",
+      "author": "Matthews, D.J.",
+      "year": 1984,
+      "title": "A Course in Nepali",
+      "publisher": "SOAS",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

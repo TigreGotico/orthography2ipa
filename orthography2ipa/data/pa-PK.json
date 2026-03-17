@@ -8,5 +8,37 @@
   "parent": "pa",
   "notes": "Western Punjabi as spoken in Pakistan, written in Shahmukhi (Perso-Arabic) script. Phonological system closely parallel to Eastern Punjabi but with stronger Persian/Arabic lexical influence.",
   "quality": "stub",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "shackle1972",
+      "author": "Shackle, C.",
+      "year": 1972,
+      "title": "Punjabi",
+      "publisher": "University of London Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

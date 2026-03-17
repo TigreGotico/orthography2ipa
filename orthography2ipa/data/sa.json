@@ -360,5 +360,37 @@
   "notes": "Classical Sanskrit (Pāṇinian standard, c. 4th c. BCE onward). Five-point place-of-articulation system: velar, palatal, retroflex, dental, labial. Four-way laryngeal contrast (plain/aspirated × voiced/voiceless). No short /e/ or /o/ (only long). ⟨व⟩ = [ʋ] labiodental approximant. Sandhi rules are extensive but modeled at the allophone level here.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "coulson1992",
+      "author": "Coulson, M.",
+      "year": 1992,
+      "title": "Sanskrit: An Introduction to the Classical Language",
+      "publisher": "Hodder & Stoughton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

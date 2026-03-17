@@ -348,5 +348,37 @@
   ],
   "notes": "Standard Urdu (Pakistan national language, Indian Muslim register). Phonologically near-identical to Hindi but with additional phonemes from Persian/Arabic loans: /q x ɣ f z/. Written right-to-left in Nastaliq (a form of Perso-Arabic script). Four-way laryngeal contrast: plain/aspirated × voiced/voiceless. Retroflex series: /ʈ ɖ ɽ/ graphically distinct from dentals.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "platts1884",
+      "author": "Platts, J.T.",
+      "year": 1884,
+      "title": "A Grammar of the Hindustani or Urdu Language",
+      "publisher": "W.H. Allen",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -336,5 +336,37 @@
   "quality": "skeleton",
   "script_type": "abugida",
   "inherent_vowel": "ə",
-  "iso639_3": "kok"
+  "iso639_3": "kok",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "almeida1989",
+      "author": "Almeida, T.",
+      "year": 1989,
+      "title": "A Description of Konkani",
+      "publisher": "Goa University",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -317,5 +317,37 @@
   "quality": "skeleton",
   "script_type": "abugida",
   "inherent_vowel": "ə",
-  "iso639_3": "mai"
+  "iso639_3": "mai",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "jha1958",
+      "author": "Jha, S.",
+      "year": 1958,
+      "title": "The Formation of the Maithili Language",
+      "publisher": "Luzac",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

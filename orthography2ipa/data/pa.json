@@ -348,5 +348,37 @@
   "notes": "Eastern Punjabi (Gurmukhi script, India). Typologically remarkable: phonemic tone system (low/mid/high) developed from former breathy/aspirate contrasts. ⟨ਘ ਝ ਢ ਧ ਭ⟩ historically breathy-voiced, now trigger low tone. ⟨ਹ⟩ triggers low tone on preceding/following vowel when not initial. Western Punjabi (Shahmukhi, Pakistan) written in Perso-Arabic script.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "shackle1972",
+      "author": "Shackle, C.",
+      "year": 1972,
+      "title": "Punjabi",
+      "publisher": "University of London Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -372,5 +372,37 @@
   "notes": "Standard Hindi (Khaṛī Bolī). 4-way laryngeal contrast: voiceless, aspirated, voiced, breathy-voiced. Nukta letters for Perso-Arabic loans may not be distinguished by all speakers.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "shapiro1989",
+      "author": "Shapiro, M.",
+      "year": 1989,
+      "title": "Hindi",
+      "publisher": "in B. Comrie (ed.), The World's Major Languages",
+      "url": "Routledge",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

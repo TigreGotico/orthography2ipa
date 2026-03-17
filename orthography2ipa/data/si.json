@@ -392,5 +392,37 @@
   "notes": "Sinhala (Sri Lanka). Typologically diverges from mainland IA: prenasalised stops /ᵐb ⁿd ⁿɖ ᵑɡ ⁿdʒ/ are phonemic (rare in IA); vowels /æ æː/ absent in most other IA languages; dental stops /t d/ distinct from retroflex /ʈ ɖ/ (no dental diacritic). Diglossia: formal (literary) vs. colloquial speech differ markedly.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "a"
+  "inherent_vowel": "a",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "gair1998",
+      "author": "Gair, J.W.",
+      "year": 1998,
+      "title": "Studies in South Asian Linguistics",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

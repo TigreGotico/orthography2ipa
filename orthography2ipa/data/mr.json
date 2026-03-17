@@ -365,5 +365,37 @@
   "notes": "Standard Marathi (Maharashtra). ⟨ळ⟩ = [ɭ] retroflex lateral phonemic. Has ⟨ऍ⟩ = [ɛ] and ⟨ऑ⟩ = [ɔ] (loanword phonemes). Four-way laryngeal contrast. Schwa deletion applies systematically.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "dhongde_wali2009",
+      "author": "Dhongde, R.V. & Wali, K.",
+      "year": 2009,
+      "title": "Marathi",
+      "publisher": "John Benjamins",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

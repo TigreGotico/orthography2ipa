@@ -342,5 +342,37 @@
   ],
   "notes": "Kashmiri (Kāśmīrī), a Dardic language of Jammu & Kashmir. Rich vowel inventory including front rounded and central vowels. Tonal/pitch-accent distinctions reported in some analyses. Three scripts: Sharada (ancient), Nastaliq (modern official), Devanagari (India official). Retroflex, dental, palatal, and velar distinctions maintained.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "wali_koul1997",
+      "author": "Wali, K. & Koul, O.N.",
+      "year": 1997,
+      "title": "Kashmiri: A Cognitive-Descriptive Grammar",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

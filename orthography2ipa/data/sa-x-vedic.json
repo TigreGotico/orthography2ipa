@@ -369,5 +369,37 @@
   "notes": "Vedic Sanskrit (c. 1500–600 BCE), earlier than Classical Sanskrit. Retains pitch accent system (udātta/anudātta/svarita). Includes retroflex lateral ⟨ळ⟩ /ɭ/ lost in Classical Sanskrit. Source: Macdonell (1910), *Vedic Grammar*.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "macdonell1910",
+      "author": "Macdonell, A.A.",
+      "year": 1910,
+      "title": "Vedic Grammar",
+      "publisher": "Trübner",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
