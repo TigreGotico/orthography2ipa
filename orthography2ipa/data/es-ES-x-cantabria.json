@@ -24,7 +24,8 @@
       "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Spanish_phonology"
     },
     {
       "id": "penny2002",
@@ -46,5 +47,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Cantabrian_dialect"
 }
