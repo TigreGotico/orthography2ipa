@@ -171,5 +171,37 @@
   },
   "notes": "Proto-Kuki-Chin (~2000–1500 BCE). Reconstructed ancestor of Meitei/Manipuri, Mizo/Lushai, Thadou, Hmar, Paite. Sino-Tibetan > Tibeto-Burman > Kuki-Chin-Naga. Tone from lost final stops; Cr-/Cl- clusters; sesquisyllabic. Refs: VanBik (2009), Matisoff (2003).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "chelliah1997",
+      "author": "Chelliah, S.L.",
+      "year": 1997,
+      "title": "A Grammar of Meithei",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

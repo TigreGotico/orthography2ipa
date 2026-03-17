@@ -314,5 +314,37 @@
   },
   "notes": "Hungarian (Magyar). Uralic language with 14-vowel system (7 short + 7 long), vowel harmony, palatal stops /c, ɟ/, and rich agglutinative morphology. Referenced as adstrate for Romanian due to centuries of Transylvanian contact (Siptár & Törkenczy 2000).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "abondolo1998",
+      "author": "Abondolo, D. (ed.)",
+      "year": 1998,
+      "title": "The Uralic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "kornai1994",
+      "author": "Kornai, A.",
+      "year": 1994,
+      "title": "Hungarian Vowel Harmony",
+      "publisher": "in I. Kenesei & G. Vago (eds.), Approaches to Hungarian",
+      "url": "JATE",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "rounds2001",
+      "author": "Rounds, C.H.",
+      "year": 2001,
+      "title": "Hungarian: An Essential Grammar",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

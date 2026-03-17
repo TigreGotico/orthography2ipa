@@ -218,5 +218,37 @@
   "notes": "Meitei/Manipuri (Manipur, India). Tibeto-Burman, Kuki-Chin-Mizo branch. Phonemic tone (falling vs. non-falling in stressed syllable). Meitei Mayek script (traditional, restored 2013 as official). Also written in Bengali script officially.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "iso639_3": "mni"
+  "iso639_3": "mni",
+  "sources": [
+    {
+      "id": "chelliah1997",
+      "author": "Chelliah, S.L.",
+      "year": 1997,
+      "title": "A Grammar of Meithei",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "gordon2005",
+      "author": "Gordon, R.G. (ed.)",
+      "year": 2005,
+      "title": "Ethnologue: Languages of the World (15th ed.)",
+      "publisher": "SIL International",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

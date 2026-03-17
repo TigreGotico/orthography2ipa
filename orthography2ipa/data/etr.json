@@ -124,5 +124,37 @@
   "notes": "Etruscan (8th c. BCE – 1st c. CE). Non-IE language isolate (or Tyrrhenian family with Rhaetic and Lemnian). ~13,000 inscriptions, READABLE but only partially translated. 4-vowel system (no /o/!), aspirate stops prominent. MASSIVE influence on Latin: alphabet, vocabulary (persona, fenestra, histrio, lanista, arena, elementum), and through Latin on ALL Romance languages. Pre-Roman substrate of Tuscany; possibly influenced gorgia toscana (Bonfante & Bonfante 2002, Wallace 2008).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "etr"
+  "iso639_3": "etr",
+  "sources": [
+    {
+      "id": "bonfante_bonfante2002",
+      "author": "Bonfante, G. & Bonfante, L.",
+      "year": 2002,
+      "title": "The Etruscan Language: An Introduction",
+      "publisher": "Manchester University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "pallottino1975",
+      "author": "Pallottino, M.",
+      "year": 1975,
+      "title": "The Etruscans",
+      "publisher": "Penguin",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

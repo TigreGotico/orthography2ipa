@@ -274,5 +274,37 @@
   },
   "notes": "Standard Finnish. Highly transparent orthography. Phonemic consonant and vowel length. 18 diphthongs are all phonemic.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "abondolo1998",
+      "author": "Abondolo, D. (ed.)",
+      "year": 1998,
+      "title": "The Uralic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hakulinen1979",
+      "author": "Hakulinen, L.",
+      "year": 1979,
+      "title": "The Structure and Development of the Finnish Language",
+      "publisher": "Indiana University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
