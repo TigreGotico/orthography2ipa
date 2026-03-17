@@ -262,5 +262,37 @@
   ],
   "notes": "Standard Modern Greek (Demotic). 5-vowel system despite many graphemic representations. Digraphs ⟨μπ⟩, ⟨ντ⟩, ⟨γκ⟩ represent voiced stops, with prenasalisation medially.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "arvaniti1999",
+      "author": "Arvaniti, A.",
+      "year": 1999,
+      "title": "Greek",
+      "publisher": "Journal of the International Phonetic Association",
+      "url": null,
+      "pages": "167-172",
+      "notes": null
+    },
+    {
+      "id": "holton_mackridge_philippaki1997",
+      "author": "Holton, D., Mackridge, P. & Philippaki-Warburton, I.",
+      "year": 1997,
+      "title": "Greek: A Comprehensive Grammar of the Modern Language",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

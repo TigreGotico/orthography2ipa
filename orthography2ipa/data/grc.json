@@ -333,5 +333,37 @@
     ]
   },
   "parent": "ine",
-  "notes": "Reconstructed Classical Attic Greek (5th–4th c. BCE) per Allen (1968). Key features: (1) ⟨φ θ χ⟩ = aspirated stops [pʰ tʰ kʰ], NOT fricatives. (2) ⟨β δ γ⟩ = voiced stops [b d ɡ], NOT fricatives. (3) ⟨υ⟩ = front rounded [y]. (4) ⟨ζ⟩ = [zd]. (5) ⟨ει ου⟩ already monophthongised to [eː oː]. (6) Pitch accent (not captured segmentally). (7) Rough breathing = [h]. (8) ⟨γ⟩ before velars = [ŋ]. (9) Geminate consonants phonemic. (10) /r/ probably trilled, voiceless word-initially [r̥]."
+  "notes": "Reconstructed Classical Attic Greek (5th–4th c. BCE) per Allen (1968). Key features: (1) ⟨φ θ χ⟩ = aspirated stops [pʰ tʰ kʰ], NOT fricatives. (2) ⟨β δ γ⟩ = voiced stops [b d ɡ], NOT fricatives. (3) ⟨υ⟩ = front rounded [y]. (4) ⟨ζ⟩ = [zd]. (5) ⟨ει ου⟩ already monophthongised to [eː oː]. (6) Pitch accent (not captured segmentally). (7) Rough breathing = [h]. (8) ⟨γ⟩ before velars = [ŋ]. (9) Geminate consonants phonemic. (10) /r/ probably trilled, voiceless word-initially [r̥].",
+  "sources": [
+    {
+      "id": "allen1987",
+      "author": "Allen, W.S.",
+      "year": 1987,
+      "title": "Vox Graeca: A Guide to the Pronunciation of Classical Greek (3rd ed.)",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
