@@ -7,29 +7,38 @@
   "graphemes_base": "ast",
   "allophones_base": "ast",
   "positional_graphemes_base": "ast",
-
   "graphemes": {
-    "h": ["h"],
-    "ḷḷ": ["tʃ"],
-    "l.l": ["tʃ"]
+    "h": [
+      "h"
+    ],
+    "ḷḷ": [
+      "tʃ"
+    ],
+    "l.l": [
+      "tʃ"
+    ]
   },
-
   "allophones": {
-    "h": ["h"]
+    "h": [
+      "h"
+    ]
   },
-
   "positional_graphemes": {
     "f": {
-      "word_initial": ["h", "f"],
-      "intervocalic": ["f"]
+      "word_initial": [
+        "h",
+        "f"
+      ],
+      "intervocalic": [
+        "f"
+      ]
     }
   },
-
   "ancestors": [
     {
       "code": "ast",
       "role": "parent",
-      "weight": 0.90,
+      "weight": 0.9,
       "notes": "Central/Standard Asturian, immediate parent variety."
     },
     {
@@ -45,6 +54,27 @@
       "notes": "Suebi superstrate, stronger in western Asturias (Suebi kingdom centred in Gallaecia)."
     }
   ],
-
-  "notes": "Western Asturian (Asturianu occidental). Spoken in the western parishes of Asturias, bordering Galicia. KEY DIALECTAL FEATURES: (1) Latin F- aspiration: word-initial /f/ → [h] (e.g. 'filu' → [hiɾu]), written ⟨h⟩ in this dialect — shared with Western Galician, Gascon, and Medieval Castilian. (2) Che vaqueira: ⟨ḷḷ⟩ / ⟨l.l⟩ = a palato-alveolar affricate [tʃ] from Latin PL-, CL-, FL- (e.g. 'ḷḷover' < PLOVERE), a hallmark of the vaqueiros de alzada. (3) ⟨h⟩ = [h] (phonemic aspiration, unlike silent h of Central). (4) Some degree of l-frication absent in central varieties. Sources: García Arias (1974), Neira Martínez (1955), Canellada (1944)."
+  "notes": "Western Asturian (Asturianu occidental). Spoken in the western parishes of Asturias, bordering Galicia. KEY DIALECTAL FEATURES: (1) Latin F- aspiration: word-initial /f/ → [h] (e.g. 'filu' → [hiɾu]), written ⟨h⟩ in this dialect — shared with Western Galician, Gascon, and Medieval Castilian. (2) Che vaqueira: ⟨ḷḷ⟩ / ⟨l.l⟩ = a palato-alveolar affricate [tʃ] from Latin PL-, CL-, FL- (e.g. 'ḷḷover' < PLOVERE), a hallmark of the vaqueiros de alzada. (3) ⟨h⟩ = [h] (phonemic aspiration, unlike silent h of Central). (4) Some degree of l-frication absent in central varieties. Sources: García Arias (1974), Neira Martínez (1955), Canellada (1944).",
+  "sources": [
+    {
+      "id": "garcia_arias2003",
+      "author": "García Arias, X.Ll.",
+      "year": 2003,
+      "title": "Gramática histórica de la lengua asturiana",
+      "publisher": "Academia de la Llingua Asturiana",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

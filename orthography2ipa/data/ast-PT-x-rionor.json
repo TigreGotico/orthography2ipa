@@ -7,68 +7,163 @@
   "graphemes_base": "ast-PT-x-medieval",
   "allophones_base": "ast-PT-x-medieval",
   "positional_graphemes_base": "ast-PT-x-medieval",
-
   "graphemes": {
-    "tch": ["tʃ"],
-
-    "iê": ["je"],
-    "uâ": ["wa"],
-    "uô": ["wɔ"],
-
-    "ll": ["ʎ"],
-    "rr": ["r"],
-    "ss": ["s"],
-
-    "ai": ["aj"],
-    "au": ["aw"],
-    "ei": ["ej"],
-    "ou": ["ow"],
-    "oi": ["oj"],
-    "ui": ["uj"],
-    "iu": ["ju"],
-
-    "á": ["a"],
-    "à": ["a"],
-    "â": ["a"],
-    "é": ["ɛ"],
-    "è": ["ɛ"],
-    "ê": ["e"],
-    "í": ["i"],
-    "ó": ["ɔ"],
-    "ò": ["ɔ"],
-    "ô": ["o"],
-    "ú": ["u"],
-
-    "ch": ["ʃ"],
-    "v": ["b"],
-    "ç": ["θ"],
-    "z": ["θ"],
-    "c": ["k", "θ"],
-    "g": ["ɡ", "x"],
-
-    "b": ["b"],
-    "d": ["d"],
-    "f": ["f"],
-    "j": ["ʒ"],
-    "k": ["k"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "p": ["p"],
-    "r": ["ɾ"],
-    "s": ["s"],
-    "t": ["t"],
-    "w": ["w"],
-    "x": ["ʃ"],
-    "y": ["j"],
-
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"]
+    "tch": [
+      "tʃ"
+    ],
+    "iê": [
+      "je"
+    ],
+    "uâ": [
+      "wa"
+    ],
+    "uô": [
+      "wɔ"
+    ],
+    "ll": [
+      "ʎ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "ss": [
+      "s"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "iu": [
+      "ju"
+    ],
+    "á": [
+      "a"
+    ],
+    "à": [
+      "a"
+    ],
+    "â": [
+      "a"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "ô": [
+      "o"
+    ],
+    "ú": [
+      "u"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+    "v": [
+      "b"
+    ],
+    "ç": [
+      "θ"
+    ],
+    "z": [
+      "θ"
+    ],
+    "c": [
+      "k",
+      "θ"
+    ],
+    "g": [
+      "ɡ",
+      "x"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "y": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
   },
-
   "allophones": {
     "v": null,
     "t͡s": null,
@@ -77,48 +172,84 @@
     "z̺": null,
     "s̻": null,
     "z̻": null,
-
-    "b": ["b", "β"],
-    "θ": ["θ"],
-    "x": ["x"],
-    "ʒ": ["ʒ"],
-    "r": ["r"],
-    "ɾ": ["ɾ"]
+    "b": [
+      "b",
+      "β"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɾ": [
+      "ɾ"
+    ]
   },
-
   "positional_graphemes": {
     "c": {
-      "before_e": ["θ"],
-      "before_i": ["θ"]
+      "before_e": [
+        "θ"
+      ],
+      "before_i": [
+        "θ"
+      ]
     },
     "g": {
-      "before_e": ["x"],
-      "before_i": ["x"]
+      "before_e": [
+        "x"
+      ],
+      "before_i": [
+        "x"
+      ]
     },
     "r": {
-      "word_initial": ["r"],
-      "intervocalic": ["ɾ"],
-      "onset": ["ɾ"]
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "onset": [
+        "ɾ"
+      ]
     },
     "v": {
-      "word_initial": ["b"],
-      "intervocalic": ["b"]
+      "word_initial": [
+        "b"
+      ],
+      "intervocalic": [
+        "b"
+      ]
     },
     "qu": {
-      "before_e": ["k"],
-      "before_i": ["k"],
-      "before_vowel": ["kw"]
+      "before_e": [
+        "k"
+      ],
+      "before_i": [
+        "k"
+      ],
+      "before_vowel": [
+        "kw"
+      ]
     },
     "n": {
-      "word_final": [""]
+      "word_final": [
+        ""
+      ]
     }
   },
-
   "ancestors": [
     {
       "code": "ast-PT-x-medieval",
       "role": "parent",
-      "weight": 0.70,
+      "weight": 0.7,
       "notes": ""
     },
     {
@@ -136,12 +267,42 @@
     {
       "code": "pt-PT-x-medieval",
       "role": "adstrate",
-      "weight": 0.10,
+      "weight": 0.1,
       "notes": "Old Portuguese (Aviz-period) adstrate: as Portuguese consolidated as the state language, the Leonese-speaking communities of Miranda, Rionor, and Guadramil faced intensifying pressure. Portuguese orthographic conventions (lh, nh, ã) penetrated the writing tradition."
     }
   ],
-
   "lexicon_csv": "lexicons/ast-PT-x-rionor.csv",
-
-  "notes": "Rionorese (mirandês de Rionor / Rionorês), the nearly-extinct Asturleonese variety spoken in Rio de Onor (PT) / Rihonor de Castilla (ES), a single village straddling the Portuguese-Spanish border in Trás-os-Montes. Fewer than 100 elderly speakers as of the early 2000s (Macias 2003). DIVERGENCES FROM PARENT (ast-PT-x-medieval): (1) FULL BETACISM: /v/ → /b/ unconditionally — the /v/~/b/ contrast preserved in Mirandese and medieval Leonese is lost. ⟨v⟩ and ⟨b⟩ both surface as /b/ (with intervocalic fricative allophone [β]). (2) DENTAL FRICATIVE MERGER: the medieval 4-way sibilant system (t͡s, d͡z, s̺, z̺) collapses to a single dental fricative /θ/. ⟨c/ç⟩ before front vowels, ⟨z⟩, and ⟨ç⟩ all map to /θ/ — parallel to Castilian rather than Leonese. (3) ⟨ch⟩ = /ʃ/ (not /tʃ/): the affricate from the medieval parent has shifted to a simple fricative, under Portuguese influence (PT ch=/ʃ/) or through independent lenition. Rionorese retains ⟨tch⟩ for /tʃ/. (4) VELAR FRICATIVE: ⟨g⟩ + front vowel = /x/, parallel to Spanish. (5) RHOTICS: word-initial ⟨r⟩ is a trill /r/; intervocalic ⟨r⟩ and ⟨r⟩ after stops (onset) are flaps /ɾ/; ⟨rr⟩ always /r/. (6) DIPHTHONGS: ⟨iê⟩ /je/ (stressed Leonese diphthong), ⟨uâ⟩ /wa/, ⟨uô⟩ /wɔ/ mark stressed vowels. (7) WORD-FINAL NASAL: word-final ⟨n/m⟩ nasalizes the preceding vowel and is silent (handled by digraph graphemes ⟨an⟩=ɐ̃, ⟨en⟩=ẽ etc., inherited from parent). Sources: Macias (2003) 'Rionorese: a nearly extinct Asturian dialect of Portugal'; Leite de Vasconcellos (1882, 1900); Ferreira (1999)."
+  "notes": "Rionorese (mirandês de Rionor / Rionorês), the nearly-extinct Asturleonese variety spoken in Rio de Onor (PT) / Rihonor de Castilla (ES), a single village straddling the Portuguese-Spanish border in Trás-os-Montes. Fewer than 100 elderly speakers as of the early 2000s (Macias 2003). DIVERGENCES FROM PARENT (ast-PT-x-medieval): (1) FULL BETACISM: /v/ → /b/ unconditionally — the /v/~/b/ contrast preserved in Mirandese and medieval Leonese is lost. ⟨v⟩ and ⟨b⟩ both surface as /b/ (with intervocalic fricative allophone [β]). (2) DENTAL FRICATIVE MERGER: the medieval 4-way sibilant system (t͡s, d͡z, s̺, z̺) collapses to a single dental fricative /θ/. ⟨c/ç⟩ before front vowels, ⟨z⟩, and ⟨ç⟩ all map to /θ/ — parallel to Castilian rather than Leonese. (3) ⟨ch⟩ = /ʃ/ (not /tʃ/): the affricate from the medieval parent has shifted to a simple fricative, under Portuguese influence (PT ch=/ʃ/) or through independent lenition. Rionorese retains ⟨tch⟩ for /tʃ/. (4) VELAR FRICATIVE: ⟨g⟩ + front vowel = /x/, parallel to Spanish. (5) RHOTICS: word-initial ⟨r⟩ is a trill /r/; intervocalic ⟨r⟩ and ⟨r⟩ after stops (onset) are flaps /ɾ/; ⟨rr⟩ always /r/. (6) DIPHTHONGS: ⟨iê⟩ /je/ (stressed Leonese diphthong), ⟨uâ⟩ /wa/, ⟨uô⟩ /wɔ/ mark stressed vowels. (7) WORD-FINAL NASAL: word-final ⟨n/m⟩ nasalizes the preceding vowel and is silent (handled by digraph graphemes ⟨an⟩=ɐ̃, ⟨en⟩=ẽ etc., inherited from parent). Sources: Macias (2003) 'Rionorese: a nearly extinct Asturian dialect of Portugal'; Leite de Vasconcellos (1882, 1900); Ferreira (1999).",
+  "sources": [
+    {
+      "id": "ferreira1995",
+      "author": "Ferreira, M.B.",
+      "year": 1995,
+      "title": "Variação linguística: perspectiva dialectológica",
+      "publisher": "Universidade de Lisboa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

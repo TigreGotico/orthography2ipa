@@ -7,7 +7,6 @@
   "graphemes_base": "ast-PT-x-medieval",
   "allophones_base": "ast-PT-x-medieval",
   "positional_graphemes_base": "ast-PT-x-medieval",
-
   "ancestors": [
     {
       "code": "ast-PT-x-medieval",
@@ -24,10 +23,41 @@
     {
       "code": "pt-PT-x-medieval",
       "role": "adstrate",
-      "weight": 0.10,
+      "weight": 0.1,
       "notes": "Old Portuguese (Aviz-period) adstrate: as Portuguese consolidated as the state language, the Leonese-speaking communities of Miranda, Rionor, and Guadramil faced intensifying pressure. Portuguese orthographic conventions (lh, nh, ã) penetrated the writing tradition."
     }
   ],
-
-  "notes": ""
+  "notes": "",
+  "sources": [
+    {
+      "id": "ferreira1995",
+      "author": "Ferreira, M.B.",
+      "year": 1995,
+      "title": "Variação linguística: perspectiva dialectológica",
+      "publisher": "Universidade de Lisboa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

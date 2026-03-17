@@ -7,11 +7,12 @@
   "graphemes_base": "ast",
   "allophones_base": "ast",
   "positional_graphemes_base": "ast",
-
   "allophones": {
-    "ʎ": ["ʎ", "ʝ"]
+    "ʎ": [
+      "ʎ",
+      "ʝ"
+    ]
   },
-
   "ancestors": [
     {
       "code": "ast",
@@ -20,6 +21,27 @@
       "notes": "Central/Standard Asturian, immediate parent."
     }
   ],
-
-  "notes": "Eastern Asturian (Asturianu oriental). Spoken in the eastern parishes of Asturias bordering Cantabria. KEY DIALECTAL FEATURES: (1) Incipient yeísmo: /ʎ/ shows variation with [ʝ], particularly among younger and urban speakers — influence from Cantabrian Spanish and prestige Castilian. (2) Some phonological convergence with Castilian. (3) Otherwise very similar to Central Asturian. Source: Cano González (2009), Penny (2002)."
+  "notes": "Eastern Asturian (Asturianu oriental). Spoken in the eastern parishes of Asturias bordering Cantabria. KEY DIALECTAL FEATURES: (1) Incipient yeísmo: /ʎ/ shows variation with [ʝ], particularly among younger and urban speakers — influence from Cantabrian Spanish and prestige Castilian. (2) Some phonological convergence with Castilian. (3) Otherwise very similar to Central Asturian. Source: Cano González (2009), Penny (2002).",
+  "sources": [
+    {
+      "id": "garcia_arias2003",
+      "author": "García Arias, X.Ll.",
+      "year": 2003,
+      "title": "Gramática histórica de la lengua asturiana",
+      "publisher": "Academia de la Llingua Asturiana",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

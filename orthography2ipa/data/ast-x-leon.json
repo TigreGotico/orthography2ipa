@@ -9,46 +9,93 @@
   "graphemes_base": "ast",
   "allophones_base": "ast",
   "positional_graphemes_base": "ast",
-
   "graphemes": {
-    "c": ["k", "t͡s"],
-    "ç": ["t͡s"],
-    "z": ["d͡z", "z̻"],
-    "s": ["s̺", "z̺"],
-    "ss": ["s̺"],
-    "ñ": ["ɲ"],
-    "lh": ["ʎ"],
-    "nh": ["ɲ"]
+    "c": [
+      "k",
+      "t͡s"
+    ],
+    "ç": [
+      "t͡s"
+    ],
+    "z": [
+      "d͡z",
+      "z̻"
+    ],
+    "s": [
+      "s̺",
+      "z̺"
+    ],
+    "ss": [
+      "s̺"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "nh": [
+      "ɲ"
+    ]
   },
-
   "allophones": {
     "θ": null,
-    "t͡s": ["t͡s", "s̻"],
-    "d͡z": ["d͡z", "z̻"],
-    "s̺": ["s̺"],
-    "z̺": ["z̺"],
-    "s̻": ["s̻"],
-    "z̻": ["z̻"],
-    "ʎ": ["ʎ"]
+    "t͡s": [
+      "t͡s",
+      "s̻"
+    ],
+    "d͡z": [
+      "d͡z",
+      "z̻"
+    ],
+    "s̺": [
+      "s̺"
+    ],
+    "z̺": [
+      "z̺"
+    ],
+    "s̻": [
+      "s̻"
+    ],
+    "z̻": [
+      "z̻"
+    ],
+    "ʎ": [
+      "ʎ"
+    ]
   },
-
   "positional_graphemes": {
     "c": {
-      "before_e": ["t͡s"],
-      "before_i": ["t͡s"]
+      "before_e": [
+        "t͡s"
+      ],
+      "before_i": [
+        "t͡s"
+      ]
     },
     "s": {
-      "word_initial": ["s̺"],
-      "intervocalic": ["z̺"],
-      "coda": ["s̺"]
+      "word_initial": [
+        "s̺"
+      ],
+      "intervocalic": [
+        "z̺"
+      ],
+      "coda": [
+        "s̺"
+      ]
     },
     "z": {
-      "word_initial": ["d͡z"],
-      "intervocalic": ["d͡z"],
-      "word_final": ["z̻"]
+      "word_initial": [
+        "d͡z"
+      ],
+      "intervocalic": [
+        "d͡z"
+      ],
+      "word_final": [
+        "z̻"
+      ]
     }
   },
-
   "ancestors": [
     {
       "code": "ast",
@@ -87,6 +134,37 @@
       "notes": "Mozarabic adstrate: significant in the repopulation of the Leonese meseta, as Mozarabic-speaking Christians from al-Andalus joined the Reconquista settlements."
     }
   ],
-
-  "notes": "Medieval Leonese (llingua llionesa / leonés), the Asturleonese variety of the Kingdom of León (~10th–15th c. CE). Attested: Fuero de Avilés (1085), Fuero Juzgo leonés, Fuero de Zamora, and extensive notarial documents from León, Zamora, Salamanca, and the Trás-os-Montes border region. KEY FEATURES distinguishing Leonese from modern central Asturian: (1) 4-WAY SIBILANT CONTRAST preserved: voiceless apical /s̺/ ⟨-ss-/s-⟩ vs. voiced apical /z̺/ ⟨-s-⟩ vs. voiceless predorsal /t͡s/ ⟨ç,c-⟩ vs. voiced predorsal /d͡z/ ⟨z⟩ — identical to contemporary Galaico-Portuguese. (2) ⟨lh⟩ = /ʎ/ digraph (alongside ⟨ll⟩) in southern Leonese and border documents under Portuguese influence. (3) ⟨nh⟩ = /ɲ/ similarly. (4) Intervocalic -l- and -n- PRESERVED (unlike Portuguese: 'salir' not *'sair', 'lhana' not *'lã'). (5) F- initial preserved throughout. (6) No vowel reduction. (7) Leonese diphthongs: ie, ue inherited from ast. This variety is the immediate ancestor of ast-PT-x-medieval and the modern Mirandese-group languages. Sources: Menéndez Pidal (1906), Staaff (1907), Williams (1962), Martínez Álvarez (1967)."
+  "notes": "Medieval Leonese (llingua llionesa / leonés), the Asturleonese variety of the Kingdom of León (~10th–15th c. CE). Attested: Fuero de Avilés (1085), Fuero Juzgo leonés, Fuero de Zamora, and extensive notarial documents from León, Zamora, Salamanca, and the Trás-os-Montes border region. KEY FEATURES distinguishing Leonese from modern central Asturian: (1) 4-WAY SIBILANT CONTRAST preserved: voiceless apical /s̺/ ⟨-ss-/s-⟩ vs. voiced apical /z̺/ ⟨-s-⟩ vs. voiceless predorsal /t͡s/ ⟨ç,c-⟩ vs. voiced predorsal /d͡z/ ⟨z⟩ — identical to contemporary Galaico-Portuguese. (2) ⟨lh⟩ = /ʎ/ digraph (alongside ⟨ll⟩) in southern Leonese and border documents under Portuguese influence. (3) ⟨nh⟩ = /ɲ/ similarly. (4) Intervocalic -l- and -n- PRESERVED (unlike Portuguese: 'salir' not *'sair', 'lhana' not *'lã'). (5) F- initial preserved throughout. (6) No vowel reduction. (7) Leonese diphthongs: ie, ue inherited from ast. This variety is the immediate ancestor of ast-PT-x-medieval and the modern Mirandese-group languages. Sources: Menéndez Pidal (1906), Staaff (1907), Williams (1962), Martínez Álvarez (1967).",
+  "sources": [
+    {
+      "id": "garcia_arias2003",
+      "author": "García Arias, X.Ll.",
+      "year": 2003,
+      "title": "Gramática histórica de la lengua asturiana",
+      "publisher": "Academia de la Llingua Asturiana",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "alarcos_llorach1994",
+      "author": "Alarcos Llorach, E.",
+      "year": 1994,
+      "title": "Gramática de la Lengua Española",
+      "publisher": "Espasa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

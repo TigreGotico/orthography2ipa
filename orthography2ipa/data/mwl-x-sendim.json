@@ -23,5 +23,27 @@
   "parent": "mwl",
   "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). Differs from central Mirandese in: (1) monophthongization of -iê- → -i- and -uô- → -u- (tirra not tiêrra, curpo not cuôrpo); (2) NO palatalization of initial L- (luna not lhuna, lobo not lhobu). Orthographic addendum (2000) reflects these differences. Written ⟨-ie-⟩ and ⟨-uo-⟩ instead of ⟨-iê-⟩ and ⟨-uô-⟩.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "ferreira1995",
+      "author": "Ferreira, M.B.",
+      "year": 1995,
+      "title": "Variação linguística: perspectiva dialectológica",
+      "publisher": "Universidade de Lisboa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

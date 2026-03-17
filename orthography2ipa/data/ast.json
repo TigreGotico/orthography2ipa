@@ -4,132 +4,327 @@
   "family": "Asturleonese",
   "script": "Latin",
   "parent": "la-x-hispania",
-
   "graphemes": {
-    "a": ["a"],
-    "á": ["a"],
-    "e": ["e", "ɛ"],
-    "é": ["ɛ"],
-    "i": ["i"],
-    "í": ["i"],
-    "o": ["o", "ɔ"],
-    "ó": ["ɔ"],
-    "u": ["u"],
-    "ú": ["u"],
-
-    "b": ["b"],
-    "c": ["k", "θ"],
-    "ch": ["tʃ"],
-    "d": ["d"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "gu": ["ɡ"],
-    "h": [""],
-    "ḥ": ["h"],
-    "h.": ["h"],
-    "j": ["ʝ"],
-    "k": ["k"],
-    "l": ["l"],
-    "ll": ["ʎ"],
-    "m": ["m"],
-    "n": ["n"],
-    "ñ": ["ɲ"],
-    "p": ["p"],
-    "q": ["k"],
-    "qu": ["k"],
-    "r": ["ɾ"],
-    "rr": ["r"],
-    "s": ["s"],
-    "t": ["t"],
-    "ts": ["ts"],
-    "v": ["b"],
-    "w": ["w"],
-    "x": ["ʃ"],
-    "y": ["ʝ", "i"],
-    "yy": ["ky"],
-    "z": ["θ"],
-
-    "güe": ["ɡwe"],
-    "güi": ["ɡwi"],
-
-    "ia": ["ja"],
-    "ie": ["je"],
-    "io": ["jo"],
-    "ua": ["wa"],
-    "ue": ["we"],
-    "uo": ["wo"],
-    "ai": ["aj"],
-    "ei": ["ej"],
-    "oi": ["oj"],
-    "au": ["aw"],
-    "eu": ["ew"],
-    "ou": ["ow"],
-    "iu": ["ju"],
-    "ui": ["wi"]
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "θ"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "ḥ": [
+      "h"
+    ],
+    "h.": [
+      "h"
+    ],
+    "j": [
+      "ʝ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ll": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "v": [
+      "b"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "y": [
+      "ʝ",
+      "i"
+    ],
+    "yy": [
+      "ky"
+    ],
+    "z": [
+      "θ"
+    ],
+    "güe": [
+      "ɡwe"
+    ],
+    "güi": [
+      "ɡwi"
+    ],
+    "ia": [
+      "ja"
+    ],
+    "ie": [
+      "je"
+    ],
+    "io": [
+      "jo"
+    ],
+    "ua": [
+      "wa"
+    ],
+    "ue": [
+      "we"
+    ],
+    "uo": [
+      "wo"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "iu": [
+      "ju"
+    ],
+    "ui": [
+      "wi"
+    ]
   },
-
   "allophones": {
-    "p": ["p"],
-    "b": ["b", "β"],
-    "t": ["t"],
-    "d": ["d", "ð"],
-    "k": ["k"],
-    "ɡ": ["ɡ", "ɣ"],
-    "tʃ": ["tʃ"],
-    "ts": ["ts"],
-    "f": ["f"],
-    "θ": ["θ"],
-    "s": ["s̺"],
-    "ʃ": ["ʃ"],
-    "ʝ": ["ʝ", "ɟʝ"],
-    "h": ["h"],
-    "m": ["m"],
-    "n": ["n", "ŋ"],
-    "ɲ": ["ɲ"],
-    "l": ["l"],
-    "ʎ": ["ʎ"],
-    "ɾ": ["ɾ"],
-    "r": ["r"],
-    "j": ["j"],
-    "w": ["w"],
-    "a": ["a"],
-    "e": ["e"],
-    "ɛ": ["ɛ"],
-    "i": ["i"],
-    "o": ["o"],
-    "ɔ": ["ɔ"],
-    "u": ["u"]
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "f": [
+      "f"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "s": [
+      "s̺"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʝ": [
+      "ʝ",
+      "ɟʝ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ]
   },
-
   "positional_graphemes": {
     "b": {
-      "intervocalic": ["β"]
+      "intervocalic": [
+        "β"
+      ]
     },
     "d": {
-      "intervocalic": ["ð"]
+      "intervocalic": [
+        "ð"
+      ]
     },
     "g": {
-      "intervocalic": ["ɣ"]
+      "intervocalic": [
+        "ɣ"
+      ]
     },
     "c": {
-      "before_e": ["θ"],
-      "before_i": ["θ"]
+      "before_e": [
+        "θ"
+      ],
+      "before_i": [
+        "θ"
+      ]
     },
     "r": {
-      "word_initial": ["r"],
-      "intervocalic": ["ɾ"],
-      "coda": ["ɾ"]
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ]
     },
     "n": {
-      "coda": ["n", "ŋ"]
+      "coda": [
+        "n",
+        "ŋ"
+      ]
     }
   },
-
   "ancestors": [
     {
       "code": "la-x-hispania",
       "role": "parent",
-      "weight": 0.80,
+      "weight": 0.8,
       "notes": "Primary descent from Hispanic Vulgar Latin, NW Iberian branch. Asturleonese diverged from Galaico-Portuguese roughly 9th–10th c. CE."
     },
     {
@@ -163,7 +358,6 @@
       "notes": "Mozarabic adstrate: Romance of the Christian communities under Moorish rule in central and southern Iberia. Indirect contact through repopulation of the meseta."
     }
   ],
-
   "notes": "Modern Standard Asturian per the ALLA *Normes Ortográfiques* (8th ed., 2021). Spoken by ~100,000 speakers in the Principality of Asturias (Spain). KEY FEATURES distinguishing Asturian from Castilian: (1) ⟨x⟩ = /ʃ/ (voiceless postalveolar), not /x/ — 'xema' [ʃema] vs. Spanish 'jema' [xema]. (2) ⟨ll⟩ = /ʎ/ preserved (no yeísmo in standard). (3) Leonese diphthongs: Latin Ĕ → /ie/, Latin Ŏ → /ue/. (4) Latin F- preserved: 'falar', 'filu'. (5) Betacism: ⟨b⟩ = ⟨v⟩ = /b/. (6) No vowel reduction: 5-vowel system, unstressed vowels full. (7) Apico-alveolar /s/ [s̺] like Castilian. (8) Interdental /θ/ for ⟨z⟩ and ⟨c⟩ before e/i. (9) ⟨ch⟩ = /tʃ/ affricate. The family 'Asturleonese' also includes Leonese (nearly extinct in León), Mirandese (Miranda do Douro, Portugal), Rionorese and Guadramilese (Trás-os-Montes, Portugal). Sources: ALLA (2021), Cano González (2009), Penny (2002).",
   "urls": [
     "https://ast.wikipedia.org/wiki/Asturianu",
@@ -173,7 +367,6 @@
     "https://pt.wikipedia.org/wiki/L%C3%ADngua_asturiana",
     "https://an.wikipedia.org/wiki/Idioma_asturiano",
     "https://gl.wikipedia.org/wiki/Lingua_asturiana",
-
     "https://ast.wikipedia.org/wiki/Lleon%C3%A9s_(lling%C3%BC%C3%ADstica)",
     "https://ast.wikipedia.org/wiki/Monta%C3%B1%C3%A9s",
     "https://ast.wikipedia.org/wiki/Asturianu_oriental",
@@ -183,5 +376,37 @@
     "https://ast.wikipedia.org/wiki/Senabr%C3%A9s",
     "",
     ""
+  ],
+  "sources": [
+    {
+      "id": "garcia_arias2003",
+      "author": "García Arias, X.Ll.",
+      "year": 2003,
+      "title": "Gramática histórica de la lengua asturiana",
+      "publisher": "Academia de la Llingua Asturiana",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "alarcos_llorach1994",
+      "author": "Alarcos Llorach, E.",
+      "year": 1994,
+      "title": "Gramática de la Lengua Española",
+      "publisher": "Espasa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
   ]
 }

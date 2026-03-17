@@ -7,7 +7,6 @@
   "graphemes_base": "ast-x-leon",
   "allophones_base": "ast-x-leon",
   "positional_graphemes_base": "ast-x-leon",
-
   "ancestors": [
     {
       "code": "ast-x-leon",
@@ -46,6 +45,37 @@
       "notes": "Mozarabic: Romance spoken by Christians under Moorish rule in the Leonese-reclaimed Douro corridor. Some Mozarabic-speaking settlers joined the Trás-os-Montes repopulation."
     }
   ],
-
-  "notes": ""
+  "notes": "",
+  "sources": [
+    {
+      "id": "garcia_arias2003",
+      "author": "García Arias, X.Ll.",
+      "year": 2003,
+      "title": "Gramática histórica de la lengua asturiana",
+      "publisher": "Academia de la Llingua Asturiana",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "alarcos_llorach1994",
+      "author": "Alarcos Llorach, E.",
+      "year": 1994,
+      "title": "Gramática de la Lengua Española",
+      "publisher": "Espasa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
