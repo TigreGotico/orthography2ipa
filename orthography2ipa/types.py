@@ -227,6 +227,34 @@ class ScriptType(str, Enum):
 # ═══════════════════════════════════════════════════════════════════════════
 
 @dataclass(frozen=True)
+class WeightedDistance:
+    """Result of ``weighted_full_distance()`` with all component scores visible.
+
+    Attributes
+    ----------
+    inventory : float
+        Feature-mean inventory distance in [0, 1].
+    grapheme : float
+        Mean IPA distance for shared graphemes in [0, 1].
+    allophone : float
+        Jaccard allophone *similarity* in [0, 1] (higher = more overlap).
+    ancestry : float
+        Ancestry *similarity* in [0, 1] (higher = more related).
+    combined : float
+        Weighted combined *distance* in [0, 1].
+    weights : Tuple[float, float, float, float]
+        The component weights used: ``(w_inventory, w_grapheme, w_allophone, w_ancestry)``.
+    """
+
+    inventory: float
+    grapheme: float
+    allophone: float
+    ancestry: float
+    combined: float
+    weights: Tuple[float, float, float, float]
+
+
+@dataclass(frozen=True)
 class LinguisticSource:
     """A bibliographic reference for a phonological decision.
 

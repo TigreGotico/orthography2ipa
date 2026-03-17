@@ -45,11 +45,12 @@ Usage
 """
 from __future__ import annotations
 
+import functools
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.feats import NUM_FEATURES, phonetic_distance, vectorize_phones
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import LanguageSpec, WeightedDistance
 
 __all__ = [
     "Feature",
@@ -69,6 +70,10 @@ __all__ = [
     "full_distance",
     "tone_distance",
     "orthographic_distance",
+    "phoneme_coverage",
+    "weighted_full_distance",
+    "positional_divergence",
+    "WeightedDistance",
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -166,7 +171,7 @@ def feature_names() -> Tuple[str, ...]:
 # Segment-level distance
 # ═══════════════════════════════════════════════════════════════════════════
 
-def segment_distance(seg_a: str, seg_b: str) -> float:
+def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
     """Phonetic distance between two IPA segments, normalised to [0.0, 1.0].
 
     Uses a weighted feature distance, which gives higher
@@ -174,11 +179,30 @@ def segment_distance(seg_a: str, seg_b: str) -> float:
     and lower weight to minor features (strident, distributed, long).
 
     Vowel↔consonant mismatches always return 1.0.
+
+    Parameters
+    ----------
+    seg_a, seg_b : str
+        IPA segments to compare.
+    strict : bool
+        If ``True``, raise ``ValueError`` when a segment produces an
+        all-0.5 (unknown) feature vector.  Default is ``False`` (degrade
+        gracefully).
+
+    Raises
+    ------
+    ValueError
+        If ``strict=True`` and either segment is unknown.
     """
     if seg_a == seg_b:
         return 0.0
     if not seg_a or not seg_b or seg_a == "∅" or seg_b == "∅":
         return 1.0
+    if strict:
+        for seg in (seg_a, seg_b):
+            vec = feature_vector(seg)
+            if all(v == 0.5 for v in vec):
+                raise ValueError(f"Unknown IPA segment: {seg!r}")
     try:
         d = phonetic_distance(seg_a, seg_b)
         # returns 0–1 for vowels, 0–2 for consonants.
@@ -467,12 +491,18 @@ def pairwise_distances(
 def _build_ancestor_graph(
         code: str,
         _visited: Optional[Set[str]] = None,
-        _registry: Optional[Dict[str, "LanguageSpec"]] = None,
+        _registry: Optional[Dict[str, List[Tuple[str, float]]]] = None,
+        _path: Optional[List[str]] = None,
 ) -> Dict[str, List[Tuple[str, float]]]:
     """Build a directed graph {code: [(ancestor_code, weight), ...]}
     by recursively following all ancestor links.
 
     Returns a graph covering the full ancestry of *code*.
+
+    Raises
+    ------
+    ValueError
+        If a circular ancestry reference is detected.
     """
     from orthography2ipa.registry import get as _get
 
@@ -480,11 +510,17 @@ def _build_ancestor_graph(
         _visited = set()
     if _registry is None:
         _registry = {}
+    if _path is None:
+        _path = []
+
+    if code in _path:
+        raise ValueError(f"Circular ancestry detected: {code!r} already visited")
 
     if code in _visited:
         return _registry
 
     _visited.add(code)
+    _path = _path + [code]
 
     try:
         spec = _get(code)
@@ -495,11 +531,28 @@ def _build_ancestor_graph(
     if ancestors:
         _registry[code] = [(a.code, a.weight) for a in ancestors]
         for a in ancestors:
-            _build_ancestor_graph(a.code, _visited, _registry)
+            _build_ancestor_graph(a.code, _visited, _registry, _path)
     else:
         _registry[code] = []
 
     return _registry
+
+
+@functools.lru_cache(maxsize=256)
+def _get_ancestry_weights_by_code(code: str) -> Dict[str, float]:
+    """Return the ancestry weight map for *code*, cached by language code.
+
+    Delegates to ``_trace_ancestry_weights`` with a default max_depth of 10.
+    """
+    return _trace_ancestry_weights(code)
+
+
+def _get_ancestry_weights(spec: LanguageSpec) -> Dict[str, float]:
+    """Return the ancestry weight map for *spec*.
+
+    Thin wrapper over the cached ``_get_ancestry_weights_by_code``.
+    """
+    return _get_ancestry_weights_by_code(spec.code)
 
 
 def ancestry_similarity(
@@ -525,8 +578,8 @@ def ancestry_similarity(
         return 1.0
 
     # Build weighted paths from each language to all reachable ancestors.
-    paths_a = _trace_ancestry_weights(spec_a.code, max_depth)
-    paths_b = _trace_ancestry_weights(spec_b.code, max_depth)
+    paths_a = _get_ancestry_weights(spec_a)
+    paths_b = _get_ancestry_weights(spec_b)
 
     # Check if A is a DIRECT parent of B or vice versa
     # (only applies when the path weight is high — not transitive traces)
@@ -678,3 +731,141 @@ def orthographic_distance(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
     if s_dist == 0.0:
         return gra.mean_ipa_distance
     return 0.6 * s_dist + 0.4 * gra.mean_ipa_distance
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Phoneme coverage (asymmetric)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def phoneme_coverage(spec_native: LanguageSpec, spec_target: LanguageSpec) -> float:
+    """Asymmetric: fraction of spec_target's phonemes already in spec_native's inventory.
+
+    Parameters
+    ----------
+    spec_native : LanguageSpec
+        The learner's native language.
+    spec_target : LanguageSpec
+        The language being acquired.
+
+    Returns
+    -------
+    float
+        1.0 = spec_native covers all of spec_target's phonemes (easy transfer).
+        0.0 = no shared phonemes (hard transfer).
+    """
+    native_phones = _extract_phonemes(spec_native)
+    target_phones = _extract_phonemes(spec_target)
+    if not target_phones:
+        return 1.0
+    return len(native_phones & target_phones) / len(target_phones)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Weighted full distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+def weighted_full_distance(
+        spec_a: LanguageSpec,
+        spec_b: LanguageSpec,
+        *,
+        w_inventory: float = 0.25,
+        w_grapheme: float = 0.20,
+        w_allophone: float = 0.15,
+        w_ancestry: float = 0.40,
+) -> "WeightedDistance":
+    """Single configurable entry point combining all distance components.
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+    w_inventory, w_grapheme, w_allophone, w_ancestry : float
+        Component weights; need not sum to 1.0 (normalised internally).
+
+    Returns
+    -------
+    WeightedDistance
+        Frozen dataclass with per-component scores and the weighted ``combined``
+        value in [0.0, 1.0].
+    """
+    inv = inventory_distance(spec_a, spec_b)
+    gra = grapheme_divergence(spec_a, spec_b)
+    allo = allophone_overlap(spec_a, spec_b)
+    anc = ancestry_similarity(spec_a, spec_b)
+    total_w = w_inventory + w_grapheme + w_allophone + w_ancestry
+    combined = (
+        w_inventory * inv.feature_mean
+        + w_grapheme * gra.mean_ipa_distance
+        + w_allophone * (1.0 - allo)
+        + w_ancestry * (1.0 - anc)
+    ) / total_w
+    return WeightedDistance(
+        inventory=inv.feature_mean,
+        grapheme=gra.mean_ipa_distance,
+        allophone=allo,
+        ancestry=anc,
+        combined=combined,
+        weights=(w_inventory, w_grapheme, w_allophone, w_ancestry),
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Positional divergence
+# ═══════════════════════════════════════════════════════════════════════════
+
+def positional_divergence(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
+    """Measures how differently two specs use positional grapheme overrides.
+
+    Returns 0.0 when neither spec has positional graphemes or when specs are
+    identical.  Returns a float in [0.0, 1.0].
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+
+    Returns
+    -------
+    float
+        0.0 = identical positional usage; 1.0 = maximally different.
+    """
+    def _get_positional_mappings(spec: LanguageSpec) -> Dict[str, Dict[str, str]]:
+        """Return {grapheme: {position_value: ipa_candidates}} for positional graphemes."""
+        result: Dict[str, Dict[str, str]] = {}
+        for grapheme, pos_map in spec.positional_graphemes.items():
+            entry: Dict[str, str] = {}
+            for pos, ipa_list in pos_map.items():
+                pos_key = pos.value if hasattr(pos, "value") else str(pos)
+                entry[pos_key] = ipa_list[0] if ipa_list else ""
+            if entry:
+                result[grapheme] = entry
+        return result
+
+    pos_a = _get_positional_mappings(spec_a)
+    pos_b = _get_positional_mappings(spec_b)
+
+    if not pos_a and not pos_b:
+        return 0.0
+
+    all_graphemes = set(pos_a) | set(pos_b)
+    if not all_graphemes:
+        return 0.0
+
+    total_divergence = 0.0
+    for g in all_graphemes:
+        if g in pos_a and g not in pos_b:
+            total_divergence += 1.0
+        elif g in pos_b and g not in pos_a:
+            total_divergence += 1.0
+        else:
+            # Both have positional overrides for this grapheme
+            positions = set(pos_a[g]) | set(pos_b[g])
+            for pos in positions:
+                ipa_a = pos_a[g].get(pos)
+                ipa_b = pos_b[g].get(pos)
+                if ipa_a is None or ipa_b is None:
+                    total_divergence += 1.0 / len(positions)
+                else:
+                    total_divergence += segment_distance(ipa_a, ipa_b) / len(positions)
+
+    return min(1.0, total_divergence / len(all_graphemes))

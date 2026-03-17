@@ -24,9 +24,13 @@ from orthography2ipa.distance import (
     ancestry_similarity,
     full_distance,
     pairwise_distances,
+    phoneme_coverage,
+    weighted_full_distance,
+    positional_divergence,
     InventoryDistance,
     GraphemeDivergence,
     PhonologicalDistance,
+    WeightedDistance,
 )
 
 
@@ -441,3 +445,131 @@ class TestPairwiseDistances:
         for row in matrix:
             for val in row:
                 assert 0.0 <= val <= 1.0 + 1e-10
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# strict mode for segment_distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestSegmentDistanceStrict:
+    """Tests for strict=True parameter in segment_distance()."""
+
+    def test_unknown_strict_raises(self):
+        """strict=True raises ValueError on an unknown IPA segment."""
+        with pytest.raises(ValueError, match="Unknown IPA segment"):
+            segment_distance("ℵ", "p", strict=True)
+
+    def test_unknown_permissive_returns_float(self):
+        """strict=False (default) returns a value in [0, 1] for unknown segments."""
+        result = segment_distance("ℵ", "p")
+        assert 0.0 <= result <= 1.0
+
+    def test_known_segments_strict_ok(self):
+        """Known segments should not raise even with strict=True."""
+        result = segment_distance("p", "b", strict=True)
+        assert 0.0 <= result <= 1.0
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Phoneme coverage
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPhonemeCoverage:
+    """Tests for phoneme_coverage()."""
+
+    def test_identity_is_one(self):
+        """Coverage of a language against itself is 1.0."""
+        spec = orthography2ipa.get("es-ES")
+        assert phoneme_coverage(spec, spec) == pytest.approx(1.0)
+
+    def test_range_ab(self):
+        """Coverage(A, B) is in [0.0, 1.0]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        assert 0.0 <= phoneme_coverage(spec_a, spec_b) <= 1.0
+
+    def test_range_ba(self):
+        """Coverage(B, A) is in [0.0, 1.0]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        assert 0.0 <= phoneme_coverage(spec_b, spec_a) <= 1.0
+
+    def test_related_languages_high_coverage(self):
+        """Spanish covers a large fraction of Portuguese phonemes."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("pt-PT")
+        cov = phoneme_coverage(spec_a, spec_b)
+        assert cov > 0.3
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WeightedDistance / weighted_full_distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestWeightedFullDistance:
+    """Tests for weighted_full_distance() and WeightedDistance."""
+
+    def test_returns_weighted_distance(self):
+        """Returns a WeightedDistance instance."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = weighted_full_distance(spec_a, spec_b)
+        assert isinstance(result, WeightedDistance)
+
+    def test_combined_in_range(self):
+        """combined is in [0, 1]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = weighted_full_distance(spec_a, spec_b)
+        assert 0.0 <= result.combined <= 1.0
+
+    def test_w_inventory_only(self):
+        """w_inventory=1.0, others=0 → combined == inventory component."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = weighted_full_distance(
+            spec_a, spec_b,
+            w_inventory=1.0, w_grapheme=0.0, w_allophone=0.0, w_ancestry=0.0,
+        )
+        assert result.combined == pytest.approx(result.inventory, abs=1e-9)
+
+    def test_identity_near_zero(self):
+        """All components near 0 for the same spec."""
+        spec = orthography2ipa.get("es-ES")
+        result = weighted_full_distance(spec, spec)
+        assert result.combined < 0.01
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Positional divergence
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPositionalDivergence:
+    """Tests for positional_divergence()."""
+
+    def test_identity_is_zero(self):
+        """Returns 0.0 for the same spec."""
+        spec = orthography2ipa.get("es-ES")
+        assert positional_divergence(spec, spec) == pytest.approx(0.0)
+
+    def test_range(self):
+        """Result in [0.0, 1.0]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = positional_divergence(spec_a, spec_b)
+        assert 0.0 <= result <= 1.0
+
+    def test_no_positional_both_zero(self):
+        """Returns 0.0 when neither spec has positional graphemes."""
+        from orthography2ipa.types import LanguageSpec
+        spec_a = LanguageSpec(
+            code="xx", name="Test A", family="Test", script="Latin",
+            graphemes={"a": ["a"], "b": ["b"]},
+            allophones={},
+        )
+        spec_b = LanguageSpec(
+            code="yy", name="Test B", family="Test", script="Latin",
+            graphemes={"a": ["a"], "b": ["b"]},
+            allophones={},
+        )
+        assert positional_divergence(spec_a, spec_b) == pytest.approx(0.0)

@@ -278,3 +278,102 @@ The matrix is symmetric (`matrix[i][j] == matrix[j][i]`) and has zeros on the di
 | pt-BR vs pt-PT | 0.05–0.15 | Dialects of same language |
 
 These are rough empirical ranges; exact values depend on the completeness of each language's grapheme and allophone data.
+
+---
+
+## `segment_distance(a, b, strict=False)`
+
+The `strict` parameter controls behaviour for unknown IPA segments:
+
+```python
+segment_distance("ℵ", "p")              # returns float in [0, 1] (graceful)
+segment_distance("ℵ", "p", strict=True) # raises ValueError: Unknown IPA segment
+```
+
+| `strict` | Unknown segment behaviour |
+|---|---|
+| `False` (default) | Returns a value based on the neutral vector (all-0.5) |
+| `True` | Raises `ValueError` immediately |
+
+---
+
+## `phoneme_coverage(spec_native, spec_target) -> float`
+
+Asymmetric measure: fraction of `spec_target`'s phonemes already present in `spec_native`'s inventory.
+
+```python
+from orthography2ipa.distance import phoneme_coverage
+import orthography2ipa
+
+es = orthography2ipa.get("es-ES")
+pt = orthography2ipa.get("pt-PT")
+
+phoneme_coverage(es, pt)   # Spanish→Portuguese: how much of pt's inventory es covers
+phoneme_coverage(pt, es)   # May differ (asymmetric)
+phoneme_coverage(es, es)   # 1.0 — identity
+```
+
+- `1.0` = native language covers all target phonemes (easy transfer)
+- `0.0` = no shared phonemes (maximum difficulty)
+
+Use this to predict L2 phonological acquisition difficulty: a high coverage score indicates the learner's native inventory already contains most target sounds.
+
+---
+
+## `weighted_full_distance(spec_a, spec_b, *, w_inventory, w_grapheme, w_allophone, w_ancestry) -> WeightedDistance`
+
+Single configurable entry point combining all four distance components.
+
+```python
+from orthography2ipa.distance import weighted_full_distance
+
+result = weighted_full_distance(spec_a, spec_b)
+# WeightedDistance(inventory=0.12, grapheme=0.31, allophone=0.67, ancestry=0.54, combined=0.41, ...)
+
+# Custom weights — focus purely on phoneme inventory
+result = weighted_full_distance(spec_a, spec_b, w_inventory=1.0, w_grapheme=0.0, w_allophone=0.0, w_ancestry=0.0)
+assert result.combined == result.inventory
+```
+
+### `WeightedDistance` fields — `orthography2ipa.types.WeightedDistance`
+
+| Field | Description |
+|---|---|
+| `inventory` | `feature_mean` from `inventory_distance()` — [0, 1] |
+| `grapheme` | `mean_ipa_distance` from `grapheme_divergence()` — [0, 1] |
+| `allophone` | Jaccard allophone *similarity* — [0, 1] (higher = more overlap) |
+| `ancestry` | Ancestry *similarity* — [0, 1] (higher = more related) |
+| `combined` | Weighted combined *distance* — [0, 1] |
+| `weights` | `(w_inventory, w_grapheme, w_allophone, w_ancestry)` tuple used |
+
+Note: `allophone` and `ancestry` are stored as *similarities*; the formula converts them to distances internally: `combined = (w_inv * inventory + w_gra * grapheme + w_allo * (1 - allophone) + w_anc * (1 - ancestry)) / total_w`.
+
+### Default weights
+
+| Component | Default weight | Rationale |
+|---|---|---|
+| `w_inventory` | 0.25 | Phoneme inventory is a strong signal |
+| `w_grapheme` | 0.20 | Grapheme overlap matters for script-sharing languages |
+| `w_allophone` | 0.15 | Surface realisation similarity |
+| `w_ancestry` | 0.40 | Phylogenetic relatedness is the dominant factor |
+
+---
+
+## `positional_divergence(spec_a, spec_b) -> float`
+
+Measures how differently two specs use positional grapheme overrides (initial/medial/final/intervocalic etc.).
+
+```python
+from orthography2ipa.distance import positional_divergence
+
+d = positional_divergence(spec_a, spec_b)  # float in [0.0, 1.0]
+```
+
+- `0.0` = identical positional override sets (or neither spec has positional data)
+- `1.0` = maximally different positional usage
+
+For each grapheme that appears in either spec's `positional_graphemes`:
+- If only one spec has overrides for it: contributes 1.0 to divergence
+- If both have overrides: per-position IPA distance is measured using `segment_distance()`
+
+Result is normalised by the total number of graphemes with any positional data.
