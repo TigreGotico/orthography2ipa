@@ -6,19 +6,182 @@
   "parent": "cel",
   "notes": "Transalpine Gaulish (6th c. BCE – 5th c. CE). ISO 639-3: xtg. Continental Celtic language of Gaul (modern France, Belgium, Switzerland). ~800+ inscriptions including Larzac, Chamalières tablets and Coligny calendar. THE key substrate for French and Gallo-Romance. Distinctive 'tau gallicum' /ts/ < *t (fronting). Nasal vowels attested. Celtic p-loss. Lenition well-developed. Vigesimal counting inherited by French (quatre-vingts). ~200 words in French (Lambert 2003, Delamarre 2003). Written in Greek (south), Latin (north), and Lugano alphabets. ",
   "graphemes": {
-    "b": ["b"], "t": ["t"], "d": ["d"], "k": ["k"], "g": ["ɡ"],
-    "s": ["s"], "x": ["x"], "ts": ["ts"],
-    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
-    "w": ["w"],
-    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
-    "ā": ["aː"], "ē": ["eː"], "ī": ["iː"], "ō": ["oː"], "ū": ["uː"]
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "ū": [
+      "uː"
+    ]
   },
   "allophones": {
-    "b": ["b", "β"], "t": ["t"], "d": ["d", "ð"], "k": ["k"], "ɡ": ["ɡ", "ɣ"],
-    "s": ["s", "z"], "x": ["x"], "ts": ["ts"],
-    "m": ["m"], "n": ["n", "ŋ"], "l": ["l"], "r": ["r"],
-    "w": ["w"],
-    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
-    "aː": ["aː"], "eː": ["eː"], "iː": ["iː"], "oː": ["oː"], "uː": ["uː"]
-  }
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "x": [
+      "x"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "uː": [
+      "uː"
+    ]
+  },
+  "sources": [
+    {
+      "id": "lambert1994",
+      "author": "Lambert, P.-Y.",
+      "year": 1994,
+      "title": "La langue gauloise",
+      "publisher": "Errance",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -226,5 +226,37 @@
     ]
   },
   "parent": "cel",
-  "notes": "Celtiberian (3rd–1st c. BCE). Continental Celtic language of the upper Ebro valley and Meseta. Attested in ~200 inscriptions in Iberian semi-syllabary and Latin alphabet. Key feature: Celtic p-loss (no native /p/). Preserves *-nd- cluster. Intervocalic lenition of stops (pan-Celtic). Five-vowel system with phonemic length. Two sibilants debated. Classification: Celtic > Continental > Hispano-Celtic."
+  "notes": "Celtiberian (3rd–1st c. BCE). Continental Celtic language of the upper Ebro valley and Meseta. Attested in ~200 inscriptions in Iberian semi-syllabary and Latin alphabet. Key feature: Celtic p-loss (no native /p/). Preserves *-nd- cluster. Intervocalic lenition of stops (pan-Celtic). Five-vowel system with phonemic length. Two sibilants debated. Classification: Celtic > Continental > Hispano-Celtic.",
+  "sources": [
+    {
+      "id": "de_hoz1986",
+      "author": "De Hoz, J.",
+      "year": 1986,
+      "title": "La epigrafía celtibérica",
+      "publisher": "in Reunión sobre epigrafía hispánica de época romano-republicana",
+      "url": "Institución Fernando el Católico",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

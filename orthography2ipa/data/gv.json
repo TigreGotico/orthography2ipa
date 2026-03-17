@@ -233,5 +233,37 @@
   ],
   "notes": "Manx (Gaelg). Isle of Man. Last native speaker (Ned Maddrell) died 1974. Revival since 1970s; ~1,800 speakers (est. 2020). English-based orthography (unlike Irish/Scots Gaelic). Simplified mutation system vs. Irish/Scots Gaelic. Refs: Thomson (1992), Broderick (1984).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "broderick1984",
+      "author": "Broderick, G.",
+      "year": 1984,
+      "title": "A Handbook of Late Spoken Manx",
+      "publisher": "Niemeyer",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

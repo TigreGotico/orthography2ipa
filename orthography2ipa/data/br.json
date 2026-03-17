@@ -240,5 +240,37 @@
   ],
   "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). ⟨c'h⟩ = /x/; ⟨zh⟩ = /z/ (KLT) or /h/ (Vannetais). French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ternes1992",
+      "author": "Ternes, E.",
+      "year": 1992,
+      "title": "The Breton Language",
+      "publisher": "in D. MacAulay (ed.), The Celtic Languages",
+      "url": "Cambridge University Press",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "favereau1997",
+      "author": "Favereau, F.",
+      "year": 1997,
+      "title": "Grammaire du breton contemporain",
+      "publisher": "Skol Vreizh",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

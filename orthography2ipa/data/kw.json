@@ -204,5 +204,37 @@
   ],
   "notes": "Cornish (Kernewek). Revived language; last native speaker died 1777. Revival since early 20th c.; ~3,000 speakers (est. 2020). Three main revival orthographies: Kernewek Standard, Kernewek Unys, Spellyans. This spec follows revived Kernewek Standard pronunciation. Refs: George (1993), Brown (2001).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "george1993",
+      "author": "George, K.",
+      "year": 1993,
+      "title": "The Cornish Language and its Literature",
+      "publisher": "Routledge & Kegan Paul",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

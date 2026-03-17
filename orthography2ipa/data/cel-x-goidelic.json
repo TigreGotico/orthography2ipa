@@ -168,5 +168,37 @@
   "parent": "cel",
   "notes": "Proto-Goidelic. Ancestral to Irish, Scottish Gaelic, Manx. Key split from Proto-Celtic: PIE *kʷ → /k/ (Q-Celtic), vs. Brythonic *kʷ → /p/ (P-Celtic). Developed /f/ from *sw- and Latin loans. Broad/slender consonant distinction incipient.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mccone1996",
+      "author": "McCone, K.",
+      "year": 1996,
+      "title": "Towards a Relative Chronology of Ancient and Medieval Celtic Sound Change",
+      "publisher": "National University of Ireland",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

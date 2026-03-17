@@ -272,5 +272,37 @@
   ],
   "notes": "Irish (Gaeilge). ~1.7M speakers (2016 census; ~80K daily L1). PERVASIVE BROAD/SLENDER DISTINCTION: every consonant has two versions (velarised 'broad' vs. palatalised 'slender'). Initial mutation: lenition (séimhiú) and eclipsis (urú). Three main dialects: Munster, Connacht, Ulster. An Caighdeán Oifigiúil = written standard. Substrate of Hiberno-English (dental stops for θ/ð). Refs: Ó Siadhail (1989), Ní Chasaide (1999).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "odochartaigh1992",
+      "author": "Ó Dochartaigh, C.",
+      "year": 1992,
+      "title": "The Irish Language",
+      "publisher": "Dublin Institute for Advanced Studies",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "o_siadhail1989",
+      "author": "Ó Siadhail, M.",
+      "year": 1989,
+      "title": "Modern Irish: Grammatical Structure and Dialectal Variation",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

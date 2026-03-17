@@ -272,5 +272,37 @@
   ],
   "notes": "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). Highlands and Islands of Scotland. Pre-aspiration of voiceless stops (diagnostic feature vs. Irish). Broad/slender distinction as in Irish. Lenition system similar to Irish. Substrate of Scottish English (/x/ in 'loch'). Refs: Ó Baoill (2010), Gillies (2009).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "oftedal1956",
+      "author": "Oftedal, M.",
+      "year": 1956,
+      "title": "The Gaelic of Leurbost, Isle of Lewis",
+      "publisher": "Norsk Tidsskrift for Sprogvidenskap",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "iosad2015",
+      "author": "Iosad, P.",
+      "year": 2015,
+      "title": "A Substance-Free Framework for Phonology: An Analysis of the Brythonic Languages",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -273,5 +273,37 @@
   ],
   "notes": "Welsh (Cymraeg). ~880,000 speakers (2021 census). Voiceless lateral /ɬ/ (⟨ll⟩), voiceless nasal /m̥ n̥/ (⟨mh nh⟩), voiceless rhotic /r̥/ (⟨rh⟩), velar fricative /x/ (⟨ch⟩). Initial consonant mutation: soft, nasal, aspirate. Stress on penultimate syllable. Refs: Thomas (1996), Ball & Müller (2009).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "king2003",
+      "author": "King, G.",
+      "year": 2003,
+      "title": "Modern Welsh: A Comprehensive Grammar",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "jones_thomas1977",
+      "author": "Jones, G.E. & Thomas, A.R.",
+      "year": 1977,
+      "title": "Welsh Phonology",
+      "publisher": "University of Wales Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
