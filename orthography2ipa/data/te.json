@@ -362,7 +362,8 @@
       "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dravidian_languages"
     },
     {
       "id": "krishnamurti_gwynn1985",
@@ -384,5 +385,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Telugu_language"
 }
