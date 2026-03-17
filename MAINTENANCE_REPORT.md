@@ -37,6 +37,32 @@
 
 ---
 
+## Transparency Report — 2026-03-16 (Multi-family language tests — Germanic/Celtic/Slavic/Romance/Indo-Iranian/Arabic)
+
+**Model**: Claude Sonnet 4.6
+**Human oversight**: Active (approval of all file writes)
+
+### Actions taken:
+1. Created `tests/test_germanic.py` — 171 tests across 10 classes:
+   - de-DE, de-AT, de-x-bavarian, nl-NL, nl-BE, af, sv, da, nb, is
+2. Created `tests/test_celtic.py` — 138 tests across 6 classes:
+   - cy, ga, gd, br, gv, kw
+3. Created `tests/test_slavic.py` — 133 tests across 8 classes:
+   - ru, pl, cs, bg, sk, uk, be, hr/sl/sr/mk (smoke tests)
+4. Created `tests/test_romance_extended2.py` — 145 tests across 18 classes:
+   - Italian dialects (Tuscan, Roman, Calabrian), Romanian, Sardinian (standard + Logudorese + Campidanese),
+     Aranese, Caribbean Spanish (Cuban, Puerto Rican, Dominican), Medieval Spanish, Cantabrian Spanish,
+     Brazilian dialects (Caipira, Bahian), Portuguese dialects (Azorean, Alentejo, Minho)
+5. Created `tests/test_indo_iranian.py` — 80 tests across 5 classes:
+   - hi, sa, fa, fa-x-tehran, fa-AF, tr
+6. Created `tests/test_arabic.py` — 50 tests across 7 classes:
+   - arb, ar-x-mashriqi, ar-x-maghrebi, ar-MA, ar-x-gulf, ar-IQ
+7. Updated `tests/conftest.py` — added germanic/celtic/slavic markers
+
+**Result**: Test count increased from 8099 to 9055 (+956 tests, 0 new failures).
+
+---
+
 ## Transparency Report — 2026-03-16 (Extended per-language dialect tests)
 
 **Model**: Claude Sonnet 4.6
