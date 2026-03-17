@@ -280,9 +280,65 @@
     }
   ],
   "sandhi_rules": [
-    {"id": "AR_SUN_ASSIMILATION", "name": "sun-letter-assimilation", "left_context": "l$", "right_context": "^[tθdðsszʃnrɫ]", "transform": "", "obligatory": true, "notes": "al-shams → ash-shams (l assimilates to following sun letter)"},
-    {"id": "AR_HAMZAT_WASL", "name": "hamzat-al-wasl", "left_context": "[aeiouː]$", "right_context": "^[ʔ]", "transform": "", "obligatory": true, "notes": "fi al-bayt → fil-bayt (hamzat al-wasl elision after vowel)"},
-    {"id": "AR_PAUSAL_TANWIN", "name": "pausal-tanwin", "left_context": "[n]$", "right_context": "$", "transform": "", "obligatory": false, "notes": "kitāban → kitābā (tanwin drops in pause)"}
+    {
+      "id": "AR_SUN_ASSIMILATION",
+      "name": "sun-letter-assimilation",
+      "left_context": "l$",
+      "right_context": "^[tθdðsszʃnrɫ]",
+      "transform": "",
+      "obligatory": true,
+      "notes": "al-shams → ash-shams (l assimilates to following sun letter)"
+    },
+    {
+      "id": "AR_HAMZAT_WASL",
+      "name": "hamzat-al-wasl",
+      "left_context": "[aeiouː]$",
+      "right_context": "^[ʔ]",
+      "transform": "",
+      "obligatory": true,
+      "notes": "fi al-bayt → fil-bayt (hamzat al-wasl elision after vowel)"
+    },
+    {
+      "id": "AR_PAUSAL_TANWIN",
+      "name": "pausal-tanwin",
+      "left_context": "[n]$",
+      "right_context": "$",
+      "transform": "",
+      "obligatory": false,
+      "notes": "kitāban → kitābā (tanwin drops in pause)"
+    }
   ],
-  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002)."
+  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002).",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

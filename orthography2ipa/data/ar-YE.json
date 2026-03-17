@@ -71,5 +71,37 @@
   ],
   "notes": "Yemeni Arabic — Ṣanʿānī (North Yemeni) as reference variety. ج → /ɡ/ in Ṣanʿānī (shared with Egyptian; independent parallel). ق → /q/ PRESERVED (conservative). ث /θ/, ذ /ð/, ظ /ðˤ/ ALL PRESERVED (very conservative). UNIQUE: ض merges with ظ → /ðˤ/ in Ṣanʿānī (lost the distinction preserved in Classical and most other dialects). No k → /tʃ/ (unlike Gulf). Vowel imāla present. Watson (1993) primary reference for Ṣanʿānī Arabic. South Yemen (Aden/Taʿizz) more similar to Gulf in some features.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

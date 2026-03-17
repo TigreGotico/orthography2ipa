@@ -72,5 +72,37 @@
   ],
   "notes": "Hejazi Arabic (حجازي). Western Saudi Arabia: Mecca, Medina, Jeddah. Urban Hejazi: ج → /dʒ/; ق → /ʔ/ (Jeddah) or /q/ (Medina). ث → /t/, ذ → /d/ (urban); preserved in Bedouin/rural. No k → /tʃ/ shift (unlike Gulf). Cosmopolitan due to Hajj pilgrimage: heavy influence from Egyptian, Levantine, South Asian Arabic speakers. Often considered most internationally intelligible Peninsula dialect.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

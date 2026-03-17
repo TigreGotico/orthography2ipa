@@ -82,5 +82,37 @@
   ],
   "notes": "Iraqi Arabic — Baghdad Muslim / southern 'gilit' variety. CONSERVATIVE FEATURE: θ (ث) and ð (ذ) and ðˤ (ظ) PRESERVED as interdentals — unlike Levantine/Egyptian where they merge to t/d. GILIT FEATURE: ق → /ɡ/ (voiced velar; Bedouin origin). Northern 'qəltu' varieties (Mosul, Christian Baghdad): ق → /q/. k → /tʃ/ before front vowels in many speakers. Persian adstrate: /p/, /v/, /tʃ/, /ʒ/ established as phonemes; thousands of Persian loanwords. Turkish (Ottoman) loanwords also present. Blanc (1964) documents three communal dialects in Baghdad: Muslim (gilit), Jewish, and Christian (qəltu).",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "blanc1964",
+      "author": "Blanc, H.",
+      "year": 1964,
+      "title": "Communal Dialects in Baghdad",
+      "publisher": "Harvard University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

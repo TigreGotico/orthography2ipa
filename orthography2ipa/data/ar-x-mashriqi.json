@@ -73,5 +73,37 @@
   ],
   "notes": "Proto-Mashriqi (Eastern) Arabic — abstract ancestor node for Egyptian, Sudanese, Levantine, Iraqi, and Gulf Arabic. Key shared Eastern features: short vowels generally retained; ج /dʒ/ preserved; ث → /t/, ذ → /d/ in sedentary varieties; ض → /dˤ/ (lateral lost); long vowels maintained.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

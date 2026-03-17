@@ -90,5 +90,37 @@
   ],
   "notes": "Tunisian Arabic (Derja تونسية). Intermediate Maghrebi variety. Vowel reduction significant but less extreme than Moroccan. θ → /t/ (urban Tunis); some rural varieties preserve /θ/. ق → /q/ conservative; /ɡ/ in urban Tunis. Historical Italian/Sicilian contact: /tʃ/ in some loans. Best-documented Maghrebi dialect (Gibson 2002, Talmoudi 1980).",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "grand_henry1972",
+      "author": "Grand'Henry, J.",
+      "year": 1972,
+      "title": "Le parler arabe de Cherchell (Algérie)",
+      "publisher": "Institut Orientaliste de Louvain",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

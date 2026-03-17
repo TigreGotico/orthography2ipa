@@ -87,5 +87,37 @@
   ],
   "notes": "Hassaniya Arabic (ħassāniyya حسانية). Spoken in Mauritania, Western Sahara, southern Morocco/Algeria, Mali, Senegal. MOST CONSERVATIVE Maghrebi dialect: θ and ð often preserved (unlike other Maghrebi varieties); ðˤ (ظ) preserved in many varieties; ق → /q/ preserved; vowel reduction less extreme. Berber (Znaga/Sanhaja) substrate: phonological reinforcement. Sub-Saharan contact (Wolof, Fulani, Soninke): some borrowings; /ŋ/ phoneme present in some Fulani-influenced varieties.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

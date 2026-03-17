@@ -55,5 +55,37 @@
   ],
   "notes": "Nigerian Shuwa Arabic. Spoken in Borno and Yobe states (NE Nigeria), Cameroon, Niger. Shuwa Arab ethnic group. More contact-modified than Chadian Arabic. θ → /t/, ð → /d/ (complete merger — Hausa influence). ق → /q/ educated speech; /ɡ/ vernacular. Hausa substrate: /ɓ, ɗ/ implosives; /ŋ/ phoneme. Possible incipient lexical tone in some varieties (Owens 1993 — debated). Owens (1993) *A Reference Grammar of Nigerian Arabic* is the primary source.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -211,5 +211,37 @@
   "notes": "Phoenician/Punic (~1050 BCE – 2nd c. CE). Northwest Semitic (Canaanite) language. Colonies in Iberia from ~9th c. BCE: Gadir (Cádiz), Malaka (Málaga), Sexi (Almuñécar), Ebusus (Ibiza). The Phoenician ALPHABET (22 consonant letters, no vowels) is the ancestor of virtually all modern alphabets. Vowels reconstructed from Greek transcriptions and Hebrew comparison. Punic features bgdkpt spirantisation. Emphatic (pharyngealised) consonants /tˤ, sˤ/ and pharyngeals /ħ, ʕ/. Substrate influence on Iberian languages debated.",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "phn"
+  "iso639_3": "phn",
+  "sources": [
+    {
+      "id": "lipiński1997",
+      "author": "Lipiński, E.",
+      "year": 1997,
+      "title": "Semitic Languages: Outline of a Comparative Grammar",
+      "publisher": "Peeters",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hetzron1997",
+      "author": "Hetzron, R. (ed.)",
+      "year": 1997,
+      "title": "The Semitic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
