@@ -33,5 +33,37 @@
   ],
   "notes": "Hazaragi (هزارگی). Dari dialect of Hazara people of central Afghanistan (Hazarajat). Hazara descend from Mongol-Turkic settlers (~13th c. CE) who adopted Dari but retain Mongolian substrate features. /q/ and /ɢ/ prominent; /ŋ/ phonemic in Mongolian loanwords. Some uvular vowel features. Spoken by ~2–3 million people; large diaspora in Iran, Pakistan, and internationally.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "bindemann1987",
+      "author": "Bindemann, R.",
+      "year": 1987,
+      "title": "The Hazara of Afghanistan",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

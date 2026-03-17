@@ -292,5 +292,37 @@
   ],
   "notes": "Pashto (پښتو) — Standard Afghan Pashto (Kandahari base). Eastern Iranian language; ~50–60 million speakers. One of two official languages of Afghanistan (with Dari). DEFINING FEATURES vs. Persian: (1) Retroflex consonants ʈ, ɖ, ɳ, ɻ, ʂ, ʐ; (2) Pashto shift: Proto-Iranian *č → ts, *ǰ → dz; (3) No pharyngeals (ħ ʕ absent, unlike Arabic); (4) 7-vowel system /a i u e o ə ɑː/; (5) Retroflex fricatives ʂ, ʐ in Southern dialect. Modified Arabic script with extra letters for retroflexes and affricates (ټ ډ ڼ ړ څ ځ ښ ږ). ADSTRATE EFFECT ON DARI: some retroflex-influenced articulation in Afghan Persian speakers with Pashto contact. Refs: Penzl (1955), David (2014), Tegey & Robson (1996).",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "tegey_robson1996",
+      "author": "Tegey, H. & Robson, B.",
+      "year": 1996,
+      "title": "A Reference Grammar of Pashto",
+      "publisher": "Center for Applied Linguistics",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

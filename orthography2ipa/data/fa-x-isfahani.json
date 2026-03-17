@@ -26,5 +26,37 @@
   ],
   "notes": "Isfahani Persian (Eṣfahānī). Isfahan — former Safavid capital. Similar to Tehran but: /æ/ → [ɛ] before nasals; uvular [ɢ] somewhat more frequent; slightly less vowel reduction of unstressed syllables. Historically considered a prestige variety alongside Tehran.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lazard1992",
+      "author": "Lazard, G.",
+      "year": 1992,
+      "title": "A Grammar of Contemporary Persian",
+      "publisher": "Mazda Publishers",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

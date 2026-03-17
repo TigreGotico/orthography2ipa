@@ -76,5 +76,37 @@
   ],
   "notes": "Dari (دری) — Afghan Persian; official language of Afghanistan. CONSERVATIVE VOWEL SYSTEM: retains Classical values; NO Tehran vowel shift (ā = [aː] not [ɒː]; a = [a] not [æ]). /q/ → [q] maintained as uvular (not merged with ɣ). /ħ/ → [ħ] maintained in careful speech (Arabic ح). /ʕ/ → [ʕ] maintained in Arabic loanwords (more than Tehran). Pashto adstrate: some retroflex-influenced articulation in some speakers. Hazaragi variety (Hazara people): Mongolian substrate (see fa-x-hazaragi). Kabul Dari is the prestige/media standard.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "perry2011",
+      "author": "Perry, J.R.",
+      "year": 2011,
+      "title": "A Tajik Persian Reference Grammar",
+      "publisher": "Brill",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

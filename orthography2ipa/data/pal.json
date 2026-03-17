@@ -232,5 +232,37 @@
   "notes": "Middle Persian / Pahlavi (~224–900 CE). Language of the Sasanian Empire (224–651 CE) and Zoroastrian religious texts. KEY INNOVATIONS vs. Old Persian: (1) Intervocalic consonant LENITION: p→w/b, t→d (θ→d), k→g→γ; (2) Diphthong MONOPHTHONGISATION: *ai → ē [eː], *au → ō [oː]; (3) 6-quality vowel system: a, ā, ē, ī, ō, ū; (4) xw- cluster preserved as /xʷ/ (later → x in New Persian). Script: Pahlavi (Aramaeographic; Aramaic logograms 'huzvarishn'). Arabic conquest (651 CE): Arabic becomes administrative language; Arabic loanwords begin entering. ISO 639-2: pal (Pahlavi). References: Mackenzie (1971), Brunner (1977).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "pal"
+  "iso639_3": "pal",
+  "sources": [
+    {
+      "id": "durkin_meisterernst2014",
+      "author": "Durkin-Meisterernst, D.",
+      "year": 2014,
+      "title": "Grammatik des Westmitteliranischen (Parthisch und Mittelpersisch)",
+      "publisher": "Verlag der Österreichischen Akademie der Wissenschaften",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

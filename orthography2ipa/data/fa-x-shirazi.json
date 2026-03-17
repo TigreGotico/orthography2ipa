@@ -30,5 +30,37 @@
   ],
   "notes": "Shirazi Persian (Šīrāzī). Shiraz — Fars province; homeland of Hafez and Saadi. KEY ISOGLOSS: /æ/ → [a] (short a lower and less fronted than Tehran). ā → [ɔː] (slightly higher/rounder than Tehran's [ɒː]). Historically regarded as the 'purest' Persian dialect. Some imāla (vowel raising) in Classical vocabulary.",
   "quality": "skeleton",
-  "script_type": "abjad"
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lazard1992",
+      "author": "Lazard, G.",
+      "year": 1992,
+      "title": "A Grammar of Contemporary Persian",
+      "publisher": "Mazda Publishers",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

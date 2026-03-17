@@ -238,5 +238,37 @@
   ],
   "notes": "Tajik (Тоҷикӣ / Tojikī). Official language of Tajikistan. Persian with Cyrillic script (since ~1939, Soviet era). CONSERVATIVE VOWELS: No Tehran vowel shift; a=[a], ā=[aː]. /q/ → [q] maintained (like Dari; more than Tehran). DISTINCTIVE: Cyrillic script with special letters (Ӣ=ī, Ӯ=ū, Қ=q, Ғ=ɣ, Ҷ=dʒ, Ҳ=h). Uzbek/Turkic substrate: /ŋ/ phoneme in Turkic loanwords; uvular consonants reinforced. Russian superstrate: loanwords with initial consonant clusters unusual in native Persian (school/škola → Tg. maktab but also borrowed terms). /ts/ established from Russian loans. Perry (2005) is the primary reference grammar.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "perry2005",
+      "author": "Perry, J.R.",
+      "year": 2005,
+      "title": "A Tajik Persian Reference Grammar",
+      "publisher": "Brill",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
