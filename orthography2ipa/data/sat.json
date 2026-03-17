@@ -225,5 +225,37 @@
   "notes": "Santali (Jharkhand, West Bengal, Odisha, Bihar). Austroasiatic, Munda branch — unrelated to IA or Dravidian. Written officially in Ol Chiki script (invented 1925 by Raghunath Murmu); also Latin and Devanagari. Phonemic aspiration in stops; glottalized vowels in checked syllables. No retroflex consonants (unlike IA neighbours).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "sat"
+  "iso639_3": "sat",
+  "sources": [
+    {
+      "id": "zide1972",
+      "author": "Zide, N.H.",
+      "year": 1972,
+      "title": "Santali",
+      "publisher": "in T. Sebeok (ed.), Current Trends in Linguistics 5",
+      "url": "Mouton",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "diffloth1974",
+      "author": "Diffloth, G.",
+      "year": 1974,
+      "title": "Austro-Asiatic Languages",
+      "publisher": "Encyclopaedia Britannica",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

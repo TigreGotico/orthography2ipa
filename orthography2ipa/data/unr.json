@@ -239,5 +239,37 @@
   "notes": "Mundari (Jharkhand). Closely related to Santali. Written in Latin (linguistic convention) or Devanagari. Has some retroflex consonants from IA contact.",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "unr"
+  "iso639_3": "unr",
+  "sources": [
+    {
+      "id": "evans2001",
+      "author": "Evans, N.",
+      "year": 2001,
+      "title": "Mundari",
+      "publisher": "in J. Garry & C. Rubino (eds.), Facts About the World's Languages",
+      "url": "H.W. Wilson",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "diffloth1974",
+      "author": "Diffloth, G.",
+      "year": 1974,
+      "title": "Austro-Asiatic Languages",
+      "publisher": "Encyclopaedia Britannica",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

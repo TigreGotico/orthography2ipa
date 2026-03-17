@@ -171,5 +171,37 @@
   },
   "notes": "Proto-Munda (~4000–3000 BCE). Reconstructed common ancestor of all Munda languages (Santali, Mundari, Ho, Korku, Kharia, Sora). Austroasiatic > Munda branch. Sesquisyllabic word structure; register/phonation contrast; no tones; rich onset clusters; no retroflexes at proto-stage. Refs: Pinnow (1959), Anderson (2008), Donegan & Stampe (2004).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "pinnow1959",
+      "author": "Pinnow, H.J.",
+      "year": 1959,
+      "title": "Versuch einer historischen Lautlehre der Kharia-Sprache",
+      "publisher": "Harrassowitz",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "diffloth1974",
+      "author": "Diffloth, G.",
+      "year": 1974,
+      "title": "Austro-Asiatic Languages",
+      "publisher": "Encyclopaedia Britannica",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -180,5 +180,37 @@
   "notes": "Khasi (Meghalaya, India). Austroasiatic, Mon-Khmer branch — unrelated to IA, Dravidian, or Munda. One of only two scheduled languages not from IA or Dravidian families. Written in Latin script since Welsh/British missionary period (1840s). Matrilineal society; shares phonological typology with Southeast Asian Mon-Khmer.",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "kha"
+  "iso639_3": "kha",
+  "sources": [
+    {
+      "id": "rabel1961",
+      "author": "Rabel, L.",
+      "year": 1961,
+      "title": "Khasi: A Language of Assam",
+      "publisher": "Louisiana State University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "nagaraja1985",
+      "author": "Nagaraja, K.S.",
+      "year": 1985,
+      "title": "Khasi: A Descriptive Analysis",
+      "publisher": "Deccan College",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "diffloth1974",
+      "author": "Diffloth, G.",
+      "year": 1974,
+      "title": "Austro-Asiatic Languages",
+      "publisher": "Encyclopaedia Britannica",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

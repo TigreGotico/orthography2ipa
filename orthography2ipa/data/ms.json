@@ -4,20 +4,72 @@
   "family": "Austronesian",
   "script": "Latin",
   "graphemes": {
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
   },
   "allophones": {
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
   },
   "quality": "stub",
   "script_type": "alphabet",
-  "iso639_3": "msa"
+  "iso639_3": "msa",
+  "sources": [
+    {
+      "id": "adelaar_himmelmann2005",
+      "author": "Adelaar, A. & Himmelmann, N. (eds.)",
+      "year": 2005,
+      "title": "The Austronesian Languages of Asia and Madagascar",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "clynes_deterding2011",
+      "author": "Clynes, A. & Deterding, D.",
+      "year": 2011,
+      "title": "Standard Malay (Brunei)",
+      "publisher": "Journal of the International Phonetic Association",
+      "url": null,
+      "pages": "259-268",
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
