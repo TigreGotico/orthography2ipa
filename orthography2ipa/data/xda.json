@@ -134,5 +134,37 @@
   "notes": "Dacian/Thracian. Poorly attested pre-Roman Balkan IE languages. ~160 attributed words plus onomastic material. Exact classification debated: some link to Albanian, others to an extinct IE branch. THIS IS SPECULATIVE: phonological system is a plausible minimum reconstruction from onomastics, plant names, and Romanian-Albanian shared vocabulary (Russu 1969, Duridanov 1969).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "xda"
+  "iso639_3": "xda",
+  "sources": [
+    {
+      "id": "duridanov1976",
+      "author": "Duridanov, I.",
+      "year": 1976,
+      "title": "Die Sprache der Thraker",
+      "publisher": "Hieronymus Verlag",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "meier_bruegger2003",
+      "author": "Meier-Brügger, M.",
+      "year": 2003,
+      "title": "Indo-European Linguistics",
+      "publisher": "de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
