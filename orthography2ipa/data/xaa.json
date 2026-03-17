@@ -17,7 +17,8 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
     },
     {
       "id": "corriente1997",
@@ -39,5 +40,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Nabataean_language"
 }

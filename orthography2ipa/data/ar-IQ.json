@@ -92,7 +92,8 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
     },
     {
       "id": "holes2004",
@@ -114,5 +115,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Iraqi_Arabic"
 }
