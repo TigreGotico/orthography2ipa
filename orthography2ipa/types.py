@@ -272,6 +272,9 @@ class LinguisticSource:
         Publisher name, if applicable.
     url : Optional[str]
         URL or DOI for online resources; ``None`` for print-only works.
+    wikipedia_url : Optional[str]
+        Wikipedia article URL for this source or the phenomenon it describes;
+        intended as a quick human reference, not a citable source.
     pages : Optional[str]
         Specific page range referenced, e.g. ``"pp. 45-72"``.
     notes : Optional[str]
@@ -284,6 +287,7 @@ class LinguisticSource:
     title: str
     publisher: Optional[str] = None
     url: Optional[str] = None
+    wikipedia_url: Optional[str] = None
     pages: Optional[str] = None
     notes: Optional[str] = None
 
@@ -470,6 +474,9 @@ class LanguageSpec:
 
     sources: Tuple["LinguisticSource", ...] = field(default_factory=tuple)
     """Bibliographic references supporting the phonological decisions in this spec."""
+
+    wikipedia: Optional[str] = None
+    """Wikipedia article URL for this language or dialect; quick human reference."""
 
     def __post_init__(self) -> None:
         # Normalise None to empty dict

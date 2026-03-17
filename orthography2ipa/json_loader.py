@@ -194,6 +194,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             title=s["title"],
             publisher=s.get("publisher"),
             url=s.get("url"),
+            wikipedia_url=s.get("wikipedia_url"),
             pages=s.get("pages"),
             notes=s.get("notes"),
         )
@@ -218,6 +219,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         sandhi_rules=sandhi_rules,
         tone_inventory=raw.get("tone_inventory"),
         sources=sources,
+        wikipedia=raw.get("wikipedia"),
     )
 
     _specs[code] = spec
