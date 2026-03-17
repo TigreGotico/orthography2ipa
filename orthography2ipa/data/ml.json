@@ -369,5 +369,37 @@
   "notes": "Standard Malayalam (Kerala). Descended from Old Tamil, diverged c. 9th–13th century CE. Unique phoneme: ⟨ഴ⟩ = /z/ (derived from Proto-Dravidian *ḻ, retained as /z/ only in Malayalam). Uses the most complex Brahmic script (~60 base characters). Phonemic gemination. Heavy Sanskrit vocabulary in formal register.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "a"
+  "inherent_vowel": "a",
+  "sources": [
+    {
+      "id": "krishnamurti2003",
+      "author": "Krishnamurti, B.",
+      "year": 2003,
+      "title": "The Dravidian Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "asher_kumari1997",
+      "author": "Asher, R.E. & Kumari, T.C.",
+      "year": 1997,
+      "title": "Malayalam",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

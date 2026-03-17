@@ -295,5 +295,37 @@
   "quality": "skeleton",
   "script_type": "abugida",
   "inherent_vowel": "a",
-  "iso639_3": "tcy"
+  "iso639_3": "tcy",
+  "sources": [
+    {
+      "id": "krishnamurti2003",
+      "author": "Krishnamurti, B.",
+      "year": 2003,
+      "title": "The Dravidian Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "bhat1967",
+      "author": "Bhat, D.N.S.",
+      "year": 1967,
+      "title": "Tulu Verb Morphology",
+      "publisher": "Deccan College Postgraduate and Research Institute",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

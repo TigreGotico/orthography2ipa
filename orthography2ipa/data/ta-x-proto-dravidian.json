@@ -191,5 +191,37 @@
   },
   "notes": "Reconstructed Proto-Dravidian (c. 3000–2000 BCE, before IA arrival). Following Krishnamurti (2003): 5 vowel qualities × short/long; two stop series (initial: unaspirated; medial: voiced allophones); no aspiration contrast in native vocabulary; retroflex series (ʈ ɖ ɳ ɭ ɻ) — may be the source of IA retroflexes.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "krishnamurti2003",
+      "author": "Krishnamurti, B.",
+      "year": 2003,
+      "title": "The Dravidian Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "burrow_emeneau1984",
+      "author": "Burrow, T. & Emeneau, M.B.",
+      "year": 1984,
+      "title": "A Dravidian Etymological Dictionary (2nd ed.)",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

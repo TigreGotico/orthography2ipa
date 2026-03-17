@@ -352,5 +352,37 @@
   "notes": "Standard Telugu (Andhra Pradesh and Telangana). Most widely spoken Dravidian language. Unlike Tamil, Telugu has aspirated stops from Sanskrit contact fully integrated into the phonological system. ⟨ళ⟩ = [ɭ] retroflex lateral phonemic. All vowels have short/long distinction.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "a"
+  "inherent_vowel": "a",
+  "sources": [
+    {
+      "id": "krishnamurti2003",
+      "author": "Krishnamurti, B.",
+      "year": 2003,
+      "title": "The Dravidian Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "krishnamurti_gwynn1985",
+      "author": "Krishnamurti, B. & Gwynn, J.P.L.",
+      "year": 1985,
+      "title": "A Grammar of Modern Telugu",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

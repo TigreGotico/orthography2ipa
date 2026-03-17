@@ -357,5 +357,37 @@
   "notes": "Standard Kannada (Karnataka). Phonological system closely parallel to Telugu. ⟨ಳ⟩ = [ɭ] retroflex lateral phonemic. Archaic ⟨ಱ⟩ = [ɻ] (retroflex approximant, cf. Tamil/Malayalam ⟨ழ⟩) survives in some dialects. Aspiration in native words only post-Sanskrit contact.",
   "quality": "skeleton",
   "script_type": "abugida",
-  "inherent_vowel": "a"
+  "inherent_vowel": "a",
+  "sources": [
+    {
+      "id": "krishnamurti2003",
+      "author": "Krishnamurti, B.",
+      "year": 2003,
+      "title": "The Dravidian Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "sridhar1990",
+      "author": "Sridhar, S.N.",
+      "year": 1990,
+      "title": "Kannada",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
