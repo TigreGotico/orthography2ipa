@@ -40,5 +40,37 @@
   ],
   "notes": "Finland-Swedish (finlandssvenska). Spoken by ~5% of Finns. NO TONAL ACCENT (Finnish influence — Finnish has no pitch accent). NO RETROFLEXION (alveolar r always; no ɳ ɖ ʈ ʂ clusters). sj-sound = [ʃ] or [sk] (not the mainland [ɧ]). Long consonant quantity very prominent (Finnish substrate). Source: Elert (1994).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "groennum1998",
+      "author": "Grønnum, N.",
+      "year": 1998,
+      "title": "Fonetik og fonologi: Almen og dansk",
+      "publisher": "Akademisk Forlag",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "eliasson2002",
+      "author": "Eliasson, S. et al.",
+      "year": 2002,
+      "title": "Nordic Languages: An International Handbook of the History of the North Germanic Languages",
+      "publisher": "de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "reuter1982",
+      "author": "Reuter, O.R.",
+      "year": 1982,
+      "title": "The Pronunciation of Finnish Swedish",
+      "publisher": "Meddelanden från Stiftelsens för Åbo Akademi forskningsinstitut",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

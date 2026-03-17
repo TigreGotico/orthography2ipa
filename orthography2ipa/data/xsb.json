@@ -4,5 +4,37 @@
   "family": "Germanic",
   "script": "Latin",
   "parent": "gem",
-  "notes": "Suebi/Suevi. West Germanic people who established a kingdom in Gallaecia (NW Iberia, 411–585 CE). Germanic superstrate in Galician and Portuguese: ~200 place names and personal names, vocabulary (guerra, roubar, branco). Phonology reconstructed from Proto-West-Germanic (Piel 1937, d'Encarnação 1975)."
+  "notes": "Suebi/Suevi. West Germanic people who established a kingdom in Gallaecia (NW Iberia, 411–585 CE). Germanic superstrate in Galician and Portuguese: ~200 place names and personal names, vocabulary (guerra, roubar, branco). Phonology reconstructed from Proto-West-Germanic (Piel 1937, d'Encarnação 1975).",
+  "sources": [
+    {
+      "id": "green1990",
+      "author": "Green, D.H.",
+      "year": 1990,
+      "title": "Medieval Listening and Reading: The Primary Reception of German Literature 800–1300",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

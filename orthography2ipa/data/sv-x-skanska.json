@@ -38,5 +38,37 @@
   ],
   "notes": "Scanian (Skånska) — southernmost Swedish province. UVULAR /r/ [ʀ] or [ʁ] — shared with Danish (historical Danish territory). Scania belonged to Denmark until 1658 (Treaty of Roskilde). No retroflexion (uvular r doesn't trigger it). Tonal accent present but with different realisation. Source: Wells (1982), Elert (1994).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "groennum1998",
+      "author": "Grønnum, N.",
+      "year": 1998,
+      "title": "Fonetik og fonologi: Almen og dansk",
+      "publisher": "Akademisk Forlag",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "eliasson2002",
+      "author": "Eliasson, S. et al.",
+      "year": 2002,
+      "title": "Nordic Languages: An International Handbook of the History of the North Germanic Languages",
+      "publisher": "de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "russ1994",
+      "author": "Russ, C.",
+      "year": 1994,
+      "title": "The Dialects of Modern German",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

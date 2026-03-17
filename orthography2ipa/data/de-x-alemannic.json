@@ -8,5 +8,37 @@
   "parent": "de-CH",
   "notes": "Alemannic German (Schwyzerdütsch, Alsatian, Swabian, Vorarlbergisch). No glottal stop. Alveolar /r/. Geminate consonants phonemic. Covers Swiss German dialects, Alsace (France), Vorarlberg (Austria), southwestern Germany.",
   "quality": "stub",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wiese1996",
+      "author": "Wiese, R.",
+      "year": 1996,
+      "title": "The Phonology of German",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "russ1994",
+      "author": "Russ, C.",
+      "year": 1994,
+      "title": "The Dialects of Modern German",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "haas2000",
+      "author": "Haas, W.",
+      "year": 2000,
+      "title": "Schweizerdeutsch",
+      "publisher": "in H. Goebl et al. (eds.), Dialektologie",
+      "url": "de Gruyter",
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
