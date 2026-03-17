@@ -145,5 +145,37 @@
   "notes": "Oscan (5th c. BCE – 1st c. CE). Sabellic (Osco-Umbrian) language of Samnium, Campania, Lucania, Bruttium. ~400 inscriptions. Closest Italic relative of Latin. Substrate in Southern Italo-Romance: possible influence on Neapolitan and Sicilian vowel systems. Distinct from Latin in vowel diphthongisation patterns (Buck 1928, Rix 2002).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "osc"
+  "iso639_3": "osc",
+  "sources": [
+    {
+      "id": "buck1904",
+      "author": "Buck, C.D.",
+      "year": 1904,
+      "title": "A Grammar of Oscan and Umbrian",
+      "publisher": "Ginn & Company",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "weiss2009",
+      "author": "Weiss, M.",
+      "year": 2009,
+      "title": "Outline of the Historical and Comparative Grammar of Latin",
+      "publisher": "Beech Stave Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

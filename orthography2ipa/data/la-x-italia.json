@@ -309,5 +309,37 @@
   ],
   "notes": "Italo-Romance Vulgar Latin (~3rd–7th c. CE). Spoken Latin of the Italian peninsula. Key innovations: (1) Gemination PRESERVED (hallmark feature: anno, bello, terra). (2) /u/ not fronted to /y/ (unlike Gallo-Romance). (3) Weaker lenition than Western Romance. (4) Final -s LOST (plurals by vowel alternation, not -s). (5) Palatalisation of k/g before e,i → [tʃ]/[dʒ]. Ancestor of Tuscan/Italian, Neapolitan, Sicilian, Corsican. Sardinian is EXCLUDED — it diverged before these innovations (Lausberg 1971).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "weiss2009",
+      "author": "Weiss, M.",
+      "year": 2009,
+      "title": "Outline of the Historical and Comparative Grammar of Latin",
+      "publisher": "Beech Stave Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "allen1978",
+      "author": "Allen, W.S.",
+      "year": 1978,
+      "title": "Vox Latina: A Guide to the Pronunciation of Classical Latin",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "maiden1995",
+      "author": "Maiden, M.",
+      "year": 1995,
+      "title": "A Linguistic History of Italian",
+      "publisher": "Longman",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -234,5 +234,37 @@
   ],
   "notes": "Balkan Romance Vulgar Latin (~3rd–7th c. CE). Spoken Latin of Roman Dacia, Moesia, Dalmatia. KEY features vs Western Romance: (1) NO intervocalic lenition (lup, foc, not *lub, *fogo). (2) Central vowels /ə, ɨ/ develop. (3) Labial palatalisation before front vowels. (4) Rhotacism: intervocalic /l/ → /r/. (5) Postposed definite article (Balkan sprachbund). (6) Rich diphthong system: /ɔ/ → [o̯a]. Dacian/Thracian substrate and later massive Slavic superstrate are defining contact influences (Rosetti 1986, Sala 2005).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "sala1999",
+      "author": "Sala, M.",
+      "year": 1999,
+      "title": "Le latin du Danube",
+      "publisher": "Annuario dell'Istituto Romeno di Cultura e Ricerca Umanistica",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "weiss2009",
+      "author": "Weiss, M.",
+      "year": 2009,
+      "title": "Outline of the Historical and Comparative Grammar of Latin",
+      "publisher": "Beech Stave Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "allen1978",
+      "author": "Allen, W.S.",
+      "year": 1978,
+      "title": "Vox Latina: A Guide to the Pronunciation of Classical Latin",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
