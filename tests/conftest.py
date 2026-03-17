@@ -79,6 +79,15 @@ def pytest_configure(config):
     config.addinivalue_line(
         "markers", "iberian: marks Iberian Peninsula language accuracy tests"
     )
+    config.addinivalue_line(
+        "markers", "germanic: marks Germanic language accuracy tests"
+    )
+    config.addinivalue_line(
+        "markers", "celtic: marks Celtic language accuracy tests"
+    )
+    config.addinivalue_line(
+        "markers", "slavic: marks Slavic language accuracy tests"
+    )
 
 
 # ═══════════════════════════════════════════════════════════════════════════
