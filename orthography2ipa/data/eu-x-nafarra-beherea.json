@@ -22,5 +22,37 @@
   "parent": "eu",
   "notes": "Lower Navarrese (Behe-Nafar). Spoken in Basse-Navarre (France). Shares aspiration and plosive aspiration features with Souletin but less systematic. Fully productive /h/. Intermediate between southern (Spanish-side) and eastern (Souletin) varieties.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde_ortiz_de_urbina2003",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "saltarelli1988",
+      "author": "Saltarelli, M.",
+      "year": 1988,
+      "title": "Basque",
+      "publisher": "Croom Helm",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

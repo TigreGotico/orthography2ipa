@@ -35,5 +35,37 @@
   "parent": "eu",
   "notes": "Biscayan (Bizkaiera/Bizkaia). Western Basque dialect. Key features: sibilant palatalization after /i/ ([s̺,s̻] → [ʃ]), loss of aspiration /h/, tendency toward unstressed /a/ raising, some sibilant pair mergers. Morphologically most divergent from Batua (unique verb auxiliaries, case forms).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde_ortiz_de_urbina2003",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hualde_elordieta_elordieta1994",
+      "author": "Hualde, J.I., Elordieta, G. & Elordieta, A.",
+      "year": 1994,
+      "title": "The Basque Dialect of Lekeitio",
+      "publisher": "University of the Basque Country",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

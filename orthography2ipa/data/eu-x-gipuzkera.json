@@ -14,5 +14,37 @@
   "parent": "eu",
   "notes": "Gipuzkoan (Gipuzkera). Central Basque dialect, closest to Euskara Batua standard. Full three-way sibilant contrast maintained (apical/laminal/postalveolar). Palatal stops [c, ɟ] well preserved. Primary reference variety for standardization.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde_ortiz_de_urbina2003",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "saltarelli1988",
+      "author": "Saltarelli, M.",
+      "year": 1988,
+      "title": "Basque",
+      "publisher": "Croom Helm",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -30,5 +30,37 @@
   "parent": "eu",
   "notes": "Souletin (Zuberera/Xiberotarra). Easternmost Basque dialect, spoken in Soule/Zuberoa (France). Most divergent variety. Unique features: front rounded vowel /y/ (⟨ü⟩, like French), fully functional aspirate /h/, aspirated stops [pʰ, tʰ, kʰ], distinctive verb morphology. French phonological influence.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde_ortiz_de_urbina2003",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lafon1999",
+      "author": "Lafon, R.",
+      "year": 1999,
+      "title": "Études basques et caucasiques",
+      "publisher": "University of the Basque Country",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
