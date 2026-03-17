@@ -250,7 +250,8 @@
       "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Celtic_languages"
     },
     {
       "id": "ternes1992",
@@ -272,5 +273,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Breton_language"
 }

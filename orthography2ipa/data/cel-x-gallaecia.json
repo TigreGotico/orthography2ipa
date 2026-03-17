@@ -125,7 +125,8 @@
       "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Celtic_languages"
     },
     {
       "id": "fortson2010",
@@ -135,7 +136,9 @@
       "publisher": "Blackwell",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Gallaecian_language"
 }

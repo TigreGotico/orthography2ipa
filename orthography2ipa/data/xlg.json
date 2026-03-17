@@ -131,7 +131,8 @@
       "publisher": "Blackwell",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     },
     {
       "id": "ladefoged_maddieson1996",
@@ -143,5 +144,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Ancient_Ligurian_language"
 }

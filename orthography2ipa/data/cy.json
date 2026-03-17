@@ -293,7 +293,8 @@
       "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Celtic_languages"
     },
     {
       "id": "jones_thomas1977",
@@ -305,5 +306,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Welsh_language"
 }
