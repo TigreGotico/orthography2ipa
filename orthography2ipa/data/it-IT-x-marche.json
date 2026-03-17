@@ -1,0 +1,309 @@
+{
+  "code": "it-IT-x-marche",
+  "name": "Marchigiano",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "tʃ"
+    ],
+    "ch": [
+      "k"
+    ],
+    "ci": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gi": [
+      "dʒ"
+    ],
+    "gl": [
+      "ʎ",
+      "ɡl"
+    ],
+    "gli": [
+      "ʎ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "j": [
+      "j"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "sc": [
+      "ʃ",
+      "sk"
+    ],
+    "sci": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ],
+    "bb": [
+      "bː"
+    ],
+    "cc": [
+      "kː",
+      "tːʃ"
+    ],
+    "dd": [
+      "dː"
+    ],
+    "ff": [
+      "fː"
+    ],
+    "gg": [
+      "ɡː",
+      "dːʒ"
+    ],
+    "ll": [
+      "lː"
+    ],
+    "mm": [
+      "mː"
+    ],
+    "nn": [
+      "nː"
+    ],
+    "pp": [
+      "pː"
+    ],
+    "rr": [
+      "rː"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "tt": [
+      "tː"
+    ],
+    "zz": [
+      "tːs",
+      "dːz"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "m": [
+      "m",
+      "ɱ"
+    ],
+    "n": [
+      "n",
+      "m",
+      "ɱ",
+      "ŋ",
+      "ɲ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "bː": [
+      "bː"
+    ],
+    "dː": [
+      "dː"
+    ],
+    "ɡː": [
+      "ɡː"
+    ],
+    "pː": [
+      "pː"
+    ],
+    "tː": [
+      "tː"
+    ],
+    "kː": [
+      "kː"
+    ],
+    "fː": [
+      "fː"
+    ],
+    "sː": [
+      "sː"
+    ],
+    "lː": [
+      "lː"
+    ],
+    "mː": [
+      "mː"
+    ],
+    "nː": [
+      "nː"
+    ],
+    "rː": [
+      "rː"
+    ],
+    "tːʃ": [
+      "tːʃ"
+    ],
+    "dːʒ": [
+      "dːʒ"
+    ],
+    "tːs": [
+      "tːs"
+    ],
+    "dːz": [
+      "dːz"
+    ]
+  },
+  "parent": "it-IT",
+  "ancestors": [
+    {
+      "code": "it-IT",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Central Italian parent, with Southern influences in the south of the region."
+    }
+  ],
+  "notes": "Marchigiano. Central Italian of the Marche region. Transitional zone: northern Marche is closer to Romagnol (Gallo-Italic), central Marche is Central Italian, southern Marche is closer to the Neapolitan continuum. Reference: central Marche (Macerata). Key features: (1) 7-vowel system. (2) Metaphony in southern varieties. (3) Assimilatory processes (Loporcaro 2009, Avolio 1995).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

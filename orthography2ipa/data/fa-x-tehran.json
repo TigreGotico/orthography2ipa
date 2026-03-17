@@ -1,0 +1,48 @@
+{
+  "code": "fa-x-tehran",
+  "name": "Tehran Persian (Standard Iranian)",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa",
+  "allophones_base": "fa",
+  "allophones": {
+    "ʔ": [
+      "ʔ",
+      "∅"
+    ],
+    "ɣ": [
+      "ɣ",
+      "ɢ"
+    ],
+    "q": [
+      "ɣ",
+      "ɢ"
+    ],
+    "i": [
+      "i",
+      "e"
+    ],
+    "u": [
+      "u",
+      "o"
+    ]
+  },
+  "parent": "fa",
+  "ancestors": [
+    {
+      "code": "fa-x-early",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "New Persian descent; Tehran dialect became standard ~19th c."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Arabic adstrate: 40–50% of formal vocabulary; consonants θ/ð/ħ/ʕ/q assimilated phonologically"
+    }
+  ],
+  "notes": "Tehran Standard Persian — the national standard of Iran. DEFINING VOWEL SHIFT (vs. Classical/Dari/Tajik): Classical ā [aː] → Tehran [ɒː] (backed); Classical a → [æ] (fronted). 6-VOWEL SYSTEM: ɒː, æ, e, o, iː, uː (no contrastive length). Voiceless stops aspirated [pʰ tʰ kʰ] in onset. q/ɣ merger: Arabic ق and غ both → [ɣ] or [ɢ]. ħ → h (pharyngeal lost); ʕ → ʔ (often deleted). r → [ɾ] tap in most positions.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

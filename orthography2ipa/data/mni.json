@@ -1,0 +1,222 @@
+{
+  "code": "mni",
+  "name": "Meitei",
+  "family": "Tibeto-Burman",
+  "script": "Meitei Mayek",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "p": [
+      "p"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "c": [
+      "tʃ"
+    ],
+    "ch": [
+      "tʃʰ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "y": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "k": [
+      "k",
+      "kʰ",
+      "ʔ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ",
+      "tʃʰ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "mni-x-proto-kuki-chin",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Tibeto-Burman, Kuki-Chin branch"
+    },
+    {
+      "code": "bn",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Bengali adstrate through administrative contact"
+    }
+  ],
+  "notes": "Meitei/Manipuri (Manipur, India). Tibeto-Burman, Kuki-Chin-Mizo branch. Phonemic tone (falling vs. non-falling in stressed syllable). Meitei Mayek script (traditional, restored 2013 as official). Also written in Bengali script officially.",
+  "quality": "skeleton",
+  "script_type": "abugida",
+  "iso639_3": "mni"
+}

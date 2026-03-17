@@ -1,0 +1,193 @@
+{
+  "code": "ira",
+  "name": "Proto-Iranian",
+  "family": "Indo-Iranian",
+  "script": "Latin",
+  "graphemes": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "s": [
+      "s"
+    ],
+    "f": [
+      "f"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "x": [
+      "x"
+    ],
+    "z": [
+      "z"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "r": [
+      "r"
+    ],
+    "y": [
+      "j"
+    ],
+    "v": [
+      "v"
+    ],
+    "l": [
+      "l"
+    ],
+    "a": [
+      "a"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "v": [
+      "v",
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "aj": [
+      "aj"
+    ],
+    "aw": [
+      "aw"
+    ]
+  },
+  "parent": "iir",
+  "ancestors": [
+    {
+      "code": "iir",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Proto-Indo-Iranian"
+    }
+  ],
+  "notes": "Proto-Iranian (~1500–1000 BCE). Ancestor of all Iranian languages: Persian, Avestan, Sogdian, Parthian, Bactrian, Pashto, Kurdish, Ossetic, Balochi, etc. KEY INNOVATIONS vs. Proto-Indo-Iranian: (1) *s → h: THE diagnostic Iranian change (PII *saptan → PIr. *haptan     'seven'; cf. Sanskrit saptá); (2) Voiced aspirates DEASPIRATED: *bʱ, *dʱ, *gʱ → b, d, g     (Iranian loses the breathy-voice series; Sanskrit preserves it); (3) *w → *v (labial fricative/approximant); (4) Labiovelars *kʷ → *k (labialisation lost); (5) Spirant allophones of stops developing:     *p → f, *t → θ, *k → x in fricative environments. Script: romanization (unattested proto-language).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "ira"
+}

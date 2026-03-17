@@ -1,0 +1,42 @@
+{
+  "code": "es-AR",
+  "name": "Rioplatense Spanish",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "y": [
+      "ʃ",
+      "ʒ",
+      "i"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʃ",
+      "ʒ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "s": [
+      "s",
+      "z",
+      "h"
+    ],
+    "ʝ": [
+      "ʃ",
+      "ʒ"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

@@ -1,0 +1,208 @@
+{
+  "code": "kw",
+  "name": "Cornish",
+  "family": "Celtic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "æ"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "ʊ"
+    ],
+    "y": [
+      "ɪ",
+      "ə"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "th": [
+      "θ"
+    ],
+    "dh": [
+      "ð"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "gh": [
+      "x",
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "h": [
+      "h"
+    ],
+    "hw": [
+      "ʍ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "ʍ": [
+      "ʍ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "æ": [
+      "æ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "parent": "xbr",
+  "ancestors": [
+    {
+      "code": "xbr",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Descent from Common Brythonic"
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.07,
+      "notes": "English adstrate: heavy contact influence pre-extinction"
+    }
+  ],
+  "notes": "Cornish (Kernewek). Revived language; last native speaker died 1777. Revival since early 20th c.; ~3,000 speakers (est. 2020). Three main revival orthographies: Kernewek Standard, Kernewek Unys, Spellyans. This spec follows revived Kernewek Standard pronunciation. Refs: George (1993), Brown (2001).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

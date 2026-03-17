@@ -1,0 +1,37 @@
+{
+  "code": "fa-x-hazaragi",
+  "name": "Hazaragi (Afghan Dari, Hazara)",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa-AF",
+  "allophones_base": "fa-AF",
+  "allophones": {
+    "ɣ": [
+      "ɣ",
+      "ɢ"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "q": [
+      "q",
+      "ɢ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "fa-AF",
+  "ancestors": [
+    {
+      "code": "fa-AF",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Dari base"
+    }
+  ],
+  "notes": "Hazaragi (هزارگی). Dari dialect of Hazara people of central Afghanistan (Hazarajat). Hazara descend from Mongol-Turkic settlers (~13th c. CE) who adopted Dari but retain Mongolian substrate features. /q/ and /ɢ/ prominent; /ŋ/ phonemic in Mongolian loanwords. Some uvular vowel features. Spoken by ~2–3 million people; large diaspora in Iran, Pakistan, and internationally.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

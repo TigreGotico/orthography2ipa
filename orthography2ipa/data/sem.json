@@ -2,8 +2,29 @@
   "code": "sem",
   "name": "Proto-Semitic",
   "family": "Afroasiatic",
-  "script": null,
-  "graphemes": {},
-  "allophones": {},
+  "script": "IPA-reconstruction",
+  "script_type": "reconstruction",
+  "graphemes": {
+    "p": ["p"], "t": ["t"], "k": ["k"], "q": ["q"], "ʔ": ["ʔ"],
+    "b": ["b"], "d": ["d"], "g": ["ɡ"],
+    "tˤ": ["tˤ"], "sˤ": ["sˤ"], "ðˤ": ["ðˤ"], "ɬˤ": ["ɬˤ"],
+    "f": ["f"], "θ": ["θ"], "s": ["s"], "ʃ": ["ʃ"], "ɬ": ["ɬ"], "x": ["x"], "ħ": ["ħ"], "h": ["h"],
+    "ð": ["ð"], "z": ["z"], "ɣ": ["ɣ"], "ʕ": ["ʕ"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "i": ["i"], "u": ["u"],
+    "aː": ["aː"], "iː": ["iː"], "uː": ["uː"]
+  },
+  "allophones": {
+    "p": ["p"], "t": ["t"], "k": ["k"], "q": ["q"], "ʔ": ["ʔ"],
+    "b": ["b"], "d": ["d"], "ɡ": ["ɡ"],
+    "tˤ": ["tˤ"], "sˤ": ["sˤ"], "ðˤ": ["ðˤ"], "ɬˤ": ["ɬˤ"],
+    "f": ["f"], "θ": ["θ"], "s": ["s"], "ʃ": ["ʃ"], "ɬ": ["ɬ"], "x": ["x"], "ħ": ["ħ"], "h": ["h"],
+    "ð": ["ð"], "z": ["z"], "ɣ": ["ɣ"], "ʕ": ["ʕ"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r", "ɾ"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "i": ["i"], "u": ["u"],
+    "aː": ["aː"], "iː": ["iː"], "uː": ["uː"]
+  },
   "notes": "Proto-Semitic (~5000–4000 BCE). Reconstructed ancestor of all Semitic languages. 29-consonant inventory including: (1) emphatic series /sˤ tˤ ðˤ ɬˤ/; (2) lateral fricatives /ɬ/ (*ś) and /ɬˤ/ (*ṣ́); (3) interdentals /θ ð ðˤ/; (4) pharyngeals /ħ ʕ/; (5) uvular /q/; (6) bilabial stop /p/ (→ f in Arabic). Three-vowel system (a, i, u) with contrastive length. Notation follows Huehnergard (2019) and Lipiński (2001). Script: romanization (PSem was unwritten)."
 }

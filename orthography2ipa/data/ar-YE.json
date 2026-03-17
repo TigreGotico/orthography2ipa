@@ -1,0 +1,75 @@
+{
+  "code": "ar-YE",
+  "name": "Yemeni Arabic (Ṣanʿānī)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-peninsular",
+  "graphemes": {
+    "ث": [
+      "θ"
+    ],
+    "ج": [
+      "ɡ",
+      "dʒ"
+    ],
+    "ذ": [
+      "ð"
+    ],
+    "ض": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "ظ": [
+      "ðˤ"
+    ],
+    "ق": [
+      "q"
+    ]
+  },
+  "allophones_base": "ar-x-peninsular",
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "q": [
+      "q"
+    ],
+    "ɮˤ": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "ðˤ": [
+      "ðˤ"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "dʒ": [
+      "ɡ",
+      "dʒ"
+    ],
+    "a": [
+      "a",
+      "æ"
+    ],
+    "aː": [
+      "aː",
+      "eː"
+    ]
+  },
+  "parent": "ar-x-peninsular",
+  "ancestors": [
+    {
+      "code": "ar-x-peninsular",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Peninsular Arabic base"
+    }
+  ],
+  "notes": "Yemeni Arabic — Ṣanʿānī (North Yemeni) as reference variety. ج → /ɡ/ in Ṣanʿānī (shared with Egyptian; independent parallel). ق → /q/ PRESERVED (conservative). ث /θ/, ذ /ð/, ظ /ðˤ/ ALL PRESERVED (very conservative). UNIQUE: ض merges with ظ → /ðˤ/ in Ṣanʿānī (lost the distinction preserved in Classical and most other dialects). No k → /tʃ/ (unlike Gulf). Vowel imāla present. Watson (1993) primary reference for Ṣanʿānī Arabic. South Yemen (Aden/Taʿizz) more similar to Gulf in some features.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

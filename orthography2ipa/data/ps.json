@@ -1,0 +1,296 @@
+{
+  "code": "ps",
+  "name": "Pashto (Standard Afghan)",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes": {
+    "ا": [
+      "ɑː",
+      "a"
+    ],
+    "آ": [
+      "ɑː"
+    ],
+    "و": [
+      "w",
+      "u",
+      "o"
+    ],
+    "ی": [
+      "j",
+      "i",
+      "e"
+    ],
+    "ې": [
+      "e"
+    ],
+    "ۍ": [
+      "əi"
+    ],
+    "ئ": [
+      "ai",
+      "əi"
+    ],
+    "ب": [
+      "b"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ت": [
+      "t"
+    ],
+    "ټ": [
+      "ʈ"
+    ],
+    "د": [
+      "d"
+    ],
+    "ډ": [
+      "ɖ"
+    ],
+    "ک": [
+      "k"
+    ],
+    "ګ": [
+      "ɡ"
+    ],
+    "ق": [
+      "q"
+    ],
+    "څ": [
+      "ts"
+    ],
+    "ځ": [
+      "dz"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ث": [
+      "s"
+    ],
+    "س": [
+      "s"
+    ],
+    "ز": [
+      "z"
+    ],
+    "ص": [
+      "s"
+    ],
+    "ض": [
+      "z"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ښ": [
+      "ʂ"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "ږ": [
+      "ʐ"
+    ],
+    "خ": [
+      "x"
+    ],
+    "غ": [
+      "ɣ"
+    ],
+    "ح": [
+      "h"
+    ],
+    "ه": [
+      "h",
+      "a"
+    ],
+    "ع": [
+      "ʔ"
+    ],
+    "ذ": [
+      "z"
+    ],
+    "ظ": [
+      "z"
+    ],
+    "ط": [
+      "t"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "ڼ": [
+      "ɳ"
+    ],
+    "ل": [
+      "l"
+    ],
+    "ر": [
+      "ɾ"
+    ],
+    "ړ": [
+      "ɻ"
+    ],
+    "َ": [
+      "a"
+    ],
+    "ِ": [
+      "i"
+    ],
+    "ُ": [
+      "u"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ʈ": [
+      "ʈ",
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "k": [
+      "k",
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "q": [
+      "q"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʂ": [
+      "ʂ",
+      "ʃ"
+    ],
+    "ʐ": [
+      "ʐ",
+      "ʒ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "ɻ": [
+      "ɻ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a",
+      "ɐ"
+    ],
+    "ɑː": [
+      "ɑː"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "parent": "ine",
+  "ancestors": [
+    {
+      "code": "ine",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Indo-European > Indo-Iranian > Iranian > Eastern Iranian"
+    }
+  ],
+  "notes": "Pashto (پښتو) — Standard Afghan Pashto (Kandahari base). Eastern Iranian language; ~50–60 million speakers. One of two official languages of Afghanistan (with Dari). DEFINING FEATURES vs. Persian: (1) Retroflex consonants ʈ, ɖ, ɳ, ɻ, ʂ, ʐ; (2) Pashto shift: Proto-Iranian *č → ts, *ǰ → dz; (3) No pharyngeals (ħ ʕ absent, unlike Arabic); (4) 7-vowel system /a i u e o ə ɑː/; (5) Retroflex fricatives ʂ, ʐ in Southern dialect. Modified Arabic script with extra letters for retroflexes and affricates (ټ ډ ڼ ړ څ ځ ښ ږ). ADSTRATE EFFECT ON DARI: some retroflex-influenced articulation in Afghan Persian speakers with Pashto contact. Refs: Penzl (1955), David (2014), Tegey & Robson (1996).",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

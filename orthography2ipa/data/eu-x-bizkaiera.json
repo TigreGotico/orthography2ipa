@@ -1,0 +1,39 @@
+{
+  "code": "eu-x-bizkaiera",
+  "name": "Biscayan Basque (Bizkaiera)",
+  "family": "Isolate",
+  "script": "Latin",
+  "graphemes_base": "eu",
+  "graphemes": {
+    "s": [
+      "s̺",
+      "ʃ"
+    ],
+    "z": [
+      "s̻",
+      "ʃ"
+    ]
+  },
+  "allophones_base": "eu",
+  "allophones": {
+    "s̺": [
+      "s̺",
+      "ʃ"
+    ],
+    "s̻": [
+      "s̻",
+      "ʃ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "a": [
+      "a",
+      "e"
+    ]
+  },
+  "parent": "eu",
+  "notes": "Biscayan (Bizkaiera/Bizkaia). Western Basque dialect. Key features: sibilant palatalization after /i/ ([s̺,s̻] → [ʃ]), loss of aspiration /h/, tendency toward unstressed /a/ raising, some sibilant pair mergers. Morphologically most divergent from Batua (unique verb auxiliaries, case forms).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

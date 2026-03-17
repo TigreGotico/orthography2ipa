@@ -1,0 +1,147 @@
+{
+  "code": "xum",
+  "name": "Umbrian",
+  "family": "Italic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "ś": [
+      "ʃ"
+    ],
+    "rs": [
+      "r̝"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "ç": [
+      "ts"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "r̝": [
+      "r̝"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ]
+  },
+  "parent": "ine",
+  "notes": "Umbrian (3rd–1st c. BCE). Sabellic language of Umbria. Main source: Iguvine Tablets (7 bronze tablets, longest Italic text outside Latin). Distinctive sibilant /ʃ/ and extensive rhotacism. Substrate in central Italian dialects (Rix 2002).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "xum"
+}

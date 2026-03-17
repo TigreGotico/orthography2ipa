@@ -1,0 +1,41 @@
+{
+  "code": "pt-PT-x-trasosmontes",
+  "name": "Transmontano Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "ʃ": [
+      "ʃ",
+      "ʂ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʐ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ"
+    ],
+    "ɐ": [
+      "ɐ",
+      "ɐ̥",
+      "∅"
+    ],
+    "ə": [
+      "ə",
+      "ɨ",
+      "∅"
+    ],
+    "u": [
+      "u",
+      "u̥"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Rural northern interior (Alvarenga, Penafiel). Most extreme retroflex sibilants [ʂ, ʐ] of all EP dialects — nearly every final /s/ realised as retroflex. Extreme vowel reduction. Conservative rural speech closest to historical northern patterns.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

@@ -1,0 +1,45 @@
+{
+  "code": "es-GQ",
+  "name": "Equatoguinean Spanish",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "x": [
+      "x"
+    ],
+    "ʝ": [
+      "ʝ",
+      "ɟʝ"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Equatoguinean Spanish. Only Spanish-speaking country in sub-Saharan Africa. Bantu substrate (Fang, Bubi): possible prenasalisation, weakened /ɾ/-/r/ distinction. Seseo, yeísmo. Conservative in many features. Tonal influence from substrate languages (suprasegmental, not captured here).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

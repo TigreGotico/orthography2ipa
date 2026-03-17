@@ -1,0 +1,138 @@
+{
+  "code": "xda",
+  "name": "Dacian/Thracian",
+  "family": "Indo-European",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "bh": [
+      "bʱ"
+    ],
+    "dh": [
+      "dʱ"
+    ],
+    "gh": [
+      "ɡʱ"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "bʱ": [
+      "bʱ",
+      "b"
+    ],
+    "dʱ": [
+      "dʱ",
+      "d"
+    ],
+    "ɡʱ": [
+      "ɡʱ",
+      "ɡ"
+    ]
+  },
+  "parent": "ine",
+  "notes": "Dacian/Thracian. Poorly attested pre-Roman Balkan IE languages. ~160 attributed words plus onomastic material. Exact classification debated: some link to Albanian, others to an extinct IE branch. THIS IS SPECULATIVE: phonological system is a plausible minimum reconstruction from onomastics, plant names, and Romanian-Albanian shared vocabulary (Russu 1969, Duridanov 1969).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "xda"
+}

@@ -1,0 +1,299 @@
+{
+  "code": "tcy",
+  "name": "Tulu",
+  "family": "Dravidian",
+  "script": "Kannada",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gh": [
+      "ɡʱ"
+    ],
+    "c": [
+      "tɕ"
+    ],
+    "ch": [
+      "tɕʰ"
+    ],
+    "j": [
+      "dʑ"
+    ],
+    "jh": [
+      "dʑʱ"
+    ],
+    "ṭ": [
+      "ʈ"
+    ],
+    "ṭh": [
+      "ʈʰ"
+    ],
+    "ḍ": [
+      "ɖ"
+    ],
+    "ḍh": [
+      "ɖʱ"
+    ],
+    "t": [
+      "t̪"
+    ],
+    "th": [
+      "t̪ʰ"
+    ],
+    "d": [
+      "d̪"
+    ],
+    "dh": [
+      "d̪ʱ"
+    ],
+    "p": [
+      "p"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bh": [
+      "bʱ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ṇ": [
+      "ɳ"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "ṅ": [
+      "ŋ"
+    ],
+    "y": [
+      "j"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "ḷ": [
+      "ɭ"
+    ],
+    "ḻ": [
+      "ɻ"
+    ],
+    "v": [
+      "ʋ"
+    ],
+    "ś": [
+      "ʃ"
+    ],
+    "ṣ": [
+      "ʂ"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ]
+  },
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "tɕʰ": [
+      "tɕʰ"
+    ],
+    "dʑ": [
+      "dʑ"
+    ],
+    "dʑʱ": [
+      "dʑʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "t̪": [
+      "t̪"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "d̪": [
+      "d̪"
+    ],
+    "d̪ʱ": [
+      "d̪ʱ"
+    ],
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɭ": [
+      "ɭ"
+    ],
+    "ɻ": [
+      "ɻ"
+    ],
+    "ʋ": [
+      "ʋ"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "ta-x-proto-dravidian",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "South Dravidian I branch, closely related to Kannada/Tamil"
+    }
+  ],
+  "notes": "Tulu (coastal Karnataka / Udupi / Mangaluru district). South Dravidian language; unwritten in daily practice but has traditional Tigaḷari script (Buddhist manuscripts). Usually written in Kannada script. Distinct from Kannada despite geographic closeness. Full aspirate series from Sanskrit contact.",
+  "quality": "skeleton",
+  "script_type": "abugida",
+  "inherent_vowel": "a",
+  "iso639_3": "tcy"
+}

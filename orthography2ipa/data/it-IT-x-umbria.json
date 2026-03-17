@@ -1,0 +1,309 @@
+{
+  "code": "it-IT-x-umbria",
+  "name": "Umbrian dialect",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "tʃ"
+    ],
+    "ch": [
+      "k"
+    ],
+    "ci": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gi": [
+      "dʒ"
+    ],
+    "gl": [
+      "ʎ",
+      "ɡl"
+    ],
+    "gli": [
+      "ʎ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "j": [
+      "j"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "sc": [
+      "ʃ",
+      "sk"
+    ],
+    "sci": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ],
+    "bb": [
+      "bː"
+    ],
+    "cc": [
+      "kː",
+      "tːʃ"
+    ],
+    "dd": [
+      "dː"
+    ],
+    "ff": [
+      "fː"
+    ],
+    "gg": [
+      "ɡː",
+      "dːʒ"
+    ],
+    "ll": [
+      "lː"
+    ],
+    "mm": [
+      "mː"
+    ],
+    "nn": [
+      "nː"
+    ],
+    "pp": [
+      "pː"
+    ],
+    "rr": [
+      "rː"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "tt": [
+      "tː"
+    ],
+    "zz": [
+      "tːs",
+      "dːz"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "m": [
+      "m",
+      "ɱ"
+    ],
+    "n": [
+      "n",
+      "m",
+      "ɱ",
+      "ŋ",
+      "ɲ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "bː": [
+      "bː"
+    ],
+    "dː": [
+      "dː"
+    ],
+    "ɡː": [
+      "ɡː"
+    ],
+    "pː": [
+      "pː"
+    ],
+    "tː": [
+      "tː"
+    ],
+    "kː": [
+      "kː"
+    ],
+    "fː": [
+      "fː"
+    ],
+    "sː": [
+      "sː"
+    ],
+    "lː": [
+      "lː"
+    ],
+    "mː": [
+      "mː"
+    ],
+    "nː": [
+      "nː"
+    ],
+    "rː": [
+      "rː"
+    ],
+    "tːʃ": [
+      "tːʃ"
+    ],
+    "dːʒ": [
+      "dːʒ"
+    ],
+    "tːs": [
+      "tːs"
+    ],
+    "dːz": [
+      "dːz"
+    ]
+  },
+  "parent": "it-IT",
+  "ancestors": [
+    {
+      "code": "it-IT",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Central Italian, close to Tuscan/standard."
+    }
+  ],
+  "notes": "Umbrian dialect (modern Romance, NOT the ancient Italic language). Central Italian of Umbria. Transitional between Tuscan and Southern varieties. Key features: (1) No gorgia. (2) Some assimilatory processes (ND→nn, MB→mm) shared with Roman. (3) Partial metaphony in eastern Umbrian varieties (Rohlfs 1966, Loporcaro 2009).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

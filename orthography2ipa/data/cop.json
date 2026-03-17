@@ -1,0 +1,217 @@
+{
+  "code": "cop",
+  "name": "Coptic (Sahidic)",
+  "family": "Afroasiatic",
+  "script": "Coptic",
+  "graphemes": {
+    "ⲁ": [
+      "a"
+    ],
+    "ⲉ": [
+      "ɛ"
+    ],
+    "ⲏ": [
+      "eː"
+    ],
+    "ⲓ": [
+      "i"
+    ],
+    "ⲟ": [
+      "ɔ"
+    ],
+    "ⲱ": [
+      "oː"
+    ],
+    "ⲩ": [
+      "u"
+    ],
+    "ⲃ": [
+      "b"
+    ],
+    "ⲅ": [
+      "ɡ"
+    ],
+    "ⲇ": [
+      "d"
+    ],
+    "ⲍ": [
+      "z"
+    ],
+    "ⲑ": [
+      "tʰ"
+    ],
+    "ⲕ": [
+      "k"
+    ],
+    "ⲗ": [
+      "l"
+    ],
+    "ⲙ": [
+      "m"
+    ],
+    "ⲛ": [
+      "n"
+    ],
+    "ⲝ": [
+      "ks"
+    ],
+    "ⲡ": [
+      "p"
+    ],
+    "ⲣ": [
+      "ɾ"
+    ],
+    "ⲥ": [
+      "s"
+    ],
+    "ⲧ": [
+      "t"
+    ],
+    "ⲫ": [
+      "pʰ"
+    ],
+    "ⲭ": [
+      "kʰ"
+    ],
+    "ⲯ": [
+      "ps"
+    ],
+    "ϣ": [
+      "ʃ"
+    ],
+    "ϥ": [
+      "f"
+    ],
+    "ϩ": [
+      "h"
+    ],
+    "ϫ": [
+      "tʃ"
+    ],
+    "ϭ": [
+      "kʲ"
+    ],
+    "ϯ": [
+      "ti"
+    ],
+    "ⲛ̄": [
+      "n̩"
+    ],
+    "ⲙ̄": [
+      "m̩"
+    ],
+    "ⲟⲩ": [
+      "uː"
+    ],
+    "ⲉⲓ": [
+      "iː"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "kʲ": [
+      "kʲ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m",
+      "m̩"
+    ],
+    "n": [
+      "n",
+      "n̩",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a",
+      "ɐ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "notes": "Coptic — final stage of the Ancient Egyptian language. Sahidic dialect (Upper Egypt, literary standard, ~4th–10th c. CE). Written in Coptic alphabet (Greek + 6 Demotic letters). Classification: Afroasiatic > Egyptian (own primary branch). Extinct as spoken language ~14th–17th c. CE (replaced by Arabic). Survives as liturgical language of Coptic Orthodox Church. SUBSTRATE EFFECTS ON EGYPTIAN ARABIC: primarily lexical (agricultural terms, place names); minimal phonological impact. KEY DIFFERENCES FROM OLD EGYPTIAN: emphatics lost, pharyngeals lost, aspirated stops (pʰ tʰ kʰ), affricate /tʃ/ from *tj, rich qualitative vowel system. Refs: Loprieno (1995), Layton (2000), Peust (1999).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "cop"
+}

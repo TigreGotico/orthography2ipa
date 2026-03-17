@@ -1,6 +1,6 @@
 # PLAN.md — orthography2ipa
 
-_Last updated: 2026-03-16_
+_Last updated: 2026-03-17_
 
 ## Project Status: Alpha (v0.2.0a1)
 
@@ -103,3 +103,37 @@ Stub specs need community/contributor data; not a solo-agent task.
 - Run: `uv run pytest test/ -v --cov=orthography2ipa --cov-report=term-missing`
 - Target: maintain or increase coverage percentage
 - Integration tests in `test/test_integration.py` for end-to-end pipelines
+
+---
+
+## Linguistic Reference Audit
+
+### Goal
+Every language spec with `quality != "stub"` must have a populated `sources` array
+traceable to published phonological literature. Enables reproducibility and
+future `quality: "production"` promotion.
+
+### Infrastructure (Phase 0) — COMPLETE
+- `LinguisticSource` frozen dataclass added to `types.py`
+- `sources: Tuple[LinguisticSource, ...]` field added to `LanguageSpec`
+- `json_loader.py` parses `sources` array
+- `SCHEMA.md` documents `sources` field and its schema
+- `tests/test_sources.py` enforces non-stub languages have sources
+
+### Source Audit Progress
+
+| Phase | Languages | Status |
+| :--- | :--- | :--- |
+| Phase 1 — Germanic | en-GB, en-US, en-AU, en-CA, en-IE, en-ZA, en-GB-x-scotland, de-DE, de-AT, de-CH, nl, nl-NL, nl-BE, sv, sv-x-rikssvenska, nb, nn, no, da, da-x-copenhagen, is, fo, af, nds, enm, ang, non, osx, goh, gem, gem-x-ingvaeonic, gem-x-north, gem-x-northwest | COMPLETE (33 files) |
+| Phase 2 — Romance | es-ES, es-*, pt-PT, pt-BR, pt-*, fr-FR, it-IT, it-*, ca, ca-*, ro-RO, gl, oc, sc, scn, lij, lmo, vec, fur, frp, nap, egl, pms, la, etc. | TODO |
+| Phase 3 — Semitic/Arabic | ar, ar-*, arb, sem, sem-*, etc. | TODO |
+| Phase 4 — Indo-Iranian | hi, ur, bn, pa, gu, mr, ne, sa, pi, fa, fa-*, ps, sd, etc. | TODO |
+| Phase 5 — Other Modern | ru, ru-*, uk, be, bg, mk, sr, hr, cs, sk, pl, sl, sla, el, cy, ga, gd, kw, br, gv, eu, tr, fi, hu, ko, ja, zh, ms, etc. | TODO |
+| Phase 6 — Ancient/Extinct | ine, iir, ira, cop, cu, phn, peo, pal, osc, xum, xlp, etc. | TODO |
+
+### Session Resume Instructions
+1. Read this `PLAN.md` for current progress
+2. Read `TODO.md` for per-language checklist
+3. Check `MAINTENANCE_REPORT.md` for last session's changes
+4. Continue from next unchecked phase
+5. After adding sources: `uv run pytest tests/test_sources.py -v`

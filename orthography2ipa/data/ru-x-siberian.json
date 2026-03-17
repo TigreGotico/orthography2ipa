@@ -1,0 +1,18 @@
+{
+  "code": "ru-x-siberian",
+  "name": "Siberian Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru",
+  "allophones_base": "ru",
+  "allophones": {
+    "o": [
+      "o",
+      "ɐ"
+    ]
+  },
+  "parent": "ru",
+  "notes": "Siberian Russian (Novosibirsk, Tomsk, Krasnoyarsk regions). Generally conservative; partial аканье. г = [ɡ] plosive. Substrate influence from Siberian languages.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

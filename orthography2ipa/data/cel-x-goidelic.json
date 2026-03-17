@@ -1,0 +1,172 @@
+{
+  "code": "cel-x-goidelic",
+  "name": "Proto-Goidelic (reconstructed)",
+  "family": "Celtic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "e": [
+      "e"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "o": [
+      "o"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "f": [
+      "f"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b",
+      "β",
+      "v"
+    ],
+    "t": [
+      "t",
+      "θ"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k",
+      "x"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "s": [
+      "s",
+      "ʃ"
+    ],
+    "f": [
+      "f"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l",
+      "ʎ"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ]
+  },
+  "parent": "cel",
+  "notes": "Proto-Goidelic. Ancestral to Irish, Scottish Gaelic, Manx. Key split from Proto-Celtic: PIE *kʷ → /k/ (Q-Celtic), vs. Brythonic *kʷ → /p/ (P-Celtic). Developed /f/ from *sw- and Latin loans. Broad/slender consonant distinction incipient.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

@@ -1,0 +1,149 @@
+{
+  "code": "osc",
+  "name": "Oscan",
+  "family": "Italic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "í": [
+      "iː"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "w"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "ts"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "w"
+    ],
+    "s": [
+      "s"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ]
+  },
+  "parent": "ine",
+  "notes": "Oscan (5th c. BCE – 1st c. CE). Sabellic (Osco-Umbrian) language of Samnium, Campania, Lucania, Bruttium. ~400 inscriptions. Closest Italic relative of Latin. Substrate in Southern Italo-Romance: possible influence on Neapolitan and Sicilian vowel systems. Distinct from Latin in vowel diphthongisation patterns (Buck 1928, Rix 2002).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "osc"
+}

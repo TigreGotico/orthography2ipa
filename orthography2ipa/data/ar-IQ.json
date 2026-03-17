@@ -1,0 +1,86 @@
+{
+  "code": "ar-IQ",
+  "name": "Iraqi Arabic (Baghdad / gilit)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-mashriqi",
+  "graphemes": {
+    "ث": [
+      "θ"
+    ],
+    "ذ": [
+      "ð"
+    ],
+    "ظ": [
+      "ðˤ"
+    ],
+    "ق": [
+      "ɡ"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-mashriqi",
+  "allophones": {
+    "k": [
+      "k",
+      "tʃ"
+    ],
+    "q": [
+      "ɡ"
+    ],
+    "ðˤ": [
+      "ðˤ"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "aː": [
+      "aː",
+      "eː"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ]
+  },
+  "parent": "ar-x-mashriqi",
+  "ancestors": [
+    {
+      "code": "ar-x-mashriqi",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Eastern Arabic base"
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Persian adstrate: extensive loanwords; /p/, /v/, /tʃ/, /ʒ/ phonemes; some phonological calques"
+    }
+  ],
+  "notes": "Iraqi Arabic — Baghdad Muslim / southern 'gilit' variety. CONSERVATIVE FEATURE: θ (ث) and ð (ذ) and ðˤ (ظ) PRESERVED as interdentals — unlike Levantine/Egyptian where they merge to t/d. GILIT FEATURE: ق → /ɡ/ (voiced velar; Bedouin origin). Northern 'qəltu' varieties (Mosul, Christian Baghdad): ق → /q/. k → /tʃ/ before front vowels in many speakers. Persian adstrate: /p/, /v/, /tʃ/, /ʒ/ established as phonemes; thousands of Persian loanwords. Turkish (Ottoman) loanwords also present. Blanc (1964) documents three communal dialects in Baghdad: Muslim (gilit), Jewish, and Christian (qəltu).",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

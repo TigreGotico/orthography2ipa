@@ -1,0 +1,18 @@
+{
+  "code": "eu-x-gipuzkera",
+  "name": "Gipuzkoan Basque (Gipuzkera)",
+  "family": "Isolate",
+  "script": "Latin",
+  "graphemes_base": "eu",
+  "allophones_base": "eu",
+  "allophones": {
+    "h": [
+      "h",
+      "∅"
+    ]
+  },
+  "parent": "eu",
+  "notes": "Gipuzkoan (Gipuzkera). Central Basque dialect, closest to Euskara Batua standard. Full three-way sibilant contrast maintained (apical/laminal/postalveolar). Palatal stops [c, ɟ] well preserved. Primary reference variety for standardization.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

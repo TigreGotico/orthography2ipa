@@ -67,6 +67,8 @@ __all__ = [
     "pairwise_distances",
     "ancestry_similarity",
     "full_distance",
+    "tone_distance",
+    "orthographic_distance",
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -111,6 +113,8 @@ _FEATURE_NAMES: Tuple[Feature, ...] = (
     "round",  # 18
     "tense",  # 19
     "long",  # 20
+    "click",  # 21
+    "nasal_vowel",  # 22
 )
 
 _NEUTRAL: FeatureVector = tuple(0.5 for _ in range(NUM_FEATURES))
@@ -624,3 +628,53 @@ def full_distance(
     pd = phonological_distance(spec_a, spec_b)
     anc_sim = ancestry_similarity(spec_a, spec_b)
     return w_phonological * pd.combined + w_ancestry * (1.0 - anc_sim)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Tone distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+def tone_distance(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
+    """Jaccard distance on tone inventories.
+
+    Languages with no tones get distance 0.0 from each other,
+    maximal distance (1.0) from tonal languages.
+    """
+    inv_a = spec_a.tone_inventory
+    inv_b = spec_b.tone_inventory
+    set_a = set(inv_a.keys()) if inv_a else set()
+    set_b = set(inv_b.keys()) if inv_b else set()
+
+    if not set_a and not set_b:
+        return 0.0
+    if not set_a or not set_b:
+        return 1.0
+
+    union = set_a | set_b
+    shared = set_a & set_b
+    return 1.0 - (len(shared) / len(union))
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Orthographic distance (integrates script distance)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def orthographic_distance(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
+    """Combined distance factoring in script difference.
+
+    For same-script languages, this reduces to grapheme divergence.
+    For cross-script languages, adds script typological distance.
+    """
+    from orthography2ipa.script_distance import SCRIPT_REGISTRY, script_distance_by_name
+
+    gra = grapheme_divergence(spec_a, spec_b)
+
+    # Try to get script distance
+    try:
+        s_dist = script_distance_by_name(spec_a.script, spec_b.script)
+    except KeyError:
+        s_dist = 0.0 if spec_a.script == spec_b.script else 0.5
+
+    if s_dist == 0.0:
+        return gra.mean_ipa_distance
+    return 0.6 * s_dist + 0.4 * gra.mean_ipa_distance

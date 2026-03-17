@@ -1,0 +1,266 @@
+{
+  "code": "el",
+  "name": "Modern Greek",
+  "family": "Hellenic",
+  "script": "Greek",
+  "graphemes": {
+    "α": [
+      "a"
+    ],
+    "ε": [
+      "e"
+    ],
+    "η": [
+      "i"
+    ],
+    "ι": [
+      "i"
+    ],
+    "ο": [
+      "o"
+    ],
+    "υ": [
+      "i"
+    ],
+    "ω": [
+      "o"
+    ],
+    "αι": [
+      "e"
+    ],
+    "ει": [
+      "i"
+    ],
+    "οι": [
+      "i"
+    ],
+    "ου": [
+      "u"
+    ],
+    "υι": [
+      "i"
+    ],
+    "αυ": [
+      "av",
+      "af"
+    ],
+    "ευ": [
+      "ev",
+      "ef"
+    ],
+    "β": [
+      "v"
+    ],
+    "γ": [
+      "ɣ",
+      "ʝ"
+    ],
+    "δ": [
+      "ð"
+    ],
+    "ζ": [
+      "z"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "κ": [
+      "k",
+      "c"
+    ],
+    "λ": [
+      "l"
+    ],
+    "μ": [
+      "m"
+    ],
+    "ν": [
+      "n"
+    ],
+    "ξ": [
+      "ks"
+    ],
+    "π": [
+      "p"
+    ],
+    "ρ": [
+      "r"
+    ],
+    "σ": [
+      "s"
+    ],
+    "ς": [
+      "s"
+    ],
+    "τ": [
+      "t"
+    ],
+    "φ": [
+      "f"
+    ],
+    "χ": [
+      "x",
+      "ç"
+    ],
+    "ψ": [
+      "ps"
+    ],
+    "μπ": [
+      "b",
+      "mb"
+    ],
+    "ντ": [
+      "d",
+      "nd"
+    ],
+    "γκ": [
+      "ɡ",
+      "ŋɡ"
+    ],
+    "γγ": [
+      "ŋɡ"
+    ],
+    "τσ": [
+      "ts"
+    ],
+    "τζ": [
+      "dz"
+    ],
+    "ά": [
+      "a"
+    ],
+    "έ": [
+      "e"
+    ],
+    "ή": [
+      "i"
+    ],
+    "ί": [
+      "i"
+    ],
+    "ό": [
+      "o"
+    ],
+    "ύ": [
+      "i"
+    ],
+    "ώ": [
+      "o"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "c": [
+      "c"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "x": [
+      "x"
+    ],
+    "ç": [
+      "ç"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "ʝ": [
+      "ʝ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "grc",
+  "ancestors": [
+    {
+      "code": "grc",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Direct descent from Ancient Greek via Koine and Medieval Greek"
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Turkish adstrate: Ottoman period (~1453-1821), ~500 loanwords, some phonological influence"
+    },
+    {
+      "code": "sla",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Slavic adstrate: medieval Balkan settlements (6th-9th c.), place names, some vocabulary"
+    }
+  ],
+  "notes": "Standard Modern Greek (Demotic). 5-vowel system despite many graphemic representations. Digraphs ⟨μπ⟩, ⟨ντ⟩, ⟨γκ⟩ represent voiced stops, with prenasalisation medially.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

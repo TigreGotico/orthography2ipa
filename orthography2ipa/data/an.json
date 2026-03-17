@@ -1,5 +1,8 @@
 {
   "code": "an",
+  "ISO_639-3": "arg",
+  "glottolog_code": "arag1245",
+
   "name": "Aragonese",
   "family": "Aragonese",
   "script": "Latin",
@@ -190,5 +193,69 @@
     }
   ],
 
-  "notes": "Aragonese (aragonés, also called fabla aragonesa) — an Ibero-Romance language of the autonomous community of Aragon, Spain. Critically endangered: approximately 10,000–12,000 active speakers (2011 census), with perhaps 25,000–50,000 passive speakers, mainly in the Pyrenean valleys (Ansó, Hecho, Tena, Benasque, Bielsa) and Somontano area. Recognized as a minority language by Aragon's 2009 language law (Ley de Lenguas). KEY FEATURES distinguishing Aragonese from Castilian Spanish: (1) F- PRESERVED: Latin initial F- retained as /f/ (feito 'done' < FACTU, fiyo 'son' < FILIU, fablar 'to speak' < FABULARE) — contrast Castilian h- (hecho, hijo, hablar). This is the most salient isogloss separating Aragonese from Castilian. (2) SESEO: no /θ/ phoneme — ⟨c⟩ before e/i and ⟨z⟩ → /s/ (as in Galician, Southern Spanish, Catalan); distinción absent. (3) /ʎ/ PRESERVED: ⟨ll⟩ = /ʎ/ — no yeísmo; /ʎ/ robustly maintained in traditional varieties (influence of Catalan and Occitan reinforcing the lateral palatal). (4) /v/ ≠ /b/ (partial): traditional Aragonese preserves the distinction between ⟨b⟩ /b/ and ⟨v⟩ /v/ in some varieties — contrast Castilian betacism. Influence of Occitan (which preserves /v/) and possibly Catalan. (5) ⟨x⟩ = /ʃ/ and ⟨ix⟩ = /ʃ/: as in Catalan and Galician (Aragons. 'xa' [ʃa] 'already', 'baixo' [ˈbaʃo] 'low'). (6) AFFRICATE ⟨ts⟩ and ⟨tz⟩ /ts/, /dz/ in some registers and Pyrenean varieties — Occitan contact. (7) ⟨ny⟩ = /ɲ/ alongside ⟨ñ⟩ (Catalan orthographic convention). (8) DIPHTHONGISATION: Latin Ĕ/Ŏ → /je/, /we/ (ie/ue) systematically, as in Castilian and Asturleonese — 'piedra', 'bueno'. (9) PLURAL in -s (no Castilian -os/-as ending variation); Aragonese morphology more analytic in some Pyrenean dialects. DIALECTS: Ansotano (Ansó valley), Cheso (Hecho), Benasquese/Patués (Benasque — extreme Gascon contact variety, classified by some as a Gascon-Aragonese hybrid), Tensino (Tena valley), Belsetán (Bielsa), Sobrarbe, Somontanés. The unified written standard 'Grafía de Uesca' (1987) is used for literary production. Sources: Nagore Laín (2001) *El aragonés del siglo XIV*, Arnal Purroy & Enguita Utrilla (1993), Lázaro Carreter (1945), ELA (Estudio de la Lingüística Aragonesa)."
+  "notes": "Aragonese (aragonés, also called fabla aragonesa) — an Ibero-Romance language of the autonomous community of Aragon, Spain. Critically endangered: approximately 10,000–12,000 active speakers (2011 census), with perhaps 25,000–50,000 passive speakers, mainly in the Pyrenean valleys (Ansó, Hecho, Tena, Benasque, Bielsa) and Somontano area. Recognized as a minority language by Aragon's 2009 language law (Ley de Lenguas). KEY FEATURES distinguishing Aragonese from Castilian Spanish: (1) F- PRESERVED: Latin initial F- retained as /f/ (feito 'done' < FACTU, fiyo 'son' < FILIU, fablar 'to speak' < FABULARE) — contrast Castilian h- (hecho, hijo, hablar). This is the most salient isogloss separating Aragonese from Castilian. (2) SESEO: no /θ/ phoneme — ⟨c⟩ before e/i and ⟨z⟩ → /s/ (as in Galician, Southern Spanish, Catalan); distinción absent. (3) /ʎ/ PRESERVED: ⟨ll⟩ = /ʎ/ — no yeísmo; /ʎ/ robustly maintained in traditional varieties (influence of Catalan and Occitan reinforcing the lateral palatal). (4) /v/ ≠ /b/ (partial): traditional Aragonese preserves the distinction between ⟨b⟩ /b/ and ⟨v⟩ /v/ in some varieties — contrast Castilian betacism. Influence of Occitan (which preserves /v/) and possibly Catalan. (5) ⟨x⟩ = /ʃ/ and ⟨ix⟩ = /ʃ/: as in Catalan and Galician (Aragons. 'xa' [ʃa] 'already', 'baixo' [ˈbaʃo] 'low'). (6) AFFRICATE ⟨ts⟩ and ⟨tz⟩ /ts/, /dz/ in some registers and Pyrenean varieties — Occitan contact. (7) ⟨ny⟩ = /ɲ/ alongside ⟨ñ⟩ (Catalan orthographic convention). (8) DIPHTHONGISATION: Latin Ĕ/Ŏ → /je/, /we/ (ie/ue) systematically, as in Castilian and Asturleonese — 'piedra', 'bueno'. (9) PLURAL in -s (no Castilian -os/-as ending variation); Aragonese morphology more analytic in some Pyrenean dialects. DIALECTS: Ansotano (Ansó valley), Cheso (Hecho), Benasquese/Patués (Benasque — extreme Gascon contact variety, classified by some as a Gascon-Aragonese hybrid), Tensino (Tena valley), Belsetán (Bielsa), Sobrarbe, Somontanés. The unified written standard 'Grafía de Uesca' (1987) is used for literary production. Sources: Nagore Laín (2001) *El aragonés del siglo XIV*, Arnal Purroy & Enguita Utrilla (1993), Lázaro Carreter (1945), ELA (Estudio de la Lingüística Aragonesa).",
+
+  "urls": [
+    "https://en.wikipedia.org/wiki/Aragonese_language",
+    "https://an.wikipedia.org/wiki/Idioma_aragon%C3%A9s",
+    "https://es.wikipedia.org/wiki/Idioma_aragon%C3%A9s",
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_aragonesa",
+    "https://gl.wikipedia.org/wiki/Lingua_aragonesa",
+    "https://ca.wikipedia.org/wiki/Aragon%C3%A8s",
+    "https://ast.wikipedia.org/wiki/Idioma_aragon%C3%A9s",
+    "https://mwl.wikipedia.org/wiki/Aragon%C3%A9s",
+
+    "https://en.wikipedia.org/wiki/Aragonese_dialects",
+    "https://es.wikipedia.org/wiki/Dialectos_del_aragon%C3%A9s",
+    "https://an.wikipedia.org/wiki/Dialectos_de_l%27aragon%C3%A9s",
+    "https://ca.wikipedia.org/wiki/Dialectes_de_l%27aragon%C3%A8s",
+
+    "https://en.wikipedia.org/wiki/Eastern_Aragonese",
+    "https://en.wikipedia.org/wiki/Ans%C3%B3_Aragonese",
+    "https://en.wikipedia.org/wiki/Ribagor%C3%A7an",
+    "https://en.wikipedia.org/wiki/Benasquese_dialect",
+    "https://en.wikipedia.org/wiki/Navalese_dialect",
+    "https://en.wikipedia.org/wiki/Aisinian_Aragonese",
+    "https://en.wikipedia.org/wiki/Arag%C3%BC%C3%A9s_Aragonese",
+    "https://en.wikipedia.org/wiki/Hecho_Aragonese",
+
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_occidental",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_central",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_oriental",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_ansotano",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_cheso",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_arag%C3%BCesino",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_aisino",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_jaqu%C3%A9s",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_centro-occidental",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_tensino",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_panticuto",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_de_la_tierra_de_Biescas",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_del_valle_de_Acumuer",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_serrabl%C3%A9s",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_de_Ballibasa",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_de_Sobrepuerto",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_centro-oriental",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_de_la_ribera_de_Fiscal",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_bergot%C3%A9s",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_del_valle_de_Vi%C3%B3",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_del_valle_de_Tella",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_belsetano",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_chistabino",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_fovano",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_ribagorzano",
+    "https://es.wikipedia.org/wiki/Patu%C3%A9s",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_mediorribagorzano",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_bajorribagorzano",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_grausino",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_estadillano",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_foncense",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_ayerbense",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_somontan%C3%A9s",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_naval%C3%A9s",
+    "https://es.wikipedia.org/wiki/Aragon%C3%A9s_de_Ballibi%C3%B3",
+
+    "https://es.wikipedia.org/wiki/Castellano_aragon%C3%A9s"
+
+  ]
 }

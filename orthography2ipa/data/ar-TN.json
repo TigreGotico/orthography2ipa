@@ -1,0 +1,94 @@
+{
+  "code": "ar-TN",
+  "name": "Tunisian Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "t",
+      "θ"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ق": [
+      "q",
+      "ɡ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "q": [
+      "q",
+      "ɡ"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "t",
+      "θ",
+      "s"
+    ],
+    "ð": [
+      "d",
+      "z"
+    ],
+    "a": [
+      "a",
+      "ə",
+      "∅"
+    ],
+    "i": [
+      "i",
+      "ɪ",
+      "ə",
+      "∅"
+    ],
+    "u": [
+      "u",
+      "ʊ",
+      "ə",
+      "∅"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.83,
+      "notes": "Maghrebi Arabic base"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.08,
+      "notes": "Berber substrate (less dense than Morocco/Kabylie)"
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "French adstrate: /p/, /v/ established"
+    }
+  ],
+  "notes": "Tunisian Arabic (Derja تونسية). Intermediate Maghrebi variety. Vowel reduction significant but less extreme than Moroccan. θ → /t/ (urban Tunis); some rural varieties preserve /θ/. ق → /q/ conservative; /ɡ/ in urban Tunis. Historical Italian/Sicilian contact: /tʃ/ in some loans. Best-documented Maghrebi dialect (Gibson 2002, Talmoudi 1980).",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

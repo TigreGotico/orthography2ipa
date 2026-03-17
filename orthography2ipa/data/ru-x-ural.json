@@ -1,0 +1,12 @@
+{
+  "code": "ru-x-ural",
+  "name": "Ural Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru",
+  "allophones_base": "ru",
+  "parent": "ru",
+  "notes": "Ural Russian (Perm, Yekaterinburg region). Predominantly standard-like; traces of Northern аканье in older speech. Tatar and Bashkir substrate influence.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}

@@ -1,0 +1,12 @@
+{
+  "code": "ru-x-don",
+  "name": "Don Cossack Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru-x-southern",
+  "allophones_base": "ru-x-southern",
+  "parent": "ru-x-southern",
+  "notes": "Don Cossack dialect (Rostov region). South Russian base with Ukrainian contact features: г = [ɣ], аканье.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}

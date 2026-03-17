@@ -1,0 +1,40 @@
+{
+  "code": "fa-x-khorasani",
+  "name": "Khorasani Persian",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa-x-tehran",
+  "allophones_base": "fa-x-tehran",
+  "allophones": {
+    "ɒː": [
+      "aː",
+      "ɒː"
+    ],
+    "æ": [
+      "a",
+      "æ"
+    ],
+    "q": [
+      "q",
+      "ɣ"
+    ]
+  },
+  "parent": "fa-x-tehran",
+  "ancestors": [
+    {
+      "code": "fa-x-early",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "New Persian; Khorasan is its cradle"
+    },
+    {
+      "code": "tg",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Tajik adstrate: geographic continuum; Uzbek/Turkmen contact words"
+    }
+  ],
+  "notes": "Khorasani Persian (Xorāsānī). Northeastern Iran — the historical cradle of New Persian literature (Ferdowsi's Shahnameh). CONSERVATIVE: /a/ → [a] (not fronted to [æ] as in Tehran); ā → [aː] (not backed to [ɒː]); /q/ maintained more robustly than Tehran. Geographic bridge to Dari (Afghan Persian). Turkic (Uzbek, Turkmen) contact: /ŋ/ in loanwords.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

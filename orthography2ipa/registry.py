@@ -1,41 +1,68 @@
-"""Language registry with lazy loading."""
+"""Language registry with lazy loading and plugin discovery."""
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import TYPE_CHECKING, Dict, List, Optional
 
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
 
+if TYPE_CHECKING:
+    from orthography2ipa.g2p_plugin import G2PPlugin
+
 _cache: Dict[str, LanguageSpec] = {}
+_plugins: Optional[Dict[str, "G2PPlugin"]] = None
+
+# Fallback alias table for ISO 639-3 → BCP-47 normalisation.
+# When ``langcodes`` is available, standard codes are resolved via that library.
+# Private-use subtags (e.g. ``ast-PT-x-rionor``) always use this table.
+_ALIASES: Dict[str, str] = {
+    "por": "pt-PT", "eng": "en-GB", "spa": "es-ES", "fra": "fr-FR", "deu": "de-DE",
+    "ita": "it-IT", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",
+    "rus": "ru", "ukr": "uk", "ara": "ar", "fas": "fa", "hin": "hi",
+    "zho": "zh", "jpn": "ja", "kor": "ko", "eus": "eu", "cat": "ca",
+    "glg": "gl", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
+    "pol": "pl", "ces": "cs", "ron": "ro-RO",
+    "mwl": "mwl",  # Mirandese ISO 639-3
+    "ast": "ast",  # Asturian ISO 639-3
+    "arg": "an",   # Aragonese ISO 639-3
+    "lat": "la",   # Classical Latin ISO 639-2
+    # Semitic proto-languages and contact varieties
+    "arb": "arb",  # Classical Arabic ISO 639-3
+    "phn": "phn",  # Phoenician ISO 639-3
+    "acy": "acy",  # Cypriot Maronite Arabic ISO 639-3
+    # Iranian proto-languages
+    "peo": "peo",  # Old Persian ISO 639-3
+    "pal": "pal",  # Middle Persian / Pahlavi ISO 639-3
+    # Tajik aliases
+    "tgk": "tg",   # Tajik ISO 639-3
+    # Dari alias
+    "prs": "fa-AF",  # Dari ISO 639-3
+}
+
+try:
+    import langcodes as _langcodes
+    _HAS_LANGCODES = True
+except ImportError:
+    _HAS_LANGCODES = False
 
 
 def _resolve_code(code: str) -> str:
-    """Normalise common aliases."""
-    # TODO - use langcodes library
-    aliases = {
-        "por": "pt-PT", "eng": "en-GB", "spa": "es-ES", "fra": "fr-FR", "deu": "de-DE",
-        "ita": "it-IT", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",
-        "rus": "ru", "ukr": "uk", "ara": "ar", "fas": "fa", "hin": "hi",
-        "zho": "zh", "jpn": "ja", "kor": "ko", "eus": "eu", "cat": "ca",
-        "glg": "gl", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
-        "pol": "pl", "ces": "cs", "ron": "ro-RO",
-        "mwl": "mwl",  # Mirandese ISO 639-3
-        "ast": "ast",  # Asturian ISO 639-3
-        "arg": "an",  # Aragonese ISO 639-3
-        "lat": "la",  # Classical Latin ISO 639-2
-        # Semitic proto-languages and contact varieties
-        "arb": "arb",  # Classical Arabic ISO 639-3
-        "phn": "phn",  # Phoenician ISO 639-3
-        "acy": "acy",  # Cypriot Maronite Arabic ISO 639-3
-        # Iranian proto-languages
-        "peo": "peo",  # Old Persian ISO 639-3
-        "pal": "pal",  # Middle Persian / Pahlavi ISO 639-3
-        # Tajik aliases
-        "tgk": "tg",  # Tajik ISO 639-3
-        # Dari alias
-        "prs": "fa-AF",  # Dari ISO 639-3
-    }
-    return aliases.get(code, code)
+    """Normalise common aliases to canonical BCP-47 codes.
+
+    Resolution order:
+    1. Manual alias table (handles private-use subtags and ISO 639-3 codes
+       that ``langcodes`` may not round-trip cleanly).
+    2. ``langcodes.standardize_tag()`` when the library is available and the
+       code is not a private-use subtag (``x-`` extension).
+    """
+    if code in _ALIASES:
+        return _ALIASES[code]
+    if _HAS_LANGCODES and "-x-" not in code and not code.startswith("x-"):
+        try:
+            return _langcodes.standardize_tag(code, macro=True)
+        except Exception:
+            pass
+    return code
 
 
 def get(code: str) -> LanguageSpec:
@@ -58,6 +85,36 @@ def get(code: str) -> LanguageSpec:
 def available_codes() -> List[str]:
     """Return all registered language codes."""
     return sorted(available_json_codes())
+
+
+def _discover_plugins() -> Dict[str, "G2PPlugin"]:
+    """Discover G2P plugins via importlib entry_points."""
+    from importlib.metadata import entry_points
+
+    plugins: Dict[str, "G2PPlugin"] = {}
+    try:
+        eps = entry_points(group="orthography2ipa.g2p")
+    except TypeError:
+        # Python 3.9 compat
+        eps = entry_points().get("orthography2ipa.g2p", [])
+    for ep in eps:
+        try:
+            plugin_cls = ep.load()
+            instance = plugin_cls()
+            for code in instance.language_codes:
+                plugins[code] = instance
+        except Exception:
+            continue
+    return plugins
+
+
+def get_plugin(code: str) -> Optional["G2PPlugin"]:
+    """Return the G2P plugin for *code*, if one is registered."""
+    global _plugins
+    if _plugins is None:
+        _plugins = _discover_plugins()
+    code = _resolve_code(code)
+    return _plugins.get(code)
 
 
 def available_families() -> Dict[str, List[str]]:

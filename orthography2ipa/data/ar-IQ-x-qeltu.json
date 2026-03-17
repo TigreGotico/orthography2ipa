@@ -1,0 +1,36 @@
+{
+  "code": "ar-IQ-x-qeltu",
+  "name": "Iraqi Arabic (Northern / qəltu)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-IQ",
+  "graphemes": {
+    "ق": [
+      "q"
+    ]
+  },
+  "allophones_base": "ar-IQ",
+  "allophones": {
+    "q": [
+      "q"
+    ]
+  },
+  "parent": "ar-IQ",
+  "ancestors": [
+    {
+      "code": "ar-IQ",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Iraqi Arabic base"
+    },
+    {
+      "code": "ar-x-mashriqi",
+      "role": "adstrate",
+      "weight": 0.85,
+      "notes": "Eastern Arabic lineage"
+    }
+  ],
+  "notes": "Northern Iraqi 'qəltu' Arabic — Mosul, Tikrit, Christian Baghdad, Jewish Baghdad (now largely diaspora). ق → /q/ PRESERVED (uvular; unlike southern gilit /ɡ/). ج → /dʒ/ (not modified). θ, ð, ðˤ preserved (same as gilit — conservative Iraqi feature). More archaic morphology than gilit; closer to Classical paradigms. Blanc (1964): Jewish Baghdad Arabic is a qəltu variety. Endangered: Mosul Arabic heavily disrupted by IS conflict (2014–17).",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

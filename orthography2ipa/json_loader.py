@@ -27,6 +27,7 @@ from orthography2ipa.types import (
     AncestorRole,
     GraphemePosition,
     LanguageSpec,
+    LinguisticSource,
     QualityTier,
     SandhiRule,
     ScriptType,
@@ -183,6 +184,22 @@ def load_json_spec(code: str) -> LanguageSpec:
             for sr in raw_sandhi
         )
 
+    # Parse sources
+    sources_raw = raw.get("sources", [])
+    sources = tuple(
+        LinguisticSource(
+            id=s["id"],
+            author=s["author"],
+            year=s["year"],
+            title=s["title"],
+            publisher=s.get("publisher"),
+            url=s.get("url"),
+            pages=s.get("pages"),
+            notes=s.get("notes"),
+        )
+        for s in sources_raw
+    )
+
     spec = LanguageSpec(
         code=raw["code"],
         name=raw["name"],
@@ -200,6 +217,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         iso639_3=raw.get("iso639_3"),
         sandhi_rules=sandhi_rules,
         tone_inventory=raw.get("tone_inventory"),
+        sources=sources,
     )
 
     _specs[code] = spec

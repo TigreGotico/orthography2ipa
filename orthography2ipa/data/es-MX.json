@@ -1,0 +1,47 @@
+{
+  "code": "es-MX",
+  "name": "Mexican Spanish (Highland)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "x": [
+      "x"
+    ],
+    "ʝ": [
+      "ʝ",
+      "ɟʝ"
+    ],
+    "n": [
+      "n",
+      "m",
+      "ŋ"
+    ],
+    "e": [
+      "e",
+      "e̥"
+    ],
+    "o": [
+      "o",
+      "o̥"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Highland Mexican (Mexico City / Central Plateau). Conservative: full coda /s/, velar [x], no aspiration. Distinctive unstressed vowel devoicing (especially sentence-finally). Very tense [tʃ]. Weak approximant [ʝ̞]. Largest Spanish-speaking country.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

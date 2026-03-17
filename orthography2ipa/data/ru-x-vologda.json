@@ -1,0 +1,12 @@
+{
+  "code": "ru-x-vologda",
+  "name": "Vologda Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru-x-northern",
+  "allophones_base": "ru-x-northern",
+  "parent": "ru-x-northern",
+  "notes": "Northern Russian, Vologda region. Оканье, strong consonantism.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}

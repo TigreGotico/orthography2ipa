@@ -1,0 +1,75 @@
+{
+  "code": "ar-x-gulf",
+  "name": "Proto-Gulf Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-peninsular",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ج": [
+      "dʒ",
+      "j"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
+    ],
+    "ك": [
+      "k",
+      "tʃ"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ڤ": [
+      "v"
+    ]
+  },
+  "allophones_base": "ar-x-peninsular",
+  "allophones": {
+    "q": [
+      "ɡ",
+      "q"
+    ],
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "j"
+    ],
+    "a": [
+      "a",
+      "æ"
+    ],
+    "aː": [
+      "aː",
+      "eː",
+      "æː"
+    ],
+    "p": [
+      "p"
+    ],
+    "v": [
+      "v"
+    ]
+  },
+  "parent": "ar-x-peninsular",
+  "ancestors": [
+    {
+      "code": "ar-x-peninsular",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Peninsular Arabic base"
+    }
+  ],
+  "notes": "Proto-Gulf Arabic — abstract ancestor node for Kuwaiti, Bahraini, Qatari, and Emirati Arabic. DEFINING FEATURE: k → /tʃ/ before front vowels (/i, iː, e/). ق → /ɡ/ (Bedouin/traditional Gulf). θ, ð often preserved. Vowel imāla prominent. Holes (1990) is the primary reference grammar.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

@@ -1,0 +1,319 @@
+{
+  "code": "ro-RO",
+  "name": "Romanian",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "ă": [
+      "ə"
+    ],
+    "â": [
+      "ɨ"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "î": [
+      "ɨ"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ș": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "ț": [
+      "ts"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "v",
+      "w"
+    ],
+    "x": [
+      "ks",
+      "ɡz"
+    ],
+    "y": [
+      "i",
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "k"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "ce": [
+      "tʃe"
+    ],
+    "ci": [
+      "tʃi"
+    ],
+    "ge": [
+      "dʒe"
+    ],
+    "gi": [
+      "dʒi"
+    ],
+    "ea": [
+      "e̯a"
+    ],
+    "oa": [
+      "o̯a"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ia": [
+      "ja"
+    ],
+    "ie": [
+      "je"
+    ],
+    "io": [
+      "jo"
+    ],
+    "iu": [
+      "ju"
+    ],
+    "ua": [
+      "wa"
+    ],
+    "ue": [
+      "we"
+    ],
+    "eau": [
+      "e̯aw"
+    ],
+    "eai": [
+      "e̯aj"
+    ],
+    "oai": [
+      "o̯aj"
+    ],
+    "iai": [
+      "jaj"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "h": [
+      "h",
+      "x"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "la-x-balkans",
+  "ancestors": [
+    {
+      "code": "la-x-balkans",
+      "role": "parent",
+      "weight": 0.65,
+      "notes": "Balkan Romance Vulgar Latin: Eastern Romance branch with no lenition, central vowels, postposed article."
+    },
+    {
+      "code": "sla",
+      "role": "superstrate",
+      "weight": 0.2,
+      "notes": "Slavic superstrate (7th c. onwards): massive lexical influence (~40% of vocabulary), some phonological impact (palatalisation patterns, possible influence on central vowels). Old Church Slavonic was the literary/liturgical language until 16th–17th c."
+    },
+    {
+      "code": "xda",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Dacian/Thracian substrate: ~100+ words shared with Albanian of unknown origin (copil, moș, viezure). Possible influence on central vowels /ə, ɨ/ and postposed article."
+    },
+    {
+      "code": "grc",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Greek adstrate: Byzantine influence, shared Balkan sprachbund features."
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Turkish adstrate (14th–19th c.): lexical borrowings from Ottoman period."
+    },
+    {
+      "code": "hu",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Hungarian adstrate: centuries of contact in Transylvania. Lexical exchange."
+    }
+  ],
+  "notes": "Standard Romanian. Eastern Romance, the ONLY Romance language east of the Adriatic. Key features: (1) Central vowels /ə/ (⟨ă⟩) and /ɨ/ (⟨â/î⟩) — unique in Romance. (2) NO intervocalic lenition (lup, foc — not *lub, *fogo). (3) Postposed definite article (lupul 'the wolf'). (4) Rich diphthong/triphthong system. (5) Rhotacism: intervocalic /l/ → /r/ in some words (soare < SOLEM). (6) Massive Slavic vocabulary layer (~40%). (7) Balkan sprachbund member (Chițoran 2001, Sala 2005).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

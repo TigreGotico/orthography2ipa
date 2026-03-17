@@ -1,0 +1,69 @@
+{
+  "code": "pt-PT-x-alfena",
+  "name": "Alfena Portuguese (vowel-breaking)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "ʃ": [
+      "ʃ",
+      "ʂ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʐ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ",
+      "ʀ",
+      "x"
+    ],
+    "l": [
+      "l",
+      "ɭ"
+    ],
+    "ɫ": [
+      "ɫ"
+    ],
+    "ɐ": [
+      "ɐ",
+      "ɐ̥"
+    ],
+    "e": [
+      "e",
+      "e͡ɐ"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ɛ͡ɐ"
+    ],
+    "ə": [
+      "ə",
+      "ɨ",
+      "∅"
+    ],
+    "o": [
+      "o",
+      "o͡ɐ"
+    ],
+    "ɔ": [
+      "ɔ",
+      "ɔ͡ɐ"
+    ],
+    "ɐ̃": [
+      "ɐ̃",
+      "ɒ̃"
+    ],
+    "ẽ": [
+      "ẽ",
+      "ẽ͡ɐ̃"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Greater Porto suburban dialect with unique vowel breaking (Brechung): stressed mid vowels develop centering offglide — [ɛ͡ɐ, ɔ͡ɐ, e͡ɐ, o͡ɐ, ẽ͡ɐ̃]. Also attested in Portalegre (Crato). Backed rounded nasal [ɒ̃] for /ɐ̃/. Retroflex lateral [ɭ] in clusters.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

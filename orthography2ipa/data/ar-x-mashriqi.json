@@ -1,0 +1,77 @@
+{
+  "code": "ar-x-mashriqi",
+  "name": "Proto-Mashriqi Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "positional_graphemes_base": "arb",
+  "graphemes": {
+    "ث": [
+      "t",
+      "θ"
+    ],
+    "ذ": [
+      "d",
+      "ð"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ڤ": [
+      "v"
+    ],
+    "چ": [
+      "tʃ"
+    ]
+  },
+  "allophones": {
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "θ",
+      "t",
+      "s"
+    ],
+    "ð": [
+      "ð",
+      "d",
+      "z"
+    ],
+    "q": [
+      "q",
+      "ʔ",
+      "ɡ"
+    ],
+    "p": [
+      "p"
+    ],
+    "v": [
+      "v"
+    ]
+  },
+  "parent": "arb",
+  "ancestors": [
+    {
+      "code": "arb",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Descent from Classical Arabic"
+    }
+  ],
+  "notes": "Proto-Mashriqi (Eastern) Arabic — abstract ancestor node for Egyptian, Sudanese, Levantine, Iraqi, and Gulf Arabic. Key shared Eastern features: short vowels generally retained; ج /dʒ/ preserved; ث → /t/, ذ → /d/ in sedentary varieties; ض → /dˤ/ (lateral lost); long vowels maintained.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

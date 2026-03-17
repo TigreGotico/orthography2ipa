@@ -1,0 +1,203 @@
+{
+  "code": "peo",
+  "name": "Old Persian",
+  "family": "Iranian",
+  "script": "Latin",
+  "graphemes": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "x": [
+      "x"
+    ],
+    "v": [
+      "v"
+    ],
+    "h": [
+      "h"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "y": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "ai": [
+      "aj",
+      "eː"
+    ],
+    "au": [
+      "aw",
+      "oː"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "f"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t",
+      "θ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k",
+      "x"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "x": [
+      "x"
+    ],
+    "v": [
+      "v",
+      "w"
+    ],
+    "h": [
+      "h"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "aj": [
+      "aj",
+      "eː"
+    ],
+    "aw": [
+      "aw",
+      "oː"
+    ]
+  },
+  "parent": "ira",
+  "ancestors": [
+    {
+      "code": "ira",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Proto-Iranian"
+    }
+  ],
+  "notes": "Old Persian (~600–400 BCE). Attested in ~500 cuneiform inscriptions of the Achaemenid Empire (Darius I, Xerxes I, Artaxerxes I). Directly ancestral to Middle Persian and all modern Persian dialects. THREE-STOP + SPIRANT SERIES: p/b/f, t/d/θ, k/g/x. Diphthongs *ai, *au still present (monophthongisation beginning). Script: Old Persian cuneiform (syllabic — imprecise for consonants). ISO 639-2: peo. Primary sources: DNa, DNb, XPh inscriptions. References: Schmitt (2014), Kent (1953).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "peo"
+}

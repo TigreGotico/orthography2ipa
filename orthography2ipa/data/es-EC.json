@@ -1,0 +1,53 @@
+{
+  "code": "es-EC",
+  "name": "Ecuadorian Spanish",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "x": [
+      "x"
+    ],
+    "n": [
+      "n"
+    ],
+    "ʎ": [
+      "ʎ",
+      "ʝ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "ɹ̝"
+    ],
+    "r": [
+      "r",
+      "ɹ̝"
+    ],
+    "e": [
+      "e",
+      "i"
+    ],
+    "o": [
+      "o",
+      "u"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Ecuadorian Spanish (highland, Quito). Andean type: conservative coda /s/, assibilated /rr/ → [ɹ̝] in highland. Quechua substrate vowel influence. Coastal (Guayaquil) → aspiration and Caribbean-type features.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

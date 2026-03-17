@@ -1,0 +1,57 @@
+{
+  "code": "an-x-oriental",
+  "name": "Eastern Aragonese (Ribagorçan)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "an",
+  "allophones_base": "an",
+  "positional_graphemes_base": "an",
+  "graphemes": {
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "j": [
+      "dʒ",
+      "x"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "z": [
+      "s"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ll": [
+      "ʎ",
+      "j"
+    ]
+  },
+  "allophones": {
+    "dʒ": [
+      "dʒ"
+    ],
+    "ʎ": [
+      "ʎ",
+      "j"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ]
+  },
+  "parent": "an",
+  "notes": "Eastern Aragonese / Ribagorçan / Benasquese transition zone. Catalan influence: voiced affricate [dʒ] for Latin G/J before front vowels, possible partial yeísmo. 7-vowel system with /ɛ/ and /ɔ/. Seseo: /θ/ → /s/. Transitional phonology between Aragonese and Catalan, debated classification.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

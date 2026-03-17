@@ -1,0 +1,344 @@
+{
+  "code": "nds",
+  "name": "Low German (Plattdeutsch)",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "aː"
+    ],
+    "e": [
+      "ɛ",
+      "eː",
+      "ə"
+    ],
+    "i": [
+      "ɪ",
+      "iː"
+    ],
+    "o": [
+      "ɔ",
+      "oː"
+    ],
+    "u": [
+      "ʊ",
+      "uː"
+    ],
+    "ä": [
+      "ɛ",
+      "ɛː"
+    ],
+    "ö": [
+      "œ",
+      "øː"
+    ],
+    "ü": [
+      "ʏ",
+      "yː"
+    ],
+    "y": [
+      "ʏ",
+      "yː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "ts"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ʁ"
+    ],
+    "s": [
+      "z",
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "f",
+      "v"
+    ],
+    "w": [
+      "v"
+    ],
+    "x": [
+      "ks"
+    ],
+    "z": [
+      "ts"
+    ],
+    "ß": [
+      "s"
+    ],
+    "ch": [
+      "x"
+    ],
+    "ck": [
+      "k"
+    ],
+    "pf": [
+      "pf"
+    ],
+    "ph": [
+      "f"
+    ],
+    "qu": [
+      "kv"
+    ],
+    "sch": [
+      "ʃ"
+    ],
+    "sp": [
+      "ʃp"
+    ],
+    "st": [
+      "ʃt"
+    ],
+    "th": [
+      "t"
+    ],
+    "tz": [
+      "ts"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "ss": [
+      "s"
+    ],
+    "tsch": [
+      "tʃ"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "ie": [
+      "iː"
+    ],
+    "ei": [
+      "aɪ"
+    ],
+    "ai": [
+      "aɪ"
+    ],
+    "au": [
+      "aʊ"
+    ],
+    "eu": [
+      "ɔʏ"
+    ],
+    "äu": [
+      "ɔʏ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ç": [
+      "ç"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "ʁ": [
+      "ʁ",
+      "ʀ",
+      "r",
+      "ɐ̯"
+    ],
+    "pf": [
+      "pf"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "øː": [
+      "øː"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "aɪ": [
+      "aɪ"
+    ],
+    "aʊ": [
+      "aʊ"
+    ],
+    "ɔʏ": [
+      "ɔʏ"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ]
+  },
+  "parent": "osx",
+  "ancestors": [
+    {
+      "code": "osx",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Descent from Old Saxon"
+    }
+  ],
+  "notes": "Low German (Plattdeutsch / Nedderdütsch). Descended from Old Saxon — NOT from Old High German. DID NOT UNDERGO the High German Consonant Shift: maken vs. German machen; water vs. German Wasser. Closely related to Dutch, Frisian, and Old English. Extremely diverse dialects across northern Germany and Netherlands. Now mostly spoken by elderly; listed as 'vulnerable' by UNESCO. Source: Gallée (1993), Robinson (1992).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "nds",
+  "sources": [
+    {
+      "id": "stellmacher1990",
+      "author": "Stellmacher, D.",
+      "year": 1990,
+      "title": "Niederdeutsche Sprache: Eine Einführung",
+      "publisher": "Peter Lang",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "code": "fa-x-kermani",
+  "name": "Kermani Persian",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa-x-tehran",
+  "allophones_base": "fa-x-tehran",
+  "allophones": {
+    "ɒː": [
+      "ɒː",
+      "aː"
+    ],
+    "æ": [
+      "a",
+      "æ"
+    ],
+    "o": [
+      "o",
+      "u"
+    ],
+    "q": [
+      "q",
+      "ɣ"
+    ]
+  },
+  "parent": "fa-x-tehran",
+  "ancestors": [
+    {
+      "code": "fa-x-early",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "New Persian descent"
+    }
+  ],
+  "notes": "Kermani Persian (Kermānī). Southern Iranian; Kerman province. /æ/ → [a] (more open/back than Tehran; similar to Shirazi). /q/ somewhat more maintained than Tehran. Contact with Balochi (southeastern Iran): minor phonological effects. Zoroastrian community in Kerman shares some features with Yazdi.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

@@ -184,5 +184,10 @@
     }
   },
   "parent": "pt-PT-x-medieval",
+  "sandhi_rules": [
+    {"id": "PT_CODA_S_VOICING", "name": "coda-s-voicing", "left_context": "[ʃ]$", "right_context": "^[bdgvzʒmnɲɾʁlʎ]", "transform": "ʒ", "obligatory": true, "notes": "os dois → ɔʒ dojʃ"},
+    {"id": "PT_CODA_S_REVOWEL", "name": "coda-s-resyllabification", "left_context": "[ʃ]$", "right_context": "^[aeiouɛɔ]", "transform": "z‿", "obligatory": true, "notes": "os amigos → uz‿ɐmiɡuʃ"},
+    {"id": "PT_ELISION", "name": "schwa-elision", "left_context": "[ɨ]$", "right_context": "^[aeiouɛɔ]", "transform": "", "obligatory": false, "notes": "de amanhã → d‿ɐmɐɲã"}
+  ],
   "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features."
 }

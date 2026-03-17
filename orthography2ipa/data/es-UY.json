@@ -1,0 +1,37 @@
+{
+  "code": "es-UY",
+  "name": "Uruguayan Spanish",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "x": [
+      "x"
+    ],
+    "ʝ": [
+      "ʃ",
+      "ʒ"
+    ],
+    "n": [
+      "n"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Uruguayan Spanish. Rioplatense base: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩ (devoicing trend toward [ʃ] in younger speakers). Less extreme than Buenos Aires in some features. Border dialects show Portuguese influence (DPU — Dialectos Portugueses del Uruguay).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

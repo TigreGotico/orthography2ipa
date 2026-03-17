@@ -1,0 +1,69 @@
+{
+  "code": "ca-x-valencia",
+  "name": "Valencian",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "ca",
+  "graphemes": {
+    "s": [
+      "s̺",
+      "z̺"
+    ],
+    "v": [
+      "v"
+    ]
+  },
+  "allophones_base": "ca",
+  "allophones": {
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s̺"
+    ],
+    "z": [
+      "z̺"
+    ],
+    "ʒ": [
+      "dʒ",
+      "ʒ"
+    ],
+    "ə": [
+      "a",
+      "e"
+    ]
+  },
+  "positional_graphemes_base": "ca",
+  "positional_graphemes": {
+    "a": {
+      "default": [
+        "a"
+      ],
+      "nucleus": [
+        "a"
+      ]
+    },
+    "e": {
+      "default": [
+        "ɛ",
+        "e"
+      ],
+      "nucleus": [
+        "e"
+      ]
+    },
+    "o": {
+      "default": [
+        "ɔ",
+        "o"
+      ],
+      "nucleus": [
+        "o"
+      ]
+    }
+  },
+  "parent": "ca",
+  "notes": "Valencian (Valencià). Western Catalan block, co-official in Comunitat Valenciana. Key differences from Central Catalan: /v/ vs /b/ distinction preserved, apico-alveolar sibilants [s̺, z̺], MINIMAL vowel reduction (no schwa — unstressed /a/ stays [a], /e/ stays [e], /o/ stays [o]). Word-final -r pronounced. Voiced affricate [dʒ] more robust. Regulated by Acadèmia Valenciana de la Llengua (AVL).",
+  "quality": "research",
+  "script_type": "alphabet"
+}

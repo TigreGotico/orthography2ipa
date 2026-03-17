@@ -1,0 +1,240 @@
+{
+  "code": "sc",
+  "name": "Sardinian",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "c": [
+      "k"
+    ],
+    "ch": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "r": [
+      "r"
+    ],
+    "rr": [
+      "rː"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v",
+      "β"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ],
+    "sc": [
+      "sk",
+      "ʃ"
+    ],
+    "tz": [
+      "tː s"
+    ],
+    "dd": [
+      "ɖː"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "gl": [
+      "ʎ"
+    ],
+    "ll": [
+      "lː",
+      "ɖː"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "oi": [
+      "oj"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "β"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ɖː": [
+      "ɖː"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "ɱ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "rː": [
+      "rː"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "la-x-late",
+  "ancestors": [
+    {
+      "code": "la",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Direct from Classical Latin — Sardinian diverged BEFORE the Western/Eastern Romance split. Most archaic Romance variety."
+    },
+    {
+      "code": "grc",
+      "role": "substrate",
+      "weight": 0.04,
+      "notes": "Greek (Punic-era contacts, Byzantine rule): limited phonological impact."
+    }
+  ],
+  "notes": "Sardinian. THE most conservative Romance language. Primary archaic features: (1) Velars /k, ɡ/ preserved before front vowels (kentu 'hundred', not *centu). (2) 5-vowel system (no ɛ/e or ɔ/o split). (3) No diphthongisation of Latin ĕ, ŏ. (4) Retroflex consonants [ɖː] from Latin -LL-. (5) Article from IPSE (su/sa) not ILLE. Sardinian forms its OWN primary branch of Romance, diverging before Italo-, Gallo-, Ibero-, and Eastern Romance innovations (Lausberg 1971, Blasco Ferrer 1984).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

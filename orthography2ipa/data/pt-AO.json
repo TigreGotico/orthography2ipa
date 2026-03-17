@@ -1,0 +1,27 @@
+{
+  "code": "pt-AO",
+  "name": "Angolan Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "graphemes": {
+    "r": [
+      "ʁ"
+    ],
+    "s": [
+      "s"
+    ]
+  },
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "ʁ": [
+      "ʁ",
+      "r"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Based on Luanda educated speech.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

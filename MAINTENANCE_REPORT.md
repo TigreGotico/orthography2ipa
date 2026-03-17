@@ -3,6 +3,65 @@
 
 ---
 
+## Transparency Report — 2026-03-17 (Linguistic Reference Audit — Phase 0 + Phase 1)
+
+**Model**: Claude Sonnet 4.6
+**Human oversight**: Active (approval of all file writes)
+
+### Actions taken:
+1. **Infrastructure (Phase 0)**:
+   - Added `LinguisticSource` frozen dataclass to `orthography2ipa/types.py`
+   - Added `sources: Tuple[LinguisticSource, ...]` field to `LanguageSpec`
+   - Updated `orthography2ipa/json_loader.py` to parse `sources` array from JSON
+   - Updated `orthography2ipa/data/SCHEMA.md` with Sources Schema documentation
+   - Created `tests/test_sources.py` with `@pytest.mark.linguistic` enforcement
+
+2. **Phase 1 — Germanic sources (33 files)**:
+   - English × 7: `en-GB`, `en-US`, `en-AU`, `en-CA`, `en-IE`, `en-ZA`, `en-GB-x-scotland`
+   - German × 3: `de-DE`, `de-AT`, `de-CH`
+   - Dutch × 3: `nl`, `nl-NL`, `nl-BE`
+   - Scandinavian × 8: `sv`, `sv-x-rikssvenska`, `nb`, `nn`, `no`, `da`, `da-x-copenhagen`, `is`, `fo`
+   - Other Germanic × 2: `af`, `nds`
+   - Historical Germanic × 5: `enm`, `ang`, `non`, `osx`, `goh`
+   - Proto-Germanic × 4: `gem`, `gem-x-ingvaeonic`, `gem-x-north`, `gem-x-northwest`
+
+3. **Documentation**:
+   - `PLAN.md` — added Linguistic Reference Audit section with phase progress table
+   - `TODO.md` — added per-language checklist for all 6 phases
+   - `docs/bibliography.md` — created Phase 1 bibliography with 28 sources
+
+### Test result:
+- Base tests (excluding `@pytest.mark.linguistic`): **4986 passed, 0 failed**
+- Germanic sources tests (`-m linguistic -k "en-GB or de-DE or gem..."`): **42 passed**
+- Full `@pytest.mark.linguistic` run: 42 pass, 217 pending (remaining phases)
+
+---
+
+## Transparency Report — 2026-03-16 (Extended per-language dialect tests)
+
+**Model**: Claude Sonnet 4.6
+**Human oversight**: Active (approval of all file writes)
+
+### Actions taken:
+1. Created `tests/test_iberian_extended.py` — 239 tests across 29 language classes:
+   - Spanish dialects: `es-ES-x-andalusia-w`, `es-ES-x-canarias`, `es-ES-x-murcia`, `es-MX`, `es-CL`, `es-VE`, `es-419`
+   - Extremaduran: `ext`
+   - Portuguese dialects: `pt-PT-x-lisbon`, `pt-PT-x-porto`, `pt-AO`, `pt-BR-x-rj`
+   - Catalan: `ca-x-nord`, `ca-x-occidental`
+   - Galician: `gl-ES`, `gl-x-oriental`
+   - Basque: `eu-x-bizkaiera`, `eu-x-gipuzkera`
+   - Asturian/Leonese: `ast-x-occidental`, `ast-x-oriental`, `ast-x-cantabrian`, `ast-x-leon`, `ast-PT-x-medieval`
+   - Mirandese: `mwl-x-sendim`, `mwl-x-ifanes`
+   - Aragonese: `an-x-occidental`, `an-x-oriental`
+   - Non-Iberian Romance: `fr-FR`, `it-IT`
+2. Updated `tests/conftest.py` `_IBERIAN_CLASS_TO_CODE` — added 29 new class→language mappings
+   for coverage reporter
+
+**Result**: Test count increased from 7860 to 8099 (239 new tests, 0 failures).
+Coverage reporter now tracks 44 distinct language codes across both Iberian test files.
+
+---
+
 ## Transparency Report — 2026-03-16 (Documentation & Quality Hardening)
 
 **Model**: Claude Sonnet 4.6

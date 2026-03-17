@@ -1,0 +1,29 @@
+{
+  "code": "ru-x-northern",
+  "name": "Northern Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru",
+  "graphemes": {
+    "ч": [
+      "ts"
+    ]
+  },
+  "allophones_base": "ru",
+  "allophones": {
+    "tɕ": [
+      "ts"
+    ],
+    "a": [
+      "a"
+    ],
+    "o": [
+      "o",
+      "ʊ"
+    ]
+  },
+  "parent": "ru",
+  "notes": "Northern Russian dialects (Arkhangelsk, Vologda, Kostroma region). Оканье: unstressed /o/ preserved. Often цоканье: ч/ц not distinguished.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

@@ -1,0 +1,53 @@
+{
+  "code": "es-BO",
+  "name": "Bolivian Spanish",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "x": [
+      "x"
+    ],
+    "n": [
+      "n"
+    ],
+    "ʎ": [
+      "ʎ",
+      "ʝ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "ɹ̝"
+    ],
+    "r": [
+      "r",
+      "ɹ̝"
+    ],
+    "e": [
+      "e",
+      "i"
+    ],
+    "o": [
+      "o",
+      "u"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Bolivian Spanish (highland). Andean type: conservative coda /s/, velar [x], possible /ʎ/ in rural areas, assibilated /rr/. Quechua/Aymara substrate: vowel raising in bilinguals. Lowland (Santa Cruz) tends toward more aspiration.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

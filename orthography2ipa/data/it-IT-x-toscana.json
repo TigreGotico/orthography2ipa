@@ -1,0 +1,319 @@
+{
+  "code": "it-IT-x-toscana",
+  "name": "Tuscan",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "tʃ"
+    ],
+    "ch": [
+      "k"
+    ],
+    "ci": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gi": [
+      "dʒ"
+    ],
+    "gl": [
+      "ʎ",
+      "ɡl"
+    ],
+    "gli": [
+      "ʎ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "sc": [
+      "ʃ",
+      "sk"
+    ],
+    "sci": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ],
+    "bb": [
+      "bː"
+    ],
+    "cc": [
+      "kː",
+      "tːʃ"
+    ],
+    "dd": [
+      "dː"
+    ],
+    "ff": [
+      "fː"
+    ],
+    "gg": [
+      "ɡː",
+      "dːʒ"
+    ],
+    "ll": [
+      "lː"
+    ],
+    "mm": [
+      "mː"
+    ],
+    "nn": [
+      "nː"
+    ],
+    "pp": [
+      "pː"
+    ],
+    "rr": [
+      "rː"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "tt": [
+      "tː"
+    ],
+    "zz": [
+      "tːs",
+      "dːz"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "ɸ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t",
+      "θ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k",
+      "h"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tʃ": [
+      "tʃ",
+      "ʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "m": [
+      "m",
+      "ɱ"
+    ],
+    "n": [
+      "n",
+      "m",
+      "ɱ",
+      "ŋ",
+      "ɲ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "bː": [
+      "bː"
+    ],
+    "dː": [
+      "dː"
+    ],
+    "ɡː": [
+      "ɡː"
+    ],
+    "pː": [
+      "pː"
+    ],
+    "tː": [
+      "tː"
+    ],
+    "kː": [
+      "kː"
+    ],
+    "fː": [
+      "fː"
+    ],
+    "sː": [
+      "sː"
+    ],
+    "lː": [
+      "lː"
+    ],
+    "mː": [
+      "mː"
+    ],
+    "nː": [
+      "nː"
+    ],
+    "rː": [
+      "rː"
+    ],
+    "tːʃ": [
+      "tːʃ"
+    ],
+    "dːʒ": [
+      "dːʒ"
+    ],
+    "tːs": [
+      "tːs"
+    ],
+    "dːz": [
+      "dːz"
+    ]
+  },
+  "parent": "it-IT",
+  "ancestors": [
+    {
+      "code": "it-IT",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Standard Italian is based on Tuscan; the dialect and standard share the same parent."
+    }
+  ],
+  "notes": "Tuscan. The dialect of Tuscany that is the historical basis of standard Italian. Distinguished from the standard primarily by GORGIA TOSCANA: intervocalic voiceless stops → fricatives (/p/→[ɸ], /t/→[θ], /k/→[h]). Also features stronger raddoppiamento sintattico. The open/close mid-vowel distinctions are most consistently maintained here (Giannelli 2000, Rohlfs 1966).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

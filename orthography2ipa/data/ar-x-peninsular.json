@@ -1,0 +1,80 @@
+{
+  "code": "ar-x-peninsular",
+  "name": "Proto-Peninsular Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "positional_graphemes_base": "arb",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t",
+      "s"
+    ],
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "ظ": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "ض": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "ج": [
+      "dʒ",
+      "ɡ",
+      "j"
+    ],
+    "ق": [
+      "q",
+      "ɡ"
+    ]
+  },
+  "allophones": {
+    "ɮˤ": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "θ": [
+      "θ",
+      "t"
+    ],
+    "ð": [
+      "ð",
+      "d"
+    ],
+    "ðˤ": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "q": [
+      "q",
+      "ɡ"
+    ],
+    "k": [
+      "k",
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "ɡ",
+      "j"
+    ]
+  },
+  "parent": "arb",
+  "ancestors": [
+    {
+      "code": "arb",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Descent from Classical Arabic"
+    }
+  ],
+  "notes": "Proto-Peninsular Arabic — abstract ancestor node for Hejazi, Najdi, Gulf, Yemeni, and Omani Arabic. Key shared peninsular features: interdentals often preserved; ق → /q/ or /ɡ/ (Bedouin); conservative consonant system.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

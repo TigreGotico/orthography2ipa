@@ -95,7 +95,8 @@ class TestGraphemePosition(unittest.TestCase):
             "before_vowel", "after_vowel",
             "before_consonant", "after_consonant",
             "before_a", "before_e", "before_i", "before_o", "before_u",
-            "vocalic", "consonantal"
+            "vocalic", "consonantal",
+            "default", "nucleus",
         }
         actual = {p.value for p in GraphemePosition}
         self.assertEqual(actual, expected)

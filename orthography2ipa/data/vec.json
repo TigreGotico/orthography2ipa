@@ -1,0 +1,255 @@
+{
+  "code": "vec",
+  "name": "Venetian",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "tʃ"
+    ],
+    "ch": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "dh": [
+      "ð"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "j": [
+      "j"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "sc": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "th": [
+      "θ"
+    ],
+    "v": [
+      "v"
+    ],
+    "x": [
+      "z"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "ll": [
+      "lː"
+    ],
+    "nn": [
+      "nː"
+    ],
+    "rr": [
+      "rː"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "ɱ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l",
+      "ɰ"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "rː": [
+      "rː"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "sː": [
+      "sː"
+    ],
+    "lː": [
+      "lː"
+    ],
+    "nː": [
+      "nː"
+    ]
+  },
+  "parent": "la-x-italia",
+  "ancestors": [
+    {
+      "code": "la-x-italia",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Italo-Romance parent: retains 7-vowel system, no /y/ fronting. NE Italian classification."
+    },
+    {
+      "code": "cel",
+      "role": "substrate",
+      "weight": 0.04,
+      "notes": "Celtic (Cenomani/Veneti) substrate: pre-Roman Veneti were possibly IE but not Celtic; limited substrate effect."
+    },
+    {
+      "code": "gem",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Lombardic superstrate (limited in Veneto)."
+    },
+    {
+      "code": "grc",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Byzantine Greek adstrate: Venice was nominally Byzantine until 9th century."
+    }
+  ],
+  "notes": "Venetian. NE Italo-Romance language of Veneto, Trentino, Friuli, and Istria. ~3.8 million speakers. Reference: Veneziano. Straddles Gallo-Italic / Italo-Romance boundary. Key features: (1) 7-vowel system (Italo-Romance). (2) Interdental fricatives /θ, ð/ in some varieties. (3) Intervocalic lenition (Gallo-Italic-like). (4) Partial degemination. (5) No /y/ fronting. Former lingua franca of the eastern Mediterranean (Ferguson 2007, Zamboni 1974).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "vec"
+}

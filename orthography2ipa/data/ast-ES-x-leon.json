@@ -1,0 +1,13 @@
+{
+  "code": "ast-ES-x-leon",
+  "name": "Leonese",
+  "family": "Asturleonese",
+  "script": "Latin",
+  "graphemes_base": "ast",
+  "allophones_base": "ast",
+  "positional_graphemes_base": "ast",
+  "parent": "ast",
+  "notes": "Leonese (Llionés), spoken in the provinces of León, Zamora, and Salamanca. Southern continuation of Asturleonese. Shares core features with Asturian (diphthongs, betacism, palatal [ʎ], ye copula) but under heavier Castilian pressure. Some Zamoran varieties show aspiration of velar fricatives. Related to Mirandese (Portugal) which descends from the same Leonese branch.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}

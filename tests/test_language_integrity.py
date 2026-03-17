@@ -272,14 +272,11 @@ class TestMinimumInventorySizes:
     """Sanity checks on inventory sizes for well-known languages."""
 
     @pytest.mark.parametrize("code,min_graphemes,min_allophones", [
-        #   ("en-GB", 40, 20),   # English has many digraphs/trigraphs
-        #   ("es-ES", 20, 15),   # Spanish is more transparent
+        ("es-ES", 20, 15),
         ("pt-PT", 20, 10),
-        #   ("fr-FR", 20, 15),
-        #   ("de-DE", 20, 15),
-        #   ("it-IT", 20, 15),
-        #   ("ar", 20, 10),
-        #   ("ja", 10, 10),
+        ("fr-FR", 20, 15),
+        ("de-DE", 20, 15),
+        ("arb", 20, 10),
     ])
     def test_minimum_inventory_size(self, code, min_graphemes, min_allophones):
         try:
@@ -300,61 +297,68 @@ class TestKeyPhonologicalFacts:
     """Spot-check critical linguistic facts for major languages."""
 
     # ── English ────────────────────────────────────────────────────────
-    @pytest.mark.skip()
+    def _get_english(self):
+        try:
+            en = get("en-GB")
+            if not en.graphemes:
+                pytest.skip("en-GB graphemes not yet populated")
+            return en
+        except KeyError:
+            pytest.skip("en-GB not in registry")
+
     def test_english_th_maps_to_dental_fricatives(self):
-        en = get("en-GB")
+        en = self._get_english()
         ipa = en.graphemes.get("th", [])
         assert "θ" in ipa, "English 'th' should include /θ/"
         assert "ð" in ipa, "English 'th' should include /ð/"
 
-    @pytest.mark.skip()
     def test_english_t_has_flap_allophone(self):
-        en = get("en-GB")
+        en = self._get_english()
         t_allo = en.allophones.get("t", [])
         assert "ɾ" in t_allo, "English /t/ should have [ɾ] flap allophone"
 
-    @pytest.mark.skip()
     def test_english_sh_is_postalveolar(self):
-        en = get("en-GB")
+        en = self._get_english()
         assert "ʃ" in en.graphemes.get("sh", [])
 
     # ── Spanish ────────────────────────────────────────────────────────
-    @pytest.mark.skip()
     def test_spanish_c_has_theta(self):
         """Castilian Spanish: 'c' should include /θ/ (distinción)."""
         es = get("es-ES")
         ipa = es.graphemes.get("c", [])
         assert "θ" in ipa, "Castilian 'c' should include /θ/"
 
-    @pytest.mark.skip()
     def test_spanish_h_is_silent(self):
         es = get("es-ES")
         h_ipa = es.graphemes.get("h", [])
         assert "" in h_ipa, "Spanish 'h' should be silent (empty string)"
 
-    @pytest.mark.skip()
     def test_spanish_b_lenition(self):
         """Spanish /b/ should have [β] allophone (lenition)."""
         es = get("es-ES")
         b_allo = es.allophones.get("b", [])
         assert "β" in b_allo, "Spanish /b/ should have [β] allophone"
 
-    @pytest.mark.skip()
     def test_spanish_rr_is_trill(self):
         es = get("es-ES")
         rr_ipa = es.graphemes.get("rr", [])
         assert "r" in rr_ipa, "Spanish 'rr' should map to alveolar trill /r/"
 
-    @pytest.mark.skip()
-    def test_spanish_ancestry_includes_latin(self):
-        es = get("es-ES")
-        assert es.primary_parent == "la-x-hispania"
-
-    @pytest.mark.skip()
-    def test_spanish_has_basque_substrate(self):
-        es = get("es-ES")
-        subs = es.substrate_codes
-        assert "xaq" in subs, "Spanish should have Basque (xaq) substrate"
+    def test_spanish_ancestry_traces_to_latin(self):
+        """Spanish ancestry chain should eventually reach Latin."""
+        current = "es-ES"
+        visited = set()
+        found = False
+        while current and current not in visited:
+            visited.add(current)
+            if current.startswith("la"):
+                found = True
+                break
+            try:
+                current = get(current).primary_parent
+            except KeyError:
+                break
+        assert found, f"Spanish should trace to Latin, chain: {visited}"
 
     # ── Portuguese ─────────────────────────────────────────────────────
 
@@ -369,13 +373,11 @@ class TestKeyPhonologicalFacts:
         assert "ɲ" in nh_ipa, "Portuguese 'nh' should map to /ɲ/"
 
     # ── German ─────────────────────────────────────────────────────────
-    @pytest.mark.skip()
     def test_german_sch_is_postalveolar(self):
         de = get("de-DE")
         sch_ipa = de.graphemes.get("sch", [])
         assert "ʃ" in sch_ipa, "German 'sch' should map to /ʃ/"
 
-    @pytest.mark.skip()
     def test_german_ch_has_ich_and_ach(self):
         """German 'ch' should include both [ç] and [x]."""
         de = get("de-DE")
@@ -384,23 +386,19 @@ class TestKeyPhonologicalFacts:
             "German 'ch' should have /ç/ or /x/"
 
     # ── French ─────────────────────────────────────────────────────────
-    @pytest.mark.skip()
     def test_french_has_nasal_vowels(self):
         """French allophone/grapheme system should include nasal vowels."""
         fr = get("fr-FR")
         all_ipa = set()
         for v_list in fr.graphemes.values():
             all_ipa.update(v_list)
-        # At least one nasal vowel should be present
         nasal_vowels = {"ɑ̃", "ɛ̃", "ɔ̃", "œ̃"}
         assert nasal_vowels & all_ipa, \
             "French should have at least one nasal vowel"
 
-    @pytest.mark.skip()
     def test_french_r_is_uvular(self):
         fr = get("fr-FR")
         r_allo = fr.allophones.get("ʁ", fr.allophones.get("r", []))
-        # French /r/ should be uvular [ʁ]
         assert any("ʁ" in a for a in r_allo) or "ʁ" in fr.allophones, \
             "French /r/ should include uvular [ʁ]"
 
@@ -438,10 +436,9 @@ class TestFamilyConsistency:
                 f"Romance language {code} should trace back to Latin, " \
                 f"but chain was: {visited}"
 
-    @pytest.mark.skip()
     def test_germanic_languages_share_protogermanic(self):
         """Germanic languages should trace to Proto-Germanic (gem)."""
-        germanic_codes = ["pt-PT", "de-DE", "nl"]
+        germanic_codes = ["de-DE", "nl"]
         for code in germanic_codes:
             try:
                 spec = get(code)

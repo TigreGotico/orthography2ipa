@@ -1,0 +1,12 @@
+{
+  "code": "ru-x-arkhangelsk",
+  "name": "Arkhangelsk Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru-x-northern",
+  "allophones_base": "ru-x-northern",
+  "parent": "ru-x-northern",
+  "notes": "Northern Russian, Arkhangelsk subtype. Strong оканье, цоканье.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}

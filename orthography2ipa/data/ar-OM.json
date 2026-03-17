@@ -1,0 +1,57 @@
+{
+  "code": "ar-OM",
+  "name": "Omani Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-peninsular",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ك": [
+      "k",
+      "tʃ"
+    ]
+  },
+  "allophones_base": "ar-x-peninsular",
+  "allophones": {
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "aː": [
+      "aː",
+      "eː"
+    ],
+    "dˤ": [
+      "dˤ"
+    ]
+  },
+  "parent": "ar-x-peninsular",
+  "ancestors": [
+    {
+      "code": "ar-x-peninsular",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Peninsular Arabic base"
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Persian adstrate from Hormuz Strait trade and Muscat contacts"
+    }
+  ],
+  "notes": "Omani Arabic. Conservative Peninsula variety on southeastern coast. ج → /dʒ/ consistently (not /ɡ/ as in Yemeni). ق → /q/ preserved in many varieties; /ɡ/ Bedouin/interior. θ, ð, ðˤ often preserved (conservative). k → /tʃ/ before front vowels (Gulf feature present). UNIQUE: some dialects preserve dˤ vs ðˤ distinction (rare). South Arabian (Mehri/Jibbali) adstrate in Dhofar. Swahili adstrate from Omani maritime trade / Zanzibar sultanate. Persian adstrate from Hormuz trade.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

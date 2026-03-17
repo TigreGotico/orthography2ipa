@@ -1,0 +1,27 @@
+{
+  "code": "fa-x-mashhadi",
+  "name": "Mashhadi Persian",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa-x-khorasani",
+  "allophones_base": "fa-x-khorasani",
+  "allophones": {
+    "ɒː": [
+      "aː",
+      "eː",
+      "ɒː"
+    ]
+  },
+  "parent": "fa-x-khorasani",
+  "ancestors": [
+    {
+      "code": "fa-x-khorasani",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Khorasani base"
+    }
+  ],
+  "notes": "Mashhadi Persian (Mašhadī). Iran's second-largest city; capital of Khorasan. Urban Khorasani variety; prestige dialect of northeastern Iran. Conservative vowels (Khorasani base); some imāla in religious/Arabic vocabulary (pilgrimage city: shrine of Imam Reza). /q/ maintained in careful speech.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

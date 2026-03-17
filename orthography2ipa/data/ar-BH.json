@@ -1,0 +1,26 @@
+{
+  "code": "ar-BH",
+  "name": "Bahraini Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-gulf",
+  "allophones_base": "ar-x-gulf",
+  "parent": "ar-x-gulf",
+  "ancestors": [
+    {
+      "code": "ar-x-gulf",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Gulf Arabic base"
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Persian adstrate: Shia community historical ties; /p/ in some older loanwords predating English"
+    }
+  ],
+  "notes": "Bahraini Arabic. Sunni (Baḥrīnī) and Shia (Bahārna) varieties. Sunni: typical Gulf features, k → /tʃ/, ق → /ɡ/. Shia (Bahārna): slightly more conservative, some Persian adstrate influence. Persian /p/ in some vocabulary predates English contact. Johnstone (1967) primary reference for Eastern Arabian varieties.",
+  "quality": "stub",
+  "script_type": "abjad"
+}

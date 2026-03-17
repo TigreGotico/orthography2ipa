@@ -1,0 +1,34 @@
+{
+  "code": "eu-x-zuberera",
+  "name": "Souletin Basque (Zuberera)",
+  "family": "Isolate",
+  "script": "Latin",
+  "graphemes_base": "eu",
+  "graphemes": {
+    "ü": [
+      "y"
+    ]
+  },
+  "allophones_base": "eu",
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "k": [
+      "k",
+      "kʰ"
+    ],
+    "y": [
+      "y"
+    ]
+  },
+  "parent": "eu",
+  "notes": "Souletin (Zuberera/Xiberotarra). Easternmost Basque dialect, spoken in Soule/Zuberoa (France). Most divergent variety. Unique features: front rounded vowel /y/ (⟨ü⟩, like French), fully functional aspirate /h/, aspirated stops [pʰ, tʰ, kʰ], distinctive verb morphology. French phonological influence.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

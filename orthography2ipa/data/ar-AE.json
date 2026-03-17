@@ -1,0 +1,32 @@
+{
+  "code": "ar-AE",
+  "name": "Emirati Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-gulf",
+  "allophones_base": "ar-x-gulf",
+  "allophones": {
+    "tʃ": [
+      "tʃ"
+    ],
+    "ɡ": [
+      "ɡ",
+      "j"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "ar-x-gulf",
+  "ancestors": [
+    {
+      "code": "ar-x-gulf",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Gulf Arabic base"
+    }
+  ],
+  "notes": "Emirati Arabic (إماراتي). UAE: Abu Dhabi, Dubai, Sharjah, RAK. k → /tʃ/ before front vowels (robust Gulf feature). ق → /ɡ/ (traditional). Heaviest English influence of all Gulf dialects (Dubai effect): /p/, /v/, /tʃ/, /ŋ/ thoroughly integrated. South Asian (Indian/Pakistani) community influence on lexicon. Interior/tribal varieties (RAK, Fujairah) more conservative.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

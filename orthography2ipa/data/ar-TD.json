@@ -1,0 +1,74 @@
+{
+  "code": "ar-TD",
+  "name": "Chadian Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "چ": [
+      "tʃ"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "b": [
+      "b",
+      "ɓ"
+    ],
+    "d": [
+      "d",
+      "ɗ"
+    ],
+    "θ": [
+      "θ",
+      "t"
+    ],
+    "ð": [
+      "ð",
+      "d"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "i": [
+      "i",
+      "ə"
+    ],
+    "u": [
+      "u",
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Maghrebi/peripheral Arabic base"
+    }
+  ],
+  "notes": "Chadian Arabic (ʕarabī šuwā). Spoken in Chad, northern Cameroon, CAR, and northeastern Nigeria. Arrived via Sudan/Saharan trade routes (~11th–14th c. CE). CONSERVATIVE: θ (ث) and ð (ذ) often preserved. ق → /q/ maintained. ض → /dˤ/ (lateral lost). Sub-Saharan Chadic substrate (Hausa, Kanuri, Sara, Maba, Fulani): implosive allophones /ɓ, ɗ/; /ŋ/ phoneme; prenasalised stops [ᵐb, ⁿd] in some varieties. Moderate vowel reduction.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

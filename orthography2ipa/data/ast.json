@@ -164,5 +164,24 @@
     }
   ],
 
-  "notes": "Modern Standard Asturian per the ALLA *Normes Ortográfiques* (8th ed., 2021). Spoken by ~100,000 speakers in the Principality of Asturias (Spain). KEY FEATURES distinguishing Asturian from Castilian: (1) ⟨x⟩ = /ʃ/ (voiceless postalveolar), not /x/ — 'xema' [ʃema] vs. Spanish 'jema' [xema]. (2) ⟨ll⟩ = /ʎ/ preserved (no yeísmo in standard). (3) Leonese diphthongs: Latin Ĕ → /ie/, Latin Ŏ → /ue/. (4) Latin F- preserved: 'falar', 'filu'. (5) Betacism: ⟨b⟩ = ⟨v⟩ = /b/. (6) No vowel reduction: 5-vowel system, unstressed vowels full. (7) Apico-alveolar /s/ [s̺] like Castilian. (8) Interdental /θ/ for ⟨z⟩ and ⟨c⟩ before e/i. (9) ⟨ch⟩ = /tʃ/ affricate. The family 'Asturleonese' also includes Leonese (nearly extinct in León), Mirandese (Miranda do Douro, Portugal), Rionorese and Guadramilese (Trás-os-Montes, Portugal). Sources: ALLA (2021), Cano González (2009), Penny (2002)."
+  "notes": "Modern Standard Asturian per the ALLA *Normes Ortográfiques* (8th ed., 2021). Spoken by ~100,000 speakers in the Principality of Asturias (Spain). KEY FEATURES distinguishing Asturian from Castilian: (1) ⟨x⟩ = /ʃ/ (voiceless postalveolar), not /x/ — 'xema' [ʃema] vs. Spanish 'jema' [xema]. (2) ⟨ll⟩ = /ʎ/ preserved (no yeísmo in standard). (3) Leonese diphthongs: Latin Ĕ → /ie/, Latin Ŏ → /ue/. (4) Latin F- preserved: 'falar', 'filu'. (5) Betacism: ⟨b⟩ = ⟨v⟩ = /b/. (6) No vowel reduction: 5-vowel system, unstressed vowels full. (7) Apico-alveolar /s/ [s̺] like Castilian. (8) Interdental /θ/ for ⟨z⟩ and ⟨c⟩ before e/i. (9) ⟨ch⟩ = /tʃ/ affricate. The family 'Asturleonese' also includes Leonese (nearly extinct in León), Mirandese (Miranda do Douro, Portugal), Rionorese and Guadramilese (Trás-os-Montes, Portugal). Sources: ALLA (2021), Cano González (2009), Penny (2002).",
+  "urls": [
+    "https://ast.wikipedia.org/wiki/Asturianu",
+    "https://mwl.wikipedia.org/wiki/Lh%C3%A9ngua_sturiana",
+    "https://en.wikipedia.org/wiki/Asturian_language",
+    "https://es.wikipedia.org/wiki/Asturiano_(asturleon%C3%A9s_de_Asturias)",
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_asturiana",
+    "https://an.wikipedia.org/wiki/Idioma_asturiano",
+    "https://gl.wikipedia.org/wiki/Lingua_asturiana",
+
+    "https://ast.wikipedia.org/wiki/Lleon%C3%A9s_(lling%C3%BC%C3%ADstica)",
+    "https://ast.wikipedia.org/wiki/Monta%C3%B1%C3%A9s",
+    "https://ast.wikipedia.org/wiki/Asturianu_oriental",
+    "https://ast.wikipedia.org/wiki/Asturianu_central",
+    "https://ast.wikipedia.org/wiki/Asturianu_occidental",
+    "https://ast.wikipedia.org/wiki/Lleon%C3%A9s_occidental",
+    "https://ast.wikipedia.org/wiki/Senabr%C3%A9s",
+    "",
+    ""
+  ]
 }

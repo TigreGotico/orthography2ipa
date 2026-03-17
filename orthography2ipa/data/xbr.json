@@ -1,0 +1,181 @@
+{
+  "code": "xbr",
+  "name": "Common Brythonic",
+  "family": "Celtic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "y": [
+      "ɨ"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "c": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "ll": [
+      "ɬ"
+    ],
+    "rh": [
+      "r̥"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "p": [
+      "p"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "t": [
+      "t"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɬ": [
+      "ɬ"
+    ],
+    "r": [
+      "r"
+    ],
+    "r̥": [
+      "r̥"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "parent": "cel",
+  "notes": "Common Brythonic / Proto-Brythonic. Celtic language of pre-Roman and Roman Britain. Ancestor of Welsh, Cornish, Breton. Substrate in English: place names (London, Thames, Kent, Dover), possibly influence on English phonology. Voiceless lateral /ɬ/ and voiceless rhotic /r̥/ are diagnostic features. Refs: Jackson (1953), Schrijver (1995).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "xbr"
+}

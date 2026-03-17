@@ -1,0 +1,27 @@
+{
+  "code": "mwl-x-sendim",
+  "name": "Sendinês (Mirandese meridional)",
+  "family": "Asturleonese",
+  "script": "Latin",
+  "graphemes_base": "mwl",
+  "graphemes": {
+    "iê": [
+      "i"
+    ],
+    "uô": [
+      "u"
+    ],
+    "ie": [
+      "i"
+    ],
+    "uo": [
+      "u"
+    ]
+  },
+  "allophones_base": "mwl",
+  "positional_graphemes_base": "mwl",
+  "parent": "mwl",
+  "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). Differs from central Mirandese in: (1) monophthongization of -iê- → -i- and -uô- → -u- (tirra not tiêrra, curpo not cuôrpo); (2) NO palatalization of initial L- (luna not lhuna, lobo not lhobu). Orthographic addendum (2000) reflects these differences. Written ⟨-ie-⟩ and ⟨-uo-⟩ instead of ⟨-iê-⟩ and ⟨-uô-⟩.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

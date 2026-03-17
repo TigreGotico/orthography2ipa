@@ -1,0 +1,128 @@
+{
+  "code": "etr",
+  "name": "Etruscan",
+  "family": "Tyrrhenian",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "c": [
+      "k"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "ch": [
+      "kʰ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "ś": [
+      "ʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "v": [
+      "w"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ]
+  },
+  "notes": "Etruscan (8th c. BCE – 1st c. CE). Non-IE language isolate (or Tyrrhenian family with Rhaetic and Lemnian). ~13,000 inscriptions, READABLE but only partially translated. 4-vowel system (no /o/!), aspirate stops prominent. MASSIVE influence on Latin: alphabet, vocabulary (persona, fenestra, histrio, lanista, arena, elementum), and through Latin on ALL Romance languages. Pre-Roman substrate of Tuscany; possibly influenced gorgia toscana (Bonfante & Bonfante 2002, Wallace 2008).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "etr"
+}

@@ -1,0 +1,20 @@
+{
+  "code": "ar-QA",
+  "name": "Qatari Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-gulf",
+  "allophones_base": "ar-x-gulf",
+  "parent": "ar-x-gulf",
+  "ancestors": [
+    {
+      "code": "ar-x-gulf",
+      "role": "parent",
+      "weight": 0.91,
+      "notes": "Gulf Arabic base"
+    }
+  ],
+  "notes": "Qatari Arabic. Tribal/Bedouin character somewhat stronger than Kuwaiti. k → /tʃ/ before front vowels (Gulf feature). ث, ذ preserved more consistently by older/conservative speakers. ق → /ɡ/ (Bedouin/traditional). Vowel imāla prominent.",
+  "quality": "stub",
+  "script_type": "abjad"
+}

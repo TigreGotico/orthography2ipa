@@ -1,0 +1,346 @@
+{
+  "code": "ks",
+  "name": "Kashmiri",
+  "family": "Indo-Aryan",
+  "script": "Arabic",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "e": [
+      "eː"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "o": [
+      "oː"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ə̄": [
+      "əː"
+    ],
+    "ä": [
+      "æ"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gh": [
+      "ɡʱ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ġ": [
+      "ɣ"
+    ],
+    "c": [
+      "tʃ"
+    ],
+    "ch": [
+      "tʃʰ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "jh": [
+      "dʒʱ"
+    ],
+    "ṭ": [
+      "ʈ"
+    ],
+    "ṭh": [
+      "ʈʰ"
+    ],
+    "ḍ": [
+      "ɖ"
+    ],
+    "ḍh": [
+      "ɖʱ"
+    ],
+    "t": [
+      "t̪"
+    ],
+    "th": [
+      "t̪ʰ"
+    ],
+    "d": [
+      "d̪"
+    ],
+    "dh": [
+      "d̪ʱ"
+    ],
+    "p": [
+      "p"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bh": [
+      "bʱ"
+    ],
+    "m": [
+      "m"
+    ],
+    "y": [
+      "j"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "v": [
+      "ʋ"
+    ],
+    "ṛ": [
+      "ɽ"
+    ],
+    "ś": [
+      "ɕ"
+    ],
+    "ṣ": [
+      "ʂ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "h": [
+      "h"
+    ],
+    "n": [
+      "n"
+    ],
+    "ṇ": [
+      "ɳ"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "ṅ": [
+      "ŋ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t̪": [
+      "t̪"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "d̪": [
+      "d̪"
+    ],
+    "d̪ʱ": [
+      "d̪ʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "tʃʰ": [
+      "tʃʰ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "dʒʱ": [
+      "dʒʱ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɕ": [
+      "ɕ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "h": [
+      "h"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɽ": [
+      "ɽ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʋ": [
+      "ʋ"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "əː": [
+      "əː"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "ũ": [
+      "ũ"
+    ]
+  },
+  "parent": "sa",
+  "ancestors": [
+    {
+      "code": "sa",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Dardic branch of Indo-Aryan; pre-Proto-IA substratum"
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Arabic adstrate: religious vocabulary"
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Persian adstrate: heavy cultural/literary influence"
+    }
+  ],
+  "notes": "Kashmiri (Kāśmīrī), a Dardic language of Jammu & Kashmir. Rich vowel inventory including front rounded and central vowels. Tonal/pitch-accent distinctions reported in some analyses. Three scripts: Sharada (ancient), Nastaliq (modern official), Devanagari (India official). Retroflex, dental, palatal, and velar distinctions maintained.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

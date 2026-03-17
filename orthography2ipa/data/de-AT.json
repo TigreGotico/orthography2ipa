@@ -1,0 +1,45 @@
+{
+  "code": "de-AT",
+  "name": "Austrian German",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "de-DE",
+  "allophones_base": "de-DE",
+  "allophones": {
+    "ɛː": [
+      "eː",
+      "ɛː"
+    ],
+    "r": [
+      "ʀ",
+      "r",
+      "ɐ"
+    ]
+  },
+  "parent": "de-DE",
+  "notes": "Austrian Standard German (Österreichisches Hochdeutsch). ä [ɛ] → [eː] in most Austrian (merged with e:). /r/ varies: uvular [ʀ] in educated standard, alveolar [r] in rural and Bavarian-influenced speech. Bavarian dialect base: many Austrians use Bavarian dialects (see de-x-bavarian). Source: Dudenredaktion (2015).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wiese1996",
+      "author": "Wiese, R.",
+      "year": 1996,
+      "title": "The Phonology of German",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "muhr_schrodt1997",
+      "author": "Muhr, R. & Schrodt, R.",
+      "year": 1997,
+      "title": "Österreichisches Deutsch und andere nationale Varietäten plurizentrischer Sprachen in Europa",
+      "publisher": "Daedalus",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

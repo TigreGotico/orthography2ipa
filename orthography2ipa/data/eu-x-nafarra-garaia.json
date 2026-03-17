@@ -1,0 +1,29 @@
+{
+  "code": "eu-x-nafarra-garaia",
+  "name": "Upper Navarrese Basque",
+  "family": "Isolate",
+  "script": "Latin",
+  "graphemes_base": "eu",
+  "allophones_base": "eu",
+  "allophones": {
+    "s̺": [
+      "s̺",
+      "s"
+    ],
+    "s̻": [
+      "s̻",
+      "s"
+    ],
+    "h": [
+      "∅"
+    ],
+    "ʎ": [
+      "ʎ",
+      "ʝ"
+    ]
+  },
+  "parent": "eu",
+  "notes": "Upper Navarrese (Goi-Nafar). Southern Basque dialect including the Pamplona basin. Heavy Spanish contact influence: sibilant distinction weakening, incipient yeísmo, Spanish-like lenition of voiced stops. No aspiration.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

@@ -1,0 +1,184 @@
+{
+  "code": "kha",
+  "name": "Khasi",
+  "family": "Austroasiatic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "oi": [
+      "oi"
+    ],
+    "u": [
+      "u"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "ui": [
+      "ui"
+    ],
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "jng": [
+      "dʒŋ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "y": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "oi": [
+      "oi"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "kha-x-proto-mon-khmer",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Austroasiatic, Mon-Khmer branch (distant from Munda)"
+    }
+  ],
+  "notes": "Khasi (Meghalaya, India). Austroasiatic, Mon-Khmer branch — unrelated to IA, Dravidian, or Munda. One of only two scheduled languages not from IA or Dravidian families. Written in Latin script since Welsh/British missionary period (1840s). Matrilineal society; shares phonological typology with Southeast Asian Mon-Khmer.",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "kha"
+}

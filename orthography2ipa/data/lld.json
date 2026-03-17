@@ -1,0 +1,238 @@
+{
+  "code": "lld",
+  "name": "Ladin",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "ë": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "u": [
+      "u"
+    ],
+    "ü": [
+      "y"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "tʃ"
+    ],
+    "ch": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "gl": [
+      "ʎ"
+    ],
+    "h": [
+      "∅"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "sc": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ø": [
+      "ø"
+    ]
+  },
+  "parent": "la-x-gallia",
+  "ancestors": [
+    {
+      "code": "la-x-gallia",
+      "role": "parent",
+      "weight": 0.72,
+      "notes": "Gallo-Romance parent: Rhaeto-Romance branch."
+    },
+    {
+      "code": "cel",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Celtic (Raetian) substrate."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "German adstrate: South Tyrol bilingualism."
+    },
+    {
+      "code": "it-IT",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Italian adstrate: Trentino-Belluno contact."
+    }
+  ],
+  "notes": "Ladin. Rhaeto-Romance language of the Dolomites (South Tyrol, Trentino, Belluno). ~30,000 speakers. Key features: (1) CA- → [tʃ] palatalisation. (2) Front rounded vowels /y, ø/. (3) Preservation of Latin PL-, CL-, FL- clusters. (4) Central vowel /ə/ in some varieties. German and Italian adstrate influence (Craffonara 1977).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "lld"
+}

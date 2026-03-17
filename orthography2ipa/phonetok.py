@@ -40,11 +40,16 @@ Usage
 from __future__ import annotations
 
 import re
+import unicodedata
 from dataclasses import dataclass
 from enum import Enum, auto
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import LanguageSpec
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from orthography2ipa.g2p_plugin import G2PPlugin
 
 __all__ = [
     "TokenKind",
@@ -247,11 +252,13 @@ class PhonetokTokenizer:
             add_bos: bool = False,
             add_eos: bool = False,
             collapse_whitespace: bool = True,
+            plugin: Optional["G2PPlugin"] = None,
     ) -> None:
         self.spec = spec
         self.add_bos = add_bos
         self.add_eos = add_eos
         self.collapse_whitespace = collapse_whitespace
+        self.plugin = plugin
         self._trie = _GraphemeTrie(spec.graphemes)
         # Build normalised lookup (lowercase keys)
         self._grapheme_ipa: Dict[str, Tuple[str, ...]] = {
@@ -273,6 +280,10 @@ class PhonetokTokenizer:
            e. Single unknown character.
         3. Optionally wrap with BOS/EOS.
         """
+        # NFC normalization handles combining marks (Arabic harakat,
+        # Devanagari matras, accented Latin characters)
+        text = unicodedata.normalize("NFC", text)
+
         tokens: List[Token] = []
         n = len(text)
         pos = 0
@@ -322,11 +333,34 @@ class PhonetokTokenizer:
             gkey = self._trie.longest_match(text, pos)
             if gkey is not None:
                 ipa_vals = self._grapheme_ipa[gkey]
+                consumed = len(gkey)
+                # Inherent vowel for abugidas: after a consonant grapheme,
+                # append the inherent vowel unless a virama/halant follows.
+                if self.spec.inherent_vowel and ipa_vals:
+                    next_pos = pos + consumed
+                    next_ch = text[next_pos] if next_pos < n else ""
+                    # Virama/halant characters across Brahmic scripts
+                    if next_ch in ("\u094D", "\u09CD", "\u0A4D", "\u0ACD",
+                                   "\u0B4D", "\u0BCD", "\u0C4D", "\u0CCD",
+                                   "\u0D4D", "\u0E3A", "\u1039", "\u17D2"):
+                        # Virama follows — pure consonant, consume virama
+                        consumed += 1
+                    else:
+                        # Check if the first IPA value is consonantal
+                        # (not a vowel grapheme) by checking if it's NOT
+                        # in the vowel set. Simple heuristic: if the IPA
+                        # value contains only consonant symbols.
+                        first_ipa = ipa_vals[0]
+                        _vowels = set("aeiouɛɔəɨʉɯæɐʌɒœøɪʊɤɵɞɑ")
+                        if first_ipa and first_ipa[0] not in _vowels:
+                            ipa_vals = tuple(
+                                v + self.spec.inherent_vowel for v in ipa_vals
+                            )
                 tokens.append(Token(
                     kind=TokenKind.GRAPHEME, grapheme=gkey,
-                    ipa=ipa_vals, position=pos, length=len(gkey),
+                    ipa=ipa_vals, position=pos, length=consumed,
                 ))
-                pos += len(gkey)
+                pos += consumed
                 continue
 
             # (e) Unknown single character
@@ -441,9 +475,11 @@ class PhonetokTokenizer:
     ) -> str:
         """Return the single best (most canonical) IPA transcription.
 
-        This is equivalent to ``ipa_beam(..., beam_width=1)[0].ipa``
-        but slightly more efficient.
+        If a G2P plugin is set, delegates to ``plugin.transcribe()``.
+        Otherwise equivalent to ``ipa_beam(..., beam_width=1)[0].ipa``.
         """
+        if self.plugin is not None:
+            return self.plugin.transcribe(text)
         paths = self.ipa_beam(
             text,
             beam_width=1,

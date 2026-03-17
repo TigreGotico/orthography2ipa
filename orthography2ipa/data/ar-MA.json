@@ -1,0 +1,83 @@
+{
+  "code": "ar-MA",
+  "name": "Moroccan Arabic (Darija)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "t"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "q": [
+      "q",
+      "ɡ"
+    ],
+    "θ": [
+      "t"
+    ],
+    "a": [
+      "a",
+      "ə",
+      "∅"
+    ],
+    "i": [
+      "i",
+      "ə",
+      "∅"
+    ],
+    "u": [
+      "u",
+      "ə",
+      "∅"
+    ],
+    "aː": [
+      "aː",
+      "æː"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Maghrebi Arabic base"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Berber (Tamazight/Tachelhit) substrate: CHIEF cause of vowel deletion; emphatic system reinforced; consonant cluster tolerance from Berber phonotactics"
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Andalusi Arabic adstrate from Moriscos (post-1492/1609)"
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "French adstrate: /p/, /v/, /e/, /o/ phonemes"
+    }
+  ],
+  "notes": "Moroccan Arabic 'Darija' (دارجة). Most divergent mainstream dialect. DEFINING FEATURE: extreme vowel deletion — short unstressed vowels often deleted, creating 3–4 consonant clusters unusual in Arabic. θ → /t/, ð → /d/, ðˤ → /dˤ/ (emphatic lateral ض → dˤ). ق → /q/ PRESERVED (Maghrebi conservative feature). Pharyngeals ħ, ʕ very strong (Berber substrate reinforcement). French loanwords: /p/ and /v/ established as phonemes. Berber substrate is the primary explanation for vowel reduction and consonant cluster tolerance (Herce 2021, Caubet 1993).",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

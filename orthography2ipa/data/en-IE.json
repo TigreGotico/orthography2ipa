@@ -1,0 +1,68 @@
+{
+  "code": "en-IE",
+  "name": "Irish English (Hiberno-English)",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "en-GB",
+  "allophones_base": "en-GB",
+  "allophones": {
+    "t": [
+      "t",
+      "tʰ",
+      "ɾ",
+      "ʔ",
+      "t̚"
+    ],
+    "θ": [
+      "θ",
+      "t̪"
+    ],
+    "ɹ": [
+      "ɹ",
+      "ɻ"
+    ],
+    "l": [
+      "l"
+    ],
+    "æ": [
+      "æ",
+      "eə"
+    ],
+    "eɪ": [
+      "eː"
+    ],
+    "oʊ": [
+      "oː"
+    ]
+  },
+  "parent": "en-GB",
+  "ancestors": [
+    {
+      "code": "enm",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Middle English descent"
+    },
+    {
+      "code": "ga",
+      "role": "substrate",
+      "weight": 0.12,
+      "notes": "Irish Gaelic substrate: dental stops for θ/ð; clear l; intonation patterns; some syntax"
+    }
+  ],
+  "notes": "Hiberno-English / Irish English. Rhotic. /θ/ → [t̪] and /ð/ → [d̪] (dental stops — Gaelic substrate). Clear [l] everywhere (no dark l). GOAT/FACE often monophthongs [oː/eː]. Irish Gaelic substrate: significant lexical influence. Source: Wells (1982) vol. 2.",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wells1982_vol2",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 2: The British Isles",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

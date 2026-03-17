@@ -1,0 +1,494 @@
+{
+  "code": "en-GB",
+  "name": "British English (RP)",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "æ",
+      "ɑː",
+      "eɪ",
+      "ə",
+      "ɔː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ",
+      "iː",
+      "ə"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "ɪ",
+      "iː",
+      "aɪ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "ɒ",
+      "oʊ",
+      "ɔː",
+      "ʌ",
+      "uː"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ɹ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "ʌ",
+      "juː",
+      "uː",
+      "ʊ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks",
+      "ɡz"
+    ],
+    "y": [
+      "j",
+      "iː",
+      "aɪ",
+      "ɪ"
+    ],
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "tʃ",
+      "k",
+      "ʃ"
+    ],
+    "ck": [
+      "k"
+    ],
+    "dg": [
+      "dʒ"
+    ],
+    "gh": [
+      "ɡ",
+      "f",
+      ""
+    ],
+    "gn": [
+      "n"
+    ],
+    "kn": [
+      "n"
+    ],
+    "ng": [
+      "ŋ",
+      "ŋɡ"
+    ],
+    "ph": [
+      "f"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "sc": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ss": [
+      "s"
+    ],
+    "th": [
+      "θ",
+      "ð"
+    ],
+    "wh": [
+      "w",
+      "ʍ"
+    ],
+    "wr": [
+      "ɹ"
+    ],
+    "tch": [
+      "tʃ"
+    ],
+    "dge": [
+      "dʒ"
+    ],
+    "ai": [
+      "eɪ"
+    ],
+    "ay": [
+      "eɪ"
+    ],
+    "ea": [
+      "iː",
+      "ɛ"
+    ],
+    "ee": [
+      "iː"
+    ],
+    "ei": [
+      "iː",
+      "eɪ"
+    ],
+    "ey": [
+      "iː",
+      "eɪ"
+    ],
+    "ie": [
+      "aɪ",
+      "iː"
+    ],
+    "oa": [
+      "oʊ"
+    ],
+    "oe": [
+      "oʊ",
+      "uː"
+    ],
+    "oo": [
+      "uː",
+      "ʊ"
+    ],
+    "ou": [
+      "aʊ",
+      "ʌ",
+      "uː"
+    ],
+    "ow": [
+      "aʊ",
+      "oʊ"
+    ],
+    "ue": [
+      "juː",
+      "uː"
+    ],
+    "ui": [
+      "uː",
+      "ɪ"
+    ],
+    "eau": [
+      "juː",
+      "oʊ"
+    ],
+    "igh": [
+      "aɪ"
+    ],
+    "ough": [
+      "ɔː",
+      "oʊ",
+      "ʌf",
+      "ɒf",
+      "aʊ",
+      "uː"
+    ],
+    "ar": [
+      "ɑːɹ"
+    ],
+    "er": [
+      "ɜːɹ",
+      "əɹ"
+    ],
+    "ir": [
+      "ɜːɹ"
+    ],
+    "or": [
+      "ɔːɹ"
+    ],
+    "ur": [
+      "ɜːɹ"
+    ],
+    "air": [
+      "ɛəɹ"
+    ],
+    "are": [
+      "ɛəɹ"
+    ],
+    "ear": [
+      "ɪəɹ",
+      "ɛəɹ"
+    ],
+    "eer": [
+      "ɪəɹ"
+    ],
+    "ire": [
+      "aɪəɹ"
+    ],
+    "oar": [
+      "ɔːɹ"
+    ],
+    "ore": [
+      "ɔːɹ"
+    ],
+    "our": [
+      "aʊəɹ",
+      "ɔːɹ"
+    ],
+    "ure": [
+      "jʊəɹ",
+      "ʊəɹ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ",
+      "p̚"
+    ],
+    "b": [
+      "b",
+      "b̥"
+    ],
+    "t": [
+      "t",
+      "tʰ",
+      "ʔ",
+      "ɾ"
+    ],
+    "d": [
+      "d",
+      "d̥",
+      "ɾ"
+    ],
+    "k": [
+      "k",
+      "kʰ",
+      "k̚"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɡ̊"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "v̥"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð",
+      "d̪"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z",
+      "z̥"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʒ̊"
+    ],
+    "h": [
+      "h",
+      "ɦ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "dʒ̊"
+    ],
+    "m": [
+      "m",
+      "ɱ"
+    ],
+    "n": [
+      "n",
+      "n̪",
+      "ɱ",
+      "ŋ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɹ": [
+      "ɹ",
+      "∅"
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "w": [
+      "w",
+      "ʍ",
+      "w̥"
+    ],
+    "j": [
+      "j"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "æ": [
+      "æ",
+      "ɑː"
+    ],
+    "ɑː": [
+      "ɑː",
+      "ɒ"
+    ],
+    "ɒ": [
+      "ɒ",
+      "ɑ"
+    ],
+    "ɔː": [
+      "ɔː"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː",
+      "ʉː"
+    ],
+    "ʌ": [
+      "ʌ",
+      "ɐ"
+    ],
+    "ɜːɹ": [
+      "ɜːɹ",
+      "ɝː"
+    ],
+    "ə": [
+      "ə",
+      "ɚ"
+    ],
+    "eɪ": [
+      "eɪ"
+    ],
+    "aɪ": [
+      "aɪ",
+      "ɑɪ"
+    ],
+    "ɔɪ": [
+      "ɔɪ"
+    ],
+    "oʊ": [
+      "əʊ",
+      "oʊ"
+    ],
+    "aʊ": [
+      "aʊ",
+      "æʊ"
+    ]
+  },
+  "parent": "enm",
+  "ancestors": [
+    {
+      "code": "enm",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Middle English descent"
+    }
+  ],
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wells1982_vol1",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 1: An Introduction",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "wells1982_vol2",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 2: The British Isles",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "roach2009",
+      "author": "Roach, P.",
+      "year": 2009,
+      "title": "English Phonetics and Phonology: A Practical Course (4th ed.)",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "gimson2014",
+      "author": "Cruttenden, A. (ed.)",
+      "year": 2014,
+      "title": "Gimson's Pronunciation of English (8th ed.)",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

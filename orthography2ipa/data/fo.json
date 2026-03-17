@@ -1,0 +1,300 @@
+{
+  "code": "fo",
+  "name": "Faroese",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "á": [
+      "ɔa"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "ɪ",
+      "i"
+    ],
+    "í": [
+      "iː"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "ó": [
+      "oː",
+      "ɔu"
+    ],
+    "u": [
+      "ʊ"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "y": [
+      "ɪ"
+    ],
+    "ý": [
+      "iː"
+    ],
+    "ø": [
+      "ø",
+      "œ"
+    ],
+    "æ": [
+      "ɛː"
+    ],
+    "ei": [
+      "ɛɪ"
+    ],
+    "ey": [
+      "ɛɪ"
+    ],
+    "au": [
+      "ɛaʊ"
+    ],
+    "av": [
+      "ɛaʊ"
+    ],
+    "oy": [
+      "øɪ"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "k": [
+      "kʰ"
+    ],
+    "b": [
+      "p"
+    ],
+    "d": [
+      "d",
+      "j"
+    ],
+    "g": [
+      "ɡ",
+      "w",
+      "j"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "þ": [
+      "θ"
+    ],
+    "ð": [
+      "ð",
+      "j",
+      "∅"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "ng": [
+      "ŋɡ",
+      "ŋ"
+    ],
+    "nn": [
+      "nː",
+      "tn"
+    ],
+    "ll": [
+      "lː",
+      "tl"
+    ],
+    "kk": [
+      "ʰk"
+    ],
+    "pp": [
+      "ʰp"
+    ],
+    "tt": [
+      "ʰt"
+    ]
+  },
+  "allophones": {
+    "pʰ": [
+      "pʰ"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "θ": [
+      "θ",
+      "ð"
+    ],
+    "ð": [
+      "ð",
+      "j",
+      "∅"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "ɡ": [
+      "ɡ",
+      "w",
+      "j"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "ʰp": [
+      "ʰp"
+    ],
+    "ʰt": [
+      "ʰt"
+    ],
+    "ʰk": [
+      "ʰk"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɔa": [
+      "ɔa"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ɔu": [
+      "ɔu"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "ɛɪ": [
+      "ɛɪ"
+    ],
+    "ɛaʊ": [
+      "ɛaʊ"
+    ],
+    "øɪ": [
+      "øɪ"
+    ]
+  },
+  "parent": "non",
+  "ancestors": [
+    {
+      "code": "non",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Old West Norse descent"
+    },
+    {
+      "code": "da",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Danish adstrate — administrative language until 1948; heavy lexical influence"
+    }
+  ],
+  "notes": "Faroese (føroyskt). ~50,000 speakers in Faroe Islands. Old West Norse descent alongside Icelandic, but more innovative. ⟨á⟩ = [ɔa] (cf. Icelandic á = [au]); ⟨ð⟩ → [j] or [∅] between vowels (weakening); ⟨g⟩ → [w] before back vowels, [j] elsewhere. Preaspiration present (⟨pp tt kk⟩ = [ʰp ʰt ʰk]). No voiceless sonorants (unlike Icelandic). Danish administrative language until 1948; heavy Danish loanwords. Source: Árnason (2011), Hanssen (2010).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "arnason2011",
+      "author": "Árnason, K.",
+      "year": 2011,
+      "title": "The Phonology of Icelandic and Faroese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

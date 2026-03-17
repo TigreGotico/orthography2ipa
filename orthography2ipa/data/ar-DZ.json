@@ -1,0 +1,91 @@
+{
+  "code": "ar-DZ",
+  "name": "Algerian Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ذ": [
+      "d",
+      "z"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ق": [
+      "q",
+      "ɡ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "q": [
+      "q",
+      "ɡ"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "t",
+      "s"
+    ],
+    "ð": [
+      "d",
+      "z"
+    ],
+    "a": [
+      "a",
+      "ə",
+      "∅"
+    ],
+    "i": [
+      "i",
+      "ə",
+      "∅"
+    ],
+    "u": [
+      "u",
+      "ə",
+      "∅"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Maghrebi Arabic base"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.12,
+      "notes": "Berber (Tamazight/Kabyle) substrate: vowel reduction, consonant cluster tolerance; dense Berber-speaking areas especially Kabylie"
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "French adstrate (1830–1962): /p/, /v/ phonemes, heavy loanword influence"
+    }
+  ],
+  "notes": "Algerian Arabic. Complex dialect landscape from Oran (west) to Constantine (east). Intermediate between Moroccan (more reduced) and Tunisian. θ → /t/ or /s/; ð → /d/ or /z/. ق → /q/ (eastern) or /ɡ/ (western, Oran area). Berber substrate (especially Kabylie) reinforces emphatics. French integration deepest of all Maghrebi dialects (130+ years colonial rule).",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

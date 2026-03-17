@@ -1,0 +1,12 @@
+{
+  "code": "de-x-alemannic",
+  "name": "Alemannic German",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "de-CH",
+  "allophones_base": "de-CH",
+  "parent": "de-CH",
+  "notes": "Alemannic German (Schwyzerdütsch, Alsatian, Swabian, Vorarlbergisch). No glottal stop. Alveolar /r/. Geminate consonants phonemic. Covers Swiss German dialects, Alsace (France), Vorarlberg (Austria), southwestern Germany.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}

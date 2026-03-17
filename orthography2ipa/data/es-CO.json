@@ -1,0 +1,34 @@
+{
+  "code": "es-CO",
+  "name": "Colombian Spanish (Bogotá)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "ʝ": [
+      "ʝ",
+      "ɟʝ"
+    ],
+    "n": [
+      "n"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Bogotá highland Spanish (rolo). Very conservative: full coda /s/, alveolar /n/, no aspiration. Strong [ɟʝ] affricate for /ʝ/. Often cited as one of the 'clearest' Latin American varieties. The standard reference for Colombian media.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

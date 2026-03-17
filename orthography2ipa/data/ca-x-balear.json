@@ -1,0 +1,52 @@
+{
+  "code": "ca-x-balear",
+  "name": "Balearic Catalan",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "ca",
+  "graphemes": {
+    "v": [
+      "v"
+    ]
+  },
+  "allophones_base": "ca",
+  "allophones": {
+    "tʃ": [
+      "tʃ",
+      "ʃ"
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "e": [
+      "e",
+      "ə"
+    ],
+    "o": [
+      "o",
+      "u",
+      "ə"
+    ]
+  },
+  "positional_graphemes_base": "ca",
+  "positional_graphemes": {
+    "o": {
+      "default": [
+        "ɔ",
+        "o"
+      ],
+      "nucleus": [
+        "o"
+      ]
+    }
+  },
+  "parent": "ca",
+  "notes": "Balearic (Mallorquí/Menorquí/Eivissenc). Eastern block, most archaic Catalan variety. Extreme vowel reduction (beyond Central Catalan). Article salat (es/sa instead of el/la). Partial /v/ preservation. Deaffrication of /tʃ/ → [ʃ] in Mallorcan. Dark [ɫ] in all positions. Conservative palatal lateral [ʎ]. Some varieties preserve /v/.",
+  "quality": "research",
+  "script_type": "alphabet"
+}

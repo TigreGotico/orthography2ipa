@@ -1,0 +1,30 @@
+{
+  "code": "fa-x-isfahani",
+  "name": "Isfahani Persian",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa-x-tehran",
+  "allophones_base": "fa-x-tehran",
+  "allophones": {
+    "æ": [
+      "æ",
+      "ɛ"
+    ],
+    "q": [
+      "ɢ",
+      "ɣ"
+    ]
+  },
+  "parent": "fa-x-tehran",
+  "ancestors": [
+    {
+      "code": "fa-x-early",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "New Persian descent"
+    }
+  ],
+  "notes": "Isfahani Persian (Eṣfahānī). Isfahan — former Safavid capital. Similar to Tehran but: /æ/ → [ɛ] before nasals; uvular [ɢ] somewhat more frequent; slightly less vowel reduction of unstressed syllables. Historically considered a prestige variety alongside Tehran.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

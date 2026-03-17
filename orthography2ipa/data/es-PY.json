@@ -1,0 +1,50 @@
+{
+  "code": "es-PY",
+  "name": "Paraguayan Spanish",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ",
+      "ʒ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "b": [
+      "b",
+      "β",
+      "ᵐb"
+    ],
+    "d": [
+      "d",
+      "ð",
+      "ⁿd"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ",
+      "ᵑɡ"
+    ],
+    "ʝ": [
+      "ʝ",
+      "ʒ"
+    ],
+    "n": [
+      "n"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Paraguayan Spanish. Uniquely influenced by Guaraní bilingualism (90%+ of population bilingual). Guaraní substrate: prenasalised stops [ᵐb, ⁿd, ᵑɡ] in contact speech, possible glottal stop and nasal vowels in Guaraní loans. Some žeísmo from Argentine influence. Coda /s/ generally conserved.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

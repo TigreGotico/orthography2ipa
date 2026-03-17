@@ -1,0 +1,139 @@
+{
+  "code": "lij",
+  "name": "Ligurian",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "la-x-galloitalic",
+  "graphemes": {
+    "ö": [
+      "ø"
+    ],
+    "u": [
+      "y"
+    ],
+    "ù": [
+      "u"
+    ],
+    "an": [
+      "ã"
+    ],
+    "en": [
+      "ẽ"
+    ],
+    "in": [
+      "ĩ"
+    ],
+    "on": [
+      "õ"
+    ],
+    "un": [
+      "ỹ"
+    ],
+    "ch": [
+      "k"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "j": [
+      "j"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "sc": [
+      "ʃ"
+    ],
+    "x": [
+      "ʒ"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ]
+  },
+  "allophones_base": "la-x-galloitalic",
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "ɱ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ỹ": [
+      "ỹ"
+    ],
+    "ø": [
+      "ø"
+    ]
+  },
+  "parent": "la-x-galloitalic",
+  "ancestors": [
+    {
+      "code": "la-x-galloitalic",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Gallo-Italic parent."
+    },
+    {
+      "code": "xlg",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Ancient Ligurian substrate: pre-Indo-European or early IE population of Liguria."
+    },
+    {
+      "code": "grc",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Greek adstrate: Genoa had significant maritime contact with Greek world."
+    }
+  ],
+  "notes": "Ligurian (Zenéize). Gallo-Italic language of Liguria. ~500,000 speakers. Reference variety: Genoese. Key features: (1) Front rounded vowels /y, ø/. (2) Nasal vowels (well-developed). (3) ⟨x⟩ = /ʒ/ (voiced postalveolar fricative, distinctive). (4) Degemination. Historical lingua franca of the Mediterranean maritime trade (Forner 1975).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "lij"
+}

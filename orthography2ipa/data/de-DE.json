@@ -1,0 +1,375 @@
+{
+  "code": "de-DE",
+  "name": "German",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "aː"
+    ],
+    "e": [
+      "ɛ",
+      "eː",
+      "ə"
+    ],
+    "i": [
+      "ɪ",
+      "iː"
+    ],
+    "o": [
+      "ɔ",
+      "oː"
+    ],
+    "u": [
+      "ʊ",
+      "uː"
+    ],
+    "ä": [
+      "ɛ",
+      "ɛː"
+    ],
+    "ö": [
+      "œ",
+      "øː"
+    ],
+    "ü": [
+      "ʏ",
+      "yː"
+    ],
+    "y": [
+      "ʏ",
+      "yː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "ts"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ʁ"
+    ],
+    "s": [
+      "z",
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "f",
+      "v"
+    ],
+    "w": [
+      "v"
+    ],
+    "x": [
+      "ks"
+    ],
+    "z": [
+      "ts"
+    ],
+    "ß": [
+      "s"
+    ],
+    "ch": [
+      "ç",
+      "x"
+    ],
+    "ck": [
+      "k"
+    ],
+    "pf": [
+      "pf"
+    ],
+    "ph": [
+      "f"
+    ],
+    "qu": [
+      "kv"
+    ],
+    "sch": [
+      "ʃ"
+    ],
+    "sp": [
+      "ʃp"
+    ],
+    "st": [
+      "ʃt"
+    ],
+    "th": [
+      "t"
+    ],
+    "tz": [
+      "ts"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "ss": [
+      "s"
+    ],
+    "tsch": [
+      "tʃ"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "ie": [
+      "iː"
+    ],
+    "ei": [
+      "aɪ"
+    ],
+    "ai": [
+      "aɪ"
+    ],
+    "au": [
+      "aʊ"
+    ],
+    "eu": [
+      "ɔʏ"
+    ],
+    "äu": [
+      "ɔʏ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "b": [
+      "b",
+      "p"
+    ],
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "k": [
+      "k",
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ç": [
+      "ç"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "ʁ": [
+      "ʁ",
+      "ʀ",
+      "r",
+      "ɐ̯"
+    ],
+    "pf": [
+      "pf"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "øː": [
+      "øː"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "aɪ": [
+      "aɪ"
+    ],
+    "aʊ": [
+      "aʊ"
+    ],
+    "ɔʏ": [
+      "ɔʏ"
+    ]
+  },
+  "parent": "gem",
+  "ancestors": [
+    {
+      "code": "goh",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Descent from Old High German via Middle High German"
+    },
+    {
+      "code": "la",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Latin adstrate: ecclesiastical & scholarly vocabulary (Fenster, Mauer, Kloster); cf. Wolff (1999)"
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "French adstrate: courtly vocabulary (Abenteuer, Turnier); 17th-18th c. prestige influence"
+    }
+  ],
+  "notes": "Standard German (Hochdeutsch / Bühnendeutsch). Auslautverhärtung (final obstruent devoicing) is reflected in allophone map. ⟨sp⟩/⟨st⟩ → [ʃp]/[ʃt] only word-initially.",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wiese1996",
+      "author": "Wiese, R.",
+      "year": 1996,
+      "title": "The Phonology of German",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hall2003",
+      "author": "Hall, T.A.",
+      "year": 2003,
+      "title": "Phonologie des Deutschen: eine Einführung",
+      "publisher": "de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mangold2005",
+      "author": "Mangold, M.",
+      "year": 2005,
+      "title": "Duden Aussprachewörterbuch (6th ed.)",
+      "publisher": "Dudenverlag",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

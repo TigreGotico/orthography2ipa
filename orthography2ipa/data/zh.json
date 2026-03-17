@@ -1,0 +1,293 @@
+{
+  "code": "zh",
+  "name": "Mandarin Chinese",
+  "family": "Sinitic",
+  "script": "Hanzi/Pinyin",
+  "graphemes": {
+    "b": [
+      "p"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "f": [
+      "f"
+    ],
+    "d": [
+      "t"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "g": [
+      "k"
+    ],
+    "k": [
+      "kʰ"
+    ],
+    "h": [
+      "x"
+    ],
+    "j": [
+      "tɕ"
+    ],
+    "q": [
+      "tɕʰ"
+    ],
+    "x": [
+      "ɕ"
+    ],
+    "zh": [
+      "ʈʂ"
+    ],
+    "ch": [
+      "ʈʂʰ"
+    ],
+    "sh": [
+      "ʂ"
+    ],
+    "r": [
+      "ɻ"
+    ],
+    "z": [
+      "ts"
+    ],
+    "c": [
+      "tsʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "o": [
+      "o"
+    ],
+    "e": [
+      "ɤ"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ei": [
+      "ei"
+    ],
+    "ao": [
+      "au"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "iu": [
+      "iou"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "uo": [
+      "uo"
+    ],
+    "ui": [
+      "uei"
+    ],
+    "üe": [
+      "ye"
+    ],
+    "an": [
+      "an"
+    ],
+    "en-GB": [
+      "ən"
+    ],
+    "in": [
+      "in"
+    ],
+    "un": [
+      "uən"
+    ],
+    "ün": [
+      "yn"
+    ],
+    "ang": [
+      "ɑŋ"
+    ],
+    "eng": [
+      "əŋ"
+    ],
+    "ing": [
+      "iŋ"
+    ],
+    "ong": [
+      "uŋ"
+    ],
+    "ian": [
+      "iɛn"
+    ],
+    "uan": [
+      "uan"
+    ],
+    "üan": [
+      "yan"
+    ],
+    "iang": [
+      "iɑŋ"
+    ],
+    "uang": [
+      "uɑŋ"
+    ],
+    "iong": [
+      "yŋ"
+    ],
+    "ueng": [
+      "uəŋ"
+    ],
+    "er": [
+      "aɻ"
+    ],
+    "-i": [
+      "ɨ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "tɕʰ": [
+      "tɕʰ"
+    ],
+    "ʈʂ": [
+      "ʈʂ"
+    ],
+    "ʈʂʰ": [
+      "ʈʂʰ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tsʰ": [
+      "tsʰ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɕ": [
+      "ɕ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɻ": [
+      "ɻ",
+      "ʐ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a",
+      "ɑ",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "uo"
+    ],
+    "ɤ": [
+      "ɤ",
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ɨ": [
+      "ɨ",
+      "ɯ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "tone_inventory": {
+    "˥": "high (1st)",
+    "˧˥": "rising (2nd)",
+    "˨˩˦": "dipping (3rd)",
+    "˥˩": "falling (4th)",
+    "": "neutral (5th)"
+  },
+  "notes": "Standard Mandarin (Pǔtōnghuà) based on Beijing pronunciation. Graphemes are Pinyin romanisation units. Hanzi→Pinyin conversion requires a separate dictionary (e.g. CC-CEDICT). Four lexical tones + neutral tone are suprasegmental and not encoded here.",
+  "quality": "skeleton",
+  "script_type": "logographic"
+}

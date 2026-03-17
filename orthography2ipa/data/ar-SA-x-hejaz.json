@@ -1,0 +1,76 @@
+{
+  "code": "ar-SA-x-hejaz",
+  "name": "Hejazi Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-peninsular",
+  "graphemes": {
+    "ث": [
+      "t",
+      "θ"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "ذ": [
+      "d",
+      "ð"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ظ": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "ق": [
+      "ʔ",
+      "q"
+    ]
+  },
+  "allophones_base": "ar-x-peninsular",
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "q": [
+      "ʔ",
+      "q"
+    ],
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "θ": [
+      "t",
+      "θ"
+    ],
+    "ð": [
+      "d",
+      "ð"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "aː": [
+      "aː",
+      "æː",
+      "eː"
+    ]
+  },
+  "parent": "ar-x-peninsular",
+  "ancestors": [
+    {
+      "code": "ar-x-peninsular",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Peninsular Arabic base"
+    }
+  ],
+  "notes": "Hejazi Arabic (حجازي). Western Saudi Arabia: Mecca, Medina, Jeddah. Urban Hejazi: ج → /dʒ/; ق → /ʔ/ (Jeddah) or /q/ (Medina). ث → /t/, ذ → /d/ (urban); preserved in Bedouin/rural. No k → /tʃ/ shift (unlike Gulf). Cosmopolitan due to Hajj pilgrimage: heavy influence from Egyptian, Levantine, South Asian Arabic speakers. Often considered most internationally intelligible Peninsula dialect.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

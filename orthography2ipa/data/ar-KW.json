@@ -1,0 +1,25 @@
+{
+  "code": "ar-KW",
+  "name": "Kuwaiti Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-gulf",
+  "allophones_base": "ar-x-gulf",
+  "allophones": {
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "ar-x-gulf",
+  "ancestors": [
+    {
+      "code": "ar-x-gulf",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Gulf Arabic base"
+    }
+  ],
+  "notes": "Kuwaiti Arabic. Best-documented Gulf variety. k → /tʃ/ before front vowels: very salient and consistent. ق → /ɡ/ (traditional); /q/ in formal/MSA contexts. Heavy English influence (post-1950s oil era): /p/, /v/, /ŋ/ well-established from English loanwords. Holes (1990, 2001) primary reference.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

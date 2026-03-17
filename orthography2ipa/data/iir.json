@@ -1,0 +1,216 @@
+{
+  "code": "iir",
+  "name": "Proto-Indo-Iranian",
+  "family": "Indo-European",
+  "script": "Latin",
+  "graphemes": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "dʱ": [
+      "dʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gʱ": [
+      "ɡʱ"
+    ],
+    "kʷ": [
+      "kʷ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ś": [
+      "ɕ"
+    ],
+    "ź": [
+      "ʑ"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "H": [
+      "h"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "y": [
+      "j"
+    ],
+    "v": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "r̥": [
+      "r̩"
+    ],
+    "l̥": [
+      "l̩"
+    ],
+    "m̥": [
+      "m̩"
+    ],
+    "n̥": [
+      "n̩"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "dʱ": [
+      "dʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "kʷ": [
+      "kʷ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ɕ": [
+      "ɕ",
+      "s"
+    ],
+    "ʑ": [
+      "ʑ",
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "h": [
+      "h",
+      "∅"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ]
+  },
+  "parent": "ine",
+  "ancestors": [
+    {
+      "code": "ine",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Proto-Indo-European"
+    }
+  ],
+  "notes": "Proto-Indo-Iranian (~2500–2000 BCE). Ancestor of Indo-Aryan (Sanskrit, Hindi, etc.) and Iranian (Persian, Avestan, etc.) branches. Key innovations vs. PIE: (1) The 'a-merger': PIE *e, *a, *o → PII *a (three vowel qualities     collapse to one); (2) Satem shift: PIE palatovelars *ḱ, *ĝ → PII palatal sibilants *ś, *ź; (3) Voiced aspirates *bʱ, *dʱ, *gʱ preserved (distinct from Greek which     lost aspiration, and Germanic which shifted to fricatives); (4) Laryngeals merging toward /H/ or lost. Evidence: Rigveda (Sanskrit), Avesta (Iranian), Mitanni loanwords in Hurrian (~1400 BCE) — earliest IE attestation outside Europe.",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "iir"
+}

@@ -1,0 +1,19 @@
+{
+  "code": "ca-x-occidental",
+  "name": "Northwestern Catalan (Lleidatà)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "ca",
+  "allophones_base": "ca",
+  "allophones": {
+    "ə": [
+      "a",
+      "e"
+    ]
+  },
+  "positional_graphemes_base": "ca",
+  "parent": "ca",
+  "notes": "Northwestern Catalan (Lleidatà/Pallarès). Western block, spoken in Lleida and Pyrenean valleys. Like Valencian: minimal vowel reduction (no phonemic schwa), 7-vowel system maintained in all positions. Otherwise consonant system close to Central Catalan standard.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

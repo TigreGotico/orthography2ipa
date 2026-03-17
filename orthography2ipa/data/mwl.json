@@ -1,6 +1,6 @@
 {
-  "code": "ast-PT-x-rionor",
-  "name": "Rionorese",
+  "code": "mwl",
+  "name": "Mirandese",
   "family": "Asturleonese",
   "script": "Latin",
   "parent": "ast-PT-x-medieval",
@@ -13,6 +13,12 @@
       "code": "ast-PT-x-medieval",
       "role": "parent",
       "weight": 0.85,
+      "notes": ""
+    },
+    {
+      "code": "ast-x-sanabria",
+      "role": "adstrate",
+      "weight": 0.05,
       "notes": ""
     },
     {

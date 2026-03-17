@@ -1,0 +1,66 @@
+{
+  "code": "ar-SA-x-najd",
+  "name": "Najdi Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-peninsular",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ج": [
+      "dʒ",
+      "ɡ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
+    ]
+  },
+  "allophones_base": "ar-x-peninsular",
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "q": [
+      "ɡ",
+      "q"
+    ],
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "ɡ"
+    ],
+    "a": [
+      "a",
+      "ɑ"
+    ],
+    "u": [
+      "u",
+      "o"
+    ],
+    "aː": [
+      "aː",
+      "ɑː",
+      "oː"
+    ]
+  },
+  "parent": "ar-x-peninsular",
+  "ancestors": [
+    {
+      "code": "ar-x-peninsular",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Peninsular Arabic base — most conservative"
+    }
+  ],
+  "notes": "Najdi Arabic (نجدي). Central Arabia, including Riyadh. VERY CONSERVATIVE: ث /θ/, ذ /ð/, ظ /ðˤ/ ALL PRESERVED (only strong urban speech merges them). ق → /ɡ/ (traditional Najdi Bedouin) or /q/ (Riyadh urban/formal). ج → /dʒ/ (city) or /ɡ/ (Bedouin). No k → /tʃ/ shift (unlike coastal Gulf). Ingham (1994) is the primary linguistic reference. Prestige within Saudi Arabia.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

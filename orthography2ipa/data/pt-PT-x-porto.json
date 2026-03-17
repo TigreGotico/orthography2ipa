@@ -1,0 +1,41 @@
+{
+  "code": "pt-PT-x-porto",
+  "name": "Portuense Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "ʃ": [
+      "ʃ",
+      "ʂ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʐ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ",
+      "ʀ",
+      "x"
+    ],
+    "ɫ": [
+      "ɫ"
+    ],
+    "ɐ": [
+      "ɐ",
+      "ɐ̥"
+    ],
+    "ə": [
+      "ə",
+      "ɨ",
+      "∅"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Porto city and Greater Porto (Gaia, Miragaia, Leça, Vitória). Heavy vowel reduction but syllable structure more preserved than Minho interior. Uvular variation: [ʁ, χ, ʀ, x]. Retroflex sibilants moderate in suburban/rural fringes (Alvarenga, Gaia). Heavily velarised coda [ɫ].",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

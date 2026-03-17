@@ -1,0 +1,207 @@
+{
+  "code": "hr",
+  "name": "Croatian",
+  "family": "Slavic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "r": [
+      "r",
+      "r̩"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "ć": [
+      "tɕ"
+    ],
+    "d": [
+      "d"
+    ],
+    "dž": [
+      "dʒ"
+    ],
+    "đ": [
+      "dʑ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "x"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "lj": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "nj": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "s": [
+      "s"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ],
+    "ž": [
+      "ʒ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "tʃ"
+    ],
+    "dʑ": [
+      "dʑ",
+      "tɕ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r"
+    ],
+    "r̩": [
+      "r̩"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "sla",
+  "notes": "Standard Croatian (Štokavian Ijekavian dialect basis). Latin script only (unlike Serbian). Shares the two palatal affricate pairs with Serbian: ⟨ć⟩ = [tɕ] (softer), ⟨č⟩ = [tʃ] (harder); ⟨đ⟩ = [dʑ], ⟨dž⟩ = [dʒ]. Four-pitch-accent system. Syllabic /r̩/ (e.g. *prst* 'finger'). Ijekavian: Proto-Slavic yat /æː/ → ije/je (vs Serbian Ekavian e).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

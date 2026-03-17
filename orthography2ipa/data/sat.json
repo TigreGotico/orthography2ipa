@@ -1,0 +1,229 @@
+{
+  "code": "sat",
+  "name": "Santali",
+  "family": "Austroasiatic",
+  "script": "Ol Chiki",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "aʔ": [
+      "aˀ"
+    ],
+    "iʔ": [
+      "iˀ"
+    ],
+    "uʔ": [
+      "uˀ"
+    ],
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "c": [
+      "tʃ"
+    ],
+    "ch": [
+      "tʃʰ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "y": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "tʃʰ": [
+      "tʃʰ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "sat-x-proto-munda",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Munda (Austroasiatic)"
+    }
+  ],
+  "notes": "Santali (Jharkhand, West Bengal, Odisha, Bihar). Austroasiatic, Munda branch — unrelated to IA or Dravidian. Written officially in Ol Chiki script (invented 1925 by Raghunath Murmu); also Latin and Devanagari. Phonemic aspiration in stops; glottalized vowels in checked syllables. No retroflex consonants (unlike IA neighbours).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "sat"
+}

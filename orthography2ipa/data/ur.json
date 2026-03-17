@@ -1,0 +1,352 @@
+{
+  "code": "ur",
+  "name": "Urdu",
+  "family": "Indo-Aryan",
+  "script": "Arabic",
+  "graphemes": {
+    "ا": [
+      "ə",
+      "aː"
+    ],
+    "آ": [
+      "aː"
+    ],
+    "و": [
+      "ʋ"
+    ],
+    "ی": [
+      "j"
+    ],
+    "ے": [
+      "j"
+    ],
+    "ہ": [
+      "ɦ"
+    ],
+    "ع": [
+      "ʔ",
+      ""
+    ],
+    "َ": [
+      "ə"
+    ],
+    "ِ": [
+      "ɪ"
+    ],
+    "ُ": [
+      "ʊ"
+    ],
+    "ً": [
+      "ən"
+    ],
+    "ب": [
+      "b"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ت": [
+      "t̪"
+    ],
+    "ٹ": [
+      "ʈ"
+    ],
+    "ث": [
+      "s"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "ح": [
+      "h"
+    ],
+    "خ": [
+      "x"
+    ],
+    "د": [
+      "d̪"
+    ],
+    "ڈ": [
+      "ɖ"
+    ],
+    "ذ": [
+      "z"
+    ],
+    "ر": [
+      "r"
+    ],
+    "ڑ": [
+      "ɽ"
+    ],
+    "ز": [
+      "z"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "س": [
+      "s"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ص": [
+      "s"
+    ],
+    "ض": [
+      "z"
+    ],
+    "ط": [
+      "t̪"
+    ],
+    "ظ": [
+      "z"
+    ],
+    "غ": [
+      "ɣ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ق": [
+      "q"
+    ],
+    "ک": [
+      "k"
+    ],
+    "گ": [
+      "ɡ"
+    ],
+    "ل": [
+      "l"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "ں": [
+      "̃"
+    ],
+    "ھ": [
+      "ʰ"
+    ],
+    "بھ": [
+      "bʱ"
+    ],
+    "پھ": [
+      "pʰ"
+    ],
+    "تھ": [
+      "t̪ʰ"
+    ],
+    "ٹھ": [
+      "ʈʰ"
+    ],
+    "جھ": [
+      "dʒʱ"
+    ],
+    "چھ": [
+      "tʃʰ"
+    ],
+    "دھ": [
+      "d̪ʱ"
+    ],
+    "ڈھ": [
+      "ɖʱ"
+    ],
+    "گھ": [
+      "ɡʱ"
+    ],
+    "کھ": [
+      "kʰ"
+    ],
+    "لھ": [
+      "lʱ"
+    ],
+    "مھ": [
+      "mʱ"
+    ],
+    "نھ": [
+      "nʱ"
+    ],
+    "رھ": [
+      "rʱ"
+    ],
+    "ڑھ": [
+      "ɽʱ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t̪": [
+      "t̪"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "d̪": [
+      "d̪"
+    ],
+    "d̪ʱ": [
+      "d̪ʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "q": [
+      "q",
+      "k"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "tʃʰ": [
+      "tʃʰ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "dʒʱ": [
+      "dʒʱ"
+    ],
+    "f": [
+      "f",
+      "pʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɣ": [
+      "ɣ",
+      "ɡ"
+    ],
+    "ɦ": [
+      "ɦ",
+      "h"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɽ": [
+      "ɽ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʋ": [
+      "ʋ",
+      "w",
+      "v"
+    ],
+    "j": [
+      "j"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "oː": [
+      "oː"
+    ]
+  },
+  "parent": "hi",
+  "ancestors": [
+    {
+      "code": "hi",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Hindustani base shared with Hindi (Khaṛī Bolī)"
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Persian adstrate: massive vocabulary, some phonological influence (/x ɣ q/)"
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary, pharyngeal consonants"
+    }
+  ],
+  "notes": "Standard Urdu (Pakistan national language, Indian Muslim register). Phonologically near-identical to Hindi but with additional phonemes from Persian/Arabic loans: /q x ɣ f z/. Written right-to-left in Nastaliq (a form of Perso-Arabic script). Four-way laryngeal contrast: plain/aspirated × voiced/voiceless. Retroflex series: /ʈ ɖ ɽ/ graphically distinct from dentals.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

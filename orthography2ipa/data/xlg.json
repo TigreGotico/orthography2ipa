@@ -2,7 +2,20 @@
   "code": "xlg",
   "name": "Lusitanian",
   "family": "Indo-European",
-  "script": null,
+  "script": "Latin",
   "parent": "ine",
+  "graphemes": {
+    "p": ["p"], "t": ["t"], "d": ["d"], "k": ["k"], "g": ["ɡ"],
+    "b": ["b"], "f": ["f"], "s": ["s"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"]
+  },
+  "allophones": {
+    "p": ["p"], "t": ["t"], "d": ["d"], "k": ["k"], "ɡ": ["ɡ"],
+    "b": ["b"], "f": ["f"], "s": ["s"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"]
+  },
+  "quality": "research",
   "notes": "Lusitanian (1st c. BCE). Indo-European language of western Iberia, known from ~5 inscriptions in Latin alphabet (Cabeço das Fráguas, Lamas de Moledo, Arroyo de la Luz). PRESERVES PIE *p (porcom 'pig') — rules out Celtic classification. Has /f/ (possibly < *bh, suggesting Italic affinity). Exact IE branch debated: possibly Italic, para-Celtic, or independent. Key evidence for IE dialectology."
 }

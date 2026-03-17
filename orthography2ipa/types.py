@@ -9,7 +9,7 @@ The core data model supports:
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from typing import Dict, FrozenSet, List, Optional, Tuple
 
@@ -128,6 +128,12 @@ class GraphemePosition(str, Enum):
     CONSONANTAL = "consonantal"
     VOCALIC = "vocalic"
 
+    DEFAULT = "default"
+    """Fallback when no specific positional context applies."""
+
+    NUCLEUS = "nucleus"
+    """Generic syllable nucleus (when stress is not distinguished)."""
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # AncestorRole
@@ -159,6 +165,133 @@ class AncestorRole(str, Enum):
     CREOLE_BASE = "creole_base"
     """Substrate language contributing to creole formation.
     E.g. West African languages as base for Atlantic creoles."""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# QualityTier — data maturity classification
+# ═══════════════════════════════════════════════════════════════════════════
+
+class QualityTier(str, Enum):
+    """Classification of data quality and completeness for a language spec."""
+
+    STUB = "stub"
+    """Code + name + family + script only."""
+
+    SKELETON = "skeleton"
+    """Graphemes + allophones from auto-generation (unvalidated)."""
+
+    RESEARCH = "research"
+    """Validated against published phonology; positional rules present."""
+
+    PRODUCTION = "production"
+    """Full coverage, regression-tested, cited sources."""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ScriptType — typological classification of writing systems
+# ═══════════════════════════════════════════════════════════════════════════
+
+class ScriptType(str, Enum):
+    """Typological classification of a writing system."""
+
+    ALPHABET = "alphabet"
+    """Latin, Cyrillic, Greek, Armenian, Georgian."""
+
+    ABJAD = "abjad"
+    """Arabic, Hebrew — consonants primary, vowels optional."""
+
+    ABUGIDA = "abugida"
+    """Devanagari, Bengali, Tamil, Thai — inherent vowel."""
+
+    SYLLABARY = "syllabary"
+    """Kana, Cherokee."""
+
+    LOGOGRAPHIC = "logographic"
+    """Hanzi / CJK ideographs."""
+
+    FEATURAL = "featural"
+    """Hangul."""
+
+    MIXED = "mixed"
+    """Japanese (logographic + syllabary)."""
+
+    RECONSTRUCTION = "reconstruction"
+    """IPA-based phonological reconstruction for unwritten/extinct languages
+    (PIE, Proto-Germanic, Proto-Semitic, etc.). Grapheme keys ARE the IPA
+    transcription convention. Enables phonetic distance calculations without
+    implying any historical script existed."""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# LinguisticSource — bibliographic reference for phonological decisions
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class LinguisticSource:
+    """A bibliographic reference for a phonological decision.
+
+    Parameters
+    ----------
+    id : str
+        Short cite key, e.g. ``"wells1982"``.
+    author : str
+        Author(s), e.g. ``"Wells, J.C."``.
+    year : int
+        Publication year.
+    title : str
+        Full title of the work.
+    publisher : Optional[str]
+        Publisher name, if applicable.
+    url : Optional[str]
+        URL or DOI for online resources; ``None`` for print-only works.
+    pages : Optional[str]
+        Specific page range referenced, e.g. ``"pp. 45-72"``.
+    notes : Optional[str]
+        Optional annotation about what this source supports.
+    """
+
+    id: str
+    author: str
+    year: int
+    title: str
+    publisher: Optional[str] = None
+    url: Optional[str] = None
+    pages: Optional[str] = None
+    notes: Optional[str] = None
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SandhiRule — cross-word-boundary phonological rule
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class SandhiRule:
+    """A single sandhi / liaison rule applied across word boundaries.
+
+    Parameters
+    ----------
+    id : str
+        Unique identifier (e.g. ``"FR_LIAISON_Z"``).
+    name : str
+        Human-readable description.
+    left_context : str
+        Regex on IPA of word-final segment(s).
+    right_context : str
+        Regex on IPA of next-word-initial segment(s).
+    transform : str
+        Replacement pattern applied to the left boundary.
+    obligatory : bool
+        Whether this rule applies unconditionally.
+    notes : str
+        Optional notes.
+    """
+    id: str
+    name: str
+    left_context: str
+    right_context: str
+    transform: str
+    obligatory: bool = True
+    notes: str = ""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -287,6 +420,29 @@ class LanguageSpec:
     notes: str = ""
     """Free-form notes."""
 
+    quality: QualityTier = QualityTier.RESEARCH
+    """Data maturity tier.  Existing production specs default to RESEARCH."""
+
+    script_type: ScriptType = ScriptType.ALPHABET
+    """Typological classification of the primary writing system."""
+
+    inherent_vowel: Optional[str] = None
+    """For abugidas — the vowel assumed when no vowel mark is present
+    (e.g. ``"ə"`` for Hindi, ``"a"`` for Sanskrit)."""
+
+    iso639_3: Optional[str] = None
+    """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
+
+    sandhi_rules: Tuple[SandhiRule, ...] = ()
+    """Cross-word-boundary phonological rules (liaison, sandhi)."""
+
+    tone_inventory: Optional[Dict[str, str]] = None
+    """Optional tone inventory: IPA tone mark → label
+    (e.g. ``{"˥": "high", "˧˥": "rising"}``)."""
+
+    sources: Tuple["LinguisticSource", ...] = field(default_factory=tuple)
+    """Bibliographic references supporting the phonological decisions in this spec."""
+
     def __post_init__(self) -> None:
         # Normalise None to empty dict
         if self.positional_graphemes is None:
@@ -310,6 +466,12 @@ class LanguageSpec:
         # Normalise list to str
         if isinstance(self.notes, list):
             object.__setattr__(self, "notes", "\n".join(self.notes))
+
+        # Normalise str to enums for new fields
+        if isinstance(self.quality, str):
+            object.__setattr__(self, "quality", QualityTier(self.quality))
+        if isinstance(self.script_type, str):
+            object.__setattr__(self, "script_type", ScriptType(self.script_type))
 
         # Normalize positional_graphemes to use Enum
         for grapheme, pos_map in self.positional_graphemes.items():

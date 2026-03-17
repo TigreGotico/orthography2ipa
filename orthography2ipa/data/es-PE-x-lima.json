@@ -1,0 +1,33 @@
+{
+  "code": "es-PE-x-lima",
+  "name": "Peruvian Spanish (Lima)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "ʝ": [
+      "ʝ"
+    ],
+    "n": [
+      "n"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Lima coastal Peruvian Spanish. Conservative coda /s/, yeísmo universal (no /ʎ/). Less Quechua influence than highland. Standard reference for Peruvian media.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

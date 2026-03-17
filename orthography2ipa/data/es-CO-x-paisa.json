@@ -1,0 +1,34 @@
+{
+  "code": "es-CO-x-paisa",
+  "name": "Colombian Spanish (Paisa/Medellín)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "ʝ": [
+      "ʝ",
+      "ɟʝ"
+    ],
+    "n": [
+      "n"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Paisa/Antioqueño (Medellín). Conservative coda /s/, strong [ɟʝ] affrication, distinctive voseo. Sometimes apicoalveolar sibilant tendency. Melodic intonation (not captured here).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

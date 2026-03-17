@@ -1,0 +1,34 @@
+{
+  "code": "fa-x-yazdi",
+  "name": "Yazdi Persian",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa-x-tehran",
+  "allophones_base": "fa-x-tehran",
+  "allophones": {
+    "ɒː": [
+      "aː",
+      "ɒː"
+    ],
+    "æ": [
+      "a",
+      "æ"
+    ],
+    "q": [
+      "q",
+      "ɣ"
+    ]
+  },
+  "parent": "fa-x-tehran",
+  "ancestors": [
+    {
+      "code": "fa-x-tehran",
+      "role": "adstrate",
+      "weight": 0.82,
+      "notes": "Tehran standard base"
+    }
+  ],
+  "notes": "Yazdi Persian (Yazdī). Yazd — central Iranian plateau. Zoroastrian heartland; some archaic features in Zoroastrian community speech ('Dari' of Zoroastrians — not Afghan Dari). /æ/ → [a] (conservative, like Shirazi/Kermani). /q/ somewhat preserved in older/conservative speech.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

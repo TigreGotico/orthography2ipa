@@ -1,0 +1,34 @@
+{
+  "code": "es-GT",
+  "name": "Guatemalan Spanish",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "ʝ": [
+      "ʝ"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Guatemalan/highland Central American Spanish. Conservative: coda /s/ largely retained, velar [x]. Mayan substrate influence in bilingual areas (glottalisation, vowel length).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

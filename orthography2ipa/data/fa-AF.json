@@ -1,0 +1,80 @@
+{
+  "code": "fa-AF",
+  "name": "Dari (Afghan Persian)",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa",
+  "graphemes": {
+    "ا": [
+      "ʔ",
+      "aː"
+    ],
+    "آ": [
+      "ʔaː"
+    ],
+    "ح": [
+      "ħ",
+      "h"
+    ],
+    "ع": [
+      "ʕ",
+      "ʔ"
+    ],
+    "ق": [
+      "q"
+    ],
+    "و": [
+      "v",
+      "uː"
+    ]
+  },
+  "allophones_base": "fa",
+  "allophones": {
+    "n": [
+      "n",
+      "m",
+      "ŋ"
+    ],
+    "ɒː": [
+      "aː"
+    ],
+    "æ": [
+      "a"
+    ],
+    "q": [
+      "q"
+    ],
+    "ʕ": [
+      "ʕ",
+      "ʔ"
+    ],
+    "ħ": [
+      "ħ",
+      "h"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "a": [
+      "a"
+    ]
+  },
+  "parent": "fa",
+  "ancestors": [
+    {
+      "code": "fa-x-early",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Classical New Persian — Dari is the most conservative major variety"
+    },
+    {
+      "code": "ps",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Pashto adstrate: some phonological and lexical influence"
+    }
+  ],
+  "notes": "Dari (دری) — Afghan Persian; official language of Afghanistan. CONSERVATIVE VOWEL SYSTEM: retains Classical values; NO Tehran vowel shift (ā = [aː] not [ɒː]; a = [a] not [æ]). /q/ → [q] maintained as uvular (not merged with ɣ). /ħ/ → [ħ] maintained in careful speech (Arabic ح). /ʕ/ → [ʕ] maintained in Arabic loanwords (more than Tehran). Pashto adstrate: some retroflex-influenced articulation in some speakers. Hazaragi variety (Hazara people): Mongolian substrate (see fa-x-hazaragi). Kabul Dari is the prestige/media standard.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

@@ -1,0 +1,195 @@
+{
+  "code": "ta-x-proto-dravidian",
+  "name": "Proto-Dravidian",
+  "family": "Dravidian",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "c": [
+      "tɕ"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "dʑ": [
+      "dʑ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɭ": [
+      "ɭ"
+    ],
+    "ɻ": [
+      "ɻ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʋ": [
+      "ʋ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "b"
+    ],
+    "t": [
+      "t",
+      "d"
+    ],
+    "ʈ": [
+      "ʈ",
+      "ɖ"
+    ],
+    "tɕ": [
+      "tɕ",
+      "dʑ"
+    ],
+    "k": [
+      "k",
+      "ɡ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɭ": [
+      "ɭ"
+    ],
+    "ɻ": [
+      "ɻ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʋ": [
+      "ʋ"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ]
+  },
+  "notes": "Reconstructed Proto-Dravidian (c. 3000–2000 BCE, before IA arrival). Following Krishnamurti (2003): 5 vowel qualities × short/long; two stop series (initial: unaspirated; medial: voiced allophones); no aspiration contrast in native vocabulary; retroflex series (ʈ ɖ ɳ ɭ ɻ) — may be the source of IA retroflexes.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

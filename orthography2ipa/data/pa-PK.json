@@ -1,0 +1,12 @@
+{
+  "code": "pa-PK",
+  "name": "Western Punjabi (Shahmukhi)",
+  "family": "Indo-Aryan",
+  "script": "Arabic",
+  "graphemes_base": "pa",
+  "allophones_base": "pa",
+  "parent": "pa",
+  "notes": "Western Punjabi as spoken in Pakistan, written in Shahmukhi (Perso-Arabic) script. Phonological system closely parallel to Eastern Punjabi but with stronger Persian/Arabic lexical influence.",
+  "quality": "stub",
+  "script_type": "abjad"
+}

@@ -1,0 +1,18 @@
+{
+  "code": "sc-x-logudorese",
+  "name": "Logudorese Sardinian",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "sc",
+  "allophones_base": "sc",
+  "allophones": {
+    "t": [
+      "t",
+      "θ"
+    ]
+  },
+  "parent": "sc",
+  "notes": "Logudorese Sardinian. The MOST archaic variety, spoken in north-central Sardinia. Less lenition than Campidanese, preserves intervocalic voiceless stops more consistently. Often cited as the closest living language to Latin.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

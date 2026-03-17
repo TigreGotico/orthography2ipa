@@ -1,0 +1,26 @@
+{
+  "code": "eu-x-nafarra-beherea",
+  "name": "Lower Navarrese Basque",
+  "family": "Isolate",
+  "script": "Latin",
+  "graphemes_base": "eu",
+  "allophones_base": "eu",
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "k": [
+      "k",
+      "kʰ"
+    ]
+  },
+  "parent": "eu",
+  "notes": "Lower Navarrese (Behe-Nafar). Spoken in Basse-Navarre (France). Shares aspiration and plosive aspiration features with Souletin but less systematic. Fully productive /h/. Intermediate between southern (Spanish-side) and eastern (Souletin) varieties.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

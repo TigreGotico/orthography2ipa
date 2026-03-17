@@ -1,0 +1,131 @@
+{
+  "code": "xlp",
+  "name": "Lepontic",
+  "family": "Celtic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i",
+      "j"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u",
+      "w"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "θ": [
+      "ts"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k",
+      "x"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "x": [
+      "x"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "cel",
+  "notes": "Lepontic (6th–3rd c. BCE). ISO 639-3: xlp. Earliest attested Celtic language. ~140 inscriptions from Cisalpine Gaul (Lombardy, Piedmont, Ticino, Trentino). Oldest text: Prestino stone (~575 BCE, Como). Written in Lugano alphabet (Etruscan-derived). Relationship to Transalpine Gaulish debated: Lejeune (1971) treats as Cisalpine Gaulish dialect; Eska & Stifter treat as separate language. Celtic p-loss; tau gallicum present. Distinctive /u/ > /o/ shift in some environments. Absorbed by Transalpine Gaulish influence and then Latin (post-191 BCE Roman conquest of Cisalpine Gaul). Refs: Lejeune (1971), Solinas (1995), Eska (2006).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "xlp"
+}

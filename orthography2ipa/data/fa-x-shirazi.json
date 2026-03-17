@@ -1,0 +1,34 @@
+{
+  "code": "fa-x-shirazi",
+  "name": "Shirazi Persian",
+  "family": "Iranian",
+  "script": "Arabic",
+  "graphemes_base": "fa-x-tehran",
+  "allophones_base": "fa-x-tehran",
+  "allophones": {
+    "ɒː": [
+      "ɔː",
+      "ɒː"
+    ],
+    "æ": [
+      "a",
+      "æ"
+    ],
+    "a": [
+      "a",
+      "e"
+    ]
+  },
+  "parent": "fa-x-tehran",
+  "ancestors": [
+    {
+      "code": "fa-x-early",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "New Persian descent"
+    }
+  ],
+  "notes": "Shirazi Persian (Šīrāzī). Shiraz — Fars province; homeland of Hafez and Saadi. KEY ISOGLOSS: /æ/ → [a] (short a lower and less fronted than Tehran). ā → [ɔː] (slightly higher/rounder than Tehran's [ɒː]). Historically regarded as the 'purest' Persian dialect. Some imāla (vowel raising) in Classical vocabulary.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

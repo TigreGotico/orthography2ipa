@@ -1,0 +1,53 @@
+{
+  "code": "es-PE",
+  "name": "Peruvian Spanish (Andean)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
+    ],
+    "z": [
+      "s"
+    ],
+    "ll": [
+      "ʝ"
+    ]
+  },
+  "allophones_base": "es-ES",
+  "allophones": {
+    "x": [
+      "x"
+    ],
+    "n": [
+      "n"
+    ],
+    "ʎ": [
+      "ʎ",
+      "ʝ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "ɹ̝"
+    ],
+    "r": [
+      "r",
+      "ɹ̝"
+    ],
+    "e": [
+      "e",
+      "i"
+    ],
+    "o": [
+      "o",
+      "u"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Andean Peruvian Spanish (highland). Very conservative: full coda /s/, velar [x]. Possible /ʎ/ retention in rural lleísta areas. Quechua substrate: vowel raising (/e,o/ → [i,u] in bilingual speakers), some assibilated /rr/.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

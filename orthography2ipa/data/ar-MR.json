@@ -1,0 +1,91 @@
+{
+  "code": "ar-MR",
+  "name": "Hassaniya Arabic (Mauritanian)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ],
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "ض": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "ظ": [
+      "ðˤ",
+      "dˤ"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "ɮˤ": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "ðˤ": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "θ": [
+      "θ",
+      "t"
+    ],
+    "ð": [
+      "ð",
+      "d"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "i": [
+      "i",
+      "ə"
+    ],
+    "u": [
+      "u",
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Maghrebi Arabic base (but more conservative)"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.1,
+      "notes": "Berber (Znaga/Sanhaja) substrate"
+    }
+  ],
+  "notes": "Hassaniya Arabic (ħassāniyya حسانية). Spoken in Mauritania, Western Sahara, southern Morocco/Algeria, Mali, Senegal. MOST CONSERVATIVE Maghrebi dialect: θ and ð often preserved (unlike other Maghrebi varieties); ðˤ (ظ) preserved in many varieties; ق → /q/ preserved; vowel reduction less extreme. Berber (Znaga/Sanhaja) substrate: phonological reinforcement. Sub-Saharan contact (Wolof, Fulani, Soninke): some borrowings; /ŋ/ phoneme present in some Fulani-influenced varieties.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

@@ -1,0 +1,52 @@
+{
+  "code": "ca-x-nord",
+  "name": "Northern Catalan (Rossellonès)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "ca",
+  "allophones_base": "ca",
+  "allophones": {
+    "p": [
+      "p",
+      "b"
+    ],
+    "t": [
+      "t",
+      "d"
+    ],
+    "k": [
+      "k",
+      "ɡ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "ʁ"
+    ],
+    "r": [
+      "r",
+      "ʁ"
+    ],
+    "a": [
+      "a",
+      "ə",
+      "∅"
+    ],
+    "e": [
+      "e",
+      "ə",
+      "∅"
+    ],
+    "o": [
+      "o",
+      "u"
+    ],
+    "ʁ": [
+      "ʁ"
+    ]
+  },
+  "positional_graphemes_base": "ca",
+  "parent": "ca",
+  "notes": "Northern Catalan (Rossellonès/Septentrional). Spoken in Pyrénées-Orientales, France. Eastern block. French influence: uvular rhotic [ʁ] alongside traditional [r], possible intervocalic stop voicing (French pattern), extreme final vowel deletion. Declining rapidly under French pressure.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

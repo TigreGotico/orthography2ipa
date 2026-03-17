@@ -1,0 +1,55 @@
+{
+  "code": "nb",
+  "name": "Norwegian Bokmål",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "no",
+  "allophones_base": "no",
+  "allophones": {
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "rn": [
+      "ɳ"
+    ],
+    "rd": [
+      "ɖ"
+    ],
+    "rt": [
+      "ʈ"
+    ],
+    "rs": [
+      "ʂ"
+    ],
+    "rl": [
+      "ɭ"
+    ]
+  },
+  "parent": "no",
+  "notes": "Norwegian Bokmål — majority written standard (~85%). Derives from Danish writing tradition (Norway-Denmark Union 1380–1814). Oslo/Eastern phonology: alveolar /r/; retroflexion (rn rd rt rs). TONAL ACCENT: Accent 1 and Accent 2 (like Swedish). Source: Kristoffersen (2000).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "haugen1976",
+      "author": "Haugen, E.",
+      "year": 1976,
+      "title": "The Scandinavian Languages: An Introduction to their History",
+      "publisher": "Faber and Faber",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "kristoffersen2000",
+      "author": "Kristoffersen, G.",
+      "year": 2000,
+      "title": "The Phonology of Norwegian",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "code": "de-CH",
+  "name": "Swiss Standard German (Hochdeutsch)",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "de-DE",
+  "allophones_base": "de-DE",
+  "allophones": {
+    "x": [
+      "x",
+      "χ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ʔ": [
+      "∅"
+    ],
+    "pː": [
+      "pː"
+    ],
+    "tː": [
+      "tː"
+    ],
+    "kː": [
+      "kː"
+    ]
+  },
+  "parent": "de-DE",
+  "notes": "Swiss Standard German (Schweizer Hochdeutsch). NO glottal stop /ʔ/ — absent from Swiss German phonology. /r/ = alveolar trill [r] (vs. Standard German uvular [ʀ]). Geminate consonants preserved as distinct (Alemannic feature). Swiss German DIALECTS (Schweizerdeutsch) are Alemannic and much more divergent than Swiss Standard German. Source: König & van der Auwera (1994).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wiese1996",
+      "author": "Wiese, R.",
+      "year": 1996,
+      "title": "The Phonology of German",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "christen1998",
+      "author": "Christen, H.",
+      "year": 1998,
+      "title": "Convergenz und Divergenz in der schweizerdeutschen Gegenwartsdialekte",
+      "publisher": "Francke",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

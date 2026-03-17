@@ -1,6 +1,6 @@
 # TODO.md — orthography2ipa
 
-_Last updated: 2026-03-16 | Reviewed by: Claude Sonnet 4.6_
+_Last updated: 2026-03-17 | Reviewed by: Claude Sonnet 4.6_
 
 Legend: 🔴 Blocking · 🟡 High · 🟢 Medium · ⚪ Low
 
@@ -110,3 +110,213 @@ Legend: 🔴 Blocking · 🟡 High · 🟢 Medium · ⚪ Low
 - [ ] **Input validation in `distance.py`**
   - `segment_distance(a, b)` accepts malformed IPA silently
   - Add optional `strict=False` parameter; raise `ValueError` if `strict=True`
+
+---
+
+## Linguistic Reference Audit Checklist
+
+### Phase 0 — Infrastructure (COMPLETE 2026-03-17)
+- [x] `LinguisticSource` dataclass in `types.py`
+- [x] `sources` field in `LanguageSpec`
+- [x] `json_loader.py` parses `sources` array
+- [x] `SCHEMA.md` documents `sources` field
+- [x] `tests/test_sources.py` enforces non-stub sources
+
+### Phase 1 — Germanic (COMPLETE 2026-03-17)
+- [x] en-GB
+- [x] en-US
+- [x] en-AU
+- [x] en-CA
+- [x] en-IE
+- [x] en-ZA
+- [x] en-GB-x-scotland
+- [x] de-DE
+- [x] de-AT
+- [x] de-CH
+- [x] nl
+- [x] nl-NL
+- [x] nl-BE
+- [x] sv
+- [x] sv-x-rikssvenska
+- [x] nb
+- [x] nn
+- [x] no
+- [x] da
+- [x] da-x-copenhagen
+- [x] is
+- [x] fo
+- [x] af
+- [x] nds
+- [x] enm
+- [x] ang
+- [x] non
+- [x] osx
+- [x] goh
+- [x] gem
+- [x] gem-x-ingvaeonic
+- [x] gem-x-north
+- [x] gem-x-northwest
+
+### Phase 2 — Romance (TODO)
+- [ ] es-ES (Castilian)
+- [ ] es-ES-x-andalusia-e
+- [ ] es-ES-x-andalusia-w
+- [ ] es-ES-x-canarias
+- [ ] es-ES-x-cantabria
+- [ ] es-ES-x-murcia
+- [ ] es-419
+- [ ] es-AR
+- [ ] es-BO
+- [ ] es-CL
+- [ ] es-CO / es-CO-x-costa / es-CO-x-paisa
+- [ ] es-CR
+- [ ] es-CU
+- [ ] es-DO
+- [ ] es-EC
+- [ ] es-GQ
+- [ ] es-GT
+- [ ] es-MX / es-MX-x-costa
+- [ ] es-NI
+- [ ] es-PA
+- [ ] es-PE / es-PE-x-lima
+- [ ] es-PR
+- [ ] es-PY
+- [ ] es-UY
+- [ ] es-VE
+- [ ] pt-PT / pt-PT-x-lisbon / pt-PT-x-* dialects
+- [ ] pt-BR / pt-BR-x-* dialects
+- [ ] pt-AO
+- [ ] fr-FR
+- [ ] frp (Franco-Provençal)
+- [ ] it-IT / it-IT-x-* dialects
+- [ ] ca / ca-x-* dialects
+- [ ] ro-RO
+- [ ] gl-ES / gl-x-central
+- [ ] oc-x-aranes
+- [ ] sc / sc-x-campidanese / sc-x-logudorese
+- [ ] scn (Sicilian)
+- [ ] lij (Ligurian)
+- [ ] lmo (Lombard)
+- [ ] vec (Venetian)
+- [ ] fur (Friulian)
+- [ ] nap (Neapolitan)
+- [ ] egl (Emilian)
+- [ ] pms (Piedmontese)
+- [ ] lld (Ladin)
+- [ ] rm (Romansh)
+- [ ] mwl / mwl-x-* (Mirandese)
+- [ ] ext (Extremaduran)
+- [ ] ast / ast-* (Asturian)
+- [ ] fax (Faroese? — verify)
+- [ ] roa-x-galaicopt
+- [ ] la-x-* (Latin dialects)
+- [ ] co (Corsican)
+
+### Phase 3 — Semitic/Arabic (TODO)
+- [ ] ar (Modern Standard Arabic)
+- [ ] arb (Standard Arabic)
+- [ ] ar-AE / ar-BH / ar-DZ / ar-IQ / ar-KW / ar-LY / ar-MA
+- [ ] ar-MR / ar-NG / ar-OM / ar-QA / ar-SA-* / ar-TD / ar-TN / ar-YE
+- [ ] ar-IQ-x-qeltu
+- [ ] ar-x-gulf / ar-x-maghrebi / ar-x-mashriqi / ar-x-peninsular
+- [ ] sem / sem-x-central / sem-x-west
+- [ ] phn (Phoenician)
+- [ ] cop (Coptic)
+- [ ] ber (Berber)
+
+### Phase 4 — Indo-Iranian (TODO)
+- [ ] hi (Hindi)
+- [ ] ur (Urdu)
+- [ ] bn (Bengali)
+- [ ] pa / pa-PK (Punjabi)
+- [ ] gu (Gujarati)
+- [ ] mr (Marathi)
+- [ ] ne (Nepali)
+- [ ] sa / sa-x-vedic (Sanskrit)
+- [ ] pi (Pali)
+- [ ] fa / fa-AF / fa-x-* (Farsi dialects)
+- [ ] ps (Pashto)
+- [ ] sd (Sindhi)
+- [ ] ks (Kashmiri)
+- [ ] tg (Tajik)
+- [ ] iir (Proto-Indo-Iranian)
+- [ ] ira (Proto-Iranian)
+- [ ] pal (Pahlavi/Middle Persian)
+- [ ] peo (Old Persian)
+
+### Phase 5 — Other Modern (TODO)
+- [ ] ru / ru-x-* dialects
+- [ ] uk (Ukrainian)
+- [ ] be (Belarusian)
+- [ ] bg (Bulgarian)
+- [ ] mk (Macedonian)
+- [ ] sr (Serbian)
+- [ ] hr (Croatian)
+- [ ] cs (Czech)
+- [ ] sk (Slovak)
+- [ ] pl (Polish)
+- [ ] sl (Slovenian)
+- [ ] sla (Proto-Slavic)
+- [ ] el (Greek)
+- [ ] cy (Welsh)
+- [ ] ga (Irish)
+- [ ] gd (Scottish Gaelic)
+- [ ] kw (Cornish)
+- [ ] br (Breton)
+- [ ] gv (Manx)
+- [ ] cel / cel-x-* (Proto-Celtic)
+- [ ] eu / eu-x-* (Basque)
+- [ ] tr (Turkish)
+- [ ] fi (Finnish)
+- [ ] hu (Hungarian)
+- [ ] ko (Korean)
+- [ ] ja (Japanese)
+- [ ] zh (Chinese)
+- [ ] ms (Malay)
+- [ ] ta / ta-x-* (Tamil)
+- [ ] kn (Kannada)
+- [ ] te (Telugu)
+- [ ] ml (Malayalam)
+- [ ] si (Sinhala)
+- [ ] or (Odia)
+- [ ] as (Assamese)
+- [ ] mai (Maithili)
+- [ ] bho (Bhojpuri)
+- [ ] kok (Konkani)
+- [ ] sat / sat-x-* (Santali)
+- [ ] mni / mni-x-* (Meitei)
+- [ ] brx / brx-x-* (Bodo)
+- [ ] unr (Mundari)
+- [ ] kha / kha-x-* (Khasi)
+- [ ] tcy (Tulu)
+- [ ] ar related: already in Phase 3
+
+### Phase 6 — Ancient/Reconstructed/Extinct (TODO)
+- [ ] ine (Proto-Indo-European)
+- [ ] ine-x-italic
+- [ ] iir (already in Phase 4)
+- [ ] gem-* (already in Phase 1)
+- [ ] cel-x-gallaecia / cel-x-goidelic
+- [ ] osc (Oscan)
+- [ ] xum (Umbrian)
+- [ ] xlp (Leptonic?)
+- [ ] xaq (Aquitanian)
+- [ ] xib (Iberian)
+- [ ] xcg (Celtiberian)
+- [ ] xtg (Gaulish)
+- [ ] xlg (Ligurian ancient)
+- [ ] xga (Galatian)
+- [ ] xbr (Brythonic)
+- [ ] xda (Dacian)
+- [ ] xpa (Phrygian)
+- [ ] etr (Etruscan)
+- [ ] cu (Church Slavonic)
+- [ ] cop (already Phase 3)
+- [ ] phn (already Phase 3)
+- [ ] pal (already Phase 4)
+- [ ] peo (already Phase 4)
+- [ ] goh (already Phase 1)
+- [ ] ang (already Phase 1)
+- [ ] non (already Phase 1)
+- [ ] osx (already Phase 1)
+- [ ] la-x-balkans / la-x-galloitalic / la-x-italia

@@ -1,0 +1,25 @@
+{
+  "code": "de-x-bavarian",
+  "name": "Bavarian German",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "de-AT",
+  "allophones_base": "de-AT",
+  "allophones": {
+    "ɛː": [
+      "ɛː"
+    ],
+    "aɪ": [
+      "aɪ",
+      "ɔɪ"
+    ],
+    "r": [
+      "r",
+      "ɐ"
+    ]
+  },
+  "parent": "de-AT",
+  "notes": "Bavarian (Bairisch) — covers Bavaria and most of Austria. Fortis/lenis consonant distinction (not voiced/voiceless). pf- cluster fully preserved. r-vocalisation [ɐ] before consonants common. Source: König & van der Auwera (1994).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

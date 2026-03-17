@@ -2,7 +2,26 @@
   "code": "cel",
   "name": "Proto-Celtic (reconstructed)",
   "family": "Celtic",
-  "script": null,
+  "script": "IPA-reconstruction",
+  "script_type": "reconstruction",
   "parent": "ine",
-  "notes": "Proto-Celtic (~1200–800 BCE). Reconstructed common ancestor of all Celtic languages. Defining innovation: PIE *p → *ɸ → ∅ (complete p-loss). Other key changes: *gʷ → b, *ē → *ī, *ew → *ow. Preserves PIE labiovelars (*kʷ splits later: Goidelic → /k/, Brythonic → /p/). Incipient lenition of intervocalic stops. Source: Matasović (2009)."
+  "notes": "Proto-Celtic (~1200–800 BCE). Reconstructed common ancestor of all Celtic languages. Defining innovation: PIE *p → *ɸ → ∅ (complete p-loss). Other key changes: *gʷ → b, *ē → *ī, *ew → *ow. Preserves PIE labiovelars (*kʷ splits later: Goidelic → /k/, Brythonic → /p/). Incipient lenition of intervocalic stops. Source: Matasović (2009).",
+  "graphemes": {
+    "b": ["b"], "t": ["t"], "d": ["d"], "k": ["k"], "g": ["ɡ"],
+    "kʷ": ["kʷ"], "gʷ": ["ɡʷ"],
+    "ɸ": ["ɸ"], "s": ["s"], "h": ["h"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
+    "ā": ["aː"], "ē": ["eː"], "ī": ["iː"], "ō": ["oː"], "ū": ["uː"]
+  },
+  "allophones": {
+    "b": ["b", "β"], "t": ["t"], "d": ["d", "ð"], "k": ["k"], "ɡ": ["ɡ", "ɣ"],
+    "kʷ": ["kʷ"], "ɡʷ": ["ɡʷ"],
+    "ɸ": ["ɸ"], "s": ["s", "z"], "h": ["h"],
+    "m": ["m"], "n": ["n", "ŋ"], "l": ["l"], "r": ["r"],
+    "w": ["w"], "j": ["j"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"],
+    "aː": ["aː"], "eː": ["eː"], "iː": ["iː"], "oː": ["oː"], "uː": ["uː"]
+  }
 }

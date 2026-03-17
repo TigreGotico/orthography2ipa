@@ -1,0 +1,42 @@
+{
+  "code": "sv-x-skanska",
+  "name": "Swedish (Scanian / Skånska)",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "sv",
+  "allophones_base": "sv",
+  "allophones": {
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "r": [
+      "ʀ",
+      "ʁ"
+    ],
+    "rn": [
+      "ʀn"
+    ],
+    "rd": [
+      "ʀd"
+    ]
+  },
+  "parent": "sv",
+  "ancestors": [
+    {
+      "code": "sv",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Swedish base"
+    },
+    {
+      "code": "da",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Danish adstrate — Scania was Danish until 1658; uvular /r/ shared with Danish"
+    }
+  ],
+  "notes": "Scanian (Skånska) — southernmost Swedish province. UVULAR /r/ [ʀ] or [ʁ] — shared with Danish (historical Danish territory). Scania belonged to Denmark until 1658 (Treaty of Roskilde). No retroflexion (uvular r doesn't trigger it). Tonal accent present but with different realisation. Source: Wells (1982), Elert (1994).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

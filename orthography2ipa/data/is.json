@@ -1,0 +1,308 @@
+{
+  "code": "is",
+  "name": "Icelandic",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "á": [
+      "au"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "é": [
+      "jɛ"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "í": [
+      "iː"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "ó": [
+      "oː"
+    ],
+    "u": [
+      "ʏ"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "y": [
+      "ɪ"
+    ],
+    "ý": [
+      "iː"
+    ],
+    "ö": [
+      "œ"
+    ],
+    "ei": [
+      "eɪ"
+    ],
+    "ey": [
+      "eɪ"
+    ],
+    "au": [
+      "øɪ"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "k": [
+      "kʰ",
+      "c",
+      "cʰ"
+    ],
+    "b": [
+      "p"
+    ],
+    "d": [
+      "t"
+    ],
+    "g": [
+      "ɡ",
+      "ɣ",
+      "j"
+    ],
+    "f": [
+      "f",
+      "v"
+    ],
+    "v": [
+      "v"
+    ],
+    "þ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "hl": [
+      "l̥"
+    ],
+    "hn": [
+      "n̥"
+    ],
+    "hr": [
+      "r̥"
+    ],
+    "pp": [
+      "ʰp"
+    ],
+    "tt": [
+      "ʰt"
+    ],
+    "kk": [
+      "ʰk"
+    ],
+    "ff": [
+      "fː"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "ll": [
+      "tl"
+    ],
+    "nn": [
+      "tn"
+    ],
+    "ng": [
+      "ŋɡ",
+      "ŋk"
+    ],
+    "nk": [
+      "ŋkʰ"
+    ]
+  },
+  "allophones": {
+    "pʰ": [
+      "pʰ"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f",
+      "v"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "v": [
+      "v"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ",
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "l̥": [
+      "l̥"
+    ],
+    "r": [
+      "r"
+    ],
+    "r̥": [
+      "r̥"
+    ],
+    "n̥": [
+      "n̥"
+    ],
+    "ʰp": [
+      "ʰp"
+    ],
+    "ʰt": [
+      "ʰt"
+    ],
+    "ʰk": [
+      "ʰk"
+    ],
+    "a": [
+      "a"
+    ],
+    "au": [
+      "au"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "jɛ": [
+      "jɛ"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "eɪ": [
+      "eɪ"
+    ],
+    "øɪ": [
+      "øɪ"
+    ]
+  },
+  "parent": "non",
+  "ancestors": [
+    {
+      "code": "non",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Old West Norse descent — most conservative"
+    }
+  ],
+  "notes": "Icelandic (íslenska). Most conservative modern North Germanic language. PRESERVED: 4-case system; 3 grammatical genders; subjunctive; thorn þ [θ] and eth ð [ð]; full umlaut (y, ø, œ). UNIQUE: Voiceless sonorants — hl [l̥], hn [n̥], hr [r̥]. PREASPIRATION: ⟨pp tt kk⟩ = [ʰp ʰt ʰk] (retroflex in medial). ⟨u⟩ = [ʏ] (front rounded!); ⟨á⟩ = [au]; ⟨au⟩ = [øɪ]. No stød, no tonal accent. Source: Árnason (2011).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "einarsson1945",
+      "author": "Einarsson, S.",
+      "year": 1945,
+      "title": "Icelandic: Grammar, Texts, Glossary",
+      "publisher": "Johns Hopkins Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "arnason2011",
+      "author": "Árnason, K.",
+      "year": 2011,
+      "title": "The Phonology of Icelandic and Faroese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

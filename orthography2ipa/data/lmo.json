@@ -1,0 +1,139 @@
+{
+  "code": "lmo",
+  "name": "Lombard",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "la-x-galloitalic",
+  "graphemes": {
+    "ö": [
+      "ø"
+    ],
+    "u": [
+      "y"
+    ],
+    "ù": [
+      "u"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "öö": [
+      "øː"
+    ],
+    "uu": [
+      "yː"
+    ],
+    "ch": [
+      "k"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "j": [
+      "j"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "sc": [
+      "ʃ"
+    ],
+    "z": [
+      "ts",
+      "dz"
+    ]
+  },
+  "allophones_base": "la-x-galloitalic",
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "ɱ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "øː": [
+      "øː"
+    ]
+  },
+  "parent": "la-x-galloitalic",
+  "ancestors": [
+    {
+      "code": "la-x-galloitalic",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Gallo-Italic parent."
+    },
+    {
+      "code": "cel",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Celtic (Lepontic/Insubric) substrate: significant in the Po Valley before Roman conquest. Possible influence on vowel system."
+    },
+    {
+      "code": "gem",
+      "role": "superstrate",
+      "weight": 0.07,
+      "notes": "Lombardic superstrate (6th–8th c.): the Lombards gave their name to the region. Lexical influence, possible phonological."
+    }
+  ],
+  "notes": "Lombard. Gallo-Italic language of Lombardy, parts of Piedmont, and Swiss Ticino. ~3.5 million speakers. Reference variety: Western Lombard (Milanese). Key features: (1) Front rounded vowels /y, ø/. (2) Phonemic vowel length. (3) Degemination. (4) Extreme final vowel loss. (5) Intervocalic lenition (Sanga 1984).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "lmo"
+}

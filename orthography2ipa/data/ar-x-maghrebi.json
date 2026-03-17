@@ -1,0 +1,79 @@
+{
+  "code": "ar-x-maghrebi",
+  "name": "Proto-Maghrebi Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "positional_graphemes_base": "arb",
+  "graphemes": {
+    "ث": [
+      "t",
+      "s"
+    ],
+    "ذ": [
+      "d"
+    ],
+    "ظ": [
+      "dˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ق": [
+      "q"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ڤ": [
+      "v"
+    ]
+  },
+  "allophones": {
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "ðˤ": [
+      "dˤ"
+    ],
+    "θ": [
+      "t",
+      "s",
+      "θ"
+    ],
+    "ð": [
+      "d"
+    ],
+    "a": [
+      "a",
+      "∅"
+    ],
+    "i": [
+      "i",
+      "∅"
+    ],
+    "u": [
+      "u",
+      "∅"
+    ],
+    "p": [
+      "p"
+    ],
+    "v": [
+      "v"
+    ]
+  },
+  "parent": "arb",
+  "ancestors": [
+    {
+      "code": "arb",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Classical Arabic via 7th–8th c. expansion"
+    }
+  ],
+  "notes": "Proto-Maghrebi Arabic — abstract ancestor node for Moroccan, Algerian, Tunisian, Libyan, and Hassaniya Arabic. Key shared Maghrebi features: vowel reduction/deletion; ث → /t/; ذ → /d/; ق → /q/ preserved; Berber substrate reinforcing pharyngeals and emphatics.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

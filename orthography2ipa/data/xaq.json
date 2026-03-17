@@ -2,6 +2,19 @@
   "code": "xaq",
   "name": "Aquitanian (Proto-Basque)",
   "family": "Vasconic",
-  "script": null,
+  "script": "Latin",
+  "graphemes": {
+    "b": ["b"], "t": ["t"], "d": ["d"], "k": ["k"], "g": ["ɡ"],
+    "ts": ["ts"], "s": ["s"], "ʃ": ["ʃ"], "h": ["h"],
+    "n": ["n"], "m": ["m"], "l": ["l"], "r": ["r"], "rr": ["r̄"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"]
+  },
+  "allophones": {
+    "b": ["b"], "t": ["t"], "d": ["d"], "k": ["k"], "ɡ": ["ɡ"],
+    "ts": ["ts"], "s": ["s"], "ʃ": ["ʃ"], "h": ["h"],
+    "n": ["n", "ɲ"], "m": ["m"], "l": ["l", "ʎ"], "r": ["ɾ"], "r̄": ["r"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"]
+  },
+  "quality": "research",
   "notes": "Aquitanian (1st–3rd c. CE). Ancestor of Basque, known from ~400 personal names and ~70 theonyms in Latin inscriptions from Roman Aquitania. Connection to Basque CERTAIN: andere = Basque 'lady', seme = 'son', gizon = 'man', hartz = 'bear'. Phonological system matches proto-Basque: 5 vowels, aspiration /h/, two sibilants, two rhotics, rare initial voiceless stops, affricate /ts/. Key evidence for the antiquity and continuity of the Basque language family."
 }

@@ -1,0 +1,56 @@
+{
+  "code": "pt-PT-x-minho",
+  "name": "Minhoto Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "d": [
+      "d",
+      "ð",
+      "∅"
+    ],
+    "ʃ": [
+      "ʃ",
+      "ʂ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʐ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "ɽ"
+    ],
+    "ɐ": [
+      "ɐ",
+      "ɐ̥",
+      "∅"
+    ],
+    "ə": [
+      "ə",
+      "ɨ",
+      "ɨ̥",
+      "∅"
+    ],
+    "u": [
+      "u",
+      "u̥",
+      "∅"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Northern interior dialect (Vizela, Braga). Extreme unstressed vowel reduction (deletion, devoicing). Voiceless uvular [χ] in coda. Retroflex flap [ɽ], traces of retroflex sibilants [ʂ, ʐ]. Heaviest vowel elision of all EP dialects.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

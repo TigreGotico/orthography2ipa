@@ -1,0 +1,18 @@
+{
+  "code": "ru-x-pskov",
+  "name": "Pskov Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru",
+  "graphemes": {
+    "ч": [
+      "ts",
+      "tɕ"
+    ]
+  },
+  "allophones_base": "ru",
+  "parent": "ru",
+  "notes": "Pskov-Novgorod transitional dialect. Mixed North-Central features; partial цоканье; Baltic substrate influence (Pskov region).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

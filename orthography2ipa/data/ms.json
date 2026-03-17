@@ -1,0 +1,23 @@
+{
+  "code": "ms",
+  "name": "Malay",
+  "family": "Austronesian",
+  "script": "Latin",
+  "graphemes": {
+    "a": ["a"],
+    "e": ["e"],
+    "i": ["i"],
+    "o": ["o"],
+    "u": ["u"]
+  },
+  "allophones": {
+    "a": ["a"],
+    "e": ["e"],
+    "i": ["i"],
+    "o": ["o"],
+    "u": ["u"]
+  },
+  "quality": "stub",
+  "script_type": "alphabet",
+  "iso639_3": "msa"
+}

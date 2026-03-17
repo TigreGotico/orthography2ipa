@@ -1,0 +1,13 @@
+{
+  "code": "ar",
+  "name": "Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "iso639_3": "ara",
+  "quality": "skeleton",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "graphemes": {},
+  "allophones": {}
+}

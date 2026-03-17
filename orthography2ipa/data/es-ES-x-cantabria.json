@@ -1,0 +1,18 @@
+{
+  "code": "es-ES-x-cantabria",
+  "name": "Cantabrian Spanish (Montañés)",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "es-ES",
+  "allophones_base": "es-ES",
+  "allophones": {
+    "s": [
+      "s̺"
+    ]
+  },
+  "positional_graphemes_base": "es-ES",
+  "parent": "es-ES",
+  "notes": "Cantabrian Spanish (Montañés). Northern conservative dialect with Asturleonese substrate. Apico-alveolar [s̺] (northern type), distinción preserved, conservative [ʎ] (weakening). Transitional between Castilian and Asturian. Some Leonese metaphony traces in western areas.",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

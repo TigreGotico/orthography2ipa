@@ -1,0 +1,59 @@
+{
+  "code": "ar-NG",
+  "name": "Nigerian Arabic (Shuwa)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-TD",
+  "graphemes": {
+    "ث": [
+      "t"
+    ],
+    "ذ": [
+      "d"
+    ],
+    "ق": [
+      "q",
+      "ɡ"
+    ]
+  },
+  "allophones_base": "ar-TD",
+  "allophones": {
+    "q": [
+      "q",
+      "ɡ"
+    ],
+    "θ": [
+      "t"
+    ],
+    "ð": [
+      "d"
+    ],
+    "aː": [
+      "aː",
+      "á",
+      "à"
+    ],
+    "iː": [
+      "iː",
+      "í",
+      "ì"
+    ],
+    "uː": [
+      "uː",
+      "ú",
+      "ù"
+    ]
+  },
+  "parent": "ar-TD",
+  "ancestors": [
+    {
+      "code": "ar-TD",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Closely related to Chadian Arabic"
+    }
+  ],
+  "notes": "Nigerian Shuwa Arabic. Spoken in Borno and Yobe states (NE Nigeria), Cameroon, Niger. Shuwa Arab ethnic group. More contact-modified than Chadian Arabic. θ → /t/, ð → /d/ (complete merger — Hausa influence). ق → /q/ educated speech; /ɡ/ vernacular. Hausa substrate: /ɓ, ɗ/ implosives; /ŋ/ phoneme. Possible incipient lexical tone in some varieties (Owens 1993 — debated). Owens (1993) *A Reference Grammar of Nigerian Arabic* is the primary source.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

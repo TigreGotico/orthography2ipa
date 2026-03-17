@@ -1,0 +1,326 @@
+{
+  "code": "enm",
+  "name": "Middle English",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "æ"
+    ],
+    "e": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "ɔ",
+      "o"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "au"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "ew": [
+      "ɛu",
+      "ju"
+    ],
+    "ow": [
+      "ou",
+      "au"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "x": [
+      "x"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "x": [
+      "x",
+      "h",
+      "∅"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a",
+      "æ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "e": [
+      "e",
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "aj": [
+      "aj"
+    ],
+    "au": [
+      "au"
+    ],
+    "ej": [
+      "ej"
+    ],
+    "oj": [
+      "oj"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "ɛu": [
+      "ɛu"
+    ],
+    "ju": [
+      "ju"
+    ]
+  },
+  "parent": "ang",
+  "ancestors": [
+    {
+      "code": "ang",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Descent from Old English"
+    },
+    {
+      "code": "fr-FR",
+      "role": "superstrate",
+      "weight": 0.15,
+      "notes": "Norman French superstrate (post-1066): /v/ becomes phonemic; /dʒ/ and /ʒ/ extended; massive vocabulary influx (~10,000 French words); loss of OE inflectional endings accelerated"
+    },
+    {
+      "code": "non",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Old Norse Danelaw adstrate: they/their/them, sky, take, give, etc."
+    }
+  ],
+  "notes": "Middle English (~1100–1500 CE). Post-Norman Conquest (~1066); models Chaucerian Late ME (~1380–1400). NORMAN FRENCH SUPERSTRATE: /v/ phonemicised; /dʒ/ extended via French; /ʒ/ enters (vision, pleasure) in late ME. OE diphthongs simplified: ea→ɛ, eo→e. OE front rounded /y/ → /i/ (lost). GREAT VOWEL SHIFT beginning ~1400–1700: long vowels raised/diphthongised. Dialect continuum: Northern (Scots), Midland (Chaucer), Southern. Major texts: Canterbury Tales (Chaucer), Piers Plowman, Sir Gawain and the Green Knight. Source: Hogg (1992), Fischer (2000).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "iso639_3": "enm",
+  "sources": [
+    {
+      "id": "mosse1952",
+      "author": "Mossé, F.",
+      "year": 1952,
+      "title": "A Handbook of Middle English",
+      "publisher": "Johns Hopkins Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "jordan1974",
+      "author": "Jordan, R.",
+      "year": 1974,
+      "title": "Handbook of Middle English Grammar: Phonology",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

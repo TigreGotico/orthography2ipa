@@ -2,7 +2,20 @@
   "code": "cel-x-gallaecia",
   "name": "Gallaecian Celtic",
   "family": "Celtic",
-  "script": null,
+  "script": "Latin",
   "parent": "cel",
-  "notes": "Gallaecian Celtic in NW Iberia. Castro culture, toponyms, possible influence on nasal vowel development."
+  "notes": "Gallaecian Celtic in NW Iberia. Castro culture, toponyms, possible influence on nasal vowel development.",
+  "graphemes": {
+    "b": ["b"], "t": ["t"], "d": ["d"], "k": ["k"], "g": ["ɡ"],
+    "kʷ": ["kʷ"], "s": ["s"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"]
+  },
+  "allophones": {
+    "b": ["b"], "t": ["t"], "d": ["d"], "k": ["k"], "ɡ": ["ɡ"],
+    "kʷ": ["kʷ"], "s": ["s"],
+    "m": ["m"], "n": ["n"], "l": ["l"], "r": ["r"],
+    "a": ["a"], "e": ["e"], "i": ["i"], "o": ["o"], "u": ["u"]
+  },
+  "quality": "stub"
 }

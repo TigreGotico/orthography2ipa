@@ -65,6 +65,13 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `graphemes_base`            | string | no       | Code to inherit graphemes from               |
 | `allophones_base`           | string | no       | Code to inherit allophones from              |
 | `positional_graphemes_base` | string | no       | Code to inherit positional graphemes from    |
+| `quality`                   | string | no       | Data maturity: `"stub"`, `"skeleton"`, `"research"`, `"production"` (default: `"research"`) |
+| `script_type`               | string | no       | Script typology: `"alphabet"`, `"abjad"`, `"abugida"`, `"syllabary"`, `"logographic"`, `"featural"`, `"mixed"`, `"reconstruction"` (default: `"alphabet"`) |
+| `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
+| `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
+| `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
+| `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
+| `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
 
 ## Inheritance
 
@@ -104,6 +111,66 @@ the four overridden entries.
 > To mark a deletion, when a grapheme is no longer valid or an allophone no longer present, it can be set to None
 > explicitly to avoid inheritance
 
+## Sandhi Rule Schema
+
+```json
+{
+  "sandhi_rules": [
+    {
+      "id": "FR_LIAISON_Z",
+      "name": "z-liaison",
+      "left_context": "z$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃]",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "les amis → /lez‿ami/"
+    }
+  ]
+}
+```
+
+| Sandhi Field   | Type   | Required | Description                          |
+|----------------|--------|----------|--------------------------------------|
+| `id`           | string | yes      | Unique rule identifier               |
+| `name`         | string | yes      | Human-readable name                  |
+| `left_context` | string | yes      | Regex on word-final IPA              |
+| `right_context`| string | yes      | Regex on next-word-initial IPA       |
+| `transform`    | string | yes      | Replacement pattern                  |
+| `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
+| `notes`        | string | no       | Optional notes                       |
+
+## Sources Schema
+
+The `sources` array contains bibliographic references for the phonological data in the spec.
+
+```json
+{
+  "sources": [
+    {
+      "id": "wells1982_vol2",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 2: The British Isles",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
+}
+```
+
+| Source Field  | Type    | Required | Description                                         |
+|---------------|---------|----------|-----------------------------------------------------|
+| `id`          | string  | yes      | Short cite key (e.g. `"wells1982"`)                 |
+| `author`      | string  | yes      | Author(s), e.g. `"Wells, J.C."`                     |
+| `year`        | integer | yes      | Publication year                                    |
+| `title`       | string  | yes      | Full title of the work                              |
+| `publisher`   | string  | no       | Publisher name                                      |
+| `url`         | string  | no       | URL or DOI; use `null` for print-only works         |
+| `pages`       | string  | no       | Specific page range, e.g. `"pp. 45-72"`            |
+| `notes`       | string  | no       | Annotation about what this source supports          |
+
 ## Positional Grapheme Keys
 
 Position keys in `positional_graphemes` use lowercase string values
@@ -111,6 +178,8 @@ matching the `GraphemePosition` enum:
 
 | JSON key                    | Enum value                                 |
 |-----------------------------|--------------------------------------------|
+| `"default"`                 | `GraphemePosition.DEFAULT`                 |
+| `"nucleus"`                 | `GraphemePosition.NUCLEUS`                 |
 | `"pretonic"`                | `GraphemePosition.PRETONIC`                |
 | `"posttonic"`               | `GraphemePosition.POSTTONIC`               |
 | `"onset"`                   | `GraphemePosition.ONSET`                   |

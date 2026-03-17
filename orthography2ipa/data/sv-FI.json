@@ -1,0 +1,44 @@
+{
+  "code": "sv-FI",
+  "name": "Swedish (Finland-Swedish)",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes_base": "sv",
+  "allophones_base": "sv",
+  "allophones": {
+    "ɧ": [
+      "ʃ",
+      "sk"
+    ],
+    "r": [
+      "r"
+    ],
+    "rn": [
+      "rn"
+    ],
+    "rd": [
+      "rd"
+    ],
+    "rs": [
+      "rs"
+    ]
+  },
+  "parent": "sv",
+  "ancestors": [
+    {
+      "code": "sv",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Swedish base"
+    },
+    {
+      "code": "fi",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Finnish adstrate: no tonal accent; long consonant quantity"
+    }
+  ],
+  "notes": "Finland-Swedish (finlandssvenska). Spoken by ~5% of Finns. NO TONAL ACCENT (Finnish influence — Finnish has no pitch accent). NO RETROFLEXION (alveolar r always; no ɳ ɖ ʈ ʂ clusters). sj-sound = [ʃ] or [sk] (not the mainland [ɧ]). Long consonant quantity very prominent (Finnish substrate). Source: Elert (1994).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

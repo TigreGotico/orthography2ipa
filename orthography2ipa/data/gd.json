@@ -1,0 +1,276 @@
+{
+  "code": "gd",
+  "name": "Scottish Gaelic",
+  "family": "Celtic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "à": [
+      "aː"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "è": [
+      "ɛː"
+    ],
+    "é": [
+      "eː"
+    ],
+    "i": [
+      "i",
+      "ɪ"
+    ],
+    "ì": [
+      "iː"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "ò": [
+      "ɔː"
+    ],
+    "ó": [
+      "oː"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ],
+    "ù": [
+      "uː"
+    ],
+    "b": [
+      "p",
+      "b"
+    ],
+    "bh": [
+      "v"
+    ],
+    "c": [
+      "kʰ",
+      "cʰ"
+    ],
+    "ch": [
+      "x",
+      "ç"
+    ],
+    "d": [
+      "t̪",
+      "dʲ"
+    ],
+    "dh": [
+      "ɣ",
+      "j"
+    ],
+    "f": [
+      "f"
+    ],
+    "fh": [
+      ""
+    ],
+    "g": [
+      "k",
+      "ɟ"
+    ],
+    "gh": [
+      "ɣ",
+      "j"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l̪ˠ",
+      "lʲ"
+    ],
+    "m": [
+      "m"
+    ],
+    "mh": [
+      "v"
+    ],
+    "n": [
+      "n̪ˠ",
+      "nʲ"
+    ],
+    "nn": [
+      "n̪ˠː"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "ph": [
+      "f"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "s": [
+      "s",
+      "ʃ"
+    ],
+    "sh": [
+      "h"
+    ],
+    "t": [
+      "t̪ʰ",
+      "tʲ"
+    ],
+    "th": [
+      "h"
+    ],
+    "ng": [
+      "ŋ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t̪": [
+      "t̪",
+      "t̪ʰ"
+    ],
+    "tʲ": [
+      "tʲ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "cʰ": [
+      "cʰ"
+    ],
+    "ɟ": [
+      "ɟ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ç": [
+      "ç"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "l̪ˠ": [
+      "l̪ˠ"
+    ],
+    "lʲ": [
+      "lʲ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n̪ˠ": [
+      "n̪ˠ"
+    ],
+    "nʲ": [
+      "nʲ"
+    ],
+    "n̪ˠː": [
+      "n̪ˠː"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ɔː": [
+      "ɔː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "parent": "cel-x-goidelic",
+  "ancestors": [
+    {
+      "code": "cel-x-goidelic",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Goidelic descent"
+    }
+  ],
+  "notes": "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). Highlands and Islands of Scotland. Pre-aspiration of voiceless stops (diagnostic feature vs. Irish). Broad/slender distinction as in Irish. Lenition system similar to Irish. Substrate of Scottish English (/x/ in 'loch'). Refs: Ó Baoill (2010), Gillies (2009).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

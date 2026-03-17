@@ -1,0 +1,18 @@
+{
+  "code": "mwl-x-ifanes",
+  "name": "Ifanês (Mirandese septentrional)",
+  "family": "Asturleonese",
+  "script": "Latin",
+  "graphemes_base": "mwl",
+  "graphemes": {
+    "iê": [
+      "e"
+    ]
+  },
+  "allophones_base": "mwl",
+  "positional_graphemes_base": "mwl",
+  "parent": "mwl",
+  "notes": "Ifanês subdialect of Mirandese, spoken in Ifanes (Infantes) in the northern part of Terra de Miranda. Differs from central Mirandese in: (1) monophthongization of -iê- → -e- (not -i- like Sendinês); (2) -uô- is sporadic, not systematically reduced. Noted in Convenção footnote 7 and Vasconcellos (1900).",
+  "quality": "skeleton",
+  "script_type": "alphabet"
+}

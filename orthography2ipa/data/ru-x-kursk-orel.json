@@ -1,0 +1,12 @@
+{
+  "code": "ru-x-kursk-orel",
+  "name": "Kursk-Orel Russian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes_base": "ru-x-southern",
+  "allophones_base": "ru-x-southern",
+  "parent": "ru-x-southern",
+  "notes": "South Russian, Kursk-Orel zone. Archetypal [ɣ] fricative, strong яканье.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}

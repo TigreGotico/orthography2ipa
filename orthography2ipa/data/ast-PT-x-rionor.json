@@ -1,6 +1,6 @@
 {
-  "code": "ast-PT-x-guadramil",
-  "name": "Guadramilese",
+  "code": "ast-PT-x-rionor",
+  "name": "Rionorese",
   "family": "Asturleonese",
   "script": "Latin",
   "parent": "ast-PT-x-medieval",
@@ -8,26 +8,140 @@
   "allophones_base": "ast-PT-x-medieval",
   "positional_graphemes_base": "ast-PT-x-medieval",
 
+  "graphemes": {
+    "tch": ["tʃ"],
+
+    "iê": ["je"],
+    "uâ": ["wa"],
+    "uô": ["wɔ"],
+
+    "ll": ["ʎ"],
+    "rr": ["r"],
+    "ss": ["s"],
+
+    "ai": ["aj"],
+    "au": ["aw"],
+    "ei": ["ej"],
+    "ou": ["ow"],
+    "oi": ["oj"],
+    "ui": ["uj"],
+    "iu": ["ju"],
+
+    "á": ["a"],
+    "à": ["a"],
+    "â": ["a"],
+    "é": ["ɛ"],
+    "è": ["ɛ"],
+    "ê": ["e"],
+    "í": ["i"],
+    "ó": ["ɔ"],
+    "ò": ["ɔ"],
+    "ô": ["o"],
+    "ú": ["u"],
+
+    "ch": ["ʃ"],
+    "v": ["b"],
+    "ç": ["θ"],
+    "z": ["θ"],
+    "c": ["k", "θ"],
+    "g": ["ɡ", "x"],
+
+    "b": ["b"],
+    "d": ["d"],
+    "f": ["f"],
+    "j": ["ʒ"],
+    "k": ["k"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "p": ["p"],
+    "r": ["ɾ"],
+    "s": ["s"],
+    "t": ["t"],
+    "w": ["w"],
+    "x": ["ʃ"],
+    "y": ["j"],
+
+    "a": ["a"],
+    "e": ["e"],
+    "i": ["i"],
+    "o": ["o"],
+    "u": ["u"]
+  },
+
+  "allophones": {
+    "v": null,
+    "t͡s": null,
+    "d͡z": null,
+    "s̺": null,
+    "z̺": null,
+    "s̻": null,
+    "z̻": null,
+
+    "b": ["b", "β"],
+    "θ": ["θ"],
+    "x": ["x"],
+    "ʒ": ["ʒ"],
+    "r": ["r"],
+    "ɾ": ["ɾ"]
+  },
+
+  "positional_graphemes": {
+    "c": {
+      "before_e": ["θ"],
+      "before_i": ["θ"]
+    },
+    "g": {
+      "before_e": ["x"],
+      "before_i": ["x"]
+    },
+    "r": {
+      "word_initial": ["r"],
+      "intervocalic": ["ɾ"],
+      "onset": ["ɾ"]
+    },
+    "v": {
+      "word_initial": ["b"],
+      "intervocalic": ["b"]
+    },
+    "qu": {
+      "before_e": ["k"],
+      "before_i": ["k"],
+      "before_vowel": ["kw"]
+    },
+    "n": {
+      "word_final": [""]
+    }
+  },
+
   "ancestors": [
     {
       "code": "ast-PT-x-medieval",
       "role": "parent",
-      "weight": 0.85,
+      "weight": 0.70,
       "notes": ""
+    },
+    {
+      "code": "ast-x-leon",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": ""
+    },
+    {
+      "code": "ast-x-sanabria",
+      "role": "adstrate",
+      "weight": 0.11,
+      "notes": "Sanabrian Leonese adstrate: the Sanabria comarca of Zamora province is geographically and linguistically adjacent to Rionor. Shared features include full betacism and θ-merger."
     },
     {
       "code": "pt-PT-x-medieval",
       "role": "adstrate",
       "weight": 0.10,
       "notes": "Old Portuguese (Aviz-period) adstrate: as Portuguese consolidated as the state language, the Leonese-speaking communities of Miranda, Rionor, and Guadramil faced intensifying pressure. Portuguese orthographic conventions (lh, nh, ã) penetrated the writing tradition."
-    },
-    {
-      "code": "cel-x-gallaecia",
-      "role": "substrate",
-      "weight": 0.04,
-      "notes": "Gallaecian Celtic substrate of NW Iberia, shared through the Leonese parent. The Trás-os-Montes region has Celtic place-names (e.g. *Brigantia, castro toponyms)."
     }
   ],
 
-  "notes": "Medieval Asturian-Leonese of Portugal (ast-PT-x-medieval), the Asturleonese variety that took root in the Terra de Miranda (Miranda do Douro), Rionor (Rio de Onor), and Guadramil areas of Trás-os-Montes following the Leonese resettlement of the Douro corridor (~9th–12th c. CE). This variety is the common ancestor of: (1) Mirandese / lhéngua mirandesa (mwl — still spoken, ~10,000 speakers), (2) Rionorese / mirandês de Rionor (nearly extinct), (3) Guadramilese / guadramilês (nearly extinct), and a notable influence on the Transmontano dialect of Northern Portuguese. KEY PHONOLOGICAL PROFILE: (1) 4-WAY SIBILANT CONTRAST (like parent Leonese and contemporary Galaico-Portuguese): voiceless apical /s̺/ ⟨ss, s-⟩ vs. voiced apical /z̺/ ⟨-s-⟩ vs. voiceless predorsal /t͡s/ ⟨ç, c-⟩ vs. voiced predorsal /d͡z/ ⟨z⟩. (2) INTERVOCALIC -l- AND -n- PRESERVED throughout the Leonese tradition ('salir', 'lhana') — the defining retention distinguishing the Mirandese group from all varieties of Portuguese. (3) LEONESE DIPHTHONGS retained: Lat. Ĕ → /ie/ ⟨ie⟩ (later written ⟨iê⟩ in Mirandese), Lat. Ŏ → /uo/ ⟨uo⟩ (later ⟨uô⟩). (4) PORTUGUESE NASAL VOWELS developing through Galaico-Portuguese contact: ⟨ã⟩ /ɐ̃/, ⟨on⟩ /õ/, ⟨an⟩ /ɐ̃/, etc. (5) HYBRID ORTHOGRAPHY: both Leonese ⟨ll/ñ⟩ and Portuguese ⟨lh/nh⟩ for /ʎ, ɲ/. (6) ⟨ch⟩ = /tʃ/ (Asturian/Leonese tradition, vs. Portuguese /ʃ/). (7) ⟨x⟩ = /ʃ/ (shared across the regional writing tradition). (8) PARTIAL BETACISM: /v/ survives as a distinct phoneme (Lusitanian substrate influence), unlike the full merger of central Asturian — this persists in modern Mirandese. (9) Latin F- PRESERVED as /f/ (no aspiration, unlike western Asturian). (10) NO VOWEL REDUCTION: 5-vowel quality system, unstressed vowels full (a defining Asturleonese feature vs. Portuguese ɨ/ɐ reduction). Sources: Leite de Vasconcellos (1882, 1900), Menéndez Pidal (1906), Vasconcellos (1900) *Estudos de philologia mirandesa*, Ferreira (1999) *Convenção Ortográfica*, Moisés Pires (2004), Martins (2011) *Leonese-Portuguese contact*."
+  "lexicon_csv": "lexicons/ast-PT-x-rionor.csv",
+
+  "notes": "Rionorese (mirandês de Rionor / Rionorês), the nearly-extinct Asturleonese variety spoken in Rio de Onor (PT) / Rihonor de Castilla (ES), a single village straddling the Portuguese-Spanish border in Trás-os-Montes. Fewer than 100 elderly speakers as of the early 2000s (Macias 2003). DIVERGENCES FROM PARENT (ast-PT-x-medieval): (1) FULL BETACISM: /v/ → /b/ unconditionally — the /v/~/b/ contrast preserved in Mirandese and medieval Leonese is lost. ⟨v⟩ and ⟨b⟩ both surface as /b/ (with intervocalic fricative allophone [β]). (2) DENTAL FRICATIVE MERGER: the medieval 4-way sibilant system (t͡s, d͡z, s̺, z̺) collapses to a single dental fricative /θ/. ⟨c/ç⟩ before front vowels, ⟨z⟩, and ⟨ç⟩ all map to /θ/ — parallel to Castilian rather than Leonese. (3) ⟨ch⟩ = /ʃ/ (not /tʃ/): the affricate from the medieval parent has shifted to a simple fricative, under Portuguese influence (PT ch=/ʃ/) or through independent lenition. Rionorese retains ⟨tch⟩ for /tʃ/. (4) VELAR FRICATIVE: ⟨g⟩ + front vowel = /x/, parallel to Spanish. (5) RHOTICS: word-initial ⟨r⟩ is a trill /r/; intervocalic ⟨r⟩ and ⟨r⟩ after stops (onset) are flaps /ɾ/; ⟨rr⟩ always /r/. (6) DIPHTHONGS: ⟨iê⟩ /je/ (stressed Leonese diphthong), ⟨uâ⟩ /wa/, ⟨uô⟩ /wɔ/ mark stressed vowels. (7) WORD-FINAL NASAL: word-final ⟨n/m⟩ nasalizes the preceding vowel and is silent (handled by digraph graphemes ⟨an⟩=ɐ̃, ⟨en⟩=ẽ etc., inherited from parent). Sources: Macias (2003) 'Rionorese: a nearly extinct Asturian dialect of Portugal'; Leite de Vasconcellos (1882, 1900); Ferreira (1999)."
 }

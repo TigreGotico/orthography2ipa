@@ -1,0 +1,78 @@
+{
+  "code": "ar-LY",
+  "name": "Libyan Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "t",
+      "θ"
+    ],
+    "ذ": [
+      "d",
+      "ð"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "t",
+      "θ"
+    ],
+    "ð": [
+      "d",
+      "ð"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "i": [
+      "i",
+      "ə"
+    ],
+    "u": [
+      "u",
+      "ə"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Maghrebi Arabic base"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.07,
+      "notes": "Berber substrate (Nafusa plateau / interior)"
+    }
+  ],
+  "notes": "Libyan Arabic. Two main varieties: Western (Tripoli): Maghrebi features, θ → /t/; Eastern (Benghazi/Barqa): more conservative, θ preserved, Egyptian-influenced features. ق → /q/ PRESERVED in most Libyan varieties (conservative). Vowel reduction less extreme than Moroccan. Italian colonial influence (1911–1943): /p/ in loans, some /tʃ/.",
+  "quality": "skeleton",
+  "script_type": "abjad"
+}

@@ -1,0 +1,13 @@
+{
+  "code": "gl-x-central",
+  "name": "Central Galician",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "gl-ES",
+  "allophones_base": "gl-ES",
+  "positional_graphemes_base": "gl-ES",
+  "parent": "gl-ES",
+  "notes": "Central Galician (Lugo, eastern A Coruña, Ourense). Closest to RAG standard norms. No gheada, no seseo. 7-vowel system with /ɛ, ɔ/ phonemic. Palatal lateral [ʎ] preserved. This is the prestige norm base.",
+  "quality": "stub",
+  "script_type": "alphabet"
+}
