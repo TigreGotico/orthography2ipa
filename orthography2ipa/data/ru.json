@@ -295,7 +295,8 @@
       "publisher": "Routledge",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
     },
     {
       "id": "timberlake2004",
@@ -305,7 +306,8 @@
       "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
     },
     {
       "id": "padgett_tabain2005",
@@ -317,5 +319,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Russian_language"
 }

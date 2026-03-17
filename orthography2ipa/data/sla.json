@@ -295,7 +295,8 @@
       "publisher": "Routledge",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
     },
     {
       "id": "carlton1991",
@@ -315,7 +316,9 @@
       "publisher": "Blackwell",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Proto-Slavic"
 }

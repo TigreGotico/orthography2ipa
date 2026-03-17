@@ -213,7 +213,8 @@
       "publisher": "Routledge",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
     },
     {
       "id": "browne_1993",
@@ -235,5 +236,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Croatian_language"
 }
