@@ -305,5 +305,37 @@
   ],
   "notes": "Umbrian dialect (modern Romance, NOT the ancient Italic language). Central Italian of Umbria. Transitional between Tuscan and Southern varieties. Key features: (1) No gorgia. (2) Some assimilatory processes (ND→nn, MB→mm) shared with Roman. (3) Partial metaphony in eastern Umbrian varieties (Rohlfs 1966, Loporcaro 2009).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

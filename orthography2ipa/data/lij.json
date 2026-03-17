@@ -135,5 +135,37 @@
   "notes": "Ligurian (Zenéize). Gallo-Italic language of Liguria. ~500,000 speakers. Reference variety: Genoese. Key features: (1) Front rounded vowels /y, ø/. (2) Nasal vowels (well-developed). (3) ⟨x⟩ = /ʒ/ (voiced postalveolar fricative, distinctive). (4) Degemination. Historical lingua franca of the Mediterranean maritime trade (Forner 1975).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "lij"
+  "iso639_3": "lij",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

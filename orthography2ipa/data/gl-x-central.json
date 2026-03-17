@@ -9,5 +9,37 @@
   "parent": "gl-ES",
   "notes": "Central Galician (Lugo, eastern A Coruña, Ourense). Closest to RAG standard norms. No gheada, no seseo. 7-vowel system with /ɛ, ɔ/ phonemic. Palatal lateral [ʎ] preserved. This is the prestige norm base.",
   "quality": "stub",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "freixeiro_mato1998",
+      "author": "Freixeiro Mato, X.R.",
+      "year": 1998,
+      "title": "Gramática da Lingua Galega",
+      "publisher": "A Nosa Terra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fernandez_rei1990",
+      "author": "Fernández Rei, F.",
+      "year": 1990,
+      "title": "Dialectoloxía da lingua galega",
+      "publisher": "Xerais",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

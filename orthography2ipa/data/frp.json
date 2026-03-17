@@ -286,5 +286,37 @@
   "notes": "Franco-Provençal / Arpitan. A distinct Gallo-Romance language intermediate between French (Oïl) and Occitan (Oc). Spoken historically in Savoie, Lyonnais, Suisse Romande, and Aosta Valley. Key features: (1) CA- → [tʃ] (like French, vs Occitan [ka]). (2) Final -a preserved (unlike French). (3) /u/→/y/ fronting (shared with French). (4) Less nasal vowels than French. ~150,000 speakers, severely endangered (Kristol 2016).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "frp"
+  "iso639_3": "frp",
+  "sources": [
+    {
+      "id": "fouche1959",
+      "author": "Fouché, P.",
+      "year": 1959,
+      "title": "Traité de prononciation française",
+      "publisher": "Klincksieck",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "martin1990",
+      "author": "Martin, J.-B.",
+      "year": 1990,
+      "title": "Le francoprovençal: langue oubliée",
+      "publisher": "in G. Vermes (ed.), Vingt-cinq communautés linguistiques de la France",
+      "url": "L'Harmattan",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -6,125 +6,317 @@
   "family": "Romance",
   "script": "Latin",
   "parent": "la-x-hispania",
-
   "graphemes": {
-    "a": ["a"],
-    "á": ["a"],
-    "e": ["e", "ɛ"],
-    "é": ["ɛ"],
-    "i": ["i"],
-    "í": ["i"],
-    "o": ["o", "ɔ"],
-    "ó": ["ɔ"],
-    "u": ["u"],
-    "ú": ["u"],
-
-    "b": ["b"],
-    "c": ["k", "θ"],
-    "ch": ["tʃ"],
-    "d": ["d"],
-    "f": ["f"],
-    "g": ["ɡ", "x"],
-    "gu": ["ɡ"],
-    "h": [""],
-    "j": ["x"],
-    "k": ["k"],
-    "l": ["l"],
-    "ll": ["ʝ"],
-    "m": ["m"],
-    "n": ["n"],
-    "ñ": ["ɲ"],
-    "p": ["p"],
-    "q": ["k"],
-    "qu": ["k"],
-    "r": ["ɾ"],
-    "rr": ["r"],
-    "s": ["s"],
-    "t": ["t"],
-    "v": ["b"],
-    "w": ["w"],
-    "x": ["ks", "s"],
-    "y": ["ʝ", "i"],
-    "z": ["θ"],
-
-    "güe": ["ɡwe"],
-    "güi": ["ɡwi"],
-
-    "ie": ["je"],
-    "ue": ["we"],
-    "ia": ["ja"],
-    "io": ["jo"],
-    "ua": ["wa"],
-    "uo": ["wo"],
-    "ai": ["aj"],
-    "ei": ["ej"],
-    "oi": ["oj"],
-    "au": ["aw"],
-    "eu": ["ew"],
-    "iu": ["ju"],
-    "ui": ["wi"]
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "θ"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "x"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "x"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ll": [
+      "ʝ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "b"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks",
+      "s"
+    ],
+    "y": [
+      "ʝ",
+      "i"
+    ],
+    "z": [
+      "θ"
+    ],
+    "güe": [
+      "ɡwe"
+    ],
+    "güi": [
+      "ɡwi"
+    ],
+    "ie": [
+      "je"
+    ],
+    "ue": [
+      "we"
+    ],
+    "ia": [
+      "ja"
+    ],
+    "io": [
+      "jo"
+    ],
+    "ua": [
+      "wa"
+    ],
+    "uo": [
+      "wo"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "iu": [
+      "ju"
+    ],
+    "ui": [
+      "wi"
+    ]
   },
-
   "allophones": {
-    "p": ["p"],
-    "b": ["b", "β"],
-    "t": ["t"],
-    "d": ["d", "ð"],
-    "k": ["k"],
-    "ɡ": ["ɡ", "ɣ"],
-    "tʃ": ["tʃ"],
-    "f": ["f"],
-    "θ": ["θ"],
-    "s": ["s̺"],
-    "x": ["x", "χ"],
-    "ʝ": ["ʝ", "ɟʝ", "j"],
-    "m": ["m"],
-    "n": ["n", "ŋ", "m"],
-    "ɲ": ["ɲ"],
-    "l": ["l"],
-    "ɾ": ["ɾ"],
-    "r": ["r"],
-    "j": ["j"],
-    "w": ["w"],
-    "a": ["a"],
-    "e": ["e"],
-    "ɛ": ["ɛ"],
-    "i": ["i"],
-    "o": ["o"],
-    "ɔ": ["ɔ"],
-    "u": ["u"]
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "f": [
+      "f"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "s": [
+      "s̺"
+    ],
+    "x": [
+      "x",
+      "χ"
+    ],
+    "ʝ": [
+      "ʝ",
+      "ɟʝ",
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ]
   },
-
   "positional_graphemes": {
     "b": {
-      "intervocalic": ["β"]
+      "intervocalic": [
+        "β"
+      ]
     },
     "d": {
-      "intervocalic": ["ð"],
-      "word_final": ["ð"]
+      "intervocalic": [
+        "ð"
+      ],
+      "word_final": [
+        "ð"
+      ]
     },
     "g": {
-      "before_e": ["x"],
-      "before_i": ["x"],
-      "intervocalic": ["ɣ"]
+      "before_e": [
+        "x"
+      ],
+      "before_i": [
+        "x"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
     },
     "c": {
-      "before_e": ["θ"],
-      "before_i": ["θ"]
+      "before_e": [
+        "θ"
+      ],
+      "before_i": [
+        "θ"
+      ]
     },
     "x": {
-      "before_consonant": ["s"]
+      "before_consonant": [
+        "s"
+      ]
     },
     "r": {
-      "word_initial": ["r"],
-      "intervocalic": ["ɾ"],
-      "coda": ["ɾ"]
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ]
     },
     "n": {
-      "coda": ["n", "ŋ"]
+      "coda": [
+        "n",
+        "ŋ"
+      ]
     }
   },
-
   "ancestors": [
     {
       "code": "la-x-hispania",
@@ -163,6 +355,37 @@
       "notes": "Mozarabic: the Ibero-Romance of the Christian communities in al-Andalus. Absorbed into Castilian through the Reconquista resettlement of the meseta and Andalusia."
     }
   ],
-
-  "notes": "The earliest, longest, and most famous literary composition in Old Spanish is the Cantar de mio Cid (c. 1140–1207)"
+  "notes": "The earliest, longest, and most famous literary composition in Old Spanish is the Cantar de mio Cid (c. 1140–1207)",
+  "sources": [
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lapesa1981",
+      "author": "Lapesa, R.",
+      "year": 1981,
+      "title": "Historia de la lengua española (9th ed.)",
+      "publisher": "Gredos",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

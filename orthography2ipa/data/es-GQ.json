@@ -41,5 +41,37 @@
   "parent": "es-ES",
   "notes": "Equatoguinean Spanish. Only Spanish-speaking country in sub-Saharan Africa. Bantu substrate (Fang, Bubi): possible prenasalisation, weakened /ɾ/-/r/ distinction. Seseo, yeísmo. Conservative in many features. Tonal influence from substrate languages (suprasegmental, not captured here).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "quilis1993",
+      "author": "Quilis, A.",
+      "year": 1993,
+      "title": "Tratado de fonología y fonética españolas",
+      "publisher": "Gredos",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

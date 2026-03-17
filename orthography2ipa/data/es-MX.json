@@ -43,5 +43,37 @@
   "parent": "es-ES",
   "notes": "Highland Mexican (Mexico City / Central Plateau). Conservative: full coda /s/, velar [x], no aspiration. Distinctive unstressed vowel devoicing (especially sentence-finally). Very tense [tʃ]. Weak approximant [ʝ̞]. Largest Spanish-speaking country.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lope_blanch1972",
+      "author": "Lope Blanch, J.M.",
+      "year": 1972,
+      "title": "El concepto del prestigio y la norma lingüística del español",
+      "publisher": "UNAM",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

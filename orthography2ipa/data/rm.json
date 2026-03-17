@@ -224,5 +224,37 @@
   ],
   "notes": "Romansh (Rumantsch). Rhaeto-Romance language of Graubünden, Switzerland. ~60,000 speakers. National language since 1938. Written standard: Rumantsch Grischun (1982). Five spoken idioms: Sursilvan, Sutsilvan, Surmiran, Puter, Vallader. Key features: (1) CA- palatalisation. (2) Front rounded vowels /y/. (3) Heavy German contact influence (Liver 1999).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "liver1999",
+      "author": "Liver, R.",
+      "year": 1999,
+      "title": "Rätoromanisch: Eine Einführung in das Bündnerromanische",
+      "publisher": "Narr",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

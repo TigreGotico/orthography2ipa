@@ -322,5 +322,37 @@
   "parent": "pt-BR",
   "notes": "Carioca (Rio de Janeiro city). Hallmark: palatal sibilants in coda [ʃ,ʒ] — shared with European Portuguese but unique in Brazil (mesmo → [ˈmeʒmu], paz → [ˈpaʃ]). Onset /r/ → [x,χ] (strong velar/uvular). Coda /r/ → aspiration [h]. Full /t,d/ palatalisation. The 'standard accent' for Brazilian TV/media alongside Paulistano.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "callou_leite2001",
+      "author": "Callou, D. & Leite, Y.",
+      "year": 2001,
+      "title": "Iniciação à fonética e à fonologia (8th ed.)",
+      "publisher": "Zahar",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "silva2002",
+      "author": "Silva, T.C.",
+      "year": 2002,
+      "title": "Fonética e fonologia do português",
+      "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

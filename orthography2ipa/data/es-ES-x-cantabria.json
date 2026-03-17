@@ -14,5 +14,37 @@
   "parent": "es-ES",
   "notes": "Cantabrian Spanish (Montañés). Northern conservative dialect with Asturleonese substrate. Apico-alveolar [s̺] (northern type), distinción preserved, conservative [ʎ] (weakening). Transitional between Castilian and Asturian. Some Leonese metaphony traces in western areas.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "alarcos_llorach1994",
+      "author": "Alarcos Llorach, E.",
+      "year": 1994,
+      "title": "Gramática de la Lengua Española",
+      "publisher": "Espasa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

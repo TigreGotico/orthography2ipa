@@ -381,5 +381,37 @@
   ],
   "notes": "Standard Italian (based on Florentine/Tuscan). Open/close mid-vowel distinction (e/ɛ, o/ɔ) is lexically determined and varies by region. Gemination is phonemic (fato/fatto). Gorgia toscana (intervocalic stop aspiration) is a regional Tuscan feature, not standard.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "rogers_derosa2004",
+      "author": "Rogers, D. & d'Arcangeli, L.",
+      "year": 2004,
+      "title": "Italian",
+      "publisher": "Journal of the International Phonetic Association",
+      "url": null,
+      "pages": "117-121",
+      "notes": null
+    },
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

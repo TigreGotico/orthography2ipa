@@ -4,5 +4,37 @@
   "family": "Romance",
   "script": "Arabic",
   "parent": "la-x-late",
-  "notes": "Mozarabic (8th–13th c. CE). Romance language of Al-Andalus, spoken by Christians, some Jews/Muslims under Islamic rule. Attested in kharjas (Arabic/Hebrew-script Romance stanzas) and botanical/medical texts. ARCHAIC features: no ĕ/ŏ diphthongisation (noite not noche), F- preserved as [f] (not [h]), Latin PL-/CL-/FL- preserved, -CT- → [jt] not [tʃ]. Extinct by ~13th century, replaced by advancing Castilian, Portuguese, and Catalan. Written in Arabic/Hebrew scripts."
+  "notes": "Mozarabic (8th–13th c. CE). Romance language of Al-Andalus, spoken by Christians, some Jews/Muslims under Islamic rule. Attested in kharjas (Arabic/Hebrew-script Romance stanzas) and botanical/medical texts. ARCHAIC features: no ĕ/ŏ diphthongisation (noite not noche), F- preserved as [f] (not [h]), Latin PL-/CL-/FL- preserved, -CT- → [jt] not [tʃ]. Extinct by ~13th century, replaced by advancing Castilian, Portuguese, and Catalan. Written in Arabic/Hebrew scripts.",
+  "sources": [
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lapesa1981",
+      "author": "Lapesa, R.",
+      "year": 1981,
+      "title": "Historia de la lengua española (9th ed.)",
+      "publisher": "Gredos",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

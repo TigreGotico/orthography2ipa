@@ -293,5 +293,37 @@
   ],
   "notes": "Corsican. Italo-Romance of Corsica, closely related to Tuscan Italian but with its own innovations and archaic retentions. ~100,000 speakers (declining rapidly under French pressure). Key features: (1) Close to medieval Tuscan. (2) Gorgia (aspiration of voiceless stops) in some areas (Tuscan heritage). (3) French superstrate increasing since 1769 (Ferracci 2007, Marchetti 1989).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "dalbera_stefanaggi1991",
+      "author": "Dalbera-Stefanaggi, M.-J.",
+      "year": 1991,
+      "title": "Langues corses",
+      "publisher": "Édisud",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

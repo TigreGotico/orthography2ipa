@@ -28,5 +28,37 @@
   "parent": "es-ES",
   "notes": "Seseo, yeísmo. Coda /s/ aspiration noted in allophone map.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "harris1969",
+      "author": "Harris, J.W.",
+      "year": 1969,
+      "title": "Spanish Phonology",
+      "publisher": "MIT Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

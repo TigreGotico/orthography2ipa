@@ -324,5 +324,37 @@
   "notes": "Sicilian. Southern Italo-Romance of Sicily and S. Calabria. ~4.7 million speakers. Key features: (1) 5-VOWEL system /a ɛ i ɔ u/ (like Sardinian, more archaic than Italian's 7). (2) Retroflex consonants: -LL- → [ɖː] (beddu 'beautiful'), TR → [ʈɽ]. (3) Final vowel reduction. Literary tradition from 13th c. Sicilian School (Ferrante 2020).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "scn"
+  "iso639_3": "scn",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

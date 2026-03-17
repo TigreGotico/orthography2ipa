@@ -143,10 +143,13 @@
     "ui": [
       "uj"
     ],
-
-    "uei": ["wɛj"],
-
-    "y": ["i", "j"]
+    "uei": [
+      "wɛj"
+    ],
+    "y": [
+      "i",
+      "j"
+    ]
   },
   "allophones": {
     "p": [
@@ -170,11 +173,9 @@
       "ɡ",
       "ɣ"
     ],
-
     "v": [
       "v"
     ],
-
     "t͡s": [
       "t͡s"
     ],
@@ -190,7 +191,6 @@
     "f": [
       "f"
     ],
-
     "s": [
       "s"
     ],
@@ -268,7 +268,6 @@
       "ũ"
     ]
   },
-
   "positional_graphemes": {
     "c": {
       "before_e": [
@@ -297,7 +296,6 @@
         "z̺"
       ]
     },
-
     "a": {
       "nucleus_stressed": [
         "a"
@@ -327,7 +325,6 @@
       ]
     }
   },
-
   "parent": "la-x-hispania",
   "ancestors": [
     {
@@ -394,5 +391,37 @@
     "https://ast.wikipedia.org/wiki/Galaicoportugu%C3%A9s",
     "https://ca.wikipedia.org/wiki/Galaicoportugu%C3%A8s",
     "https://an.wikipedia.org/wiki/Galaicoportugu%C3%A9s"
+  ],
+  "sources": [
+    {
+      "id": "maia1986",
+      "author": "Maia, C.A.",
+      "year": 1986,
+      "title": "História do galego-português",
+      "publisher": "INIC",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "freixeiro_mato1998",
+      "author": "Freixeiro Mato, X.R.",
+      "year": 1998,
+      "title": "Gramática da Lingua Galega",
+      "publisher": "A Nosa Terra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
   ]
 }

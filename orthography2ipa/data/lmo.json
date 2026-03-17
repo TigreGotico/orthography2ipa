@@ -135,5 +135,37 @@
   "notes": "Lombard. Gallo-Italic language of Lombardy, parts of Piedmont, and Swiss Ticino. ~3.5 million speakers. Reference variety: Western Lombard (Milanese). Key features: (1) Front rounded vowels /y, ø/. (2) Phonemic vowel length. (3) Degemination. (4) Extreme final vowel loss. (5) Intervocalic lenition (Sanga 1984).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "lmo"
+  "iso639_3": "lmo",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

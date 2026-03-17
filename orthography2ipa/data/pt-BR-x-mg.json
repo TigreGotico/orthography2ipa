@@ -321,5 +321,37 @@
   "parent": "pt-BR",
   "notes": "Mineiro (Minas Gerais, centred on Belo Horizonte). Transitional between Paulistano and Caipira: retroflex [ɻ] in interior, tap [ɾ] in BH city. Strong pretonic vowel raising. Full /t,d/ palatalisation. Cultural marker: 'uai' interjection. Alveolar coda /s/.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "callou_leite2001",
+      "author": "Callou, D. & Leite, Y.",
+      "year": 2001,
+      "title": "Iniciação à fonética e à fonologia (8th ed.)",
+      "publisher": "Zahar",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "silva2002",
+      "author": "Silva, T.C.",
+      "year": 2002,
+      "title": "Fonética e fonologia do português",
+      "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

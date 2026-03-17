@@ -249,5 +249,37 @@
   "notes": "Friulian (Furlan). Largest Rhaeto-Romance language, ~600,000 speakers in Friuli-Venezia Giulia. Classification debated: Rhaeto-Romance or NE Italo-Romance with Rhaeto features. Key features: (1) Phonemic vowel LENGTH (unique in modern Italo-Romance). (2) CA-/GA- palatalisation to [tʃ]/[dʒ]. (3) Final consonant clusters retained. (4) Official regional language since 1999 (Iliescu 2016).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "fur"
+  "iso639_3": "fur",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "vanelli1979",
+      "author": "Vanelli, L.",
+      "year": 1979,
+      "title": "L'allungamento delle vocali in friulano",
+      "publisher": "Ce fastu?",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

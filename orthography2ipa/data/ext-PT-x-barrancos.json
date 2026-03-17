@@ -7,58 +7,95 @@
   "graphemes_base": "pt-PT",
   "allophones_base": "pt-PT",
   "positional_graphemes_base": "pt-PT",
-
   "graphemes": {
-    "tch": ["tʃ"],
-
-    "rr": ["r"],
-
-    "v": ["b"],
-    "b": ["b"],
-
-    "h": ["h"]
+    "tch": [
+      "tʃ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "v": [
+      "b"
+    ],
+    "b": [
+      "b"
+    ],
+    "h": [
+      "h"
+    ]
   },
-
   "allophones": {
     "v": null,
     "ʁ": null,
-
-    "b": ["b", "β"],
-    "r": ["r"],
-    "h": ["h", "ɦ"]
+    "b": [
+      "b",
+      "β"
+    ],
+    "r": [
+      "r"
+    ],
+    "h": [
+      "h",
+      "ɦ"
+    ]
   },
-
   "positional_graphemes": {
     "r": {
-      "word_initial": ["r"],
-      "intervocalic": ["ɾ"],
-      "coda": ["ɾ"]
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ]
     },
     "s": {
-      "word_initial": ["s"],
-      "intervocalic": ["z"],
-      "coda": ["s", "ʃ"]
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "coda": [
+        "s",
+        "ʃ"
+      ]
     },
     "g": {
-      "before_e": ["ʒ"],
-      "before_i": ["ʒ"]
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
+      ]
     },
     "c": {
-      "before_e": ["s"],
-      "before_i": ["s"]
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
     },
     "qu": {
-      "before_e": ["k"],
-      "before_i": ["k"],
-      "before_vowel": ["kw"]
+      "before_e": [
+        "k"
+      ],
+      "before_i": [
+        "k"
+      ],
+      "before_vowel": [
+        "kw"
+      ]
     }
   },
-
   "ancestors": [
     {
       "code": "pt-PT",
       "role": "parent",
-      "weight": 0.60,
+      "weight": 0.6,
       "notes": "European Portuguese: the dominant language surrounding Barrancos and the primary structural base of Barranquenho. The phonological system, orthographic conventions, and most of the lexicon derive from Portuguese."
     },
     {
@@ -74,6 +111,37 @@
       "notes": "Galaico-Portuguese: shared nasal vowels, lh/nh digraph conventions, and general Ibero-Romance vowel quality inherited through the Portuguese base."
     }
   ],
-
-  "notes": "Barranquenho, the contact vernacular of Barrancos (Baixo Alentejo, Portugal), spoken by ~1,600–2,000 people in a town surrounded on three sides by the Spanish province of Huelva. Classified as Extremaduran Portuguese (ext-PT) with heavy Spanish adstrate influence; listed by UNESCO as 'definitely endangered'. The 2025 Convenção Ortográfica do Barranquenho (II Congresso Barranquenho, June 2025) codified the orthographic norms implemented in this spec. Source: g2p-barranquenho phonemizer (https://github.com/NLP-Workspace/g2p-barranquenho), Convenção Ortográfica 2025. KEY PHONOLOGICAL FEATURES distinguishing Barranquenho from standard pt-PT: (1) BETACISM: /v/ merged with /b/ — the phoneme /v/ does not exist; ⟨v⟩ always represents /b/ (same as Spanish; unlike Portuguese where /v/=/v/). Comment in source: 'NOT USED in barranquenho, it always written B never V'. (2) ASPIRATED ⟨h⟩: unlike Portuguese (where h is silent), Barranquenho ⟨h⟩ = /h/ (under Spanish/Andalusian influence). (3) ALVEOLAR TRILL: word-initial ⟨r⟩ and ⟨rr⟩ = /r/ (alveolar trill), NOT /ʁ/ (uvular) as in standard European Portuguese — matching the Spanish pattern. (4) ⟨tch⟩ = /tʃ/: affricate trigraph absent from standard Portuguese orthography. (5) SIBILANT VOICING: ⟨s⟩ word-initial = /s/, intervocalic = /z/ (like Portuguese). (6) ⟨g⟩ + front vowel = /ʒ/ (like Portuguese, NOT /x/ as in Spanish/Rionorese). (7) VOWELS: word-final ⟨a⟩ → /ɐ/, word-final ⟨e⟩ → /ɨ/ (Portuguese-style vowel reduction maintained). Nasal vowels: ⟨en/em⟩ → /ẽj/ (Portuguese nasal diphthong). PHONEMES NOT PRESENT: /v/ (merged into /b/), /ʁ/ (replaced by alveolar /r/)."
+  "notes": "Barranquenho, the contact vernacular of Barrancos (Baixo Alentejo, Portugal), spoken by ~1,600–2,000 people in a town surrounded on three sides by the Spanish province of Huelva. Classified as Extremaduran Portuguese (ext-PT) with heavy Spanish adstrate influence; listed by UNESCO as 'definitely endangered'. The 2025 Convenção Ortográfica do Barranquenho (II Congresso Barranquenho, June 2025) codified the orthographic norms implemented in this spec. Source: g2p-barranquenho phonemizer (https://github.com/NLP-Workspace/g2p-barranquenho), Convenção Ortográfica 2025. KEY PHONOLOGICAL FEATURES distinguishing Barranquenho from standard pt-PT: (1) BETACISM: /v/ merged with /b/ — the phoneme /v/ does not exist; ⟨v⟩ always represents /b/ (same as Spanish; unlike Portuguese where /v/=/v/). Comment in source: 'NOT USED in barranquenho, it always written B never V'. (2) ASPIRATED ⟨h⟩: unlike Portuguese (where h is silent), Barranquenho ⟨h⟩ = /h/ (under Spanish/Andalusian influence). (3) ALVEOLAR TRILL: word-initial ⟨r⟩ and ⟨rr⟩ = /r/ (alveolar trill), NOT /ʁ/ (uvular) as in standard European Portuguese — matching the Spanish pattern. (4) ⟨tch⟩ = /tʃ/: affricate trigraph absent from standard Portuguese orthography. (5) SIBILANT VOICING: ⟨s⟩ word-initial = /s/, intervocalic = /z/ (like Portuguese). (6) ⟨g⟩ + front vowel = /ʒ/ (like Portuguese, NOT /x/ as in Spanish/Rionorese). (7) VOWELS: word-final ⟨a⟩ → /ɐ/, word-final ⟨e⟩ → /ɨ/ (Portuguese-style vowel reduction maintained). Nasal vowels: ⟨en/em⟩ → /ẽj/ (Portuguese nasal diphthong). PHONEMES NOT PRESENT: /v/ (merged into /b/), /ʁ/ (replaced by alveolar /r/).",
+  "sources": [
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

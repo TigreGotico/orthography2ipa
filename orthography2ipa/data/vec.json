@@ -251,5 +251,37 @@
   "notes": "Venetian. NE Italo-Romance language of Veneto, Trentino, Friuli, and Istria. ~3.8 million speakers. Reference: Veneziano. Straddles Gallo-Italic / Italo-Romance boundary. Key features: (1) 7-vowel system (Italo-Romance). (2) Interdental fricatives /θ, ð/ in some varieties. (3) Intervocalic lenition (Gallo-Italic-like). (4) Partial degemination. (5) No /y/ fronting. Former lingua franca of the eastern Mediterranean (Ferguson 2007, Zamboni 1974).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "vec"
+  "iso639_3": "vec",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

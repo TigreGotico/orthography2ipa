@@ -338,5 +338,37 @@
   "notes": "A Fala (Xalimego/Fala de Xálima). Galician-Portuguese linguistic island in Cáceres, Extremadura. Three local varieties: Valverdeiru (Valverde del Fresno), Lagarteiro (Eljas), Mañegu (San Martín de Trevejo). ~5,000–10,000 speakers. Preserves medieval Galician-Portuguese features with Leonese/Extremaduran influence (F- → [h] aspiration in some words). Betacism. Nasal vowels. Palatal [ʎ]. ISO 639-3: fax.",
   "quality": "research",
   "script_type": "alphabet",
-  "iso639_3": "fax"
+  "iso639_3": "fax",
+  "sources": [
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "alarcos_llorach1994",
+      "author": "Alarcos Llorach, E.",
+      "year": 1994,
+      "title": "Gramática de la Lengua Española",
+      "publisher": "Espasa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

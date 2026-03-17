@@ -4,157 +4,382 @@
   "family": "Romance",
   "script": "Latin",
   "parent": "roa-x-galaicopt",
-
   "graphemes": {
-    "a": ["a"],
-    "á": ["a"],
-    "e": ["e", "ɛ"],
-    "é": ["ɛ"],
-    "i": ["i"],
-    "í": ["i"],
-    "o": ["o", "ɔ"],
-    "ó": ["ɔ"],
-    "u": ["u"],
-    "ú": ["u"],
-
-    "ã": ["ɐ̃"],
-    "an": ["ɐ̃"],
-    "en": ["ẽ"],
-    "in": ["ĩ"],
-    "on": ["õ"],
-    "un": ["ũ"],
-    "ón": ["õ"],
-    "án": ["ɐ̃"],
-    "én": ["ẽ"],
-    "ín": ["ĩ"],
-    "ún": ["ũ"],
-
-    "b": ["b"],
-    "c": ["k", "s"],
-    "ch": ["tʃ"],
-    "d": ["d"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "gu": ["ɡ"],
-    "h": [""],
-    "k": ["k"],
-    "l": ["l"],
-    "ll": ["ʎ"],
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "ã": [
+      "ɐ̃"
+    ],
+    "an": [
+      "ɐ̃"
+    ],
+    "en": [
+      "ẽ"
+    ],
+    "in": [
+      "ĩ"
+    ],
+    "on": [
+      "õ"
+    ],
+    "un": [
+      "ũ"
+    ],
+    "ón": [
+      "õ"
+    ],
+    "án": [
+      "ɐ̃"
+    ],
+    "én": [
+      "ẽ"
+    ],
+    "ín": [
+      "ĩ"
+    ],
+    "ún": [
+      "ũ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ll": [
+      "ʎ"
+    ],
     "lh": null,
-    "m": ["m"],
-    "n": ["n"],
-    "ñ": ["ɲ"],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
     "nh": null,
-    "p": ["p"],
-    "q": ["k"],
-    "qu": ["k"],
-    "r": ["ɾ"],
-    "rr": ["r"],
-    "s": ["s"],
-    "ss": ["s"],
-    "t": ["t"],
-    "v": ["b"],
-    "w": ["w"],
-    "x": ["ʃ"],
-    "y": ["j", "i"],
-    "z": ["z", "s"],
-
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ss": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "b"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "y": [
+      "j",
+      "i"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
     "ç": null,
-
-    "güe": ["ɡwe"],
-    "güi": ["ɡwi"],
-
-    "ai": ["aj"],
-    "ei": ["ej"],
-    "oi": ["oj"],
-    "au": ["aw"],
-    "eu": ["ew"],
-    "ou": ["ow"],
-    "ia": ["ja"],
-    "ie": ["je"],
-    "io": ["jo"],
-    "ua": ["wa"],
-    "ue": ["we"],
-    "uo": ["wo"],
-    "iu": ["ju"],
-    "ui": ["wi"],
-
-    "ão": ["ɐ̃w̃"],
-    "ãi": ["ɐ̃j"]
+    "güe": [
+      "ɡwe"
+    ],
+    "güi": [
+      "ɡwi"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ia": [
+      "ja"
+    ],
+    "ie": [
+      "je"
+    ],
+    "io": [
+      "jo"
+    ],
+    "ua": [
+      "wa"
+    ],
+    "ue": [
+      "we"
+    ],
+    "uo": [
+      "wo"
+    ],
+    "iu": [
+      "ju"
+    ],
+    "ui": [
+      "wi"
+    ],
+    "ão": [
+      "ɐ̃w̃"
+    ],
+    "ãi": [
+      "ɐ̃j"
+    ]
   },
-
   "allophones": {
-    "p": ["p"],
-    "b": ["b", "β"],
-    "t": ["t"],
-    "d": ["d", "ð"],
-    "k": ["k"],
-    "ɡ": ["ɡ", "ɣ"],
-    "tʃ": ["tʃ"],
-    "f": ["f"],
-    "s": ["s̺"],
-    "z": ["z"],
-    "ʃ": ["ʃ"],
-    "ʒ": ["ʒ"],
-    "m": ["m"],
-    "n": ["n", "ŋ"],
-    "ɲ": ["ɲ"],
-    "l": ["l"],
-    "ʎ": ["ʎ"],
-    "ɾ": ["ɾ"],
-    "r": ["r"],
-    "j": ["j"],
-    "w": ["w"],
-    "a": ["a"],
-    "e": ["e"],
-    "ɛ": ["ɛ"],
-    "i": ["i"],
-    "o": ["o"],
-    "ɔ": ["ɔ"],
-    "u": ["u"],
-    "ɐ̃": ["ɐ̃"],
-    "ẽ": ["ẽ"],
-    "ĩ": ["ĩ"],
-    "õ": ["õ"],
-    "ũ": ["ũ"],
-
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s̺"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɐ̃": [
+      "ɐ̃"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ],
     "t͡s": null,
     "d͡z": null
   },
-
   "positional_graphemes": {
     "b": {
-      "intervocalic": ["β"]
+      "intervocalic": [
+        "β"
+      ]
     },
     "d": {
-      "intervocalic": ["ð"]
+      "intervocalic": [
+        "ð"
+      ]
     },
     "g": {
-      "intervocalic": ["ɣ"]
+      "intervocalic": [
+        "ɣ"
+      ]
     },
     "c": {
-      "before_e": ["s"],
-      "before_i": ["s"]
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
     },
     "z": {
-      "word_initial": ["s"],
-      "intervocalic": ["z"],
-      "word_final": ["s"]
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "word_final": [
+        "s"
+      ]
     },
     "r": {
-      "word_initial": ["r"],
-      "intervocalic": ["ɾ"],
-      "coda": ["ɾ"]
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ]
     },
     "n": {
-      "coda": ["n", "ŋ"]
+      "coda": [
+        "n",
+        "ŋ"
+      ]
     },
     "l": {
-      "onset": ["l"],
-      "coda": ["ɫ"]
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "ɫ"
+      ]
     }
   },
-
   "ancestors": [
     {
       "code": "roa-x-galaicopt",
@@ -205,6 +430,37 @@
       "notes": "Lusitanian substrate: pre-Celtic IE of western Iberia, inherited through Galaico-Portuguese."
     }
   ],
-
-  "notes": "Standard Galician (galego) per the Real Academia Galega (RAG) *Normas ortográficas e morfolóxicas do idioma galego* (2003, revised 2012). Spoken by ~2.4 million people in the Autonomous Community of Galicia (Spain) and diaspora communities. KEY FEATURES vs. Portuguese: (1) SESEO: no /θ/ phoneme — ⟨c⟩ before e/i and ⟨z⟩ = /s/ (not /θ/ as in Castilian, not Portuguese /s̻/). (2) APICO-ALVEOLAR /s/ [s̺] like Castilian/Asturian (not Portuguese predorsal [s̻]). (3) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (unlike Portuguese which preserves /v/ ≠ /b/). (4) ⟨ll⟩ = /ʎ/, ⟨ñ⟩ = /ɲ/ (Castilian orthographic conventions, not Portuguese ⟨lh⟩/⟨nh⟩). (5) ⟨ch⟩ = /tʃ/ (standard pronunciation; urban registers increasingly /ʃ/ under Portuguese/Spanish influence). (6) ⟨x⟩ = /ʃ/ — covers many words where Castilian uses ⟨j⟩/⟨ge,gi⟩ (e.g. 'xeneral' [ʃeneˈɾal] vs. Spanish 'general'). (7) NO VOWEL REDUCTION: unstressed /a/ stays [a] (not /ɐ/ as in Portuguese). (8) 7 oral vowel qualities in tonic position: /a, e, ɛ, i, o, ɔ, u/. (9) NASAL VOWELS word-finally (irmán [ɐ̃], corazón [õ]). (10) Preserves diphthongs: ou /ow/ ('cousa'), ei /ej/ ('leite'). KEY FEATURES vs. Asturian: Galician has seseo (no /θ/), no Leonese diphthongization in the same systematic way, descends from Galaico-Portuguese not Asturleonese. Sources: Freixeiro Mato (2006) *Gramática da Lingua Galega*, Regueira (1996), Ferreiro (1997)."
+  "notes": "Standard Galician (galego) per the Real Academia Galega (RAG) *Normas ortográficas e morfolóxicas do idioma galego* (2003, revised 2012). Spoken by ~2.4 million people in the Autonomous Community of Galicia (Spain) and diaspora communities. KEY FEATURES vs. Portuguese: (1) SESEO: no /θ/ phoneme — ⟨c⟩ before e/i and ⟨z⟩ = /s/ (not /θ/ as in Castilian, not Portuguese /s̻/). (2) APICO-ALVEOLAR /s/ [s̺] like Castilian/Asturian (not Portuguese predorsal [s̻]). (3) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (unlike Portuguese which preserves /v/ ≠ /b/). (4) ⟨ll⟩ = /ʎ/, ⟨ñ⟩ = /ɲ/ (Castilian orthographic conventions, not Portuguese ⟨lh⟩/⟨nh⟩). (5) ⟨ch⟩ = /tʃ/ (standard pronunciation; urban registers increasingly /ʃ/ under Portuguese/Spanish influence). (6) ⟨x⟩ = /ʃ/ — covers many words where Castilian uses ⟨j⟩/⟨ge,gi⟩ (e.g. 'xeneral' [ʃeneˈɾal] vs. Spanish 'general'). (7) NO VOWEL REDUCTION: unstressed /a/ stays [a] (not /ɐ/ as in Portuguese). (8) 7 oral vowel qualities in tonic position: /a, e, ɛ, i, o, ɔ, u/. (9) NASAL VOWELS word-finally (irmán [ɐ̃], corazón [õ]). (10) Preserves diphthongs: ou /ow/ ('cousa'), ei /ej/ ('leite'). KEY FEATURES vs. Asturian: Galician has seseo (no /θ/), no Leonese diphthongization in the same systematic way, descends from Galaico-Portuguese not Asturleonese. Sources: Freixeiro Mato (2006) *Gramática da Lingua Galega*, Regueira (1996), Ferreiro (1997).",
+  "sources": [
+    {
+      "id": "freixeiro_mato1998",
+      "author": "Freixeiro Mato, X.R.",
+      "year": 1998,
+      "title": "Gramática da Lingua Galega",
+      "publisher": "A Nosa Terra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "carballo_calero1979",
+      "author": "Carballo Calero, R.",
+      "year": 1979,
+      "title": "Gramática elemental del gallego común (7th ed.)",
+      "publisher": "Galaxia",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

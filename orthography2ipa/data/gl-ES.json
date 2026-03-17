@@ -379,5 +379,37 @@
   ],
   "notes": "Standard Galician per RAG norms. Gheada not reflected in standard.",
   "quality": "research",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "freixeiro_mato1998",
+      "author": "Freixeiro Mato, X.R.",
+      "year": 1998,
+      "title": "Gramática da Lingua Galega",
+      "publisher": "A Nosa Terra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "carballo_calero1979",
+      "author": "Carballo Calero, R.",
+      "year": 1979,
+      "title": "Gramática elemental del gallego común (7th ed.)",
+      "publisher": "Galaxia",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

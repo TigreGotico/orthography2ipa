@@ -36,5 +36,37 @@
       "notes": "Arabic adstrate: minor, via Iberian transmission"
     }
   ],
-  "notes": "Based on Languedocien/general Occitan norms. Substantial dialectal variation across Gascon, Provençal, Limousin, Auvergnat, and Vivaro-Alpine."
+  "notes": "Based on Languedocien/general Occitan norms. Substantial dialectal variation across Gascon, Provençal, Limousin, Auvergnat, and Vivaro-Alpine.",
+  "sources": [
+    {
+      "id": "alibert1976",
+      "author": "Alibert, L.",
+      "year": 1976,
+      "title": "Gramatica occitana",
+      "publisher": "Institut d'Estudis Occitans",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "bec1973",
+      "author": "Bec, P.",
+      "year": 1973,
+      "title": "Manuel pratique d'occitan moderne",
+      "publisher": "Picard",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

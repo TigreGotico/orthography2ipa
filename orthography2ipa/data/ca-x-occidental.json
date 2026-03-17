@@ -15,5 +15,37 @@
   "parent": "ca",
   "notes": "Northwestern Catalan (Lleidatà/Pallarès). Western block, spoken in Lleida and Pyrenean valleys. Like Valencian: minimal vowel reduction (no phonemic schwa), 7-vowel system maintained in all positions. Otherwise consonant system close to Central Catalan standard.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wheeler2005",
+      "author": "Wheeler, M.",
+      "year": 2005,
+      "title": "The Phonology of Catalan",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "badia_i_margarit1994",
+      "author": "Badia i Margarit, A.M.",
+      "year": 1994,
+      "title": "Gramàtica de la llengua catalana",
+      "publisher": "Enciclopèdia Catalana",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

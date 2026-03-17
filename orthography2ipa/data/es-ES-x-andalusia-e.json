@@ -90,5 +90,37 @@
   "parent": "es-ES",
   "notes": "Eastern Andalusian (Granada, Almería, Jaén). Maintains distinción (/θ/ vs /s/) but shares aspiration with west. Distinctive vowel opening when final -s is deleted, creating near-phonemic open/closed vowel pairs (approaching 10-vowel system): perros [ˈpɛrɔ] vs perro [ˈpero]. Affricate [tʃ] preserved (no deaffrication).",
   "quality": "research",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "zamora_vicente1960",
+      "author": "Zamora Vicente, A.",
+      "year": 1960,
+      "title": "Dialectología española",
+      "publisher": "Gredos",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -131,5 +131,37 @@
   "notes": "Piedmontese. Gallo-Italic language of Piedmont, NW Italy. ~1.6 million speakers. Key features: (1) Front rounded vowels /y, ø/ (Gallo-Romance innovation). (2) Degemination. (3) Final vowel reduction/loss. (4) Nasal vowels. (5) Stronger intervocalic lenition than standard Italian. French adstrate influence due to historical Savoyard ties (Berruto 1974, Loporcaro 2009).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "pms"
+  "iso639_3": "pms",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

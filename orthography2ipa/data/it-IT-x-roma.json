@@ -311,5 +311,37 @@
   ],
   "notes": "Romanesco (Roman dialect). Central Italian of Rome and Lazio. Historically distinct from Tuscan, but re-Tuscanised from the 15th century onward due to the Papal court. Key features: (1) NO gorgia. (2) Rhotacism: /l/ → [r] before consonants (alto → [ˈarto]). (3) -ND- → [nː], -MB- → [mː]. (4) Affricate strengthening: /dʒ/ → [dːʒ] intervocalically. Literary tradition from Belli (19th c.) (D'Achille & Giovanardi 2001).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

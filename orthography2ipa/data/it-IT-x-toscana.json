@@ -315,5 +315,37 @@
   ],
   "notes": "Tuscan. The dialect of Tuscany that is the historical basis of standard Italian. Distinguished from the standard primarily by GORGIA TOSCANA: intervocalic voiceless stops → fricatives (/p/→[ɸ], /t/→[θ], /k/→[h]). Also features stronger raddoppiamento sintattico. The open/close mid-vowel distinctions are most consistently maintained here (Giannelli 2000, Rohlfs 1966).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -141,5 +141,37 @@
   "notes": "Emilian-Romagnol. Gallo-Italic language of Emilia-Romagna. ~2 million speakers. Reference variety: Bolognese. Key features: (1) Front rounded vowels /y, ø/. (2) Phonemic vowel length. (3) Strong nasal vowels. (4) Degemination. (5) Intervocalic lenition (Hajek 1997, Loporcaro 2009).",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "iso639_3": "egl"
+  "iso639_3": "egl",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

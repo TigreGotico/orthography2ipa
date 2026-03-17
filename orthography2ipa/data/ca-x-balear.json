@@ -48,5 +48,37 @@
   "parent": "ca",
   "notes": "Balearic (Mallorquí/Menorquí/Eivissenc). Eastern block, most archaic Catalan variety. Extreme vowel reduction (beyond Central Catalan). Article salat (es/sa instead of el/la). Partial /v/ preservation. Deaffrication of /tʃ/ → [ʃ] in Mallorcan. Dark [ɫ] in all positions. Conservative palatal lateral [ʎ]. Some varieties preserve /v/.",
   "quality": "research",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wheeler2005",
+      "author": "Wheeler, M.",
+      "year": 2005,
+      "title": "The Phonology of Catalan",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "badia_i_margarit1994",
+      "author": "Badia i Margarit, A.M.",
+      "year": 1994,
+      "title": "Gramàtica de la llengua catalana",
+      "publisher": "Enciclopèdia Catalana",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

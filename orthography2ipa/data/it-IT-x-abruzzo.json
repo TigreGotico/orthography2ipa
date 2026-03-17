@@ -306,5 +306,37 @@
   ],
   "notes": "Abruzzese. Southern Italo-Romance of Abruzzo and Molise. Part of the upper Southern Italian (Neapolitan) dialect continuum. ~1.5 million speakers. Key features: (1) Very strong vowel reduction (unstressed finals → [ə]). (2) Productive metaphony (vowel harmony). (3) Gemination preserved. (4) /ʃ/ in consonant clusters (Avolio 1995, Ledgeway 2009).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

@@ -8,6 +8,37 @@
   "graphemes_base": "es-ES-x-medieval",
   "allophones_base": "es-ES-x-medieval",
   "positional_graphemes_base": "es-ES-x-medieval",
-
-  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. Sources: Quilis (1999), Penny (2002), Hualde (2014)."
+  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "harris1969",
+      "author": "Harris, J.W.",
+      "year": 1969,
+      "title": "Spanish Phonology",
+      "publisher": "MIT Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

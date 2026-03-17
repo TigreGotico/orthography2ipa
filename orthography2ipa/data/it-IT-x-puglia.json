@@ -319,5 +319,37 @@
   ],
   "notes": "Apulian (Pugliese). Southern Italo-Romance of Puglia. N. Puglia patterns with the Neapolitan continuum, S. Puglia (Salento) has stronger Greek substrate. Key features: (1) Vowel reduction to [ə]. (2) Metaphony. (3) Centralised [ɐ] in unstressed position (Barese). (4) Griko still spoken in Grecìa Salentina (Fanciullo 2015, Ledgeway 2009).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "maiden_parry1997",
+      "author": "Maiden, M. & Parry, M. (eds.)",
+      "year": 1997,
+      "title": "The Dialects of Italy",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "loporcaro2009",
+      "author": "Loporcaro, M.",
+      "year": 2009,
+      "title": "Profilo linguistico dei dialetti italiani",
+      "publisher": "Laterza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lepschy_lepschy1988",
+      "author": "Lepschy, A.L. & Lepschy, G.",
+      "year": 1988,
+      "title": "The Italian Language Today",
+      "publisher": "Hutchinson",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

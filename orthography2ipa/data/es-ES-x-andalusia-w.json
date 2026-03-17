@@ -131,5 +131,37 @@
   "parent": "es-ES",
   "notes": "Western Andalusian (Sevilla, Cádiz, Huelva, Córdoba, Málaga). Most phonologically innovative Castilian variety. Hallmarks: coda /s/ → [h] or ∅ (aspiration/deletion), /x/ → [h], universal yeísmo, seseo or ceceo (varies by locality), CH deaffrication [tʃ] → [ʃ] in Cádiz/Sevilla area, coda liquid neutralisation (/l/ ↔ /ɾ/), extreme lenition with consonant deletion, final -n velarisation. Basis for much of Latin American Spanish phonology.",
   "quality": "research",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "zamora_vicente1960",
+      "author": "Zamora Vicente, A.",
+      "year": 1960,
+      "title": "Dialectología española",
+      "publisher": "Gredos",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

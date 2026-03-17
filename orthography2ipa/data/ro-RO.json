@@ -315,5 +315,37 @@
   ],
   "notes": "Standard Romanian. Eastern Romance, the ONLY Romance language east of the Adriatic. Key features: (1) Central vowels /ə/ (⟨ă⟩) and /ɨ/ (⟨â/î⟩) — unique in Romance. (2) NO intervocalic lenition (lup, foc — not *lub, *fogo). (3) Postposed definite article (lupul 'the wolf'). (4) Rich diphthong/triphthong system. (5) Rhotacism: intervocalic /l/ → /r/ in some words (soare < SOLEM). (6) Massive Slavic vocabulary layer (~40%). (7) Balkan sprachbund member (Chițoran 2001, Sala 2005).",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mallinson1986",
+      "author": "Mallinson, G.",
+      "year": 1986,
+      "title": "Romanian",
+      "publisher": "Croom Helm",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "deletant_alexandrescu1983",
+      "author": "Deletant, D. & Alexandrescu, I.",
+      "year": 1983,
+      "title": "Teach Yourself Romanian",
+      "publisher": "Hodder & Stoughton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

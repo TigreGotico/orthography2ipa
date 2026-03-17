@@ -386,14 +386,94 @@
     }
   ],
   "sandhi_rules": [
-    {"id": "FR_LIAISON_Z", "name": "z-liaison", "left_context": "z$", "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]", "transform": "z‿", "obligatory": true, "notes": "les amis → lez‿ami"},
-    {"id": "FR_LIAISON_T", "name": "t-liaison", "left_context": "t$", "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]", "transform": "t‿", "obligatory": true, "notes": "petit ami → pətit‿ami"},
-    {"id": "FR_LIAISON_N", "name": "n-liaison", "left_context": "n$", "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]", "transform": "n‿", "obligatory": true, "notes": "un ami → ɛ̃n‿ami"},
-    {"id": "FR_LIAISON_R", "name": "r-liaison", "left_context": "ʁ$", "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]", "transform": "ʁ‿", "obligatory": false, "notes": "premier étage → optional"},
-    {"id": "FR_LIAISON_P", "name": "p-liaison", "left_context": "p$", "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]", "transform": "p‿", "obligatory": false, "notes": "trop aimable → optional"},
-    {"id": "FR_ENCHAÎNEMENT", "name": "enchaînement", "left_context": "[bdgvzʒ]$", "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]", "transform": "‿", "obligatory": true, "notes": "une amie → resyllabification"}
+    {
+      "id": "FR_LIAISON_Z",
+      "name": "z-liaison",
+      "left_context": "z$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "les amis → lez‿ami"
+    },
+    {
+      "id": "FR_LIAISON_T",
+      "name": "t-liaison",
+      "left_context": "t$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "petit ami → pətit‿ami"
+    },
+    {
+      "id": "FR_LIAISON_N",
+      "name": "n-liaison",
+      "left_context": "n$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "n‿",
+      "obligatory": true,
+      "notes": "un ami → ɛ̃n‿ami"
+    },
+    {
+      "id": "FR_LIAISON_R",
+      "name": "r-liaison",
+      "left_context": "ʁ$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "ʁ‿",
+      "obligatory": false,
+      "notes": "premier étage → optional"
+    },
+    {
+      "id": "FR_LIAISON_P",
+      "name": "p-liaison",
+      "left_context": "p$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "p‿",
+      "obligatory": false,
+      "notes": "trop aimable → optional"
+    },
+    {
+      "id": "FR_ENCHAÎNEMENT",
+      "name": "enchaînement",
+      "left_context": "[bdgvzʒ]$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "‿",
+      "obligatory": true,
+      "notes": "une amie → resyllabification"
+    }
   ],
   "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨en⟩, etc.) only nasalise when NOT followed by a vowel or another ⟨n⟩/⟨m⟩; context rules needed for disambiguation.",
   "quality": "skeleton",
-  "script_type": "alphabet"
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "fouche1959",
+      "author": "Fouché, P.",
+      "year": 1959,
+      "title": "Traité de prononciation française",
+      "publisher": "Klincksieck",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "tranel1987",
+      "author": "Tranel, B.",
+      "year": 1987,
+      "title": "The Sounds of French",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

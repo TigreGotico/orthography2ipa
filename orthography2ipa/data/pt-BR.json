@@ -3,13 +3,10 @@
   "name": "Brazilian Portuguese",
   "family": "Romance",
   "script": "Latin",
-
   "parent": "pt-PT-x-medieval",
-
   "graphemes_base": "pt-PT-x-medieval",
   "allophones_base": "pt-PT-x-medieval",
   "positional_graphemes_base": "pt-PT-x-medieval",
-
   "graphemes": {
     "c": [
       "k",
@@ -18,77 +15,188 @@
     "ç": [
       "s"
     ],
-    "s": ["s", "z"],
-    "z": ["z"],
-    "ch": ["ʃ"],
-    "r": ["ɾ", "ʁ"],
-    "rr": ["ʁ"],
-    "x": ["ʃ", "s", "z", "ks", "gz"],
-    "e": ["e", "ɛ"],
-    "o": ["o", "ɔ", "u"],
-    "t": ["t", "t͡ʃ"],
-    "d": ["d", "d͡ʒ"],
-
+    "s": [
+      "s",
+      "z"
+    ],
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+    "r": [
+      "ɾ",
+      "ʁ"
+    ],
+    "rr": [
+      "ʁ"
+    ],
+    "x": [
+      "ʃ",
+      "s",
+      "z",
+      "ks",
+      "gz"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "ɔ",
+      "u"
+    ],
+    "t": [
+      "t",
+      "t͡ʃ"
+    ],
+    "d": [
+      "d",
+      "d͡ʒ"
+    ],
     "ph": null,
     "th": null,
     "rh": null
   },
-
   "allophones": {
-    "ɾ": ["ɾ"],
-    "ʁ": ["ʁ", "χ", "h", "ɦ"],
-    "s": ["s"],
-    "z": ["z"],
-    "t͡ʃ": ["t͡ʃ"],
-    "d͡ʒ": ["d͡ʒ"],
-
-    "e": ["e", "i", "ɛ"],
-    "o": ["o", "u", "ɔ"],
-    "l": ["l", "w"]
+    "ɾ": [
+      "ɾ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ",
+      "h",
+      "ɦ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "t͡ʃ": [
+      "t͡ʃ"
+    ],
+    "d͡ʒ": [
+      "d͡ʒ"
+    ],
+    "e": [
+      "e",
+      "i",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "u",
+      "ɔ"
+    ],
+    "l": [
+      "l",
+      "w"
+    ]
   },
-
   "positional_graphemes": {
     "r": {
-      "word_initial": ["ʁ"],
-      "intervocalic": ["ɾ"],
-      "coda": ["∅"]
+      "word_initial": [
+        "ʁ"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "∅"
+      ]
     },
-
     "s": {
-      "word_initial": ["s"],
-      "intervocalic": ["z"],
-      "coda": ["s"],
-      "word_final": ["s"],
-      "intervocalic_cross_word": ["z"]
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
     },
-
     "z": {
-      "coda": ["s"],
-      "word_final": ["s"]
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
     },
-
     "l": {
-      "onset": ["l"],
-      "coda": ["w"]
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "w"
+      ]
     },
-
     "t": {
-      "before_i": ["t͡ʃ"]
+      "before_i": [
+        "t͡ʃ"
+      ]
     },
-
     "d": {
-      "before_i": ["d͡ʒ"]
+      "before_i": [
+        "d͡ʒ"
+      ]
     },
-
     "e": {
-      "nucleus_unstressed": ["e"],
-      "word_final": ["i"]
+      "nucleus_unstressed": [
+        "e"
+      ],
+      "word_final": [
+        "i"
+      ]
     },
-
     "o": {
-      "word_final": ["u"]
+      "word_final": [
+        "u"
+      ]
     }
   },
-
-  "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation."
+  "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation.",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "callou_leite2001",
+      "author": "Callou, D. & Leite, Y.",
+      "year": 2001,
+      "title": "Iniciação à fonética e à fonologia (8th ed.)",
+      "publisher": "Zahar",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
