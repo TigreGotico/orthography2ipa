@@ -289,5 +289,37 @@
   },
   "notes": "Standard Mandarin (Pǔtōnghuà) based on Beijing pronunciation. Graphemes are Pinyin romanisation units. Hanzi→Pinyin conversion requires a separate dictionary (e.g. CC-CEDICT). Four lexical tones + neutral tone are suprasegmental and not encoded here.",
   "quality": "skeleton",
-  "script_type": "logographic"
+  "script_type": "logographic",
+  "sources": [
+    {
+      "id": "duanmu2007",
+      "author": "Duanmu, S.",
+      "year": 2007,
+      "title": "The Phonology of Standard Chinese (2nd ed.)",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "chao1968",
+      "author": "Chao, Y.R.",
+      "year": 1968,
+      "title": "A Grammar of Spoken Chinese",
+      "publisher": "University of California Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
