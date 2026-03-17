@@ -260,5 +260,37 @@
   },
   "notes": "Seoul standard. Three-way laryngeal contrast (lax/tense/aspirated). Extensive sandhi rules (nasalisation, lateralisation, tensification) apply at morpheme/word boundaries.",
   "quality": "skeleton",
-  "script_type": "featural"
+  "script_type": "featural",
+  "sources": [
+    {
+      "id": "sohn1999",
+      "author": "Sohn, H.-M.",
+      "year": 1999,
+      "title": "The Korean Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ramsey1978",
+      "author": "Ramsey, S.R.",
+      "year": 1978,
+      "title": "Accent and Morphology in Korean Dialects",
+      "publisher": "Tower Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }

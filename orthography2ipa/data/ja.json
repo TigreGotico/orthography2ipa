@@ -639,5 +639,37 @@
   },
   "notes": "Standard Tokyo Japanese. Moraic structure: each kana = one mora. Vowel devoicing of /i, ɯ/ between voiceless consonants is systematic. Moraic nasal /N/ and geminate /Q/ are archiphonemes.",
   "quality": "skeleton",
-  "script_type": "syllabary"
+  "script_type": "syllabary",
+  "sources": [
+    {
+      "id": "vance1987",
+      "author": "Vance, T.J.",
+      "year": 1987,
+      "title": "An Introduction to Japanese Phonology",
+      "publisher": "SUNY Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "labrune2012",
+      "author": "Labrune, L.",
+      "year": 2012,
+      "title": "The Phonology of Japanese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ]
 }
