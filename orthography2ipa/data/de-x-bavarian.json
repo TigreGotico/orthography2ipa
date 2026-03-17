@@ -31,7 +31,8 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/German_phonology"
     },
     {
       "id": "russ1994",
@@ -53,5 +54,6 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "wikipedia": "https://en.wikipedia.org/wiki/Bavarian_language"
 }
