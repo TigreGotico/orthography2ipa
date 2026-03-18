@@ -475,8 +475,13 @@ class LanguageSpec:
     sources: Tuple["LinguisticSource", ...] = field(default_factory=tuple)
     """Bibliographic references supporting the phonological decisions in this spec."""
 
-    wikipedia: Optional[str] = None
-    """Wikipedia article URL for this language or dialect; quick human reference."""
+    wikipedia: Tuple[str, ...] = ()
+    """Wikipedia article URLs for this language or dialect.
+
+    Multiple URLs are encouraged — link articles in different languages or
+    covering distinct aspects (phonology, history, dialectology) to give a
+    complete cross-reference picture.  Order: English article first, then
+    by relevance."""
 
     def __post_init__(self) -> None:
         # Normalise None to empty dict

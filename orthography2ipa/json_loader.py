@@ -61,6 +61,26 @@ def _index_files():
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Helpers
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _parse_wikipedia(raw: object) -> "Tuple[str, ...]":
+    """Normalise the JSON ``wikipedia`` field to a tuple of strings.
+
+    Accepts:
+    - ``None`` / missing → ``()``
+    - ``"https://…"`` (legacy single string) → ``("https://…",)``
+    - ``["https://…", …]`` (list) → tuple of those strings
+    """
+    from typing import Tuple  # noqa: F401 — used in annotation only
+    if raw is None:
+        return ()
+    if isinstance(raw, str):
+        return (raw,)
+    return tuple(raw)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Public API
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -219,7 +239,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         sandhi_rules=sandhi_rules,
         tone_inventory=raw.get("tone_inventory"),
         sources=sources,
-        wikipedia=raw.get("wikipedia"),
+        wikipedia=_parse_wikipedia(raw.get("wikipedia")),
     )
 
     _specs[code] = spec

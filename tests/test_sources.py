@@ -147,28 +147,52 @@ def test_source_wikipedia_urls_point_to_wikipedia(code: str, path: str) -> None:
 @pytest.mark.linguistic
 @pytest.mark.parametrize("code,path", _NON_STUB, ids=[c for c, _ in _NON_STUB])
 def test_non_stub_has_wikipedia(code: str, path: str) -> None:
-    """Every non-stub language should have a top-level 'wikipedia' URL."""
+    """Every non-stub language should have at least one top-level 'wikipedia' URL."""
     with open(path) as f:
         data = json.load(f)
     wp = data.get("wikipedia")
-    assert wp is not None, (
+    # Accept str (legacy), non-empty list, or non-empty tuple
+    if isinstance(wp, str):
+        has = bool(wp)
+    elif isinstance(wp, (list, tuple)):
+        has = len(wp) > 0
+    else:
+        has = False
+    assert has, (
         f"{code}: missing top-level 'wikipedia' field. "
-        f"Add the Wikipedia article URL for this language."
+        f"Add at least one Wikipedia article URL for this language."
     )
 
 
 @pytest.mark.linguistic
 @pytest.mark.parametrize("code,path", _NON_STUB, ids=[c for c, _ in _NON_STUB])
 def test_wikipedia_url_is_well_formed(code: str, path: str) -> None:
-    """Top-level 'wikipedia' must be a valid https://*.wikipedia.org/wiki/… URL when present."""
+    """All 'wikipedia' URLs must match https://*.wikipedia.org/wiki/…."""
     with open(path) as f:
         data = json.load(f)
     wp = data.get("wikipedia")
-    if wp is not None:
-        assert _WIKIPEDIA_RE.match(wp), (
-            f"{code}: 'wikipedia'={wp!r} does not match "
+    if wp is None:
+        return
+    urls = [wp] if isinstance(wp, str) else list(wp)
+    for url in urls:
+        assert _WIKIPEDIA_RE.match(url), (
+            f"{code}: wikipedia URL {url!r} does not match "
             f"https://<lang>.wikipedia.org/wiki/<article>"
         )
+
+
+@pytest.mark.linguistic
+@pytest.mark.parametrize("code,path", _NON_STUB, ids=[c for c, _ in _NON_STUB])
+def test_wikipedia_urls_are_unique(code: str, path: str) -> None:
+    """'wikipedia' list must not contain duplicate URLs."""
+    with open(path) as f:
+        data = json.load(f)
+    wp = data.get("wikipedia")
+    if not isinstance(wp, (list, tuple)):
+        return
+    assert len(wp) == len(set(wp)), (
+        f"{code}: duplicate entries in 'wikipedia': {[u for u in wp if wp.count(u) > 1]}"
+    )
 
 
 # ── Runtime model tests ───────────────────────────────────────────────────
@@ -194,12 +218,53 @@ def test_linguistic_source_wikipedia_url_defaults_none() -> None:
     assert src.wikipedia_url is None
 
 
-def test_language_spec_has_wikipedia_field() -> None:
-    """LanguageSpec exposes a wikipedia field parsed from JSON."""
+def test_language_spec_wikipedia_is_tuple() -> None:
+    """LanguageSpec.wikipedia is always a tuple of strings, never None."""
     import orthography2ipa
     spec = orthography2ipa.get("fr-FR")
-    # wikipedia may or may not be set yet, but the attribute must exist
     assert hasattr(spec, "wikipedia")
+    assert isinstance(spec.wikipedia, tuple)
+
+
+def test_wikipedia_list_round_trips_through_loader() -> None:
+    """A list of wikipedia URLs in JSON becomes a tuple on the loaded LanguageSpec."""
+    import json
+    import tempfile
+    import os
+    from orthography2ipa import json_loader
+    from orthography2ipa.json_loader import load_json_spec
+
+    stub = {
+        "code": "xx-list",
+        "name": "Test List Language",
+        "family": "Test",
+        "script": "Latin",
+        "graphemes": {"a": ["a"]},
+        "allophones": {},
+        "wikipedia": [
+            "https://en.wikipedia.org/wiki/Test_language",
+            "https://de.wikipedia.org/wiki/Test_language",
+        ],
+        "sources": [{"id": "t2024", "author": "T.", "year": 2024, "title": "T"}],
+    }
+    with tempfile.NamedTemporaryFile(
+        mode="w", suffix=".json", delete=False, dir=_DATA_DIR
+    ) as fh:
+        json.dump(stub, fh)
+        tmp_path = fh.name
+
+    try:
+        from pathlib import Path
+        json_loader._index["xx-list"] = Path(tmp_path)
+        spec = load_json_spec("xx-list")
+        assert spec.wikipedia == (
+            "https://en.wikipedia.org/wiki/Test_language",
+            "https://de.wikipedia.org/wiki/Test_language",
+        )
+    finally:
+        os.unlink(tmp_path)
+        json_loader._index.pop("xx-list", None)
+        json_loader._specs.pop("xx-list", None)
 
 
 def test_wikipedia_url_round_trips_through_loader() -> None:
@@ -239,7 +304,7 @@ def test_wikipedia_url_round_trips_through_loader() -> None:
         from pathlib import Path
         json_loader._index["xx-test"] = Path(tmp_path)
         spec = load_json_spec("xx-test")
-        assert spec.wikipedia == "https://en.wikipedia.org/wiki/Test_language"
+        assert spec.wikipedia == ("https://en.wikipedia.org/wiki/Test_language",)
         assert spec.sources[0].wikipedia_url == "https://en.wikipedia.org/wiki/Test_Grammar"
     finally:
         os.unlink(tmp_path)
