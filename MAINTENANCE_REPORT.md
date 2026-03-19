@@ -385,3 +385,26 @@ The 15 skips are all `spec_en`-dependent tests correctly skipped until `en-GB.js
 - **AI Model**: Claude Opus 4.6
 - **Actions taken**: Added `tone_inventory` field to `zh.json` with Mandarin's five tones (Chao tone letters). Checked for vi.json, yo.json, th.json, my.json — none exist yet. Updated FAQ.md.
 - **Human oversight level**: Low. Tone data provided by user.
+
+---
+
+## Session 2026-03-19 — Wikipedia field migration + TODO cleanup
+
+### Changes
+
+| File(s) | Change |
+| :--- | :--- |
+| `orthography2ipa/data/*.json` (311 files) | Migrated `wikipedia` field from `string` to `array` format to match `Tuple[str, ...]` schema from commit 4828616 |
+| `TODO.md` | Updated to reflect completed phases (all 6 linguistic source phases done); removed already-resolved blocking/high items |
+
+### Test Results
+
+| State | Passed | Failed |
+| :--- | :---: | :---: |
+| After migration | 11180 | 0 |
+
+### AI Transparency Report
+
+- **AI Model**: Claude Sonnet 4.6
+- **Actions taken**: Identified 311 uncommitted data files with `wikipedia` string→array conversion. Verified tests pass. Committed data files. Updated TODO.md and MAINTENANCE_REPORT.md.
+- **Human oversight level**: Low. Mechanical format migration.
