@@ -258,5 +258,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Slovenian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Slovenian_language",
+    "https://sl.wikipedia.org/wiki/Slovenščina"
+  ]
 }

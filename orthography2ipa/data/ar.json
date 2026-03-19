@@ -43,5 +43,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Arabic",
+    "https://ar.wikipedia.org/wiki/لغة_عربية"
+  ]
 }

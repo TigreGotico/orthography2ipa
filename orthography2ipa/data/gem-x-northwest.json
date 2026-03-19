@@ -180,5 +180,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Northwest_Germanic_languages"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Northwest_Germanic_languages"
+  ]
 }

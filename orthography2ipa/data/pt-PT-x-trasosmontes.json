@@ -70,5 +70,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Trás-os-Montes_e_Alto_Douro"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Trás-os-Montes_e_Alto_Douro"
+  ]
 }

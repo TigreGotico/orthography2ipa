@@ -248,5 +248,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/North_Germanic_languages"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/North_Germanic_languages"
+  ]
 }

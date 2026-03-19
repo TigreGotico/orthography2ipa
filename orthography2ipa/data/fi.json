@@ -307,5 +307,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Finnish_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Finnish_language",
+    "https://fi.wikipedia.org/wiki/Suomen_kieli",
+    "https://en.wikipedia.org/wiki/Finnish_phonology"
+  ]
 }

@@ -362,5 +362,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Odia_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Odia_language",
+    "https://or.wikipedia.org/wiki/ଓଡ଼ିଆ"
+  ]
 }

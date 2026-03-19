@@ -65,5 +65,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Hiberno-English"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hiberno-English"
+  ]
 }

@@ -367,5 +367,8 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Ancient_Greek"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ancient_Greek",
+    "https://en.wikipedia.org/wiki/Ancient_Greek_phonology"
+  ]
 }

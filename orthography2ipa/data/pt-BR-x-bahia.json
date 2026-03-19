@@ -352,5 +352,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Bahia"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bahia"
+  ]
 }

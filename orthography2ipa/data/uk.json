@@ -281,5 +281,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Ukrainian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ukrainian_language",
+    "https://uk.wikipedia.org/wiki/Українська_мова"
+  ]
 }

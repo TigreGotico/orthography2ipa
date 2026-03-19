@@ -394,5 +394,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Sanskrit"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sanskrit",
+    "https://sa.wikipedia.org/wiki/संस्कृतम्",
+    "https://en.wikipedia.org/wiki/Sanskrit_phonology"
+  ]
 }

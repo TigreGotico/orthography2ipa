@@ -230,5 +230,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Proto-Indo-European_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Proto-Indo-European_language"
+  ]
 }

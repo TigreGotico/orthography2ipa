@@ -83,5 +83,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Bolivian_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bolivian_Spanish"
+  ]
 }

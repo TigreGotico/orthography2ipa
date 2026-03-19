@@ -344,5 +344,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Romanesco_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Romanesco_dialect"
+  ]
 }

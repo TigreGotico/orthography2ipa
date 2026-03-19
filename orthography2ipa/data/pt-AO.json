@@ -56,5 +56,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Angolan_Portuguese"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Angolan_Portuguese",
+    "https://pt.wikipedia.org/wiki/Português_de_Angola"
+  ]
 }

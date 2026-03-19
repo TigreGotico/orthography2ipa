@@ -319,5 +319,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Arpitan_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Arpitan_language",
+    "https://frp.wikipedia.org/wiki/Arpetan"
+  ]
 }

@@ -325,5 +325,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Pashto"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pashto",
+    "https://ps.wikipedia.org/wiki/پښتو"
+  ]
 }

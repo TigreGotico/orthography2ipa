@@ -329,5 +329,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Old_Norse"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Norse"
+  ]
 }

@@ -57,5 +57,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/South_African_English"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/South_African_English"
+  ]
 }

@@ -174,5 +174,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Emilian_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Emilian_dialect"
+  ]
 }

@@ -404,5 +404,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Vedic_Sanskrit"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Vedic_Sanskrit"
+  ]
 }

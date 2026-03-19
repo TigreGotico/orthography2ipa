@@ -121,5 +121,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Hassaniya_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hassaniya_Arabic"
+  ]
 }

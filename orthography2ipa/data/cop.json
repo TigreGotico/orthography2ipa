@@ -246,5 +246,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Coptic_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Coptic_language",
+    "https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ"
+  ]
 }

@@ -246,5 +246,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Proto-Indo-Iranian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Proto-Indo-Iranian_language"
+  ]
 }

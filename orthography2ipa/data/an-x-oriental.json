@@ -87,5 +87,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Spanish_phonology"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Aragonese_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Aragonese_language"
+  ]
 }

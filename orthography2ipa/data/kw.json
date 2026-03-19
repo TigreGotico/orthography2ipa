@@ -238,5 +238,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Cornish_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Cornish_language",
+    "https://kw.wikipedia.org/wiki/Kernowek"
+  ]
 }

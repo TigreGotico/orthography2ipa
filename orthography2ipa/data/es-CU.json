@@ -129,5 +129,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Cuban_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Cuban_Spanish"
+  ]
 }

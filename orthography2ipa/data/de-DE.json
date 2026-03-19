@@ -373,5 +373,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/German_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/German_language",
+    "https://de.wikipedia.org/wiki/Deutsche_Sprache"
+  ]
 }

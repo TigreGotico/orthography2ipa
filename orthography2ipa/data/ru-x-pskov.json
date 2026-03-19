@@ -49,5 +49,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Pskov"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pskov"
+  ]
 }

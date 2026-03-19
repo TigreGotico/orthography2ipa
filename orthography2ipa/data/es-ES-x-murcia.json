@@ -113,5 +113,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Murcian_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Murcian_dialect"
+  ]
 }

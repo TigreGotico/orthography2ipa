@@ -199,5 +199,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Brazilian_Portuguese"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Brazilian_Portuguese",
+    "https://pt.wikipedia.org/wiki/Português_brasileiro"
+  ]
 }

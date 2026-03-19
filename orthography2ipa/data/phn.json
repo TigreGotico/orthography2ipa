@@ -244,5 +244,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Phoenician_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Phoenician_language"
+  ]
 }

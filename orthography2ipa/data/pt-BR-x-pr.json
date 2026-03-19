@@ -351,5 +351,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Paraná_(state)"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Paraná_(state)"
+  ]
 }

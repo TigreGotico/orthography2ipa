@@ -359,5 +359,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Nepali_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nepali_language",
+    "https://ne.wikipedia.org/wiki/नेपाली_भाषा"
+  ]
 }

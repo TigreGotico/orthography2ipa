@@ -145,5 +145,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Ancient_Ligurian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ancient_Ligurian_language"
+  ]
 }

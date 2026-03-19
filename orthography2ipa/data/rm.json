@@ -257,5 +257,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Romansh_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Romansh_language",
+    "https://rm.wikipedia.org/wiki/Rumantsch"
+  ]
 }

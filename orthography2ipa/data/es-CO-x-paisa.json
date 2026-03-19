@@ -64,5 +64,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Paisa_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Paisa_dialect"
+  ]
 }

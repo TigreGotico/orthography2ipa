@@ -301,5 +301,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Polish_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Polish_language",
+    "https://pl.wikipedia.org/wiki/Język_polski"
+  ]
 }

@@ -43,5 +43,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Arkhangelsk"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Arkhangelsk"
+  ]
 }

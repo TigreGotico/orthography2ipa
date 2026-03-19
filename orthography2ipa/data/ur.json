@@ -382,5 +382,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Urdu"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Urdu",
+    "https://ur.wikipedia.org/wiki/اردو"
+  ]
 }

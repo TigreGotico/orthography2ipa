@@ -43,5 +43,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Russian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Russian_language"
+  ]
 }

@@ -268,5 +268,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Old_High_German"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_High_German"
+  ]
 }

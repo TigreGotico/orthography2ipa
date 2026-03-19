@@ -121,5 +121,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Algerian_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Algerian_Arabic",
+    "https://ar.wikipedia.org/wiki/العربية_الجزائرية"
+  ]
 }

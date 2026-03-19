@@ -233,5 +233,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Old_Saxon"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Saxon"
+  ]
 }

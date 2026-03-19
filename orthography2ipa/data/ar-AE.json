@@ -62,5 +62,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Gulf_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gulf_Arabic"
+  ]
 }

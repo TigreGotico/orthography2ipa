@@ -359,5 +359,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Sindhi_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sindhi_language"
+  ]
 }

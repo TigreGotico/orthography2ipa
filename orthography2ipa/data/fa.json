@@ -254,5 +254,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Persian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Persian_language",
+    "https://fa.wikipedia.org/wiki/زبان_فارسی",
+    "https://en.wikipedia.org/wiki/Persian_phonology"
+  ]
 }

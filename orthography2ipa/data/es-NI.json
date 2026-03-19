@@ -114,5 +114,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Nicaraguan_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nicaraguan_Spanish"
+  ]
 }

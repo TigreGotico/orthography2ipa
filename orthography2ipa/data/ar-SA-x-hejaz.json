@@ -106,5 +106,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Hejazi_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hejazi_Arabic"
+  ]
 }

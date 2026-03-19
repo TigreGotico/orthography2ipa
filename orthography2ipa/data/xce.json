@@ -261,5 +261,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Celtiberian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Celtiberian_language"
+  ]
 }

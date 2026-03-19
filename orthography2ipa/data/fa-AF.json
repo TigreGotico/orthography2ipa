@@ -109,5 +109,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Dari_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dari_language",
+    "https://fa.wikipedia.org/wiki/دری"
+  ]
 }

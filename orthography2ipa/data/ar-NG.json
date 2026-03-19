@@ -89,5 +89,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Chadian_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chadian_Arabic"
+  ]
 }

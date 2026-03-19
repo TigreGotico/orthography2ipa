@@ -301,5 +301,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Czech_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Czech_language",
+    "https://cs.wikipedia.org/wiki/Čeština"
+  ]
 }

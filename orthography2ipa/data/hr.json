@@ -237,5 +237,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Croatian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Croatian_language",
+    "https://hr.wikipedia.org/wiki/Hrvatski_jezik"
+  ]
 }

@@ -265,5 +265,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Bulgarian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bulgarian_language",
+    "https://bg.wikipedia.org/wiki/Български_език"
+  ]
 }

@@ -274,5 +274,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Breton_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Breton_language",
+    "https://br.wikipedia.org/wiki/Brezhoneg"
+  ]
 }

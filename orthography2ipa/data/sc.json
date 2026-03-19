@@ -269,5 +269,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Sardinian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sardinian_language",
+    "https://sc.wikipedia.org/wiki/Limba_sarda"
+  ]
 }

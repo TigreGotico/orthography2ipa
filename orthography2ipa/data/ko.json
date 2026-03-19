@@ -293,5 +293,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Korean_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Korean_language",
+    "https://ko.wikipedia.org/wiki/한국어"
+  ]
 }

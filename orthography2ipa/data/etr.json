@@ -157,5 +157,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Etruscan_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Etruscan_language"
+  ]
 }

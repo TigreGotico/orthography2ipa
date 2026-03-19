@@ -77,5 +77,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Tehran"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tehran"
+  ]
 }

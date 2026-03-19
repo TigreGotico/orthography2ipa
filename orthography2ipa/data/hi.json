@@ -406,5 +406,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Hindi"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hindi",
+    "https://hi.wikipedia.org/wiki/हिन्दी",
+    "https://en.wikipedia.org/wiki/Hindi_phonology"
+  ]
 }

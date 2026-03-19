@@ -310,5 +310,8 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Belarusian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Belarusian_language",
+    "https://be.wikipedia.org/wiki/Беларуская_мова"
+  ]
 }

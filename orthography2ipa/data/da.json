@@ -336,5 +336,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Danish_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Danish_language",
+    "https://da.wikipedia.org/wiki/Dansk"
+  ]
 }

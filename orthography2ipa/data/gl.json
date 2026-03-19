@@ -463,5 +463,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Galician_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Galician_language",
+    "https://gl.wikipedia.org/wiki/Lingua_galega"
+  ]
 }

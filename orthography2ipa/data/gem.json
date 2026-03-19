@@ -220,5 +220,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Proto-Germanic_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Proto-Germanic_language"
+  ]
 }

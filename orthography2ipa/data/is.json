@@ -305,5 +305,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Icelandic_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Icelandic_language",
+    "https://is.wikipedia.org/wiki/Íslenska"
+  ]
 }

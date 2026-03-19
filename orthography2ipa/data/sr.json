@@ -326,5 +326,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Serbian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Serbian_language",
+    "https://sr.wikipedia.org/wiki/Српски_језик"
+  ]
 }

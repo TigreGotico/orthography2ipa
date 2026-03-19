@@ -47,5 +47,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Logudorese_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Logudorese_dialect"
+  ]
 }

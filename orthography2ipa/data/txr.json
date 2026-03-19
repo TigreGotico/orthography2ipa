@@ -124,5 +124,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Tartessian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tartessian_language"
+  ]
 }

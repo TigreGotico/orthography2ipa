@@ -326,5 +326,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Corsican_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Corsican_language"
+  ]
 }

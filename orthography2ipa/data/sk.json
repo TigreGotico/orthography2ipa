@@ -334,5 +334,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Slovak_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Slovak_language",
+    "https://sk.wikipedia.org/wiki/Slovenčina"
+  ]
 }

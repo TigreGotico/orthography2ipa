@@ -74,5 +74,7 @@
       "notes": "In: Handbook of the International Phonetic Association"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/American_English"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/American_English"
+  ]
 }

@@ -64,5 +64,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Viana_do_Castelo"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Viana_do_Castelo"
+  ]
 }

@@ -337,5 +337,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Berber_languages"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Berber_languages"
+  ]
 }

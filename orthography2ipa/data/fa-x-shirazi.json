@@ -63,5 +63,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Shiraz"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Shiraz"
+  ]
 }

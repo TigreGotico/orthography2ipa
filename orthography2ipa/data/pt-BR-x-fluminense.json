@@ -355,5 +355,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Fluminense_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Fluminense_dialect"
+  ]
 }

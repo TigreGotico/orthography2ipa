@@ -235,5 +235,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Turkish_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Turkish_language",
+    "https://tr.wikipedia.org/wiki/Türkçe",
+    "https://en.wikipedia.org/wiki/Turkish_phonology"
+  ]
 }

@@ -491,5 +491,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/British_English"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/British_English",
+    "https://simple.wikipedia.org/wiki/British_English"
+  ]
 }

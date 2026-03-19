@@ -113,5 +113,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Moroccan_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Moroccan_Arabic",
+    "https://ar.wikipedia.org/wiki/الدارجة_المغربية"
+  ]
 }

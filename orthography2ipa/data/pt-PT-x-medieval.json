@@ -194,5 +194,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Old_Portuguese"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Portuguese"
+  ]
 }

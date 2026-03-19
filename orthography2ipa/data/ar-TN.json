@@ -124,5 +124,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Tunisian_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tunisian_Arabic",
+    "https://ar.wikipedia.org/wiki/الدارجة_التونسية"
+  ]
 }

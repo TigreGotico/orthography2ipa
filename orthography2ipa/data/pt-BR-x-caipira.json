@@ -355,5 +355,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Caipira_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Caipira_dialect"
+  ]
 }

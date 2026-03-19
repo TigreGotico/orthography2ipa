@@ -426,5 +426,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Sinhala_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sinhala_language",
+    "https://si.wikipedia.org/wiki/සිංහල"
+  ]
 }

@@ -299,5 +299,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Pali"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pali"
+  ]
 }

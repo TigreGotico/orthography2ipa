@@ -72,5 +72,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Rioplatense_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Rioplatense_Spanish",
+    "https://es.wikipedia.org/wiki/Español_rioplatense"
+  ]
 }

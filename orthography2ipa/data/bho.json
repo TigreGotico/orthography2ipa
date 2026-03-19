@@ -357,5 +357,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Bhojpuri_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bhojpuri_language"
+  ]
 }

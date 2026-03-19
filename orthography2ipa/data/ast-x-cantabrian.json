@@ -161,5 +161,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Cantabrian_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Cantabrian_dialect"
+  ]
 }

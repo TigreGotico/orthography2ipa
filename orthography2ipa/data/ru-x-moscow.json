@@ -43,5 +43,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Moscow_dialect_of_Russian"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Moscow_dialect_of_Russian"
+  ]
 }

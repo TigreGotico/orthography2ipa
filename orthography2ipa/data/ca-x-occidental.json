@@ -48,5 +48,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Western_Catalan"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Western_Catalan"
+  ]
 }

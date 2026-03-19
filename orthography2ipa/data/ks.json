@@ -376,5 +376,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Kashmiri_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kashmiri_language"
+  ]
 }

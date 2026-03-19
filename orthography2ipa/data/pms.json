@@ -164,5 +164,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Piedmontese_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Piedmontese_language",
+    "https://pms.wikipedia.org/wiki/Lenga_piemontèisa"
+  ]
 }

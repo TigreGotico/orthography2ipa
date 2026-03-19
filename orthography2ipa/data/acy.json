@@ -305,5 +305,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Cypriot_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Cypriot_Arabic"
+  ]
 }

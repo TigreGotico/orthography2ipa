@@ -51,5 +51,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Alentejo"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Alentejo"
+  ]
 }

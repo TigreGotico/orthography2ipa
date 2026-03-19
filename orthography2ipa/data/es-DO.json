@@ -126,5 +126,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Dominican_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dominican_Spanish"
+  ]
 }

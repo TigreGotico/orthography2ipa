@@ -240,5 +240,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Basque_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Basque_language",
+    "https://eu.wikipedia.org/wiki/Euskara"
+  ]
 }

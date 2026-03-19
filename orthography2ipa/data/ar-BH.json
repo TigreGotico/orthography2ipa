@@ -56,5 +56,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Bahrani_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bahrani_Arabic"
+  ]
 }

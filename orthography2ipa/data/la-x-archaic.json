@@ -201,5 +201,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Old_Latin"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Latin"
+  ]
 }

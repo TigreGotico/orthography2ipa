@@ -424,5 +424,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Galician-Portuguese"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Galician-Portuguese"
+  ]
 }

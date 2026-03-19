@@ -57,5 +57,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Azorean_Portuguese"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Azorean_Portuguese"
+  ]
 }

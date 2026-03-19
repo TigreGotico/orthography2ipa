@@ -167,5 +167,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Leonese_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Leonese_dialect"
+  ]
 }

@@ -59,5 +59,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Isfahan"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Isfahan"
+  ]
 }

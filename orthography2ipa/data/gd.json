@@ -306,5 +306,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Scottish_Gaelic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Scottish_Gaelic",
+    "https://gd.wikipedia.org/wiki/Gàidhlig"
+  ]
 }

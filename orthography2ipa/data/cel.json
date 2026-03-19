@@ -205,5 +205,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Proto-Celtic_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Proto-Celtic_language"
+  ]
 }

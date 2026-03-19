@@ -338,5 +338,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Umbrian_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Umbrian_dialect"
+  ]
 }

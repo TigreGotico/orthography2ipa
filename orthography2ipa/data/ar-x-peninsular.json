@@ -110,5 +110,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Peninsular_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Peninsular_Arabic"
+  ]
 }

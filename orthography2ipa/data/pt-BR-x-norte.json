@@ -350,5 +350,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Northern_Brazil"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Northern_Brazil"
+  ]
 }

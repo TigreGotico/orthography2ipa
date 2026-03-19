@@ -284,5 +284,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Venetian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Venetian_language",
+    "https://vec.wikipedia.org/wiki/Łéngoa_vèneta"
+  ]
 }

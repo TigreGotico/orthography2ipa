@@ -43,5 +43,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Don_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Don_dialect"
+  ]
 }

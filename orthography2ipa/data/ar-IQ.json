@@ -116,5 +116,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Iraqi_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Iraqi_Arabic",
+    "https://ar.wikipedia.org/wiki/العربية_العراقية"
+  ]
 }

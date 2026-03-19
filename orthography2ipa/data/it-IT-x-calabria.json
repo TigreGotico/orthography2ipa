@@ -362,5 +362,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Calabrian_dialects"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Calabrian_dialects"
+  ]
 }

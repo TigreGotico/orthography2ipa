@@ -386,5 +386,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Telugu_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Telugu_language",
+    "https://te.wikipedia.org/wiki/తెలుగు"
+  ]
 }

@@ -341,5 +341,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Low_German"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Low_German",
+    "https://nds.wikipedia.org/wiki/Nedderdüütsch"
+  ]
 }

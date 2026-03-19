@@ -295,5 +295,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Modern_Greek"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Modern_Greek",
+    "https://el.wikipedia.org/wiki/Ελληνική_γλώσσα"
+  ]
 }

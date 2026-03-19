@@ -286,5 +286,8 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Old_Church_Slavonic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Church_Slavonic",
+    "https://cu.wikipedia.org/wiki/Ѩзыкъ_словѣньскъ"
+  ]
 }

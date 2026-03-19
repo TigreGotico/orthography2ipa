@@ -403,5 +403,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Malayalam"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Malayalam",
+    "https://ml.wikipedia.org/wiki/മലയാളം"
+  ]
 }

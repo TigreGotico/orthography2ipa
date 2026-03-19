@@ -352,5 +352,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Recife"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Recife"
+  ]
 }

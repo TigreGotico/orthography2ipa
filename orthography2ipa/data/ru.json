@@ -320,5 +320,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Russian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Russian_language",
+    "https://ru.wikipedia.org/wiki/Русский_язык",
+    "https://en.wikipedia.org/wiki/Russian_phonology"
+  ]
 }

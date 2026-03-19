@@ -90,5 +90,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Canarian_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Canarian_Spanish"
+  ]
 }

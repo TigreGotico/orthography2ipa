@@ -60,5 +60,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Mirandese_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mirandese_language",
+    "https://mwl.wikipedia.org/wiki/Lhéngua_mirandesa"
+  ]
 }

@@ -251,5 +251,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Meitei_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Meitei_language"
+  ]
 }

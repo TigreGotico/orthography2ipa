@@ -409,5 +409,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Asturian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Asturian_language",
+    "https://ast.wikipedia.org/wiki/Asturianu"
+  ]
 }

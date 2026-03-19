@@ -429,5 +429,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Catalan_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Catalan_language",
+    "https://ca.wikipedia.org/wiki/Català"
+  ]
 }

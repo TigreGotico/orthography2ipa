@@ -251,5 +251,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Italic_languages"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Italic_languages"
+  ]
 }

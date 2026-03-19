@@ -107,5 +107,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mesopotamian_Arabic"
+  ]
 }

@@ -168,5 +168,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Dacian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dacian_language"
+  ]
 }

@@ -251,5 +251,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Portuguese_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Portuguese_language",
+    "https://pt.wikipedia.org/wiki/Língua_portuguesa"
+  ]
 }

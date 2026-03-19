@@ -199,5 +199,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Latin_phonology"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Ibero-Romance_languages"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ibero-Romance_languages"
+  ]
 }

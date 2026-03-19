@@ -371,5 +371,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Fala_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Fala_language"
+  ]
 }

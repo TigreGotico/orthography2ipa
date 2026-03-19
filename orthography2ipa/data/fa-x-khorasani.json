@@ -69,5 +69,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Khorasan"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Khorasan"
+  ]
 }

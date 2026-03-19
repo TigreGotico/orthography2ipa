@@ -42,5 +42,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Alemannic_German"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Alemannic_German",
+    "https://de.wikipedia.org/wiki/Alemannische_Dialekte"
+  ]
 }

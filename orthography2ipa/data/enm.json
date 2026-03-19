@@ -323,5 +323,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Middle_English"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Middle_English"
+  ]
 }

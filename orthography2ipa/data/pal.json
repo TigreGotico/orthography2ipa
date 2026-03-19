@@ -266,5 +266,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Middle_Persian"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Middle_Persian"
+  ]
 }

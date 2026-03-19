@@ -414,5 +414,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Italian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Italian_language",
+    "https://it.wikipedia.org/wiki/Lingua_italiana"
+  ]
 }

@@ -80,5 +80,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Madeiran_Portuguese"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Madeiran_Portuguese"
+  ]
 }

@@ -672,5 +672,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Japanese_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Japanese_language",
+    "https://ja.wikipedia.org/wiki/日本語"
+  ]
 }

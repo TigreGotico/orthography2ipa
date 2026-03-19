@@ -244,5 +244,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Macedonian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Macedonian_language",
+    "https://mk.wikipedia.org/wiki/Македонски_јазик"
+  ]
 }

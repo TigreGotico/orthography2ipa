@@ -70,5 +70,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Porto_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Porto_dialect"
+  ]
 }

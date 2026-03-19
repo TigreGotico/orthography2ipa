@@ -352,5 +352,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Apulian_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Apulian_dialect"
+  ]
 }

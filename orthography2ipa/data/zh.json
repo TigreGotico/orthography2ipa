@@ -322,5 +322,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Chinese_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chinese_language",
+    "https://zh.wikipedia.org/wiki/汉语"
+  ]
 }

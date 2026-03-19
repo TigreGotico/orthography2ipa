@@ -77,5 +77,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Mexican_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mexican_Spanish",
+    "https://es.wikipedia.org/wiki/Español_de_México"
+  ]
 }

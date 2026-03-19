@@ -86,5 +86,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Latin"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Latin",
+    "https://la.wikipedia.org/wiki/Lingua_Latina",
+    "https://en.wikipedia.org/wiki/Latin_phonology_and_orthography"
+  ]
 }

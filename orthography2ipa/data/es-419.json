@@ -62,5 +62,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Latin_American_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Latin_American_Spanish"
+  ]
 }

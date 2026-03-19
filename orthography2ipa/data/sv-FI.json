@@ -73,5 +73,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Finland_Swedish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Finland_Swedish"
+  ]
 }

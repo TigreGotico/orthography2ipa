@@ -376,5 +376,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Gujarati_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gujarati_language",
+    "https://gu.wikipedia.org/wiki/ગુજરાતી_ભાષા"
+  ]
 }

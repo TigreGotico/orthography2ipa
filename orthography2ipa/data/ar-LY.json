@@ -108,5 +108,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Libyan_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Libyan_Arabic"
+  ]
 }

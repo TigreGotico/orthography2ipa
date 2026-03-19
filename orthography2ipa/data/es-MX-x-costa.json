@@ -125,5 +125,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Mexican_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mexican_Spanish"
+  ]
 }

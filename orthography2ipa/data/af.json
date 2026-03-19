@@ -338,5 +338,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Afrikaans"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Afrikaans",
+    "https://af.wikipedia.org/wiki/Afrikaans"
+  ]
 }

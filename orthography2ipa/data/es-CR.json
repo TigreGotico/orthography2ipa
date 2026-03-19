@@ -73,5 +73,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Costa_Rican_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Costa_Rican_Spanish"
+  ]
 }

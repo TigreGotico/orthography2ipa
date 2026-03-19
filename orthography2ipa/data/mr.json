@@ -399,5 +399,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Marathi_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Marathi_language",
+    "https://mr.wikipedia.org/wiki/मराठी_भाषा"
+  ]
 }

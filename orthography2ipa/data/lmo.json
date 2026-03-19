@@ -168,5 +168,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Lombard_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lombard_language",
+    "https://lmo.wikipedia.org/wiki/Lengua_lombarda"
+  ]
 }

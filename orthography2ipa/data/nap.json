@@ -354,5 +354,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Neapolitan_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Neapolitan_language",
+    "https://nap.wikipedia.org/wiki/Lengua_napulitana"
+  ]
 }

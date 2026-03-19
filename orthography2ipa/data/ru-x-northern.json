@@ -60,5 +60,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Northern_Russian_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Northern_Russian_dialect"
+  ]
 }

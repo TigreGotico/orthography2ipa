@@ -165,5 +165,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Andalusian_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Andalusian_Spanish"
+  ]
 }

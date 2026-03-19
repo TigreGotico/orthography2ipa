@@ -96,5 +96,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Najdi_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Najdi_Arabic"
+  ]
 }

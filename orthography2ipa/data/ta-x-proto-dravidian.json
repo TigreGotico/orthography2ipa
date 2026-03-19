@@ -225,5 +225,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Proto-Dravidian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Proto-Dravidian_language"
+  ]
 }

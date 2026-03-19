@@ -38,5 +38,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/West_Semitic_languages"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/West_Semitic_languages"
+  ]
 }

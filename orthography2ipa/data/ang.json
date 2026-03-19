@@ -350,5 +350,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Old_English"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_English"
+  ]
 }

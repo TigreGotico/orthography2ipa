@@ -42,5 +42,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Spanish_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Spanish_language",
+    "https://es.wikipedia.org/wiki/Idioma_español"
+  ]
 }

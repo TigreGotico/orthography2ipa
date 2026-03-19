@@ -58,5 +58,7 @@
       "notes": "In: Handbook of the International Phonetic Association"
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Swedish_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Swedish_language"
+  ]
 }

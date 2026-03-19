@@ -81,5 +81,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Northern_Catalan"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Northern_Catalan"
+  ]
 }

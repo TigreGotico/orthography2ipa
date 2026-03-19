@@ -63,5 +63,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Peruvian_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Peruvian_Spanish"
+  ]
 }

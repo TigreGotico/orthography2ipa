@@ -130,5 +130,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Puerto_Rican_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Puerto_Rican_Spanish"
+  ]
 }

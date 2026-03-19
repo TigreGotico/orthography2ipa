@@ -87,5 +87,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Galician_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Galician_language"
+  ]
 }

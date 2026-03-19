@@ -55,5 +55,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Bavarian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bavarian_language",
+    "https://de.wikipedia.org/wiki/Bairische_Dialekte"
+  ]
 }

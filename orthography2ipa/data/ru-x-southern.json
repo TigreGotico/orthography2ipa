@@ -321,5 +321,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Southern_Russian_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Southern_Russian_dialect"
+  ]
 }

@@ -189,5 +189,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Extremaduran_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Extremaduran_language",
+    "https://ext.wikipedia.org/wiki/Estremeñu"
+  ]
 }

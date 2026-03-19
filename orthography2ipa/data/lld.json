@@ -267,5 +267,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Ladin_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ladin_language",
+    "https://lld.wikipedia.org/wiki/Ladin"
+  ]
 }

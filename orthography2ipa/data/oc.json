@@ -69,5 +69,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Occitan_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Occitan_language",
+    "https://oc.wikipedia.org/wiki/Occitan"
+  ]
 }

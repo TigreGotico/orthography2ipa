@@ -342,5 +342,9 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+    "https://ar.wikipedia.org/wiki/لغة_عربية",
+    "https://en.wikipedia.org/wiki/Arabic_phonology"
+  ]
 }

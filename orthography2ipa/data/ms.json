@@ -72,5 +72,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Malay_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Malay_language",
+    "https://ms.wikipedia.org/wiki/Bahasa_Melayu"
+  ]
 }

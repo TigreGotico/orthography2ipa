@@ -50,5 +50,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Lisbon_dialect"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lisbon_dialect"
+  ]
 }

@@ -38,5 +38,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Central_Semitic_languages"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Central_Semitic_languages"
+  ]
 }

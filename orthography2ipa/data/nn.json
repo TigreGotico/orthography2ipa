@@ -49,5 +49,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Nynorsk"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nynorsk",
+    "https://nn.wikipedia.org/wiki/Nynorsk"
+  ]
 }

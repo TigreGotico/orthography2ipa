@@ -67,5 +67,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Rioplatense_Spanish"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Rioplatense_Spanish"
+  ]
 }

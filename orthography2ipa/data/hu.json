@@ -347,5 +347,8 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Hungarian_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hungarian_language",
+    "https://hu.wikipedia.org/wiki/Magyar_nyelv"
+  ]
 }

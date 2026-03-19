@@ -111,5 +111,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Late_Latin"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Late_Latin"
+  ]
 }

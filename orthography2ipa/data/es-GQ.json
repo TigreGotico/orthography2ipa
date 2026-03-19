@@ -75,5 +75,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Equatorial_Guinea"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Equatorial_Guinea"
+  ]
 }

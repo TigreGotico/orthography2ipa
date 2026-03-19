@@ -350,5 +350,7 @@
       "notes": null
     }
   ],
-  "wikipedia": "https://en.wikipedia.org/wiki/Dutch_language"
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dutch_language"
+  ]
 }
