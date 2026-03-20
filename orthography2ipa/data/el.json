@@ -260,8 +260,8 @@
       "notes": "Slavic adstrate: medieval Balkan settlements (6th-9th c.), place names, some vocabulary"
     }
   ],
-  "notes": "Standard Modern Greek (Demotic). 5-vowel system despite many graphemic representations. Digraphs ⟨μπ⟩, ⟨ντ⟩, ⟨γκ⟩ represent voiced stops, with prenasalisation medially.",
-  "quality": "skeleton",
+  "notes": "Standard Modern Greek (Demotic). 5-vowel system despite many graphemic representations. Digraphs ⟨μπ⟩, ⟨ντ⟩, ⟨γκ⟩ represent voiced stops, with prenasalisation medially. PALATALIZATION: γ/κ/χ palatalize before front vowels (e/i/η/ι/υ): γ→[ʝ], κ→[c], χ→[ç]. ΑΥ/ΕΥ: [av]/[ev] before voiced sounds; [af]/[ef] before voiceless. Σ: [z] before voiced consonants (σβ, σγ, σδ, etc.). Sources: Arvaniti (2007), Holton et al. (2004), Setatos (1974).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -297,6 +297,77 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Modern_Greek",
-    "https://el.wikipedia.org/wiki/Ελληνική_γλώσσα"
-  ]
+    "https://el.wikipedia.org/wiki/Ελληνική_γλώσσα",
+    "https://en.wikipedia.org/wiki/Modern_Greek_phonology"
+  ],
+  "positional_graphemes": {
+    "γ": {
+      "before_e": [
+        "ʝ"
+      ],
+      "before_i": [
+        "ʝ"
+      ],
+      "default": [
+        "ɣ"
+      ]
+    },
+    "κ": {
+      "before_e": [
+        "c"
+      ],
+      "before_i": [
+        "c"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "χ": {
+      "before_e": [
+        "ç"
+      ],
+      "before_i": [
+        "ç"
+      ],
+      "default": [
+        "x"
+      ]
+    },
+    "λ": {
+      "default": [
+        "l"
+      ]
+    },
+    "αυ": {
+      "before_consonant": [
+        "af",
+        "av"
+      ],
+      "default": [
+        "av"
+      ]
+    },
+    "ευ": {
+      "before_consonant": [
+        "ef",
+        "ev"
+      ],
+      "default": [
+        "ev"
+      ]
+    },
+    "σ": {
+      "before_consonant": [
+        "s",
+        "z"
+      ],
+      "word_final": [
+        "s"
+      ],
+      "default": [
+        "s"
+      ]
+    }
+  }
 }

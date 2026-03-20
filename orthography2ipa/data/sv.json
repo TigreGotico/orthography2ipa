@@ -312,8 +312,8 @@
       "notes": "Finnish adstrate: minor, in border areas"
     }
   ],
-  "notes": "Central Standard Swedish. Retroflex assimilation (⟨rd⟩→[ɖ] etc.) is characteristic of Central/Northern dialects; absent in Southern/Finland Swedish.",
-  "quality": "skeleton",
+  "notes": "Central Standard Swedish. Retroflex assimilation (⟨rd⟩→[ɖ] etc.) is characteristic of Central/Northern dialects; absent in Southern/Finland Swedish. K SOFTENING: k→[ɕ] before front vowels (ke, ki, ky, kä, kö); [k] elsewhere. G: [j] before front vowels in some positions; [ɡ] elsewhere. SK: [ɧ] (sj-sound) before front vowels; [sk] elsewhere. RETROFLEXION: /r/+coronal clusters assimilate to retroflexes (rs=[ʂ], rd=[ɖ], etc.). TONE: Swedish has two lexical tones (accent 1 = acute, accent 2 = grave). Sources: Riad (2014), Engstrand (1999), Bruce (2007).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -340,5 +340,89 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Swedish_language",
     "https://sv.wikipedia.org/wiki/Svenska"
-  ]
+  ],
+  "positional_graphemes": {
+    "k": {
+      "before_e": [
+        "ɕ"
+      ],
+      "before_i": [
+        "ɕ"
+      ],
+      "before_o": [
+        "ɕ"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "j"
+      ],
+      "before_i": [
+        "j"
+      ],
+      "word_final": [
+        "j"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "sk": {
+      "before_e": [
+        "ɧ"
+      ],
+      "before_i": [
+        "ɧ"
+      ],
+      "default": [
+        "sk"
+      ]
+    },
+    "b": {
+      "word_final": [
+        "p",
+        "b"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t",
+        "d"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "rs": {
+      "default": [
+        "ʂ"
+      ]
+    },
+    "rd": {
+      "default": [
+        "ɖ"
+      ]
+    },
+    "rn": {
+      "default": [
+        "ɳ"
+      ]
+    },
+    "rl": {
+      "default": [
+        "ɭ"
+      ]
+    },
+    "rt": {
+      "default": [
+        "ʈ"
+      ]
+    }
+  }
 }

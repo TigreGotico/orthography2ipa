@@ -200,8 +200,8 @@
       "y"
     ]
   },
-  "notes": "Standard Istanbul Turkish. Near-transparent orthography. 8-vowel system with front/back × rounded/unrounded × high/low vowel harmony.",
-  "quality": "skeleton",
+  "notes": "Standard Istanbul Turkish. Near-transparent orthography. 8-vowel system with front/back × rounded/unrounded × high/low vowel harmony. VOWEL HARMONY: 8-vowel system with back/front and rounded/unrounded harmony. PALATALIZATION: k→[c], g→[ɟ] before/after front vowels (e/i/ö/ü). L VELARIZATION: [ɫ] before/after back vowels (a/ı/o/u); clear [l] before front vowels. Ğ: silent; lengthens preceding vowel; [j] between front vowels. FINAL DEVOICING: b/c/d/g devoice word-finally. Sources: Göksel & Kerslake (2005), Zimmer & Orgun (1999), Kornfilt (1997).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -239,5 +239,100 @@
     "https://en.wikipedia.org/wiki/Turkish_language",
     "https://tr.wikipedia.org/wiki/Türkçe",
     "https://en.wikipedia.org/wiki/Turkish_phonology"
-  ]
+  ],
+  "positional_graphemes": {
+    "k": {
+      "before_e": [
+        "c"
+      ],
+      "before_i": [
+        "c"
+      ],
+      "before_o": [
+        "c"
+      ],
+      "after_vowel": [
+        "k",
+        "c"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "coda": [
+        "k"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "ğ": {
+      "after_vowel": [
+        ""
+      ],
+      "intervocalic": [
+        "j"
+      ],
+      "default": [
+        ""
+      ]
+    },
+    "l": {
+      "before_e": [
+        "l"
+      ],
+      "before_i": [
+        "l"
+      ],
+      "before_a": [
+        "ɫ"
+      ],
+      "before_o": [
+        "ɫ"
+      ],
+      "before_u": [
+        "ɫ"
+      ],
+      "default": [
+        "l"
+      ]
+    },
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "c": {
+      "word_final": [
+        "tʃ"
+      ],
+      "coda": [
+        "tʃ"
+      ],
+      "default": [
+        "dʒ"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    }
+  }
 }

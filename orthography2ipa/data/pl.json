@@ -265,8 +265,8 @@
     ]
   },
   "parent": "ine",
-  "notes": "Standard Polish. Three sibilant series: alveolar /s z ts dz/, retroflex /ʂ ʐ tʂ dʐ/, alveolo-palatal /ɕ ʑ tɕ dʑ/. Nasal vowels ⟨ą ę⟩ realise as VN sequences before stops.",
-  "quality": "skeleton",
+  "notes": "Standard Polish. Three sibilant series: alveolar /s z ts dz/, retroflex /ʂ ʐ tʂ dʐ/, alveolo-palatal /ɕ ʑ tɕ dʑ/. Nasal vowels ⟨ą ę⟩ realise as VN sequences before stops. FINAL DEVOICING: Polish obstruents devoice in coda/word-finally. NASAL VOWELS: ą→[ɔ] and ę→[ɛ] word-finally in contemporary Polish (de-nasalization); nasal elsewhere before consonants. Sources: Rubach (1984), Bethin (1992), Gussmann (2007).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -304,5 +304,117 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Polish_language",
     "https://pl.wikipedia.org/wiki/Język_polski"
-  ]
+  ],
+  "positional_graphemes": {
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "coda": [
+        "k"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "w": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "s"
+      ],
+      "coda": [
+        "s"
+      ],
+      "default": [
+        "z"
+      ]
+    },
+    "ź": {
+      "word_final": [
+        "ɕ"
+      ],
+      "coda": [
+        "ɕ"
+      ],
+      "default": [
+        "ʑ"
+      ]
+    },
+    "ż": {
+      "word_final": [
+        "ʂ"
+      ],
+      "coda": [
+        "ʂ"
+      ],
+      "default": [
+        "ʐ"
+      ]
+    },
+    "dz": {
+      "word_final": [
+        "ts"
+      ],
+      "coda": [
+        "ts"
+      ],
+      "default": [
+        "dz"
+      ]
+    },
+    "ą": {
+      "word_final": [
+        "ɔ"
+      ],
+      "before_consonant": [
+        "ɔ̃"
+      ],
+      "default": [
+        "ɔ̃"
+      ]
+    },
+    "ę": {
+      "word_final": [
+        "ɛ"
+      ],
+      "before_consonant": [
+        "ɛ̃"
+      ],
+      "default": [
+        "ɛ̃"
+      ]
+    }
+  }
 }

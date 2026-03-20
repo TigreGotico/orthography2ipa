@@ -265,8 +265,8 @@
     ]
   },
   "parent": "ine",
-  "notes": "Standard Czech. Notable for the unique phoneme /r̝/ (⟨ř⟩) and systematic vowel length contrast. ⟨ch⟩ is the only official digraph and sorts as a separate letter.",
-  "quality": "skeleton",
+  "notes": "Standard Czech. Notable for the unique phoneme /r̝/ (⟨ř⟩) and systematic vowel length contrast. ⟨ch⟩ is the only official digraph and sorts as a separate letter. FINAL DEVOICING: obstruents devoice in coda/word-finally (b→p, d→t, ď→ť, g→k, v→f, z→s, ž→š, h→ch). H: voiced [ɦ] in onset; devoices to [x] in coda. Ě: [jɛ] after most consonants; causes palatal softening of preceding d/t/n. Sources: Palková (1994), Šimáčková et al. (2012), Short (1993).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -304,5 +304,103 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Czech_language",
     "https://cs.wikipedia.org/wiki/Čeština"
-  ]
+  ],
+  "positional_graphemes": {
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "ď": {
+      "word_final": [
+        "c"
+      ],
+      "coda": [
+        "c"
+      ],
+      "default": [
+        "ɟ"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "coda": [
+        "k"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "v": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "s"
+      ],
+      "coda": [
+        "s"
+      ],
+      "default": [
+        "z"
+      ]
+    },
+    "ž": {
+      "word_final": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "default": [
+        "ʒ"
+      ]
+    },
+    "h": {
+      "word_final": [
+        "x"
+      ],
+      "coda": [
+        "x"
+      ],
+      "default": [
+        "ɦ"
+      ]
+    },
+    "ě": {
+      "after_consonant": [
+        "jɛ"
+      ],
+      "default": [
+        "jɛ"
+      ]
+    }
+  }
 }

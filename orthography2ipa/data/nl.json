@@ -325,8 +325,8 @@
       "notes": "French adstrate: centuries of Burgundian/French influence in S. Netherlands; cf. van der Wal (2008)"
     }
   ],
-  "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable.",
-  "quality": "skeleton",
+  "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable. FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally. G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch. H: breathy [ɦ]; fully silent in southern dialects. Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -352,5 +352,93 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Dutch_language"
-  ]
+  ],
+  "positional_graphemes": {
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "x"
+      ],
+      "coda": [
+        "x"
+      ],
+      "default": [
+        "ɣ"
+      ]
+    },
+    "v": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "s"
+      ],
+      "coda": [
+        "s"
+      ],
+      "default": [
+        "z"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "nucleus_stressed": [
+        "ɛ"
+      ],
+      "default": [
+        "ɛ",
+        "ə"
+      ]
+    },
+    "h": {
+      "word_initial": [
+        "ɦ"
+      ],
+      "default": [
+        "ɦ"
+      ]
+    }
+  }
 }
