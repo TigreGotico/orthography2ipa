@@ -283,8 +283,8 @@
     ]
   },
   "parent": "sla",
-  "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o/ → [ɐ]), г = [ɡ] plosive, final obstruent devoicing.",
-  "quality": "skeleton",
+  "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o/ → [ɐ]), г = [ɡ] plosive, final obstruent devoicing. FINAL DEVOICING: all obstruents devoiced in coda/word-final position (б→п, в→ф, г→к, д→т, з→с, ж→ш). VOWEL REDUCTION: о/а reduce to [ɐ] in 1st pretonic syllable, [ə] elsewhere (unstressed). IOTATED VOWELS: е/я/ю/ё preceded by [j] word-initially and after vowels. Г IN GENITIVE: -ого/-его endings: г→[v] (его=[jɪvo]). Sources: Avanesov (1956), Jones & Ward (1969), Padgett (2002).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -324,5 +324,134 @@
     "https://en.wikipedia.org/wiki/Russian_language",
     "https://ru.wikipedia.org/wiki/Русский_язык",
     "https://en.wikipedia.org/wiki/Russian_phonology"
-  ]
+  ],
+  "positional_graphemes": {
+    "б": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "в": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "г": {
+      "word_final": [
+        "k"
+      ],
+      "before_e": [
+        "v"
+      ],
+      "before_i": [
+        "v"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "д": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "з": {
+      "word_final": [
+        "s"
+      ],
+      "coda": [
+        "s"
+      ],
+      "default": [
+        "z"
+      ]
+    },
+    "ж": {
+      "word_final": [
+        "ʂ"
+      ],
+      "coda": [
+        "ʂ"
+      ],
+      "default": [
+        "ʐ"
+      ]
+    },
+    "о": {
+      "pretonic": [
+        "ɐ"
+      ],
+      "posttonic": [
+        "ə"
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "default": [
+        "o"
+      ]
+    },
+    "а": {
+      "nucleus_unstressed": [
+        "ɐ"
+      ],
+      "posttonic": [
+        "ə"
+      ],
+      "default": [
+        "a"
+      ]
+    },
+    "е": {
+      "word_initial": [
+        "je"
+      ],
+      "after_vowel": [
+        "je"
+      ],
+      "nucleus_unstressed": [
+        "ɪ"
+      ],
+      "default": [
+        "e"
+      ]
+    },
+    "я": {
+      "word_initial": [
+        "ja"
+      ],
+      "after_vowel": [
+        "ja"
+      ],
+      "nucleus_unstressed": [
+        "ɪ"
+      ],
+      "default": [
+        "a"
+      ]
+    },
+    "ё": {
+      "default": [
+        "jo"
+      ]
+    }
+  }
 }

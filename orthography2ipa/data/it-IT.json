@@ -379,8 +379,8 @@
       "notes": "Greek substrate (Magna Graecia): mainly affects southern dialects; limited in Tuscan standard."
     }
   ],
-  "notes": "Standard Italian (based on Florentine/Tuscan). Open/close mid-vowel distinction (e/ɛ, o/ɔ) is lexically determined and varies by region. Gemination is phonemic (fato/fatto). Gorgia toscana (intervocalic stop aspiration) is a regional Tuscan feature, not standard.",
-  "quality": "skeleton",
+  "notes": "Standard Italian (based on Florentine/Tuscan). Open/close mid-vowel distinction (e/ɛ, o/ɔ) is lexically determined and varies by region. Gemination is phonemic (fato/fatto). Gorgia toscana (intervocalic stop aspiration) is a regional Tuscan feature, not standard. C/G SOFTENING: c→[tʃ] and g→[dʒ] before e/i (ci, ce, gi, ge); [k]/[ɡ] elsewhere. INTERVOCALIC s: [z] between vowels in standard Italian (N. Italy); [s] word-initially. Z: [dz] word-initially and post-consonantally, [ts] in other positions. SC: [ʃ] before e/i, [sk] elsewhere. Sources: Lepschy & Lepschy (1988), Maiden (1995), Rogers & d'Arcangeli (2004).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -416,6 +416,72 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Italian_language",
-    "https://it.wikipedia.org/wiki/Lingua_italiana"
-  ]
+    "https://it.wikipedia.org/wiki/Lingua_italiana",
+    "https://en.wikipedia.org/wiki/Italian_phonology"
+  ],
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "tʃ"
+      ],
+      "before_i": [
+        "tʃ"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "dʒ"
+      ],
+      "before_i": [
+        "dʒ"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "default": [
+        "s"
+      ]
+    },
+    "z": {
+      "word_initial": [
+        "dz"
+      ],
+      "after_consonant": [
+        "dz"
+      ],
+      "default": [
+        "ts"
+      ]
+    },
+    "sc": {
+      "before_e": [
+        "ʃ"
+      ],
+      "before_i": [
+        "ʃ"
+      ],
+      "default": [
+        "sk"
+      ]
+    },
+    "gl": {
+      "before_i": [
+        "ʎ"
+      ],
+      "default": [
+        "ɡl"
+      ]
+    }
+  }
 }

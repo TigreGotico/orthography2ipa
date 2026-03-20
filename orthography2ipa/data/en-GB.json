@@ -446,8 +446,8 @@
       "notes": "Middle English descent"
     }
   ],
-  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014).",
-  "quality": "skeleton",
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -493,6 +493,68 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/British_English",
-    "https://simple.wikipedia.org/wiki/British_English"
-  ]
+    "https://simple.wikipedia.org/wiki/British_English",
+    "https://en.wikipedia.org/wiki/English_phonology"
+  ],
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "dʒ",
+        "ɡ"
+      ],
+      "before_i": [
+        "dʒ",
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "word_final": [
+        "s",
+        "z"
+      ],
+      "default": [
+        "s"
+      ]
+    },
+    "x": {
+      "word_initial": [
+        "z"
+      ],
+      "default": [
+        "ks"
+      ]
+    },
+    "th": {
+      "word_initial": [
+        "θ",
+        "ð"
+      ],
+      "intervocalic": [
+        "ð"
+      ],
+      "default": [
+        "θ"
+      ]
+    }
+  }
 }

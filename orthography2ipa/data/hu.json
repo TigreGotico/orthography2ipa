@@ -312,8 +312,8 @@
       "j"
     ]
   },
-  "notes": "Hungarian (Magyar). Uralic language with 14-vowel system (7 short + 7 long), vowel harmony, palatal stops /c, ɟ/, and rich agglutinative morphology. Referenced as adstrate for Romanian due to centuries of Transylvanian contact (Siptár & Törkenczy 2000).",
-  "quality": "skeleton",
+  "notes": "Hungarian (Magyar). Uralic language with 14-vowel system (7 short + 7 long), vowel harmony, palatal stops /c, ɟ/, and rich agglutinative morphology. Referenced as adstrate for Romanian due to centuries of Transylvanian contact (Siptár & Törkenczy 2000). FINAL DEVOICING: obstruents devoiced in coda/word-final: b→p, d→t, g→k, v→f, z→s, zs→s, gy→ty. VOWEL HARMONY: suffixes agree with stem vowels (front/back and rounded/unrounded). GEMINATE CONSONANTS: long consonants spelled double (bb, dd, tt...) = phonemically long. H: often silent word-finally (méh [meː], juh [juː]). Sources: Siptár & Törkenczy (2000), Vago (1980), Nádasdy & Siptár (1994).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -349,6 +349,94 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hungarian_language",
-    "https://hu.wikipedia.org/wiki/Magyar_nyelv"
-  ]
+    "https://hu.wikipedia.org/wiki/Magyar_nyelv",
+    "https://en.wikipedia.org/wiki/Hungarian_phonology"
+  ],
+  "positional_graphemes": {
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "coda": [
+        "k"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "v": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "s"
+      ],
+      "coda": [
+        "s"
+      ],
+      "default": [
+        "z"
+      ]
+    },
+    "zs": {
+      "word_final": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "default": [
+        "ʒ"
+      ]
+    },
+    "gy": {
+      "word_final": [
+        "c"
+      ],
+      "coda": [
+        "c"
+      ],
+      "default": [
+        "ɟ"
+      ]
+    },
+    "h": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "h"
+      ]
+    }
+  }
 }

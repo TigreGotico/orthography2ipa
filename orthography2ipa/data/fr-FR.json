@@ -441,8 +441,8 @@
       "notes": "une amie → resyllabification"
     }
   ],
-  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨en⟩, etc.) only nasalise when NOT followed by a vowel or another ⟨n⟩/⟨m⟩; context rules needed for disambiguation.",
-  "quality": "skeleton",
+  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨en⟩, etc.) only nasalise when NOT followed by a vowel or another ⟨n⟩/⟨m⟩; context rules needed for disambiguation. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French. LIAISON: s→[z], d→[t], x→[z], n→[n] before vowel-initial words (sandhi). SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Sources: Léon (1992), Tranel (1987), Côté (2000).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -478,6 +478,91 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/French_language",
-    "https://fr.wikipedia.org/wiki/Français"
-  ]
+    "https://fr.wikipedia.org/wiki/Français",
+    "https://en.wikipedia.org/wiki/French_phonology"
+  ],
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "s": {
+      "intervocalic": [
+        "z"
+      ],
+      "word_final": [
+        ""
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ],
+      "default": [
+        "s"
+      ]
+    },
+    "t": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "t"
+      ]
+    },
+    "d": {
+      "word_final": [
+        ""
+      ],
+      "intervocalic_cross_word": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "p": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "p"
+      ]
+    },
+    "x": {
+      "word_final": [
+        ""
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ],
+      "default": [
+        "ks"
+      ]
+    },
+    "r": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "ʁ"
+      ]
+    }
+  }
 }

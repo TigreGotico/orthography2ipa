@@ -49,8 +49,8 @@
       "notes": "Middle English descent via colonial English"
     }
   ],
-  "notes": "General American (GA) — reference accent for US media/education. RHOTIC: /r/ preserved in all positions. No TRAP-BATH split (bath words = /æ/). LOT-PALM merger: /ɑː/ for both. T-FLAPPING: /t/ → [ɾ] between vowels (butter, water, city). CAUGHT-COT merger common (thought = lot for most speakers). Source: Wells (1982) vol. 3, Ladefoged & Johnson (2011).",
-  "quality": "skeleton",
+  "notes": "General American (GA) — reference accent for US media/education. RHOTIC: /r/ preserved in all positions. No TRAP-BATH split (bath words = /æ/). LOT-PALM merger: /ɑː/ for both. T-FLAPPING: /t/ → [ɾ] between vowels (butter, water, city). CAUGHT-COT merger common (thought = lot for most speakers). Source: Wells (1982) vol. 3, Ladefoged & Johnson (2011). FLAPPING: /t/ and /d/ → [ɾ] intervocalically in unstressed syllables (butter, ladder, city). RHOTIC: fully rhotic — /r/ preserved in all positions.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -76,5 +76,26 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/American_English"
-  ]
+  ],
+  "positional_graphemes": {
+    "t": {
+      "intervocalic": [
+        "ɾ"
+      ],
+      "word_initial": [
+        "tʰ"
+      ],
+      "default": [
+        "t"
+      ]
+    },
+    "d": {
+      "intervocalic": [
+        "ɾ"
+      ],
+      "default": [
+        "d"
+      ]
+    }
+  }
 }

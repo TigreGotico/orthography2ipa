@@ -126,12 +126,6 @@
     "sch": [
       "ʃ"
     ],
-    "sp": [
-      "ʃp"
-    ],
-    "st": [
-      "ʃt"
-    ],
     "th": [
       "t"
     ],
@@ -337,8 +331,8 @@
       "notes": "French adstrate: courtly vocabulary (Abenteuer, Turnier); 17th-18th c. prestige influence"
     }
   ],
-  "notes": "Standard German (Hochdeutsch / Bühnendeutsch). Auslautverhärtung (final obstruent devoicing) is reflected in allophone map. ⟨sp⟩/⟨st⟩ → [ʃp]/[ʃt] only word-initially.",
-  "quality": "skeleton",
+  "notes": "Standard German (Hochdeutsch / Bühnendeutsch). Auslautverhärtung (final obstruent devoicing) is reflected in allophone map. ⟨sp⟩/⟨st⟩ → [ʃp]/[ʃt] only word-initially. AUSLAUTVERHÄRTUNG: obstruents devoiced in coda/word-final (b→p, d→t, g→k, v→f). SP/ST: [ʃp]/[ʃt] word-initially, [sp]/[st] elsewhere. CH: [x] after a/o/u, [ç] after e/i/front vowels and consonants (ich-Laut vs ach-Laut). Sources: Wiese (1996), Hall (2003), Mangold (2005).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -375,6 +369,102 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/German_language",
-    "https://de.wikipedia.org/wiki/Deutsche_Sprache"
-  ]
+    "https://de.wikipedia.org/wiki/Deutsche_Sprache",
+    "https://en.wikipedia.org/wiki/German_phonology"
+  ],
+  "positional_graphemes": {
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "coda": [
+        "k"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "v": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "z"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "word_final": [
+        "s"
+      ],
+      "default": [
+        "s"
+      ]
+    },
+    "ch": {
+      "after_vowel": [
+        "ç"
+      ],
+      "word_initial": [
+        "k"
+      ],
+      "default": [
+        "ç"
+      ]
+    },
+    "sp": {
+      "word_initial": [
+        "ʃp"
+      ],
+      "default": [
+        "sp"
+      ]
+    },
+    "st": {
+      "word_initial": [
+        "ʃt"
+      ],
+      "default": [
+        "st"
+      ]
+    },
+    "ig": {
+      "word_final": [
+        "ɪç"
+      ],
+      "default": [
+        "ɪɡ"
+      ]
+    }
+  }
 }
