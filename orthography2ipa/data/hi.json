@@ -369,8 +369,8 @@
     ]
   },
   "parent": "ine",
-  "notes": "Standard Hindi (Khaṛī Bolī). 4-way laryngeal contrast: voiceless, aspirated, voiced, breathy-voiced. Nukta letters for Perso-Arabic loans may not be distinguished by all speakers.",
-  "quality": "skeleton",
+  "notes": "Standard Hindi (Khaṛī Bolī). 4-way laryngeal contrast: voiceless, aspirated, voiced, breathy-voiced. Nukta letters for Perso-Arabic loans may not be distinguished by all speakers. SCHWA DELETION: inherent schwa deleted word-finally and in medial CVC patterns (Pandey 2014). ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ] intervocalically. 4-WAY LARYNGEAL: voiceless unaspirated, voiceless aspirated, voiced, breathy-voiced stops. DENTALS vs RETROFLEXES: dental series (त/थ/द/ध) vs. retroflex (ट/ठ/ड/ढ) fully contrastive. Sources: Ohala (1983), Pandey (2014), Masica (1991), Shapiro (2003).",
+  "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
   "sources": [
@@ -410,5 +410,53 @@
     "https://en.wikipedia.org/wiki/Hindi",
     "https://hi.wikipedia.org/wiki/हिन्दी",
     "https://en.wikipedia.org/wiki/Hindi_phonology"
-  ]
+  ],
+  "positional_graphemes": {
+    "अ": {
+      "word_final": [
+        ""
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "default": [
+        "ə"
+      ]
+    },
+    "ड": {
+      "intervocalic": [
+        "ɽ"
+      ],
+      "default": [
+        "ɖ"
+      ]
+    },
+    "ढ": {
+      "intervocalic": [
+        "ɽʱ"
+      ],
+      "default": [
+        "ɖʱ"
+      ]
+    },
+    "ह": {
+      "word_initial": [
+        "ɦ"
+      ],
+      "default": [
+        "ɦ"
+      ]
+    },
+    "ं": {
+      "before_consonant": [
+        "̃"
+      ],
+      "word_final": [
+        "̃"
+      ],
+      "default": [
+        "̃"
+      ]
+    }
+  }
 }
