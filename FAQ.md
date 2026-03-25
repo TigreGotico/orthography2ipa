@@ -226,6 +226,28 @@ Previously `__init__.py` hardcoded `"0.1.0"` regardless of `version.py`. Fixed i
 
 ---
 
+## Temporal Distance
+
+**Q: How does the time dimension work in distance metrics?**
+
+`LanguageSpec` now has an optional `timespan: TimeSpan` field with `start_year` and `end_year` (use `None` for living languages). Three new capabilities build on this:
+
+1. **`temporal_distance(spec_a, spec_b)`** — Jaccard-interval distance [0, 1] between attestation periods. Returns `None` if either language lacks timespan data. Languages with zero temporal overlap return `1.0`; fully coincident periods return `0.0`.
+
+2. **`ancestry_similarity(..., temporal_decay=True)`** — Applies exponential weight decay (`exp(-gap/halflife)`) to each ancestor link based on the time gap between ancestor's era and the descendant's start. Default `halflife=1000` years. Ancient ancestors (e.g. Proto-Germanic for West Frisian, ~1300-year gap) are weighted ≈0.49× their static value.
+
+3. **`weighted_full_distance(..., w_temporal=0.0)`** — `w_temporal=0.0` by default (backward-compatible). Set to a positive value to fold `temporal_distance` into the combined score. If timespan data is missing for either language, the component is automatically excluded and remaining weights renormalised.
+
+**Q: How do I add a timespan to a JSON file?**
+
+Add a `"timespan"` key at the top level:
+```json
+"timespan": {"start_year": 450, "end_year": 1150}
+```
+For living languages set `"end_year": null`. Use negative values for BCE (e.g. `-500`). Currently ~29 files in the Germanic chain have timespan data.
+
+---
+
 ## Tone Inventory
 
 **Q: Which languages have tone_inventory data?**

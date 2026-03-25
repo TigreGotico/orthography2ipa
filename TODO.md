@@ -74,6 +74,18 @@ All 🟡 HIGH items resolved. Ready for 0.2.0 stable. ✅
 
 ---
 
+## Temporal Coverage (COMPLETE 2026-03-25) ✅
+
+- [x] `TimeSpan` dataclass + `LanguageSpec.timespan` field — `types.py`
+- [x] `temporal_distance()` — Jaccard-interval metric — `distance.py`
+- [x] `_temporal_decay()` + `ancestry_similarity(temporal_decay=True)` — `distance.py`
+- [x] `weighted_full_distance(w_temporal=...)` integration — `distance.py`
+- [x] 29 JSON files annotated (Germanic chain + key modern languages)
+- [ ] **Extend timespan coverage to Romance, Semitic, Indo-Iranian chains**
+- [ ] **Consider `temporal_distance` in `pairwise_distances()` metric enum**
+
+---
+
 ## Linguistic Reference Audit Checklist
 
 ### Phase 0 — Infrastructure (COMPLETE 2026-03-17) ✅
