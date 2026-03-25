@@ -1,0 +1,76 @@
+{
+  "code": "dsb",
+  "name": "Lower Sorbian",
+  "family": "Indo-European > Slavic > West Slavic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "dsb",
+  "glottolog_code": "lowe1385",
+  "timespan": {
+    "start_year": 1574,
+    "end_year": null
+  },
+  "graphemes": {
+    "ch": ["x"],
+    "dž": ["dʒ"],
+    "š": ["ʃ"],
+    "ž": ["ʒ"],
+    "č": ["tʃ"],
+    "ś": ["ɕ"],
+    "ź": ["ʑ"],
+    "ć": ["tɕ"],
+    "ń": ["ɲ"],
+    "ł": ["w"],
+    "a": ["a"],
+    "b": ["b"],
+    "c": ["ts"],
+    "d": ["d"],
+    "e": ["ɛ"],
+    "ě": ["jɛ"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "h": ["h"],
+    "i": ["i"],
+    "j": ["j"],
+    "k": ["k"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "o": ["ɔ"],
+    "ó": ["o"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "t": ["t"],
+    "u": ["u"],
+    "v": ["v"],
+    "w": ["v"],
+    "y": ["ɨ"],
+    "z": ["z"]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "sla",
+      "role": "proto_language",
+      "weight": 1.0,
+      "notes": "West Slavic language closely related to Upper Sorbian"
+    }
+  ],
+  "parent": "hsb",
+  "notes": "Lower Sorbian (Dolnoserbski), West Slavic minority language spoken in Lower Lusatia, Germany. Closely related to Upper Sorbian. Distinct palatal fricatives ś /ɕ/ and ź /ʑ/. More conservative vowel system than Upper Sorbian.",
+  "sources": [
+    {
+      "id": "wiki-dsb",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lower Sorbian language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lower_Sorbian_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lower_Sorbian_language"
+  ]
+}

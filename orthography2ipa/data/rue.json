@@ -1,0 +1,83 @@
+{
+  "code": "rue",
+  "name": "Rusyn",
+  "family": "Indo-European > Slavic > East Slavic",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "rue",
+  "glottolog_code": "rusy1239",
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
+  "graphemes": {
+    "а": ["a"],
+    "б": ["b"],
+    "в": ["v"],
+    "г": ["ɡ"],
+    "ґ": ["ɡ"],
+    "д": ["d"],
+    "е": ["ɛ"],
+    "є": ["jɛ"],
+    "ж": ["ʒ"],
+    "з": ["z"],
+    "и": ["ɪ"],
+    "і": ["i"],
+    "ї": ["ji"],
+    "й": ["j"],
+    "к": ["k"],
+    "л": ["l"],
+    "м": ["m"],
+    "н": ["n"],
+    "о": ["o"],
+    "п": ["p"],
+    "р": ["r"],
+    "с": ["s"],
+    "т": ["t"],
+    "у": ["u"],
+    "ф": ["f"],
+    "х": ["x"],
+    "ц": ["ts"],
+    "ч": ["tʃ"],
+    "ш": ["ʃ"],
+    "щ": ["ʃtʃ"],
+    "ъ": [""],
+    "ы": ["ɨ"],
+    "ь": ["ʲ"],
+    "ю": ["ju"],
+    "я": ["ja"],
+    "ё": ["jo"],
+    "э": ["ɛ"]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "uk",
+      "role": "related",
+      "weight": 0.6,
+      "notes": "East Slavic variety closely related to Ukrainian; spoken in Carpathian region"
+    },
+    {
+      "code": "ru",
+      "role": "related",
+      "weight": 0.4,
+      "notes": "Shares many features with Russian; classification as language vs. dialect disputed"
+    }
+  ],
+  "parent": null,
+  "notes": "Rusyn (Русиньскый язык), East Slavic variety spoken in Carpathian region (Ukraine, Slovakia, Poland, Serbia). Classification as language vs. Ukrainian dialect contested. Uses Cyrillic script. Soft sign ь marks palatalization. Multiple codification standards exist.",
+  "sources": [
+    {
+      "id": "wiki-rue",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Rusyn language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Rusyn_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Rusyn_language"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "code": "se",
+  "name": "Northern Sami",
+  "family": "Uralic > Samic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "sme",
+  "glottolog_code": "nort2671",
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
+  "graphemes": {
+    "č": ["tʃ"],
+    "đ": ["ð"],
+    "ŋ": ["ŋ"],
+    "š": ["ʃ"],
+    "ž": ["ʒ"],
+    "ŧ": ["θ"],
+    "á": ["a"],
+    "a": ["a"],
+    "b": ["b"],
+    "d": ["d"],
+    "e": ["e"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "h": ["h"],
+    "i": ["i"],
+    "j": ["j"],
+    "k": ["k"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "o": ["o"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "t": ["t"],
+    "u": ["u"],
+    "v": ["v"]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [],
+  "parent": null,
+  "notes": "Northern Sami, largest Sami language spoken in Norway, Sweden and Finland. Sami alphabets include several extended characters: č /tʃ/, đ /ð/, ŋ /ŋ/, š /ʃ/, ž /ʒ/, ŧ /θ/. Consonant gradation system similar to Finnish. Polysynthetic morphology.",
+  "sources": [
+    {
+      "id": "wiki-se",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Northern Sami",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Northern_Sami"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Northern_Sami"
+  ]
+}

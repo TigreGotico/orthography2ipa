@@ -1,0 +1,74 @@
+{
+  "code": "ka",
+  "name": "Georgian",
+  "family": "Kartvelian",
+  "script": "Georgian",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "kat",
+  "glottolog_code": "nucl1302",
+  "timespan": {
+    "start_year": 430,
+    "end_year": null
+  },
+  "graphemes": {
+    "ა": ["a"],
+    "ბ": ["b"],
+    "გ": ["ɡ"],
+    "დ": ["d"],
+    "ე": ["ɛ"],
+    "ვ": ["v"],
+    "ზ": ["z"],
+    "თ": ["tʰ"],
+    "ი": ["i"],
+    "კ": ["kʼ"],
+    "ლ": ["l"],
+    "მ": ["m"],
+    "ნ": ["n"],
+    "ო": ["o"],
+    "პ": ["pʼ"],
+    "ჟ": ["ʒ"],
+    "რ": ["r"],
+    "ს": ["s"],
+    "ტ": ["tʼ"],
+    "უ": ["u"],
+    "ფ": ["pʰ"],
+    "ქ": ["kʰ"],
+    "ღ": ["ɣ"],
+    "ყ": ["qʼ"],
+    "შ": ["ʃ"],
+    "ჩ": ["tʃʰ"],
+    "ც": ["tsʰ"],
+    "ძ": ["dz"],
+    "წ": ["tsʼ"],
+    "ჭ": ["tʃʼ"],
+    "ხ": ["x"],
+    "ჯ": ["dʒ"],
+    "ჰ": ["h"]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [],
+  "parent": null,
+  "notes": "Georgian (Kartuli), official language of Georgia. Written in Mkhedruli script. Three-way consonant distinction: voiced (ბ,გ,დ,ვ,ზ,ჟ,ჯ,ძ), aspirated (თ,ფ,ქ,ჩ,ც,ხ,ჰ), ejective (კ,პ,ტ,ყ,წ,ჭ). Complex consonant clusters. Kartvelian language family unrelated to Indo-European.",
+  "sources": [
+    {
+      "id": "wiki-ka",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Georgian language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Georgian_language"
+    },
+    {
+      "id": "wiki-ka-phon",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Georgian phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Georgian_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Georgian_language",
+    "https://en.wikipedia.org/wiki/Georgian_phonology"
+  ]
+}

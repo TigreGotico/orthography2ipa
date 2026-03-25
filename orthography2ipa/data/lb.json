@@ -1,0 +1,72 @@
+{
+  "code": "lb",
+  "name": "Luxembourgish",
+  "family": "Indo-European > Germanic > West Germanic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "ltz",
+  "glottolog_code": "luxe1241",
+  "timespan": {
+    "start_year": 1340,
+    "end_year": null
+  },
+  "graphemes": {
+    "sch": ["ʃ"],
+    "ch": ["x"],
+    "ng": ["ŋ"],
+    "ei": ["əɪ"],
+    "au": ["au"],
+    "äu": ["æɪ"],
+    "eu": ["œɪ"],
+    "é": ["eː"],
+    "ä": ["ɛː"],
+    "ë": ["ə"],
+    "a": ["a"],
+    "b": ["b"],
+    "d": ["d"],
+    "e": ["e"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "h": ["h"],
+    "i": ["i"],
+    "j": ["j"],
+    "k": ["k"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "o": ["o"],
+    "p": ["p"],
+    "r": ["ʀ"],
+    "s": ["z"],
+    "t": ["t"],
+    "u": ["u"],
+    "v": ["f"],
+    "w": ["v"],
+    "z": ["ts"]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "gem",
+      "role": "proto_language",
+      "weight": 1.0,
+      "notes": "Moselle Franconian variety of West Germanic"
+    }
+  ],
+  "parent": null,
+  "notes": "Luxembourgish (Lëtzebuergesch), Moselle Franconian West Germanic language, co-official in Luxembourg alongside French and German. Trigraph sch = /ʃ/, digraph ch = /x/. Vowel ë = schwa. Eifeler Regel: final /n/ deletion before certain consonants.",
+  "sources": [
+    {
+      "id": "wiki-lb",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Luxembourgish language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Luxembourgish_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Luxembourgish_language"
+  ]
+}

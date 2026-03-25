@@ -1,0 +1,78 @@
+{
+  "code": "mt",
+  "name": "Maltese",
+  "family": "Afro-Asiatic > Semitic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "mlt",
+  "glottolog_code": "malt1254",
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "graphemes": {
+    "għ": ["ʕ"],
+    "ie": ["ɪə"],
+    "ċ": ["tʃ"],
+    "ġ": ["dʒ"],
+    "x": ["ʃ"],
+    "ħ": ["ħ"],
+    "ż": ["z"],
+    "a": ["a"],
+    "b": ["b"],
+    "d": ["d"],
+    "e": ["e"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "h": [""],
+    "i": ["ɪ"],
+    "j": ["j"],
+    "k": ["k"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "o": ["o"],
+    "p": ["p"],
+    "q": ["ʔ"],
+    "r": ["r"],
+    "s": ["s"],
+    "t": ["t"],
+    "u": ["u"],
+    "v": ["v"],
+    "w": ["w"],
+    "z": ["ts"]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "ar",
+      "role": "ancestor",
+      "weight": 0.8,
+      "notes": "Evolved from Siculo-Arabic; heavily influenced by Sicilian Italian and later English"
+    }
+  ],
+  "parent": null,
+  "notes": "Maltese, the only Semitic language written in the Latin script and official EU language. Evolved from Siculo-Arabic. Digraph għ represents pharyngeal fricative, h is silent. Ċ and ġ are retroflex-palatal affricates. Extensive lexical borrowing from Sicilian/Italian and English.",
+  "sources": [
+    {
+      "id": "wiki-mt",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Maltese language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Maltese_language"
+    },
+    {
+      "id": "wiki-mt-phon",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Maltese phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Maltese_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Maltese_language",
+    "https://en.wikipedia.org/wiki/Maltese_phonology"
+  ]
+}

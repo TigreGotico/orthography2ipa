@@ -1,0 +1,81 @@
+{
+  "code": "lv",
+  "name": "Latvian",
+  "family": "Indo-European > Baltic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "lav",
+  "glottolog_code": "latv1249",
+  "timespan": {
+    "start_year": 1585,
+    "end_year": null
+  },
+  "graphemes": {
+    "a": ["a"],
+    "ā": ["aː"],
+    "b": ["b"],
+    "c": ["ts"],
+    "č": ["tʃ"],
+    "d": ["d"],
+    "e": ["ɛ"],
+    "ē": ["ɛː"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "ģ": ["ɟ"],
+    "h": ["x"],
+    "i": ["i"],
+    "ī": ["iː"],
+    "j": ["j"],
+    "k": ["k"],
+    "ķ": ["c"],
+    "l": ["l"],
+    "ļ": ["ʎ"],
+    "m": ["m"],
+    "n": ["n"],
+    "ņ": ["ɲ"],
+    "o": ["uo"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "š": ["ʃ"],
+    "t": ["t"],
+    "u": ["u"],
+    "ū": ["uː"],
+    "v": ["v"],
+    "z": ["z"],
+    "ž": ["ʒ"]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "ine",
+      "role": "proto_language",
+      "weight": 1.0,
+      "notes": "Descended from Proto-Indo-European via Proto-Baltic"
+    }
+  ],
+  "parent": null,
+  "notes": "Latvian (Lettish), Baltic language spoken in Latvia. Palatalised consonants marked with cedilla. Long vowels marked with macron. Three tone system (level, falling, broken).",
+  "sources": [
+    {
+      "id": "wiki-lv",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Latvian language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Latvian_language"
+    },
+    {
+      "id": "wiki-lv-phon",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Latvian phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Latvian_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Latvian_language",
+    "https://en.wikipedia.org/wiki/Latvian_phonology"
+  ]
+}
