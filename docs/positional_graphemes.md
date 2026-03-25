@@ -60,8 +60,23 @@ from orthography2ipa.types import GraphemePosition
 | `INTERVOCALIC` | Between vowels (same word) | V_V | Spanish lenition, Portuguese voicing |
 | `INTERVOCALIC_CROSS_WORD` | Between vowels across words | V#_V | French liaison, Portuguese sandhi |
 | `ONSET` | Syllable onset | σ[_ | English clear [l], Korean aspirated stops |
-| `NUCLEUS` | Syllable nucleus | σ_σ | Portuguese unstressed vowel reduction |
+| `NUCLEUS` | Generic syllable nucleus | σ_σ | When stress is not distinguished |
+| `NUCLEUS_STRESSED` | Stressed syllable nucleus | σ́_σ | Full vowel quality in stressed position |
+| `NUCLEUS_UNSTRESSED` | Unstressed syllable nucleus | σ_σ̆ | Portuguese ⟨e⟩ → [ɨ], English ⟨a⟩ → [ə] |
 | `CODA` | Syllable coda | _]σ | English dark [ɫ], Korean neutralisation, Brazilian [w] |
+| `PRETONIC` | Before stressed syllable | — | Pretonic vowel reduction |
+| `POSTTONIC` | After stressed syllable | — | Posttonic vowel reduction |
+| `BEFORE_VOWEL` | Before any vowel | _V | Consonant allophony before vowels |
+| `AFTER_VOWEL` | After any vowel | V_ | Post-vocalic consonant changes |
+| `BEFORE_CONSONANT` | Before any consonant | _C | Pre-consonantal changes |
+| `AFTER_CONSONANT` | After any consonant | C_ | Post-consonantal changes |
+| `BEFORE_A` | Before ⟨a⟩ | _a | Velar softening contexts |
+| `BEFORE_E` | Before ⟨e⟩ | _e | Velar softening contexts |
+| `BEFORE_I` | Before ⟨i⟩ | _i | Velar softening contexts |
+| `BEFORE_O` | Before ⟨o⟩ | _o | Velar softening contexts |
+| `BEFORE_U` | Before ⟨u⟩ | _u | Velar softening contexts |
+| `CONSONANTAL` | Consonantal context | — | Grapheme realised as consonant |
+| `VOCALIC` | Vocalic context | — | Grapheme realised as vowel |
 
 These positions correspond to standard phonological environments documented in:
 
@@ -87,7 +102,7 @@ Maps grapheme keys to dicts of `{GraphemePosition: [IPA candidates]}`. Only grap
 @dataclass(frozen=True)
 class LanguageSpec:
     # ... existing fields ...
-    positional_graphemes: PositionalGrapheme2IPA = {}
+    positional_graphemes: PositionalGrapheme2IPA = None  # normalised to {} in __post_init__
 ```
 
 ### Resolution method
@@ -153,59 +168,53 @@ if pt.has_positional_data():
 
 When creating or extending a `LanguageSpec`, add `positional_graphemes` for graphemes with position-dependent pronunciation. Only include graphemes that genuinely vary — if a grapheme has the same IPA in all positions, leave it in the base `graphemes` only.
 
-### Example: Spanish lenition
+### Example: Spanish lenition (JSON)
 
-```python
-POSITIONAL_GRAPHEMES_ES = {
-    # Voiced stops → fricatives intervocalically
+In `orthography2ipa/data/es-ES.json`:
+
+```json
+{
+  "positional_graphemes": {
     "b": {
-        GraphemePosition.DEFAULT: ["b"],
-        GraphemePosition.INTERVOCALIC: ["β"],
+      "default": ["b"],
+      "intervocalic": ["β"]
     },
     "d": {
-        GraphemePosition.DEFAULT: ["d"],
-        GraphemePosition.INTERVOCALIC: ["ð"],
-        GraphemePosition.WORD_FINAL: ["ð", "∅"],  # weakened or deleted
+      "default": ["d"],
+      "intervocalic": ["ð"],
+      "word_final": ["ð", "∅"]
     },
     "g": {
-        GraphemePosition.DEFAULT: ["ɡ"],
-        GraphemePosition.INTERVOCALIC: ["ɣ"],
-    },
-}
-
-SPECS = {
-    "es-ES": LanguageSpec(
-        code="es-ES",
-        name="Castilian Spanish",
-        family="Romance",
-        script="Latin",
-        graphemes=GRAPHEMES_ES,
-        allophones=ALLOPHONES_ES,
-        positional_graphemes=POSITIONAL_GRAPHEMES_ES,
-        # ... other fields ...
-    ),
+      "default": ["ɡ"],
+      "intervocalic": ["ɣ"]
+    }
+  }
 }
 ```
 
-### Example: Brazilian Portuguese coda vocalization
+### Example: Brazilian Portuguese coda vocalization (JSON)
 
-```python
-POSITIONAL_GRAPHEMES_PT_BR = {
+In `orthography2ipa/data/pt-BR.json`:
+
+```json
+{
+  "positional_graphemes": {
     "l": {
-        GraphemePosition.ONSET: ["l"],
-        GraphemePosition.CODA: ["w"],     # l-vocalization
+      "onset": ["l"],
+      "coda": ["w"]
     },
     "s": {
-        GraphemePosition.WORD_INITIAL: ["s"],
-        GraphemePosition.INTERVOCALIC: ["z"],
-        GraphemePosition.CODA: ["s", "z"],  # [s] before voiceless, [z] before voiced
-        GraphemePosition.WORD_FINAL: ["s"],
+      "word_initial": ["s"],
+      "intervocalic": ["z"],
+      "coda": ["s", "z"],
+      "word_final": ["s"]
     },
     "r": {
-        GraphemePosition.WORD_INITIAL: ["ʁ"],
-        GraphemePosition.INTERVOCALIC: ["ɾ"],
-        GraphemePosition.CODA: ["ɾ", "ʁ", "h"],  # varies by dialect
-    },
+      "word_initial": ["ʁ"],
+      "intervocalic": ["ɾ"],
+      "coda": ["ɾ", "ʁ", "h"]
+    }
+  }
 }
 ```
 

@@ -153,24 +153,36 @@ Ancestor(
 
 ## `LanguageSpec`
 
+`orthography2ipa/types.py:379`
+
 ```python
 @dataclass(frozen=True)
 class LanguageSpec:
-    code: str                          # BCP-47 or ISO 639 code
-    name: str                          # Human-readable name
-    family: str                        # Language family
-    script: str                        # Primary script
-    graphemes: Grapheme2IPA            # Grapheme → IPA
-    allophones: AllophoneMap           # Phoneme → allophones
-    parent: str | None = None          # Primary parent code (shorthand)
-    ancestors: Tuple[Ancestor, ...] = ()  # Full ancestry specification
-    notes: str = ""                    # Free-form notes
+    code: str                                          # BCP-47 or ISO 639 code
+    name: str                                          # Human-readable name
+    family: str                                        # Language family
+    script: str                                        # Primary script
+    graphemes: Grapheme2IPA                            # Grapheme → IPA
+    allophones: AllophoneMap                           # Phoneme → allophones
+    parent: Optional[str] = None                       # Primary parent code (shorthand)
+    ancestors: Tuple[Ancestor, ...] = ()               # Full ancestry specification
+    positional_graphemes: PositionalGrapheme2IPA = None # Context-sensitive IPA (normalised to {} in __post_init__)
+    glottolog_code: str | None = None                  # Glottolog languoid code
+    notes: str = ""                                    # Free-form notes
+    quality: QualityTier = QualityTier.RESEARCH        # Data maturity tier
+    script_type: ScriptType = ScriptType.ALPHABET      # Writing system typology
+    inherent_vowel: Optional[str] = None               # For abugidas (e.g. "ə" for Hindi)
+    iso639_3: Optional[str] = None                     # ISO 639-3 code
+    sandhi_rules: Tuple[SandhiRule, ...] = ()           # Cross-word phonological rules
+    tone_inventory: Optional[Dict[str, str]] = None    # IPA tone mark → label
+    sources: Tuple[LinguisticSource, ...] = ()         # Bibliographic references
+    wikipedia: Tuple[str, ...] = ()                    # Wikipedia article URLs
 ```
 
 ### Accessor methods and properties
 
 ```python
-spec = orthography2ipa.get("es")
+spec = orthography2ipa.get("es-ES")
 
 # Primary parent code
 spec.primary_parent          # "la-x-hispania"
@@ -183,13 +195,57 @@ spec.get_ancestors(AncestorRole.SUBSTRATE)     # substrate ancestors only
 spec.substrate_codes          # ('xaq',)
 spec.superstrate_codes        # ('got',)
 spec.contact_codes            # all non-parent ancestors: ('xaq', 'xaa', 'got')
+
+# Positional grapheme resolution
+spec.resolve_grapheme("b", GraphemePosition.INTERVOCALIC)  # ["β"]
+spec.has_positional_data()           # bool
+spec.positional_grapheme_keys()      # frozenset of graphemes with overrides
+spec.positions_for_grapheme("b")     # tuple of GraphemePosition values
 ```
 
 ### The `parent` vs `ancestors` fields
 
-For backward compatibility, `LanguageSpec` supports both `parent` (a simple string shorthand) and `ancestors` (the full typed tuple). If `ancestors` is empty but `parent` is set, `get_ancestors()` synthesises a `PARENT` ancestor with weight 1.0 automatically.
+For backward compatibility, `LanguageSpec` supports both `parent` (a simple string shorthand) and `ancestors` (the full typed tuple). If `ancestors` is empty but `parent` is set, `__post_init__` synthesises a `PARENT` ancestor with weight 1.0 automatically. Conversely, if `parent` is empty but `ancestors` contains a PARENT-role entry, `parent` is set from it.
 
 For new languages and dialects, always populate the `ancestors` tuple for richest data. Simple dialects that differ minimally from a parent may use just `parent`.
+
+### `QualityTier` enum
+
+`orthography2ipa/types.py:174`
+
+| Value | Description |
+|---|---|
+| `STUB` | Code + name + family + script only |
+| `SKELETON` | Graphemes + allophones from auto-generation (unvalidated) |
+| `RESEARCH` | Validated against published phonology; positional rules present |
+| `PRODUCTION` | Full coverage, regression-tested, cited sources |
+
+### `ScriptType` enum
+
+`orthography2ipa/types.py:194`
+
+| Value | Description |
+|---|---|
+| `ALPHABET` | Latin, Cyrillic, Greek, Armenian, Georgian |
+| `ABJAD` | Arabic, Hebrew — consonants primary, vowels optional |
+| `ABUGIDA` | Devanagari, Bengali, Tamil, Thai — inherent vowel |
+| `SYLLABARY` | Kana, Cherokee |
+| `LOGOGRAPHIC` | Hanzi / CJK ideographs |
+| `FEATURAL` | Hangul |
+| `MIXED` | Japanese (logographic + syllabary) |
+| `RECONSTRUCTION` | IPA-based phonological reconstruction for extinct languages |
+
+### `LinguisticSource` dataclass
+
+`orthography2ipa/types.py:258`
+
+Fields: `id`, `author`, `year`, `title`, `publisher`, `url`, `wikipedia_url`, `pages`, `notes`.
+
+### `SandhiRule` dataclass
+
+`orthography2ipa/types.py:300`
+
+Fields: `id`, `name`, `left_context`, `right_context`, `transform`, `obligatory`, `notes`.
 
 ---
 

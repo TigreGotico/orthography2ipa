@@ -109,7 +109,7 @@ Python `{**GRAPHEMES_ES, ...}` pattern.
 
 ### Step 1: Create the JSON file
 
-Create `orthography2ipa/data/{family}/{code}.json`:
+Create `orthography2ipa/data/{code}.json`:
 
 ```json
 {
@@ -186,7 +186,7 @@ If the language shares most phonological data with a parent:
 ### Step 4: Run tests
 
 ```bash
-python -m unittest tests.test_json_loader -v
+uv run pytest tests/ -v
 ```
 
 The test suite validates:
@@ -204,13 +204,24 @@ The test suite validates:
 | JSON key                  | Description                 | Example                                   |
 |---------------------------|-----------------------------|-------------------------------------------|
 | `default`                 | Default (any position)      | Spanish `"b": {"default": ["b"]}`         |
-| `onset`                   | Syllable onset              | Portuguese `"l": {"onset": ["l"]}`        |
-| `nucleus`                 | Syllable nucleus            | Vowel reduction                           |
-| `coda`                    | Syllable coda               | Brazilian `"l": {"coda": ["w"]}`          |
 | `word_initial`            | Word-initial                | Portuguese `"s": {"word_initial": ["s"]}` |
 | `word_final`              | Word-final                  | German `"d": {"word_final": ["t"]}`       |
 | `intervocalic`            | Between vowels              | Spanish `"b": {"intervocalic": ["β"]}`    |
 | `intervocalic_cross_word` | Between vowels across words | Portuguese liaison                        |
+| `onset`                   | Syllable onset              | Portuguese `"l": {"onset": ["l"]}`        |
+| `nucleus`                 | Generic syllable nucleus    | When stress not distinguished             |
+| `nucleus_stressed`        | Stressed syllable nucleus   | Full vowel quality                        |
+| `nucleus_unstressed`      | Unstressed syllable nucleus | Portuguese ⟨e⟩ → [ɨ]                     |
+| `coda`                    | Syllable coda               | Brazilian `"l": {"coda": ["w"]}`          |
+| `pretonic`                | Before stressed syllable    | Pretonic vowel reduction                  |
+| `posttonic`               | After stressed syllable     | Posttonic vowel reduction                 |
+| `before_vowel`            | Before any vowel            | Consonant allophony                       |
+| `after_vowel`             | After any vowel             | Post-vocalic changes                      |
+| `before_consonant`        | Before any consonant        | Pre-consonantal changes                   |
+| `after_consonant`         | After any consonant         | Post-consonantal changes                  |
+| `before_a` .. `before_u`  | Before specific vowel       | Velar softening contexts                  |
+| `consonantal`             | Consonantal context         | Grapheme as consonant                     |
+| `vocalic`                 | Vocalic context             | Grapheme as vowel                         |
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The registry (`registry.py`) is the central dispatch table that maps language codes to the Python modules that define their `LanguageSpec`. Languages are loaded **lazily** — only when first requested.
+The registry (`registry.py:68-82`) resolves language codes and lazily loads `LanguageSpec` objects from JSON data files under `orthography2ipa/data/`. Languages are loaded **lazily** — only when first requested via `get()`.
 
 ---
 
