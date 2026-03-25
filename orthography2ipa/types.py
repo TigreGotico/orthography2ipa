@@ -6,6 +6,7 @@ The core data model supports:
 - Weighted ancestry for distance calculations
 - Positional grapheme-to-IPA mappings for context-sensitive G2P
 - Glottolog classification codes for interoperability
+- Attestation time spans for diachronic distance metrics
 """
 from __future__ import annotations
 
@@ -25,6 +26,32 @@ AllophoneMap = Dict[str, List[str]]
 
 PositionalGrapheme2IPA = Dict[str, Dict["GraphemePosition", List[str]]]
 """Grapheme → {position: IPA candidates} for context-sensitive mappings."""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# TimeSpan — attestation period for a language
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class TimeSpan:
+    """The attestation period during which a language was spoken.
+
+    Parameters
+    ----------
+    start_year : int
+        Year the language variety is first attested or conventionally begins.
+        Use negative values for BCE (e.g. ``-200`` = 200 BCE).
+    end_year : Optional[int]
+        Year the language variety ceased being spoken / merged into a successor.
+        ``None`` indicates a living language (ongoing).
+
+    Examples
+    --------
+    Old English: ``TimeSpan(450, 1150)``
+    Modern Spanish: ``TimeSpan(1500, None)``
+    """
+    start_year: int
+    end_year: Optional[int]  # None = living / ongoing
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -250,8 +277,11 @@ class WeightedDistance:
     grapheme: float
     allophone: float
     ancestry: float
+    temporal: Optional[float]
+    """Temporal distance in [0, 1], or ``None`` if timespan data is unavailable."""
     combined: float
-    weights: Tuple[float, float, float, float]
+    weights: Tuple[float, float, float, float, float]
+    """Component weights: ``(w_inventory, w_grapheme, w_allophone, w_ancestry, w_temporal)``."""
 
 
 @dataclass(frozen=True)
@@ -482,6 +512,15 @@ class LanguageSpec:
     covering distinct aspects (phonology, history, dialectology) to give a
     complete cross-reference picture.  Order: English article first, then
     by relevance."""
+
+    timespan: Optional["TimeSpan"] = None
+    """Attestation period.  ``None`` if unknown.
+
+    For living languages, set ``end_year=None``.  For historical/extinct
+    languages, set both ``start_year`` and ``end_year``.  Enables
+    :func:`~orthography2ipa.distance.temporal_distance` and
+    ancestor weight decay in
+    :func:`~orthography2ipa.distance.ancestry_similarity`."""
 
     def __post_init__(self) -> None:
         # Normalise None to empty dict
