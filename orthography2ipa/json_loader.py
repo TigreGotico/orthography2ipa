@@ -31,6 +31,7 @@ from orthography2ipa.types import (
     QualityTier,
     SandhiRule,
     ScriptType,
+    TimeSpan,
 )
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -221,6 +222,15 @@ def load_json_spec(code: str) -> LanguageSpec:
         for s in sources_raw
     )
 
+    # Parse timespan
+    timespan: Optional[TimeSpan] = None
+    raw_timespan = raw.get("timespan")
+    if raw_timespan and isinstance(raw_timespan, dict):
+        timespan = TimeSpan(
+            start_year=int(raw_timespan["start_year"]),
+            end_year=int(raw_timespan["end_year"]) if raw_timespan.get("end_year") is not None else None,
+        )
+
     spec = LanguageSpec(
         code=raw["code"],
         name=raw["name"],
@@ -240,6 +250,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         tone_inventory=raw.get("tone_inventory"),
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
+        timespan=timespan,
     )
 
     _specs[code] = spec
