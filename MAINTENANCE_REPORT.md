@@ -3,6 +3,24 @@
 
 ---
 
+## Transparency Report — 2026-03-25 (Portuguese Creoles + Adstrate Modelling)
+
+**Model**: Claude Sonnet 4.6
+**Human oversight**: Active
+
+### Actions taken:
+1. **kea/pov/mcm** upgraded stub→skeleton: added nasal vowels, positional_graphemes, ancestors with roles/weights, 2–3 sources each, urls arrays.
+2. **pap.json** (Papiamentu): new skeleton file; ~330k speakers; pt-PT + nl superstrates; ch/dj/sh/zh/ñ/ll graphemes.
+3. **pre.json** (Principense/Lung'ie): new skeleton file; ~300 endangered speakers; labial-velar stops gb/kp; prenasalized mb/nd/ng; tone not marked.
+4. **aoa.json** (Angolar): new skeleton file; ~5k speakers; heaviest Bantu substrate of any PT creole; gb/kp; lexical tone.
+5. **sw/ny/ts/ff/tet/id** upgraded stub→skeleton: added positional_graphemes, additional sources, urls; key phonological features documented.
+6. Fixed circular ancestor reference: tet ↔ pt-TL loop broken by removing pt-TL from tet's ancestors.
+
+### Test result:
+- 12,038 passed (0 failures, 0 errors)
+
+---
+
 ## Transparency Report — 2026-03-25 (Documentation Audit & Fix)
 
 **Model**: Claude Opus 4.6 (1M context)

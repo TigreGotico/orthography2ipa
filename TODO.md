@@ -56,6 +56,10 @@ All 🟡 HIGH items resolved. Ready for 0.2.0 stable. ✅
 - [ ] **Remove `lm.py` deprecation shims from `feats.py` in v0.3.0**
   - `feats.py:650-683` — three wrapper functions with `DeprecationWarning`
 
+- [ ] **Add Saotomense (Forro) Gulf of Guinea creole**
+  - São Tomense creole, São Tomé island; part of Gulf of Guinea cluster with pre/aoa
+  - ISO 639-3 needs verification before creating file (not "crs" which is Seychellois)
+
 - [ ] **Expand stub language data**
   - ~238 stub specs have minimal grapheme data
   - Priority: Swahili variants, Tagalog dialects, Tibetan
