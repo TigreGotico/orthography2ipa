@@ -24,9 +24,7 @@ def all_families():
 
 @pytest.fixture(scope="session")
 def spec_en():
-    # en-GB.json does not exist yet; fixture intentionally returns pt-PT as placeholder.
-    # Remove this fixture and its usages when en-GB.json is populated (T-03 / T-07 scope).
-    pytest.skip("en-GB.json not yet populated — spec_en fixture unavailable")
+    return orthography2ipa.get("en-GB")
 
 
 @pytest.fixture(scope="session")

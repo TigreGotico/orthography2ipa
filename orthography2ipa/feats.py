@@ -36,7 +36,7 @@ The feature system aligns with features used in generative phonology
 and acoustic modeling, but values are hand-curated for each IPA symbol.
 """
 import warnings
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import numpy as np
 
@@ -575,7 +575,7 @@ def is_vowel_phone(phone: str) -> bool:
     """
     try:
         return vectorize_phones(phone)[0]
-    except:
+    except (ValueError, KeyError, IndexError):
         return False
 
 
@@ -633,7 +633,7 @@ def phonetic_distance(phone_a: str, phone_b: str) -> float:
     try:
         vecA = vectorize_phones(phone_a)
         vecB = vectorize_phones(phone_b)
-    except:
+    except (ValueError, KeyError, IndexError):
         return 3.0
 
     # --- Step 5: accumulate weighted mismatches ---
@@ -647,7 +647,7 @@ def phonetic_distance(phone_a: str, phone_b: str) -> float:
     return (diff_sum / total_weights) * factor
 
 
-def phoneme_embeddings(spec):
+def phoneme_embeddings(spec: "LanguageSpec") -> "dict[str, Any]":
     """Deprecated: moved to orthography2ipa.lm.phoneme_embeddings."""
     warnings.warn(
         "orthography2ipa.feats.phoneme_embeddings is deprecated; "
@@ -659,7 +659,7 @@ def phoneme_embeddings(spec):
     return _impl(spec)
 
 
-def build_ngram_lm(words, spec, n=3):
+def build_ngram_lm(words: "list[str]", spec: "LanguageSpec", n: int = 3) -> dict:
     """Deprecated: moved to orthography2ipa.lm.build_ngram_lm."""
     warnings.warn(
         "orthography2ipa.feats.build_ngram_lm is deprecated; "
@@ -671,7 +671,7 @@ def build_ngram_lm(words, spec, n=3):
     return _impl(words, spec, n)
 
 
-def perplexity(lm, test_words, spec, n=3):
+def perplexity(lm: dict, test_words: "list[str]", spec: "LanguageSpec", n: int = 3) -> float:
     """Deprecated: moved to orthography2ipa.lm.perplexity."""
     warnings.warn(
         "orthography2ipa.feats.perplexity is deprecated; "
