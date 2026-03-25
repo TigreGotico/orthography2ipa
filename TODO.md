@@ -81,7 +81,7 @@ All 🟡 HIGH items resolved. Ready for 0.2.0 stable. ✅
 - [x] `_temporal_decay()` + `ancestry_similarity(temporal_decay=True)` — `distance.py`
 - [x] `weighted_full_distance(w_temporal=...)` integration — `distance.py`
 - [x] 29 JSON files annotated (Germanic chain + key modern languages)
-- [ ] **Extend timespan coverage to Romance, Semitic, Indo-Iranian chains**
+- [x] **Extended timespan coverage to all 330 language files** (2026-03-25)
 - [ ] **Consider `temporal_distance` in `pairwise_distances()` metric enum**
 
 ---
