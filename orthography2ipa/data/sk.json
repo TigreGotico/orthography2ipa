@@ -299,7 +299,7 @@
   },
   "parent": "sla",
   "notes": "Standard Slovak. Close to Czech but distinct in several ways: ⟨h⟩ = [ɦ] (like Czech, not [h]); diphthongs ⟨ia ie iu ô⟩; syllabic liquids ⟨r l⟩ and their long counterparts ⟨ŕ ĺ⟩; rhythmic law: two consecutive long syllables not permitted (second long vowel shortens). Palatal consonant pair: ⟨ď ť⟩ = [ɟ c].",
-  "quality": "skeleton",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {

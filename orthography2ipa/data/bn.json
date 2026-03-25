@@ -326,7 +326,7 @@
     }
   ],
   "notes": "Standard Bengali (Dhaka/Kolkata). Key features: inherent vowel is /ɔ/ (not /ə/ like Hindi); ⟨য⟩ = [dʑ] word-initially, [j] elsewhere; ⟨শ⟩ and ⟨ষ⟩ both → [ʃ] (two Sanskrit sibilants merged); dental/retroflex contrast maintained; breathy stops phonemic but weakening in Bangladesh speech.",
-  "quality": "skeleton",
+  "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ɔ",
   "sources": [

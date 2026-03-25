@@ -288,7 +288,7 @@
     "": "neutral (5th)"
   },
   "notes": "Standard Mandarin (Pǔtōnghuà) based on Beijing pronunciation. Graphemes are Pinyin romanisation units. Hanzi→Pinyin conversion requires a separate dictionary (e.g. CC-CEDICT). Four lexical tones + neutral tone are suprasegmental and not encoded here.",
-  "quality": "skeleton",
+  "quality": "research",
   "script_type": "logographic",
   "sources": [
     {

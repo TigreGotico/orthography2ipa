@@ -233,8 +233,8 @@
       "author": "De Hoz, J.",
       "year": 1986,
       "title": "La epigrafía celtibérica",
-      "publisher": "in Reunión sobre epigrafía hispánica de época romano-republicana",
-      "url": "Institución Fernando el Católico",
+      "publisher": "Institución Fernando el Católico",
+      "url": null,
       "pages": null,
       "notes": null
     },
@@ -269,5 +269,6 @@
     "end_year": 100
   },
   "glottolog_code": "celt1248",
-  "iso639_3": "xce"
+  "iso639_3": "xce",
+  "quality": "research"
 }

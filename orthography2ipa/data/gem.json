@@ -227,5 +227,6 @@
     "start_year": -500,
     "end_year": 200
   },
-  "glottolog_code": "pger1234"
+  "glottolog_code": "pger1234",
+  "quality": "research"
 }

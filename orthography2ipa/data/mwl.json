@@ -27,7 +27,8 @@
       "notes": "Old Portuguese (Aviz-period) adstrate: as Portuguese consolidated as the state language, the Leonese-speaking communities of Miranda, Rionor, and Guadramil faced intensifying pressure. Portuguese orthographic conventions (lh, nh, ã) penetrated the writing tradition."
     }
   ],
-  "notes": "",
+  "quality": "research",
+  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/, palatal lateral /ʎ/ preserved, nasal vowels influenced by Portuguese orthographic proximity. Heavy Portuguese adstrate via official education and administration.",
   "sources": [
     {
       "id": "ferreira1995",
@@ -61,8 +62,13 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Mirandese_language",
+    "https://en.wikipedia.org/wiki/Mirandese",
     "https://mwl.wikipedia.org/wiki/Lhéngua_mirandesa"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mirandese",
+    "https://glottolog.org/resource/languoid/id/mira1251",
+    "https://www.ethnologue.com/language/mwl/"
   ],
   "timespan": {
     "start_year": 1400,
