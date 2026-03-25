@@ -166,6 +166,9 @@
       ]
     }
   },
+  "ISO_639-3": "por",
+  "quality": "research",
+  "script_type": "alphabet",
   "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation.",
   "sources": [
     {
@@ -201,6 +204,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Brazilian_Portuguese",
-    "https://pt.wikipedia.org/wiki/Português_brasileiro"
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_brasileiro"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Brazilian_Portuguese",
+    "https://en.wikipedia.org/wiki/Brazilian_Portuguese_phonology",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_brasileiro",
+    "https://pt.wikipedia.org/wiki/Fonologia_do_portugu%C3%AAs_brasileiro"
   ]
 }

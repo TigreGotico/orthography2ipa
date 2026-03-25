@@ -1,0 +1,113 @@
+{
+  "code": "pt-TL",
+  "ISO_639-3": "por",
+  "glottolog_code": "port1283",
+  "name": "East Timorese Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "positional_graphemes_base": "pt-PT",
+  "graphemes": {
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "lh": [
+      "l",
+      "ʎ"
+    ],
+    "nh": [
+      "n",
+      "ɲ"
+    ]
+  },
+  "allophones": {
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "ʁ": [
+      "r",
+      "ɾ"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.65,
+      "notes": "European Portuguese colonial base. East Timor (then Portuguese Timor) was a Portuguese colony from 1702 until Indonesian invasion in 1975; Portuguese was restored as official language after independence in 2002."
+    },
+    {
+      "code": "tet",
+      "role": "adstrate",
+      "weight": 0.25,
+      "notes": "Tetum (Tetun) adstrate: the true national lingua franca, co-official with Portuguese. Tetum is an Austronesian language with a strong Portuguese loanword vocabulary (Tetum Praça). Heavy phonological transfer into East Timorese Portuguese."
+    },
+    {
+      "code": "id",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Indonesian adstrate: 24 years of Indonesian occupation (1975–1999) left strong Indonesian influence on vocabulary and some phonological patterns, especially among speakers educated under the occupation."
+    }
+  ],
+  "notes": "East Timorese Portuguese (Português Timorense). Co-official language with Tetum (Tetun); spoken as L1 by ~5% and as L2 by ~35% of the population. Portuguese was suppressed during the Indonesian occupation (1975–1999) and reintroduced after independence (2002), creating a generation gap: older speakers learned Portuguese pre-occupation, younger speakers are being educated in it anew. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: /ɨ/ absent; full unstressed vowels. (2) RHOTIC: alveolar [r]; uvular [ʁ] absent or rare. (3) DIGRAPHS: ⟨lh⟩ and ⟨nh⟩ sometimes simplified to [l] and [n] by Tetum speakers. (4) TETUM INFLUENCE: open syllable preference (Tetum is a largely open-syllable language); coda consonants may be weakened. (5) NASAL VOWELS: partially preserved but with Tetum-influenced realisation. (6) The Dili variety (capital) is most prestigious. Sources: Hull (2001), Thomaz (2002), Taylor-Leech (2009).",
+  "sources": [
+    {
+      "id": "hull2001",
+      "author": "Hull, G.",
+      "year": 2001,
+      "title": "Timor-Leste: Identity, Language and Education",
+      "publisher": "University of Western Australia",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "taylor_leech2009",
+      "author": "Taylor-Leech, K.",
+      "year": 2009,
+      "title": "The language situation in Timor-Leste",
+      "publisher": "Current Issues in Language Planning",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "thomaz2002",
+      "author": "Thomaz, L.F.",
+      "year": 2002,
+      "title": "Babel Loro Sa'e: O problema linguístico de Timor-Leste",
+      "publisher": "Instituto Camões",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/East_Timorese_Portuguese",
+    "https://en.wikipedia.org/wiki/Languages_of_East_Timor"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/East_Timorese_Portuguese",
+    "https://en.wikipedia.org/wiki/Languages_of_East_Timor",
+    "https://en.wikipedia.org/wiki/Tetum_language",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_timorense",
+    "https://en.wikipedia.org/wiki/Portuguese_Timor"
+  ]
+}

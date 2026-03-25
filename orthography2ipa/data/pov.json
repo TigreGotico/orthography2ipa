@@ -1,0 +1,39 @@
+{
+  "code": "pov",
+  "ISO_639-3": "pov",
+  "glottolog_code": "guin1259",
+  "name": "Guinea-Bissau Creole (Kriol)",
+  "family": "Portuguese Creole",
+  "script": "Latin",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes": {
+    "a": ["a"], "e": ["e", "ɛ"], "i": ["i"], "o": ["o", "ɔ"], "u": ["u"],
+    "b": ["b"], "d": ["d"], "dj": ["dʒ"], "f": ["f"], "g": ["ɡ"],
+    "j": ["dʒ"], "k": ["k"], "l": ["l"], "m": ["m"], "n": ["n"],
+    "ng": ["ŋ"], "nh": ["ɲ"], "p": ["p"], "r": ["r"], "s": ["s"],
+    "t": ["t"], "tx": ["tʃ"], "v": ["v"], "w": ["w"], "x": ["ʃ"],
+    "y": ["j"], "z": ["z"]
+  },
+  "allophones": {
+    "a": ["a"], "e": ["e"], "ɛ": ["ɛ"], "i": ["i"], "o": ["o"],
+    "ɔ": ["ɔ"], "u": ["u"], "b": ["b"], "d": ["d"], "dʒ": ["dʒ"],
+    "f": ["f"], "ɡ": ["ɡ"], "k": ["k"], "l": ["l"], "m": ["m"],
+    "n": ["n"], "ŋ": ["ŋ"], "ɲ": ["ɲ"], "p": ["p"], "r": ["r"],
+    "s": ["s"], "t": ["t"], "tʃ": ["tʃ"], "v": ["v"], "w": ["w"],
+    "ʃ": ["ʃ"], "j": ["j"], "z": ["z"]
+  },
+  "notes": "Guinea-Bissau Creole (Kriol/GBC). Portuguese-based creole; true national lingua franca of Guinea-Bissau. ~600,000 L1 speakers, used by most of the ~2 million population as L2.",
+  "sources": [
+    {
+      "id": "kihm1994",
+      "author": "Kihm, A.",
+      "year": 1994,
+      "title": "Kriyol Syntax: The Portuguese-based Creole Language of Guinea-Bissau",
+      "publisher": "John Benjamins",
+      "url": null, "pages": null, "notes": null
+    }
+  ],
+  "wikipedia": ["https://en.wikipedia.org/wiki/Guinea-Bissau_Creole"]
+}

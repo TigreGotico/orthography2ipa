@@ -218,6 +218,9 @@
       "notes": "de amanhã → d‿ɐmɐɲã"
     }
   ],
+  "ISO_639-3": "por",
+  "quality": "research",
+  "script_type": "alphabet",
   "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features.",
   "sources": [
     {
@@ -253,6 +256,13 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Portuguese_language",
-    "https://pt.wikipedia.org/wiki/Língua_portuguesa"
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_portuguesa"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Portuguese_language",
+    "https://en.wikipedia.org/wiki/European_Portuguese",
+    "https://en.wikipedia.org/wiki/Portuguese_phonology",
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_portuguesa",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_europeu"
   ]
 }

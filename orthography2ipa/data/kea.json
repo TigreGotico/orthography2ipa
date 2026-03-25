@@ -1,0 +1,39 @@
+{
+  "code": "kea",
+  "ISO_639-3": "kea",
+  "glottolog_code": "kabu1256",
+  "name": "Kabuverdianu (Cape Verdean Creole)",
+  "family": "Portuguese Creole",
+  "script": "Latin",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes": {
+    "a": ["a"], "e": ["e", "ɛ"], "i": ["i"], "o": ["o", "ɔ"], "u": ["u"],
+    "b": ["b"], "d": ["d"], "dj": ["dʒ"], "f": ["f"], "g": ["ɡ"],
+    "h": [""], "j": ["ʒ"], "k": ["k"], "l": ["l"], "lh": ["ʎ"],
+    "m": ["m"], "n": ["n"], "nh": ["ɲ"], "ng": ["ŋ"], "p": ["p"],
+    "r": ["r"], "s": ["s"], "t": ["t"], "tx": ["tʃ"], "v": ["v"],
+    "w": ["w"], "x": ["ʃ"], "y": ["j"], "z": ["z"]
+  },
+  "allophones": {
+    "a": ["a"], "e": ["e"], "ɛ": ["ɛ"], "i": ["i"], "o": ["o"],
+    "ɔ": ["ɔ"], "u": ["u"], "b": ["b"], "d": ["d"], "dʒ": ["dʒ"],
+    "f": ["f"], "ɡ": ["ɡ"], "ʒ": ["ʒ"], "k": ["k"], "l": ["l"],
+    "ʎ": ["ʎ"], "m": ["m"], "n": ["n"], "ɲ": ["ɲ"], "ŋ": ["ŋ"],
+    "p": ["p"], "r": ["r"], "s": ["s"], "t": ["t"], "tʃ": ["tʃ"],
+    "v": ["v"], "w": ["w"], "ʃ": ["ʃ"], "j": ["j"], "z": ["z"]
+  },
+  "notes": "Kabuverdianu / Cape Verdean Creole. Portuguese-based creole; vernacular language of Cape Verde. Two main varieties: Badiu (Santiago island, Sotavento) and Sampadjudo (Barlavento). ~600,000 speakers.",
+  "sources": [
+    {
+      "id": "baptista2002",
+      "author": "Baptista, M.",
+      "year": 2002,
+      "title": "The Syntax of Cape Verdean Creole",
+      "publisher": "John Benjamins",
+      "url": null, "pages": null, "notes": null
+    }
+  ],
+  "wikipedia": ["https://en.wikipedia.org/wiki/Cape_Verdean_Creole"]
+}

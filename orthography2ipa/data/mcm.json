@@ -1,0 +1,39 @@
+{
+  "code": "mcm",
+  "ISO_639-3": "mcm",
+  "glottolog_code": "maca1260",
+  "name": "Macanese Creole (Patuá)",
+  "family": "Portuguese Creole",
+  "script": "Latin",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes": {
+    "a": ["a"], "e": ["e", "ɛ"], "i": ["i"], "o": ["o", "ɔ"], "u": ["u"],
+    "b": ["b"], "ch": ["tʃ"], "d": ["d"], "f": ["f"], "g": ["ɡ"],
+    "h": ["h"], "j": ["ʒ"], "k": ["k"], "l": ["l"], "lh": ["ʎ"],
+    "m": ["m"], "n": ["n"], "nh": ["ɲ"], "ng": ["ŋ"], "p": ["p"],
+    "r": ["r"], "s": ["s"], "t": ["t"], "v": ["v"], "w": ["w"],
+    "x": ["ʃ"], "y": ["j"], "z": ["z"]
+  },
+  "allophones": {
+    "a": ["a"], "e": ["e"], "ɛ": ["ɛ"], "i": ["i"], "o": ["o"],
+    "ɔ": ["ɔ"], "u": ["u"], "b": ["b"], "tʃ": ["tʃ"], "d": ["d"],
+    "f": ["f"], "ɡ": ["ɡ"], "h": ["h"], "ʒ": ["ʒ"], "k": ["k"],
+    "l": ["l"], "ʎ": ["ʎ"], "m": ["m"], "n": ["n"], "ɲ": ["ɲ"],
+    "ŋ": ["ŋ"], "p": ["p"], "r": ["r"], "s": ["s"], "t": ["t"],
+    "v": ["v"], "w": ["w"], "ʃ": ["ʃ"], "j": ["j"], "z": ["z"]
+  },
+  "notes": "Macanese Creole (Patuá / Maquista). Portuguese-based creole of the Macanese community of Macau. Influenced by Cantonese, Malay, and Konkani. Nearly extinct; fewer than 50 fluent speakers remain.",
+  "sources": [
+    {
+      "id": "batalha1977",
+      "author": "Batalha, G.N.",
+      "year": 1977,
+      "title": "Glossário do dialecto macaense",
+      "publisher": "Universidade de Coimbra",
+      "url": null, "pages": null, "notes": null
+    }
+  ],
+  "wikipedia": ["https://en.wikipedia.org/wiki/Macanese_Creole"]
+}
