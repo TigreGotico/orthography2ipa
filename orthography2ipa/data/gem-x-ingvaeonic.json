@@ -178,5 +178,15 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ingvaeonic_languages"
-  ]
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Ingvaeonic_languages",
+    "https://en.wikipedia.org/wiki/Anglo-Frisian_languages",
+    "https://en.wikipedia.org/wiki/North_Sea_Germanic",
+    "https://de.wikipedia.org/wiki/Ingw%C3%A4onische_Sprachen"
+  ],
+  "timespan": {
+    "start_year": 300,
+    "end_year": 700
+  }
 }

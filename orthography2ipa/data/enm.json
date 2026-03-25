@@ -325,5 +325,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Middle_English"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1150,
+    "end_year": 1500
+  }
 }

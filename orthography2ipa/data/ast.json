@@ -1,8 +1,12 @@
 {
   "code": "ast",
+  "ISO_639-3": "ast",
+  "glottolog_code": "astu1245",
   "name": "Asturian",
   "family": "Asturleonese",
   "script": "Latin",
+  "quality": "research",
+  "script_type": "alphabet",
   "parent": "la-x-hispania",
   "graphemes": {
     "a": [
@@ -412,5 +416,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Asturian_language",
     "https://ast.wikipedia.org/wiki/Asturianu"
-  ]
+  ],
+  "timespan": {
+    "start_year": 900,
+    "end_year": null
+  }
 }

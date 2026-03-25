@@ -222,5 +222,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Germanic_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -500,
+    "end_year": 200
+  }
 }

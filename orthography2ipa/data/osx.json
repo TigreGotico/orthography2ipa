@@ -234,6 +234,17 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Old_Saxon"
-  ]
+    "https://en.wikipedia.org/wiki/Old_Saxon",
+    "https://de.wikipedia.org/wiki/Alts%C3%A4chsische_Sprache"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Old_Saxon",
+    "https://en.wikipedia.org/wiki/Ingvaeonic_languages",
+    "https://en.wikipedia.org/wiki/Heliand",
+    "https://de.wikipedia.org/wiki/Alts%C3%A4chsische_Sprache"
+  ],
+  "timespan": {
+    "start_year": 800,
+    "end_year": 1150
+  }
 }

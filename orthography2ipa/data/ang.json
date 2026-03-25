@@ -351,6 +351,19 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Old_English"
-  ]
+    "https://en.wikipedia.org/wiki/Old_English",
+    "https://en.wikipedia.org/wiki/Old_English_phonology"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Old_English",
+    "https://en.wikipedia.org/wiki/Old_English_phonology",
+    "https://en.wikipedia.org/wiki/Anglo-Frisian_languages",
+    "https://en.wikipedia.org/wiki/Ingvaeonic_languages",
+    "https://en.wikipedia.org/wiki/Old_English_grammar",
+    "https://de.wikipedia.org/wiki/Altenglische_Sprache"
+  ],
+  "timespan": {
+    "start_year": 450,
+    "end_year": 1150
+  }
 }

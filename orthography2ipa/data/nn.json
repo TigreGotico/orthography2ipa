@@ -52,5 +52,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nynorsk",
     "https://nn.wikipedia.org/wiki/Nynorsk"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

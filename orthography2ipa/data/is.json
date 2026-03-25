@@ -308,5 +308,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Icelandic_language",
     "https://is.wikipedia.org/wiki/Íslenska"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

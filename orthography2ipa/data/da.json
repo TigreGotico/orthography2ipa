@@ -339,5 +339,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Danish_language",
     "https://da.wikipedia.org/wiki/Dansk"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

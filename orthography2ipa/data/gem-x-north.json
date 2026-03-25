@@ -250,5 +250,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/North_Germanic_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": 200,
+    "end_year": 800
+  }
 }

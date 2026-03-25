@@ -40,5 +40,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gothic_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 350,
+    "end_year": 600
+  }
 }

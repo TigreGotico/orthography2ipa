@@ -182,5 +182,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Northwest_Germanic_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": 100,
+    "end_year": 500
+  }
 }

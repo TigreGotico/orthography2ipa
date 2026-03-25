@@ -97,5 +97,9 @@
         "d"
       ]
     }
+  },
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
   }
 }

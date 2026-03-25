@@ -366,5 +366,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Dutch_language",
     "https://nl.wikipedia.org/wiki/Nederlandse_taal"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

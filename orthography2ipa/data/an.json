@@ -5,6 +5,8 @@
   "name": "Aragonese",
   "family": "Aragonese",
   "script": "Latin",
+  "quality": "research",
+  "script_type": "alphabet",
   "parent": "la-x-hispania",
   "graphemes": {
     "a": [
@@ -513,5 +515,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aragonese_language",
     "https://an.wikipedia.org/wiki/Aragonés"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1050,
+    "end_year": null
+  }
 }

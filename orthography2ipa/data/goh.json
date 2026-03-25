@@ -270,5 +270,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_High_German"
-  ]
+  ],
+  "timespan": {
+    "start_year": 750,
+    "end_year": 1100
+  }
 }

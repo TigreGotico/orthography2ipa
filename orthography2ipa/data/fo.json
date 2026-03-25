@@ -300,5 +300,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Faroese_language",
     "https://fo.wikipedia.org/wiki/Føroyskt_mál"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

@@ -331,5 +331,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Norse"
-  ]
+  ],
+  "timespan": {
+    "start_year": 700,
+    "end_year": 1350
+  }
 }
