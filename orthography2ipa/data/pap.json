@@ -1,0 +1,141 @@
+{
+  "code": "pap",
+  "ISO_639-3": "pap",
+  "glottolog_code": "papi1253",
+  "name": "Papiamentu (Papiamento)",
+  "family": "Portuguese Creole",
+  "script": "Latin",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes": {
+    "a": ["a"],
+    "e": ["e", "ɛ"],
+    "i": ["i"],
+    "o": ["o", "ɔ"],
+    "u": ["u"],
+    "ai": ["aj"],
+    "ei": ["ej"],
+    "oi": ["oj"],
+    "au": ["aw"],
+    "b": ["b"],
+    "ch": ["tʃ"],
+    "d": ["d"],
+    "dj": ["dʒ"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "h": ["h"],
+    "k": ["k"],
+    "l": ["l"],
+    "ll": ["j"],
+    "m": ["m"],
+    "n": ["n"],
+    "ng": ["ŋ"],
+    "ñ": ["ɲ"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "sh": ["ʃ"],
+    "t": ["t"],
+    "v": ["v"],
+    "w": ["w"],
+    "y": ["j"],
+    "z": ["z"],
+    "zh": ["ʒ"]
+  },
+  "positional_graphemes": {
+    "n": {"word_final": ["n"]},
+    "r": {"word_final": ["r"], "word_initial": ["r"]},
+    "s": {"word_final": ["s"]},
+    "k": {"word_final": ["k"]},
+    "ll": {"word_initial": ["j"]}
+  },
+  "allophones": {
+    "a": ["a"],
+    "e": ["e"],
+    "ɛ": ["ɛ"],
+    "i": ["i"],
+    "o": ["o"],
+    "ɔ": ["ɔ"],
+    "u": ["u"],
+    "b": ["b"],
+    "tʃ": ["tʃ"],
+    "d": ["d"],
+    "dʒ": ["dʒ"],
+    "f": ["f"],
+    "ɡ": ["ɡ"],
+    "h": ["h"],
+    "k": ["k"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "ŋ": ["ŋ"],
+    "ɲ": ["ɲ"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "ʃ": ["ʃ"],
+    "t": ["t"],
+    "v": ["v"],
+    "w": ["w"],
+    "j": ["j"],
+    "z": ["z"],
+    "ʒ": ["ʒ"]
+  },
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "superstrate",
+      "weight": 0.45,
+      "notes": "Portuguese superstrate: earliest Iberian lexifier; the Portuguese origin hypothesis (Goodman, Maurer) holds that Papiamentu originated from a Portuguese-based creole spoken by Sephardic Jews and Portuguese traders from the early 17th century."
+    },
+    {
+      "code": "nl",
+      "role": "superstrate",
+      "weight": 0.35,
+      "notes": "Dutch superstrate: Netherlands ruled Curaçao from 1634; Dutch colonial administration contributed vocabulary, and Dutch is still a co-official language. Official Curaçao orthography (2009) reflects phonemic principles distinct from Dutch etymology."
+    }
+  ],
+  "notes": "Papiamentu (Curaçao/Bonaire) / Papiamento (Aruba). Iberian-based creole; official language of Curaçao, Aruba, and Bonaire. ~330,000 speakers. Two spelling conventions: Curaçao/Bonaire use phonemic orthography (papi-a-men-tu), Aruba uses etymological spelling closer to Spanish/Portuguese. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e and o vary [e]~[ɛ] and [o]~[ɔ]. (2) AFFRICATES: ch=[tʃ], dj=[dʒ]. (3) SIBILANTS: sh=[ʃ], zh=[ʒ], s=[s], z=[z]. (4) PALATAL NASAL: ñ=[ɲ] (from Spanish/Portuguese). (5) LL: renders [j] (from Spanish lateral, reanalysed as glide). (6) DIPHTHONGS: ai/ei/oi/au are phonemic. (7) STRESS: penultimate by default; stress-timed rhythm. One of the best-studied Atlantic creoles with the highest number of L1 speakers per capita in the Caribbean.",
+  "sources": [
+    {
+      "id": "kouwenberg_murray1994",
+      "author": "Kouwenberg, S. & Murray, E.",
+      "year": 1994,
+      "title": "Papiamentu",
+      "publisher": "Languages of the World/Materials 83, LINCOM Europa",
+      "url": null,
+      "pages": null,
+      "notes": "Comprehensive phonological and morphological description"
+    },
+    {
+      "id": "maurer1998",
+      "author": "Maurer, P.",
+      "year": 1998,
+      "title": "L'Angola dans la genèse du Papiamentu",
+      "publisher": "In: Estudos de Linguística Criola, Casa da Moeda, Lisbon",
+      "url": null,
+      "pages": null,
+      "notes": "Portuguese-origin hypothesis"
+    },
+    {
+      "id": "dijkhoff1993",
+      "author": "Dijkhoff, M.",
+      "year": 1993,
+      "title": "Papiamentu Word Formation",
+      "publisher": "University of Amsterdam dissertation",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Papiamentu"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Papiamentu",
+    "https://en.wikipedia.org/wiki/Languages_of_Cura%C3%A7ao",
+    "https://glottolog.org/resource/languoid/id/papi1253",
+    "https://www.ethnologue.com/language/pap/"
+  ]
+}
