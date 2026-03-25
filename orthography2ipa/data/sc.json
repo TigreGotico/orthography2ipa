@@ -272,5 +272,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sardinian_language",
     "https://sc.wikipedia.org/wiki/Limba_sarda"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

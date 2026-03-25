@@ -356,5 +356,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Minas_Gerais"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

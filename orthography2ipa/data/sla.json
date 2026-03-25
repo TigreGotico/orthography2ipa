@@ -322,5 +322,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Slavic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 500,
+    "end_year": 1000
+  }
 }

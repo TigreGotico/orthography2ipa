@@ -394,5 +394,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kannada",
     "https://kn.wikipedia.org/wiki/ಕನ್ನಡ"
-  ]
+  ],
+  "timespan": {
+    "start_year": 900,
+    "end_year": null
+  }
 }

@@ -126,5 +126,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Andalusian_Spanish"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

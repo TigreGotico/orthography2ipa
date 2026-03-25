@@ -357,5 +357,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Neapolitan_language",
     "https://nap.wikipedia.org/wiki/Lengua_napulitana"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

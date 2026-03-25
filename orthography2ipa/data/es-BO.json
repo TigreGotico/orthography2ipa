@@ -85,5 +85,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Bolivian_Spanish"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

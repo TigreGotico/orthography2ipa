@@ -329,5 +329,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Serbian_language",
     "https://sr.wikipedia.org/wiki/Српски_језик"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

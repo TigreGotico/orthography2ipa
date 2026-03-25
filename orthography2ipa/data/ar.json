@@ -46,5 +46,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Arabic",
     "https://ar.wikipedia.org/wiki/لغة_عربية"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

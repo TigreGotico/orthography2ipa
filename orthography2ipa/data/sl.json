@@ -261,5 +261,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Slovenian_language",
     "https://sl.wikipedia.org/wiki/Slovenščina"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

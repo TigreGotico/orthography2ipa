@@ -260,5 +260,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Semitic_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -4000,
+    "end_year": -2500
+  }
 }

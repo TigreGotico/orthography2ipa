@@ -63,5 +63,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mirandese_language",
     "https://mwl.wikipedia.org/wiki/Lhéngua_mirandesa"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

@@ -57,5 +57,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Campidanese_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

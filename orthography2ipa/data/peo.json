@@ -235,5 +235,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Persian"
-  ]
+  ],
+  "timespan": {
+    "start_year": -550,
+    "end_year": -330
+  }
 }

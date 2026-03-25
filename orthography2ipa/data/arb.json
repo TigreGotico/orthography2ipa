@@ -346,5 +346,9 @@
     "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
     "https://ar.wikipedia.org/wiki/لغة_عربية",
     "https://en.wikipedia.org/wiki/Arabic_phonology"
-  ]
+  ],
+  "timespan": {
+    "start_year": 600,
+    "end_year": 1400
+  }
 }

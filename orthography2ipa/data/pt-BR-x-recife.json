@@ -354,5 +354,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Recife"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

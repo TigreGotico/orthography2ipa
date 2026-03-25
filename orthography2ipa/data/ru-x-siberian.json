@@ -51,5 +51,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Siberian_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

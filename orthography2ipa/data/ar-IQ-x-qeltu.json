@@ -68,5 +68,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/qǝltu_dialects"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

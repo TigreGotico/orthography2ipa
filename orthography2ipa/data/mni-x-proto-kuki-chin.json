@@ -207,5 +207,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kuki-Chin_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": -1000,
+    "end_year": -400
+  }
 }

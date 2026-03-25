@@ -60,5 +60,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Upper_Navarrese_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

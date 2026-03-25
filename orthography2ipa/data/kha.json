@@ -215,5 +215,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Khasi_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

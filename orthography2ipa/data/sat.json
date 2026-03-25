@@ -261,5 +261,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Santali_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

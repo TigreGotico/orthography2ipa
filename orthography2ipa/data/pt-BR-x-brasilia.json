@@ -352,5 +352,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Brasília"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

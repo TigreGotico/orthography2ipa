@@ -287,5 +287,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Venetian_language",
     "https://vec.wikipedia.org/wiki/Łéngoa_vèneta"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

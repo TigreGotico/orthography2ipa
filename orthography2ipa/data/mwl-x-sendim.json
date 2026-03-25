@@ -48,5 +48,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mirandese_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

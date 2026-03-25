@@ -100,5 +100,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Valencian"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

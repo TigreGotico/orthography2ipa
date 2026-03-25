@@ -163,5 +163,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gaulish_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -280,
+    "end_year": 400
+  }
 }

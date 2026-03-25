@@ -75,5 +75,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Malay_language",
     "https://ms.wikipedia.org/wiki/Bahasa_Melayu"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

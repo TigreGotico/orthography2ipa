@@ -94,5 +94,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Galician_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

@@ -339,5 +339,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Berber_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": -1000,
+    "end_year": -300
+  }
 }

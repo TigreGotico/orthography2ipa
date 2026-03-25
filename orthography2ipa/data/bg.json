@@ -268,5 +268,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Bulgarian_language",
     "https://bg.wikipedia.org/wiki/Български_език"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

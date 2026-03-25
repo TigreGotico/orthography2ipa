@@ -385,5 +385,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Punjabi_language",
     "https://pa.wikipedia.org/wiki/ਪੰਜਾਬੀ"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

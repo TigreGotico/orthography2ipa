@@ -79,5 +79,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tehran"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

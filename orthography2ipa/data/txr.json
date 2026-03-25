@@ -126,5 +126,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tartessian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -800,
+    "end_year": -400
+  }
 }

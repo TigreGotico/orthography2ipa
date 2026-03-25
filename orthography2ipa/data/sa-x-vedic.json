@@ -406,5 +406,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Vedic_Sanskrit"
-  ]
+  ],
+  "timespan": {
+    "start_year": -1500,
+    "end_year": -600
+  }
 }

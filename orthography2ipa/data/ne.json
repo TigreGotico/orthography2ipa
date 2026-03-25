@@ -362,5 +362,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nepali_language",
     "https://ne.wikipedia.org/wiki/नेपाली_भाषा"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

@@ -69,5 +69,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kerman"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

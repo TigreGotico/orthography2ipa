@@ -402,5 +402,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Marathi_language",
     "https://mr.wikipedia.org/wiki/मराठी_भाषा"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

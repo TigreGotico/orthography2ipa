@@ -275,5 +275,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mundari_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

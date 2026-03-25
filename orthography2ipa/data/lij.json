@@ -171,5 +171,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ligurian_language_(Romance)",
     "https://lij.wikipedia.org/wiki/Lengua_lìgure"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

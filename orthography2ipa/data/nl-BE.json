@@ -34,5 +34,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Flemish",
     "https://nl.wikipedia.org/wiki/Belgisch-Nederlands"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

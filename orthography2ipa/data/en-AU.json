@@ -60,5 +60,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Australian_English"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

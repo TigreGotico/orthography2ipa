@@ -313,5 +313,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Belarusian_language",
     "https://be.wikipedia.org/wiki/Беларуская_мова"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

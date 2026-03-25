@@ -253,5 +253,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Italic_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": -500,
+    "end_year": 600
+  }
 }

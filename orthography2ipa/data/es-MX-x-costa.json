@@ -127,5 +127,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mexican_Spanish"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

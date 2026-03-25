@@ -75,5 +75,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Costa_Rican_Spanish"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

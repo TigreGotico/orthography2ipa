@@ -352,5 +352,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Northern_Brazil"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

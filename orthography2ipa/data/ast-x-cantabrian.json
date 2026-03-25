@@ -163,5 +163,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cantabrian_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

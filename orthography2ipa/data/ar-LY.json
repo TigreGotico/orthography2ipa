@@ -110,5 +110,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Libyan_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

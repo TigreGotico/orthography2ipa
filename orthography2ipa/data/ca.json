@@ -432,5 +432,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Catalan_language",
     "https://ca.wikipedia.org/wiki/Català"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

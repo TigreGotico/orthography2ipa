@@ -307,5 +307,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cypriot_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

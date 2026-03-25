@@ -241,5 +241,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cornish_language",
     "https://kw.wikipedia.org/wiki/Kernowek"
-  ]
+  ],
+  "timespan": {
+    "start_year": 400,
+    "end_year": null
+  }
 }

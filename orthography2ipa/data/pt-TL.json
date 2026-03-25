@@ -109,5 +109,9 @@
     "https://en.wikipedia.org/wiki/Tetum_language",
     "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_timorense",
     "https://en.wikipedia.org/wiki/Portuguese_Timor"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

@@ -378,5 +378,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kashmiri_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

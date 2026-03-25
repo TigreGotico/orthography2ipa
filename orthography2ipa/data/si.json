@@ -429,5 +429,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sinhala_language",
     "https://si.wikipedia.org/wiki/සිංහල"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

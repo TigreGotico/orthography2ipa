@@ -374,5 +374,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Assamese_language",
     "https://as.wikipedia.org/wiki/অসমীয়া_ভাষা"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

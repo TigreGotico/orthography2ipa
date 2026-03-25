@@ -353,5 +353,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Maithili_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

@@ -57,5 +57,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kuwaiti_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

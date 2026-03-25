@@ -385,5 +385,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Urdu",
     "https://ur.wikipedia.org/wiki/اردو"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

@@ -108,5 +108,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hejazi_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

@@ -240,5 +240,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Croatian_language",
     "https://hr.wikipedia.org/wiki/Hrvatski_jezik"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

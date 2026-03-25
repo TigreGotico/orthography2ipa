@@ -147,5 +147,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ancient_Ligurian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -800,
+    "end_year": 300
+  }
 }

@@ -159,5 +159,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aquitanian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -600,
+    "end_year": 400
+  }
 }

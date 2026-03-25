@@ -357,5 +357,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Caipira_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

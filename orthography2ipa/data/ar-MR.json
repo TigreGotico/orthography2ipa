@@ -123,5 +123,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hassaniya_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

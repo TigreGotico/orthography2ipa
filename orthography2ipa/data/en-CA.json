@@ -65,5 +65,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Canadian_English"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

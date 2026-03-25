@@ -370,5 +370,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ancient_Greek",
     "https://en.wikipedia.org/wiki/Ancient_Greek_phonology"
-  ]
+  ],
+  "timespan": {
+    "start_year": -500,
+    "end_year": -300
+  }
 }

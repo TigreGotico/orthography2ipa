@@ -247,5 +247,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Macedonian_language",
     "https://mk.wikipedia.org/wiki/Македонски_јазик"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

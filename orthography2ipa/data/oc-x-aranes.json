@@ -346,5 +346,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aranese_dialect",
     "https://oc.wikipedia.org/wiki/Aranés"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

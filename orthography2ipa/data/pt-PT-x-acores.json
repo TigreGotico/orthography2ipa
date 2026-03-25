@@ -59,5 +59,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Azorean_Portuguese"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

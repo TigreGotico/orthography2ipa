@@ -289,5 +289,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Church_Slavonic",
     "https://cu.wikipedia.org/wiki/Ѩзыкъ_словѣньскъ"
-  ]
+  ],
+  "timespan": {
+    "start_year": 900,
+    "end_year": 1200
+  }
 }

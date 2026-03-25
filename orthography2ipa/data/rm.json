@@ -260,5 +260,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Romansh_language",
     "https://rm.wikipedia.org/wiki/Rumantsch"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

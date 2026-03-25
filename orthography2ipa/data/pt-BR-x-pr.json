@@ -353,5 +353,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Paraná_(state)"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

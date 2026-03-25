@@ -205,5 +205,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Goidelic_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": -500,
+    "end_year": 500
+  }
 }

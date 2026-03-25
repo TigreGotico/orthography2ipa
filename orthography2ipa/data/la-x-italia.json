@@ -345,5 +345,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Italo-Dalmatian_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": 200,
+    "end_year": 900
+  }
 }

@@ -59,5 +59,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/South_African_English"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

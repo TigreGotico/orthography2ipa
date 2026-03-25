@@ -340,5 +340,9 @@
     "https://en.wikipedia.org/wiki/Tamil_language",
     "https://ta.wikipedia.org/wiki/தமிழ்",
     "https://en.wikipedia.org/wiki/Tamil_phonology"
-  ]
+  ],
+  "timespan": {
+    "start_year": -300,
+    "end_year": null
+  }
 }

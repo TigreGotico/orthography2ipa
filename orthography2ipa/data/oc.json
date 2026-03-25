@@ -72,5 +72,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Occitan_language",
     "https://oc.wikipedia.org/wiki/Occitan"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

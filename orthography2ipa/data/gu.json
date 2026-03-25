@@ -379,5 +379,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gujarati_language",
     "https://gu.wikipedia.org/wiki/ગુજરાતી_ભાષા"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

@@ -350,5 +350,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tuscan_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

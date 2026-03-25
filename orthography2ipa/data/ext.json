@@ -192,5 +192,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Extremaduran_language",
     "https://ext.wikipedia.org/wiki/Estremeñu"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

@@ -50,5 +50,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Western_Catalan"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

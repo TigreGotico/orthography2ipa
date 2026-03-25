@@ -115,5 +115,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Murcian_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

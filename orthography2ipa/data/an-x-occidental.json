@@ -45,5 +45,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aragonese_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1100,
+    "end_year": null
+  }
 }

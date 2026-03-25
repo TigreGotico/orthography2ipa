@@ -270,5 +270,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ladin_language",
     "https://lld.wikipedia.org/wiki/Ladin"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

@@ -301,5 +301,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Pali"
-  ]
+  ],
+  "timespan": {
+    "start_year": -300,
+    "end_year": 1200
+  }
 }

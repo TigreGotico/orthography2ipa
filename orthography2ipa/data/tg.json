@@ -274,5 +274,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tajik_language",
     "https://tg.wikipedia.org/wiki/Забони_тоҷикӣ"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

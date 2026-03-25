@@ -65,5 +65,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Souletin_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

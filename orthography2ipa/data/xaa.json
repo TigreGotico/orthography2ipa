@@ -43,5 +43,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nabataean_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 711,
+    "end_year": 1492
+  }
 }

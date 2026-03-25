@@ -365,5 +365,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Odia_language",
     "https://or.wikipedia.org/wiki/ଓଡ଼ିଆ"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

@@ -142,5 +142,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gallaecian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -300,
+    "end_year": 500
+  }
 }

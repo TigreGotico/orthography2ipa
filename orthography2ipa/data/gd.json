@@ -309,5 +309,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Scottish_Gaelic",
     "https://gd.wikipedia.org/wiki/Gàidhlig"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

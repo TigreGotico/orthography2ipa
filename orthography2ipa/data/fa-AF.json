@@ -112,5 +112,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Dari_language",
     "https://fa.wikipedia.org/wiki/دری"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

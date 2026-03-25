@@ -246,5 +246,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Phoenician_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -1100,
+    "end_year": 100
+  }
 }

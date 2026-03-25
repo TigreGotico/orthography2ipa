@@ -203,5 +203,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Latin"
-  ]
+  ],
+  "timespan": {
+    "start_year": -600,
+    "end_year": -100
+  }
 }

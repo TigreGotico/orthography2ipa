@@ -271,5 +271,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Early_New_Persian"
-  ]
+  ],
+  "timespan": {
+    "start_year": 800,
+    "end_year": 1400
+  }
 }

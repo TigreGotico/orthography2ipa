@@ -198,5 +198,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Portuguese"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1100,
+    "end_year": 1500
+  }
 }

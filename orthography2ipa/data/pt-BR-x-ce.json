@@ -355,5 +355,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ceará"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

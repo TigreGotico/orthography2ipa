@@ -116,5 +116,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Moroccan_Arabic",
     "https://ar.wikipedia.org/wiki/الدارجة_المغربية"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

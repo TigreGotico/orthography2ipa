@@ -53,5 +53,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Alentejo"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

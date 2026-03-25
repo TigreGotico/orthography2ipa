@@ -45,5 +45,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Spanish_language",
     "https://es.wikipedia.org/wiki/Idioma_español"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

@@ -76,5 +76,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Scottish_English"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

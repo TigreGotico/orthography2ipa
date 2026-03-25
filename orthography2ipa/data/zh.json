@@ -325,5 +325,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Chinese_language",
     "https://zh.wikipedia.org/wiki/汉语"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

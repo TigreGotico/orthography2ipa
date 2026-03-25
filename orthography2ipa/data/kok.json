@@ -372,5 +372,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Konkani_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

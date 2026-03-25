@@ -45,5 +45,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Arkhangelsk"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

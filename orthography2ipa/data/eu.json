@@ -243,5 +243,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Basque_language",
     "https://eu.wikipedia.org/wiki/Euskara"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

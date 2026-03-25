@@ -310,5 +310,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Welsh_language",
     "https://cy.wikipedia.org/wiki/Cymraeg"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

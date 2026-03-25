@@ -170,5 +170,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Dacian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -600,
+    "end_year": 200
+  }
 }

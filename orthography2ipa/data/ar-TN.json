@@ -127,5 +127,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tunisian_Arabic",
     "https://ar.wikipedia.org/wiki/الدارجة_التونسية"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

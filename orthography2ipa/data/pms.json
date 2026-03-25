@@ -167,5 +167,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Piedmontese_language",
     "https://pms.wikipedia.org/wiki/Lenga_piemontèisa"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

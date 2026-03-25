@@ -188,5 +188,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gaul"
-  ]
+  ],
+  "timespan": {
+    "start_year": -600,
+    "end_year": 200
+  }
 }

@@ -111,5 +111,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Maghrebi_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

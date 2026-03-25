@@ -107,5 +107,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Yemeni_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

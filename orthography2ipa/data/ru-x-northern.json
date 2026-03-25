@@ -62,5 +62,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Northern_Russian_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

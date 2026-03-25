@@ -179,5 +179,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Umbrian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -400,
+    "end_year": 100
+  }
 }

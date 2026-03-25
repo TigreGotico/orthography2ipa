@@ -270,5 +270,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Eastern_Romance_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": 200,
+    "end_year": 900
+  }
 }

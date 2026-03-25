@@ -391,5 +391,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Spanish_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": 1500
+  }
 }

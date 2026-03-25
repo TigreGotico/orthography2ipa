@@ -64,5 +64,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gulf_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

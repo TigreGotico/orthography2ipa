@@ -207,5 +207,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Celtic_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -1000,
+    "end_year": -400
+  }
 }

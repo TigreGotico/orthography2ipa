@@ -354,5 +354,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Southern_Brazil"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

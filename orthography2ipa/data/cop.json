@@ -249,5 +249,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Coptic_language",
     "https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ"
-  ]
+  ],
+  "timespan": {
+    "start_year": 200,
+    "end_year": 1400
+  }
 }

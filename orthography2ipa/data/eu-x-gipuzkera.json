@@ -49,5 +49,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gipuzkoan_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

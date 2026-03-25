@@ -268,5 +268,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Middle_Persian"
-  ]
+  ],
+  "timespan": {
+    "start_year": 300,
+    "end_year": 900
+  }
 }

@@ -270,5 +270,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Manx_language",
     "https://gv.wikipedia.org/wiki/Gaelg"
-  ]
+  ],
+  "timespan": {
+    "start_year": 600,
+    "end_year": null
+  }
 }

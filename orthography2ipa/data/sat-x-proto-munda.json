@@ -206,5 +206,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Munda_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": -2000,
+    "end_year": -1000
+  }
 }

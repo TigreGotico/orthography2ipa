@@ -99,5 +99,9 @@
     "https://en.wikipedia.org/wiki/Languages_of_Guinea-Bissau",
     "https://en.wikipedia.org/wiki/Portuguese_language_in_Africa",
     "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_da_Guin%C3%A9-Bissau"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

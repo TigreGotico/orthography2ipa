@@ -214,5 +214,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gallo-Italic_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": 500,
+    "end_year": 1100
+  }
 }

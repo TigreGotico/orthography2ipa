@@ -361,5 +361,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sindhi_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

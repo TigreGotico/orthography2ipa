@@ -119,5 +119,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Iraqi_Arabic",
     "https://ar.wikipedia.org/wiki/العربية_العراقية"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

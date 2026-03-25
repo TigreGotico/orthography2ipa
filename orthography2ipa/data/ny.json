@@ -8,94 +8,293 @@
   "quality": "skeleton",
   "script_type": "alphabet",
   "graphemes": {
-    "a": ["a"],
-    "e": ["ɛ"],
-    "i": ["i"],
-    "o": ["ɔ"],
-    "u": ["u"],
-    "b": ["b"],
-    "bw": ["bʷ"],
-    "ch": ["tʃ"],
-    "d": ["d"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "gw": ["ɡʷ"],
-    "h": ["h"],
-    "j": ["dʒ"],
-    "k": ["k"],
-    "kh": ["kʰ"],
-    "kw": ["kʷ"],
-    "l": ["l"],
-    "m": ["m"],
-    "mb": ["mb"],
-    "mp": ["mp"],
-    "mw": ["mʷ"],
-    "n": ["n"],
-    "nd": ["nd"],
-    "ng": ["ŋ"],
-    "ng'": ["ŋ"],
-    "nk": ["ŋk"],
-    "nt": ["nt"],
-    "nw": ["nʷ"],
-    "ny": ["ɲ"],
-    "nz": ["nz"],
-    "p": ["p"],
-    "ph": ["pʰ"],
-    "pw": ["pʷ"],
-    "r": ["r"],
-    "s": ["s"],
-    "t": ["t"],
-    "th": ["tʰ"],
-    "ts": ["ts"],
-    "tw": ["tʷ"],
-    "v": ["v"],
-    "w": ["w"],
-    "y": ["j"],
-    "z": ["z"],
-    "zw": ["zʷ"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "bw": [
+      "bʷ"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gw": [
+      "ɡʷ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "kw": [
+      "kʷ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "mw": [
+      "mʷ"
+    ],
+    "n": [
+      "n"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ng'": [
+      "ŋ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "nt": [
+      "nt"
+    ],
+    "nw": [
+      "nʷ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "nz": [
+      "nz"
+    ],
+    "p": [
+      "p"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "pw": [
+      "pʷ"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tw": [
+      "tʷ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "zw": [
+      "zʷ"
+    ]
   },
   "positional_graphemes": {
-    "mb": {"word_initial": ["mb"]},
-    "mp": {"word_initial": ["mp"]},
-    "nd": {"word_initial": ["nd"]},
-    "ng": {"word_initial": ["ŋɡ"]},
-    "ng'": {"word_initial": ["ŋ"], "word_final": ["ŋ"]},
-    "nk": {"word_initial": ["ŋk"]},
-    "nt": {"word_initial": ["nt"]},
-    "nz": {"word_initial": ["nz"]},
-    "m": {"word_initial": ["m", "m̩"]},
-    "n": {"word_initial": ["n", "n̩"]},
-    "a": {"word_final": ["a"]},
-    "i": {"word_final": ["i"]},
-    "u": {"word_final": ["u"]}
+    "mb": {
+      "word_initial": [
+        "mb"
+      ]
+    },
+    "mp": {
+      "word_initial": [
+        "mp"
+      ]
+    },
+    "nd": {
+      "word_initial": [
+        "nd"
+      ]
+    },
+    "ng": {
+      "word_initial": [
+        "ŋɡ"
+      ]
+    },
+    "ng'": {
+      "word_initial": [
+        "ŋ"
+      ],
+      "word_final": [
+        "ŋ"
+      ]
+    },
+    "nk": {
+      "word_initial": [
+        "ŋk"
+      ]
+    },
+    "nt": {
+      "word_initial": [
+        "nt"
+      ]
+    },
+    "nz": {
+      "word_initial": [
+        "nz"
+      ]
+    },
+    "m": {
+      "word_initial": [
+        "m",
+        "m̩"
+      ]
+    },
+    "n": {
+      "word_initial": [
+        "n",
+        "n̩"
+      ]
+    },
+    "a": {
+      "word_final": [
+        "a"
+      ]
+    },
+    "i": {
+      "word_final": [
+        "i"
+      ]
+    },
+    "u": {
+      "word_final": [
+        "u"
+      ]
+    }
   },
   "allophones": {
-    "a": ["a"],
-    "ɛ": ["ɛ"],
-    "i": ["i"],
-    "ɔ": ["ɔ"],
-    "u": ["u"],
-    "b": ["b"],
-    "tʃ": ["tʃ"],
-    "d": ["d"],
-    "f": ["f"],
-    "ɡ": ["ɡ"],
-    "h": ["h"],
-    "dʒ": ["dʒ"],
-    "k": ["k"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "ŋ": ["ŋ"],
-    "ɲ": ["ɲ"],
-    "p": ["p"],
-    "r": ["r"],
-    "s": ["s"],
-    "t": ["t"],
-    "v": ["v"],
-    "w": ["w"],
-    "j": ["j"],
-    "z": ["z"]
+    "a": [
+      "a"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
   },
   "notes": "Chichewa/Nyanja (Chicheŵa). Bantu language; official language of Malawi (as Chichewa) and spoken in Zambia (as Nyanja), Mozambique (Tete province), and Zimbabwe. ~15 million speakers. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e=[ɛ], o=[ɔ]. (2) PRENASALIZED STOPS: mb/mp/nd/nk/nt/nz — phonemic sequences functioning as single onset consonants. (3) SYLLABIC NASALS: m- and n- noun class prefixes are syllabic (/m̩/, /n̩/) before consonants. (4) NG vs NG': <ng'> = [ŋ] (bare velar nasal), <ng> = [ŋɡ] prenasalized. (5) LABIALIZED CONSONANTS: bw/gw/kw/mw/nw/pw/tw/zw are phonemic. (6) ASPIRATED STOPS: kh/ph/th = [kʰ/pʰ/tʰ], phonemic. (7) TONES: lexical tone (H/L), not marked in standard orthography. (8) OPEN SYLLABLE PREFERENCE: most syllables end in vowel.",
   "sources": [
@@ -138,5 +337,9 @@
     "https://en.wikipedia.org/wiki/Chichewa_language",
     "https://glottolog.org/resource/languoid/id/nyan1308",
     "https://www.ethnologue.com/language/nya/"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

@@ -90,5 +90,9 @@
     "https://en.wikipedia.org/wiki/Languages_of_Macau",
     "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_de_Macau",
     "https://en.wikipedia.org/wiki/Macau"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

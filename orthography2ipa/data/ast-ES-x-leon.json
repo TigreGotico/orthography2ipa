@@ -44,5 +44,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Leonese_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 900,
+    "end_year": null
+  }
 }

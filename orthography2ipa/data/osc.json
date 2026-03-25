@@ -182,5 +182,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Oscan_language",
     "https://it.wikipedia.org/wiki/Lingua_osca"
-  ]
+  ],
+  "timespan": {
+    "start_year": -400,
+    "end_year": 100
+  }
 }

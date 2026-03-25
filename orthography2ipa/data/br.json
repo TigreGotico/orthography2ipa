@@ -277,5 +277,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Breton_language",
     "https://br.wikipedia.org/wiki/Brezhoneg"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

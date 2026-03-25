@@ -309,5 +309,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Irish_language",
     "https://ga.wikipedia.org/wiki/Gaeilge"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

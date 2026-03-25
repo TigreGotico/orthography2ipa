@@ -205,5 +205,9 @@
     "https://en.wikipedia.org/wiki/Old_Portuguese",
     "https://en.wikipedia.org/wiki/Galician-Portuguese",
     "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_arcaico"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": 1500
+  }
 }

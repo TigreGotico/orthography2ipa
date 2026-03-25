@@ -75,5 +75,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Finland_Swedish"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

@@ -360,5 +360,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sicilian_language",
     "https://scn.wikipedia.org/wiki/Lingua_siciliana"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
 }

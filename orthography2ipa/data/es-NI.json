@@ -116,5 +116,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nicaraguan_Spanish"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

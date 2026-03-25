@@ -73,5 +73,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Scanian_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
 }

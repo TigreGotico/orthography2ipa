@@ -340,5 +340,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Umbrian_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

@@ -68,5 +68,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hazaragi_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

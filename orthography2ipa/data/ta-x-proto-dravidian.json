@@ -227,5 +227,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Dravidian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -4000,
+    "end_year": -2000
+  }
 }

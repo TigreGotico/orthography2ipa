@@ -72,5 +72,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Trás-os-Montes_e_Alto_Douro"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

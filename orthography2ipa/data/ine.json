@@ -232,5 +232,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Indo-European_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -4500,
+    "end_year": -2500
+  }
 }

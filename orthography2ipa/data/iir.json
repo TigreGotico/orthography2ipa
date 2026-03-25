@@ -248,5 +248,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Indo-Iranian_language"
-  ]
+  ],
+  "timespan": {
+    "start_year": -2500,
+    "end_year": -1500
+  }
 }

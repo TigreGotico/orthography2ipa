@@ -64,5 +64,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Latin_American_Spanish"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
 }

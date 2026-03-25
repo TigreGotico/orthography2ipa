@@ -113,5 +113,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Late_Latin"
-  ]
+  ],
+  "timespan": {
+    "start_year": 200,
+    "end_year": 800
+  }
 }

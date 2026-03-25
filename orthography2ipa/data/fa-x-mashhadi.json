@@ -58,5 +58,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mashhad"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

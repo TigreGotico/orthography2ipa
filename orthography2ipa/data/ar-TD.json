@@ -106,5 +106,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Chadian_Arabic"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  }
 }

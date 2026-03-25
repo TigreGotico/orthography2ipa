@@ -296,5 +296,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Korean_language",
     "https://ko.wikipedia.org/wiki/한국어"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
 }

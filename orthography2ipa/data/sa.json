@@ -398,5 +398,9 @@
     "https://en.wikipedia.org/wiki/Sanskrit",
     "https://sa.wikipedia.org/wiki/संस्कृतम्",
     "https://en.wikipedia.org/wiki/Sanskrit_phonology"
-  ]
+  ],
+  "timespan": {
+    "start_year": -1500,
+    "end_year": null
+  }
 }

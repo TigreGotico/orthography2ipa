@@ -45,5 +45,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Moscow_dialect_of_Russian"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

@@ -323,5 +323,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Southern_Russian_dialect"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

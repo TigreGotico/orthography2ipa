@@ -59,5 +59,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Angolan_Portuguese",
     "https://pt.wikipedia.org/wiki/Português_de_Angola"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

@@ -67,5 +67,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hiberno-English"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  }
 }

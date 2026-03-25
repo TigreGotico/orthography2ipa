@@ -106,5 +106,9 @@
     "https://en.wikipedia.org/wiki/Portuguese_language_in_Africa",
     "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_mo%C3%A7ambicano",
     "https://en.wikipedia.org/wiki/Languages_of_Mozambique"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  }
 }

@@ -54,5 +54,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aveiro,_Portugal"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

@@ -389,5 +389,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Telugu_language",
     "https://te.wikipedia.org/wiki/తెలుగు"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
 }

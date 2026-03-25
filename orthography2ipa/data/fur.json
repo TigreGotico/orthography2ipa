@@ -285,5 +285,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Friulian_language",
     "https://fur.wikipedia.org/wiki/Lenghe_furlane"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }

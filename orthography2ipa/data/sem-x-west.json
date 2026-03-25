@@ -40,5 +40,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/West_Semitic_languages"
-  ]
+  ],
+  "timespan": {
+    "start_year": -2500,
+    "end_year": -1500
+  }
 }

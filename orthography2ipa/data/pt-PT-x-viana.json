@@ -66,5 +66,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Viana_do_Castelo"
-  ]
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
 }
