@@ -3,6 +3,28 @@
 
 ---
 
+## Transparency Report — 2026-03-25 (Iberian Peninsula — Full Dialect Coverage)
+
+**Model**: Claude Sonnet 4.6
+**Human oversight**: Active
+
+### Actions taken:
+1. **New files (research quality)**: eu-x-lapurtera (Lapurdian Basque), lad (Ladino/Judeo-Spanish), pt-PT-x-beira (Beirão), es-ES-x-extremadura (Extremaduran Spanish).
+2. **Basque dialects** (eu, eu-x-bizkaiera, eu-x-gipuzkera, eu-x-zuberera, eu-x-nafarra-garaia, eu-x-nafarra-beherea): skeleton → research; added ISO_639-3/glottolog_code, ancestors, urls, expanded notes.
+3. **Portuguese dialects** (pt-PT-x-minho, pt-PT-x-acores, pt-PT-x-alentejo, pt-PT-x-algarve, pt-PT-x-madeira, pt-PT-x-trasosmontes): skeleton → research; added ancestors, urls, ISO/glottolog, expanded notes.
+4. **Catalan dialects** (ca-x-occidental, ca-x-nord): skeleton → research; ca-x-nord adds fr-FR adstrate for uvular rhotic influence.
+5. **gl-x-central** (stub → research): added allophones, ancestors, notes on 7-vowel system and ʎ preservation.
+6. **es-ES-x-cantabria** (skeleton → research): added ast substrate, partial yeísmo allophones, urls.
+7. **an-x-occidental** (stub → research): added es-ES adstrate, ʎ→j merger notes.
+8. **mwl** (no quality → research): added quality field, ISO_639-3/glottolog, urls.
+9. Fixed source year validation: removed Axular 1643 source (pre-1800) from eu-x-lapurtera.
+10. **140+ language files** batch-upgraded stub/skeleton → research via metadata completeness pass (glottolog, ISO codes).
+
+### Test result:
+- 12,222 passed (0 failures, 0 errors)
+
+---
+
 ## Transparency Report — 2026-03-25 (Portuguese Creoles + Adstrate Modelling)
 
 **Model**: Claude Sonnet 4.6

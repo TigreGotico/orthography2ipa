@@ -90,7 +90,8 @@ All 🟡 HIGH items resolved. Ready for 0.2.0 stable. ✅
 - [x] `iso639_3` added to all 330 files (20 proto-languages correctly left null)
 - [x] 140 files upgraded from stub/skeleton → research quality
 - [x] Fix: `xce.json` sources[0].url was publisher string
-- [ ] **Upgrade remaining 86 skeleton files** (add positional_graphemes / validate phonology)
+- [x] **Iberian Peninsula full dialect coverage** (2026-03-25): eu-x-lapurtera, lad, pt-PT-x-beira, es-ES-x-extremadura (new); 20+ skeleton→research upgrades across Basque, Portuguese, Catalan, Galician, Spanish, Aragonese, Mirandese dialects
+- [ ] **Upgrade remaining skeleton files** (add positional_graphemes / validate phonology)
 - [ ] **Reach production tier** (requires regression tests per language)
 
 ---
