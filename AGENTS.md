@@ -111,11 +111,11 @@ Read `PLAN.md` and `TODO.md` at project root before resuming any sourcing work.
 | :--- | :--- | :--- |
 | Phase 0 — Infrastructure | `LinguisticSource` type, `json_loader`, `SCHEMA.md` | **COMPLETE** |
 | Phase 1 — Germanic | 33 files (en-*, de-*, nl-*, sv-*, da-*, nb, nn, is, fo, af, nds, enm, ang, non, osx, goh, gem-*) | **COMPLETE** |
-| Phase 2 — Romance | 60+ files (es-*, pt-*, it-*, fr-*, ca-*, gl-*, ro-*, oc, sc, scn, la-*, …) | TODO |
-| Phase 3 — Semitic/Arabic | ar-*, arb, sem-*, phn, cop | TODO |
-| Phase 4 — Indo-Iranian | hi, ur, bn, pa, gu, mr, ne, sa, pi, fa-*, ps, sd, iir, ira, … | TODO |
-| Phase 5 — Other Modern | ru-*, uk, be, bg, cs, pl, el, tr, fi, hu, eu-*, ko, ja, zh, ms, … | TODO |
-| Phase 6 — Ancient/Extinct | ine, cel-*, osc, etr, xib, xlg, xpa, cop, peo, pal, cu, … | TODO |
+| Phase 2 — Romance | 60+ files (es-*, pt-*, it-*, fr-*, ca-*, gl-*, ro-*, oc, sc, scn, la-*, …) | **COMPLETE** |
+| Phase 3 — Semitic/Arabic | ar-*, arb, sem-*, phn, cop | **COMPLETE** |
+| Phase 4 — Indo-Iranian | hi, ur, bn, pa, gu, mr, ne, sa, pi, fa-*, ps, sd, iir, ira, … | **COMPLETE** |
+| Phase 5 — Other Modern | ru-*, uk, be, bg, cs, pl, el, tr, fi, hu, eu-*, ko, ja, zh, ms, … | **COMPLETE** |
+| Phase 6 — Ancient/Extinct | ine, cel-*, osc, etr, xib, xlg, xpa, cop, peo, pal, cu, … | **COMPLETE** |
 
 After adding sources to a batch:
 ```bash

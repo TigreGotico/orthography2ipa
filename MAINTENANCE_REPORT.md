@@ -3,6 +3,25 @@
 
 ---
 
+## Transparency Report — 2026-03-25 (Documentation Audit & Fix)
+
+**Model**: Claude Opus 4.6 (1M context)
+**Human oversight**: Active (approval of all file writes)
+
+### Actions taken:
+1. **Full docs audit**: Identified 27+ incorrect line-number citations, 30+ references to non-existent Python modules, and 8 undocumented modules.
+2. **`docs/architecture.md`** — Complete rewrite: replaced stale Python module listing with JSON data directory; added docs for all 11 modules (`feats.py`, `transforms.py`, `script_distance.py`, `sandhi.py`, `lm.py`, `g2p_plugin.py` were undocumented).
+3. **`docs/index.md`** — Fixed all line-number citations in Key Classes (17 entries) and Key Functions (15 entries) tables; added 15 new entries; updated LanguageSpec field table (11→19 fields); updated version reference.
+4. **`docs/data_model.md`** — Added `QualityTier`, `ScriptType`, `LinguisticSource`, `SandhiRule` docs; added all new `LanguageSpec` fields.
+5. **`docs/positional_graphemes.md`** — Added 15 missing `GraphemePosition` enum values; fixed default (`None` not `{}`); replaced Python module examples with JSON format.
+6. **`docs/registry.md`** — Fixed overview to reference JSON loading.
+7. **`docs/adding_a_language.md`** — Fixed data path, test command, added missing positional grapheme JSON keys.
+
+### Test result:
+- No code changes — documentation only. Existing tests unaffected.
+
+---
+
 ## Transparency Report — 2026-03-17 (Linguistic Reference Audit — Phase 0 + Phase 1)
 
 **Model**: Claude Sonnet 4.6

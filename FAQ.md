@@ -192,6 +192,18 @@ When `spec.inherent_vowel` is set (e.g., `"ə"` for Hindi), the tokenizer automa
 
 ---
 
+## Documentation
+
+**Q: Where is each module documented?**
+
+`docs/architecture.md` has a section for every module with line-number citations: `types.py`, `registry.py`, `json_loader.py`, `phonetok.py`, `distance.py`, `feats.py`, `transforms.py`, `script_distance.py`, `sandhi.py`, `lm.py`, `g2p_plugin.py`. `docs/index.md` has Key Classes and Key Functions tables with all public types and functions.
+
+**Q: Why do the docs reference Python module files like `en.py` that don't exist?**
+
+They no longer do. As of 2026-03-25, all references to the pre-migration Python language modules were replaced with the current JSON-based data architecture. If you find any stale reference, file a bug.
+
+---
+
 ## Testing
 
 **Q: Why are some tests skipped?**

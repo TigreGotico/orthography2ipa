@@ -1,6 +1,6 @@
 # TODO.md — orthography2ipa
 
-_Last updated: 2026-03-19 | Reviewed by: Claude Sonnet 4.6_
+_Last updated: 2026-03-25 | Reviewed by: Claude Opus 4.6_
 
 Legend: 🔴 Blocking · 🟡 High · 🟢 Medium · ⚪ Low
 
