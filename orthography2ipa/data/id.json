@@ -2,202 +2,88 @@
   "code": "id",
   "ISO_639-3": "ind",
   "glottolog_code": "indo1316",
-  "name": "Indonesian",
+  "name": "Indonesian (Bahasa Indonesia)",
   "family": "Austronesian",
   "script": "Latin",
-  "quality": "stub",
+  "quality": "skeleton",
   "script_type": "alphabet",
   "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e",
-      "ə"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "ai": [
-      "aj"
-    ],
-    "au": [
-      "aw"
-    ],
-    "oi": [
-      "oj"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "tʃ"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "h": [
-      "h"
-    ],
-    "j": [
-      "dʒ"
-    ],
-    "k": [
-      "k",
-      "ʔ"
-    ],
-    "kh": [
-      "x"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "ny": [
-      "ɲ"
-    ],
-    "p": [
-      "p"
-    ],
-    "r": [
-      "r"
-    ],
-    "s": [
-      "s"
-    ],
-    "sy": [
-      "ʃ"
-    ],
-    "t": [
-      "t"
-    ],
-    "v": [
-      "v"
-    ],
-    "w": [
-      "w"
-    ],
-    "x": [
-      "ks"
-    ],
-    "y": [
-      "j"
-    ],
-    "z": [
-      "z"
-    ]
+    "a": ["a"],
+    "e": ["e", "ə"],
+    "i": ["i"],
+    "o": ["o"],
+    "u": ["u"],
+    "ai": ["aj"],
+    "au": ["aw"],
+    "oi": ["oj"],
+    "b": ["b"],
+    "c": ["tʃ"],
+    "d": ["d"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "h": ["h"],
+    "j": ["dʒ"],
+    "k": ["k", "ʔ"],
+    "kh": ["x"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "ng": ["ŋ"],
+    "ny": ["ɲ"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "sy": ["ʃ"],
+    "t": ["t"],
+    "v": ["v"],
+    "w": ["w"],
+    "x": ["ks"],
+    "y": ["j"],
+    "z": ["z"]
+  },
+  "positional_graphemes": {
+    "k": {"word_final": ["ʔ"], "word_initial": ["k"]},
+    "h": {"word_final": ["h", ""], "word_initial": ["h"], "intervocalic": ["h", ""]},
+    "ng": {"word_final": ["ŋ"], "word_initial": ["ŋ"]},
+    "ny": {"word_initial": ["ɲ"]},
+    "m": {"word_final": ["m"]},
+    "n": {"word_final": ["n"]},
+    "l": {"word_final": ["l"]},
+    "r": {"word_final": ["r"], "intervocalic": ["r"]},
+    "s": {"word_final": ["s"]}
   },
   "allophones": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "ə": [
-      "ə"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "b": [
-      "b"
-    ],
-    "tʃ": [
-      "tʃ"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "h": [
-      "h"
-    ],
-    "dʒ": [
-      "dʒ"
-    ],
-    "k": [
-      "k",
-      "ʔ"
-    ],
-    "x": [
-      "x"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "p": [
-      "p"
-    ],
-    "r": [
-      "r"
-    ],
-    "s": [
-      "s"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "t": [
-      "t"
-    ],
-    "v": [
-      "v"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "z": [
-      "z"
-    ]
+    "a": ["a"],
+    "e": ["e"],
+    "ə": ["ə"],
+    "i": ["i"],
+    "o": ["o"],
+    "u": ["u"],
+    "b": ["b"],
+    "tʃ": ["tʃ"],
+    "d": ["d"],
+    "f": ["f"],
+    "ɡ": ["ɡ"],
+    "h": ["h"],
+    "dʒ": ["dʒ"],
+    "k": ["k", "ʔ"],
+    "x": ["x"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "ŋ": ["ŋ"],
+    "ɲ": ["ɲ"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "ʃ": ["ʃ"],
+    "t": ["t"],
+    "v": ["v"],
+    "w": ["w"],
+    "j": ["j"],
+    "z": ["z"]
   },
-  "notes": "Indonesian (Bahasa Indonesia). Austronesian language; official language of Indonesia. Based on Riau Malay. ~45 million L1 speakers, ~200 million L2 speakers. Occupied East Timor 1975–1999.",
+  "notes": "Indonesian (Bahasa Indonesia). Austronesian language (Malayo-Polynesian); official language of Indonesia. Based on Riau Malay; standardized from the 1920s. ~45 million L1 speakers; ~200 million L2. KEY FEATURES: (1) WORD-FINAL K: <k> in word-final position = [ʔ] (glottal stop), not [k]. This is the most critical positional rule. (2) E: two phonemes — <e> = [e] (close-mid, in open syllables) or [ə] (schwa, in closed syllables); contrast is partly predictable but not entirely. (3) WORD-FINAL H: may be silent or realized as [h] depending on word origin and register. (4) NG: [ŋ] word-initially possible (ngilu, nganga). (5) C: always [tʃ], never [k] or [s]. (6) KH: [x] from Arabic loans (khusus, akhir). (7) SY: [ʃ] from Arabic/Dutch loans (syarat, syukur). (8) DIPHTHONGS: ai/au/oi are true diphthongs in citation forms. (9) NASALIZATION: nasal prefixes meN-, peN- assimilate to following consonant (meng-, men-, mem-, meny-).",
   "sources": [
     {
       "id": "sneddon2003",
@@ -208,9 +94,35 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "lapoliwa1981",
+      "author": "Lapoliwa, H.",
+      "year": 1981,
+      "title": "A Generative Approach to the Phonology of Bahasa Indonesia",
+      "publisher": "Pacific Linguistics, ANU",
+      "url": null,
+      "pages": null,
+      "notes": "Formal phonological analysis; key source for positional rules"
+    },
+    {
+      "id": "roosman2000",
+      "author": "Roosman, L.",
+      "year": 2000,
+      "title": "Indonesian Phonology",
+      "publisher": "In: Facts about the World's Languages, H.W. Wilson",
+      "url": null,
+      "pages": null,
+      "notes": null
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Indonesian_language"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Indonesian_language",
+    "https://en.wikipedia.org/wiki/Indonesian_phonology",
+    "https://glottolog.org/resource/languoid/id/indo1316",
+    "https://www.ethnologue.com/language/ind/"
   ]
 }
