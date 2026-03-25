@@ -84,6 +84,15 @@ All 🟡 HIGH items resolved. Ready for 0.2.0 stable. ✅
 - [x] **Extended timespan coverage to all 330 language files** (2026-03-25)
 - [ ] **Consider `temporal_distance` in `pairwise_distances()` metric enum**
 
+## Metadata Completeness (COMPLETE 2026-03-25) ✅
+
+- [x] `glottolog_code` added to all 330 language files (87 dialect variants correctly left null)
+- [x] `iso639_3` added to all 330 files (20 proto-languages correctly left null)
+- [x] 140 files upgraded from stub/skeleton → research quality
+- [x] Fix: `xce.json` sources[0].url was publisher string
+- [ ] **Upgrade remaining 86 skeleton files** (add positional_graphemes / validate phonology)
+- [ ] **Reach production tier** (requires regression tests per language)
+
 ---
 
 ## Linguistic Reference Audit Checklist
