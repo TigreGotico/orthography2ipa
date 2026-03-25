@@ -117,5 +117,7 @@
   "timespan": {
     "start_year": 200,
     "end_year": 800
-  }
+  },
+  "glottolog_code": "late1252",
+  "iso639_3": "lat"
 }

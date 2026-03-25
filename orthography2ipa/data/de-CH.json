@@ -60,5 +60,7 @@
   "timespan": {
     "start_year": 1800,
     "end_year": null
-  }
+  },
+  "glottolog_code": "swis1247",
+  "iso639_3": "deu"
 }

@@ -406,5 +406,7 @@
   "timespan": {
     "start_year": 1200,
     "end_year": null
-  }
+  },
+  "glottolog_code": "mara1378",
+  "iso639_3": "mar"
 }

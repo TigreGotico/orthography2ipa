@@ -101,5 +101,7 @@
   "timespan": {
     "start_year": 1500,
     "end_year": null
-  }
+  },
+  "glottolog_code": "gene1240",
+  "iso639_3": "eng"
 }

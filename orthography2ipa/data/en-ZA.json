@@ -63,5 +63,7 @@
   "timespan": {
     "start_year": 1800,
     "end_year": null
-  }
+  },
+  "glottolog_code": "sout3113",
+  "iso639_3": "eng"
 }

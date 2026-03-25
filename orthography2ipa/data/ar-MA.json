@@ -120,5 +120,7 @@
   "timespan": {
     "start_year": 1200,
     "end_year": null
-  }
+  },
+  "glottolog_code": "moro1292",
+  "iso639_3": "ary"
 }

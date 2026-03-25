@@ -104,5 +104,7 @@
   "timespan": {
     "start_year": 1200,
     "end_year": null
-  }
+  },
+  "glottolog_code": "vale1252",
+  "iso639_3": "cat"
 }

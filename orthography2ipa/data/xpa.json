@@ -257,5 +257,7 @@
   "timespan": {
     "start_year": -500,
     "end_year": 600
-  }
+  },
+  "glottolog_code": "prot1522",
+  "iso639_3": null
 }

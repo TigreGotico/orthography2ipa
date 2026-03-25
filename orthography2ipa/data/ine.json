@@ -236,5 +236,7 @@
   "timespan": {
     "start_year": -4500,
     "end_year": -2500
-  }
+  },
+  "glottolog_code": "indo1319",
+  "iso639_3": null
 }

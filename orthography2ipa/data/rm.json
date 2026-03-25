@@ -264,5 +264,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "roma1326",
+  "iso639_3": "roh"
 }

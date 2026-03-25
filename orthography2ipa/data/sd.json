@@ -365,5 +365,7 @@
   "timespan": {
     "start_year": 1200,
     "end_year": null
-  }
+  },
+  "glottolog_code": "sind1272",
+  "iso639_3": "snd"
 }

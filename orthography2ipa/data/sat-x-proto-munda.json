@@ -210,5 +210,7 @@
   "timespan": {
     "start_year": -2000,
     "end_year": -1000
-  }
+  },
+  "glottolog_code": "munda1424",
+  "iso639_3": null
 }

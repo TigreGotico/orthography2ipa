@@ -220,5 +220,7 @@
   "timespan": {
     "start_year": -1000,
     "end_year": -300
-  }
+  },
+  "glottolog_code": "ital1284",
+  "iso639_3": null
 }

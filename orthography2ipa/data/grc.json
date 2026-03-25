@@ -374,5 +374,7 @@
   "timespan": {
     "start_year": -500,
     "end_year": -300
-  }
+  },
+  "glottolog_code": "anci1242",
+  "iso639_3": "grc"
 }

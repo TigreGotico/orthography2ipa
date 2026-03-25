@@ -128,5 +128,7 @@
   "timespan": {
     "start_year": 1500,
     "end_year": null
-  }
+  },
+  "glottolog_code": "alge1239",
+  "iso639_3": "arq"
 }

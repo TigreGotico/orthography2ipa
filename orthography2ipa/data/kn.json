@@ -398,5 +398,7 @@
   "timespan": {
     "start_year": 900,
     "end_year": null
-  }
+  },
+  "glottolog_code": "kann1255",
+  "iso639_3": "kan"
 }

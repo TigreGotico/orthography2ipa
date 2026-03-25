@@ -48,5 +48,7 @@
   "timespan": {
     "start_year": 900,
     "end_year": null
-  }
+  },
+  "glottolog_code": "leon1250",
+  "iso639_3": "ast"
 }

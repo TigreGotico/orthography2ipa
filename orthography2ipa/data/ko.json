@@ -300,5 +300,7 @@
   "timespan": {
     "start_year": 1200,
     "end_year": null
-  }
+  },
+  "glottolog_code": "kore1280",
+  "iso639_3": "kor"
 }

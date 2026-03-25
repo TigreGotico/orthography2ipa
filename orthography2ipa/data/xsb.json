@@ -44,5 +44,7 @@
   "timespan": {
     "start_year": 400,
     "end_year": 600
-  }
+  },
+  "glottolog_code": null,
+  "iso639_3": null
 }

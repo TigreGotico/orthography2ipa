@@ -84,5 +84,7 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
-  }
+  },
+  "glottolog_code": null,
+  "iso639_3": "ast"
 }

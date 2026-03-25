@@ -80,5 +80,7 @@
   "timespan": {
     "start_year": 1600,
     "end_year": null
-  }
+  },
+  "glottolog_code": "scot1243",
+  "iso639_3": "eng"
 }

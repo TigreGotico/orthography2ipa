@@ -410,5 +410,7 @@
   "timespan": {
     "start_year": -1500,
     "end_year": -600
-  }
+  },
+  "glottolog_code": "vedi1234",
+  "iso639_3": "san"
 }

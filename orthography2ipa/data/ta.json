@@ -344,5 +344,7 @@
   "timespan": {
     "start_year": -300,
     "end_year": null
-  }
+  },
+  "glottolog_code": "tami1289",
+  "iso639_3": "tam"
 }

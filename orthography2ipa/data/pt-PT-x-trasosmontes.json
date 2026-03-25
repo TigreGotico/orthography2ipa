@@ -35,8 +35,16 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Rural northern interior (Alvarenga, Penafiel). Most extreme retroflex sibilants [ʂ, ʐ] of all EP dialects — nearly every final /s/ realised as retroflex. Extreme vowel reduction. Conservative rural speech closest to historical northern patterns.",
-  "quality": "skeleton",
+  "notes": "Transmontano Portuguese, spoken in Trás-os-Montes e Alto Douro (northeastern Portugal: Bragança, Miranda do Douro, Chaves, Alvarenga, Penafiel). Phonologically the most conservative and distinctive northern EP dialect: (1) most systematic retroflex sibilants of any EP dialect — /s/ and /z/ realised as [ʂ] and [ʐ] in nearly all environments including onset, coda, and intervocalic; (2) extreme unstressed vowel reduction — /ɐ/, /ə/ delete or devoice in rapid speech; (3) voiceless uvular coda [χ] alternating with [ʁ]; (4) conservative rhotic system: trill [r] retained in careful speech alongside flap [ɾ] — contrast with most EP varieties where [r] → [ʁ]; (5) Galician-Portuguese contact zone features near Miranda do Douro: /ʎ/ → [j] glide in some lexical items, Leonese loanwords; (6) archaic /e/ lowering to [ɛ] in pre-tonic syllables; (7) /u/ devoicing and deletion in unstressed post-tonic position; (8) no aspiration of stops; (9) prosodic pattern: stress-timed with extensive connected-speech reduction. Classified in Cintra's northern dialect zone with direct continuity into Galician; the Miranda do Douro micro-region also has Mirandese (a Leonese language) in contact, influencing phonological patterning of the Portuguese spoken there.",
+  "quality": "research",
+  "ISO_639-3": "por",
+  "ancestors": [
+    {"code": "pt-PT", "role": "parent", "weight": 0.85, "notes": "Standard European Portuguese; Transmontano diverges substantially in retroflex sibilants, conservative rhotics, and Galician-Leonese contact features"}
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Trás-os-Montes_e_Alto_Douro",
+    "https://glottolog.org/resource/languoid/id/por1251"
+  ],
   "script_type": "alphabet",
   "sources": [
     {
@@ -71,10 +79,13 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Trás-os-Montes_e_Alto_Douro"
+    "https://en.wikipedia.org/wiki/Trás-os-Montes_e_Alto_Douro",
+    "https://en.wikipedia.org/wiki/European_Portuguese_phonology"
   ],
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": null,
+  "iso639_3": "por"
 }

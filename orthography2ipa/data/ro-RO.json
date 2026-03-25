@@ -355,5 +355,7 @@
   "timespan": {
     "start_year": 1600,
     "end_year": null
-  }
+  },
+  "glottolog_code": "roma1327",
+  "iso639_3": "ron"
 }

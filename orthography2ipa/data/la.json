@@ -94,5 +94,7 @@
   "timespan": {
     "start_year": -100,
     "end_year": 600
-  }
+  },
+  "glottolog_code": "lati1261",
+  "iso639_3": "lat"
 }

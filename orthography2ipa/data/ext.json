@@ -196,5 +196,6 @@
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "iso639_3": "ext"
 }

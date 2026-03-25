@@ -369,5 +369,7 @@
   "timespan": {
     "start_year": 1800,
     "end_year": null
-  }
+  },
+  "glottolog_code": "beng1280",
+  "iso639_3": "ben"
 }

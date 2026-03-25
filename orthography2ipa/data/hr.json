@@ -244,5 +244,7 @@
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "glottolog_code": "croa1245",
+  "iso639_3": "hrv"
 }

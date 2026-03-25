@@ -209,5 +209,7 @@
   "timespan": {
     "start_year": -500,
     "end_year": 500
-  }
+  },
+  "glottolog_code": "goid1235",
+  "iso639_3": null
 }

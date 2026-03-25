@@ -276,5 +276,7 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
-  }
+  },
+  "glottolog_code": "sard1257",
+  "iso639_3": "srd"
 }

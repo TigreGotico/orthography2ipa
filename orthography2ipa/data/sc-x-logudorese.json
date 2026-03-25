@@ -53,5 +53,7 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
-  }
+  },
+  "glottolog_code": "logu1243",
+  "iso639_3": "srd"
 }

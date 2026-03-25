@@ -245,5 +245,7 @@
   "timespan": {
     "start_year": 400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "corn1251",
+  "iso639_3": "cor"
 }

@@ -305,5 +305,7 @@
   "timespan": {
     "start_year": -300,
     "end_year": 1200
-  }
+  },
+  "glottolog_code": "pali1273",
+  "iso639_3": "pli"
 }

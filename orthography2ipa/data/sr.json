@@ -333,5 +333,7 @@
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "glottolog_code": "serb1264",
+  "iso639_3": "srp"
 }

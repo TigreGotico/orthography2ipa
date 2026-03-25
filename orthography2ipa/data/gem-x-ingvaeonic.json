@@ -188,5 +188,6 @@
   "timespan": {
     "start_year": 300,
     "end_year": 700
-  }
+  },
+  "glottolog_code": "ingv1234"
 }

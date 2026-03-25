@@ -55,5 +55,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": null,
+  "iso639_3": "rus"
 }

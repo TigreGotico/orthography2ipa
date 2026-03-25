@@ -5,10 +5,28 @@
   "script": "Latin",
   "graphemes_base": "an",
   "allophones_base": "an",
+  "allophones": {
+    "ʎ": [
+      "ʝ",
+      "j"
+    ]
+  },
   "positional_graphemes_base": "an",
   "parent": "an",
-  "notes": "Western Aragonese (Jacetania, Cinco Villas). Transitional to Castilian: strongest Castilian phonological influence, some /ʎ/ → /ʝ/ yeísmo. Latin J- → [x] (Castilian pattern) rather than [tʃ] or [dʒ].",
-  "quality": "stub",
+  "ancestors": [
+    {
+      "code": "an",
+      "role": "parent",
+      "weight": 0.85
+    },
+    {
+      "code": "es-ES",
+      "role": "adstrate",
+      "weight": 0.12
+    }
+  ],
+  "notes": "Western Aragonese (Jacetania, Cinco Villas). Transitional to Castilian: strongest Castilian phonological influence among Aragonese dialects. Palatal lateral /ʎ/ lost to /ʝ/ (yeísmo). Vowel system reduced to five vowels (Castilian pattern). Latin J- → [x] (Castilian pattern) rather than Aragonese [tʃ] or [dʒ]. Fewer distinctive Aragonese features than Eastern or Central varieties.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -49,5 +67,7 @@
   "timespan": {
     "start_year": 1100,
     "end_year": null
-  }
+  },
+  "glottolog_code": "west2615",
+  "iso639_3": "arg"
 }

@@ -44,5 +44,7 @@
   "timespan": {
     "start_year": 350,
     "end_year": 600
-  }
+  },
+  "glottolog_code": "goth1244",
+  "iso639_3": "got"
 }

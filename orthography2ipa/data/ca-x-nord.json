@@ -46,8 +46,20 @@
   },
   "positional_graphemes_base": "ca",
   "parent": "ca",
-  "notes": "Northern Catalan (Rossellonès/Septentrional). Spoken in Pyrénées-Orientales, France. Eastern block. French influence: uvular rhotic [ʁ] alongside traditional [r], possible intervocalic stop voicing (French pattern), extreme final vowel deletion. Declining rapidly under French pressure.",
-  "quality": "skeleton",
+  "ancestors": [
+    {
+      "code": "ca",
+      "role": "parent",
+      "weight": 0.8
+    },
+    {
+      "code": "fr",
+      "role": "adstrate",
+      "weight": 0.15
+    }
+  ],
+  "notes": "Northern Catalan (Rossellonès/Septentrional). Spoken in Pyrénées-Orientales, France. Eastern block. Extreme unstressed vowel deletion (syncope) beyond standard Eastern Catalan schwa reduction. French phonological influence: uvular rhotic [ʁ] replacing traditional /r/, with /ɾ/ also realized as [ʁ] by many speakers. Final obstruent devoicing less categorical than in Central Catalan. Declining rapidly under French societal pressure.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -82,10 +94,17 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Northern_Catalan"
+    "https://en.wikipedia.org/wiki/Northern_Catalan",
+    "https://en.wikipedia.org/wiki/Catalan_dialects"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Northern_Catalan",
+    "https://en.wikipedia.org/wiki/Catalan_dialects"
   ],
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "glottolog_code": "nort3175",
+  "iso639_3": "cat"
 }

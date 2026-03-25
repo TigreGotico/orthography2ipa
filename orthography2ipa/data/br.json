@@ -281,5 +281,7 @@
   "timespan": {
     "start_year": 1500,
     "end_year": null
-  }
+  },
+  "glottolog_code": "bret1244",
+  "iso639_3": "bre"
 }

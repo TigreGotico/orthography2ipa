@@ -231,5 +231,7 @@
   "timespan": {
     "start_year": -4000,
     "end_year": -2000
-  }
+  },
+  "glottolog_code": "drav1251",
+  "iso639_3": null
 }

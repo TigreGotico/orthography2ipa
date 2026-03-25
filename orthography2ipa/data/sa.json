@@ -402,5 +402,7 @@
   "timespan": {
     "start_year": -1500,
     "end_year": null
-  }
+  },
+  "glottolog_code": "sans1269",
+  "iso639_3": "san"
 }

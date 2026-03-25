@@ -103,5 +103,6 @@
   "timespan": {
     "start_year": 1900,
     "end_year": null
-  }
+  },
+  "iso639_3": "por"
 }

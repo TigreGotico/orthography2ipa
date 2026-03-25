@@ -75,5 +75,7 @@
   "timespan": {
     "start_year": 1200,
     "end_year": null
-  }
+  },
+  "glottolog_code": "khor1270",
+  "iso639_3": "fas"
 }

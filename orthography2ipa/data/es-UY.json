@@ -73,5 +73,7 @@
   "timespan": {
     "start_year": 1700,
     "end_year": null
-  }
+  },
+  "glottolog_code": "urug1238",
+  "iso639_3": "spa"
 }

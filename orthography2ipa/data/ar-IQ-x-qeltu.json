@@ -72,5 +72,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "nort3142",
+  "iso639_3": "acm"
 }

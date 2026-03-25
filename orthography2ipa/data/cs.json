@@ -406,5 +406,7 @@
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "glottolog_code": "czec1258",
+  "iso639_3": "ces"
 }

@@ -312,5 +312,6 @@
   "timespan": {
     "start_year": 1600,
     "end_year": null
-  }
+  },
+  "iso639_3": "aoa"
 }

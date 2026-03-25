@@ -1,0 +1,58 @@
+{
+  "code": "eu-x-lapurtera",
+  "ISO_639-3": "eus",
+  "glottolog_code": "lapu1237",
+  "name": "Lapurdian Basque (Lapurtera)",
+  "family": "Isolate",
+  "script": "Latin",
+  "quality": "research",
+  "script_type": "alphabet",
+  "graphemes_base": "eu",
+  "allophones_base": "eu",
+  "allophones": {
+    "h": ["h"],
+    "ɾ": ["ɾ", "ʁ"],
+    "r": ["r", "ʁ"]
+  },
+  "positional_graphemes_base": "eu",
+  "parent": "eu",
+  "ancestors": [
+    {
+      "code": "eu",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Standard Basque base; Lapurdian is the dialect closest to classical written Basque"
+    }
+  ],
+  "notes": "Lapurdian Basque (Lapurtera / Labourdian). Spoken in Labourd/Lapurdi, French Basque Country (around Bayonne, Biarritz, Saint-Jean-de-Luz). Classical literary dialect: Axular's Gero (1643) is the canonical Basque prose text, written in Lapurdian. KEY FEATURES: (1) FULL ASPIRATE /h/: Unlike Bizkaian, /h/ is preserved and phonemically active in all positions. (2) NO ASPIRATED STOPS: Unlike Souletin, stops p/t/k are NOT aspirated. (3) FULL SIBILANT CONTRAST: s̺/s̻/ʃ and ts̺/ts̻/tʃ are maintained (six-way opposition as in Batua). (4) PALATAL STOPS: [c, ɟ] maintained. (5) FRENCH INFLUENCE: younger speakers may show uvular [ʁ] for /r/ and /ɾ/ under French influence — otherwise alveolar [r]/[ɾ]. (6) CONSERVATIVE MORPHOLOGY: Lapurdian retains some features lost in Batua standardisation; closest to classical Basque literary norm. (7) DECLENSION: full Basque case system maintained; some dialectal case endings differ from Batua.",
+  "sources": [
+    {
+      "id": "hualde_ortiz_de_urbina2003",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": "Chapter on Lapurdian features"
+    },
+    {
+      "id": "oyharçabal2003",
+      "author": "Oyharçabal, B.",
+      "year": 2003,
+      "title": "The Dialects of the Basque Language",
+      "publisher": "In: A Grammar of Basque, Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Labourdian_dialect"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Labourdian_dialect",
+    "https://en.wikipedia.org/wiki/Basque_dialects",
+    "https://glottolog.org/resource/languoid/id/lapu1237"
+  ]
+}

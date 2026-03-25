@@ -67,5 +67,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "mira1251",
+  "iso639_3": "mwl"
 }

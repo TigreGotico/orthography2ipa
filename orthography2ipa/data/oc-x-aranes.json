@@ -350,5 +350,7 @@
   "timespan": {
     "start_year": 1200,
     "end_year": null
-  }
+  },
+  "glottolog_code": "aran1237",
+  "iso639_3": "oci"
 }

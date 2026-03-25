@@ -62,5 +62,7 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
-  }
+  },
+  "glottolog_code": "bava1246",
+  "iso639_3": "bar"
 }

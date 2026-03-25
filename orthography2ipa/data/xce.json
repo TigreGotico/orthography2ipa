@@ -267,5 +267,7 @@
   "timespan": {
     "start_year": -400,
     "end_year": 100
-  }
+  },
+  "glottolog_code": "celt1248",
+  "iso639_3": "xce"
 }

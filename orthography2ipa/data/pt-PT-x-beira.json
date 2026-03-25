@@ -1,0 +1,88 @@
+{
+  "code": "pt-PT-x-beira",
+  "name": "Beirão (Beira Portuguese)",
+  "family": "Romance",
+  "script": "Latin",
+  "quality": "research",
+  "script_type": "alphabet",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "ʁ": [
+      "ʁ",
+      "r"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "ə": [
+      "ɨ",
+      "ə"
+    ],
+    "ɐ": [
+      "ɐ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Standard European Portuguese base."
+    }
+  ],
+  "notes": "Beirão / Beira Portuguese. Spoken in the Beiras region of central Portugal: Beira Litoral (Coimbra, Aveiro), Beira Alta (Guarda, Viseu), Beira Baixa (Castelo Branco). Coimbra — historic university city — is the prestige center and has influenced Portuguese phonological standardization through the academic tradition. KEY FEATURES: (1) CONSERVATIVE RHOTIC: tendency toward trilled [r] or tapped [ɾ] in some environments where Lisbon uses uvular [ʁ]; the Coimbra tradition is historically associated with alveolar rhotics, though modernization toward uvular has progressed. (2) CLEAR /l/: lateral /l/ tends to be clearer (less velarized) than in Lisbon, especially in Coimbra and northern Beiras. (3) MODERATE VOWEL REDUCTION: unstressed vowel reduction less extreme than Lisbon; /ɨ/ retained but not maximally reduced. (4) PRESERVATION OF VOWEL CONTRASTS: tonic /ɛ/ and /ɔ/ clearly maintained with good aperture. (5) SIBILANTS: standard [ʃ]/[ʒ] without the retroflex shimmer of Transmontano or Minhoto; coda /s/ → [ʃ] as in standard EP. (6) COIMBRA ACADEMIC FADO: historically associated with the Coimbra dialect's distinctive rhythmic and prosodic patterns. (7) DIALECTAL VARIATION within Beiras: northern Beiras (Guarda) are more conservative with some Minhoto features; southern (Castelo Branco) transition toward Alentejo.",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "vasconcelos1901",
+      "author": "Vasconcelos, J.L. de",
+      "year": 1901,
+      "title": "Esquisse d'une dialectologie portugaise",
+      "publisher": "Imprimerie nationale",
+      "url": null,
+      "pages": null,
+      "notes": "Classical dialectological survey; Beira section foundational"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Beira_Portuguese"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Beira_Portuguese",
+    "https://en.wikipedia.org/wiki/Beiras",
+    "https://en.wikipedia.org/wiki/Dialects_of_Portuguese"
+  ],
+  "iso639_3": "por"
+}

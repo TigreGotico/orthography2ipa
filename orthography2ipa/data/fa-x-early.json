@@ -275,5 +275,7 @@
   "timespan": {
     "start_year": 800,
     "end_year": 1400
-  }
+  },
+  "glottolog_code": "earl1234",
+  "iso639_3": "fas"
 }

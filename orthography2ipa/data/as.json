@@ -378,5 +378,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "assa1263",
+  "iso639_3": "asm"
 }

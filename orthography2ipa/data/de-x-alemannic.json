@@ -49,5 +49,7 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
-  }
+  },
+  "glottolog_code": "alem1243",
+  "iso639_3": "gsw"
 }

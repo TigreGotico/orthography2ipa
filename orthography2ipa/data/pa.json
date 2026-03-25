@@ -389,5 +389,7 @@
   "timespan": {
     "start_year": 1500,
     "end_year": null
-  }
+  },
+  "glottolog_code": "panj1256",
+  "iso639_3": "pan"
 }

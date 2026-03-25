@@ -389,5 +389,7 @@
   "timespan": {
     "start_year": 1800,
     "end_year": null
-  }
+  },
+  "glottolog_code": "urdu1245",
+  "iso639_3": "urd"
 }

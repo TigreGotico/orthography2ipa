@@ -470,5 +470,7 @@
   "timespan": {
     "start_year": 1700,
     "end_year": null
-  }
+  },
+  "glottolog_code": "stan1295",
+  "iso639_3": "deu"
 }

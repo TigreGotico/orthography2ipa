@@ -61,5 +61,7 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
-  }
+  },
+  "glottolog_code": "camp1261",
+  "iso639_3": "srd"
 }

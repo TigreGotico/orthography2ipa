@@ -274,5 +274,7 @@
   "timespan": {
     "start_year": 600,
     "end_year": null
-  }
+  },
+  "glottolog_code": "manx1243",
+  "iso639_3": "glv"
 }

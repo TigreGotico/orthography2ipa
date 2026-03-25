@@ -288,5 +288,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "ukra1253",
+  "iso639_3": "ukr"
 }

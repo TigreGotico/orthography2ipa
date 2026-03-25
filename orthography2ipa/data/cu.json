@@ -293,5 +293,7 @@
   "timespan": {
     "start_year": 900,
     "end_year": 1200
-  }
+  },
+  "glottolog_code": "chur1273",
+  "iso639_3": "chu"
 }

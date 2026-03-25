@@ -207,5 +207,7 @@
   "timespan": {
     "start_year": -600,
     "end_year": -100
-  }
+  },
+  "glottolog_code": "arch1244",
+  "iso639_3": "lat"
 }

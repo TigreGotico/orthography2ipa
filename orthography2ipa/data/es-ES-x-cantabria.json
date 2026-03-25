@@ -8,12 +8,28 @@
   "allophones": {
     "s": [
       "s̺"
+    ],
+    "ʎ": [
+      "ʎ",
+      "j"
     ]
   },
   "positional_graphemes_base": "es-ES",
   "parent": "es-ES",
-  "notes": "Cantabrian Spanish (Montañés). Northern conservative dialect with Asturleonese substrate. Apico-alveolar [s̺] (northern type), distinción preserved, conservative [ʎ] (weakening). Transitional between Castilian and Asturian. Some Leonese metaphony traces in western areas.",
-  "quality": "skeleton",
+  "ancestors": [
+    {
+      "code": "es-ES",
+      "role": "parent",
+      "weight": 0.85
+    },
+    {
+      "code": "ast",
+      "role": "substrate",
+      "weight": 0.1
+    }
+  ],
+  "notes": "Cantabrian Spanish (Montañés). Northern conservative dialect with Asturleonese substrate. Apico-alveolar [s̺] (northern type), distinción (lleísmo/yeísmo distinction) preserved. Partial yeísmo: /ʎ/ preserved in older speakers, merged with /j/ in younger speakers. Asturian substrate features include unstressed vowel raising (e→i, o→u) and neutralization of ser/estar. Transitional between Castilian and Asturian; some Leonese metaphony traces in western areas.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -54,5 +70,7 @@
   "timespan": {
     "start_year": 1500,
     "end_year": null
-  }
+  },
+  "glottolog_code": null,
+  "iso639_3": "spa"
 }

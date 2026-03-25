@@ -15,8 +15,16 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Quarteira, Faro. Southern dialect, standard-adjacent. Consistent voiced uvular [ʁ]. Minimal vowel reduction. Southern [ɐ] quality. No retroflex consonants.",
-  "quality": "skeleton",
+  "notes": "Algarvio Portuguese, the southernmost dialect of continental Portugal (Faro, Portimão, Quarteira, Lagos). Phonological features: (1) minimal unstressed vowel reduction — /e/ and /o/ are often preserved as full vowels in unstressed syllables, unlike northern EP; (2) uvular rhotic [ʁ] consistently voiced, no coda devoicing to [χ]; (3) /s/ and /z/ show apico-alveolar tendency in older and rural speakers — a residual feature linked to the Arabic (Moorish) substrate and subsequent Reconquista repopulation patterns; (4) open vowel quality: stressed [ɛ] and [ɔ] are broader than standard, reflecting southern EP vowel space; (5) vowel lengthening in stressed syllables noted in rural idiolects; (6) no retroflex consonants; (7) /lh/ [ʎ] well-preserved; (8) influence of historical Mozarabic and Arabic vocabulary audible in prosodic patterns and some lexical items. The Algarve dialect is classified as a southern EP dialect under Cintra's taxonomy; its features align it phonologically with Baixo Alentejo rather than with Brazilian Portuguese despite superficial resemblances in vowel openness.",
+  "quality": "research",
+  "ISO_639-3": "por",
+  "ancestors": [
+    {"code": "pt-PT", "role": "parent", "weight": 0.9, "notes": "Standard European Portuguese; Algarvio diverges in vowel reduction resistance, open vowel qualities, and Moorish-substrate prosodic features"}
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Algarvian_Portuguese",
+    "https://glottolog.org/resource/languoid/id/por1251"
+  ],
   "script_type": "alphabet",
   "sources": [
     {
@@ -51,10 +59,13 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Algarve"
+    "https://en.wikipedia.org/wiki/Algarvian_Portuguese",
+    "https://en.wikipedia.org/wiki/European_Portuguese_phonology"
   ],
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": null,
+  "iso639_3": "por"
 }

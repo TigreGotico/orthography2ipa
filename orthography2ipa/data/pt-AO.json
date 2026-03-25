@@ -63,5 +63,7 @@
   "timespan": {
     "start_year": 1900,
     "end_year": null
-  }
+  },
+  "glottolog_code": "ango1254",
+  "iso639_3": "por"
 }

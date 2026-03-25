@@ -350,5 +350,7 @@
   "timespan": {
     "start_year": 600,
     "end_year": 1400
-  }
+  },
+  "glottolog_code": "clas1252",
+  "iso639_3": "arb"
 }

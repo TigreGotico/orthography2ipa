@@ -382,5 +382,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "kash1277",
+  "iso639_3": "kas"
 }

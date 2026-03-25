@@ -5,10 +5,26 @@
   "script": "Latin",
   "graphemes_base": "gl-ES",
   "allophones_base": "gl-ES",
+  "allophones": {
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ]
+  },
   "positional_graphemes_base": "gl-ES",
   "parent": "gl-ES",
-  "notes": "Central Galician (Lugo, eastern A Coruña, Ourense). Closest to RAG standard norms. No gheada, no seseo. 7-vowel system with /ɛ, ɔ/ phonemic. Palatal lateral [ʎ] preserved. This is the prestige norm base.",
-  "quality": "stub",
+  "ancestors": [
+    {
+      "code": "gl",
+      "role": "parent",
+      "weight": 0.95
+    }
+  ],
+  "notes": "Central Galician (Lugo, eastern A Coruña, Ourense). Closest to RAG standard norms. No gheada (no /ɣ/ for /g/), no seseo, no yeísmo. 7-vowel system with /ɛ, ɔ/ as phonemes. Palatal lateral /ʎ/ fully preserved. Standard lenition: /ɡ/ → [ɣ] in intervocalic position. This is the prestige norm base used for the RAG standard.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -43,10 +59,17 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Galician_language"
+    "https://en.wikipedia.org/wiki/Galician_language",
+    "https://en.wikipedia.org/wiki/Dialects_of_Galician"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Galician_language",
+    "https://en.wikipedia.org/wiki/Dialects_of_Galician"
   ],
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "glottolog_code": null,
+  "iso639_3": "glg"
 }

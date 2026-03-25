@@ -457,5 +457,7 @@
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "glottolog_code": "russ1263",
+  "iso639_3": "rus"
 }

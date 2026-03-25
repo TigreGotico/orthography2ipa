@@ -313,5 +313,7 @@
   "timespan": {
     "start_year": 1600,
     "end_year": null
-  }
+  },
+  "glottolog_code": "iris1253",
+  "iso639_3": "gle"
 }

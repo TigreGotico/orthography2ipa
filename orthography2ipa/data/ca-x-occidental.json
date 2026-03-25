@@ -9,12 +9,26 @@
     "ə": [
       "a",
       "e"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
     ]
   },
   "positional_graphemes_base": "ca",
   "parent": "ca",
-  "notes": "Northwestern Catalan (Lleidatà/Pallarès). Western block, spoken in Lleida and Pyrenean valleys. Like Valencian: minimal vowel reduction (no phonemic schwa), 7-vowel system maintained in all positions. Otherwise consonant system close to Central Catalan standard.",
-  "quality": "skeleton",
+  "ancestors": [
+    {
+      "code": "ca",
+      "role": "parent",
+      "weight": 0.9
+    }
+  ],
+  "notes": "Northwestern Catalan (Lleidatà/Pallarès). Western block, spoken in Lleida and Pyrenean valleys. No schwa reduction: 7-vowel system fully maintained in unstressed positions (unlike Eastern Catalan). Open-e /ɛ/ and open-o /ɔ/ preserved as distinct phonemes. Palatal lateral /ʎ/ preserved without yeísmo. Rhotic /ɾ/ may be trilled [r] in some contexts (word-initial, post-nasal). Closest to Valencian in vowel system.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -49,10 +63,17 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Western_Catalan"
+    "https://en.wikipedia.org/wiki/Western_Catalan",
+    "https://en.wikipedia.org/wiki/Catalan_dialects"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Western_Catalan",
+    "https://en.wikipedia.org/wiki/Catalan_dialects"
   ],
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "glottolog_code": "nort3175",
+  "iso639_3": "cat"
 }

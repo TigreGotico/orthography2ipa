@@ -341,5 +341,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "slov1269",
+  "iso639_3": "slk"
 }

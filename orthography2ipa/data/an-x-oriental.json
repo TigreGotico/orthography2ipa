@@ -93,5 +93,7 @@
   "timespan": {
     "start_year": 1100,
     "end_year": null
-  }
+  },
+  "glottolog_code": "east2306",
+  "iso639_3": "arg"
 }

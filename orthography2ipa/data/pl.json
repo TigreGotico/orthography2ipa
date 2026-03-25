@@ -420,5 +420,7 @@
   "timespan": {
     "start_year": 1400,
     "end_year": null
-  }
+  },
+  "glottolog_code": "poli1260",
+  "iso639_3": "pol"
 }

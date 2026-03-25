@@ -462,5 +462,7 @@
   "timespan": {
     "start_year": 1800,
     "end_year": null
-  }
+  },
+  "glottolog_code": "hind1269",
+  "iso639_3": "hin"
 }
