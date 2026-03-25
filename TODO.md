@@ -1,6 +1,6 @@
 # TODO.md — orthography2ipa
 
-_Last updated: 2026-03-25 | Reviewed by: Claude Opus 4.6_
+_Last updated: 2026-03-25 | Reviewed by: Claude Sonnet 4.6_
 
 Legend: 🔴 Blocking · 🟡 High · 🟢 Medium · ⚪ Low
 
@@ -14,25 +14,17 @@ All blocking items resolved. ✅
 
 ## 🟡 HIGH (target: 0.2.0 stable)
 
-- [ ] **Extend `.gitignore`**
-  - Add `__pycache__/`, `*.pyc`, `.idea/`, `*.egg-info/`, `.pytest_cache/`, `.coverage`, `dist/`, `build/`
-  - Remove tracked `.pyc` files from git index
+- [x] **Extend `.gitignore`** ✅ 2026-03-25
+- [x] **Fix bare `except:` clauses in `feats.py`** ✅ 2026-03-25
+- [x] **Fix `spec_en` fixture in `tests/conftest.py`** ✅ 2026-03-25
+- [x] **Add Python 3.13 to CI matrix** ✅ 2026-03-25
+- [x] **Add type hints to deprecation shims in `feats.py`** ✅ 2026-03-25
+- [x] **Complete global Portuguese coverage** ✅ 2026-03-25
+  - Added pt-MZ, pt-CV, pt-GW, pt-ST, pt-TL, pt-MO
+  - Fixed quality/metadata on pt-PT, pt-BR, pt-PT-x-medieval
+  - Added contact language stubs: sw, ny, ts, kea, pov, ff, tet, id, mcm
 
-- [ ] **Fix bare `except:` clauses in `feats.py`**
-  - `feats.py:578` — `is_vowel_phone()`: replace with `except (ValueError, KeyError, IndexError):`
-  - `feats.py:636` — `phonetic_distance()`: replace with `except (ValueError, KeyError, IndexError):`
-
-- [ ] **Fix `spec_en` fixture in `tests/conftest.py:26-29`**
-  - `en-GB.json` now exists — replace `pytest.skip()` with `return orthography2ipa.get("en-GB")`
-
-- [ ] **Add Python 3.13 to CI matrix**
-  - `.github/workflows/unit_tests.yml:23` currently tests 3.10, 3.11, 3.12
-  - `pyproject.toml` claims 3.9–3.13 support
-
-- [ ] **Add type hints to deprecation shims in `feats.py`**
-  - `feats.py:650` — `phoneme_embeddings(spec)`
-  - `feats.py:662` — `build_ngram_lm(words, spec, n=3)`
-  - `feats.py:674` — `perplexity(lm, test_words, spec, n=3)`
+All 🟡 HIGH items resolved. Ready for 0.2.0 stable. ✅
 
 ---
 
