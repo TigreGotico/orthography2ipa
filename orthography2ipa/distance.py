@@ -73,6 +73,7 @@ __all__ = [
     "phoneme_coverage",
     "weighted_full_distance",
     "positional_divergence",
+    "temporal_distance",
     "WeightedDistance",
 ]
 
@@ -555,16 +556,67 @@ def _get_ancestry_weights(spec: LanguageSpec) -> Dict[str, float]:
     return _get_ancestry_weights_by_code(spec.code)
 
 
+def _temporal_decay(
+        ancestor_spec: LanguageSpec,
+        descendant_spec: LanguageSpec,
+        decay_halflife: float = 1000.0,
+) -> float:
+    """Exponential weight multiplier based on temporal gap between ancestor and descendant.
+
+    Returns 1.0 when either language lacks timespan data (no penalty applied).
+    Uses the gap between ancestor's end (or start if no end) and descendant's
+    start to compute: ``exp(-gap / halflife)``.
+
+    Parameters
+    ----------
+    ancestor_spec : LanguageSpec
+        The ancestor language.
+    descendant_spec : LanguageSpec
+        The descendant language.
+    decay_halflife : float
+        Years for weight to decay to ~0.37 (exp(-1)).  Default 1000 years.
+
+    Returns
+    -------
+    float
+        Multiplier in (0.0, 1.0].
+    """
+    import math
+    if ancestor_spec.timespan is None or descendant_spec.timespan is None:
+        return 1.0
+    anc_end = ancestor_spec.timespan.end_year if ancestor_spec.timespan.end_year is not None \
+        else ancestor_spec.timespan.start_year
+    gap = descendant_spec.timespan.start_year - anc_end
+    if gap <= 0:
+        return 1.0
+    return math.exp(-gap / decay_halflife)
+
+
 def ancestry_similarity(
         spec_a: LanguageSpec,
         spec_b: LanguageSpec,
         max_depth: int = 10,
+        temporal_decay: bool = False,
+        decay_halflife: float = 1000.0,
 ) -> float:
     """Compute ancestry-weighted similarity between two languages.
 
     Traces all ancestor paths for both languages, finds shared ancestors,
     and computes similarity as the sum of products of weights along the
     best connecting paths.
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+    max_depth : int
+        Maximum recursion depth for ancestry tracing.
+    temporal_decay : bool
+        If ``True`` and ``timespan`` data is available, multiply each ancestor
+        weight by an exponential decay factor based on the temporal gap between
+        the ancestor's era and the descendant.  Default ``False`` (static weights).
+    decay_halflife : float
+        Years for weight to decay to ~0.37 when ``temporal_decay=True``.
 
     Returns a value in [0.0, 1.0]:
     - 1.0: identical language
@@ -574,12 +626,18 @@ def ancestry_similarity(
     - ~0.05-0.2: remote connection (substrate/adstrate only)
     - 0.0: no traceable connection
     """
+    from orthography2ipa.registry import get as _get
+
     if spec_a.code == spec_b.code:
         return 1.0
 
     # Build weighted paths from each language to all reachable ancestors.
-    paths_a = _get_ancestry_weights(spec_a)
-    paths_b = _get_ancestry_weights(spec_b)
+    if temporal_decay:
+        paths_a = _trace_ancestry_weights_temporal(spec_a, decay_halflife=decay_halflife)
+        paths_b = _trace_ancestry_weights_temporal(spec_b, decay_halflife=decay_halflife)
+    else:
+        paths_a = _get_ancestry_weights(spec_a)
+        paths_b = _get_ancestry_weights(spec_b)
 
     # Check if A is a DIRECT parent of B or vice versa
     # (only applies when the path weight is high — not transitive traces)
@@ -651,6 +709,60 @@ def _trace_ancestry_weights(
             if a.code not in result or path_weight > result[a.code]:
                 result[a.code] = path_weight
                 queue.append((a.code, path_weight, depth + 1))
+
+    return result
+
+
+def _trace_ancestry_weights_temporal(
+        spec: LanguageSpec,
+        max_depth: int = 10,
+        decay_halflife: float = 1000.0,
+) -> Dict[str, float]:
+    """Like ``_trace_ancestry_weights`` but multiplies each path weight by
+    a temporal decay factor based on the gap between ancestor and descendant.
+
+    Parameters
+    ----------
+    spec : LanguageSpec
+        Starting language.
+    max_depth : int
+        Maximum recursion depth.
+    decay_halflife : float
+        Years for weight to halve (exponential decay).
+
+    Returns
+    -------
+    Dict[str, float]
+        Mapping of ancestor code → temporally-decayed max path weight.
+    """
+    from orthography2ipa.registry import get as _get
+
+    result: Dict[str, float] = {}
+    # Queue: (code_to_visit, accumulated_weight, depth, last_spec_with_timespan)
+    queue: List[Tuple[str, float, int, LanguageSpec]] = [(spec.code, 1.0, 0, spec)]
+
+    while queue:
+        current, weight, depth, descendant_spec = queue.pop(0)
+        if depth > max_depth:
+            continue
+        try:
+            current_spec = _get(current)
+        except KeyError:
+            continue
+
+        ancestors = current_spec.get_ancestors()
+        for a in ancestors:
+            try:
+                anc_spec = _get(a.code)
+            except KeyError:
+                anc_spec = None
+
+            decay = _temporal_decay(anc_spec, descendant_spec, decay_halflife) if anc_spec else 1.0
+            path_weight = weight * a.weight * decay
+            if a.code not in result or path_weight > result[a.code]:
+                result[a.code] = path_weight
+                next_descendant = anc_spec if anc_spec else descendant_spec
+                queue.append((a.code, path_weight, depth + 1, next_descendant))
 
     return result
 
@@ -772,6 +884,8 @@ def weighted_full_distance(
         w_grapheme: float = 0.20,
         w_allophone: float = 0.15,
         w_ancestry: float = 0.40,
+        w_temporal: float = 0.0,
+        reference_year: int = 2025,
 ) -> "WeightedDistance":
     """Single configurable entry point combining all distance components.
 
@@ -781,6 +895,14 @@ def weighted_full_distance(
         Languages to compare.
     w_inventory, w_grapheme, w_allophone, w_ancestry : float
         Component weights; need not sum to 1.0 (normalised internally).
+    w_temporal : float
+        Weight for temporal distance.  Default ``0.0`` (disabled) to preserve
+        backward compatibility.  Set to a positive value to include
+        :func:`temporal_distance` in the combined score.  If timespan data is
+        missing for either language, this component is excluded and the
+        remaining weights are renormalised.
+    reference_year : int
+        Passed to :func:`temporal_distance` for living languages.
 
     Returns
     -------
@@ -792,21 +914,85 @@ def weighted_full_distance(
     gra = grapheme_divergence(spec_a, spec_b)
     allo = allophone_overlap(spec_a, spec_b)
     anc = ancestry_similarity(spec_a, spec_b)
-    total_w = w_inventory + w_grapheme + w_allophone + w_ancestry
+    temp = temporal_distance(spec_a, spec_b, reference_year=reference_year)
+
+    # If temporal data is unavailable, exclude it from the combined score
+    effective_w_temporal = w_temporal if temp is not None else 0.0
+    total_w = w_inventory + w_grapheme + w_allophone + w_ancestry + effective_w_temporal
     combined = (
         w_inventory * inv.feature_mean
         + w_grapheme * gra.mean_ipa_distance
         + w_allophone * (1.0 - allo)
         + w_ancestry * (1.0 - anc)
+        + effective_w_temporal * (temp if temp is not None else 0.0)
     ) / total_w
     return WeightedDistance(
         inventory=inv.feature_mean,
         grapheme=gra.mean_ipa_distance,
         allophone=allo,
         ancestry=anc,
+        temporal=temp,
         combined=combined,
-        weights=(w_inventory, w_grapheme, w_allophone, w_ancestry),
+        weights=(w_inventory, w_grapheme, w_allophone, w_ancestry, w_temporal),
     )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Temporal distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+def temporal_distance(
+        spec_a: LanguageSpec,
+        spec_b: LanguageSpec,
+        reference_year: int = 2025,
+) -> Optional[float]:
+    """Jaccard-interval distance between two languages' attestation periods.
+
+    Returns ``None`` if either language lacks a :class:`~orthography2ipa.types.TimeSpan`.
+
+    The metric is based on the Jaccard index of the two time intervals.
+    Living languages (``end_year=None``) are treated as ongoing to
+    ``reference_year``.
+
+    Distance values:
+    - ``0.0``: intervals are identical.
+    - ``(0, 1)``: partial temporal overlap (higher = less overlap).
+    - ``1.0``: no temporal overlap (languages lived in completely different eras).
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+    reference_year : int
+        Year to treat as the current end for living languages.  Default 2025.
+
+    Returns
+    -------
+    Optional[float]
+        Temporal distance in [0.0, 1.0], or ``None`` if data is missing.
+
+    Examples
+    --------
+    >>> from orthography2ipa.types import TimeSpan, LanguageSpec
+    >>> # Languages with full overlap → distance 0.0
+    >>> # Languages in different eras → distance 1.0
+    """
+    if spec_a.timespan is None or spec_b.timespan is None:
+        return None
+
+    start_a = spec_a.timespan.start_year
+    end_a = spec_a.timespan.end_year if spec_a.timespan.end_year is not None else reference_year
+    start_b = spec_b.timespan.start_year
+    end_b = spec_b.timespan.end_year if spec_b.timespan.end_year is not None else reference_year
+
+    overlap = max(0, min(end_a, end_b) - max(start_a, start_b))
+    union_span = max(end_a, end_b) - min(start_a, start_b)
+
+    if union_span <= 0:
+        return 0.0
+
+    jaccard = overlap / union_span
+    return 1.0 - jaccard
 
 
 # ═══════════════════════════════════════════════════════════════════════════
