@@ -10,7 +10,24 @@ The package depends on **phonematcher** for its 21-feature distinctive-feature s
 
 ---
 
-## Quick Start
+## Command-Line Interface
+
+After installation, the `orthography2ipa` command is available:
+
+```bash
+orthography2ipa list                          # list all language codes
+orthography2ipa list --family Romance         # filter by family
+orthography2ipa info pt-BR                    # show language summary
+orthography2ipa info pt-BR --graphemes        # print grapheme→IPA map
+orthography2ipa transcribe en-GB "through"    # IPA transcription candidates
+orthography2ipa distance pt-BR pt-PT          # phonological distance
+```
+
+All subcommands support `--json` for machine-readable output. Run `orthography2ipa --help` for full usage.
+
+---
+
+## Quick Start (Python API)
 
 ### 1. Fetch a language spec
 

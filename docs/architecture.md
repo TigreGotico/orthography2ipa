@@ -16,6 +16,7 @@ orthography2ipa/
 ├── script_distance.py   # Typological distance between writing systems
 ├── sandhi.py            # Cross-word-boundary phonological rule engine
 ├── lm.py                # Phoneme n-gram language model utilities
+├── cli.py               # Command-line interface (entry point)
 ├── g2p_plugin.py        # Abstract G2P plugin interface
 ├── plugins/             # Concrete G2P plugin implementations (e.g. Arabic)
 │
@@ -164,6 +165,15 @@ Abstract G2P plugin interface — `g2p_plugin.py:1-55`:
 - `G2PPlugin` — abstract base class with `transcribe()` and `transcribe_word()` — `g2p_plugin.py:38`
 
 Plugins are discovered via `importlib.metadata` entry points in the `orthography2ipa.g2p` group.
+
+### `cli.py`
+
+Command-line interface — `cli.py:1-200+`:
+
+- `main(argv)` — entry point registered as `[project.scripts] orthography2ipa` — `cli.py:180`
+- Subcommands: `list`, `info`, `transcribe`, `distance`
+- All subcommands support `--json` for machine-readable output
+- Imports are deferred to subcommand handlers for fast `--help` / `--version`
 
 ---
 
