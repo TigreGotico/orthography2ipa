@@ -14,9 +14,29 @@ All blocking items resolved. ✅
 
 ## 🟡 HIGH (target: 0.2.0 stable)
 
-- [ ] **Add 3.9 and 3.13 to CI Python matrix**
-  - `unit_tests.yml` currently tests 3.10, 3.11, 3.12 — add 3.9 and 3.13
-  - Verify `pyproject.toml` classifiers match actual tested versions
+- [ ] **Extend `.gitignore`**
+  - Add `__pycache__/`, `*.pyc`, `.idea/`, `*.egg-info/`, `.pytest_cache/`, `.coverage`, `dist/`, `build/`
+  - Remove tracked `.pyc` files from git index
+
+- [ ] **Fix bare `except:` clauses in `feats.py`**
+  - `feats.py:578` — `is_vowel_phone()`: replace with `except (ValueError, KeyError, IndexError):`
+  - `feats.py:636` — `phonetic_distance()`: replace with `except (ValueError, KeyError, IndexError):`
+
+- [ ] **Fix `spec_en` fixture in `tests/conftest.py:26-29`**
+  - `en-GB.json` now exists — replace `pytest.skip()` with `return orthography2ipa.get("en-GB")`
+
+- [ ] **Add Python 3.13 to CI matrix**
+  - `.github/workflows/unit_tests.yml:23` currently tests 3.10, 3.11, 3.12
+  - `pyproject.toml` claims 3.9–3.13 support
+
+- [ ] **Add type hints to deprecation shims in `feats.py`**
+  - `feats.py:650` — `phoneme_embeddings(spec)`
+  - `feats.py:662` — `build_ngram_lm(words, spec, n=3)`
+  - `feats.py:674` — `perplexity(lm, test_words, spec, n=3)`
+
+---
+
+## 🟢 MEDIUM (target: 0.2.x patch releases)
 
 - [ ] **Add lint workflow**
   - Add `.github/workflows/lint.yml` using `ruff`
@@ -24,31 +44,25 @@ All blocking items resolved. ✅
 
 - [ ] **Add `mypy` type-check workflow**
   - Add `.github/workflows/typecheck.yml` with `--ignore-missing-imports`
-  - Fix type errors systematically
 
----
-
-## 🟢 MEDIUM (target: 0.2.x patch releases)
-
-- [ ] **Clarify TODO comment in `json_loader.py:115`**
-  - Replace: `continue  # TODO - error log, illegal`
-  - With: `continue  # Skip self-reference cycles (parent == code); invalid per schema`
+- [ ] **Add `pip-audit` workflow**
 
 - [ ] **Add `docs/transforms.md`**
   - Extract 15 dialect profile details from `transforms.py` docstrings to standalone doc
 
-- [ ] **Add `pip-audit` workflow**
+- [ ] **Add coverage gate to CI**
+  - `unit_tests.yml` runs `--cov` but has no enforcement/reporting
 
 ---
 
 ## ⚪ LOW / FUTURE
 
 - [ ] **Implement Arabic tashkeel via ONNX**
-  - `orthography2ipa/plugins/tashkeel.py:50`
+  - `orthography2ipa/plugins/tashkeel.py`
   - Blocked on: model licensing decision
 
-- [ ] **Add deprecation to `lm.py` legacy functions**
-  - Use `warnings.warn()` — plan removal in v0.3.0
+- [ ] **Remove `lm.py` deprecation shims from `feats.py` in v0.3.0**
+  - `feats.py:650-683` — three wrapper functions with `DeprecationWarning`
 
 - [ ] **Expand stub language data**
   - ~238 stub specs have minimal grapheme data
@@ -58,9 +72,9 @@ All blocking items resolved. ✅
   - `phonetok.py` beam search recomputes paths on each call
   - Cache by `(language_code, grapheme_sequence)` key
 
-- [ ] **Input validation in `distance.py`**
-  - `segment_distance(a, b)` accepts malformed IPA silently
-  - Add optional `strict=False` parameter; raise `ValueError` if `strict=True`
+- [ ] **Fix Rionorese `nh` tokenizer conflict**
+  - `phonetok.py` trie greedily consumes `en→ẽ` before `nh→ɲ`
+  - Fix direction: weighted trie or context-aware construction
 
 ---
 
