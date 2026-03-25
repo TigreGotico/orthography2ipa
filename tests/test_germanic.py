@@ -1166,3 +1166,563 @@ class TestIcelandic:
         a = _allophone(self._spec, "f")
         assert a is not None, "is: f should be in allophone table"
         _assert_contains(a, "f", "v", label="is allophone f→v")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# West Frisian (fy)
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+class TestWestFrisian:
+    """Accuracy tests for West Frisian (fy).
+
+    West Frisian is an Anglo-Frisian language spoken in Fryslân (Netherlands).
+    Key features: breaking diphthongs (/iə/, /ɪə/, /oə/), final devoicing,
+    voiced velar stop /ɡ/ (not fricative), rich vowel system with circumflex
+    orthography (â, ê, ô, û).
+    """
+
+    LANGUAGE_CODE = "fy"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        """Load the fy LanguageSpec once for the entire class."""
+        request.cls._spec = _load("fy")
+
+    # --- Registry ---
+
+    def test_code(self):
+        """The spec code must be 'fy'."""
+        assert self._spec.code == "fy"
+
+    def test_name(self):
+        """Language name is West Frisian."""
+        assert self._spec.name == "West Frisian"
+
+    def test_family(self):
+        """West Frisian belongs to the Germanic family."""
+        assert self._spec.family == "Germanic"
+
+    def test_script(self):
+        """West Frisian uses the Latin script."""
+        assert self._spec.script == "Latin"
+
+    # --- Short vowels ---
+
+    def test_a_short(self):
+        """<a> → /ɑ/ (e.g., *bal*, *kat*)."""
+        _assert_first(_grapheme(self._spec, "a"), "ɑ", label="fy a")
+
+    def test_e_short(self):
+        """<e> → /ɛ/ or /ə/ (stressed vs unstressed)."""
+        g = _grapheme(self._spec, "e")
+        _assert_contains(g, "ɛ", "ə", label="fy e")
+
+    def test_i_short(self):
+        """<i> → /ɪ/ (e.g., *bit*, *kin*)."""
+        _assert_first(_grapheme(self._spec, "i"), "ɪ", label="fy i")
+
+    def test_o_short(self):
+        """<o> → /ɔ/ (e.g., *bok*, *hok*)."""
+        _assert_first(_grapheme(self._spec, "o"), "ɔ", label="fy o")
+
+    def test_u_front_rounded(self):
+        """<u> → /ø/ in Frisian (front rounded, unlike Dutch /ʏ/)."""
+        _assert_first(_grapheme(self._spec, "u"), "ø", label="fy u")
+
+    def test_y_is_high_front(self):
+        """<y> → /i/ in Frisian orthography (not a consonant)."""
+        _assert_first(_grapheme(self._spec, "y"), "i", label="fy y")
+
+    # --- Long vowels ---
+
+    def test_aa_long(self):
+        """<aa> → /aː/ (e.g., *baas*, *kaas*)."""
+        _assert_first(_grapheme(self._spec, "aa"), "aː", label="fy aa")
+
+    def test_ee_long(self):
+        """<ee> → /eː/ (e.g., *been*, *steen*)."""
+        _assert_first(_grapheme(self._spec, "ee"), "eː", label="fy ee")
+
+    def test_oo_long(self):
+        """<oo> → /oː/ (e.g., *boat*, *moan*)."""
+        _assert_first(_grapheme(self._spec, "oo"), "oː", label="fy oo")
+
+    def test_uu_long(self):
+        """<uu> → /yː/ (e.g., *mûne* 'moon')."""
+        _assert_first(_grapheme(self._spec, "uu"), "yː", label="fy uu")
+
+    # --- Circumflex vowels (distinctive Frisian) ---
+
+    def test_a_circumflex(self):
+        """<â> → /ɔː/ — unique Frisian circumflex vowel."""
+        _assert_first(_grapheme(self._spec, "â"), "ɔː", label="fy â")
+
+    def test_e_circumflex(self):
+        """<ê> → /ɛː/ — long open-mid front."""
+        _assert_first(_grapheme(self._spec, "ê"), "ɛː", label="fy ê")
+
+    def test_o_circumflex(self):
+        """<ô> → /oː/ — long close-mid back."""
+        _assert_first(_grapheme(self._spec, "ô"), "oː", label="fy ô")
+
+    def test_u_circumflex(self):
+        """<û> → /yː/ — long close front rounded."""
+        _assert_first(_grapheme(self._spec, "û"), "yː", label="fy û")
+
+    # --- Breaking diphthongs (hallmark of Frisian) ---
+
+    def test_ie_breaking(self):
+        """<ie> → /iə/ — centring diphthong, NOT Dutch /iː/."""
+        _assert_first(_grapheme(self._spec, "ie"), "iə", label="fy ie")
+
+    def test_ea_breaking(self):
+        """<ea> → /ɪə/ — centring diphthong."""
+        _assert_first(_grapheme(self._spec, "ea"), "ɪə", label="fy ea")
+
+    def test_oa_breaking(self):
+        """<oa> → /oə/ — centring diphthong."""
+        _assert_first(_grapheme(self._spec, "oa"), "oə", label="fy oa")
+
+    # --- Other vowel digraphs ---
+
+    def test_oe_high_back(self):
+        """<oe> → /uː/ (as in Dutch)."""
+        _assert_first(_grapheme(self._spec, "oe"), "uː", label="fy oe")
+
+    # --- Diphthongs ---
+
+    def test_ei_diphthong(self):
+        """<ei> → /ɛi/."""
+        _assert_first(_grapheme(self._spec, "ei"), "ɛi", label="fy ei")
+
+    def test_au_diphthong(self):
+        """<au> → /ɔu/."""
+        _assert_first(_grapheme(self._spec, "au"), "ɔu", label="fy au")
+
+    def test_ui_diphthong(self):
+        """<ui> → /øy/."""
+        _assert_first(_grapheme(self._spec, "ui"), "øy", label="fy ui")
+
+    # --- Consonants ---
+
+    def test_g_is_voiced_stop(self):
+        """<g> includes voiced stop /ɡ/ — NOT the Dutch fricative /ɣ/."""
+        g = _grapheme(self._spec, "g")
+        _assert_contains(g, "ɡ", label="fy g")
+
+    def test_ch_voiceless_velar(self):
+        """<ch> → /x/ (e.g., *acht*, *nacht*)."""
+        _assert_first(_grapheme(self._spec, "ch"), "x", label="fy ch")
+
+    def test_sj_postalveolar(self):
+        """<sj> → /ʃ/ (e.g., *sjen* 'to see')."""
+        _assert_first(_grapheme(self._spec, "sj"), "ʃ", label="fy sj")
+
+    def test_tj_affricate(self):
+        """<tj> → /tʃ/ (e.g., *tsjerke* 'church')."""
+        _assert_first(_grapheme(self._spec, "tj"), "tʃ", label="fy tj")
+
+    def test_w_labiodental(self):
+        """<w> → /ʋ/ (primary) or /w/ — labiodental approximant."""
+        g = _grapheme(self._spec, "w")
+        _assert_contains(g, "ʋ", label="fy w")
+
+    def test_h_glottal(self):
+        """<h> → /h/ (not breathy Dutch /ɦ/)."""
+        _assert_first(_grapheme(self._spec, "h"), "h", label="fy h")
+
+    def test_ng_velar_nasal(self):
+        """<ng> → /ŋ/."""
+        _assert_first(_grapheme(self._spec, "ng"), "ŋ", label="fy ng")
+
+    # --- Final devoicing (positional) ---
+
+    def test_b_final_devoicing(self):
+        """<b> → /p/ word-finally (final devoicing)."""
+        p = _positional(self._spec, "b", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "p", label="fy b word_final")
+
+    def test_d_final_devoicing(self):
+        """<d> → /t/ word-finally."""
+        p = _positional(self._spec, "d", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "t", label="fy d word_final")
+
+    def test_g_final_devoicing(self):
+        """<g> → /x/ word-finally."""
+        p = _positional(self._spec, "g", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "x", label="fy g word_final")
+
+    def test_v_final_devoicing(self):
+        """<v> → /f/ word-finally."""
+        p = _positional(self._spec, "v", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "f", label="fy v word_final")
+
+    def test_z_final_devoicing(self):
+        """<z> → /s/ word-finally."""
+        p = _positional(self._spec, "z", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "s", label="fy z word_final")
+
+    # --- Allophones ---
+
+    def test_allophone_r(self):
+        """Frisian /r/ can surface as alveolar trill [r] or tap [ɾ]."""
+        a = _allophone(self._spec, "r")
+        _assert_contains(a, "r", "ɾ", label="fy allophone r")
+
+    def test_allophone_b_devoicing(self):
+        """/b/ → [p] in coda (final devoicing)."""
+        a = _allophone(self._spec, "b")
+        _assert_contains(a, "b", "p", label="fy allophone b")
+
+    # --- Ancestry ---
+
+    def test_ancestry_old_frisian(self):
+        """West Frisian descends from Old Frisian."""
+        codes = [getattr(a, "code", None) or (a.get("code") if isinstance(a, dict) else str(a)) for a in self._spec.ancestors]
+        assert "ofs" in codes, f"fy: expected 'ofs' in ancestors, got {codes}"
+
+    def test_ancestry_dutch_adstrate(self):
+        """Dutch is a significant adstrate for West Frisian."""
+        codes = [getattr(a, "code", None) or (a.get("code") if isinstance(a, dict) else str(a)) for a in self._spec.ancestors]
+        assert "nl" in codes, f"fy: expected 'nl' in ancestors, got {codes}"
+
+    # --- Key isoglosses vs Dutch ---
+
+    def test_isogloss_g_not_fricative(self):
+        """FRISIAN vs DUTCH: Frisian <g> has a stop /ɡ/ default, Dutch has fricative /ɣ/."""
+        g = _grapheme(self._spec, "g")
+        _assert_first(g, "ɡ", label="fy g is stop not fricative")
+
+    def test_isogloss_breaking_diphthongs(self):
+        """FRISIAN vs DUTCH: breaking diphthongs /iə/, /ɪə/, /oə/ are absent from Dutch."""
+        ie = _grapheme(self._spec, "ie")
+        _assert_first(ie, "iə", label="fy breaking ie≠Dutch iː")
+
+    def test_isogloss_h_not_breathy(self):
+        """FRISIAN vs DUTCH: Frisian /h/ is plain glottal [h], Dutch is breathy [ɦ]."""
+        _assert_first(_grapheme(self._spec, "h"), "h", label="fy h vs Dutch ɦ")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# North Frisian (frr)
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+def _ancestor_codes(spec) -> list:
+    """Extract ancestor codes from a spec, handling both dict and object forms."""
+    return [getattr(a, "code", None) or (a.get("code") if isinstance(a, dict) else str(a))
+            for a in spec.ancestors]
+
+
+class TestNorthFrisian:
+    """Accuracy tests for North Frisian (frr).
+
+    Spoken in Schleswig-Holstein, Germany. ~10 dialect groups across islands
+    and mainland. Features centring diphthongs, final devoicing, voiced /ɡ/.
+    """
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        request.cls._spec = _load("frr")
+
+    # --- Registry ---
+
+    def test_code(self):
+        assert self._spec.code == "frr"
+
+    def test_name(self):
+        assert self._spec.name == "North Frisian"
+
+    def test_family(self):
+        assert self._spec.family == "Germanic"
+
+    # --- Vowels ---
+
+    def test_a_short(self):
+        _assert_first(_grapheme(self._spec, "a"), "a", label="frr a")
+
+    def test_ae_umlaut(self):
+        """<ä> → /ɛ/ (umlauted a)."""
+        _assert_first(_grapheme(self._spec, "ä"), "ɛ", label="frr ä")
+
+    def test_oe_umlaut(self):
+        """<ö> → /œ/ (front rounded)."""
+        _assert_first(_grapheme(self._spec, "ö"), "œ", label="frr ö")
+
+    def test_ue_umlaut(self):
+        """<ü> → /ʏ/ (front rounded)."""
+        _assert_first(_grapheme(self._spec, "ü"), "ʏ", label="frr ü")
+
+    def test_long_oo(self):
+        _assert_first(_grapheme(self._spec, "oo"), "oː", label="frr oo")
+
+    def test_long_oeoe(self):
+        """<öö> → /øː/ (long front rounded)."""
+        _assert_first(_grapheme(self._spec, "öö"), "øː", label="frr öö")
+
+    def test_long_ueue(self):
+        """<üü> → /yː/ (long close front rounded)."""
+        _assert_first(_grapheme(self._spec, "üü"), "yː", label="frr üü")
+
+    # --- Centring diphthongs (shared Frisian feature) ---
+
+    def test_ia_centring(self):
+        """<ia> → /iə/ centring diphthong."""
+        _assert_first(_grapheme(self._spec, "ia"), "iə", label="frr ia")
+
+    def test_ua_centring(self):
+        """<ua> → /uə/ centring diphthong."""
+        _assert_first(_grapheme(self._spec, "ua"), "uə", label="frr ua")
+
+    def test_uea_centring(self):
+        """<üa> → /yə/ centring diphthong (front rounded)."""
+        _assert_first(_grapheme(self._spec, "üa"), "yə", label="frr üa")
+
+    # --- Consonants ---
+
+    def test_g_voiced_stop(self):
+        """<g> → /ɡ/ (voiced velar stop, as in all Frisian)."""
+        _assert_first(_grapheme(self._spec, "g"), "ɡ", label="frr g")
+
+    def test_ch_voiceless_velar(self):
+        _assert_first(_grapheme(self._spec, "ch"), "x", label="frr ch")
+
+    def test_sch_postalveolar(self):
+        _assert_first(_grapheme(self._spec, "sch"), "ʃ", label="frr sch")
+
+    def test_tj_affricate(self):
+        _assert_first(_grapheme(self._spec, "tj"), "tʃ", label="frr tj")
+
+    def test_dj_affricate(self):
+        _assert_first(_grapheme(self._spec, "dj"), "dʒ", label="frr dj")
+
+    # --- Final devoicing ---
+
+    def test_b_final_devoicing(self):
+        p = _positional(self._spec, "b", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "p", label="frr b word_final")
+
+    def test_d_final_devoicing(self):
+        p = _positional(self._spec, "d", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "t", label="frr d word_final")
+
+    def test_g_final_devoicing(self):
+        p = _positional(self._spec, "g", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "k", label="frr g word_final")
+
+    # --- Ancestry ---
+
+    def test_ancestry_old_frisian(self):
+        assert "ofs" in _ancestor_codes(self._spec), "frr should descend from Old Frisian"
+
+    def test_ancestry_danish_adstrate(self):
+        assert "da" in _ancestor_codes(self._spec), "frr should have Danish adstrate"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Saterland Frisian (stq)
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+class TestSaterlandFrisian:
+    """Accuracy tests for Saterland Frisian (stq).
+
+    Last surviving East Frisian dialect. ~1,000–2,500 speakers in Lower Saxony.
+    Most conservative Frisian variety.
+    """
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        request.cls._spec = _load("stq")
+
+    # --- Registry ---
+
+    def test_code(self):
+        assert self._spec.code == "stq"
+
+    def test_name(self):
+        assert self._spec.name == "Saterland Frisian"
+
+    def test_family(self):
+        assert self._spec.family == "Germanic"
+
+    # --- Vowels ---
+
+    def test_a_short(self):
+        _assert_first(_grapheme(self._spec, "a"), "a", label="stq a")
+
+    def test_ae_umlaut(self):
+        _assert_first(_grapheme(self._spec, "ä"), "ɛ", label="stq ä")
+
+    def test_aeae_long(self):
+        """<ää> → /ɛː/ — distinct from <ee> /eː/ (conservative feature)."""
+        _assert_first(_grapheme(self._spec, "ää"), "ɛː", label="stq ää")
+
+    def test_ee_long(self):
+        _assert_first(_grapheme(self._spec, "ee"), "eː", label="stq ee")
+
+    def test_oeoe_long(self):
+        _assert_first(_grapheme(self._spec, "öö"), "øː", label="stq öö")
+
+    def test_ueue_long(self):
+        _assert_first(_grapheme(self._spec, "üü"), "yː", label="stq üü")
+
+    # --- Centring diphthongs ---
+
+    def test_ia_centring(self):
+        _assert_first(_grapheme(self._spec, "ia"), "iə", label="stq ia")
+
+    def test_oa_centring(self):
+        _assert_first(_grapheme(self._spec, "oa"), "oə", label="stq oa")
+
+    def test_ua_centring(self):
+        _assert_first(_grapheme(self._spec, "ua"), "uə", label="stq ua")
+
+    # --- Consonants ---
+
+    def test_g_voiced_stop(self):
+        _assert_first(_grapheme(self._spec, "g"), "ɡ", label="stq g")
+
+    def test_ch_voiceless_velar(self):
+        _assert_first(_grapheme(self._spec, "ch"), "x", label="stq ch")
+
+    def test_sch_postalveolar(self):
+        _assert_first(_grapheme(self._spec, "sch"), "ʃ", label="stq sch")
+
+    def test_sp_initial(self):
+        """<sp> → /ʃp/ (shared with Low German)."""
+        _assert_first(_grapheme(self._spec, "sp"), "ʃp", label="stq sp")
+
+    def test_st_initial(self):
+        """<st> → /ʃt/ (shared with Low German)."""
+        _assert_first(_grapheme(self._spec, "st"), "ʃt", label="stq st")
+
+    # --- Final devoicing ---
+
+    def test_b_final_devoicing(self):
+        p = _positional(self._spec, "b", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "p", label="stq b word_final")
+
+    def test_d_final_devoicing(self):
+        p = _positional(self._spec, "d", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "t", label="stq d word_final")
+
+    def test_g_final_devoicing(self):
+        p = _positional(self._spec, "g", GraphemePosition.WORD_FINAL)
+        _assert_contains(p, "k", label="stq g word_final")
+
+    # --- Positional s voicing ---
+
+    def test_s_initial_voiced(self):
+        """<s> → /z/ word-initially (characteristic of Saterland Frisian)."""
+        p = _positional(self._spec, "s", GraphemePosition.WORD_INITIAL)
+        _assert_contains(p, "z", label="stq s word_initial")
+
+    # --- Ancestry ---
+
+    def test_ancestry_old_frisian(self):
+        assert "ofs" in _ancestor_codes(self._spec), "stq should descend from Old Frisian"
+
+    def test_ancestry_low_german_adstrate(self):
+        assert "nds" in _ancestor_codes(self._spec), "stq should have Low German adstrate"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Old Frisian (ofs)
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+class TestOldFrisian:
+    """Accuracy tests for Old Frisian (ofs).
+
+    Ancestor of all modern Frisian languages. Known from legal manuscripts
+    (~1150–1550 CE). Anglo-Frisian sub-branch of Ingvaeonic.
+    """
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        request.cls._spec = _load("ofs")
+
+    # --- Registry ---
+
+    def test_code(self):
+        assert self._spec.code == "ofs"
+
+    def test_name(self):
+        assert self._spec.name == "Old Frisian"
+
+    def test_family(self):
+        assert self._spec.family == "Germanic"
+
+    # --- Vowels ---
+
+    def test_a_short(self):
+        _assert_first(_grapheme(self._spec, "a"), "a", label="ofs a")
+
+    def test_e_short(self):
+        g = _grapheme(self._spec, "e")
+        _assert_contains(g, "e", label="ofs e")
+
+    def test_long_a(self):
+        _assert_first(_grapheme(self._spec, "ā"), "aː", label="ofs ā")
+
+    def test_long_e(self):
+        _assert_first(_grapheme(self._spec, "ē"), "eː", label="ofs ē")
+
+    def test_long_i(self):
+        _assert_first(_grapheme(self._spec, "ī"), "iː", label="ofs ī")
+
+    def test_long_o(self):
+        _assert_first(_grapheme(self._spec, "ō"), "oː", label="ofs ō")
+
+    def test_long_u(self):
+        _assert_first(_grapheme(self._spec, "ū"), "uː", label="ofs ū")
+
+    # --- Consonants ---
+
+    def test_thorn(self):
+        """<þ> → /θ/ ~ /ð/ (interdental fricative, preserved from PGmc)."""
+        g = _grapheme(self._spec, "þ")
+        _assert_contains(g, "θ", label="ofs þ")
+
+    def test_eth(self):
+        """<ð> → /ð/ ~ /θ/."""
+        g = _grapheme(self._spec, "ð")
+        _assert_contains(g, "ð", label="ofs ð")
+
+    def test_f_voicing(self):
+        """<f> → /f/ ~ /v/ (voiced intervocalically)."""
+        g = _grapheme(self._spec, "f")
+        _assert_contains(g, "f", "v", label="ofs f")
+
+    def test_s_voicing(self):
+        """<s> → /s/ ~ /z/ (voiced intervocalically)."""
+        g = _grapheme(self._spec, "s")
+        _assert_contains(g, "s", "z", label="ofs s")
+
+    def test_palatalisation_ts(self):
+        """Old Frisian palatalisation: <ts> → /ts/ (PGmc *k → ts before front V)."""
+        _assert_first(_grapheme(self._spec, "ts"), "ts", label="ofs ts")
+
+    def test_geminates(self):
+        """Geminate consonants are distinctive in Old Frisian."""
+        _assert_first(_grapheme(self._spec, "pp"), "pː", label="ofs pp")
+        _assert_first(_grapheme(self._spec, "tt"), "tː", label="ofs tt")
+        _assert_first(_grapheme(self._spec, "kk"), "kː", label="ofs kk")
+
+    # --- Positional ---
+
+    def test_f_intervocalic_voicing(self):
+        p = _positional(self._spec, "f", GraphemePosition.INTERVOCALIC)
+        _assert_contains(p, "v", label="ofs f intervocalic")
+
+    def test_th_intervocalic_voicing(self):
+        p = _positional(self._spec, "th", GraphemePosition.INTERVOCALIC)
+        _assert_contains(p, "ð", label="ofs th intervocalic")
+
+    # --- Ancestry ---
+
+    def test_ancestry_ingvaeonic(self):
+        assert "gem-x-ingvaeonic" in _ancestor_codes(self._spec), \
+            "ofs should descend from Proto-Ingvaeonic"
