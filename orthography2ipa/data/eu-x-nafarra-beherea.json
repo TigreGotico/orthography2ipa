@@ -5,6 +5,7 @@
   "script": "Latin",
   "graphemes_base": "eu",
   "allophones_base": "eu",
+  "positional_graphemes_base": "eu",
   "allophones": {
     "p": [
       "p",
@@ -20,8 +21,22 @@
     ]
   },
   "parent": "eu",
-  "notes": "Lower Navarrese (Behe-Nafar). Spoken in Basse-Navarre (France). Shares aspiration and plosive aspiration features with Souletin but less systematic. Fully productive /h/. Intermediate between southern (Spanish-side) and eastern (Souletin) varieties.",
-  "quality": "skeleton",
+  "ISO_639-3": "eus",
+  "glottolog_code": "lowe1402",
+  "ancestors": [
+    {
+      "code": "eu",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Lower Navarrese inherits the standard Basque grapheme base and is typologically intermediate, sharing aspiration features with Souletin while retaining core Batua consonantism."
+    }
+  ],
+  "notes": "Lower Navarrese (Behe-Nafar). Spoken in Basse-Navarre (Pyrénées-Atlantiques, France), a French Basque Country territory. Phonologically intermediate between the southern Spanish-side dialects and the eastern Souletin variety. Shares aspirated stop allophones [pʰ, tʰ, kʰ] with Souletin but these are less systematic, occurring primarily in syllable onset before stressed vowels. Aspiration (/h/) is fully productive. French contact influence is present but more moderate than in Souletin. Often grouped with Lapurdian and Souletin as a northeastern Basque dialect cluster.",
+  "quality": "research",
+  "urls": [
+    "https://en.wikipedia.org/wiki/Lower_Navarrese_dialect",
+    "https://glottolog.org/resource/languoid/id/lowe1402"
+  ],
   "script_type": "alphabet",
   "sources": [
     {

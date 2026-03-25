@@ -5,6 +5,7 @@
   "script": "Latin",
   "graphemes_base": "eu",
   "allophones_base": "eu",
+  "positional_graphemes_base": "eu",
   "allophones": {
     "h": [
       "h",
@@ -12,8 +13,22 @@
     ]
   },
   "parent": "eu",
-  "notes": "Gipuzkoan (Gipuzkera). Central Basque dialect, closest to Euskara Batua standard. Full three-way sibilant contrast maintained (apical/laminal/postalveolar). Palatal stops [c, ɟ] well preserved. Primary reference variety for standardization.",
-  "quality": "skeleton",
+  "ISO_639-3": "eus",
+  "glottolog_code": "guip1235",
+  "ancestors": [
+    {
+      "code": "eu",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Gipuzkoan is the closest living dialect to Euskara Batua and served as the primary model for standardization; grapheme mappings are nearly identical to the standard."
+    }
+  ],
+  "notes": "Gipuzkoan (Gipuzkera). Central Basque dialect spoken in Gipuzkoa province, closest to Euskara Batua and the primary reference variety for standardization. Full three-way sibilant contrast maintained (apical /s̺/, laminal /s̻/, postalveolar /ʃ/). Palatal stops [c, ɟ] well preserved in all positions. Aspiration (/h/) is present but variable, often weakening in spontaneous speech. Gipuzkoan prosody exhibits a pitch-accent system distinct from the stress-accent of Biscayan.",
+  "quality": "research",
+  "urls": [
+    "https://en.wikipedia.org/wiki/Gipuzkoan_dialect",
+    "https://glottolog.org/resource/languoid/id/guip1235"
+  ],
   "script_type": "alphabet",
   "sources": [
     {

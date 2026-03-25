@@ -5,6 +5,7 @@
   "script": "Latin",
   "graphemes_base": "eu",
   "allophones_base": "eu",
+  "positional_graphemes_base": "eu",
   "allophones": {
     "s̺": [
       "s̺",
@@ -23,8 +24,22 @@
     ]
   },
   "parent": "eu",
-  "notes": "Upper Navarrese (Goi-Nafar). Southern Basque dialect including the Pamplona basin. Heavy Spanish contact influence: sibilant distinction weakening, incipient yeísmo, Spanish-like lenition of voiced stops. No aspiration.",
-  "quality": "skeleton",
+  "ISO_639-3": "eus",
+  "glottolog_code": "nava1268",
+  "ancestors": [
+    {
+      "code": "eu",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Upper Navarrese uses the standard Basque grapheme base but exhibits systematic phonological reduction driven by Spanish contact, particularly in sibilant and lateral distinctions."
+    }
+  ],
+  "notes": "Upper Navarrese (Goi-Nafar). Southern Basque dialect covering the Pamplona basin and surrounding areas of Navarre. Heavy Spanish contact has driven significant phonological changes: weakening and partial merger of the apical/laminal sibilant distinction, incipient yeísmo (ʎ → ʝ merger), and Spanish-like lenition patterns for voiced obstruents. Aspiration (/h/) is absent throughout. Lexical and morphological borrowing from Spanish is extensive. Considered highly endangered; the variety spoken around Pamplona underwent substantial language shift in the 20th century.",
+  "quality": "research",
+  "urls": [
+    "https://en.wikipedia.org/wiki/Upper_Navarrese_dialect",
+    "https://glottolog.org/resource/languoid/id/nava1268"
+  ],
   "script_type": "alphabet",
   "sources": [
     {
