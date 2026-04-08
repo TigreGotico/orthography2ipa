@@ -484,6 +484,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "GBA2021",
+      "author": "Estudio de Filología Aragonesa",
+      "year": 2021,
+      "title": "Gramatica basica de l'aragonés",
+      "publisher": "Prensas de la Universidad de Zaragoza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+    {
+      "id": "OA2023",
+      "author": "Academia Aragonesa de la Lengua",
+      "year": 2023,
+      "title": "Ortografía de l'aragonés",
+      "publisher": "Academia Aragonesa de la Lengua",
+      "url": "https://academiaaragonesadelalengua.org/sites/default/files/ficheros-pdf/ortografia-aragones.pdf",
+      "pages": null,
+      "notes": null
     }
   ],
   "wikipedia": [
