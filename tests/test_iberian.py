@@ -2003,7 +2003,7 @@ class TestAragonese:
 #    def test_isogloss_no_theta(self):
 #        """SESEO: Aragonese has no /θ/."""
 #        g = _grapheme(self._spec, "c")
-3        assert "θ" not in g
+#        assert "θ" not in g
 
 
 # ═══════════════════════════════════════════════════════════════════════════
