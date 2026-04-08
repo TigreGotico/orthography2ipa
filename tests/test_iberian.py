@@ -1884,10 +1884,10 @@ class TestAragonese:
     def test_y_glide(self):
         _assert_first(_grapheme(self._spec, "y"), "j", "an y")
 
-    def test_z_affricate_default(self):
-        """z → /ts/ (primary affricate realisation in Aragonese)."""
+    def test_z_fricative_default(self):
+        """z → /θ/ (primary dental fricative realisation in Aragonese)."""
         g = _grapheme(self._spec, "z")
-        assert "ts" in g
+        assert "θ" in g
 
     # --- Diphthongs ---
 
