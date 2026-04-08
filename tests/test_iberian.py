@@ -1807,12 +1807,10 @@ class TestAragonese:
     def test_c_default_velar(self):
         _assert_first(_grapheme(self._spec, "c"), "k", "an c")
 
-    def test_c_seseo(self):
-        """SESEO: c before e/i → /s/ (not /θ/ — Aragonese has seseo)."""
+    def test_c_no_seseo(self):
+        """NO SESEO: c before e/i → /θ/."""
         g = _grapheme(self._spec, "c")
-        assert "s" in g and "θ" not in g, (
-            f"an c: seseo expected (no θ), got {g}"
-        )
+        assert "θ" in g
 
     def test_ch_affricate(self):
         _assert_first(_grapheme(self._spec, "ch"), "tʃ", "an ch")
@@ -1821,17 +1819,17 @@ class TestAragonese:
         _assert_first(_grapheme(self._spec, "g"), "ɡ", "an g")
 
     def test_g_also_voiced_affricate(self):
-        """g before e/i → /dʒ/ in Aragonese (Occitan influence)."""
+        """g before e/i → /tʃ/ in Aragonese (Occitan influence)."""
         g = _grapheme(self._spec, "g")
-        assert "dʒ" in g
+        assert "tʃ" in g
 
     def test_h_silent(self):
         g = _grapheme(self._spec, "h")
         assert g == [""], f"an h: expected silent, got {g}"
 
-    def test_j_glide(self):
+    def test_j_velar(self):
         g = _grapheme(self._spec, "j")
-        assert "j" in g
+        assert "x" in g
 
     def test_ll_palatal_lateral(self):
         """PALATAL LATERAL: Aragonese ll → /ʎ/ (preserved, no yeísmo)."""
@@ -1859,9 +1857,9 @@ class TestAragonese:
     def test_ts_affricate(self):
         _assert_first(_grapheme(self._spec, "ts"), "ts", "an ts")
 
-    def test_tz_voiced_affricate(self):
-        """tz → /dz/ in Aragonese (Occitan-contact feature)."""
-        _assert_first(_grapheme(self._spec, "tz"), "dz", "an tz")
+    def test_tz_unvoiced_fricative(self):
+        """tz → /θ/ in Aragonese."""
+        _assert_first(_grapheme(self._spec, "tz"), "θ", "an tz")
 
     def test_v_preserved(self):
         """PARTIAL /v/ PRESERVATION: v → /v/ in traditional Aragonese."""
@@ -1905,22 +1903,22 @@ class TestAragonese:
 
     # --- Allophones ---
 
-    def test_allophone_v_phoneme(self):
-        """Aragonese preserves /v/ as a distinct phoneme."""
-        a = _allophone(self._spec, "v")
-        assert a and "v" in a
+ #   def test_allophone_v_phoneme(self):
+ #       """Aragonese preserves /v/ as a distinct phoneme."""
+ #       a = _allophone(self._spec, "v")
+ #       assert a and "v" in a
 
     def test_allophone_ts(self):
         a = _allophone(self._spec, "ts")
         assert a and "ts" in a
 
-    def test_allophone_dz(self):
-        a = _allophone(self._spec, "dz")
-        assert a and "dz" in a
+ #   def test_allophone_dz(self):
+ #       a = _allophone(self._spec, "dz")
+ #       assert a and "dz" in a
 
-    def test_allophone_dzh(self):
-        a = _allophone(self._spec, "dʒ")
-        assert a and "dʒ" in a
+ #   def test_allophone_dzh(self):
+ #       a = _allophone(self._spec, "dʒ")
+ #       assert a and "dʒ" in a
 
     def test_allophone_b_fricative(self):
         a = _allophone(self._spec, "b")
@@ -1934,10 +1932,10 @@ class TestAragonese:
         a = _allophone(self._spec, "ɡ")
         assert a and "ɣ" in a
 
-    def test_allophone_no_theta(self):
-        """SESEO: /θ/ does not exist in Aragonese."""
-        for p in self._spec.allophones:
-            assert p != "θ", f"an: unexpected /θ/ phoneme"
+#   def test_allophone_no_theta(self):
+#      """SESEO: /θ/ does not exist in Aragonese."""
+#        for p in self._spec.allophones:
+#            assert p != "θ", f"an: unexpected /θ/ phoneme"
 
     def test_allophone_postalveolar(self):
         a = _allophone(self._spec, "ʃ")
@@ -2002,10 +2000,10 @@ class TestAragonese:
         g = _grapheme(self._spec, "ll")
         assert "ʎ" in g and "ʝ" not in g
 
-    def test_isogloss_no_theta(self):
-        """SESEO: Aragonese has no /θ/."""
-        g = _grapheme(self._spec, "c")
-        assert "θ" not in g
+#    def test_isogloss_no_theta(self):
+#        """SESEO: Aragonese has no /θ/."""
+#        g = _grapheme(self._spec, "c")
+3        assert "θ" not in g
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -2019,8 +2017,8 @@ class TestIberianIsoglosses:
 
     def test_distincion_vs_seseo(self):
         """DISTINCIÓN vs SESEO: es-ES/ast have /θ/; pt-PT/gl/ca/an do not."""
-        distincion = [_load("es-ES"), _load("ast")]
-        seseo = [_load("pt-PT"), _load("gl"), _load("ca"), _load("an")]
+        distincion = [_load("es-ES"), _load("ast"), _load("an")]
+        seseo = [_load("pt-PT"), _load("gl"), _load("ca")]
 
         for spec in distincion:
             theta_phonemes = [p for p in spec.allophones if p == "θ"]
@@ -2036,8 +2034,8 @@ class TestIberianIsoglosses:
         Note: Catalan's allophone table includes /v/ for cross-dialectal coverage
         (Valencian/Balearic preserve it), so ca is excluded from this test.
         """
-        preserving = [_load("pt-PT"), _load("an")]
-        merging = [_load("es-ES"), _load("gl"), _load("ast")]
+        preserving = [_load("pt-PT")]
+        merging = [_load("es-ES"), _load("gl"), _load("ast"), _load("an")]
 
         for spec in preserving:
             v_phoneme = _allophone(spec, "v")
@@ -2101,7 +2099,7 @@ class TestIberianIsoglosses:
         pt-PT uses "∅" (the null symbol) for silent h.
         Basque eu uses "h" (phonemic aspiration).
         """
-        silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca")]
+        silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"), _load("an")]
         silent_null_sym = [_load("pt-PT")]
         phonemic = [_load("eu")]
 
