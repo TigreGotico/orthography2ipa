@@ -15,12 +15,15 @@
       "a"
     ],
     "e": [
-      "e",
-      "ɛ"
+      "e"
     ],
     "é": [
+      "e"
+    ],
+    "è": [
       "ɛ"
     ],
+    
     "i": [
       "i"
     ],
@@ -28,10 +31,12 @@
       "i"
     ],
     "o": [
-      "o",
-      "ɔ"
+      "o"
     ],
     "ó": [
+      "o"
+    ],
+    "ò": [
       "ɔ"
     ],
     "u": [
@@ -40,11 +45,15 @@
     "ú": [
       "u"
     ],
+    "ü": [
+      "u"
+    ],
     "b": [
       "b"
     ],
     "c": [
       "k",
+      "θ",
       "s"
     ],
     "ch": [
@@ -58,7 +67,8 @@
     ],
     "g": [
       "ɡ",
-      "dʒ"
+      "tʃ",
+      "x"
     ],
     "gu": [
       "ɡ"
@@ -67,14 +77,15 @@
       ""
     ],
     "j": [
-      "j",
-      "dʒ"
+      "x",
+      "tʃ"
     ],
     "k": [
       "k"
     ],
     "l": [
-      "l"
+      "l",
+      "ʎ"
     ],
     "ll": [
       "ʎ"
@@ -98,15 +109,13 @@
       "k"
     ],
     "r": [
-      "ɾ"
+      "ɾ",
+      "r"
     ],
     "rr": [
       "r"
     ],
     "s": [
-      "s"
-    ],
-    "ss": [
       "s"
     ],
     "t": [
@@ -116,28 +125,32 @@
       "ts"
     ],
     "tz": [
-      "dz"
+      "θ",
+      "ts"
     ],
     "v": [
-      "v",
       "b"
     ],
     "w": [
-      "w"
+      "w",
+      "b"
     ],
     "x": [
-      "ʃ"
+      "ʃ",
+      "ks"
     ],
     "ix": [
-      "ʃ"
+      "ʃ",
+      "iʃ",
+      "jʃ"
     ],
     "y": [
+      "ʝ",
       "j",
       "i"
     ],
     "z": [
-      "ts",
-      "dz",
+      "θ",
       "s"
     ],
     "güe": [
@@ -194,6 +207,9 @@
       "b",
       "β"
     ],
+    "θ": [
+      "θ"
+    ],
     "t": [
       "t"
     ],
@@ -214,12 +230,6 @@
     "ts": [
       "ts"
     ],
-    "dz": [
-      "dz"
-    ],
-    "dʒ": [
-      "dʒ"
-    ],
     "f": [
       "f"
     ],
@@ -232,15 +242,12 @@
     "m": [
       "m"
     ],
-    "n": [
-      "n",
-      "ŋ"
-    ],
     "ɲ": [
       "ɲ"
     ],
     "l": [
-      "l"
+      "l",
+      "ʎ"
     ],
     "ʎ": [
       "ʎ"
@@ -257,15 +264,12 @@
     "w": [
       "w"
     ],
-    "v": [
-      "v",
-      "β"
-    ],
     "a": [
       "a"
     ],
     "e": [
-      "e"
+      "e",
+      "ɛ"
     ],
     "ɛ": [
       "ɛ"
@@ -274,7 +278,8 @@
       "i"
     ],
     "o": [
-      "o"
+      "o",
+      "ɔ"
     ],
     "ɔ": [
       "ɔ"
@@ -300,41 +305,30 @@
     },
     "g": {
       "before_e": [
-        "dʒ"
+        "x",
+        "tʃ"
       ],
       "before_i": [
-        "dʒ"
+        "x",
+        "tʃ"
       ],
       "intervocalic": [
         "ɣ"
       ]
-    },
+    },  
     "c": {
       "before_e": [
+        "θ",
         "s"
       ],
       "before_i": [
+        "θ",
         "s"
       ]
     },
     "v": {
-      "word_initial": [
-        "v"
-      ],
       "intervocalic": [
-        "v",
         "β"
-      ]
-    },
-    "z": {
-      "word_initial": [
-        "ts"
-      ],
-      "intervocalic": [
-        "dz"
-      ],
-      "word_final": [
-        "ts"
       ]
     },
     "r": {
@@ -348,30 +342,10 @@
         "ɾ"
       ]
     },
-    "n": {
-      "coda": [
-        "n",
-        "ŋ"
-      ]
-    },
     "l": {
       "onset": [
-        "l"
-      ],
-      "coda": [
-        "l"
-      ]
-    },
-    "s": {
-      "word_initial": [
-        "s"
-      ],
-      "intervocalic": [
-        "z",
-        "s"
-      ],
-      "coda": [
-        "s"
+        "l",
+        "ʎ"
       ]
     }
   },
@@ -507,6 +481,26 @@
       "title": "A History of the Spanish Language",
       "publisher": "Cambridge University Press",
       "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "GBA2021",
+      "author": "Estudio de Filología Aragonesa",
+      "year": 2021,
+      "title": "Gramatica basica de l'aragonés",
+      "publisher": "Prensas de la Universidad de Zaragoza",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "OA2023",
+      "author": "Academia Aragonesa de la Lengua",
+      "year": 2023,
+      "title": "Ortografía de l'aragonés",
+      "publisher": "Academia Aragonesa de la Lengua",
+      "url": "https://academiaaragonesadelalengua.org/sites/default/files/ficheros-pdf/ortografia-aragones.pdf",
       "pages": null,
       "notes": null
     }
