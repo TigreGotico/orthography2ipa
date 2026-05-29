@@ -72,6 +72,11 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
+| `glottolog_code`            | string | no       | Glottolog languoid code (e.g. `"cast1244"`)  |
+| `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) |
+| `urls`                      | array  | no       | Other reference URLs (Glottolog, Ethnologue, dialect articles, …) |
+| `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
+| `lexicon_csv`               | string | no       | Path (relative to `data/`) of a bundled IPA lexicon CSV |
 
 ## Inheritance
 
@@ -168,6 +173,7 @@ The `sources` array contains bibliographic references for the phonological data 
 | `title`       | string  | yes      | Full title of the work                              |
 | `publisher`   | string  | no       | Publisher name                                      |
 | `url`         | string  | no       | URL or DOI; use `null` for print-only works         |
+| `wikipedia_url` | string | no       | Wikipedia article URL for quick human reference     |
 | `pages`       | string  | no       | Specific page range, e.g. `"pp. 45-72"`            |
 | `notes`       | string  | no       | Annotation about what this source supports          |
 
@@ -190,6 +196,17 @@ matching the `GraphemePosition` enum:
 | `"word_final"`              | `GraphemePosition.WORD_FINAL`              |
 | `"intervocalic"`            | `GraphemePosition.INTERVOCALIC`            |
 | `"intervocalic_cross_word"` | `GraphemePosition.INTERVOCALIC_CROSS_WORD` |
+| `"before_vowel"`            | `GraphemePosition.BEFORE_VOWEL`            |
+| `"after_vowel"`             | `GraphemePosition.AFTER_VOWEL`             |
+| `"before_consonant"`        | `GraphemePosition.BEFORE_CONSONANT`        |
+| `"after_consonant"`         | `GraphemePosition.AFTER_CONSONANT`         |
+| `"before_a"`                | `GraphemePosition.BEFORE_A`                |
+| `"before_e"`                | `GraphemePosition.BEFORE_E`                |
+| `"before_i"`                | `GraphemePosition.BEFORE_I`                |
+| `"before_o"`                | `GraphemePosition.BEFORE_O`                |
+| `"before_u"`                | `GraphemePosition.BEFORE_U`                |
+| `"consonantal"`             | `GraphemePosition.CONSONANTAL`             |
+| `"vocalic"`                 | `GraphemePosition.VOCALIC`                 |
 
 ## Ancestor Role Values
 

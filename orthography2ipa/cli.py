@@ -6,6 +6,7 @@ Subcommands
 - ``transcribe`` — tokenise and transcribe a word/phrase to IPA
 - ``distance``   — compute phonological distance between two languages
 - ``list``       — list available language codes or families
+- ``validate``   — validate language spec JSON files against the schema
 """
 from __future__ import annotations
 
@@ -81,6 +82,20 @@ def _build_parser() -> argparse.ArgumentParser:
     p_dist.add_argument(
         "--json", action="store_true", dest="as_json",
         help="Output as JSON.",
+    )
+
+    # --- validate ---
+    p_val = sub.add_parser(
+        "validate",
+        help="Validate language spec JSON files against the schema.",
+    )
+    p_val.add_argument(
+        "code", nargs="?", default=None,
+        help="Validate a single language code (default: all specs).",
+    )
+    p_val.add_argument(
+        "--json", action="store_true", dest="as_json",
+        help="Output the validation report as JSON.",
     )
 
     return parser
@@ -220,6 +235,33 @@ def _cmd_distance(args: argparse.Namespace) -> None:
         print(f"  allophone:  {dist.allophone_sim:.4f}")
 
 
+def _cmd_validate(args: argparse.Namespace) -> None:
+    """Handle the ``validate`` subcommand.
+
+    Validates every spec (or a single ``code``) against the pydantic schema.
+    Exits non-zero if any spec fails.
+    """
+    from orthography2ipa.schema import format_failure, validate_all
+
+    ok, failures = validate_all(args.code)
+
+    if args.as_json:
+        print(json.dumps({
+            "ok": ok,
+            "failures": {code: format_failure(code, exc) for code, exc in failures},
+            "passed": len(ok),
+            "failed": len(failures),
+        }, ensure_ascii=False, indent=2))
+    else:
+        for code, exc in failures:
+            print(format_failure(code, exc), file=sys.stderr)
+        print(f"{len(ok)} valid, {len(failures)} invalid "
+              f"({len(ok) + len(failures)} specs checked)")
+
+    if failures:
+        sys.exit(1)
+
+
 def main(argv: Optional[List[str]] = None) -> None:
     """CLI entry point."""
     parser = _build_parser()
@@ -235,6 +277,7 @@ def main(argv: Optional[List[str]] = None) -> None:
         "info": _cmd_info,
         "transcribe": _cmd_transcribe,
         "distance": _cmd_distance,
+        "validate": _cmd_validate,
     }
 
     if args.command in handlers:
