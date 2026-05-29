@@ -14,7 +14,16 @@ Wikipedia URLs are checked for article existence via the MediaWiki API; other UR
 | Dead | 44 |
 | Inconclusive | 1 |
 | Removed from JSON | 21 |
-| Dead but kept (would empty a non-stub wikipedia) | 22 |
+| Dead but kept (would empty a non-stub wikipedia) | 21 |
+| Corrected (replaced with verified live URL) | 1 |
+
+## Corrected links
+
+Dead URLs replaced with a verified live equivalent.
+
+| File | Field | Old URL | New URL | Verification |
+| --- | --- | --- | --- | --- |
+| `orthography2ipa/data/ar-DZ.json` | `wikipedia` | https://ar.wikipedia.org/wiki/العربية_الجزائرية | https://ar.wikipedia.org/wiki/لهجة_جزائرية | MediaWiki API: present (title='لهجة جزائرية', pageid=42352) |
 
 ## Dead links removed
 
@@ -54,7 +63,6 @@ These returned a dead signal but were not auto-removed (either removing would em
 
 | File | URL | Reason | Wayback snapshot |
 | --- | --- | --- | --- |
-| `orthography2ipa/data/ar-DZ.json` | https://ar.wikipedia.org/wiki/العربية_الجزائرية | MediaWiki API: missing (title='العربية الجزائرية') | NOT removed: explicitly protected URL (retained pending human review) | no snapshot |
 | `orthography2ipa/data/ar-IQ-x-qeltu.json` | https://en.wikipedia.org/wiki/qǝltu_dialects | MediaWiki API: missing (title='qǝltu dialects') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
 | `orthography2ipa/data/ast-PT-x-guadramil.json` | https://en.wikipedia.org/wiki/Guadramil | MediaWiki API: missing (title='Guadramil') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
 | `orthography2ipa/data/da-x-copenhagen.json` | https://en.wikipedia.org/wiki/Copenhagen_dialect | MediaWiki API: missing (title='Copenhagen dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
