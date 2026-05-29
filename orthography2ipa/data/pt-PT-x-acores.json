@@ -24,9 +24,13 @@
   "parent": "pt-PT",
   "notes": "Azorean Portuguese, spoken across the nine islands of the Azores archipelago; reference point is Terceira Island. Key phonological features: (1) diagnostic raised nasal diphthong [õw̃] for mainland EP [ɐ̃w̃] — e.g. não [nõw̃], mão [mõw̃]; (2) conservative preservation of full unstressed vowels — /e/, /o/ resist reduction that mainland EP applies; (3) archaic distinction between /ʒ/ (as in hoje) and /ʃ/ (as in caixa) maintained without merger or neutralization; (4) cluster simplification: muito → [mũt], outros → [otɾ]; (5) /a/ in unstressed syllables realised as [a] rather than mainland [ɐ]; (6) vowel breaking before nasal consonants produces diphthongs not found in standard EP; (7) inter-island variation: São Miguel has distinct /ɛ/ lowering; Flores retains more archaic forms. Prosodically slower with syllable-timed characteristics, contrasting with mainland stress-timing. Glottolog approximation: azor1234 (placeholder).",
   "quality": "research",
-  "ISO_639-3": "por",
   "ancestors": [
-    {"code": "pt-PT", "role": "parent", "weight": 0.85, "notes": "Standard European Portuguese; Azorean diverges in nasal diphthong raising, vowel reduction resistance, and archaic /ʒ/ preservation"}
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Standard European Portuguese; Azorean diverges in nasal diphthong raising, vowel reduction resistance, and archaic /ʒ/ preservation"
+    }
   ],
   "urls": [
     "https://en.wikipedia.org/wiki/Azorean_Portuguese",

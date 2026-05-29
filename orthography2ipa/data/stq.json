@@ -1,6 +1,5 @@
 {
   "code": "stq",
-  "ISO_639-3": "stq",
   "glottolog_code": "sate1242",
   "name": "Saterland Frisian",
   "family": "Germanic",
@@ -458,5 +457,6 @@
   "timespan": {
     "start_year": 1700,
     "end_year": null
-  }
+  },
+  "iso639_3": "stq"
 }

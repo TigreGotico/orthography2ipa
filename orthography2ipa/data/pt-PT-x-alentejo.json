@@ -18,9 +18,13 @@
   "parent": "pt-PT",
   "notes": "Alentejo dialect of European Portuguese, covering the interior southern plains (Portalegre, Évora, Beja). Phonological profile: (1) open vowel qualities — stressed /e/ and /o/ realised as [ɛ] and [ɔ] more frequently than Lisbon standard; (2) vowel breaking [ɛ͡ɐ] in certain lexical environments (shared with some Greater Porto subdialects); (3) intermediate unstressed vowel reduction — less extreme than northern dialects but greater than standard Lisbon; (4) uvular rhotic [ʁ] consistent without coda devoicing; (5) /s/ and /z/ realised apico-alveolarly in older conservative speakers — a feature of possible seseo-adjacent transition zones near the Spanish border (Badajoz contact zone); (6) final /l/ vocalised to [w] as in standard EP; (7) lexical prosody: strong stress on penultimate syllable, broader vowel duration. The Alto Alentejo (Portalegre/Crato) forms a transitional zone between northern and southern EP dialect blocks as defined by Cintra (1971). Minho-type vowel breaking [ɛ͡ɐ] in the north of the region is diagnostically significant.",
   "quality": "research",
-  "ISO_639-3": "por",
   "ancestors": [
-    {"code": "pt-PT", "role": "parent", "weight": 0.9, "notes": "Standard European Portuguese; Alentejo diverges mainly in open vowel quality and transitional seseo-adjacent features near the Spanish border"}
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Standard European Portuguese; Alentejo diverges mainly in open vowel quality and transitional seseo-adjacent features near the Spanish border"
+    }
   ],
   "urls": [
     "https://en.wikipedia.org/wiki/Alentejo",

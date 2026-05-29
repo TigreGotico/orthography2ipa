@@ -1,6 +1,5 @@
 {
   "code": "frr",
-  "ISO_639-3": "frr",
   "glottolog_code": "nort2626",
   "name": "North Frisian",
   "family": "Germanic",
@@ -454,5 +453,6 @@
   "timespan": {
     "start_year": 1300,
     "end_year": null
-  }
+  },
+  "iso639_3": "frr"
 }

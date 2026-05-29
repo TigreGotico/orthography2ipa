@@ -1,6 +1,5 @@
 {
   "code": "an",
-  "ISO_639-3": "arg",
   "glottolog_code": "arag1245",
   "name": "Aragonese",
   "family": "Aragonese",
@@ -519,5 +518,6 @@
   "timespan": {
     "start_year": 1050,
     "end_year": null
-  }
+  },
+  "iso639_3": "arg"
 }

@@ -52,9 +52,13 @@
   "parent": "pt-PT",
   "notes": "Northern interior dialect (Minho province: Braga, Guimarães, Vizela). Phonological features diverge substantially from standard EP: (1) extreme unstressed vowel reduction — /ɐ/, /ə/, /u/ delete or devoice word-finally and inter-consonantally; (2) voiceless uvular fricative [χ] in coda position where standard has [ʁ]; (3) retroflex flap [ɽ] as an allophone of /ɾ/ in certain environments; (4) partial retroflex sibilants [ʂ, ʐ] — less systematic than Transmontano; (5) strong nasal vowels with preserved nasality contrast; (6) open vowel qualities [ɛ, ɔ] in stressed position broader than Lisbon standard; (7) /t/ aspirated before high front vowels [tʰi]; (8) /d/ deleted intervocalically in informal speech. Prosodically: stress-timed rhythm with heavy syllable compression. Classified as a northern EP dialect under Cintra's dialect geography; shares features with Galician-Portuguese contact zone.",
   "quality": "research",
-  "ISO_639-3": "por",
   "ancestors": [
-    {"code": "pt-PT", "role": "parent", "weight": 0.9, "notes": "Standard European Portuguese; Minhoto diverges mainly in vowel reduction and uvular coda realization"}
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Standard European Portuguese; Minhoto diverges mainly in vowel reduction and uvular coda realization"
+    }
   ],
   "urls": [
     "https://en.wikipedia.org/wiki/Minho_Province",

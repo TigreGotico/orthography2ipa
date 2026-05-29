@@ -1,6 +1,5 @@
 {
   "code": "eu-x-lapurtera",
-  "ISO_639-3": "eus",
   "glottolog_code": "lapu1237",
   "name": "Lapurdian Basque (Lapurtera)",
   "family": "Isolate",
@@ -10,9 +9,17 @@
   "graphemes_base": "eu",
   "allophones_base": "eu",
   "allophones": {
-    "h": ["h"],
-    "ɾ": ["ɾ", "ʁ"],
-    "r": ["r", "ʁ"]
+    "h": [
+      "h"
+    ],
+    "ɾ": [
+      "ɾ",
+      "ʁ"
+    ],
+    "r": [
+      "r",
+      "ʁ"
+    ]
   },
   "positional_graphemes_base": "eu",
   "parent": "eu",
@@ -54,5 +61,6 @@
     "https://en.wikipedia.org/wiki/Labourdian_dialect",
     "https://en.wikipedia.org/wiki/Basque_dialects",
     "https://glottolog.org/resource/languoid/id/lapu1237"
-  ]
+  ],
+  "iso639_3": "eus"
 }

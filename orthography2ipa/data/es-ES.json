@@ -1,7 +1,6 @@
 {
   "code": "es-ES",
   "name": "Castilian Spanish",
-  "ISO_639-3": "spa",
   "family": "Romance",
   "script": "Latin",
   "parent": "es-ES-x-medieval",
@@ -50,5 +49,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "cast1244"
+  "glottolog_code": "cast1244",
+  "iso639_3": "spa"
 }

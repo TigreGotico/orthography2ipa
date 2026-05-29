@@ -1,7 +1,6 @@
 {
   "code": "es-ES-x-medieval",
   "glottolog_code": "olds1249",
-  "ISO_639-3": "osp",
   "name": "Castilian",
   "family": "Romance",
   "script": "Latin",
@@ -396,6 +395,6 @@
     "start_year": 1200,
     "end_year": 1500
   },
-  "iso639_3": "spa",
+  "iso639_3": "osp",
   "quality": "research"
 }

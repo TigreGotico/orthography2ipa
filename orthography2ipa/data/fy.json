@@ -1,6 +1,5 @@
 {
   "code": "fy",
-  "ISO_639-3": "fry",
   "glottolog_code": "west2354",
   "name": "West Frisian",
   "family": "Germanic",
@@ -472,5 +471,6 @@
   "timespan": {
     "start_year": 1500,
     "end_year": null
-  }
+  },
+  "iso639_3": "fry"
 }

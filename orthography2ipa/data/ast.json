@@ -1,6 +1,5 @@
 {
   "code": "ast",
-  "ISO_639-3": "ast",
   "glottolog_code": "astu1245",
   "name": "Asturian",
   "family": "Asturleonese",
@@ -377,9 +376,7 @@
     "https://ast.wikipedia.org/wiki/Asturianu_central",
     "https://ast.wikipedia.org/wiki/Asturianu_occidental",
     "https://ast.wikipedia.org/wiki/Lleon%C3%A9s_occidental",
-    "https://ast.wikipedia.org/wiki/Senabr%C3%A9s",
-    "",
-    ""
+    "https://ast.wikipedia.org/wiki/Senabr%C3%A9s"
   ],
   "sources": [
     {
@@ -420,5 +417,6 @@
   "timespan": {
     "start_year": 900,
     "end_year": null
-  }
+  },
+  "iso639_3": "ast"
 }

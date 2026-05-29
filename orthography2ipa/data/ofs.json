@@ -1,6 +1,5 @@
 {
   "code": "ofs",
-  "ISO_639-3": "ofs",
   "glottolog_code": "oldf1241",
   "name": "Old Frisian",
   "family": "Germanic",
@@ -393,5 +392,6 @@
   "timespan": {
     "start_year": 1150,
     "end_year": 1500
-  }
+  },
+  "iso639_3": "ofs"
 }
