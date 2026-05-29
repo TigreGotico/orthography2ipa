@@ -300,8 +300,9 @@ class TestEdgeCases(unittest.TestCase):
 
 class TestAncestorRole(unittest.TestCase):
     def test_all_roles_exist(self):
-        expected = {"parent", "substrate", "superstrate", "adstrate",
-                    "lexifier", "creole_base"}
+        expected = {"parent", "parent_dialect", "proto_language", "ancestor",
+                    "substrate", "superstrate", "adstrate",
+                    "lexifier", "creole_base", "related"}
         self.assertEqual({r.value for r in AncestorRole}, expected)
 
 

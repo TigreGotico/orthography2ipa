@@ -73,8 +73,9 @@ class TestAncestorRole:
     """Tests for the AncestorRole enum."""
 
     def test_all_roles_exist(self):
-        expected = {"PARENT", "SUBSTRATE", "SUPERSTRATE", "ADSTRATE",
-                    "LEXIFIER", "CREOLE_BASE"}
+        expected = {"PARENT", "PARENT_DIALECT", "PROTO_LANGUAGE", "ANCESTOR",
+                    "SUBSTRATE", "SUPERSTRATE", "ADSTRATE",
+                    "LEXIFIER", "CREOLE_BASE", "RELATED"}
         actual = {r.name for r in AncestorRole}
         assert actual == expected
 

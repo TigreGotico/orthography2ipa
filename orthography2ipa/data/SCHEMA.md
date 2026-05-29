@@ -193,14 +193,18 @@ matching the `GraphemePosition` enum:
 
 ## Ancestor Role Values
 
-| JSON value      | Enum value                 |
-|-----------------|----------------------------|
-| `"parent"`      | `AncestorRole.PARENT`      |
-| `"substrate"`   | `AncestorRole.SUBSTRATE`   |
-| `"superstrate"` | `AncestorRole.SUPERSTRATE` |
-| `"adstrate"`    | `AncestorRole.ADSTRATE`    |
-| `"lexifier"`    | `AncestorRole.LEXIFIER`    |
-| `"creole_base"` | `AncestorRole.CREOLE_BASE` |
+| JSON value         | Enum value                    |
+|--------------------|-------------------------------|
+| `"parent"`         | `AncestorRole.PARENT`         |
+| `"parent_dialect"` | `AncestorRole.PARENT_DIALECT` |
+| `"proto_language"` | `AncestorRole.PROTO_LANGUAGE` |
+| `"ancestor"`       | `AncestorRole.ANCESTOR`       |
+| `"substrate"`      | `AncestorRole.SUBSTRATE`      |
+| `"superstrate"`    | `AncestorRole.SUPERSTRATE`    |
+| `"adstrate"`       | `AncestorRole.ADSTRATE`       |
+| `"lexifier"`       | `AncestorRole.LEXIFIER`       |
+| `"creole_base"`    | `AncestorRole.CREOLE_BASE`    |
+| `"related"`        | `AncestorRole.RELATED`        |
 
 ## Guidelines:
 

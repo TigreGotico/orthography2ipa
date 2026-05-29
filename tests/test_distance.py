@@ -40,10 +40,7 @@ from orthography2ipa.distance import (
 
 @pytest.fixture
 def en():
-    # fr-FR and en-GB not in registry; using oc (Occitan) as a non-Iberian
-    # Romance comparator. Tests using this fixture check range/symmetry, not
-    # English-specific phonology.
-    return orthography2ipa.get("oc")
+    return orthography2ipa.get("en-GB")
 
 
 @pytest.fixture
@@ -63,9 +60,7 @@ def pt_br():
 
 @pytest.fixture
 def fr():
-    # fr-FR not in registry; using oc (Occitan) as a Gallo-Romance
-    # stand-in for tests checking Latin→descendant distances.
-    return orthography2ipa.get("oc")
+    return orthography2ipa.get("fr-FR")
 
 
 @pytest.fixture

@@ -173,6 +173,18 @@ class AncestorRole(str, Enum):
     """Primary genetic descent.  The main lineage: Latin -> Spanish.
     Every language has at most one PARENT.  Weight typically 0.7-1.0."""
 
+    PARENT_DIALECT = "parent_dialect"
+    """Direct dialectal ancestor within the same language.
+    E.g. a regional variety descending from a broader standard."""
+
+    PROTO_LANGUAGE = "proto_language"
+    """Reconstructed common ancestor at the top of a lineage.
+    E.g. Proto-Indo-European, Proto-Germanic, Proto-Semitic."""
+
+    ANCESTOR = "ancestor"
+    """Earlier historical stage of the same lineage that is not the
+    immediate parent.  E.g. Old Spanish in the ancestry of modern Spanish."""
+
     SUBSTRATE = "substrate"
     """Language of population BEFORE adopting current language.
     E.g. Basque substrate in Castilian (f->h), Gaulish in French."""
@@ -192,6 +204,10 @@ class AncestorRole(str, Enum):
     CREOLE_BASE = "creole_base"
     """Substrate language contributing to creole formation.
     E.g. West African languages as base for Atlantic creoles."""
+
+    RELATED = "related"
+    """Sister language with shared features but no direct descent.
+    Used for typological comparison rather than inheritance."""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -541,6 +557,20 @@ class LanguageSpec:
         for graph in set(self.allophones.keys()):
             if self.allophones[graph] is None:
                 self.allophones.pop(graph)
+
+        # Derive a baseline identity allophone map when none is provided.
+        # Every phoneme a grapheme can produce is, at minimum, its own
+        # surface realisation; this keeps the allophone map well-defined
+        # for specs that only declare graphemes.
+        if not self.allophones and self.graphemes:
+            derived: AllophoneMap = {}
+            for ipa_candidates in self.graphemes.values():
+                if not ipa_candidates:
+                    continue
+                for phoneme in ipa_candidates:
+                    if phoneme and phoneme not in derived:
+                        derived[phoneme] = [phoneme]
+            object.__setattr__(self, "allophones", derived)
 
         # Normalise list to str
         if isinstance(self.notes, list):
