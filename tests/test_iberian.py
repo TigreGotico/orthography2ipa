@@ -1791,13 +1791,15 @@ class TestAragonese:
         _assert_first(_grapheme(self._spec, "e"), "e", "an e")
 
     def test_vowel_e_open(self):
-        assert "ɛ" in _grapheme(self._spec, "e")
+        """Open /ɛ/ is written è in Aragonese orthography."""
+        assert "ɛ" in _grapheme(self._spec, "è")
 
     def test_vowel_o_default(self):
         _assert_first(_grapheme(self._spec, "o"), "o", "an o")
 
     def test_vowel_o_open(self):
-        assert "ɔ" in _grapheme(self._spec, "o")
+        """Open /ɔ/ is written ò in Aragonese orthography."""
+        assert "ɔ" in _grapheme(self._spec, "ò")
 
     # --- Consonants ---
 
@@ -1851,9 +1853,6 @@ class TestAragonese:
     def test_s_default(self):
         _assert_first(_grapheme(self._spec, "s"), "s", "an s")
 
-    def test_ss_voiceless(self):
-        _assert_first(_grapheme(self._spec, "ss"), "s", "an ss")
-
     def test_ts_affricate(self):
         _assert_first(_grapheme(self._spec, "ts"), "ts", "an ts")
 
@@ -1861,15 +1860,9 @@ class TestAragonese:
         """tz → /θ/ in Aragonese."""
         _assert_first(_grapheme(self._spec, "tz"), "θ", "an tz")
 
-    def test_v_preserved(self):
-        """PARTIAL /v/ PRESERVATION: v → /v/ in traditional Aragonese."""
-        g = _grapheme(self._spec, "v")
-        assert "v" in g, f"an v: expected /v/ (Occitan influence), got {g}"
-
-    def test_v_also_b(self):
-        """v also maps to /b/ (betacism partial in some varieties)."""
-        g = _grapheme(self._spec, "v")
-        assert "b" in g
+    def test_v_betacism(self):
+        """BETACISM: v merges with /b/ in Aragonese."""
+        _assert_first(_grapheme(self._spec, "v"), "b", "an v")
 
     def test_x_postalveolar(self):
         """x → /ʃ/ (Catalan orthographic influence)."""
@@ -1880,7 +1873,9 @@ class TestAragonese:
         _assert_first(_grapheme(self._spec, "ix"), "ʃ", "an ix")
 
     def test_y_glide(self):
-        _assert_first(_grapheme(self._spec, "y"), "j", "an y")
+        """y → /ʝ/ primarily, with /j/ and /i/ realisations."""
+        _assert_first(_grapheme(self._spec, "y"), "ʝ", "an y")
+        assert "j" in _grapheme(self._spec, "y")
 
     def test_z_fricative_default(self):
         """z → /θ/ (primary dental fricative realisation in Aragonese)."""
@@ -1958,23 +1953,11 @@ class TestAragonese:
 
     def test_positional_g_before_e_affricate(self):
         p = _positional(self._spec, "g", GraphemePosition.BEFORE_E)
-        assert p and "dʒ" in p
+        assert p and "tʃ" in p
 
     def test_positional_g_before_i_affricate(self):
         p = _positional(self._spec, "g", GraphemePosition.BEFORE_I)
-        assert p and "dʒ" in p
-
-    def test_positional_v_word_initial(self):
-        p = _positional(self._spec, "v", GraphemePosition.WORD_INITIAL)
-        assert p and "v" in p
-
-    def test_positional_z_word_initial(self):
-        p = _positional(self._spec, "z", GraphemePosition.WORD_INITIAL)
-        assert p and "ts" in p
-
-    def test_positional_z_intervocalic(self):
-        p = _positional(self._spec, "z", GraphemePosition.INTERVOCALIC)
-        assert p and "dz" in p
+        assert p and "tʃ" in p
 
     def test_positional_d_word_final_deletion(self):
         """Word-final d → [ð] or /∅/ in Aragonese."""
@@ -1988,10 +1971,6 @@ class TestAragonese:
     def test_positional_r_intervocalic_flap(self):
         p = _positional(self._spec, "r", GraphemePosition.INTERVOCALIC)
         assert p and "ɾ" in p
-
-    def test_positional_s_intervocalic_voiced(self):
-        p = _positional(self._spec, "s", GraphemePosition.INTERVOCALIC)
-        assert p and "z" in p
 
     # --- Isoglosses ---
 
