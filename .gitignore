@@ -32,3 +32,5 @@ htmlcov/
 .venv/
 venv/
 env/
+TODO.md
+ROADMAP.md
