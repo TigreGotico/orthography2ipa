@@ -26,7 +26,7 @@
     }
   ],
   "urls": [
-    "https://en.wikipedia.org/wiki/Algarvian_Portuguese"
+    "https://pt.wikipedia.org/wiki/Dialeto_algarvio"
   ],
   "script_type": "alphabet",
   "sources": [
@@ -62,8 +62,8 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Algarvian_Portuguese",
-    "https://en.wikipedia.org/wiki/European_Portuguese_phonology"
+    "https://pt.wikipedia.org/wiki/Dialeto_algarvio",
+    "https://en.wikipedia.org/wiki/Portuguese_phonology"
   ],
   "timespan": {
     "start_year": 1400,
