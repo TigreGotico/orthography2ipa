@@ -87,5 +87,40 @@
   },
   "glottolog_code": null,
   "iso639_3": "ast",
-  "quality": "research"
+  "quality": "research",
+  "graphemes": {
+    "c": [
+      "k",
+      "θ"
+    ],
+    "ç": [
+      "θ"
+    ],
+    "z": [
+      "θ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ss": [
+      "s"
+    ]
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "θ"
+      ],
+      "before_i": [
+        "θ"
+      ]
+    },
+    "s": null,
+    "z": null
+  },
+  "allophones": {
+    "θ": [
+      "θ"
+    ]
+  }
 }

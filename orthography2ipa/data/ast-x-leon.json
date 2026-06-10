@@ -35,6 +35,10 @@
     ],
     "nh": [
       "ɲ"
+    ],
+    "j": [
+      "ʒ",
+      "d͡ʒ"
     ]
   },
   "allophones": {
@@ -61,6 +65,12 @@
     ],
     "ʎ": [
       "ʎ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "d͡ʒ": [
+      "d͡ʒ"
     ]
   },
   "positional_graphemes": {
@@ -93,6 +103,17 @@
       "word_final": [
         "z̻"
       ]
+    },
+    "g": {
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
     }
   },
   "ancestors": [
@@ -109,7 +130,7 @@
       "notes": "Celtic substrate of the Asturian-Leonese highlands, shared with central Asturian."
     },
     {
-      "code": "xsb",
+      "code": "gem-x-suebi",
       "role": "superstrate",
       "weight": 0.04,
       "notes": "Suebi superstrate, somewhat lighter in León than in the Asturian coast."

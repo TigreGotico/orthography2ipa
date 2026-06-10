@@ -8,31 +8,12 @@
   "allophones_base": "ast",
   "positional_graphemes_base": "ast",
   "graphemes": {
-    "h": [
-      "h"
-    ],
     "ḷḷ": [
       "tʃ"
     ],
     "l.l": [
       "tʃ"
     ]
-  },
-  "allophones": {
-    "h": [
-      "h"
-    ]
-  },
-  "positional_graphemes": {
-    "f": {
-      "word_initial": [
-        "h",
-        "f"
-      ],
-      "intervocalic": [
-        "f"
-      ]
-    }
   },
   "ancestors": [
     {
@@ -48,7 +29,7 @@
       "notes": "Stronger Gallaecian Celtic substrate in the western areas, bordering Galician-speaking territory."
     },
     {
-      "code": "xsb",
+      "code": "gem-x-suebi",
       "role": "superstrate",
       "weight": 0.03,
       "notes": "Suebi superstrate, stronger in western Asturias (Suebi kingdom centred in Gallaecia)."

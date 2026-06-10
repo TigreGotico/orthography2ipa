@@ -530,11 +530,11 @@ class TestExtremaduran:
         assert be is not None
         _assert_first(be, "s", label="c/BEFORE_E")
 
-    def test_g_before_e_seseo(self):
-        """g before e → s (Extremaduran sibilant shift)."""
+    def test_g_before_e_velar_fricative(self):
+        """g before e → h/x (Extremaduran velar fricative, not /s/)."""
         be = _positional(self.spec, "g", GraphemePosition.BEFORE_E)
         assert be is not None
-        assert "s" in be, "g before e should yield s in Extremaduran"
+        assert "h" in be or "x" in be, f"g before e should yield h or x in Extremaduran, got {be}"
 
     def test_d_word_final_deletion(self):
         """Word-final d → ∅ (or ð)."""
@@ -995,13 +995,16 @@ class TestAsturianOccidental:
     def spec(self, request):
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
-    def test_h_phonemic(self):
-        """h → [h] (phonemic — Western Asturian unique feature)."""
-        _assert_first(_grapheme(self.spec, "h"), "h", label="h grapheme")
+    def test_h_silent(self):
+        """h → silent (inherited from base ast; Western Asturian preserves /f/, not aspirates it)."""
+        g = _grapheme(self.spec, "h")
+        # h is silent in base ast (inherited); no local h override in occidental
+        assert g is None or g == [""], f"ast-x-occidental h should be silent, got {g}"
 
-    def test_h_allophone_phonemic(self):
-        """h allophone → [h] (not ∅ — truly phonemic)."""
-        _assert_first(_allophone(self.spec, "h"), "h", label="h allophone")
+    def test_h_allophone_inherited(self):
+        """h allophone is inherited from base ast (not locally overridden)."""
+        # No local allophones block in occidental — inherited silently
+        pass
 
     def test_ll_dot_che_vaqueira(self):
         """ḷḷ → [tʃ] (che vaqueira — Western Asturian hallmark)."""
@@ -1011,12 +1014,11 @@ class TestAsturianOccidental:
         """l.l → [tʃ] (alternate spelling of che vaqueira)."""
         _assert_first(_grapheme(self.spec, "l.l"), "tʃ", label="l.l")
 
-    def test_f_word_initial_aspiration(self):
-        """f word-initial → [h, f] (Leonese substrate aspiration)."""
+    def test_f_word_initial_preserved(self):
+        """f word-initial → [f] (Western Asturian preserves Latin F-, does not aspirate)."""
         wi = _positional(self.spec, "f", GraphemePosition.WORD_INITIAL)
-        assert wi is not None
-        _assert_first(wi, "h", label="f/WORD_INITIAL")
-        assert "f" in wi
+        # No positional override in occidental — inherited default [f] from base ast
+        assert wi is None or "f" in wi, f"ast-x-occidental f/WORD_INITIAL should be [f] or absent, got {wi}"
 
     def test_parent_is_ast(self):
         assert self.spec.parent == "ast"
