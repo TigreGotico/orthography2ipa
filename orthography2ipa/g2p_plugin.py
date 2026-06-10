@@ -130,3 +130,16 @@ class G2PPlugin(ABC):
         that supersede a bundled one should return a higher value.
         """
         return 50
+
+    @property
+    def sentence_level(self) -> bool:
+        """Whether the plugin owns the whole-sentence pipeline.
+
+        ``True`` makes the engine hand the full normalized text to
+        :meth:`transcribe` instead of driving :meth:`transcribe_word`
+        per word — required when transcription quality depends on
+        sentence-wide state the per-word path cannot carry (POS
+        tagging, clitic joining). The plugin then owns context
+        effects and sandhi itself.
+        """
+        return False

@@ -184,6 +184,9 @@ class G2P:
         if not words:
             return TranscriptionResult(ipa="", words=(), lang=self.lang)
 
+        if self.plugin is not None and self.plugin.sentence_level:
+            return self._transcribe_sentence_level(normalized, words)
+
         transcribed: List[WordTranscription] = [
             self._transcribe_word(w.surface, width) for w in words
         ]
@@ -217,6 +220,36 @@ class G2P:
             for wt, iw in zip(transcribed, ipa_words)
         )
         return TranscriptionResult(ipa=ipa, words=final_words,
+                                   lang=self.lang)
+
+    def _transcribe_sentence_level(
+        self,
+        normalized: str,
+        words: List["_Word"],
+    ) -> TranscriptionResult:
+        """Hand the whole text to a sentence-level plugin.
+
+        The plugin owns context effects and sandhi; the engine only
+        applies the dialect transform and aligns word IPA best-effort
+        (one IPA token per word when counts match).
+        """
+        ipa = self.plugin.transcribe(normalized)
+        if self.dialect_profile:
+            from orthography2ipa.transforms import apply_transform
+            ipa = apply_transform(ipa, self.dialect_profile,
+                                  ortho=normalized)
+        source = f"plugin:{type(self.plugin).__name__}"
+        parts = ipa.split()
+        aligned = len(parts) == len(words)
+        word_results = tuple(
+            WordTranscription(
+                word=w.surface,
+                ipa=parts[i] if aligned else "",
+                source=source,
+            )
+            for i, w in enumerate(words)
+        )
+        return TranscriptionResult(ipa=ipa, words=word_results,
                                    lang=self.lang)
 
     def transcribe_word(
