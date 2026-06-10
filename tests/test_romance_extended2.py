@@ -1065,13 +1065,15 @@ class TestCaipiraBrazilian:
 
     # --- Voiced stop betacism ---
 
-    def test_b_has_beta(self) -> None:
-        """Allophone of /b/ includes [β]."""
-        _assert_contains(_allophone(self.spec, "b"), "β", label="Caipira b→β")
+    def test_b_no_beta(self) -> None:
+        """Caipira /b/ does not have [β] — EP spirantization is absent from Brazilian Portuguese."""
+        vals = _allophone(self.spec, "b")
+        assert vals is None or "β" not in vals, f"Caipira b should not have β (EP feature), got {vals}"
 
-    def test_g_has_gamma(self) -> None:
-        """Allophone of /ɡ/ includes [ɣ]."""
-        _assert_contains(_allophone(self.spec, "ɡ"), "ɣ", label="Caipira ɡ→ɣ")
+    def test_g_no_gamma(self) -> None:
+        """Caipira /ɡ/ does not have [ɣ] — EP spirantization absent from Brazilian Portuguese."""
+        vals = _allophone(self.spec, "ɡ")
+        assert vals is None or "ɣ" not in vals, f"Caipira ɡ should not have ɣ (EP feature), got {vals}"
 
 
 @pytest.mark.iberian
@@ -1096,23 +1098,19 @@ class TestBahianBrazilian:
 
     # --- NO palatalisation of /t d/ (distinguishing feature!) ---
 
-    def test_t_no_palatal_allophone(self) -> None:
-        """Bahian /t/ does NOT have [tʃ] allophone — conservative, no palatalisation."""
+    def test_t_has_palatal_allophone(self) -> None:
+        """Bahian /t/ has [tʃ] before /i/ — Salvador speech does palatalise."""
         vals = _allophone(self.spec, "t")
-        if vals is not None:
-            assert "tʃ" not in vals, (
-                "Bahian t should NOT have palatal allophone [tʃ]; "
-                f"got {vals!r}"
-            )
+        assert vals is not None and "tʃ" in vals, (
+            f"Bahian t should have palatal allophone [tʃ]; got {vals!r}"
+        )
 
-    def test_d_no_palatal_allophone(self) -> None:
-        """Bahian /d/ does NOT have [dʒ] allophone — conservative, no palatalisation."""
+    def test_d_has_palatal_allophone(self) -> None:
+        """Bahian /d/ has [dʒ] before /i/ — Salvador speech does palatalise."""
         vals = _allophone(self.spec, "d")
-        if vals is not None:
-            assert "dʒ" not in vals, (
-                "Bahian d should NOT have palatal allophone [dʒ]; "
-                f"got {vals!r}"
-            )
+        assert vals is not None and "dʒ" in vals, (
+            f"Bahian d should have palatal allophone [dʒ]; got {vals!r}"
+        )
 
     def test_t_first_allophone_is_plain_stop(self) -> None:
         """The primary realisation of /t/ is [t] — plain dental stop."""
@@ -1124,9 +1122,10 @@ class TestBahianBrazilian:
 
     # --- Voiced stop betacism present ---
 
-    def test_b_has_beta(self) -> None:
-        """Allophone of /b/ includes [β] — betacism present in Bahian."""
-        _assert_contains(_allophone(self.spec, "b"), "β", label="Bahian b→β")
+    def test_b_no_beta(self) -> None:
+        """Bahian /b/ does not have [β] — EP intervocalic spirantization absent from Brazilian Portuguese."""
+        vals = _allophone(self.spec, "b")
+        assert vals is None or "β" not in vals, f"Bahian b should not have β (EP feature), got {vals}"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

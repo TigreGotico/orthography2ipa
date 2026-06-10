@@ -6,41 +6,13 @@
   "graphemes_base": "pt-PT",
   "allophones_base": "pt-PT",
   "allophones": {
-    "p": [
-      "p",
-      "pʰ"
-    ],
-    "b": [
-      "b",
-      "b̥"
-    ],
-    "t": [
-      "t",
-      "tʰ"
-    ],
-    "d": [
-      "d",
-      "d̥"
-    ],
-    "k": [
-      "k",
-      "kʰ"
-    ],
-    "ɡ": [
-      "ɡ",
-      "ɡ̥"
-    ],
-    "v": [
-      "v",
-      "v̥"
-    ],
-    "z": [
-      "z",
-      "z̥"
-    ],
     "l": [
       "l",
-      "ɭ"
+      "ʎ"
+    ],
+    "i": [
+      "i",
+      "ɐj"
     ]
   },
   "positional_graphemes_base": "pt-PT",
