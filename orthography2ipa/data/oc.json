@@ -36,7 +36,7 @@
       "notes": "Arabic adstrate: minor, via Iberian transmission"
     }
   ],
-  "notes": "Based on Languedocien/general Occitan norms. Substantial dialectal variation across Gascon, Provençal, Limousin, Auvergnat, and Vivaro-Alpine.",
+  "notes": "Lengadocian reference variety in the classical (Alibertine) norm. Key traits: unmarked o reads [u] (ó [u], ò [ɔ]); word-final unstressed a reads [ɔ]; u is fronted [y]; v merges with b (betacism); voiced stops lenite to approximants between vowels; word-final n and infinitive -r are silent. Substantial dialectal variation across Gascon, Provençal, Limousin, Auvergnat, and Vivaro-Alpine is not encoded here.",
   "sources": [
     {
       "id": "alibert1976",
@@ -67,6 +67,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "wheeler1988",
+      "author": "Wheeler, M. W.",
+      "year": 1988,
+      "title": "Occitan",
+      "publisher": "In Harris & Vincent (eds.), The Romance Languages, Routledge",
+      "url": null,
+      "pages": "246-278",
+      "notes": null
     }
   ],
   "wikipedia": [
@@ -78,5 +88,358 @@
     "end_year": null
   },
   "glottolog_code": "occi1239",
-  "iso639_3": "oci"
+  "iso639_3": "oci",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɔ"
+    ],
+    "à": [
+      "a"
+    ],
+    "á": [
+      "ɔ"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "é": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "i": [
+      "i",
+      "j"
+    ],
+    "í": [
+      "i"
+    ],
+    "ï": [
+      "i"
+    ],
+    "o": [
+      "u"
+    ],
+    "ó": [
+      "u"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "u": [
+      "y",
+      "w"
+    ],
+    "ú": [
+      "y"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "èi": [
+      "ɛj"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "èu": [
+      "ɛw"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "oi": [
+      "uj"
+    ],
+    "òi": [
+      "ɔj"
+    ],
+    "òu": [
+      "ɔw"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ",
+      "ɣ"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "l": [
+      "l"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      ""
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "r": [
+      "ɾ",
+      "r",
+      ""
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "ss": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "tg": [
+      "dʒ"
+    ],
+    "tj": [
+      "dʒ"
+    ],
+    "tz": [
+      "ts",
+      "z"
+    ],
+    "v": [
+      "b",
+      "β"
+    ],
+    "x": [
+      "ts",
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "cc": [
+      "ks"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b",
+      "β"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a",
+      "ɔ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ɔ": [
+      "ɔ"
+    ]
+  },
+  "positional_graphemes": {
+    "a": {
+      "default": [
+        "a"
+      ],
+      "word_final": [
+        "ɔ"
+      ]
+    },
+    "b": {
+      "default": [
+        "b"
+      ],
+      "intervocalic": [
+        "β"
+      ]
+    },
+    "d": {
+      "default": [
+        "d"
+      ],
+      "intervocalic": [
+        "ð"
+      ]
+    },
+    "g": {
+      "default": [
+        "ɡ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    },
+    "v": {
+      "default": [
+        "b"
+      ],
+      "intervocalic": [
+        "β"
+      ]
+    },
+    "s": {
+      "default": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "default": [
+        "ɾ"
+      ],
+      "word_final": [
+        ""
+      ]
+    },
+    "n": {
+      "default": [
+        "n"
+      ],
+      "word_final": [
+        ""
+      ]
+    }
+  },
+  "quality": "research"
 }
