@@ -12,6 +12,7 @@ from orthography2ipa.types import LanguageSpec
 
 if TYPE_CHECKING:
     from orthography2ipa.g2p_plugin import G2PPlugin
+    from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 
 _cache: Dict[str, LanguageSpec] = {}
 _plugins: Optional[Dict[str, "G2PPlugin"]] = None
@@ -185,3 +186,44 @@ def available_families() -> Dict[str, List[str]]:
             continue
         fam.setdefault(spec.family, []).append(code)
     return fam
+
+
+_syllabifiers: Optional[Dict[str, "SyllabifierPlugin"]] = None
+
+
+def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
+    """Discover syllabifier plugins via importlib entry_points.
+
+    When several plugins claim the same language code, the one with the
+    highest :attr:`SyllabifierPlugin.priority` wins.
+    """
+    import logging
+    from importlib.metadata import entry_points
+
+    plugins: Dict[str, "SyllabifierPlugin"] = {}
+    try:
+        eps = entry_points(group="orthography2ipa.syllabify")
+    except TypeError:
+        # Python 3.9 compat
+        eps = entry_points().get("orthography2ipa.syllabify", [])
+    for ep in eps:
+        try:
+            instance = ep.load()()
+            for code in instance.language_codes:
+                incumbent = plugins.get(code)
+                if incumbent is None or instance.priority > incumbent.priority:
+                    plugins[code] = instance
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "failed to load syllabifier plugin %r: %s", ep.name, exc)
+            continue
+    return plugins
+
+
+def get_syllabifier(code: str) -> Optional["SyllabifierPlugin"]:
+    """Return the syllabifier plugin for *code*, if one is registered."""
+    global _syllabifiers
+    if _syllabifiers is None:
+        _syllabifiers = _discover_syllabifiers()
+    code = _resolve_code(code)
+    return _syllabifiers.get(code)

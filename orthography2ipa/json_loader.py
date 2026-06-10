@@ -31,6 +31,7 @@ from orthography2ipa.types import (
     QualityTier,
     SandhiRule,
     ScriptType,
+    StressRules,
     TimeSpan,
 )
 
@@ -231,6 +232,19 @@ def load_json_spec(code: str) -> LanguageSpec:
             end_year=int(raw_timespan["end_year"]) if raw_timespan.get("end_year") is not None else None,
         )
 
+    # Parse stress rules (own-file only — not inherited through ancestry)
+    stress: Optional[StressRules] = None
+    raw_stress = raw.get("stress")
+    if raw_stress and isinstance(raw_stress, dict):
+        stress = StressRules(
+            default_position=int(raw_stress.get("default_position", -2)),
+            final_stress_endings=tuple(raw_stress.get("final_stress_endings", ())),
+            penult_stress_endings=tuple(raw_stress.get("penult_stress_endings", ())),
+            marked_vowels=tuple(raw_stress.get("marked_vowels", ())),
+            stress_mark=raw_stress.get("stress_mark", "ˈ"),
+            notes=raw_stress.get("notes", "") or "",
+        )
+
     spec = LanguageSpec(
         code=raw["code"],
         name=raw["name"],
@@ -251,6 +265,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
         timespan=timespan,
+        stress=stress,
     )
 
     _specs[code] = spec
