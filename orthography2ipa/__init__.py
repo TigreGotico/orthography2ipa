@@ -43,6 +43,7 @@ from orthography2ipa.transforms import (
     debias_lisbon,
     load_clup_profile,
 )
+from orthography2ipa.stress import apply_stress_mark, detect_stress, syllabify
 from orthography2ipa.script_distance import (
     SCRIPT_REGISTRY,
     ScriptFeatures,
@@ -51,7 +52,7 @@ from orthography2ipa.script_distance import (
 )
 from orthography2ipa.types import (
     AllophoneMap, Ancestor, AncestorRole, Grapheme2IPA, LanguageSpec,
-    PositionalGrapheme2IPA, QualityTier, SandhiRule, ScriptType,
+    PositionalGrapheme2IPA, QualityTier, SandhiRule, ScriptType, StressRules,
 )
 
 __all__ = [
@@ -68,6 +69,10 @@ __all__ = [
     "QualityTier",
     "ScriptType",
     "SandhiRule",
+    "StressRules",
+    "detect_stress",
+    "apply_stress_mark",
+    "syllabify",
     "ScriptFeatures",
     "SCRIPT_REGISTRY",
     "script_distance",

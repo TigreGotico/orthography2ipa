@@ -122,6 +122,35 @@ class TimeSpanModel(_Strict):
         return v
 
 
+class StressRulesModel(_Strict):
+    """Declarative stress placement (``stress``). Mirrors ``StressRules``."""
+
+    default_position: int = -2
+    final_stress_endings: Optional[List[str]] = None
+    penult_stress_endings: Optional[List[str]] = None
+    marked_vowels: Optional[List[str]] = None
+    stress_mark: str = "ˈ"
+    notes: Optional[str] = None
+
+    @field_validator("default_position")
+    @classmethod
+    def _position_from_end(cls, v: int) -> int:
+        if not (-4 <= v <= -1):
+            raise ValueError(
+                f"default_position counts syllables from the end; "
+                f"expected -1..-4, got {v!r}"
+            )
+        return v
+
+    @field_validator("final_stress_endings", "penult_stress_endings",
+                     "marked_vowels")
+    @classmethod
+    def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:
+        if v is not None and any(not entry for entry in v):
+            raise ValueError("stress rule entries must be non-empty strings")
+        return v
+
+
 class LanguageSpecModel(_Strict):
     """A complete language specification — one ``data/{code}.json`` file."""
 
@@ -160,6 +189,7 @@ class LanguageSpecModel(_Strict):
 
     # ─── extended structures ────────────────────────────────────────
     sandhi_rules: Optional[List[SandhiRuleModel]] = None
+    stress: Optional[StressRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     sources: Optional[List[SourceModel]] = None
     wikipedia: Optional[List[str]] = None
