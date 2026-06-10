@@ -14,8 +14,8 @@ Wikipedia URLs are checked for article existence via the MediaWiki API; other UR
 | Dead | 44 |
 | Inconclusive | 1 |
 | Removed from JSON | 21 |
-| Dead but kept (would empty a non-stub wikipedia) | 21 |
-| Corrected (replaced with verified live URL) | 1 |
+| Dead but kept (would empty a non-stub wikipedia) | 0 |
+| Corrected (replaced with verified live URL) | 25 |
 
 ## Corrected links
 
@@ -24,6 +24,30 @@ Dead URLs replaced with a verified live equivalent.
 | File | Field | Old URL | New URL | Verification |
 | --- | --- | --- | --- | --- |
 | `orthography2ipa/data/ar-DZ.json` | `wikipedia` | https://ar.wikipedia.org/wiki/العربية_الجزائرية | https://ar.wikipedia.org/wiki/لهجة_جزائرية | MediaWiki API: present (title='لهجة جزائرية', pageid=42352) |
+| `orthography2ipa/data/ar-IQ-x-qeltu.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/qǝltu_dialects | https://en.wikipedia.org/wiki/North_Mesopotamian_Arabic | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/ast-PT-x-guadramil.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Guadramil | https://pt.wikipedia.org/wiki/Guadramil | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/da-x-copenhagen.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Copenhagen_dialect | https://en.wikipedia.org/wiki/Danish_phonology | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/es-CO-x-paisa.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Paisa_dialect | https://en.wikipedia.org/wiki/Colombian_Spanish | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/es-ES-x-murcia.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Murcian_dialect | https://en.wikipedia.org/wiki/Murcian_Spanish | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/eu-x-bizkaiera.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Bizkaian_dialect | https://en.wikipedia.org/wiki/Biscayan_dialect | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/eu-x-lapurtera.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Labourdian_dialect | https://en.wikipedia.org/wiki/Navarro-Lapurdian_dialect | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/it-IT-x-abruzzo.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Abruzzese_dialect | https://it.wikipedia.org/wiki/Dialetti_dell%27Abruzzo | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/it-IT-x-umbria.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Umbrian_dialect | https://en.wikipedia.org/wiki/Central_Italian | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/mcm.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Macanese_Creole | https://en.wikipedia.org/wiki/Macanese_Patois | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-BR-x-fluminense.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Fluminense_dialect | https://pt.wikipedia.org/wiki/Dialeto_fluminense | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-BR-x-rj.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Carioca_dialect | https://pt.wikipedia.org/wiki/Dialeto_carioca | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-MO.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Macanese_Creole | https://en.wikipedia.org/wiki/Macanese_Patois | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-acores.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Azorean_Portuguese | https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-alentejo.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/European_Portuguese_phonology | https://pt.wikipedia.org/wiki/Dialeto_alentejano | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-algarve.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Algarvian_Portuguese | https://pt.wikipedia.org/wiki/Dialeto_algarvio | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-algarve.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/European_Portuguese_phonology | https://en.wikipedia.org/wiki/Portuguese_phonology | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-beira.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Beira_Portuguese | https://en.wikipedia.org/wiki/Portuguese_dialects | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-lisbon.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Lisbon_dialect | https://en.wikipedia.org/wiki/Portuguese_phonology | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-madeira.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Madeiran_Portuguese | https://pt.wikipedia.org/wiki/Dialeto_madeirense | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-porto.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Porto_dialect | https://en.wikipedia.org/wiki/Portuguese_dialects | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/pt-PT-x-trasosmontes.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/European_Portuguese_phonology | https://pt.wikipedia.org/wiki/Dialeto_trasmontano | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/ru-x-northern.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Northern_Russian_dialect | https://en.wikipedia.org/wiki/Northern_Russian_dialects | MediaWiki API: present (redirects followed) |
+| `orthography2ipa/data/ru-x-southern.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Southern_Russian_dialect | https://en.wikipedia.org/wiki/Southern_Russian_dialects | MediaWiki API: present (redirects followed) |
 
 ## Dead links removed
 
@@ -59,34 +83,10 @@ Dead URLs replaced with a verified live equivalent.
 
 ## Dead links kept for human review
 
-These returned a dead signal but were not auto-removed (either removing would empty the only top-level `wikipedia` entry of a non-stub language, or the link is explicitly protected). Review and either replace with the Wayback snapshot or a correct live URL.
+All previously kept entries have been replaced with verified live URLs (see Corrected links above).
 
 | File | URL | Reason | Wayback snapshot |
 | --- | --- | --- | --- |
-| `orthography2ipa/data/ar-IQ-x-qeltu.json` | https://en.wikipedia.org/wiki/qǝltu_dialects | MediaWiki API: missing (title='qǝltu dialects') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/ast-PT-x-guadramil.json` | https://en.wikipedia.org/wiki/Guadramil | MediaWiki API: missing (title='Guadramil') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/da-x-copenhagen.json` | https://en.wikipedia.org/wiki/Copenhagen_dialect | MediaWiki API: missing (title='Copenhagen dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/es-CO-x-paisa.json` | https://en.wikipedia.org/wiki/Paisa_dialect | MediaWiki API: missing (title='Paisa dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/es-ES-x-murcia.json` | https://en.wikipedia.org/wiki/Murcian_dialect | MediaWiki API: missing (title='Murcian dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/eu-x-bizkaiera.json` | https://en.wikipedia.org/wiki/Bizkaian_dialect | MediaWiki API: missing (title='Bizkaian dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/eu-x-lapurtera.json` | https://en.wikipedia.org/wiki/Labourdian_dialect | MediaWiki API: missing (title='Labourdian dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/it-IT-x-abruzzo.json` | https://en.wikipedia.org/wiki/Abruzzese_dialect | MediaWiki API: missing (title='Abruzzese dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/it-IT-x-umbria.json` | https://en.wikipedia.org/wiki/Umbrian_dialect | MediaWiki API: missing (title='Umbrian dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/mcm.json` | https://en.wikipedia.org/wiki/Macanese_Creole | MediaWiki API: missing (title='Macanese Creole') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-BR-x-fluminense.json` | https://en.wikipedia.org/wiki/Fluminense_dialect | MediaWiki API: missing (title='Fluminense dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-BR-x-rj.json` | https://en.wikipedia.org/wiki/Carioca_dialect | MediaWiki API: missing (title='Carioca dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-MO.json` | https://en.wikipedia.org/wiki/Macanese_Creole | MediaWiki API: missing (title='Macanese Creole') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-acores.json` | https://en.wikipedia.org/wiki/Azorean_Portuguese | MediaWiki API: missing (title='Azorean Portuguese') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-alentejo.json` | https://en.wikipedia.org/wiki/European_Portuguese_phonology | MediaWiki API: missing (title='European Portuguese phonology') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-algarve.json` | https://en.wikipedia.org/wiki/Algarvian_Portuguese | MediaWiki API: missing (title='Algarvian Portuguese') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-algarve.json` | https://en.wikipedia.org/wiki/European_Portuguese_phonology | MediaWiki API: missing (title='European Portuguese phonology') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-beira.json` | https://en.wikipedia.org/wiki/Beira_Portuguese | MediaWiki API: missing (title='Beira Portuguese') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-lisbon.json` | https://en.wikipedia.org/wiki/Lisbon_dialect | MediaWiki API: missing (title='Lisbon dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-madeira.json` | https://en.wikipedia.org/wiki/Madeiran_Portuguese | MediaWiki API: missing (title='Madeiran Portuguese') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-porto.json` | https://en.wikipedia.org/wiki/Porto_dialect | MediaWiki API: missing (title='Porto dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/pt-PT-x-trasosmontes.json` | https://en.wikipedia.org/wiki/European_Portuguese_phonology | MediaWiki API: missing (title='European Portuguese phonology') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/ru-x-northern.json` | https://en.wikipedia.org/wiki/Northern_Russian_dialect | MediaWiki API: missing (title='Northern Russian dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
-| `orthography2ipa/data/ru-x-southern.json` | https://en.wikipedia.org/wiki/Southern_Russian_dialect | MediaWiki API: missing (title='Southern Russian dialect') | NOT removed: sole/last surviving top-level wikipedia entry for a non-stub language (would break test_non_stub_has_wikipedia) | no snapshot |
 
 ## Dead links in prose notes (not auto-edited)
 
