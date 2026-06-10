@@ -3,11 +3,9 @@
 Validates:
 - Every module using PEP 585/604 annotation syntax has the
   ``from __future__ import annotations`` escape hatch
-- Plugin discovery logs (rather than swallows) load failures
-- The public API exports the plugin and sandhi entry points
+- The public API exports the engine base types and sandhi entry points
 """
 import ast
-import logging
 import pathlib
 
 import pytest
@@ -75,42 +73,12 @@ def test_py39_annotation_compat(module_path):
     )
 
 
-class TestPluginDiscoveryFailures:
-    """Plugin load failures must be logged, not silently swallowed."""
-
-    def test_broken_plugin_logs_warning(self, monkeypatch, caplog):
-        import orthography2ipa.registry as registry
-
-        class _BrokenEntryPoint:
-            name = "broken"
-
-            def load(self):
-                raise ImportError("missing dependency")
-
-        def _fake_entry_points(*args, **kwargs):
-            return [_BrokenEntryPoint()]
-
-        monkeypatch.setattr(
-            "importlib.metadata.entry_points", _fake_entry_points
-        )
-        with caplog.at_level(logging.WARNING,
-                             logger="orthography2ipa.registry"):
-            plugins = registry._discover_plugins()
-        assert plugins == {}
-        assert any("broken" in record.message for record in caplog.records)
-
-
 class TestPublicExports:
     """Plugin and sandhi entry points are part of the public API."""
 
     def test_exports(self):
         import orthography2ipa
 
-        for name in ("get_plugin", "G2PPlugin", "WordContext", "SandhiEngine"):
+        for name in ("G2PPlugin", "WordContext", "SandhiEngine"):
             assert name in orthography2ipa.__all__
             assert hasattr(orthography2ipa, name)
-
-    def test_get_plugin_unknown_code(self):
-        import orthography2ipa
-
-        assert orthography2ipa.get_plugin("zz-ZZ") is None

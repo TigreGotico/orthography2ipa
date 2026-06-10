@@ -30,7 +30,6 @@ version = {attr = "orthography2ipa.version.VERSION_STR"}
 dependencies = {file = ["requirements.txt"]}
 
 [project.optional-dependencies]
-arabic = ["onnxruntime"]
 validation = ["pydantic>=2"]
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2"]
 
@@ -40,9 +39,6 @@ Issues = "https://github.com/TigreGotico/orthography2ipa/issues"
 
 [project.scripts]
 orthography2ipa = "orthography2ipa.cli:main"
-
-[project.entry-points."orthography2ipa.g2p"]
-arabic = "orthography2ipa.plugins.arabic_g2p:ArabicG2PPlugin"
 
 [tool.setuptools.packages.find]
 include = ["orthography2ipa*"]

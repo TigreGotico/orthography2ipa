@@ -33,11 +33,10 @@ Regional varieties get their own `LanguageSpec` objects linked through ancestry,
 pip install orthography2ipa
 ```
 
-For the optional Arabic G2P backend:
-
-```bash
-pip install orthography2ipa[arabic]
-```
+For richer language-specific pipelines, install a downstream engine
+built on this library: [arbtok](https://github.com/TigreGotico/arbtok)
+for Arabic, [tugaphone](https://github.com/TigreGotico/tugaphone) for
+Portuguese.
 
 ## Quick start
 
