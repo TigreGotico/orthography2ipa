@@ -1,0 +1,125 @@
+{
+  "code": "az",
+  "name": "Azerbaijani",
+  "family": "Turkic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "iso639_3": "aze",
+  "quality": "research",
+  "graphemes": {
+    "a": ["a"],
+    "b": ["b"],
+    "c": ["dʒ"],
+    "ç": ["tʃ"],
+    "d": ["d"],
+    "e": ["e"],
+    "ə": ["æ"],
+    "f": ["f"],
+    "g": ["ɡ"],
+    "ğ": ["ɣ"],
+    "h": ["h"],
+    "x": ["x"],
+    "i": ["i"],
+    "ı": ["ɯ"],
+    "j": ["ʒ"],
+    "k": ["k"],
+    "q": ["ɡ"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "o": ["o"],
+    "ö": ["ø"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "ş": ["ʃ"],
+    "t": ["t"],
+    "u": ["u"],
+    "ü": ["y"],
+    "v": ["v"],
+    "y": ["j"],
+    "z": ["z"]
+  },
+  "allophones": {
+    "a": ["a"],
+    "b": ["b", "p"],
+    "dʒ": ["dʒ", "tʃ"],
+    "tʃ": ["tʃ"],
+    "d": ["d", "t"],
+    "e": ["e"],
+    "æ": ["æ"],
+    "f": ["f"],
+    "ɡ": ["ɡ", "k"],
+    "ɣ": ["ɣ", "j"],
+    "h": ["h"],
+    "x": ["x"],
+    "i": ["i"],
+    "ɯ": ["ɯ"],
+    "ʒ": ["ʒ", "ʃ"],
+    "k": ["k"],
+    "l": ["l", "ɫ"],
+    "m": ["m"],
+    "n": ["n", "ŋ"],
+    "o": ["o"],
+    "ø": ["ø"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "ʃ": ["ʃ"],
+    "t": ["t"],
+    "u": ["u"],
+    "y": ["y"],
+    "v": ["v"],
+    "j": ["j"]
+  },
+  "positional_graphemes": {
+    "b": {
+      "word_final": ["p"],
+      "default": ["b"]
+    },
+    "d": {
+      "word_final": ["t"],
+      "default": ["d"]
+    },
+    "c": {
+      "word_final": ["tʃ"],
+      "default": ["dʒ"]
+    },
+    "g": {
+      "word_final": ["k"],
+      "default": ["ɡ"]
+    }
+  },
+  "notes": "North Azerbaijani (Latin-script official orthography since 1991). 9-vowel system including front unrounded /æ/ (ə) and back unrounded /ɯ/ (ı). Vowel harmony similar to Turkish. Final devoicing: b→p, c→ç, d→t, g→k. Q represents a voiced uvular stop [ɢ] in loanwords/dialects. Ğ is a fricative [ɣ] unlike Turkish where it is silent.",
+  "sources": [
+    {
+      "id": "azerbaijani_phonology_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Azerbaijani phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Azerbaijani_phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Azerbaijani_phonology",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "comrie1997",
+      "author": "Comrie, B.",
+      "year": 1997,
+      "title": "The World's Major Languages",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Azerbaijani_language",
+    "https://en.wikipedia.org/wiki/Azerbaijani_phonology"
+  ],
+  "timespan": {
+    "start_year": 1991,
+    "end_year": null
+  }
+}
