@@ -1,0 +1,114 @@
+{
+  "code": "he",
+  "name": "Hebrew",
+  "family": "Semitic",
+  "script": "Hebrew",
+  "script_type": "abjad",
+  "iso639_3": "heb",
+  "quality": "research",
+  "graphemes": {
+    "א": ["ʔ", ""],
+    "ב": ["b", "v"],
+    "ג": ["ɡ"],
+    "ד": ["d"],
+    "ה": ["h", ""],
+    "ו": ["v", "w"],
+    "ז": ["z"],
+    "ח": ["χ"],
+    "ט": ["t"],
+    "י": ["j"],
+    "כ": ["k", "χ"],
+    "ך": ["χ"],
+    "ל": ["l"],
+    "מ": ["m"],
+    "ם": ["m"],
+    "נ": ["n"],
+    "ן": ["n"],
+    "ס": ["s"],
+    "ע": ["ʔ", ""],
+    "פ": ["p", "f"],
+    "ף": ["f"],
+    "צ": ["ts"],
+    "ץ": ["ts"],
+    "ק": ["k"],
+    "ר": ["ʁ", "r"],
+    "ש": ["ʃ", "s"],
+    "ת": ["t"]
+  },
+  "allophones": {
+    "ʔ": ["ʔ", ""],
+    "b": ["b"],
+    "v": ["v"],
+    "ɡ": ["ɡ"],
+    "d": ["d"],
+    "h": ["h", ""],
+    "z": ["z"],
+    "χ": ["χ", "x"],
+    "t": ["t"],
+    "j": ["j"],
+    "k": ["k"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "s": ["s"],
+    "p": ["p"],
+    "f": ["f"],
+    "ts": ["ts"],
+    "ʁ": ["ʁ", "r"],
+    "ʃ": ["ʃ"]
+  },
+  "positional_graphemes": {
+    "ב": {
+      "word_initial": ["b"],
+      "after_consonant": ["b"],
+      "intervocalic": ["v"],
+      "default": ["v"]
+    },
+    "כ": {
+      "word_initial": ["k"],
+      "after_consonant": ["k"],
+      "default": ["χ"]
+    },
+    "פ": {
+      "word_initial": ["p"],
+      "after_consonant": ["p"],
+      "default": ["f"]
+    },
+    "ה": {
+      "word_final": [""],
+      "default": ["h"]
+    }
+  },
+  "notes": "Modern Israeli Hebrew. Consonantal abjad — vowel diacritics (niqqud) normally omitted in adult text. Bgdkpt rule: ב/כ/פ = stops after consonant or word-initially, fricatives elsewhere. ר = /ʁ/ in most Israeli speech. ח and כ (final) both = /χ/. ע and א are /ʔ/ or silent in colloquial speech. Dagesh lene distinguishes stop vs. fricative in ב,כ,פ.",
+  "sources": [
+    {
+      "id": "bolozky1997",
+      "author": "Bolozky, S.",
+      "year": 1997,
+      "title": "Israeli Hebrew Phonology",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hebrew_phonology_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Modern Hebrew phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hebrew_language",
+    "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology"
+  ],
+  "timespan": {
+    "start_year": 1948,
+    "end_year": null
+  }
+}
