@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "orthography2ipa"
 dynamic = ["version", "dependencies"]
-description = "Linguistically motivated grapheme-to-IPA and allophone mappings for 308+ language codes"
+description = "Linguistically motivated grapheme-to-IPA and allophone mappings for 350+ language codes"
 readme = "README.md"
 license = {text = "Apache-2.0"}
 requires-python = ">=3.9"
