@@ -295,34 +295,6 @@
       "word_final": [
         "z̺"
       ]
-    },
-    "a": {
-      "nucleus_stressed": [
-        "a"
-      ],
-      "nucleus_unstressed": [
-        "a"
-      ],
-      "coda": [
-        "ɐ"
-      ],
-      "word_initial": [
-        "ɐ",
-        "a"
-      ],
-      "word_final": [
-        "ɐ"
-      ]
-    },
-    "e": {
-      "nucleus_stressed": [
-        "ɛ"
-      ]
-    },
-    "o": {
-      "nucleus_stressed": [
-        "ɔ"
-      ]
     }
   },
   "parent": "la-x-hispania",
@@ -346,7 +318,7 @@
       "notes": "Lusitanian substrate: pre-Celtic IE language of western Iberia. Possible influence on /v/≠/b/ preservation."
     },
     {
-      "code": "xsb",
+      "code": "gem-x-suebi",
       "role": "superstrate",
       "weight": 0.05,
       "notes": "Suebi (Germanic) superstrate in Gallaecia (411–585 CE): Kingdom of the Suebi. ~200 place names, vocabulary (guerra, roubar, branco)."
