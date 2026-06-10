@@ -2,7 +2,7 @@
   "code": "sd",
   "name": "Sindhi",
   "family": "Indo-Aryan",
-  "script": "Arabic",
+  "script": "Latin",
   "graphemes": {
     "a": [
       "a"
@@ -150,6 +150,18 @@
     ],
     "q": [
       "q"
+    ],
+    "n": [
+      "n"
+    ],
+    "ṇ": [
+      "ɳ"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "ṅ": [
+      "ŋ"
     ]
   },
   "allophones": {
@@ -229,9 +241,7 @@
       "m"
     ],
     "n": [
-      "n",
-      "ɳ",
-      "ŋ"
+      "n"
     ],
     "ʃ": [
       "ʃ"
@@ -300,6 +310,15 @@
     ],
     "oː": [
       "oː"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
     ]
   },
   "parent": "sa",
@@ -325,7 +344,7 @@
   ],
   "notes": "Standard Sindhi (Pakistan/India). Typologically remarkable: four implosives /ɓ ɗ ʄ ɠ/ — rare in Indo-Aryan. Full four-way laryngeal contrast plus implosives. Written in Perso-Arabic (Pakistan), Devanagari (India), and the Khudabadi script (traditional).",
   "quality": "research",
-  "script_type": "abjad",
+  "script_type": "alphabet",
   "sources": [
     {
       "id": "masica1991",

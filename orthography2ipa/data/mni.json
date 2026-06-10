@@ -2,7 +2,7 @@
   "code": "mni",
   "name": "Meitei",
   "family": "Tibeto-Burman",
-  "script": "Meitei Mayek",
+  "script": "Latin",
   "graphemes": {
     "a": [
       "a"
@@ -217,7 +217,7 @@
   ],
   "notes": "Meitei/Manipuri (Manipur, India). Tibeto-Burman, Kuki-Chin-Mizo branch. Phonemic tone (falling vs. non-falling in stressed syllable). Meitei Mayek script (traditional, restored 2013 as official). Also written in Bengali script officially.",
   "quality": "research",
-  "script_type": "abugida",
+  "script_type": "alphabet",
   "iso639_3": "mni",
   "sources": [
     {

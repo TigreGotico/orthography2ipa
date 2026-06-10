@@ -322,7 +322,7 @@
   "notes": "Bhojpuri (Eastern UP and Bihar). Largest Indic diaspora language. Inherent vowel is /a/ (not /ə/ like Standard Hindi). No schwa deletion rule. Four-way laryngeal contrast. Retroflex series phonemic.",
   "quality": "research",
   "script_type": "abugida",
-  "inherent_vowel": "ə",
+  "inherent_vowel": "a",
   "iso639_3": "bho",
   "sources": [
     {
