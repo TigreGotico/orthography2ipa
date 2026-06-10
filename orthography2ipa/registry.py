@@ -1,6 +1,7 @@
 """Language registry with lazy loading and plugin discovery."""
 from __future__ import annotations
 
+import logging
 from typing import TYPE_CHECKING, Dict, List, Optional
 
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
@@ -11,6 +12,8 @@ if TYPE_CHECKING:
 
 _cache: Dict[str, LanguageSpec] = {}
 _plugins: Optional[Dict[str, "G2PPlugin"]] = None
+
+_LOG = logging.getLogger(__name__)
 
 # Fallback alias table for ISO 639-3 → BCP-47 normalisation.
 # When ``langcodes`` is available, standard codes are resolved via that library.
@@ -103,7 +106,8 @@ def _discover_plugins() -> Dict[str, "G2PPlugin"]:
             instance = plugin_cls()
             for code in instance.language_codes:
                 plugins[code] = instance
-        except Exception:
+        except Exception as exc:
+            _LOG.warning("failed to load G2P plugin %r: %s", ep.name, exc)
             continue
     return plugins
 
