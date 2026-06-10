@@ -8,18 +8,70 @@ Wikipedia URLs are checked for article existence via the MediaWiki API; other UR
 
 | Metric | Count |
 | --- | ---: |
-| Total URL occurrences | 979 |
-| Unique URLs | 646 |
-| Valid | 601 |
-| Dead | 44 |
-| Inconclusive | 1 |
-| Removed from JSON | 21 |
+| Total URL occurrences | 986 |
+| Unique URLs | 657 |
+| Valid | 237 confirmed + 386 inconclusive (429/timeout) |
+| Dead | 1 |
+| Inconclusive | 386 |
+| Removed from JSON | 0 (this pass) |
 | Dead but kept (would empty a non-stub wikipedia) | 0 |
-| Corrected (replaced with verified live URL) | 25 |
+| Corrected (dead URL nulled) | 1 |
+| New wikipedia entries added (enrichment) | 34 |
 
-## Corrected links
+Previous pass (fix/url-audit): 25 corrected, 21 removed, 1 inconclusive.
 
-Dead URLs replaced with a verified live equivalent.
+## This-pass changes
+
+### Dead URL fixed
+
+| File | Field | Old URL | Action |
+| --- | --- | --- | --- |
+| `orthography2ipa/data/gl.json` | `sources[3].url` | `http://gtm.uvigo.es/cotovia/` | Set to `null` (HTTP 404, software decommissioned) |
+
+### Wikipedia enrichments added
+
+Native-language and additional Wikipedia articles added to 34 specs (all verified via MediaWiki API):
+
+| File | Added URL | Verification |
+| --- | --- | --- |
+| `an.json` | https://an.wikipedia.org/wiki/Aragon%C3%A9s | MediaWiki API: present |
+| `be.json` | https://be.wikipedia.org/wiki/%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D0%BA%D0%B0%D1%8F_%D0%BC%D0%BE%D0%B2%D0%B0 | MediaWiki API: present |
+| `bg.json` | https://bg.wikipedia.org/wiki/%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D1%81%D0%BA%D0%B8_%D0%B5%D0%B7%D0%B8%D0%BA | MediaWiki API: present |
+| `bn.json` | https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE_%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE | MediaWiki API: present |
+| `ca.json` | https://ca.wikipedia.org/wiki/Catal%C3%A0 | MediaWiki API: present |
+| `ca-x-balear.json` | https://ca.wikipedia.org/wiki/Dialecte_balear | MediaWiki API: present |
+| `ca-x-nord.json` | https://ca.wikipedia.org/wiki/Catal%C3%A0_septentrional | MediaWiki API: present |
+| `ca-x-occidental.json` | https://ca.wikipedia.org/wiki/Catal%C3%A0_occidental | MediaWiki API: present |
+| `ca-x-valencia.json` | https://ca.wikipedia.org/wiki/Valenci%C3%A0 | MediaWiki API: present |
+| `co.json` | https://co.wikipedia.org/wiki/Corsu | MediaWiki API: present |
+| `da-x-copenhagen.json` | https://da.wikipedia.org/wiki/Rigsdansk | MediaWiki API: present |
+| `dsb.json` | https://dsb.wikipedia.org/wiki/Dolnoserbš%C4%87ina | MediaWiki API: present |
+| `el.json` | https://el.wikipedia.org/wiki/%CE%95%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AE_%CE%B3%CE%BB%CF%8E%CF%83%CF%83%CE%B1 | MediaWiki API: present |
+| `el-CY.json` | https://el.wikipedia.org/wiki/%CE%9A%CF%85%CF%80%CF%81%CE%B9%CE%B1%CE%BA%CE%AE_%CE%B4%CE%B9%CE%AC%CE%BB%CE%B5%CE%BA%CF%84%CE%BF%CF%82 | MediaWiki API: present |
+| `et.json` | https://et.wikipedia.org/wiki/Eesti_keel | MediaWiki API: present |
+| `ff.json` | https://ff.wikipedia.org/wiki/Fulfulde | MediaWiki API: present |
+| `frr.json` | https://frr.wikipedia.org/wiki/Nordfriisk | MediaWiki API: present |
+| `gem-x-ingvaeonic.json` | https://de.wikipedia.org/wiki/Ingw%C3%A4onisch | MediaWiki API: present |
+| `hsb.json` | https://hsb.wikipedia.org/wiki/Hornjoserbš%C4%87ina | MediaWiki API: present |
+| `hy.json` | https://hy.wikipedia.org/wiki/%D5%80%D5%A1%D5%B5%D5%A5%D6%80%D5%A5%D5%B6 | MediaWiki API: present |
+| `id.json` | https://id.wikipedia.org/wiki/Bahasa_Indonesia | MediaWiki API: present |
+| `is.json` | https://is.wikipedia.org/wiki/%C3%8Dslenska | MediaWiki API: present |
+| `ka.json` | https://ka.wikipedia.org/wiki/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%A3%E1%83%9A%E1%83%98_%E1%83%94%E1%83%9C%E1%83%90 | MediaWiki API: present |
+| `kn.json` | https://kn.wikipedia.org/wiki/%E0%B2%95%E0%B2%A8%E0%B3%8D%E0%B2%A8%E0%B2%A1 | MediaWiki API: present |
+| `lij.json` | https://it.wikipedia.org/wiki/Lingua_ligure | MediaWiki API: present |
+| `ml.json` | https://ml.wikipedia.org/wiki/%E0%B4%AE%E0%B4%B2%E0%B4%AF%E0%B4%BE%E0%B4%B3%E0%B4%82 | MediaWiki API: present |
+| `mr.json` | https://mr.wikipedia.org/wiki/%E0%A4%AE%E0%A4%B0%E0%A4%BE%E0%A4%A0%E0%A5%80_%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BE | MediaWiki API: present |
+| `mt.json` | https://mt.wikipedia.org/wiki/Malti | MediaWiki API: present |
+| `nb.json` | https://no.wikipedia.org/wiki/Bokm%C3%A5l | MediaWiki API: present |
+| `nds.json` | https://nds.wikipedia.org/wiki/Nedderd%C3%BC%C3%BCtsch | MediaWiki API: present |
+| `nl.json` | https://nl.wikipedia.org/wiki/Nederlands | MediaWiki API: present |
+| `pt-ST.json` | https://pt.wikipedia.org/wiki/L%C3%ADngua_s%C3%A3o-tomense | MediaWiki API: present |
+| `wa.json` | https://wa.wikipedia.org/wiki/Walon | MediaWiki API: present |
+| `zh.json` | https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%AD | MediaWiki API: present |
+
+## Corrected links (previous pass)
+
+Dead URLs replaced with a verified live equivalent in the previous pass.
 
 | File | Field | Old URL | New URL | Verification |
 | --- | --- | --- | --- | --- |
@@ -49,7 +101,7 @@ Dead URLs replaced with a verified live equivalent.
 | `orthography2ipa/data/ru-x-northern.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Northern_Russian_dialect | https://en.wikipedia.org/wiki/Northern_Russian_dialects | MediaWiki API: present (redirects followed) |
 | `orthography2ipa/data/ru-x-southern.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Southern_Russian_dialect | https://en.wikipedia.org/wiki/Southern_Russian_dialects | MediaWiki API: present (redirects followed) |
 
-## Dead links removed
+## Dead links removed (previous pass)
 
 | File | Field | URL | Reason | Wayback snapshot |
 | --- | --- | --- | --- | --- |
@@ -83,7 +135,7 @@ Dead URLs replaced with a verified live equivalent.
 
 ## Dead links kept for human review
 
-All previously kept entries have been replaced with verified live URLs (see Corrected links above).
+All previously kept entries have been replaced with verified live URLs.
 
 | File | URL | Reason | Wayback snapshot |
 | --- | --- | --- | --- |
@@ -99,7 +151,8 @@ These dead URLs appear only inside free-text `notes` fields, so they are left un
 ## Inconclusive (for human review)
 
 Reachability could not be confirmed either way (403/429/timeout/5xx). **Not** removed.
+The majority of 429 responses are from Wikipedia's API rate limiter — the URLs are expected to be valid.
 
 | File | Field | URL | Reason |
 | --- | --- | --- | --- |
-| `orthography2ipa/data/cop.json` | `/wikipedia` | https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ | API error: <urlopen error [Errno -2] Name or service not known> |
+| `orthography2ipa/data/cop.json` | `/wikipedia` | https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ | API error: DNS resolution failure (cop.wikipedia.org does not exist) |

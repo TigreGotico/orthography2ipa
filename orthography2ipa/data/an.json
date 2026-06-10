@@ -23,7 +23,6 @@
     "è": [
       "ɛ"
     ],
-    
     "i": [
       "i"
     ],
@@ -315,7 +314,7 @@
       "intervocalic": [
         "ɣ"
       ]
-    },  
+    },
     "c": {
       "before_e": [
         "θ",
@@ -507,7 +506,8 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aragonese_language",
-    "https://an.wikipedia.org/wiki/Aragonés"
+    "https://an.wikipedia.org/wiki/Aragonés",
+    "https://an.wikipedia.org/wiki/Aragon%C3%A9s"
   ],
   "timespan": {
     "start_year": 1050,

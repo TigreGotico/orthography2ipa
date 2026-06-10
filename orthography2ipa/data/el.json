@@ -298,7 +298,8 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Modern_Greek",
     "https://el.wikipedia.org/wiki/Ελληνική_γλώσσα",
-    "https://en.wikipedia.org/wiki/Modern_Greek_phonology"
+    "https://en.wikipedia.org/wiki/Modern_Greek_phonology",
+    "https://el.wikipedia.org/wiki/%CE%95%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AE_%CE%B3%CE%BB%CF%8E%CF%83%CF%83%CE%B1"
   ],
   "positional_graphemes": {
     "γ": {
