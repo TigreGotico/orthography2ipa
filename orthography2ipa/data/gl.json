@@ -37,45 +37,12 @@
     "ú": [
       "u"
     ],
-    "ã": [
-      "ɐ̃"
-    ],
-    "an": [
-      "ɐ̃"
-    ],
-    "en": [
-      "ẽ"
-    ],
-    "in": [
-      "ĩ"
-    ],
-    "on": [
-      "õ"
-    ],
-    "un": [
-      "ũ"
-    ],
-    "ón": [
-      "õ"
-    ],
-    "án": [
-      "ɐ̃"
-    ],
-    "én": [
-      "ẽ"
-    ],
-    "ín": [
-      "ĩ"
-    ],
-    "ún": [
-      "ũ"
-    ],
     "b": [
       "b"
     ],
     "c": [
       "k",
-      "s"
+      "θ"
     ],
     "ch": [
       "tʃ"
@@ -114,7 +81,9 @@
     "ñ": [
       "ɲ"
     ],
-    "nh": null,
+    "nh": [
+      "ŋ"
+    ],
     "p": [
       "p"
     ],
@@ -153,8 +122,7 @@
       "i"
     ],
     "z": [
-      "z",
-      "s"
+      "θ"
     ],
     "ç": null,
     "güe": [
@@ -205,12 +173,19 @@
     "ui": [
       "wi"
     ],
-    "ão": [
-      "ɐ̃w̃"
-    ],
-    "ãi": [
-      "ɐ̃j"
-    ]
+    "an": null,
+    "en": null,
+    "in": null,
+    "on": null,
+    "un": null,
+    "án": null,
+    "én": null,
+    "ín": null,
+    "ón": null,
+    "ún": null,
+    "ã": null,
+    "ão": null,
+    "ãi": null
   },
   "allophones": {
     "p": [
@@ -301,23 +276,14 @@
     "u": [
       "u"
     ],
-    "ɐ̃": [
-      "ɐ̃"
-    ],
-    "ẽ": [
-      "ẽ"
-    ],
-    "ĩ": [
-      "ĩ"
-    ],
-    "õ": [
-      "õ"
-    ],
-    "ũ": [
-      "ũ"
-    ],
     "t͡s": null,
-    "d͡z": null
+    "d͡z": null,
+    "θ": [
+      "θ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
   },
   "positional_graphemes": {
     "b": {
@@ -346,21 +312,10 @@
     },
     "c": {
       "before_e": [
-        "s"
+        "θ"
       ],
       "before_i": [
-        "s"
-      ]
-    },
-    "z": {
-      "word_initial": [
-        "s"
-      ],
-      "intervocalic": [
-        "z"
-      ],
-      "word_final": [
-        "s"
+        "θ"
       ]
     },
     "r": {
@@ -412,7 +367,7 @@
       "notes": "Asturleonese/Leonese adstrate: after political separation from Portugal, Galicia remained within the Crown of Castile/León. Castilian/Leonese influence intensified throughout the late medieval and early modern period, contributing to: betacism (v→b), z=/z/ retention, ⟨ll⟩ and ⟨ñ⟩ orthographic conventions (Castilian over Portuguese lh/nh), and loss of some Galaico-Portuguese features."
     },
     {
-      "code": "xsb",
+      "code": "gem-x-suebi",
       "role": "superstrate",
       "weight": 0.04,
       "notes": "Suebi superstrate: inherited through Galaico-Portuguese, centered in Gallaecia."
