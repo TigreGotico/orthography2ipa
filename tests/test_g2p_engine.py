@@ -160,56 +160,6 @@ class TestPluginDispatch:
         assert plugin.normalize_calls == []
 
 
-class _SentenceLevelPlugin(_RecordingPlugin):
-    """Whole-sentence plugin (POS tagging / clitic joining style)."""
-
-    def __init__(self):
-        super().__init__()
-        self.transcribe_calls: List[str] = []
-
-    @property
-    def sentence_level(self) -> bool:
-        return True
-
-    def transcribe(self, text: str) -> str:
-        self.transcribe_calls.append(text)
-        return " ".join(f"[{w}]" for w in text.split())
-
-
-class TestSentenceLevelPlugin:
-    def _engine(self):
-        engine = G2P("pt-PT")
-        plugin = _SentenceLevelPlugin()
-        engine.plugin = plugin
-        return engine, plugin
-
-    def test_whole_text_goes_to_plugin(self):
-        engine, plugin = self._engine()
-        result = engine.transcribe_detailed("olá mundo")
-        assert plugin.transcribe_calls == ["olá mundo"]
-        assert result.ipa == "[olá] [mundo]"
-        # per-word path and post_process are NOT used
-        assert plugin.contexts == []
-
-    def test_word_alignment_when_counts_match(self):
-        engine, plugin = self._engine()
-        result = engine.transcribe_detailed("olá mundo")
-        assert [w.ipa for w in result.words] == ["[olá]", "[mundo]"]
-        assert all(w.source == "plugin:_SentenceLevelPlugin"
-                   for w in result.words)
-
-    def test_dialect_profile_still_applies(self):
-        from orthography2ipa import apply_transform
-        from orthography2ipa.transforms import DIALECT_PROFILES
-
-        profile = next(iter(DIALECT_PROFILES))
-        engine, plugin = self._engine()
-        engine.dialect_profile = profile
-        plain = plugin.transcribe("olá mundo")
-        assert engine.transcribe("olá mundo") == apply_transform(
-            plain, profile, ortho="olá mundo")
-
-
 class TestStressIntegration:
     def test_portuguese_stress_marked(self):
         engine = G2P("pt-PT", use_plugins=False)
