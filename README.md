@@ -41,7 +41,31 @@ pip install orthography2ipa[arabic]
 
 ## Quick start
 
-### Python API
+### Transcribe text to IPA
+
+```python
+import orthography2ipa
+
+orthography2ipa.transcribe("olá mundo", "pt")        # 'oˈla ˈmundo'
+orthography2ipa.transcribe("hello world", "en")       # 'hɛllɒ wɔːɹld'
+orthography2ipa.transcribe("bona nuèit", "oc")        # 'buna nyɛjt'
+
+# Beam search keeps ranked alternatives per word
+from orthography2ipa import G2P
+
+engine = G2P("pt-PT")
+result = engine.transcribe_detailed("um café", search="beam", beam_width=4)
+result.ipa                          # 'ˈum kaˈfɛ'
+result.words[1].candidates          # ranked IPAPath alternatives
+
+# The engine pipeline: normalize → tokenize → greedy/beam per word →
+# stress marks (when the spec declares stress rules) → word-context
+# pass → sandhi → dialect transform. A registered G2P plugin for the
+# language (e.g. arbtok for Arabic) takes over automatically;
+# use_plugins=False forces the data-driven path.
+```
+
+### Language specs
 
 ```python
 import orthography2ipa
@@ -64,8 +88,10 @@ en.script             # 'Latin'
 pt_br = orthography2ipa.get("pt-BR")
 pt_br.graphemes["t"]  # ['t', 't͡ʃ']   — palatalisation before /i/
 
-# ISO 639-3 aliases resolve to BCP-47 codes
+# Bare tags, ISO 639-3 aliases and near matches all resolve
 orthography2ipa.get("eng").name   # 'British English (RP)'
+orthography2ipa.resolve("pt")     # 'pt-PT' — reference variety
+orthography2ipa.resolve("en-NZ")  # 'en-GB' — nearest registered
 
 # Discover what's available
 orthography2ipa.available_codes()
@@ -119,9 +145,9 @@ orthography2ipa info pt-BR
 orthography2ipa info pt-BR --graphemes
 orthography2ipa info pt-BR --json
 
-# Transcribe text to IPA (beam-ranked candidates)
-orthography2ipa transcribe pt-BR "chuva"
-orthography2ipa transcribe en-GB "through" --beam 8
+# Transcribe text to IPA
+orthography2ipa transcribe pt "olá mundo"
+orthography2ipa transcribe en-GB "through" --search beam --beam-width 8
 
 # Phonological distance between two languages
 orthography2ipa distance pt-BR pt-PT

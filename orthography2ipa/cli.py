@@ -60,13 +60,27 @@ def _build_parser() -> argparse.ArgumentParser:
 
     # --- transcribe ---
     p_trans = sub.add_parser(
-        "transcribe", help="Transcribe text to IPA candidates.",
+        "transcribe", help="Transcribe text to IPA.",
     )
     p_trans.add_argument("code", help="Language code.")
     p_trans.add_argument("text", help="Word or phrase to transcribe.")
     p_trans.add_argument(
-        "--beam", type=int, default=4,
-        help="Beam width for IPA path expansion (default: 4).",
+        "--search", choices=("greedy", "beam"), default="greedy",
+        help="Candidate search: best path per word (greedy, default) "
+             "or keep a beam of alternatives (beam).",
+    )
+    p_trans.add_argument(
+        "--beam-width", "--beam", type=int, default=8, dest="beam_width",
+        help="Beam width for --search beam (default: 8).",
+    )
+    p_trans.add_argument(
+        "--dialect-profile", default=None,
+        help="Dialect transform profile applied to the final IPA.",
+    )
+    p_trans.add_argument(
+        "--no-plugins", action="store_true",
+        help="Force the data-driven engine even when a G2P plugin "
+             "claims the language.",
     )
     p_trans.add_argument(
         "--json", action="store_true", dest="as_json",
@@ -180,32 +194,44 @@ def _cmd_info(args: argparse.Namespace) -> None:
 
 def _cmd_transcribe(args: argparse.Namespace) -> None:
     """Handle the ``transcribe`` subcommand."""
-    from orthography2ipa import get
-    from orthography2ipa.phonetok import PhonetokTokenizer
+    from orthography2ipa.g2p import G2P
 
-    spec = get(args.code)
-    if spec is None:
-        print(f"Unknown language code: {args.code}", file=sys.stderr)
+    try:
+        engine = G2P(args.code,
+                     dialect_profile=args.dialect_profile,
+                     use_plugins=not args.no_plugins)
+    except KeyError as exc:
+        print(f"Unknown language code: {exc}", file=sys.stderr)
         sys.exit(1)
 
-    tok = PhonetokTokenizer(spec)
-    words = args.text.strip().split()
-
-    results: List[dict] = []
-    for word in words:
-        paths = tok.ipa_beam(word, beam_width=args.beam)
-        results.append({
-            "word": word,
-            "ipa": [{"transcription": p.ipa, "score": round(p.score, 4)} for p in paths],
-        })
+    result = engine.transcribe_detailed(
+        args.text, search=args.search, beam_width=args.beam_width)
 
     if args.as_json:
-        print(json.dumps(results, ensure_ascii=False, indent=2))
+        payload = {
+            "lang": result.lang,
+            "ipa": result.ipa,
+            "words": [
+                {
+                    "word": w.word,
+                    "ipa": w.ipa,
+                    "source": w.source,
+                    "candidates": [
+                        {"transcription": p.ipa, "score": round(p.score, 4)}
+                        for p in w.candidates
+                    ],
+                }
+                for w in result.words
+            ],
+        }
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
     else:
-        for r in results:
-            print(f"{r['word']}:")
-            for p in r["ipa"]:
-                print(f"  /{p['transcription']}/  (score: {p['score']})")
+        print(f"/{result.ipa}/")
+        if args.search == "beam":
+            for w in result.words:
+                print(f"{w.word}:")
+                for p in w.candidates:
+                    print(f"  /{p.ipa}/  (score: {round(p.score, 4)})")
 
 
 def _cmd_distance(args: argparse.Namespace) -> None:
