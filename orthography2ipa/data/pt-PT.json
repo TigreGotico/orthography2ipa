@@ -57,7 +57,31 @@
     "rh": null,
     "ü": null,
     "qü": null,
-    "gü": null
+    "gü": null,
+    "á": [
+      "a"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ú": [
+      "u"
+    ],
+    "â": [
+      "ɐ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "ô": [
+      "o"
+    ]
   },
   "allophones_base": "pt-PT-x-medieval",
   "allophones": {

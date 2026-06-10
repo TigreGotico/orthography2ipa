@@ -51,5 +51,10 @@
   },
   "glottolog_code": "cast1244",
   "iso639_3": "spa",
-  "quality": "research"
+  "quality": "research",
+  "graphemes": {
+    "ü": [
+      "w"
+    ]
+  }
 }
