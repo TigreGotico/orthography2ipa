@@ -188,3 +188,103 @@ class TestSyllabifierPlugins:
         rules = get("pt-PT").stress
         # falls back to the naive splitter instead of trusting garbage
         assert detect_stress("casa", rules, lang="pt-PT") == 0
+
+
+class TestGalicianStress:
+    """Gold stress placements for Galician (gl) — Cotovia/GTM rules."""
+
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("gl").stress
+
+    def test_gl_carries_stress_block(self, rules):
+        assert rules is not None
+        assert rules.default_position == -2
+        assert rules.stress_mark == "ˈ"
+
+    @pytest.mark.parametrize("word,expected", [
+        # paroxytone default (vowel-final)
+        ("casa",   0),   # ca-sa → syll 0
+        ("galego", 1),   # ga-le-go → syll 1 (middle)
+        # penult_stress_endings: -n and -s stay paroxytone
+        ("casas",  0),   # ca-sas → syll 0
+        ("cantan", 0),   # ca-ntan → syll 0
+        # oxytone endings
+        ("falar",  1),   # fa-lar → final
+        ("azul",   1),   # a-zul → final
+        ("rapaz",  1),   # ra-paz → final
+        # written accent overrides
+        ("café",   1),   # ca-fé → accent on last
+        ("médico", 0),   # mé-di-co → accent on first
+        ("nación", 1),   # na-ción → accent on last
+    ])
+    def test_galician_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestMirandeseStress:
+    """Gold stress placements for Mirandese (mwl) — western Iberian pattern."""
+
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("mwl").stress
+
+    def test_mwl_carries_stress_block(self, rules):
+        assert rules is not None
+        assert rules.default_position == -2
+        assert "á" in rules.marked_vowels
+        assert "r" in rules.final_stress_endings
+
+    def test_mwl_j_is_zh(self):
+        spec = get("mwl")
+        assert spec.graphemes["j"] == ["ʒ"], (
+            f"mwl j should be ʒ (not ʝ); got {spec.graphemes['j']}"
+        )
+
+    def test_mwl_cedilla_is_laminal_s(self):
+        spec = get("mwl")
+        assert spec.graphemes["ç"] == ["s̻"], (
+            f"mwl ç should be s̻ (not t͡s); got {spec.graphemes['ç']}"
+        )
+
+    @pytest.mark.parametrize("word,expected", [
+        # paroxytone default (vowel-final)
+        ("casa",     0),   # ca-sa → syll 0
+        ("lhéngua",  0),   # lhé-ngua → accent on first
+        # oxytone endings
+        ("falar",    1),   # fa-lar → final
+        ("faler",    1),   # fa-ler → final
+        ("mirandés", 2),   # mi-ra-ndés (3 sylls) → accent on last
+        # tilde vowel as accent-bearer
+        ("irmã",     1),   # ir-mã → accent on last (ã in marked_vowels)
+    ])
+    def test_mirandese_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestBarranquenhoStress:
+    """Gold stress placements for Barranquenho (ext-PT-x-barrancos)."""
+
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("ext-PT-x-barrancos").stress
+
+    def test_barrancos_carries_stress_block(self, rules):
+        assert rules is not None
+        assert rules.default_position == -2
+        assert "á" in rules.marked_vowels
+        assert "r" in rules.final_stress_endings
+
+    @pytest.mark.parametrize("word,expected", [
+        # paroxytone default (vowel-final)
+        ("casa",   0),   # ca-sa → syll 0
+        ("casas",  0),   # ca-sas → vowel+s penult (not in final_stress_endings)
+        # oxytone endings
+        ("falar",  1),   # fa-lar → final
+        ("caju",   1),   # ca-ju → -u oxytone
+        # written accent overrides
+        ("café",   1),   # ca-fé → accent on last
+        ("médico", 0),   # mé-di-co → accent on first
+    ])
+    def test_barranquenho_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected

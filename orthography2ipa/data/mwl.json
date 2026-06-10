@@ -75,5 +75,43 @@
     "end_year": null
   },
   "glottolog_code": "mira1251",
-  "iso639_3": "mwl"
+  "iso639_3": "mwl",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "ç",
+      "im",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "ã",
+      "ẽ",
+      "ĩ",
+      "õ",
+      "ũ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Western Iberian pattern (Asturleonese/Portuguese branch): paroxytone default; written accent overrides; consonant-final endings (r l z ç) and specific sequences (im um is us ns ão) attract final stress. Tilde vowels (ã ẽ ĩ õ ũ) count as accent-bearers."
+  },
+  "graphemes": {
+    "j": [
+      "ʒ"
+    ],
+    "ç": [
+      "s̻"
+    ]
+  }
 }

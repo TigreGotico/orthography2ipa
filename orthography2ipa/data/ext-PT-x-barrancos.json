@@ -153,5 +153,45 @@
   },
   "glottolog_code": "barr1235",
   "iso639_3": "ext",
-  "quality": "research"
+  "quality": "research",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "à",
+      "â",
+      "ã",
+      "ê",
+      "ô",
+      "õ",
+      "ẽ",
+      "ĩ",
+      "ũ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Derived from the Barranquenho orthographic convention (Convenção Ortográfica do Barranquenho 2025): written accent (acute/grave/circumflex/tilde) fixes stress; words ending in a vowel or vowel+s are paroxytone; other consonant-final words are oxytone. Mirrors the logic of g2p_barranquenho _stressed_index()."
+  }
 }
