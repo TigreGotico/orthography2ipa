@@ -88,7 +88,11 @@ def available_codes() -> List[str]:
 
 
 def _discover_plugins() -> Dict[str, "G2PPlugin"]:
-    """Discover G2P plugins via importlib entry_points."""
+    """Discover G2P plugins via importlib entry_points.
+
+    When several plugins claim the same language code, the one with the
+    highest :attr:`G2PPlugin.priority` wins.
+    """
     from importlib.metadata import entry_points
 
     plugins: Dict[str, "G2PPlugin"] = {}
@@ -102,7 +106,9 @@ def _discover_plugins() -> Dict[str, "G2PPlugin"]:
             plugin_cls = ep.load()
             instance = plugin_cls()
             for code in instance.language_codes:
-                plugins[code] = instance
+                incumbent = plugins.get(code)
+                if incumbent is None or instance.priority > incumbent.priority:
+                    plugins[code] = instance
         except Exception:
             continue
     return plugins
