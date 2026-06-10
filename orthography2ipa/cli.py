@@ -78,11 +78,6 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Dialect transform profile applied to the final IPA.",
     )
     p_trans.add_argument(
-        "--no-plugins", action="store_true",
-        help="Force the data-driven engine even when a G2P plugin "
-             "claims the language.",
-    )
-    p_trans.add_argument(
         "--json", action="store_true", dest="as_json",
         help="Output as JSON.",
     )
@@ -197,9 +192,7 @@ def _cmd_transcribe(args: argparse.Namespace) -> None:
     from orthography2ipa.g2p import G2P
 
     try:
-        engine = G2P(args.code,
-                     dialect_profile=args.dialect_profile,
-                     use_plugins=not args.no_plugins)
+        engine = G2P(args.code, dialect_profile=args.dialect_profile)
     except KeyError as exc:
         print(f"Unknown language code: {exc}", file=sys.stderr)
         sys.exit(1)
@@ -215,7 +208,6 @@ def _cmd_transcribe(args: argparse.Namespace) -> None:
                 {
                     "word": w.word,
                     "ipa": w.ipa,
-                    "source": w.source,
                     "candidates": [
                         {"transcription": p.ipa, "score": round(p.score, 4)}
                         for p in w.candidates

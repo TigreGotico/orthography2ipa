@@ -59,10 +59,10 @@ result.ipa                          # 'ˈum kaˈfɛ'
 result.words[1].candidates          # ranked IPAPath alternatives
 
 # The engine pipeline: normalize → tokenize → greedy/beam per word →
-# stress marks (when the spec declares stress rules) → word-context
-# pass → sandhi → dialect transform. A registered G2P plugin for the
-# language (e.g. arbtok for Arabic) takes over automatically;
-# use_plugins=False forces the data-driven path.
+# stress marks (when the spec declares stress rules) → sandhi →
+# dialect transform. Downstream engines (arbtok for Arabic, tugaphone
+# for Portuguese) build on this library for richer language-specific
+# pipelines.
 ```
 
 ### Language specs
