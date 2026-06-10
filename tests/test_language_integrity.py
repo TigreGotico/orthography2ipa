@@ -36,7 +36,8 @@ def _all_codes(exclude_proto=False):
         codes = [c for c in codes if c not in [
             "ine", "ine-x-italic",
             "cel", "cel-x-gallaecia", "xce", "xaq", "txr", "xlg", "xib",
-            "gem", "got", "xpa", "xsb", "xcg", "xtg",
+            "gem", "got", "xpa", "gem-x-suebi", "xcg", "xtg",
+            "pa-PK",
             "sem", "sem-x-central", "sem-x-west",
             "la", "la-x-archaic", "la-x-late", "la-x-hispania", "la-x-gallia", "mxi",
             "oc"
