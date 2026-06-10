@@ -13,7 +13,8 @@
       "s"
     ],
     "ll": [
-      "ʝ"
+      "ʝ",
+      "ʎ"
     ]
   },
   "allophones_base": "es-ES",
@@ -26,6 +27,7 @@
     ],
     "ʎ": [
       "ʎ",
+      "ʒ",
       "ʝ"
     ],
     "ɾ": [
@@ -91,5 +93,15 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "spa"
+  "iso639_3": "spa",
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
+    }
+  }
 }
