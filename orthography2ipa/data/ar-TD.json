@@ -3,7 +3,7 @@
   "name": "Chadian Arabic",
   "family": "Semitic",
   "script": "Arabic",
-  "graphemes_base": "ar-x-maghrebi",
+  "graphemes_base": "ar-x-mashriqi",
   "graphemes": {
     "ث": [
       "θ",
@@ -17,7 +17,7 @@
       "tʃ"
     ]
   },
-  "allophones_base": "ar-x-maghrebi",
+  "allophones_base": "ar-x-mashriqi",
   "allophones": {
     "b": [
       "b",
@@ -59,7 +59,7 @@
       "ŋ"
     ]
   },
-  "parent": "ar-x-maghrebi",
+  "parent": "ar-x-mashriqi",
   "ancestors": [
     {
       "code": "ar-x-maghrebi",
