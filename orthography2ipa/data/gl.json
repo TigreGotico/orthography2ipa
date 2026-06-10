@@ -518,6 +518,6 @@
       "ú"
     ],
     "stress_mark": "ˈ",
-    "notes": "Cotovia/GTM (Universidade de Vigo) rules: written accent wins; vowel/n/s-final → penultimate; other consonant-final (r l z x d) → final. penult_stress_endings forces paroxytone for n/s (cantan, casas). Source: Cotovia front-end (Universidad de Vigo) stress model."
+    "notes": "Galician accentuation as implemented in the Cotovia front-end (GTM, Universidade de Vigo): written accent wins; words ending in a vowel, -n or -s are paroxytone (casa, cantan, casas); words ending in any other consonant (r l z x d) are oxytone (falar, azul, rapaz)."
   }
 }

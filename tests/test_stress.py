@@ -223,7 +223,13 @@ class TestGalicianStress:
 
 
 class TestMirandeseStress:
-    """Gold stress placements for Mirandese (mwl) — western Iberian pattern."""
+    """Gold stress placements for Mirandese (mwl).
+
+    Convenção Ortográfica da Língua Mirandesa (1999): Portuguese-based
+    accentuation, but Mirandese orthography writes final nasals with -n
+    (Asturleonese trait: camin, naçon, un) and has word-final ⟨ç⟩
+    (rapaç, lhuç) where Portuguese writes -z.
+    """
 
     @pytest.fixture(scope="class")
     def rules(self):
@@ -234,26 +240,40 @@ class TestMirandeseStress:
         assert rules.default_position == -2
         assert "á" in rules.marked_vowels
         assert "r" in rules.final_stress_endings
+        # Mirandese nasal endings are -n, never the Portuguese -m
+        assert "in" in rules.final_stress_endings
+        assert "on" in rules.final_stress_endings
+        assert "im" not in rules.final_stress_endings
+        assert "um" not in rules.final_stress_endings
 
-    def test_mwl_j_is_zh(self):
+    def test_mwl_j_is_postalveolar(self):
+        """Mirandese ⟨j⟩ is /ʒ/ (western Iberian), never the Asturian ʝ."""
         spec = get("mwl")
         assert spec.graphemes["j"] == ["ʒ"], (
-            f"mwl j should be ʒ (not ʝ); got {spec.graphemes['j']}"
+            f"mwl j should be ʒ; got {spec.graphemes['j']}"
         )
 
-    def test_mwl_cedilla_is_laminal_s(self):
+    def test_mwl_cedilla_is_voiceless_laminal(self):
+        """Mirandese keeps the six-sibilant contrast (apical s̺/z̺,
+        laminal s̻/z̻, postalveolar ʃ/ʒ): ⟨ç⟩ is the voiceless laminal
+        fricative /s̻/ — not the Asturian affricate t͡s, and not the
+        voiced z̻, which is the value of ⟨z⟩."""
         spec = get("mwl")
         assert spec.graphemes["ç"] == ["s̻"], (
-            f"mwl ç should be s̻ (not t͡s); got {spec.graphemes['ç']}"
+            f"mwl ç should be s̻; got {spec.graphemes['ç']}"
         )
 
     @pytest.mark.parametrize("word,expected", [
         # paroxytone default (vowel-final)
         ("casa",     0),   # ca-sa → syll 0
         ("lhéngua",  0),   # lhé-ngua → accent on first
-        # oxytone endings
+        # oxytone endings: consonant-final, incl. word-final ç
         ("falar",    1),   # fa-lar → final
-        ("faler",    1),   # fa-ler → final
+        ("rapaç",    1),   # ra-paç → final (Mirandese -ç where pt has -z)
+        # final nasals written -n (Asturleonese), not -m
+        ("camin",    1),   # ca-min → -in oxytone
+        ("naçon",    1),   # na-çon → -on (< Lat. -ōnem) oxytone
+        # written accents win
         ("mirandés", 2),   # mi-ra-ndés (3 sylls) → accent on last
         # tilde vowel as accent-bearer
         ("irmã",     1),   # ir-mã → accent on last (ã in marked_vowels)
@@ -279,6 +299,9 @@ class TestBarranquenhoStress:
         # paroxytone default (vowel-final)
         ("casa",   0),   # ca-sa → syll 0
         ("casas",  0),   # ca-sas → vowel+s penult (not in final_stress_endings)
+        # unmarked -em/-am stay paroxytone, as in Portuguese norms
+        ("homem",  0),   # ho-mem → penult
+        ("falam",  0),   # fa-lam → penult
         # oxytone endings
         ("falar",  1),   # fa-lar → final
         ("caju",   1),   # ca-ju → -u oxytone

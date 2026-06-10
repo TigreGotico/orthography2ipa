@@ -192,6 +192,6 @@
       "ũ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Derived from the Barranquenho orthographic convention (Convenção Ortográfica do Barranquenho 2025): written accent (acute/grave/circumflex/tilde) fixes stress; words ending in a vowel or vowel+s are paroxytone; other consonant-final words are oxytone. Mirrors the logic of g2p_barranquenho _stressed_index()."
+    "notes": "Portuguese accentuation norms as adopted by the Convenção Ortográfica do Barranquenho (2025): paroxytone default; written accent (acute, grave, circumflex, or the tonic-nasal tilde) overrides; final -i/-u/-r/-l/-z/-x, -im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   }
 }
