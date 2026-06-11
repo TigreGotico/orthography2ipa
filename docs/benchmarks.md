@@ -107,3 +107,39 @@ those without — the engine consults
 per-language path to a better number is richer spec data, not engine
 changes. The pt-BR/pt-AO/pt-TL rows lack positional vowel-reduction
 blocks; the en-US row reflects English orthography itself.
+
+## Agreement with espeak-ng
+
+[`scripts/espeak_agreement.py`](../scripts/espeak_agreement.py) compares
+this engine's output against espeak-ng on the same word lists. This is
+**not an accuracy benchmark** — espeak is not a gold standard. It
+answers a deployment question: a TTS model trained on espeak
+phonemization maps phoneme symbols to embedding IDs, so replacing its
+front-end requires symbol-level compatibility, not correctness.
+
+Signals: **exact** (identical transcription), **exact-nostress**
+(identical after stress-mark removal — espeak places stress inside the
+syllable, this engine before it), **segmental** (mean character
+similarity, stress-stripped), and **oov-rate** — the fraction of words
+whose transcription contains a symbol espeak never emits for that
+voice. Out-of-inventory symbols become unknown embedding IDs, so
+oov-rate is the hard-failure signal; the offending symbols are listed
+per run.
+
+`python scripts/espeak_agreement.py --lang <l> --limit 300`:
+
+| Lang | Voice | exact | exact-nostress | segmental | oov-rate | main OOV symbols |
+|---|---|---:|---:|---:|---:|---|
+| es | es | 0.05 | 0.55 | 0.92 | 0.00 | — |
+| pt-PT | pt | 0.00 | 0.12 | 0.78 | 0.04 | s̺ apical mark, precomposed ã |
+| pt-BR | pt-br | 0.00 | 0.02 | 0.71 | 0.37 | s̺, tie bar, ʎ, ʁ |
+| en | en-gb | 0.00 | 0.04 | 0.51 | 0.84 | æ |
+
+Reading the table: stress-mark placement alone rules out byte-exact
+replacement everywhere; segmental similarity shows how close the phone
+sequences are; the oov column decides deployability. A near-zero
+oov-rate (Spanish) means a symbol-mapping shim suffices; a high one
+(English — espeak-ng writes the TRAP vowel as ⟨a⟩ where this engine
+emits ⟨æ⟩) means a per-symbol translation table must be built and
+validated before any swap.
+
