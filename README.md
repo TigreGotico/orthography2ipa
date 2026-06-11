@@ -209,6 +209,15 @@ When a spec declares graphemes but no explicit allophone map, a baseline identit
 
 Component plugins that slot into the bundled engine's own logic use dedicated entry-point groups: per-language syllabifiers register under `orthography2ipa.syllabify` (e.g. `silabificador` for Portuguese) and are honoured by stress detection automatically.
 
+## Benchmarks
+
+The engine is evaluated against human-provenance gold sets only — the
+Portal da Língua Portuguesa lexicon (via
+[tugalex](https://github.com/TigreGotico/tugalex)), WikiPron, CMUdict
+and the Mirandese gold set. Datasets, sources, methodology and the
+reference PER/WER table live in [docs/benchmarks.md](docs/benchmarks.md);
+reproduce any row with `python scripts/benchmark.py`.
+
 ## Contributing
 
 To add a language, create `orthography2ipa/data/{code}.json` following `orthography2ipa/data/SCHEMA.md`. For dialects, use `graphemes_base`/`allophones_base` to inherit from the parent.

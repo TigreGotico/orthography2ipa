@@ -344,5 +344,13 @@
     "end_year": null
   },
   "glottolog_code": "finn1318",
-  "iso639_3": "fin"
+  "iso639_3": "fin",
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Finnish has categorical initial (first-syllable) stress. Vowel length (aa ee ii oo uu yy ää öö) marks quantity, not stress. Secondary stress falls on odd-numbered syllables (3rd, 5th…). Source: Karlsson (1999), Finnish: An Essential Grammar; Wikipedia: https://en.wikipedia.org/wiki/Finnish_phonology"
+  }
 }
