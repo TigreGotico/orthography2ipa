@@ -55,7 +55,9 @@
       "f"
     ],
     "g": [
-      "ɡ"
+      "ɡ",
+      "ɣ",
+      "x"
     ],
     "h": [
       "h"
@@ -199,7 +201,9 @@
     ],
     "ɡ": [
       "ɡ",
-      "k"
+      "k",
+      "ɣ",
+      "x"
     ],
     "f": [
       "f"
@@ -316,6 +320,9 @@
     "r": [
       "r",
       "ɾ"
+    ],
+    "ɣ": [
+      "ɣ"
     ]
   },
   "parent": "osx",
@@ -327,7 +334,7 @@
       "notes": "Descent from Old Saxon"
     }
   ],
-  "notes": "Low German (Plattdeutsch / Nedderdütsch). Descended from Old Saxon — NOT from Old High German. DID NOT UNDERGO the High German Consonant Shift: maken vs. German machen; water vs. German Wasser. Closely related to Dutch, Frisian, and Old English. Extremely diverse dialects across northern Germany and Netherlands. Now mostly spoken by elderly; listed as 'vulnerable' by UNESCO. Source: Gallée (1993), Robinson (1992).",
+  "notes": "Low German (Plattdeutsch / Nedderdütsch). Descended from Old Saxon — NOT from Old High German. DID NOT UNDERGO the High German Consonant Shift: maken vs. German machen; water vs. German Wasser. Closely related to Dutch, Frisian, and Old English. Extremely diverse dialects across northern Germany and Netherlands. Now mostly spoken by elderly; listed as 'vulnerable' by UNESCO. Source: Gallée (1993), Robinson (1992). G ALLOPHONY: word-initial [ɡ], intervocalic [ɣ], coda/word-final [x] or [ç] (front vowel context). Source: Gallée (1993).",
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "nds",
@@ -359,5 +366,24 @@
     "start_year": 1600,
     "end_year": null
   },
-  "glottolog_code": "lowg1239"
+  "glottolog_code": "lowg1239",
+  "positional_graphemes": {
+    "g": {
+      "word_initial": [
+        "ɡ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ],
+      "coda": [
+        "x"
+      ],
+      "word_final": [
+        "x"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    }
+  }
 }

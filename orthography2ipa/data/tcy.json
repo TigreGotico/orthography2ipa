@@ -144,6 +144,12 @@
     ],
     "h": [
       "h"
+    ],
+    "ĕ": [
+      "ɛ"
+    ],
+    "ŭ": [
+      "ɨ"
     ]
   },
   "allophones": {
@@ -281,6 +287,13 @@
     ],
     "oː": [
       "oː"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɨ": [
+      "ɨ",
+      "ɯ"
     ]
   },
   "ancestors": [
@@ -291,7 +304,7 @@
       "notes": "South Dravidian I branch, closely related to Kannada/Tamil"
     }
   ],
-  "notes": "Tulu (coastal Karnataka / Udupi / Mangaluru district). South Dravidian language; unwritten in daily practice but has traditional Tigaḷari script (Buddhist manuscripts). Usually written in Kannada script. Distinct from Kannada despite geographic closeness. Full aspirate series from Sanskrit contact.",
+  "notes": "Tulu (coastal Karnataka / Udupi / Mangaluru district). South Dravidian language; unwritten in daily practice but has traditional Tigaḷari script (Buddhist manuscripts). Usually written in Kannada script. Distinct from Kannada despite geographic closeness. Full aspirate series from Sanskrit contact. Additional vowels: ĕ /ɛ(ː)/ and ŭ /ɨ~ɯ/ (close central unrounded) are distinctive Tulu vowels beyond the Sanskrit/Kannada grid, prominent in word-final position.",
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "tcy",
