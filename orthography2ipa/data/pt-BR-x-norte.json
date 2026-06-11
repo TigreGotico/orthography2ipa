@@ -3,6 +3,7 @@
   "name": "Nortista/Amazônico Portuguese",
   "family": "Romance",
   "script": "Latin",
+  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -195,6 +196,7 @@
       "õj̃"
     ]
   },
+  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -321,8 +323,64 @@
       "dʒ"
     ]
   },
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "e": {
+      "pretonic": [
+        "ɛ"
+      ],
+      "word_final": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "ɔ"
+      ],
+      "word_final": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ]
+    }
+  },
   "parent": "pt-BR",
-  "notes": "Nortista/Amazônico (Belém, Manaus, Amazon region). No /t,d/ palatalisation, open pretonic vowels (like Northeast). Indigenous language substrate influence in some lexical and prosodic features. Tupí/Nheengatu contact.",
+  "notes": "Nortista / Amazônico (Belém, Manaus). Northeastern-type open pretonic vowels /e/ -> [ɛ], /o/ -> [ɔ]. Coda /S/ palatalised to [ʃ,ʒ] (Belém chiado, shared with Carioca). Unlike the Northeast proper, the North has high /t,d/ palatalisation before /i/ (ALiB: the North is the region of most expressive palatalisation), so palatalisation is RETAINED here (base default). Tupí/Nheengatu contact in prosody and lexicon.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -355,6 +413,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
+    },
+    {
+      "id": "noll2008",
+      "author": "Noll, V.",
+      "year": 2008,
+      "title": "O português brasileiro: formação e contrastes",
+      "publisher": "Globo",
+      "url": null,
+      "pages": null,
+      "notes": null
     }
   ],
   "wikipedia": [
@@ -365,5 +443,44 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

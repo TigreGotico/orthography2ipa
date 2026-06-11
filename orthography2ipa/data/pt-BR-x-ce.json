@@ -3,6 +3,7 @@
   "name": "Cearense Portuguese",
   "family": "Romance",
   "script": "Latin",
+  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -195,6 +196,7 @@
       "õj̃"
     ]
   },
+  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -315,8 +317,64 @@
       "ũ"
     ]
   },
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "e": {
+      "pretonic": [
+        "ɛ"
+      ],
+      "word_final": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "ɔ"
+      ],
+      "word_final": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "before_consonant": [
+        "h"
+      ],
+      "coda": [
+        "h"
+      ],
+      "word_final": [
+        "s"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "before_consonant": [
+        "h"
+      ],
+      "coda": [
+        "h"
+      ],
+      "word_final": [
+        "s"
+      ]
+    }
+  },
   "parent": "pt-BR",
-  "notes": "Cearense (Fortaleza). Northeastern type: no palatalisation, open pretonic vowels. Some tendency toward coda /s/ aspiration [h] in certain contexts (less systematic than Carioca chiado). Distinctive melodic prosody.",
+  "notes": "Cearense (Fortaleza). Northeastern-type open pretonic vowels /e/ -> [ɛ], /o/ -> [ɔ]. RESOLVED variability: ALiB and the Fortaleza urban norm make /t,d/ palatalisation before /i/ the prestige default (attributed to northern-dialect influence), so palatalisation is RETAINED (base default). Diagnostic coda /S/ aspiration -> [h] before a consonant (as costas -> [ˈkahtɐs]), distinct from both the alveolar [s] and the palatal chiado; word-final /S/ kept [s]. Distinctive melodic prosody.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -349,6 +407,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
     }
   ],
   "wikipedia": [
@@ -359,5 +427,44 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

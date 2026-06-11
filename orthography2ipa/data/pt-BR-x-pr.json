@@ -3,6 +3,7 @@
   "name": "Curitibano/Paranaense Portuguese",
   "family": "Romance",
   "script": "Latin",
+  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -195,6 +196,7 @@
       "õj̃"
     ]
   },
+  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -315,8 +317,51 @@
       "ũ"
     ]
   },
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "h",
+        "x",
+        "ʁ"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ],
+      "word_final": [
+        "ɾ"
+      ]
+    },
+    "t": {
+      "before_i": [
+        "t"
+      ]
+    },
+    "d": {
+      "before_i": [
+        "d"
+      ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "e"
+      ],
+      "word_final": [
+        "e"
+      ],
+      "posttonic": [
+        "e"
+      ]
+    }
+  },
   "parent": "pt-BR",
-  "notes": "Curitibano/Paranaense (Curitiba, Paraná). Transitional between Sulista and Paulistano. /t,d/ palatalisation present. Mixed rhotic patterns (some onset tap). Alveolar coda /s/. Slavic/Italian settler substrate in some phonetic features.",
+  "notes": "Curitibano / Paranaense (Curitiba, Paraná). Transitional Sulista–Paulistano. Encoded conservative default: non-palatalising /t,d/ and final /e/ often retained as [e] (the well-documented Curitiba 'e/o fechados'), with palatalisation present in younger and Paulista-influenced speech (noted). Coda /S/ alveolar; coda /R/ tap. Heterogeneous: Curitiba diverges from the more caipira-like Paraná interior. Slavic/Italian settler substrata.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -349,6 +394,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
+    },
+    {
+      "id": "noll2008",
+      "author": "Noll, V.",
+      "year": 2008,
+      "title": "O português brasileiro: formação e contrastes",
+      "publisher": "Globo",
+      "url": null,
+      "pages": null,
+      "notes": null
     }
   ],
   "wikipedia": [
@@ -359,5 +424,44 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

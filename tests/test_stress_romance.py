@@ -308,16 +308,16 @@ class TestPtBRReduction:
         spec = get("pt-BR")
         pg = spec.positional_graphemes or {}
         e_rules = pg.get("e", {})
-        assert "i" in e_rules.get("word_final", []), (
-            "pt-BR word-final /e/ should reduce to [i]"
+        assert "ɪ" in e_rules.get("word_final", []), (
+            "pt-BR word-final /e/ should reduce to [ɪ] (Barbosa & Albano 2004)"
         )
 
     def test_ptbr_word_final_o_reduces_to_u(self):
         spec = get("pt-BR")
         pg = spec.positional_graphemes or {}
         o_rules = pg.get("o", {})
-        assert "u" in o_rules.get("word_final", []), (
-            "pt-BR word-final /o/ should reduce to [u]"
+        assert "ʊ" in o_rules.get("word_final", []), (
+            "pt-BR word-final /o/ should reduce to [ʊ] (Barbosa & Albano 2004)"
         )
 
     def test_ptbr_word_final_a_reduces_to_schwa(self):
@@ -332,16 +332,16 @@ class TestPtBRReduction:
         spec = get("pt-BR")
         pg = spec.positional_graphemes or {}
         e_rules = pg.get("e", {})
-        assert "i" in e_rules.get("posttonic", []), (
-            "pt-BR posttonic /e/ should reduce to [i]"
+        assert "ɪ" in e_rules.get("posttonic", []), (
+            "pt-BR posttonic /e/ should reduce to [ɪ] (Barbosa & Albano 2004)"
         )
 
     def test_ptbr_posttonic_o_reduces_to_u(self):
         spec = get("pt-BR")
         pg = spec.positional_graphemes or {}
         o_rules = pg.get("o", {})
-        assert "u" in o_rules.get("posttonic", []), (
-            "pt-BR posttonic /o/ should reduce to [u]"
+        assert "ʊ" in o_rules.get("posttonic", []), (
+            "pt-BR posttonic /o/ should reduce to [ʊ] (Barbosa & Albano 2004)"
         )
 
     def test_ptbr_posttonic_a_reduces_to_schwa(self):
