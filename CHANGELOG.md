@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.5.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.4.0a1...1.5.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): romance stress blocks and brazilian-portuguese reduction [\#51](https://github.com/TigreGotico/orthography2ipa/pull/51) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.4.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.3.1a2...1.4.0a1)
