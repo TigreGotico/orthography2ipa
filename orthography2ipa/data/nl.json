@@ -439,6 +439,14 @@
       "default": [
         "ɦ"
       ]
+    },
+    "sch": {
+      "word_final": [
+        "s"
+      ],
+      "default": [
+        "sx"
+      ]
     }
   },
   "timespan": {

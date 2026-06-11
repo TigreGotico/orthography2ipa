@@ -115,6 +115,7 @@
       "ʎ"
     ],
     "nh": [
+      "ŋ",
       "ɲ"
     ],
     "rr": [
@@ -267,6 +268,9 @@
     ],
     "u": [
       "u"
+    ],
+    "ŋ": [
+      "ŋ"
     ]
   },
   "positional_graphemes": {
@@ -359,7 +363,7 @@
       "notes": "Lusitanian substrate: southern Gallaecia overlap"
     },
     {
-      "code": "xsb",
+      "code": "gem-x-suebi",
       "role": "superstrate",
       "weight": 0.06,
       "notes": "Suebi superstrate: STRONGEST in Galicia — capital at Braga; Suevic kingdom 411-585 CE; cf. Piel (1937)"

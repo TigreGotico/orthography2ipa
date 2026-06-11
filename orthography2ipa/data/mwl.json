@@ -133,6 +133,54 @@
     ],
     "ç": [
       "s̻"
+    ],
+    "c": [
+      "k",
+      "s̻"
+    ],
+    "z": [
+      "z̻"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ]
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s̻"
+      ],
+      "before_i": [
+        "s̻"
+      ]
+    },
+    "z": {
+      "word_initial": [
+        "z̻"
+      ],
+      "intervocalic": [
+        "z̻"
+      ],
+      "word_final": [
+        "z̻"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    }
+  },
+  "allophones": {
+    "ʒ": [
+      "ʒ"
     ]
   }
 }

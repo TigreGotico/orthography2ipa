@@ -391,5 +391,10 @@
     "end_year": null
   },
   "glottolog_code": "panj1256",
-  "iso639_3": "pan"
+  "iso639_3": "pan",
+  "tone_inventory": {
+    "˥": "high",
+    "˧": "mid (neutral)",
+    "˩": "low"
+  }
 }

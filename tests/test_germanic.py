@@ -667,10 +667,10 @@ class TestAfrikaans:
 
     # --- Consonants ---
 
-    def test_g_includes_velar_fricative(self):
-        """<g> in Afrikaans includes /ɣ/ (voiced velar fricative), inherited from Dutch."""
+    def test_g_voiceless_velar(self):
+        """<g> in Afrikaans is the voiceless velar/uvular fricative /x/ (not voiced /ɣ/)."""
         g = _grapheme(self._spec, "g")
-        _assert_contains(g, "ɣ", label="af g includes ɣ")
+        _assert_first(g, "x", label="af g first value x")
 
     def test_v_is_labiodental(self):
         """<v> → /f/ or /v/ in Afrikaans (e.g., *van*, *veld*)."""
@@ -1097,9 +1097,9 @@ class TestIcelandic:
         """<í> → /iː/ (long high front vowel, e.g., *líf*)."""
         _assert_first(_grapheme(self._spec, "í"), "iː", label="is í")
 
-    def test_o_acute_is_long_mid(self):
-        """<ó> → /oː/ (e.g., *fór*, *ló*)."""
-        _assert_first(_grapheme(self._spec, "ó"), "oː", label="is ó")
+    def test_o_acute_is_diphthong(self):
+        """Icelandic ó is a diphthong [ou] (Árnason 2011), not a monophthong [oː]."""
+        _assert_first(_grapheme(self._spec, "ó"), "ou", label="is ó")
 
     def test_u_acute_is_long_high(self):
         """<ú> → /uː/ (e.g., *þú*, *búa*)."""
@@ -1267,8 +1267,8 @@ class TestWestFrisian:
         _assert_first(_grapheme(self._spec, "ô"), "oː", label="fy ô")
 
     def test_u_circumflex(self):
-        """<û> → /yː/ — long close front rounded."""
-        _assert_first(_grapheme(self._spec, "û"), "yː", label="fy û")
+        """<û> → /uː/ — long close back rounded (hûs [huːs]); ú is /yː/."""
+        _assert_first(_grapheme(self._spec, "û"), "uː", label="fy û")
 
     # --- Breaking diphthongs (hallmark of Frisian) ---
 

@@ -2,7 +2,7 @@
   "code": "brx",
   "name": "Bodo",
   "family": "Tibeto-Burman",
-  "script": "Devanagari",
+  "script": "Latin",
   "graphemes": {
     "a": [
       "a"
@@ -242,8 +242,7 @@
   ],
   "notes": "Bodo (Assam, India). Tibeto-Burman, Boro-Garo branch. Phonemic tonal distinction (falling vs. level). Written in Devanagari (official since 2003). Aspirated and plain stops both phonemic.",
   "quality": "research",
-  "script_type": "abugida",
-  "inherent_vowel": "ə",
+  "script_type": "alphabet",
   "iso639_3": "brx",
   "sources": [
     {

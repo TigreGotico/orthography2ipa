@@ -167,9 +167,9 @@ class TestWelsh:
         """⟨ŵ⟩ should map to /uː/ (long close back rounded)."""
         _assert_first(_grapheme(self.spec, "ŵ"), "uː", label="cy:ŵ")
 
-    def test_circumflex_y_gives_long_schwa(self):
-        """⟨ŷ⟩ should map to /əː/ (long schwa / long central mid)."""
-        _assert_first(_grapheme(self.spec, "ŷ"), "əː", label="cy:ŷ")
+    def test_circumflex_y_gives_long_central(self):
+        """⟨ŷ⟩ maps to /ɨː/ (long close central — the 'clear' long y, North Welsh)."""
+        _assert_first(_grapheme(self.spec, "ŷ"), "ɨː", label="cy:ŷ")
 
     # ── Consonants ──────────────────────────────────────────────────────────
 

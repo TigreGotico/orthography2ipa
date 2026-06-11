@@ -433,10 +433,12 @@
     },
     "ch": {
       "after_vowel": [
+        "x",
         "ç"
       ],
       "word_initial": [
-        "k"
+        "k",
+        "ç"
       ],
       "default": [
         "ç"
