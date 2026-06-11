@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.4.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.3.1a2...1.4.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): from-start stress anchoring and fixed-stress language blocks [\#50](https://github.com/TigreGotico/orthography2ipa/pull/50) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.3.1a2](https://github.com/TigreGotico/orthography2ipa/tree/1.3.1a2) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.3.1a1...1.3.1a2)
