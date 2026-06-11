@@ -1,6 +1,6 @@
 {
   "code": "ast-x-occidental",
-  "name": "Western Asturian",
+  "name": "Western Asturian-Leonese",
   "family": "Asturleonese",
   "script": "Latin",
   "parent": "ast",
@@ -8,19 +8,53 @@
   "allophones_base": "ast",
   "positional_graphemes_base": "ast",
   "graphemes": {
-    "ḷḷ": [
+    "x": [
+      "ʃ"
+    ],
+    "ll": [
+      "ʎ"
+    ],
+    "ch": [
       "tʃ"
     ],
+    "y": [
+      "ʝ"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "ei": [
+      "ei̯"
+    ],
+    "ou": [
+      "ou̯"
+    ],
+    "gü": [
+      "gw"
+    ],
+    "gu": [
+      "g"
+    ],
     "l.l": [
-      "tʃ"
+      "ts"
+    ],
+    "ts": [
+      "ts"
     ]
+  },
+  "positional_graphemes": {
+    "o": {
+      "word_final": [
+        "u"
+      ]
+    }
   },
   "ancestors": [
     {
-      "code": "ast",
+      "code": "ast-x-leon",
       "role": "parent",
-      "weight": 0.9,
-      "notes": "Central/Standard Asturian, immediate parent variety."
+      "weight": 0.85,
+      "notes": "Western Leonese (leonés occidental) as described in Morala & Egido (2009) and the Propuesta de Norma Ortográfica."
     },
     {
       "code": "cel-x-gallaecia",
@@ -35,24 +69,32 @@
       "notes": "Suebi superstrate, stronger in western Asturias (Suebi kingdom centred in Gallaecia)."
     }
   ],
-  "notes": "Western Asturian (Asturianu occidental). Spoken in the western parishes of Asturias, bordering Galicia. KEY DIALECTAL FEATURES: (1) Latin F- aspiration: word-initial /f/ → [h] (e.g. 'filu' → [hiɾu]), written ⟨h⟩ in this dialect — shared with Western Galician, Gascon, and Medieval Castilian. (2) Che vaqueira: ⟨ḷḷ⟩ / ⟨l.l⟩ = a palato-alveolar affricate [tʃ] from Latin PL-, CL-, FL- (e.g. 'ḷḷover' < PLOVERE), a hallmark of the vaqueiros de alzada. (3) ⟨h⟩ = [h] (phonemic aspiration, unlike silent h of Central). (4) Some degree of l-frication absent in central varieties. Sources: García Arias (1974), Neira Martínez (1955), Canellada (1944).",
+  "notes": "Western Asturian-Leonese (Laciana, Alto Sil, Babia, Cabreira, Cepeda). Grounded in Morala & Egido (2009) and the Propuesta de Norma Ortográfica. WESTERN-SPECIFIC FEATURES: (1) DECREASING DIPHTHONGS ⟨ei⟩=/ei̯/, ⟨ou⟩=/ou̯/: *queisu, poucu, cabeiru, roupa, outru, Cabreira* — the most diagnostic marker of western Leonese, absent in eastern varieties (Source A p. 8; Source B §3.2). CONFIDENCE: HIGH. (2) FINAL -u CLOSURE: word-final Latin -O → /u/: *casu, xeitu, territoriu*. -o is legitimate for zones preserving it but -u is the western standard (Source A p. 10; Source B §2.4). Encoded as positional rule: word-final ⟨o⟩ → [u]. CONFIDENCE: HIGH. (3) ⟨gü⟩ + e/i → /gw/: *güerta, güeyu, güelpe* — diéresis obligatory; against institutional ⟨gerra, geyu⟩ (Source B §2.1, §6.3). CONFIDENCE: HIGH. (4) ⟨gu⟩ + e/i → /g/: *guerra* — standard Hispanic convention retained (Source B §2.1). (5) ⟨ch-⟩ = /tʃ/ for PL-/CL-/FL-: *chamar, chover, chegar* — the western standard (Source A p. 16; Source B §3.5). (6) ⟨-e⟩ maintained after /ʃ/: *viaxe, peixe, imaxe* — institutional model stripping /-e/ condemned as non-patrimonial (Source B §4.3; Source A p. 27). CONFIDENCE: HIGH. LACIANA/ALTO SIL SUB-VARIETY ONLY: (7) ⟨l.l⟩ and ⟨ts⟩ = /ts/ (che vaqueira) from Latin L- initial and -LL- geminate only — *l.levar/tsabor* (L-), *botiel.los/vatse* (-LL-). NOT from -LJ- or PL- (Source A p. 9; Source B §3.1). CRITICAL: che vaqueira ≠ /tʃ/; ts/l.l forms must not be merged with ch- forms. (8) -NN- > /n/ (simplified): *cabana, pena, panu* in NW zone (Source A p. 9; Source B §3.6). -KT- > /it/: *teitu, muito* — western standard (Source A p. 10; Source B §3.3). EASTERN DISTINCTION: Eastern Leonese lacks ei/ou diphthongs (monophthongised) and uses -o final.",
   "sources": [
+    {
+      "id": "morala_egido2009",
+      "author": "Morala Rodríguez, J.R. & Egido Fernández, M.C.",
+      "year": 2009,
+      "title": "A vueltas con una norma para el leonés",
+      "publisher": "Instituto Castellano y Leonés de la Lengua, Colección Beltenebros 23",
+      "pages": "209-241",
+      "notes": "ISBN: 978-84-936383-8-2. Descriptive survey; confirms ei/ou diphthongs as most diagnostic western Leonese marker (p. 8)."
+    },
+    {
+      "id": "propuesta_norma_ortografica",
+      "author": "Anonymous",
+      "year": 2010,
+      "title": "Propuesta de Norma Ortográfica para el Leonés",
+      "publisher": "Unpublished markdown document",
+      "pages": null,
+      "notes": "Prescriptive proposal explicitly using western Leonese as base; mandates gü/gu retention, ei/ou, -u final. Year is approximate (undated document)."
+    },
     {
       "id": "garcia_arias2003",
       "author": "García Arias, X.Ll.",
       "year": 2003,
       "title": "Gramática histórica de la lengua asturiana",
       "publisher": "Academia de la Llingua Asturiana",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "penny2002",
-      "author": "Penny, R.",
-      "year": 2002,
-      "title": "A History of the Spanish Language",
-      "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
       "notes": null
