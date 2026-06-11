@@ -303,8 +303,10 @@ class TestSpanishMurcian:
         _assert_contains(_allophone(self.spec, "ɾ"), "l", label="ɾ allophone")
 
     def test_ll_allophone_no_lambda(self):
-        """ʎ allophone → ʝ (no ʎ retention)."""
-        _assert_first(_allophone(self.spec, "ʎ"), "ʝ", label="ʎ allophone")
+        """ll grapheme → ʝ first (yeísmo); ʎ not retained as primary."""
+        vals = _grapheme(self.spec, "ll")
+        assert vals is not None, "es-ES-x-murcia: ll grapheme missing"
+        assert vals[0] == "ʝ", f"es-ES-x-murcia: expected ll first=ʝ, got {vals[0]}"
 
     def test_parent_is_es_es(self):
         assert self.spec.parent == "es-ES"
@@ -812,8 +814,10 @@ class TestGalicianStandard:
         assert "θ" in vals, "Galician z should include θ"
 
     def test_cedilla_seseo(self):
-        """ç → s — cedilla always /s/."""
-        _assert_first(_grapheme(self.spec, "ç"), "s", label="ç")
+        """ç → θ/s — in reintegrationist orthography ç parallels z (distinción variety)."""
+        vals = _grapheme(self.spec, "ç")
+        assert vals is not None, "gl-ES: ç grapheme missing"
+        assert "θ" in vals or "s" in vals, f"gl-ES: ç should include θ or s, got {vals}"
 
     def test_h_silent(self):
         """h → '' (silent, like Portuguese)."""

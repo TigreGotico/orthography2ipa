@@ -1,287 +1,287 @@
 {
-  "code": "uk",
-  "name": "Ukrainian",
-  "family": "Slavic",
-  "script": "Cyrillic",
-  "graphemes": {
-    "а": [
-      "ɑ"
-    ],
-    "е": [
-      "ɛ"
-    ],
-    "є": [
-      "jɛ"
-    ],
-    "и": [
-      "ɪ"
-    ],
-    "і": [
-      "i"
-    ],
-    "ї": [
-      "ji"
-    ],
-    "о": [
-      "ɔ"
-    ],
-    "у": [
-      "u"
-    ],
-    "ю": [
-      "ju"
-    ],
-    "я": [
-      "jɑ"
-    ],
-    "б": [
-      "b"
-    ],
-    "в": [
-      "ʋ"
-    ],
-    "г": [
-      "ɦ"
-    ],
-    "ґ": [
-      "ɡ"
-    ],
-    "д": [
-      "d"
-    ],
-    "ж": [
-      "ʒ"
-    ],
-    "з": [
-      "z"
-    ],
-    "й": [
-      "j"
-    ],
-    "к": [
-      "k"
-    ],
-    "л": [
-      "l"
-    ],
-    "м": [
-      "m"
-    ],
-    "н": [
-      "n"
-    ],
-    "п": [
-      "p"
-    ],
-    "р": [
-      "r"
-    ],
-    "с": [
-      "s"
-    ],
-    "т": [
-      "t"
-    ],
-    "ф": [
-      "f"
-    ],
-    "х": [
-      "x"
-    ],
-    "ц": [
-      "ts"
-    ],
-    "ч": [
-      "tʃ"
-    ],
-    "ш": [
-      "ʃ"
-    ],
-    "щ": [
-      "ʃtʃ"
-    ],
-    "ь": [
-      "ʲ"
-    ],
-    "дь": [
-      "dʲ"
-    ],
-    "ть": [
-      "tʲ"
-    ],
-    "нь": [
-      "nʲ"
-    ],
-    "ль": [
-      "lʲ"
-    ],
-    "сь": [
-      "sʲ"
-    ],
-    "зь": [
-      "zʲ"
-    ],
-    "ць": [
-      "tsʲ"
-    ],
-    "'": [
-      ""
-    ]
-  },
-  "allophones": {
-    "b": [
-      "b"
-    ],
-    "d": [
-      "d"
-    ],
-    "dʲ": [
-      "dʲ"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "tʲ": [
-      "tʲ"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɦ": [
-      "ɦ",
-      "x"
-    ],
-    "ʋ": [
-      "ʋ",
-      "w",
-      "u̯"
-    ],
-    "f": [
-      "f"
-    ],
-    "s": [
-      "s"
-    ],
-    "sʲ": [
-      "sʲ"
-    ],
-    "z": [
-      "z"
-    ],
-    "zʲ": [
-      "zʲ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʒ": [
-      "ʒ"
-    ],
-    "x": [
-      "x"
-    ],
-    "ts": [
-      "ts"
-    ],
-    "tsʲ": [
-      "tsʲ"
-    ],
-    "tʃ": [
-      "tʃ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ŋ"
-    ],
-    "nʲ": [
-      "nʲ"
-    ],
-    "l": [
-      "l",
-      "ɫ"
-    ],
-    "lʲ": [
-      "lʲ"
-    ],
-    "r": [
-      "r"
-    ],
-    "j": [
-      "j"
-    ],
-    "ɑ": [
-      "ɑ"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "ɪ": [
-      "ɪ"
-    ],
-    "i": [
-      "i"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "u": [
-      "u"
-    ]
-  },
-  "parent": "ine",
-  "notes": "Standard Ukrainian. Key differences from Russian: ⟨г⟩ = [ɦ] (not [ɡ]), ⟨ґ⟩ = [ɡ] as separate letter, ⟨в⟩ = [ʋ] approximant, no vowel reduction (no аканье).",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "comrie_corbett1993",
-      "author": "Comrie, B. & Corbett, G. (eds.)",
-      "year": 1993,
-      "title": "The Slavonic Languages",
-      "publisher": "Routledge",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+    "code": "uk",
+    "name": "Ukrainian",
+    "family": "Slavic",
+    "script": "Cyrillic",
+    "graphemes": {
+        "а": [
+            "ɑ"
+        ],
+        "е": [
+            "ɛ"
+        ],
+        "є": [
+            "jɛ"
+        ],
+        "и": [
+            "ɪ"
+        ],
+        "і": [
+            "i"
+        ],
+        "ї": [
+            "ji"
+        ],
+        "о": [
+            "ɔ"
+        ],
+        "у": [
+            "u"
+        ],
+        "ю": [
+            "ju"
+        ],
+        "я": [
+            "jɑ"
+        ],
+        "б": [
+            "b"
+        ],
+        "в": [
+            "ʋ"
+        ],
+        "г": [
+            "ɦ"
+        ],
+        "ґ": [
+            "ɡ"
+        ],
+        "д": [
+            "d"
+        ],
+        "ж": [
+            "ʒ"
+        ],
+        "з": [
+            "z"
+        ],
+        "й": [
+            "j"
+        ],
+        "к": [
+            "k"
+        ],
+        "л": [
+            "l"
+        ],
+        "м": [
+            "m"
+        ],
+        "н": [
+            "n"
+        ],
+        "п": [
+            "p"
+        ],
+        "р": [
+            "r"
+        ],
+        "с": [
+            "s"
+        ],
+        "т": [
+            "t"
+        ],
+        "ф": [
+            "f"
+        ],
+        "х": [
+            "x"
+        ],
+        "ц": [
+            "ts"
+        ],
+        "ч": [
+            "tʃ"
+        ],
+        "ш": [
+            "ʃ"
+        ],
+        "щ": [
+            "ʃtʃ"
+        ],
+        "ь": [
+            "ʲ"
+        ],
+        "дь": [
+            "dʲ"
+        ],
+        "ть": [
+            "tʲ"
+        ],
+        "нь": [
+            "nʲ"
+        ],
+        "ль": [
+            "lʲ"
+        ],
+        "сь": [
+            "sʲ"
+        ],
+        "зь": [
+            "zʲ"
+        ],
+        "ць": [
+            "tsʲ"
+        ],
+        "'": [
+            ""
+        ]
     },
-    {
-      "id": "shevelov1993",
-      "author": "Shevelov, G.Y.",
-      "year": 1993,
-      "title": "Ukrainian",
-      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "allophones": {
+        "b": [
+            "b"
+        ],
+        "d": [
+            "d"
+        ],
+        "dʲ": [
+            "dʲ"
+        ],
+        "ɡ": [
+            "ɡ"
+        ],
+        "p": [
+            "p"
+        ],
+        "t": [
+            "t"
+        ],
+        "tʲ": [
+            "tʲ"
+        ],
+        "k": [
+            "k"
+        ],
+        "ɦ": [
+            "ɦ",
+            "x"
+        ],
+        "ʋ": [
+            "ʋ",
+            "w",
+            "u̯"
+        ],
+        "f": [
+            "f"
+        ],
+        "s": [
+            "s"
+        ],
+        "sʲ": [
+            "sʲ"
+        ],
+        "z": [
+            "z"
+        ],
+        "zʲ": [
+            "zʲ"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "ʒ": [
+            "ʒ"
+        ],
+        "x": [
+            "x"
+        ],
+        "ts": [
+            "ts"
+        ],
+        "tsʲ": [
+            "tsʲ"
+        ],
+        "tʃ": [
+            "tʃ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ŋ"
+        ],
+        "nʲ": [
+            "nʲ"
+        ],
+        "l": [
+            "l",
+            "ɫ"
+        ],
+        "lʲ": [
+            "lʲ"
+        ],
+        "r": [
+            "r"
+        ],
+        "j": [
+            "j"
+        ],
+        "ɑ": [
+            "ɑ"
+        ],
+        "ɛ": [
+            "ɛ"
+        ],
+        "ɪ": [
+            "ɪ"
+        ],
+        "i": [
+            "i"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "u": [
+            "u"
+        ]
     },
-    {
-      "id": "ladefoged_maddieson1996",
-      "author": "Ladefoged, P. & Maddieson, I.",
-      "year": 1996,
-      "title": "The Sounds of the World's Languages",
-      "publisher": "Blackwell",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Ukrainian_language",
-    "https://uk.wikipedia.org/wiki/Українська_мова"
-  ],
-  "timespan": {
-    "start_year": 1400,
-    "end_year": null
-  },
-  "glottolog_code": "ukra1253",
-  "iso639_3": "ukr"
+    "parent": "sla",
+    "notes": "Standard Ukrainian. Key differences from Russian: ⟨г⟩ = [ɦ] (not [ɡ]), ⟨ґ⟩ = [ɡ] as separate letter, ⟨в⟩ = [ʋ] approximant, no vowel reduction (no аканье).",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "comrie_corbett1993",
+            "author": "Comrie, B. & Corbett, G. (eds.)",
+            "year": 1993,
+            "title": "The Slavonic Languages",
+            "publisher": "Routledge",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+        },
+        {
+            "id": "shevelov1993",
+            "author": "Shevelov, G.Y.",
+            "year": 1993,
+            "title": "Ukrainian",
+            "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "ladefoged_maddieson1996",
+            "author": "Ladefoged, P. & Maddieson, I.",
+            "year": 1996,
+            "title": "The Sounds of the World's Languages",
+            "publisher": "Blackwell",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Ukrainian_language",
+        "https://uk.wikipedia.org/wiki/Українська_мова"
+    ],
+    "timespan": {
+        "start_year": 1400,
+        "end_year": null
+    },
+    "glottolog_code": "ukra1253",
+    "iso639_3": "ukr"
 }

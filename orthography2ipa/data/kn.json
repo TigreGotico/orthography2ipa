@@ -1,410 +1,410 @@
 {
-  "code": "kn",
-  "name": "Kannada",
-  "family": "Dravidian",
-  "script": "Kannada",
-  "graphemes": {
-    "ಅ": [
-      "a"
-    ],
-    "ಆ": [
-      "aː"
-    ],
-    "ಇ": [
-      "i"
-    ],
-    "ಈ": [
-      "iː"
-    ],
-    "ಉ": [
-      "u"
-    ],
-    "ಊ": [
-      "uː"
-    ],
-    "ಋ": [
-      "r̩"
-    ],
-    "ಎ": [
-      "e"
-    ],
-    "ಏ": [
-      "eː"
-    ],
-    "ಐ": [
-      "ai"
-    ],
-    "ಒ": [
-      "o"
-    ],
-    "ಓ": [
-      "oː"
-    ],
-    "ಔ": [
-      "au"
-    ],
-    "ಾ": [
-      "aː"
-    ],
-    "ಿ": [
-      "i"
-    ],
-    "ೀ": [
-      "iː"
-    ],
-    "ು": [
-      "u"
-    ],
-    "ೂ": [
-      "uː"
-    ],
-    "ೃ": [
-      "r̩"
-    ],
-    "ೆ": [
-      "e"
-    ],
-    "ೇ": [
-      "eː"
-    ],
-    "ೈ": [
-      "ai"
-    ],
-    "ೊ": [
-      "o"
-    ],
-    "ೋ": [
-      "oː"
-    ],
-    "ೌ": [
-      "au"
-    ],
-    "ಂ": [
-      "̃ŋ"
-    ],
-    "ಃ": [
-      "h"
-    ],
-    "್": [
-      ""
-    ],
-    "ಕ": [
-      "k"
-    ],
-    "ಖ": [
-      "kʰ"
-    ],
-    "ಗ": [
-      "ɡ"
-    ],
-    "ಘ": [
-      "ɡʱ"
-    ],
-    "ಙ": [
-      "ŋ"
-    ],
-    "ಚ": [
-      "tɕ"
-    ],
-    "ಛ": [
-      "tɕʰ"
-    ],
-    "ಜ": [
-      "dʑ"
-    ],
-    "ಝ": [
-      "dʑʱ"
-    ],
-    "ಞ": [
-      "ɲ"
-    ],
-    "ಟ": [
-      "ʈ"
-    ],
-    "ಠ": [
-      "ʈʰ"
-    ],
-    "ಡ": [
-      "ɖ"
-    ],
-    "ಢ": [
-      "ɖʱ"
-    ],
-    "ಣ": [
-      "ɳ"
-    ],
-    "ತ": [
-      "t̪"
-    ],
-    "ಥ": [
-      "t̪ʰ"
-    ],
-    "ದ": [
-      "d̪"
-    ],
-    "ಧ": [
-      "d̪ʱ"
-    ],
-    "ನ": [
-      "n"
-    ],
-    "ಪ": [
-      "p"
-    ],
-    "ಫ": [
-      "pʰ"
-    ],
-    "ಬ": [
-      "b"
-    ],
-    "ಭ": [
-      "bʱ"
-    ],
-    "ಮ": [
-      "m"
-    ],
-    "ಯ": [
-      "j"
-    ],
-    "ರ": [
-      "r"
-    ],
-    "ಲ": [
-      "l"
-    ],
-    "ವ": [
-      "ʋ"
-    ],
-    "ಳ": [
-      "ɭ"
-    ],
-    "ಱ": [
-      "r"
-    ],
-    "ಶ": [
-      "ʃ"
-    ],
-    "ಷ": [
-      "ʂ"
-    ],
-    "ಸ": [
-      "s"
-    ],
-    "ಹ": [
-      "h"
-    ],
-    "ೞ": [
-      "ɻ"
-    ]
-  },
-  "allophones": {
-    "k": [
-      "k"
-    ],
-    "kʰ": [
-      "kʰ"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "ɡʱ": [
-      "ɡʱ"
-    ],
-    "tɕ": [
-      "tɕ"
-    ],
-    "tɕʰ": [
-      "tɕʰ"
-    ],
-    "dʑ": [
-      "dʑ"
-    ],
-    "dʑʱ": [
-      "dʑʱ"
-    ],
-    "ʈ": [
-      "ʈ"
-    ],
-    "ʈʰ": [
-      "ʈʰ"
-    ],
-    "ɖ": [
-      "ɖ"
-    ],
-    "ɖʱ": [
-      "ɖʱ"
-    ],
-    "t̪": [
-      "t̪"
-    ],
-    "t̪ʰ": [
-      "t̪ʰ"
-    ],
-    "d̪": [
-      "d̪"
-    ],
-    "d̪ʱ": [
-      "d̪ʱ"
-    ],
-    "p": [
-      "p"
-    ],
-    "pʰ": [
-      "pʰ"
-    ],
-    "b": [
-      "b"
-    ],
-    "bʱ": [
-      "bʱ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ɳ",
-      "ŋ"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "ɳ": [
-      "ɳ"
-    ],
-    "ɕ": [
-      "ɕ"
-    ],
-    "ʂ": [
-      "ʂ"
-    ],
-    "s": [
-      "s"
-    ],
-    "h": [
-      "h"
-    ],
-    "r": [
-      "r"
-    ],
-    "l": [
-      "l"
-    ],
-    "ɭ": [
-      "ɭ"
-    ],
-    "ʋ": [
-      "ʋ",
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "a": [
-      "a"
-    ],
-    "aː": [
-      "aː"
-    ],
-    "i": [
-      "i"
-    ],
-    "iː": [
-      "iː"
-    ],
-    "u": [
-      "u"
-    ],
-    "uː": [
-      "uː"
-    ],
-    "e": [
-      "e"
-    ],
-    "eː": [
-      "eː"
-    ],
-    "o": [
-      "o"
-    ],
-    "oː": [
-      "oː"
-    ],
-    "ai": [
-      "ai"
-    ],
-    "au": [
-      "au"
-    ],
-    "ɻ": [
-      "ɻ"
-    ]
-  },
-  "ancestors": [
-    {
-      "code": "ta-x-proto-dravidian",
-      "role": "parent",
-      "weight": 0.85,
-      "notes": "Descent from Proto-South-Dravidian"
+    "code": "kn",
+    "name": "Kannada",
+    "family": "Dravidian",
+    "script": "Kannada",
+    "graphemes": {
+        "ಅ": [
+            "a"
+        ],
+        "ಆ": [
+            "aː"
+        ],
+        "ಇ": [
+            "i"
+        ],
+        "ಈ": [
+            "iː"
+        ],
+        "ಉ": [
+            "u"
+        ],
+        "ಊ": [
+            "uː"
+        ],
+        "ಋ": [
+            "r̩"
+        ],
+        "ಎ": [
+            "e"
+        ],
+        "ಏ": [
+            "eː"
+        ],
+        "ಐ": [
+            "ai"
+        ],
+        "ಒ": [
+            "o"
+        ],
+        "ಓ": [
+            "oː"
+        ],
+        "ಔ": [
+            "au"
+        ],
+        "ಾ": [
+            "aː"
+        ],
+        "ಿ": [
+            "i"
+        ],
+        "ೀ": [
+            "iː"
+        ],
+        "ು": [
+            "u"
+        ],
+        "ೂ": [
+            "uː"
+        ],
+        "ೃ": [
+            "r̩"
+        ],
+        "ೆ": [
+            "e"
+        ],
+        "ೇ": [
+            "eː"
+        ],
+        "ೈ": [
+            "ai"
+        ],
+        "ೊ": [
+            "o"
+        ],
+        "ೋ": [
+            "oː"
+        ],
+        "ೌ": [
+            "au"
+        ],
+        "ಂ": [
+            "̃ŋ"
+        ],
+        "ಃ": [
+            "h"
+        ],
+        "್": [
+            ""
+        ],
+        "ಕ": [
+            "k"
+        ],
+        "ಖ": [
+            "kʰ"
+        ],
+        "ಗ": [
+            "ɡ"
+        ],
+        "ಘ": [
+            "ɡʱ"
+        ],
+        "ಙ": [
+            "ŋ"
+        ],
+        "ಚ": [
+            "tɕ"
+        ],
+        "ಛ": [
+            "tɕʰ"
+        ],
+        "ಜ": [
+            "dʑ"
+        ],
+        "ಝ": [
+            "dʑʱ"
+        ],
+        "ಞ": [
+            "ɲ"
+        ],
+        "ಟ": [
+            "ʈ"
+        ],
+        "ಠ": [
+            "ʈʰ"
+        ],
+        "ಡ": [
+            "ɖ"
+        ],
+        "ಢ": [
+            "ɖʱ"
+        ],
+        "ಣ": [
+            "ɳ"
+        ],
+        "ತ": [
+            "t̪"
+        ],
+        "ಥ": [
+            "t̪ʰ"
+        ],
+        "ದ": [
+            "d̪"
+        ],
+        "ಧ": [
+            "d̪ʱ"
+        ],
+        "ನ": [
+            "n"
+        ],
+        "ಪ": [
+            "p"
+        ],
+        "ಫ": [
+            "pʰ"
+        ],
+        "ಬ": [
+            "b"
+        ],
+        "ಭ": [
+            "bʱ"
+        ],
+        "ಮ": [
+            "m"
+        ],
+        "ಯ": [
+            "j"
+        ],
+        "ರ": [
+            "r"
+        ],
+        "ಲ": [
+            "l"
+        ],
+        "ವ": [
+            "ʋ"
+        ],
+        "ಳ": [
+            "ɭ"
+        ],
+        "ಱ": [
+            "r"
+        ],
+        "ಶ": [
+            "ʃ"
+        ],
+        "ಷ": [
+            "ʂ"
+        ],
+        "ಸ": [
+            "s"
+        ],
+        "ಹ": [
+            "h"
+        ],
+        "ೞ": [
+            "ɻ"
+        ]
     },
-    {
-      "code": "sa",
-      "role": "adstrate",
-      "weight": 0.1,
-      "notes": "Sanskrit adstrate through Kadamba, Chalukya, Hoysala courts"
+    "allophones": {
+        "k": [
+            "k"
+        ],
+        "kʰ": [
+            "kʰ"
+        ],
+        "ɡ": [
+            "ɡ"
+        ],
+        "ɡʱ": [
+            "ɡʱ"
+        ],
+        "tɕ": [
+            "tɕ"
+        ],
+        "tɕʰ": [
+            "tɕʰ"
+        ],
+        "dʑ": [
+            "dʑ"
+        ],
+        "dʑʱ": [
+            "dʑʱ"
+        ],
+        "ʈ": [
+            "ʈ"
+        ],
+        "ʈʰ": [
+            "ʈʰ"
+        ],
+        "ɖ": [
+            "ɖ"
+        ],
+        "ɖʱ": [
+            "ɖʱ"
+        ],
+        "t̪": [
+            "t̪"
+        ],
+        "t̪ʰ": [
+            "t̪ʰ"
+        ],
+        "d̪": [
+            "d̪"
+        ],
+        "d̪ʱ": [
+            "d̪ʱ"
+        ],
+        "p": [
+            "p"
+        ],
+        "pʰ": [
+            "pʰ"
+        ],
+        "b": [
+            "b"
+        ],
+        "bʱ": [
+            "bʱ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ɳ",
+            "ŋ"
+        ],
+        "ɲ": [
+            "ɲ"
+        ],
+        "ɳ": [
+            "ɳ"
+        ],
+        "ʂ": [
+            "ʂ"
+        ],
+        "s": [
+            "s"
+        ],
+        "h": [
+            "h"
+        ],
+        "r": [
+            "r"
+        ],
+        "l": [
+            "l"
+        ],
+        "ɭ": [
+            "ɭ"
+        ],
+        "ʋ": [
+            "ʋ",
+            "w"
+        ],
+        "j": [
+            "j"
+        ],
+        "a": [
+            "a"
+        ],
+        "aː": [
+            "aː"
+        ],
+        "i": [
+            "i"
+        ],
+        "iː": [
+            "iː"
+        ],
+        "u": [
+            "u"
+        ],
+        "uː": [
+            "uː"
+        ],
+        "e": [
+            "e"
+        ],
+        "eː": [
+            "eː"
+        ],
+        "o": [
+            "o"
+        ],
+        "oː": [
+            "oː"
+        ],
+        "ai": [
+            "ai"
+        ],
+        "au": [
+            "au"
+        ],
+        "ɻ": [
+            "ɻ"
+        ],
+        "ʃ": [
+            "ɕ"
+        ]
     },
-    {
-      "code": "te",
-      "role": "adstrate",
-      "weight": 0.03,
-      "notes": "Telugu adstrate along eastern borders"
-    }
-  ],
-  "notes": "Standard Kannada (Karnataka). Phonological system closely parallel to Telugu. ⟨ಳ⟩ = [ɭ] retroflex lateral phonemic. Archaic ⟨ಱ⟩ = [ɻ] (retroflex approximant, cf. Tamil/Malayalam ⟨ழ⟩) survives in some dialects. Aspiration in native words only post-Sanskrit contact.",
-  "quality": "research",
-  "script_type": "abugida",
-  "inherent_vowel": "a",
-  "sources": [
-    {
-      "id": "krishnamurti2003",
-      "author": "Krishnamurti, B.",
-      "year": 2003,
-      "title": "The Dravidian Languages",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Dravidian_languages"
+    "ancestors": [
+        {
+            "code": "ta-x-proto-dravidian",
+            "role": "parent",
+            "weight": 0.85,
+            "notes": "Descent from Proto-South-Dravidian"
+        },
+        {
+            "code": "sa",
+            "role": "adstrate",
+            "weight": 0.1,
+            "notes": "Sanskrit adstrate through Kadamba, Chalukya, Hoysala courts"
+        },
+        {
+            "code": "te",
+            "role": "adstrate",
+            "weight": 0.03,
+            "notes": "Telugu adstrate along eastern borders"
+        }
+    ],
+    "notes": "Standard Kannada (Karnataka). Phonological system closely parallel to Telugu. ⟨ಳ⟩ = [ɭ] retroflex lateral phonemic. Archaic ⟨ಱ⟩ = [ɻ] (retroflex approximant, cf. Tamil/Malayalam ⟨ழ⟩) survives in some dialects. Aspiration in native words only post-Sanskrit contact.",
+    "quality": "research",
+    "script_type": "abugida",
+    "inherent_vowel": "a",
+    "sources": [
+        {
+            "id": "krishnamurti2003",
+            "author": "Krishnamurti, B.",
+            "year": 2003,
+            "title": "The Dravidian Languages",
+            "publisher": "Cambridge University Press",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Dravidian_languages"
+        },
+        {
+            "id": "sridhar1990",
+            "author": "Sridhar, S.N.",
+            "year": 1990,
+            "title": "Kannada",
+            "publisher": "Routledge",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "ladefoged_maddieson1996",
+            "author": "Ladefoged, P. & Maddieson, I.",
+            "year": 1996,
+            "title": "The Sounds of the World's Languages",
+            "publisher": "Blackwell",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Kannada",
+        "https://kn.wikipedia.org/wiki/ಕನ್ನಡ"
+    ],
+    "timespan": {
+        "start_year": 900,
+        "end_year": null
     },
-    {
-      "id": "sridhar1990",
-      "author": "Sridhar, S.N.",
-      "year": 1990,
-      "title": "Kannada",
-      "publisher": "Routledge",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "ladefoged_maddieson1996",
-      "author": "Ladefoged, P. & Maddieson, I.",
-      "year": 1996,
-      "title": "The Sounds of the World's Languages",
-      "publisher": "Blackwell",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Kannada",
-    "https://kn.wikipedia.org/wiki/ಕನ್ನಡ"
-  ],
-  "timespan": {
-    "start_year": 900,
-    "end_year": null
-  },
-  "glottolog_code": "kann1255",
-  "iso639_3": "kan"
+    "glottolog_code": "kann1255",
+    "iso639_3": "kan"
 }
