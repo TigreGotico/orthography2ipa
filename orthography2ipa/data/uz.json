@@ -223,5 +223,13 @@
   "timespan": {
     "start_year": 1993,
     "end_year": null
+  },
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Uzbek default stress is word-final (-1). Some endings (question, negation, certain postpositions) and place-name suffixes deviate; lexical and not modeled. Source: Sjoberg (1963), Johanson & Csató (1998)."
   }
 }

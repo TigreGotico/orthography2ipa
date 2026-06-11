@@ -5,7 +5,7 @@
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "parent": "ine",
-  "notes": "Proto-Celtic (~1200–800 BCE). Reconstructed common ancestor of all Celtic languages. Defining innovation: PIE *p → *ɸ → ∅ (complete p-loss). Other key changes: *gʷ → b, *ē → *ī, *ew → *ow. Preserves PIE labiovelars (*kʷ splits later: Goidelic → /k/, Brythonic → /p/). Incipient lenition of intervocalic stops. Source: Matasović (2009).",
+  "notes": "Proto-Celtic (~1200–800 BCE). Reconstructed common ancestor of all Celtic languages. Defining innovation: PIE *p → *ɸ → ∅ (complete p-loss). Other key changes: *gʷ → b, *ē → *ī (hence ē is absent from the reconstructed phoneme inventory), *ew → *ow. Preserves PIE labiovelars (*kʷ splits later: Goidelic → /k/, Brythonic → /p/). Incipient lenition of intervocalic stops. Source: Matasović (2009). Matasović (2009) reconstructs no plain *ē for Proto-Celtic (only marginal/secondary long e); diphthongs ai/ei/oi/au/ou are attested.",
   "graphemes": {
     "b": [
       "b"
@@ -73,9 +73,6 @@
     "ā": [
       "aː"
     ],
-    "ē": [
-      "eː"
-    ],
     "ī": [
       "iː"
     ],
@@ -84,6 +81,21 @@
     ],
     "ū": [
       "uː"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ei": [
+      "ei"
+    ],
+    "oi": [
+      "oi"
+    ],
+    "au": [
+      "au"
+    ],
+    "ou": [
+      "ou"
     ]
   },
   "allophones": {
@@ -169,6 +181,21 @@
     ],
     "uː": [
       "uː"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ei": [
+      "ei"
+    ],
+    "oi": [
+      "oi"
+    ],
+    "au": [
+      "au"
+    ],
+    "ou": [
+      "ou"
     ]
   },
   "sources": [

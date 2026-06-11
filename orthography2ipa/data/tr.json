@@ -337,5 +337,13 @@
     "end_year": null
   },
   "glottolog_code": "turk1311",
-  "iso639_3": "tur"
+  "iso639_3": "tur",
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Turkish default stress is word-final (-1). Exception classes not modeled: negation suffix -(m)e/-(m)a, question particle mı/mi/mu/mü, some place names and older borrowings carry lexical stress. Source: Göksel & Kerslake (2005), Kornfilt (1997)."
+  }
 }

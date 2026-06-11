@@ -80,5 +80,13 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "stan1306"
+  "glottolog_code": "stan1306",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Malay default stress is penultimate (-2). Penult schwa in native Malay roots may shift stress to antepenult; this variation is lexical and not modeled. Source: Clynes & Deterding (2011), Adelaar & Himmelmann (2005)."
+  }
 }
