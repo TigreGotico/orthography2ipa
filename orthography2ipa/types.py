@@ -55,6 +55,52 @@ class TimeSpan:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# StressRules — declarative word-stress placement
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class StressRules:
+    """Declarative rules for primary word-stress placement.
+
+    Captures the semi-predictable, orthography-driven stress systems of
+    languages like Portuguese, Spanish or Italian: a default syllable
+    position, ending patterns that shift it, and accented vowels that
+    override everything.
+
+    Detection precedence (see :func:`orthography2ipa.stress.detect_stress`):
+
+    1. A syllable containing a ``marked_vowels`` character is stressed.
+    2. A word ending in one of ``final_stress_endings`` is oxytone.
+    3. A word ending in one of ``penult_stress_endings`` is paroxytone.
+    4. Otherwise ``default_position`` applies.
+
+    Parameters
+    ----------
+    default_position : int
+        Stressed syllable counted from the end: ``-1`` final (oxytone),
+        ``-2`` penultimate (paroxytone), ``-3`` antepenultimate.
+    final_stress_endings : Tuple[str, ...]
+        Orthographic word endings that attract final stress
+        (Portuguese ``-r``, ``-l``, ``-z``, ``-im``, ``-ão`` …).
+    penult_stress_endings : Tuple[str, ...]
+        Endings that force penultimate stress when the default differs.
+    marked_vowels : Tuple[str, ...]
+        Vowel characters whose written accent marks the stressed
+        syllable (``á é í ó ú â ê ô ã õ``).
+    stress_mark : str
+        IPA symbol inserted before the stressed syllable (``ˈ``).
+    notes : str
+        Free-form provenance / convention notes.
+    """
+    default_position: int = -2
+    final_stress_endings: Tuple[str, ...] = ()
+    penult_stress_endings: Tuple[str, ...] = ()
+    marked_vowels: Tuple[str, ...] = ()
+    stress_mark: str = "ˈ"
+    notes: str = ""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # GraphemePosition — positional contexts for grapheme→IPA disambiguation
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -537,6 +583,13 @@ class LanguageSpec:
     :func:`~orthography2ipa.distance.temporal_distance` and
     ancestor weight decay in
     :func:`~orthography2ipa.distance.ancestry_similarity`."""
+
+    stress: Optional["StressRules"] = None
+    """Declarative primary-stress placement rules.  ``None`` when the
+    language has no (encoded) predictable stress system.
+
+    Not inherited through ancestry — each spec declares its own block;
+    consumed by :func:`orthography2ipa.stress.detect_stress`."""
 
     def __post_init__(self) -> None:
         # Normalise None to empty dict
