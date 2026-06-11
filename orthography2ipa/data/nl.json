@@ -1,463 +1,464 @@
 {
-    "code": "nl",
-    "name": "Dutch",
-    "family": "Germanic",
-    "script": "Latin",
-    "graphemes": {
-        "a": [
-            "ɑ"
-        ],
-        "e": [
-            "ɛ",
-            "ə"
-        ],
-        "i": [
-            "ɪ"
-        ],
-        "o": [
-            "ɔ"
-        ],
-        "u": [
-            "ʏ"
-        ],
-        "aa": [
-            "aː"
-        ],
-        "ee": [
-            "eː"
-        ],
-        "ie": [
-            "iː"
-        ],
-        "oo": [
-            "oː"
-        ],
-        "oe": [
-            "uː"
-        ],
-        "uu": [
-            "yː"
-        ],
-        "eu": [
-            "øː"
-        ],
-        "é": [
-            "eː"
-        ],
-        "è": [
-            "ɛ"
-        ],
-        "ê": [
-            "ɛ"
-        ],
-        "ë": [
-            "ə"
-        ],
-        "ï": [
-            "i"
-        ],
-        "ü": [
-            "y"
-        ],
-        "b": [
-            "b"
-        ],
-        "c": [
-            "k",
-            "s"
-        ],
-        "d": [
-            "d"
-        ],
-        "f": [
-            "f"
-        ],
-        "g": [
-            "ɣ",
-            "x"
-        ],
-        "h": [
-            "ɦ"
-        ],
-        "j": [
-            "j"
-        ],
-        "k": [
-            "k"
-        ],
-        "l": [
-            "l"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n"
-        ],
-        "p": [
-            "p"
-        ],
-        "q": [
-            "k"
-        ],
-        "r": [
-            "r",
-            "ʁ"
-        ],
-        "s": [
-            "s"
-        ],
-        "t": [
-            "t"
-        ],
-        "v": [
-            "v",
-            "f"
-        ],
-        "w": [
-            "ʋ"
-        ],
-        "x": [
-            "ks"
-        ],
-        "y": [
-            "i",
-            "j",
-            "ei̞"
-        ],
-        "z": [
-            "z",
-            "s"
-        ],
-        "ch": [
-            "x"
-        ],
-        "ng": [
-            "ŋ"
-        ],
-        "nk": [
-            "ŋk"
-        ],
-        "sch": [
-            "sx"
-        ],
-        "sj": [
-            "ʃ"
-        ],
-        "tj": [
-            "tʲ",
-            "tʃ"
-        ],
-        "th": [
-            "t"
-        ],
-        "ph": [
-            "f"
-        ],
-        "ei": [
-            "ɛi"
-        ],
-        "ij": [
-            "ɛi"
-        ],
-        "ou": [
-            "ɑu"
-        ],
-        "au": [
-            "ɑu"
-        ],
-        "ui": [
-            "œy"
-        ],
-        "ai": [
-            "aːi"
-        ],
-        "oi": [
-            "ɔi"
-        ],
-        "eau": [
-            "oː"
-        ],
-        "ieu": [
-            "jøː"
-        ],
-        "ieuw": [
-            "iːw"
-        ]
-    },
-    "allophones": {
-        "p": [
-            "p"
-        ],
-        "b": [
-            "b",
-            "p"
-        ],
-        "t": [
-            "t"
-        ],
-        "d": [
-            "d",
-            "t"
-        ],
-        "k": [
-            "k"
-        ],
-        "f": [
-            "f"
-        ],
-        "v": [
-            "v",
-            "f"
-        ],
-        "s": [
-            "s"
-        ],
-        "z": [
-            "z",
-            "s"
-        ],
-        "x": [
-            "x"
-        ],
-        "ɣ": [
-            "ɣ",
-            "x"
-        ],
-        "ɦ": [
-            "ɦ",
-            "h"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n",
-            "ŋ"
-        ],
-        "ŋ": [
-            "ŋ"
-        ],
-        "l": [
-            "l",
-            "ɫ"
-        ],
-        "r": [
-            "r",
-            "ɾ",
-            "ʁ",
-            "ʀ",
-            "ɹ"
-        ],
-        "ʋ": [
-            "ʋ",
-            "w",
-            "β̞"
-        ],
-        "j": [
-            "j"
-        ],
-        "ɑ": [
-            "ɑ"
-        ],
-        "aː": [
-            "aː"
-        ],
-        "ɛ": [
-            "ɛ"
-        ],
-        "eː": [
-            "eː"
-        ],
-        "ɪ": [
-            "ɪ"
-        ],
-        "iː": [
-            "iː"
-        ],
-        "ɔ": [
-            "ɔ"
-        ],
-        "oː": [
-            "oː"
-        ],
-        "ʏ": [
-            "ʏ"
-        ],
-        "yː": [
-            "yː"
-        ],
-        "uː": [
-            "uː"
-        ],
-        "øː": [
-            "øː"
-        ],
-        "ə": [
-            "ə"
-        ],
-        "ɛi": [
-            "ɛi",
-            "ɛɪ"
-        ],
-        "ɑu": [
-            "ɑu",
-            "ʌu"
-        ],
-        "œy": [
-            "œy",
-            "œʏ"
-        ]
-    },
-    "parent": "gem",
-    "ancestors": [
-        {
-            "code": "gem",
-            "role": "parent",
-            "weight": 0.9,
-            "notes": "Descent from Proto-Germanic via Old Low Franconian"
-        },
-        {
-            "code": "la",
-            "role": "adstrate",
-            "weight": 0.04,
-            "notes": "Latin adstrate: ecclesiastical vocabulary"
-        },
-        {
-            "code": "fr-FR",
-            "role": "adstrate",
-            "weight": 0.04,
-            "notes": "French adstrate: centuries of Burgundian/French influence in S. Netherlands; cf. van der Wal (2008)"
-        }
+  "code": "nl",
+  "name": "Dutch",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "ɑ"
     ],
-    "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable. FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally. G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch. H: breathy [ɦ]; fully silent in southern dialects. Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995).",
-    "quality": "research",
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "gussenhoven1999",
-            "author": "Gussenhoven, C.",
-            "year": 1999,
-            "title": "Dutch",
-            "publisher": "Cambridge University Press",
-            "url": null,
-            "pages": null,
-            "notes": "In: Handbook of the International Phonetic Association"
-        },
-        {
-            "id": "vdHulst_ritter1999",
-            "author": "van der Hulst, H. & Ritter, N.A. (eds.)",
-            "year": 1999,
-            "title": "The Syllable: Views and Facts",
-            "publisher": "Mouton de Gruyter",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+    "e": [
+      "ɛ",
+      "ə"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Dutch_language"
+    "i": [
+      "ɪ"
     ],
-    "positional_graphemes": {
-        "b": {
-            "word_final": [
-                "p"
-            ],
-            "coda": [
-                "p"
-            ],
-            "default": [
-                "b"
-            ]
-        },
-        "d": {
-            "word_final": [
-                "t"
-            ],
-            "coda": [
-                "t"
-            ],
-            "default": [
-                "d"
-            ]
-        },
-        "g": {
-            "word_final": [
-                "x"
-            ],
-            "coda": [
-                "x"
-            ],
-            "default": [
-                "ɣ"
-            ]
-        },
-        "v": {
-            "word_final": [
-                "f"
-            ],
-            "coda": [
-                "f"
-            ],
-            "default": [
-                "v"
-            ]
-        },
-        "z": {
-            "word_final": [
-                "s"
-            ],
-            "coda": [
-                "s"
-            ],
-            "default": [
-                "z"
-            ]
-        },
-        "c": {
-            "before_e": [
-                "s"
-            ],
-            "before_i": [
-                "s"
-            ],
-            "default": [
-                "k"
-            ]
-        },
-        "e": {
-            "nucleus_unstressed": [
-                "ə"
-            ],
-            "nucleus_stressed": [
-                "ɛ"
-            ],
-            "default": [
-                "ɛ",
-                "ə"
-            ]
-        },
-        "h": {
-            "word_initial": [
-                "ɦ"
-            ],
-            "default": [
-                "ɦ"
-            ]
-        },
-        "sch": {
-            "word_final": [
-                "s"
-            ],
-            "default": [
-                "sx"
-            ]
-        }
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "ʏ"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "ie": [
+      "iː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "oe": [
+      "uː"
+    ],
+    "uu": [
+      "yː"
+    ],
+    "eu": [
+      "øː"
+    ],
+    "é": [
+      "eː"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "ê": [
+      "ɛ"
+    ],
+    "ë": [
+      "ə"
+    ],
+    "ï": [
+      "i"
+    ],
+    "ü": [
+      "y"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɣ",
+      "x"
+    ],
+    "h": [
+      "ɦ"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "r",
+      "ʁ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v",
+      "f"
+    ],
+    "w": [
+      "ʋ"
+    ],
+    "x": [
+      "ks"
+    ],
+    "y": [
+      "i",
+      "j",
+      "ei̞"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "ch": [
+      "x"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "sch": [
+      "sx"
+    ],
+    "sj": [
+      "ʃ"
+    ],
+    "tj": [
+      "tʲ",
+      "tʃ"
+    ],
+    "th": [
+      "t"
+    ],
+    "ph": [
+      "f"
+    ],
+    "ei": [
+      "ɛi"
+    ],
+    "ij": [
+      "ɛi"
+    ],
+    "ou": [
+      "ɑu"
+    ],
+    "au": [
+      "ɑu"
+    ],
+    "ui": [
+      "œy"
+    ],
+    "ai": [
+      "aːi"
+    ],
+    "oi": [
+      "ɔi"
+    ],
+    "eau": [
+      "oː"
+    ],
+    "ieu": [
+      "jøː"
+    ],
+    "ieuw": [
+      "iːw"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɣ": [
+      "ɣ",
+      "x"
+    ],
+    "ɦ": [
+      "ɦ",
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "r": [
+      "r",
+      "ɾ",
+      "ʁ",
+      "ʀ",
+      "ɹ"
+    ],
+    "ʋ": [
+      "ʋ",
+      "w",
+      "β̞"
+    ],
+    "j": [
+      "j"
+    ],
+    "ɑ": [
+      "ɑ"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "øː": [
+      "øː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ɛi": [
+      "ɛi",
+      "ɛɪ"
+    ],
+    "ɑu": [
+      "ɑu",
+      "ʌu"
+    ],
+    "œy": [
+      "œy",
+      "œʏ"
+    ]
+  },
+  "parent": "gem",
+  "ancestors": [
+    {
+      "code": "gem",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Germanic via Old Low Franconian"
     },
-    "timespan": {
-        "start_year": 1500,
-        "end_year": null
+    {
+      "code": "la",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Latin adstrate: ecclesiastical vocabulary"
     },
-    "glottolog_code": "dutc1256",
-    "iso639_3": "nld"
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "French adstrate: centuries of Burgundian/French influence in S. Netherlands; cf. van der Wal (2008)"
+    }
+  ],
+  "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable. FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally. G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch. H: breathy [ɦ]; fully silent in southern dialects. Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "gussenhoven1999",
+      "author": "Gussenhoven, C.",
+      "year": 1999,
+      "title": "Dutch",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "In: Handbook of the International Phonetic Association"
+    },
+    {
+      "id": "vdHulst_ritter1999",
+      "author": "van der Hulst, H. & Ritter, N.A. (eds.)",
+      "year": 1999,
+      "title": "The Syllable: Views and Facts",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dutch_language",
+    "https://nl.wikipedia.org/wiki/Nederlands"
+  ],
+  "positional_graphemes": {
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "x"
+      ],
+      "coda": [
+        "x"
+      ],
+      "default": [
+        "ɣ"
+      ]
+    },
+    "v": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "s"
+      ],
+      "coda": [
+        "s"
+      ],
+      "default": [
+        "z"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "nucleus_stressed": [
+        "ɛ"
+      ],
+      "default": [
+        "ɛ",
+        "ə"
+      ]
+    },
+    "h": {
+      "word_initial": [
+        "ɦ"
+      ],
+      "default": [
+        "ɦ"
+      ]
+    },
+    "sch": {
+      "word_final": [
+        "s"
+      ],
+      "default": [
+        "sx"
+      ]
+    }
+  },
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "dutc1256",
+  "iso639_3": "nld"
 }

@@ -1,313 +1,314 @@
 {
-    "code": "be",
-    "name": "Belarusian",
-    "family": "Slavic",
-    "script": "Cyrillic",
-    "graphemes": {
-        "а": [
-            "a"
-        ],
-        "е": [
-            "jɛ",
-            "ɛ"
-        ],
-        "ё": [
-            "jɔ",
-            "ɔ"
-        ],
-        "і": [
-            "i"
-        ],
-        "й": [
-            "j"
-        ],
-        "о": [
-            "ɔ"
-        ],
-        "у": [
-            "u"
-        ],
-        "ы": [
-            "ɨ"
-        ],
-        "э": [
-            "ɛ"
-        ],
-        "ю": [
-            "ju"
-        ],
-        "я": [
-            "ja"
-        ],
-        "б": [
-            "b"
-        ],
-        "в": [
-            "v"
-        ],
-        "г": [
-            "ɣ"
-        ],
-        "ґ": [
-            "ɡ"
-        ],
-        "д": [
-            "d"
-        ],
-        "дж": [
-            "dʒ"
-        ],
-        "дз": [
-            "dz"
-        ],
-        "ж": [
-            "ʒ"
-        ],
-        "з": [
-            "z"
-        ],
-        "к": [
-            "k"
-        ],
-        "л": [
-            "l"
-        ],
-        "м": [
-            "m"
-        ],
-        "н": [
-            "n"
-        ],
-        "п": [
-            "p"
-        ],
-        "р": [
-            "r"
-        ],
-        "с": [
-            "s"
-        ],
-        "т": [
-            "t"
-        ],
-        "ў": [
-            "w"
-        ],
-        "ф": [
-            "f"
-        ],
-        "х": [
-            "x"
-        ],
-        "ц": [
-            "ts"
-        ],
-        "ч": [
-            "tʃ"
-        ],
-        "ш": [
-            "ʃ"
-        ],
-        "шч": [
-            "ʃtʃ"
-        ],
-        "'": [
-            ""
-        ],
-        "ь": [
-            "ʲ"
-        ],
-        "дзь": [
-            "dzʲ"
-        ],
-        "ць": [
-            "tsʲ"
-        ],
-        "ль": [
-            "lʲ"
-        ],
-        "нь": [
-            "nʲ"
-        ],
-        "сь": [
-            "sʲ"
-        ],
-        "зь": [
-            "zʲ"
-        ]
-    },
-    "allophones": {
-        "p": [
-            "p"
-        ],
-        "b": [
-            "b",
-            "p"
-        ],
-        "t": [
-            "t"
-        ],
-        "d": [
-            "d",
-            "t"
-        ],
-        "k": [
-            "k"
-        ],
-        "ɡ": [
-            "ɡ",
-            "k"
-        ],
-        "ɣ": [
-            "ɣ",
-            "x"
-        ],
-        "f": [
-            "f"
-        ],
-        "v": [
-            "v",
-            "f"
-        ],
-        "s": [
-            "s"
-        ],
-        "sʲ": [
-            "sʲ"
-        ],
-        "z": [
-            "z",
-            "s"
-        ],
-        "zʲ": [
-            "zʲ",
-            "sʲ"
-        ],
-        "ʃ": [
-            "ʃ"
-        ],
-        "ʒ": [
-            "ʒ",
-            "ʃ"
-        ],
-        "x": [
-            "x"
-        ],
-        "ts": [
-            "ts"
-        ],
-        "tsʲ": [
-            "tsʲ"
-        ],
-        "dz": [
-            "dz",
-            "ts"
-        ],
-        "dzʲ": [
-            "dzʲ",
-            "tsʲ"
-        ],
-        "tʃ": [
-            "tʃ"
-        ],
-        "dʒ": [
-            "dʒ",
-            "tʃ"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n",
-            "ŋ"
-        ],
-        "nʲ": [
-            "nʲ"
-        ],
-        "l": [
-            "l"
-        ],
-        "lʲ": [
-            "lʲ"
-        ],
-        "r": [
-            "r"
-        ],
-        "w": [
-            "w"
-        ],
-        "j": [
-            "j"
-        ],
-        "a": [
-            "a",
-            "ɐ"
-        ],
-        "ɔ": [
-            "ɔ",
-            "a"
-        ],
-        "ɛ": [
-            "ɛ",
-            "ɪ"
-        ],
-        "i": [
-            "i"
-        ],
-        "ɨ": [
-            "ɨ"
-        ],
-        "u": [
-            "u",
-            "ʊ"
-        ]
-    },
-    "parent": "sla",
-    "notes": "Standard Belarusian (Tarashkevitsa/Narkamaŭka). Distinctive features: ⟨г⟩ = [ɣ] (voiced velar fricative, not plosive), ⟨ў⟩ = [w] (unique letter for non-syllabic /w/), pervasive аканне (unstressed /ɔ/ → [a]), яканне (unstressed /ɛ/ → [i] after soft consonants), full affricate writing: ⟨дз⟩ = [dz], ⟨дж⟩ = [dʒ].",
-    "quality": "research",
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "comrie_corbett1993",
-            "author": "Comrie, B. & Corbett, G. (eds.)",
-            "year": 1993,
-            "title": "The Slavonic Languages",
-            "publisher": "Routledge",
-            "url": null,
-            "pages": null,
-            "notes": null,
-            "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
-        },
-        {
-            "id": "mayo1993",
-            "author": "Mayo, P.",
-            "year": 1993,
-            "title": "Belorussian",
-            "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "timberlake2004",
-            "author": "Timberlake, A.",
-            "year": 2004,
-            "title": "A Reference Grammar of Russian",
-            "publisher": "Cambridge University Press",
-            "url": null,
-            "pages": null,
-            "notes": null,
-            "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
-        }
+  "code": "be",
+  "name": "Belarusian",
+  "family": "Slavic",
+  "script": "Cyrillic",
+  "graphemes": {
+    "а": [
+      "a"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Belarusian_language",
-        "https://be.wikipedia.org/wiki/Беларуская_мова"
+    "е": [
+      "jɛ",
+      "ɛ"
     ],
-    "timespan": {
-        "start_year": 1300,
-        "end_year": null
+    "ё": [
+      "jɔ",
+      "ɔ"
+    ],
+    "і": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "о": [
+      "ɔ"
+    ],
+    "у": [
+      "u"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "э": [
+      "ɛ"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɣ"
+    ],
+    "ґ": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "дж": [
+      "dʒ"
+    ],
+    "дз": [
+      "dz"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "ў": [
+      "w"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "шч": [
+      "ʃtʃ"
+    ],
+    "'": [
+      ""
+    ],
+    "ь": [
+      "ʲ"
+    ],
+    "дзь": [
+      "dzʲ"
+    ],
+    "ць": [
+      "tsʲ"
+    ],
+    "ль": [
+      "lʲ"
+    ],
+    "нь": [
+      "nʲ"
+    ],
+    "сь": [
+      "sʲ"
+    ],
+    "зь": [
+      "zʲ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "ɣ": [
+      "ɣ",
+      "x"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "sʲ": [
+      "sʲ"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "zʲ": [
+      "zʲ",
+      "sʲ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tsʲ": [
+      "tsʲ"
+    ],
+    "dz": [
+      "dz",
+      "ts"
+    ],
+    "dzʲ": [
+      "dzʲ",
+      "tsʲ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "tʃ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "nʲ": [
+      "nʲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "lʲ": [
+      "lʲ"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a",
+      "ɐ"
+    ],
+    "ɔ": [
+      "ɔ",
+      "a"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ɪ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ]
+  },
+  "parent": "sla",
+  "notes": "Standard Belarusian (Tarashkevitsa/Narkamaŭka). Distinctive features: ⟨г⟩ = [ɣ] (voiced velar fricative, not plosive), ⟨ў⟩ = [w] (unique letter for non-syllabic /w/), pervasive аканне (unstressed /ɔ/ → [a]), яканне (unstressed /ɛ/ → [i] after soft consonants), full affricate writing: ⟨дз⟩ = [dz], ⟨дж⟩ = [dʒ].",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
     },
-    "glottolog_code": "bela1254",
-    "iso639_3": "bel"
+    {
+      "id": "mayo1993",
+      "author": "Mayo, P.",
+      "year": 1993,
+      "title": "Belorussian",
+      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "timberlake2004",
+      "author": "Timberlake, A.",
+      "year": 2004,
+      "title": "A Reference Grammar of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Belarusian_language",
+    "https://be.wikipedia.org/wiki/Беларуская_мова",
+    "https://be.wikipedia.org/wiki/%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D0%BA%D0%B0%D1%8F_%D0%BC%D0%BE%D0%B2%D0%B0"
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  },
+  "glottolog_code": "bela1254",
+  "iso639_3": "bel"
 }

@@ -1,106 +1,107 @@
 {
-    "code": "ca-x-valencia",
-    "name": "Valencian",
-    "family": "Romance",
-    "script": "Latin",
-    "graphemes_base": "ca",
-    "graphemes": {
-        "v": [
-            "v"
-        ]
-    },
-    "allophones_base": "ca",
-    "allophones": {
-        "v": [
-            "v"
-        ],
-        "s": [
-            "s̺"
-        ],
-        "z": [
-            "z̺"
-        ],
-        "ʒ": [
-            "dʒ",
-            "ʒ"
-        ],
-        "ə": [
-            "a",
-            "e"
-        ]
-    },
-    "positional_graphemes_base": "ca",
-    "positional_graphemes": {
-        "a": {
-            "default": [
-                "a"
-            ],
-            "nucleus": [
-                "a"
-            ]
-        },
-        "e": {
-            "default": [
-                "ɛ",
-                "e"
-            ],
-            "nucleus": [
-                "e"
-            ]
-        },
-        "o": {
-            "default": [
-                "ɔ",
-                "o"
-            ],
-            "nucleus": [
-                "o"
-            ]
-        }
-    },
-    "parent": "ca",
-    "notes": "Valencian (Valencià). Western Catalan block, co-official in Comunitat Valenciana. Key differences from Central Catalan: /v/ vs /b/ distinction preserved, apico-alveolar sibilants [s̺, z̺], MINIMAL vowel reduction (no schwa — unstressed /a/ stays [a], /e/ stays [e], /o/ stays [o]). Word-final -r pronounced. Voiced affricate [dʒ] more robust. Regulated by Acadèmia Valenciana de la Llengua (AVL).",
-    "quality": "research",
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "wheeler2005",
-            "author": "Wheeler, M.",
-            "year": 2005,
-            "title": "The Phonology of Catalan",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "recasens1991",
-            "author": "Recasens, D.",
-            "year": 1991,
-            "title": "Fonètica descriptiva del català",
-            "publisher": "Institut d'Estudis Catalans",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "ladefoged_maddieson1996",
-            "author": "Ladefoged, P. & Maddieson, I.",
-            "year": 1996,
-            "title": "The Sounds of the World's Languages",
-            "publisher": "Blackwell",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+  "code": "ca-x-valencia",
+  "name": "Valencian",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "ca",
+  "graphemes": {
+    "v": [
+      "v"
+    ]
+  },
+  "allophones_base": "ca",
+  "allophones": {
+    "v": [
+      "v"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Valencian"
+    "s": [
+      "s̺"
     ],
-    "timespan": {
-        "start_year": 1200,
-        "end_year": null
+    "z": [
+      "z̺"
+    ],
+    "ʒ": [
+      "dʒ",
+      "ʒ"
+    ],
+    "ə": [
+      "a",
+      "e"
+    ]
+  },
+  "positional_graphemes_base": "ca",
+  "positional_graphemes": {
+    "a": {
+      "default": [
+        "a"
+      ],
+      "nucleus": [
+        "a"
+      ]
     },
-    "glottolog_code": "vale1252",
-    "iso639_3": "cat"
+    "e": {
+      "default": [
+        "ɛ",
+        "e"
+      ],
+      "nucleus": [
+        "e"
+      ]
+    },
+    "o": {
+      "default": [
+        "ɔ",
+        "o"
+      ],
+      "nucleus": [
+        "o"
+      ]
+    }
+  },
+  "parent": "ca",
+  "notes": "Valencian (Valencià). Western Catalan block, co-official in Comunitat Valenciana. Key differences from Central Catalan: /v/ vs /b/ distinction preserved, apico-alveolar sibilants [s̺, z̺], MINIMAL vowel reduction (no schwa — unstressed /a/ stays [a], /e/ stays [e], /o/ stays [o]). Word-final -r pronounced. Voiced affricate [dʒ] more robust. Regulated by Acadèmia Valenciana de la Llengua (AVL).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wheeler2005",
+      "author": "Wheeler, M.",
+      "year": 2005,
+      "title": "The Phonology of Catalan",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "recasens1991",
+      "author": "Recasens, D.",
+      "year": 1991,
+      "title": "Fonètica descriptiva del català",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Valencian",
+    "https://ca.wikipedia.org/wiki/Valenci%C3%A0"
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  },
+  "glottolog_code": "vale1252",
+  "iso639_3": "cat"
 }

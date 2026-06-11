@@ -1,149 +1,150 @@
 {
-    "code": "hsb",
-    "name": "Upper Sorbian",
-    "family": "Indo-European > Slavic > West Slavic",
-    "script": "Latin",
-    "script_type": "alphabet",
-    "quality": "research",
-    "iso639_3": "hsb",
-    "glottolog_code": "uppe1395",
-    "timespan": {
-        "start_year": 1574,
-        "end_year": null
-    },
-    "graphemes": {
-        "ch": [
-            "x"
-        ],
-        "dź": [
-            "dʑ"
-        ],
-        "dž": [
-            "dʒ"
-        ],
-        "ě": [
-            "e"
-        ],
-        "š": [
-            "ʃ"
-        ],
-        "ž": [
-            "ʒ"
-        ],
-        "č": [
-            "tʃ"
-        ],
-        "ć": [
-            "tɕ"
-        ],
-        "ń": [
-            "ɲ"
-        ],
-        "ł": [
-            "w"
-        ],
-        "a": [
-            "a"
-        ],
-        "b": [
-            "b"
-        ],
-        "c": [
-            "ts"
-        ],
-        "d": [
-            "d"
-        ],
-        "e": [
-            "ɛ"
-        ],
-        "f": [
-            "f"
-        ],
-        "g": [
-            "ɡ"
-        ],
-        "h": [
-            "h"
-        ],
-        "i": [
-            "i"
-        ],
-        "j": [
-            "j"
-        ],
-        "k": [
-            "k"
-        ],
-        "l": [
-            "l"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n"
-        ],
-        "o": [
-            "ɔ"
-        ],
-        "p": [
-            "p"
-        ],
-        "r": [
-            "r"
-        ],
-        "s": [
-            "s"
-        ],
-        "t": [
-            "t"
-        ],
-        "u": [
-            "u"
-        ],
-        "v": [
-            "v"
-        ],
-        "w": [
-            "v"
-        ],
-        "y": [
-            "ɨ"
-        ],
-        "z": [
-            "z"
-        ],
-        "ó": [
-            "o",
-            "ʊ"
-        ],
-        "ř": [
-            "ʃ"
-        ]
-    },
-    "allophones": {},
-    "positional_graphemes": {},
-    "ancestors": [
-        {
-            "code": "sla",
-            "role": "proto_language",
-            "weight": 1.0,
-            "notes": "West Slavic language of the Sorbian subgroup spoken in Lusatia (eastern Germany)"
-        }
+  "code": "hsb",
+  "name": "Upper Sorbian",
+  "family": "Indo-European > Slavic > West Slavic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "hsb",
+  "glottolog_code": "uppe1395",
+  "timespan": {
+    "start_year": 1574,
+    "end_year": null
+  },
+  "graphemes": {
+    "ch": [
+      "x"
     ],
-    "parent": null,
-    "notes": "Upper Sorbian (Hornjoserbsce), West Slavic minority language of the Sorbian people in Lusatia, Germany. Palatal affricates ć /tɕ/ and dź /dʑ/ are distinctive. Ě = /jɛ/, ł = /w/. Dual grammatical number preserved.",
-    "sources": [
-        {
-            "id": "wiki-hsb",
-            "author": "Wikipedia contributors",
-            "year": 2024,
-            "title": "Upper Sorbian language",
-            "wikipedia_url": "https://en.wikipedia.org/wiki/Upper_Sorbian_language"
-        }
+    "dź": [
+      "dʑ"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Upper_Sorbian_language"
+    "dž": [
+      "dʒ"
+    ],
+    "ě": [
+      "e"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "ć": [
+      "tɕ"
+    ],
+    "ń": [
+      "ɲ"
+    ],
+    "ł": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "v"
+    ],
+    "y": [
+      "ɨ"
+    ],
+    "z": [
+      "z"
+    ],
+    "ó": [
+      "o",
+      "ʊ"
+    ],
+    "ř": [
+      "ʃ"
     ]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "sla",
+      "role": "proto_language",
+      "weight": 1.0,
+      "notes": "West Slavic language of the Sorbian subgroup spoken in Lusatia (eastern Germany)"
+    }
+  ],
+  "parent": null,
+  "notes": "Upper Sorbian (Hornjoserbsce), West Slavic minority language of the Sorbian people in Lusatia, Germany. Palatal affricates ć /tɕ/ and dź /dʑ/ are distinctive. Ě = /jɛ/, ł = /w/. Dual grammatical number preserved.",
+  "sources": [
+    {
+      "id": "wiki-hsb",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Upper Sorbian language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Upper_Sorbian_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Upper_Sorbian_language",
+    "https://hsb.wikipedia.org/wiki/Hornjoserbš%C4%87ina"
+  ]
 }
