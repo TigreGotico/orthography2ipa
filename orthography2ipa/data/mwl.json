@@ -176,6 +176,81 @@
       "intervocalic": [
         "ɣ"
       ]
+    },
+    "a": {
+      "nucleus_stressed": [
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "ɐ"
+      ],
+      "pretonic": [
+        "ɐ"
+      ],
+      "posttonic": [
+        "ɐ"
+      ],
+      "word_final": [
+        "ɐ"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "e",
+        "ɛ"
+      ],
+      "nucleus_unstressed": [
+        "ɨ"
+      ],
+      "pretonic": [
+        "ɨ"
+      ],
+      "word_final": [
+        "ɨ"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "o",
+        "ɔ"
+      ],
+      "nucleus_unstressed": [
+        "u"
+      ],
+      "pretonic": [
+        "u"
+      ],
+      "posttonic": [
+        "u"
+      ],
+      "word_final": [
+        "u"
+      ]
+    },
+    "an": {
+      "before_vowel": [
+        "an"
+      ]
+    },
+    "en": {
+      "before_vowel": [
+        "en"
+      ]
+    },
+    "in": {
+      "before_vowel": [
+        "in"
+      ]
+    },
+    "on": {
+      "before_vowel": [
+        "on"
+      ]
+    },
+    "un": {
+      "before_vowel": [
+        "un"
+      ]
     }
   },
   "allophones": {
