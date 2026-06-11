@@ -37,6 +37,7 @@ from orthography2ipa.registry import (
     available_families,
     get,
     get_plugin,
+    resolve,
 )
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.transforms import (
@@ -64,6 +65,7 @@ from orthography2ipa.types import (
 __all__ = [
     "get",
     "get_plugin",
+    "resolve",
     "available_codes",
     "available_families",
     "load_lexicon",
