@@ -153,5 +153,45 @@
   },
   "glottolog_code": "barr1235",
   "iso639_3": "ext",
-  "quality": "research"
+  "quality": "research",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "à",
+      "â",
+      "ã",
+      "ê",
+      "ô",
+      "õ",
+      "ẽ",
+      "ĩ",
+      "ũ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Portuguese accentuation norms as adopted by the Convenção Ortográfica do Barranquenho (2025): paroxytone default; written accent (acute, grave, circumflex, or the tonic-nasal tilde) overrides; final -i/-u/-r/-l/-z/-x, -im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

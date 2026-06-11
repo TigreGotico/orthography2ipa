@@ -323,16 +323,25 @@
     "b": {
       "intervocalic": [
         "β"
+      ],
+      "word_initial": [
+        "b"
       ]
     },
     "d": {
       "intervocalic": [
         "ð"
+      ],
+      "word_initial": [
+        "d"
       ]
     },
     "g": {
       "intervocalic": [
         "ɣ"
+      ],
+      "word_initial": [
+        "ɡ"
       ]
     },
     "c": {
@@ -368,6 +377,9 @@
     "n": {
       "coda": [
         "n",
+        "ŋ"
+      ],
+      "word_final": [
         "ŋ"
       ]
     },
@@ -461,6 +473,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cotovia_gtm_uvigo",
+      "author": "Gamallo, P., Regueira, X.L. & others",
+      "year": 2012,
+      "title": "Cotovia TTS System (GTM, Universidade de Vigo)",
+      "publisher": "GTM — Universidade de Vigo",
+      "url": "http://gtm.uvigo.es/cotovia/",
+      "pages": null,
+      "notes": "Stress rules derived from the Cotovia front-end acentuar_prosodicamente() implementation (sil_acen.cpp)."
     }
   ],
   "wikipedia": [
@@ -473,5 +495,29 @@
   },
   "glottolog_code": "gali1258",
   "iso639_3": "glg",
-  "quality": "research"
+  "quality": "research",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "d"
+    ],
+    "penult_stress_endings": [
+      "n",
+      "s",
+      "ns"
+    ],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Galician accentuation as implemented in the Cotovia front-end (GTM, Universidade de Vigo): written accent wins; words ending in a vowel, -n or -s are paroxytone (casa, cantan, casas); words ending in any other consonant (r l z x d) are oxytone (falar, azul, rapaz)."
+  }
 }

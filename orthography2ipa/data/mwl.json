@@ -28,7 +28,7 @@
     }
   ],
   "quality": "research",
-  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/, palatal lateral /ʎ/ preserved, nasal vowels influenced by Portuguese orthographic proximity. Heavy Portuguese adstrate via official education and administration.",
+  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/, palatal lateral /ʎ/ preserved, nasal vowels influenced by Portuguese orthographic proximity. Heavy Portuguese adstrate via official education and administration. Mirandese preserves the full medieval six-sibilant contrast: apical /s̺ z̺/ (⟨s⟩, intervocalic ⟨-s-⟩), laminal /s̻ z̻/ (⟨c, ç⟩, ⟨z⟩), postalveolar /ʃ ʒ/ (⟨x⟩, ⟨j, g⟩). Hence ⟨j⟩ is /ʒ/ (western Iberian, never the Asturian palatal ʝ) and ⟨ç⟩ is the voiceless laminal fricative /s̻/, not an affricate; ⟨ç⟩ also occurs word-finally (rapaç, lhuç) where Portuguese writes -z.",
   "sources": [
     {
       "id": "ferreira1995",
@@ -59,6 +59,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "vasconcelos1900",
+      "author": "Vasconcelos, J. Leite de",
+      "year": 1900,
+      "title": "Estudos de Philologia Mirandesa",
+      "publisher": "Imprensa Nacional, Lisboa",
+      "url": null,
+      "pages": null,
+      "notes": "Foundational description of Mirandese phonology, including the six-sibilant system."
+    },
+    {
+      "id": "convencao1999",
+      "author": "Ferreira, M.B. & Raposo, D. (coords.)",
+      "year": 1999,
+      "title": "Convenção Ortográfica da Língua Mirandesa",
+      "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
+      "url": null,
+      "pages": null,
+      "notes": "Official orthography: grapheme-phoneme conventions and Portuguese-based accentuation rules."
     }
   ],
   "wikipedia": [
@@ -75,5 +95,44 @@
     "end_year": null
   },
   "glottolog_code": "mira1251",
-  "iso639_3": "mwl"
+  "iso639_3": "mwl",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "ç",
+      "in",
+      "un",
+      "on",
+      "is",
+      "us",
+      "ns",
+      "ão"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "ã",
+      "ẽ",
+      "ĩ",
+      "õ",
+      "ũ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em."
+  },
+  "graphemes": {
+    "j": [
+      "ʒ"
+    ],
+    "ç": [
+      "s̻"
+    ]
+  }
 }
