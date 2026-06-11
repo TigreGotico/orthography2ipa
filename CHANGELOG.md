@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.4.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.3.0a1...0.4.0a1)
+
+**Merged pull requests:**
+
+- feat\(schema\): declarative stress rules with detection and IPA marking [\#23](https://github.com/TigreGotico/orthography2ipa/pull/23) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(plugin\): word context fields, normalize/post\_process hooks, priority dispatch [\#21](https://github.com/TigreGotico/orthography2ipa/pull/21) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.3.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.2.1a1...0.3.0a1)
