@@ -7,64 +7,176 @@
   "iso639_3": "epo",
   "quality": "research",
   "graphemes": {
-    "a": ["a"],
-    "b": ["b"],
-    "c": ["ts"],
-    "ĉ": ["tʃ"],
-    "d": ["d"],
-    "e": ["e"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "ĝ": ["dʒ"],
-    "h": ["h"],
-    "ĥ": ["x"],
-    "i": ["i"],
-    "j": ["j"],
-    "ĵ": ["ʒ"],
-    "k": ["k"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "o": ["o"],
-    "p": ["p"],
-    "r": ["r"],
-    "s": ["s"],
-    "ŝ": ["ʃ"],
-    "t": ["t"],
-    "u": ["u"],
-    "ŭ": ["w"],
-    "v": ["v"],
-    "z": ["z"]
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "ĉ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ĝ": [
+      "dʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ĥ": [
+      "x"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "ĵ": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ŝ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "ŭ": [
+      "w"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ]
   },
   "allophones": {
-    "a": ["a"],
-    "b": ["b"],
-    "ts": ["ts"],
-    "tʃ": ["tʃ"],
-    "d": ["d"],
-    "e": ["e"],
-    "f": ["f"],
-    "ɡ": ["ɡ"],
-    "dʒ": ["dʒ"],
-    "h": ["h"],
-    "x": ["x"],
-    "i": ["i"],
-    "j": ["j"],
-    "ʒ": ["ʒ"],
-    "k": ["k"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "o": ["o"],
-    "p": ["p"],
-    "r": ["r"],
-    "s": ["s"],
-    "ʃ": ["ʃ"],
-    "t": ["t"],
-    "u": ["u"],
-    "w": ["w"],
-    "v": ["v"],
-    "z": ["z"]
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "x": [
+      "x"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ]
   },
   "notes": "Esperanto — constructed international language (Zamenhof, 1887). Perfectly regular phonemic orthography: one letter = one sound. 28-letter alphabet with 6 diacritic letters (circumflex: Ĉ/Ĝ/Ĥ/Ĵ/Ŝ; breve: Ŭ). Stress always on penultimate syllable. J = /j/ (semivowel); Ĵ = /ʒ/. Ŭ = /w/ (semivowel in diphthongs aŭ, eŭ). The most widely spoken constructed language.",
   "sources": [
@@ -97,5 +209,13 @@
   "timespan": {
     "start_year": 1887,
     "end_year": null
+  },
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Esperanto has perfectly regular penultimate stress. The stress rule is part of the Fundamento de Esperanto (Zamenhof 1905). No exceptions exist in native vocabulary. Source: Wells (1989), Lingvistikaj aspektoj de Esperanto; Wikipedia: https://en.wikipedia.org/wiki/Esperanto_phonology"
   }
 }

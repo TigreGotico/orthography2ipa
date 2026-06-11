@@ -399,5 +399,13 @@
     "end_year": null
   },
   "glottolog_code": "slov1269",
-  "iso639_3": "slk"
+  "iso639_3": "slk",
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Slovak has categorical initial stress regardless of vowel length. Diacritics (á é í ó ú ý ä ô) mark quantity or quality, not stress. Source: Dvonč et al. (1966), Morfológia slovenského jazyka; Wikipedia: https://en.wikipedia.org/wiki/Slovak_phonology"
+  }
 }

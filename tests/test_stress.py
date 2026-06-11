@@ -40,7 +40,19 @@ class TestSchema:
 
     def test_pydantic_rejects_bad_position(self):
         with pytest.raises(Exception):
-            StressRulesModel(default_position=2)
+            StressRulesModel(default_position=5)
+
+    def test_pydantic_rejects_zero_position(self):
+        with pytest.raises(Exception):
+            StressRulesModel(default_position=0)
+
+    def test_pydantic_accepts_initial_stress_position(self):
+        model = StressRulesModel(default_position=1)
+        assert model.default_position == 1
+
+    def test_pydantic_accepts_second_syllable_position(self):
+        model = StressRulesModel(default_position=2)
+        assert model.default_position == 2
 
     def test_pydantic_rejects_empty_entries(self):
         with pytest.raises(Exception):
@@ -310,4 +322,347 @@ class TestBarranquenhoStress:
         ("médico", 0),   # mé-di-co → accent on first
     ])
     def test_barranquenho_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# From-start anchoring (positive default_position)
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestFromStartAnchoring:
+    """Unit tests for the positive default_position extension."""
+
+    def test_initial_stress_two_syllables(self):
+        rules = StressRules(default_position=1)
+        assert detect_stress("auto", rules) == 0
+
+    def test_initial_stress_three_syllables(self):
+        rules = StressRules(default_position=1)
+        assert detect_stress("lampa", rules) == 0
+
+    def test_initial_stress_four_syllables(self):
+        rules = StressRules(default_position=1)
+        # au-to-mo-bil → first syllable
+        assert detect_stress("automobil", rules) == 0
+
+    def test_second_syllable_position(self):
+        rules = StressRules(default_position=2)
+        assert detect_stress("automobil", rules) == 1
+
+    def test_initial_clamped_on_monosyllable(self):
+        rules = StressRules(default_position=1)
+        assert detect_stress("sol", rules) == 0
+
+    def test_marked_vowel_overrides_initial(self):
+        """Written accents still win over fixed initial default."""
+        rules = StressRules(default_position=1, marked_vowels=("é",))
+        # ca-fé → accent on last (index 1), not first (index 0)
+        assert detect_stress("café", rules) == 1
+
+    def test_apply_stress_mark_initial(self):
+        rules = StressRules(default_position=1, stress_mark="ˈ")
+        # stress_index=0 → first IPA syllable
+        result = apply_stress_mark("ˈlampa", rules, 0, syllables=["lam", "pa"])
+        assert result == "ˈlampa"
+
+    def test_apply_stress_mark_initial_insert(self):
+        rules = StressRules(default_position=1, stress_mark="ˈ")
+        result = apply_stress_mark("lampa", rules, 0, syllables=["lam", "pa"])
+        assert result.startswith("ˈ")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Initial-stress languages (default_position 1)
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestCzechStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("cs").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+        assert rules.marked_vowels == ()
+
+    @pytest.mark.parametrize("word,expected", [
+        ("Praha",    0),   # Pra-ha → first
+        ("svoboda",  0),   # svo-bo-da → first
+        ("republika",0),   # re-pu-bli-ka → first
+        ("kniha",    0),   # kni-ha → first
+        ("oblíbený", 0),   # o-blí-be-ný → first (diacritic = quantity)
+        ("akademie", 0),   # a-ka-de-mi-e → first
+    ])
+    def test_czech_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestSlovakStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("sk").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("mesto",    0),   # mes-to → first
+        ("sloboda",  0),   # slo-bo-da → first
+        ("republika",0),   # re-pu-bli-ka → first
+        ("chleba",   0),   # chle-ba → first
+        ("muzika",   0),   # mu-zi-ka → first
+        ("krajina",  0),   # kra-ji-na → first
+    ])
+    def test_slovak_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestFinnishStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("fi").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("talo",     0),   # ta-lo → first
+        ("Helsinki", 0),   # Hel-sin-ki → first
+        ("suomalainen", 0),# suo-ma-lai-nen → first
+        ("puhelin",  0),   # pu-he-lin → first
+        ("yliopisto",0),   # y-li-o-pis-to → first
+        ("auto",     0),   # au-to → first
+    ])
+    def test_finnish_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestEstonianStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("et").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("maja",     0),   # ma-ja → first
+        ("Tallinn",  0),   # Tal-linn → first
+        ("vabadus",  0),   # va-ba-dus → first
+        ("eesti",    0),   # ees-ti → first
+        ("kool",     0),   # monosyllable → 0
+        ("raamat",   0),   # raa-mat → first
+    ])
+    def test_estonian_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestHungarianStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("hu").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("ház",      0),   # monosyllable → 0
+        ("alma",     0),   # al-ma → first
+        ("Budapest", 0),   # Bu-da-pest → first
+        ("szabadság",0),   # sza-bad-ság → first
+        ("könyvtár", 0),   # könyv-tár → first
+        ("magyarország", 0),  # ma-gyar-or-szág → first
+    ])
+    def test_hungarian_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestLatvianStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("lv").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("māja",     0),   # mā-ja → first
+        ("Rīga",     0),   # Rī-ga → first
+        ("valsts",   0),   # monosyllable-like → 0
+        ("bērni",    0),   # bēr-ni → first
+        ("grāmata",  0),   # grā-ma-ta → first
+        ("universitāte", 0),  # u-ni-ver-si-tā-te → first
+    ])
+    def test_latvian_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestIcelandicStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("is").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("hús",      0),   # monosyllable → 0
+        ("bók",      0),   # monosyllable → 0
+        ("hestur",   0),   # hes-tur → first
+        ("Ísland",   0),   # Ís-land → first
+        ("samband",  0),   # sam-band → first
+        ("framkvæmd",0),   # fram-kvæmd → first
+    ])
+    def test_icelandic_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestUpperSorbianStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("hsb").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("woda",     0),   # wo-da → first
+        ("swoboda",  0),   # swo-bo-da → first
+        ("knjez",    0),   # monosyllable → 0
+        ("Łužica",   0),   # Łu-ži-ca → first
+        ("čitać",    0),   # či-tać → first
+        ("zapisk",   0),   # za-pisk → first (z+a = one nucleus)
+    ])
+    def test_upper_sorbian_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestLowerSorbianStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("dsb").stress
+
+    def test_carries_initial_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == 1
+
+    @pytest.mark.parametrize("word,expected", [
+        ("woda",     0),   # wo-da → first
+        ("swoboda",  0),   # swo-bo-da → first
+        ("dom",      0),   # monosyllable → 0
+        ("Chóśebuz", 0),   # Chó-śe-buz → first
+        ("gólic",    0),   # gó-lic → first
+        ("muzika",   0),   # mu-zi-ka → first
+    ])
+    def test_lower_sorbian_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Penultimate-stress languages (default_position -2)
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestEsperantoStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("eo").stress
+
+    def test_carries_penult_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == -2
+        assert rules.marked_vowels == ()
+
+    @pytest.mark.parametrize("word,expected", [
+        ("pomo",     0),   # po-mo → penult = index 0
+        ("amiko",    1),   # a-mi-ko → penult = index 1
+        ("Esperanto",2),   # E-spe-ra-nto → 4 sylls → penult = index 2
+        ("lingvo",   0),   # ling-vo → penult = index 0
+        ("bela",     0),   # be-la → penult = index 0
+        ("internacia",2),  # i-nte-rna-cia → 4 sylls → penult = index 2
+    ])
+    def test_esperanto_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestPolishStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("pl").stress
+
+    def test_carries_penult_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == -2
+        assert "ó" not in rules.marked_vowels
+
+    @pytest.mark.parametrize("word,expected", [
+        ("mama",     0),   # ma-ma → penult = index 0
+        ("Polska",   0),   # Pol-ska → penult = index 0
+        ("muzyka",   1),   # mu-zy-ka → penult = index 1
+        ("literatura",3),  # li-te-ra-tu-ra → penult = index 3 (5 sylls)
+        ("okno",     0),   # ok-no → penult = index 0
+        ("Warszawa", 1),   # War-sza-wa → penult = index 1
+    ])
+    def test_polish_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+class TestSwahiliStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("sw").stress
+
+    def test_carries_penult_stress(self, rules):
+        assert rules is not None
+        assert rules.default_position == -2
+
+    @pytest.mark.parametrize("word,expected", [
+        ("mama",     0),   # ma-ma → penult = index 0
+        ("kitabu",   1),   # ki-ta-bu → penult = index 1
+        ("mwalimu",  1),   # mwa-li-mu → penult = index 1
+        ("chakula",  1),   # cha-ku-la → penult = index 1
+        ("nchi",     0),   # monosyllable-ish → 0
+        ("hospitali",2),   # ho-spi-ta-li → 4 sylls → penult = index 2
+    ])
+    def test_swahili_gold(self, rules, word, expected):
+        assert detect_stress(word, rules) == expected
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Greek — marked_vowels stress system
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestGreekStress:
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("el").stress
+
+    def test_carries_stress_block(self, rules):
+        assert rules is not None
+        assert "ά" in rules.marked_vowels
+        assert "έ" in rules.marked_vowels
+        assert "ώ" in rules.marked_vowels
+
+    def test_marked_vowels_subset_of_graphemes(self):
+        spec = get("el")
+        for mv in spec.stress.marked_vowels:
+            assert mv in spec.graphemes, (
+                f"marked vowel {mv!r} missing from el graphemes"
+            )
+
+    @pytest.mark.parametrize("word,expected", [
+        ("άνθρωπος", 0),   # ά-νθρω-πος → accent on ά → index 0
+        ("γλώσσα",   0),   # γλώσ-σα → accent on ώ → index 0
+        ("νερό",     1),   # νε-ρό → accent on ό → index 1
+        ("πατέρας",  1),   # πα-τέ-ρας → accent on έ → index 1
+        ("ελληνική", 3),   # ε-λλη-νι-κή → accent on ή → index 3 (4 sylls)
+        ("αγαπώ",    2),   # α-γα-πώ → accent on ώ → index 2 (3 sylls)
+    ])
+    def test_greek_gold(self, rules, word, expected):
         assert detect_stress(word, rules) == expected

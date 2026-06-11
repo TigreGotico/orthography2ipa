@@ -77,8 +77,11 @@ class StressRules:
     Parameters
     ----------
     default_position : int
-        Stressed syllable counted from the end: ``-1`` final (oxytone),
-        ``-2`` penultimate (paroxytone), ``-3`` antepenultimate.
+        Stressed syllable position. Negative values count from the end:
+        ``-1`` final (oxytone), ``-2`` penultimate (paroxytone),
+        ``-3`` antepenultimate. Positive values count from the start:
+        ``1`` = first syllable (initial stress), ``2`` = second syllable.
+        ``0`` is not valid. Range: ``-4`` to ``2`` (excluding ``0``).
     final_stress_endings : Tuple[str, ...]
         Orthographic word endings that attract final stress
         (Portuguese ``-r``, ``-l``, ``-z``, ``-im``, ``-ão`` …).

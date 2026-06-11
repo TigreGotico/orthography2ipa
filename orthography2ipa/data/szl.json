@@ -159,5 +159,13 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Silesian_language"
-  ]
+  ],
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Silesian (szl) follows the Polish penultimate stress pattern. Diacritics ô ō ŏ mark vowel quality, not stress. Source: Pattern consistent with Polish (pl); note that Silesian is a dialect continuum and individual varieties may vary. Wikipedia: https://en.wikipedia.org/wiki/Silesian_language"
+  }
 }

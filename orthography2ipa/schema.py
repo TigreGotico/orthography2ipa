@@ -135,10 +135,11 @@ class StressRulesModel(_Strict):
     @field_validator("default_position")
     @classmethod
     def _position_from_end(cls, v: int) -> int:
-        if not (-4 <= v <= -1):
+        if v == 0 or not (-4 <= v <= 2):
             raise ValueError(
-                f"default_position counts syllables from the end; "
-                f"expected -1..-4, got {v!r}"
+                f"default_position: negative values -1..-4 count from the end "
+                f"(oxytone..4th-from-last); positive values 1..2 count from the "
+                f"start (1=first syllable, 2=second); 0 is not valid; got {v!r}"
             )
         return v
 
