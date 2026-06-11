@@ -43,6 +43,7 @@ __all__ = [
 _VOWELS = set(
     "aeiou"
     "áéíóúàèìòùâêîôûãõäëïöüåæø"
+    "ąęėįųūīāēőűýěůŏŭıå"
     "ɐɑɒɔəɘɚɛɜɝɞɪɨɵøœɶʊʉʌyɤeiou̯ãẽĩõũɐ̃"
     # Greek vowels (monotonic + accented forms + dialytika-tonos)
     "αεηιουωάέήίόύώΐΰ"
