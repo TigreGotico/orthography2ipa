@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.6.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.5.0a1...1.6.0a1)
+
+**Merged pull requests:**
+
+- docs: credit the mirandese gold set's native-speaker provenance [\#55](https://github.com/TigreGotico/orthography2ipa/pull/55) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): stress blocks for turkic/malay and deferred review fixes [\#52](https://github.com/TigreGotico/orthography2ipa/pull/52) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.5.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.4.0a1...1.5.0a1)
