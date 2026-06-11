@@ -28,6 +28,7 @@ and a slice is enough for a stable reference number.
 from __future__ import annotations
 
 import argparse
+import csv
 import os
 import sys
 import unicodedata
@@ -149,7 +150,7 @@ def load_cmudict(lang: str, limit: int) -> List[Tuple[str, str]]:
 # algarve   → pt-PT-x-algarve
 # madeira   → pt-PT-x-madeira
 # azores    → pt-PT-x-acores
-_EP_DIALECT_MAP: dict = {
+_EP_DIALECT_MAP: Dict[str, str] = {
     "pt-PT-x-lisboa": "pt-PT-x-lisbon",
     "pt-PT-x-north": "pt-PT-x-porto",
     "pt-PT-x-central": "pt-PT",
@@ -192,18 +193,13 @@ def load_ep_dialects(lang: str, limit: int) -> List[Tuple[str, str]]:
     pairs: List[Tuple[str, str]] = []
     with open(_EP_DIALECT_GOLD_CSV, encoding="utf-8") as fh:
         next(fh)  # skip header
-        for line in fh:
-            line = line.strip()
-            if not line:
+        for row in csv.reader(fh):
+            if len(row) != 3:
                 continue
-            parts = line.split(",", 2)
-            if len(parts) != 3:
-                continue
-            dialect_code, text, ipa = parts
+            dialect_code, text, ipa = row
             if dialect_code == csv_key:
                 # Strip phonemic-transcription delimiters /…/ from gold IPA
-                gold_ipa = ipa.strip().strip("/")
-                pairs.append((text.strip(), gold_ipa))
+                pairs.append((text.strip(), ipa.strip().strip("/")))
             if len(pairs) >= limit:
                 break
     return pairs

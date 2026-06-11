@@ -14,6 +14,8 @@ Dialect specs under test:
     pt-PT-x-madeira  — Madeira
     pt-PT-x-acores   — Azores (São Miguel class for u→y)
 """
+from __future__ import annotations
+
 
 import pytest
 from orthography2ipa import G2P
