@@ -44,6 +44,8 @@ _VOWELS = set(
     "aeiou"
     "áéíóúàèìòùâêîôûãõäëïöüåæø"
     "ɐɑɒɔəɘɚɛɜɝɞɪɨɵøœɶʊʉʌyɤeiou̯ãẽĩõũɐ̃"
+    # Greek vowels (monotonic + accented forms + dialytika-tonos)
+    "αεηιουωάέήίόύώΐΰ"
 )
 _GLIDES = set("jw" "ʲʷ")
 
@@ -155,8 +157,13 @@ def detect_stress(
         if lowered.endswith(ending):
             return n - 2
 
-    # 4. default position, clamped into the word
-    return max(0, n + rules.default_position)
+    # 4. default position, clamped into the word.
+    #    Positive values anchor from the start (1 = first syllable).
+    #    Negative values anchor from the end (existing behaviour).
+    pos = rules.default_position
+    if pos >= 1:
+        return min(pos - 1, n - 1)
+    return max(0, n + pos)
 
 
 def apply_stress_mark(

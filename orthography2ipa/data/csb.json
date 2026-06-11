@@ -153,5 +153,13 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kashubian_language"
-  ]
+  ],
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Kashubian (csb) generally follows the Polish penultimate stress pattern, though some dialects show initial stress. Diacritics ë é ó ô ù mark vowel quality. Source: Stone (1993), Kashubian; Wikipedia: https://en.wikipedia.org/wiki/Kashubian_language"
+  }
 }

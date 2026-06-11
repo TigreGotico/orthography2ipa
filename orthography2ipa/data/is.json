@@ -329,5 +329,13 @@
     "end_year": null
   },
   "glottolog_code": "icel1247",
-  "iso639_3": "isl"
+  "iso639_3": "isl",
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Icelandic has categorical initial stress. Accent letters (á é í ó ú ý ö) mark vowel quality, not stress placement. Source: Einarsson (1945), Icelandic; Wikipedia: https://en.wikipedia.org/wiki/Icelandic_phonology"
+  }
 }
