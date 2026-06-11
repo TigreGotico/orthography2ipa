@@ -34,6 +34,10 @@ import unicodedata
 import urllib.request
 from typing import Dict, List, Optional, Tuple
 
+# the repository root precedes the installed package so that running the
+# script from a checkout measures THAT checkout
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".benchmark_cache")
 
 _STRESS_MARKS = "ˈˌ"
