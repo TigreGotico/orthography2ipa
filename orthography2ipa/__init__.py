@@ -29,6 +29,12 @@ from orthography2ipa.distance import (
     segment_distance,
     tone_distance,
 )
+from orthography2ipa.g2p import (
+    G2P,
+    TranscriptionResult,
+    WordTranscription,
+    transcribe,
+)
 from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
 from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, Token, TokenKind
@@ -66,6 +72,10 @@ from orthography2ipa.types import (
 )
 
 __all__ = [
+    "transcribe",
+    "G2P",
+    "TranscriptionResult",
+    "WordTranscription",
     "get",
     "get_plugin",
     "resolve",
