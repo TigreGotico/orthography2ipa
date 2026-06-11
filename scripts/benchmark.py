@@ -28,6 +28,7 @@ and a slice is enough for a stable reference number.
 from __future__ import annotations
 
 import argparse
+import csv
 import os
 import sys
 import unicodedata
@@ -136,7 +137,78 @@ def load_cmudict(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+
+# Dialect code mapping for ep_dialects dataset
+# CSV dialect_code  →  orthography2ipa language tag
+# ─────────────────────────────────────────────────────────────────────────────
+# lisboa    → pt-PT-x-lisbon   (Lisbon prestige variety)
+# north     → pt-PT-x-porto    (Porto/Baixo-Minho representative Northern EP)
+# central   → pt-PT            (Coimbra-type conservative standard; the Centro-
+#                               Litoral/Estremenho dialect is the closest match
+#                               to the "ideal standard" PT-PT in the codebase)
+# alentejo  → pt-PT-x-alentejo
+# algarve   → pt-PT-x-algarve
+# madeira   → pt-PT-x-madeira
+# azores    → pt-PT-x-acores
+_EP_DIALECT_MAP: Dict[str, str] = {
+    "pt-PT-x-lisboa": "pt-PT-x-lisbon",
+    "pt-PT-x-north": "pt-PT-x-porto",
+    "pt-PT-x-central": "pt-PT",
+    "pt-PT-x-alentejo": "pt-PT-x-alentejo",
+    "pt-PT-x-algarve": "pt-PT-x-algarve",
+    "pt-PT-x-madeira": "pt-PT-x-madeira",
+    "pt-PT-x-azores": "pt-PT-x-acores",
+}
+
+_EP_DIALECT_GOLD_CSV = os.path.join(
+    os.path.dirname(__file__), "..", "tests", "data", "ep_dialect_sentences.csv"
+)
+
+
+def load_ep_dialects(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """European Portuguese regional dialect gold set (sentence-level).
+
+    Source: TigreGotico internal dialect research (DIALECT_PATTERNS.md +
+    whitepaper5 IPA dialect transforms).  250 sentences across seven EP
+    regional varieties, manually annotated IPA, pending external
+    peer-validation.
+
+    Dialect code mapping (CSV dialect_code → orthography2ipa tag):
+        pt-PT-x-lisboa   → pt-PT-x-lisbon
+        pt-PT-x-north    → pt-PT-x-porto
+        pt-PT-x-central  → pt-PT   (Coimbra-type standard)
+        pt-PT-x-alentejo → pt-PT-x-alentejo
+        pt-PT-x-algarve  → pt-PT-x-algarve
+        pt-PT-x-madeira  → pt-PT-x-madeira
+        pt-PT-x-azores   → pt-PT-x-acores
+
+    The ``lang`` parameter accepts **either** the CSV dialect_code (e.g.
+    ``pt-PT-x-north``) or the mapped orthography2ipa tag (e.g.
+    ``pt-PT-x-porto``); both forms work transparently.
+    """
+    # Build reverse map so callers can pass either key
+    reverse_map = {v: k for k, v in _EP_DIALECT_MAP.items()}
+    csv_key = reverse_map.get(lang, lang)  # normalise to CSV-side key
+
+    pairs: List[Tuple[str, str]] = []
+    with open(_EP_DIALECT_GOLD_CSV, encoding="utf-8") as fh:
+        next(fh)  # skip header
+        for row in csv.reader(fh):
+            if len(row) != 3:
+                continue
+            dialect_code, text, ipa = row
+            if dialect_code == csv_key:
+                # Strip phonemic-transcription delimiters /…/ from gold IPA
+                pairs.append((text.strip(), ipa.strip().strip("/")))
+            if len(pairs) >= limit:
+                break
+    return pairs
+
+
+_EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
+
 DATASETS = {
+    "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "portuguese_lexicon": (load_portuguese_lexicon,
                            ["pt-PT", "pt-BR", "pt-AO", "pt-MZ", "pt-TL"]),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),

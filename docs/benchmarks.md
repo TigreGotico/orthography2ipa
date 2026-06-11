@@ -54,6 +54,34 @@ via [scriptconv](https://github.com/TigreGotico/scriptconv). English
 orthography is deeply irregular, so this row is a floor for a
 rule-driven engine, reported for honesty rather than flattery.
 
+### European Portuguese regional dialect gold set (`ep_dialects`)
+
+250 sentence-level rows across seven EP regional varieties, manually
+annotated with dialectal IPA.  Source: **TigreGotico internal dialect
+research** — DIALECT\_PATTERNS.md feature matrix cross-checked against
+whitepaper5 (*Phoneme-Level Dialect Transforms for European Portuguese*,
+Miro 2026).  Provenance: sentence-level gold produced by the same team
+that maintains the dialect specs; pending external peer validation.
+
+The CSV lives at `tests/data/ep_dialect_sentences.csv`.  The benchmark
+harness maps the seven CSV dialect codes to orthography2ipa language tags:
+
+| CSV dialect\_code | orthography2ipa tag | Notes |
+|---|---|---|
+| `pt-PT-x-lisboa` | `pt-PT-x-lisbon` | Lisbon prestige |
+| `pt-PT-x-north` | `pt-PT-x-porto` | Porto / Baixo-Minho representative |
+| `pt-PT-x-central` | `pt-PT` | Coimbra-type conservative standard |
+| `pt-PT-x-alentejo` | `pt-PT-x-alentejo` | |
+| `pt-PT-x-algarve` | `pt-PT-x-algarve` | |
+| `pt-PT-x-madeira` | `pt-PT-x-madeira` | |
+| `pt-PT-x-azores` | `pt-PT-x-acores` | |
+
+Because the gold contains sentence-level phonetics (connected-speech
+reductions, liaison, stress-conditioned elisions), PER is naturally
+higher than the lexicon benchmarks; it measures how well the engine
+captures dialect-specific grapheme-to-phoneme rules, not connected-speech
+phonology.
+
 ### Mirandese gold set
 
 [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)
@@ -87,6 +115,13 @@ its size keeps results indicative rather than statistical.
 
 | Dataset | Lang | N | PER | WER |
 |---|---|---:|---:|---:|
+| ep_dialects | pt-PT-x-lisbon | 45 | 0.402 | 1.00 |
+| ep_dialects | pt-PT-x-porto | 40 | 0.443 | 1.00 |
+| ep_dialects | pt-PT | 30 | 0.268 | 1.00 |
+| ep_dialects | pt-PT-x-alentejo | 30 | 0.409 | 1.00 |
+| ep_dialects | pt-PT-x-algarve | 30 | 0.381 | 1.00 |
+| ep_dialects | pt-PT-x-madeira | 30 | 0.370 | 1.00 |
+| ep_dialects | pt-PT-x-acores | 29 | 0.459 | 1.00 |
 | portuguese_lexicon | pt-PT | 300 | 0.167 | 0.73 |
 | portuguese_lexicon | pt-MZ | 300 | 0.288 | 0.86 |
 | portuguese_lexicon | pt-AO | 300 | 0.398 | 1.00 |
