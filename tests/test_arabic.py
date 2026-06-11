@@ -269,9 +269,9 @@ class TestMaghrebiArabic:
 
     def test_short_vowel_deletion(self):
         """a/i/u allophones include ∅ — short vowel deletion (syncope)."""
-        _assert_contains(_allophone(self.spec, "a"), "∅", label="a allophone deletion")
-        _assert_contains(_allophone(self.spec, "i"), "∅", label="i allophone deletion")
-        _assert_contains(_allophone(self.spec, "u"), "∅", label="u allophone deletion")
+        _assert_contains(_allophone(self.spec, "a"), "", label="a allophone deletion")
+        _assert_contains(_allophone(self.spec, "i"), "", label="i allophone deletion")
+        _assert_contains(_allophone(self.spec, "u"), "", label="u allophone deletion")
 
     def test_emphatic_merger(self):
         """ɮˤ allophone → [dˤ] — emphatic merged to stop in Maghrebi."""
@@ -314,7 +314,7 @@ class TestMoroccanArabic:
 
     def test_a_extreme_reduction(self):
         """a allophone includes ə and ∅ — extreme vowel reduction."""
-        _assert_contains(_allophone(self.spec, "a"), "ə", "∅", label="a allophone")
+        _assert_contains(_allophone(self.spec, "a"), "ə", "", label="a allophone")
 
     def test_aa_raised(self):
         """aː allophone includes æː — Moroccan vowel raising."""

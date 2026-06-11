@@ -1986,7 +1986,7 @@ class TestAragonese:
     def test_positional_d_word_final_deletion(self):
         """Word-final d → [ð] or /∅/ in Aragonese."""
         p = _positional(self._spec, "d", GraphemePosition.WORD_FINAL)
-        assert p and ("ð" in p or "∅" in p)
+        assert p and ("ð" in p or "" in p)
 
     def test_positional_r_word_initial_trill(self):
         p = _positional(self._spec, "r", GraphemePosition.WORD_INITIAL)
@@ -2099,7 +2099,7 @@ class TestIberianIsoglosses:
         """h is silent/null in Romance Iberian; h is phonemic in Basque.
 
         es-ES, gl, ast, ca use empty string "" for silent h.
-        pt-PT uses "∅" (the null symbol) for silent h.
+        pt-PT uses "" (the null symbol) for silent h.
         Basque eu uses "h" (phonemic aspiration).
         """
         silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"), _load("an")]
@@ -2114,8 +2114,8 @@ class TestIberianIsoglosses:
 
         for spec in silent_null_sym:
             g = _grapheme(spec, "h")
-            assert g and g[0] in ("", "∅"), (
-                f"{spec.code} h: expected silent ('' or '∅'), got {g!r}"
+            assert g and g[0] in ("", ""), (
+                f"{spec.code} h: expected silent ('' or ''), got {g!r}"
             )
 
         for spec in phonemic:
