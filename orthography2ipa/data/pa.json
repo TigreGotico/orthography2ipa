@@ -1,400 +1,400 @@
 {
-  "code": "pa",
-  "name": "Punjabi",
-  "family": "Indo-Aryan",
-  "script": "Gurmukhi",
-  "graphemes": {
-    "ਅ": [
-      "ə"
-    ],
-    "ਆ": [
-      "aː"
-    ],
-    "ਇ": [
-      "i"
-    ],
-    "ਈ": [
-      "iː"
-    ],
-    "ਉ": [
-      "u"
-    ],
-    "ਊ": [
-      "uː"
-    ],
-    "ਏ": [
-      "eː"
-    ],
-    "ਐ": [
-      "ɛː"
-    ],
-    "ਓ": [
-      "oː"
-    ],
-    "ਔ": [
-      "ɔː"
-    ],
-    "ਾ": [
-      "aː"
-    ],
-    "ਿ": [
-      "i"
-    ],
-    "ੀ": [
-      "iː"
-    ],
-    "ੁ": [
-      "u"
-    ],
-    "ੂ": [
-      "uː"
-    ],
-    "ੇ": [
-      "eː"
-    ],
-    "ੈ": [
-      "ɛː"
-    ],
-    "ੋ": [
-      "oː"
-    ],
-    "ੌ": [
-      "ɔː"
-    ],
-    "ੰ": [
-      "̃"
-    ],
-    "ਂ": [
-      "̃"
-    ],
-    "ੱ": [
-      ""
-    ],
-    "ਕ": [
-      "k"
-    ],
-    "ਖ": [
-      "kʰ"
-    ],
-    "ਗ": [
-      "ɡ"
-    ],
-    "ਘ": [
-      "ɡ˩"
-    ],
-    "ਙ": [
-      "ŋ"
-    ],
-    "ਚ": [
-      "tʃ"
-    ],
-    "ਛ": [
-      "tʃʰ"
-    ],
-    "ਜ": [
-      "dʒ"
-    ],
-    "ਝ": [
-      "dʒ˩"
-    ],
-    "ਞ": [
-      "ɲ"
-    ],
-    "ਟ": [
-      "ʈ"
-    ],
-    "ਠ": [
-      "ʈʰ"
-    ],
-    "ਡ": [
-      "ɖ"
-    ],
-    "ਢ": [
-      "ɖ˩"
-    ],
-    "ਣ": [
-      "ɳ"
-    ],
-    "ਤ": [
-      "t̪"
-    ],
-    "ਥ": [
-      "t̪ʰ"
-    ],
-    "ਦ": [
-      "d̪"
-    ],
-    "ਧ": [
-      "d̪˩"
-    ],
-    "ਨ": [
-      "n"
-    ],
-    "ਪ": [
-      "p"
-    ],
-    "ਫ": [
-      "pʰ"
-    ],
-    "ਬ": [
-      "b"
-    ],
-    "ਭ": [
-      "b˩"
-    ],
-    "ਮ": [
-      "m"
-    ],
-    "ਯ": [
-      "j"
-    ],
-    "ਰ": [
-      "r"
-    ],
-    "ਲ": [
-      "l"
-    ],
-    "ਲ਼": [
-      "ɭ"
-    ],
-    "ਵ": [
-      "ʋ"
-    ],
-    "ੜ": [
-      "ɽ"
-    ],
-    "ਸ": [
-      "s"
-    ],
-    "ਸ਼": [
-      "ʃ"
-    ],
-    "ਹ": [
-      "ɦ"
-    ],
-    "ਖ਼": [
-      "x"
-    ],
-    "ਗ਼": [
-      "ɣ"
-    ],
-    "ਜ਼": [
-      "z"
-    ],
-    "ਫ਼": [
-      "f"
-    ],
-    "ਕ਼": [
-      "q"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "pʰ": [
-      "pʰ"
-    ],
-    "b": [
-      "b"
-    ],
-    "t̪": [
-      "t̪"
-    ],
-    "t̪ʰ": [
-      "t̪ʰ"
-    ],
-    "d̪": [
-      "d̪"
-    ],
-    "ʈ": [
-      "ʈ"
-    ],
-    "ʈʰ": [
-      "ʈʰ"
-    ],
-    "ɖ": [
-      "ɖ"
-    ],
-    "k": [
-      "k"
-    ],
-    "kʰ": [
-      "kʰ"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "tʃ": [
-      "tʃ"
-    ],
-    "tʃʰ": [
-      "tʃʰ"
-    ],
-    "dʒ": [
-      "dʒ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ŋ",
-      "ɲ",
-      "ɳ"
-    ],
-    "ɳ": [
-      "ɳ"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "s": [
-      "s"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "x": [
-      "x"
-    ],
-    "ɣ": [
-      "ɣ"
-    ],
-    "f": [
-      "f"
-    ],
-    "z": [
-      "z"
-    ],
-    "ɦ": [
-      "ɦ",
-      "h"
-    ],
-    "r": [
-      "r"
-    ],
-    "ɽ": [
-      "ɽ"
-    ],
-    "l": [
-      "l"
-    ],
-    "ɭ": [
-      "ɭ"
-    ],
-    "ʋ": [
-      "ʋ",
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "ə": [
-      "ə"
-    ],
-    "aː": [
-      "aː"
-    ],
-    "i": [
-      "i"
-    ],
-    "iː": [
-      "iː"
-    ],
-    "u": [
-      "u"
-    ],
-    "uː": [
-      "uː"
-    ],
-    "eː": [
-      "eː"
-    ],
-    "ɛː": [
-      "ɛː"
-    ],
-    "oː": [
-      "oː"
-    ],
-    "ɔː": [
-      "ɔː"
-    ]
-  },
-  "parent": "sa",
-  "ancestors": [
-    {
-      "code": "sa",
-      "role": "parent",
-      "weight": 0.82,
-      "notes": "Descent via Shauraseni Apabhraṃśa"
+    "code": "pa",
+    "name": "Punjabi",
+    "family": "Indo-Aryan",
+    "script": "Gurmukhi",
+    "graphemes": {
+        "ਅ": [
+            "ə"
+        ],
+        "ਆ": [
+            "aː"
+        ],
+        "ਇ": [
+            "i"
+        ],
+        "ਈ": [
+            "iː"
+        ],
+        "ਉ": [
+            "u"
+        ],
+        "ਊ": [
+            "uː"
+        ],
+        "ਏ": [
+            "eː"
+        ],
+        "ਐ": [
+            "ɛː"
+        ],
+        "ਓ": [
+            "oː"
+        ],
+        "ਔ": [
+            "ɔː"
+        ],
+        "ਾ": [
+            "aː"
+        ],
+        "ਿ": [
+            "i"
+        ],
+        "ੀ": [
+            "iː"
+        ],
+        "ੁ": [
+            "u"
+        ],
+        "ੂ": [
+            "uː"
+        ],
+        "ੇ": [
+            "eː"
+        ],
+        "ੈ": [
+            "ɛː"
+        ],
+        "ੋ": [
+            "oː"
+        ],
+        "ੌ": [
+            "ɔː"
+        ],
+        "ੰ": [
+            "̃"
+        ],
+        "ਂ": [
+            "̃"
+        ],
+        "ੱ": [
+            "ː"
+        ],
+        "ਕ": [
+            "k"
+        ],
+        "ਖ": [
+            "kʰ"
+        ],
+        "ਗ": [
+            "ɡ"
+        ],
+        "ਘ": [
+            "ɡ˩"
+        ],
+        "ਙ": [
+            "ŋ"
+        ],
+        "ਚ": [
+            "tʃ"
+        ],
+        "ਛ": [
+            "tʃʰ"
+        ],
+        "ਜ": [
+            "dʒ"
+        ],
+        "ਝ": [
+            "dʒ˩"
+        ],
+        "ਞ": [
+            "ɲ"
+        ],
+        "ਟ": [
+            "ʈ"
+        ],
+        "ਠ": [
+            "ʈʰ"
+        ],
+        "ਡ": [
+            "ɖ"
+        ],
+        "ਢ": [
+            "ɖ˩"
+        ],
+        "ਣ": [
+            "ɳ"
+        ],
+        "ਤ": [
+            "t̪"
+        ],
+        "ਥ": [
+            "t̪ʰ"
+        ],
+        "ਦ": [
+            "d̪"
+        ],
+        "ਧ": [
+            "d̪˩"
+        ],
+        "ਨ": [
+            "n"
+        ],
+        "ਪ": [
+            "p"
+        ],
+        "ਫ": [
+            "pʰ"
+        ],
+        "ਬ": [
+            "b"
+        ],
+        "ਭ": [
+            "b˩"
+        ],
+        "ਮ": [
+            "m"
+        ],
+        "ਯ": [
+            "j"
+        ],
+        "ਰ": [
+            "r"
+        ],
+        "ਲ": [
+            "l"
+        ],
+        "ਲ਼": [
+            "ɭ"
+        ],
+        "ਵ": [
+            "ʋ"
+        ],
+        "ੜ": [
+            "ɽ"
+        ],
+        "ਸ": [
+            "s"
+        ],
+        "ਸ਼": [
+            "ʃ"
+        ],
+        "ਹ": [
+            "ɦ"
+        ],
+        "ਖ਼": [
+            "x"
+        ],
+        "ਗ਼": [
+            "ɣ"
+        ],
+        "ਜ਼": [
+            "z"
+        ],
+        "ਫ਼": [
+            "f"
+        ],
+        "ਕ਼": [
+            "q"
+        ]
     },
-    {
-      "code": "fa",
-      "role": "adstrate",
-      "weight": 0.1,
-      "notes": "Persian adstrate through Mughal period and Lahore cultural sphere"
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "pʰ": [
+            "pʰ"
+        ],
+        "b": [
+            "b"
+        ],
+        "t̪": [
+            "t̪"
+        ],
+        "t̪ʰ": [
+            "t̪ʰ"
+        ],
+        "d̪": [
+            "d̪"
+        ],
+        "ʈ": [
+            "ʈ"
+        ],
+        "ʈʰ": [
+            "ʈʰ"
+        ],
+        "ɖ": [
+            "ɖ"
+        ],
+        "k": [
+            "k"
+        ],
+        "kʰ": [
+            "kʰ"
+        ],
+        "ɡ": [
+            "ɡ"
+        ],
+        "tʃ": [
+            "tʃ"
+        ],
+        "tʃʰ": [
+            "tʃʰ"
+        ],
+        "dʒ": [
+            "dʒ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ŋ",
+            "ɲ",
+            "ɳ"
+        ],
+        "ɳ": [
+            "ɳ"
+        ],
+        "ɲ": [
+            "ɲ"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "s": [
+            "s"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "x": [
+            "x"
+        ],
+        "ɣ": [
+            "ɣ"
+        ],
+        "f": [
+            "f"
+        ],
+        "z": [
+            "z"
+        ],
+        "ɦ": [
+            "ɦ",
+            "h"
+        ],
+        "r": [
+            "r"
+        ],
+        "ɽ": [
+            "ɽ"
+        ],
+        "l": [
+            "l"
+        ],
+        "ɭ": [
+            "ɭ"
+        ],
+        "ʋ": [
+            "ʋ",
+            "w"
+        ],
+        "j": [
+            "j"
+        ],
+        "ə": [
+            "ə"
+        ],
+        "aː": [
+            "aː"
+        ],
+        "i": [
+            "i"
+        ],
+        "iː": [
+            "iː"
+        ],
+        "u": [
+            "u"
+        ],
+        "uː": [
+            "uː"
+        ],
+        "eː": [
+            "eː"
+        ],
+        "ɛː": [
+            "ɛː"
+        ],
+        "oː": [
+            "oː"
+        ],
+        "ɔː": [
+            "ɔː"
+        ]
     },
-    {
-      "code": "ar",
-      "role": "adstrate",
-      "weight": 0.05,
-      "notes": "Arabic adstrate: religious vocabulary"
+    "parent": "sa",
+    "ancestors": [
+        {
+            "code": "sa",
+            "role": "parent",
+            "weight": 0.82,
+            "notes": "Descent via Shauraseni Apabhraṃśa"
+        },
+        {
+            "code": "fa",
+            "role": "adstrate",
+            "weight": 0.1,
+            "notes": "Persian adstrate through Mughal period and Lahore cultural sphere"
+        },
+        {
+            "code": "ar",
+            "role": "adstrate",
+            "weight": 0.05,
+            "notes": "Arabic adstrate: religious vocabulary"
+        }
+    ],
+    "notes": "Eastern Punjabi (Gurmukhi script, India). Typologically remarkable: phonemic tone system (low/mid/high) developed from former breathy/aspirate contrasts. ⟨ਘ ਝ ਢ ਧ ਭ⟩ historically breathy-voiced, now trigger low tone. ⟨ਹ⟩ triggers low tone on preceding/following vowel when not initial. Western Punjabi (Shahmukhi, Pakistan) written in Perso-Arabic script.",
+    "quality": "research",
+    "script_type": "abugida",
+    "inherent_vowel": "ə",
+    "sources": [
+        {
+            "id": "masica1991",
+            "author": "Masica, C.",
+            "year": 1991,
+            "title": "The Indo-Aryan Languages",
+            "publisher": "Cambridge University Press",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+        },
+        {
+            "id": "cardona_jain2003",
+            "author": "Cardona, G. & Jain, D. (eds.)",
+            "year": 2003,
+            "title": "The Indo-Aryan Languages",
+            "publisher": "Routledge",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "shackle1972",
+            "author": "Shackle, C.",
+            "year": 1972,
+            "title": "Punjabi",
+            "publisher": "University of London Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Punjabi_language",
+        "https://pa.wikipedia.org/wiki/ਪੰਜਾਬੀ"
+    ],
+    "timespan": {
+        "start_year": 1500,
+        "end_year": null
+    },
+    "glottolog_code": "panj1256",
+    "iso639_3": "pan",
+    "tone_inventory": {
+        "˥": "high",
+        "˧": "mid (neutral)",
+        "˩": "low"
     }
-  ],
-  "notes": "Eastern Punjabi (Gurmukhi script, India). Typologically remarkable: phonemic tone system (low/mid/high) developed from former breathy/aspirate contrasts. ⟨ਘ ਝ ਢ ਧ ਭ⟩ historically breathy-voiced, now trigger low tone. ⟨ਹ⟩ triggers low tone on preceding/following vowel when not initial. Western Punjabi (Shahmukhi, Pakistan) written in Perso-Arabic script.",
-  "quality": "research",
-  "script_type": "abugida",
-  "inherent_vowel": "ə",
-  "sources": [
-    {
-      "id": "masica1991",
-      "author": "Masica, C.",
-      "year": 1991,
-      "title": "The Indo-Aryan Languages",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
-    },
-    {
-      "id": "cardona_jain2003",
-      "author": "Cardona, G. & Jain, D. (eds.)",
-      "year": 2003,
-      "title": "The Indo-Aryan Languages",
-      "publisher": "Routledge",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "shackle1972",
-      "author": "Shackle, C.",
-      "year": 1972,
-      "title": "Punjabi",
-      "publisher": "University of London Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Punjabi_language",
-    "https://pa.wikipedia.org/wiki/ਪੰਜਾਬੀ"
-  ],
-  "timespan": {
-    "start_year": 1500,
-    "end_year": null
-  },
-  "glottolog_code": "panj1256",
-  "iso639_3": "pan",
-  "tone_inventory": {
-    "˥": "high",
-    "˧": "mid (neutral)",
-    "˩": "low"
-  }
 }

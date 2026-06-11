@@ -4,9 +4,6 @@
   "family": "Romance",
   "script": "Latin",
   "parent": "es-ES-x-medieval",
-  "graphemes_base": "es-ES-x-medieval",
-  "allophones_base": "es-ES-x-medieval",
-  "positional_graphemes_base": "es-ES-x-medieval",
   "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
   "sources": [
     {
@@ -53,14 +50,116 @@
   "iso639_3": "spa",
   "quality": "research",
   "graphemes": {
-    "ü": [
-      "w"
-    ],
-    "é": [
-      "e"
-    ],
-    "ó": [
-      "o"
-    ]
+    "a": ["a"],
+    "á": ["a"],
+    "e": ["e", "ɛ"],
+    "é": ["e"],
+    "i": ["i"],
+    "í": ["i"],
+    "o": ["o", "ɔ"],
+    "ó": ["o"],
+    "u": ["u"],
+    "ú": ["u"],
+    "b": ["b"],
+    "c": ["k", "θ"],
+    "ch": ["tʃ"],
+    "d": ["d"],
+    "f": ["f"],
+    "g": ["ɡ", "x"],
+    "gu": ["ɡ"],
+    "h": [""],
+    "j": ["x"],
+    "k": ["k"],
+    "l": ["l"],
+    "ll": ["ʝ"],
+    "m": ["m"],
+    "n": ["n"],
+    "ñ": ["ɲ"],
+    "p": ["p"],
+    "q": ["k"],
+    "qu": ["k"],
+    "r": ["ɾ"],
+    "rr": ["r"],
+    "s": ["s"],
+    "t": ["t"],
+    "v": ["b"],
+    "w": ["w"],
+    "x": ["ks", "s"],
+    "y": ["ʝ", "i"],
+    "z": ["θ"],
+    "güe": ["ɡwe"],
+    "güi": ["ɡwi"],
+    "ie": ["je"],
+    "ue": ["we"],
+    "ia": ["ja"],
+    "io": ["jo"],
+    "ua": ["wa"],
+    "uo": ["wo"],
+    "ai": ["aj"],
+    "ei": ["ej"],
+    "oi": ["oj"],
+    "au": ["aw"],
+    "eu": ["ew"],
+    "iu": ["ju"],
+    "ui": ["wi"],
+    "ü": ["w"]
+  },
+  "allophones": {
+    "p": ["p"],
+    "b": ["b", "β"],
+    "t": ["t"],
+    "d": ["d", "ð"],
+    "k": ["k"],
+    "ɡ": ["ɡ", "ɣ"],
+    "tʃ": ["tʃ"],
+    "f": ["f"],
+    "θ": ["θ"],
+    "s": ["s̺"],
+    "x": ["x", "χ"],
+    "ʝ": ["ʝ", "ɟʝ", "j"],
+    "m": ["m"],
+    "n": ["n", "ŋ", "m"],
+    "ɲ": ["ɲ"],
+    "l": ["l"],
+    "ɾ": ["ɾ"],
+    "r": ["r"],
+    "j": ["j"],
+    "w": ["w"],
+    "a": ["a"],
+    "e": ["e"],
+    "ɛ": ["ɛ"],
+    "i": ["i"],
+    "o": ["o"],
+    "ɔ": ["ɔ"],
+    "u": ["u"]
+  },
+  "positional_graphemes": {
+    "b": {
+      "intervocalic": ["β"]
+    },
+    "d": {
+      "intervocalic": ["ð"],
+      "word_final": ["ð"]
+    },
+    "g": {
+      "before_e": ["x"],
+      "before_i": ["x"],
+      "intervocalic": ["ɣ"]
+    },
+    "c": {
+      "before_e": ["θ"],
+      "before_i": ["θ"]
+    },
+    "x": {
+      "before_consonant": ["s"]
+    },
+    "r": {
+      "word_initial": ["r"],
+      "intervocalic": ["ɾ"],
+      "coda": ["ɾ"]
+    },
+    "n": {
+      "coda": ["n", "ŋ"]
+    }
   }
 }

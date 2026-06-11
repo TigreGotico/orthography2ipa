@@ -1,328 +1,331 @@
 {
-  "code": "br",
-  "name": "Breton",
-  "family": "Celtic",
-  "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e",
-      "ɛ"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o",
-      "ɔ"
-    ],
-    "u": [
-      "y"
-    ],
-    "ou": [
-      "u"
-    ],
-    "â": [
-      "aː"
-    ],
-    "ê": [
-      "eː"
-    ],
-    "ô": [
-      "oː"
-    ],
-    "b": [
-      "b"
-    ],
-    "d": [
-      "d"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "ch": [
-      "ʃ"
-    ],
-    "j": [
-      "ʒ"
-    ],
-    "c'h": [
-      "x",
-      "h"
-    ],
-    "gn": [
-      "ɲ"
-    ],
-    "lh": [
-      "ʎ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "ʁ",
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "zh": [
-      "z",
-      "h"
-    ],
-    "h": [
-      "h"
-    ],
-    "nn": [
-      "n"
-    ],
-    "mm": [
-      "m"
-    ],
-    "eu": [
-      "œ",
-      "ø"
-    ],
-    "añ": [
-      "ɑ̃"
-    ],
-    "eñ": [
-      "ẽ"
-    ],
-    "iñ": [
-      "ĩ"
-    ],
-    "oñ": [
-      "ɔ̃"
-    ],
-    "uñ": [
-      "ỹ"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʒ": [
-      "ʒ"
-    ],
-    "x": [
-      "x"
-    ],
-    "h": [
-      "h"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "l": [
-      "l"
-    ],
-    "ʎ": [
-      "ʎ"
-    ],
-    "ʁ": [
-      "ʁ",
-      "r"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "a": [
-      "a"
-    ],
-    "aː": [
-      "aː"
-    ],
-    "e": [
-      "e"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "eː": [
-      "eː"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "oː": [
-      "oː"
-    ],
-    "y": [
-      "y"
-    ],
-    "u": [
-      "u"
-    ],
-    "œ": [
-      "œ"
-    ],
-    "ø": [
-      "ø",
-      "øː"
-    ],
-    "ɑ̃": [
-      "ɑ̃"
-    ],
-    "ẽ": [
-      "ẽ"
-    ],
-    "ĩ": [
-      "ĩ"
-    ],
-    "ɔ̃": [
-      "ɔ̃"
-    ],
-    "ỹ": [
-      "ỹ"
-    ]
-  },
-  "parent": "xbr",
-  "ancestors": [
-    {
-      "code": "xbr",
-      "role": "parent",
-      "weight": 0.85,
-      "notes": "Descent from Common Brythonic via insular settlers"
+    "code": "br",
+    "name": "Breton",
+    "family": "Celtic",
+    "script": "Latin",
+    "graphemes": {
+        "a": [
+            "a"
+        ],
+        "e": [
+            "e",
+            "ɛ"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "o",
+            "ɔ"
+        ],
+        "u": [
+            "y"
+        ],
+        "ou": [
+            "u"
+        ],
+        "â": [
+            "aː"
+        ],
+        "ê": [
+            "eː"
+        ],
+        "ô": [
+            "oː"
+        ],
+        "b": [
+            "b"
+        ],
+        "d": [
+            "d"
+        ],
+        "g": [
+            "ɡ"
+        ],
+        "p": [
+            "p"
+        ],
+        "t": [
+            "t"
+        ],
+        "k": [
+            "k"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "v"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "z"
+        ],
+        "ch": [
+            "ʃ"
+        ],
+        "j": [
+            "ʒ"
+        ],
+        "c'h": [
+            "x",
+            "h"
+        ],
+        "gn": [
+            "ɲ"
+        ],
+        "lh": [
+            "ʎ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "l": [
+            "l"
+        ],
+        "r": [
+            "ʁ",
+            "r"
+        ],
+        "w": [
+            "w"
+        ],
+        "zh": [
+            "z",
+            "h"
+        ],
+        "h": [
+            "h"
+        ],
+        "nn": [
+            "n"
+        ],
+        "mm": [
+            "m"
+        ],
+        "eu": [
+            "œ",
+            "ø"
+        ],
+        "añ": [
+            "ɑ̃"
+        ],
+        "eñ": [
+            "ẽ"
+        ],
+        "iñ": [
+            "ĩ"
+        ],
+        "oñ": [
+            "ɔ̃"
+        ],
+        "uñ": [
+            "ỹ"
+        ],
+        "y": [
+            "j"
+        ]
     },
-    {
-      "code": "fr-FR",
-      "role": "adstrate",
-      "weight": 0.08,
-      "notes": "French adstrate: heavy lexical and phonological influence"
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "b": [
+            "b"
+        ],
+        "t": [
+            "t"
+        ],
+        "d": [
+            "d"
+        ],
+        "k": [
+            "k"
+        ],
+        "ɡ": [
+            "ɡ"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "v"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "z"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "ʒ": [
+            "ʒ"
+        ],
+        "x": [
+            "x"
+        ],
+        "h": [
+            "h"
+        ],
+        "ɲ": [
+            "ɲ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "l": [
+            "l"
+        ],
+        "ʎ": [
+            "ʎ"
+        ],
+        "ʁ": [
+            "ʁ",
+            "r"
+        ],
+        "r": [
+            "r"
+        ],
+        "w": [
+            "w"
+        ],
+        "j": [
+            "j"
+        ],
+        "a": [
+            "a"
+        ],
+        "aː": [
+            "aː"
+        ],
+        "e": [
+            "e"
+        ],
+        "ɛ": [
+            "ɛ"
+        ],
+        "eː": [
+            "eː"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "o"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "oː": [
+            "oː"
+        ],
+        "y": [
+            "y"
+        ],
+        "u": [
+            "u"
+        ],
+        "œ": [
+            "œ"
+        ],
+        "ø": [
+            "ø",
+            "øː"
+        ],
+        "ɑ̃": [
+            "ɑ̃"
+        ],
+        "ẽ": [
+            "ẽ"
+        ],
+        "ĩ": [
+            "ĩ"
+        ],
+        "ɔ̃": [
+            "ɔ̃"
+        ],
+        "ỹ": [
+            "ỹ"
+        ]
     },
-    {
-      "code": "xtg",
-      "role": "substrate",
-      "weight": 0.03,
-      "notes": "Gaulish substrate traces in Armorican territory"
-    }
-  ],
-  "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). ⟨c'h⟩ = /x/; ⟨zh⟩ = /z/ (KLT) or /h/ (Vannetais). French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986).",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "macaulay1992",
-      "author": "MacAulay, D. (ed.)",
-      "year": 1992,
-      "title": "The Celtic Languages",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Celtic_languages"
+    "parent": "xbr",
+    "ancestors": [
+        {
+            "code": "xbr",
+            "role": "parent",
+            "weight": 0.85,
+            "notes": "Descent from Common Brythonic via insular settlers"
+        },
+        {
+            "code": "fr-FR",
+            "role": "adstrate",
+            "weight": 0.08,
+            "notes": "French adstrate: heavy lexical and phonological influence"
+        },
+        {
+            "code": "xtg",
+            "role": "substrate",
+            "weight": 0.03,
+            "notes": "Gaulish substrate traces in Armorican territory"
+        }
+    ],
+    "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). ⟨c'h⟩ = /x/; ⟨zh⟩ = /z/ (KLT) or /h/ (Vannetais). French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986).",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "macaulay1992",
+            "author": "MacAulay, D. (ed.)",
+            "year": 1992,
+            "title": "The Celtic Languages",
+            "publisher": "Cambridge University Press",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Celtic_languages"
+        },
+        {
+            "id": "ternes1992",
+            "author": "Ternes, E.",
+            "year": 1992,
+            "title": "The Breton Language",
+            "publisher": "in D. MacAulay (ed.), The Celtic Languages",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "favereau1997",
+            "author": "Favereau, F.",
+            "year": 1997,
+            "title": "Grammaire du breton contemporain",
+            "publisher": "Skol Vreizh",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Breton_language",
+        "https://br.wikipedia.org/wiki/Brezhoneg"
+    ],
+    "timespan": {
+        "start_year": 1500,
+        "end_year": null
     },
-    {
-      "id": "ternes1992",
-      "author": "Ternes, E.",
-      "year": 1992,
-      "title": "The Breton Language",
-      "publisher": "in D. MacAulay (ed.), The Celtic Languages",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "favereau1997",
-      "author": "Favereau, F.",
-      "year": 1997,
-      "title": "Grammaire du breton contemporain",
-      "publisher": "Skol Vreizh",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Breton_language",
-    "https://br.wikipedia.org/wiki/Brezhoneg"
-  ],
-  "timespan": {
-    "start_year": 1500,
-    "end_year": null
-  },
-  "glottolog_code": "bret1244",
-  "iso639_3": "bre"
+    "glottolog_code": "bret1244",
+    "iso639_3": "bre"
 }

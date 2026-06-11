@@ -1,80 +1,80 @@
 {
-  "code": "pt-PT-x-acores",
-  "name": "Azorean Portuguese",
-  "family": "Romance",
-  "script": "Latin",
-  "graphemes_base": "pt-PT",
-  "graphemes": {
-    "ão": [
-      "õw̃"
-    ]
-  },
-  "allophones_base": "pt-PT",
-  "allophones": {
-    "ə": [
-      "ɨ",
-      "e"
+    "code": "pt-PT-x-acores",
+    "name": "Azorean Portuguese",
+    "family": "Romance",
+    "script": "Latin",
+    "graphemes_base": "pt-PT",
+    "graphemes": {
+        "ão": [
+            "õw̃"
+        ]
+    },
+    "allophones_base": "pt-PT",
+    "allophones": {
+        "ə": [
+            "ɨ",
+            "e"
+        ],
+        "ɐ̃": [
+            "ɐ̃",
+            "õ"
+        ]
+    },
+    "positional_graphemes_base": "pt-PT",
+    "parent": "pt-PT",
+    "notes": "Azorean Portuguese, spoken across the nine islands of the Azores archipelago; reference point is Terceira Island. Key phonological features: (1) diagnostic raised nasal diphthong [õw̃] for mainland EP [ɐ̃w̃] — e.g. não [nõw̃], mão [mõw̃]; (2) conservative preservation of full unstressed vowels — /e/, /o/ resist reduction that mainland EP applies; (3) archaic distinction between /ʒ/ (as in hoje) and /ʃ/ (as in caixa) maintained without merger or neutralization; (4) cluster simplification: muito → [mũt], outros → [otɾ]; (5) /a/ in unstressed syllables realised as [a] rather than mainland [ɐ]; (6) vowel breaking before nasal consonants produces diphthongs not found in standard EP; (7) inter-island variation: São Miguel has distinct /ɛ/ lowering; Flores retains more archaic forms. Prosodically slower with syllable-timed characteristics, contrasting with mainland stress-timing. Glottolog approximation: azor1234 (placeholder).",
+    "quality": "research",
+    "ancestors": [
+        {
+            "code": "pt-PT",
+            "role": "parent",
+            "weight": 0.85,
+            "notes": "Standard European Portuguese; Azorean diverges in nasal diphthong raising, vowel reduction resistance, and archaic /ʒ/ preservation"
+        }
     ],
-    "ɐ̃": [
-      "ɐ̃",
-      "õ"
-    ]
-  },
-  "positional_graphemes_base": "pt-PT",
-  "parent": "pt-PT",
-  "notes": "Azorean Portuguese, spoken across the nine islands of the Azores archipelago; reference point is Terceira Island. Key phonological features: (1) diagnostic raised nasal diphthong [õw̃] for mainland EP [ɐ̃w̃] — e.g. não [nõw̃], mão [mõw̃]; (2) conservative preservation of full unstressed vowels — /e/, /o/ resist reduction that mainland EP applies; (3) archaic distinction between /ʒ/ (as in hoje) and /ʃ/ (as in caixa) maintained without merger or neutralization; (4) cluster simplification: muito → [mũt], outros → [otɾ]; (5) /a/ in unstressed syllables realised as [a] rather than mainland [ɐ]; (6) vowel breaking before nasal consonants produces diphthongs not found in standard EP; (7) inter-island variation: São Miguel has distinct /ɛ/ lowering; Flores retains more archaic forms. Prosodically slower with syllable-timed characteristics, contrasting with mainland stress-timing. Glottolog approximation: azor1234 (placeholder).",
-  "quality": "research",
-  "ancestors": [
-    {
-      "code": "pt-PT",
-      "role": "parent",
-      "weight": 0.85,
-      "notes": "Standard European Portuguese; Azorean diverges in nasal diphthong raising, vowel reduction resistance, and archaic /ʒ/ preservation"
-    }
-  ],
-  "urls": [
-    "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
-  ],
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "mateus_dandrade2000",
-      "author": "Mateus, M.H.M. & d'Andrade, E.",
-      "year": 2000,
-      "title": "The Phonology of Portuguese",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "urls": [
+        "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
+    ],
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "mateus_dandrade2000",
+            "author": "Mateus, M.H.M. & d'Andrade, E.",
+            "year": 2000,
+            "title": "The Phonology of Portuguese",
+            "publisher": "Oxford University Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "cunha_cintra1984",
+            "author": "Cunha, C. & Cintra, L.F.L.",
+            "year": 1984,
+            "title": "Nova Gramática do Português Contemporâneo",
+            "publisher": "Sá da Costa",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "boleo1974",
+            "author": "Boléo, M.P.",
+            "year": 1974,
+            "title": "Estudos de linguística portuguesa e românica",
+            "publisher": "Universidade de Coimbra",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
+    ],
+    "timespan": {
+        "start_year": 1500,
+        "end_year": null
     },
-    {
-      "id": "cunha_cintra1984",
-      "author": "Cunha, C. & Cintra, L.F.L.",
-      "year": 1984,
-      "title": "Nova Gramática do Português Contemporâneo",
-      "publisher": "Sá da Costa",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "boleo1974",
-      "author": "Boléo, M.P.",
-      "year": 1974,
-      "title": "Estudos de linguística portuguesa e românica",
-      "publisher": "Universidade de Coimbra",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
-  ],
-  "timespan": {
-    "start_year": 1500,
-    "end_year": null
-  },
-  "glottolog_code": "azor1234",
-  "iso639_3": "por"
+    "glottolog_code": null,
+    "iso639_3": "por"
 }

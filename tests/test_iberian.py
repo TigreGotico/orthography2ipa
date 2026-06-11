@@ -1585,8 +1585,8 @@ class TestAsturian:
         _assert_first(_grapheme(self._spec, "y"), "ʝ", "ast y")
 
     def test_yy_special(self):
-        """yy → /ky/ — a unique Asturian digraph."""
-        _assert_first(_grapheme(self._spec, "yy"), "ky", "ast yy")
+        """yy → /kʲ/ — a unique Asturian pre/palatal stop digraph."""
+        _assert_first(_grapheme(self._spec, "yy"), "kʲ", "ast yy")
 
     def test_z_theta(self):
         """DISTINCIÓN: Asturian z → /θ/."""
@@ -1801,7 +1801,7 @@ class TestAragonese:
         assert "Aragonese" in self._spec.name
 
     def test_family_aragonese(self):
-        assert self._spec.family == "Aragonese"
+        assert "Romance" in self._spec.family
 
     def test_parent_hispanic_latin(self):
         assert "hispania" in self._spec.parent

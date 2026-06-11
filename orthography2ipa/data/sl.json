@@ -1,271 +1,269 @@
 {
-  "code": "sl",
-  "name": "Slovenian",
-  "family": "Slavic",
-  "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "ɛ",
-      "e"
-    ],
-    "é": [
-      "eː"
-    ],
-    "è": [
-      "ɛ"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "ɔ",
-      "o"
-    ],
-    "ó": [
-      "oː"
-    ],
-    "ò": [
-      "ɔ"
-    ],
-    "u": [
-      "u"
-    ],
-    "ə": [
-      "ə"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "ts"
-    ],
-    "č": [
-      "tʃ"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "h": [
-      "x"
-    ],
-    "j": [
-      "j"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l",
-      "w"
-    ],
-    "lj": [
-      "ʎ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "nj": [
-      "ɲ"
-    ],
-    "p": [
-      "p"
-    ],
-    "r": [
-      "r"
-    ],
-    "s": [
-      "s"
-    ],
-    "š": [
-      "ʃ"
-    ],
-    "t": [
-      "t"
-    ],
-    "v": [
-      "v",
-      "ʋ",
-      "w"
-    ],
-    "z": [
-      "z"
-    ],
-    "ž": [
-      "ʒ"
-    ],
-    "dž": [
-      "dʒ"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b",
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d",
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ",
-      "k"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v",
-      "ʋ",
-      "w",
-      "f"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z",
-      "s"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʒ": [
-      "ʒ",
-      "ʃ"
-    ],
-    "x": [
-      "x"
-    ],
-    "ts": [
-      "ts"
-    ],
-    "tʃ": [
-      "tʃ"
-    ],
-    "dʒ": [
-      "dʒ",
-      "tʃ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ŋ"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "l": [
-      "l",
-      "w"
-    ],
-    "ʎ": [
-      "ʎ"
-    ],
-    "r": [
-      "r"
-    ],
-    "j": [
-      "j"
-    ],
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "eː": [
-      "eː"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "oː": [
-      "oː"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "u": [
-      "u"
-    ],
-    "ə": [
-      "ə"
-    ]
-  },
-  "parent": "sla",
-  "notes": "Standard Slovenian. Unique among Slavic languages: retains a dual number in grammar. ⟨l⟩ → [w] in syllable coda (e.g. *delal* [dɛˈlaw]). ⟨v⟩ is variable [v ~ ʋ ~ w ~ f] depending on context. Standard language has phonemic pitch accent (tone); many dialects are toneless. No palatal stops (unlike Czech/Slovak), but ⟨lj nj⟩ = [ʎ ɲ].",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "comrie_corbett1993",
-      "author": "Comrie, B. & Corbett, G. (eds.)",
-      "year": 1993,
-      "title": "The Slavonic Languages",
-      "publisher": "Routledge",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+    "code": "sl",
+    "name": "Slovenian",
+    "family": "Slavic",
+    "script": "Latin",
+    "graphemes": {
+        "a": [
+            "a"
+        ],
+        "e": [
+            "ɛ",
+            "e",
+            "ə"
+        ],
+        "é": [
+            "eː"
+        ],
+        "è": [
+            "ɛ"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "ɔ",
+            "o"
+        ],
+        "ó": [
+            "oː"
+        ],
+        "ò": [
+            "ɔ"
+        ],
+        "u": [
+            "u"
+        ],
+        "b": [
+            "b"
+        ],
+        "c": [
+            "ts"
+        ],
+        "č": [
+            "tʃ"
+        ],
+        "d": [
+            "d"
+        ],
+        "f": [
+            "f"
+        ],
+        "g": [
+            "ɡ"
+        ],
+        "h": [
+            "x"
+        ],
+        "j": [
+            "j"
+        ],
+        "k": [
+            "k"
+        ],
+        "l": [
+            "l",
+            "w"
+        ],
+        "lj": [
+            "ʎ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "nj": [
+            "ɲ"
+        ],
+        "p": [
+            "p"
+        ],
+        "r": [
+            "r"
+        ],
+        "s": [
+            "s"
+        ],
+        "š": [
+            "ʃ"
+        ],
+        "t": [
+            "t"
+        ],
+        "v": [
+            "v",
+            "ʋ",
+            "w"
+        ],
+        "z": [
+            "z"
+        ],
+        "ž": [
+            "ʒ"
+        ],
+        "dž": [
+            "dʒ"
+        ]
     },
-    {
-      "id": "priestly1993",
-      "author": "Priestly, T.M.S.",
-      "year": 1993,
-      "title": "Slovenian",
-      "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "b": [
+            "b",
+            "p"
+        ],
+        "t": [
+            "t"
+        ],
+        "d": [
+            "d",
+            "t"
+        ],
+        "k": [
+            "k"
+        ],
+        "ɡ": [
+            "ɡ",
+            "k"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "v",
+            "ʋ",
+            "w",
+            "f"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "z",
+            "s"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "ʒ": [
+            "ʒ",
+            "ʃ"
+        ],
+        "x": [
+            "x"
+        ],
+        "ts": [
+            "ts"
+        ],
+        "tʃ": [
+            "tʃ"
+        ],
+        "dʒ": [
+            "dʒ",
+            "tʃ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ŋ"
+        ],
+        "ɲ": [
+            "ɲ"
+        ],
+        "l": [
+            "l",
+            "w"
+        ],
+        "ʎ": [
+            "ʎ"
+        ],
+        "r": [
+            "r"
+        ],
+        "j": [
+            "j"
+        ],
+        "a": [
+            "a"
+        ],
+        "e": [
+            "e"
+        ],
+        "eː": [
+            "eː"
+        ],
+        "ɛ": [
+            "ɛ"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "o"
+        ],
+        "oː": [
+            "oː"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "u": [
+            "u"
+        ],
+        "ə": [
+            "ə"
+        ]
     },
-    {
-      "id": "ladefoged_maddieson1996",
-      "author": "Ladefoged, P. & Maddieson, I.",
-      "year": 1996,
-      "title": "The Sounds of the World's Languages",
-      "publisher": "Blackwell",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Slovenian_language",
-    "https://sl.wikipedia.org/wiki/Slovenščina"
-  ],
-  "timespan": {
-    "start_year": 1500,
-    "end_year": null
-  },
-  "glottolog_code": "slov1268",
-  "iso639_3": "slv"
+    "parent": "sla",
+    "notes": "Standard Slovenian. Unique among Slavic languages: retains a dual number in grammar. ⟨l⟩ → [w] in syllable coda (e.g. *delal* [dɛˈlaw]). ⟨v⟩ is variable [v ~ ʋ ~ w ~ f] depending on context. Standard language has phonemic pitch accent (tone); many dialects are toneless. No palatal stops (unlike Czech/Slovak), but ⟨lj nj⟩ = [ʎ ɲ].",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "comrie_corbett1993",
+            "author": "Comrie, B. & Corbett, G. (eds.)",
+            "year": 1993,
+            "title": "The Slavonic Languages",
+            "publisher": "Routledge",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+        },
+        {
+            "id": "priestly1993",
+            "author": "Priestly, T.M.S.",
+            "year": 1993,
+            "title": "Slovenian",
+            "publisher": "in B. Comrie & G. Corbett (eds.), The Slavonic Languages",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "ladefoged_maddieson1996",
+            "author": "Ladefoged, P. & Maddieson, I.",
+            "year": 1996,
+            "title": "The Sounds of the World's Languages",
+            "publisher": "Blackwell",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Slovenian_language",
+        "https://sl.wikipedia.org/wiki/Slovenščina"
+    ],
+    "timespan": {
+        "start_year": 1500,
+        "end_year": null
+    },
+    "glottolog_code": "slov1268",
+    "iso639_3": "slv"
 }

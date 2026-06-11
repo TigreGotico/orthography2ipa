@@ -1,391 +1,389 @@
 {
-  "code": "as",
-  "name": "Assamese",
-  "family": "Indo-Aryan",
-  "script": "Bengali",
-  "graphemes": {
-    "অ": [
-      "ɔ",
-      "o"
-    ],
-    "আ": [
-      "a"
-    ],
-    "ই": [
-      "i"
-    ],
-    "ঈ": [
-      "i"
-    ],
-    "উ": [
-      "u"
-    ],
-    "ঊ": [
-      "u"
-    ],
-    "ঋ": [
-      "ri"
-    ],
-    "এ": [
-      "e",
-      "æ"
-    ],
-    "ঐ": [
-      "oi"
-    ],
-    "ও": [
-      "u"
-    ],
-    "ঔ": [
-      "ou"
-    ],
-    "া": [
-      "a"
-    ],
-    "ি": [
-      "i"
-    ],
-    "ী": [
-      "i"
-    ],
-    "ু": [
-      "u"
-    ],
-    "ূ": [
-      "u"
-    ],
-    "ৃ": [
-      "ri"
-    ],
-    "ে": [
-      "e",
-      "æ"
-    ],
-    "ৈ": [
-      "oi"
-    ],
-    "ো": [
-      "o"
-    ],
-    "ৌ": [
-      "ou"
-    ],
-    "ং": [
-      "ŋ"
-    ],
-    "ঃ": [
-      "h"
-    ],
-    "ঁ": [
-      "̃"
-    ],
-    "্": [
-      ""
-    ],
-    "ক": [
-      "k"
-    ],
-    "খ": [
-      "kʰ"
-    ],
-    "গ": [
-      "ɡ"
-    ],
-    "ঘ": [
-      "ɡʱ"
-    ],
-    "ঙ": [
-      "ŋ"
-    ],
-    "চ": [
-      "tɕ"
-    ],
-    "ছ": [
-      "tɕʰ"
-    ],
-    "জ": [
-      "dʑ"
-    ],
-    "ঝ": [
-      "dʑʱ"
-    ],
-    "ঞ": [
-      "n"
-    ],
-    "ট": [
-      "ʈ"
-    ],
-    "ঠ": [
-      "ʈʰ"
-    ],
-    "ড": [
-      "ɖ"
-    ],
-    "ঢ": [
-      "ɖʱ"
-    ],
-    "ণ": [
-      "n"
-    ],
-    "ত": [
-      "t"
-    ],
-    "থ": [
-      "tʰ"
-    ],
-    "দ": [
-      "d"
-    ],
-    "ধ": [
-      "dʱ"
-    ],
-    "ন": [
-      "n"
-    ],
-    "প": [
-      "p"
-    ],
-    "ফ": [
-      "pʰ",
-      "f"
-    ],
-    "ব": [
-      "b",
-      "w"
-    ],
-    "ভ": [
-      "bʱ",
-      "v"
-    ],
-    "ম": [
-      "m"
-    ],
-    "য": [
-      "dʑ",
-      "j"
-    ],
-    "য়": [
-      "j"
-    ],
-    "র": [
-      "r"
-    ],
-    "ড়": [
-      "ɽ"
-    ],
-    "ঢ়": [
-      "ɽʱ"
-    ],
-    "ল": [
-      "l"
-    ],
-    "শ": [
-      "x"
-    ],
-    "ষ": [
-      "x"
-    ],
-    "স": [
-      "x"
-    ],
-    "হ": [
-      "h"
-    ],
-    "ৱ": [
-      "w"
-    ],
-    "ক্ষ": [
-      "kʰ"
-    ],
-    "ৰ": [
-      "r"
-    ],
-    "ৎ": [
-      "t"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "pʰ": [
-      "pʰ"
-    ],
-    "b": [
-      "b"
-    ],
-    "bʱ": [
-      "bʱ"
-    ],
-    "t": [
-      "t"
-    ],
-    "tʰ": [
-      "tʰ"
-    ],
-    "d": [
-      "d"
-    ],
-    "dʱ": [
-      "dʱ"
-    ],
-    "ʈ": [
-      "ʈ"
-    ],
-    "ʈʰ": [
-      "ʈʰ"
-    ],
-    "ɖ": [
-      "ɖ"
-    ],
-    "ɖʱ": [
-      "ɖʱ"
-    ],
-    "k": [
-      "k"
-    ],
-    "kʰ": [
-      "kʰ"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "ɡʱ": [
-      "ɡʱ"
-    ],
-    "tɕ": [
-      "tɕ"
-    ],
-    "tɕʰ": [
-      "tɕʰ"
-    ],
-    "dʑ": [
-      "dʑ"
-    ],
-    "dʑʱ": [
-      "dʑʱ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ŋ",
-      "ɲ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "s": [
-      "s",
-      "ʃ"
-    ],
-    "h": [
-      "h"
-    ],
-    "r": [
-      "r",
-      "ɹ"
-    ],
-    "ɽ": [
-      "ɽ"
-    ],
-    "l": [
-      "l"
-    ],
-    "j": [
-      "j"
-    ],
-    "w": [
-      "w"
-    ],
-    "ɔ": [
-      "ɔ",
-      "o"
-    ],
-    "a": [
-      "a"
-    ],
-    "i": [
-      "i"
-    ],
-    "u": [
-      "u"
-    ],
-    "e": [
-      "e",
-      "æ"
-    ],
-    "o": [
-      "o"
-    ],
-    "x": [
-      "x"
-    ]
-  },
-  "parent": "sa",
-  "ancestors": [
-    {
-      "code": "sa",
-      "role": "parent",
-      "weight": 0.8,
-      "notes": "Descent via Magadhi Apabhraṃśa"
+    "code": "as",
+    "name": "Assamese",
+    "family": "Indo-Aryan",
+    "script": "Bengali",
+    "graphemes": {
+        "অ": [
+            "ɔ",
+            "o"
+        ],
+        "আ": [
+            "a"
+        ],
+        "ই": [
+            "i"
+        ],
+        "ঈ": [
+            "i"
+        ],
+        "উ": [
+            "u"
+        ],
+        "ঊ": [
+            "u"
+        ],
+        "ঋ": [
+            "ri"
+        ],
+        "এ": [
+            "e",
+            "æ"
+        ],
+        "ঐ": [
+            "oi"
+        ],
+        "ও": [
+            "u"
+        ],
+        "ঔ": [
+            "ou"
+        ],
+        "া": [
+            "a"
+        ],
+        "ি": [
+            "i"
+        ],
+        "ী": [
+            "i"
+        ],
+        "ু": [
+            "u"
+        ],
+        "ূ": [
+            "u"
+        ],
+        "ৃ": [
+            "ri"
+        ],
+        "ে": [
+            "e",
+            "æ"
+        ],
+        "ৈ": [
+            "oi"
+        ],
+        "ো": [
+            "o"
+        ],
+        "ৌ": [
+            "ou"
+        ],
+        "ং": [
+            "ŋ"
+        ],
+        "ঃ": [
+            "h"
+        ],
+        "ঁ": [
+            "̃"
+        ],
+        "্": [
+            ""
+        ],
+        "ক": [
+            "k"
+        ],
+        "খ": [
+            "kʰ"
+        ],
+        "গ": [
+            "ɡ"
+        ],
+        "ঘ": [
+            "ɡʱ"
+        ],
+        "ঙ": [
+            "ŋ"
+        ],
+        "চ": [
+            "tɕ"
+        ],
+        "ছ": [
+            "tɕʰ"
+        ],
+        "জ": [
+            "dʑ"
+        ],
+        "ঝ": [
+            "dʑʱ"
+        ],
+        "ঞ": [
+            "n"
+        ],
+        "ট": [
+            "ʈ"
+        ],
+        "ঠ": [
+            "ʈʰ"
+        ],
+        "ড": [
+            "ɖ"
+        ],
+        "ঢ": [
+            "ɖʱ"
+        ],
+        "ণ": [
+            "n"
+        ],
+        "ত": [
+            "t"
+        ],
+        "থ": [
+            "tʰ"
+        ],
+        "দ": [
+            "d"
+        ],
+        "ধ": [
+            "dʱ"
+        ],
+        "ন": [
+            "n"
+        ],
+        "প": [
+            "p"
+        ],
+        "ফ": [
+            "pʰ",
+            "f"
+        ],
+        "ব": [
+            "b",
+            "w"
+        ],
+        "ভ": [
+            "bʱ",
+            "v"
+        ],
+        "ম": [
+            "m"
+        ],
+        "য": [
+            "dʑ",
+            "j"
+        ],
+        "য়": [
+            "j"
+        ],
+        "র": [
+            "r"
+        ],
+        "ড়": [
+            "ɽ"
+        ],
+        "ঢ়": [
+            "ɽʱ"
+        ],
+        "ল": [
+            "l"
+        ],
+        "শ": [
+            "x"
+        ],
+        "ষ": [
+            "x"
+        ],
+        "স": [
+            "x"
+        ],
+        "হ": [
+            "h"
+        ],
+        "ৱ": [
+            "w"
+        ],
+        "ক্ষ": [
+            "kʰ"
+        ],
+        "ৰ": [
+            "r"
+        ],
+        "ৎ": [
+            "t"
+        ]
     },
-    {
-      "code": "bn",
-      "role": "adstrate",
-      "weight": 0.08,
-      "notes": "Close contact with Bengali"
-    }
-  ],
-  "notes": "Standard Assamese. Diverges from Bengali in: all three Sanskrit sibilants (ś ṣ s) merge to /x/; /w/ phonemic (⟨ৱ⟩); central vowel shift. Uses Assamese variant of Bengali script.",
-  "quality": "research",
-  "script_type": "abugida",
-  "inherent_vowel": "ɔ",
-  "sources": [
-    {
-      "id": "masica1991",
-      "author": "Masica, C.",
-      "year": 1991,
-      "title": "The Indo-Aryan Languages",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "pʰ": [
+            "pʰ"
+        ],
+        "b": [
+            "b"
+        ],
+        "bʱ": [
+            "bʱ"
+        ],
+        "t": [
+            "t"
+        ],
+        "tʰ": [
+            "tʰ"
+        ],
+        "d": [
+            "d"
+        ],
+        "dʱ": [
+            "dʱ"
+        ],
+        "ʈ": [
+            "ʈ"
+        ],
+        "ʈʰ": [
+            "ʈʰ"
+        ],
+        "ɖ": [
+            "ɖ"
+        ],
+        "ɖʱ": [
+            "ɖʱ"
+        ],
+        "k": [
+            "k"
+        ],
+        "kʰ": [
+            "kʰ"
+        ],
+        "ɡ": [
+            "ɡ"
+        ],
+        "ɡʱ": [
+            "ɡʱ"
+        ],
+        "tɕ": [
+            "tɕ"
+        ],
+        "tɕʰ": [
+            "tɕʰ"
+        ],
+        "dʑ": [
+            "dʑ"
+        ],
+        "dʑʱ": [
+            "dʑʱ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ŋ",
+            "ɲ"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "s": [
+            "s",
+            "ʃ"
+        ],
+        "h": [
+            "h"
+        ],
+        "r": [
+            "r",
+            "ɹ"
+        ],
+        "ɽ": [
+            "ɽ"
+        ],
+        "l": [
+            "l"
+        ],
+        "j": [
+            "j"
+        ],
+        "w": [
+            "w"
+        ],
+        "ɔ": [
+            "ɔ",
+            "o"
+        ],
+        "a": [
+            "a"
+        ],
+        "i": [
+            "i"
+        ],
+        "u": [
+            "u"
+        ],
+        "e": [
+            "e",
+            "æ"
+        ],
+        "o": [
+            "o"
+        ],
+        "x": [
+            "x",
+            "s"
+        ]
     },
-    {
-      "id": "cardona_jain2003",
-      "author": "Cardona, G. & Jain, D. (eds.)",
-      "year": 2003,
-      "title": "The Indo-Aryan Languages",
-      "publisher": "Routledge",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "parent": "sa",
+    "ancestors": [
+        {
+            "code": "sa",
+            "role": "parent",
+            "weight": 0.8,
+            "notes": "Descent via Magadhi Apabhraṃśa"
+        },
+        {
+            "code": "bn",
+            "role": "adstrate",
+            "weight": 0.08,
+            "notes": "Close contact with Bengali"
+        }
+    ],
+    "notes": "Standard Assamese. Diverges from Bengali in: all three Sanskrit sibilants (ś ṣ s) merge to /x/; /w/ phonemic (⟨ৱ⟩); central vowel shift. Uses Assamese variant of Bengali script.",
+    "quality": "research",
+    "script_type": "abugida",
+    "inherent_vowel": "ɔ",
+    "sources": [
+        {
+            "id": "masica1991",
+            "author": "Masica, C.",
+            "year": 1991,
+            "title": "The Indo-Aryan Languages",
+            "publisher": "Cambridge University Press",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+        },
+        {
+            "id": "cardona_jain2003",
+            "author": "Cardona, G. & Jain, D. (eds.)",
+            "year": 2003,
+            "title": "The Indo-Aryan Languages",
+            "publisher": "Routledge",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "goswami1966",
+            "author": "Goswami, G.C.",
+            "year": 1966,
+            "title": "The Structure of Assamese",
+            "publisher": "Gauhati University",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Assamese_language",
+        "https://as.wikipedia.org/wiki/অসমীয়া_ভাষা"
+    ],
+    "timespan": {
+        "start_year": 1400,
+        "end_year": null
     },
-    {
-      "id": "goswami1966",
-      "author": "Goswami, G.C.",
-      "year": 1966,
-      "title": "The Structure of Assamese",
-      "publisher": "Gauhati University",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Assamese_language",
-    "https://as.wikipedia.org/wiki/অসমীয়া_ভাষা"
-  ],
-  "timespan": {
-    "start_year": 1400,
-    "end_year": null
-  },
-  "glottolog_code": "assa1263",
-  "iso639_3": "asm"
+    "glottolog_code": "assa1263",
+    "iso639_3": "asm"
 }
