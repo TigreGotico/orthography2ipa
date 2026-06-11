@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.1a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.0a1...1.1.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): apply confirmed findings of the full-library linguistic review [\#31](https://github.com/TigreGotico/orthography2ipa/pull/31) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.0.0a1...1.1.0a1)
