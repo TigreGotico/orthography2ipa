@@ -451,5 +451,50 @@
     "end_year": null
   },
   "glottolog_code": "cata1289",
-  "iso639_3": "cat"
+  "iso639_3": "cat",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "n",
+      "t",
+      "k",
+      "p",
+      "m",
+      "f",
+      "x",
+      "ig",
+      "nc",
+      "nt",
+      "lt",
+      "st",
+      "lc",
+      "rc",
+      "mp",
+      "ps"
+    ],
+    "penult_stress_endings": [
+      "s",
+      "ns",
+      "es",
+      "as",
+      "os",
+      "is",
+      "us"
+    ],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "í",
+      "ï",
+      "ò",
+      "ó",
+      "ú",
+      "ü"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Catalan accentuation per Institut dEstudis Catalans (IEC) norm: written accent (grave or acute: à è é í ï ò ó ú ü) always wins. Default paroxytone. Words ending in a vowel or -s/-es/-as/-os/-is/-us are paroxytone. Words ending in a consonant other than -s (r, l, n, t, m, p, k, f, x, -ng, -nc, -nt, -lt, -st, -rc, -mp, -ig, -ps) are oxytone. Note: final -n in Catalan is typically oxytone (camió, raó, but comú, menú — those carry marks); unmarked -n-final words are generally oxytone. Proparoxytones always carry a written accent. Substantial simplification: the paroxytone/oxytone boundary is orthographically encoded and this rule captures the majority of cases."
+  }
 }
