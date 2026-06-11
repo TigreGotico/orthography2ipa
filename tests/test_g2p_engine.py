@@ -152,3 +152,66 @@ class TestModuleLevelTranscribe:
     def test_in_dunder_all(self):
         assert "transcribe" in orthography2ipa.__all__
         assert "G2P" in orthography2ipa.__all__
+
+
+class TestPositionalSelection:
+    """Positional grapheme rules reach the engine output."""
+
+    def test_pt_c_before_i_gives_s(self):
+        """Portuguese 'c' before 'i' → /s/ (not /k/); 'cinco' starts with /s/."""
+        engine = G2P("pt-PT", apply_stress=False)
+        ipa = engine.transcribe("cinco")
+        assert ipa.startswith("s"), f"Expected initial s from c-before-i, got {ipa!r}"
+
+    def test_pt_final_a_reduces_to_schwa(self):
+        """Word-final 'a' in pt-PT → /ɐ/."""
+        engine = G2P("pt-PT", apply_stress=False)
+        ipa = engine.transcribe("casa")
+        assert ipa.endswith("ɐ"), f"Expected final ɐ, got {ipa!r}"
+
+    def test_pt_stressed_a_is_open(self):
+        """Stressed 'a' in pt-PT stays /a/ (nucleus_stressed rule)."""
+        engine = G2P("pt-PT", apply_stress=False)
+        # In 'casa' the stressed syllable 'ca-' has open /a/
+        ipa = engine.transcribe("casa")
+        assert "a" in ipa, f"Expected open /a/ in stressed syllable, got {ipa!r}"
+
+    def test_pt_unstressed_e_reduces(self):
+        """Unstressed 'e' in pt-PT → /ɨ/ (nucleus_unstressed rule)."""
+        engine = G2P("pt-PT", apply_stress=False)
+        ipa = engine.transcribe("abade")
+        assert "ɨ" in ipa, f"Expected ɨ in unstressed final e, got {ipa!r}"
+
+    def test_pt_unstressed_o_raises(self):
+        """Unstressed 'o' in pt-PT → /u/ (nucleus_unstressed rule)."""
+        engine = G2P("pt-PT", apply_stress=False)
+        # 'comer': the first 'o' is unstressed → should produce u
+        ipa = engine.transcribe("comer")
+        assert "u" in ipa, f"Expected u from unstressed o, got {ipa!r}"
+
+    def test_pt_s_intervocalic_voiced(self):
+        """Intervocalic 's' in pt-PT → /z/."""
+        engine = G2P("pt-PT", apply_stress=False)
+        ipa = engine.transcribe("casa")
+        assert "z" in ipa, f"Expected z from intervocalic s, got {ipa!r}"
+
+    def test_beam_exposes_alternatives_with_positional(self):
+        """Beam search still has multiple candidates when positional rules apply."""
+        engine = G2P("pt-PT")
+        candidates = engine.candidates("casa", beam_width=4)
+        assert len(candidates) > 1, "Beam should expose alternatives"
+
+    def test_greedy_equals_beam_one_with_positional(self):
+        """greedy == beam(1) invariant holds when positional rules are active."""
+        engine = G2P("pt-PT")
+        for word in ["casa", "cinco", "falar", "comer"]:
+            greedy = engine.transcribe(word, search="greedy")
+            beam1 = engine.transcribe(word, search="beam", beam_width=1)
+            assert greedy == beam1, f"Mismatch for {word!r}: {greedy!r} vs {beam1!r}"
+
+    def test_language_without_positional_data_unchanged(self):
+        """Languages with no positional_graphemes use the flat table unchanged."""
+        # en-GB has no positional overrides; engine must not crash or misbehave
+        engine = G2P("en-GB")
+        ipa = engine.transcribe("hello")
+        assert ipa.strip(), "Expected non-empty output for en-GB"

@@ -1,367 +1,365 @@
 {
-  "code": "pt-BR-x-caipira",
-  "name": "Caipira Portuguese",
-  "family": "Romance",
-  "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a",
-      "ɐ"
-    ],
-    "e": [
-      "e",
-      "ɛ",
-      "ə"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o",
-      "ɔ",
-      "u"
-    ],
-    "u": [
-      "u"
-    ],
-    "á": [
-      "a"
-    ],
-    "à": [
-      "a"
-    ],
-    "â": [
-      "ɐ"
-    ],
-    "ã": [
-      "ɐ̃"
-    ],
-    "é": [
-      "ɛ"
-    ],
-    "ê": [
-      "e"
-    ],
-    "í": [
-      "i"
-    ],
-    "ó": [
-      "ɔ"
-    ],
-    "ô": [
-      "o"
-    ],
-    "õ": [
-      "õ"
-    ],
-    "ú": [
-      "u"
-    ],
-    "ü": [
-      "u"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "k",
-      "s"
-    ],
-    "ç": [
-      "s"
-    ],
-    "d": [
-      "d",
-      "dʒ"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ",
-      "ʒ"
-    ],
-    "h": [
-      ""
-    ],
-    "j": [
-      "ʒ"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l",
-      "w"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "p": [
-      "p"
-    ],
-    "q": [
-      "k"
-    ],
-    "r": [
-      "ɾ",
-      "h",
-      "x"
-    ],
-    "s": [
-      "s",
-      "z"
-    ],
-    "t": [
-      "t",
-      "tʃ"
-    ],
-    "v": [
-      "v"
-    ],
-    "w": [
-      "w"
-    ],
-    "x": [
-      "ʃ",
-      "ks",
-      "z",
-      "s"
-    ],
-    "y": [
-      "i"
-    ],
-    "z": [
-      "z",
-      "s"
-    ],
-    "ch": [
-      "ʃ"
-    ],
-    "lh": [
-      "ʎ"
-    ],
-    "nh": [
-      "ɲ"
-    ],
-    "rr": [
-      "ʁ"
-    ],
-    "ss": [
-      "s"
-    ],
-    "qu": [
-      "k",
-      "kw"
-    ],
-    "gu": [
-      "ɡ",
-      "ɡw"
-    ],
-    "ai": [
-      "aj"
-    ],
-    "au": [
-      "aw"
-    ],
-    "ei": [
-      "ej"
-    ],
-    "eu": [
-      "ew"
-    ],
-    "iu": [
-      "iw"
-    ],
-    "oi": [
-      "oj"
-    ],
-    "ou": [
-      "ow"
-    ],
-    "ui": [
-      "uj"
-    ],
-    "ão": [
-      "ɐ̃w̃"
-    ],
-    "ãe": [
-      "ɐ̃j̃"
-    ],
-    "õe": [
-      "õj̃"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b",
-      "β"
-    ],
-    "t": [
-      "t",
-      "tʃ"
-    ],
-    "d": [
-      "d",
-      "dʒ"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ",
-      "ɣ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʒ": [
-      "ʒ"
-    ],
-    "ʁ": [
-      "h",
-      "x"
-    ],
-    "ɾ": [
-      "ɻ",
-      "ɹ",
-      "ɾ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ŋ"
-    ],
-    "ɲ": [
-      "ɲ",
-      "j̃"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "l": [
-      "l"
-    ],
-    "ɫ": [
-      "w"
-    ],
-    "ʎ": [
-      "ʎ",
-      "j"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "a": [
-      "a"
-    ],
-    "ɐ": [
-      "ɐ"
-    ],
-    "e": [
-      "e"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "ə": [
-      "i",
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "u": [
-      "u"
-    ],
-    "ɐ̃": [
-      "ɐ̃"
-    ],
-    "ẽ": [
-      "ẽ"
-    ],
-    "ĩ": [
-      "ĩ"
-    ],
-    "õ": [
-      "õ"
-    ],
-    "ũ": [
-      "ũ"
-    ]
-  },
-  "parent": "pt-BR",
-  "notes": "Caipira (SP interior, western MG, Goiás, MS, MT). Hallmark: retroflex rhotic [ɻ/ɹ] in coda and clusters — the 'erre caipira' or 'erre retroflexo'. Possibly the oldest Brazilian rhotic pattern. Depalatalisation of /ʎ/ → [j] in rural speech. Full /t,d/ palatalisation. /r/ onset → [h,x].",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "mateus_dandrade2000",
-      "author": "Mateus, M.H.M. & d'Andrade, E.",
-      "year": 2000,
-      "title": "The Phonology of Portuguese",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "code": "pt-BR-x-caipira",
+    "name": "Caipira Portuguese",
+    "family": "Romance",
+    "script": "Latin",
+    "graphemes": {
+        "a": [
+            "a",
+            "ɐ"
+        ],
+        "e": [
+            "e",
+            "ɛ",
+            "ə"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "o",
+            "ɔ",
+            "u"
+        ],
+        "u": [
+            "u"
+        ],
+        "á": [
+            "a"
+        ],
+        "à": [
+            "a"
+        ],
+        "â": [
+            "ɐ"
+        ],
+        "ã": [
+            "ɐ̃"
+        ],
+        "é": [
+            "ɛ"
+        ],
+        "ê": [
+            "e"
+        ],
+        "í": [
+            "i"
+        ],
+        "ó": [
+            "ɔ"
+        ],
+        "ô": [
+            "o"
+        ],
+        "õ": [
+            "õ"
+        ],
+        "ú": [
+            "u"
+        ],
+        "ü": [
+            "u"
+        ],
+        "b": [
+            "b"
+        ],
+        "c": [
+            "k",
+            "s"
+        ],
+        "ç": [
+            "s"
+        ],
+        "d": [
+            "d",
+            "dʒ"
+        ],
+        "f": [
+            "f"
+        ],
+        "g": [
+            "ɡ",
+            "ʒ"
+        ],
+        "h": [
+            ""
+        ],
+        "j": [
+            "ʒ"
+        ],
+        "k": [
+            "k"
+        ],
+        "l": [
+            "l",
+            "w"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "p": [
+            "p"
+        ],
+        "q": [
+            "k"
+        ],
+        "r": [
+            "ɾ",
+            "h",
+            "x"
+        ],
+        "s": [
+            "s",
+            "z"
+        ],
+        "t": [
+            "t",
+            "tʃ"
+        ],
+        "v": [
+            "v"
+        ],
+        "w": [
+            "w"
+        ],
+        "x": [
+            "ʃ",
+            "ks",
+            "z",
+            "s"
+        ],
+        "y": [
+            "i"
+        ],
+        "z": [
+            "z",
+            "s"
+        ],
+        "ch": [
+            "ʃ"
+        ],
+        "lh": [
+            "ʎ"
+        ],
+        "nh": [
+            "ɲ"
+        ],
+        "rr": [
+            "ʁ"
+        ],
+        "ss": [
+            "s"
+        ],
+        "qu": [
+            "k",
+            "kw"
+        ],
+        "gu": [
+            "ɡ",
+            "ɡw"
+        ],
+        "ai": [
+            "aj"
+        ],
+        "au": [
+            "aw"
+        ],
+        "ei": [
+            "ej"
+        ],
+        "eu": [
+            "ew"
+        ],
+        "iu": [
+            "iw"
+        ],
+        "oi": [
+            "oj"
+        ],
+        "ou": [
+            "ow"
+        ],
+        "ui": [
+            "uj"
+        ],
+        "ão": [
+            "ɐ̃w̃"
+        ],
+        "ãe": [
+            "ɐ̃j̃"
+        ],
+        "õe": [
+            "õj̃"
+        ]
     },
-    {
-      "id": "callou_leite2001",
-      "author": "Callou, D. & Leite, Y.",
-      "year": 2001,
-      "title": "Iniciação à fonética e à fonologia (8th ed.)",
-      "publisher": "Zahar",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "b": [
+            "b"
+        ],
+        "t": [
+            "t",
+            "tʃ"
+        ],
+        "d": [
+            "d",
+            "dʒ"
+        ],
+        "k": [
+            "k"
+        ],
+        "ɡ": [
+            "ɡ"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "v"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "z"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "ʒ": [
+            "ʒ"
+        ],
+        "ʁ": [
+            "h",
+            "x"
+        ],
+        "ɾ": [
+            "ɻ",
+            "ɹ",
+            "ɾ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ŋ"
+        ],
+        "ɲ": [
+            "ɲ",
+            "j̃"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "l": [
+            "l"
+        ],
+        "ɫ": [
+            "w"
+        ],
+        "ʎ": [
+            "ʎ",
+            "j"
+        ],
+        "w": [
+            "w"
+        ],
+        "j": [
+            "j"
+        ],
+        "a": [
+            "a"
+        ],
+        "ɐ": [
+            "ɐ"
+        ],
+        "e": [
+            "e"
+        ],
+        "ɛ": [
+            "ɛ"
+        ],
+        "ə": [
+            "i",
+            "e"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "o"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "u": [
+            "u"
+        ],
+        "ɐ̃": [
+            "ɐ̃"
+        ],
+        "ẽ": [
+            "ẽ"
+        ],
+        "ĩ": [
+            "ĩ"
+        ],
+        "õ": [
+            "õ"
+        ],
+        "ũ": [
+            "ũ"
+        ]
     },
-    {
-      "id": "silva2002",
-      "author": "Silva, T.C.",
-      "year": 2002,
-      "title": "Fonética e fonologia do português",
-      "publisher": "Contexto",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Caipira_dialect"
-  ],
-  "timespan": {
-    "start_year": 1700,
-    "end_year": null
-  },
-  "glottolog_code": "caip1234",
-  "iso639_3": "por"
+    "parent": "pt-BR",
+    "notes": "Caipira (SP interior, western MG, Goiás, MS, MT). Hallmark: retroflex rhotic [ɻ/ɹ] in coda and clusters — the 'erre caipira' or 'erre retroflexo'. Possibly the oldest Brazilian rhotic pattern. Depalatalisation of /ʎ/ → [j] in rural speech. Full /t,d/ palatalisation. /r/ onset → [h,x].",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "mateus_dandrade2000",
+            "author": "Mateus, M.H.M. & d'Andrade, E.",
+            "year": 2000,
+            "title": "The Phonology of Portuguese",
+            "publisher": "Oxford University Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "callou_leite2001",
+            "author": "Callou, D. & Leite, Y.",
+            "year": 2001,
+            "title": "Iniciação à fonética e à fonologia (8th ed.)",
+            "publisher": "Zahar",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "silva2002",
+            "author": "Silva, T.C.",
+            "year": 2002,
+            "title": "Fonética e fonologia do português",
+            "publisher": "Contexto",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Caipira_dialect"
+    ],
+    "timespan": {
+        "start_year": 1700,
+        "end_year": null
+    },
+    "glottolog_code": null,
+    "iso639_3": "por"
 }

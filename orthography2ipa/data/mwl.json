@@ -133,6 +133,129 @@
     ],
     "ç": [
       "s̻"
+    ],
+    "c": [
+      "k",
+      "s̻"
+    ],
+    "z": [
+      "z̻"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ]
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s̻"
+      ],
+      "before_i": [
+        "s̻"
+      ]
+    },
+    "z": {
+      "word_initial": [
+        "z̻"
+      ],
+      "intervocalic": [
+        "z̻"
+      ],
+      "word_final": [
+        "z̻"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    },
+    "a": {
+      "nucleus_stressed": [
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "ɐ"
+      ],
+      "pretonic": [
+        "ɐ"
+      ],
+      "posttonic": [
+        "ɐ"
+      ],
+      "word_final": [
+        "ɐ"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "e",
+        "ɛ"
+      ],
+      "nucleus_unstressed": [
+        "ɨ"
+      ],
+      "pretonic": [
+        "ɨ"
+      ],
+      "word_final": [
+        "ɨ"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "o",
+        "ɔ"
+      ],
+      "nucleus_unstressed": [
+        "u"
+      ],
+      "pretonic": [
+        "u"
+      ],
+      "posttonic": [
+        "u"
+      ],
+      "word_final": [
+        "u"
+      ]
+    },
+    "an": {
+      "before_vowel": [
+        "an"
+      ]
+    },
+    "en": {
+      "before_vowel": [
+        "en"
+      ]
+    },
+    "in": {
+      "before_vowel": [
+        "in"
+      ]
+    },
+    "on": {
+      "before_vowel": [
+        "on"
+      ]
+    },
+    "un": {
+      "before_vowel": [
+        "un"
+      ]
+    }
+  },
+  "allophones": {
+    "ʒ": [
+      "ʒ"
     ]
   }
 }

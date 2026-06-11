@@ -1,79 +1,169 @@
 {
-  "code": "nrf",
-  "name": "Norman",
-  "family": "Indo-European > Romance > Gallo-Romance",
-  "script": "Latin",
-  "script_type": "alphabet",
-  "quality": "research",
-  "iso639_3": "nrf",
-  "glottolog_code": "norm1245",
-  "timespan": {
-    "start_year": 911,
-    "end_year": null
-  },
-  "graphemes": {
-    "ch": ["tʃ", "ʃ"],
-    "gn": ["ɲ"],
-    "ou": ["u"],
-    "eu": ["ø"],
-    "oi": ["wɛ"],
-    "aï": ["aj"],
-    "â": ["ɑː"],
-    "è": ["ɛ"],
-    "é": ["e"],
-    "ê": ["ɛː"],
-    "î": ["iː"],
-    "ô": ["oː"],
-    "û": ["yː"],
-    "a": ["a"],
-    "b": ["b"],
-    "c": ["k", "s"],
-    "d": ["d"],
-    "e": ["ə"],
-    "f": ["f"],
-    "g": ["ɡ", "ʒ"],
-    "h": [""],
-    "i": ["i"],
-    "j": ["ʒ"],
-    "k": ["k"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "o": ["o"],
-    "p": ["p"],
-    "q": ["k"],
-    "r": ["r"],
-    "s": ["s"],
-    "t": ["t"],
-    "u": ["y"],
-    "v": ["v"],
-    "w": ["w"],
-    "x": ["ks"],
-    "y": ["j"],
-    "z": ["z"]
-  },
-  "allophones": {},
-  "positional_graphemes": {},
-  "ancestors": [
-    {
-      "code": "la",
-      "role": "ancestor",
-      "weight": 1.0,
-      "notes": "Gallo-Romance language evolved from Vulgar Latin in Normandy; influenced by Old Norse"
-    }
-  ],
-  "parent": null,
-  "notes": "Norman (Normand/Dgèrnésiais/Jèrriais), Gallo-Romance language spoken in Normandy (France), Jersey (Jèrriais) and Guernsey (Dgèrnésiais). Historically influenced Anglo-Norman and through it Modern English. Old Norse substrate influence. Digraph ch = /tʃ/ (archaic) or /ʃ/ depending on dialect.",
-  "sources": [
-    {
-      "id": "wiki-nrf",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Norman language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Norman_language"
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Norman_language"
-  ]
+    "code": "nrf",
+    "name": "Norman",
+    "family": "Indo-European > Romance > Gallo-Romance",
+    "script": "Latin",
+    "script_type": "alphabet",
+    "quality": "research",
+    "iso639_3": "nrf",
+    "glottolog_code": "norm1245",
+    "timespan": {
+        "start_year": 911,
+        "end_year": null
+    },
+    "graphemes": {
+        "ch": [
+            "tʃ",
+            "ʃ"
+        ],
+        "gn": [
+            "ɲ"
+        ],
+        "ou": [
+            "u"
+        ],
+        "eu": [
+            "ø"
+        ],
+        "oi": [
+            "wɛ"
+        ],
+        "aï": [
+            "aj"
+        ],
+        "â": [
+            "ɑː"
+        ],
+        "è": [
+            "ɛ"
+        ],
+        "é": [
+            "e"
+        ],
+        "ê": [
+            "ɛː"
+        ],
+        "î": [
+            "iː"
+        ],
+        "ô": [
+            "oː"
+        ],
+        "û": [
+            "yː"
+        ],
+        "a": [
+            "a"
+        ],
+        "b": [
+            "b"
+        ],
+        "c": [
+            "k",
+            "s"
+        ],
+        "d": [
+            "d"
+        ],
+        "e": [
+            "ə"
+        ],
+        "f": [
+            "f"
+        ],
+        "g": [
+            "ɡ",
+            "ʒ"
+        ],
+        "h": [
+            ""
+        ],
+        "i": [
+            "i"
+        ],
+        "j": [
+            "ʒ"
+        ],
+        "k": [
+            "k"
+        ],
+        "l": [
+            "l"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "o": [
+            "o"
+        ],
+        "p": [
+            "p"
+        ],
+        "q": [
+            "k"
+        ],
+        "r": [
+            "r"
+        ],
+        "s": [
+            "s"
+        ],
+        "t": [
+            "t"
+        ],
+        "u": [
+            "y"
+        ],
+        "v": [
+            "v"
+        ],
+        "w": [
+            "w"
+        ],
+        "x": [
+            "ks"
+        ],
+        "y": [
+            "j"
+        ],
+        "z": [
+            "z"
+        ],
+        "tch": [
+            "tʃ"
+        ],
+        "dg": [
+            "dʒ"
+        ],
+        "th": [
+            "ð"
+        ]
+    },
+    "allophones": {},
+    "positional_graphemes": {},
+    "ancestors": [
+        {
+            "code": "la",
+            "role": "ancestor",
+            "weight": 1.0,
+            "notes": "Gallo-Romance language evolved from Vulgar Latin in Normandy; influenced by Old Norse"
+        }
+    ],
+    "parent": null,
+    "notes": "Norman (Normand/Dgèrnésiais/Jèrriais), Gallo-Romance language spoken in Normandy (France), Jersey (Jèrriais) and Guernsey (Dgèrnésiais). Historically influenced Anglo-Norman and through it Modern English. Old Norse substrate influence. Digraph ch = /tʃ/ (archaic) or /ʃ/ depending on dialect.",
+    "sources": [
+        {
+            "id": "wiki-nrf",
+            "author": "Wikipedia contributors",
+            "year": 2024,
+            "title": "Norman language",
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Norman_language"
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Norman_language"
+    ]
 }

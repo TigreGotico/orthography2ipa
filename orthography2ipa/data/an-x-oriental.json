@@ -95,5 +95,26 @@
     "end_year": null
   },
   "glottolog_code": "east2306",
-  "iso639_3": "arg"
+  "iso639_3": "arg",
+  "positional_graphemes": {
+    "g": {
+      "before_e": [
+        "dʒ"
+      ],
+      "before_i": [
+        "dʒ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
+    }
+  }
 }

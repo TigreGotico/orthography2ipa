@@ -17,6 +17,7 @@ _cache: Dict[str, LanguageSpec] = {}
 
 _LOG = logging.getLogger(__name__)
 
+
 # Fallback alias table for ISO 639-3 → BCP-47 normalisation.
 # When ``langcodes`` is available, standard codes are resolved via that library.
 # Private-use subtags (e.g. ``ast-PT-x-rionor``) always use this table.

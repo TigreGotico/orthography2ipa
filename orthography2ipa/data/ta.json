@@ -1,350 +1,351 @@
 {
-  "code": "ta",
-  "name": "Tamil",
-  "family": "Dravidian",
-  "script": "Tamil",
-  "graphemes": {
-    "அ": [
-      "a"
-    ],
-    "ஆ": [
-      "aː"
-    ],
-    "இ": [
-      "i"
-    ],
-    "ஈ": [
-      "iː"
-    ],
-    "உ": [
-      "u"
-    ],
-    "ஊ": [
-      "uː"
-    ],
-    "எ": [
-      "e"
-    ],
-    "ஏ": [
-      "eː"
-    ],
-    "ஐ": [
-      "ai"
-    ],
-    "ஒ": [
-      "o"
-    ],
-    "ஓ": [
-      "oː"
-    ],
-    "ஔ": [
-      "au"
-    ],
-    "ா": [
-      "aː"
-    ],
-    "ி": [
-      "i"
-    ],
-    "ீ": [
-      "iː"
-    ],
-    "ு": [
-      "u"
-    ],
-    "ூ": [
-      "uː"
-    ],
-    "ெ": [
-      "e"
-    ],
-    "ே": [
-      "eː"
-    ],
-    "ை": [
-      "ai"
-    ],
-    "ொ": [
-      "o"
-    ],
-    "ோ": [
-      "oː"
-    ],
-    "ௌ": [
-      "au"
-    ],
-    "்": [
-      ""
-    ],
-    "க": [
-      "k",
-      "ɡ",
-      "x"
-    ],
-    "ங": [
-      "ŋ"
-    ],
-    "ச": [
-      "tɕ",
-      "s",
-      "dʑ"
-    ],
-    "ஞ": [
-      "ɲ"
-    ],
-    "ட": [
-      "ʈ",
-      "ɖ"
-    ],
-    "ண": [
-      "ɳ"
-    ],
-    "த": [
-      "t̪",
-      "d̪",
-      "ð"
-    ],
-    "ந": [
-      "n"
-    ],
-    "ன": [
-      "n"
-    ],
-    "ப": [
-      "p",
-      "b"
-    ],
-    "ம": [
-      "m"
-    ],
-    "ய": [
-      "j"
-    ],
-    "ர": [
-      "r"
-    ],
-    "ல": [
-      "l"
-    ],
-    "வ": [
-      "ʋ",
-      "v"
-    ],
-    "ழ": [
-      "ɻ"
-    ],
-    "ள": [
-      "ɭ"
-    ],
-    "ற": [
-      "r",
-      "tɾ"
-    ],
-    "ஜ": [
-      "dʒ"
-    ],
-    "ஶ": [
-      "ʃ"
-    ],
-    "ஷ": [
-      "ʂ"
-    ],
-    "ஸ": [
-      "s"
-    ],
-    "ஹ": [
-      "h"
-    ],
-    "க்ஷ": [
-      "kʂ"
-    ],
-    "ஸ்ரீ": [
-      "ʃriː"
-    ],
-    "ஃ": [
-      "k",
-      ""
-    ]
-  },
-  "allophones": {
-    "k": [
-      "k",
-      "ɡ",
-      "x",
-      "h"
-    ],
-    "tɕ": [
-      "tɕ",
-      "s",
-      "dʑ",
-      "ɕ"
-    ],
-    "ʈ": [
-      "ʈ",
-      "ɖ",
-      "ɽ"
-    ],
-    "t̪": [
-      "t̪",
-      "d̪",
-      "ð"
-    ],
-    "p": [
-      "p",
-      "b",
-      "β"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "n̪"
-    ],
-    "ɲ": [
-      "ɲ",
-      "j"
-    ],
-    "ɳ": [
-      "ɳ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "j": [
-      "j"
-    ],
-    "ʋ": [
-      "ʋ",
-      "v",
-      "w"
-    ],
-    "r": [
-      "r",
-      "ɾ"
-    ],
-    "l": [
-      "l"
-    ],
-    "ɻ": [
-      "ɻ"
-    ],
-    "ɭ": [
-      "ɭ"
-    ],
-    "dʒ": [
-      "dʒ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʂ": [
-      "ʂ"
-    ],
-    "s": [
-      "s"
-    ],
-    "h": [
-      "h"
-    ],
-    "a": [
-      "a"
-    ],
-    "aː": [
-      "aː"
-    ],
-    "i": [
-      "i"
-    ],
-    "iː": [
-      "iː"
-    ],
-    "u": [
-      "u",
-      "ɯ"
-    ],
-    "uː": [
-      "uː"
-    ],
-    "e": [
-      "e"
-    ],
-    "eː": [
-      "eː"
-    ],
-    "o": [
-      "o"
-    ],
-    "oː": [
-      "oː"
-    ],
-    "ai": [
-      "ai"
-    ],
-    "au": [
-      "au"
-    ]
-  },
-  "ancestors": [
-    {
-      "code": "ta-x-proto-dravidian",
-      "role": "parent",
-      "weight": 0.9,
-      "notes": "Direct descendant of Proto-Dravidian via Proto-South-Dravidian"
+    "code": "ta",
+    "name": "Tamil",
+    "family": "Dravidian",
+    "script": "Tamil",
+    "graphemes": {
+        "அ": [
+            "a"
+        ],
+        "ஆ": [
+            "aː"
+        ],
+        "இ": [
+            "i"
+        ],
+        "ஈ": [
+            "iː"
+        ],
+        "உ": [
+            "u"
+        ],
+        "ஊ": [
+            "uː"
+        ],
+        "எ": [
+            "e"
+        ],
+        "ஏ": [
+            "eː"
+        ],
+        "ஐ": [
+            "ai"
+        ],
+        "ஒ": [
+            "o"
+        ],
+        "ஓ": [
+            "oː"
+        ],
+        "ஔ": [
+            "au"
+        ],
+        "ா": [
+            "aː"
+        ],
+        "ி": [
+            "i"
+        ],
+        "ீ": [
+            "iː"
+        ],
+        "ு": [
+            "u"
+        ],
+        "ூ": [
+            "uː"
+        ],
+        "ெ": [
+            "e"
+        ],
+        "ே": [
+            "eː"
+        ],
+        "ை": [
+            "ai"
+        ],
+        "ொ": [
+            "o"
+        ],
+        "ோ": [
+            "oː"
+        ],
+        "ௌ": [
+            "au"
+        ],
+        "்": [
+            ""
+        ],
+        "க": [
+            "k",
+            "ɡ",
+            "x"
+        ],
+        "ங": [
+            "ŋ"
+        ],
+        "ச": [
+            "tɕ",
+            "s",
+            "dʑ"
+        ],
+        "ஞ": [
+            "ɲ"
+        ],
+        "ட": [
+            "ʈ",
+            "ɖ"
+        ],
+        "ண": [
+            "ɳ"
+        ],
+        "த": [
+            "t̪",
+            "d̪",
+            "ð"
+        ],
+        "ந": [
+            "n"
+        ],
+        "ன": [
+            "n"
+        ],
+        "ப": [
+            "p",
+            "b"
+        ],
+        "ம": [
+            "m"
+        ],
+        "ய": [
+            "j"
+        ],
+        "ர": [
+            "r"
+        ],
+        "ல": [
+            "l"
+        ],
+        "வ": [
+            "ʋ",
+            "v"
+        ],
+        "ழ": [
+            "ɻ"
+        ],
+        "ள": [
+            "ɭ"
+        ],
+        "ற": [
+            "r",
+            "tɾ"
+        ],
+        "ஜ": [
+            "dʒ"
+        ],
+        "ஶ": [
+            "ʃ"
+        ],
+        "ஷ": [
+            "ʂ"
+        ],
+        "ஸ": [
+            "s"
+        ],
+        "ஹ": [
+            "h"
+        ],
+        "க்ஷ": [
+            "kʂ"
+        ],
+        "ஸ்ரீ": [
+            "ʃriː"
+        ],
+        "ஃ": [
+            "x",
+            "h",
+            ""
+        ]
     },
-    {
-      "code": "sa",
-      "role": "adstrate",
-      "weight": 0.08,
-      "notes": "Sanskrit adstrate: Grantha letters, Sanskrit loanwords in formal register"
-    }
-  ],
-  "notes": "Standard Tamil (Tamil Nadu, India + Sri Lanka). Dravidian language, not related to Indo-Aryan. Key features: no aspirated stop phonemes (aspiration is allophonic); voiced/voiceless distinction positional (not phonemic for native words); unique retroflex approximant ⟨ழ⟩ = [ɻ]; retroflex lateral ⟨ள⟩ = [ɭ]; alveolar ⟨ன⟩ vs dental ⟨ந⟩. Strong diglossia: literary (centamiḻ) vs spoken (kōccai tamiḻ). Oldest attested Dravidian language (inscriptions from 3rd c. BCE).",
-  "quality": "research",
-  "script_type": "abugida",
-  "inherent_vowel": "a",
-  "sources": [
-    {
-      "id": "krishnamurti2003",
-      "author": "Krishnamurti, B.",
-      "year": 2003,
-      "title": "The Dravidian Languages",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Dravidian_languages"
+    "allophones": {
+        "k": [
+            "k",
+            "ɡ",
+            "x",
+            "h"
+        ],
+        "tɕ": [
+            "tɕ",
+            "s",
+            "dʑ",
+            "ɕ"
+        ],
+        "ʈ": [
+            "ʈ",
+            "ɖ",
+            "ɽ"
+        ],
+        "t̪": [
+            "t̪",
+            "d̪",
+            "ð"
+        ],
+        "p": [
+            "p",
+            "b",
+            "β"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "n̪"
+        ],
+        "ɲ": [
+            "ɲ",
+            "j"
+        ],
+        "ɳ": [
+            "ɳ"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "j": [
+            "j"
+        ],
+        "ʋ": [
+            "ʋ",
+            "v",
+            "w"
+        ],
+        "r": [
+            "r",
+            "ɾ"
+        ],
+        "l": [
+            "l"
+        ],
+        "ɻ": [
+            "ɻ"
+        ],
+        "ɭ": [
+            "ɭ"
+        ],
+        "dʒ": [
+            "dʒ"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "ʂ": [
+            "ʂ"
+        ],
+        "s": [
+            "s"
+        ],
+        "h": [
+            "h"
+        ],
+        "a": [
+            "a"
+        ],
+        "aː": [
+            "aː"
+        ],
+        "i": [
+            "i"
+        ],
+        "iː": [
+            "iː"
+        ],
+        "u": [
+            "u",
+            "ɯ"
+        ],
+        "uː": [
+            "uː"
+        ],
+        "e": [
+            "e"
+        ],
+        "eː": [
+            "eː"
+        ],
+        "o": [
+            "o"
+        ],
+        "oː": [
+            "oː"
+        ],
+        "ai": [
+            "ai"
+        ],
+        "au": [
+            "au"
+        ]
     },
-    {
-      "id": "schiffman1999",
-      "author": "Schiffman, H.F.",
-      "year": 1999,
-      "title": "A Reference Grammar of Spoken Tamil",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "ancestors": [
+        {
+            "code": "ta-x-proto-dravidian",
+            "role": "parent",
+            "weight": 0.9,
+            "notes": "Direct descendant of Proto-Dravidian via Proto-South-Dravidian"
+        },
+        {
+            "code": "sa",
+            "role": "adstrate",
+            "weight": 0.08,
+            "notes": "Sanskrit adstrate: Grantha letters, Sanskrit loanwords in formal register"
+        }
+    ],
+    "notes": "Standard Tamil (Tamil Nadu, India + Sri Lanka). Dravidian language, not related to Indo-Aryan. Key features: no aspirated stop phonemes (aspiration is allophonic); voiced/voiceless distinction positional (not phonemic for native words); unique retroflex approximant ⟨ழ⟩ = [ɻ]; retroflex lateral ⟨ள⟩ = [ɭ]; alveolar ⟨ன⟩ vs dental ⟨ந⟩. Strong diglossia: literary (centamiḻ) vs spoken (kōccai tamiḻ). Oldest attested Dravidian language (inscriptions from 3rd c. BCE).",
+    "quality": "research",
+    "script_type": "abugida",
+    "inherent_vowel": "a",
+    "sources": [
+        {
+            "id": "krishnamurti2003",
+            "author": "Krishnamurti, B.",
+            "year": 2003,
+            "title": "The Dravidian Languages",
+            "publisher": "Cambridge University Press",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Dravidian_languages"
+        },
+        {
+            "id": "schiffman1999",
+            "author": "Schiffman, H.F.",
+            "year": 1999,
+            "title": "A Reference Grammar of Spoken Tamil",
+            "publisher": "Cambridge University Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "ladefoged_maddieson1996",
+            "author": "Ladefoged, P. & Maddieson, I.",
+            "year": 1996,
+            "title": "The Sounds of the World's Languages",
+            "publisher": "Blackwell",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Tamil_language",
+        "https://ta.wikipedia.org/wiki/தமிழ்",
+        "https://en.wikipedia.org/wiki/Tamil_phonology"
+    ],
+    "timespan": {
+        "start_year": -300,
+        "end_year": null
     },
-    {
-      "id": "ladefoged_maddieson1996",
-      "author": "Ladefoged, P. & Maddieson, I.",
-      "year": 1996,
-      "title": "The Sounds of the World's Languages",
-      "publisher": "Blackwell",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Tamil_language",
-    "https://ta.wikipedia.org/wiki/தமிழ்",
-    "https://en.wikipedia.org/wiki/Tamil_phonology"
-  ],
-  "timespan": {
-    "start_year": -300,
-    "end_year": null
-  },
-  "glottolog_code": "tami1289",
-  "iso639_3": "tam"
+    "glottolog_code": "tami1289",
+    "iso639_3": "tam"
 }

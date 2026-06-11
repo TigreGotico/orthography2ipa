@@ -1,11 +1,91 @@
 # Changelog
 
-## [Unreleased](https://github.com/TigreGotico/orthography2ipa/tree/HEAD)
+## [1.1.3a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.3a1) (2026-06-11)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/73cf93d2bc10be1e32a61e00a380c4ed632a0148...HEAD)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.2a1...1.1.3a1)
 
 **Merged pull requests:**
 
+- fix\(data\): minor-findings triage and pa-PK shahmukhi table [\#33](https://github.com/TigreGotico/orthography2ipa/pull/33) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.1.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.2a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.1a1...1.1.2a1)
+
+**Merged pull requests:**
+
+- fix\(data\): decouple modern spanish from the old spanish spec and restore its period sibilants [\#32](https://github.com/TigreGotico/orthography2ipa/pull/32) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.1a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.0a1...1.1.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): apply confirmed findings of the full-library linguistic review [\#31](https://github.com/TigreGotico/orthography2ipa/pull/31) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.0.0a1...1.1.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): stress seeds gl/mwl/barranquenho + gl positional phonology + mwl j/cedilla fix [\#28](https://github.com/TigreGotico/orthography2ipa/pull/28) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.0.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.7.0a1...1.0.0a1)
+
+**Breaking changes:**
+
+- refactor!: remove external G2P loading and the bundled arabic plugin [\#26](https://github.com/TigreGotico/orthography2ipa/pull/26) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.7.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.6.0a1...0.7.0a1)
+
+**Merged pull requests:**
+
+- feat: top-level G2P engine with greedy and beam search [\#25](https://github.com/TigreGotico/orthography2ipa/pull/25) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.6.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.5.0a1...0.6.0a1)
+
+**Merged pull requests:**
+
+- feat\(plugin\): per-language syllabifier entry-point group [\#24](https://github.com/TigreGotico/orthography2ipa/pull/24) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.5.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.4.0a1...0.5.0a1)
+
+## [0.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.4.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.3.0a1...0.4.0a1)
+
+**Merged pull requests:**
+
+- feat\(schema\): declarative stress rules with detection and IPA marking [\#23](https://github.com/TigreGotico/orthography2ipa/pull/23) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(plugin\): word context fields, normalize/post\_process hooks, priority dispatch [\#21](https://github.com/TigreGotico/orthography2ipa/pull/21) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.3.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.2.1a1...0.3.0a1)
+
+**Merged pull requests:**
+
+- fix\(data\): occitan phonology, explicit quality tiers, verified wikipedia links [\#20](https://github.com/TigreGotico/orthography2ipa/pull/20) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(registry\): resolve bare language tags and nearest-match fallbacks [\#18](https://github.com/TigreGotico/orthography2ipa/pull/18) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/0.2.1a1) (2026-06-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/73cf93d2bc10be1e32a61e00a380c4ed632a0148...0.2.1a1)
+
+**Merged pull requests:**
+
+- fix: py3.9 annotation compatibility, plugin-failure logging, public exports [\#17](https://github.com/TigreGotico/orthography2ipa/pull/17) ([JarbasAl](https://github.com/JarbasAl))
+- Update phonetic representation of graphemes in an.json [\#14](https://github.com/TigreGotico/orthography2ipa/pull/14) ([Juanpabl](https://github.com/Juanpabl))
 - feat: ast+gl [\#8](https://github.com/TigreGotico/orthography2ipa/pull/8) ([JarbasAl](https://github.com/JarbasAl))
 - Latin graphemes + portuguese 4way sibilant distinction [\#7](https://github.com/TigreGotico/orthography2ipa/pull/7) ([JarbasAl](https://github.com/JarbasAl))
 - refactor to json [\#6](https://github.com/TigreGotico/orthography2ipa/pull/6) ([JarbasAl](https://github.com/JarbasAl))

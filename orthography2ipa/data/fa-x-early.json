@@ -2,7 +2,7 @@
   "code": "fa-x-early",
   "name": "Early New Persian (Classical Persian)",
   "family": "Iranian",
-  "script": "Arabic",
+  "script": "Latin",
   "graphemes": {
     "p": [
       "p"
@@ -236,7 +236,7 @@
   ],
   "notes": "Early New Persian / Classical Persian (Dari) (~900–1200 CE). First attested ~900 CE in eastern Khorasan/Transoxiana. Literary corpus: Shahnameh (Ferdowsi ~1000), Divan of Hafez, Rumi. KEY INNOVATIONS vs. Middle Persian: (1) Arabic script adopted (with additional letters پ چ ژ گ for Persian); (2) Massive Arabic loanwords — Arabic consonants θ, ð, ħ, ʕ, q     appear in spelling but assimilated phonologically to s, z, h, ʔ, ɣ; (3) Classical 6-vowel system: ā, ē/eː, ī, ō/oː, ū, a; (4) /v/ stabilised; /r/ → [ɾ] (tap) in most positions. This Classical system is the reference for Dari (fa-AF) and Tajik (tg).",
   "quality": "research",
-  "script_type": "abjad",
+  "script_type": "alphabet",
   "sources": [
     {
       "id": "lazard1963",

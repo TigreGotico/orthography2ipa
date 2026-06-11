@@ -31,6 +31,14 @@
     "u": [
       "u",
       "u̥"
+    ],
+    "v": [
+      "v",
+      "b",
+      "β"
+    ],
+    "t͡ʃ": [
+      "t͡ʃ"
     ]
   },
   "positional_graphemes_base": "pt-PT",
@@ -90,5 +98,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "graphemes": {
+    "ch": [
+      "t͡ʃ",
+      "ʃ"
+    ]
+  }
 }

@@ -1,574 +1,576 @@
 {
-  "code": "fr-FR",
-  "name": "French",
-  "family": "Romance",
-  "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "â": [
-      "ɑ"
-    ],
-    "e": [
-      "ə",
-      "e",
-      "ɛ"
-    ],
-    "é": [
-      "e"
-    ],
-    "è": [
-      "ɛ"
-    ],
-    "ê": [
-      "ɛ"
-    ],
-    "ë": [
-      "ɛ"
-    ],
-    "i": [
-      "i"
-    ],
-    "î": [
-      "i"
-    ],
-    "ï": [
-      "i"
-    ],
-    "o": [
-      "ɔ",
-      "o"
-    ],
-    "ô": [
-      "o"
-    ],
-    "u": [
-      "y"
-    ],
-    "û": [
-      "y"
-    ],
-    "ù": [
-      "y"
-    ],
-    "ü": [
-      "y"
-    ],
-    "y": [
-      "i"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "k",
-      "s"
-    ],
-    "ç": [
-      "s"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ",
-      "ʒ"
-    ],
-    "h": [
-      ""
-    ],
-    "j": [
-      "ʒ"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "p": [
-      "p"
-    ],
-    "q": [
-      "k"
-    ],
-    "r": [
-      "ʁ"
-    ],
-    "s": [
-      "s",
-      "z"
-    ],
-    "t": [
-      "t"
-    ],
-    "v": [
-      "v"
-    ],
-    "w": [
-      "w",
-      "v"
-    ],
-    "x": [
-      "ks",
-      "ɡz"
-    ],
-    "z": [
-      "z"
-    ],
-    "ch": [
-      "ʃ"
-    ],
-    "gn": [
-      "ɲ"
-    ],
-    "ph": [
-      "f"
-    ],
-    "qu": [
-      "k"
-    ],
-    "gu": [
-      "ɡ"
-    ],
-    "th": [
-      "t"
-    ],
-    "ss": [
-      "s"
-    ],
-    "ill": [
-      "ij"
-    ],
-    "sch": [
-      "ʃ"
-    ],
-    "ai": [
-      "ɛ",
-      "e"
-    ],
-    "ei": [
-      "ɛ"
-    ],
-    "au": [
-      "o"
-    ],
-    "ou": [
-      "u"
-    ],
-    "oi": [
-      "wa"
-    ],
-    "eu": [
-      "ø",
-      "œ"
-    ],
-    "œu": [
-      "ø",
-      "œ"
-    ],
-    "eau": [
-      "o"
-    ],
-    "oui": [
-      "wi"
-    ],
-    "an": [
-      "ɑ̃"
-    ],
-    "am": [
-      "ɑ̃"
-    ],
-    "en": [
-      "ɑ̃"
-    ],
-    "em": [
-      "ɑ̃"
-    ],
-    "in": [
-      "ɛ̃"
-    ],
-    "im": [
-      "ɛ̃"
-    ],
-    "on": [
-      "ɔ̃"
-    ],
-    "om": [
-      "ɔ̃"
-    ],
-    "un": [
-      "œ̃"
-    ],
-    "um": [
-      "œ̃"
-    ],
-    "ain": [
-      "ɛ̃"
-    ],
-    "aim": [
-      "ɛ̃"
-    ],
-    "ein": [
-      "ɛ̃"
-    ],
-    "ien": [
-      "jɛ̃"
-    ],
-    "oin": [
-      "wɛ̃"
-    ],
-    "ui": [
-      "ɥi"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʒ": [
-      "ʒ"
-    ],
-    "ʁ": [
-      "ʁ",
-      "ʀ",
-      "χ",
-      "ɣ",
-      "r"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ɲ": [
-      "ɲ",
-      "nj"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "l": [
-      "l"
-    ],
-    "j": [
-      "j"
-    ],
-    "w": [
-      "w"
-    ],
-    "ɥ": [
-      "ɥ"
-    ],
-    "a": [
-      "a"
-    ],
-    "ɑ": [
-      "ɑ"
-    ],
-    "e": [
-      "e"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "ə": [
-      "ə"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "u": [
-      "u"
-    ],
-    "y": [
-      "y"
-    ],
-    "ø": [
-      "ø"
-    ],
-    "œ": [
-      "œ"
-    ],
-    "ɑ̃": [
-      "ɑ̃"
-    ],
-    "ɛ̃": [
-      "ɛ̃",
-      "æ̃"
-    ],
-    "ɔ̃": [
-      "ɔ̃"
-    ],
-    "œ̃": [
-      "œ̃",
-      "ɛ̃"
-    ]
-  },
-  "parent": "la-x-gallia",
-  "ancestors": [
-    {
-      "code": "la-x-gallia",
-      "role": "parent",
-      "weight": 0.72,
-      "notes": "Gallo-Romance Vulgar Latin"
+    "code": "fr-FR",
+    "name": "French",
+    "family": "Romance",
+    "script": "Latin",
+    "graphemes": {
+        "a": [
+            "a"
+        ],
+        "â": [
+            "ɑ"
+        ],
+        "e": [
+            "ə",
+            "e",
+            "ɛ"
+        ],
+        "é": [
+            "e"
+        ],
+        "è": [
+            "ɛ"
+        ],
+        "ê": [
+            "ɛ"
+        ],
+        "ë": [
+            "ɛ"
+        ],
+        "i": [
+            "i"
+        ],
+        "î": [
+            "i"
+        ],
+        "ï": [
+            "i"
+        ],
+        "o": [
+            "ɔ",
+            "o"
+        ],
+        "ô": [
+            "o"
+        ],
+        "u": [
+            "y"
+        ],
+        "û": [
+            "y"
+        ],
+        "ù": [
+            "y"
+        ],
+        "ü": [
+            "y"
+        ],
+        "y": [
+            "i",
+            "j"
+        ],
+        "b": [
+            "b"
+        ],
+        "c": [
+            "k",
+            "s"
+        ],
+        "ç": [
+            "s"
+        ],
+        "d": [
+            "d"
+        ],
+        "f": [
+            "f"
+        ],
+        "g": [
+            "ɡ",
+            "ʒ"
+        ],
+        "h": [
+            ""
+        ],
+        "j": [
+            "ʒ"
+        ],
+        "k": [
+            "k"
+        ],
+        "l": [
+            "l"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "p": [
+            "p"
+        ],
+        "q": [
+            "k"
+        ],
+        "r": [
+            "ʁ"
+        ],
+        "s": [
+            "s",
+            "z"
+        ],
+        "t": [
+            "t"
+        ],
+        "v": [
+            "v"
+        ],
+        "w": [
+            "w",
+            "v"
+        ],
+        "x": [
+            "ks",
+            "ɡz"
+        ],
+        "z": [
+            "z"
+        ],
+        "ch": [
+            "ʃ"
+        ],
+        "gn": [
+            "ɲ"
+        ],
+        "ph": [
+            "f"
+        ],
+        "qu": [
+            "k"
+        ],
+        "gu": [
+            "ɡ"
+        ],
+        "th": [
+            "t"
+        ],
+        "ss": [
+            "s"
+        ],
+        "ill": [
+            "ij",
+            "il"
+        ],
+        "sch": [
+            "ʃ"
+        ],
+        "ai": [
+            "ɛ",
+            "e"
+        ],
+        "ei": [
+            "ɛ"
+        ],
+        "au": [
+            "o"
+        ],
+        "ou": [
+            "u"
+        ],
+        "oi": [
+            "wa"
+        ],
+        "eu": [
+            "ø",
+            "œ"
+        ],
+        "œu": [
+            "ø",
+            "œ"
+        ],
+        "eau": [
+            "o"
+        ],
+        "oui": [
+            "wi"
+        ],
+        "an": [
+            "ɑ̃"
+        ],
+        "am": [
+            "ɑ̃"
+        ],
+        "en": [
+            "ɑ̃"
+        ],
+        "em": [
+            "ɑ̃"
+        ],
+        "in": [
+            "ɛ̃"
+        ],
+        "im": [
+            "ɛ̃"
+        ],
+        "on": [
+            "ɔ̃"
+        ],
+        "om": [
+            "ɔ̃"
+        ],
+        "un": [
+            "œ̃"
+        ],
+        "um": [
+            "œ̃"
+        ],
+        "ain": [
+            "ɛ̃"
+        ],
+        "aim": [
+            "ɛ̃"
+        ],
+        "ein": [
+            "ɛ̃"
+        ],
+        "ien": [
+            "jɛ̃"
+        ],
+        "oin": [
+            "wɛ̃"
+        ],
+        "ui": [
+            "ɥi"
+        ]
     },
-    {
-      "code": "gem",
-      "role": "superstrate",
-      "weight": 0.18,
-      "notes": "Frankish superstrate: /h/ restoration, initial stress, massive vocabulary (guerre, jardin, blanc). Strongest in Romance."
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "b": [
+            "b"
+        ],
+        "t": [
+            "t"
+        ],
+        "d": [
+            "d"
+        ],
+        "k": [
+            "k"
+        ],
+        "ɡ": [
+            "ɡ"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "v"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "z"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "ʒ": [
+            "ʒ"
+        ],
+        "ʁ": [
+            "ʁ",
+            "ʀ",
+            "χ",
+            "ɣ",
+            "r"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "ɲ": [
+            "ɲ",
+            "nj"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "l": [
+            "l"
+        ],
+        "j": [
+            "j"
+        ],
+        "w": [
+            "w"
+        ],
+        "ɥ": [
+            "ɥ"
+        ],
+        "a": [
+            "a"
+        ],
+        "ɑ": [
+            "ɑ"
+        ],
+        "e": [
+            "e"
+        ],
+        "ɛ": [
+            "ɛ"
+        ],
+        "ə": [
+            "ə"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "o"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "u": [
+            "u"
+        ],
+        "y": [
+            "y"
+        ],
+        "ø": [
+            "ø"
+        ],
+        "œ": [
+            "œ"
+        ],
+        "ɑ̃": [
+            "ɑ̃"
+        ],
+        "ɛ̃": [
+            "ɛ̃",
+            "æ̃"
+        ],
+        "ɔ̃": [
+            "ɔ̃"
+        ],
+        "œ̃": [
+            "œ̃",
+            "ɛ̃"
+        ]
     },
-    {
-      "code": "xcg",
-      "role": "substrate",
-      "weight": 0.05,
-      "notes": "Gaulish substrate (already in la-x-gallia, additional direct traces)"
+    "parent": "la-x-gallia",
+    "ancestors": [
+        {
+            "code": "la-x-gallia",
+            "role": "parent",
+            "weight": 0.72,
+            "notes": "Gallo-Romance Vulgar Latin"
+        },
+        {
+            "code": "gem",
+            "role": "superstrate",
+            "weight": 0.18,
+            "notes": "Frankish superstrate: /h/ restoration, initial stress, massive vocabulary (guerre, jardin, blanc). Strongest in Romance."
+        },
+        {
+            "code": "xcg",
+            "role": "substrate",
+            "weight": 0.05,
+            "notes": "Gaulish substrate (already in la-x-gallia, additional direct traces)"
+        },
+        {
+            "code": "got",
+            "role": "superstrate",
+            "weight": 0.03,
+            "notes": "Visigothic superstrate (pre-Frankish)"
+        },
+        {
+            "code": "xaa",
+            "role": "adstrate",
+            "weight": 0.02,
+            "notes": "Arabic via Iberian transmission"
+        }
+    ],
+    "sandhi_rules": [
+        {
+            "id": "FR_LIAISON_Z",
+            "name": "z-liaison",
+            "left_context": "z$",
+            "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+            "transform": "z‿",
+            "obligatory": true,
+            "notes": "les amis → lez‿ami"
+        },
+        {
+            "id": "FR_LIAISON_T",
+            "name": "t-liaison",
+            "left_context": "t$",
+            "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+            "transform": "t‿",
+            "obligatory": true,
+            "notes": "petit ami → pətit‿ami"
+        },
+        {
+            "id": "FR_LIAISON_N",
+            "name": "n-liaison",
+            "left_context": "n$",
+            "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+            "transform": "n‿",
+            "obligatory": true,
+            "notes": "un ami → ɛ̃n‿ami"
+        },
+        {
+            "id": "FR_LIAISON_R",
+            "name": "r-liaison",
+            "left_context": "ʁ$",
+            "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+            "transform": "ʁ‿",
+            "obligatory": false,
+            "notes": "premier étage → optional"
+        },
+        {
+            "id": "FR_LIAISON_P",
+            "name": "p-liaison",
+            "left_context": "p$",
+            "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+            "transform": "p‿",
+            "obligatory": false,
+            "notes": "trop aimable → optional"
+        },
+        {
+            "id": "FR_ENCHAÎNEMENT",
+            "name": "enchaînement",
+            "left_context": "[bdgvzʒ]$",
+            "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+            "transform": "‿",
+            "obligatory": true,
+            "notes": "une amie → resyllabification"
+        }
+    ],
+    "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨en⟩, etc.) only nasalise when NOT followed by a vowel or another ⟨n⟩/⟨m⟩; context rules needed for disambiguation. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French. LIAISON: s→[z], d→[t], x→[z], n→[n] before vowel-initial words (sandhi). SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Sources: Léon (1992), Tranel (1987), Côté (2000).",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "fouche1959",
+            "author": "Fouché, P.",
+            "year": 1959,
+            "title": "Traité de prononciation française",
+            "publisher": "Klincksieck",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "tranel1987",
+            "author": "Tranel, B.",
+            "year": 1987,
+            "title": "The Sounds of French",
+            "publisher": "Cambridge University Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "ladefoged_maddieson1996",
+            "author": "Ladefoged, P. & Maddieson, I.",
+            "year": 1996,
+            "title": "The Sounds of the World's Languages",
+            "publisher": "Blackwell",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/French_language",
+        "https://fr.wikipedia.org/wiki/Français",
+        "https://en.wikipedia.org/wiki/French_phonology"
+    ],
+    "positional_graphemes": {
+        "c": {
+            "before_e": [
+                "s"
+            ],
+            "before_i": [
+                "s"
+            ],
+            "default": [
+                "k"
+            ]
+        },
+        "g": {
+            "before_e": [
+                "ʒ"
+            ],
+            "before_i": [
+                "ʒ"
+            ],
+            "default": [
+                "ɡ"
+            ]
+        },
+        "s": {
+            "intervocalic": [
+                "z"
+            ],
+            "word_final": [
+                ""
+            ],
+            "intervocalic_cross_word": [
+                "z"
+            ],
+            "default": [
+                "s"
+            ]
+        },
+        "t": {
+            "word_final": [
+                ""
+            ],
+            "default": [
+                "t"
+            ]
+        },
+        "d": {
+            "word_final": [
+                ""
+            ],
+            "intervocalic_cross_word": [
+                "t"
+            ],
+            "default": [
+                "d"
+            ]
+        },
+        "p": {
+            "word_final": [
+                ""
+            ],
+            "default": [
+                "p"
+            ]
+        },
+        "x": {
+            "word_final": [
+                ""
+            ],
+            "intervocalic_cross_word": [
+                "z"
+            ],
+            "default": [
+                "ks"
+            ]
+        },
+        "r": {
+            "word_final": [
+                ""
+            ],
+            "default": [
+                "ʁ"
+            ]
+        }
     },
-    {
-      "code": "got",
-      "role": "superstrate",
-      "weight": 0.03,
-      "notes": "Visigothic superstrate (pre-Frankish)"
+    "timespan": {
+        "start_year": 1300,
+        "end_year": null
     },
-    {
-      "code": "xaa",
-      "role": "adstrate",
-      "weight": 0.02,
-      "notes": "Arabic via Iberian transmission"
-    }
-  ],
-  "sandhi_rules": [
-    {
-      "id": "FR_LIAISON_Z",
-      "name": "z-liaison",
-      "left_context": "z$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
-      "transform": "z‿",
-      "obligatory": true,
-      "notes": "les amis → lez‿ami"
-    },
-    {
-      "id": "FR_LIAISON_T",
-      "name": "t-liaison",
-      "left_context": "t$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
-      "transform": "t‿",
-      "obligatory": true,
-      "notes": "petit ami → pətit‿ami"
-    },
-    {
-      "id": "FR_LIAISON_N",
-      "name": "n-liaison",
-      "left_context": "n$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
-      "transform": "n‿",
-      "obligatory": true,
-      "notes": "un ami → ɛ̃n‿ami"
-    },
-    {
-      "id": "FR_LIAISON_R",
-      "name": "r-liaison",
-      "left_context": "ʁ$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
-      "transform": "ʁ‿",
-      "obligatory": false,
-      "notes": "premier étage → optional"
-    },
-    {
-      "id": "FR_LIAISON_P",
-      "name": "p-liaison",
-      "left_context": "p$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
-      "transform": "p‿",
-      "obligatory": false,
-      "notes": "trop aimable → optional"
-    },
-    {
-      "id": "FR_ENCHAÎNEMENT",
-      "name": "enchaînement",
-      "left_context": "[bdgvzʒ]$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
-      "transform": "‿",
-      "obligatory": true,
-      "notes": "une amie → resyllabification"
-    }
-  ],
-  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨en⟩, etc.) only nasalise when NOT followed by a vowel or another ⟨n⟩/⟨m⟩; context rules needed for disambiguation. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French. LIAISON: s→[z], d→[t], x→[z], n→[n] before vowel-initial words (sandhi). SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Sources: Léon (1992), Tranel (1987), Côté (2000).",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "fouche1959",
-      "author": "Fouché, P.",
-      "year": 1959,
-      "title": "Traité de prononciation française",
-      "publisher": "Klincksieck",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "tranel1987",
-      "author": "Tranel, B.",
-      "year": 1987,
-      "title": "The Sounds of French",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "ladefoged_maddieson1996",
-      "author": "Ladefoged, P. & Maddieson, I.",
-      "year": 1996,
-      "title": "The Sounds of the World's Languages",
-      "publisher": "Blackwell",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/French_language",
-    "https://fr.wikipedia.org/wiki/Français",
-    "https://en.wikipedia.org/wiki/French_phonology"
-  ],
-  "positional_graphemes": {
-    "c": {
-      "before_e": [
-        "s"
-      ],
-      "before_i": [
-        "s"
-      ],
-      "default": [
-        "k"
-      ]
-    },
-    "g": {
-      "before_e": [
-        "ʒ"
-      ],
-      "before_i": [
-        "ʒ"
-      ],
-      "default": [
-        "ɡ"
-      ]
-    },
-    "s": {
-      "intervocalic": [
-        "z"
-      ],
-      "word_final": [
-        ""
-      ],
-      "intervocalic_cross_word": [
-        "z"
-      ],
-      "default": [
-        "s"
-      ]
-    },
-    "t": {
-      "word_final": [
-        ""
-      ],
-      "default": [
-        "t"
-      ]
-    },
-    "d": {
-      "word_final": [
-        ""
-      ],
-      "intervocalic_cross_word": [
-        "t"
-      ],
-      "default": [
-        "d"
-      ]
-    },
-    "p": {
-      "word_final": [
-        ""
-      ],
-      "default": [
-        "p"
-      ]
-    },
-    "x": {
-      "word_final": [
-        ""
-      ],
-      "intervocalic_cross_word": [
-        "z"
-      ],
-      "default": [
-        "ks"
-      ]
-    },
-    "r": {
-      "word_final": [
-        ""
-      ],
-      "default": [
-        "ʁ"
-      ]
-    }
-  },
-  "timespan": {
-    "start_year": 1300,
-    "end_year": null
-  },
-  "glottolog_code": "stan1290",
-  "iso639_3": "fra"
+    "glottolog_code": "stan1290",
+    "iso639_3": "fra"
 }
