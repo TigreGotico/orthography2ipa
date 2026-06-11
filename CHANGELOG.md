@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.7.0a1...1.8.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): european portuguese regional dialects grounded in dialect research [\#63](https://github.com/TigreGotico/orthography2ipa/pull/63) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.7.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.6.0a2...1.7.0a1)
