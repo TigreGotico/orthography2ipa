@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.6.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.5.0a1...0.6.0a1)
+
+**Merged pull requests:**
+
+- feat\(plugin\): per-language syllabifier entry-point group [\#24](https://github.com/TigreGotico/orthography2ipa/pull/24) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.5.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.4.0a1...0.5.0a1)
+
 ## [0.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.4.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.3.0a1...0.4.0a1)
