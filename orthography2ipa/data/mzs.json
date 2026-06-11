@@ -1,6 +1,6 @@
 {
-  "code": "mcm",
-  "glottolog_code": "maca1260",
+  "code": "mzs",
+  "glottolog_code": "maca1262",
   "name": "Macanese Creole (Patuá)",
   "family": "Portuguese Creole",
   "script": "Latin",
@@ -297,5 +297,5 @@
     "start_year": 1700,
     "end_year": null
   },
-  "iso639_3": "mcm"
+  "iso639_3": "mzs"
 }

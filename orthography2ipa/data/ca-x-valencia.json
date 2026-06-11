@@ -5,10 +5,6 @@
   "script": "Latin",
   "graphemes_base": "ca",
   "graphemes": {
-    "s": [
-      "s̺",
-      "z̺"
-    ],
     "v": [
       "v"
     ]

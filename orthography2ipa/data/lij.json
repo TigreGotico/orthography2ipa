@@ -5,9 +5,6 @@
   "script": "Latin",
   "graphemes_base": "la-x-galloitalic",
   "graphemes": {
-    "ö": [
-      "ø"
-    ],
     "u": [
       "y"
     ],
@@ -53,6 +50,24 @@
     "z": [
       "ts",
       "dz"
+    ],
+    "o": [
+      "u"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "eu": [
+      "ø"
+    ],
+    "êu": [
+      "ø"
+    ],
+    "æ": [
+      "ɛː"
+    ],
+    "ç": [
+      "s"
     ]
   },
   "allophones_base": "la-x-galloitalic",
@@ -109,6 +124,9 @@
     ],
     "ø": [
       "ø"
+    ],
+    "ɛː": [
+      "ɛː"
     ]
   },
   "parent": "la-x-galloitalic",

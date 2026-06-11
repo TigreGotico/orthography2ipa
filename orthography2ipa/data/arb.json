@@ -1,357 +1,378 @@
 {
-  "code": "arb",
-  "name": "Classical Arabic",
-  "family": "Semitic",
-  "script": "Arabic",
-  "graphemes": {
-    "ا": [
-      "ʔ",
-      "aː"
-    ],
-    "أ": [
-      "ʔa"
-    ],
-    "إ": [
-      "ʔi"
-    ],
-    "آ": [
-      "ʔaː"
-    ],
-    "ى": [
-      "aː"
-    ],
-    "ة": [
-      "a",
-      "at"
-    ],
-    "ب": [
-      "b"
-    ],
-    "ت": [
-      "t"
-    ],
-    "ث": [
-      "θ"
-    ],
-    "ج": [
-      "dʒ"
-    ],
-    "ح": [
-      "ħ"
-    ],
-    "خ": [
-      "x"
-    ],
-    "د": [
-      "d"
-    ],
-    "ذ": [
-      "ð"
-    ],
-    "ر": [
-      "r"
-    ],
-    "ز": [
-      "z"
-    ],
-    "س": [
-      "s"
-    ],
-    "ش": [
-      "ʃ"
-    ],
-    "ص": [
-      "sˤ"
-    ],
-    "ض": [
-      "ɮˤ"
-    ],
-    "ط": [
-      "tˤ"
-    ],
-    "ظ": [
-      "ðˤ"
-    ],
-    "ع": [
-      "ʕ"
-    ],
-    "غ": [
-      "ɣ"
-    ],
-    "ف": [
-      "f"
-    ],
-    "ق": [
-      "q"
-    ],
-    "ك": [
-      "k"
-    ],
-    "ل": [
-      "l"
-    ],
-    "م": [
-      "m"
-    ],
-    "ن": [
-      "n"
-    ],
-    "ه": [
-      "h"
-    ],
-    "و": [
-      "w",
-      "uː"
-    ],
-    "ي": [
-      "j",
-      "iː"
-    ],
-    "ء": [
-      "ʔ"
-    ],
-    "َ": [
-      "a"
-    ],
-    "ُ": [
-      "u"
-    ],
-    "ِ": [
-      "i"
-    ],
-    "ً": [
-      "an"
-    ],
-    "ٌ": [
-      "un"
-    ],
-    "ٍ": [
-      "in"
-    ],
-    "ّ": [
-      "ː"
-    ],
-    "ْ": [
-      ""
-    ],
-    "ال": [
-      "al",
-      "a"
-    ],
-    "اَ": [
-      "aː"
-    ],
-    "وُ": [
-      "uː"
-    ],
-    "يِ": [
-      "iː"
-    ],
-    "وَ": [
-      "aw"
-    ],
-    "يَ": [
-      "aj"
-    ]
-  },
-  "allophones": {
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "q": [
-      "q"
-    ],
-    "ʔ": [
-      "ʔ"
-    ],
-    "sˤ": [
-      "sˤ"
-    ],
-    "ɮˤ": [
-      "ɮˤ"
-    ],
-    "tˤ": [
-      "tˤ"
-    ],
-    "ðˤ": [
-      "ðˤ"
-    ],
-    "f": [
-      "f"
-    ],
-    "θ": [
-      "θ"
-    ],
-    "ð": [
-      "ð"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "x": [
-      "x"
-    ],
-    "ɣ": [
-      "ɣ"
-    ],
-    "ħ": [
-      "ħ"
-    ],
-    "ʕ": [
-      "ʕ"
-    ],
-    "h": [
-      "h"
-    ],
-    "dʒ": [
-      "dʒ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "m",
-      "ŋ"
-    ],
-    "l": [
-      "l",
-      "ɫ"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "a": [
-      "a",
-      "æ",
-      "ɑ"
-    ],
-    "i": [
-      "i"
-    ],
-    "u": [
-      "u"
-    ],
-    "aː": [
-      "aː",
-      "ɑː"
-    ],
-    "iː": [
-      "iː"
-    ],
-    "uː": [
-      "uː"
-    ],
-    "aj": [
-      "aj"
-    ],
-    "aw": [
-      "aw"
-    ]
-  },
-  "parent": "xpa",
-  "ancestors": [
-    {
-      "code": "xpa",
-      "role": "parent",
-      "weight": 1.0,
-      "notes": "Direct descent from Proto-Arabic / Old North Arabian"
-    }
-  ],
-  "sandhi_rules": [
-    {
-      "id": "AR_SUN_ASSIMILATION",
-      "name": "sun-letter-assimilation",
-      "left_context": "l$",
-      "right_context": "^[tθdðsszʃnrɫ]",
-      "transform": "",
-      "obligatory": true,
-      "notes": "al-shams → ash-shams (l assimilates to following sun letter)"
+    "code": "arb",
+    "name": "Classical Arabic",
+    "family": "Semitic",
+    "script": "Arabic",
+    "graphemes": {
+        "ا": [
+            "ʔ",
+            "aː"
+        ],
+        "أ": [
+            "ʔa"
+        ],
+        "إ": [
+            "ʔi"
+        ],
+        "آ": [
+            "ʔaː"
+        ],
+        "ى": [
+            "aː"
+        ],
+        "ة": [
+            "a",
+            "at"
+        ],
+        "ب": [
+            "b"
+        ],
+        "ت": [
+            "t"
+        ],
+        "ث": [
+            "θ"
+        ],
+        "ج": [
+            "dʒ"
+        ],
+        "ح": [
+            "ħ"
+        ],
+        "خ": [
+            "x"
+        ],
+        "د": [
+            "d"
+        ],
+        "ذ": [
+            "ð"
+        ],
+        "ر": [
+            "r"
+        ],
+        "ز": [
+            "z"
+        ],
+        "س": [
+            "s"
+        ],
+        "ش": [
+            "ʃ"
+        ],
+        "ص": [
+            "sˤ"
+        ],
+        "ض": [
+            "ɮˤ"
+        ],
+        "ط": [
+            "tˤ"
+        ],
+        "ظ": [
+            "ðˤ"
+        ],
+        "ع": [
+            "ʕ"
+        ],
+        "غ": [
+            "ɣ"
+        ],
+        "ف": [
+            "f"
+        ],
+        "ق": [
+            "q"
+        ],
+        "ك": [
+            "k"
+        ],
+        "ل": [
+            "l"
+        ],
+        "م": [
+            "m"
+        ],
+        "ن": [
+            "n"
+        ],
+        "ه": [
+            "h"
+        ],
+        "و": [
+            "w",
+            "uː"
+        ],
+        "ي": [
+            "j",
+            "iː"
+        ],
+        "ء": [
+            "ʔ"
+        ],
+        "َ": [
+            "a"
+        ],
+        "ُ": [
+            "u"
+        ],
+        "ِ": [
+            "i"
+        ],
+        "ً": [
+            "an"
+        ],
+        "ٌ": [
+            "un"
+        ],
+        "ٍ": [
+            "in"
+        ],
+        "ّ": [
+            "ː"
+        ],
+        "ْ": [
+            ""
+        ],
+        "ال": [
+            "al",
+            "a"
+        ],
+        "اَ": [
+            "aː"
+        ],
+        "وُ": [
+            "uː"
+        ],
+        "يِ": [
+            "iː"
+        ],
+        "وَ": [
+            "aw"
+        ],
+        "يَ": [
+            "aj"
+        ],
+        "َا": [
+            "aː"
+        ],
+        "ُو": [
+            "uː"
+        ],
+        "ِي": [
+            "iː"
+        ],
+        "َو": [
+            "aw"
+        ],
+        "َي": [
+            "aj"
+        ],
+        "ؤ": [
+            "ʔ"
+        ],
+        "ئ": [
+            "ʔ"
+        ]
     },
-    {
-      "id": "AR_HAMZAT_WASL",
-      "name": "hamzat-al-wasl",
-      "left_context": "[aeiouː]$",
-      "right_context": "^[ʔ]",
-      "transform": "",
-      "obligatory": true,
-      "notes": "fi al-bayt → fil-bayt (hamzat al-wasl elision after vowel)"
+    "allophones": {
+        "b": [
+            "b"
+        ],
+        "t": [
+            "t"
+        ],
+        "d": [
+            "d"
+        ],
+        "k": [
+            "k"
+        ],
+        "q": [
+            "q"
+        ],
+        "ʔ": [
+            "ʔ"
+        ],
+        "sˤ": [
+            "sˤ"
+        ],
+        "ɮˤ": [
+            "ɮˤ"
+        ],
+        "tˤ": [
+            "tˤ"
+        ],
+        "ðˤ": [
+            "ðˤ"
+        ],
+        "f": [
+            "f"
+        ],
+        "θ": [
+            "θ"
+        ],
+        "ð": [
+            "ð"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "z"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "x": [
+            "x"
+        ],
+        "ɣ": [
+            "ɣ"
+        ],
+        "ħ": [
+            "ħ"
+        ],
+        "ʕ": [
+            "ʕ"
+        ],
+        "h": [
+            "h"
+        ],
+        "dʒ": [
+            "dʒ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "m",
+            "ŋ"
+        ],
+        "l": [
+            "l",
+            "ɫ"
+        ],
+        "r": [
+            "r"
+        ],
+        "w": [
+            "w"
+        ],
+        "j": [
+            "j"
+        ],
+        "a": [
+            "a",
+            "æ",
+            "ɑ"
+        ],
+        "i": [
+            "i"
+        ],
+        "u": [
+            "u"
+        ],
+        "aː": [
+            "aː",
+            "ɑː"
+        ],
+        "iː": [
+            "iː"
+        ],
+        "uː": [
+            "uː"
+        ],
+        "aj": [
+            "aj"
+        ],
+        "aw": [
+            "aw"
+        ]
     },
-    {
-      "id": "AR_PAUSAL_TANWIN",
-      "name": "pausal-tanwin",
-      "left_context": "[n]$",
-      "right_context": "$",
-      "transform": "",
-      "obligatory": false,
-      "notes": "kitāban → kitābā (tanwin drops in pause)"
-    }
-  ],
-  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002).",
-  "sources": [
-    {
-      "id": "watson2002",
-      "author": "Watson, J.C.E.",
-      "year": 2002,
-      "title": "The Phonology and Morphology of Arabic",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    "parent": "xpa",
+    "ancestors": [
+        {
+            "code": "xpa",
+            "role": "parent",
+            "weight": 1.0,
+            "notes": "Direct descent from Proto-Arabic / Old North Arabian"
+        }
+    ],
+    "sandhi_rules": [
+        {
+            "id": "AR_SUN_ASSIMILATION",
+            "name": "sun-letter-assimilation",
+            "left_context": "l$",
+            "right_context": "^[tθdðszʃnrlɫɮ]",
+            "transform": "",
+            "obligatory": true,
+            "notes": "al-shams → ash-shams (l assimilates to following sun letter)"
+        },
+        {
+            "id": "AR_HAMZAT_WASL",
+            "name": "hamzat-al-wasl",
+            "left_context": "[aeiouː]$",
+            "right_context": "^[ʔ]",
+            "transform": "",
+            "obligatory": true,
+            "notes": "fi al-bayt → fil-bayt (hamzat al-wasl elision after vowel)"
+        },
+        {
+            "id": "AR_PAUSAL_TANWIN",
+            "name": "pausal-tanwin",
+            "left_context": "[n]$",
+            "right_context": "$",
+            "transform": "",
+            "obligatory": false,
+            "notes": "kitāban → kitābā (tanwin drops in pause)"
+        }
+    ],
+    "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002).",
+    "sources": [
+        {
+            "id": "watson2002",
+            "author": "Watson, J.C.E.",
+            "year": 2002,
+            "title": "The Phonology and Morphology of Arabic",
+            "publisher": "Oxford University Press",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+        },
+        {
+            "id": "holes2004",
+            "author": "Holes, C.",
+            "year": 2004,
+            "title": "Modern Arabic: Structures, Functions, and Varieties",
+            "publisher": "Georgetown University Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "versteegh2001",
+            "author": "Versteegh, K.",
+            "year": 2001,
+            "title": "The Arabic Language",
+            "publisher": "Edinburgh University Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "https://ar.wikipedia.org/wiki/لغة_عربية",
+        "https://en.wikipedia.org/wiki/Arabic_phonology"
+    ],
+    "timespan": {
+        "start_year": 600,
+        "end_year": 1400
     },
-    {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "versteegh2001",
-      "author": "Versteegh, K.",
-      "year": 2001,
-      "title": "The Arabic Language",
-      "publisher": "Edinburgh University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
-    "https://ar.wikipedia.org/wiki/لغة_عربية",
-    "https://en.wikipedia.org/wiki/Arabic_phonology"
-  ],
-  "timespan": {
-    "start_year": 600,
-    "end_year": 1400
-  },
-  "glottolog_code": "clas1252",
-  "iso639_3": "arb",
-  "quality": "research"
+    "glottolog_code": "clas1252",
+    "iso639_3": "arb",
+    "quality": "research"
 }

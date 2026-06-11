@@ -103,5 +103,23 @@
     "start_year": 1600,
     "end_year": null
   },
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "positional_graphemes": {
+    "s": {
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
+    },
+    "z": {
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
+    }
+  }
 }

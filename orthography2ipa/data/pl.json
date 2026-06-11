@@ -1,426 +1,426 @@
 {
-  "code": "pl",
-  "name": "Polish",
-  "family": "Slavic",
-  "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "ą": [
-      "ɔ̃",
-      "ɔw̃",
-      "ɔm",
-      "ɔn",
-      "ɔŋ"
-    ],
-    "e": [
-      "ɛ"
-    ],
-    "ę": [
-      "ɛ̃",
-      "ɛw̃",
-      "ɛm",
-      "ɛn",
-      "ɛŋ"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "ɔ"
-    ],
-    "ó": [
-      "u"
-    ],
-    "u": [
-      "u"
-    ],
-    "y": [
-      "ɨ"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "ts"
-    ],
-    "ć": [
-      "tɕ"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "h": [
-      "x"
-    ],
-    "j": [
-      "j"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l"
-    ],
-    "ł": [
-      "w"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ń": [
-      "ɲ"
-    ],
-    "p": [
-      "p"
-    ],
-    "r": [
-      "r"
-    ],
-    "s": [
-      "s"
-    ],
-    "ś": [
-      "ɕ"
-    ],
-    "t": [
-      "t"
-    ],
-    "w": [
-      "v"
-    ],
-    "z": [
-      "z"
-    ],
-    "ź": [
-      "ʑ"
-    ],
-    "ż": [
-      "ʐ"
-    ],
-    "ch": [
-      "x"
-    ],
-    "cz": [
-      "tʂ"
-    ],
-    "dz": [
-      "dz"
-    ],
-    "dź": [
-      "dʑ"
-    ],
-    "dż": [
-      "dʐ"
-    ],
-    "rz": [
-      "ʐ"
-    ],
-    "sz": [
-      "ʂ"
-    ],
-    "ni": [
-      "ɲi"
-    ],
-    "ci": [
-      "tɕi"
-    ],
-    "si": [
-      "ɕi"
-    ],
-    "zi": [
-      "ʑi"
-    ],
-    "dzi": [
-      "dʑi"
-    ],
-    "szcz": [
-      "ʂtʂ"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b",
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d",
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ",
-      "k"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v",
-      "f"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z",
-      "s"
-    ],
-    "ʂ": [
-      "ʂ"
-    ],
-    "ʐ": [
-      "ʐ",
-      "ʂ"
-    ],
-    "ɕ": [
-      "ɕ"
-    ],
-    "ʑ": [
-      "ʑ",
-      "ɕ"
-    ],
-    "x": [
-      "x"
-    ],
-    "ts": [
-      "ts"
-    ],
-    "dz": [
-      "dz",
-      "ts"
-    ],
-    "tʂ": [
-      "tʂ"
-    ],
-    "dʐ": [
-      "dʐ",
-      "tʂ"
-    ],
-    "tɕ": [
-      "tɕ"
-    ],
-    "dʑ": [
-      "dʑ",
-      "tɕ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ŋ"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "l": [
-      "l"
-    ],
-    "w": [
-      "w"
-    ],
-    "r": [
-      "r",
-      "ɾ"
-    ],
-    "j": [
-      "j"
-    ],
-    "a": [
-      "a"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "i": [
-      "i"
-    ],
-    "u": [
-      "u"
-    ],
-    "ɨ": [
-      "ɨ"
-    ]
-  },
-  "parent": "ine",
-  "notes": "Standard Polish. Three sibilant series: alveolar /s z ts dz/, retroflex /ʂ ʐ tʂ dʐ/, alveolo-palatal /ɕ ʑ tɕ dʑ/. Nasal vowels ⟨ą ę⟩ realise as VN sequences before stops. FINAL DEVOICING: Polish obstruents devoice in coda/word-finally. NASAL VOWELS: ą→[ɔ] and ę→[ɛ] word-finally in contemporary Polish (de-nasalization); nasal elsewhere before consonants. Sources: Rubach (1984), Bethin (1992), Gussmann (2007).",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "comrie_corbett1993",
-      "author": "Comrie, B. & Corbett, G. (eds.)",
-      "year": 1993,
-      "title": "The Slavonic Languages",
-      "publisher": "Routledge",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+    "code": "pl",
+    "name": "Polish",
+    "family": "Slavic",
+    "script": "Latin",
+    "graphemes": {
+        "a": [
+            "a"
+        ],
+        "ą": [
+            "ɔ̃",
+            "ɔw̃",
+            "ɔm",
+            "ɔn",
+            "ɔŋ"
+        ],
+        "e": [
+            "ɛ"
+        ],
+        "ę": [
+            "ɛ̃",
+            "ɛw̃",
+            "ɛm",
+            "ɛn",
+            "ɛŋ"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "ɔ"
+        ],
+        "ó": [
+            "u"
+        ],
+        "u": [
+            "u"
+        ],
+        "y": [
+            "ɨ"
+        ],
+        "b": [
+            "b"
+        ],
+        "c": [
+            "ts"
+        ],
+        "ć": [
+            "tɕ"
+        ],
+        "d": [
+            "d"
+        ],
+        "f": [
+            "f"
+        ],
+        "g": [
+            "ɡ"
+        ],
+        "h": [
+            "x"
+        ],
+        "j": [
+            "j"
+        ],
+        "k": [
+            "k"
+        ],
+        "l": [
+            "l"
+        ],
+        "ł": [
+            "w"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "ń": [
+            "ɲ"
+        ],
+        "p": [
+            "p"
+        ],
+        "r": [
+            "r"
+        ],
+        "s": [
+            "s"
+        ],
+        "ś": [
+            "ɕ"
+        ],
+        "t": [
+            "t"
+        ],
+        "w": [
+            "v"
+        ],
+        "z": [
+            "z"
+        ],
+        "ź": [
+            "ʑ"
+        ],
+        "ż": [
+            "ʐ"
+        ],
+        "ch": [
+            "x"
+        ],
+        "cz": [
+            "tʂ"
+        ],
+        "dz": [
+            "dz"
+        ],
+        "dź": [
+            "dʑ"
+        ],
+        "dż": [
+            "dʐ"
+        ],
+        "rz": [
+            "ʐ"
+        ],
+        "sz": [
+            "ʂ"
+        ],
+        "ni": [
+            "ɲi"
+        ],
+        "ci": [
+            "tɕi"
+        ],
+        "si": [
+            "ɕi"
+        ],
+        "zi": [
+            "ʑi"
+        ],
+        "dzi": [
+            "dʑi"
+        ],
+        "szcz": [
+            "ʂtʂ"
+        ]
     },
-    {
-      "id": "swan2002",
-      "author": "Swan, O.",
-      "year": 2002,
-      "title": "A Grammar of Contemporary Polish",
-      "publisher": "Slavica Publishers",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "b": [
+            "b",
+            "p"
+        ],
+        "t": [
+            "t"
+        ],
+        "d": [
+            "d",
+            "t"
+        ],
+        "k": [
+            "k"
+        ],
+        "ɡ": [
+            "ɡ",
+            "k"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "v",
+            "f"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "z",
+            "s"
+        ],
+        "ʂ": [
+            "ʂ"
+        ],
+        "ʐ": [
+            "ʐ",
+            "ʂ"
+        ],
+        "ɕ": [
+            "ɕ"
+        ],
+        "ʑ": [
+            "ʑ",
+            "ɕ"
+        ],
+        "x": [
+            "x"
+        ],
+        "ts": [
+            "ts"
+        ],
+        "dz": [
+            "dz",
+            "ts"
+        ],
+        "tʂ": [
+            "tʂ"
+        ],
+        "dʐ": [
+            "dʐ",
+            "tʂ"
+        ],
+        "tɕ": [
+            "tɕ"
+        ],
+        "dʑ": [
+            "dʑ",
+            "tɕ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ŋ"
+        ],
+        "ɲ": [
+            "ɲ"
+        ],
+        "l": [
+            "l"
+        ],
+        "w": [
+            "w"
+        ],
+        "r": [
+            "r",
+            "ɾ"
+        ],
+        "j": [
+            "j"
+        ],
+        "a": [
+            "a"
+        ],
+        "ɛ": [
+            "ɛ"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "i": [
+            "i"
+        ],
+        "u": [
+            "u"
+        ],
+        "ɨ": [
+            "ɨ"
+        ]
     },
-    {
-      "id": "szpyra_kozlowski2002",
-      "author": "Szpyra-Kozłowski, J.",
-      "year": 2002,
-      "title": "Wprowadzenie do współczesnej fonologii",
-      "publisher": "Wydawnictwo UMCS",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Polish_language",
-    "https://pl.wikipedia.org/wiki/Język_polski"
-  ],
-  "positional_graphemes": {
-    "b": {
-      "word_final": [
-        "p"
-      ],
-      "coda": [
-        "p"
-      ],
-      "default": [
-        "b"
-      ]
+    "parent": "sla",
+    "notes": "Standard Polish. Three sibilant series: alveolar /s z ts dz/, retroflex /ʂ ʐ tʂ dʐ/, alveolo-palatal /ɕ ʑ tɕ dʑ/. Nasal vowels ⟨ą ę⟩ realise as VN sequences before stops. FINAL DEVOICING: Polish obstruents devoice in coda/word-finally. NASAL VOWELS: ą→[ɔ] and ę→[ɛ] word-finally in contemporary Polish (de-nasalization); nasal elsewhere before consonants. Sources: Rubach (1984), Bethin (1992), Gussmann (2007).",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "comrie_corbett1993",
+            "author": "Comrie, B. & Corbett, G. (eds.)",
+            "year": 1993,
+            "title": "The Slavonic Languages",
+            "publisher": "Routledge",
+            "url": null,
+            "pages": null,
+            "notes": null,
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+        },
+        {
+            "id": "swan2002",
+            "author": "Swan, O.",
+            "year": 2002,
+            "title": "A Grammar of Contemporary Polish",
+            "publisher": "Slavica Publishers",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "szpyra_kozlowski2002",
+            "author": "Szpyra-Kozłowski, J.",
+            "year": 2002,
+            "title": "Wprowadzenie do współczesnej fonologii",
+            "publisher": "Wydawnictwo UMCS",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Polish_language",
+        "https://pl.wikipedia.org/wiki/Język_polski"
+    ],
+    "positional_graphemes": {
+        "b": {
+            "word_final": [
+                "p"
+            ],
+            "coda": [
+                "p"
+            ],
+            "default": [
+                "b"
+            ]
+        },
+        "d": {
+            "word_final": [
+                "t"
+            ],
+            "coda": [
+                "t"
+            ],
+            "default": [
+                "d"
+            ]
+        },
+        "g": {
+            "word_final": [
+                "k"
+            ],
+            "coda": [
+                "k"
+            ],
+            "default": [
+                "ɡ"
+            ]
+        },
+        "w": {
+            "word_final": [
+                "f"
+            ],
+            "coda": [
+                "f"
+            ],
+            "default": [
+                "v"
+            ]
+        },
+        "z": {
+            "word_final": [
+                "s"
+            ],
+            "coda": [
+                "s"
+            ],
+            "default": [
+                "z"
+            ]
+        },
+        "ź": {
+            "word_final": [
+                "ɕ"
+            ],
+            "coda": [
+                "ɕ"
+            ],
+            "default": [
+                "ʑ"
+            ]
+        },
+        "ż": {
+            "word_final": [
+                "ʂ"
+            ],
+            "coda": [
+                "ʂ"
+            ],
+            "default": [
+                "ʐ"
+            ]
+        },
+        "dz": {
+            "word_final": [
+                "ts"
+            ],
+            "coda": [
+                "ts"
+            ],
+            "default": [
+                "dz"
+            ]
+        },
+        "ą": {
+            "word_final": [
+                "ɔ"
+            ],
+            "before_consonant": [
+                "ɔ̃"
+            ],
+            "default": [
+                "ɔ̃"
+            ]
+        },
+        "ę": {
+            "word_final": [
+                "ɛ"
+            ],
+            "before_consonant": [
+                "ɛ̃"
+            ],
+            "default": [
+                "ɛ̃"
+            ]
+        }
     },
-    "d": {
-      "word_final": [
-        "t"
-      ],
-      "coda": [
-        "t"
-      ],
-      "default": [
-        "d"
-      ]
+    "timespan": {
+        "start_year": 1400,
+        "end_year": null
     },
-    "g": {
-      "word_final": [
-        "k"
-      ],
-      "coda": [
-        "k"
-      ],
-      "default": [
-        "ɡ"
-      ]
-    },
-    "w": {
-      "word_final": [
-        "f"
-      ],
-      "coda": [
-        "f"
-      ],
-      "default": [
-        "v"
-      ]
-    },
-    "z": {
-      "word_final": [
-        "s"
-      ],
-      "coda": [
-        "s"
-      ],
-      "default": [
-        "z"
-      ]
-    },
-    "ź": {
-      "word_final": [
-        "ɕ"
-      ],
-      "coda": [
-        "ɕ"
-      ],
-      "default": [
-        "ʑ"
-      ]
-    },
-    "ż": {
-      "word_final": [
-        "ʂ"
-      ],
-      "coda": [
-        "ʂ"
-      ],
-      "default": [
-        "ʐ"
-      ]
-    },
-    "dz": {
-      "word_final": [
-        "ts"
-      ],
-      "coda": [
-        "ts"
-      ],
-      "default": [
-        "dz"
-      ]
-    },
-    "ą": {
-      "word_final": [
-        "ɔ"
-      ],
-      "before_consonant": [
-        "ɔ̃"
-      ],
-      "default": [
-        "ɔ̃"
-      ]
-    },
-    "ę": {
-      "word_final": [
-        "ɛ"
-      ],
-      "before_consonant": [
-        "ɛ̃"
-      ],
-      "default": [
-        "ɛ̃"
-      ]
-    }
-  },
-  "timespan": {
-    "start_year": 1400,
-    "end_year": null
-  },
-  "glottolog_code": "poli1260",
-  "iso639_3": "pol"
+    "glottolog_code": "poli1260",
+    "iso639_3": "pol"
 }

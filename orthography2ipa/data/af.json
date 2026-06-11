@@ -1,351 +1,351 @@
 {
-  "code": "af",
-  "name": "Afrikaans",
-  "family": "Germanic",
-  "script": "Latin",
-  "graphemes": {
-    "a": [
-      "ɑ"
-    ],
-    "e": [
-      "ɛ",
-      "ə"
-    ],
-    "i": [
-      "ɪ"
-    ],
-    "o": [
-      "ɔ"
-    ],
-    "u": [
-      "ʏ"
-    ],
-    "aa": [
-      "aː"
-    ],
-    "ee": [
-      "eː"
-    ],
-    "ie": [
-      "i"
-    ],
-    "oo": [
-      "oː"
-    ],
-    "oe": [
-      "u"
-    ],
-    "uu": [
-      "y"
-    ],
-    "eu": [
-      "øː"
-    ],
-    "é": [
-      "eː"
-    ],
-    "è": [
-      "ɛ"
-    ],
-    "ê": [
-      "ɛ"
-    ],
-    "ë": [
-      "ə"
-    ],
-    "ï": [
-      "i"
-    ],
-    "ü": [
-      "y"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "k",
-      "s"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ",
-      "ɣ"
-    ],
-    "h": [
-      "ɦ"
-    ],
-    "j": [
-      "j"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "p": [
-      "p"
-    ],
-    "q": [
-      "k"
-    ],
-    "r": [
-      "r",
-      "ʀ"
-    ],
-    "s": [
-      "s"
-    ],
-    "t": [
-      "t"
-    ],
-    "v": [
-      "f",
-      "v"
-    ],
-    "w": [
-      "ʋ"
-    ],
-    "x": [
-      "ks"
-    ],
-    "y": [
-      "ɛi"
-    ],
-    "z": [
-      "s"
-    ],
-    "ch": [
-      "x"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "nk": [
-      "ŋk"
-    ],
-    "sch": [
-      "sx"
-    ],
-    "sj": [
-      "ʃ"
-    ],
-    "tj": [
-      "ki"
-    ],
-    "th": [
-      "t"
-    ],
-    "ph": [
-      "f"
-    ],
-    "ei": [
-      "eɪ"
-    ],
-    "ij": [
-      "ɛi"
-    ],
-    "ou": [
-      "ɔu"
-    ],
-    "au": [
-      "ɑu"
-    ],
-    "ui": [
-      "œɪ"
-    ],
-    "ai": [
-      "aːi"
-    ],
-    "oi": [
-      "ɔi"
-    ],
-    "eau": [
-      "oː"
-    ],
-    "ieu": [
-      "iːø"
-    ],
-    "oei": [
-      "ui"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
-    "b": [
-      "b"
-    ],
-    "d": [
-      "d"
-    ],
-    "ɡ": [
-      "ɡ",
-      "ɣ",
-      "x"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "f",
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "s"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "x": [
-      "x"
-    ],
-    "ɣ": [
-      "ɣ",
-      "x"
-    ],
-    "h": [
-      "h"
-    ],
-    "tʃ": [
-      "tʃ"
-    ],
-    "dʒ": [
-      "dʒ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r",
-      "ʀ",
-      "χ"
-    ],
-    "j": [
-      "j"
-    ],
-    "w": [
-      "v",
-      "w"
-    ],
-    "a": [
-      "a"
-    ],
-    "aː": [
-      "aː"
-    ],
-    "e": [
-      "e"
-    ],
-    "eː": [
-      "eː"
-    ],
-    "ɛ": [
-      "ɛ",
-      "ɛː"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "oː": [
-      "oː"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "u": [
-      "u"
-    ],
-    "y": [
-      "y"
-    ],
-    "ø": [
-      "øː"
-    ],
-    "œɪ": [
-      "œɪ"
-    ],
-    "eɪ": [
-      "eɪ"
-    ],
-    "ɔu": [
-      "ɔu"
-    ],
-    "ə": [
-      "ə"
-    ]
-  },
-  "parent": "nl",
-  "ancestors": [
-    {
-      "code": "nl",
-      "role": "parent",
-      "weight": 0.88,
-      "notes": "17th-century Dutch VOC settlers (Cape Colony from 1652)"
+    "code": "af",
+    "name": "Afrikaans",
+    "family": "Germanic",
+    "script": "Latin",
+    "graphemes": {
+        "a": [
+            "ɑ"
+        ],
+        "e": [
+            "ɛ",
+            "ə"
+        ],
+        "i": [
+            "ɪ"
+        ],
+        "o": [
+            "ɔ"
+        ],
+        "u": [
+            "ʏ"
+        ],
+        "aa": [
+            "aː"
+        ],
+        "ee": [
+            "eː"
+        ],
+        "ie": [
+            "i"
+        ],
+        "oo": [
+            "oː"
+        ],
+        "oe": [
+            "u"
+        ],
+        "uu": [
+            "y"
+        ],
+        "eu": [
+            "øː"
+        ],
+        "é": [
+            "eː"
+        ],
+        "è": [
+            "ɛ"
+        ],
+        "ê": [
+            "ɛ"
+        ],
+        "ë": [
+            "ə"
+        ],
+        "ï": [
+            "i"
+        ],
+        "ü": [
+            "y"
+        ],
+        "b": [
+            "b"
+        ],
+        "c": [
+            "k",
+            "s"
+        ],
+        "d": [
+            "d"
+        ],
+        "f": [
+            "f"
+        ],
+        "g": [
+            "x",
+            "ɡ"
+        ],
+        "h": [
+            "ɦ"
+        ],
+        "j": [
+            "j"
+        ],
+        "k": [
+            "k"
+        ],
+        "l": [
+            "l"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "p": [
+            "p"
+        ],
+        "q": [
+            "k"
+        ],
+        "r": [
+            "r",
+            "ʀ"
+        ],
+        "s": [
+            "s"
+        ],
+        "t": [
+            "t"
+        ],
+        "v": [
+            "f",
+            "v"
+        ],
+        "w": [
+            "ʋ"
+        ],
+        "x": [
+            "ks"
+        ],
+        "y": [
+            "ɛi"
+        ],
+        "z": [
+            "s"
+        ],
+        "ch": [
+            "x"
+        ],
+        "ng": [
+            "ŋ"
+        ],
+        "nk": [
+            "ŋk"
+        ],
+        "sch": [
+            "sk"
+        ],
+        "sj": [
+            "ʃ"
+        ],
+        "tj": [
+            "ki"
+        ],
+        "th": [
+            "t"
+        ],
+        "ph": [
+            "f"
+        ],
+        "ei": [
+            "ɛi"
+        ],
+        "ij": [
+            "ɛi"
+        ],
+        "ou": [
+            "ɔu"
+        ],
+        "au": [
+            "ɑu"
+        ],
+        "ui": [
+            "œɪ"
+        ],
+        "ai": [
+            "aːi"
+        ],
+        "oi": [
+            "ɔi"
+        ],
+        "eau": [
+            "oː"
+        ],
+        "ieu": [
+            "iːø"
+        ],
+        "oei": [
+            "ui"
+        ]
     },
-    {
-      "code": "ms",
-      "role": "substrate",
-      "weight": 0.05,
-      "notes": "Cape Malay substrate: some vocabulary; contact with Malay-speaking slaves"
-    }
-  ],
-  "notes": "Afrikaans. Descended from 17th-century Dutch of VOC settlers (Cape Colony, established 1652). DEFINING CHANGES from Dutch: (1) /v/→/f/ word-initially; /z/→/s/ initially; (2) /ɡ/ initial (Dutch ɣ→ɡ); (3) Loss of grammatical gender, case, verbal agreement; (4) /r/ = uvular [ʀ] or [χ]; (5) New diphthong /œɪ/ (Dutch /œy/); (6) Schwa /ə/ very prominent. Cape Malay substrate: some vocabulary. Khoikhoi substrate: minimal phonological impact; some clicks in code-switching. Source: Donaldson (1993).",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "donaldson1993",
-      "author": "Donaldson, B.C.",
-      "year": 1993,
-      "title": "A Grammar of Afrikaans",
-      "publisher": "Mouton de Gruyter",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Afrikaans",
-    "https://af.wikipedia.org/wiki/Afrikaans"
-  ],
-  "timespan": {
-    "start_year": 1700,
-    "end_year": null
-  },
-  "glottolog_code": "afri1274",
-  "iso639_3": "afr"
+    "allophones": {
+        "p": [
+            "p"
+        ],
+        "t": [
+            "t"
+        ],
+        "k": [
+            "k"
+        ],
+        "b": [
+            "b"
+        ],
+        "d": [
+            "d"
+        ],
+        "ɡ": [
+            "ɡ",
+            "ɣ",
+            "x"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "f",
+            "v"
+        ],
+        "s": [
+            "s"
+        ],
+        "z": [
+            "s"
+        ],
+        "ʃ": [
+            "ʃ"
+        ],
+        "x": [
+            "x"
+        ],
+        "ɣ": [
+            "ɣ",
+            "x"
+        ],
+        "h": [
+            "h"
+        ],
+        "tʃ": [
+            "tʃ"
+        ],
+        "dʒ": [
+            "dʒ"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "l": [
+            "l"
+        ],
+        "r": [
+            "r",
+            "ʀ",
+            "χ"
+        ],
+        "j": [
+            "j"
+        ],
+        "w": [
+            "v",
+            "w"
+        ],
+        "a": [
+            "a"
+        ],
+        "aː": [
+            "aː"
+        ],
+        "e": [
+            "e"
+        ],
+        "eː": [
+            "eː"
+        ],
+        "ɛ": [
+            "ɛ",
+            "ɛː"
+        ],
+        "i": [
+            "i"
+        ],
+        "o": [
+            "o"
+        ],
+        "oː": [
+            "oː"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "u": [
+            "u"
+        ],
+        "y": [
+            "y"
+        ],
+        "ø": [
+            "øː"
+        ],
+        "œɪ": [
+            "œɪ"
+        ],
+        "eɪ": [
+            "eɪ"
+        ],
+        "ɔu": [
+            "ɔu"
+        ],
+        "ə": [
+            "ə"
+        ]
+    },
+    "parent": "nl",
+    "ancestors": [
+        {
+            "code": "nl",
+            "role": "parent",
+            "weight": 0.88,
+            "notes": "17th-century Dutch VOC settlers (Cape Colony from 1652)"
+        },
+        {
+            "code": "ms",
+            "role": "substrate",
+            "weight": 0.05,
+            "notes": "Cape Malay substrate: some vocabulary; contact with Malay-speaking slaves"
+        }
+    ],
+    "notes": "Afrikaans. Descended from 17th-century Dutch of VOC settlers (Cape Colony, established 1652). DEFINING CHANGES from Dutch: (1) /v/→/f/ word-initially; /z/→/s/ initially; (2) /ɡ/ initial (Dutch ɣ→ɡ); (3) Loss of grammatical gender, case, verbal agreement; (4) /r/ = uvular [ʀ] or [χ]; (5) New diphthong /œɪ/ (Dutch /œy/); (6) Schwa /ə/ very prominent. Cape Malay substrate: some vocabulary. Khoikhoi substrate: minimal phonological impact; some clicks in code-switching. Source: Donaldson (1993).",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "donaldson1993",
+            "author": "Donaldson, B.C.",
+            "year": 1993,
+            "title": "A Grammar of Afrikaans",
+            "publisher": "Mouton de Gruyter",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Afrikaans",
+        "https://af.wikipedia.org/wiki/Afrikaans"
+    ],
+    "timespan": {
+        "start_year": 1700,
+        "end_year": null
+    },
+    "glottolog_code": "afri1274",
+    "iso639_3": "afr"
 }

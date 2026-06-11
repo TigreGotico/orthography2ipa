@@ -53,5 +53,16 @@
   },
   "glottolog_code": null,
   "iso639_3": "ast",
-  "quality": "research"
+  "quality": "research",
+  "positional_graphemes": {
+    "f": {
+      "word_initial": [
+        "h",
+        "f"
+      ],
+      "intervocalic": [
+        "f"
+      ]
+    }
+  }
 }

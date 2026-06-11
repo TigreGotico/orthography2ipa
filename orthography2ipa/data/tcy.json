@@ -2,7 +2,7 @@
   "code": "tcy",
   "name": "Tulu",
   "family": "Dravidian",
-  "script": "Kannada",
+  "script": "Latin",
   "graphemes": {
     "a": [
       "a"
@@ -293,8 +293,7 @@
   ],
   "notes": "Tulu (coastal Karnataka / Udupi / Mangaluru district). South Dravidian language; unwritten in daily practice but has traditional Tigaḷari script (Buddhist manuscripts). Usually written in Kannada script. Distinct from Kannada despite geographic closeness. Full aspirate series from Sanskrit contact.",
   "quality": "research",
-  "script_type": "abugida",
-  "inherent_vowel": "a",
+  "script_type": "alphabet",
   "iso639_3": "tcy",
   "sources": [
     {

@@ -1,0 +1,105 @@
+{
+  "code": "tl",
+  "name": "Tagalog",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "iso639_3": "tgl",
+  "quality": "research",
+  "graphemes": {
+    "a": ["a"],
+    "b": ["b"],
+    "k": ["k"],
+    "d": ["d"],
+    "e": ["ɛ"],
+    "g": ["ɡ"],
+    "h": ["h"],
+    "i": ["i"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "ng": ["ŋ"],
+    "o": ["o"],
+    "p": ["p"],
+    "r": ["ɾ"],
+    "s": ["s"],
+    "t": ["t"],
+    "u": ["u"],
+    "w": ["w"],
+    "y": ["j"],
+    "f": ["f"],
+    "j": ["dʒ"],
+    "v": ["v"],
+    "z": ["s", "z"],
+    "c": ["k", "s"],
+    "q": ["k"],
+    "x": ["ks"]
+  },
+  "allophones": {
+    "a": ["a"],
+    "b": ["b", "β"],
+    "k": ["k", "ʔ"],
+    "d": ["d", "ɾ"],
+    "ɛ": ["ɛ", "e"],
+    "ɡ": ["ɡ"],
+    "h": ["h"],
+    "i": ["i"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n", "ŋ"],
+    "ŋ": ["ŋ"],
+    "o": ["o", "ʊ"],
+    "p": ["p"],
+    "ɾ": ["ɾ", "d"],
+    "s": ["s"],
+    "t": ["t"],
+    "u": ["u"],
+    "w": ["w"],
+    "j": ["j"],
+    "f": ["f"],
+    "dʒ": ["dʒ"],
+    "v": ["b", "v"]
+  },
+  "positional_graphemes": {
+    "k": {
+      "word_final": ["ʔ"],
+      "default": ["k"]
+    },
+    "d": {
+      "intervocalic": ["ɾ"],
+      "default": ["d"]
+    }
+  },
+  "notes": "Filipino/Tagalog standard orthography (Abakada + expanded 28-letter alphabet). Glottal stop /ʔ/ is phonemic but unwritten (word-initial vowels, mid-word, and some finals). Word-final K → [ʔ]. Intervocalic D → [ɾ]. NG = /ŋ/ (single phoneme, alphabetized as unit). Stress marked with tilde (˜) in formal texts. Vowel system: /a e i o u/ with /ɛ/ ~ /e/ and /o/ ~ /u/ merging in some varieties.",
+  "sources": [
+    {
+      "id": "schachter_otanes1972",
+      "author": "Schachter, P. & Otanes, F.T.",
+      "year": 1972,
+      "title": "Tagalog Reference Grammar",
+      "publisher": "University of California Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "tagalog_phonology_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tagalog phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tagalog_phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tagalog_phonology",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tagalog_language",
+    "https://en.wikipedia.org/wiki/Tagalog_phonology"
+  ],
+  "timespan": {
+    "start_year": 1593,
+    "end_year": null
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "code": "yo",
+  "name": "Yoruba",
+  "family": "Niger-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "iso639_3": "yor",
+  "quality": "research",
+  "tone_inventory": {
+    "◌́": "high",
+    "◌̀": "low",
+    "◌̄": "mid",
+    "unmarked": "mid"
+  },
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "ẹ": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gb": [
+      "ɡ͡b"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "ọ": [
+      "ɔ"
+    ],
+    "p": [
+      "kp"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ṣ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "á": [
+      "a"
+    ],
+    "à": [
+      "a"
+    ],
+    "é": [
+      "e"
+    ],
+    "è": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ì": [
+      "i"
+    ],
+    "ó": [
+      "o"
+    ],
+    "ò": [
+      "o"
+    ],
+    "ú": [
+      "u"
+    ],
+    "ù": [
+      "u"
+    ],
+    "ẹ́": [
+      "ɛ"
+    ],
+    "ẹ̀": [
+      "ɛ"
+    ],
+    "ọ́": [
+      "ɔ"
+    ],
+    "ọ̀": [
+      "ɔ"
+    ],
+    "ń": [
+      "n̩"
+    ],
+    "ǹ": [
+      "n̩"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡ͡b": [
+      "ɡ͡b"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kp": [
+      "k͡p"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "notes": "Standard Yoruba. 3-tone language: high (acute), low (grave), mid (unmarked or macron). P = /kp/ (labial-velar stop); GB = /ɡb/ (labial-velar). Ẹ = /ɛ/; Ọ = /ɔ/; Ṣ = /ʃ/. Nasal vowels marked with 'n' following vowel.",
+  "sources": [
+    {
+      "id": "akinlabi2004",
+      "author": "Akinlabi, A.",
+      "year": 2004,
+      "title": "Yoruba",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "yoruba_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Yoruba language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Yoruba_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Yoruba_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Yoruba_language",
+    "https://en.wikipedia.org/wiki/Yoruba_phonology"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
+}

@@ -1,349 +1,349 @@
 {
-  "code": "da",
-  "name": "Danish",
-  "family": "Germanic",
-  "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a",
-      "æ",
-      "ɑː"
-    ],
-    "e": [
-      "e",
-      "ɛ",
-      "ə"
-    ],
-    "i": [
-      "i",
-      "ɪ"
-    ],
-    "o": [
-      "o",
-      "ɔ"
-    ],
-    "u": [
-      "u",
-      "ʊ"
-    ],
-    "y": [
-      "y",
-      "ʏ"
-    ],
-    "æ": [
-      "ɛ",
-      "ɛː"
-    ],
-    "ø": [
-      "ø",
-      "œ"
-    ],
-    "å": [
-      "ɔ",
-      "ɔː"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "k",
-      "s"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "h": [
-      "h"
-    ],
-    "j": [
-      "j"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "p": [
-      "p"
-    ],
-    "q": [
-      "k"
-    ],
-    "r": [
-      "ʁ"
-    ],
-    "s": [
-      "s"
-    ],
-    "t": [
-      "t"
-    ],
-    "v": [
-      "v"
-    ],
-    "w": [
-      "v"
-    ],
-    "x": [
-      "ks"
-    ],
-    "z": [
-      "s"
-    ],
-    "ch": [
-      "ɕ",
-      "k"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "nk": [
-      "ŋk"
-    ],
-    "sj": [
-      "ɕ"
-    ],
-    "sk": [
-      "ɕ",
-      "sk"
-    ],
-    "kj": [
-      "ɕ"
-    ],
-    "tj": [
-      "ɕ"
-    ],
-    "aa": [
-      "ɔː"
-    ],
-    "aj": [
-      "aj"
-    ],
-    "ej": [
-      "aj"
-    ],
-    "øj": [
-      "ɔj"
-    ],
-    "au": [
-      "ɑw"
-    ],
-    "av": [
-      "ɑw"
-    ],
-    "eu": [
-      "ew"
-    ],
-    "eg": [
-      "aj"
-    ],
-    "øg": [
-      "ɔj"
-    ],
-    "ig": [
-      "iː"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p",
-      "pʰ",
-      "b̥"
-    ],
-    "b": [
-      "b",
-      "b̥"
-    ],
-    "t": [
-      "t",
-      "tʰ",
-      "d̥"
-    ],
-    "d": [
-      "d",
-      "ð",
-      "d̥"
-    ],
-    "k": [
-      "k",
-      "kʰ",
-      "ɡ̊"
-    ],
-    "ɡ": [
-      "ɡ",
-      "ɡ̊"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v",
-      "w"
-    ],
-    "s": [
-      "s"
-    ],
-    "ɕ": [
-      "ɕ"
-    ],
-    "h": [
-      "h"
-    ],
-    "ð": [
-      "ð"
-    ],
-    "ʁ": [
-      "ʁ",
-      "ɐ̯"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n",
-      "ŋ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "l": [
-      "l"
-    ],
-    "j": [
-      "j"
-    ],
-    "a": [
-      "a",
-      "æ"
-    ],
-    "ɑː": [
-      "ɑː"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "ɛː": [
-      "ɛː"
-    ],
-    "e": [
-      "e"
-    ],
-    "eː": [
-      "eː"
-    ],
-    "ə": [
-      "ə"
-    ],
-    "i": [
-      "i"
-    ],
-    "iː": [
-      "iː"
-    ],
-    "ɪ": [
-      "ɪ"
-    ],
-    "o": [
-      "o"
-    ],
-    "oː": [
-      "oː"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "ɔː": [
-      "ɔː"
-    ],
-    "u": [
-      "u"
-    ],
-    "uː": [
-      "uː"
-    ],
-    "ʊ": [
-      "ʊ"
-    ],
-    "y": [
-      "y"
-    ],
-    "yː": [
-      "yː"
-    ],
-    "ʏ": [
-      "ʏ"
-    ],
-    "ø": [
-      "ø"
-    ],
-    "øː": [
-      "øː"
-    ],
-    "œ": [
-      "œ"
-    ]
-  },
-  "parent": "gem",
-  "ancestors": [
-    {
-      "code": "non",
-      "role": "parent",
-      "weight": 0.9,
-      "notes": "Descent from Old Norse (East Norse branch)"
+    "code": "da",
+    "name": "Danish",
+    "family": "Germanic",
+    "script": "Latin",
+    "graphemes": {
+        "a": [
+            "a",
+            "æ",
+            "ɑː"
+        ],
+        "e": [
+            "e",
+            "ɛ",
+            "ə"
+        ],
+        "i": [
+            "i",
+            "ɪ"
+        ],
+        "o": [
+            "o",
+            "ɔ"
+        ],
+        "u": [
+            "u",
+            "ʊ"
+        ],
+        "y": [
+            "y",
+            "ʏ"
+        ],
+        "æ": [
+            "ɛ",
+            "ɛː"
+        ],
+        "ø": [
+            "ø",
+            "œ"
+        ],
+        "å": [
+            "ɔ",
+            "ɔː"
+        ],
+        "b": [
+            "b"
+        ],
+        "c": [
+            "k",
+            "s"
+        ],
+        "d": [
+            "d"
+        ],
+        "f": [
+            "f"
+        ],
+        "g": [
+            "ɡ"
+        ],
+        "h": [
+            "h"
+        ],
+        "j": [
+            "j"
+        ],
+        "k": [
+            "k"
+        ],
+        "l": [
+            "l"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n"
+        ],
+        "p": [
+            "p"
+        ],
+        "q": [
+            "k"
+        ],
+        "r": [
+            "ʁ"
+        ],
+        "s": [
+            "s"
+        ],
+        "t": [
+            "t"
+        ],
+        "v": [
+            "v"
+        ],
+        "w": [
+            "v"
+        ],
+        "x": [
+            "ks"
+        ],
+        "z": [
+            "s"
+        ],
+        "ch": [
+            "ɕ",
+            "k"
+        ],
+        "ng": [
+            "ŋ"
+        ],
+        "nk": [
+            "ŋk"
+        ],
+        "sj": [
+            "ɕ"
+        ],
+        "sk": [
+            "ɕ",
+            "sk"
+        ],
+        "kj": [
+            "ɕ"
+        ],
+        "tj": [
+            "ɕ"
+        ],
+        "aa": [
+            "ɔː"
+        ],
+        "aj": [
+            "aj"
+        ],
+        "ej": [
+            "aj"
+        ],
+        "øj": [
+            "ɔj"
+        ],
+        "au": [
+            "ɑw"
+        ],
+        "av": [
+            "ɑw"
+        ],
+        "eu": [
+            "ew"
+        ],
+        "eg": [
+            "aj"
+        ],
+        "øg": [
+            "ɔj"
+        ],
+        "ig": [
+            "iː"
+        ]
     },
-    {
-      "code": "de-DE",
-      "role": "adstrate",
-      "weight": 0.07,
-      "notes": "Low German / Hanseatic adstrate: even stronger than Swedish due to geographic proximity and political union"
-    }
-  ],
-  "notes": "Standard Danish (rigsdansk). The 'soft d' [ð̞] is an approximant unique to Danish. Stød (glottal prosody) not encoded in grapheme map as it is suprasegmental.",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "basboll2005",
-      "author": "Basbøll, H.",
-      "year": 2005,
-      "title": "The Phonology of Danish",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+    "allophones": {
+        "p": [
+            "p",
+            "pʰ",
+            "b̥"
+        ],
+        "b": [
+            "b",
+            "b̥"
+        ],
+        "t": [
+            "t",
+            "tʰ",
+            "d̥"
+        ],
+        "d": [
+            "d",
+            "ð",
+            "d̥"
+        ],
+        "k": [
+            "k",
+            "kʰ",
+            "ɡ̊"
+        ],
+        "ɡ": [
+            "ɡ",
+            "ɡ̊"
+        ],
+        "f": [
+            "f"
+        ],
+        "v": [
+            "v",
+            "w"
+        ],
+        "s": [
+            "s"
+        ],
+        "ɕ": [
+            "ɕ"
+        ],
+        "h": [
+            "h"
+        ],
+        "ð": [
+            "ð"
+        ],
+        "ʁ": [
+            "ʁ",
+            "ɐ̯"
+        ],
+        "m": [
+            "m"
+        ],
+        "n": [
+            "n",
+            "ŋ"
+        ],
+        "ŋ": [
+            "ŋ"
+        ],
+        "l": [
+            "l"
+        ],
+        "j": [
+            "j"
+        ],
+        "a": [
+            "a",
+            "æ"
+        ],
+        "ɑː": [
+            "ɑː"
+        ],
+        "ɛ": [
+            "ɛ"
+        ],
+        "ɛː": [
+            "ɛː"
+        ],
+        "e": [
+            "e"
+        ],
+        "eː": [
+            "eː"
+        ],
+        "ə": [
+            "ə"
+        ],
+        "i": [
+            "i"
+        ],
+        "iː": [
+            "iː"
+        ],
+        "ɪ": [
+            "ɪ"
+        ],
+        "o": [
+            "o"
+        ],
+        "oː": [
+            "oː"
+        ],
+        "ɔ": [
+            "ɔ"
+        ],
+        "ɔː": [
+            "ɔː"
+        ],
+        "u": [
+            "u"
+        ],
+        "uː": [
+            "uː"
+        ],
+        "ʊ": [
+            "ʊ"
+        ],
+        "y": [
+            "y"
+        ],
+        "yː": [
+            "yː"
+        ],
+        "ʏ": [
+            "ʏ"
+        ],
+        "ø": [
+            "ø"
+        ],
+        "øː": [
+            "øː"
+        ],
+        "œ": [
+            "œ"
+        ]
     },
-    {
-      "id": "gronnum2005",
-      "author": "Grønnum, N.",
-      "year": 2005,
-      "title": "Fonetik og fonologi: Almen og dansk",
-      "publisher": "Akademisk Forlag",
-      "url": null,
-      "pages": null,
-      "notes": null
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Danish_language",
-    "https://da.wikipedia.org/wiki/Dansk"
-  ],
-  "timespan": {
-    "start_year": 1500,
-    "end_year": null
-  },
-  "glottolog_code": "dani1285",
-  "iso639_3": "dan"
+    "parent": "non",
+    "ancestors": [
+        {
+            "code": "non",
+            "role": "parent",
+            "weight": 0.9,
+            "notes": "Descent from Old Norse (East Norse branch)"
+        },
+        {
+            "code": "de-DE",
+            "role": "adstrate",
+            "weight": 0.07,
+            "notes": "Low German / Hanseatic adstrate: even stronger than Swedish due to geographic proximity and political union"
+        }
+    ],
+    "notes": "Standard Danish (rigsdansk). The 'soft d' [ð̞] is an approximant unique to Danish. Stød (glottal prosody) not encoded in grapheme map as it is suprasegmental.",
+    "quality": "research",
+    "script_type": "alphabet",
+    "sources": [
+        {
+            "id": "basboll2005",
+            "author": "Basbøll, H.",
+            "year": 2005,
+            "title": "The Phonology of Danish",
+            "publisher": "Oxford University Press",
+            "url": null,
+            "pages": null,
+            "notes": null
+        },
+        {
+            "id": "gronnum2005",
+            "author": "Grønnum, N.",
+            "year": 2005,
+            "title": "Fonetik og fonologi: Almen og dansk",
+            "publisher": "Akademisk Forlag",
+            "url": null,
+            "pages": null,
+            "notes": null
+        }
+    ],
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Danish_language",
+        "https://da.wikipedia.org/wiki/Dansk"
+    ],
+    "timespan": {
+        "start_year": 1500,
+        "end_year": null
+    },
+    "glottolog_code": "dani1285",
+    "iso639_3": "dan"
 }
