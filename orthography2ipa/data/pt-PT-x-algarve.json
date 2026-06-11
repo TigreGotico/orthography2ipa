@@ -4,6 +4,14 @@
   "family": "Romance",
   "script": "Latin",
   "graphemes_base": "pt-PT",
+  "graphemes": {
+    "ei": [
+      "e"
+    ],
+    "ou": [
+      "o"
+    ]
+  },
   "allophones_base": "pt-PT",
   "allophones": {
     "ʁ": [
@@ -14,15 +22,34 @@
     ]
   },
   "positional_graphemes_base": "pt-PT",
+  "positional_graphemes": {
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "intervocalic_cross_word": [
+        "ʒ"
+      ],
+      "coda": [
+        "ʒ"
+      ],
+      "word_final": [
+        "ʒ"
+      ]
+    }
+  },
   "parent": "pt-PT",
-  "notes": "Algarvio Portuguese, the southernmost dialect of continental Portugal (Faro, Portimão, Quarteira, Lagos). Phonological features: (1) minimal unstressed vowel reduction — /e/ and /o/ are often preserved as full vowels in unstressed syllables, unlike northern EP; (2) uvular rhotic [ʁ] consistently voiced, no coda devoicing to [χ]; (3) /s/ and /z/ show apico-alveolar tendency in older and rural speakers — a residual feature linked to the Arabic (Moorish) substrate and subsequent Reconquista repopulation patterns; (4) open vowel quality: stressed [ɛ] and [ɔ] are broader than standard, reflecting southern EP vowel space; (5) vowel lengthening in stressed syllables noted in rural idiolects; (6) no retroflex consonants; (7) /lh/ [ʎ] well-preserved; (8) influence of historical Mozarabic and Arabic vocabulary audible in prosodic patterns and some lexical items. The Algarve dialect is classified as a southern EP dialect under Cintra's taxonomy; its features align it phonologically with Baixo Alentejo rather than with Brazilian Portuguese despite superficial resemblances in vowel openness.",
+  "notes": "Algarvio Portuguese, southernmost continental dialect (Faro, Portimão, Quarteira, Lagos). Categorical features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) /ej/ → [e] MONOPHTHONG (Alentejo-like); (2) /ow/ → [o] MONOPHTHONG; (3) SIBILANT VOICING — word-final /s/ → [ʒ] (mas a→[maʒ ɐ], muitos amigos→[ˈmũj̃tuʒ ɐˈmiɡuʒ]); encoded in positional_graphemes s/word_final→[ʒ], coda→[ʒ]; this is a distinct feature from Alentejo (which uses s→z cross-word sandhi); (4) nasal -em endings: /ɐ̃j̃/ → [ẽ] class (shared with Alentejo); (5) open vowel qualities [ɛ, ɔ]; (6) no betacism, /v/ ≠ /b/. NOTES-ONLY: apico-alveolar sibilant tendency (older/rural speakers) not encoded. Historical Mozarabic/Arabic prosodic features are suprasegmental.",
   "quality": "research",
   "ancestors": [
     {
       "code": "pt-PT",
       "role": "parent",
       "weight": 0.9,
-      "notes": "Standard European Portuguese; Algarvio diverges in vowel reduction resistance, open vowel qualities, and Moorish-substrate prosodic features"
+      "notes": "Standard European Portuguese; Algarvio diverges in sibilant voicing (s→ʒ coda/final), ei/ou monophthongs, and open vowel qualities"
     }
   ],
   "urls": [
@@ -59,6 +86,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "tigregotico_dialect_research_2026",
+      "author": "TigreGotico",
+      "year": 2026,
+      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
+      "publisher": "TigreGotico internal research",
+      "url": null,
+      "pages": null,
+      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
     }
   ],
   "wikipedia": [
