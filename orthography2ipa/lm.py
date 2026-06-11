@@ -9,6 +9,8 @@ build_ngram_lm   Build an n-gram language model over IPA phone sequences.
 perplexity       Evaluate perplexity of a test word list under a phone LM.
 phoneme_embeddings  Return feature-vector embeddings for a language's phonemes.
 """
+from __future__ import annotations
+
 import math
 from collections import defaultdict, Counter
 

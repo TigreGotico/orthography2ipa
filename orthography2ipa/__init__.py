@@ -29,9 +29,17 @@ from orthography2ipa.distance import (
     segment_distance,
     tone_distance,
 )
+from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
 from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, Token, TokenKind
-from orthography2ipa.registry import available_codes, available_families, get
+from orthography2ipa.registry import (
+    available_codes,
+    available_families,
+    get,
+    get_plugin,
+    resolve,
+)
+from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.transforms import (
     DIALECT_PROFILES,
     DialectTransform,
@@ -57,9 +65,14 @@ from orthography2ipa.types import (
 
 __all__ = [
     "get",
+    "get_plugin",
+    "resolve",
     "available_codes",
     "available_families",
     "load_lexicon",
+    "G2PPlugin",
+    "WordContext",
+    "SandhiEngine",
     "LanguageSpec",
     "Grapheme2IPA",
     "AllophoneMap",
