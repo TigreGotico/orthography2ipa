@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.1a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.0a1...1.8.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): asturleonese family and barranquenho grounded in primary sources [\#65](https://github.com/TigreGotico/orthography2ipa/pull/65) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.8.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.7.0a1...1.8.0a1)
