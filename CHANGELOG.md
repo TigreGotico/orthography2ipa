@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.0.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.7.0a1...1.0.0a1)
+
+**Breaking changes:**
+
+- refactor!: remove external G2P loading and the bundled arabic plugin [\#26](https://github.com/TigreGotico/orthography2ipa/pull/26) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.7.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.6.0a1...0.7.0a1)
