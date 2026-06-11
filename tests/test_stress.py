@@ -118,3 +118,73 @@ class TestApplyStressMark:
 
     def test_empty_input(self, rules):
         assert apply_stress_mark("", rules, -1) == ""
+
+
+class TestSyllabifierPlugins:
+    """Per-language syllabifier plugins supersede the naive splitter."""
+
+    class _FakeSyllabifier:
+        def syllabify(self, word, lang=None):
+            # hiatus-aware: the naive splitter cannot separate 'i-a'
+            if word == "viagem":
+                return ["vi", "a", "gem"]
+            return [word]
+
+        @property
+        def language_codes(self):
+            return ["pt-PT"]
+
+        @property
+        def priority(self):
+            return 50
+
+    def _install(self, monkeypatch):
+        from orthography2ipa import registry
+        monkeypatch.setattr(
+            registry, "_syllabifiers", {"pt-PT": self._FakeSyllabifier()})
+
+    def test_plugin_used_for_lang(self, monkeypatch):
+        from orthography2ipa import get
+        self._install(monkeypatch)
+        rules = get("pt-PT").stress
+        # with the hiatus-aware plugin, viagem is correctly paroxytone
+        # over three syllables (vi-A-gem)
+        assert detect_stress("viagem", rules, lang="pt-PT") == 1
+
+    def test_no_plugin_falls_back_to_naive(self, monkeypatch):
+        from orthography2ipa import get
+        self._install(monkeypatch)
+        rules = get("pt-PT").stress
+        assert detect_stress("viagem", rules, lang="en-GB") == 0
+
+    def test_explicit_syllables_beat_plugin(self, monkeypatch):
+        from orthography2ipa import get
+        self._install(monkeypatch)
+        rules = get("pt-PT").stress
+        assert detect_stress(
+            "viagem", rules, syllables=["via", "gem"], lang="pt-PT") == 0
+
+    def test_get_syllabifier_unknown_lang(self):
+        from orthography2ipa import get_syllabifier
+        assert get_syllabifier("zz-ZZ") is None
+
+    def test_broken_plugin_output_rejected(self, monkeypatch):
+        """A plugin whose syllables don't rebuild the word is ignored."""
+        from orthography2ipa import get, registry
+
+        class Broken:
+            def syllabify(self, word, lang=None):
+                return ["xxx"]
+
+            @property
+            def language_codes(self):
+                return ["pt-PT"]
+
+            @property
+            def priority(self):
+                return 50
+
+        monkeypatch.setattr(registry, "_syllabifiers", {"pt-PT": Broken()})
+        rules = get("pt-PT").stress
+        # falls back to the naive splitter instead of trusting garbage
+        assert detect_stress("casa", rules, lang="pt-PT") == 0

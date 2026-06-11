@@ -7,8 +7,11 @@ transcription.
 
 The bundled syllabifier is a naive vowel-group splitter, good enough for
 end-anchored stress systems (final / penultimate / antepenultimate).
-Consumers with a real syllabifier (e.g. ``silabificador`` for Portuguese)
-should pass their own syllable list — every function accepts one.
+Languages with a real syllabifier ship it as an
+``orthography2ipa.syllabify`` entry-point plugin (``silabificador`` for
+Portuguese, ``pycotovia`` for Galician) — pass ``lang=`` and the plugin
+is used automatically. Alternatively pass a pre-computed syllable list;
+every function accepts one.
 
 Usage
 ─────
@@ -86,10 +89,26 @@ def syllabify(word: str, vowels: Optional[set] = None) -> List[str]:
     return syllables
 
 
+def _syllables_for(word: str, lang: Optional[str]) -> List[str]:
+    """Syllabify *word*: registered plugin for *lang* first, naive fallback."""
+    if lang:
+        from orthography2ipa.registry import get_syllabifier
+        plugin = get_syllabifier(lang)
+        if plugin is not None:
+            try:
+                sylls = plugin.syllabify(word, lang)
+                if sylls and "".join(sylls) == word:
+                    return list(sylls)
+            except Exception:
+                pass
+    return syllabify(word)
+
+
 def detect_stress(
     word: str,
     rules: StressRules,
     syllables: Optional[Sequence[str]] = None,
+    lang: Optional[str] = None,
 ) -> int:
     """Return the 0-based index of the stressed syllable of *word*.
 
@@ -104,10 +123,15 @@ def detect_stress(
     rules : StressRules
         The language's declarative stress system.
     syllables : Optional[Sequence[str]]
-        Pre-computed syllables; the naive :func:`syllabify` is used
-        when omitted.
+        Pre-computed syllables; takes precedence over plugin lookup.
+    lang : Optional[str]
+        Language code used to look up a registered
+        ``orthography2ipa.syllabify`` plugin (``silabificador`` for
+        Portuguese, ``pycotovia`` for Galician). The naive
+        :func:`syllabify` is the fallback.
     """
-    sylls = list(syllables) if syllables is not None else syllabify(word)
+    sylls = (list(syllables) if syllables is not None
+             else _syllables_for(word, lang))
     n = len(sylls)
     if n <= 1:
         return 0
