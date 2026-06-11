@@ -1,339 +1,347 @@
 {
-    "code": "pt-PT",
-    "name": "European Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "graphemes_base": "pt-PT-x-medieval",
-    "graphemes": {
-        "c": [
-            "k",
-            "s"
-        ],
-        "ç": [
-            "s"
-        ],
-        "s": [
-            "s",
-            "z"
-        ],
-        "z": [
-            "z"
-        ],
-        "ch": [
-            "ʃ"
-        ],
-        "e": [
-            "e",
-            "ɨ",
-            "ɛ"
-        ],
-        "r": [
-            "ɾ",
-            "ʁ"
-        ],
-        "w": [
-            "w",
-            "v"
-        ],
-        "x": [
-            "ʃ",
-            "ks",
-            "z",
-            "s",
-            "gz"
-        ],
-        "rr": [
-            "ʁ"
-        ],
-        "iu": [
-            "iw"
-        ],
-        "ou": [
-            "ow",
-            "o"
-        ],
-        "ph": null,
-        "th": null,
-        "rh": null,
-        "ü": null,
-        "qü": null,
-        "gü": null,
-        "á": [
-            "a"
-        ],
-        "é": [
-            "ɛ"
-        ],
-        "í": [
-            "i"
-        ],
-        "ó": [
-            "ɔ"
-        ],
-        "ú": [
-            "u"
-        ],
-        "â": [
-            "ɐ"
-        ],
-        "ê": [
-            "e"
-        ],
-        "ô": [
-            "o"
-        ]
-    },
-    "allophones_base": "pt-PT-x-medieval",
-    "allophones": {
-        "v": [
-            "v"
-        ],
-        "ɨ": [
-            "ɨ",
-            "ə"
-        ],
-        "ʁ": [
-            "ʁ",
-            "χ",
-            "h",
-            "ɦ"
-        ],
-        "f": [
-            "f",
-            "ɸ"
-        ],
-        "t͡ʃ": null
-    },
-    "positional_graphemes_base": "pt-PT-x-medieval",
-    "positional_graphemes": {
-        "c": {
-            "before_e": [
-                "s"
-            ],
-            "before_i": [
-                "s"
-            ]
-        },
-        "r": {
-            "word_initial": [
-                "ʁ"
-            ]
-        },
-        "s": {
-            "word_initial": [
-                "s"
-            ],
-            "intervocalic": [
-                "z"
-            ],
-            "coda": [
-                "ʃ",
-                "ʒ"
-            ],
-            "word_final": [
-                "ʃ"
-            ],
-            "intervocalic_cross_word": [
-                "z"
-            ]
-        },
-        "z": {
-            "word_final": [
-                "ʃ",
-                "z"
-            ],
-            "coda": [
-                "ʃ"
-            ]
-        },
-        "l": {
-            "onset": [
-                "l"
-            ],
-            "coda": [
-                "ɫ"
-            ]
-        },
-        "b": {
-            "intervocalic": [
-                "β"
-            ]
-        },
-        "d": {
-            "intervocalic": [
-                "ð"
-            ]
-        },
-        "g": {
-            "intervocalic": [
-                "ɣ"
-            ]
-        },
-        "e": {
-            "pretonic": [
-                "ɨ"
-            ],
-            "nucleus_stressed": [
-                "ɛ",
-                "e"
-            ],
-            "nucleus_unstressed": [
-                "ɨ"
-            ],
-            "coda": [
-                "ɨ"
-            ],
-            "word_initial": [
-                "e",
-                "i"
-            ],
-            "word_final": [
-                "ɨ"
-            ]
-        },
-        "o": {
-            "pretonic": [
-                "u"
-            ],
-            "nucleus_stressed": [
-                "ɔ",
-                "o"
-            ],
-            "nucleus_unstressed": [
-                "o"
-            ],
-            "coda": [
-                "u",
-                "o"
-            ],
-            "word_initial": [
-                "o",
-                "ɔ"
-            ],
-            "word_final": [
-                "u"
-            ]
-        }
-    },
-    "parent": "pt-PT-x-medieval",
-    "sandhi_rules": [
-        {
-            "id": "PT_CODA_S_VOICING",
-            "name": "coda-s-voicing",
-            "left_context": "[ʃ]$",
-            "right_context": "^[bdgvzʒmnɲɾʁlʎ]",
-            "transform": "ʒ",
-            "obligatory": true,
-            "notes": "os dois → ɔʒ dojʃ"
-        },
-        {
-            "id": "PT_CODA_S_REVOWEL",
-            "name": "coda-s-resyllabification",
-            "left_context": "[ʃ]$",
-            "right_context": "^[aeiouɛɔ]",
-            "transform": "z‿",
-            "obligatory": true,
-            "notes": "os amigos → uz‿ɐmiɡuʃ"
-        },
-        {
-            "id": "PT_ELISION",
-            "name": "schwa-elision",
-            "left_context": "[ɨ]$",
-            "right_context": "^[aeiouɛɔ]",
-            "transform": "",
-            "obligatory": false,
-            "notes": "de amanhã → d‿ɐmɐɲã"
-        }
+  "code": "pt-PT",
+  "name": "European Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT-x-medieval",
+  "graphemes": {
+    "c": [
+      "k",
+      "s"
     ],
-    "quality": "research",
-    "script_type": "alphabet",
-    "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features.",
-    "sources": [
-        {
-            "id": "mateus_dandrade2000",
-            "author": "Mateus, M.H.M. & d'Andrade, E.",
-            "year": 2000,
-            "title": "The Phonology of Portuguese",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "cunha_cintra1984",
-            "author": "Cunha, C. & Cintra, L.F.L.",
-            "year": 1984,
-            "title": "Nova Gramática do Português Contemporâneo",
-            "publisher": "Sá da Costa",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "start_cross2002",
-            "author": "Mateus, M.H.M. et al.",
-            "year": 2003,
-            "title": "Gramática da Língua Portuguesa (6th ed.)",
-            "publisher": "Caminho",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+    "ç": [
+      "s"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Portuguese_language",
-        "https://pt.wikipedia.org/wiki/L%C3%ADngua_portuguesa"
+    "s": [
+      "s",
+      "z"
     ],
-    "urls": [
-        "https://en.wikipedia.org/wiki/Portuguese_language",
-        "https://en.wikipedia.org/wiki/European_Portuguese",
-        "https://en.wikipedia.org/wiki/Portuguese_phonology",
-        "https://pt.wikipedia.org/wiki/L%C3%ADngua_portuguesa",
-        "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_europeu"
+    "z": [
+      "z"
     ],
-    "timespan": {
-        "start_year": 1300,
-        "end_year": null
+    "ch": [
+      "ʃ"
+    ],
+    "e": [
+      "e",
+      "ɨ",
+      "ɛ"
+    ],
+    "r": [
+      "ɾ",
+      "ʁ"
+    ],
+    "w": [
+      "w",
+      "v"
+    ],
+    "x": [
+      "ʃ",
+      "ks",
+      "z",
+      "s",
+      "gz"
+    ],
+    "rr": [
+      "ʁ"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "ou": [
+      "ow",
+      "o"
+    ],
+    "ph": null,
+    "th": null,
+    "rh": null,
+    "ü": null,
+    "qü": null,
+    "gü": null,
+    "á": [
+      "a"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ú": [
+      "u"
+    ],
+    "â": [
+      "ɐ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "ô": [
+      "o"
+    ]
+  },
+  "allophones_base": "pt-PT-x-medieval",
+  "allophones": {
+    "v": [
+      "v"
+    ],
+    "ɨ": [
+      "ɨ",
+      "ə"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ",
+      "h",
+      "ɦ"
+    ],
+    "f": [
+      "f",
+      "ɸ"
+    ],
+    "t͡ʃ": null
+  },
+  "positional_graphemes_base": "pt-PT-x-medieval",
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
     },
-    "glottolog_code": "port1283",
-    "iso639_3": "por",
-    "stress": {
-        "default_position": -2,
-        "final_stress_endings": [
-            "r",
-            "l",
-            "z",
-            "x",
-            "i",
-            "u",
-            "im",
-            "om",
-            "um",
-            "is",
-            "us",
-            "ns",
-            "ão",
-            "ãe",
-            "õe",
-            "au",
-            "éu",
-            "éi",
-            "ói"
-        ],
-        "penult_stress_endings": [],
-        "marked_vowels": [
-            "á",
-            "é",
-            "í",
-            "ó",
-            "ú",
-            "â",
-            "ê",
-            "ô",
-            "ã",
-            "õ"
-        ],
-        "stress_mark": "ˈ",
-        "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+    "r": {
+      "word_initial": [
+        "ʁ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "coda": [
+        "ʃ",
+        "ʒ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "ʃ",
+        "z"
+      ],
+      "coda": [
+        "ʃ"
+      ]
+    },
+    "l": {
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "ɫ"
+      ]
+    },
+    "e": {
+      "pretonic": [
+        "ɨ"
+      ],
+      "nucleus_stressed": [
+        "ɛ",
+        "e"
+      ],
+      "nucleus_unstressed": [
+        "ɨ"
+      ],
+      "coda": [
+        "ɨ"
+      ],
+      "word_initial": [
+        "e",
+        "i"
+      ],
+      "word_final": [
+        "ɨ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "u"
+      ],
+      "nucleus_stressed": [
+        "ɔ"
+      ],
+      "nucleus_unstressed": [
+        "u"
+      ],
+      "coda": [
+        "u",
+        "o"
+      ],
+      "word_initial": [
+        "o",
+        "ɔ"
+      ],
+      "word_final": [
+        "u"
+      ]
+    },
+    "a": {
+      "nucleus_stressed": [
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "ɐ"
+      ],
+      "word_initial": [
+        "ɐ",
+        "a"
+      ],
+      "word_final": [
+        "ɐ"
+      ],
+      "coda": [
+        "ɐ"
+      ],
+      "pretonic": [
+        "ɐ"
+      ],
+      "posttonic": [
+        "ɐ"
+      ]
     }
+  },
+  "parent": "pt-PT-x-medieval",
+  "sandhi_rules": [
+    {
+      "id": "PT_CODA_S_VOICING",
+      "name": "coda-s-voicing",
+      "left_context": "[ʃ]$",
+      "right_context": "^[bdgvzʒmnɲɾʁlʎ]",
+      "transform": "ʒ",
+      "obligatory": true,
+      "notes": "os dois → ɔʒ dojʃ"
+    },
+    {
+      "id": "PT_CODA_S_REVOWEL",
+      "name": "coda-s-resyllabification",
+      "left_context": "[ʃ]$",
+      "right_context": "^[aeiouɛɔ]",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "os amigos → uz‿ɐmiɡuʃ"
+    },
+    {
+      "id": "PT_ELISION",
+      "name": "schwa-elision",
+      "left_context": "[ɨ]$",
+      "right_context": "^[aeiouɛɔ]",
+      "transform": "",
+      "obligatory": false,
+      "notes": "de amanhã → d‿ɐmɐɲã"
+    }
+  ],
+  "quality": "research",
+  "script_type": "alphabet",
+  "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features.",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "start_cross2002",
+      "author": "Mateus, M.H.M. et al.",
+      "year": 2003,
+      "title": "Gramática da Língua Portuguesa (6th ed.)",
+      "publisher": "Caminho",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Portuguese_language",
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_portuguesa"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Portuguese_language",
+    "https://en.wikipedia.org/wiki/European_Portuguese",
+    "https://en.wikipedia.org/wiki/Portuguese_phonology",
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_portuguesa",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_europeu"
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  },
+  "glottolog_code": "port1283",
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

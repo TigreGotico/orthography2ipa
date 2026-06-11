@@ -35,11 +35,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable, List, Optional, Tuple
 
-from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, TokenKind
+from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, Token, TokenKind
 from orthography2ipa.registry import get, resolve
 from orthography2ipa.sandhi import SandhiEngine
-from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
+from orthography2ipa.types import GraphemePosition, LanguageSpec
 
 __all__ = [
     "G2P",
@@ -256,9 +256,12 @@ class G2P:
         return flagged
 
     def _transcribe_word(self, word: str, width: int) -> WordTranscription:
-        paths = self._tokenizer.ipa_beam(
-            word, beam_width=width,
-            expand_allophones=self.expand_allophones)
+        if self.spec.has_positional_data():
+            paths = self._positional_beam(word, width)
+        else:
+            paths = self._tokenizer.ipa_beam(
+                word, beam_width=width,
+                expand_allophones=self.expand_allophones)
         ipa = paths[0].ipa if paths else word
         if (self.apply_stress and self.spec.stress is not None and ipa):
             sylls = _syllables_for(word, self.lang)
@@ -270,6 +273,218 @@ class G2P:
             ipa=ipa,
             candidates=tuple(paths) if width > 1 else (),
         )
+
+    # ─── positional beam search ──────────────────────────────────────────
+
+    _VOWEL_CHARS = frozenset(
+        "aeiouáéíóúàèìòùâêîôûãõäëïöüåæøAEIOUÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÄËÏÖÜÅÆØ"
+    )
+
+    def _positional_beam(self, word: str, width: int) -> List[IPAPath]:
+        """Beam search using positional grapheme overrides where available.
+
+        For each grapheme token the positional context is computed from:
+        - word boundary (first / last grapheme)
+        - neighbour grapheme class (vowel / consonant)
+        - intervocalic (vowel on both sides)
+        - nucleus_stressed / nucleus_unstressed for vowel graphemes,
+          derived from the spec's StressRules applied to the ortho word.
+
+        Positional candidates are tried in priority order (most specific
+        first).  For beam search the positional candidate is ranked first
+        (score 0) and base-grapheme alternatives are appended at higher
+        scores so the beam space is preserved.
+        """
+        g_tokens = self._tokenizer.grapheme_tokens(word)
+        if not g_tokens:
+            return self._tokenizer.ipa_beam(
+                word, beam_width=width,
+                expand_allophones=self.expand_allophones)
+
+        n = len(g_tokens)
+
+        # Determine stressed syllable index once (reuse for all vowels)
+        stressed_syll_idx: Optional[int] = None
+        sylls: List[str] = []
+        if self.spec.stress is not None:
+            sylls = _syllables_for(word, self.lang)
+            if len(sylls) > 1:
+                stressed_syll_idx = detect_stress(
+                    word, self.spec.stress, syllables=sylls)
+            else:
+                stressed_syll_idx = 0  # monosyllable → always stressed
+
+        # Map each grapheme token index to its syllable index
+        syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
+
+        allophone_map = self.spec.allophones if self.expand_allophones else None
+        beam: List[Tuple[List[str], float]] = [([], 0.0)]
+
+        for tok_idx, token in enumerate(g_tokens):
+            grapheme = token.grapheme
+            next_tok = g_tokens[tok_idx + 1] if tok_idx + 1 < n else None
+            prev_tok = g_tokens[tok_idx - 1] if tok_idx > 0 else None
+
+            # Determine applicable positions (most-specific first)
+            positions = self._positions_for_token(
+                grapheme, tok_idx, n, prev_tok, next_tok,
+                syll_for_token[tok_idx], stressed_syll_idx,
+            )
+
+            # Build branch list: positional candidates ranked first
+            branches = self._positional_branches(
+                grapheme, token, positions, allophone_map)
+
+            beam = PhonetokTokenizer._expand_beam(beam, branches, width)
+
+        paths = [
+            IPAPath(segments=tuple(segs), score=sc)
+            for segs, sc in beam
+        ]
+        paths.sort(key=lambda p: (p.score, p.ipa))
+        return paths
+
+    def _positions_for_token(
+        self,
+        grapheme: str,
+        tok_idx: int,
+        n: int,
+        prev_tok: Optional[Token],
+        next_tok: Optional[Token],
+        syll_idx: int,
+        stressed_syll_idx: Optional[int],
+    ) -> List[GraphemePosition]:
+        """Return ordered list of positions to try (most specific first)."""
+        pos: List[GraphemePosition] = []
+        is_vowel = grapheme[0].lower() in self._VOWEL_CHARS
+
+        # 1. before_X (most specific)
+        if next_tok is not None:
+            nc = next_tok.grapheme[0].lower()
+            if nc == 'a':
+                pos.append(GraphemePosition.BEFORE_A)
+            elif nc == 'e':
+                pos.append(GraphemePosition.BEFORE_E)
+            elif nc == 'i':
+                pos.append(GraphemePosition.BEFORE_I)
+            elif nc == 'o':
+                pos.append(GraphemePosition.BEFORE_O)
+            elif nc == 'u':
+                pos.append(GraphemePosition.BEFORE_U)
+
+        # 2. word boundary
+        if tok_idx == 0:
+            pos.append(GraphemePosition.WORD_INITIAL)
+        if tok_idx == n - 1:
+            pos.append(GraphemePosition.WORD_FINAL)
+
+        # 3. intervocalic (consonants between two vowels)
+        prev_is_v = (prev_tok is not None
+                     and prev_tok.grapheme[0].lower() in self._VOWEL_CHARS)
+        next_is_v = (next_tok is not None
+                     and next_tok.grapheme[0].lower() in self._VOWEL_CHARS)
+        if prev_is_v and next_is_v:
+            pos.append(GraphemePosition.INTERVOCALIC)
+
+        # 4. nucleus_stressed / nucleus_unstressed for vowels
+        if is_vowel and stressed_syll_idx is not None:
+            if syll_idx == stressed_syll_idx:
+                pos.append(GraphemePosition.NUCLEUS_STRESSED)
+            else:
+                pos.append(GraphemePosition.NUCLEUS_UNSTRESSED)
+                if syll_idx < stressed_syll_idx:
+                    pos.append(GraphemePosition.PRETONIC)
+                else:
+                    pos.append(GraphemePosition.POSTTONIC)
+
+        # 5. after/before vowel / consonant context
+        if prev_is_v:
+            pos.append(GraphemePosition.AFTER_VOWEL)
+        elif prev_tok is not None:
+            pos.append(GraphemePosition.AFTER_CONSONANT)
+        if next_is_v:
+            pos.append(GraphemePosition.BEFORE_VOWEL)
+        elif next_tok is not None:
+            pos.append(GraphemePosition.BEFORE_CONSONANT)
+
+        # 6. nucleus fallback for vowels
+        if is_vowel:
+            pos.append(GraphemePosition.NUCLEUS)
+
+        pos.append(GraphemePosition.DEFAULT)
+        return pos
+
+    def _positional_branches(
+        self,
+        grapheme: str,
+        token: Token,
+        positions: List[GraphemePosition],
+        allophone_map: Optional[dict],
+    ) -> List[Tuple[str, float]]:
+        """Return (ipa, cost) branches, positional winner ranked first."""
+        spec = self.spec
+        pg = spec.positional_graphemes.get(grapheme)
+
+        positional_candidates: Optional[List[str]] = None
+        if pg:
+            for pos in positions:
+                if pos in pg:
+                    positional_candidates = pg[pos]
+                    break
+
+        # Base candidates from flat graphemes table (already in token.ipa)
+        base_candidates = list(token.ipa)
+
+        if positional_candidates is None:
+            # No positional override: fall back to flat table
+            candidates = base_candidates
+        else:
+            # Merge: positional first, then base alternatives not already included
+            seen = set(positional_candidates)
+            extra = [c for c in base_candidates if c not in seen]
+            candidates = list(positional_candidates) + extra
+
+        # Build (ipa, cost) list
+        branches: List[Tuple[str, float]] = []
+        for rank, phoneme in enumerate(candidates):
+            base_cost = float(rank)
+            if allophone_map and phoneme in allophone_map:
+                allophones = allophone_map[phoneme]
+                for a_rank, allophone in enumerate(allophones):
+                    branches.append((allophone, base_cost + 0.5 * a_rank))
+            else:
+                branches.append((phoneme, base_cost))
+
+        # Deduplicate (keep lowest cost)
+        seen_ipa: dict = {}
+        for ipa, cost in branches:
+            if ipa not in seen_ipa or cost < seen_ipa[ipa]:
+                seen_ipa[ipa] = cost
+        return sorted(seen_ipa.items(), key=lambda x: (x[1], x[0]))
+
+    @staticmethod
+    def _map_tokens_to_syllables(
+        tokens: List[Token], sylls: List[str]
+    ) -> List[int]:
+        """Map each grapheme token index to its 0-based syllable index.
+
+        Walks syllables left-to-right consuming grapheme characters to
+        assign each token to a syllable.  Falls back to 0 on mismatch.
+        """
+        if not sylls:
+            return [0] * len(tokens)
+        syll_idx = 0
+        syll_consumed = 0  # chars consumed from current syllable
+        result: List[int] = []
+        for token in tokens:
+            result.append(syll_idx)
+            syll_consumed += len(token.grapheme)
+            while syll_idx < len(sylls) and syll_consumed >= len(sylls[syll_idx]):
+                syll_consumed -= len(sylls[syll_idx])
+                syll_idx += 1
+                if syll_idx >= len(sylls):
+                    break
+        return result
 
 
 def transcribe(

@@ -660,17 +660,21 @@ class TestPortuguesePT:
         p = _positional(self._spec, "l", GraphemePosition.CODA)
         assert p and "ɫ" in p
 
-    def test_positional_b_intervocalic_fricative(self):
+    def test_positional_b_no_inherited_lenition(self):
+        # pt-PT uses phonemic transcription — intervocalic lenition is
+        # encoded as an allophone (b allophones include β), not a
+        # positional grapheme override; the medieval inherited rule is
+        # suppressed here.
         p = _positional(self._spec, "b", GraphemePosition.INTERVOCALIC)
-        assert p and "β" in p
+        assert p is None or "β" not in p
 
-    def test_positional_d_intervocalic_fricative(self):
+    def test_positional_d_no_inherited_lenition(self):
         p = _positional(self._spec, "d", GraphemePosition.INTERVOCALIC)
-        assert p and "ð" in p
+        assert p is None or "ð" not in p
 
-    def test_positional_g_intervocalic_fricative(self):
+    def test_positional_g_no_inherited_lenition(self):
         p = _positional(self._spec, "g", GraphemePosition.INTERVOCALIC)
-        assert p and "ɣ" in p
+        assert p is None or "ɣ" not in p
 
     def test_positional_e_word_final_schwa(self):
         p = _positional(self._spec, "e", GraphemePosition.WORD_FINAL)
