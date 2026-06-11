@@ -1,12 +1,13 @@
 # Changelog
 
-## [0.2.1a2](https://github.com/TigreGotico/orthography2ipa/tree/0.2.1a2) (2026-06-10)
+## [0.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.3.0a1) (2026-06-11)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.2.1a1...0.2.1a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.2.1a1...0.3.0a1)
 
 **Merged pull requests:**
 
 - fix\(data\): occitan phonology, explicit quality tiers, verified wikipedia links [\#20](https://github.com/TigreGotico/orthography2ipa/pull/20) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(registry\): resolve bare language tags and nearest-match fallbacks [\#18](https://github.com/TigreGotico/orthography2ipa/pull/18) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/0.2.1a1) (2026-06-10)
 
