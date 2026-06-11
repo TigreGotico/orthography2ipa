@@ -1,182 +1,183 @@
 {
-  "code": "hy",
-  "name": "Armenian",
-  "family": "Indo-European > Armenian",
-  "script": "Armenian",
-  "script_type": "alphabet",
-  "quality": "research",
-  "iso639_3": "hye",
-  "glottolog_code": "nucl1235",
-  "timespan": {
-    "start_year": 405,
-    "end_year": null
-  },
-  "graphemes": {
-    "ու": [
-      "u"
+    "code": "hy",
+    "name": "Armenian",
+    "family": "Indo-European > Armenian",
+    "script": "Armenian",
+    "script_type": "alphabet",
+    "quality": "research",
+    "iso639_3": "hye",
+    "glottolog_code": "nucl1235",
+    "timespan": {
+        "start_year": 405,
+        "end_year": null
+    },
+    "graphemes": {
+        "ու": [
+            "u"
+        ],
+        "ա": [
+            "ɑ"
+        ],
+        "բ": [
+            "b"
+        ],
+        "գ": [
+            "ɡ"
+        ],
+        "դ": [
+            "d"
+        ],
+        "ե": [
+            "jɛ"
+        ],
+        "զ": [
+            "z"
+        ],
+        "է": [
+            "ɛ"
+        ],
+        "ը": [
+            "ə"
+        ],
+        "թ": [
+            "tʰ"
+        ],
+        "ժ": [
+            "ʒ"
+        ],
+        "ի": [
+            "i"
+        ],
+        "լ": [
+            "l"
+        ],
+        "խ": [
+            "χ"
+        ],
+        "ծ": [
+            "ts"
+        ],
+        "կ": [
+            "k"
+        ],
+        "հ": [
+            "h"
+        ],
+        "ձ": [
+            "dz"
+        ],
+        "ղ": [
+            "ʁ"
+        ],
+        "ճ": [
+            "tʃ"
+        ],
+        "մ": [
+            "m"
+        ],
+        "յ": [
+            "j"
+        ],
+        "ն": [
+            "n"
+        ],
+        "շ": [
+            "ʃ"
+        ],
+        "ո": [
+            "o",
+            "vo"
+        ],
+        "չ": [
+            "tʃʰ"
+        ],
+        "պ": [
+            "p"
+        ],
+        "ջ": [
+            "dʒ"
+        ],
+        "ռ": [
+            "r"
+        ],
+        "ս": [
+            "s"
+        ],
+        "վ": [
+            "v"
+        ],
+        "տ": [
+            "t"
+        ],
+        "ր": [
+            "ɾ"
+        ],
+        "ց": [
+            "tsʰ"
+        ],
+        "փ": [
+            "pʰ"
+        ],
+        "ք": [
+            "kʰ"
+        ],
+        "ֆ": [
+            "f"
+        ],
+        "և": [
+            "jɛv"
+        ],
+        "օ": [
+            "o"
+        ]
+    },
+    "allophones": {},
+    "positional_graphemes": {
+        "ե": {
+            "word_initial": [
+                "jɛ"
+            ],
+            "default": [
+                "ɛ"
+            ]
+        },
+        "ո": {
+            "word_initial": [
+                "vo"
+            ],
+            "default": [
+                "o"
+            ]
+        }
+    },
+    "ancestors": [
+        {
+            "code": "ine",
+            "role": "proto_language",
+            "weight": 1.0,
+            "notes": "Isolated Indo-European branch; Armenian alphabet created by Mesrop Mashtots in 405 CE"
+        }
     ],
-    "ա": [
-      "ɑ"
+    "parent": null,
+    "notes": "Eastern Armenian (standard). Armenian alphabet (Aybuben) has 38 letters. Digraph ու = /u/. Letters ե and ո have positional allophones: word-initial ե = /jɛ/, medial = /ɛ/; word-initial ո = /vo/, medial = /o/. Aspirated stops (թ, չ, փ, ք, ց) vs plain voiced (բ, գ, դ) vs plain voiceless (կ, պ, տ).",
+    "sources": [
+        {
+            "id": "wiki-hy",
+            "author": "Wikipedia contributors",
+            "year": 2024,
+            "title": "Armenian language",
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Armenian_language"
+        },
+        {
+            "id": "wiki-hy-phon",
+            "author": "Wikipedia contributors",
+            "year": 2024,
+            "title": "Armenian phonology",
+            "wikipedia_url": "https://en.wikipedia.org/wiki/Armenian_phonology"
+        }
     ],
-    "բ": [
-      "b"
-    ],
-    "գ": [
-      "ɡ"
-    ],
-    "դ": [
-      "d"
-    ],
-    "ե": [
-      "jɛ"
-    ],
-    "զ": [
-      "z"
-    ],
-    "է": [
-      "ɛ"
-    ],
-    "ը": [
-      "ə"
-    ],
-    "թ": [
-      "tʰ"
-    ],
-    "ժ": [
-      "ʒ"
-    ],
-    "ի": [
-      "i"
-    ],
-    "լ": [
-      "l"
-    ],
-    "խ": [
-      "χ"
-    ],
-    "ծ": [
-      "ts"
-    ],
-    "կ": [
-      "k"
-    ],
-    "հ": [
-      "h"
-    ],
-    "ձ": [
-      "dz"
-    ],
-    "ղ": [
-      "ʁ"
-    ],
-    "ճ": [
-      "tʃ"
-    ],
-    "մ": [
-      "m"
-    ],
-    "յ": [
-      "j"
-    ],
-    "ն": [
-      "n"
-    ],
-    "շ": [
-      "ʃ"
-    ],
-    "ո": [
-      "o"
-    ],
-    "չ": [
-      "tʃʰ"
-    ],
-    "պ": [
-      "p"
-    ],
-    "ջ": [
-      "dʒ"
-    ],
-    "ռ": [
-      "r"
-    ],
-    "ս": [
-      "s"
-    ],
-    "վ": [
-      "v"
-    ],
-    "տ": [
-      "t"
-    ],
-    "ր": [
-      "ɾ"
-    ],
-    "ց": [
-      "tsʰ"
-    ],
-    "փ": [
-      "pʰ"
-    ],
-    "ք": [
-      "kʰ"
-    ],
-    "ֆ": [
-      "f"
-    ],
-    "և": [
-      "jɛv"
-    ],
-    "օ": [
-      "o"
+    "wikipedia": [
+        "https://en.wikipedia.org/wiki/Armenian_language",
+        "https://en.wikipedia.org/wiki/Armenian_phonology"
     ]
-  },
-  "allophones": {},
-  "positional_graphemes": {
-    "ե": {
-      "word_initial": [
-        "jɛ"
-      ],
-      "default": [
-        "ɛ"
-      ]
-    },
-    "ո": {
-      "word_initial": [
-        "vo"
-      ],
-      "default": [
-        "o"
-      ]
-    }
-  },
-  "ancestors": [
-    {
-      "code": "ine",
-      "role": "proto_language",
-      "weight": 1.0,
-      "notes": "Isolated Indo-European branch; Armenian alphabet created by Mesrop Mashtots in 405 CE"
-    }
-  ],
-  "parent": null,
-  "notes": "Eastern Armenian (standard). Armenian alphabet (Aybuben) has 38 letters. Digraph ու = /u/. Letters ե and ո have positional allophones: word-initial ե = /jɛ/, medial = /ɛ/; word-initial ո = /vo/, medial = /o/. Aspirated stops (թ, չ, փ, ք, ց) vs plain voiced (բ, գ, դ) vs plain voiceless (կ, պ, տ).",
-  "sources": [
-    {
-      "id": "wiki-hy",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Armenian language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Armenian_language"
-    },
-    {
-      "id": "wiki-hy-phon",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Armenian phonology",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Armenian_phonology"
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Armenian_language",
-    "https://en.wikipedia.org/wiki/Armenian_phonology"
-  ]
 }
