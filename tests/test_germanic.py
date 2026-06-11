@@ -333,9 +333,9 @@ class TestAustrianGerman:
 
     def test_rhotic_variants(self):
         """AUSTRIAN FEATURE: rhotic allows uvular trill /ʀ/, tapped /r/, and vocalic /ɐ/."""
-        a = _allophone(self._spec, "r")
-        assert a is not None, "de-AT: r should be in allophone table"
-        _assert_contains(a, "ʀ", label="de-AT allophone r includes ʀ")
+        a = _allophone(self._spec, "ʁ")
+        assert a is not None, "de-AT: ʁ should be in allophone table"
+        _assert_contains(a, "ʀ", label="de-AT allophone ʁ includes ʀ")
 
     def test_inherits_sch(self):
         """de-AT inherits <sch>→/ʃ/ from de-DE without redefinition."""
@@ -383,9 +383,9 @@ class TestBavarianGerman:
 
     def test_rhotic_is_apical(self):
         """BAVARIAN FEATURE: rhotic is apical /r/ (not uvular /ʁ/)."""
-        a = _allophone(self._spec, "r")
-        assert a is not None, "de-x-bavarian: r should be in allophone table"
-        _assert_contains(a, "r", label="de-x-bavarian allophone r includes apical r")
+        a = _allophone(self._spec, "ʁ")
+        assert a is not None, "de-x-bavarian: ʁ should be in allophone table"
+        _assert_contains(a, "r", label="de-x-bavarian allophone ʁ includes apical r")
 
     def test_ae_long_unchanged(self):
         """Bavarian retains /ɛː/ without the Austrian eː merger."""
