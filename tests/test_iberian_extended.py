@@ -1016,14 +1016,14 @@ class TestAsturianOccidental:
         Morala & Egido (2009) p. 9; Propuesta §3.1 — both endorse l.l and ts."""
         # ḷḷ is not in the new spec (only l.l is; the old ḷḷ encoding has been dropped)
         val = _grapheme(self.spec, "ḷḷ")
-        assert val is None or val == ["ts"], f"ḷḷ should be absent or ts, got {val}"
+        assert val is None or val == ["t͡s"], f"ḷḷ should be absent or ts, got {val}"
 
     def test_l_dot_l_che_vaqueira(self):
         """l.l → [ts] (che vaqueira, Laciana/Alto Sil).
         Source: Morala & Egido (2009) p. 9 (*tsadrona, tsacianiega*);
         Propuesta §3.1. The phoneme is /ts/ (approximately), NOT /tʃ/ (palatal affricate).
         CRITICAL: che vaqueira ≠ /tʃ/ — they must not be merged."""
-        _assert_first(_grapheme(self.spec, "l.l"), "ts", label="l.l")
+        _assert_first(_grapheme(self.spec, "l.l"), "t͡s", label="l.l")
 
     def test_f_word_initial_preserved(self):
         """f word-initial → [f] (Western Asturian preserves Latin F-, does not aspirate)."""

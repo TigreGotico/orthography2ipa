@@ -52,6 +52,12 @@
     ],
     "ôi": [
       "õj"
+    ],
+    "em": [
+      "em"
+    ],
+    "en": [
+      "en"
     ]
   },
   "allophones": {
@@ -136,6 +142,28 @@
       ],
       "intervocalic": [
         "z"
+      ]
+    },
+    "em": {
+      "word_final": [
+        "ẽ"
+      ],
+      "coda": [
+        "ẽ"
+      ],
+      "before_consonant": [
+        "ẽ"
+      ]
+    },
+    "en": {
+      "word_final": [
+        "ẽ"
+      ],
+      "coda": [
+        "ẽ"
+      ],
+      "before_consonant": [
+        "ẽ"
       ]
     }
   },

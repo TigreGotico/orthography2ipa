@@ -110,7 +110,7 @@ class TestWesternLeoneseDiphthongs:
         """⟨l.l⟩ = /ts/ (che vaqueira) — Laciana/Alto Sil only.
         From Latin L- initial and -LL-; NOT from PL-/CL- or -LJ-.
         Source A p. 9; Source B §3.1."""
-        assert occidental.graphemes.get("l.l") == ["ts"]
+        assert occidental.graphemes.get("l.l") == ["t͡s"]
 
     def test_che_vaqueira_ts(self, occidental):
         """⟨ts⟩ = /ts/ (che vaqueira regional variant) — tsabor, tsadrona.
@@ -264,11 +264,19 @@ class TestBarranquenhoConvencaoSignatures:
         """⟨em/en⟩ → [ẽ] (plain nasal vowel, NOT diphthong [ɐ̃j] or [ẽj]).
         Convenção p. 26; Gramática p. 15: tempu [tẽpu], quen [kẽ].
         The /ẽj/ diphthong is pt-PT; Barranquenho has plain [ẽ]."""
-        # The nasal vowel ẽ must exist as a phoneme-level outcome
-        # Check that the spec does NOT produce ẽj as a diphthong for em/en sequences
-        # We verify by checking the notes reference and absence of erroneous ẽj claim
-        # (structural check: the grapheme âu maps to ɐ̃w — nasal diphthong; em/en map to ẽ)
-        # â grapheme must produce ɐ (closed-mid, per Convenção pp. 20-22)
+        from orthography2ipa.types import GraphemePosition
+
+        for g in ("em", "en"):
+            for pos in (GraphemePosition.WORD_FINAL, GraphemePosition.CODA,
+                        GraphemePosition.BEFORE_CONSONANT):
+                got = barrancos.resolve_grapheme(g, pos)
+                assert got == ["ẽ"], f"{g}/{pos.value} → {got}"
+                assert all("j" not in c for c in got)
+        # intervocalic em/en stay oral (temer-class): the plain default
+        assert barrancos.graphemes.get("em") == ["em"]
+
+    def test_a_circumflex_vowel(self, barrancos):
+        """⟨â⟩ → [ɐ] (closed-mid central, Convenção pp. 20-22)."""
         assert barrancos.graphemes.get("â") == ["ɐ"]
 
     def test_au_nasal_diphthong_is_oxytone_trigger(self, barrancos):
