@@ -931,15 +931,15 @@ class TestMedievalSpanish:
 
     # --- Pre-merger sibilant system ---
 
-    def test_c_has_theta(self) -> None:
-        """<c> maps to [k, θ] — Medieval Spanish preserves distinción (modern inherited form)."""
-        _assert_contains(_grapheme(self.spec, "c"), "k", "θ", label="Medieval c→θ")
+    def test_c_has_ts(self) -> None:
+        """<c> maps to [k, ts] — Old Spanish pre-merger affricate (not modern θ)."""
+        _assert_contains(_grapheme(self.spec, "c"), "k", "ts", label="Medieval c→ts")
 
-    def test_z_has_theta(self) -> None:
-        """<z> maps to [θ] in es-ES-x-medieval — distinción variety (apical sibilant ancestor)."""
+    def test_z_has_dz(self) -> None:
+        """<z> maps to [dz] in es-ES-x-medieval — voiced affricate (not modern θ)."""
         vals = _grapheme(self.spec, "z")
         assert vals is not None, "z absent from Medieval Spanish"
-        assert "θ" in vals, f"Medieval z should include θ, got {vals}"
+        assert "dz" in vals, f"Medieval z should include dz (voiced affricate), got {vals}"
 
     # --- Betacism: positional lenition ---
 
