@@ -1,32 +1,25 @@
-"""g2p_plugin — Abstract interface for language-specific G2P plugins.
+"""g2p_plugin — Base interface for G2P engines built on this library.
 
-Plugins provide sophisticated G2P logic that goes beyond the declarative
-grapheme table approach.  They can handle complex morphophonology,
-contextual rules, and external model inference (e.g., Arabic tashkeel).
+:class:`G2PPlugin` and :class:`WordContext` are shared types that
+*downstream* engines implement — arbtok (Arabic), tugaphone
+(Portuguese). They give every engine in the ecosystem one call shape
+and one context vocabulary.
 
-Plugins are discovered via ``importlib.metadata`` entry points in the
-``orthography2ipa.g2p`` group.
-
-Usage
-─────
-    # In a plugin's pyproject.toml:
-    [project.entry-points."orthography2ipa.g2p"]
-    arabic = "orthography2ipa.plugins.arabic_g2p:ArabicG2PPlugin"
+orthography2ipa itself never discovers or dispatches to these
+implementations: its own :class:`~orthography2ipa.g2p.G2P` engine is
+purely data-driven. Component plugins that slot into that engine's own
+logic use dedicated groups instead (``orthography2ipa.syllabify``).
 
 Lifecycle hooks
 ───────────────
-Beyond the abstract transcription methods, a plugin can override three
+Beyond the abstract transcription methods, an engine can override two
 defaulted hooks:
 
 - :meth:`G2PPlugin.normalize` — pre-G2P text preparation (Unicode
   normalisation, diacritization such as Arabic tashkeel, number/date
-  expansion). The engine calls it once on the full input text.
+  expansion), called once on the full input text.
 - :meth:`G2PPlugin.post_process` — post-G2P IPA adjustment with word
   context (pausal forms, cross-word assimilation, liaison).
-- :attr:`G2PPlugin.priority` — dispatch tie-break when several plugins
-  claim the same language code; the highest priority wins. Bundled
-  plugins use the default ``50``; external distributions that improve
-  on a bundled implementation should declare a higher value.
 """
 from __future__ import annotations
 
@@ -121,12 +114,3 @@ class G2PPlugin(ABC):
         assimilation.
         """
         return ipa
-
-    @property
-    def priority(self) -> int:
-        """Dispatch precedence among plugins claiming the same code.
-
-        Higher wins. ``50`` is the neutral default; external plugins
-        that supersede a bundled one should return a higher value.
-        """
-        return 50

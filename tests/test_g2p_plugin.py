@@ -1,9 +1,7 @@
-"""Tests for G2P plugin architecture."""
+"""Tests for the G2P engine base interface (implemented downstream)."""
 from typing import List, Optional
 
 from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
-from orthography2ipa.phonetok import PhonetokTokenizer
-from orthography2ipa.types import LanguageSpec
 
 
 class DummyPlugin(G2PPlugin):
@@ -37,37 +35,6 @@ class TestG2PPlugin:
         assert "xx-test" in plugin.language_codes
 
 
-class TestPhonetokPluginDelegation:
-    def test_ipa_best_delegates_to_plugin(self):
-        spec = LanguageSpec(
-            code="xx", name="Test", family="Test", script="Latin",
-            graphemes={"t": ["t"], "e": ["e"]}, allophones={},
-        )
-        plugin = DummyPlugin()
-        tok = PhonetokTokenizer(spec, plugin=plugin)
-        assert tok.ipa_best("te") == "tɛst"
-
-    def test_ipa_beam_ignores_plugin(self):
-        """ipa_beam always uses declarative beam search."""
-        spec = LanguageSpec(
-            code="xx", name="Test", family="Test", script="Latin",
-            graphemes={"t": ["t"], "e": ["e"]}, allophones={},
-        )
-        plugin = DummyPlugin()
-        tok = PhonetokTokenizer(spec, plugin=plugin)
-        paths = tok.ipa_beam("te")
-        assert paths[0].ipa == "te"  # not "tɛst"
-
-    def test_no_plugin_fallback(self):
-        """Without plugin, ipa_best uses beam search."""
-        spec = LanguageSpec(
-            code="xx", name="Test", family="Test", script="Latin",
-            graphemes={"t": ["t"], "e": ["e"]}, allophones={},
-        )
-        tok = PhonetokTokenizer(spec)
-        assert tok.ipa_best("te") == "te"
-
-
 class ContextEchoPlugin(G2PPlugin):
     """Test plugin that records every context field it receives."""
 
@@ -94,10 +61,6 @@ class ContextEchoPlugin(G2PPlugin):
     def post_process(self, ipa: str, context: Optional[WordContext] = None) -> str:
         self.post_processed.append((ipa, context))
         return ipa + "!"
-
-    @property
-    def priority(self) -> int:
-        return 80
 
 
 class TestWordContextFields:
@@ -137,7 +100,6 @@ class TestPluginHooks:
         plugin = DummyPlugin()
         assert plugin.normalize("Some TEXT 123") == "Some TEXT 123"
         assert plugin.post_process("ipa", WordContext()) == "ipa"
-        assert plugin.priority == 50
 
     def test_overridden_hooks(self):
         plugin = ContextEchoPlugin()
@@ -146,44 +108,3 @@ class TestPluginHooks:
         ctx = WordContext(is_pausal=True)
         assert plugin.post_process("ipa", ctx) == "ipa!"
         assert plugin.post_processed == [("ipa", ctx)]
-        assert plugin.priority == 80
-
-
-class TestPluginPriorityDispatch:
-    def test_higher_priority_wins(self, monkeypatch):
-        from orthography2ipa import registry
-
-        class _EP:
-            def __init__(self, name, cls):
-                self.name = name
-                self._cls = cls
-
-            def load(self):
-                return self._cls
-
-        class LowPlugin(DummyPlugin):
-            @property
-            def language_codes(self):
-                return ["xx-prio"]
-
-        class HighPlugin(ContextEchoPlugin):
-            @property
-            def language_codes(self):
-                return ["xx-prio"]
-
-        def _fake_entry_points(*args, **kwargs):
-            return [_EP("low", LowPlugin), _EP("high", HighPlugin)]
-
-        monkeypatch.setattr("importlib.metadata.entry_points",
-                            _fake_entry_points)
-        plugins = registry._discover_plugins()
-        assert isinstance(plugins["xx-prio"], HighPlugin)
-
-        # registration order must not matter
-        def _fake_entry_points_reversed(*args, **kwargs):
-            return [_EP("high", HighPlugin), _EP("low", LowPlugin)]
-
-        monkeypatch.setattr("importlib.metadata.entry_points",
-                            _fake_entry_points_reversed)
-        plugins = registry._discover_plugins()
-        assert isinstance(plugins["xx-prio"], HighPlugin)

@@ -48,8 +48,6 @@ from typing import Dict, List, Optional, Sequence, Tuple
 from orthography2ipa.types import LanguageSpec
 
 from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from orthography2ipa.g2p_plugin import G2PPlugin
 
 __all__ = [
     "TokenKind",
@@ -252,13 +250,11 @@ class PhonetokTokenizer:
             add_bos: bool = False,
             add_eos: bool = False,
             collapse_whitespace: bool = True,
-            plugin: Optional["G2PPlugin"] = None,
     ) -> None:
         self.spec = spec
         self.add_bos = add_bos
         self.add_eos = add_eos
         self.collapse_whitespace = collapse_whitespace
-        self.plugin = plugin
         self._trie = _GraphemeTrie(spec.graphemes)
         # Build normalised lookup (lowercase keys)
         self._grapheme_ipa: Dict[str, Tuple[str, ...]] = {
@@ -475,11 +471,8 @@ class PhonetokTokenizer:
     ) -> str:
         """Return the single best (most canonical) IPA transcription.
 
-        If a G2P plugin is set, delegates to ``plugin.transcribe()``.
-        Otherwise equivalent to ``ipa_beam(..., beam_width=1)[0].ipa``.
+        Equivalent to ``ipa_beam(..., beam_width=1)[0].ipa``.
         """
-        if self.plugin is not None:
-            return self.plugin.transcribe(text)
         paths = self.ipa_beam(
             text,
             beam_width=1,

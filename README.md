@@ -33,11 +33,10 @@ Regional varieties get their own `LanguageSpec` objects linked through ancestry,
 pip install orthography2ipa
 ```
 
-For the optional Arabic G2P backend:
-
-```bash
-pip install orthography2ipa[arabic]
-```
+For richer language-specific pipelines, install a downstream engine
+built on this library: [arbtok](https://github.com/TigreGotico/arbtok)
+for Arabic, [tugaphone](https://github.com/TigreGotico/tugaphone) for
+Portuguese.
 
 ## Quick start
 
@@ -202,13 +201,13 @@ When a spec declares graphemes but no explicit allophone map, a baseline identit
 - **Graphemes ≠ allophones** — spelling-to-phoneme and phoneme-to-surface are modelled separately.
 - **Regional variants** — where pronunciation diverges systematically, a separate `LanguageSpec` is provided with ancestry links.
 - **Multi-ancestor inheritance** — `graphemes_base`/`allophones_base` let dialect trees declare only their differences.
-- **Pure data, pluggable logic** — mappings are declarative JSON; algorithmic G2P (e.g. Arabic) uses the plugin system.
+- **Pure data, self-contained logic** — mappings are declarative JSON; the engine never loads external G2P implementations.
 
-## Plugins
+## Building engines on top
 
-Algorithmic G2P backends register under the `orthography2ipa.g2p` entry-point group. The bundled Arabic plugin (`plugins/arabic_g2p.py`) handles consonant mapping, harakat vowels, sun-letter assimilation, hamzat al-wasl elision, and tanwin forms.
+`G2PPlugin` and `WordContext` are exported as the base types for richer language-specific engines built **on** this library — [arbtok](https://github.com/TigreGotico/arbtok) (Arabic: contextual rule cascade + tashkeel diacritization) and [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese: lexicon, POS and regional-accent layers). They consume the spec data, tokenizer and stress machinery and own their own pipelines.
 
-A neural Arabic diacritizer (`plugins/tashkeel.py`) is wired as an optional ONNX backend but ships as a documented stub: with no model loaded it returns input unchanged, and the rule-based plugin transcribes whatever diacritics are present. Bundling a tashkeel model is planned future work.
+Component plugins that slot into the bundled engine's own logic use dedicated entry-point groups: per-language syllabifiers register under `orthography2ipa.syllabify` (e.g. `silabificador` for Portuguese) and are honoured by stress detection automatically.
 
 ## Contributing
 

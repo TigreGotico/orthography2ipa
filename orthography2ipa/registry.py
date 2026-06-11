@@ -11,11 +11,11 @@ from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
 
 if TYPE_CHECKING:
-    from orthography2ipa.g2p_plugin import G2PPlugin
     from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 
 _cache: Dict[str, LanguageSpec] = {}
-_plugins: Optional[Dict[str, "G2PPlugin"]] = None
+
+_LOG = logging.getLogger(__name__)
 
 _LOG = logging.getLogger(__name__)
 
@@ -137,43 +137,6 @@ def get(code: str) -> LanguageSpec:
 def available_codes() -> List[str]:
     """Return all registered language codes."""
     return sorted(available_json_codes())
-
-
-def _discover_plugins() -> Dict[str, "G2PPlugin"]:
-    """Discover G2P plugins via importlib entry_points.
-
-    When several plugins claim the same language code, the one with the
-    highest :attr:`G2PPlugin.priority` wins.
-    """
-    from importlib.metadata import entry_points
-
-    plugins: Dict[str, "G2PPlugin"] = {}
-    try:
-        eps = entry_points(group="orthography2ipa.g2p")
-    except TypeError:
-        # Python 3.9 compat
-        eps = entry_points().get("orthography2ipa.g2p", [])
-    for ep in eps:
-        try:
-            plugin_cls = ep.load()
-            instance = plugin_cls()
-            for code in instance.language_codes:
-                incumbent = plugins.get(code)
-                if incumbent is None or instance.priority > incumbent.priority:
-                    plugins[code] = instance
-        except Exception as exc:
-            _LOG.warning("failed to load G2P plugin %r: %s", ep.name, exc)
-            continue
-    return plugins
-
-
-def get_plugin(code: str) -> Optional["G2PPlugin"]:
-    """Return the G2P plugin for *code*, if one is registered."""
-    global _plugins
-    if _plugins is None:
-        _plugins = _discover_plugins()
-    code = _resolve_code(code)
-    return _plugins.get(code)
 
 
 def available_families() -> Dict[str, List[str]]:
