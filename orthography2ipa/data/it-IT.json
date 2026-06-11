@@ -510,5 +510,21 @@
     "end_year": null
   },
   "glottolog_code": "ital1282",
-  "iso639_3": "ita"
+  "iso639_3": "ita",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "ì",
+      "ò",
+      "ó",
+      "ù"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Italian stress: written accents (à è é ì ò ó ù) always mark the stressed syllable and override position rules. Without an accent mark the default is paroxytone (penultimate). Proparoxytones (tavola, àlbero, pàgina) are lexical and undetectable from orthography alone — a written accent is not compulsory on them in standard Italian; they cannot be reliably predicted by rule. This block therefore uses default -2 (paroxytone) and relies on marked_vowels to handle the accented subset. Unaccented antepenultimate stress is not predicted."
+  }
 }

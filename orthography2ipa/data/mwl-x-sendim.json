@@ -54,5 +54,36 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "mwl"
+  "iso639_3": "mwl",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "ç",
+      "in",
+      "un",
+      "on",
+      "is",
+      "us",
+      "ns",
+      "ão"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "ã",
+      "ẽ",
+      "ĩ",
+      "õ",
+      "ũ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. Dialect mwl-x-sendim: no evidence of stress-pattern divergence from standard Mirandese; block copied from mwl."
+  }
 }

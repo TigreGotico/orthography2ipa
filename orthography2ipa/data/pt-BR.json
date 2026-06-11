@@ -188,11 +188,34 @@
       ],
       "word_final": [
         "i"
+      ],
+      "posttonic": [
+        "i"
       ]
     },
     "o": {
       "word_final": [
         "u"
+      ],
+      "nucleus_unstressed": [
+        "o"
+      ],
+      "posttonic": [
+        "u"
+      ]
+    },
+    "a": {
+      "nucleus_stressed": [
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "a"
+      ],
+      "word_final": [
+        "ɐ"
+      ],
+      "posttonic": [
+        "ɐ"
       ]
     }
   },

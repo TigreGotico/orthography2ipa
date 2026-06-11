@@ -80,5 +80,32 @@
         "s"
       ]
     }
+  },
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "d",
+      "z",
+      "j",
+      "x",
+      "k",
+      "f"
+    ],
+    "penult_stress_endings": [
+      "n",
+      "s",
+      "ns"
+    ],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Standard Spanish accentuation (inherited from es-ES): default paroxytone; written accent wins; oxytone before consonant codas other than n/s; proparoxytones always written-accented."
   }
 }
