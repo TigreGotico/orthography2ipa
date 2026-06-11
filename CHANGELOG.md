@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.7.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.6.0a1...0.7.0a1)
+
+**Merged pull requests:**
+
+- feat: top-level G2P engine with greedy and beam search [\#25](https://github.com/TigreGotico/orthography2ipa/pull/25) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.6.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.5.0a1...0.6.0a1)
