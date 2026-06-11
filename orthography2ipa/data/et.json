@@ -129,5 +129,13 @@
     "https://en.wikipedia.org/wiki/Estonian_language",
     "https://en.wikipedia.org/wiki/Estonian_phonology",
     "https://et.wikipedia.org/wiki/Eesti_keel"
-  ]
+  ],
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Estonian has categorical initial stress in most words. Vowel and consonant length (degrees Q1/Q2/Q3) are orthographically indicated by geminates. Source: Viitso (1998), Estonian; Wikipedia: https://en.wikipedia.org/wiki/Estonian_phonology"
+  }
 }

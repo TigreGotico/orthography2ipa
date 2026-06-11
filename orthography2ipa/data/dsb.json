@@ -148,5 +148,13 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Lower_Sorbian_language",
     "https://dsb.wikipedia.org/wiki/Dolnoserbš%C4%87ina"
-  ]
+  ],
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Lower Sorbian (dsb) has categorical initial stress, following the West Slavic pattern shared with Czech. Source: Stone (1993), in The Slavonic Languages; Wikipedia: https://en.wikipedia.org/wiki/Lower_Sorbian_language"
+  }
 }

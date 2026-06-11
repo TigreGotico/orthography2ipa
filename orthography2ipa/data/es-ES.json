@@ -161,5 +161,37 @@
     "n": {
       "coda": ["n", "ŋ"]
     }
+  },
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "d",
+      "z",
+      "j",
+      "x",
+      "k",
+      "f",
+      "ión",
+      "ión",
+      "ad",
+      "or",
+      "al"
+    ],
+    "penult_stress_endings": [
+      "n",
+      "s",
+      "ns"
+    ],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "RAE accentuation rules: written accent wins (á é í ó ú). Default paroxytone for words ending in a vowel, -n, or -s. Words ending in any other consonant (r, l, d, z, j, x, k, f, and consonant clusters) are oxytone. The final_stress_endings list encodes the oxytone-attracting consonant endings; penult_stress_endings encodes -n/-s/-ns as explicit paroxytone attractors (overriding the default for coda -n/-s when stress position is ambiguous). Proparoxytones (esdrújulas) always carry a written accent so marked_vowels captures them."
   }
 }

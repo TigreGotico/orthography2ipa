@@ -12,39 +12,105 @@
     "end_year": null
   },
   "graphemes": {
-    "a": ["a"],
-    "ā": ["aː"],
-    "b": ["b"],
-    "c": ["ts"],
-    "č": ["tʃ"],
-    "d": ["d"],
-    "e": ["ɛ"],
-    "ē": ["ɛː"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "ģ": ["ɟ"],
-    "h": ["x"],
-    "i": ["i"],
-    "ī": ["iː"],
-    "j": ["j"],
-    "k": ["k"],
-    "ķ": ["c"],
-    "l": ["l"],
-    "ļ": ["ʎ"],
-    "m": ["m"],
-    "n": ["n"],
-    "ņ": ["ɲ"],
-    "o": ["uo"],
-    "p": ["p"],
-    "r": ["r"],
-    "s": ["s"],
-    "š": ["ʃ"],
-    "t": ["t"],
-    "u": ["u"],
-    "ū": ["uː"],
-    "v": ["v"],
-    "z": ["z"],
-    "ž": ["ʒ"]
+    "a": [
+      "a"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "ē": [
+      "ɛː"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ģ": [
+      "ɟ"
+    ],
+    "h": [
+      "x"
+    ],
+    "i": [
+      "i"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "ķ": [
+      "c"
+    ],
+    "l": [
+      "l"
+    ],
+    "ļ": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ņ": [
+      "ɲ"
+    ],
+    "o": [
+      "uo"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ],
+    "ž": [
+      "ʒ"
+    ]
   },
   "allophones": {},
   "positional_graphemes": {},
@@ -77,5 +143,13 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Latvian_language",
     "https://en.wikipedia.org/wiki/Latvian_phonology"
-  ]
+  ],
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Latvian has initial stress in the vast majority of native words. Enclitics and some loanwords may shift stress, but for G2P purposes initial-stress is the reliable default. Long vowels (ā ē ī ū) and circumflex/falling tones (ar̃) mark quantity/tone, not stress position. Source: Nau (1998), Latvian; Wikipedia: https://en.wikipedia.org/wiki/Latvian_phonology"
+  }
 }
