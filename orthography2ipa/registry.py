@@ -1,7 +1,11 @@
 """Language registry with lazy loading and plugin discovery."""
 from __future__ import annotations
 
+import logging
+from functools import lru_cache
 from typing import TYPE_CHECKING, Dict, List, Optional
+
+from ovos_spec_tools.language import closest_lang
 
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
@@ -11,6 +15,8 @@ if TYPE_CHECKING:
 
 _cache: Dict[str, LanguageSpec] = {}
 _plugins: Optional[Dict[str, "G2PPlugin"]] = None
+
+_LOG = logging.getLogger(__name__)
 
 # Fallback alias table for ISO 639-3 → BCP-47 normalisation.
 # When ``langcodes`` is available, standard codes are resolved via that library.
@@ -39,6 +45,21 @@ _ALIASES: Dict[str, str] = {
     "prs": "fa-AF",  # Dari ISO 639-3
 }
 
+# Default variant for a bare primary-language tag whose specs are all
+# regional. ``langcodes`` resolves a bare tag towards its most-populous
+# region (``pt`` → ``pt-BR``); the unmarked form of a language should
+# resolve to its reference variety instead, matching the ISO 639-3
+# aliases above (``por`` → ``pt-PT``, ``eng`` → ``en-GB``).
+_BARE_DEFAULTS: Dict[str, str] = {
+    "de": "de-DE",
+    "en": "en-GB",
+    "es": "es-ES",
+    "fr": "fr-FR",
+    "it": "it-IT",
+    "pt": "pt-PT",
+    "ro": "ro-RO",
+}
+
 try:
     import langcodes as _langcodes
     _HAS_LANGCODES = True
@@ -46,6 +67,7 @@ except ImportError:
     _HAS_LANGCODES = False
 
 
+@lru_cache(maxsize=None)
 def _resolve_code(code: str) -> str:
     """Normalise common aliases to canonical BCP-47 codes.
 
@@ -54,15 +76,44 @@ def _resolve_code(code: str) -> str:
        that ``langcodes`` may not round-trip cleanly).
     2. ``langcodes.standardize_tag()`` when the library is available and the
        code is not a private-use subtag (``x-`` extension).
+    3. Exact match against the registered spec codes.
+    4. Curated default variant for a bare primary-language tag
+       (``pt`` → ``pt-PT``).
+    5. Nearest registered code by language distance
+       (``en-NZ`` → ``en-GB``); no usable match leaves *code* unchanged.
     """
     if code in _ALIASES:
         return _ALIASES[code]
     if _HAS_LANGCODES and "-x-" not in code and not code.startswith("x-"):
         try:
-            return _langcodes.standardize_tag(code, macro=True)
+            code = _langcodes.standardize_tag(code, macro=True)
         except Exception:
             pass
+        if code in _ALIASES:
+            return _ALIASES[code]
+    available = available_json_codes()
+    if code in available:
+        return code
+    if code in _BARE_DEFAULTS:
+        return _BARE_DEFAULTS[code]
+    match = closest_lang(code, available)
+    if match:
+        _LOG.debug("resolved language code %r to nearest registered %r",
+                   code, match)
+        return match
     return code
+
+
+def resolve(code: str) -> str:
+    """Return the registered spec code that *code* resolves to.
+
+    Applies the same normalisation as :func:`get` — alias tables,
+    BCP-47 standardization, curated bare-tag defaults and
+    nearest-language matching — without loading the spec. A code with
+    no usable resolution is returned unchanged (so :func:`get` raises
+    ``KeyError`` for it).
+    """
+    return _resolve_code(code)
 
 
 def get(code: str) -> LanguageSpec:
@@ -109,7 +160,8 @@ def _discover_plugins() -> Dict[str, "G2PPlugin"]:
                 incumbent = plugins.get(code)
                 if incumbent is None or instance.priority > incumbent.priority:
                     plugins[code] = instance
-        except Exception:
+        except Exception as exc:
+            _LOG.warning("failed to load G2P plugin %r: %s", ep.name, exc)
             continue
     return plugins
 

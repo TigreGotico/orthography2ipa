@@ -46,7 +46,7 @@
   "notes": "Biscayan (Bizkaiera/Bizkaia). Western Basque dialect spoken primarily in Biscay province. Key phonological features: sibilant palatalization after /i/ ([s̺,s̻] → [ʃ]), categorical loss of aspirate /h/, tendency toward unstressed /a/ raising to [e], and partial merger of the apical/laminal sibilant pair. Morphologically the most divergent dialect from Batua, with unique verb auxiliary paradigms and case forms not found in other dialects. Often considered the hardest dialect for standard Basque speakers to understand.",
   "quality": "research",
   "urls": [
-    "https://en.wikipedia.org/wiki/Bizkaian_dialect"
+    "https://en.wikipedia.org/wiki/Biscayan_dialect"
   ],
   "script_type": "alphabet",
   "sources": [
@@ -82,7 +82,7 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Bizkaian_dialect"
+    "https://en.wikipedia.org/wiki/Biscayan_dialect"
   ],
   "timespan": {
     "start_year": 1600,

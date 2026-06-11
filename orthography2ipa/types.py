@@ -489,7 +489,7 @@ class LanguageSpec:
         }
     """
 
-    glottolog_code: str | None = None
+    glottolog_code: Optional[str] = None
     """Optional Glottolog languoid code (e.g. 'cast1244' for Castilian,
     'west2813' for West Iberian). Enables cross-referencing with
     Glottolog's genealogical classification database.
@@ -605,7 +605,7 @@ class LanguageSpec:
     def resolve_grapheme(
             self,
             grapheme: str,
-            position: GraphemePosition | None = None,
+            position: Optional[GraphemePosition] = None,
     ) -> List[str]:
         """Resolve a grapheme to its IPA candidates for a given position.
 
@@ -667,7 +667,7 @@ class LanguageSpec:
 
     # ─── Ancestry accessors ─────────────────────────────────────────
 
-    def get_ancestors(self, role: AncestorRole | None = None) -> Tuple[Ancestor, ...]:
+    def get_ancestors(self, role: Optional[AncestorRole] = None) -> Tuple[Ancestor, ...]:
         """Return ancestors, optionally filtered by role.
         Synthesises from parent field if ancestors tuple is empty."""
         anc = self.ancestors
@@ -678,7 +678,7 @@ class LanguageSpec:
         return anc
 
     @property
-    def primary_parent(self) -> str | None:
+    def primary_parent(self) -> Optional[str]:
         """The primary parent code."""
         if self.parent:
             return self.parent

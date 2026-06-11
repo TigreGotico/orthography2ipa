@@ -196,5 +196,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "iso639_3": "ext"
+  "iso639_3": "ext",
+  "quality": "research"
 }
