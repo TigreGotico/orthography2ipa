@@ -58,9 +58,10 @@ rule-driven engine, reported for honesty rather than flattery.
 
 [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)
 on Hugging Face: ~220 word/IPA rows with a dialect column (central,
-raiano, sendinese). Author-assembled and not yet validated by external
-linguists — results against it are internal/preliminary, never an
-external benchmark claim.
+raiano, sendinese), collected by a native Mirandese speaker
+([MdMV](https://commons.wikimedia.org/wiki/User:MdMV_or_Emdy_idk)).
+Native-speaker provenance makes it the reference gold for Mirandese;
+its size keeps results indicative rather than statistical.
 
 ## Methodology
 
