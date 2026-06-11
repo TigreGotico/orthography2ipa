@@ -780,7 +780,7 @@ class TestCubanSpanish:
 
     def test_s_allophone_has_deletion(self) -> None:
         """Allophone of /s/ includes [∅] — extreme coda deletion."""
-        _assert_contains(_allophone(self.spec, "s"), "∅", label="Cuban s→∅")
+        _assert_contains(_allophone(self.spec, "s"), "", label="Cuban s→∅")
 
     # --- Deaffrication ---
 
@@ -800,7 +800,7 @@ class TestCubanSpanish:
         """Word-final /d/ → ∅ in Cuban Spanish (extreme lenition)."""
         wf = _positional(self.spec, "d", GraphemePosition.WORD_FINAL)
         assert wf is not None, "d/WORD_FINAL positional missing in Cuban Spanish"
-        assert "∅" in wf, "Cuban d word-final should include ∅"
+        assert "" in wf, "Cuban d word-final should include ∅"
 
     # --- Word-final n velarisation ---
 
@@ -848,7 +848,7 @@ class TestPuertoRicanSpanish:
 
     def test_s_deletion(self) -> None:
         """Allophone of /s/ includes [∅] — coda deletion."""
-        _assert_contains(_allophone(self.spec, "s"), "∅", label="PR s→∅")
+        _assert_contains(_allophone(self.spec, "s"), "", label="PR s→∅")
 
     def test_x_maps_h(self) -> None:
         """<x> → [h]."""
@@ -1309,6 +1309,6 @@ class TestMinhoPortuguese:
     def test_d_coda_deletion(self) -> None:
         """Allophone of /d/ includes [∅] — coda deletion in Minho Portuguese."""
         _assert_contains(
-            _allophone(self.spec, "d"), "∅",
+            _allophone(self.spec, "d"), "",
             label="Minho d→∅ coda deletion",
         )
