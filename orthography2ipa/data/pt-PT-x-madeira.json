@@ -1,75 +1,114 @@
 {
-    "code": "pt-PT-x-madeira",
-    "name": "Madeiran Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "graphemes_base": "pt-PT",
-    "allophones_base": "pt-PT",
-    "allophones": {
-        "l": [
-            "l",
-            "ʎ"
-        ],
-        "i": [
-            "i",
-            "ɐj"
-        ]
+  "code": "pt-PT-x-madeira",
+  "name": "Madeiran Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "l": [
+      "l",
+      "ʎ"
+    ],
+    "i": [
+      "i",
+      "ɐj"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Madeiran Portuguese, spoken on Madeira island (reference: Ribeira Brava, Funchal). Typologically distinctive within the Portuguese dialect continuum: (1) systematic aspiration of voiceless stops [pʰ, tʰ, kʰ] in syllable-initial position — unique among all Portuguese dialects and absent from both continental EP and BP; (2) retroflex lateral [ɭ] as an allophone of /l/ in certain environments — traces of archaic lateral retroflexion; (3) systematic final devoicing of voiced obstruents [b̥, d̥, ɡ̥, v̥, z̥] — a marked feature shared with no other Portuguese dialect; (4) archaic open vowel qualities preserved in unstressed syllables — less reduction than modern Lisbon; (5) prosodic distinctiveness: heavy syllable timing, longer vowel durations; (6) archaic lexical items retained from 15th-century Portuguese colonisation of the island; (7) /v/ and /b/ merger absent — distinction maintained; (8) nasal vowels have broad [ɐ̃] quality similar to conservative EP. Settlement history: colonised from mainland Portugal (predominantly Minho and Algarve) in the 15th century; subsequent isolation produced conservative and innovative features simultaneously. Glottolog approximation: made1238 (placeholder).",
+  "quality": "research",
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Standard European Portuguese; Madeiran diverges in stop aspiration (unique), final devoicing, and archaic vowel preservation — reflecting 15th-century colonial isolation"
+    }
+  ],
+  "urls": [
+    "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
+  ],
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "positional_graphemes_base": "pt-PT",
-    "parent": "pt-PT",
-    "notes": "Madeiran Portuguese, spoken on Madeira island (reference: Ribeira Brava, Funchal). Typologically distinctive within the Portuguese dialect continuum: (1) systematic aspiration of voiceless stops [pʰ, tʰ, kʰ] in syllable-initial position — unique among all Portuguese dialects and absent from both continental EP and BP; (2) retroflex lateral [ɭ] as an allophone of /l/ in certain environments — traces of archaic lateral retroflexion; (3) systematic final devoicing of voiced obstruents [b̥, d̥, ɡ̥, v̥, z̥] — a marked feature shared with no other Portuguese dialect; (4) archaic open vowel qualities preserved in unstressed syllables — less reduction than modern Lisbon; (5) prosodic distinctiveness: heavy syllable timing, longer vowel durations; (6) archaic lexical items retained from 15th-century Portuguese colonisation of the island; (7) /v/ and /b/ merger absent — distinction maintained; (8) nasal vowels have broad [ɐ̃] quality similar to conservative EP. Settlement history: colonised from mainland Portugal (predominantly Minho and Algarve) in the 15th century; subsequent isolation produced conservative and innovative features simultaneously. Glottolog approximation: made1238 (placeholder).",
-    "quality": "research",
-    "ancestors": [
-        {
-            "code": "pt-PT",
-            "role": "parent",
-            "weight": 0.85,
-            "notes": "Standard European Portuguese; Madeiran diverges in stop aspiration (unique), final devoicing, and archaic vowel preservation — reflecting 15th-century colonial isolation"
-        }
-    ],
-    "urls": [
-        "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
-    ],
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "mateus_dandrade2000",
-            "author": "Mateus, M.H.M. & d'Andrade, E.",
-            "year": 2000,
-            "title": "The Phonology of Portuguese",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "cunha_cintra1984",
-            "author": "Cunha, C. & Cintra, L.F.L.",
-            "year": 1984,
-            "title": "Nova Gramática do Português Contemporâneo",
-            "publisher": "Sá da Costa",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "boleo1974",
-            "author": "Boléo, M.P.",
-            "year": 1974,
-            "title": "Estudos de linguística portuguesa e românica",
-            "publisher": "Universidade de Coimbra",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
-    ],
-    "wikipedia": [
-        "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
-    ],
-    "timespan": {
-        "start_year": 1500,
-        "end_year": null
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "glottolog_code": null,
-    "iso639_3": "por"
+    {
+      "id": "boleo1974",
+      "author": "Boléo, M.P.",
+      "year": 1974,
+      "title": "Estudos de linguística portuguesa e românica",
+      "publisher": "Universidade de Coimbra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

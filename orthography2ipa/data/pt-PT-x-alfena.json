@@ -106,5 +106,44 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }
