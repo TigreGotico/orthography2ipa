@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.3.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.2.0a1...1.3.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): 31 new language specs [\#29](https://github.com/TigreGotico/orthography2ipa/pull/29) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.2.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.3a1...1.2.0a1)
