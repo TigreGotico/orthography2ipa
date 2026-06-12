@@ -1,0 +1,136 @@
+{
+  "code": "ar-EG",
+  "name": "Egyptian Arabic (Cairene)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-mashriqi",
+  "graphemes": {
+    "ج": [
+      "ɡ"
+    ],
+    "ق": [
+      "ʔ",
+      "ɡ",
+      "q"
+    ],
+    "ث": [
+      "t",
+      "s"
+    ],
+    "ذ": [
+      "d",
+      "z"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "چ": [
+      "ʒ"
+    ]
+  },
+  "allophones_base": "ar-x-mashriqi",
+  "allophones": {
+    "dʒ": [
+      "ɡ"
+    ],
+    "q": [
+      "ʔ",
+      "ɡ",
+      "q"
+    ],
+    "θ": [
+      "t",
+      "s"
+    ],
+    "ð": [
+      "d",
+      "z"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ]
+  },
+  "parent": "ar-x-mashriqi",
+  "ancestors": [
+    {
+      "code": "ar-x-mashriqi",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Eastern (Mashriqi) Arabic base"
+    },
+    {
+      "code": "cop",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Coptic substrate (lexical; debated prosodic effects on the Cairene stress system)"
+    }
+  ],
+  "notes": "Egyptian Arabic — Cairene (مصري, the prestige urban koine and most widely understood Arabic dialect via film/TV). DEFINING FEATURE: ج jim → /ɡ/ (voiced velar stop, NOT /dʒ/ or /ʒ/) — the single most recognisable Cairene marker; جميل → [ɡaˈmiːl]. ق qaf → /ʔ/ glottal stop in inherited vocabulary (قلب → [ʔalb]), retained as /q/ in learned/Classical borrowings and as /ɡ/ in some Bedouin/loan strata. Interdentals merged: ث θ → /t/ (~/s/ in learned loans), ذ ð → /d/ (~/z/), ظ/ض → /dˤ/ (~/zˤ/ in loans) — four-emphatic inventory /tˤ dˤ sˤ zˤ/. چ (loan grapheme) → /ʒ/ for French/English /ʒ,dʒ/ loans (since native ج is /ɡ/). STRESS: Cairene stress is famously regular and weight-sensitive (final superheavy CVːC/CVCC → final; else rightmost non-final heavy syllable, capped at the antepenult) — this is a syllable-weight algorithm NOT expressible in the ending-based StressRules schema and is left as engine-level future work; it is intentionally NOT encoded here. Source: Watson (2002) The Phonology and Morphology of Arabic; Mitchell (1956) An Introduction to Egyptian Colloquial Arabic; Egyptian Arabic phonology (Wikipedia).",
+  "quality": "research",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Cairene as a primary descriptive case; jim→ɡ, qaf→ʔ, regular weight-sensitive stress.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Egyptian_Arabic_phonology"
+    },
+    {
+      "id": "mitchell1956",
+      "author": "Mitchell, T.F.",
+      "year": 1956,
+      "title": "An Introduction to Egyptian Colloquial Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Classic descriptive reference for Cairene phonology and the stress system."
+    },
+    {
+      "id": "badawi-hinds1986",
+      "author": "Badawi, E.S. & Hinds, M.",
+      "year": 1986,
+      "title": "A Dictionary of Egyptian Arabic",
+      "publisher": "Librairie du Liban",
+      "url": null,
+      "pages": null,
+      "notes": "Lexicon with transcriptions confirming jim→ɡ and qaf→ʔ reflexes."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Egyptian_Arabic",
+    "https://en.wikipedia.org/wiki/Egyptian_Arabic_phonology",
+    "https://ar.wikipedia.org/wiki/لهجة_مصرية"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "egyp1253",
+  "iso639_3": "arz"
+}

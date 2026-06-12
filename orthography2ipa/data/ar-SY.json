@@ -1,0 +1,76 @@
+{
+  "code": "ar-SY",
+  "name": "Syrian Arabic (Damascene)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-levantine",
+  "graphemes": {
+    "ق": [
+      "ʔ",
+      "q"
+    ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ]
+  },
+  "allophones_base": "ar-x-levantine",
+  "allophones": {
+    "q": [
+      "ʔ",
+      "q"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
+    ],
+    "aː": [
+      "aː",
+      "eː"
+    ]
+  },
+  "parent": "ar-x-levantine",
+  "ancestors": [
+    {
+      "code": "ar-x-levantine",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Levantine Arabic base"
+    }
+  ],
+  "notes": "Syrian Arabic — Damascene (شامي) urban koine, the most influential prestige form of Levantine. ق qaf → /ʔ/ glottal stop in the Damascus koine (rural/Bedouin /ɡ/ retained via the Levantine parent's variant list). ج jim → /ʒ/. Interdentals merged to stops in urban speech (θ→/t/, ð→/d/, ðˤ/ض→/dˤ/), conserved by rural/Druze speakers. Moderate imāla raises /aː/ → [eː] near front consonants. Source: Cowell (1964) A Reference Grammar of Syrian Arabic; Holes (2004).",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "cowell1964",
+      "author": "Cowell, M.W.",
+      "year": 1964,
+      "title": "A Reference Grammar of Syrian Arabic",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Standard reference grammar; describes Damascus qaf→ʔ, jim→ʒ, interdental merger."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Levantine_Arabic",
+    "https://en.wikipedia.org/wiki/North_Levantine_Arabic"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "nort3139",
+  "iso639_3": "apc"
+}

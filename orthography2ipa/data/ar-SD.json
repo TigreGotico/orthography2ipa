@@ -1,0 +1,112 @@
+{
+  "code": "ar-SD",
+  "name": "Sudanese Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-mashriqi",
+  "graphemes": {
+    "ج": [
+      "ɟ",
+      "dʒ"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
+    ],
+    "ث": [
+      "t",
+      "s"
+    ],
+    "ذ": [
+      "d",
+      "z"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ]
+  },
+  "allophones_base": "ar-x-mashriqi",
+  "allophones": {
+    "dʒ": [
+      "ɟ",
+      "dʒ"
+    ],
+    "q": [
+      "ɡ",
+      "q"
+    ],
+    "θ": [
+      "t",
+      "s"
+    ],
+    "ð": [
+      "d",
+      "z"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ɮˤ": [
+      "dˤ"
+    ]
+  },
+  "parent": "ar-x-mashriqi",
+  "ancestors": [
+    {
+      "code": "ar-x-mashriqi",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Eastern (Mashriqi / Egypto-Sudanic) Arabic base"
+    }
+  ],
+  "notes": "Sudanese Arabic — Khartoum/central Sudan koine, part of the Egypto-Sudanic group. DEFINING FEATURE: ج jim → /ɟ/ (voiced PALATAL stop) — an archaic reflex distinguishing Sudanese from both Egyptian (/ɡ/) and Levantine (/ʒ/); /dʒ/ also occurs. ق qaf → /ɡ/ (voiced velar stop, Bedouin-origin reflex). Interdentals MERGE (not retained): ث θ → /t/ (~/s/ in loans), ذ ð → /d/ (~/z/), ظ/ض → /dˤ/ (~/zˤ/) — shared Egypto-Sudanic innovation. Vowel system tends to lower/retract; /u/ and /i/ qualities differ from Egyptian. Source: Dickins (2007) Sudanese Arabic Phonematics and Syllable Structure; Holes (2004); Sudanese Arabic (Wikipedia).",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "dickins2007",
+      "author": "Dickins, J.",
+      "year": 2007,
+      "title": "Sudanese Arabic: Phonematics and Syllable Structure",
+      "publisher": "Harrassowitz",
+      "url": null,
+      "pages": null,
+      "notes": "Detailed phonological description: jim→ɟ, qaf→ɡ, interdental merger."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sudanese_Arabic"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "suda1236",
+  "iso639_3": "apd"
+}
