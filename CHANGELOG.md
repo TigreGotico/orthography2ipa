@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.10.0a1) (2026-06-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.9.0a1...1.10.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): portuguese dialect stress and reduction systems [\#61](https://github.com/TigreGotico/orthography2ipa/pull/61) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.9.0a1) (2026-06-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.1a1...1.9.0a1)
