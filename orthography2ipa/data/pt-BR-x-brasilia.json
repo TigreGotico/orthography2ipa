@@ -313,7 +313,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Brasiliense (Brasília). Emerging koiné dialect of the planned capital (inaugurated 1960). Mix of features from all regions due to migrant population. Tends toward southeastern standard (SP/MG) with some Northeastern features from Goiás substrate. Full /t,d/ palatalisation. /r/ onset → [h,x].",
+  "notes": "Brasiliense / Candango (Brasília, planned capital, 1960). Emerging koiné from nationwide migration; converges on the southeastern (SP/MG) standard with Goiás/Central-West substratum. Encoded as the pt-BR base unchanged: /t,d/ palatalisation, dorsal onset /r/, tap coda /R/, alveolar coda /S/, coda /l/ -> [w], post-stressed reduction. Minimal dialect-specific divergence by design (levelling koiné).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -343,6 +343,16 @@
       "year": 2002,
       "title": "Fonética e fonologia do português",
       "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "noll2008",
+      "author": "Noll, V.",
+      "year": 2008,
+      "title": "O português brasileiro: formação e contrastes",
+      "publisher": "Globo",
       "url": null,
       "pages": null,
       "notes": null
@@ -394,5 +404,9 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
-  }
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {}
 }

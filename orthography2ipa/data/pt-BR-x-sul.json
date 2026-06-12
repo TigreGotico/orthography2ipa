@@ -319,7 +319,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Sulista/Gaúcho (Porto Alegre, RS). Distinctive: alveolar trill [r] or tap in onset position (NOT glottal) — the most European-sounding Brazilian rhotic. /t,d/ palatalisation variable (generational shift toward palatalisation). Less vowel raising. Italian/German settler substrate influence in some communities.",
+  "notes": "Sulista / Gaúcho (Rio Grande do Sul, Porto Alegre). Conservative non-palatalising default: /t,d/ stay dental [t,d] before /i/ (the encoded default; a generational shift toward palatalisation is in progress and noted). Distinctive alveolar trill/tap onset /r/ [r~ɾ] — the most European-sounding Brazilian rhotic, NOT glottal; coda /R/ is a tap, not dropped. Reduced final-vowel raising: word-final /e/ often stays [e] in conservative speech. Coda /S/ alveolar. Heterogeneous Italian/German settler substrata.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -349,6 +349,26 @@
       "year": 2002,
       "title": "Fonética e fonologia do português",
       "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
+    },
+    {
+      "id": "noll2008",
+      "author": "Noll, V.",
+      "year": 2008,
+      "title": "O português brasileiro: formação e contrastes",
+      "publisher": "Globo",
       "url": null,
       "pages": null,
       "notes": null
@@ -400,5 +420,49 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "r",
+        "ʁ"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ],
+      "word_final": [
+        "ɾ"
+      ]
+    },
+    "t": {
+      "before_i": [
+        "t"
+      ]
+    },
+    "d": {
+      "before_i": [
+        "d"
+      ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "e"
+      ],
+      "word_final": [
+        "e"
+      ],
+      "posttonic": [
+        "e"
+      ]
+    }
   }
 }

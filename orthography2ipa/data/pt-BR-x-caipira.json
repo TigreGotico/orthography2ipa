@@ -318,7 +318,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Caipira (SP interior, western MG, Goiás, MS, MT). Hallmark: retroflex rhotic [ɻ/ɹ] in coda and clusters — the 'erre caipira' or 'erre retroflexo'. Possibly the oldest Brazilian rhotic pattern. Depalatalisation of /ʎ/ → [j] in rural speech. Full /t,d/ palatalisation. /r/ onset → [h,x].",
+  "notes": "Caipira (SP interior, western Minas Gerais, Goiás, Mato Grosso, Mato Grosso do Sul, Paraná hinterland). Hallmark: retroflex approximant rhotic [ɻ] in coda and clusters — the 'erre caipira / erre retroflexo' (porta -> [ˈpɔɻtɐ], mar -> [maɻ]). Possibly the oldest Brazilian coda-rhotic pattern (Amaral 1920). Coda /S/ stays alveolar. /t,d/ palatalisation present; rural depalatalisation of /ʎ/ -> [j] (encoded in allophones).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -347,6 +347,16 @@
       "author": "Silva, T.C.",
       "year": 2002,
       "title": "Fonética e fonologia do português",
+      "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "castilho2010",
+      "author": "Castilho, A.T.",
+      "year": 2010,
+      "title": "Nova Gramática do Português Brasileiro",
       "publisher": "Contexto",
       "url": null,
       "pages": null,
@@ -399,5 +409,29 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "h",
+        "x"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "ɻ"
+      ],
+      "coda": [
+        "ɻ"
+      ],
+      "word_final": [
+        "ɻ",
+        ""
+      ]
+    }
   }
 }

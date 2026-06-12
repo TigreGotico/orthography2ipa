@@ -320,7 +320,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Carioca (Rio de Janeiro city). Hallmark: palatal sibilants in coda [ʃ,ʒ] — shared with European Portuguese but unique in Brazil (mesmo → [ˈmeʒmu], paz → [ˈpaʃ]). Onset /r/ → [x,χ] (strong velar/uvular). Coda /r/ → aspiration [h]. Full /t,d/ palatalisation. The 'standard accent' for Brazilian TV/media alongside Paulistano.",
+  "notes": "Carioca (Rio de Janeiro city). Hallmark: coda /S/ palatalised to [ʃ]/[ʒ] (chiado) — shared with European Portuguese but unique among the major Brazilian capitals (mesmo -> [ˈmeʒmu], paz -> [ˈpaʃ], dois -> [ˈdojʃ]). Strong dorsal onset /r/ -> [x~χ~h]; coda /R/ -> aspiration [h]. Categorical /t,d/ palatalisation. One of the two media-standard accents of Brazil.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -353,6 +353,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
     }
   ],
   "wikipedia": [
@@ -401,5 +411,62 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "χ",
+        "x",
+        "h"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "ɾ"
+      ],
+      "coda": [
+        "h",
+        "ʁ"
+      ],
+      "word_final": [
+        "ɾ",
+        ""
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ]
+    }
   }
 }
