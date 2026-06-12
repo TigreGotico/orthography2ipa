@@ -1,0 +1,84 @@
+{
+  "code": "ar-JO",
+  "name": "Jordanian Arabic (Ammani)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-levantine",
+  "graphemes": {
+    "ق": [
+      "ɡ",
+      "ʔ",
+      "q"
+    ],
+    "ج": [
+      "dʒ",
+      "ʒ"
+    ]
+  },
+  "allophones_base": "ar-x-levantine",
+  "allophones": {
+    "q": [
+      "ɡ",
+      "ʔ",
+      "q"
+    ],
+    "dʒ": [
+      "dʒ",
+      "ʒ"
+    ]
+  },
+  "parent": "ar-x-levantine",
+  "ancestors": [
+    {
+      "code": "ar-x-levantine",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Levantine (South Levantine) Arabic base"
+    }
+  ],
+  "notes": "Jordanian Arabic — Ammani koine, South Levantine but markedly Bedouin/Ḥōrāni-influenced. DISTINGUISHING FEATURE vs the Syro-Lebanese koines: ق qaf → /ɡ/ is widespread and prestigious (rural, Bedouin, and much male urban speech), alongside the urban /ʔ/ (more frequent in Ammani women's and Palestinian-origin speech); both are listed, ɡ first. ج jim → /dʒ/ (affricate retained, Bedouin pattern) more than /ʒ/. Interdentals frequently CONSERVED in Bedouin/rural Jordanian (θ, ð, ðˤ), unlike the urban Syro-Lebanese merger — but variable; the Levantine parent's merged variants remain available. Source: Holes (2004); Levantine Arabic phonology (Wikipedia); Al-Wer (2007) The formation of the dialect of Amman.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "alwer2007",
+      "author": "Al-Wer, E.",
+      "year": 2007,
+      "title": "The formation of the dialect of Amman: From chaos to order",
+      "publisher": "In: Arabic in the City (Routledge)",
+      "url": null,
+      "pages": null,
+      "notes": "Sociolinguistic account of the Ammani koine: g/ʔ qaf variation by gender and origin."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cowell1964",
+      "author": "Cowell, M.W.",
+      "year": 1964,
+      "title": "A Reference Grammar of Syrian Arabic",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference for the broader South Levantine continuum."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Levantine_Arabic",
+    "https://en.wikipedia.org/wiki/South_Levantine_Arabic"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "sout3123",
+  "iso639_3": "ajp"
+}

@@ -318,7 +318,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Fluminense (Rio de Janeiro state, broader than Carioca city). Shares palatal coda sibilants [ʃ,ʒ] with Carioca but may be less consistent in rural areas. Palatalisation variable.",
+  "notes": "Fluminense (Rio de Janeiro state beyond the capital). Shares Carioca coda-/S/ palatalisation [ʃ,ʒ] and dorsal /r/, but the chiado is less consistent in rural and northern-state areas (encoded here as the prestige Carioca-like default; rural variability noted). Categorical /t,d/ palatalisation. Heterogeneous: an inland tap-rhotic, partly caipira-influenced, substratum coexists with the coastal palatal-sibilant norm.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -351,6 +351,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
     }
   ],
   "wikipedia": [
@@ -360,6 +370,101 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "x",
+        "χ",
+        "h"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "ɾ"
+      ],
+      "coda": [
+        "h",
+        "ʁ"
+      ],
+      "word_final": [
+        "ɾ",
+        ""
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ]
+    }
+  }
 }

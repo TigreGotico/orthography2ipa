@@ -1,69 +1,214 @@
 {
-    "code": "pt-AO",
-    "name": "Angolan Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "graphemes_base": "pt-PT",
-    "graphemes": {
-        "r": [
-            "ʁ"
-        ],
-        "s": [
-            "s"
-        ]
-    },
-    "allophones_base": "pt-PT",
-    "allophones": {
-        "ʁ": [
-            "ʁ",
-            "r"
-        ]
-    },
-    "positional_graphemes_base": "pt-PT",
-    "parent": "pt-PT",
-    "notes": "Based on Luanda educated speech.",
-    "quality": "skeleton",
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "mateus_dandrade2000",
-            "author": "Mateus, M.H.M. & d'Andrade, E.",
-            "year": 2000,
-            "title": "The Phonology of Portuguese",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "cunha_cintra1984",
-            "author": "Cunha, C. & Cintra, L.F.L.",
-            "year": 1984,
-            "title": "Nova Gramática do Português Contemporâneo",
-            "publisher": "Sá da Costa",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "inverno2009",
-            "author": "Inverno, L.",
-            "year": 2009,
-            "title": "A transição de Portugal para Angola: o português em contacto no interior angolano",
-            "publisher": "Universidade de Coimbra",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+  "code": "pt-AO",
+  "name": "Angolan Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "graphemes": {
+    "r": [
+      "ʁ",
+      "ɾ"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Angolan_Portuguese",
-        "https://pt.wikipedia.org/wiki/Português_de_Angola"
-    ],
-    "timespan": {
-        "start_year": 1900,
-        "end_year": null
+    "s": [
+      "s"
+    ]
+  },
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "ʁ": [
+      "ʁ",
+      "r"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Based on Luanda educated speech.",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "glottolog_code": null,
-    "iso639_3": "por"
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "inverno2009",
+      "author": "Inverno, L.",
+      "year": 2009,
+      "title": "A transição de Portugal para Angola: o português em contacto no interior angolano",
+      "publisher": "Universidade de Coimbra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Angolan_Portuguese",
+    "https://pt.wikipedia.org/wiki/Português_de_Angola"
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "positional_graphemes": {
+    "a": {
+      "nucleus_stressed": [
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "a"
+      ],
+      "pretonic": [
+        "a"
+      ],
+      "posttonic": [
+        "ɐ"
+      ],
+      "word_initial": [
+        "a"
+      ],
+      "word_final": [
+        "ɐ"
+      ],
+      "coda": [
+        "ɐ"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "ɛ",
+        "e"
+      ],
+      "nucleus_unstressed": [
+        "e"
+      ],
+      "pretonic": [
+        "e"
+      ],
+      "word_final": [
+        "ɨ",
+        "e"
+      ],
+      "word_initial": [
+        "e"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "ɔ",
+        "o"
+      ],
+      "nucleus_unstressed": [
+        "o"
+      ],
+      "pretonic": [
+        "o"
+      ],
+      "word_final": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "ɾ"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ],
+      "word_final": [
+        "ɾ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
+    },
+    "z": {
+      "coda": [
+        "z"
+      ],
+      "word_final": [
+        "z"
+      ]
+    },
+    "l": {
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "ɫ"
+      ]
+    }
+  }
 }

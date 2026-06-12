@@ -24,7 +24,7 @@
       "ðˤ"
     ],
     "ق": [
-      "ʔ",
+      "ɡ",
       "q"
     ]
   },
@@ -34,7 +34,7 @@
       "k"
     ],
     "q": [
-      "ʔ",
+      "ɡ",
       "q"
     ],
     "ɮˤ": [
@@ -70,7 +70,7 @@
       "notes": "Peninsular Arabic base"
     }
   ],
-  "notes": "Hejazi Arabic (حجازي). Western Saudi Arabia: Mecca, Medina, Jeddah. Urban Hejazi: ج → /dʒ/; ق → /ʔ/ (Jeddah) or /q/ (Medina). ث → /t/, ذ → /d/ (urban); preserved in Bedouin/rural. No k → /tʃ/ shift (unlike Gulf). Cosmopolitan due to Hajj pilgrimage: heavy influence from Egyptian, Levantine, South Asian Arabic speakers. Often considered most internationally intelligible Peninsula dialect.",
+  "notes": "Hejazi Arabic (حجازي). Western Saudi Arabia: Mecca, Medina, Jeddah. DEFINING FEATURE: ق qaf → /ɡ/ (voiced velar stop) in inherited urban vocabulary — part of the early (8th c.) Hejazi chain shift /q/→/ɡ/→/dʒ/ (gīm), with /q/ retained only in learned/Classical borrowings; the older descriptions positing a /ʔ/ reflex here are a misattribution of the Levantine/Egyptian feature. ج jim → /dʒ/ (affricate). ث → /t/, ذ → /d/ (urban merger); interdentals preserved in Bedouin/rural speech. No k → /tʃ/ shift (unlike Gulf/Najdi). Cosmopolitan koine shaped by Hajj contact (Egyptian, Levantine, South Asian Arabic). Source: Hejazi Arabic phonology (Wikipedia); Watson (2002); Holes (2004).",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [

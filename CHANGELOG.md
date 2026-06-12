@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.12.0a1) (2026-06-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.11.0a1...1.12.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): brazilian portuguese dialect expansion [\#66](https://github.com/TigreGotico/orthography2ipa/pull/66) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.11.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.11.0a1) (2026-06-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.10.0a1...1.11.0a1)
+
+## [1.10.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.10.0a1) (2026-06-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.9.0a1...1.10.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): arabic dialect expansion and review [\#62](https://github.com/TigreGotico/orthography2ipa/pull/62) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): portuguese dialect stress and reduction systems [\#61](https://github.com/TigreGotico/orthography2ipa/pull/61) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.9.0a1) (2026-06-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.1a1...1.9.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): additional human-provenance gold datasets [\#59](https://github.com/TigreGotico/orthography2ipa/pull/59) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.8.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.1a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.0a1...1.8.1a1)

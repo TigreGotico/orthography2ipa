@@ -316,10 +316,20 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "São Paulo city (paulistano). Urban prestige standard for southeastern Brazil. Full /t,d/ → [tʃ,dʒ] palatalisation before /i/. Onset /r/ → [h,x]. Coda /r/ → tap [ɾ] (NOT retroflex). Coda /s/ alveolar [s,z] (NOT palatal). Coda /l/ → [w]. Dominates Brazilian media alongside Carioca.",
+  "notes": "Paulistano (São Paulo city / São Paulo State urban variety). Reference variety of Barbosa & Albano (2004, JIPA). Inherits the pt-BR base unchanged: full /t,d/ -> [t͡ʃ,d͡ʒ] before [i,ɪ]; strong onset /r/ -> [ʁ~x~h]; coda /R/ tap [ɾ] preferred (NOT retroflex), drops word-finally in infinitives; coda /S/ stays alveolar [s,z] by voicing assimilation (NO chiado); coda /l/ -> [w]; post-stressed and word-final reduction [ɪ ʊ ɐ]; /ɲ/ frequently -> [j̃]; word-initial pretonic /eN/ -> [ĩ] (então -> [ĩˈtɐ̃w̃]). Prestige standard of southeastern media alongside Carioca.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
+    {
+      "id": "barbosa_albano2004",
+      "author": "Barbosa, P.A. & Albano, E.C.",
+      "year": 2004,
+      "title": "Brazilian Portuguese (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 34(2): 227-232",
+      "url": "https://doi.org/10.1017/S0025100304001756",
+      "pages": "227-232",
+      "notes": null
+    },
     {
       "id": "mateus_dandrade2000",
       "author": "Mateus, M.H.M. & d'Andrade, E.",
@@ -358,6 +368,48 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {}
 }

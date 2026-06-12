@@ -1,0 +1,136 @@
+{
+  "code": "ar-x-levantine",
+  "name": "Proto-Levantine Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-mashriqi",
+  "allophones_base": "ar-x-mashriqi",
+  "positional_graphemes_base": "ar-x-mashriqi",
+  "graphemes": {
+    "ق": [
+      "ʔ",
+      "ɡ",
+      "k",
+      "q"
+    ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ],
+    "ث": [
+      "t",
+      "s",
+      "θ"
+    ],
+    "ذ": [
+      "d",
+      "z",
+      "ð"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ",
+      "ðˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ك": [
+      "k",
+      "tʃ"
+    ]
+  },
+  "allophones": {
+    "q": [
+      "ʔ",
+      "ɡ",
+      "k",
+      "q"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
+    ],
+    "θ": [
+      "t",
+      "s",
+      "θ"
+    ],
+    "ð": [
+      "d",
+      "z",
+      "ð"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ",
+      "ðˤ"
+    ],
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "k": [
+      "k",
+      "tʃ"
+    ],
+    "aː": [
+      "aː",
+      "eː"
+    ]
+  },
+  "parent": "ar-x-mashriqi",
+  "ancestors": [
+    {
+      "code": "ar-x-mashriqi",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Eastern (Mashriqi) Arabic base"
+    }
+  ],
+  "notes": "Proto-Levantine Arabic (شامي) — abstract ancestor node for Syrian, Lebanese, Jordanian, and Palestinian Arabic. DEFINING SEDENTARY FEATURES: ق qaf → /ʔ/ glottal stop in the prestige urban koines (Damascus, Beirut, Jerusalem, Amman) — with /ɡ/ in rural/Bedouin and Hawran/southern Jordan speech, and /k/ in central rural Palestinian; ج jim → /ʒ/ (voiced postalveolar fricative); ث/ذ/ظ interdentals VARIABLE — urban koines merge θ→/t/ (~/s/ in learned words), ð→/d/ (~/z/), ðˤ→/dˤ/ (~/zˤ/), while rural, Druze, and Bedouin speakers conserve the interdentals. ض → /dˤ/ (Classical lateral lost; ظ and ض both merge to /dˤ/ in urban speech). Imāla raises /aː/ → [eː] near front consonants, strongest in Lebanese. Source: Cowell (1964) A Reference Grammar of Syrian Arabic; Levantine Arabic phonology (Wikipedia); Holes (2004).",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "cowell1964",
+      "author": "Cowell, M.W.",
+      "year": 1964,
+      "title": "A Reference Grammar of Syrian Arabic",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Standard reference grammar of Damascus Arabic; describes qaf→ʔ, jim→ʒ, interdental merger."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Levantine_Arabic",
+    "https://en.wikipedia.org/wiki/Levantine_Arabic_phonology"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "nort3139",
+  "iso639_3": "apc"
+}

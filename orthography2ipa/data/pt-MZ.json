@@ -1,129 +1,233 @@
 {
-    "code": "pt-MZ",
-    "glottolog_code": "port1283",
-    "name": "Mozambican Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "quality": "skeleton",
-    "script_type": "alphabet",
-    "parent": "pt-PT",
-    "graphemes_base": "pt-PT",
-    "allophones_base": "pt-PT",
-    "positional_graphemes_base": "pt-PT",
-    "graphemes": {
-        "r": [
-            "r",
-            "ʁ"
-        ],
-        "rr": [
-            "r"
-        ],
-        "e": [
-            "e",
-            "ɛ"
-        ],
-        "o": [
-            "o",
-            "ɔ"
-        ]
+  "code": "pt-MZ",
+  "glottolog_code": "port1283",
+  "name": "Mozambican Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "positional_graphemes_base": "pt-PT",
+  "graphemes": {
+    "r": [
+      "r",
+      "ʁ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ]
+  },
+  "allophones": {
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "r"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.7,
+      "notes": "Colonial and post-colonial European Portuguese standard. Mozambique was a Portuguese colony until independence in 1975; educated speech follows European norms more closely than Angola or Brazil."
     },
-    "allophones": {
-        "r": [
-            "r",
-            "ɾ"
-        ],
-        "ʁ": [
-            "ʁ",
-            "r"
-        ]
+    {
+      "code": "sw",
+      "role": "substrate",
+      "weight": 0.12,
+      "notes": "Swahili substrate/adstrate: spoken across northern Mozambique (Cabo Delgado, Nampula) and as a trade language; some phonological patterns transferred."
     },
-    "ancestors": [
-        {
-            "code": "pt-PT",
-            "role": "parent",
-            "weight": 0.7,
-            "notes": "Colonial and post-colonial European Portuguese standard. Mozambique was a Portuguese colony until independence in 1975; educated speech follows European norms more closely than Angola or Brazil."
-        },
-        {
-            "code": "sw",
-            "role": "substrate",
-            "weight": 0.12,
-            "notes": "Swahili substrate/adstrate: spoken across northern Mozambique (Cabo Delgado, Nampula) and as a trade language; some phonological patterns transferred."
-        },
-        {
-            "code": "ny",
-            "role": "substrate",
-            "weight": 0.1,
-            "notes": "Nyanja/Chewa substrate: major language of central Mozambique (Tete, Zambézia); five-vowel system transfers into Portuguese learner varieties."
-        },
-        {
-            "code": "ts",
-            "role": "substrate",
-            "weight": 0.08,
-            "notes": "Tsonga/Tswa-Ronga substrate: dominant in southern Mozambique (Gaza, Maputo provinces); influences tonality and vowel quality in Maputo Portuguese."
-        }
-    ],
-    "notes": "Mozambican Portuguese (Português de Moçambique). Official language of Mozambique since independence (1975); spoken as L1 by ~12% and L2 by ~55% of the population (~32 million total). KEY FEATURES: (1) FIVE-VOWEL SYSTEM: unstressed vowel reduction is weaker than European Portuguese; /ɨ/ largely absent, unstressed /e/ → [e] not [ɨ]. (2) RHOTIC: typically alveolar trill [r] (as in Brazilian), not uvular [ʁ]; in coda position often weakened or deleted. (3) SIBILANTS: coda /s/ usually remains alveolar [s], not palatalised to [ʃ] (contrast European PT). (4) NASAL VOWELS preserved but with less nasalisation than EP. (5) TONE: influence of Bantu substrate languages creates pitch accent in some features. (6) /l/ in coda often vocalised to [w] (convergence with Brazilian). (7) Distinction /v/ vs /b/ maintained. Maputo (capital) speech is the most prestigious variety. Sources: Gonçalves (1996), Stroud & Gonçalves (1997), Lopes (2004).",
-    "sources": [
-        {
-            "id": "goncalves1996",
-            "author": "Gonçalves, P.",
-            "year": 1996,
-            "title": "Português de Moçambique: uma variedade em formação",
-            "publisher": "Universidade Eduardo Mondlane / Livraria Universitária",
-            "url": null,
-            "pages": null,
-            "notes": "Foundational description of Mozambican Portuguese"
-        },
-        {
-            "id": "stroud_goncalves1997",
-            "author": "Stroud, C. & Gonçalves, P. (eds.)",
-            "year": 1997,
-            "title": "Panorama do Português Oral de Maputo",
-            "publisher": "Instituto Nacional do Desenvolvimento da Educação",
-            "url": null,
-            "pages": null,
-            "notes": "3-volume study of spoken Portuguese in Maputo"
-        },
-        {
-            "id": "lopes2004",
-            "author": "Lopes, A.J.",
-            "year": 2004,
-            "title": "A batalha das línguas: perspectivas sobre linguística aplicada em Moçambique",
-            "publisher": "Imprensa Universitária",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
-    ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Mozambican_Portuguese",
-        "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_mo%C3%A7ambicano"
-    ],
-    "urls": [
-        "https://en.wikipedia.org/wiki/Mozambican_Portuguese",
-        "https://en.wikipedia.org/wiki/Portuguese_language_in_Africa",
-        "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_mo%C3%A7ambicano",
-        "https://en.wikipedia.org/wiki/Languages_of_Mozambique"
-    ],
-    "timespan": {
-        "start_year": 1900,
-        "end_year": null
+    {
+      "code": "ny",
+      "role": "substrate",
+      "weight": 0.1,
+      "notes": "Nyanja/Chewa substrate: major language of central Mozambique (Tete, Zambézia); five-vowel system transfers into Portuguese learner varieties."
     },
-    "iso639_3": "por",
-    "positional_graphemes": {
-        "s": {
-            "coda": [
-                "s"
-            ],
-            "word_final": [
-                "s"
-            ]
-        },
-        "r": {
-            "word_initial": [
-                "r"
-            ]
-        }
+    {
+      "code": "ts",
+      "role": "substrate",
+      "weight": 0.08,
+      "notes": "Tsonga/Tswa-Ronga substrate: dominant in southern Mozambique (Gaza, Maputo provinces); influences tonality and vowel quality in Maputo Portuguese."
     }
+  ],
+  "notes": "Mozambican Portuguese (Português de Moçambique). Official language of Mozambique since independence (1975); spoken as L1 by ~12% and L2 by ~55% of the population (~32 million total). KEY FEATURES: (1) FIVE-VOWEL SYSTEM: unstressed vowel reduction is weaker than European Portuguese; /ɨ/ largely absent, unstressed /e/ → [e] not [ɨ]. (2) RHOTIC: typically alveolar trill [r] (as in Brazilian), not uvular [ʁ]; in coda position often weakened or deleted. (3) SIBILANTS: coda /s/ usually remains alveolar [s], not palatalised to [ʃ] (contrast European PT). (4) NASAL VOWELS preserved but with less nasalisation than EP. (5) TONE: influence of Bantu substrate languages creates pitch accent in some features. (6) /l/ in coda often vocalised to [w] (convergence with Brazilian). (7) Distinction /v/ vs /b/ maintained. Maputo (capital) speech is the most prestigious variety. Sources: Gonçalves (1996), Stroud & Gonçalves (1997), Lopes (2004).",
+  "sources": [
+    {
+      "id": "goncalves1996",
+      "author": "Gonçalves, P.",
+      "year": 1996,
+      "title": "Português de Moçambique: uma variedade em formação",
+      "publisher": "Universidade Eduardo Mondlane / Livraria Universitária",
+      "url": null,
+      "pages": null,
+      "notes": "Foundational description of Mozambican Portuguese"
+    },
+    {
+      "id": "stroud_goncalves1997",
+      "author": "Stroud, C. & Gonçalves, P. (eds.)",
+      "year": 1997,
+      "title": "Panorama do Português Oral de Maputo",
+      "publisher": "Instituto Nacional do Desenvolvimento da Educação",
+      "url": null,
+      "pages": null,
+      "notes": "3-volume study of spoken Portuguese in Maputo"
+    },
+    {
+      "id": "lopes2004",
+      "author": "Lopes, A.J.",
+      "year": 2004,
+      "title": "A batalha das línguas: perspectivas sobre linguística aplicada em Moçambique",
+      "publisher": "Imprensa Universitária",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mozambican_Portuguese",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_mo%C3%A7ambicano"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mozambican_Portuguese",
+    "https://en.wikipedia.org/wiki/Portuguese_language_in_Africa",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_mo%C3%A7ambicano",
+    "https://en.wikipedia.org/wiki/Languages_of_Mozambique"
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "positional_graphemes": {
+    "s": {
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ],
+      "word_final": [
+        "ɾ"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "ɛ",
+        "e"
+      ],
+      "nucleus_unstressed": [
+        "e"
+      ],
+      "pretonic": [
+        "e"
+      ],
+      "word_final": [
+        "e",
+        "ɨ"
+      ],
+      "word_initial": [
+        "e"
+      ],
+      "coda": [
+        "e"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "ɔ",
+        "o"
+      ],
+      "nucleus_unstressed": [
+        "o"
+      ],
+      "pretonic": [
+        "o"
+      ],
+      "word_final": [
+        "u"
+      ],
+      "posttonic": [
+        "u"
+      ]
+    },
+    "l": {
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "w"
+      ]
+    },
+    "z": {
+      "coda": [
+        "z"
+      ],
+      "word_final": [
+        "z"
+      ]
+    }
+  },
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

@@ -1,0 +1,96 @@
+{
+  "code": "ar-PS",
+  "name": "Palestinian Arabic",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-levantine",
+  "graphemes": {
+    "ق": [
+      "ʔ",
+      "k",
+      "ɡ",
+      "q"
+    ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ],
+    "ك": [
+      "k",
+      "tʃ"
+    ]
+  },
+  "allophones_base": "ar-x-levantine",
+  "allophones": {
+    "q": [
+      "ʔ",
+      "k",
+      "ɡ",
+      "q"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
+    ],
+    "k": [
+      "k",
+      "tʃ"
+    ]
+  },
+  "parent": "ar-x-levantine",
+  "ancestors": [
+    {
+      "code": "ar-x-levantine",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Levantine (South Levantine) Arabic base"
+    }
+  ],
+  "notes": "Palestinian Arabic — South Levantine, internally diverse along an urban/rural/Bedouin axis. ق qaf reflexes are the classic three-way split: URBAN (Jerusalem, Jaffa, Nazareth koine) → /ʔ/; CENTRAL RURAL (West Bank fellahin) → /k/ (with /k/→[tʃ] palatalisation, the famous 'kaf shift'); SOUTHERN/Bedouin (Negev, Gaza periphery) → /ɡ/. All four listed (ʔ first for the prestige urban form, then k, ɡ, q). ج jim → /ʒ/ urban, /dʒ/ rural/Bedouin. ك kaf → /tʃ/ before front vowels in central rural speech. Interdentals merged in urban koine, conserved in rural/Bedouin. Source: Levantine Arabic phonology (Wikipedia); Holes (2004); Cowell (1964).",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Documents the urban/rural/Bedouin qaf split in Palestinian."
+    },
+    {
+      "id": "cowell1964",
+      "author": "Cowell, M.W.",
+      "year": 1964,
+      "title": "A Reference Grammar of Syrian Arabic",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference for the broader South Levantine continuum."
+    },
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Levantine_Arabic",
+    "https://en.wikipedia.org/wiki/South_Levantine_Arabic",
+    "https://en.wikipedia.org/wiki/Levantine_Arabic_phonology"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "sout3123",
+  "iso639_3": "ajp"
+}
