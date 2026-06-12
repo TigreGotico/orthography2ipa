@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.9.0a1) (2026-06-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.1a1...1.9.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): additional human-provenance gold datasets [\#59](https://github.com/TigreGotico/orthography2ipa/pull/59) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.8.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.1a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.0a1...1.8.1a1)
