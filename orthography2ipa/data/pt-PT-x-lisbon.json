@@ -4,6 +4,14 @@
   "family": "Romance",
   "script": "Latin",
   "graphemes_base": "pt-PT",
+  "graphemes": {
+    "ou": [
+      "o"
+    ],
+    "ei": [
+      "ɐj"
+    ]
+  },
   "allophones_base": "pt-PT",
   "allophones": {
     "ʁ": [
@@ -14,9 +22,36 @@
     ]
   },
   "positional_graphemes_base": "pt-PT",
+  "positional_graphemes": {
+    "a": {
+      "nucleus_unstressed": [
+        "ɐ"
+      ],
+      "word_final": [
+        "ɐ"
+      ],
+      "pretonic": [
+        "ɐ"
+      ],
+      "posttonic": [
+        "ɐ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "u"
+      ],
+      "nucleus_unstressed": [
+        "u"
+      ],
+      "word_final": [
+        "u"
+      ]
+    }
+  },
   "parent": "pt-PT",
-  "notes": "Standard Lisbon reference dialect. Consistent voiced uvular [ʁ]. Centralized [ɨ] for unstressed /e/. Moderate vowel reduction with syllable structure preserved. No retroflex consonants. Discourse marker [iɨ] characteristic of educated Lisbon speech.",
-  "quality": "skeleton",
+  "notes": "Lisbon prestige variety. Diagnostic features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) /ej/ → [ɐj] — Lisbon diphthong lowering, the single most diagnostic grapheme-level feature (leite→[lɐjtɨ], primeiro→[pɾiˈmɐjɾu]); (2) /ow/ → [o] — complete monophthongization (ouro→[ˈoɾu]); (3) unstressed /a/ → [ɐ] throughout; (4) unstressed /o/ → [u] (pretonic/posttonic); (5) strong unstressed /e/ → [ɨ] (inherited from pt-PT base); (6) consistent uvular [ʁ]; (7) coda /l/ → [ɫ] (inherited). Allophonic spirantization (β/ð) is phonemizer-level and not encoded here. Sources: DIALECT_PATTERNS.md, whitepaper5 §3 (Lisbon de-biasing / §5.3 Lisbon profile), Mateus & d'Andrade (2000).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -48,6 +83,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "tigregotico_dialect_research_2026",
+      "author": "TigreGotico",
+      "year": 2026,
+      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
+      "publisher": "TigreGotico internal research",
+      "url": null,
+      "pages": null,
+      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
     }
   ],
   "wikipedia": [
@@ -57,6 +102,44 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

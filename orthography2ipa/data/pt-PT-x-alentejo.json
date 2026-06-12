@@ -4,6 +4,17 @@
   "family": "Romance",
   "script": "Latin",
   "graphemes_base": "pt-PT",
+  "graphemes": {
+    "ei": [
+      "e"
+    ],
+    "ou": [
+      "o"
+    ],
+    "meu": [
+      "me"
+    ]
+  },
   "allophones_base": "pt-PT",
   "allophones": {
     "ʁ": [
@@ -12,11 +23,22 @@
     "ɛ": [
       "ɛ",
       "ɛ͡ɐ"
+    ],
+    "d": [
+      "d",
+      ""
     ]
   },
   "positional_graphemes_base": "pt-PT",
+  "positional_graphemes": {
+    "d": {
+      "intervocalic": [
+        ""
+      ]
+    }
+  },
   "parent": "pt-PT",
-  "notes": "Alentejo dialect of European Portuguese, covering the interior southern plains (Portalegre, Évora, Beja). Phonological profile: (1) open vowel qualities — stressed /e/ and /o/ realised as [ɛ] and [ɔ] more frequently than Lisbon standard; (2) vowel breaking [ɛ͡ɐ] in certain lexical environments (shared with some Greater Porto subdialects); (3) intermediate unstressed vowel reduction — less extreme than northern dialects but greater than standard Lisbon; (4) uvular rhotic [ʁ] consistent without coda devoicing; (5) /s/ and /z/ realised apico-alveolarly in older conservative speakers — a feature of possible seseo-adjacent transition zones near the Spanish border (Badajoz contact zone); (6) final /l/ vocalised to [w] as in standard EP; (7) lexical prosody: strong stress on penultimate syllable, broader vowel duration. The Alto Alentejo (Portalegre/Crato) forms a transitional zone between northern and southern EP dialect blocks as defined by Cintra (1971). Minho-type vowel breaking [ɛ͡ɐ] in the north of the region is diagnostically significant.",
+  "notes": "Alentejo dialect (Portalegre, Évora, Beja). Categorical features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) INTERVOCALIC /d/ DELETION — nada→[ˈnaɐ], vida→[ˈviɐ]; positional_graphemes d/intervocalic→[''] (empty string = deletion); (2) /ej/ → [e] MONOPHTHONG — leite→[ˈletɨ], primeiro→[pɾiˈmeɾu]; (3) /ow/ → [o] MONOPHTHONG (shared with Lisbon); (4) meu-class simplification — /ew/ → [e] (meu→[me]); (5) nasal -em endings /ɐ̃j̃/ → [ẽ] class (bem→[bẽ], também→[tɐ̃ˈbẽ]) — encoded via allophone. NOTES-ONLY: word-final s+vowel sandhi voicing (→z) is partially handled by inherited pt-PT sandhi rules. NOTES-ONLY: meu digraph covers the ew→e class; full paradigm requires sandhi treatment beyond schema scope. Vowel breaking [ɛ͡ɐ] in certain lexical environments retained from prior spec.",
   "quality": "research",
   "ancestors": [
     {
@@ -60,6 +82,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "tigregotico_dialect_research_2026",
+      "author": "TigreGotico",
+      "year": 2026,
+      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
+      "publisher": "TigreGotico internal research",
+      "url": null,
+      "pages": null,
+      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
     }
   ],
   "wikipedia": [
@@ -70,6 +102,44 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

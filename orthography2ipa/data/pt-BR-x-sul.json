@@ -1,366 +1,404 @@
 {
-    "code": "pt-BR-x-sul",
-    "name": "Sulista/Gaúcho Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "graphemes": {
-        "a": [
-            "a",
-            "ɐ"
-        ],
-        "e": [
-            "e",
-            "ɛ",
-            "ə"
-        ],
-        "i": [
-            "i"
-        ],
-        "o": [
-            "o",
-            "ɔ",
-            "u"
-        ],
-        "u": [
-            "u"
-        ],
-        "á": [
-            "a"
-        ],
-        "à": [
-            "a"
-        ],
-        "â": [
-            "ɐ"
-        ],
-        "ã": [
-            "ɐ̃"
-        ],
-        "é": [
-            "ɛ"
-        ],
-        "ê": [
-            "e"
-        ],
-        "í": [
-            "i"
-        ],
-        "ó": [
-            "ɔ"
-        ],
-        "ô": [
-            "o"
-        ],
-        "õ": [
-            "õ"
-        ],
-        "ú": [
-            "u"
-        ],
-        "ü": [
-            "u"
-        ],
-        "b": [
-            "b"
-        ],
-        "c": [
-            "k",
-            "s"
-        ],
-        "ç": [
-            "s"
-        ],
-        "d": [
-            "d",
-            "dʒ"
-        ],
-        "f": [
-            "f"
-        ],
-        "g": [
-            "ɡ",
-            "ʒ"
-        ],
-        "h": [
-            ""
-        ],
-        "j": [
-            "ʒ"
-        ],
-        "k": [
-            "k"
-        ],
-        "l": [
-            "l",
-            "w"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n"
-        ],
-        "p": [
-            "p"
-        ],
-        "q": [
-            "k"
-        ],
-        "r": [
-            "ɾ",
-            "h",
-            "x",
-            "r"
-        ],
-        "s": [
-            "s",
-            "z"
-        ],
-        "t": [
-            "t",
-            "tʃ"
-        ],
-        "v": [
-            "v"
-        ],
-        "w": [
-            "w"
-        ],
-        "x": [
-            "ʃ",
-            "ks",
-            "z",
-            "s"
-        ],
-        "y": [
-            "i"
-        ],
-        "z": [
-            "z",
-            "s"
-        ],
-        "ch": [
-            "ʃ"
-        ],
-        "lh": [
-            "ʎ"
-        ],
-        "nh": [
-            "ɲ"
-        ],
-        "rr": [
-            "r",
-            "ʁ"
-        ],
-        "ss": [
-            "s"
-        ],
-        "qu": [
-            "k",
-            "kw"
-        ],
-        "gu": [
-            "ɡ",
-            "ɡw"
-        ],
-        "ai": [
-            "aj"
-        ],
-        "au": [
-            "aw"
-        ],
-        "ei": [
-            "ej"
-        ],
-        "eu": [
-            "ew"
-        ],
-        "iu": [
-            "iw"
-        ],
-        "oi": [
-            "oj"
-        ],
-        "ou": [
-            "ow"
-        ],
-        "ui": [
-            "uj"
-        ],
-        "ão": [
-            "ɐ̃w̃"
-        ],
-        "ãe": [
-            "ɐ̃j̃"
-        ],
-        "õe": [
-            "õj̃"
-        ]
-    },
-    "allophones": {
-        "p": [
-            "p"
-        ],
-        "b": [
-            "b",
-            "β"
-        ],
-        "t": [
-            "t",
-            "tʃ"
-        ],
-        "d": [
-            "d",
-            "dʒ"
-        ],
-        "k": [
-            "k"
-        ],
-        "ɡ": [
-            "ɡ",
-            "ɣ"
-        ],
-        "f": [
-            "f"
-        ],
-        "v": [
-            "v"
-        ],
-        "s": [
-            "s"
-        ],
-        "z": [
-            "z"
-        ],
-        "ʃ": [
-            "ʃ"
-        ],
-        "ʒ": [
-            "ʒ"
-        ],
-        "ʁ": [
-            "r",
-            "ɾ",
-            "h"
-        ],
-        "ɾ": [
-            "ɾ"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n",
-            "ŋ"
-        ],
-        "ɲ": [
-            "ɲ"
-        ],
-        "ŋ": [
-            "ŋ"
-        ],
-        "l": [
-            "l"
-        ],
-        "ɫ": [
-            "w"
-        ],
-        "ʎ": [
-            "ʎ"
-        ],
-        "w": [
-            "w"
-        ],
-        "j": [
-            "j"
-        ],
-        "a": [
-            "a"
-        ],
-        "ɐ": [
-            "ɐ"
-        ],
-        "e": [
-            "e"
-        ],
-        "ɛ": [
-            "ɛ"
-        ],
-        "ə": [
-            "e",
-            "i"
-        ],
-        "i": [
-            "i"
-        ],
-        "o": [
-            "o"
-        ],
-        "ɔ": [
-            "ɔ"
-        ],
-        "u": [
-            "u"
-        ],
-        "ɐ̃": [
-            "ɐ̃"
-        ],
-        "ẽ": [
-            "ẽ"
-        ],
-        "ĩ": [
-            "ĩ"
-        ],
-        "õ": [
-            "õ"
-        ],
-        "ũ": [
-            "ũ"
-        ]
-    },
-    "parent": "pt-BR",
-    "notes": "Sulista/Gaúcho (Porto Alegre, RS). Distinctive: alveolar trill [r] or tap in onset position (NOT glottal) — the most European-sounding Brazilian rhotic. /t,d/ palatalisation variable (generational shift toward palatalisation). Less vowel raising. Italian/German settler substrate influence in some communities.",
-    "quality": "research",
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "mateus_dandrade2000",
-            "author": "Mateus, M.H.M. & d'Andrade, E.",
-            "year": 2000,
-            "title": "The Phonology of Portuguese",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "callou_leite2001",
-            "author": "Callou, D. & Leite, Y.",
-            "year": 2001,
-            "title": "Iniciação à fonética e à fonologia (8th ed.)",
-            "publisher": "Zahar",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "silva2002",
-            "author": "Silva, T.C.",
-            "year": 2002,
-            "title": "Fonética e fonologia do português",
-            "publisher": "Contexto",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+  "code": "pt-BR-x-sul",
+  "name": "Sulista/Gaúcho Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɐ"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Southern_Brazil"
+    "e": [
+      "e",
+      "ɛ",
+      "ə"
     ],
-    "timespan": {
-        "start_year": 1800,
-        "end_year": null
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ",
+      "u"
+    ],
+    "u": [
+      "u"
+    ],
+    "á": [
+      "a"
+    ],
+    "à": [
+      "a"
+    ],
+    "â": [
+      "ɐ"
+    ],
+    "ã": [
+      "ɐ̃"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ô": [
+      "o"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ú": [
+      "u"
+    ],
+    "ü": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "d": [
+      "d",
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l",
+      "w"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ɾ",
+      "h",
+      "x",
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t",
+      "tʃ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ʃ",
+      "ks",
+      "z",
+      "s"
+    ],
+    "y": [
+      "i"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "rr": [
+      "r",
+      "ʁ"
+    ],
+    "ss": [
+      "s"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "gu": [
+      "ɡ",
+      "ɡw"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "ão": [
+      "ɐ̃w̃"
+    ],
+    "ãe": [
+      "ɐ̃j̃"
+    ],
+    "õe": [
+      "õj̃"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t",
+      "tʃ"
+    ],
+    "d": [
+      "d",
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʁ": [
+      "r",
+      "ɾ",
+      "h"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɫ": [
+      "w"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɐ": [
+      "ɐ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ə": [
+      "e",
+      "i"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɐ̃": [
+      "ɐ̃"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ]
+  },
+  "parent": "pt-BR",
+  "notes": "Sulista/Gaúcho (Porto Alegre, RS). Distinctive: alveolar trill [r] or tap in onset position (NOT glottal) — the most European-sounding Brazilian rhotic. /t,d/ palatalisation variable (generational shift toward palatalisation). Less vowel raising. Italian/German settler substrate influence in some communities.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "glottolog_code": null,
-    "iso639_3": "por"
+    {
+      "id": "callou_leite2001",
+      "author": "Callou, D. & Leite, Y.",
+      "year": 2001,
+      "title": "Iniciação à fonética e à fonologia (8th ed.)",
+      "publisher": "Zahar",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "silva2002",
+      "author": "Silva, T.C.",
+      "year": 2002,
+      "title": "Fonética e fonologia do português",
+      "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Southern_Brazil"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

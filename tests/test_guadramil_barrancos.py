@@ -83,8 +83,8 @@ class TestGuadramilInheritsRionorese:
         assert guadramil.graphemes.get("ie") == ["je"]
 
     def test_ua_diphthong_inherited(self, guadramil):
-        """uâ → wa (inherited)."""
-        assert guadramil.graphemes.get("uâ") == ["wa"]
+        """uâ → wɐ (inherited from Rionorese; Macias 2003, p. 26: timbre semelhante ao -a fechado)."""
+        assert guadramil.graphemes.get("uâ") == ["wɐ"]
 
     def test_x_sibilant_inherited(self, guadramil):
         """x → ʃ (inherited)."""

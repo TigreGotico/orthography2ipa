@@ -4,6 +4,17 @@
   "family": "Romance",
   "script": "Latin",
   "graphemes_base": "pt-PT",
+  "graphemes": {
+    "v": [
+      "b"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ei": [
+      "ej"
+    ]
+  },
   "allophones_base": "pt-PT",
   "allophones": {
     "ʃ": [
@@ -33,14 +44,21 @@
       ""
     ],
     "v": [
-      "v",
       "b"
     ]
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Porto city and Greater Porto (Gaia, Miragaia, Leça, Vitória). Heavy vowel reduction but syllable structure more preserved than Minho interior. Uvular variation: [ʁ, χ, ʀ, x]. Retroflex sibilants moderate in suburban/rural fringes (Alvarenga, Gaia). Heavily velarised coda [ɫ].",
-  "quality": "skeleton",
+  "notes": "Porto city and Greater Porto (Gaia, Miragaia, Leça, Vitória). Diagnostic features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) BETACISM — /v/ → [b] unconditionally, a categorical phoneme merger (vinho→[ˈbiɲu], estava→[ʃˈtabɐ]); (2) /ow/ PRESERVED — Porto retains the ou diphthong where Lisbon has [o] (ouro→[ˈowɾu]); (3) /ej/ PRESERVED — ei kept as [ej] where Lisbon has [ɐj] (primeiro→[pɾiˈmejɾu]); (4) apicoalveolar sibilants [s̺, z̺] — encoded in allophones; (5) uvular variation [ʁ, χ, ʀ, x]; (6) heavy coda [ɫ]; (7) extreme unstressed vowel reduction. NOTES-ONLY (sporadic/lexical): l-palatalization (quilo→quilho), Filipa→[fʎipɐ]; Porto-style diphthongization (stressed /e/→[je], /o/→[wo]) is sub-lexical and not encoded. Sources: DIALECT_PATTERNS.md §Betacism, §Diphthongs; whitepaper5 §4.1 N1-N2, §4.4.",
+  "quality": "research",
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Standard European Portuguese; Porto diverges in betacism (v→b), diphthong preservation (ei/ou), and apicoalveolar sibilants"
+    }
+  ],
   "script_type": "alphabet",
   "sources": [
     {
@@ -72,6 +90,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "tigregotico_dialect_research_2026",
+      "author": "TigreGotico",
+      "year": 2026,
+      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
+      "publisher": "TigreGotico internal research",
+      "url": null,
+      "pages": null,
+      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
     }
   ],
   "wikipedia": [
@@ -81,6 +109,44 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": null,
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

@@ -28,11 +28,16 @@ and a slice is enough for a stable reference number.
 from __future__ import annotations
 
 import argparse
+import csv
 import os
 import sys
 import unicodedata
 import urllib.request
 from typing import Dict, List, Optional, Tuple
+
+# the repository root precedes the installed package so that running the
+# script from a checkout measures THAT checkout
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".benchmark_cache")
 
@@ -43,12 +48,49 @@ _WIKIPRON_BASE = (
     "https://raw.githubusercontent.com/CUNY-CL/wikipron/master/data/scrape/tsv/"
 )
 _WIKIPRON_FILES = {
+    # --- already wired ---
     "gl": "glg_latn_broad.tsv",
     "es": "spa_latn_la_broad.tsv",
     "pt": "por_latn_po_broad.tsv",
     "pt-BR": "por_latn_bz_broad.tsv",
     "en": "eng_latn_us_broad.tsv",
     "en-GB": "eng_latn_uk_broad.tsv",
+    # --- Romance ---
+    "it": "ita_latn_broad.tsv",          # ~90k rows
+    "fr": "fra_latn_broad.tsv",          # ~98k rows
+    "ro": "ron_latn_broad.tsv",          # ~9k rows
+    "ast": "ast_latn_broad.tsv",         # ~4k rows
+    "oc": "oci_latn_broad.tsv",          # ~750 rows
+    # --- Germanic ---
+    "de": "deu_latn_broad.tsv",          # ~60k rows
+    "nl": "nld_latn_broad.tsv",          # ~59k rows
+    "sv": "swe_latn_broad.tsv",          # ~6k rows
+    "da": "dan_latn_broad.tsv",          # ~5k rows
+    "nb": "nob_latn_broad.tsv",          # ~3k rows
+    "is": "isl_latn_broad.tsv",          # ~11k rows
+    # --- Celtic ---
+    "cy": "cym_latn_nw_broad.tsv",       # ~17k rows (NW dialect)
+    "ga": "gle_latn_broad.tsv",          # ~21k rows
+    "gd": "gla_latn_broad.tsv",          # ~6k rows
+    # --- Slavic ---
+    "pl": "pol_latn_broad.tsv",          # ~157k rows
+    "sk": "slk_latn_broad.tsv",          # ~16k rows
+    "hr": "hbs_latn_broad.tsv",          # ~26k rows (hbs covers hr/bs/sr Latin)
+    # --- Other Indo-European ---
+    "el": "ell_grek_broad.tsv",          # ~20k rows
+    "hy": "hye_armn_e_broad.tsv",        # ~18k rows (Eastern Armenian)
+    "sq": "sqi_latn_broad.tsv",          # ~5k rows
+    "tr": "tur_latn_broad.tsv",          # ~12k rows
+    # --- Uralic / Basque ---
+    "fi": "fin_latn_broad.tsv",          # ~173k rows
+    "eu": "eus_latn_broad.tsv",          # ~20k rows
+    # --- Other ---
+    "tl": "tgl_latn_broad.tsv",          # ~28k rows
+    "eo": "epo_latn_broad.tsv",          # ~41k rows
+    # --- Indo-Aryan / Dravidian (native script) ---
+    "hi": "hin_deva_broad.tsv",          # ~33k rows, Devanagari
+    "ta": "tam_taml_broad.tsv",          # ~10k rows, Tamil script
+    "ml": "mal_mlym_broad.tsv",          # ~10k rows, Malayalam script
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
@@ -58,6 +100,17 @@ _MIRANDESE_DIALECTS = {"mwl": "central", "mwl-x-sendim": "sendinese"}
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
+# ipa-dict: open pronunciation dictionaries maintained by the open-dict-data project.
+# Source per-language; always verify provenance via the Credits section of the README.
+# https://github.com/open-dict-data/ipa-dict
+_IPADICT_BASE = (
+    "https://raw.githubusercontent.com/open-dict-data/ipa-dict/master/data/"
+)
+# Icelandic: from the Hjal project / "Pronunciation Dictionary for Icelandic"
+# (Malfong.is), CC BY 3.0. ~60k entries. Human-curated by Icelandic linguists.
+_IPADICT_FILES = {
+    "is": "is.txt",
+}
 
 
 def _fetch(url: str, name: str) -> str:
@@ -136,12 +189,111 @@ def load_cmudict(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+def load_ipadict(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """ipa-dict pronunciation dictionaries (open-dict-data/ipa-dict).
+
+    Provenance is **per-language** — see ``_IPADICT_FILES`` docstrings and
+    the project README Credits section before adding new languages. Each
+    entry uses the format ``word TAB /IPA/`` with IPA enclosed in slashes.
+
+    Currently wired languages:
+
+    - ``is`` (Icelandic): from the Hjal project / "Pronunciation Dictionary
+      for Icelandic" (malfong.is), CC BY 3.0, ~60k human-curated entries.
+    """
+    fname = _IPADICT_FILES[lang]
+    text = _fetch(_IPADICT_BASE + fname, f"ipadict_{fname}")
+    pairs = []
+    for line in text.strip().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 2:
+            word = parts[0].strip().lower()
+            ipa = parts[1].strip().strip("/")
+            if word and ipa:
+                pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+
+# Dialect code mapping for ep_dialects dataset
+# CSV dialect_code  →  orthography2ipa language tag
+# ─────────────────────────────────────────────────────────────────────────────
+# lisboa    → pt-PT-x-lisbon   (Lisbon prestige variety)
+# north     → pt-PT-x-porto    (Porto/Baixo-Minho representative Northern EP)
+# central   → pt-PT            (Coimbra-type conservative standard; the Centro-
+#                               Litoral/Estremenho dialect is the closest match
+#                               to the "ideal standard" PT-PT in the codebase)
+# alentejo  → pt-PT-x-alentejo
+# algarve   → pt-PT-x-algarve
+# madeira   → pt-PT-x-madeira
+# azores    → pt-PT-x-acores
+_EP_DIALECT_MAP: Dict[str, str] = {
+    "pt-PT-x-lisboa": "pt-PT-x-lisbon",
+    "pt-PT-x-north": "pt-PT-x-porto",
+    "pt-PT-x-central": "pt-PT",
+    "pt-PT-x-alentejo": "pt-PT-x-alentejo",
+    "pt-PT-x-algarve": "pt-PT-x-algarve",
+    "pt-PT-x-madeira": "pt-PT-x-madeira",
+    "pt-PT-x-azores": "pt-PT-x-acores",
+}
+
+_EP_DIALECT_GOLD_CSV = os.path.join(
+    os.path.dirname(__file__), "..", "tests", "data", "ep_dialect_sentences.csv"
+)
+
+
+def load_ep_dialects(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """European Portuguese regional dialect gold set (sentence-level).
+
+    Source: TigreGotico internal dialect research (DIALECT_PATTERNS.md +
+    whitepaper5 IPA dialect transforms).  250 sentences across seven EP
+    regional varieties, manually annotated IPA, pending external
+    peer-validation.
+
+    Dialect code mapping (CSV dialect_code → orthography2ipa tag):
+        pt-PT-x-lisboa   → pt-PT-x-lisbon
+        pt-PT-x-north    → pt-PT-x-porto
+        pt-PT-x-central  → pt-PT   (Coimbra-type standard)
+        pt-PT-x-alentejo → pt-PT-x-alentejo
+        pt-PT-x-algarve  → pt-PT-x-algarve
+        pt-PT-x-madeira  → pt-PT-x-madeira
+        pt-PT-x-azores   → pt-PT-x-acores
+
+    The ``lang`` parameter accepts **either** the CSV dialect_code (e.g.
+    ``pt-PT-x-north``) or the mapped orthography2ipa tag (e.g.
+    ``pt-PT-x-porto``); both forms work transparently.
+    """
+    # Build reverse map so callers can pass either key
+    reverse_map = {v: k for k, v in _EP_DIALECT_MAP.items()}
+    csv_key = reverse_map.get(lang, lang)  # normalise to CSV-side key
+
+    pairs: List[Tuple[str, str]] = []
+    with open(_EP_DIALECT_GOLD_CSV, encoding="utf-8") as fh:
+        next(fh)  # skip header
+        for row in csv.reader(fh):
+            if len(row) != 3:
+                continue
+            dialect_code, text, ipa = row
+            if dialect_code == csv_key:
+                # Strip phonemic-transcription delimiters /…/ from gold IPA
+                pairs.append((text.strip(), ipa.strip().strip("/")))
+            if len(pairs) >= limit:
+                break
+    return pairs
+
+
+_EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
+
 DATASETS = {
+    "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "portuguese_lexicon": (load_portuguese_lexicon,
                            ["pt-PT", "pt-BR", "pt-AO", "pt-MZ", "pt-TL"]),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "mirandese": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "cmudict": (load_cmudict, ["en-US"]),
+    "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
 }
 
 

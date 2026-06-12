@@ -1,80 +1,147 @@
 {
-    "code": "pt-PT-x-acores",
-    "name": "Azorean Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "graphemes_base": "pt-PT",
-    "graphemes": {
-        "ão": [
-            "õw̃"
-        ]
+  "code": "pt-PT-x-acores",
+  "name": "Azorean Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "graphemes": {
+    "ão": [
+      "õw̃"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ões": [
+      "õns"
+    ],
+    "ães": [
+      "ɐ̃ns"
+    ],
+    "u": [
+      "y"
+    ],
+    "ú": [
+      "y"
+    ]
+  },
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "ə": [
+      "ɨ",
+      "e"
+    ],
+    "ɐ̃": [
+      "ɐ̃",
+      "õ"
+    ],
+    "u": [
+      "y",
+      "u"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Azorean Portuguese (reference: Terceira Island; São Miguel sub-variety for u→y feature). Categorical features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) STRESSED u → [y] — most salient feature (São Miguel class): tu→[ty], número→[ˈnymɨɾu]; encoded in positional_graphemes u/nucleus_stressed→[y]; this is São Miguel-class (strongest realisation); Terceira shows partial realisation; (2) /ow/ PRESERVED — ou diphthong retained where Lisbon monophthongizes (ouro→[ˈowɾu]); (3) NASAL DIPHTHONG → NASAL+N — plural -ões→[õns], -ães→[ɐ̃ns] (shared with Madeira); (4) CONSERVATIVE VOWEL PRESERVATION — unstressed /e/ may surface as [e] rather than [ɨ]; encoded in allophone ə→[ɨ, e]; (5) RAISED NASAL DIPHTHONG — ão→[õw̃] (already present). NOTES-ONLY: boi→[bô], pastar→[pɐʃˈtâ] — lexical; e→i extreme reduction — optional island-specific; sporadic l-palatalization; inter-island variation is substantial. Sources: DIALECT_PATTERNS.md §Açores Fronted u, §Nasal Patterns, §Special Cases; whitepaper5.",
+  "quality": "research",
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Standard European Portuguese; Azorean diverges in stressed u→y (São Miguel), nasal diphthong reduction (→nasal+n), and /ow/ preservation"
+    }
+  ],
+  "urls": [
+    "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
+  ],
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "allophones_base": "pt-PT",
-    "allophones": {
-        "ə": [
-            "ɨ",
-            "e"
-        ],
-        "ɐ̃": [
-            "ɐ̃",
-            "õ"
-        ]
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "positional_graphemes_base": "pt-PT",
-    "parent": "pt-PT",
-    "notes": "Azorean Portuguese, spoken across the nine islands of the Azores archipelago; reference point is Terceira Island. Key phonological features: (1) diagnostic raised nasal diphthong [õw̃] for mainland EP [ɐ̃w̃] — e.g. não [nõw̃], mão [mõw̃]; (2) conservative preservation of full unstressed vowels — /e/, /o/ resist reduction that mainland EP applies; (3) archaic distinction between /ʒ/ (as in hoje) and /ʃ/ (as in caixa) maintained without merger or neutralization; (4) cluster simplification: muito → [mũt], outros → [otɾ]; (5) /a/ in unstressed syllables realised as [a] rather than mainland [ɐ]; (6) vowel breaking before nasal consonants produces diphthongs not found in standard EP; (7) inter-island variation: São Miguel has distinct /ɛ/ lowering; Flores retains more archaic forms. Prosodically slower with syllable-timed characteristics, contrasting with mainland stress-timing. Glottolog approximation: azor1234 (placeholder).",
-    "quality": "research",
-    "ancestors": [
-        {
-            "code": "pt-PT",
-            "role": "parent",
-            "weight": 0.85,
-            "notes": "Standard European Portuguese; Azorean diverges in nasal diphthong raising, vowel reduction resistance, and archaic /ʒ/ preservation"
-        }
-    ],
-    "urls": [
-        "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
-    ],
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "mateus_dandrade2000",
-            "author": "Mateus, M.H.M. & d'Andrade, E.",
-            "year": 2000,
-            "title": "The Phonology of Portuguese",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "cunha_cintra1984",
-            "author": "Cunha, C. & Cintra, L.F.L.",
-            "year": 1984,
-            "title": "Nova Gramática do Português Contemporâneo",
-            "publisher": "Sá da Costa",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "boleo1974",
-            "author": "Boléo, M.P.",
-            "year": 1974,
-            "title": "Estudos de linguística portuguesa e românica",
-            "publisher": "Universidade de Coimbra",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
-    ],
-    "wikipedia": [
-        "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
-    ],
-    "timespan": {
-        "start_year": 1500,
-        "end_year": null
+    {
+      "id": "boleo1974",
+      "author": "Boléo, M.P.",
+      "year": 1974,
+      "title": "Estudos de linguística portuguesa e românica",
+      "publisher": "Universidade de Coimbra",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "glottolog_code": null,
-    "iso639_3": "por"
+    {
+      "id": "tigregotico_dialect_research_2026",
+      "author": "TigreGotico",
+      "year": 2026,
+      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
+      "publisher": "TigreGotico internal research",
+      "url": null,
+      "pages": null,
+      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
+    }
+  ],
+  "wikipedia": [
+    "https://pt.wikipedia.org/wiki/Dialeto_a%C3%A7oriano"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }
