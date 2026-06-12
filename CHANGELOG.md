@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- feat\(data\): arabic dialect expansion and review [\#62](https://github.com/TigreGotico/orthography2ipa/pull/62) ([JarbasAl](https://github.com/JarbasAl))
 - feat\(data\): portuguese dialect stress and reduction systems [\#61](https://github.com/TigreGotico/orthography2ipa/pull/61) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.9.0a1) (2026-06-12)
