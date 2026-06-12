@@ -44,12 +44,49 @@ _WIKIPRON_BASE = (
     "https://raw.githubusercontent.com/CUNY-CL/wikipron/master/data/scrape/tsv/"
 )
 _WIKIPRON_FILES = {
+    # --- already wired ---
     "gl": "glg_latn_broad.tsv",
     "es": "spa_latn_la_broad.tsv",
     "pt": "por_latn_po_broad.tsv",
     "pt-BR": "por_latn_bz_broad.tsv",
     "en": "eng_latn_us_broad.tsv",
     "en-GB": "eng_latn_uk_broad.tsv",
+    # --- Romance ---
+    "it": "ita_latn_broad.tsv",          # ~90k rows
+    "fr": "fra_latn_broad.tsv",          # ~98k rows
+    "ro": "ron_latn_broad.tsv",          # ~9k rows
+    "ast": "ast_latn_broad.tsv",         # ~4k rows
+    "oc": "oci_latn_broad.tsv",          # ~750 rows
+    # --- Germanic ---
+    "de": "deu_latn_broad.tsv",          # ~60k rows
+    "nl": "nld_latn_broad.tsv",          # ~59k rows
+    "sv": "swe_latn_broad.tsv",          # ~6k rows
+    "da": "dan_latn_broad.tsv",          # ~5k rows
+    "nb": "nob_latn_broad.tsv",          # ~3k rows
+    "is": "isl_latn_broad.tsv",          # ~11k rows
+    # --- Celtic ---
+    "cy": "cym_latn_nw_broad.tsv",       # ~17k rows (NW dialect)
+    "ga": "gle_latn_broad.tsv",          # ~21k rows
+    "gd": "gla_latn_broad.tsv",          # ~6k rows
+    # --- Slavic ---
+    "pl": "pol_latn_broad.tsv",          # ~157k rows
+    "sk": "slk_latn_broad.tsv",          # ~16k rows
+    "hr": "hbs_latn_broad.tsv",          # ~26k rows (hbs covers hr/bs/sr Latin)
+    # --- Other Indo-European ---
+    "el": "ell_grek_broad.tsv",          # ~20k rows
+    "hy": "hye_armn_e_broad.tsv",        # ~18k rows (Eastern Armenian)
+    "sq": "sqi_latn_broad.tsv",          # ~5k rows
+    "tr": "tur_latn_broad.tsv",          # ~12k rows
+    # --- Uralic / Basque ---
+    "fi": "fin_latn_broad.tsv",          # ~173k rows
+    "eu": "eus_latn_broad.tsv",          # ~20k rows
+    # --- Other ---
+    "tl": "tgl_latn_broad.tsv",          # ~28k rows
+    "eo": "epo_latn_broad.tsv",          # ~41k rows
+    # --- Indo-Aryan / Dravidian (native script) ---
+    "hi": "hin_deva_broad.tsv",          # ~33k rows, Devanagari
+    "ta": "tam_taml_broad.tsv",          # ~10k rows, Tamil script
+    "ml": "mal_mlym_broad.tsv",          # ~10k rows, Malayalam script
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
@@ -59,6 +96,17 @@ _MIRANDESE_DIALECTS = {"mwl": "central", "mwl-x-sendim": "sendinese"}
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
+# ipa-dict: open pronunciation dictionaries maintained by the open-dict-data project.
+# Source per-language; always verify provenance via the Credits section of the README.
+# https://github.com/open-dict-data/ipa-dict
+_IPADICT_BASE = (
+    "https://raw.githubusercontent.com/open-dict-data/ipa-dict/master/data/"
+)
+# Icelandic: from the Hjal project / "Pronunciation Dictionary for Icelandic"
+# (Malfong.is), CC BY 3.0. ~60k entries. Human-curated by Icelandic linguists.
+_IPADICT_FILES = {
+    "is": "is.txt",
+}
 
 
 def _fetch(url: str, name: str) -> str:
@@ -132,6 +180,33 @@ def load_cmudict(lang: str, limit: int) -> List[Tuple[str, str]]:
             continue
         seen.add(word)
         pairs.append((word, arpa_to_ipa(" ".join(parts[1:]))))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+def load_ipadict(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """ipa-dict pronunciation dictionaries (open-dict-data/ipa-dict).
+
+    Provenance is **per-language** — see ``_IPADICT_FILES`` docstrings and
+    the project README Credits section before adding new languages. Each
+    entry uses the format ``word TAB /IPA/`` with IPA enclosed in slashes.
+
+    Currently wired languages:
+
+    - ``is`` (Icelandic): from the Hjal project / "Pronunciation Dictionary
+      for Icelandic" (malfong.is), CC BY 3.0, ~60k human-curated entries.
+    """
+    fname = _IPADICT_FILES[lang]
+    text = _fetch(_IPADICT_BASE + fname, f"ipadict_{fname}")
+    pairs = []
+    for line in text.strip().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 2:
+            word = parts[0].strip().lower()
+            ipa = parts[1].strip().strip("/")
+            if word and ipa:
+                pairs.append((word, ipa))
         if len(pairs) >= limit:
             break
     return pairs
@@ -214,6 +289,7 @@ DATASETS = {
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "mirandese": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "cmudict": (load_cmudict, ["en-US"]),
+    "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
 }
 
 
