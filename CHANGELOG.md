@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.13.0a1) (2026-06-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.12.0a1...1.13.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): mirandese specs grounded in the orthographic convention [\#72](https://github.com/TigreGotico/orthography2ipa/pull/72) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.12.0a1) (2026-06-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.11.0a1...1.12.0a1)
