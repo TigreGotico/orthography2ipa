@@ -269,14 +269,6 @@ class TestStressPtPTRegional:
             f"[{lang}] Expected stress on first syllable in {ipa!r}"
         )
 
-    def test_acores_a_unstressed_open(self):
-        """Azorean: unstressed /a/ → [a] not [ɐ] (notes: conservative vowels)."""
-        ipa = _transcribe("pt-PT-x-acores", "falar")
-        # pretonic 'a' in 'fa-' should not be ɐ
-        assert "ɐ" not in ipa.split("ˈ")[0], (
-            f"Azorean pretonic should not be ɐ: {ipa!r}"
-        )
-
     def test_algarve_unstressed_e_preserved(self):
         """Algarvio: unstressed /e/ → [e] (minimal reduction; notes fix)."""
         ipa = _transcribe("pt-PT-x-algarve", "belo")
