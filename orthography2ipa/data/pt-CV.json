@@ -1,119 +1,158 @@
 {
-    "code": "pt-CV",
-    "glottolog_code": "port1283",
-    "name": "Cape Verdean Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "quality": "skeleton",
-    "script_type": "alphabet",
-    "parent": "pt-PT",
-    "graphemes_base": "pt-PT",
-    "allophones_base": "pt-PT",
-    "positional_graphemes_base": "pt-PT",
-    "graphemes": {
-        "r": [
-            "r",
-            "ɾ"
-        ],
-        "rr": [
-            "r"
-        ],
-        "e": [
-            "e",
-            "ɛ"
-        ],
-        "o": [
-            "o",
-            "ɔ"
-        ]
+  "code": "pt-CV",
+  "glottolog_code": "port1283",
+  "name": "Cape Verdean Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "positional_graphemes_base": "pt-PT",
+  "graphemes": {
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ]
+  },
+  "allophones": {
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "ʁ": [
+      "r"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "European Portuguese colonial base. Cape Verde was settled by Portuguese from 1462; its Portuguese variety is among the oldest extra-peninsular varieties."
     },
-    "allophones": {
-        "r": [
-            "r",
-            "ɾ"
-        ],
-        "ʁ": [
-            "r"
-        ]
-    },
-    "ancestors": [
-        {
-            "code": "pt-PT",
-            "role": "parent",
-            "weight": 0.75,
-            "notes": "European Portuguese colonial base. Cape Verde was settled by Portuguese from 1462; its Portuguese variety is among the oldest extra-peninsular varieties."
-        },
-        {
-            "code": "kea",
-            "role": "adstrate",
-            "weight": 0.2,
-            "notes": "Cape Verdean Creole (Kriolu/Kabuverdianu) adstrate: the dominant vernacular of Cape Verde, spoken by virtually all Cape Verdeans as L1. Heavy bidirectional influence with Portuguese. Cape Verdean Creole is itself descended from Portuguese."
-        }
-    ],
-    "notes": "Cape Verdean Portuguese (Português de Cabo Verde). Official language alongside Kabuverdianu (Cape Verdean Creole). Used in government, education, and formal contexts. Cape Verde is unique in that the vast majority of the population speaks the Creole as their first language; Portuguese functions as a prestige written/formal variety. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: like other African varieties, unstressed vowel reduction (/ɨ/) is greatly reduced or absent. (2) SIBILANTS: coda /s/ typically remains [s] (not [ʃ]). (3) RHOTIC: alveolar [r] rather than uvular [ʁ]. (4) OPEN VOWELS: /e/ and /o/ tend toward more open realisations [ɛ] and [ɔ]. (5) CREOLE INFLUENCE: some syntactic and phonological patterns from Kabuverdianu. Two main Creole varieties (Sotavento/Santiago and Barlavento/São Vicente) create sub-regional variation. Sources: Lang (2009), Baptista (2002), Veiga (2004).",
-    "sources": [
-        {
-            "id": "lang2009",
-            "author": "Lang, J.",
-            "year": 2009,
-            "title": "Português de Cabo Verde",
-            "publisher": "Caminho",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "baptista2002",
-            "author": "Baptista, M.",
-            "year": 2002,
-            "title": "The Syntax of Cape Verdean Creole",
-            "publisher": "John Benjamins",
-            "url": null,
-            "pages": null,
-            "notes": "Key reference for Creole-Portuguese interaction"
-        },
-        {
-            "id": "veiga2004",
-            "author": "Veiga, M.",
-            "year": 2004,
-            "title": "A construção do bilinguismo",
-            "publisher": "Instituto da Biblioteca Nacional e do Livro",
-            "url": null,
-            "pages": null,
-            "notes": "Cape Verde bilingualism: Creole and Portuguese"
-        }
-    ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Cape_Verdean_Portuguese",
-        "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_cabo-verdiano"
-    ],
-    "urls": [
-        "https://en.wikipedia.org/wiki/Cape_Verdean_Portuguese",
-        "https://en.wikipedia.org/wiki/Cape_Verdean_Creole",
-        "https://en.wikipedia.org/wiki/Languages_of_Cape_Verde",
-        "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_cabo-verdiano"
-    ],
-    "timespan": {
-        "start_year": 1800,
-        "end_year": null
-    },
-    "iso639_3": "por",
-    "positional_graphemes": {
-        "s": {
-            "coda": [
-                "s"
-            ],
-            "word_final": [
-                "s"
-            ]
-        },
-        "e": {
-            "nucleus_unstressed": [
-                "e"
-            ],
-            "word_final": [
-                "e"
-            ]
-        }
+    {
+      "code": "kea",
+      "role": "adstrate",
+      "weight": 0.2,
+      "notes": "Cape Verdean Creole (Kriolu/Kabuverdianu) adstrate: the dominant vernacular of Cape Verde, spoken by virtually all Cape Verdeans as L1. Heavy bidirectional influence with Portuguese. Cape Verdean Creole is itself descended from Portuguese."
     }
+  ],
+  "notes": "Cape Verdean Portuguese (Português de Cabo Verde). Official language alongside Kabuverdianu (Cape Verdean Creole). Used in government, education, and formal contexts. Cape Verde is unique in that the vast majority of the population speaks the Creole as their first language; Portuguese functions as a prestige written/formal variety. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: like other African varieties, unstressed vowel reduction (/ɨ/) is greatly reduced or absent. (2) SIBILANTS: coda /s/ typically remains [s] (not [ʃ]). (3) RHOTIC: alveolar [r] rather than uvular [ʁ]. (4) OPEN VOWELS: /e/ and /o/ tend toward more open realisations [ɛ] and [ɔ]. (5) CREOLE INFLUENCE: some syntactic and phonological patterns from Kabuverdianu. Two main Creole varieties (Sotavento/Santiago and Barlavento/São Vicente) create sub-regional variation. Sources: Lang (2009), Baptista (2002), Veiga (2004).",
+  "sources": [
+    {
+      "id": "lang2009",
+      "author": "Lang, J.",
+      "year": 2009,
+      "title": "Português de Cabo Verde",
+      "publisher": "Caminho",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "baptista2002",
+      "author": "Baptista, M.",
+      "year": 2002,
+      "title": "The Syntax of Cape Verdean Creole",
+      "publisher": "John Benjamins",
+      "url": null,
+      "pages": null,
+      "notes": "Key reference for Creole-Portuguese interaction"
+    },
+    {
+      "id": "veiga2004",
+      "author": "Veiga, M.",
+      "year": 2004,
+      "title": "A construção do bilinguismo",
+      "publisher": "Instituto da Biblioteca Nacional e do Livro",
+      "url": null,
+      "pages": null,
+      "notes": "Cape Verde bilingualism: Creole and Portuguese"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Cape_Verdean_Portuguese",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_cabo-verdiano"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Cape_Verdean_Portuguese",
+    "https://en.wikipedia.org/wiki/Cape_Verdean_Creole",
+    "https://en.wikipedia.org/wiki/Languages_of_Cape_Verde",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_cabo-verdiano"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "positional_graphemes": {
+    "s": {
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "e"
+      ],
+      "word_final": [
+        "e"
+      ]
+    }
+  },
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }

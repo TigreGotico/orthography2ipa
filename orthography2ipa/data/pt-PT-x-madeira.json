@@ -1,96 +1,134 @@
 {
-    "code": "pt-PT-x-madeira",
-    "name": "Madeiran Portuguese",
-    "family": "Romance",
-    "script": "Latin",
-    "graphemes_base": "pt-PT",
-    "graphemes": {
-        "ões": [
-            "õns"
-        ],
-        "ãos": [
-            "ɐ̃ns"
-        ],
-        "ães": [
-            "ɐ̃ns"
-        ]
+  "code": "pt-PT-x-madeira",
+  "name": "Madeiran Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "graphemes": {
+    "ões": [
+      "õns"
+    ],
+    "ãos": [
+      "ɐ̃ns"
+    ],
+    "ães": [
+      "ɐ̃ns"
+    ]
+  },
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "l": [
+      "l",
+      "ʎ"
+    ],
+    "i": [
+      "i",
+      "ɐj"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Madeiran Portuguese (Ribeira Brava, Funchal). Categorical features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) NASAL DIPHTHONG → NASAL+N — the major productive pattern: plural endings -ões→[õns], -ães→[ɐ̃ns] (verões→[vɨˈɾõns], cães→[kɐ̃ns]); encoded as multi-character graphemes; (2) /v/ ≠ /b/ — distinction preserved, no betacism; (3) nasal vowels retain broad [ɐ̃] quality. NOTES-ONLY (sporadic/lexical — not encoded): l-palatalization (quilo→quilho, mochila→mochilha — specific lexical items only; retained as allophone variant); r-diphthongization (correr→[kuˈʁweɾ] — lexical, not systematic); Filipa→[fʎipɐ] — a lexicalized item. NOTES-ONLY: stop aspiration [pʰ, tʰ, kʰ] and final devoicing of voiced obstruents are suprasegmental/allophonic features outside grapheme schema scope. Sources: DIALECT_PATTERNS.md §Nasal Patterns §Palatalization; whitepaper5 §5.",
+  "quality": "research",
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Standard European Portuguese; Madeiran diverges in nasal diphthong reduction (→nasal+n), and retains archaic vowel qualities from 15th-century settlement"
+    }
+  ],
+  "urls": [
+    "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
+  ],
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "allophones_base": "pt-PT",
-    "allophones": {
-        "l": [
-            "l",
-            "ʎ"
-        ],
-        "i": [
-            "i",
-            "ɐj"
-        ]
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "positional_graphemes_base": "pt-PT",
-    "parent": "pt-PT",
-    "notes": "Madeiran Portuguese (Ribeira Brava, Funchal). Categorical features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) NASAL DIPHTHONG → NASAL+N — the major productive pattern: plural endings -ões→[õns], -ães→[ɐ̃ns] (verões→[vɨˈɾõns], cães→[kɐ̃ns]); encoded as multi-character graphemes; (2) /v/ ≠ /b/ — distinction preserved, no betacism; (3) nasal vowels retain broad [ɐ̃] quality. NOTES-ONLY (sporadic/lexical — not encoded): l-palatalization (quilo→quilho, mochila→mochilha — specific lexical items only; retained as allophone variant); r-diphthongization (correr→[kuˈʁweɾ] — lexical, not systematic); Filipa→[fʎipɐ] — a lexicalized item. NOTES-ONLY: stop aspiration [pʰ, tʰ, kʰ] and final devoicing of voiced obstruents are suprasegmental/allophonic features outside grapheme schema scope. Sources: DIALECT_PATTERNS.md §Nasal Patterns §Palatalization; whitepaper5 §5.",
-    "quality": "research",
-    "ancestors": [
-        {
-            "code": "pt-PT",
-            "role": "parent",
-            "weight": 0.85,
-            "notes": "Standard European Portuguese; Madeiran diverges in nasal diphthong reduction (→nasal+n), and retains archaic vowel qualities from 15th-century settlement"
-        }
-    ],
-    "urls": [
-        "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
-    ],
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "mateus_dandrade2000",
-            "author": "Mateus, M.H.M. & d'Andrade, E.",
-            "year": 2000,
-            "title": "The Phonology of Portuguese",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "cunha_cintra1984",
-            "author": "Cunha, C. & Cintra, L.F.L.",
-            "year": 1984,
-            "title": "Nova Gramática do Português Contemporâneo",
-            "publisher": "Sá da Costa",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "boleo1974",
-            "author": "Boléo, M.P.",
-            "year": 1974,
-            "title": "Estudos de linguística portuguesa e românica",
-            "publisher": "Universidade de Coimbra",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "tigregotico_dialect_research_2026",
-            "author": "TigreGotico",
-            "year": 2026,
-            "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
-            "publisher": "TigreGotico internal research",
-            "url": null,
-            "pages": null,
-            "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
-        }
-    ],
-    "wikipedia": [
-        "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
-    ],
-    "timespan": {
-        "start_year": 1500,
-        "end_year": null
+    {
+      "id": "boleo1974",
+      "author": "Boléo, M.P.",
+      "year": 1974,
+      "title": "Estudos de linguística portuguesa e românica",
+      "publisher": "Universidade de Coimbra",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "glottolog_code": null,
-    "iso639_3": "por"
+    {
+      "id": "tigregotico_dialect_research_2026",
+      "author": "TigreGotico",
+      "year": 2026,
+      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
+      "publisher": "TigreGotico internal research",
+      "url": null,
+      "pages": null,
+      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
+    }
+  ],
+  "wikipedia": [
+    "https://pt.wikipedia.org/wiki/Dialeto_madeirense"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
 }
