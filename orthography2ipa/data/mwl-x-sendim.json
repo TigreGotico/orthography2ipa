@@ -20,27 +20,50 @@
   },
   "allophones_base": "mwl",
   "positional_graphemes_base": "mwl",
+  "positional_graphemes": {
+    "l": {
+      "word_initial": [
+        "l"
+      ],
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "ɫ"
+      ]
+    }
+  },
   "parent": "mwl",
-  "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). Differs from central Mirandese in: (1) monophthongization of -iê- → -i- and -uô- → -u- (tirra not tiêrra, curpo not cuôrpo); (2) NO palatalization of initial L- (luna not lhuna, lobo not lhobu). Orthographic addendum (2000) reflects these differences. Written ⟨-ie-⟩ and ⟨-uo-⟩ instead of ⟨-iê-⟩ and ⟨-uô-⟩.",
+  "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). Differs from central Mirandese in: (1) monophthongisation of ⟨iê/ie⟩ → /i/ and ⟨uô/uo⟩ → /u/ (tirra not tiêrra, curpo not cuôrpo); (2) NO word-initial /ʎ/ palatalisation: initial ⟨l-⟩ stays /l/ (luna not lhuna, lobo not lhobu). The Primeiro Aditamento à Convenção (February 2000) explicitly permits Sendinese writers to use ⟨l-⟩ word-initially to represent /l/ (not /ʎ/). Sendinese uses ⟨ie⟩/⟨uo⟩ (no accent marks) where central Mirandese writes ⟨iê⟩/⟨uô⟩, reflecting absence of the diphthong.",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
+    {
+      "id": "convencao1999",
+      "author": "Ferreira, M.B. & Raposo, D. (coords.)",
+      "year": 1999,
+      "title": "Convenção Ortográfica da Língua Mirandesa",
+      "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
+      "url": "http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf",
+      "pages": "62",
+      "notes": "Official orthography, base document for all Mirandese variants."
+    },
+    {
+      "id": "aditamento2000",
+      "author": "Ferreira, M.B. & Raposo, D. (coords.)",
+      "year": 2000,
+      "title": "Primeiro Aditamento à Convenção Ortográfica da Língua Mirandesa",
+      "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
+      "url": null,
+      "pages": null,
+      "notes": "February 2000 addendum. Codifies Sendinese l- (not lh-) word-initially; Sendinese ie/uo (no accent) vs central iê/uô. Source: secondary (standalone PDF not located)."
+    },
     {
       "id": "ferreira1995",
       "author": "Ferreira, M.B.",
       "year": 1995,
       "title": "Variação linguística: perspectiva dialectológica",
       "publisher": "Universidade de Lisboa",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "mateus_dandrade2000",
-      "author": "Mateus, M.H.M. & d'Andrade, E.",
-      "year": 2000,
-      "title": "The Phonology of Portuguese",
-      "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
       "notes": null
