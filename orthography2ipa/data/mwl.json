@@ -28,7 +28,7 @@
     }
   ],
   "quality": "research",
-  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/, palatal lateral /ʎ/ preserved, nasal vowels influenced by Portuguese orthographic proximity. Heavy Portuguese adstrate via official education and administration. Mirandese preserves the full medieval six-sibilant contrast: apical /s̺ z̺/ (⟨s⟩, intervocalic ⟨-s-⟩), laminal /s̻ z̻/ (⟨c, ç⟩, ⟨z⟩), postalveolar /ʃ ʒ/ (⟨x⟩, ⟨j, g⟩). Hence ⟨j⟩ is /ʒ/ (western Iberian, never the Asturian palatal ʝ) and ⟨ç⟩ is the voiceless laminal fricative /s̻/, not an affricate; ⟨ç⟩ also occurs word-finally (rapaç, lhuç) where Portuguese writes -z.",
+  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/ (written ⟨iê/ie⟩, ⟨uô/uo⟩), palatal lateral /ʎ/ preserved (written ⟨lh⟩ in all positions; word-initial ⟨l⟩ before vowel = /ʎ/ in traditional lexicon per Convenção § L). Heavy Portuguese adstrate via official education and administration. Mirandese preserves the full medieval six-sibilant contrast: apical /s̺ z̺/ (⟨s⟩, intervocalic ⟨-s-⟩), laminal /s̻ z̻/ (⟨c, ç⟩, ⟨z⟩), postalveolar /ʃ ʒ/ (⟨x⟩, ⟨j, g⟩). Hence ⟨j⟩ is /ʒ/ (western Iberian, never the Asturian palatal ʝ) and ⟨ç⟩ is the voiceless laminal fricative /s̻/, not an affricate; ⟨ç⟩ also occurs word-finally (rapaç, lhuç) where Portuguese writes -z. Nasal digraphs ⟨an, en, in, on, un⟩ mark nasal vowels only at word boundaries and in nasal-onset syllables; they do NOT nasalise sequences before consonants (brando = /bɾ-a-n-do/, NOT /bɾ-ɐ̃-do/).",
   "sources": [
     {
       "id": "ferreira1995",
@@ -76,9 +76,19 @@
       "year": 1999,
       "title": "Convenção Ortográfica da Língua Mirandesa",
       "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
+      "url": "http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf",
+      "pages": "62",
+      "notes": "Official orthography. § L: word-initial l before vowel = /ʎ/ in traditional lexicon (bare l occurs only in loanwords/proper nouns/article). § Nasalidade: an/en/in/on/un are nasal-vowel digraphs at word boundaries; they do NOT nasalise sequences before onset consonants. § Sibilantes: six-way contrast s̺/z̺/s̻/z̻/ʃ/ʒ. § Ditongos: iê/ie = /je/ (stressed /jɛ/); uô/uo = /wo/ (stressed /wɔ/). § Acento: paroxytone default; oxytone for -r/-l/-z/-ç/-in/-un/-on/-is/-us/-ns/-ão endings."
+    },
+    {
+      "id": "aditamento2000",
+      "author": "Ferreira, M.B. & Raposo, D. (coords.)",
+      "year": 2000,
+      "title": "Primeiro Aditamento à Convenção Ortográfica da Língua Mirandesa",
+      "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
       "url": null,
       "pages": null,
-      "notes": "Official orthography: grapheme-phoneme conventions and Portuguese-based accentuation rules."
+      "notes": "February 2000 addendum. Key provision: Sendinese speakers may optionally write word-initial l- (not lh-) to represent /l/ rather than /ʎ/ (e.g., luna/lhuna). Sendinese monophthongisation of iê→i and uô→u also codified. Source: secondary (studosmirandeses.blogs.sapo.pt, cursodemirandes.wordpress.com); standalone PDF not located."
     }
   ],
   "wikipedia": [
@@ -144,9 +154,42 @@
     "g": [
       "ɡ",
       "ʒ"
+    ],
+    "ie": [
+      "jɛ"
+    ],
+    "iê": [
+      "jɛ"
+    ],
+    "uô": [
+      "wɔ"
     ]
   },
   "positional_graphemes": {
+    "b": {
+      "word_initial": [
+        "b"
+      ],
+      "after_consonant": [
+        "b"
+      ],
+      "intervocalic": [
+        "b",
+        "β"
+      ]
+    },
+    "d": {
+      "word_initial": [
+        "d"
+      ],
+      "after_consonant": [
+        "d"
+      ],
+      "intervocalic": [
+        "d",
+        "ð"
+      ]
+    },
     "c": {
       "before_e": [
         "s̻"
