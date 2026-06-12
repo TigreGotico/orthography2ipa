@@ -3,7 +3,6 @@
   "name": "Caipira Portuguese",
   "family": "Romance",
   "script": "Latin",
-  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -196,7 +195,6 @@
       "õj̃"
     ]
   },
-  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -319,28 +317,6 @@
       "ũ"
     ]
   },
-  "positional_graphemes_base": "pt-BR",
-  "positional_graphemes": {
-    "r": {
-      "word_initial": [
-        "h",
-        "x"
-      ],
-      "intervocalic": [
-        "ɾ"
-      ],
-      "before_consonant": [
-        "ɻ"
-      ],
-      "coda": [
-        "ɻ"
-      ],
-      "word_final": [
-        "ɻ",
-        ""
-      ]
-    }
-  },
   "parent": "pt-BR",
   "notes": "Caipira (SP interior, western Minas Gerais, Goiás, Mato Grosso, Mato Grosso do Sul, Paraná hinterland). Hallmark: retroflex approximant rhotic [ɻ] in coda and clusters — the 'erre caipira / erre retroflexo' (porta -> [ˈpɔɻtɐ], mar -> [maɻ]). Possibly the oldest Brazilian coda-rhotic pattern (Amaral 1920). Coda /S/ stays alveolar. /t,d/ palatalisation present; rural depalatalisation of /ʎ/ -> [j] (encoded in allophones).",
   "quality": "research",
@@ -394,7 +370,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "por",
   "stress": {
     "default_position": -2,
@@ -434,5 +409,29 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "h",
+        "x"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "ɻ"
+      ],
+      "coda": [
+        "ɻ"
+      ],
+      "word_final": [
+        "ɻ",
+        ""
+      ]
+    }
   }
 }

@@ -3,7 +3,6 @@
   "name": "Paulistano Portuguese",
   "family": "Romance",
   "script": "Latin",
-  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -196,7 +195,6 @@
       "õj̃"
     ]
   },
-  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -317,8 +315,6 @@
       "ũ"
     ]
   },
-  "positional_graphemes_base": "pt-BR",
-  "positional_graphemes": {},
   "parent": "pt-BR",
   "notes": "Paulistano (São Paulo city / São Paulo State urban variety). Reference variety of Barbosa & Albano (2004, JIPA). Inherits the pt-BR base unchanged: full /t,d/ -> [t͡ʃ,d͡ʒ] before [i,ɪ]; strong onset /r/ -> [ʁ~x~h]; coda /R/ tap [ɾ] preferred (NOT retroflex), drops word-finally in infinitives; coda /S/ stays alveolar [s,z] by voicing assimilation (NO chiado); coda /l/ -> [w]; post-stressed and word-final reduction [ɪ ʊ ɐ]; /ɲ/ frequently -> [j̃]; word-initial pretonic /eN/ -> [ĩ] (então -> [ĩˈtɐ̃w̃]). Prestige standard of southeastern media alongside Carioca.",
   "quality": "research",
@@ -372,7 +368,6 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "por",
   "stress": {
     "default_position": -2,
@@ -412,5 +407,9 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
-  }
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {}
 }

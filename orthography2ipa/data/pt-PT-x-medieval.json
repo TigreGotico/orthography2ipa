@@ -210,5 +210,28 @@
     "end_year": 1500
   },
   "glottolog_code": "oldp1255",
-  "iso639_3": "por"
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "à"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Medieval Portuguese stress: paroxytone default; grave accent (à) marks stress override; no written circumflex or acute in early medieval orthography."
+  }
 }

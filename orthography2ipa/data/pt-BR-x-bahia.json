@@ -3,7 +3,6 @@
   "name": "Bahian Portuguese",
   "family": "Romance",
   "script": "Latin",
-  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -196,7 +195,6 @@
       "õj̃"
     ]
   },
-  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -324,31 +322,6 @@
       "dʒ"
     ]
   },
-  "positional_graphemes_base": "pt-BR",
-  "positional_graphemes": {
-    "e": {
-      "pretonic": [
-        "ɛ"
-      ],
-      "word_final": [
-        "ɪ"
-      ],
-      "posttonic": [
-        "ɪ"
-      ]
-    },
-    "o": {
-      "pretonic": [
-        "ɔ"
-      ],
-      "word_final": [
-        "ʊ"
-      ],
-      "posttonic": [
-        "ʊ"
-      ]
-    }
-  },
   "parent": "pt-BR",
   "notes": "Baiano (Salvador and Bahia). Northeastern-type open pretonic vowels /e/ -> [ɛ], /o/ -> [ɔ]. RESOLVED contradiction (prior notes said 'no /t,d/ palatalisation', but the inventory carried [t͡ʃ,d͡ʒ]): the two ALiB phenomena are distinct — Salvador DOES palatalise /t,d/ before /i/ ('africadas baianas', following the broad Brazilian pattern), and only the separate post-glide context (muito, oito) shows low rates. Palatalisation before /i/ is therefore RETAINED. Coda /S/ stays ALVEOLAR [s,z] in Salvador and the Bahian interior (NOT the Recife/Carioca chiado). Some /ʎ/ -> [j] weakening (allophones). Afro-Brazilian prosodic substratum.",
   "quality": "research",
@@ -412,7 +385,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "por",
   "stress": {
     "default_position": -2,
@@ -452,5 +424,32 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "e": {
+      "pretonic": [
+        "ɛ"
+      ],
+      "word_final": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "ɔ"
+      ],
+      "word_final": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    }
   }
 }

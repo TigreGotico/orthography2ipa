@@ -106,8 +106,8 @@ class TestGraphemeTable:
         assert rionor.graphemes.get("iê") == ["je"]
 
     def test_ua_diphthong(self, rionor):
-        """uâ → wa."""
-        assert rionor.graphemes.get("uâ") == ["wa"]
+        """uâ → wɐ (timbre semelhante ao -a fechado do português — Macias 2003, p. 26)."""
+        assert rionor.graphemes.get("uâ") == ["wɐ"]
 
     def test_uo_diphthong(self, rionor):
         """uô → wɔ."""
@@ -351,9 +351,9 @@ class TestTokenizerTranscription:
         assert "ju" in result
 
     def test_puarta(self, tok):
-        """puârta → pwaɾta (uâ→wa)."""
+        """puârta → pwɐɾta (uâ→wɐ, Macias 2003, p. 26)."""
         result = tok.ipa_best("puârta")
-        assert "wa" in result
+        assert "wɐ" in result
 
     def test_pan_nasal(self, tok):
         """pan → pɐ̃ (an→ɐ̃ digraph from parent)."""

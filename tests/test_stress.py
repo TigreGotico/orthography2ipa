@@ -305,7 +305,16 @@ class TestBarranquenhoStress:
         assert rules is not None
         assert rules.default_position == -2
         assert "á" in rules.marked_vowels
-        assert "r" in rules.final_stress_endings
+        # Convenção 2025 + Gramática 2025: final -r and -l are deleted and not written
+        # in canonical Barranquenho orthography; they are NOT oxytone triggers.
+        assert "r" not in rules.final_stress_endings
+        # Nasal diphthong endings -âu/-âi/-ôi ARE oxytone triggers (Convenção pp. 26–27)
+        assert "âu" in rules.final_stress_endings
+        assert "âi" in rules.final_stress_endings
+        assert "ôi" in rules.final_stress_endings
+        # Final unmarked -i/-u are PAROXYTONE atone endings in Barranquenho
+        assert "i" not in rules.final_stress_endings
+        assert "u" not in rules.final_stress_endings
 
     @pytest.mark.parametrize("word,expected", [
         # paroxytone default (vowel-final)
@@ -314,9 +323,13 @@ class TestBarranquenhoStress:
         # unmarked -em/-am stay paroxytone, as in Portuguese norms
         ("homem",  0),   # ho-mem → penult
         ("falam",  0),   # fa-lam → penult
-        # oxytone endings
-        ("falar",  1),   # fa-lar → final
-        ("caju",   1),   # ca-ju → -u oxytone
+        # falar: in canonical Barranquenho this would be written cantá (r deleted);
+        # if encountered in pt-PT spelling, -r is no longer an oxytone trigger
+        # (Convenção p. 32; Gramática p. 20) — paroxytone fallback
+        ("falar",  0),   # fa-lar → penult (r not an oxytone trigger in Barranquenho)
+        # caju: final -u is the regular atone ending in Barranquenho (not oxytone)
+        # (Gramática p. 12, 14 — paroxytone default for unmarked -u)
+        ("caju",   0),   # ca-ju → penult (unmarked -u is paroxytone)
         # written accent overrides
         ("café",   1),   # ca-fé → accent on last
         ("médico", 0),   # mé-di-co → accent on first

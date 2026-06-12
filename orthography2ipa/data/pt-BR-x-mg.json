@@ -3,7 +3,6 @@
   "name": "Mineiro Portuguese",
   "family": "Romance",
   "script": "Latin",
-  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -196,7 +195,6 @@
       "õj̃"
     ]
   },
-  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -318,31 +316,6 @@
       "ũ"
     ]
   },
-  "positional_graphemes_base": "pt-BR",
-  "positional_graphemes": {
-    "e": {
-      "pretonic": [
-        "i"
-      ],
-      "word_final": [
-        "ɪ"
-      ],
-      "posttonic": [
-        "ɪ"
-      ]
-    },
-    "o": {
-      "pretonic": [
-        "u"
-      ],
-      "word_final": [
-        "ʊ"
-      ],
-      "posttonic": [
-        "ʊ"
-      ]
-    }
-  },
   "parent": "pt-BR",
   "notes": "Mineiro (Minas Gerais, Belo Horizonte-centred). Diagnostic: strong pretonic vowel raising /e/ -> [i], /o/ -> [u] (menino -> [miˈninʊ], coruja -> [kuˈɾuʒɐ]). Coda /S/ stays alveolar [s,z] (NOT palatal). Full /t,d/ palatalisation. Transitional: BH city uses tap [ɾ], the rural interior shares the caipira retroflex [ɻ] (noted, not the encoded default). Extreme posttonic reduction and syllable loss are stereotyped but prosodic, not encoded.",
   "quality": "research",
@@ -406,7 +379,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "por",
   "stress": {
     "default_position": -2,
@@ -446,5 +418,32 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "e": {
+      "pretonic": [
+        "i"
+      ],
+      "word_final": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "u"
+      ],
+      "word_final": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    }
   }
 }

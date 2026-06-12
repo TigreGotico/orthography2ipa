@@ -3,7 +3,6 @@
   "name": "Nortista/Amazônico Portuguese",
   "family": "Romance",
   "script": "Latin",
-  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -196,7 +195,6 @@
       "õj̃"
     ]
   },
-  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -323,62 +321,6 @@
       "dʒ"
     ]
   },
-  "positional_graphemes_base": "pt-BR",
-  "positional_graphemes": {
-    "e": {
-      "pretonic": [
-        "ɛ"
-      ],
-      "word_final": [
-        "ɪ"
-      ],
-      "posttonic": [
-        "ɪ"
-      ]
-    },
-    "o": {
-      "pretonic": [
-        "ɔ"
-      ],
-      "word_final": [
-        "ʊ"
-      ],
-      "posttonic": [
-        "ʊ"
-      ]
-    },
-    "s": {
-      "word_initial": [
-        "s"
-      ],
-      "intervocalic": [
-        "z"
-      ],
-      "before_consonant": [
-        "ʃ"
-      ],
-      "coda": [
-        "ʃ"
-      ],
-      "word_final": [
-        "ʃ"
-      ],
-      "intervocalic_cross_word": [
-        "z"
-      ]
-    },
-    "z": {
-      "before_consonant": [
-        "ʃ"
-      ],
-      "coda": [
-        "ʃ"
-      ],
-      "word_final": [
-        "ʃ"
-      ]
-    }
-  },
   "parent": "pt-BR",
   "notes": "Nortista / Amazônico (Belém, Manaus). Northeastern-type open pretonic vowels /e/ -> [ɛ], /o/ -> [ɔ]. Coda /S/ palatalised to [ʃ,ʒ] (Belém chiado, shared with Carioca). Unlike the Northeast proper, the North has high /t,d/ palatalisation before /i/ (ALiB: the North is the region of most expressive palatalisation), so palatalisation is RETAINED here (base default). Tupí/Nheengatu contact in prosody and lexicon.",
   "quality": "research",
@@ -442,7 +384,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "por",
   "stress": {
     "default_position": -2,
@@ -482,5 +423,63 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "e": {
+      "pretonic": [
+        "ɛ"
+      ],
+      "word_final": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "ɔ"
+      ],
+      "word_final": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "before_consonant": [
+        "ʃ"
+      ],
+      "coda": [
+        "ʃ"
+      ],
+      "word_final": [
+        "ʃ"
+      ]
+    }
   }
 }

@@ -3,7 +3,6 @@
   "name": "Carioca Portuguese",
   "family": "Romance",
   "script": "Latin",
-  "graphemes_base": "pt-BR",
   "graphemes": {
     "a": [
       "a",
@@ -196,7 +195,6 @@
       "õj̃"
     ]
   },
-  "allophones_base": "pt-BR",
   "allophones": {
     "p": [
       "p"
@@ -321,6 +319,101 @@
       "ũ"
     ]
   },
+  "parent": "pt-BR",
+  "notes": "Carioca (Rio de Janeiro city). Hallmark: coda /S/ palatalised to [ʃ]/[ʒ] (chiado) — shared with European Portuguese but unique among the major Brazilian capitals (mesmo -> [ˈmeʒmu], paz -> [ˈpaʃ], dois -> [ˈdojʃ]). Strong dorsal onset /r/ -> [x~χ~h]; coda /R/ -> aspiration [h]. Categorical /t,d/ palatalisation. One of the two media-standard accents of Brazil.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "callou_leite2001",
+      "author": "Callou, D. & Leite, Y.",
+      "year": 2001,
+      "title": "Iniciação à fonética e à fonologia (8th ed.)",
+      "publisher": "Zahar",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "silva2002",
+      "author": "Silva, T.C.",
+      "year": 2002,
+      "title": "Fonética e fonologia do português",
+      "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
+    }
+  ],
+  "wikipedia": [
+    "https://pt.wikipedia.org/wiki/Dialeto_carioca"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
   "positional_graphemes_base": "pt-BR",
   "positional_graphemes": {
     "r": {
@@ -375,99 +468,5 @@
         "ʃ"
       ]
     }
-  },
-  "parent": "pt-BR",
-  "notes": "Carioca (Rio de Janeiro city). Hallmark: coda /S/ palatalised to [ʃ]/[ʒ] (chiado) — shared with European Portuguese but unique among the major Brazilian capitals (mesmo -> [ˈmeʒmu], paz -> [ˈpaʃ], dois -> [ˈdojʃ]). Strong dorsal onset /r/ -> [x~χ~h]; coda /R/ -> aspiration [h]. Categorical /t,d/ palatalisation. One of the two media-standard accents of Brazil.",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "mateus_dandrade2000",
-      "author": "Mateus, M.H.M. & d'Andrade, E.",
-      "year": 2000,
-      "title": "The Phonology of Portuguese",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "callou_leite2001",
-      "author": "Callou, D. & Leite, Y.",
-      "year": 2001,
-      "title": "Iniciação à fonética e à fonologia (8th ed.)",
-      "publisher": "Zahar",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "silva2002",
-      "author": "Silva, T.C.",
-      "year": 2002,
-      "title": "Fonética e fonologia do português",
-      "publisher": "Contexto",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "cardoso_etal2014",
-      "author": "Cardoso, S.A.M. et al.",
-      "year": 2014,
-      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
-      "publisher": "EDUEL",
-      "url": null,
-      "pages": null,
-      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
-    }
-  ],
-  "wikipedia": [
-    "https://pt.wikipedia.org/wiki/Dialeto_carioca"
-  ],
-  "timespan": {
-    "start_year": 1700,
-    "end_year": null
-  },
-  "glottolog_code": null,
-  "iso639_3": "por",
-  "stress": {
-    "default_position": -2,
-    "final_stress_endings": [
-      "r",
-      "l",
-      "z",
-      "x",
-      "i",
-      "u",
-      "im",
-      "om",
-      "um",
-      "is",
-      "us",
-      "ns",
-      "ão",
-      "ãe",
-      "õe",
-      "au",
-      "éu",
-      "éi",
-      "ói"
-    ],
-    "penult_stress_endings": [],
-    "marked_vowels": [
-      "á",
-      "é",
-      "í",
-      "ó",
-      "ú",
-      "â",
-      "ê",
-      "ô",
-      "ã",
-      "õ"
-    ],
-    "stress_mark": "ˈ",
-    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   }
 }

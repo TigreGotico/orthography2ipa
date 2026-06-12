@@ -1,0 +1,98 @@
+{
+  "code": "ar-LB",
+  "name": "Lebanese Arabic (Beiruti)",
+  "family": "Semitic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-levantine",
+  "graphemes": {
+    "ق": [
+      "ʔ",
+      "q"
+    ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ]
+  },
+  "allophones_base": "ar-x-levantine",
+  "allophones": {
+    "q": [
+      "ʔ",
+      "q"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
+    ],
+    "aː": [
+      "eː",
+      "aː"
+    ],
+    "a": [
+      "a",
+      "e",
+      "æ"
+    ]
+  },
+  "parent": "ar-x-levantine",
+  "ancestors": [
+    {
+      "code": "ar-x-levantine",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Levantine Arabic base"
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "French adstrate (Mandate-era and ongoing): heavy loanword stratum, /ʒ/ reinforced, code-switching."
+    }
+  ],
+  "notes": "Lebanese Arabic — Beiruti urban koine, a South-Central Levantine variety. ق qaf → /ʔ/ glottal stop (urban; rural/Bedouin /ɡ/ via the Levantine parent). ج jim → /ʒ/. Interdentals merged in urban speech (θ→/t/~/s/, ð→/d/~/z/, ðˤ→/dˤ/). DISTINGUISHING FEATURE: STRONG imāla — Classical /aː/ raised to [eː] and final /-a(ت ة)/ raised toward [e]; short /a/ frequently fronted to [e]/[æ]. This pervasive vowel raising is the most salient Lebanese marker. French adstrate is heavy. Source: Lebanese Arabic (Wikipedia); Cowell (1964); Holes (2004).",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "cowell1964",
+      "author": "Cowell, M.W.",
+      "year": 1964,
+      "title": "A Reference Grammar of Syrian Arabic",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Covers the North/South-Central Levantine continuum including Lebanese imāla."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+    "https://en.wikipedia.org/wiki/Levantine_Arabic_phonology"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "stan1323",
+  "iso639_3": "apc"
+}
