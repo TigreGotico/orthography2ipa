@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.8.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.1a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.0a1...1.8.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): asturleonese family and barranquenho grounded in primary sources [\#65](https://github.com/TigreGotico/orthography2ipa/pull/65) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.8.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.7.0a1...1.8.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): european portuguese regional dialects grounded in dialect research [\#63](https://github.com/TigreGotico/orthography2ipa/pull/63) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.7.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.6.0a2...1.7.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): espeak-ng agreement bench for TTS front-end replacement [\#58](https://github.com/TigreGotico/orthography2ipa/pull/58) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.6.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.6.0a2) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.6.0a1...1.6.0a2)
+
+## [1.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.6.0a1) (2026-06-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.5.0a1...1.6.0a1)
+
+**Merged pull requests:**
+
+- docs: credit the mirandese gold set's native-speaker provenance [\#55](https://github.com/TigreGotico/orthography2ipa/pull/55) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): stress blocks for turkic/malay and deferred review fixes [\#52](https://github.com/TigreGotico/orthography2ipa/pull/52) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.5.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.4.0a1...1.5.0a1)

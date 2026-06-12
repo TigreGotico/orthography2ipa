@@ -490,7 +490,7 @@ class TestTurkish:
         """ğ → [∅] or [''] (soft g — usually silent, lengthens preceding vowel)."""
         vals = _grapheme(self.spec, "ğ")
         assert vals is not None
-        assert vals[0] in ("", "∅", "ː"), f"ğ expected silent/lengthening, got {vals[0]}"
+        assert vals[0] in ("", "", "ː"), f"ğ expected silent/lengthening, got {vals[0]}"
 
     def test_k_palatal_harmony(self):
         """k → [k, c] — velar before back vowels, palatal before front vowels (harmony)."""

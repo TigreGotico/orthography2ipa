@@ -1,436 +1,436 @@
 {
-    "code": "sv",
-    "name": "Swedish",
-    "family": "Germanic",
-    "script": "Latin",
-    "graphemes": {
-        "a": [
-            "a",
-            "ɑː"
-        ],
-        "e": [
-            "ɛ",
-            "eː"
-        ],
-        "i": [
-            "ɪ",
-            "iː"
-        ],
-        "o": [
-            "ɔ",
-            "uː"
-        ],
-        "u": [
-            "ɵ",
-            "ʉː"
-        ],
-        "y": [
-            "ʏ",
-            "yː"
-        ],
-        "å": [
-            "ɔ",
-            "oː"
-        ],
-        "ä": [
-            "ɛ",
-            "ɛː"
-        ],
-        "ö": [
-            "œ",
-            "øː"
-        ],
-        "b": [
-            "b"
-        ],
-        "c": [
-            "k",
-            "s"
-        ],
-        "d": [
-            "d"
-        ],
-        "f": [
-            "f"
-        ],
-        "g": [
-            "ɡ",
-            "j"
-        ],
-        "h": [
-            "h"
-        ],
-        "j": [
-            "j"
-        ],
-        "k": [
-            "k",
-            "ɕ"
-        ],
-        "l": [
-            "l"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n"
-        ],
-        "p": [
-            "p"
-        ],
-        "q": [
-            "k"
-        ],
-        "r": [
-            "r",
-            "ɾ"
-        ],
-        "s": [
-            "s"
-        ],
-        "t": [
-            "t"
-        ],
-        "v": [
-            "v"
-        ],
-        "w": [
-            "v"
-        ],
-        "x": [
-            "ks"
-        ],
-        "z": [
-            "s"
-        ],
-        "ch": [
-            "ɕ",
-            "ʃ"
-        ],
-        "ck": [
-            "k"
-        ],
-        "dj": [
-            "j"
-        ],
-        "gj": [
-            "j"
-        ],
-        "gn": [
-            "ɡn"
-        ],
-        "lj": [
-            "j"
-        ],
-        "ng": [
-            "ŋ"
-        ],
-        "nk": [
-            "ŋk"
-        ],
-        "sj": [
-            "ɧ"
-        ],
-        "sk": [
-            "ɧ",
-            "sk"
-        ],
-        "tj": [
-            "ɕ"
-        ],
-        "skj": [
-            "ɧ"
-        ],
-        "stj": [
-            "ɧ"
-        ],
-        "sch": [
-            "ʃ"
-        ],
-        "rd": [
-            "ɖ"
-        ],
-        "rl": [
-            "ɭ"
-        ],
-        "rn": [
-            "ɳ"
-        ],
-        "rs": [
-            "ʂ"
-        ],
-        "rt": [
-            "ʈ"
-        ],
-        "kj": [
-            "ɕ"
-        ]
-    },
-    "allophones": {
-        "p": [
-            "p",
-            "pʰ"
-        ],
-        "b": [
-            "b"
-        ],
-        "t": [
-            "t",
-            "tʰ"
-        ],
-        "d": [
-            "d"
-        ],
-        "k": [
-            "k",
-            "kʰ"
-        ],
-        "ɡ": [
-            "ɡ"
-        ],
-        "f": [
-            "f"
-        ],
-        "v": [
-            "v"
-        ],
-        "s": [
-            "s"
-        ],
-        "ɕ": [
-            "ɕ"
-        ],
-        "ɧ": [
-            "ɧ",
-            "ʂ",
-            "x"
-        ],
-        "h": [
-            "h"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n",
-            "ŋ"
-        ],
-        "ŋ": [
-            "ŋ"
-        ],
-        "l": [
-            "l"
-        ],
-        "r": [
-            "r",
-            "ɾ",
-            "ʁ"
-        ],
-        "j": [
-            "j"
-        ],
-        "ɖ": [
-            "ɖ"
-        ],
-        "ɭ": [
-            "ɭ"
-        ],
-        "ɳ": [
-            "ɳ"
-        ],
-        "ʂ": [
-            "ʂ"
-        ],
-        "ʈ": [
-            "ʈ"
-        ],
-        "a": [
-            "a"
-        ],
-        "ɑː": [
-            "ɑː"
-        ],
-        "ɛ": [
-            "ɛ"
-        ],
-        "eː": [
-            "eː"
-        ],
-        "ɪ": [
-            "ɪ"
-        ],
-        "iː": [
-            "iː"
-        ],
-        "ɔ": [
-            "ɔ"
-        ],
-        "oː": [
-            "oː"
-        ],
-        "uː": [
-            "uː"
-        ],
-        "ɵ": [
-            "ɵ"
-        ],
-        "ʉː": [
-            "ʉː"
-        ],
-        "ʏ": [
-            "ʏ"
-        ],
-        "yː": [
-            "yː"
-        ],
-        "œ": [
-            "œ"
-        ],
-        "øː": [
-            "øː"
-        ],
-        "ɛː": [
-            "ɛː"
-        ]
-    },
-    "parent": "gem",
-    "ancestors": [
-        {
-            "code": "non",
-            "role": "parent",
-            "weight": 0.9,
-            "notes": "Descent from Old Norse (East Norse branch)"
-        },
-        {
-            "code": "de-DE",
-            "role": "adstrate",
-            "weight": 0.06,
-            "notes": "Low German / Hanseatic adstrate: massive vocabulary borrowing in late medieval period"
-        },
-        {
-            "code": "fi",
-            "role": "adstrate",
-            "weight": 0.02,
-            "notes": "Finnish adstrate: minor, in border areas"
-        }
+  "code": "sv",
+  "name": "Swedish",
+  "family": "Germanic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɑː"
     ],
-    "notes": "Central Standard Swedish. Retroflex assimilation (⟨rd⟩→[ɖ] etc.) is characteristic of Central/Northern dialects; absent in Southern/Finland Swedish. K SOFTENING: k→[ɕ] before front vowels (ke, ki, ky, kä, kö); [k] elsewhere. G: [j] before front vowels in some positions; [ɡ] elsewhere. SK: [ɧ] (sj-sound) before front vowels; [sk] elsewhere. RETROFLEXION: /r/+coronal clusters assimilate to retroflexes (rs=[ʂ], rd=[ɖ], etc.). TONE: Swedish has two lexical tones (accent 1 = acute, accent 2 = grave). Sources: Riad (2014), Engstrand (1999), Bruce (2007).",
-    "quality": "research",
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "riad2014",
-            "author": "Riad, T.",
-            "year": 2014,
-            "title": "The Phonology of Swedish",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "engstrand1999",
-            "author": "Engstrand, O.",
-            "year": 1999,
-            "title": "Swedish",
-            "publisher": "Cambridge University Press",
-            "url": null,
-            "pages": null,
-            "notes": "In: Handbook of the International Phonetic Association"
-        }
+    "e": [
+      "ɛ",
+      "eː"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Swedish_language",
-        "https://sv.wikipedia.org/wiki/Svenska"
+    "i": [
+      "ɪ",
+      "iː"
     ],
-    "positional_graphemes": {
-        "k": {
-            "before_e": [
-                "ɕ"
-            ],
-            "before_i": [
-                "ɕ"
-            ],
-            "default": [
-                "k"
-            ]
-        },
-        "g": {
-            "before_e": [
-                "j"
-            ],
-            "before_i": [
-                "j"
-            ],
-            "word_final": [
-                "ɡ",
-                "j",
-                "∅"
-            ],
-            "default": [
-                "ɡ"
-            ]
-        },
-        "sk": {
-            "before_e": [
-                "ɧ"
-            ],
-            "before_i": [
-                "ɧ"
-            ],
-            "default": [
-                "sk"
-            ]
-        },
-        "b": {
-            "word_final": [
-                "p",
-                "b"
-            ],
-            "default": [
-                "b"
-            ]
-        },
-        "d": {
-            "word_final": [
-                "t",
-                "d"
-            ],
-            "default": [
-                "d"
-            ]
-        },
-        "rs": {
-            "default": [
-                "ʂ"
-            ]
-        },
-        "rd": {
-            "default": [
-                "ɖ"
-            ]
-        },
-        "rn": {
-            "default": [
-                "ɳ"
-            ]
-        },
-        "rl": {
-            "default": [
-                "ɭ"
-            ]
-        },
-        "rt": {
-            "default": [
-                "ʈ"
-            ]
-        }
+    "o": [
+      "ɔ",
+      "uː"
+    ],
+    "u": [
+      "ɵ",
+      "ʉː"
+    ],
+    "y": [
+      "ʏ",
+      "yː"
+    ],
+    "å": [
+      "ɔ",
+      "oː"
+    ],
+    "ä": [
+      "ɛ",
+      "ɛː"
+    ],
+    "ö": [
+      "œ",
+      "øː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "j"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k",
+      "ɕ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "v"
+    ],
+    "x": [
+      "ks"
+    ],
+    "z": [
+      "s"
+    ],
+    "ch": [
+      "ɕ",
+      "ʃ"
+    ],
+    "ck": [
+      "k"
+    ],
+    "dj": [
+      "j"
+    ],
+    "gj": [
+      "j"
+    ],
+    "gn": [
+      "ɡn"
+    ],
+    "lj": [
+      "j"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "sj": [
+      "ɧ"
+    ],
+    "sk": [
+      "ɧ",
+      "sk"
+    ],
+    "tj": [
+      "ɕ"
+    ],
+    "skj": [
+      "ɧ"
+    ],
+    "stj": [
+      "ɧ"
+    ],
+    "sch": [
+      "ʃ"
+    ],
+    "rd": [
+      "ɖ"
+    ],
+    "rl": [
+      "ɭ"
+    ],
+    "rn": [
+      "ɳ"
+    ],
+    "rs": [
+      "ʂ"
+    ],
+    "rt": [
+      "ʈ"
+    ],
+    "kj": [
+      "ɕ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k",
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɕ": [
+      "ɕ"
+    ],
+    "ɧ": [
+      "ɧ",
+      "ʂ",
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r",
+      "ɾ",
+      "ʁ"
+    ],
+    "j": [
+      "j"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɭ": [
+      "ɭ"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɑː": [
+      "ɑː"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ɵ": [
+      "ɵ"
+    ],
+    "ʉː": [
+      "ʉː"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "øː": [
+      "øː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ]
+  },
+  "parent": "gem",
+  "ancestors": [
+    {
+      "code": "non",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Old Norse (East Norse branch)"
     },
-    "timespan": {
-        "start_year": 1500,
-        "end_year": null
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Low German / Hanseatic adstrate: massive vocabulary borrowing in late medieval period"
     },
-    "glottolog_code": "swed1254",
-    "iso639_3": "swe"
+    {
+      "code": "fi",
+      "role": "adstrate",
+      "weight": 0.02,
+      "notes": "Finnish adstrate: minor, in border areas"
+    }
+  ],
+  "notes": "Central Standard Swedish. Retroflex assimilation (⟨rd⟩→[ɖ] etc.) is characteristic of Central/Northern dialects; absent in Southern/Finland Swedish. K SOFTENING: k→[ɕ] before front vowels (ke, ki, ky, kä, kö); [k] elsewhere. G: [j] before front vowels in some positions; [ɡ] elsewhere. SK: [ɧ] (sj-sound) before front vowels; [sk] elsewhere. RETROFLEXION: /r/+coronal clusters assimilate to retroflexes (rs=[ʂ], rd=[ɖ], etc.). TONE: Swedish has two lexical tones (accent 1 = acute, accent 2 = grave). Sources: Riad (2014), Engstrand (1999), Bruce (2007).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "riad2014",
+      "author": "Riad, T.",
+      "year": 2014,
+      "title": "The Phonology of Swedish",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "engstrand1999",
+      "author": "Engstrand, O.",
+      "year": 1999,
+      "title": "Swedish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "In: Handbook of the International Phonetic Association"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Swedish_language",
+    "https://sv.wikipedia.org/wiki/Svenska"
+  ],
+  "positional_graphemes": {
+    "k": {
+      "before_e": [
+        "ɕ"
+      ],
+      "before_i": [
+        "ɕ"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "j"
+      ],
+      "before_i": [
+        "j"
+      ],
+      "word_final": [
+        "ɡ",
+        "j",
+        ""
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "sk": {
+      "before_e": [
+        "ɧ"
+      ],
+      "before_i": [
+        "ɧ"
+      ],
+      "default": [
+        "sk"
+      ]
+    },
+    "b": {
+      "word_final": [
+        "p",
+        "b"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t",
+        "d"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "rs": {
+      "default": [
+        "ʂ"
+      ]
+    },
+    "rd": {
+      "default": [
+        "ɖ"
+      ]
+    },
+    "rn": {
+      "default": [
+        "ɳ"
+      ]
+    },
+    "rl": {
+      "default": [
+        "ɭ"
+      ]
+    },
+    "rt": {
+      "default": [
+        "ʈ"
+      ]
+    }
+  },
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "swed1254",
+  "iso639_3": "swe"
 }

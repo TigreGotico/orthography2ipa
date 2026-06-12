@@ -136,7 +136,7 @@ class TestSpanishWesternAndalusian:
         coda = _positional(self.spec, "s", GraphemePosition.CODA)
         assert coda is not None, "s/CODA positional missing"
         _assert_first(coda, "h", label="s/CODA")
-        assert "∅" in coda, "s/CODA should include ∅ deletion"
+        assert "" in coda, "s/CODA should include ∅ deletion"
 
     def test_s_word_final_aspiration(self):
         """Word-final /s/ → [h, ∅]."""
@@ -152,27 +152,27 @@ class TestSpanishWesternAndalusian:
         """Word-final d → ∅ (extreme lenition)."""
         wf = _positional(self.spec, "d", GraphemePosition.WORD_FINAL)
         assert wf is not None, "d/WORD_FINAL positional missing"
-        assert "∅" in wf, "d word-final should include ∅"
+        assert "" in wf, "d word-final should include ∅"
 
     def test_d_intervocalic_lenition(self):
         """Intervocalic d → [ð, ∅] (lenition + deletion)."""
         iv = _positional(self.spec, "d", GraphemePosition.INTERVOCALIC)
         assert iv is not None
-        _assert_contains(iv, "ð", "∅", label="d/INTERVOCALIC")
+        _assert_contains(iv, "ð", "", label="d/INTERVOCALIC")
 
     def test_d_allophone_deletion(self):
         """d allophone list includes ∅ — deletion in extreme lenition."""
-        _assert_contains(_allophone(self.spec, "d"), "∅", label="d allophone")
+        _assert_contains(_allophone(self.spec, "d"), "", label="d allophone")
 
     def test_b_allophone_deletion(self):
         """b allophone includes ∅ — betacism + deletion."""
-        _assert_contains(_allophone(self.spec, "b"), "β", "∅", label="b allophone")
+        _assert_contains(_allophone(self.spec, "b"), "β", "", label="b allophone")
 
     def test_n_word_final_velarisation(self):
         """Word-final n → [ŋ, ∅] — velarisation and deletion."""
         wf = _positional(self.spec, "n", GraphemePosition.WORD_FINAL)
         assert wf is not None
-        _assert_contains(wf, "ŋ", "∅", label="n/WORD_FINAL")
+        _assert_contains(wf, "ŋ", "", label="n/WORD_FINAL")
 
     def test_liquid_neutralisation_l(self):
         """l allophone includes ɾ — liquid neutralisation in coda."""
@@ -243,7 +243,7 @@ class TestSpanishCanarian:
 
     def test_d_deletion(self):
         """d allophone includes ∅ — participial -ado deletion."""
-        _assert_contains(_allophone(self.spec, "d"), "∅", label="d allophone")
+        _assert_contains(_allophone(self.spec, "d"), "", label="d allophone")
 
     def test_ll_allophone_no_lambda(self):
         """ʎ allophone → ʝ (no ʎ distinction — yeísmo complete)."""
@@ -283,7 +283,7 @@ class TestSpanishMurcian:
 
     def test_s_allophone_aspiration(self):
         """s allophone includes h and ∅ — aspiration + deletion."""
-        _assert_contains(_allophone(self.spec, "s"), "h", "∅", label="s allophone")
+        _assert_contains(_allophone(self.spec, "s"), "h", "", label="s allophone")
 
     def test_s_coda_aspiration(self):
         """Coda s → [h, s]."""
@@ -295,7 +295,7 @@ class TestSpanishMurcian:
         """Intervocalic d → [ð, ∅]."""
         iv = _positional(self.spec, "d", GraphemePosition.INTERVOCALIC)
         assert iv is not None
-        _assert_contains(iv, "ð", "∅", label="d/INTERVOCALIC")
+        _assert_contains(iv, "ð", "", label="d/INTERVOCALIC")
 
     def test_liquid_neutralisation(self):
         """l and ɾ allophones include each other — liquid neutralisation in coda."""
@@ -388,7 +388,7 @@ class TestSpanishChilean:
 
     def test_d_deletion(self):
         """d allophone includes ∅."""
-        _assert_contains(_allophone(self.spec, "d"), "∅", label="d allophone")
+        _assert_contains(_allophone(self.spec, "d"), "", label="d allophone")
 
     def test_s_coda_aspiration(self):
         """Coda s has aspiration."""
@@ -511,7 +511,7 @@ class TestExtremaduran:
         coda = _positional(self.spec, "s", GraphemePosition.CODA)
         assert coda is not None
         _assert_first(coda, "h", label="s/CODA")
-        assert "∅" in coda
+        assert "" in coda
 
     def test_s_word_final_aspiration(self):
         """Word-final s → [h, ∅]."""
@@ -542,11 +542,11 @@ class TestExtremaduran:
         """Word-final d → ∅ (or ð)."""
         wf = _positional(self.spec, "d", GraphemePosition.WORD_FINAL)
         assert wf is not None
-        assert "∅" in wf
+        assert "" in wf
 
     def test_s_allophone_aspiration(self):
         """s allophone list includes h and ∅."""
-        _assert_contains(_allophone(self.spec, "s"), "h", "∅", label="s allophone")
+        _assert_contains(_allophone(self.spec, "s"), "h", "", label="s allophone")
 
     def test_yod_allophone_variety(self):
         """ʝ allophone includes j and ʃ — yeísmo variants."""
@@ -618,7 +618,7 @@ class TestPortuguesePorto:
         """ə allophone includes ∅ — schwa can be deleted in Porto."""
         vals = _allophone(self.spec, "ə")
         assert vals is not None
-        assert "∅" in vals, "Porto: ə should include ∅ (deletion)"
+        assert "" in vals, "Porto: ə should include ∅ (deletion)"
 
     def test_schwa_open_variants(self):
         """ə allophone includes ə and ɨ — central vowel range."""
@@ -823,7 +823,7 @@ class TestGalicianStandard:
         """h → '' (silent, like Portuguese)."""
         vals = _grapheme(self.spec, "h")
         assert vals is not None
-        assert vals[0] in ("", "∅"), f"h should be silent, got {vals}"
+        assert vals[0] in ("", ""), f"h should be silent, got {vals}"
 
     def test_g_sibilant(self):
         """g has sibilant realisation [ʃ] — unique Galician feature."""
@@ -941,7 +941,7 @@ class TestBasqueBizkaiera:
         """h allophone → ∅ (aspirate lost in Bizkaian)."""
         vals = _allophone(self.spec, "h")
         assert vals is not None
-        _assert_first(vals, "∅", label="h allophone")
+        _assert_first(vals, "", label="h allophone")
 
     def test_a_vowel_harmony_trace(self):
         """a allophone includes e — vowel harmony remnant."""
@@ -974,7 +974,7 @@ class TestBasqueGipuzkera:
         vals = _allophone(self.spec, "h")
         assert vals is not None
         _assert_first(vals, "h", label="h allophone")
-        assert "∅" in vals, "Gipuzkoan h should include ∅ (optional deletion)"
+        assert "" in vals, "Gipuzkoan h should include ∅ (optional deletion)"
 
     def test_parent_is_eu(self):
         assert self.spec.parent == "eu"
@@ -1011,12 +1011,19 @@ class TestAsturianOccidental:
         pass
 
     def test_ll_dot_che_vaqueira(self):
-        """ḷḷ → [tʃ] (che vaqueira — Western Asturian hallmark)."""
-        _assert_first(_grapheme(self.spec, "ḷḷ"), "tʃ", label="ḷḷ")
+        """ḷḷ notation for che vaqueira is now deprecated in spec; only l.l and ts are encoded.
+        The ḷḷ grapheme (ALLA norm) is not present; use l.l instead.
+        Morala & Egido (2009) p. 9; Propuesta §3.1 — both endorse l.l and ts."""
+        # ḷḷ is not in the new spec (only l.l is; the old ḷḷ encoding has been dropped)
+        val = _grapheme(self.spec, "ḷḷ")
+        assert val is None or val == ["t͡s"], f"ḷḷ should be absent or ts, got {val}"
 
     def test_l_dot_l_che_vaqueira(self):
-        """l.l → [tʃ] (alternate spelling of che vaqueira)."""
-        _assert_first(_grapheme(self.spec, "l.l"), "tʃ", label="l.l")
+        """l.l → [ts] (che vaqueira, Laciana/Alto Sil).
+        Source: Morala & Egido (2009) p. 9 (*tsadrona, tsacianiega*);
+        Propuesta §3.1. The phoneme is /ts/ (approximately), NOT /tʃ/ (palatal affricate).
+        CRITICAL: che vaqueira ≠ /tʃ/ — they must not be merged."""
+        _assert_first(_grapheme(self.spec, "l.l"), "t͡s", label="l.l")
 
     def test_f_word_initial_preserved(self):
         """f word-initial → [f] (Western Asturian preserves Latin F-, does not aspirate)."""
@@ -1456,7 +1463,7 @@ class TestFrench:
         """h → '' (silent in French)."""
         vals = _grapheme(self.spec, "h")
         assert vals is not None
-        assert vals[0] in ("", "∅"), f"h should be silent, got {vals}"
+        assert vals[0] in ("", ""), f"h should be silent, got {vals}"
 
     def test_j_palatal(self):
         """j → ʒ (palatal fricative — French j)."""
@@ -1581,7 +1588,7 @@ class TestItalian:
         """h → ∅ (completely silent in Italian)."""
         vals = _grapheme(self.spec, "h")
         assert vals is not None
-        assert vals[0] in ("∅", ""), f"Italian h should be ∅/silent, got {vals}"
+        assert vals[0] in ("", ""), f"Italian h should be ∅/silent, got {vals}"
 
     def test_v_preserved(self):
         """v allophone → [v] (no betacism — v distinct from b in Italian)."""

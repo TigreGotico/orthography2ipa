@@ -92,6 +92,34 @@ via [scriptconv](https://github.com/TigreGotico/scriptconv). English
 orthography is deeply irregular, so this row is a floor for a
 rule-driven engine, reported for honesty rather than flattery.
 
+### European Portuguese regional dialect gold set (`ep_dialects`)
+
+250 sentence-level rows across seven EP regional varieties, manually
+annotated with dialectal IPA.  Source: **TigreGotico internal dialect
+research** — DIALECT\_PATTERNS.md feature matrix cross-checked against
+whitepaper5 (*Phoneme-Level Dialect Transforms for European Portuguese*,
+Miro 2026).  Provenance: sentence-level gold produced by the same team
+that maintains the dialect specs; pending external peer validation.
+
+The CSV lives at `tests/data/ep_dialect_sentences.csv`.  The benchmark
+harness maps the seven CSV dialect codes to orthography2ipa language tags:
+
+| CSV dialect\_code | orthography2ipa tag | Notes |
+|---|---|---|
+| `pt-PT-x-lisboa` | `pt-PT-x-lisbon` | Lisbon prestige |
+| `pt-PT-x-north` | `pt-PT-x-porto` | Porto / Baixo-Minho representative |
+| `pt-PT-x-central` | `pt-PT` | Coimbra-type conservative standard |
+| `pt-PT-x-alentejo` | `pt-PT-x-alentejo` | |
+| `pt-PT-x-algarve` | `pt-PT-x-algarve` | |
+| `pt-PT-x-madeira` | `pt-PT-x-madeira` | |
+| `pt-PT-x-azores` | `pt-PT-x-acores` | |
+
+Because the gold contains sentence-level phonetics (connected-speech
+reductions, liaison, stress-conditioned elisions), PER is naturally
+higher than the lexicon benchmarks; it measures how well the engine
+captures dialect-specific grapheme-to-phoneme rules, not connected-speech
+phonology.
+
 ### Mirandese gold set
 
 [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)
@@ -181,6 +209,13 @@ provenance:
 | wikipron | is | 258 | 0.223 | 0.86 |
 | wikipron | hr | 292 | 0.276 | 0.98 |
 | wikipron | tl | 269 | 0.231 | 0.96 |
+| ep_dialects | pt-PT | 30 | 0.260 | 1.00 |
+| ep_dialects | pt-PT-x-porto | 40 | 0.342 | 1.00 |
+| ep_dialects | pt-PT-x-madeira | 30 | 0.362 | 1.00 |
+| ep_dialects | pt-PT-x-algarve | 30 | 0.394 | 1.00 |
+| ep_dialects | pt-PT-x-lisbon | 45 | 0.398 | 1.00 |
+| ep_dialects | pt-PT-x-alentejo | 30 | 0.423 | 1.00 |
+| ep_dialects | pt-PT-x-acores | 29 | 0.474 | 1.00 |
 | portuguese_lexicon | pt-PT | 300 | 0.167 | 0.73 |
 | portuguese_lexicon | pt-MZ | 300 | 0.288 | 0.86 |
 | portuguese_lexicon | pt-BR | 300 | 0.420 | 1.00 |
@@ -202,10 +237,53 @@ provenance:
 | wikipron | ta | 293 | 0.895 | 1.00 |
 | wikipron | pt-BR | 125 | 0.328 | 0.99 |
 
-Reading the table: rule-complete languages with positional grapheme
-blocks score best (eo, fi, ro, gl, eu, ast, sq, it). High PER for nb,
-da, sv, de reflects irregular stress/vowel-reduction patterns not yet
-encoded in those specs. The hi/ta/ml rows expose the current gap for
-Indic scripts — G2P rules for those languages are present but not
-fully calibrated to the Wiktionary transcription style. The da/nb/sv
-rows are an engine-spec gap, not a dataset problem.
+Reading the table: languages whose specs carry positional grapheme
+rules and stress blocks (gl, es, pt-PT, mwl) score far better than
+those without — the engine consults
+`positional_graphemes`/`stress` whenever a spec provides them, so the
+per-language path to a better number is richer spec data, not engine
+changes. The pt-BR/pt-AO/pt-TL rows lack positional vowel-reduction
+blocks; the en-US row reflects English orthography itself.
+
+Among the newer rows: rule-complete languages with positional
+grapheme blocks score best (eo, fi, ro, gl, eu, ast, sq, it); the
+nb/da/sv/de rows reflect irregular stress and vowel-reduction patterns
+not yet encoded in those specs, and the hi/ta/ml rows expose the
+Indic-script calibration gap — engine-spec gaps, not dataset problems.
+
+
+## Agreement with espeak-ng
+
+[`scripts/espeak_agreement.py`](../scripts/espeak_agreement.py) compares
+this engine's output against espeak-ng on the same word lists. This is
+**not an accuracy benchmark** — espeak is not a gold standard. It
+answers a deployment question: a TTS model trained on espeak
+phonemization maps phoneme symbols to embedding IDs, so replacing its
+front-end requires symbol-level compatibility, not correctness.
+
+Signals: **exact** (identical transcription), **exact-nostress**
+(identical after stress-mark removal — espeak places stress inside the
+syllable, this engine before it), **segmental** (mean character
+similarity, stress-stripped), and **oov-rate** — the fraction of words
+whose transcription contains a symbol espeak never emits for that
+voice. Out-of-inventory symbols become unknown embedding IDs, so
+oov-rate is the hard-failure signal; the offending symbols are listed
+per run.
+
+`python scripts/espeak_agreement.py --lang <l> --limit 300`:
+
+| Lang | Voice | exact | exact-nostress | segmental | oov-rate | main OOV symbols |
+|---|---|---:|---:|---:|---:|---|
+| es | es | 0.05 | 0.55 | 0.92 | 0.00 | — |
+| pt-PT | pt | 0.00 | 0.12 | 0.78 | 0.04 | s̺ apical mark, precomposed ã |
+| pt-BR | pt-br | 0.00 | 0.02 | 0.71 | 0.37 | s̺, tie bar, ʎ, ʁ |
+| en | en-gb | 0.00 | 0.04 | 0.51 | 0.84 | æ |
+
+Reading the table: stress-mark placement alone rules out byte-exact
+replacement everywhere; segmental similarity shows how close the phone
+sequences are; the oov column decides deployability. A near-zero
+oov-rate (Spanish) means a symbol-mapping shim suffices; a high one
+(English — espeak-ng writes the TRAP vowel as ⟨a⟩ where this engine
+emits ⟨æ⟩) means a per-symbol translation table must be built and
+validated before any swap.
+
