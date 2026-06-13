@@ -225,3 +225,7 @@ To add a language, create `orthography2ipa/data/{code}.json` following `orthogra
 ## License
 
 Apache 2.0
+
+## Credits & Funding
+
+Developed by [TigreGotico](https://tigregotico.pt) for [OpenVoiceOS](https://openvoiceos.org), funded by the [NGI0 Commons Fund](https://nlnet.nl/commonsfund/) — a fund established by [NLnet](https://nlnet.nl) with financial support from the European Commission's [Next Generation Internet](https://ngi.eu) programme (grant agreement No 101135429).
