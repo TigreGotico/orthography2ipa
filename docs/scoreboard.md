@@ -48,7 +48,7 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | pt-PT-x-madeira | ep_dialects | 30 | 0.2662 | 0.0000 | research |
 | pt-PT-x-porto | ep_dialects | 40 | 0.2550 | 0.0500 | research |
 | ro | wikipron | 281 | 0.0597 | 0.6370 | research |
-| ru | wikipron | 268 | 0.4345 | 0.0112 | research |
+| ru | wikipron | 268 | 0.3635 | 0.0112 | research |
 | sk | wikipron | 300 | 0.1206 | 0.4700 | research |
 | sq | wikipron | 249 | 0.0915 | 0.6867 | research |
 | sv | wikipron | 279 | 0.3508 | 0.0609 | research |

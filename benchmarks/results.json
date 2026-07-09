@@ -383,7 +383,7 @@
     "lang": "ru",
     "dataset": "wikipron",
     "n": 268,
-    "per": 0.4345,
+    "per": 0.3635,
     "exact_match": 0.0112,
     "quality_tier": "research",
     "harness_version": "1.0",

@@ -56,12 +56,18 @@ Russian has a pervasive **consonant palatalization** system. The soft sign ⟨ь
 
 The spec models palatalization-before-iotated-vowel as explicit
 two-grapheme tokens (`бе`→`bʲe`, `би`→`bʲi`, `дя`→`dʲa`, …) for the
-eleven consonants that contrast plain/palatalized (б в д з л м н п р с
-т ф), since the generic `before_e`/`before_i` positional mechanism in
-the engine only matches Latin-script vowel letters and does not fire on
-Cyrillic. Coda devoicing is likewise extended to the palatalized voiced
-obstruents (бь→пʲ, вь→фʲ, дь→тʲ, зь→сʲ) so a word like `гвоздь` "nail"
-devoices its final дь to [tʲ].
+**fifteen** consonants that contrast plain/palatalized (б в г д з к л
+м н п р с т ф х), since the generic `before_e`/`before_i` positional
+mechanism in the engine only matches Latin-script vowel letters and
+does not fire on Cyrillic. That gives 12 bare soft-sign digraphs (бь
+вь дь зь ль мь нь пь рь сь ть фь, representing the consonant alone,
+e.g. word-finally) plus 75 iotated-vowel CV digraphs (each of the 15
+consonants × е/и/я/ё/ю). Coda devoicing is extended to the palatalized
+voiced obstruents, but only for the bare soft-sign digraphs (бь→пʲ,
+вь→фʲ, дь→тʲ, зь→сʲ) so a word like `гвоздь` "nail" devoices its final
+дь to [tʲ] — it is **not** applied to the iotated-vowel CV digraphs
+(e.g. дя, зе), since those always resolve to a consonant immediately
+followed by a vowel and are therefore never in coda position.
 
 ### Г in Genitive Endings
 
