@@ -994,7 +994,6 @@ def load_clup_profile(
     - ``devoicing_rate`` — float (devoicing tokens / total IPA chars)
     - ``retroflex_sibilant_rate`` — float
     - ``aspiration_rate`` — float
-    - ``cintra_zone`` — not a float; stored as metadata string
 
     Args:
         region: Region string to match (substring match, case-insensitive).
@@ -1041,8 +1040,6 @@ def load_clup_profile(
                     count = 0
                 weights[key] = round(count / ipa_chars, 6) if ipa_chars > 0 else 0.0
 
-            # Metadata
-            weights["_cintra_zone"] = 0.0  # placeholder; actual zone in string form
             return weights
 
     return None
