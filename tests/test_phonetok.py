@@ -316,7 +316,9 @@ class TestPositionalOnlyGraphemes:
             },
             positional_graphemes={
                 # "en" has NO entry in the base `graphemes` dict — it is
-                # purely positional (the barrancos em/en pattern).
+                # a synthetic purely-positional digraph (real-world
+                # examples of positional-only keys with no base entry
+                # include barrancos's r/l/s/g/c/qu/x).
                 "en": {
                     GraphemePosition.WORD_FINAL: ["ẽ"],
                     GraphemePosition.DEFAULT: ["en"],
@@ -324,6 +326,56 @@ class TestPositionalOnlyGraphemes:
             },
         )
         return PhonetokTokenizer(spec)
+
+    @pytest.fixture
+    def tok_positional_only_no_default(self) -> PhonetokTokenizer:
+        """A positional-only grapheme with NO `DEFAULT` position declared
+        at all (matching barrancos's real r/l/s/g/c/qu/x keys), forcing
+        the seeding fallback to `next(iter(pos_map.values()))` — the
+        first declared position — rather than `pos_map[DEFAULT]`."""
+        from orthography2ipa.types import GraphemePosition
+
+        spec = LanguageSpec(
+            code="test-positional-only-no-default",
+            name="Test Positional Only No Default",
+            family="Test",
+            script="Latin",
+            graphemes={
+                "a": ["a"],
+                "c": ["k"],
+            },
+            allophones={
+                "a": ["a"],
+                "k": ["k"],
+                "n": ["n"],
+                "m": ["m"],
+            },
+            positional_graphemes={
+                # "en" has NO base `graphemes` entry and NO DEFAULT
+                # position, so seeding must fall back to whichever
+                # position happens to be first in the dict.
+                "en": {
+                    GraphemePosition.WORD_INITIAL: ["en"],
+                    GraphemePosition.WORD_FINAL: ["ẽ"],
+                },
+            },
+        )
+        return PhonetokTokenizer(spec)
+
+    def test_positional_only_digraph_no_default_enters_trie(
+        self, tok_positional_only_no_default
+    ):
+        """Even without a DEFAULT position, the fallback to the first
+        declared position must still seed the trie so 'en' is matched as
+        a single grapheme token instead of falling back to per-character
+        matching."""
+        tokens = tok_positional_only_no_default.tokenize("en")
+        grapheme_tokens = [
+            t for t in tokens if t.kind == TokenKind.GRAPHEME
+        ]
+        assert len(grapheme_tokens) == 1
+        assert grapheme_tokens[0].grapheme == "en"
+        assert grapheme_tokens[0].ipa == ("en",)
 
     def test_positional_only_digraph_enters_trie(self, tok_positional_only):
         """'en' must be matched as a single grapheme token, not split into
