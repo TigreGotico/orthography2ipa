@@ -18,7 +18,10 @@ from humans. Many public "G2P datasets" are generated with espeak-ng or
 phonemizer wrappers — scoring against those measures agreement with
 another rule engine, not correctness. Every dataset below is selected
 for human or community provenance; anything tool-generated is excluded
-on principle.
+on principle. One dataset-specific exception is documented below
+(`hitz_basque_ipa`) for an academic/university NLP research center
+publication — see that section for the rationale; it is not a general
+relaxation of this rule.
 
 ## Datasets
 
@@ -192,6 +195,46 @@ than the WikiPron `isl_latn_broad.tsv` (~11k rows) and uses the
 `word TAB /IPA/` format with slashes stripped by the loader. Use as
 the primary Icelandic gold (`ipadict is`); the WikiPron Icelandic row
 is wired as a secondary cross-check.
+
+### HiTZ Basque Wikipedia IPA corpus (`hitz_basque_ipa`)
+
+[HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa)
+on Hugging Face: ~1,672,981 paragraph-level `text`/`phonemes` rows
+extracted from the Basque Wikipedia dump, published by
+**HiTZ Zentroa / AhoLab**, the University of the Basque Country
+(UPV/EHU)'s NLP research group. IPA is produced by **ahoNT**, HiTZ's
+Basque text-processing and phonemization tool — i.e. this is
+tool-generated IPA, not human-annotated.
+
+Per the provenance-discipline rule above, tool-generated IPA is normally
+excluded from this benchmark. This dataset is an **explicit,
+dataset-specific exception**: the user directed that datasets published
+by universities/academic NLP research centers count as legitimate gold
+sources for this benchmark even when the IPA came from an automatic
+tool, specifically because the publishing body (HiTZ) is an established
+academic research group, not because the "human vs. tool" line has been
+generally relaxed. This exception applies only to this dataset; it does
+not license adding other automatically-phonemized sources without a
+similar explicit call.
+
+Wired as `eu` under the `hitz_basque_ipa` dataset key, **additive** to
+the existing `wikipron` `eu` entry (Wiktionary-sourced, community
+provenance) — it does not replace or reduce that coverage.
+
+Because the source data is paragraph-level rather than word-level, the
+loader (`load_hitz_basque` in `scripts/benchmark.py`) pages the dataset
+through the Hugging Face datasets-server `rows` REST API (never
+downloading the full parquet), whitespace-tokenizes each paragraph's
+`text` and `phonemes` in lockstep (ahoNT emits one phoneme token per
+source word, punctuation attached to the token, per the dataset card),
+pairs tokens positionally, strips surrounding punctuation from both
+sides, and keeps the first `limit` (default 300) deduplicated
+single-word pairs. Single word-tokens are used as the scored unit —
+following `load_ep_dialects`'s precedent of scoring non-lexicon-shaped
+gold through the harness's standard `transcribe_word`/PER pipeline —
+rather than whole sentences, since paragraph-level ahoNT stress
+placement is not verified to depend on sentence context, making the
+single-token span the more conservative unit to score in isolation.
 
 ## Rejected candidates
 
