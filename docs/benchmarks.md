@@ -83,6 +83,17 @@ repository, same CC-BY-SA provenance:
 | `hi` | `hin_deva_broad.tsv` | 33 057 | Hindi (Devanagari) |
 | `ta` | `tam_taml_broad.tsv` | 10 492 | Tamil (Tamil script) |
 | `ml` | `mal_mlym_broad.tsv` | 10 406 | Malayalam (Malayalam script) |
+| `ru` | `rus_cyrl_narrow.tsv` | ~large | Russian (Cyrillic). **Narrow, not broad** — see note below. |
+
+Russian has no `_broad.tsv` in `data/scrape/tsv/`; upstream's own README
+states some languages were only scraped in one transcription width
+("some languages only have broad or narrow transcriptions, e.g. Russian
+only has the latter"), and for Russian that is narrow. The harness's
+default (non-`--narrow`) normalization already strips narrow-transcription
+diacritics (`_NARROW_MARKS`) before scoring, so `rus_cyrl_narrow.tsv` is
+directly comparable to the broad-tier gold used for the other languages
+in this table; it was not previously wired for lack of a broad file, not
+for any documented quality concern.
 
 ### European Portuguese IPA Lexicon (Infopédia)
 

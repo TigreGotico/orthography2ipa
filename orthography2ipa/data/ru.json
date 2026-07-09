@@ -139,6 +139,231 @@
     ],
     "фь": [
       "fʲ"
+    ],
+    "бе": [
+      "bʲe"
+    ],
+    "би": [
+      "bʲi"
+    ],
+    "бя": [
+      "bʲa"
+    ],
+    "бё": [
+      "bʲo"
+    ],
+    "бю": [
+      "bʲu"
+    ],
+    "ве": [
+      "vʲe"
+    ],
+    "ви": [
+      "vʲi"
+    ],
+    "вя": [
+      "vʲa"
+    ],
+    "вё": [
+      "vʲo"
+    ],
+    "вю": [
+      "vʲu"
+    ],
+    "ге": [
+      "ɡʲe"
+    ],
+    "ги": [
+      "ɡʲi"
+    ],
+    "гя": [
+      "ɡʲa"
+    ],
+    "гё": [
+      "ɡʲo"
+    ],
+    "гю": [
+      "ɡʲu"
+    ],
+    "де": [
+      "dʲe"
+    ],
+    "ди": [
+      "dʲi"
+    ],
+    "дя": [
+      "dʲa"
+    ],
+    "дё": [
+      "dʲo"
+    ],
+    "дю": [
+      "dʲu"
+    ],
+    "зе": [
+      "zʲe"
+    ],
+    "зи": [
+      "zʲi"
+    ],
+    "зя": [
+      "zʲa"
+    ],
+    "зё": [
+      "zʲo"
+    ],
+    "зю": [
+      "zʲu"
+    ],
+    "ке": [
+      "kʲe"
+    ],
+    "ки": [
+      "kʲi"
+    ],
+    "кя": [
+      "kʲa"
+    ],
+    "кё": [
+      "kʲo"
+    ],
+    "кю": [
+      "kʲu"
+    ],
+    "ле": [
+      "lʲe"
+    ],
+    "ли": [
+      "lʲi"
+    ],
+    "ля": [
+      "lʲa"
+    ],
+    "лё": [
+      "lʲo"
+    ],
+    "лю": [
+      "lʲu"
+    ],
+    "ме": [
+      "mʲe"
+    ],
+    "ми": [
+      "mʲi"
+    ],
+    "мя": [
+      "mʲa"
+    ],
+    "мё": [
+      "mʲo"
+    ],
+    "мю": [
+      "mʲu"
+    ],
+    "не": [
+      "nʲe"
+    ],
+    "ни": [
+      "nʲi"
+    ],
+    "ня": [
+      "nʲa"
+    ],
+    "нё": [
+      "nʲo"
+    ],
+    "ню": [
+      "nʲu"
+    ],
+    "пе": [
+      "pʲe"
+    ],
+    "пи": [
+      "pʲi"
+    ],
+    "пя": [
+      "pʲa"
+    ],
+    "пё": [
+      "pʲo"
+    ],
+    "пю": [
+      "pʲu"
+    ],
+    "ре": [
+      "rʲe"
+    ],
+    "ри": [
+      "rʲi"
+    ],
+    "ря": [
+      "rʲa"
+    ],
+    "рё": [
+      "rʲo"
+    ],
+    "рю": [
+      "rʲu"
+    ],
+    "се": [
+      "sʲe"
+    ],
+    "си": [
+      "sʲi"
+    ],
+    "ся": [
+      "sʲa"
+    ],
+    "сё": [
+      "sʲo"
+    ],
+    "сю": [
+      "sʲu"
+    ],
+    "те": [
+      "tʲe"
+    ],
+    "ти": [
+      "tʲi"
+    ],
+    "тя": [
+      "tʲa"
+    ],
+    "тё": [
+      "tʲo"
+    ],
+    "тю": [
+      "tʲu"
+    ],
+    "фе": [
+      "fʲe"
+    ],
+    "фи": [
+      "fʲi"
+    ],
+    "фя": [
+      "fʲa"
+    ],
+    "фё": [
+      "fʲo"
+    ],
+    "фю": [
+      "fʲu"
+    ],
+    "хе": [
+      "xʲe"
+    ],
+    "хи": [
+      "xʲi"
+    ],
+    "хя": [
+      "xʲa"
+    ],
+    "хё": [
+      "xʲo"
+    ],
+    "хю": [
+      "xʲu"
     ]
   },
   "allophones": {
@@ -253,6 +478,16 @@
     "j": [
       "j"
     ],
+    "ɡʲ": [
+      "ɡʲ",
+      "kʲ"
+    ],
+    "kʲ": [
+      "kʲ"
+    ],
+    "xʲ": [
+      "xʲ"
+    ],
     "a": [
       "a",
       "ɐ",
@@ -283,10 +518,43 @@
     ]
   },
   "parent": "sla",
-  "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o/ → [ɐ]), г = [ɡ] plosive, final obstruent devoicing. FINAL DEVOICING: all obstruents devoiced in coda/word-final position (б→п, в→ф, г→к, д→т, з→с, ж→ш). VOWEL REDUCTION: о/а reduce to [ɐ] in 1st pretonic syllable, [ə] elsewhere (unstressed). IOTATED VOWELS: е/я/ю/ё preceded by [j] word-initially and after vowels. Г IN GENITIVE: -ого/-его endings: г→[v] (его=[jɪvo]). Sources: Avanesov (1956), Jones & Ward (1969), Padgett (2002).",
+  "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o,a/ -> [ɐ] pretonic, [ə] elsewhere after hard consonants) and Иканье (unstressed /e,i/ (and /a/ after soft consonants) -> [ɪ]). г = [ɡ] plosive. FINAL DEVOICING: all obstruents (plain and palatalised) devoiced in coda/word-final position (б/бь->п/пь, в/вь->ф/фь, г->к, д/дь->т/тʲ, з/зь->с/сʲ, ж->ш); this positional devoicing only applies to the bare-consonant and soft-sign graphemes (б бь в вь г д дь з зь), never to the iotated-vowel CV digraphs (e.g. дя, зе), because those digraphs always resolve to a consonant immediately followed by a vowel and are therefore never actually in coda position, regardless of their position within the word string. Regressive voicing/palatalisation assimilation across consonant clusters (e.g. сделать [zʲdʲelətʲ]) is a known engine limitation, not modelled at the single-grapheme level used here. VOWEL REDUCTION: о/а reduce to [ɐ] in 1st pretonic syllable, [ə] elsewhere (unstressed); this positional rule only fires when the stressed syllable is known (see STRESS note below), otherwise the 'default' (unreduced) mapping is used. IOTATED VOWELS + и: е/я/ю/ё/и palatalise an immediately preceding consonant (soft-sign ь does the same); modelled as explicit two-grapheme tokens for the 15 consonants that contrast plain/palatalised (б в г д з к л м н п р с т ф х): 12 pre-existing soft-sign digraphs (бь вь дь зь ль мь нь пь рь сь ть фь) plus 75 new iotated-vowel digraphs (each of the 15 consonants x е/и/я/ё/ю, e.g. 'бе'->'bʲe', 'би'->'bʲi', 'дя'->'dʲa'); ц/ш/ж remain hard unconditionally and й/ч/щ remain soft unconditionally (their base grapheme entries already carry the sole realisation), so no digraphs are needed for those six letters. STRESS: Russian word stress is lexical and free (not derivable from spelling) and is not marked in standard orthography, so this spec intentionally carries no `stress` block (per the research-tier exemption for orthographically unpredictable stress) -- this also means the pretonic/posttonic/nucleus_unstressed positional rules below are only reachable when a caller supplies pre-stressed input (e.g. combining acute accent) through a future stress-marked variant; on ordinary unmarked spelling the engine cannot locate the stressed syllable and the 'default' (unstressed/unreduced) branch of each positional entry is used instead. This is the primary source of PER against unmarked gold sets and is why quality stays at 'research', not 'production'. Г IN GENITIVE: -ого/-его endings: г->[v] (его=[jɪvo]). Sources: Jones & Ward (1969), Timberlake (2004), Padgett & Tabain (2005), Avanesov (1956).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
+    {
+      "id": "jones_ward1969",
+      "author": "Jones, D. & Ward, D.",
+      "year": 1969,
+      "title": "The Phonetics of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Cited via Wikipedia's Russian phonology and Vowel reduction in Russian articles, which reference this work for: akanye/ikanye mergers, pretonic [ɐ]/[ʌ] vs. further-unstressed [ə], post-soft-consonant merger of unstressed vowels to [ɪ], and regressive voicing assimilation including v/vʲ transparency.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
+    },
+    {
+      "id": "timberlake2004",
+      "author": "Timberlake, A.",
+      "year": 2004,
+      "title": "A Reference Grammar of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Cited via Wikipedia's Russian phonology article, which references this work.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
+    },
+    {
+      "id": "padgett_tabain2005",
+      "author": "Padgett, J. & Tabain, M.",
+      "year": 2005,
+      "title": "Adaptive Dispersion Theory and Phonological Vowel Reduction in Russian",
+      "publisher": "Phonetica",
+      "url": null,
+      "pages": null,
+      "notes": "Cited via Wikipedia's Akanye article, which references this work for: pretonic akanye realised as [ɐ]/[ʌ], further reduction to [ə]; ikanye treated as a phonologically distinct (postlexical) process from akanye (lexical).",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Akanye"
+    },
     {
       "id": "comrie_corbett1993",
       "author": "Comrie, B. & Corbett, G. (eds.)",
@@ -299,25 +567,15 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
     },
     {
-      "id": "timberlake2004",
-      "author": "Timberlake, A.",
-      "year": 2004,
-      "title": "A Reference Grammar of Russian",
-      "publisher": "Cambridge University Press",
-      "url": null,
+      "id": "wikipron_lee2020",
+      "author": "Lee, J. L., Ashby, L. F. E., Garza, M. E., Lee-Sikka, Y., Miller, S., Wong, A., McCarthy, A. D. & Gorman, K.",
+      "year": 2020,
+      "title": "WikiPron: Mining Wiktionary for Massively Multilingual Pronunciation Data",
+      "publisher": "LREC",
+      "url": "https://github.com/CUNY-CL/wikipron",
       "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
-    },
-    {
-      "id": "padgett_tabain2005",
-      "author": "Padgett, J. & Tabain, M.",
-      "year": 2005,
-      "title": "Adaptive Dispersion Theory and Phonological Vowel Reduction in Russian",
-      "publisher": "Phonetica",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "notes": "Source of the ru gold benchmark row (rus_cyrl_narrow.tsv). Upstream README (fetched directly) confirms Russian was scraped only in narrow transcription, not broad: 'some languages only have broad or narrow transcriptions, e.g. Russian only has the latter.'",
+      "wikipedia_url": null
     }
   ],
   "wikipedia": [
@@ -445,6 +703,50 @@
     "ё": {
       "default": [
         "jo"
+      ]
+    },
+    "бь": {
+      "word_final": [
+        "pʲ"
+      ],
+      "coda": [
+        "pʲ"
+      ],
+      "default": [
+        "bʲ"
+      ]
+    },
+    "вь": {
+      "word_final": [
+        "fʲ"
+      ],
+      "coda": [
+        "fʲ"
+      ],
+      "default": [
+        "vʲ"
+      ]
+    },
+    "дь": {
+      "word_final": [
+        "tʲ"
+      ],
+      "coda": [
+        "tʲ"
+      ],
+      "default": [
+        "dʲ"
+      ]
+    },
+    "зь": {
+      "word_final": [
+        "sʲ"
+      ],
+      "coda": [
+        "sʲ"
+      ],
+      "default": [
+        "zʲ"
       ]
     }
   },

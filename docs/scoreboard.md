@@ -59,6 +59,7 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | pt-PT-x-porto | ep_dialects | 40 | 0.2550 | 0.0500 | research |
 | pt-TL | portuguese_lexicon | 300 | 0.2241 | 0.1400 | skeleton |
 | ro | wikipron | 281 | 0.0597 | 0.6370 | research |
+| ru | wikipron | 268 | 0.3635 | 0.0112 | research |
 | sk | wikipron | 300 | 0.1206 | 0.4700 | research |
 | sq | wikipron | 249 | 0.0915 | 0.6867 | research |
 | sv | wikipron | 279 | 0.3508 | 0.0609 | research |
