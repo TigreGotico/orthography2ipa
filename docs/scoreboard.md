@@ -11,12 +11,17 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | Lang | Dataset | N | PER | Exact match | Quality tier |
 |---|---|---:|---:|---:|---|
 | ast | wikipron | 300 | 0.0876 | 0.5900 | research |
+| ca | 4catac | 160 | 0.4170 | 0.0000 | research |
+| ca-x-balear | 4catac | 160 | 0.3924 | 0.0000 | research |
+| ca-x-occidental | 4catac | 160 | 0.5680 | 0.0000 | research |
+| ca-x-valencia | 4catac | 160 | 0.3046 | 0.0000 | research |
 | cy | wikipron | 276 | 0.2187 | 0.2899 | research |
 | da | wikipron | 273 | 0.4415 | 0.0476 | research |
 | de | wikipron | 269 | 0.3613 | 0.0297 | research |
 | el | wikipron | 298 | 0.1517 | 0.3121 | research |
 | en | wikipron | 220 | 0.4892 | 0.1000 | research |
 | en-GB | wikipron | 245 | 0.5004 | 0.0816 | research |
+| en-US | cmudict | 300 | 0.6118 | 0.0200 | research |
 | eo | wikipron | 300 | 0.0303 | 0.8700 | research |
 | es | wikipron | 298 | 0.1000 | 0.4765 | research |
 | eu | wikipron | 239 | 0.0768 | 0.5900 | research |
@@ -39,15 +44,20 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | oc | wikipron | 266 | 0.1604 | 0.3722 | research |
 | pl | wikipron | 287 | 0.1195 | 0.3624 | research |
 | pt | wikipron | 242 | 0.1817 | 0.3058 | research |
+| pt-AO | portuguese_lexicon | 300 | 0.2090 | 0.1567 | skeleton |
+| pt-BR | portuguese_lexicon | 300 | 0.2176 | 0.2267 | research |
 | pt-BR | wikipron | 124 | 0.1901 | 0.3952 | research |
+| pt-MZ | portuguese_lexicon | 300 | 0.2406 | 0.1700 | skeleton |
 | pt-PT | ep_dialects | 30 | 0.2599 | 0.0000 | research |
 | pt-PT | infopedia_pt | 295 | 0.3160 | 0.1390 | research |
+| pt-PT | portuguese_lexicon | 300 | 0.1674 | 0.2567 | research |
 | pt-PT-x-acores | ep_dialects | 29 | 0.3521 | 0.0000 | research |
 | pt-PT-x-alentejo | ep_dialects | 30 | 0.3216 | 0.0333 | research |
 | pt-PT-x-algarve | ep_dialects | 30 | 0.3549 | 0.0000 | research |
 | pt-PT-x-lisbon | ep_dialects | 45 | 0.2851 | 0.0000 | research |
 | pt-PT-x-madeira | ep_dialects | 30 | 0.2662 | 0.0000 | research |
 | pt-PT-x-porto | ep_dialects | 40 | 0.2550 | 0.0500 | research |
+| pt-TL | portuguese_lexicon | 300 | 0.2241 | 0.1400 | skeleton |
 | ro | wikipron | 281 | 0.0597 | 0.6370 | research |
 | sk | wikipron | 300 | 0.1206 | 0.4700 | research |
 | sq | wikipron | 249 | 0.0915 | 0.6867 | research |

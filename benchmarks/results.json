@@ -10,6 +10,46 @@
     "limit": 300
   },
   {
+    "lang": "ca",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.417,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "ca-x-balear",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.3924,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "ca-x-occidental",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.568,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "ca-x-valencia",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.3046,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "cy",
     "dataset": "wikipron",
     "n": 276,
@@ -65,6 +105,16 @@
     "n": 245,
     "per": 0.5004,
     "exact_match": 0.0816,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "en-US",
+    "dataset": "cmudict",
+    "n": 300,
+    "per": 0.6118,
+    "exact_match": 0.02,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -290,12 +340,42 @@
     "limit": 300
   },
   {
+    "lang": "pt-AO",
+    "dataset": "portuguese_lexicon",
+    "n": 300,
+    "per": 0.209,
+    "exact_match": 0.1567,
+    "quality_tier": "skeleton",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-BR",
+    "dataset": "portuguese_lexicon",
+    "n": 300,
+    "per": 0.2176,
+    "exact_match": 0.2267,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "pt-BR",
     "dataset": "wikipron",
     "n": 124,
     "per": 0.1901,
     "exact_match": 0.3952,
     "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-MZ",
+    "dataset": "portuguese_lexicon",
+    "n": 300,
+    "per": 0.2406,
+    "exact_match": 0.17,
+    "quality_tier": "skeleton",
     "harness_version": "1.0",
     "limit": 300
   },
@@ -315,6 +395,16 @@
     "n": 295,
     "per": 0.316,
     "exact_match": 0.139,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT",
+    "dataset": "portuguese_lexicon",
+    "n": 300,
+    "per": 0.1674,
+    "exact_match": 0.2567,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -376,6 +466,16 @@
     "per": 0.255,
     "exact_match": 0.05,
     "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-TL",
+    "dataset": "portuguese_lexicon",
+    "n": 300,
+    "per": 0.2241,
+    "exact_match": 0.14,
+    "quality_tier": "skeleton",
     "harness_version": "1.0",
     "limit": 300
   },
