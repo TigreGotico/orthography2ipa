@@ -24,6 +24,7 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | en-US | cmudict | 300 | 0.6118 | 0.0200 | research |
 | eo | wikipron | 300 | 0.0303 | 0.8700 | research |
 | es | wikipron | 298 | 0.1000 | 0.4765 | research |
+| eu | hitz_basque_ipa | 300 | 0.2796 | 0.1567 | research |
 | eu | wikipron | 239 | 0.0768 | 0.5900 | research |
 | fi | wikipron | 294 | 0.0386 | 0.7483 | research |
 | fr | wikipron | 279 | 0.3178 | 0.1935 | research |

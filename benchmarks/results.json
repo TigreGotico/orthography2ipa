@@ -141,6 +141,16 @@
   },
   {
     "lang": "eu",
+    "dataset": "hitz_basque_ipa",
+    "n": 300,
+    "per": 0.2796,
+    "exact_match": 0.1567,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "eu",
     "dataset": "wikipron",
     "n": 239,
     "per": 0.0768,
