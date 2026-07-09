@@ -13,4 +13,4 @@ jobs:
       coverage_source: 'orthography2ipa'
       test_path: 'tests/'
       install_extras: '.[test]'
-      min_coverage: 0
+      min_coverage: 78
