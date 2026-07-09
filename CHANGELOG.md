@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.15.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.14.0a1...1.15.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmark\): add infopedia\_pt gold dataset for European Portuguese [\#88](https://github.com/TigreGotico/orthography2ipa/pull/88) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.14.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.1a2...1.14.0a1)
