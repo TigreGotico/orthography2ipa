@@ -34,6 +34,7 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import subprocess
@@ -45,6 +46,14 @@ sys.path.insert(0, os.path.dirname(__file__))
 import benchmark  # noqa: E402  — shared dataset loaders and metric helpers
 
 # language tag → (wordlist loader, loader lang, espeak voice)
+#
+# Coverage is the overlap between this repo's registered gold-dataset
+# languages (``scripts/benchmark.py``'s ``DATASETS``) and espeak-ng's own
+# voice list (``espeak-ng --voices``): a language needs a wordlist loader
+# to draw a sample from AND an espeak-ng voice to compare against.
+# Languages with a loader but no espeak-ng voice keep a ``None`` voice —
+# ``agreement()`` returns ``None`` for those and they are skipped in the
+# scoreboard, not reported as zero.
 SOURCES: Dict[str, Tuple] = {
     "en-US": (benchmark.load_cmudict, "en-US", "en-us"),
     "en": (benchmark.load_wikipron, "en", "en-gb"),
@@ -58,6 +67,51 @@ SOURCES: Dict[str, Tuple] = {
     "pt-MZ": (benchmark.load_portuguese_lexicon, "pt-MZ", "pt"),
     "pt-TL": (benchmark.load_portuguese_lexicon, "pt-TL", "pt"),
     "mwl": (benchmark.load_mirandese, "mwl", None),  # espeak has no Mirandese
+    "mwl-x-sendim": (benchmark.load_mirandese, "mwl-x-sendim", None),
+    # --- wikipron-sourced, espeak-ng voice available ---
+    "it": (benchmark.load_wikipron, "it", "it"),
+    "fr": (benchmark.load_wikipron, "fr", "fr-fr"),
+    "ro": (benchmark.load_wikipron, "ro", "ro"),
+    "ast": (benchmark.load_wikipron, "ast", None),  # espeak has no Asturian
+    "oc": (benchmark.load_wikipron, "oc", None),  # espeak has no Occitan
+    "de": (benchmark.load_wikipron, "de", "de"),
+    "nl": (benchmark.load_wikipron, "nl", "nl"),
+    "sv": (benchmark.load_wikipron, "sv", "sv"),
+    "da": (benchmark.load_wikipron, "da", "da"),
+    "nb": (benchmark.load_wikipron, "nb", "nb"),
+    "is": (benchmark.load_wikipron, "is", "is"),
+    "cy": (benchmark.load_wikipron, "cy", "cy"),
+    "ga": (benchmark.load_wikipron, "ga", "ga"),
+    "gd": (benchmark.load_wikipron, "gd", "gd"),
+    "pl": (benchmark.load_wikipron, "pl", "pl"),
+    "sk": (benchmark.load_wikipron, "sk", "sk"),
+    "hr": (benchmark.load_wikipron, "hr", "hr"),
+    "ru": (benchmark.load_wikipron, "ru", "ru"),
+    "el": (benchmark.load_wikipron, "el", "el"),
+    "hy": (benchmark.load_wikipron, "hy", "hy"),
+    "sq": (benchmark.load_wikipron, "sq", "sq"),
+    "tr": (benchmark.load_wikipron, "tr", "tr"),
+    "fi": (benchmark.load_wikipron, "fi", "fi"),
+    "eu": (benchmark.load_wikipron, "eu", "eu"),
+    "tl": (benchmark.load_wikipron, "tl", None),  # espeak has no Tagalog
+    "eo": (benchmark.load_wikipron, "eo", "eo"),
+    "hi": (benchmark.load_wikipron, "hi", "hi"),
+    "ta": (benchmark.load_wikipron, "ta", "ta"),
+    "ml": (benchmark.load_wikipron, "ml", "ml"),
+    # --- 4catac-sourced (Catalan regional accents) ---
+    "ca": (benchmark.load_4catac, "ca", "ca"),
+    "ca-x-balear": (benchmark.load_4catac, "ca-x-balear", "ca-ba"),
+    "ca-x-occidental": (benchmark.load_4catac, "ca-x-occidental", "ca-nw"),
+    "ca-x-valencia": (benchmark.load_4catac, "ca-x-valencia", "ca-va"),
+    # --- ep_dialects-sourced (European Portuguese regional accents);
+    # espeak-ng has no per-region EP voice, so all compare against its
+    # single Portuguese voice ---
+    "pt-PT-x-acores": (benchmark.load_ep_dialects, "pt-PT-x-acores", "pt"),
+    "pt-PT-x-alentejo": (benchmark.load_ep_dialects, "pt-PT-x-alentejo", "pt"),
+    "pt-PT-x-algarve": (benchmark.load_ep_dialects, "pt-PT-x-algarve", "pt"),
+    "pt-PT-x-lisbon": (benchmark.load_ep_dialects, "pt-PT-x-lisbon", "pt"),
+    "pt-PT-x-madeira": (benchmark.load_ep_dialects, "pt-PT-x-madeira", "pt"),
+    "pt-PT-x-porto": (benchmark.load_ep_dialects, "pt-PT-x-porto", "pt"),
 }
 
 _LANG_SWITCH = re.compile(r"\([a-z-]+\)")  # espeak (en)…(pt) switch flags
@@ -138,13 +192,87 @@ def agreement(lang: str, limit: int) -> Optional[dict]:
     }
 
 
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+AGREEMENT_MD = os.path.join(REPO_ROOT, "docs", "espeak_agreement.md")
+AGREEMENT_JSON = os.path.join(REPO_ROOT, "benchmarks", "espeak_agreement.json")
+
+
+def build_agreement_scoreboard(limit: int) -> List[dict]:
+    """Run every SOURCES language with an espeak-ng voice and return
+    deterministic rows sorted by language tag."""
+    rows: List[dict] = []
+    for lang, (_, _, voice) in sorted(SOURCES.items()):
+        if voice is None:
+            continue
+        try:
+            result = agreement(lang, limit)
+        except Exception as exc:
+            print(f"skip lang={lang}: {exc}", file=sys.stderr)
+            continue
+        if result is None:
+            continue
+        result["limit"] = limit
+        rows.append(result)
+    return rows
+
+
+def write_agreement_scoreboard(rows: List[dict]) -> None:
+    os.makedirs(os.path.dirname(AGREEMENT_JSON), exist_ok=True)
+    with open(AGREEMENT_JSON, "w", encoding="utf-8") as fh:
+        json.dump(rows, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+
+    lines = [
+        "# espeak-ng agreement",
+        "",
+        "Committed symbol-level agreement between orthography2ipa and "
+        "espeak-ng, for every language where this repo has both a gold-"
+        "dataset wordlist and espeak-ng has a voice. This is NOT an "
+        "accuracy benchmark — see `docs/benchmarks.md` for what it means "
+        "and does not mean. Regenerate with:",
+        "",
+        "```bash",
+        "PYTHONPATH=$PWD python scripts/espeak_agreement.py --scoreboard",
+        "```",
+        "",
+        "Machine-readable form: [`benchmarks/espeak_agreement.json`]"
+        "(../benchmarks/espeak_agreement.json).",
+        "",
+        "| Lang | espeak voice | N | Exact | Exact (no stress) | "
+        "Segmental | OOV rate |",
+        "|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['lang']} | {row['voice']} | {row['n']} | "
+            f"{row['exact']:.4f} | {row['exact_nostress']:.4f} | "
+            f"{row['segmental']:.4f} | {row['oov_rate']:.4f} |"
+        )
+    lines.append("")
+    os.makedirs(os.path.dirname(AGREEMENT_MD), exist_ok=True)
+    with open(AGREEMENT_MD, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--lang", choices=sorted(SOURCES))
     ap.add_argument("--limit", type=int, default=300)
     ap.add_argument("--list", action="store_true",
                     help="List languages and their espeak voices")
+    ap.add_argument("--scoreboard", action="store_true",
+                    help="Run every SOURCES language with an espeak-ng "
+                         "voice and write docs/espeak_agreement.md + "
+                         "benchmarks/espeak_agreement.json")
     args = ap.parse_args()
+
+    if args.scoreboard:
+        rows = build_agreement_scoreboard(args.limit)
+        write_agreement_scoreboard(rows)
+        print(f"wrote {len(rows)} rows to "
+              f"{os.path.relpath(AGREEMENT_MD, REPO_ROOT)} and "
+              f"{os.path.relpath(AGREEMENT_JSON, REPO_ROOT)}")
+        return
 
     if args.list or not args.lang:
         for lang, (_, _, voice) in sorted(SOURCES.items()):
