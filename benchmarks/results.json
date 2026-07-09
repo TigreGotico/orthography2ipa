@@ -380,6 +380,16 @@
     "limit": 300
   },
   {
+    "lang": "ru",
+    "dataset": "wikipron",
+    "n": 268,
+    "per": 0.4345,
+    "exact_match": 0.0112,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "sk",
     "dataset": "wikipron",
     "n": 300,

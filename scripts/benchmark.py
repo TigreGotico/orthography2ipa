@@ -83,6 +83,14 @@ _WIKIPRON_FILES = {
     "pl": "pol_latn_broad.tsv",          # ~157k rows
     "sk": "slk_latn_broad.tsv",          # ~16k rows
     "hr": "hbs_latn_broad.tsv",          # ~26k rows (hbs covers hr/bs/sr Latin)
+    # Russian: WikiPron only scraped a NARROW transcription for Russian
+    # (per upstream README: "some languages only have broad or narrow
+    # transcriptions, e.g. Russian only has the latter"), so this is the
+    # narrow file. The harness's default normalization already strips
+    # narrow-transcription diacritics (see ``_NARROW_MARKS``) before
+    # scoring, so it is directly comparable to the broad-tier gold sets
+    # used for the other languages above.
+    "ru": "rus_cyrl_narrow.tsv",         # ~ large, Cyrillic, narrow-only
     # --- Other Indo-European ---
     "el": "ell_grek_broad.tsv",          # ~20k rows
     "hy": "hye_armn_e_broad.tsv",        # ~18k rows (Eastern Armenian)
