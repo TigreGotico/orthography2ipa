@@ -201,6 +201,23 @@ class GraphemePosition(str, Enum):
     BEFORE_O = "before_o"
     BEFORE_U = "before_u"
 
+    AFTER_A = "after_a"
+    """Preceding token's grapheme starts with ``a`` (mirrors BEFORE_A).
+    E.g., German ⟨ch⟩ after back vowels ``a/o/u`` → [x] (Ach-Laut)."""
+
+    AFTER_E = "after_e"
+    """Preceding token's grapheme starts with ``e`` (mirrors BEFORE_E).
+    E.g., German ⟨ch⟩ after front vowels ``e/i`` → [ç] (Ich-Laut)."""
+
+    AFTER_I = "after_i"
+    """Preceding token's grapheme starts with ``i`` (mirrors BEFORE_I)."""
+
+    AFTER_O = "after_o"
+    """Preceding token's grapheme starts with ``o`` (mirrors BEFORE_O)."""
+
+    AFTER_U = "after_u"
+    """Preceding token's grapheme starts with ``u`` (mirrors BEFORE_U)."""
+
     CONSONANTAL = "consonantal"
     VOCALIC = "vocalic"
 

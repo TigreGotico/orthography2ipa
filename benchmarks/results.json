@@ -33,7 +33,7 @@
     "lang": "de",
     "dataset": "wikipron",
     "n": 269,
-    "per": 0.3656,
+    "per": 0.3613,
     "exact_match": 0.0297,
     "quality_tier": "research",
     "harness_version": "1.0",

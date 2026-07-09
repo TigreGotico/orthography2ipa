@@ -1,7 +1,12 @@
 # German (de-DE) — Phonology Reference
 
 **Code**: `de-DE` | **Family**: Germanic | **Script**: Latin (alphabet)
-**Quality tier**: research | **Sources**: Wiese (1996), Hall (2003), Mangold (2005)
+**Quality tier**: research (deep orthography; production threshold ≤ 0.25 PER at ≥ 500 gold entries) | **Sources**: Wiese (1996), Hall (2003), Mangold (2005), Kohler (1990), Wikipedia German phonology, Wikipedia German orthography
+
+**Benchmark**: wikipron, n=269, PER 0.3613 (improved from a 0.3656 baseline after
+fixing the ich-Laut/ach-Laut front/back vowel split described below). Still
+above the 0.25 deep-orthography production ceiling and below the 500-entry
+minimum, so the spec remains at `research` tier.
 
 ---
 
@@ -37,22 +42,39 @@ One of the most important rules in German: **obstruents in coda position (includ
 
 ### Ch — Ach-Laut vs. Ich-Laut
 
-The digraph ⟨ch⟩ has two main realizations conditioned by the preceding vowel:
+The digraph ⟨ch⟩ has two main realizations conditioned by the preceding
+vowel (Kohler 1990; Wiese 1996):
 
 | Environment | Realization | Examples |
 |:---|:---:|:---|
-| After a, o, u, au | [x] (ach-Laut, velar fricative) | `Bach` [bax], `noch` [nɔx], `Buch` [buːx] |
-| After e, i, ä, ö, ü, consonants, word-initially | [ç] (ich-Laut, palatal fricative) | `ich` [ɪç], `echt` [ɛçt], `Milch` [mɪlç] |
+| After a, o, u (back vowels) | [x] (ach-Laut, velar fricative) | `Bach` [bax], `noch` [nɔx], `Buch` [buːx] |
+| After e, i (front vowels), consonants, word-initially | [ç] (ich-Laut, palatal fricative) | `ich` [ɪç], `echt` [ɛçt], `Milch` [mɪlç] |
 | Classical loanwords (word-initial) | [k] | `Charakter` [kaˈʁaktɐ], `Chor` [koːɐ̯] |
 
 ```json
 "ch": {
-  "after_vowel": ["x"],
-  "after_consonant": ["ç"],
-  "word_initial": ["k"],
+  "after_a": ["x", "ç"],
+  "after_o": ["x", "ç"],
+  "after_u": ["x", "ç"],
+  "after_e": ["ç", "x"],
+  "after_i": ["ç", "x"],
+  "after_vowel": ["ç", "x"],
+  "word_initial": ["k", "ç"],
   "default": ["ç"]
 }
 ```
+
+**Known engine-limit exception**: `GraphemePosition` only distinguishes
+`after_a/e/i/o/u` for single-letter vowel graphemes. ⟨ch⟩ following the
+umlauts ä/ö/ü (`Bücher`, `Löcher`) or the diphthong graphemes eu/äu falls
+back to the generic `after_vowel` bucket, which defaults to [ç] — correct
+for the umlauts (front vowels) but not encodable as a distinct rule
+without extending the position enum further.
+
+**Known engine-limit exception**: only `word_final` position is computed
+by the tokenizer (no medial-coda syllabification), so Auslautverhärtung
+before a following consonant inside a word (e.g. `Abschied`) is not
+applied; only absolute word-final devoicing is.
 
 ### Sp / St — Positional Assimilation
 
@@ -103,9 +125,22 @@ German has a length contrast (short vs. long) for all vowels, plus front rounded
 
 ---
 
+## Glottal Stop (Not Encoded)
+
+Word-initial and stressed word-internal vowel onsets are frequently preceded
+by a glottal stop [ʔ] in careful Standard German, e.g. `Oase` [ʔoˈʔaːzə]
+(Kohler 1990). It is not phonemic, is far more frequent in northern
+varieties than in the south, and is commonly absent in colloquial speech
+(Wikipedia German phonology). wikipron-style gold transcriptions used for
+this repository's benchmark do not include it, so it is deliberately not
+inserted — doing so would inflate PER against the gold rather than improve
+accuracy.
+
 ## References
 
 - Wiese, R. (1996). *The Phonology of German*. Oxford University Press.
 - Hall, T.A. (2003). *Phonologie des Deutschen: eine Einführung*. de Gruyter.
 - Mangold, M. (2005). *Duden Aussprachewörterbuch* (6th ed.). Dudenverlag.
+- Kohler, K.J. (1990). *Illustrations of the IPA: German*. Journal of the International Phonetic Association 20(1).
 - Wikipedia: [German phonology](https://en.wikipedia.org/wiki/German_phonology)
+- Wikipedia: [German orthography](https://en.wikipedia.org/wiki/German_orthography)

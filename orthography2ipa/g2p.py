@@ -399,6 +399,17 @@ class G2P:
 
         # 5. after/before vowel / consonant context
         if prev_is_v:
+            pc = prev_tok.grapheme[0].lower()
+            if pc == 'a':
+                pos.append(GraphemePosition.AFTER_A)
+            elif pc == 'e':
+                pos.append(GraphemePosition.AFTER_E)
+            elif pc == 'i':
+                pos.append(GraphemePosition.AFTER_I)
+            elif pc == 'o':
+                pos.append(GraphemePosition.AFTER_O)
+            elif pc == 'u':
+                pos.append(GraphemePosition.AFTER_U)
             pos.append(GraphemePosition.AFTER_VOWEL)
         elif prev_tok is not None:
             pos.append(GraphemePosition.AFTER_CONSONANT)
