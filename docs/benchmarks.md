@@ -286,8 +286,8 @@ this dataset only.
 The dataset ships 15 single-language configs plus an `en-xl` config
 (a 100K-row scale-up of the same English data already covered by the
 `en` config here and by `wikipron`/`cmudict`, so it is left out as
-redundant). All 15 single-language configs are wired, each against the
-`orthography2ipa` language tag matching its config name:
+redundant). 14 of the 15 single-language configs are wired, each
+against the `orthography2ipa` language tag matching its config name:
 
 | Lang | Rows (full file) |
 |---|---:|
@@ -305,11 +305,20 @@ redundant). All 15 single-language configs are wired, each against the
 | `ru` | 10,604 |
 | `sv` | 2,706 |
 | `uk` | 11,064 |
-| `zh` | 10,182 |
 
-`fa`, `uk` and `zh` had no prior gold coverage in this harness before
-this dataset; the rest are additive, complementary sentence-level
+`fa` and `uk` had no prior gold coverage in this harness before this
+dataset; the rest are additive, complementary sentence-level
 cross-checks to their existing word-level `wikipron`/lexicon entries.
+
+`zh` was evaluated but is excluded from this dataset: this repo's
+`zh` spec (`orthography2ipa/data/zh.json`) declares graphemes that are
+romanized pinyin letters and expects romanized pinyin input, while the
+`styletts2_phonemes` dataset's `zh` config's `text` field is raw hanzi
+(e.g. `"分布于美洲的北温带..."`). The engine cannot transcribe hanzi at
+all (`G2P('zh').transcribe_word('你好')` returns an empty string), so
+scoring this row would not measure phonological accuracy — it is a
+script/input-contract mismatch between the dataset and this repo's
+`zh` spec, not a gap in the engine's Mandarin coverage.
 
 The loader (`load_styletts2_phonemes` in `scripts/benchmark.py`)
 downloads each language's JSON file directly and pairs `text` with

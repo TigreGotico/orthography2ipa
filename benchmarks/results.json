@@ -123,7 +123,7 @@
     "lang": "en",
     "dataset": "styletts2_phonemes",
     "n": 300,
-    "per": 0.4656,
+    "per": 0.4464,
     "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -175,6 +175,16 @@
     "n": 298,
     "per": 0.1,
     "exact_match": 0.4765,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "eu",
+    "dataset": "hitz_basque_ipa",
+    "n": 300,
+    "per": 0.2796,
+    "exact_match": 0.1567,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -754,16 +764,6 @@
     "dataset": "styletts2_phonemes",
     "n": 299,
     "per": 0.496,
-    "exact_match": 0.0,
-    "quality_tier": "research",
-    "harness_version": "1.0",
-    "limit": 300
-  },
-  {
-    "lang": "zh",
-    "dataset": "styletts2_phonemes",
-    "n": 102,
-    "per": 0.9702,
     "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",

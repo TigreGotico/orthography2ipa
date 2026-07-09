@@ -208,7 +208,6 @@ _STYLETTS2_PHONEMES_FILES: Dict[str, str] = {
     "ru": "ru.json",
     "sv": "sv.json",
     "uk": "uk.json",
-    "zh": "zh.json",
 }
 
 
