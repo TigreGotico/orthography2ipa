@@ -32,6 +32,7 @@ import csv
 import json
 import os
 import sys
+import time
 import unicodedata
 import urllib.request
 from typing import Dict, List, Optional, Tuple
@@ -119,11 +120,26 @@ _IPADICT_FILES = {
 }
 
 
+_FETCH_ATTEMPTS = 3
+_FETCH_BACKOFF_SECONDS = 1.5
+
+
 def _fetch(url: str, name: str) -> str:
     os.makedirs(CACHE_DIR, exist_ok=True)
     dest = os.path.join(CACHE_DIR, name)
     if not os.path.exists(dest):
-        urllib.request.urlretrieve(url, dest)
+        last_exc: Optional[Exception] = None
+        for attempt in range(1, _FETCH_ATTEMPTS + 1):
+            try:
+                urllib.request.urlretrieve(url, dest)
+                last_exc = None
+                break
+            except Exception as exc:  # transient network hiccups
+                last_exc = exc
+                if attempt < _FETCH_ATTEMPTS:
+                    time.sleep(_FETCH_BACKOFF_SECONDS * attempt)
+        if last_exc is not None:
+            raise last_exc
     with open(dest, encoding="utf-8", errors="replace") as fh:
         return fh.read()
 
@@ -397,6 +413,7 @@ def build_scoreboard(limit: int) -> List[dict]:
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
                 "harness_version": HARNESS_VERSION,
+                "limit": limit,
             })
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows

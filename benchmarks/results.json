@@ -6,7 +6,8 @@
     "per": 0.0876,
     "exact_match": 0.59,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "cy",
@@ -15,7 +16,8 @@
     "per": 0.2187,
     "exact_match": 0.2899,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "da",
@@ -24,7 +26,8 @@
     "per": 0.4415,
     "exact_match": 0.0476,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "de",
@@ -33,7 +36,8 @@
     "per": 0.3656,
     "exact_match": 0.0297,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "el",
@@ -42,7 +46,8 @@
     "per": 0.1517,
     "exact_match": 0.3121,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "en",
@@ -51,7 +56,8 @@
     "per": 0.4892,
     "exact_match": 0.1,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "en-GB",
@@ -60,7 +66,8 @@
     "per": 0.5004,
     "exact_match": 0.0816,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "eo",
@@ -69,7 +76,8 @@
     "per": 0.0303,
     "exact_match": 0.87,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "es",
@@ -78,7 +86,8 @@
     "per": 0.1,
     "exact_match": 0.4765,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "eu",
@@ -87,7 +96,8 @@
     "per": 0.0768,
     "exact_match": 0.59,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "fi",
@@ -96,7 +106,8 @@
     "per": 0.0386,
     "exact_match": 0.7483,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "fr",
@@ -105,7 +116,8 @@
     "per": 0.3178,
     "exact_match": 0.1935,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "ga",
@@ -114,7 +126,8 @@
     "per": 0.433,
     "exact_match": 0.0373,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "gd",
@@ -123,7 +136,8 @@
     "per": 0.6867,
     "exact_match": 0.0286,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "gl",
@@ -132,7 +146,8 @@
     "per": 0.0728,
     "exact_match": 0.6326,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "hi",
@@ -141,7 +156,8 @@
     "per": 0.4573,
     "exact_match": 0.0077,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "hr",
@@ -150,7 +166,8 @@
     "per": 0.2763,
     "exact_match": 0.0171,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "hy",
@@ -159,7 +176,8 @@
     "per": 0.0701,
     "exact_match": 0.6229,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "is",
@@ -168,7 +186,8 @@
     "per": 0.23,
     "exact_match": 0.09,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "is",
@@ -177,7 +196,8 @@
     "per": 0.2232,
     "exact_match": 0.1395,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "it",
@@ -186,7 +206,8 @@
     "per": 0.1004,
     "exact_match": 0.4855,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "ml",
@@ -195,7 +216,8 @@
     "per": 0.6718,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "mwl",
@@ -204,7 +226,8 @@
     "per": 0.2244,
     "exact_match": 0.2732,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "mwl-x-sendim",
@@ -213,7 +236,8 @@
     "per": 0.4899,
     "exact_match": 0.1818,
     "quality_tier": "skeleton",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "nb",
@@ -222,7 +246,8 @@
     "per": 0.5133,
     "exact_match": 0.0177,
     "quality_tier": "skeleton",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "nl",
@@ -231,7 +256,8 @@
     "per": 0.3135,
     "exact_match": 0.1692,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "oc",
@@ -240,7 +266,8 @@
     "per": 0.1604,
     "exact_match": 0.3722,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pl",
@@ -249,7 +276,8 @@
     "per": 0.1195,
     "exact_match": 0.3624,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt",
@@ -258,7 +286,8 @@
     "per": 0.1817,
     "exact_match": 0.3058,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-BR",
@@ -267,7 +296,8 @@
     "per": 0.1901,
     "exact_match": 0.3952,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-PT",
@@ -276,7 +306,8 @@
     "per": 0.2599,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-PT-x-acores",
@@ -285,7 +316,8 @@
     "per": 0.3521,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-PT-x-alentejo",
@@ -294,7 +326,8 @@
     "per": 0.3216,
     "exact_match": 0.0333,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-PT-x-algarve",
@@ -303,7 +336,8 @@
     "per": 0.3549,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-PT-x-lisbon",
@@ -312,7 +346,8 @@
     "per": 0.2851,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-PT-x-madeira",
@@ -321,7 +356,8 @@
     "per": 0.2662,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "pt-PT-x-porto",
@@ -330,7 +366,8 @@
     "per": 0.255,
     "exact_match": 0.05,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "ro",
@@ -339,7 +376,8 @@
     "per": 0.0597,
     "exact_match": 0.637,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "sk",
@@ -348,7 +386,8 @@
     "per": 0.1206,
     "exact_match": 0.47,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "sq",
@@ -357,7 +396,8 @@
     "per": 0.0915,
     "exact_match": 0.6867,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "sv",
@@ -366,7 +406,8 @@
     "per": 0.3508,
     "exact_match": 0.0609,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "ta",
@@ -375,7 +416,8 @@
     "per": 0.8949,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "tl",
@@ -384,7 +426,8 @@
     "per": 0.2309,
     "exact_match": 0.0446,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   },
   {
     "lang": "tr",
@@ -393,6 +436,7 @@
     "per": 0.1384,
     "exact_match": 0.402,
     "quality_tier": "research",
-    "harness_version": "1.0"
+    "harness_version": "1.0",
+    "limit": 300
   }
 ]

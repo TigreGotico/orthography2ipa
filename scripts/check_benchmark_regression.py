@@ -39,9 +39,21 @@ from typing import Dict, List, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from benchmark import build_scoreboard, REPO_ROOT, SCOREBOARD_JSON  # noqa: E402
+from benchmark import (  # noqa: E402
+    build_scoreboard, REPO_ROOT, SCOREBOARD_JSON, HARNESS_VERSION,
+)
 
 DEFAULT_EPSILON = 0.005
+
+# Absolute floor on successfully-scored rows in the current run. If the
+# scoreboard collapses to (near-)zero rows — e.g. every dataset loader
+# hit a transient network failure — build_scoreboard() silently skips
+# the failing rows rather than raising, so a naive "any regressions?"
+# check would find none and exit 0: a false green exactly when the gate
+# is blind. This floor is well below the current committed baseline's
+# row count (see benchmarks/results.json) but high enough that a
+# wholesale loader outage cannot slip through unnoticed.
+MIN_SCORED_ROWS = 20
 
 
 def _row_key(row: dict) -> Tuple[str, str]:
@@ -131,6 +143,66 @@ def print_report(diff_rows: List[dict], epsilon: float) -> None:
     print(f"epsilon={epsilon} (absolute PER worsening allowed vs. baseline)")
 
 
+def check_scored_row_floor(current: List[dict]) -> None:
+    """Fail loudly if too few rows were successfully scored this run.
+
+    ``build_scoreboard`` catches every loader exception (including
+    transient network failures) and silently drops the affected
+    rows, so a wholesale outage (e.g. every dataset fails to load)
+    would otherwise produce zero comparable rows and a false-green
+    "no regressions detected" exit.
+    """
+    if len(current) < MIN_SCORED_ROWS:
+        sys.exit(
+            f"only {len(current)} row(s) were successfully scored this "
+            f"run (minimum required: {MIN_SCORED_ROWS}) — this looks "
+            f"like a wholesale dataset-loading failure (e.g. transient "
+            f"network outage) rather than a real absence of gold data, "
+            f"so the regression gate cannot trust its own comparison. "
+            f"Failing closed instead of reporting a false green."
+        )
+
+
+def check_harness_and_limit(
+    baseline: Dict[Tuple[str, str], dict],
+    current: List[dict],
+    limit: int,
+) -> None:
+    """Fail loudly on a harness/limit mismatch between baseline and
+    current run, since either makes PER deltas incomparable:
+
+    - a different ``harness_version`` means the scoring method itself
+      changed, not just the code under test.
+    - a different ``--limit`` slices a different-sized (and thus
+      differently distributed) sample of each gold dataset, which can
+      produce spurious mass "regressions" that are really just
+      slice-size noise, not a real PER change.
+    """
+    baseline_versions = {
+        r.get("harness_version") for r in baseline.values()
+    }
+    if baseline_versions - {HARNESS_VERSION}:
+        sys.exit(
+            f"baseline was generated with harness_version(s) "
+            f"{sorted(v for v in baseline_versions if v)} but this "
+            f"checkout's harness_version is {HARNESS_VERSION!r} — "
+            f"regenerate benchmarks/results.json "
+            f"(scripts/benchmark.py --scoreboard) before comparing."
+        )
+
+    baseline_limits = {
+        r.get("limit") for r in baseline.values() if r.get("limit") is not None
+    }
+    if baseline_limits and baseline_limits - {limit}:
+        sys.exit(
+            f"baseline was generated with limit(s) {sorted(baseline_limits)} "
+            f"but this run used --limit {limit} — a different slice size "
+            f"per dataset produces spurious PER deltas unrelated to real "
+            f"regressions. Re-run with --limit matching the baseline "
+            f"(or regenerate the baseline at the new limit)."
+        )
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--epsilon", type=float, default=DEFAULT_EPSILON,
@@ -147,6 +219,9 @@ def main() -> None:
 
     baseline = load_baseline(args.baseline)
     current = build_scoreboard(args.limit)
+
+    check_scored_row_floor(current)
+    check_harness_and_limit(baseline, current, args.limit)
 
     diff_rows, regressed_rows = compare(baseline, current, args.epsilon)
     print_report(diff_rows, args.epsilon)
