@@ -25,6 +25,7 @@ Dataset access:
 - ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
+- ``clup_dialect`` downloads a CSV gold file directly (stdlib only).
 
 Every run is capped (``--limit``, default 300) — gold sets are large
 and a slice is enough for a stable reference number.
@@ -148,6 +149,39 @@ _HITZ_BASQUE_PAGE_SIZE = 100
 # paragraph is very low -- never let this loader crawl the full 1.67M rows
 _HITZ_BASQUE_MAX_PARAGRAPHS = 500
 
+_CLUP_URL = (
+    "https://huggingface.co/datasets/TigreGotico/ArquivoDialetalCLUP_ipa"
+    "/resolve/main/dataset.csv"
+)
+# ArquivoDialetalCLUP_ipa rows carry a "<locality>, <district>" region
+# label per sentence. District → orthography2ipa dialect tag, using the
+# same regional groupings as the existing pt-PT-x-* specs.  Districts
+# with no matching spec (e.g. Leiria, split between the Estremadura and
+# Beira Litoral dialect areas) are left unmapped and their rows dropped.
+_CLUP_DISTRICT_MAP: Dict[str, str] = {
+    "Braga": "pt-PT-x-minho",
+    "Porto": "pt-PT-x-porto",
+    "Viana do Castelo": "pt-PT-x-viana",
+    "Terceira": "pt-PT-x-acores",
+    "São Miguel": "pt-PT-x-acores",
+    "Aveiro": "pt-PT-x-aveiro",
+    "Lisboa": "pt-PT-x-lisbon",
+    "Faro": "pt-PT-x-algarve",
+    "Bragança": "pt-PT-x-trasosmontes",
+    "Viseu": "pt-PT-x-beira",
+    "Coimbra": "pt-PT-x-beira",
+    "Vila Real": "pt-PT-x-trasosmontes",
+    "Funchal": "pt-PT-x-madeira",
+    "Portalegre": "pt-PT-x-alentejo",
+    "Ribeira Brava": "pt-PT-x-madeira",
+    "Porto Santo": "pt-PT-x-madeira",
+}
+# Locality-level overrides: rows whose exact locality has its own spec
+# take precedence over the district-level mapping above.
+_CLUP_LOCALITY_MAP: Dict[str, str] = {
+    "Alfena, Porto": "pt-PT-x-alfena",
+}
+_CLUP_LANGS = sorted(set(_CLUP_DISTRICT_MAP.values()) | set(_CLUP_LOCALITY_MAP.values()))
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
@@ -371,6 +405,40 @@ def load_hitz_basque(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+def load_clup_dialect(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """European Portuguese dialect archive gold set (sentence-level),
+    TigreGotico/ArquivoDialetalCLUP_ipa on Hugging Face — IPA
+    transcriptions of the Arquivo Dialetal do Centro de Linguística da
+    Universidade do Porto (CLUP, https://cl.up.pt/arquivo/) interview
+    corpus, spanning localities across mainland Portugal, the Azores
+    and Madeira.
+
+    Each CSV row is ``region,text,ipa`` where ``region`` is a
+    ``"<locality>, <district>"`` label. Rows are grouped to an
+    orthography2ipa dialect tag via ``_CLUP_LOCALITY_MAP`` (exact
+    locality match) falling back to ``_CLUP_DISTRICT_MAP`` (district
+    match); rows whose district has no corresponding spec are skipped.
+    """
+    text = _fetch(_CLUP_URL, "clup_dialect.csv")
+    pairs = []
+    reader = csv.reader(text.strip().splitlines())
+    next(reader)  # skip header
+    for row in reader:
+        if len(row) != 3:
+            continue
+        region, sentence, ipa = row
+        code = _CLUP_LOCALITY_MAP.get(region)
+        if code is None:
+            district = region.rsplit(",", 1)[-1].strip()
+            code = _CLUP_DISTRICT_MAP.get(district)
+        if code != lang or not sentence.strip() or not ipa.strip():
+            continue
+        pairs.append((sentence.strip(), ipa.strip()))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 def load_cmudict(lang: str, limit: int) -> List[Tuple[str, str]]:
     """CMU Pronouncing Dictionary (en-US), ARPABET converted to IPA."""
     from scriptconv.notation import arpa_to_ipa  # TigreGotico/scriptconv
@@ -498,6 +566,7 @@ DATASETS = {
     "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
+    "clup_dialect": (load_clup_dialect, _CLUP_LANGS),
     "cmudict": (load_cmudict, ["en-US"]),
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
 }

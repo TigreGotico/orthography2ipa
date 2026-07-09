@@ -149,6 +149,40 @@ higher than the lexicon benchmarks; it measures how well the engine
 captures dialect-specific grapheme-to-phoneme rules, not connected-speech
 phonology.
 
+### CLUP dialect archive gold set (`clup_dialect`)
+
+[TigreGotico/ArquivoDialetalCLUP_ipa](https://huggingface.co/datasets/TigreGotico/ArquivoDialetalCLUP_ipa)
+on Hugging Face: 68 sentence-level rows (66 mapped, see below), IPA
+transcriptions of interview excerpts from the
+[Arquivo Dialetal](https://cl.up.pt/arquivo/) of the Centro de
+Linguística da Universidade do Porto (CLUP). Each row carries a
+`"<locality>, <district>"` region label; rows are grouped to an
+orthography2ipa dialect tag by locality (exact match) then by district:
+
+| District (or locality) | orthography2ipa tag | Rows |
+|---|---|---:|
+| Porto | `pt-PT-x-porto` | 17 |
+| Braga | `pt-PT-x-minho` | 9 |
+| Viseu, Coimbra | `pt-PT-x-beira` | 8 |
+| Aveiro | `pt-PT-x-aveiro` | 6 |
+| Bragança, Vila Real | `pt-PT-x-trasosmontes` | 6 |
+| Lisboa | `pt-PT-x-lisbon` | 5 |
+| Funchal, Ribeira Brava, Porto Santo | `pt-PT-x-madeira` | 4 |
+| Viana do Castelo | `pt-PT-x-viana` | 4 |
+| Faro | `pt-PT-x-algarve` | 3 |
+| Terceira, São Miguel | `pt-PT-x-acores` | 2 |
+| Portalegre | `pt-PT-x-alentejo` | 1 |
+| Alfena, Porto (locality) | `pt-PT-x-alfena` | 1 |
+
+Two rows (Marinha Grande and Amor, both Leiria district) are excluded:
+Leiria straddles the Estremadura/Beira Litoral dialect boundary and has
+no corresponding spec in this repo, so they are dropped rather than
+forced into a neighbouring dialect.
+
+Because the gold contains sentence-level, connected-speech phonetics
+(the same caveat as `ep_dialects`), PER is naturally higher than the
+lexicon benchmarks.
+
 ### Mirandese gold set
 
 [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)
