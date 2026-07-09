@@ -2,7 +2,13 @@
 
 **Codes**: `en-GB`, `en-US`, `en-AU`, `en-CA`, `en-IE`, `en-ZA`, `en-GB-x-scotland`
 **Family**: Germanic | **Script**: Latin (alphabet)
-**Quality tier**: research | **Sources**: Wells (1982), Roach (2009), Cruttenden (2014)
+**Quality tier**: research | **Orthographic depth**: deep (production threshold ≤ 0.25 PER)
+**Sources**: Wells (1982), Roach (2009), Roach (2004, JIPA), Cruttenden (2014)
+
+**Lexical stress**: not encoded as a declarative `stress` block. English word
+stress is lexically contrastive (`record` noun vs. `record` verb) rather than
+reliably orthography-predictable, so it is exempt from the research-tier
+stress requirement per `docs/quality_tiers.md`.
 
 ---
 
@@ -45,6 +51,45 @@
 | Between vowels | [z] | `rose` [ʁɒz], `nose` [nɒz], `reason` |
 | Word-initial | [s] | `seat`, `sun`, `see` |
 | After voiceless consonant | [s] | `maps` [mæps], `cats` [kæts] |
+
+### Silent Final E (VCe Pattern)
+
+Word-final orthographic `<e>` after a consonant is not pronounced in Modern
+English; historically it marked the preceding vowel as tense/long (`mat` vs.
+`mate`). Only the deletion half of that alternation is encoded — the engine's
+positional grapheme model resolves a single grapheme against its own position
+and has no lookback to the preceding vowel nucleus, so the vowel-quality shift
+itself (`mat` [mæt] -> `mate` [meɪt]) is a known engine-limit exception, not
+an encoded rule.
+
+| Word | Pred. | Note |
+|:---|:---:|:---|
+| `hope` | hɒp | final `e` deleted; vowel unchanged (engine limit) |
+| `time` | tɪm | final `e` deleted; vowel unchanged (engine limit) |
+| `nation` | næʃən | `-tion` suffix, see below |
+
+**Handled exception**: the small closed class of function words genuinely
+ending in a pronounced `<e>` (`the`, `be`, `he`, `me`, `we`, `she`) is carved
+out of the blanket word-final rule via a `word_exceptions` whole-word
+override (`the` [ðə], `be` [biː], `he` [hiː], `me` [miː], `we` [wiː], `she`
+[ʃiː]).
+
+### TION/SION Suffix Family
+
+| Grapheme | IPA | Examples |
+|:---:|:---:|:---|
+| `tion` | ʃən | `nation`, `station`, `action` |
+| `cian` | ʃən | `magician`, `musician` |
+| `ssion` | ʃən | `mission` [mɪʃən], `passion` [pæʃən] |
+| `sion` (after a vowel) | ʒən | `vision` [vɪʒən], `division` [dɪvɪʒən] |
+| `sion` (after a consonant) | ʃən | `tension` [tɛnʃən], `mansion` [mænʃən] |
+| `tial` / `cial` | ʃəl | `martial`, `special` |
+| `cious` / `tious` | ʃəs | `delicious`, `cautious` |
+
+The `ssion` spelling is matched as its own grapheme (maximal-munch
+tokenization picks the 5-character `ssion` over the 4-character `sion`), and
+plain `sion` is conditioned on the preceding token via the engine's
+`positional_graphemes` AFTER_VOWEL / AFTER_CONSONANT context.
 
 ### X Word-Initial
 
@@ -134,5 +179,6 @@ Encoded as:
 
 - Wells, J.C. (1982). *Accents of English*, vols. 1–2. Cambridge University Press.
 - Roach, P. (2009). *English Phonetics and Phonology* (4th ed.). Cambridge University Press.
+- Roach, P. (2004). British English: Received Pronunciation. *Journal of the International Phonetic Association*, 34(2), 239-245.
 - Cruttenden, A. [ed.] (2014). *Gimson's Pronunciation of English* (8th ed.). Routledge.
 - Wikipedia: [English phonology](https://en.wikipedia.org/wiki/English_phonology), [General American](https://en.wikipedia.org/wiki/General_American_English)
