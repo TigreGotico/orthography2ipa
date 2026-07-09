@@ -10,7 +10,12 @@ Validates:
 import pytest
 
 import orthography2ipa
-from orthography2ipa.registry import get, available_codes, available_families
+from orthography2ipa.registry import (
+    get,
+    available_codes,
+    available_families,
+    get_syllabifier,
+)
 from orthography2ipa.types import LanguageSpec
 
 
@@ -152,3 +157,28 @@ class TestTopLevelAPI:
     def test_version_string(self):
         assert hasattr(orthography2ipa, "__version__")
         assert isinstance(orthography2ipa.__version__, str)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Syllabifier plugin discovery
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestSyllabifierDiscovery:
+    """get_syllabifier() dispatches to entry-point plugins.
+
+    No third-party syllabifier package is installed in this environment,
+    so discovery must handle the zero-plugins case without crashing and
+    simply report that no syllabifier is registered.
+    """
+
+    def test_no_plugins_installed_returns_none(self):
+        assert get_syllabifier("pt-PT") is None
+
+    def test_unknown_code_returns_none(self):
+        assert get_syllabifier("xx-nonexistent-code") is None
+
+    def test_repeated_calls_are_stable(self):
+        """Discovery is cached; repeated lookups don't re-scan or raise."""
+        first = get_syllabifier("pt-PT")
+        second = get_syllabifier("pt-PT")
+        assert first is second is None

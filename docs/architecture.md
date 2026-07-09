@@ -166,6 +166,27 @@ Abstract G2P plugin interface — `g2p_plugin.py:1-55`:
 
 Plugins are discovered via `importlib.metadata` entry points in the `orthography2ipa.g2p` group.
 
+### `syllabifier_plugin.py`
+
+Abstract interface for per-language syllabifiers — `syllabifier_plugin.py:1-51`:
+
+- `SyllabifierPlugin` — abstract base class with `syllabify(word, lang)`, `language_codes`, and `priority` — `syllabifier_plugin.py:28`
+
+The bundled `stress.syllabify` is a naive vowel-group splitter. Languages with a real syllabifier ship it as a plugin (e.g. `silabificador` for Portuguese) and stress detection picks it up automatically.
+
+Plugins are discovered lazily via `importlib.metadata` entry points in the `orthography2ipa.syllabify` group — `registry._discover_syllabifiers` — `registry.py:156`. Discovery runs once, on first call to `registry.get_syllabifier(code)`, and the result is cached at module scope. With no plugins installed, discovery returns an empty mapping and `get_syllabifier()` returns `None` for every code — this package ships no entry points of its own.
+
+When several plugins claim the same language code, the one with the highest `priority` wins (default `50`).
+
+A downstream package registers a syllabifier by declaring the entry point in its own `pyproject.toml`:
+
+```toml
+[project.entry-points."orthography2ipa.syllabify"]
+silabificador = "silabificador.plugin:PortugueseSyllabifier"
+```
+
+where `PortugueseSyllabifier` implements `SyllabifierPlugin` and declares `language_codes = ["pt-PT", "pt-BR"]`.
+
 ### `cli.py`
 
 Command-line interface — `cli.py:1-200+`:

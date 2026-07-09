@@ -163,11 +163,7 @@ def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
     from importlib.metadata import entry_points
 
     plugins: Dict[str, "SyllabifierPlugin"] = {}
-    try:
-        eps = entry_points(group="orthography2ipa.syllabify")
-    except TypeError:
-        # Python 3.9 compat
-        eps = entry_points().get("orthography2ipa.syllabify", [])
+    eps = entry_points(group="orthography2ipa.syllabify")
     for ep in eps:
         try:
             instance = ep.load()()

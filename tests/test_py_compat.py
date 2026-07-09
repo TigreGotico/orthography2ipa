@@ -1,4 +1,4 @@
-"""Tests for Python 3.9 compatibility and package hygiene.
+"""Tests for consistent type annotation style and package hygiene.
 
 Validates:
 - Every module using PEP 585/604 annotation syntax has the
@@ -58,7 +58,7 @@ def _uses_modern_syntax(annotation: ast.expr) -> bool:
     sorted(PACKAGE_ROOT.rglob("*.py")),
     ids=lambda p: str(p.relative_to(PACKAGE_ROOT)),
 )
-def test_py39_annotation_compat(module_path):
+def test_consistent_annotation_style(module_path):
     """Modules using modern annotation syntax must import future annotations."""
     tree = ast.parse(module_path.read_text(encoding="utf-8"))
     if _has_future_annotations(tree):
