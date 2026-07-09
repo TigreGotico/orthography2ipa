@@ -22,6 +22,9 @@ Dataset access:
 - ``cmudict`` needs the ``scriptconv`` package for ARPABET→IPA.
 - ``wikipron`` and ``mirandese`` download TSVs directly (stdlib only).
 - ``infopedia_pt`` downloads a JSONL gold file directly (stdlib only).
+- ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
+  dataset through the datasets-server "rows" REST API (stdlib only,
+  no full-parquet download).
 
 Every run is capped (``--limit``, default 300) — gold sets are large
 and a slice is enough for a stable reference number.
@@ -135,6 +138,16 @@ _4CATAC_FILES: Dict[str, str] = {
     "ca-x-occidental": "Projecte BSC frases - Nord-Occ.tsv",
     "ca-x-valencia": "Projecte BSC frases - Val.tsv",
 }
+_HITZ_BASQUE_ROWS_URL = (
+    "https://datasets-server.huggingface.co/rows"
+    "?dataset=HiTZ%2Fwikipedia_basque_ipa&config=default&split=train"
+    "&offset={offset}&length={length}"
+)
+_HITZ_BASQUE_PAGE_SIZE = 100
+# bound network calls even in the (unlikely) case word yield per
+# paragraph is very low -- never let this loader crawl the full 1.67M rows
+_HITZ_BASQUE_MAX_PARAGRAPHS = 500
+
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
@@ -264,6 +277,94 @@ def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
             pairs.append((parts[0].strip(), parts[1].strip()))
         if len(pairs) >= limit:
             break
+def load_hitz_basque(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """HiTZ/wikipedia_basque_ipa: Basque Wikipedia paragraphs phonemized by
+    ahoNT (a Basque text-processing/phonemization tool developed at HiTZ
+    Zentroa / AhoLab, the University of the Basque Country's NLP research
+    group), ~1.67M ``text``/``phonemes`` rows at PARAGRAPH level.
+
+    This is a COMPLEMENTARY source to the existing ``wikipron`` "eu" entry,
+    not a replacement: wikipron/eu is Wiktionary-sourced broad
+    transcriptions, this is a much larger corpus phonemized by an
+    automatic tool (ahoNT) rather than a human annotator. Per an explicit,
+    dataset-specific decision, that is accepted here because the dataset
+    is published by an academic/university NLP research center (HiTZ) --
+    see docs/benchmarks.md for the full rationale; this is not a general
+    exception to the "gold only from humans" rule.
+
+    The dataset is paragraph-level, a different shape than this harness's
+    word-level gold sets. Rows are paged through the Hugging Face
+    datasets-server "rows" REST API (no full-parquet download, no
+    ``datasets`` dependency needed); each paragraph's ``text`` and
+    ``phonemes`` are whitespace-tokenized (ahoNT emits one phoneme token
+    per source word with punctuation attached to the token, per the
+    dataset card), tokens are paired positionally, and surrounding
+    punctuation is stripped from both sides to yield single-word (word,
+    IPA) pairs. The dataset's own apostrophe stress convention
+    (``'a``/``'e``/... before the stressed vowel, per the dataset card)
+    is normalized to the standard IPA stress mark (U+02C8) so the
+    harness's default stress-stripping applies consistently across
+    datasets. Following ``load_ep_dialects``'s precedent of scoring
+    non-single-word/paragraph-derived gold spans through the same
+    ``transcribe_word``/PER pipeline, single word-tokens (rather than
+    whole sentences) are used as the scored unit here, since paragraph-
+    level ahoNT stress placement is not verified to need sentence context,
+    making the single-token span the safer/cleaner unit to isolate.
+
+    Only a bounded sample (default ``limit`` pairs, e.g. ~300) is ever
+    fetched, paging a few hundred paragraphs at a time -- never the full
+    1.67M-row dataset.
+    """
+    import re
+
+    # explicit punctuation set -- NOT a blanket \W match, since \W would
+    # also swallow the dataset's apostrophe stress mark and IPA letters
+    # that aren't ASCII word characters (ɾ, ʂ, ɲ, ...)
+    _PUNCT = ".,;:!?¡¿\"“”«»()[]{}…—–-"
+    punct_re = re.compile(
+        r"^[" + re.escape(_PUNCT) + r"]+|[" + re.escape(_PUNCT) + r"]+$")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    offset = 0
+    paragraphs_seen = 0
+    while len(pairs) < limit and paragraphs_seen < _HITZ_BASQUE_MAX_PARAGRAPHS:
+        url = _HITZ_BASQUE_ROWS_URL.format(
+            offset=offset, length=_HITZ_BASQUE_PAGE_SIZE)
+        raw = _fetch(url, f"hitz_basque_rows_{offset}.json")
+        data = json.loads(raw)
+        rows = data.get("rows", [])
+        if not rows:
+            break
+        for entry in rows:
+            paragraphs_seen += 1
+            row = entry.get("row", {})
+            text, phonemes = row.get("text"), row.get("phonemes")
+            if not text or not phonemes:
+                continue
+            words = text.split()
+            phones = phonemes.split()
+            if len(words) != len(phones):
+                continue
+            for w, p in zip(words, phones):
+                word = punct_re.sub("", w)
+                ipa = punct_re.sub("", p)
+                # dataset-specific stress convention: apostrophe before the
+                # stressed vowel (dataset card), not IPA's own U+02C8 mark
+                # -- normalize so the harness's default stress-stripping
+                # (which matches on U+02C8/U+02CC) also applies here.
+                ipa = ipa.replace("'", "ˈ")
+                if not word or not ipa or not word.isalpha():
+                    continue
+                key = word.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                pairs.append((word, ipa))
+                if len(pairs) >= limit:
+                    break
+            if len(pairs) >= limit:
+                break
+        offset += _HITZ_BASQUE_PAGE_SIZE
     return pairs
 
 
@@ -393,6 +494,7 @@ DATASETS = {
     "mirandese": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
+    "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
     "cmudict": (load_cmudict, ["en-US"]),
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
 }
