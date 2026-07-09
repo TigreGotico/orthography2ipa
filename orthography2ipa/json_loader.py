@@ -266,6 +266,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
         timespan=timespan,
         stress=stress,
+        word_exceptions=raw.get("word_exceptions"),
     )
 
     _specs[code] = spec
