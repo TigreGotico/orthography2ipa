@@ -473,7 +473,7 @@
             "notes": "une amie → resyllabification"
         }
     ],
-    "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllables (le, que, de) are a known engine-limit exception where the schwa is grammatically obligatory to preserve a syllable nucleus. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. Elision (le/la/je/de/que + vowel → l'/j'/d'/qu') is already resolved in standard orthography (words are written with the apostrophe), so it needs no additional G2P rule. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995).",
+    "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. Elision (le/la/je/de/que + vowel → l'/j'/d'/qu') is already resolved in standard orthography (words are written with the apostrophe), so it needs no additional G2P rule. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995).",
     "quality": "research",
     "script_type": "alphabet",
     "sources": [
@@ -707,6 +707,17 @@
                 "œ̃"
             ]
         }
+    },
+    "word_exceptions": {
+        "le": "lə",
+        "de": "də",
+        "que": "kə",
+        "ce": "sə",
+        "ne": "nə",
+        "se": "sə",
+        "je": "ʒə",
+        "me": "mə",
+        "te": "tə"
     },
     "timespan": {
         "start_year": 1300,

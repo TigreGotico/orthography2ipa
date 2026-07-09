@@ -256,6 +256,11 @@ class G2P:
         return flagged
 
     def _transcribe_word(self, word: str, width: int) -> WordTranscription:
+        exceptions = self.spec.word_exceptions
+        if exceptions:
+            override = exceptions.get(word.lower())
+            if override is not None:
+                return WordTranscription(word=word, ipa=override, candidates=())
         if self.spec.has_positional_data():
             paths = self._positional_beam(word, width)
         else:

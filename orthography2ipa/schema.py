@@ -200,6 +200,9 @@ class LanguageSpecModel(_Strict):
     # ─── bundled-lexicon reference (consumed by load_lexicon) ────────
     lexicon_csv: Optional[str] = None
 
+    # ─── whole-word overrides for a closed irregular set ─────────────
+    word_exceptions: Optional[Dict[str, str]] = None
+
     @field_validator("graphemes", "allophones")
     @classmethod
     def _non_empty_keys(cls, v):

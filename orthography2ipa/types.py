@@ -611,6 +611,16 @@ class LanguageSpec:
     Not inherited through ancestry — each spec declares its own block;
     consumed by :func:`orthography2ipa.stress.detect_stress`."""
 
+    word_exceptions: Optional[Dict[str, str]] = None
+    """Whole-word IPA overrides for a closed set of irregular words that
+    the rule system (flat graphemes / positional_graphemes) cannot
+    express cleanly — e.g. monosyllabic function words whose sole vowel
+    is a positionally-conditioned e caduc (French ``le`` → ``lə``) that
+    would otherwise be silenced by a ``word_final`` rule tuned for
+    polysyllables. Keys are lowercase orthographic word forms; matched
+    case-insensitively before positional-beam search. Not inherited
+    through ancestry — each spec declares its own block."""
+
     def __post_init__(self) -> None:
         # Normalise None to empty dict
         if self.positional_graphemes is None:
