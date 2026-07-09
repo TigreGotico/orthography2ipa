@@ -35,6 +35,7 @@ import os
 import sys
 import time
 import unicodedata
+import urllib.parse
 import urllib.request
 from typing import Dict, List, Optional, Tuple
 
@@ -109,6 +110,23 @@ _INFOPEDIA_PT_URL = (
     "https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa"
     "/resolve/main/infopedia_pt_ipa.jsonl"
 )
+_4CATAC_BASE = (
+    "https://huggingface.co/datasets/projecte-aina/4catac/resolve/main/"
+)
+# 4catac file name  →  orthography2ipa language tag
+# Balear     → ca-x-balear    (Balearic)
+# Central    → ca             (Central/standard Catalan)
+# Nord-Occ   → ca-x-occidental (Northwestern/Lleidatà; 4catac's "North-Western"
+#                                accent — NOT ca-x-nord, which is Northern
+#                                Catalan/Rossellonès, a distinct dialect spoken
+#                                in France and not covered by this dataset)
+# Val        → ca-x-valencia  (Valencian)
+_4CATAC_FILES: Dict[str, str] = {
+    "ca": "Projecte BSC frases - Central.tsv",
+    "ca-x-balear": "Projecte BSC frases - Balear.tsv",
+    "ca-x-occidental": "Projecte BSC frases - Nord-Occ.tsv",
+    "ca-x-valencia": "Projecte BSC frases - Val.tsv",
+}
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
@@ -216,6 +234,26 @@ def load_infopedia_pt(lang: str, limit: int) -> List[Tuple[str, str]]:
         for ipa in variants:
             if word and ipa:
                 pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """4catac gold set (sentence-level, projecte-aina/4catac on Hugging
+    Face): 160 Catalan sentences transcribed in IPA by expert annotators
+    for four regional accents, one TSV per accent (``sentence`` TAB
+    ``transcription``). See ``_4CATAC_FILES`` for the accent → language
+    tag mapping.
+    """
+    fname = _4CATAC_FILES[lang]
+    url = _4CATAC_BASE + urllib.parse.quote(fname)
+    text = _fetch(url, f"4catac_{fname}")
+    pairs = []
+    for line in text.strip().splitlines()[1:]:
+        parts = line.split("\t")
+        if len(parts) == 2 and parts[0].strip() and parts[1].strip():
+            pairs.append((parts[0].strip(), parts[1].strip()))
         if len(pairs) >= limit:
             break
     return pairs
@@ -346,6 +384,7 @@ DATASETS = {
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "mirandese": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
+    "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "cmudict": (load_cmudict, ["en-US"]),
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
 }

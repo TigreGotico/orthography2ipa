@@ -144,6 +144,29 @@ raiano, sendinese), collected by a native Mirandese speaker
 Native-speaker provenance makes it the reference gold for Mirandese;
 its size keeps results indicative rather than statistical.
 
+### 4catac Catalan accents gold set
+
+[projecte-aina/4catac](https://huggingface.co/datasets/projecte-aina/4catac)
+on Hugging Face: 160 sentence-level rows per accent, expert-transcribed
+in IPA following Institut d'Estudis Catalans guidelines, with
+consensus review across multiple annotators. The same 160 sentences
+(with small morphological adaptations where needed) are transcribed
+separately for four Catalan accents, one TSV per accent:
+
+| 4catac file | orthography2ipa tag | Notes |
+|---|---|---|
+| `Projecte BSC frases - Central.tsv` | `ca` | Central/standard Catalan |
+| `Projecte BSC frases - Balear.tsv` | `ca-x-balear` | Balearic |
+| `Projecte BSC frases - Nord-Occ.tsv` | `ca-x-occidental` | Northwestern/Lleidatà — **not** `ca-x-nord` (Northern Catalan/Rossellonès, a distinct dialect spoken in France that 4catac does not cover) |
+| `Projecte BSC frases - Val.tsv` | `ca-x-valencia` | Valencian |
+
+Sentences were "intentionally written to showcase various phonetic
+phenomena" across the four accents, so this is a targeted, curated
+gold set rather than a random sample. Because the gold is
+sentence-level, PER reflects connected-speech phonology on top of
+grapheme-to-phoneme rules, so it is naturally higher than the
+lexicon-style benchmarks. No rows are excluded.
+
 ### Icelandic Pronunciation Dictionary (ipa-dict)
 
 [open-dict-data/ipa-dict `is.txt`](https://github.com/open-dict-data/ipa-dict/blob/master/data/is.txt):
