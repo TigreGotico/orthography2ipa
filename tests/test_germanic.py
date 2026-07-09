@@ -220,6 +220,30 @@ class TestGermanStandard:
         g = _grapheme(self._spec, "ch")
         _assert_contains(g, "x", "ç", label="de-DE ch")
 
+    def test_ch_after_front_vowel_is_ich_laut(self):
+        """<ch> after a front vowel (e.g. *ich*) surfaces as [ç], not [x]."""
+        ipa = orthography2ipa.transcribe("ich", "de-DE")
+        assert "ç" in ipa, f"de-DE 'ich' should contain [ç]: got {ipa!r}"
+        assert "x" not in ipa, f"de-DE 'ich' should not contain [x]: got {ipa!r}"
+
+    def test_ch_after_back_vowel_is_ach_laut(self):
+        """<ch> after a back vowel (e.g. *Bach*) surfaces as [x], not [ç]."""
+        ipa = orthography2ipa.transcribe("Bach", "de-DE")
+        assert "x" in ipa, f"de-DE 'Bach' should contain [x]: got {ipa!r}"
+        assert "ç" not in ipa, f"de-DE 'Bach' should not contain [ç]: got {ipa!r}"
+
+    def test_ch_after_back_vowel_noch_is_ach_laut(self):
+        """<ch> after the back vowel in *noch* surfaces as [x], not [ç]."""
+        ipa = orthography2ipa.transcribe("noch", "de-DE")
+        assert "x" in ipa, f"de-DE 'noch' should contain [x]: got {ipa!r}"
+        assert "ç" not in ipa, f"de-DE 'noch' should not contain [ç]: got {ipa!r}"
+
+    def test_ch_after_front_vowel_milch_is_ich_laut(self):
+        """<ch> after the front vowel in *Milch* surfaces as [ç], not [x]."""
+        ipa = orthography2ipa.transcribe("Milch", "de-DE")
+        assert "ç" in ipa, f"de-DE 'Milch' should contain [ç]: got {ipa!r}"
+        assert "x" not in ipa, f"de-DE 'Milch' should not contain [x]: got {ipa!r}"
+
     def test_ng_is_velar_nasal(self):
         """<ng> → /ŋ/ (no epenthetic /ɡ/, unlike English *finger*)."""
         _assert_first(_grapheme(self._spec, "ng"), "ŋ", label="de-DE ng")

@@ -95,6 +95,7 @@ class TestGraphemePosition(unittest.TestCase):
             "before_vowel", "after_vowel",
             "before_consonant", "after_consonant",
             "before_a", "before_e", "before_i", "before_o", "before_u",
+            "after_a", "after_e", "after_i", "after_o", "after_u",
             "vocalic", "consonantal",
             "default", "nucleus",
         }

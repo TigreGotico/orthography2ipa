@@ -13,7 +13,7 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | ast | wikipron | 300 | 0.0876 | 0.5900 | research |
 | cy | wikipron | 276 | 0.2187 | 0.2899 | research |
 | da | wikipron | 273 | 0.4415 | 0.0476 | research |
-| de | wikipron | 269 | 0.3656 | 0.0297 | research |
+| de | wikipron | 269 | 0.3613 | 0.0297 | research |
 | el | wikipron | 298 | 0.1517 | 0.3121 | research |
 | en | wikipron | 220 | 0.4892 | 0.1000 | research |
 | en-GB | wikipron | 245 | 0.5004 | 0.0816 | research |
