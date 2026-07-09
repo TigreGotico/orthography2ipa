@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.19.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.19.1a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.0a1...1.19.1a1)
+
+**Merged pull requests:**
+
+- fix\(en-gb\): ground RP phonology mappings in Wells/Roach/Cruttenden sources [\#100](https://github.com/TigreGotico/orthography2ipa/pull/100) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.19.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.19.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.18.0a1...1.19.0a1)
