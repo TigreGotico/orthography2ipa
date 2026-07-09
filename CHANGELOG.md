@@ -1,8 +1,20 @@
 # Changelog
 
+## [1.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.14.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.1a2...1.14.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmark\): add PR-gated benchmark regression CI job [\#80](https://github.com/TigreGotico/orthography2ipa/pull/80) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.13.1a2](https://github.com/TigreGotico/orthography2ipa/tree/1.13.1a2) (2026-07-09)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.0a1...1.13.1a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.1a1...1.13.1a2)
+
+## [1.13.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.13.1a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.0a1...1.13.1a1)
 
 **Merged pull requests:**
 
