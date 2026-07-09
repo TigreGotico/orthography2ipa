@@ -45,7 +45,7 @@ from dataclasses import dataclass
 from enum import Enum, auto
 from typing import Dict, List, Optional, Sequence, Tuple
 
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import GraphemePosition, LanguageSpec
 
 from typing import TYPE_CHECKING
 
@@ -255,11 +255,33 @@ class PhonetokTokenizer:
         self.add_bos = add_bos
         self.add_eos = add_eos
         self.collapse_whitespace = collapse_whitespace
-        self._trie = _GraphemeTrie(spec.graphemes)
-        # Build normalised lookup (lowercase keys)
+        # Build normalised lookup (lowercase keys) from the base grapheme
+        # table first.
         self._grapheme_ipa: Dict[str, Tuple[str, ...]] = {
             k.lower(): tuple(v) for k, v in spec.graphemes.items()
         }
+
+        # Grapheme keys that exist *only* as positional overrides (no entry
+        # in the base `graphemes` table) must still be discoverable by the
+        # maximal-munch trie, otherwise the tokenizer never recognises the
+        # sequence and falls back to matching it character-by-character
+        # (or as UNKNOWN tokens). Seed a fallback IPA value for those keys
+        # from their positional candidates (DEFAULT position preferred,
+        # else the first declared position) so tokenize() always has an
+        # `ipa` value to attach; g2p.py's positional resolution logic
+        # still consults `spec.positional_graphemes` afterwards to pick
+        # the context-correct candidate.
+        if spec.positional_graphemes:
+            for grapheme, pos_map in spec.positional_graphemes.items():
+                key = grapheme.lower()
+                if key in self._grapheme_ipa or not pos_map:
+                    continue
+                candidates = pos_map.get(GraphemePosition.DEFAULT)
+                if candidates is None:
+                    candidates = next(iter(pos_map.values()))
+                self._grapheme_ipa[key] = tuple(candidates)
+
+        self._trie = _GraphemeTrie(self._grapheme_ipa)
 
     # ─── Core tokenization ─────────────────────────────────────────────
 
