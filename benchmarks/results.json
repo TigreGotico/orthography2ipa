@@ -93,7 +93,7 @@
     "lang": "en",
     "dataset": "wikipron",
     "n": 220,
-    "per": 0.4892,
+    "per": 0.4799,
     "exact_match": 0.1,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -125,16 +125,6 @@
     "n": 298,
     "per": 0.1,
     "exact_match": 0.4765,
-    "quality_tier": "research",
-    "harness_version": "1.0",
-    "limit": 300
-  },
-  {
-    "lang": "eu",
-    "dataset": "hitz_basque_ipa",
-    "n": 300,
-    "per": 0.2796,
-    "exact_match": 0.1567,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300

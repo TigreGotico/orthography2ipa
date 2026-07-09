@@ -294,8 +294,7 @@
     "cial": [
       "ʃəl"
     ],
-    "sion": [
-      "ʒən",
+    "ssion": [
       "ʃən"
     ]
   },
@@ -468,7 +467,7 @@
       "notes": "Middle English descent"
     }
   ],
-  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is misresolved by the blanket rule. TION/SION FAMILY: -tion/-cian -> [ʃən], -sion -> [ʒən] after a vowel or [ʃən] after a consonant, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule).",
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -597,7 +596,29 @@
         "iː",
         "ə"
       ]
+    },
+    "sion": {
+      "after_vowel": [
+        "ʒən",
+        "ʃən"
+      ],
+      "after_consonant": [
+        "ʃən",
+        "ʒən"
+      ],
+      "default": [
+        "ʒən",
+        "ʃən"
+      ]
     }
+  },
+  "word_exceptions": {
+    "the": "ðə",
+    "be": "biː",
+    "he": "hiː",
+    "me": "miː",
+    "we": "wiː",
+    "she": "ʃiː"
   },
   "timespan": {
     "start_year": 1500,

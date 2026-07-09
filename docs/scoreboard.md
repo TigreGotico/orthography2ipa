@@ -19,12 +19,10 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | da | wikipron | 273 | 0.4415 | 0.0476 | research |
 | de | wikipron | 269 | 0.3613 | 0.0297 | research |
 | el | wikipron | 298 | 0.1517 | 0.3121 | research |
-| en | wikipron | 220 | 0.4892 | 0.1000 | research |
+| en | wikipron | 220 | 0.4799 | 0.1000 | research |
 | en-GB | wikipron | 245 | 0.4876 | 0.0816 | research |
-| en-US | cmudict | 300 | 0.6118 | 0.0200 | research |
 | eo | wikipron | 300 | 0.0303 | 0.8700 | research |
 | es | wikipron | 298 | 0.1000 | 0.4765 | research |
-| eu | hitz_basque_ipa | 300 | 0.2796 | 0.1567 | research |
 | eu | wikipron | 239 | 0.0768 | 0.5900 | research |
 | fi | wikipron | 294 | 0.0386 | 0.7483 | research |
 | fr | wikipron | 279 | 0.1559 | 0.4624 | research |

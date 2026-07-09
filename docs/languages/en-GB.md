@@ -68,10 +68,11 @@ an encoded rule.
 | `time` | tɪm | final `e` deleted; vowel unchanged (engine limit) |
 | `nation` | næʃən | `-tion` suffix, see below |
 
-**Known exception**: the small closed class of function words genuinely
-ending in a pronounced `<e>` (`the`, `be`, `he`, `me`, `we`, `she`) is
-misresolved by the blanket word-final rule — there is no per-word lexicon
-override in this engine's data model.
+**Handled exception**: the small closed class of function words genuinely
+ending in a pronounced `<e>` (`the`, `be`, `he`, `me`, `we`, `she`) is carved
+out of the blanket word-final rule via a `word_exceptions` whole-word
+override (`the` [ðə], `be` [biː], `he` [hiː], `me` [miː], `we` [wiː], `she`
+[ʃiː]).
 
 ### TION/SION Suffix Family
 
@@ -79,9 +80,16 @@ override in this engine's data model.
 |:---:|:---:|:---|
 | `tion` | ʃən | `nation`, `station`, `action` |
 | `cian` | ʃən | `magician`, `musician` |
-| `sion` | ʒən / ʃən | `vision` [vɪʒən], `mission` [mɪʃən] |
+| `ssion` | ʃən | `mission` [mɪʃən], `passion` [pæʃən] |
+| `sion` (after a vowel) | ʒən | `vision` [vɪʒən], `division` [dɪvɪʒən] |
+| `sion` (after a consonant) | ʃən | `tension` [tɛnʃən], `mansion` [mænʃən] |
 | `tial` / `cial` | ʃəl | `martial`, `special` |
 | `cious` / `tious` | ʃəs | `delicious`, `cautious` |
+
+The `ssion` spelling is matched as its own grapheme (maximal-munch
+tokenization picks the 5-character `ssion` over the 4-character `sion`), and
+plain `sion` is conditioned on the preceding token via the engine's
+`positional_graphemes` AFTER_VOWEL / AFTER_CONSONANT context.
 
 ### X Word-Initial
 
