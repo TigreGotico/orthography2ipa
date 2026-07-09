@@ -21,6 +21,7 @@ MANIFEST
 .coverage
 coverage.xml
 htmlcov/
+.benchmark_cache/
 
 # IDE
 .idea/
