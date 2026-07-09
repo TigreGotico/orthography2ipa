@@ -443,8 +443,8 @@
     "lang": "tr",
     "dataset": "wikipron",
     "n": 296,
-    "per": 0.1384,
-    "exact_match": 0.402,
+    "per": 0.1397,
+    "exact_match": 0.3986,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300

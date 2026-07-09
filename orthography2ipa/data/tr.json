@@ -20,7 +20,7 @@
       "o"
     ],
     "ö": [
-      "ø"
+      "œ"
     ],
     "u": [
       "u"
@@ -190,8 +190,8 @@
     "o": [
       "o"
     ],
-    "ø": [
-      "ø"
+    "œ": [
+      "œ"
     ],
     "u": [
       "u"
@@ -200,7 +200,7 @@
       "y"
     ]
   },
-  "notes": "Standard Istanbul Turkish. Near-transparent orthography. 8-vowel system with front/back × rounded/unrounded × high/low vowel harmony. VOWEL HARMONY: 8-vowel system with back/front and rounded/unrounded harmony. PALATALIZATION: k→[c], g→[ɟ] before/after front vowels (e/i/ö/ü). L VELARIZATION: [ɫ] before/after back vowels (a/ı/o/u); clear [l] before front vowels. Ğ: silent; lengthens preceding vowel; [j] between front vowels. FINAL DEVOICING: b/c/d/g devoice word-finally. Sources: Göksel & Kerslake (2005), Zimmer & Orgun (1999), Kornfilt (1997).",
+  "notes": "Standard Istanbul Turkish. Near-transparent orthography. 8-vowel system with front/back × rounded/unrounded × high/low vowel harmony. VOWEL HARMONY: front vowels /e i œ y/ vs back vowels /a ɯ o u/ (backness axis), each also split by rounding (Zimmer & Orgun 1992). Ö is transcribed [œ] (open-mid front rounded), not [ø] (close-mid): Zimmer & Orgun's JIPA illustration lists /œ/ in the Turkish vowel inventory, and Göksel & Kerslake (2005:2) describe ö as 'the sound produced when e as in bet is pronounced with the lips rounded' (i.e. open-mid, matching German ö in 'offen'-type environments, not close-mid ö as in German 'schön'). PALATALIZATION: k→[c], g→[ɟ] before/after front vowels (e/i/ö/ü); l→[l] (clear) adjacent to front vowels vs [ɫ] (velarized) adjacent to back vowels (Göksel & Kerslake 2005:6.1-6.2). Ğ (yumuşak g, 'soft g'): has no independent consonantal realization in standard Turkish; between back vowels it is generally inaudible or a bilabial glide, between front vowels inaudible or a palatal glide [j] (mandatory in some minimal pairs, e.g. düğün 'wedding' vs dün 'yesterday'), and word-finally/preconsonantally it lengthens the preceding vowel (Göksel & Kerslake 2005:1.2.4, ~p.6-7; Zimmer & Orgun 1992). FINAL DEVOICING: /b d dʒ ɡ ɟ/ devoice word- and morpheme-finally to [p t tʃ k c] (Zimmer & Orgun 1992). KNOWN LIMITATION (casing): Turkish distinguishes dotted İ/i from dotless I/ı as separate letters; this library's tokenizer casefolds every language with Python's locale-agnostic str.lower(), which maps ASCII 'I' to 'i' (should be 'ı' in Turkish) and 'İ' to 'i̇' (i + combining dot, not 'i'), so upper-case Turkish text is mis-tokenized. Not fixed here (orthography2ipa/phonetok.py and orthography2ipa/g2p.py apply .lower() language-agnostically; a per-language casefold table is a tokenizer-level change out of scope for a data-only spec update) — flagged for a follow-up tokenizer PR. Sources: Göksel & Kerslake (2005), Zimmer & Orgun (1992/1999), Kornfilt (1997), Lewis (1967).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -210,9 +210,19 @@
       "year": 2005,
       "title": "Turkish: A Comprehensive Grammar",
       "publisher": "Routledge",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "url": "https://www.routledge.com/Turkish-A-Comprehensive-Grammar/Goksel-Kerslake/p/book/9781138350533",
+      "pages": "1-39 (Part I: Phonology and orthography)",
+      "notes": "Read in full for phonology chapter: pronunciation-guide letter table (ö described as open-mid, 1.1), vowel harmony (ch.3), consonant palatalization/l-velarization/ğ realization rules with worked examples (1.2.4, 6.1-6.2), and word-stress exceptions (stressable vs unstressable suffixes, ch.4)."
+    },
+    {
+      "id": "zimmer_orgun1992",
+      "author": "Zimmer, K. & Orgun, O.",
+      "year": 1992,
+      "title": "Turkish (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association, 22(1-2), 43-45",
+      "url": "https://doi.org/10.1017/S0025100300004588",
+      "pages": "43-45",
+      "notes": "Canonical phoneme-inventory reference cited by Wikipedia's Turkish phonology article; gives ö = /œ/ (open-mid front rounded, not /ø/), the front /e i œ y/ vs back /a ɯ o u/ harmony split, k/ɡ/l palatalization before front vowels, /b d dʒ ɡ ɟ/ word-final devoicing, and ğ realization as vowel-lengthening or [j] depending on vowel context."
     },
     {
       "id": "lewis1967",
