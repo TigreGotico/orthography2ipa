@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.16.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.15.2a1...1.16.0a1)
+
+**Merged pull requests:**
+
+- feat\(ru\): register WikiPron gold benchmark and ground spec in phonology sources [\#92](https://github.com/TigreGotico/orthography2ipa/pull/92) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.15.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.15.2a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.15.1a1...1.15.2a1)
