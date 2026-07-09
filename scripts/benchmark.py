@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import os
 import sys
 import unicodedata
@@ -39,7 +40,12 @@ from typing import Dict, List, Optional, Tuple
 # script from a checkout measures THAT checkout
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".benchmark_cache")
+
+HARNESS_VERSION = "1.0"
+SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
+SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 
 _STRESS_MARKS = "ˈˌ"
 _NARROW_MARKS = "̝̞̪̘̙͜͡.·‿()"
@@ -356,6 +362,81 @@ def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
         (wrong / covered if covered else 1.0)
 
 
+def _quality_tier(lang: str) -> Optional[str]:
+    """Look up the spec quality tier for a language tag, if the tag has
+    a registered spec. Returns ``None`` when no spec resolves (e.g. a
+    dataset dialect key that isn't itself a registered language code)."""
+    from orthography2ipa import get
+
+    try:
+        return get(lang).quality.value
+    except Exception:
+        return None
+
+
+def build_scoreboard(limit: int) -> List[dict]:
+    """Run every registered gold dataset/language combination and
+    return deterministic scoreboard rows sorted by language tag."""
+    rows: List[dict] = []
+    for dataset_name, (loader, langs) in DATASETS.items():
+        for lang in langs:
+            try:
+                pairs = loader(lang, limit)
+            except Exception as exc:
+                print(f"skip {dataset_name} lang={lang}: {exc}",
+                      file=sys.stderr)
+                continue
+            n, covered, per, wer = evaluate(
+                pairs, lang, strip_stress=True, broad=True,
+            )
+            rows.append({
+                "lang": lang,
+                "dataset": dataset_name,
+                "n": covered,
+                "per": round(per, 4),
+                "exact_match": round(1.0 - wer, 4),
+                "quality_tier": _quality_tier(lang),
+                "harness_version": HARNESS_VERSION,
+            })
+    rows.sort(key=lambda r: (r["lang"], r["dataset"]))
+    return rows
+
+
+def write_scoreboard(rows: List[dict]) -> None:
+    os.makedirs(os.path.dirname(SCOREBOARD_JSON), exist_ok=True)
+    with open(SCOREBOARD_JSON, "w", encoding="utf-8") as fh:
+        json.dump(rows, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+
+    lines = [
+        "# Scoreboard",
+        "",
+        "Committed PER/exact-match results for every gold dataset/language "
+        "combination registered in `scripts/benchmark.py`. Regenerate with:",
+        "",
+        "```bash",
+        "PYTHONPATH=$PWD python scripts/benchmark.py --scoreboard",
+        "```",
+        "",
+        "Machine-readable form: [`benchmarks/results.json`]"
+        "(../benchmarks/results.json). Methodology and dataset provenance: "
+        "[`docs/benchmarks.md`](benchmarks.md).",
+        "",
+        "| Lang | Dataset | N | PER | Exact match | Quality tier |",
+        "|---|---|---:|---:|---:|---|",
+    ]
+    for row in rows:
+        tier = row["quality_tier"] or "-"
+        lines.append(
+            f"| {row['lang']} | {row['dataset']} | {row['n']} | "
+            f"{row['per']:.4f} | {row['exact_match']:.4f} | {tier} |"
+        )
+    lines.append("")
+    os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)
+    with open(SCOREBOARD_MD, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dataset", choices=sorted(DATASETS))
@@ -368,7 +449,19 @@ def main() -> None:
                          "(stripped by default)")
     ap.add_argument("--list", action="store_true",
                     help="List datasets and their languages")
+    ap.add_argument("--scoreboard", action="store_true",
+                    help="Run every registered gold dataset/language "
+                         "combination and write docs/scoreboard.md + "
+                         "benchmarks/results.json")
     args = ap.parse_args()
+
+    if args.scoreboard:
+        rows = build_scoreboard(args.limit)
+        write_scoreboard(rows)
+        print(f"wrote {len(rows)} rows to "
+              f"{os.path.relpath(SCOREBOARD_MD, REPO_ROOT)} and "
+              f"{os.path.relpath(SCOREBOARD_JSON, REPO_ROOT)}")
+        return
 
     if args.list or not args.dataset:
         for name, (_, langs) in sorted(DATASETS.items()):

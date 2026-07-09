@@ -1,0 +1,398 @@
+[
+  {
+    "lang": "ast",
+    "dataset": "wikipron",
+    "n": 300,
+    "per": 0.0876,
+    "exact_match": 0.59,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "cy",
+    "dataset": "wikipron",
+    "n": 276,
+    "per": 0.2187,
+    "exact_match": 0.2899,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "da",
+    "dataset": "wikipron",
+    "n": 273,
+    "per": 0.4415,
+    "exact_match": 0.0476,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "de",
+    "dataset": "wikipron",
+    "n": 269,
+    "per": 0.3656,
+    "exact_match": 0.0297,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "el",
+    "dataset": "wikipron",
+    "n": 298,
+    "per": 0.1517,
+    "exact_match": 0.3121,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "en",
+    "dataset": "wikipron",
+    "n": 220,
+    "per": 0.4892,
+    "exact_match": 0.1,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "en-GB",
+    "dataset": "wikipron",
+    "n": 245,
+    "per": 0.5004,
+    "exact_match": 0.0816,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "eo",
+    "dataset": "wikipron",
+    "n": 300,
+    "per": 0.0303,
+    "exact_match": 0.87,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "es",
+    "dataset": "wikipron",
+    "n": 298,
+    "per": 0.1,
+    "exact_match": 0.4765,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "eu",
+    "dataset": "wikipron",
+    "n": 239,
+    "per": 0.0768,
+    "exact_match": 0.59,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "fi",
+    "dataset": "wikipron",
+    "n": 294,
+    "per": 0.0386,
+    "exact_match": 0.7483,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "fr",
+    "dataset": "wikipron",
+    "n": 279,
+    "per": 0.3178,
+    "exact_match": 0.1935,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "ga",
+    "dataset": "wikipron",
+    "n": 134,
+    "per": 0.433,
+    "exact_match": 0.0373,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "gd",
+    "dataset": "wikipron",
+    "n": 210,
+    "per": 0.6867,
+    "exact_match": 0.0286,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "gl",
+    "dataset": "wikipron",
+    "n": 264,
+    "per": 0.0728,
+    "exact_match": 0.6326,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "hi",
+    "dataset": "wikipron",
+    "n": 261,
+    "per": 0.4573,
+    "exact_match": 0.0077,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "hr",
+    "dataset": "wikipron",
+    "n": 292,
+    "per": 0.2763,
+    "exact_match": 0.0171,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "hy",
+    "dataset": "wikipron",
+    "n": 297,
+    "per": 0.0701,
+    "exact_match": 0.6229,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "is",
+    "dataset": "ipadict",
+    "n": 300,
+    "per": 0.23,
+    "exact_match": 0.09,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "is",
+    "dataset": "wikipron",
+    "n": 258,
+    "per": 0.2232,
+    "exact_match": 0.1395,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "it",
+    "dataset": "wikipron",
+    "n": 276,
+    "per": 0.1004,
+    "exact_match": 0.4855,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "ml",
+    "dataset": "wikipron",
+    "n": 280,
+    "per": 0.6718,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "mwl",
+    "dataset": "mirandese",
+    "n": 205,
+    "per": 0.2244,
+    "exact_match": 0.2732,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "mwl-x-sendim",
+    "dataset": "mirandese",
+    "n": 11,
+    "per": 0.4899,
+    "exact_match": 0.1818,
+    "quality_tier": "skeleton",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "nb",
+    "dataset": "wikipron",
+    "n": 226,
+    "per": 0.5133,
+    "exact_match": 0.0177,
+    "quality_tier": "skeleton",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "nl",
+    "dataset": "wikipron",
+    "n": 260,
+    "per": 0.3135,
+    "exact_match": 0.1692,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "oc",
+    "dataset": "wikipron",
+    "n": 266,
+    "per": 0.1604,
+    "exact_match": 0.3722,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pl",
+    "dataset": "wikipron",
+    "n": 287,
+    "per": 0.1195,
+    "exact_match": 0.3624,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt",
+    "dataset": "wikipron",
+    "n": 242,
+    "per": 0.1817,
+    "exact_match": 0.3058,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-BR",
+    "dataset": "wikipron",
+    "n": 124,
+    "per": 0.1901,
+    "exact_match": 0.3952,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-PT",
+    "dataset": "ep_dialects",
+    "n": 30,
+    "per": 0.2599,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-PT-x-acores",
+    "dataset": "ep_dialects",
+    "n": 29,
+    "per": 0.3521,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-PT-x-alentejo",
+    "dataset": "ep_dialects",
+    "n": 30,
+    "per": 0.3216,
+    "exact_match": 0.0333,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-PT-x-algarve",
+    "dataset": "ep_dialects",
+    "n": 30,
+    "per": 0.3549,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-PT-x-lisbon",
+    "dataset": "ep_dialects",
+    "n": 45,
+    "per": 0.2851,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-PT-x-madeira",
+    "dataset": "ep_dialects",
+    "n": 30,
+    "per": 0.2662,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "pt-PT-x-porto",
+    "dataset": "ep_dialects",
+    "n": 40,
+    "per": 0.255,
+    "exact_match": 0.05,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "ro",
+    "dataset": "wikipron",
+    "n": 281,
+    "per": 0.0597,
+    "exact_match": 0.637,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "sk",
+    "dataset": "wikipron",
+    "n": 300,
+    "per": 0.1206,
+    "exact_match": 0.47,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "sq",
+    "dataset": "wikipron",
+    "n": 249,
+    "per": 0.0915,
+    "exact_match": 0.6867,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "sv",
+    "dataset": "wikipron",
+    "n": 279,
+    "per": 0.3508,
+    "exact_match": 0.0609,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "ta",
+    "dataset": "wikipron",
+    "n": 293,
+    "per": 0.8949,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "tl",
+    "dataset": "wikipron",
+    "n": 269,
+    "per": 0.2309,
+    "exact_match": 0.0446,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  },
+  {
+    "lang": "tr",
+    "dataset": "wikipron",
+    "n": 296,
+    "per": 0.1384,
+    "exact_match": 0.402,
+    "quality_tier": "research",
+    "harness_version": "1.0"
+  }
+]
