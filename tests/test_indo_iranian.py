@@ -441,7 +441,7 @@ class TestTurkish:
     Turkish is an Altaic/Turkic language with phonological harmony.
     Key features:
     - ı → [ɯ] (back unrounded vowel — unique letter)
-    - ö → [ø], ü → [y] (front rounded vowels — vowel harmony)
+    - ö → [œ], ü → [y] (front rounded vowels — vowel harmony)
     - c → [dʒ], ç → [tʃ], ş → [ʃ], j → [ʒ]
     - ğ → [∅] (soft g — lengthens preceding vowel, often silent)
     - k → [k, c] (velar vs palatal by vowel harmony)
@@ -462,8 +462,8 @@ class TestTurkish:
         _assert_first(_grapheme(self.spec, "ı"), "ɯ", label="ı")
 
     def test_o_umlaut(self):
-        """ö → [ø] (front rounded mid vowel)."""
-        _assert_first(_grapheme(self.spec, "ö"), "ø", label="ö")
+        """ö → [œ] (open-mid front rounded vowel; Zimmer & Orgun 1992)."""
+        _assert_first(_grapheme(self.spec, "ö"), "œ", label="ö")
 
     def test_u_umlaut(self):
         """ü → [y] (front rounded high vowel)."""

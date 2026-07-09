@@ -53,4 +53,4 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | sv | wikipron | 279 | 0.3508 | 0.0609 | research |
 | ta | wikipron | 293 | 0.8949 | 0.0000 | research |
 | tl | wikipron | 269 | 0.2309 | 0.0446 | research |
-| tr | wikipron | 296 | 0.1384 | 0.4020 | research |
+| tr | wikipron | 296 | 0.1397 | 0.3986 | research |
