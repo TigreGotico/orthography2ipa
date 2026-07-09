@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.18.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.18.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.17.0a1...1.18.0a1)
+
+**Merged pull requests:**
+
+- feat: add CLUP dialect archive benchmark data [\#96](https://github.com/TigreGotico/orthography2ipa/pull/96) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.17.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.17.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.16.0a1...1.17.0a1)
