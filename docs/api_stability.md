@@ -30,7 +30,7 @@ never hardcoded into a comment or doc.
 | Symbol | Source module | Used by |
 | --- | --- | --- |
 | `G2PPlugin` | `orthography2ipa.g2p_plugin` | arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer |
-| `WordContext` | `orthography2ipa.g2p_plugin` | arbtok, mwl_phonemizer |
+| `WordContext` | `orthography2ipa.g2p_plugin` | arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer |
 | `SyllabifierPlugin` | `orthography2ipa.syllabifier_plugin` | tugaphone |
 | `get` | `orthography2ipa` (top-level) | tugaphone, g2p_barranquenho, mwl_phonemizer, arbtok |
 | `get_syllabifier` | `orthography2ipa` (top-level) | tugaphone |
