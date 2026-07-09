@@ -84,6 +84,21 @@ repository, same CC-BY-SA provenance:
 | `ta` | `tam_taml_broad.tsv` | 10 492 | Tamil (Tamil script) |
 | `ml` | `mal_mlym_broad.tsv` | 10 406 | Malayalam (Malayalam script) |
 
+### European Portuguese IPA Lexicon (Infopédia)
+
+[TigreGotico/infopedia-pt-ipa](https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa)
+on Hugging Face: 102,685 word/IPA rows extracted from
+[Infopédia](https://www.infopedia.pt/) (Porto Editora) via a graph crawl
+of the dictionary that ran to convergence. License: `other` /
+`infopedia-derived` — see the
+[dataset card](https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa)
+for terms. Covers European Portuguese (unmarked `pt` in the dataset
+tags, `pt-PT` here for consistency with `portuguese_lexicon` and
+`wikipron`). 62 entries carry more than one distinct pronunciation
+(`pronunciations` field); the harness scores against all variants and
+keeps the best match, per the standard multi-reference handling. No
+rows are excluded.
+
 ### CMU Pronouncing Dictionary
 
 [cmudict](https://github.com/cmusphinx/cmudict): ~134k American English

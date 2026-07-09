@@ -310,6 +310,16 @@
     "limit": 300
   },
   {
+    "lang": "pt-PT",
+    "dataset": "infopedia_pt",
+    "n": 295,
+    "per": 0.316,
+    "exact_match": 0.139,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "pt-PT-x-acores",
     "dataset": "ep_dialects",
     "n": 29,
