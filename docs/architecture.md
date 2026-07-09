@@ -170,7 +170,7 @@ Plugins are discovered via `importlib.metadata` entry points in the `orthography
 
 Abstract interface for per-language syllabifiers — `syllabifier_plugin.py:1-51`:
 
-- `SyllabifierPlugin` — abstract base class with `syllabify(word, lang)`, `language_codes`, and `priority` — `syllabifier_plugin.py:27`
+- `SyllabifierPlugin` — abstract base class with `syllabify(word, lang)`, `language_codes`, and `priority` — `syllabifier_plugin.py:28`
 
 The bundled `stress.syllabify` is a naive vowel-group splitter. Languages with a real syllabifier ship it as a plugin (e.g. `silabificador` for Portuguese) and stress detection picks it up automatically.
 
