@@ -257,17 +257,18 @@ class G2P:
 
     def _transcribe_word(self, word: str, width: int) -> WordTranscription:
         exceptions = self.spec.word_exceptions
-        if exceptions:
-            override = exceptions.get(word.lower())
-            if override is not None:
-                return WordTranscription(word=word, ipa=override, candidates=())
-        if self.spec.has_positional_data():
-            paths = self._positional_beam(word, width)
+        override = exceptions.get(word.lower()) if exceptions else None
+        paths: List[IPAPath] = []
+        if override is not None:
+            ipa = override
         else:
-            paths = self._tokenizer.ipa_beam(
-                word, beam_width=width,
-                expand_allophones=self.expand_allophones)
-        ipa = paths[0].ipa if paths else word
+            if self.spec.has_positional_data():
+                paths = self._positional_beam(word, width)
+            else:
+                paths = self._tokenizer.ipa_beam(
+                    word, beam_width=width,
+                    expand_allophones=self.expand_allophones)
+            ipa = paths[0].ipa if paths else word
         if (self.apply_stress and self.spec.stress is not None and ipa):
             sylls = _syllables_for(word, self.lang)
             idx = detect_stress(word, self.spec.stress, syllables=sylls)
