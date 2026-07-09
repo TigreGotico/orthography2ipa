@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.19.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.19.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.18.0a1...1.19.0a1)
+
+**Merged pull requests:**
+
+- feat: track espeak-ng agreement as a committed scoreboard [\#103](https://github.com/TigreGotico/orthography2ipa/pull/103) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.18.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.18.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.17.0a1...1.18.0a1)
