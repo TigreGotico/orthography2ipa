@@ -111,6 +111,65 @@ class TestStressIntegration:
             )
 
 
+class TestWordExceptionStressRouting:
+    """word_exceptions overrides must flow through stress marking.
+
+    A spec that declares both ``word_exceptions`` and ``stress`` must
+    apply stress marks to override words exactly as it would to a
+    normally-searched word with the same base IPA — the override is a
+    shortcut for the *segmental* transcription, not an opt-out from
+    stress placement.
+    """
+
+    def test_polysyllabic_override_receives_stress_mark(self):
+        from dataclasses import replace
+
+        lang = "pt-PT"
+        word = "banana"
+
+        # Normal search path: establish what stress marking produces
+        # for this word's base IPA.
+        baseline_engine = G2P(lang)
+        baseline_ipa = baseline_engine.transcribe_word(word)
+        stress = baseline_engine.spec.stress
+        assert stress is not None
+        assert stress.stress_mark in baseline_ipa, (
+            "fixture word must actually receive a stress mark on the "
+            "normal search path for this test to be meaningful"
+        )
+        unmarked_ipa = baseline_ipa.replace(stress.stress_mark, "")
+
+        # Override path: same word, base IPA supplied via
+        # word_exceptions instead of positional/grapheme search.
+        override_engine = G2P(lang)
+        override_engine.spec = replace(
+            override_engine.spec, word_exceptions={word: unmarked_ipa})
+
+        result = override_engine.transcribe_word(word)
+        assert result == baseline_ipa
+        assert stress.stress_mark in result
+
+    def test_fr_fr_word_exceptions_unaffected(self):
+        """fr-FR has no stress block: overrides pass through unmarked,
+        identical to before this fix (monosyllabic exceptions only)."""
+        engine = G2P("fr-FR")
+        assert engine.spec.stress is None
+        assert engine.transcribe_word("le") == "lə"
+        assert engine.transcribe_word("de") == "də"
+        assert engine.transcribe_word("que") == "kə"
+
+    def test_en_gb_word_exceptions_unaffected(self):
+        """en-GB has no stress block either: same guarantee."""
+        engine = G2P("en-GB")
+        assert engine.spec.stress is None
+        expected = {
+            "the": "ðə", "be": "biː", "he": "hiː",
+            "me": "miː", "we": "wiː", "she": "ʃiː",
+        }
+        for word, ipa in expected.items():
+            assert engine.transcribe_word(word) == ipa
+
+
 class TestSandhiAndTransforms:
     def test_sandhi_applied_when_rules_exist(self):
         # find any spec with sandhi rules to exercise the path
