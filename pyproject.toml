@@ -30,7 +30,7 @@ dependencies = {file = ["requirements.txt"]}
 
 [project.optional-dependencies]
 validation = ["pydantic>=2"]
-test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2"]
+test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis"]
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"
