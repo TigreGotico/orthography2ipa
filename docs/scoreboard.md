@@ -10,6 +10,7 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 
 | Lang | Dataset | N | PER | Exact match | Quality tier |
 |---|---|---:|---:|---:|---|
+| ar | wikipron | 259 | 0.2551 | 0.1120 | research |
 | ast | wikipron | 300 | 0.0876 | 0.5900 | research |
 | ca | 4catac | 160 | 0.4170 | 0.0000 | research |
 | ca-x-balear | 4catac | 160 | 0.3924 | 0.0000 | research |

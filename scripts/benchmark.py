@@ -68,6 +68,8 @@ _WIKIPRON_FILES = {
     "pt-BR": "por_latn_bz_broad.tsv",
     "en": "eng_latn_us_broad.tsv",
     "en-GB": "eng_latn_uk_broad.tsv",
+    # --- Semitic ---
+    "ar": "ara_arab_broad.tsv",          # ~17.5k rows (MSA, broad)
     # --- Romance ---
     "it": "ita_latn_broad.tsv",          # ~90k rows
     "fr": "fra_latn_broad.tsv",          # ~98k rows

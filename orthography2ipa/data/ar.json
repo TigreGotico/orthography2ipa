@@ -5,11 +5,35 @@
   "script": "Arabic",
   "script_type": "abjad",
   "iso639_3": "ara",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes_base": "arb",
   "allophones_base": "arb",
-  "graphemes": {},
+  "graphemes": {
+    "ض": [
+      "dˤ"
+    ]
+  },
   "allophones": {},
+  "sandhi_rules": [
+    {
+      "id": "MSA_SUN_ASSIMILATION",
+      "name": "sun-letter-assimilation",
+      "left_context": "l$",
+      "right_context": "^[tθdðszʃnrltˤdˤsˤðˤ]",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Definite article ال (al-): the lām assimilates to a following coronal 'sun letter' (ت ث د ذ ر ز س ش ص ض ط ظ ل ن → t θ d ð r z s ʃ sˤ dˤ tˤ ðˤ l n), e.g. الشمس aš-šams 'the sun', not al-šams. Before a 'moon letter' (labials, velars/uvulars, pharyngeals, glottal, glides — ʔ b dʒ ħ x ʕ ɣ f q k m h w j) no assimilation occurs, e.g. القمر al-qamar 'the moon'. The engine's word-boundary transform can only delete the lām on the left token (it cannot copy the right word's onset into the left token to render true gemination), so output realises the sun-letter case as elision (a-šams) rather than a doubled consonant (aʃ-ʃams); this is a documented engine-limit, not a phonology error. Sources: Watson (2002), en.wikipedia.org/wiki/Sun_and_moon_letters."
+    },
+    {
+      "id": "MSA_HAMZAT_WASL",
+      "name": "hamzat-al-wasl",
+      "left_context": "[aeiouː]$",
+      "right_context": "^[ʔ]",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Connective hamza (همزة الوصل) on ال and a closed set of verb/noun forms is elided after a preceding vowel in connected speech: fī al-bayt → fi l-bayt. Only the 'wasl' hamza (written bare alif, not hamza-bearing alif أ/إ) undergoes this; the engine cannot distinguish the two orthographically without diacritics, so this rule is scoped to the definite article context inherited from Classical Arabic (arb) and re-declared here because sandhi_rules is not inherited through graphemes_base."
+    }
+  ],
   "sources": [
     {
       "id": "watson2002",
@@ -19,8 +43,18 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null,
+      "notes": "Consulted for the consonant inventory (28 phonemes, 4 emphatics ط ض ص ظ, pharyngeals ح ع), sun/moon letter assimilation as a synchronic coronal-place-driven rule, and MSA gemination via shadda.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "thelwall1990",
+      "author": "Thelwall, R. and Sa'Adeddin, M.A.",
+      "year": 1990,
+      "title": "Illustrations of the IPA: Arabic",
+      "publisher": "Journal of the International Phonetic Association, 20(2), 37-39",
+      "url": "https://phoible.org/sources/arb_thelwall1990",
+      "pages": "37-39",
+      "notes": "Cross-checked the emphatic/pharyngealized consonant set (sˤ, dˤ, tˤ, ðˤ) and glottal stop realisation against the JIPA reference illustration inventory catalogued in PHOIBLE."
     },
     {
       "id": "holes2004",
@@ -45,11 +79,14 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Arabic",
-    "https://ar.wikipedia.org/wiki/لغة_عربية"
+    "https://ar.wikipedia.org/wiki/لغة_عربية",
+    "https://en.wikipedia.org/wiki/Standard_Arabic_phonology",
+    "https://en.wikipedia.org/wiki/Sun_and_moon_letters"
   ],
   "timespan": {
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "stan1318"
+  "glottolog_code": "stan1318",
+  "notes": "Modern Standard Arabic (MSA). Inherits its grapheme/allophone inventory from Classical Arabic (arb) via graphemes_base/allophones_base, with one MSA-specific override: ض is transcribed [dˤ] (emphatic alveolar stop), not the Classical lateral-fricative [ɮˤ] Sibawayhi describes and arb.json retains — MSA has merged ض onto the plosive series (Watson 2002; Standard_Arabic_phonology). INPUT CONTRACT / KNOWN LIMITATION: this spec assumes fully-diacritized (fully tashkeel-marked) input. Standard written MSA text omits short-vowel diacritics (fatḥa/ḍamma/kasra/sukūn/shadda/tanwīn) almost everywhere outside the Quran, children's books, and pedagogical material; undiacritized input is NOT disambiguated by this spec (no morphological/statistical diacritic-restoration is implemented) and will transcribe incorrectly or incompletely wherever short vowels or gemination are orthographically absent. Gemination (shadda, ّ) is only encoded when explicitly marked in the input, via the inherited ّ → ː mapping from arb. sandhi_rules here re-declares the definite-article assimilation and hamzat-al-wasl rules from arb (sandhi_rules is NOT inherited through graphemes_base/allophones_base — only graphemes/allophones/positional_graphemes are — so arb's AR_SUN_ASSIMILATION never reached ar without this). No stress block is declared: MSA word stress is quantity-sensitive (driven by syllable weight, not written vowel-length-independent orthography) and highly register/dialect-variable in connected speech, so it is not reliably orthography-predictable; this exempts the spec from the research-tier stress requirement per docs/quality_tiers.md. Gold benchmark: CUNY-CL/wikipron 'ara_arab_broad.tsv' (Wiktionary-sourced broad IPA transcriptions, community-curated, ~17.5k pairs) registered as the 'ar' entry of the 'wikipron' dataset in scripts/benchmark.py, matching the precedent already used for gl/es/pt in this project."
 }
