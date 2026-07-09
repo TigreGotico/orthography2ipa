@@ -396,20 +396,40 @@ voice. Out-of-inventory symbols become unknown embedding IDs, so
 oov-rate is the hard-failure signal; the offending symbols are listed
 per run.
 
-`python scripts/espeak_agreement.py --lang <l> --limit 300`:
+Coverage is the overlap between this repo's registered gold-dataset
+languages and espeak-ng's own voice list — every language with both a
+wordlist loader and an espeak-ng voice gets a row; languages with no
+espeak-ng voice (e.g. Galician, Mirandese) are skipped rather than
+scored as zero.
 
-| Lang | Voice | exact | exact-nostress | segmental | oov-rate | main OOV symbols |
-|---|---|---:|---:|---:|---:|---|
-| es | es | 0.05 | 0.55 | 0.92 | 0.00 | — |
-| pt-PT | pt | 0.00 | 0.12 | 0.78 | 0.04 | s̺ apical mark, precomposed ã |
-| pt-BR | pt-br | 0.00 | 0.02 | 0.71 | 0.37 | s̺, tie bar, ʎ, ʁ |
-| en | en-gb | 0.00 | 0.04 | 0.51 | 0.84 | æ |
+Full committed scoreboard: [`docs/espeak_agreement.md`]
+(espeak_agreement.md) (machine-readable:
+[`benchmarks/espeak_agreement.json`](../benchmarks/espeak_agreement.json)).
+Regenerate with:
+
+```bash
+PYTHONPATH=$PWD python scripts/espeak_agreement.py --scoreboard
+```
+
+This is a snapshot, not a CI-gated check — there is no ground truth to
+regress against, so `scripts/check_benchmark_regression.py` never reads
+these numbers. A handful of languages (`pt-PT`, `pt-BR`, `pt-AO`,
+`pt-MZ`, `pt-TL`, `en-US`) need the optional `tugalex`/`scriptconv`
+loaders, and a handful of sentence-level sources (`ca` and its regional
+variants) trip espeak-ng's own sentence-splitting on punctuation, which
+misaligns the word-for-word comparison; both cases are skipped with a
+visible warning rather than reported as fabricated numbers — rerun with
+those dependencies installed and the missing rows fill in.
 
 Reading the table: stress-mark placement alone rules out byte-exact
-replacement everywhere; segmental similarity shows how close the phone
-sequences are; the oov column decides deployability. A near-zero
-oov-rate (Spanish) means a symbol-mapping shim suffices; a high one
-(English — espeak-ng writes the TRAP vowel as ⟨a⟩ where this engine
-emits ⟨æ⟩) means a per-symbol translation table must be built and
-validated before any swap.
+replacement almost everywhere; segmental similarity shows how close the
+phone sequences are; the oov-rate column decides deployability. A
+near-zero oov-rate (Spanish, French, Italian) means a symbol-mapping
+shim suffices; a high one (English — espeak-ng writes the TRAP vowel as
+⟨a⟩ where this engine emits ⟨æ⟩) means a per-symbol translation table
+must be built and validated before any swap. A low oov-rate is a
+signal of espeak-compatible **output shape**, not of linguistic
+correctness — espeak-ng is an imperfect system being agreed with, not a
+gold standard, so this table never substitutes for the gold-benchmark
+scoreboard above.
 
