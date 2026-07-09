@@ -60,6 +60,14 @@ All `research` criteria, plus:
   - The applicable threshold and the shallow/deep classification for
     the language must be stated in its `docs/languages/` page (see
     below); silence defaults to the deep-orthography threshold.
+  - The `≤ 0.15` shallow-orthography target is a reviewer-enforced
+    convention, not a machine-checked one: `LanguageSpec` carries no
+    orthographic-depth field, so `test_production_tier_has_qualifying_benchmark`
+    cannot look up a per-language threshold and applies the `≤ 0.25`
+    deep-orthography ceiling uniformly. A promotion PR for a
+    shallow-orthography language must be reviewed against the `0.15`
+    target by hand before merge — the guard test alone is not
+    sufficient proof for those languages.
 - A per-language documentation page exists under
   [`docs/languages/`](languages/) covering the spec's phonology,
   sources, and known limitations.
@@ -73,7 +81,15 @@ All `research` criteria, plus:
 [`tests/test_data_quality.py`](../tests/test_data_quality.py) asserts
 that any spec whose `quality` field is `production` has a corresponding
 row in `benchmarks/results.json` meeting the tier's threshold (`n` ≥
-500 and `per` ≤ the documented threshold for that language). No spec is
-currently at `production` tier, so the guard is presently vacuous —
-promoting a spec to `production` is a test-gated act: the benchmark row
-must exist and pass before the tier claim is legitimate.
+500 and `per` ≤ `0.25`). This is the deep-orthography ceiling applied
+uniformly to every language, because the guard has no per-language
+orthographic-depth signal to key off. Shallow-orthography languages
+(e.g. Spanish, Finnish, Esperanto) are still expected to meet the
+tighter `≤ 0.15` target documented above, but that expectation is
+enforced by reviewers reading the spec's `docs/languages/` page during
+promotion review, not by this test. No spec is currently at
+`production` tier, so the guard is presently vacuous — promoting a spec
+to `production` is a test-gated act: the benchmark row must exist and
+pass the `0.25` guard, and for shallow-orthography languages the `0.15`
+target must additionally be confirmed by the reviewer before the tier
+claim is legitimate.

@@ -51,11 +51,13 @@ def test_non_stub_resolves_to_content(code):
     assert spec.allophones, f"{code} ({spec.quality.value}) has no allophones"
 
 
-# Default PER ceiling for languages whose docs/languages/ page does not
-# state a shallow-orthography threshold explicitly. See
-# docs/quality_tiers.md for the shallow (0.15) / deep (0.25) rationale.
+# Deep-orthography PER ceiling, applied uniformly below because
+# LanguageSpec carries no orthographic-depth field to key a per-language
+# threshold off. See docs/quality_tiers.md for the shallow (0.15) / deep
+# (0.25) rationale, and for why the shallow threshold is reviewer- rather
+# than machine-enforced.
 _PRODUCTION_MIN_N = 500
-_PRODUCTION_DEFAULT_PER_CEILING = 0.25
+_PRODUCTION_DEEP_PER_CEILING = 0.25
 
 RESULTS_JSON = (pathlib.Path(__file__).parent.parent
                  / "benchmarks" / "results.json")
@@ -73,6 +75,13 @@ def test_production_tier_has_qualifying_benchmark(code):
     row for one of its language tags meeting the tier threshold
     documented in docs/quality_tiers.md (n >= 500, PER <= ceiling).
 
+    This guard enforces the deep-orthography ceiling (0.25) uniformly,
+    since LanguageSpec has no orthographic-depth field to derive a
+    per-language threshold from. The tighter shallow-orthography target
+    (0.15) documented for languages like Spanish, Finnish, and Esperanto
+    is a reviewer-enforced convention checked against the spec's
+    docs/languages/ page during promotion review, not by this test.
+
     No spec is currently at production tier, so this test is presently
     vacuous for every code — that is expected: tier promotion is a
     test-gated act, not a label change.
@@ -86,10 +95,10 @@ def test_production_tier_has_qualifying_benchmark(code):
         row for row in rows
         if row.get("lang") == spec.code
         and row.get("n", 0) >= _PRODUCTION_MIN_N
-        and row.get("per", 1.0) <= _PRODUCTION_DEFAULT_PER_CEILING
+        and row.get("per", 1.0) <= _PRODUCTION_DEEP_PER_CEILING
     ]
     assert qualifying, (
         f"{code} claims production tier but has no benchmarks/results.json "
         f"row with n >= {_PRODUCTION_MIN_N} and "
-        f"per <= {_PRODUCTION_DEFAULT_PER_CEILING}"
+        f"per <= {_PRODUCTION_DEEP_PER_CEILING}"
     )
