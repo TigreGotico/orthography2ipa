@@ -13,6 +13,8 @@ on:
       - "scripts/check_benchmark_regression.py"
       - "benchmarks/results.json"
       - "tests/data/**"
+      - ".github/workflows/benchmark-regression.yml"
+  workflow_dispatch: {}
 
 jobs:
   benchmark-regression:
