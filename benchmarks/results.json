@@ -371,9 +371,29 @@
   },
   {
     "lang": "pt-PT-x-acores",
+    "dataset": "clup_dialect",
+    "n": 2,
+    "per": 0.4889,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-acores",
     "dataset": "ep_dialects",
     "n": 29,
     "per": 0.3521,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-alentejo",
+    "dataset": "clup_dialect",
+    "n": 1,
+    "per": 0.3915,
     "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -390,10 +410,60 @@
     "limit": 300
   },
   {
+    "lang": "pt-PT-x-alfena",
+    "dataset": "clup_dialect",
+    "n": 1,
+    "per": 0.4836,
+    "exact_match": 0.0,
+    "quality_tier": "skeleton",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-algarve",
+    "dataset": "clup_dialect",
+    "n": 3,
+    "per": 0.5456,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "pt-PT-x-algarve",
     "dataset": "ep_dialects",
     "n": 30,
     "per": 0.3549,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-aveiro",
+    "dataset": "clup_dialect",
+    "n": 6,
+    "per": 0.4518,
+    "exact_match": 0.0,
+    "quality_tier": "skeleton",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-beira",
+    "dataset": "clup_dialect",
+    "n": 8,
+    "per": 0.459,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-lisbon",
+    "dataset": "clup_dialect",
+    "n": 5,
+    "per": 0.4711,
     "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -411,9 +481,39 @@
   },
   {
     "lang": "pt-PT-x-madeira",
+    "dataset": "clup_dialect",
+    "n": 4,
+    "per": 0.463,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-madeira",
     "dataset": "ep_dialects",
     "n": 30,
     "per": 0.2662,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-minho",
+    "dataset": "clup_dialect",
+    "n": 9,
+    "per": 0.4588,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-porto",
+    "dataset": "clup_dialect",
+    "n": 17,
+    "per": 0.5134,
     "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -426,6 +526,26 @@
     "per": 0.255,
     "exact_match": 0.05,
     "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-trasosmontes",
+    "dataset": "clup_dialect",
+    "n": 6,
+    "per": 0.4819,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-viana",
+    "dataset": "clup_dialect",
+    "n": 4,
+    "per": 0.488,
+    "exact_match": 0.0,
+    "quality_tier": "skeleton",
     "harness_version": "1.0",
     "limit": 300
   },
