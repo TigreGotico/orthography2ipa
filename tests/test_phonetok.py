@@ -283,6 +283,17 @@ class TestEdgeCases:
         tokens = tok_pt.tokenize("OLÁ")
         assert len(tokens) >= 1
 
+    def test_capital_i_non_turkish_uses_plain_lower(self):
+        """Non-Turkish languages must keep Python's plain str.lower()
+        behaviour for capital I — the Turkish dotted/dotless casing
+        fix is language-conditional and must not change this."""
+        tok_en = PhonetokTokenizer(orthography2ipa.get("en-GB"))
+        assert (tok_en.graphemes("Island")
+                == tok_en.graphemes("island"))
+        tok_pt = PhonetokTokenizer(orthography2ipa.get("pt-PT"))
+        assert (tok_pt.graphemes("Ilha")
+                == tok_pt.graphemes("ilha"))
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Positional-only grapheme keys (no base `graphemes` entry)

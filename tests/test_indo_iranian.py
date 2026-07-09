@@ -534,3 +534,23 @@ class TestTurkish:
     def test_family(self):
         """Turkish family is Turkic."""
         assert self.spec.family == "Turkic"
+
+    # Dotted/dotless I casing (Python's locale-agnostic str.lower()
+    # mishandles this: 'I'.lower() == 'i' and 'İ'.lower() == 'i̇', a
+    # two-codepoint combining-dot artifact).
+    def test_dotted_capital_i_lowercases_to_dotted_lower(self):
+        """Capital dotted İ transcribes the same as lowercase dotted i."""
+        assert (orthography2ipa.transcribe("İstanbul", "tr")
+                == orthography2ipa.transcribe("istanbul", "tr"))
+
+    def test_dotless_capital_i_lowercases_to_dotless_lower(self):
+        """Capital dotless I (all-caps province name) transcribes the
+        same as its dotless-ı lowercase form, not generic 'i'."""
+        assert (orthography2ipa.transcribe("IĞDIR", "tr")
+                == orthography2ipa.transcribe("ığdır", "tr"))
+
+    def test_dotless_capital_i_not_confused_with_dotted(self):
+        """Capital dotless I must resolve to dotless ı, distinct from
+        capital dotted İ resolving to dotted i."""
+        assert (orthography2ipa.transcribe("IĞDIR", "tr")
+                != orthography2ipa.transcribe("İĞDIR", "tr"))
