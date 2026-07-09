@@ -10,6 +10,46 @@
     "limit": 300
   },
   {
+    "lang": "ca",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.417,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "ca-x-balear",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.3924,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "ca-x-occidental",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.568,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "ca-x-valencia",
+    "dataset": "4catac",
+    "n": 160,
+    "per": 0.3046,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "cy",
     "dataset": "wikipron",
     "n": 276,
@@ -33,7 +73,7 @@
     "lang": "de",
     "dataset": "wikipron",
     "n": 269,
-    "per": 0.3656,
+    "per": 0.3613,
     "exact_match": 0.0297,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -53,7 +93,7 @@
     "lang": "en",
     "dataset": "wikipron",
     "n": 220,
-    "per": 0.4799,
+    "per": 0.4892,
     "exact_match": 0.1,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -63,7 +103,7 @@
     "lang": "en-GB",
     "dataset": "wikipron",
     "n": 245,
-    "per": 0.4876,
+    "per": 0.5004,
     "exact_match": 0.0816,
     "quality_tier": "research",
     "harness_version": "1.0",
@@ -85,6 +125,16 @@
     "n": 298,
     "per": 0.1,
     "exact_match": 0.4765,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "eu",
+    "dataset": "hitz_basque_ipa",
+    "n": 300,
+    "per": 0.2796,
+    "exact_match": 0.1567,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -113,8 +163,8 @@
     "lang": "fr",
     "dataset": "wikipron",
     "n": 279,
-    "per": 0.3178,
-    "exact_match": 0.1935,
+    "per": 0.1559,
+    "exact_match": 0.4624,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -510,6 +560,16 @@
     "limit": 300
   },
   {
+    "lang": "ru",
+    "dataset": "wikipron",
+    "n": 268,
+    "per": 0.3635,
+    "exact_match": 0.0112,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "sk",
     "dataset": "wikipron",
     "n": 300,
@@ -563,8 +623,8 @@
     "lang": "tr",
     "dataset": "wikipron",
     "n": 296,
-    "per": 0.1384,
-    "exact_match": 0.402,
+    "per": 0.1397,
+    "exact_match": 0.3986,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300

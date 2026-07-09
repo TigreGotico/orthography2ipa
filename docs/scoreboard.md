@@ -11,17 +11,22 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | Lang | Dataset | N | PER | Exact match | Quality tier |
 |---|---|---:|---:|---:|---|
 | ast | wikipron | 300 | 0.0876 | 0.5900 | research |
+| ca | 4catac | 160 | 0.4170 | 0.0000 | research |
+| ca-x-balear | 4catac | 160 | 0.3924 | 0.0000 | research |
+| ca-x-occidental | 4catac | 160 | 0.5680 | 0.0000 | research |
+| ca-x-valencia | 4catac | 160 | 0.3046 | 0.0000 | research |
 | cy | wikipron | 276 | 0.2187 | 0.2899 | research |
 | da | wikipron | 273 | 0.4415 | 0.0476 | research |
-| de | wikipron | 269 | 0.3656 | 0.0297 | research |
+| de | wikipron | 269 | 0.3613 | 0.0297 | research |
 | el | wikipron | 298 | 0.1517 | 0.3121 | research |
-| en | wikipron | 220 | 0.4799 | 0.1000 | research |
-| en-GB | wikipron | 245 | 0.4876 | 0.0816 | research |
+| en | wikipron | 220 | 0.4892 | 0.1000 | research |
+| en-GB | wikipron | 245 | 0.5004 | 0.0816 | research |
 | eo | wikipron | 300 | 0.0303 | 0.8700 | research |
 | es | wikipron | 298 | 0.1000 | 0.4765 | research |
+| eu | hitz_basque_ipa | 300 | 0.2796 | 0.1567 | research |
 | eu | wikipron | 239 | 0.0768 | 0.5900 | research |
 | fi | wikipron | 294 | 0.0386 | 0.7483 | research |
-| fr | wikipron | 279 | 0.3178 | 0.1935 | research |
+| fr | wikipron | 279 | 0.1559 | 0.4624 | research |
 | ga | wikipron | 134 | 0.4330 | 0.0373 | research |
 | gd | wikipron | 210 | 0.6867 | 0.0286 | research |
 | gl | wikipron | 264 | 0.0728 | 0.6326 | research |
@@ -61,9 +66,10 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | pt-PT-x-trasosmontes | clup_dialect | 6 | 0.4819 | 0.0000 | research |
 | pt-PT-x-viana | clup_dialect | 4 | 0.4880 | 0.0000 | skeleton |
 | ro | wikipron | 281 | 0.0597 | 0.6370 | research |
+| ru | wikipron | 268 | 0.3635 | 0.0112 | research |
 | sk | wikipron | 300 | 0.1206 | 0.4700 | research |
 | sq | wikipron | 249 | 0.0915 | 0.6867 | research |
 | sv | wikipron | 279 | 0.3508 | 0.0609 | research |
 | ta | wikipron | 293 | 0.8949 | 0.0000 | research |
 | tl | wikipron | 269 | 0.2309 | 0.0446 | research |
-| tr | wikipron | 296 | 0.1384 | 0.4020 | research |
+| tr | wikipron | 296 | 0.1397 | 0.3986 | research |
