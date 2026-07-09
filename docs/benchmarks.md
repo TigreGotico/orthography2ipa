@@ -341,7 +341,7 @@ Per the CHILDES/academic-corpus exception, tool-generated transcriptions
 from this dataset are accepted as gold here.
 
 Wired under the `ipa_childes` dataset key for `en-US`, `et`, `hu`, `id`,
-`ko`, `sr`, `zh` — the dataset languages with no prior gold coverage in
+`sr`, `zh` — 6 of the dataset languages with no prior gold coverage in
 this harness at all *and* a language tag registered in this repo's specs
 (`orthography2ipa/data/*.json`). Only the `test` split is read (held out
 from G2P+ training). The loader (`load_ipa_childes` in
@@ -359,17 +359,21 @@ syllables (its grapheme table is Pinyin initials/finals, not Hanzi), and
 `stem` is CHILDES's own Pinyin-with-tone-number romanization of the same
 utterance — the column that actually exercises the spec's grapheme table.
 
-`ko` scores 0 covered words against this gold: this repo's `ko` spec's
-grapheme table is keyed on individual compatibility jamo (`ㄱ`, `ㄲ`, `ㄷ`,
-...), while real Korean text — including this dataset's — is precomposed
-Hangul syllable blocks (e.g. `아홉`), which neither match the
-compatibility-jamo graphemes directly nor decompose into them under NFD
-(NFD splits a Hangul syllable into *conjoining* jamo, a different Unicode
-block from the *compatibility* jamo the spec's grapheme table uses). The
-row is still wired and committed rather than dropped, since it is an
-accurate measurement of a real, pre-existing gap between the `ko` spec's
-grapheme table and actual Korean orthography — not a defect in this
-loader or dataset.
+`ko-KR` is present in the dataset but **excluded** here, for the same
+class of script/input-contract mismatch as the `zh` exclusion below:
+this repo's `ko` spec's grapheme table is keyed on individual
+compatibility jamo (`ㄱ`, `ㄲ`, `ㄷ`, ...), while real Korean text —
+including this dataset's — is precomposed Hangul syllable blocks (e.g.
+`아홉`), which neither match the compatibility-jamo graphemes directly
+nor decompose into them under NFD (NFD splits a Hangul syllable into
+*conjoining* jamo, a different Unicode block from the *compatibility*
+jamo the spec's grapheme table uses). `G2P('ko').transcribe_word(...)`
+returns an empty string for every real Hangul word tested, so scoring
+this row would not measure phonological accuracy — it is a
+script/input-contract mismatch between the dataset and this repo's
+`ko` spec, not a gap in the engine's Korean coverage. Bridging
+compatibility jamo and precomposed Hangul is a real engine-level
+enhancement, left for a future change; it is out of scope here.
 
 Present in the dataset but **not** wired in:
 

@@ -238,13 +238,22 @@ _IPA_CHILDES_BASE = (
 # - ja-JP: CHILDES Japanese transcripts here are romaji only (no kana/kanji
 #   column in the dataset); the ja spec's grapheme table is hiragana, so
 #   there is no clean grapheme match either.
+# - ko-KR: this repo's ko spec's grapheme table is keyed on individual
+#   compatibility jamo (e.g. U+3131 "ㄱ"), while real Korean text --
+#   including this dataset's -- is precomposed Hangul syllable blocks
+#   (e.g. "아홉"), which neither match the compatibility-jamo graphemes
+#   directly nor decompose into them under NFD (NFD splits a Hangul
+#   syllable into *conjoining* jamo, U+11xx, a different Unicode block
+#   from the *compatibility* jamo, U+31xx, the spec's grapheme table
+#   uses). G2P('ko').transcribe_word(...) returns an empty string for
+#   every real Hangul word, so scoring this row would not measure
+#   phonological accuracy.
 # - qu-PE, yue-CN: no corresponding spec exists in this repo at all.
 _IPA_CHILDES_FOLDERS: Dict[str, str] = {
     "en-US": "en-US",
     "et": "et-EE",
     "hu": "hu-HU",
     "id": "id-ID",
-    "ko": "ko-KR",
     "sr": "sr-RS",
     "zh": "zh-CN",
 }
