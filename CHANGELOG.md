@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.20.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar\): ground Modern Standard Arabic spec in cited phonology sources [\#107](https://github.com/TigreGotico/orthography2ipa/pull/107) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add StyleTTS2 community multilingual phonemes benchmark [\#102](https://github.com/TigreGotico/orthography2ipa/pull/102) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.19.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.19.1a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.0a1...1.19.1a1)
