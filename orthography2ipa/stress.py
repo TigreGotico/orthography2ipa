@@ -27,6 +27,7 @@ Usage
 """
 from __future__ import annotations
 
+import logging
 from typing import List, Optional, Sequence
 
 from orthography2ipa.types import StressRules
@@ -102,8 +103,10 @@ def _syllables_for(word: str, lang: Optional[str]) -> List[str]:
                 sylls = plugin.syllabify(word, lang)
                 if sylls and "".join(sylls) == word:
                     return list(sylls)
-            except Exception:
-                pass
+            except Exception as exc:
+                logging.getLogger(__name__).warning(
+                    "syllabifier plugin %r failed on word %r: %s",
+                    type(plugin).__name__, word, exc)
     return syllabify(word)
 
 

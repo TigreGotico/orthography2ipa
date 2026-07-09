@@ -102,3 +102,23 @@ class TestNewModifiers:
     def test_ejective_modifier(self):
         assert "ʼ" in modifiers
         assert modifiers["ʼ"][10] is True  # constricted_glottis
+
+
+class TestPhoneMemoryCacheImmutability:
+    """Composite-phone vectors returned from _phone_memory must be tuples,
+    not lists, so callers cannot mutate the shared cached value."""
+
+    def test_composite_phone_returns_tuple_on_cache_miss(self):
+        from orthography2ipa import feats
+        feats._phone_memory.pop("ɜ˞", None)
+        result = vectorize_phones("ɜ˞")
+        assert isinstance(result, tuple)
+
+    def test_composite_phone_returns_tuple_on_cache_hit(self):
+        from orthography2ipa import feats
+        feats._phone_memory.pop("ɜ˞", None)
+        first = vectorize_phones("ɜ˞")
+        second = vectorize_phones("ɜ˞")
+        assert isinstance(first, tuple)
+        assert isinstance(second, tuple)
+        assert first == second
