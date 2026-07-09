@@ -215,3 +215,71 @@ class TestPositionalSelection:
         engine = G2P("en-GB")
         ipa = engine.transcribe("hello")
         assert ipa.strip(), "Expected non-empty output for en-GB"
+
+
+class TestUnmappedCharObservability:
+    """Additive R3 fix: unmapped/out-of-script characters currently
+    produce an empty ``ipa`` string indistinguishable from legitimate
+    silence (pure punctuation). ``WordTranscription.unmapped`` /
+    ``.coverage`` and ``G2P(on_unmapped=...)`` make that distinguishable
+    without changing default behavior.
+    """
+
+    def test_unsupported_script_reports_unmapped_but_ipa_unchanged(self):
+        """A word entirely outside the spec's script surfaces via
+        unmapped/coverage while `ipa` stays empty, matching pre-existing
+        'ignore' (default) behavior — feeding Hanzi to the pinyin-only
+        zh spec, the PR #102 scenario."""
+        engine = G2P("zh")
+        result = engine.transcribe_detailed("你好")
+        assert result.ipa == "", (
+            "Default on_unmapped='ignore' must not change ipa output")
+        assert len(result.words) == 1
+        word = result.words[0]
+        assert word.ipa == ""
+        assert word.unmapped == ("你", "好")
+        assert word.coverage == 0.0
+
+    def test_fully_covered_word_has_no_unmapped(self):
+        """A word entirely within the spec's grapheme table reports no
+        unmapped characters and full coverage."""
+        engine = G2P("pt-PT")
+        result = engine.transcribe_detailed("casa")
+        word = result.words[0]
+        assert word.unmapped == ()
+        assert word.coverage == 1.0
+
+    def test_on_unmapped_raise_raises_unmapped_script_error(self):
+        """`on_unmapped="raise"` raises UnmappedScriptError for the
+        Korean precomposed-Hangul-into-compatibility-jamo scenario
+        (PR #106)."""
+        from orthography2ipa.exceptions import UnmappedScriptError
+
+        engine = G2P("ko", on_unmapped="raise")
+        with pytest.raises(UnmappedScriptError) as excinfo:
+            engine.transcribe("안녕하세요")
+        assert excinfo.value.lang == "ko"
+        assert excinfo.value.word == "안녕하세요"
+        assert excinfo.value.unmapped
+
+    def test_on_unmapped_log_emits_warning_without_raising(self, caplog):
+        """`on_unmapped="log"` emits a warning once per (lang, word) and
+        still returns normally (no exception, same ipa as 'ignore')."""
+        engine = G2P("zh", on_unmapped="log")
+        with caplog.at_level("WARNING", logger="orthography2ipa.g2p"):
+            ipa = engine.transcribe("你好")
+            ipa_again = engine.transcribe("你好")
+        assert ipa == ""
+        assert ipa == ipa_again
+        warnings = [r for r in caplog.records if r.levelname == "WARNING"]
+        assert len(warnings) == 1, (
+            "Expected exactly one warning for the repeated (lang, word) pair")
+        assert "你" in warnings[0].message or "你好" in warnings[0].message
+
+    def test_default_on_unmapped_is_ignore(self):
+        """The default G2P() constructor call must not raise or log for
+        unmapped characters — zero behavior change for existing callers."""
+        engine = G2P("zh")
+        assert engine.on_unmapped == "ignore"
+        ipa = engine.transcribe("你好")  # must not raise
+        assert ipa == ""
