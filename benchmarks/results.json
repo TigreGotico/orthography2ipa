@@ -1,5 +1,15 @@
 [
   {
+    "lang": "ar",
+    "dataset": "wikipron",
+    "n": 259,
+    "per": 0.2551,
+    "exact_match": 0.112,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "ast",
     "dataset": "wikipron",
     "n": 300,

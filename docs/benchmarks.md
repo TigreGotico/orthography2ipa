@@ -87,6 +87,7 @@ repository, same CC-BY-SA provenance:
 | `ta` | `tam_taml_broad.tsv` | 10 492 | Tamil (Tamil script) |
 | `ml` | `mal_mlym_broad.tsv` | 10 406 | Malayalam (Malayalam script) |
 | `ru` | `rus_cyrl_narrow.tsv` | ~large | Russian (Cyrillic). **Narrow, not broad** — see note below. |
+| `ar` | `ara_arab_broad.tsv` | 17 563 | Modern Standard Arabic (Arabic script, WikiPron's `ara` macro-language code). Entries come from Wiktionary's fully-vocalized (tashkeel-marked) headwords, matching the `ar` spec's documented tashkeel-dependent input contract (see the spec's `notes` field). |
 
 Russian has no `_broad.tsv` in `data/scrape/tsv/`; upstream's own README
 states some languages were only scraped in one transcription width
