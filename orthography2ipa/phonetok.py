@@ -303,16 +303,19 @@ class PhonetokTokenizer:
                 pos = m.end()
                 continue
 
-            # (b) Punctuation
+            # (b) Punctuation — unless the spec explicitly registers this
+            # exact span as a grapheme (e.g. apostrophe as glottal stop
+            # in Tetum), in which case the grapheme mapping wins.
             m = _PUNCT_RE.match(text, pos)
             if m:
                 span = m.group()
-                tokens.append(Token(
-                    kind=TokenKind.PUNCTUATION, grapheme=span,
-                    ipa=(), position=pos, length=len(span),
-                ))
-                pos = m.end()
-                continue
+                if span not in self._grapheme_ipa:
+                    tokens.append(Token(
+                        kind=TokenKind.PUNCTUATION, grapheme=span,
+                        ipa=(), position=pos, length=len(span),
+                    ))
+                    pos = m.end()
+                    continue
 
             # (c) Digits
             m = _DIGIT_RE.match(text, pos)
