@@ -1,0 +1,57 @@
+name: Benchmark Regression
+
+# Plain repo-specific CI (not a gh-automations reusable workflow) — the
+# regression gate is specific to this repo's benchmark harness and gold
+# datasets, so it stays local rather than living in the shared library.
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - "orthography2ipa/**"
+      - "scripts/benchmark.py"
+      - "scripts/check_benchmark_regression.py"
+      - "benchmarks/results.json"
+      - "tests/data/**"
+      - ".github/workflows/benchmark-regression.yml"
+  workflow_dispatch: {}
+
+jobs:
+  benchmark-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[test]"
+
+      - name: Check benchmark regression
+        # Measure the checkout (PYTHONPATH=$PWD), not any installed
+        # package — same gotcha as scripts/benchmark.py --scoreboard.
+        #
+        # This job only reliably gates the self-contained gold datasets:
+        # wikipron, mirandese and ipadict fetch their TSVs directly over
+        # plain HTTP (stdlib urllib, no credentials), and ep_dialects is
+        # bundled in tests/data/. portuguese_lexicon (needs the
+        # TigreGotico-internal `tugalex` package) and cmudict (needs the
+        # TigreGotico-internal `scriptconv` package) are not installed
+        # here; scripts/benchmark.py's build_scoreboard() already
+        # catches their ImportError and skips them, and
+        # check_benchmark_regression.py treats a baseline row that
+        # wasn't reproduced this run as "missing" (noted, not a
+        # regression) rather than failing the job. Those two datasets
+        # are effectively best-effort/manual until their loaders are
+        # made CI-installable.
+        #
+        # epsilon=0.005 (absolute PER worsening) is the default: tight
+        # enough to catch a real grapheme/allophone regression, loose
+        # enough to absorb harness-level float noise between runs.
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005
