@@ -277,6 +277,9 @@ def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
             pairs.append((parts[0].strip(), parts[1].strip()))
         if len(pairs) >= limit:
             break
+    return pairs
+
+
 def load_hitz_basque(lang: str, limit: int) -> List[Tuple[str, str]]:
     """HiTZ/wikipedia_basque_ipa: Basque Wikipedia paragraphs phonemized by
     ahoNT (a Basque text-processing/phonemization tool developed at HiTZ
