@@ -103,7 +103,7 @@
     "lang": "en-GB",
     "dataset": "wikipron",
     "n": 245,
-    "per": 0.5004,
+    "per": 0.4876,
     "exact_match": 0.0816,
     "quality_tier": "research",
     "harness_version": "1.0",

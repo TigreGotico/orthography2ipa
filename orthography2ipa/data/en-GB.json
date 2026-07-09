@@ -275,6 +275,28 @@
     "ure": [
       "jʊəɹ",
       "ʊəɹ"
+    ],
+    "tion": [
+      "ʃən"
+    ],
+    "cian": [
+      "ʃən"
+    ],
+    "cious": [
+      "ʃəs"
+    ],
+    "tious": [
+      "ʃəs"
+    ],
+    "tial": [
+      "ʃəl"
+    ],
+    "cial": [
+      "ʃəl"
+    ],
+    "sion": [
+      "ʒən",
+      "ʃən"
     ]
   },
   "allophones": {
@@ -446,7 +468,7 @@
       "notes": "Middle English descent"
     }
   ],
-  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere.",
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is misresolved by the blanket rule. TION/SION FAMILY: -tion/-cian -> [ʃən], -sion -> [ʒən] after a vowel or [ʃən] after a consonant, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -489,6 +511,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "roach2004_jipa",
+      "author": "Roach, P.",
+      "year": 2004,
+      "title": "British English: Received Pronunciation",
+      "publisher": "Journal of the International Phonetic Association, 34(2), 239-245",
+      "url": "https://doi.org/10.1017/S0025100304001768",
+      "pages": "239-245",
+      "notes": "Illustrations of the IPA series entry; RP phoneme inventory and worked transcription."
     }
   ],
   "wikipedia": [
@@ -554,6 +586,16 @@
       ],
       "default": [
         "θ"
+      ]
+    },
+    "e": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "ɛ",
+        "iː",
+        "ə"
       ]
     }
   },
