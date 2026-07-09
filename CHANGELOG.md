@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.17.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.17.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.16.0a1...1.17.0a1)
+
+**Merged pull requests:**
+
+- feat: add HiTZ Basque Wikipedia IPA gold dataset to eu benchmark [\#97](https://github.com/TigreGotico/orthography2ipa/pull/97) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(fr-FR\): research-ground nasal denasalization, e-caduc, and consonant degemination [\#93](https://github.com/TigreGotico/orthography2ipa/pull/93) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.16.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.16.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.15.2a1...1.16.0a1)
