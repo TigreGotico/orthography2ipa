@@ -20,6 +20,16 @@
     "limit": 300
   },
   {
+    "lang": "ca",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.4043,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "ca-x-balear",
     "dataset": "4catac",
     "n": 160,
@@ -71,6 +81,16 @@
   },
   {
     "lang": "de",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.3964,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "de",
     "dataset": "wikipron",
     "n": 269,
     "per": 0.3613,
@@ -81,10 +101,30 @@
   },
   {
     "lang": "el",
+    "dataset": "styletts2_phonemes",
+    "n": 298,
+    "per": 0.2179,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "el",
     "dataset": "wikipron",
     "n": 298,
     "per": 0.1517,
     "exact_match": 0.3121,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "en",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.4464,
+    "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -121,10 +161,30 @@
   },
   {
     "lang": "es",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.1713,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "es",
     "dataset": "wikipron",
     "n": 298,
     "per": 0.1,
     "exact_match": 0.4765,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "eu",
+    "dataset": "hitz_basque_ipa",
+    "n": 300,
+    "per": 0.2796,
+    "exact_match": 0.1567,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -140,11 +200,41 @@
     "limit": 300
   },
   {
+    "lang": "fa",
+    "dataset": "styletts2_phonemes",
+    "n": 294,
+    "per": 0.5787,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "fi",
+    "dataset": "styletts2_phonemes",
+    "n": 298,
+    "per": 0.2919,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "fi",
     "dataset": "wikipron",
     "n": 294,
     "per": 0.0386,
     "exact_match": 0.7483,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "fr",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.3557,
+    "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -241,6 +331,16 @@
   },
   {
     "lang": "it",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.21,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "it",
     "dataset": "wikipron",
     "n": 276,
     "per": 0.1004,
@@ -311,10 +411,30 @@
   },
   {
     "lang": "pl",
+    "dataset": "styletts2_phonemes",
+    "n": 299,
+    "per": 0.1867,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pl",
     "dataset": "wikipron",
     "n": 287,
     "per": 0.1195,
     "exact_match": 0.3624,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "pt",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.3999,
+    "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -551,6 +671,16 @@
   },
   {
     "lang": "ru",
+    "dataset": "styletts2_phonemes",
+    "n": 299,
+    "per": 0.3934,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "ru",
     "dataset": "wikipron",
     "n": 268,
     "per": 0.3635,
@@ -575,6 +705,16 @@
     "n": 249,
     "per": 0.0915,
     "exact_match": 0.6867,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "sv",
+    "dataset": "styletts2_phonemes",
+    "n": 300,
+    "per": 0.3835,
+    "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -615,6 +755,16 @@
     "n": 296,
     "per": 0.1397,
     "exact_match": 0.3986,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "uk",
+    "dataset": "styletts2_phonemes",
+    "n": 299,
+    "per": 0.496,
+    "exact_match": 0.0,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300

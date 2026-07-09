@@ -270,6 +270,61 @@ rather than whole sentences, since paragraph-level ahoNT stress
 placement is not verified to depend on sentence context, making the
 single-token span the more conservative unit to score in isolation.
 
+### StyleTTS2 community multilingual phonemes (`styletts2_phonemes`)
+
+[styletts2-community/multilingual-phonemes-10k-alpha](https://huggingface.co/datasets/styletts2-community/multilingual-phonemes-10k-alpha)
+on Hugging Face: sentence-level `text`/`phonemes` pairs, one JSON
+config file per language, released under **CC BY-SA 3.0**. The
+transcriptions are machine-generated (phonemized for TTS
+training/evaluation, per the `synthetic` dataset tag) rather than
+hand-annotated; per an explicit, task-specific override this benchmark
+treats them as usable gold regardless of human-vs-tool provenance,
+same as the `hitz_basque_ipa` exception above but without the
+academic-publisher condition attached — this override is scoped to
+this dataset only.
+
+The dataset ships 15 single-language configs plus an `en-xl` config
+(a 100K-row scale-up of the same English data already covered by the
+`en` config here and by `wikipron`/`cmudict`, so it is left out as
+redundant). 14 of the 15 single-language configs are wired, each
+against the `orthography2ipa` language tag matching its config name:
+
+| Lang | Rows (full file) |
+|---|---:|
+| `en` | 10,212 |
+| `ca` | 13,451 |
+| `de` | 11,355 |
+| `es` | 10,449 |
+| `el` | 10,260 |
+| `fa` | 13,031 |
+| `fi` | 10,347 |
+| `fr` | 10,395 |
+| `it` | 10,235 |
+| `pl` | 11,446 |
+| `pt` | 11,585 |
+| `ru` | 10,604 |
+| `sv` | 2,706 |
+| `uk` | 11,064 |
+
+`fa` and `uk` had no prior gold coverage in this harness before this
+dataset; the rest are additive, complementary sentence-level
+cross-checks to their existing word-level `wikipron`/lexicon entries.
+
+`zh` was evaluated but is excluded from this dataset: this repo's
+`zh` spec (`orthography2ipa/data/zh.json`) declares graphemes that are
+romanized pinyin letters and expects romanized pinyin input, while the
+`styletts2_phonemes` dataset's `zh` config's `text` field is raw hanzi
+(e.g. `"分布于美洲的北温带..."`). The engine cannot transcribe hanzi at
+all (`G2P('zh').transcribe_word('你好')` returns an empty string), so
+scoring this row would not measure phonological accuracy — it is a
+script/input-contract mismatch between the dataset and this repo's
+`zh` spec, not a gap in the engine's Mandarin coverage.
+
+The loader (`load_styletts2_phonemes` in `scripts/benchmark.py`)
+downloads each language's JSON file directly and pairs `text` with
+`phonemes` positionally, scored as sentence-level spans through the
+harness's standard pipeline (as with `4catac`/`ep_dialects`).
+
 ## Rejected candidates
 
 Datasets investigated and excluded due to tool-generated or unclear

@@ -26,6 +26,8 @@ Dataset access:
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
 - ``clup_dialect`` downloads a CSV gold file directly (stdlib only).
+- ``styletts2_phonemes`` downloads per-language JSON files directly
+  (stdlib only).
 
 Every run is capped (``--limit``, default 300) — gold sets are large
 and a slice is enough for a stable reference number.
@@ -182,6 +184,33 @@ _CLUP_LOCALITY_MAP: Dict[str, str] = {
     "Alfena, Porto": "pt-PT-x-alfena",
 }
 _CLUP_LANGS = sorted(set(_CLUP_DISTRICT_MAP.values()) | set(_CLUP_LOCALITY_MAP.values()))
+_STYLETTS2_PHONEMES_BASE = (
+    "https://huggingface.co/datasets/styletts2-community/"
+    "multilingual-phonemes-10k-alpha/resolve/main/"
+)
+# orthography2ipa language tag → dataset config file name.
+# All 15 of the dataset's single-language configs are wired (the
+# ``en-xl`` config is a 100K-row scale-up of the same "en" language
+# already covered by the ``en`` config here plus ``wikipron``/``cmudict``,
+# so it is left out as redundant rather than a new gold source).
+_STYLETTS2_PHONEMES_FILES: Dict[str, str] = {
+    "en": "en.json",
+    "ca": "ca.json",
+    "de": "de.json",
+    "es": "es.json",
+    "el": "el.json",
+    "fa": "fa.json",
+    "fi": "fi.json",
+    "fr": "fr.json",
+    "it": "it.json",
+    "pl": "pl.json",
+    "pt": "pt.json",
+    "ru": "ru.json",
+    "sv": "sv.json",
+    "uk": "uk.json",
+}
+
+
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
@@ -488,6 +517,27 @@ def load_ipadict(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 
 
+def load_styletts2_phonemes(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """StyleTTS2 community multilingual phonemes gold set (sentence-level,
+    styletts2-community/multilingual-phonemes-10k-alpha on Hugging Face):
+    ~10K ``text``/``phonemes`` sentence pairs per language, synthesized for
+    TTS-phonemizer training/evaluation, one JSON file per language config.
+    See ``_STYLETTS2_PHONEMES_FILES`` for the full set of wired languages.
+    """
+    fname = _STYLETTS2_PHONEMES_FILES[lang]
+    text = _fetch(_STYLETTS2_PHONEMES_BASE + fname, f"styletts2_{fname}")
+    data = json.loads(text)
+    pairs = []
+    for row in data:
+        sentence = row.get("text")
+        ipa = row.get("phonemes")
+        if sentence and ipa:
+            pairs.append((sentence.strip(), ipa.strip()))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 # Dialect code mapping for ep_dialects dataset
 # CSV dialect_code  →  orthography2ipa language tag
 # ─────────────────────────────────────────────────────────────────────────────
@@ -569,6 +619,8 @@ DATASETS = {
     "clup_dialect": (load_clup_dialect, _CLUP_LANGS),
     "cmudict": (load_cmudict, ["en-US"]),
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
+    "styletts2_phonemes": (load_styletts2_phonemes,
+                           sorted(_STYLETTS2_PHONEMES_FILES)),
 }
 
 
