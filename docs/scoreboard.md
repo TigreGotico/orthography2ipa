@@ -41,6 +41,7 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | pt | wikipron | 242 | 0.1817 | 0.3058 | research |
 | pt-BR | wikipron | 124 | 0.1901 | 0.3952 | research |
 | pt-PT | ep_dialects | 30 | 0.2599 | 0.0000 | research |
+| pt-PT | infopedia_pt | 295 | 0.3160 | 0.1390 | research |
 | pt-PT-x-acores | ep_dialects | 29 | 0.3521 | 0.0000 | research |
 | pt-PT-x-alentejo | ep_dialects | 30 | 0.3216 | 0.0333 | research |
 | pt-PT-x-algarve | ep_dialects | 30 | 0.3549 | 0.0000 | research |

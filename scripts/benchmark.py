@@ -21,6 +21,7 @@ Dataset access:
   TigreGotico/portuguese_phonetic_lexicon dataset on Hugging Face.
 - ``cmudict`` needs the ``scriptconv`` package for ARPABET→IPA.
 - ``wikipron`` and ``mirandese`` download TSVs directly (stdlib only).
+- ``infopedia_pt`` downloads a JSONL gold file directly (stdlib only).
 
 Every run is capped (``--limit``, default 300) — gold sets are large
 and a slice is enough for a stable reference number.
@@ -104,6 +105,10 @@ _MIRANDESE_URL = (
     "/resolve/main/mwl_dataset.tsv"
 )
 _MIRANDESE_DIALECTS = {"mwl": "central", "mwl-x-sendim": "sendinese"}
+_INFOPEDIA_PT_URL = (
+    "https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa"
+    "/resolve/main/infopedia_pt_ipa.jsonl"
+)
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
@@ -185,6 +190,32 @@ def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
         parts = line.split("\t")
         if len(parts) == 3 and parts[0] == dialect:
             pairs.append((parts[1].strip(), parts[2].strip()))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+def load_infopedia_pt(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """European Portuguese IPA lexicon (TigreGotico/infopedia-pt-ipa on
+    Hugging Face), extracted from Infopédia (Porto Editora).
+
+    Each JSONL row is ``{"word", "ipa", "pronunciations", "syllabification"}``;
+    ``pronunciations`` carries every distinct IPA form found for the word
+    (a handful of entries have more than one), so all of them are emitted
+    as separate reference pairs and scored via the harness's standard
+    multi-reference-per-word handling.
+    """
+    text = _fetch(_INFOPEDIA_PT_URL, "infopedia_pt_ipa.jsonl")
+    pairs = []
+    for line in text.strip().splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        word = row.get("word")
+        variants = row.get("pronunciations") or [row.get("ipa")]
+        for ipa in variants:
+            if word and ipa:
+                pairs.append((word, ipa))
         if len(pairs) >= limit:
             break
     return pairs
@@ -314,6 +345,7 @@ DATASETS = {
                            ["pt-PT", "pt-BR", "pt-AO", "pt-MZ", "pt-TL"]),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "mirandese": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
+    "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
     "cmudict": (load_cmudict, ["en-US"]),
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
 }
