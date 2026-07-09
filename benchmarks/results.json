@@ -163,8 +163,8 @@
     "lang": "fr",
     "dataset": "wikipron",
     "n": 279,
-    "per": 0.3178,
-    "exact_match": 0.1935,
+    "per": 0.1559,
+    "exact_match": 0.4624,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300

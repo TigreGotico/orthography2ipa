@@ -26,7 +26,7 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | es | wikipron | 298 | 0.1000 | 0.4765 | research |
 | eu | wikipron | 239 | 0.0768 | 0.5900 | research |
 | fi | wikipron | 294 | 0.0386 | 0.7483 | research |
-| fr | wikipron | 279 | 0.3178 | 0.1935 | research |
+| fr | wikipron | 279 | 0.1559 | 0.4624 | research |
 | ga | wikipron | 134 | 0.4330 | 0.0373 | research |
 | gd | wikipron | 210 | 0.6867 | 0.0286 | research |
 | gl | wikipron | 264 | 0.0728 | 0.6326 | research |
