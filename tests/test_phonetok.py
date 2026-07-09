@@ -282,3 +282,75 @@ class TestEdgeCases:
         # The exact behaviour depends on implementation — just check it doesn't crash
         tokens = tok_pt.tokenize("OLÁ")
         assert len(tokens) >= 1
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Positional-only grapheme keys (no base `graphemes` entry)
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPositionalOnlyGraphemes:
+    """A grapheme declared only via `positional_graphemes` (no matching key
+    in the base `graphemes` dict) must still be discoverable by the
+    maximal-munch trie — otherwise the tokenizer never recognises the
+    sequence and falls back to matching it as individual UNKNOWN/single-
+    letter tokens."""
+
+    @pytest.fixture
+    def tok_positional_only(self) -> PhonetokTokenizer:
+        from orthography2ipa.types import GraphemePosition
+
+        spec = LanguageSpec(
+            code="test-positional-only",
+            name="Test Positional Only",
+            family="Test",
+            script="Latin",
+            graphemes={
+                "a": ["a"],
+                "c": ["k"],
+            },
+            allophones={
+                "a": ["a"],
+                "k": ["k"],
+                "n": ["n"],
+                "m": ["m"],
+            },
+            positional_graphemes={
+                # "en" has NO entry in the base `graphemes` dict — it is
+                # purely positional (the barrancos em/en pattern).
+                "en": {
+                    GraphemePosition.WORD_FINAL: ["ẽ"],
+                    GraphemePosition.DEFAULT: ["en"],
+                },
+            },
+        )
+        return PhonetokTokenizer(spec)
+
+    def test_positional_only_digraph_enters_trie(self, tok_positional_only):
+        """'en' must be matched as a single grapheme token, not split into
+        'e' (unknown, since 'e' isn't even a base grapheme here) + 'n'."""
+        tokens = tok_positional_only.tokenize("en")
+        grapheme_tokens = [
+            t for t in tokens if t.kind == TokenKind.GRAPHEME
+        ]
+        assert len(grapheme_tokens) == 1
+        assert grapheme_tokens[0].grapheme == "en"
+
+    def test_positional_only_digraph_has_ipa(self, tok_positional_only):
+        """The token carries a non-empty IPA seeded from its positional
+        candidates (DEFAULT preferred) even though it has no base entry."""
+        tokens = tok_positional_only.tokenize("en")
+        grapheme_tokens = [
+            t for t in tokens if t.kind == TokenKind.GRAPHEME
+        ]
+        assert grapheme_tokens[0].ipa == ("en",)
+
+    def test_maximal_munch_still_wins_over_positional_only(
+        self, tok_positional_only
+    ):
+        """Maximal munch: 'en' (2 chars, positional-only) must be preferred
+        over matching just as unknown single characters."""
+        tokens = tok_positional_only.tokenize("cen")
+        grapheme_tokens = [
+            t for t in tokens if t.kind == TokenKind.GRAPHEME
+        ]
+        assert [t.grapheme for t in grapheme_tokens] == ["c", "en"]
