@@ -26,7 +26,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: uv pip install --system -e ".[test]"
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[test]"
 
       - name: Check benchmark regression
         # Measure the checkout (PYTHONPATH=$PWD), not any installed
@@ -50,4 +52,4 @@ jobs:
         # enough to catch a real grapheme/allophone regression, loose
         # enough to absorb harness-level float noise between runs.
         run: |
-          PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005
