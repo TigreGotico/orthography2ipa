@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.21.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.2a1) (2026-07-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.1a1...1.21.2a1)
+
+**Merged pull requests:**
+
+- fix: freeze cached phone vectors as tuples, log syllabifier plugin failures [\#112](https://github.com/TigreGotico/orthography2ipa/pull/112) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.1a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.21.1a1)
