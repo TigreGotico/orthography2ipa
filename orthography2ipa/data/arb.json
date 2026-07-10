@@ -305,10 +305,10 @@
             "id": "AR_SUN_ASSIMILATION",
             "name": "sun-letter-assimilation",
             "left_context": "l$",
-            "right_context": "^[tθdðszʃnrlɫɮ]",
+            "right_context": "^[tθdðszʃnrlɫɮtˤdˤsˤðˤ]",
             "transform": "",
             "obligatory": true,
-            "notes": "al-shams → ash-shams (l assimilates to following sun letter)"
+            "notes": "al-shams → ash-shams (l assimilates to following sun letter). The emphatic sun letters (ص ض ط ظ → sˤ dˤ tˤ ðˤ) are listed explicitly for clarity/completeness, though the base coronal codepoints (t d s ð) already present in the class matched these on their leading codepoint before this addition — so their inclusion is not closing a real assimilation gap."
         },
         {
             "id": "AR_HAMZAT_WASL",

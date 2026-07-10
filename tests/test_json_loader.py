@@ -48,10 +48,27 @@ class TestSandhiRulesInheritance:
         assert {r.id for r in dialect.sandhi_rules} == {r.id for r in base.sandhi_rules}
 
     def test_ar_inherits_arb_sandhi_rules_without_duplication(self):
+        """ar.json declares no sandhi_rules of its own (the MSA_* rules that
+        used to re-declare arb's AR_* rules were removed once inheritance
+        was fixed), so ar must resolve to exactly arb's rules — not just
+        "no id collisions", but no leftover leaf-level rule that fires on
+        the same trigger as an inherited one under a different id."""
         base = load_json_spec("arb")
         leaf = load_json_spec("ar")
-        base_ids = {r.id for r in base.sandhi_rules}
-        leaf_ids = [r.id for r in leaf.sandhi_rules]
-        # every arb rule id appears, and each id appears exactly once
-        assert base_ids <= set(leaf_ids)
-        assert len(leaf_ids) == len(set(leaf_ids))
+
+        # Tight invariant: ar resolves to precisely arb's sandhi rules,
+        # same ids, same order, nothing added at the leaf level.
+        assert [r.id for r in leaf.sandhi_rules] == [r.id for r in base.sandhi_rules]
+
+        # Semantic duplication guard: even where ids differ, no two rules
+        # in the resolved set may share the same (left_context,
+        # right_context, transform) triple — that would mean two rules
+        # fire on the same trigger and produce the same effect, which is
+        # dead/duplicated data regardless of id collision.
+        triggers = [
+            (r.left_context, r.right_context, r.transform) for r in leaf.sandhi_rules
+        ]
+        assert len(triggers) == len(set(triggers)), (
+            "resolved ar sandhi_rules contain semantically duplicate rules "
+            "(same trigger/effect under different ids)"
+        )
