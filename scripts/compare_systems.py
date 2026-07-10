@@ -25,9 +25,11 @@ Normalization (identical across all four systems, see ``benchmark.normalize``
 and the stress/diacritic handling in ``espeak_agreement.py``):
 
 1. NFC-normalize.
-2. Strip stress/length marks (``benchmark._STRESS_MARKS``): primary/secondary
-   stress and length marks are never scored — no system agrees on where to
-   place them consistently enough for that to be a fair signal.
+2. Strip stress marks (``benchmark._STRESS_MARKS`` == ``ˈˌ``): primary and
+   secondary stress are never scored — no system agrees on where to place
+   them consistently enough for that to be a fair signal. (The length
+   mark ``ː`` is NOT in that set and is retained, exactly as
+   ``benchmark.normalize`` treats it.)
 3. Strip narrow-transcription diacritics (``benchmark._NARROW_MARKS``) via
    NFD decomposition — this is the same "broad" comparison mode
    ``benchmark.py --scoreboard`` uses by default.
@@ -132,7 +134,9 @@ def espeak_transcribe(word: str, voice: str) -> Optional[str]:
     """Transcribe *word* with espeak-ng, or ``None`` on any failure."""
     try:
         proc = subprocess.run(
-            ["espeak-ng", "-q", "--ipa", "-v", voice, word],
+            # "--" ends option parsing so a gold word starting with "-"
+            # is treated as text, not misparsed as an espeak-ng flag
+            ["espeak-ng", "-q", "--ipa", "-v", voice, "--", word],
             capture_output=True, text=True, timeout=30,
         )
     except (OSError, subprocess.TimeoutExpired):
@@ -338,7 +342,8 @@ def write_comparison(rows: List[dict]) -> None:
         "Every system is scored with the identical normalization and PER "
         "metric orthography2ipa's own scoreboard uses "
         "(`scripts/benchmark.py:normalize`/`levenshtein`): NFC-normalize, "
-        "strip stress/length marks, strip narrow-transcription diacritics "
+        "strip stress marks (the length mark is retained), strip "
+        "narrow-transcription diacritics "
         "(broad comparison), drop whitespace (segmentation-free), then "
         "score Levenshtein distance against the best-matching gold "
         "variant. No system is normalized differently or given a more "
