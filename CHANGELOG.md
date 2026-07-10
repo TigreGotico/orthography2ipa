@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.22.2a2](https://github.com/TigreGotico/orthography2ipa/tree/1.22.2a2) (2026-07-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.22.2a1...1.22.2a2)
+
+**Merged pull requests:**
+
+- refactor: consolidate vowel classification into orthography2ipa/vowels.py [\#117](https://github.com/TigreGotico/orthography2ipa/pull/117) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.22.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.22.2a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.22.1a1...1.22.2a1)
