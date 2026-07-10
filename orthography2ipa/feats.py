@@ -511,7 +511,7 @@ def vectorize_phones(phones: str) -> List[Union[bool, None]]:
 
     # --- Step 3: cached result for composite phones ---
     if phones in _phone_memory:
-        return _phone_memory[phones]
+        return tuple(_phone_memory[phones])
 
     # --- Step 4: compute vector for composite phone ---
     try:
@@ -558,6 +558,7 @@ def vectorize_phones(phones: str) -> List[Union[bool, None]]:
                 vec[feature_idx] = mod_val
 
         # Save result to cache
+        vec = tuple(vec)
         _phone_memory[phones] = vec
         return vec
 

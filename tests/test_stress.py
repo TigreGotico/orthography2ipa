@@ -201,6 +201,35 @@ class TestSyllabifierPlugins:
         # falls back to the naive splitter instead of trusting garbage
         assert detect_stress("casa", rules, lang="pt-PT") == 0
 
+    def test_raising_plugin_falls_back_and_logs(self, monkeypatch, caplog):
+        """A plugin that raises is logged and the naive splitter is used."""
+        import logging
+        from orthography2ipa import get, registry
+
+        class Raising:
+            def syllabify(self, word, lang=None):
+                raise RuntimeError("boom")
+
+            @property
+            def language_codes(self):
+                return ["pt-PT"]
+
+            @property
+            def priority(self):
+                return 50
+
+        monkeypatch.setattr(registry, "_syllabifiers", {"pt-PT": Raising()})
+        rules = get("pt-PT").stress
+        with caplog.at_level(logging.WARNING):
+            # falls back to the naive splitter and still returns a valid result
+            assert detect_stress("casa", rules, lang="pt-PT") == 0
+        assert len(caplog.records) == 1
+        message = caplog.records[0].getMessage()
+        assert caplog.records[0].levelno == logging.WARNING
+        assert "Raising" in message
+        assert "casa" in message
+        assert "boom" in message
+
 
 class TestGalicianStress:
     """Gold stress placements for Galician (gl) — Cotovia/GTM rules."""
