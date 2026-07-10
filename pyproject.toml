@@ -31,6 +31,8 @@ dependencies = {file = ["requirements.txt"]}
 [project.optional-dependencies]
 validation = ["pydantic>=2"]
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis"]
+# dev-only extra for scripts/compare_systems.py; never a runtime dependency
+compare = ["epitran", "gruut"]
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"

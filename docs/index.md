@@ -169,6 +169,7 @@ below.
 | [benchmarks.md](benchmarks.md) | Gold datasets, methodology, how to reproduce a score |
 | [scoreboard.md](scoreboard.md) | Every measured PER/exact-match result |
 | [espeak_agreement.md](espeak_agreement.md) | Agreement analysis against espeak-ng |
+| [comparison.md](comparison.md) | Cross-system PER comparison vs espeak-ng, epitran, gruut |
 | [api_stability.md](api_stability.md) | What is public and version-guarded |
 | [link-audit.md](link-audit.md) | Citation URL liveness audit |
 | [languages/index.md](languages/index.md) | Per-language phonology deep-dives |
