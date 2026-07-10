@@ -45,7 +45,11 @@ Notes on the table:
   implementation, so both forms are covered.
 - `G2PPlugin` and `WordContext` are the shared contract every downstream
   G2P plugin (arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer)
-  subclasses/consumes to implement its own language plugin.
+  subclasses/consumes to implement its own language plugin. A downstream
+  plugin's **phonological rule cascade** (sun-letter assimilation,
+  silent-`e`, reduction) belongs in a `LatticeRescorer` over the shared
+  lattice now — see [Rescoring the lattice](lattice.md#rescoring-the-lattice)
+  — rather than in a forked tokenizer.
 - `SyllabifierPlugin` is the equivalent contract for syllabifier plugins;
   currently only tugaphone implements one.
 - `tugaphone`'s test suite imports `orthography2ipa.registry` as a module

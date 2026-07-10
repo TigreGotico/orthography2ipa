@@ -47,6 +47,7 @@ from orthography2ipa.phonetok import (
     TokenKind,
     TokenSequence,
 )
+from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.registry import (
     available_codes,
     available_families,
@@ -119,6 +120,8 @@ __all__ = [
     "SegmentSlot",
     "GraphemeContext",
     "TokenSequence",
+    "LatticeRescorer",
+    "RescoreContext",
     "segment_distance",
     "inventory_distance",
     "grapheme_divergence",

@@ -48,6 +48,9 @@ from orthography2ipa.phonetok import (
     lower_str,
 )
 from orthography2ipa.positional import resolve_branches
+from orthography2ipa.rescorer import (
+    LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
+)
 from orthography2ipa.registry import get, resolve
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
@@ -165,11 +168,14 @@ class G2P:
         apply_stress: bool = True,
         normalizer: Optional[Callable[[str], str]] = None,
         on_unmapped: str = "ignore",
+        rescorer: RescorerArg = None,
     ) -> None:
         if on_unmapped not in ("ignore", "log", "raise"):
             raise ValueError(
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
                 f"got {on_unmapped!r}")
+        self._rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
+            rescorer)
         self.lang: str = resolve(lang)
         self.spec: LanguageSpec = get(self.lang)
         self.expand_allophones = expand_allophones
@@ -307,17 +313,30 @@ class G2P:
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
                 stressed_syll_idx=stressed_syll_idx)
-            cands = tuple(
-                Candidate(ipa=ipa, cost=cost)
-                for ipa, cost in branches[:keep]
-            )
             tok = g_tokens[tok_idx]
             slots.append(SegmentSlot(
                 grapheme=tok.grapheme,
                 span=(tok.position, tok.position + tok.length),
-                candidates=cands,
+                candidates=tuple(
+                    Candidate(ipa=ipa, cost=cost) for ipa, cost in branches),
             ))
-        return slots
+
+        if self._rescorers:
+            # Re-cost with the engine's stress context, then truncate. A
+            # rescorer that empties a slot deletes it from the lattice.
+            slots = [
+                s for s in apply_rescorers(
+                    slots, contexts, self._rescorers,
+                    syll_for_token=syll_for_token,
+                    stressed_syll_idx=stressed_syll_idx)
+                if s.candidates
+            ]
+
+        return [
+            SegmentSlot(grapheme=s.grapheme, span=s.span,
+                        candidates=s.candidates[:keep])
+            for s in slots
+        ]
 
     # ─── pipeline stages ─────────────────────────────────────────────
 
@@ -378,7 +397,8 @@ class G2P:
             else:
                 paths = self._tokenizer.ipa_beam(
                     word, beam_width=width,
-                    expand_allophones=self.expand_allophones)
+                    expand_allophones=self.expand_allophones,
+                    rescorer=self._rescorers or None)
             ipa = paths[0].ipa if paths else word
         if (self.apply_stress and self.spec.stress is not None and ipa):
             sylls = _syllables_for(word, self.lang)
@@ -478,18 +498,41 @@ class G2P:
         allophone_map = self.spec.allophones if self.expand_allophones else None
         beam: List[Tuple[List[str], float]] = [([], 0.0)]
 
-        for tok_idx, ctx in enumerate(contexts):
-            # Positional resolution (incl. E1 vowel-class positions) is the
-            # SAME shared code the standalone tokenizer beam uses; the
-            # engine additionally supplies stress/syllable context so the
-            # nucleus positions fire.
-            branches = resolve_branches(
+        # Pre-resolve every slot's branches (with the engine's stress
+        # context). When a rescorer is configured the slots are re-costed
+        # through it — the engine path, unlike the standalone tokenizer,
+        # supplies syllable/stress context to the RescoreContext.
+        per_token_branches: List[List[Tuple[str, float]]] = [
+            resolve_branches(
                 self.spec, ctx,
                 weights_for=self._tokenizer.weights_for,
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
                 stressed_syll_idx=stressed_syll_idx)
+            for tok_idx, ctx in enumerate(contexts)
+        ]
+        if self._rescorers:
+            slots = [
+                SegmentSlot(
+                    grapheme=g_tokens[i].grapheme,
+                    span=(g_tokens[i].position,
+                          g_tokens[i].position + g_tokens[i].length),
+                    candidates=tuple(
+                        Candidate(ipa=ipa, cost=cost) for ipa, cost in br))
+                for i, br in enumerate(per_token_branches)
+            ]
+            rescored = apply_rescorers(
+                slots, contexts, self._rescorers,
+                syll_for_token=syll_for_token,
+                stressed_syll_idx=stressed_syll_idx)
+            per_token_branches = [
+                [(c.ipa, c.cost) for c in s.candidates] for s in rescored
+            ]
 
+        for branches in per_token_branches:
+            if not branches:
+                # Rescorer deleted this slot: it contributes no segment.
+                continue
             beam = PhonetokTokenizer._expand_beam(beam, branches, width)
 
         paths = [
