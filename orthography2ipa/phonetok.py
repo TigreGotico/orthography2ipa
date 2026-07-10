@@ -47,6 +47,7 @@ from typing import Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import is_ipa_vowel
+from orthography2ipa.weights import candidate_base_costs
 
 from typing import TYPE_CHECKING
 
@@ -168,9 +169,11 @@ class IPAPath:
     """IPA segment for each GRAPHEME token (whitespace etc. excluded)."""
 
     score: float
-    """Heuristic score (lower = more canonical).  The first IPA listed
-    for each grapheme is treated as the canonical/default form and
-    receives score 0; alternatives receive +1 each."""
+    """Heuristic score (lower = more canonical). By default the first IPA
+    listed for each grapheme is the canonical form (cost 0) and
+    alternatives receive +1 each. When a spec declares per-candidate
+    weights the per-grapheme cost is ``-log(p)`` instead — see
+    :mod:`orthography2ipa.weights` and ``docs/candidate_scoring.md``."""
 
     @property
     def ipa(self) -> str:
@@ -304,6 +307,15 @@ class PhonetokTokenizer:
             k.lower(): tuple(v) for k, v in spec.graphemes.items()
         }
 
+        # Per-candidate weights aligned to `_grapheme_ipa` (lowercased
+        # keys). Sparse — only graphemes whose spec used the weighted-object
+        # form appear. Absent → `weights_for` returns None → the beam uses
+        # rank cost (byte-identical to the pre-weights behaviour).
+        self._grapheme_weights: Dict[str, Tuple[float, ...]] = {
+            k.lower(): tuple(w)
+            for k, w in (spec.grapheme_weights or {}).items()
+        }
+
         # Grapheme keys that exist *only* as positional overrides (no entry
         # in the base `graphemes` table) must still be discoverable by the
         # maximal-munch trie, otherwise the tokenizer never recognises the
@@ -325,6 +337,15 @@ class PhonetokTokenizer:
                 self._grapheme_ipa[key] = tuple(candidates)
 
         self._trie = _GraphemeTrie(self._grapheme_ipa, spec.code)
+
+    def weights_for(self, grapheme: str) -> Optional[Tuple[float, ...]]:
+        """Return the per-candidate weights for *grapheme*, or ``None``.
+
+        ``None`` means the grapheme has no declared weights and the beam
+        should fall back to uniform-descending *rank* cost. The lookup key
+        is lower-cased to match the tokenizer's normalised grapheme table.
+        """
+        return self._grapheme_weights.get(grapheme.lower())
 
     # ─── Core tokenization ─────────────────────────────────────────────
 
@@ -505,7 +526,9 @@ class PhonetokTokenizer:
 
         for token in tokens:
             if token.kind == TokenKind.GRAPHEME:
-                branches = self._ipa_branches(token, allophone_map)
+                branches = self._ipa_branches(
+                    token, allophone_map,
+                    self.weights_for(token.grapheme))
                 beam = self._expand_beam(beam, branches, beam_width)
 
             elif include_special:
@@ -627,16 +650,23 @@ class PhonetokTokenizer:
     def _ipa_branches(
             token: Token,
             allophone_map: Optional[Dict[str, List[str]]],
+            weights: Optional[Sequence[float]] = None,
     ) -> List[Tuple[str, float]]:
         """Return (ipa_string, cost) branches for one GRAPHEME token.
 
-        Cost 0 for the first (canonical) IPA; +1 for each alternative.
-        If allophone expansion is on, each phoneme further branches
-        into its allophonic variants at +0.5 cost each beyond the first.
+        Without *weights* (plain-list grapheme): cost 0 for the first
+        (canonical) IPA and +1 for each alternative — the rank ordering.
+        With valid *weights* the per-candidate cost is ``-log(p)`` (see
+        :func:`orthography2ipa.weights.candidate_base_costs`); the branch
+        shape ``(ipa, cost)`` is unchanged so ``_expand_beam`` is agnostic.
+        If allophone expansion is on, each phoneme further branches into
+        its allophonic variants at +0.5 cost each beyond the first.
         """
+        costs = candidate_base_costs(
+            token.ipa, weights, grapheme=token.grapheme)
         branches: List[Tuple[str, float]] = []
         for rank, phoneme in enumerate(token.ipa):
-            base_cost = float(rank)
+            base_cost = costs[rank]
             if allophone_map and phoneme in allophone_map:
                 allophones = allophone_map[phoneme]
                 for a_rank, allophone in enumerate(allophones):

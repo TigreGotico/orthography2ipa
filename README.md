@@ -243,9 +243,15 @@ and the Mirandese gold set. Datasets, sources, methodology and the
 reference PER/WER table live in [docs/benchmarks.md](docs/benchmarks.md);
 reproduce any row with `python scripts/benchmark.py`.
 
-Candidate ordering is naive (most-common-mapping only, no contextual
-scoring), no language is currently at `production` quality tier, and
-PER is genuinely mediocre for several languages — see
+Candidate ordering defaults to rank order (list the most common
+pronunciation first). A spec can now attach per-candidate **weights**
+(candidate frequencies from cited corpora) so the beam favours the
+corpus-dominant phoneme and a path's score becomes a real
+log-probability — see [candidate scoring](docs/candidate_scoring.md);
+**en-GB** is the first spec to use them (`er`, `gh`, `ie`), and any spec
+without weights behaves exactly as before. Contextual (positional)
+scoring is still limited, no language is currently at `production`
+quality tier, and PER is genuinely mediocre for several languages — see
 [docs/index.md](docs/index.md#honest-limitations-read-this-before-you-trust-a-tier)
 for the specifics before depending on this for anything accuracy-sensitive.
 

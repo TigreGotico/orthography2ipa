@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -33,6 +33,7 @@ from pydantic import (
     Field,
     ValidationError,
     field_validator,
+    model_validator,
 )
 
 from orthography2ipa.types import (
@@ -55,6 +56,40 @@ class _Strict(BaseModel):
         validate_assignment=True,
         use_enum_values=True,
     )
+
+
+class WeightedGraphemeModel(_Strict):
+    """The weighted-object form of a grapheme value:
+    ``{"ipa": [...], "weights": [...]}`` (see ``docs/candidate_scoring.md``).
+
+    ``weights`` are candidate frequencies, one per ``ipa`` entry, and must
+    be non-negative and sum to a positive value; the model enforces the
+    length match so a malformed weighted spec fails validation rather than
+    silently falling back to rank ordering at runtime."""
+
+    ipa: List[str]
+    weights: List[float]
+
+    @field_validator("weights")
+    @classmethod
+    def _weights_valid(cls, v: List[float]) -> List[float]:
+        if any(w < 0 for w in v):
+            raise ValueError("candidate weights must be non-negative")
+        if sum(v) <= 0:
+            raise ValueError("candidate weights must sum to a positive value")
+        return v
+
+    @model_validator(mode="after")
+    def _lengths_match(self) -> "WeightedGraphemeModel":
+        if len(self.ipa) != len(self.weights):
+            raise ValueError(
+                f"weights length ({len(self.weights)}) must equal ipa "
+                f"length ({len(self.ipa)})")
+        return self
+
+
+# A grapheme value is either a plain candidate list or the weighted object.
+GraphemeValue = Optional[Union[List[str], WeightedGraphemeModel]]
 
 
 class SourceModel(_Strict):
@@ -163,7 +198,7 @@ class LanguageSpecModel(_Strict):
 
     # ─── core mappings (required per SCHEMA.md, but optional when a
     #     ``*_base`` inheritance key supplies them) ──────────────────
-    graphemes: Optional[Dict[str, IPACandidates]] = None
+    graphemes: Optional[Dict[str, GraphemeValue]] = None
     allophones: Optional[Dict[str, IPACandidates]] = None
 
     # ─── positional overrides ───────────────────────────────────────

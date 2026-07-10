@@ -25,9 +25,9 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | de | wikipron | 269 | 0.3613 | [0.3402, 0.3796] | 0.0297 | research |
 | el | styletts2_phonemes | 298 | 0.2178 | [0.2023, 0.2326] | 0.0000 | research |
 | el | wikipron | 298 | 0.1513 | [0.1341, 0.1678] | 0.3154 | research |
-| en | styletts2_phonemes | 300 | 0.4464 | [0.4393, 0.4542] | 0.0000 | research |
-| en | wikipron | 220 | 0.4799 | [0.4461, 0.5125] | 0.1000 | research |
-| en-GB | wikipron | 245 | 0.4876 | [0.4563, 0.5213] | 0.0816 | research |
+| en | styletts2_phonemes | 300 | 0.4379 | [0.4305, 0.4459] | 0.0000 | research |
+| en | wikipron | 220 | 0.4661 | [0.4334, 0.4998] | 0.1000 | research |
+| en-GB | wikipron | 245 | 0.4721 | [0.4420, 0.5058] | 0.0816 | research |
 | en-US | ipa_childes | 300 | 0.4166 | [0.3809, 0.4528] | 0.2167 | research |
 | eo | wikipron | 300 | 0.0303 | [0.0221, 0.0392] | 0.8700 | research |
 | es | styletts2_phonemes | 300 | 0.1713 | [0.1584, 0.1851] | 0.0000 | research |

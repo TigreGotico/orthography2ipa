@@ -36,6 +36,7 @@ from orthography2ipa.types import (
     StressRules,
     TimeSpan,
 )
+from orthography2ipa.weights import split_weighted_graphemes
 
 # Fields resolved via the ``{field}_base`` JSON key + ``{**base, **own}``
 # dict merge (graphemes, allophones, positional_graphemes).
@@ -158,6 +159,19 @@ def load_json_spec(code: str) -> LanguageSpec:
     lang_file: Path = _index[code]
     with lang_file.open() as f:
         raw = json.load(f)
+
+    # Normalise the two accepted grapheme JSON shapes (plain list and the
+    # weighted-object ``{"ipa": [...], "weights": [...]}`` form) into one
+    # internal representation: plain IPA lists in ``raw["graphemes"]`` (so
+    # the base-merge below and every downstream consumer keep seeing plain
+    # ``list[str]``) plus a sparse own-only weights table. Weights are NOT
+    # inherited (FIELD_INHERITANCE) — they come from this spec's own file
+    # only — so a child pulling graphemes via ``graphemes_base`` keeps the
+    # parent's IPA lists but its own (absent) weights, i.e. rank ordering.
+    own_graphemes_plain, own_grapheme_weights = split_weighted_graphemes(
+        raw.get("graphemes", {}) or {}
+    )
+    raw["graphemes"] = own_graphemes_plain
 
     # ensure all related languages also loaded
     parent_lang = raw.get("parent")
@@ -310,6 +324,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         timespan=timespan,
         stress=stress,
         word_exceptions=raw.get("word_exceptions"),
+        grapheme_weights=own_grapheme_weights or None,
     )
 
     _specs[code] = spec

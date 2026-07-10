@@ -18,7 +18,11 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
     ],
     "ch": [
       "tʃ"
-    ]
+    ],
+    "th": {
+      "ipa": ["θ", "ð"],
+      "weights": [0.7, 0.3]
+    }
   },
   "allophones_base": null,
   "allophones": {
@@ -56,7 +60,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `name`                      | string | yes      | Human-readable language name                 |
 | `family`                    | string | yes      | Language family                              |
 | `script`                    | string | yes      | Primary writing script                       |
-| `graphemes`                 | object | yes      | Grapheme → IPA mapping (`{str: [str]}`)      |
+| `graphemes`                 | object | yes      | Grapheme → IPA mapping. Each value is either a plain IPA list `[str]` **or** a weighted object `{"ipa": [str], "weights": [float]}` (candidate frequencies). Both normalise to the same internal shape; absent weights == rank ordering. See [candidate scoring](../../docs/candidate_scoring.md). |
 | `allophones`                | object | yes      | Phoneme → allophone mapping (`{str: [str]}`) |
 | `positional_graphemes`      | object | no       | Position-dependent grapheme mappings         |
 | `parent`                    | string | no       | Primary parent language code                 |

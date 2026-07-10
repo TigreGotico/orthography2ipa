@@ -21,6 +21,12 @@ from typing import Dict, FrozenSet, List, Optional, Tuple
 Grapheme2IPA = Dict[str, List[str]]
 """Orthographic grapheme → list of IPA phoneme candidates."""
 
+GraphemeWeights = Dict[str, List[float]]
+"""Orthographic grapheme → per-candidate weights (candidate frequencies),
+aligned index-for-index with the grapheme's :data:`Grapheme2IPA` list.
+Sparse: only graphemes whose spec used the weighted-object JSON form have
+an entry. See :mod:`orthography2ipa.weights`."""
+
 AllophoneMap = Dict[str, List[str]]
 """Underlying phoneme → list of surface realisations."""
 
@@ -536,7 +542,22 @@ class InheritanceMode(str, Enum):
     """Own-file-only by design. The field never propagates through
     inheritance even though a base/parent is set — this is a deliberate
     modeling choice (documented per-field), not an oversight. Used by
-    ``stress`` and ``word_exceptions``."""
+    ``stress``, ``word_exceptions`` and ``grapheme_weights``.
+
+    ``grapheme_weights`` is own-only for two reasons. First, candidate
+    weights are *corpus-frequency* data specific to one variety — the
+    relative frequency of ⟨ou⟩ → /aʊ/ vs /uː/ in en-GB is not the same
+    statistic as in en-US, so a child variety must cite its own weights
+    rather than silently inherit its parent's. Second, keeping weights
+    off the inheritance edge means a child that pulls its ``graphemes``
+    from a weighted parent via ``graphemes_base`` still gets the plain
+    IPA lists and *rank* ordering — its transcription is byte-identical
+    to before weights existed. Within one spec the weights ride inside
+    the grapheme's own weighted-object JSON value, so a grapheme's IPA
+    list and its weights are always authored (and overridden) together;
+    the ``graphemes``/``grapheme_weights`` split is purely an internal
+    representation that keeps ``spec.graphemes`` a plain ``list[str]``
+    map for every existing consumer."""
 
     OWN_ONLY = "own_only"
     """Identity / bibliographic / classification field that never
@@ -567,6 +588,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.NOT_INHERITED,
+    "grapheme_weights": InheritanceMode.NOT_INHERITED,
 }
 """Explicit, enforced registry of every ``LanguageSpec`` field's inheritance
 behavior. ``tests/test_types.py`` asserts this covers every field returned by
@@ -712,6 +734,20 @@ class LanguageSpec:
     Not inherited through ancestry — each spec declares its own block;
     consumed by :func:`orthography2ipa.stress.detect_stress`."""
 
+    grapheme_weights: Optional[GraphemeWeights] = None
+    """Optional per-candidate weights for :attr:`graphemes`.
+
+    Sparse map: an entry exists only for graphemes whose spec JSON used
+    the weighted-object form ``{"ipa": [...], "weights": [...]}``. Each
+    value is aligned index-for-index with that grapheme's IPA list and
+    represents candidate frequency (from cited corpora). When a grapheme
+    has no entry here the beam uses uniform-descending *rank* cost, which
+    is byte-identical to the behaviour that predates weights.
+
+    Not inherited through ancestry — see :data:`FIELD_INHERITANCE` /
+    :class:`InheritanceMode.NOT_INHERITED`. The beam turns a weight into
+    a ``-log(p)`` cost via :func:`orthography2ipa.weights.candidate_base_costs`."""
+
     word_exceptions: Optional[Dict[str, str]] = None
     """Whole-word IPA overrides for a closed set of irregular words that
     the rule system (flat graphemes / positional_graphemes) cannot
@@ -730,6 +766,8 @@ class LanguageSpec:
             object.__setattr__(self, "graphemes", {})
         if self.allophones is None:
             object.__setattr__(self, "allophones", {})
+        if self.grapheme_weights is None:
+            object.__setattr__(self, "grapheme_weights", {})
 
         # filter values explicitly nulled during inheritance
         for graph in set(self.graphemes.keys()):
