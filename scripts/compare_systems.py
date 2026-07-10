@@ -299,8 +299,11 @@ def write_comparison(rows: List[dict]) -> None:
         "# Comparison to other G2P systems",
         "",
         "Committed cross-system comparison: orthography2ipa vs "
-        "**espeak-ng**, **epitran**, and **gruut** on the SAME gold rows "
-        "used by [`docs/scoreboard.md`](scoreboard.md). Regenerate with:",
+        "**espeak-ng**, **epitran**, and **gruut** on the same gold "
+        "datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using "
+        "the same default `--limit` — so the `o2i PER` column here "
+        "matches the scoreboard's rows for the same language/dataset "
+        "pair. Regenerate with:",
         "",
         "```bash",
         "pip install '.[compare]'  # epitran, gruut — dev-only extra",
@@ -318,7 +321,17 @@ def write_comparison(rows: List[dict]) -> None:
         "A missing mapping, or a system that isn't installed, is reported "
         "as `n/a` for that row rather than skipped or faked — this table "
         "never crashes and never silently drops a system, it just says "
-        "when it has nothing to compare.",
+        "when it has nothing to compare. `epitran`/`gruut` are only "
+        "installed via the dev-only `[compare]` extra; a committed run "
+        "generated without them shows `n/a` in those columns for every "
+        "row — that reflects the generating environment, not a claim "
+        "those systems don't support the language.",
+        "",
+        "The `N` column is the number of unique gold words for that "
+        "language/dataset pair; each system's own scored count can be "
+        "slightly lower (a word it failed to transcribe is excluded from "
+        "its PER, not counted as an error) — see the `*_n` fields in "
+        "`benchmarks/comparison.json` for the exact per-system count.",
         "",
         "## Normalization",
         "",
@@ -366,7 +379,9 @@ def write_comparison(rows: List[dict]) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--lang", default=None, choices=sorted(LANGS))
-    ap.add_argument("--limit", type=int, default=100)
+    ap.add_argument("--limit", type=int, default=300,
+                    help="matches benchmark.py --scoreboard's default so "
+                         "rows draw from the same gold slice")
     ap.add_argument("--list", action="store_true",
                     help="List languages this harness can compare")
     ap.add_argument("--scoreboard", action="store_true",
