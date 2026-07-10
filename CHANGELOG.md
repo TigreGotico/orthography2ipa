@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.26.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.26.0a1) (2026-07-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.25.0a1...1.26.0a1)
+
+**Merged pull requests:**
+
+- feat\(scripts\): add cross-system G2P comparison harness [\#127](https://github.com/TigreGotico/orthography2ipa/pull/127) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.25.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.25.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.24.0a1...1.25.0a1)
