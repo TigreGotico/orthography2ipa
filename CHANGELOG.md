@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.22.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.22.0a1) (2026-07-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.2a1...1.22.0a1)
+
+**Merged pull requests:**
+
+- feat\(g2p\): unmapped-character observability \(additive, R3\) [\#114](https://github.com/TigreGotico/orthography2ipa/pull/114) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.21.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.2a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.1a1...1.21.2a1)
