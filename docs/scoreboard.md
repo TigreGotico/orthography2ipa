@@ -21,8 +21,8 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | da | wikipron | 273 | 0.4415 | 0.0476 | research |
 | de | styletts2_phonemes | 300 | 0.3964 | 0.0000 | research |
 | de | wikipron | 269 | 0.3613 | 0.0297 | research |
-| el | styletts2_phonemes | 298 | 0.2179 | 0.0000 | research |
-| el | wikipron | 298 | 0.1517 | 0.3121 | research |
+| el | styletts2_phonemes | 298 | 0.2178 | 0.0000 | research |
+| el | wikipron | 298 | 0.1513 | 0.3154 | research |
 | en | styletts2_phonemes | 300 | 0.4464 | 0.0000 | research |
 | en | wikipron | 220 | 0.4799 | 0.1000 | research |
 | en-GB | wikipron | 245 | 0.4876 | 0.0816 | research |
@@ -39,14 +39,14 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | ga | wikipron | 134 | 0.4330 | 0.0373 | research |
 | gd | wikipron | 210 | 0.6867 | 0.0286 | research |
 | gl | wikipron | 264 | 0.0728 | 0.6326 | research |
-| hi | wikipron | 261 | 0.4573 | 0.0077 | research |
+| hi | wikipron | 261 | 0.4424 | 0.0115 | research |
 | hr | wikipron | 292 | 0.2763 | 0.0171 | research |
 | hy | wikipron | 297 | 0.0701 | 0.6229 | research |
 | is | ipadict | 300 | 0.2300 | 0.0900 | research |
 | is | wikipron | 258 | 0.2232 | 0.1395 | research |
 | it | styletts2_phonemes | 300 | 0.2100 | 0.0000 | research |
 | it | wikipron | 276 | 0.1004 | 0.4855 | research |
-| ml | wikipron | 280 | 0.6718 | 0.0000 | research |
+| ml | wikipron | 280 | 0.6099 | 0.0000 | research |
 | mwl | mirandese | 205 | 0.2244 | 0.2732 | research |
 | mwl-x-sendim | mirandese | 11 | 0.4899 | 0.1818 | skeleton |
 | nb | wikipron | 226 | 0.5133 | 0.0177 | skeleton |
@@ -86,5 +86,5 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | sv | wikipron | 279 | 0.3508 | 0.0609 | research |
 | ta | wikipron | 293 | 0.8949 | 0.0000 | research |
 | tl | wikipron | 269 | 0.2309 | 0.0446 | research |
-| tr | wikipron | 296 | 0.1397 | 0.3986 | research |
+| tr | wikipron | 296 | 0.1409 | 0.3953 | research |
 | uk | styletts2_phonemes | 299 | 0.4960 | 0.0000 | research |
