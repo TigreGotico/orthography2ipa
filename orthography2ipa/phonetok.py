@@ -259,8 +259,19 @@ class GraphemeContext:
 
     @property
     def span(self) -> Tuple[int, int]:
-        """``(start, end)`` character offsets into the original input,
-        such that ``text[start:end]`` is the surface grapheme."""
+        """``(start, end)`` character offsets locating this grapheme.
+
+        The offsets index the **NFC-normalised** form of the input that
+        :meth:`tokenize` works on, and :attr:`grapheme` is **case-folded**
+        (lower-cased). The exact contract is therefore::
+
+            import unicodedata
+            unicodedata.normalize("NFC", text)[start:end].lower() == grapheme
+
+        A raw ``text[start:end]`` round-trip against the caller's original
+        string only holds when that string is already lower-case NFC — it
+        breaks for upper-case input (offsets index the un-folded text) and
+        for NFD input (offsets index the NFC-normalised text)."""
         start = self.token.position
         return (start, start + self.token.length)
 

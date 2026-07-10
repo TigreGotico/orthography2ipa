@@ -244,8 +244,14 @@ Each `GraphemeContext` exposes:
     `None` past a word edge.
   - `.neighbors(n)` — up to `2*n` graphemes within `±n`, left-to-right,
     self excluded, clamped at word edges.
-- **Span** — `.span` → `(start, end)` character offsets such that
-  `text[start:end]` is the surface grapheme.
+- **Span** — `.span` → `(start, end)` character offsets that index the
+  **NFC-normalised** input `tokenize()` works on, with `.grapheme` itself
+  **case-folded**. The exact contract is
+  `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme`. A
+  raw `text[start:end]` round-trip against the caller's original string
+  only holds when that string is already lower-case NFC — it breaks for
+  upper-case input (offsets index the un-folded text) and for NFD input
+  (offsets index the NFC-normalised text).
 - **Class predicates**, delegating to `orthography2ipa.vowels` (the single
   source of truth — no vowel set is defined here): `.is_vowel`,
   `.is_consonant`, `.is_front`, `.is_back`. They classify by the grapheme's

@@ -132,6 +132,38 @@ def test_span_maps_back_to_input(tok_digraph):
         assert text[start:end] == c.grapheme
 
 
+def test_span_contract_uppercase_and_nfd(tok_digraph):
+    """Pin the real span contract: offsets index NFC-normalised, case-folded
+    surface — NOT the caller's raw string. Guards against 'fixing' the doc
+    back to a naive text[start:end] claim."""
+    import unicodedata
+
+    # (1) Uppercase input: grapheme is case-folded, offsets index un-folded text
+    upper = "Cena"
+    seq = tok_digraph.tokenize_with_context(upper)
+    c = seq[0]
+    start, end = c.span
+    assert c.grapheme == "c"
+    # documented contract holds:
+    assert unicodedata.normalize("NFC", upper)[start:end].lower() == c.grapheme
+    # naive round-trip does NOT hold (offsets index the un-folded "C"):
+    assert upper[start:end] != c.grapheme
+    assert upper[start:end] == "C"
+
+    # (2) NFD input: offsets index the NFC-normalised string
+    nfd = "ane\u0301"          # a, n, e + U+0301 combining acute
+    assert len(nfd) == 4        # genuinely decomposed, not NFC
+    assert unicodedata.normalize("NFC", nfd) == "ané"
+    seq2 = tok_digraph.tokenize_with_context(nfd)
+    e_acute = seq2[2]
+    start, end = e_acute.span
+    assert e_acute.grapheme == "é"
+    # documented contract holds against the NFC form:
+    assert unicodedata.normalize("NFC", nfd)[start:end].lower() == e_acute.grapheme
+    # naive round-trip against the original NFD string does NOT hold:
+    assert nfd[start:end] != e_acute.grapheme
+
+
 def test_span_offsets_after_whitespace(tok_digraph):
     text = "at un"
     seq = tok_digraph.tokenize_with_context(text)
