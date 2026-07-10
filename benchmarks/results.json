@@ -4,9 +4,11 @@
     "dataset": "wikipron",
     "n": 259,
     "per": 0.2551,
+    "per_ci_low": 0.2377,
+    "per_ci_high": 0.2725,
     "exact_match": 0.112,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -14,9 +16,11 @@
     "dataset": "wikipron",
     "n": 300,
     "per": 0.0876,
+    "per_ci_low": 0.0731,
+    "per_ci_high": 0.1014,
     "exact_match": 0.59,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -24,9 +28,11 @@
     "dataset": "4catac",
     "n": 160,
     "per": 0.417,
+    "per_ci_low": 0.4066,
+    "per_ci_high": 0.4267,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -34,9 +40,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.4043,
+    "per_ci_low": 0.3959,
+    "per_ci_high": 0.413,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -44,9 +52,11 @@
     "dataset": "4catac",
     "n": 160,
     "per": 0.3924,
+    "per_ci_low": 0.3838,
+    "per_ci_high": 0.4015,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -54,9 +64,11 @@
     "dataset": "4catac",
     "n": 160,
     "per": 0.568,
+    "per_ci_low": 0.5593,
+    "per_ci_high": 0.5764,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -64,9 +76,11 @@
     "dataset": "4catac",
     "n": 160,
     "per": 0.3046,
+    "per_ci_low": 0.2962,
+    "per_ci_high": 0.3127,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -74,9 +88,11 @@
     "dataset": "wikipron",
     "n": 276,
     "per": 0.2187,
+    "per_ci_low": 0.1968,
+    "per_ci_high": 0.2433,
     "exact_match": 0.2899,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -84,9 +100,11 @@
     "dataset": "wikipron",
     "n": 273,
     "per": 0.4415,
+    "per_ci_low": 0.4128,
+    "per_ci_high": 0.4693,
     "exact_match": 0.0476,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -94,9 +112,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.3964,
+    "per_ci_low": 0.3879,
+    "per_ci_high": 0.4049,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -104,9 +124,11 @@
     "dataset": "wikipron",
     "n": 269,
     "per": 0.3613,
+    "per_ci_low": 0.3402,
+    "per_ci_high": 0.3796,
     "exact_match": 0.0297,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -114,9 +136,11 @@
     "dataset": "styletts2_phonemes",
     "n": 298,
     "per": 0.2178,
+    "per_ci_low": 0.2023,
+    "per_ci_high": 0.2326,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -124,9 +148,11 @@
     "dataset": "wikipron",
     "n": 298,
     "per": 0.1513,
+    "per_ci_low": 0.1341,
+    "per_ci_high": 0.1678,
     "exact_match": 0.3154,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -134,9 +160,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.4464,
+    "per_ci_low": 0.4393,
+    "per_ci_high": 0.4542,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -144,9 +172,11 @@
     "dataset": "wikipron",
     "n": 220,
     "per": 0.4799,
+    "per_ci_low": 0.4461,
+    "per_ci_high": 0.5125,
     "exact_match": 0.1,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -154,9 +184,11 @@
     "dataset": "wikipron",
     "n": 245,
     "per": 0.4876,
+    "per_ci_low": 0.4563,
+    "per_ci_high": 0.5213,
     "exact_match": 0.0816,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -164,9 +196,11 @@
     "dataset": "ipa_childes",
     "n": 300,
     "per": 0.4166,
+    "per_ci_low": 0.3809,
+    "per_ci_high": 0.4528,
     "exact_match": 0.2167,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -174,9 +208,11 @@
     "dataset": "wikipron",
     "n": 300,
     "per": 0.0303,
+    "per_ci_low": 0.0221,
+    "per_ci_high": 0.0392,
     "exact_match": 0.87,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -184,9 +220,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.1713,
+    "per_ci_low": 0.1584,
+    "per_ci_high": 0.1851,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -194,9 +232,11 @@
     "dataset": "wikipron",
     "n": 298,
     "per": 0.1,
+    "per_ci_low": 0.087,
+    "per_ci_high": 0.1134,
     "exact_match": 0.4765,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -204,9 +244,11 @@
     "dataset": "ipa_childes",
     "n": 300,
     "per": 0.3094,
+    "per_ci_low": 0.2876,
+    "per_ci_high": 0.3304,
     "exact_match": 0.1533,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -214,9 +256,11 @@
     "dataset": "hitz_basque_ipa",
     "n": 300,
     "per": 0.2796,
+    "per_ci_low": 0.2579,
+    "per_ci_high": 0.3011,
     "exact_match": 0.1567,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -224,9 +268,11 @@
     "dataset": "wikipron",
     "n": 239,
     "per": 0.0768,
+    "per_ci_low": 0.0614,
+    "per_ci_high": 0.0939,
     "exact_match": 0.59,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -234,9 +280,11 @@
     "dataset": "styletts2_phonemes",
     "n": 294,
     "per": 0.5787,
+    "per_ci_low": 0.5724,
+    "per_ci_high": 0.5858,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -244,9 +292,11 @@
     "dataset": "styletts2_phonemes",
     "n": 298,
     "per": 0.2919,
+    "per_ci_low": 0.2783,
+    "per_ci_high": 0.306,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -254,9 +304,11 @@
     "dataset": "wikipron",
     "n": 294,
     "per": 0.0386,
+    "per_ci_low": 0.0304,
+    "per_ci_high": 0.0476,
     "exact_match": 0.7483,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -264,9 +316,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.3557,
+    "per_ci_low": 0.3481,
+    "per_ci_high": 0.3639,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -274,9 +328,11 @@
     "dataset": "wikipron",
     "n": 279,
     "per": 0.1559,
+    "per_ci_low": 0.1332,
+    "per_ci_high": 0.1781,
     "exact_match": 0.4624,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -284,9 +340,11 @@
     "dataset": "wikipron",
     "n": 134,
     "per": 0.433,
+    "per_ci_low": 0.3952,
+    "per_ci_high": 0.4655,
     "exact_match": 0.0373,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -294,9 +352,11 @@
     "dataset": "wikipron",
     "n": 210,
     "per": 0.6867,
+    "per_ci_low": 0.6496,
+    "per_ci_high": 0.722,
     "exact_match": 0.0286,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -304,9 +364,11 @@
     "dataset": "wikipron",
     "n": 264,
     "per": 0.0728,
+    "per_ci_low": 0.0604,
+    "per_ci_high": 0.0868,
     "exact_match": 0.6326,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -314,9 +376,11 @@
     "dataset": "wikipron",
     "n": 261,
     "per": 0.4424,
+    "per_ci_low": 0.4254,
+    "per_ci_high": 0.4583,
     "exact_match": 0.0115,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -324,9 +388,11 @@
     "dataset": "wikipron",
     "n": 292,
     "per": 0.2763,
+    "per_ci_low": 0.2623,
+    "per_ci_high": 0.2916,
     "exact_match": 0.0171,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -334,9 +400,11 @@
     "dataset": "ipa_childes",
     "n": 297,
     "per": 0.1407,
+    "per_ci_low": 0.122,
+    "per_ci_high": 0.1592,
     "exact_match": 0.4444,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -344,9 +412,11 @@
     "dataset": "wikipron",
     "n": 297,
     "per": 0.0701,
+    "per_ci_low": 0.058,
+    "per_ci_high": 0.0824,
     "exact_match": 0.6229,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -354,9 +424,11 @@
     "dataset": "ipa_childes",
     "n": 300,
     "per": 0.1103,
+    "per_ci_low": 0.0925,
+    "per_ci_high": 0.1288,
     "exact_match": 0.5633,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -364,9 +436,11 @@
     "dataset": "ipadict",
     "n": 300,
     "per": 0.23,
+    "per_ci_low": 0.2163,
+    "per_ci_high": 0.2456,
     "exact_match": 0.09,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -374,9 +448,11 @@
     "dataset": "wikipron",
     "n": 258,
     "per": 0.2232,
+    "per_ci_low": 0.2035,
+    "per_ci_high": 0.241,
     "exact_match": 0.1395,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -384,9 +460,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.21,
+    "per_ci_low": 0.2,
+    "per_ci_high": 0.2214,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -394,9 +472,11 @@
     "dataset": "wikipron",
     "n": 276,
     "per": 0.1004,
+    "per_ci_low": 0.0844,
+    "per_ci_high": 0.1146,
     "exact_match": 0.4855,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -404,9 +484,11 @@
     "dataset": "wikipron",
     "n": 280,
     "per": 0.6099,
+    "per_ci_low": 0.592,
+    "per_ci_high": 0.6273,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -414,9 +496,11 @@
     "dataset": "mirandese",
     "n": 205,
     "per": 0.2244,
+    "per_ci_low": 0.1961,
+    "per_ci_high": 0.2532,
     "exact_match": 0.2732,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -424,9 +508,11 @@
     "dataset": "mirandese",
     "n": 11,
     "per": 0.4899,
+    "per_ci_low": 0.2727,
+    "per_ci_high": 0.6844,
     "exact_match": 0.1818,
     "quality_tier": "skeleton",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -434,9 +520,11 @@
     "dataset": "wikipron",
     "n": 226,
     "per": 0.5133,
+    "per_ci_low": 0.492,
+    "per_ci_high": 0.5354,
     "exact_match": 0.0177,
     "quality_tier": "skeleton",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -444,9 +532,11 @@
     "dataset": "wikipron",
     "n": 260,
     "per": 0.3135,
+    "per_ci_low": 0.2854,
+    "per_ci_high": 0.3411,
     "exact_match": 0.1692,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -454,9 +544,11 @@
     "dataset": "wikipron",
     "n": 266,
     "per": 0.1604,
+    "per_ci_low": 0.1421,
+    "per_ci_high": 0.1793,
     "exact_match": 0.3722,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -464,9 +556,11 @@
     "dataset": "styletts2_phonemes",
     "n": 299,
     "per": 0.1867,
+    "per_ci_low": 0.1764,
+    "per_ci_high": 0.1978,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -474,9 +568,11 @@
     "dataset": "wikipron",
     "n": 287,
     "per": 0.1195,
+    "per_ci_low": 0.106,
+    "per_ci_high": 0.1346,
     "exact_match": 0.3624,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -484,9 +580,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.3999,
+    "per_ci_low": 0.3899,
+    "per_ci_high": 0.4095,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -494,9 +592,11 @@
     "dataset": "wikipron",
     "n": 242,
     "per": 0.1817,
+    "per_ci_low": 0.1607,
+    "per_ci_high": 0.2031,
     "exact_match": 0.3058,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -504,9 +604,11 @@
     "dataset": "wikipron",
     "n": 124,
     "per": 0.1901,
+    "per_ci_low": 0.1572,
+    "per_ci_high": 0.2236,
     "exact_match": 0.3952,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -514,9 +616,11 @@
     "dataset": "ep_dialects",
     "n": 30,
     "per": 0.2599,
+    "per_ci_low": 0.2226,
+    "per_ci_high": 0.302,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -524,9 +628,11 @@
     "dataset": "infopedia_pt",
     "n": 295,
     "per": 0.316,
+    "per_ci_low": 0.2918,
+    "per_ci_high": 0.3389,
     "exact_match": 0.139,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -534,9 +640,11 @@
     "dataset": "clup_dialect",
     "n": 2,
     "per": 0.4889,
+    "per_ci_low": 0.486,
+    "per_ci_high": 0.4918,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -544,9 +652,11 @@
     "dataset": "ep_dialects",
     "n": 29,
     "per": 0.3521,
+    "per_ci_low": 0.3142,
+    "per_ci_high": 0.3955,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -554,9 +664,11 @@
     "dataset": "clup_dialect",
     "n": 1,
     "per": 0.3915,
+    "per_ci_low": 0.3915,
+    "per_ci_high": 0.3915,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -564,9 +676,11 @@
     "dataset": "ep_dialects",
     "n": 30,
     "per": 0.3216,
+    "per_ci_low": 0.2805,
+    "per_ci_high": 0.3628,
     "exact_match": 0.0333,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -574,9 +688,11 @@
     "dataset": "clup_dialect",
     "n": 1,
     "per": 0.4836,
+    "per_ci_low": 0.4836,
+    "per_ci_high": 0.4836,
     "exact_match": 0.0,
     "quality_tier": "skeleton",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -584,9 +700,11 @@
     "dataset": "clup_dialect",
     "n": 3,
     "per": 0.5456,
+    "per_ci_low": 0.497,
+    "per_ci_high": 0.607,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -594,9 +712,11 @@
     "dataset": "ep_dialects",
     "n": 30,
     "per": 0.3549,
+    "per_ci_low": 0.3101,
+    "per_ci_high": 0.3972,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -604,9 +724,11 @@
     "dataset": "clup_dialect",
     "n": 6,
     "per": 0.4518,
+    "per_ci_low": 0.4124,
+    "per_ci_high": 0.4931,
     "exact_match": 0.0,
     "quality_tier": "skeleton",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -614,9 +736,11 @@
     "dataset": "clup_dialect",
     "n": 8,
     "per": 0.459,
+    "per_ci_low": 0.4325,
+    "per_ci_high": 0.4979,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -624,9 +748,11 @@
     "dataset": "clup_dialect",
     "n": 5,
     "per": 0.4711,
+    "per_ci_low": 0.4326,
+    "per_ci_high": 0.5078,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -634,9 +760,11 @@
     "dataset": "ep_dialects",
     "n": 45,
     "per": 0.2851,
+    "per_ci_low": 0.2545,
+    "per_ci_high": 0.3167,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -644,9 +772,11 @@
     "dataset": "clup_dialect",
     "n": 4,
     "per": 0.463,
+    "per_ci_low": 0.4285,
+    "per_ci_high": 0.5162,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -654,9 +784,11 @@
     "dataset": "ep_dialects",
     "n": 30,
     "per": 0.2662,
+    "per_ci_low": 0.2302,
+    "per_ci_high": 0.306,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -664,9 +796,11 @@
     "dataset": "clup_dialect",
     "n": 9,
     "per": 0.4588,
+    "per_ci_low": 0.4319,
+    "per_ci_high": 0.4858,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -674,9 +808,11 @@
     "dataset": "clup_dialect",
     "n": 17,
     "per": 0.5134,
+    "per_ci_low": 0.4862,
+    "per_ci_high": 0.5401,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -684,9 +820,11 @@
     "dataset": "ep_dialects",
     "n": 40,
     "per": 0.255,
+    "per_ci_low": 0.2202,
+    "per_ci_high": 0.2864,
     "exact_match": 0.05,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -694,9 +832,11 @@
     "dataset": "clup_dialect",
     "n": 6,
     "per": 0.4819,
+    "per_ci_low": 0.463,
+    "per_ci_high": 0.5031,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -704,9 +844,11 @@
     "dataset": "clup_dialect",
     "n": 4,
     "per": 0.488,
+    "per_ci_low": 0.4473,
+    "per_ci_high": 0.5358,
     "exact_match": 0.0,
     "quality_tier": "skeleton",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -714,9 +856,11 @@
     "dataset": "wikipron",
     "n": 281,
     "per": 0.0597,
+    "per_ci_low": 0.0486,
+    "per_ci_high": 0.071,
     "exact_match": 0.637,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -724,9 +868,11 @@
     "dataset": "styletts2_phonemes",
     "n": 299,
     "per": 0.3934,
+    "per_ci_low": 0.3827,
+    "per_ci_high": 0.4046,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -734,9 +880,11 @@
     "dataset": "wikipron",
     "n": 268,
     "per": 0.3635,
+    "per_ci_low": 0.3475,
+    "per_ci_high": 0.3795,
     "exact_match": 0.0112,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -744,9 +892,11 @@
     "dataset": "wikipron",
     "n": 300,
     "per": 0.1206,
+    "per_ci_low": 0.1029,
+    "per_ci_high": 0.137,
     "exact_match": 0.47,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -754,9 +904,11 @@
     "dataset": "wikipron",
     "n": 249,
     "per": 0.0915,
+    "per_ci_low": 0.0719,
+    "per_ci_high": 0.1113,
     "exact_match": 0.6867,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -764,9 +916,11 @@
     "dataset": "ipa_childes",
     "n": 300,
     "per": 0.4764,
+    "per_ci_low": 0.4545,
+    "per_ci_high": 0.4984,
     "exact_match": 0.0467,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -774,9 +928,11 @@
     "dataset": "styletts2_phonemes",
     "n": 300,
     "per": 0.3835,
+    "per_ci_low": 0.3752,
+    "per_ci_high": 0.3924,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -784,9 +940,11 @@
     "dataset": "wikipron",
     "n": 279,
     "per": 0.3508,
+    "per_ci_low": 0.3305,
+    "per_ci_high": 0.3721,
     "exact_match": 0.0609,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -794,9 +952,11 @@
     "dataset": "wikipron",
     "n": 293,
     "per": 0.8949,
+    "per_ci_low": 0.8631,
+    "per_ci_high": 0.9324,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -804,9 +964,11 @@
     "dataset": "wikipron",
     "n": 269,
     "per": 0.2309,
+    "per_ci_low": 0.215,
+    "per_ci_high": 0.2464,
     "exact_match": 0.0446,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -814,9 +976,11 @@
     "dataset": "wikipron",
     "n": 296,
     "per": 0.1409,
+    "per_ci_low": 0.1236,
+    "per_ci_high": 0.1592,
     "exact_match": 0.3953,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -824,9 +988,11 @@
     "dataset": "styletts2_phonemes",
     "n": 299,
     "per": 0.496,
+    "per_ci_low": 0.4842,
+    "per_ci_high": 0.5074,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   },
   {
@@ -834,9 +1000,11 @@
     "dataset": "ipa_childes",
     "n": 300,
     "per": 0.5183,
+    "per_ci_low": 0.4973,
+    "per_ci_high": 0.5381,
     "exact_match": 0.02,
     "quality_tier": "research",
-    "harness_version": "1.0",
+    "harness_version": "1.1",
     "limit": 300
   }
 ]
