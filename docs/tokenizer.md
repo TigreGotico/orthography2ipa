@@ -221,9 +221,79 @@ GRAPHEME tokens are **lower-cased** before trie lookup. The `.grapheme` field st
 
 ---
 
+## Context Model
+
+`tokenize()` returns a flat `List[Token]`. When a consumer needs to reason
+about a grapheme's *surroundings* — its neighbours, its character span, or
+its phonological class — `tokenize_with_context()` returns a
+`TokenSequence`: a view that wraps every GRAPHEME token in a
+`GraphemeContext`.
+
+```python
+seq = tok.tokenize_with_context("cera")
+for c in seq:
+    print(c.grapheme, c.span, c.is_vowel)
+```
+
+Each `GraphemeContext` exposes:
+
+- **Neighbours** (word-local — they never cross whitespace, punctuation,
+  digits or unknown characters):
+  - `.prev` / `.next` — the adjacent grapheme, or `None` at a word edge.
+  - `.at(offset)` — the grapheme `offset` positions away (`at(2)`, `at(-1)`);
+    `None` past a word edge.
+  - `.neighbors(n)` — up to `2*n` graphemes within `±n`, left-to-right,
+    self excluded, clamped at word edges.
+- **Span** — `.span` → `(start, end)` character offsets that index the
+  **NFC-normalised** input `tokenize()` works on, with `.grapheme` itself
+  **case-folded**. The exact contract is
+  `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme`. A
+  raw `text[start:end]` round-trip against the caller's original string
+  only holds when that string is already lower-case NFC — it breaks for
+  upper-case input (offsets index the un-folded text) and for NFD input
+  (offsets index the NFC-normalised text).
+- **Class predicates**, delegating to `orthography2ipa.vowels` (the single
+  source of truth — no vowel set is defined here): `.is_vowel`,
+  `.is_consonant`, `.is_front`, `.is_back`. They classify by the grapheme's
+  leading character, so a consonant digraph (`ch`) is a consonant and a
+  vowel digraph (`ai`) reports by its leading vowel.
+
+### Why it exists: replacing hand-rolled index arithmetic
+
+Downstream phonemizers historically re-implemented all of the above by
+hand — raw string indexing plus their own vowel sets. The context model is
+the shared substrate that replaces that. For a c-softening rule
+(`c` → /s/ before a front vowel):
+
+Before — raw index arithmetic and a private vowel list:
+
+```python
+chars = list(word.lower())
+for idx, char in enumerate(chars):
+    next_char = chars[idx + 1] if idx < len(chars) - 1 else ""
+    if char == "c":
+        phonemes[idx] = "s" if next_char in ("e", "i", "é", "í", "y") else "k"
+```
+
+After — one shared, accent-aware predicate:
+
+```python
+for c in tok.tokenize_with_context(word):
+    if c.grapheme == "c":
+        soft = c.next is not None and c.next.is_front
+        emit("s" if soft else "k")
+```
+
+`is_front` already covers `e i y` plus every accented/diaeresis variant, so
+the after-form needs no per-letter enumeration and cannot drift from the
+rest of the library's vowel classification.
+
+---
+
 ## Performance Notes
 
 - The trie is built once at `PhonetokTokenizer` construction and reused for all subsequent calls.
 - `tokenize()` is O(n·k) where n is text length and k is maximum grapheme length.
 - `ipa_beam()` complexity is O(n · beam_width · |IPA alternatives|) — practical for words and short phrases.
+- `tokenize_with_context()` adds one O(n) pass building lightweight flyweight views; neighbour lookups (`prev`/`next`/`at`) are O(1).
 - For very long documents, consider tokenizing sentence-by-sentence.

@@ -46,7 +46,12 @@ from enum import Enum, auto
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
-from orthography2ipa.vowels import is_ipa_vowel
+from orthography2ipa.vowels import (
+    is_back_vowel,
+    is_front_vowel,
+    is_ipa_vowel,
+    is_orthographic_vowel,
+)
 from orthography2ipa.weights import candidate_base_costs
 
 from typing import TYPE_CHECKING
@@ -55,6 +60,8 @@ __all__ = [
     "TokenKind",
     "Token",
     "IPAPath",
+    "GraphemeContext",
+    "TokenSequence",
     "PhonetokTokenizer",
     "lower_str",
 ]
@@ -182,6 +189,212 @@ class IPAPath:
 
     def __repr__(self) -> str:
         return f"IPAPath({self.ipa!r}, score={self.score:.1f})"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Context-aware grapheme view
+# ═══════════════════════════════════════════════════════════════════════════
+
+class GraphemeContext:
+    """A context-aware view over one GRAPHEME :class:`Token`.
+
+    Wraps a single grapheme token and exposes what phonemizers built on
+    top of this library otherwise re-roll by hand: access to neighbouring
+    grapheme tokens (``prev``/``next``, arbitrary ``±N`` offsets and a
+    ``neighbors`` window), the grapheme's character span, and
+    phonological-class predicates that delegate to
+    :mod:`orthography2ipa.vowels` (the single source of truth for vowel
+    classification — no vowel set is defined here).
+
+    Neighbours are **word-local**: they are the nearest GRAPHEME tokens
+    *within the same run of graphemes*, and never cross a WHITESPACE,
+    PUNCTUATION, DIGIT or UNKNOWN token. The first grapheme of a word has
+    ``prev is None``; the last has ``next is None``. Offsets that fall past
+    a word edge return ``None`` (from :meth:`at`) or are omitted (from
+    :meth:`neighbors`).
+
+    Class predicates delegate to :mod:`orthography2ipa.vowels` on the
+    grapheme's first character. For the common single-character vowel
+    graphemes this is exact; for multi-character graphemes (digraphs such
+    as ``ch``/``qu``/``ai``) the leading character is used, so a
+    consonant digraph reports as a consonant and a vowel digraph reports
+    by its leading vowel.
+
+    Instances are cheap flyweights created once per
+    :meth:`PhonetokTokenizer.tokenize_with_context` call (O(n) overall)
+    and hold back-references into their :class:`TokenSequence`; they are
+    not intended to be constructed directly.
+    """
+
+    __slots__ = ("token", "index", "_run", "_run_pos")
+
+    def __init__(
+            self,
+            token: Token,
+            index: int,
+            run: List["GraphemeContext"],
+            run_pos: int,
+    ) -> None:
+        self.token = token
+        """The wrapped GRAPHEME :class:`Token`."""
+
+        self.index = index
+        """Zero-based position of this grapheme among *all* GRAPHEME tokens
+        in the sequence (whitespace/punctuation excluded)."""
+
+        self._run = run
+        self._run_pos = run_pos
+
+    # ─── Convenience passthroughs ───────────────────────────────────────
+
+    @property
+    def grapheme(self) -> str:
+        """The surface grapheme string (lower-cased, as tokenised)."""
+        return self.token.grapheme
+
+    @property
+    def ipa(self) -> Tuple[str, ...]:
+        """Possible IPA values for this grapheme (from the token)."""
+        return self.token.ipa
+
+    @property
+    def span(self) -> Tuple[int, int]:
+        """``(start, end)`` character offsets locating this grapheme.
+
+        The offsets index the **NFC-normalised** form of the input that
+        :meth:`tokenize` works on, and :attr:`grapheme` is **case-folded**
+        (lower-cased). The exact contract is therefore::
+
+            import unicodedata
+            unicodedata.normalize("NFC", text)[start:end].lower() == grapheme
+
+        A raw ``text[start:end]`` round-trip against the caller's original
+        string only holds when that string is already lower-case NFC — it
+        breaks for upper-case input (offsets index the un-folded text) and
+        for NFD input (offsets index the NFC-normalised text)."""
+        start = self.token.position
+        return (start, start + self.token.length)
+
+    # ─── Word-local neighbour access ────────────────────────────────────
+
+    def at(self, offset: int) -> Optional["GraphemeContext"]:
+        """Return the grapheme *offset* positions away within the same word.
+
+        ``at(0)`` is ``self``, ``at(1)`` the next grapheme, ``at(-2)`` two
+        graphemes back. Returns ``None`` when the offset falls before the
+        first or past the last grapheme of the current word (run).
+        """
+        j = self._run_pos + offset
+        if 0 <= j < len(self._run):
+            return self._run[j]
+        return None
+
+    @property
+    def prev(self) -> Optional["GraphemeContext"]:
+        """Nearest preceding grapheme within the same word, or ``None``."""
+        return self.at(-1)
+
+    @property
+    def next(self) -> Optional["GraphemeContext"]:
+        """Nearest following grapheme within the same word, or ``None``."""
+        return self.at(1)
+
+    def neighbors(self, n: int = 1) -> List["GraphemeContext"]:
+        """Return up to ``2*n`` neighbouring graphemes within ``±n``.
+
+        Ordered left-to-right (``-n … -1, +1 … +n``); ``self`` is excluded.
+        Offsets past a word edge are clamped away (omitted), so a word-edge
+        grapheme returns fewer than ``2*n`` neighbours.
+        """
+        if n < 1:
+            return []
+        out: List["GraphemeContext"] = []
+        for k in range(-n, n + 1):
+            if k == 0:
+                continue
+            ctx = self.at(k)
+            if ctx is not None:
+                out.append(ctx)
+        return out
+
+    # ─── Phonological-class predicates (delegate to vowels.py) ──────────
+
+    @property
+    def is_vowel(self) -> bool:
+        """True if the grapheme's leading character is a written vowel
+        letter (:func:`orthography2ipa.vowels.is_orthographic_vowel`)."""
+        return bool(self.grapheme) and is_orthographic_vowel(self.grapheme[0])
+
+    @property
+    def is_consonant(self) -> bool:
+        """True if this grapheme is not a vowel (its complement among
+        GRAPHEME tokens)."""
+        return bool(self.grapheme) and not self.is_vowel
+
+    @property
+    def is_front(self) -> bool:
+        """True if the grapheme's leading character is a *front* vowel
+        letter (:func:`orthography2ipa.vowels.is_front_vowel`)."""
+        return bool(self.grapheme) and is_front_vowel(self.grapheme[0])
+
+    @property
+    def is_back(self) -> bool:
+        """True if the grapheme's leading character is a *back* vowel
+        letter (:func:`orthography2ipa.vowels.is_back_vowel`)."""
+        return bool(self.grapheme) and is_back_vowel(self.grapheme[0])
+
+    def __repr__(self) -> str:
+        return f"GraphemeContext({self.grapheme!r}, index={self.index})"
+
+
+class TokenSequence:
+    """An indexed, context-aware view over a tokenised string.
+
+    Built once by :meth:`PhonetokTokenizer.tokenize_with_context`, it keeps
+    the full token stream (``tokens``) and wraps every GRAPHEME token in a
+    :class:`GraphemeContext` that can reach its word-local neighbours in
+    O(1). Iterating a :class:`TokenSequence` yields the
+    :class:`GraphemeContext` views in order; indexing and ``len`` operate
+    on the grapheme contexts too.
+
+    The underlying full token list (including whitespace/punctuation) stays
+    available via :attr:`tokens` for callers that need it.
+    """
+
+    __slots__ = ("tokens", "_contexts")
+
+    def __init__(self, tokens: List[Token]) -> None:
+        self.tokens = tokens
+        """The complete token list, exactly as :meth:`tokenize` produced it."""
+
+        contexts: List[GraphemeContext] = []
+        run: List[GraphemeContext] = []
+        for tok in tokens:
+            if tok.kind == TokenKind.GRAPHEME:
+                ctx = GraphemeContext(tok, len(contexts), run, len(run))
+                run.append(ctx)
+                contexts.append(ctx)
+            else:
+                # Any non-grapheme token ends the current word run.
+                run = []
+        self._contexts = contexts
+
+    @property
+    def graphemes(self) -> List[GraphemeContext]:
+        """All :class:`GraphemeContext` views, in order."""
+        return self._contexts
+
+    def __iter__(self):
+        return iter(self._contexts)
+
+    def __len__(self) -> int:
+        return len(self._contexts)
+
+    def __getitem__(self, i):
+        return self._contexts[i]
+
+    def __repr__(self) -> str:
+        return f"TokenSequence(graphemes={len(self._contexts)})"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -472,6 +685,23 @@ class PhonetokTokenizer:
     def grapheme_tokens(self, text: str) -> List[Token]:
         """Return only GRAPHEME-kind tokens (skip whitespace, punct, etc.)."""
         return [t for t in self.tokenize(text) if t.kind == TokenKind.GRAPHEME]
+
+    # ─── Context-aware view ─────────────────────────────────────────────
+
+    def tokenize_with_context(self, text: str) -> TokenSequence:
+        """Tokenise *text* and return a context-aware :class:`TokenSequence`.
+
+        The sequence wraps every GRAPHEME token in a
+        :class:`GraphemeContext` exposing word-local neighbour access
+        (``prev``/``next``/``at``/``neighbors``), character spans and
+        phonological-class predicates (``is_vowel``/``is_consonant``/
+        ``is_front``/``is_back``) that delegate to
+        :mod:`orthography2ipa.vowels`.
+
+        This is a purely additive convenience layer over :meth:`tokenize`;
+        it does not alter tokenisation or IPA expansion.
+        """
+        return TokenSequence(self.tokenize(text))
 
     # ─── IPA beam search ────────────────────────────────────────────────
 
