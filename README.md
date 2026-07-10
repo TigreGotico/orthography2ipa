@@ -1,15 +1,34 @@
 # orthography2ipa
 
-Linguistically motivated **grapheme→IPA** and **allophone** mappings for **350+ language codes** across 20+ language families — pure data, a maximal-munch IPA tokenizer, and a family of phonological/script distance metrics, with no trained weights to ship.
+Text-to-speech and speech-to-text systems need to know how words *sound*,
+not just how they're spelled. `orthography2ipa` answers that question for
+**350+ language codes** across 20+ language families: give it a word in
+its native orthography and get back an IPA transcription.
 
-Only mappings grounded in official orthography and documented grammar are included. Arbitrary substring rules are excluded.
+```python
+>>> import orthography2ipa
+>>> orthography2ipa.transcribe("olá mundo", "pt")
+'oˈla ˈmundu'
+```
+
+It's **pure data** — a linguistically-sourced grapheme→IPA map per
+language, a maximal-munch IPA tokenizer, and a family of
+phonological/script distance metrics, with no trained weights to ship.
+Only mappings grounded in official orthography and documented grammar
+are included; arbitrary substring rules are excluded.
+
+New to the library? Start with **[docs/index.md](docs/index.md)** — it
+routes you to the right doc depending on whether you're integrating
+this into a pipeline, adding a language, building a downstream engine,
+or evaluating it for production use, and it states the known accuracy
+limitations up front.
 
 ## Why two maps
 
 The central distinction the package enforces:
 
 - A **grapheme map** tells you which phonemes a spelling *can* represent. English ⟨th⟩ → `['θ', 'ð']`.
-- An **allophone map** tells you how a phoneme *surfaces* in context. English /t/ → `['t', 'tʰ', 'ɾ', 'ʔ', 't̚']`.
+- An **allophone map** tells you how a phoneme *surfaces* in context. English /t/ → `['t', 'tʰ', 'ʔ', 'ɾ']`.
 
 Keeping these separate lets you go from text to phoneme candidates (transcription) and from phonemes to surface realisations (pronunciation modelling) without conflating the two.
 
@@ -45,16 +64,16 @@ Portuguese.
 ```python
 import orthography2ipa
 
-orthography2ipa.transcribe("olá mundo", "pt")        # 'oˈla ˈmundo'
+orthography2ipa.transcribe("olá mundo", "pt")        # 'oˈla ˈmundu'
 orthography2ipa.transcribe("hello world", "en")       # 'hɛllɒ wɔːɹld'
-orthography2ipa.transcribe("bona nuèit", "oc")        # 'buna nyɛjt'
+orthography2ipa.transcribe("bona nuèit", "oc")        # 'ˈbunɔ ˈnyɛjt'
 
 # Beam search keeps ranked alternatives per word
 from orthography2ipa import G2P
 
 engine = G2P("pt-PT")
 result = engine.transcribe_detailed("um café", search="beam", beam_width=4)
-result.ipa                          # 'ˈum kaˈfɛ'
+result.ipa                          # 'ˈum kɐˈfɛ'
 result.words[1].candidates          # ranked IPAPath alternatives
 
 # The engine pipeline: normalize → tokenize → greedy/beam per word →
@@ -76,7 +95,7 @@ en = orthography2ipa.get("en-GB")
 en.graphemes["th"]    # ['θ', 'ð']
 
 # Allophone map: how /t/ surfaces
-en.allophones["t"]    # ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
+en.allophones["t"]    # ['t', 'tʰ', 'ʔ', 'ɾ']
 
 # Metadata
 en.name               # 'British English (RP)'
@@ -174,6 +193,11 @@ orthography2ipa distance es-ES it-IT --json
 
 ## Data structure
 
+The core shape of every `LanguageSpec` — the fields you'll reach for
+day to day; the full field list (provenance, tone, timespan, stress
+rules, lexical exceptions, and more) is in
+[docs/data_model.md](docs/data_model.md):
+
 ```python
 @dataclass(frozen=True)
 class LanguageSpec:
@@ -182,15 +206,16 @@ class LanguageSpec:
     family: str                            # 'Romance'
     script: str                            # 'Latin'
     graphemes: Dict[str, List[str]]        # 'th' → ['θ', 'ð']
-    allophones: Dict[str, List[str]]       # 't' → ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
+    allophones: Dict[str, List[str]]       # 't' → ['t', 'tʰ', 'ʔ', 'ɾ']
     positional_graphemes: Dict[...]        # context-sensitive overrides
     parent: Optional[str]                  # primary parent code
     ancestors: Tuple[Ancestor, ...]        # weighted multi-ancestor lineage
     quality: QualityTier                   # stub | skeleton | research | production
     script_type: ScriptType                # alphabet | abjad | abugida | ...
     sandhi_rules: Tuple[SandhiRule, ...]   # cross-word rules
-    tone_inventory: Optional[Dict]         # tone marks → labels
     sources: Tuple[LinguisticSource, ...]  # bibliographic references
+    # ...plus tone_inventory, stress, word_exceptions, timespan, and
+    # bibliographic/identifier fields — see docs/data_model.md
 ```
 
 When a spec declares graphemes but no explicit allophone map, a baseline identity allophone map is derived: every phoneme a grapheme can produce is, at minimum, its own surface realisation.
@@ -217,6 +242,12 @@ Portal da Língua Portuguesa lexicon (via
 and the Mirandese gold set. Datasets, sources, methodology and the
 reference PER/WER table live in [docs/benchmarks.md](docs/benchmarks.md);
 reproduce any row with `python scripts/benchmark.py`.
+
+Candidate ordering is naive (most-common-mapping only, no contextual
+scoring), no language is currently at `production` quality tier, and
+PER is genuinely mediocre for several languages — see
+[docs/index.md](docs/index.md#honest-limitations-read-this-before-you-trust-a-tier)
+for the specifics before depending on this for anything accuracy-sensitive.
 
 ## Contributing
 
