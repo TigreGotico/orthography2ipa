@@ -37,7 +37,7 @@ from dataclasses import dataclass
 from typing import Callable, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
-from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, Token, TokenKind
+from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, Token, TokenKind, lower_str
 from orthography2ipa.registry import get, resolve
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
@@ -298,7 +298,7 @@ class G2P:
 
     def _transcribe_word(self, word: str, width: int) -> WordTranscription:
         exceptions = self.spec.word_exceptions
-        override = exceptions.get(word.lower()) if exceptions else None
+        override = exceptions.get(lower_str(word, self.spec.code)) if exceptions else None
         paths: List[IPAPath] = []
         if override is not None:
             ipa = override

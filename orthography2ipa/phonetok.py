@@ -54,7 +54,48 @@ __all__ = [
     "Token",
     "IPAPath",
     "PhonetokTokenizer",
+    "lower_str",
 ]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Locale-aware casing
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Python's `str.lower()` is locale-agnostic and mishandles Turkish
+# dotted/dotless I: 'I'.lower() == 'i' (should be dotless 'ı'), and
+# 'İ'.lower() == 'i̇' (a combining-dot artifact, should be plain
+# 'i'). Explicit substitution tables, applied only for Turkish
+# (`tr`, `tr-*`), keep every other language on plain `str.lower()`.
+_TR_LOWER_MAP: Dict[str, str] = {"I": "ı", "İ": "i"}
+
+
+def _is_turkish(lang: str) -> bool:
+    return lang == "tr" or lang.startswith("tr-")
+
+
+def _lower(ch: str, lang: str) -> str:
+    """Language-aware lowercasing for a single character.
+
+    Falls back to plain :meth:`str.lower` for every language except
+    Turkish, where dotted/dotless I is handled via explicit mapping.
+    """
+    if lang and _is_turkish(lang):
+        mapped = _TR_LOWER_MAP.get(ch)
+        if mapped is not None:
+            return mapped
+    return ch.lower()
+
+
+def lower_str(text: str, lang: str) -> str:
+    """Language-aware lowercasing for a whole string.
+
+    Same rationale as :func:`_lower`, applied character-by-character
+    so it is a drop-in replacement for ``text.lower()`` at call sites
+    that need Turkish-correct casing (e.g. word-exception lookups)."""
+    if lang and _is_turkish(lang):
+        return "".join(_lower(ch, lang) for ch in text)
+    return text.lower()
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -189,7 +230,8 @@ class _GraphemeTrie:
     Supports case-insensitive longest-match lookup.
     """
 
-    def __init__(self, graphemes: Dict[str, List[str]]) -> None:
+    def __init__(self, graphemes: Dict[str, List[str]], lang: str = "") -> None:
+        self.lang = lang
         self.root = _TrieNode()
         self.max_len = 0
         for key in graphemes:
@@ -207,7 +249,7 @@ class _GraphemeTrie:
         node = self.root
         best: Optional[str] = None
         for i in range(start, min(start + self.max_len, len(text))):
-            ch = text[i].lower()
+            ch = _lower(text[i], self.lang)
             if ch not in node.children:
                 break
             node = node.children[ch]
@@ -281,7 +323,7 @@ class PhonetokTokenizer:
                     candidates = next(iter(pos_map.values()))
                 self._grapheme_ipa[key] = tuple(candidates)
 
-        self._trie = _GraphemeTrie(self._grapheme_ipa)
+        self._trie = _GraphemeTrie(self._grapheme_ipa, spec.code)
 
     # ─── Core tokenization ─────────────────────────────────────────────
 
