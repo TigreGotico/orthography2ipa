@@ -52,7 +52,7 @@ from orthography2ipa.vowels import (
     is_ipa_vowel,
     is_orthographic_vowel,
 )
-from orthography2ipa.weights import candidate_base_costs
+from orthography2ipa.positional import build_branches, resolve_branches
 
 from typing import TYPE_CHECKING
 
@@ -62,6 +62,7 @@ __all__ = [
     "IPAPath",
     "GraphemeContext",
     "TokenSequence",
+    "flat_contexts",
     "PhonetokTokenizer",
     "lower_str",
 ]
@@ -395,6 +396,22 @@ class TokenSequence:
 
     def __repr__(self) -> str:
         return f"TokenSequence(graphemes={len(self._contexts)})"
+
+
+def flat_contexts(g_tokens: List[Token]) -> List["GraphemeContext"]:
+    """Wrap a flat list of GRAPHEME tokens as one contiguous run.
+
+    Unlike :class:`TokenSequence` (which starts a new word-local run at
+    every non-grapheme token), this treats *all* the given tokens as a
+    single neighbour run. The engine calls it after word-splitting has
+    already stripped whitespace/punctuation, so the per-word grapheme
+    tokens (including any that flank an in-word UNKNOWN character) stay
+    adjacent — preserving the engine's established neighbour semantics.
+    """
+    run: List["GraphemeContext"] = []
+    for i, tok in enumerate(g_tokens):
+        run.append(GraphemeContext(tok, i, run, i))
+    return run
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -749,16 +766,28 @@ class PhonetokTokenizer:
         if beam_width < 0:
             beam_width = 2 ** 31
 
+        # Word-local context views over the grapheme tokens: they give
+        # each grapheme its neighbours so positional overrides (incl. the
+        # vowel-class positions) resolve exactly as the full engine does.
+        seq = TokenSequence(tokens)
+        contexts = seq.graphemes
+
         # Each beam entry: (segments_so_far, cumulative_score)
         beam: List[Tuple[List[str], float]] = [([], 0.0)]
 
         allophone_map = self.spec.allophones if expand_allophones else None
 
+        g_idx = 0
         for token in tokens:
             if token.kind == TokenKind.GRAPHEME:
-                branches = self._ipa_branches(
-                    token, allophone_map,
-                    self.weights_for(token.grapheme))
+                # Stress/sandhi are engine-only (no sentence context here),
+                # so the stress-conditioned nucleus positions are omitted;
+                # every other position agrees with G2P per word.
+                branches = resolve_branches(
+                    self.spec, contexts[g_idx],
+                    weights_for=self.weights_for,
+                    allophone_map=allophone_map)
+                g_idx += 1
                 beam = self._expand_beam(beam, branches, beam_width)
 
             elif include_special:
@@ -891,24 +920,16 @@ class PhonetokTokenizer:
         shape ``(ipa, cost)`` is unchanged so ``_expand_beam`` is agnostic.
         If allophone expansion is on, each phoneme further branches into
         its allophonic variants at +0.5 cost each beyond the first.
+
+        This is a thin wrapper over
+        :func:`orthography2ipa.positional.build_branches`, the single
+        shared branch-builder used by both the tokenizer beam and the
+        engine's positional beam; it does **not** apply positional
+        overrides (those need context — see :func:`~orthography2ipa.
+        positional.resolve_branches`).
         """
-        costs = candidate_base_costs(
-            token.ipa, weights, grapheme=token.grapheme)
-        branches: List[Tuple[str, float]] = []
-        for rank, phoneme in enumerate(token.ipa):
-            base_cost = costs[rank]
-            if allophone_map and phoneme in allophone_map:
-                allophones = allophone_map[phoneme]
-                for a_rank, allophone in enumerate(allophones):
-                    branches.append((allophone, base_cost + 0.5 * a_rank))
-            else:
-                branches.append((phoneme, base_cost))
-        # Deduplicate (keep lowest cost)
-        seen: Dict[str, float] = {}
-        for ipa, cost in branches:
-            if ipa not in seen or cost < seen[ipa]:
-                seen[ipa] = cost
-        return sorted(seen.items(), key=lambda x: (x[1], x[0]))
+        return build_branches(
+            token.ipa, weights, allophone_map, token.grapheme)
 
     @staticmethod
     def _expand_beam(

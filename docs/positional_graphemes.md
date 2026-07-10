@@ -161,6 +161,35 @@ narrower `BEFORE_E` override for one letter that behaves differently — the exa
 class rule. Class positions are inert for any spec that does not declare them, so
 adding them changes no existing transcription.
 
+### The engine and the standalone beam agree
+
+Positional resolution is **not** engine-only. The standalone tokenizer beam
+(`PhonetokTokenizer.ipa_beam` / `ipa_best`) consults the same
+`positional_graphemes` overrides — including the vowel-class positions — through
+the shared resolver in `orthography2ipa.positional`. So for a single word the
+tokenizer and the full engine select the **same** context-conditioned candidate:
+
+```python
+from orthography2ipa import get
+from orthography2ipa.g2p import G2P
+from orthography2ipa.phonetok import PhonetokTokenizer
+
+spec = get("es-ES")
+G2P("es-ES").transcribe_word("cena")        # "ˈθena"  (c → /θ/ before ⟨e⟩)
+PhonetokTokenizer(spec).ipa_best("cena")    # "θena"   same choice, no stress
+```
+
+The one difference is deliberate: **stress and sandhi stay engine-only**, because
+the standalone tokenizer has no sentence context. The engine additionally supplies
+syllable/stress information so the stress-conditioned nucleus positions
+(`NUCLEUS_STRESSED`, `PRETONIC`, …) can fire and stress marks are added; the beam
+omits exactly those. Every other position — `BEFORE_FRONT_VOWEL`, `INTERVOCALIC`,
+`WORD_INITIAL`, `WORD_FINAL`, and the rest — resolves identically in both. The
+per-word grapheme→IPA selection therefore matches (modulo stress marks/sandhi).
+
+Both paths call one function, `orthography2ipa.positional.resolve_branches`, so
+the engine and the beam cannot drift out of agreement.
+
 ---
 
 ## `PositionalGrapheme2IPA` Type
