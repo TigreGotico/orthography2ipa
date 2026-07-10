@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.30.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.30.0a1) (2026-07-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.29.0a1...1.30.0a1)
+
+**Merged pull requests:**
+
+- feat\(phonetok\): apply positional graphemes in beam search [\#137](https://github.com/TigreGotico/orthography2ipa/pull/137) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.29.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.29.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.28.0a1...1.29.0a1)
