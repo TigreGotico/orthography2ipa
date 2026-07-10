@@ -42,6 +42,7 @@ from orthography2ipa.registry import get, resolve
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
 from orthography2ipa.types import GraphemePosition, LanguageSpec
+from orthography2ipa.vowels import is_orthographic_vowel
 
 __all__ = [
     "G2P",
@@ -365,10 +366,6 @@ class G2P:
 
     # ─── positional beam search ──────────────────────────────────────────
 
-    _VOWEL_CHARS = frozenset(
-        "aeiouáéíóúàèìòùâêîôûãõäëïöüåæøAEIOUÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÄËÏÖÜÅÆØ"
-    )
-
     def _positional_beam(self, word: str, width: int) -> List[IPAPath]:
         """Beam search using positional grapheme overrides where available.
 
@@ -445,7 +442,7 @@ class G2P:
     ) -> List[GraphemePosition]:
         """Return ordered list of positions to try (most specific first)."""
         pos: List[GraphemePosition] = []
-        is_vowel = grapheme[0].lower() in self._VOWEL_CHARS
+        is_vowel = is_orthographic_vowel(grapheme[0])
 
         # 1. before_X (most specific)
         if next_tok is not None:
@@ -469,9 +466,9 @@ class G2P:
 
         # 3. intervocalic (consonants between two vowels)
         prev_is_v = (prev_tok is not None
-                     and prev_tok.grapheme[0].lower() in self._VOWEL_CHARS)
+                     and is_orthographic_vowel(prev_tok.grapheme[0]))
         next_is_v = (next_tok is not None
-                     and next_tok.grapheme[0].lower() in self._VOWEL_CHARS)
+                     and is_orthographic_vowel(next_tok.grapheme[0]))
         if prev_is_v and next_is_v:
             pos.append(GraphemePosition.INTERVOCALIC)
 

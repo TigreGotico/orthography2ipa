@@ -31,6 +31,7 @@ import logging
 from typing import List, Optional, Sequence
 
 from orthography2ipa.types import StressRules
+from orthography2ipa.vowels import is_ipa_vowel, is_orthographic_vowel
 
 __all__ = [
     "syllabify",
@@ -38,17 +39,14 @@ __all__ = [
     "apply_stress_mark",
 ]
 
-# Vowel characters recognised by the naive syllabifier: orthographic vowels
-# of Latin-script languages (with their accented forms) plus IPA vocoids,
-# so the same splitter works on spellings and on transcriptions.
-_VOWELS = set(
-    "aeiou"
-    "áéíóúàèìòùâêîôûãõäëïöüåæø"
-    "ąęėįųūīāēőűýěůŏŭıå"
-    "ɐɑɒɔəɘɚɛɜɝɞɪɨɵøœɶʊʉʌyɤeiou̯ãẽĩõũɐ̃"
-    # Greek vowels (monotonic + accented forms + dialytika-tonos)
-    "αεηιουωάέήίόύώΐΰ"
-)
+
+def _is_vowel_char(ch: str) -> bool:
+    """Vowel test used by the naive syllabifier: orthographic vowels of
+    Latin/Greek-script languages (with accented forms) plus IPA vocoids,
+    so the same splitter works on spellings and on transcriptions."""
+    return is_orthographic_vowel(ch) or is_ipa_vowel(ch)
+
+
 _GLIDES = set("jw" "ʲʷ")
 
 
@@ -61,7 +59,7 @@ def syllabify(word: str, vowels: Optional[set] = None) -> List[str]:
     exists to *count* end-anchored syllables, not to draw perfect
     boundaries.
     """
-    vowels = vowels if vowels is not None else _VOWELS
+    is_vowel_char = (lambda c: c.lower() in vowels) if vowels is not None else _is_vowel_char
     if not word:
         return []
     # indices of nucleus starts
@@ -69,9 +67,9 @@ def syllabify(word: str, vowels: Optional[set] = None) -> List[str]:
     current = ""
     in_nucleus = False
     for ch in word:
-        is_vowel = ch.lower() in vowels
+        is_vowel = is_vowel_char(ch)
         if is_vowel and not in_nucleus and current and any(
-                c.lower() in vowels for c in current):
+                is_vowel_char(c) for c in current):
             # a new nucleus after the previous syllable already has one:
             # close the syllable before this consonant-less transition
             syllables.append(current)
@@ -85,7 +83,7 @@ def syllabify(word: str, vowels: Optional[set] = None) -> List[str]:
             current += ch
         in_nucleus = is_vowel
     if current:
-        if any(c.lower() in vowels for c in current) or not syllables:
+        if any(is_vowel_char(c) for c in current) or not syllables:
             syllables.append(current)
         else:
             # trailing consonant cluster joins the last syllable

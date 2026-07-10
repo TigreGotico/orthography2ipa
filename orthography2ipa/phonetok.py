@@ -46,6 +46,7 @@ from enum import Enum, auto
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
+from orthography2ipa.vowels import is_ipa_vowel
 
 from typing import TYPE_CHECKING
 
@@ -414,8 +415,7 @@ class PhonetokTokenizer:
                         # in the vowel set. Simple heuristic: if the IPA
                         # value contains only consonant symbols.
                         first_ipa = ipa_vals[0]
-                        _vowels = set("aeiouɛɔəɨʉɯæɐʌɒœøɪʊɤɵɞɑ")
-                        if first_ipa and first_ipa[0] not in _vowels:
+                        if first_ipa and not is_ipa_vowel(first_ipa[0]):
                             ipa_vals = tuple(
                                 v + self.spec.inherent_vowel for v in ipa_vals
                             )
