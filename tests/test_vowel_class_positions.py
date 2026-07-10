@@ -50,6 +50,44 @@ def test_classes_are_disjoint():
     assert not (set(FRONT) & set(BACK))
 
 
+# Accented / diacritic vowels classified by axis-preserving base letter,
+# without any per-form hand-listing (caron, macron, ogonek, breve, dotless).
+@pytest.mark.parametrize("ch", ["ý", "ě", "ǐ", "ī", "į", "ĕ", "ı"])
+def test_axis_preserving_front(ch):
+    assert is_front_vowel(ch)
+    assert not is_back_vowel(ch)
+
+
+@pytest.mark.parametrize("ch", ["ā", "ą", "ă", "ō", "ū", "ų"])
+def test_axis_preserving_back(ch):
+    assert is_back_vowel(ch)
+    assert not is_front_vowel(ch)
+
+
+# Diaeresis / umlaut fronts the vowel (axis-changing) — must stay front.
+@pytest.mark.parametrize("ch", ["ä", "ö", "ü", "ë", "ï", "ÿ"])
+def test_diaeresis_is_front(ch):
+    assert is_front_vowel(ch)
+    assert not is_back_vowel(ch)
+
+
+def test_ring_vowel_is_ambiguous_neither_class():
+    # Scandinavian å straddles the axis: deliberately in neither class.
+    assert not is_front_vowel("å")
+    assert not is_back_vowel("å")
+
+
+def test_axis_classification_stays_disjoint():
+    # Broad sweep: no character is ever both front and back.
+    sample = (
+        "aeiouyáàâãäåéèêëěíìîïīįóòôõöúùûüūųýÿ"
+        "AEIOUYÁÀÂÃÄÅÉÈÊËĚÍÌÎÏĪĮÓÒÔÕÖÚÙÛÜŪŲÝŸ"
+        "ıİøœæ"
+    )
+    for ch in sample:
+        assert not (is_front_vowel(ch) and is_back_vowel(ch)), ch
+
+
 def test_non_vowels_are_neither():
     for ch in "bcdfg kmnpqrstvwxz.- ":
         assert not is_front_vowel(ch)

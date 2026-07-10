@@ -215,10 +215,15 @@ matching the `GraphemePosition` enum:
 The `*_front_vowel` / `*_back_vowel` positions condition on the whole vowel
 **class** of the neighbouring grapheme rather than a single letter — e.g. one
 `"before_front_vowel"` entry replaces `"before_e"` + `"before_i"` plus every
-accented ⟨e⟩/⟨i⟩ variant (Romance c/g softening). Front-class letters are
-`e i y` (+ accents, + front rounded `ü ö ø œ æ`); back-class are `a o u`
-(+ accents); membership is owned by `orthography2ipa.vowels.is_front_vowel` /
-`is_back_vowel`. Resolution order is **exact-letter position > vowel-class
+accented ⟨e⟩/⟨i⟩ variant (Romance c/g softening). Membership is owned by
+`orthography2ipa.vowels.is_front_vowel` / `is_back_vowel`, which classify a
+letter by NFD-decomposing it to its base and reading the base — `e i y` are
+front, `a o u` are back — whenever every diacritic preserves the front/back
+axis (acute, grave, circumflex, caron, macron, breve, ogonek, dot, tilde), so
+`é ě ī į ý` are front and `á â ã ā ą` are back without hand-listing. Diaeresis
+changes the axis, so `ä ö ü ë ï ÿ` are front by explicit rule, as are dotless
+`ı` and non-decomposing `ø œ æ`; ring `å` straddles the axis and is in neither
+class. Resolution order is **exact-letter position > vowel-class
 position > default `graphemes` mapping**: an exact `"before_e"` entry declared
 for the same grapheme wins over `"before_front_vowel"`, and the class positions
 are inert (change nothing) for any spec that does not declare them.
