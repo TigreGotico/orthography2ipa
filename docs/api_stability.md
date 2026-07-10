@@ -61,6 +61,7 @@ reliance on them from outside this repo as unsupported until a downstream
 consumer is added to the inventory above:
 
 - `transcribe`, `G2P`, `TranscriptionResult`, `WordTranscription` (`orthography2ipa.g2p`)
+- `UnmappedScriptError` (`orthography2ipa.exceptions`)
 - `resolve`, `available_codes`, `available_families` (`orthography2ipa.registry`)
 - `load_lexicon` (`orthography2ipa.json_loader`)
 - `SandhiEngine` (`orthography2ipa.sandhi`)
@@ -79,6 +80,30 @@ consumer is added to the inventory above:
 - `apply_transform`, `debias_lisbon`, `available_profiles`,
   `DIALECT_PROFILES`, `DialectTransform`, `IPARule`, `IPAChainShift`,
   `IPALexicalRule`, `load_clup_profile` (`orthography2ipa.transforms`)
+
+## Unmapped-character observability (additive)
+
+`G2P` and `WordTranscription` (`orthography2ipa.g2p`) expose optional,
+additive surface for detecting words that contain characters absent from a
+spec's grapheme table — e.g. feeding a script the spec doesn't cover at all.
+Before this surface existed, such words silently produced an empty `ipa`
+string, indistinguishable from legitimate silence (a pure-punctuation word).
+
+- `WordTranscription.unmapped: Tuple[str, ...] = ()` — the specific
+  characters in `WordTranscription.word` with no grapheme mapping. Empty
+  when every character mapped.
+- `WordTranscription.coverage: float = 1.0` — fraction of the word's
+  characters that mapped to a grapheme, in `[0.0, 1.0]`.
+- `G2P(..., on_unmapped: str = "ignore")` — `"ignore"` (default, zero
+  behavior change: `ipa` output is unaffected), `"log"` (same output, plus
+  one `logging.warning` per distinct `(lang, word)` pair), or `"raise"`
+  (raises `UnmappedScriptError` instead of returning a result for that
+  word).
+
+The default (`on_unmapped="ignore"`) reproduces the exact prior behavior —
+callers that never pass `on_unmapped` and never read the new
+`WordTranscription` fields see no change in `transcribe()` /
+`transcribe_detailed()` output.
 
 This is a documentation-only audit: it records the current import surface
 and stability commitment, and does not rename, deprecate, or otherwise

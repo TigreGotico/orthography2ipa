@@ -32,9 +32,11 @@ stress rules and base types — and own their richer pipelines.
 """
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
-from typing import Callable, List, Optional, Tuple
+from typing import Callable, List, Optional, Set, Tuple
 
+from orthography2ipa.exceptions import UnmappedScriptError
 from orthography2ipa.phonetok import IPAPath, PhonetokTokenizer, Token, TokenKind
 from orthography2ipa.registry import get, resolve
 from orthography2ipa.sandhi import SandhiEngine
@@ -46,7 +48,10 @@ __all__ = [
     "transcribe",
     "WordTranscription",
     "TranscriptionResult",
+    "UnmappedScriptError",
 ]
+
+_log = logging.getLogger(__name__)
 
 _PAUSE_PUNCTUATION = set(".,;:!?…")
 
@@ -63,6 +68,17 @@ class WordTranscription:
 
     candidates: Tuple[IPAPath, ...] = ()
     """Beam alternatives, best first. Empty for greedy search."""
+
+    unmapped: Tuple[str, ...] = ()
+    """Characters in :attr:`word` with no grapheme mapping in the spec's
+    table (i.e. the tokenizer emitted an ``UNKNOWN`` token for them).
+    Empty when every character mapped, including for words that are
+    genuinely silent (pure punctuation) — those never reach this stage
+    since punctuation is stripped during word splitting."""
+
+    coverage: float = 1.0
+    """Fraction of :attr:`word`'s characters that mapped to a grapheme,
+    in ``[0.0, 1.0]``. ``1.0`` when :attr:`unmapped` is empty."""
 
 
 @dataclass(frozen=True)
@@ -110,6 +126,23 @@ class G2P:
     normalizer : Optional[Callable[[str], str]]
         Pre-G2P text preparation (diacritization, number expansion);
         identity when omitted.
+    on_unmapped : str
+        How to react when a word contains characters absent from the
+        spec's grapheme table (e.g. feeding Hanzi to a pinyin-only spec,
+        or precomposed Hangul to a compatibility-jamo spec). One of:
+
+        - ``"ignore"`` (default): no behavior change — the word's
+          uncovered characters silently contribute nothing to ``ipa``,
+          exactly as before this option existed. Inspect
+          :attr:`WordTranscription.unmapped` /
+          :attr:`WordTranscription.coverage` via
+          :meth:`transcribe_detailed` to detect this after the fact.
+        - ``"log"``: same output as ``"ignore"``, plus a
+          ``logging.warning`` emitted once per distinct ``(lang, word)``
+          pair.
+        - ``"raise"``: raises
+          :class:`~orthography2ipa.exceptions.UnmappedScriptError`
+          instead of returning a result for that word.
     """
 
     def __init__(
@@ -121,7 +154,12 @@ class G2P:
         apply_sandhi: bool = True,
         apply_stress: bool = True,
         normalizer: Optional[Callable[[str], str]] = None,
+        on_unmapped: str = "ignore",
     ) -> None:
+        if on_unmapped not in ("ignore", "log", "raise"):
+            raise ValueError(
+                "on_unmapped must be 'ignore', 'log' or 'raise', "
+                f"got {on_unmapped!r}")
         self.lang: str = resolve(lang)
         self.spec: LanguageSpec = get(self.lang)
         self.expand_allophones = expand_allophones
@@ -129,6 +167,8 @@ class G2P:
         self.apply_sandhi = apply_sandhi
         self.apply_stress = apply_stress
         self.normalizer = normalizer
+        self.on_unmapped = on_unmapped
+        self._warned_unmapped: Set[Tuple[str, str]] = set()
         self._tokenizer = PhonetokTokenizer(self.spec)
         self._sandhi = (
             SandhiEngine(self.spec.sandhi_rules)
@@ -185,7 +225,8 @@ class G2P:
                                   ortho=normalized)
 
         final_words = tuple(
-            WordTranscription(word=wt.word, ipa=iw, candidates=wt.candidates)
+            WordTranscription(word=wt.word, ipa=iw, candidates=wt.candidates,
+                              unmapped=wt.unmapped, coverage=wt.coverage)
             for wt, iw in zip(transcribed, ipa_words)
         )
         return TranscriptionResult(ipa=ipa, words=final_words,
@@ -274,11 +315,53 @@ class G2P:
             idx = detect_stress(word, self.spec.stress, syllables=sylls)
             ipa = apply_stress_mark(ipa, self.spec.stress, idx,
                                     syllables=sylls)
+        unmapped, coverage = self._unmapped_chars(word)
+        if unmapped:
+            self._handle_unmapped(word, unmapped)
         return WordTranscription(
             word=word,
             ipa=ipa,
             candidates=tuple(paths) if width > 1 else (),
+            unmapped=unmapped,
+            coverage=coverage,
         )
+
+    def _unmapped_chars(self, word: str) -> Tuple[Tuple[str, ...], float]:
+        """Return (unmapped_chars, coverage) for *word*.
+
+        ``unmapped_chars`` are the surface characters of any ``UNKNOWN``
+        token the tokenizer produced for *word* — characters the spec's
+        grapheme table does not cover. ``coverage`` is the fraction of
+        ``GRAPHEME``/``UNKNOWN`` characters that mapped successfully.
+        Punctuation/whitespace never reach this method (already stripped
+        by :meth:`_split_words`), so it is not part of the calculation.
+        """
+        tokens = self._tokenizer.tokenize(word)
+        unmapped: List[str] = []
+        total_chars = 0
+        for tok in tokens:
+            if tok.kind == TokenKind.GRAPHEME:
+                total_chars += tok.length
+            elif tok.kind == TokenKind.UNKNOWN:
+                unmapped.append(tok.grapheme)
+                total_chars += tok.length
+        if total_chars == 0:
+            return (), 1.0
+        coverage = (total_chars - len(unmapped)) / total_chars
+        return tuple(unmapped), coverage
+
+    def _handle_unmapped(self, word: str, unmapped: Tuple[str, ...]) -> None:
+        if self.on_unmapped == "raise":
+            raise UnmappedScriptError(word, unmapped, self.lang)
+        if self.on_unmapped == "log":
+            key = (self.lang, word)
+            if key not in self._warned_unmapped:
+                self._warned_unmapped.add(key)
+                _log.warning(
+                    "%s: word %r has unmapped characters %r not covered "
+                    "by the grapheme table",
+                    self.lang, word, "".join(unmapped),
+                )
 
     # ─── positional beam search ──────────────────────────────────────────
 
