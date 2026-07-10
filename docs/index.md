@@ -1,211 +1,174 @@
 
-# orthography2ipa — Documentation Hub
+# orthography2ipa
 
-**orthography2ipa** is a Python package providing linguistically motivated grapheme-to-IPA (International Phonetic Alphabet) mappings, allophone inventories, positional grapheme overrides, language ancestry modelling, and phonological distance metrics for 100+ languages and dialects.
+Text-to-speech and speech-to-text systems need to know how words *sound*,
+not just how they're spelled. `orthography2ipa` answers that question for
+350+ languages and dialects: give it a word in its native orthography and
+it returns an IPA (International Phonetic Alphabet) transcription.
 
-It is designed for NLP engineers, TTS/ASR pipeline authors, and computational linguists who need accurate, citation-backed orthographic-to-phonemic conversion.
+```python
+>>> import orthography2ipa
+>>> orthography2ipa.transcribe("olá mundo", "pt")
+'oˈla ˈmundu'
+>>> orthography2ipa.transcribe("hello world", "en")
+'hɛllɒ wɔːɹld'
+```
 
-**Version**: `0.2.0a1` — `orthography2ipa/version.py:1-10`
+## Why this exists, and why it has no model weights
 
----
+Most G2P (grapheme-to-phoneme) tools are either narrow — one hand-tuned
+rule set bolted onto a specific TTS engine — or heavyweight: a trained
+sequence model per language, with all the data-collection and retraining
+cost that implies. `orthography2ipa` takes a third path: it is **pure
+data**. Every language is a JSON file describing, in linguistically
+citable terms, which graphemes (letters, digraphs, trigraphs) map to
+which IPA phonemes, and how those phonemes surface as allophones in
+context. A small, shared, language-agnostic engine — tokenizer, beam
+search, stress marking, sandhi — turns that data into transcriptions.
+Adding a language means writing data, not training a model or writing
+bespoke code.
 
-## Quick Start
+That design has a direct consequence worth stating up front: the engine
+picks the *statistically most common* pronunciation for an ambiguous
+spelling, not the contextually correct one. There is no language model
+scoring candidates against neighbouring words — see [Honest
+limitations](#honest-limitations-read-this-before-you-trust-a-tier)
+before relying on this for anything where mistakes are costly.
+
+## The two maps: graphemes vs. allophones
+
+Every language spec keeps two mappings deliberately separate:
+
+- **Graphemes** — which phonemes a *spelling* can represent. English
+  ⟨th⟩ → `['θ', 'ð']` (the "thin" vs. "this" sounds).
+- **Allophones** — how a *phoneme* surfaces depending on context. English
+  /t/ → `['t', 'tʰ', 'ʔ', 'ɾ']` — aspirated word-initially, glottalised
+  before a pause, flapped between vowels (American "butter").
+
+Transcription (text → phonemes) uses the grapheme map. Pronunciation
+modelling (phoneme → realistic surface form) uses the allophone map.
+Conflating the two is a common source of bugs in G2P systems; keeping
+them apart is the first design decision this library makes.
+
+## Install and run your first transcription
+
+```bash
+pip install orthography2ipa
+```
 
 ```python
 import orthography2ipa
 
-# Fetch a language spec (lazy-loaded from JSON)
-en  = orthography2ipa.get("en-GB")   # British English
-es  = orthography2ipa.get("es-ES")   # Castilian Spanish
-pt  = orthography2ipa.get("pt-BR")   # Brazilian Portuguese
+orthography2ipa.transcribe("olá mundo", "pt")   # 'oˈla ˈmundu'
+orthography2ipa.transcribe("bona nuèit", "oc")  # 'ˈbunɔ ˈnyɛjt'
 
-# Inspect grapheme → IPA mappings
-en.graphemes["th"]     # ['θ', 'ð']
-es.graphemes["ll"]     # ['ʎ', 'ʝ']
-pt.graphemes["lh"]     # ['ʎ']
-
-# Inspect allophone inventories
-en.allophones["t"]     # ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
-es.allophones["b"]     # ['b', 'β']
-
-# List all supported codes
-orthography2ipa.available_codes()
-
-# Group by family
-orthography2ipa.available_families()
+en = orthography2ipa.get("en-GB")
+en.graphemes["th"]   # ['θ', 'ð']
+en.allophones["t"]   # ['t', 'tʰ', 'ʔ', 'ɾ']
+en.name, en.family   # ('British English (RP)', 'Germanic')
 ```
 
----
+That is the whole mental model: `transcribe()` for the common case,
+`get()` when you want the underlying `LanguageSpec` — grapheme maps,
+allophones, ancestry, quality tier, sources — to build something more
+specific on top.
 
-## Install
+## Choose your own adventure
 
-```bash
-pip install orthography2ipa
-# or, in the NLP Workspace:
-uv pip install -e orthography2ipa/
-```
+Different readers need different depth. Pick the path that matches what
+you are trying to do.
 
-The only runtime dependency is **phonematcher** (installed automatically), which provides the 21-feature SPE/IPA distinctive-feature system used by the distance metrics.
+**I want to convert text to IPA in a TTS/ASR pipeline.**
+Start with [getting_started.md](getting_started.md) for the full Python
+API walkthrough (spec lookup, tokenizer, beam search, distance metrics),
+then [tokenizer.md](tokenizer.md) for how candidate ranking actually
+works and [quality_tiers.md](quality_tiers.md) to know which languages
+are trustworthy enough for production use today.
 
----
+**I'm a linguist and want to add or improve a language.**
+Go straight to [adding_a_language.md](adding_a_language.md) for the
+step-by-step JSON spec format, then [linguistic_accuracy.md](linguistic_accuracy.md)
+for the sourcing and IPA conventions every spec must follow, and
+[data_model.md](data_model.md) for the full `LanguageSpec` field
+reference.
 
-## Supported Languages
+**I maintain a downstream engine (Arabic, Portuguese, or similar) and
+need the plugin ABCs.**
+Read [architecture.md](architecture.md) for how the engine pipeline
+(normalize → tokenize → beam search → stress → sandhi → dialect
+transform) fits together, then look at `G2PPlugin` in
+[registry.md](registry.md) — that is the extension point
+[arbtok](https://github.com/TigreGotico/arbtok) and
+[tugaphone](https://github.com/TigreGotico/tugaphone) build on.
 
-The registry currently covers 308 language/dialect codes spanning 12+ language families. Language data is stored as JSON files under `orthography2ipa/data/` and loaded on demand by `registry.get()` — `orthography2ipa/registry.py:68-82`.
+**I want to understand the benchmark and quality-tier system.**
+[quality_tiers.md](quality_tiers.md) defines what `stub` → `skeleton` →
+`research` → `production` actually require, and
+[benchmarks.md](benchmarks.md) plus [scoreboard.md](scoreboard.md) show
+the measured PER (phoneme error rate) per language against
+human-curated gold data — including the honest, currently mediocre
+numbers for several languages.
 
-### By Family (partial)
+**I'm doing production-readiness due diligence.**
+[api_stability.md](api_stability.md) covers what is a public,
+version-guarded surface; [scoreboard.md](scoreboard.md) is the
+unfiltered accuracy table; [link-audit.md](link-audit.md) covers
+citation URL liveness; the license is Apache 2.0. No language currently
+carries the `production` quality tier — see [Honest
+limitations](#honest-limitations-read-this-before-you-trust-a-tier)
+below.
 
-| Family | Example codes |
+## Honest limitations (read this before you trust a tier)
+
+- **Candidate ordering is naive.** When a spelling is ambiguous
+  (English ⟨th⟩ could be /θ/ or /ð/), the engine ranks candidates by how
+  common that mapping is across the language generally — it does not
+  look at neighbouring words or meaning. Beam search surfaces the
+  alternatives; it does not disambiguate them for you.
+- **Some languages have an input contract that is not plain native
+  text.** `zh` expects Pinyin romanisation, not Hanzi — converting Hanzi
+  to Pinyin (e.g. via a CC-CEDICT-backed dictionary) is a separate step
+  this library does not perform; tone marks are not encoded either.
+  `ko` expects decomposed jamo (ㄱ, ㅏ, ㄴ…), not composed Hangul
+  syllable blocks (가, 는…) — the grapheme map is keyed on individual
+  jamo, so a Hangul-decomposition step comes first. Check a language's
+  `notes` field
+  (`orthography2ipa.get(code).notes`) before assuming raw native-script
+  input works end to end.
+- **PER (phoneme error rate) is genuinely mediocre for several
+  languages**, not only the exotic ones: English sits around 0.48
+  against WikiPron gold, Tamil around 0.89, Scottish Gaelic around 0.69.
+  See the full, unfiltered [scoreboard.md](scoreboard.md) — reported for
+  honesty, not flattery. Every score is reproducible with
+  `python scripts/benchmark.py`.
+- **No language is at `production` tier yet.** Every registered language
+  is at `research` tier or below — it has at least one cited source and
+  usually a benchmark, but has not cleared the volume and accuracy bar
+  `quality_tiers.md` defines for production use. Check
+  `orthography2ipa.get(code).quality` before depending on a language for
+  anything where accuracy matters.
+
+## Reference index
+
+| Doc | Covers |
 | :--- | :--- |
-| **Romance** | `la`, `pt-PT`, `pt-BR`, `es-ES`, `es-AR`, `fr-FR`, `it-IT`, `ca`, `gl`, `oc`, `mwl`, `ast`, `an`, `ext` |
-| **Germanic** | `en-GB`, `de-DE`, `nl-NL`, `sv`, `da`, `no` |
-| **Slavic** | `ru`, `uk`, `pl`, `cs` |
-| **Semitic** | `ar`, `arb`, `phn`, `xaa` |
-| **Indo-Iranian** | `fa`, `fa-AF`, `hi` |
-| **Sino-Tibetan** | `zh` |
-| **Japonic** | `ja` |
-| **Koreanic** | `ko` |
-| **Basque (Isolate)** | `eu`, `eu-x-bizkaiera`, `eu-x-gipuzkera`, `eu-x-zuberera` |
-| **Turkic** | `tr` |
-| **Uralic** | `fi` |
-| **Hellenic** | `el`, `grc` |
-| **Pre-Roman Iberian** | `xce`, `xib`, `xlg`, `txr`, `xaq`, `cel`, `phn` |
-| **Historical / Proto** | `ine`, `gem`, `got`, `la-x-hispania`, `la-x-gallia` |
-| **Contact/Transition** | `ext-PT-x-barrancos` (Barranquenho), `ast-PT-x-rionor` (Rionorês), `mxi` (Mozarabic) |
-
-For the complete table with all dialect sub-codes, see [registry.md](registry.md).
-
-ISO 639-3 aliases are supported — `registry._resolve_code` — `orthography2ipa/registry.py:49-65`:
-
-```python
-orthography2ipa.get("por")  # → pt-PT
-orthography2ipa.get("eng")  # → en-GB
-orthography2ipa.get("spa")  # → es-ES
-orthography2ipa.get("lat")  # → la
-```
-
----
-
-## Key Classes Table
-
-| Class / Type | Module | Description |
-| :--- | :--- | :--- |
-| `LanguageSpec` | `orthography2ipa/types.py:379` | Frozen dataclass — complete phonological specification for one language/variety. Central data object of the entire package. |
-| `Grapheme2IPA` | `orthography2ipa/types.py:20` | Type alias `Dict[str, List[str]]` — orthographic grapheme → IPA candidates (most common first). |
-| `AllophoneMap` | `orthography2ipa/types.py:23` | Type alias `Dict[str, List[str]]` — phoneme → surface realisations. |
-| `PositionalGrapheme2IPA` | `orthography2ipa/types.py:26` | Type alias — grapheme → `{GraphemePosition: [IPA]}` for context-sensitive mappings. |
-| `GraphemePosition` | `orthography2ipa/types.py:34` | Enum of 21 positional contexts: `WORD_INITIAL`, `WORD_FINAL`, `INTERVOCALIC`, `CODA`, `ONSET`, `BEFORE_VOWEL`, etc. |
-| `AncestorRole` | `orthography2ipa/types.py:142` | Enum — `PARENT`, `SUBSTRATE`, `SUPERSTRATE`, `ADSTRATE`, `LEXIFIER`, `CREOLE_BASE`. |
-| `QualityTier` | `orthography2ipa/types.py:174` | Enum — `STUB`, `SKELETON`, `RESEARCH`, `PRODUCTION`. |
-| `ScriptType` | `orthography2ipa/types.py:194` | Enum — `ALPHABET`, `ABJAD`, `ABUGIDA`, `SYLLABARY`, `LOGOGRAPHIC`, `FEATURAL`, `MIXED`, `RECONSTRUCTION`. |
-| `LinguisticSource` | `orthography2ipa/types.py:258` | Frozen dataclass — bibliographic reference: `id`, `author`, `year`, `title`, `url`, etc. |
-| `SandhiRule` | `orthography2ipa/types.py:300` | Frozen dataclass — cross-word phonological rule: `id`, `name`, `left_context`, `right_context`, `transform`. |
-| `Ancestor` | `orthography2ipa/types.py:334` | Frozen dataclass — one ancestry link: `code`, `role`, `weight`, `notes`. |
-| `WeightedDistance` | `orthography2ipa/types.py:230` | Frozen dataclass — result of `weighted_full_distance()` with all component scores. |
-| `PhonetokTokenizer` | `orthography2ipa/phonetok.py:225` | Language-agnostic grapheme tokenizer with IPA beam search. Wraps a `LanguageSpec`. |
-| `Token` | `orthography2ipa/phonetok.py:92` | Frozen dataclass — one tokenizer output unit: `kind`, `grapheme`, `ipa`, `position`, `length`. |
-| `TokenKind` | `orthography2ipa/phonetok.py:66` | Enum — `GRAPHEME`, `WHITESPACE`, `PUNCTUATION`, `DIGIT`, `UNKNOWN`, `BOS`, `EOS`. |
-| `IPAPath` | `orthography2ipa/phonetok.py:124` | Frozen dataclass — one scored IPA transcription candidate: `segments`, `score`, `.ipa` property. |
-| `InventoryDistance` | `orthography2ipa/distance.py:244` | Frozen dataclass — result of `inventory_distance()`: `jaccard`, `feature_mean`, `size_a`, `size_b`, `shared`. |
-| `GraphemeDivergence` | `orthography2ipa/distance.py:302` | Frozen dataclass — result of `grapheme_divergence()`: `shared_graphemes`, `total_graphemes`, `mean_ipa_distance`, `overlap_ratio`. |
-| `PhonologicalDistance` | `orthography2ipa/distance.py:387` | Frozen dataclass — combined distance result: `inventory`, `grapheme`, `allophone_sim`, `combined`. |
-| `ScriptFeatures` | `orthography2ipa/script_distance.py:30` | Frozen dataclass — typological feature bundle for a writing system. |
-| `IPARule` | `orthography2ipa/transforms.py:56` | Dataclass — single IPA rewrite rule with optional context. |
-| `DialectTransform` | `orthography2ipa/transforms.py:145` | Dataclass — named bundle of IPA rules for a dialect profile. |
-| `SandhiEngine` | `orthography2ipa/sandhi.py:32` | Applies `SandhiRule` objects across word boundaries in an IPA stream. |
-| `G2PPlugin` | `orthography2ipa/g2p_plugin.py:38` | Abstract base class for language-specific G2P plugins. |
-
----
-
-## Key Functions Table
-
-| Function | Module | Signature | Description |
-| :--- | :--- | :--- | :--- |
-| `get` | `orthography2ipa/registry.py:68` | `get(code: str) -> LanguageSpec` | Fetch (lazy-load and cache) a `LanguageSpec` by BCP-47 or ISO 639-3 code. |
-| `available_codes` | `orthography2ipa/registry.py:85` | `() -> List[str]` | Sorted list of all registered language codes. |
-| `available_families` | `orthography2ipa/registry.py:120` | `() -> Dict[str, List[str]]` | Codes grouped by language family. |
-| `get_plugin` | `orthography2ipa/registry.py:111` | `(code: str) -> Optional[G2PPlugin]` | Return G2P plugin for code, if registered. |
-| `feature_vector` | `orthography2ipa/distance.py:140` | `(segment: str) -> FeatureVector` | 21-element distinctive-feature vector for an IPA segment. |
-| `feature_names` | `orthography2ipa/distance.py:165` | `() -> Tuple[str, ...]` | Names of the 21 distinctive features. |
-| `segment_distance` | `orthography2ipa/distance.py:174` | `(a: str, b: str) -> float` | Normalised [0,1] phonetic distance between two IPA segments. |
-| `inventory_distance` | `orthography2ipa/distance.py:266` | `(spec_a, spec_b) -> InventoryDistance` | Compare phoneme inventories. |
-| `grapheme_divergence` | `orthography2ipa/distance.py:321` | `(spec_a, spec_b) -> GraphemeDivergence` | How differently two languages map shared graphemes to IPA. |
-| `allophone_overlap` | `orthography2ipa/distance.py:371` | `(spec_a, spec_b) -> float` | Jaccard similarity of allophone surface-form inventories. |
-| `phonological_distance` | `orthography2ipa/distance.py:404` | `(spec_a, spec_b, …) -> PhonologicalDistance` | Combined weighted phonological distance. |
-| `ancestry_similarity` | `orthography2ipa/distance.py:558` | `(spec_a, spec_b) -> float` | Ancestry-weighted phylogenetic similarity [0,1]. |
-| `full_distance` | `orthography2ipa/distance.py:658` | `(spec_a, spec_b, …) -> float` | Phonological + ancestry combined distance. |
-| `pairwise_distances` | `orthography2ipa/distance.py:444` | `(specs, metric) -> List[List[float]]` | N×N symmetric distance matrix. |
-| `tone_distance` | `orthography2ipa/distance.py:690` | `(spec_a, spec_b) -> float` | Tone inventory distance. |
-| `orthographic_distance` | `orthography2ipa/distance.py:715` | `(spec_a, spec_b) -> float` | Grapheme-level orthographic distance. |
-| `weighted_full_distance` | `orthography2ipa/distance.py:767` | `(spec_a, spec_b, …) -> WeightedDistance` | Full distance with component breakdown. |
-| `positional_divergence` | `orthography2ipa/distance.py:816` | `(spec_a, spec_b) -> float` | Positional grapheme divergence. |
-| `load_json_spec` | `orthography2ipa/json_loader.py:87` | `(code: str) -> LanguageSpec` | Load and resolve a single spec from its JSON file. |
-| `load_all_json_specs` | `orthography2ipa/json_loader.py:250` | `() -> Dict[str, LanguageSpec]` | Load all specs from the data directory. |
-| `available_json_codes` | `orthography2ipa/json_loader.py:270` | `() -> List[str]` | Sorted list of all codes with JSON data files. |
-| `load_lexicon` | `orthography2ipa/json_loader.py:275` | `(code: str) -> Optional[Dict[str, str]]` | Load optional word list for a language. |
-| `apply_transform` | `orthography2ipa/transforms.py:855` | `(ipa, profile, ortho) -> str` | Apply a dialect transform profile to IPA. |
-| `debias_lisbon` | `orthography2ipa/transforms.py:168` | `(ipa, ortho) -> str` | De-bias eSpeak PT-PT output to neutral standard. |
-| `script_distance_by_name` | `orthography2ipa/script_distance.py:245` | `(a: str, b: str) -> float` | Typological distance between writing systems by name. |
-
----
-
-## LanguageSpec — Core Fields
-
-Every `LanguageSpec` (`orthography2ipa/types.py:379`) carries:
-
-| Field | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `code` | `str` | *required* | BCP-47 or ISO 639 code (primary key) |
-| `name` | `str` | *required* | Human-readable name |
-| `family` | `str` | *required* | Language family |
-| `script` | `str` | *required* | Primary writing script |
-| `graphemes` | `Grapheme2IPA` | *required* | Orthographic grapheme → IPA candidates (context-free default) |
-| `allophones` | `AllophoneMap` | *required* | Phoneme → surface realisations |
-| `parent` | `str \| None` | `None` | Shorthand for primary parent code |
-| `ancestors` | `Tuple[Ancestor, ...]` | `()` | Full ancestry specification |
-| `positional_graphemes` | `PositionalGrapheme2IPA` | `None` → `{}` | Context-sensitive IPA overrides by `GraphemePosition` |
-| `glottolog_code` | `str \| None` | `None` | Glottolog languoid identifier |
-| `notes` | `str` | `""` | Free-form linguistic notes |
-| `quality` | `QualityTier` | `RESEARCH` | Data maturity tier |
-| `script_type` | `ScriptType` | `ALPHABET` | Typological classification of writing system |
-| `inherent_vowel` | `str \| None` | `None` | For abugidas — default vowel (e.g. `"ə"` for Hindi) |
-| `iso639_3` | `str \| None` | `None` | ISO 639-3 code for PHOIBLE/Glottolog cross-ref |
-| `sandhi_rules` | `Tuple[SandhiRule, ...]` | `()` | Cross-word-boundary phonological rules |
-| `tone_inventory` | `Dict[str, str] \| None` | `None` | IPA tone mark → label mapping |
-| `sources` | `Tuple[LinguisticSource, ...]` | `()` | Bibliographic references |
-| `wikipedia` | `Tuple[str, ...]` | `()` | Wikipedia article URLs |
-
-Key methods: `resolve_grapheme(grapheme, position)` — `types.py:536`; `get_ancestors(role)` — `types.py:601`; `has_positional_data()` — `types.py:580`.
-
----
-
-## Documentation Files
-
-| File | Description |
-| :--- | :--- |
-| [index.md](index.md) | This file — overview, install, supported languages, key classes |
-| [getting_started.md](getting_started.md) | Step-by-step quickstart with code examples |
-| [architecture.md](architecture.md) | Package structure, all module responsibilities, design decisions |
-| [data_model.md](data_model.md) | `LanguageSpec`, `Grapheme2IPA`, `AllophoneMap`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType` |
-| [registry.md](registry.md) | Full language registry: all supported codes by family |
-| [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, `Token`, `IPAPath`, beam search |
-| [distance.md](distance.md) | All distance metrics with expected ranges |
-| [ancestry.md](ancestry.md) | Ancestry system: roles, weights, phylogenetic distance |
-| [positional_graphemes.md](positional_graphemes.md) | `GraphemePosition` enum (21 values), positional overrides, `resolve_grapheme` |
-| [adding_a_language.md](adding_a_language.md) | Step-by-step guide to adding a new JSON language file |
-| [linguistic_accuracy.md](linguistic_accuracy.md) | Data quality standards, IPA conventions, language-specific notes |
+| [getting_started.md](getting_started.md) | Narrative on-ramp: install → first call → what happened → where next |
+| [architecture.md](architecture.md) | Module layout, pipeline stages, design decisions |
+| [data_model.md](data_model.md) | `LanguageSpec` and every field it carries |
+| [registry.md](registry.md) | Full language registry, code resolution, `G2PPlugin` |
+| [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
+| [distance.md](distance.md) | Phonological distance metrics between languages |
+| [architecture.md](architecture.md#script_distancepy) | Typological distance between writing systems (`script_distance.py`) |
+| [ancestry.md](ancestry.md) | Dialect lineage: roles, weights, phylogenetic distance |
+| [positional_graphemes.md](positional_graphemes.md) | Context-sensitive grapheme overrides |
+| [adding_a_language.md](adding_a_language.md) | How to add a new language spec |
+| [linguistic_accuracy.md](linguistic_accuracy.md) | Data quality standards and sourcing rules |
 | [ipa_reference.md](ipa_reference.md) | IPA symbol reference with Unicode code points |
-| [bibliography.md](bibliography.md) | `LinguisticSource` dataclass, citation management |
-| [README.md](README.md) | Overview (mirrors docs hub structure) |
-| [languages/](languages/index.md) | Per-language phonology documentation |
-
----
-
-## Design Principles
-
-1. **Linguistic accuracy over simplicity** — every mapping cites published phonological descriptions.
-2. **Dialect depth** — standard varieties plus dozens of regional dialects with documented deviations.
-3. **Structured ancestry** — `Ancestor` objects encode PARENT / SUBSTRATE / SUPERSTRATE / ADSTRATE / LEXIFIER / CREOLE_BASE relationships with weights, enabling phylogenetically-informed distances.
-4. **Separation of concerns** — grapheme maps, allophone inventories, tokenization, and distance metrics are cleanly separated across `types.py`, `phonetok.py`, and `distance.py`.
-5. **Lazy loading** — language JSON files are read on first `get()` call only; importing the package is essentially free. — `registry.get` — `orthography2ipa/registry.py:68-82`
-6. **Immutability** — all data types are frozen dataclasses, enabling safe caching and thread sharing.
+| [bibliography.md](bibliography.md) | Citation management, `LinguisticSource` |
+| [quality_tiers.md](quality_tiers.md) | What `stub`/`skeleton`/`research`/`production` require |
+| [benchmarks.md](benchmarks.md) | Gold datasets, methodology, how to reproduce a score |
+| [scoreboard.md](scoreboard.md) | Every measured PER/exact-match result |
+| [espeak_agreement.md](espeak_agreement.md) | Agreement analysis against espeak-ng |
+| [api_stability.md](api_stability.md) | What is public and version-guarded |
+| [link-audit.md](link-audit.md) | Citation URL liveness audit |
+| [languages/index.md](languages/index.md) | Per-language phonology deep-dives |
