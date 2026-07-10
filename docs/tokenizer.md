@@ -44,7 +44,8 @@ want the ranked options **per grapheme** — to intervene at one position,
 or to hand a downstream engine a structure it can rescore —
 `tok.ipa_lattice(text)` returns one `SegmentSlot` per grapheme, each with
 its span and ranked `Candidate(ipa, cost)` list. Concatenating each slot's
-top candidate reproduces `ipa_best`. `ipa_beam` also accepts the opt-in
+top candidate reproduces `ipa_best` with its default arguments (the lattice
+has no whitespace/punctuation slots). `ipa_beam` also accepts the opt-in
 `length_norm` and `diversity` scoring knobs (both default off, preserving
 the current ordering). See [lattice.md](lattice.md).
 

@@ -135,7 +135,7 @@ For a *structured* view — the ranked IPA options for each grapheme, with
 `-log P` costs, rather than flattened path strings — use the pronunciation
 lattice. Each `SegmentSlot` carries a grapheme, its span, and ranked
 `Candidate(ipa, cost)` options; concatenating each slot's top candidate
-reproduces `ipa_best`:
+reproduces `ipa_best` with its default arguments:
 
 ```python
 for slot in tok.ipa_lattice("cough"):

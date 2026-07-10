@@ -228,8 +228,10 @@ class SegmentSlot:
     the ranked IPA options that grapheme may realise as in its context.
     :meth:`PhonetokTokenizer.ipa_lattice` returns the slots in **surface
     order**, and concatenating each slot's top (lowest-cost) candidate
-    reproduces :meth:`PhonetokTokenizer.ipa_best` exactly. This is the
-    per-position lattice — the structured object downstream engines
+    reproduces :meth:`PhonetokTokenizer.ipa_best` called with default
+    arguments (the lattice has no slots for whitespace, so a non-empty
+    ``word_separator`` or ``include_special=True`` is not reflected). This
+    is the per-position lattice — the structured object downstream engines
     consume — not a flattened list of whole-word path strings (that is
     :class:`IPAPath` / :meth:`PhonetokTokenizer.ipa_beam`).
 
@@ -1010,8 +1012,10 @@ class PhonetokTokenizer:
         real ``-log P`` for a weighted spec and rank cost for a plain-list
         spec, and — because costs are additive and independent per slot —
         concatenating each slot's :attr:`~SegmentSlot.top` candidate
-        reproduces :meth:`ipa_best` exactly; a chosen path's total score is
-        the sum of its per-slot chosen-candidate costs.
+        reproduces :meth:`ipa_best` called with default arguments (the
+        lattice has no whitespace slots, so a non-empty ``word_separator``
+        or ``include_special=True`` is not reflected); a chosen path's
+        total score is the sum of its per-slot chosen-candidate costs.
 
         Parameters
         ----------

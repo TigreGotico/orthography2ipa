@@ -34,11 +34,14 @@ slots = tok.ipa_lattice("through")
 assert "".join(s.top.ipa for s in slots) == tok.ipa_best("through")
 ```
 
-Concatenating each slot's top candidate always reproduces `ipa_best`. The
-lattice keeps *all* the ranked options per position; the beam
-(`ipa_beam`) flattens them into whole-word `IPAPath` strings. Reach for
-the lattice when you want to reason about *why* a word was pronounced a
-certain way, or to intervene at a single position.
+Concatenating each slot's top candidate reproduces `ipa_best` with its
+default arguments. (The lattice has no slots for whitespace or
+punctuation, so it does not reflect a non-default `word_separator` or
+`include_special=True` passed to the beam.) The lattice keeps *all* the
+ranked options per position; the beam (`ipa_beam`) flattens them into
+whole-word `IPAPath` strings. Reach for the lattice when you want to
+reason about *why* a word was pronounced a certain way, or to intervene
+at a single position.
 
 ## A worked example
 
