@@ -38,9 +38,11 @@ from orthography2ipa.g2p import (
 from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
 from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.phonetok import (
+    Candidate,
     GraphemeContext,
     IPAPath,
     PhonetokTokenizer,
+    SegmentSlot,
     Token,
     TokenKind,
     TokenSequence,
@@ -113,6 +115,8 @@ __all__ = [
     "Token",
     "TokenKind",
     "IPAPath",
+    "Candidate",
+    "SegmentSlot",
     "GraphemeContext",
     "TokenSequence",
     "segment_distance",

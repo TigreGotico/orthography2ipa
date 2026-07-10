@@ -37,6 +37,17 @@ Beam search limits this to the N most-canonical paths (ranked by how "non-defaul
 
 By default that ranking is *positional*: candidate `0` costs `0`, candidate `1` costs `+1`, and so on. A spec can instead attach per-candidate **weights** (candidate frequencies) so the beam favours the corpus-dominant pronunciation and a path's score becomes a real log-probability. Absent weights, the behaviour is exactly the rank ordering above. See [candidate_scoring.md](candidate_scoring.md).
 
+### The structured lattice
+
+`ipa_beam` flattens the search into whole-word `IPAPath` strings. When you
+want the ranked options **per grapheme** — to intervene at one position,
+or to hand a downstream engine a structure it can rescore —
+`tok.ipa_lattice(text)` returns one `SegmentSlot` per grapheme, each with
+its span and ranked `Candidate(ipa, cost)` list. Concatenating each slot's
+top candidate reproduces `ipa_best`. `ipa_beam` also accepts the opt-in
+`length_norm` and `diversity` scoring knobs (both default off, preserving
+the current ordering). See [lattice.md](lattice.md).
+
 ---
 
 ## Classes

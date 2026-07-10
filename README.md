@@ -131,6 +131,20 @@ for path in tok.ipa_beam("through", beam_width=8):
     print(path.ipa, path.score)      # θɹɔː 0.0, ðɹɔː 1.0, θɹoʊ 1.0, …
 ```
 
+For a *structured* view — the ranked IPA options for each grapheme, with
+`-log P` costs, rather than flattened path strings — use the pronunciation
+lattice. Each `SegmentSlot` carries a grapheme, its span, and ranked
+`Candidate(ipa, cost)` options; concatenating each slot's top candidate
+reproduces `ipa_best`:
+
+```python
+for slot in tok.ipa_lattice("cough"):
+    print(slot.grapheme, [(c.ipa, c.cost) for c in slot.candidates])
+    # ough → [('ɔː', 0.0), ('oʊ', 1.0), ('ʌf', 2.0), ('ɒf', 3.0), …]
+```
+
+See [docs/lattice.md](docs/lattice.md) for the full story.
+
 ### Distance metrics
 
 Compare two languages across inventory, grapheme, allophone, and ancestry dimensions:

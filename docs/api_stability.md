@@ -71,7 +71,9 @@ consumer is added to the inventory above:
 - `apply_stress_mark`, `syllabify` (`orthography2ipa.stress`)
 - `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`,
   `script_distance_by_name` (`orthography2ipa.script_distance`)
-- `PhonetokTokenizer`, `Token`, `TokenKind`, `IPAPath` (`orthography2ipa.phonetok`)
+- `PhonetokTokenizer`, `Token`, `TokenKind`, `IPAPath`, `Candidate`,
+  `SegmentSlot`, `GraphemeContext`, `TokenSequence`
+  (`orthography2ipa.phonetok`)
 - `segment_distance`, `inventory_distance`, `grapheme_divergence`,
   `allophone_overlap`, `phonological_distance`, `ancestry_similarity`,
   `full_distance`, `pairwise_distances`, `feature_vector`,

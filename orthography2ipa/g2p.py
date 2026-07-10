@@ -38,8 +38,10 @@ from typing import Callable, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
 from orthography2ipa.phonetok import (
+    Candidate,
     IPAPath,
     PhonetokTokenizer,
+    SegmentSlot,
     Token,
     TokenKind,
     flat_contexts,
@@ -256,6 +258,66 @@ class G2P:
         return self._tokenizer.ipa_beam(
             word, beam_width=beam_width,
             expand_allophones=self.expand_allophones)
+
+    def ipa_lattice(
+        self, word: str, *, beam_width: int = 8
+    ) -> List[SegmentSlot]:
+        """Structured pronunciation lattice for a single *word*.
+
+        Returns one :class:`~orthography2ipa.phonetok.SegmentSlot` per
+        GRAPHEME token, in surface order, with ranked ``-log P``
+        candidates. Unlike
+        :meth:`PhonetokTokenizer.ipa_lattice`, the engine additionally
+        supplies **stress/syllable context**, so the stress-conditioned
+        nucleus positions fire — the slots reflect the same positional +
+        weight scoring the engine uses to pick a pronunciation.
+
+        The lattice is the *pre-lexical* phoneme lattice: it is built
+        before stress-mark insertion and cross-word sandhi (which act on
+        the whole utterance), and before any ``word_exceptions`` override.
+        Concatenating each slot's top candidate therefore matches the
+        engine's chosen pronunciation up to those later stages — it is the
+        object a downstream rescorer (B4) or confidence signal (B5) reads.
+        """
+        keep = 2 ** 31 if beam_width < 0 else beam_width
+        g_tokens = self._tokenizer.grapheme_tokens(word)
+        if not g_tokens:
+            return []
+        contexts = flat_contexts(g_tokens)
+
+        stressed_syll_idx: Optional[int] = None
+        sylls: List[str] = []
+        if self.spec.stress is not None:
+            sylls = _syllables_for(word, self.lang)
+            if len(sylls) > 1:
+                stressed_syll_idx = detect_stress(
+                    word, self.spec.stress, syllables=sylls)
+            else:
+                stressed_syll_idx = 0
+        syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
+
+        allophone_map = (
+            self.spec.allophones if self.expand_allophones else None)
+
+        slots: List[SegmentSlot] = []
+        for tok_idx, ctx in enumerate(contexts):
+            branches = resolve_branches(
+                self.spec, ctx,
+                weights_for=self._tokenizer.weights_for,
+                allophone_map=allophone_map,
+                syll_idx=syll_for_token[tok_idx],
+                stressed_syll_idx=stressed_syll_idx)
+            cands = tuple(
+                Candidate(ipa=ipa, cost=cost)
+                for ipa, cost in branches[:keep]
+            )
+            tok = g_tokens[tok_idx]
+            slots.append(SegmentSlot(
+                grapheme=tok.grapheme,
+                span=(tok.position, tok.position + tok.length),
+                candidates=cands,
+            ))
+        return slots
 
     # ─── pipeline stages ─────────────────────────────────────────────
 
