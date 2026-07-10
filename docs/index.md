@@ -157,6 +157,8 @@ below.
 | [data_model.md](data_model.md) | `LanguageSpec` and every field it carries |
 | [registry.md](registry.md) | Full language registry, code resolution, `G2PPlugin` |
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
+| [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
+| [candidate_scoring.md](candidate_scoring.md) | Per-candidate weights and how they become beam costs |
 | [distance.md](distance.md) | Phonological distance metrics between languages |
 | [architecture.md](architecture.md#script_distancepy) | Typological distance between writing systems (`script_distance.py`) |
 | [ancestry.md](ancestry.md) | Dialect lineage: roles, weights, phylogenetic distance |

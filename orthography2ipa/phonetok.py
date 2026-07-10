@@ -60,6 +60,8 @@ __all__ = [
     "TokenKind",
     "Token",
     "IPAPath",
+    "Candidate",
+    "SegmentSlot",
     "GraphemeContext",
     "TokenSequence",
     "flat_contexts",
@@ -190,6 +192,81 @@ class IPAPath:
 
     def __repr__(self) -> str:
         return f"IPAPath({self.ipa!r}, score={self.score:.1f})"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Structured lattice (per-position ranked candidates)
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True, slots=True)
+class Candidate:
+    """One ranked IPA option for a single lattice slot.
+
+    ``cost`` is the additive beam cost of choosing this option: for a spec
+    that declares per-candidate weights it is the ``-log P`` of the
+    candidate's (normalised) probability; for a plain-list spec it is the
+    uniform-descending *rank* cost (``0.0`` for the canonical candidate,
+    ``1.0`` for the next, …). Lower cost = more likely. See
+    :mod:`orthography2ipa.weights` and ``docs/lattice.md``.
+    """
+
+    ipa: str
+    """The IPA string for this option (a single grapheme's realisation)."""
+
+    cost: float
+    """Additive beam cost — ``-log P`` (weighted spec) or rank cost."""
+
+    def __repr__(self) -> str:
+        return f"Candidate({self.ipa!r}, cost={self.cost:.4f})"
+
+
+@dataclass(frozen=True, slots=True)
+class SegmentSlot:
+    """One position in the structured pronunciation lattice.
+
+    A slot corresponds to a single GRAPHEME token of the input and carries
+    the ranked IPA options that grapheme may realise as in its context.
+    :meth:`PhonetokTokenizer.ipa_lattice` returns the slots in **surface
+    order**, and concatenating each slot's top (lowest-cost) candidate
+    reproduces :meth:`PhonetokTokenizer.ipa_best` called with default
+    arguments (the lattice has no slots for whitespace, so a non-empty
+    ``word_separator`` or ``include_special=True`` is not reflected). This
+    is the per-position lattice — the structured object downstream engines
+    consume — not a flattened list of whole-word path strings (that is
+    :class:`IPAPath` / :meth:`PhonetokTokenizer.ipa_beam`).
+
+    Extension seams (implemented in later work, noted here so the shape is
+    stable): a *rescorer* (B4) hooks in by adjusting each candidate's
+    ``cost`` given the surrounding slots before a path is chosen; a
+    *confidence* signal (B5) is derived from the top-1 vs top-2 ``cost``
+    margin within a slot. Both read this object without changing it.
+    """
+
+    grapheme: str
+    """The source grapheme (lower-cased, as tokenised)."""
+
+    span: Tuple[int, int]
+    """``(start, end)`` character offsets locating the grapheme, following
+    the same NFC/casefold contract as :attr:`GraphemeContext.span`::
+
+        import unicodedata
+        unicodedata.normalize("NFC", text)[start:end].lower() == grapheme
+    """
+
+    candidates: Tuple[Candidate, ...]
+    """Ranked IPA options, best (lowest ``cost``) first. Never empty for a
+    GRAPHEME slot; ``candidates[0]`` is the canonical realisation."""
+
+    @property
+    def top(self) -> Candidate:
+        """The best (lowest-cost) candidate for this slot."""
+        return self.candidates[0]
+
+    def __repr__(self) -> str:
+        return (
+            f"SegmentSlot({self.grapheme!r}, span={self.span}, "
+            f"candidates={self.candidates!r})"
+        )
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -492,6 +569,47 @@ class _GraphemeTrie:
         return best
 
 
+def _path_similarity(a: IPAPath, b: IPAPath) -> float:
+    """Fraction of aligned segments two equal-length paths share (0..1).
+
+    Paths through one word's lattice always share a segment count, so a
+    positional (Hamming-style) overlap is well defined; for the rare
+    differing-length case the shorter length is used as the denominator.
+    """
+    n = min(len(a.segments), len(b.segments))
+    if n == 0:
+        return 0.0
+    same = sum(1 for x, y in zip(a.segments, b.segments) if x == y)
+    return same / n
+
+
+def _rerank_diverse(paths: List[IPAPath], diversity: float) -> List[IPAPath]:
+    """Maximal-Marginal-Relevance re-ranking that demotes near-duplicates.
+
+    The lowest-cost path is kept first; each subsequent pick minimises
+    ``score + diversity × (max similarity to an already-selected path)``,
+    so paths that differ from the top only in a single grapheme are pushed
+    down in favour of genuinely different pronunciations. Ties fall back to
+    the incoming ``(score, ipa)`` order (``paths`` is pre-sorted).
+    """
+    remaining = list(paths)
+    selected: List[IPAPath] = []
+    while remaining:
+        if not selected:
+            selected.append(remaining.pop(0))
+            continue
+        best_i = 0
+        best_key: Optional[Tuple[float, str]] = None
+        for i, p in enumerate(remaining):
+            sim = max(_path_similarity(p, s) for s in selected)
+            key = (p.score + diversity * sim, p.ipa)
+            if best_key is None or key < best_key:
+                best_key = key
+                best_i = i
+        selected.append(remaining.pop(best_i))
+    return selected
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Main tokenizer
 # ═══════════════════════════════════════════════════════════════════════════
@@ -730,6 +848,8 @@ class PhonetokTokenizer:
             expand_allophones: bool = False,
             word_separator: str = " ",
             include_special: bool = False,
+            length_norm: bool = False,
+            diversity: float = 0.0,
     ) -> List[IPAPath]:
         """Expand all possible IPA transcription paths via beam search.
 
@@ -756,6 +876,26 @@ class PhonetokTokenizer:
         include_special : bool
             If True, include whitespace/punct/digit tokens in the IPA
             path as literal strings instead of ignoring them.
+        length_norm : bool
+            Opt-in scoring quality knob (default ``False`` preserves the
+            exact current ordering). When ``True`` each returned path's
+            :attr:`IPAPath.score` is the **mean per-segment cost**
+            (cumulative cost ÷ number of segments) instead of the raw
+            cumulative cost, and paths are ranked by it. Beam *pruning* is
+            unchanged (still by raw cumulative cost), so a single word's
+            hypotheses — which all share the same segment count — keep
+            their relative order; the normalisation only makes scores
+            comparable across inputs of different length.
+        diversity : float
+            Opt-in diversity penalty (default ``0.0`` = off, preserving the
+            exact current ordering). When ``> 0`` the returned paths are
+            re-ranked with a Maximal-Marginal-Relevance pass: the top path
+            is kept, and each subsequent path is penalised by
+            ``diversity × (fraction of segments it shares with the nearest
+            already-selected path)``. This demotes near-duplicates of the
+            top path (which otherwise dominate a long word's beam, differing
+            in only one grapheme) in favour of genuinely different
+            pronunciations. The top-1 path never changes.
 
         Returns
         -------
@@ -802,12 +942,27 @@ class PhonetokTokenizer:
                         beam, [(token.grapheme, 0.0)], beam_width,
                     )
 
-        # Convert to IPAPath objects
+        # Convert to IPAPath objects. The raw cumulative cost is the
+        # canonical ranking key (byte-identical to historical behaviour);
+        # length_norm/diversity are opt-in refinements applied afterwards.
         paths = [
             IPAPath(segments=tuple(segs), score=sc)
             for segs, sc in beam
         ]
         paths.sort(key=lambda p: (p.score, p.ipa))
+
+        if length_norm:
+            paths = [
+                IPAPath(segments=p.segments,
+                        score=(p.score / len(p.segments)) if p.segments
+                        else p.score)
+                for p in paths
+            ]
+            paths.sort(key=lambda p: (p.score, p.ipa))
+
+        if diversity > 0.0:
+            paths = _rerank_diverse(paths, diversity)
+
         return paths
 
     def ipa_best(
@@ -830,6 +985,84 @@ class PhonetokTokenizer:
             include_special=include_special,
         )
         return paths[0].ipa if paths else ""
+
+    # ─── Structured lattice ─────────────────────────────────────────────
+
+    def ipa_lattice(
+            self,
+            text: str,
+            *,
+            beam_width: int = 8,
+            expand_allophones: bool = False,
+    ) -> List[SegmentSlot]:
+        """Return the structured pronunciation lattice for *text*.
+
+        Unlike :meth:`ipa_beam` (which flattens the search into whole-word
+        :class:`IPAPath` strings), this returns one :class:`SegmentSlot`
+        per GRAPHEME token, **in surface order**, each carrying its source
+        grapheme, character span and the *ranked* IPA
+        :class:`Candidate`\\ s available at that position. Non-grapheme
+        tokens (whitespace/punctuation/digits) produce no slot.
+
+        Each slot's candidates come from the *same* shared branch resolver
+        the beam uses (:func:`orthography2ipa.positional.resolve_branches`),
+        so positional overrides — including the vowel-class positions — and
+        per-candidate weights apply here exactly as in
+        :meth:`ipa_beam`/:class:`G2P`. Candidate ``cost`` is therefore a
+        real ``-log P`` for a weighted spec and rank cost for a plain-list
+        spec, and — because costs are additive and independent per slot —
+        concatenating each slot's :attr:`~SegmentSlot.top` candidate
+        reproduces :meth:`ipa_best` called with default arguments (the
+        lattice has no whitespace slots, so a non-empty ``word_separator``
+        or ``include_special=True`` is not reflected); a chosen path's
+        total score is the sum of its per-slot chosen-candidate costs.
+
+        Parameters
+        ----------
+        text : str
+            Input text to build the lattice for.
+        beam_width : int
+            Maximum ranked candidates to keep *per slot*. The canonical
+            candidate is always at index 0, so truncation never changes the
+            top-of-slot concatenation. ``-1`` keeps every candidate.
+        expand_allophones : bool
+            Enumerate surface allophone variants (from ``spec.allophones``)
+            as extra candidates, mirroring :meth:`ipa_beam`.
+
+        Notes
+        -----
+        This is the object downstream engines consume. A *rescorer* (B4)
+        will re-cost each slot's candidates given the neighbouring slots
+        before a path is chosen; a per-word *confidence* (B5) is read from
+        the top-1 vs top-2 ``cost`` margin across slots. Neither changes the
+        slot shape returned here.
+        """
+        tokens = self.tokenize(text)
+        contexts = TokenSequence(tokens).graphemes
+        allophone_map = self.spec.allophones if expand_allophones else None
+        keep = 2 ** 31 if beam_width < 0 else beam_width
+
+        slots: List[SegmentSlot] = []
+        g_idx = 0
+        for token in tokens:
+            if token.kind != TokenKind.GRAPHEME:
+                continue
+            ctx = contexts[g_idx]
+            g_idx += 1
+            branches = resolve_branches(
+                self.spec, ctx,
+                weights_for=self.weights_for,
+                allophone_map=allophone_map)
+            cands = tuple(
+                Candidate(ipa=ipa, cost=cost)
+                for ipa, cost in branches[:keep]
+            )
+            slots.append(SegmentSlot(
+                grapheme=token.grapheme,
+                span=(token.position, token.position + token.length),
+                candidates=cands,
+            ))
+        return slots
 
     # ─── Vocabulary / special tokens ────────────────────────────────────
 
