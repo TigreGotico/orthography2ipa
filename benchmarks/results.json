@@ -160,6 +160,16 @@
     "limit": 300
   },
   {
+    "lang": "en-US",
+    "dataset": "ipa_childes",
+    "n": 300,
+    "per": 0.4166,
+    "exact_match": 0.2167,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "eo",
     "dataset": "wikipron",
     "n": 300,
@@ -185,6 +195,16 @@
     "n": 298,
     "per": 0.1,
     "exact_match": 0.4765,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "et",
+    "dataset": "ipa_childes",
+    "n": 300,
+    "per": 0.3094,
+    "exact_match": 0.1533,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -310,11 +330,31 @@
     "limit": 300
   },
   {
+    "lang": "hu",
+    "dataset": "ipa_childes",
+    "n": 297,
+    "per": 0.1407,
+    "exact_match": 0.4444,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "hy",
     "dataset": "wikipron",
     "n": 297,
     "per": 0.0701,
     "exact_match": 0.6229,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "id",
+    "dataset": "ipa_childes",
+    "n": 300,
+    "per": 0.1103,
+    "exact_match": 0.5633,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
@@ -720,6 +760,16 @@
     "limit": 300
   },
   {
+    "lang": "sr",
+    "dataset": "ipa_childes",
+    "n": 300,
+    "per": 0.4764,
+    "exact_match": 0.0467,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
     "lang": "sv",
     "dataset": "styletts2_phonemes",
     "n": 300,
@@ -775,6 +825,16 @@
     "n": 299,
     "per": 0.496,
     "exact_match": 0.0,
+    "quality_tier": "research",
+    "harness_version": "1.0",
+    "limit": 300
+  },
+  {
+    "lang": "zh",
+    "dataset": "ipa_childes",
+    "n": 300,
+    "per": 0.5183,
+    "exact_match": 0.02,
     "quality_tier": "research",
     "harness_version": "1.0",
     "limit": 300
