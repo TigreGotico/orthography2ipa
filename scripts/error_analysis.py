@@ -117,16 +117,11 @@ def analyze(lang: str, dataset: str, limit: int) -> dict:
                 confusion[(gp, hp)] += 1
 
         lower_word = word.lower()
-        matched = set()
         for gk in grapheme_keys:
-            if gk in matched:
-                continue
             if gk and gk in lower_word:
-                # a longer digraph already claimed this span is not
-                # tracked precisely (substring containment, not
-                # tokenization) -- acceptable for blame attribution,
-                # which is meant as a triage signal, not ground truth.
-                matched.add(gk)
+                # substring containment, not tokenization -- acceptable
+                # for blame attribution, which is meant as a triage
+                # signal, not ground truth.
                 grapheme_pers[gk].append(best_per)
 
     worst_words.sort(key=lambda t: t[0], reverse=True)
