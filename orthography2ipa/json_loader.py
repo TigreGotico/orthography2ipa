@@ -25,7 +25,9 @@ from typing import Dict, List, Optional
 from orthography2ipa.types import (
     Ancestor,
     AncestorRole,
+    FIELD_INHERITANCE,
     GraphemePosition,
+    InheritanceMode,
     LanguageSpec,
     LinguisticSource,
     QualityTier,
@@ -34,6 +36,44 @@ from orthography2ipa.types import (
     StressRules,
     TimeSpan,
 )
+
+# Fields resolved via the ``{field}_base`` JSON key + ``{**base, **own}``
+# dict merge (graphemes, allophones, positional_graphemes).
+_BASE_MERGE_FIELDS: tuple = tuple(
+    f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.BASE_MERGE
+)
+
+# Fields resolved via id-keyed overlay (sandhi_rules). These have no
+# dedicated ``{field}_base`` JSON key of their own — the schema doesn't
+# declare one per rule-bearing field — so they inherit through the same
+# structural base edge as ``graphemes`` (the primary data-inheritance
+# pointer), falling back to the ancestry ``parent`` when no explicit
+# ``graphemes_base`` is set (e.g. Arabic dialects that only set
+# ``graphemes_base`` and leave ``parent`` empty).
+_OVERLAY_BY_ID_FIELDS: tuple = tuple(
+    f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.OVERLAY_BY_ID
+)
+
+
+def _overlay_by_id(base_items: tuple, own_items: tuple) -> tuple:
+    """Merge two sequences of id-keyed objects (``.id`` attribute).
+
+    The base sequence's order and members are inherited in full; any own
+    item whose ``id`` matches a base item replaces it in-place (same
+    position), and any own item with a new ``id`` is appended. This avoids
+    both silently dropping the base's rules (a blind own-only read) and
+    silently duplicating a rule the leaf re-declares to override it (a
+    blind concatenation).
+    """
+    merged: List = list(base_items)
+    index = {item.id: i for i, item in enumerate(merged)}
+    for item in own_items:
+        if item.id in index:
+            merged[index[item.id]] = item
+        else:
+            index[item.id] = len(merged)
+            merged.append(item)
+    return tuple(merged)
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Constants
@@ -121,19 +161,21 @@ def load_json_spec(code: str) -> LanguageSpec:
 
     # ensure all related languages also loaded
     parent_lang = raw.get("parent")
-    parent_graphemes_lang = raw.get("graphemes_base")
-    parent_positional_graphemes_lang = raw.get("positional_graphemes_base")
-    parent_allophones_lang = raw.get("allophones_base")
+    # base_field_langs[field] = the code declared in the JSON's
+    # "{field}_base" key, driven by FIELD_INHERITANCE's BASE_MERGE fields
+    # rather than a hand-listed set of 3 — a new BASE_MERGE field picked up
+    # automatically here.
+    base_field_langs: Dict[str, Optional[str]] = {
+        field: raw.get(f"{field}_base") for field in _BASE_MERGE_FIELDS
+    }
     ancestors = raw.get("ancestors", [])
     ancestor_langs = [ancestor["code"] for ancestor in ancestors]
     # Base specs (graphemes_base etc.) MUST be loadable — they provide data.
     # Ancestor-only references are best-effort (ancestors may be proto-languages
     # that exist only as stubs or not at all).
-    _base_parents = {parent_graphemes_lang, parent_allophones_lang,
-                     parent_positional_graphemes_lang}
+    _base_parents = {v for v in base_field_langs.values() if v}
 
-    for parent in (parent_lang, parent_graphemes_lang, parent_positional_graphemes_lang,
-                   parent_allophones_lang, *ancestor_langs):
+    for parent in (parent_lang, *base_field_langs.values(), *ancestor_langs):
         if parent == code:
             continue  # Skip self-reference cycles (parent == code); invalid per schema
         if parent and parent not in _specs:
@@ -145,39 +187,30 @@ def load_json_spec(code: str) -> LanguageSpec:
                     # Base dependency is required for data inheritance — clear it
                     import warnings
                     warnings.warn(f"Could not load base '{parent}' (requested by '{code}'): {e}")
-                    if parent == parent_graphemes_lang:
-                        parent_graphemes_lang = None
-                        raw["graphemes_base"] = None
-                    elif parent == parent_allophones_lang:
-                        parent_allophones_lang = None
-                        raw["allophones_base"] = None
-                    elif parent == parent_positional_graphemes_lang:
-                        parent_positional_graphemes_lang = None
-                        raw["positional_graphemes_base"] = None
+                    for field, lang in list(base_field_langs.items()):
+                        if lang == parent:
+                            base_field_langs[field] = None
+                            raw[f"{field}_base"] = None
                 elif parent == parent_lang:
                     # Parent language is needed for ancestry but not data — tolerate
                     parent_lang = None
                 # else: ancestor-only reference — silently skip
 
-    # merge parent data
-    graphemes = raw.get("graphemes", {})
-    allophones = raw.get("allophones", {})
-    positional_graphemes = raw.get("positional_graphemes", {})
-    if parent_graphemes_lang:
-        graphemes = {
-            **_specs[parent_graphemes_lang].graphemes,
-            **raw.get("graphemes", {})
-        }
-    if parent_allophones_lang:
-        allophones = {
-            **_specs[parent_allophones_lang].allophones,
-            **raw.get("allophones", {})
-        }
-    if parent_positional_graphemes_lang:
-        positional_graphemes = {
-            **_specs[parent_positional_graphemes_lang].positional_graphemes,
-            **raw.get("positional_graphemes", {})
-        }
+    # merge base_merge fields (graphemes, allophones, positional_graphemes)
+    merged_base_fields: Dict[str, dict] = {}
+    for field in _BASE_MERGE_FIELDS:
+        own_value = raw.get(field, {}) or {}
+        base_lang = base_field_langs.get(field)
+        if base_lang and base_lang in _specs:
+            merged_base_fields[field] = {
+                **getattr(_specs[base_lang], field),
+                **own_value,
+            }
+        else:
+            merged_base_fields[field] = own_value
+    graphemes = merged_base_fields["graphemes"]
+    allophones = merged_base_fields["allophones"]
+    positional_graphemes = merged_base_fields["positional_graphemes"]
 
     # parse ancestors
     try:
@@ -189,11 +222,11 @@ def load_json_spec(code: str) -> LanguageSpec:
     except Exception as e:
         raise ValueError(f"Failed to load ancestors for '{code}'") from e
 
-    # Parse sandhi rules
-    sandhi_rules = ()
+    # Parse sandhi rules (OVERLAY_BY_ID — see _overlay_by_id / FIELD_INHERITANCE)
+    own_sandhi_rules = ()
     raw_sandhi = raw.get("sandhi_rules", [])
     if raw_sandhi:
-        sandhi_rules = tuple(
+        own_sandhi_rules = tuple(
             SandhiRule(
                 id=sr["id"],
                 name=sr["name"],
@@ -205,6 +238,16 @@ def load_json_spec(code: str) -> LanguageSpec:
             )
             for sr in raw_sandhi
         )
+
+    sandhi_rules = own_sandhi_rules
+    for field in _OVERLAY_BY_ID_FIELDS:
+        if field != "sandhi_rules":
+            continue  # only overlay field currently defined
+        overlay_base_lang = base_field_langs.get("graphemes") or parent_lang
+        if overlay_base_lang and overlay_base_lang in _specs:
+            sandhi_rules = _overlay_by_id(
+                _specs[overlay_base_lang].sandhi_rules, own_sandhi_rules
+            )
 
     # Parse sources
     sources_raw = raw.get("sources", [])

@@ -12,10 +12,10 @@
 [dˤ] (emphatic alveolar stop) rather than the Classical lateral-fricative [ɮˤ] that
 `arb.json` retains — MSA has merged ض onto the plosive series (Watson 2002).
 
-`sandhi_rules` is **not** inherited through `graphemes_base`/`allophones_base` (only
-`graphemes`/`allophones`/`positional_graphemes` are), so this spec re-declares the two
-sandhi rules it needs from `arb`: sun-letter assimilation of the definite article, and
-hamzat-al-wasl elision.
+`sandhi_rules` is inherited via id-keyed overlay from `arb`: `ar` declares no
+`sandhi_rules` of its own, so it resolves to `arb`'s rules unchanged — sun-letter
+assimilation of the definite article (`AR_SUN_ASSIMILATION`), hamzat-al-wasl elision
+(`AR_HAMZAT_WASL`), and pausal tanwīn dropping (`AR_PAUSAL_TANWIN`).
 
 ## Input contract / known limitation: diacritics
 
@@ -27,7 +27,7 @@ diacritic-restoration step — and will transcribe incorrectly or incompletely w
 short vowels or gemination are orthographically absent. Gemination (shadda, ّ) is only
 encoded when explicitly marked in the input, via the inherited ّ → ː mapping from `arb`.
 
-## Sun-letter assimilation (`MSA_SUN_ASSIMILATION`) — practical scope
+## Sun-letter assimilation (`AR_SUN_ASSIMILATION`, inherited from `arb`) — practical scope
 
 The rule itself is linguistically correct: the definite article's lām (ل) assimilates to
 a following coronal "sun letter" (ت ث د ذ ر ز س ش ص ض ط ظ ل ن → t θ d ð r z s ʃ sˤ dˤ tˤ
@@ -40,7 +40,7 @@ written.** `SandhiEngine.apply()` (`orthography2ipa/sandhi.py`) only applies san
 *between whitespace-separated tokens* — it does not operate within a single token. In
 standard Arabic orthography, the definite article ال- is written **attached** to the
 word it modifies, as a single unbroken token (الشمس is one word, not `ال` + `شمس`). Since
-`MSA_SUN_ASSIMILATION`'s `left_context`/`right_context` only match across a token
+`AR_SUN_ASSIMILATION`'s `left_context`/`right_context` only match across a token
 boundary, it never gets the chance to fire on input written the normal way:
 
 ```python
@@ -52,7 +52,7 @@ transcribe("ال شمس", "ar")  # -> assimilates correctly, because the article
                               #    already segmented as its own whitespace token
 ```
 
-In other words, `MSA_SUN_ASSIMILATION` is validated and correct for input where the
+In other words, `AR_SUN_ASSIMILATION` is validated and correct for input where the
 definite article has already been segmented as a separate token — for example
 morphologically pre-segmented corpora or pipelines that split clitics before this
 library sees them. It is **not** yet applicable to raw, normally-written Arabic running
@@ -76,13 +76,14 @@ does fire it realizes the sun-letter case as elision (*a-šams*) rather than a d
 consonant (*aʃ-ʃams*) — a second, independent engine limitation from the tokenization one
 above.
 
-## Hamzat al-wasl (`MSA_HAMZAT_WASL`)
+## Hamzat al-wasl (`AR_HAMZAT_WASL`, inherited from `arb`)
 
 Connective hamza (همزة الوصل) on ال and a closed set of verb/noun forms is elided after a
 preceding vowel in connected speech: *fī al-bayt* → *fi l-bayt*. Only the "wasl" hamza
 (written as a bare alif, not a hamza-bearing alif أ/إ) undergoes this; the engine cannot
 distinguish the two orthographically without diacritics, so this rule is scoped to the
-definite-article context inherited from Classical Arabic (`arb`).
+definite-article context defined in Classical Arabic (`arb`) and inherited by `ar`
+unchanged.
 
 ## No stress block
 
