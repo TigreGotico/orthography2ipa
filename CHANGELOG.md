@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.22.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.22.2a1) (2026-07-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.22.1a1...1.22.2a1)
+
+**Merged pull requests:**
+
+- fix\(inheritance\): enforce explicit per-field manifest, fix sandhi\_rules inheritance [\#116](https://github.com/TigreGotico/orthography2ipa/pull/116) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.22.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.22.1a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.22.0a1...1.22.1a1)
@@ -26,19 +34,19 @@
 
 ## [1.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.1a1) (2026-07-10)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.21.1a1)
 
 **Merged pull requests:**
 
 - fix\(g2p\): route word\_exceptions overrides through stress marking [\#109](https://github.com/TigreGotico/orthography2ipa/pull/109) ([JarbasAl](https://github.com/JarbasAl))
 
-## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.20.0a1)
-
 ## [1.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.0a1) (2026-07-09)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.21.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.0a1)
+
+## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.20.0a1)
 
 **Merged pull requests:**
 
