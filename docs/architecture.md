@@ -86,10 +86,19 @@ A language-agnostic tokenizer that works entirely from a `LanguageSpec` — `pho
 - `Token` — immutable dataclass representing one tokenizer output unit — `phonetok.py:92`
 - `IPAPath` — a scored candidate IPA transcription — `phonetok.py:124`
 - `_GraphemeTrie` — prefix trie built from `spec.graphemes` for O(k) maximal-munch matching — `phonetok.py:188`
+- `GraphemeContext` — a context-aware view over one GRAPHEME token: word-local neighbours (`prev`/`next`/`at`/`neighbors`), character `span`, and class predicates (`is_vowel`/`is_consonant`/`is_front`/`is_back`) delegating to `vowels.py`
+- `TokenSequence` — an indexed view returned by `tokenize_with_context()` wrapping every GRAPHEME token in a `GraphemeContext`
 - `PhonetokTokenizer` — the main class; wraps the trie — `phonetok.py:225`
   - `tokenize(text)` — produces `List[Token]`
+  - `tokenize_with_context(text)` — produces a `TokenSequence` of context-aware grapheme views
   - `ipa_beam(text, beam_width)` — beam search over all IPA paths
   - `ipa_expand(tokens, include_allophones)` — expand tokens into IPA paths with optional allophone substitution
+
+The context model (`GraphemeContext` / `TokenSequence`) is the shared substrate
+on which Workstream B builds the pronunciation lattice and the downstream
+rescorer seam. It gives specialized phonemizers a single, accent-aware token
+context — neighbour access, spans and phonological-class predicates — to build
+on instead of re-rolling per-consumer index arithmetic and private vowel sets.
 
 ### `distance.py`
 
