@@ -288,6 +288,18 @@ for c in tok.tokenize_with_context(word):
 the after-form needs no per-letter enumeration and cannot drift from the
 rest of the library's vowel classification.
 
+### The beam uses the context model too
+
+`ipa_beam` / `ipa_best` build a `TokenSequence` internally and resolve each
+grapheme's candidates against the spec's `positional_graphemes` overrides (the
+c-softening above, intervocalic voicing, word-final devoicing, and the
+vowel-class positions) through the shared resolver in
+`orthography2ipa.positional`. The standalone beam is therefore **context-aware**,
+not a flat per-grapheme product: for a single word it selects the same
+context-conditioned IPA as the full `G2P` engine. Only stress and sandhi remain
+engine-only (they need sentence context). See
+[positional_graphemes.md](positional_graphemes.md).
+
 ---
 
 ## Performance Notes
