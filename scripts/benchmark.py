@@ -40,6 +40,7 @@ import argparse
 import csv
 import json
 import os
+import random
 import sys
 import time
 import unicodedata
@@ -54,7 +55,13 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".benchmark_cache")
 
-HARNESS_VERSION = "1.0"
+HARNESS_VERSION = "1.1"
+
+# Fixed seed for the bootstrap confidence-interval resampling below --
+# never randomized, so the same per-word PER list always yields the same
+# CI bounds across runs/machines.
+BOOTSTRAP_SEED = 20260710
+BOOTSTRAP_REPS = 1000
 SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 
@@ -804,7 +811,13 @@ def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
     return pairs
 
 
-def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
+def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
+    """Like :func:`evaluate` but also returns the per-word PER list, so
+    callers (e.g. :func:`bootstrap_per_ci`) can resample it. The point
+    estimates returned here (``n``, ``covered``, ``per``, ``wer``) are
+    computed the exact same way as :func:`evaluate` — byte-identical
+    scoreboard numbers.
+    """
     from orthography2ipa import G2P
 
     engine = G2P(lang)
@@ -814,7 +827,8 @@ def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
     for word, gold in pairs:
         refs.setdefault(word, []).append(gold)
 
-    per_sum, wrong, covered = 0.0, 0, 0
+    pers: List[float] = []
+    wrong, covered = 0, 0
     for word, golds in refs.items():
         try:
             hyp = normalize(engine.transcribe_word(word),
@@ -828,11 +842,52 @@ def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
             levenshtein(hyp, g) / max(len(g), 1)
             for g in (normalize(x, strip_stress, broad) for x in golds)
         )
-        per_sum += per
+        pers.append(per)
         wrong += per > 0
     n = len(refs)
-    return n, covered, (per_sum / covered if covered else 1.0), \
+    per_sum = sum(pers)
+    return n, covered, pers, (per_sum / covered if covered else 1.0), \
         (wrong / covered if covered else 1.0)
+
+
+def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
+    n, covered, _pers, per, wer = evaluate_words(
+        pairs, lang, strip_stress, broad)
+    return n, covered, per, wer
+
+
+def bootstrap_per_ci(
+    pers: List[float],
+    reps: int = BOOTSTRAP_REPS,
+    seed: int = BOOTSTRAP_SEED,
+) -> Tuple[float, float]:
+    """95% bootstrap confidence interval for the mean PER.
+
+    Resamples ``pers`` (the per-word PER list) with replacement ``reps``
+    times using a fixed-seed ``random.Random`` (never the global RNG),
+    computes the mean of each resample, and returns the 2.5th/97.5th
+    percentiles of the resulting distribution. Deterministic across runs
+    given the same input list, seed and rep count. Returns ``(0.0, 0.0)``
+    for an empty input (nothing to resample).
+    """
+    n = len(pers)
+    if n == 0:
+        return (0.0, 0.0)
+    rng = random.Random(seed)
+    means: List[float] = []
+    for _ in range(reps):
+        sample = [pers[rng.randrange(n)] for _ in range(n)]
+        means.append(sum(sample) / n)
+    means.sort()
+
+    def _percentile(p: float) -> float:
+        idx = p * (len(means) - 1)
+        lo = int(idx)
+        hi = min(lo + 1, len(means) - 1)
+        frac = idx - lo
+        return means[lo] + (means[hi] - means[lo]) * frac
+
+    return (_percentile(0.025), _percentile(0.975))
 
 
 def _quality_tier(lang: str) -> Optional[str]:
@@ -859,14 +914,17 @@ def build_scoreboard(limit: int) -> List[dict]:
                 print(f"skip {dataset_name} lang={lang}: {exc}",
                       file=sys.stderr)
                 continue
-            n, covered, per, wer = evaluate(
+            n, covered, pers, per, wer = evaluate_words(
                 pairs, lang, strip_stress=True, broad=True,
             )
+            ci_low, ci_high = bootstrap_per_ci(pers)
             rows.append({
                 "lang": lang,
                 "dataset": dataset_name,
                 "n": covered,
                 "per": round(per, 4),
+                "per_ci_low": round(ci_low, 4),
+                "per_ci_high": round(ci_high, 4),
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
                 "harness_version": HARNESS_VERSION,
@@ -896,14 +954,20 @@ def write_scoreboard(rows: List[dict]) -> None:
         "(../benchmarks/results.json). Methodology and dataset provenance: "
         "[`docs/benchmarks.md`](benchmarks.md).",
         "",
-        "| Lang | Dataset | N | PER | Exact match | Quality tier |",
-        "|---|---|---:|---:|---:|---|",
+        "The `95% CI` column is a bootstrap confidence interval on the "
+        "mean PER (per-word PERs resampled with replacement, "
+        f"{BOOTSTRAP_REPS} reps, fixed seed {BOOTSTRAP_SEED}) — see "
+        "[`docs/benchmarks.md`](benchmarks.md).",
+        "",
+        "| Lang | Dataset | N | PER | 95% CI | Exact match | Quality tier |",
+        "|---|---|---:|---:|---:|---:|---|",
     ]
     for row in rows:
         tier = row["quality_tier"] or "-"
+        ci = f"[{row['per_ci_low']:.4f}, {row['per_ci_high']:.4f}]"
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {row['n']} | "
-            f"{row['per']:.4f} | {row['exact_match']:.4f} | {tier} |"
+            f"{row['per']:.4f} | {ci} | {row['exact_match']:.4f} | {tier} |"
         )
     lines.append("")
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)

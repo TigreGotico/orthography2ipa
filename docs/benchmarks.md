@@ -481,6 +481,31 @@ the pair's count dropped.
   so treat single-slice numbers as reference points, not leaderboard
   entries.
 
+### Confidence intervals
+
+Every scoreboard row (`docs/scoreboard.md` / `benchmarks/results.json`)
+carries a 95% bootstrap confidence interval on the mean PER, alongside
+the point estimate, so a single-slice PER number can be read with its
+uncertainty rather than as a false-precision leaderboard entry:
+
+- The per-word PER list underlying a row's mean PER is resampled with
+  replacement 1000 times; the mean of each resample is computed, and
+  the interval is the 2.5th/97.5th percentile of that distribution.
+- Resampling uses `random.Random(BOOTSTRAP_SEED)` (`scripts/benchmark.py`),
+  never the global RNG, with a fixed seed constant — the same input PER
+  list always yields the same `[low, high]` bounds, on any machine, on
+  any run. This is what makes the CI reproducible rather than a
+  moving target that would itself trigger false benchmark-regression
+  noise.
+- The regression gate (`scripts/check_benchmark_regression.py`) keeps
+  comparing the point-estimate PER against the committed baseline with
+  its existing epsilon — the CI is a reporting/diagnostic addition, not
+  part of the pass/fail regression check.
+- A wide interval is itself informative: it flags a row whose PER is
+  noisy given its sample size (small `N`, or high per-word variance),
+  and is a signal to grow the gold set before trusting a narrow slice
+  of PER movement as a real regression or improvement.
+
 ## Reference numbers
 
 `python scripts/benchmark.py --dataset <d> --lang <l> --limit 300`:
