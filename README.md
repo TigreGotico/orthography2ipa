@@ -249,6 +249,18 @@ PER is genuinely mediocre for several languages — see
 [docs/index.md](docs/index.md#honest-limitations-read-this-before-you-trust-a-tier)
 for the specifics before depending on this for anything accuracy-sensitive.
 
+### Comparison to other G2P systems
+
+`scripts/compare_systems.py` runs the same gold rows above through
+orthography2ipa, espeak-ng, epitran and gruut with identical
+normalization and scoring, and commits the result to
+[docs/comparison.md](docs/comparison.md)
+([benchmarks/comparison.json](benchmarks/comparison.json) for the
+machine-readable form). It is an honest table: some languages win
+against espeak-ng, some lose, and coverage against epitran/gruut is
+partial by nature of those projects' own language lists. No row is
+cherry-picked.
+
 ## Contributing
 
 To add a language, create `orthography2ipa/data/{code}.json` following `orthography2ipa/data/SCHEMA.md`. For dialects, use `graphemes_base`/`allophones_base` to inherit from the parent.
