@@ -26,9 +26,11 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | en | styletts2_phonemes | 300 | 0.4464 | 0.0000 | research |
 | en | wikipron | 220 | 0.4799 | 0.1000 | research |
 | en-GB | wikipron | 245 | 0.4876 | 0.0816 | research |
+| en-US | ipa_childes | 300 | 0.4166 | 0.2167 | research |
 | eo | wikipron | 300 | 0.0303 | 0.8700 | research |
 | es | styletts2_phonemes | 300 | 0.1713 | 0.0000 | research |
 | es | wikipron | 298 | 0.1000 | 0.4765 | research |
+| et | ipa_childes | 300 | 0.3094 | 0.1533 | research |
 | eu | hitz_basque_ipa | 300 | 0.2796 | 0.1567 | research |
 | eu | wikipron | 239 | 0.0768 | 0.5900 | research |
 | fa | styletts2_phonemes | 294 | 0.5787 | 0.0000 | research |
@@ -41,7 +43,9 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | gl | wikipron | 264 | 0.0728 | 0.6326 | research |
 | hi | wikipron | 261 | 0.4424 | 0.0115 | research |
 | hr | wikipron | 292 | 0.2763 | 0.0171 | research |
+| hu | ipa_childes | 297 | 0.1407 | 0.4444 | research |
 | hy | wikipron | 297 | 0.0701 | 0.6229 | research |
+| id | ipa_childes | 300 | 0.1103 | 0.5633 | research |
 | is | ipadict | 300 | 0.2300 | 0.0900 | research |
 | is | wikipron | 258 | 0.2232 | 0.1395 | research |
 | it | styletts2_phonemes | 300 | 0.2100 | 0.0000 | research |
@@ -82,9 +86,11 @@ Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). 
 | ru | wikipron | 268 | 0.3635 | 0.0112 | research |
 | sk | wikipron | 300 | 0.1206 | 0.4700 | research |
 | sq | wikipron | 249 | 0.0915 | 0.6867 | research |
+| sr | ipa_childes | 300 | 0.4764 | 0.0467 | research |
 | sv | styletts2_phonemes | 300 | 0.3835 | 0.0000 | research |
 | sv | wikipron | 279 | 0.3508 | 0.0609 | research |
 | ta | wikipron | 293 | 0.8949 | 0.0000 | research |
 | tl | wikipron | 269 | 0.2309 | 0.0446 | research |
 | tr | wikipron | 296 | 0.1409 | 0.3953 | research |
 | uk | styletts2_phonemes | 299 | 0.4960 | 0.0000 | research |
+| zh | ipa_childes | 300 | 0.5183 | 0.0200 | research |

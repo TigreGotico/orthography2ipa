@@ -326,6 +326,74 @@ downloads each language's JSON file directly and pairs `text` with
 `phonemes` positionally, scored as sentence-level spans through the
 harness's standard pipeline (as with `4catac`/`ep_dialects`).
 
+### IPA-CHILDES split (`ipa_childes`)
+
+[fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)
+on Hugging Face: a postprocessed version of IPA-CHILDES, the phonemized
+CHILDES child-language corpus (CC BY 4.0), split into per-language
+`train`/`test` CSVs (28 languages, `test` split ranging from ~460k to
+~74MB per language, 256,462 test rows for `en-US`). Each row is a
+sentence-level utterance with several IPA columns; this harness uses
+`ipa_g2p_plus` (the "G2P+" phonemizer column), which the dataset
+publishes pipe-(" | ")-delimited with one segment per orthographic word,
+aligned positionally with the whitespace-tokenized orthographic sentence.
+Per the CHILDES/academic-corpus exception, tool-generated transcriptions
+from this dataset are accepted as gold here.
+
+Wired under the `ipa_childes` dataset key for `en-US`, `et`, `hu`, `id`,
+`sr`, `zh` — 6 of the dataset languages with no prior gold coverage in
+this harness at all *and* a language tag registered in this repo's specs
+(`orthography2ipa/data/*.json`). Only the `test` split is read (held out
+from G2P+ training). The loader (`load_ipa_childes` in
+`scripts/benchmark.py`) splits each row's orthographic sentence and its
+`ipa_g2p_plus` column on whitespace/`" | "` respectively, pairs tokens
+positionally, skips rows whose token counts don't line up, and keeps the
+first `limit` (default 300) deduplicated single-word pairs — the same
+positional-alignment technique `load_hitz_basque` uses for paragraph-level
+gold, applied here to dataset-native sentence-level alignment instead of
+manual tokenization.
+
+`zh` is read from the dataset's `stem` column rather than its `sentence`
+column: `sentence` is Hanzi, but this repo's `zh` spec models **Pinyin**
+syllables (its grapheme table is Pinyin initials/finals, not Hanzi), and
+`stem` is CHILDES's own Pinyin-with-tone-number romanization of the same
+utterance — the column that actually exercises the spec's grapheme table.
+
+`ko-KR` is present in the dataset but **excluded** here, for the same
+class of script/input-contract mismatch as the `zh` exclusion below:
+this repo's `ko` spec's grapheme table is keyed on individual
+compatibility jamo (`ㄱ`, `ㄲ`, `ㄷ`, ...), while real Korean text —
+including this dataset's — is precomposed Hangul syllable blocks (e.g.
+`아홉`), which neither match the compatibility-jamo graphemes directly
+nor decompose into them under NFD (NFD splits a Hangul syllable into
+*conjoining* jamo, a different Unicode block from the *compatibility*
+jamo the spec's grapheme table uses). `G2P('ko').transcribe_word(...)`
+returns an empty string for every real Hangul word tested, so scoring
+this row would not measure phonological accuracy — it is a
+script/input-contract mismatch between the dataset and this repo's
+`ko` spec, not a gap in the engine's Korean coverage. Bridging
+compatibility jamo and precomposed Hangul is a real engine-level
+enhancement, left for a future change; it is out of scope here.
+
+Present in the dataset but **not** wired in:
+
+- **`fa-IR`** (Persian): this corpus's Persian transcripts are Fingilish
+  (ad hoc Latin transliteration, e.g. `"piano kar kardam"`), never Persian
+  script; the `fa` spec here is Arabic-script only, so there is no clean
+  grapheme match.
+- **`ja-JP`** (Japanese): this corpus's Japanese transcripts are romaji
+  only — the dataset has no kana/kanji column for Japanese — while the
+  `ja` spec here has a hiragana grapheme table, so there is no clean
+  grapheme match either.
+- **`ca-ES`, `cy-GB`, `da-DK`, `de-DE`, `en-GB`, `es-ES`, `eu-ES`, `fr-FR`,
+  `ga-IE`, `hr-HR`, `is-IS`, `it-IT`, `nb-NO`, `nl-NL`, `pl-PL`, `pt-BR`,
+  `pt-PT`, `ro-RO`, `sv-SE`, `tr-TR`**: language codes with an existing
+  spec in this repo, but every one of them already has gold coverage from
+  another dataset above; not worth the extra CSV download for
+  already-measured languages.
+- **`qu-PE`** (Quechua), **`yue-CN`** (Cantonese): no corresponding spec
+  exists in this repo at all.
+
 ## Rejected candidates
 
 Datasets investigated and excluded due to tool-generated or unclear

@@ -28,6 +28,8 @@ Dataset access:
 - ``clup_dialect`` downloads a CSV gold file directly (stdlib only).
 - ``styletts2_phonemes`` downloads per-language JSON files directly
   (stdlib only).
+- ``ipa_childes`` downloads per-language CSVs from the
+  fdemelo/ipa-childes-split Hugging Face dataset directly (stdlib only).
 
 Every run is capped (``--limit``, default 300) — gold sets are large
 and a slice is enough for a stable reference number.
@@ -211,6 +213,96 @@ _STYLETTS2_PHONEMES_FILES: Dict[str, str] = {
     "sv": "sv.json",
     "uk": "uk.json",
 }
+
+_IPA_CHILDES_BASE = (
+    "https://huggingface.co/datasets/fdemelo/ipa-childes-split/resolve/main/"
+    "test/{folder}/data.csv"
+)
+# orthography2ipa language tag → dataset folder (test split only -- the
+# dataset's "split" is train/test, and gold benchmark data is drawn from
+# the held-out test portion, not train). Folder codes are the dataset's own
+# IETF tags (langcodes-normalized, per the dataset card).
+#
+# lang column carries the CHILDES orthographic "gloss" (renamed
+# ``sentence``), except for zh-CN: the dataset's own ``sentence`` column is
+# Hanzi, but the zh spec in this repo models Pinyin syllables (its
+# grapheme inventory is Pinyin initials/finals, not Hanzi), so zh-CN reads
+# the dataset's ``stem`` column instead -- CHILDES's own Pinyin-with-tone-
+# numbers romanization of the same utterance, which is what actually
+# exercises the zh spec's grapheme table.
+#
+# Excluded despite a language-code match:
+# - fa-IR: CHILDES Persian transcripts in this corpus are Fingilish (ad hoc
+#   Latin transliteration, e.g. "piano kar kardam"), never Persian script;
+#   the fa spec is Arabic-script only, so there is no clean grapheme match.
+# - ja-JP: CHILDES Japanese transcripts here are romaji only (no kana/kanji
+#   column in the dataset); the ja spec's grapheme table is hiragana, so
+#   there is no clean grapheme match either.
+# - ko-KR: this repo's ko spec's grapheme table is keyed on individual
+#   compatibility jamo (e.g. U+3131 "ㄱ"), while real Korean text --
+#   including this dataset's -- is precomposed Hangul syllable blocks
+#   (e.g. "아홉"), which neither match the compatibility-jamo graphemes
+#   directly nor decompose into them under NFD (NFD splits a Hangul
+#   syllable into *conjoining* jamo, U+11xx, a different Unicode block
+#   from the *compatibility* jamo, U+31xx, the spec's grapheme table
+#   uses). G2P('ko').transcribe_word(...) returns an empty string for
+#   every real Hangul word, so scoring this row would not measure
+#   phonological accuracy.
+# - qu-PE, yue-CN: no corresponding spec exists in this repo at all.
+_IPA_CHILDES_FOLDERS: Dict[str, str] = {
+    "en-US": "en-US",
+    "et": "et-EE",
+    "hu": "hu-HU",
+    "id": "id-ID",
+    "sr": "sr-RS",
+    "zh": "zh-CN",
+}
+_IPA_CHILDES_STEM_COLUMN = {"zh"}
+
+
+def load_ipa_childes(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """IPA-CHILDES split (fdemelo/ipa-childes-split on Hugging Face):
+    a postprocessed version of IPA-CHILDES, the CHILDES child-language
+    corpus with automatic phonemic transcriptions ("G2P+"). Sentence-level,
+    CSV, one file per language/test-split. The ``ipa_g2p_plus`` column is
+    pipe-(" | ")-delimited with one segment per orthographic word, aligned
+    positionally with the whitespace-tokenized orthographic sentence, so
+    rows are split into word-level (word, IPA) pairs the same way
+    ``load_hitz_basque`` derives word pairs from paragraph-level text; rows
+    whose token counts don't match are skipped rather than guessed at.
+    Only the ``test`` split is used (held out from training the G2P+
+    model), and only a bounded ``limit``-sized prefix of each (typically
+    tens-of-thousands-of-rows) CSV is read.
+    """
+    folder = _IPA_CHILDES_FOLDERS[lang]
+    url = _IPA_CHILDES_BASE.format(folder=folder)
+    text = _fetch(url, f"ipa_childes_{folder}.csv")
+    text_col = "stem" if lang in _IPA_CHILDES_STEM_COLUMN else "sentence"
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    reader = csv.DictReader(text.splitlines())
+    for row in reader:
+        sentence = (row.get(text_col) or "").strip()
+        ipa = (row.get("ipa_g2p_plus") or "").strip()
+        if not sentence or not ipa:
+            continue
+        words = sentence.split()
+        phones = [p.strip() for p in ipa.split(" | ")]
+        if len(words) != len(phones):
+            continue
+        for word, phone in zip(words, phones):
+            if not word or not phone:
+                continue
+            key = word.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            pairs.append((word, phone))
+            if len(pairs) >= limit:
+                break
+        if len(pairs) >= limit:
+            break
+    return pairs
 
 
 _CMUDICT_URL = (
@@ -623,6 +715,7 @@ DATASETS = {
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
     "styletts2_phonemes": (load_styletts2_phonemes,
                            sorted(_STYLETTS2_PHONEMES_FILES)),
+    "ipa_childes": (load_ipa_childes, sorted(_IPA_CHILDES_FOLDERS)),
 }
 
 
