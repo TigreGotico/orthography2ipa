@@ -10,7 +10,7 @@ The core data model supports:
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from enum import Enum
 from typing import Dict, FrozenSet, List, Optional, Tuple
 
@@ -481,6 +481,82 @@ class Ancestor:
 
     def __repr__(self) -> str:
         return f"Ancestor({self.code!r}, {self.role.value}, w={self.weight:.2f})"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# InheritanceMode — explicit, enforced manifest of how each LanguageSpec
+# field participates (or doesn't) in the ``*_base`` / ancestry inheritance
+# chain resolved by :mod:`orthography2ipa.json_loader`.
+# ═══════════════════════════════════════════════════════════════════════════
+
+class InheritanceMode(str, Enum):
+    """How a ``LanguageSpec`` field is resolved when a spec declares a base
+    (``graphemes_base`` / ``allophones_base`` / ``positional_graphemes_base``)
+    or an ancestry ``parent``.
+    """
+
+    BASE_MERGE = "base_merge"
+    """Dict-valued field. Own values overlay the resolved base's values key
+    by key (``{**base, **own}``). Used by ``graphemes``, ``allophones`` and
+    ``positional_graphemes``."""
+
+    OVERLAY_BY_ID = "overlay_by_id"
+    """Sequence of id-keyed rule objects. The base's rules are inherited in
+    order; own rules with a matching ``id`` replace the inherited rule
+    in-place, own rules with a new ``id`` are appended. Used by
+    ``sandhi_rules`` — a blind dict-splat is wrong here because rules are
+    identified by ``id``, not by a single dict key."""
+
+    NOT_INHERITED = "not_inherited"
+    """Own-file-only by design. The field never propagates through
+    inheritance even though a base/parent is set — this is a deliberate
+    modeling choice (documented per-field), not an oversight. Used by
+    ``stress`` and ``word_exceptions``."""
+
+    OWN_ONLY = "own_only"
+    """Identity / bibliographic / classification field that never
+    participates in inheritance resolution at all (e.g. ``code``, ``name``,
+    ``family``, ``sources``, ``timespan``)."""
+
+
+FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
+    "code": InheritanceMode.OWN_ONLY,
+    "name": InheritanceMode.OWN_ONLY,
+    "family": InheritanceMode.OWN_ONLY,
+    "script": InheritanceMode.OWN_ONLY,
+    "graphemes": InheritanceMode.BASE_MERGE,
+    "allophones": InheritanceMode.BASE_MERGE,
+    "parent": InheritanceMode.OWN_ONLY,
+    "ancestors": InheritanceMode.OWN_ONLY,
+    "positional_graphemes": InheritanceMode.BASE_MERGE,
+    "glottolog_code": InheritanceMode.OWN_ONLY,
+    "notes": InheritanceMode.OWN_ONLY,
+    "quality": InheritanceMode.OWN_ONLY,
+    "script_type": InheritanceMode.OWN_ONLY,
+    "inherent_vowel": InheritanceMode.OWN_ONLY,
+    "iso639_3": InheritanceMode.OWN_ONLY,
+    "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
+    "tone_inventory": InheritanceMode.OWN_ONLY,
+    "sources": InheritanceMode.OWN_ONLY,
+    "wikipedia": InheritanceMode.OWN_ONLY,
+    "timespan": InheritanceMode.OWN_ONLY,
+    "stress": InheritanceMode.NOT_INHERITED,
+    "word_exceptions": InheritanceMode.NOT_INHERITED,
+}
+"""Explicit, enforced registry of every ``LanguageSpec`` field's inheritance
+behavior. ``tests/test_types.py`` asserts this covers every field returned by
+``dataclasses.fields(LanguageSpec)`` — a field added to the dataclass without
+a registered decision here fails that test, which is the forcing function:
+no field can silently skip inheritance resolution again the way
+``sandhi_rules`` and ``word_exceptions`` did before this registry existed.
+"""
+
+
+def fields_missing_inheritance_decision() -> FrozenSet[str]:
+    """Return the set of ``LanguageSpec`` field names absent from
+    :data:`FIELD_INHERITANCE`. Empty when the manifest is complete."""
+    declared = {f.name for f in fields(LanguageSpec)}
+    return frozenset(declared - set(FIELD_INHERITANCE.keys()))
 
 
 # ═══════════════════════════════════════════════════════════════════════════
