@@ -42,7 +42,11 @@ from orthography2ipa.registry import get, resolve
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
 from orthography2ipa.types import GraphemePosition, LanguageSpec
-from orthography2ipa.vowels import is_orthographic_vowel
+from orthography2ipa.vowels import (
+    is_back_vowel,
+    is_front_vowel,
+    is_orthographic_vowel,
+)
 
 __all__ = [
     "G2P",
@@ -444,7 +448,11 @@ class G2P:
         pos: List[GraphemePosition] = []
         is_vowel = is_orthographic_vowel(grapheme[0])
 
-        # 1. before_X (most specific)
+        # 1. before_X (exact letter, most specific), then the front/back
+        # vowel *class* (appended after the exact letter so an exact
+        # BEFORE_E entry always wins over BEFORE_FRONT_VOWEL for the same
+        # grapheme). Class positions are inert for specs that do not
+        # declare them.
         if next_tok is not None:
             nc = next_tok.grapheme[0].lower()
             if nc == 'a':
@@ -457,6 +465,10 @@ class G2P:
                 pos.append(GraphemePosition.BEFORE_O)
             elif nc == 'u':
                 pos.append(GraphemePosition.BEFORE_U)
+            if is_front_vowel(nc):
+                pos.append(GraphemePosition.BEFORE_FRONT_VOWEL)
+            elif is_back_vowel(nc):
+                pos.append(GraphemePosition.BEFORE_BACK_VOWEL)
 
         # 2. word boundary
         if tok_idx == 0:
@@ -496,6 +508,12 @@ class G2P:
                 pos.append(GraphemePosition.AFTER_O)
             elif pc == 'u':
                 pos.append(GraphemePosition.AFTER_U)
+            # front/back vowel class after the exact letter, before the
+            # generic AFTER_VOWEL (exact > class > generic).
+            if is_front_vowel(pc):
+                pos.append(GraphemePosition.AFTER_FRONT_VOWEL)
+            elif is_back_vowel(pc):
+                pos.append(GraphemePosition.AFTER_BACK_VOWEL)
             pos.append(GraphemePosition.AFTER_VOWEL)
         elif prev_tok is not None:
             pos.append(GraphemePosition.AFTER_CONSONANT)

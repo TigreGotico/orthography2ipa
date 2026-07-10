@@ -75,6 +75,10 @@ from orthography2ipa.types import GraphemePosition
 | `BEFORE_I` | Before ⟨i⟩ | _i | Velar softening contexts |
 | `BEFORE_O` | Before ⟨o⟩ | _o | Velar softening contexts |
 | `BEFORE_U` | Before ⟨u⟩ | _u | Velar softening contexts |
+| `BEFORE_FRONT_VOWEL` | Before any front vowel letter | _[+front] | Romance c/g softening (soft) |
+| `BEFORE_BACK_VOWEL` | Before any back vowel letter | _[+back] | Romance c/g softening (hard) |
+| `AFTER_FRONT_VOWEL` | After any front vowel letter | [+front]_ | German ⟨ch⟩ → [ç] (Ich-Laut) |
+| `AFTER_BACK_VOWEL` | After any back vowel letter | [+back]_ | German ⟨ch⟩ → [x] (Ach-Laut) |
 | `CONSONANTAL` | Consonantal context | — | Grapheme realised as consonant |
 | `VOCALIC` | Vocalic context | — | Grapheme realised as vowel |
 
@@ -83,6 +87,79 @@ These positions correspond to standard phonological environments documented in:
 - Kenstowicz, M. (1994). *Phonology in Generative Grammar*. Blackwell.
 - Hayes, B. (2009). *Introductory Phonology*. Wiley-Blackwell.
 - Zsiga, E. (2013). *The Sounds of Language*. Wiley-Blackwell.
+
+---
+
+## Vowel-class positions (front / back)
+
+The per-letter positions `BEFORE_A` … `BEFORE_U` (and their `AFTER_*` mirrors)
+force a spec to enumerate one rule per triggering vowel — and, worse, per
+*accented* variant of that vowel. The most common context-sensitive rule in
+Latin-script orthographies, Romance **c/g softening**, conditions on the whole
+*front vs. back vowel class*, not on individual letters: ⟨c⟩ is soft before any
+of ⟨e i y é è ê …⟩ and hard before any of ⟨a o u á à â …⟩.
+
+The class positions express this in a single entry each:
+
+- **`BEFORE_FRONT_VOWEL`** / **`AFTER_FRONT_VOWEL`** — the following /
+  preceding grapheme starts with a *front* vowel letter.
+- **`BEFORE_BACK_VOWEL`** / **`AFTER_BACK_VOWEL`** — the following /
+  preceding grapheme starts with a *back* vowel letter.
+
+Membership is decided **solely** by
+[`orthography2ipa.vowels`](../orthography2ipa/vowels.py), the single source of
+truth for vowel classification:
+
+```python
+from orthography2ipa.vowels import is_front_vowel, is_back_vowel
+
+is_front_vowel("é")   # True  — front, incl. accented and y / ü ö ø œ æ
+is_back_vowel("â")    # True  — back,  incl. accented a o u
+```
+
+Front class: `e i y` + accented forms + the front rounded letters `ü ö ø œ æ`.
+Back class: `a o u` + accented forms. `y` is treated as front (it patterns with
+⟨i⟩ for softening). See the `vowels` module docstring for every borderline
+classification.
+
+### Worked example — Italian ⟨c⟩ softening
+
+Instead of five near-identical per-letter entries, one class entry captures the
+rule (⟨c⟩ → /tʃ/ before a front vowel, /k/ otherwise):
+
+```json
+{
+  "graphemes": { "c": ["k"] },
+  "positional_graphemes": {
+    "c": { "before_front_vowel": ["tʃ"] }
+  }
+}
+```
+
+```python
+eng.transcribe_word("ce")   # "tʃe"   before_front_vowel → /tʃ/
+eng.transcribe_word("ci")   # "tʃi"
+eng.transcribe_word("cé")   # "tʃe"   accented front vowel matches too
+eng.transcribe_word("cy")   # "tʃi"   ⟨y⟩ is front
+eng.transcribe_word("ca")   # "ka"    back vowel → default /k/
+eng.transcribe_word("co")   # "ko"
+eng.transcribe_word("cu")   # "ku"
+```
+
+### Resolution order
+
+For any grapheme + neighbouring-context, the engine tries positions
+**most-specific first** and takes the first one the spec actually declares:
+
+1. **Exact-letter position** — `BEFORE_E`, `AFTER_A`, … (a specific vowel letter).
+2. **Vowel-class position** — `BEFORE_FRONT_VOWEL`, `AFTER_BACK_VOWEL`, ….
+3. **Default grapheme mapping** — the base `graphemes[grapheme]` list.
+
+So a spec can declare `BEFORE_FRONT_VOWEL` for the general case and still add a
+narrower `BEFORE_E` override for one letter that behaves differently — the exact
+`BEFORE_E` entry wins for ⟨e⟩ while every other front vowel falls through to the
+class rule. Class positions are inert for any spec that does not declare them, so
+adding them changes no existing transcription.
 
 ---
 

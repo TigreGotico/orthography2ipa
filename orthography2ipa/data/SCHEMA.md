@@ -205,8 +205,23 @@ matching the `GraphemePosition` enum:
 | `"before_i"`                | `GraphemePosition.BEFORE_I`                |
 | `"before_o"`                | `GraphemePosition.BEFORE_O`                |
 | `"before_u"`                | `GraphemePosition.BEFORE_U`                |
+| `"before_front_vowel"`      | `GraphemePosition.BEFORE_FRONT_VOWEL`      |
+| `"before_back_vowel"`       | `GraphemePosition.BEFORE_BACK_VOWEL`       |
+| `"after_front_vowel"`       | `GraphemePosition.AFTER_FRONT_VOWEL`       |
+| `"after_back_vowel"`        | `GraphemePosition.AFTER_BACK_VOWEL`        |
 | `"consonantal"`             | `GraphemePosition.CONSONANTAL`             |
 | `"vocalic"`                 | `GraphemePosition.VOCALIC`                 |
+
+The `*_front_vowel` / `*_back_vowel` positions condition on the whole vowel
+**class** of the neighbouring grapheme rather than a single letter — e.g. one
+`"before_front_vowel"` entry replaces `"before_e"` + `"before_i"` plus every
+accented ⟨e⟩/⟨i⟩ variant (Romance c/g softening). Front-class letters are
+`e i y` (+ accents, + front rounded `ü ö ø œ æ`); back-class are `a o u`
+(+ accents); membership is owned by `orthography2ipa.vowels.is_front_vowel` /
+`is_back_vowel`. Resolution order is **exact-letter position > vowel-class
+position > default `graphemes` mapping**: an exact `"before_e"` entry declared
+for the same grapheme wins over `"before_front_vowel"`, and the class positions
+are inert (change nothing) for any spec that does not declare them.
 
 ## Ancestor Role Values
 
