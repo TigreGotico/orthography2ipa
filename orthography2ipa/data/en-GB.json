@@ -115,11 +115,18 @@
     "dg": [
       "dʒ"
     ],
-    "gh": [
-      "ɡ",
-      "f",
-      ""
-    ],
+    "gh": {
+      "ipa": [
+        "ɡ",
+        "f",
+        ""
+      ],
+      "weights": [
+        0.03,
+        0.12,
+        0.85
+      ]
+    },
     "gn": [
       "n"
     ],
@@ -183,10 +190,16 @@
       "iː",
       "eɪ"
     ],
-    "ie": [
-      "aɪ",
-      "iː"
-    ],
+    "ie": {
+      "ipa": [
+        "aɪ",
+        "iː"
+      ],
+      "weights": [
+        0.4,
+        0.6
+      ]
+    },
     "oa": [
       "oʊ"
     ],
@@ -233,10 +246,16 @@
     "ar": [
       "ɑːɹ"
     ],
-    "er": [
-      "ɜːɹ",
-      "əɹ"
-    ],
+    "er": {
+      "ipa": [
+        "ɜːɹ",
+        "əɹ"
+      ],
+      "weights": [
+        0.2,
+        0.8
+      ]
+    },
     "ir": [
       "ɜːɹ"
     ],
@@ -467,7 +486,7 @@
       "notes": "Middle English descent"
     }
   ],
-  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule).",
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule). CANDIDATE WEIGHTS: a few ambiguous graphemes carry per-candidate `weights` (candidate frequencies) so the beam favours the corpus-dominant phoneme rather than the declared-first one — `er` = [ɜːɹ 0.2, əɹ 0.8] (unstressed schwar dominates the lexicon), `gh` = [ɡ 0.03, f 0.12, silent 0.85] (⟨gh⟩ is silent in the vast majority of words: night, though, high, weigh), `ie` = [aɪ 0.4, iː 0.6] (the /iː~i/ realisation of -ie/-ies edges out /aɪ/). Values are approximate frequencies grounded in Gontijo et al. (2003) British-English and Berndt et al. (1987) grapheme-phoneme probability studies, not PER-tuned parameters; graphemes without weights keep uniform rank ordering. See docs/candidate_scoring.md.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -520,6 +539,26 @@
       "url": "https://doi.org/10.1017/S0025100304001768",
       "pages": "239-245",
       "notes": "Illustrations of the IPA series entry; RP phoneme inventory and worked transcription."
+    },
+    {
+      "id": "gontijo2003",
+      "author": "Gontijo, P.F.D., Gontijo, I., & Shillcock, R.",
+      "year": 2003,
+      "title": "Grapheme-phoneme probabilities in British English",
+      "publisher": "Behavior Research Methods, Instruments, & Computers, 35(1), 136-157",
+      "url": "https://doi.org/10.3758/BF03195506",
+      "pages": "136-157",
+      "notes": "Corpus-derived conditional probabilities of grapheme-to-phoneme correspondences in British English. Basis for the `weights` on the `er`, `gh` and `ie` grapheme entries: candidate frequencies, not tuned parameters."
+    },
+    {
+      "id": "berndt1987",
+      "author": "Berndt, R.S., Reggia, J.A., & Mitchum, C.C.",
+      "year": 1987,
+      "title": "Empirically derived probabilities for grapheme-to-phoneme correspondences in English",
+      "publisher": "Behavior Research Methods, Instruments, & Computers, 19(1), 1-9",
+      "url": "https://doi.org/10.3758/BF03207663",
+      "pages": "1-9",
+      "notes": "Grapheme-to-phoneme correspondence probabilities from a 17,310-word corpus. Corroborates the dominant correspondences encoded in the weighted grapheme entries (e.g. `gh` most frequently silent; unstressed `er` = schwar)."
     }
   ],
   "wikipedia": [

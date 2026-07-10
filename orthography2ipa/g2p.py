@@ -47,6 +47,7 @@ from orthography2ipa.vowels import (
     is_front_vowel,
     is_orthographic_vowel,
 )
+from orthography2ipa.weights import candidate_base_costs
 
 __all__ = [
     "G2P",
@@ -551,18 +552,27 @@ class G2P:
         base_candidates = list(token.ipa)
 
         if positional_candidates is None:
-            # No positional override: fall back to flat table
+            # No positional override: fall back to the flat graphemes table,
+            # where per-candidate weights (layer 1) apply. `candidates` is
+            # then in the same order as `spec.graphemes[grapheme]`, so the
+            # weight list lines up index-for-index.
             candidates = base_candidates
+            weights = self._tokenizer.weights_for(grapheme)
         else:
-            # Merge: positional first, then base alternatives not already included
+            # Merge: positional first, then base alternatives not already
+            # included. Positional overrides carry their own ordering (rank
+            # cost); per-candidate flat weights do not apply to them (that is
+            # layer 3, positional weights), so no weights here.
             seen = set(positional_candidates)
             extra = [c for c in base_candidates if c not in seen]
             candidates = list(positional_candidates) + extra
+            weights = None
 
         # Build (ipa, cost) list
+        costs = candidate_base_costs(candidates, weights, grapheme=grapheme)
         branches: List[Tuple[str, float]] = []
         for rank, phoneme in enumerate(candidates):
-            base_cost = float(rank)
+            base_cost = costs[rank]
             if allophone_map and phoneme in allophone_map:
                 allophones = allophone_map[phoneme]
                 for a_rank, allophone in enumerate(allophones):

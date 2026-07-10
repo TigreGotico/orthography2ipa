@@ -35,6 +35,8 @@ Total paths: 2 × 2 × 3 = 12
 
 Beam search limits this to the N most-canonical paths (ranked by how "non-default" each choice is).
 
+By default that ranking is *positional*: candidate `0` costs `0`, candidate `1` costs `+1`, and so on. A spec can instead attach per-candidate **weights** (candidate frequencies) so the beam favours the corpus-dominant pronunciation and a path's score becomes a real log-probability. Absent weights, the behaviour is exactly the rank ordering above. See [candidate_scoring.md](candidate_scoring.md).
+
 ---
 
 ## Classes
