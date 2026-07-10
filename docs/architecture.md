@@ -223,11 +223,22 @@ List[Token]  (each with .grapheme and .ipa tuple)
       │
       ▼
 PhonetokTokenizer.ipa_beam()
-  └── Beam search over cartesian product of .ipa values
+  ├── Resolve branches (positional + weight −log P)
+  ├── Rescore (optional, B4)  → re-cost each slot given its neighbours
+  └── Beam search over cartesian product of the (rescored) slot candidates
       │
       ▼
 List[IPAPath]  (sorted by score, best first)
 ```
+
+The **rescorer** stage is the downstream-enablement seam: it runs after
+positional/weight resolution and before beam path selection, re-costing
+each grapheme slot as a pure function of the slot and its context. A
+downstream rule cascade — arbtok sun-letter assimilation, tugaphone
+silent-`e` — and the post-lexical allophone layer (B8) are both expressed
+as rescorers over the shared lattice rather than a forked tokenizer. See
+[Rescoring the lattice](lattice.md#rescoring-the-lattice). Absent a
+rescorer, the pipeline is byte-identical.
 
 ---
 

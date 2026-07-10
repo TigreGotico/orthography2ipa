@@ -154,3 +154,106 @@ The lattice is designed as an extension point, not a dead end:
 
 Both read the `SegmentSlot`/`Candidate` shape described here without
 changing it; the lattice is the stable substrate they attach to.
+
+## Rescoring the lattice
+
+A **rescorer** is the seam that lets a downstream rule cascade run over the
+*shared* lattice instead of forking a parallel tokenizer. It is a pure,
+composable pass that re-costs — and may reorder, add, drop, or delete — a
+slot's candidates, given that slot and its context.
+
+### Where it runs in the pipeline
+
+A rescorer runs **after** positional + weight branch generation (the −log P
+costing from `resolve_branches`) and **before** the beam selects a path:
+
+```
+normalize → tokenize → resolve branches (positional + weights)
+                          │
+                          ▼
+                 ┌─ rescore (B4)   ← re-cost each slot given its neighbours
+                 │      │
+                 ▼      ▼
+             beam path selection → stress → sandhi → dialect
+```
+
+Because a rescorer sees the **fully resolved** lattice — the pre-rescore
+candidates of every neighbouring slot, not a half-selected beam path — a
+*list* of rescorers composes deterministically: they apply in order and
+each one sees the previous one's output. This is also exactly where the
+post-lexical **allophone** pass (B8) attaches: a phoneme→surface rewrite
+is a rescorer that replaces a slot's IPA with its context-conditioned
+realisation.
+
+### The API
+
+Implement `LatticeRescorer.rescore(slot, context)` and pass it via the
+optional `rescorer=` parameter on `ipa_beam`, `ipa_best`, `ipa_lattice`
+(the tokenizer) or the `G2P(..., rescorer=...)` constructor (the engine).
+`rescorer=` accepts a single rescorer or a list. Absent it (the default
+`None`), the lattice and beam behave byte-for-byte as before.
+
+The `RescoreContext` gives the rescorer:
+
+- `context.slot` / `context.index` / `context.slots` — the current slot and
+  the full word's slots (surface order);
+- `context.grapheme` — the B1 `GraphemeContext`: word-local `prev`/`next`
+  grapheme access and `is_vowel`/`is_consonant`/`is_front`/`is_back`
+  predicates (single source of truth = `vowels.py`);
+- `context.prev_slot` / `context.next_slot` — the resolved neighbouring
+  slots, **word-local** (`None` at a word edge);
+- `context.is_word_initial` / `context.is_word_final`;
+- `context.syll_idx` / `context.stressed_syll_idx` / `context.is_stressed`
+  — syllable/stress info **where available**.
+
+**Stress availability differs by entry path, honestly.** The engine path
+(`G2P.transcribe`, `G2P.ipa_lattice`) computes syllabification and stress,
+so the stress fields are populated. The standalone tokenizer path
+(`PhonetokTokenizer.ipa_beam` / `ipa_lattice`) has no sentence-level stress
+detection, so `context.is_stressed` (and the syllable indices) are `None`.
+A rescorer that needs stress must guard for `None` — and may simply no-op
+when it is absent, exactly as the stress-conditioned positional rules do.
+
+**Empty-candidate return** is a feature, not an error: returning an empty
+sequence **deletes** the slot — it contributes no segment to any beam path
+and is dropped from `ipa_lattice` output. That is how a silent-grapheme
+rule (tugaphone silent-`e`) is expressed. The beam never crashes on it.
+
+### Worked example — a mini assimilation rule in ~20 lines
+
+Final-obstruent devoicing (a voiced obstruent surfaces voiceless
+word-finally — German, Dutch, Russian, Catalan) is a whole realisation
+rule in about twenty lines:
+
+```python
+from orthography2ipa import G2P, LatticeRescorer, Candidate
+
+class FinalDevoicing(LatticeRescorer):
+    VOICED = {"b": "p", "d": "t", "ɡ": "k", "z": "s", "v": "f", "ʒ": "ʃ"}
+
+    def rescore(self, slot, context):
+        if not context.is_word_final:          # only at the word edge
+            return slot.candidates
+        out = []
+        for c in slot.candidates:
+            surface = self.VOICED.get(c.ipa, c.ipa)   # devoice if voiced
+            out.append(Candidate(surface, c.cost))
+        return out                             # re-sorted by cost for you
+
+ca = G2P("ca", rescorer=FinalDevoicing())
+ca.transcribe("club")    # "ˈklub" → "ˈklup": final /b/ realised as [p]
+```
+
+The same shape expresses *c-before-front-vowel* softening — inspect
+`context.grapheme.next.is_front` and promote the soft candidate — or a
+sun-letter assimilation (compare `context.prev_slot`'s IPA). The rule reads
+the shared lattice; it never re-tokenizes.
+
+### Who builds on this
+
+B8 will ship the post-lexical allophone rules (vowel reduction, flapping,
+nasal place assimilation, devoicing, gemination, tone sandhi) **as
+rescorers** over this seam — the second of the library's "two maps". The
+downstream engines migrate their bespoke rule cascades here too: arbtok's
+sun-letter/waṣl assimilation and tugaphone's silent-`e`/reduction become
+rescorers over the shared engine rather than parallel tokenizers.

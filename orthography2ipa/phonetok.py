@@ -53,6 +53,9 @@ from orthography2ipa.vowels import (
     is_orthographic_vowel,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
+from orthography2ipa.rescorer import (
+    LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
+)
 
 from typing import TYPE_CHECKING
 
@@ -838,6 +841,62 @@ class PhonetokTokenizer:
         """
         return TokenSequence(self.tokenize(text))
 
+    # ─── Slot resolution / rescoring helpers (shared by beam + lattice) ─
+
+    def _grapheme_slots(
+            self,
+            tokens: List[Token],
+            contexts: Sequence["GraphemeContext"],
+            *,
+            allophone_map: Optional[Dict[str, List[str]]],
+    ) -> List[SegmentSlot]:
+        """Fully resolved (untruncated) lattice slots, one per GRAPHEME.
+
+        Each slot's candidates are the complete ``resolve_branches`` output
+        — no per-slot truncation — so a rescorer sees every option. The
+        standalone tokenizer supplies no stress context, so the
+        stress-conditioned positions are omitted (matching :meth:`ipa_beam`).
+        """
+        slots: List[SegmentSlot] = []
+        g_idx = 0
+        for token in tokens:
+            if token.kind != TokenKind.GRAPHEME:
+                continue
+            branches = resolve_branches(
+                self.spec, contexts[g_idx],
+                weights_for=self.weights_for,
+                allophone_map=allophone_map)
+            g_idx += 1
+            slots.append(SegmentSlot(
+                grapheme=token.grapheme,
+                span=(token.position, token.position + token.length),
+                candidates=tuple(
+                    Candidate(ipa=ipa, cost=cost) for ipa, cost in branches),
+            ))
+        return slots
+
+    def _rescored_branches(
+            self,
+            tokens: List[Token],
+            contexts: Sequence["GraphemeContext"],
+            rescorers: Sequence[LatticeRescorer],
+            *,
+            allophone_map: Optional[Dict[str, List[str]]],
+    ) -> List[List[Tuple[str, float]]]:
+        """Per-grapheme ``(ipa, cost)`` branches after rescoring.
+
+        Resolves full slots, runs the rescorers (in order) over them, and
+        flattens each slot back to the ``(ipa, cost)`` branch shape the beam
+        consumes. An empty inner list marks a rescorer-deleted slot.
+        """
+        slots = self._grapheme_slots(
+            tokens, contexts, allophone_map=allophone_map)
+        rescored = apply_rescorers(slots, contexts, rescorers)
+        return [
+            [(c.ipa, c.cost) for c in slot.candidates]
+            for slot in rescored
+        ]
+
     # ─── IPA beam search ────────────────────────────────────────────────
 
     def ipa_beam(
@@ -850,6 +909,7 @@ class PhonetokTokenizer:
             include_special: bool = False,
             length_norm: bool = False,
             diversity: float = 0.0,
+            rescorer: RescorerArg = None,
     ) -> List[IPAPath]:
         """Expand all possible IPA transcription paths via beam search.
 
@@ -896,6 +956,18 @@ class PhonetokTokenizer:
             top path (which otherwise dominate a long word's beam, differing
             in only one grapheme) in favour of genuinely different
             pronunciations. The top-1 path never changes.
+        rescorer : LatticeRescorer | Iterable[LatticeRescorer] | None
+            Optional lattice rescorer(s) (Workstream B4). When given, each
+            grapheme slot's resolved candidates are re-costed by the
+            rescorer(s), *in order*, **before** beam path selection — the
+            downstream-enablement seam by which a rule cascade (sun-letter
+            assimilation, silent-``e``) refines the shared lattice instead
+            of forking a tokenizer. ``None`` (default) is byte-identical to
+            no rescoring. A rescorer that returns no candidates for a slot
+            deletes it (the grapheme contributes no segment). See
+            :mod:`orthography2ipa.rescorer`. Stress-conditioned context is
+            unavailable on this standalone path (``context.is_stressed`` is
+            ``None``); the full engine supplies it.
 
         Returns
         -------
@@ -917,17 +989,35 @@ class PhonetokTokenizer:
 
         allophone_map = self.spec.allophones if expand_allophones else None
 
+        # Optional rescoring (B4): when rescorer(s) are supplied, pre-resolve
+        # every grapheme slot, re-cost through the rescorers, and index the
+        # resulting branches by grapheme position. Absent a rescorer this is
+        # skipped entirely so the default path stays byte-identical.
+        rescorers = normalize_rescorers(rescorer)
+        rescored_branches: Optional[List[List[Tuple[str, float]]]] = None
+        if rescorers:
+            rescored_branches = self._rescored_branches(
+                tokens, contexts, rescorers, allophone_map=allophone_map)
+
         g_idx = 0
         for token in tokens:
             if token.kind == TokenKind.GRAPHEME:
                 # Stress/sandhi are engine-only (no sentence context here),
                 # so the stress-conditioned nucleus positions are omitted;
                 # every other position agrees with G2P per word.
-                branches = resolve_branches(
-                    self.spec, contexts[g_idx],
-                    weights_for=self.weights_for,
-                    allophone_map=allophone_map)
-                g_idx += 1
+                if rescored_branches is not None:
+                    branches = rescored_branches[g_idx]
+                    g_idx += 1
+                    if not branches:
+                        # Rescorer deleted this slot: it contributes no
+                        # segment, leaving the running hypotheses untouched.
+                        continue
+                else:
+                    branches = resolve_branches(
+                        self.spec, contexts[g_idx],
+                        weights_for=self.weights_for,
+                        allophone_map=allophone_map)
+                    g_idx += 1
                 beam = self._expand_beam(beam, branches, beam_width)
 
             elif include_special:
@@ -972,10 +1062,12 @@ class PhonetokTokenizer:
             expand_allophones: bool = False,
             word_separator: str = " ",
             include_special: bool = False,
+            rescorer: RescorerArg = None,
     ) -> str:
         """Return the single best (most canonical) IPA transcription.
 
-        Equivalent to ``ipa_beam(..., beam_width=1)[0].ipa``.
+        Equivalent to ``ipa_beam(..., beam_width=1)[0].ipa``. Accepts the
+        same optional *rescorer* (B4) as :meth:`ipa_beam`.
         """
         paths = self.ipa_beam(
             text,
@@ -983,6 +1075,7 @@ class PhonetokTokenizer:
             expand_allophones=expand_allophones,
             word_separator=word_separator,
             include_special=include_special,
+            rescorer=rescorer,
         )
         return paths[0].ipa if paths else ""
 
@@ -994,6 +1087,7 @@ class PhonetokTokenizer:
             *,
             beam_width: int = 8,
             expand_allophones: bool = False,
+            rescorer: RescorerArg = None,
     ) -> List[SegmentSlot]:
         """Return the structured pronunciation lattice for *text*.
 
@@ -1028,19 +1122,39 @@ class PhonetokTokenizer:
         expand_allophones : bool
             Enumerate surface allophone variants (from ``spec.allophones``)
             as extra candidates, mirroring :meth:`ipa_beam`.
+        rescorer : LatticeRescorer | Iterable[LatticeRescorer] | None
+            Optional lattice rescorer(s) (Workstream B4). When given, each
+            slot's candidates are re-costed by the rescorer(s), in order,
+            *before truncation*, so the returned lattice reflects the
+            rescored costs. A rescorer that returns no candidates for a slot
+            deletes it (the slot is omitted from the returned list).
+            ``None`` (default) leaves the lattice byte-identical. See
+            :mod:`orthography2ipa.rescorer`.
 
         Notes
         -----
         This is the object downstream engines consume. A *rescorer* (B4)
-        will re-cost each slot's candidates given the neighbouring slots
-        before a path is chosen; a per-word *confidence* (B5) is read from
-        the top-1 vs top-2 ``cost`` margin across slots. Neither changes the
+        re-costs each slot's candidates given the neighbouring slots before
+        a path is chosen; a per-word *confidence* (B5) is read from the
+        top-1 vs top-2 ``cost`` margin across slots. Neither changes the
         slot shape returned here.
         """
         tokens = self.tokenize(text)
         contexts = TokenSequence(tokens).graphemes
         allophone_map = self.spec.allophones if expand_allophones else None
         keep = 2 ** 31 if beam_width < 0 else beam_width
+
+        rescorers = normalize_rescorers(rescorer)
+        if rescorers:
+            full = self._grapheme_slots(
+                tokens, contexts, allophone_map=allophone_map)
+            rescored = apply_rescorers(full, contexts, rescorers)
+            return [
+                SegmentSlot(grapheme=s.grapheme, span=s.span,
+                            candidates=s.candidates[:keep])
+                for s in rescored
+                if s.candidates  # a rescorer that empties a slot deletes it
+            ]
 
         slots: List[SegmentSlot] = []
         g_idx = 0
