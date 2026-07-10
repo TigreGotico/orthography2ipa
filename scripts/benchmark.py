@@ -868,7 +868,7 @@ def bootstrap_per_ci(
     computes the mean of each resample, and returns the 2.5th/97.5th
     percentiles of the resulting distribution. Deterministic across runs
     given the same input list, seed and rep count. Returns ``(0.0, 0.0)``
-    for an empty/singleton input (nothing to resample).
+    for an empty input (nothing to resample).
     """
     n = len(pers)
     if n == 0:
