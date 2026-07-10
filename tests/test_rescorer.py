@@ -264,9 +264,67 @@ def test_prev_next_slot_are_word_local():
 
     tok = PhonetokTokenizer(get("pt"))
     tok.ipa_lattice("ca ab", rescorer=Probe())
+    # Indices are WORD-LOCAL on the tokenizer path (Finding B): both words
+    # start at index 0, and slots/index never cross a word boundary.
     # First word "ca": 'c' word-initial (no prev), 'a' word-final of word 1.
     assert seen[(0, "c")] == (None, "a", True, False)
     assert seen[(1, "a")] == ("c", None, False, True)
-    # Second word "ab": 'a' word-initial (prev is None despite global idx 2).
-    assert seen[(2, "a")] == (None, "b", True, False)
-    assert seen[(3, "b")] == ("a", None, False, True)
+    # Second word "ab": 'a' word-initial at local index 0, 'b' at local 1.
+    assert seen[(0, "a")] == (None, "b", True, False)
+    assert seen[(1, "b")] == ("a", None, False, True)
+
+
+def test_slots_are_word_local_on_tokenizer_path():
+    # A rescorer scanning context.slots must see only its own word.
+    seen_lengths = {}
+
+    class ProbeSlots(LatticeRescorer):
+        def rescore(self, slot, context):
+            seen_lengths[(context.index, slot.grapheme)] = (
+                len(context.slots),
+                context.slots[context.index] is slot,
+            )
+            return slot.candidates
+
+    tok = PhonetokTokenizer(get("pt"))
+    tok.ipa_lattice("casa gato", rescorer=ProbeSlots())
+    # Each word has 4 graphemes; every slot sees a 4-slot word-local list,
+    # and slots[index] is itself.
+    assert all(length == 4 and is_self
+               for length, is_self in seen_lengths.values())
+
+
+# ─── Composition + deletion: emptied neighbour reads as None (Finding A) ─
+
+class ReadPrevTop(LatticeRescorer):
+    """Reads context.prev_slot.top — must not crash when the previous slot
+    was emptied by an earlier rescorer in the chain."""
+
+    def __init__(self) -> None:
+        self.seen_prev = []
+
+    def rescore(self, slot, context):
+        prev = context.prev_slot
+        self.seen_prev.append(
+            (slot.grapheme, prev.top.ipa if prev is not None else None))
+        return slot.candidates
+
+
+def test_composed_delete_then_read_prev_does_not_crash():
+    tok = PhonetokTokenizer(get("pt"))
+    reader = ReadPrevTop()
+    # Delete 'c' first, then a rescorer that reads prev_slot.top. The slot
+    # after the deleted 'c' must see prev_slot is None (not an empty slot),
+    # so .top is never called on empty candidates.
+    slots = tok.ipa_lattice("casa", rescorer=[DeleteGrapheme("c"), reader])
+    # 'c' is gone; the surviving first grapheme 'a' had 'c' (now emptied)
+    # as its word-local predecessor → reader must have seen None for it.
+    assert ("a", None) in reader.seen_prev
+    assert [s.grapheme for s in slots] == ["a", "s", "a"]
+
+
+def test_composed_delete_then_read_prev_beam_does_not_crash():
+    tok = PhonetokTokenizer(get("pt"))
+    # Same composition through the beam: must complete without IndexError.
+    out = tok.ipa_best("casa", rescorer=[DeleteGrapheme("c"), ReadPrevTop()])
+    assert "k" not in out and out  # 'c' deleted, rest transcribed

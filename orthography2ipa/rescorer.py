@@ -106,8 +106,10 @@ class RescoreContext:
     """Zero-based position of this slot among the word's GRAPHEME slots."""
 
     slots: Sequence["SegmentSlot"]
-    """All GRAPHEME slots of the current word, in surface order. Aligned
-    1:1 with :attr:`grapheme`'s sequence, so ``slots[index] is slot``."""
+    """All GRAPHEME slots **of the current word**, in surface order, so
+    ``slots[index] is slot``. Word-local on both the engine and the
+    standalone tokenizer path — a rescorer scanning ``slots`` or doing
+    word-relative arithmetic on ``index`` never crosses a word boundary."""
 
     grapheme: "GraphemeContext"
     """The B1 context view for this grapheme: word-local ``prev``/``next``
@@ -128,18 +130,26 @@ class RescoreContext:
     @property
     def prev_slot(self) -> Optional["SegmentSlot"]:
         """The resolved slot immediately before this one *within the same
-        word*, or ``None`` at a word start."""
+        word*, or ``None`` at a word start **or when an earlier rescorer in
+        the chain emptied (deleted) that neighbour**. A returned slot always
+        has candidates, so ``context.prev_slot.top`` is safe; composed
+        rescorers must handle ``None`` here exactly as at a word edge."""
         if self.grapheme.prev is None or self.index == 0:
             return None
-        return self.slots[self.index - 1]
+        prev = self.slots[self.index - 1]
+        return prev if prev.candidates else None
 
     @property
     def next_slot(self) -> Optional["SegmentSlot"]:
         """The resolved slot immediately after this one *within the same
-        word*, or ``None`` at a word end."""
+        word*, or ``None`` at a word end **or when an earlier rescorer in
+        the chain emptied (deleted) that neighbour**. A returned slot always
+        has candidates, so ``context.next_slot.top`` is safe; composed
+        rescorers must handle ``None`` here exactly as at a word edge."""
         if self.grapheme.next is None or self.index + 1 >= len(self.slots):
             return None
-        return self.slots[self.index + 1]
+        nxt = self.slots[self.index + 1]
+        return nxt if nxt.candidates else None
 
     @property
     def is_word_initial(self) -> bool:
@@ -240,40 +250,63 @@ def apply_rescorers(
 ) -> List["SegmentSlot"]:
     """Apply *rescorers* in order to every slot, returning new slots.
 
-    *slots* are the fully resolved (post positional + weight) slots of one
-    word, aligned 1:1 with *contexts* (the B1 grapheme views). For each
-    rescorer, in order, every slot is rebuilt from that rescorer's returned
-    candidates (re-sorted by ``(cost, ipa)``); the next rescorer therefore
-    sees the previous one's output. A rescorer that returns an empty
-    sequence leaves a slot with empty ``candidates`` — the caller (beam or
-    lattice) is responsible for treating that as a deleted slot.
+    *slots* are the fully resolved (post positional + weight) slots of the
+    input, aligned 1:1 with *contexts* (the B1 grapheme views). The slots
+    are segmented into **word runs** using the word-local ``contexts`` (a
+    grapheme with ``ctx.prev is None`` begins a new word); every
+    :class:`RescoreContext` is handed only its own word's slots and a
+    word-local ``index``, so a rescorer's ``slots``/``index`` never cross a
+    word boundary on either entry path.
+
+    For each rescorer, in order, every slot is rebuilt from that rescorer's
+    returned candidates (re-sorted by ``(cost, ipa)``); the next rescorer
+    therefore sees the previous one's output. A rescorer that returns an
+    empty sequence leaves a slot with empty ``candidates`` — the caller
+    (beam or lattice) treats that as a deleted slot, and a later rescorer in
+    the chain sees an emptied neighbour as ``None`` via
+    :attr:`RescoreContext.prev_slot`/:attr:`~RescoreContext.next_slot`.
 
     Pure: it never mutates *slots* (frozen dataclasses) and holds no state.
     """
     from orthography2ipa.phonetok import SegmentSlot
 
+    n = len(contexts)
+    # Word-run boundaries from the word-local contexts: a grapheme with no
+    # word-local predecessor starts a new run.
+    runs: List[Tuple[int, int]] = []
+    start = 0
+    for i in range(1, n):
+        if contexts[i].prev is None:
+            runs.append((start, i))
+            start = i
+    if n:
+        runs.append((start, n))
+
     current: List["SegmentSlot"] = list(slots)
     for rescorer in rescorers:
-        rescored: List["SegmentSlot"] = []
-        for i, slot in enumerate(current):
-            ctx = RescoreContext(
-                slot=slot,
-                index=i,
-                slots=current,
-                grapheme=contexts[i],
-                syll_idx=(syll_for_token[i]
-                          if syll_for_token is not None else None),
-                stressed_syll_idx=stressed_syll_idx,
-            )
-            new_cands = rescorer.rescore(slot, ctx)
-            if new_cands is slot.candidates:
-                rescored.append(slot)
-                continue
-            ordered = tuple(sorted(new_cands, key=lambda c: (c.cost, c.ipa)))
-            rescored.append(SegmentSlot(
-                grapheme=slot.grapheme,
-                span=slot.span,
-                candidates=ordered,
-            ))
+        rescored: List["SegmentSlot"] = list(current)
+        for run_start, run_end in runs:
+            local = current[run_start:run_end]
+            for local_idx, slot in enumerate(local):
+                gi = run_start + local_idx
+                ctx = RescoreContext(
+                    slot=slot,
+                    index=local_idx,
+                    slots=local,
+                    grapheme=contexts[gi],
+                    syll_idx=(syll_for_token[gi]
+                              if syll_for_token is not None else None),
+                    stressed_syll_idx=stressed_syll_idx,
+                )
+                new_cands = rescorer.rescore(slot, ctx)
+                if new_cands is slot.candidates:
+                    continue
+                ordered = tuple(
+                    sorted(new_cands, key=lambda c: (c.cost, c.ipa)))
+                rescored[gi] = SegmentSlot(
+                    grapheme=slot.grapheme,
+                    span=slot.span,
+                    candidates=ordered,
+                )
         current = rescored
     return current
