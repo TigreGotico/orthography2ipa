@@ -201,6 +201,31 @@ class GraphemePosition(str, Enum):
     BEFORE_O = "before_o"
     BEFORE_U = "before_u"
 
+    BEFORE_FRONT_VOWEL = "before_front_vowel"
+    """Before a *front* vowel letter (``e i y`` + accented/rounded variants,
+    membership decided by :func:`orthography2ipa.vowels.is_front_vowel`).
+    The class-level condition for Romance c/g softening: a single
+    ``BEFORE_FRONT_VOWEL`` entry replaces enumerating ``BEFORE_E`` +
+    ``BEFORE_I`` + every accented ⟨e⟩/⟨i⟩. An exact per-letter position
+    (e.g. ``BEFORE_E``) declared for the same grapheme still wins over
+    this class position."""
+
+    BEFORE_BACK_VOWEL = "before_back_vowel"
+    """Before a *back* vowel letter (``a o u`` + accented variants,
+    membership decided by :func:`orthography2ipa.vowels.is_back_vowel`).
+    The class-level condition for the "hard" realisation in Romance
+    c/g softening. Exact per-letter positions win over it."""
+
+    AFTER_FRONT_VOWEL = "after_front_vowel"
+    """After a *front* vowel letter (mirrors :attr:`BEFORE_FRONT_VOWEL`).
+    E.g. German ⟨ch⟩ → [ç] (Ich-Laut) after front vowels. Exact per-letter
+    positions (``AFTER_E`` …) win over it."""
+
+    AFTER_BACK_VOWEL = "after_back_vowel"
+    """After a *back* vowel letter (mirrors :attr:`BEFORE_BACK_VOWEL`).
+    E.g. German ⟨ch⟩ → [x] (Ach-Laut) after back vowels. Exact per-letter
+    positions (``AFTER_A`` …) win over it."""
+
     AFTER_A = "after_a"
     """Preceding token's grapheme starts with ``a`` (mirrors BEFORE_A).
     E.g., German ⟨ch⟩ after back vowels ``a/o/u`` → [x] (Ach-Laut)."""
