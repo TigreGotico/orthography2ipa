@@ -747,6 +747,63 @@ def levenshtein(a: str, b: str) -> int:
     return prev[-1]
 
 
+def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
+    """Character-level edit-distance alignment between ``a`` (e.g. gold)
+    and ``b`` (e.g. hypothesis), with full backpointer traceback.
+
+    Returns a list of ``(a_char_or_None, b_char_or_None)`` pairs in order:
+    a substitution/match pair ``(ca, cb)``, an insertion (present only in
+    ``b``) as ``(None, cb)``, or a deletion (present only in ``a``) as
+    ``(ca, None)``. Dropping every ``None`` from each side of the returned
+    pairs reconstructs ``a`` and ``b`` respectively. Uses the same edit
+    costs as :func:`levenshtein` (unit cost per insertion/deletion/
+    substitution) so alignments are consistent with the scored distance,
+    but is not used by :func:`levenshtein` itself to keep that function's
+    behavior byte-identical to its historical implementation.
+    """
+    n, m = len(a), len(b)
+    # dp[i][j] = edit distance between a[:i] and b[:j]
+    dp = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        dp[i][0] = i
+    for j in range(1, m + 1):
+        dp[0][j] = j
+    for i in range(1, n + 1):
+        ca = a[i - 1]
+        for j in range(1, m + 1):
+            cb = b[j - 1]
+            cost = 0 if ca == cb else 1
+            dp[i][j] = min(
+                dp[i - 1][j] + 1,       # deletion (a char unmatched)
+                dp[i][j - 1] + 1,       # insertion (b char unmatched)
+                dp[i - 1][j - 1] + cost,  # match/substitution
+            )
+
+    # traceback from (n, m) to (0, 0), preferring match/substitution ties
+    pairs: List[Tuple[Optional[str], Optional[str]]] = []
+    i, j = n, m
+    while i > 0 or j > 0:
+        if i > 0 and j > 0:
+            ca, cb = a[i - 1], b[j - 1]
+            cost = 0 if ca == cb else 1
+            if dp[i][j] == dp[i - 1][j - 1] + cost:
+                pairs.append((ca, cb))
+                i, j = i - 1, j - 1
+                continue
+        if i > 0 and dp[i][j] == dp[i - 1][j] + 1:
+            pairs.append((a[i - 1], None))
+            i -= 1
+            continue
+        if j > 0 and dp[i][j] == dp[i][j - 1] + 1:
+            pairs.append((None, b[j - 1]))
+            j -= 1
+            continue
+        # unreachable for a well-formed dp table
+        break
+    pairs.reverse()
+    return pairs
+
+
 def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
     from orthography2ipa import G2P
 

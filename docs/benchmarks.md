@@ -414,6 +414,55 @@ provenance:
 | **CELEX2 (de/nl/en)** | EXCLUDED — proprietary | LDC license (LDC96L14), not freely downloadable. |
 | **GlobalPhone** | EXCLUDED — ELRA license | Per-language ELRA licenses; not freely downloadable. |
 
+## Diagnosing a language
+
+The scoreboard tells you *that* a language scores badly; it does not tell
+you *why*. `scripts/error_analysis.py` is the microscope: it runs a gold
+dataset through the engine and reports where the errors concentrate, so
+spec work starts from evidence instead of guesswork. It is strictly
+read-only — it never touches a spec or any other file.
+
+```bash
+PYTHONPATH=$PWD python scripts/error_analysis.py pt-PT --dataset infopedia_pt --limit 300
+```
+
+`<lang>` is required; `--dataset` is optional (when omitted, the first
+registered dataset that covers the language is used), `--limit` caps the
+gold slice (default 300, same as the benchmark harness), and `--json`
+emits all three sections as one JSON object instead of the text report.
+Alignment reuses the same routine (`scripts.benchmark.align`) and the
+same default normalization (stress marks and narrow diacritics stripped)
+that the scoreboard uses, so what you see here matches how PER is scored.
+
+The report has three sections; read them in this order:
+
+1. **Top-20 phoneme confusion pairs** (`gold -> hyp`). Each row is an
+   aligned mismatch, ranked by how often it occurs. `∅` on the gold side
+   is an *insertion* (the engine emitted a phoneme the gold does not
+   have); `∅` on the hyp side is a *deletion* (the engine dropped a gold
+   phoneme). A single high-count pair — e.g. `'r' -> 'ɾ'` — is usually
+   one wrong or missing grapheme/allophone rule and the fastest fix.
+
+2. **Top-20 worst words** — the words with the highest per-word PER, gold
+   and hyp side by side. Use these to see the confusion pairs *in
+   context*: whether a substitution is systematic (every word) or
+   conditioned (only before front vowels, only word-finally, etc.), which
+   tells you whether the fix is a flat grapheme change or a positional
+   rule.
+
+3. **Per-grapheme blame** — for each orthographic character/digraph in
+   the spec's grapheme map, the mean PER of gold words containing it
+   (minimum 3 occurrences), worst-first. This points at which *spelling*
+   is costing you accuracy. It is a triage signal (substring containment,
+   not tokenization), so treat a high-blame grapheme as "look here first",
+   then confirm against the confusion pairs and worst words.
+
+Feed the top confusion pairs into the per-language procedure: classify
+each systematic error (missing/wrong grapheme mapping, missing positional
+rule, missing sandhi, stress placement, or genuinely lexical), cite a
+published source for every spec change, and re-run the tool to confirm
+the pair's count dropped.
+
 ## Methodology
 
 - **PER** — character-level Levenshtein distance over IPA, divided by
