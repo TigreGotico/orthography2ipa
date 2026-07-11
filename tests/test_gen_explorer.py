@@ -85,3 +85,29 @@ def test_benchmark_rows_joined_for_a_known_scored_language():
     sample = data["languages"][scored[0]]
     row = sample["benchmarks"][0]
     assert "dataset" in row and "per" in row
+
+
+def test_is_family_flags_ended_ancestor_stages_not_living_languages():
+    """The tree's family/proto marker: a genetic parent whose timespan has
+    ENDED is an ancestry grouping; a still-spoken language that also parents a
+    sub-variety is not."""
+    langs = gen_explorer.build_data()["languages"]
+    # Ended proto/medieval stages that are someone's parent → family.
+    assert langs["roa-x-galaicopt"]["is_family"] is True   # Galaico-Portuguese
+    assert langs["pt-PT-x-medieval"]["is_family"] is True
+    # Living languages (open-ended timespan) → not family, even when they
+    # parent a sub-variety or their gold is keyed under a bare code.
+    assert langs["gl"]["is_family"] is False
+    assert langs["pt-PT"]["is_family"] is False
+    assert langs["es-ES"]["is_family"] is False
+    # Pure ancestry stubs ("… (family node)", proto-language nodes) carry tier
+    # `stub` and often no timespan — they must still be flagged as groupings.
+    assert langs["bnt"]["is_family"] is True   # Proto-Bantu (family node)
+    assert langs["afa"]["is_family"] is True   # Afroasiatic (family node)
+
+
+def test_explorer_ships_tree_and_graph_views():
+    html = gen_explorer.render_html(gen_explorer.build_data())
+    for anchor in ('id="view-tree"', 'id="view-graph"', 'id="tree-root"',
+                   'buildForest', 'renderGraph', '--edge-adstrate'):
+        assert anchor in html
