@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.60.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.60.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.59.0a2...1.60.0a1)
+
+**Merged pull requests:**
+
+- feat: static language-data explorer for gh-pages [\#223](https://github.com/TigreGotico/orthography2ipa/pull/223) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.59.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.59.0a2) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.59.0a1...1.59.0a2)
@@ -689,10 +697,6 @@
 ## [1.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.0.0a1...1.1.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): stress seeds gl/mwl/barranquenho + gl positional phonology + mwl j/cedilla fix [\#28](https://github.com/TigreGotico/orthography2ipa/pull/28) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.0.0a1) (2026-06-11)
 
