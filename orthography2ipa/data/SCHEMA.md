@@ -77,7 +77,10 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
-| `glottolog_code`            | string | no       | Glottolog languoid code (e.g. `"cast1244"`)  |
+| `glottolog_code`            | string | no       | Glottolog languoid code (e.g. `"cast1244"`) — genealogical classification |
+| `wikidata_qid`              | string | no       | Wikidata item id (e.g. `"Q1321"`) — the linked-data hub; one QID resolves this language's Glottolog, ISO 639-3, PHOIBLE, WALS and Wikipedia articles in every edition |
+| `phoible_id`                | string | no       | PHOIBLE identifier — attested phoneme inventories, the reference a spec's emitted phoneme set can be validated against |
+| `wals_code`                 | string | no       | WALS (World Atlas of Language Structures) code — typological cross-reference |
 | `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) |
 | `urls`                      | array  | no       | Other reference URLs (Glottolog, Ethnologue, dialect articles, …) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |

@@ -247,6 +247,9 @@ class LanguageSpecModel(_Strict):
     inherent_vowel: Optional[str] = None
     iso639_3: Optional[str] = None
     glottolog_code: Optional[str] = None
+    wikidata_qid: Optional[str] = None
+    phoible_id: Optional[str] = None
+    wals_code: Optional[str] = None
 
     # ─── extended structures ────────────────────────────────────────
     sandhi_rules: Optional[List[SandhiRuleModel]] = None

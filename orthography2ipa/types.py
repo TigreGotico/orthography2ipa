@@ -741,6 +741,9 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "script_type": InheritanceMode.OWN_ONLY,
     "inherent_vowel": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
+    "wikidata_qid": InheritanceMode.OWN_ONLY,
+    "phoible_id": InheritanceMode.OWN_ONLY,
+    "wals_code": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "tone_inventory": InheritanceMode.OWN_ONLY,
@@ -860,6 +863,22 @@ class LanguageSpec:
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
+
+    wikidata_qid: Optional[str] = None
+    """Optional Wikidata item id (e.g. ``"Q1321"`` for Spanish). The hub of the
+    linked-data graph: one QID resolves to this language's Glottolog code,
+    ISO 639-3 code, PHOIBLE inventories, WALS entry and Wikipedia articles in
+    every edition. See https://www.wikidata.org."""
+
+    phoible_id: Optional[str] = None
+    """Optional PHOIBLE identifier for the language's attested phoneme
+    inventories. PHOIBLE catalogues cross-linguistic phoneme inventories and is
+    the reference against which a spec's emitted phoneme set can be validated.
+    See https://phoible.org."""
+
+    wals_code: Optional[str] = None
+    """Optional WALS (World Atlas of Language Structures) code, for typological
+    cross-referencing. See https://wals.info."""
 
     sandhi_rules: Tuple[SandhiRule, ...] = ()
     """Cross-word-boundary phonological rules (liaison, sandhi)."""
