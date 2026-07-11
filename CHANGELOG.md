@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.45.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.45.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.44.0a2...1.45.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): add Kabyle Berber ancestry chain and stub ancestor specs [\#184](https://github.com/TigreGotico/orthography2ipa/pull/184) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.44.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.44.0a2) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.44.0a1...1.44.0a2)
@@ -586,7 +594,6 @@
 - feat: ast+gl [\#8](https://github.com/TigreGotico/orthography2ipa/pull/8) ([JarbasAl](https://github.com/JarbasAl))
 - Latin graphemes + portuguese 4way sibilant distinction [\#7](https://github.com/TigreGotico/orthography2ipa/pull/7) ([JarbasAl](https://github.com/JarbasAl))
 - refactor to json [\#6](https://github.com/TigreGotico/orthography2ipa/pull/6) ([JarbasAl](https://github.com/JarbasAl))
-- feat: positional graphemmes [\#4](https://github.com/TigreGotico/orthography2ipa/pull/4) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
