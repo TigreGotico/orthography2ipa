@@ -1,6 +1,6 @@
 # Lisbon / Estremenho European Portuguese (pt-PT-x-lisbon) — Phonology Reference
 
-**Code**: `pt-PT-x-lisbon` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-lisbon` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` | **Quality tier**: research
 **Sources**: Hristovsky (2008, *Textos Seleccionados* XXIII ENAPL, APL, pp. 239–255); Mateus & d'Andrade (2000, *The Phonology of Portuguese*, p. 19); Cruz-Ferreira (1995, *JIPA* 25:90–94); Cintra (1971, *Boletim de Filologia* 22:81–116); Segura (2013, *Gramática do Português*, Fundação Calouste Gulbenkian)
 

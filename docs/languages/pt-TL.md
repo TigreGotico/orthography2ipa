@@ -1,6 +1,6 @@
 # East Timorese Portuguese (pt-TL) — Phonology Reference
 
-**Code**: `pt-TL` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-TL` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Parent**: `pt-PT`
 **Primary source**: Albuquerque, D. B. (2010), *Peculiaridades prosódicas do
 português falado em Timor Leste*, ReVEL 8(15):270–285 — **read in full**.

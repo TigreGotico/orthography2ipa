@@ -1,6 +1,6 @@
 # Algarvio Portuguese (pt-PT-x-algarve) — Phonology Reference
 
-**Code**: `pt-PT-x-algarve` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-algarve` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Parent**: `pt-PT`
 **Sources**: Cintra (1971, *Boletim de Filologia* 22: 81–116), Brissos (2014,
 *Journal of Portuguese Linguistics* 13(1): 63–115), Segura da Cruz (1989),

@@ -1,6 +1,6 @@
 # Nortista / Amazônico Portuguese (pt-BR-x-norte) — Phonology Reference
 
-**Code**: `pt-BR-x-norte` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR-x-norte` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
 **Sources**: Nascentes (1953, *O linguajar carioca*), Silva (2014, ALFAL
 XVII), Noll (2008), Cardoso et al. (2014, *ALiB*), Mateus & d'Andrade (2000),

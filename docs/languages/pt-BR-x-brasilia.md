@@ -1,6 +1,6 @@
 # Brasiliense Portuguese (pt-BR-x-brasilia) — Phonology Reference
 
-**Code**: `pt-BR-x-brasilia` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR-x-brasilia` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
 **Sources**: Nascentes (1953, *O linguajar carioca*), Noll (2008), Mateus &
 d'Andrade (2000), Callou & Leite (2001), Silva (2002)

@@ -113,7 +113,7 @@ class TestGermanStandard:
 
     def test_family(self):
         """German belongs to the Germanic language family."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     def test_script(self):
         """Modern German is written in the Latin script."""
@@ -340,7 +340,7 @@ class TestAustrianGerman:
 
     def test_family(self):
         """Austrian German is Germanic."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     def test_parent_is_standard_german(self):
         """de-AT must declare de-DE as its parent to inherit graphemes."""
@@ -452,7 +452,7 @@ class TestDutch:
 
     def test_family(self):
         """Dutch belongs to the Germanic family."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     def test_script(self):
         """Dutch uses the Latin script."""
@@ -657,7 +657,7 @@ class TestAfrikaans:
 
     def test_family(self):
         """Afrikaans is a Germanic language (West Germanic branch)."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     # --- Vowels ---
 
@@ -740,7 +740,7 @@ class TestSwedish:
 
     def test_family(self):
         """Swedish is a North Germanic (Scandinavian) language."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > North Germanic"
 
     def test_script(self):
         """Swedish uses the Latin script."""
@@ -892,7 +892,7 @@ class TestDanish:
 
     def test_family(self):
         """Danish is a North Germanic language."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > North Germanic"
 
     def test_script(self):
         """Danish uses the Latin script."""
@@ -1028,7 +1028,7 @@ class TestNorwegianBokmal:
 
     def test_family(self):
         """Norwegian Bokmål is a North Germanic language."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > North Germanic"
 
     def test_parent_is_norwegian(self):
         """nb inherits from 'no' (generic Norwegian), not Danish directly."""
@@ -1101,7 +1101,7 @@ class TestIcelandic:
 
     def test_family(self):
         """Icelandic is a North Germanic language."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > North Germanic"
 
     def test_script(self):
         """Icelandic uses the Latin script (with <ð>, <þ>, <á>, <é>, etc.)."""
@@ -1225,7 +1225,7 @@ class TestWestFrisian:
 
     def test_family(self):
         """West Frisian belongs to the Germanic family."""
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     def test_script(self):
         """West Frisian uses the Latin script."""
@@ -1459,7 +1459,7 @@ class TestNorthFrisian:
         assert self._spec.name == "North Frisian"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     # --- Vowels ---
 
@@ -1569,7 +1569,7 @@ class TestSaterlandFrisian:
         assert self._spec.name == "Saterland Frisian"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     # --- Vowels ---
 
@@ -1677,7 +1677,7 @@ class TestOldFrisian:
         assert self._spec.name == "Old Frisian"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Germanic"
+        assert self._spec.family == "Indo-European > Germanic > West Germanic"
 
     # --- Vowels ---
 

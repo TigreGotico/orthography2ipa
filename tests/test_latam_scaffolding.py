@@ -68,7 +68,7 @@ class TestNodesResolve:
 
     @pytest.mark.parametrize("code", REGIONAL_STUBS + NEW_NATIONALS)
     def test_spanish_is_romance(self, code):
-        assert get(code).family == "Indo-European > Romance"
+        assert get(code).family == "Indo-European > Romance > Ibero-Romance"
 
     @pytest.mark.parametrize("code", ADSTRATE_STUBS)
     def test_adstrate_nonempty_inventory(self, code):

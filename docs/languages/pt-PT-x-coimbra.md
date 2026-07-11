@@ -1,6 +1,6 @@
 # Conimbricense European Portuguese (pt-PT-x-coimbra) — Phonology Reference
 
-**Code**: `pt-PT-x-coimbra` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-coimbra` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
 **Sources**: Portuguese With Leo, "Coimbra tem sotaque?" (native-speaker, **not** academic); Cintra (1971); Mateus & d'Andrade (2000)
 

@@ -1,6 +1,6 @@
 # Ligurian / Genoese (lij) — Phonology Reference
 
-**Code**: `lij` | **Family**: Romance (Gallo-Italic) | **Script**: Latin (alphabet)
+**Code**: `lij` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Reference variety**: Genoese (*Zeneise*)
 **Sources**: Académia Ligùstica do Brénno, *Grafia ofiçiâ* (2008); Toso, *Grammatica del genovese* (1997); Forner, *Generative Phonologie des Dialekts von Genua* (1975); Maiden & Parry, *The Dialects of Italy* (1997); Omniglot (tertiary cross-check)
 

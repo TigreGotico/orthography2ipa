@@ -1,6 +1,6 @@
 # Paulistano Portuguese (pt-BR-x-sp) — Phonology Reference
 
-**Code**: `pt-BR-x-sp` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR-x-sp` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
 **Sources**: Barbosa & Albano (2004, *JIPA* 34(2):227–232), Mateus &
 d'Andrade (2000), Callou & Leite (2001), Silva (2002); Amaral (1920, §6b, for

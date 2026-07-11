@@ -1,7 +1,7 @@
 {
   "code": "ru-x-pskov",
   "name": "Pskov Russian",
-  "family": "Indo-European > Slavic",
+  "family": "Indo-European > Slavic > East Slavic",
   "script": "Cyrillic",
   "graphemes_base": "ru",
   "graphemes": {

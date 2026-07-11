@@ -1,7 +1,7 @@
 {
   "code": "ar-SA-x-hejaz",
   "name": "Hejazi Arabic",
-  "family": "Afro-Asiatic > Semitic",
+  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {

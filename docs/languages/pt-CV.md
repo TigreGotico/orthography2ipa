@@ -1,6 +1,6 @@
 # Cape Verdean Portuguese (pt-CV) — Phonology Reference
 
-**Code**: `pt-CV` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-CV` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` | **Quality tier**: skeleton
 **Sources**: Freitas (2017, *RILP* 31:153–172, on the Creole — for the distinction); Undolo (2014, for the Lusophone-African pattern); Lang (2009); Veiga (2004). See the honesty note below.
 

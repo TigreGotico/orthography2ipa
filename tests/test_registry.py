@@ -35,7 +35,7 @@ class TestRegistryGet:
 
     def test_spec_fields_populated(self):
         en = get("pt-PT")
-        assert en.family == "Indo-European > Romance"
+        assert en.family == "Indo-European > Romance > Ibero-Romance"
         assert en.script == "Latin"
         assert len(en.graphemes) > 20  # English has many grapheme entries
         assert len(en.allophones) > 10

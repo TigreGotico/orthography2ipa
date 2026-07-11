@@ -3,7 +3,7 @@
 **Codes**: `ar-IQ` (Baghdad Muslim / southern **gilit**), `ar-IQ-x-qeltu` (Northern
 **qəltu** — Mosul/Muslawi, Tikrit, and the Jewish and Christian communal dialects of
 Baghdad)
-**Family**: Afro-Asiatic > Semitic | **Script**: Arabic (abjad) | **Quality tier**: research
+**Family**: Afro-Asiatic > Semitic > Central Semitic | **Script**: Arabic (abjad) | **Quality tier**: research
 
 ---
 

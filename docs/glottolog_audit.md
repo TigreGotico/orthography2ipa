@@ -120,65 +120,71 @@ spec for the same Glottolog node): `ar`/`arb`, `gl`/`gl-ES`, `nl`/`nl-NL`, `dra`
 
 **Before:** inconsistent and mutually incompatible. Iberian Romance varieties were variously
 `Romance`, `Asturleonese`, `Indo-European > Romance > Ibero-Romance`. 58 distinct tokens across
-mixed depths; `Portuguese Creole`, `Tibeto-Burman`, `Niger-Congo`, `Afroasiatic` vs `Afro-Asiatic`,
-`Hellenic` vs `Indo-European > Hellenic`, etc.
+mixed depths; `Portuguese Creole`, `Tibeto-Burman`, `Niger-Congo`, `Afroasiatic` vs `Afro-Asiatic`.
 
-**Convention chosen — two-level, Glottolog-derived:**
+**Convention adopted — up to three levels:**
 
 ```
-family = "<top-level Glottolog family> > <traditional branch>"
-         or "<top-level Glottolog family>"   (when no branch applies)
+family = "<top-level family> > <branch> > <sub-branch>"    # levels dropped when not applicable
 ```
 
-* **top-level family** = the `name` of the languoid's Glottolog `Family_ID`
-  (the true root of its genetic tree).
-* **branch** = the *deepest* node on that glottocode's Glottolog classification path whose name is
-  in a fixed controlled vocabulary of traditional branches (Romance, Germanic, Slavic, Celtic,
-  Semitic, Berber, Cushitic, Iranian, Indo-Aryan, Italic, Greek, Balto-Slavic, Armenic, Sinitic,
-  Finnic, Saami, …). Omitted when the branch would equal the top-level family (so Turkish is
-  `Turkic`, not `Turkic > Turkic`).
+| | |
+|---|---|
+| `pt-PT` | `Indo-European > Romance > Ibero-Romance` |
+| `fr-FR` | `Indo-European > Romance > Gallo-Romance` |
+| `de-DE` | `Indo-European > Germanic > West Germanic` |
+| `ru` | `Indo-European > Slavic > East Slavic` |
+| `arb` | `Afro-Asiatic > Semitic > Central Semitic` |
+| `tr` | `Turkic` |
 
-Both components are **read directly out of Glottolog** for that spec's glottocode, so the value is
-reproducible rather than hand-asserted. Rationale for rejecting the two alternatives:
+**This is a curated mapping ONTO Glottolog's classification path, not a verbatim slice of it.**
+Glottolog has no `Romance` node reachable by a simple depth cut — Portuguese sits under
+`Italic > Latino-Faliscan > Latinic > Imperial Latin > Romance > Italo-Western Romance >
+Western Romance > Shifted Western Romance > Southwestern Shifted Romance > West Ibero-Romance >
+Galician Romance > Macro-Portuguese`, whose intermediate names are unusable as labels. So the
+generator walks each spec's real Glottolog path and picks the deepest node belonging to a
+controlled vocabulary of traditional **branch** names (Romance, Germanic, Slavic, Semitic, …) and
+**sub-branch** names (`West Ibero-Romance`/`Castilic`/`Galician Romance` → *Ibero-Romance*;
+`Gallo-Rhaetian`/`Oil` → *Gallo-Romance*; `Italo-Dalmatian` → *Italo-Romance*; …).
 
-* *top-level family alone* → collapses Romance and Germanic both to `Indo-European`, destroying the
-  grouping `registry.available_families()` exists to provide.
-* *fixed-depth Glottolog path* → Glottolog's intermediate node names are unusable as labels
-  (Portuguese sits under `Classical Indo-European > Italic > Latino-Faliscan > Latinic >
-  Imperial Latin > Romance > Italo-Western Romance > Western Romance > Shifted Western Romance >
-  Southwestern Shifted Romance > West Ibero-Romance > Galician Romance > Macro-Portuguese`).
+The mapping is **executable and committed** as `scripts/gen_family.py` (`--check` fails if any
+spec's `family` is stale), so it is auditable and reproducible rather than hand-asserted.
 
-The 15 specs with no glottocode (proto-nodes, contact nodes) inherit `family` from their o2i parent,
-or carry a cited manual value (e.g. `cel` → `Indo-European > Celtic`, `eo` → `Constructed`,
-`khi` → `Contact (areal)`).
+The branch must be picked from the path **plus the node's own name** — otherwise a spec whose
+glottocode *is* the branch node gets the branch above it (`sla`/`slav1255` came out as
+`Balto-Slavic` while its 28 descendants were `Slavic`; likewise `ira` → `Indo-Iranian`, and `sq`
+fell back to a bare `Indo-European`).
 
-**After:** 49 distinct families, uniform depth. All 463 specs have a non-empty `family`.
-`Asturleonese` and `Portuguese Creole` (which are *not* families) are gone;
-`Indo-European > Romance` = 167, `Indo-European > Germanic` = 45, `Afro-Asiatic > Semitic` = 44.
+**Depth-3 matters:** a flat depth-2 scheme would have put **167 of 463 specs** in a single
+`Indo-European > Romance` bucket and destroyed the `Ibero-Romance` / `Gallo-Romance` /
+`West Germanic` / `West Slavic` distinctions that already existed on `dev`. Iberian granularity is
+the point of this project. The largest bucket is now `Indo-European > Romance > Ibero-Romance`
+(122). **66 distinct families**, all 463 specs populated. The CLI's `--family` filter matches *any*
+step of the path, so both `--family Romance` and `--family Ibero-Romance` work.
 
-**Branch selection fix (from review):** the branch must be picked from the classification path
-*plus the node's own name*. Without this, a spec whose glottocode **is** the branch node got the
-branch *above* it — `sla` (Proto-Slavic, `slav1255`) came out as `Indo-European > Balto-Slavic`
-while its 28 descendants were `Indo-European > Slavic`; likewise `ira` → `Indo-Iranian` vs
-`Iranian`, and `sq` (`alba1267`) fell back to a bare `Indo-European`. Fixed.
+**Non-Glottolog-derivable values** (documented exception list in `MANUAL`): `Basque` (the Vasconic
+set, incl. `xaq`), `Constructed` (`eo`), and the reconstructed proto-nodes with no Glottolog node
+of their own (`brx-x-proto-boro-garo`, `kha-x-proto-mon-khmer`, `sat-x-proto-munda`, `xpa`).
+`Isolate` (`etr`, `xib`) and `Unclassifiable` (`txr`, `xlg`) *are* Glottolog-derived — Glottolog
+genuinely files Tartessian and Ancient Ligurian as unclassifiable. Romance varieties whose o2i
+parent is a Vulgar Latin stage (`roa-x-galaicopt`, `it-IT-x-{abruzzo,calabria,puglia}`,
+`pt-PT-x-lisbon`) are pinned, since inheriting the Latin node's `Italic` branch would mislabel them.
 
-**Non-Glottolog-derivable values** (the documented exception list — these specs have no glottocode
-and take a cited manual family): `Basque` (the whole Vasconic set, incl. `xaq`; Glottolog's CLDF
-export gives `basq1248` an empty family_id but files its dialects under a `Basque` family node —
-unified to `Basque`), `Constructed` (`eo`), `Contact (areal)` (`khi`), plus the reconstructed
-proto-nodes which inherit their branch (`cel`, `gem`, `sem`, `xpa`, …). `Isolate` (`etr`, `xib`)
-and `Unclassifiable` (`txr`, `xlg`) *are* Glottolog-derived — Glottolog genuinely files Tartessian
-and Ancient Ligurian as unclassifiable.
+Normalizing `family` is also what **exposed** the wrong glottocodes in §1b: `nn` deriving
+`Sign Language` and `es-CO` deriving `Barbacoan` is how they surfaced.
 
-Romance varieties whose o2i parent is a Vulgar Latin stage (`roa-x-galaicopt`,
-`it-IT-x-{abruzzo,calabria,puglia}`) are pinned to `Indo-European > Romance`: inheriting the Latin
-node's `Italic` branch would have mislabelled them, and left the Italian dialect set split across
-two families.
+### 2b. Proto/grouping nodes and bogus ISO codes (review follow-up)
 
-This normalization also **exposed** the wrong glottocodes in §1b: `nn` deriving `family` =
-`Sign Language` and `es-CO` deriving `Barbacoan` is what surfaced them.
+Grouping specs were being filled inconsistently — `sla`, `ira`, `iir`, `ber`, `xbr` got their
+Glottolog family node while `cel`, `gem`, `sem`, `khi` were left null even though the nodes exist.
+Filled, same convention: `cel`→`celt1248`, `gem`→`germ1287`, `sem`→`semi1276`, `khi`→`khoe1240`,
+`cel-x-goidelic`→`goid1240`, `gem-x-ingvaeonic`→`nort3175`, `sem-x-west`→`west2786`,
+`sem-x-central`→`cent2236`, and `roa-x-galaicopt`→**`gali1263` "Galician Romance"** (a near-exact
+match for Galaico-Portuguese).
 
----
+Two `iso639_3` values pointed at unrelated languages and are corrected: `etr` carried `"etr"` =
+**Edolo** (a Papuan language) — Etruscan is **`ett`**; `xbr` carried `"xbr"` = **Kambera** —
+Common Brythonic has no ISO 639-3 code, so it is now `null`.
 
 ## 3. Hierarchy discrepancies (Phase 2 — feeds #159, NOT fixed here)
 

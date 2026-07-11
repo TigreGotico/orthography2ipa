@@ -1,6 +1,6 @@
 # Beirão / Beira European Portuguese (`pt-PT-x-beira`) — Phonology Reference
 
-**Code**: `pt-PT-x-beira` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-beira` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
 **Sources**: Cintra (1971, *Boletim de Filologia* 22:81–116), Álvarez Pérez
 (2014, *Journal of Portuguese Linguistics* 13-1), Brissos (2014, *JPL* 13-1),

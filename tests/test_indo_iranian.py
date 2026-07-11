@@ -362,7 +362,7 @@ class TestPersian:
 
     def test_family(self):
         """Persian is Indo-European (Iranian branch)."""
-        assert self.spec.family == "Indo-European > Iranian"
+        assert self.spec.family == "Indo-European > Iranian > Western Iranian"
 
 
 @pytest.mark.linguistic

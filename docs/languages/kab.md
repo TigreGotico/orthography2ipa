@@ -1,6 +1,6 @@
 # Kabyle / Taqbaylit (kab) — Phonology Reference
 
-**Code**: `kab` | **Family**: Afroasiatic (Northern Berber / Amazigh) | **Script**: Latin (Berber alphabet)
+**Code**: `kab` | **Family**: Afro-Asiatic > Berber | **Script**: Latin (Berber alphabet)
 **Quality tier**: research | **Region**: Kabylia, north-eastern Algeria (~5–7 million speakers)
 **Sources read**: Kossmann & Stroomer, *Berber Phonology* (1997), pp. 461–475 (**primary**); Karaoui, Djeradi & Djeradi, *Acoustic Characterization of the Noise Sources for the Kabyle Fricatives* (2024), pp. 123–125; Wikipedia, *Kabyle language* (secondary orthography cross-check, flagged).
 
