@@ -172,6 +172,30 @@ class TestWords:
         assert orthography2ipa.transcribe("buttega", "lij") == "byˈteɡa"
 
 
+class TestSilentI:
+    """The palatal-marker ⟨i⟩ in ⟨ci⟩/⟨gi⟩ before a back vowel is silent."""
+
+    def test_ciu_silent_i(self):
+        """ciù -> [tʃy]: the i marks the affricate and does not surface."""
+        assert orthography2ipa.transcribe("ciù", "lij") == "ˈtʃy"
+
+    def test_giorna_silent_i(self):
+        """giornâ -> [dʒurnaː]: g soft = dʒ, silent i, o=/u/, â long stressed."""
+        assert orthography2ipa.transcribe("giornâ", "lij") == "dʒuˈrnaː"
+
+    def test_cio_silent_i(self):
+        """cio -> [tʃu]: silent i, o=/u/."""
+        assert orthography2ipa.transcribe("cio", "lij") == "ˈtʃu"
+
+    def test_i_kept_before_consonant(self):
+        """cina -> [tʃina]: before a consonant the i is a real vowel, kept."""
+        assert orthography2ipa.transcribe("cina", "lij") == "ˈtʃina"
+
+    def test_ci_digraph_table(self, lij):
+        assert lij.graphemes.get("ciù") == ["tʃy"]
+        assert lij.graphemes.get("gio") == ["dʒu"]
+
+
 # ---------------------------------------------------------------------------
 # Post-lexical allophony: velar nasal + vowel nasalisation (B8 rules)
 # ---------------------------------------------------------------------------

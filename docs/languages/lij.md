@@ -2,7 +2,7 @@
 
 **Code**: `lij` | **Family**: Romance (Gallo-Italic) | **Script**: Latin (alphabet)
 **Quality tier**: research | **Reference variety**: Genoese (*Zeneise*)
-**Sources**: Académia Ligùstica do Brénno, *Grafia ofiçiâ* (2008); Toso, *Grammatica del genovese* (1997); Forner, *Generative Phonologie des Dialekts von Genua* (1975); Maiden & Parry, *The Dialects of Italy* (1997)
+**Sources**: Académia Ligùstica do Brénno, *Grafia ofiçiâ* (2008); Toso, *Grammatica del genovese* (1997); Forner, *Generative Phonologie des Dialekts von Genua* (1975); Maiden & Parry, *The Dialects of Italy* (1997); Omniglot (tertiary cross-check)
 
 ---
 
@@ -87,8 +87,10 @@ vocalic features (Forner 1975).
 
 ## Modelled limitations
 
-- The silent ⟨i⟩ marker after palatal `c`/`g` before another vowel
-  (Italian-style `ciù`, `giornâ`) is not stripped — it surfaces as [i].
+- The silent ⟨i⟩ marker after palatal `c`/`g` before a back vowel is handled
+  via `cia/cio/ciu/gia/gio/giu…` digraphs, so `ciù` → [ˈtʃy] and
+  `giornâ` → [dʒurˈnaː] (the ⟨i⟩ does not surface). Before a consonant the
+  ⟨i⟩ is a real vowel and is kept (`cina` → [ˈtʃina]).
 - `gl` is treated as [ɡl] (Genoese lacks the Italian ⟨gli⟩ = [ʎ]).
 - No registered gold benchmark exists for Ligurian; correctness rests on the
   cited grafia ofiçiâ and descriptive grammars, not on PER.
@@ -97,7 +99,8 @@ vocalic features (Forner 1975).
 
 ## Sources
 
-- Académia Ligùstica do Brénno. *Grafia ofiçiâ: grafia moderna do zeneize.* 2008. <https://www.conlengoaligure.org/>
+- Académia Ligùstica do Brénno. *Grafia ofiçiâ: grafia moderna do zeneize.* 2008. <http://www.zeneize.net/>
 - Toso, Fiorenzo. *Grammatica del genovese: varietà urbana e di koinè.* Le Mani, 1997.
 - Forner, Werner. *Generative Phonologie des Dialekts von Genua.* Buske, 1975.
 - Maiden, M. & Parry, M. (eds.) *The Dialects of Italy.* Routledge, 1997.
+- Omniglot. *Genoese (Zeneize) language and pronunciation.* <https://www.omniglot.com/writing/genoese.htm> (tertiary cross-check).
