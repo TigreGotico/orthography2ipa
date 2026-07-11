@@ -121,8 +121,36 @@
       "notes": null
     }
   ],
+  "parent": "bnt",
+  "ancestors": [
+    {
+      "code": "bnt",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Southern Bantu (Nguni) branch of Niger-Congo."
+    },
+    {
+      "code": "khi",
+      "role": "substrate",
+      "weight": 0.08,
+      "notes": "Khoisan substrate: the SOURCE of the Zulu click consonants (c, q, x series)."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: modern loanwords."
+    },
+    {
+      "code": "af",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Afrikaans adstrate: South-African contact vocabulary."
+    }
+  ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Zulu_language"
+    "https://en.wikipedia.org/wiki/Zulu_language",
+    "https://en.wikipedia.org/wiki/Proto-Bantu_language"
   ],
   "timespan": {
     "start_year": 1800,

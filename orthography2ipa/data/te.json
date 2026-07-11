@@ -395,5 +395,6 @@
     "end_year": null
   },
   "glottolog_code": "telu1262",
-  "iso639_3": "tel"
+  "iso639_3": "tel",
+  "parent": "ta-x-proto-dravidian"
 }

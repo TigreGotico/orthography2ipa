@@ -331,12 +331,28 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Chinese_language",
     "https://zh.wikipedia.org/wiki/汉语",
-    "https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%AD"
+    "https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%AD",
+    "https://en.wikipedia.org/wiki/Old_Chinese"
   ],
   "timespan": {
     "start_year": 1300,
     "end_year": null
   },
   "glottolog_code": "mand1415",
-  "iso639_3": "zho"
+  "iso639_3": "zho",
+  "parent": "ltc",
+  "ancestors": [
+    {
+      "code": "ltc",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Descent from Middle Chinese (via the northern Mandarin lineage)."
+    },
+    {
+      "code": "och",
+      "role": "ancestor",
+      "weight": 0.08,
+      "notes": "Old Chinese: deeper Sinitic ancestor."
+    }
+  ]
 }

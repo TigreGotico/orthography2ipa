@@ -89,8 +89,30 @@
       "notes": null
     }
   ],
+  "parent": "sit",
+  "ancestors": [
+    {
+      "code": "sit",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Bodish branch of Sino-Tibetan."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.18,
+      "notes": "Sanskrit adstrate: Classical (Buddhist) Tibetan calqued and borrowed massively from Sanskrit."
+    },
+    {
+      "code": "zh",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Chinese adstrate: areal and modern loanwords."
+    }
+  ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Tibetan_language"
+    "https://en.wikipedia.org/wiki/Tibetan_language",
+    "https://en.wikipedia.org/wiki/Classical_Tibetan"
   ],
   "timespan": {
     "start_year": 600,

@@ -236,7 +236,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hebrew_language",
-    "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology"
+    "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology",
+    "https://en.wikipedia.org/wiki/Aramaic",
+    "https://en.wikipedia.org/wiki/Revival_of_the_Hebrew_language"
   ],
   "timespan": {
     "start_year": 1948,
@@ -249,5 +251,32 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Modern Israeli Hebrew default is milra (final stress, -1). Milel (penultimate) is common in a substantial minority of words (especially segolate nouns: מֶלֶךְ, שֶׁמֶשׁ) and cannot be predicted from unvocalized orthography. With niqqud the stressed syllable is identifiable; without niqqud (the norm in adult text) stress placement is not reliably computable from orthography alone. This block models the milra default only. Source: Bolozky (1997)."
-  }
+  },
+  "parent": "sem-x-central",
+  "ancestors": [
+    {
+      "code": "sem-x-central",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Canaanite (Northwest Semitic), a branch of Central Semitic."
+    },
+    {
+      "code": "arc",
+      "role": "adstrate",
+      "weight": 0.14,
+      "notes": "Aramaic adstrate: dominant vernacular of Second-Temple Judea; heavy lexical/phonological layer."
+    },
+    {
+      "code": "yi",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Yiddish adstrate on Revived (Modern) Hebrew: European-substrate phonology of the first speakers."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Arabic adstrate: shared Semitic areal features and modern loanwords."
+    }
+  ]
 }

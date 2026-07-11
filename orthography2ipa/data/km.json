@@ -103,6 +103,27 @@
       "notes": null
     }
   ],
+  "parent": "kha-x-proto-mon-khmer",
+  "ancestors": [
+    {
+      "code": "kha-x-proto-mon-khmer",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Khmeric branch of Austroasiatic (Mon-Khmer)."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.14,
+      "notes": "Sanskrit adstrate: the Hindu-Buddhist learned/royal register."
+    },
+    {
+      "code": "pi",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Pali adstrate: Theravada Buddhist religious vocabulary."
+    }
+  ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Khmer_language"
   ],

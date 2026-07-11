@@ -276,5 +276,31 @@
     "start_year": 1500,
     "end_year": null
   },
-  "iso639_3": "eus"
+  "iso639_3": "eus",
+  "ancestors": [
+    {
+      "code": "xaq",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Basque / Aquitanian (non-IE isolate)."
+    },
+    {
+      "code": "la",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Latin/Romance adstrate: two millennia of contact left a very large lexical layer."
+    },
+    {
+      "code": "es-ES",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Spanish adstrate: modern loanwords and phonological pressure."
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "French adstrate: on the northern (Iparralde) dialects."
+    }
+  ]
 }

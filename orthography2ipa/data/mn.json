@@ -87,8 +87,42 @@
       "notes": null
     }
   ],
+  "parent": "xgn",
+  "ancestors": [
+    {
+      "code": "xgn",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Descent from Proto-Mongolic (via Middle Mongol)."
+    },
+    {
+      "code": "bo",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Tibetan adstrate: Buddhist religious vocabulary."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Sanskrit adstrate: Buddhist learned terms via Tibetan."
+    },
+    {
+      "code": "zh",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Chinese adstrate: areal and Inner-Mongolian loanwords."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Russian adstrate: Soviet-era technical/administrative lexicon."
+    }
+  ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Mongolian_language"
+    "https://en.wikipedia.org/wiki/Mongolian_language",
+    "https://en.wikipedia.org/wiki/Mongolic_languages"
   ],
   "timespan": {
     "start_year": 1941,

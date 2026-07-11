@@ -106,8 +106,36 @@
       "notes": null
     }
   ],
+  "parent": "tai",
+  "ancestors": [
+    {
+      "code": "tai",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Southwestern Tai branch of Tai-Kadai (Kra-Dai)."
+    },
+    {
+      "code": "pi",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Pali adstrate: Theravada Buddhist religious vocabulary."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Sanskrit adstrate: learned vocabulary."
+    },
+    {
+      "code": "km",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Khmer adstrate: shared areal/royal vocabulary."
+    }
+  ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Lao_language"
+    "https://en.wikipedia.org/wiki/Lao_language",
+    "https://en.wikipedia.org/wiki/Kra%E2%80%93Dai_languages"
   ],
   "timespan": {
     "start_year": 1300,

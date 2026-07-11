@@ -286,6 +286,7 @@
             "au"
         ]
     },
+    "parent": "ta-x-proto-dravidian",
     "ancestors": [
         {
             "code": "ta-x-proto-dravidian",

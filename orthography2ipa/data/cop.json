@@ -248,11 +248,27 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Coptic_language",
-    "https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ"
+    "https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ",
+    "https://en.wikipedia.org/wiki/Egyptian_language"
   ],
   "timespan": {
     "start_year": 200,
     "end_year": 1400
   },
-  "glottolog_code": "sahi1246"
+  "glottolog_code": "sahi1246",
+  "parent": "egy",
+  "ancestors": [
+    {
+      "code": "egy",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Direct descent from Ancient Egyptian (via Demotic)."
+    },
+    {
+      "code": "grc",
+      "role": "adstrate",
+      "weight": 0.2,
+      "notes": "Greek adstrate: the Coptic alphabet is Greek-based and Greek supplied a huge share of the lexicon."
+    }
+  ]
 }

@@ -94,9 +94,43 @@
       "notes": null
     }
   ],
+  "parent": "poz",
+  "ancestors": [
+    {
+      "code": "poz",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Malayo-Polynesian (Philippine) branch of Austronesian."
+    },
+    {
+      "code": "es-ES",
+      "role": "adstrate",
+      "weight": 0.18,
+      "notes": "Spanish adstrate: three centuries of colonial rule left a very large lexical/phonological layer."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "English adstrate: pervasive modern contact (code-switching, phonemes)."
+    },
+    {
+      "code": "zh",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Hokkien Chinese adstrate: trade and kinship vocabulary."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Sanskrit adstrate: older learned loanwords via Malay."
+    }
+  ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tagalog_language",
-    "https://en.wikipedia.org/wiki/Tagalog_phonology"
+    "https://en.wikipedia.org/wiki/Tagalog_phonology",
+    "https://en.wikipedia.org/wiki/Proto-Malayo-Polynesian_language"
   ],
   "timespan": {
     "start_year": 1593,

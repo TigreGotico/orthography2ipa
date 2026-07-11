@@ -116,6 +116,27 @@
       "notes": null
     }
   ],
+  "parent": "sit",
+  "ancestors": [
+    {
+      "code": "sit",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Lolo-Burmese branch of Sino-Tibetan."
+    },
+    {
+      "code": "pi",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Pali adstrate: Theravada Buddhist religious vocabulary."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Sanskrit adstrate: older Indic learned borrowings."
+    }
+  ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Burmese_language"
   ],

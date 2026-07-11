@@ -295,7 +295,8 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Indonesian_language",
-    "https://id.wikipedia.org/wiki/Bahasa_Indonesia"
+    "https://id.wikipedia.org/wiki/Bahasa_Indonesia",
+    "https://en.wikipedia.org/wiki/Proto-Malayo-Polynesian_language"
   ],
   "urls": [
     "https://en.wikipedia.org/wiki/Indonesian_language",
@@ -315,5 +316,44 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Indonesian default stress is penultimate (-2). Penult schwa /ə/ (written ⟨e⟩ in closed syllables) in native roots may trigger stress shift to antepenult; variation not modeled. Source: Lapoliwa (1981), Sneddon (2003)."
-  }
+  },
+  "parent": "poz",
+  "ancestors": [
+    {
+      "code": "poz",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Malayo-Polynesian branch of Austronesian (via Malay)."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Sanskrit adstrate: Old-Malay/Hindu-Buddhist learned stratum."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Arabic adstrate: religious vocabulary via Islam."
+    },
+    {
+      "code": "nl",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Dutch adstrate: colonial administrative/technical lexicon."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "English adstrate: modern loanwords."
+    },
+    {
+      "code": "pt-PT",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Portuguese adstrate: early trade loanwords."
+    }
+  ]
 }

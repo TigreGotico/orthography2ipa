@@ -310,7 +310,8 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Finnish_language",
     "https://fi.wikipedia.org/wiki/Suomen_kieli",
-    "https://en.wikipedia.org/wiki/Finnish_phonology"
+    "https://en.wikipedia.org/wiki/Finnish_phonology",
+    "https://en.wikipedia.org/wiki/Proto-Uralic_language"
   ],
   "positional_graphemes": {
     "d": {
@@ -352,5 +353,20 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Finnish has categorical initial (first-syllable) stress. Vowel length (aa ee ii oo uu yy ää öö) marks quantity, not stress. Secondary stress falls on odd-numbered syllables (3rd, 5th…). Source: Karlsson (1999), Finnish: An Essential Grammar; Wikipedia: https://en.wikipedia.org/wiki/Finnish_phonology"
-  }
+  },
+  "parent": "urj",
+  "ancestors": [
+    {
+      "code": "urj",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Finnic branch of Uralic."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Russian/eastern adstrate. (Swedish is the major historical contact language but is modelled from the Swedish side to avoid a graph cycle.)"
+    }
+  ]
 }

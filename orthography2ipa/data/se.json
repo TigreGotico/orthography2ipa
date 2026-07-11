@@ -102,8 +102,33 @@
     },
     "allophones": {},
     "positional_graphemes": {},
-    "ancestors": [],
-    "parent": null,
+    "ancestors": [
+        {
+            "code": "urj",
+            "role": "parent",
+            "weight": 0.82,
+            "notes": "Samic branch of Uralic."
+        },
+        {
+            "code": "fi",
+            "role": "related",
+            "weight": 0.1,
+            "notes": "Finnish/Finnic areal contact and shared inheritance."
+        },
+        {
+            "code": "nb",
+            "role": "adstrate",
+            "weight": 0.1,
+            "notes": "Norwegian adstrate: dominant Scandinavian contact language."
+        },
+        {
+            "code": "sv",
+            "role": "adstrate",
+            "weight": 0.05,
+            "notes": "Swedish adstrate."
+        }
+    ],
+    "parent": "urj",
     "notes": "Northern Sami, largest Sami language spoken in Norway, Sweden and Finland. Sami alphabets include several extended characters: č /tʃ/, đ /ð/, ŋ /ŋ/, š /ʃ/, ž /ʒ/, ŧ /θ/. Consonant gradation system similar to Finnish. Polysynthetic morphology.",
     "sources": [
         {
@@ -115,6 +140,7 @@
         }
     ],
     "wikipedia": [
-        "https://en.wikipedia.org/wiki/Northern_Sami"
+        "https://en.wikipedia.org/wiki/Northern_Sami",
+        "https://en.wikipedia.org/wiki/Proto-Uralic_language"
     ]
 }

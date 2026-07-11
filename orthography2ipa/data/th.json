@@ -134,9 +134,37 @@
       "notes": null
     }
   ],
+  "parent": "tai",
+  "ancestors": [
+    {
+      "code": "tai",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Southwestern Tai branch of Tai-Kadai (Kra-Dai)."
+    },
+    {
+      "code": "km",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Khmer adstrate: royal register, script model and heavy vocabulary."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Sanskrit adstrate: learned/royal vocabulary."
+    },
+    {
+      "code": "pi",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Pali adstrate: Theravada Buddhist religious vocabulary."
+    }
+  ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Thai_language",
-    "https://en.wikipedia.org/wiki/Thai_phonology"
+    "https://en.wikipedia.org/wiki/Thai_phonology",
+    "https://en.wikipedia.org/wiki/Kra%E2%80%93Dai_languages"
   ],
   "timespan": {
     "start_year": 1283,

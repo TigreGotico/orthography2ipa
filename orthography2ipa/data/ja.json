@@ -773,12 +773,46 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Japanese_language",
-    "https://ja.wikipedia.org/wiki/日本語"
+    "https://ja.wikipedia.org/wiki/日本語",
+    "https://en.wikipedia.org/wiki/Sino-Japanese_vocabulary"
   ],
   "timespan": {
     "start_year": 800,
     "end_year": null
   },
   "glottolog_code": "nucl1643",
-  "iso639_3": "jpn"
+  "iso639_3": "jpn",
+  "parent": "jpx",
+  "ancestors": [
+    {
+      "code": "jpx",
+      "role": "parent",
+      "weight": 0.72,
+      "notes": "Descent from Proto-Japonic."
+    },
+    {
+      "code": "ojp",
+      "role": "ancestor",
+      "weight": 0.1,
+      "notes": "Old Japanese: earliest attested stage."
+    },
+    {
+      "code": "ltc",
+      "role": "adstrate",
+      "weight": 0.18,
+      "notes": "Middle Chinese adstrate: the Sino-Japanese (kango) stratum, a huge share of the lexicon."
+    },
+    {
+      "code": "ain",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Ainu contact layer in northern Japan (debated, low-weight)."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: modern loanwords (gairaigo)."
+    }
+  ]
 }
