@@ -9,8 +9,8 @@
       "θ"
     ],
     "ج": [
-      "ɡ",
-      "dʒ"
+      "dʒ",
+      "ɡ"
     ],
     "ذ": [
       "ð"
@@ -23,6 +23,7 @@
       "ðˤ"
     ],
     "ق": [
+      "ɡ",
       "q"
     ]
   },
@@ -32,6 +33,7 @@
       "k"
     ],
     "q": [
+      "ɡ",
       "q"
     ],
     "ɮˤ": [
@@ -48,8 +50,8 @@
       "ð"
     ],
     "dʒ": [
-      "ɡ",
-      "dʒ"
+      "dʒ",
+      "ɡ"
     ],
     "a": [
       "a",
@@ -69,8 +71,8 @@
       "notes": "Peninsular Arabic base"
     }
   ],
-  "notes": "Yemeni Arabic — Ṣanʿānī (North Yemeni) as reference variety. ج → /ɡ/ in Ṣanʿānī (shared with Egyptian; independent parallel). ق → /q/ PRESERVED (conservative). ث /θ/, ذ /ð/, ظ /ðˤ/ ALL PRESERVED (very conservative). UNIQUE: ض merges with ظ → /ðˤ/ in Ṣanʿānī (lost the distinction preserved in Classical and most other dialects). No k → /tʃ/ (unlike Gulf). Vowel imāla present. Watson (1993) primary reference for Ṣanʿānī Arabic. South Yemen (Aden/Taʿizz) more similar to Gulf in some features.",
-  "quality": "skeleton",
+  "notes": "Yemeni Arabic — Ṣanʿānī (North Yemeni highland) as reference variety, per Watson (2002). ق qaf → /ɡ/ (voiced velar stop): Watson p.11 and §2.2 p.20 — *q is not realized in any lexeme, even Standard/religious words: al-gurʔān 'the Qur'an'. ج jim → /dʒ/ (voiced palatoalveolar affricate): Watson p.11, §2.2 p.20. The /ɡ/-jim reflex belongs to CAIRENE and the LOWER-Yemeni Taʿizz/Hugariyyah dialects (Watson §2.1.6 p.16), NOT Ṣanʿānī — hence /dʒ/ primary, /ɡ/ listed as the Taʿizzī alternate. Interdentals ث /θ/, ذ /ð/, ظ /ðˤ/ ALL RETAINED (§2.1.4 pp.14–15; inventory Table 2.2 p.19; contrast with interdental-losing Cairene §2.3 p.20). UNIQUE: ض ḍād merges with ظ ẓāʾ → /ðˤ/ (voiced pharyngealized interdental fricative) — §2.2 p.20, one Classical phoneme lost. No k → /tʃ/ (unlike Gulf). South Yemen (Aden/Taʿizz) patterns closer to Gulf/Cairene in the jim reflex.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
@@ -80,8 +82,8 @@
       "title": "The Phonology and Morphology of Arabic",
       "publisher": "Oxford University Press",
       "url": null,
-      "pages": null,
-      "notes": null,
+      "pages": "11, 14-16, 19-20",
+      "notes": "Read (full open-access PDF, 322 pp.; printed pages). p.11: Ṣanʿānī reflex of qāf is a voiced velar /ɡ/, and of jīm a palatoalveolar affricate /dʒ/. §2.2 p.20: *q not realized in any lexeme (al-gurʔān); *ḍ and *ẓ merge to /ðˤ/. §2.1.6 p.16: the /ɡ/-jīm reflex is Cairene + Taʿizz/Hugariyyah, not Ṣanʿānī. §2.1.4 pp.14-15 + Table 2.2 p.19: interdental fricatives retained; §2.3 p.20 contrast with Cairene interdental loss.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
     },
     {
@@ -106,7 +108,8 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Yemeni_Arabic"
+    "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+    "https://en.wikipedia.org/wiki/Sanaani_Arabic"
   ],
   "timespan": {
     "start_year": 1500,

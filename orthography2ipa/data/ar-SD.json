@@ -64,10 +64,30 @@
       "notes": "Eastern (Mashriqi / Egypto-Sudanic) Arabic base"
     }
   ],
-  "notes": "Sudanese Arabic — Khartoum/central Sudan koine, part of the Egypto-Sudanic group. DEFINING FEATURE: ج jim → /ɟ/ (voiced PALATAL stop) — an archaic reflex distinguishing Sudanese from both Egyptian (/ɡ/) and Levantine (/ʒ/); /dʒ/ also occurs. ق qaf → /ɡ/ (voiced velar stop, Bedouin-origin reflex). Interdentals MERGE (not retained): ث θ → /t/ (~/s/ in loans), ذ ð → /d/ (~/z/), ظ/ض → /dˤ/ (~/zˤ/) — shared Egypto-Sudanic innovation. Vowel system tends to lower/retract; /u/ and /i/ qualities differ from Egyptian. Source: Dickins (2007) Sudanese Arabic Phonematics and Syllable Structure; Holes (2004); Sudanese Arabic (Wikipedia).",
-  "quality": "skeleton",
+  "notes": "Sudanese Arabic — Khartoum/central Sudan koine, part of the Egypto-Sudanic group. DEFINING FEATURE: ج jim → /ɟ/ (voiced PALATAL stop) — an archaic reflex distinguishing Sudanese from both Egyptian (/ɡ/) and Levantine (/ʒ/); /dʒ/ also occurs. Leddy-Cecere (2021) §3.1.1: 'the palatal articulation /ɟ/ dominates in the core Sudanic region represented by the dialects of Khartoum and the Šukriyya… perhaps of high salience, given its comparative rarity outside this region.' ق qaf → /ɡ/ (voiced velar stop, Bedouin-origin reflex): Leddy-Cecere §3.1 '/g/ of Old Arabic *q, robustly characteristic of all varieties in the sample outside of Cairo'; Youssef (2021) §3.1 lists Sudan among the /ɡ/-reflex areas. Interdentals MERGE to STOPS (not retained): ث θ → /t/, ذ ð → /d/, ظ/ض → /dˤ/ (~/s z zˤ/ in MSA loanwords) — Leddy-Cecere §3.1: 'merger of the Old Arabic interdental series *θ, ð, ð̣ with corresponding alveolar stops *t, d, ḍ', with a distinctive extra emphatic /ḍ/ reflex of *ð in the Sudanic area. Nubian/Beja/Nilotic substrate is documented for the LEXICON (Gasim 1965 via Wikipedia), not as a phonological cause. Dickins (2007) is the standard primary monograph (not obtained for this pass).",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
+    {
+      "id": "leddycecere2021",
+      "author": "Leddy-Cecere, T.A.",
+      "year": 2021,
+      "title": "Interrogating the Egypto-Sudanic Arabic Connection",
+      "publisher": "Languages 6(3): 123",
+      "url": "https://doi.org/10.3390/languages6030123",
+      "pages": null,
+      "notes": "Read (open-access, cited by section — printed PDF pages behind an Akamai JS challenge). §3.1.1: palatal /ɟ/ dominates in the core Sudanic region (Khartoum + Šukriyya), rare elsewhere. §3.1: /ɡ/ reflex of Old Arabic *q robustly characteristic of all sampled varieties outside Cairo; merger of interdental series *θ *ð *ð̣ with dental stops *t *d *ḍ, plus an additional emphatic /ḍ/ reflex of *ð in the Sudanic area."
+    },
+    {
+      "id": "youssef2021",
+      "author": "Youssef, I.",
+      "year": 2021,
+      "title": "Contrastive Feature Typologies of Arabic Consonant Reflexes",
+      "publisher": "Languages 6(3): 141",
+      "url": "https://doi.org/10.3390/languages6030141",
+      "pages": null,
+      "notes": "Read (open-access, cited by section). §3.1: the voiced velar stop /ɡ/ is by far the most common reflex of *q, covering Sudan among other areas."
+    },
     {
       "id": "dickins2007",
       "author": "Dickins, J.",
@@ -76,7 +96,7 @@
       "publisher": "Harrassowitz",
       "url": null,
       "pages": null,
-      "notes": "Detailed phonological description: jim→ɟ, qaf→ɡ, interdental merger."
+      "notes": "Standard primary monograph (jim→ɟ, qaf→ɡ, interdental merger); not obtained to a readable page for this pass."
     },
     {
       "id": "holes2004",
