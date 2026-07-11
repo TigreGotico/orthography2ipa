@@ -117,6 +117,14 @@ order with phrase / utterance position, and `SentenceRescorer` is the
 boundary-aware, bidirectional rewrite seam a downstream engine (arbtok) consumes
 instead of forking a private sentence orchestrator.
 
+**I want to train an ML / CRF G2P on o2i's structure.**
+o2i ships no trained weights, which makes it a clean *feature provider*.
+[features.md](features.md) covers `G2P.features(text)` — the pure-data,
+JSON-able per-grapheme feature view (class predicates, neighbours, the ranked
+candidate lattice, the confidence signal) — and the **CRF-as-rescorer** pattern:
+a trained model re-costs the shared lattice as a `LatticeRescorer`, and the
+per-word confidence says where to spend its learned capacity.
+
 **I want to understand the benchmark and quality-tier system.**
 [quality_tiers.md](quality_tiers.md) defines what `stub` → `skeleton` →
 `research` → `production` actually require, and
@@ -186,6 +194,7 @@ below.
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
 | [sentence_context.md](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer`, phrase / utterance position |
+| [features.md](features.md) | Feature export for ML / CRF G2P: `G2P.features`, `WordFeatures`, `GraphemeFeatures`, the CRF-as-rescorer pattern |
 | [candidate_scoring.md](candidate_scoring.md) | Per-candidate weights and how they become beam costs |
 | [distance.md](distance.md) | Phonological distance metrics between languages |
 | [architecture.md](architecture.md#script_distancepy) | Typological distance between writing systems (`script_distance.py`) |

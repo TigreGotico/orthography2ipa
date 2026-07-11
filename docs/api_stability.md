@@ -174,6 +174,37 @@ full seam is documented in [`sentence_context.md`](sentence_context.md). A
 caller that never passes `sentence_rescorer=` and never calls `sentence_lattice`
 sees no change.
 
+## Feature-export API (additive)
+
+`G2P` (`orthography2ipa.g2p`) and the `orthography2ipa.features` module expose
+an optional, additive **feature-export** surface (Workstream F1) so a downstream
+ML / CRF G2P can consume o2i's per-grapheme structure as features and rescore
+the shared lattice. It is a pure read and changes no existing output:
+`transcribe`, `transcribe_detailed().ipa`, `ipa_best`, and the scoreboard are
+byte-identical whether or not it is used.
+
+- `G2P.features(text) -> list[WordFeatures]` — one `WordFeatures` per word
+  (same normalizer + word split as `transcribe`), built by reusing
+  `ipa_lattice`, `confidence_breakdown`, and `flat_contexts` — no new scoring.
+- `WordFeatures` (`orthography2ipa.features`, re-exported from
+  `orthography2ipa`) — frozen dataclass with `word`, `code`, `script`,
+  `confidence`, `graphemes`, and `as_dicts()` (the CRF feature sequence).
+- `GraphemeFeatures` (`orthography2ipa.features`, re-exported from
+  `orthography2ipa`) — frozen per-grapheme record: `grapheme`, `span`, `index`,
+  `position`, `prev`/`next`/`prev2`/`next2`, `is_vowel`/`is_consonant`/
+  `is_front`/`is_back`, `candidates`, `top1_ipa`, `top1_cost`, `margin`
+  (`Optional[float]`, `None` for a single-candidate slot), `n_candidates`,
+  `confidence`, `script`, `code`, and `as_dict()` (a flat, scalar,
+  `json.dumps`-clean feature dict for python-crfsuite / sklearn-crfsuite).
+
+These symbols join the stable, version-guarded import surface: they are never
+renamed or removed outright, only via the semver + conventional-commits
+deprecation flow, with the removal version derived dynamically from
+`orthography2ipa/version.py` (`VERSION_MAJOR + 1`). There is no new
+`LanguageSpec` field. The full surface is documented in
+[`features.md`](features.md). A caller that never calls `features()` sees no
+change.
+
 This is a documentation-only audit: it records the current import surface
 and stability commitment, and does not rename, deprecate, or otherwise
 modify any code in `orthography2ipa`.

@@ -37,6 +37,11 @@ from dataclasses import dataclass
 from typing import Callable, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
+from orthography2ipa.features import (
+    GraphemeFeatures,
+    WordFeatures,
+    build_word_features,
+)
 from orthography2ipa.phonetok import (
     Candidate,
     IPAPath,
@@ -75,6 +80,8 @@ __all__ = [
     "WordTranscription",
     "TranscriptionResult",
     "ConfidenceBreakdown",
+    "WordFeatures",
+    "GraphemeFeatures",
     "UnmappedScriptError",
 ]
 
@@ -563,6 +570,40 @@ class G2P:
             coverage=coverage,
             unmapped=unmapped,
         )
+
+    def features(self, text: str) -> List[WordFeatures]:
+        """Per-word linguistic **feature view** for downstream ML / CRF G2P.
+
+        A PURE READ over the shared pronunciation lattice and grapheme
+        context — it never affects :meth:`transcribe`. Returns one
+        :class:`~orthography2ipa.features.WordFeatures` per word (using the
+        same normalizer + word split as :meth:`transcribe`), each holding a
+        :class:`~orthography2ipa.features.GraphemeFeatures` per grapheme with
+        phonological-class predicates, word-local neighbours, the ranked
+        ``(ipa, cost)`` candidate lattice, top-1 / margin, and the per-word
+        confidence signal (Workstream B5).
+
+        It reuses :meth:`ipa_lattice` (candidates + stress context),
+        :meth:`confidence_breakdown` (the confidence value) and
+        :func:`~orthography2ipa.phonetok.flat_contexts` (predicates +
+        neighbours) — no vowel logic is recomputed. Every record's
+        :meth:`~orthography2ipa.features.GraphemeFeatures.as_dict` is a flat,
+        JSON-able, CRF-consumable feature dict. See ``docs/features.md`` for
+        the CRF-as-rescorer pattern and a worked example.
+        """
+        normalized = (self.normalizer(text) if self.normalizer is not None
+                      else text)
+        out: List[WordFeatures] = []
+        for w in self._split_words(normalized):
+            word = w.surface
+            slots = self.ipa_lattice(word)
+            confidence = self.confidence_breakdown(word).value
+            g_tokens = self._tokenizer.grapheme_tokens(word)
+            contexts = flat_contexts(g_tokens)
+            out.append(build_word_features(
+                word, slots, contexts, confidence,
+                self.spec.code, self.spec.script))
+        return out
 
     # ─── pipeline stages ─────────────────────────────────────────────
 

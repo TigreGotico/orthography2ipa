@@ -119,6 +119,16 @@ library; see
 [Refine or fork?](docs/lattice.md#refine-the-lattice-or-fork-the-tokenizer)
 for the trade-offs and the hybrid most engines settle on.
 
+**Powers ML G2P too: pure-data linguistic features for your CRF/neural model.**
+Because `orthography2ipa` ships no trained weights, it is a clean *feature
+provider*. `G2P.features(text)` is a pure read that exposes, per grapheme, the
+phonological-class predicates, word-local neighbours, the ranked `(ipa, cost)`
+candidate lattice, and the confidence signal as flat, JSON-able feature dicts —
+so a CRF trains on linguistically-grounded features and plugs back in as a
+`LatticeRescorer` over the shared lattice, spending its learned capacity where
+confidence says the base engine is unsure. See
+[Features for ML / CRF G2P](docs/features.md).
+
 ## What each language carries
 
 Every `LanguageSpec` provides:
