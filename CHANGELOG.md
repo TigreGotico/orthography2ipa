@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- feat: spelling divergence — how differently two orthographies write the same sounds [\#281](https://github.com/TigreGotico/orthography2ipa/pull/281) ([JarbasAl](https://github.com/JarbasAl))
 - feat: model language families as clade nodes and derive the family field [\#280](https://github.com/TigreGotico/orthography2ipa/pull/280) ([JarbasAl](https://github.com/JarbasAl))
 - feat\(data\): multi-edition Wikipedia URLs + missing-language stubs [\#272](https://github.com/TigreGotico/orthography2ipa/pull/272) ([JarbasAl](https://github.com/JarbasAl))
 
@@ -701,7 +702,6 @@
 **Merged pull requests:**
 
 - feat: add 4catac Catalan benchmark dataset [\#95](https://github.com/TigreGotico/orthography2ipa/pull/95) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(de-DE\): split ich-Laut/ach-Laut by preceding front/back vowel [\#91](https://github.com/TigreGotico/orthography2ipa/pull/91) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.15.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.15.1a1) (2026-07-09)
 
