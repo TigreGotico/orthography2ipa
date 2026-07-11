@@ -232,16 +232,36 @@ main { flex: 1; display: flex; min-height: 0; }
 }
 #lang-list li a:hover, #lang-list li a.active { background: var(--panel2); }
 #lang-list li a .code { color: var(--muted); font-family: monospace; min-width: 4.5em; }
+#lang-list li a .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#lang-list li a .tier-pill { font-size: 0.6rem; padding: 1px 6px; flex-shrink: 0; }
 #detail { flex: 1; overflow-y: auto; padding: 20px 26px; }
 #detail h2 { margin-top: 0; }
 .badge {
-  display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;
-  margin-left: 8px; color: #08131f; font-weight: 600;
+  display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem;
+  margin-left: 8px; color: #08131f; font-weight: 700; letter-spacing: 0.03em;
+  text-transform: uppercase; vertical-align: middle;
 }
 .badge.production { background: var(--production); }
 .badge.research { background: var(--research); }
 .badge.skeleton { background: var(--skeleton); }
 .badge.stub { background: var(--stub); }
+/* Tier pill reused inside tables/lists — no left margin, tighter. */
+.tier-pill {
+  display: inline-block; padding: 2px 8px; border-radius: 9px; font-size: 0.72rem;
+  color: #08131f; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
+}
+.tier-pill.production { background: var(--production); }
+.tier-pill.research { background: var(--research); }
+.tier-pill.skeleton { background: var(--skeleton); }
+.tier-pill.stub { background: var(--stub); }
+/* Coloured left rail on the detail header, keyed to the tier. */
+.tier-rail { border-left: 5px solid var(--border); padding-left: 12px; margin-bottom: 12px; }
+.tier-rail.production { border-left-color: var(--production); }
+.tier-rail.research { border-left-color: var(--research); }
+.tier-rail.skeleton { border-left-color: var(--skeleton); }
+.tier-rail.stub { border-left-color: var(--stub); }
+.tier-rail h2 { margin: 0; }
+.tier-desc { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
 .meta-line { color: var(--muted); margin-bottom: 16px; }
 section { margin-bottom: 26px; }
 section h3 { border-bottom: 1px solid var(--border); padding-bottom: 4px; }
@@ -252,9 +272,11 @@ th { background: var(--panel2); position: sticky; top: 0; }
 td.wrap, th.wrap { white-space: normal; }
 .notes-box {
   background: var(--panel2); border: 1px solid var(--border); border-radius: 6px;
-  padding: 10px 14px; white-space: pre-wrap; font-size: 0.9rem;
+  padding: 2px 16px; font-size: 0.9rem; line-height: 1.55;
 }
-.notes-box.warn { border-color: var(--skeleton); }
+.notes-box p { margin: 12px 0; }
+.notes-box p strong { color: var(--text); font-weight: 700; }
+.notes-box.warn { border-color: var(--skeleton); border-left-width: 4px; }
 ul.plain { list-style: none; padding: 0; margin: 0; }
 ul.plain li { padding: 4px 0; border-bottom: 1px dashed var(--border); font-size: 0.88rem; }
 .empty { color: var(--muted); font-style: italic; }
@@ -300,6 +322,46 @@ const DATA = __DATA_JSON__;
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
+  }
+
+  const TIER_DESC = {
+    production: "full coverage, regression-tested, cited sources",
+    research: "validated against published phonology; positional rules present",
+    skeleton: "auto-generated graphemes/allophones, unvalidated",
+    stub: "code + name + family + script only"
+  };
+
+  // Turn a single run-on notes string into readable paragraphs. Splits on
+  // explicit newlines, on parenthesised enumerators "(1)"/"(a)", and before
+  // ALL-CAPS section labels ending in a colon or dash; a leading CAPS label
+  // is then bolded. Escaping happens per-segment so no markup leaks.
+  function renderNotes(text) {
+    const SEP = "\\u0001";
+    const segments = [];
+    String(text).split(/\\n+/).forEach(function (block) {
+      let b = block.trim();
+      if (!b) return;
+      // Break before "(1) " / "(a) " enumerators.
+      b = b.replace(/\\s+(?=\\((?:\\d+|[a-z])\\)\\s)/g, SEP);
+      // Break before an ALL-CAPS section label (>=3 chars) that ends in
+      // ":" or a dash, when it follows sentence punctuation.
+      b = b.replace(
+        /([.;:])\\s+(?=[A-Z][A-Z0-9 \\/’'&()-]{2,}[:—-])/g, "$1" + SEP);
+      b.split(SEP).forEach(function (seg) {
+        seg = seg.trim();
+        if (seg) segments.push(seg);
+      });
+    });
+    if (!segments.length) segments.push(String(text).trim());
+    return segments.map(function (seg) {
+      let e = esc(seg);
+      // Bold a leading ALL-CAPS section label (after an optional "(n)"
+      // enumerator) up to and including its terminating colon or em-dash.
+      e = e.replace(
+        /^(\\((?:\\d+|[a-z])\\)\\s+)?([A-Z0-9][A-Z0-9 \\/’'&()-]{2,}?(?::|\\s—))/,
+        function (m, en, lbl) { return (en || "") + "<strong>" + lbl + "</strong>"; });
+      return "<p>" + e + "</p>";
+    }).join("");
   }
 
   const countsEl = document.getElementById("counts-line");
@@ -355,8 +417,12 @@ const DATA = __DATA_JSON__;
       const codeSpan = document.createElement("span");
       codeSpan.className = "code"; codeSpan.textContent = code;
       const nameSpan = document.createElement("span");
-      nameSpan.textContent = d.name;
+      nameSpan.className = "name"; nameSpan.textContent = d.name;
+      const tierTag = document.createElement("span");
+      tierTag.className = "tier-pill " + esc(d.quality);
+      tierTag.textContent = d.quality;
       a.appendChild(dot); a.appendChild(codeSpan); a.appendChild(nameSpan);
+      a.appendChild(tierTag);
       li.appendChild(a);
       frag.appendChild(li);
     });
@@ -387,9 +453,12 @@ const DATA = __DATA_JSON__;
     rows.forEach(function (r) {
       const ci = (r.per_ci_low !== undefined && r.per_ci_high !== undefined)
         ? esc(r.per_ci_low) + "–" + esc(r.per_ci_high) : "";
+      const tier = esc(r.quality_tier);
+      const tierCell = tier
+        ? '<span class="tier-pill ' + tier + '">' + tier + "</span>" : "";
       html += "<tr><td>" + esc(r.dataset) + "</td><td>" + esc(r.n) + "</td><td>" +
         esc(r.per) + "</td><td>" + ci + "</td><td>" + esc(r.exact_match) + "</td><td>" +
-        esc(r.provenance) + "</td><td>" + esc(r.quality_tier) + "</td></tr>";
+        esc(r.provenance) + "</td><td>" + tierCell + "</td></tr>";
     });
     html += "</tbody></table></div>";
     return html;
@@ -502,7 +571,12 @@ const DATA = __DATA_JSON__;
       return;
     }
     let html = "";
-    html += "<h2>" + esc(d.name) + '<span class="badge ' + esc(d.quality) + '">' + esc(d.quality) + "</span></h2>";
+    const tier = esc(d.quality);
+    const tierDesc = TIER_DESC[d.quality] || "";
+    html += '<div class="tier-rail ' + tier + '">' +
+      "<h2>" + esc(d.name) + '<span class="badge ' + tier + '">' + tier + "</span></h2>" +
+      (tierDesc ? '<div class="tier-desc"><strong>' + tier + "</strong> — " + esc(tierDesc) + "</div>" : "") +
+      "</div>";
     html += '<div class="meta-line">code <code>' + esc(d.code) + "</code> · family " + esc(d.family) +
       " · script " + esc(d.script) + (d.script_type ? " (" + esc(d.script_type) + ")" : "") + "</div>";
 
@@ -524,7 +598,7 @@ const DATA = __DATA_JSON__;
 
     if (d.notes) {
       const looksWarning = /\\b(warning|caution|contract|pinyin|jamo|tashkeel|requires|must be)\\b/i.test(d.notes);
-      html += '<section><h3>Notes</h3><div class="notes-box' + (looksWarning ? " warn" : "") + '">' + esc(d.notes) + "</div></section>";
+      html += '<section><h3>Notes</h3><div class="notes-box' + (looksWarning ? " warn" : "") + '">' + renderNotes(d.notes) + "</div></section>";
     }
 
     if (d.wikipedia && d.wikipedia.length) {
