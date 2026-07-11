@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.43.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.43.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.42.1a1...1.43.0a1)
+
+**Merged pull requests:**
+
+- chore: regenerate scoreboard.md to match results.json [\#177](https://github.com/TigreGotico/orthography2ipa/pull/177) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): add Kabyle \(Taqbaylit\) Berber language spec [\#173](https://github.com/TigreGotico/orthography2ipa/pull/173) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): research-grounded Levantine Arabic dialects \(Damascene, Beiruti, Ammani, Palestinian\) [\#171](https://github.com/TigreGotico/orthography2ipa/pull/171) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.42.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.42.1a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.42.0a1...1.42.1a1)
@@ -559,7 +569,6 @@
 - feat: positional graphemmes [\#4](https://github.com/TigreGotico/orthography2ipa/pull/4) ([JarbasAl](https://github.com/JarbasAl))
 - add release automations [\#3](https://github.com/TigreGotico/orthography2ipa/pull/3) ([JarbasAl](https://github.com/JarbasAl))
 - celtic [\#2](https://github.com/TigreGotico/orthography2ipa/pull/2) ([JarbasAl](https://github.com/JarbasAl))
-- add tests [\#1](https://github.com/TigreGotico/orthography2ipa/pull/1) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
