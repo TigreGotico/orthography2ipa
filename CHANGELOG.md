@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.70.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.70.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.70.0a1...1.70.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): Arabic alif-maksūra merge + word-final glide-coda after sukūn [\#251](https://github.com/TigreGotico/orthography2ipa/pull/251) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.70.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.70.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.69.0a1...1.70.0a1)
@@ -676,10 +684,6 @@
 ## [1.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.9.0a1) (2026-06-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.1a1...1.9.0a1)
-
-**Merged pull requests:**
-
-- feat\(benchmarks\): additional human-provenance gold datasets [\#59](https://github.com/TigreGotico/orthography2ipa/pull/59) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.8.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.1a1) (2026-06-11)
 
