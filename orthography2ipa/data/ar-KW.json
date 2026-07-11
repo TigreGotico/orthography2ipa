@@ -16,43 +16,32 @@
       "code": "ar-x-gulf",
       "role": "parent",
       "weight": 0.92,
-      "notes": "Gulf Arabic base"
+      "notes": "Gulf Arabic base — inherits *q→[ɡ], velar affrication, interdental retention and emphatic spreading."
     }
   ],
-  "notes": "Kuwaiti Arabic. Best-documented Gulf variety. k → /tʃ/ before front vowels: very salient and consistent. ق → /ɡ/ (traditional); /q/ in formal/MSA contexts. Heavy English influence (post-1950s oil era): /p/, /v/, /ŋ/ well-established from English loanwords. Holes (1990, 2001) primary reference.",
-  "quality": "skeleton",
+  "notes": "Kuwaiti Arabic — the best-documented Gulf variety. Inherits the Gulf features: *q → [ɡ] (with [q] a formal/MSA candidate); velar affrication /k/→[tʃ] and /ɡ/→[dʒ] before high front /i, iː/; interdentals /θ ð ðˤ/ retained. Kuwaiti-specific: Matar (1969), as reported in Alshammari 2026 p.1335, describes /ɡ/ → [dʒ] adjacent to front vowels, sometimes across an intervening /r, l/ (e.g. qariːb→dʒiriːb), and in emphatic contexts (ðˤiːg → ðˤiːdʒ) — the non-adjacent trigger is NOT modelled (see GULF_G_AFFRICATION notes). The 2nd-person-feminine-singular suffix affricates to -tʃ (kashkasha), a morphological process outside base-orthography scope. Heavy English influence (post-1950s oil era): /p/, /v/, /ŋ/ well-established from loanwords. Input contract: fully diacritised (tashkeel) Arabic.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
-      "id": "watson2002",
-      "author": "Watson, J.C.E.",
-      "year": 2002,
-      "title": "The Phonology and Morphology of Arabic",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+      "id": "alshammari2026",
+      "author": "Alshammari, K. K.",
+      "year": 2026,
+      "title": "An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic",
+      "publisher": "Journal of Language Teaching and Research 17(4)",
+      "url": "https://doi.org/10.17507/jltr.1704.19",
+      "pages": "1333-1341",
+      "notes": "Read in full (open-access PDF). Reports (p.1335) Matar's (1969) study of Kuwaiti /ɡ/→[dʒ] affrication adjacent to front vowels and in emphatic context, and Johnstone (1967) on the lexicalisation of velar affrication in Eastern Arabic."
     },
     {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "versteegh2001",
-      "author": "Versteegh, K.",
-      "year": 2001,
-      "title": "The Arabic Language",
-      "publisher": "Edinburgh University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "id": "albalushi2016",
+      "author": "Al-Balushi, R.",
+      "year": 2016,
+      "title": "Omani Arabic: More than a Dialect",
+      "publisher": "Macrolinguistics 4(1)",
+      "url": "https://macrolinguistics.nju.edu.cn/23/17/c27354a467735/page.htm",
+      "pages": "80-125",
+      "notes": "Read the phonology sections. Notes /q/→[ɣ] in some Kuwaiti varieties (e.g. ɣirš 'shark' < qirš), cross-referenced with Eastern Arabian /q/ reflexes (p.89)."
     }
   ],
   "wikipedia": [

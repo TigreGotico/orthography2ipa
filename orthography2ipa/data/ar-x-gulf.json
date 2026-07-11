@@ -9,20 +9,26 @@
       "θ",
       "t"
     ],
-    "ج": [
-      "dʒ",
-      "j"
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "ظ": [
+      "ðˤ"
     ],
     "ض": [
       "dˤ"
+    ],
+    "ج": [
+      "dʒ",
+      "j"
     ],
     "ق": [
       "ɡ",
       "q"
     ],
     "ك": [
-      "k",
-      "tʃ"
+      "k"
     ],
     "پ": [
       "p"
@@ -60,49 +66,74 @@
       "v"
     ]
   },
+  "allophone_rules": [
+    {
+      "id": "GULF_K_AFFRICATION",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "tʃ",
+      "followed_by_phoneme": [
+        "i",
+        "iː"
+      ],
+      "notes": "Velar affrication (kashkasha): /k/ → [tʃ] adjacent to a high front vowel /i, iː/. Alshammari 2026 (JLTR 17(4):1333-1341), literature review p.1335: 'Mustafawi (2006, 2007) examines the affrication phenomenon of velar stops /k/ and /g/ in Qatari Arabic (QA)... She proposes that the velar stop undergoes affrication only in the stem when adjacent to the high front vowels /i/ or /i:/. Conversely, affrication is blocked by the presence of any other segments including front vowels that are [-high].' The general Gulf/Peninsular pattern (attributed there to Ingham 1994; Holes 1991) affricates /k/ to [tʃ] 'in the presence of front vowels'. LIMITATIONS: the alternation is historically lexicalised — per Johnstone (1967), as reported in Alshammari 2026 p.1335, velar affrication 'is clearly no longer productive in Eastern Arabic' and /tʃ/ has 'attained the status of an independent phoneme'. It is further blocked by adjacent emphatics and by the OCP near /s z/. This rule models only the regular onset case (following high front vowel); coda affrication (e.g. samak → simatʃ) and emphatic/OCP blocking are not modelled. Input contract: fully diacritised (tashkeel) Arabic, so the conditioning vowel is a written kasra/yāʔ."
+    },
+    {
+      "id": "GULF_G_AFFRICATION",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "dʒ",
+      "followed_by_phoneme": [
+        "i",
+        "iː"
+      ],
+      "notes": "Velar affrication of /ɡ/ (< Old Arabic *q, realised [ɡ] in Bedouin/sedentary Gulf) → [dʒ] adjacent to a high front vowel /i, iː/. Alshammari 2026 abstract (p.1333) and p.1335: 'the affrication of /g/ to [dz] coincides with what has been reported in other Arabic dialects, where the conditioning environment is strictly limited to high front vowels', and /ɡ/ 'requires a higher degree of vocalic frontness and height to undergo affrication, compared to its voiceless counterpart /k/'. Matar (1969), as reported there, finds Kuwaiti /ɡ/ → [dʒ] adjacent to front vowels, including the emphatic context ðˤiːg → ðˤiːdʒ 'tightness'. LIMITATIONS: Matar's non-adjacent trigger (a front vowel across an intervening /r, l/, e.g. qariːb → dʒiriːb) and emphatic/OCP effects are not modelled — only the adjacent following high-front-vowel case."
+    }
+  ],
   "parent": "ar-x-peninsular",
   "ancestors": [
     {
       "code": "ar-x-peninsular",
       "role": "parent",
       "weight": 0.9,
-      "notes": "Peninsular Arabic base"
+      "notes": "Peninsular Arabic base — interdental retention and emphatic (pharyngealisation) spreading inherited via the AR_PEN_EMPH_* allophone rules."
     }
   ],
-  "notes": "Proto-Gulf Arabic — abstract ancestor node for Kuwaiti, Bahraini, Qatari, and Emirati Arabic. DEFINING FEATURE: k → /tʃ/ before front vowels (/i, iː, e/). ق → /ɡ/ (Bedouin/traditional Gulf). θ, ð often preserved. Vowel imāla prominent. Holes (1990) is the primary reference grammar.",
-  "quality": "skeleton",
+  "notes": "Proto-Gulf Arabic (Khaleeji) — abstract ancestor node for Emirati (ar-AE), Bahraini (ar-BH), Kuwaiti (ar-KW) and Qatari (ar-QA); Omani (ar-OM) is genetically Peninsular and inherits ar-x-peninsular directly. DEFINING FEATURES modelled here and inherited by descendants via graphemes_base/OVERLAY_BY_ID: (1) Old Arabic *q → [ɡ] (Bedouin/sedentary Gulf), with [q] retained as a secondary MSA/formal candidate; (2) velar affrication /k/ → [tʃ] and /ɡ/(<*q) → [dʒ] adjacent to a high front vowel /i, iː/ (allophone_rules GULF_K_AFFRICATION, GULF_G_AFFRICATION); (3) interdentals /θ ð ðˤ/ RETAINED, unlike sedentary Levantine/Egyptian which merge them to stops/sibilants — a Bedouin-type retention (grapheme mappings for ث ذ ظ list the interdental first); (4) jiim /dʒ/ ~ [j] variation (glide realisation common in the eastern Gulf); (5) integrated /p/, /v/ from loanwords (پ, ڤ). Emphatic spreading (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is inherited from ar-x-peninsular (AR_PEN_EMPH_*). Input contract: fully diacritised (tashkeel) Arabic. Grounded in sources actually read: Alshammari 2026 (velar affrication, whose literature review surveys Mustafawi's Qatari and Matar's Kuwaiti data), Al-Balushi 2016 (Omani/Eastern-Arabian reflexes), Szreder & Derrick 2023 (Emirati affricate variability).",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
-      "id": "watson2002",
-      "author": "Watson, J.C.E.",
-      "year": 2002,
-      "title": "The Phonology and Morphology of Arabic",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+      "id": "alshammari2026",
+      "author": "Alshammari, K. K.",
+      "year": 2026,
+      "title": "An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic",
+      "publisher": "Journal of Language Teaching and Research 17(4)",
+      "url": "https://doi.org/10.17507/jltr.1704.19",
+      "pages": "1333-1341",
+      "notes": "Read in full (open-access PDF). Northern Najdi study whose literature review (p.1335) surveys Gulf velar affrication: Mustafawi (2006, 2007) Qatari — /k/,/ɡ/ affricate only adjacent to high front /i, iː/, blocked by [-high] and emphatics/OCP; Matar (1969) Kuwaiti /ɡ/→[dʒ]; Johnstone (1967) affrication lexicalised in Eastern Arabic; Ingham (1994), Holes (1991) general Gulf."
     },
     {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "id": "albalushi2016",
+      "author": "Al-Balushi, R.",
+      "year": 2016,
+      "title": "Omani Arabic: More than a Dialect",
+      "publisher": "Macrolinguistics 4(1)",
+      "url": "https://macrolinguistics.nju.edu.cn/23/17/c27354a467735/page.htm",
+      "pages": "80-125",
+      "notes": "Read the phonology sections (pp. 85-90, open-access PDF). Documents Eastern Arabian /q/ reflexes (Bedouin [ɡ]; sedentary [q]; northern mountains [k]; Sur/Sohar [dʒ]), /k/→[tʃ] affrication Bedouin 'in the vicinity of front vowels' vs unconditional in sedentary (Holes 2013), jiim /dʒ/~[ɡ] variation, and interdental/emphatic retention."
     },
     {
-      "id": "versteegh2001",
-      "author": "Versteegh, K.",
-      "year": 2001,
-      "title": "The Arabic Language",
-      "publisher": "Edinburgh University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "id": "szreder_derrick2023",
+      "author": "Szreder, M. & Derrick, D.",
+      "year": 2023,
+      "title": "Phonological conditioning of affricate variability in Emirati Arabic",
+      "publisher": "Journal of the International Phonetic Association",
+      "url": "https://doi.org/10.1017/S0025100323000129",
+      "pages": "54(1):146-164",
+      "notes": "Abstract and published summary read (full text paywalled — cited only for what was read). Finds the [k~tʃ] alternation is a completed phonemic change (lexicalised) while [dʒ~j] is a synchronic process; a nearby similar coronal obstruent inhibits the (voiced) [j] variant of the dʒ~j alternation, whereas /k/-affrication to [tʃ] is not inhibited by similar consonants."
     }
   ],
   "wikipedia": [

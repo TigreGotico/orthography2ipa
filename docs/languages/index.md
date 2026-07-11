@@ -75,7 +75,7 @@ each tier actually certifies.
 
 | Doc | Languages covered |
 |:---|:---|
-| [ar.md](ar.md) | Modern Standard Arabic (+ Egyptian Cairene and Saudi Najdi/Hejazi sections) — abjad script, tashkeel-dependent input contract, emphatic-spreading allophone layer |
+| [ar.md](ar.md) | Modern Standard Arabic (+ Egyptian Cairene, Saudi Najdi/Hejazi, and Gulf/Khaleeji Emirati·Bahraini·Kuwaiti·Qatari·Omani sections) — abjad script, tashkeel-dependent input contract, emphatic-spreading and Gulf velar-affrication allophone layers |
 | [ar-x-levantine.md](ar-x-levantine.md) | Levantine Arabic — Damascene (`ar-SY`), Beiruti (`ar-LB`), Ammani (`ar-JO`), Palestinian (`ar-PS`): shared qaf/jim/interdental reflexes, /aj aw/→[eː oː] monophthongization, Lebanese imāla |
 
 ### Berber (Amazigh)
