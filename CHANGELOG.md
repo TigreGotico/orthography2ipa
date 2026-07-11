@@ -1,8 +1,20 @@
 # Changelog
 
+## [1.44.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.44.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.43.0a2...1.44.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model Transmontano and Alto-Minhoto European Portuguese dialects [\#165](https://github.com/TigreGotico/orthography2ipa/pull/165) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.43.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.43.0a2) (2026-07-11)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.42.1a1...1.43.0a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.43.0a1...1.43.0a2)
+
+## [1.43.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.43.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.42.1a1...1.43.0a1)
 
 **Merged pull requests:**
 
@@ -568,7 +580,6 @@
 - refactor to json [\#6](https://github.com/TigreGotico/orthography2ipa/pull/6) ([JarbasAl](https://github.com/JarbasAl))
 - feat: positional graphemmes [\#4](https://github.com/TigreGotico/orthography2ipa/pull/4) ([JarbasAl](https://github.com/JarbasAl))
 - add release automations [\#3](https://github.com/TigreGotico/orthography2ipa/pull/3) ([JarbasAl](https://github.com/JarbasAl))
-- celtic [\#2](https://github.com/TigreGotico/orthography2ipa/pull/2) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
