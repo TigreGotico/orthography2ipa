@@ -1,4 +1,30 @@
 {
+  "ancestors": [
+    {
+      "code": "sa",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Descent from Old Indo-Aryan (Sanskrit) via Sauraseni Prakrit and Apabhramsa to the Delhi/Khari Boli of the Western Hindi area."
+    },
+    {
+      "code": "dra",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Dravidian (and Munda) substrate widely credited with Indo-Aryan retroflexion (the ʈ ɖ ɳ series) and convergence features."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Persian adstrate: dominant administrative/prestige language of the Delhi Sultanate and Mughal empire; the Perso-Arabic layer that defines the Hindustani register continuum."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Arabic adstrate: religious/legal vocabulary borrowed largely through Persian."
+    }
+  ],
   "code": "hi",
   "name": "Hindi",
   "family": "Indo-Aryan",
@@ -368,7 +394,7 @@
       "ɔː"
     ]
   },
-  "parent": "ine",
+  "parent": "sa",
   "notes": "Standard Hindi (Khaṛī Bolī). 4-way laryngeal contrast: voiceless, aspirated, voiced, breathy-voiced. Nukta letters for Perso-Arabic loans may not be distinguished by all speakers. SCHWA DELETION: inherent schwa deleted word-finally and in medial CVC patterns (Pandey 2014). ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ] intervocalically. 4-WAY LARYNGEAL: voiceless unaspirated, voiceless aspirated, voiced, breathy-voiced stops. DENTALS vs RETROFLEXES: dental series (त/थ/द/ध) vs. retroflex (ट/ठ/ड/ढ) fully contrastive. Sources: Ohala (1983), Pandey (2014), Masica (1991), Shapiro (2003).",
   "quality": "research",
   "script_type": "abugida",
