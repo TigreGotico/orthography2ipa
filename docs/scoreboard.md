@@ -16,7 +16,7 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 
 | Lang | Dataset | N | PER | 95% CI | Exact match | Quality tier | Provenance |
 |---|---|---:|---:|---:|---:|---|---|
-| ar | wikipron | 259 | 0.2566 | [0.2391, 0.2737] | 0.1081 | research | crowd-scraped |
+| ar | wikipron | 259 | 0.1868 | [0.1700, 0.2035] | 0.2394 | research | crowd-scraped |
 | ast | wikipron | 300 | 0.0876 | [0.0731, 0.1014] | 0.5900 | research | crowd-scraped |
 | ca | 4catac | 160 | 0.4026 | [0.3930, 0.4120] | 0.0000 | research | expert-human |
 | ca | styletts2_phonemes | 300 | 0.4012 | [0.3928, 0.4099] | 0.0000 | research | machine-generated |

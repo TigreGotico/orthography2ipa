@@ -25,7 +25,103 @@ outside the Quran, children's books, and pedagogical material. Undiacritized inp
 **not** disambiguated by this spec — there is no morphological/statistical
 diacritic-restoration step — and will transcribe incorrectly or incompletely wherever
 short vowels or gemination are orthographically absent. Gemination (shadda, ّ) is only
-encoded when explicitly marked in the input, via the inherited ّ → ː mapping from `arb`.
+realized when explicitly marked in the input (see [Gemination](#gemination-shadda-ّ)
+below).
+
+Where the vowel-bearing diacritic is nonetheless absent, the spec degrades gracefully
+rather than dropping segments: the hamza carriers أ/إ fall back to their default
+hamza+vowel readings (`ʔa`/`ʔi`) so an undiacritized skeleton still surfaces a vowel,
+and the matres lectionis ا/ي/و default to their long-vowel readings word-medially and
+word-finally. This is why the undiacritized WikiPron gold — which is scored on bare
+consonantal skeletons — still transcribes usefully (see [Gold benchmark](#gold-benchmark)).
+
+## Presentation-form and lam-alif ligature normalization (engine-level)
+
+Before grapheme tokenization, any Arabic-script spec (this one included) decomposes the
+Arabic **Presentation Forms-A** (U+FB50–U+FDFF) and **Presentation Forms-B**
+(U+FE70–U+FEFF) blocks to their canonical letters via a script-scoped NFKC decomposition
+(`orthography2ipa/phonetok.py`). These blocks hold contextual glyph variants and
+ligatures — most importantly the four **lam-alif ligatures** ﻻ/ﻷ/ﻵ/ﻹ
+(U+FEFB/FEF7/FEF5/FEF9), which decompose to ل + ا/أ/آ/إ. Because the grapheme table is
+keyed on the canonical letters, a bare ligature would otherwise tokenize to nothing:
+
+```python
+transcribe("ﻻ", "ar")   # -> "laː"   (was "" before normalization)
+```
+
+The decomposition touches **only** codepoints inside those two Arabic blocks, so no other
+script is disturbed (a global NFKC would also fold Latin ligatures, full-width forms,
+etc.).
+
+## Gemination (shadda ّ)
+
+A consonant carrying **shadda** (ّ, U+0651) is a geminate — it surfaces as a doubled
+(long) consonant, and this holds for **every** consonant including the glides ي/و, which
+geminate as the consonants they are (Ryding 2005, *A Reference Grammar of Modern Standard
+Arabic*, ch. 2 "Phonology and script", on the doubling of consonants and on the
+approximants/semivowels waaw & yaa, **pp. 15–16**; Watson 2002, *The Phonology and
+Morphology of Arabic*, on MSA gemination via shadda). The engine models this as an
+Arabic-script-scoped **normalization-time transform**
+(`orthography2ipa/phonetok.py`): the base consonant is doubled and the shadda dropped, so
+downstream per-slot resolution sees two ordinary consonant slots. Both Unicode orderings
+of the mark cluster are handled — the canonical *consonant + shadda + harakat* and the
+equally-valid *consonant + harakat + shadda* (they render identically and NFC does not
+reorder them, since shadda's combining class differs from the harakat's).
+
+```python
+transcribe("عَمَّ", "ar")     # -> "ʕamma"   (geminate m, not a length mark on the vowel)
+transcribe("عُيِّنَ", "ar")   # -> "ʕujjina"  (glide ي geminates too)
+transcribe("قَوَّاس", "ar")   # -> "qawwaːs"  (glide و geminate before the long-ā digraph)
+```
+
+This replaces the previous `arb`-inherited ّ → `ː` mapping, which stranded a bare length
+mark on the wrong slot (عَمَّ → *ʕamaː*).
+
+**Documented limit.** A kasra sitting on a geminate glide (ـِيّ, e.g. حُرِّيَّة *ḥurriyya*)
+is under-resolved: the kasra+yā digraph ـِي greedily reads as a long /iː/ mater before the
+geminate glide is recovered, so the surface is imperfect. The common geminate-glide cases
+(عُيِّنَ, قَوَّاس) resolve correctly.
+
+## Glide onsets, hamza carriers, and matres lectionis (`ar` grapheme/positional overrides)
+
+`ar` overrides a handful of inherited `arb` grapheme entries at the leaf so the flagship
+spec transcribes the fully-diacritized forms correctly (the changes are scoped to `ar`;
+`arb` and the dialects are untouched). Each choice is cited to Wright / Ryding:
+
+- **Glide + fatḥa is an onset, not a diphthong.** يَ → /ja/ and وَ → /wa/ (glide-first =
+  consonant onset), whereas the diphthongs /aj/ /aw/ are combinations of a short vowel
+  and a *following* semivowel — the *fatḥa-first* sequences َي / َو (Ryding 2005,
+  "Diphthongs and glides", **pp. 29–30**: the diphthongs are /aw/ and /ay/, i.e.
+  short-vowel + semivowel; the semivowels waaw/yaa as consonants, pp. 15–16). So يَوم →
+  [jawm], not *[ajwm]*.
+- **Hamza carriers are a bare /ʔ/ + the harakat vowel.** أ → /ʔ/ and إ → /ʔ/ before a
+  written vowel, with the short vowel supplied by the explicit harakat — not a baked-in
+  `ʔa`/`ʔi` that doubles against a following mater (Ryding 2005, **p. 16**: "Strong hamza
+  is a regular consonant and is pronounced under all circumstances"). So إِيْمَان →
+  [ʔiːmaːn], not *[ʔiiːmaːn]*. When **no** harakat follows (undiacritized input, out of
+  contract) they fall back to `ʔa`/`ʔi` (positional `default`), so bare skeletons keep a
+  vowel.
+- **Word-final ي/و prefer the long-vowel reading.** Via `positional_graphemes`
+  (`word_final`), so يُصَلِّي → […iː], not a stranded glide […j] (Ryding 2005, **pp. 25–27**,
+  on the long vowels /ii/ /uu/ spelled with yāʾ/wāw).
+- **ة (tāʾ marbūṭa) is the pausal /a/.** Word-final ة after a harakat contributes nothing
+  (the preceding fatḥa already supplies the /a/), so مَدْرَسَة → [madrasa], not
+  *[madrasaa]*. The context-sensitive /at/ construct-state reading (تاء مربوطة in *iḍāfa*)
+  needs the **following** word and is therefore an engine limit (see
+  [Remaining engine limits](#remaining-engine-limits) below).
+
+## Remaining engine limits (honest scope)
+
+Two Arabic phenomena need sentence/cross-word context that the word-level engine does not
+have, and are left explicitly unmodeled:
+
+- **ة construct-state /at/.** Word-final ة surfaces as /at/ only in *iḍāfa* (before a
+  following genitive); in pause it is /a/. The engine picks the pausal /a/ and cannot see
+  the following word to switch to /at/.
+- **Word-final ا / pausal iʿrāb and cross-word sun-letter assimilation.** Pausal dropping
+  of case vowels and the attached-article sun-letter assimilation both require token/
+  sentence context (see the `AR_SUN_ASSIMILATION` scope note above); they are unchanged by
+  this work.
 
 ## Sun-letter assimilation (`AR_SUN_ASSIMILATION`, inherited from `arb`) — practical scope
 
