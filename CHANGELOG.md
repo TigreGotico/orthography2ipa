@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.38.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.38.0a2) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.38.0a1...1.38.0a2)
+
+**Merged pull requests:**
+
+- chore: cite Cintra 1971 in place of private dialect-transform whitepaper [\#163](https://github.com/TigreGotico/orthography2ipa/pull/163) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.38.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.38.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.37.0a1...1.38.0a1)
+
 ## [1.37.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.37.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.36.1a1...1.37.0a1)
