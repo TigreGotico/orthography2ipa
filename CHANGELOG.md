@@ -1,8 +1,8 @@
 # Changelog
 
-## [1.43.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.43.0a1) (2026-07-11)
+## [1.43.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.43.0a2) (2026-07-11)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.42.1a1...1.43.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.42.1a1...1.43.0a2)
 
 **Merged pull requests:**
 
