@@ -46,14 +46,20 @@ def _strip_stress(ipa: str) -> str:
 #   es-ES: c/g before front vowel → θ/x; intervocalic b/d/g → β/ð/ɣ;
 #          word-final d → ð; word-initial r → r.
 #   pt-BR: intervocalic s → z; word-initial r → ʁ.
-#   ca:    c/g softening before front vowels.
+#   ca:    c/g softening before front vowels. Words are chosen WITHOUT
+#          reducible unstressed vowels: Catalan unstressed reduction is
+#          keyed to the stress-conditioned ⟨nucleus_unstressed⟩ position,
+#          which — like stress marks, sandhi and allophony — is an
+#          engine-only stage the stress-less tokenizer beam does not run
+#          (see orthography2ipa.positional), so a word like "cosa" would
+#          legitimately diverge (engine [kɔzə] vs beam [kɔza]).
 _PARITY_CASES = {
     "es-ES": [
         "cena", "cielo", "gente", "girar", "hago", "lado", "abogado",
         "rosa", "casa", "gato", "cuna", "ciudad", "verdad",
     ],
     "pt-BR": ["casa", "mesa", "rosa", "rato", "peso", "asa"],
-    "ca": ["cel", "gel", "cinc", "gent", "cosa", "gat"],
+    "ca": ["cel", "gel", "cinc", "gent", "gat"],
 }
 
 

@@ -107,5 +107,50 @@
     "end_year": null
   },
   "glottolog_code": "nort3175",
-  "iso639_3": "cat"
+  "iso639_3": "cat",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "n",
+      "t",
+      "k",
+      "p",
+      "m",
+      "f",
+      "x",
+      "ig",
+      "nc",
+      "nt",
+      "lt",
+      "st",
+      "lc",
+      "rc",
+      "mp",
+      "ps"
+    ],
+    "penult_stress_endings": [
+      "s",
+      "ns",
+      "es",
+      "as",
+      "os",
+      "is",
+      "us"
+    ],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "í",
+      "ï",
+      "ò",
+      "ó",
+      "ú",
+      "ü"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Northern (Rossellonès) shares standard Catalan orthographic accentuation; stress conditions the Eastern-block unstressed reduction/syncope. Same rules as Central Catalan."
+  }
 }

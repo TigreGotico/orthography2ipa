@@ -6,10 +6,6 @@
   "graphemes_base": "ca",
   "allophones_base": "ca",
   "allophones": {
-    "ə": [
-      "a",
-      "e"
-    ],
     "ʎ": [
       "ʎ"
     ],
@@ -19,6 +15,25 @@
     ]
   },
   "positional_graphemes_base": "ca",
+  "positional_graphemes": {
+    "a": {
+      "default": [
+        "a"
+      ]
+    },
+    "e": {
+      "default": [
+        "ɛ",
+        "e"
+      ]
+    },
+    "o": {
+      "default": [
+        "ɔ",
+        "o"
+      ]
+    }
+  },
   "parent": "ca",
   "ancestors": [
     {
@@ -27,7 +42,7 @@
       "weight": 0.9
     }
   ],
-  "notes": "Northwestern Catalan (Lleidatà/Pallarès). Western block, spoken in Lleida and Pyrenean valleys. No schwa reduction: 7-vowel system fully maintained in unstressed positions (unlike Eastern Catalan). Open-e /ɛ/ and open-o /ɔ/ preserved as distinct phonemes. Palatal lateral /ʎ/ preserved without yeísmo. Rhotic /ɾ/ may be trilled [r] in some contexts (word-initial, post-nasal). Closest to Valencian in vowel system.",
+  "notes": "Northwestern Catalan (Lleidatà/Pallarès). Western block, spoken in Lleida and Pyrenean valleys. NO unstressed vowel reduction: the 7-vowel system is fully maintained in unstressed positions (unlike Eastern/Central Catalan), so unstressed /a e o/ do NOT reduce to [ə]/[u] (Recasens 1996; Veny 1982). This is modelled by overriding the inherited Central ⟨nucleus_unstressed⟩ reduction: the vowel graphemes declare only a full-quality ⟨default⟩, so both stressed and unstressed nuclei keep [a], [ɛ]/[e], [ɔ]/[o]. Palatal lateral /ʎ/ preserved without yeísmo. Rhotic /ɾ/ may be trilled [r] in some contexts (word-initial, post-nasal). Intervocalic spirantization and final devoicing (inherited allophone_rules) still apply. Closest to Valencian in vowel system.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -60,6 +75,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "recasens1996",
+      "author": "Recasens, D.",
+      "year": 1996,
+      "title": "Fonètica descriptiva del català",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": null,
+      "pages": null,
+      "notes": "Nord-Occidental (Western) Catalan vocalism: unstressed vowels are NOT reduced to schwa; the tonic 7-vowel inventory is preserved in atonic position, unlike the Eastern/Central varieties."
+    },
+    {
+      "id": "veny1982",
+      "author": "Veny, J.",
+      "year": 1982,
+      "title": "Els parlars catalans: síntesi de dialectologia",
+      "publisher": "Moll",
+      "url": null,
+      "pages": null,
+      "notes": "Dialectological isogloss separating Western (no atonic reduction) from Eastern (atonic reduction to [ə]/[u]) Catalan."
     }
   ],
   "wikipedia": [
