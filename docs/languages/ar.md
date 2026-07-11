@@ -268,3 +268,9 @@ therefore *not* cited as primary reads — only as works reported within the sou
 - Szreder, M. & Derrick, D. (2023). Phonological conditioning of affricate variability in Emirati Arabic. *Journal of the International Phonetic Association* 54(1): 146–164. https://doi.org/10.1017/S0025100323000129
 - Wikipedia: [Sun and moon letters](https://en.wikipedia.org/wiki/Sun_and_moon_letters)
 - Wikipedia: [Standard Arabic phonology](https://en.wikipedia.org/wiki/Standard_Arabic_phonology)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [ar-IQ](ar-IQ.md), [ar-x-levantine](ar-x-levantine.md)*

@@ -117,3 +117,9 @@ Key differences from Dutch:
 - Riad, T. (2014). *The Phonology of Swedish*. OUP.
 - Engstrand, O. (1999). *Swedish*. JIPA 29(1), 140–145.
 - Gussenhoven, C. (1992). *Dutch*. JIPA 22, 45–47.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [de-DE](de-DE.md), [en-GB](en-GB.md)*

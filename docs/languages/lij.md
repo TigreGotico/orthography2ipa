@@ -104,3 +104,9 @@ vocalic features (Forner 1975).
 - Forner, Werner. *Generative Phonologie des Dialekts von Genua.* Buske, 1975.
 - Maiden, M. & Parry, M. (eds.) *The Dialects of Italy.* Routledge, 1997.
 - Omniglot. *Genoese (Zeneize) language and pronunciation.* <https://www.omniglot.com/writing/genoese.htm> (tertiary cross-check).
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [romance](romance.md), [it-IT](it-IT.md)*

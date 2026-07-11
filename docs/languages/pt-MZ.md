@@ -41,12 +41,17 @@ unstressed-vowel reduction than EP.
 - **`<lh>` /ʎ/ voiced aspiration** in Maputo speech (a Bantu calque,
   Nhatuve 2019:137) is documented but **not modelled** — a narrow
   allophonic detail below the grapheme layer.
-- **Coda `/l/` → [w]** vocalisation and Bantu pitch effects are carried
-  over from the earlier skeleton and are **not confirmed** by the
-  primaries read here; they are tentative and should be re-sourced before
-  any production promotion.
+- **Coda `/l/` → [w]** vocalisation and Bantu pitch effects are **not
+  confirmed** by the primaries read here; they are tentative and should be
+  re-sourced before any production promotion.
 
 ## Input contract
 
 Input is standard Portuguese orthography (Acordo Ortográfico 1990); written
 accents carry stress. No special pre-processing is expected.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-AO](pt-AO.md), [romance](romance.md)*

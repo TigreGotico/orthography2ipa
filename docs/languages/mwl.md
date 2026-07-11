@@ -112,8 +112,8 @@ declare only their **deltas**:
   Sendinês diverges), corroborated by the Raiano gold (`fuogo` → [ˈfwo.ʊ],
   diphthong retained). Its distinctives are morphosyntactic/lexical (article
   forms, some nasalisation) and out of scope for a grapheme→IPA spec, so it
-  inherits Central unchanged. An earlier draft's ⟨iê⟩→[e] override was
-  unsourced and has been removed.
+  inherits Central unchanged; the ⟨iê⟩ diphthong is preserved rather than
+  monophthongised to [e], for which no source records a divergence.
 
 ## Input contract
 
@@ -148,3 +148,9 @@ unstressed final ⟨-o⟩, and lexically variable spirantisation (see above).
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
   Oxford University Press. — reference for the shared Ibero-Romance processes
   (nasal place assimilation, spirantisation) and the adstrate reduction.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [romance](romance.md), [pt-PT](pt-PT.md), [ext-PT-x-barrancos](ext-PT-x-barrancos.md)*

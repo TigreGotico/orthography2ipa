@@ -95,3 +95,9 @@ eng.transcribe("levada")      # lɨˈvadɐ  — /v/ preserved, no betacism
   Calouste Gulbenkian, Lisboa, pp. 85–142.
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
   Oxford University Press.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-PT-x-acores](pt-PT-x-acores.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md)*

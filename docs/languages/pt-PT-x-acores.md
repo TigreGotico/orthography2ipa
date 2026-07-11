@@ -91,13 +91,13 @@ and not asserted for the Azores.
 
 ## Benchmark honesty
 
-On the `ep_dialects` expert gold (Terceira reference, n = 29) the rebuilt spec
-moves **PER 0.3058 → 0.2637**. The improvement comes from removing the previous
-spec's over-applying flat `u` → [y] grapheme (which fronted *every* ⟨u⟩,
-including unstressed `vulcão` → [vy…] and the article) and from restoring the
-inherited standard nasal diphthongs. The São Miguel fronting itself is
-neutral-or-better on this Terceira gold (it fixes `número`/`tu` and the
-`muda`-type divergence is compensated), and it ships on its published grounding.
+On the `ep_dialects` expert gold (Terceira reference, n = 29) the spec scores
+**PER 0.2637**. The `u` → [y] fronting is restricted to stressed open /u/ rather
+than applied flat to every ⟨u⟩ (so unstressed `vulcão` and the article keep [u]),
+and the standard nasal diphthongs are inherited from pt-PT. The São Miguel
+fronting is neutral-or-better on this Terceira gold (it fixes `número`/`tu` and
+the `muda`-type divergence is compensated), and it ships on its published
+grounding.
 
 ```python
 from orthography2ipa import G2P
@@ -116,3 +116,9 @@ eng.transcribe("touradas") # toˈwɾadɐʃ — /ow/ preserved
   Press. <https://doi.org/10.2307/470527>
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
   Oxford University Press.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-PT-x-madeira](pt-PT-x-madeira.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md)*

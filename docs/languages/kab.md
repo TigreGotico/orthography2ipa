@@ -140,3 +140,7 @@ Two further post-lexical rules handle **nasal place assimilation**:
   spirantization / palatalization / affrication as Kabyle features.)
 - **Wikipedia, *Kabyle language*** — secondary cross-check (flagged) of the
   34-letter Berber Latin alphabet table only.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)

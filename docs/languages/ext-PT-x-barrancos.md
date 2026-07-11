@@ -107,4 +107,9 @@ on that shape.
   Municipal de Barrancos.
 - Gonçalves, M. F.; Navas, M. V.; Correia, V. M. D. (2025). *Gramática Básica de
   Barranquenho*. Universidade de Évora. ISBN 978-972-778-464-6.
-</content>
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [mwl](mwl.md), [romance](romance.md)*

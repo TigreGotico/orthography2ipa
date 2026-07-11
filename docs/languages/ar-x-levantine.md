@@ -106,3 +106,9 @@ the urban koine (Cotter 2016:150–154). `قَلْب` → `ʔalb`, `جَمَل` 
   re-tested by Almbark & Hellmuth (2015 §1.3).
 - **Watson, J. C. E. 2002.** *The Phonology and Morphology of Arabic.* OUP. Cited for
   emphasis-spreading (not obtained in full).
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [ar](ar.md), [ar-IQ](ar-IQ.md)*

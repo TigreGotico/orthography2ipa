@@ -72,9 +72,8 @@ and Mateus & d'Andrade (2000) transcribe the standard `<ei>` as [ɐj].
 ## Benchmark
 
 Measured on the `ep_dialects` expert-human gold (`pt-PT-x-lisbon`, n = 45,
-PER ≈ 0.25). The transcription-affecting fields are unchanged: this change scrubs
-unpublished citations from `notes`/`sources` and adds the honest documentation
-above. The scoreboard row is therefore byte-identical.
+PER ≈ 0.25). The Lisbon variety is modelled as the pt-PT standard reference, so
+its scoreboard row matches the base.
 
 ## Sources
 
@@ -89,3 +88,9 @@ above. The scoreboard row is therefore byte-identical.
   Oxford University Press.
 - **Cunha, C. & Cintra, L. F. L. (1984)**. *Nova Gramática do Português
   Contemporâneo*. Sá da Costa.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-PT-x-alentejo](pt-PT-x-alentejo.md), [pt-PT-x-porto](pt-PT-x-porto.md)*

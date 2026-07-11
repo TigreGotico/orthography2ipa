@@ -144,3 +144,9 @@ accuracy.
 - Kohler, K.J. (1990). *Illustrations of the IPA: German*. Journal of the International Phonetic Association 20(1).
 - Wikipedia: [German phonology](https://en.wikipedia.org/wiki/German_phonology)
 - Wikipedia: [German orthography](https://en.wikipedia.org/wiki/German_orthography)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [germanic](germanic.md), [en-GB](en-GB.md)*

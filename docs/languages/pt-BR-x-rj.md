@@ -73,3 +73,9 @@ Coda-sibilant voicing before a voiced consonant ([ʃ] → [ʒ]) across a word
 boundary is a sandhi process, not applied here; the socially graded
 variability of the rhotic (suburb vs Zona Sul; Callou 2010:138-139) is a
 sociolinguistic distribution the deterministic spec does not encode.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-BR](pt-BR.md), [pt-BR-x-fluminense](pt-BR-x-fluminense.md), [pt-BR-x-sp](pt-BR-x-sp.md)*

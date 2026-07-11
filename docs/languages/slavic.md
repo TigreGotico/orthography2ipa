@@ -112,3 +112,9 @@ Three-way distinction in each position is unique among European languages.
 - Palková, Z. (1994). *Fonetika a fonologie češtiny*. Karolinum.
 - Gussmann, E. (2007). *The Phonology of Polish*. Oxford University Press.
 - Short, D. (1993). Czech. In: *The Slavonic Languages*, Routledge.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [ru](ru.md)*

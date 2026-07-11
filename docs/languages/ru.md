@@ -149,3 +149,9 @@ Russian has two sets of sibilants:
 - Wikipedia: [Vowel reduction in Russian](https://en.wikipedia.org/wiki/Vowel_reduction_in_Russian) — worked examples with IPA for е/и reduction after hard vs. soft consonants.
 - Wikipedia: [Akanye](https://en.wikipedia.org/wiki/Akanye) — confirms pretonic [ɐ]/[ʌ] vs. further-unstressed [ə], and that ikanye is treated as a phonologically distinct process from akanye (cites Padgett & Tabain 2005).
 - [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) README — confirms Russian was scraped only in narrow transcription, which is why the `ru` gold benchmark row uses `rus_cyrl_narrow.tsv`.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [slavic](slavic.md)*
