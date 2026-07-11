@@ -129,3 +129,53 @@ class TestInheritsBase:
         for code in DIALECTS:
             out = transcribe("medo", code)
             assert "je" not in out and "wo" not in out
+
+
+# ─── Beira-Baixa: stressed /u/ → [y] palatalisation ─────────────────────────
+
+class TestBeiraBaixaUFronting:
+    """pt-PT-x-beira models the Beira-Baixa (Castelo Branco) stressed-/u/ → [y]
+    palatalisation. Cintra (1971, p.14 of the CVC reflow) delimits the
+    Beira-Baixa / Alto-Alentejo zone — núcleos Castelo-Branco e Portalegre — by
+    exactly this isogloss: 'a palatalização, em maior ou menor grau, da vogal
+    tónica u', part of 'uma profunda alteração de timbre de todo o sistema
+    vocálico, principalmente do tónico'; the explicit [y] value is written in
+    the adjacent Barlavento-Algarvio passage of the same 'reacção em cadeia'
+    ('a palatalização da lábio-velar [u] em [y]'). Being a whole-tonic-system
+    mainland chain shift, it fronts even before a tautosyllabic coda liquid —
+    unlike the insular São Miguel open-nucleus process (pt-PT-x-acores) which
+    blocks it. Modelled to mirror the sister mainland zone pt-PT-x-alentejo."""
+
+    def test_stressed_u_fronts_to_y(self):
+        assert transcribe("tudo", "pt-PT-x-beira") == "ˈtydu"
+        assert transcribe("lume", "pt-PT-x-beira") == "ˈlymɨ"
+        assert transcribe("número", "pt-PT-x-beira") == "ˈnymɨɾu"
+
+    def test_fronts_before_coda_l_like_mainland(self):
+        # mainland chain shift fronts even before coda /l/ (unlike insular Açores
+        # azul → [ɐˈzuɫ]); matches pt-PT-x-alentejo / pt-PT-x-algarve sul → [ˈsyɫ]
+        assert transcribe("sul", "pt-PT-x-beira") == "ˈs̺yɫ"
+
+    def test_lexical_tu_fronts(self):
+        assert transcribe("tu", "pt-PT-x-beira") == "ˈty"
+
+    def test_unstressed_u_is_not_fronted(self):
+        out = transcribe("turistas", "pt-PT-x-beira")
+        assert "y" not in out
+        assert "u" in out
+
+    def test_proclitics_keep_u_never_front(self):
+        # the stress detector mis-marks monosyllabic clitics as stressed; the
+        # word_exceptions guard keeps their /u/ nucleus (do → [ˈdu], never [ˈdy])
+        for word, expected in [
+            ("do", "ˈdu"), ("no", "ˈnu"), ("um", "ˈum"), ("uns", "ˈunʃ"),
+        ]:
+            out = transcribe(word, "pt-PT-x-beira")
+            assert out == expected
+            assert "y" not in out
+
+    def test_sister_beira_group_specs_do_not_front(self):
+        # minho/alfena/aveiro are the Baixo-Minhoto-Duriense-Beirão sibilant
+        # group, NOT the Beira-Baixa/Alto-Alentejo chain-shift zone: no fronting
+        for code in ("pt-PT-x-minho", "pt-PT-x-alfena", "pt-PT-x-aveiro"):
+            assert "y" not in transcribe("tudo", code)
