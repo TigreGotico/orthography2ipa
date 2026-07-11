@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.51.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.51.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.50.0a1...1.51.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model Paulistano, Caipira and Paranaense Brazilian Portuguese [\#196](https://github.com/TigreGotico/orthography2ipa/pull/196) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.50.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.50.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.49.0a1...1.50.0a1)
