@@ -1,4 +1,24 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Slavic (South Slavic, western subgroup / Serbo-Croatian)."
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.07,
+      "notes": "Ottoman Turkish adstrate: substantial lexical borrowing (turcisms) from Ottoman rule."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "German adstrate via the Habsburg / Vojvodina contact zone."
+    }
+  ],
   "code": "sr",
   "name": "Serbian",
   "family": "Slavic",

@@ -1,4 +1,24 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Slavic (West Slavic, Czech-Slovak subgroup)."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "German adstrate: centuries of Bohemian bilingualism within the Empire; heavy lexical influence, initial fixed stress reinforced."
+    },
+    {
+      "code": "la",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Latin adstrate: ecclesiastical and scholarly vocabulary."
+    }
+  ],
   "code": "cs",
   "name": "Czech",
   "family": "Slavic",

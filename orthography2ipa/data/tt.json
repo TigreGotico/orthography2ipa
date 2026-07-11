@@ -1,4 +1,31 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.86,
+      "notes": "Descent from Proto-Turkic (Kipchak branch)."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.09,
+      "notes": "Russian adstrate: long, intense Volga contact and Soviet-era lexicon."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary via the Islamic literary tradition."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Persian adstrate via Chagatai literary tradition."
+    }
+  ],
   "code": "tt",
   "name": "Tatar",
   "family": "Turkic",

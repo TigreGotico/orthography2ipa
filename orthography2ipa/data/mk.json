@@ -1,4 +1,30 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Slavic (South Slavic, eastern subgroup)."
+    },
+    {
+      "code": "cu",
+      "role": "ancestor",
+      "weight": 0.08,
+      "notes": "Old Church Slavonic literary ancestor."
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Ottoman Turkish adstrate: heavy lexical layer from Ottoman rule."
+    },
+    {
+      "code": "el",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Greek adstrate; core Balkan sprachbund member."
+    }
+  ],
   "code": "mk",
   "name": "Macedonian",
   "family": "Slavic",

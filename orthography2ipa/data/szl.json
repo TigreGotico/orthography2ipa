@@ -138,12 +138,30 @@
   },
   "allophones": {},
   "positional_graphemes": {},
-  "ancestors": [
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Descent from Proto-Slavic (West Slavic, Lechitic / Silesian subgroup)."
+    },
     {
       "code": "pl",
       "role": "related",
-      "weight": 0.6,
-      "notes": "Closely related to Polish; classification as language vs. dialect disputed"
+      "weight": 0.55,
+      "notes": "Closely related Lechitic neighbour; language-vs-dialect classification disputed."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.14,
+      "notes": "German adstrate: Silesia long under Bohemian/Prussian rule; very heavy lexical layer."
+    },
+    {
+      "code": "cs",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Czech adstrate along the Moravian-Silesian border."
     }
   ],
   "parent": null,

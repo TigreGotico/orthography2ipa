@@ -126,12 +126,18 @@
   },
   "allophones": {},
   "positional_graphemes": {},
-  "ancestors": [
+  "ancestors":   [
     {
       "code": "sla",
-      "role": "proto_language",
-      "weight": 1.0,
-      "notes": "West Slavic language closely related to Upper Sorbian"
+      "role": "parent",
+      "weight": 0.86,
+      "notes": "Descent from Proto-Slavic (West Slavic, Sorbian/Lusatian subgroup)."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.16,
+      "notes": "German adstrate: heavily German-influenced Slavic island in Lower Lusatia; closely related to Upper Sorbian."
     }
   ],
   "parent": null,

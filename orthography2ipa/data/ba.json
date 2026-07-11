@@ -1,4 +1,31 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.86,
+      "notes": "Descent from Proto-Turkic (Kipchak branch)."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.09,
+      "notes": "Russian adstrate: long Volga-Ural contact and Soviet-era lexicon."
+    },
+    {
+      "code": "tt",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Tatar adstrate: closely related neighbouring Kipchak literary language."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Arabic adstrate: religious vocabulary via the Islamic literary tradition."
+    }
+  ],
   "code": "ba",
   "name": "Bashkir",
   "family": "Turkic",

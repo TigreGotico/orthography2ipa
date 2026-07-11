@@ -1,4 +1,31 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.86,
+      "notes": "Descent from Proto-Turkic (Kipchak branch)."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.09,
+      "notes": "Russian adstrate: extensive Soviet-era lexical influence."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Arabic adstrate: religious vocabulary via Chagatai/Persian."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Persian adstrate via Central Asian literary tradition."
+    }
+  ],
   "code": "ky",
   "name": "Kyrgyz",
   "family": "Turkic",

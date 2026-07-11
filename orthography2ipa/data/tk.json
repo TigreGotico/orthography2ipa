@@ -1,4 +1,31 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Turkic (Oghuz branch)."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Persian adstrate: Central Asian literary/prestige influence."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary, largely via Persian."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Russian adstrate: Soviet-era lexicon."
+    }
+  ],
   "code": "tk",
   "name": "Turkmen",
   "family": "Turkic",

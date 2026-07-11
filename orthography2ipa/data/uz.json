@@ -1,4 +1,31 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Turkic (Karluk branch)."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.18,
+      "notes": "Persian/Tajik adstrate: intense sedentary bilingualism; conditioned loss of vowel harmony in standard Uzbek."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary, largely via Persian."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Russian adstrate: Soviet-era lexicon."
+    }
+  ],
   "code": "uz",
   "name": "Uzbek",
   "family": "Turkic",
