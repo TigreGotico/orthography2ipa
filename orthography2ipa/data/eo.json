@@ -5,7 +5,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "epo",
-  "quality": "research",
+  "quality": "production",
   "graphemes": {
     "a": [
       "a"
@@ -185,10 +185,30 @@
       "author": "Zamenhof, L.L.",
       "year": 1887,
       "title": "Unua Libro (An International Language)",
-      "publisher": "self-published",
+      "publisher": "self-published, Warsaw",
       "url": null,
-      "pages": null,
-      "notes": null
+      "pages": "Grammar section, alphabet table",
+      "notes": "The founding document establishing the 28-letter alphabet with a strict one-letter-one-sound correspondence."
+    },
+    {
+      "id": "zamenhof1905",
+      "author": "Zamenhof, L.L.",
+      "year": 1905,
+      "title": "Fundamento de Esperanto",
+      "publisher": "Hachette, Paris",
+      "url": "https://www.akademio-de-esperanto.org/fundamento/gramatiko_angla.html",
+      "pages": "Fundamenta Gramatiko, section A (Alphabet, grapheme-to-sound table) and Rule 10 (stress always on the penultimate syllable)",
+      "notes": "The prescriptive, immutable norm (netusxebla) codifying the phonemic orthography and fixed penultimate stress. Canonical, rule-numbered source for the grapheme-to-IPA mapping in this spec."
+    },
+    {
+      "id": "wells1978",
+      "author": "Wells, J.C.",
+      "year": 1978,
+      "title": "Lingvistikaj aspektoj de Esperanto",
+      "publisher": "Universala Esperanto-Asocio, Rotterdam",
+      "url": null,
+      "pages": "Chapter on phonetics and phonology (fonetiko kaj fonologio)",
+      "notes": "Phonetician's descriptive account of the Esperanto phoneme inventory and its usual IPA values, including the semivowel realisations of j and u-breve."
     },
     {
       "id": "esperanto_phonology_wiki",

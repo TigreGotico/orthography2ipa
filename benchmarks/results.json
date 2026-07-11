@@ -223,15 +223,15 @@
   {
     "lang": "eo",
     "dataset": "wikipron",
-    "n": 300,
-    "per": 0.0303,
-    "per_ci_low": 0.0221,
-    "per_ci_high": 0.0392,
-    "exact_match": 0.87,
-    "quality_tier": "research",
+    "n": 600,
+    "per": 0.0293,
+    "per_ci_low": 0.0231,
+    "per_ci_high": 0.036,
+    "exact_match": 0.88,
+    "quality_tier": "production",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": 300
+    "limit": 600
   },
   {
     "lang": "es",
@@ -332,7 +332,7 @@
     "per_ci_low": 0.2783,
     "per_ci_high": 0.306,
     "exact_match": 0.0,
-    "quality_tier": "research",
+    "quality_tier": "production",
     "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
@@ -340,15 +340,15 @@
   {
     "lang": "fi",
     "dataset": "wikipron",
-    "n": 294,
-    "per": 0.0386,
-    "per_ci_low": 0.0304,
-    "per_ci_high": 0.0476,
-    "exact_match": 0.7483,
-    "quality_tier": "research",
+    "n": 568,
+    "per": 0.0475,
+    "per_ci_low": 0.0395,
+    "per_ci_high": 0.0558,
+    "exact_match": 0.7165,
+    "quality_tier": "production",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": 300
+    "limit": 600
   },
   {
     "lang": "fr",

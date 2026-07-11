@@ -141,6 +141,18 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [eu.md](eu.md) | Basque (Euskara Batua) and its dialects: Biscayan, Gipuzkoan, Upper & Lower Navarrese, Lapurdian, Souletin, and the extinct Roncalese — sibilant systems, aspiration, Souletin /y/ and nasal vowels |
 
+### Uralic
+
+| Doc | Languages covered |
+|:---|:---|
+| [fi.md](fi.md) | Finnish (`fi`) — **`production` tier**; near-phonemic orthography, phonemic vowel/consonant length, 18 diphthongs, fixed initial stress; glide-offglide notation and loan/acronym exceptions documented |
+
+### Constructed
+
+| Doc | Languages covered |
+|:---|:---|
+| [eo.md](eo.md) | Esperanto (`eo`) — **`production` tier**; perfectly phonemic orthography (one letter = one sound), fixed penultimate stress; glide-notation and foreign-name exceptions documented |
+
 If the language you need isn't in any table above, it doesn't have a
 prose page yet — go straight to its JSON spec via `orthography2ipa.get(code)`
 as shown earlier, and consider contributing a page alongside a spec

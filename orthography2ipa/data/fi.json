@@ -273,7 +273,7 @@
     ]
   },
   "notes": "Standard Finnish. Highly transparent orthography. Phonemic consonant and vowel length. 18 diphthongs are all phonemic. PHONEMIC ORTHOGRAPHY: Finnish spelling is almost perfectly phonemic — one grapheme = one phoneme. CONSONANT GRADATION: stop alternations in inflectional paradigms (k↔∅/v/j, p↔v, t↔d). VOWEL HARMONY: front/back vowel pairs (a/ä, o/ö, u/y) never mix in native words. GEMINATE CONSONANTS: written as double letters (kk, pp, tt...) = phonemically long. Sources: Karlsson (1999), Hakulinen & Karlsson (1979), Suomi et al. (2008).",
-  "quality": "research",
+  "quality": "production",
   "script_type": "alphabet",
   "sources": [
     {
@@ -305,6 +305,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "karlsson1999",
+      "author": "Karlsson, F.",
+      "year": 1999,
+      "title": "Finnish: An Essential Grammar",
+      "publisher": "Routledge, London",
+      "url": null,
+      "pages": "Introduction: Pronunciation and orthography (vowels, consonants, phonemic quantity, fixed initial stress)",
+      "notes": "Reference grammar documenting Finnish as a near-perfectly phonemic orthography and the fixed word-initial stress rule modelled in this spec."
+    },
+    {
+      "id": "suomi2008",
+      "author": "Suomi, K., Toivanen, J. & Ylitalo, R.",
+      "year": 2008,
+      "title": "Finnish Sound Structure: Phonetics, phonology, phonotactics and prosody",
+      "publisher": "Studia Humaniora Ouluensia 9, University of Oulu",
+      "url": "http://jultika.oulu.fi/Record/isbn978-951-42-8984-2",
+      "pages": "Segmental phonology and quantity chapters",
+      "notes": "Open-access phonetic-phonological description covering the vowel and consonant inventory, phonemic length/gemination, vowel harmony, and consonant gradation."
     }
   ],
   "wikipedia": [
