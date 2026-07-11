@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.46.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.46.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.45.0a1...1.46.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): research-grounded Gulf Arabic dialects \(Emirati, Bahraini, Kuwaiti, Qatari, Omani\) [\#183](https://github.com/TigreGotico/orthography2ipa/pull/183) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.45.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.45.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.44.0a2...1.45.0a1)
