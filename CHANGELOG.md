@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.56.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.56.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.55.0a1...1.56.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): validate Basque dialects and add Roncalese \(Erronkariera\) [\#206](https://github.com/TigreGotico/orthography2ipa/pull/206) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.55.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.55.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.54.0a1...1.55.0a1)
@@ -671,10 +679,6 @@
 ## [0.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/0.2.1a1) (2026-06-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/73cf93d2bc10be1e32a61e00a380c4ed632a0148...0.2.1a1)
-
-**Merged pull requests:**
-
-- fix: py3.9 annotation compatibility, plugin-failure logging, public exports [\#17](https://github.com/TigreGotico/orthography2ipa/pull/17) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
