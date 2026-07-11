@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.60.1a2](https://github.com/TigreGotico/orthography2ipa/tree/1.60.1a2) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.60.1a1...1.60.1a2)
+
+**Merged pull requests:**
+
+- docs: when to refine the lattice vs fork the tokenizer [\#229](https://github.com/TigreGotico/orthography2ipa/pull/229) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.60.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.60.1a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.60.0a1...1.60.1a1)
@@ -657,10 +665,6 @@
 ## [1.3.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.3.1a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.3.0a1...1.3.1a1)
-
-**Merged pull requests:**
-
-- fix\(data\): url audit refresh and wikipedia enrichment [\#30](https://github.com/TigreGotico/orthography2ipa/pull/30) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.3.0a1) (2026-06-11)
 
