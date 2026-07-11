@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.66.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.66.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.65.0a1...1.66.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): enrich ancestry/substrate/superstrate/adstrate metadata \(round 1\) [\#240](https://github.com/TigreGotico/orthography2ipa/pull/240) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.65.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.65.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.64.0a1...1.65.0a1)
@@ -689,10 +697,6 @@
 ## [1.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.4.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.3.1a2...1.4.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): from-start stress anchoring and fixed-stress language blocks [\#50](https://github.com/TigreGotico/orthography2ipa/pull/50) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.3.1a2](https://github.com/TigreGotico/orthography2ipa/tree/1.3.1a2) (2026-06-11)
 
