@@ -1,0 +1,131 @@
+"""Minho, Alfena, Beira and Aveiro European Portuguese dialects.
+
+These four specs sit in Cintra's (1971) *Baixo-Minhoto-Duriense-Beirão* group,
+which Álvarez Pérez (2014, pp.37-38) describes as having "kept only the
+apico-alveolar branch" of the archaic four-sibilant system. Modelled as
+grapheme / positional deltas over the standard pt-PT parent:
+
+  * APICO-ALVEOLAR-ONLY sibilant system — ⟨s⟩/⟨ss⟩ AND ⟨c⟩(before e/i)/⟨ç⟩/⟨z⟩
+    all realise as apico-alveolar [s̺] (voiceless) / [z̺] (voiced). This is the
+    two-sibilant *apical-only* system, DISTINCT from the conservative
+    four-sibilant Transmontano/Alto-Minhoto system (which keeps apical
+    ⟨s/ss⟩ = [s̺] opposed to laminal ⟨c/ç/z⟩ = [s]). Cintra 1971 p.93; Pérez
+    2014 pp.37-38.
+  * Northern BETACISM — /v/–/b/ merger realised [b] ~ [β]. Cintra 1971 p.88;
+    Pérez 2014 pp.35-37 (extent covers the northern coast beyond Coimbra and
+    the eastern Guarda/Castelo-Branco districts).
+  * Coda ⟨s/z⟩ keep the pan-EP chiado neutralisation to [ʃ]/[ʒ] inherited from
+    the pt-PT base.
+
+The apico-alveolar quality is a distinct IPA segment ([s̺ z̺]) and is modelled
+actively, not deleted. Porto's tonic-close-vowel diphthongisation
+([e]>[je], [o]>[wo]) is NOT applied here (it is a Porto-specific subdivision
+marker kept in pt-PT-x-porto).
+"""
+from __future__ import annotations
+
+import pytest
+
+from orthography2ipa import G2P, transcribe
+
+APICAL_S = "s̺"   # [s̺] apico-alveolar voiceless
+APICAL_Z = "z̺"   # [z̺] apico-alveolar voiced
+
+DIALECTS = ["pt-PT-x-minho", "pt-PT-x-alfena", "pt-PT-x-beira", "pt-PT-x-aveiro"]
+
+
+def _bare(s: str) -> str:
+    return s.replace("ˈ", "").replace("ˌ", "")
+
+
+# ─── Apico-alveolar-only sibilant merger ────────────────────────────────────
+
+class TestApicoAlveolarMerger:
+    """Both the ⟨s/ss⟩ branch AND the ⟨c/ç/z⟩ branch surface apical."""
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_s_grapheme_is_apical(self, code):
+        # ⟨s⟩ onset → apico-alveolar [s̺]
+        assert _bare(G2P(code).transcribe_word("sol")).startswith(APICAL_S)
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_intervocalic_s_is_apical_voiced(self, code):
+        # ⟨-s-⟩ intervocalic → apico-alveolar voiced [z̺]
+        assert APICAL_Z in G2P(code).transcribe_word("casa")
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_soft_c_is_apical(self, code):
+        # ⟨c⟩ before e/i → apical (the branch that stays laminal in the
+        # four-sibilant system)
+        assert APICAL_S in G2P(code).transcribe_word("cedo")
+        assert APICAL_S in G2P(code).transcribe_word("cinco")
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_cedilha_is_apical(self, code):
+        # ⟨ç⟩ → apical
+        assert APICAL_S in G2P(code).transcribe_word("praça")
+        assert APICAL_S in G2P(code).transcribe_word("faço")
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_z_grapheme_is_apical(self, code):
+        # ⟨z⟩ onset → apico-alveolar voiced [z̺]
+        assert APICAL_Z in G2P(code).transcribe_word("zebra")
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_both_branches_share_one_apical_realisation(self, code):
+        # The defining merger: ⟨ç⟩ (historic laminal branch) and ⟨ss⟩ (historic
+        # apical branch) realise IDENTICALLY — a single apical sibilant.
+        eng = G2P(code)
+        c_from_cedilha = eng.transcribe_word("praça")     # ç
+        s_from_ss = eng.transcribe_word("massa")          # ss
+        assert APICAL_S in c_from_cedilha and APICAL_S in s_from_ss
+
+
+class TestDistinctFromFourSibilant:
+    """The apical-only system differs from the four-sibilant Transmontano:
+    there ⟨ç⟩ would stay laminal [s]; here it is apical [s̺]."""
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_soft_c_not_plain_laminal(self, code):
+        # A plain laminal [s] (no apical diacritic) would signal the
+        # four-sibilant split; these dialects must show the apical mark.
+        out = G2P(code).transcribe_word("cedo")
+        assert APICAL_S in out
+        # the sibilant is not a bare laminal 's' followed by a vowel
+        assert "̺" in out
+
+
+# ─── Betacism (Cintra feature 1) ────────────────────────────────────────────
+
+class TestBetacism:
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_v_onset_merges_to_b(self, code):
+        assert G2P(code).transcribe_word("vaca").startswith("ˈb")
+        assert "v" not in _bare(G2P(code).transcribe_word("vinho"))
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_v_intervocalic_merges(self, code):
+        out = _bare(G2P(code).transcribe_word("uva"))
+        assert "v" not in out
+        assert "b" in out or "β" in out
+
+
+# ─── Inheritance of the pt-PT base ──────────────────────────────────────────
+
+class TestInheritsBase:
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_base_edges_declared(self, code):
+        eng = G2P(code)
+        # coda chiado inherited: ⟨-s⟩ / ⟨-z⟩ word-final → [ʃ]
+        assert G2P(code).transcribe_word("dez").endswith("ʃ")
+
+    @pytest.mark.parametrize("code", DIALECTS)
+    def test_unstressed_a_reduces_like_base(self, code):
+        # pt-PT unstressed final /a/ → [ɐ] is inherited, not overridden
+        assert G2P(code).transcribe_word("casa").endswith("ɐ")
+
+    def test_no_porto_diphthongisation(self):
+        # [e]>[je] / [o]>[wo] must NOT leak in from Porto
+        for code in DIALECTS:
+            out = transcribe("medo", code)
+            assert "je" not in out and "wo" not in out

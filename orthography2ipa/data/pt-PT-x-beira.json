@@ -12,25 +12,13 @@
       "ʁ",
       "r"
     ],
-    "ɾ": [
-      "ɾ"
-    ],
     "l": [
       "l",
-      "ɫ"
+      "ł"
     ],
     "ə": [
       "ɨ",
       "ə"
-    ],
-    "ɐ": [
-      "ɐ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʒ": [
-      "ʒ"
     ]
   },
   "positional_graphemes_base": "pt-PT",
@@ -43,7 +31,7 @@
       "notes": "Standard European Portuguese base."
     }
   ],
-  "notes": "Beirão / Beira Portuguese. Spoken in the Beiras region of central Portugal: Beira Litoral (Coimbra, Aveiro), Beira Alta (Guarda, Viseu), Beira Baixa (Castelo Branco). Coimbra — historic university city — is the prestige center and has influenced Portuguese phonological standardization through the academic tradition. KEY FEATURES: (1) CONSERVATIVE RHOTIC: tendency toward trilled [r] or tapped [ɾ] in some environments where Lisbon uses uvular [ʁ]; the Coimbra tradition is historically associated with alveolar rhotics, though modernization toward uvular has progressed. (2) CLEAR /l/: lateral /l/ tends to be clearer (less velarized) than in Lisbon, especially in Coimbra and northern Beiras. (3) MODERATE VOWEL REDUCTION: unstressed vowel reduction less extreme than Lisbon; /ɨ/ retained but not maximally reduced. (4) PRESERVATION OF VOWEL CONTRASTS: tonic /ɛ/ and /ɔ/ clearly maintained with good aperture. (5) SIBILANTS: standard [ʃ]/[ʒ] without the retroflex shimmer of Transmontano or Minhoto; coda /s/ → [ʃ] as in standard EP. (6) COIMBRA ACADEMIC FADO: historically associated with the Coimbra dialect's distinctive rhythmic and prosodic patterns. (7) DIALECTAL VARIATION within Beiras: northern Beiras (Guarda) are more conservative with some Minhoto features; southern (Castelo Branco) transition toward Alentejo.",
+  "notes": "Beirão / Beira Portuguese (Beira Litoral: Coimbra, Aveiro; Beira Alta: Viseu, Guarda; Beira Baixa: Castelo Branco), a northern-central EP dialect. Cintra places the Beirões in the Baixo-Minhoto-Duriense-Beirão group. MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — the 'famous' s beirão: ⟨s/ss⟩ AND ⟨c/ç/z⟩ all realise as apico-alveolar [s̺]/[z̺] (Cintra 1971 pp.88, 93 — the most palatalised apical variant is 'vulgarmente conhecida pelo nome de s beirão'; Álvarez Pérez 2014 pp.37-38, Beirões 'kept only the apico-alveolar branch'; Pérez notes the apical core is clearest in the districts of Viseu, Guarda and Castelo Branco). Coda ⟨s/z⟩ keep chiado [ʃ]/[ʒ]. (2) BETACISM — /v/–/b/ merged to /b/ ~ [β]; Pérez 2014 pp.35-37 documents an extensive bilabial-merger area in the eastern districts of Guarda and Castelo Branco that Cintra's original map omitted. A conservative alveolar rhotic (trill [r]) is enumerated as a variant of /ʁ/. Inherits pt-PT base.",
   "sources": [
     {
       "id": "mateus_dandrade2000",
@@ -74,6 +62,26 @@
       "url": null,
       "pages": null,
       "notes": "Classical dialectological survey; Beira section foundational"
+    },
+    {
+      "id": "cintra1971",
+      "author": "Cintra, L. F. Lindley",
+      "year": 1971,
+      "title": "Nova proposta de classificação dos dialectos galego-portugueses",
+      "publisher": "Boletim de Filologia 22:81-116",
+      "url": null,
+      "pages": "88, 92-93",
+      "notes": "Foundational EP dialect classification. p.93: the Baixo-Minhoto-Duriense-Beirao group reduces the archaic four-sibilant system to two apico-alveolar sibilants [s̺ z̺]; p.88: /v/-/b/ merger and apico-alveolar sibilants are diagnostic northern features."
+    },
+    {
+      "id": "alvarezperez2014",
+      "author": "Álvarez Pérez, Xosé Afonso",
+      "year": 2014,
+      "title": "European Portuguese dialectal features: a comparison with Cintra's proposal",
+      "publisher": "Journal of Portuguese Linguistics 13(1):29-62",
+      "url": "https://doi.org/10.5334/jpl.62",
+      "pages": "35-39",
+      "notes": "ALEPG-corpus quantitative reassessment. pp.37-38: Baixo-Minhotos, Durienses and Beirões 'kept only the apico-alveolar branch' (both s/ss and c/ç/z merge to apical), vs the conservative four-sibilant Transmontano/Alto-Minhoto. pp.35-37: /b/-/v/ merger extends along the coast beyond Coimbra and through the eastern districts (Guarda, Castelo Branco)."
     }
   ],
   "wikipedia": [
@@ -123,5 +131,62 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes": {
+    "ç": [
+      "s̺"
+    ],
+    "z": [
+      "z̺"
+    ],
+    "v": [
+      "b",
+      "β"
+    ]
+  },
+  "positional_graphemes": {
+    "s": {
+      "word_initial": [
+        "s̺"
+      ],
+      "intervocalic": [
+        "z̺"
+      ],
+      "coda": [
+        "ʃ",
+        "ʒ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z̺"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "s̺"
+      ],
+      "before_i": [
+        "s̺"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "ʃ",
+        "z̺"
+      ],
+      "coda": [
+        "ʃ"
+      ]
+    },
+    "v": {
+      "intervocalic": [
+        "β"
+      ],
+      "intervocalic_cross_word": [
+        "β"
+      ]
+    }
   }
 }

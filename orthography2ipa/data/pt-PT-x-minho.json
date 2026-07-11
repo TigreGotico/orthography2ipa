@@ -23,13 +23,13 @@
       "ʒ",
       "ʐ"
     ],
-    "ʁ": [
-      "ʁ",
-      "χ"
-    ],
     "ɾ": [
       "ɾ",
       "ɽ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ"
     ],
     "ɐ": [
       "ɐ",
@@ -46,16 +46,11 @@
       "u",
       "u̥",
       ""
-    ],
-    "v": [
-      "v",
-      "b",
-      "β"
     ]
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Northern interior dialect (Minho province: Braga, Guimarães, Vizela). Phonological features diverge substantially from standard EP: (1) extreme unstressed vowel reduction — /ɐ/, /ə/, /u/ delete or devoice word-finally and inter-consonantally; (2) voiceless uvular fricative [χ] in coda position where standard has [ʁ]; (3) retroflex flap [ɽ] as an allophone of /ɾ/ in certain environments; (4) partial retroflex sibilants [ʂ, ʐ] — less systematic than Transmontano; (5) strong nasal vowels with preserved nasality contrast; (6) open vowel qualities [ɛ, ɔ] in stressed position broader than Lisbon standard; (7) /t/ aspirated before high front vowels [tʰi]; (8) /d/ deleted intervocalically in informal speech. Prosodically: stress-timed rhythm with heavy syllable compression. Classified as a northern EP dialect under Cintra's dialect geography; shares features with Galician-Portuguese contact zone.",
+  "notes": "Minhoto Portuguese (Baixo-Minho: Braga, Guimarães, Vizela), a northern EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group. MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — the archaic four-sibilant opposition is reduced to a single apical branch: graphemes ⟨s⟩/⟨ss⟩ AND ⟨c⟩(before e/i)/⟨ç⟩/⟨z⟩ all realise as apico-alveolar [s̺] (voiceless) / [z̺] (voiced), unlike the conservative four-sibilant Transmontano/Alto-Minhoto system which keeps apical ⟨s/ss⟩=[s̺] distinct from laminal ⟨c/ç/z⟩=[s] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38: this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep the pan-EP chiado neutralisation to [ʃ]/[ʒ]. (2) BETACISM — the /v/–/b/ opposition is neutralised to /b/, realised as stop [b] or spirant [β] (Cintra 1971 p.88; Pérez 2014 pp.35-37, categorical in the far north). Porto's tonic close-vowel diphthongisation ([e]>[je], [o]>[wo]) is a Baixo-Minho/Douro-Litoral subdivision trait and is NOT applied here (kept to pt-PT-x-porto). Vowel-reduction and uvular-coda allophones are enumerated as northern variants. Inherits pt-PT base.",
   "quality": "research",
   "ancestors": [
     {
@@ -99,6 +94,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cintra1971",
+      "author": "Cintra, L. F. Lindley",
+      "year": 1971,
+      "title": "Nova proposta de classificação dos dialectos galego-portugueses",
+      "publisher": "Boletim de Filologia 22:81-116",
+      "url": null,
+      "pages": "88, 92-93",
+      "notes": "Foundational EP dialect classification. p.93: the Baixo-Minhoto-Duriense-Beirao group reduces the archaic four-sibilant system to two apico-alveolar sibilants [s̺ z̺]; p.88: /v/-/b/ merger and apico-alveolar sibilants are diagnostic northern features."
+    },
+    {
+      "id": "alvarezperez2014",
+      "author": "Álvarez Pérez, Xosé Afonso",
+      "year": 2014,
+      "title": "European Portuguese dialectal features: a comparison with Cintra's proposal",
+      "publisher": "Journal of Portuguese Linguistics 13(1):29-62",
+      "url": "https://doi.org/10.5334/jpl.62",
+      "pages": "35-39",
+      "notes": "ALEPG-corpus quantitative reassessment. pp.37-38: Baixo-Minhotos, Durienses and Beirões 'kept only the apico-alveolar branch' (both s/ss and c/ç/z merge to apical), vs the conservative four-sibilant Transmontano/Alto-Minhoto. pp.35-37: /b/-/v/ merger extends along the coast beyond Coimbra and through the eastern districts (Guarda, Castelo Branco)."
     }
   ],
   "wikipedia": [
@@ -148,5 +163,62 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes": {
+    "ç": [
+      "s̺"
+    ],
+    "z": [
+      "z̺"
+    ],
+    "v": [
+      "b",
+      "β"
+    ]
+  },
+  "positional_graphemes": {
+    "s": {
+      "word_initial": [
+        "s̺"
+      ],
+      "intervocalic": [
+        "z̺"
+      ],
+      "coda": [
+        "ʃ",
+        "ʒ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z̺"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "s̺"
+      ],
+      "before_i": [
+        "s̺"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "ʃ",
+        "z̺"
+      ],
+      "coda": [
+        "ʃ"
+      ]
+    },
+    "v": {
+      "intervocalic": [
+        "β"
+      ],
+      "intervocalic_cross_word": [
+        "β"
+      ]
+    }
   }
 }
