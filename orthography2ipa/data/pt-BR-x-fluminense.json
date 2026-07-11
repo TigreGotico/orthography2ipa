@@ -318,7 +318,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Fluminense (Rio de Janeiro state beyond the capital). Shares Carioca coda-/S/ palatalisation [ʃ,ʒ] and dorsal /r/, but the chiado is less consistent in rural and northern-state areas (encoded here as the prestige Carioca-like default; rural variability noted). Categorical /t,d/ palatalisation. Heterogeneous: an inland tap-rhotic, partly caipira-influenced, substratum coexists with the coastal palatal-sibilant norm.",
+  "notes": "Fluminense (Rio de Janeiro state beyond the capital). Shares the Carioca coda-/S/ palatalisation [ʃ,ʒ] (modelled as allophone_rules FLU_CHIADO_CODA_S/Z; Callou 2010:135) and the posterior coda /r/ (velar [x] non-final, aspiration [h] word-final; Callou 2010:138), but the chiado is a gradient: less consistent in rural and northern-state areas, encoded here as the prestige Carioca-like default with rural variability noted. Categorical /t,d/ palatalisation. Heterogeneous: an inland tap-rhotic, partly caipira-influenced substratum coexists with the coastal palatal-sibilant norm.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -361,6 +361,16 @@
       "url": null,
       "pages": null,
       "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
+    },
+    {
+      "id": "callou2010",
+      "author": "Callou, D. (with Leite, Y. & Moraes, J.)",
+      "year": 2010,
+      "title": "Um perfil da fala carioca. In: Ribeiro, S.S.C., Costa, S.B.B. & Cardoso, S.A.M. (orgs.), Dos sons às palavras: nas trilhas da língua portuguesa",
+      "publisher": "EDUFBA",
+      "url": "https://books.scielo.org/id/vr2dr/pdf/ribeiro-9788523211851-08.pdf",
+      "pages": "129-140",
+      "notes": "NURC cultured-speech corpus (5 capitals). p.135, Tabela 1: coda /S/ palatalisation ('chiado carioca') in Rio reaches 91% word-internally and 76% word-finally (1990s real-time data), vs alveolar 4%/19% - the defining Carioca feature, highest among the major capitals. p.137-138: coda /R/ posteriorised; Callou (1987) - the predominant cultured-Carioca coda /R/ is the velar fricative [x], except word-finally where deletion or aspiration [h] prevail. Analyses co-authored with Leite & Moraes (1996, 2002, 2003)."
     }
   ],
   "wikipedia": [
@@ -434,37 +444,48 @@
         "ɾ",
         ""
       ]
-    },
-    "s": {
-      "word_initial": [
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "FLU_CHIADO_CODA_S",
+      "phonemes": [
         "s"
       ],
-      "intervocalic": [
-        "z"
-      ],
-      "before_consonant": [
-        "ʃ"
-      ],
-      "coda": [
-        "ʃ"
-      ],
-      "word_final": [
-        "ʃ"
-      ],
-      "intervocalic_cross_word": [
-        "z"
-      ]
+      "surface": "ʃ",
+      "syllable_position": "coda",
+      "notes": "Prestige Fluminense shares the Carioca coda-/S/ palatalisation [ʃ] (Callou 2010:135, whose NURC Rio data is the coastal-Fluminense norm). Encoded as the default; the chiado is a gradient across the state - less consistent in the rural/northern interior, where an inland tap-rhotic caipira-influenced substratum coexists (documented in notes, not modelled as a separate value)."
     },
-    "z": {
-      "before_consonant": [
-        "ʃ"
+    {
+      "id": "FLU_CHIADO_CODA_Z",
+      "phonemes": [
+        "z"
       ],
-      "coda": [
-        "ʃ"
+      "surface": "ʒ",
+      "syllable_position": "coda",
+      "notes": "Voiced counterpart: coda /z/ -> [ʒ] before a voiced consonant (Callou 2010:135)."
+    },
+    {
+      "id": "FLU_CODA_R_FINAL",
+      "phonemes": [
+        "ʁ",
+        "ɾ",
+        "x",
+        "h"
       ],
-      "word_final": [
-        "ʃ"
-      ]
+      "surface": "h",
+      "word_final": true,
+      "notes": "Word-final coda /R/ -> aspiration [h]/deletion, as in the Carioca norm (Callou 2010:138)."
+    },
+    {
+      "id": "FLU_CODA_R_VELAR",
+      "phonemes": [
+        "ʁ",
+        "ɾ"
+      ],
+      "surface": "x",
+      "syllable_position": "coda",
+      "notes": "Non-final coda /R/ -> velar fricative [x] in the coastal prestige norm (Callou 2010:138)."
     }
-  }
+  ]
 }
