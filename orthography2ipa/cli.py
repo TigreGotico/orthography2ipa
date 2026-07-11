@@ -120,15 +120,20 @@ def _cmd_list(args: argparse.Namespace) -> None:
     if args.families or args.family:
         families = available_families()
         if args.family:
-            key = args.family
-            # case-insensitive match
-            for k in families:
-                if k.lower() == key.lower():
-                    families = {k: families[k]}
-                    break
-            else:
-                print(f"Unknown family: {key}", file=sys.stderr)
+            # ``family`` is a Glottolog classification path — "Indo-European >
+            # Romance". Match the whole path or any single step of it, so both
+            # the branch ("Romance") and the stock it sits in ("Indo-European",
+            # which selects every family beneath it) are usable filters.
+            key = args.family.strip().lower()
+            matched = {
+                k: v for k, v in families.items()
+                if k.lower() == key
+                or key in [step.strip().lower() for step in k.split(">")]
+            }
+            if not matched:
+                print(f"Unknown family: {args.family}", file=sys.stderr)
                 sys.exit(1)
+            families = matched
         if args.as_json:
             print(json.dumps(families, ensure_ascii=False, indent=2))
         else:
