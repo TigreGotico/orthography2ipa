@@ -2,28 +2,28 @@
   {
     "lang": "ar",
     "dataset": "wikipron",
-    "n": 14268,
-    "per": 0.3131,
-    "per_ci_low": 0.3109,
-    "per_ci_high": 0.3153,
-    "exact_match": 0.0452,
+    "n": 884,
+    "per": 0.1975,
+    "per_ci_low": 0.1894,
+    "per_ci_high": 0.2061,
+    "exact_match": 0.1923,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ast",
     "dataset": "wikipron",
-    "n": 4167,
-    "per": 0.0654,
-    "per_ci_low": 0.0621,
-    "per_ci_high": 0.0685,
-    "exact_match": 0.6439,
+    "n": 998,
+    "per": 0.075,
+    "per_ci_low": 0.0684,
+    "per_ci_high": 0.0817,
+    "exact_match": 0.6102,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ca",
@@ -36,20 +36,20 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ca",
     "dataset": "styletts2_phonemes",
-    "n": 13442,
-    "per": 0.4061,
-    "per_ci_low": 0.4048,
-    "per_ci_high": 0.4075,
+    "n": 998,
+    "per": 0.4221,
+    "per_ci_low": 0.417,
+    "per_ci_high": 0.4275,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ca-x-balear",
@@ -62,7 +62,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ca-x-occidental",
@@ -75,7 +75,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ca-x-valencia",
@@ -88,215 +88,215 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "cy",
     "dataset": "wikipron",
-    "n": 14467,
-    "per": 0.2153,
-    "per_ci_low": 0.2123,
-    "per_ci_high": 0.2185,
-    "exact_match": 0.3044,
+    "n": 897,
+    "per": 0.2202,
+    "per_ci_low": 0.208,
+    "per_ci_high": 0.2325,
+    "exact_match": 0.272,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "da",
     "dataset": "wikipron",
-    "n": 4331,
-    "per": 0.4511,
-    "per_ci_low": 0.445,
-    "per_ci_high": 0.4574,
-    "exact_match": 0.042,
+    "n": 905,
+    "per": 0.4622,
+    "per_ci_low": 0.4477,
+    "per_ci_high": 0.4754,
+    "exact_match": 0.032,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "de",
     "dataset": "styletts2_phonemes",
-    "n": 11351,
-    "per": 0.4285,
-    "per_ci_low": 0.4269,
-    "per_ci_high": 0.4301,
+    "n": 1000,
+    "per": 0.4215,
+    "per_ci_low": 0.4162,
+    "per_ci_high": 0.4268,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "de",
     "dataset": "wikipron",
-    "n": 53010,
-    "per": 0.3265,
-    "per_ci_low": 0.3251,
-    "per_ci_high": 0.3279,
-    "exact_match": 0.0563,
+    "n": 907,
+    "per": 0.3379,
+    "per_ci_low": 0.3279,
+    "per_ci_high": 0.3481,
+    "exact_match": 0.0419,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "el",
     "dataset": "styletts2_phonemes",
-    "n": 10081,
-    "per": 0.2095,
-    "per_ci_low": 0.2074,
-    "per_ci_high": 0.2117,
+    "n": 982,
+    "per": 0.218,
+    "per_ci_low": 0.2095,
+    "per_ci_high": 0.2267,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "el",
     "dataset": "wikipron",
-    "n": 19108,
-    "per": 0.1318,
-    "per_ci_low": 0.1298,
-    "per_ci_high": 0.1337,
-    "exact_match": 0.331,
+    "n": 989,
+    "per": 0.1476,
+    "per_ci_low": 0.1376,
+    "per_ci_high": 0.1568,
+    "exact_match": 0.3691,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "en",
     "dataset": "styletts2_phonemes",
-    "n": 10199,
-    "per": 0.457,
-    "per_ci_low": 0.4556,
-    "per_ci_high": 0.4586,
+    "n": 1000,
+    "per": 0.4679,
+    "per_ci_low": 0.4621,
+    "per_ci_high": 0.4729,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "en",
     "dataset": "wikipron",
-    "n": 78439,
-    "per": 0.3739,
-    "per_ci_low": 0.3722,
-    "per_ci_high": 0.3754,
-    "exact_match": 0.102,
+    "n": 732,
+    "per": 0.4414,
+    "per_ci_low": 0.4249,
+    "per_ci_high": 0.4591,
+    "exact_match": 0.0669,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "en-GB",
     "dataset": "wikipron",
-    "n": 78381,
-    "per": 0.3494,
-    "per_ci_low": 0.3479,
-    "per_ci_high": 0.351,
-    "exact_match": 0.1186,
+    "n": 794,
+    "per": 0.4308,
+    "per_ci_low": 0.4145,
+    "per_ci_high": 0.4474,
+    "exact_match": 0.0781,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "en-US",
     "dataset": "ipa_childes",
-    "n": 18055,
-    "per": 0.4296,
-    "per_ci_low": 0.4258,
-    "per_ci_high": 0.4334,
-    "exact_match": 0.114,
+    "n": 1000,
+    "per": 0.4149,
+    "per_ci_low": 0.3971,
+    "per_ci_high": 0.4332,
+    "exact_match": 0.203,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "eo",
     "dataset": "wikipron",
-    "n": 41245,
-    "per": 0.0569,
-    "per_ci_low": 0.0559,
-    "per_ci_high": 0.0579,
-    "exact_match": 0.7491,
+    "n": 1000,
+    "per": 0.0245,
+    "per_ci_low": 0.0196,
+    "per_ci_high": 0.0298,
+    "exact_match": 0.897,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "es",
     "dataset": "styletts2_phonemes",
-    "n": 10367,
-    "per": 0.1391,
-    "per_ci_low": 0.137,
-    "per_ci_high": 0.141,
-    "exact_match": 0.0001,
+    "n": 998,
+    "per": 0.1528,
+    "per_ci_low": 0.1458,
+    "per_ci_high": 0.1601,
+    "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "es",
     "dataset": "wikipron",
-    "n": 131506,
-    "per": 0.0845,
-    "per_ci_low": 0.084,
-    "per_ci_high": 0.085,
-    "exact_match": 0.4457,
+    "n": 988,
+    "per": 0.0821,
+    "per_ci_low": 0.0749,
+    "per_ci_high": 0.089,
+    "exact_match": 0.5658,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "et",
     "dataset": "ipa_childes",
-    "n": 11040,
-    "per": 0.2953,
-    "per_ci_low": 0.2922,
-    "per_ci_high": 0.2985,
-    "exact_match": 0.1041,
+    "n": 1000,
+    "per": 0.3061,
+    "per_ci_low": 0.2942,
+    "per_ci_high": 0.3181,
+    "exact_match": 0.128,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "eu",
     "dataset": "hitz_basque_ipa",
-    "n": 3113,
-    "per": 0.2089,
-    "per_ci_low": 0.2025,
-    "per_ci_high": 0.2156,
-    "exact_match": 0.231,
+    "n": 1000,
+    "per": 0.232,
+    "per_ci_low": 0.2214,
+    "per_ci_high": 0.2435,
+    "exact_match": 0.208,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "eu",
     "dataset": "wikipron",
-    "n": 12010,
-    "per": 0.0391,
-    "per_ci_low": 0.0377,
-    "per_ci_high": 0.0405,
-    "exact_match": 0.6979,
+    "n": 765,
+    "per": 0.064,
+    "per_ci_low": 0.056,
+    "per_ci_high": 0.0727,
+    "exact_match": 0.6353,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ext-PT-x-barrancos",
@@ -309,241 +309,241 @@
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "fa",
     "dataset": "styletts2_phonemes",
-    "n": 12796,
-    "per": 0.577,
-    "per_ci_low": 0.576,
-    "per_ci_high": 0.578,
+    "n": 988,
+    "per": 0.5811,
+    "per_ci_low": 0.5776,
+    "per_ci_high": 0.5847,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "fi",
     "dataset": "styletts2_phonemes",
-    "n": 10339,
-    "per": 0.2991,
-    "per_ci_low": 0.2964,
-    "per_ci_high": 0.3016,
+    "n": 998,
+    "per": 0.2987,
+    "per_ci_low": 0.2914,
+    "per_ci_high": 0.306,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "fi",
     "dataset": "wikipron",
-    "n": 168808,
-    "per": 0.0552,
-    "per_ci_low": 0.0549,
-    "per_ci_high": 0.0555,
-    "exact_match": 0.4939,
+    "n": 917,
+    "per": 0.0522,
+    "per_ci_low": 0.0458,
+    "per_ci_high": 0.0596,
+    "exact_match": 0.7186,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "fr",
     "dataset": "styletts2_phonemes",
-    "n": 10379,
-    "per": 0.3532,
-    "per_ci_low": 0.3517,
-    "per_ci_high": 0.3545,
+    "n": 1000,
+    "per": 0.3433,
+    "per_ci_low": 0.339,
+    "per_ci_high": 0.3476,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "fr",
     "dataset": "wikipron",
-    "n": 85496,
-    "per": 0.1773,
-    "per_ci_low": 0.1762,
-    "per_ci_high": 0.1785,
-    "exact_match": 0.321,
+    "n": 912,
+    "per": 0.1576,
+    "per_ci_low": 0.1457,
+    "per_ci_high": 0.1704,
+    "exact_match": 0.4583,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ga",
     "dataset": "wikipron",
-    "n": 9621,
-    "per": 0.4731,
-    "per_ci_low": 0.4673,
-    "per_ci_high": 0.4785,
-    "exact_match": 0.0732,
+    "n": 471,
+    "per": 0.4636,
+    "per_ci_low": 0.4409,
+    "per_ci_high": 0.4866,
+    "exact_match": 0.0531,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "gd",
     "dataset": "wikipron",
-    "n": 3720,
-    "per": 0.6203,
-    "per_ci_low": 0.611,
-    "per_ci_high": 0.6305,
-    "exact_match": 0.0401,
+    "n": 582,
+    "per": 0.6878,
+    "per_ci_low": 0.6617,
+    "per_ci_high": 0.7141,
+    "exact_match": 0.0344,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "gl",
     "dataset": "wikipron",
-    "n": 8091,
-    "per": 0.0928,
-    "per_ci_low": 0.0902,
-    "per_ci_high": 0.0955,
-    "exact_match": 0.5485,
+    "n": 832,
+    "per": 0.101,
+    "per_ci_low": 0.0928,
+    "per_ci_high": 0.1094,
+    "exact_match": 0.518,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "hi",
     "dataset": "wikipron",
-    "n": 30375,
-    "per": 0.4365,
-    "per_ci_low": 0.4349,
-    "per_ci_high": 0.4382,
-    "exact_match": 0.0047,
+    "n": 929,
+    "per": 0.4215,
+    "per_ci_low": 0.4133,
+    "per_ci_high": 0.4298,
+    "exact_match": 0.0032,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "hr",
     "dataset": "wikipron",
-    "n": 26469,
-    "per": 0.2998,
-    "per_ci_low": 0.2982,
-    "per_ci_high": 0.3014,
-    "exact_match": 0.005,
+    "n": 977,
+    "per": 0.2967,
+    "per_ci_low": 0.288,
+    "per_ci_high": 0.305,
+    "exact_match": 0.0102,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "hu",
     "dataset": "ipa_childes",
-    "n": 4776,
-    "per": 0.1331,
-    "per_ci_low": 0.1292,
-    "per_ci_high": 0.1371,
-    "exact_match": 0.3961,
+    "n": 997,
+    "per": 0.1329,
+    "per_ci_low": 0.1238,
+    "per_ci_high": 0.1424,
+    "exact_match": 0.4343,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "hy",
     "dataset": "wikipron",
-    "n": 17704,
-    "per": 0.1027,
-    "per_ci_low": 0.101,
-    "per_ci_high": 0.1044,
-    "exact_match": 0.4681,
+    "n": 991,
+    "per": 0.0987,
+    "per_ci_low": 0.0911,
+    "per_ci_high": 0.1067,
+    "exact_match": 0.5217,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "id",
     "dataset": "ipa_childes",
-    "n": 9646,
-    "per": 0.1223,
-    "per_ci_low": 0.1197,
-    "per_ci_high": 0.125,
-    "exact_match": 0.4566,
+    "n": 1000,
+    "per": 0.1118,
+    "per_ci_low": 0.1036,
+    "per_ci_high": 0.1212,
+    "exact_match": 0.534,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "is",
     "dataset": "ipadict",
-    "n": 60642,
-    "per": 0.2694,
-    "per_ci_low": 0.2681,
-    "per_ci_high": 0.2705,
-    "exact_match": 0.0628,
+    "n": 1000,
+    "per": 0.2721,
+    "per_ci_low": 0.2631,
+    "per_ci_high": 0.2814,
+    "exact_match": 0.057,
     "quality_tier": "research",
     "provenance": "lexicon-derived",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "is",
     "dataset": "wikipron",
-    "n": 10093,
-    "per": 0.2514,
-    "per_ci_low": 0.2483,
-    "per_ci_high": 0.2545,
-    "exact_match": 0.112,
+    "n": 834,
+    "per": 0.2168,
+    "per_ci_low": 0.2069,
+    "per_ci_high": 0.2272,
+    "exact_match": 0.1355,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "it",
     "dataset": "styletts2_phonemes",
-    "n": 10197,
-    "per": 0.2233,
-    "per_ci_low": 0.2211,
-    "per_ci_high": 0.2253,
+    "n": 999,
+    "per": 0.2091,
+    "per_ci_low": 0.203,
+    "per_ci_high": 0.2149,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "it",
     "dataset": "wikipron",
-    "n": 82276,
-    "per": 0.1083,
-    "per_ci_low": 0.1075,
-    "per_ci_high": 0.1091,
-    "exact_match": 0.384,
+    "n": 937,
+    "per": 0.1054,
+    "per_ci_low": 0.0971,
+    "per_ci_high": 0.1137,
+    "exact_match": 0.4674,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ml",
     "dataset": "wikipron",
-    "n": 9464,
-    "per": 0.5019,
-    "per_ci_low": 0.499,
-    "per_ci_high": 0.5047,
-    "exact_match": 0.0023,
+    "n": 883,
+    "per": 0.5791,
+    "per_ci_low": 0.5698,
+    "per_ci_high": 0.5887,
+    "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "mwl",
@@ -556,7 +556,7 @@
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "mwl",
@@ -569,7 +569,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "mwl-x-ifanes",
@@ -582,7 +582,7 @@
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "mwl-x-ifanes",
@@ -595,7 +595,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "mwl-x-sendim",
@@ -608,7 +608,7 @@
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "mwl-x-sendim",
@@ -621,33 +621,33 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "nb",
     "dataset": "wikipron",
-    "n": 2725,
-    "per": 0.4871,
-    "per_ci_low": 0.4798,
-    "per_ci_high": 0.4944,
-    "exact_match": 0.0316,
+    "n": 708,
+    "per": 0.5227,
+    "per_ci_low": 0.5116,
+    "per_ci_high": 0.5346,
+    "exact_match": 0.0056,
     "quality_tier": "skeleton",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "nl",
     "dataset": "wikipron",
-    "n": 45872,
-    "per": 0.2663,
-    "per_ci_low": 0.2649,
-    "per_ci_high": 0.268,
-    "exact_match": 0.1286,
+    "n": 828,
+    "per": 0.2831,
+    "per_ci_low": 0.2694,
+    "per_ci_high": 0.2975,
+    "exact_match": 0.1582,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "oc",
@@ -660,111 +660,111 @@
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pl",
     "dataset": "styletts2_phonemes",
-    "n": 11435,
-    "per": 0.2098,
-    "per_ci_low": 0.2077,
-    "per_ci_high": 0.2119,
+    "n": 999,
+    "per": 0.1997,
+    "per_ci_low": 0.1927,
+    "per_ci_high": 0.2066,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pl",
     "dataset": "wikipron",
-    "n": 148990,
-    "per": 0.1213,
-    "per_ci_low": 0.1207,
-    "per_ci_high": 0.1219,
-    "exact_match": 0.3523,
+    "n": 968,
+    "per": 0.1192,
+    "per_ci_low": 0.1115,
+    "per_ci_high": 0.127,
+    "exact_match": 0.3791,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt",
     "dataset": "styletts2_phonemes",
-    "n": 11552,
-    "per": 0.3865,
-    "per_ci_low": 0.3849,
-    "per_ci_high": 0.3881,
+    "n": 1000,
+    "per": 0.3872,
+    "per_ci_low": 0.3819,
+    "per_ci_high": 0.3928,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt",
     "dataset": "wikipron",
-    "n": 56891,
-    "per": 0.1076,
-    "per_ci_low": 0.1065,
-    "per_ci_high": 0.1087,
-    "exact_match": 0.4769,
+    "n": 795,
+    "per": 0.1535,
+    "per_ci_low": 0.1418,
+    "per_ci_high": 0.166,
+    "exact_match": 0.4352,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-AO",
     "dataset": "portuguese_phonetic_lexicon",
-    "n": 53348,
-    "per": 0.2715,
-    "per_ci_low": 0.2702,
-    "per_ci_high": 0.2727,
-    "exact_match": 0.0753,
+    "n": 1000,
+    "per": 0.2665,
+    "per_ci_low": 0.2578,
+    "per_ci_high": 0.2759,
+    "exact_match": 0.084,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-BR",
     "dataset": "portuguese_phonetic_lexicon",
-    "n": 53346,
-    "per": 0.22,
-    "per_ci_low": 0.2189,
-    "per_ci_high": 0.2211,
-    "exact_match": 0.0729,
+    "n": 1000,
+    "per": 0.2188,
+    "per_ci_low": 0.2111,
+    "per_ci_high": 0.2262,
+    "exact_match": 0.058,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-BR",
     "dataset": "wikipron",
-    "n": 57814,
-    "per": 0.0662,
-    "per_ci_low": 0.0652,
-    "per_ci_high": 0.0671,
-    "exact_match": 0.6195,
+    "n": 410,
+    "per": 0.0883,
+    "per_ci_low": 0.0748,
+    "per_ci_high": 0.1032,
+    "exact_match": 0.6024,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-MZ",
     "dataset": "portuguese_phonetic_lexicon",
-    "n": 53346,
-    "per": 0.202,
-    "per_ci_low": 0.2006,
-    "per_ci_high": 0.2033,
-    "exact_match": 0.1946,
+    "n": 1000,
+    "per": 0.1935,
+    "per_ci_low": 0.1838,
+    "per_ci_high": 0.2031,
+    "exact_match": 0.205,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT",
@@ -777,33 +777,33 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT",
     "dataset": "infopedia_pt",
-    "n": 102684,
-    "per": 0.2516,
-    "per_ci_low": 0.2505,
-    "per_ci_high": 0.2526,
-    "exact_match": 0.1094,
+    "n": 1000,
+    "per": 0.2493,
+    "per_ci_low": 0.2394,
+    "per_ci_high": 0.2599,
+    "exact_match": 0.115,
     "quality_tier": "research",
     "provenance": "lexicon-derived",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT",
     "dataset": "portuguese_phonetic_lexicon",
-    "n": 53349,
-    "per": 0.1397,
-    "per_ci_low": 0.1387,
-    "per_ci_high": 0.1408,
-    "exact_match": 0.2946,
+    "n": 1000,
+    "per": 0.1395,
+    "per_ci_low": 0.1318,
+    "per_ci_high": 0.147,
+    "exact_match": 0.297,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-acores",
@@ -816,7 +816,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-acores",
@@ -829,7 +829,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-alentejo",
@@ -842,7 +842,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-alentejo",
@@ -855,7 +855,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-alfena",
@@ -868,7 +868,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-algarve",
@@ -881,7 +881,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-algarve",
@@ -894,7 +894,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-aveiro",
@@ -907,7 +907,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-beira",
@@ -920,7 +920,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-lisbon",
@@ -933,7 +933,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-lisbon",
@@ -946,7 +946,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-madeira",
@@ -959,7 +959,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-madeira",
@@ -972,7 +972,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-minho",
@@ -985,7 +985,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-porto",
@@ -998,7 +998,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-porto",
@@ -1011,7 +1011,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-trasosmontes",
@@ -1024,7 +1024,7 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-PT-x-viana",
@@ -1037,188 +1037,188 @@
     "quality_tier": "research",
     "provenance": "expert-human",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "pt-TL",
     "dataset": "portuguese_phonetic_lexicon",
-    "n": 53346,
-    "per": 0.384,
-    "per_ci_low": 0.3828,
-    "per_ci_high": 0.3853,
-    "exact_match": 0.0157,
+    "n": 1000,
+    "per": 0.3807,
+    "per_ci_low": 0.3717,
+    "per_ci_high": 0.3902,
+    "exact_match": 0.015,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ro",
     "dataset": "wikipron",
-    "n": 8977,
-    "per": 0.0348,
-    "per_ci_low": 0.0334,
-    "per_ci_high": 0.0366,
-    "exact_match": 0.7683,
+    "n": 967,
+    "per": 0.0556,
+    "per_ci_low": 0.0509,
+    "per_ci_high": 0.0605,
+    "exact_match": 0.5781,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ru",
     "dataset": "styletts2_phonemes",
-    "n": 10555,
-    "per": 0.4041,
-    "per_ci_low": 0.4021,
-    "per_ci_high": 0.406,
+    "n": 998,
+    "per": 0.3824,
+    "per_ci_low": 0.3771,
+    "per_ci_high": 0.3883,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ru",
     "dataset": "wikipron",
-    "n": 403870,
-    "per": 0.3115,
-    "per_ci_low": 0.3112,
-    "per_ci_high": 0.3119,
-    "exact_match": 0.0147,
+    "n": 929,
+    "per": 0.3191,
+    "per_ci_low": 0.3098,
+    "per_ci_high": 0.3288,
+    "exact_match": 0.0431,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "sk",
     "dataset": "wikipron",
-    "n": 15893,
-    "per": 0.1432,
-    "per_ci_low": 0.1405,
-    "per_ci_high": 0.146,
-    "exact_match": 0.4404,
+    "n": 998,
+    "per": 0.1196,
+    "per_ci_low": 0.1099,
+    "per_ci_high": 0.1293,
+    "exact_match": 0.513,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "sq",
     "dataset": "wikipron",
-    "n": 4900,
-    "per": 0.0965,
-    "per_ci_low": 0.0928,
-    "per_ci_high": 0.1003,
-    "exact_match": 0.5606,
+    "n": 889,
+    "per": 0.1071,
+    "per_ci_low": 0.0982,
+    "per_ci_high": 0.117,
+    "exact_match": 0.5512,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "sr",
     "dataset": "ipa_childes",
-    "n": 9838,
-    "per": 0.4244,
-    "per_ci_low": 0.4213,
-    "per_ci_high": 0.4275,
-    "exact_match": 0.0327,
+    "n": 1000,
+    "per": 0.44,
+    "per_ci_low": 0.4293,
+    "per_ci_high": 0.4506,
+    "exact_match": 0.046,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "sv",
     "dataset": "styletts2_phonemes",
-    "n": 2706,
-    "per": 0.4019,
-    "per_ci_low": 0.3988,
-    "per_ci_high": 0.4052,
+    "n": 1000,
+    "per": 0.4047,
+    "per_ci_low": 0.3986,
+    "per_ci_high": 0.4104,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "sv",
     "dataset": "wikipron",
-    "n": 5076,
-    "per": 0.3424,
-    "per_ci_low": 0.3371,
-    "per_ci_high": 0.3477,
-    "exact_match": 0.0914,
+    "n": 908,
+    "per": 0.349,
+    "per_ci_low": 0.3368,
+    "per_ci_high": 0.3611,
+    "exact_match": 0.0738,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "ta",
     "dataset": "wikipron",
-    "n": 10093,
-    "per": 0.725,
-    "per_ci_low": 0.7211,
-    "per_ci_high": 0.7287,
-    "exact_match": 0.0054,
+    "n": 987,
+    "per": 0.7913,
+    "per_ci_low": 0.7775,
+    "per_ci_high": 0.8061,
+    "exact_match": 0.001,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "tl",
     "dataset": "wikipron",
-    "n": 25857,
-    "per": 0.1179,
-    "per_ci_low": 0.1162,
-    "per_ci_high": 0.1195,
-    "exact_match": 0.4318,
+    "n": 892,
+    "per": 0.1873,
+    "per_ci_low": 0.1766,
+    "per_ci_high": 0.1979,
+    "exact_match": 0.2321,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "tr",
     "dataset": "wikipron",
-    "n": 11579,
-    "per": 0.1236,
-    "per_ci_low": 0.1208,
-    "per_ci_high": 0.1264,
-    "exact_match": 0.447,
+    "n": 969,
+    "per": 0.1467,
+    "per_ci_low": 0.1371,
+    "per_ci_high": 0.1569,
+    "exact_match": 0.386,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "uk",
     "dataset": "styletts2_phonemes",
-    "n": 9888,
-    "per": 0.5507,
-    "per_ci_low": 0.5486,
-    "per_ci_high": 0.5526,
+    "n": 981,
+    "per": 0.4922,
+    "per_ci_low": 0.4862,
+    "per_ci_high": 0.4986,
     "exact_match": 0.0,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   },
   {
     "lang": "zh",
     "dataset": "ipa_childes",
-    "n": 4717,
-    "per": 0.5167,
-    "per_ci_low": 0.5125,
-    "per_ci_high": 0.5209,
-    "exact_match": 0.0087,
+    "n": 1000,
+    "per": 0.5147,
+    "per_ci_low": 0.5048,
+    "per_ci_high": 0.5246,
+    "exact_match": 0.009,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "harness_version": "1.1",
-    "limit": null
+    "limit": 1000
   }
 ]

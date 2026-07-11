@@ -12,6 +12,7 @@ on:
       - "scripts/benchmark.py"
       - "scripts/check_benchmark_regression.py"
       - "benchmarks/results.json"
+      - "benchmarks/results_ci_sample.json"
       - "tests/data/**"
       - ".github/workflows/benchmark-regression.yml"
   workflow_dispatch: {}
@@ -35,6 +36,15 @@ jobs:
       - name: Check benchmark regression
         # Measure the checkout (PYTHONPATH=$PWD), not any installed
         # package — same gotcha as scripts/benchmark.py --scoreboard.
+        #
+        # The PUBLISHED scoreboard (benchmarks/results.json) is FULL-dataset
+        # and far too slow to re-run here. This gate instead re-scores at a
+        # fixed UNIFORM sample (benchmark.CI_SAMPLE_LIMIT, same cap for every
+        # language) and compares against benchmarks/results_ci_sample.json,
+        # a baseline committed at that identical cap — so both sides are
+        # sliced the same way and there is never a mixed-slice comparison.
+        # Refresh that sample file (scripts/benchmark.py --ci-sample)
+        # whenever the full scoreboard is regenerated.
         #
         # This job only reliably gates the self-contained gold datasets:
         # wikipron, mirandese and ipadict fetch their TSVs directly over

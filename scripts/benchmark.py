@@ -34,8 +34,15 @@ Dataset access:
 - ``ipa_childes`` downloads per-language CSVs from the
   fdemelo/ipa-childes-split Hugging Face dataset directly (stdlib only).
 
-Every run is capped (``--limit``, default 300) — gold sets are large
-and a slice is enough for a stable reference number.
+The committed ``--scoreboard`` scores the FULL gold set of every language
+with NO cap (uniformly — no per-language limit juggling); the published
+docs/scoreboard.md is full-dataset. ``--limit N`` still applies a uniform
+cap for ad-hoc fast runs, and the CI regression gate re-scores at a fixed
+uniform sample (see ``--ci-sample`` and check_benchmark_regression.py). A
+few loaders keep an intrinsic, language-agnostic infrastructure bound that
+``--limit`` cannot lift (e.g. ``hitz_basque_ipa`` pages the HF rows API and
+stops at ``_HITZ_BASQUE_MAX_PARAGRAPHS`` rather than pulling the full
+1.67M-row set) — these are documented in docs/benchmarks.md.
 """
 from __future__ import annotations
 
@@ -77,6 +84,19 @@ SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "lexicon_scoreboard.md")
 LEXICON_SCOREBOARD_JSON = os.path.join(
     REPO_ROOT, "benchmarks", "lexicon_results.json")
+
+# ── CI regression sample ────────────────────────────────────────────────────
+# The committed scoreboard (SCOREBOARD_JSON) is FULL-dataset — every gold
+# word of every language, no cap — which is far too slow to re-run inside a
+# CI job (the 617k-row portuguese_phonetic_lexicon and 102k-row infopedia_pt
+# alone take the better part of an hour). So the CI regression gate re-scores
+# at a fixed, UNIFORM sample size — the SAME cap for every language, no
+# per-language juggling — and compares against a SEPARATE baseline committed
+# at that identical cap (never against the full scoreboard, so there is never
+# a mixed-slice comparison). Generate/refresh it with
+# ``scripts/benchmark.py --ci-sample``.
+CI_SAMPLE_LIMIT = 1000
+CI_SAMPLE_JSON = os.path.join(REPO_ROOT, "benchmarks", "results_ci_sample.json")
 
 _STRESS_MARKS = "ˈˌ"
 _NARROW_MARKS = "̝̞̪̺̼̘̙͜͡.·‿()"
@@ -345,8 +365,9 @@ def load_ipa_childes(lang: str, limit: int) -> List[Tuple[str, str]]:
     ``load_hitz_basque`` derives word pairs from paragraph-level text; rows
     whose token counts don't match are skipped rather than guessed at.
     Only the ``test`` split is used (held out from training the G2P+
-    model), and only a bounded ``limit``-sized prefix of each (typically
-    tens-of-thousands-of-rows) CSV is read.
+    model). Under the full ``--scoreboard`` run (``limit`` unset) the whole
+    test split is read and de-duplicated; ``--limit N`` reads only the first
+    N de-duplicated pairs.
     """
     folder = _IPA_CHILDES_FOLDERS[lang]
     url = _IPA_CHILDES_BASE.format(folder=folder)
@@ -1188,14 +1209,25 @@ def _quality_tier(lang: str) -> Optional[str]:
         return None
 
 
-def build_scoreboard(limit: int) -> List[dict]:
+def build_scoreboard(limit: Optional[int]) -> List[dict]:
     """Run every registered gold dataset/language combination and
-    return deterministic scoreboard rows sorted by language tag."""
+    return deterministic scoreboard rows sorted by language tag.
+
+    ``limit`` is the per-dataset row cap. Pass ``None`` (the default for
+    the committed ``--scoreboard`` run) to score the ENTIRE gold set of
+    every language with no truncation — the published scoreboard is
+    full-dataset. A concrete integer is only for ad-hoc fast runs and for
+    the CI regression sample (see ``check_benchmark_regression.py``); it
+    is applied UNIFORMLY to every language (no per-language cap juggling).
+    ``None`` is passed to the loaders as ``sys.maxsize`` so their
+    ``len(pairs) >= limit`` / ``pairs[:limit]`` guards become no-ops.
+    """
+    effective = sys.maxsize if limit is None else limit
     rows: List[dict] = []
     for dataset_name, (loader, langs) in DATASETS.items():
         for lang in langs:
             try:
-                pairs = loader(lang, limit)
+                pairs = loader(lang, effective)
             except Exception as exc:
                 print(f"skip {dataset_name} lang={lang}: {exc}",
                       file=sys.stderr)
@@ -1333,7 +1365,7 @@ def _score_pairs(pairs, lang: str) -> Tuple[int, float]:
     return covered, per
 
 
-def build_lexicon_report(limit: int) -> List[dict]:
+def build_lexicon_report(limit: Optional[int]) -> List[dict]:
     """Rules-only vs with-lexicon PER for every shipped lexicon language.
 
     For each ``data/lexicons/{code}.tsv`` and each wikipron gold tag that
@@ -1351,7 +1383,8 @@ def build_lexicon_report(limit: int) -> List[dict]:
             if tag not in _WIKIPRON_FILES:
                 continue
             try:
-                pairs = load_wikipron(tag, limit)
+                pairs = load_wikipron(
+                    tag, sys.maxsize if limit is None else limit)
             except Exception as exc:
                 print(f"skip lexicon report {tag}: {exc}", file=sys.stderr)
                 continue
@@ -1434,7 +1467,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dataset", choices=sorted(DATASETS))
     ap.add_argument("--lang", default=None)
-    ap.add_argument("--limit", type=int, default=300)
+    ap.add_argument("--limit", type=int, default=None,
+                    help="Per-dataset row cap, applied UNIFORMLY to every "
+                         "language. Omit to score the FULL gold set (the "
+                         "committed --scoreboard is full-dataset); pass an "
+                         "integer only for ad-hoc fast runs.")
     ap.add_argument("--keep-stress", action="store_true",
                     help="Compare stress marks too (stripped by default)")
     ap.add_argument("--narrow", action="store_true",
@@ -1446,6 +1483,13 @@ def main() -> None:
                     help="Run every registered gold dataset/language "
                          "combination and write docs/scoreboard.md + "
                          "benchmarks/results.json")
+    ap.add_argument("--ci-sample", action="store_true",
+                    help="Write the CI regression baseline "
+                         "benchmarks/results_ci_sample.json — every dataset/"
+                         "language scored at the fixed uniform "
+                         f"--limit {CI_SAMPLE_LIMIT} sample used by "
+                         "check_benchmark_regression.py (NOT the full "
+                         "published scoreboard).")
     ap.add_argument("--lexicon-report", action="store_true",
                     help="Score rules-only vs with-lexicon PER for every "
                          "language shipping a data/lexicons/{code}.tsv and "
@@ -1459,6 +1503,17 @@ def main() -> None:
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(LEXICON_SCOREBOARD_MD, REPO_ROOT)} and "
               f"{os.path.relpath(LEXICON_SCOREBOARD_JSON, REPO_ROOT)}")
+        return
+
+    if args.ci_sample:
+        rows = build_scoreboard(CI_SAMPLE_LIMIT)
+        os.makedirs(os.path.dirname(CI_SAMPLE_JSON), exist_ok=True)
+        with open(CI_SAMPLE_JSON, "w", encoding="utf-8") as fh:
+            json.dump(rows, fh, indent=2, ensure_ascii=False)
+            fh.write("\n")
+        print(f"wrote {len(rows)} rows to "
+              f"{os.path.relpath(CI_SAMPLE_JSON, REPO_ROOT)} "
+              f"(CI regression sample, uniform limit={CI_SAMPLE_LIMIT})")
         return
 
     if args.scoreboard:
@@ -1479,7 +1534,7 @@ def main() -> None:
     if lang not in langs:
         sys.exit(f"{args.dataset} supports: {langs}")
 
-    pairs = loader(lang, args.limit)
+    pairs = loader(lang, sys.maxsize if args.limit is None else args.limit)
     n, covered, per, wer = evaluate(
         pairs, lang,
         strip_stress=not args.keep_stress,
