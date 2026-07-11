@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.50.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.50.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.49.0a1...1.50.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): research-grounded Angolan, Cape Verdean and Mozambican Portuguese [\#191](https://github.com/TigreGotico/orthography2ipa/pull/191) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.49.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.49.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.48.0a1...1.49.0a1)
