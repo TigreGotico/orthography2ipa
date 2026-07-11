@@ -80,6 +80,34 @@ language's JSON spec (see `data/SCHEMA.md` for the schema).
 
 ---
 
+## Shipped lexicon data
+
+The optional lexicon overlay (`orthography2ipa/data/lexicons/{code}.tsv`, see
+[`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale))
+ships one pilot lexicon, built from the sources below by
+`scripts/build_en_lexicon.py`.
+
+### English pilot — `en-GB.tsv`
+
+- **CMU Pronouncing Dictionary (cmudict)** — Carnegie Mellon University Speech
+  Group. *The CMU Pronouncing Dictionary*.
+  <https://github.com/cmusphinx/cmudict>. Public-domain / BSD-style licensed
+  (free for any use, commercial or non-commercial). Source of the
+  pronunciations: each entry's hand-curated ARPABET is mechanically converted
+  to broad, non-rhotic (RP-leaning) IPA. CMUdict is General American, so this
+  pilot most helps the General-American evaluation; a production RP / en-GB
+  lexicon belongs downstream.
+- **google-10000-english** — Josh Kaufman et al. *google-10000-english*
+  (frequency list derived from the Google Web Trillion Word Corpus).
+  <https://github.com/first20hours/google-10000-english>. MIT-licensed. Used
+  **only** to select which ~5,000 highest-frequency words to include; none of
+  its content ships — only the CMU-derived IPA does.
+
+Both sources permit redistribution; the derived TSV is bundled and cited here
+per the shipped-data attribution rule.
+
+---
+
 *This page grows alongside the language specs: each spec's `sources` array is the authoritative record, and every family with cited specs is listed here.*
 
 ---

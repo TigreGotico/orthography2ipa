@@ -199,6 +199,37 @@ The test suite validates:
 
 ---
 
+## Adding a lexicon overlay (optional)
+
+When grapheme rules cannot reach production accuracy for a deep-orthography
+language, ship a **lexicon**: a sidecar file
+`orthography2ipa/data/lexicons/{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC,
+lowercase words, sorted, first-entry-wins), named by the language's resolved
+code (e.g. `en-GB.tsv`). No JSON change and no new spec field are needed — the
+file is discovered by convention and read lazily on first use. See
+[`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale)
+for the full contract (precedence: inline `word_exceptions` > lexicon > rules).
+
+Rules to follow when adding one:
+
+1. **Keep the pilot small and license-clean.** The bundled `en-GB.tsv` is a
+   ~5k top-frequency slice of CMUdict (BSD-style, public domain), converted to
+   broad IPA by `scripts/build_en_lexicon.py`. Cite the source in
+   [`bibliography.md`](bibliography.md). Full production lexica (hundreds of
+   thousands of entries) belong in a downstream package, not in this library.
+2. **Validate.** Every entry must pass `lexicon.validate_lexicon_text` (correct
+   `word<TAB>ipa` shape, NFC, lowercase word, IPA-characters-only, no
+   duplicates); the shipped-data test enforces this over every `*.tsv`.
+3. **Speak the spec's IPA convention.** Convert source pronunciations to the
+   same broad IPA the language's `graphemes` use, so lexicon and rule output
+   are comparable.
+4. **Report the impact.** Regenerate the rules-only vs with-lexicon comparison
+   with `python scripts/benchmark.py --lexicon-report` so
+   [`lexicon_scoreboard.md`](lexicon_scoreboard.md) shows the overlay improves
+   PER without masking rule regressions.
+
+---
+
 ## Positional Grapheme Keys
 
 | JSON key                  | Description                 | Example                                   |

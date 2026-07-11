@@ -249,6 +249,46 @@ Fields: `id`, `name`, `left_context`, `right_context`, `transform`, `obligatory`
 
 ---
 
+## Lexicon overlay (sidecar `word_exceptions` at scale)
+
+`orthography2ipa/lexicon.py`
+
+Deep-orthography languages (English, Danish, Irish) cannot reach production
+accuracy from grapheme rules alone — too many words are irregular. The
+`word_exceptions` field on `LanguageSpec` handles a *closed, tiny* set of
+irregulars inline in the JSON, but it does not scale to thousands of entries.
+
+A **lexicon** is an optional, convention-based sidecar file
+`orthography2ipa/data/lexicons/{code}.tsv` — one `word<TAB>ipa` pair per line,
+UTF-8, NFC-normalised, lowercase words, sorted, first-entry-wins. It needs **no
+new spec field and no JSON change**: the file is discovered by its name (the
+resolved language code, e.g. `en-GB.tsv`), so `FIELD_INHERITANCE` is untouched.
+
+Contract:
+
+- **Lazy.** Importing the package, and even loading a `LanguageSpec`, reads
+  **no** lexicon. A language's TSV is read once, on the first transcription for
+  that language (`get_lexicon(code)`), then cached for the process lifetime.
+- **Same pathway as `word_exceptions`.** `G2P._override_for` folds a lexicon
+  hit into the *exact* override path `word_exceptions` uses, so a lexicon entry
+  still gets stress-mark insertion and cross-word sandhi applied and is
+  reported with `confidence == 1.0` (a certain answer).
+- **Precedence:** inline `word_exceptions` **>** lexicon **>** rules. An inline
+  exception always wins; the sidecar always wins over the grapheme/positional
+  beam.
+- **Absent lexicon → byte-identical.** A language with no `{code}.tsv` gets an
+  empty overlay and behaves exactly as before this feature existed.
+
+Every shipped TSV is validated (parseable `word<TAB>ipa`, NFC, lowercase word,
+IPA-characters-only) by `lexicon.validate_lexicon_text`; the shipped-data test
+runs that guard over every file. The one bundled pilot is `en-GB.tsv`
+(CMUdict-derived — see [`bibliography.md`](bibliography.md) and
+`scripts/build_en_lexicon.py`); the rules-only vs with-lexicon PER impact is
+reported in [`lexicon_scoreboard.md`](lexicon_scoreboard.md). Full production
+lexica belong downstream — see [`adding_a_language.md`](adding_a_language.md).
+
+---
+
 ## Relationship between `graphemes` and `allophones`
 
 These are **different layers** of phonological description:

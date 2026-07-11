@@ -40,6 +40,7 @@ and a slice is enough for a stable reference number.
 from __future__ import annotations
 
 import argparse
+import contextlib
 import csv
 import json
 import os
@@ -73,6 +74,9 @@ BOOTSTRAP_REPS = 1000
 SAMPLE_SEED = 20260711
 SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
+LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "lexicon_scoreboard.md")
+LEXICON_SCOREBOARD_JSON = os.path.join(
+    REPO_ROOT, "benchmarks", "lexicon_results.json")
 
 _STRESS_MARKS = "ˈˌ"
 _NARROW_MARKS = "̝̞̪̺̼̘̙͜͡.·‿()"
@@ -1280,6 +1284,152 @@ def write_scoreboard(rows: List[dict]) -> None:
         fh.write("\n".join(lines))
 
 
+# ─── lexicon-overlay report (E3) ────────────────────────────────────────────
+#
+# The lexicon overlay (orthography2ipa/lexicon.py) is only honest if we can see
+# how much of a language's accuracy comes from the *rules* versus the shipped
+# sidecar TSV. This report re-scores the same gold twice — once with the
+# lexicon disabled ("rules-only PER") and once with it on ("with-lexicon PER")
+# — for every language that ships a data/lexicons/{code}.tsv, so a regression
+# in rule quality can't hide behind lexicon coverage. It is a SEPARATE artifact
+# from the main scoreboard (docs/scoreboard.md is left untouched): languages
+# with no lexicon are byte-identical with or without this feature.
+
+# wikipron gold tags to score per lexicon code (a lexicon file is named by the
+# resolved spec code; several BCP-47 tags can resolve to it and have their own
+# gold — e.g. both "en" (US) and "en-GB" (UK) resolve to the en-GB spec).
+_LEXICON_REPORT_TAGS: Dict[str, List[str]] = {
+    "en-GB": ["en", "en-GB"],
+}
+
+
+@contextlib.contextmanager
+def _lexicon_disabled():
+    """Temporarily force every G2P engine onto the rules-only path.
+
+    Swaps ``get_lexicon`` (bound both in ``orthography2ipa.lexicon`` and, by
+    ``from``-import, in ``orthography2ipa.g2p``) for a stub returning ``{}``,
+    so ``_override_for`` sees no sidecar and falls straight to the beam. The
+    inline ``word_exceptions`` path is untouched — this isolates the lexicon's
+    contribution, not the whole override mechanism.
+    """
+    from orthography2ipa import lexicon as _lex
+    from orthography2ipa import g2p as _g2p
+
+    orig = _lex.get_lexicon
+    stub = lambda code: {}  # noqa: E731 — trivial, local
+    _lex.get_lexicon = stub
+    _g2p.get_lexicon = stub
+    try:
+        yield
+    finally:
+        _lex.get_lexicon = orig
+        _g2p.get_lexicon = orig
+
+
+def _score_pairs(pairs, lang: str) -> Tuple[int, float]:
+    n, covered, _pers, per, _wer = evaluate_words(
+        pairs, lang, strip_stress=True, broad=True)
+    return covered, per
+
+
+def build_lexicon_report(limit: int) -> List[dict]:
+    """Rules-only vs with-lexicon PER for every shipped lexicon language.
+
+    For each ``data/lexicons/{code}.tsv`` and each wikipron gold tag that
+    resolves to it, reports PER on the full ``limit`` slice AND on just the
+    subset of gold words the lexicon actually covers (where the overlay can
+    possibly act) — the covered-subset delta is the honest measure of the
+    lexicon's own accuracy versus the rules on the same words.
+    """
+    from orthography2ipa import lexicon as _lex
+
+    rows: List[dict] = []
+    for code in _lex.available_lexicon_codes():
+        lex = _lex.get_lexicon(code)
+        for tag in _LEXICON_REPORT_TAGS.get(code, [code]):
+            if tag not in _WIKIPRON_FILES:
+                continue
+            try:
+                pairs = load_wikipron(tag, limit)
+            except Exception as exc:
+                print(f"skip lexicon report {tag}: {exc}", file=sys.stderr)
+                continue
+            covered_pairs = [(w, g) for (w, g) in pairs if w.lower() in lex]
+
+            with _lexicon_disabled():
+                full_n, full_rules = _score_pairs(pairs, tag)
+                sub_n, sub_rules = _score_pairs(covered_pairs, tag)
+            full_cov, full_lex = _score_pairs(pairs, tag)
+            sub_cov, sub_lex = _score_pairs(covered_pairs, tag)
+
+            rows.append({
+                "lexicon": code,
+                "lang": tag,
+                "gold": "wikipron",
+                "lexicon_entries": len(lex),
+                "n_full": full_cov,
+                "per_rules_only_full": round(full_rules, 4),
+                "per_with_lexicon_full": round(full_lex, 4),
+                "n_covered": sub_cov,
+                "per_rules_only_covered": round(sub_rules, 4),
+                "per_with_lexicon_covered": round(sub_lex, 4),
+                "limit": limit,
+                "harness_version": HARNESS_VERSION,
+            })
+    rows.sort(key=lambda r: (r["lexicon"], r["lang"]))
+    return rows
+
+
+def write_lexicon_report(rows: List[dict]) -> None:
+    os.makedirs(os.path.dirname(LEXICON_SCOREBOARD_JSON), exist_ok=True)
+    with open(LEXICON_SCOREBOARD_JSON, "w", encoding="utf-8") as fh:
+        json.dump(rows, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+
+    lines = [
+        "# Lexicon-overlay scoreboard",
+        "",
+        "Rules-only vs with-lexicon PER for every language that ships an "
+        "optional sidecar lexicon (`orthography2ipa/data/lexicons/{code}.tsv` "
+        "— see [`docs/data_model.md`](data_model.md) and "
+        "[`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the "
+        "overlay must *improve* PER without letting the underlying grapheme "
+        "rules rot behind lexicon coverage. Same gold, scored twice — once "
+        "with `get_lexicon` stubbed to `{}` (rules-only) and once with the "
+        "sidecar active. Regenerate with:",
+        "",
+        "```bash",
+        "PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report",
+        "```",
+        "",
+        "`PER (covered)` columns restrict scoring to the gold words the "
+        "lexicon actually contains — where the overlay can act — so the "
+        "covered-subset delta is the lexicon's own accuracy vs the rules on "
+        "the *same* words. The `full` columns dilute that by every gold word "
+        "outside the (deliberately capped, top-frequency) pilot lexicon; a "
+        "full production lexicon belongs downstream (see "
+        "[`docs/adding_a_language.md`](adding_a_language.md)).",
+        "",
+        "| Lexicon | Lang | Gold | Entries | N (full) | PER rules-only (full) "
+        "| PER +lexicon (full) | N (covered) | PER rules-only (covered) "
+        "| PER +lexicon (covered) |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for r in rows:
+        lines.append(
+            f"| {r['lexicon']} | {r['lang']} | {r['gold']} | "
+            f"{r['lexicon_entries']} | {r['n_full']} | "
+            f"{r['per_rules_only_full']:.4f} | {r['per_with_lexicon_full']:.4f} "
+            f"| {r['n_covered']} | {r['per_rules_only_covered']:.4f} | "
+            f"{r['per_with_lexicon_covered']:.4f} |"
+        )
+    lines.append("")
+    os.makedirs(os.path.dirname(LEXICON_SCOREBOARD_MD), exist_ok=True)
+    with open(LEXICON_SCOREBOARD_MD, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dataset", choices=sorted(DATASETS))
@@ -1296,7 +1446,20 @@ def main() -> None:
                     help="Run every registered gold dataset/language "
                          "combination and write docs/scoreboard.md + "
                          "benchmarks/results.json")
+    ap.add_argument("--lexicon-report", action="store_true",
+                    help="Score rules-only vs with-lexicon PER for every "
+                         "language shipping a data/lexicons/{code}.tsv and "
+                         "write docs/lexicon_scoreboard.md + "
+                         "benchmarks/lexicon_results.json")
     args = ap.parse_args()
+
+    if args.lexicon_report:
+        rows = build_lexicon_report(args.limit)
+        write_lexicon_report(rows)
+        print(f"wrote {len(rows)} rows to "
+              f"{os.path.relpath(LEXICON_SCOREBOARD_MD, REPO_ROOT)} and "
+              f"{os.path.relpath(LEXICON_SCOREBOARD_JSON, REPO_ROOT)}")
+        return
 
     if args.scoreboard:
         rows = build_scoreboard(args.limit)
