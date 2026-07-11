@@ -5,8 +5,7 @@
     "script": "Latin",
     "graphemes": {
         "a": [
-            "a",
-            "ɐ"
+            "a"
         ],
         "e": [
             "e",
@@ -28,17 +27,11 @@
         "é": [
             "ɛ"
         ],
-        "ê": [
-            "e"
-        ],
         "í": [
             "i"
         ],
         "ó": [
             "ɔ"
-        ],
-        "ô": [
-            "o"
         ],
         "ú": [
             "u"
@@ -50,10 +43,7 @@
             "k",
             "θ"
         ],
-        "ç": [
-            "θ",
-            "s"
-        ],
+        "ç": null,
         "d": [
             "d"
         ],
@@ -61,8 +51,7 @@
             "f"
         ],
         "g": [
-            "ɡ",
-            "ʃ"
+            "ɡ"
         ],
         "h": [
             ""
@@ -116,8 +105,7 @@
             "ʎ"
         ],
         "nh": [
-            "ŋ",
-            "ɲ"
+            "ŋ"
         ],
         "rr": [
             "r"
@@ -172,9 +160,6 @@
         ],
         "uo": [
             "wo"
-        ],
-        "ão": [
-            "ɐ̃w̃"
         ]
     },
     "allophones": {
@@ -206,8 +191,7 @@
             "β"
         ],
         "s": [
-            "s",
-            "z"
+            "s"
         ],
         "θ": [
             "θ"
@@ -248,9 +232,6 @@
         ],
         "a": [
             "a"
-        ],
-        "ɐ": [
-            "ɐ"
         ],
         "e": [
             "e"
@@ -312,8 +293,7 @@
                 "s"
             ],
             "intervocalic": [
-                "s",
-                "z"
+                "s"
             ],
             "coda": [
                 "s"
@@ -382,7 +362,7 @@
             "notes": "Arabic adstrate: minimal in NW (reconquered by ~11th c.)"
         }
     ],
-    "notes": "Standard Galician per RAG norms. Gheada not reflected in standard.",
+    "notes": "Standard Galician per RAG norms. Gheada not reflected in standard. Standard Galician has interdental /θ/ (distinción); seseo is western-dialectal (see gl-x-occidental), not standard. Standard-Galician traits distinguishing it from Portuguese: ⟨g⟩ is /ɡ/ only (no [ʃ] alternant); no unstressed vowel reduction, /a/ stays [a] (Regueira 1996:119); RAG orthography uses only acute accents (no ⟨ç⟩, ⟨ê⟩, ⟨ô⟩, ⟨ão⟩ — those are Portuguese spellings); no voiced sibilants (no intervocalic /s/→[z] voicing); ⟨nh⟩ is the velar nasal /ŋ/ (e.g. unha), not palatal /ɲ/.",
     "quality": "research",
     "script_type": "alphabet",
     "sources": [
@@ -415,6 +395,16 @@
             "url": null,
             "pages": null,
             "notes": null
+        },
+        {
+            "id": "regueira1996",
+            "author": "Regueira, X.L.",
+            "year": 1996,
+            "title": "Galician (Illustrations of the IPA)",
+            "publisher": "Journal of the International Phonetic Association 26(2)",
+            "url": "https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/galician/12F7CB857C4D8CD3B8634FBD250580CF",
+            "pages": "119-122",
+            "notes": "p.119: standard Galician vowel system /i e ɛ a ɔ o u/ with no unstressed reduction; consonant /θ/ present; standard shows neither seseo nor gheada."
         }
     ],
     "wikipedia": [

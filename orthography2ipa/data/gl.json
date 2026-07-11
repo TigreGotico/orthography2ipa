@@ -397,7 +397,7 @@
       "notes": "Lusitanian substrate: pre-Celtic IE of western Iberia, inherited through Galaico-Portuguese."
     }
   ],
-  "notes": "Standard Galician (galego) per the Real Academia Galega (RAG) *Normas ortográficas e morfolóxicas do idioma galego* (2003, revised 2012). Spoken by ~2.4 million people in the Autonomous Community of Galicia (Spain) and diaspora communities. KEY FEATURES vs. Portuguese: (1) SESEO: no /θ/ phoneme — ⟨c⟩ before e/i and ⟨z⟩ = /s/ (not /θ/ as in Castilian, not Portuguese /s̻/). (2) APICO-ALVEOLAR /s/ [s̺] like Castilian/Asturian (not Portuguese predorsal [s̻]). (3) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (unlike Portuguese which preserves /v/ ≠ /b/). (4) ⟨ll⟩ = /ʎ/, ⟨ñ⟩ = /ɲ/ (Castilian orthographic conventions, not Portuguese ⟨lh⟩/⟨nh⟩). (5) ⟨ch⟩ = /tʃ/ (standard pronunciation; urban registers increasingly /ʃ/ under Portuguese/Spanish influence). (6) ⟨x⟩ = /ʃ/ — covers many words where Castilian uses ⟨j⟩/⟨ge,gi⟩ (e.g. 'xeneral' [ʃeneˈɾal] vs. Spanish 'general'). (7) NO VOWEL REDUCTION: unstressed /a/ stays [a] (not /ɐ/ as in Portuguese). (8) 7 oral vowel qualities in tonic position: /a, e, ɛ, i, o, ɔ, u/. (9) NASAL VOWELS word-finally (irmán [ɐ̃], corazón [õ]). (10) Preserves diphthongs: ou /ow/ ('cousa'), ei /ej/ ('leite'). KEY FEATURES vs. Asturian: Galician has seseo (no /θ/), no Leonese diphthongization in the same systematic way, descends from Galaico-Portuguese not Asturleonese. Sources: Freixeiro Mato (2006) *Gramática da Lingua Galega*, Regueira (1996), Ferreiro (1997).",
+  "notes": "Standard Galician (galego) per the Real Academia Galega (RAG) *Normas ortográficas e morfolóxicas do idioma galego* (2003, revised 2012). Spoken by ~2.4 million people in the Autonomous Community of Galicia (Spain) and diaspora communities. KEY FEATURES vs. Portuguese: (1) DISTINCIÓN (interdental /θ/): standard Galician HAS the phoneme /θ/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (as in Castilian; Portuguese has no interdental, using /s/ vs /z/). SESEO — the merger of /θ/ into a lamino-alveolar [s] (⟨c/z⟩ = /s/) — is a WESTERN/coastal DIALECTAL feature, NOT part of the RAG standard; see gl-x-occidental. Regueira (1996: 119) describes standard Galician with /θ/ and explicitly notes it does not show the dialectal seseo or gheada. (2) APICO-ALVEOLAR /s/ [s̺] like Castilian/Asturian (not Portuguese predorsal [s̻]). (3) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (unlike Portuguese which preserves /v/ ≠ /b/). (4) ⟨ll⟩ = /ʎ/, ⟨ñ⟩ = /ɲ/ (Castilian orthographic conventions, not Portuguese ⟨lh⟩/⟨nh⟩). (5) ⟨ch⟩ = /tʃ/ (standard pronunciation; urban registers increasingly /ʃ/ under Portuguese/Spanish influence). (6) ⟨x⟩ = /ʃ/ — covers many words where Castilian uses ⟨j⟩/⟨ge,gi⟩ (e.g. 'xeneral' [ʃeneˈɾal] vs. Spanish 'general'). (7) NO VOWEL REDUCTION: unstressed /a/ stays [a] (not /ɐ/ as in Portuguese). (8) 7 oral vowel qualities in tonic position: /a, e, ɛ, i, o, ɔ, u/. (9) NASAL VOWELS word-finally (irmán [ɐ̃], corazón [õ]). (10) Preserves diphthongs: ou /ow/ ('cousa'), ei /ej/ ('leite'). KEY FEATURES vs. Asturian: standard Galician (like standard Asturian) has interdental /θ/; it lacks Leonese diphthongization of Latin Ĕ/Ŏ in the systematic way Asturleonese shows, and descends from Galaico-Portuguese not Asturleonese. Sources: Freixeiro Mato (2006) *Gramática da Lingua Galega*, Regueira (1996), Ferreiro (1997).",
   "sources": [
     {
       "id": "freixeiro_mato1998",
@@ -428,6 +428,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "regueira1996",
+      "author": "Regueira, X.L.",
+      "year": 1996,
+      "title": "Galician (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 26(2)",
+      "url": "https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/galician/12F7CB857C4D8CD3B8634FBD250580CF",
+      "pages": "119-122",
+      "notes": "Standard Galician illustration. p.119: consonant inventory includes interdental /θ/; states standard Galician does not show the western-dialectal seseo (/θ/,/ʃ/ merged to [s]) or gheada (/ɡ/→[h~x~χ]). Confirms distinción is the standard, seseo is dialectal."
     },
     {
       "id": "cotovia_gtm_uvigo",

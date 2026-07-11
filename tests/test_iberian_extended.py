@@ -824,11 +824,9 @@ class TestGalicianStandard:
         assert vals is not None
         assert "θ" in vals, "Galician z should include θ"
 
-    def test_cedilla_seseo(self):
-        """ç → θ/s — in reintegrationist orthography ç parallels z (distinción variety)."""
-        vals = _grapheme(self.spec, "ç")
-        assert vals is not None, "gl-ES: ç grapheme missing"
-        assert "θ" in vals or "s" in vals, f"gl-ES: ç should include θ or s, got {vals}"
+    def test_cedilla_absent(self):
+        """RAG orthography has no ⟨ç⟩ (cedilla is Portuguese/medieval, not standard)."""
+        _assert_null(self.spec, "ç")
 
     def test_h_silent(self):
         """h → '' (silent, like Portuguese)."""
@@ -836,21 +834,21 @@ class TestGalicianStandard:
         assert vals is not None
         assert vals[0] in ("", ""), f"h should be silent, got {vals}"
 
-    def test_g_sibilant(self):
-        """g has sibilant realisation [ʃ] — unique Galician feature."""
+    def test_g_velar_only(self):
+        """gl-ES ⟨g⟩ → /ɡ/ only; there is no [ʃ] realisation (that was an error).
+        Gheada gives [h~x~χ] and only in western dialect (gl-x-occidental), never [ʃ]."""
         vals = _grapheme(self.spec, "g")
-        assert vals is not None
-        _assert_contains(vals, "ʃ", label="g grapheme")
+        assert vals == ["ɡ"], f"gl-ES g: expected [ɡ] only, got {vals}"
 
     def test_j_sibilant(self):
         """j → ʃ (Galician, not velar like Castilian)."""
         _assert_first(_grapheme(self.spec, "j"), "ʃ", label="j")
 
-    def test_s_intervocalic_voicing(self):
-        """Intervocalic s → [s, z] — voicing in intervocalic position."""
+    def test_s_no_intervocalic_voicing(self):
+        """Standard Galician has no voiced sibilants — intervocalic ⟨s⟩ stays [s],
+        it does NOT voice to [z] (that voicing was a Portuguese contamination error)."""
         iv = _positional(self.spec, "s", GraphemePosition.INTERVOCALIC)
-        assert iv is not None
-        _assert_contains(iv, "s", "z", label="s/INTERVOCALIC")
+        assert iv == ["s"], f"gl-ES s/INTERVOCALIC: expected [s], got {iv}"
 
     def test_r_word_initial_trill(self):
         """Word-initial r → r (trill)."""
