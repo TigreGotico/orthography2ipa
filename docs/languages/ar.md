@@ -174,6 +174,86 @@ transcribe whatever the orthography plus any harakat supply — short vowels sur
 when the input is vocalised. Neither Saudi variety has a registered gold set; their
 correctness is established by **citation** to the reference grammars above, not by PER.
 
+## Gulf Arabic — Khaleeji (`ar-x-gulf` → `ar-AE`, `ar-BH`, `ar-KW`, `ar-QA`) and Omani (`ar-OM`)
+
+The proto-parent `ar-x-gulf` (promoted **skeleton → research**) is an abstract ancestor
+node inheriting `ar-x-peninsular`. Emirati (`ar-AE`), Bahraini (`ar-BH`), Kuwaiti
+(`ar-KW`) and Qatari (`ar-QA`) inherit it via `graphemes_base` (OVERLAY_BY_ID), so the
+shared Gulf features are declared **once** on the proto-parent. Omani (`ar-OM`) is
+genetically Peninsular and inherits `ar-x-peninsular` **directly** — it is a Gulf-region
+dialect but not a Gulf-node descendant.
+
+**Shared Gulf features (on `ar-x-gulf`, inherited by AE/BH/KW/QA):**
+
+- **qāf ق → /ɡ/** (Bedouin/sedentary Gulf reflex), with /q/ a secondary MSA/formal
+  candidate: قَلَم → [ɡalam].
+- **Velar affrication** — the marquee Gulf feature, modeled as **post-lexical allophone
+  rules** (the [allophony](../allophony.md) B8 layer), *not* as grapheme candidates:
+  - `GULF_K_AFFRICATION`: /k/ → [tʃ] adjacent to a high front vowel /i, iː/
+    (كِتَاب → [tʃitaːb]; but كَلْب → [kalb], blocked before the low vowel).
+  - `GULF_G_AFFRICATION`: /ɡ/(< *q) → [dʒ] adjacent to a high front vowel
+    (قِرْد → [dʒird]).
+  The high-front conditioning matches Mustafawi's (2006, 2007) Qatari OT analysis
+  (adjacent to /i, iː/ only; blocked by [-high] segments). **Limitations documented in
+  the rule `notes`:** the alternation is historically *lexicalized* — Johnstone (1967)
+  and Szreder & Derrick (2023, for Emirati) treat [k~tʃ] as a completed phonemic change
+  and /tʃ/ as an independent phoneme; affrication is further blocked by adjacent
+  emphatics and by the OCP, and the coda case (samak → simatʃ) and Matar's non-adjacent
+  Kuwaiti trigger (across an intervening /r l/) are not modeled. The base rule captures
+  only the regular *following-high-front-vowel* onset case.
+- **Interdentals /θ ð ðˤ/ RETAINED** (Bedouin-type retention), unlike sedentary
+  Levantine/Egyptian which merge them to stops/sibilants: ثَلاثَة keeps [θ], ذَهَب keeps [ð].
+- **jiim /dʒ/ ~ [j]** glide variation (grapheme ج → [dʒ]~[j]).
+- Integrated loan phonemes /p/, /v/ (پ, ڤ).
+- **Emphatic spreading** (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is
+  inherited from `ar-x-peninsular` (`AR_PEN_EMPH_*`).
+
+**Per-country / per-node deltas:**
+
+- **Emirati `ar-AE`** — heaviest English influence (Dubai effect): /p v tʃ ŋ/ fully
+  integrated. Szreder & Derrick (2023): the [k~tʃ] alternation is a completed phonemic
+  change (the inherited affrication rule is thus a predictive approximation of the
+  historical distribution), while [dʒ~j] is a live synchronic process in which a nearby
+  similar coronal obstruent inhibits the **voiced [j] variant** of the dʒ~j alternation.
+  Note the asymmetry: for the voiceless target /k/→[tʃ], affrication was **not** inhibited
+  by similar consonants (if anything the reverse) — so the inhibitory effect belongs to
+  the voiced [dʒ~j] process, not to [tʃ].
+- **Bahraini `ar-BH`** — models the general Gulf pattern, and documents (in the spec
+  `notes`) the well-known **communal split**: the Bedouin-descended Sunni *ʕArab*
+  variety patterns like mainstream Gulf; the sedentary Shia *Baḥārna* variety is more
+  conservative (can retain [q], distinct jiim reflex, older Persian adstrate), for which
+  the *q→[ɡ]/affrication defaults over-generalize. One spec models one lect, so the
+  split is noted rather than separately encoded.
+- **Kuwaiti `ar-KW`** — best-documented Gulf variety; Matar's (1969) /ɡ/→[dʒ] pattern and
+  the -tʃ 2fsg kashkasha suffix noted (the morphological suffix is out of base scope).
+- **Qatari `ar-QA`** — the inherited high-front conditioning *is* Mustafawi's Qatari
+  analysis; her additional blocking environments (emphatics, OCP, paradigmatic leveling
+  in broken plurals/verbs) are documented as engine limits.
+- **Omani `ar-OM`** — Peninsular, **retains qāf as [q]** in the prestige sedentary
+  varieties of Muscat/Ṣalālah (grapheme ق → [q] first), unlike the northern Gulf
+  *q→[ɡ]; Bedouin varieties have [ɡ], northern-mountain sedentary [k], and Sur/Ṣoħār
+  [dʒ] (Al-Balushi 2016 p.88). jiim /dʒ/ is a free variant of /ɡ/ in most words
+  (Glover 1988:38, in Al-Balushi p.89). /k/-affrication is present only as a
+  Bedouin/interior feature (`OM_K_AFFRICATION`; the sedentary Muscat norm does *not*
+  productively affricate — documented in the rule `notes`).
+
+**Input contract.** As with all Arabic specs, the Gulf specs expect **fully diacritized
+(tashkeel) input**; the affrication and emphatic rules condition on the written
+short-vowel diacritics, so undiacritized running text will not trigger them.
+
+**No gold benchmark.** None of the Gulf specs has a registered gold set; correctness is
+established by **citation** to the sources below (actually read), not by PER — so
+promoting them moves no scoreboard row.
+
+**Sources actually read for the Gulf specs** (page-cited in each spec's `sources`):
+Alshammari (2026) — read in full; its literature review (p.1335) surveys Gulf velar
+affrication (Mustafawi's Qatari, Matar's Kuwaiti, Johnstone's lexicalization). Al-Balushi
+(2016) — phonology sections (pp. 85–90) read for Omani/Eastern-Arabian reflexes.
+Szreder & Derrick (2023) — abstract and published summary read (full text paywalled) for
+Emirati affricate variability. Holes (1990, 2001) and Qafisheh (1977), the standard Gulf
+reference works, could **not** be obtained (borrow-only / no open full text) and are
+therefore *not* cited as primary reads — only as works reported within the sources above.
+
 ## References
 
 - Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press.
@@ -183,5 +263,8 @@ correctness is established by **citation** to the reference grammars above, not 
 - Ingham, B. (1994). *Najdi Arabic: Central Arabian*. John Benjamins.
 - Omar, M.K. (1975). *Saudi Arabic, Urban Hijazi Dialect: A Basic Course*. Foreign Service Institute.
 - Abdoh, E. (2010). *A Study of the Phonology and Morphology of Urban Meccan Arabic*. PhD diss., University of Kansas.
+- Alshammari, K.K. (2026). An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic. *Journal of Language Teaching and Research* 17(4): 1333–1341. https://doi.org/10.17507/jltr.1704.19
+- Al-Balushi, R. (2016). Omani Arabic: More than a Dialect. *Macrolinguistics* 4(1): 80–125.
+- Szreder, M. & Derrick, D. (2023). Phonological conditioning of affricate variability in Emirati Arabic. *Journal of the International Phonetic Association* 54(1): 146–164. https://doi.org/10.1017/S0025100323000129
 - Wikipedia: [Sun and moon letters](https://en.wikipedia.org/wiki/Sun_and_moon_letters)
 - Wikipedia: [Standard Arabic phonology](https://en.wikipedia.org/wiki/Standard_Arabic_phonology)

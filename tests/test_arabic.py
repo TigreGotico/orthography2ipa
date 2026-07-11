@@ -359,9 +359,20 @@ class TestGulfArabic:
         assert vals is not None
         _assert_contains(vals, "dʒ", "j", label="ج")
 
-    def test_kaf_palatalisation(self):
-        """ك → [k, tʃ] — kaf palatalises before front vowels in Gulf."""
-        _assert_contains(_grapheme(self.spec, "ك"), "k", "tʃ", label="ك")
+    def test_kaf_affrication_rule(self):
+        """/k/ → [tʃ] before a high front vowel via GULF_K_AFFRICATION.
+
+        Affrication is modelled as a post-lexical allophone rule (B8), not a
+        grapheme candidate: ك maps to /k/, which the rule realises as [tʃ]
+        adjacent to /i, iː/ (Alshammari 2026 p.1335, Mustafawi Qatari).
+        """
+        from orthography2ipa.g2p import G2P
+        ids = [r.id for r in self.spec.allophone_rules]
+        assert "GULF_K_AFFRICATION" in ids
+        g = G2P(self.LANGUAGE_CODE)
+        assert g.transcribe("كِتَاب").startswith("tʃ")
+        # …and stays [k] before a non-high vowel (blocked by [-high])
+        assert g.transcribe("كَلْب").startswith("k")
 
     def test_q_allophone_g(self):
         """q allophone → ɡ (primary) — qaf→gaf in Gulf."""

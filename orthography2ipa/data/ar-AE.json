@@ -23,43 +23,32 @@
       "code": "ar-x-gulf",
       "role": "parent",
       "weight": 0.88,
-      "notes": "Gulf Arabic base"
+      "notes": "Gulf Arabic base — inherits *q→[ɡ], velar affrication GULF_K_AFFRICATION/GULF_G_AFFRICATION, interdental retention and emphatic spreading."
     }
   ],
-  "notes": "Emirati Arabic (إماراتي). UAE: Abu Dhabi, Dubai, Sharjah, RAK. k → /tʃ/ before front vowels (robust Gulf feature). ق → /ɡ/ (traditional). Heaviest English influence of all Gulf dialects (Dubai effect): /p/, /v/, /tʃ/, /ŋ/ thoroughly integrated. South Asian (Indian/Pakistani) community influence on lexicon. Interior/tribal varieties (RAK, Fujairah) more conservative.",
-  "quality": "skeleton",
+  "notes": "Emirati Arabic (إماراتي) — UAE: Abu Dhabi, Dubai, Sharjah, RAK. Inherits the Gulf features: *q → [ɡ]; velar affrication /k/→[tʃ], /ɡ/→[dʒ] before high front /i, iː/; interdentals /θ ð ðˤ/ retained. Emirati-specific: (a) jiim and the reflex of *q vary with the palatal glide [j] (grapheme ج → [dʒ]~[j]; ɡ → [ɡ]~[j]) — Szreder & Derrick (2023) find the [dʒ~j] alternation to be a live synchronic process, and that the presence of a nearby similar coronal obstruent inhibits the (voiced) [j] variant of this dʒ~j alternation; (b) the /k~tʃ/ alternation is, per Szreder & Derrick (2023), a COMPLETED phonemic change (now two separate phonemes), so the inherited GULF_K_AFFRICATION rule is a predictive approximation of the historical distribution, not a synchronic process — and, unlike the voiced target, /k/-affrication was NOT inhibited by nearby similar consonants (if anything the reverse); (c) heaviest English influence of the Gulf dialects (Dubai effect): /p/, /v/, /tʃ/, /ŋ/ thoroughly integrated; strong South-Asian community lexical influence. Interior/tribal varieties (RAK, Fujairah) are more conservative. Input contract: fully diacritised (tashkeel) Arabic.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
-      "id": "watson2002",
-      "author": "Watson, J.C.E.",
-      "year": 2002,
-      "title": "The Phonology and Morphology of Arabic",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+      "id": "szreder_derrick2023",
+      "author": "Szreder, M. & Derrick, D.",
+      "year": 2023,
+      "title": "Phonological conditioning of affricate variability in Emirati Arabic",
+      "publisher": "Journal of the International Phonetic Association",
+      "url": "https://doi.org/10.1017/S0025100323000129",
+      "pages": "54(1):146-164",
+      "notes": "Abstract and published summary read (full text paywalled — cited only for what was read). Emirati-specific: [k~tʃ] is a completed phonemic change (lexicalised); [dʒ~j] is a synchronic phonological process; a nearby similar coronal obstruent inhibits the (voiced) [j] variant of the dʒ~j alternation, whereas /k/-affrication to [tʃ] is not inhibited by similar consonants."
     },
     {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "versteegh2001",
-      "author": "Versteegh, K.",
-      "year": 2001,
-      "title": "The Arabic Language",
-      "publisher": "Edinburgh University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "id": "alshammari2026",
+      "author": "Alshammari, K. K.",
+      "year": 2026,
+      "title": "An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic",
+      "publisher": "Journal of Language Teaching and Research 17(4)",
+      "url": "https://doi.org/10.17507/jltr.1704.19",
+      "pages": "1333-1341",
+      "notes": "Read in full. Literature review (p.1335) of Gulf velar affrication (Mustafawi Qatari, Matar Kuwaiti, Johnstone 1967 lexicalisation) supporting the inherited GULF_K/G_AFFRICATION rules."
     }
   ],
   "wikipedia": [

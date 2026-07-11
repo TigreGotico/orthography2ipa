@@ -420,10 +420,16 @@ class TestGulfCountryReflexes:
         _assert_first(_grapheme(spec, "ث"), "θ", label=f"{code} ث")
 
     @pytest.mark.parametrize("code", ["ar-AE", "ar-KW"])
-    def test_kaf_palatalisation(self, code):
-        """ك includes /tʃ/ — Gulf kaf-shift before front vowels."""
+    def test_kaf_affrication(self, code):
+        """/k/ → [tʃ] before a high front vowel via GULF_K_AFFRICATION.
+
+        Affrication is a post-lexical allophone rule (B8) inherited from
+        ar-x-gulf, not a grapheme candidate — كِتَاب affricates, كَلْب does not.
+        """
         spec = _load(code)
-        _assert_contains(_grapheme(spec, "ك"), "k", "tʃ", label=f"{code} ك")
+        assert "GULF_K_AFFRICATION" in [r.id for r in spec.allophone_rules]
+        assert _ipa(code, "كِتَاب").startswith("tʃ")
+        assert _ipa(code, "كَلْب").startswith("k")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
