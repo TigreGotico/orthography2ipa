@@ -144,3 +144,60 @@ def test_ta_marbuta_pausal_no_double_vowel(ar):
     # مَدْرَسَة → [madrasa]: word-final ة after a harakat is the pausal /a/
     # already supplied by the preceding fatha — not a second a.
     assert ar.transcribe_word("مَدْرَسَة") == "madrasa"
+
+
+# ─── 4. Fatḥa + standalone alif-maksūra ⟨ـَى⟩ merges to a single [aː] ───────
+
+
+def test_fatha_alif_maksura_merges_to_single_long_a(ar):
+    # حَتَّى → [ħattaː]: word-final fatḥa + alif maksūra ⟨ـَى⟩ is one long /aː/,
+    # exactly like fatḥa + alif ⟨ـَا⟩ — not the fatḥa's /a/ followed by a
+    # second /aː/ from ى (the old ħattaaː). Ryding 2005, "Phonology and
+    # script", long vowels spelled with the matres (pp. 25–27); Wright 1896
+    # Vol. I §5, alif maqṣūra as a spelling of final /aː/.
+    assert ar.transcribe_word("حَتَّى") == "ħattaː"
+
+
+def test_fatha_alif_maksura_ramaa(ar):
+    # رَمَى → [ramaː]: same fatḥa + alif-maksūra merge, no emphatic context so
+    # the vowel stays plain /aː/.
+    assert ar.transcribe_word("رَمَى") == "ramaː"
+
+
+# ─── 5. Word-final glide after a coda consonant (sukūn) stays a glide ───────
+
+
+def test_word_final_yaa_after_sukun_stays_glide(ar):
+    # رَمْي → [ramj]: word-final ي after a sukūn-bearing coda consonant ⟨ـْي⟩ is
+    # the glide /j/, NOT a long /iː/ — a long vowel would be written with the
+    # homorganic kasra (ـِي). Wright 1896 Vol. I §4 (a quiescent/coda
+    # consonant carries no vowel); Ryding 2005 pp. 25–27, 29–30.
+    assert ar.transcribe_word("رَمْي") == "ramj"
+
+
+def test_word_final_waw_after_sukun_stays_glide(ar):
+    # ظَبْي parallels رَمْي for ي; the ⟨ـْو⟩ coda glide is /w/ (here shown on a
+    # word whose emphatic ظ /ðˤ/ backs the /a/ to [ɑ] — pre-existing, and
+    # orthogonal to the glide fix): the tail must be /j/, never /iː/.
+    out = ar.transcribe_word("ظَبْي")
+    assert out.endswith("j")
+    assert not out.endswith("iː")
+
+
+def test_sukun_glide_medial_is_onset_glide(ar):
+    # دُنْيَا → [dunjaː]: the same ⟨ـْي⟩ coda→glide rule word-medially yields the
+    # /j/ onset of the following syllable, not a spurious long vowel.
+    assert ar.transcribe_word("دُنْيَا") == "dunjaː"
+
+
+def test_diacritized_glide_diphthong_unaffected(ar):
+    # بَيْت → [bajt]: ⟨يْ⟩ (ya THEN sukūn, i.e. the /j/ offglide of a diphthong)
+    # is untouched by the ⟨ـْي⟩ (sukūn THEN ya) coda-glide digraph.
+    assert ar.transcribe_word("بَيْت") == "bajt"
+
+
+def test_undiacritized_final_glide_keeps_long_fallback(ar):
+    # في (out-of-contract undiacritized skeleton, no sukūn) keeps the
+    # graceful word-final long-vowel fallback [fiː]: the coda-glide guard is
+    # keyed on an explicit sukūn, so it does not disturb bare skeletons.
+    assert ar.transcribe_word("في") == "fiː"
