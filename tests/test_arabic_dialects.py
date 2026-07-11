@@ -443,3 +443,131 @@ class TestYemeniReflex:
         """ق → /q/ retained in Sanaani (conservative)."""
         spec = _load(self.CODE)
         _assert_first(_grapheme(spec, "ق"), "q", label="ق")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Emphatic (pharyngealization) spreading — the post-lexical allophone layer
+# /a aː/ → [ɑ ɑː] adjacent to an emphatic /tˤ dˤ sˤ ðˤ (zˤ)/  (Watson 2002).
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestEmphaticSpreading:
+    def test_msa_backs_long_a_after_emphatic(self):
+        """صَابَ → [sˤɑːba] — MSA /aː/ backs to [ɑː] after emphatic /sˤ/."""
+        assert _ipa("ar", "صَابَ") == "sˤɑːba"
+
+    def test_msa_backs_short_a_between_no_emphatic_unchanged(self):
+        """قَلْب → [qalb] — no emphatic, so /a/ stays [a] (rule does not fire)."""
+        assert _ipa("ar", "قَلْب") == "qalb"
+
+    def test_msa_backs_short_a_before_emphatic(self):
+        """بَطَل → [bɑtˤɑl] — /a/ backs to [ɑ] on both sides of emphatic /tˤ/."""
+        assert _ipa("ar", "بَطَل") == "bɑtˤɑl"
+
+    def test_egyptian_emphatic_spreading(self):
+        """صَبَاح → [sˤɑbaːħ] — Cairene /a/ backs to [ɑ] next to emphatic /sˤ/."""
+        assert _ipa("ar-EG", "صَبَاح") == "sˤɑbaːħ"
+
+    def test_rule_ids_present_on_msa(self):
+        """MSA declares the four AR_EMPH_BACK_* allophone rules."""
+        ids = {r.id for r in _load("ar").allophone_rules}
+        assert {
+            "AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+        } <= ids
+
+    def test_peninsular_emphatic_inherited_by_saudi(self):
+        """Najdi and Hejazi inherit the Peninsular emphatic rules by id."""
+        for code in ("ar-SA-x-najd", "ar-SA-x-hejaz"):
+            ids = {r.id for r in _load(code).allophone_rules}
+            assert "AR_PEN_EMPH_BACK_A_AFTER" in ids, code
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Najdi Arabic — promote to research (Ingham 1994)
+# Affrication /k/→[ts], /ɡ/→[dz] near front vowels; gahawa epenthesis;
+# ض/ظ merge to [ðˤ]; qaf→/ɡ/.
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestNajdiArabic:
+    CODE = "ar-SA-x-najd"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        request.cls.spec = _load(self.CODE)
+
+    def test_qaf_to_g(self):
+        """قَلْب → [ɡalb] — Najdi qaf → /ɡ/."""
+        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+
+    def test_k_affricates_before_front_vowel(self):
+        """كِلاب → [tsil…] — /k/ → [ts] before front /i/ (Ingham 1994)."""
+        assert _ipa(self.CODE, "كِلاب").startswith("ts")
+
+    def test_k_no_affrication_before_back_vowel(self):
+        """كَلْب → [kalb] — /k/ stays [k] before back /a/ (no front-vowel env)."""
+        assert _ipa(self.CODE, "كَلْب") == "kalb"
+
+    def test_g_affricates_before_front_vowel(self):
+        """قِرْد → [dzird] — /ɡ/ (qaf reflex) → [dz] before front /i/."""
+        assert _ipa(self.CODE, "قِرْد") == "dzird"
+
+    def test_gahawa_epenthesis(self):
+        """لَحْم → [laħam] — gahawa epenthetic /a/ after guttural /ħ/."""
+        assert _ipa(self.CODE, "لَحْم") == "laħam"
+
+    def test_dad_merges_to_emphatic_interdental(self):
+        """ض → [ðˤ] first — Old-Arabic ض/ظ neutralise to [ðˤ] (Ingham 1994)."""
+        _assert_first(_grapheme(self.spec, "ض"), "ðˤ", label="ض")
+
+    def test_interdentals_preserved(self):
+        """ث retains /θ/, ذ retains /ð/ — Najdi is conservative."""
+        _assert_first(_grapheme(self.spec, "ث"), "θ", label="ث")
+
+    def test_tier_research(self):
+        assert self.spec.quality == "research"
+
+    def test_parent(self):
+        assert self.spec.parent == "ar-x-peninsular"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Hejazi Arabic — promote to research (Omar 1975; Abdoh 2010)
+# Monophthongization /aj aw/ → [eː oː]; qaf→/ɡ/; interdentals→stops.
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestHejaziMonophthong:
+    CODE = "ar-SA-x-hejaz"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        request.cls.spec = _load(self.CODE)
+
+    def test_ay_monophthong(self):
+        """بَيْت → [beːt] — urban Hejazi /aj/ → [eː] (Omar 1975; Abdoh 2010)."""
+        assert _ipa(self.CODE, "بَيْت") == "beːt"
+
+    def test_jim_affricate(self):
+        """جَمَل → [dʒamal] — Hejazi jim → /dʒ/ preserved."""
+        assert _ipa(self.CODE, "جَمَل") == "dʒamal"
+
+    def test_qaf_to_g(self):
+        """قَلْب → [ɡalb] — Hejazi qaf → /ɡ/, not /ʔ/."""
+        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+
+    def test_mono_rule_ids_present(self):
+        ids = {r.id for r in self.spec.allophone_rules}
+        assert {"HEJ_MONO_AY", "HEJ_MONO_AW"} <= ids
+
+    def test_no_najdi_affrication(self):
+        """Hejazi lacks Najdi/Gulf affrication — no NAJD_AFFRIC rules."""
+        ids = {r.id for r in self.spec.allophone_rules}
+        assert not any(i.startswith("NAJD_AFFRIC") for i in ids)
+
+    def test_tier_research(self):
+        assert self.spec.quality == "research"

@@ -66,7 +66,7 @@ each tier actually certifies.
 
 | Doc | Languages covered |
 |:---|:---|
-| [ar.md](ar.md) | Modern Standard Arabic — abjad script, tashkeel-dependent input contract |
+| [ar.md](ar.md) | Modern Standard Arabic (+ Egyptian Cairene and Saudi Najdi/Hejazi sections) — abjad script, tashkeel-dependent input contract, emphatic-spreading allophone layer |
 
 ### Indo-Aryan
 

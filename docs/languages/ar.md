@@ -85,6 +85,32 @@ distinguish the two orthographically without diacritics, so this rule is scoped 
 definite-article context defined in Classical Arabic (`arb`) and inherited by `ar`
 unchanged.
 
+## Emphatic (pharyngealization) spreading
+
+MSA is now the first Arabic spec to model the **post-lexical** map (phoneme → surface
+allophone) via `allophone_rules` (the [allophony](../allophony.md) layer). Four rules
+(`AR_EMPH_BACK_A_AFTER`, `AR_EMPH_BACK_A_BEFORE`, `AR_EMPH_BACK_AA_AFTER`,
+`AR_EMPH_BACK_AA_BEFORE`) back the low vowels /a/ and /aː/ to [ɑ] / [ɑː] when they stand
+next to an emphatic (pharyngealized) consonant /tˤ dˤ sˤ ðˤ/ (Watson 2002, ch. *Emphasis*,
+pp. 267–286; Ryding 2005 §2). Emphasis spreads bidirectionally, so the condition is
+"preceded_by_phoneme **or** followed_by_phoneme" an emphatic:
+
+```python
+transcribe("صَابَ", "ar")   # -> "sˤɑːba"  (/aː/ → [ɑː] after /sˤ/)
+transcribe("بَطَل", "ar")   # -> "bɑtˤɑl"  (/a/ → [ɑ] on both sides of /tˤ/)
+transcribe("قَلْب", "ar")   # -> "qalb"    (no emphatic → /a/ unchanged)
+```
+
+**Honesty note on the gold.** The registered `ar wikipron` gold is a *broad* Wiktionary
+transcription that writes the backed vowel as plain /a/, so it cannot reward the (correct)
+narrow [ɑ] realisation. Activating the rule therefore adds a small, uniform penalty
+(PER 0.2551 → 0.2566, **+0.0015**, well below the 0.005 benchmark-regression epsilon; the
+bootstrap CIs overlap). This is the same broad-gold limitation documented for the Catalan
+nasal-assimilation pilot (see [allophony](../allophony.md)); the rule is retained because
+it is linguistically correct and the movement is within measurement noise. The spreading
+here is modeled as *local* (immediate-neighbour) backing; true long-domain emphasis
+harmony across a whole phonological word is left as future work.
+
 ## No stress block
 
 MSA word stress is quantity-sensitive (driven by syllable weight, not orthographic
@@ -98,8 +124,64 @@ CUNY-CL/wikipron `ara_arab_broad.tsv` (Wiktionary-sourced broad IPA transcriptio
 community-curated, ~17.5k pairs), registered as the `ar` entry of the `wikipron` dataset
 in `scripts/benchmark.py`, matching the precedent used for gl/es/pt in this project.
 
+## Egyptian Arabic — Cairene (`ar-EG`)
+
+Cairene (research tier) inherits the Eastern/Mashriqi base (`ar-x-mashriqi`) and expresses
+its signature reflexes in the **pre-lexical** grapheme map: ج jīm → /ɡ/ (the marquee
+Cairene feature, جَمَل → [ɡamal]); ق qāf → /ʔ/ in inherited vocabulary (قَلْب → [ʔalb]), with
+/q/ in learned borrowings and /ɡ/ in Bedouin/loan strata; the interdentals merge to stops
+ث → /t/ (~/s/ learned), ذ → /d/ (~/z/), ظ/ض → /dˤ/ (~/zˤ/), giving the four-emphatic
+inventory /tˤ dˤ sˤ zˤ/; and the loan grapheme چ → /ʒ/ (since native ج is /ɡ/). To that it
+adds the **post-lexical** emphatic-spreading rules (`AR_EG_EMPH_BACK_*`): Cairene has
+famously wide emphasis spreading, so /a aː/ back to [ɑ ɑː] next to an emphatic
+(صَبَاح → [sˤɑbaːħ]). Cairene weight-sensitive stress is a syllable-weight algorithm not
+expressible in the ending-based stress schema and is left as engine-level future work.
+Sources: Watson (2002); Mitchell (1956); Badawi & Hinds (1986).
+
+## Saudi Arabia — Najdi (`ar-SA-x-najd`) and Hejazi (`ar-SA-x-hejaz`)
+
+Both inherit the abstract `ar-x-peninsular` parent, from which they receive the shared
+Peninsular emphatic-spreading rules (`AR_PEN_EMPH_BACK_*`). Both are promoted here from
+**skeleton to research**.
+
+**Najdi** (central Arabia incl. Riyadh; primary reference Ingham 1994, *Najdi Arabic:
+Central Arabian*):
+
+- qāf ق → /ɡ/ (Bedouin/traditional; /q/ in MSA loans/proper names, e.g. القرآن).
+- **Velar affrication** — /k/ → [ts] and /ɡ/ → [dz] in a front-vowel environment
+  (كِلاب → [ts…], قِرْد → [dzird]; classic كلب [tsalb]). Modeled as `NAJD_AFFRIC_*`
+  allophone rules conditioned on an adjacent front vowel. Purely lexicalized affrication
+  before a *historical* front vowel is not captured (documented limitation).
+- **Gahawa syndrome** — epenthetic /a/ after a guttural /h x ɣ ħ ʕ/ in a
+  low-vowel + guttural + consonant context (لَحْم → [laħam], gahwa → gahawa). Modeled as
+  `NAJD_GAHAWA_*` (rewriting the coda guttural to guttural+[a]).
+- Interdentals **preserved** (ث /θ/, ذ /ð/); the Old-Arabic ض/ظ contrast is neutralised to
+  a single emphatic interdental [ðˤ], so ض is transcribed [ðˤ].
+
+**Hejazi** (urban Mecca/Medina/Jeddah; Omar 1975; Abdoh 2010):
+
+- qāf ق → /ɡ/ in inherited vocabulary (قَلْب → [ɡalb], **not** /ʔ/ — the /ʔ/ reflex is a
+  misattribution of the Levantine/Egyptian feature); /q/ only in learned borrowings.
+- jīm ج → /dʒ/ (affricate) preserved.
+- Interdentals **merged to stops** in the urban koine: ث → /t/, ذ → /d/, ظ → /dˤ/.
+- **Monophthongization** — Classical /aj aw/ → [eː oː] (بَيْت → [beːt], yawm → [joːm]),
+  modeled as `HEJ_MONO_AY` / `HEJ_MONO_AW`, giving the 8-vowel system /a u i; aː uː iː eː oː/.
+- Four emphatics /sˤ dˤ tˤ zˤ/; no Gulf/Najdi k → [tʃ] affrication.
+
+**Input contract for the dialects.** Unlike MSA (which contractually expects fully
+tashkeel-marked input), dialectal Arabic is normally written *defectively*. These specs
+transcribe whatever the orthography plus any harakat supply — short vowels surface only
+when the input is vocalised. Neither Saudi variety has a registered gold set; their
+correctness is established by **citation** to the reference grammars above, not by PER.
+
 ## References
 
 - Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press.
+- Ryding, K.C. (2005). *A Reference Grammar of Modern Standard Arabic*. Cambridge University Press.
+- Mitchell, T.F. (1956). *An Introduction to Egyptian Colloquial Arabic*. Oxford University Press.
+- Badawi, E.S. & Hinds, M. (1986). *A Dictionary of Egyptian Arabic*. Librairie du Liban.
+- Ingham, B. (1994). *Najdi Arabic: Central Arabian*. John Benjamins.
+- Omar, M.K. (1975). *Saudi Arabic, Urban Hijazi Dialect: A Basic Course*. Foreign Service Institute.
+- Abdoh, E. (2010). *A Study of the Phonology and Morphology of Urban Meccan Arabic*. PhD diss., University of Kansas.
 - Wikipedia: [Sun and moon letters](https://en.wikipedia.org/wiki/Sun_and_moon_letters)
 - Wikipedia: [Standard Arabic phonology](https://en.wikipedia.org/wiki/Standard_Arabic_phonology)
