@@ -189,3 +189,84 @@ Effect on the committed gold (PER, lower is better):
 | Row | Gold | Before | After | Δ |
 |---|---|---:|---:|---:|
 | pt-BR | wikipron (n=124) | 0.1901 | 0.1578 | **−0.0323** |
+
+## Worked example: European Portuguese coda consonants (`pt-PT`)
+
+European Portuguese is the second language to declare `allophone_rules`.
+Where Catalan pilots the phoneme-neighbour conditions, `pt-PT` pilots the
+**syllable-position** condition: three rules realise the post-lexical coda
+consonants that the pre-lexical `positional_graphemes` map does not reach
+cleanly at word edges.
+
+### 1. Dark (velarised) coda /l/
+
+`/l/ → [ɫ]` in the syllable coda — word-finally and pre-consonantally —
+while an onset `/l/` stays clear (Mateus & d'Andrade 2000, ch. 2;
+Cruz-Ferreira 1995, *JIPA* 25(2): 91).
+
+```python
+from orthography2ipa import G2P
+pt = G2P("pt-PT")
+pt.transcribe("sol")    # ˈsɔɫ   (coda /l/ → [ɫ])
+pt.transcribe("alto")   # ˈaɫtu  (pre-consonantal coda)
+pt.transcribe("bola")   # ˈbɔlɐ  (onset /l/ stays clear)
+```
+
+### 2. Coda sibilants — the *chiado*
+
+The Lisbon/standard realisation of a coda sibilant: `/s/ → [ʃ]` and
+`/z/ → [ʒ]` (Mateus & d'Andrade 2000, ch. 2). Voicing of `[ʃ]→[ʒ]` before a
+voiced consonant across a word boundary is handled separately by the
+`PT_CODA_S_VOICING` sandhi rule.
+
+```python
+pt.transcribe("pasta")  # ˈpaʃtɐ  (coda /s/ → [ʃ])
+pt.transcribe("casa")   # ˈkazɐ   (intervocalic /z/ unaffected)
+```
+
+### What is *not* here
+
+EP unstressed vowel reduction (`/a/→[ɐ]`, `/e/→[ɨ]`, `/o/→[u]`) is realised
+in the **pre-lexical** `positional_graphemes` map (its `nucleus_stressed` /
+`nucleus_unstressed` / `pretonic` / `word_final` rows), so no redundant
+allophone rule restates it. Intervocalic voiced-stop spirantisation
+(`/b d ɡ/→[β ð ɣ]`) is a genuine EP process (Mateus & d'Andrade 2000) but is
+**deliberately not encoded**: every available `pt` gold is broad/phonemic
+and transcribes the stops, so the rule is correct yet regresses all
+measurable golds with none rewarding it. It is left for a future
+narrow-transcription task. Dialect-specific sibilant/vocalism deltas (e.g.
+northern apico-alveolar coda `[s̺]`) belong in the `pt-PT-x-*` dialect specs.
+
+### Benchmark effect (honest)
+
+Measured on the committed gold sets (PER, lower is better):
+
+| Row | Gold | Before | After | Δ |
+|---|---|---:|---:|---:|
+| pt-PT | infopedia_pt (human lexicon) | 0.3160 | 0.2942 | **−0.0218** |
+| pt-PT | ep_dialects (CLUP) | 0.2599 | 0.2218 | **−0.0381** |
+| pt | styletts2_phonemes | 0.3999 | 0.3871 | **−0.0128** |
+| pt | wikipron | 0.1817 | 0.2090 | +0.0273 |
+
+Split by rule (measured in isolation):
+
+* **coda sibilants** (`PT_CODA_S_HUSH`/`PT_CODA_Z_HUSH`) improve *every* gold,
+  including WikiPron (which transcribes the coda *chiado*) — a clean win.
+* **dark coda /l/** (`PT_CODA_L_DARK`) improves the two narrow human golds
+  (infopedia_pt, ep_dialects) but *regresses* the broader WikiPron `pt` row
+  by +0.031: WikiPron transcribes European Portuguese coda /l/ broadly as
+  plain `[l]`, so a broad-leaning gold cannot reward the correct velarised
+  surface. The rule is nonetheless linguistically robust (Mateus & d'Andrade
+  2000; Cruz-Ferreira 1995) and rewarded by the higher-quality human golds,
+  so it is kept and the divergence reported here — the same "broad gold ≠
+  narrow surface" trade-off as the Catalan nasal-assimilation pilot. This
+  regression is above the 0.005 benchmark-regression threshold and is a
+  deliberate, documented decision, not an oversight.
+
+The `pt-PT-x-*` European dialect specs inherit these three rules by id-keyed
+overlay, so their rows move too — all improve. The six Lusophone
+African/Asian varieties that already declare an alveolar coda /s/ in their
+`positional_graphemes` (pt-AO, pt-CV, pt-GW, pt-MZ, pt-ST, pt-TL) override
+`PT_CODA_S_HUSH`/`PT_CODA_Z_HUSH` back to `[s]`/`[z]` by id so they keep their
+non-*chiado* realisation. (Broader P5 Lusophone-variety deltas are a later
+task; only the already-encoded alveolar-coda intent is preserved here.)

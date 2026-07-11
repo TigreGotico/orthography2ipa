@@ -215,7 +215,7 @@ def test_apply_allophony_toggle():
 
 def test_apply_allophony_noop_for_spec_without_rules():
     # A spec that declares no rules is unaffected by the (default-on) toggle.
-    assert G2P("pt")._allophone_rescorer is None
+    assert G2P("es-ES")._allophone_rescorer is None
     assert G2P("pt").transcribe("casa") == \
         G2P("pt", apply_allophony=False).transcribe("casa")
 
