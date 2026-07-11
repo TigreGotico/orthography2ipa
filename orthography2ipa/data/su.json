@@ -85,5 +85,8 @@
   "timespan": {
     "start_year": 1900,
     "end_year": null
-  }
+  },
+  "wikidata_qid": "Q34002",
+  "phoible_id": "sund1252",
+  "wals_code": "sun"
 }

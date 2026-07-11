@@ -250,5 +250,6 @@
       "syllable_position": "coda",
       "notes": "Angolan Portuguese keeps an alveolar coda /z/; overrides the inherited pt-PT PT_CODA_Z_HUSH rule by id."
     }
-  ]
+  ],
+  "wikidata_qid": "Q2994901"
 }

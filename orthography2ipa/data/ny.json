@@ -345,5 +345,7 @@
         "start_year": 1900,
         "end_year": null
     },
-    "iso639_3": "nya"
+    "iso639_3": "nya",
+    "wikidata_qid": "Q33273",
+    "wals_code": "cic"
 }

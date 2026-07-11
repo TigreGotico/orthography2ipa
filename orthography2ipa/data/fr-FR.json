@@ -724,5 +724,8 @@
         "end_year": null
     },
     "glottolog_code": "stan1290",
-    "iso639_3": "fra"
+    "iso639_3": "fra",
+    "wikidata_qid": "Q150",
+    "phoible_id": "stan1290",
+    "wals_code": "fre"
 }

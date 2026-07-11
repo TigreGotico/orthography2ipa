@@ -156,5 +156,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Estonian has categorical initial stress in most words. Vowel and consonant length (degrees Q1/Q2/Q3) are orthographically indicated by geminates. Source: Viitso (1998), Estonian; Wikipedia: https://en.wikipedia.org/wiki/Estonian_phonology"
-  }
+  },
+  "wikidata_qid": "Q9072",
+  "phoible_id": "esto1258",
+  "wals_code": "est"
 }

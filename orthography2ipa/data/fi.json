@@ -368,5 +368,8 @@
       "weight": 0.04,
       "notes": "Russian/eastern adstrate. (Swedish is the major historical contact language but is modelled from the Swedish side to avoid a graph cycle.)"
     }
-  ]
+  ],
+  "wikidata_qid": "Q1412",
+  "phoible_id": "finn1318",
+  "wals_code": "fin"
 }

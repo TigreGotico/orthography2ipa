@@ -376,5 +376,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Turkish default stress is word-final (-1). Exception classes not modeled: negation suffix -(m)e/-(m)a, question particle mı/mi/mu/mü, some place names and older borrowings carry lexical stress. Source: Göksel & Kerslake (2005), Kornfilt (1997)."
-  }
+  },
+      "wikidata_qid": "Q256",
+      "phoible_id": "nucl1301",
+      "wals_code": "tur"
 }

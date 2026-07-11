@@ -323,5 +323,8 @@
     "tone_inventory": {
         "H": "high",
         "L": "low"
-    }
+    },
+    "wikidata_qid": "Q36520",
+    "phoible_id": "prin1242",
+    "wals_code": "pri"
 }

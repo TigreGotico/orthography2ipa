@@ -151,5 +151,7 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Latvian has initial stress in the vast majority of native words. Enclitics and some loanwords may shift stress, but for G2P purposes initial-stress is the reliable default. Long vowels (ā ē ī ū) and circumflex/falling tones (ar̃) mark quantity/tone, not stress position. Source: Nau (1998), Latvian; Wikipedia: https://en.wikipedia.org/wiki/Latvian_phonology"
-  }
+  },
+  "wikidata_qid": "Q9078",
+  "wals_code": "lat"
 }

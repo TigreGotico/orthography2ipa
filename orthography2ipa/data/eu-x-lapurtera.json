@@ -72,5 +72,7 @@
     "https://en.wikipedia.org/wiki/Navarro-Lapurdian_dialect",
     "https://en.wikipedia.org/wiki/Basque_dialects"
   ],
-  "iso639_3": "eus"
+  "iso639_3": "eus",
+  "wikidata_qid": "Q12953386",
+  "glottolog_code": "basq1249"
 }

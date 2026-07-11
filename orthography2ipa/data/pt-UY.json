@@ -201,5 +201,6 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Portuguese stress conventions as in the Brazilian base (paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x and nasal diphthongs attract final stress). No DPU-specific stress divergence is documented in the read sources, so the pt-BR pattern is retained."
-  }
+  },
+  "wikidata_qid": "Q3265815"
 }

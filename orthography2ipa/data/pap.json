@@ -310,5 +310,7 @@
     "start_year": 1600,
     "end_year": null
   },
-  "iso639_3": "pap"
+  "iso639_3": "pap",
+  "wikidata_qid": "Q33856",
+  "wals_code": "pap"
 }

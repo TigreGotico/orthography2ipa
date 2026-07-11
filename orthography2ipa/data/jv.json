@@ -118,5 +118,8 @@
   "timespan": {
     "start_year": 1900,
     "end_year": null
-  }
+  },
+  "wikidata_qid": "Q33549",
+  "phoible_id": "java1254",
+  "wals_code": "jav"
 }

@@ -490,5 +490,8 @@
     "end_year": null
   },
   "glottolog_code": "hind1269",
-  "iso639_3": "hin"
+  "iso639_3": "hin",
+      "wikidata_qid": "Q1568",
+      "phoible_id": "hind1269",
+      "wals_code": "hin"
 }

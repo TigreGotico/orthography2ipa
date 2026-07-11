@@ -303,5 +303,8 @@
         "end_year": null
     },
     "glottolog_code": "ukra1253",
-    "iso639_3": "ukr"
+    "iso639_3": "ukr",
+      "wikidata_qid": "Q8798",
+      "phoible_id": "ukra1253",
+      "wals_code": "ukr"
 }

@@ -271,5 +271,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Tatar default stress is word-final (-1). Certain suffixes (negation, question particle) and borrowed words carry non-final stress; lexical and not modeled here. Source: Comrie (1997), Johanson & Csató (1998)."
-  }
+  },
+      "wikidata_qid": "Q25285",
+      "phoible_id": "tata1255",
+      "wals_code": "tvo"
 }

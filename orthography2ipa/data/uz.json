@@ -259,5 +259,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Uzbek default stress is word-final (-1). Some endings (question, negation, certain postpositions) and place-name suffixes deviate; lexical and not modeled. Source: Sjoberg (1963), Johanson & Csató (1998)."
-  }
+  },
+      "wikidata_qid": "Q9264",
+      "phoible_id": "nort2690",
+      "wals_code": "uzb"
 }

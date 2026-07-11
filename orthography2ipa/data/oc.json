@@ -472,5 +472,8 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Occitan classical (Alibertine) norm accentuation (Bec 1973, Alibert): final stress by default. Words ending in a vowel (a e i u, not o which maps [u]) or -s endings are paroxytone. Infinitives in -ar/-er/-ir are paroxytone (the final -r is silent in spoken Occitan but syllabified here, so penult_stress_endings must list them explicitly). Written accents (à á è é í ò ó ú) always win. Proparoxytones are rare and always written-accented. Note: o-final words are rare in Oc orthography since o reads [u]; nominal -or/-on are oxytone."
-  }
+  },
+  "wikidata_qid": "Q14185",
+  "phoible_id": "occi1239",
+  "wals_code": "occ"
 }

@@ -544,5 +544,7 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Aragonese accentuation based on the Normas Graficas de lAragonés (SLA 2010): written accent wins. Default paroxytone. Words ending in vowel or -s are paroxytone; words ending in any other consonant (r, l, d, z, x, t, c, k, f, n, m) are oxytone. Graves (è, ò) and acutes (é, ó) both mark stressed open vs. close mid vowels. Proparoxytones always written-accented."
-  }
+  },
+  "wikidata_qid": "Q8765",
+  "phoible_id": "arag1245"
 }

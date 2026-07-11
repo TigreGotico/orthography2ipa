@@ -472,5 +472,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Czech has categorical initial stress. Long vowels (á é í ó ú ý) mark vowel quantity, not stress accent; they are not stress markers and must not appear in marked_vowels. Source: Palková (1994), Fonetika a fonologie češtiny; Wikipedia: https://en.wikipedia.org/wiki/Czech_phonology"
-  }
+  },
+      "wikidata_qid": "Q9056",
+      "phoible_id": "czec1258",
+      "wals_code": "cze"
 }

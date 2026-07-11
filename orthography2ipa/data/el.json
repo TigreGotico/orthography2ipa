@@ -400,5 +400,8 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Modern Greek (Standard) uses a single written acute accent (monotonic system since 1982) to mark the stressed syllable on every polysyllable. Marked vowels listed here are the nine accented forms. The dialytika-tonos letters ΐ (U+0390) and ΰ (U+03B0) carry both diaeresis and stress. Monosyllables are unaccented. Source: Arvaniti (2007), Greek Phonetics; Wikipedia: https://en.wikipedia.org/wiki/Modern_Greek_phonology"
-  }
+  },
+  "wikidata_qid": "Q36510",
+  "phoible_id": "mode1248",
+  "wals_code": "grk"
 }
