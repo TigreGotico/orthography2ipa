@@ -95,6 +95,13 @@ _ORTHOGRAPHIC_VOWELS = frozenset(
     # Greek vowels: monotonic + accented + dialytika-tonos
     # (formerly stress._VOWELS only)
     "αεηιουωάέήίόύώΐΰ"
+    # Arabic short-vowel diacritics (harakat) and their nunation forms,
+    # plus the superscript (dagger) alif. These combining marks ARE the
+    # written vowels of fully-diacritized Arabic, so grapheme-context
+    # reasoning (BEFORE_VOWEL / AFTER_VOWEL positional resolution) must
+    # treat a consonant followed by a harakat as standing before a vowel.
+    # sukūn (U+0652, vowel *absence*) is deliberately excluded.
+    "ًٌٍَُِٰ"
 )
 
 # ═══════════════════════════════════════════════════════════════════════════

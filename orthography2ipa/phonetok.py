@@ -78,6 +78,94 @@ __all__ = [
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Arabic-script pre-tokenization normalization
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Two script-scoped normalizations run *before* grapheme tokenization for
+# Arabic-script specs. Both are opt-in by script/spec so no other script is
+# ever touched (Latin, Devanagari, … are byte-identical).
+#
+# 1. Presentation-form / ligature decomposition. The Arabic Presentation
+#    Forms-A (U+FB50–U+FDFF) and Forms-B (U+FE70–U+FEFF) blocks hold
+#    contextual glyph variants and ligatures — most importantly the four
+#    lam-alif ligatures ﻻ/ﻷ/ﻵ/ﻹ (U+FEFB/FEF7/FEF5/FEF9), which decompose to
+#    ل + ا/أ/آ/إ. These are *glyphs*, not letters: the base grapheme table
+#    keys them on the canonical letters, so a bare ﻻ would otherwise
+#    tokenize to nothing and yield an empty transcription. We NFKC-decompose
+#    only codepoints inside those two blocks (leaving every other codepoint,
+#    and every other script, untouched — a plain global NFKC would also fold
+#    Latin ligatures, full-width forms, etc.).
+# 2. Gemination (shadda, ّ U+0651). A consonant carrying shadda is a
+#    geminate — it surfaces as a doubled/long consonant, and this holds for
+#    the glides ي/و, which geminate as the consonants they are (Ryding 2005,
+#    *A Reference Grammar of Modern Standard Arabic*, "Phonology and script",
+#    doubling of consonants and the approximants/semivowels waaw & yaa,
+#    pp. 15–16; Watson 2002, *The Phonology and Morphology of Arabic*, on MSA
+#    gemination via shadda). We model it as a text-level transform: double
+#    the base consonant and drop the shadda,
+#    so downstream per-slot resolution sees two ordinary consonant slots
+#    (surface e.g. عَمَّ → [ʕamma], not a length mark stranded on the vowel).
+#    Both Unicode orderings of the mark cluster are handled: the canonical
+#    consonant+shadda+harakat and the equally-valid consonant+harakat+shadda
+#    (they render identically and NFC does not reorder them, since shadda
+#    ccc=33 and the harakat ccc=27–32 are distinct non-zero classes).
+
+#: Arabic base letters (hamza U+0621 … yeh U+064A) that a shadda geminates.
+_AR_LETTER = "ء-ي"
+#: Arabic short-vowel / nunation / sukun / superscript-alef marks that may
+#: sit between a consonant and its shadda (or after it).
+_AR_HARAKAT = "ً-ِْٰ"
+_AR_SHADDA = "ّ"
+
+# consonant + shadda + harakat  →  consonant consonant harakat
+_AR_GEM_SHADDA_FIRST = re.compile(
+    f"([{_AR_LETTER}]){_AR_SHADDA}([{_AR_HARAKAT}])"
+)
+# consonant + harakat + shadda  →  consonant consonant harakat
+_AR_GEM_HARAKAT_FIRST = re.compile(
+    f"([{_AR_LETTER}])([{_AR_HARAKAT}]){_AR_SHADDA}"
+)
+# consonant + shadda (no adjacent harakat, e.g. before a consonant / pause)
+_AR_GEM_BARE = re.compile(f"([{_AR_LETTER}]){_AR_SHADDA}")
+
+
+def _decompose_arabic_presentation_forms(text: str) -> str:
+    """NFKC-decompose only Arabic Presentation-Form codepoints.
+
+    Codepoints in U+FB50–U+FDFF (Forms-A) and U+FE70–U+FEFF (Forms-B) —
+    ligatures and contextual glyph variants, including the lam-alif
+    ligatures — are replaced by their compatibility decomposition to the
+    canonical Arabic letters. Every other codepoint is returned unchanged,
+    so no other script is disturbed.
+    """
+    def _is_presentation_form(ch: str) -> bool:
+        cp = ord(ch)
+        # Forms-A: U+FB50–U+FDFF ; Forms-B: U+FE70–U+FEFF
+        return 0xFB50 <= cp <= 0xFDFF or 0xFE70 <= cp <= 0xFEFF
+
+    if not any(_is_presentation_form(ch) for ch in text):
+        return text
+    return "".join(
+        unicodedata.normalize("NFKC", ch) if _is_presentation_form(ch) else ch
+        for ch in text
+    )
+
+
+def _expand_arabic_gemination(text: str) -> str:
+    """Expand shadda gemination: double the carrying consonant, drop shadda.
+
+    Handles both mark orderings, then any remaining bare shadda (gemination
+    with no adjacent harakat). See the module block comment for the sources.
+    """
+    if _AR_SHADDA not in text:
+        return text
+    text = _AR_GEM_SHADDA_FIRST.sub(r"\1\1\2", text)
+    text = _AR_GEM_HARAKAT_FIRST.sub(r"\1\1\2", text)
+    text = _AR_GEM_BARE.sub(r"\1\1", text)
+    return text
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Locale-aware casing
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -803,6 +891,17 @@ class PhonetokTokenizer:
         # NFC normalization handles combining marks (Arabic harakat,
         # Devanagari matras, accented Latin characters)
         text = unicodedata.normalize("NFC", text)
+
+        # Arabic-script pre-tokenization normalization (script-scoped; no
+        # other script is touched). See the module block comment for detail.
+        if self.spec.script == "Arabic":
+            text = _decompose_arabic_presentation_forms(text)
+            # Gemination is only expanded for specs that actually model
+            # shadda (arb and its descendants declare ّ in their grapheme
+            # table); this leaves Arabic-script specs that do not — e.g.
+            # Persian — byte-identical.
+            if _AR_SHADDA in self._grapheme_ipa:
+                text = _expand_arabic_gemination(text)
 
         tokens: List[Token] = []
         n = len(text)
