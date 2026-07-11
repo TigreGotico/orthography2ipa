@@ -131,6 +131,12 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [hi.md](hi.md) | Hindi (Devanagari script, schwa deletion, 4-way contrast) |
 
+### Isolate
+
+| Doc | Languages covered |
+|:---|:---|
+| [eu.md](eu.md) | Basque (Euskara Batua) and its dialects: Biscayan, Gipuzkoan, Upper & Lower Navarrese, Lapurdian, Souletin, and the extinct Roncalese — sibilant systems, aspiration, Souletin /y/ and nasal vowels |
+
 If the language you need isn't in any table above, it doesn't have a
 prose page yet — go straight to its JSON spec via `orthography2ipa.get(code)`
 as shown earlier, and consider contributing a page alongside a spec
@@ -148,7 +154,9 @@ rather than a specific language, start here:
 | Vowel reduction (unstressed) | ru, pt-PT, fr (schwa) | [ru.md](ru.md), [pt-PT.md](pt-PT.md) |
 | Reduced/absent reduction (Lusophone-African) | pt-AO, pt-CV, pt-MZ | [pt-AO.md](pt-AO.md), [pt-MZ.md](pt-MZ.md) |
 | Coda allophony (dark l, coda sibilant) | pt-PT, ca | [pt-PT.md](pt-PT.md), [../allophony.md](../allophony.md) |
-| Nasal vowels | fr, pt, pl | [fr-FR.md](fr-FR.md), [slavic.md](slavic.md) |
+| Nasal vowels | fr, pt, pl, eu-x-zuberera, eu-x-erronkariera | [fr-FR.md](fr-FR.md), [slavic.md](slavic.md), [eu.md](eu.md) |
+| Apical/laminal sibilant contrast (s̺/s̻) | eu (retained east), eu-x-bizkaiera (merged) | [eu.md](eu.md) |
+| Aspiration (/h/, aspirated stops) | eu-x-zuberera, eu-x-nafarra-beherea, eu-x-lapurtera | [eu.md](eu.md) |
 | Retroflex consonants | sv (from r+C), hi, sa, pt-BR-x-caipira (coda /r/→[ɻ]) | [hi.md](hi.md), [pt-BR-x-caipira.md](pt-BR-x-caipira.md) |
 | Schwa deletion | hi, bn, mr, pa | [hi.md](hi.md) |
 | Abugida (inherent vowel) | hi, sa, mr, bn, te, kn, ml | [hi.md](hi.md) |
