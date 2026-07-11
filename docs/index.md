@@ -194,6 +194,7 @@ below.
 | [api_stability.md](api_stability.md) | What is public and version-guarded |
 | [link-audit.md](link-audit.md) | Citation URL liveness audit |
 | [languages/index.md](languages/index.md) | Per-language phonology deep-dives |
+| [explorer.md](explorer.md) | Interactive, self-contained language-data explorer (gh-pages) |
 
 ---
 

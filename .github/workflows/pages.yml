@@ -1,0 +1,50 @@
+name: Deploy language data explorer to GitHub Pages
+
+# Best-effort deploy: publishes docs/explorer.html (as index.html) to the
+# gh-pages branch on every push to dev. A human must enable Pages once
+# (Settings -> Pages -> Deploy from a branch -> gh-pages) before the site
+# is reachable; this workflow will keep gh-pages up to date regardless.
+#
+# Note: TigreGotico org Actions have hit billing limits before, so treat
+# this workflow as best-effort — verify it actually ran green after any
+# push to dev rather than assuming it did.
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install package
+        run: uv venv && uv pip install -e '.[test]'
+
+      - name: Generate explorer page
+        run: |
+          . .venv/bin/activate
+          python scripts/gen_explorer.py
+
+      - name: Prepare publish directory
+        run: |
+          mkdir -p _site
+          cp docs/explorer.html _site/index.html
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
