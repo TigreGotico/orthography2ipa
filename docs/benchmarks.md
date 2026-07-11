@@ -80,11 +80,12 @@ stated rather than papered over.
 | Dataset | Tier | IPA produced by | Notes / grain of salt |
 |---|---|---|---|
 | `ep_dialects` | expert-human | TigreGotico team, manual annotation | Internal dialect research, **pending external peer validation**; sentence-level, `N≈29–45`. |
-| `mirandese` | expert-human | Native Mirandese speaker | Reference gold for Mirandese, but small (`mwl` `N≈205`; `mwl-x-sendim` `N≈11` — an anecdote). |
+| `mirandese_g2p` | expert-human | Native Mirandese speaker | The reference gold and **most trustworthy signal for Mirandese** (row id `mirandese_g2p`, from `TigreGotico/mirandese_g2p`), split by the `dialect` column: central → `mwl` (`N≈205`), sendinese → `mwl-x-sendim` (`N≈11`), raiano → `mwl-x-ifanes` (`N≈2` — an anecdote, read the CI not the point PER). Small-`N`; a separate, more reliable source than any synthetic Mirandese IPA dictionary. |
 | `4catac` | expert-human | Expert annotators (Projecte AINA/BSC) | IEC guidelines, multi-annotator consensus review; sentence-level, `N=160`, `0.00` exact-match reflects notation/connected-speech mismatch, not total failure. |
 | `clup_dialect` | expert-human | U.Porto CLUP dialect archive | Interview corpus is expert university dialectology, **but who/what produced the IPA column (`ArquivoDialetalCLUP_ipa`) is not documented in the loader or dataset card — treat the tier as "best case".** Many rows `N=1–17`: read the CI, not the point PER. |
-| `portuguese_lexicon` | lexicon-derived | Portal da Língua Portuguesa lexicographers | Via `tugalex`; the strongest Portuguese gold, but dictionary citation-form IPA, not connected speech. |
-| `infopedia_pt` | lexicon-derived | Infopédia (Porto Editora) dictionary | Graph-crawl extraction of a published dictionary; citation-form conventions. |
+| `portuguese_lexicon` | lexicon-derived | Portal da Língua Portuguesa | Via the `tugalex` wrapper (not installed by default, so this row usually does not materialize; the direct `portuguese_phonetic_lexicon` loader below covers the same data offline). The Portal's IPA is in fact **semi-automated**, not hand-verified per entry — see `portuguese_phonetic_lexicon`. |
+| `portuguese_phonetic_lexicon` | crowd-scraped | Portal da Língua Portuguesa (semi-automated) | Direct stdlib CSV loader over `TigreGotico/portuguese_phonetic_lexicon` (~617k rows scraped from the INESC-ID Portal). Its IPA is **semi-automated (rule/tooling-generated), not hand-checked**, so it is directional only. One Standard regional variant per spec (`lbx`→`pt-PT`, `spx`→`pt-BR`, `lda`→`pt-AO`, `mpx`→`pt-MZ`, `dli`→`pt-TL`); fixed-seed sample per region. Finally measures the `pt-AO`/`pt-MZ`/`pt-TL` specs. |
+| `infopedia_pt` | lexicon-derived | Infopédia (Porto Editora) dictionary | Fixed-seed sample of a graph-crawl extraction of a published European-Portuguese dictionary (`TigreGotico/infopedia-pt-ipa`, 102,685 entries → `pt-PT`). A reputable published source, but **the methodology behind its IPA is undocumented/unknown** (not stated to be hand-checked, nor which tooling produced it) — directional, not peer-validated ground truth. |
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`; the transform adds artifacts. |
 | `ipadict` | lexicon-derived | Hjal/malfong Icelandic linguists (`is` only) | Only the human-curated `is` file is wired; the ipa-dict *project* is mixed-provenance and many of its files are tool-generated (see "Rejected candidates") — do not generalize this tier to other ipa-dict languages. |
 | `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size; some entries are editor-rule output, not attested; multiple valid variants per word. |
@@ -134,8 +135,33 @@ on Hugging Face. The harness loads it through
 [tugalex](https://github.com/TigreGotico/tugalex), the lexicon library
 that wraps this dataset; one region maps to each language tag (Lisbon →
 `pt-PT`, Rio de Janeiro → `pt-BR`, Luanda → `pt-AO`, Maputo → `pt-MZ`,
-Díli → `pt-TL`). Lexicographer-curated; the strongest gold available
-for Portuguese and the only one with regional coverage.
+Díli → `pt-TL`). `tugalex` is an optional dependency, so in a default
+checkout this row does not materialize; the direct loader below scores the
+same data with no extra package. The Portal's IPA is **semi-automated**
+(rule/tooling-generated), not hand-verified per entry.
+
+### Portal da Língua Portuguesa phonetic lexicon (direct, `portuguese_phonetic_lexicon`)
+
+The same
+[TigreGotico/portuguese_phonetic_lexicon](https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon)
+dataset (~617k rows scraped from the public
+[Portal da Língua Portuguesa](https://www.portaldalinguaportuguesa.org/)),
+loaded **directly** from its `dataset.csv` with the standard library — no
+`tugalex` install required — so the Lusophone family is actually scored.
+Each row's `phones` field flattens syllables with `|`; the separator is
+stripped and the whole-word IPA is scored. The dataset tags ten regional
+variants; each orthography2ipa spec is mapped to the **Standard**
+metropolitan variant of its region — `lbx` (Lisbon Standard) → `pt-PT`,
+`spx` (São Paulo Standard) → `pt-BR`, `lda` (Luanda) → `pt-AO`, `mpx`
+(Maputo Standard) → `pt-MZ`, `dli` (Dili) → `pt-TL`. The non-standard and
+second-metropolitan codes (`lbn`, `rjx`, `rjo`, `spo`, `map`) are skipped:
+each is a register variant of a region already covered by its Standard
+code, and no distinct spec exists for it, so scoring it would duplicate a
+row or conflate registers. 617k rows are far too many to score in full, so
+each region is sampled with a fixed seed (`SAMPLE_SEED`), de-duplicating by
+spelling. Provenance: **semi-automated, community-scraped** IPA →
+`crowd-scraped` tier, directional only. This row is what finally measures
+the recently built `pt-AO`, `pt-MZ` and `pt-TL` specs.
 
 ### WikiPron
 
@@ -219,10 +245,18 @@ of the dictionary that ran to convergence. License: `other` /
 [dataset card](https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa)
 for terms. Covers European Portuguese (unmarked `pt` in the dataset
 tags, `pt-PT` here for consistency with `portuguese_lexicon` and
-`wikipron`). 62 entries carry more than one distinct pronunciation
-(`pronunciations` field); the harness scores against all variants and
-keeps the best match, per the standard multi-reference handling. No
-rows are excluded.
+`wikipron`). Entries carrying more than one distinct pronunciation
+(`pronunciations` field) are all scored, and the harness keeps the best
+match per the standard multi-reference handling.
+
+The file is alphabetically ordered, so the harness does **not** take its
+head (that would be a biased all-"a…" slice): it reads the whole file and
+draws a fixed-seed (`SAMPLE_SEED`) random sample of up to `--limit` words,
+so the slice is unbiased yet fully reproducible across runs. Provenance:
+Infopédia is a reputable published dictionary, but **the methodology that
+produced its IPA is undocumented** — it is not stated to be hand-checked,
+nor is the tooling behind it known — so this row is `lexicon-derived` and
+directional, never treated as peer-validated ground truth.
 
 ### CMU Pronouncing Dictionary
 
@@ -297,11 +331,18 @@ lexicon benchmarks.
 ### Mirandese gold set
 
 [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)
-on Hugging Face: ~220 word/IPA rows with a dialect column (central,
-raiano, sendinese), collected by a native Mirandese speaker
+on Hugging Face: ~220 word/IPA rows with a `dialect` column, collected by
+a native Mirandese speaker
 ([MdMV](https://commons.wikimedia.org/wiki/User:MdMV_or_Emdy_idk)).
-Native-speaker provenance makes it the reference gold for Mirandese;
-its size keeps results indicative rather than statistical.
+Registered as the row id `mirandese_g2p` and split by that column:
+`central` → `mwl` (the Central norm the Mirandese orthography is built on),
+`sendinese` → `mwl-x-sendim` (the Sendim sub-dialect), and `raiano` →
+`mwl-x-ifanes` (the Raiano/Northern sub-dialect, whose Ifanês variety this
+repo tags `mwl-x-ifanes`). Native-speaker provenance makes this the
+reference gold and the most trustworthy signal for Mirandese — distinct
+from, and more reliable than, any machine-generated Mirandese IPA
+dictionary. Its size (especially `mwl-x-ifanes`, `N≈2`) keeps results
+indicative rather than statistical: read the confidence interval.
 
 ### Barranquenho synthetic IPA dictionary (`barranquenho_dict`)
 

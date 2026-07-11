@@ -11,7 +11,7 @@ Usage::
 
     python scripts/benchmark.py --dataset portuguese_lexicon --lang pt-PT
     python scripts/benchmark.py --dataset wikipron --lang gl --broad
-    python scripts/benchmark.py --dataset mirandese --lang mwl
+    python scripts/benchmark.py --dataset mirandese_g2p --lang mwl
     python scripts/benchmark.py --list
 
 Dataset access:
@@ -20,8 +20,11 @@ Dataset access:
   (https://github.com/TigreGotico/tugalex), which wraps the
   TigreGotico/portuguese_phonetic_lexicon dataset on Hugging Face.
 - ``cmudict`` needs the ``scriptconv`` package for ARPABET→IPA.
-- ``wikipron`` and ``mirandese`` download TSVs directly (stdlib only).
-- ``infopedia_pt`` downloads a JSONL gold file directly (stdlib only).
+- ``wikipron`` and ``mirandese_g2p`` download TSVs directly (stdlib only).
+- ``infopedia_pt`` downloads a JSONL gold file directly and samples it with
+  a fixed seed (stdlib only).
+- ``portuguese_phonetic_lexicon`` downloads the Portal da Língua Portuguesa
+  CSV directly and samples it per region with a fixed seed (stdlib only).
 - ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
@@ -62,6 +65,12 @@ HARNESS_VERSION = "1.1"
 # CI bounds across runs/machines.
 BOOTSTRAP_SEED = 20260710
 BOOTSTRAP_REPS = 1000
+
+# Fixed seed for loaders that draw a random sample from a large gold file
+# (infopedia_pt, portuguese_phonetic_lexicon) instead of the alphabetical
+# head. Never randomized, so the same ``limit`` always selects the same
+# words across runs/machines — an unbiased but fully reproducible slice.
+SAMPLE_SEED = 20260711
 SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 
@@ -130,7 +139,17 @@ _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
     "/resolve/main/mwl_dataset.tsv"
 )
-_MIRANDESE_DIALECTS = {"mwl": "central", "mwl-x-sendim": "sendinese"}
+# orthography2ipa language tag → the value of the dataset's ``dialect``
+# column scored under it. The 218-entry ``mwl_dataset.tsv`` tags each row
+# ``central`` (the Central norm the Mirandese orthography is built on),
+# ``sendinese`` (Sendinês, the Sendim sub-dialect) or ``raiano`` (the
+# Raiano/Northern sub-dialect, whose local variety this repo tags
+# ``mwl-x-ifanes`` after Ifanês). Every row is scored under exactly one tag.
+_MIRANDESE_DIALECTS = {
+    "mwl": "central",
+    "mwl-x-sendim": "sendinese",
+    "mwl-x-ifanes": "raiano",
+}
 _BARRANQUENHO_DICT_URL = (
     "https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic"
     "/resolve/main/barranquenho_ipa_dictionary.csv"
@@ -156,6 +175,29 @@ _INFOPEDIA_PT_URL = (
     "https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa"
     "/resolve/main/infopedia_pt_ipa.jsonl"
 )
+_PT_LEXICON_URL = (
+    "https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon"
+    "/resolve/main/dataset.csv"
+)
+# TigreGotico/portuguese_phonetic_lexicon (~617k rows) scraped from the
+# public Portal da Língua Portuguesa (INESC-ID). Its IPA is SEMI-AUTOMATED
+# and community-scraped → classified ``crowd-scraped``. Each row carries a
+# ``region_code`` for one of ten regional variants (dataset card mapping).
+# orthography2ipa spec → the ONE region_code scored under it: the STANDARD
+# metropolitan variant of that country/region. Each spec gets a single row.
+_PT_LEXICON_REGIONS: Dict[str, str] = {
+    "pt-PT": "lbx",   # Lisbon (Standard) — standard European Portuguese
+    "pt-BR": "spx",   # São Paulo (Standard) — Brazilian standard
+    "pt-AO": "lda",   # Luanda — Angolan Portuguese (only Angola code)
+    "pt-MZ": "mpx",   # Maputo (Standard) — Mozambican Portuguese
+    "pt-TL": "dli",   # Dili — Timorese Portuguese (only Timor code)
+}
+# region_codes deliberately NOT scored (each is a non-standard register, or a
+# second Brazilian metropolitan norm, of a region already covered by its
+# Standard code above; no distinct orthography2ipa spec exists for them, so
+# scoring them would duplicate a spec's row or conflate registers):
+#   lbn (Lisbon non-std), rjx/rjo (Rio std/non-std), spo (São Paulo non-std),
+#   map (Maputo non-std).
 _4CATAC_BASE = (
     "https://huggingface.co/datasets/projecte-aina/4catac/resolve/main/"
 )
@@ -406,7 +448,18 @@ def load_wikipron(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 
 def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """Mirandese gold set (TigreGotico/mirandese_g2p on Hugging Face)."""
+    """Mirandese HUMAN gold set (TigreGotico/mirandese_g2p on Hugging Face).
+
+    218 ``dialect,word,ipa`` rows collected from native speakers of
+    Mirandese (``mwl``) and its Sendinês/Raiano sub-dialects — the single
+    most trustworthy signal for ``mwl`` in this scoreboard. Registered under
+    the row id ``mirandese_g2p`` and classified ``expert-human`` (small-n,
+    not externally peer-validated). Split by the ``dialect`` column per
+    ``_MIRANDESE_DIALECTS``: central→``mwl``, sendinese→``mwl-x-sendim``,
+    raiano→``mwl-x-ifanes``. Mirandese is Latin-script, so no special input
+    contract applies. It is a SEPARATE source from any synthetic
+    Mirandese IPA dictionary; see docs/benchmarks.md "Provenance".
+    """
     dialect = _MIRANDESE_DIALECTS[lang]
     text = _fetch(_MIRANDESE_URL, "mirandese_g2p.tsv")
     pairs = []
@@ -492,29 +545,92 @@ def load_mirandese_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 
 def load_infopedia_pt(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """European Portuguese IPA lexicon (TigreGotico/infopedia-pt-ipa on
-    Hugging Face), extracted from Infopédia (Porto Editora).
+    """European Portuguese (``pt-PT``) IPA lexicon (TigreGotico/infopedia-pt-ipa
+    on Hugging Face, 102,685 entries), extracted from a crawl of Infopédia
+    (Porto Editora), a reputable published European-Portuguese dictionary.
 
     Each JSONL row is ``{"word", "ipa", "pronunciations", "syllabification"}``;
     ``pronunciations`` carries every distinct IPA form found for the word
     (a handful of entries have more than one), so all of them are emitted
     as separate reference pairs and scored via the harness's standard
     multi-reference-per-word handling.
+
+    PROVENANCE — classified ``lexicon-derived``: a published dictionary, but
+    the IPA transcriptions are Porto Editora's own and the METHODOLOGY BEHIND
+    THEM IS UNDOCUMENTED/UNKNOWN (not stated to be hand-checked, nor which
+    tooling produced them), so this is directional, not a peer-validated
+    ground truth. See docs/benchmarks.md "Provenance and reliability".
+
+    SAMPLING — 102k entries is far too many to score in full and the file is
+    alphabetically ordered, so the first ``limit`` lines would be a biased
+    all-"a…" slice. Instead the whole file is read and a fixed-seed
+    (``SAMPLE_SEED``) random sample of up to ``limit`` WORDS is drawn (all of
+    a sampled word's pronunciation variants are kept), giving an unbiased yet
+    fully reproducible slice. Portuguese is Latin-script; no special contract.
     """
+    del lang  # single language (pt-PT); kept for the uniform signature
     text = _fetch(_INFOPEDIA_PT_URL, "infopedia_pt_ipa.jsonl")
-    pairs = []
+    words: List[Tuple[str, List[str]]] = []
     for line in text.strip().splitlines():
         if not line.strip():
             continue
         row = json.loads(line)
         word = row.get("word")
-        variants = row.get("pronunciations") or [row.get("ipa")]
+        variants = [v for v in (row.get("pronunciations") or [row.get("ipa")]) if v]
+        if word and variants:
+            words.append((word, variants))
+    rng = random.Random(SAMPLE_SEED)
+    rng.shuffle(words)
+    pairs: List[Tuple[str, str]] = []
+    for word, variants in words[:limit]:
         for ipa in variants:
-            if word and ipa:
-                pairs.append((word, ipa))
-        if len(pairs) >= limit:
-            break
+            pairs.append((word, ipa))
     return pairs
+
+
+def load_portuguese_phonetic_lexicon(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Portuguese phonetic lexicon, ONE regional variant per language tag
+    (TigreGotico/portuguese_phonetic_lexicon on Hugging Face, ~617k rows).
+
+    Scraped from the public Portal da Língua Portuguesa (INESC-ID). This is a
+    DIRECT stdlib CSV loader (columns ``word,phones,postag,region_code,…``),
+    independent of the ``tugalex`` wrapper used by ``portuguese_lexicon``; it
+    lets the Lusophone family (``pt-PT``/``pt-BR``/``pt-AO``/``pt-MZ``/``pt-TL``)
+    be scored with no extra package installed. See ``_PT_LEXICON_REGIONS`` for
+    the spec→region_code mapping and the skipped register variants.
+
+    PROVENANCE — classified ``crowd-scraped``: the Portal's IPA is
+    SEMI-AUTOMATED (rule/tooling-generated, not hand-verified per entry), so
+    it is directional only, never ground truth. See docs/benchmarks.md.
+
+    The ``phones`` field flattens syllables with ``|`` (e.g. ``ˈkːa|zɐ``); the
+    separator is stripped so the whole-word IPA is scored. Portuguese is
+    Latin-script; no special input contract applies. 617k rows are far too
+    many to score fully, so the region's rows are read in full and a
+    fixed-seed (``SAMPLE_SEED``) random sample of up to ``limit`` words is
+    drawn — unbiased but fully reproducible. Duplicate words (same spelling)
+    are de-duplicated, keeping the first sampled pronunciation.
+    """
+    region = _PT_LEXICON_REGIONS[lang]
+    text = _fetch(_PT_LEXICON_URL, "portuguese_phonetic_lexicon.csv")
+    seen = set()
+    candidates: List[Tuple[str, str]] = []
+    reader = csv.DictReader(text.splitlines())
+    for row in reader:
+        if (row.get("region_code") or "").strip() != region:
+            continue
+        word = (row.get("word") or "").strip()
+        ipa = (row.get("phones") or "").replace("|", "").strip()
+        if not word or not ipa:
+            continue
+        key = word.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        candidates.append((word, ipa))
+    rng = random.Random(SAMPLE_SEED)
+    rng.shuffle(candidates)
+    return candidates[:limit]
 
 
 def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -807,9 +923,11 @@ DATASETS = {
     "portuguese_lexicon": (load_portuguese_lexicon,
                            ["pt-PT", "pt-BR", "pt-AO", "pt-MZ", "pt-TL"]),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
-    "mirandese": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
+    "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
+    "portuguese_phonetic_lexicon": (load_portuguese_phonetic_lexicon,
+                                    sorted(_PT_LEXICON_REGIONS)),
     "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
@@ -866,7 +984,7 @@ RELIABILITY_TIERS = (
 PROVENANCE: Dict[str, str] = {
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
-    "mirandese": "expert-human",         # native-speaker collected; small-n
+    "mirandese_g2p": "expert-human",     # TigreGotico/mirandese_g2p; native-speaker collected; small-n
     "4catac": "expert-human",            # expert annotators, IEC guidelines, consensus review
     "clup_dialect": "expert-human",      # U.Porto CLUP dialect archive; see note (IPA-column provenance undocumented, many rows n=1-17)
     # human lexicographers via dictionary notation conventions
@@ -876,6 +994,8 @@ PROVENANCE: Dict[str, str] = {
     "ipadict": "lexicon-derived",             # only human `is` (Hjal/malfong) wired; project is mixed-provenance
     # community-scraped Wiktionary
     "wikipron": "crowd-scraped",
+    # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
+    "portuguese_phonetic_lexicon": "crowd-scraped",
     # a phonemizer's own output reused as a reference — biggest grain of salt
     "styletts2_phonemes": "machine-generated",  # phonemizer/espeak-derived TTS phonemes (partly circular vs espeak)
     "ipa_childes": "machine-generated",         # CHILDES "G2P+" automatic phonemizer column
