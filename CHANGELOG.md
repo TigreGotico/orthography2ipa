@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.36.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.36.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.36.0a1...1.36.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): correct Catalan vowel reduction \(stress-conditioned\) and add spirantization [\#152](https://github.com/TigreGotico/orthography2ipa/pull/152) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.36.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.36.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.35.0a1...1.36.0a1)
@@ -165,19 +173,19 @@
 
 ## [1.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.1a1) (2026-07-10)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.21.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.1a1)
 
 **Merged pull requests:**
 
 - fix\(g2p\): route word\_exceptions overrides through stress marking [\#109](https://github.com/TigreGotico/orthography2ipa/pull/109) ([JarbasAl](https://github.com/JarbasAl))
 
-## [1.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.0a1) (2026-07-09)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.0a1)
-
 ## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.20.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.20.0a1)
+
+## [1.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.21.0a1)
 
 **Merged pull requests:**
 
