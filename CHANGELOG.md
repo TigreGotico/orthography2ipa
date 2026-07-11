@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.56.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.56.0a2) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.56.0a1...1.56.0a2)
+
+**Merged pull requests:**
+
+- docs: timeless standalone language pages with navigation footers [\#207](https://github.com/TigreGotico/orthography2ipa/pull/207) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.56.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.56.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.55.0a1...1.56.0a1)
@@ -674,7 +682,6 @@
 **Merged pull requests:**
 
 - fix\(data\): occitan phonology, explicit quality tiers, verified wikipedia links [\#20](https://github.com/TigreGotico/orthography2ipa/pull/20) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(registry\): resolve bare language tags and nearest-match fallbacks [\#18](https://github.com/TigreGotico/orthography2ipa/pull/18) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/0.2.1a1) (2026-06-10)
 
