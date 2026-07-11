@@ -10,15 +10,15 @@
       "l",
       "ɭ"
     ],
-    "ɫ": [
-      "ɫ",
+    "ł": [
+      "ł",
       "ɭ"
     ]
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Vagos, Aveiro area. Heaviest attestation of retroflex lateral [ɭ] of all Portuguese dialects — systematic in onset, post-consonantal, and coda positions. No retroflex sibilants. Otherwise moderate features.",
-  "quality": "skeleton",
+  "notes": "Beira-Litoral Portuguese (Aveiro, Vagos), a northern-coastal EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group (Beira Litoral). MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — ⟨s/ss⟩ AND ⟨c/ç/z⟩ all merge to apico-alveolar [s̺]/[z̺] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38, this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep chiado [ʃ]/[ʒ]. (2) BETACISM — /v/–/b/ merged to /b/ ~ [β]; Pérez 2014 pp.35-37 shows the bilabial-merger area extends along the coast north of Coimbra (i.e. the Aveiro littoral). A local retroflex lateral [ɱ... ]/[ɭ] realisation of /l/ is reported in regional-dialect literature (not in Cintra/Pérez) and is enumerated as a secondary allophonic variant only. Porto je/wo diphthongisation is not applied. Inherits pt-PT base.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -50,6 +50,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "cintra1971",
+      "author": "Cintra, L. F. Lindley",
+      "year": 1971,
+      "title": "Nova proposta de classificação dos dialectos galego-portugueses",
+      "publisher": "Boletim de Filologia 22:81-116",
+      "url": null,
+      "pages": "88, 92-93",
+      "notes": "Foundational EP dialect classification. p.93: the Baixo-Minhoto-Duriense-Beirao group reduces the archaic four-sibilant system to two apico-alveolar sibilants [s̺ z̺]; p.88: /v/-/b/ merger and apico-alveolar sibilants are diagnostic northern features."
+    },
+    {
+      "id": "alvarezperez2014",
+      "author": "Álvarez Pérez, Xosé Afonso",
+      "year": 2014,
+      "title": "European Portuguese dialectal features: a comparison with Cintra's proposal",
+      "publisher": "Journal of Portuguese Linguistics 13(1):29-62",
+      "url": "https://doi.org/10.5334/jpl.62",
+      "pages": "35-39",
+      "notes": "ALEPG-corpus quantitative reassessment. pp.37-38: Baixo-Minhotos, Durienses and Beirões 'kept only the apico-alveolar branch' (both s/ss and c/ç/z merge to apical), vs the conservative four-sibilant Transmontano/Alto-Minhoto. pp.35-37: /b/-/v/ merger extends along the coast beyond Coimbra and through the eastern districts (Guarda, Castelo Branco)."
     }
   ],
   "wikipedia": [
@@ -98,5 +118,62 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes": {
+    "ç": [
+      "s̺"
+    ],
+    "z": [
+      "z̺"
+    ],
+    "v": [
+      "b",
+      "β"
+    ]
+  },
+  "positional_graphemes": {
+    "s": {
+      "word_initial": [
+        "s̺"
+      ],
+      "intervocalic": [
+        "z̺"
+      ],
+      "coda": [
+        "ʃ",
+        "ʒ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z̺"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "s̺"
+      ],
+      "before_i": [
+        "s̺"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "ʃ",
+        "z̺"
+      ],
+      "coda": [
+        "ʃ"
+      ]
+    },
+    "v": {
+      "intervocalic": [
+        "β"
+      ],
+      "intervocalic_cross_word": [
+        "β"
+      ]
+    }
   }
 }
