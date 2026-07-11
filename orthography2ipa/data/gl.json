@@ -484,5 +484,12 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Galician accentuation as implemented in the Cotovia front-end (GTM, Universidade de Vigo): written accent wins; words ending in a vowel, -n or -s are paroxytone (casa, cantan, casas); words ending in any other consonant (r l z x d) are oxytone (falar, azul, rapaz)."
+  },
+  "orthography_standard": {
+    "name": "Normas ortográficas e morfolóxicas do idioma galego",
+    "authority": "Real Academia Galega / Instituto da Lingua Galega",
+    "year": 2012,
+    "url": "https://academia.gal/documents/10157/704901/Normas+ortogr%C3%A1ficas+e+morfol%C3%B3xicas+do+idioma+galego.pdf",
+    "notes": "23rd edition (revised). Defines the standard spelling; seseo and gheada are dialectal, not normative."
   }
 }

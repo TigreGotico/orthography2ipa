@@ -35,6 +35,44 @@ PositionalGrapheme2IPA = Dict[str, Dict["GraphemePosition", List[str]]]
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# OrthographyStandard — the official published spelling norm, when one exists
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class OrthographyStandard:
+    """The official, publicly published orthography of a language.
+
+    Many languages are governed by a named spelling norm issued by a language
+    academy or state body — the *Acordo Ortográfico da Língua Portuguesa*
+    (1990), the Real Academia Galega's *Normas ortográficas*, the RAE's
+    *Ortografía de la lengua española*. Where such a norm exists and is public,
+    it is the primary authority for what a grapheme *is* in that language, so
+    it is recorded as a first-class reference rather than as one link among
+    many in :attr:`LanguageSpec.urls`.
+
+    Parameters
+    ----------
+    name : str
+        Title of the standard, in the language's own naming where sensible.
+    authority : Optional[str]
+        The academy or body that issues it.
+    year : Optional[int]
+        Year of the edition referenced.
+    url : Optional[str]
+        Public link to the standard itself.
+    notes : str
+        Anything a consumer needs to know (e.g. a variety that does not follow
+        it, or a competing norm).
+    """
+
+    name: str
+    authority: Optional[str] = None
+    year: Optional[int] = None
+    url: Optional[str] = None
+    notes: str = ""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # TimeSpan — attestation period for a language
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -741,11 +779,16 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "script_type": InheritanceMode.OWN_ONLY,
     "inherent_vowel": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
+    "wikidata_qid": InheritanceMode.OWN_ONLY,
+    "phoible_id": InheritanceMode.OWN_ONLY,
+    "wals_code": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "tone_inventory": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
     "wikipedia": InheritanceMode.OWN_ONLY,
+    "urls": InheritanceMode.OWN_ONLY,
+    "orthography_standard": InheritanceMode.OWN_ONLY,
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.NOT_INHERITED,
@@ -861,6 +904,22 @@ class LanguageSpec:
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
 
+    wikidata_qid: Optional[str] = None
+    """Optional Wikidata item id (e.g. ``"Q1321"`` for Spanish). The hub of the
+    linked-data graph: one QID resolves to this language's Glottolog code,
+    ISO 639-3 code, PHOIBLE inventories, WALS entry and Wikipedia articles in
+    every edition. See https://www.wikidata.org."""
+
+    phoible_id: Optional[str] = None
+    """Optional PHOIBLE identifier for the language's attested phoneme
+    inventories. PHOIBLE catalogues cross-linguistic phoneme inventories and is
+    the reference against which a spec's emitted phoneme set can be validated.
+    See https://phoible.org."""
+
+    wals_code: Optional[str] = None
+    """Optional WALS (World Atlas of Language Structures) code, for typological
+    cross-referencing. See https://wals.info."""
+
     sandhi_rules: Tuple[SandhiRule, ...] = ()
     """Cross-word-boundary phonological rules (liaison, sandhi)."""
 
@@ -894,6 +953,19 @@ class LanguageSpec:
     covering distinct aspects (phonology, history, dialectology) to give a
     complete cross-reference picture.  Order: English article first, then
     by relevance."""
+
+    urls: Tuple[str, ...] = ()
+    """Other reference URLs — Glottolog, Ethnologue, dialect articles.
+    Wikipedia articles belong in :attr:`wikipedia`; the official spelling norm
+    belongs in :attr:`orthography_standard`."""
+
+    orthography_standard: Optional["OrthographyStandard"] = None
+    """The official published orthography, where the language has one.
+
+    ``None`` means either that no official norm exists (many varieties and all
+    reconstructions) or that this spec follows its parent's — a dialect that
+    spells by its standard language's norm simply omits the field, since a
+    standard is a property of the language, not of every dialect of it."""
 
     timespan: Optional["TimeSpan"] = None
     """Attestation period.  ``None`` if unknown.
