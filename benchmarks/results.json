@@ -299,6 +299,19 @@
     "limit": 300
   },
   {
+    "lang": "ext-PT-x-barrancos",
+    "dataset": "barranquenho_dict",
+    "n": 297,
+    "per": 0.2099,
+    "per_ci_low": 0.1841,
+    "per_ci_high": 0.2374,
+    "exact_match": 0.4108,
+    "quality_tier": "research",
+    "provenance": "machine-generated",
+    "harness_version": "1.1",
+    "limit": 300
+  },
+  {
     "lang": "fa",
     "dataset": "styletts2_phonemes",
     "n": 294,
@@ -546,6 +559,32 @@
     "limit": 300
   },
   {
+    "lang": "mwl",
+    "dataset": "mirandese_dict",
+    "n": 291,
+    "per": 0.2911,
+    "per_ci_low": 0.2653,
+    "per_ci_high": 0.3162,
+    "exact_match": 0.2062,
+    "quality_tier": "research",
+    "provenance": "machine-generated",
+    "harness_version": "1.1",
+    "limit": 300
+  },
+  {
+    "lang": "mwl-x-ifanes",
+    "dataset": "mirandese_dict",
+    "n": 4,
+    "per": 0.5,
+    "per_ci_low": 0.1667,
+    "per_ci_high": 0.8333,
+    "exact_match": 0.25,
+    "quality_tier": "research",
+    "provenance": "machine-generated",
+    "harness_version": "1.1",
+    "limit": 300
+  },
+  {
     "lang": "mwl-x-sendim",
     "dataset": "mirandese",
     "n": 11,
@@ -555,6 +594,19 @@
     "exact_match": 0.1818,
     "quality_tier": "research",
     "provenance": "expert-human",
+    "harness_version": "1.1",
+    "limit": 300
+  },
+  {
+    "lang": "mwl-x-sendim",
+    "dataset": "mirandese_dict",
+    "n": 79,
+    "per": 0.2625,
+    "per_ci_low": 0.2151,
+    "per_ci_high": 0.3131,
+    "exact_match": 0.2278,
+    "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
