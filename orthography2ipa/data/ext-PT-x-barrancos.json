@@ -167,6 +167,35 @@
       ]
     }
   },
+  "allophone_rules": [
+    {
+      "id": "PT_CODA_S_HUSH",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "h",
+      "syllable_position": "coda",
+      "notes": "OVERRIDE of the inherited European Portuguese 'chiado': Barranquenho does NOT palatalise coda /s/ to [ʃ]. Following the Extremaduran/Andalusian adstrate, an internal (pre-consonantal) coda /s/ is aspirated to [h] — mehmu (mesmo), Lihboa (Lisboa), bihtu (visto). Absolute word-final /s/ is deleted entirely, handled pre-lexically by the positional 's' word_final → ∅ map (so no /s/ segment survives for this rule word-finally). Redeclaring the pt-PT rule id replaces it in place (OVERLAY_BY_ID), removing the EP hush. Sources: Navas Sánchez-Élez (2011); Clements, Amaral & Luís (2008); Convenção Ortográfica do Barranquenho (2025) pp. 28–29."
+    },
+    {
+      "id": "PT_CODA_Z_HUSH",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "h",
+      "syllable_position": "coda",
+      "notes": "OVERRIDE of the inherited EP voiced hush ([ʒ]): coda sibilants neutralise to the aspirate [h] in Barranquenho, matching the southern-peninsular coda-/s/ aspiration that Barranquenho shares (Andalusian/Extremaduran). The EP chiado [ʒ] is not present. Navas Sánchez-Élez (2011); Clements, Amaral & Luís (2008)."
+    },
+    {
+      "id": "PT_CODA_L_DARK",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "l",
+      "syllable_position": "coda",
+      "notes": "OVERRIDE (neutralising no-op) of the inherited EP dark/velarised coda /l/ → [ɫ]. Barranquenho, under the Spanish adstrate, keeps a clear alveolar [l] in the (internal, pre-consonantal) coda; the strongly velarised Lisbon [ɫ] is not a feature. Word-final tonic /l/ is deleted entirely (Brasí, Natá, Isabé), handled pre-lexically by the positional 'l' word_final → ∅ map. Rewriting l → l cancels the inherited darkening. Navas Sánchez-Élez (2011); Convenção Ortográfica do Barranquenho (2025) p. 31."
+    }
+  ],
   "ancestors": [
     {
       "code": "pt-PT",
@@ -187,7 +216,7 @@
       "notes": "Galaico-Portuguese: shared nasal vowels, lh/nh digraph conventions, and general Ibero-Romance vowel quality inherited through the Portuguese base."
     }
   ],
-  "notes": "Barranquenho, the contact vernacular of Barrancos (Baixo Alentejo, Portugal), spoken by ~1,600–2,000 people. Classified as Extremaduran Portuguese (ext-PT) with heavy Spanish adstrate influence; listed by UNESCO as 'definitely endangered'. PRIMARY SOURCE: Convenção Ortográfica do Barranquenho (II Congresso Barranquenho, June 2025, Câmara Municipal de Barrancos); Gramática Básica de Barranquenho (Gonçalves, Navas & Correia, Universidade de Évora, 2025, ISBN 978-972-778-464-6). KEY PHONOLOGICAL FEATURES: (1) BETACISM: /v/ merged with /b/ — ⟨v⟩ only in proper names/toponyms (Gramática p. 17). (2) ASPIRATED ⟨h⟩ = /h/ (voiceless); also [x] in Spanish loans (e.g. *heringu*, *calheha*) — Gramática p. 18. [ɦ] is NOT documented. (3) CODA ⟨s⟩ → [h] aspiration: *mehmu* (mesmo), *Lihboa* (Lisboa), *bihtu* (visto) — Convenção pp. 28–29. Final absolute ⟨s⟩ is SILENT and NOT WRITTEN in canonical Barranquenho orthography (Convenção p. 31). (4) FINAL -r DELETION: tonic final ⟨r⟩ is silent and not written — *cantá* (cantar), *senhô* (senhor), *dotô* (doutor) — Convenção p. 32; Gramática p. 20. Kept in monosyllable *pur*. (5) FINAL -l DELETION: tonic final ⟨l⟩ is silent and not written — *Brasí* (Brasil), *Natá* (Natal), *Isabé* (Isabel) — Convenção p. 31; Gramática p. 19. Kept in monosyllables *mal, tal, cual*. (6) ALVEOLAR TRILL: word-initial ⟨r⟩ and ⟨rr⟩ = /r/ (not uvular /ʁ/ as in standard pt-PT). (7) ⟨em/en⟩ → [ẽ] (plain nasal vowel, NOT diphthong [ẽj]): *tempu* [tẽpu], *tentu* [tẽtu], *quen* [kẽ] — Convenção p. 26; Gramática p. 15. (8) NASAL DIPHTHONGS: ⟨-âu⟩=[ɐ̃w], ⟨-âi⟩=[ɐ̃j], ⟨-ôi⟩=[õj] — tonic finals carrying stress (Convenção pp. 26–27). (9) ⟨x⟩ THREE-WAY: initial → [ʃ]; intervocalic in learned words (crucifixu type) → [ks]; other intervocalic → [z]/[s] — Convenção pp. 28, 31; Gramática pp. 18–19. (10) FINAL VOWELS in orthography: unstressed -o → written ⟨u⟩ (*altu, pássaru*); unstressed -e → written ⟨i⟩ (*sociedadi, libri*) — Convenção pp. 20–21. PHONEMES NOT PRESENT: /v/ (betacism), /ʁ/ (replaced by alveolar /r/).",
+  "notes": "Barranquenho, the contact vernacular of Barrancos (Baixo Alentejo, Portugal), spoken by ~1,600–2,000 people. Classified as Extremaduran Portuguese (ext-PT) with heavy Spanish adstrate influence; listed by UNESCO as 'definitely endangered'. PRIMARY SOURCE: Convenção Ortográfica do Barranquenho (II Congresso Barranquenho, June 2025, Câmara Municipal de Barrancos); Gramática Básica de Barranquenho (Gonçalves, Navas & Correia, Universidade de Évora, 2025, ISBN 978-972-778-464-6). KEY PHONOLOGICAL FEATURES: (1) BETACISM: /v/ merged with /b/ — ⟨v⟩ only in proper names/toponyms (Gramática p. 17). (2) ASPIRATED ⟨h⟩ = /h/ (voiceless); also [x] in Spanish loans (e.g. *heringu*, *calheha*) — Gramática p. 18. [ɦ] is NOT documented. (3) CODA ⟨s⟩ → [h] aspiration: *mehmu* (mesmo), *Lihboa* (Lisboa), *bihtu* (visto) — Convenção pp. 28–29. Final absolute ⟨s⟩ is SILENT and NOT WRITTEN in canonical Barranquenho orthography (Convenção p. 31). (4) FINAL -r DELETION: tonic final ⟨r⟩ is silent and not written — *cantá* (cantar), *senhô* (senhor), *dotô* (doutor) — Convenção p. 32; Gramática p. 20. Kept in monosyllable *pur*. (5) FINAL -l DELETION: tonic final ⟨l⟩ is silent and not written — *Brasí* (Brasil), *Natá* (Natal), *Isabé* (Isabel) — Convenção p. 31; Gramática p. 19. Kept in monosyllables *mal, tal, cual*. (6) ALVEOLAR TRILL: word-initial ⟨r⟩ and ⟨rr⟩ = /r/ (not uvular /ʁ/ as in standard pt-PT). (7) ⟨em/en⟩ → [ẽ] (plain nasal vowel, NOT diphthong [ẽj]): *tempu* [tẽpu], *tentu* [tẽtu], *quen* [kẽ] — Convenção p. 26; Gramática p. 15. (8) NASAL DIPHTHONGS: ⟨-âu⟩=[ɐ̃w], ⟨-âi⟩=[ɐ̃j], ⟨-ôi⟩=[õj] — tonic finals carrying stress (Convenção pp. 26–27). (9) ⟨x⟩ THREE-WAY: initial → [ʃ]; intervocalic in learned words (crucifixu type) → [ks]; other intervocalic → [z]/[s] — Convenção pp. 28, 31; Gramática pp. 18–19. (10) FINAL VOWELS in orthography: unstressed -o → written ⟨u⟩ (*altu, pássaru*); unstressed -e → written ⟨i⟩ (*sociedadi, libri*) — Convenção pp. 20–21. PHONEMES NOT PRESENT: /v/ (betacism), /ʁ/ (replaced by alveolar /r/). CONTACT-VARIETY OVERRIDES (Portuguese base + Extremaduran/Andalusian Spanish adstrate): Barranquenho inherits pt-PT via graphemes_base/allophones_base/positional_graphemes_base, so the three European-Portuguese post-lexical allophone_rules (PT_CODA_S_HUSH, PT_CODA_Z_HUSH, PT_CODA_L_DARK) are inherited by OVERLAY_BY_ID and would otherwise impose the Lisbon 'chiado' [ʃ ʒ] and the dark coda [ɫ] — neither of which Barranquenho has. This spec REDECLARES those three ids to disable them: coda /s/ and /z/ → aspirated [h] (Andalusian-type, NOT [ʃ]/[ʒ]); coda /l/ → clear [l] (no-op, cancels velarisation). Absolute word-final /s/, /r/ and /l/ are DELETED pre-lexically (positional word_final → ∅), the salient southern-peninsular weakening described by Navas Sánchez-Élez (2011) and Clements, Amaral & Luís (2008). SESEO: Barranquenho has no Castilian /θ/ distinción; ⟨c⟩(before e/i), ⟨ç⟩, ⟨s⟩, ⟨z⟩ all map to alveolar sibilants (seseo-like), as in the inherited base — no /θ/ is introduced. VOWEL REDUCTION (decision, per source): the Alentejano base retains the inherited EP unstressed-vowel positional reduction (final -o → written ⟨u⟩ [u], final -e → written ⟨i⟩ [i]/[ɨ] — the raising is orthographically encoded in the Convenção), so the inherited pt-PT vowel positional maps are kept rather than overridden. LIMITATION: fine-grained differences in Barranquenho PRETONIC vocalism vs. Lisbon reduction are not separately quantified in the cited sources at phoneme-mapping resolution and are left as inherited rather than invented (hard rule 9). Barranquenho has NO gold benchmark row; correctness here is by citation, not PER.",
   "sources": [
     {
       "id": "convencao_barranquenho2025",
@@ -207,6 +236,26 @@
       "publisher": "Universidade de Évora, 1ª edição",
       "pages": null,
       "notes": "ISBN: 978-972-778-464-6. Institutional grammar confirming phoneme inventory and stress rules. Affiliations: Universidade de Évora/CIDEHUS-UÉ/FCT/Cátedra UNESCO; Universidad Complutense de Madrid/CLUL."
+    },
+    {
+      "id": "navas2011",
+      "author": "Navas Sánchez-Élez, María Victoria",
+      "year": 2011,
+      "title": "El barranqueño: un modelo de lenguas en contacto",
+      "publisher": "Editorial Complutense / Centro de Linguística da Universidade de Lisboa, Madrid, 320 pp.",
+      "url": "https://eprints.ucm.es/id/eprint/48718/",
+      "pages": null,
+      "notes": "ISBN 978-84-9938-099-5. The reference monograph on Barranquenho as a Portuguese (Alentejo)–Spanish (Extremaduran/Andalusian) contact variety, based on interviews with 30 speakers. Source for the southern-peninsular coda-/s/ aspiration/deletion, /r/ and /l/ weakening, betacism (/v/–/b/ merger) and the non-EP alveolar sibilant/vowel system that this spec models as overrides of the inherited pt-PT allophony."
+    },
+    {
+      "id": "clements_amaral_luis2008",
+      "author": "Clements, J. Clancy; Amaral, Patrícia; Luís, Ana R.",
+      "year": 2008,
+      "title": "Cultural identity and the structure of a mixed language: The case of Barranquenho",
+      "publisher": "Proceedings of the Annual Meeting of the Berkeley Linguistics Society 34, 13–22 (Special session on Pidgins, Creoles and Mixed Languages)",
+      "url": "https://hdl.handle.net/2022/24680",
+      "pages": "13-22",
+      "notes": "Documents the diagnostic contact phonology: syllable-final /s/ reduced to [h] or deleted (absent from all Portuguese dialects, shared with Extremeño/Andalusian), and word-final /r/ and /l/ deletion. Grounds the coda-sibilant and final-consonant overrides in this spec."
     },
     {
       "id": "dicionario_barranquenho2025",
