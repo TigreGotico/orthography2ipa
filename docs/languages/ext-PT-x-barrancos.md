@@ -53,8 +53,25 @@ share, so the spec **redeclares their ids to disable them**:
    affricate ⟨tch⟩.
 5. **Seseo (no /θ/ distinción)** — ⟨c⟩ (before e/i), ⟨ç⟩, ⟨s⟩, ⟨z⟩ all map to
    alveolar sibilants; no Castilian interdental is introduced.
-6. **Plain nasal vowel ⟨em/en⟩ → [ẽ]** (not the EP diphthong [ẽj]), and the
-   tonic nasal diphthongs ⟨-âu⟩ [ɐ̃w], ⟨-âi⟩ [ɐ̃j], ⟨-ôi⟩ [õj].
+6. **Coda-conditioned nasal vowels** — a vowel before a syllable-final (coda)
+   ⟨m/n⟩ nasalises and the nasal consonant is absorbed:
+   [ã]←⟨am/an⟩, [ẽ]←⟨em/en⟩, [ĩ]←⟨im/in⟩, [õ]←⟨om/on⟩, [ũ]←⟨um/un⟩
+   (*campu* [kɐ̃pu], *lindo* [lĩdu], *bom*/*bon* [bõ], *mundo* [mũdu]) — while an
+   **intervocalic (onset)** ⟨m/n⟩ is a syllable onset and leaves the vowel oral
+   (*lhano* [ʎanu], *cama* [kamɐ], *pequenu* [pɨkenu]). ⟨em/en⟩ realise the
+   plain nasal vowel [ẽ] (not the EP diphthong [ẽj]). Modelled on the nasal
+   *consonant* — coda ⟨m/n⟩ → a U+0303 combining tilde on the preceding vowel
+   (`positional_graphemes` `m`/`n`: `word_final`/`before_consonant`), which the
+   ⟨nh⟩/⟨lh⟩ digraphs pre-empt so they never mis-nasalise (*banho* [baɲu]) — with
+   the vowel-quality raising ⟨a⟩→[ɐ̃], ⟨o⟩→[õ] supplied by the `allophone_rules`
+   `PT_NASAL_A_RAISE` / `PT_NASAL_O_RAISE` (fire only before the tilde). Coda
+   nasal-vowel graphing: Convenção p. 26, §1.8.1 *Vocalismo nasal tónico*.
+7. Tonic nasal diphthongs ⟨-âu⟩ [ɐ̃w], ⟨-âi⟩ [ɐ̃j], ⟨-ôi⟩ [õj].
+8. **Monosyllabic final-liquid exceptions** — the general tonic-final ⟨-l⟩/⟨-r⟩
+   elision is suspended for the monosyllables *mal*, *tal*, *cual* (their lateral
+   is pronounced in most contexts — Convenção §2.6 *Nota*) and *pur* (port.
+   *por*), listed as `word_exceptions`. Polysyllables still elide (*Brasí*,
+   *cantá*, *senhô*).
 
 ## Vowel reduction (retained from the Alentejo base)
 
@@ -72,7 +89,12 @@ and are left inherited rather than invented (research-grounding rule).
 | `mesmo` | ˈmɛhmu | coda /s/ → [h]; final -o → [u] |
 | `visto` | ˈbihtu | betacism + coda-/s/ aspiration |
 | `vaca` | ˈbakɐ | betacism |
-| `cantar` | ˈkantɐ | final -r deletion |
+| `cantar` | ˈkɐ̃tɐ | coda-n nasalises a→ɐ̃; final -r deletion |
+| `campu` | ˈkɐ̃pu | coda-m nasalises a→ɐ̃ |
+| `lindo` | ˈlĩdu | coda-n nasalises i→ĩ |
+| `bom` | ˈbõ | coda-m nasalises, ɔ→õ, m absorbed |
+| `lhano` | ˈʎanu | intervocalic (onset) n stays oral |
+| `mal` | ˈmal | monosyllable keeps final -l (Convenção §2.6 Nota) |
 | `Brasil` | ˈbɾazi | final -l deletion |
 
 ## Limitations
@@ -83,6 +105,13 @@ and are left inherited rather than invented (research-grounding rule).
   (documented, not invented).
 - Free variation between coda-/s/ aspiration [h] and full deletion ∅ is reduced
   to the aspirate for internal codas and deletion word-finally.
+- The monosyllabic final-liquid retention is modelled as a closed
+  `word_exceptions` set (*mal*, *tal*, *cual*, *pur*) rather than by a general
+  rule: the positional layer has no syllable-count position, so the
+  monosyllable-vs-polysyllable conditioning cannot be expressed generically. The
+  e-series ⟨en⟩ digraph still greedily precedes ⟨nh⟩ in *venho*/*senhô* (a
+  pre-existing tokenisation limitation, unaffected here); the i/o/u-series and
+  ⟨nh⟩ elsewhere resolve correctly.
 
 ## Relation to `g2p_barranquenho`
 

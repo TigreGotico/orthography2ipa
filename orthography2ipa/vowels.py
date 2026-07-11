@@ -84,6 +84,12 @@ _ORTHOGRAPHIC_VOWELS = frozenset(
     "aeiou"
     # Latin accented forms (formerly g2p._VOWEL_CHARS / stress._VOWELS)
     "áéíóúàèìòùâêîôûãõäëïöüåæø"
+    # Precomposed nasal vowels: ã and õ arrived with the accented forms
+    # above; ẽ (U+1EBD), ĩ (U+0129) and ũ (U+0169) complete the set so the
+    # written nasal vowels are recognised uniformly (Portuguese family and
+    # downstream). Their front/back axis is handled by _vowel_axis, where
+    # the combining tilde is axis-preserving (ẽ ĩ front; ũ back).
+    "ẽĩũ"
     # Extended Latin diacritics (formerly stress._VOWELS only)
     "ąęėįųūīāēőűýěůŏŭıå"
     # Greek vowels: monotonic + accented + dialytika-tonos
