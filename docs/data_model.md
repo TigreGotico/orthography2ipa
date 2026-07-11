@@ -266,3 +266,9 @@ A word like English *butter* goes through two mappings:
 2. Allophone step: `/t/` → `[ɾ]` (the flap allophone in this context)
 
 The package stores both levels; rule-based selection between allophones requires implementation by the consumer.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Architecture](architecture.md) · [Positional graphemes](positional_graphemes.md) · [Allophony](allophony.md) · [Registry](registry.md)*

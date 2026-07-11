@@ -186,3 +186,9 @@ below.
 | [api_stability.md](api_stability.md) | What is public and version-guarded |
 | [link-audit.md](link-audit.md) | Citation URL liveness audit |
 | [languages/index.md](languages/index.md) | Per-language phonology deep-dives |
+
+---
+
+**Navigation:** [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md) · [Benchmarks](benchmarks.md)
+
+*Related: [Architecture](architecture.md) · [Lattice](lattice.md) · [Allophony](allophony.md) · [Quality tiers](quality_tiers.md)*

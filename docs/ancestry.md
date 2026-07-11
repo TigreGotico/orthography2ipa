@@ -213,3 +213,9 @@ When computing ancestry similarity, the system follows the full tree recursively
 - Spanish and Portuguese are close not only because both have `la-x-hispania` as parent, but because `la-x-hispania` → `la` (Classical Latin) → `ine` (Proto-Indo-European), and both languages inherit these deep connections.
 - Two dialects of the same language will show near-1.0 ancestry similarity because they share essentially all ancestors.
 - Unrelated language families will converge to 0.0 because their ancestry trees never intersect.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Registry](registry.md) · [Distance](distance.md) · [Data model](data_model.md)*

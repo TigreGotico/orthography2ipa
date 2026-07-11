@@ -209,3 +209,9 @@ RP English has lengthened `[ɑː]` for words like *bath*, *dance*, *path* (the B
 - Sihler, A. (1995). *New Comparative Grammar of Greek and Latin*. Oxford.
 - Fortson, B. (2010). *Indo-European Language and Culture* (2nd ed.). Wiley-Blackwell.
 - Gorrochategui, J. (1984). *Onomástica indígena de Aquitania*. Univ. País Vasco.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Quality tiers](quality_tiers.md) · [Benchmarks](benchmarks.md)*

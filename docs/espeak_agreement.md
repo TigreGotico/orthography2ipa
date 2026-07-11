@@ -46,3 +46,9 @@ Machine-readable form: [`benchmarks/espeak_agreement.json`](../benchmarks/espeak
 | sv | sv | 300 | 0.0000 | 0.0667 | 0.6242 | 0.1333 |
 | ta | ta | 300 | 0.0000 | 0.0033 | 0.4692 | 0.5233 |
 | tr | tr | 300 | 0.0067 | 0.2033 | 0.8003 | 0.0000 |
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Comparison](comparison.md) · [Benchmarks](benchmarks.md) · [Scoreboard](scoreboard.md)*

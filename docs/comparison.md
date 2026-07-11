@@ -67,3 +67,9 @@ All three BSC dialect voices (`ca-ba`, `ca-nw`, `ca-va`) were found on this mach
 | balear | ca-x-balear | ca-ba | 160 | 0.3884 | 0.2174 |
 | valencian | ca-x-valencia | ca-va | 160 | 0.3005 | 0.1878 |
 | occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.5633 | 0.1939 |
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Benchmarks](benchmarks.md) · [Scoreboard](scoreboard.md) · [espeak agreement](espeak_agreement.md)*

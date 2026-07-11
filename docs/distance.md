@@ -377,3 +377,9 @@ For each grapheme that appears in either spec's `positional_graphemes`:
 - If both have overrides: per-position IPA distance is measured using `segment_distance()`
 
 Result is normalised by the total number of graphemes with any positional data.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Ancestry](ancestry.md) · [IPA reference](ipa_reference.md) · [Data model](data_model.md)*

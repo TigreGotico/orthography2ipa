@@ -236,3 +236,9 @@ The test suite validates:
 | `lexifier`    | Vocabulary source in creole (weight 0.50–0.80)             |
 | `creole_base` | Grammar source in creole (weight 0.20–0.50)                |
 
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Data model](data_model.md) · [Registry](registry.md) · [Quality tiers](quality_tiers.md) · [Ancestry](ancestry.md)*

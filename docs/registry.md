@@ -286,3 +286,9 @@ Slavic: cs, pl, ru, uk
 Turkic: tr
 Uralic: fi
 ```
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Ancestry](ancestry.md) · [Data model](data_model.md) · [Adding a language](adding_a_language.md)*

@@ -48,8 +48,8 @@ Notes on the table:
   subclasses/consumes to implement its own language plugin. A downstream
   plugin's **phonological rule cascade** (sun-letter assimilation,
   silent-`e`, reduction) belongs in a `LatticeRescorer` over the shared
-  lattice now — see [Rescoring the lattice](lattice.md#rescoring-the-lattice)
-  — rather than in a forked tokenizer.
+  lattice — see [Rescoring the lattice](lattice.md#rescoring-the-lattice) —
+  rather than in a forked tokenizer.
 - `SyllabifierPlugin` is the equivalent contract for syllabifier plugins;
   currently only tugaphone implements one.
 - `tugaphone`'s test suite imports `orthography2ipa.registry` as a module
@@ -92,8 +92,9 @@ consumer is added to the inventory above:
 `G2P` and `WordTranscription` (`orthography2ipa.g2p`) expose optional,
 additive surface for detecting words that contain characters absent from a
 spec's grapheme table — e.g. feeding a script the spec doesn't cover at all.
-Before this surface existed, such words silently produced an empty `ipa`
-string, indistinguishable from legitimate silence (a pure-punctuation word).
+Without it, such words would produce an empty `ipa` string
+indistinguishable from legitimate silence (a pure-punctuation word); this
+surface makes the distinction observable.
 
 - `WordTranscription.unmapped: Tuple[str, ...] = ()` — the specific
   characters in `WordTranscription.word` with no grapheme mapping. Empty
@@ -114,3 +115,9 @@ callers that never pass `on_unmapped` and never read the new
 This is a documentation-only audit: it records the current import surface
 and stability commitment, and does not rename, deprecate, or otherwise
 modify any code in `orthography2ipa`.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Architecture](architecture.md) · [Lattice](lattice.md) · [Data model](data_model.md)*

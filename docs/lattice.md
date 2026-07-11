@@ -259,3 +259,9 @@ library's "two maps"; see [`allophony.md`](allophony.md). The
 downstream engines migrate their bespoke rule cascades here too: arbtok's
 sun-letter/waṣl assimilation and tugaphone's silent-`e`/reduction become
 rescorers over the shared engine rather than parallel tokenizers.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Tokenizer](tokenizer.md) · [Candidate scoring](candidate_scoring.md) · [Architecture](architecture.md) · [Allophony](allophony.md)*

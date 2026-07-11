@@ -291,3 +291,9 @@ See [Adding a Language](adding_a_language.md) for the full guide. The short vers
 1. Create `orthography2ipa/data/{code}.json` with the required fields (see `data/SCHEMA.md`).
 2. For dialects, use `graphemes_base`/`allophones_base` to inherit from the parent.
 3. Run the test suite to verify the spec validates correctly.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Tokenizer](tokenizer.md) · [Lattice](lattice.md) · [Allophony](allophony.md) · [Data model](data_model.md)*
