@@ -15,7 +15,6 @@
   ],
   "code": "ru",
   "name": "Russian",
-  "family": "Indo-European > Slavic > East Slavic",
   "script": "Cyrillic",
   "graphemes": {
     "а": [
@@ -531,7 +530,7 @@
       "ʊ"
     ]
   },
-  "parent": "sla",
+  "parent": "x-clade-east1426",
   "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o,a/ -> [ɐ] pretonic, [ə] elsewhere after hard consonants) and Иканье (unstressed /e,i/ (and /a/ after soft consonants) -> [ɪ]). г = [ɡ] plosive. FINAL DEVOICING: all obstruents (plain and palatalised) devoiced in coda/word-final position (б/бь->п/пь, в/вь->ф/фь, г->к, д/дь->т/тʲ, з/зь->с/сʲ, ж->ш); this positional devoicing only applies to the bare-consonant and soft-sign graphemes (б бь в вь г д дь з зь), never to the iotated-vowel CV digraphs (e.g. дя, зе), because those digraphs always resolve to a consonant immediately followed by a vowel and are therefore never actually in coda position, regardless of their position within the word string. Regressive voicing/palatalisation assimilation across consonant clusters (e.g. сделать [zʲdʲelətʲ]) is a known engine limitation, not modelled at the single-grapheme level used here. VOWEL REDUCTION: о/а reduce to [ɐ] in 1st pretonic syllable, [ə] elsewhere (unstressed); this positional rule only fires when the stressed syllable is known (see STRESS note below), otherwise the 'default' (unreduced) mapping is used. IOTATED VOWELS + и: е/я/ю/ё/и palatalise an immediately preceding consonant (soft-sign ь does the same); modelled as explicit two-grapheme tokens for the 15 consonants that contrast plain/palatalised (б в г д з к л м н п р с т ф х): 12 pre-existing soft-sign digraphs (бь вь дь зь ль мь нь пь рь сь ть фь) plus 75 new iotated-vowel digraphs (each of the 15 consonants x е/и/я/ё/ю, e.g. 'бе'->'bʲe', 'би'->'bʲi', 'дя'->'dʲa'); ц/ш/ж remain hard unconditionally and й/ч/щ remain soft unconditionally (their base grapheme entries already carry the sole realisation), so no digraphs are needed for those six letters. STRESS: Russian word stress is lexical and free (not derivable from spelling) and is not marked in standard orthography, so this spec intentionally carries no `stress` block (per the research-tier exemption for orthographically unpredictable stress) -- this also means the pretonic/posttonic/nucleus_unstressed positional rules below are only reachable when a caller supplies pre-stressed input (e.g. combining acute accent) through a future stress-marked variant; on ordinary unmarked spelling the engine cannot locate the stressed syllable and the 'default' (unstressed/unreduced) branch of each positional entry is used instead. This is the primary source of PER against unmarked gold sets and is why quality stays at 'research', not 'production'. Г IN GENITIVE: -ого/-его endings: г->[v] (его=[jɪvo]). Sources: Jones & Ward (1969), Timberlake (2004), Padgett & Tabain (2005), Avanesov (1956).",
   "quality": "research",
   "script_type": "alphabet",

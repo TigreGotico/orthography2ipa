@@ -1,7 +1,7 @@
 {
   "code": "ccs",
   "name": "Proto-Kartvelian (family node)",
-  "family": "Kartvelian",
+  "parent": "x-clade-kart1248",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [

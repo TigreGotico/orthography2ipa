@@ -1,12 +1,11 @@
 {
   "code": "sem-x-central",
   "name": "Proto-Central-Semitic",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "graphemes_base": "sem-x-west",
   "allophones_base": "sem-x-west",
-  "parent": "sem-x-west",
+  "parent": "x-clade-cent2236",
   "ancestors": [
     {
       "code": "sem-x-west",

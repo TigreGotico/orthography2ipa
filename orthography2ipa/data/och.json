@@ -1,7 +1,6 @@
 {
   "code": "och",
   "name": "Old Chinese",
-  "family": "Sino-Tibetan > Sinitic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -87,7 +86,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Old_Chinese"
     }
   ],
-  "parent": "sit",
+  "parent": "x-clade-sini1245",
   "ancestors": [
     {
       "code": "sit",

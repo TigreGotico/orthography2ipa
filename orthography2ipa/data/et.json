@@ -1,7 +1,6 @@
 {
   "code": "et",
   "name": "Estonian",
-  "family": "Uralic > Finnic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -125,7 +124,7 @@
       "notes": "Russian adstrate."
     }
   ],
-  "parent": "urj",
+  "parent": "x-clade-finn1317",
   "notes": "Estonian, Finnic language with three phonemic quantity degrees (short, long, overlong). Loanword consonants b, d, g are phonemically lenis (partially voiced). Vowel õ /ɤ/ is typologically unusual. No grammatical gender.",
   "sources": [
     {

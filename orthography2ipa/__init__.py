@@ -68,6 +68,7 @@ from orthography2ipa.allophony import (
     compile_allophone_rescorer,
 )
 from orthography2ipa.registry import (
+    ancestry_chain,
     available_codes,
     available_families,
     get,
@@ -110,6 +111,7 @@ __all__ = [
     "GraphemeFeatures",
     "get",
     "resolve",
+    "ancestry_chain",
     "available_codes",
     "available_families",
     "load_lexicon",

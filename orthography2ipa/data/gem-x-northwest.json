@@ -1,7 +1,6 @@
 {
   "code": "gem-x-northwest",
   "name": "Proto-Northwest Germanic",
-  "family": "Indo-European > Germanic",
   "script": "Latin",
   "graphemes_base": "gem",
   "graphemes": {
@@ -145,7 +144,7 @@
       "z"
     ]
   },
-  "parent": "gem",
+  "parent": "x-clade-nort3152",
   "ancestors": [
     {
       "code": "gem",

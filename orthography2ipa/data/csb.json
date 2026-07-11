@@ -1,7 +1,6 @@
 {
   "code": "csb",
   "name": "Kashubian",
-  "family": "Indo-European > Slavic > West Slavic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -152,7 +151,7 @@
       "notes": "German (Low German) adstrate: centuries under Prussia/Pomerania; very heavy lexical influence."
     }
   ],
-  "parent": null,
+  "parent": "x-clade-west2792",
   "notes": "Kashubian (Kaszëbsczi jãzëk), West Slavic language/dialect spoken in Pomerania, Poland. Official regional language since 2005. Nasal vowel ą /ɔ̃/, schwa ë /ə/. Digraphs sz, cz, rz, dż precede single letters. Significant German loanword influence.",
   "sources": [
     {

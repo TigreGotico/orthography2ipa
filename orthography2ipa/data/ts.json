@@ -2,7 +2,7 @@
   "code": "ts",
   "glottolog_code": "tson1249",
   "name": "Tsonga (Xitsonga)",
-  "family": "Atlantic-Congo",
+  "parent": "x-clade-narr1281",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",

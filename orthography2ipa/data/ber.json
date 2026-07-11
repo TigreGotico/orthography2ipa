@@ -1,7 +1,6 @@
 {
     "code": "ber",
     "name": "Berber (Proto-Berber / Common Tamazight)",
-    "family": "Afro-Asiatic > Berber",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -301,7 +300,7 @@
             "rː"
         ]
     },
-    "parent": "afa",
+    "parent": "x-clade-berb1260",
     "ancestors": [
         {
             "code": "afa",

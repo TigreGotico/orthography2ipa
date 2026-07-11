@@ -1,7 +1,6 @@
 {
   "code": "ar-OM",
   "name": "Omani Arabic",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {

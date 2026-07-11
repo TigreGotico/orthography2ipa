@@ -1,7 +1,6 @@
 {
   "code": "co",
   "name": "Corsican",
-  "family": "Indo-European > Romance > Italo-Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -309,7 +308,7 @@
       "ʒ"
     ]
   },
-  "parent": "la-x-italia",
+  "parent": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",

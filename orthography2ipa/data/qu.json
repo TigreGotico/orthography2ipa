@@ -1,7 +1,7 @@
 {
   "code": "qu",
   "name": "Quechua",
-  "family": "Quechuan",
+  "parent": "x-clade-quec1387",
   "script": "Latin",
   "graphemes": {
     "a": [

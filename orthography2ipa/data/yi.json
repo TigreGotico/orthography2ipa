@@ -1,7 +1,6 @@
 {
   "code": "yi",
   "name": "Yiddish",
-  "family": "Indo-European > Germanic > West Germanic",
   "script": "Hebrew",
   "script_type": "alphabet",
   "quality": "research",
@@ -166,7 +165,7 @@
       "notes": "Core Germanic vocabulary from Middle High German; also Slavic and Hebrew/Aramaic components"
     }
   ],
-  "parent": null,
+  "parent": "x-clade-west2793",
   "notes": "Eastern Yiddish (YIVO standard). Unlike Hebrew, Yiddish writes vowels fully (matres lectionis system extended). Written right-to-left. Dagesh distinguishes פּ /p/ vs פ/פֿ /f/, בּ /b/ vs בֿ /v/. Shin with right dot שׁ = /ʃ/, sin with left dot שׂ = /s/. ו = /u/, וו = /v/, י = /j/ or vowel marker, יי = /ɛɪ/.",
   "sources": [
     {

@@ -21,7 +21,6 @@
   ],
   "code": "pl",
   "name": "Polish",
-  "family": "Indo-European > Slavic > West Slavic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -284,7 +283,7 @@
       "ɨ"
     ]
   },
-  "parent": "sla",
+  "parent": "x-clade-west2792",
   "notes": "Standard Polish. Three sibilant series: alveolar /s z ts dz/, retroflex /ʂ ʐ tʂ dʐ/, alveolo-palatal /ɕ ʑ tɕ dʑ/. Nasal vowels ⟨ą ę⟩ realise as VN sequences before stops. FINAL DEVOICING: Polish obstruents devoice in coda/word-finally. NASAL VOWELS: ą→[ɔ] and ę→[ɛ] word-finally in contemporary Polish (de-nasalization); nasal elsewhere before consonants. Sources: Rubach (1984), Bethin (1992), Gussmann (2007).",
   "quality": "research",
   "script_type": "alphabet",

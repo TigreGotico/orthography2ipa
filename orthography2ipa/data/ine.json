@@ -1,7 +1,7 @@
 {
   "code": "ine",
   "name": "Proto-Indo-European (reconstructed)",
-  "family": "Indo-European",
+  "parent": "x-clade-indo1319",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "graphemes": {

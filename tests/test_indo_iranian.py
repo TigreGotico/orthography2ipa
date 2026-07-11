@@ -188,7 +188,7 @@ class TestHindi:
 
     def test_family(self):
         """Hindi is Indo-European (Indo-Iranian branch)."""
-        assert self.spec.family == "Indo-European > Indo-Aryan"
+        assert {"Indo-European", "Indo-Aryan"} <= set(self.spec.family_path)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -276,7 +276,7 @@ class TestSanskrit:
 
     def test_family(self):
         """Sanskrit is Indo-European."""
-        assert self.spec.family == "Indo-European > Indo-Aryan"
+        assert {"Indo-European", "Indo-Aryan"} <= set(self.spec.family_path)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -362,7 +362,7 @@ class TestPersian:
 
     def test_family(self):
         """Persian is Indo-European (Iranian branch)."""
-        assert self.spec.family == "Indo-European > Iranian > Western Iranian"
+        assert {"Indo-European", "Iranian"} <= set(self.spec.family_path)
 
 
 @pytest.mark.linguistic

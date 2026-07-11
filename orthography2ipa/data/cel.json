@@ -1,10 +1,9 @@
 {
   "code": "cel",
   "name": "Proto-Celtic (reconstructed)",
-  "family": "Indo-European > Celtic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
-  "parent": "ine",
+  "parent": "x-clade-celt1248",
   "notes": "Proto-Celtic (~1200–800 BCE). Reconstructed common ancestor of all Celtic languages. Defining innovation: PIE *p → *ɸ → ∅ (complete p-loss). Other key changes: *gʷ → b, *ē → *ī (hence ē is absent from the reconstructed phoneme inventory), *ew → *ow. Preserves PIE labiovelars (*kʷ splits later: Goidelic → /k/, Brythonic → /p/). Incipient lenition of intervocalic stops. Source: Matasović (2009). Matasović (2009) reconstructs no plain *ē for Proto-Celtic (only marginal/secondary long e); diphthongs ai/ei/oi/au/ou are attested.",
   "graphemes": {
     "b": [

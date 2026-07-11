@@ -1,7 +1,7 @@
 {
   "code": "kmb",
   "name": "Kimbundu (Mbundu)",
-  "family": "Atlantic-Congo",
+  "parent": "x-clade-narr1281",
   "script": "Latin",
   "graphemes": {
     "a": ["a"],

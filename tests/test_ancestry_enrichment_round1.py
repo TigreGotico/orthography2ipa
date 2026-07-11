@@ -10,6 +10,7 @@ the Slavic and Turkic families in this round resolves cleanly:
 """
 import pytest
 
+from orthography2ipa.registry import ancestry_chain
 from orthography2ipa.registry import get, available_json_codes
 from orthography2ipa.distance import ancestry_similarity, _build_ancestor_graph
 from orthography2ipa.types import AncestorRole
@@ -66,7 +67,9 @@ def test_slavic_roots_at_proto_slavic(spec):
     code, s = spec
     if code in {"bg", "mk", "sr", "hr", "sl", "cs", "sk", "pl",
                 "csb", "szl", "hsb", "dsb", "rue", "be", "uk", "ru"}:
-        assert s.parent == "sla"
+        # Each hangs under its East/West/South Slavic clade node, which in turn
+        # hangs under Proto-Slavic: `sla` stays on the chain.
+        assert "sla" in ancestry_chain(code)
 
 
 def test_similarity_runs_pairwise():

@@ -1,9 +1,8 @@
 {
     "code": "mxi",
     "name": "Mozarabic",
-    "family": "Indo-European > Romance",
     "script": "Arabic",
-    "parent": "la-x-late",
+    "parent": "x-clade-roma1334",
     "notes": "Mozarabic (8th–13th c. CE). Romance language of Al-Andalus, spoken by Christians, some Jews/Muslims under Islamic rule. Attested in kharjas (Arabic/Hebrew-script Romance stanzas) and botanical/medical texts. ARCHAIC features: no ĕ/ŏ diphthongisation (noite not noche), F- preserved as [f] (not [h]), Latin PL-/CL-/FL- preserved, -CT- → [jt] not [tʃ]. Extinct by ~13th century, replaced by advancing Castilian, Portuguese, and Catalan. Written in Arabic/Hebrew scripts.",
     "sources": [
         {

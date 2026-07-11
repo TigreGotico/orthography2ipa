@@ -1,7 +1,6 @@
 {
   "code": "wa",
   "name": "Walloon",
-  "family": "Indo-European > Romance > Gallo-Romance",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -152,7 +151,7 @@
       "notes": "Evolved from Vulgar Latin; Gallo-Romance variety of Belgium"
     }
   ],
-  "parent": null,
+  "parent": "x-clade-gallorom",
   "notes": "Walloon (Walon), Gallo-Romance language spoken in Wallonia (Belgium) and parts of France. Official regional language of Wallonia. Digraph ch = /ʃ/, j = /ʒ/. Retains Latin w preserved as /w/. Closely related to Picard. Phonemic vowel length.",
   "sources": [
     {

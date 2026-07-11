@@ -1,7 +1,6 @@
 {
   "code": "sa",
   "name": "Sanskrit",
-  "family": "Indo-European > Indo-Aryan",
   "script": "Devanagari",
   "graphemes": {
     "अ": [
@@ -348,7 +347,7 @@
       "əu"
     ]
   },
-  "parent": "ine",
+  "parent": "x-clade-indo1321",
   "ancestors": [
     {
       "code": "ine",

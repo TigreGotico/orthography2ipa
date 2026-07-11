@@ -1,7 +1,7 @@
 {
   "code": "tcy",
   "name": "Tulu",
-  "family": "Dravidian",
+  "parent": "x-clade-drav1251",
   "script": "Latin",
   "graphemes": {
     "a": [

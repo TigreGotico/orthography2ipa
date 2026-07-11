@@ -1,7 +1,7 @@
 {
   "code": "yua",
   "name": "Yucatec Maya",
-  "family": "Mayan",
+  "parent": "x-clade-maya1287",
   "script": "Latin",
   "graphemes": {
     "a": [

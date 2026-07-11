@@ -1,7 +1,6 @@
 {
   "code": "lld",
   "name": "Ladin",
-  "family": "Indo-European > Romance > Italo-Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -207,7 +206,7 @@
       "ʒ"
     ]
   },
-  "parent": "la-x-gallia",
+  "parent": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",

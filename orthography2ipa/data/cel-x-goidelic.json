@@ -1,7 +1,6 @@
 {
     "code": "cel-x-goidelic",
     "name": "Proto-Goidelic (reconstructed)",
-    "family": "Indo-European > Celtic > Goidelic",
     "script": "IPA-reconstruction",
     "graphemes": {
         "a": [
@@ -171,7 +170,7 @@
             "kʷ"
         ]
     },
-    "parent": "cel",
+    "parent": "x-clade-goid1240",
     "notes": "Proto-Goidelic. Ancestral to Irish, Scottish Gaelic, Manx. Key split from Proto-Celtic: PIE *kʷ → /k/ (Q-Celtic), vs. Brythonic *kʷ → /p/ (P-Celtic). Developed /f/ from *sw- and Latin loans. Broad/slender consonant distinction incipient.",
     "quality": "research",
     "script_type": "reconstruction",

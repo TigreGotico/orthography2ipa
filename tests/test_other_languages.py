@@ -224,7 +224,7 @@ class TestAncientGreek:
 
     def test_family(self):
         """Ancient Greek is Hellenic (Indo-European)."""
-        assert self.spec.family == "Indo-European > Greek"
+        assert {"Indo-European", "Hellenic"} <= set(self.spec.family_path)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -398,7 +398,7 @@ class TestFinnish:
 
     def test_family(self):
         """Finnish is Uralic (Finno-Ugric)."""
-        assert self.spec.family == "Uralic > Finnic"
+        assert {"Uralic", "Finnic"} <= set(self.spec.family_path)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -809,4 +809,4 @@ class TestMandarin:
 
     def test_family(self):
         """Mandarin is Sino-Tibetan."""
-        assert self.spec.family == "Sino-Tibetan > Sinitic"
+        assert {"Sino-Tibetan", "Sinitic"} <= set(self.spec.family_path)

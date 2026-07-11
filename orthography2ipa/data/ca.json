@@ -33,7 +33,6 @@
   ],
   "code": "ca",
   "name": "Catalan",
-  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -413,7 +412,7 @@
       ]
     }
   },
-  "parent": "la-x-late",
+  "parent": "x-clade-roma1334",
   "notes": "Central Catalan (Barcelona standard). Vowel reduction applies ONLY in UNSTRESSED syllables (Wheeler 2005 §2.3): unstressed /a e ɛ/ → [ə] and /o ɔ/ → [u]; STRESSED vowels keep full quality (gos → [ˈɡɔs], dòna → [ˈdɔnə]). Reduction is therefore keyed to the ⟨nucleus_unstressed⟩ positional slot, not to every nucleus. Intervocalic spirantization of /b d ɡ/ → [β ð ɣ] and final-obstruent devoicing/nasal place assimilation are modelled as post-lexical allophone_rules. ⟨l·l⟩ (ela geminada) is a unique Catalan digraph.",
   "quality": "research",
   "script_type": "alphabet",

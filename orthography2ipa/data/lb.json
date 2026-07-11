@@ -1,7 +1,6 @@
 {
   "code": "lb",
   "name": "Luxembourgish",
-  "family": "Indo-European > Germanic > West Germanic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -149,7 +148,7 @@
       "notes": "Moselle Franconian variety of West Germanic"
     }
   ],
-  "parent": null,
+  "parent": "x-clade-west2793",
   "notes": "Luxembourgish (Lëtzebuergesch), Moselle Franconian West Germanic language, co-official in Luxembourg alongside French and German. Trigraph sch = /ʃ/, digraph ch = /x/. Vowel ë = schwa. Eifeler Regel: final /n/ deletion before certain consonants.",
   "sources": [
     {

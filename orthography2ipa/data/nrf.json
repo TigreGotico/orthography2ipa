@@ -1,7 +1,6 @@
 {
     "code": "nrf",
     "name": "Norman",
-    "family": "Indo-European > Romance > Gallo-Romance",
     "script": "Latin",
     "script_type": "alphabet",
     "quality": "research",
@@ -152,7 +151,7 @@
             "notes": "Gallo-Romance language evolved from Vulgar Latin in Normandy; influenced by Old Norse"
         }
     ],
-    "parent": null,
+    "parent": "x-clade-gallorom",
     "notes": "Norman (Normand/Dgèrnésiais/Jèrriais), Gallo-Romance language spoken in Normandy (France), Jersey (Jèrriais) and Guernsey (Dgèrnésiais). Historically influenced Anglo-Norman and through it Modern English. Old Norse substrate influence. Digraph ch = /tʃ/ (archaic) or /ʃ/ depending on dialect.",
     "sources": [
         {

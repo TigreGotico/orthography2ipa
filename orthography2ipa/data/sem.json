@@ -1,7 +1,7 @@
 {
   "code": "sem",
   "name": "Proto-Semitic",
-  "family": "Afro-Asiatic > Semitic",
+  "parent": "x-clade-semi1276",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "graphemes": {

@@ -1,7 +1,7 @@
 {
   "code": "xaq",
   "name": "Aquitanian (Proto-Basque)",
-  "family": "Basque",
+  "parent": "x-clade-vascon",
   "script": "Latin",
   "graphemes": {
     "b": [

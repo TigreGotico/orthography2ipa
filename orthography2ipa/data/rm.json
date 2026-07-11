@@ -1,7 +1,6 @@
 {
   "code": "rm",
   "name": "Romansh",
-  "family": "Indo-European > Romance > Gallo-Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -204,7 +203,7 @@
       "y"
     ]
   },
-  "parent": "la-x-gallia",
+  "parent": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",

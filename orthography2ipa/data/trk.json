@@ -1,7 +1,7 @@
 {
   "code": "trk",
   "name": "Proto-Turkic (family node)",
-  "family": "Turkic",
+  "parent": "x-clade-turk1311",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": ["a"],

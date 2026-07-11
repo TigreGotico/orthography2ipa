@@ -1,7 +1,6 @@
 {
   "code": "bnt",
   "name": "Proto-Bantu (family node)",
-  "family": "Atlantic-Congo",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [
@@ -87,7 +86,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Proto-Bantu_language"
     }
   ],
-  "parent": "nic",
+  "parent": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "nic",

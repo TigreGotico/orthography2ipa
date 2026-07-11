@@ -261,8 +261,12 @@ class TestProtoLanguageRoots:
         except KeyError:
             pytest.skip(f"{code} not in registry")
         parents = spec.get_ancestors(AncestorRole.PARENT)
-        assert len(parents) == 0, \
-            f"Proto-language {code} should have no PARENT, but has: {parents}"
+        # A proto-language has no linguistic ancestor. Its only parent is the
+        # classification-only clade node it is the reconstruction of, which
+        # carries no data and is never an inheritance source.
+        for parent in parents:
+            assert get(parent.code).clade, \
+                f"Proto-language {code} should have no PARENT, but has: {parents}"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

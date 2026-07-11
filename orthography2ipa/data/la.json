@@ -1,7 +1,6 @@
 {
   "code": "la",
   "name": "Classical Latin",
-  "family": "Indo-European > Italic",
   "script": "Latin",
   "parent": "la-x-archaic",
   "graphemes_base": "la-x-archaic",

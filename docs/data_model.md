@@ -160,7 +160,9 @@ Ancestor(
 class LanguageSpec:
     code: str                                          # BCP-47 or ISO 639 code
     name: str                                          # Human-readable name
-    family: str                                        # Language family
+    family: str                                        # DERIVED classification path
+    family_path: Tuple[str, ...]                       # DERIVED clade chain, broadest first
+    clade: bool                                        # classification-only node
     script: str                                        # Primary script
     graphemes: Grapheme2IPA                            # Grapheme → IPA
     allophones: AllophoneMap                           # Phoneme → allophones

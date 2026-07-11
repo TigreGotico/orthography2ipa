@@ -1,7 +1,6 @@
 {
   "code": "sq",
   "name": "Albanian",
-  "family": "Indo-European > Albanian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -59,7 +58,7 @@
       "notes": "Isolated Indo-European branch; possibly descended from Illyrian or Thraco-Dacian"
     }
   ],
-  "parent": null,
+  "parent": "x-clade-alba1267",
   "notes": "Standard Albanian based on Tosk dialect. Unique Indo-European branch. Digraphs (dh, gj, ll, nj, rr, sh, th, xh, zh) listed before single letters. Ë = schwa /ə/. Q = palatal stop /c/. R = tap /ɾ/, rr = trill /r/.",
   "sources": [
     {

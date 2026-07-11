@@ -1,7 +1,7 @@
 {
   "code": "phn",
   "name": "Phoenician/Punic",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
+  "parent": "x-clade-semi1276",
   "script": "Latin",
   "graphemes": {
     "ʾ": [

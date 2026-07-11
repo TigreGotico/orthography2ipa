@@ -793,6 +793,8 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.NOT_INHERITED,
     "grapheme_weights": InheritanceMode.NOT_INHERITED,
+    "clade": InheritanceMode.OWN_ONLY,
+    "family_path": InheritanceMode.OWN_ONLY,
 }
 """Explicit, enforced registry of every ``LanguageSpec`` field's inheritance
 behavior. ``tests/test_types.py`` asserts this covers every field returned by
@@ -837,7 +839,14 @@ class LanguageSpec:
     """Human-readable name."""
 
     family: str
-    """Language family."""
+    """Language family, as a classification path (``"Indo-European > Italic >
+    Romance > Ibero-Romance"``).
+
+    Derived, not hand-maintained: the loader joins :attr:`family_path`, which
+    it reads off the clade nodes on the ancestry chain. A JSON spec may still
+    carry an explicit ``family`` string, which then wins — that escape hatch
+    is for groupings that are not genetic clades (creoles, constructed
+    languages, isolates, unclassified languages)."""
 
     script: str
     """Primary script."""
@@ -996,6 +1005,25 @@ class LanguageSpec:
     Not inherited through ancestry — see :data:`FIELD_INHERITANCE` /
     :class:`InheritanceMode.NOT_INHERITED`. The beam turns a weight into
     a ``-log(p)`` cost via :func:`orthography2ipa.weights.candidate_base_costs`."""
+
+    clade: bool = False
+    """True for a classification-only node (``Romance``, ``West Germanic``).
+
+    A clade carries no phonology — empty ``graphemes`` / ``allophones`` — and
+    is never a data-inheritance source: the loader walks *through* clade nodes
+    when it looks for the nearest data-bearing ancestor. Clades exist purely
+    as steps in the ancestry chain, which is where :attr:`family_path` (and
+    therefore :attr:`family`) is read from.
+
+    A reconstructed PROTO-LANGUAGE (Proto-Bantu, Hispanic Vulgar Latin) is
+    *not* a clade: it is a language, it carries graphemes, and it legitimately
+    acts as a data ancestor."""
+
+    family_path: Tuple[str, ...] = ()
+    """Derived classification path — the names of the clade nodes on this
+    spec's ancestry chain, broadest first (``("Indo-European", "Italic",
+    "Romance", "Ibero-Romance")``). Computed by the loader by walking
+    ``parent``; never hand-written in JSON."""
 
     word_exceptions: Optional[Dict[str, str]] = None
     """Whole-word IPA overrides for a closed set of irregular words that

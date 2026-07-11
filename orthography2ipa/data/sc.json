@@ -1,7 +1,6 @@
 {
   "code": "sc",
   "name": "Sardinian",
-  "family": "Indo-European > Romance > Southern Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -240,7 +239,7 @@
       "ʒ"
     ]
   },
-  "parent": "la-x-late",
+  "parent": "x-clade-sard1257",
   "ancestors": [
     {
       "code": "la",

@@ -1,7 +1,6 @@
 {
   "code": "ar-LB",
   "name": "Lebanese Arabic (Beiruti)",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-levantine",
   "graphemes": {

@@ -27,7 +27,6 @@
   ],
   "code": "mk",
   "name": "Macedonian",
-  "family": "Indo-European > Slavic > South Slavic",
   "script": "Cyrillic",
   "graphemes": {
     "а": [
@@ -233,7 +232,7 @@
       "u"
     ]
   },
-  "parent": "sla",
+  "parent": "x-clade-sout3147",
   "notes": "Standard Macedonian, codified 1945. South Slavic, closely related to Bulgarian. Analytic case system (lost inflection). Fixed antepenultimate stress (third-from-last syllable). Unique letters: ⟨ѕ⟩ = [dz], ⟨ѓ⟩ = [ɟ], ⟨ќ⟩ = [c]. Definite article suffixed in three forms: -от/-та/-то (definite), -ов/-ва/-во (proximal), -он/-на/-но (distal). ⟨љ⟩ = [ʎ], ⟨њ⟩ = [ɲ].",
   "quality": "research",
   "script_type": "alphabet",

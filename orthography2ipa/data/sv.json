@@ -1,7 +1,6 @@
 {
   "code": "sv",
   "name": "Swedish",
-  "family": "Indo-European > Germanic > North Germanic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -294,7 +293,7 @@
       "ɛː"
     ]
   },
-  "parent": "gem",
+  "parent": "x-clade-nort3160",
   "ancestors": [
     {
       "code": "non",

@@ -1,7 +1,6 @@
 {
     "code": "ar-NG",
     "name": "Nigerian Arabic (Shuwa)",
-    "family": "Afro-Asiatic > Semitic > Central Semitic",
     "script": "Arabic",
     "graphemes_base": "ar-TD",
     "graphemes": {

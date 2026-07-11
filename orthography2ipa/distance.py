@@ -46,11 +46,11 @@ Usage
 from __future__ import annotations
 
 import functools
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.feats import NUM_FEATURES, phonetic_distance, vectorize_phones
-from orthography2ipa.types import LanguageSpec, WeightedDistance
+from orthography2ipa.types import Ancestor, LanguageSpec, WeightedDistance
 
 __all__ = [
     "Feature",
@@ -489,6 +489,38 @@ def pairwise_distances(
 # Ancestry-weighted phylogenetic distance
 # ═══════════════════════════════════════════════════════════════════════════
 
+def _data_ancestors(spec: LanguageSpec) -> Tuple[Ancestor, ...]:
+    """Return *spec*'s ancestors with classification-only clade nodes skipped.
+
+    A clade (``Romance``, ``West Germanic``) is a step in the classification
+    chain, not a language: it has no phonology, so it contributes nothing to a
+    genealogical distance. Each clade ancestor is therefore replaced by the
+    nearest data-bearing ancestor above it (dropped when there is none), which
+    keeps ancestry weights identical to a graph with no clade nodes in it.
+    """
+    from orthography2ipa.registry import get as _get
+
+    resolved: List[Ancestor] = []
+    for ancestor in spec.get_ancestors():
+        code: Optional[str] = ancestor.code
+        seen: Set[str] = set()
+        while code and code not in seen:
+            seen.add(code)
+            try:
+                candidate = _get(code)
+            except KeyError:
+                code = None
+                break
+            if not candidate.clade:
+                break
+            code = candidate.parent
+        if code and code != ancestor.code:
+            resolved.append(replace(ancestor, code=code))
+        elif code:
+            resolved.append(ancestor)
+    return tuple(resolved)
+
+
 def _build_ancestor_graph(
         code: str,
         _visited: Optional[Set[str]] = None,
@@ -528,7 +560,7 @@ def _build_ancestor_graph(
     except KeyError:
         return _registry
 
-    ancestors = spec.get_ancestors()
+    ancestors = _data_ancestors(spec)
     if ancestors:
         _registry[code] = [(a.code, a.weight) for a in ancestors]
         for a in ancestors:
@@ -702,7 +734,7 @@ def _trace_ancestry_weights(
         except KeyError:
             continue
 
-        ancestors = spec.get_ancestors()
+        ancestors = _data_ancestors(spec)
         for a in ancestors:
             path_weight = weight * a.weight
             # Only keep the strongest path to each ancestor
@@ -750,7 +782,7 @@ def _trace_ancestry_weights_temporal(
         except KeyError:
             continue
 
-        ancestors = current_spec.get_ancestors()
+        ancestors = _data_ancestors(current_spec)
         for a in ancestors:
             try:
                 anc_spec = _get(a.code)

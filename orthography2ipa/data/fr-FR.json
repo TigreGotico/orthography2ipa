@@ -1,7 +1,6 @@
 {
     "code": "fr-FR",
     "name": "French",
-    "family": "Indo-European > Romance > Gallo-Romance",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -384,7 +383,7 @@
             "ɛ̃"
         ]
     },
-    "parent": "la-x-gallia",
+    "parent": "x-clade-gallorom",
     "ancestors": [
         {
             "code": "la-x-gallia",

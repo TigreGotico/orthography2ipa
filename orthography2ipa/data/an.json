@@ -2,11 +2,10 @@
   "code": "an",
   "glottolog_code": "arag1245",
   "name": "Aragonese",
-  "family": "Indo-European > Romance",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "la-x-hispania",
+  "parent": "x-clade-iberrom",
   "graphemes": {
     "a": [
       "a"

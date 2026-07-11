@@ -1,7 +1,6 @@
 {
   "code": "no",
   "name": "Norwegian",
-  "family": "Indo-European > Germanic > North Germanic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -289,7 +288,7 @@
       "ə"
     ]
   },
-  "parent": "gem",
+  "parent": "x-clade-nort3160",
   "ancestors": [
     {
       "code": "non",

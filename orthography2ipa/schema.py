@@ -229,8 +229,16 @@ class LanguageSpecModel(_Strict):
     # ─── required ───────────────────────────────────────────────────
     code: str = Field(min_length=1)
     name: str = Field(min_length=1)
-    family: str = Field(min_length=1)
     script: str = Field(min_length=1)
+
+    # ─── classification ─────────────────────────────────────────────
+    # ``family`` is DERIVED from the clade nodes on the ancestry chain and is
+    # not authored per spec. It stays accepted (optional) as an override for
+    # groupings that are not genetic clades — creoles, constructed languages,
+    # isolates, unclassified languages.
+    family: Optional[str] = Field(default=None, min_length=1)
+    # ``clade``: this spec is a classification-only node, never a data source.
+    clade: bool = False
 
     # ─── core mappings (required per SCHEMA.md, but optional when a
     #     ``*_base`` inheritance key supplies them) ──────────────────

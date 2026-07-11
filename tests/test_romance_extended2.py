@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import pytest
 import orthography2ipa
+from orthography2ipa.registry import ancestry_chain
 from orthography2ipa.types import GraphemePosition
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -212,7 +213,7 @@ class TestRomanItalian:
 
     def test_family_is_romance(self) -> None:
         """Language family must be Romance."""
-        assert self.spec.family == "Indo-European > Romance > Italo-Romance"
+        assert {"Indo-European", "Romance", "Italo-Romance"} <= set(self.spec.family_path)
 
     def test_vowel_a_present(self) -> None:
         """Grapheme 'a' must resolve to [a] (inherited from it-IT)."""
@@ -246,7 +247,7 @@ class TestCalabrianItalian:
 
     def test_parent_ancestry(self) -> None:
         """Calabrian parent traces back through Italy Latin (la-x-italia) — historical Romance."""
-        assert self.spec.parent == "la-x-italia"
+        assert "la-x-italia" in ancestry_chain(self.spec.code)
 
     # --- Schwa grapheme ---
 
@@ -334,7 +335,7 @@ class TestRomanian:
 
     def test_family(self) -> None:
         """Romanian must be classified as Romance."""
-        assert self.spec.family == "Indo-European > Romance > Eastern Romance"
+        assert {"Indo-European", "Romance", "Eastern Romance"} <= set(self.spec.family_path)
 
     def test_script(self) -> None:
         """Romanian uses the Latin script."""
@@ -465,7 +466,7 @@ class TestSardinian:
 
     def test_family_is_romance(self) -> None:
         """Sardinian must be classified as Romance."""
-        assert self.spec.family == "Indo-European > Romance > Southern Romance"
+        assert {"Indo-European", "Romance", "Southern Romance"} <= set(self.spec.family_path)
 
     # --- Conservative 5-vowel system ---
 
@@ -1224,7 +1225,7 @@ class TestAlentejoPortuguese:
 
     def test_family_is_romance(self) -> None:
         """Alentejo must be Romance."""
-        assert self.spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self.spec.family_path)
 
 
 @pytest.mark.iberian

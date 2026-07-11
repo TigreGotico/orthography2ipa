@@ -1,9 +1,8 @@
 {
   "code": "gem-x-suebi",
   "name": "Suebi (Germanic)",
-  "family": "Indo-European > Germanic",
   "script": "Latin",
-  "parent": "gem",
+  "parent": "x-clade-west2793",
   "notes": "Suebi/Suevi. West Germanic people who established a kingdom in Gallaecia (NW Iberia, 411–585 CE). Germanic superstrate in Galician and Portuguese: ~200 place names and personal names, vocabulary (guerra, roubar, branco). Phonology reconstructed from Proto-West-Germanic (Piel 1937, d'Encarnação 1975).",
   "sources": [
     {

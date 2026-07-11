@@ -46,7 +46,7 @@ def test_spec_registers(code):
     spec = get(code)
     assert spec.code == code
     assert spec.graphemes, f"{code} resolved no graphemes"
-    assert spec.family == "Indo-European > Romance"
+    assert {"Indo-European", "Romance"} <= set(spec.family_path)
 
 
 @pytest.mark.parametrize("code", VALLEYS)

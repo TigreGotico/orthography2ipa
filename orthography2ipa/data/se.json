@@ -1,7 +1,6 @@
 {
     "code": "se",
     "name": "Northern Sami",
-    "family": "Uralic > Saami",
     "script": "Latin",
     "script_type": "alphabet",
     "quality": "research",
@@ -128,7 +127,7 @@
             "notes": "Swedish adstrate."
         }
     ],
-    "parent": "urj",
+    "parent": "x-clade-saam1281",
     "notes": "Northern Sami, largest Sami language spoken in Norway, Sweden and Finland. Sami alphabets include several extended characters: č /tʃ/, đ /ð/, ŋ /ŋ/, š /ʃ/, ž /ʒ/, ŧ /θ/. Consonant gradation system similar to Finnish. Polysynthetic morphology.",
     "sources": [
         {

@@ -1,7 +1,6 @@
 {
   "code": "de-DE",
   "name": "German",
-  "family": "Indo-European > Germanic > West Germanic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -310,7 +309,7 @@
       "ɔʏ"
     ]
   },
-  "parent": "gem",
+  "parent": "x-clade-west2793",
   "ancestors": [
     {
       "code": "goh",

@@ -133,13 +133,53 @@ def get(code: str) -> LanguageSpec:
     return _cache[code]
 
 
-def available_codes() -> List[str]:
-    """Return all registered language codes."""
-    return sorted(available_json_codes())
+def available_codes(include_clades: bool = False) -> List[str]:
+    """Return all registered language codes.
+
+    Classification-only clade nodes (``Romance``, ``West Germanic``) are not
+    languages — they carry no phonology and cannot be transcribed — so they
+    are excluded unless *include_clades* is set.
+    """
+    codes = sorted(available_json_codes())
+    if include_clades:
+        return codes
+    keep: List[str] = []
+    for code in codes:
+        try:
+            if not get(code).clade:
+                keep.append(code)
+        except (KeyError, ValueError, ModuleNotFoundError):
+            keep.append(code)
+    return keep
+
+
+def ancestry_chain(code: str) -> List[str]:
+    """Return the ``parent`` chain above *code*, nearest ancestor first.
+
+    Includes the classification-only clade nodes the chain passes through
+    (``["ber", "x-clade-berb1260", "afa", "x-clade-afro1255"]``).
+    """
+    chain: List[str] = []
+    seen = {resolve(code)}
+    parent = get(code).parent
+    while parent and parent not in seen:
+        chain.append(parent)
+        seen.add(parent)
+        try:
+            parent = get(parent).parent
+        except KeyError:
+            break
+    return chain
 
 
 def available_families() -> Dict[str, List[str]]:
-    """Return ``{family: [codes]}`` for every loaded language."""
+    """Return ``{family: [codes]}`` for every loaded language.
+
+    The key is the classification path derived from the clade nodes on the
+    ancestry chain (``"Indo-European > Italic > Romance > Ibero-Romance"``).
+    Callers filter at any depth — ``orthography2ipa list --family Romance``
+    matches any single step of the path.
+    """
     fam: Dict[str, List[str]] = {}
     for code in available_codes():
         try:

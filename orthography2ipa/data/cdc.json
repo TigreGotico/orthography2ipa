@@ -1,7 +1,6 @@
 {
   "code": "cdc",
   "name": "Proto-Chadic (family node)",
-  "family": "Afro-Asiatic > Chadic",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [
@@ -87,7 +86,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Chadic_languages"
     }
   ],
-  "parent": "afa",
+  "parent": "x-clade-chad1250",
   "ancestors": [
     {
       "code": "afa",

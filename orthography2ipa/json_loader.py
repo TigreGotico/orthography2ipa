@@ -58,6 +58,43 @@ _OVERLAY_BY_ID_FIELDS: tuple = tuple(
 )
 
 
+def _nearest_data_ancestor(code: Optional[str]) -> Optional[str]:
+    """Return the nearest ancestor of *code* (itself included) that can carry
+    data, skipping classification-only clade nodes.
+
+    A clade (``Romance``, ``West Germanic``) has no phonology and must never
+    act as a data-inheritance source. Splicing one into the ancestry chain
+    between a spec and its data-bearing parent would otherwise silently strip
+    the spec's inherited ``sandhi_rules`` / ``allophone_rules``; walking
+    through clades keeps the inheritance edge pointing at the same language it
+    pointed at before the clade existed.
+    """
+    seen = set()
+    while code and code in _specs and code not in seen:
+        seen.add(code)
+        spec = _specs[code]
+        if not spec.clade:
+            return code
+        code = spec.parent
+    return None
+
+
+def _derive_family_path(parent_code: Optional[str]) -> "Tuple[str, ...]":
+    """Return the classification path implied by *parent_code*'s chain.
+
+    The path is the names of the clade nodes on the ancestry chain, broadest
+    first. Each spec's own ``family_path`` already holds its ancestors' clades,
+    so one step of recursion is enough.
+    """
+    from typing import Tuple  # noqa: F401 — used in annotation only
+    if not parent_code or parent_code not in _specs:
+        return ()
+    parent = _specs[parent_code]
+    if parent.clade:
+        return parent.family_path + (parent.name,)
+    return parent.family_path
+
+
 def _overlay_by_id(base_items: tuple, own_items: tuple) -> tuple:
     """Merge two sequences of id-keyed objects (``.id`` attribute).
 
@@ -290,7 +327,8 @@ def load_json_spec(code: str) -> LanguageSpec:
         "allophone_rules": own_allophone_rules,
     }
     _resolved_overlay = dict(_own_overlay)
-    overlay_base_lang = base_field_langs.get("graphemes") or parent_lang
+    overlay_base_lang = (base_field_langs.get("graphemes")
+                         or _nearest_data_ancestor(parent_lang))
     if overlay_base_lang and overlay_base_lang in _specs:
         for field in _OVERLAY_BY_ID_FIELDS:
             _resolved_overlay[field] = _overlay_by_id(
@@ -351,10 +389,33 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_stress.get("notes", "") or "",
         )
 
+    # Derive the classification path from the ancestry chain. The chain is
+    # walked through ``parent``; a spec that declares its genetic parent only
+    # in ``ancestors`` (PARENT role) is classified through that instead, so a
+    # spec never has to be re-parented just to be classifiable.
+    classification_parent = parent_lang
+    if not classification_parent:
+        for ancestor in ancestors:
+            if ancestor.role is AncestorRole.PARENT:
+                classification_parent = ancestor.code
+                break
+    if classification_parent and classification_parent not in _specs:
+        try:
+            _specs[classification_parent] = load_json_spec(classification_parent)
+        except (KeyError, ValueError):
+            classification_parent = None
+    family_path = _derive_family_path(classification_parent)
+    # An explicit ``family`` string wins over the derived path: it is the
+    # escape hatch for groupings that are not genetic clades (creoles,
+    # constructed languages, isolates, unclassified languages).
+    family = raw.get("family") or " > ".join(family_path)
+
     spec = LanguageSpec(
         code=raw["code"],
         name=raw["name"],
-        family=raw["family"],
+        family=family,
+        family_path=family_path,
+        clade=bool(raw.get("clade", False)),
         script=raw["script"],
         graphemes=graphemes,
         allophones=allophones,

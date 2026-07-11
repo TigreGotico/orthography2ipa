@@ -1,7 +1,6 @@
 {
   "code": "sem-x-west",
   "name": "Proto-West-Semitic",
-  "family": "Afro-Asiatic > Semitic > West Semitic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "graphemes_base": "sem",

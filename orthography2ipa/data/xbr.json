@@ -1,7 +1,6 @@
 {
   "code": "xbr",
   "name": "Common Brythonic",
-  "family": "Indo-European > Celtic > Brythonic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -167,7 +166,7 @@
       "lː"
     ]
   },
-  "parent": "cel",
+  "parent": "x-clade-bryt1239",
   "notes": "Common Brythonic / Proto-Brythonic. Celtic language of pre-Roman and Roman Britain. Ancestor of Welsh, Cornish, Breton. Substrate in English: place names (London, Thames, Kent, Dover), possibly influence on English phonology. Voiceless lateral /ɬ/ and voiceless rhotic /r̥/ are diagnostic features. Refs: Jackson (1953), Schrijver (1995).",
   "quality": "research",
   "script_type": "alphabet",
