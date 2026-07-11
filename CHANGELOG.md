@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.70.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.70.2a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.70.1a1...1.70.2a1)
+
+**Merged pull requests:**
+
+- fix\(data\): model Mirandese intervocalic /b/ spirantisation \(b→β\) [\#252](https://github.com/TigreGotico/orthography2ipa/pull/252) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.70.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.70.1a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.70.0a1...1.70.1a1)
@@ -679,7 +687,6 @@
 **Merged pull requests:**
 
 - feat\(data\): arabic dialect expansion and review [\#62](https://github.com/TigreGotico/orthography2ipa/pull/62) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(data\): portuguese dialect stress and reduction systems [\#61](https://github.com/TigreGotico/orthography2ipa/pull/61) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.9.0a1) (2026-06-12)
 
