@@ -2389,3 +2389,44 @@ class TestGalicianWestern:
         d_gl = phonological_distance(self._spec, gl)
         d_arb = phonological_distance(self._spec, arb)
         assert d_gl.inventory.jaccard <= d_arb.inventory.jaccard
+
+
+# ---------------------------------------------------------------------------
+# GALICIAN (gl-ES regional spec) — de-contamination regression tests
+# ---------------------------------------------------------------------------
+class TestGalicianES:
+    """gl-ES is Standard Galician per RAG norms. It must NOT carry Portuguese
+    features (vowel reduction, cedilla/circumflex/nasal-diphthong spellings,
+    ⟨g⟩→[ʃ], intervocalic sibilant voicing). Regueira (1996:119)."""
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        request.cls._spec = _load("gl-ES")
+
+    def test_g_is_only_velar(self):
+        """gl-ES ⟨g⟩ → /ɡ/ only; never /ʃ/ (that was a contamination error)."""
+        g = _grapheme(self._spec, "g")
+        assert g == ["ɡ"], f"gl-ES g: expected [ɡ] only, got {g}"
+
+    def test_a_no_vowel_reduction(self):
+        """No unstressed reduction to [ɐ] — /a/ stays [a] (Regueira 1996:119)."""
+        g = _grapheme(self._spec, "a")
+        assert "ɐ" not in g, f"gl-ES a: unexpected reduced [ɐ], got {g}"
+
+    def test_no_cedilla(self):
+        _assert_null(self._spec, "ç", "gl-ES ç")
+
+    def test_no_circumflex_graphemes(self):
+        for k in ("ê", "ô"):
+            assert self._spec.graphemes.get(k) is None, f"gl-ES {k}: RAG uses no circumflex"
+
+    def test_no_nasal_diphthong_grapheme(self):
+        assert self._spec.graphemes.get("ão") is None, "gl-ES ão: Portuguese, not RAG"
+
+    def test_nh_velar_nasal_only(self):
+        """gl-ES ⟨nh⟩ = velar /ŋ/ (unha); the /ɲ/ alternant was contamination."""
+        g = _grapheme(self._spec, "nh")
+        assert g == ["ŋ"], f"gl-ES nh: expected [ŋ], got {g}"
+
+    def test_z_distincion(self):
+        _assert_first(_grapheme(self._spec, "z"), "θ", "gl-ES z")
