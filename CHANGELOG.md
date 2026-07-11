@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.56.0a4](https://github.com/TigreGotico/orthography2ipa/tree/1.56.0a4) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.56.0a3...1.56.0a4)
+
+**Merged pull requests:**
+
+- docs: add navigation footers to Basque language pages [\#212](https://github.com/TigreGotico/orthography2ipa/pull/212) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.56.0a3](https://github.com/TigreGotico/orthography2ipa/tree/1.56.0a3) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.56.0a2...1.56.0a3)
@@ -681,7 +689,6 @@
 **Merged pull requests:**
 
 - feat\(schema\): declarative stress rules with detection and IPA marking [\#23](https://github.com/TigreGotico/orthography2ipa/pull/23) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(plugin\): word context fields, normalize/post\_process hooks, priority dispatch [\#21](https://github.com/TigreGotico/orthography2ipa/pull/21) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.3.0a1) (2026-06-11)
 
