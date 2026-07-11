@@ -59,6 +59,9 @@ each tier actually certifies.
 | [pt-BR-x-sp.md](pt-BR-x-sp.md) | Paulistano (São Paulo capital) — plain tap coda /r/, non-chiado coda /s/ |
 | [pt-BR-x-pr.md](pt-BR-x-pr.md) | Paranaense / Curitibano — conservative Sulista (no palatalisation, final /e/ retained) |
 | [pt-PT.md](pt-PT.md) | European Portuguese in detail (coda allophony, vowel reduction) |
+| [pt-BR-x-rj.md](pt-BR-x-rj.md) | Carioca (Rio de Janeiro city) — the *chiado carioca* coda /S/→[ʃ,ʒ] + posterior coda /R/ (post-lexical `allophone_rules`) |
+| [pt-BR-x-fluminense.md](pt-BR-x-fluminense.md) | Fluminense (RJ state) — Carioca-like chiado as the coastal prestige default; capital-vs-interior gradient documented |
+| [pt-BR-x-mg.md](pt-BR-x-mg.md) | Mineiro (Minas Gerais) — pretonic mid-vowel raising /e o/→[i u]; NOT chiado (alveolar coda /S/) |
 | [pt-UY.md](pt-UY.md) | Uruguayan Portuguese / Riverense / DPU (border-contact variety: ⟨lh⟩→[j], dental /t d/ before /i/) |
 | [pt-TL.md](pt-TL.md) | East Timorese Portuguese (`pt-TL`) — L2/official variety; no vowel reduction (Tetum substrate), alveolar rhotic; NOT the Bidau creole |
 | [pt-MO.md](pt-MO.md) | Macau Portuguese (`pt-MO`) — EP-following; thin literature (skeleton); NOT the Patuá/maquista creole |

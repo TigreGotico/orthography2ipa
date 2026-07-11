@@ -317,7 +317,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Mineiro (Minas Gerais, Belo Horizonte-centred). Diagnostic: strong pretonic vowel raising /e/ -> [i], /o/ -> [u] (menino -> [miˈninʊ], coruja -> [kuˈɾuʒɐ]). Coda /S/ stays alveolar [s,z] (NOT palatal). Full /t,d/ palatalisation. Transitional: BH city uses tap [ɾ], the rural interior shares the caipira retroflex [ɻ] (noted, not the encoded default). Extreme posttonic reduction and syllable loss are stereotyped but prosodic, not encoded.",
+  "notes": "Mineiro (Minas Gerais, Belo Horizonte-centred). Diagnostic: strong pretonic mid-vowel raising /e/ -> [i], /o/ -> [u] (menino -> [miˈninu], coruja -> [kuˈɾuʒɐ]) by vowel harmony and consonant-driven reduction (Lemos & Viegas 2016:314-315; Viegas 1987), modelled in the pre-lexical positional map (grapheme e/o). Coda /S/ stays alveolar [s,z] - NOT the Carioca chiado - inherited unchanged from the pt-BR base, so no coda-sibilant allophone rule is declared. Full /t,d/ palatalisation. Transitional rhotic: BH city uses the tap [ɾ], the rural interior shares the caipira retroflex [ɻ] (noted, not the encoded default). Extreme posttonic reduction and syllable loss are stereotyped but prosodic, not encoded.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -370,6 +370,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "lemos_viegas2016",
+      "author": "Lemos, F.A.P. & Viegas, M.C.",
+      "year": 2016,
+      "title": "O alçamento das vogais médias pretônicas em falares mineiros: os dados",
+      "publisher": "Caletroscópio, v.4, n. especial (II DIVERMINAS), ISSN 2318-4574",
+      "url": "https://periodicos.ufop.br/caletroscopio/article/download/3637/2866/",
+      "pages": "314-333",
+      "notes": "p.314-315: in Minas Gerais dialects the pretonic mid vowels /e o/ raise to [i u] (p[i]rigo 'perigo', c[u]mida 'comida', m[i]nino 'menino', b[u]neca 'boneca'), by vowel harmony with a following high vowel and by consonant-driven vowel reduction; Viegas (1987) established the role of the lexical item. Grounds the pretonic-raising positional rules of this spec."
     }
   ],
   "wikipedia": [
