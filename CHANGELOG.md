@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.52.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.52.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.51.0a1...1.52.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model Carioca, Fluminense and Mineiro Brazilian Portuguese [\#199](https://github.com/TigreGotico/orthography2ipa/pull/199) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): research-grounded Iraqi Arabic \(gilit Baghdadi and qeltu Northern\) [\#198](https://github.com/TigreGotico/orthography2ipa/pull/198) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.51.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.51.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.50.0a1...1.51.0a1)
@@ -646,7 +655,6 @@
 **Merged pull requests:**
 
 - fix: py3.9 annotation compatibility, plugin-failure logging, public exports [\#17](https://github.com/TigreGotico/orthography2ipa/pull/17) ([JarbasAl](https://github.com/JarbasAl))
-- Update phonetic representation of graphemes in an.json [\#14](https://github.com/TigreGotico/orthography2ipa/pull/14) ([Juanpabl](https://github.com/Juanpabl))
 
 
 
