@@ -18,11 +18,11 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 |---|---|---:|---:|---:|---:|---|---|
 | ar | wikipron | 259 | 0.2566 | [0.2391, 0.2737] | 0.1081 | research | crowd-scraped |
 | ast | wikipron | 300 | 0.0876 | [0.0731, 0.1014] | 0.5900 | research | crowd-scraped |
-| ca | 4catac | 160 | 0.4120 | [0.4017, 0.4219] | 0.0000 | research | expert-human |
-| ca | styletts2_phonemes | 300 | 0.4083 | [0.3998, 0.4170] | 0.0000 | research | machine-generated |
-| ca-x-balear | 4catac | 160 | 0.3884 | [0.3797, 0.3975] | 0.0000 | research | expert-human |
-| ca-x-occidental | 4catac | 160 | 0.5633 | [0.5549, 0.5720] | 0.0000 | research | expert-human |
-| ca-x-valencia | 4catac | 160 | 0.3005 | [0.2920, 0.3089] | 0.0000 | research | expert-human |
+| ca | 4catac | 160 | 0.4026 | [0.3930, 0.4120] | 0.0000 | research | expert-human |
+| ca | styletts2_phonemes | 300 | 0.4012 | [0.3928, 0.4099] | 0.0000 | research | machine-generated |
+| ca-x-balear | 4catac | 160 | 0.3893 | [0.3803, 0.3986] | 0.0000 | research | expert-human |
+| ca-x-occidental | 4catac | 160 | 0.4663 | [0.4578, 0.4748] | 0.0000 | research | expert-human |
+| ca-x-valencia | 4catac | 160 | 0.2994 | [0.2907, 0.3078] | 0.0000 | research | expert-human |
 | cy | wikipron | 276 | 0.2187 | [0.1968, 0.2433] | 0.2899 | research | crowd-scraped |
 | da | wikipron | 273 | 0.4415 | [0.4128, 0.4693] | 0.0476 | research | crowd-scraped |
 | de | styletts2_phonemes | 300 | 0.3964 | [0.3879, 0.4049] | 0.0000 | research | machine-generated |
