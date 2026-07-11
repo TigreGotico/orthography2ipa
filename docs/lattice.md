@@ -255,10 +255,91 @@ The post-lexical **allophone rules** (final devoicing, assimilation, vowel
 reduction, flapping, …) are the built-in rescorer over this seam — a spec's
 declarative `allophone_rules` compile into an `AllophoneRescorer` the engine
 runs automatically after phoneme selection. This is the second of the
-library's "two maps"; see [`allophony.md`](allophony.md). The
-downstream engines migrate their bespoke rule cascades here too: arbtok's
-sun-letter/waṣl assimilation and tugaphone's silent-`e`/reduction become
-rescorers over the shared engine rather than parallel tokenizers.
+library's "two maps"; see [`allophony.md`](allophony.md). A downstream
+engine can attach its own cascade the same way — Arabic sun-letter
+assimilation, a Portuguese sibilant rule — expressing each rule as a
+re-costing over the shared lattice. Whether that is the right choice for a
+given engine is the subject of the next section.
+
+## Refine the lattice, or fork the tokenizer?
+
+A downstream phonemizer has two honest ways to build on this library, and
+which one fits depends on the *shape* of its rules, not on a blanket
+preference. Both are supported; each carries a cost.
+
+### Refine — express rules as rescorers over the shared lattice
+
+Keep the shared tokenizer and lattice, and add `LatticeRescorer`s that
+re-cost candidates.
+
+Choose this when:
+
+- Your rules are **context-conditioned choices among the grapheme→phoneme
+  candidates the shared trie already enumerates** — a coronal-triggered
+  assimilation, a positional sibilant, a silent-grapheme drop. Re-costing is
+  exactly that shape.
+- **IPA is assembled from per-grapheme candidate selection** — that is,
+  `ipa_lattice` / `ipa_best` is, or can become, your generation path.
+- You want the maximal-munch trie, positional conditioning, candidate
+  weights, and the confidence / OOV signal for every language for free, and
+  you want your rules to **compose** with the built-in allophone rules and
+  with one another.
+
+Where it does not reach:
+
+- A rescorer sees **one slot and its immediate neighbours**. Rules that need
+  **non-local context** — cross-word sandhi, pausal or phrase-final forms,
+  morphological decomposition, part of speech — do not fit a per-slot
+  rescorer; they belong in a thin orchestration layer *above* the lattice,
+  not inside it.
+- **Multi-segment interactions need care.** A rescorer promotes a candidate
+  by making it strictly cheapest, and it can only reason over the candidates
+  the spec actually offers. If the shared spec omits or mis-bakes a candidate
+  a rule needs — a semivowel that must geminate, a word-final long vowel
+  competing with a consonant reading — re-costing alone cannot recover it;
+  the fix belongs in the spec data upstream, not in a workaround.
+- If your engine's generation model is **not** the lattice — it assembles IPA
+  another way, such as a character-level cascade — a rescorer is dead code
+  until generation is routed through `ipa_lattice`.
+
+### Fork — keep a bespoke tokenizer and rule engine
+
+Own the tokenization and rule pass end to end.
+
+Choose this when:
+
+- You need a **representation or context the per-slot lattice cannot
+  express**: whole-utterance rules, morphological structure, prosody, or a
+  non-IPA intermediate the rest of your engine consumes.
+- Your data **diverges enough from the base spec** that inheriting it is a
+  liability, or you need units the base cannot model and that cannot be
+  pushed upstream cleanly.
+- You need **independence from the base engine's release cadence**, or a
+  hand-tuned path where the lattice's generality costs more than it returns.
+
+What it costs:
+
+- You **re-implement and maintain tokenization** — the maximal-munch scan,
+  the digraph and trigraph handling — and its bugs are yours to find.
+- You forgo the **shared multilingual grapheme data, positional
+  conditioning, candidate weights, confidence signal, and every later engine
+  improvement**, and your rules **cannot compose** with another engine's
+  rescorers or the built-in allophone layer.
+
+### In practice: hybrid, and push gaps upstream
+
+Most engines land on a **hybrid**: word-internal phonology as rescorers over
+the shared lattice, and the genuinely non-local part — cross-word sandhi,
+pausal forms, lexical exceptions — on a small orchestration layer that calls
+into it. The boundary between the two must be **enforced, not assumed**: a
+word that needs cross-word context should be routed to the layer that has it,
+never sent silently through the word lattice.
+
+Treat every capability a migration finds missing as an **upstream task**, not
+a reason to fork permanently. When a rule cannot be expressed because the
+shared spec bakes the wrong candidate or the engine lacks a hook, fix the
+spec or add the hook — so more of the engine moves onto the shared lattice
+over time and the next engine inherits the fix.
 
 ## Per-word confidence / OOV signal
 
