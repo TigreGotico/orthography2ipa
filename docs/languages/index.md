@@ -58,6 +58,12 @@ each tier actually certifies.
 | [pt-PT.md](pt-PT.md) | European Portuguese in detail (coda allophony, vowel reduction) |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
+### Asturleonese
+
+| Doc | Languages covered |
+|:---|:---|
+| [mwl.md](mwl.md) | Mirandese (`mwl`) + Sendinês (`mwl-x-sendim`) and Ifanês (`mwl-x-ifanes`) — the four-way sibilant system, Leonese diphthongs and initial-l palatalisation, sub-dialect deltas |
+
 ### Slavic
 
 | Doc | Languages covered |

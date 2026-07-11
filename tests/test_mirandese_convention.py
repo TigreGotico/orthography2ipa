@@ -70,9 +70,12 @@ class TestInitialLH:
 # ── § Sibilantes: six-way contrast ──────────────────────────────────────────
 
 class TestSibilants:
-    """CON-SIB: ⟨s/ss⟩ = apical /s̺/, ⟨c/ç⟩ = laminal /s̻/,
-    ⟨x⟩ = postalveolar /ʃ/, ⟨j/g(e/i)⟩ = /ʒ/, ⟨z⟩ = voiced laminal /z̻/,
-    intervocalic ⟨s⟩ = voiced apical /z̺/."""
+    """CON-SIB: ⟨s/ss⟩ = apical /s̺/ (marked with the ̺ diacritic),
+    ⟨c/ç⟩ = dorso-dental /s/ and ⟨z⟩ = /z/ (written plain, no laminal ̻
+    diacritic — matching the expert gold convention, which marks only the
+    apical series), ⟨x⟩ = postalveolar /ʃ/, ⟨j/g(e/i)⟩ = /ʒ/,
+    intervocalic ⟨s⟩ = voiced apical /z̺/. The apical vs dorso-dental
+    CONTRAST is preserved via the ̺ diacritic on the apical series."""
 
     def test_x_is_postalveolar(self, mwl):
         """CON-SIB: ⟨x⟩ = /ʃ/ (xordo, baixo)."""
@@ -84,30 +87,30 @@ class TestSibilants:
         result = mwl.transcribe("janeiro")
         assert "ʒ" in result
 
-    def test_c_before_i_is_laminal(self, mwl):
-        """CON-SIB: ⟨c⟩ before ⟨i⟩ = laminal /s̻/ (ciego)."""
-        result = mwl.transcribe("ciego")
-        assert "s̻" in result
+    def test_c_before_i_is_dorsal(self, mwl):
+        """CON-SIB: ⟨c⟩ before ⟨i⟩ = plain dorso-dental /s/ (ciego)."""
+        result = strip_marks(mwl.transcribe("ciego"))
+        assert "s" in result and "s̺" not in mwl.transcribe("ciego")
 
-    def test_c_before_e_is_laminal(self, mwl):
-        """CON-SIB: ⟨c⟩ before ⟨e⟩ = laminal /s̻/ (cebada)."""
-        result = mwl.transcribe("cebada")
-        assert "s̻" in result
+    def test_c_before_e_is_dorsal(self, mwl):
+        """CON-SIB: ⟨c⟩ before ⟨e⟩ = plain dorso-dental /s/ (cebada)."""
+        result = strip_marks(mwl.transcribe("cebada"))
+        assert "s" in result
 
     def test_c_before_a_is_velar(self, mwl):
         """CON-SIB: ⟨c⟩ before ⟨a⟩ = /k/ (cabalo)."""
         result = mwl.transcribe("cabalo")
         assert "k" in result
 
-    def test_cedilha_is_laminal(self, mwl):
-        """CON-SIB: ⟨ç⟩ = voiceless laminal /s̻/ (çapatao)."""
-        result = mwl.transcribe("çapatao")
-        assert "s̻" in result
+    def test_cedilha_is_dorsal(self, mwl):
+        """CON-SIB: ⟨ç⟩ = voiceless dorso-dental /s/ (çapatao)."""
+        result = strip_marks(mwl.transcribe("çapatao"))
+        assert "s" in result
 
-    def test_z_is_voiced_laminal(self, mwl):
-        """CON-SIB: ⟨z⟩ = voiced laminal /z̻/ (cozer)."""
-        result = mwl.transcribe("cozer")
-        assert "z̻" in result
+    def test_z_is_voiced_dorsal(self, mwl):
+        """CON-SIB: ⟨z⟩ = voiced dorso-dental /z/ (cozer)."""
+        result = strip_marks(mwl.transcribe("cozer"))
+        assert "z" in result
 
     def test_ch_is_affricate(self, mwl):
         """CON-SIB: ⟨ch⟩ = palatal affricate /tʃ/ (cheno)."""
@@ -251,12 +254,15 @@ class TestStress:
 
 class TestSendinese:
     """ADT-SND: Primeiro Aditamento (February 2000). Sendinese dialect:
-    (1) word-initial ⟨l-⟩ = /l/ (not /ʎ/); (2) ⟨ie/uo⟩ → monophthong /i/,/u/."""
+    (1) DEPALATALISATION ⟨lh⟩ /ʎ/ → /l/ and word-initial ⟨l-⟩ = /l/;
+    (2) ⟨ie/uo⟩ → monophthong /i/,/u/. Per the Convenção and Vasconcelos
+    (1900): 'many words that in other dialects are said with /ʎ/ ⟨lh⟩ are
+    said with /l/ ⟨l⟩' (alá for alhá, lhobo → [ˈlobu])."""
 
-    def test_lh_stays_palatal_in_sendim(self, sendim):
-        """ADT-SND: ⟨lh⟩ (explicit digraph) = /ʎ/ even in Sendinese."""
+    def test_lh_depalatalises_in_sendim(self, sendim):
+        """ADT-SND: ⟨lh⟩ → /l/ in Sendinese (no /ʎ/)."""
         result = sendim.transcribe("lhobo")
-        assert "ʎ" in result
+        assert "ʎ" not in result and "l" in result
 
     def test_ie_monophthong_sendim(self, sendim):
         """ADT-SND: Sendinese ⟨ie⟩ → /i/ (monophthong, not /jɛ/)."""

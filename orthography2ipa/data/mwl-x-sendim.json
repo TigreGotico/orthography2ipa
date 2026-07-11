@@ -16,6 +16,9 @@
     ],
     "uo": [
       "u"
+    ],
+    "lh": [
+      "l"
     ]
   },
   "allophones_base": "mwl",
@@ -34,8 +37,8 @@
     }
   },
   "parent": "mwl",
-  "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). Differs from central Mirandese in: (1) monophthongisation of ⟨iê/ie⟩ → /i/ and ⟨uô/uo⟩ → /u/ (tirra not tiêrra, curpo not cuôrpo); (2) NO word-initial /ʎ/ palatalisation: initial ⟨l-⟩ stays /l/ (luna not lhuna, lobo not lhobu). The Primeiro Aditamento à Convenção (February 2000) explicitly permits Sendinese writers to use ⟨l-⟩ word-initially to represent /l/ (not /ʎ/). Sendinese uses ⟨ie⟩/⟨uo⟩ (no accent marks) where central Mirandese writes ⟨iê⟩/⟨uô⟩, reflecting absence of the diphthong.",
-  "quality": "skeleton",
+  "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). It inherits the full Central Mirandese system (graphemes_base=mwl: apical ⟨s⟩ /s̺ z̺/ vs predorsal ⟨c,ç,z⟩ /s z/, ⟨x⟩ /ʃ/, ⟨j,g⟩ /ʒ/, ⟨ch⟩ /tʃ/, ⟨nh⟩ /ɲ/, nasal-vowel digraphs) and overrides only the two documented Sendinês deltas: (1) monophthongisation of the Leonese diphthongs ⟨iê/ie⟩ → /i/ and ⟨uô/uo⟩ → /u/ (tirra not tiêrra, curpo not cuôrpo) — the Central/Raiano [je]/[wo] is reduced to [i]/[u]; (2) DEPALATALISATION of /ʎ/ → /l/: words that other dialects say with ⟨lh⟩ /ʎ/ are said with /l/ (alá for alhá, lhado→lado, lhuç→[ˈlus], lhobo→[ˈlobu]), and word-initial ⟨l⟩ is likewise plain /l/ (no Leonese initial palatalisation). The Primeiro Aditamento à Convenção (February 2000) permits Sendinese writers to spell word-initial ⟨l-⟩ (not ⟨lh-⟩). Because ⟨lh⟩ → /l/ is overridden here, the Central word-initial ⟨l⟩ → /ʎ/ rule is also cancelled via the positional override (l stays /l/ in every position).",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
