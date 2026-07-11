@@ -22,8 +22,8 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Based on Luanda educated speech.",
-  "quality": "skeleton",
+  "notes": "Angolan Portuguese (Português de Angola, PA): the emerging L2/second-norm variety of educated Angolan speakers, NOT a creole. Portuguese has been the sole official language since 1975 and is the mother tongue of a growing urban minority and the second language of most Angolans, in contact with dozens of Bantu languages (Umbundu, Kimbundu, Kikongo, etc.). KEY MODELLED FEATURES, grounded in the vowel study of Undolo (2014) and the phonetics of Angolan Portuguese in Chavagne (2005): (1) NO EP-STYLE UNSTRESSED VOWEL REDUCTION. Unlike European Portuguese, final unstressed /a/ is NOT centralised to [ɐ] but stays open [a] (Undolo 2014:183, ['kaza]); pretonic /e/ does NOT centralise to [ɨ] but stays [e] (Undolo 2014:183, [atrope'ɫar], [prezi'dẽtɨ]); pretonic /o/ is NOT raised to [u] but stays [o] (Undolo 2014:184, [mo'rar], [namo'rar]). Undolo (2014:184) summarises: the PA vowel system 'não sofre elevação e centralização em posição átona'. Chavagne (2005:64) independently: 'les voyelles atones gardent le timbre des voyelles toniques'. (2) [ɨ] survives ONLY in final unstressed position ([ˈdisɨ]), not pretonically (Undolo 2014:183). (3) A general tendency to OPEN stressed mid vowels ([ɛ], [ɔ] favoured over [e], [o]) is documented (Undolo 2014:183-184) but is variable/lexical and modelled only as candidate ordering, not categorically. (4) Coda /s/ stays alveolar [s] (no Lisbon chiado). This spelling-closer vocalism is attributed to the simple, open-nucleus syllable structure of the Bantu substrate (Undolo 2014:186). LIMITS: the extra nasal [ã] vs EP [ɐ̃] (Undolo 2014:184) and the [ɐ]-loss are modelled via positional vowels; fine allophonic rhotic variation is left to downstream engines.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -47,14 +47,34 @@
       "notes": null
     },
     {
-      "id": "inverno2009",
-      "author": "Inverno, L.",
-      "year": 2009,
-      "title": "A transição de Portugal para Angola: o português em contacto no interior angolano",
-      "publisher": "Universidade de Coimbra",
-      "url": null,
+      "id": "undolo2014",
+      "author": "Undolo, Márcio",
+      "year": 2014,
+      "title": "Caracterização do sistema vocálico do português culto falado em Angola",
+      "publisher": "Revista de Filología Románica 31(2), 181-187, Universidad Complutense de Madrid",
+      "url": "https://revistas.ucm.es/index.php/RFRM/article/view/51071",
+      "pages": "181-187",
+      "notes": "Read in full. Contrastive description of the educated Angolan Portuguese (PA) vowel system vs European Portuguese (PE). p.183: final unstressed /a/ keeps the open vowel [a], not EP [ɐ] ('não observamos a realização da vogal oral central média em posição átona final, mantendo-se a vogal aberta: [ˈkaza]'); pretonic [ɨ] does not occur, staying palatal [e] ([atropeˈɫar] PA vs [ɐtrupɨˈɫar] PE); [ɨ] survives only word-finally ([ˈdisɨ]). p.184: pretonic /o/ stays [o] not raised to [u] ([moˈrar], [namoˈrar]); summary (d) 'não sofre elevação e centralização em posição átona', (e) '[ɨ] restringe-se à posição átona final'. p.186: attributes the fuller vocalism to the open-nucleus syllable structure of Angolan Bantu languages."
+    },
+    {
+      "id": "chavagne2005",
+      "author": "Chavagne, Jean-Pierre",
+      "year": 2005,
+      "title": "La langue portugaise en Angola",
+      "publisher": "PhD thesis, Université Lumière Lyon 2",
+      "url": "http://theses.univ-lyon2.fr/documents/lyon2/2005/chavagne_jp",
+      "pages": "64",
+      "notes": "Read the phonetics/phonology part. p.64: unstressed syllables in Angolan Portuguese keep the timbre of the stressed vowels ('les voyelles atones gardent le timbre des voyelles toniques'); the intensity difference between tonic and atonic syllables is markedly smaller than in EP, with lengthening of pre- and post-tonic syllables — i.e. weak-to-absent vowel reduction."
+    },
+    {
+      "id": "inverno2011",
+      "author": "Inverno, Liliana",
+      "year": 2011,
+      "title": "Contact-induced restructuring of Portuguese morphosyntax in interior Angola: evidence from Dundo (Lunda Norte)",
+      "publisher": "PhD thesis, Universidade de Coimbra",
+      "url": "https://estudogeral.sib.uc.pt/handle/10316/15465",
       "pages": null,
-      "notes": null
+      "notes": "Read. Primarily a MORPHOSYNTACTIC study of the restructured vernacular Angolan Portuguese of Dundo; consulted for the contact/sociolinguistic framing (Bantu substrate, nativisation). Its phonological content is limited to loan-adaptation and is not the source for the vowel model above (see Undolo 2014, Chavagne 2005)."
     }
   ],
   "wikipedia": [
@@ -117,16 +137,16 @@
         "a"
       ],
       "posttonic": [
-        "ɐ"
+        "a"
       ],
       "word_initial": [
         "a"
       ],
       "word_final": [
-        "ɐ"
+        "a"
       ],
       "coda": [
-        "ɐ"
+        "a"
       ]
     },
     "e": {
