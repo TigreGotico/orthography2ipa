@@ -17,6 +17,11 @@ phonological/script distance metrics, with no trained weights to ship.
 Only mappings grounded in official orthography and documented grammar
 are included; arbitrary substring rules are excluded.
 
+At its core is a **probabilistic pronunciation lattice**: for any word it
+returns the ranked IPA options per grapheme with `-log P` costs, a per-word
+confidence signal, and a rescorer seam that specialised phonemizers build on
+— see [The pronunciation lattice](#the-pronunciation-lattice) below.
+
 New to the library? Start with **[docs/index.md](docs/index.md)** — it
 routes you to the right doc depending on whether you're integrating
 this into a pipeline, adding a language, building a downstream engine,
@@ -41,6 +46,74 @@ segments. They compile into a lattice rescorer run after phoneme selection
 and before stress/sandhi. Catalan is the first spec to use them: word-final
 obstruent devoicing (`fred` → `[ˈfɾet]`) and nasal place assimilation
 (`banc` → `[ˈbaŋk]`). See [`docs/allophony.md`](docs/allophony.md).
+
+## The pronunciation lattice
+
+When a spelling is ambiguous, `orthography2ipa` does not just pick a guess —
+it builds a **ranked, cost-annotated pronunciation lattice** for the word,
+and that lattice is the feature specialised phonemizers are built to stand
+on. For any registered language you get, per grapheme, every IPA option it
+can realise and a `-log P` cost ranking them:
+
+```python
+from orthography2ipa import get
+from orthography2ipa.phonetok import PhonetokTokenizer
+
+tok = PhonetokTokenizer(get("en-GB"))
+for slot in tok.ipa_lattice("cough"):
+    print(slot.grapheme, [(c.ipa, c.cost) for c in slot.candidates])
+    # c    → [('k', 0.0), ('s', 1.0)]
+    # ough → [('ɔː', 0.0), ('oʊ', 1.0), ('ʌf', 2.0), ('ɒf', 3.0), …]
+```
+
+**It tells you when it is unsure.** A per-word confidence — each slot's
+top-1 vs top-2 cost margin folded with grapheme coverage — flags exactly
+which words a downstream engine should spend its expensive lexicon or rules
+on, and which it can take on trust:
+
+```python
+from orthography2ipa import G2P
+
+g = G2P("en-GB")
+g.word_confidence("bar")     # 1.0000 — one reading, take it
+g.word_confidence("cough")   # 0.6321 — ambiguous, look closer
+g.word_confidence("bar你")   # 0.7500 — one OOV grapheme drops coverage to 3/4
+```
+
+**Specialised engines refine the lattice instead of forking a tokenizer.**
+A downstream rule is a `LatticeRescorer`: a pure function over one slot and
+its context that re-costs candidates. A candidate wins by being made
+strictly cheapest. Here is a complete mini-phonemizer that teaches English
+⟨ough⟩ its `/ʌf/` reading (*rough*, *tough*, *enough*):
+
+```python
+from orthography2ipa import get
+from orthography2ipa.phonetok import PhonetokTokenizer, Candidate
+from orthography2ipa.rescorer import LatticeRescorer
+
+class RoughOugh(LatticeRescorer):
+    def rescore(self, slot, context):
+        if slot.grapheme != "ough":
+            return slot.candidates                    # no-op elsewhere
+        others = [c for c in slot.candidates if c.ipa != "ʌf"]
+        return [Candidate("ʌf", 0.0)] + [Candidate(c.ipa, c.cost + 1.0)
+                                         for c in others]
+
+tok = PhonetokTokenizer(get("en-GB"))
+tok.ipa_best("tough")                        # 'tɔː'  — generic beam
+tok.ipa_best("tough", rescorer=RoughOugh())  # 'tʌf'  — refined
+```
+
+The beam is the **universal fallback**: it produces a defensible
+transcription for every word in every registered language. The rescorer seam
+is how a downstream cascade — Arabic sun-letter assimilation, a Portuguese
+lexical override — expresses itself as re-costing over this one shared
+lattice rather than a parallel tokenizer. That is the seam
+[arbtok](https://github.com/TigreGotico/arbtok),
+[tugaphone](https://github.com/TigreGotico/tugaphone),
+[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and
+[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer) build on. See
+[docs/lattice.md](docs/lattice.md) for the full story.
 
 ## What each language carries
 
