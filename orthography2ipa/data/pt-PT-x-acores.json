@@ -56,6 +56,17 @@
       "notes": "São Miguel-class fronting of a stressed open-syllable /u/ to a front rounded [y] — the single most stereotyped Azorean feature. Fires when the stressed /u/ is followed by a consonant that opens the next syllable (número -> [ˈnymɨɾu]); it is blocked before a tautosyllabic coda by the preceding ACO_U_KEEP_BEFORE_CODA rule, and does not reach a word-final open /u/ (the standalone lexical shibboleth tu -> [ty] is pinned in word_exceptions instead, because the ep_dialects gold runs each sentence as one concatenated token and a word-boundary condition there would mis-fire on sentence-final unstressed /u/). The definite article and preposition-article contractions are pinned to [u]-forms in word_exceptions so this rule can never front a proclitic o/do/no/ao. Fronting is categorical in the São Miguel micro-variety and only partial/lexical in the other islands (Terceira, the gold reference), so this models the strongest realisation; the muda-type divergence (São Miguel [ˈmydɐ] vs the Terceira gold's [ˈmudɐ]) is the documented inter-island limit. Source: Rogers (1948), an island-specific field description."
     }
   ],
+  "sandhi_rules": [
+    {
+      "id": "PT_FINAL_S_PREVOCALIC_VOICE",
+      "name": "final-s-prevocalic-voicing",
+      "left_context": "[ʃ]$",
+      "right_context": "^[ˈˌ]?[aeiouɛɔɐɨəãõẽĩũ]",
+      "transform": "ʒ",
+      "obligatory": true,
+      "notes": "São Miguel-class realisation of the external prevocalic /s/-sandhi: a word-final coda /s/ (surfacing [ʃ] in isolation and pre-consonantally via the inherited coda 'chiado') is realised as the POST-ALVEOLAR [ʒ] before a vowel-initial following word — estás a ver → [eˈʃtaʒ ˈɐ ˈvɛɾ], the 'Todojos'/'quijentrar' pronunciation, shared with the Algarve (see pt-PT-x-algarve). Re-declared here by id (OVERLAY_BY_ID) to override the inherited base [z]; it fires ONLY before a vowel, so pre-consonantal and pre-pausal word-final /s/ keep [ʃ] (estás → [eˈʃtaʃ]), unlike the Algarve which generalises [ʒ] to all word-final positions. SOURCING: this palatal prevocalic realisation for São Miguel is described natively by Portuguese With Leo, 'The 8 accents' (native-speaker/popular-linguistics, NOT academic; https://www.youtube.com/watch?v=pitj0XxYO7I), which reports the shared Algarvean-Azorean J ('quijentrar', 'Todojos', 'Éjunúmerúm' for és o número um). It sits within the documented southern/insular final-sibilant behaviour ([ʃ]~[z]~[ʒ] realisations of coda /S/; Rogers 1948 for eastern-Azorean pronunciation), but a page-pinned academic source for the São-Miguel prevocalic [ʒ] SPECIFICALLY was not located — the standard/Lisbon literature gives [z] (Mateus & d'Andrade 2000: ch.2). The neutral Coimbra centre is variable [z]~[ʒ]; Lisbon and the North keep [z]."
+    }
+  ],
   "notes": "Azorean Portuguese. Reference island for the ep_dialects gold: Terceira; the u->y feature is the São Miguel micro-variety. Modelled features: (1) STRESSED OPEN-SYLLABLE /u/ -> [y] — the most salient and stereotyped Azorean feature, categorical in the São Miguel class (número -> [ˈnymɨɾu], tu -> [ty]); modelled as the ordered allophone rules ACO_U_KEEP_BEFORE_CODA (blocks fronting before a coda liquid/sibilant: azul -> [ɐˈzuɫ]) then ACO_STRESSED_U_FRONTING (fronts a stressed /u/ before an onset consonant), plus the pinned lexical shibboleth tu. Inter-island variation is substantial — Terceira fronts only lexically, so muda surfaces as [ˈmudɐ] in the Terceira reference gold while the São Miguel class has [ˈmydɐ]; this divergence is the documented island limit rather than a modelling error. (2) /ow/ PRESERVATION — the ou digraph keeps its falling diphthong [ow] where standard Lisbon monophthongises to [o] (touradas -> [towˈɾadɐʃ]); modelled as the grapheme override ou -> [ow]. CLITIC GUARD: the definite article and preposition-article contractions (o, os, no, nos, do, dos, ao, aos, pelo, pelos) and the numeral/article um/uns are pinned in word_exceptions to their [u]/[ũ] nucleus forms so the stressed-/u/ fronting can never mis-fire on a monosyllabic proclitic the stress detector marks as stressed — the article o is [u], never [y]. NOT MODELLED (documented limits, not faked): the nasal-diphthong -> nasal+N reduction (-ões -> [õns], -ães -> [ɐ̃ns]) is a Madeiran feature and is NOT reflected in the Terceira gold, which keeps the standard [ɐ̃w]/[õjʃ] diphthongs, so it is left inherited from pt-PT; sporadic /e/->/i/ raising, boi -> [bô] and pastar -> [pɐʃˈtâ] are lexical/island-specific and left to downstream engines. The dark coda /l/ [ɫ] and Lisbon-type coda sibilants [ʃ]/[ʒ] are inherited from the pt-PT base allophone rules.",
   "quality": "research",
   "ancestors": [
@@ -89,7 +100,17 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": "Reference phonology for the inherited European Portuguese unstressed-vowel reduction, dark coda /l/ [ɫ] and coda sibilants."
+      "notes": "Reference phonology for the inherited European Portuguese unstressed-vowel reduction, dark coda /l/ [ɫ] and coda sibilants. Standard EP gives word-final /s/ → [z] before a vowel; the São-Miguel [ʒ] prevocalic sandhi is a dialect delta over this base."
+    },
+    {
+      "id": "pwl8accents",
+      "author": "Portuguese With Leo",
+      "year": 2021,
+      "title": "The 8 Portuguese accents of Portugal",
+      "publisher": "YouTube (native-speaker / popular-linguistics)",
+      "url": "https://www.youtube.com/watch?v=pitj0XxYO7I",
+      "pages": null,
+      "notes": "Native-speaker EP accent breakdown (NOT academic). Documents the /ʒ/-for-/z/ external sandhi (word-final s + vowel-initial word → [ʒ]) as shared by São Miguel (Azores) and, most strongly, the Algarve — 'quijentrar', 'Todojos', 'Éjunúmerúm' (és o número um) — while Lisbon and the North keep [z] and Coimbra is variable. Grounds the pt-PT-x-acores PT_FINAL_S_PREVOCALIC_VOICE [ʒ] override."
     }
   ],
   "wikipedia": [

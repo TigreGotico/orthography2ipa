@@ -62,6 +62,60 @@ northern and insular dialects keep an apico-alveolar [s̺] in coda; those are
 dialect deltas carried by the `pt-PT-x-*` specs, which inherit these three
 base rules by id-keyed overlay and override only what differs.
 
+## External /s/-sandhi before a vowel (`sandhi_rules`)
+
+A word-final coda /s/ — which surfaces `[ʃ]` in isolation and before a
+consonant via `PT_CODA_S_HUSH` — **voices across a word boundary** before a
+vowel-initial following word (the final sibilant is resyllabified and treated
+as intervocalic). The base `pt-PT` gives the **standard alveolar `[z]`**:
+
+| Rule id | Context | Example |
+|:---|:---|:---|
+| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | `estás a ver` → [eˈʃtaz ˈɐ ˈvɛɾ] |
+| | | `os amigos` → [ˈoz ɐˈmiɡuʃ] |
+
+The rule fires only before a **vowel**: before a consonant the sibilant stays
+`[ʃ]` (`estás bem` → [eˈʃtaʃ ˈbɛm]), and a voiceless-initial next word does not
+voice (`estás feliz` → [eˈʃtaʃ fɨˈliʃ]). Single-word transcription is
+unchanged (`estás` → [eˈʃtaʃ]); the benchmark scores single words, so this
+cross-word rule never affects the scoreboard.
+
+The place of articulation splits **dialectally**. The standard alveolar `[z]`
+holds across the North (Porto, Braga), Lisbon and — variably — the neutral
+centre (Coimbra). The **South (Algarve) and the Azores (São Miguel)** instead
+palatalise this prevocalic sibilant to `[ʒ]` (the "Tajaver" pronunciation):
+
+| Variety | Prevocalic value | `estás a ver` |
+|:---|:---:|:---|
+| North — [pt-PT-x-porto](pt-PT-x-porto.md) | alveolar `[z]` | [eˈʃtaz ˈɐ ˈbɛɾ] |
+| Lisbon — [pt-PT-x-lisbon](pt-PT-x-lisbon.md) | alveolar `[z]` | [eˈʃtaz ˈɐ ˈvɛɾ] |
+| Coimbra (centre) | variable `[z]`~`[ʒ]` | (not a separate spec yet) |
+| **Algarve** — [pt-PT-x-algarve](pt-PT-x-algarve.md) | **`[ʒ]`** (categorical) | [eˈʃtaʒ ˈɐ ˈvɛɾ] |
+| **Azores / São Miguel** — [pt-PT-x-acores](pt-PT-x-acores.md) | **`[ʒ]`** (prevocalic only) | [eˈʃtaʒ ˈɐ ˈvɛɾ] |
+
+The Algarve realises word-final /s/ as `[ʒ]` in **all** word-final positions
+(via its positional `word_final` map), so `[ʒ]` also surfaces prevocalically;
+São Miguel restricts `[ʒ]` to the **prevocalic** sandhi (re-declaring
+`PT_FINAL_S_PREVOCALIC_VOICE` with transform `ʒ`), keeping `[ʃ]` before a
+consonant or pause. Coimbra is variable and is **not** given a separate spec in
+this pass.
+
+**Sourcing.** The standard `[z]` value is well documented (Mateus & d'Andrade
+2000: ch.2; Wikipedia *Portuguese phonology*, Consonant sandhi: `bons amigos`
+[bõz ɐˈmiɣuʃ]). The Southern/Azorean **`[ʒ]`-prevocalic** value is described
+natively by *Portuguese With Leo*, "The 8 accents"
+([video](https://www.youtube.com/watch?v=pitj0XxYO7I); native-speaker /
+popular-linguistics, **not** academic), which places it strongest in the Algarve
+("Tajaver", "quijentrar", "muitojamigos"), shared by São Miguel ("Todojos",
+"quijentrar"), variable in Coimbra, and **absent in Lisbon and the North** (both
+`[z]`; the video explicitly calls `[ʒ]` there "wrong"). A page-pinned academic
+source for the prevocalic-`[ʒ]` sandhi *specifically* was not located — the
+feature sits within the documented southern/insular final-sibilant behaviour
+(`[ʃ]`~`[z]`~`[ʒ]`) but the honest bound is stated in the `pt-PT-x-acores` /
+`pt-PT-x-algarve` spec notes. (Cintra's 1971 primary North/South isogloss is a
+separate matter — the *place*, apico-alveolar vs predorsodental, of the
+sibilant, not this `[z]`/`[ʒ]` contrast.)
+
 ## Not modelled in the base
 
 **Intervocalic voiced-stop spirantisation** (`/b d ɡ/ → [β ð ɣ]`; Mateus &

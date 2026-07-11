@@ -75,7 +75,7 @@
     }
   },
   "parent": "pt-PT",
-  "notes": "Algarvio Portuguese, southernmost continental dialect (Faro, Portimão, Lagos, Sagres). Modelled features: (1) DEFINING Barlavento feature — fronting of the stressed labio-velar /u/ → [y] (tudo→[ˈtydu], lume→[ˈlymɨ], mudo→[ˈmydu]); encoded as the allophone rule ALG_U_FRONTING, stressed nucleus only (Cintra 1971; Brissos 2014; Segura da Cruz 1989). (2) /ej/ → [e] and /ow/ → [o] monophthongs (leite→[ˈletɨ], outro→[ˈotɾu]). (3) Southern sibilant voicing — word-final /s/ → [ʒ] (mas→[maʒ], muitos amigos→[ˈmũj̃tuʒ ɐˈmiɡuʒ]); encoded in positional_graphemes s/coda→[ʒ], word_final→[ʒ]. (4) Open stressed vowel qualities [ɛ, ɔ]. (5) Dark coda /l/→[ł] and coda /s,z/→[ʃ,ʒ] inherited from the pt-PT base allophone_rules. NOT MODELLED: the older/rural apico-alveolar sibilant [s̥] (articulatory, not phoneme-level simulable — Cintra 1971 flags this class of feature as non-modellable); the broader stressed [a]→[ɛ] / [ɔ]→[o̝] chain shift (context-conditioned; see ALG_U_FRONTING notes). No betacism: /v/ ≠ /b/. PROCLITIC GUARD: the common function words o/os/no/nos/do/dos/ao/aos/pelo/pelos/um/uns are given word_exceptions with their correct [u]-vowel forms (o→[u], no→[nu]); the word-level stress detector mis-marks these monosyllabic clitics as stressed, so without the override ALG_U_FRONTING would wrongly front the article/contraction vowel to [y]. Genuine stressed lexical /u/ still fronts (tudo→[ˈtydu], sul→[ˈsyɫ]).",
+  "notes": "Algarvio Portuguese, southernmost continental dialect (Faro, Portimão, Lagos, Sagres). Modelled features: (1) DEFINING Barlavento feature — fronting of the stressed labio-velar /u/ → [y] (tudo→[ˈtydu], lume→[ˈlymɨ], mudo→[ˈmydu]); encoded as the allophone rule ALG_U_FRONTING, stressed nucleus only (Cintra 1971; Brissos 2014; Segura da Cruz 1989). (2) /ej/ → [e] and /ow/ → [o] monophthongs (leite→[ˈletɨ], outro→[ˈotɾu]). (3) Southern sibilant voicing — word-final /s/ → [ʒ] (mas→[maʒ], muitos amigos→[ˈmũj̃tuʒ ɐˈmiɡuʒ]); encoded in positional_graphemes s/coda→[ʒ], word_final→[ʒ]. This is the STRONGEST realisation of the /ʒ/-for-/z/ external sandhi (word-final s before a vowel-initial word → [ʒ]; the 'Tajaver' pronunciation of estás a ver → [eˈʃtaʒ ˈɐ ˈvɛɾ]; Portuguese With Leo, 'The 8 accents', native-speaker source), shared more weakly by São Miguel (see pt-PT-x-acores, which applies it prevocalically only) and variable in Coimbra, while Lisbon and the North keep [z]. Because the Algarve realisation is categorical across all word-final positions, it is modelled by the positional word_final [ʒ] map (not a separate prevocalic sandhi rule) and therefore already surfaces [ʒ] before a following vowel. (4) Open stressed vowel qualities [ɛ, ɔ]. (5) Dark coda /l/→[ł] and coda /s,z/→[ʃ,ʒ] inherited from the pt-PT base allophone_rules. NOT MODELLED: the older/rural apico-alveolar sibilant [s̥] (articulatory, not phoneme-level simulable — Cintra 1971 flags this class of feature as non-modellable); the broader stressed [a]→[ɛ] / [ɔ]→[o̝] chain shift (context-conditioned; see ALG_U_FRONTING notes). No betacism: /v/ ≠ /b/. PROCLITIC GUARD: the common function words o/os/no/nos/do/dos/ao/aos/pelo/pelos/um/uns are given word_exceptions with their correct [u]-vowel forms (o→[u], no→[nu]); the word-level stress detector mis-marks these monosyllabic clitics as stressed, so without the override ALG_U_FRONTING would wrongly front the article/contraction vowel to [y]. Genuine stressed lexical /u/ still fronts (tudo→[ˈtydu], sul→[ˈsyɫ]).",
   "quality": "research",
   "ancestors": [
     {
@@ -139,6 +139,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "pwl8accents",
+      "author": "Portuguese With Leo",
+      "year": 2021,
+      "title": "The 8 Portuguese accents of Portugal",
+      "publisher": "YouTube (native-speaker / popular-linguistics)",
+      "url": "https://www.youtube.com/watch?v=pitj0XxYO7I",
+      "pages": null,
+      "notes": "Native-speaker EP accent breakdown (NOT academic). Identifies the Algarve as having the strongest /ʒ/-for-/z/ external sandhi (word-final s + vowel-initial word → [ʒ]): 'Tajaver' (estás a ver), 'quijentrar', 'majaágua', 'muitojamigos', 'éjo número um'; shared (weaker) by São Miguel (Azores), variable in Coimbra, absent in Lisbon and the North (which keep [z]). Grounds the external-sandhi reading of the word-final [ʒ] this spec already models via its positional word_final map. A page-pinned academic source for the prevocalic-[ʒ] sandhi specifically was not located; the [ʒ]-for-final-/s/ voicing sits within the documented southern sibilant behaviour."
     },
     {
       "id": "boleo1974",

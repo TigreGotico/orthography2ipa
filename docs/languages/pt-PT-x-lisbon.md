@@ -37,7 +37,10 @@ duplicated in this spec:
   spelling-unmarked stressed `<o>`/`<a>`).
 - **Dark (velarised) coda /l/ → [ɫ]** (`PT_CODA_L_DARK`).
 - **Coda-sibilant *chiado*** — coda /s z/ → [ʃ ʒ] (`PT_CODA_S_HUSH`,
-  `PT_CODA_Z_HUSH`), with the coda-/s/ voicing/resyllabification sandhi.
+  `PT_CODA_Z_HUSH`), with the coda-/s/ voicing sandhi. Lisbon keeps the
+  **standard alveolar [z]** for the external prevocalic /s/-sandhi
+  (`estás a ver` → [eˈʃtaz ˈɐ ˈvɛɾ]) — the palatal [ʒ] here is a
+  Southern/Azorean feature (Algarve, São Miguel), **not** a Lisbon one.
 
 ## Lisbon innovations modelled
 

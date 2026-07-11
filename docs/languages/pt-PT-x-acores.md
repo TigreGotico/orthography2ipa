@@ -49,6 +49,28 @@ The ⟨ou⟩ digraph keeps its historical falling diphthong **[ow]** where stand
 Lisbon monophthongises to [o]. Modelled as the grapheme delta `ou` → [ow]:
 `touradas` → toˈwɾadɐʃ.
 
+### 3. External `/s/`-sandhi before a vowel → `[ʒ]` (shared with the Algarve)
+
+São Miguel shares the Algarvean `/ʒ/`-for-`/z/` external sandhi: a word-final
+/s/ before a vowel-initial following word surfaces as the **post-alveolar
+`[ʒ]`** rather than the standard `[z]` — *estás a ver* → **[eˈʃtaʒ ˈɐ ˈvɛɾ]**
+(the "quijentrar" / "Todojos" pronunciation). Unlike the Algarve — which
+generalises `[ʒ]` to *all* word-final positions — São Miguel restricts it to the
+**prevocalic** context, so before a consonant or in isolation the sibilant stays
+`[ʃ]` (`estás` → [eˈʃtaʃ], `estás só` → [eˈʃtaʃ ˈsɔ]). Modelled by re-declaring
+`PT_FINAL_S_PREVOCALIC_VOICE` (OVERLAY_BY_ID) with transform `ʒ` over the
+inherited base `[z]`.
+
+**Sourcing.** Described natively by *Portuguese With Leo*, "The 8 accents"
+([video](https://www.youtube.com/watch?v=pitj0XxYO7I); native-speaker /
+popular-linguistics, **not** academic), which reports the shared
+Algarvean–Azorean *J* ("quijentrar", "Todojos", "Éjunúmerúm" for *és o número
+um*), with Lisbon and the North keeping `[z]` and Coimbra variable. It sits
+within the documented insular final-sibilant behaviour (Rogers 1948), but a
+page-pinned academic source for the São-Miguel prevocalic `[ʒ]` *specifically*
+was not located — the standard/Lisbon literature gives `[z]` (Mateus & d'Andrade
+2000: ch.2). Stated honestly rather than over-cited.
+
 ## The clitic guard — the article `o` is [u], never [y]
 
 A stressed-/u/ → [y] rule is dangerous next to Portuguese proclitics: the
@@ -70,9 +92,10 @@ every proclitic is pinned in `word_exceptions` to its [u]/[ũ] form:
 
 ## Inherited from pt-PT (unchanged)
 
-Dark coda /l/ → [ɫ] (`sol` → ˈsɔɫ), the coda-sibilant *chiado* /s z/ → [ʃ ʒ],
-extreme unstressed vowel reduction, and the coda-s voicing/resyllabification
-sandhi are inherited from the parent and not restated here.
+Dark coda /l/ → [ɫ] (`sol` → ˈsɔɫ), the coda-sibilant *chiado* /s z/ → [ʃ ʒ]
+and extreme unstressed vowel reduction are inherited from the parent and not
+restated here. The one sandhi delta is the prevocalic `/s/` → `[ʒ]` override
+(feature 3 above); the pre-consonantal coda-s voicing is inherited unchanged.
 
 ## Known limits (documented, not faked)
 
