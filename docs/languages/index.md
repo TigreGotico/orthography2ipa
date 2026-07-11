@@ -55,6 +55,9 @@ each tier actually certifies.
 | [fr-FR.md](fr-FR.md) | French in detail |
 | [it-IT.md](it-IT.md) | Italian in detail |
 | [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
+| [pt-BR-x-caipira.md](pt-BR-x-caipira.md) | Caipira (SP interior) — the retroflex "r caipira" [ɻ]; Amaral (1920) |
+| [pt-BR-x-sp.md](pt-BR-x-sp.md) | Paulistano (São Paulo capital) — plain tap coda /r/, non-chiado coda /s/ |
+| [pt-BR-x-pr.md](pt-BR-x-pr.md) | Paranaense / Curitibano — conservative Sulista (no palatalisation, final /e/ retained) |
 | [pt-PT.md](pt-PT.md) | European Portuguese in detail (coda allophony, vowel reduction) |
 | [pt-UY.md](pt-UY.md) | Uruguayan Portuguese / Riverense / DPU (border-contact variety: ⟨lh⟩→[j], dental /t d/ before /i/) |
 | [pt-TL.md](pt-TL.md) | East Timorese Portuguese (`pt-TL`) — L2/official variety; no vowel reduction (Tetum substrate), alveolar rhotic; NOT the Bidau creole |
@@ -114,7 +117,7 @@ rather than a specific language, start here:
 | Reduced/absent reduction (Lusophone-African) | pt-AO, pt-CV, pt-MZ | [pt-AO.md](pt-AO.md), [pt-MZ.md](pt-MZ.md) |
 | Coda allophony (dark l, coda sibilant) | pt-PT, ca | [pt-PT.md](pt-PT.md), [../allophony.md](../allophony.md) |
 | Nasal vowels | fr, pt, pl | [fr-FR.md](fr-FR.md), [slavic.md](slavic.md) |
-| Retroflex consonants | sv (from r+C), hi, sa | [hi.md](hi.md) |
+| Retroflex consonants | sv (from r+C), hi, sa, pt-BR-x-caipira (coda /r/→[ɻ]) | [hi.md](hi.md), [pt-BR-x-caipira.md](pt-BR-x-caipira.md) |
 | Schwa deletion | hi, bn, mr, pa | [hi.md](hi.md) |
 | Abugida (inherent vowel) | hi, sa, mr, bn, te, kn, ml | [hi.md](hi.md) |
 | Vowel harmony | fi, hu, tr, ko | family docs |

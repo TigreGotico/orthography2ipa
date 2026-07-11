@@ -318,10 +318,20 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Caipira (SP interior, western Minas Gerais, Goiás, Mato Grosso, Mato Grosso do Sul, Paraná hinterland). Hallmark: retroflex approximant rhotic [ɻ] in coda and clusters — the 'erre caipira / erre retroflexo' (porta -> [ˈpɔɻtɐ], mar -> [maɻ]). Possibly the oldest Brazilian coda-rhotic pattern (Amaral 1920). Coda /S/ stays alveolar. /t,d/ palatalisation present; rural depalatalisation of /ʎ/ -> [j] (encoded in allophones).",
+  "notes": "Caipira (SP interior, western Minas Gerais, Goiás, Mato Grosso, Mato Grosso do Sul, Paraná hinterland). Hallmark: retroflex approximant rhotic [ɻ] in coda and clusters — the 'erre caipira / erre retroflexo' (porta -> [ˈpoɻtɐ], mar -> [maɻ]; open-mid /ɔ/ in 'porta' is lexical and unmarked in spelling, so the engine derives [o]). Directly described by Amaral (1920) §6b: 'r inter e post-vocálico (arara, carta) possui um valor peculiar: é linguo-palatal e guturalizado ... a língua ... vira a extremidade para cima, sem tocá-la na abóbada palatal. Não há quase nenhuma vibração tremulante ... este r caipira assemelha-se bastante ao r inglês post-vocálico' — i.e. a non-trilled retroflex approximant. Coda /S/ stays alveolar laminodental ciciante with no chiado (Amaral §6a: 's propriamente sibilante, assobiado, e bem assim chiante, são aqui desconhecidos'). Coda /l/ historically rhotacises to r and merges into the retroflex — Amaral §22a: 'l - Em final de sílaba, muda-se em r: quarquér, papér, mér, arma'; modern urban caipira more often vocalises to [w] (kept as the primary coda-/l/ realisation, with [ɻ] as the traditional Amaral variant). Word-final /r/ elides (Amaral §23a: 'Cai, quando final de palavra: andá, muié, esquecê'). /ʎ/ vocalises to [j] (Amaral §25: 'Vocaliza-se em i: espaiado, maio, muié'; §6e: lh 'não existe no dialeto'). /t,d/ palatalisation before /i/ is retained from the pt-BR base. NB Amaral §8 records that early-20c rural caipira did NOT raise final unstressed /e/->[i] or /o/->[u] ('Não se operou aqui a permuta de e final por i ... como não se operou a de o por u'); the spec inherits the modern pt-BR reduction, which now prevails, and this historical divergence is documented rather than modelled.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
+    {
+      "id": "amaral1920",
+      "author": "Amaral, A.",
+      "year": 1920,
+      "title": "O Dialeto Caipira",
+      "publisher": "Casa Editora \"O Livro\", São Paulo",
+      "url": "https://www.epedagogia.com.br/materialbibliotecaonine/1280-dialeto-caipira.pdf",
+      "pages": "§6a-b, §8, §22a, §23a, §25",
+      "notes": "Foundational description of the dialect. §6b: the retroflex non-trilled 'r caipira'. §6a: laminodental coda /s/, no chiado. §22a: coda /l/ -> r rhotacism. §23a: word-final /r/ elision. §25/§6e: /ʎ/ vocalisation. §8: early-20c retention of final unstressed /e/, /o/ (no raising)."
+    },
     {
       "id": "mateus_dandrade2000",
       "author": "Mateus, M.H.M. & d'Andrade, E.",
@@ -431,6 +441,26 @@
       "word_final": [
         "ɻ",
         ""
+      ]
+    },
+    "l": {
+      "before_vowel": [
+        "l"
+      ],
+      "onset": [
+        "l"
+      ],
+      "before_consonant": [
+        "w",
+        "ɻ"
+      ],
+      "coda": [
+        "w",
+        "ɻ"
+      ],
+      "word_final": [
+        "w",
+        "ɻ"
       ]
     }
   }

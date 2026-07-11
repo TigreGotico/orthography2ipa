@@ -316,10 +316,20 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Curitibano / Paranaense (Curitiba, Paraná). Transitional Sulista–Paulistano. Encoded conservative default: non-palatalising /t,d/ and final /e/ often retained as [e] (the well-documented Curitiba 'e/o fechados'), with palatalisation present in younger and Paulista-influenced speech (noted). Coda /S/ alveolar; coda /R/ tap. Heterogeneous: Curitiba diverges from the more caipira-like Paraná interior. Slavic/Italian settler substrata.",
+  "notes": "Curitibano / Paranaense (Curitiba, Paraná). Transitional Sulista–Paulistano. Encoded conservative default: non-palatalising /t,d/ and final /e/ often retained as [e] (the well-documented Curitiba 'e/o fechados'), with palatalisation present in younger and Paulista-influenced speech (noted). Coda /S/ alveolar; coda /R/ tap. Heterogeneous: Curitiba diverges from the more caipira-like Paraná interior. Slavic/Italian settler substrata. This spec models the Curitiba/Sulista-type coda /r/ as an alveolar tap [ɾ]; the retroflex 'r caipira' (Amaral 1920 §6b) is instead characteristic of the northern/interior Paraná hinterland, which patterns with pt-BR-x-caipira.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
+    {
+      "id": "amaral1920",
+      "author": "Amaral, A.",
+      "year": 1920,
+      "title": "O Dialeto Caipira",
+      "publisher": "Casa Editora \"O Livro\", São Paulo",
+      "url": "https://www.epedagogia.com.br/materialbibliotecaonine/1280-dialeto-caipira.pdf",
+      "pages": "§6b",
+      "notes": "Cited for contrast: the retroflex coda /r/ belongs to the interior caipira zone, not the Curitibano/Sulista variety modelled here."
+    },
     {
       "id": "mateus_dandrade2000",
       "author": "Mateus, M.H.M. & d'Andrade, E.",
