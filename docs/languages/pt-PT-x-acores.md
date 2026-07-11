@@ -55,11 +55,13 @@ São Miguel shares the Algarvean `/ʒ/`-for-`/z/` external sandhi: a word-final
 /s/ before a vowel-initial following word surfaces as the **post-alveolar
 `[ʒ]`** rather than the standard `[z]` — *estás a ver* → **[eˈʃtaʒ ˈɐ ˈvɛɾ]**
 (the "quijentrar" / "Todojos" pronunciation). Unlike the Algarve — which
-generalises `[ʒ]` to *all* word-final positions — São Miguel restricts it to the
-**prevocalic** context, so before a consonant or in isolation the sibilant stays
-`[ʃ]` (`estás` → [eˈʃtaʃ], `estás só` → [eˈʃtaʃ ˈsɔ]). Modelled by re-declaring
-`PT_FINAL_S_PREVOCALIC_VOICE` (OVERLAY_BY_ID) with transform `ʒ` over the
-inherited base `[z]`.
+generalises `[ʒ]` to *all* word-final positions — São Miguel restricts this
+palatal to the **prevocalic** context, so before a *voiceless* consonant or in
+isolation the sibilant stays `[ʃ]` (`estás` → [eˈʃtaʃ], `estás só` → [eˈʃtaʃ
+ˈsɔ]). Modelled by re-declaring `PT_FINAL_S_PREVOCALIC_VOICE` (OVERLAY_BY_ID)
+with transform `ʒ` over the inherited base `[z]`. Before a **voiced** consonant
+the inherited general-EP `PT_CODA_S_VOICING` still voices it to `[ʒ]`
+(`estás bem` → [eˈʃtaʒ ˈbɛm]).
 
 **Sourcing.** Described natively by *Portuguese With Leo*, "The 8 accents"
 ([video](https://www.youtube.com/watch?v=pitj0XxYO7I); native-speaker /
