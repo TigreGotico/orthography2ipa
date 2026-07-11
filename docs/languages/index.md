@@ -55,6 +55,7 @@ each tier actually certifies.
 | [fr-FR.md](fr-FR.md) | French in detail |
 | [it-IT.md](it-IT.md) | Italian in detail |
 | [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
+| [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
 ### Slavic
 
