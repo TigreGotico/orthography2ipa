@@ -1,7 +1,7 @@
 {
   "code": "en-ZA",
   "name": "South African English",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic",
   "script": "Latin",
   "graphemes_base": "en-GB",
   "allophones_base": "en-GB",
@@ -64,6 +64,6 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": "sout3113",
+  "glottolog_code": "sout3331",
   "iso639_3": "eng"
 }

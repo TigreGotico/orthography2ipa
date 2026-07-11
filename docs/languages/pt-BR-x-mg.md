@@ -1,6 +1,6 @@
 # Mineiro Portuguese (pt-BR-x-mg) — Phonology Reference
 
-**Code**: `pt-BR-x-mg` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR-x-mg` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Parent**: `pt-BR`
 **Sources**: Lemos & Viegas (2016, *O alçamento das vogais médias pretônicas
 em falares mineiros*), Castilho (2010), Mateus & d'Andrade (2000), Silva

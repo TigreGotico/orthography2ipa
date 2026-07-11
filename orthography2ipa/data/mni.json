@@ -1,7 +1,7 @@
 {
   "code": "mni",
   "name": "Meitei",
-  "family": "Tibeto-Burman",
+  "family": "Sino-Tibetan",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -258,7 +258,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "meit1245",
+  "glottolog_code": "mani1292",
   "tone_inventory": {
     "falling": "falling tone",
     "level": "level tone"

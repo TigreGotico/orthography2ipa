@@ -1,7 +1,8 @@
 {
   "code": "am",
   "name": "Amharic",
-  "family": "Semitic",
+  "glottolog_code": "amha1245",
+  "family": "Afro-Asiatic > Semitic",
   "script": "Ethiopic",
   "script_type": "abugida",
   "inherent_vowel": "ə",

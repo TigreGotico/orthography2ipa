@@ -1,7 +1,7 @@
 {
   "code": "fax",
   "name": "A Fala (Xalimego)",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -378,5 +378,5 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "fala1244"
+  "glottolog_code": "fala1241"
 }

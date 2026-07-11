@@ -1,7 +1,7 @@
 {
   "code": "cu",
   "name": "Old Church Slavonic",
-  "family": "Slavic",
+  "family": "Indo-European > Slavic",
   "script": "Cyrillic",
   "graphemes": {
     "а": [
@@ -297,6 +297,6 @@
     "start_year": 900,
     "end_year": 1200
   },
-  "glottolog_code": "chur1273",
+  "glottolog_code": "chur1257",
   "iso639_3": "chu"
 }

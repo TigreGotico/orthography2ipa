@@ -1,7 +1,7 @@
 {
   "code": "roa-x-galaicopt",
   "name": "Galaico-Portuguese",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -406,7 +406,7 @@
     "start_year": 1100,
     "end_year": 1400
   },
-  "glottolog_code": "gali1258",
+  "glottolog_code": null,
   "iso639_3": "por",
   "quality": "research"
 }

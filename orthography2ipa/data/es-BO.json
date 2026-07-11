@@ -1,7 +1,7 @@
 {
   "code": "es-BO",
   "name": "Bolivian Spanish",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -111,7 +111,7 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
+  "glottolog_code": "boli1265",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {

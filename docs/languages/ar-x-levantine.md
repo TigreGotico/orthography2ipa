@@ -2,7 +2,7 @@
 
 **Codes**: `ar-x-levantine` (proto-parent), `ar-SY` (Damascene), `ar-LB` (Beiruti),
 `ar-JO` (Ammani), `ar-PS` (Palestinian)
-**Family**: Semitic | **Script**: Arabic (abjad) | **Quality tier**: research
+**Family**: Afro-Asiatic > Semitic | **Script**: Arabic (abjad) | **Quality tier**: research
 
 ---
 

@@ -1,6 +1,6 @@
 # Uruguayan Portuguese (pt-UY) — Riverense / DPU Phonology Reference
 
-**Code**: `pt-UY` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-UY` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` | **Quality tier**: research | **ISO 639-3**: `por`
 **Sources**: Carvalho (1998), *Variation and diffusion of Uruguayan Portuguese in a bilingual border town*; Rona (1965), *El dialecto fronterizo del Norte del Uruguay*; Hensey (1972), *The Sociolinguistics of the Brazilian-Uruguayan Border*; Elizaincín (1992), *Dialectos en Contacto*; Sturza (2021)
 

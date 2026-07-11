@@ -1,7 +1,7 @@
 {
   "code": "ar-TN",
   "name": "Tunisian Arabic",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-maghrebi",
   "graphemes": {
@@ -132,6 +132,6 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "tuni1238",
+  "glottolog_code": "tuni1259",
   "iso639_3": "aeb"
 }

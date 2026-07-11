@@ -1,7 +1,7 @@
 # Slavic Languages — Comparative Phonology Reference
 
 **Codes**: `pl`, `cs`, `sk`, `sr`, `hr`, `bg`, `mk`, `uk`, `be`, `sla`
-**Family**: Slavic | **Script**: Latin (pl/cs/sk/hr) or Cyrillic (ru/uk/be/sr/bg/mk)
+**Family**: Indo-European > Slavic | **Script**: Latin (pl/cs/sk/hr) or Cyrillic (ru/uk/be/sr/bg/mk)
 **Quality tiers**: research (pl, cs), skeleton (others)
 
 ---

@@ -1,7 +1,7 @@
 {
   "code": "en-CA",
   "name": "Canadian English",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic",
   "script": "Latin",
   "graphemes_base": "en-GB",
   "allophones_base": "en-GB",
@@ -70,6 +70,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "cana1269",
+  "glottolog_code": "cana1268",
   "iso639_3": "eng"
 }

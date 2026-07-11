@@ -1,7 +1,7 @@
 {
     "code": "xlg",
     "name": "Lusitanian",
-    "family": "Indo-European",
+    "family": "Unclassifiable",
     "script": "Latin",
     "parent": "ine",
     "graphemes": {
@@ -158,6 +158,6 @@
         "start_year": -800,
         "end_year": 300
     },
-    "glottolog_code": "lusi1235",
+    "glottolog_code": "anci1248",
     "iso639_3": "xlg"
 }

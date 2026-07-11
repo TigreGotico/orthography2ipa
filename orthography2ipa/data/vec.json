@@ -1,7 +1,7 @@
 {
   "code": "vec",
   "name": "Venetian",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -321,5 +321,5 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "vene1259"
+  "glottolog_code": "vene1258"
 }

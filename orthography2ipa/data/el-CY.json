@@ -1,12 +1,12 @@
 {
   "code": "el-CY",
   "name": "Cypriot Greek",
-  "family": "Indo-European > Hellenic",
+  "family": "Indo-European > Greek",
   "script": "Greek",
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": null,
-  "glottolog_code": null,
+  "glottolog_code": "cypr1249",
   "timespan": {
     "start_year": 1400,
     "end_year": null

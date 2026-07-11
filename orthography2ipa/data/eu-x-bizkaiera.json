@@ -1,7 +1,7 @@
 {
   "code": "eu-x-bizkaiera",
   "name": "Biscayan Basque (Bizkaiera)",
-  "family": "Isolate",
+  "family": "Basque",
   "script": "Latin",
   "graphemes_base": "eu",
   "graphemes": {
@@ -44,7 +44,7 @@
     ]
   },
   "parent": "eu",
-  "glottolog_code": "bizk1238",
+  "glottolog_code": "bisc1236",
   "ancestors": [
     {
       "code": "eu",

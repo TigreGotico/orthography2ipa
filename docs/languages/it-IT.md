@@ -1,6 +1,6 @@
 # Italian (it-IT) — Phonology Reference
 
-**Code**: `it-IT` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `it-IT` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Sources**: Lepschy & Lepschy (1988), Maiden (1995), Rogers & d'Arcangeli (2004)
 
 ---

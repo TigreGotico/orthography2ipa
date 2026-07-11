@@ -1,6 +1,7 @@
 {
   "code": "km",
   "name": "Khmer",
+  "glottolog_code": "cent1989",
   "family": "Austroasiatic",
   "script": "Khmer",
   "script_type": "abugida",

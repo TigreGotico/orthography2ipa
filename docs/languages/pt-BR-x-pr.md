@@ -1,6 +1,6 @@
 # Paranaense / Curitibano Portuguese (pt-BR-x-pr) — Phonology Reference
 
-**Code**: `pt-BR-x-pr` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR-x-pr` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
 **Sources**: Noll (2008), Cardoso et al. (2014, *ALiB*), Mateus & d'Andrade
 (2000), Callou & Leite (2001), Silva (2002); Amaral (1920, §6b, for contrast)

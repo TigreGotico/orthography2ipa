@@ -1,7 +1,7 @@
 {
   "code": "es-MX",
   "name": "Mexican Spanish (Highland)",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -105,7 +105,7 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "mexi1236",
+  "glottolog_code": "mexi1248",
   "iso639_3": "spa",
   "stress": {
     "default_position": -2,

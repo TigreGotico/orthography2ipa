@@ -1,7 +1,7 @@
 # English — British RP (en-GB) & American (en-US) Phonology Reference
 
 **Codes**: `en-GB`, `en-US`, `en-AU`, `en-CA`, `en-IE`, `en-ZA`, `en-GB-x-scotland`
-**Family**: Germanic | **Script**: Latin (alphabet)
+**Family**: Indo-European > Germanic | **Script**: Latin (alphabet)
 **Quality tier**: research | **Orthographic depth**: deep (production threshold ≤ 0.25 PER)
 **Sources**: Wells (1982), Roach (2009), Roach (2004, JIPA), Cruttenden (2014)
 

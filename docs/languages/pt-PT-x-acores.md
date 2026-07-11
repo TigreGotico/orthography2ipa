@@ -1,6 +1,6 @@
 # Azorean European Portuguese (pt-PT-x-acores) — Phonology Reference
 
-**Code**: `pt-PT-x-acores` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-acores` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
 **Sources**: Rogers (1948, *Hispanic Review* 16:1–32), Mateus & d'Andrade (2000)
 

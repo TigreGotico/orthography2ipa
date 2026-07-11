@@ -1,7 +1,7 @@
 {
   "code": "an-x-occidental",
   "name": "Western Aragonese",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes_base": "an",
   "allophones_base": "an",
@@ -73,6 +73,6 @@
     "start_year": 1100,
     "end_year": null
   },
-  "glottolog_code": "west2615",
+  "glottolog_code": "west2340",
   "iso639_3": "arg"
 }

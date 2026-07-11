@@ -1,7 +1,7 @@
 {
   "code": "fa-x-early",
   "name": "Early New Persian (Classical Persian)",
-  "family": "Iranian",
+  "family": "Indo-European > Iranian",
   "script": "Latin",
   "graphemes": {
     "p": [
@@ -276,6 +276,6 @@
     "start_year": 800,
     "end_year": 1400
   },
-  "glottolog_code": "earl1234",
+  "glottolog_code": null,
   "iso639_3": "fas"
 }

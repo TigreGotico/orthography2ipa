@@ -1,7 +1,8 @@
 {
   "code": "mn",
   "name": "Mongolian",
-  "family": "Mongolic",
+  "glottolog_code": "halh1238",
+  "family": "Mongolic-Khitan > Mongolic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "mon",

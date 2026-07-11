@@ -1,7 +1,7 @@
 {
     "code": "etr",
     "name": "Etruscan",
-    "family": "Tyrrhenian",
+    "family": "Isolate",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -164,5 +164,5 @@
         "start_year": -700,
         "end_year": 100
     },
-    "glottolog_code": "etru1238"
+    "glottolog_code": "etru1241"
 }

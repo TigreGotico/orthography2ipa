@@ -1,7 +1,7 @@
 {
   "code": "nds",
   "name": "Low German (Plattdeutsch)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -366,7 +366,7 @@
     "start_year": 1600,
     "end_year": null
   },
-  "glottolog_code": "lowg1239",
+  "glottolog_code": "nort2627",
   "positional_graphemes": {
     "g": {
       "word_initial": [

@@ -1,7 +1,7 @@
 {
   "code": "phn",
   "name": "Phoenician/Punic",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic",
   "script": "Latin",
   "graphemes": {
     "ʾ": [
@@ -251,5 +251,5 @@
     "start_year": -1100,
     "end_year": 100
   },
-  "glottolog_code": "phoe1234"
+  "glottolog_code": "phoe1239"
 }

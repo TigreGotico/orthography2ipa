@@ -1,7 +1,7 @@
 {
   "code": "xce",
   "name": "Celtiberian",
-  "family": "Celtic",
+  "family": "Indo-European > Celtic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -268,7 +268,7 @@
     "start_year": -400,
     "end_year": 100
   },
-  "glottolog_code": "celt1248",
+  "glottolog_code": "celt1247",
   "iso639_3": "xce",
   "quality": "research"
 }

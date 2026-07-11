@@ -44,7 +44,7 @@ class TestRegistry:
         assert kab.name == "Kabyle"
 
     def test_family(self, kab):
-        assert kab.family == "Afroasiatic"
+        assert kab.family == "Afro-Asiatic > Berber"
 
     def test_script_is_latin(self, kab):
         assert kab.script == "Latin"

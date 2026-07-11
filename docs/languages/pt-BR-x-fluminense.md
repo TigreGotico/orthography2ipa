@@ -1,6 +1,6 @@
 # Fluminense Portuguese (pt-BR-x-fluminense) — Phonology Reference
 
-**Code**: `pt-BR-x-fluminense` | **Family**: Romance | **Script**: Latin
+**Code**: `pt-BR-x-fluminense` | **Family**: Indo-European > Romance | **Script**: Latin
 **Quality tier**: research | **Parent**: `pt-BR`
 **Sources**: Callou (2010, *Um perfil da fala carioca*), Mateus & d'Andrade
 (2000), Silva (2002), Atlas Linguístico do Brasil (Cardoso et al. 2014)

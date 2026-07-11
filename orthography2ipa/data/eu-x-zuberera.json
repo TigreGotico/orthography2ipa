@@ -1,7 +1,7 @@
 {
   "code": "eu-x-zuberera",
   "name": "Souletin Basque (Zuberera)",
-  "family": "Isolate",
+  "family": "Basque",
   "script": "Latin",
   "graphemes_base": "eu",
   "graphemes": {
@@ -32,7 +32,7 @@
     ]
   },
   "parent": "eu",
-  "glottolog_code": "soul1252",
+  "glottolog_code": "basq1250",
   "ancestors": [
     {
       "code": "eu",

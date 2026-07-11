@@ -1,7 +1,7 @@
 {
   "code": "la-x-gallia",
   "name": "Gallo-Romance Vulgar Latin",
-  "family": "Italic",
+  "family": "Indo-European > Italic",
   "script": "Latin",
   "parent": "la-x-late",
   "graphemes_base": "la-x-late",

@@ -1,7 +1,7 @@
 {
   "code": "la-x-archaic",
   "name": "Old Latin",
-  "family": "Italic",
+  "family": "Indo-European > Italic",
   "script": "Latin",
   "parent": "ine-x-italic",
   "graphemes": {
@@ -208,7 +208,7 @@
     "start_year": -600,
     "end_year": -100
   },
-  "glottolog_code": "arch1244",
+  "glottolog_code": "oldl1238",
   "iso639_3": "lat",
   "quality": "research"
 }

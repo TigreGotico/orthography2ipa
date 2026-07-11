@@ -1,7 +1,7 @@
 {
   "code": "no",
   "name": "Norwegian",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -336,6 +336,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "norw1259",
+  "glottolog_code": "norw1258",
   "iso639_3": "nor"
 }

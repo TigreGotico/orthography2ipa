@@ -1,6 +1,6 @@
 # Carioca Portuguese (pt-BR-x-rj) — Phonology Reference
 
-**Code**: `pt-BR-x-rj` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR-x-rj` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Parent**: `pt-BR`
 **Sources**: Callou (2010, *Um perfil da fala carioca*), Mateus & d'Andrade
 (2000), Silva (2002), Atlas Linguístico do Brasil (Cardoso et al. 2014)

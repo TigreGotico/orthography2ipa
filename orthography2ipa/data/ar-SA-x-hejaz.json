@@ -1,7 +1,7 @@
 {
   "code": "ar-SA-x-hejaz",
   "name": "Hejazi Arabic",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {
@@ -133,7 +133,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "heja1235",
+  "glottolog_code": "hija1235",
   "iso639_3": "acw",
   "allophone_rules": [
     {

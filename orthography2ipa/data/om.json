@@ -1,7 +1,8 @@
 {
   "code": "om",
   "name": "Oromo",
-  "family": "Afroasiatic",
+  "glottolog_code": "west2721",
+  "family": "Afro-Asiatic > Cushitic",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "orm",

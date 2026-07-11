@@ -1,7 +1,7 @@
 {
     "code": "xga",
     "name": "Galatian",
-    "family": "Celtic",
+    "family": "Indo-European > Celtic",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -174,5 +174,5 @@
         "start_year": -280,
         "end_year": 400
     },
-    "glottolog_code": "gala1264"
+    "glottolog_code": "gala1252"
 }

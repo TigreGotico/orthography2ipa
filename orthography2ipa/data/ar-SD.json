@@ -1,7 +1,7 @@
 {
   "code": "ar-SD",
   "name": "Sudanese Arabic",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-mashriqi",
   "graphemes": {

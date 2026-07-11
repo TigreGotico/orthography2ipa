@@ -1,7 +1,7 @@
 {
   "code": "gem-x-ingvaeonic",
   "name": "Proto-Ingvaeonic (North Sea Germanic)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic",
   "script": "Latin",
   "graphemes_base": "gem-x-northwest",
   "graphemes": {
@@ -189,5 +189,5 @@
     "start_year": 300,
     "end_year": 700
   },
-  "glottolog_code": "ingv1234"
+  "glottolog_code": null
 }

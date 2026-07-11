@@ -1,7 +1,7 @@
 {
   "code": "sv-x-skanska",
   "name": "Swedish (Scanian / Skånska)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic",
   "script": "Latin",
   "graphemes_base": "sv",
   "allophones_base": "sv",
@@ -78,6 +78,6 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": "scan1238",
+  "glottolog_code": null,
   "iso639_3": "swe"
 }

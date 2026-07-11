@@ -35,7 +35,7 @@ class TestRegistryGet:
 
     def test_spec_fields_populated(self):
         en = get("pt-PT")
-        assert en.family == "Romance"
+        assert en.family == "Indo-European > Romance"
         assert en.script == "Latin"
         assert len(en.graphemes) > 20  # English has many grapheme entries
         assert len(en.allophones) > 10
@@ -118,7 +118,7 @@ class TestAvailableFamilies:
 
     def test_expected_families_present(self):
         fam = available_families()
-        for family in ["Romance"]:
+        for family in ["Indo-European > Romance"]:
             assert family in fam, f"Family '{family}' should be present"
 
     def test_family_values_are_code_lists(self):
@@ -131,7 +131,7 @@ class TestAvailableFamilies:
 
     def test_romance_has_many_members(self):
         fam = available_families()
-        romance = fam.get("Romance", [])
+        romance = fam.get("Indo-European > Romance", [])
         assert len(romance) >= 3  # many Spanish/Portuguese dialects
 
 

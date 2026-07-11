@@ -1,7 +1,7 @@
 {
     "code": "de-CH",
     "name": "Swiss Standard German (Hochdeutsch)",
-    "family": "Germanic",
+    "family": "Indo-European > Germanic",
     "script": "Latin",
     "graphemes_base": "de-DE",
     "allophones_base": "de-DE",
@@ -49,6 +49,6 @@
         "start_year": 1800,
         "end_year": null
     },
-    "glottolog_code": "swis1247",
+    "glottolog_code": null,
     "iso639_3": "deu"
 }

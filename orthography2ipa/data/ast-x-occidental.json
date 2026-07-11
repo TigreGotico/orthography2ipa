@@ -1,7 +1,8 @@
 {
   "code": "ast-x-occidental",
   "name": "Western Asturian-Leonese",
-  "family": "Asturleonese",
+  "glottolog_code": "west2339",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "parent": "ast",
   "graphemes_base": "ast",

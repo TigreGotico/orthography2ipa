@@ -33,7 +33,7 @@
   ],
   "code": "ca",
   "name": "Catalan",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -468,7 +468,7 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "cata1289",
+  "glottolog_code": "stan1289",
   "iso639_3": "cat",
   "allophone_rules": [
     {

@@ -1,7 +1,7 @@
 {
   "code": "fa-x-khorasani",
   "name": "Khorasani Persian",
-  "family": "Iranian",
+  "family": "Indo-European > Iranian",
   "script": "Arabic",
   "graphemes_base": "fa-x-tehran",
   "allophones_base": "fa-x-tehran",
@@ -76,6 +76,6 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "khor1270",
+  "glottolog_code": "khor1275",
   "iso639_3": "fas"
 }

@@ -1,7 +1,7 @@
 {
   "code": "co",
   "name": "Corsican",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -367,6 +367,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "cors1242",
+  "glottolog_code": "cors1241",
   "iso639_3": "cos"
 }

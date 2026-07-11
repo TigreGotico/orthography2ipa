@@ -1,7 +1,7 @@
 {
   "code": "gem",
   "name": "Proto-Germanic (reconstructed)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "parent": "ine",
@@ -227,6 +227,6 @@
     "start_year": -500,
     "end_year": 200
   },
-  "glottolog_code": "pger1234",
+  "glottolog_code": null,
   "quality": "research"
 }

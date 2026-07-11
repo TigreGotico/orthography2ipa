@@ -106,7 +106,7 @@ class TestSpanishES:
         assert "Spanish" in self._spec.name or "Castilian" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -461,7 +461,7 @@ class TestPortuguesePT:
         assert "Portuguese" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -741,7 +741,7 @@ class TestCatalan:
         assert "Catalan" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -1046,7 +1046,7 @@ class TestGalician:
         assert "Galician" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -1308,9 +1308,9 @@ class TestBasqueEU:
     def test_name_basque(self):
         assert "Basque" in self._spec.name or "Euskara" in self._spec.name
 
-    def test_family_isolate(self):
-        """Basque is a language isolate — no Romance family."""
-        assert self._spec.family == "Isolate"
+    def test_family_basque(self):
+        """Basque is Vasconic — Glottolog files it under its own "Basque" family, not Romance."""
+        assert self._spec.family == "Basque"
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -1513,7 +1513,7 @@ class TestAsturian:
         assert "Asturian" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Asturleonese"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_parent_hispanic_latin(self):
         assert "hispania" in self._spec.parent or "la-x" in self._spec.parent
@@ -1736,7 +1736,7 @@ class TestMirandese:
         assert "Mirandese" in self._spec.name
 
     def test_family_asturleonese(self):
-        assert self._spec.family == "Asturleonese"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_parent_medieval_asturian(self):
         assert self._spec.parent == "ast-PT-x-medieval"
@@ -2207,7 +2207,7 @@ class TestSpanishAndalusianEast:
         assert self._spec.code == "es-ES-x-andalusia-e"
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_parent_castilian(self):
         assert "es-ES" in self._spec.parent or "medieval" in self._spec.parent
@@ -2243,7 +2243,7 @@ class TestSpanishRioplatense:
         assert self._spec.code == "es-AR"
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_parent_spanish(self):
         assert "es" in self._spec.parent
@@ -2282,7 +2282,7 @@ class TestCatalanValencian:
         assert self._spec.code == "ca-x-valencia"
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_has_grapheme_table(self):
         assert len(self._spec.graphemes) > 10
@@ -2312,7 +2312,7 @@ class TestCatalanBalearic:
         assert self._spec.code == "ca-x-balear"
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_parent_catalan(self):
         assert "ca" in self._spec.parent or self._spec.parent == "ca"
@@ -2335,7 +2335,7 @@ class TestPortugueseBrazilian:
         assert self._spec.code == "pt-BR"
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_parent_is_pt(self):
         assert "pt" in self._spec.parent
@@ -2377,7 +2377,7 @@ class TestGalicianWestern:
         assert self._spec.code == "gl-x-occidental"
 
     def test_family(self):
-        assert self._spec.family == "Romance"
+        assert self._spec.family == "Indo-European > Romance"
 
     def test_parent_galician(self):
         assert "gl" in self._spec.parent

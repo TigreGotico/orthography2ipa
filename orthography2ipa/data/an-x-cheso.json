@@ -1,7 +1,7 @@
 {
   "code": "an-x-cheso",
   "name": "Cheso Aragonese (Hecho/Echo valley)",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes_base": "an",
   "allophones_base": "an",
@@ -83,6 +83,6 @@
     "start_year": 1100,
     "end_year": null
   },
-  "glottolog_code": "arag1245",
+  "glottolog_code": null,
   "iso639_3": "arg"
 }

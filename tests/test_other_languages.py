@@ -224,7 +224,7 @@ class TestAncientGreek:
 
     def test_family(self):
         """Ancient Greek is Hellenic (Indo-European)."""
-        assert self.spec.family in ("Hellenic", "Indo-European", "Greek")
+        assert self.spec.family == "Indo-European > Greek"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -398,7 +398,7 @@ class TestFinnish:
 
     def test_family(self):
         """Finnish is Uralic (Finno-Ugric)."""
-        assert self.spec.family in ("Uralic", "Finno-Ugric", "Finnic")
+        assert self.spec.family == "Uralic > Finnic"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -505,7 +505,7 @@ class TestHungarian:
 
     def test_family(self):
         """Hungarian is Uralic (Finno-Ugric)."""
-        assert self.spec.family in ("Uralic", "Finno-Ugric", "Ugric")
+        assert self.spec.family == "Uralic"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -604,7 +604,7 @@ class TestJapanese:
 
     def test_family(self):
         """Japanese is Japonic."""
-        assert self.spec.family in ("Japonic", "Japanese")
+        assert self.spec.family == "Japonic"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -718,7 +718,7 @@ class TestKorean:
 
     def test_family(self):
         """Korean is Koreanic."""
-        assert self.spec.family in ("Koreanic", "Korean", "Japonic")
+        assert self.spec.family == "Koreanic"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -809,4 +809,4 @@ class TestMandarin:
 
     def test_family(self):
         """Mandarin is Sino-Tibetan."""
-        assert self.spec.family in ("Sino-Tibetan", "Chinese", "Sinitic")
+        assert self.spec.family == "Sino-Tibetan > Sinitic"

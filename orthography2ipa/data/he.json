@@ -1,7 +1,8 @@
 {
   "code": "he",
   "name": "Hebrew",
-  "family": "Semitic",
+  "glottolog_code": "hebr1245",
+  "family": "Afro-Asiatic > Semitic",
   "script": "Hebrew",
   "script_type": "abjad",
   "iso639_3": "heb",

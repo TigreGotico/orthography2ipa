@@ -1,7 +1,7 @@
 {
     "code": "xaa",
     "name": "Andalusi Arabic",
-    "family": "Semitic",
+    "family": "Afro-Asiatic > Semitic",
     "script": "Arabic",
     "graphemes_base": "arb",
     "allophones_base": "arb",
@@ -66,7 +66,7 @@
         "start_year": 711,
         "end_year": 1492
     },
-    "glottolog_code": "anda1275",
+    "glottolog_code": "anda1287",
     "iso639_3": "xaa",
     "quality": "research",
     "script_type": "abjad"

@@ -1,7 +1,8 @@
 {
   "code": "ti",
   "name": "Tigrinya",
-  "family": "Semitic",
+  "glottolog_code": "tigr1271",
+  "family": "Afro-Asiatic > Semitic",
   "script": "Ethiopic",
   "script_type": "abugida",
   "inherent_vowel": "ə",

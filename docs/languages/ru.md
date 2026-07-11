@@ -1,6 +1,6 @@
 # Russian (ru) — Phonology Reference
 
-**Code**: `ru` | **Family**: Slavic | **Script**: Cyrillic (alphabet)
+**Code**: `ru` | **Family**: Indo-European > Slavic | **Script**: Cyrillic (alphabet)
 **Quality tier**: research | **Sources**: Avanesov (1956), Jones & Ward (1969), Padgett (2002), Timberlake (2004), Padgett & Tabain (2005)
 
 ---

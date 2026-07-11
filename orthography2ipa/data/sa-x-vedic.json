@@ -1,7 +1,7 @@
 {
     "code": "sa-x-vedic",
     "name": "Vedic Sanskrit",
-    "family": "Indo-Aryan",
+    "family": "Indo-European > Indo-Aryan",
     "script": "Devanagari",
     "graphemes": {
         "अ": [

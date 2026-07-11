@@ -1,6 +1,6 @@
 # Hindi (hi) — Phonology Reference
 
-**Code**: `hi` | **Family**: Indo-Aryan | **Script**: Devanagari (abugida)
+**Code**: `hi` | **Family**: Indo-European > Indo-Aryan | **Script**: Devanagari (abugida)
 **Quality tier**: research | **Sources**: Masica (1991), Ohala (1983), Pandey (2014)
 
 ---

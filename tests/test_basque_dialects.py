@@ -49,7 +49,7 @@ def _spec(code: str):
 # ───────────────────────────────────────────────────────────────────────
 class TestRegistration:
     def test_base_loads(self):
-        assert _spec("eu").family == "Isolate"
+        assert _spec("eu").family == "Basque"
 
     @pytest.mark.parametrize("code", DIALECTS)
     def test_dialect_loads(self, code):

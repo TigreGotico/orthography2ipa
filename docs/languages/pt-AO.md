@@ -1,6 +1,6 @@
 # Angolan Portuguese (pt-AO) — Phonology Reference
 
-**Code**: `pt-AO` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-AO` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` | **Quality tier**: research
 **Sources**: Undolo (2014, *Revista de Filología Románica* 31(2):181–187); Chavagne (2005, PhD, Lyon 2); Inverno (2011, PhD, Coimbra); Mateus & d'Andrade (2000)
 
