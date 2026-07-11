@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.67.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.67.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.66.0a1...1.67.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): enrich ancestry metadata — Indo-European \(round 2\) [\#243](https://github.com/TigreGotico/orthography2ipa/pull/243) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.66.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.66.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.65.0a1...1.66.0a1)
@@ -689,10 +697,6 @@
 ## [1.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.5.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.4.0a1...1.5.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): romance stress blocks and brazilian-portuguese reduction [\#51](https://github.com/TigreGotico/orthography2ipa/pull/51) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.4.0a1) (2026-06-11)
 
