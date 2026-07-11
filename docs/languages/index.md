@@ -76,6 +76,7 @@ each tier actually certifies.
 | Doc | Languages covered |
 |:---|:---|
 | [ar.md](ar.md) | Modern Standard Arabic (+ Egyptian Cairene and Saudi Najdi/Hejazi sections) — abjad script, tashkeel-dependent input contract, emphatic-spreading allophone layer |
+| [ar-x-levantine.md](ar-x-levantine.md) | Levantine Arabic — Damascene (`ar-SY`), Beiruti (`ar-LB`), Ammani (`ar-JO`), Palestinian (`ar-PS`): shared qaf/jim/interdental reflexes, /aj aw/→[eː oː] monophthongization, Lebanese imāla |
 
 ### Indo-Aryan
 
@@ -107,4 +108,6 @@ rather than a specific language, start here:
 | Geminate consonants | it, fi, hu, ja | [it-IT.md](it-IT.md) |
 | Tone / pitch accent | sv, zh, ja, ko, vi | — |
 | Liaison / sandhi | fr, pt, sa | [fr-FR.md](fr-FR.md) |
-| Tashkeel-dependent input | ar | [ar.md](ar.md) |
+| Tashkeel-dependent input | ar, ar-SY, ar-LB, ar-JO, ar-PS | [ar.md](ar.md), [ar-x-levantine.md](ar-x-levantine.md) |
+| Imāla (/aː/→[eː]) | ar-LB | [ar-x-levantine.md](ar-x-levantine.md) |
+| Diphthong monophthongization | ar-x-levantine, ar-SA-x-hejaz | [ar-x-levantine.md](ar-x-levantine.md) |

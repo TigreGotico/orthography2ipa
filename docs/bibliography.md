@@ -67,4 +67,17 @@ language's JSON spec (see `data/SCHEMA.md` for the schema).
 
 ---
 
-*Sources for Romance, Semitic, Indo-Iranian, and other families will be added in subsequent phases of the linguistic reference audit. See `PLAN.md` for the full roadmap.*
+## Semitic
+
+### Levantine Arabic
+
+- **almbark2015** — Almbark, R. & Hellmuth, S. (2015). *Acoustic analysis of the Syrian Arabic vowel system.* Proceedings of ICPhS 2015 (paper 0612), Glasgow. [PDF](https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf) — read in full.
+- **cotter2016** — Cotter, W.M. (2016). *One Piece of the Puzzle: Notes on the Historic Interdental Fricatives /θ, ð, ðˤ/ in the Arabic Dialect of Gaza City.* Journal of Arabic and Islamic Studies 16:149–162. [PDF](https://www.lancaster.ac.uk/jais/volume/docs/vol16/v16_05_cotter_149-162.pdf) — read in full.
+- **alwer2020** — Al-Wer, E. (2020). *New-dialect formation: The Amman dialect.* In C. Lucas & S. Manfredi (eds.), *Arabic and contact-induced change*, 551–566. Berlin: Language Science Press. [Open access](https://langsci-press.org/catalog/book/235) — read in full.
+- **fadda2016** — Fadda, H. (2016). *Language Variation in Western Amman.* MA thesis, Canada Institute of Linguistics. [PDF](https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf) — phonology chapter read.
+- **cowell1964** — Cowell, M.W. (1964). *A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus).* Georgetown University Press. Not obtained (Internet Archive borrow-only); cited only as reported/re-tested by Almbark & Hellmuth (2015).
+- **watson2002** — Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic.* Oxford University Press. Cited for emphasis-spreading.
+
+---
+
+*Sources for Romance, Indo-Iranian, and other families will be added in subsequent phases of the linguistic reference audit. See `PLAN.md` for the full roadmap.*

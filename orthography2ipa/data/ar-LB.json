@@ -49,29 +49,39 @@
       "notes": "French adstrate (Mandate-era and ongoing): heavy loanword stratum, /ʒ/ reinforced, code-switching."
     }
   ],
-  "notes": "Lebanese Arabic — Beiruti urban koine, a South-Central Levantine variety. ق qaf → /ʔ/ glottal stop (urban; rural/Bedouin /ɡ/ via the Levantine parent). ج jim → /ʒ/. Interdentals merged in urban speech (θ→/t/~/s/, ð→/d/~/z/, ðˤ→/dˤ/). DISTINGUISHING FEATURE: STRONG imāla — Classical /aː/ raised to [eː] and final /-a(ت ة)/ raised toward [e]; short /a/ frequently fronted to [e]/[æ]. This pervasive vowel raising is the most salient Lebanese marker. French adstrate is heavy. Source: Lebanese Arabic (Wikipedia); Cowell (1964); Holes (2004).",
-  "quality": "skeleton",
+  "notes": "Lebanese Arabic — Beiruti urban koine, a South-Central Levantine variety. INPUT CONTRACT: fully-diacritized Arabic. ق qaf → /ʔ/ (urban; rural/Bedouin /ɡ/ via the Levantine parent). ج jim → /ʒ/. Interdentals merged in urban speech (θ→/t/, ð→/d/, ðˤ→/dˤ/). DISTINGUISHING FEATURE: STRONG imāla — Classical /aː/ raised to [eː] except adjacent to emphatic/guttural consonants, and final /-a/ (ة) raised to [e]; modelled here as allophone_rules (LB_IMALA_*) that compose after the inherited emphasis-backing rules. This pervasive vowel raising is the most salient Lebanese marker. The five-long / three-short vowel system and /aj aw/→[eː oː] monophthongization are inherited from the Levantine parent. French is a heavy adstrate.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
+    {
+      "id": "almbark2015",
+      "author": "Almbark, R. & Hellmuth, S.",
+      "year": 2015,
+      "title": "Acoustic analysis of the Syrian Arabic vowel system",
+      "publisher": "Proceedings of ICPhS 2015 (paper 0612), Glasgow",
+      "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf",
+      "pages": "1-4",
+      "notes": "READ in full. Damascus/Syrian vowel system: five long /iː eː aː oː uː/, three short contrastive /i a u/; mid short [e o] and schwa are allophones of /i u/ (§3-4). Mid-long /eː oː/ from /aj aw/ coalescence (§1.1). /aː/ higher/fronter in Coastal Syria than Damascus (p.2)."
+    },
+    {
+      "id": "fadda2016",
+      "author": "Fadda, H.",
+      "year": 2016,
+      "title": "Language Variation in Western Amman",
+      "publisher": "MA thesis, Canada Institute of Linguistics (CanIL)",
+      "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
+      "pages": "27-30",
+      "notes": "READ (phonology chapter). Ammani koine consonants = urban Palestinian [ʔ t d dˤ ʒ], 'identical to other Levantine cities' (pp.27-28). Qaf labels (Al-Wer & Herin 2011:60): [g] gilit, [q] qeltu, [ʔ] Jerusalem, [k] rural West Bank. Vowels: short /i u a/, long /iː uː eː oː aː/ (Al-Wer 2011:4). Diphthongs /aj aw/→[eː oː] except before glide: bajt→beːt, sˤawt→sˤoːtˤ (p.30)."
+    },
     {
       "id": "cowell1964",
       "author": "Cowell, M.W.",
       "year": 1964,
-      "title": "A Reference Grammar of Syrian Arabic",
+      "title": "A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus)",
       "publisher": "Georgetown University Press",
-      "url": null,
+      "url": "https://archive.org/details/referencegrammar0000cowe",
       "pages": null,
-      "notes": "Covers the North/South-Central Levantine continuum including Lebanese imāla."
-    },
-    {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "notes": "Standard Damascus grammar. Primary text NOT obtained (Internet Archive borrow-only, no full text); its Damascene vowel classification (5 long / 5 short + schwa) is cited here only as reported and tested by Almbark & Hellmuth 2015 §1.3."
     },
     {
       "id": "watson2002",
@@ -81,8 +91,7 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+      "notes": "Emphasis (pharyngealization) spreading onto neighbouring low vowels. Not obtained in full; cited for the widely-described emphasis-spreading process."
     }
   ],
   "wikipedia": [
@@ -94,5 +103,60 @@
     "end_year": null
   },
   "glottolog_code": "stan1323",
-  "iso639_3": "apc"
+  "iso639_3": "apc",
+  "allophone_rules": [
+    {
+      "id": "LB_IMALA_BLOCK_GUTT_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "aː",
+      "preceded_by_phoneme": [
+        "ħ",
+        "ʕ",
+        "h",
+        "ʔ",
+        "x",
+        "ɣ",
+        "q",
+        "ʁ"
+      ],
+      "notes": "Imāla is blocked adjacent to a guttural (pharyngeal/uvular/glottal) consonant: /aː/ stays [aː] after /ħ ʕ h ʔ x ɣ q/. Identity rule ordered before LB_IMALA_RAISE_AA so those environments do not raise (Lebanese imāla applies 'unless adjacent to emphatic or guttural consonants')."
+    },
+    {
+      "id": "LB_IMALA_BLOCK_GUTT_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "aː",
+      "followed_by_phoneme": [
+        "ħ",
+        "ʕ",
+        "h",
+        "ʔ",
+        "x",
+        "ɣ",
+        "q",
+        "ʁ"
+      ],
+      "notes": "Imāla blocked before a guttural consonant: /aː/ stays [aː]. Companion of LB_IMALA_BLOCK_GUTT_AFTER. Emphatic environments are already handled by the inherited AR_LEV_EMPH_BACK_AA_* rules (ordered earlier), which back /aː/→[ɑː]."
+    },
+    {
+      "id": "LB_IMALA_RAISE_AA",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "eː",
+      "notes": "Strong Lebanese imāla: Classical /aː/ is fronted and raised to [eː] outside emphatic/guttural contexts (e.g. باب bāb → [beːb]). Grounded in the Coastal-vs-Damascus /aː/ fronting Almbark & Hellmuth 2015 (p.2) report, and the [æ]→[eː] raising Fadda 2016:52 documents for the region. The specifically Beiruti magnitude of the raise rests additionally on secondary description (see notes/sources) — Naïm's Beirut grammar was not obtained."
+    },
+    {
+      "id": "LB_IMALA_TAMARBUTA",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "e",
+      "word_final": true,
+      "notes": "Word-final /-a/ (incl. tāʔ marbūṭa ة) raises to [e], the most consistent Lebanese imāla context. Fires on the final segment only. (The base ar spec surfaces both the preceding fatḥa and the tāʔ marbūṭa vowel, a pre-existing orthographic artifact; this rule raises the final segment only.)"
+    }
+  ]
 }
