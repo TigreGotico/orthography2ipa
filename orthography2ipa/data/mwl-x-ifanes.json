@@ -4,27 +4,33 @@
   "family": "Asturleonese",
   "script": "Latin",
   "graphemes_base": "mwl",
-  "graphemes": {
-    "iê": [
-      "e"
-    ]
-  },
+  "graphemes": {},
   "allophones_base": "mwl",
   "positional_graphemes_base": "mwl",
   "parent": "mwl",
-  "notes": "Ifanês subdialect of Mirandese, spoken in Ifanes (Infantes) in the northern part of Terra de Miranda. Differs from central Mirandese in: (1) monophthongization of -iê- → -e- (not -i- like Sendinês); (2) -uô- is sporadic, not systematically reduced. Noted in Convenção footnote 7 and Vasconcellos (1900).",
-  "quality": "skeleton",
+  "notes": "Ifanês is the local speech of Ifanes (Infainç) in the northern part of Terra de Miranda; it belongs to the Northern / Raiano (border) subdialect of Mirandese. Phonologically it tracks Central Mirandese: the published descriptions record NO segmental orthography→phoneme divergence for the Northern/Raiano group. In particular, Central and Raiano BOTH keep the Leonese diphthongs ⟨iê/ie⟩ = [je] and ⟨uô/uo⟩ = [wo] (only Sendinês monophthongises them to [i]/[u]), and BOTH keep the palatal lateral /ʎ/ where Sendinês has /l/. This is corroborated by the small Raiano gold sample (raiano 'fuogo' → [ˈfwo.ʊ], diphthong retained). The Raiano/Northern distinctives that ARE reported are morphosyntactic and lexical (definite-article forms, some nasalisation and syntactic constructions) — out of scope for a grapheme→IPA spec. This spec therefore inherits the full Central Mirandese system unchanged and is grounded by documentation rather than by a distinct rule set; an earlier draft's monophthongisation ⟨iê⟩→[e] was unsourced and is removed as contradicted by both the literature and the Raiano gold.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
-      "id": "ferreira1995",
-      "author": "Ferreira, M.B.",
-      "year": 1995,
-      "title": "Variação linguística: perspectiva dialectológica",
-      "publisher": "Universidade de Lisboa",
-      "url": null,
+      "id": "vasconcelos1900",
+      "author": "Vasconcelos, J. Leite de",
+      "year": 1900,
+      "title": "Estudos de Philologia Mirandesa (Vol. I)",
+      "publisher": "Imprensa Nacional, Lisboa",
+      "url": "https://archive.org/details/estudosdephilolo01leit",
       "pages": null,
-      "notes": null
+      "notes": "Foundational description that first delimits the Mirandese subdialects (central, the northern/raiano speech of the Miranda plateau, and Sendinês) and their phonology."
+    },
+    {
+      "id": "convencao1999",
+      "author": "Ferreira, M.B. & Raposo, D. (coords.)",
+      "year": 1999,
+      "title": "Convenção Ortográfica da Língua Mirandesa",
+      "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
+      "url": "http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf",
+      "pages": "62",
+      "notes": "Official orthography, built on the Central/Raiano norm; records that the ⟨iê/uô⟩ spelling reflected the [je]/[wo] pronunciation of the Central and Raiano dialects (reduced to [i]/[u] only in Sendinês)."
     },
     {
       "id": "mateus_dandrade2000",
@@ -34,7 +40,7 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Reference for the shared Ibero-Romance processes (nasal place assimilation, spirantisation) inherited from the Central spec."
     }
   ],
   "wikipedia": [

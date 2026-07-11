@@ -294,14 +294,15 @@ class TestMirandeseStress:
             f"mwl j should be ʒ; got {spec.graphemes['j']}"
         )
 
-    def test_mwl_cedilla_is_voiceless_laminal(self):
-        """Mirandese keeps the six-sibilant contrast (apical s̺/z̺,
-        laminal s̻/z̻, postalveolar ʃ/ʒ): ⟨ç⟩ is the voiceless laminal
-        fricative /s̻/ — not the Asturian affricate t͡s, and not the
-        voiced z̻, which is the value of ⟨z⟩."""
+    def test_mwl_cedilla_is_voiceless_dorsal(self):
+        """Mirandese keeps the apical vs dorso-dental sibilant contrast:
+        ⟨ç⟩ is the voiceless dorso-dental fricative — written plain /s/
+        (only the apical ⟨s⟩ series carries the ̺ diacritic, matching the
+        expert gold) — not the Asturian affricate t͡s, and not the voiced
+        /z/, which is the value of ⟨z⟩."""
         spec = get("mwl")
-        assert spec.graphemes["ç"] == ["s̻"], (
-            f"mwl ç should be s̻; got {spec.graphemes['ç']}"
+        assert spec.graphemes["ç"] == ["s"], (
+            f"mwl ç should be plain s; got {spec.graphemes['ç']}"
         )
 
     @pytest.mark.parametrize("word,expected", [

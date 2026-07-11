@@ -1266,9 +1266,12 @@ class TestMirandeseSendim:
 
 @pytest.mark.iberian
 class TestMiraneseIfanes:
-    """Mirandese — Ifanes dialect — mwl-x-ifanes.
+    """Mirandese — Ifanês (Raiano/Northern) subdialect — mwl-x-ifanes.
 
-    Partial diphthong reduction: iê → [e] (different from Sendim iê→i).
+    Ifanês tracks Central Mirandese: the published descriptions record no
+    segmental orthography→phoneme divergence for the Northern/Raiano group
+    (both keep the Leonese diphthongs [je]/[wo] and /ʎ/; only Sendinês
+    monophthongises). The spec therefore inherits Central unchanged.
     """
 
     LANGUAGE_CODE = "mwl-x-ifanes"
@@ -1277,9 +1280,9 @@ class TestMiraneseIfanes:
     def spec(self, request):
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
-    def test_ie_tilde_to_e(self):
-        """iê → e (Ifanes reduction differs from Sendim iê→i)."""
-        _assert_first(_grapheme(self.spec, "iê"), "e", label="iê")
+    def test_ie_tilde_tracks_central(self):
+        """iê keeps the Central diphthong [jɛ] (Raiano does not monophthongise)."""
+        _assert_first(_grapheme(self.spec, "iê"), "jɛ", label="iê")
 
     def test_parent_is_mwl(self):
         assert self.spec.parent == "mwl"

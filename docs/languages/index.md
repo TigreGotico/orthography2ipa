@@ -57,6 +57,12 @@ each tier actually certifies.
 | [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
+### Asturleonese
+
+| Doc | Languages covered |
+|:---|:---|
+| [mwl.md](mwl.md) | Mirandese (`mwl`) + Sendinês (`mwl-x-sendim`) and Ifanês (`mwl-x-ifanes`) — the four-way sibilant system, Leonese diphthongs and initial-l palatalisation, sub-dialect deltas |
+
 ### Slavic
 
 | Doc | Languages covered |

@@ -28,7 +28,7 @@
     }
   ],
   "quality": "research",
-  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/ (written ⟨iê/ie⟩, ⟨uô/uo⟩), palatal lateral /ʎ/ preserved (written ⟨lh⟩ in all positions; word-initial ⟨l⟩ before vowel = /ʎ/ in traditional lexicon per Convenção § L). Heavy Portuguese adstrate via official education and administration. Mirandese preserves the full medieval six-sibilant contrast: apical /s̺ z̺/ (⟨s⟩, intervocalic ⟨-s-⟩), laminal /s̻ z̻/ (⟨c, ç⟩, ⟨z⟩), postalveolar /ʃ ʒ/ (⟨x⟩, ⟨j, g⟩). Hence ⟨j⟩ is /ʒ/ (western Iberian, never the Asturian palatal ʝ) and ⟨ç⟩ is the voiceless laminal fricative /s̻/, not an affricate; ⟨ç⟩ also occurs word-finally (rapaç, lhuç) where Portuguese writes -z. Nasal digraphs ⟨an, en, in, on, un⟩ mark nasal vowels only at word boundaries and in nasal-onset syllables; they do NOT nasalise sequences before consonants (brando = /bɾ-a-n-do/, NOT /bɾ-ɐ̃-do/).",
+  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/ (written ⟨iê/ie⟩, ⟨uô/uo⟩), palatal lateral /ʎ/ preserved (written ⟨lh⟩ in all positions; word-initial ⟨l⟩ before vowel = /ʎ/ in traditional lexicon per Convenção § L). Heavy Portuguese adstrate via official education and administration. Mirandese preserves the medieval four-way+ sibilant contrast that Portuguese lost, the hallmark of the language: (1) voiceless apico-alveolar /s̺/ ⟨s, ss⟩ and its voiced intervocalic counterpart /z̺/ ⟨-s-⟩; (2) voiceless (pre)dorso-dental /s/ ⟨c (before e/i), ç⟩ and voiced /z/ ⟨z⟩; (3) postalveolar /ʃ/ ⟨x⟩ and /ʒ/ ⟨j, g (before e/i)⟩; (4) the affricate /tʃ/ ⟨ch⟩ (still an affricate, unlike modern European Portuguese). NOTATION CONVENTION (matches the TigreGotico/mirandese_g2p expert gold): the apical/dorsal CONTRAST is written by marking only the apical series with the ̺ diacritic (⟨s⟩ = /s̺/, /z̺/) and leaving the dorso-dental series unmarked (⟨c, ç, z⟩ = plain /s/, /z/); this is IPA-standard, keeps the phonemic contrast explicit, and avoids the over-narrow laminal ̻ diacritic the gold does not use. ⟨ç⟩ is a fricative, not an affricate, and occurs word-finally (rapaç, lhuç) where Portuguese writes -z. ⟨j⟩ is /ʒ/ (western Iberian, never the Asturian palatal ʝ) — ⟨y⟩ is the glide /j/. INITIAL-L PALATALISATION (Leonese): word-initial ⟨l⟩ before a vowel = /ʎ/ (luç → [ˈʎus], Convenção § L; bare ⟨l⟩ /l/ survives only in loanwords, proper nouns and the article — a documented residual limit); ⟨lh⟩ = /ʎ/ and ⟨nh⟩ = /ɲ/. The trigraphs ⟨anh, enh, inh, onh, unh⟩ are given explicitly (oral vowel + /ɲ/, e.g. danho → [ˈdaɲu]) so the greedy nasal-vowel digraph does not swallow the /ɲ/ of a following ⟨nh⟩. Nasal digraphs ⟨an, en, in, on, un⟩ realise Portuguese-adstrate nasal vowels /ɐ̃ ẽ ĩ õ ũ/ before a consonant or at word boundary (brando → [ˈbɾɐ̃du]); before a vowel they are oral vowel + /n/. ALLOPHONY (post-lexical, allophone_rules): coda /n/ assimilates in place to a following labial ([m]) or velar ([ŋ]). Ibero-Romance intervocalic voiced-stop spirantisation (⟨b d g⟩ → [β ð ɣ]) is a REAL native process (Mateus & d'Andrade 2000) but is LEXICALLY VARIABLE in the gold, which is stop-dominant (b:54/β:13, d:41/ð:12) because the attested wordlist is loan-heavy and conservatively transcribed; a blanket spirantisation rule regresses this expert gold, so the spirants are declared in the `allophones` inventory (available to the lattice / downstream engines) but NOT applied as a default rewrite — realising them is left to the downstream mwl_phonemizer where lexical conditioning is available.",
   "sources": [
     {
       "id": "ferreira1995",
@@ -142,18 +142,21 @@
       "ʒ"
     ],
     "ç": [
-      "s̻"
+      "s"
     ],
     "c": [
       "k",
-      "s̻"
+      "s"
     ],
     "z": [
-      "z̻"
+      "z"
     ],
     "g": [
       "ɡ",
       "ʒ"
+    ],
+    "y": [
+      "j"
     ],
     "ie": [
       "jɛ"
@@ -163,6 +166,21 @@
     ],
     "uô": [
       "wɔ"
+    ],
+    "anh": [
+      "aɲ"
+    ],
+    "enh": [
+      "eɲ"
+    ],
+    "inh": [
+      "iɲ"
+    ],
+    "onh": [
+      "oɲ"
+    ],
+    "unh": [
+      "uɲ"
     ]
   },
   "positional_graphemes": {
@@ -192,21 +210,32 @@
     },
     "c": {
       "before_e": [
-        "s̻"
+        "s"
       ],
       "before_i": [
-        "s̻"
+        "s"
       ]
     },
     "z": {
       "word_initial": [
-        "z̻"
+        "z"
       ],
       "intervocalic": [
-        "z̻"
+        "z"
       ],
       "word_final": [
-        "z̻"
+        "z"
+      ]
+    },
+    "l": {
+      "word_initial": [
+        "ʎ"
+      ],
+      "onset": [
+        "l"
+      ],
+      "coda": [
+        "ɫ"
       ]
     },
     "g": {
@@ -297,8 +326,44 @@
     }
   },
   "allophones": {
-    "ʒ": [
-      "ʒ"
+    "b": [
+      "b",
+      "β"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
     ]
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "MWL_NASAL_LABIAL",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "m",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Nasal place assimilation (Mateus & d'Andrade 2000 §3; general Ibero-Romance): a coda /n/ agrees in place with a following labial stop/nasal, surfacing as [m]."
+    },
+    {
+      "id": "MWL_NASAL_VELAR",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "ŋ",
+      "followed_by_phoneme": [
+        "k",
+        "ɡ"
+      ],
+      "notes": "Nasal place assimilation (Mateus & d'Andrade 2000 §3): a coda /n/ agrees in place with a following velar stop, surfacing as [ŋ]."
+    }
+  ]
 }
