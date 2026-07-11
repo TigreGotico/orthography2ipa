@@ -1,8 +1,9 @@
 """Tests for scripts/compare_systems.py.
 
 All comparison systems are mocked — no network, no real espeak-ng,
-epitran, or gruut required. Covers the PER math, the "beats espeak"
-tally, and the "unavailable system -> n/a, never a crash" contract.
+epitran, gruut, pycotovia, or ahotts-g2p required. Covers the PER math, the
+"beats espeak" tally, the "unavailable system -> n/a, never a crash"
+contract, and the Catalan-dialect espeak voice discovery/fallback logic.
 """
 import os
 import sys
@@ -262,3 +263,333 @@ class TestBuildAndWriteComparison(object):
         cs.write_comparison(rows)
         text = md_path.read_text(encoding="utf-8")
         assert "No languages were comparable" in text
+
+
+class TestPycotoviaLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "pycotovia":
+                raise ImportError("no module named pycotovia")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        assert cs.pycotovia_transcribe("ola", "gl") is None
+
+    def test_present_module_phonemizes_and_converts_to_ipa(self, monkeypatch):
+        class FakePycotovia:
+            @staticmethod
+            def phonemize(word, lang="gl"):
+                assert lang == "gl"
+                return "raw-cotovia-form"
+
+            @staticmethod
+            def cotovia_to_ipa(raw):
+                assert raw == "raw-cotovia-form"
+                return "ˈola"
+
+        monkeypatch.setitem(sys.modules, "pycotovia", FakePycotovia)
+        assert cs.pycotovia_transcribe("ola", "gl") == "ˈola"
+
+    def test_exception_during_transcription_yields_none(self, monkeypatch):
+        class FakePycotovia:
+            @staticmethod
+            def phonemize(word, lang="gl"):
+                raise RuntimeError("boom")
+
+            @staticmethod
+            def cotovia_to_ipa(raw):
+                return raw
+
+        monkeypatch.setitem(sys.modules, "pycotovia", FakePycotovia)
+        assert cs.pycotovia_transcribe("ola", "gl") is None
+
+
+class TestAhottsUnfoldToIpa:
+    """The StyleTTS2 single-char folds (uppercase affricates/aspirates/
+    stressed vowels) MUST unfold to standard IPA before scoring, so
+    ahotts-g2p is compared in the same IPA space as every other system.
+    Uses a fake ``ahotts_g2p.phones`` module so no real install/network
+    is required."""
+
+    @pytest.fixture(autouse=True)
+    def _fake_multi(self, monkeypatch):
+        import types
+        # mirrors ahotts_g2p.phones.MULTI (IPA sequence -> folded char)
+        fake_phones = types.ModuleType("ahotts_g2p.phones")
+        fake_phones.MULTI = {
+            "tʃ": "C", "ts": "V", "tʂ": "P",
+            "'i": "I", "'e": "E", "'a": "A", "'o": "O", "'u": "U",
+            "pʰ": "H", "kʰ": "K", "tʰ": "T",
+        }
+        fake_pkg = types.ModuleType("ahotts_g2p")
+        fake_pkg.phones = fake_phones
+        monkeypatch.setitem(sys.modules, "ahotts_g2p", fake_pkg)
+        monkeypatch.setitem(sys.modules, "ahotts_g2p.phones", fake_phones)
+        cs._ahotts_unfold_cache.clear()
+        yield
+        cs._ahotts_unfold_cache.clear()
+
+    def test_stressed_vowels_unfold_with_ipa_stress_mark(self):
+        # 'kajʃO' -> 'kajʃˈo' (O is folded stressed /o/, not a distinct phone)
+        assert cs.ahotts_unfold_to_ipa("kajʃO") == "kajʃˈo"
+
+    def test_affricate_and_stressed_vowel_unfold(self):
+        # 'eCEa' -> 'etʃˈea'
+        assert cs.ahotts_unfold_to_ipa("eCEa") == "etʃˈea"
+
+    def test_plain_ipa_chars_pass_through_unchanged(self):
+        assert cs.ahotts_unfold_to_ipa("mund") == "mund"
+
+    def test_unfold_stress_mark_is_stripped_by_shared_normalize(self):
+        # end-to-end fairness: after unfold, the shared normalize strips
+        # the ˈ so a folded stressed vowel scores like a plain one.
+        ipa = cs.ahotts_unfold_to_ipa("mundUa")  # -> 'mundˈua'
+        assert ipa == "mundˈua"
+        assert cs.benchmark.normalize(ipa, True, True) == "mundua"
+
+
+class TestAhottsTranscribe:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "ahotts_g2p":
+                raise ImportError("no module named ahotts_g2p")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        assert cs.ahotts_transcribe("kaixo", {"lang": "eu",
+                                              "version": "classic"}) is None
+
+    def test_present_module_phonemizes_and_unfolds(self, monkeypatch):
+        import types
+        fake_phones = types.ModuleType("ahotts_g2p.phones")
+        fake_phones.MULTI = {"tʃ": "C", "'o": "O", "'a": "A", "'e": "E",
+                             "'i": "I", "'u": "U"}
+        fake_pkg = types.ModuleType("ahotts_g2p")
+        fake_pkg.phones = fake_phones
+
+        def fake_phonemize(word, lang="eu", version="modern"):
+            assert (word, lang, version) == ("kaixo", "eu", "classic")
+            return "kajʃO"
+        fake_pkg.phonemize = fake_phonemize
+
+        monkeypatch.setitem(sys.modules, "ahotts_g2p", fake_pkg)
+        monkeypatch.setitem(sys.modules, "ahotts_g2p.phones", fake_phones)
+        cs._ahotts_unfold_cache.clear()
+
+        out = cs.ahotts_transcribe("kaixo", {"lang": "eu",
+                                             "version": "classic"})
+        assert out == "kajʃˈo"
+        cs._ahotts_unfold_cache.clear()
+
+    def test_exception_during_phonemize_yields_none(self, monkeypatch):
+        import types
+        fake_pkg = types.ModuleType("ahotts_g2p")
+
+        def boom(word, lang="eu", version="modern"):
+            raise RuntimeError("boom")
+        fake_pkg.phonemize = boom
+        monkeypatch.setitem(sys.modules, "ahotts_g2p", fake_pkg)
+        assert cs.ahotts_transcribe("x", {"lang": "eu",
+                                          "version": "classic"}) is None
+
+
+class TestCompareLangWithPycotoviaAndAhotts:
+    def test_gl_row_scores_pycotovia_and_leaves_ahotts_absent(
+            self, monkeypatch):
+        pairs = [("ola", "ola")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_gl_dataset",
+            (lambda lang, limit: pairs, ["gl"]))
+        monkeypatch.setitem(
+            cs.LANGS, "gl",
+            {"dataset": ("fake_gl_dataset", "gl"), "espeak": None,
+             "epitran": None, "gruut": None, "pycotovia": "gl"})
+
+        fake_o2i = FakeEngine({"ola": "ola"})
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(
+            cs, "pycotovia_transcribe", lambda word, lang: "ola")
+
+        row = cs.compare_lang("gl", limit=10)
+        assert row["pycotovia_per"] == 0.0
+        assert row["pycotovia_n"] == 1
+        assert row["ahotts_per"] is None
+        assert row["ahotts_n"] == 0
+
+    def test_eu_row_scores_ahotts_and_records_version(self, monkeypatch):
+        # gold 'kaiʃo'; ahotts (mocked) returns unfolded 'kajʃˈo' ->
+        # normalize -> 'kajʃo' vs 'kaiʃo' == 1 edit / 5 == 0.2
+        pairs = [("kaixo", "kaiʃo")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_eu_dataset",
+            (lambda lang, limit: pairs, ["eu"]))
+        monkeypatch.setitem(
+            cs.LANGS, "eu",
+            {"dataset": ("fake_eu_dataset", "eu"), "espeak": None,
+             "epitran": None, "gruut": None,
+             "ahotts": {"lang": "eu", "version": "classic"}})
+
+        fake_o2i = FakeEngine({"kaixo": "kaiʃo"})
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(
+            cs, "ahotts_transcribe", lambda word, cfg: "kajʃˈo")
+
+        row = cs.compare_lang("eu", limit=10)
+        assert row["o2i_per"] == 0.0
+        assert row["ahotts_per"] == pytest.approx(0.2)
+        assert row["ahotts_n"] == 1
+        assert row["ahotts_version"] == "classic"
+        assert row["pycotovia_per"] is None
+
+    def test_g2p_override_drives_named_spec_for_alt_dataset_row(
+            self, monkeypatch):
+        # eu-wikipron-style row: distinct key, but g2p override selects
+        # the real "eu" spec.
+        pairs = [("bat", "bat")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_euw_dataset",
+            (lambda lang, limit: pairs, ["eu"]))
+        monkeypatch.setitem(
+            cs.LANGS, "eu-wikipron",
+            {"dataset": ("fake_euw_dataset", "eu"), "g2p": "eu",
+             "espeak": None, "epitran": None, "gruut": None})
+
+        seen = {}
+
+        class FakeModule:
+            @staticmethod
+            def G2P(lang):
+                seen["lang"] = lang
+                return FakeEngine({"bat": "bat"})
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+
+        row = cs.compare_lang("eu-wikipron", limit=10)
+        assert seen["lang"] == "eu"  # g2p override, not the row key
+        assert row["lang"] == "eu-wikipron"
+        assert row["o2i_per"] == 0.0
+
+
+class TestDiscoverCatalanDialectVoices:
+    def test_all_bsc_dialect_voices_present(self, monkeypatch):
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+
+        class Proc:
+            returncode = 0
+            stderr = ""
+            stdout = (
+                "Pty Language       Age/Gender VoiceName          File\n"
+                " 5  ca              --/M      Catalan            roa/ca\n"
+                " 5  ca-ba           --/M      Catalan_(Balearic) roa/ca-ba\n"
+                " 5  ca-nw           --/M      Catalan_(NW)       roa/ca-nw\n"
+                " 5  ca-va           --/M      Catalan_(Valencian) roa/ca-va\n"
+            )
+        monkeypatch.setattr(cs.subprocess, "run", lambda *a, **k: Proc())
+
+        voices = cs.discover_catalan_dialect_voices()
+        assert voices == {
+            "ca": "ca", "ca-x-balear": "ca-ba",
+            "ca-x-occidental": "ca-nw", "ca-x-valencia": "ca-va",
+        }
+
+    def test_missing_dialect_voices_fall_back_to_generic_ca(
+            self, monkeypatch):
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+
+        class Proc:
+            returncode = 0
+            stderr = ""
+            stdout = (
+                "Pty Language       Age/Gender VoiceName          File\n"
+                " 5  ca              --/M      Catalan            roa/ca\n"
+            )
+        monkeypatch.setattr(cs.subprocess, "run", lambda *a, **k: Proc())
+
+        voices = cs.discover_catalan_dialect_voices()
+        assert voices["ca"] == "ca"
+        assert voices["ca-x-balear"] == "ca"
+        assert voices["ca-x-occidental"] == "ca"
+        assert voices["ca-x-valencia"] == "ca"
+
+    def test_no_catalan_voice_at_all_yields_none(self, monkeypatch):
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+
+        class Proc:
+            returncode = 0
+            stderr = ""
+            stdout = "Pty Language       Age/Gender VoiceName          File\n"
+        monkeypatch.setattr(cs.subprocess, "run", lambda *a, **k: Proc())
+
+        voices = cs.discover_catalan_dialect_voices()
+        assert all(v is None for v in voices.values())
+
+    def test_espeak_unavailable_yields_all_none(self, monkeypatch):
+        monkeypatch.setattr(cs, "espeak_available", lambda: False)
+        voices = cs.discover_catalan_dialect_voices()
+        assert all(v is None for v in voices.values())
+
+    def test_apply_catalan_dialect_voices_mutates_langs_espeak_field(
+            self, monkeypatch):
+        monkeypatch.setattr(
+            cs, "discover_catalan_dialect_voices",
+            lambda: {"ca": "ca", "ca-x-balear": "ca",
+                     "ca-x-occidental": None, "ca-x-valencia": "ca-va"})
+        langs = {
+            "ca": {"espeak": "placeholder"},
+            "ca-x-balear": {"espeak": "placeholder"},
+            "ca-x-occidental": {"espeak": "placeholder"},
+            "ca-x-valencia": {"espeak": "placeholder"},
+        }
+        voices = cs.apply_catalan_dialect_voices(langs)
+        assert langs["ca"]["espeak"] == "ca"
+        assert langs["ca-x-balear"]["espeak"] == "ca"
+        assert langs["ca-x-occidental"]["espeak"] is None
+        assert langs["ca-x-valencia"]["espeak"] == "ca-va"
+        assert voices["ca-x-valencia"] == "ca-va"
+
+
+class TestCatalanDialectTableSection:
+    def test_lines_report_dialect_specific_voices_when_all_found(self):
+        rows = [
+            {"lang": "ca", "dataset": "4catac", "n": 160,
+             "o2i_per": 0.41, "espeak_per": 0.18},
+            {"lang": "ca-x-balear", "dataset": "4catac", "n": 160,
+             "o2i_per": 0.38, "espeak_per": 0.21},
+            {"lang": "ca-x-occidental", "dataset": "4catac", "n": 160,
+             "o2i_per": 0.56, "espeak_per": 0.19},
+            {"lang": "ca-x-valencia", "dataset": "4catac", "n": 160,
+             "o2i_per": 0.30, "espeak_per": 0.18},
+        ]
+        voices = {"ca": "ca", "ca-x-balear": "ca-ba",
+                  "ca-x-occidental": "ca-nw", "ca-x-valencia": "ca-va"}
+        lines = cs._catalan_dialect_table_lines(rows, voices)
+        text = "\n".join(lines)
+        assert "All three BSC dialect voices" in text
+        assert "| balear | ca-x-balear | ca-ba | 160 | 0.3800 | 0.2100 |" in text
+        assert "fallback" not in text
+
+    def test_lines_report_fallback_honestly_when_voice_missing(self):
+        rows = [
+            {"lang": "ca", "dataset": "4catac", "n": 160,
+             "o2i_per": 0.41, "espeak_per": 0.18},
+            {"lang": "ca-x-balear", "dataset": "4catac", "n": 160,
+             "o2i_per": 0.38, "espeak_per": 0.25},
+        ]
+        voices = {"ca": "ca", "ca-x-balear": "ca",
+                  "ca-x-occidental": None, "ca-x-valencia": None}
+        lines = cs._catalan_dialect_table_lines(rows, voices)
+        text = "\n".join(lines)
+        assert "not** found" in text
+        assert "ca (fallback, no dialect voice found)" in text
+        assert "| occidental (nord-occidental) | ca-x-occidental | n/a | 0 | n/a | n/a |" in text
