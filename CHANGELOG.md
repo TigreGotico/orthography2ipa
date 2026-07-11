@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.70.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.70.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.69.0a1...1.70.0a1)
+
+**Merged pull requests:**
+
+- feat: sentence-context seam — cross-word lattice + boundary rescorer + phrase position \(C4\) [\#248](https://github.com/TigreGotico/orthography2ipa/pull/248) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.69.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.69.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.68.0a1...1.69.0a1)
@@ -692,10 +700,6 @@
 ## [1.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.7.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.6.0a2...1.7.0a1)
-
-**Merged pull requests:**
-
-- feat\(benchmarks\): espeak-ng agreement bench for TTS front-end replacement [\#58](https://github.com/TigreGotico/orthography2ipa/pull/58) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.6.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.6.0a2) (2026-06-11)
 
