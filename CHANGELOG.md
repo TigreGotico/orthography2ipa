@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.63.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.63.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.62.0a1...1.63.0a1)
+
+**Merged pull requests:**
+
+- feat: Arabic engine improvements — ligature normalization, gemination, ar spec fixes [\#233](https://github.com/TigreGotico/orthography2ipa/pull/233) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.62.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.62.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.61.0a1...1.62.0a1)
@@ -697,10 +705,6 @@
 ## [1.1.3a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.3a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.2a1...1.1.3a1)
-
-**Merged pull requests:**
-
-- fix\(data\): minor-findings triage and pa-PK shahmukhi table [\#33](https://github.com/TigreGotico/orthography2ipa/pull/33) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.1.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.2a1) (2026-06-11)
 
