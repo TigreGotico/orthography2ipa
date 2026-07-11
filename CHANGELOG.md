@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.78.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.78.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.77.0a1...1.78.0a1)
+
+**Merged pull requests:**
+
+- feat: model language families as clade nodes and derive the family field [\#280](https://github.com/TigreGotico/orthography2ipa/pull/280) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): multi-edition Wikipedia URLs + missing-language stubs [\#272](https://github.com/TigreGotico/orthography2ipa/pull/272) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.77.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.77.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.76.0a1...1.77.0a1)
@@ -698,17 +707,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.15.0a1...1.15.1a1)
 
-**Merged pull requests:**
-
-- fix\(tr\): correct ö to \[œ\] per Zimmer & Orgun and Göksel & Kerslake [\#90](https://github.com/TigreGotico/orthography2ipa/pull/90) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.15.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.14.0a1...1.15.0a1)
-
-**Merged pull requests:**
-
-- feat\(benchmark\): add infopedia\_pt gold dataset for European Portuguese [\#88](https://github.com/TigreGotico/orthography2ipa/pull/88) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.14.0a1) (2026-07-09)
 
