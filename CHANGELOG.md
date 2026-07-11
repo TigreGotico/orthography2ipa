@@ -8,6 +8,7 @@
 
 - feat\(data\): research-grounded Barranquenho \(Portuguese-Spanish contact variety\) [\#158](https://github.com/TigreGotico/orthography2ipa/pull/158) ([JarbasAl](https://github.com/JarbasAl))
 - feat\(data\): model Porto European Portuguese dialect [\#157](https://github.com/TigreGotico/orthography2ipa/pull/157) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): research-grounded Mirandese phonology \(mwl + Sendinese + Ifanes\) [\#156](https://github.com/TigreGotico/orthography2ipa/pull/156) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.36.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.36.1a1) (2026-07-11)
 
@@ -182,19 +183,19 @@
 
 ## [1.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.1a1) (2026-07-10)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.21.1a1)
 
 **Merged pull requests:**
 
 - fix\(g2p\): route word\_exceptions overrides through stress marking [\#109](https://github.com/TigreGotico/orthography2ipa/pull/109) ([JarbasAl](https://github.com/JarbasAl))
 
-## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.20.0a1)
-
 ## [1.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.0a1) (2026-07-09)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.21.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.0a1)
+
+## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.20.0a1)
 
 **Merged pull requests:**
 
