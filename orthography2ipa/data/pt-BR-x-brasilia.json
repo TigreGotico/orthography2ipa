@@ -313,7 +313,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Brasiliense / Candango (Brasília, planned capital, 1960). Emerging koiné from nationwide migration; converges on the southeastern (SP/MG) standard with Goiás/Central-West substratum. Encoded as the pt-BR base unchanged: /t,d/ palatalisation, dorsal onset /r/, tap coda /R/, alveolar coda /S/, coda /l/ -> [w], post-stressed reduction. Minimal dialect-specific divergence by design (levelling koiné).",
+  "notes": "Brasiliense / Candango (Brasília, planned capital, 1960). Emerging koiné from nationwide migration; converges on the southeastern (SP/MG) standard with Goiás/Central-West substratum. Encoded as the pt-BR base unchanged: /t,d/ palatalisation, dorsal onset /r/, tap coda /R/, alveolar coda /S/, coda /l/ -> [w], post-stressed reduction. Minimal dialect-specific divergence by design (levelling koiné). Honestly a skeleton-tier delta by construction, not a research gap: Brasília postdates Nascentes' (1953) six-subfalar division of Brazil by a decade (the city was inaugurated in 1960), so no historical subfalar exists to source a distinctive phonology from; the candango koiné is a sociolinguistic contact outcome, not a settlement-era regional accent, and no read source documents a phonemic-level feature distinguishing it from the SP/MG-leaning standard it levelled toward.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -356,6 +356,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "nascentes1953",
+      "author": "Nascentes, Antenor",
+      "year": 1953,
+      "title": "O linguajar carioca",
+      "publisher": "Organização Simões, Rio de Janeiro (2nd ed.)",
+      "url": null,
+      "pages": "20, 23-25",
+      "notes": "Downloaded and read directly. Cited for context: Brasília (founded 1960) postdates Nascentes' six-subfalar division of Brazil by a decade, so no historical subfalar applies to it."
     }
   ],
   "wikipedia": [
