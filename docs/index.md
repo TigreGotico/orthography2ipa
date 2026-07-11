@@ -141,6 +141,17 @@ below.
   See the full, unfiltered [scoreboard.md](scoreboard.md) — reported for
   honesty, not flattery. Every score is reproducible with
   `python scripts/benchmark.py`.
+- **The gold data itself is a grain of salt.** Reliable G2P gold barely
+  exists, so most benchmark datasets are semi-automated,
+  dictionary-extracted, community-scraped, or a phonemizer's own output
+  reused as a reference — a low PER against a machine-generated gold means
+  "agrees with that tool", not "correct", and an espeak comparison on an
+  espeak-derived gold is partly circular. Read PER as directional, not
+  precise, and cross-reference each row's bootstrap `95% CI` (small-`N`
+  rows are anecdotes). Every dataset's reliability tier is on the
+  [scoreboard](scoreboard.md) (`provenance` column); the taxonomy and
+  per-dataset evidence are in
+  [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number).
 - **No language is at `production` tier yet.** Every registered language
   is at `research` tier or below — it has at least one cited source and
   usually a benchmark, but has not cleared the volume and accuracy bar

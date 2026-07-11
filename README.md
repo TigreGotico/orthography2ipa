@@ -261,12 +261,20 @@ Component plugins that slot into the bundled engine's own logic use dedicated en
 
 ## Benchmarks
 
-The engine is evaluated against human-provenance gold sets only — the
+The engine is evaluated against the best gold sets available — the
 Portal da Língua Portuguesa lexicon (via
-[tugalex](https://github.com/TigreGotico/tugalex)), WikiPron, CMUdict
-and the Mirandese gold set. Datasets, sources, methodology and the
-reference PER/WER table live in [docs/benchmarks.md](docs/benchmarks.md);
-reproduce any row with `python scripts/benchmark.py`.
+[tugalex](https://github.com/TigreGotico/tugalex)), WikiPron, CMUdict,
+the Mirandese gold set and others. **Take every number with a grain of
+salt:** reliable G2P gold barely exists, so most datasets here are
+semi-automated, dictionary-extracted, community-scraped, or a
+phonemizer's own output reused as a reference — read PER as
+**directional/relative, not precise**, and note that a low PER against a
+machine-generated gold means "agrees with that tool", not "correct".
+Every dataset is classified by reliability tier (surfaced as a
+`provenance` column on the [scoreboard](docs/scoreboard.md)); the tiers,
+per-dataset evidence, sources and methodology live in
+[docs/benchmarks.md](docs/benchmarks.md). Reproduce any row with
+`python scripts/benchmark.py`.
 
 Candidate ordering defaults to rank order (list the most common
 pronunciation first). A spec can now attach per-candidate **weights**

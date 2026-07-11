@@ -726,6 +726,67 @@ DATASETS = {
 }
 
 
+# ─── provenance / reliability tiers ─────────────────────────────────────────
+#
+# Reliable G2P "gold" barely exists. Almost every dataset wired here is
+# semi-automated, dictionary-extracted, community-scraped, or a
+# phonemizer's OWN output reused as a reference. A low PER against a
+# machine-generated gold means "agrees with that tool", NOT "correct".
+# Treat every scoreboard number as directional, never precise. The
+# reliability tier below is surfaced per-row in docs/scoreboard.md and
+# benchmarks/results.json so the caveat travels WITH the numbers.
+#
+# Tiers, most to least trustworthy (all still subject to notation
+# conventions and small-n noise — see docs/benchmarks.md "Provenance and
+# reliability"):
+#
+#   expert-human     — IPA curated by phoneticians, trained annotators, or
+#                      native speakers. Still bound by the transcription
+#                      conventions of the annotating team and, here, often
+#                      small-n and/or not externally peer-validated.
+#   lexicon-derived  — human lexicographers, but via a published
+#                      dictionary's notation conventions and sometimes a
+#                      mechanical notation transform (ARPABET→IPA,
+#                      slashed-phonemic→IPA).
+#   crowd-scraped    — Wiktionary community edits; uneven per language, and
+#                      some entries are themselves editor-applied rule output
+#                      rather than attested transcriptions.
+#   machine-generated— a phonemizer's own output used as the reference (the
+#                      biggest grain of salt). Scoring against it measures
+#                      AGREEMENT WITH THAT TOOL, not correctness; comparing
+#                      o2i to espeak on an espeak-derived gold is partly
+#                      circular.
+RELIABILITY_TIERS = (
+    "expert-human",
+    "lexicon-derived",
+    "crowd-scraped",
+    "machine-generated",
+)
+
+# Every key in DATASETS MUST appear here (a test enforces it, so a new
+# dataset cannot be registered without an explicit, evidence-based
+# reliability classification). Classifications are justified per-dataset in
+# docs/benchmarks.md "Provenance and reliability".
+PROVENANCE: Dict[str, str] = {
+    # phonetician / native-speaker / expert-annotator curated IPA
+    "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
+    "mirandese": "expert-human",         # native-speaker collected; small-n
+    "4catac": "expert-human",            # expert annotators, IEC guidelines, consensus review
+    "clup_dialect": "expert-human",      # U.Porto CLUP dialect archive; see note (IPA-column provenance undocumented, many rows n=1-17)
+    # human lexicographers via dictionary notation conventions
+    "portuguese_lexicon": "lexicon-derived",  # Portal da Língua Portuguesa (tugalex)
+    "infopedia_pt": "lexicon-derived",        # Infopédia (Porto Editora) dictionary extraction
+    "cmudict": "lexicon-derived",             # CMU hand-curated ARPABET, mechanically mapped to IPA
+    "ipadict": "lexicon-derived",             # only human `is` (Hjal/malfong) wired; project is mixed-provenance
+    # community-scraped Wiktionary
+    "wikipron": "crowd-scraped",
+    # a phonemizer's own output reused as a reference — biggest grain of salt
+    "styletts2_phonemes": "machine-generated",  # phonemizer/espeak-derived TTS phonemes (partly circular vs espeak)
+    "ipa_childes": "machine-generated",         # CHILDES "G2P+" automatic phonemizer column
+    "hitz_basque_ipa": "machine-generated",     # HiTZ ahoNT automatic phonemizer
+}
+
+
 # ─── metric ─────────────────────────────────────────────────────────────────
 
 def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
@@ -927,6 +988,7 @@ def build_scoreboard(limit: int) -> List[dict]:
                 "per_ci_high": round(ci_high, 4),
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
+                "provenance": PROVENANCE[dataset_name],
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
@@ -942,6 +1004,25 @@ def write_scoreboard(rows: List[dict]) -> None:
 
     lines = [
         "# Scoreboard",
+        "",
+        "**Grain of salt — read this first.** Reliable G2P \"gold\" barely "
+        "exists. Most datasets below are semi-automated, dictionary-extracted, "
+        "community-scraped, or a phonemizer's OWN output reused as a reference. "
+        "A low PER against a `machine-generated` gold means \"agrees with that "
+        "tool\", NOT \"correct\". Absolute PER is noisy — read every number as "
+        "**directional/relative**, and cross-reference the `95% CI` (a wide or "
+        "degenerate interval, common on small-`N` rows, means the row cannot "
+        "support a conclusion). Full per-dataset classification and the honest "
+        "caveats: [`docs/benchmarks.md`](benchmarks.md) "
+        "(\"Provenance and reliability\").",
+        "",
+        "`Provenance` legend (most → least trustworthy, all still subject to "
+        "notation conventions and small-`N` noise): "
+        "**expert-human** (phonetician / native-speaker / expert-annotator) > "
+        "**lexicon-derived** (dictionary, human lexicographers) > "
+        "**crowd-scraped** (Wiktionary) > "
+        "**machine-generated** (a phonemizer's own output — biggest grain of "
+        "salt; agreement-with-tool, not correctness).",
         "",
         "Committed PER/exact-match results for every gold dataset/language "
         "combination registered in `scripts/benchmark.py`. Regenerate with:",
@@ -959,15 +1040,18 @@ def write_scoreboard(rows: List[dict]) -> None:
         f"{BOOTSTRAP_REPS} reps, fixed seed {BOOTSTRAP_SEED}) — see "
         "[`docs/benchmarks.md`](benchmarks.md).",
         "",
-        "| Lang | Dataset | N | PER | 95% CI | Exact match | Quality tier |",
-        "|---|---|---:|---:|---:|---:|---|",
+        "| Lang | Dataset | N | PER | 95% CI | Exact match | Quality tier "
+        "| Provenance |",
+        "|---|---|---:|---:|---:|---:|---|---|",
     ]
     for row in rows:
         tier = row["quality_tier"] or "-"
+        prov = row.get("provenance") or "-"
         ci = f"[{row['per_ci_low']:.4f}, {row['per_ci_high']:.4f}]"
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {row['n']} | "
-            f"{row['per']:.4f} | {ci} | {row['exact_match']:.4f} | {tier} |"
+            f"{row['per']:.4f} | {ci} | {row['exact_match']:.4f} | {tier} "
+            f"| {prov} |"
         )
     lines.append("")
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)

@@ -8,6 +8,7 @@
     "per_ci_high": 0.2737,
     "exact_match": 0.1081,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -20,6 +21,7 @@
     "per_ci_high": 0.1014,
     "exact_match": 0.59,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -32,6 +34,7 @@
     "per_ci_high": 0.4219,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -44,6 +47,7 @@
     "per_ci_high": 0.417,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -56,6 +60,7 @@
     "per_ci_high": 0.3975,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -68,6 +73,7 @@
     "per_ci_high": 0.572,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -80,6 +86,7 @@
     "per_ci_high": 0.3089,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -92,6 +99,7 @@
     "per_ci_high": 0.2433,
     "exact_match": 0.2899,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -104,6 +112,7 @@
     "per_ci_high": 0.4693,
     "exact_match": 0.0476,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -116,6 +125,7 @@
     "per_ci_high": 0.4049,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -128,6 +138,7 @@
     "per_ci_high": 0.3796,
     "exact_match": 0.0297,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -140,6 +151,7 @@
     "per_ci_high": 0.2326,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -152,6 +164,7 @@
     "per_ci_high": 0.1678,
     "exact_match": 0.3154,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -164,6 +177,7 @@
     "per_ci_high": 0.4459,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -176,6 +190,7 @@
     "per_ci_high": 0.4998,
     "exact_match": 0.1,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -188,6 +203,7 @@
     "per_ci_high": 0.5058,
     "exact_match": 0.0816,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -200,6 +216,7 @@
     "per_ci_high": 0.4528,
     "exact_match": 0.2167,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -212,6 +229,7 @@
     "per_ci_high": 0.0392,
     "exact_match": 0.87,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -224,6 +242,7 @@
     "per_ci_high": 0.1851,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -236,6 +255,7 @@
     "per_ci_high": 0.1134,
     "exact_match": 0.4765,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -248,6 +268,7 @@
     "per_ci_high": 0.3304,
     "exact_match": 0.1533,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -260,6 +281,7 @@
     "per_ci_high": 0.3011,
     "exact_match": 0.1567,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -272,6 +294,7 @@
     "per_ci_high": 0.0939,
     "exact_match": 0.59,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -284,6 +307,7 @@
     "per_ci_high": 0.5858,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -296,6 +320,7 @@
     "per_ci_high": 0.306,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -308,6 +333,7 @@
     "per_ci_high": 0.0476,
     "exact_match": 0.7483,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -320,6 +346,7 @@
     "per_ci_high": 0.3639,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -332,6 +359,7 @@
     "per_ci_high": 0.1781,
     "exact_match": 0.4624,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -344,6 +372,7 @@
     "per_ci_high": 0.4655,
     "exact_match": 0.0373,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -356,6 +385,7 @@
     "per_ci_high": 0.722,
     "exact_match": 0.0286,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -368,6 +398,7 @@
     "per_ci_high": 0.0868,
     "exact_match": 0.6326,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -380,6 +411,7 @@
     "per_ci_high": 0.4583,
     "exact_match": 0.0115,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -392,6 +424,7 @@
     "per_ci_high": 0.2916,
     "exact_match": 0.0171,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -404,6 +437,7 @@
     "per_ci_high": 0.1592,
     "exact_match": 0.4444,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -416,6 +450,7 @@
     "per_ci_high": 0.0824,
     "exact_match": 0.6229,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -428,6 +463,7 @@
     "per_ci_high": 0.1288,
     "exact_match": 0.5633,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -440,6 +476,7 @@
     "per_ci_high": 0.2456,
     "exact_match": 0.09,
     "quality_tier": "research",
+    "provenance": "lexicon-derived",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -452,6 +489,7 @@
     "per_ci_high": 0.241,
     "exact_match": 0.1395,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -464,6 +502,7 @@
     "per_ci_high": 0.2214,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -476,6 +515,7 @@
     "per_ci_high": 0.1146,
     "exact_match": 0.4855,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -488,6 +528,7 @@
     "per_ci_high": 0.6273,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -500,6 +541,7 @@
     "per_ci_high": 0.2532,
     "exact_match": 0.2732,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -512,6 +554,7 @@
     "per_ci_high": 0.6844,
     "exact_match": 0.1818,
     "quality_tier": "skeleton",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -524,6 +567,7 @@
     "per_ci_high": 0.5354,
     "exact_match": 0.0177,
     "quality_tier": "skeleton",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -536,6 +580,7 @@
     "per_ci_high": 0.3411,
     "exact_match": 0.1692,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -548,6 +593,7 @@
     "per_ci_high": 0.1793,
     "exact_match": 0.3722,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -560,6 +606,7 @@
     "per_ci_high": 0.1978,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -572,6 +619,7 @@
     "per_ci_high": 0.1346,
     "exact_match": 0.3624,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -584,6 +632,7 @@
     "per_ci_high": 0.4095,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -596,6 +645,7 @@
     "per_ci_high": 0.2031,
     "exact_match": 0.3058,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -608,6 +658,7 @@
     "per_ci_high": 0.1904,
     "exact_match": 0.5,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -620,6 +671,7 @@
     "per_ci_high": 0.302,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -632,6 +684,7 @@
     "per_ci_high": 0.3389,
     "exact_match": 0.139,
     "quality_tier": "research",
+    "provenance": "lexicon-derived",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -644,6 +697,7 @@
     "per_ci_high": 0.4918,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -656,6 +710,7 @@
     "per_ci_high": 0.3955,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -668,6 +723,7 @@
     "per_ci_high": 0.3915,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -680,6 +736,7 @@
     "per_ci_high": 0.3628,
     "exact_match": 0.0333,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -692,6 +749,7 @@
     "per_ci_high": 0.4836,
     "exact_match": 0.0,
     "quality_tier": "skeleton",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -704,6 +762,7 @@
     "per_ci_high": 0.607,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -716,6 +775,7 @@
     "per_ci_high": 0.3972,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -728,6 +788,7 @@
     "per_ci_high": 0.4931,
     "exact_match": 0.0,
     "quality_tier": "skeleton",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -740,6 +801,7 @@
     "per_ci_high": 0.4979,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -752,6 +814,7 @@
     "per_ci_high": 0.5078,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -764,6 +827,7 @@
     "per_ci_high": 0.3167,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -776,6 +840,7 @@
     "per_ci_high": 0.5162,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -788,6 +853,7 @@
     "per_ci_high": 0.306,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -800,6 +866,7 @@
     "per_ci_high": 0.4858,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -812,6 +879,7 @@
     "per_ci_high": 0.5401,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -824,6 +892,7 @@
     "per_ci_high": 0.2864,
     "exact_match": 0.05,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -836,6 +905,7 @@
     "per_ci_high": 0.5031,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -848,6 +918,7 @@
     "per_ci_high": 0.5358,
     "exact_match": 0.0,
     "quality_tier": "skeleton",
+    "provenance": "expert-human",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -860,6 +931,7 @@
     "per_ci_high": 0.071,
     "exact_match": 0.637,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -872,6 +944,7 @@
     "per_ci_high": 0.4046,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -884,6 +957,7 @@
     "per_ci_high": 0.3795,
     "exact_match": 0.0112,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -896,6 +970,7 @@
     "per_ci_high": 0.137,
     "exact_match": 0.47,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -908,6 +983,7 @@
     "per_ci_high": 0.1113,
     "exact_match": 0.6867,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -920,6 +996,7 @@
     "per_ci_high": 0.4984,
     "exact_match": 0.0467,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -932,6 +1009,7 @@
     "per_ci_high": 0.3924,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -944,6 +1022,7 @@
     "per_ci_high": 0.3721,
     "exact_match": 0.0609,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -956,6 +1035,7 @@
     "per_ci_high": 0.9324,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -968,6 +1048,7 @@
     "per_ci_high": 0.2464,
     "exact_match": 0.0446,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -980,6 +1061,7 @@
     "per_ci_high": 0.1592,
     "exact_match": 0.3953,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -992,6 +1074,7 @@
     "per_ci_high": 0.5074,
     "exact_match": 0.0,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   },
@@ -1004,6 +1087,7 @@
     "per_ci_high": 0.5381,
     "exact_match": 0.02,
     "quality_tier": "research",
+    "provenance": "machine-generated",
     "harness_version": "1.1",
     "limit": 300
   }
