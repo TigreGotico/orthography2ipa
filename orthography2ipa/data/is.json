@@ -337,5 +337,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Icelandic has categorical initial stress. Accent letters (á é í ó ú ý ö) mark vowel quality, not stress placement. Source: Einarsson (1945), Icelandic; Wikipedia: https://en.wikipedia.org/wiki/Icelandic_phonology"
-  }
+  },
+  "wikidata_qid": "Q294",
+  "phoible_id": "icel1247",
+  "wals_code": "ice"
 }

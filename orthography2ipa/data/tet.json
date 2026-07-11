@@ -293,5 +293,8 @@
     "start_year": 1800,
     "end_year": null
   },
-  "iso639_3": "tet"
+  "iso639_3": "tet",
+  "wikidata_qid": "Q34125",
+  "phoible_id": "tetu1245",
+  "wals_code": "ttn"
 }

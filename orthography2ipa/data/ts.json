@@ -341,5 +341,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "iso639_3": "tso"
+  "iso639_3": "tso",
+  "wikidata_qid": "Q34327",
+  "wals_code": "tsn"
 }

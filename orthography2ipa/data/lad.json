@@ -316,5 +316,8 @@
     "https://glottolog.org/resource/languoid/id/ladi1251",
     "https://www.ethnologue.com/language/lad/"
   ],
-  "iso639_3": "lad"
+  "iso639_3": "lad",
+  "wikidata_qid": "Q36196",
+  "phoible_id": "ladi1251",
+  "wals_code": "lno"
 }

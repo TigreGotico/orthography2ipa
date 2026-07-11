@@ -385,5 +385,8 @@
         "end_year": null
     },
     "glottolog_code": "assa1263",
-    "iso639_3": "asm"
+    "iso639_3": "asm",
+    "wikidata_qid": "Q29401",
+    "phoible_id": "assa1263",
+    "wals_code": "ass"
 }

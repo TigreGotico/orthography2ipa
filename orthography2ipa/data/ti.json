@@ -290,5 +290,8 @@
   "timespan": {
     "start_year": 900,
     "end_year": null
-  }
+  },
+  "wikidata_qid": "Q34124",
+  "phoible_id": "tigr1271",
+  "wals_code": "tig"
 }

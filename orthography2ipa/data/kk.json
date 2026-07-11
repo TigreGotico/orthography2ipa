@@ -297,5 +297,7 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Kazakh default stress is word-final (-1). Certain derivational and inflectional suffixes (negation, question) are unstressed or attract stress irregularly; not modeled here. Source: Krippes (1994), Johanson & Csató (1998)."
-  }
+  },
+      "wikidata_qid": "Q9252",
+      "wals_code": "kaz"
 }

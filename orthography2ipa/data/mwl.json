@@ -376,5 +376,7 @@
       "followed_by": "vowel",
       "notes": "Intervocalic spirantisation, /b/ → [β] between vowels (rabudo → [rɐˈβudu], haber → [ɐˈβeɾ], nuobo → [ˈnwoβu]). This is the general Ibero-Romance lenition of voiced stops: in northern/central EP and Mirandese, /b d ɡ/ are realised as the fricatives/approximants [β ð ɣ] everywhere EXCEPT after a pause or a nasal (Mateus & d'Andrade 2000:11), which is why this rule is conditioned on a preceding vowel (the MWL_NASAL_* environments and word onset keep the stop). The Mirandese-specific process is attested by Ferreira & Raposo 1999 and the mwl Wikipedia phonology (\"voiced stops /b d ɡ/ may be lenited as fricatives [β ð ɣ]\"). Applied per-phoneme on the evidence of the expert-human TigreGotico/mirandese_g2p gold, measured at true oral-intervocalic positions (post-nasal excluded): /b/ is spirant-dominant (β:9 vs b:5), so this rule is a net win on the human gold (11 words corrected vs 6 lexically-conservative loan stops such as 'brabo', 'alternatibo' left over-spirantised — the residual lexical variability the downstream mwl_phonemizer can condition on). /ɡ/ is NOT given an allophone rule: intervocalic ⟨g⟩ is already spirantised to [ɣ] at the positional_graphemes layer, and an additional /ɡ/→[ɣ] rewrite misfires after the glide of a falling diphthong (eigual → gold [ɐjˈɡwal], stop retained). /d/ is NOT spirantised: intervocalic /d/ is stop-dominant in the gold (d:13 vs ð:7), the documented Asturleonese conservatism of /d/, so its positional default correctly stays [d] and [ð] remains only a lattice candidate."
     }
-  ]
+  ],
+  "wikidata_qid": "Q13330",
+  "phoible_id": "mira1251"
 }

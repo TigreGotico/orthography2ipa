@@ -150,5 +150,8 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Lithuanian_language",
     "https://en.wikipedia.org/wiki/Lithuanian_phonology"
-  ]
+  ],
+  "wikidata_qid": "Q9083",
+  "phoible_id": "lith1251",
+  "wals_code": "lit"
 }

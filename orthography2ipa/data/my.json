@@ -144,5 +144,8 @@
   "timespan": {
     "start_year": 1050,
     "end_year": null
-  }
+  },
+  "wikidata_qid": "Q9228",
+  "phoible_id": "nucl1310",
+  "wals_code": "brm"
 }

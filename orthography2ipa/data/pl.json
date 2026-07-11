@@ -450,5 +450,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Polish has regular penultimate stress. Vowel letters ó ą ę mark quality, not stress; ó is a vowel quality letter (historical /oː/ → /u/), NOT a stress marker. Exceptions (some first-person plural verbal forms, loanwords, conditional mood) exist but are rare and not orthographically distinguishable. Source: Rubach & Booij (1985), A Grid Theory of Stress in Polish; Wikipedia: https://en.wikipedia.org/wiki/Polish_phonology"
-  }
+  },
+      "wikidata_qid": "Q809",
+      "phoible_id": "poli1260",
+      "wals_code": "pol"
 }

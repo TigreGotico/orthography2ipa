@@ -315,5 +315,8 @@
     "tone_inventory": {
         "H": "high",
         "L": "low"
-    }
+    },
+    "wikidata_qid": "Q34994",
+    "phoible_id": "ango1258",
+    "wals_code": "ago"
 }

@@ -254,5 +254,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Turkmen default stress is word-final (-1). Some grammatical suffixes (negation, question) attract stress to their own syllable; not modeled here. Source: Comrie (1997) in Johanson & Csató."
-  }
+  },
+      "wikidata_qid": "Q9267",
+      "phoible_id": "turk1304",
+      "wals_code": "tkm"
 }

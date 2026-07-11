@@ -259,5 +259,8 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Kyrgyz default stress is word-final (-1). Exception classes (negation -ba/-be, question particle -by/-bi, some place names) are lexically stressed and not modeled. Source: Comrie (1997), Washington et al. (2018)."
-  }
+  },
+      "wikidata_qid": "Q9255",
+      "phoible_id": "kirg1245",
+      "wals_code": "kgz"
 }

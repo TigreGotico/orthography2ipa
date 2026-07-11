@@ -448,5 +448,8 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Asturian accentuation per the Gramática Asturiana (ALLA 2001): written accent wins. Default paroxytone. Words ending in a vowel or -s are paroxytone; words ending in any other consonant (r, l, d, z, x, t, n, m, f) are oxytone. Proparoxytones always carry a written accent."
-  }
+  },
+  "wikidata_qid": "Q29507",
+  "phoible_id": "astu1245",
+  "wals_code": "ast"
 }

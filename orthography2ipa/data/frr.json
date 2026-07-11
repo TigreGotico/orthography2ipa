@@ -454,5 +454,8 @@
     "start_year": 1300,
     "end_year": null
   },
-  "iso639_3": "frr"
+  "iso639_3": "frr",
+  "wikidata_qid": "Q28224",
+  "phoible_id": "nort2626",
+  "wals_code": "fno"
 }

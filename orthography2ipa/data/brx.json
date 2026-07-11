@@ -299,5 +299,8 @@
     "tone_inventory": {
         "level": "level tone",
         "falling": "falling tone"
-    }
+    },
+    "wikidata_qid": "Q33223",
+    "phoible_id": "bodo1269",
+    "wals_code": "bod"
 }

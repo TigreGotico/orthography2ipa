@@ -279,5 +279,8 @@
     "end_year": null
   },
   "glottolog_code": "mace1250",
-  "iso639_3": "mkd"
+  "iso639_3": "mkd",
+      "wikidata_qid": "Q9296",
+      "phoible_id": "mace1250",
+      "wals_code": "mcd"
 }
