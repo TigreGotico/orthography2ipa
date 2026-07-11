@@ -80,4 +80,10 @@ language's JSON spec (see `data/SCHEMA.md` for the schema).
 
 ---
 
-*Sources for Romance, Indo-Iranian, and other families will be added in subsequent phases of the linguistic reference audit. See `PLAN.md` for the full roadmap.*
+*This page grows alongside the language specs: each spec's `sources` array is the authoritative record, and every family with cited specs is listed here.*
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Linguistic accuracy](linguistic_accuracy.md) · [IPA reference](ipa_reference.md) · [Benchmarks](benchmarks.md)*

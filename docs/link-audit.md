@@ -13,14 +13,12 @@ Wikipedia URLs are checked for article existence via the MediaWiki API; other UR
 | Valid | 237 confirmed + 386 inconclusive (429/timeout) |
 | Dead | 1 |
 | Inconclusive | 386 |
-| Removed from JSON | 0 (this pass) |
+| Removed from JSON | 0 |
 | Dead but kept (would empty a non-stub wikipedia) | 0 |
 | Corrected (dead URL nulled) | 1 |
 | New wikipedia entries added (enrichment) | 34 |
 
-Previous pass (fix/url-audit): 25 corrected, 21 removed, 1 inconclusive.
-
-## This-pass changes
+## Changes applied
 
 ### Dead URL fixed
 
@@ -69,9 +67,9 @@ Native-language and additional Wikipedia articles added to 34 specs (all verifie
 | `wa.json` | https://wa.wikipedia.org/wiki/Walon | MediaWiki API: present |
 | `zh.json` | https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%AD | MediaWiki API: present |
 
-## Corrected links (previous pass)
+## Corrected links
 
-Dead URLs replaced with a verified live equivalent in the previous pass.
+Dead URLs replaced with a verified live equivalent.
 
 | File | Field | Old URL | New URL | Verification |
 | --- | --- | --- | --- | --- |
@@ -101,7 +99,7 @@ Dead URLs replaced with a verified live equivalent in the previous pass.
 | `orthography2ipa/data/ru-x-northern.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Northern_Russian_dialect | https://en.wikipedia.org/wiki/Northern_Russian_dialects | MediaWiki API: present (redirects followed) |
 | `orthography2ipa/data/ru-x-southern.json` | `wikipedia`/`urls` | https://en.wikipedia.org/wiki/Southern_Russian_dialect | https://en.wikipedia.org/wiki/Southern_Russian_dialects | MediaWiki API: present (redirects followed) |
 
-## Dead links removed (previous pass)
+## Dead links removed
 
 | File | Field | URL | Reason | Wayback snapshot |
 | --- | --- | --- | --- | --- |
@@ -135,7 +133,7 @@ Dead URLs replaced with a verified live equivalent in the previous pass.
 
 ## Dead links kept for human review
 
-All previously kept entries have been replaced with verified live URLs.
+No dead links are kept for human review; all such entries carry verified live URLs.
 
 | File | URL | Reason | Wayback snapshot |
 | --- | --- | --- | --- |
@@ -156,3 +154,9 @@ The majority of 429 responses are from Wikipedia's API rate limiter — the URLs
 | File | Field | URL | Reason |
 | --- | --- | --- | --- |
 | `orthography2ipa/data/cop.json` | `/wikipedia` | https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ | API error: DNS resolution failure (cop.wikipedia.org does not exist) |
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*

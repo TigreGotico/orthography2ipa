@@ -229,3 +229,9 @@ except KeyError as e:
   [quality_tiers.md](quality_tiers.md) and [scoreboard.md](scoreboard.md).
 - Full field-by-field reference for `LanguageSpec` and friends:
   [data_model.md](data_model.md).
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Tokenizer](tokenizer.md) · [Data model](data_model.md) · [Quality tiers](quality_tiers.md) · [Distance](distance.md)*

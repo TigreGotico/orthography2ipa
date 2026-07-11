@@ -321,3 +321,9 @@ engine-only (they need sentence context). See
 - `ipa_beam()` complexity is O(n · beam_width · |IPA alternatives|) — practical for words and short phrases.
 - `tokenize_with_context()` adds one O(n) pass building lightweight flyweight views; neighbour lookups (`prev`/`next`/`at`) are O(1).
 - For very long documents, consider tokenizing sentence-by-sentence.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Lattice](lattice.md) · [Positional graphemes](positional_graphemes.md) · [Candidate scoring](candidate_scoring.md)*

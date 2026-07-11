@@ -93,3 +93,9 @@ to `production` is a test-gated act: the benchmark row must exist and
 pass the `0.25` guard, and for shallow-orthography languages the `0.15`
 target must additionally be confirmed by the reviewer before the tier
 claim is legitimate.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Benchmarks](benchmarks.md) · [Scoreboard](scoreboard.md) · [Linguistic accuracy](linguistic_accuracy.md)*

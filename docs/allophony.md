@@ -1,12 +1,12 @@
-# Allophony — the second map, made live
+# Allophony — the second map
 
 The library models pronunciation as **two maps**:
 
 1. **Pre-lexical** — orthography → phoneme. Richly conditioned by
    `positional_graphemes`, the vowel-class positions and candidate weights.
-2. **Post-lexical** — phoneme → surface allophone. Historically *inert*:
-   `spec.allophones` was stored but never conditioned, and the only consumer
-   (`expand_allophones`) dumped every variant into the beam at a flat `+0.5`
+2. **Post-lexical** — phoneme → surface allophone. The bare `spec.allophones`
+   inventory is stored but not conditioned: its only consumer,
+   `expand_allophones`, dumps every variant into the beam at a flat `+0.5`
    cost with no way to pick the context-correct one.
 
 `allophone_rules` make the second map live. A spec declares an ordered list
@@ -163,7 +163,7 @@ so `transcribe("casa", "ca-x-occidental")` is `kaza`, not `kazə`.
 
 Measured on the committed gold sets (PER, lower is better):
 
-| Row | Gold | Before | After | Δ |
+| Row | Gold | Rules off | Rules on | Δ |
 |---|---|---:|---:|---:|
 | ca | 4catac (expert human) | 0.4170 | 0.4120 | **−0.0050** |
 | ca-x-balear | 4catac | 0.3924 | 0.3884 | **−0.0040** |
@@ -182,12 +182,13 @@ linguistically correct (Recasens 1993) and rewarded by the higher-quality
 gold. This is the expected "broad gold ≠ narrow surface" trade-off — it is
 reported here rather than hidden.
 
-Adding stress-conditioned reduction (§4) and intervocalic spirantization (§3),
-and removing the Central reduction that Northwestern Catalan had wrongly
-inherited, improves the expert-human 4catac gold across the varieties — most
-dramatically Northwestern, which had been reducing vowels it should keep:
+Stress-conditioned reduction (§4) and intervocalic spirantization (§3),
+together with Northwestern Catalan declaring its own full-vowel atonic
+inventory instead of inheriting Central reduction, place the expert-human
+4catac gold well across the varieties — most dramatically Northwestern, which
+keeps vowels the Central block reduces:
 
-| Row | Gold | Before | After | Δ |
+| Row | Gold | Rules off | Rules on | Δ |
 |---|---|---:|---:|---:|
 | ca | 4catac (expert human) | 0.4120 | 0.4026 | **−0.0094** |
 | ca-x-occidental | 4catac | 0.5633 | 0.4663 | **−0.0970** |
@@ -195,12 +196,12 @@ dramatically Northwestern, which had been reducing vowels it should keep:
 | ca-x-balear | 4catac | 0.3884 | 0.3893 | +0.0009 |
 | ca | styletts2_phonemes (espeak) | 0.4083 | 0.4012 | **−0.0071** |
 
-Northwestern Catalan (`ca-x-occidental`) drops by nearly 0.10: it no longer
-schwa-reduces vowels the Western block keeps full. Central and Valencian
-improve as stressed vowels stop being wrongly reduced. Balearic is flat
-within noise (+0.0009, far below the 0.005 regression threshold): its
-stressed vowels are now correct, but the automatic gold does not reward the
-change measurably.
+Northwestern Catalan (`ca-x-occidental`) sits nearly 0.10 lower with the rules
+on: it does not schwa-reduce vowels the Western block keeps full. Central and
+Valencian benefit from stressed vowels being left unreduced. Balearic is flat
+within noise (+0.0009, far below the 0.005 regression threshold): its stressed
+vowels are correct, but the automatic gold does not reward the change
+measurably.
 
 ## Brazilian Portuguese — final vowel raising
 
@@ -243,14 +244,14 @@ rule:
 
 Effect on the committed gold (PER, lower is better):
 
-| Row | Gold | Before | After | Δ |
+| Row | Gold | Rules off | Rules on | Δ |
 |---|---|---:|---:|---:|
 | pt-BR | wikipron (n=124) | 0.1901 | 0.1578 | **−0.0323** |
 
 ## Worked example: European Portuguese coda consonants (`pt-PT`)
 
-European Portuguese is the second language to declare `allophone_rules`.
-Where Catalan pilots the phoneme-neighbour conditions, `pt-PT` pilots the
+European Portuguese also declares `allophone_rules`.
+Where Catalan exercises the phoneme-neighbour conditions, `pt-PT` exercises the
 **syllable-position** condition: three rules realise the post-lexical coda
 consonants that the pre-lexical `positional_graphemes` map does not reach
 cleanly at word edges.
@@ -298,7 +299,7 @@ northern apico-alveolar coda `[s̺]`) belong in the `pt-PT-x-*` dialect specs.
 
 Measured on the committed gold sets (PER, lower is better):
 
-| Row | Gold | Before | After | Δ |
+| Row | Gold | Rules off | Rules on | Δ |
 |---|---|---:|---:|---:|
 | pt-PT | infopedia_pt (human lexicon) | 0.3160 | 0.2942 | **−0.0218** |
 | pt-PT | ep_dialects (CLUP) | 0.2599 | 0.2218 | **−0.0381** |
@@ -327,3 +328,9 @@ African/Asian varieties that already declare an alveolar coda /s/ in their
 `PT_CODA_S_HUSH`/`PT_CODA_Z_HUSH` back to `[s]`/`[z]` by id so they keep their
 non-*chiado* realisation. (Broader P5 Lusophone-variety deltas are a later
 task; only the already-encoded alveolar-coda intent is preserved here.)
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Positional graphemes](positional_graphemes.md) · [Lattice](lattice.md) · [Data model](data_model.md)*

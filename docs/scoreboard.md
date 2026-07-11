@@ -100,3 +100,9 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | tr | wikipron | 296 | 0.1409 | [0.1236, 0.1592] | 0.3953 | research | crowd-scraped |
 | uk | styletts2_phonemes | 299 | 0.4960 | [0.4842, 0.5074] | 0.0000 | research | machine-generated |
 | zh | ipa_childes | 300 | 0.5108 | [0.4910, 0.5300] | 0.0200 | research | machine-generated |
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Benchmarks](benchmarks.md) · [Quality tiers](quality_tiers.md) · [Comparison](comparison.md)*

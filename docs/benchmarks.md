@@ -132,9 +132,9 @@ transcriptions per word** (dialect variants such as Galician
 seseo/gheada); the harness scores against all of them and keeps the
 best match.
 
-Previously wired: `gl`, `es`, `pt`, `pt-BR`, `en`, `en-GB`.
+Core wired tags: `gl`, `es`, `pt`, `pt-BR`, `en`, `en-GB`.
 
-New languages added in this survey — all from `data/scrape/tsv/` on the
+Additional wired languages — all from `data/scrape/tsv/` on the
 [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) GitHub
 repository, same CC-BY-SA provenance:
 
@@ -189,8 +189,8 @@ only has the latter"), and for Russian that is narrow. The harness's
 default (non-`--narrow`) normalization already strips narrow-transcription
 diacritics (`_NARROW_MARKS`) before scoring, so `rus_cyrl_narrow.tsv` is
 directly comparable to the broad-tier gold used for the other languages
-in this table; it was not previously wired for lack of a broad file, not
-for any documented quality concern.
+in this table; it is wired despite shipping only as a narrow file, with no
+documented quality concern excluding it.
 
 ### European Portuguese IPA Lexicon (Infopédia)
 
@@ -400,9 +400,9 @@ against the `orthography2ipa` language tag matching its config name:
 | `sv` | 2,706 |
 | `uk` | 11,064 |
 
-`fa` and `uk` had no prior gold coverage in this harness before this
+`fa` and `uk` have gold coverage in this harness only through this
 dataset; the rest are additive, complementary sentence-level
-cross-checks to their existing word-level `wikipron`/lexicon entries.
+cross-checks to their word-level `wikipron`/lexicon entries.
 
 `zh` was evaluated but is excluded from this dataset: this repo's
 `zh` spec (`orthography2ipa/data/zh.json`) declares graphemes that are
@@ -724,3 +724,9 @@ correctness — espeak-ng is an imperfect system being agreed with, not a
 gold standard, so this table never substitutes for the gold-benchmark
 scoreboard above.
 
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Scoreboard](scoreboard.md) · [Quality tiers](quality_tiers.md) · [Comparison](comparison.md)*

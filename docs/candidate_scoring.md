@@ -100,3 +100,9 @@ The first weighted spec is **en-GB** (see its `notes`), grounded in
 Gontijo, Gontijo & Shillcock (2003), *Grapheme–phoneme probabilities in
 British English*, and Berndt, Reggia & Mitchum (1987), *Empirically
 derived probabilities for grapheme-to-phoneme correspondences in English*.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Tokenizer](tokenizer.md) · [Lattice](lattice.md) · [Data model](data_model.md)*
