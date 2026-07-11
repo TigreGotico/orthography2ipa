@@ -86,6 +86,7 @@ each tier actually certifies.
 |:---|:---|
 | [ar.md](ar.md) | Modern Standard Arabic (+ Egyptian Cairene, Saudi Najdi/Hejazi, and Gulf/Khaleeji Emirati·Bahraini·Kuwaiti·Qatari·Omani sections) — abjad script, tashkeel-dependent input contract, emphatic-spreading and Gulf velar-affrication allophone layers |
 | [ar-x-levantine.md](ar-x-levantine.md) | Levantine Arabic — Damascene (`ar-SY`), Beiruti (`ar-LB`), Ammani (`ar-JO`), Palestinian (`ar-PS`): shared qaf/jim/interdental reflexes, /aj aw/→[eː oː] monophthongization, Lebanese imāla |
+| [ar-IQ.md](ar-IQ.md) | Iraqi Arabic — the gilit/qəltu communal-dialect split: Baghdad Muslim gilit (`ar-IQ`, qaf→[ɡ], kaf affrication) vs Northern qəltu (`ar-IQ-x-qeltu`, qaf→[q] retained), the defining Mesopotamian isogloss; shared interdental retention and emphatic backing |
 
 ### Berber (Amazigh)
 
@@ -125,6 +126,8 @@ rather than a specific language, start here:
 | Spirantization (lax stop → fricative) | kab | [kab.md](kab.md) |
 | Tone / pitch accent | sv, zh, ja, ko, vi | — |
 | Liaison / sandhi | fr, pt, sa | [fr-FR.md](fr-FR.md) |
-| Tashkeel-dependent input | ar, ar-SY, ar-LB, ar-JO, ar-PS | [ar.md](ar.md), [ar-x-levantine.md](ar-x-levantine.md) |
+| Tashkeel-dependent input | ar, ar-SY, ar-LB, ar-JO, ar-PS, ar-IQ, ar-IQ-x-qeltu | [ar.md](ar.md), [ar-x-levantine.md](ar-x-levantine.md), [ar-IQ.md](ar-IQ.md) |
+| gilit/qəltu qaf split ([ɡ] vs [q]) | ar-IQ, ar-IQ-x-qeltu | [ar-IQ.md](ar-IQ.md) |
+| Velar affrication (kaf→[tʃ], gaf→[dʒ]) | ar-IQ, ar-SA-x-najd | [ar-IQ.md](ar-IQ.md) |
 | Imāla (/aː/→[eː]) | ar-LB | [ar-x-levantine.md](ar-x-levantine.md) |
 | Diphthong monophthongization | ar-x-levantine, ar-SA-x-hejaz | [ar-x-levantine.md](ar-x-levantine.md) |

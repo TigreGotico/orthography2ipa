@@ -50,7 +50,12 @@
       "eː"
     ],
     "ɡ": [
-      "ɡ"
+      "ɡ",
+      "dʒ"
+    ],
+    "a": [
+      "a",
+      "ɑ"
     ],
     "e": [
       "e"
@@ -60,6 +65,9 @@
     ],
     "tʃ": [
       "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
     ],
     "ʒ": [
       "ʒ"
@@ -80,10 +88,30 @@
       "notes": "Persian adstrate: extensive loanwords; /p/, /v/, /tʃ/, /ʒ/ phonemes; some phonological calques"
     }
   ],
-  "notes": "Iraqi Arabic — Baghdad Muslim / southern 'gilit' variety. CONSERVATIVE FEATURE: θ (ث) and ð (ذ) and ðˤ (ظ) PRESERVED as interdentals — unlike Levantine/Egyptian where they merge to t/d. GILIT FEATURE: ق → /ɡ/ (voiced velar; Bedouin origin). Northern 'qəltu' varieties (Mosul, Christian Baghdad): ق → /q/. k → /tʃ/ before front vowels in many speakers. Persian adstrate: /p/, /v/, /tʃ/, /ʒ/ established as phonemes; thousands of Persian loanwords. Turkish (Ottoman) loanwords also present. Blanc (1964) documents three communal dialects in Baghdad: Muslim (gilit), Jewish, and Christian (qəltu).",
-  "quality": "skeleton",
+  "notes": "Iraqi Arabic — Baghdad Muslim / southern 'gilit' variety (the sedentary koine of Muslim Baghdad, Bedouin-type in origin). The gilit/qeltu split is the defining Mesopotamian isogloss, named after the reflex of the word 'I said': Muslim Baghdad gilit vs Mosul/Jewish/Christian qeltu (Blanc 1964, §2, §3.26). MODELLED FEATURES (cited): (1) DEFINING GILIT REFLEX — OA qaf ق → /ɡ/ (voiced velar; Bedouin origin): JC/qal/ vs M/gal/ 'to say' (Blanc 1964, §3.26, p.26–27; Jasim 2020, §2.4). MSA-learned words keep /q/ (e.g. القرآن), not orthographically separable. (2) GILIT KAF AFFRICATION — kaf ك → [tʃ] in a front-vowel environment (M/čan/ vs JC/kan/ 'he was'; M/čebir/ 'big'), modelled as allophone_rules IQ_GILIT_AFFRIC_K_* conditioned on an adjacent front vowel (Blanc 1964, §3.25, p.25; Jasim 2020, §2.9.2 — /tʃ/ is both a phoneme and an allophone of /k/ in gilit). ENGINE LIMIT: the fully LEXICALISED gilit affrication (M/čalb/ 'dog', where the trigger front vowel is historical) is not orthographically predictable and is NOT captured. (3) qaf-reflex /ɡ/ → [dʒ] affrication before a front vowel (M/geʕad/ ~ [dʒeʕad] 'he sat'), allophone_rules IQ_GILIT_AFFRIC_G_* (Blanc 1964, §3.26 p.28; more regular in rural/Bedouin speech than urban Muslim Baghdad — lexically restricted). (4) INTERDENTALS PRESERVED — ث /θ/, ذ /ð/, ظ /ðˤ/ retained (conservative Mesopotamian feature; Blanc 1964, §3.2; Jasim 2020, §2.4) — unlike Levantine/Egyptian urban merger to /t d/. (5) jim ج → /dʒ/ (retained; inherited from ar-x-mashriqi). (6) EMPHATIC BACKING — low vowels /a aː/ → [ɑ ɑː] adjacent to an emphatic (tafxim; Jasim 2020, the thesis topic), allophone_rules IQ_EMPH_*. Persian adstrate: /p/, /v/, /tʃ/, /ʒ/ established as phonemes; thousands of Persian (and Ottoman-Turkish) loanwords (Blanc 1964, ch.6). INPUT CONTRACT: dialectal Arabic is normally written defectively; short vowels surface only when the input is vocalised (harakat). Erwin (1963) A Short Reference Grammar of Iraqi Arabic is the standard descriptive grammar of gilit Baghdadi but was not obtainable (library/paywall) for this pass; features here are cited from Blanc 1964 and Jasim 2020, both read.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
+    {
+      "id": "blanc1964",
+      "author": "Blanc, H.",
+      "year": 1964,
+      "title": "Communal Dialects in Baghdad",
+      "publisher": "Harvard University Press (Harvard Middle Eastern Monographs X)",
+      "url": null,
+      "pages": "25-28",
+      "notes": "Read (OCR full text). §3.25 (p.25) OA/k/: in Muslim (gilit) split into /č/[tʃ] and /k/, JC preserve /k/ — M/čan/, JC/kan/ 'he was'; M/čebir/ 'big'. §3.26 (p.26–27) OA/q/: J and C reflex /q/ in practically every instance, M usually /g/ — JC/qal/, M/gal/ 'to say'; qaf-reflex /g/ affricates to [dʒ] before front vowels (p.28). §3.2 interdentals preserved in Muslim and Jewish. ch.6: Persian and Turkish loan strata; /p/ phoneme."
+    },
+    {
+      "id": "jasim2020",
+      "author": "Jasim, M.",
+      "year": 2020,
+      "title": "Tafxiːm in the vowels of Muslawi Qəltu and Baghdadi Gilit dialects of Arabic (PhD thesis)",
+      "publisher": "Newcastle University",
+      "url": "https://theses.ncl.ac.uk/jspui/bitstream/10443/4899/1/Jasim%20M%202020.pdf",
+      "pages": null,
+      "notes": "Read (full PDF). §2.4: /q/ of Muslawi Qəltu is realised as voiced velar [ɡ] in Baghdadi Gilit — the defining split. §2.9.2: in Gilit /tʃ/ is both a separate phoneme and an allophone of /k/; in Muslawi Qəltu /k/ and /tʃ/ are separate phonemes with no allophony. Whole thesis documents tafxim (emphatic backing) of low vowels."
+    },
     {
       "id": "watson2002",
       "author": "Watson, J.C.E.",
@@ -92,7 +120,7 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null,
+      "notes": "Secondary reference for the pan-Arabic emphatic/guttural inventory (not the source of the gilit/qeltu claims above).",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
     },
     {
@@ -103,17 +131,17 @@
       "publisher": "Georgetown University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Secondary reference (not read for this pass)."
     },
     {
-      "id": "blanc1964",
-      "author": "Blanc, H.",
-      "year": 1964,
-      "title": "Communal Dialects in Baghdad",
-      "publisher": "Harvard University Press",
+      "id": "erwin1963",
+      "author": "Erwin, W.M.",
+      "year": 1963,
+      "title": "A Short Reference Grammar of Iraqi Arabic",
+      "publisher": "Georgetown University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "The standard descriptive grammar of gilit Baghdadi. NOT OBTAINED for this pass (library/paywall only) — listed for completeness, no claim here is sourced to it."
     }
   ],
   "wikipedia": [
@@ -125,5 +153,123 @@
     "end_year": null
   },
   "glottolog_code": "meso1252",
-  "iso639_3": "acm"
+  "iso639_3": "acm",
+  "allophone_rules": [
+    {
+      "id": "IQ_GILIT_AFFRIC_K_BEFORE",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "tʃ",
+      "followed_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Gilit kaf affrication (Blanc 1964, §3.25 p.25; Jasim 2020, §2.9.2): /k/ → [tʃ] before an adjacent front vowel, e.g. M/čebir/ 'big'. The purely lexicalised residue (M/čan/, M/čalb/, where the trigger vowel is historical) is not orthographically predictable and is not captured."
+    },
+    {
+      "id": "IQ_GILIT_AFFRIC_K_AFTER",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "tʃ",
+      "preceded_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Gilit kaf affrication (Blanc 1964, §3.25; Jasim 2020, §2.9.2): /k/ → [tʃ] after an adjacent front vowel."
+    },
+    {
+      "id": "IQ_GILIT_AFFRIC_G_BEFORE",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "dʒ",
+      "followed_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Gilit qaf-reflex affrication (Blanc 1964, §3.26 p.28): the /ɡ/ reflex of OA qaf → [dʒ] before an adjacent front vowel, e.g. M/geʕad/ ~ [dʒeʕad] 'he sat'. Back-vowel words such as M/gal/ 'to say' (back /a/) do not fire, correctly. More regular in rural/Bedouin speech than in urban Muslim Baghdad; the lexicalised residue is not captured."
+    },
+    {
+      "id": "IQ_GILIT_AFFRIC_G_AFTER",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "dʒ",
+      "preceded_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Gilit qaf-reflex affrication (Blanc 1964, §3.26): the /ɡ/ reflex of OA qaf → [dʒ] after an adjacent front vowel."
+    },
+    {
+      "id": "IQ_EMPH_A_BEFORE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ"
+      ],
+      "notes": "Emphatic backing / tafxim (Jasim 2020, the thesis topic; Blanc 1964, §3.3 — [ɑ] near emphatics): short /a/ → [ɑ] adjacent to an emphatic coronal."
+    },
+    {
+      "id": "IQ_EMPH_A_AFTER",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ"
+      ],
+      "notes": "Emphatic backing / tafxim (Jasim 2020; Blanc 1964, §3.3): short /a/ → [ɑ] after an emphatic coronal."
+    },
+    {
+      "id": "IQ_EMPH_AA_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ"
+      ],
+      "notes": "Emphatic backing / tafxim (Jasim 2020; Blanc 1964, §3.3): long /aː/ → [ɑː] adjacent to an emphatic coronal."
+    },
+    {
+      "id": "IQ_EMPH_AA_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ"
+      ],
+      "notes": "Emphatic backing / tafxim (Jasim 2020; Blanc 1964, §3.3): long /aː/ → [ɑː] after an emphatic coronal."
+    }
+  ]
 }
