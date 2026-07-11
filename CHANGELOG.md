@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.59.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.59.0a2) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.59.0a1...1.59.0a2)
+
+**Merged pull requests:**
+
+- docs: front-page treatment for the pronunciation lattice \(B7\) [\#224](https://github.com/TigreGotico/orthography2ipa/pull/224) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.59.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.59.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.58.1a1...1.59.0a1)
