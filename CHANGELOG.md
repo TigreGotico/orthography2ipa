@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.55.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.55.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.54.0a1...1.55.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): Aragonese Pyrenean valley subdialects \(Ansotano, Cheso, Chistabín, Belsetán, Tensino\) [\#204](https://github.com/TigreGotico/orthography2ipa/pull/204) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.54.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.54.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.53.0a1...1.54.0a1)
