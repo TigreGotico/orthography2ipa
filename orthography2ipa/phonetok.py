@@ -51,6 +51,7 @@ from orthography2ipa.vowels import (
     is_front_vowel,
     is_ipa_vowel,
     is_orthographic_vowel,
+    is_palatal_consonant,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
 from orthography2ipa.rescorer import (
@@ -423,6 +424,18 @@ class GraphemeContext:
         """True if the grapheme's leading character is a *back* vowel
         letter (:func:`orthography2ipa.vowels.is_back_vowel`)."""
         return bool(self.grapheme) and is_back_vowel(self.grapheme[0])
+
+    @property
+    def is_palatal(self) -> bool:
+        """True if this grapheme's *primary IPA* is a palatal / palato-alveolar
+        consonant (:func:`orthography2ipa.vowels.is_palatal_consonant`).
+
+        Unlike the vowel-class predicates (which read the written letter), this
+        reads the sound the grapheme maps to — ``ipa[0]`` — because palatality
+        is a property of the phoneme: ⟨lh⟩→/ʎ/, ⟨nh⟩→/ɲ/, ⟨ch⟩→/ʃ/ all report
+        palatal regardless of their spelling. Used by the ``BEFORE_PALATAL`` /
+        ``AFTER_PALATAL`` positions and the ``"palatal"`` allophone-rule class."""
+        return bool(self.ipa) and is_palatal_consonant(self.ipa[0])
 
     def __repr__(self) -> str:
         return f"GraphemeContext({self.grapheme!r}, index={self.index})"

@@ -73,6 +73,7 @@ __all__ = [
     "is_ipa_vowel",
     "is_front_vowel",
     "is_back_vowel",
+    "is_palatal_consonant",
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -204,6 +205,74 @@ def is_ipa_vowel(ch: str) -> bool:
     lookup, so callers do not need to lowercase it themselves.
     """
     return bool(ch) and ch.lower() in _IPA_VOWELS
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Palatal / palato-alveolar consonants (for "before/after a palatal" rules)
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# The mirror of the front/back vowel classes on the *consonant* side: a class
+# predicate that answers "does this IPA symbol denote a palatal or
+# palato-alveolar consonant?" so a spec can condition a grapheme's realisation
+# (or an allophone rule) on being adjacent to one — e.g. European Portuguese
+# stressed /e/ → [ɐ] before ⟨lh⟩ (/ʎ/), or nasalisation before a palatal.
+#
+# Unlike the vowel classes (which read the written *letter*), the palatal test
+# reads the *IPA* a grapheme maps to — palatality is a property of the sound,
+# and the same letter maps to a palatal in one language and not another. The
+# single-symbol members are the palatal and palato-alveolar / alveolo-palatal
+# obstruents, nasal, lateral and glide; the two-symbol members are the
+# palato-alveolar and alveolo-palatal affricates, whose leading segment (⟨t⟩ /
+# ⟨d⟩) is *not* itself palatal, so they must be matched as a prefix. A tie-bar
+# (U+0361, ``t͡ʃ``) is stripped before matching so both ``tʃ`` and ``t͡ʃ`` count.
+
+# Single palatal / palato-alveolar / alveolo-palatal IPA symbols.
+_PALATAL_SINGLE = frozenset(
+    "ʎ"   # palatal lateral approximant   (pt/gl ⟨lh⟩)
+    "ɲ"   # palatal nasal                 (pt/gl ⟨nh⟩, es ⟨ñ⟩)
+    "ʃ"   # voiceless palato-alveolar fric (⟨ch⟩/⟨x⟩)
+    "ʒ"   # voiced palato-alveolar fric    (⟨j⟩/⟨g⟩)
+    "j"   # palatal approximant           (⟨y⟩/⟨i⟩ glide)
+    "c"   # voiceless palatal stop
+    "ɟ"   # voiced palatal stop
+    "ç"   # voiceless palatal fricative
+    "ʝ"   # voiced palatal fricative
+    "ɕ"   # voiceless alveolo-palatal fric
+    "ʑ"   # voiced alveolo-palatal fric
+    "ɥ"   # labial-palatal approximant
+)
+
+# Affricates whose *first* segment is a coronal stop, not a palatal — matched
+# as a prefix of the (tie-bar-stripped) IPA string.
+_PALATAL_AFFRICATES = ("tʃ", "dʒ", "tɕ", "dʑ", "cç", "ɟʝ")
+
+# Combining tie bar (U+0361) joining an affricate's two symbols.
+_TIE_BAR = "͡"
+
+
+def is_palatal_consonant(ipa: str) -> bool:
+    """Return True if *ipa* denotes a palatal / palato-alveolar consonant.
+
+    The consonant-side mirror of :func:`is_front_vowel` / :func:`is_back_vowel`:
+    it classifies an *IPA* string (a grapheme's realisation), not a written
+    letter. ``True`` for the palatal and palato-alveolar / alveolo-palatal
+    obstruents, nasal, lateral and glide — ``ʎ ɲ ʃ ʒ j c ɟ ç ʝ ɕ ʑ ɥ`` — and
+    the affricates ``tʃ dʒ tɕ dʑ`` (with or without a tie bar, ``t͡ʃ``).
+    ``False`` for every non-palatal segment (``s t k`` …) and for vowels.
+
+    Only the leading segment is inspected, so a phoneme string carrying a
+    following length mark or diacritic (``ʃː``, ``ɲʲ``) still classifies by its
+    palatal head. The argument is the IPA a grapheme maps to; membership
+    delegates here so ``BEFORE_PALATAL`` / ``AFTER_PALATAL`` positions and the
+    ``"palatal"`` allophone-rule class share one definition.
+    """
+    if not ipa:
+        return False
+    s = ipa.replace(_TIE_BAR, "")
+    for aff in _PALATAL_AFFRICATES:
+        if s.startswith(aff):
+            return True
+    return s[0] in _PALATAL_SINGLE
 
 
 def is_front_vowel(ch: str) -> bool:

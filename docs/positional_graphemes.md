@@ -79,6 +79,8 @@ from orthography2ipa.types import GraphemePosition
 | `BEFORE_BACK_VOWEL` | Before any back vowel letter | _[+back] | Romance c/g softening (hard) |
 | `AFTER_FRONT_VOWEL` | After any front vowel letter | [+front]_ | German ⟨ch⟩ → [ç] (Ich-Laut) |
 | `AFTER_BACK_VOWEL` | After any back vowel letter | [+back]_ | German ⟨ch⟩ → [x] (Ach-Laut) |
+| `BEFORE_PALATAL` | Before a palatal / palato-alveolar consonant | _[+pal] | EP stressed ⟨e⟩ → [ɐ] before ⟨lh⟩ |
+| `AFTER_PALATAL` | After a palatal / palato-alveolar consonant | [+pal]_ | Vowel colouring next to a palatal |
 | `CONSONANTAL` | Consonantal context | — | Grapheme realised as consonant |
 | `VOCALIC` | Vocalic context | — | Grapheme realised as vowel |
 
@@ -146,14 +148,83 @@ eng.transcribe_word("co")   # "ko"
 eng.transcribe_word("cu")   # "ku"
 ```
 
+---
+
+## Palatal-consonant positions (`BEFORE_PALATAL` / `AFTER_PALATAL`)
+
+The vowel-class positions above condition on a neighbouring **vowel**; their
+consonant-side mirror conditions on a neighbouring **palatal / palato-alveolar
+consonant**. A single `BEFORE_PALATAL` entry replaces enumerating every digraph
+that spells a palatal (⟨lh⟩→/ʎ/, ⟨nh⟩→/ɲ/, ⟨ch⟩→/ʃ/, ⟨x⟩, ⟨j⟩…), because
+membership is decided by the **IPA the neighbour maps to**, not its spelling:
+
+- **`BEFORE_PALATAL`** — the *following* grapheme's primary IPA is a palatal.
+- **`AFTER_PALATAL`** — the *preceding* grapheme's primary IPA is a palatal.
+
+Membership is decided **solely** by
+[`orthography2ipa.vowels.is_palatal_consonant`](../orthography2ipa/vowels.py) —
+the single source of truth, alongside `is_front_vowel` / `is_back_vowel`:
+
+```python
+from orthography2ipa.vowels import is_palatal_consonant
+
+is_palatal_consonant("ʎ")    # True  — ⟨lh⟩
+is_palatal_consonant("tʃ")   # True  — affricate, tie-bar t͡ʃ too
+is_palatal_consonant("j")    # True  — palatal glide
+is_palatal_consonant("s")    # False
+```
+
+Palatal set: `ʎ ɲ ʃ ʒ j c ɟ ç ʝ ɕ ʑ ɥ` plus the affricates `tʃ dʒ tɕ dʑ`
+(with or without a tie bar). Unlike the vowel classes, the test reads the
+grapheme's **IPA head** (`ipa[0]`), so ⟨lh⟩, ⟨nh⟩ and ⟨ch⟩ all count regardless
+of how they are written.
+
+### Worked example — European-Portuguese stressed ⟨e⟩ → [ɐ] before ⟨lh⟩
+
+Stressed ⟨e⟩ centralises to [ɐ] before a palatal (as in *velho*, *espelho*),
+but stays [e] elsewhere. One class entry captures it — no per-digraph listing:
+
+```json
+{
+  "graphemes": {
+    "e": ["e"], "t": ["t"],
+    "lh": ["ʎ"], "nh": ["ɲ"], "ch": ["ʃ"]
+  },
+  "positional_graphemes": {
+    "e": { "before_palatal": ["ɐ"] }
+  }
+}
+```
+
+```python
+eng.transcribe_word("elh")   # "ɐʎ"   before ⟨lh⟩ (/ʎ/) → ɐ
+eng.transcribe_word("enh")   # "ɐɲ"   before ⟨nh⟩ (/ɲ/) → ɐ
+eng.transcribe_word("ech")   # "ɐʃ"   before ⟨ch⟩ (/ʃ/) → ɐ
+eng.transcribe_word("et")    # "et"   before ⟨t⟩ (non-palatal) → default /e/
+```
+
+Like the vowel-class positions, `BEFORE_PALATAL` / `AFTER_PALATAL` are inert for
+any spec that does not declare them, so adding them changes no existing
+transcription.
+
+---
+
 ### Resolution order
 
 For any grapheme + neighbouring-context, the engine tries positions
 **most-specific first** and takes the first one the spec actually declares:
 
 1. **Exact-letter position** — `BEFORE_E`, `AFTER_A`, … (a specific vowel letter).
-2. **Vowel-class position** — `BEFORE_FRONT_VOWEL`, `AFTER_BACK_VOWEL`, ….
+2. **Neighbour-class position** — the vowel classes `BEFORE_FRONT_VOWEL` /
+   `AFTER_BACK_VOWEL` … and the palatal-consonant classes `BEFORE_PALATAL` /
+   `AFTER_PALATAL`.
 3. **Default grapheme mapping** — the base `graphemes[grapheme]` list.
+
+A palatal consonant is never a front/back *vowel*, so the palatal class never
+collides with the vowel classes for the same neighbour; both sit at the same
+class tier below the exact-letter positions. When a neighbour is *both* an exact
+letter and a palatal — e.g. ⟨i⟩ realised as the glide /j/ — the exact-letter
+position (`BEFORE_I`) still wins over `BEFORE_PALATAL`.
 
 So a spec can declare `BEFORE_FRONT_VOWEL` for the general case and still add a
 narrower `BEFORE_E` override for one letter that behaves differently — the exact

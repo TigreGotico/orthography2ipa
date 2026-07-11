@@ -78,6 +78,8 @@ def _neighbor_is(cls: str, gctx: Optional[GraphemeContext]) -> bool:
         return gctx.is_front
     if cls == "back_vowel":
         return gctx.is_back
+    if cls == "palatal":
+        return gctx.is_palatal
     return False  # unreachable — AllophoneRule validates the vocabulary
 
 
