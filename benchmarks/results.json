@@ -47,7 +47,7 @@
     "per_ci_high": 0.4075,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -125,7 +125,7 @@
     "per_ci_high": 0.4301,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -151,7 +151,7 @@
     "per_ci_high": 0.2117,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -177,7 +177,7 @@
     "per_ci_high": 0.4586,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -242,7 +242,7 @@
     "per_ci_high": 0.141,
     "exact_match": 0.0001,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -320,7 +320,7 @@
     "per_ci_high": 0.578,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -333,7 +333,7 @@
     "per_ci_high": 0.3016,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -359,7 +359,7 @@
     "per_ci_high": 0.3545,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -515,7 +515,7 @@
     "per_ci_high": 0.2253,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -671,7 +671,7 @@
     "per_ci_high": 0.2119,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -697,7 +697,7 @@
     "per_ci_high": 0.3881,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -1074,7 +1074,7 @@
     "per_ci_high": 0.406,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -1139,7 +1139,7 @@
     "per_ci_high": 0.4052,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },
@@ -1204,7 +1204,7 @@
     "per_ci_high": 0.5526,
     "exact_match": 0.0,
     "quality_tier": "research",
-    "provenance": "machine-generated",
+    "provenance": "espeak-derived",
     "harness_version": "1.1",
     "limit": null
   },

@@ -45,7 +45,7 @@ def test_no_orphan_provenance_entries():
     assert not orphan, f"provenance entries for unregistered datasets: {orphan}"
 
 
-def test_all_four_tiers_are_in_use():
+def test_every_tier_is_in_use():
     """The taxonomy is not aspirational: each tier classifies at least one
     real registered dataset (so the docs table is grounded)."""
     used = set(PROVENANCE.values())
