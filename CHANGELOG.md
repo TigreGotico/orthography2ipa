@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.42.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.42.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.42.0a1...1.42.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): correct fabricated Cintra citation in Alentejano spec [\#172](https://github.com/TigreGotico/orthography2ipa/pull/172) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.42.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.42.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.41.0a1...1.42.0a1)
