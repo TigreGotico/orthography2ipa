@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.71.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.71.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.71.0a1...1.71.1a1)
+
+**Merged pull requests:**
+
+- feat\(data\): Alentejo/Beira /u/→\[y\] fronting \(harvested + Cintra-cited\) [\#258](https://github.com/TigreGotico/orthography2ipa/pull/258) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(data\): EP external /s/-sandhi was inert — right\_context missed leading stress + reduced vowels [\#257](https://github.com/TigreGotico/orthography2ipa/pull/257) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.71.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.71.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.70.2a1...1.71.0a1)
@@ -700,17 +709,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.8.0a1...1.8.1a1)
 
-**Merged pull requests:**
-
-- fix\(data\): asturleonese family and barranquenho grounded in primary sources [\#65](https://github.com/TigreGotico/orthography2ipa/pull/65) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.8.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.8.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.7.0a1...1.8.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): european portuguese regional dialects grounded in dialect research [\#63](https://github.com/TigreGotico/orthography2ipa/pull/63) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.7.0a1) (2026-06-11)
 
