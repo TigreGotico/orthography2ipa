@@ -1,9 +1,9 @@
 # Comparison to other G2P systems
 
-Committed cross-system comparison: orthography2ipa vs **espeak-ng**, **epitran**, **gruut**, **pycotovia** (Galician), and **pyahotts** (Basque) on the same gold datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using the same default `--limit` — so the `o2i PER` column here matches the scoreboard's rows for the same language/dataset pair. Regenerate with:
+Committed cross-system comparison: orthography2ipa vs **espeak-ng**, **epitran**, **gruut**, **pycotovia** (Galician), and **ahotts-g2p** (Basque & Spanish) on the same gold datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using the same default `--limit` — so the `o2i PER` column here matches the scoreboard's rows for the same language/dataset pair. Regenerate with:
 
 ```bash
-pip install '.[compare]'  # epitran, gruut, pycotovia, pyahotts — dev-only extra
+pip install '.[compare]'  # epitran, gruut, pycotovia, ahotts-g2p — dev-only extra
 PYTHONPATH=$PWD python scripts/compare_systems.py --scoreboard
 ```
 
@@ -11,7 +11,11 @@ Machine-readable form: [`benchmarks/comparison.json`](../benchmarks/comparison.j
 
 ## Coverage
 
-Not every gold language has a mapping for every competitor system: espeak-ng, epitran, gruut, pycotovia, and pyahotts each cover a different, smaller subset of languages than orthography2ipa's 350+ codes. A missing mapping, or a system that isn't installed, is reported as `n/a` for that row rather than skipped or faked — this table never crashes and never silently drops a system, it just says when it has nothing to compare. `epitran`/`gruut`/`pycotovia`/`pyahotts` are only installed via the dev-only `[compare]` extra; a committed run generated without them shows `n/a` in those columns for every row — that reflects the generating environment, not a claim those systems don't support the language. `pyahotts` is `n/a` for every row regardless of installation: its only public API synthesizes audio and exposes no text-level phoneme output, so there is nothing to compare against gold IPA (see the harness module docstring).
+Not every gold language has a mapping for every competitor system: espeak-ng, epitran, gruut, pycotovia, and ahotts-g2p each cover a different, smaller subset of languages than orthography2ipa's 350+ codes. A missing mapping, or a system that isn't installed, is reported as `n/a` for that row rather than skipped or faked — this table never crashes and never silently drops a system, it just says when it has nothing to compare. `epitran`/`gruut`/`pycotovia`/`ahotts-g2p` are only installed via the dev-only `[compare]` extra; a committed run generated without them shows `n/a` in those columns for every row — that reflects the generating environment, not a claim those systems don't support the language.
+
+### ahotts-g2p output space (fairness)
+
+`ahotts-g2p` (Aholab / HiTZ AhoTTS G2P port; `eu`, `es`) emits its transcription in the StyleTTS2 single-character training convention, where the library's `MULTI` table folds affricates (`tʃ`→`C`, `ts`→`V`, `tʂ`→`P`), aspirates (`pʰ`→`H`, `kʰ`→`K`, `tʰ`→`T`) and **stress-marked vowels** (`ˈi`→`I` … `ˈu`→`U`) onto single ASCII letters — e.g. `kaixo`→`kajʃO`, `mundua`→`mundUa`, `etxea`→`eCEa`. Scoring that raw against IPA gold would charge a spurious error on every uppercase char, so the harness UNFOLDS it back to standard IPA (the inverse of `ahotts_g2p.phones.MULTI`, stress rendered as `ˈ` so the shared `normalize` strips it like every other system) BEFORE scoring: `kajʃO`→`kajʃˈo`, `mundUa`→`mundˈua`, `eCEa`→`etʃˈea`. All systems are thus compared in one IPA space. The two ahotts-g2p `version`s (`classic`/`modern`) produce near-identical output; the committed rows use `classic` (see the `ahotts_version` field in `benchmarks/comparison.json`). NOTE: the `eu` `hitz_basque_ipa` gold is authored by HiTZ/Aholab (UPV/EHU), the same lab behind AhoTTS, so ahotts-g2p's very low PER there is close to same-source; the independent `eu` `wikipron` (Wiktionary) row is the fairer external comparison point. The audio-only `pyahotts` package is NOT a comparison system here (no phoneme output); `ahotts-g2p` is the G2P port that supersedes it for this table.
 
 The `N` column is the number of unique gold words for that language/dataset pair; each system's own scored count can be slightly lower (a word it failed to transcribe is excluded from its PER, not counted as an error) — see the `*_n` fields in `benchmarks/comparison.json` for the exact per-system count.
 
@@ -23,7 +27,7 @@ Every system is scored with the identical normalization and PER metric orthograp
 
 This table includes languages where orthography2ipa **loses** to espeak-ng. Cherry-picking would make the comparison worthless.
 
-| Lang | Dataset | N | o2i PER | espeak PER | epitran PER | gruut PER | pycotovia PER | pyahotts PER |
+| Lang | Dataset | N | o2i PER | espeak PER | epitran PER | gruut PER | pycotovia PER | ahotts-g2p PER |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | ca | 4catac | 160 | 0.4120 | 0.1872 | n/a | n/a | n/a | n/a |
 | ca-x-balear | 4catac | 160 | 0.3884 | 0.2174 | n/a | n/a | n/a | n/a |
@@ -33,8 +37,9 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | de | wikipron | 269 | 0.3613 | 0.2587 | n/a | n/a | n/a | n/a |
 | el | wikipron | 298 | 0.1513 | 0.1218 | n/a | n/a | n/a | n/a |
 | en | wikipron | 220 | 0.4661 | 0.4312 | n/a | n/a | n/a | n/a |
-| es | wikipron | 298 | 0.1000 | 0.1534 | n/a | n/a | n/a | n/a |
-| eu | hitz_basque_ipa | 300 | 0.2796 | 0.2253 | n/a | n/a | n/a | n/a |
+| es | wikipron | 298 | 0.1000 | 0.1534 | n/a | n/a | n/a | 0.1515 |
+| eu | hitz_basque_ipa | 300 | 0.2796 | 0.2253 | n/a | n/a | n/a | 0.0262 |
+| eu-wikipron | wikipron | 240 | 0.0768 | 0.1356 | n/a | n/a | n/a | 0.1767 |
 | fi | wikipron | 294 | 0.0386 | 0.3915 | n/a | n/a | n/a | n/a |
 | fr | wikipron | 279 | 0.1559 | 0.1200 | n/a | n/a | n/a | n/a |
 | ga | wikipron | 134 | 0.4330 | 0.5792 | n/a | n/a | n/a | n/a |
@@ -48,7 +53,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | sv | wikipron | 279 | 0.3508 | 0.3249 | n/a | n/a | n/a | n/a |
 | tr | wikipron | 296 | 0.1409 | 0.2353 | n/a | n/a | n/a | n/a |
 
-**o2i beats espeak on 8 of 21 comparable languages.**
+**o2i beats espeak on 9 of 22 comparable languages.**
 
 ## Catalan dialects vs espeak (BSC)
 

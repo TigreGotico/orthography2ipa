@@ -1,7 +1,7 @@
 """Tests for scripts/compare_systems.py.
 
 All comparison systems are mocked — no network, no real espeak-ng,
-epitran, gruut, pycotovia, or pyahotts required. Covers the PER math, the
+epitran, gruut, pycotovia, or ahotts-g2p required. Covers the PER math, the
 "beats espeak" tally, the "unavailable system -> n/a, never a crash"
 contract, and the Catalan-dialect espeak voice discovery/fallback logic.
 """
@@ -307,34 +307,100 @@ class TestPycotoviaLazyImport:
         assert cs.pycotovia_transcribe("ola", "gl") is None
 
 
-class TestPyahottsAlwaysNa:
-    def test_always_returns_none_even_when_module_present(self, monkeypatch):
-        # pyahotts only exposes audio synthesis (AhoTTS.get_tts), never
-        # text-level IPA/phonemes -- pyahotts_transcribe must stay n/a
-        # regardless of whether the library is installed.
-        class FakePyahotts:
-            class AhoTTS:
-                def get_tts(self, text, lang="eu"):
-                    return b"\x00\x01"
+class TestAhottsUnfoldToIpa:
+    """The StyleTTS2 single-char folds (uppercase affricates/aspirates/
+    stressed vowels) MUST unfold to standard IPA before scoring, so
+    ahotts-g2p is compared in the same IPA space as every other system.
+    Uses a fake ``ahotts_g2p.phones`` module so no real install/network
+    is required."""
 
-        monkeypatch.setitem(sys.modules, "pyahotts", FakePyahotts)
-        assert cs.pyahotts_transcribe("kaixo", "eu") is None
+    @pytest.fixture(autouse=True)
+    def _fake_multi(self, monkeypatch):
+        import types
+        # mirrors ahotts_g2p.phones.MULTI (IPA sequence -> folded char)
+        fake_phones = types.ModuleType("ahotts_g2p.phones")
+        fake_phones.MULTI = {
+            "tʃ": "C", "ts": "V", "tʂ": "P",
+            "'i": "I", "'e": "E", "'a": "A", "'o": "O", "'u": "U",
+            "pʰ": "H", "kʰ": "K", "tʰ": "T",
+        }
+        fake_pkg = types.ModuleType("ahotts_g2p")
+        fake_pkg.phones = fake_phones
+        monkeypatch.setitem(sys.modules, "ahotts_g2p", fake_pkg)
+        monkeypatch.setitem(sys.modules, "ahotts_g2p.phones", fake_phones)
+        cs._ahotts_unfold_cache.clear()
+        yield
+        cs._ahotts_unfold_cache.clear()
 
-    def test_returns_none_when_module_absent(self, monkeypatch):
+    def test_stressed_vowels_unfold_with_ipa_stress_mark(self):
+        # 'kajʃO' -> 'kajʃˈo' (O is folded stressed /o/, not a distinct phone)
+        assert cs.ahotts_unfold_to_ipa("kajʃO") == "kajʃˈo"
+
+    def test_affricate_and_stressed_vowel_unfold(self):
+        # 'eCEa' -> 'etʃˈea'
+        assert cs.ahotts_unfold_to_ipa("eCEa") == "etʃˈea"
+
+    def test_plain_ipa_chars_pass_through_unchanged(self):
+        assert cs.ahotts_unfold_to_ipa("mund") == "mund"
+
+    def test_unfold_stress_mark_is_stripped_by_shared_normalize(self):
+        # end-to-end fairness: after unfold, the shared normalize strips
+        # the ˈ so a folded stressed vowel scores like a plain one.
+        ipa = cs.ahotts_unfold_to_ipa("mundUa")  # -> 'mundˈua'
+        assert ipa == "mundˈua"
+        assert cs.benchmark.normalize(ipa, True, True) == "mundua"
+
+
+class TestAhottsTranscribe:
+    def test_absent_module_yields_none(self, monkeypatch):
         import builtins
         real_import = builtins.__import__
 
         def fake_import(name, *a, **k):
-            if name == "pyahotts":
-                raise ImportError("no module named pyahotts")
+            if name == "ahotts_g2p":
+                raise ImportError("no module named ahotts_g2p")
             return real_import(name, *a, **k)
 
         monkeypatch.setattr(builtins, "__import__", fake_import)
-        assert cs.pyahotts_transcribe("kaixo", "eu") is None
+        assert cs.ahotts_transcribe("kaixo", {"lang": "eu",
+                                              "version": "classic"}) is None
+
+    def test_present_module_phonemizes_and_unfolds(self, monkeypatch):
+        import types
+        fake_phones = types.ModuleType("ahotts_g2p.phones")
+        fake_phones.MULTI = {"tʃ": "C", "'o": "O", "'a": "A", "'e": "E",
+                             "'i": "I", "'u": "U"}
+        fake_pkg = types.ModuleType("ahotts_g2p")
+        fake_pkg.phones = fake_phones
+
+        def fake_phonemize(word, lang="eu", version="modern"):
+            assert (word, lang, version) == ("kaixo", "eu", "classic")
+            return "kajʃO"
+        fake_pkg.phonemize = fake_phonemize
+
+        monkeypatch.setitem(sys.modules, "ahotts_g2p", fake_pkg)
+        monkeypatch.setitem(sys.modules, "ahotts_g2p.phones", fake_phones)
+        cs._ahotts_unfold_cache.clear()
+
+        out = cs.ahotts_transcribe("kaixo", {"lang": "eu",
+                                             "version": "classic"})
+        assert out == "kajʃˈo"
+        cs._ahotts_unfold_cache.clear()
+
+    def test_exception_during_phonemize_yields_none(self, monkeypatch):
+        import types
+        fake_pkg = types.ModuleType("ahotts_g2p")
+
+        def boom(word, lang="eu", version="modern"):
+            raise RuntimeError("boom")
+        fake_pkg.phonemize = boom
+        monkeypatch.setitem(sys.modules, "ahotts_g2p", fake_pkg)
+        assert cs.ahotts_transcribe("x", {"lang": "eu",
+                                          "version": "classic"}) is None
 
 
-class TestCompareLangWithPycotoviaAndPyahotts:
-    def test_gl_row_scores_pycotovia_and_leaves_pyahotts_absent(
+class TestCompareLangWithPycotoviaAndAhotts:
+    def test_gl_row_scores_pycotovia_and_leaves_ahotts_absent(
             self, monkeypatch):
         pairs = [("ola", "ola")]
         monkeypatch.setitem(
@@ -356,10 +422,12 @@ class TestCompareLangWithPycotoviaAndPyahotts:
         row = cs.compare_lang("gl", limit=10)
         assert row["pycotovia_per"] == 0.0
         assert row["pycotovia_n"] == 1
-        assert row["pyahotts_per"] is None
-        assert row["pyahotts_n"] == 0
+        assert row["ahotts_per"] is None
+        assert row["ahotts_n"] == 0
 
-    def test_eu_row_pyahotts_column_is_always_na(self, monkeypatch):
+    def test_eu_row_scores_ahotts_and_records_version(self, monkeypatch):
+        # gold 'kaiʃo'; ahotts (mocked) returns unfolded 'kajʃˈo' ->
+        # normalize -> 'kajʃo' vs 'kaiʃo' == 1 edit / 5 == 0.2
         pairs = [("kaixo", "kaiʃo")]
         monkeypatch.setitem(
             cs.benchmark.DATASETS, "fake_eu_dataset",
@@ -367,18 +435,50 @@ class TestCompareLangWithPycotoviaAndPyahotts:
         monkeypatch.setitem(
             cs.LANGS, "eu",
             {"dataset": ("fake_eu_dataset", "eu"), "espeak": None,
-             "epitran": None, "gruut": None, "pyahotts": "eu"})
+             "epitran": None, "gruut": None,
+             "ahotts": {"lang": "eu", "version": "classic"}})
 
         fake_o2i = FakeEngine({"kaixo": "kaiʃo"})
 
         class FakeModule:
             G2P = staticmethod(lambda lang: fake_o2i)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(
+            cs, "ahotts_transcribe", lambda word, cfg: "kajʃˈo")
 
         row = cs.compare_lang("eu", limit=10)
-        assert row["pyahotts_per"] is None
-        assert row["pyahotts_n"] == 0
+        assert row["o2i_per"] == 0.0
+        assert row["ahotts_per"] == pytest.approx(0.2)
+        assert row["ahotts_n"] == 1
+        assert row["ahotts_version"] == "classic"
         assert row["pycotovia_per"] is None
+
+    def test_g2p_override_drives_named_spec_for_alt_dataset_row(
+            self, monkeypatch):
+        # eu-wikipron-style row: distinct key, but g2p override selects
+        # the real "eu" spec.
+        pairs = [("bat", "bat")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_euw_dataset",
+            (lambda lang, limit: pairs, ["eu"]))
+        monkeypatch.setitem(
+            cs.LANGS, "eu-wikipron",
+            {"dataset": ("fake_euw_dataset", "eu"), "g2p": "eu",
+             "espeak": None, "epitran": None, "gruut": None})
+
+        seen = {}
+
+        class FakeModule:
+            @staticmethod
+            def G2P(lang):
+                seen["lang"] = lang
+                return FakeEngine({"bat": "bat"})
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+
+        row = cs.compare_lang("eu-wikipron", limit=10)
+        assert seen["lang"] == "eu"  # g2p override, not the row key
+        assert row["lang"] == "eu-wikipron"
+        assert row["o2i_per"] == 0.0
 
 
 class TestDiscoverCatalanDialectVoices:
