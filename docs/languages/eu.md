@@ -168,3 +168,7 @@ Every dialect declares `parent: eu` with ancestor weight 0.9, so
 dialects score `0.81`. Because the corrections above touch mostly
 `notes`/`sources` and dialect-only grapheme/allophone data, the scored
 `eu` benchmark rows are unaffected.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
