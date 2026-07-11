@@ -39,7 +39,7 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | et | ipa_childes | 300 | 0.3094 | [0.2876, 0.3304] | 0.1533 | research | machine-generated |
 | eu | hitz_basque_ipa | 300 | 0.2523 | [0.2300, 0.2745] | 0.1967 | research | machine-generated |
 | eu | wikipron | 239 | 0.0777 | [0.0623, 0.0953] | 0.5900 | research | crowd-scraped |
-| ext-PT-x-barrancos | barranquenho_dict | 297 | 0.2099 | [0.1841, 0.2374] | 0.4108 | research | machine-generated |
+| ext-PT-x-barrancos | barranquenho_dict | 297 | 0.1442 | [0.1232, 0.1664] | 0.5185 | research | machine-generated |
 | fa | styletts2_phonemes | 294 | 0.5787 | [0.5724, 0.5858] | 0.0000 | research | machine-generated |
 | fi | styletts2_phonemes | 298 | 0.2919 | [0.2783, 0.3060] | 0.0000 | research | machine-generated |
 | fi | wikipron | 294 | 0.0386 | [0.0304, 0.0476] | 0.7483 | research | crowd-scraped |
@@ -104,9 +104,3 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | tr | wikipron | 296 | 0.1409 | [0.1236, 0.1592] | 0.3953 | research | crowd-scraped |
 | uk | styletts2_phonemes | 299 | 0.4960 | [0.4842, 0.5074] | 0.0000 | research | machine-generated |
 | zh | ipa_childes | 300 | 0.5108 | [0.4910, 0.5300] | 0.0200 | research | machine-generated |
-
----
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Benchmarks](benchmarks.md) · [Quality tiers](quality_tiers.md) · [Comparison](comparison.md)*

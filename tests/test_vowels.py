@@ -28,6 +28,32 @@ def test_accented_latin_vowels_are_orthographic(ch):
     assert is_orthographic_vowel(ch)
 
 
+@pytest.mark.parametrize("ch", ["ã", "ẽ", "ĩ", "õ", "ũ"])
+def test_precomposed_nasal_vowels_are_orthographic(ch):
+    # The written nasal vowels are a single orthographic-vowel source of
+    # truth: ã/õ were already recognised, but the precomposed ẽ (U+1EBD),
+    # ĩ (U+0129) and ũ (U+0169) must be too — Portuguese-family orthographies
+    # write them and the vowel predicate must not treat them as non-vowels.
+    assert is_orthographic_vowel(ch)
+
+
+@pytest.mark.parametrize("ch", ["ẽ", "ĩ"])
+def test_precomposed_nasal_front_vowels_axis(ch):
+    # Nasalisation (combining tilde) preserves the front/back axis, so ẽ/ĩ
+    # classify front by their base ⟨e⟩/⟨i⟩.
+    from orthography2ipa.vowels import is_back_vowel, is_front_vowel
+    assert is_front_vowel(ch)
+    assert not is_back_vowel(ch)
+
+
+@pytest.mark.parametrize("ch", ["ã", "õ", "ũ"])
+def test_precomposed_nasal_back_vowels_axis(ch):
+    # ã/õ/ũ classify back by their base ⟨a⟩/⟨o⟩/⟨u⟩ (tilde preserves the axis).
+    from orthography2ipa.vowels import is_back_vowel, is_front_vowel
+    assert is_back_vowel(ch)
+    assert not is_front_vowel(ch)
+
+
 @pytest.mark.parametrize("ch", list("αεηιουω"))
 def test_greek_vowels_are_orthographic(ch):
     assert is_orthographic_vowel(ch)

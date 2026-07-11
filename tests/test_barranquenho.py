@@ -130,7 +130,7 @@ class TestWholeWords:
             ("mesmo", "ˈmɛhmu"),   # coda s -> [h]; final -o raised to [u]
             ("visto", "ˈbihtu"),   # betacism + coda-s aspiration
             ("vaca", "ˈbakɐ"),     # betacism
-            ("cantar", "ˈkantɐ"),  # final -r deleted
+            ("cantar", "ˈkɐ̃tɐ"),  # coda-n nasalises a→ɐ̃; final -r deleted
             ("Brasil", "ˈbɾazi"),  # final -l deleted
         ],
     )
@@ -145,3 +145,72 @@ class TestSeseoNoInterdental:
         for ipas in barrancos.graphemes.values():
             if ipas:
                 assert "θ" not in ipas
+
+
+class TestCodaNasalization:
+    """Coda-conditioned nasalisation (Convenção Ortográfica 2025, p. 26,
+    §1.8.1 *Vocalismo nasal tónico*): a vowel before a syllable-final (coda)
+    ⟨m/n⟩ nasalises and the nasal consonant is absorbed — [ã]←⟨am/an⟩,
+    [ẽ]←⟨em/en⟩, [ĩ]←⟨im/in⟩, [õ]←⟨om/on⟩, [ũ]←⟨um/un⟩. An INTERVOCALIC
+    (onset) ⟨m/n⟩ is a syllable onset and leaves the vowel oral."""
+
+    NASAL = "̃"  # combining tilde marking the nasalised vowel
+
+    # Nasalisation is written with U+0303 COMBINING TILDE on the base vowel
+    # (never a precomposed letter), so expected forms are spelled decomposed.
+    T = "̃"
+
+    @pytest.mark.parametrize(
+        "word,expected",
+        [
+            ("ambu", f"ˈɐ{T}bu"),    # am + coda (before b) -> ɐ̃
+            ("campu", f"ˈkɐ{T}pu"),  # Convenção p.26 example: campu [kɐ̃pu]
+            ("lindo", f"ˈli{T}du"),  # in + coda (before d) -> ĩ
+            ("tinta", f"ˈti{T}tɐ"),
+            ("mundo", f"ˈmu{T}du"),  # un + coda -> ũ
+            ("bom", f"ˈbo{T}"),      # om word-final -> õ (nasal, ɔ raised to o)
+        ],
+    )
+    def test_coda_mn_nasalises(self, g2p, word, expected):
+        out = g2p.transcribe(word)
+        assert self.NASAL in out, f"{word} -> {out} should be nasalised"
+        assert out == expected
+
+    @pytest.mark.parametrize(
+        "word,expected",
+        [
+            ("lhano", "ˈʎanu"),    # intervocalic n -> oral, ⟨nh⟩ intact
+            ("cama", "ˈkamɐ"),     # intervocalic m -> oral a
+            ("ano", "ˈɐnu"),       # intervocalic n -> oral
+            ("pequenu", "pɨˈkenu"),  # intervocalic n -> oral e
+            ("banho", "ˈbaɲu"),    # ⟨nh⟩ is a palatal onset, not a coda nasal
+            ("vinho", "ˈbiɲu"),
+        ],
+    )
+    def test_intervocalic_mn_stays_oral(self, g2p, word, expected):
+        out = g2p.transcribe(word)
+        assert self.NASAL not in out, f"{word} -> {out} must stay oral"
+        assert out == expected
+
+    def test_onset_nasal_before_h_keeps_palatal(self, g2p):
+        # ⟨nh⟩ tokenises as a single palatal ɲ before the nasal-consonant
+        # coda logic can fire, so ⟨n⟩ never nasalises the preceding vowel.
+        assert "ɲ" in g2p.transcribe("banho")
+
+
+class TestMonosyllableFinalLiquids:
+    """Convenção §2.6 Nota keeps the lateral of the monosyllables *mal*,
+    *tal*, *cual* (pronounced in most contexts); *pur* (port. 'por') keeps
+    its -r. Polysyllables still elide tonic-final -l / -r."""
+
+    @pytest.mark.parametrize("word", ["mal", "tal", "cual", "pur"])
+    def test_monosyllable_keeps_final_liquid(self, g2p, word):
+        out = g2p.transcribe(word)
+        assert out.endswith("l") or out.endswith("ɾ"), \
+            f"monosyllable {word} -> {out} must keep its final liquid"
+
+    @pytest.mark.parametrize("word", ["Brasil", "Natal", "cantar", "senhor"])
+    def test_polysyllable_still_elides(self, g2p, word):
+        out = g2p.transcribe(word)
+        assert not out.endswith("l") and not out.endswith("ɾ") \
+            and not out.endswith("r"), f"{word} -> {out} should elide"
