@@ -131,6 +131,27 @@ _MIRANDESE_URL = (
     "/resolve/main/mwl_dataset.tsv"
 )
 _MIRANDESE_DIALECTS = {"mwl": "central", "mwl-x-sendim": "sendinese"}
+_BARRANQUENHO_DICT_URL = (
+    "https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic"
+    "/resolve/main/barranquenho_ipa_dictionary.csv"
+)
+_MIRANDESE_DICT_URL = (
+    "https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic"
+    "/resolve/main/mirandese_phonemizer_dataset.csv"
+)
+# The synthetic Mirandese dict tags each entry with a ``dialect`` column.
+# Values seen: "central", "sendinês", "raiano", and "all" (dialect-neutral
+# forms shared by every variety). orthography2ipa language tag → the set of
+# ``dialect`` values scored under it. "all"+"central" go to the Central norm
+# (``mwl``, the standard the orthography is built on); "raiano" maps to
+# ``mwl-x-ifanes`` (Ifanês IS the Northern/Raiano subdialect in this repo's
+# spec set); "sendinês" to ``mwl-x-sendim``. Each row is scored under exactly
+# one tag (no double-counting of the shared "all" rows across sub-dialects).
+_MIRANDESE_DICT_DIALECTS: Dict[str, set] = {
+    "mwl": {"central", "all"},
+    "mwl-x-sendim": {"sendinês"},
+    "mwl-x-ifanes": {"raiano"},
+}
 _INFOPEDIA_PT_URL = (
     "https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa"
     "/resolve/main/infopedia_pt_ipa.jsonl"
@@ -393,6 +414,78 @@ def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
         parts = line.split("\t")
         if len(parts) == 3 and parts[0] == dialect:
             pairs.append((parts[1].strip(), parts[2].strip()))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Barranquenho IPA dictionary (TigreGotico/barranquenho-ipa-dict-synthetic
+    on Hugging Face) — 319 entries for the Barranquenho contact variety
+    (``ext-PT-x-barrancos``), a Portuguese–Spanish border speech of Barrancos.
+
+    PROVENANCE — this gold is **LLM-generated** (Claude, conditioned on the
+    published *Convenção Ortográfica do Barranquenho* and descriptive research
+    on the variety), NOT produced by a phonemizer, by orthography2ipa, or by
+    any downstream o2i consumer — so scoring o2i against it is not circular.
+    It is nonetheless machine-generated and unverified by human phoneticians:
+    it is classified at the lowest reliability tier (``machine-generated``) and
+    is directional only. See docs/benchmarks.md "Provenance and reliability".
+
+    Each CSV row is ``barranquenho_orthography,ipa_transcription,part_of_speech,
+    portuguese_equivalent,spanish_equivalent,phonological_notes``; only the
+    first two columns are used. Barranquenho is Latin-script, so no special
+    input contract applies. Malformed rows (missing orthography or IPA) are
+    skipped.
+    """
+    del lang  # single language; kept for the uniform loader signature
+    text = _fetch(_BARRANQUENHO_DICT_URL, "barranquenho_ipa_dict.csv")
+    pairs: List[Tuple[str, str]] = []
+    reader = csv.DictReader(text.splitlines())
+    for row in reader:
+        word = (row.get("barranquenho_orthography") or "").strip()
+        ipa = (row.get("ipa_transcription") or "").strip()
+        if not word or not ipa:
+            continue
+        pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+def load_mirandese_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Mirandese IPA dictionary (TigreGotico/mirandese-ipa-dict-synthetic on
+    Hugging Face) — 671 entries for Mirandese (``mwl``) and its sub-dialects,
+    split by the dataset's ``dialect`` column (see ``_MIRANDESE_DICT_DIALECTS``
+    for the value→tag mapping).
+
+    PROVENANCE — this gold is **LLM-generated** (Claude, conditioned on the
+    *Convenção Ortográfica da Língua Mirandesa* and descriptive research on the
+    sub-dialects), NOT produced by a phonemizer, by orthography2ipa, or by any
+    downstream o2i consumer — so scoring o2i against it is not circular. It is
+    still machine-generated and unverified by human phoneticians: it is
+    classified at the lowest reliability tier (``machine-generated``) and is
+    directional only. It is a SEPARATE, complementary source from the existing
+    ``mirandese`` gold (TigreGotico/mirandese_g2p, native-speaker collected).
+    See docs/benchmarks.md "Provenance and reliability".
+
+    Each CSV row is ``word,ipa,pos,english,portuguese,dialect,notes``; only
+    ``word``, ``ipa`` and ``dialect`` are used. Mirandese is Latin-script, so
+    no special input contract applies. Rows whose ``dialect`` value is not in
+    the requested tag's set, or that are missing word/IPA, are skipped.
+    """
+    wanted = _MIRANDESE_DICT_DIALECTS[lang]
+    text = _fetch(_MIRANDESE_DICT_URL, "mirandese_ipa_dict.csv")
+    pairs: List[Tuple[str, str]] = []
+    reader = csv.DictReader(text.splitlines())
+    for row in reader:
+        if (row.get("dialect") or "").strip() not in wanted:
+            continue
+        word = (row.get("word") or "").strip()
+        ipa = (row.get("ipa") or "").strip()
+        if not word or not ipa:
+            continue
+        pairs.append((word, ipa))
         if len(pairs) >= limit:
             break
     return pairs
@@ -715,6 +808,8 @@ DATASETS = {
                            ["pt-PT", "pt-BR", "pt-AO", "pt-MZ", "pt-TL"]),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "mirandese": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
+    "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
+    "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
     "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
@@ -785,6 +880,11 @@ PROVENANCE: Dict[str, str] = {
     "styletts2_phonemes": "machine-generated",  # phonemizer/espeak-derived TTS phonemes (partly circular vs espeak)
     "ipa_childes": "machine-generated",         # CHILDES "G2P+" automatic phonemizer column
     "hitz_basque_ipa": "machine-generated",     # HiTZ ahoNT automatic phonemizer
+    # LLM-generated (Claude, research-conditioned) IPA dictionaries — NOT a
+    # phonemizer's / o2i's own output (so not circular), but unverified by
+    # human phoneticians; directional only, lowest tier.
+    "barranquenho_dict": "machine-generated",   # LLM-generated (research-conditioned), not human-verified
+    "mirandese_dict": "machine-generated",      # LLM-generated (research-conditioned), not human-verified
 }
 
 
