@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.72.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.72.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.72.0a1...1.72.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): model Portuguese coda vowel nasalization in base pt-PT/pt-BR \(major gap\) [\#264](https://github.com/TigreGotico/orthography2ipa/pull/264) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.72.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.72.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.71.1a1...1.72.0a1)
@@ -688,10 +696,6 @@
 ## [1.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.13.0a1) (2026-06-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.12.0a1...1.13.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): mirandese specs grounded in the orthographic convention [\#72](https://github.com/TigreGotico/orthography2ipa/pull/72) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.12.0a1) (2026-06-12)
 
