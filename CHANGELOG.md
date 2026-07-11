@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.40.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.40.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.39.0a1...1.40.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model Lisbon \(Estremenho\) European Portuguese dialect [\#166](https://github.com/TigreGotico/orthography2ipa/pull/166) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.39.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.39.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.38.0a2...1.39.0a1)
