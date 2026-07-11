@@ -199,20 +199,24 @@ def check_harness_and_limit(
             f"baseline was generated with harness_version(s) "
             f"{sorted(v for v in baseline_versions if v)} but this "
             f"checkout's harness_version is {HARNESS_VERSION!r} — "
-            f"regenerate benchmarks/results.json "
-            f"(scripts/benchmark.py --scoreboard) before comparing."
+            f"regenerate the CI sample baseline "
+            f"(scripts/benchmark.py --ci-sample) before comparing."
         )
 
-    baseline_limits = {
-        r.get("limit") for r in baseline.values() if r.get("limit") is not None
-    }
+    # ``None`` is a meaningful limit — it marks a full-dataset row. Keep it in
+    # the set so a full baseline (results.json) compared against a sampled run
+    # trips the mismatch instead of slipping through an empty set.
+    baseline_limits = {r.get("limit") for r in baseline.values()}
     if baseline_limits and baseline_limits - {limit}:
+        shown = sorted(
+            ("full" if v is None else v) for v in baseline_limits
+        ) if None in baseline_limits else sorted(baseline_limits)
         sys.exit(
-            f"baseline was generated with limit(s) {sorted(baseline_limits)} "
-            f"but this run used --limit {limit} — a different slice size "
-            f"per dataset produces spurious PER deltas unrelated to real "
-            f"regressions. Re-run with --limit matching the baseline "
-            f"(or regenerate the baseline at the new limit)."
+            f"baseline was generated with limit(s) {shown} "
+            f"but this run used --limit {'full' if limit is None else limit} — "
+            f"a different slice size per dataset produces spurious PER deltas "
+            f"unrelated to real regressions. Re-run with --limit matching the "
+            f"baseline (or regenerate the baseline at the new limit)."
         )
 
 

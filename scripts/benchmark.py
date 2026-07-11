@@ -630,11 +630,12 @@ def load_portuguese_phonetic_lexicon(lang: str, limit: int) -> List[Tuple[str, s
 
     The ``phones`` field flattens syllables with ``|`` (e.g. ``ˈkːa|zɐ``); the
     separator is stripped so the whole-word IPA is scored. Portuguese is
-    Latin-script; no special input contract applies. 617k rows are far too
-    many to score fully, so the region's rows are read in full and a
-    fixed-seed (``SAMPLE_SEED``) random sample of up to ``limit`` words is
-    drawn — unbiased but fully reproducible. Duplicate words (same spelling)
-    are de-duplicated, keeping the first sampled pronunciation.
+    Latin-script; no special input contract applies. The region's rows are read
+    in full; when ``limit`` is set (ad-hoc runs and the CI sample) a fixed-seed
+    (``SAMPLE_SEED``) random sample of up to ``limit`` words is drawn — unbiased
+    but fully reproducible. Under the published ``--scoreboard`` run (``limit``
+    unset) every row is scored. Duplicate words (same spelling) are
+    de-duplicated, keeping the first pronunciation.
     """
     region = _PT_LEXICON_REGIONS[lang]
     text = _fetch(_PT_LEXICON_URL, "portuguese_phonetic_lexicon.csv")
@@ -712,9 +713,11 @@ def load_hitz_basque(lang: str, limit: int) -> List[Tuple[str, str]]:
     level ahoNT stress placement is not verified to need sentence context,
     making the single-token span the safer/cleaner unit to isolate.
 
-    Only a bounded sample (default ``limit`` pairs, e.g. ~300) is ever
-    fetched, paging a few hundred paragraphs at a time -- never the full
-    1.67M-row dataset.
+    This loader pages the datasets-server API and stops at
+    ``_HITZ_BASQUE_MAX_PARAGRAPHS`` paragraphs -- an intrinsic bound that
+    ``limit=None`` does NOT lift, so this is the one dataset the full-dataset
+    scoreboard does not read end-to-end (never the full 1.67M-row set). The
+    bound is disclosed in ``docs/benchmarks.md``.
     """
     import re
 

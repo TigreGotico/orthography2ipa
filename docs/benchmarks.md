@@ -40,7 +40,8 @@ be read:
   it.
 - **Absolute PER is noisy — treat it as directional, not precise.** The
   published scoreboard scores the **full** gold set of every language (see
-  "Full-dataset scoreboard" below), so its `N` is the true gold size and its
+  "Full-dataset scoreboard" below), so its `N` is the number of gold words
+  actually covered — not a sample — and its
   PER is the whole-set number — but PER is still bound by the gold's own
   notation conventions and provenance, so read numbers as relative/ranking
   signals, not measurements to three decimals.
@@ -686,7 +687,8 @@ the pair's count dropped.
   transcription depth, and the engine should not be scored on notation
   conventions. `--keep-stress` / `--narrow` disable this.
 - The committed `--scoreboard` scores the **full** gold set of every
-  language (no cap), so each row's `N` is the true gold size (see
+  language (no cap), so each row's `N` is the number of gold words covered,
+  not a sample (see
   "Full-dataset scoreboard" below). Ad-hoc `--limit N` runs (and the CI
   regression sample) apply a uniform cap for speed; those are reference
   points, not the published number.
