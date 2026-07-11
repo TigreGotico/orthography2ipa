@@ -188,7 +188,7 @@ stress/sandhi. Empty by default → no-op → byte-identical output. See
 | `word_final` | bool | no | Require (or forbid) word-final position |
 | `stress` | string | no | `"stressed"` / `"unstressed"` — engine path only (needs stress context) |
 | `syllable_position` | string | no | `"onset"` / `"coda"` / `"nucleus"` (maximal-onset heuristic) |
-| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `front_vowel`, `back_vowel`, `word_boundary` |
+| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary` |
 | `followed_by` | string | no | Next-grapheme class (same value set) |
 | `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |
@@ -265,6 +265,8 @@ matching the `GraphemePosition` enum:
 | `"before_back_vowel"`       | `GraphemePosition.BEFORE_BACK_VOWEL`       |
 | `"after_front_vowel"`       | `GraphemePosition.AFTER_FRONT_VOWEL`       |
 | `"after_back_vowel"`        | `GraphemePosition.AFTER_BACK_VOWEL`        |
+| `"before_palatal"`          | `GraphemePosition.BEFORE_PALATAL`          |
+| `"after_palatal"`           | `GraphemePosition.AFTER_PALATAL`           |
 | `"consonantal"`             | `GraphemePosition.CONSONANTAL`             |
 | `"vocalic"`                 | `GraphemePosition.VOCALIC`                 |
 
@@ -283,6 +285,18 @@ class. Resolution order is **exact-letter position > vowel-class
 position > default `graphemes` mapping**: an exact `"before_e"` entry declared
 for the same grapheme wins over `"before_front_vowel"`, and the class positions
 are inert (change nothing) for any spec that does not declare them.
+
+The `"before_palatal"` / `"after_palatal"` positions are the consonant-side
+mirror: they condition on the neighbouring grapheme being a **palatal /
+palato-alveolar consonant** (`ʎ ɲ ʃ ʒ j c ɟ ç ʝ ɕ ʑ` and the affricates
+`tʃ dʒ tɕ dʑ`, tie-bar `t͡ʃ` too). Membership is owned by
+`orthography2ipa.vowels.is_palatal_consonant`, which reads the **IPA the
+neighbour maps to** (its `ipa[0]`), not its spelling — so one `"before_palatal"`
+entry covers every digraph producing a palatal (⟨lh⟩→ʎ, ⟨nh⟩→ɲ, ⟨ch⟩→ʃ, ⟨x⟩,
+⟨j⟩), e.g. European-Portuguese stressed ⟨e⟩ → [ɐ] before ⟨lh⟩. They sit at the
+class tier (below exact-letter positions, so `"before_i"` wins over
+`"before_palatal"` when the neighbour ⟨i⟩ realises the palatal glide /j/) and are
+likewise inert for any spec that does not declare them.
 
 ## Ancestor Role Values
 

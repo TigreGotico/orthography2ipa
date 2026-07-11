@@ -232,6 +232,23 @@ class GraphemePosition(str, Enum):
     E.g. German ⟨ch⟩ → [x] (Ach-Laut) after back vowels. Exact per-letter
     positions (``AFTER_A`` …) win over it."""
 
+    BEFORE_PALATAL = "before_palatal"
+    """Before a *palatal / palato-alveolar consonant* — the consonant-side
+    mirror of :attr:`BEFORE_FRONT_VOWEL`. Membership is decided by the IPA the
+    following grapheme maps to (:func:`orthography2ipa.vowels.is_palatal_consonant`
+    — ``ʎ ɲ ʃ ʒ j`` and the affricates ``tʃ``/``dʒ`` …), not by its written
+    letter, so a single ``BEFORE_PALATAL`` entry covers every digraph that
+    produces a palatal (⟨lh⟩→ʎ, ⟨nh⟩→ɲ, ⟨ch⟩→ʃ, ⟨x⟩, ⟨j⟩). The class-level
+    condition for e.g. European Portuguese stressed ⟨e⟩ → [ɐ] before ⟨lh⟩. An
+    exact per-letter position declared for the same grapheme still wins over
+    this class position."""
+
+    AFTER_PALATAL = "after_palatal"
+    """After a *palatal / palato-alveolar consonant* (mirrors
+    :attr:`BEFORE_PALATAL`; membership via
+    :func:`orthography2ipa.vowels.is_palatal_consonant` on the preceding
+    grapheme's IPA). Exact per-letter positions win over it."""
+
     AFTER_A = "after_a"
     """Preceding token's grapheme starts with ``a`` (mirrors BEFORE_A).
     E.g., German ⟨ch⟩ after back vowels ``a/o/u`` → [x] (Ach-Laut)."""
@@ -536,8 +553,10 @@ class AllophoneRule:
     preceded_by, followed_by : Optional[str]
         A neighbouring-*grapheme* class the previous / next grapheme must
         match: ``"vowel"``, ``"consonant"``, ``"front_vowel"``,
-        ``"back_vowel"`` or ``"word_boundary"`` (no neighbour). Predicates
-        delegate to :mod:`orthography2ipa.vowels`.
+        ``"back_vowel"``, ``"palatal"`` (a palatal / palato-alveolar
+        consonant, decided by the neighbour's IPA — the mirror of the
+        ``BEFORE_PALATAL`` position) or ``"word_boundary"`` (no neighbour).
+        Predicates delegate to :mod:`orthography2ipa.vowels`.
     preceded_by_phoneme, followed_by_phoneme : Tuple[str, ...]
         The chosen phoneme of the previous / next lattice slot must be one of
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
@@ -580,7 +599,7 @@ class AllophoneRule:
                 f"'onset', 'coda', 'nucleus' or None, "
                 f"got {self.syllable_position!r}")
         _classes = ("vowel", "consonant", "front_vowel", "back_vowel",
-                    "word_boundary")
+                    "palatal", "word_boundary")
         for attr in ("preceded_by", "followed_by"):
             val = getattr(self, attr)
             if val is not None and val not in _classes:

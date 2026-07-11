@@ -55,7 +55,7 @@ unset is "don't care"):
 | `word_initial` / `word_final` | `true` / `false` | the grapheme is (not) at the word edge |
 | `stress` | `"stressed"` / `"unstressed"` | the grapheme's syllable carries (not) primary stress — engine path only |
 | `syllable_position` | `"onset"` / `"coda"` / `"nucleus"` | a vowel is a nucleus; a consonant before a vowel is an onset, else a coda (maximal-onset heuristic) |
-| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"front_vowel"`, `"back_vowel"`, `"word_boundary"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`) |
+| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA — see `is_palatal_consonant`) |
 | `preceded_by_phoneme` / `followed_by_phoneme` | list of IPA strings | the previous / next lattice slot's **chosen phoneme** is one of them |
 
 This small vocabulary expresses the common post-lexical processes:

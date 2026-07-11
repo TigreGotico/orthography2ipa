@@ -13,7 +13,7 @@ Three concerns live here:
 1. :func:`grapheme_positions` — given a grapheme's context (a
    :class:`~orthography2ipa.phonetok.GraphemeContext`, duck-typed: it
    only needs ``grapheme``/``prev``/``next``/``is_vowel``/``is_front``/
-   ``is_back``), return the ordered list of :class:`GraphemePosition`
+   ``is_back``/``is_palatal``), return the ordered list of :class:`GraphemePosition`
    values to try, **most specific first**. Exact-letter positions
    (``BEFORE_E``) precede their vowel *class* (``BEFORE_FRONT_VOWEL``),
    which precede the generic (``BEFORE_VOWEL``) and finally
@@ -83,8 +83,8 @@ def grapheme_positions(
     in this order gets exact>class>default precedence for free.
 
     *ctx* is any object exposing ``grapheme``, ``prev``/``next`` (each a
-    context or ``None``) and ``is_vowel``/``is_front``/``is_back``
-    predicates — i.e. a
+    context or ``None``) and ``is_vowel``/``is_front``/``is_back``/
+    ``is_palatal`` predicates — i.e. a
     :class:`~orthography2ipa.phonetok.GraphemeContext`. Neighbours are
     word-local for the standalone tokenizer and word-flat for the engine
     (which strips punctuation before this stage); either way ``prev is
@@ -113,6 +113,12 @@ def grapheme_positions(
             pos.append(GraphemePosition.BEFORE_FRONT_VOWEL)
         elif next_ctx.is_back:
             pos.append(GraphemePosition.BEFORE_BACK_VOWEL)
+        # Palatal is a consonant class (decided by the neighbour's IPA), so it
+        # never collides with the front/back vowel classes above; it sits at
+        # the same class tier — after any exact-letter position, before the
+        # generic BEFORE_CONSONANT and DEFAULT.
+        if next_ctx.is_palatal:
+            pos.append(GraphemePosition.BEFORE_PALATAL)
 
     # 2. word boundary
     if prev_ctx is None:
@@ -145,8 +151,17 @@ def grapheme_positions(
             pos.append(GraphemePosition.AFTER_FRONT_VOWEL)
         elif prev_ctx.is_back:
             pos.append(GraphemePosition.AFTER_BACK_VOWEL)
+        # Palatal is decided by the neighbour's IPA, so a vowel *letter*
+        # realised as a palatal glide (⟨i⟩/⟨y⟩ → /j/) is palatal too — mirror
+        # the unconditional BEFORE_PALATAL emission so the two sides agree.
+        if prev_ctx.is_palatal:
+            pos.append(GraphemePosition.AFTER_PALATAL)
         pos.append(GraphemePosition.AFTER_VOWEL)
     elif prev_ctx is not None:
+        # Preceding grapheme is a consonant: the palatal class (decided by
+        # its IPA) is more specific than the generic AFTER_CONSONANT.
+        if prev_ctx.is_palatal:
+            pos.append(GraphemePosition.AFTER_PALATAL)
         pos.append(GraphemePosition.AFTER_CONSONANT)
     if next_is_v:
         pos.append(GraphemePosition.BEFORE_VOWEL)
