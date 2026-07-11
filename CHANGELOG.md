@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.58.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.58.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.58.0a1...1.58.1a1)
+
+**Merged pull requests:**
+
+- fix\(data\): validate and correct Galician and Asturleonese phonology [\#217](https://github.com/TigreGotico/orthography2ipa/pull/217) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.58.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.58.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.57.0a1...1.58.0a1)
@@ -681,10 +689,6 @@
 ## [0.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.7.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.6.0a1...0.7.0a1)
-
-**Merged pull requests:**
-
-- feat: top-level G2P engine with greedy and beam search [\#25](https://github.com/TigreGotico/orthography2ipa/pull/25) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.6.0a1) (2026-06-11)
 
