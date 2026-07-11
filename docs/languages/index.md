@@ -78,6 +78,12 @@ each tier actually certifies.
 | [ar.md](ar.md) | Modern Standard Arabic (+ Egyptian Cairene and Saudi Najdi/Hejazi sections) — abjad script, tashkeel-dependent input contract, emphatic-spreading allophone layer |
 | [ar-x-levantine.md](ar-x-levantine.md) | Levantine Arabic — Damascene (`ar-SY`), Beiruti (`ar-LB`), Ammani (`ar-JO`), Palestinian (`ar-PS`): shared qaf/jim/interdental reflexes, /aj aw/→[eː oː] monophthongization, Lebanese imāla |
 
+### Berber (Amazigh)
+
+| Doc | Languages covered |
+|:---|:---|
+| [kab.md](kab.md) | Kabyle / Taqbaylit (Northern Berber; Berber Latin alphabet, gemination-conditioned spirantization, emphatics) |
+
 ### Indo-Aryan
 
 | Doc | Languages covered |
@@ -105,7 +111,8 @@ rather than a specific language, start here:
 | Schwa deletion | hi, bn, mr, pa | [hi.md](hi.md) |
 | Abugida (inherent vowel) | hi, sa, mr, bn, te, kn, ml | [hi.md](hi.md) |
 | Vowel harmony | fi, hu, tr, ko | family docs |
-| Geminate consonants | it, fi, hu, ja | [it-IT.md](it-IT.md) |
+| Geminate consonants | it, fi, hu, ja, kab | [it-IT.md](it-IT.md), [kab.md](kab.md) |
+| Spirantization (lax stop → fricative) | kab | [kab.md](kab.md) |
 | Tone / pitch accent | sv, zh, ja, ko, vi | — |
 | Liaison / sandhi | fr, pt, sa | [fr-FR.md](fr-FR.md) |
 | Tashkeel-dependent input | ar, ar-SY, ar-LB, ar-JO, ar-PS | [ar.md](ar.md), [ar-x-levantine.md](ar-x-levantine.md) |
