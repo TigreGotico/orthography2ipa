@@ -1,0 +1,32 @@
+{
+  "code": "tyv",
+  "name": "Tuvan",
+  "family": "Turkic",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "trk",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Tuvan (тыва дыл) — Siberian Turkic language of the Tyva Republic, Russia. Written in a Cyrillic-based Tuvan alphabet (the Russian alphabet plus ң, ө, ү); a Latin alphabet was used 1930–1943. GRAPHEME INVENTORY NOT YET SPECIFIED: a reliable spec must model the Cyrillic palatalisation/iotation conventions, vowel harmony, phonemic vowel length (written by doubling) and the pharyngealised ('kargyraa') vowel series, which is not consistently marked in the orthography. INPUT CONTRACT: input is expected in the Cyrillic Tuvan orthography.",
+  "iso639_3": "tyv",
+  "glottolog_code": "tuvi1240",
+  "wikidata_qid": "Q34119",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tuvan_language",
+    "https://tyv.wikipedia.org/wiki/%D0%A2%D1%8B%D0%B2%D0%B0_%D0%B4%D1%8B%D0%BB"
+  ],
+  "sources": [
+    {
+      "id": "tyv_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tuvan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tuvan_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tuvan_language",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

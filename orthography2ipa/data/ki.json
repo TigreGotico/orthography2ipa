@@ -1,0 +1,189 @@
+{
+  "code": "ki",
+  "name": "Kikuyu",
+  "family": "Atlantic-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "ɑ"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ĩ": [
+      "e"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ũ": [
+      "o"
+    ],
+    "b": [
+      "β"
+    ],
+    "c": [
+      "ʃ"
+    ],
+    "d": [
+      "ð"
+    ],
+    "g": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "m": [
+      "m"
+    ],
+    "mb": [
+      "ᵐb"
+    ],
+    "n": [
+      "n"
+    ],
+    "nd": [
+      "ⁿd"
+    ],
+    "ng": [
+      "ᵑɡ"
+    ],
+    "ng'": [
+      "ŋ"
+    ],
+    "nj": [
+      "ⁿdʒ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "t": [
+      "t"
+    ],
+    "th": [
+      "ð"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "ɑ": [
+      "ɑ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "o": [
+      "o"
+    ],
+    "β": [
+      "β"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "m": [
+      "m"
+    ],
+    "ᵐb": [
+      "ᵐb"
+    ],
+    "n": [
+      "n"
+    ],
+    "ⁿd": [
+      "ⁿd"
+    ],
+    "ᵑɡ": [
+      "ᵑɡ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ⁿdʒ": [
+      "ⁿdʒ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ]
+  },
+  "notes": "Kikuyu (Gĩkũyũ), Bantu language of central Kenya. Latin orthography with the tilde vowels ⟨ĩ ũ⟩ for the close-mid /e o/, while plain ⟨e o⟩ are the open-mid /ɛ ɔ/. ⟨b d g⟩ are the fricatives /β ð ɣ/, ⟨c⟩ = /ʃ/, and the prenasalised stops are written ⟨mb nd ng nj⟩; ⟨ng'⟩ is plain /ŋ/. Kikuyu is tonal but tone is not written in the standard orthography and is not modelled here.",
+  "iso639_3": "kik",
+  "glottolog_code": "kiku1240",
+  "wikidata_qid": "Q33587",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kikuyu_language",
+    "https://ki.wikipedia.org/wiki/G%C4%A9g%C4%A9k%C5%A9y%C5%A9"
+  ],
+  "sources": [
+    {
+      "id": "kikuyu_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Kikuyu language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kikuyu_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kikuyu_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}

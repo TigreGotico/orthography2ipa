@@ -1,0 +1,31 @@
+{
+  "code": "zea",
+  "name": "Zeelandic",
+  "family": "Germanic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Zeelandic (Zeêuws), a West Germanic (Low Franconian) variety of Zeeland and Goeree-Overflakkee in the Netherlands. STUB: the grapheme inventory is NOT yet specified. Zeelandic is written in the Latin script using ad-hoc Dutch-based spelling conventions; it has no official orthography and no published letter-to-phoneme table, and its dialects differ in the realisation of the falling diphthongs. Documented features (retained monophthongs [i] and [y] for ⟨ij⟩ and ⟨ui⟩, falling diphthongs, h-dropping) are not enough to build an honest grapheme map, so none is claimed. A Dutch-orthography-based input is assumed for any future spec.",
+  "iso639_3": "zea",
+  "glottolog_code": "zeeu1238",
+  "wikidata_qid": "Q237409",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Zeelandic",
+    "https://zea.wikipedia.org/wiki/Ze%C3%AAuws"
+  ],
+  "sources": [
+    {
+      "id": "zeelandic_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Zeelandic",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Zeelandic",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Zeelandic",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}

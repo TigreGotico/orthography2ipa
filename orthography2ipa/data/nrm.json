@@ -1,0 +1,35 @@
+{
+  "code": "nrm",
+  "name": "Norman",
+  "family": "Romance",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Norman (Nouormand), an Oïl (Gallo-Romance) language of Normandy, Jersey (Jèrriais), Guernsey (Guernésiais) and Sark. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet using French-based spelling conventions. It is NOT one orthography: Jèrriais, Guernésiais, Cotentinais and the continental varieties each have their own spelling systems and differing sound values for the same digraphs, and the deep etymological (French-style) spelling means a letter-to-phoneme table is highly rule- and variety-dependent. A per-variety spec (e.g. Jèrriais) would be the honest unit of work. Input is assumed to be a Latin Norman orthography, unspecified variety.",
+  "iso639_3": "nrf",
+  "glottolog_code": "norm1245",
+  "wikidata_qid": "Q33850",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Norman_language",
+    "https://nrm.wikipedia.org/wiki/Normaund"
+  ],
+  "sources": [
+    {
+      "id": "norman_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Norman language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Norman_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Norman_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    }
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
+}

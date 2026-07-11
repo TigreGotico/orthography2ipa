@@ -1,0 +1,58 @@
+{
+  "code": "za",
+  "name": "Zhuang",
+  "family": "Tai-Kadai",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "zha",
+  "glottolog_code": "nort3180",
+  "wikidata_qid": "Q13216",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Zhuang_languages",
+    "https://en.wikipedia.org/wiki/Standard_Zhuang",
+    "https://za.wikipedia.org/wiki/Vahcuengh"
+  ],
+  "sources": [
+    {
+      "id": "zhuang_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Zhuang languages",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Zhuang_languages",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Zhuang_languages",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "standard_zhuang_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Standard Zhuang",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Standard_Zhuang",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Standard_Zhuang",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "sawndip_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Sawndip",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sawndip",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sawndip",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "notes": "Zhuang (Vahcuengh) — Tai language cluster of Guangxi, China; the spec targets Standard Zhuang, based on the Wuming dialect. INPUT CONTRACT: the official 1982 Latin orthography is NOT a plain letter→phoneme alphabet — the word-final letters ⟨z j x q h⟩ (and bare/unmarked) are TONE letters, not consonants, and the same letters are ordinary consonants elsewhere in the word. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty) because a correct map requires positional rules separating the tone-letter slot from the segmental slots, which needs sourcing before it can be claimed. The traditional Sawndip script is logographic (Han-derived characters) and no character map is claimed either.",
+  "timespan": {
+    "start_year": 1957,
+    "end_year": null
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "code": "pcm",
+  "name": "Nigerian Pidgin (Naijá)",
+  "family": "Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Nigerian Pidgin / Naijá, an English-lexifier creole of Nigeria. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet. There is no single accepted orthography: writing ranges from ad-hoc English-based spelling to the phonemic Naijá orthography proposed by the Naijá Langwej Akedemi, and the two give completely different letter-to-phoneme mappings for the same word, so no honest single table can be given. A full spec must also model the substrate-influenced vowel system (7 vowels) and tone. Wikidata gives no ISO 639-3 or Glottolog code on this item (it is the Nigerian Pidgin Wikipedia), so those fields are left null rather than guessed; the language's own ISO code is pcm. Input contract: a specific orthography (English-based vs Naijá phonemic) must be chosen before a grapheme table can apply. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": null,
+  "wikipedia": [],
+  "sources": [],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  }
+}

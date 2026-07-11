@@ -1,0 +1,61 @@
+{
+  "code": "wuu",
+  "name": "Wu Chinese",
+  "family": "Sinitic",
+  "script": "Han",
+  "script_type": "logographic",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "parent": "ltc",
+  "ancestors": [
+    {
+      "code": "ltc",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Middle Chinese; Wu preserves its voiced-obstruent series."
+    },
+    {
+      "code": "och",
+      "role": "ancestor",
+      "weight": 0.1,
+      "notes": "Old Chinese: deeper Sinitic ancestor."
+    }
+  ],
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Wu (Shanghainese, Suzhounese, …) is written with Chinese characters (Han script). No logographic character-to-phoneme map is claimed here: Chinese characters do not encode pronunciation systematically, so a Han-script G2P for this variety would need either a full character-reading lexicon or a romanised input. INPUT CONTRACT: this spec expects a Wu romanisation as input, not Han characters — Wugniu (吳語學堂) romanisation, or the Qian Nairong / Shanghainese Latin schemes — in the same way that `zh` expects Hanyu Pinyin, `nan` expects Pe̍h-ōe-jī / Tâi-lô, Cantonese expects Jyutping, Hakka expects Pha̍k-fa-sṳ and Mindong expects Bàng-uâ-cê. Wu is distinctive for keeping a three-way voicing contrast in its initials and for tone sandhi spanning whole prosodic words; neither is recoverable from Han characters.",
+  "iso639_3": "wuu",
+  "glottolog_code": "wuch1236",
+  "wikidata_qid": "Q34290",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Wu_Chinese",
+    "https://wuu.wikipedia.org/wiki/%E5%90%B4%E8%AF%AD"
+  ],
+  "sources": [
+    {
+      "id": "wu_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Wu Chinese",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Wu_Chinese",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Wu_Chinese",
+      "pages": null,
+      "notes": "Classification, voiced initials, tone sandhi, romanisation schemes."
+    },
+    {
+      "id": "qian2007",
+      "author": "Qian Nairong (錢乃榮)",
+      "year": 2007,
+      "title": "上海話大詞典 (Comprehensive Dictionary of Shanghainese)",
+      "publisher": "Shanghai Lexicographical Publishing House",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Standard Shanghainese lexicon with its romanisation."
+    }
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  }
+}

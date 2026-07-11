@@ -1,0 +1,231 @@
+{
+  "code": "ku",
+  "name": "Kurdish (Kurmanji)",
+  "family": "Iranian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "aː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "dʒ"
+    ],
+    "ç": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "ê": [
+      "eː"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "î": [
+      "iː"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ş": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "ʉ"
+    ],
+    "û": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "aː": [
+      "aː"
+    ],
+    "b": [
+      "b"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "ʉ": [
+      "ʉ"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "notes": "Northern Kurdish / Kurmanji (kurdî, Kurmancî), the largest Kurdish variety. The mapping above is the 31-letter Hawar Latin alphabet (Celadet Alî Bedirxan, 1932), the script of the ku Wikipedia and of Kurmanji in Turkey, Syria and the diaspora. The Kurdo-Arabic (Sorani-style) alphabet and the former Soviet Cyrillic alphabet are also used for Kurdish and are NOT modelled here — Hawar Latin input is assumed. Aspiration of /p t k/ is contrastive but unwritten.",
+  "iso639_3": "kmr",
+  "glottolog_code": "nort2641",
+  "wikidata_qid": "Q36163",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kurmanji",
+    "https://ku.wikipedia.org/wiki/Kurmanc%C3%AE",
+    "https://en.wikipedia.org/wiki/Kurdish_alphabets"
+  ],
+  "sources": [
+    {
+      "id": "kurdish_alphabets_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Kurdish alphabets",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kurdish_alphabets",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kurdish_alphabets",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "kurmanji_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Kurmanji",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kurmanji",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kurmanji",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}

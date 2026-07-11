@@ -2,57 +2,50 @@
   "code": "to",
   "name": "Tongan",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
   "graphemes": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
     "ā": [
       "aː"
+    ],
+    "e": [
+      "e"
     ],
     "ē": [
       "eː"
     ],
+    "i": [
+      "i"
+    ],
     "ī": [
       "iː"
+    ],
+    "o": [
+      "o"
     ],
     "ō": [
       "oː"
     ],
+    "u": [
+      "u"
+    ],
     "ū": [
       "uː"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
     ],
     "f": [
       "f"
     ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
     "h": [
       "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -63,8 +56,17 @@
     "ng": [
       "ŋ"
     ],
-    "l": [
-      "l"
+    "p": [
+      "p"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
     ],
     "ʻ": [
       "ʔ"
@@ -74,53 +76,44 @@
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
     "aː": [
       "aː"
+    ],
+    "e": [
+      "e"
     ],
     "eː": [
       "eː"
     ],
+    "i": [
+      "i"
+    ],
     "iː": [
       "iː"
+    ],
+    "o": [
+      "o"
     ],
     "oː": [
       "oː"
     ],
+    "u": [
+      "u"
+    ],
     "uː": [
       "uː"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
     ],
     "f": [
       "f"
     ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
     "h": [
       "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -131,37 +124,56 @@
     "ŋ": [
       "ŋ"
     ],
-    "l": [
-      "l"
+    "p": [
+      "p"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
     ],
     "ʔ": [
       "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Tongan (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
+  "notes": "Tongan (lea faka-Tonga), Polynesian, Kingdom of Tonga. Fully phonemic 17-letter orthography: 5 vowels with a phonemic length contrast written with the macron (toloi: ā ē ī ō ū), 12 consonants including the digraph ⟨ng⟩ /ŋ/ and the fakauʻa ⟨ʻ⟩ (U+02BB MODIFIER LETTER TURNED COMMA), a full consonant phoneme /ʔ/ that must stand between or before vowels. ⟨p⟩ /p/ and ⟨t⟩ /t/ are unaspirated. Syllables are open (CV/V). Input contract: the glottal stop must be written with U+02BB ⟨ʻ⟩; an ASCII apostrophe (') or a right single quote (’) is not recognised as a grapheme.",
   "iso639_3": "ton",
   "glottolog_code": "tong1325",
   "wikipedia": [
-    "https://to.wikipedia.org/wiki/Lea_fakatonga",
-    "https://en.wikipedia.org/wiki/Tongan_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/tong1325"
+    "https://en.wikipedia.org/wiki/Tongan_language",
+    "https://to.wikipedia.org/wiki/Lea_fakatonga"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/tong1325",
+      "id": "churchward1953",
+      "author": "Churchward, C. Maxwell",
+      "year": 1953,
+      "title": "Tongan Grammar",
+      "publisher": "Oxford University Press",
+      "url": null,
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Standard reference grammar; alphabet, fakauʻa and toloi."
+    },
+    {
+      "id": "tongan_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tongan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tongan_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tongan_language",
+      "pages": null,
+      "notes": "Alphabet-to-IPA table."
     }
   ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
   "parent": "x-clade-mala1545",
   "ancestors": [
     {

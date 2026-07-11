@@ -1,0 +1,31 @@
+{
+  "code": "blk",
+  "name": "Pa'O",
+  "family": "Sino-Tibetan",
+  "script": "Myanmar",
+  "script_type": "abugida",
+  "quality": "stub",
+  "iso639_3": "blk",
+  "glottolog_code": "paok1235",
+  "wikidata_qid": "Q7121294",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Pa'O (Pa-O Karen) of Myanmar, written in the Mon–Burmese (Myanmar) script, an abugida. The grapheme inventory is NOT yet specified: no consonant/vowel-sign → IPA mapping is claimed here. A correct spec requires the full Myanmar-script akshara model (consonant letters with an inherent vowel, dependent vowel signs, medials, the virama/asat, and the Pa'O-specific tone letters) plus a documented Pa'O phoneme inventory; that research has not been done. Metadata only.",
+  "sources": [
+    {
+      "id": "blk_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Pa'O language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pa%27O_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pa%27O_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pa%27O_language",
+    "https://blk.wikipedia.org/wiki/%E1%80%95%E1%80%A1%E1%80%AD%E1%80%AF%E1%80%9D%E1%80%BA%E1%82%8F%E1%80%98%E1%80%AC%E1%82%8F%E1%80%9E%E1%80%AC%E1%82%8F"
+  ]
+}

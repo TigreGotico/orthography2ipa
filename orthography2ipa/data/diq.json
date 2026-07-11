@@ -1,0 +1,31 @@
+{
+  "code": "diq",
+  "name": "Zazaki",
+  "family": "Iranian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Zazaki (Dimli / Kirmanjki), a Northwestern Iranian language of eastern Anatolia. STUB: the grapheme inventory is NOT yet specified. Zazaki is written in a Latin alphabet derived from the Kurdish Hawar alphabet, and also (historically and in some communities) in an Arabic-derived script; no authoritative letter-to-phoneme table for the Zazaki Latin alphabet could be verified, and the phoneme inventory includes pharyngealised consonants and a central-vowel contrast whose orthographic representation is not settled. Latin-script input is assumed for any future map; the Arabic-script tradition (an abjad) is out of scope.",
+  "iso639_3": "zza",
+  "glottolog_code": "zaza1246",
+  "wikidata_qid": "Q10199",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Zaza_language",
+    "https://diq.wikipedia.org/wiki/Zazaki"
+  ],
+  "sources": [
+    {
+      "id": "zaza_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Zaza language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Zaza_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Zaza_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}

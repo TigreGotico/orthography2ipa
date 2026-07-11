@@ -1,0 +1,45 @@
+{
+  "code": "cr",
+  "name": "Cree",
+  "family": "Algic",
+  "script": "Canadian Aboriginal Syllabics",
+  "script_type": "syllabary",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). `cr` is a MACROLANGUAGE covering a dialect continuum (Plains, Woods, Swampy, Moose, Atikamekw, East Cree, Naskapi …) whose phonologies differ — notably in the reflexes of Proto-Algonquian *l (the y/n/th/l/r dialects) — so a single grapheme map for the macrolanguage would be wrong by construction. Cree is written both in Cree syllabics (Canadian Aboriginal Syllabics, in which glyph orientation encodes the vowel and superscript finals encode codas) and in a Latin Standard Roman Orthography (SRO), which is regular and would be the natural Tier-A input. No map is claimed; a future spec should be per-dialect (e.g. `crk` Plains Cree) and should declare whether it consumes syllabics or SRO.",
+  "iso639_3": "cre",
+  "glottolog_code": "cree1271",
+  "wikidata_qid": "Q33390",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Cree_language"
+  ],
+  "sources": [
+    {
+      "id": "cree_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Cree language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Cree_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Cree_language",
+      "pages": null,
+      "notes": "Dialect continuum, phonology, syllabics and the Standard Roman Orthography."
+    },
+    {
+      "id": "wolfart1996",
+      "author": "Wolfart, H. Christoph",
+      "year": 1996,
+      "title": "Sketch of Cree, an Algonquian Language",
+      "publisher": "Handbook of North American Indians, Vol. 17 (Smithsonian Institution)",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Reference sketch of Cree phonology and dialect variation."
+    }
+  ],
+  "timespan": {
+    "start_year": 1840,
+    "end_year": null
+  }
+}

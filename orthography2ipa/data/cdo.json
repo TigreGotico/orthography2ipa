@@ -1,0 +1,31 @@
+{
+  "code": "cdo",
+  "name": "Eastern Min",
+  "family": "Sinitic",
+  "script": "Han",
+  "script_type": "logographic",
+  "quality": "stub",
+  "iso639_3": "cdo",
+  "glottolog_code": "mind1253",
+  "wikidata_qid": "Q36455",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Eastern Min (Mìng-dĕ̤ng-ngṳ̄ / Mindong), including the Fuzhou dialect. The grapheme inventory is NOT yet specified and NO logographic map is claimed: Chinese characters do not encode pronunciation segmentally, so a character → IPA table is out of scope for this engine. INPUT CONTRACT: as `zh` requires pinyin, a future Eastern Min spec would require romanised input in Bàng-uâ-cê (Foochow Romanized, 平話字) — the syllable-initial / rime / tone-mark spelling — not Han characters. Until such a spec exists this entry carries metadata only.",
+  "sources": [
+    {
+      "id": "cdo_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Eastern Min language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eastern_Min",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Eastern_Min",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Eastern_Min",
+    "https://cdo.wikipedia.org/wiki/M%C3%ACng-d%C4%95%CC%A4ng-ng%E1%B9%B3%CC%84"
+  ]
+}

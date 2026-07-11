@@ -1,0 +1,31 @@
+{
+  "code": "pfl",
+  "name": "Palatine German",
+  "family": "Germanic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "iso639_3": "pfl",
+  "glottolog_code": "pala1330",
+  "wikidata_qid": "Q23014",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Palatine German (Pälzisch/Pfälzisch), a West Central German (Rhine Franconian) dialect group. The grapheme inventory is NOT yet specified — and deliberately so: Palatine German has NO standardised orthography. It is written ad hoc with German spelling conventions, which do not encode the dialect's characteristic features (lenition of /p t k/, monophthongisation, vowel qualities differing from Standard German), and spelling varies between authors and sub-dialects. A defensible spec would have to pick and cite one written norm; none is adopted here. Metadata only.",
+  "sources": [
+    {
+      "id": "pfl_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Palatine German language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Palatine_German_dialects",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Palatine_German_dialects",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Palatine_German_dialects",
+    "https://pfl.wikipedia.org/wiki/Pf%C3%A4lzisch"
+  ]
+}

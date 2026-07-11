@@ -1,0 +1,199 @@
+{
+  "code": "pwn",
+  "name": "Paiwan",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts",
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "dj": [
+      "ɟ"
+    ],
+    "dr": [
+      "ɖ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "lj": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "tj": [
+      "c"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɟ": [
+      "ɟ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "c": [
+      "c"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʔ": [
+      "ʔ"
+    ]
+  },
+  "notes": "Paiwan (pinayuanan), a Formosan language of southern Taiwan and one of the most conservative Austronesian languages. The mapping follows the official Latin orthography promulgated for Taiwan's indigenous languages (2005), with values as given for the Kuljaljau dialect: ⟨tj dj⟩ are the palatal stops /c ɟ/, ⟨dr⟩ the retroflex /ɖ/, ⟨lj⟩ the palatal lateral /ʎ/, ⟨q⟩ the uvular /q/, ⟨c⟩ /ts~tʃ/ and ⟨'⟩ the glottal stop. Four vowels /a ə i u/. Dialects differ considerably; only the standard orthography is modelled.",
+  "iso639_3": "pwn",
+  "glottolog_code": "paiw1248",
+  "wikidata_qid": "Q715755",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Paiwan_language",
+    "https://pwn.wikipedia.org/wiki/pinayuanan"
+  ],
+  "sources": [
+    {
+      "id": "paiwan_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Paiwan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Paiwan_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Paiwan_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "code": "jam",
+  "name": "Jamaican Patois",
+  "family": "English Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "ii": [
+      "iː"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "uo": [
+      "uo"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "zh": [
+      "ʒ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "iː": [
+      "iː"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "uo": [
+      "uo"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.7,
+      "notes": "English is the lexifier; the substrate is West African (largely Akan)."
+    }
+  ],
+  "notes": "Jamaican Patois (Jumiekan Kryuol) written in the Cassidy/JLU orthography (Cassidy 1961; standardised by the Jamaican Language Unit, UWI Mona, 2002). Phonemic by design: short vowels i e a o u; long vowels doubled (ii, aa, uu); diphthongs <ie> <uo> <ai> <ou>; <ch>=/tʃ/, <j>=/dʒ/, <sh>=/ʃ/, <zh>=/ʒ/, <ng>=/ŋ/. Nasal vowels are written with a following -hn (e.g. kyaahn); that convention and the palatalised <ky>/<gy> onsets are not modelled here. /h/ is variable across Jamaica. Note: much Patois is also written in ad-hoc English-based spelling, which this spec does NOT cover — Cassidy/JLU input is assumed.",
+  "iso639_3": "jam",
+  "glottolog_code": "jama1262",
+  "wikidata_qid": "Q35939",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Jamaican_Patois",
+    "https://jam.wikipedia.org/wiki/Jumiekan_Kryuol"
+  ],
+  "sources": [
+    {
+      "id": "cassidy_lepage1980",
+      "author": "Cassidy, Frederic G. & Le Page, Robert B.",
+      "year": 1980,
+      "title": "Dictionary of Jamaican English (2nd ed.)",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Origin of the Cassidy writing system."
+    },
+    {
+      "id": "jlu2002",
+      "author": "Jamaican Language Unit, University of the West Indies",
+      "year": 2002,
+      "title": "Writing Jamaican the Jamaican Way / Ou fi Rait Jamiekan",
+      "publisher": "University of the West Indies, Mona",
+      "url": null,
+      "pages": null,
+      "notes": "The Cassidy/JLU standard orthography."
+    },
+    {
+      "id": "jampatois_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Jamaican Patois",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Jamaican_Patois",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Jamaican_Patois",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

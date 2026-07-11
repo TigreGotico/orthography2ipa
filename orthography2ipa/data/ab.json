@@ -1,0 +1,45 @@
+{
+  "code": "ab",
+  "name": "Abkhaz",
+  "family": "Northwest Caucasian",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "abk",
+  "glottolog_code": "abkh1244",
+  "wikidata_qid": "Q5111",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Abkhaz_language",
+    "https://ab.wikipedia.org/wiki/%D0%90%D4%A5%D1%81%D1%83%D0%B0_%D0%B1%D1%8B%D0%B7%D1%88%D3%99%D0%B0"
+  ],
+  "sources": [
+    {
+      "id": "abkhaz_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Abkhaz language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Abkhaz_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Abkhaz_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hewitt1979",
+      "author": "Hewitt, B. George",
+      "year": 1979,
+      "title": "Abkhaz (Lingua Descriptive Studies)",
+      "publisher": "North-Holland",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar; the source to use when filling the inventory."
+    }
+  ],
+  "notes": "Abkhaz (аԥсшәа) — Northwest Caucasian language of Abkhazia, written in an extended Cyrillic alphabet since 1954. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED in this spec (graphemes/allophones are empty). The alphabet has 62+ letters and digraphs encoding a very large consonant inventory (~58 consonants, only 2 phonemic vowels /a ə/), with three-way plain/labialised/palatalised series and productive ejectives; a reliable letter→IPA table needs research against a reference grammar (Hewitt 1979) before it can be claimed here.",
+  "timespan": {
+    "start_year": 1862,
+    "end_year": null
+  }
+}

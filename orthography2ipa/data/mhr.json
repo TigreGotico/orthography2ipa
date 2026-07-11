@@ -1,0 +1,32 @@
+{
+  "code": "mhr",
+  "name": "Eastern Mari",
+  "family": "Uralic",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "urj",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Meadow Mari / Eastern Mari (олык марий) — Uralic (Mari) language of the Mari El Republic, Russia. Written in a Cyrillic-based Mari alphabet, i.e. the Russian alphabet plus ҥ, ӧ, ӱ (and ӓ in Hill Mari). GRAPHEME INVENTORY NOT YET SPECIFIED: reliable mapping requires modelling the palatalisation/iotation conventions inherited from Cyrillic and the reduced vowel ⟨ы⟩, plus the language's non-initial stress placement. INPUT CONTRACT: input is expected in the Cyrillic Meadow Mari orthography. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": null,
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Meadow_Mari_Wikipedia",
+    "https://mhr.wikipedia.org/wiki/%D0%9E%D0%BB%D1%8B%D0%BA_%D0%BC%D0%B0%D1%80%D0%B8%D0%B9_%D0%B2%D0%B8%D0%BA%D0%B8%D0%BF%D0%B5%D0%B4%D0%B8%D0%B9"
+  ],
+  "sources": [
+    {
+      "id": "mhr_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Meadow Mari Wikipedia",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Meadow_Mari_Wikipedia",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Meadow_Mari_Wikipedia",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

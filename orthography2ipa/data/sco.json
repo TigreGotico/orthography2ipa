@@ -1,0 +1,44 @@
+{
+  "code": "sco",
+  "name": "Scots",
+  "family": "Germanic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "parent": "ang",
+  "ancestors": [
+    {
+      "code": "ang",
+      "role": "ancestor",
+      "weight": 0.8,
+      "notes": "Descends from Northumbrian Old English via Early/Middle Scots."
+    }
+  ],
+  "notes": "Scots (Scots leid), a West Germanic language of Lowland Scotland and Ulster. STUB: the grapheme inventory is NOT yet specified. Scots has no single codified orthography — spelling varies by author, region and period, English-influenced spellings compete with traditional ones, and the same digraph (e.g. <ui>, <ou>, <ch>) takes different values across dialects. A dialect-and-orthography-specific map would be required; none is claimed here.",
+  "iso639_3": "sco",
+  "glottolog_code": "scot1243",
+  "wikidata_qid": "Q14549",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Scots_language",
+    "https://sco.wikipedia.org/wiki/Scots_leid"
+  ],
+  "sources": [
+    {
+      "id": "scots_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Scots language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Scots_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Scots_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  }
+}

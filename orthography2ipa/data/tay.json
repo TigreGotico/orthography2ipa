@@ -1,0 +1,30 @@
+{
+  "code": "tay",
+  "name": "Atayal",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "tay",
+  "glottolog_code": "atay1247",
+  "wikidata_qid": "Q715766",
+  "notes": "STUB: the grapheme inventory of Atayal is NOT yet specified (graphemes/allophones are empty). Atayal (Tayal) is a Formosan (Austronesian) language of northern Taiwan, written in the Latin script under the Council of Indigenous Peoples' 2005 romanisation. Dialects (Squliq, Cʼuliʼ/Matuʼuwal) differ phonologically, so a single letter→IPA table would need to be dialect-scoped. INPUT CONTRACT: Latin-script (official romanisation) Atayal text.",
+  "sources": [
+    {
+      "id": "atayal_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Atayal language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Atayal_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Atayal_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Atayal_language"
+  ]
+}

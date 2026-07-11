@@ -1,0 +1,46 @@
+{
+  "code": "kbd",
+  "name": "Kabardian",
+  "family": "Northwest Caucasian",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Kabardian (East Circassian) is written in a Cyrillic alphabet. It is a stub not because the script is exotic but because the orthography is overwhelmingly DIGRAPHIC and TRIGRAPHIC: a ~48-consonant inventory (ejectives, labialised and pharyngealised series) is mapped onto the Cyrillic base with multi-character sequences — кӏ, кӏу, къ, къу, кхъ, кхъу, гъ, гъу, лъ, лӏ, пӏ, тӏ, фӏ, хь, хъ, ху, цӏ, щӏ, ӏу — including the palochka ⟨Ӏ⟩, so a correct longest-match grapheme table has to be built and verified before any map can be claimed. Latin and Arabic-script orthographies exist historically (diaspora) and are not modelled here.",
+  "iso639_3": "kbd",
+  "glottolog_code": "kaba1278",
+  "wikidata_qid": "Q33522",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kabardian_language",
+    "https://kbd.wikipedia.org/wiki/%D0%9A%D1%8A%D1%8D%D0%B1%D1%8D%D1%80%D0%B4%D0%B5%D0%B9_%D0%90%D0%B4%D1%8B%D0%B3%D1%8D%D0%B1%D0%B7%D1%8D"
+  ],
+  "sources": [
+    {
+      "id": "kabardian_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kabardian language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kabardian_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kabardian_language",
+      "pages": null,
+      "notes": "Consonant and vowel inventory, and the Cyrillic alphabet with its digraphs and the palochka."
+    },
+    {
+      "id": "colarusso1992",
+      "author": "Colarusso, John",
+      "year": 1992,
+      "title": "A Grammar of the Kabardian Language",
+      "publisher": "University of Calgary Press",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Reference grammar and phonology."
+    }
+  ],
+  "timespan": {
+    "start_year": 1924,
+    "end_year": null
+  }
+}

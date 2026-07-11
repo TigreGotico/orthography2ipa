@@ -1,0 +1,31 @@
+{
+  "code": "lez",
+  "name": "Lezgian",
+  "family": "Northeast Caucasian",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "iso639_3": "lez",
+  "glottolog_code": "lezg1247",
+  "wikidata_qid": "Q31746",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Lezgian (лезги чӏал) of Dagestan and Azerbaijan, written in a Cyrillic alphabet. The grapheme inventory is NOT yet specified. Lezgian has a large consonant inventory with a four-way stop contrast (voiced / voiceless aspirated / voiceless unaspirated / ejective) and uvular and pharyngeal series, encoded by Cyrillic digraphs and the palochka ⟨ӏ⟩; establishing the letter/digraph → IPA table reliably requires a proper descriptive source (Haspelmath's grammar), which has not been consulted. Metadata only.",
+  "sources": [
+    {
+      "id": "lez_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lezgian language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lezgian_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lezgian_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lezgian_language",
+    "https://lez.wikipedia.org/wiki/%D0%9B%D0%B5%D0%B7%D0%B3%D0%B8_%D1%87%D3%80%D0%B0%D0%BB"
+  ]
+}

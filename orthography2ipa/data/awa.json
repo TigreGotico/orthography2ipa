@@ -1,0 +1,35 @@
+{
+  "code": "awa",
+  "name": "Awadhi",
+  "family": "Indo-Aryan",
+  "script": "Devanagari",
+  "script_type": "abugida",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Awadhi (अवधी), an Eastern Hindi / Indo-Aryan language of the Awadh region of Uttar Pradesh, India (the language of Tulsidas's Ramcharitmanas). STUB: the grapheme inventory is NOT yet specified. Script: Devanagari, an abugida — consonant letters carry an inherent vowel (schwa) that is cancelled by virama ⟨्⟩ and overridden by dependent vowel signs (matras); a full spec needs the inherent-vowel/schwa-deletion rules, conjunct (ligature) handling, nukta letters and anusvara/candrabindu nasalisation, which differ from those of standard Hindi. Awadhi is also historically written in the Kaithi and Perso-Arabic scripts; input is assumed to be Devanagari.",
+  "iso639_3": "awa",
+  "glottolog_code": "awad1243",
+  "wikidata_qid": "Q29579",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Awadhi_language",
+    "https://awa.wikipedia.org/wiki/%E0%A4%85%E0%A4%B5%E0%A4%A7%E0%A5%80"
+  ],
+  "sources": [
+    {
+      "id": "awadhi_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Awadhi language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Awadhi_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Awadhi_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    }
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  }
+}

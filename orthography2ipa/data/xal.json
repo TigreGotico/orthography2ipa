@@ -1,0 +1,31 @@
+{
+  "code": "xal",
+  "name": "Kalmyk",
+  "family": "Mongolic",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "iso639_3": "xal",
+  "glottolog_code": "kalm1244",
+  "wikidata_qid": "Q33634",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Kalmyk Oirat (хальмг келн) of Kalmykia, written in a Cyrillic alphabet with extra letters (ә, ө, ү, җ, ң, һ). The grapheme inventory is NOT yet specified. Kalmyk spelling interacts with vowel harmony, reduced/short vowels in non-initial syllables that are often written but not pronounced, and the Russian-derived letters used only in loans; a reliable letter → IPA table requires a descriptive source that has not been consulted. The historic Clear Script (Todo bichig) is not covered. Metadata only.",
+  "sources": [
+    {
+      "id": "xal_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kalmyk language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kalmyk_Oirat",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kalmyk_Oirat",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kalmyk_Oirat",
+    "https://xal.wikipedia.org/wiki/%D0%A5%D0%B0%D0%BB%D1%8C%D0%BC%D0%B3_%D0%BA%D0%B5%D0%BB%D0%BD"
+  ]
+}

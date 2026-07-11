@@ -1,0 +1,31 @@
+{
+  "code": "eml",
+  "name": "Emilian–Romagnol",
+  "family": "Romance",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Emilian–Romagnol (emiliàn e rumagnòl), a Gallo-Italic language group of northern Italy. STUB: the grapheme inventory is NOT yet specified. There is no single accepted orthography — several competing spelling conventions exist per city/variety, and vowel length and the front rounded vowels are written differently in each. Grapheme-to-IPA mapping is therefore variety- and orthography-specific; the Emilian side is tracked separately as `egl`.",
+  "iso639_3": null,
+  "glottolog_code": "emil1243",
+  "wikidata_qid": "Q242648",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol",
+    "https://eml.wikipedia.org/wiki/L%C3%A4ngua_emigli%C3%A8na-rumagn%C3%B4la"
+  ],
+  "sources": [
+    {
+      "id": "eml_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Emilian–Romagnol",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

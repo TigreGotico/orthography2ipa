@@ -1,0 +1,18 @@
+{
+  "code": "bew",
+  "name": "Betawi",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "poz",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Betawi (Betawi Malay / basa Betawi) — Malayic (Austronesian) creole-influenced language of Jakarta, Indonesia. Written in the Latin script following Indonesian orthographic conventions. GRAPHEME INVENTORY NOT YET SPECIFIED: Betawi has no codified standard orthography of its own and its phonology is not documented to a level that supports a reliable letter→phoneme table here. INPUT CONTRACT: input is expected in the Latin script, spelled per Indonesian conventions. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": null,
+  "wikipedia": [
+    "https://bew.wikipedia.org/wiki/Wikip%C3%A9di_basa_Betawi"
+  ]
+}

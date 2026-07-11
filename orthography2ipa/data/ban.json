@@ -1,0 +1,199 @@
+{
+  "code": "ban",
+  "name": "Balinese",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "ban",
+  "glottolog_code": "bali1278",
+  "wikidata_qid": "Q33070",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e",
+      "ə"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "f"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "ks": [
+      "ks"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "notes": "Balinese (Basa Bali) in the Latin orthography (the Balinese script, Aksara Bali, is also in use and is not covered here). Indonesian-style spelling conventions: ⟨c⟩=/tʃ/, ⟨j⟩=/dʒ/, ⟨ny⟩=/ɲ/, ⟨ng⟩=/ŋ/. Six vowels /i e ə a o u/; ⟨e⟩ writes both /e/ and /ə/ and word-final orthographic ⟨-a⟩ is typically realised as [ə]. ⟨f v z q x⟩ occur only in loanwords.",
+  "sources": [
+    {
+      "id": "ban_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Balinese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Balinese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Balinese_language",
+      "pages": null,
+      "notes": "Latin alphabet letter→IPA correspondences and phoneme inventory."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Balinese_language",
+    "https://ban.wikipedia.org/wiki/Basa_Bali"
+  ]
+}

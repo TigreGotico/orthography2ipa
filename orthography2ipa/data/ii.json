@@ -1,0 +1,56 @@
+{
+  "code": "ii",
+  "name": "Nuosu",
+  "family": "Sino-Tibetan",
+  "script": "Yi",
+  "script_type": "syllabary",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "iii",
+  "glottolog_code": "sich1238",
+  "wikidata_qid": "Q34235",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nuosu_language",
+    "https://en.wikipedia.org/wiki/Yi_script"
+  ],
+  "sources": [
+    {
+      "id": "nuosu_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Nuosu language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Nuosu_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nuosu_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "yi_script_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Yi script",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Yi_script",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Yi_script",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "gerner2013",
+      "author": "Gerner, Matthias",
+      "year": 2013,
+      "title": "A Grammar of Nuosu",
+      "publisher": "De Gruyter Mouton",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar; the source for a future syllabary map."
+    }
+  ],
+  "notes": "Nuosu / Sichuan Yi (ꆇꉙ) — Loloish (Ngwi) language of Sichuan, written in the Yi script. INPUT CONTRACT: the modern standard Yi script is a SYLLABARY of 819 standardised syllabograms (each glyph = one CV syllable with tone), so no letter-level grapheme map exists or is claimed here; THE GRAPHEME INVENTORY IS NOT YET SPECIFIED (graphemes/allophones are empty). A full syllabogram→IPA table, or else romanised input in the official Yi Pinyin (e.g. ⟨bbop⟩), would be required — exactly as `zh` requires pinyin. Nuosu is tonal (four tones, written by tone-diacritic-derived glyph variants).",
+  "timespan": {
+    "start_year": 1974,
+    "end_year": null
+  }
+}

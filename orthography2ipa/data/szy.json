@@ -1,0 +1,31 @@
+{
+  "code": "szy",
+  "name": "Sakizaya",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "iso639_3": "szy",
+  "glottolog_code": "saki1247",
+  "wikidata_qid": "Q718269",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Sakizaya, a Formosan (Austronesian) language of eastern Taiwan, recognised in 2007 and written in a Latin orthography promulgated by Taiwan's Council of Indigenous Peoples. The grapheme inventory is NOT yet specified: the phoneme inventory is documented (p b t d k ʡ ʔ ts s z h m n ŋ l w j; vowels i u ə o a) but the official letter → phoneme table has not been verified against the published Sakizaya orthography, and guessing it from the sister Formosan conventions would be fabrication. Metadata only, pending the official orthography document.",
+  "sources": [
+    {
+      "id": "szy_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Sakizaya language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sakizaya_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sakizaya_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sakizaya_language",
+    "https://szy.wikipedia.org/wiki/Sakizaya_a_kamu"
+  ]
+}

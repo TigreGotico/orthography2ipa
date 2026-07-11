@@ -28,6 +28,21 @@ def _all_specs():
             pytest.skip(f"Module for {code} not importable")
 
 
+def _is_empty_stub(code):
+    """A `quality: stub` spec that declares no inventory of its own.
+
+    Stubs are metadata-only placeholders (an honest `graphemes: {}` rather
+    than an invented inventory), so the inventory guards below do not apply
+    to them — `test_data_quality` owns the stub-vs-content contract.
+    """
+    try:
+        spec = get(code)
+    except (KeyError, ModuleNotFoundError, ImportError, ValueError):
+        return False
+    from orthography2ipa.types import QualityTier
+    return spec.quality is QualityTier.STUB and not spec.graphemes
+
+
 def _all_codes(exclude_proto=False):
     """Return all registered codes."""
     codes = available_codes()
@@ -42,6 +57,7 @@ def _all_codes(exclude_proto=False):
             "la", "la-x-archaic", "la-x-late", "la-x-hispania", "la-x-gallia", "mxi",
             "oc"
         ]]
+        codes = [c for c in codes if not _is_empty_stub(c)]
     return codes
 
 

@@ -1,0 +1,32 @@
+{
+  "code": "bug",
+  "name": "Bugis",
+  "family": "Austronesian",
+  "script": "Lontara",
+  "script_type": "abugida",
+  "quality": "stub",
+  "parent": "poz",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Buginese (Basa Ugi) — South Sulawesi (Austronesian) language of Indonesia. Traditionally written in the Lontara script, a Brahmic abugida (each consonant letter carries an inherent /a/ modified by vowel diacritics; final consonants and geminates are systematically not written), and today also in the Latin script. GRAPHEME INVENTORY NOT YET SPECIFIED for either script: the Lontara defective encoding of codas and gemination makes a reliable grapheme→IPA table a research task. INPUT CONTRACT: input is expected in the Lontara script (Unicode block Buginese) or in the Latin orthography.",
+  "iso639_3": "bug",
+  "glottolog_code": "bugi1244",
+  "wikidata_qid": "Q33190",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Buginese_language",
+    "https://bug.wikipedia.org/wiki/%E1%A8%85%E1%A8%94_%E1%A8%95%E1%A8%98%E1%A8%81%E1%A8%97"
+  ],
+  "sources": [
+    {
+      "id": "bug_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Buginese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Buginese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Buginese_language",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

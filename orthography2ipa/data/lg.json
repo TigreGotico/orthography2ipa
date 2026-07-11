@@ -2,7 +2,33 @@
   "code": "lg",
   "name": "Luganda",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
   "graphemes": {
+    "aa": [
+      "aː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ng'": [
+      "ŋ"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
     "a": [
       "a"
     ],
@@ -18,112 +44,79 @@
     "u": [
       "u"
     ],
-    "p": [
-      "p"
-    ],
     "b": [
       "b"
     ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ny": [
-      "ɲ"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
+    "p": [
+      "p"
     ],
     "v": [
       "v"
     ],
-    "s": [
-      "s"
+    "f": [
+      "f"
     ],
-    "z": [
-      "z"
+    "m": [
+      "m"
     ],
-    "h": [
-      "h"
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
     ],
     "l": [
       "l"
     ],
     "r": [
-      "r"
+      "l"
+    ],
+    "n": [
+      "n"
+    ],
+    "z": [
+      "z"
+    ],
+    "s": [
+      "s"
+    ],
+    "j": [
+      "ɟ"
+    ],
+    "c": [
+      "c"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "k": [
+      "k"
+    ],
+    "ŋ": [
+      "ŋ"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
-    ],
-    "ch": [
-      "t͡ʃ"
-    ],
-    "sh": [
-      "ʃ"
-    ],
-    "j": [
-      "d͡ʒ"
     ]
   },
   "allophones": {
-    "a": [
-      "a"
+    "aː": [
+      "aː"
     ],
-    "e": [
-      "e"
+    "eː": [
+      "eː"
     ],
-    "i": [
-      "i"
+    "iː": [
+      "iː"
     ],
-    "o": [
-      "o"
+    "oː": [
+      "oː"
     ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
+    "uː": [
+      "uː"
     ],
     "ɲ": [
       "ɲ"
@@ -131,67 +124,79 @@
     "ŋ": [
       "ŋ"
     ],
-    "f": [
-      "f"
+    "ŋɡ": [
+      "ŋɡ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
     ],
     "v": [
       "v"
     ],
-    "s": [
-      "s"
+    "f": [
+      "f"
+    ],
+    "m": [
+      "m"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "l": [
+      "l",
+      "r"
+    ],
+    "n": [
+      "n"
     ],
     "z": [
       "z"
     ],
-    "h": [
-      "h"
+    "s": [
+      "s"
     ],
-    "l": [
-      "l"
+    "ɟ": [
+      "ɟ"
     ],
-    "r": [
-      "r"
+    "c": [
+      "c"
+    ],
+    "ɡ": [
+      "ɡ",
+      "dʒ"
+    ],
+    "k": [
+      "k",
+      "tʃ"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
-    ],
-    "t͡ʃ": [
-      "t͡ʃ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "d͡ʒ": [
-      "d͡ʒ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Luganda (Niger-Congo). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
-  "iso639_3": "lug",
-  "glottolog_code": "gand1255",
-  "wikipedia": [
-    "https://lg.wikipedia.org/wiki/Luganda",
-    "https://en.wikipedia.org/wiki/Luganda"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/gand1255"
-  ],
-  "sources": [
-    {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/gand1255",
-      "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
-    }
-  ],
   "parent": "x-clade-narr1281",
   "ancestors": [
     {
@@ -199,6 +204,36 @@
       "role": "parent",
       "weight": 1.0,
       "notes": "Bantu, within Atlantic-Congo."
+    }
+  ],
+  "notes": "Luganda (Ganda), Bantu, Uganda. Standard orthography of 24 letters. <c> = /c/ and <j> = /ɟ/ (palatal stops, often realised [tʃ]/[dʒ]); <ny> = /ɲ/; <ŋ> = /ŋ/, commonly typed <ng'>; <ng> without the apostrophe is prenasalised /ŋɡ/. Long vowels are written double. /l/ and /r/ are one phoneme: <r> is written after <e> and <i>, <l> elsewhere. Consonant gemination and tone are phonemic; tone is not written and is not modelled here.",
+  "iso639_3": "lug",
+  "glottolog_code": "gand1255",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Luganda",
+    "https://lg.wikipedia.org/wiki/Luganda"
+  ],
+  "sources": [
+    {
+      "id": "ashton1954",
+      "author": "Ashton, E. O.; Mulira, E. M. K.; Ndawula, E. G. M.; Tucker, A. N.",
+      "year": 1954,
+      "title": "A Luganda Grammar",
+      "publisher": "Longmans, Green & Co.",
+      "url": null,
+      "pages": null,
+      "notes": "Standard reference grammar; orthography and phoneme correspondences."
+    },
+    {
+      "id": "luganda_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Luganda",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Luganda",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Luganda",
+      "pages": null,
+      "notes": null
     }
   ],
   "location": {

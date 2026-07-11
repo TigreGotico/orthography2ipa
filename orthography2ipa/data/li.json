@@ -1,0 +1,41 @@
+{
+  "code": "li",
+  "name": "Limburgish",
+  "family": "Germanic",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "lim",
+  "glottolog_code": "limb1263",
+  "wikidata_qid": "Q102172",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Limburgish",
+    "https://li.wikipedia.org/wiki/Limburgs"
+  ],
+  "sources": [
+    {
+      "id": "limburgish_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Limburgish",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Limburgish",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Limburgish",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "gussenhoven1999",
+      "author": "Gussenhoven, Carlos & Aarts, Flor",
+      "year": 1999,
+      "title": "The dialect of Maastricht",
+      "publisher": "Journal of the International Phonetic Association 29(2)",
+      "url": null,
+      "pages": "pp. 155-166",
+      "notes": "Illustration of a Limburgish variety incl. its tone contrast; a model source for a future spec."
+    }
+  ],
+  "notes": "Limburgish (Limburgs) — West Germanic language/dialect group of the Meuse-Rhenish area (Netherlands, Belgium, Germany). THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Limburgish is written in the Latin script but has no single accepted orthography: Dutch-based, German-based and the 2003 Veldeke spelling all coexist, and the varieties differ substantially in their (very large) vowel inventories. It is furthermore a tonal language, contrasting sleeptoon (dragging tone) and stoottoon (push tone), which the spellings do not mark. A grapheme map would have to commit to one variety plus one spelling norm and cite it."
+}

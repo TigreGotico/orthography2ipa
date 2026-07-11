@@ -2,30 +2,28 @@
   "code": "pag",
   "name": "Pangasinan",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
   "graphemes": {
     "a": [
       "a"
     ],
     "e": [
-      "e"
+      "ɛ",
+      "ɨ"
+    ],
+    "ë": [
+      "ɨ"
     ],
     "i": [
       "i"
     ],
     "o": [
-      "o"
+      "o",
+      "ɔ"
     ],
     "u": [
       "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
     ],
     "b": [
       "b"
@@ -36,6 +34,15 @@
     "g": [
       "ɡ"
     ],
+    "h": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
     "m": [
       "m"
     ],
@@ -45,31 +52,46 @@
     "ng": [
       "ŋ"
     ],
-    "s": [
-      "s"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "r": [
       "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "'": [
+      "ʔ"
     ]
   },
   "allophones": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɨ": [
+      "ɨ"
     ],
     "i": [
       "i"
@@ -77,17 +99,11 @@
     "o": [
       "o"
     ],
+    "ɔ": [
+      "ɔ"
+    ],
     "u": [
       "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
     ],
     "b": [
       "b"
@@ -98,6 +114,15 @@
     "ɡ": [
       "ɡ"
     ],
+    "h": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
     "m": [
       "m"
     ],
@@ -107,47 +132,55 @@
     "ŋ": [
       "ŋ"
     ],
-    "s": [
-      "s"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "ɾ": [
       "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʔ": [
+      "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Pangasinan (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
+  "notes": "Pangasinan (Salitan Pangasinan), Northern Luzon (Malayo-Polynesian) language of the Philippines. Latin orthography: the 26 basic Latin letters plus the digraph ⟨ng⟩ /ŋ/. Native vocabulary has /a i ɨ u/ plus /ɛ ɔ/ largely in loans; the close central /ɨ/ is written ⟨e⟩ in the traditional spelling and ⟨ë⟩ in the revised one, so ⟨e⟩ carries both candidates. /tʃ dʒ ʃ/ occur chiefly in Spanish and English loans.",
   "iso639_3": "pag",
   "glottolog_code": "pang1290",
   "wikipedia": [
-    "https://pag.wikipedia.org/wiki/Salitan_Pangasinan",
-    "https://en.wikipedia.org/wiki/Pangasinan_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/pang1290"
+    "https://en.wikipedia.org/wiki/Pangasinan_language",
+    "https://pag.wikipedia.org/wiki/Salitan_Pangasinan"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/pang1290",
+      "id": "pangasinan_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Pangasinan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pangasinan_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pangasinan_language",
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Orthography / phonology reference."
     }
   ],
   "parent": "x-clade-mala1545",

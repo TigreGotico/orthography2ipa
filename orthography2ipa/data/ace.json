@@ -1,0 +1,211 @@
+{
+  "code": "ace",
+  "name": "Acehnese",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "é": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "e": [
+      "ə"
+    ],
+    "ö": [
+      "ʌ"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "ô": [
+      "o"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "eu": [
+      "ɯ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "c"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "ɟ"
+    ],
+    "k": [
+      "k",
+      "ʔ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "sy": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ʌ": [
+      "ʌ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "o": [
+      "o"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɯ": [
+      "ɯ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "c"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ɟ": [
+      "ɟ"
+    ],
+    "k": [
+      "k"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "notes": "Acehnese (Basa Acèh / Acèh), Malayo-Polynesian language of Aceh, Sumatra. Latin orthography (1980 standard, replacing the earlier Husaini/Dutch-based spelling); the Jawoë (Arabic-derived) script is also traditionally used and is NOT modelled here — input is assumed to be in the Latin orthography. Ten oral vowel qualities; nasal vowels are written with a preceding apostrophe and are not enumerated as separate graphemes here. Word-final ⟨k⟩ is realised as a glottal stop.",
+  "iso639_3": "ace",
+  "glottolog_code": "achi1257",
+  "wikidata_qid": "Q27683",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Acehnese_language",
+    "https://ace.wikipedia.org/wiki/Basa_Ac%C3%A8h"
+  ],
+  "sources": [
+    {
+      "id": "acehnese_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Acehnese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Acehnese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Acehnese_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}

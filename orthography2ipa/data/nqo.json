@@ -1,0 +1,47 @@
+{
+  "code": "nqo",
+  "name": "N'Ko (Manding koiné)",
+  "family": "Mande",
+  "script": "N'Ko",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "N'Ko (ߒߞߏ), the Manding literary koiné written in the N'Ko script devised by Solomana Kanté in 1949. STUB: the grapheme inventory is NOT yet specified. N'Ko is an ALPHABET (not an abjad or abugida) written right-to-left, with seven vowel letters, nineteen consonant letters and obligatory diacritics for the two level tones, tone-length and nasalisation; a correct spec must handle the tone diacritics, which is the research not done here. Native N'Ko-script input is assumed — no romanisation is expected.",
+  "iso639_3": "nqo",
+  "glottolog_code": "nkoa1234",
+  "wikidata_qid": "Q18546266",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/N%27Ko_language",
+    "https://nqo.wikipedia.org/wiki/%DF%92%DF%9E%DF%8F_%28%DF%9E%DF%8A%DF%B2%29",
+    "https://en.wikipedia.org/wiki/N%27Ko_script"
+  ],
+  "sources": [
+    {
+      "id": "n'ko_script_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "N'Ko script",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/N%27Ko_script",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/N%27Ko_script",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "n'ko_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "N'Ko language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/N%27Ko_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/N%27Ko_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ],
+  "timespan": {
+    "start_year": 1949,
+    "end_year": null
+  }
+}

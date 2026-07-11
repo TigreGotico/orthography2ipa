@@ -1,0 +1,31 @@
+{
+  "code": "dz",
+  "name": "Dzongkha",
+  "family": "Sino-Tibetan",
+  "script": "Tibetan",
+  "script_type": "abugida",
+  "quality": "stub",
+  "iso639_3": "dzo",
+  "glottolog_code": "dzon1239",
+  "wikidata_qid": "Q33081",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Dzongkha, national language of Bhutan, written in the Tibetan script (Uchen/Joyi), an abugida. The grapheme inventory is NOT yet specified. Tibetan-script orthography is deeply historical: the written stack (prefix, superscript, root, subscript, suffix, post-suffix letters) reflects Old Tibetan and maps to the modern Dzongkha pronunciation only through a large set of stack-level rules producing tone and vowel changes — it is not a letter-by-letter transcription. A correct spec needs the Roman Dzongkha transcription rules of van Driem's grammar; that research has not been done. Metadata only.",
+  "sources": [
+    {
+      "id": "dz_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Dzongkha language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Dzongkha",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dzongkha",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dzongkha",
+    "https://dz.wikipedia.org/wiki/%E0%BD%A2%E0%BE%AB%E0%BD%BC%E0%BD%84%E0%BC%8B%E0%BD%81%E0%BC%8B"
+  ]
+}

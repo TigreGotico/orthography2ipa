@@ -1,0 +1,31 @@
+{
+  "code": "new",
+  "name": "Newar",
+  "family": "Sino-Tibetan",
+  "script": "Devanagari",
+  "script_type": "abugida",
+  "quality": "stub",
+  "iso639_3": "new",
+  "glottolog_code": "newa1246",
+  "wikidata_qid": "Q33979",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Newar (Nepal Bhasa, नेपाल भाषा) of the Kathmandu Valley, written today in Devanagari (historically in the Ranjana and other Nepalese scripts). The grapheme inventory is NOT yet specified: Devanagari is an abugida with an inherent vowel, dependent vowel signs, conjuncts and the virama, and the Newar sound system (including its tonal/phonation and vowel-length contrasts) does not map to the Devanagari letters the same way Nepali or Hindi does. Metadata only.",
+  "sources": [
+    {
+      "id": "new_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Newar language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Newar_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Newar_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Newar_language",
+    "https://new.wikipedia.org/wiki/%E0%A4%A8%E0%A5%87%E0%A4%AA%E0%A4%BE%E0%A4%B2%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BE"
+  ]
+}

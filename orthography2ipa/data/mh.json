@@ -1,0 +1,31 @@
+{
+  "code": "mh",
+  "name": "Marshallese",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Marshallese (Kajin M̧ajeļ), a Micronesian language of the Marshall Islands. STUB: the grapheme inventory is NOT yet specified. The consonant letters of the modern (MOD) orthography map cleanly onto the palatalised / velarised / rounded consonant series (⟨p b j t k kw m ṃ n ṇ ñ l ḷ r d rw w⟩), but the VOWEL orthography is the obstacle: Marshallese has only four vowel phonemes whose front/back quality is allophonic, conditioned by the secondary articulation of the surrounding consonants, and the spelling records the surface quality rather than the phoneme. A correct spec therefore needs the consonant-conditioned vowel rules, not a flat grapheme map, and that research is not done here.",
+  "iso639_3": "mah",
+  "glottolog_code": "mars1254",
+  "wikidata_qid": "Q36280",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Marshallese_language",
+    "https://mh.wikipedia.org/wiki/Kajin_M%CC%A7aje%C4%BC"
+  ],
+  "sources": [
+    {
+      "id": "marshallese_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Marshallese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Marshallese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Marshallese_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}

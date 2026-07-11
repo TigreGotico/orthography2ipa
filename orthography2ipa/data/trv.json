@@ -1,0 +1,31 @@
+{
+  "code": "trv",
+  "name": "Seediq",
+  "family": "Austronesian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "trv",
+  "glottolog_code": "taro1264",
+  "wikidata_qid": "Q716686",
+  "notes": "STUB: the grapheme inventory of Seediq is NOT yet specified (graphemes/allophones are empty). Seediq (including the Truku/Taroko variety, which the ISO code trv names) is a Formosan (Austronesian) language of Taiwan, written in the Latin script under the Council of Indigenous Peoples' 2005 romanisation. Its three varieties (Tgdaya, Toda, Truku) differ phonologically, so a letter→IPA table would need to be variety-scoped. INPUT CONTRACT: Latin-script (official romanisation) Seediq/Truku text.",
+  "sources": [
+    {
+      "id": "seediq_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Seediq language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Seediq_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Seediq_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Seediq_language",
+    "https://trv.wikipedia.org/wiki/Kari_Seediq"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "code": "mzn",
+  "name": "Mazanderani",
+  "family": "Iranian",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "quality": "stub",
+  "parent": "ira",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Mazanderani (مازِرونی) — Northwestern Iranian (Caspian) language of northern Iran. Written in the Perso-Arabic (Arabic) script, with the Persian alphabet extended for Mazanderani vowels. GRAPHEME INVENTORY NOT YET SPECIFIED: as an abjad, short vowels are normally unwritten (optional harakat aside), so grapheme→phoneme conversion requires a lexicon or vowel-restoration model rather than a letter table. INPUT CONTRACT: input is expected in the Perso-Arabic Mazanderani orthography.",
+  "iso639_3": "mzn",
+  "glottolog_code": "maza1291",
+  "wikidata_qid": "Q13356",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mazanderani_language",
+    "https://mzn.wikipedia.org/wiki/%D9%85%D8%A7%D8%B2%D8%B1%D9%88%D9%86%DB%8C_%D8%B2%D9%88%D9%88%D9%86"
+  ],
+  "sources": [
+    {
+      "id": "mzn_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Mazanderani language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mazanderani_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mazanderani_language",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

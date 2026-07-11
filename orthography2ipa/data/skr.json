@@ -1,0 +1,31 @@
+{
+  "code": "skr",
+  "name": "Saraiki",
+  "family": "Indo-Aryan",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "quality": "stub",
+  "iso639_3": "skr",
+  "glottolog_code": "sera1259",
+  "wikidata_qid": "Q33902",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Saraiki (سرائیکی) of Pakistan, written in the Saraiki Shahmukhi alphabet — an extended Perso-Arabic abjad, with additional letters for the implosive consonants ɓ ɗ ʄ ɠ that are the language's most distinctive feature. The grapheme inventory is NOT yet specified. INPUT CONTRACT: as with all Arabic-script languages, short vowels are normally left unwritten, so a correct spec depends either on vowelised (diacritic-bearing) input or on a lexicon; neither is provided here. Metadata only.",
+  "sources": [
+    {
+      "id": "skr_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Saraiki language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Saraiki_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Saraiki_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Saraiki_language",
+    "https://skr.wikipedia.org/wiki/%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%DA%A9%DB%8C_%D8%B2%D8%A8%D8%A7%D9%86"
+  ]
+}

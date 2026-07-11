@@ -1,0 +1,57 @@
+{
+  "code": "dv",
+  "name": "Maldivian (Dhivehi)",
+  "family": "Indo-Aryan",
+  "script": "Thaana",
+  "script_type": "abugida",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Dhivehi is written in Thaana, right-to-left. Thaana is precisely an alphabet-like abugida: its consonant letters carry NO inherent vowel, and each is obligatorily accompanied by a fili — one of the ten vowel diacritics, or the sukun marking absence of a vowel — so every vowel IS written (unlike a true abjad), yet vowels remain diacritics on a consonant base rather than independent letters (unlike a true alphabet). `abugida` is the closest of the schema's categories; because Thaana has no default vowel, no `inherent_vowel` is declared. The older Dhives Akuru script and the Malé Latin transliteration are not modelled here. No Thaana-to-IPA map is claimed.",
+  "iso639_3": "div",
+  "glottolog_code": "dhiv1236",
+  "wikidata_qid": "Q32656",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Maldivian_language",
+    "https://dv.wikipedia.org/wiki/%DE%8B%DE%A8%DE%88%DE%AC%DE%80%DE%A8"
+  ],
+  "sources": [
+    {
+      "id": "dhivehi_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Maldivian language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Maldivian_language",
+      "pages": null,
+      "notes": "Phonology, the Thaana script and the Malé Latin transliteration."
+    },
+    {
+      "id": "thaana_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Thaana",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Thaana",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Thaana",
+      "pages": null,
+      "notes": "Consonant letters, the ten fili vowel diacritics and the sukun; right-to-left, no inherent vowel."
+    },
+    {
+      "id": "cain2000",
+      "author": "Cain, Bruce D.",
+      "year": 2000,
+      "title": "Dhivehi (Maldivian): A Synchronic and Diachronic Study",
+      "publisher": "Cornell University (PhD thesis)",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Reference description of Dhivehi phonology and orthography."
+    }
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  }
+}

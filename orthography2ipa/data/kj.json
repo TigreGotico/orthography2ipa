@@ -1,0 +1,31 @@
+{
+  "code": "kj",
+  "name": "Kwanyama",
+  "family": "Niger-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "bnt",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Kwanyama (Oshikwanyama / Kuanyama) — Bantu language of northern Namibia and southern Angola, one of the two written standards of Ovambo. Written in the Latin script. GRAPHEME INVENTORY NOT YET SPECIFIED: the Kwanyama orthography and phoneme inventory (including prenasalised stops, the ⟨sh⟩/⟨tsh⟩ digraphs and tone, which is not written) need documented sourcing before a letter→phoneme table can be asserted. INPUT CONTRACT: input is expected in the Latin-script Kwanyama orthography.",
+  "iso639_3": "kua",
+  "glottolog_code": "kuan1247",
+  "wikidata_qid": "Q1405077",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kwanyama"
+  ],
+  "sources": [
+    {
+      "id": "kj_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kwanyama",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kwanyama",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kwanyama",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

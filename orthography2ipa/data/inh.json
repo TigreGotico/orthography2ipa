@@ -1,0 +1,35 @@
+{
+  "code": "inh",
+  "name": "Ingush",
+  "family": "Northeast Caucasian",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Ingush (гӀалгӀай мотт), a Nakh (Northeast Caucasian) language of Ingushetia, Russia. STUB: the grapheme inventory is NOT yet specified. Script: Cyrillic alphabet (since 1938), which writes the large Nakh consonant inventory with multigraphs — ejectives with the palochka ⟨Ӏ⟩ (кӀ, пӀ, тӀ, цӀ, чӀ), pharyngeals ⟨гӀ, хӀ, аӀ⟩, uvulars ⟨къ, хь, хъ⟩ — so a correct spec needs a multigraph-aware table plus the vowel-length and nasalisation rules; several digraphs are ambiguous with letter sequences. Input is assumed to be the Cyrillic orthography, with the palochka written as U+04C0 ⟨Ӏ⟩ (not a Latin capital I or a digit 1).",
+  "iso639_3": "inh",
+  "glottolog_code": "ingu1240",
+  "wikidata_qid": "Q33509",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ingush_language",
+    "https://inh.wikipedia.org/wiki/%D0%93%D3%80%D0%B0%D0%BB%D0%B3%D3%80%D0%B0%D0%B9_%D0%BC%D0%BE%D1%82%D1%82"
+  ],
+  "sources": [
+    {
+      "id": "ingush_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Ingush language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ingush_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ingush_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    }
+  ],
+  "timespan": {
+    "start_year": 1938,
+    "end_year": null
+  }
+}

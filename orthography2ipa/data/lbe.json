@@ -1,0 +1,46 @@
+{
+  "code": "lbe",
+  "name": "Lak",
+  "family": "Northeast Caucasian",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Lak (Dagestan) is written in a Cyrillic alphabet (the 'Lak script'). As in the other Northeast Caucasian orthographies, a large consonant inventory (ejectives, tense/geminate consonants, uvulars, pharyngeals) is written with digraphs and trigraphs built on the palochka ⟨Ӏ⟩ (кӏ, къ, кь, хъ, хь, цӏ, чӏ, тӏ, пӏ …) and with doubled letters for the tense series, so a correct longest-match grapheme table has yet to be built and verified. No map is claimed.",
+  "iso639_3": "lbe",
+  "glottolog_code": "lakk1252",
+  "wikidata_qid": "Q36206",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lak_language",
+    "https://lbe.wikipedia.org/wiki/%D0%9B%D0%B0%D0%BA%D0%BA%D1%83_%D0%BC%D0%B0%D0%B7"
+  ],
+  "sources": [
+    {
+      "id": "lak_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lak language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lak_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lak_language",
+      "pages": null,
+      "notes": "Phoneme inventory and the Cyrillic Lak alphabet."
+    },
+    {
+      "id": "zhirkov1955",
+      "author": "Zhirkov, L. I.",
+      "year": 1955,
+      "title": "Лакский язык: фонетика и морфология (The Lak Language: Phonetics and Morphology)",
+      "publisher": "USSR Academy of Sciences",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Reference phonology of Lak."
+    }
+  ],
+  "timespan": {
+    "start_year": 1938,
+    "end_year": null
+  }
+}

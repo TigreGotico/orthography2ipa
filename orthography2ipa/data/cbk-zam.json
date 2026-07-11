@@ -1,0 +1,258 @@
+{
+  "code": "cbk-zam",
+  "name": "Chavacano (Zamboangueño)",
+  "family": "Spanish Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "es-ES",
+  "ancestors": [
+    {
+      "code": "es-ES",
+      "role": "lexifier",
+      "weight": 0.8,
+      "notes": "Spanish is the lexifier; the orthography is the Spanish one."
+    },
+    {
+      "code": "tl",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Philippine (Tagalog/Cebuano/Hiligaynon) substrate: phonology and grammar."
+    }
+  ],
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "x"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ll": [
+      "j",
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "b"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "s"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "ks": [
+      "ks"
+    ]
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_front_vowel": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_front_vowel": [
+        "x",
+        "h"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    }
+  },
+  "iso639_3": "cbk",
+  "glottolog_code": "chav1241",
+  "wikidata_qid": "Q33281",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chavacano"
+  ],
+  "sources": [
+    {
+      "id": "chavacano_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Chavacano",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Chavacano",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Chavacano",
+      "pages": "Alphabet, seseo, non-lenition of intervocalic /b d ɡ/, yeísmo.",
+      "notes": null
+    },
+    {
+      "id": "lipski1987",
+      "author": "Lipski, John M.",
+      "year": 1987,
+      "title": "Modern Spanish once-removed in Philippine creole Spanish: the case of Zamboangueño",
+      "publisher": "Language in Society 16(1)",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Zamboangueño phonology and its divergence from Spanish."
+    }
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "notes": "Zamboangueño Chavacano, a Spanish-lexifier creole of the Philippines, written with the Spanish alphabet. Seseo throughout (⟨c⟩ before e/i, ⟨z⟩ = /s/; no /θ/); ⟨j⟩ and ⟨g⟩ before e/i = /h/~/x/; yeísmo (⟨ll⟩ = /j/, ʎ conservative); ⟨v⟩ = /b/. Unlike most Spanish varieties, /b d ɡ/ keep their stop realisation between vowels (no approximant lenition), so the allophone map is deliberately non-lenited."
+}

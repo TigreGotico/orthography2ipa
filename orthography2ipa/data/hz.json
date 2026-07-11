@@ -1,0 +1,34 @@
+{
+  "code": "hz",
+  "name": "Herero",
+  "family": "Niger-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Herero (Otjiherero), a Bantu language of Namibia and Botswana. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet (the OshiHerero alphabet, established by 19th-century missionary orthography). A full spec must model the dental vs alveolar stop and nasal contrast (/t̪ t/, /n̪ n/), the prenasalised series (ᵐb ⁿd̪ ⁿd ⁿdʒ ᵑɡ), the interdental fricatives /θ ð/, contrastive vowel length, and tone — the mapping from the missionary spelling to these is not one-to-one and no normative letter-to-IPA table was found. Input is assumed to be the standard Latin Herero orthography.",
+  "iso639_3": "her",
+  "glottolog_code": "here1253",
+  "wikidata_qid": "Q33315",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Herero_language"
+  ],
+  "sources": [
+    {
+      "id": "herero_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Herero language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Herero_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Herero_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    }
+  ],
+  "timespan": {
+    "start_year": 1880,
+    "end_year": null
+  }
+}

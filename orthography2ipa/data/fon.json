@@ -1,0 +1,31 @@
+{
+  "code": "fon",
+  "name": "Fon",
+  "family": "Atlantic-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Fon (fɔ̀ngbè) — Gbe (Atlantic-Congo) language of Benin. Written in a Latin-based alphabet following the Africa Alphabet, with letters such as ɖ, ɛ, ɔ and digraphs for prenasalised and labialised consonants, plus obligatory tone diacritics (Fon is a tonal language with contrastive high/low and contour tones). GRAPHEME INVENTORY NOT YET SPECIFIED: a reliable spec must jointly model the segmental letters, nasal vowels and the tone-marking system, which requires dedicated sourcing. INPUT CONTRACT: input is expected in the Latin-script Fon orthography with tone diacritics.",
+  "iso639_3": "fon",
+  "glottolog_code": "fonn1241",
+  "wikidata_qid": "Q33291",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Fon_language",
+    "https://fon.wikipedia.org/wiki/F%C9%94n"
+  ],
+  "sources": [
+    {
+      "id": "fon_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Fon language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fon_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Fon_language",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "code": "bbc",
+  "name": "Toba Batak",
+  "family": "Austronesian",
+  "script": "Batak",
+  "script_type": "abugida",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "parent": "poz",
+  "ancestors": [
+    {
+      "code": "poz",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Northwest Sumatra–Barrier Islands / Batak branch of Malayo-Polynesian."
+    }
+  ],
+  "notes": "Toba Batak (Hata Batak Toba), North Sumatra, Indonesia. STUB: the grapheme inventory is NOT yet specified. Wikidata records the indigenous Batak script (Surat Batak), an abugida with an inherent vowel; in practice Toba Batak is today written in the Latin alphabet, and a Latin-orthography map (not attempted here) would be the practical input contract. No grapheme map is claimed for either script.",
+  "iso639_3": "bbc",
+  "glottolog_code": "bata1289",
+  "wikidata_qid": "Q33017",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Toba_Batak_language",
+    "https://bbc.wikipedia.org/wiki/Hata_Batak_Toba"
+  ],
+  "sources": [
+    {
+      "id": "tobabatak_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Toba Batak language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Toba_Batak_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Toba_Batak_language",
+      "pages": null,
+      "notes": null
+    }
+  ]
+}

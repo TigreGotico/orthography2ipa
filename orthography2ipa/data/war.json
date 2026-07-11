@@ -2,30 +2,12 @@
   "code": "war",
   "name": "Waray",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "x-clade-mala1545",
   "graphemes": {
     "a": [
       "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
     ],
     "b": [
       "b"
@@ -33,8 +15,23 @@
     "d": [
       "d"
     ],
+    "e": [
+      "ɛ"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,49 +42,37 @@
     "ng": [
       "ŋ"
     ],
-    "s": [
-      "s"
+    "o": [
+      "ɔ"
     ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "r": [
       "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
+    ],
+    "'": [
+      "ʔ"
     ]
   },
   "allophones": {
     "a": [
       "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
     ],
     "b": [
       "b"
@@ -95,8 +80,24 @@
     "d": [
       "d"
     ],
+    "ɛ": [
+      "ɛ"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i",
+      "ɛ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,50 +108,66 @@
     "ŋ": [
       "ŋ"
     ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "p": [
+      "p"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "t": [
+      "t"
     ],
-    "l": [
-      "l"
-    ],
-    "ɾ": [
-      "ɾ"
+    "u": [
+      "u",
+      "ɔ"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "ʔ": [
+      "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Waray (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
+  "notes": "Waray (Winaray / Waray-Waray) — Central Philippine (Austronesian) language of Samar, Leyte and Biliran. Latin orthography of 18 letters: A B K D G H I L M N NG P R S T U W Y, with ⟨ng⟩ a single letter /ŋ/. Three vowel phonemes /a i u/, with [ɛ~i] and [ɔ~u] as the ranges of /i/ and /u/; ⟨e⟩ and ⟨o⟩ are written mainly in loanwords and for the lower allophones. Sixteen consonants /p t k b d ɡ m n ŋ s h l ɾ~r w j ʔ/; [tʃ dʒ] arise from /t d/ before /i/ + vowel. Glottal stop is phonemic but not consistently written. There is no fully standardised orthography; writers largely follow Filipino conventions.",
   "iso639_3": "war",
   "glottolog_code": "wara1300",
   "wikipedia": [
-    "https://war.wikipedia.org/wiki/Waray_%28pinulungan%29",
-    "https://en.wikipedia.org/wiki/Waray_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/wara1300"
+    "https://en.wikipedia.org/wiki/Waray_language",
+    "https://war.wikipedia.org/wiki/Waray_%28pinulungan%29"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/wara1300",
+      "id": "zorc1977",
+      "author": "Zorc, R. David",
+      "year": 1977,
+      "title": "The Bisayan Dialects of the Philippines: Subgrouping and Reconstruction",
+      "publisher": "Pacific Linguistics, Australian National University",
+      "url": null,
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Reference for Bisayan (incl. Waray) phonology."
+    },
+    {
+      "id": "war_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Waray language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Waray_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Waray_language",
+      "pages": null,
+      "notes": "Phonology and writing-system sections."
     }
   ],
-  "parent": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

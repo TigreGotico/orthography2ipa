@@ -1,0 +1,261 @@
+{
+  "code": "ee",
+  "name": "Ewe",
+  "family": "Atlantic-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "dz": [
+      "d͡z"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
+    "ƒ": [
+      "ɸ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gb": [
+      "ɡ͡b"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "kp": [
+      "k͡p"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "ts": [
+      "t͡s"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "ʋ": [
+      "β"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "d͡z": [
+      "d͡z"
+    ],
+    "e": [
+      "e",
+      "ə"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɸ": [
+      "ɸ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡ͡b": [
+      "ɡ͡b"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "k͡p": [
+      "k͡p"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r",
+      "ɾ",
+      "ɽ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "t͡s": [
+      "t͡s"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "β": [
+      "β"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "iso639_3": "ewe",
+  "glottolog_code": "ewee1241",
+  "wikidata_qid": "Q30005",
+  "notes": "Ewe (Eʋegbe), Gbe (Atlantic-Congo), Ghana and Togo. Latin alphabet with the Africa Alphabet letters ɖ ƒ ɣ ŋ ɔ ɛ ʋ and the digraphs dz gb kp ny ts. Contrasts the bilabial fricatives ƒ /ɸ/ and ʋ /β/ with the labiodentals f /f/ and v /v/. Doubly-articulated stops gb /ɡ͡b/ and kp /k͡p/. Vowels a e ɛ i o ɔ u; nasalised vowels are written with a following ⟨n⟩ and are not separate graphemes. TONE: Ewe is a tonal language, but tone is written only where disambiguation requires it (acute, grave, caron, circumflex); the standard orthography is otherwise toneless, so no tone is emitted here and accented vowels are not listed.",
+  "sources": [
+    {
+      "id": "ansre1961",
+      "author": "Ansre, Gilbert",
+      "year": 1961,
+      "title": "The Tonal Structure of Ewe",
+      "publisher": "Hartford Seminary Foundation",
+      "url": null,
+      "pages": null,
+      "notes": "Tone system of Ewe.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ewe_language"
+    },
+    {
+      "id": "ewe_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Ewe language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ewe_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ewe_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ewe_language",
+    "https://ee.wikipedia.org/wiki/E%CA%8Begbe"
+  ],
+  "timespan": {
+    "start_year": 1857,
+    "end_year": null
+  }
+}

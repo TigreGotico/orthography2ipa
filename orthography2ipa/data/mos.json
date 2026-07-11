@@ -1,0 +1,31 @@
+{
+  "code": "mos",
+  "name": "Mooré",
+  "family": "Atlantic-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "mos",
+  "glottolog_code": "moss1236",
+  "wikidata_qid": "Q36096",
+  "notes": "STUB: the grapheme inventory of Mooré is NOT yet specified (graphemes/allophones are empty). Mooré (Mossi) is a Gur (Atlantic-Congo) language, the principal language of Burkina Faso, written in the Latin script with Africa-Alphabet letters (ɛ ɩ ʋ ɔ ŋ) and nasal vowels; it is tonal and tone is not marked in ordinary orthography. INPUT CONTRACT: Latin-script Mooré orthography.",
+  "sources": [
+    {
+      "id": "moore_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Moore language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Moor%C3%A9",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Moor%C3%A9",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Moor%C3%A9",
+    "https://mos.wikipedia.org/wiki/Moore"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "code": "gom",
+  "name": "Goan Konkani",
+  "family": "Indo-Aryan",
+  "script": "Devanagari",
+  "script_type": "abugida",
+  "quality": "stub",
+  "inherent_vowel": "ə",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Goan Konkani (गोंयची कोंकणी / Gõychi Konknni), Goa, India. STUB: the grapheme inventory is NOT yet specified. Konkani is exceptional in being officially written in several scripts — Devanagari (the official script, an abugida), plus Latin (Romi Konkani), Kannada and Malayalam scripts. A per-script grapheme map would be required; none is claimed here.",
+  "iso639_3": "gom",
+  "glottolog_code": "goan1235",
+  "wikidata_qid": "Q5575236",
+  "sources": [
+    {
+      "id": "wikidata_Q5575236",
+      "author": "Wikidata contributors",
+      "year": 2026,
+      "title": "Wikidata item Q5575236",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://www.wikidata.org/wiki/Q5575236",
+      "pages": null,
+      "notes": "Language identity, script and code cross-references."
+    }
+  ]
+}

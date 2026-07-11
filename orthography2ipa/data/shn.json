@@ -1,0 +1,35 @@
+{
+  "code": "shn",
+  "name": "Shan",
+  "family": "Tai-Kadai",
+  "script": "Shan (Burmese-derived)",
+  "script_type": "abugida",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Shan (တႆး, Tai Long), a Southwestern Tai (Tai-Kadai) language of Shan State, Myanmar. STUB: the grapheme inventory is NOT yet specified. Script: the Shan script (Unicode block Myanmar; a Burmese-derived ABUGIDA) — consonant letters carry an inherent vowel and are modified by dependent vowel signs written above, below, before and after the base, so grapheme segmentation itself needs a syllable-cluster parser, not a linear letter table. A full spec must also model the five/six lexical tones written with tone marks (the 1950s reformed orthography made tone marking systematic) and the final-consonant (killed-consonant) forms. Input is assumed to be the modern reformed Shan orthography in the Myanmar Unicode block.",
+  "iso639_3": "shn",
+  "glottolog_code": "shan1277",
+  "wikidata_qid": "Q56482",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Shan_language",
+    "https://shn.wikipedia.org/wiki/%E1%80%9C%E1%80%AD%E1%81%B5%E1%80%BA%E1%82%88%E1%80%90%E1%82%86%E1%80%B8"
+  ],
+  "sources": [
+    {
+      "id": "shan_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Shan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Shan_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Shan_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    }
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  }
+}

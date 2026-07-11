@@ -1,0 +1,297 @@
+{
+  "code": "ln",
+  "name": "Lingala",
+  "family": "Atlantic-Congo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "â": [
+      "a"
+    ],
+    "ǎ": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "é": [
+      "e"
+    ],
+    "ê": [
+      "e"
+    ],
+    "ě": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛ́": [
+      "ɛ"
+    ],
+    "ɛ̂": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "î": [
+      "i"
+    ],
+    "ǐ": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ó": [
+      "o"
+    ],
+    "ô": [
+      "o"
+    ],
+    "ǒ": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ɔ́": [
+      "ɔ"
+    ],
+    "ɔ̂": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "û": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gb": [
+      "ɡ͡b"
+    ],
+    "h": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "n": [
+      "n"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "ns": [
+      "ns"
+    ],
+    "nt": [
+      "nt"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "nz": [
+      "nz"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡ͡b": [
+      "ɡ͡b"
+    ],
+    "h": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "n": [
+      "n"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "ŋɡ": [
+      "ŋɡ"
+    ],
+    "ŋk": [
+      "ŋk"
+    ],
+    "ns": [
+      "ns"
+    ],
+    "nt": [
+      "nt"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "nz": [
+      "nz"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "notes": "Lingala (lingála), Bantu lingua franca of the Congo river basin. Literary Lingala has a seven-vowel system /a e ɛ i o ɔ u/ written with the IPA letters ⟨ɛ ɔ⟩; spoken Lingala reduces this to five. Prenasalised sequences are written ⟨mb mp nd ng nk ns nt nz⟩ and ⟨gb⟩ is the labial-velar /ɡ͡b/. Lingala is tonal — the acute marks high tone, the circumflex falling and the caron rising — but tone is NOT emitted here: the accented vowels map to the same phoneme as their plain counterparts so that accented text still transcribes.",
+  "iso639_3": "lin",
+  "glottolog_code": "ling1263",
+  "wikidata_qid": "Q36217",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lingala",
+    "https://ln.wikipedia.org/wiki/Ling%C3%A1la"
+  ],
+  "sources": [
+    {
+      "id": "lingala_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Lingala",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lingala",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lingala",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ]
+}
