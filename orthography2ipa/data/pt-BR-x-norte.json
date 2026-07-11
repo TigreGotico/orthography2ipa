@@ -322,7 +322,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Nortista / Amazônico (Belém, Manaus). Northeastern-type open pretonic vowels /e/ -> [ɛ], /o/ -> [ɔ]. Coda /S/ palatalised to [ʃ,ʒ] (Belém chiado, shared with Carioca). Unlike the Northeast proper, the North has high /t,d/ palatalisation before /i/ (ALiB: the North is the region of most expressive palatalisation), so palatalisation is RETAINED here (base default). Tupí/Nheengatu contact in prosody and lexicon.",
+  "notes": "Nortista / Amazônico (Belém, Manaus). Northeastern-type open pretonic vowels /e/ -> [ɛ], /o/ -> [ɔ]. Coda /S/ palatalised to [ʃ,ʒ] (Belém chiado): Silva (2014:2, ALFAL XVII #4814) reports, citing Noll (2008), 'certo espraiamento dessas realizacoes para outras areas do Brasil, a exemplo de Belem e Macapa, no Norte, onde haveria um grau de palatalizacao similar ao do Rio de Janeiro'; the ALiB-based grouping in Mota, Jesus & Evangelista (2010), cited ibid., places Belem and Macapa (with Rio de Janeiro, Florianopolis, Recife, Manaus, Cuiaba, Salvador) among the capitals where the palatal variant predominates in BOTH medial and absolute-final coda position. Unlike the Northeast proper, the North has high /t,d/ palatalisation before /i/ (ALiB: the North is the region of most expressive palatalisation), so palatalisation is RETAINED here (base default). Nascentes (1953:25, O linguajar carioca) grounds the North/South macro-division of Brazilian Portuguese on pretonic-vowel openness, placing this amazonico area in the falares do Norte. Tupí/Nheengatu contact in prosody and lexicon.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -375,6 +375,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "silva2014alfal",
+      "author": "Silva, A. R.",
+      "year": 2014,
+      "title": "Variação fonética em capitais brasileiras: a ditongação diante de /S/ e as realizações fonéticas do /S/ em coda",
+      "publisher": "XVII Congreso Internacional ALFAL, João Pessoa (#4813-4818)",
+      "url": "https://www.mundoalfal.org/CDAnaisXVII/trabalhos/R0598-1.pdf",
+      "pages": "2 (#4814)",
+      "notes": "Downloaded and read directly (printed conference page headers #4813-#4818). Cites Noll (2008) and Mota, Jesus & Evangelista (2010, ALiB-based) placing Belém/Macapá alongside Rio de Janeiro among capitals where the palatal coda-/S/ variant predominates in medial AND absolute-final position -- the source for the Belém/Northern chiado modelled here."
+    },
+    {
+      "id": "nascentes1953",
+      "author": "Nascentes, Antenor",
+      "year": 1953,
+      "title": "O linguajar carioca",
+      "publisher": "Organização Simões, Rio de Janeiro (2nd ed.)",
+      "url": null,
+      "pages": "20, 23-25",
+      "notes": "Downloaded and read directly. Grounds the North/South macro-division of Brazilian Portuguese dialects on pretonic-vowel openness (p.25); places the Amazônico area in the falares do Norte."
     }
   ],
   "wikipedia": [

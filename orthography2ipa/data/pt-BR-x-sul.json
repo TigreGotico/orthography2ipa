@@ -319,7 +319,7 @@
     ]
   },
   "parent": "pt-BR",
-  "notes": "Sulista / Gaúcho (Rio Grande do Sul, Porto Alegre). Conservative non-palatalising default: /t,d/ stay dental [t,d] before /i/ (the encoded default; a generational shift toward palatalisation is in progress and noted). Distinctive alveolar trill/tap onset /r/ [r~ɾ] — the most European-sounding Brazilian rhotic, NOT glottal; coda /R/ is a tap, not dropped. Reduced final-vowel raising: word-final /e/ often stays [e] in conservative speech. Coda /S/ alveolar. Heterogeneous Italian/German settler substrata.",
+  "notes": "Sulista / Gaúcho (Rio Grande do Sul, Porto Alegre). Conservative non-palatalising default: /t,d/ stay dental [t,d] before /i/ (the encoded default; a generational shift toward palatalisation is in progress and noted). Distinctive alveolar trill/tap onset /r/ [r~ɾ] — the most European-sounding Brazilian rhotic, NOT glottal; coda /R/ is a tap, not dropped. Reduced final-vowel raising: word-final /e/ often stays [e] in conservative speech. Coda /S/ alveolar. Heterogeneous Italian/German settler substrata. Nascentes (1953:25, O linguajar carioca) places this area in the falares do Sul side of his North/South macro-division (pretonic-vowel openness criterion); Bisol's diphthongization work on /S/-coda (Bisol 1994, 2012), cited in Silva (2014:6-7, ALFAL XVII #4817-4818), draws its impressionistic base specifically from Porto Alegre speech, consistent with the conservative Gaúcho phonology modelled here, though it targets diphthong structure rather than the /r/ and /t,d/ features asserted by this spec.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -372,6 +372,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "silva2014alfal",
+      "author": "Silva, A. R.",
+      "year": 2014,
+      "title": "Variação fonética em capitais brasileiras: a ditongação diante de /S/ e as realizações fonéticas do /S/ em coda",
+      "publisher": "XVII Congreso Internacional ALFAL, João Pessoa (#4813-4818)",
+      "url": "https://www.mundoalfal.org/CDAnaisXVII/trabalhos/R0598-1.pdf",
+      "pages": "6-7 (#4817-4818)",
+      "notes": "Downloaded and read directly (printed conference page headers). Secondary citation of Bisol (1994, 2012) on /S/-coda diphthongization, whose impressionistic data base is Porto Alegre speech (Bisol 1994:125: 'As impressões sobre ditongação em sílabas fechadas por /S/ são baseadas das impressões da autora acerca da fala de Porto Alegre.')."
+    },
+    {
+      "id": "nascentes1953",
+      "author": "Nascentes, Antenor",
+      "year": 1953,
+      "title": "O linguajar carioca",
+      "publisher": "Organização Simões, Rio de Janeiro (2nd ed.)",
+      "url": null,
+      "pages": "20, 23-25",
+      "notes": "Downloaded and read directly. Grounds the North/South macro-division of Brazilian Portuguese dialects on pretonic-vowel openness (p.25); places the Sulista area in the falares do Sul."
     }
   ],
   "wikipedia": [
