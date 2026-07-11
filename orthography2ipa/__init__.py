@@ -36,6 +36,7 @@ from orthography2ipa.g2p import (
     WordTranscription,
     transcribe,
 )
+from orthography2ipa.features import GraphemeFeatures, WordFeatures
 from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
 from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.phonetok import (
@@ -99,6 +100,8 @@ __all__ = [
     "ConfidenceBreakdown",
     "TranscriptionResult",
     "WordTranscription",
+    "WordFeatures",
+    "GraphemeFeatures",
     "get",
     "resolve",
     "available_codes",
