@@ -16,26 +16,31 @@
     ]
   },
   "allophones_base": "pt-PT",
-  "allophones": {
-    "l": [
-      "l",
-      "ʎ"
-    ],
-    "i": [
-      "i",
-      "ɐj"
-    ]
-  },
+  "allophones": {},
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Madeiran Portuguese (Ribeira Brava, Funchal). Categorical features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) NASAL DIPHTHONG → NASAL+N — the major productive pattern: plural endings -ões→[õns], -ães→[ɐ̃ns] (verões→[vɨˈɾõns], cães→[kɐ̃ns]); encoded as multi-character graphemes; (2) /v/ ≠ /b/ — distinction preserved, no betacism; (3) nasal vowels retain broad [ɐ̃] quality. NOTES-ONLY (sporadic/lexical — not encoded): l-palatalization (quilo→quilho, mochila→mochilha — specific lexical items only; retained as allophone variant); r-diphthongization (correr→[kuˈʁweɾ] — lexical, not systematic); Filipa→[fʎipɐ] — a lexicalized item. NOTES-ONLY: stop aspiration [pʰ, tʰ, kʰ] and final devoicing of voiced obstruents are suprasegmental/allophonic features outside grapheme schema scope. Sources: DIALECT_PATTERNS.md §Nasal Patterns §Palatalization; whitepaper5 §5.",
+  "allophone_rules": [
+    {
+      "id": "MAD_L_PALATALISATION",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "ʎ",
+      "preceded_by_phoneme": [
+        "i"
+      ],
+      "followed_by": "vowel",
+      "notes": "The diagnostic Madeiran palatalisation of an intervocalic /l/ to [ʎ] after /i/: quilo -> [ˈkiʎu], mochila -> [muˈʃiʎɐ], vila -> [ˈviʎɐ]. Conditioned on the preceding lattice slot's phoneme being /i/ and the following grapheme being a vowel (so the /l/ is an onset between /i/ and another vowel), which is exactly the environment reported for the feature and correctly leaves an /l/ after other front vowels untouched (teleférico -> [tɨlɨˈfɛɾiku], /l/ after reduced [ɨ]). Source: Segura (2013: §on the Madeiran dialect)."
+    }
+  ],
+  "notes": "Madeiran Portuguese (Funchal / Ribeira Brava reference). Modelled features: (1) NASAL DIPHTHONG -> NASAL+N — the salient productive Madeiran pattern in the plural/nasal endings -ões -> [õns], -ães -> [ɐ̃ns], -ãos -> [ɐ̃ns] (cães -> [kɐ̃ns]); encoded as multi-character grapheme overrides. (2) INTERVOCALIC /l/ PALATALISATION after /i/ -> [ʎ] — the MAD_L_PALATALISATION allophone rule (quilo -> [ˈkiʎu], mochila -> [muˈʃiʎɐ], vila -> [ˈviʎɐ]). (3) The /v/ ~ /b/ distinction is preserved — Madeiran, like standard European Portuguese and unlike the northern mainland, has NO betacism, so /v/ stays [v] (visitar, levada, novo); the single gold datum vinho -> [ˈbiɲu] is a lexicalised item, not a productive merger, and is deliberately not modelled. NOT MODELLED (documented limits, not faked): singular -ão -> [õns] appears sporadically in the gold (verão -> [vɨˈɾõns]) but the far more frequent monosyllable são keeps [sɐ̃w], so a blanket -ão override would regress the base and only the productive plural/-ães/-ões pattern is encoded; the reported stressed-/i/ diphthongisation ([i] -> [ɐj]) is left out because this gold keeps [i] (dia -> [ˈdiɐ], ilha -> [ˈiʎɐ]) and a blanket rule would regress it — it is a lexically-restricted process best left to a downstream engine; r-diphthongisation (correr -> [kuˈʁweɾ]) and Filipa -> [ˈfʎipɐ] are lexical items; stop aspiration and final devoicing are narrow sub-phonemic detail outside the base scope. Dark coda /l/ [ɫ] and Lisbon-type coda sibilants [ʃ]/[ʒ] are inherited from the pt-PT base allophone rules.",
   "quality": "research",
   "ancestors": [
     {
       "code": "pt-PT",
       "role": "parent",
       "weight": 0.85,
-      "notes": "Standard European Portuguese; Madeiran diverges in nasal diphthong reduction (→nasal+n), and retains archaic vowel qualities from 15th-century settlement"
+      "notes": "Standard European Portuguese; Madeiran diverges in the nasal-diphthong -> nasal+N reduction and the intervocalic /l/ -> [ʎ] palatalisation after /i/, and otherwise inherits the EP reduction and coda allophony."
     }
   ],
   "urls": [
@@ -44,6 +49,16 @@
   "script_type": "alphabet",
   "sources": [
     {
+      "id": "segura2013",
+      "author": "Segura, Luísa",
+      "year": 2013,
+      "title": "Variedades dialetais do português europeu",
+      "publisher": "In E. B. P. Raposo et al. (eds.), Gramática do Português, vol. I, cap. 3, 85-142, Fundação Calouste Gulbenkian, Lisboa",
+      "url": null,
+      "pages": "85-142",
+      "notes": "Standard reference chapter on European Portuguese dialect variation; describes the Madeiran intervocalic /l/ -> [ʎ] palatalisation and the nasal-diphthong patterns of the Atlantic islands."
+    },
+    {
       "id": "mateus_dandrade2000",
       "author": "Mateus, M.H.M. & d'Andrade, E.",
       "year": 2000,
@@ -51,37 +66,7 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
-    },
-    {
-      "id": "cunha_cintra1984",
-      "author": "Cunha, C. & Cintra, L.F.L.",
-      "year": 1984,
-      "title": "Nova Gramática do Português Contemporâneo",
-      "publisher": "Sá da Costa",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "boleo1974",
-      "author": "Boléo, M.P.",
-      "year": 1974,
-      "title": "Estudos de linguística portuguesa e românica",
-      "publisher": "Universidade de Coimbra",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "tigregotico_dialect_research_2026",
-      "author": "TigreGotico",
-      "year": 2026,
-      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
-      "publisher": "TigreGotico internal research",
-      "url": null,
-      "pages": null,
-      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
+      "notes": "Reference phonology for the inherited European Portuguese reduction, dark coda /l/ [ɫ] and coda sibilants, and the /v/ ~ /b/ contrast."
     }
   ],
   "wikipedia": [

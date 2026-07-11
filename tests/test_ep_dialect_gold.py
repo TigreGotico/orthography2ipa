@@ -1,10 +1,10 @@
 """Signature-word tests for the seven European-Portuguese regional dialect specs.
 
 Each test asserts one or more phonemically diagnostic words per dialect as
-documented in DIALECT_PATTERNS.md, derived from Cintra, L.F.L. (1971), "Nova
-proposta de classificação dos dialectos galego-portugueses", Boletim de
-Filologia 22:81–116. The words are drawn from the research sources and cross-
-checked against the ep_dialect_sentences.csv gold set.
+documented in the published European-Portuguese dialectology (Cintra 1971,
+Boletim de Filologia 22:81-116, for the continental dialects; Segura 2013;
+Rogers 1948 for the Azores). The words are cross-checked against the
+ep_dialect_sentences.csv gold set.
 
 Dialect specs under test:
     pt-PT-x-lisbon   — Lisbon prestige
@@ -184,10 +184,13 @@ class TestMadeira:
 
 
 class TestAcores:
-    """Azores (São Miguel class): u→y, ou→ow, ões→õns."""
+    """Azores (São Miguel class): stressed open /u/ → [y], ⟨ou⟩ → [ow].
+
+    Source: Rogers (1948, Hispanic Review 16:1-32) — island-specific.
+    """
 
     def test_u_fronting_tu(self):
-        """/u/ → [y] — São Miguel fronted-u feature (DIALECT_PATTERNS §Açores Fronted u)."""
+        """/u/ → [y] — São Miguel fronted-u shibboleth (Rogers 1948)."""
         eng = _t("pt-PT-x-acores")
         assert bare(eng.transcribe_word("tu")) == "ty"
 
@@ -200,7 +203,7 @@ class TestAcores:
         eng = _t("pt-PT-x-acores")
         assert "ow" in bare(eng.transcribe_word("ouro"))
 
-    def test_nasal_plus_n_veroes(self):
-        """‹ões› → [õns] (shared with Madeira)."""
+    def test_fronting_blocked_before_coda(self):
+        """A stressed /u/ before a tautosyllabic coda liquid stays [u]."""
         eng = _t("pt-PT-x-acores")
-        assert "õns" in bare(eng.transcribe_word("verões"))
+        assert "y" not in bare(eng.transcribe_word("azul"))
