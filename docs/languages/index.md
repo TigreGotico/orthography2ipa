@@ -55,6 +55,7 @@ each tier actually certifies.
 | [fr-FR.md](fr-FR.md) | French in detail |
 | [it-IT.md](it-IT.md) | Italian in detail |
 | [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
+| [pt-PT.md](pt-PT.md) | European Portuguese in detail (coda allophony, vowel reduction) |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
 ### Slavic
@@ -90,7 +91,8 @@ rather than a specific language, start here:
 |:---|:---|:---|
 | Final devoicing | de, nl, sv, pl, cs, ru, hu, tr | family docs |
 | C/G softening before e/i | fr, it, es, pt, ca, ro, en, sv, nl | [romance.md](romance.md) |
-| Vowel reduction (unstressed) | ru, pt-PT, fr (schwa) | [ru.md](ru.md) |
+| Vowel reduction (unstressed) | ru, pt-PT, fr (schwa) | [ru.md](ru.md), [pt-PT.md](pt-PT.md) |
+| Coda allophony (dark l, coda sibilant) | pt-PT, ca | [pt-PT.md](pt-PT.md), [../allophony.md](../allophony.md) |
 | Nasal vowels | fr, pt, pl | [fr-FR.md](fr-FR.md), [slavic.md](slavic.md) |
 | Retroflex consonants | sv (from r+C), hi, sa | [hi.md](hi.md) |
 | Schwa deletion | hi, bn, mr, pa | [hi.md](hi.md) |
