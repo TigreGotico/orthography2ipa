@@ -669,10 +669,10 @@ _EP_DIALECT_GOLD_CSV = os.path.join(
 def load_ep_dialects(lang: str, limit: int) -> List[Tuple[str, str]]:
     """European Portuguese regional dialect gold set (sentence-level).
 
-    Source: TigreGotico internal dialect research (DIALECT_PATTERNS.md +
-    whitepaper5 IPA dialect transforms).  250 sentences across seven EP
-    regional varieties, manually annotated IPA, pending external
-    peer-validation.
+    Source: DIALECT_PATTERNS.md, derived from Cintra, L.F.L. (1971), "Nova
+    proposta de classificação dos dialectos galego-portugueses", Boletim de
+    Filologia 22:81–116.  250 sentences across seven EP regional varieties,
+    manually annotated IPA, pending external peer-validation.
 
     Dialect code mapping (CSV dialect_code → orthography2ipa tag):
         pt-PT-x-lisboa   → pt-PT-x-lisbon

@@ -207,11 +207,11 @@ rule-driven engine, reported for honesty rather than flattery.
 ### European Portuguese regional dialect gold set (`ep_dialects`)
 
 250 sentence-level rows across seven EP regional varieties, manually
-annotated with dialectal IPA.  Source: **TigreGotico internal dialect
-research** — DIALECT\_PATTERNS.md feature matrix cross-checked against
-whitepaper5 (*Phoneme-Level Dialect Transforms for European Portuguese*,
-Miro 2026).  Provenance: sentence-level gold produced by the same team
-that maintains the dialect specs; pending external peer validation.
+annotated with dialectal IPA.  Source: DIALECT\_PATTERNS.md feature matrix,
+derived from Cintra, L.F.L. (1971), "Nova proposta de classificação dos
+dialectos galego-portugueses", Boletim de Filologia 22:81–116.
+Provenance: sentence-level gold produced by the same team that maintains
+the dialect specs; pending external peer validation.
 
 The CSV lives at `tests/data/ep_dialect_sentences.csv`.  The benchmark
 harness maps the seven CSV dialect codes to orthography2ipa language tags:

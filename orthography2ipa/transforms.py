@@ -17,7 +17,8 @@ Usage::
     # Apply a dialect transform
     rionorese = apply_transform(neutral, "rionorese", ortho)
 
-Source: whitepaper5_ipa_dialect_transforms.md (Miro, February 2026).
+Source: Cintra, L.F.L. (1971), "Nova proposta de classificação dos dialectos
+galego-portugueses", Boletim de Filologia 22:81–116.
 
 T-13: Core types (IPARule, IPAChainShift, IPALexicalRule, DialectTransform)
 T-14: debias_lisbon() — 7 de-biasing rules (DB1–DB7)
