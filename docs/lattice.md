@@ -260,6 +260,114 @@ downstream engines migrate their bespoke rule cascades here too: arbtok's
 sun-letter/waṣl assimilation and tugaphone's silent-`e`/reduction become
 rescorers over the shared engine rather than parallel tokenizers.
 
+## Per-word confidence / OOV signal
+
+The lattice does not only say *what* a word is pronounced as — read the right
+way it also says *how sure the base engine is*. That is the whole point of a
+per-word **confidence** signal: it tells a downstream specialized phonemizer
+**where to spend effort**. A word the base engine is confident about can be
+trusted as-is; a word it is unsure about is exactly where an expensive
+lexicon lookup or hand-written rule cascade earns its keep. Confidence is how
+`orthography2ipa` *explicitly enables* a specialized engine instead of
+competing with it.
+
+The signal is a pure, deterministic read off the lattice — no global state,
+thread-safe — surfaced three ways:
+
+- `WordTranscription.confidence: float` on every word of a
+  `transcribe_detailed(...)` result;
+- `G2P.word_confidence(word) -> float` for a single word;
+- `G2P.confidence_breakdown(word) -> ConfidenceBreakdown` for the per-slot
+  detail (which position the engine was unsure about).
+
+### The formula
+
+Confidence is built entirely from costs the lattice already carries
+(`Candidate.cost`, see [How cost works](#how-cost-works-log-p) above),
+combining three signals.
+
+**1 — Ambiguity (top-1 vs top-2 margin).** Within a slot, let `cost₁` and
+`cost₂` be the two lowest candidate costs. The **margin** `m = cost₂ − cost₁`
+is how decisively the winner beats its nearest rival. A slot with a single
+candidate has no rival, so `m = +∞`. Squashed into `[0, 1]`:
+
+```
+ambiguity = 1 − exp(−m)      # m = 0 → 0 (a dead tie); m = +∞ → 1 (decisive)
+```
+
+**2 — Rarity (winner cost).** A slot whose *winner* is itself high-cost — a
+rare mapping, a large −log P — is less trustworthy than one whose winner is
+the free, canonical `cost = 0` option:
+
+```
+rarity = exp(−cost₁)         # cost₁ = 0 → 1; larger cost → smaller
+```
+
+**3 — Coverage (OOV).** Any grapheme the spec's table does not cover lowers
+`WordTranscription.coverage` below `1.0`. Because an out-of-script character
+means the engine has *no* opinion at all there, it multiplies straight in.
+
+Per slot the two intra-lattice factors multiply; across the word the
+**minimum** ("weakest link") wins, then coverage folds in:
+
+```
+slot_confidence  = ambiguity × rarity
+word_confidence  = min(slot_confidence over all slots) × coverage
+```
+
+The weakest-link choice is deliberate: a downstream engine wants to know
+whether **any** position is uncertain, not the average. `confidence_breakdown`
+exposes the full `per_slot` tuple so a caller that prefers a mean, or wants to
+localise the single hard grapheme, can. A `word_exceptions` lexicon override
+is a certain answer, so its lattice confidence is `1.0` (only coverage can
+lower it).
+
+### Worked example — where a downstream engine spends effort
+
+```python
+from orthography2ipa import G2P
+
+es = G2P("es-ES")
+es.word_confidence("luz")    # 1.0000  — every grapheme maps one way
+es.word_confidence("gato")   # 0.6321  — ⟨g⟩ and ⟨o⟩ each have a rival
+```
+
+Spanish `luz` is unambiguous: `l`, `u`, `z` each have a single realisation,
+every slot's margin is `+∞`, so confidence is a flat `1.0`. Spanish `gato`
+carries two rank-cost rivals (`g → ɡ/x`, `o → o/…`), each a margin of exactly
+`1.0` over a free winner — `1 − exp(−1) ≈ 0.6321` — and the weakest such slot
+sets the word. A downstream Spanish phonemizer can skip `luz` entirely and
+spend its lexicon only on words like `gato`.
+
+Weighted specs give a *graded* answer rather than the flat rank-cost `0.6321`:
+
+```python
+en = G2P("en-GB")
+en.word_confidence("bar")    # 1.0000  — b, a(only ɑː here), r all decisive
+en.word_confidence("her")    # 0.6000  — ⟨er⟩ is −log P weighted
+```
+
+en-GB `⟨er⟩` declares candidate weights (`əɹ` P = 0.8 → cost 0.223, `ɜːɹ`
+P = 0.2 → cost 1.609). Its margin is `1.609 − 0.223 = 1.386`, so
+`ambiguity = 1 − exp(−1.386) = 0.75`, and because the winner is not free
+`rarity = exp(−0.223) = 0.80`; the slot — and the word — score
+`0.75 × 0.80 = 0.60`. The probabilistic ambiguity of `⟨er⟩` reads out as a
+number strictly between the confident `1.0` and a dead tie.
+
+Finally, an out-of-script character drops confidence sharply through
+coverage:
+
+```python
+b = en.confidence_breakdown("bar你")
+b.coverage    # 0.75   — 3 of 4 characters map
+b.lattice     # 0.6321 — 'bar' is not perfectly confident on its own
+b.value       # 0.4741 — lattice × coverage
+b.unmapped    # ('你',)
+```
+
+The OOV character pulls the word well below any fully-mapped word — the
+strongest signal of all that a downstream engine (or a human) must handle it.
+
 ---
 
 **Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
