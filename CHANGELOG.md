@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.36.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.36.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.35.0a1...1.36.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model European Portuguese allophony \(pt-PT\) [\#148](https://github.com/TigreGotico/orthography2ipa/pull/148) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.35.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.34.0a2...1.35.0a1)
