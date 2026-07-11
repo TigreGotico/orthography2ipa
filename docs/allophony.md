@@ -94,9 +94,9 @@ whole language — Catalan final devoicing and nasal assimilation hold in
 every Catalan variety — so the standard dialects inherit the pilots for free
 while remaining able to override a single rule by `id`.
 
-## The two pilots (Catalan)
+## The Catalan pilots
 
-Catalan (`ca`) is the first spec to declare `allophone_rules`, both cited to
+Catalan (`ca`) is the first spec to declare `allophone_rules`, each cited to
 reference grammars:
 
 ### 1. Final-obstruent devoicing
@@ -122,6 +122,43 @@ fonologia*).
 ca.transcribe_word("banc")   # …ŋk  (/n/ → [ŋ] before /k/)
 ```
 
+### 3. Intervocalic spirantization
+
+Voiced stops lenite to approximants between vowels: `/b d ɡ/ → [β ð ɣ] / V_V`
+(Wheeler 2005, §5.2). Encoded with the grapheme-class neighbour conditions
+`preceded_by: "vowel"` + `followed_by: "vowel"`, so it fires only between
+vowels and stays a stop elsewhere.
+
+```python
+ca.transcribe_word("cada")    # ˈkaðə  (/d/ → [ð])
+ca.transcribe_word("pagar")   # pəˈɣaɾ (/ɡ/ → [ɣ])
+ca.transcribe_word("poble")   # ˈpɔblə (/b/ before /l/ stays a stop)
+```
+
+### 4. Stress-conditioned unstressed vowel reduction
+
+The Eastern (Central/Balearic) block reduces vowels **only in unstressed
+syllables**: unstressed `/a e ɛ/ → [ə]` and `/o ɔ/ → [u]`; stressed vowels
+keep full quality (Wheeler 2005, §2.3). This is the canonical "reduce in the
+unstressed nucleus" case, so it is modelled with the **`nucleus_unstressed`
+positional slot** (the stress-conditioned member of the `GraphemePosition`
+vowel-class family) rather than a phoneme→surface rule — the reduced vowel is
+selected pre-lexically, keyed on stress. Because the slot is stress-conditioned
+it fires on the engine path only, exactly like a `stress`-conditioned
+`allophone_rule`.
+
+```python
+ca.transcribe_word("gos")     # ˈɡɔs  (stressed o keeps [ɔ] — NOT reduced)
+ca.transcribe_word("casa")    # ˈkazə (unstressed a → [ə])
+ca.transcribe_word("dona")    # ˈdɔnə (stressed [ɔ], unstressed [ə])
+```
+
+The Western block (Valencian `ca-x-valencia`, Northwestern
+`ca-x-occidental`) does **not** reduce — it keeps the full 7-vowel inventory
+in atonic position (Recasens 1996; Veny 1982). Each Western variety overrides
+the inherited `nucleus_unstressed` reduction with a full-quality vowel entry,
+so `transcribe("casa", "ca-x-occidental")` is `kaza`, not `kazə`.
+
 ### Benchmark effect (honest)
 
 Measured on the committed gold sets (PER, lower is better):
@@ -144,6 +181,26 @@ cannot reward a correct narrow realisation. The phenomenon is nonetheless
 linguistically correct (Recasens 1993) and rewarded by the higher-quality
 gold. This is the expected "broad gold ≠ narrow surface" trade-off — it is
 reported here rather than hidden.
+
+Adding stress-conditioned reduction (§4) and intervocalic spirantization (§3),
+and removing the Central reduction that Northwestern Catalan had wrongly
+inherited, improves the expert-human 4catac gold across the varieties — most
+dramatically Northwestern, which had been reducing vowels it should keep:
+
+| Row | Gold | Before | After | Δ |
+|---|---|---:|---:|---:|
+| ca | 4catac (expert human) | 0.4120 | 0.4026 | **−0.0094** |
+| ca-x-occidental | 4catac | 0.5633 | 0.4663 | **−0.0970** |
+| ca-x-valencia | 4catac | 0.3005 | 0.2994 | **−0.0011** |
+| ca-x-balear | 4catac | 0.3884 | 0.3893 | +0.0009 |
+| ca | styletts2_phonemes (espeak) | 0.4083 | 0.4012 | **−0.0071** |
+
+Northwestern Catalan (`ca-x-occidental`) drops by nearly 0.10: it no longer
+schwa-reduces vowels the Western block keeps full. Central and Valencian
+improve as stressed vowels stop being wrongly reduced. Balearic is flat
+within noise (+0.0009, far below the 0.005 regression threshold): its
+stressed vowels are now correct, but the automatic gold does not reward the
+change measurably.
 
 ## Brazilian Portuguese — final vowel raising
 

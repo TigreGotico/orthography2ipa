@@ -771,13 +771,24 @@ class TestCatalanOccidental:
     def spec(self, request):
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
-    def test_schwa_full_vowels(self):
-        """ə allophone → [a, e] — full vowels, no schwa reduction (key feature)."""
-        vals = _allophone(self.spec, "ə")
-        assert vals is not None
-        _assert_contains(vals, "a", "e", label="ə allophone")
-        assert "ɨ" not in vals, "Occidental should not have ɨ (that is Eastern)"
-        assert "ə" not in vals, "Occidental should not have ə (full vowels)"
+    def test_no_unstressed_reduction(self):
+        """No central schwa reduction: unstressed /a e o/ keep full quality.
+
+        Western/Occidental Catalan overrides the inherited Central
+        ⟨nucleus_unstressed⟩ reduction, so no ⟨ə⟩ (nor Eastern ⟨u⟩ from
+        unstressed /o/) is ever produced — the 7-vowel system is intact in
+        atonic position (Recasens 1996; Veny 1982).
+        """
+        import orthography2ipa
+        for word, expected in [
+            ("casa", "kaza"),   # unstressed a stays [a] (Central: kazə)
+            ("dona", "dɔna"),   # unstressed a stays [a]
+            ("tenir", "tɛniɾ"),  # unstressed e stays [e]/[ɛ] (Central: təniɾ)
+            ("porta", "pɔɾta"),  # unstressed a stays [a]
+        ]:
+            out = orthography2ipa.transcribe(word, "ca-x-occidental")
+            assert "ə" not in out, f"occidental {word!r}: {out!r} has schwa"
+            assert out == expected, f"occidental {word!r}: {out!r} != {expected!r}"
 
     def test_parent_is_ca(self):
         assert self.spec.parent == "ca"

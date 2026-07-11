@@ -90,5 +90,50 @@
     "end_year": null
   },
   "glottolog_code": "bale1254",
-  "iso639_3": "cat"
+  "iso639_3": "cat",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "n",
+      "t",
+      "k",
+      "p",
+      "m",
+      "f",
+      "x",
+      "ig",
+      "nc",
+      "nt",
+      "lt",
+      "st",
+      "lc",
+      "rc",
+      "mp",
+      "ps"
+    ],
+    "penult_stress_endings": [
+      "s",
+      "ns",
+      "es",
+      "as",
+      "os",
+      "is",
+      "us"
+    ],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "í",
+      "ï",
+      "ò",
+      "ó",
+      "ú",
+      "ü"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Balearic shares the standard Catalan (IEC) orthographic accentuation; stress is needed to condition unstressed-vowel reduction (Eastern block). Same rules as Central Catalan."
+  }
 }

@@ -960,31 +960,48 @@ class TestCatalan:
         p = _positional(self._spec, "c", GraphemePosition.BEFORE_I)
         assert p and "s" in p
 
-    def test_positional_b_intervocalic_fricative(self):
-        p = _positional(self._spec, "b", GraphemePosition.INTERVOCALIC)
-        assert p and "β" in p
+    def test_spirant_b_intervocalic(self):
+        """Intervocalic spirantization is a post-lexical allophone rule."""
+        ids = {r.id for r in self._spec.allophone_rules}
+        assert "CA_SPIRANT_B" in ids
+        assert "β" in orthography2ipa.transcribe("roba", "ca")
 
-    def test_positional_d_intervocalic_fricative(self):
-        p = _positional(self._spec, "d", GraphemePosition.INTERVOCALIC)
-        assert p and "ð" in p
+    def test_spirant_d_intervocalic(self):
+        ids = {r.id for r in self._spec.allophone_rules}
+        assert "CA_SPIRANT_D" in ids
+        assert "ð" in orthography2ipa.transcribe("cada", "ca")
 
-    def test_positional_g_intervocalic_fricative(self):
-        p = _positional(self._spec, "g", GraphemePosition.INTERVOCALIC)
-        assert p and "ɣ" in p
+    def test_spirant_g_intervocalic(self):
+        ids = {r.id for r in self._spec.allophone_rules}
+        assert "CA_SPIRANT_G" in ids
+        assert "ɣ" in orthography2ipa.transcribe("pagar", "ca")
 
-    def test_positional_a_nucleus_schwa(self):
-        """VOWEL REDUCTION: a in nucleus position → [ə]."""
-        p = _positional(self._spec, "a", GraphemePosition.NUCLEUS)
+    def test_stressed_vowel_keeps_quality(self):
+        """Stressed nuclei keep full quality; reduction is unstressed-only."""
+        assert orthography2ipa.transcribe("gos", "ca") == "ˈɡɔs"
+        assert orthography2ipa.transcribe("fred", "ca") == "ˈfɾɛt"
+        # unstressed nuclei DO reduce (Central/Eastern): a/e → ə, o → u
+        assert orthography2ipa.transcribe("casa", "ca") == "ˈkazə"
+        assert orthography2ipa.transcribe("dona", "ca") == "ˈdɔnə"
+
+    def test_positional_a_nucleus_unstressed_schwa(self):
+        """VOWEL REDUCTION: a in an UNSTRESSED nucleus → [ə]."""
+        p = _positional(self._spec, "a", GraphemePosition.NUCLEUS_UNSTRESSED)
         assert p and "ə" in p
 
-    def test_positional_e_nucleus_schwa(self):
-        p = _positional(self._spec, "e", GraphemePosition.NUCLEUS)
+    def test_positional_e_nucleus_unstressed_schwa(self):
+        p = _positional(self._spec, "e", GraphemePosition.NUCLEUS_UNSTRESSED)
         assert p and "ə" in p
 
-    def test_positional_o_nucleus_close(self):
-        """VOWEL REDUCTION: o in nucleus → [u] in Central Catalan."""
-        p = _positional(self._spec, "o", GraphemePosition.NUCLEUS)
+    def test_positional_o_nucleus_unstressed_close(self):
+        """VOWEL REDUCTION: unstressed o → [u] in Central Catalan."""
+        p = _positional(self._spec, "o", GraphemePosition.NUCLEUS_UNSTRESSED)
         assert p and "u" in p
+
+    def test_positional_a_stressed_full_quality(self):
+        """STRESSED a keeps [a] (no reduction) — via positional default."""
+        p = _positional(self._spec, "a", GraphemePosition.DEFAULT)
+        assert p == ["a"]
 
     def test_positional_s_intervocalic_voiced(self):
         p = _positional(self._spec, "s", GraphemePosition.INTERVOCALIC)
