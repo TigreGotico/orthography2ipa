@@ -1003,6 +1003,10 @@ RELIABILITY_TIERS = (
     "lexicon-derived",
     "crowd-scraped",
     "machine-generated",
+    # Least trustworthy of all: a COMPETITOR's output used as the reference, so
+    # the score measures agreement with that competitor rather than
+    # correctness. Never gate a quality decision on it (docs/quality_tiers.md).
+    "espeak-derived",
 )
 
 # Every key in DATASETS MUST appear here (a test enforces it, so a new
@@ -1024,8 +1028,15 @@ PROVENANCE: Dict[str, str] = {
     "wikipron": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
     "portuguese_phonetic_lexicon": "crowd-scraped",
-    # a phonemizer's own output reused as a reference — biggest grain of salt
-    "styletts2_phonemes": "machine-generated",  # phonemizer/espeak-derived TTS phonemes (partly circular vs espeak)
+    # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
+    # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
+    # not correctness — and espeak is a system we benchmark ourselves *against*
+    # (docs/comparison.md). Diverging from it can mean we are right and it is
+    # wrong, which would show here as a *worse* score. Quality also varies by
+    # language. Never gate a quality decision on this row; judge any divergence
+    # against a cited source instead. Kept because it is broad coverage and a
+    # useful directional signal.
+    "styletts2_phonemes": "espeak-derived",
     "ipa_childes": "machine-generated",         # CHILDES "G2P+" automatic phonemizer column
     "hitz_basque_ipa": "machine-generated",     # HiTZ ahoNT automatic phonemizer
     # LLM-generated (Claude, research-conditioned) IPA dictionaries — NOT a

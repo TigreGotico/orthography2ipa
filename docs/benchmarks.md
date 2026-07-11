@@ -71,7 +71,8 @@ without classifying it).
 | **expert-human** | IPA curated by phoneticians, trained annotators, or native speakers. | Still bound by the team's notation conventions; here often small-`N` and/or not peer-validated. |
 | **lexicon-derived** | Human lexicographers, via a published dictionary's notation — sometimes through a mechanical notation transform (ARPABET→IPA, slashed-phonemic→IPA). | Dictionary conventions ≠ surface phonetics; the transform step can add its own artifacts. |
 | **crowd-scraped** | Wiktionary community edits (WikiPron). | Uneven per language; some entries are themselves editor-applied rule output, not attested transcriptions. |
-| **machine-generated** | A phonemizer's *own output* reused as the reference. | **Biggest grain of salt.** Low PER = agreement with that tool, not correctness; espeak-lineage golds make an espeak comparison partly circular. |
+| **machine-generated** | A phonemizer's *own output* reused as the reference. | **Biggest grain of salt.** Low PER = agreement with that tool, not correctness. |
+| **espeak-derived** | A **competitor's** output reused as the reference (`styletts2_phonemes`, from the espeak-ng-backed phonemizer). | **Never gate a quality decision on this.** The row measures *agreement with espeak* — and espeak is a system we benchmark ourselves *against* ([comparison](comparison.md)). Diverging from it can mean we are right and it is wrong, which shows up here as a *worse* score. Quality also varies by language. Judge any divergence against a cited source, never against this number. Kept for its breadth as a directional signal. |
 
 ### Per-dataset classification
 
