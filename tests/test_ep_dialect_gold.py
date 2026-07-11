@@ -1,8 +1,9 @@
 """Signature-word tests for the seven European-Portuguese regional dialect specs.
 
 Each test asserts one or more phonemically diagnostic words per dialect as
-documented in DIALECT_PATTERNS.md and whitepaper5 (TigreGotico internal
-dialect research). The words are drawn from the research sources and cross-
+documented in DIALECT_PATTERNS.md, derived from Cintra, L.F.L. (1971), "Nova
+proposta de classificação dos dialectos galego-portugueses", Boletim de
+Filologia 22:81–116. The words are drawn from the research sources and cross-
 checked against the ep_dialect_sentences.csv gold set.
 
 Dialect specs under test:
