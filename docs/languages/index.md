@@ -61,6 +61,33 @@ each tier actually certifies.
 | [pt-MO.md](pt-MO.md) | Macau Portuguese (`pt-MO`) — EP-following; thin literature (skeleton); NOT the Patuá/maquista creole |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
+#### Latin American Spanish — regional scaffolding (stub tier, no prose page yet)
+
+Every Latin American national variety plus the major regional dialect
+zones of Lipski's (1994) classification (as summarised in Lipski's own
+["Geographical and Social Varieties of Spanish: An Overview"](https://johnlipski.github.io/geo.pdf))
+have at least a **stub** spec, so the ancestry / phonological-distance
+metrics resolve for the whole family. Stubs model only the pan-LatAm
+baseline (seseo, yeísmo) and carry a weighted ancestry chain
+`es-ES-x-medieval → es-ES → es-419 → country → region` plus the relevant
+indigenous adstrate; dialect-specific phonology is deliberately deferred.
+
+| Country | Regional stubs (`es-XX-x-…`) | Indigenous adstrate(s) |
+|:---|:---|:---|
+| Argentina (`es-AR`) | `cordoba`, `cuyo`, `norte`, `patagonia`, `litoral` | Quechua (`qu`), Mapudungun (`arn`), Guaraní (`gn`) |
+| Mexico (`es-MX`) | `norte`, `yucatan` (+ existing `costa`) | Nahuatl (`nah`), Yucatec Maya (`yua`) |
+| Colombia (`es-CO`) | `santander`, `valluno`, `llanero`, `pacifico` (+ existing `costa`, `paisa`) | — |
+| Peru (`es-PE`) | `andino`, `amazonico` (+ existing `lima`) | Quechua (`qu`), Aymara (`ay`) |
+| Chile (`es-CL`) | `andino`, `chilote` | Aymara (`ay`), Mapudungun (`arn`) |
+| Venezuela (`es-VE`) | `maracucho`, `andino`, `llanero` | — |
+| Bolivia (`es-BO`) | `andino`, `camba` | Quechua (`qu`), Aymara (`ay`), Guaraní (`gn`) |
+| Ecuador (`es-EC`) | `andino`, `costa` | Quechua (`qu`) |
+
+New national stubs: Honduras (`es-HN`), El Salvador (`es-SV`, Nawat/Pipil
+adstrate). Indigenous contact languages are themselves structural adstrate
+stubs (`gn`, `qu`, `ay`, `nah`, `arn`, `yua`, `quc`) — metadata only, no
+phonology claimed (the `afa.json` pattern).
+
 ### Asturleonese
 
 | Doc | Languages covered |
