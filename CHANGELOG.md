@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.77.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.77.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.76.0a1...1.77.0a1)
+
+**Merged pull requests:**
+
+- fix\(benchmarks\): classify styletts2 as espeak-derived, and never gate on it [\#276](https://github.com/TigreGotico/orthography2ipa/pull/276) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): populate wikidata/phoible/wals cross-reference ids [\#274](https://github.com/TigreGotico/orthography2ipa/pull/274) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.76.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.76.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.75.0a1...1.76.0a1)
@@ -705,10 +714,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.1a2...1.14.0a1)
 
-**Merged pull requests:**
-
-- feat\(benchmark\): add PR-gated benchmark regression CI job [\#80](https://github.com/TigreGotico/orthography2ipa/pull/80) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.13.1a2](https://github.com/TigreGotico/orthography2ipa/tree/1.13.1a2) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.1a1...1.13.1a2)
@@ -716,10 +721,6 @@
 ## [1.13.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.13.1a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.13.0a1...1.13.1a1)
-
-**Merged pull requests:**
-
-- test: add hypothesis property tests for transcribe, tokenizer, and registry [\#81](https://github.com/TigreGotico/orthography2ipa/pull/81) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.13.0a1) (2026-06-12)
 
