@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.48.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.48.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.47.0a1...1.48.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): research-grounded Macau and East-Timorese Portuguese [\#189](https://github.com/TigreGotico/orthography2ipa/pull/189) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.47.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.47.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.46.1a1...1.47.0a1)
@@ -615,7 +623,6 @@
 
 - fix: py3.9 annotation compatibility, plugin-failure logging, public exports [\#17](https://github.com/TigreGotico/orthography2ipa/pull/17) ([JarbasAl](https://github.com/JarbasAl))
 - Update phonetic representation of graphemes in an.json [\#14](https://github.com/TigreGotico/orthography2ipa/pull/14) ([Juanpabl](https://github.com/Juanpabl))
-- feat: ast+gl [\#8](https://github.com/TigreGotico/orthography2ipa/pull/8) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
