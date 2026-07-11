@@ -89,16 +89,23 @@ palatalise this prevocalic sibilant to `[ʒ]` (the "Tajaver" pronunciation):
 |:---|:---:|:---|
 | North — [pt-PT-x-porto](pt-PT-x-porto.md) | alveolar `[z]` | [eˈʃtaz ˈɐ ˈbɛɾ] |
 | Lisbon — [pt-PT-x-lisbon](pt-PT-x-lisbon.md) | alveolar `[z]` | [eˈʃtaz ˈɐ ˈvɛɾ] |
-| Coimbra (centre) | variable `[z]`~`[ʒ]` | (not a separate spec yet) |
+| **Coimbra (centre)** — [pt-PT-x-coimbra](pt-PT-x-coimbra.md) | variable `[z]`~**`[ʒ]`** (models `[ʒ]` pole) | [eˈʃtaʒ ˈɐ ˈvɛɾ] |
 | **Algarve** — [pt-PT-x-algarve](pt-PT-x-algarve.md) | **`[ʒ]`** (categorical) | [eˈʃtaʒ ˈɐ ˈvɛɾ] |
-| **Azores / São Miguel** — [pt-PT-x-acores](pt-PT-x-acores.md) | **`[ʒ]`** (prevocalic only) | [eˈʃtaʒ ˈɐ ˈvɛɾ] |
+| **Azores / São Miguel** — [pt-PT-x-sao-miguel](pt-PT-x-sao-miguel.md) | **`[ʒ]`** (prevocalic only) | [eˈʃtaʒ ˈɐ ˈvɛɾ] |
 
 The Algarve realises word-final /s/ as `[ʒ]` in **all** word-final positions
 (via its positional `word_final` map), so `[ʒ]` also surfaces prevocalically;
 São Miguel restricts `[ʒ]` to the **prevocalic** sandhi (re-declaring
 `PT_FINAL_S_PREVOCALIC_VOICE` with transform `ʒ`), keeping `[ʃ]` before a
-consonant or pause. Coimbra is variable and is **not** given a separate spec in
-this pass.
+consonant or pause. Coimbra is variable `[z]`~`[ʒ]`; its dedicated spec
+[pt-PT-x-coimbra](pt-PT-x-coimbra.md) models the marked local `[ʒ]` pole (the
+Coimbra speaker in *Portuguese With Leo*, "Coimbra tem sotaque?", demonstrates
+"os olhos" with the J-sound). **Flagged counter-evidence:** the
+[Trás-os-Montes](pt-PT-x-trasosmontes.md) deep-dive speaker (Chaves) also uses
+prevocalic `[ʒ]` and reports it "muito espalhado" into the North — contradicting
+the `[z]`-across-the-North claim above; this is recorded in the
+`pt-PT-x-trasosmontes` notes but **not** modelled (single casual attestation vs
+the standard academic `[z]`).
 
 **Sourcing.** The standard `[z]` value is well documented (Mateus & d'Andrade
 2000: ch.2; Wikipedia *Portuguese phonology*, Consonant sandhi: `bons amigos`

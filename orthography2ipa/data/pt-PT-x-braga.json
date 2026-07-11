@@ -1,0 +1,174 @@
+{
+  "code": "pt-PT-x-braga",
+  "name": "Bracarense Portuguese",
+  "family": "Romance",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "graphemes": {
+    "ou": [
+      "ow"
+    ],
+    "ei": [
+      "ej"
+    ]
+  },
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "v": [
+      "b",
+      "β"
+    ],
+    "ʁ": [
+      "ʁ",
+      "χ",
+      "ʀ",
+      "x"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "allophone_rules": [
+    {
+      "id": "BRA_BETACISM",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "b",
+      "notes": "Northern betacism (Cintra's all-Northern trait 1), realised strongly in Braga: the /v/ ~ /b/ opposition is lost and both merge into a single phoneme /b/, surfacing as the stop [b] or the softer spirant [β] (vou -> [bow], vaca -> [ˈbakɐ], vacina -> [bɐˈsinɐ]). Cintra (1971:87): 'o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua fusão num fonema único /b/, realizado ora como oclusiva, ora como fricativa (ou espirante) b ou β' — the [β] variant is recorded in the allophones inventory. NATIVE ATTESTATION: the Braga speaker Miguel in Portuguese With Leo, 'Sotaque e expressões de Braga' (native-speaker source, https://www.youtube.com/watch?v=xaen3F8256M): 'pões o B em vez do V ... muitos sons que em português standard seriam Vvvv, mas vocês dizem um B ... às vezes é um B mais pronunciado, outras vezes é um B mais suave tipo Bou' (vou -> bou); and 'no norte diz-se bácina, às vezes assim com um ligeiro B' (vacina). Modelled as a post-lexical phoneme-side rewrite so the merger applies uniformly however /v/ arises from the inherited grapheme map."
+    },
+    {
+      "id": "BRA_DIPHTHONGISE_E",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "je",
+      "stress": "stressed",
+      "syllable_position": "nucleus",
+      "notes": "Diphthongisation of the tonic CLOSE-mid front vowel [e] -> rising [je] (mês -> [ˈmjeʃ], ele -> [ˈjelɨ]), the diagnostic diphthongisation of the Baixo-Minho / Douro-Litoral zone (of which Braga, in the Minho, is part). Cintra (1971): 'a ditongação, tão caracterizadora, das vogais tónicas fechadas [e] em [je], [o] em [wo]'; Segura (2013) names diphthongisation of stressed vowels the characteristic trait of the north-western variety. NATIVE ATTESTATION: the 8-accents overview (Portuguese With Leo, https://www.youtube.com/watch?v=pitj0XxYO7I) records the Braga 'o quê' -> 'o quiê' (insertion of the [j] onglide: quê [ke] -> [kje]) and 'mieu' (meu). Gated to the CLOSE [e] only (genuinely open tonic [ɛ] does NOT diphthongise); same pre-lexical open/close LIMIT as pt-PT-x-porto — words whose standard value is close [e] but which the base engine transcribes [ɛ] (cedo, medo) escape the rule, which is deliberately not widened to [ɛ]."
+    },
+    {
+      "id": "BRA_DIPHTHONGISE_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "wo",
+      "stress": "stressed",
+      "syllable_position": "nucleus",
+      "notes": "Diphthongisation of the tonic CLOSE-mid back vowel [o] -> rising [wo] (avô -> [ɐˈbwo], pôr -> [ˈpwoɾ]), the back-vowel counterpart of BRA_DIPHTHONGISE_E in the same Cintra (1971) Baixo-Minho passage; Segura (2013). Gated to CLOSE [o]; genuinely open tonic [ɔ] does not diphthongise. Same pre-lexical open/close LIMIT as pt-PT-x-porto."
+    }
+  ],
+  "notes": "Bracarense (Braga) European Portuguese — a Northern (Minho) variety of the Cintra Baixo-Minho / Douro-Litoral zone, described natively as HEAVIER / more strongly Northern than Porto (Portuguese With Leo, 'Sotaque e expressões de Braga', native-speaker source, https://www.youtube.com/watch?v=xaen3F8256M, and the 8-accents overview https://www.youtube.com/watch?v=pitj0XxYO7I). A DELTA spec over the broad pt-PT base; it inherits the whole standard EP system (unstressed vowel reduction, dark coda /l/, coda-sibilant chiado, sandhi) and declares only the Northern deltas. MODELLED FEATURES: (1) BETACISM — /v/~/b/ merge in /b/ (~[β]) (allophone rule BRA_BETACISM), attested more categorically than Porto's variable merger: Miguel 'em Braga vai-me sair naturalmente trocar o V pelo B'. (2) TONIC-CLOSE-VOWEL DIPHTHONGISATION — [e]->[je], [o]->[wo] (BRA_DIPHTHONGISE_E/_O), the Cintra Baixo-Minho marker, natively attested via 'quiê' (quê) and 'mieu' (meu). (3) DIPHTHONG PRESERVATION — <ou>->[ow] (Miguel: 'tu dizes OU, dizes vOU ou bOU') and <ei>->[ej] kept where Lisbon monophthongises/lowers ([o], [ɐj]) (inherited-map grapheme deltas). NOT MODELLED (documented, not faked): (a) the northern 'vogais mais abertas' / prosodic lengthening for emphasis (Miguel: 'abres mais o A em cantÁdo ... prolongar algumas sílabas quando queremos dar uma ênfase especial') and the 'mais musical / mais cantado' cadence are gradient prosodic traits, not segmental rules. (b) The word-final paragogic /r/ release in -ar verbs (Miguel: 'vocês dizem tipo Faláre, gostarE ... a meio caminho entre o ehrr mais inglês e o ere mais certinho') is variable ('já não foi tanto') and hard to gate to infinitives orthographically; left inherited. (c) The 'beim' (bem) realisation is nasal-diphthong detail left to a downstream engine. (d) 'Vós ides / vinde / ide' is a morphosyntactic, not phonological, feature. LIMIT (shared with pt-PT-x-porto): the diphthongisation rules are gated to CLOSE mid vowels; because open/close for spelling-unmarked stressed <e>/<o> is lexical and the inherited pt-PT map defaults to the OPEN allophone, some underlying-close words (cedo, medo) escape diphthongisation — widening to the open vowels would wrongly diphthongise genuinely open tonic vowels (café, avó) and is rejected. The apico-alveolar coda sibilant (Cintra's primary North/South isogloss) is an articulatory distinction not simulable at the phoneme/orthography level.",
+  "quality": "research",
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Standard (Lisbon-type) European Portuguese; Braga diverges by (strong) Northern betacism (v->b/β), tonic-close-vowel diphthongisation ([e]->[je], [o]->[wo]), and diphthong preservation (<ou>->[ow], <ei>->[ej])."
+    }
+  ],
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "pwl_braga",
+      "author": "Portuguese With Leo (with Miguel, bracarense)",
+      "year": 2022,
+      "title": "Sotaque e expressões de Braga",
+      "publisher": "YouTube (native-speaker / popular-linguistics)",
+      "url": "https://www.youtube.com/watch?v=xaen3F8256M",
+      "pages": null,
+      "notes": "Native-speaker EP accent deep-dive (NOT academic). Attests, with example words: Northern betacism v->b/[β] ('pões o B em vez do V', 'vou/bou', 'vacina -> bácina, às vezes com um ligeiro B'); diphthong preservation <ou>->[ow] ('tu dizes OU, dizes vOU ou bOU'); more open vowels and prosodic lengthening ('abres mais o A em cantÁdo', 'mais musical, mais cantado'); and the variable word-final paragogic -r in -ar verbs ('Faláre', 'gostarE'). Braga framed as a distinct, heavier Northern accent."
+    },
+    {
+      "id": "pwl8accents",
+      "author": "Portuguese With Leo",
+      "year": 2021,
+      "title": "The 8 Portuguese accents of Portugal",
+      "publisher": "YouTube (native-speaker / popular-linguistics)",
+      "url": "https://www.youtube.com/watch?v=pitj0XxYO7I",
+      "pages": null,
+      "notes": "Native-speaker EP accent breakdown (NOT academic). Records the Braga tonic-close-vowel diphthongisation via 'o quê' -> 'o quiê' (quê [ke] -> [kje]) and 'mieu' (meu), and 'beim' (bem); grounds the BRA_DIPHTHONGISE_E reading together with Cintra's Baixo-Minho diphthongisation isogloss."
+    },
+    {
+      "id": "cintra1971",
+      "author": "Cintra, Luís F. Lindley",
+      "year": 1971,
+      "title": "Nova proposta de classificação dos dialectos galego-portugueses",
+      "publisher": "Boletim de Filologia (Centro de Estudos Filológicos, Lisboa), vol. 22, pp. 81-116",
+      "url": "https://cvc.instituto-camoes.pt/hlp/biblioteca/novaproposta.pdf",
+      "pages": "81-116",
+      "notes": "Foundational classification of the Galician-Portuguese dialect space. Trait 1 (betacism, p.87): 'o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua fusão num fonema único /b/, realizado ora como oclusiva, ora como fricativa (ou espirante) b ou β'. The Baixo-Minho / Douro-Litoral (of which Braga, in the Minho, is part) is delimited by 'a ditongação, tão caracterizadora, das vogais tónicas fechadas [e] em [je], [o] em [wo] (por vezes [wɔ])'. Grounds the modelled betacism and tonic-vowel diphthongisation."
+    },
+    {
+      "id": "segura2013",
+      "author": "Segura, Luísa",
+      "year": 2013,
+      "title": "Variedades dialetais do português europeu",
+      "publisher": "In Raposo, E.B.P. et al. (eds.), Gramática do Português, vol. I, Fundação Calouste Gulbenkian, Lisboa, pp. 85-142",
+      "url": null,
+      "pages": "85-142",
+      "notes": "Modern EP dialectology synthesis. Names diphthongisation of stressed vowels as the characteristic trait of the north-western (Baixo-Minho / Douro-Litoral) variety and documents Northern betacism — the corroborating academic source for the Braga features modelled here."
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference EP phonology for the inherited base processes (unstressed vowel reduction, dark coda /l/, coda sibilants) that Braga inherits unchanged from pt-PT."
+    }
+  ],
+  "wikipedia": [
+    "https://pt.wikipedia.org/wiki/Dialeto_minhoto"
+  ],
+  "urls": [
+    "https://pt.wikipedia.org/wiki/Dialeto_minhoto",
+    "https://en.wikipedia.org/wiki/Portuguese_dialects"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  }
+}
