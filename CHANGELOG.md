@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.33.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.33.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.32.0a1...1.33.0a1)
+
+**Merged pull requests:**
+
+- feat\(engine\): apply context-conditioned allophone rules as post-lexical rescorer \(B8\) [\#143](https://github.com/TigreGotico/orthography2ipa/pull/143) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.32.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.32.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.31.0a1...1.32.0a1)
@@ -123,19 +131,19 @@
 
 ## [1.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.1a1) (2026-07-10)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.21.1a1)
 
 **Merged pull requests:**
 
 - fix\(g2p\): route word\_exceptions overrides through stress marking [\#109](https://github.com/TigreGotico/orthography2ipa/pull/109) ([JarbasAl](https://github.com/JarbasAl))
 
-## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.20.0a1)
-
 ## [1.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.0a1) (2026-07-09)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.21.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.0a1)
+
+## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.20.0a1)
 
 **Merged pull requests:**
 
