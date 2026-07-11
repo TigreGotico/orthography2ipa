@@ -1,7 +1,7 @@
 {
   "code": "cop",
   "name": "Coptic (Sahidic)",
-  "family": "Afroasiatic",
+  "family": "Afro-Asiatic > Egyptian",
   "script": "Coptic",
   "graphemes": {
     "ⲁ": [
@@ -255,7 +255,7 @@
     "start_year": 200,
     "end_year": 1400
   },
-  "glottolog_code": "sahi1246",
+  "glottolog_code": "copt1239",
   "parent": "egy",
   "ancestors": [
     {

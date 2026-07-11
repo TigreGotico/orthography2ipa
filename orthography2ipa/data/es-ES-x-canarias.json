@@ -1,7 +1,7 @@
 {
   "code": "es-ES-x-canarias",
   "name": "Canarian Spanish",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -105,6 +105,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "cana1268",
+  "glottolog_code": "cana1269",
   "iso639_3": "spa"
 }

@@ -1,7 +1,7 @@
 # Pyrenean-valley Aragonese subdialects — Phonology Reference
 
 **Codes**: `an-x-ansotano`, `an-x-cheso`, `an-x-chistabin`, `an-x-belsetan`,
-`an-x-tensino` | **Family**: Romance | **Script**: Latin (alphabet)
+`an-x-tensino` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Parent**: `an` (Aragonese) | **Quality tiers**: cheso / chistabín / belsetán =
 research; ansotano / tensino = skeleton
 

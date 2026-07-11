@@ -1,6 +1,6 @@
 # Modern Standard Arabic (ar) — Phonology Reference
 
-**Code**: `ar` | **Family**: Semitic | **Script**: Arabic (abjad)
+**Code**: `ar` | **Family**: Afro-Asiatic > Semitic > Central Semitic | **Script**: Arabic (abjad)
 **Quality tier**: research | **Sources**: Watson (2002), Sun and moon letters (Wikipedia)
 
 ---

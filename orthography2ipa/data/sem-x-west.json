@@ -1,7 +1,7 @@
 {
   "code": "sem-x-west",
   "name": "Proto-West-Semitic",
-  "family": "Afroasiatic",
+  "family": "Afro-Asiatic > Semitic > West Semitic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "graphemes_base": "sem",
@@ -45,7 +45,7 @@
     "start_year": -2500,
     "end_year": -1500
   },
-  "glottolog_code": null,
+  "glottolog_code": "west2786",
   "iso639_3": null,
   "quality": "research"
 }

@@ -1,7 +1,7 @@
 {
     "code": "ar-NG",
     "name": "Nigerian Arabic (Shuwa)",
-    "family": "Semitic",
+    "family": "Afro-Asiatic > Semitic > Central Semitic",
     "script": "Arabic",
     "graphemes_base": "ar-TD",
     "graphemes": {
@@ -90,6 +90,6 @@
         "start_year": 1700,
         "end_year": null
     },
-    "glottolog_code": "shua1254",
+    "glottolog_code": null,
     "iso639_3": "shu"
 }

@@ -1,7 +1,7 @@
 {
   "code": "ca-x-occidental",
   "name": "Northwestern Catalan (Lleidatà)",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes_base": "ca",
   "allophones_base": "ca",
@@ -110,6 +110,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "nort3175",
+  "glottolog_code": "cata1291",
   "iso639_3": "cat"
 }

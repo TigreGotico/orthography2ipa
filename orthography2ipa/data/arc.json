@@ -1,7 +1,7 @@
 {
   "code": "arc",
   "name": "Aramaic",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -67,7 +67,7 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "arc",
-  "glottolog_code": "aram1259",
+  "glottolog_code": "impe1235",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aramaic"
   ],

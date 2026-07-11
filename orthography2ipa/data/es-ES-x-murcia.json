@@ -1,7 +1,7 @@
 {
   "code": "es-ES-x-murcia",
   "name": "Murcian Spanish (Panocho)",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -117,6 +117,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": null,
+  "glottolog_code": "murc1238",
   "iso639_3": "spa"
 }

@@ -1,7 +1,8 @@
 {
   "code": "my",
   "name": "Burmese",
-  "family": "Sino-Tibetan",
+  "glottolog_code": "nucl1310",
+  "family": "Sino-Tibetan > Burmish",
   "script": "Myanmar",
   "script_type": "abugida",
   "inherent_vowel": "a",

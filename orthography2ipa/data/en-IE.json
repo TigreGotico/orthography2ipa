@@ -1,7 +1,7 @@
 {
   "code": "en-IE",
   "name": "Irish English (Hiberno-English)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic > West Germanic",
   "script": "Latin",
   "graphemes_base": "en-GB",
   "allophones_base": "en-GB",
@@ -72,6 +72,6 @@
     "start_year": 1600,
     "end_year": null
   },
-  "glottolog_code": "hibe1234",
+  "glottolog_code": "iris1255",
   "iso639_3": "eng"
 }

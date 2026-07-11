@@ -1,6 +1,6 @@
 # European Portuguese (pt-PT) — Phonology Reference
 
-**Code**: `pt-PT` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Sources**: Mateus & d'Andrade (2000), Cruz-Ferreira (1995, *JIPA* 25(2)), Cunha & Cintra (1984), Mateus et al. (2003)
 
 European Portuguese (EP) is the Lisbon-based standard variety. Its defining

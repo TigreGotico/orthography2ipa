@@ -1,7 +1,7 @@
 {
   "code": "kok",
   "name": "Konkani",
-  "family": "Indo-Aryan",
+  "family": "Indo-European > Indo-Aryan",
   "script": "Devanagari",
   "graphemes": {
     "अ": [
@@ -377,5 +377,5 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "konk1267"
+  "glottolog_code": "goan1235"
 }

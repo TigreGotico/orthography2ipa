@@ -1,7 +1,7 @@
 {
   "code": "ps",
   "name": "Pashto (Standard Afghan)",
-  "family": "Iranian",
+  "family": "Indo-European > Iranian",
   "script": "Arabic",
   "graphemes": {
     "ا": [
@@ -341,6 +341,6 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "nort2684",
+  "glottolog_code": "nucl1276",
   "iso639_3": "pus"
 }

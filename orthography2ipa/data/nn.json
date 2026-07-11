@@ -1,7 +1,7 @@
 {
   "code": "nn",
   "name": "Norwegian Nynorsk",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic > North Germanic",
   "script": "Latin",
   "graphemes_base": "no",
   "allophones_base": "no",
@@ -57,6 +57,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "norw1261",
+  "glottolog_code": "norw1262",
   "iso639_3": "nno"
 }

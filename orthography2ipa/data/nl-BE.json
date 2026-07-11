@@ -1,7 +1,7 @@
 {
   "code": "nl-BE",
   "name": "Belgian Dutch (Flemish)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic > West Germanic",
   "script": "Latin",
   "graphemes_base": "nl",
   "allophones_base": "nl",
@@ -39,6 +39,6 @@
     "start_year": 1600,
     "end_year": null
   },
-  "glottolog_code": "flem1244",
+  "glottolog_code": null,
   "iso639_3": "nld"
 }

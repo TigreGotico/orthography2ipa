@@ -1,6 +1,6 @@
 # Macau Portuguese (pt-MO) — Phonology Reference
 
-**Code**: `pt-MO` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-MO` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: skeleton (deliberately) | **Parent**: `pt-PT`
 
 Macau Portuguese (*Português de Macau*) is a co-official language of the Macau

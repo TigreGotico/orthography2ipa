@@ -1,7 +1,7 @@
 {
     "code": "en-AU",
     "name": "Australian English",
-    "family": "Germanic",
+    "family": "Indo-European > Germanic > West Germanic",
     "script": "Latin",
     "graphemes_base": "en-GB",
     "allophones_base": "en-GB",
@@ -69,6 +69,6 @@
         "start_year": 1800,
         "end_year": null
     },
-    "glottolog_code": "aust1239",
+    "glottolog_code": "aust1314",
     "iso639_3": "eng"
 }

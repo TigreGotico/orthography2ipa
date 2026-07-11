@@ -1,7 +1,7 @@
 {
   "code": "pt-PT-x-minho",
   "name": "Minhoto Portuguese",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "pt-PT",
   "allophones_base": "pt-PT",
@@ -123,7 +123,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "minh1237",
+  "glottolog_code": null,
   "iso639_3": "por",
   "stress": {
     "default_position": -2,

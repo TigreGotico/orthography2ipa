@@ -1,7 +1,7 @@
 {
   "code": "ar-DZ",
   "name": "Algerian Arabic",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-maghrebi",
   "graphemes": {

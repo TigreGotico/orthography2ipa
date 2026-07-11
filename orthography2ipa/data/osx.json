@@ -1,7 +1,7 @@
 {
     "code": "osx",
     "name": "Old Saxon",
-    "family": "Germanic",
+    "family": "Indo-European > Germanic > West Germanic",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -243,5 +243,5 @@
         "start_year": 800,
         "end_year": 1150
     },
-    "glottolog_code": "olds1238"
+    "glottolog_code": "olds1250"
 }

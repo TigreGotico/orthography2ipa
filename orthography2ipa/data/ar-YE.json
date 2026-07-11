@@ -1,7 +1,7 @@
 {
   "code": "ar-YE",
   "name": "Yemeni Arabic (Ṣanʿānī)",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {
@@ -115,6 +115,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "yeme1256",
+  "glottolog_code": "sana1295",
   "iso639_3": "ayn"
 }

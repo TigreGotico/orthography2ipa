@@ -1,7 +1,7 @@
 {
   "code": "xaq",
   "name": "Aquitanian (Proto-Basque)",
-  "family": "Vasconic",
+  "family": "Basque",
   "script": "Latin",
   "graphemes": {
     "b": [
@@ -164,6 +164,6 @@
     "start_year": -600,
     "end_year": 400
   },
-  "glottolog_code": "aqui1235",
+  "glottolog_code": null,
   "iso639_3": null
 }

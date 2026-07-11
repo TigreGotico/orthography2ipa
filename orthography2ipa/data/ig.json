@@ -1,7 +1,8 @@
 {
   "code": "ig",
   "name": "Igbo",
-  "family": "Niger-Congo",
+  "glottolog_code": "nucl1417",
+  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "ibo",

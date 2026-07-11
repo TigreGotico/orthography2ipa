@@ -1,7 +1,7 @@
 {
   "code": "txr",
   "name": "Tartessian (Southwestern)",
-  "family": "Unclassified",
+  "family": "Unclassifiable",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -131,7 +131,7 @@
     "start_year": -800,
     "end_year": -400
   },
-  "glottolog_code": "tart1246",
+  "glottolog_code": "tart1237",
   "iso639_3": "txr",
   "quality": "research"
 }

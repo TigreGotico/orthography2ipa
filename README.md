@@ -197,7 +197,7 @@ en.allophones["t"]    # ['t', 'tʰ', 'ʔ', 'ɾ']
 
 # Metadata
 en.name               # 'British English (RP)'
-en.family             # 'Germanic'
+en.family             # 'Indo-European > Germanic > West Germanic'
 en.script             # 'Latin'
 
 # Regional variants share ancestry but diverge where pronunciation does
@@ -268,7 +268,8 @@ After installation the `orthography2ipa` command is available. Every subcommand 
 # List languages and families
 orthography2ipa list
 orthography2ipa list --families
-orthography2ipa list --family Romance
+orthography2ipa list --family Romance          # any step of the path matches
+orthography2ipa list --family Ibero-Romance   # ... including the sub-branch
 
 # Inspect a language
 orthography2ipa info pt-BR
@@ -315,7 +316,7 @@ rules, lexical exceptions, and more) is in
 class LanguageSpec:
     code: str                              # 'pt-BR'
     name: str                              # 'Brazilian Portuguese'
-    family: str                            # 'Romance'
+    family: str                            # 'Indo-European > Romance > Ibero-Romance'
     script: str                            # 'Latin'
     graphemes: Dict[str, List[str]]        # 'th' → ['θ', 'ð']
     allophones: Dict[str, List[str]]       # 't' → ['t', 'tʰ', 'ʔ', 'ɾ']

@@ -1,7 +1,8 @@
 {
   "code": "bo",
   "name": "Tibetan",
-  "family": "Sino-Tibetan",
+  "glottolog_code": "tibe1272",
+  "family": "Sino-Tibetan > Bodic",
   "script": "Tibetan",
   "script_type": "abugida",
   "inherent_vowel": "a",

@@ -1,6 +1,7 @@
 {
   "code": "vi",
   "name": "Vietnamese",
+  "glottolog_code": "viet1252",
   "family": "Austroasiatic",
   "script": "Latin",
   "script_type": "alphabet",

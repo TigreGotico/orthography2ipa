@@ -1,7 +1,7 @@
 {
   "code": "acy",
   "name": "Cypriot Maronite Arabic",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Latin",
   "graphemes": {
     "b": [
@@ -312,5 +312,5 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "cypr1249"
+  "glottolog_code": "cypr1248"
 }

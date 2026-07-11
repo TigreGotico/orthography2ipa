@@ -1,7 +1,7 @@
 {
   "code": "es-UY",
   "name": "Uruguayan Spanish",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -74,6 +74,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "urug1238",
+  "glottolog_code": null,
   "iso639_3": "spa"
 }

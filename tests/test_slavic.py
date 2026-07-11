@@ -179,7 +179,7 @@ class TestRussian:
 
     def test_family(self):
         """Russian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic", f"Expected family='Slavic', got {self._spec.family!r}"
+        assert self._spec.family == "Indo-European > Slavic > East Slavic", f"Expected family='Indo-European > Slavic > East Slavic', got {self._spec.family!r}"
 
 
 # ---------------------------------------------------------------------------
@@ -299,7 +299,7 @@ class TestPolish:
 
     def test_family(self):
         """Polish spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic", f"Expected family='Slavic', got {self._spec.family!r}"
+        assert self._spec.family == "Indo-European > Slavic > West Slavic", f"Expected family='Indo-European > Slavic > West Slavic', got {self._spec.family!r}"
 
 
 # ---------------------------------------------------------------------------
@@ -417,7 +417,7 @@ class TestCzech:
 
     def test_family(self):
         """Czech spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic", f"Expected family='Slavic', got {self._spec.family!r}"
+        assert self._spec.family == "Indo-European > Slavic > West Slavic", f"Expected family='Indo-European > Slavic > West Slavic', got {self._spec.family!r}"
 
 
 # ---------------------------------------------------------------------------
@@ -527,7 +527,7 @@ class TestBulgarian:
 
     def test_family(self):
         """Bulgarian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic", f"Expected family='Slavic', got {self._spec.family!r}"
+        assert self._spec.family == "Indo-European > Slavic > South Slavic", f"Expected family='Indo-European > Slavic > South Slavic', got {self._spec.family!r}"
 
 
 # ---------------------------------------------------------------------------
@@ -549,7 +549,7 @@ class TestSlovak:
 
     def test_family_slavic(self):
         """Slovak spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic"
+        assert self._spec.family == "Indo-European > Slavic > West Slavic"
 
     def test_has_graphemes(self):
         """Slovak spec must have a non-empty grapheme mapping."""
@@ -591,7 +591,7 @@ class TestUkrainian:
 
     def test_family_slavic(self):
         """Ukrainian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic"
+        assert self._spec.family == "Indo-European > Slavic > East Slavic"
 
     def test_has_graphemes(self):
         """Ukrainian spec must have a non-empty grapheme mapping."""
@@ -641,7 +641,7 @@ class TestBelarusian:
 
     def test_family_slavic(self):
         """Belarusian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic"
+        assert self._spec.family == "Indo-European > Slavic > East Slavic"
 
     def test_has_graphemes(self):
         """Belarusian spec must have a non-empty grapheme mapping."""
@@ -675,7 +675,7 @@ class TestCroatian:
 
     def test_family_slavic(self):
         """Croatian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic"
+        assert self._spec.family == "Indo-European > Slavic > South Slavic"
 
     def test_has_graphemes(self):
         """Croatian spec must have a non-empty grapheme mapping."""
@@ -713,7 +713,7 @@ class TestSlovenian:
 
     def test_family_slavic(self):
         """Slovenian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic"
+        assert self._spec.family == "Indo-European > Slavic > South Slavic"
 
     def test_has_graphemes(self):
         """Slovenian spec must have a non-empty grapheme mapping."""
@@ -752,7 +752,7 @@ class TestSerbian:
 
     def test_family_slavic(self):
         """Serbian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic"
+        assert self._spec.family == "Indo-European > Slavic > South Slavic"
 
     def test_has_graphemes(self):
         """Serbian spec must have a non-empty grapheme mapping."""
@@ -790,7 +790,7 @@ class TestMacedonian:
 
     def test_family_slavic(self):
         """Macedonian spec must declare family='Slavic'."""
-        assert self._spec.family == "Slavic"
+        assert self._spec.family == "Indo-European > Slavic > South Slavic"
 
     def test_has_graphemes(self):
         """Macedonian spec must have a non-empty grapheme mapping."""

@@ -15,7 +15,7 @@
   ],
   "code": "fa",
   "name": "Persian (Farsi)",
-  "family": "Iranian",
+  "family": "Indo-European > Iranian > Western Iranian",
   "script": "Arabic",
   "graphemes": {
     "ا": [
@@ -289,6 +289,6 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "nucl1301",
+  "glottolog_code": "west2369",
   "iso639_3": "fas"
 }

@@ -1,7 +1,7 @@
 {
   "code": "pt-PT-x-medieval",
   "name": "Old Portuguese",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -209,7 +209,7 @@
     "start_year": 1200,
     "end_year": 1500
   },
-  "glottolog_code": "oldp1255",
+  "glottolog_code": "oldp1257",
   "iso639_3": "por",
   "stress": {
     "default_position": -2,

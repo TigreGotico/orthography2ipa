@@ -1,6 +1,6 @@
 # Barranquenho (ext-PT-x-barrancos) — Phonology Reference
 
-**Code**: `ext-PT-x-barrancos` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `ext-PT-x-barrancos` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` | **Quality tier**: research | **Glottolog**: `barr1235`
 **Sources**: Navas Sánchez-Élez (2011), *El barranqueño: un modelo de lenguas en contacto*; Clements, Amaral & Luís (2008, *BLS* 34); Convenção Ortográfica do Barranquenho (2025); Gramática Básica de Barranquenho (Gonçalves, Navas & Correia, 2025)
 

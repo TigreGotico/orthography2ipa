@@ -1,7 +1,7 @@
 {
   "code": "es-CL",
   "name": "Chilean Spanish",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -144,7 +144,7 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "chil1276",
+  "glottolog_code": "chil1286",
   "iso639_3": "spa",
   "ancestors": [
     {

@@ -1,7 +1,7 @@
 {
   "code": "da-x-copenhagen",
   "name": "Danish (Copenhagen / Rigsdansk)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic > North Germanic",
   "script": "Latin",
   "graphemes_base": "da",
   "allophones_base": "da",
@@ -60,6 +60,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "cope1239",
+  "glottolog_code": null,
   "iso639_3": "dan"
 }

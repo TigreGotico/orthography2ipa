@@ -1,6 +1,6 @@
 # French (fr-FR) — Phonology Reference
 
-**Code**: `fr-FR` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `fr-FR` | **Family**: Indo-European > Romance > Gallo-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Orthographic depth**: deep (production threshold ≤ 0.25 PER)
 **Sources**: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995)
 **Benchmark**: wikipron `fra_latn_broad.tsv`, `fr` tag, n=279, PER=0.1559 (see `benchmarks/results.json`)

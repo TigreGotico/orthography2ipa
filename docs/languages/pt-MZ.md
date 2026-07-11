@@ -1,6 +1,6 @@
 # Mozambican Portuguese (pt-MZ) — Phonology Reference
 
-**Code**: `pt-MZ` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-MZ` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` | **Quality tier**: research
 **Sources**: Nhatuve (2019, *Revista de Letras* 21(32):130–144); Gonçalves (2010, *A Génese do Português de Moçambique*) via Barbosa (2011, review, *ELUP* 6(1):201–204); Stroud & Gonçalves (1997)
 

@@ -1,6 +1,6 @@
 # German (de-DE) — Phonology Reference
 
-**Code**: `de-DE` | **Family**: Germanic | **Script**: Latin (alphabet)
+**Code**: `de-DE` | **Family**: Indo-European > Germanic > West Germanic | **Script**: Latin (alphabet)
 **Quality tier**: research (deep orthography; production threshold ≤ 0.25 PER at ≥ 500 gold entries) | **Sources**: Wiese (1996), Hall (2003), Mangold (2005), Kohler (1990), Wikipedia German phonology, Wikipedia German orthography
 
 **Benchmark**: wikipron, n=269, PER 0.3613 (improved from a 0.3656 baseline after

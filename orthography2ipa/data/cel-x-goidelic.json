@@ -1,7 +1,7 @@
 {
     "code": "cel-x-goidelic",
     "name": "Proto-Goidelic (reconstructed)",
-    "family": "Celtic",
+    "family": "Indo-European > Celtic > Goidelic",
     "script": "IPA-reconstruction",
     "graphemes": {
         "a": [
@@ -216,6 +216,6 @@
         "start_year": -500,
         "end_year": 500
     },
-    "glottolog_code": "goid1235",
+    "glottolog_code": "goid1240",
     "iso639_3": null
 }

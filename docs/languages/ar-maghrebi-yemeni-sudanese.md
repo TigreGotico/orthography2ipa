@@ -3,7 +3,7 @@
 **Codes**: `ar-x-maghrebi` (Proto-Maghrebi node) → `ar-MA` (Moroccan Darija),
 `ar-DZ` (Algerian), `ar-TN` (Tunisian), `ar-LY` (Libyan), `ar-MR` (Mauritanian
 Hassaniya); `ar-YE` (Ṣanʿānī Yemeni); `ar-SD` (Sudanese, Khartoum koine)
-**Family**: Semitic | **Script**: Arabic (abjad) | **Quality tier**: research
+**Family**: Afro-Asiatic > Semitic | **Script**: Arabic (abjad) | **Quality tier**: research
 (`ar-MA`, `ar-YE`, `ar-SD`), skeleton (`ar-DZ`, `ar-TN`, `ar-LY`, `ar-MR`,
 `ar-x-maghrebi`)
 

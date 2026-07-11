@@ -1,7 +1,7 @@
 {
   "code": "eu-x-nafarra-garaia",
   "name": "Upper Navarrese Basque",
-  "family": "Isolate",
+  "family": "Basque",
   "script": "Latin",
   "graphemes_base": "eu",
   "allophones_base": "eu",
@@ -16,7 +16,7 @@
     ]
   },
   "parent": "eu",
-  "glottolog_code": "nava1268",
+  "glottolog_code": null,
   "ancestors": [
     {
       "code": "eu",

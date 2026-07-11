@@ -1,7 +1,7 @@
 {
   "code": "khi",
   "name": "Khoisan (contact node)",
-  "family": "Khoisan",
+  "family": "Khoe-Kwadi",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -67,7 +67,7 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": null,
-  "glottolog_code": "khoi1244",
+  "glottolog_code": "khoe1240",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Khoisan_languages"
   ],

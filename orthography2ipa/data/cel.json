@@ -1,7 +1,7 @@
 {
   "code": "cel",
   "name": "Proto-Celtic (reconstructed)",
-  "family": "Celtic",
+  "family": "Indo-European > Celtic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "parent": "ine",
@@ -239,7 +239,7 @@
     "start_year": -1000,
     "end_year": -400
   },
-  "glottolog_code": "prot1503",
+  "glottolog_code": "celt1248",
   "iso639_3": null,
   "quality": "research"
 }

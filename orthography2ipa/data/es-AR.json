@@ -1,7 +1,7 @@
 {
   "code": "es-AR",
   "name": "Rioplatense Spanish",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -100,7 +100,7 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "rive1239",
+  "glottolog_code": "riop1234",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {

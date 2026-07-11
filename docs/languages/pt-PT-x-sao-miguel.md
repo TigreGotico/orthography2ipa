@@ -1,6 +1,6 @@
 # Micaelense European Portuguese (pt-PT-x-sao-miguel) — Phonology Reference
 
-**Code**: `pt-PT-x-sao-miguel` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-sao-miguel` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
 **Sources**: Portuguese With Leo, "Sotaque e expressões dos Açores – São Miguel" + "The 8 accents" (native-speaker, **not** academic); Rogers (1948); Segura (2013)
 

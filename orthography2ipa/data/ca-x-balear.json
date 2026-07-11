@@ -1,7 +1,7 @@
 {
   "code": "ca-x-balear",
   "name": "Balearic Catalan",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "graphemes_base": "ca",
   "graphemes": {
@@ -89,7 +89,7 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "bale1254",
+  "glottolog_code": "bale1256",
   "iso639_3": "cat",
   "stress": {
     "default_position": -2,

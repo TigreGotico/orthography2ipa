@@ -46,8 +46,8 @@ class TestChainResolves:
         assert orthography2ipa.get("ber-x-kabyle-atlas").glottolog_code == "kaby1244"
 
     def test_stubs_are_afroasiatic(self):
-        assert orthography2ipa.get("afa").family == "Afroasiatic"
-        assert orthography2ipa.get("ber-x-kabyle-atlas").family == "Afroasiatic"
+        assert orthography2ipa.get("afa").family == "Afro-Asiatic"
+        assert orthography2ipa.get("ber-x-kabyle-atlas").family == "Afro-Asiatic > Berber"
 
 
 # ---------------------------------------------------------------------------

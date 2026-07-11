@@ -1,7 +1,7 @@
 {
     "code": "xpa",
     "name": "Proto-Arabic (Old Arabic)",
-    "family": "Semitic",
+    "family": "Afro-Asiatic > Semitic > Central Semitic",
     "script": "IPA-reconstruction",
     "script_type": "reconstruction",
     "graphemes": {
@@ -258,7 +258,7 @@
         "start_year": -500,
         "end_year": 600
     },
-    "glottolog_code": "prot1522",
+    "glottolog_code": null,
     "iso639_3": null,
     "quality": "research"
 }

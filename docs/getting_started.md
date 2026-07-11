@@ -163,7 +163,8 @@ installed:
 
 ```bash
 orthography2ipa list                          # every language code
-orthography2ipa list --family Romance          # filter by family
+orthography2ipa list --family Romance          # matches any step of the family path
+orthography2ipa list --family Ibero-Romance   # ... including the sub-branch
 orthography2ipa info pt-BR                     # spec summary
 orthography2ipa info pt-BR --graphemes         # full grapheme→IPA map
 orthography2ipa transcribe en-GB "through" --search beam --beam-width 8
@@ -202,7 +203,7 @@ phoneme data:
 ```python
 es = orthography2ipa.get("es-ES")
 es.name      # 'Castilian Spanish'
-es.family    # 'Romance'
+es.family    # 'Indo-European > Romance > Ibero-Romance'
 es.script    # 'Latin'
 es.quality   # QualityTier.RESEARCH — see quality_tiers.md
 

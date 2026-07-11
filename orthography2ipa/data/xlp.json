@@ -1,7 +1,7 @@
 {
     "code": "xlp",
     "name": "Lepontic",
-    "family": "Celtic",
+    "family": "Indo-European > Celtic",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -175,5 +175,5 @@
         "start_year": -600,
         "end_year": -100
     },
-    "glottolog_code": "lepo1237"
+    "glottolog_code": "lepo1240"
 }

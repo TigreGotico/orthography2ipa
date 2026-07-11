@@ -1,7 +1,7 @@
 {
   "code": "en-US",
   "name": "American English (General American)",
-  "family": "Germanic",
+  "family": "Indo-European > Germanic > West Germanic",
   "script": "Latin",
   "graphemes_base": "en-GB",
   "allophones_base": "en-GB",
@@ -102,6 +102,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "gene1240",
+  "glottolog_code": null,
   "iso639_3": "eng"
 }

@@ -1,7 +1,7 @@
 {
   "code": "ext-PT-x-barrancos",
   "name": "Barranquenho",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "parent": "pt-PT",
   "graphemes_base": "pt-PT",
@@ -312,7 +312,7 @@
     "start_year": 1600,
     "end_year": null
   },
-  "glottolog_code": "barr1235",
+  "glottolog_code": null,
   "iso639_3": "ext",
   "quality": "research",
   "stress": {

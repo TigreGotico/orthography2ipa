@@ -1,7 +1,7 @@
 {
   "code": "eu-x-nafarra-beherea",
   "name": "Lower Navarrese Basque",
-  "family": "Isolate",
+  "family": "Basque",
   "script": "Latin",
   "graphemes_base": "eu",
   "allophones_base": "eu",
@@ -24,7 +24,7 @@
     ]
   },
   "parent": "eu",
-  "glottolog_code": "lowe1402",
+  "glottolog_code": null,
   "ancestors": [
     {
       "code": "eu",

@@ -1,7 +1,7 @@
 {
   "code": "oc",
   "name": "Occitan",
-  "family": "Romance",
+  "family": "Indo-European > Romance",
   "script": "Latin",
   "parent": "la-x-gallia",
   "ancestors": [

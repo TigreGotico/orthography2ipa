@@ -1,7 +1,7 @@
 {
   "code": "ar-MA",
   "name": "Moroccan Arabic (Darija)",
-  "family": "Semitic",
+  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-maghrebi",
   "graphemes": {

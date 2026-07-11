@@ -41,7 +41,7 @@ class TestRegistry:
         assert lij.name == "Ligurian"
 
     def test_family(self, lij):
-        assert lij.family == "Romance"
+        assert lij.family == "Indo-European > Romance"
 
     def test_in_available_codes(self):
         assert "lij" in orthography2ipa.available_codes()

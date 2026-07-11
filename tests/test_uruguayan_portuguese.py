@@ -36,7 +36,7 @@ def g2p():
 class TestRegistrationAndAncestry:
     def test_registered(self, spec):
         assert spec.code == "pt-UY"
-        assert spec.family == "Romance"
+        assert spec.family == "Indo-European > Romance > Ibero-Romance"
         assert spec.quality.value == "research"
 
     def test_parent_is_brazilian_portuguese(self, spec):

@@ -1,7 +1,7 @@
 {
     "code": "xcg",
     "name": "Cisalpine Gaulish",
-    "family": "Celtic",
+    "family": "Indo-European > Celtic",
     "script": "Latin",
     "parent": "cel",
     "notes": "Cisalpine Gaulish (4th–1st c. BCE). Celtic of the Po valley (northern Italy), brought by La Tène Gauls. Overlays earlier Lepontic. Written in Lugano and Latin alphabets. Shares phonology with Transalpine but distinct epigraphic tradition. Refs: Lejeune (1971), Eska (2006).",
@@ -155,7 +155,7 @@
         "start_year": -400,
         "end_year": 200
     },
-    "glottolog_code": "cisa1238",
+    "glottolog_code": "cisa1237",
     "iso639_3": "xcg",
     "quality": "research"
 }

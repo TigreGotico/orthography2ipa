@@ -1,7 +1,7 @@
 {
   "code": "es-ES-x-andalusia-e",
   "name": "Eastern Andalusian Spanish",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -131,6 +131,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "east2304",
+  "glottolog_code": "anda1279",
   "iso639_3": "spa"
 }

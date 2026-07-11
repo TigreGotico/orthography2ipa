@@ -1,7 +1,7 @@
 {
   "code": "es-BO-x-andino",
   "name": "Andean Bolivian Spanish",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes_base": "es-ES",
   "graphemes": {
@@ -59,7 +59,7 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "spa",
-  "glottolog_code": null,
+  "glottolog_code": "ande1250",
   "timespan": {
     "start_year": 1600,
     "end_year": null

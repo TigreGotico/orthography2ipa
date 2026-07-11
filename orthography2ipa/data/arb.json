@@ -1,7 +1,7 @@
 {
     "code": "arb",
     "name": "Classical Arabic",
-    "family": "Semitic",
+    "family": "Afro-Asiatic > Semitic > Central Semitic",
     "script": "Arabic",
     "graphemes": {
         "ا": [
@@ -381,7 +381,7 @@
         "start_year": 600,
         "end_year": 1400
     },
-    "glottolog_code": "clas1252",
+    "glottolog_code": "stan1318",
     "iso639_3": "arb",
     "quality": "research"
 }

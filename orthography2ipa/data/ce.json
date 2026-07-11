@@ -1,7 +1,8 @@
 {
   "code": "ce",
   "name": "Chechen",
-  "family": "Northeast Caucasian",
+  "glottolog_code": "chec1245",
+  "family": "Nakh-Daghestanian",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "che",

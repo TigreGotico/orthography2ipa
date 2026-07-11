@@ -1,6 +1,6 @@
 # Beira-Litoral (Aveiro) European Portuguese (`pt-PT-x-aveiro`) — Phonology Reference
 
-**Code**: `pt-PT-x-aveiro` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-aveiro` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
 **Sources**: Cintra (1971, *Boletim de Filologia* 22:81–116), Álvarez Pérez
 (2014, *Journal of Portuguese Linguistics* 13-1), Mateus & d'Andrade (2000)

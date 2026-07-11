@@ -1,7 +1,7 @@
 # Germanic Languages — Comparative Phonology Reference
 
 **Codes**: `de-DE`, `nl`, `sv`, `nb`, `da`, `is`, `af`, `en-GB`, `en-US`, and variants
-**Family**: Germanic | **Script**: Latin (alphabet)
+**Family**: Indo-European > Germanic | **Script**: Latin (alphabet)
 
 ---
 

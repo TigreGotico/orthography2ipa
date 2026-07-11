@@ -1,6 +1,6 @@
 # Madeiran European Portuguese (pt-PT-x-madeira) — Phonology Reference
 
-**Code**: `pt-PT-x-madeira` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-madeira` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
 **Sources**: Segura (2013, *Gramática do Português* vol. I), Mateus & d'Andrade (2000)
 

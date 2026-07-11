@@ -1,7 +1,7 @@
 {
   "code": "frp",
   "name": "Franco-Provençal (Arpitan)",
-  "family": "Romance",
+  "family": "Indo-European > Romance > Gallo-Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -327,5 +327,5 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "fran1243"
+  "glottolog_code": "fran1260"
 }

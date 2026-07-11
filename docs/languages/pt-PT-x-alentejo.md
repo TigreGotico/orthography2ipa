@@ -1,6 +1,6 @@
 # Alentejano Portuguese (pt-PT-x-alentejo) — Phonology Reference
 
-**Code**: `pt-PT-x-alentejo` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-PT-x-alentejo` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Parent**: `pt-PT`
 **Sources**: Cintra (1971, *Boletim de Filologia* 22: 81–116), Brissos (2014,
 *Journal of Portuguese Linguistics* 13(1): 63–115), Mateus & d'Andrade (2000),

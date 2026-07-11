@@ -1,6 +1,6 @@
 # Brazilian Portuguese (pt-BR) — Phonology Reference
 
-**Code**: `pt-BR` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Sources**: Barbosa & Albano (2004, JIPA),
 Câmara Jr. (1970), Mateus & d'Andrade (2000), Callou & Leite (2001)
 

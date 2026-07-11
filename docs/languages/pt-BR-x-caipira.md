@@ -1,6 +1,6 @@
 # Caipira Portuguese (pt-BR-x-caipira) — Phonology Reference
 
-**Code**: `pt-BR-x-caipira` | **Family**: Romance | **Script**: Latin (alphabet)
+**Code**: `pt-BR-x-caipira` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
 **Sources**: Amaral (1920, *O Dialeto Caipira*), Castilho (2010), Mateus &
 d'Andrade (2000), Callou & Leite (2001), Silva (2002)
