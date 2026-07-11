@@ -59,6 +59,9 @@ each tier actually certifies.
 | [pt-UY.md](pt-UY.md) | Uruguayan Portuguese / Riverense / DPU (border-contact variety: ⟨lh⟩→[j], dental /t d/ before /i/) |
 | [pt-TL.md](pt-TL.md) | East Timorese Portuguese (`pt-TL`) — L2/official variety; no vowel reduction (Tetum substrate), alveolar rhotic; NOT the Bidau creole |
 | [pt-MO.md](pt-MO.md) | Macau Portuguese (`pt-MO`) — EP-following; thin literature (skeleton); NOT the Patuá/maquista creole |
+| [pt-AO.md](pt-AO.md) | Angolan Portuguese — emerging L2 norm, spelling-closer vocalism (no EP reduction), alveolar coda /s/ (Undolo 2014, Chavagne 2005) |
+| [pt-CV.md](pt-CV.md) | Cape Verdean *Portuguese* — distinct from Kabuverdianu (kea) creole; reduced reduction, plosive b/d/g (honesty-flagged, skeleton) |
+| [pt-MZ.md](pt-MZ.md) | Mozambican Portuguese — Maputo emerging norm, alveolar trill [R], aspirated /ʎ/, weaker reduction (Nhatuve 2019, Gonçalves 2010) |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
 ### Asturleonese
@@ -108,6 +111,7 @@ rather than a specific language, start here:
 | Final devoicing | de, nl, sv, pl, cs, ru, hu, tr | family docs |
 | C/G softening before e/i | fr, it, es, pt, ca, ro, en, sv, nl | [romance.md](romance.md) |
 | Vowel reduction (unstressed) | ru, pt-PT, fr (schwa) | [ru.md](ru.md), [pt-PT.md](pt-PT.md) |
+| Reduced/absent reduction (Lusophone-African) | pt-AO, pt-CV, pt-MZ | [pt-AO.md](pt-AO.md), [pt-MZ.md](pt-MZ.md) |
 | Coda allophony (dark l, coda sibilant) | pt-PT, ca | [pt-PT.md](pt-PT.md), [../allophony.md](../allophony.md) |
 | Nasal vowels | fr, pt, pl | [fr-FR.md](fr-FR.md), [slavic.md](slavic.md) |
 | Retroflex consonants | sv (from r+C), hi, sa | [hi.md](hi.md) |

@@ -50,7 +50,7 @@
       "notes": "Cape Verdean Creole (Kriolu/Kabuverdianu) adstrate: the dominant vernacular of Cape Verde, spoken by virtually all Cape Verdeans as L1. Heavy bidirectional influence with Portuguese. Cape Verdean Creole is itself descended from Portuguese."
     }
   ],
-  "notes": "Cape Verdean Portuguese (Português de Cabo Verde). Official language alongside Kabuverdianu (Cape Verdean Creole). Used in government, education, and formal contexts. Cape Verde is unique in that the vast majority of the population speaks the Creole as their first language; Portuguese functions as a prestige written/formal variety. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: like other African varieties, unstressed vowel reduction (/ɨ/) is greatly reduced or absent. (2) SIBILANTS: coda /s/ typically remains [s] (not [ʃ]). (3) RHOTIC: alveolar [r] rather than uvular [ʁ]. (4) OPEN VOWELS: /e/ and /o/ tend toward more open realisations [ɛ] and [ɔ]. (5) CREOLE INFLUENCE: some syntactic and phonological patterns from Kabuverdianu. Two main Creole varieties (Sotavento/Santiago and Barlavento/São Vicente) create sub-regional variation. Sources: Lang (2009), Baptista (2002), Veiga (2004).",
+  "notes": "Cape Verdean Portuguese (Português de Cabo Verde): the formal/L2 variety of Portuguese, the co-official language of Cape Verde. THIS IS DISTINCT FROM Cape Verdean Creole (Kabuverdianu/Kriolu, ISO kea): the Creole is the L1 vernacular of virtually the whole population, itself a Portuguese-lexified creole formed from 16th-17th-century Portuguese and West African languages that 'se diferenciava sobretudo com relação às vogais átonas' (Freitas 2017:154). This spec models the Portuguese, not the creole. GROUNDED / FLAGGED FEATURES: like other Lusophone-African emerging norms, the Portuguese of Cape Verde is reported to show (1) reduced-to-absent EP unstressed-vowel reduction (spelling-closer vocalism), (2) coda /s/ kept alveolar [s] rather than palatalised [ʃ], (3) an alveolar rather than uvular rhotic, (4) intervocalic /b d g/ kept as plosives rather than the EP spirants [β ð ɣ], and (5) a dental, non-velarised /l/. HONESTY LIMIT (hard rule 9): no accessible instrumental phonology of Cape Verdean PORTUGUESE (as opposed to the Creole) could be obtained and read for this pass — the CV-Portuguese feature list above rests on the general Lusophone-African pattern (cf. Undolo 2014 for Angola, read) plus the secondary Wikipedia description (flagged), while the read primary (Freitas 2017) covers the Creole. Features 1-5 are therefore provisional; this variety is deliberately kept at SKELETON tier (no read Cape-Verdean-Portuguese phonology source exists — the only variety-specific primary read, Freitas 2017, is about the Creole) and must not be promoted without a read CV-Portuguese source. Contrast pt-AO and pt-MZ, which are research tier because each has a read primary for its own variety (Undolo 2014, Nhatuve 2019). Two Creole macro-varieties (Sotavento/Santiago, Barlavento/São Vicente) underlie sub-regional variation.",
   "sources": [
     {
       "id": "lang2009",
@@ -80,7 +80,27 @@
       "publisher": "Instituto da Biblioteca Nacional e do Livro",
       "url": null,
       "pages": null,
-      "notes": "Cape Verde bilingualism: Creole and Portuguese"
+      "notes": "Cape Verde bilingualism: Creole and Portuguese. Bibliographic reference (not read in full for this spec)."
+    },
+    {
+      "id": "freitas2017",
+      "author": "Freitas, Shirley",
+      "year": 2017,
+      "title": "Kabuverdianu moderno: alguns aspectos fonológicos",
+      "publisher": "Revista Internacional em Língua Portuguesa (RILP) 31, 153-172",
+      "url": "https://www.rilp-aulp.org/index.php/rilp/article/view/RILP2017.31.7",
+      "pages": "153-155",
+      "notes": "Read. Describes the phonology of modern Kabuverdianu (Cape Verdean CREOLE, Santiago variety), used here to establish the Creole vs Portuguese distinction: the Creole formed from 16th-17th-century Portuguese and African languages, differing from it 'sobretudo com relação às vogais átonas' (p.154). NOT a source for Cape Verdean Portuguese phonology proper."
+    },
+    {
+      "id": "undolo2014",
+      "author": "Undolo, Márcio",
+      "year": 2014,
+      "title": "Caracterização do sistema vocálico do português culto falado em Angola",
+      "publisher": "Revista de Filología Románica 31(2), 181-187",
+      "url": "https://revistas.ucm.es/index.php/RFRM/article/view/51071",
+      "pages": "181-187",
+      "notes": "Read. Cited as the (Angolan) evidence for the shared Lusophone-African pattern of reduced-to-absent unstressed vowel reduction (p.183-184) by which the Cape Verdean Portuguese vocalism is modelled by analogy, in the absence of a read CV-Portuguese primary."
     }
   ],
   "wikipedia": [
