@@ -8,8 +8,12 @@ their own cited dialect deltas:
   Barlavento feature; Cintra 1971; Brissos 2014; Segura da Cruz 1989), with a
   ``word_exceptions`` proclitic guard so the common clitics (o, no, do, ...)
   keep their correct [u] vowel and are never fronted to [y].
-- Alentejano: deletion of final unstressed high vowels -u/-i/-e
-  (Cintra 1971; Brissos 2014).
+- Alentejano: the defining Beira-Baixa / Alto-Alentejo zone feature is the same
+  stressed /u/ -> [y] palatalisation (Cintra 1971, ``a palatalizacao ... da
+  vogal tonica u``; explicit [y] in his adjacent Algarvio passage), with the
+  same proclitic guard; plus deletion of final unstressed high vowels -u/-i/-e
+  (Brissos 2014; Cintra 1971 note 58, reporting Ludtke 1956/57 -- NOT one of
+  Cintra's own diagnostics).
 
 Expected forms are grounded in the ep_dialects gold words and the published
 example words quoted in the sources.
@@ -76,6 +80,41 @@ def test_algarve_no_mar_proclitic_is_nu(algarve):
     assert "y" not in out
 
 
+# ── Alentejano: defining stressed /u/ -> [y] palatalisation ──────────────────
+
+@pytest.mark.parametrize("word,expected", [
+    ("sul", "ˈsyɫ"),    # stressed lexical /u/ + inherited dark coda l
+    ("lume", "ˈlym"),   # stressed /u/->[y]; final [ɨ] (< e) then deleted
+    ("tudo", "ˈty"),    # /u/->[y]; intervocalic /d/ + final vowel deleted
+    ("mudo", "ˈmy"),
+])
+def test_alentejo_stressed_u_fronts_to_y(alentejo, word, expected):
+    # Cintra (1971): 'a palatalizacao, em maior ou menor grau, da vogal tonica u'
+    # delimits the Beira-Baixa / Alto-Alentejo zone; [y] is its phonetic value.
+    assert alentejo.transcribe(word) == expected
+
+
+def test_alentejo_unstressed_u_is_not_fronted(alentejo):
+    # 'turistas' — the /u/ is UNstressed, so stress='stressed' leaves it [u].
+    out = alentejo.transcribe("turistas")
+    assert "u" in out
+    assert "y" not in out
+
+
+# ── Alentejano: proclitic guard (o -> [u], never [y]) ─────────────────────────
+
+@pytest.mark.parametrize("word,expected", [
+    ("o", "ˈu"),    # definite article — [u], NEVER [y]
+    ("no", "ˈnu"),  # em + o contraction
+    ("do", "ˈdu"),  # de + o contraction
+    ("ao", "ˈaw"),  # a + o contraction
+])
+def test_alentejo_proclitics_keep_u_never_front(alentejo, word, expected):
+    out = alentejo.transcribe(word)
+    assert out == expected
+    assert "y" not in out
+
+
 # ── Alentejano: final unstressed high-vowel deletion ─────────────────────────
 
 @pytest.mark.parametrize("word,expected", [
@@ -87,7 +126,7 @@ def test_alentejo_deletes_final_unstressed_high_vowel(alentejo, word, expected):
 
 
 def test_alentejo_keeps_final_low_vowel(alentejo):
-    # Cintra (1971) lists only final -u/-i/-e; final /ɐ/ (< -a) is spared.
+    # Sources list only final -u/-i/-e; final /ɐ/ (< -a) is spared.
     out = alentejo.transcribe("calma")
     assert out.endswith("ɐ")
 
