@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.34.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.34.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.33.0a1...1.34.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model Brazilian Portuguese allophony \(pt-BR\) [\#147](https://github.com/TigreGotico/orthography2ipa/pull/147) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): research-grounded MSA, Egyptian, and Saudi Arabic phonology [\#146](https://github.com/TigreGotico/orthography2ipa/pull/146) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(scripts\): compare Catalan dialects vs BSC espeak + pycotovia/pyahotts [\#145](https://github.com/TigreGotico/orthography2ipa/pull/145) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.33.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.33.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.32.0a1...1.33.0a1)
