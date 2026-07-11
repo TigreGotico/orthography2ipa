@@ -57,6 +57,8 @@ each tier actually certifies.
 | [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
 | [pt-PT.md](pt-PT.md) | European Portuguese in detail (coda allophony, vowel reduction) |
 | [pt-UY.md](pt-UY.md) | Uruguayan Portuguese / Riverense / DPU (border-contact variety: ⟨lh⟩→[j], dental /t d/ before /i/) |
+| [pt-TL.md](pt-TL.md) | East Timorese Portuguese (`pt-TL`) — L2/official variety; no vowel reduction (Tetum substrate), alveolar rhotic; NOT the Bidau creole |
+| [pt-MO.md](pt-MO.md) | Macau Portuguese (`pt-MO`) — EP-following; thin literature (skeleton); NOT the Patuá/maquista creole |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
 ### Asturleonese

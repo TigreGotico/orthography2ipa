@@ -1,7 +1,7 @@
 {
   "code": "pt-MO",
   "glottolog_code": "port1283",
-  "name": "Macanese Portuguese",
+  "name": "Macau Portuguese",
   "family": "Romance",
   "script": "Latin",
   "quality": "skeleton",
@@ -30,53 +30,43 @@
     {
       "code": "pt-PT",
       "role": "parent",
-      "weight": 0.8,
-      "notes": "European Portuguese standard. Macau was a Portuguese territory from 1557 to 1999; its Portuguese variety closely mirrors European norms due to strong formal and institutional ties with Lisbon."
+      "weight": 0.85,
+      "notes": "European Portuguese standard. Macau was under Portuguese administration from 1557 to 1999; the Portuguese of Macau closely follows the European norm in pronunciation and vocabulary because of sustained institutional ties and immigration from Portugal (en.wikipedia.org/wiki/Macanese_Portuguese — flagged secondary, phonology section uncited). It is the most 'European' of the Asian Portuguese varieties."
     },
     {
       "code": "zh",
       "role": "adstrate",
-      "weight": 0.15,
-      "notes": "Cantonese adstrate: spoken by ~88% of Macau's population. Portuguese speakers are bilingual; Cantonese phonological patterns (tone, open syllables) create some transfer effects. (Cantonese; iso639-1: yue)"
+      "weight": 0.1,
+      "notes": "Cantonese (Yue) adstrate: the first language of the great majority of Macau's population. Portuguese speakers are typically bilingual, and Cantonese-influenced phonological traits appear among L2 speakers but NOT among speakers with higher education in Portuguese (flagged secondary, uncited Wikipedia)."
     },
     {
       "code": "mzs",
       "role": "adstrate",
       "weight": 0.05,
-      "notes": "Macanese Creole (Patuá/Macanese) adstrate: the traditional creole of the Macanese community, now nearly extinct, is a Portuguese-based creole with Cantonese, Malay, and Konkani elements."
+      "notes": "Macanese Creole (Patuá / maquista / 'dialecto macaense') adstrate: the traditional Portuguese-based creole of the Macanese community, now nearly extinct — a SEPARATE contact language, not the variety modelled here. Its morphosyntax was described by Pinharanda-Nunes (2011) and its earlier state by Batalha (1959)."
     }
   ],
-  "notes": "Macanese Portuguese (Português de Macau). Co-official language of the Macau SAR (People's Republic of China) alongside Chinese. Spoken as L1 by ~2% and as L2 in official/professional contexts. After handover to China (1999), use has declined significantly; Portuguese remains official but Chinese dominates. KEY FEATURES: (1) VERY CLOSE TO EUROPEAN PORTUGUESE: due to institutional ties and immigration from Portugal; the most 'European' of Asian Portuguese varieties. (2) RHOTIC: European-type uvular [ʁ] maintained. (3) VOWEL REDUCTION: /ɨ/ and unstressed vowel reduction as in EP. (4) CANTONESE INFLUENCE: some code-switching; vowel qualities occasionally influenced. (5) PATUÁ (Macanese Creole): historically spoken by the Macanese community; nearly extinct but preserved in cultural contexts. Official Portuguese is used in legislation, courts, and public administration. Sources: Baxter (1988), Pinharanda-Nunes (2010), Amaro (2014).",
+  "notes": "Macau Portuguese / Português de Macau. Co-official language of the Macau SAR (People's Republic of China) alongside Chinese; a small L1/heritage community plus an L2 official register used in legislation, the courts and public administration. Use has declined since the 1999 handover. CREOLE-VS-PORTUGUESE DISTINCTION (important): this spec models the modern Portuguese of Macau, which is NOT a creole. The Macanese creole — Patuá, also called maquista or the 'dialecto macaense' — is a distinct Portuguese-based contact language with Cantonese, Malay, Kristang (Malacca), Konkani and Sinhala elements, now nearly extinct; it is described in Batalha (1959) and, for tense-mood-aspect morphosyntax, in Pinharanda-Nunes (2011). Do not conflate the two. LITERATURE IS THIN: no peer-reviewed phonological description of Macau Portuguese proper (as opposed to the creole) could be obtained and read for this spec. The only phonological description read is the English Wikipedia 'Macanese Portuguese' article, whose Phonology section carries NO citations — used here only as a FLAGGED SECONDARY source. On that flagged basis, the reported distinctive traits are: (1) the variety 'nowadays closely follows the standard European dialect in pronunciation and vocabulary' — so the inherited pt-PT maps (uvular [ʁ], EP vowel reduction, coda chiado) are retained as the modelled norm; (2) [ʒ] is devoiced to [ʃ], said to be 'almost unique to Macau'; (3) L2 speakers drop the final infinitive /ɾ/ (comer, dormir) while keeping /ɾ/ elsewhere (mar), paralleling African and most Brazilian Portuguese; (4) some Cantonese-influenced (partly non-rhotic) patterns among L2 speakers, absent in highly-schooled speakers. Traits (2)–(4) are documented ONLY by the uncited secondary source, are L2/variable, and involve deletion (3) the engine's allophone layer does not express, so they are NOT encoded as rules — they are recorded here honestly instead of fabricating grounded rules. TIER: skeleton (kept deliberately) — the research bar (an actually-read published phonological reference) is not met for this small variety; promote only once a citable phonological description of Macau Portuguese is obtained.",
   "sources": [
     {
-      "id": "baxter1988",
-      "author": "Baxter, A.N.",
-      "year": 1988,
-      "title": "A Grammar of Kristang (Malacca Creole Portuguese)",
-      "publisher": "Pacific Linguistics",
+      "id": "batalha1959",
+      "author": "Batalha, Graciete Nogueira",
+      "year": 1959,
+      "title": "Estado actual do dialecto macaense",
+      "publisher": "Revista de Filologia Portuguesa, v. 9, pp. 177–213",
       "url": null,
-      "pages": null,
-      "notes": "Comparative reference for SE Asian Portuguese creoles"
+      "pages": "177-213",
+      "notes": "Foundational description of the 'dialecto macaense' = the Macanese CREOLE (Patuá), NOT the L2/standard Portuguese of Macau modelled here; reference verified via Albuquerque (2010:283, ref. list), which cites Batalha 1959:181 for creole prosody. Included to anchor the creole-vs-Portuguese distinction."
     },
     {
-      "id": "pinharanda_nunes2010",
-      "author": "Pinharanda-Nunes, M.",
-      "year": 2010,
-      "title": "Português em Macau: contacto linguístico e interferências",
-      "publisher": "Universidade de Macau",
+      "id": "pinharanda_nunes2011",
+      "author": "Pinharanda-Nunes, Mário",
+      "year": 2011,
+      "title": "Estudo da Expressão Morfo-Sintáctica das Categorias de Tempo, Modo e Aspecto em Maquista",
+      "publisher": "PhD dissertation, University of Macau",
       "url": null,
       "pages": null,
-      "notes": null
-    },
-    {
-      "id": "amaro2014",
-      "author": "Amaro, A.M.",
-      "year": 2014,
-      "title": "O português em Macau: evolução e perspectivas",
-      "publisher": "Instituto Politécnico de Macau",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "notes": "First doctoral thesis on Patuá (maquista) grammar — the CREOLE, not the Portuguese variety; cited only for the creole-vs-Portuguese distinction, not for Macau Portuguese phonology."
     }
   ],
   "wikipedia": [
@@ -132,6 +122,6 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+    "notes": "Acordo Ortográfico 1990 conventions inherited from pt-PT: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   }
 }
