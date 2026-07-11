@@ -109,6 +109,14 @@ candidates with `-log P` costs per grapheme), the per-word confidence / OOV
 signal, and the `LatticeRescorer` seam — how a downstream engine refines the
 shared beam by re-costing candidates instead of forking a tokenizer.
 
+**I need cross-word context — sandhi, liaison, pausal or phrase-final forms.**
+The word lattice is word-local; the
+[sentence-context seam](sentence_context.md) is the shared cross-word surface.
+`G2P.sentence_lattice(text)` exposes the whole utterance's ranked candidates in
+order with phrase / utterance position, and `SentenceRescorer` is the
+boundary-aware, bidirectional rewrite seam a downstream engine (arbtok) consumes
+instead of forking a private sentence orchestrator.
+
 **I want to understand the benchmark and quality-tier system.**
 [quality_tiers.md](quality_tiers.md) defines what `stub` → `skeleton` →
 `research` → `production` actually require, and
@@ -177,6 +185,7 @@ below.
 | [registry.md](registry.md) | Full language registry, code resolution, `G2PPlugin` |
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
+| [sentence_context.md](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer`, phrase / utterance position |
 | [candidate_scoring.md](candidate_scoring.md) | Per-candidate weights and how they become beam costs |
 | [distance.md](distance.md) | Phonological distance metrics between languages |
 | [architecture.md](architecture.md#script_distancepy) | Typological distance between writing systems (`script_distance.py`) |

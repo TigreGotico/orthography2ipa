@@ -140,6 +140,40 @@ is versioned as part of the stable import surface below; a plain
 `WordTranscription(word=..., ipa=...)` keeps `confidence == 1.0`, so existing
 callers are unaffected.
 
+## Sentence-context seam (additive)
+
+`G2P` (`orthography2ipa.g2p`) and the `orthography2ipa.sentence` module expose
+an optional, additive **cross-word** surface (Workstream C4) so a downstream
+engine can consume a shared sentence orchestrator instead of forking one. It
+changes no existing output: `transcribe`, `transcribe_detailed().ipa`, and the
+scoreboard are byte-identical whether or not it is used, because the seam only
+runs when a caller passes `sentence_rescorer=`.
+
+- `G2P(..., sentence_rescorer=None)` — accepts a `SentenceRescorer`, an
+  iterable of them, or `None` (the default, byte-identical path). Rescorers run
+  before the spec's declarative `sandhi_rules`, which are unchanged.
+- `G2P.sentence_lattice(text, *, search="greedy", beam_width=8) -> SentenceLattice`
+  — a pure read exposing every word's lattice, IPA, and phrase / utterance
+  position in order; never affects `transcribe`.
+- `SentenceLattice`, `WordSlot`, `Position` (an `Enum`),
+  `SentenceRescorer` (ABC), `SentenceRescoreContext`
+  (`orthography2ipa.sentence`, re-exported from `orthography2ipa`) — the shape a
+  cross-word rule reads and rewrites. `WordSlot.slots` is the word's
+  `SegmentSlot` lattice; `WordSlot.initial_slot` / `final_slot` are its edge
+  candidates; `SentenceRescoreContext.prev_word` / `next_word` and the
+  `phrase_position` / `utterance_position` fields give cross-word adjacency and
+  position.
+
+These symbols join the stable, version-guarded import surface: they are never
+renamed or removed outright, only via the semver + conventional-commits
+deprecation flow, with the removal version derived dynamically from
+`orthography2ipa/version.py` (`VERSION_MAJOR + 1`). There is no new
+`LanguageSpec` field — cross-word rules are caller-supplied plugin objects, so
+the spec data surface and its `FIELD_INHERITANCE` manifest are unchanged. The
+full seam is documented in [`sentence_context.md`](sentence_context.md). A
+caller that never passes `sentence_rescorer=` and never calls `sentence_lattice`
+sees no change.
+
 This is a documentation-only audit: it records the current import surface
 and stability commitment, and does not rename, deprecate, or otherwise
 modify any code in `orthography2ipa`.

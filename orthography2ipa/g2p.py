@@ -56,6 +56,16 @@ from orthography2ipa.rescorer import (
 )
 from orthography2ipa.registry import get, resolve
 from orthography2ipa.sandhi import SandhiEngine
+from orthography2ipa.sentence import (
+    Position,
+    SentenceLattice,
+    SentenceRescorer,
+    SentenceRescorerArg,
+    WordSlot,
+    apply_sentence_rescorers,
+    normalize_sentence_rescorers,
+    span_position,
+)
 from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
 from orthography2ipa.types import LanguageSpec
 
@@ -229,6 +239,7 @@ class G2P:
         normalizer: Optional[Callable[[str], str]] = None,
         on_unmapped: str = "ignore",
         rescorer: RescorerArg = None,
+        sentence_rescorer: SentenceRescorerArg = None,
     ) -> None:
         if on_unmapped not in ("ignore", "log", "raise"):
             raise ValueError(
@@ -265,6 +276,11 @@ class G2P:
             SandhiEngine(self.spec.sandhi_rules)
             if self.spec.sandhi_rules else None
         )
+        # Sentence-scope (cross-word) rescorers are opt-in and caller-supplied
+        # only (no spec field): an empty tuple means the sentence seam never
+        # runs and transcribe() is byte-identical to before this seam existed.
+        self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
+            normalize_sentence_rescorers(sentence_rescorer))
 
     # ─── public API ──────────────────────────────────────────────────
 
@@ -306,6 +322,15 @@ class G2P:
         ]
 
         ipa_words = [wt.ipa for wt in transcribed]
+        # Sentence-scope (cross-word) rescorers run first — they see the whole
+        # utterance's word lattices, adjacency and phrase/utterance position —
+        # then the spec's declarative sandhi pass runs exactly as before. When
+        # no sentence rescorer is configured (the default) this branch is
+        # skipped entirely, so the pipeline below is byte-identical.
+        if self._sentence_rescorers:
+            lattice = self._build_sentence_lattice(words, transcribed, width)
+            ipa_words = apply_sentence_rescorers(
+                lattice, self._sentence_rescorers)
         if self.apply_sandhi and self._sandhi is not None:
             ipa_words = self._sandhi.apply(ipa_words)
 
@@ -323,6 +348,83 @@ class G2P:
         )
         return TranscriptionResult(ipa=ipa, words=final_words,
                                    lang=self.lang)
+
+    def sentence_lattice(
+        self,
+        text: str,
+        *,
+        search: str = "greedy",
+        beam_width: int = 8,
+    ) -> SentenceLattice:
+        """The whole utterance as an ordered :class:`~orthography2ipa.sentence.SentenceLattice`.
+
+        Unlike :meth:`transcribe_detailed` (which flattens to strings), this
+        exposes every word's per-grapheme lattice
+        (:meth:`ipa_lattice`) **in order**, with word boundaries and each
+        word's phrase / utterance :class:`~orthography2ipa.sentence.Position`,
+        so a downstream cross-word rule can see the entire utterance's ranked
+        candidates and positional context — the object a
+        :class:`~orthography2ipa.sentence.SentenceRescorer` consumes.
+
+        This is a **read** method: it never applies sentence rescorers or the
+        spec's sandhi pass, and never affects :meth:`transcribe`. Its
+        :attr:`~orthography2ipa.sentence.SentenceLattice.ipa` is the
+        per-word (post-stress, pre-cross-word) reading.
+        """
+        width = self._width(search, beam_width)
+        normalized = (self.normalizer(text) if self.normalizer is not None
+                      else text)
+        words = self._split_words(normalized)
+        if not words:
+            return SentenceLattice(words=(), lang=self.lang)
+        transcribed = [self._transcribe_word(w.surface, width) for w in words]
+        return self._build_sentence_lattice(words, transcribed, width)
+
+    def _build_sentence_lattice(
+        self,
+        words: List["_Word"],
+        transcribed: List[WordTranscription],
+        width: int,
+    ) -> SentenceLattice:
+        """Assemble a :class:`SentenceLattice` from the split words and their
+        per-word transcriptions, attaching each word's lattice and its
+        phrase / utterance position."""
+        phrase_pos, utt_pos = self._word_positions(words)
+        word_slots = tuple(
+            WordSlot(
+                surface=w.surface,
+                ipa=wt.ipa,
+                slots=tuple(self.ipa_lattice(w.surface, beam_width=width)),
+                index=i,
+                phrase_position=phrase_pos[i],
+                utterance_position=utt_pos[i],
+                pausal=w.pausal,
+            )
+            for i, (w, wt) in enumerate(zip(words, transcribed))
+        )
+        return SentenceLattice(words=word_slots, lang=self.lang)
+
+    @staticmethod
+    def _word_positions(
+        words: List["_Word"],
+    ) -> Tuple[List[Position], List[Position]]:
+        """Compute each word's (phrase_position, utterance_position).
+
+        Phrases are the punctuation-bounded runs the tokenizer already marks:
+        a word with ``pausal=True`` is phrase-final, and the word after it
+        opens the next phrase. The utterance span is the whole word list.
+        """
+        n = len(words)
+        # Phrase spans: split after every pausal word.
+        phrase: List[Position] = [Position.MEDIAL] * n
+        start = 0
+        for i, w in enumerate(words):
+            if w.pausal or i == n - 1:
+                for j in range(start, i + 1):
+                    phrase[j] = span_position(j, start, i + 1)
+                start = i + 1
+        utt = [span_position(i, 0, n) for i in range(n)]
+        return phrase, utt
 
     def transcribe_word(
         self,

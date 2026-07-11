@@ -291,7 +291,10 @@ Where it does not reach:
   **non-local context** — cross-word sandhi, pausal or phrase-final forms,
   morphological decomposition, part of speech — do not fit a per-slot
   rescorer; they belong in a thin orchestration layer *above* the lattice,
-  not inside it.
+  not inside it. That layer is now shared: the
+  [sentence-context seam](sentence_context.md) (`SentenceLattice` +
+  `SentenceRescorer`) gives cross-word adjacency and phrase / utterance
+  position so a downstream engine need not fork its own.
 - **Multi-segment interactions need care.** A rescorer promotes a candidate
   by making it strictly cheapest, and it can only reason over the candidates
   the spec actually offers. If the shared spec omits or mis-bakes a candidate
@@ -453,4 +456,4 @@ strongest signal of all that a downstream engine (or a human) must handle it.
 
 **Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
 
-*Related: [Tokenizer](tokenizer.md) · [Candidate scoring](candidate_scoring.md) · [Architecture](architecture.md) · [Allophony](allophony.md)*
+*Related: [Tokenizer](tokenizer.md) · [Candidate scoring](candidate_scoring.md) · [Sentence context](sentence_context.md) · [Architecture](architecture.md) · [Allophony](allophony.md)*

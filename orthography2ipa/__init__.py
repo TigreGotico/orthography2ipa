@@ -49,6 +49,13 @@ from orthography2ipa.phonetok import (
     TokenSequence,
 )
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
+from orthography2ipa.sentence import (
+    Position,
+    SentenceLattice,
+    SentenceRescoreContext,
+    SentenceRescorer,
+    WordSlot,
+)
 from orthography2ipa.allophony import (
     AllophoneRescorer,
     compile_allophone_rescorer,
@@ -132,6 +139,11 @@ __all__ = [
     "TokenSequence",
     "LatticeRescorer",
     "RescoreContext",
+    "Position",
+    "WordSlot",
+    "SentenceLattice",
+    "SentenceRescorer",
+    "SentenceRescoreContext",
     "segment_distance",
     "inventory_distance",
     "grapheme_divergence",
