@@ -11,17 +11,99 @@ python scripts/benchmark.py --dataset wikipron --lang fi
 python scripts/benchmark.py --list
 ```
 
+## Provenance and reliability (read this before trusting any number)
+
+Reliable G2P "gold" barely exists. There is no large, human-verified,
+IPA-transcribed word list for most of the languages here — so the
+datasets below are, in honest descending order of trust,
+phonetician-curated, native-speaker-collected, dictionary-extracted,
+Wiktionary-scraped, or **a phonemizer's own output reused as a
+reference**. This is not a defect to hide; it is the state of the field,
+and it changes how every number on the [scoreboard](scoreboard.md) must
+be read:
+
+- **A low PER against a `machine-generated` gold means "agrees with that
+  tool", NOT "correct".** `styletts2_phonemes`, `ipa_childes` and
+  `hitz_basque_ipa` are all the output of an automatic phonemizer. Scoring
+  well there says o2i reproduces that tool's decisions, right or wrong.
+- **Scoring a system against a gold its own generator produced is
+  near-tautological.** `hitz_basque_ipa` *is* the output of HiTZ's
+  ahoNT/AhoTTS phonemizer, so a low PER for AhoTTS/ahotts-g2p on it just
+  confirms the tool reproduces itself — it is not evidence of
+  correctness. The same trap applies to any comparison where the
+  evaluated system shares the gold's generator: use an **independent**
+  gold (here, `wikipron` `eu`) for the fair comparison.
+- **Comparing o2i to espeak on an espeak-derived gold is partly
+  circular** for the same reason. `styletts2_phonemes` is
+  phonemizer/espeak-lineage; an espeak-vs-o2i table on that gold measures
+  how similarly two systems diverge from the truth, not who is closer to
+  it.
+- **Absolute PER is noisy — treat it as directional, not precise.** Runs
+  are capped at 300 alphabetically-ordered words; the same spec can move
+  ±several points between slices. Read numbers as relative/ranking
+  signals, not measurements to three decimals.
+- **Small-`N` rows are anecdotes.** Many `clup_dialect` rows are `N=1–17`
+  and several `ep_dialects`/`mirandese` rows are `N<30`. Always
+  cross-reference the row's bootstrap `95% CI` on the scoreboard: a wide
+  or degenerate interval (e.g. `N=1` gives `[x, x]`) means the row cannot
+  support a conclusion, only a hint.
+
+Even the `expert-human` tier is not "truth": it is bound by the
+annotating team's transcription conventions (broad vs narrow choices,
+stress and tie-bar notation, dialect target) and, in this repo, is often
+small-n or not yet externally peer-validated. The tiers rank *how the IPA
+was produced*, not a guarantee of correctness.
+
+### Reliability tiers
+
+The machine-readable tier per dataset lives in the `provenance` column of
+[`docs/scoreboard.md`](scoreboard.md) and the `provenance` field of
+[`benchmarks/results.json`](../benchmarks/results.json), sourced from the
+single `PROVENANCE` map in `scripts/benchmark.py` (a test forces every
+registered dataset to carry a tier, so a new dataset cannot be added
+without classifying it).
+
+| Tier | What it means | Grain of salt |
+|---|---|---|
+| **expert-human** | IPA curated by phoneticians, trained annotators, or native speakers. | Still bound by the team's notation conventions; here often small-`N` and/or not peer-validated. |
+| **lexicon-derived** | Human lexicographers, via a published dictionary's notation — sometimes through a mechanical notation transform (ARPABET→IPA, slashed-phonemic→IPA). | Dictionary conventions ≠ surface phonetics; the transform step can add its own artifacts. |
+| **crowd-scraped** | Wiktionary community edits (WikiPron). | Uneven per language; some entries are themselves editor-applied rule output, not attested transcriptions. |
+| **machine-generated** | A phonemizer's *own output* reused as the reference. | **Biggest grain of salt.** Low PER = agreement with that tool, not correctness; espeak-lineage golds make an espeak comparison partly circular. |
+
+### Per-dataset classification
+
+Every dataset registered in `scripts/benchmark.py`'s `DATASETS`,
+classified by reading its loader (source URL, docstring, transform) and
+its section below. Where the evidence is incomplete, the uncertainty is
+stated rather than papered over.
+
+| Dataset | Tier | IPA produced by | Notes / grain of salt |
+|---|---|---|---|
+| `ep_dialects` | expert-human | TigreGotico team, manual annotation | Internal dialect research, **pending external peer validation**; sentence-level, `N≈29–45`. |
+| `mirandese` | expert-human | Native Mirandese speaker | Reference gold for Mirandese, but small (`mwl` `N≈205`; `mwl-x-sendim` `N≈11` — an anecdote). |
+| `4catac` | expert-human | Expert annotators (Projecte AINA/BSC) | IEC guidelines, multi-annotator consensus review; sentence-level, `N=160`, `0.00` exact-match reflects notation/connected-speech mismatch, not total failure. |
+| `clup_dialect` | expert-human | U.Porto CLUP dialect archive | Interview corpus is expert university dialectology, **but who/what produced the IPA column (`ArquivoDialetalCLUP_ipa`) is not documented in the loader or dataset card — treat the tier as "best case".** Many rows `N=1–17`: read the CI, not the point PER. |
+| `portuguese_lexicon` | lexicon-derived | Portal da Língua Portuguesa lexicographers | Via `tugalex`; the strongest Portuguese gold, but dictionary citation-form IPA, not connected speech. |
+| `infopedia_pt` | lexicon-derived | Infopédia (Porto Editora) dictionary | Graph-crawl extraction of a published dictionary; citation-form conventions. |
+| `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`; the transform adds artifacts. |
+| `ipadict` | lexicon-derived | Hjal/malfong Icelandic linguists (`is` only) | Only the human-curated `is` file is wired; the ipa-dict *project* is mixed-provenance and many of its files are tool-generated (see "Rejected candidates") — do not generalize this tier to other ipa-dict languages. |
+| `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size; some entries are editor-rule output, not attested; multiple valid variants per word. |
+| `styletts2_phonemes` | machine-generated | Automatic phonemizer (TTS `synthetic` tag) | **Grain of salt maximal.** Phonemizer/espeak-lineage; low PER = agrees with the phonemizer; espeak comparison on this gold is partly circular. |
+| `ipa_childes` | machine-generated | CHILDES "G2P+" automatic phonemizer | Tool-phonemized child-language corpus; accepted under the academic-corpus exception, still tool output. |
+| `hitz_basque_ipa` | machine-generated | HiTZ **ahoNT / AhoTTS** phonemizer | University-published (HiTZ/UPV-EHU), but the gold **is ahoNT/AhoTTS output** — it was generated by that phonemizer, not human-annotated. So a low PER **for the AhoTTS/ahotts-g2p engine on this row is near-tautological** (a tool scored against its own output); the independent, Wiktionary-sourced `wikipron` `eu` row is the fair comparison for Basque. |
+
 ## Provenance discipline
 
-A gold set is only usable for evaluation when its transcriptions come
-from humans. Many public "G2P datasets" are generated with espeak-ng or
-phonemizer wrappers — scoring against those measures agreement with
-another rule engine, not correctness. Every dataset below is selected
-for human or community provenance; anything tool-generated is excluded
-on principle. One dataset-specific exception is documented below
-(`hitz_basque_ipa`) for an academic/university NLP research center
-publication — see that section for the rationale; it is not a general
-relaxation of this rule.
+Because reliable gold is scarce, the harness applies a deliberate
+discipline: prefer human/community provenance, and where tool-generated
+IPA is admitted, admit it **explicitly, per dataset, with the reason
+recorded** — never silently. Three tool-generated sources are wired in
+(`hitz_basque_ipa`, `ipa_childes`, `styletts2_phonemes`), each under a
+documented, dataset-specific exception (academic-corpus provenance or an
+explicit task override) rather than a blanket relaxation. Their rows
+carry the `machine-generated` tier so the caveat above travels with every
+number they produce. Adding another tool-generated source requires the
+same explicit call; it is not the default.
 
 ## Datasets
 
