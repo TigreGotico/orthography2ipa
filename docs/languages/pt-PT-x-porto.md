@@ -22,7 +22,7 @@ phonetic traits for the Galician-Portuguese dialect space.
 ### 1. Betacism — /v/ ~ /b/ merger (Cintra feature 1)
 
 The phonological opposition between /v/ and /b/ is lost; both collapse into a
-single phoneme /b/, realised **[b] in all positions**. Cintra (1971, p. 13):
+single phoneme /b/, realised **[b] in all positions**. Cintra (1971):
 *"o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua
 fusão num fonema único /b/"*. This is the primary trait separating Northern
 from Central-Southern EP.
@@ -40,7 +40,7 @@ grapheme map.
 
 ### 2. Tonic-closed-vowel diphthongisation (Cintra's defining Porto marker)
 
-Cintra (1971, p. 13) isolates this as *the* defining feature of the region:
+Cintra (1971) isolates this as *the* defining feature of the region:
 *"a ditongação, tão caracterizadora, das vogais tónicas fechadas [e] em [je],
 [o] em [wo] (por vezes [wɔ])"* — a **stressed close-mid vowel** becomes a
 rising diphthong. Segura (2013) independently names diphthongisation of
