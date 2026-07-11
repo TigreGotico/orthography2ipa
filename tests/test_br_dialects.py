@@ -73,13 +73,14 @@ class TestBaseJIPA:
 
     def test_final_e_reduction_norte(self):
         # norte -> [ˈnɔɾt͡ʃi] in JIPA; the grapheme-derivable part is the
-        # final /e/ -> [ɪ] reduction (affrication keys on the orthographic
-        # ‹i›, not the reduced [ɪ], so it is not derived here).
-        assert bare(_g("pt-BR").transcribe_word("norte")).endswith("ɪ")
+        # final /e/ reduced to [ɪ] and raised to close [i] by the
+        # BR_RAISE_FINAL_E allophone rule (affrication keys on the
+        # orthographic ‹i›, not the reduced vowel, so it is not derived here).
+        assert bare(_g("pt-BR").transcribe_word("norte")).endswith("i")
 
     def test_final_o_reduction_vento(self):
-        # vento -> [ˈvẽntʊ]; final /o/ -> [ʊ].
-        assert bare(_g("pt-BR").transcribe_word("vento")).endswith("ʊ")
+        # vento -> [ˈvẽntu]; final /o/ reduces to [ʊ] then raises to [u].
+        assert bare(_g("pt-BR").transcribe_word("vento")).endswith("u")
 
     def test_final_a_reduction_capa(self):
         # capa -> [ˈkapɐ]; final /a/ -> [ɐ].
@@ -111,7 +112,7 @@ class TestSP:
         assert "t͡ʃ" in bare(_g("pt-BR-x-sp").transcribe_word("tia"))
 
     def test_final_reduction(self):
-        assert bare(_g("pt-BR-x-sp").transcribe_word("vento")).endswith("ʊ")
+        assert bare(_g("pt-BR-x-sp").transcribe_word("vento")).endswith("u")
 
     def test_coda_s_alveolar(self):
         r = bare(_g("pt-BR-x-sp").transcribe_word("mesmo"))
@@ -345,7 +346,7 @@ class TestBrasilia:
         assert "ʃ" not in r
 
     def test_final_reduction(self):
-        assert bare(_g("pt-BR-x-brasilia").transcribe_word("vento")).endswith("ʊ")
+        assert bare(_g("pt-BR-x-brasilia").transcribe_word("vento")).endswith("u")
 
     def test_l_vocalisation(self):
         assert bare(_g("pt-BR-x-brasilia").transcribe_word("sol")).endswith("w")

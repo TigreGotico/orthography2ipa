@@ -144,3 +144,48 @@ cannot reward a correct narrow realisation. The phenomenon is nonetheless
 linguistically correct (Recasens 1993) and rewarded by the higher-quality
 gold. This is the expected "broad gold ≠ narrow surface" trade-off — it is
 reported here rather than hidden.
+
+## Brazilian Portuguese — final vowel raising
+
+Brazilian Portuguese (`pt-BR`) is the base spec for twelve regional dialect
+specs; its `allophone_rules` model **final unstressed vowel raising**
+(Barbosa & Albano 2004; Câmara Jr. 1970). Word-final /e o/ raise to the
+close vowels [i]/[u]:
+
+```python
+from orthography2ipa import G2P
+br = G2P("pt-BR")
+br.transcribe_word("gato")    # ˈɡatu   ([ʊ] → [u] / _#)
+br.transcribe_word("leite")   # ˈlejti  ([ɪ] → [i] / _#)
+G2P("pt-BR", apply_allophony=False).transcribe_word("gato")  # ˈɡatʊ (broad)
+```
+
+```json
+{
+  "id": "BR_RAISE_FINAL_E",
+  "phonemes": ["ɪ"],
+  "surface": "i",
+  "word_final": true
+}
+```
+
+Two design points illustrate the inheritance-friendly way to write a base
+rule:
+
+1. **Target the reduced vowel, not the underlying phoneme.** The rule fires
+   on the near-close [ɪ]/[ʊ] the pre-lexical map already selects
+   word-finally, *not* on underlying /e o/. A conservative dialect that
+   retains a final [e]/[o] therefore inherits the rule harmlessly — it
+   simply never fires there — so the base can ship the rule without
+   breaking the varieties that override the reduction.
+2. **Leave a process pre-lexical when it is already positional.** BP /t d/
+   affrication before ⟨i⟩ is handled by `positional_graphemes`; re-stating
+   it as an allophone rule would double-apply. See
+   [languages/pt-BR.md](languages/pt-BR.md) for the full breakdown,
+   including the processes deliberately deferred to the dialect wave.
+
+Effect on the committed gold (PER, lower is better):
+
+| Row | Gold | Before | After | Δ |
+|---|---|---:|---:|---:|
+| pt-BR | wikipron (n=124) | 0.1901 | 0.1578 | **−0.0323** |

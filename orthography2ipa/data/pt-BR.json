@@ -236,10 +236,50 @@
       ]
     }
   },
+  "allophone_rules": [
+    {
+      "id": "BR_RAISE_FINAL_E",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "i",
+      "word_final": true,
+      "notes": "Final unstressed vowel raising (Barbosa & Albano 2004: 229; Câmara Jr. 1970 §III): word-final unstressed /e/ raises to close [i] (leite → [ˈlejt͡ʃi], dente → [ˈdẽt͡ʃi]). The pre-lexical map selects the near-close [ɪ] word-finally; this pass realises the standard BP close [i]. Targeting only the reduced [ɪ] (not underlying /e/) leaves conservative dialects that retain a final [e] untouched, so the delta stays inheritable."
+    },
+    {
+      "id": "BR_RAISE_FINAL_O",
+      "phonemes": [
+        "ʊ"
+      ],
+      "surface": "u",
+      "word_final": true,
+      "notes": "Final unstressed vowel raising (Barbosa & Albano 2004: 229; Câmara Jr. 1970 §III): word-final unstressed /o/ raises to close [u] (gato → [ˈɡatu]). Pretonic reduction is markedly weaker in BP than EP and is not modelled: BP keeps distinct pretonic /e o/, so only the final position raises. Targets the reduced [ʊ] only, leaving conservative dialects that retain a final [o] untouched."
+    }
+  ],
   "quality": "research",
   "script_type": "alphabet",
-  "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation.",
+  "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation. POST-LEXICAL ALLOPHONY (allophone_rules, base for the BR dialect specs via OVERLAY_BY_ID): final unstressed vowel raising — the near-close [ɪ]/[ʊ] selected word-finally by the positional map is realised as the standard BP close [i]/[u] (gato→[ˈɡatu], leite→[ˈlejt͡ʃi]). Targeting the reduced [ɪ]/[ʊ] (not underlying /e o/) leaves conservative dialects that retain a final [e]/[o] untouched, so the rule inherits cleanly. Deliberately kept in the positional map, NOT duplicated as allophone_rules to avoid double-application: /t d/ affrication before front vowels (grapheme-⟨i⟩ handled by the before_i positional rule) and coda /l/ vocalisation (l→w). The phoneme-conditioned refinement of affrication before a raised final ⟨e⟩ (dente→[ˈdẽt͡ʃi]) is left to the dialect-delta wave, where the non-palatalising nordeste varieties (recife/norte/ce) can opt out by rule id — expressing it in the base would silently re-impose affrication on those inheritors. Deliberately NOT modelled in the base: strong EP-style pretonic reduction (BP keeps distinct pretonic /e o/); coda /s/→[ʃ] chiado (a carioca/RJ dialect delta, not general BP — base stays alveolar [s]/[z]); coda /r/→[h~x] weak fricative (highly variable and, since the broad wikipron pt-BR gold transcribes coda /r/ as [ʁ], adding [h~x] regresses the only pt-BR gold — held as a dialect delta rather than shipped in the base).",
   "sources": [
+    {
+      "id": "barbosa_albano2004",
+      "author": "Barbosa, P.A. & Albano, E.C.",
+      "year": 2004,
+      "title": "Brazilian Portuguese (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 34(2)",
+      "url": "https://doi.org/10.1017/S0025100304001756",
+      "pages": "pp. 227-232",
+      "notes": "Canonical BP IPA illustration. Documents final unstressed vowel raising /e o/ → [i u] (source for the BR_RAISE_FINAL_E/O allophone rules) and /t d/ affrication before [i] (modelled pre-lexically in positional_graphemes)."
+    },
+    {
+      "id": "camara1970",
+      "author": "Câmara Jr., J. Mattoso",
+      "year": 1970,
+      "title": "Estrutura da Língua Portuguesa",
+      "publisher": "Vozes",
+      "url": null,
+      "pages": null,
+      "notes": "Classic structural description of BP phonology: neutralisation of final unstressed vowels to the raised [i]/[u]/[ɐ] and the palatalisation of dental stops before [i]."
+    },
     {
       "id": "mateus_dandrade2000",
       "author": "Mateus, M.H.M. & d'Andrade, E.",
