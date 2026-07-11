@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.58.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.58.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.57.0a1...1.58.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model Lisbon pre-palatal vowel centralization, reframe as deviating variety [\#218](https://github.com/TigreGotico/orthography2ipa/pull/218) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.57.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.57.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.56.0a4...1.57.0a1)
@@ -681,10 +689,6 @@
 ## [0.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.6.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.5.0a1...0.6.0a1)
-
-**Merged pull requests:**
-
-- feat\(plugin\): per-language syllabifier entry-point group [\#24](https://github.com/TigreGotico/orthography2ipa/pull/24) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.5.0a1) (2026-06-11)
 
