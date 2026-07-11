@@ -20,6 +20,10 @@
     "ض": [
       "dˤ"
     ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ],
     "ق": [
       "q"
     ],
@@ -44,6 +48,10 @@
     ],
     "ð": [
       "d"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
     ],
     "a": [
       "a",
@@ -73,7 +81,7 @@
       "notes": "Descent from Classical Arabic via 7th–8th c. expansion"
     }
   ],
-  "notes": "Proto-Maghrebi Arabic — abstract ancestor node for Moroccan, Algerian, Tunisian, Libyan, and Hassaniya Arabic. Key shared Maghrebi features: vowel reduction/deletion; ث → /t/; ذ → /d/; ق → /q/ preserved; Berber substrate reinforcing pharyngeals and emphatics.",
+  "notes": "Proto-Maghrebi Arabic — abstract ancestor node for Moroccan, Algerian, Tunisian, Libyan, and Hassaniya Arabic. Key shared Maghrebi features: vowel reduction/deletion (short vowels → schwa [ə] or Ø, yielding heavy consonant clusters — the defining Maghrebi trait); ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghreb) not /dʒ/; ث → /t/; ذ → /d/; ق → /q/ preserved in sedentary/pre-Hilali varieties (/ɡ/ in Bedouin/rural); Berber (Amazigh) substrate reinforcing pharyngeals and emphatics and licensing the cluster phonotactics.",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -84,8 +92,8 @@
       "title": "The Phonology and Morphology of Arabic",
       "publisher": "Oxford University Press",
       "url": null,
-      "pages": null,
-      "notes": null,
+      "pages": "13, 15-17",
+      "notes": "Read (full open-access PDF; printed pages). p.16: Maghribi jīm has no initial occlusive element, realized /ž/ [ʒ]. p.15: sedentary interdental→dental-stop merger. p.17: *q maintained (sedentary) vs /ɡ/ (Bedouin). p.13: unstressed-vowel deletion → initial clusters.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
     },
     {

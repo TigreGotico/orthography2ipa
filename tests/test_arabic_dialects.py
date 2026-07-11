@@ -433,7 +433,10 @@ class TestGulfCountryReflexes:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Yemeni sanity — jim → /ɡ/ (Sanaani), parallel to Cairene
+# Yemeni — Ṣanʿānī reference variety (Watson 2002, pp. 11, 14-16, 19-20)
+# qaf → /ɡ/ ("even al-gurʔān", §2.2 p.20); jim → /dʒ/ affricate (p.11) — the
+# /ɡ/-jim reflex is Cairene + Taʿizz/Hugariyyah (§2.1.6 p.16), NOT Ṣanʿānī;
+# interdentals retained; ḍād/ẓāʾ merge → /ðˤ/.
 # ═══════════════════════════════════════════════════════════════════════════
 
 
@@ -441,14 +444,35 @@ class TestGulfCountryReflexes:
 class TestYemeniReflex:
     CODE = "ar-YE"
 
-    def test_jim_g_jabal(self):
-        """جَبَل → [ɡabal] — Sanaani Yemeni jim → /ɡ/."""
-        assert _ipa(self.CODE, "جَبَل") == "ɡabal"
+    def test_jim_affricate_jabal(self):
+        """جَبَل → [dʒabal] — Ṣanʿānī jim → /dʒ/ affricate (Watson 2002 p.11)."""
+        assert _ipa(self.CODE, "جَبَل") == "dʒabal"
 
-    def test_qaf_retained_grapheme(self):
-        """ق → /q/ retained in Sanaani (conservative)."""
+    def test_qaf_g_qalb(self):
+        """قَلْب → [ɡalb] — Ṣanʿānī qaf → /ɡ/ voiced velar (Watson 2002 §2.2 p.20)."""
+        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+
+    def test_qaf_g_grapheme_first(self):
+        """ق primary /ɡ/ — *q realized in no lexeme, even Standard/religious words."""
         spec = _load(self.CODE)
-        _assert_first(_grapheme(spec, "ق"), "q", label="ق")
+        _assert_first(_grapheme(spec, "ق"), "ɡ", label="ق")
+
+    def test_jim_g_alternate_lower_yemen(self):
+        """ج lists /ɡ/ as the Taʿizz/Hugariyyah (lower-Yemen) alternate reflex."""
+        spec = _load(self.CODE)
+        _assert_first(_grapheme(spec, "ج"), "dʒ", label="ج")
+        _assert_contains(_grapheme(spec, "ج"), "dʒ", "ɡ", label="ج")
+
+    def test_interdentals_retained(self):
+        """ث primary /θ/ — Ṣanʿānī retains interdentals (Watson §2.1.4 pp.14-15)."""
+        spec = _load(self.CODE)
+        _assert_first(_grapheme(spec, "ث"), "θ", label="ث")
+
+    def test_dad_dhah_merger(self):
+        """ض and ظ both → /ðˤ/ — the Ṣanʿānī emphatic-interdental merger (§2.2 p.20)."""
+        spec = _load(self.CODE)
+        _assert_first(_grapheme(spec, "ض"), "ðˤ", label="ض")
+        _assert_first(_grapheme(spec, "ظ"), "ðˤ", label="ظ")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -577,3 +601,95 @@ class TestHejaziMonophthong:
 
     def test_tier_research(self):
         assert self.spec.quality == "research"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Maghrebi group — ar-MA / ar-DZ / ar-TN / ar-LY (+ ar-MR Hassaniya)
+# Signature: jim ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghreb),
+# NOT /dʒ/; interdentals merge (ث → /t/); qaf ق → /q/ in sedentary/pre-Hilali
+# varieties (dual /q ~ ɡ/ in Algerian/Tunisian). Massive short-vowel reduction
+# to schwa [ə]/Ø is the defining Maghrebi trait (modelled as allophone
+# alternates; orthography-driven engine keeps the vocalised full vowel first).
+# Berber (Amazigh) substrate + French/Italian/Spanish adstrate.
+# Sources: Heath 2002; Harrell 1962; Caubet 1993; Gibson 2009; Versteegh 2014.
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestMaghrebiJim:
+    """The defining sedentary-Maghrebi jim ج → /ʒ/ (not /dʒ/).
+
+    Modelled on the ``ar-x-maghrebi`` parent so every country node inherits it.
+    """
+
+    @pytest.mark.parametrize("code", ["ar-MA", "ar-DZ", "ar-TN", "ar-LY", "ar-MR"])
+    def test_jim_zh_jamal(self, code):
+        """جَمَل → [ʒamal] — Maghrebi jim → /ʒ/ postalveolar fricative."""
+        assert _ipa(code, "جَمَل") == "ʒamal"
+
+    @pytest.mark.parametrize("code", ["ar-MA", "ar-DZ", "ar-TN", "ar-LY"])
+    def test_jim_grapheme_zh_first(self, code):
+        """ج primary /ʒ/, /dʒ/ retained as Bedouin/loan alternate."""
+        spec = _load(code)
+        _assert_first(_grapheme(spec, "ج"), "ʒ", label=f"{code} ج")
+        _assert_contains(_grapheme(spec, "ج"), "ʒ", "dʒ", label=f"{code} ج")
+
+    def test_parent_declares_jim(self):
+        """The ج → /ʒ/ reflex lives on the ar-x-maghrebi parent, inherited by all."""
+        parent = _load("ar-x-maghrebi")
+        _assert_first(_grapheme(parent, "ج"), "ʒ", label="ar-x-maghrebi ج")
+
+
+@pytest.mark.linguistic
+class TestMoroccanDarija:
+    CODE = "ar-MA"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        request.cls.spec = _load(self.CODE)
+
+    def test_jim_zh_jamal(self):
+        """جَمَل → [ʒamal] — Darija jim → /ʒ/."""
+        assert _ipa(self.CODE, "جَمَل") == "ʒamal"
+
+    def test_qaf_preserved_qalb(self):
+        """قَلْب → [qalb] — Darija keeps /q/ (pre-Hilali/urban conservative)."""
+        assert _ipa(self.CODE, "قَلْب") == "qalb"
+
+    def test_tha_merges_to_t(self):
+        """ثَلاثة → interdental ث → /t/ (Maghrebi merger, not /θ/)."""
+        out = _ipa(self.CODE, "ثَلاثة")
+        assert out.startswith("t"), f"ث should merge to /t/, got {out!r}"
+        assert "θ" not in out, f"Darija should not retain /θ/, got {out!r}"
+
+    def test_schwa_reduction_modelled(self):
+        """The defining vowel reduction: short /a i u/ carry schwa [ə]/Ø alternates."""
+        for v in ("a", "i", "u"):
+            _assert_contains(
+                self.spec.allophones.get(v), "ə", "", label=f"{self.CODE} {v} reduction"
+            )
+
+    def test_berber_substrate_linked(self):
+        """Berber (ber) substrate node is declared — the cluster/reduction cause."""
+        roles = {a.code: a.role for a in self.spec.ancestors}
+        assert roles.get("ber") == "substrate", f"ber substrate missing: {roles}"
+
+    def test_french_adstrate_linked(self):
+        """French (fr-FR) adstrate node is declared (/p/, /v/, /e/, /o/)."""
+        codes = {a.code for a in self.spec.ancestors}
+        assert "fr-FR" in codes, f"fr-FR adstrate missing: {codes}"
+
+    def test_parent(self):
+        assert self.spec.parent == "ar-x-maghrebi"
+
+
+@pytest.mark.linguistic
+class TestMaghrebiQafDifferentiation:
+    """Algerian/Tunisian carry the sedentary~Bedouin qaf duality /q ~ ɡ/;
+    Moroccan keeps /q/ only (urban reference variety)."""
+
+    @pytest.mark.parametrize("code", ["ar-DZ", "ar-TN"])
+    def test_qaf_dual_reflex(self, code):
+        """ق lists both /q/ (sedentary) and /ɡ/ (Bedouin/rural)."""
+        spec = _load(code)
+        _assert_contains(_grapheme(spec, "ق"), "q", "ɡ", label=f"{code} ق")

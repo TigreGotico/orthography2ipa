@@ -77,8 +77,8 @@
       "notes": "French adstrate: /p/, /v/, /e/, /o/ phonemes"
     }
   ],
-  "notes": "Moroccan Arabic 'Darija' (دارجة). Most divergent mainstream dialect. DEFINING FEATURE: extreme vowel deletion — short unstressed vowels often deleted, creating 3–4 consonant clusters unusual in Arabic. θ → /t/, ð → /d/, ðˤ → /dˤ/ (emphatic lateral ض → dˤ). ق → /q/ PRESERVED (Maghrebi conservative feature). Pharyngeals ħ, ʕ very strong (Berber substrate reinforcement). French loanwords: /p/ and /v/ established as phonemes. Berber substrate is the primary explanation for vowel reduction and consonant cluster tolerance (Herce 2021, Caubet 1993).",
-  "quality": "skeleton",
+  "notes": "Moroccan Arabic 'Darija' (دارجة). Most divergent mainstream dialect. DEFINING FEATURE: extreme short-vowel reduction — Noamane (2020) p.49: the vocalic inventory is 'limited to three underlying short vowels /i, u, a/ and an epenthetic schwa /ə/' with no long vowels; Heath (2020) p.216: the koiné 'reduce[s] all three short vowels to just one short vowel ə', original short vowels 'syncopate in weak metrical positions', yielding word-initial consonant clusters (Watson 2002 p.13, Moroccan smin 'fat' vs Cairene simīn). ج jim → /ʒ/ (voiced postalveolar fricative, NOT the affricate /dʒ/): Watson (2002) p.16 'in the majority of Maghribi dialects (cf. Heath 1987:20–1 for Moroccan), the phoneme does not have an initial occlusive element and is realized as /ž/'; Ennaji et al. (2004) p.2 inventory lists /ž/ and no /dʒ/. Interdentals merged to stops: ث θ → /t/, ذ ð → /d/, ظ/ض → /dˤ/ — Watson (2002) p.15 'in the sedentary dialects the original interdental fricatives *θ, *ð and *ð̣ merged with the dental stops'; Ennaji et al. (2004) p.2 inventory has no interdentals. ق → /q/ PRESERVED (sedentary/pre-Hilali; /ɡ/ in Bedouin/rural — Watson p.17); Moroccan has both /q/ and /ɡ/ as phonemes (Ennaji p.2). Pharyngeals ħ, ʕ strong. French adstrate: /p/, /v/, /e/, /o/. Berber (Amazigh) substrate underlies the schwa reduction and consonant-cluster phonotactics.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
@@ -88,9 +88,39 @@
       "title": "The Phonology and Morphology of Arabic",
       "publisher": "Oxford University Press",
       "url": null,
-      "pages": null,
-      "notes": null,
+      "pages": "13, 15-17",
+      "notes": "Read (full open-access PDF; printed pages). p.16: in the majority of Maghribi dialects (cf. Heath 1987:20-1 for Moroccan) jīm has no initial occlusive element and is realized as /ž/ [ʒ]. p.15 §2.1.4: sedentary dialects merged the interdental fricatives *θ *ð *ð̣ with the dental stops. p.17 §2.1.9: *q maintained in North African (sedentary) dialects, /ɡ/ in Bedouin. p.13: Maghrebi unstressed-vowel deletion → word-initial clusters (smin vs Cairene simīn).",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "noamane2020",
+      "author": "Noamane, A.",
+      "year": 2020,
+      "title": "Consonant Gemination in Moroccan Arabic: A Constraint-Based Analysis",
+      "publisher": "Journal of Applied Language and Culture Studies 3: 37-68",
+      "url": "http://roa.rutgers.edu/content/article/files/1814_noamane_2.pdf",
+      "pages": "45, 49",
+      "notes": "Read (open-access PDF). p.49 chart 18: MA vocalic inventory limited to three underlying short vowels /i, u, a/ plus epenthetic schwa /ə/, no long vowels. p.45 consonant chart: /ʒ/ voiced alveo-palatal fricative (no /dʒ/); both /q/ (uvular) and /ɡ/ (velar) present."
+    },
+    {
+      "id": "heath2020",
+      "author": "Heath, J.",
+      "year": 2020,
+      "title": "Moroccan Arabic (ch. 10 in Lucas & Manfredi, eds., Arabic and Contact-Induced Change)",
+      "publisher": "Language Science Press",
+      "url": "https://langsci-press.org/catalog/book/235",
+      "pages": "216",
+      "notes": "Read (open-access PDF). p.216: the koiné reduces all three short vowels to a single short vowel ə (with allophones), original short vowels syncopate in weak metrical positions."
+    },
+    {
+      "id": "ennaji2004",
+      "author": "Ennaji, M., Makhoukh, A., Es-saiydy, H., Moubtassime, M. & Slaoui, S.",
+      "year": 2004,
+      "title": "A Grammar of Moroccan Arabic",
+      "publisher": "Publications de la Faculté des Lettres, Fès",
+      "url": null,
+      "pages": "2-7",
+      "notes": "Read (open-access PDF). p.2 28-consonant inventory: /ž/ [ʒ] present, no /dʒ/ affricate, no interdentals /θ ð/, both /q/ and /ɡ/. p.7: schwa is epenthetic, appearing between consonants; clusters pp.3-4 (kəlb, smən, smra)."
     },
     {
       "id": "harrell1962",
@@ -100,7 +130,7 @@
       "publisher": "Georgetown University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Standard descriptive grammar; not obtained to a readable page for this pass (Google Books ToC only)."
     },
     {
       "id": "versteegh2001",
