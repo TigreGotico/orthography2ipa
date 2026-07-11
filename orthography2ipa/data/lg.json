@@ -1,7 +1,6 @@
 {
   "code": "lg",
   "name": "Luganda",
-  "family": "Niger-Congo",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -191,6 +190,15 @@
       "url": "https://glottolog.org/resource/languoid/id/gand1255",
       "pages": null,
       "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+    }
+  ],
+  "parent": "x-clade-narr1281",
+  "ancestors": [
+    {
+      "code": "x-clade-narr1281",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Bantu, within Atlantic-Congo."
     }
   ]
 }

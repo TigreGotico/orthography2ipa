@@ -1,7 +1,6 @@
 {
   "code": "gl-x-reintegrado",
   "name": "Galician (reintegrationist orthography)",
-  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -9,10 +8,18 @@
   "graphemes_base": "gl",
   "allophones_base": "gl",
   "graphemes": {
-    "nh": ["ɲ"],
-    "lh": ["ʎ"],
-    "ç": ["θ"],
-    "j": ["ʃ"],
+    "nh": [
+      "ɲ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "ç": [
+      "θ"
+    ],
+    "j": [
+      "ʃ"
+    ],
     "ñ": null,
     "ll": null
   },

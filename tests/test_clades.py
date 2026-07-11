@@ -113,6 +113,10 @@ def test_family_is_not_authored_in_json():
             authored[path.stem] = raw["family"]
     assert set(authored.values()) <= {
         "Constructed", "Isolate", "Unclassifiable", "Khoe-Kwadi",
+        # A creole does not descend from a single parent — that is what makes it
+        # a creole. The family tree cannot classify one, so these keep an
+        # authored label rather than deriving a descent that does not exist.
+        "English Creole", "French Creole", "Portuguese Creole",
     }, authored
 
 
