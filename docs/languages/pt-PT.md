@@ -20,6 +20,7 @@ orthography→phoneme map (`graphemes` + `positional_graphemes`) and a
 | Process | Where | Field |
 |:---|:---|:---|
 | Unstressed vowel reduction | pre-lexical | `positional_graphemes` |
+| Coda vowel nasalisation (⟨m/n⟩) | pre-lexical **+** post-lexical | `positional_graphemes` (tilde) **+** `allophone_rules` (quality) |
 | Dark / velarised coda /l/ | post-lexical | `allophone_rules` |
 | Coda sibilants (*chiado*) | post-lexical | `allophone_rules` |
 | Coda-/s/ voicing across words | sandhi | `sandhi_rules` |
@@ -40,6 +41,102 @@ This is realised **pre-lexically** through the `positional_graphemes`
 Because reduction is already fully handled there, the `allophone_rules` layer
 does **not** restate it (a redundant stress-conditioned allophone rule would
 be inert). Word-final [ɨ] deletion is optional and left to downstream prosody.
+
+## Coda vowel nasalisation (pre-lexical tilde + post-lexical quality)
+
+A defining feature of Portuguese: a vowel followed by a **tautosyllabic (coda)
+nasal** ⟨m⟩ or ⟨n⟩ — word-finally or before another consonant — **nasalises**,
+and the nasal consonant is absorbed into the resulting nasal vowel rather than
+pronounced as a separate segment (Mateus & d'Andrade 2000: ch. 2, *Nasality*).
+Portuguese has five phonemic nasal vowels, **/ɐ̃ ẽ ĩ õ ũ/**:
+
+| Spelling | Oral base | Nasal vowel | Example |
+|:---|:---:|:---:|:---|
+| ⟨am⟩/⟨an⟩ | [a] → [ɐ] | [ɐ̃] | `campo` [ˈkɐ̃pu], `cantar` [kɐ̃ˈtaɾ], `ambos` [ˈɐ̃buʃ] |
+| ⟨em⟩/⟨en⟩ | [ɛ] → [e] | [ẽ] | `tempo` [ˈtẽpu], `entre` [ˈẽtɾɨ] |
+| ⟨im⟩/⟨in⟩ | [i] | [ĩ] | `sim` [ˈsĩ], `fim` [ˈfĩ], `lindo` [ˈlĩdu] |
+| ⟨om⟩/⟨on⟩ | [ɔ] → [o] | [õ] | `bom` [ˈbõ], `onde` [ˈõdɨ] |
+| ⟨um⟩/⟨un⟩ | [u] | [ũ] | `mundo` [ˈmũdu], `um` [ˈũ] |
+
+The process splits across the two maps by design, exactly as the
+[Barranquenho](ext-PT-x-barrancos.md) spec models it:
+
+- **Pre-lexical (the nasalisation itself).** The `positional_graphemes` entries
+  for `m` and `n` map the coda positions (`before_consonant`, `word_final`) to a
+  single **U+0303 combining tilde** `[̃]`. This deletes the coda nasal consonant
+  and nasalises the preceding vowel by concatenation. An **onset (intervocalic)**
+  ⟨m/n⟩ matches none of these coda keys, so it stays a plain consonant and leaves
+  the vowel **oral**: `cama` [ˈkamɐ], `ano` [ˈɐnu], `nome` [ˈnɔmɨ].
+- **Post-lexical (the vowel quality).** Four `allophone_rules` —
+  `PT_NASAL_A_RAISE` (a→ɐ), `PT_NASAL_E_RAISE` (ɛ→e), `PT_NASAL_O_RAISE` (ɔ→o),
+  and `PT_NASAL_O_UNRED` (reduced u→o, see below) — raise the vowel to the
+  **oral base** of its nasal quality, conditioned `followed_by_phoneme: [̃]`.
+  They fire *only* when the next segment is the nasalisation tilde, so oral
+  vowels before an onset nasal are untouched. The surface is always the
+  **oral** base; the tilde is supplied solely by the m/n slot, so a vowel is
+  **never doubly-tilded**. A **lexical** ⟨i⟩ or ⟨u⟩ needs no rule — its nasal
+  quality [ĩ ũ] already shares the oral base [i u] (`sim` [ˈsĩ], `mundo`
+  [ˈmũdu], `um` [ˈũ]).
+
+### Reduced ⟨o⟩ before a nasal: [õ], not [ũ] (`PT_NASAL_O_UNRED`)
+
+EP unstressed vowel reduction lowers ⟨o⟩ to [u] (`contar` → naively
+`[kũˈtaɾ]`). But that reduction is **blocked before a coda nasal**: an
+unstressed ⟨o⟩ before ⟨m/n⟩ surfaces as the nasal mid **[õ]**, never **[ũ]**
+(Mateus & d'Andrade 2000: ch. 2, *Nasality* — EP nasal [õ] does not raise to
+[ũ]). Because the pre-lexical map has already reduced the vowel to [u] by the
+time the allophone layer runs, `PT_NASAL_O_UNRED` lowers that reduced [u] back
+to the oral [o] before the tilde: `contar` [kõˈtaɾ], `comprar` [kõˈpɾaɾ],
+`bondade` [bõˈdadɨ], `pombal` [põˈbaɫ], `montanha` [mõˈtaɲɐ], `bombom`
+[bõˈbõ]. The rule is **gated on the source grapheme ⟨o⟩** (the new
+`AllophoneRule.grapheme` condition): it fires only on a *reduced ⟨o⟩*, so a
+**lexical ⟨u⟩** before a nasal keeps its genuine high [ũ] — `um` [ˈũ], `mundo`
+[ˈmũdu], `algum` [aɫˈɡũ], `segundo` [sɨˈɡũdu] — since both are the same phoneme
+[u] and only the spelling distinguishes them. pt-BR and the non-reducing
+Lusophone variants (pt-AO/MZ/TL) never reduce ⟨o⟩→[u], so their ⟨o⟩ before a
+nasal is already [o] and this rule is inert there.
+
+### Engine guard: the nasal tilde attaches only to a vowel
+
+The coda ⟨m/n⟩ → tilde slot carries an **oral consonant fallback** ([m]/[n])
+below the tilde in the beam. A shared engine guard (`_expand_beam`) suppresses
+the tilde branch whenever the phoneme it would land on is **not** an oral vowel
+or a nasal-diphthong glide, so the fallback consonant wins instead. This keeps
+the output valid IPA in two edge cases: (1) the pre-existing ⟨gu⟩→[ɡ]
+vowel-drop (`algum`, `segundo`) that strands a consonant in the coda slot — the
+tilde is no longer emitted onto [ɡ] (was the invalid `[ɐˈɫɡ̃]`); and (2) ⟨nn⟩
+loans (`inn`, `Finn`) where a second nasal slot would otherwise stack a second
+tilde onto an already-nasalised nucleus. The guard is generic and byte-neutral:
+a tilde that lands on a vowel is never touched, so all prior behaviour and the
+nasal diphthongs ⟨ão ãe õe⟩ (glide carriers [w̃ j̃]) are unchanged.
+
+Two collisions are avoided by construction:
+
+- **⟨nh⟩/⟨lh⟩ digraphs stay intact.** Maximal-munch tokenisation consumes ⟨nh⟩ as
+  a single grapheme (→ [ɲ]) *before* the standalone-⟨n⟩ rule can see it, so the
+  ⟨n⟩ of ⟨nh⟩ never nasalises the preceding vowel: `banho` [ˈbaɲu].
+- **Nasal diphthongs ⟨ão ãe õe⟩ stay intact.** These are whole graphemes
+  (→ [ɐ̃w̃], [ɐ̃j̃], [õj̃]) with no standalone ⟨m/n⟩, so the coda-nasal mechanism
+  does not touch them: `pão`, `mãe`, `põe`.
+
+**Benchmark effect.** Coda nasalisation is pervasive, so it moves every scored
+`pt` gold. It improves all the human/lexicon golds — `infopedia_pt`
+(0.308→0.265), `ep_dialects` pt-PT (0.213→0.173),
+`portuguese_phonetic_lexicon` pt-PT (0.211→0.145), pt-BR (0.275→0.223), and
+the crowd-scraped WikiPron `pt` (0.207→0.180), pt-BR (0.154→0.108) — and, by
+inheritance, every `pt-PT-x-*` dialect row (−0.03 to −0.05 on the CLUP and
+`ep_dialects` golds). The reduced-⟨o⟩→[õ] fix (`PT_NASAL_O_UNRED`) sharpens
+these further beyond the raw nasalisation, since unstressed ⟨o⟩ before a nasal
+(`contar`, `bondade`, `comprar`) is frequent. The **one** row that regresses
+slightly is `styletts2_phonemes` (0.384→0.389, within overlapping CIs): that
+gold is
+machine-generated by an espeak-style phonemiser that transcribes coda nasality
+as a nasal vowel **plus** a retained nasal consonant / [ŋ] (`campo` → `kˈɐ̃mpʊ`,
+`conde` → `kˈoŋdɨ`), whereas the standard broad transcription — and every
+higher-quality gold here — **absorbs** the consonant into the nasal vowel
+(`campo` [ˈkɐ̃pu]). Per the honesty gate the change is kept: it is linguistically
+correct and rewarded by the trustworthy golds, with the lone machine-gold
+divergence documented rather than hidden. See [../scoreboard.md](../scoreboard.md).
 
 ## Coda consonants (post-lexical `allophone_rules`)
 
@@ -179,7 +276,8 @@ rather than hidden.
 - Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance;
   Castilian merged them).
 - Nasal vowels and nasal diphthongs (`ão`, `ãe`, `õe`) are diagnostic and
-  drive final-stress placement.
+  drive final-stress placement; coda-conditioned nasalisation of the plain
+  vowels is documented above ("Coda vowel nasalisation").
 - Input is standard orthography under the Acordo Ortográfico (1990).
 
 ---

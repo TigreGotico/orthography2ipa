@@ -148,9 +148,11 @@ class TestStressedEPrePalatal:
     def test_stressed_e_before_non_palatal_unchanged(self):
         """Only pre-palatal stressed /e/ centralises; before a non-palatal the
         base stressed realisation [ɛ]/[e] is kept."""
-        # 'pente': stressed <e> before <nt> -> [ɛ], no centralisation
-        assert "ɐ" not in _bare(G2P(LISBON).transcribe_word("pente")).replace("ɾ", "")
-        assert "ɛ" in G2P(LISBON).transcribe_word("pente")
+        # 'belo': stressed <e> before <l> (non-palatal, non-nasal) -> [ɛ],
+        # no centralisation. ('pente' would nasalise the vowel to [ẽ] via the
+        # coda ⟨n⟩ and is not a clean pre-palatal control.)
+        assert "ɐ" not in _bare(G2P(LISBON).transcribe_word("belo")).replace("ɾ", "")
+        assert "ɛ" in G2P(LISBON).transcribe_word("belo")
 
     def test_base_pt_pt_untouched(self):
         """The delta lives on Lisbon only; the pt-PT base must not gain the

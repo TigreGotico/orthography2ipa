@@ -81,3 +81,58 @@ def test_affrication_not_before_non_high_vowel():
 ])
 def test_gold_derived_words(word, fragment):
     assert fragment in G2P("pt-BR").transcribe_word(word)
+
+
+# ─── coda vowel nasalisation (retained in Brazilian Portuguese) ─────────
+# BP keeps the general-Portuguese coda-nasal → nasal-vowel process
+# (Mateus & d'Andrade 2000: ch.2; Barbosa & Albano 2004). A vowel before a
+# CODA ⟨m/n⟩ nasalises (tilde U+0303 from the positional m/n slot); an
+# INTERVOCALIC (onset) nasal leaves the vowel oral.
+
+TILDE = "̃"
+
+
+def test_br_declares_the_nasal_raise_rules():
+    from orthography2ipa import get
+    ids = [r.id for r in get("pt-BR").allophone_rules]
+    assert ids[:3] == [
+        "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE"]
+    # the BR final-raising rules are preserved after the nasal rules
+    assert "BR_RAISE_FINAL_E" in ids and "BR_RAISE_FINAL_O" in ids
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("campo", "ˈkɐ̃pu"),
+    ("sim", "ˈsĩ"),
+    ("bom", "ˈbõ"),
+    ("mundo", "ˈmũdu"),
+    ("cantar", "kɐ̃ˈtaɾ"),
+    ("fim", "ˈfĩ"),
+    ("tempo", "ˈtẽpu"),
+])
+def test_br_coda_nasalisation(word, expected):
+    import unicodedata
+    got = unicodedata.normalize("NFC", G2P("pt-BR").transcribe_word(word))
+    assert got == unicodedata.normalize("NFC", expected)
+
+
+def _nfd_br(word):
+    import unicodedata
+    return unicodedata.normalize("NFD", G2P("pt-BR").transcribe_word(word))
+
+
+def test_br_intervocalic_nasal_leaves_vowel_oral():
+    for word in ("cama", "ano", "lua", "lima", "nome", "fome"):
+        out = _nfd_br(word)
+        assert TILDE not in out, (word, out)
+
+
+def test_br_no_double_tilde():
+    for word in ("campo", "sim", "bom", "mundo", "cantar", "tempo"):
+        out = _nfd_br(word)
+        assert TILDE + TILDE not in out, (word, out)
+
+
+def test_br_nh_digraph_unbroken():
+    out = _nfd_br("banho")
+    assert "ɲ" in out and TILDE not in out, out

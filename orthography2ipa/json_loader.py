@@ -274,6 +274,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 followed_by=ar.get("followed_by"),
                 preceded_by_phoneme=tuple(ar.get("preceded_by_phoneme", ())),
                 followed_by_phoneme=tuple(ar.get("followed_by_phoneme", ())),
+                grapheme=(tuple(ar["grapheme"])
+                          if ar.get("grapheme") else None),
                 notes=ar.get("notes", ""),
             )
             for ar in raw_allophone
