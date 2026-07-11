@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.64.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.64.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.63.0a1...1.64.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): human-gold Mirandese + Infopédia + Portal-scraped Portuguese gold rows [\#235](https://github.com/TigreGotico/orthography2ipa/pull/235) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.63.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.63.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.62.0a1...1.63.0a1)
@@ -697,10 +705,6 @@
 ## [1.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.2.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.3a1...1.2.0a1)
-
-**Merged pull requests:**
-
-- feat\(g2p\): positional and stress-conditioned candidate selection [\#34](https://github.com/TigreGotico/orthography2ipa/pull/34) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.1.3a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.3a1) (2026-06-11)
 
