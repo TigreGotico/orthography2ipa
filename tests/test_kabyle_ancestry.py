@@ -42,16 +42,8 @@ class TestChainResolves:
         assert orthography2ipa.get(code).quality is QualityTier.STUB
 
     def test_stub_glottocodes(self):
-        # The Glottolog codes live in the JSON data files (the loader does not
-        # currently surface glottolog_code onto the dataclass).
-        import json
-        import pathlib
-        data_dir = pathlib.Path(orthography2ipa.__file__).parent / "data"
-        afa = json.loads((data_dir / "afa.json").read_text(encoding="utf-8"))
-        kab_atlas = json.loads(
-            (data_dir / "ber-x-kabyle-atlas.json").read_text(encoding="utf-8"))
-        assert afa["glottolog_code"] == "afro1255"
-        assert kab_atlas["glottolog_code"] == "kaby1244"
+        assert orthography2ipa.get("afa").glottolog_code == "afro1255"
+        assert orthography2ipa.get("ber-x-kabyle-atlas").glottolog_code == "kaby1244"
 
     def test_stubs_are_afroasiatic(self):
         assert orthography2ipa.get("afa").family == "Afroasiatic"

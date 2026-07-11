@@ -167,6 +167,17 @@ class AllophoneRuleModel(_Strict):
     notes: str = ""
 
 
+class OrthographyStandardModel(_Strict):
+    """Official published spelling norm (``orthography_standard``).
+    Mirrors ``OrthographyStandard``."""
+
+    name: str = Field(min_length=1)
+    authority: Optional[str] = None
+    year: Optional[int] = None
+    url: Optional[str] = None
+    notes: Optional[str] = None
+
+
 class TimeSpanModel(_Strict):
     """Attestation period (``timespan``). Mirrors ``TimeSpan``."""
 
@@ -245,11 +256,11 @@ class LanguageSpecModel(_Strict):
     quality: QualityTier = QualityTier.RESEARCH
     script_type: ScriptType = ScriptType.ALPHABET
     inherent_vowel: Optional[str] = None
-    iso639_3: Optional[str] = None
-    glottolog_code: Optional[str] = None
-    wikidata_qid: Optional[str] = None
-    phoible_id: Optional[str] = None
-    wals_code: Optional[str] = None
+    iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
+    glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
+    wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")
+    phoible_id: Optional[str] = Field(default=None, min_length=1)
+    wals_code: Optional[str] = Field(default=None, min_length=1)
 
     # ─── extended structures ────────────────────────────────────────
     sandhi_rules: Optional[List[SandhiRuleModel]] = None
@@ -260,6 +271,7 @@ class LanguageSpecModel(_Strict):
     wikipedia: Optional[List[str]] = None
     urls: Optional[List[str]] = None
     timespan: Optional[TimeSpanModel] = None
+    orthography_standard: Optional[OrthographyStandardModel] = None
 
     # ─── bundled-lexicon reference (consumed by load_lexicon) ────────
     lexicon_csv: Optional[str] = None

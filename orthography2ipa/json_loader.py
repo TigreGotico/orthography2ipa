@@ -31,6 +31,7 @@ from orthography2ipa.types import (
     InheritanceMode,
     LanguageSpec,
     LinguisticSource,
+    OrthographyStandard,
     QualityTier,
     SandhiRule,
     ScriptType,
@@ -325,6 +326,18 @@ def load_json_spec(code: str) -> LanguageSpec:
             end_year=int(raw_timespan["end_year"]) if raw_timespan.get("end_year") is not None else None,
         )
 
+    # Parse the official orthography standard, when the language has one
+    orthography_standard: Optional[OrthographyStandard] = None
+    raw_ortho = raw.get("orthography_standard")
+    if raw_ortho and isinstance(raw_ortho, dict):
+        orthography_standard = OrthographyStandard(
+            name=raw_ortho["name"],
+            authority=raw_ortho.get("authority"),
+            year=int(raw_ortho["year"]) if raw_ortho.get("year") is not None else None,
+            url=raw_ortho.get("url"),
+            notes=raw_ortho.get("notes", "") or "",
+        )
+
     # Parse stress rules (own-file only — not inherited through ancestry)
     stress: Optional[StressRules] = None
     raw_stress = raw.get("stress")
@@ -362,6 +375,8 @@ def load_json_spec(code: str) -> LanguageSpec:
         tone_inventory=raw.get("tone_inventory"),
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
+        urls=tuple(raw.get("urls") or ()),
+        orthography_standard=orthography_standard,
         timespan=timespan,
         stress=stress,
         word_exceptions=raw.get("word_exceptions"),

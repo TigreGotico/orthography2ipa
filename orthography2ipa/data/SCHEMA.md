@@ -83,6 +83,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `wals_code`                 | string | no       | WALS (World Atlas of Language Structures) code — typological cross-reference |
 | `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) |
 | `urls`                      | array  | no       | Other reference URLs (Glottolog, Ethnologue, dialect articles, …) |
+| `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
 | `lexicon_csv`               | string | no       | Path (relative to `data/`) of a bundled IPA lexicon CSV |
 
@@ -345,3 +346,33 @@ data/
 ├── eu.json
 └── ...
 ```
+
+## Orthography Standard Schema
+
+Many languages are governed by a named spelling norm issued by a language academy
+or state body. Where such a norm exists **and is public**, it is the primary
+authority for what a grapheme *is* in that language — so it is recorded as a
+first-class field rather than buried among `urls`.
+
+| Key         | Type   | Required | Description                                        |
+|-------------|--------|----------|----------------------------------------------------|
+| `name`      | string | **yes**  | Title of the standard, in the language's own naming |
+| `authority` | string | no       | The academy or body that issues it                  |
+| `year`      | int    | no       | Year of the edition referenced                      |
+| `url`       | string | no       | Public link to the standard itself                  |
+| `notes`     | string | no       | Caveats — a variety that does not follow it, a competing norm |
+
+```json
+"orthography_standard": {
+  "name": "Normas ortográficas e morfolóxicas do idioma galego",
+  "authority": "Real Academia Galega / Instituto da Lingua Galega",
+  "year": 2012,
+  "url": "https://academia.gal/documents/10157/704901/Normas...pdf",
+  "notes": "Defines the standard spelling; seseo and gheada are dialectal, not normative."
+}
+```
+
+A standard is a property of the *language*, not of every dialect of it: a dialect
+that spells by its standard language's norm simply omits the field, and consumers
+walk the ancestry chain. Omit it entirely for varieties with no official norm and
+for reconstructions.
