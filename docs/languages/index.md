@@ -54,6 +54,7 @@ each tier actually certifies.
 | [romance.md](romance.md) | es-ES, fr-FR, it-IT, pt-PT, pt-BR, ca, ro-RO (comparative) |
 | [fr-FR.md](fr-FR.md) | French in detail |
 | [it-IT.md](it-IT.md) | Italian in detail |
+| [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
 
 ### Slavic
 

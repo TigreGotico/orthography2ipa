@@ -62,7 +62,7 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | pl | wikipron | 287 | 0.1195 | [0.1060, 0.1346] | 0.3624 | research |
 | pt | styletts2_phonemes | 300 | 0.3999 | [0.3899, 0.4095] | 0.0000 | research |
 | pt | wikipron | 242 | 0.1817 | [0.1607, 0.2031] | 0.3058 | research |
-| pt-BR | wikipron | 124 | 0.1901 | [0.1572, 0.2236] | 0.3952 | research |
+| pt-BR | wikipron | 124 | 0.1578 | [0.1258, 0.1904] | 0.5000 | research |
 | pt-PT | ep_dialects | 30 | 0.2599 | [0.2226, 0.3020] | 0.0000 | research |
 | pt-PT | infopedia_pt | 295 | 0.3160 | [0.2918, 0.3389] | 0.1390 | research |
 | pt-PT-x-acores | clup_dialect | 2 | 0.4889 | [0.4860, 0.4918] | 0.0000 | research |
