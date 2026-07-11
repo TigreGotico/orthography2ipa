@@ -80,11 +80,11 @@ g.word_confidence("cough")   # 0.6321 — ambiguous, look closer
 g.word_confidence("bar你")   # 0.7500 — one OOV grapheme drops coverage to 3/4
 ```
 
-**Specialised engines refine the lattice instead of forking a tokenizer.**
-A downstream rule is a `LatticeRescorer`: a pure function over one slot and
-its context that re-costs candidates. A candidate wins by being made
-strictly cheapest. Here is a complete mini-phonemizer that teaches English
-⟨ough⟩ its `/ʌf/` reading (*rough*, *tough*, *enough*):
+**A downstream engine can refine the lattice with a rescorer.**
+A rule is a `LatticeRescorer`: a pure function over one slot and its context
+that re-costs candidates. A candidate wins by being made strictly cheapest.
+Here is a complete mini-phonemizer that teaches English ⟨ough⟩ its `/ʌf/`
+reading (*rough*, *tough*, *enough*):
 
 ```python
 from orthography2ipa import get
@@ -105,15 +105,19 @@ tok.ipa_best("tough", rescorer=RoughOugh())  # 'tʌf'  — refined
 ```
 
 The beam is the **universal fallback**: it produces a defensible
-transcription for every word in every registered language. The rescorer seam
-is how a downstream cascade — Arabic sun-letter assimilation, a Portuguese
-lexical override — expresses itself as re-costing over this one shared
-lattice rather than a parallel tokenizer. That is the seam
-[arbtok](https://github.com/TigreGotico/arbtok),
+transcription for every word in every registered language. Refining it with a
+rescorer is one of two supported ways to build a specialised engine on this
+library; keeping a bespoke tokenizer is the other. Which fits depends on the
+shape of your rules — a rescorer suits context-conditioned choices among the
+candidates the shared trie already offers, while cross-word context, a
+non-IPA generation model, or data that diverges sharply from the base spec
+favour a fork. [arbtok](https://github.com/TigreGotico/arbtok),
 [tugaphone](https://github.com/TigreGotico/tugaphone),
 [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and
-[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer) build on. See
-[docs/lattice.md](docs/lattice.md) for the full story.
+[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer) build on this
+library; see
+[Refine or fork?](docs/lattice.md#refine-the-lattice-or-fork-the-tokenizer)
+for the trade-offs and the hybrid most engines settle on.
 
 ## What each language carries
 
@@ -328,7 +332,7 @@ When a spec declares graphemes but no explicit allophone map, a baseline identit
 
 ## Building engines on top
 
-`G2PPlugin` and `WordContext` are exported as the base types for richer language-specific engines built **on** this library — [arbtok](https://github.com/TigreGotico/arbtok) (Arabic: contextual rule cascade + tashkeel diacritization) and [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese: lexicon, POS and regional-accent layers). They consume the spec data, tokenizer and stress machinery and own their own pipelines.
+`G2PPlugin` and `WordContext` are exported as the base types for richer language-specific engines built **on** this library — [arbtok](https://github.com/TigreGotico/arbtok) (Arabic: contextual rule cascade + tashkeel diacritization) and [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese: lexicon, POS and regional-accent layers). They consume the spec data, tokenizer and stress machinery and own their own pipelines. Whether such an engine expresses its rules as rescorers over the shared lattice or keeps a bespoke tokenizer is a design choice covered in [Refine or fork?](docs/lattice.md#refine-the-lattice-or-fork-the-tokenizer).
 
 Component plugins that slot into the bundled engine's own logic use dedicated entry-point groups: per-language syllabifiers register under `orthography2ipa.syllabify` (e.g. `silabificador` for Portuguese) and are honoured by stress detection automatically.
 

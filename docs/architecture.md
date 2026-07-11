@@ -234,10 +234,13 @@ List[IPAPath]  (sorted by score, best first)
 The **rescorer** stage is the downstream-enablement seam: it runs after
 positional/weight resolution and before beam path selection, re-costing
 each grapheme slot as a pure function of the slot and its context. A
-downstream rule cascade — arbtok sun-letter assimilation, tugaphone
-silent-`e` — is expressed as a rescorer over the shared lattice rather than
-a forked tokenizer. See [Rescoring the lattice](lattice.md#rescoring-the-lattice).
-Absent a rescorer, the pipeline is byte-identical.
+downstream rule cascade — a sun-letter assimilation, a silent-`e` rule —
+can be expressed as a rescorer over the shared lattice instead of a forked
+tokenizer, when the rule is a context-conditioned choice among the
+candidates the lattice already carries. See
+[Rescoring the lattice](lattice.md#rescoring-the-lattice) and
+[Refine or fork?](lattice.md#refine-the-lattice-or-fork-the-tokenizer) for
+when each approach fits. Absent a rescorer, the pipeline is byte-identical.
 
 The **allophony** stage is the built-in rescorer: a spec's declarative
 `allophone_rules` (post-lexical `phoneme → surface` rewrites — final
