@@ -49,11 +49,38 @@
       ]
     }
   },
-  "parent": "pt-PT",
-  "notes": "Lisbon prestige variety. Diagnostic features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) /ej/ → [ɐj] — Lisbon diphthong lowering, the single most diagnostic grapheme-level feature (leite→[lɐjtɨ], primeiro→[pɾiˈmɐjɾu]); (2) /ow/ → [o] — complete monophthongization (ouro→[ˈoɾu]); (3) unstressed /a/ → [ɐ] throughout; (4) unstressed /o/ → [u] (pretonic/posttonic); (5) strong unstressed /e/ → [ɨ] (inherited from pt-PT base); (6) consistent uvular [ʁ]; (7) coda /l/ → [ɫ] (inherited). Allophonic spirantization (β/ð) is phonemizer-level and not encoded here. Sources: DIALECT_PATTERNS.md, whitepaper5 §3 (Lisbon de-biasing / §5.3 Lisbon profile), Mateus & d'Andrade (2000).",
+  "notes": "Lisbon / Estremenho (Centro-Litoral) European Portuguese — the prestige REFERENCE variety. Cintra (1971; Boletim de Filologia 22:81-116) shows the standard, prestige norm of European Portuguese IS essentially the Central-Southern / Lisbon (Estremenho) variety, so the pt-PT base already models nearly all of Lisbon: strong unstressed vowel reduction (/e/->[ɨ]), dark coda /l/->[ɫ], coda-sibilant chiado /s z/->[ʃ ʒ], and the coda-s sandhi are ALL inherited from pt-PT and are NOT restated here (they are the standard = Lisbon). The only positional rows kept are the unstressed /a/->[ɐ] and /o/->[u] reduction entries — retained (rather than left to the base) so Lisbon reduces the unstressed mid/low vowels without pulling in the base's open [ɔ]/[a] stressed-nucleus defaults, which are lexically unpredictable for spelling-unmarked stressed <o>/<a>. The genuine, well-sourced Lisbon-specific deltas over that Lisbon-type base are minimal: (1) <ei> -> [ɐj] — the diagnostic Lisbon/Estremenho lowering-centralisation of the falling diphthong, where more conservative/Northern EP keeps [ej] (leite -> [ˈlɐjtɨ], primeiro -> [pɾiˈmɐjɾu], reino -> [ˈʁɐjnu], seis -> [ˈsɐjʃ]). Cintra (1971) and Segura (2013) treat the [ɐj] realisation as characteristic of the Centro-Litoral/Estremenho zone; Mateus & d'Andrade (2000) transcribe the standard <ei> as [ɐj]; (2) <ou> -> [o] — complete monophthongisation, general in the Central-Southern standard where Northern varieties keep the diphthong [ow] (ouro -> [ˈoɾu]); (3) rhotic realised as the uvular fricative [ʁ] (the Lisbon-urban norm) and unstressed reduced schwa surfacing as [ɨ]. KNOWN LIMIT (documented, not faked): a further reported Lisbon feature is the centralisation of stressed <e> to [ɐ] before a palatal (coelho, espelho, abelha); this conditioning is 'stressed vowel before a palatal consonant', a context the engine's positional vocabulary does not currently express (there is no before-palatal GraphemePosition), so it is left unmodelled rather than approximated with an over-applying rule. Intervocalic voiced-stop spirantisation (/b d ɡ/->[β ð ɣ]) is a general EP process left to a narrow-transcription task (see the pt-PT base notes). Because these deltas are already the values the pt-PT base is built around, Lisbon diverges from the base only in the <ei>/<ou> grapheme values and the narrowed rhotic/schwa allophones.",
   "quality": "research",
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Standard (Lisbon-type) European Portuguese. Lisbon/Estremenho is the prestige reference variety and shares nearly all base processes; it diverges only by <ei>->[ɐj], <ou>->[o] and the narrowed rhotic/schwa allophones."
+    }
+  ],
   "script_type": "alphabet",
   "sources": [
+    {
+      "id": "cintra1971",
+      "author": "Cintra, Luís F. Lindley",
+      "year": 1971,
+      "title": "Nova proposta de classificação dos dialectos galego-portugueses",
+      "publisher": "Boletim de Filologia (Centro de Estudos Filológicos, Lisboa), vol. 22, pp. 81-116",
+      "url": "https://cvc.instituto-camoes.pt/hlp/biblioteca/novaproposta.pdf",
+      "pages": "81-116",
+      "notes": "Foundational classification of the Galician-Portuguese dialect space by maximally diagnostic phonetic features. Establishes that the standard/prestige norm of European Portuguese coincides with the Central-Southern (Estremenho/Lisbon) variety, and that the [ɐj] value of the falling diphthong <ei> is characteristic of that Centro-Litoral zone as against the conservative [ej]. Republished in Cintra, Estudos de Dialectologia Portuguesa, Sá da Costa, 1983, pp. 117-163."
+    },
+    {
+      "id": "segura2013",
+      "author": "Segura, Luísa",
+      "year": 2013,
+      "title": "Variedades dialetais do português europeu",
+      "publisher": "In Raposo, E.B.P. et al. (eds.), Gramática do Português, vol. I, Fundação Calouste Gulbenkian, Lisboa, pp. 85-142",
+      "url": null,
+      "pages": "85-142",
+      "notes": "Modern EP dialectology synthesis. Locates the Centro-Litoral/Estremenho (Lisbon) variety as the prestige standard and documents the [ɐj] realisation of <ei> and <ou> monophthongisation of the Central-Southern zone against the diphthong-preserving North."
+    },
     {
       "id": "mateus_dandrade2000",
       "author": "Mateus, M.H.M. & d'Andrade, E.",
@@ -62,7 +89,7 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Reference (Lisbon-standard) EP phonology; transcribes the standard falling diphthong <ei> as [ɐj] and documents the base processes (unstressed vowel reduction, dark coda /l/, coda sibilants) inherited unchanged from pt-PT."
     },
     {
       "id": "cunha_cintra1984",
@@ -72,27 +99,7 @@
       "publisher": "Sá da Costa",
       "url": null,
       "pages": null,
-      "notes": null
-    },
-    {
-      "id": "start_cross2002",
-      "author": "Mateus, M.H.M. et al.",
-      "year": 2003,
-      "title": "Gramática da Língua Portuguesa (6th ed.)",
-      "publisher": "Caminho",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "tigregotico_dialect_research_2026",
-      "author": "TigreGotico",
-      "year": 2026,
-      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
-      "publisher": "TigreGotico internal research",
-      "url": null,
-      "pages": null,
-      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
+      "notes": "Standard reference grammar describing the Lisbon prestige norm."
     }
   ],
   "wikipedia": [
