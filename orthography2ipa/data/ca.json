@@ -439,6 +439,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "recasens1993",
+      "author": "Recasens, D.",
+      "year": 1993,
+      "title": "Fonètica i fonologia",
+      "publisher": "Enciclopèdia Catalana",
+      "url": null,
+      "pages": null,
+      "notes": "Central Catalan nasal place assimilation: /n/ assimilates to the place of a following consonant — labial [m] before /p b m f/, velar [ŋ] before /k g/; and final-obstruent devoicing."
     }
   ],
   "wikipedia": [
@@ -452,6 +462,64 @@
   },
   "glottolog_code": "cata1289",
   "iso639_3": "cat",
+  "allophone_rules": [
+    {
+      "id": "CA_DEVOICE_B",
+      "phonemes": ["b"],
+      "surface": "p",
+      "word_final": true,
+      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /b/ → [p]."
+    },
+    {
+      "id": "CA_DEVOICE_D",
+      "phonemes": ["d"],
+      "surface": "t",
+      "word_final": true,
+      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /d/ → [t] (fred → [ˈfɾet])."
+    },
+    {
+      "id": "CA_DEVOICE_G",
+      "phonemes": ["ɡ"],
+      "surface": "k",
+      "word_final": true,
+      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /ɡ/ → [k]."
+    },
+    {
+      "id": "CA_DEVOICE_Z",
+      "phonemes": ["z"],
+      "surface": "s",
+      "word_final": true,
+      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /z/ → [s]."
+    },
+    {
+      "id": "CA_DEVOICE_ZH",
+      "phonemes": ["ʒ"],
+      "surface": "ʃ",
+      "word_final": true,
+      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /ʒ/ → [ʃ]."
+    },
+    {
+      "id": "CA_DEVOICE_V",
+      "phonemes": ["v"],
+      "surface": "f",
+      "word_final": true,
+      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /v/ → [f]."
+    },
+    {
+      "id": "CA_NASAL_LABIAL",
+      "phonemes": ["n"],
+      "surface": "m",
+      "followed_by_phoneme": ["p", "b", "m", "f"],
+      "notes": "Nasal place assimilation (Recasens 1993): /n/ → [m] before a labial consonant."
+    },
+    {
+      "id": "CA_NASAL_VELAR",
+      "phonemes": ["n"],
+      "surface": "ŋ",
+      "followed_by_phoneme": ["k", "ɡ"],
+      "notes": "Nasal place assimilation (Recasens 1993): /n/ → [ŋ] before a velar consonant."
+    }
+  ],
   "stress": {
     "default_position": -2,
     "final_stress_endings": [

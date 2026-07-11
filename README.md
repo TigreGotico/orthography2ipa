@@ -32,6 +32,16 @@ The central distinction the package enforces:
 
 Keeping these separate lets you go from text to phoneme candidates (transcription) and from phonemes to surface realisations (pronunciation modelling) without conflating the two.
 
+**Both maps are now applied.** The pre-lexical map (orthography→phoneme) is
+conditioned by `positional_graphemes`, vowel-class positions and candidate
+weights; the post-lexical map (phoneme→surface allophone) is applied by
+declarative **`allophone_rules`** — context-conditioned `phoneme → surface`
+rewrites keyed on syllable position, stress, word position and neighbouring
+segments. They compile into a lattice rescorer run after phoneme selection
+and before stress/sandhi. Catalan is the first spec to use them: word-final
+obstruent devoicing (`fred` → `[ˈfɾet]`) and nasal place assimilation
+(`banc` → `[ˈbaŋk]`). See [`docs/allophony.md`](docs/allophony.md).
+
 ## What each language carries
 
 Every `LanguageSpec` provides:
@@ -41,7 +51,8 @@ Every `LanguageSpec` provides:
 3. **Positional graphemes** — context-sensitive overrides (word-initial, intervocalic, before /i/, …).
 4. **Ancestry** — weighted multi-ancestor lineage (parent, substrate, superstrate, adstrate, …) for dialect trees.
 5. **Sandhi rules** — cross-word phonological processes.
-6. **Tone inventory** — tone marks → labels, where applicable.
+6. **Allophone rules** — post-lexical `phoneme → surface` rewrites (final devoicing, assimilation, reduction, flapping) applied in context.
+7. **Tone inventory** — tone marks → labels, where applicable.
 7. **Provenance** — `QualityTier` (stub → skeleton → research → production), `ScriptType`, and bibliographic sources.
 
 Regional varieties get their own `LanguageSpec` objects linked through ancestry, and JSON data files support `graphemes_base`/`allophones_base` inheritance so a dialect only declares what differs from its parent.

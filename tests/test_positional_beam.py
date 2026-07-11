@@ -7,7 +7,7 @@ share one positional-resolution helper
 
 * **Parity** — for specs that declare ``positional_graphemes``,
   ``ipa_best`` equals ``transcribe_word`` per word (modulo the
-  engine-only stress marks/sandhi), so the standalone beam is as accurate
+  engine-only stress marks/sandhi/allophony), so the standalone beam is as accurate
   as the full engine.
 * **Regression** — for specs *without* positional overrides the beam is
   unchanged: it still composes the first (canonical) IPA of each grapheme.
@@ -61,7 +61,10 @@ _PARITY_CASES = {
 def test_beam_matches_engine_for_positional_specs(lang):
     spec = get(lang)
     assert spec.positional_graphemes, f"{lang} declares no positional rules"
-    engine = G2P(lang, apply_sandhi=False)
+    # Allophony (like sandhi/stress) is an engine-only post-lexical stage the
+    # standalone tokenizer beam does not run, so disable it for the parity
+    # comparison — parity is about shared *positional* resolution.
+    engine = G2P(lang, apply_sandhi=False, apply_allophony=False)
     tok = PhonetokTokenizer(spec)
     for word in _PARITY_CASES[lang]:
         engine_ipa = _strip_stress(engine.transcribe_word(word))

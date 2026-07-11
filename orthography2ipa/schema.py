@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Literal, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -142,6 +142,28 @@ class SandhiRuleModel(_Strict):
     notes: str = ""
 
 
+class AllophoneRuleModel(_Strict):
+    """A post-lexical phoneme→surface rewrite (``allophone_rules[]``).
+
+    Mirrors :class:`~orthography2ipa.types.AllophoneRule`. Conditions are
+    optional and ANDed; a bare-string ``phonemes`` is accepted."""
+
+    id: str = Field(min_length=1)
+    phonemes: Union[str, List[str]]
+    surface: str
+    word_initial: Optional[bool] = None
+    word_final: Optional[bool] = None
+    stress: Optional[Literal["stressed", "unstressed"]] = None
+    syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
+    preceded_by: Optional[Literal[
+        "vowel", "consonant", "front_vowel", "back_vowel", "word_boundary"]] = None
+    followed_by: Optional[Literal[
+        "vowel", "consonant", "front_vowel", "back_vowel", "word_boundary"]] = None
+    preceded_by_phoneme: Optional[List[str]] = None
+    followed_by_phoneme: Optional[List[str]] = None
+    notes: str = ""
+
+
 class TimeSpanModel(_Strict):
     """Attestation period (``timespan``). Mirrors ``TimeSpan``."""
 
@@ -225,6 +247,7 @@ class LanguageSpecModel(_Strict):
 
     # ─── extended structures ────────────────────────────────────────
     sandhi_rules: Optional[List[SandhiRuleModel]] = None
+    allophone_rules: Optional[List[AllophoneRuleModel]] = None
     stress: Optional[StressRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     sources: Optional[List[SourceModel]] = None
