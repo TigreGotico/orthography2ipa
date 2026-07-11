@@ -94,7 +94,9 @@ class TestStressPtMZ:
 # ─── pt-TL (East Timorese Portuguese) ───────────────────────────────────────
 
 class TestStressPtTL:
-    """Timorese Portuguese: stress identical to EP; unstressed vowels → ə."""
+    """Timorese Portuguese: EP-like stress, but NO unstressed vowel
+    reduction — the Austronesian (Tetum) substrate keeps full vowels
+    (Albuquerque 2010:275, fn.7). See test_lusophone_asian.py."""
 
     LANG = "pt-TL"
 
@@ -111,15 +113,19 @@ class TestStressPtTL:
             f"Expected stress on final syllable in {ipa!r}"
         )
 
-    def test_unstressed_a_to_schwa(self):
-        """Unstressed /a/ → [ə] (Tetum contact effect)."""
+    def test_unstressed_a_stays_full(self):
+        """Unstressed /a/ keeps full [a] — no schwa reduction. The Tetum
+        substrate blocks EP lenition (Albuquerque 2010:275, fn.7)."""
         ipa = _transcribe(self.LANG, "falar")
-        assert "ə" in ipa, f"Expected ə for unstressed a in {ipa!r}"
+        assert "a" in ipa and "ə" not in ipa and "ɐ" not in ipa, (
+            f"Expected full unstressed a in {ipa!r}"
+        )
 
-    def test_final_unstressed_o_to_upsilon(self):
-        """Word-final unstressed /o/ → [ʊ]."""
+    def test_final_unstressed_o_stays_full(self):
+        """Word-final unstressed /o/ keeps full [o] (no EP raising to [ʊ]);
+        e.g. bate [ˈbate], roda [ˈɾɔda] (Albuquerque 2010:275, fn.7)."""
         ipa = _transcribe(self.LANG, "belo")
-        assert ipa.endswith("ʊ"), f"Expected final ʊ in {ipa!r}"
+        assert ipa.endswith("o"), f"Expected full final o in {ipa!r}"
 
 
 # ─── pt-CV (Cape Verdean Portuguese) ────────────────────────────────────────
