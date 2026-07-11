@@ -189,5 +189,11 @@
     "end_year": 700
   },
   "glottolog_code": "nort3175",
-  "wikidata_qid": "Q30134"
+  "wikidata_qid": "Q30134",
+  "location": {
+    "latitude": 52.684904,
+    "longitude": 5.783267,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the North Sea Germanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

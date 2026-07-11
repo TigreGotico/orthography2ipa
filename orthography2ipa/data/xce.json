@@ -270,5 +270,11 @@
   "glottolog_code": "celt1247",
   "iso639_3": "xce",
   "quality": "research",
-  "wikidata_qid": "Q37012"
+  "wikidata_qid": "Q37012",
+  "location": {
+    "latitude": 41.279,
+    "longitude": -2.53,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Celtiberian."
+  }
 }

@@ -24,5 +24,11 @@
   "glottolog_code": "balt1263",
   "urls": [
     "https://glottolog.org/resource/languoid/id/balt1263"
-  ]
+  ],
+  "location": {
+    "latitude": 52.633497,
+    "longitude": 20.703613,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Balto-Slavic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

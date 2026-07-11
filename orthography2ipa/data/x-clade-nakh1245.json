@@ -23,5 +23,11 @@
   "glottolog_code": "nakh1245",
   "urls": [
     "https://glottolog.org/resource/languoid/id/nakh1245"
-  ]
+  ],
+  "location": {
+    "latitude": 42.279529,
+    "longitude": 46.284653,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Nakh-Daghestanian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

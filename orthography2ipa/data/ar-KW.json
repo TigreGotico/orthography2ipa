@@ -54,5 +54,11 @@
   "glottolog_code": "gulf1241",
   "iso639_3": "afb",
   "wikidata_qid": "Q6448936",
-  "wals_code": "arj"
+  "wals_code": "arj",
+  "location": {
+    "latitude": 30.17,
+    "longitude": 47.5,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gulf Arabic."
+  }
 }

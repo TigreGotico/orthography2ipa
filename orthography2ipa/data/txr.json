@@ -134,5 +134,11 @@
   "glottolog_code": "tart1237",
   "iso639_3": "txr",
   "quality": "research",
-  "wikidata_qid": "Q36795"
+  "wikidata_qid": "Q36795",
+  "location": {
+    "latitude": 37.23754,
+    "longitude": -8.12394,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tartessian."
+  }
 }

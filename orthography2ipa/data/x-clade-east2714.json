@@ -24,5 +24,11 @@
   "glottolog_code": "east2714",
   "urls": [
     "https://glottolog.org/resource/languoid/id/east2714"
-  ]
+  ],
+  "location": {
+    "latitude": 42.604838,
+    "longitude": 19.975475,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Eastern Romance family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

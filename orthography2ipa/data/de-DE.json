@@ -527,5 +527,11 @@
   "iso639_3": "deu",
   "wikidata_qid": "Q188",
   "phoible_id": "stan1295",
-  "wals_code": "ger"
+  "wals_code": "ger",
+  "location": {
+    "latitude": 48.649,
+    "longitude": 12.4676,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for German."
+  }
 }

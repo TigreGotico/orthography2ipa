@@ -1,6 +1,6 @@
 {
   "code": "eu-x-lapurtera",
-  "glottolog_code": null,
+  "glottolog_code": "basq1249",
   "name": "Lapurdian Basque (Lapurtera)",
   "script": "Latin",
   "quality": "research",
@@ -75,5 +75,10 @@
   ],
   "iso639_3": "eus",
   "wikidata_qid": "Q12953386",
-  "glottolog_code": "basq1249"
+  "location": {
+    "latitude": 43.2787,
+    "longitude": -1.31622,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Navarro-Labourdin Basque."
+  }
 }

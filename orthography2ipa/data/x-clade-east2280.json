@@ -24,5 +24,11 @@
   "glottolog_code": "east2280",
   "urls": [
     "https://glottolog.org/resource/languoid/id/east2280"
-  ]
+  ],
+  "location": {
+    "latitude": 55.984504,
+    "longitude": 24.134609,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Eastern Baltic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

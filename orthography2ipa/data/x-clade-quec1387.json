@@ -23,5 +23,11 @@
   "glottolog_code": "quec1387",
   "urls": [
     "https://glottolog.org/resource/languoid/id/quec1387"
-  ]
+  ],
+  "location": {
+    "latitude": -8.890637,
+    "longitude": -75.826635,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Quechuan family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

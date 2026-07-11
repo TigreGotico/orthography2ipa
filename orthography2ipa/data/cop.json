@@ -271,5 +271,11 @@
     }
   ],
   "wikidata_qid": "Q36155",
-  "wals_code": "cop"
+  "wals_code": "cop",
+  "location": {
+    "latitude": 29.472,
+    "longitude": 31.2053,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Coptic."
+  }
 }

@@ -372,5 +372,11 @@
   ],
   "wikidata_qid": "Q1412",
   "phoible_id": "finn1318",
-  "wals_code": "fin"
+  "wals_code": "fin",
+  "location": {
+    "latitude": 64.7628,
+    "longitude": 25.5577,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Finnish."
+  }
 }

@@ -241,5 +241,11 @@
     "start_year": -1500,
     "end_year": -500
   },
-  "glottolog_code": "iran1269"
+  "glottolog_code": "iran1269",
+  "location": {
+    "latitude": 35.235832,
+    "longitude": 63.728053,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Iranian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

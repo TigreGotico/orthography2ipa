@@ -322,5 +322,11 @@
   "iso639_3": "pov",
   "wikidata_qid": "Q33339",
   "phoible_id": "uppe1455",
-  "wals_code": "gbc"
+  "wals_code": "gbc",
+  "location": {
+    "latitude": 13.233507,
+    "longitude": -15.33254,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Upper Guinea Crioulo."
+  }
 }

@@ -240,5 +240,11 @@
       "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002."
     }
   ],
-  "wikidata_qid": "Q56593"
+  "wikidata_qid": "Q56593",
+  "location": {
+    "latitude": 34.1709,
+    "longitude": 36.0468,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Levantine Arabic."
+  }
 }

@@ -153,5 +153,11 @@
   ],
   "wikidata_qid": "Q9083",
   "phoible_id": "lith1251",
-  "wals_code": "lit"
+  "wals_code": "lit",
+  "location": {
+    "latitude": 55.1429,
+    "longitude": 23.9601,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Lithuanian."
+  }
 }

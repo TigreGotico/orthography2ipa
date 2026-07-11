@@ -190,5 +190,11 @@
   ],
   "wikidata_qid": "Q8641",
   "phoible_id": "east2295",
-  "wals_code": "ydd"
+  "wals_code": "ydd",
+  "location": {
+    "latitude": 51.75,
+    "longitude": 19.42,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Eastern Yiddish."
+  }
 }

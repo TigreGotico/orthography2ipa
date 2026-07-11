@@ -80,8 +80,13 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": null,
+  "glottolog_code": "east2303",
   "iso639_3": "swe",
   "wikidata_qid": "Q1461092",
-  "glottolog_code": "east2303"
+  "location": {
+    "latitude": 62.476944,
+    "longitude": 21.348611,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Archaic Finnish Swedish."
+  }
 }

@@ -265,5 +265,11 @@
   },
   "wikidata_qid": "Q33868",
   "phoible_id": "mani1292",
-  "wals_code": "mei"
+  "wals_code": "mei",
+  "location": {
+    "latitude": 24.4409,
+    "longitude": 93.3426,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Manipuri."
+  }
 }

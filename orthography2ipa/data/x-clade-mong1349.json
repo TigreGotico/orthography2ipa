@@ -23,5 +23,11 @@
   "glottolog_code": "mong1349",
   "urls": [
     "https://glottolog.org/resource/languoid/id/mong1349"
-  ]
+  ],
+  "location": {
+    "latitude": 42.947004,
+    "longitude": 106.42138,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Mongolic-Khitan family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -135,5 +135,11 @@
   "glottolog_code": "tuni1259",
   "iso639_3": "aeb",
   "wikidata_qid": "Q56240",
-  "wals_code": "atu"
+  "wals_code": "atu",
+  "location": {
+    "latitude": 33.7966,
+    "longitude": 9.56156,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tunisian Arabic."
+  }
 }

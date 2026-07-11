@@ -24,5 +24,11 @@
   "glottolog_code": "gree1276",
   "urls": [
     "https://glottolog.org/resource/languoid/id/gree1276"
-  ]
+  ],
+  "location": {
+    "latitude": 38.831069,
+    "longitude": 23.25607,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Greek family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

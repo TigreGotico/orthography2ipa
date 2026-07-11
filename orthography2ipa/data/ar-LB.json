@@ -159,5 +159,11 @@
       "notes": "Word-final /-a/ (incl. tāʔ marbūṭa ة) raises to [e], the most consistent Lebanese imāla context. Fires on the final segment only. (The base ar spec surfaces both the preceding fatḥa and the tāʔ marbūṭa vowel, a pre-existing orthographic artifact; this rule raises the final segment only.)"
     }
   ],
-  "wikidata_qid": "Q1516642"
+  "wikidata_qid": "Q1516642",
+  "location": {
+    "latitude": 34.1709,
+    "longitude": 36.0468,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Standard Lebanese Arabic."
+  }
 }

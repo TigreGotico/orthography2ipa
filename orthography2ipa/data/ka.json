@@ -178,5 +178,11 @@
   ],
   "wikidata_qid": "Q8108",
   "phoible_id": "nucl1302",
-  "wals_code": "geo"
+  "wals_code": "geo",
+  "location": {
+    "latitude": 41.850397,
+    "longitude": 43.78613,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Georgian."
+  }
 }

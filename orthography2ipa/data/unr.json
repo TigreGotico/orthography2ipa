@@ -282,5 +282,11 @@
   "glottolog_code": "mund1320",
   "wikidata_qid": "Q3327828",
   "phoible_id": "mund1320",
-  "wals_code": "bhu"
+  "wals_code": "bhu",
+  "location": {
+    "latitude": 23.03,
+    "longitude": 85.85,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Mundari."
+  }
 }

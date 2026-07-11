@@ -269,5 +269,11 @@
   "glottolog_code": "sant1410",
   "wikidata_qid": "Q33965",
   "phoible_id": "sant1410",
-  "wals_code": "stl"
+  "wals_code": "stl",
+  "location": {
+    "latitude": 25.0317,
+    "longitude": 87.8185,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Santali."
+  }
 }

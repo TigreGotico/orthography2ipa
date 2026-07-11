@@ -95,5 +95,11 @@
       "notes": "Ethiopian (South) Semitic."
     }
   ],
-  "wikidata_qid": "Q35667"
+  "wikidata_qid": "Q35667",
+  "location": {
+    "latitude": 10.1342,
+    "longitude": 40.6821,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Geez."
+  }
 }

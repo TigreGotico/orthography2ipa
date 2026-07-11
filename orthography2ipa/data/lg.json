@@ -200,5 +200,11 @@
       "weight": 1.0,
       "notes": "Bantu, within Atlantic-Congo."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 0.66884,
+    "longitude": 32.15153,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ganda."
+  }
 }

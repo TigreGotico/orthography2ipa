@@ -104,5 +104,11 @@
   "glottolog_code": "lati1261",
   "iso639_3": "lat",
   "quality": "research",
-  "wikidata_qid": "Q397"
+  "wikidata_qid": "Q397",
+  "location": {
+    "latitude": 41.9026,
+    "longitude": 12.4502,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Latin."
+  }
 }

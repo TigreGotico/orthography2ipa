@@ -323,5 +323,11 @@
     "end_year": null
   },
   "iso639_3": "ful",
-  "wikidata_qid": "Q33454"
+  "wikidata_qid": "Q33454",
+  "location": {
+    "latitude": 12.238092,
+    "longitude": -1.393895,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Fula family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

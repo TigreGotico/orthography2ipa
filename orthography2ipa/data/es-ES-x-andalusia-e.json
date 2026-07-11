@@ -132,5 +132,11 @@
     "end_year": null
   },
   "glottolog_code": "anda1279",
-  "iso639_3": "spa"
+  "iso639_3": "spa",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Andalusian."
+  }
 }

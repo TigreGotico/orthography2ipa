@@ -23,5 +23,11 @@
   "glottolog_code": "taik1256",
   "urls": [
     "https://glottolog.org/resource/languoid/id/taik1256"
-  ]
+  ],
+  "location": {
+    "latitude": 21.870315,
+    "longitude": 107.897755,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Tai-Kadai family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

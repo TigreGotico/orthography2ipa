@@ -58,5 +58,11 @@
   },
   "glottolog_code": "norw1262",
   "iso639_3": "nno",
-  "wikidata_qid": "Q25164"
+  "wikidata_qid": "Q25164",
+  "location": {
+    "latitude": 59.92,
+    "longitude": 10.71,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Norwegian Nynorsk."
+  }
 }

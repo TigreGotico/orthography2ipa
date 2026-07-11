@@ -31,6 +31,7 @@ from orthography2ipa.types import (
     InheritanceMode,
     LanguageSpec,
     LinguisticSource,
+    Location,
     OrthographyStandard,
     QualityTier,
     SandhiRule,
@@ -364,6 +365,17 @@ def load_json_spec(code: str) -> LanguageSpec:
             end_year=int(raw_timespan["end_year"]) if raw_timespan.get("end_year") is not None else None,
         )
 
+    # Parse the representative point for where the language is spoken
+    location: Optional[Location] = None
+    raw_loc = raw.get("location")
+    if raw_loc and isinstance(raw_loc, dict):
+        location = Location(
+            latitude=float(raw_loc["latitude"]),
+            longitude=float(raw_loc["longitude"]),
+            source=raw_loc.get("source"),
+            notes=raw_loc.get("notes", "") or "",
+        )
+
     # Parse the official orthography standard, when the language has one
     orthography_standard: Optional[OrthographyStandard] = None
     raw_ortho = raw.get("orthography_standard")
@@ -438,6 +450,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
         urls=tuple(raw.get("urls") or ()),
         orthography_standard=orthography_standard,
+        location=location,
         timespan=timespan,
         stress=stress,
         word_exceptions=raw.get("word_exceptions"),

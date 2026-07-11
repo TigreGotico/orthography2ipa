@@ -158,5 +158,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 15.9377,
+    "longitude": 120.365,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pangasinan."
+  }
 }

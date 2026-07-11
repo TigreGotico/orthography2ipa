@@ -273,5 +273,11 @@
     "end_year": 900
   },
   "glottolog_code": "pahl1241",
-  "wikidata_qid": "Q32063"
+  "wikidata_qid": "Q32063",
+  "location": {
+    "latitude": 30.06,
+    "longitude": 52.7,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pahlavi."
+  }
 }

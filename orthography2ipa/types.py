@@ -73,6 +73,32 @@ class OrthographyStandard:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Location — where a language is (or was) spoken
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class Location:
+    """A representative point for where a language is spoken.
+
+    A point is a crude proxy for what is really an AREA, and the crudeness is not
+    uniform: it is a reasonable summary for a dialect anchored to a region, and
+    close to meaningless for a widespread language (a single point for Spanish or
+    English is arbitrary — they span hemispheres). Read geographic distance as
+    meaningful WITHIN a dialect continuum and treat it sceptically across
+    macrolanguages.
+    """
+
+    latitude: float
+    longitude: float
+    source: Optional[str] = None
+    """Where the point came from (``"glottolog"``, ``"wikidata"``), so a consumer
+    can judge it. A point with no provenance is a guess."""
+    notes: str = ""
+    """What the point represents — a homeland, a dialect area's centre, a
+    family's computed centroid."""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # TimeSpan — attestation period for a language
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -789,6 +815,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "wikipedia": InheritanceMode.OWN_ONLY,
     "urls": InheritanceMode.OWN_ONLY,
     "orthography_standard": InheritanceMode.OWN_ONLY,
+    "location": InheritanceMode.OWN_ONLY,
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.NOT_INHERITED,
@@ -975,6 +1002,11 @@ class LanguageSpec:
     reconstructions) or that this spec follows its parent's — a dialect that
     spells by its standard language's norm simply omits the field, since a
     standard is a property of the language, not of every dialect of it."""
+
+    location: Optional["Location"] = None
+    """Where the language is (or was) spoken — a representative point.
+
+    ``None`` when unknown, or when a point would be actively misleading."""
 
     timespan: Optional["TimeSpan"] = None
     """Attestation period.  ``None`` if unknown.

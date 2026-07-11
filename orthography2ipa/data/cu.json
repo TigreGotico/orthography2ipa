@@ -299,5 +299,11 @@
   },
   "glottolog_code": "chur1257",
   "iso639_3": "chu",
-  "wikidata_qid": "Q35499"
+  "wikidata_qid": "Q35499",
+  "location": {
+    "latitude": 43.7171,
+    "longitude": 22.8442,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Church Slavic."
+  }
 }

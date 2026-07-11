@@ -24,5 +24,11 @@
   "glottolog_code": "finn1317",
   "urls": [
     "https://glottolog.org/resource/languoid/id/finn1317"
-  ]
+  ],
+  "location": {
+    "latitude": 58.710251,
+    "longitude": 25.901739,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Finnic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

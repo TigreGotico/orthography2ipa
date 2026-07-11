@@ -313,5 +313,11 @@
   },
   "glottolog_code": "cypr1248",
   "wikidata_qid": "Q56416",
-  "wals_code": "ako"
+  "wals_code": "ako",
+  "location": {
+    "latitude": 35.1674,
+    "longitude": 33.0943,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Cypriot Arabic."
+  }
 }

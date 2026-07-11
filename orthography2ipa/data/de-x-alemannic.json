@@ -53,5 +53,11 @@
   "glottolog_code": "alem1243",
   "iso639_3": "gsw",
   "wikidata_qid": "Q131339",
-  "wals_code": "gos"
+  "wals_code": "gos",
+  "location": {
+    "latitude": 47.631173,
+    "longitude": 9.405268,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Alemannic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

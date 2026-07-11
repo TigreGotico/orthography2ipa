@@ -460,5 +460,11 @@
     "end_year": null
   },
   "iso639_3": "stq",
-  "wikidata_qid": "Q27154"
+  "wikidata_qid": "Q27154",
+  "location": {
+    "latitude": 53.117,
+    "longitude": 7.721,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ems-Weser Frisian."
+  }
 }

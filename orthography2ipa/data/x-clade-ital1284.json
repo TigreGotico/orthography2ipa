@@ -24,5 +24,11 @@
   "glottolog_code": "ital1284",
   "urls": [
     "https://glottolog.org/resource/languoid/id/ital1284"
-  ]
+  ],
+  "location": {
+    "latitude": 42.999372,
+    "longitude": 6.166917,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Italic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

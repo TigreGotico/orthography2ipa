@@ -140,5 +140,11 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aromanian_language"
   ],
-  "wikidata_qid": "Q29316"
+  "wikidata_qid": "Q29316",
+  "location": {
+    "latitude": 40.616,
+    "longitude": 21.2,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Aromanian."
+  }
 }

@@ -234,5 +234,11 @@
     "end_year": -2000
   },
   "glottolog_code": "drav1251",
-  "iso639_3": null
+  "iso639_3": null,
+  "location": {
+    "latitude": 22.000695,
+    "longitude": 79.457649,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Dravidian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -389,5 +389,11 @@
   },
   "wikidata_qid": "Q25433",
   "phoible_id": "nort2627",
-  "wals_code": "lge"
+  "wals_code": "lge",
+  "location": {
+    "latitude": 53.115373,
+    "longitude": 12.391439,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Eastern Low German."
+  }
 }

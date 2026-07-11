@@ -292,6 +292,12 @@
   },
   "glottolog_code": "west2369",
   "iso639_3": "fas",
-      "wikidata_qid": "Q9168",
-      "phoible_id": "west2369"
+  "wikidata_qid": "Q9168",
+  "phoible_id": "west2369",
+  "location": {
+    "latitude": 32.9,
+    "longitude": 53.3,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Western Farsi."
+  }
 }

@@ -24,5 +24,11 @@
   "glottolog_code": "goid1240",
   "urls": [
     "https://glottolog.org/resource/languoid/id/goid1240"
-  ]
+  ],
+  "location": {
+    "latitude": 53.713053,
+    "longitude": -7.105959,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Goidelic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

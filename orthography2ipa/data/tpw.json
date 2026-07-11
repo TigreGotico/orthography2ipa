@@ -4,24 +4,60 @@
   "parent": "x-clade-tupi1275",
   "script": "Latin",
   "graphemes": {
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"],
-    "ɨ": ["ɨ"],
-    "p": ["p"],
-    "t": ["t"],
-    "k": ["k"],
-    "b": ["ᵐb"],
-    "s": ["s"],
-    "m": ["m"],
-    "n": ["n"],
-    "ŋ": ["ŋ"],
-    "r": ["ɾ"],
-    "w": ["w"],
-    "j": ["j"],
-    "ʔ": ["ʔ"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "ᵐb"
+    ],
+    "s": [
+      "s"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʔ": [
+      "ʔ"
+    ]
   },
   "allophones": {},
   "notes": "STRUCTURAL ANCESTRY / CONTACT NODE (metadata only, not a modelled G2P target). Old Tupi (Tupinambá, the lingua franca 'língua geral' of colonial Brazil) is referenced only as the indigenous substrate/adstrate of Brazilian Portuguese (toponyms and lexicon: abacaxi, mandioca, capim, jacaré). No phonology is claimed; the minimal grapheme set is a placeholder (afa.json / trk.json stub pattern). Glottolog tupi1273 (Tupinambá).",
@@ -50,5 +86,11 @@
   ],
   "wikidata_qid": "Q56944",
   "phoible_id": "tupi1273",
-  "wals_code": "tup"
+  "wals_code": "tup",
+  "location": {
+    "latitude": -22.807778,
+    "longitude": -42.106389,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tupinambá."
+  }
 }

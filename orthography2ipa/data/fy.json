@@ -476,5 +476,11 @@
   "iso639_3": "fry",
   "wikidata_qid": "Q27175",
   "phoible_id": "west2354",
-  "wals_code": "frw"
+  "wals_code": "frw",
+  "location": {
+    "latitude": 53.143,
+    "longitude": 5.86091,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Western Frisian."
+  }
 }

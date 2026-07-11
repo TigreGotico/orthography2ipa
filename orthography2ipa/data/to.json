@@ -170,5 +170,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": -21.17,
+    "longitude": -175.25,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tonga (Tonga Islands)."
+  }
 }

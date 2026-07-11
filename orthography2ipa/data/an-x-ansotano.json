@@ -90,8 +90,13 @@
     "start_year": 1100,
     "end_year": null
   },
-  "glottolog_code": null,
+  "glottolog_code": "west2340",
   "iso639_3": "arg",
   "wikidata_qid": "Q3574358",
-  "glottolog_code": "west2340"
+  "location": {
+    "latitude": 42.4669,
+    "longitude": -0.00919,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Western Aragonese."
+  }
 }

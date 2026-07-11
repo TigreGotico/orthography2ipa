@@ -473,63 +473,89 @@
   "allophone_rules": [
     {
       "id": "CA_DEVOICE_B",
-      "phonemes": ["b"],
+      "phonemes": [
+        "b"
+      ],
       "surface": "p",
       "word_final": true,
       "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /b/ → [p]."
     },
     {
       "id": "CA_DEVOICE_D",
-      "phonemes": ["d"],
+      "phonemes": [
+        "d"
+      ],
       "surface": "t",
       "word_final": true,
       "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /d/ → [t] (fred → [ˈfɾet])."
     },
     {
       "id": "CA_DEVOICE_G",
-      "phonemes": ["ɡ"],
+      "phonemes": [
+        "ɡ"
+      ],
       "surface": "k",
       "word_final": true,
       "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /ɡ/ → [k]."
     },
     {
       "id": "CA_DEVOICE_Z",
-      "phonemes": ["z"],
+      "phonemes": [
+        "z"
+      ],
       "surface": "s",
       "word_final": true,
       "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /z/ → [s]."
     },
     {
       "id": "CA_DEVOICE_ZH",
-      "phonemes": ["ʒ"],
+      "phonemes": [
+        "ʒ"
+      ],
       "surface": "ʃ",
       "word_final": true,
       "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /ʒ/ → [ʃ]."
     },
     {
       "id": "CA_DEVOICE_V",
-      "phonemes": ["v"],
+      "phonemes": [
+        "v"
+      ],
       "surface": "f",
       "word_final": true,
       "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /v/ → [f]."
     },
     {
       "id": "CA_NASAL_LABIAL",
-      "phonemes": ["n"],
+      "phonemes": [
+        "n"
+      ],
       "surface": "m",
-      "followed_by_phoneme": ["p", "b", "m", "f"],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m",
+        "f"
+      ],
       "notes": "Nasal place assimilation (Recasens 1993): /n/ → [m] before a labial consonant."
     },
     {
       "id": "CA_NASAL_VELAR",
-      "phonemes": ["n"],
+      "phonemes": [
+        "n"
+      ],
       "surface": "ŋ",
-      "followed_by_phoneme": ["k", "ɡ"],
+      "followed_by_phoneme": [
+        "k",
+        "ɡ"
+      ],
       "notes": "Nasal place assimilation (Recasens 1993): /n/ → [ŋ] before a velar consonant."
     },
     {
       "id": "CA_SPIRANT_B",
-      "phonemes": ["b"],
+      "phonemes": [
+        "b"
+      ],
       "surface": "β",
       "preceded_by": "vowel",
       "followed_by": "vowel",
@@ -537,7 +563,9 @@
     },
     {
       "id": "CA_SPIRANT_D",
-      "phonemes": ["d"],
+      "phonemes": [
+        "d"
+      ],
       "surface": "ð",
       "preceded_by": "vowel",
       "followed_by": "vowel",
@@ -545,7 +573,9 @@
     },
     {
       "id": "CA_SPIRANT_G",
-      "phonemes": ["ɡ"],
+      "phonemes": [
+        "ɡ"
+      ],
       "surface": "ɣ",
       "preceded_by": "vowel",
       "followed_by": "vowel",
@@ -597,7 +627,13 @@
     "stress_mark": "ˈ",
     "notes": "Catalan accentuation per Institut dEstudis Catalans (IEC) norm: written accent (grave or acute: à è é í ï ò ó ú ü) always wins. Default paroxytone. Words ending in a vowel or -s/-es/-as/-os/-is/-us are paroxytone. Words ending in a consonant other than -s (r, l, n, t, m, p, k, f, x, -ng, -nc, -nt, -lt, -st, -rc, -mp, -ig, -ps) are oxytone. Note: final -n in Catalan is typically oxytone (camió, raó, but comú, menú — those carry marks); unmarked -n-final words are generally oxytone. Proparoxytones always carry a written accent. Substantial simplification: the paroxytone/oxytone boundary is orthographically encoded and this rule captures the majority of cases."
   },
-      "wikidata_qid": "Q7026",
-      "phoible_id": "stan1289",
-      "wals_code": "ctl"
+  "wikidata_qid": "Q7026",
+  "phoible_id": "stan1289",
+  "wals_code": "ctl",
+  "location": {
+    "latitude": 41.453,
+    "longitude": 1.569,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Catalan."
+  }
 }

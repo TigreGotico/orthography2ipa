@@ -24,5 +24,11 @@
   "glottolog_code": "germ1287",
   "urls": [
     "https://glottolog.org/resource/languoid/id/germ1287"
-  ]
+  ],
+  "location": {
+    "latitude": 50.749598,
+    "longitude": 20.883354,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Germanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

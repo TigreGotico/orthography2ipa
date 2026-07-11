@@ -112,5 +112,11 @@
     "end_year": null
   },
   "glottolog_code": "chad1249",
-  "iso639_3": "shu"
+  "iso639_3": "shu",
+  "location": {
+    "latitude": 14.67,
+    "longitude": 13.5,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Chadian Arabic."
+  }
 }

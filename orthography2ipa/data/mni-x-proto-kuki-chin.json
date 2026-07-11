@@ -214,5 +214,11 @@
   },
   "glottolog_code": "kuki1246",
   "iso639_3": null,
-  "wikidata_qid": "Q832413"
+  "wikidata_qid": "Q832413",
+  "location": {
+    "latitude": 23.153747,
+    "longitude": 93.518382,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Kuki-Chin family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

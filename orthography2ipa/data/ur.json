@@ -1,427 +1,433 @@
 {
-    "code": "ur",
-    "name": "Urdu",
-    "script": "Arabic",
-    "graphemes": {
-        "ا": [
-            "ə",
-            "aː"
-        ],
-        "آ": [
-            "aː"
-        ],
-        "و": [
-            "ʋ",
-            "oː",
-            "uː",
-            "ɔː"
-        ],
-        "ی": [
-            "j",
-            "iː",
-            "eː"
-        ],
-        "ے": [
-            "eː",
-            "ɛː"
-        ],
-        "ہ": [
-            "ɦ"
-        ],
-        "ع": [
-            "ʔ",
-            ""
-        ],
-        "َ": [
-            "ə"
-        ],
-        "ِ": [
-            "ɪ"
-        ],
-        "ُ": [
-            "ʊ"
-        ],
-        "ً": [
-            "ən"
-        ],
-        "ب": [
-            "b"
-        ],
-        "پ": [
-            "p"
-        ],
-        "ت": [
-            "t̪"
-        ],
-        "ٹ": [
-            "ʈ"
-        ],
-        "ث": [
-            "s"
-        ],
-        "ج": [
-            "dʒ"
-        ],
-        "چ": [
-            "tʃ"
-        ],
-        "ح": [
-            "h"
-        ],
-        "خ": [
-            "x"
-        ],
-        "د": [
-            "d̪"
-        ],
-        "ڈ": [
-            "ɖ"
-        ],
-        "ذ": [
-            "z"
-        ],
-        "ر": [
-            "r"
-        ],
-        "ڑ": [
-            "ɽ"
-        ],
-        "ز": [
-            "z"
-        ],
-        "ژ": [
-            "ʒ"
-        ],
-        "س": [
-            "s"
-        ],
-        "ش": [
-            "ʃ"
-        ],
-        "ص": [
-            "s"
-        ],
-        "ض": [
-            "z"
-        ],
-        "ط": [
-            "t̪"
-        ],
-        "ظ": [
-            "z"
-        ],
-        "غ": [
-            "ɣ"
-        ],
-        "ف": [
-            "f"
-        ],
-        "ق": [
-            "q"
-        ],
-        "ک": [
-            "k"
-        ],
-        "گ": [
-            "ɡ"
-        ],
-        "ل": [
-            "l"
-        ],
-        "م": [
-            "m"
-        ],
-        "ن": [
-            "n"
-        ],
-        "ں": [
-            "̃"
-        ],
-        "ھ": [
-            "ʰ"
-        ],
-        "بھ": [
-            "bʱ"
-        ],
-        "پھ": [
-            "pʰ"
-        ],
-        "تھ": [
-            "t̪ʰ"
-        ],
-        "ٹھ": [
-            "ʈʰ"
-        ],
-        "جھ": [
-            "dʒʱ"
-        ],
-        "چھ": [
-            "tʃʰ"
-        ],
-        "دھ": [
-            "d̪ʱ"
-        ],
-        "ڈھ": [
-            "ɖʱ"
-        ],
-        "گھ": [
-            "ɡʱ"
-        ],
-        "کھ": [
-            "kʰ"
-        ],
-        "لھ": [
-            "lʱ"
-        ],
-        "مھ": [
-            "mʱ"
-        ],
-        "نھ": [
-            "nʱ"
-        ],
-        "رھ": [
-            "rʱ"
-        ],
-        "ڑھ": [
-            "ɽʱ"
-        ],
-        "ء": [
-            "ʔ",
-            ""
-        ],
-        "ئ": [
-            "ʔ",
-            "j",
-            ""
-        ],
-        "ؤ": [
-            "ʔ",
-            "o",
-            ""
-        ],
-        "ۂ": [
-            "eː"
-        ]
-    },
-    "allophones": {
-        "p": [
-            "p"
-        ],
-        "pʰ": [
-            "pʰ"
-        ],
-        "b": [
-            "b"
-        ],
-        "bʱ": [
-            "bʱ"
-        ],
-        "t̪": [
-            "t̪"
-        ],
-        "t̪ʰ": [
-            "t̪ʰ"
-        ],
-        "d̪": [
-            "d̪"
-        ],
-        "d̪ʱ": [
-            "d̪ʱ"
-        ],
-        "ʈ": [
-            "ʈ"
-        ],
-        "ʈʰ": [
-            "ʈʰ"
-        ],
-        "ɖ": [
-            "ɖ"
-        ],
-        "ɖʱ": [
-            "ɖʱ"
-        ],
-        "k": [
-            "k"
-        ],
-        "kʰ": [
-            "kʰ"
-        ],
-        "ɡ": [
-            "ɡ"
-        ],
-        "ɡʱ": [
-            "ɡʱ"
-        ],
-        "q": [
-            "q",
-            "k"
-        ],
-        "tʃ": [
-            "tʃ"
-        ],
-        "tʃʰ": [
-            "tʃʰ"
-        ],
-        "dʒ": [
-            "dʒ"
-        ],
-        "dʒʱ": [
-            "dʒʱ"
-        ],
-        "f": [
-            "f",
-            "pʰ"
-        ],
-        "s": [
-            "s"
-        ],
-        "z": [
-            "z"
-        ],
-        "ʃ": [
-            "ʃ"
-        ],
-        "ʒ": [
-            "ʒ",
-            "ʃ"
-        ],
-        "x": [
-            "x"
-        ],
-        "ɣ": [
-            "ɣ",
-            "ɡ"
-        ],
-        "ɦ": [
-            "ɦ",
-            "h"
-        ],
-        "h": [
-            "h"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n"
-        ],
-        "ɽ": [
-            "ɽ"
-        ],
-        "r": [
-            "r"
-        ],
-        "l": [
-            "l"
-        ],
-        "ʋ": [
-            "ʋ",
-            "w",
-            "v"
-        ],
-        "j": [
-            "j"
-        ],
-        "ə": [
-            "ə"
-        ],
-        "aː": [
-            "aː"
-        ],
-        "ɪ": [
-            "ɪ"
-        ],
-        "iː": [
-            "iː"
-        ],
-        "ʊ": [
-            "ʊ"
-        ],
-        "uː": [
-            "uː"
-        ],
-        "eː": [
-            "eː"
-        ],
-        "oː": [
-            "oː"
-        ],
-        "ɛː": [
-            "ɛː"
-        ],
-        "ɔː": [
-            "ɔː"
-        ]
-    },
-    "parent": "hi",
-    "ancestors": [
-        {
-            "code": "hi",
-            "role": "parent",
-            "weight": 0.75,
-            "notes": "Hindustani base shared with Hindi (Khaṛī Bolī)"
-        },
-        {
-            "code": "fa",
-            "role": "adstrate",
-            "weight": 0.15,
-            "notes": "Persian adstrate: massive vocabulary, some phonological influence (/x ɣ q/)"
-        },
-        {
-            "code": "ar",
-            "role": "adstrate",
-            "weight": 0.1,
-            "notes": "Arabic adstrate: religious/scholarly vocabulary, pharyngeal consonants"
-        }
+  "code": "ur",
+  "name": "Urdu",
+  "script": "Arabic",
+  "graphemes": {
+    "ا": [
+      "ə",
+      "aː"
     ],
-    "notes": "Standard Urdu (Pakistan national language, Indian Muslim register). Phonologically near-identical to Hindi but with additional phonemes from Persian/Arabic loans: /q x ɣ f z/. Written right-to-left in Nastaliq (a form of Perso-Arabic script). Four-way laryngeal contrast: plain/aspirated × voiced/voiceless. Retroflex series: /ʈ ɖ ɽ/ graphically distinct from dentals.",
-    "quality": "research",
-    "script_type": "abjad",
-    "sources": [
-        {
-            "id": "masica1991",
-            "author": "Masica, C.",
-            "year": 1991,
-            "title": "The Indo-Aryan Languages",
-            "publisher": "Cambridge University Press",
-            "url": null,
-            "pages": null,
-            "notes": null,
-            "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
-        },
-        {
-            "id": "cardona_jain2003",
-            "author": "Cardona, G. & Jain, D. (eds.)",
-            "year": 2003,
-            "title": "The Indo-Aryan Languages",
-            "publisher": "Routledge",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "platts1884",
-            "author": "Platts, J.T.",
-            "year": 1884,
-            "title": "A Grammar of the Hindustani or Urdu Language",
-            "publisher": "W.H. Allen",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+    "آ": [
+      "aː"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Urdu",
-        "https://ur.wikipedia.org/wiki/اردو",
-        "https://ur.wikipedia.org/wiki/%D8%A7%D8%B1%D8%AF%D9%88"
+    "و": [
+      "ʋ",
+      "oː",
+      "uː",
+      "ɔː"
     ],
-    "timespan": {
-        "start_year": 1800,
-        "end_year": null
+    "ی": [
+      "j",
+      "iː",
+      "eː"
+    ],
+    "ے": [
+      "eː",
+      "ɛː"
+    ],
+    "ہ": [
+      "ɦ"
+    ],
+    "ع": [
+      "ʔ",
+      ""
+    ],
+    "َ": [
+      "ə"
+    ],
+    "ِ": [
+      "ɪ"
+    ],
+    "ُ": [
+      "ʊ"
+    ],
+    "ً": [
+      "ən"
+    ],
+    "ب": [
+      "b"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ت": [
+      "t̪"
+    ],
+    "ٹ": [
+      "ʈ"
+    ],
+    "ث": [
+      "s"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "ح": [
+      "h"
+    ],
+    "خ": [
+      "x"
+    ],
+    "د": [
+      "d̪"
+    ],
+    "ڈ": [
+      "ɖ"
+    ],
+    "ذ": [
+      "z"
+    ],
+    "ر": [
+      "r"
+    ],
+    "ڑ": [
+      "ɽ"
+    ],
+    "ز": [
+      "z"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "س": [
+      "s"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ص": [
+      "s"
+    ],
+    "ض": [
+      "z"
+    ],
+    "ط": [
+      "t̪"
+    ],
+    "ظ": [
+      "z"
+    ],
+    "غ": [
+      "ɣ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ق": [
+      "q"
+    ],
+    "ک": [
+      "k"
+    ],
+    "گ": [
+      "ɡ"
+    ],
+    "ل": [
+      "l"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "ں": [
+      "̃"
+    ],
+    "ھ": [
+      "ʰ"
+    ],
+    "بھ": [
+      "bʱ"
+    ],
+    "پھ": [
+      "pʰ"
+    ],
+    "تھ": [
+      "t̪ʰ"
+    ],
+    "ٹھ": [
+      "ʈʰ"
+    ],
+    "جھ": [
+      "dʒʱ"
+    ],
+    "چھ": [
+      "tʃʰ"
+    ],
+    "دھ": [
+      "d̪ʱ"
+    ],
+    "ڈھ": [
+      "ɖʱ"
+    ],
+    "گھ": [
+      "ɡʱ"
+    ],
+    "کھ": [
+      "kʰ"
+    ],
+    "لھ": [
+      "lʱ"
+    ],
+    "مھ": [
+      "mʱ"
+    ],
+    "نھ": [
+      "nʱ"
+    ],
+    "رھ": [
+      "rʱ"
+    ],
+    "ڑھ": [
+      "ɽʱ"
+    ],
+    "ء": [
+      "ʔ",
+      ""
+    ],
+    "ئ": [
+      "ʔ",
+      "j",
+      ""
+    ],
+    "ؤ": [
+      "ʔ",
+      "o",
+      ""
+    ],
+    "ۂ": [
+      "eː"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t̪": [
+      "t̪"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "d̪": [
+      "d̪"
+    ],
+    "d̪ʱ": [
+      "d̪ʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "q": [
+      "q",
+      "k"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "tʃʰ": [
+      "tʃʰ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "dʒʱ": [
+      "dʒʱ"
+    ],
+    "f": [
+      "f",
+      "pʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɣ": [
+      "ɣ",
+      "ɡ"
+    ],
+    "ɦ": [
+      "ɦ",
+      "h"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɽ": [
+      "ɽ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʋ": [
+      "ʋ",
+      "w",
+      "v"
+    ],
+    "j": [
+      "j"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "ɔː": [
+      "ɔː"
+    ]
+  },
+  "parent": "hi",
+  "ancestors": [
+    {
+      "code": "hi",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Hindustani base shared with Hindi (Khaṛī Bolī)"
     },
-    "glottolog_code": "urdu1245",
-    "iso639_3": "urd",
-    "wikidata_qid": "Q1617",
-    "phoible_id": "urdu1245",
-    "wals_code": "urd"
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Persian adstrate: massive vocabulary, some phonological influence (/x ɣ q/)"
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary, pharyngeal consonants"
+    }
+  ],
+  "notes": "Standard Urdu (Pakistan national language, Indian Muslim register). Phonologically near-identical to Hindi but with additional phonemes from Persian/Arabic loans: /q x ɣ f z/. Written right-to-left in Nastaliq (a form of Perso-Arabic script). Four-way laryngeal contrast: plain/aspirated × voiced/voiceless. Retroflex series: /ʈ ɖ ɽ/ graphically distinct from dentals.",
+  "quality": "research",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "platts1884",
+      "author": "Platts, J.T.",
+      "year": 1884,
+      "title": "A Grammar of the Hindustani or Urdu Language",
+      "publisher": "W.H. Allen",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Urdu",
+    "https://ur.wikipedia.org/wiki/اردو",
+    "https://ur.wikipedia.org/wiki/%D8%A7%D8%B1%D8%AF%D9%88"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "glottolog_code": "urdu1245",
+  "iso639_3": "urd",
+  "wikidata_qid": "Q1617",
+  "phoible_id": "urdu1245",
+  "wals_code": "urd",
+  "location": {
+    "latitude": 25.0,
+    "longitude": 67.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Urdu."
+  }
 }

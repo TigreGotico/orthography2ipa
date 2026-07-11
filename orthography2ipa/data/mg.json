@@ -167,5 +167,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": -20.32626,
+    "longitude": 46.604016,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Malagasic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

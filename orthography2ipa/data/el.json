@@ -405,5 +405,11 @@
   },
   "wikidata_qid": "Q36510",
   "phoible_id": "mode1248",
-  "wals_code": "grk"
+  "wals_code": "grk",
+  "location": {
+    "latitude": 38.36,
+    "longitude": 23.13,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Modern Greek."
+  }
 }

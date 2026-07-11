@@ -78,5 +78,11 @@
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_vallecaucano",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_colombiano",
     "https://en.wikipedia.org/wiki/Colombian_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Valluno Spanish."
+  }
 }

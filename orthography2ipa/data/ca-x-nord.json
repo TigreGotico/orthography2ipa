@@ -155,5 +155,11 @@
     "stress_mark": "ˈ",
     "notes": "Northern (Rossellonès) shares standard Catalan orthographic accentuation; stress conditions the Eastern-block unstressed reduction/syncope. Same rules as Central Catalan."
   },
-  "wikidata_qid": "Q3175284"
+  "wikidata_qid": "Q3175284",
+  "location": {
+    "latitude": 41.453,
+    "longitude": 1.569,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Rossellonès."
+  }
 }

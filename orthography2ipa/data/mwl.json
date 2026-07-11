@@ -380,5 +380,11 @@
     }
   ],
   "wikidata_qid": "Q13330",
-  "phoible_id": "mira1251"
+  "phoible_id": "mira1251",
+  "location": {
+    "latitude": 41.5375,
+    "longitude": -6.38371,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Mirandese."
+  }
 }

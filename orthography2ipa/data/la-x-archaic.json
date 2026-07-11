@@ -211,5 +211,11 @@
   "glottolog_code": "oldl1238",
   "iso639_3": "lat",
   "quality": "research",
-  "wikidata_qid": "Q12289"
+  "wikidata_qid": "Q12289",
+  "location": {
+    "latitude": 41.901111,
+    "longitude": 12.488333,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Old Latin."
+  }
 }

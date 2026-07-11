@@ -361,5 +361,11 @@
   "glottolog_code": "mait1250",
   "wikidata_qid": "Q36109",
   "phoible_id": "mait1250",
-  "wals_code": "mai"
+  "wals_code": "mai",
+  "location": {
+    "latitude": 26.3817,
+    "longitude": 86.2211,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Maithili."
+  }
 }

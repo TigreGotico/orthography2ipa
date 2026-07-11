@@ -24,5 +24,11 @@
   "glottolog_code": "berb1260",
   "urls": [
     "https://glottolog.org/resource/languoid/id/berb1260"
-  ]
+  ],
+  "location": {
+    "latitude": 25.94571,
+    "longitude": 1.453401,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Berber family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

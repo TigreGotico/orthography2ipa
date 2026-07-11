@@ -158,5 +158,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": -7.0,
+    "longitude": 113.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Madurese."
+  }
 }

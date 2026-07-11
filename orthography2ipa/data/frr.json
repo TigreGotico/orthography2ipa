@@ -457,5 +457,11 @@
   "iso639_3": "frr",
   "wikidata_qid": "Q28224",
   "phoible_id": "nort2626",
-  "wals_code": "fno"
+  "wals_code": "fno",
+  "location": {
+    "latitude": 54.6409,
+    "longitude": 8.58489,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Northern Frisian."
+  }
 }

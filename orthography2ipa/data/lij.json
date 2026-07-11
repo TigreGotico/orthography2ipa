@@ -4,227 +4,577 @@
   "script": "Latin",
   "graphemes_base": "la-x-galloitalic",
   "graphemes": {
-    "a": ["a"],
-    "à": ["a"],
-    "â": ["aː"],
-    "ä": ["aː"],
-    "e": ["e"],
-    "è": ["ɛ"],
-    "é": ["e"],
-    "ê": ["eː"],
-    "ë": ["eː"],
-    "i": ["i"],
-    "ì": ["i"],
-    "î": ["iː"],
-    "ï": ["iː"],
-    "o": ["u"],
-    "ò": ["ɔ"],
-    "ó": ["u"],
-    "ô": ["uː"],
-    "ö": ["ɔː"],
-    "u": ["y"],
-    "ù": ["y"],
-    "û": ["yː"],
-    "ü": ["yː"],
-    "æ": ["ɛː"],
-    "eu": ["ø"],
-    "êu": ["øː"],
-    "ëu": ["øː"],
-    "ei": ["ej"],
-    "òu": ["ɔw"],
-    "ou": ["ɔw"],
-    "b": ["b"],
-    "c": ["k"],
-    "ç": ["s"],
-    "ch": ["k"],
-    "d": ["d"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "gh": ["ɡ"],
-    "gn": ["ɲ"],
-    "j": ["j"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "ñ": ["ŋ"],
-    "n-": ["ŋ"],
-    "nn-": ["ŋ"],
-    "p": ["p"],
-    "q": ["k"],
-    "qu": ["kw"],
-    "r": ["r"],
-    "s": ["s"],
-    "sc": ["ʃ"],
-    "scc": ["ʃtʃ"],
-    "t": ["t"],
-    "v": ["v"],
-    "x": ["ʒ"],
-    "z": ["z"],
-    "cs": ["ks"],
-    "cia": ["tʃa"],
-    "gia": ["dʒa"],
-    "cià": ["tʃa"],
-    "già": ["dʒa"],
-    "ciâ": ["tʃaː"],
-    "giâ": ["dʒaː"],
-    "ciä": ["tʃaː"],
-    "giä": ["dʒaː"],
-    "cio": ["tʃu"],
-    "gio": ["dʒu"],
-    "ciò": ["tʃɔ"],
-    "giò": ["dʒɔ"],
-    "ció": ["tʃu"],
-    "gió": ["dʒu"],
-    "ciô": ["tʃuː"],
-    "giô": ["dʒuː"],
-    "ciö": ["tʃɔː"],
-    "giö": ["dʒɔː"],
-    "ciu": ["tʃy"],
-    "giu": ["dʒy"],
-    "ciù": ["tʃy"],
-    "giù": ["dʒy"],
-    "ciû": ["tʃyː"],
-    "giû": ["dʒyː"],
-    "ciü": ["tʃyː"],
-    "giü": ["dʒyː"],
-    "bb": ["b"],
-    "cc": ["k"],
-    "dd": ["d"],
-    "ff": ["f"],
-    "gg": ["ɡ"],
-    "ll": ["l"],
-    "mm": ["m"],
-    "nn": ["n"],
-    "pp": ["p"],
-    "rr": ["r"],
-    "ss": ["s"],
-    "tt": ["t"],
-    "vv": ["v"],
-    "zz": ["z"]
+    "a": [
+      "a"
+    ],
+    "à": [
+      "a"
+    ],
+    "â": [
+      "aː"
+    ],
+    "ä": [
+      "aː"
+    ],
+    "e": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "é": [
+      "e"
+    ],
+    "ê": [
+      "eː"
+    ],
+    "ë": [
+      "eː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ì": [
+      "i"
+    ],
+    "î": [
+      "iː"
+    ],
+    "ï": [
+      "iː"
+    ],
+    "o": [
+      "u"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "ó": [
+      "u"
+    ],
+    "ô": [
+      "uː"
+    ],
+    "ö": [
+      "ɔː"
+    ],
+    "u": [
+      "y"
+    ],
+    "ù": [
+      "y"
+    ],
+    "û": [
+      "yː"
+    ],
+    "ü": [
+      "yː"
+    ],
+    "æ": [
+      "ɛː"
+    ],
+    "eu": [
+      "ø"
+    ],
+    "êu": [
+      "øː"
+    ],
+    "ëu": [
+      "øː"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "òu": [
+      "ɔw"
+    ],
+    "ou": [
+      "ɔw"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "ç": [
+      "s"
+    ],
+    "ch": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gh": [
+      "ɡ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "j": [
+      "j"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ŋ"
+    ],
+    "n-": [
+      "ŋ"
+    ],
+    "nn-": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "sc": [
+      "ʃ"
+    ],
+    "scc": [
+      "ʃtʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "x": [
+      "ʒ"
+    ],
+    "z": [
+      "z"
+    ],
+    "cs": [
+      "ks"
+    ],
+    "cia": [
+      "tʃa"
+    ],
+    "gia": [
+      "dʒa"
+    ],
+    "cià": [
+      "tʃa"
+    ],
+    "già": [
+      "dʒa"
+    ],
+    "ciâ": [
+      "tʃaː"
+    ],
+    "giâ": [
+      "dʒaː"
+    ],
+    "ciä": [
+      "tʃaː"
+    ],
+    "giä": [
+      "dʒaː"
+    ],
+    "cio": [
+      "tʃu"
+    ],
+    "gio": [
+      "dʒu"
+    ],
+    "ciò": [
+      "tʃɔ"
+    ],
+    "giò": [
+      "dʒɔ"
+    ],
+    "ció": [
+      "tʃu"
+    ],
+    "gió": [
+      "dʒu"
+    ],
+    "ciô": [
+      "tʃuː"
+    ],
+    "giô": [
+      "dʒuː"
+    ],
+    "ciö": [
+      "tʃɔː"
+    ],
+    "giö": [
+      "dʒɔː"
+    ],
+    "ciu": [
+      "tʃy"
+    ],
+    "giu": [
+      "dʒy"
+    ],
+    "ciù": [
+      "tʃy"
+    ],
+    "giù": [
+      "dʒy"
+    ],
+    "ciû": [
+      "tʃyː"
+    ],
+    "giû": [
+      "dʒyː"
+    ],
+    "ciü": [
+      "tʃyː"
+    ],
+    "giü": [
+      "dʒyː"
+    ],
+    "bb": [
+      "b"
+    ],
+    "cc": [
+      "k"
+    ],
+    "dd": [
+      "d"
+    ],
+    "ff": [
+      "f"
+    ],
+    "gg": [
+      "ɡ"
+    ],
+    "ll": [
+      "l"
+    ],
+    "mm": [
+      "m"
+    ],
+    "nn": [
+      "n"
+    ],
+    "pp": [
+      "p"
+    ],
+    "rr": [
+      "r"
+    ],
+    "ss": [
+      "s"
+    ],
+    "tt": [
+      "t"
+    ],
+    "vv": [
+      "v"
+    ],
+    "zz": [
+      "z"
+    ]
   },
   "positional_graphemes": {
     "c": {
-      "default": ["k"],
-      "before_front_vowel": ["tʃ"]
+      "default": [
+        "k"
+      ],
+      "before_front_vowel": [
+        "tʃ"
+      ]
     },
     "g": {
-      "default": ["ɡ"],
-      "before_front_vowel": ["dʒ"]
+      "default": [
+        "ɡ"
+      ],
+      "before_front_vowel": [
+        "dʒ"
+      ]
     },
     "sc": {
-      "default": ["sk"],
-      "before_front_vowel": ["ʃ"]
+      "default": [
+        "sk"
+      ],
+      "before_front_vowel": [
+        "ʃ"
+      ]
     }
   },
   "allophones_base": "la-x-galloitalic",
   "allophones": {
-    "p": ["p"],
-    "b": ["b"],
-    "t": ["t"],
-    "d": ["d"],
-    "k": ["k"],
-    "ɡ": ["ɡ"],
-    "tʃ": ["tʃ"],
-    "dʒ": ["dʒ"],
-    "f": ["f"],
-    "v": ["v"],
-    "s": ["s", "z"],
-    "z": ["z"],
-    "ʃ": ["ʃ"],
-    "ʒ": ["ʒ"],
-    "m": ["m"],
-    "n": ["n", "ŋ", "m"],
-    "ɲ": ["ɲ"],
-    "ŋ": ["ŋ"],
-    "r": ["r"],
-    "l": ["l"],
-    "j": ["j"],
-    "w": ["w"],
-    "a": ["a", "ã"],
-    "e": ["e", "ẽ"],
-    "ɛ": ["ɛ", "ɛ̃"],
-    "i": ["i", "ĩ"],
-    "u": ["u", "ũ"],
-    "y": ["y", "ỹ"],
-    "ø": ["ø", "ø̃"],
-    "ɔ": ["ɔ", "ɔ̃"],
-    "aː": ["aː"],
-    "eː": ["eː"],
-    "ɛː": ["ɛː"],
-    "iː": ["iː"],
-    "uː": ["uː"],
-    "yː": ["yː"],
-    "øː": ["øː"],
-    "ɔː": ["ɔː"]
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a",
+      "ã"
+    ],
+    "e": [
+      "e",
+      "ẽ"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ɛ̃"
+    ],
+    "i": [
+      "i",
+      "ĩ"
+    ],
+    "u": [
+      "u",
+      "ũ"
+    ],
+    "y": [
+      "y",
+      "ỹ"
+    ],
+    "ø": [
+      "ø",
+      "ø̃"
+    ],
+    "ɔ": [
+      "ɔ",
+      "ɔ̃"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "øː": [
+      "øː"
+    ],
+    "ɔː": [
+      "ɔː"
+    ]
   },
   "allophone_rules": [
     {
       "id": "LIJ_N_VELAR_FINAL",
-      "phonemes": ["n"],
+      "phonemes": [
+        "n"
+      ],
       "surface": "ŋ",
       "word_final": true,
       "notes": "Toso (1997), Grammatica del genovese: word-final orthographic ⟨n⟩ is realised as the velar nasal [ŋ] (e.g. can 'dog' → [kaŋ]). The grafia ofiçiâ writes the intervocalic velar nasal explicitly as ⟨n-⟩/⟨nn-⟩; word-finally it is unmarked but velar."
     },
     {
       "id": "LIJ_N_VELAR_ASSIM",
-      "phonemes": ["n"],
+      "phonemes": [
+        "n"
+      ],
       "surface": "ŋ",
-      "followed_by_phoneme": ["k", "ɡ"],
+      "followed_by_phoneme": [
+        "k",
+        "ɡ"
+      ],
       "notes": "Nasal place assimilation (Toso 1997): /n/ → [ŋ] before a velar stop."
     },
     {
       "id": "LIJ_N_LABIAL_ASSIM",
-      "phonemes": ["n"],
+      "phonemes": [
+        "n"
+      ],
       "surface": "m",
-      "followed_by_phoneme": ["p", "b", "m", "f"],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m",
+        "f"
+      ],
       "notes": "Nasal place assimilation (Toso 1997): /n/ → [m] before a labial consonant."
     },
     {
       "id": "LIJ_NASAL_A",
-      "phonemes": ["a"],
+      "phonemes": [
+        "a"
+      ],
       "surface": "ã",
-      "followed_by_phoneme": ["ŋ"],
+      "followed_by_phoneme": [
+        "ŋ"
+      ],
       "notes": "Vowel nasalisation before the velar nasal coda (Forner 1975; Toso 1997): a → [ã] / _ŋ (lann-a 'wool' → [ˈlãŋa])."
     },
     {
       "id": "LIJ_NASAL_E",
-      "phonemes": ["e"],
+      "phonemes": [
+        "e"
+      ],
       "surface": "ẽ",
-      "followed_by_phoneme": ["ŋ"],
+      "followed_by_phoneme": [
+        "ŋ"
+      ],
       "notes": "Vowel nasalisation before the velar nasal coda (Forner 1975; Toso 1997)."
     },
     {
       "id": "LIJ_NASAL_I",
-      "phonemes": ["i"],
+      "phonemes": [
+        "i"
+      ],
       "surface": "ĩ",
-      "followed_by_phoneme": ["ŋ"],
+      "followed_by_phoneme": [
+        "ŋ"
+      ],
       "notes": "Vowel nasalisation before the velar nasal coda (Forner 1975; Toso 1997)."
     },
     {
       "id": "LIJ_NASAL_U",
-      "phonemes": ["u"],
+      "phonemes": [
+        "u"
+      ],
       "surface": "ũ",
-      "followed_by_phoneme": ["ŋ"],
+      "followed_by_phoneme": [
+        "ŋ"
+      ],
       "notes": "Vowel nasalisation before the velar nasal coda (Forner 1975; Toso 1997): orthographic ⟨o⟩ = /u/ nasalises to [ũ] before [ŋ]."
     },
     {
       "id": "LIJ_NASAL_Y",
-      "phonemes": ["y"],
+      "phonemes": [
+        "y"
+      ],
       "surface": "ỹ",
-      "followed_by_phoneme": ["ŋ"],
+      "followed_by_phoneme": [
+        "ŋ"
+      ],
       "notes": "Vowel nasalisation before the velar nasal coda (Forner 1975; Toso 1997): orthographic ⟨u⟩ = /y/ nasalises to [ỹ] before [ŋ]."
     },
     {
       "id": "LIJ_NASAL_O",
-      "phonemes": ["ɔ"],
+      "phonemes": [
+        "ɔ"
+      ],
       "surface": "ɔ̃",
-      "followed_by_phoneme": ["ŋ"],
+      "followed_by_phoneme": [
+        "ŋ"
+      ],
       "notes": "Vowel nasalisation before the velar nasal coda (Forner 1975; Toso 1997)."
     }
   ],
   "stress": {
     "default_position": -2,
-    "marked_vowels": ["à", "è", "é", "ì", "ò", "ó", "ù", "â", "ê", "î", "ô", "û", "ä", "ë", "ï", "ö", "ü", "æ"],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "ì",
+      "ò",
+      "ó",
+      "ù",
+      "â",
+      "ê",
+      "î",
+      "ô",
+      "û",
+      "ä",
+      "ë",
+      "ï",
+      "ö",
+      "ü",
+      "æ"
+    ],
     "stress_mark": "ˈ",
     "notes": "Stress per the Académia Ligùstica do Brénno grafia ofiçiâ. The default position is paroxytone (penultimate), as in most Gallo-Italic. Any orthographically accented vowel (grave à è ì ò ù, acute é ó, circumflex â ê î ô û, diaeresis ä ë ï ö ü, and the ligature æ) marks the stressed syllable and always wins; the circumflex and diaeresis additionally encode vowel length. This is an orthographic-encoding simplification: the grafia writes the accent precisely so stress is recoverable from the spelling."
   },
@@ -337,5 +687,11 @@
   "glottolog_code": "ligu1248",
   "wikidata_qid": "Q36106",
   "phoible_id": "ligu1248",
-  "wals_code": "itg"
+  "wals_code": "itg",
+  "location": {
+    "latitude": 44.0816,
+    "longitude": 7.90522,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ligurian."
+  }
 }

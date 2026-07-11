@@ -1,5 +1,5 @@
 {
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "sla",
       "role": "parent",
@@ -434,7 +434,13 @@
     "stress_mark": "ˈ",
     "notes": "Slovak has categorical initial stress regardless of vowel length. Diacritics (á é í ó ú ý ä ô) mark quantity or quality, not stress. Source: Dvonč et al. (1966), Morfológia slovenského jazyka; Wikipedia: https://en.wikipedia.org/wiki/Slovak_phonology"
   },
-      "wikidata_qid": "Q9058",
-      "phoible_id": "slov1269",
-      "wals_code": "svk"
+  "wikidata_qid": "Q9058",
+  "phoible_id": "slov1269",
+  "wals_code": "svk",
+  "location": {
+    "latitude": 48.545705,
+    "longitude": 18.78479,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Slovak."
+  }
 }

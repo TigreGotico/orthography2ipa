@@ -280,5 +280,11 @@
   },
   "glottolog_code": "ladi1250",
   "wikidata_qid": "Q36202",
-  "wals_code": "ldn"
+  "wals_code": "ldn",
+  "location": {
+    "latitude": 46.60651,
+    "longitude": 11.89498,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ladin."
+  }
 }

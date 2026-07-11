@@ -119,5 +119,11 @@
   },
   "glottolog_code": "murc1238",
   "iso639_3": "spa",
-  "wikidata_qid": "Q980944"
+  "wikidata_qid": "Q980944",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Murcian."
+  }
 }

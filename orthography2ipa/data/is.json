@@ -339,5 +339,11 @@
   },
   "wikidata_qid": "Q294",
   "phoible_id": "icel1247",
-  "wals_code": "ice"
+  "wals_code": "ice",
+  "location": {
+    "latitude": 63.4837,
+    "longitude": -19.0212,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Icelandic."
+  }
 }

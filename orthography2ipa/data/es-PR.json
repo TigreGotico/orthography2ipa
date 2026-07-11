@@ -139,5 +139,11 @@
   },
   "glottolog_code": "puer1238",
   "iso639_3": "spa",
-  "wikidata_qid": "Q7258609"
+  "wikidata_qid": "Q7258609",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Puerto Rican Spanish."
+  }
 }

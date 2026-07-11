@@ -23,5 +23,11 @@
   "glottolog_code": "turk1311",
   "urls": [
     "https://glottolog.org/resource/languoid/id/turk1311"
-  ]
+  ],
+  "location": {
+    "latitude": 49.344956,
+    "longitude": 64.800728,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Turkic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

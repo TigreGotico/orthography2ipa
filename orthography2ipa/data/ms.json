@@ -130,5 +130,11 @@
     }
   ],
   "wikidata_qid": "Q9237",
-  "phoible_id": "stan1306"
+  "phoible_id": "stan1306",
+  "location": {
+    "latitude": 3.08896,
+    "longitude": 101.699,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Standard Malay."
+  }
 }

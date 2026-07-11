@@ -1,6 +1,6 @@
 {
   "parent": "trk",
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "trk",
       "role": "parent",
@@ -255,7 +255,13 @@
     "stress_mark": "ˈ",
     "notes": "Turkmen default stress is word-final (-1). Some grammatical suffixes (negation, question) attract stress to their own syllable; not modeled here. Source: Comrie (1997) in Johanson & Csató."
   },
-      "wikidata_qid": "Q9267",
-      "phoible_id": "turk1304",
-      "wals_code": "tkm"
+  "wikidata_qid": "Q9267",
+  "phoible_id": "turk1304",
+  "wals_code": "tkm",
+  "location": {
+    "latitude": 37.08719,
+    "longitude": 59.17574,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Turkmen."
+  }
 }

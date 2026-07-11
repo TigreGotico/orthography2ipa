@@ -385,5 +385,11 @@
     "stress_mark": "ˈ",
     "notes": "Aranese (Gascon Occitan) accentuation per the Conselh Generau dAran norm: same default-final, vowel/vowel+s → paroxytone rule as standard Occitan; written accents override. Aranese ⟨a⟩ in stressed position is typically [a] (not [ɔ] as standard Oc). Pattern inherited from Gascon prosody."
   },
-  "wikidata_qid": "Q10196"
+  "wikidata_qid": "Q10196",
+  "location": {
+    "latitude": 44.1415,
+    "longitude": 6.82979,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Aranese."
+  }
 }

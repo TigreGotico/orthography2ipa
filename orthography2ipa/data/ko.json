@@ -334,5 +334,11 @@
   ],
   "wikidata_qid": "Q9176",
   "phoible_id": "kore1280",
-  "wals_code": "kor"
+  "wals_code": "kor",
+  "location": {
+    "latitude": 37.54,
+    "longitude": 126.98,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Korean."
+  }
 }

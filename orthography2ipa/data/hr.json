@@ -1,5 +1,5 @@
 {
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "sla",
       "role": "parent",
@@ -272,6 +272,12 @@
   },
   "glottolog_code": "croa1245",
   "iso639_3": "hrv",
-      "wikidata_qid": "Q6654",
-      "phoible_id": "croa1245"
+  "wikidata_qid": "Q6654",
+  "phoible_id": "croa1245",
+  "location": {
+    "latitude": 45.555,
+    "longitude": 15.982,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Croatian Standard."
+  }
 }

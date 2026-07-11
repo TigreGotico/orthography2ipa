@@ -358,5 +358,11 @@
   ],
   "wikidata_qid": "Q9240",
   "phoible_id": "indo1316",
-  "wals_code": "ind"
+  "wals_code": "ind",
+  "location": {
+    "latitude": -7.33458,
+    "longitude": 109.716,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Standard Indonesian."
+  }
 }

@@ -451,5 +451,11 @@
   },
   "wikidata_qid": "Q29507",
   "phoible_id": "astu1245",
-  "wals_code": "ast"
+  "wals_code": "ast",
+  "location": {
+    "latitude": 42.4181,
+    "longitude": -6.02227,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Asturian-Leonese-Cantabrian."
+  }
 }

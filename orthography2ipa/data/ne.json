@@ -371,5 +371,11 @@
   "iso639_3": "nep",
   "wikidata_qid": "Q33823",
   "phoible_id": "nepa1254",
-  "wals_code": "nep"
+  "wals_code": "nep",
+  "location": {
+    "latitude": 28.0,
+    "longitude": 85.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Nepali."
+  }
 }

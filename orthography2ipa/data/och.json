@@ -95,5 +95,11 @@
       "notes": "Sinitic branch of Sino-Tibetan."
     }
   ],
-  "wikidata_qid": "Q35137"
+  "wikidata_qid": "Q35137",
+  "location": {
+    "latitude": 36.12,
+    "longitude": 114.32,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Old Chinese."
+  }
 }

@@ -433,5 +433,11 @@
   "parent": "ta",
   "wikidata_qid": "Q36236",
   "phoible_id": "mala1464",
-  "wals_code": "mym"
+  "wals_code": "mym",
+  "location": {
+    "latitude": 9.59208,
+    "longitude": 76.7651,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Malayalam."
+  }
 }

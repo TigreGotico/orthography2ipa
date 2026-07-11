@@ -445,5 +445,11 @@
   ],
   "wikidata_qid": "Q9067",
   "phoible_id": "hung1274",
-  "wals_code": "hun"
+  "wals_code": "hun",
+  "location": {
+    "latitude": 46.906859,
+    "longitude": 19.655527,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hungarian."
+  }
 }

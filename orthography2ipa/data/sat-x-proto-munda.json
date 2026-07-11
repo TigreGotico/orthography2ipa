@@ -212,8 +212,13 @@
     "start_year": -2000,
     "end_year": -1000
   },
-  "glottolog_code": null,
+  "glottolog_code": "mund1335",
   "iso639_3": null,
   "wikidata_qid": "Q33892",
-  "glottolog_code": "mund1335"
+  "location": {
+    "latitude": 20.89208,
+    "longitude": 83.640648,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Mundaic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

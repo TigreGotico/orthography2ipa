@@ -1,6 +1,6 @@
 {
   "parent": "trk",
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "trk",
       "role": "parent",
@@ -306,7 +306,13 @@
     "stress_mark": "ˈ",
     "notes": "Azerbaijani default stress is word-final (-1). Exceptions (certain suffixes, question particles, place names) are lexically stressed and not modeled. Source: Šükürov (1982), Johanson & Csató (1998)."
   },
-      "wikidata_qid": "Q9292",
-      "phoible_id": "nort2697",
-      "wals_code": "aze"
+  "wikidata_qid": "Q9292",
+  "phoible_id": "nort2697",
+  "wals_code": "aze",
+  "location": {
+    "latitude": 40.97768,
+    "longitude": 46.4737,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for North Azerbaijani."
+  }
 }

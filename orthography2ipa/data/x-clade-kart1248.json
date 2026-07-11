@@ -23,5 +23,11 @@
   "glottolog_code": "kart1248",
   "urls": [
     "https://glottolog.org/resource/languoid/id/kart1248"
-  ]
+  ],
+  "location": {
+    "latitude": 42.390201,
+    "longitude": 42.624392,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Kartvelian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

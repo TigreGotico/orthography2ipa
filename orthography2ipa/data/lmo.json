@@ -177,5 +177,11 @@
     "end_year": null
   },
   "glottolog_code": "lomb1257",
-  "wikidata_qid": "Q33754"
+  "wikidata_qid": "Q33754",
+  "location": {
+    "latitude": 45.8817,
+    "longitude": 9.39509,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Lombard."
+  }
 }

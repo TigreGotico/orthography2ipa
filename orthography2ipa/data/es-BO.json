@@ -149,5 +149,11 @@
       "notes": "Aymara indigenous adstrate (see stub ay.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q510730"
+  "wikidata_qid": "Q510730",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bolivian Spanish."
+  }
 }

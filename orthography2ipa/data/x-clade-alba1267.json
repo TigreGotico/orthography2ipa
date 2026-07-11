@@ -24,5 +24,11 @@
   "glottolog_code": "alba1267",
   "urls": [
     "https://glottolog.org/resource/languoid/id/alba1267"
-  ]
+  ],
+  "location": {
+    "latitude": 40.99952,
+    "longitude": 20.791828,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Albanian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

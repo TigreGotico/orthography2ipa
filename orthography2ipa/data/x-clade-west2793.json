@@ -24,5 +24,11 @@
   "glottolog_code": "west2793",
   "urls": [
     "https://glottolog.org/resource/languoid/id/west2793"
-  ]
+  ],
+  "location": {
+    "latitude": 51.627533,
+    "longitude": 7.161233,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the West Germanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

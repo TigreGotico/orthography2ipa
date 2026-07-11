@@ -406,5 +406,11 @@
   "glottolog_code": "sans1269",
   "iso639_3": "san",
   "wikidata_qid": "Q11059",
-  "phoible_id": "sans1269"
+  "phoible_id": "sans1269",
+  "location": {
+    "latitude": 20.0,
+    "longitude": 77.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sanskrit."
+  }
 }

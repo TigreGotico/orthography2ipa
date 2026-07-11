@@ -1,6 +1,6 @@
 {
   "parent": "trk",
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "trk",
       "role": "parent",
@@ -272,7 +272,13 @@
     "stress_mark": "ˈ",
     "notes": "Tatar default stress is word-final (-1). Certain suffixes (negation, question particle) and borrowed words carry non-final stress; lexical and not modeled here. Source: Comrie (1997), Johanson & Csató (1998)."
   },
-      "wikidata_qid": "Q25285",
-      "phoible_id": "tata1255",
-      "wals_code": "tvo"
+  "wikidata_qid": "Q25285",
+  "phoible_id": "tata1255",
+  "wals_code": "tvo",
+  "location": {
+    "latitude": 55.79592,
+    "longitude": 49.11577,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tatar."
+  }
 }

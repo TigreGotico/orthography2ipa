@@ -93,5 +93,11 @@
     "end_year": null
   },
   "glottolog_code": "nort3139",
-  "iso639_3": "apc"
+  "iso639_3": "apc",
+  "location": {
+    "latitude": 34.1709,
+    "longitude": 36.0468,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Levantine Arabic."
+  }
 }

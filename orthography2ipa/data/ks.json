@@ -384,5 +384,11 @@
   "iso639_3": "kas",
   "wikidata_qid": "Q33552",
   "phoible_id": "kash1277",
-  "wals_code": "kas"
+  "wals_code": "kas",
+  "location": {
+    "latitude": 34.166825,
+    "longitude": 74.330455,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kashmiri."
+  }
 }

@@ -240,5 +240,11 @@
   },
   "glottolog_code": "celt1248",
   "iso639_3": null,
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 43.946745,
+    "longitude": 2.018654,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Celtic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

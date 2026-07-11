@@ -24,5 +24,11 @@
   "glottolog_code": "east2805",
   "urls": [
     "https://glottolog.org/resource/languoid/id/east2805"
-  ]
+  ],
+  "location": {
+    "latitude": 46.149359,
+    "longitude": 32.16627,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the East Germanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

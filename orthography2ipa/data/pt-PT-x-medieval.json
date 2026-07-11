@@ -234,5 +234,11 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Medieval Portuguese stress: paroxytone default; grave accent (à) marks stress override; no written circumflex or acute in early medieval orthography."
+  },
+  "location": {
+    "latitude": 39.91,
+    "longitude": -8.1,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Old Portuguese."
   }
 }

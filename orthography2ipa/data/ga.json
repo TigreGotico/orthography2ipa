@@ -368,5 +368,11 @@
   "iso639_3": "gle",
   "wikidata_qid": "Q9142",
   "phoible_id": "iris1253",
-  "wals_code": "ird"
+  "wals_code": "ird",
+  "location": {
+    "latitude": 53.2186,
+    "longitude": -7.61509,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Irish."
+  }
 }

@@ -146,5 +146,11 @@
     "https://en.wikipedia.org/wiki/Picard_language",
     "https://pcd.wikipedia.org/wiki/Picard"
   ],
-  "wikidata_qid": "Q34024"
+  "wikidata_qid": "Q34024",
+  "location": {
+    "latitude": 50.2831,
+    "longitude": 3.25085,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Picard."
+  }
 }

@@ -130,5 +130,11 @@
   "glottolog_code": "suda1236",
   "iso639_3": "apd",
   "wikidata_qid": "Q56573",
-  "phoible_id": "suda1236"
+  "phoible_id": "suda1236",
+  "location": {
+    "latitude": 17.8021,
+    "longitude": 33.3179,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sudanese Arabic."
+  }
 }

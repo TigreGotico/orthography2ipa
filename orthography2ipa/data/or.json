@@ -380,5 +380,11 @@
   "iso639_3": "ori",
   "wikidata_qid": "Q33810",
   "phoible_id": "oriy1255",
-  "wals_code": "oya"
+  "wals_code": "oya",
+  "location": {
+    "latitude": 21.0,
+    "longitude": 85.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Odia."
+  }
 }

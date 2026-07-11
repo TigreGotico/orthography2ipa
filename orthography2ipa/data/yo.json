@@ -272,5 +272,11 @@
   ],
   "wikidata_qid": "Q34311",
   "phoible_id": "yoru1245",
-  "wals_code": "yor"
+  "wals_code": "yor",
+  "location": {
+    "latitude": 7.15345,
+    "longitude": 3.67225,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Yoruba."
+  }
 }

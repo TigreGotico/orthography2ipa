@@ -377,5 +377,11 @@
     "end_year": null
   },
   "glottolog_code": "goan1235",
-  "wikidata_qid": "Q34239"
+  "wikidata_qid": "Q34239",
+  "location": {
+    "latitude": 15.2732,
+    "longitude": 74.2098,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Goan Konkani."
+  }
 }

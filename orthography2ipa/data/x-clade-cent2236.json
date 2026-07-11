@@ -24,5 +24,11 @@
   "glottolog_code": "cent2236",
   "urls": [
     "https://glottolog.org/resource/languoid/id/cent2236"
-  ]
+  ],
+  "location": {
+    "latitude": 26.148795,
+    "longitude": 39.671439,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Central Semitic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

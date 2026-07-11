@@ -319,5 +319,11 @@
   "iso639_3": "lad",
   "wikidata_qid": "Q36196",
   "phoible_id": "ladi1251",
-  "wals_code": "lno"
+  "wals_code": "lno",
+  "location": {
+    "latitude": 41.205,
+    "longitude": 28.6632,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ladino."
+  }
 }

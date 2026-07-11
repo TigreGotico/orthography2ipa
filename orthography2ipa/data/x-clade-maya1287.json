@@ -23,5 +23,11 @@
   "glottolog_code": "maya1287",
   "urls": [
     "https://glottolog.org/resource/languoid/id/maya1287"
-  ]
+  ],
+  "location": {
+    "latitude": 17.359612,
+    "longitude": -92.79742,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Mayan family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

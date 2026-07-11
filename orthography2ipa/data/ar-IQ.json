@@ -274,5 +274,11 @@
     }
   ],
   "wikidata_qid": "Q56232",
-  "wals_code": "arq"
+  "wals_code": "arq",
+  "location": {
+    "latitude": 33.8178,
+    "longitude": 43.1095,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gilit Mesopotamian Arabic."
+  }
 }

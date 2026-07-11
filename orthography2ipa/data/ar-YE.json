@@ -118,5 +118,11 @@
   },
   "glottolog_code": "sana1295",
   "iso639_3": "ayn",
-  "wikidata_qid": "Q1686766"
+  "wikidata_qid": "Q1686766",
+  "location": {
+    "latitude": 15.6552,
+    "longitude": 44.8412,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sanaani Arabic."
+  }
 }

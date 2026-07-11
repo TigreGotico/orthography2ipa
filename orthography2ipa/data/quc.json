@@ -128,5 +128,11 @@
   ],
   "wikidata_qid": "Q36494",
   "phoible_id": "kich1262",
-  "wals_code": "qch"
+  "wals_code": "qch",
+  "location": {
+    "latitude": 14.5278,
+    "longitude": -91.1696,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for K'iche'."
+  }
 }

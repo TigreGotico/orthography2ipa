@@ -378,5 +378,11 @@
     "end_year": null
   },
   "glottolog_code": "fala1241",
-  "wikidata_qid": "Q300402"
+  "wikidata_qid": "Q300402",
+  "location": {
+    "latitude": 40.1651,
+    "longitude": -6.91452,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Fala."
+  }
 }

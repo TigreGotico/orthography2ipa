@@ -87,5 +87,11 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Koreanic_languages"
     }
   ],
-  "wikidata_qid": "Q11263525"
+  "wikidata_qid": "Q11263525",
+  "location": {
+    "latitude": 35.46025,
+    "longitude": 126.7677,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Koreanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

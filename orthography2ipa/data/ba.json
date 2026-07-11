@@ -1,6 +1,6 @@
 {
   "parent": "trk",
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "trk",
       "role": "parent",
@@ -289,7 +289,13 @@
     "stress_mark": "ˈ",
     "notes": "Bashkir default stress is word-final (-1). Certain grammatical endings (negation, question) are unstressed; not modeled here. Source: Poppe (1964), Johanson & Csató (1998)."
   },
-      "wikidata_qid": "Q13389",
-      "phoible_id": "bash1264",
-      "wals_code": "bsk"
+  "wikidata_qid": "Q13389",
+  "phoible_id": "bash1264",
+  "wals_code": "bsk",
+  "location": {
+    "latitude": 53.59671,
+    "longitude": 56.55937,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bashkir."
+  }
 }

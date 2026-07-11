@@ -95,5 +95,11 @@
       "notes": "Chadic branch of Afroasiatic."
     }
   ],
-  "wikidata_qid": "Q33184"
+  "wikidata_qid": "Q33184",
+  "location": {
+    "latitude": 10.434045,
+    "longitude": 13.960241,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Chadic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

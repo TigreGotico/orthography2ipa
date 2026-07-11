@@ -125,7 +125,7 @@
   },
   "allophones": {},
   "positional_graphemes": {},
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "sla",
       "role": "parent",
@@ -165,5 +165,11 @@
   },
   "wikidata_qid": "Q13286",
   "phoible_id": "lowe1385",
-  "wals_code": "srl"
+  "wals_code": "srl",
+  "location": {
+    "latitude": 51.6621,
+    "longitude": 13.9407,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Lower Sorbian."
+  }
 }

@@ -160,5 +160,11 @@
   },
   "wikidata_qid": "Q9072",
   "phoible_id": "esto1258",
-  "wals_code": "est"
+  "wals_code": "est",
+  "location": {
+    "latitude": 58.55,
+    "longitude": 25.82,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Estonian."
+  }
 }

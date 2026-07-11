@@ -462,5 +462,11 @@
   "iso639_3": "nld",
   "wikidata_qid": "Q7411",
   "phoible_id": "dutc1256",
-  "wals_code": "dut"
+  "wals_code": "dut",
+  "location": {
+    "latitude": 52.0,
+    "longitude": 5.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Dutch."
+  }
 }

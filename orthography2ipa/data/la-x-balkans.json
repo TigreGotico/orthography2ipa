@@ -275,8 +275,13 @@
     "start_year": 200,
     "end_year": 900
   },
-  "glottolog_code": null,
+  "glottolog_code": "east2714",
   "iso639_3": "lat",
   "wikidata_qid": "Q147576",
-  "glottolog_code": "east2714"
+  "location": {
+    "latitude": 42.604838,
+    "longitude": 19.975475,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Eastern Romance family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

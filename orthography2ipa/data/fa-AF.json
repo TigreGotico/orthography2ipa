@@ -133,5 +133,11 @@
   "glottolog_code": "dari1249",
   "iso639_3": "prs",
   "wikidata_qid": "Q178440",
-  "wals_code": "dri"
+  "wals_code": "dri",
+  "location": {
+    "latitude": 34.39757,
+    "longitude": 66.14961,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Dari."
+  }
 }

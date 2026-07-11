@@ -24,5 +24,11 @@
   "glottolog_code": "slav1255",
   "urls": [
     "https://glottolog.org/resource/languoid/id/slav1255"
-  ]
+  ],
+  "location": {
+    "latitude": 49.521986,
+    "longitude": 23.219229,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Slavic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

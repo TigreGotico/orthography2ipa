@@ -423,5 +423,11 @@
   "iso639_3": "mar",
   "wikidata_qid": "Q1571",
   "phoible_id": "mara1378",
-  "wals_code": "mhi"
+  "wals_code": "mhi",
+  "location": {
+    "latitude": 17.9344,
+    "longitude": 76.6665,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Marathi."
+  }
 }

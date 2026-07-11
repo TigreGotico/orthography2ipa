@@ -77,5 +77,11 @@
     "end_year": null
   },
   "glottolog_code": "khor1275",
-  "iso639_3": "fas"
+  "iso639_3": "fas",
+  "location": {
+    "latitude": 32.9,
+    "longitude": 53.3,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Khorasan Persian."
+  }
 }

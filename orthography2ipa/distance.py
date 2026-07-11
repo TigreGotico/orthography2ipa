@@ -45,6 +45,8 @@ Usage
 """
 from __future__ import annotations
 
+import math
+
 import functools
 from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Set, Tuple
@@ -1176,3 +1178,44 @@ def spelling_divergence(
         identical_spellings=identical,
         disjoint_spellings=disjoint,
     )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Geographic distance — where the languages are
+# ═══════════════════════════════════════════════════════════════════════════
+
+_EARTH_RADIUS_KM = 6371.0088
+
+
+def geographic_distance(
+        spec_a: LanguageSpec, spec_b: LanguageSpec,
+        normalize: bool = True) -> Optional[float]:
+    """Great-circle distance between two languages' representative points.
+
+    Kilometres when ``normalize`` is False; otherwise scaled by half the Earth's
+    circumference, the furthest two points can be. Returns ``None`` when either
+    spec has no location — absence, not zero, because two languages of unknown
+    position are not thereby neighbours.
+
+    READ THIS BEFORE TRUSTING THE NUMBER. A point is a crude proxy for an AREA,
+    and the crudeness is not uniform. It is a fair summary for a dialect anchored
+    to a region — which is where this metric earns its keep, measuring a dialect
+    continuum — and close to meaningless for a widespread language, where a single
+    point is arbitrary (Spanish spans two hemispheres). A family node's point is a
+    computed centroid and is weaker still. Weight this axis low, or off, when
+    comparing macrolanguages.
+    """
+    loc_a, loc_b = spec_a.location, spec_b.location
+    if loc_a is None or loc_b is None:
+        return None
+
+    lat1, lon1, lat2, lon2 = map(
+        math.radians,
+        (loc_a.latitude, loc_a.longitude, loc_b.latitude, loc_b.longitude))
+    dlat, dlon = lat2 - lat1, lon2 - lon1
+    h = (math.sin(dlat / 2) ** 2
+         + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2)
+    km = 2 * _EARTH_RADIUS_KM * math.asin(math.sqrt(h))
+    if not normalize:
+        return km
+    return km / (math.pi * _EARTH_RADIUS_KM)

@@ -94,5 +94,11 @@
       "weight": 0.9,
       "notes": "South/Ethiopian Semitic under West Semitic."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 12.257187,
+    "longitude": 39.591953,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Ethiosemitic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

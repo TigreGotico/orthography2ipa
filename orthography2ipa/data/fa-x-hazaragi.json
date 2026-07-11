@@ -75,5 +75,11 @@
   },
   "glottolog_code": "haza1239",
   "iso639_3": "haz",
-  "wikidata_qid": "Q33398"
+  "wikidata_qid": "Q33398",
+  "location": {
+    "latitude": 33.3708,
+    "longitude": 64.5105,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hazaragi."
+  }
 }

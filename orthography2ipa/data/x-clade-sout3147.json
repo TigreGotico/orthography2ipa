@@ -24,5 +24,11 @@
   "glottolog_code": "sout3147",
   "urls": [
     "https://glottolog.org/resource/languoid/id/sout3147"
-  ]
+  ],
+  "location": {
+    "latitude": 43.612775,
+    "longitude": 19.619339,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the South Slavic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

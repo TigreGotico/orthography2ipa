@@ -287,5 +287,11 @@
   "iso639_3": "tgk",
   "wikidata_qid": "Q9260",
   "phoible_id": "taji1245",
-  "wals_code": "taj"
+  "wals_code": "taj",
+  "location": {
+    "latitude": 38.8213,
+    "longitude": 68.5549,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tajik."
+  }
 }

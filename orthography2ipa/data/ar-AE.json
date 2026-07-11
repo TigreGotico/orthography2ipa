@@ -59,5 +59,11 @@
     "end_year": null
   },
   "glottolog_code": "gulf1241",
-  "iso639_3": "ara"
+  "iso639_3": "ara",
+  "location": {
+    "latitude": 30.17,
+    "longitude": 47.5,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gulf Arabic."
+  }
 }

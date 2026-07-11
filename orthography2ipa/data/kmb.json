@@ -4,27 +4,69 @@
   "parent": "x-clade-narr1281",
   "script": "Latin",
   "graphemes": {
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"],
-    "p": ["p"],
-    "t": ["t"],
-    "k": ["k"],
-    "b": ["b"],
-    "d": ["d"],
-    "g": ["ɡ"],
-    "s": ["s"],
-    "z": ["z"],
-    "m": ["m"],
-    "n": ["n"],
-    "ŋ": ["ŋ"],
-    "l": ["l"],
-    "r": ["ɾ"],
-    "w": ["w"],
-    "j": ["j"],
-    "h": ["h"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "h": [
+      "h"
+    ]
   },
   "allophones": {},
   "notes": "STRUCTURAL ANCESTRY / CONTACT NODE (metadata only, not a modelled G2P target). Kimbundu is referenced only as a representative West-Central African (Bantu) adstrate on Brazilian Portuguese, standing in for the Kimbundu/Kikongo/Yoruba lexical layer brought by the enslaved population (samba, moleque, caçula, cafuné, quilombo). No phonology is claimed; the minimal grapheme set is a placeholder (afa.json / trk.json stub pattern). Glottolog namb1293.",
@@ -51,5 +93,11 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Kimbundu_language"
     }
   ],
-  "wikidata_qid": "Q35891"
+  "wikidata_qid": "Q35891",
+  "location": {
+    "latitude": -8.97835,
+    "longitude": 14.8893,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kimbundu."
+  }
 }

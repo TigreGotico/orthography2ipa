@@ -272,5 +272,11 @@
   "iso639_3": "roh",
   "wikidata_qid": "Q13199",
   "phoible_id": "roma1326",
-  "wals_code": "rmc"
+  "wals_code": "rmc",
+  "location": {
+    "latitude": 46.5538,
+    "longitude": 9.92812,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Romansh."
+  }
 }

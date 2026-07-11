@@ -119,5 +119,11 @@
   "iso639_3": "ayl",
   "wikidata_qid": "Q56503",
   "phoible_id": "liby1240",
-  "wals_code": "ael"
+  "wals_code": "ael",
+  "location": {
+    "latitude": 22.0032,
+    "longitude": 15.0014,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Libyan Arabic."
+  }
 }

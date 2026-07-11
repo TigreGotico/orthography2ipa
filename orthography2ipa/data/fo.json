@@ -304,5 +304,11 @@
   "iso639_3": "fao",
   "wikidata_qid": "Q25258",
   "phoible_id": "faro1244",
-  "wals_code": "far"
+  "wals_code": "far",
+  "location": {
+    "latitude": 62.0732,
+    "longitude": -6.88497,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Faroese."
+  }
 }

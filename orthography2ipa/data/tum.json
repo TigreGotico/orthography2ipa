@@ -200,5 +200,11 @@
       "weight": 1.0,
       "notes": "Bantu, within Atlantic-Congo."
     }
-  ]
+  ],
+  "location": {
+    "latitude": -11.3297,
+    "longitude": 33.3738,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tumbuka."
+  }
 }

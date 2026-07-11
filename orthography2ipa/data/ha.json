@@ -244,5 +244,11 @@
   ],
   "wikidata_qid": "Q56475",
   "phoible_id": "haus1257",
-  "wals_code": "hau"
+  "wals_code": "hau",
+  "location": {
+    "latitude": 11.1513,
+    "longitude": 8.7804,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hausa."
+  }
 }

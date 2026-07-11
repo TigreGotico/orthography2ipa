@@ -134,5 +134,11 @@
   },
   "glottolog_code": "vene1262",
   "iso639_3": "spa",
-  "wikidata_qid": "Q840017"
+  "wikidata_qid": "Q840017",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Venezuelan Spanish."
+  }
 }

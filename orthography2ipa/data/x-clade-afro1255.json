@@ -23,5 +23,11 @@
   "glottolog_code": "afro1255",
   "urls": [
     "https://glottolog.org/resource/languoid/id/afro1255"
-  ]
+  ],
+  "location": {
+    "latitude": 18.798147,
+    "longitude": 24.7401,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Afro-Asiatic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }
