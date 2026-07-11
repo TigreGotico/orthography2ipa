@@ -21,7 +21,7 @@
     ],
     "ظ": [
       "dˤ",
-      "ðˤ"
+      "zˤ"
     ],
     "ق": [
       "ɡ",
@@ -42,7 +42,7 @@
     ],
     "ðˤ": [
       "dˤ",
-      "ðˤ"
+      "zˤ"
     ],
     "θ": [
       "t",
@@ -70,10 +70,30 @@
       "notes": "Peninsular Arabic base"
     }
   ],
-  "notes": "Hejazi Arabic (حجازي). Western Saudi Arabia: Mecca, Medina, Jeddah. DEFINING FEATURE: ق qaf → /ɡ/ (voiced velar stop) in inherited urban vocabulary — part of the early (8th c.) Hejazi chain shift /q/→/ɡ/→/dʒ/ (gīm), with /q/ retained only in learned/Classical borrowings; the older descriptions positing a /ʔ/ reflex here are a misattribution of the Levantine/Egyptian feature. ج jim → /dʒ/ (affricate). ث → /t/, ذ → /d/ (urban merger); interdentals preserved in Bedouin/rural speech. No k → /tʃ/ shift (unlike Gulf/Najdi). Cosmopolitan koine shaped by Hajj contact (Egyptian, Levantine, South Asian Arabic). Source: Hejazi Arabic phonology (Wikipedia); Watson (2002); Holes (2004).",
-  "quality": "skeleton",
+  "notes": "Hejazi Arabic (حجازي), urban western Saudi Arabia: Mecca, Medina, Jeddah. References Omar (1975) and Abdoh (2010). DEFINING FEATURES modeled here: (1) qaf ق → /ɡ/ (voiced velar stop) in inherited vocabulary — part of the early Hejazi /q/→/ɡ/ shift; /q/ retained only in learned/scientific/religious borrowings (older descriptions positing a /ʔ/ reflex are a misattribution of the Levantine/Egyptian feature); (2) jim ج → /dʒ/ (affricate; [ʒ] for some speakers); (3) interdentals MERGED TO STOPS in the urban koine — ث → /t/ (~/s/), ذ → /d/ (~/z/), ظ → /dˤ/ (~/zˤ/); interdentals are retained only in Bedouin/rural speech; (4) MONOPHTHONGIZATION — Classical /aj aw/ → [eː oː] (bayt→beːt, yawm→joːm), declared as allophone_rules HEJ_MONO_* (Omar 1975; Abdoh 2010), giving the 8-vowel system /a u i; aː uː iː eː oː/; (5) four emphatics /sˤ dˤ tˤ zˤ/ with pharyngealization spreading that backs low vowels — inherited from the ar-x-peninsular parent (AR_PEN_EMPH_*). No k→[tʃ] Gulf/Najdi affrication. Cosmopolitan koine shaped by Hajj contact. INPUT CONTRACT: transcribes orthography+harakat; short vowels surface only when the input is vocalised (dialectal Arabic is normally written defectively).",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
+    {
+      "id": "omar1975",
+      "author": "Omar, M.K.",
+      "year": 1975,
+      "title": "Saudi Arabic, Urban Hijazi Dialect: A Basic Course",
+      "publisher": "Foreign Service Institute, Washington DC",
+      "url": null,
+      "pages": null,
+      "notes": "Urban Hijazi phonemic inventory: qaf→/ɡ/, jim→/dʒ/, interdentals merged to stops, 8-vowel system, monophthongization of /aj aw/ → /eː oː/."
+    },
+    {
+      "id": "abdoh2010",
+      "author": "Abdoh, E.",
+      "year": 2010,
+      "title": "A Study of the Phonology and Morphology of Urban Meccan Arabic (PhD dissertation)",
+      "publisher": "University of Kansas",
+      "url": null,
+      "pages": null,
+      "notes": "Urban Meccan/Hejazi vowel chart; 8-vowel system with /eː oː/ from monophthongized diphthongs; four emphatics /sˤ dˤ tˤ zˤ/."
+    },
     {
       "id": "watson2002",
       "author": "Watson, J.C.E.",
@@ -110,9 +130,27 @@
     "https://en.wikipedia.org/wiki/Hejazi_Arabic"
   ],
   "timespan": {
-    "start_year": 1800,
+    "start_year": 1400,
     "end_year": null
   },
   "glottolog_code": "heja1235",
-  "iso639_3": "acw"
+  "iso639_3": "acw",
+  "allophone_rules": [
+    {
+      "id": "HEJ_MONO_AY",
+      "phonemes": [
+        "aj"
+      ],
+      "surface": "eː",
+      "notes": "Urban Hejazi monophthongization (Omar 1975; Abdoh 2010): the Classical diphthong /aj/ is realised [eː], e.g. bayt → [beːt]. Yields the 8-vowel system /a u i aː uː iː eː oː/."
+    },
+    {
+      "id": "HEJ_MONO_AW",
+      "phonemes": [
+        "aw"
+      ],
+      "surface": "oː",
+      "notes": "Urban Hejazi monophthongization (Omar 1975; Abdoh 2010): the Classical diphthong /aw/ is realised [oː], e.g. yawm → [joːm]."
+    }
+  ]
 }

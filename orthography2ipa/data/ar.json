@@ -55,6 +55,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "ryding2005",
+      "author": "Ryding, K.C.",
+      "year": 2005,
+      "title": "A Reference Grammar of Modern Standard Arabic",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": "33-35",
+      "notes": "MSA emphatic (velarized/pharyngealized) consonants and their backing effect on adjacent vowels; four-emphatic inventory /tˤ dˤ sˤ ðˤ/."
     }
   ],
   "wikipedia": [
@@ -68,5 +78,67 @@
     "end_year": null
   },
   "glottolog_code": "stan1318",
-  "notes": "Modern Standard Arabic (MSA). Inherits its grapheme/allophone inventory from Classical Arabic (arb) via graphemes_base/allophones_base, with one MSA-specific override: ض is transcribed [dˤ] (emphatic alveolar stop), not the Classical lateral-fricative [ɮˤ] Sibawayhi describes and arb.json retains — MSA has merged ض onto the plosive series (Watson 2002; Standard_Arabic_phonology). INPUT CONTRACT / KNOWN LIMITATION: this spec assumes fully-diacritized (fully tashkeel-marked) input. Standard written MSA text omits short-vowel diacritics (fatḥa/ḍamma/kasra/sukūn/shadda/tanwīn) almost everywhere outside the Quran, children's books, and pedagogical material; undiacritized input is NOT disambiguated by this spec (no morphological/statistical diacritic-restoration is implemented) and will transcribe incorrectly or incompletely wherever short vowels or gemination are orthographically absent. Gemination (shadda, ّ) is only encoded when explicitly marked in the input, via the inherited ّ → ː mapping from arb. sandhi_rules is inherited directly from arb (AR_SUN_ASSIMILATION, AR_HAMZAT_WASL, AR_PAUSAL_TANWIN) with no leaf-level override; AR_SUN_ASSIMILATION only fires between whitespace-separated tokens and therefore does NOT trigger on standard Arabic orthography, where the definite article ال- is written attached to the following word as one token — see docs/languages/ar.md and the rule's own notes for detail. No stress block is declared: MSA word stress is quantity-sensitive (driven by syllable weight, not written vowel-length-independent orthography) and highly register/dialect-variable in connected speech, so it is not reliably orthography-predictable; this exempts the spec from the research-tier stress requirement per docs/quality_tiers.md. Gold benchmark: CUNY-CL/wikipron 'ara_arab_broad.tsv' (Wiktionary-sourced broad IPA transcriptions, community-curated, ~17.5k pairs) registered as the 'ar' entry of the 'wikipron' dataset in scripts/benchmark.py, matching the precedent already used for gl/es/pt in this project."
+  "notes": "Modern Standard Arabic (MSA). Inherits its grapheme/allophone inventory from Classical Arabic (arb) via graphemes_base/allophones_base, with one MSA-specific override: ض is transcribed [dˤ] (emphatic alveolar stop), not the Classical lateral-fricative [ɮˤ] Sibawayhi describes and arb.json retains — MSA has merged ض onto the plosive series (Watson 2002; Standard_Arabic_phonology). INPUT CONTRACT / KNOWN LIMITATION: this spec assumes fully-diacritized (fully tashkeel-marked) input. Standard written MSA text omits short-vowel diacritics (fatḥa/ḍamma/kasra/sukūn/shadda/tanwīn) almost everywhere outside the Quran, children's books, and pedagogical material; undiacritized input is NOT disambiguated by this spec (no morphological/statistical diacritic-restoration is implemented) and will transcribe incorrectly or incompletely wherever short vowels or gemination are orthographically absent. Gemination (shadda, ّ) is only encoded when explicitly marked in the input, via the inherited ّ → ː mapping from arb. sandhi_rules is inherited directly from arb (AR_SUN_ASSIMILATION, AR_HAMZAT_WASL, AR_PAUSAL_TANWIN) with no leaf-level override; AR_SUN_ASSIMILATION only fires between whitespace-separated tokens and therefore does NOT trigger on standard Arabic orthography, where the definite article ال- is written attached to the following word as one token — see docs/languages/ar.md and the rule's own notes for detail. No stress block is declared: MSA word stress is quantity-sensitive (driven by syllable weight, not written vowel-length-independent orthography) and highly register/dialect-variable in connected speech, so it is not reliably orthography-predictable; this exempts the spec from the research-tier stress requirement per docs/quality_tiers.md. Gold benchmark: CUNY-CL/wikipron 'ara_arab_broad.tsv' (Wiktionary-sourced broad IPA transcriptions, community-curated, ~17.5k pairs) registered as the 'ar' entry of the 'wikipron' dataset in scripts/benchmark.py, matching the precedent already used for gl/es/pt in this project. EMPHATIC SPREADING: this spec now models pharyngealization (emphasis) spreading via allophone_rules (AR_EMPH_BACK_*): short /a/ and long /aː/ back to [ɑ]/[ɑː] when adjacent to an emphatic consonant /tˤ dˤ sˤ ðˤ/ (Watson 2002 ch. Emphasis; Ryding 2005 §2). HONESTY NOTE ON THE GOLD: the registered 'ar wikipron' gold is a BROAD Wiktionary transcription that writes the backed vowel as plain /a/, so it cannot reward the (correct) narrow [ɑ] realisation; activating the rule therefore adds a small uniform penalty (~+0.0015 PER, well below the 0.005 benchmark-regression epsilon). This is the same broad-gold limitation documented for the Catalan nasal-assimilation pilot (docs/allophony.md); the rule is retained because it is linguistically correct and the movement is within measurement noise. Sun-letter /l/ assimilation is handled by the inherited AR_SUN_ASSIMILATION sandhi rule (not duplicated here); it fires only across whitespace-separated tokens, so with the article ال written attached it does not trigger on standard orthography (see its rule notes).",
+  "allophone_rules": [
+    {
+      "id": "AR_EMPH_BACK_A_AFTER",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis (pharyngealization) spreading: short /a/ backs to [ɑ] when it follows an emphatic consonant /tˤ dˤ sˤ ðˤ (zˤ)/. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    },
+    {
+      "id": "AR_EMPH_BACK_A_BEFORE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): short /a/ backs to [ɑ] before an adjacent emphatic consonant. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    },
+    {
+      "id": "AR_EMPH_BACK_AA_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading: long /aː/ backs to [ɑː] after an adjacent emphatic. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    },
+    {
+      "id": "AR_EMPH_BACK_AA_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    }
+  ]
 }

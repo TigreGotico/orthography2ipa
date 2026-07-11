@@ -74,7 +74,7 @@
       "notes": "Descent from Classical Arabic"
     }
   ],
-  "notes": "Proto-Peninsular Arabic — abstract ancestor node for Hejazi, Najdi, Gulf, Yemeni, and Omani Arabic. Key shared peninsular features: interdentals often preserved; ق → /q/ or /ɡ/ (Bedouin); conservative consonant system.",
+  "notes": "Proto-Peninsular Arabic — abstract ancestor node for Hejazi, Najdi, Gulf, Yemeni, and Omani Arabic. Key shared peninsular features: interdentals often preserved; ق → /q/ or /ɡ/ (Bedouin); conservative consonant system. Emphatic (pharyngealization) spreading — low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/ — is declared here as allophone_rules (AR_PEN_EMPH_*) and inherited by all Peninsular descendants.",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -118,5 +118,67 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "ara"
+  "iso639_3": "ara",
+  "allophone_rules": [
+    {
+      "id": "AR_PEN_EMPH_BACK_A_AFTER",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis (pharyngealization) spreading: short /a/ backs to [ɑ] when it follows an emphatic consonant /tˤ dˤ sˤ ðˤ (zˤ)/. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels. Shared Peninsular feature; inherited by Hejazi, Najdi, Gulf, Yemeni and Omani via graphemes_base/OVERLAY_BY_ID."
+    },
+    {
+      "id": "AR_PEN_EMPH_BACK_A_BEFORE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): short /a/ backs to [ɑ] before an adjacent emphatic consonant. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels. Shared Peninsular feature; inherited by Hejazi, Najdi, Gulf, Yemeni and Omani via graphemes_base/OVERLAY_BY_ID."
+    },
+    {
+      "id": "AR_PEN_EMPH_BACK_AA_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading: long /aː/ backs to [ɑː] after an adjacent emphatic. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels. Shared Peninsular feature; inherited by Hejazi, Najdi, Gulf, Yemeni and Omani via graphemes_base/OVERLAY_BY_ID."
+    },
+    {
+      "id": "AR_PEN_EMPH_BACK_AA_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels. Shared Peninsular feature; inherited by Hejazi, Najdi, Gulf, Yemeni and Omani via graphemes_base/OVERLAY_BY_ID."
+    }
+  ]
 }

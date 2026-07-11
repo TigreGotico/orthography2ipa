@@ -76,7 +76,7 @@
       "notes": "Coptic substrate (lexical; debated prosodic effects on the Cairene stress system)"
     }
   ],
-  "notes": "Egyptian Arabic — Cairene (مصري, the prestige urban koine and most widely understood Arabic dialect via film/TV). DEFINING FEATURE: ج jim → /ɡ/ (voiced velar stop, NOT /dʒ/ or /ʒ/) — the single most recognisable Cairene marker; جميل → [ɡaˈmiːl]. ق qaf → /ʔ/ glottal stop in inherited vocabulary (قلب → [ʔalb]), retained as /q/ in learned/Classical borrowings and as /ɡ/ in some Bedouin/loan strata. Interdentals merged: ث θ → /t/ (~/s/ in learned loans), ذ ð → /d/ (~/z/), ظ/ض → /dˤ/ (~/zˤ/ in loans) — four-emphatic inventory /tˤ dˤ sˤ zˤ/. چ (loan grapheme) → /ʒ/ for French/English /ʒ,dʒ/ loans (since native ج is /ɡ/). STRESS: Cairene stress is famously regular and weight-sensitive (final superheavy CVːC/CVCC → final; else rightmost non-final heavy syllable, capped at the antepenult) — this is a syllable-weight algorithm NOT expressible in the ending-based StressRules schema and is left as engine-level future work; it is intentionally NOT encoded here. Source: Watson (2002) The Phonology and Morphology of Arabic; Mitchell (1956) An Introduction to Egyptian Colloquial Arabic; Egyptian Arabic phonology (Wikipedia).",
+  "notes": "Egyptian Arabic — Cairene (مصري, the prestige urban koine and most widely understood Arabic dialect via film/TV). DEFINING FEATURE: ج jim → /ɡ/ (voiced velar stop, NOT /dʒ/ or /ʒ/) — the single most recognisable Cairene marker; جميل → [ɡaˈmiːl]. ق qaf → /ʔ/ glottal stop in inherited vocabulary (قلب → [ʔalb]), retained as /q/ in learned/Classical borrowings and as /ɡ/ in some Bedouin/loan strata. Interdentals merged: ث θ → /t/ (~/s/ in learned loans), ذ ð → /d/ (~/z/), ظ/ض → /dˤ/ (~/zˤ/ in loans) — four-emphatic inventory /tˤ dˤ sˤ zˤ/. چ (loan grapheme) → /ʒ/ for French/English /ʒ,dʒ/ loans (since native ج is /ɡ/). STRESS: Cairene stress is famously regular and weight-sensitive (final superheavy CVːC/CVCC → final; else rightmost non-final heavy syllable, capped at the antepenult) — this is a syllable-weight algorithm NOT expressible in the ending-based StressRules schema and is left as engine-level future work; it is intentionally NOT encoded here. Source: Watson (2002) The Phonology and Morphology of Arabic; Mitchell (1956) An Introduction to Egyptian Colloquial Arabic; Egyptian Arabic phonology (Wikipedia). EMPHATIC SPREADING now modeled via allophone_rules (AR_EG_EMPH_*): /a aː/ back to [ɑ ɑː] adjacent to an emphatic /tˤ dˤ sˤ zˤ/ — Cairene has famously long-domain emphasis spreading (Watson 2002).",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -132,5 +132,67 @@
     "end_year": null
   },
   "glottolog_code": "egyp1253",
-  "iso639_3": "arz"
+  "iso639_3": "arz",
+  "allophone_rules": [
+    {
+      "id": "AR_EG_EMPH_BACK_A_AFTER",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis (pharyngealization) spreading: short /a/ backs to [ɑ] when it follows an emphatic consonant /tˤ dˤ sˤ ðˤ (zˤ)/. Watson 2002 (Cairene as primary case) ch. Emphasis; Egyptian emphatics /tˤ dˤ sˤ zˤ/ with strong bidirectional spreading."
+    },
+    {
+      "id": "AR_EG_EMPH_BACK_A_BEFORE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): short /a/ backs to [ɑ] before an adjacent emphatic consonant. Watson 2002 (Cairene as primary case) ch. Emphasis; Egyptian emphatics /tˤ dˤ sˤ zˤ/ with strong bidirectional spreading."
+    },
+    {
+      "id": "AR_EG_EMPH_BACK_AA_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading: long /aː/ backs to [ɑː] after an adjacent emphatic. Watson 2002 (Cairene as primary case) ch. Emphasis; Egyptian emphatics /tˤ dˤ sˤ zˤ/ with strong bidirectional spreading."
+    },
+    {
+      "id": "AR_EG_EMPH_BACK_AA_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002 (Cairene as primary case) ch. Emphasis; Egyptian emphatics /tˤ dˤ sˤ zˤ/ with strong bidirectional spreading."
+    }
+  ]
 }
