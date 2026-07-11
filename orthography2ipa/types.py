@@ -470,6 +470,126 @@ class SandhiRule:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# AllophoneRule — post-lexical, context-conditioned phoneme→surface rewrite
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class AllophoneRule:
+    """One declarative, context-conditioned ``phoneme → surface`` rewrite.
+
+    This is the mirror of ``positional_graphemes`` on the *phoneme* side: it
+    is the POST-lexical half of the library's "two maps" (orthography →
+    phoneme → surface allophone). Where ``positional_graphemes`` conditions
+    a grapheme's IPA on orthographic context, an ``AllophoneRule`` conditions
+    a selected phoneme's *surface* realisation on phonological context —
+    syllable position, stress, word position and neighbouring segments.
+
+    Rules are **pure data** (no code in specs). They compile into a
+    :class:`~orthography2ipa.rescorer.LatticeRescorer`
+    (:class:`orthography2ipa.allophony.AllophoneRescorer`) that runs as the
+    engine's post-lexical pass — after positional/weight phoneme selection,
+    before stress-mark insertion and cross-word sandhi.
+
+    A rule fires for a lattice slot when the slot's chosen phoneme is one of
+    :attr:`phonemes` **and every declared condition holds** (all conditions
+    are ANDed; a condition left ``None`` / empty is "don't care"). When it
+    fires the slot's matching candidate is rewritten to :attr:`surface` at
+    the same beam cost — a deterministic realisation, not a new beam branch.
+
+    The condition vocabulary is deliberately small but expressive enough to
+    state the cross-linguistically common post-lexical processes:
+
+    - **Final-obstruent devoicing** — ``word_final=True``.
+    - **Unstressed vowel reduction** — ``stress="unstressed"`` (engine path
+      only; stress is unavailable to the standalone tokenizer, so a
+      stress-conditioned rule is inert there, exactly like the
+      stress-conditioned positional rules).
+    - **Intervocalic flapping** — ``preceded_by="vowel"`` +
+      ``followed_by="vowel"``.
+    - **Nasal place assimilation** — ``followed_by_phoneme=("k", "ɡ")`` (→
+      velar) or ``("p", "b", "m")`` (→ labial), matching the *next slot's*
+      chosen phoneme rather than its grapheme.
+
+    Parameters
+    ----------
+    id : str
+        Unique identifier (e.g. ``"CA_DEVOICE_D"``). Used for id-keyed
+        inheritance overlay (:class:`InheritanceMode.OVERLAY_BY_ID`), exactly
+        like :class:`SandhiRule`: a child spec redeclaring this ``id``
+        replaces the inherited rule in place; a new ``id`` is appended.
+    phonemes : Tuple[str, ...]
+        The underlying phoneme(s) this rule targets. A bare string is
+        accepted and normalised to a 1-tuple.
+    surface : str
+        The surface realisation the matched phoneme is rewritten to.
+    word_initial, word_final : Optional[bool]
+        Require the grapheme to be word-initial / word-final (or, when
+        ``False``, require it *not* to be). ``None`` = don't care.
+    stress : Optional[str]
+        ``"stressed"`` or ``"unstressed"`` — require the grapheme's syllable
+        to carry (or not carry) primary stress. Needs engine-supplied stress
+        context; inert on the standalone tokenizer path.
+    syllable_position : Optional[str]
+        ``"onset"``, ``"coda"`` or ``"nucleus"``. A vowel is a nucleus; a
+        consonant followed by a vowel (same word) is an onset, otherwise a
+        coda (maximal-onset heuristic).
+    preceded_by, followed_by : Optional[str]
+        A neighbouring-*grapheme* class the previous / next grapheme must
+        match: ``"vowel"``, ``"consonant"``, ``"front_vowel"``,
+        ``"back_vowel"`` or ``"word_boundary"`` (no neighbour). Predicates
+        delegate to :mod:`orthography2ipa.vowels`.
+    preceded_by_phoneme, followed_by_phoneme : Tuple[str, ...]
+        The chosen phoneme of the previous / next lattice slot must be one of
+        these — the *phoneme*-level neighbour condition (for e.g. nasal place
+        assimilation, which conditions on the following consonant's place).
+        Empty = don't care.
+    notes : str
+        Free-form provenance / convention notes.
+    """
+    id: str
+    phonemes: Tuple[str, ...]
+    surface: str
+    word_initial: Optional[bool] = None
+    word_final: Optional[bool] = None
+    stress: Optional[str] = None
+    syllable_position: Optional[str] = None
+    preceded_by: Optional[str] = None
+    followed_by: Optional[str] = None
+    preceded_by_phoneme: Tuple[str, ...] = ()
+    followed_by_phoneme: Tuple[str, ...] = ()
+    notes: str = ""
+
+    def __post_init__(self) -> None:
+        if isinstance(self.phonemes, str):
+            object.__setattr__(self, "phonemes", (self.phonemes,))
+        else:
+            object.__setattr__(self, "phonemes", tuple(self.phonemes))
+        object.__setattr__(
+            self, "preceded_by_phoneme", tuple(self.preceded_by_phoneme))
+        object.__setattr__(
+            self, "followed_by_phoneme", tuple(self.followed_by_phoneme))
+        if self.stress is not None and self.stress not in (
+                "stressed", "unstressed"):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: stress must be 'stressed', "
+                f"'unstressed' or None, got {self.stress!r}")
+        if self.syllable_position is not None and self.syllable_position not in (
+                "onset", "coda", "nucleus"):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: syllable_position must be "
+                f"'onset', 'coda', 'nucleus' or None, "
+                f"got {self.syllable_position!r}")
+        _classes = ("vowel", "consonant", "front_vowel", "back_vowel",
+                    "word_boundary")
+        for attr in ("preceded_by", "followed_by"):
+            val = getattr(self, attr)
+            if val is not None and val not in _classes:
+                raise ValueError(
+                    f"AllophoneRule {self.id!r}: {attr} must be one of "
+                    f"{_classes} or None, got {val!r}")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Ancestor
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -535,8 +655,16 @@ class InheritanceMode(str, Enum):
     """Sequence of id-keyed rule objects. The base's rules are inherited in
     order; own rules with a matching ``id`` replace the inherited rule
     in-place, own rules with a new ``id`` are appended. Used by
-    ``sandhi_rules`` — a blind dict-splat is wrong here because rules are
-    identified by ``id``, not by a single dict key."""
+    ``sandhi_rules`` and ``allophone_rules`` — a blind dict-splat is wrong
+    here because rules are identified by ``id``, not by a single dict key.
+
+    ``allophone_rules`` inherits this way because a post-lexical process is
+    typically a property of a whole language: Catalan final-obstruent
+    devoicing and nasal place assimilation hold in every Catalan variety, so
+    a dialect that sets ``graphemes_base`` to the standard should inherit the
+    realisation rules for free while still being able to override a single
+    rule by ``id`` (e.g. a dialect that resists a specific devoicing) or
+    append its own — exactly the id-keyed overlay ``sandhi_rules`` needs."""
 
     NOT_INHERITED = "not_inherited"
     """Own-file-only by design. The field never propagates through
@@ -582,6 +710,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "inherent_vowel": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
+    "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "tone_inventory": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
     "wikipedia": InheritanceMode.OWN_ONLY,
@@ -702,6 +831,22 @@ class LanguageSpec:
 
     sandhi_rules: Tuple[SandhiRule, ...] = ()
     """Cross-word-boundary phonological rules (liaison, sandhi)."""
+
+    allophone_rules: Tuple["AllophoneRule", ...] = ()
+    """Post-lexical, context-conditioned ``phoneme → surface`` rewrites.
+
+    The POST-lexical half of the "two maps": where ``positional_graphemes``
+    conditions orthography→phoneme, these condition phoneme→surface allophone
+    on syllable position, stress, word position and neighbouring segments.
+    They compile into a
+    :class:`~orthography2ipa.rescorer.LatticeRescorer`
+    (:class:`orthography2ipa.allophony.AllophoneRescorer`) applied by
+    :class:`~orthography2ipa.g2p.G2P` after phoneme selection and before
+    stress/sandhi. Empty (the default) for every spec that has not opted in,
+    so the field is a no-op — the engine behaves byte-identically. Inherited
+    by id-keyed overlay (:class:`InheritanceMode.OVERLAY_BY_ID`), like
+    ``sandhi_rules``. See :mod:`orthography2ipa.allophony` and
+    ``docs/allophony.md``."""
 
     tone_inventory: Optional[Dict[str, str]] = None
     """Optional tone inventory: IPA tone mark → label

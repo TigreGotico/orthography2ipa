@@ -48,6 +48,10 @@ from orthography2ipa.phonetok import (
     TokenSequence,
 )
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
+from orthography2ipa.allophony import (
+    AllophoneRescorer,
+    compile_allophone_rescorer,
+)
 from orthography2ipa.registry import (
     available_codes,
     available_families,
@@ -76,8 +80,9 @@ from orthography2ipa.script_distance import (
     script_distance_by_name,
 )
 from orthography2ipa.types import (
-    AllophoneMap, Ancestor, AncestorRole, Grapheme2IPA, LanguageSpec,
-    PositionalGrapheme2IPA, QualityTier, SandhiRule, ScriptType, StressRules,
+    AllophoneMap, AllophoneRule, Ancestor, AncestorRole, Grapheme2IPA,
+    LanguageSpec, PositionalGrapheme2IPA, QualityTier, SandhiRule, ScriptType,
+    StressRules,
 )
 
 __all__ = [
@@ -102,6 +107,9 @@ __all__ = [
     "QualityTier",
     "ScriptType",
     "SandhiRule",
+    "AllophoneRule",
+    "AllophoneRescorer",
+    "compile_allophone_rescorer",
     "StressRules",
     "detect_stress",
     "apply_stress_mark",

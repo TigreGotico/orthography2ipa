@@ -23,6 +23,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from orthography2ipa.types import (
+    AllophoneRule,
     Ancestor,
     AncestorRole,
     FIELD_INHERITANCE,
@@ -253,15 +254,48 @@ def load_json_spec(code: str) -> LanguageSpec:
             for sr in raw_sandhi
         )
 
-    sandhi_rules = own_sandhi_rules
-    for field in _OVERLAY_BY_ID_FIELDS:
-        if field != "sandhi_rules":
-            continue  # only overlay field currently defined
-        overlay_base_lang = base_field_langs.get("graphemes") or parent_lang
-        if overlay_base_lang and overlay_base_lang in _specs:
-            sandhi_rules = _overlay_by_id(
-                _specs[overlay_base_lang].sandhi_rules, own_sandhi_rules
+    # Parse allophone rules (OVERLAY_BY_ID, like sandhi_rules — see
+    # AllophoneRule / FIELD_INHERITANCE). Each entry is a declarative
+    # phoneme→surface rewrite; unknown keys are ignored so the schema can
+    # grow without breaking older data.
+    own_allophone_rules: tuple = ()
+    raw_allophone = raw.get("allophone_rules", [])
+    if raw_allophone:
+        own_allophone_rules = tuple(
+            AllophoneRule(
+                id=ar["id"],
+                phonemes=ar["phonemes"],
+                surface=ar["surface"],
+                word_initial=ar.get("word_initial"),
+                word_final=ar.get("word_final"),
+                stress=ar.get("stress"),
+                syllable_position=ar.get("syllable_position"),
+                preceded_by=ar.get("preceded_by"),
+                followed_by=ar.get("followed_by"),
+                preceded_by_phoneme=tuple(ar.get("preceded_by_phoneme", ())),
+                followed_by_phoneme=tuple(ar.get("followed_by_phoneme", ())),
+                notes=ar.get("notes", ""),
             )
+            for ar in raw_allophone
+        )
+
+    # Resolve every OVERLAY_BY_ID field through the same structural base edge
+    # (graphemes_base, else ancestry parent), id-keyed so a child overrides a
+    # single inherited rule by id and appends new ones.
+    _own_overlay = {
+        "sandhi_rules": own_sandhi_rules,
+        "allophone_rules": own_allophone_rules,
+    }
+    _resolved_overlay = dict(_own_overlay)
+    overlay_base_lang = base_field_langs.get("graphemes") or parent_lang
+    if overlay_base_lang and overlay_base_lang in _specs:
+        for field in _OVERLAY_BY_ID_FIELDS:
+            _resolved_overlay[field] = _overlay_by_id(
+                getattr(_specs[overlay_base_lang], field),
+                _own_overlay[field],
+            )
+    sandhi_rules = _resolved_overlay["sandhi_rules"]
+    allophone_rules = _resolved_overlay["allophone_rules"]
 
     # Parse sources
     sources_raw = raw.get("sources", [])
@@ -318,6 +352,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         inherent_vowel=raw.get("inherent_vowel"),
         iso639_3=raw.get("iso639_3"),
         sandhi_rules=sandhi_rules,
+        allophone_rules=allophone_rules,
         tone_inventory=raw.get("tone_inventory"),
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),

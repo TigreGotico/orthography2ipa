@@ -14,11 +14,11 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 |---|---|---:|---:|---:|---:|---|
 | ar | wikipron | 259 | 0.2551 | [0.2377, 0.2725] | 0.1120 | research |
 | ast | wikipron | 300 | 0.0876 | [0.0731, 0.1014] | 0.5900 | research |
-| ca | 4catac | 160 | 0.4170 | [0.4066, 0.4267] | 0.0000 | research |
-| ca | styletts2_phonemes | 300 | 0.4043 | [0.3959, 0.4130] | 0.0000 | research |
-| ca-x-balear | 4catac | 160 | 0.3924 | [0.3838, 0.4015] | 0.0000 | research |
-| ca-x-occidental | 4catac | 160 | 0.5680 | [0.5593, 0.5764] | 0.0000 | research |
-| ca-x-valencia | 4catac | 160 | 0.3046 | [0.2962, 0.3127] | 0.0000 | research |
+| ca | 4catac | 160 | 0.4120 | [0.4017, 0.4219] | 0.0000 | research |
+| ca | styletts2_phonemes | 300 | 0.4083 | [0.3998, 0.4170] | 0.0000 | research |
+| ca-x-balear | 4catac | 160 | 0.3884 | [0.3797, 0.3975] | 0.0000 | research |
+| ca-x-occidental | 4catac | 160 | 0.5633 | [0.5549, 0.5720] | 0.0000 | research |
+| ca-x-valencia | 4catac | 160 | 0.3005 | [0.2920, 0.3089] | 0.0000 | research |
 | cy | wikipron | 276 | 0.2187 | [0.1968, 0.2433] | 0.2899 | research |
 | da | wikipron | 273 | 0.4415 | [0.4128, 0.4693] | 0.0476 | research |
 | de | styletts2_phonemes | 300 | 0.3964 | [0.3879, 0.4049] | 0.0000 | research |

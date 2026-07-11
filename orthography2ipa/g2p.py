@@ -47,6 +47,7 @@ from orthography2ipa.phonetok import (
     flat_contexts,
     lower_str,
 )
+from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import resolve_branches
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
@@ -127,7 +128,20 @@ class G2P:
         Language code; resolved like :func:`orthography2ipa.get` (bare
         tags, ISO 639-3 aliases and nearest-match all work).
     expand_allophones : bool
-        Branch beam candidates over allophonic variants too.
+        Enumerate surface variants: branch the beam over every allophone of
+        each phoneme from ``spec.allophones`` (flat ``+0.5`` cost each). This
+        *inflates* the search space with every variant; it does not pick the
+        contextually-correct one. Use it to see all surface possibilities.
+        Independent of :paramref:`apply_allophony` (the realisation path).
+    apply_allophony : bool
+        Apply the spec's declarative ``allophone_rules`` — the post-lexical
+        ``phoneme → surface`` realisation pass (Workstream B8) — as a
+        rescorer after phoneme selection and before stress/sandhi. Default
+        ``True``, but a **no-op for every spec that declares no**
+        ``allophone_rules`` (i.e. all shipped specs bar the pilots), so the
+        default engine path stays byte-identical. Set ``False`` to force
+        broad/phonemic output even for a spec that declares rules. See
+        :mod:`orthography2ipa.allophony`.
     dialect_profile : Optional[str]
         ``DIALECT_PROFILES`` key applied to the final IPA
         (see :func:`orthography2ipa.apply_transform`).
@@ -166,6 +180,7 @@ class G2P:
         dialect_profile: Optional[str] = None,
         apply_sandhi: bool = True,
         apply_stress: bool = True,
+        apply_allophony: bool = True,
         normalizer: Optional[Callable[[str], str]] = None,
         on_unmapped: str = "ignore",
         rescorer: RescorerArg = None,
@@ -174,10 +189,25 @@ class G2P:
             raise ValueError(
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
                 f"got {on_unmapped!r}")
-        self._rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
-            rescorer)
         self.lang: str = resolve(lang)
         self.spec: LanguageSpec = get(self.lang)
+        # User rescorer(s) first, then — as the post-lexical stage — the
+        # allophone rescorer compiled from the spec's ``allophone_rules``.
+        # A spec with no rules (every shipped spec bar the pilots) compiles
+        # to ``None``, so the chain is exactly the user's rescorer(s) and the
+        # default path is byte-identical.
+        self.apply_allophony = apply_allophony
+        user_rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
+            rescorer)
+        allophone_rescorer = (
+            compile_allophone_rescorer(self.spec.allophone_rules)
+            if apply_allophony else None
+        )
+        self._allophone_rescorer = allophone_rescorer
+        self._rescorers: Tuple[LatticeRescorer, ...] = (
+            user_rescorers + (allophone_rescorer,)
+            if allophone_rescorer is not None else user_rescorers
+        )
         self.expand_allophones = expand_allophones
         self.dialect_profile = dialect_profile
         self.apply_sandhi = apply_sandhi

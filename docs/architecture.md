@@ -235,10 +235,28 @@ The **rescorer** stage is the downstream-enablement seam: it runs after
 positional/weight resolution and before beam path selection, re-costing
 each grapheme slot as a pure function of the slot and its context. A
 downstream rule cascade — arbtok sun-letter assimilation, tugaphone
-silent-`e` — and the post-lexical allophone layer (B8) are both expressed
-as rescorers over the shared lattice rather than a forked tokenizer. See
-[Rescoring the lattice](lattice.md#rescoring-the-lattice). Absent a
-rescorer, the pipeline is byte-identical.
+silent-`e` — is expressed as a rescorer over the shared lattice rather than
+a forked tokenizer. See [Rescoring the lattice](lattice.md#rescoring-the-lattice).
+Absent a rescorer, the pipeline is byte-identical.
+
+The **allophony** stage is the built-in rescorer: a spec's declarative
+`allophone_rules` (post-lexical `phoneme → surface` rewrites — final
+devoicing, place assimilation, reduction, flapping) compile into an
+`AllophoneRescorer` (`allophony.py`) the **engine** appends after any user
+rescorer. In the full engine (`G2P`), the ordered stages are:
+
+```
+normalize → tokenize → select (positional + weights)
+          → rescore (user rescorer(s) → allophony) → beam select
+          → stress marks → sandhi → dialect transform
+```
+
+Allophony sits after phoneme selection and before stress/sandhi (it is the
+phoneme-lattice → allophone-lattice stage), and needs the engine's stress
+context, so — like sandhi and stress — it does not run on the standalone
+tokenizer path. It is a no-op for any spec that declares no `allophone_rules`
+(all shipped specs bar the Catalan pilots), keeping the default path
+byte-identical. See [Allophony](allophony.md).
 
 ---
 

@@ -74,6 +74,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
+| `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
 | `glottolog_code`            | string | no       | Glottolog languoid code (e.g. `"cast1244"`)  |
@@ -147,6 +148,57 @@ the four overridden entries.
 | `transform`    | string | yes      | Replacement pattern                  |
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
+
+## Allophone Rule Schema
+
+`allophone_rules` is the POST-lexical half of the "two maps": an ordered
+list of declarative, context-conditioned `phoneme → surface` rewrites (the
+mirror of `positional_graphemes`, on the phoneme side). They compile into a
+lattice rescorer the engine applies after phoneme selection and before
+stress/sandhi. Empty by default → no-op → byte-identical output. See
+[allophony](../../docs/allophony.md).
+
+```json
+{
+  "allophone_rules": [
+    {
+      "id": "CA_DEVOICE_D",
+      "phonemes": ["d"],
+      "surface": "t",
+      "word_final": true,
+      "notes": "Final-obstruent devoicing: word-final /d/ → [t]."
+    },
+    {
+      "id": "CA_NASAL_VELAR",
+      "phonemes": ["n"],
+      "surface": "ŋ",
+      "followed_by_phoneme": ["k", "ɡ"],
+      "notes": "Nasal place assimilation: /n/ → [ŋ] before a velar."
+    }
+  ]
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string | yes | Unique rule identifier (id-keyed inheritance overlay, like `sandhi_rules`) |
+| `phonemes` | string \| array | yes | Target underlying phoneme(s); a bare string is accepted |
+| `surface` | string | yes | Surface realisation the matched phoneme is rewritten to |
+| `word_initial` | bool | no | Require (or, if `false`, forbid) word-initial position |
+| `word_final` | bool | no | Require (or forbid) word-final position |
+| `stress` | string | no | `"stressed"` / `"unstressed"` — engine path only (needs stress context) |
+| `syllable_position` | string | no | `"onset"` / `"coda"` / `"nucleus"` (maximal-onset heuristic) |
+| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `front_vowel`, `back_vowel`, `word_boundary` |
+| `followed_by` | string | no | Next-grapheme class (same value set) |
+| `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
+| `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |
+| `notes` | string | no | Provenance / convention notes |
+
+All declared conditions are ANDed; an unset condition is "don't care". A rule
+fires for a slot when the slot's chosen phoneme is in `phonemes` **and** every
+condition holds, rewriting that candidate to `surface` at the same beam cost.
+Inheritance is id-keyed overlay: a child spec setting `graphemes_base`
+inherits the parent's rules and can override one by `id` or append new ones.
 
 ## Sources Schema
 

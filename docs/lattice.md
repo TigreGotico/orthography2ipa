@@ -251,9 +251,11 @@ the shared lattice; it never re-tokenizes.
 
 ### Who builds on this
 
-B8 will ship the post-lexical allophone rules (vowel reduction, flapping,
-nasal place assimilation, devoicing, gemination, tone sandhi) **as
-rescorers** over this seam — the second of the library's "two maps". The
+The post-lexical **allophone rules** (final devoicing, assimilation, vowel
+reduction, flapping, …) are the built-in rescorer over this seam — a spec's
+declarative `allophone_rules` compile into an `AllophoneRescorer` the engine
+runs automatically after phoneme selection. This is the second of the
+library's "two maps"; see [`allophony.md`](allophony.md). The
 downstream engines migrate their bespoke rule cascades here too: arbtok's
 sun-letter/waṣl assimilation and tugaphone's silent-`e`/reduction become
 rescorers over the shared engine rather than parallel tokenizers.
