@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.75.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.75.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.74.0a1...1.75.0a1)
+
+**Merged pull requests:**
+
+- feat: surface dropped spec fields, add catalog ids and the official orthography [\#269](https://github.com/TigreGotico/orthography2ipa/pull/269) ([JarbasAl](https://github.com/JarbasAl))
+- feat: score the published benchmark scoreboard on full datasets [\#268](https://github.com/TigreGotico/orthography2ipa/pull/268) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.74.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.74.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.73.0a1...1.74.0a1)
+
+**Merged pull requests:**
+
+- feat\(explorer\): add family-tree and contact-graph views [\#267](https://github.com/TigreGotico/orthography2ipa/pull/267) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.73.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.73.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.72.1a1...1.73.0a1)
@@ -697,9 +714,6 @@
 - test: add hypothesis property tests for transcribe, tokenizer, and registry [\#81](https://github.com/TigreGotico/orthography2ipa/pull/81) ([JarbasAl](https://github.com/JarbasAl))
 - fix: build maximal-munch trie from positional-only grapheme keys too [\#79](https://github.com/TigreGotico/orthography2ipa/pull/79) ([JarbasAl](https://github.com/JarbasAl))
 - docs: public API stability audit [\#78](https://github.com/TigreGotico/orthography2ipa/pull/78) ([JarbasAl](https://github.com/JarbasAl))
-- chore: align python floor with CI, add coverage gate, document syllabifier plugin contract [\#77](https://github.com/TigreGotico/orthography2ipa/pull/77) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(benchmark\): committed scoreboard and quality-tier ladder guard [\#76](https://github.com/TigreGotico/orthography2ipa/pull/76) ([JarbasAl](https://github.com/JarbasAl))
-- chore: repair dependabot config, add repo meta files, fix AGENTS.md drift [\#75](https://github.com/TigreGotico/orthography2ipa/pull/75) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.13.0a1) (2026-06-12)
 
