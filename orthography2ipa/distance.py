@@ -1087,3 +1087,92 @@ def positional_divergence(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
                     total_divergence += segment_distance(ipa_a, ipa_b) / len(positions)
 
     return min(1.0, total_divergence / len(all_graphemes))
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Spelling divergence — the inverse of grapheme divergence
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class SpellingDivergence:
+    """How differently two orthographies WRITE the same sounds."""
+
+    shared_phonemes: int
+    """Number of phonemes both orthographies can spell."""
+    total_phonemes: int
+    """Number of phonemes in the union of the two inverted maps."""
+    mean_distance: float
+    """Mean spelling distance over the shared phonemes (0 = spelled identically)."""
+    identical_spellings: int
+    """Shared phonemes the two orthographies spell exactly alike."""
+    disjoint_spellings: int
+    """Shared phonemes for which the two share no spelling at all."""
+
+
+def _invert_graphemes(spec: LanguageSpec) -> Dict[str, Set[str]]:
+    """Invert a spec's grapheme map into ``phoneme -> {graphemes that write it}``.
+
+    ``graphemes`` answers "how is this written pronounced?"; the inverse answers
+    "how is this sound written?". A grapheme with several candidates contributes
+    to each of them, and a phoneme is routinely spelled several ways.
+    """
+    inverted: Dict[str, Set[str]] = {}
+    for grapheme, ipas in (spec.graphemes or {}).items():
+        for ipa in (ipas or ()):
+            if not ipa:
+                continue  # a silent grapheme spells no phoneme
+            inverted.setdefault(ipa, set()).add(grapheme.lower())
+    return inverted
+
+
+def spelling_divergence(
+        spec_a: LanguageSpec, spec_b: LanguageSpec) -> SpellingDivergence:
+    """Measure how differently two orthographies spell the same phonemes.
+
+    This is the INVERSE of :func:`grapheme_divergence`, and the two answer
+    genuinely different questions:
+
+    - :func:`grapheme_divergence` — *reading*: given the same TEXT, do these two
+      sound alike?  (``j`` is /ʒ/ in Portuguese and /x/ in Spanish.)
+    - :func:`spelling_divergence` — *spelling*: given the same SOUND, do these
+      two write it alike?
+
+    Orthography and phonology are orthogonal, and only this function can see it.
+    Reintegrationist and RAG Galician are the same language with the same
+    phonology: both spell /ɲ/ with a grapheme that maps to /ɲ/, so their
+    *reading* divergence is nil and their graphemes are not even shared — yet one
+    writes ``nh`` (as Portuguese does) and the other ``ñ`` (as Castilian does).
+    That difference is invisible to every other metric here.
+
+    Returns 1.0 (maximal divergence) when the two share no phoneme at all.
+    """
+    inv_a = _invert_graphemes(spec_a)
+    inv_b = _invert_graphemes(spec_b)
+    shared = set(inv_a) & set(inv_b)
+    union = set(inv_a) | set(inv_b)
+    if not shared:
+        return SpellingDivergence(0, len(union), 1.0, 0, 0)
+
+    distances: List[float] = []
+    identical = 0
+    disjoint = 0
+    for phoneme in shared:
+        spellings_a, spellings_b = inv_a[phoneme], inv_b[phoneme]
+        overlap = spellings_a & spellings_b
+        # Jaccard distance over the sets of graphemes that write this phoneme:
+        # 0.0 when both orthographies spell it exactly the same way, 1.0 when
+        # they share no spelling for it at all.
+        distance = 1.0 - len(overlap) / len(spellings_a | spellings_b)
+        distances.append(distance)
+        if distance == 0.0:
+            identical += 1
+        elif not overlap:
+            disjoint += 1
+
+    return SpellingDivergence(
+        shared_phonemes=len(shared),
+        total_phonemes=len(union),
+        mean_distance=sum(distances) / len(distances),
+        identical_spellings=identical,
+        disjoint_spellings=disjoint,
+    )

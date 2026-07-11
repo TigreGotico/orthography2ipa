@@ -15,6 +15,7 @@ Quick start::
 """
 from orthography2ipa.distance import (
     GraphemeDivergence,
+    SpellingDivergence,
     InventoryDistance,
     PhonologicalDistance,
     allophone_overlap,
@@ -22,6 +23,7 @@ from orthography2ipa.distance import (
     feature_vector,
     full_distance,
     grapheme_divergence,
+    spelling_divergence,
     inventory_distance,
     orthographic_distance,
     pairwise_distances,
@@ -171,6 +173,8 @@ __all__ = [
     "feature_vector",
     "InventoryDistance",
     "GraphemeDivergence",
+    "SpellingDivergence",
+    "spelling_divergence",
     "PhonologicalDistance",
     # transforms
     "apply_transform",
