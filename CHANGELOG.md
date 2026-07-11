@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.46.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.46.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.46.0a1...1.46.1a1)
+
+**Merged pull requests:**
+
+- fix\(benchmark\): fold apical/laminal place diacritics in broad-mode scoring [\#187](https://github.com/TigreGotico/orthography2ipa/pull/187) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.46.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.46.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.45.0a1...1.46.0a1)
@@ -601,7 +609,6 @@
 - Update phonetic representation of graphemes in an.json [\#14](https://github.com/TigreGotico/orthography2ipa/pull/14) ([Juanpabl](https://github.com/Juanpabl))
 - feat: ast+gl [\#8](https://github.com/TigreGotico/orthography2ipa/pull/8) ([JarbasAl](https://github.com/JarbasAl))
 - Latin graphemes + portuguese 4way sibilant distinction [\#7](https://github.com/TigreGotico/orthography2ipa/pull/7) ([JarbasAl](https://github.com/JarbasAl))
-- refactor to json [\#6](https://github.com/TigreGotico/orthography2ipa/pull/6) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
