@@ -245,6 +245,11 @@ class LanguageSpecModel(_Strict):
     graphemes: Optional[Dict[str, GraphemeValue]] = None
     allophones: Optional[Dict[str, IPACandidates]] = None
 
+    # The phoneme inventory, stated directly. Independent of `graphemes`: an
+    # unwritten language has sounds and no spelling, and a logographic script
+    # spells no sounds. Derived from `graphemes` when absent.
+    phonemes: Optional[List[str]] = None
+
     # ─── positional overrides ───────────────────────────────────────
     positional_graphemes: Optional[
         Dict[str, Optional[Dict[GraphemePosition, List[str]]]]
