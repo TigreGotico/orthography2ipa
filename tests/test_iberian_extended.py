@@ -926,8 +926,11 @@ class TestGalicianOriental:
 class TestBasqueBizkaiera:
     """Bizkaian Basque — eu-x-bizkaiera.
 
-    Western dialect: sibilants include [ʃ], h aspirate lost (→ ∅),
-    a → [a, e] (vowel harmony trace).
+    Western dialect: sibilants include [ʃ], h aspirate lost (→ ∅).
+    The Biscayan raising of the article /-a/ → [-e] after a high vowel is
+    morphophonological (it targets the article, not every /a/), so it is
+    documented in the spec notes rather than modelled as a context-free
+    allophone (Bedialauneta & Hualde 2023: 1107-1108).
     """
 
     LANGUAGE_CODE = "eu-x-bizkaiera"
@@ -954,9 +957,16 @@ class TestBasqueBizkaiera:
         assert vals is not None
         _assert_first(vals, "", label="h allophone")
 
-    def test_a_vowel_harmony_trace(self):
-        """a allophone includes e — vowel harmony remnant."""
-        _assert_contains(_allophone(self.spec, "a"), "e", label="a allophone")
+    def test_article_raising_not_a_flat_allophone(self):
+        """The /-a/ → [-e] article raising is morphophonological, not a
+        context-free allophone: /a/ carries no flat [e] variant, and the
+        process is documented in the spec notes instead."""
+        a_allo = _allophone(self.spec, "a")
+        assert a_allo is None or "e" not in a_allo, (
+            "Biscayan article-raising must not be a context-free a→[e] allophone"
+        )
+        notes = self.spec.notes.lower()
+        assert "article" in notes and "basue" in notes
 
     def test_s_apical_allophone_includes_palatal(self):
         """s̺ allophone includes ʃ."""
@@ -980,12 +990,12 @@ class TestBasqueGipuzkera:
     def spec(self, request):
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
-    def test_h_optional(self):
-        """h allophone → [h, ∅] — optional aspiration."""
+    def test_h_lost(self):
+        """h allophone → ∅ — like the rest of central/western Basque,
+        Gipuzkoan lost the laryngeal /h/ (Hualde 2018: 84)."""
         vals = _allophone(self.spec, "h")
         assert vals is not None
-        _assert_first(vals, "h", label="h allophone")
-        assert "" in vals, "Gipuzkoan h should include ∅ (optional deletion)"
+        _assert_first(vals, "", label="h allophone")
 
     def test_parent_is_eu(self):
         assert self.spec.parent == "eu"

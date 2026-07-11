@@ -7,14 +7,6 @@
   "allophones_base": "eu",
   "positional_graphemes_base": "eu",
   "allophones": {
-    "s̺": [
-      "s̺",
-      "s"
-    ],
-    "s̻": [
-      "s̻",
-      "s"
-    ],
     "h": [
       ""
     ],
@@ -33,7 +25,7 @@
       "notes": "Upper Navarrese uses the standard Basque grapheme base but exhibits systematic phonological reduction driven by Spanish contact, particularly in sibilant and lateral distinctions."
     }
   ],
-  "notes": "Upper Navarrese (Goi-Nafar). Southern Basque dialect covering the Pamplona basin and surrounding areas of Navarre. Heavy Spanish contact has driven significant phonological changes: weakening and partial merger of the apical/laminal sibilant distinction, incipient yeísmo (ʎ → ʝ merger), and Spanish-like lenition patterns for voiced obstruents. Aspiration (/h/) is absent throughout. Lexical and morphological borrowing from Spanish is extensive. Considered highly endangered; the variety spoken around Pamplona underwent substantial language shift in the 20th century.",
+  "notes": "Upper (High) Navarrese (Goi-Nafar). Navarrese Basque of the Pamplona basin and northern Navarre. VALIDATED and CORRECTED against Hualde, Lujanbio & Zubiri (2010), an Illustration of the IPA of Goizueta Basque, a conservative High Navarrese variety. Corrections vs. the prior draft: (1) the three-way sibilant contrast /s̻ s̺ ʃ/ (and matching affricates) is FULLY STABLE in this dialect group — the neutralisations run further west, in Gipuzkoan and Biscayan, not in Navarrese (Hualde et al. 2010: 119); the earlier claim of an apical/laminal merger to a single [s] here was unsourced and has been removed. (2) Aspiration (/h/) is absent: /h/ was lost in these varieties (Goizueta has no /h/; Hualde et al. 2010: 113 fn.1; Hualde 2018: 2). (3) Incipient yeísmo — the palatal lateral /ʎ/ delateralising to the palatal approximant [ʝ]~[j] — is documented and in progress, matching the parallel Spanish development (Hualde et al. 2010: 120). Voiced stops /b d ɡ/ are approximants [β ð ɣ] intervocalically (2010: 116). Some High Navarrese varieties (Goizueta) additionally show lexically contrastive pitch-accent (2010: 113, 123). Spanish contact is heavy in the Pamplona-basin sub-varieties, which are highly endangered.",
   "quality": "research",
   "urls": [
     "https://en.wikipedia.org/wiki/Upper_Navarrese_dialect"
@@ -41,13 +33,33 @@
   "script_type": "alphabet",
   "sources": [
     {
+      "id": "hualde_lujanbio_zubiri2010",
+      "author": "Hualde, J.I., Lujanbio, O. & Zubiri, J.J.",
+      "year": 2010,
+      "title": "Goizueta Basque (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 40(1)",
+      "url": "https://doi.org/10.1017/S0025100309990260",
+      "pages": "113-127",
+      "notes": "Primary read source: stable three-way sibilant contrast (p.119), loss of /h/ (p.113 fn.1), yeísmo/ʎ-delateralization (p.120), pitch-accent (pp.113, 123)."
+    },
+    {
+      "id": "hualde2018_aspiration",
+      "author": "Hualde, J.I.",
+      "year": 2018,
+      "title": "Aspiration in Basque",
+      "publisher": "Papers in Historical Phonology 3",
+      "url": "https://doi.org/10.2218/pihph.3.2018.2602",
+      "pages": "1-27",
+      "notes": "Read for the absence of aspiration in Navarrese and western Basque (p.84 fn.)."
+    },
+    {
       "id": "hualde_ortiz_de_urbina2003",
       "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
       "year": 2003,
       "title": "A Grammar of Basque",
       "publisher": "Mouton de Gruyter",
       "url": null,
-      "pages": null,
+      "pages": "15-65 (Hualde, 'Segmental phonology')",
       "notes": null
     },
     {

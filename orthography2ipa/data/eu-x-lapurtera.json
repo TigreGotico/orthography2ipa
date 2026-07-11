@@ -10,7 +10,8 @@
   "allophones_base": "eu",
   "allophones": {
     "h": [
-      "h"
+      "h",
+      ""
     ],
     "ɾ": [
       "ɾ",
@@ -31,8 +32,18 @@
       "notes": "Standard Basque base; Lapurdian is the dialect closest to classical written Basque"
     }
   ],
-  "notes": "Lapurdian Basque (Lapurtera / Labourdian). Spoken in Labourd/Lapurdi, French Basque Country (around Bayonne, Biarritz, Saint-Jean-de-Luz). Classical literary dialect: Axular's Gero (1643) is the canonical Basque prose text, written in Lapurdian. KEY FEATURES: (1) FULL ASPIRATE /h/: Unlike Bizkaian, /h/ is preserved and phonemically active in all positions. (2) NO ASPIRATED STOPS: Unlike Souletin, stops p/t/k are NOT aspirated. (3) FULL SIBILANT CONTRAST: s̺/s̻/ʃ and ts̺/ts̻/tʃ are maintained (six-way opposition as in Batua). (4) PALATAL STOPS: [c, ɟ] maintained. (5) FRENCH INFLUENCE: younger speakers may show uvular [ʁ] for /r/ and /ɾ/ under French influence — otherwise alveolar [r]/[ɾ]. (6) CONSERVATIVE MORPHOLOGY: Lapurdian retains some features lost in Batua standardisation; closest to classical Basque literary norm. (7) DECLENSION: full Basque case system maintained; some dialectal case endings differ from Batua.",
+  "notes": "Lapurdian Basque (Lapurtera / Labourdian). Spoken in Labourd/Lapurdi, French Basque Country (around Bayonne, Biarritz, Saint-Jean-de-Luz). In Zuazo's classification Lapurdian and Lower Navarrese form the single Navarro-Lapurdian dialect. Classical literary dialect: Axular's Gero (1643), written in the speech of Sara (Lapurdi), is the canonical Basque prose text. VALIDATED against Hualde (2018), 'Aspiration in Basque'. KEY FEATURES: (1) ASPIRATION — RECEDING: classical 17th-century Lapurdian preserved both the laryngeal fricative /h/ and aspirated stops [pʰ tʰ kʰ], amply attested in Axular's Gero (Hualde 2018: 5, list (1)); however, in the coastal French Basque Country aspiration was already lost by the 19th century (Hualde 2018: 2, citing Michelena FHV VI:168). Modern coastal Lapurdian therefore has /h/ only variably/residually — modelled here as h -> [h] ~ [∅]. Unlike Souletin, modern Lapurdian has no productive aspirated-stop series. (2) FULL SIBILANT CONTRAST: /s̺ s̻ ʃ/ and /ts̺ ts̻ tʃ/ are maintained as in the conservative base. (3) PALATAL STOPS /c ɟ/ maintained. (4) FRENCH CONTACT: uvular [ʁ] for /r/ and /ɾ/ appears in French-contact speech alongside the inherited alveolar [r]/[ɾ] (contact feature; no dedicated page cite). (5) Conservative morphology, close to the classical literary norm.",
   "sources": [
+    {
+      "id": "hualde2018_aspiration",
+      "author": "Hualde, J.I.",
+      "year": 2018,
+      "title": "Aspiration in Basque",
+      "publisher": "Papers in Historical Phonology 3",
+      "url": "https://doi.org/10.2218/pihph.3.2018.2602",
+      "pages": "1-27",
+      "notes": "Primary read source: aspirated stops and /h/ in Axular's 17th-c. Lapurdian (p.5, list (1)); 19th-c. loss of aspiration in coastal French Basque (p.84 fn.)."
+    },
     {
       "id": "hualde_ortiz_de_urbina2003",
       "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
@@ -40,7 +51,7 @@
       "title": "A Grammar of Basque",
       "publisher": "Mouton de Gruyter",
       "url": null,
-      "pages": null,
+      "pages": "15-65 (Hualde, 'Segmental phonology')",
       "notes": "Chapter on Lapurdian features"
     },
     {
