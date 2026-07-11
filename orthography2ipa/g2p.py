@@ -45,7 +45,9 @@ from orthography2ipa.phonetok import (
     Token,
     TokenKind,
     flat_contexts,
+    lattice_confidence,
     lower_str,
+    slot_confidence,
 )
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import resolve_branches
@@ -62,6 +64,7 @@ __all__ = [
     "transcribe",
     "WordTranscription",
     "TranscriptionResult",
+    "ConfidenceBreakdown",
     "UnmappedScriptError",
 ]
 
@@ -93,6 +96,48 @@ class WordTranscription:
     coverage: float = 1.0
     """Fraction of :attr:`word`'s characters that mapped to a grapheme,
     in ``[0.0, 1.0]``. ``1.0`` when :attr:`unmapped` is empty."""
+
+    confidence: float = 1.0
+    """Per-word confidence that :attr:`ipa` is the right pronunciation, in
+    ``[0.0, 1.0]`` — a pure, deterministic read off the pronunciation
+    lattice (Workstream B5). It is the ``[0, 1]``-normalised weakest-link
+    of three lattice signals: the top-1 vs top-2 ``cost`` **margin** per
+    slot (small margin = ambiguous), the **rarity** of each slot's winning
+    candidate (a high-cost winner is a rare mapping), and this word's
+    :attr:`coverage` (any unmapped grapheme sharply lowers it). An
+    unambiguous, fully-mapped word scores near ``1.0``; a known-ambiguous
+    word (e.g. English ⟨th⟩) scores clearly lower; a word with an OOV
+    character scores low. It exists so a downstream specialized phonemizer
+    can spend its expensive lexicon/rules only where the base engine is
+    unsure and trust the fallback elsewhere. See :meth:`G2P.word_confidence`
+    and ``docs/lattice.md`` for the exact formula. ``1.0`` is the neutral
+    default for a word built without the lattice (e.g. a plain
+    :class:`WordTranscription` constructed by a caller)."""
+
+
+@dataclass(frozen=True)
+class ConfidenceBreakdown:
+    """Richer, per-signal view behind :attr:`WordTranscription.confidence`.
+
+    Returned by :meth:`G2P.confidence_breakdown`. All fields are in
+    ``[0.0, 1.0]`` and derived purely from the lattice; :attr:`value` is the
+    single number surfaced on :class:`WordTranscription`."""
+
+    value: float
+    """The headline confidence: :attr:`lattice` × :attr:`coverage`."""
+
+    lattice: float
+    """Weakest-link (minimum) per-slot confidence, before folding coverage."""
+
+    per_slot: Tuple[float, ...] = ()
+    """Each grapheme slot's confidence, in surface order."""
+
+    coverage: float = 1.0
+    """The word's grapheme coverage (OOV signal); < 1 when characters were
+    unmapped."""
+
+    unmapped: Tuple[str, ...] = ()
+    """The unmapped characters folded into :attr:`coverage`, if any."""
 
 
 @dataclass(frozen=True)
@@ -272,7 +317,8 @@ class G2P:
 
         final_words = tuple(
             WordTranscription(word=wt.word, ipa=iw, candidates=wt.candidates,
-                              unmapped=wt.unmapped, coverage=wt.coverage)
+                              unmapped=wt.unmapped, coverage=wt.coverage,
+                              confidence=wt.confidence)
             for wt, iw in zip(transcribed, ipa_words)
         )
         return TranscriptionResult(ipa=ipa, words=final_words,
@@ -368,6 +414,54 @@ class G2P:
             for s in slots
         ]
 
+    def word_confidence(self, word: str, *, beam_width: int = 8) -> float:
+        """Per-word confidence for *word*, in ``[0.0, 1.0]`` (Workstream B5).
+
+        A pure, deterministic read off the pronunciation lattice: the
+        weakest-link (minimum) per-slot confidence — combining each slot's
+        top-1 vs top-2 ``cost`` margin (ambiguity) and its winner's absolute
+        ``cost`` (rarity) — multiplied by the word's grapheme ``coverage``
+        (OOV signal). ``1.0`` for an unambiguous, fully-mapped word; clearly
+        lower for a known-ambiguous word; low when a character is OOV. This
+        is the number surfaced as :attr:`WordTranscription.confidence`; a
+        downstream engine uses it to decide where to spend effort. See
+        :func:`orthography2ipa.phonetok.slot_confidence` and
+        ``docs/lattice.md``.
+        """
+        return self.confidence_breakdown(word, beam_width=beam_width).value
+
+    def confidence_breakdown(
+        self, word: str, *, beam_width: int = 8
+    ) -> ConfidenceBreakdown:
+        """Full :class:`ConfidenceBreakdown` behind :meth:`word_confidence`.
+
+        Exposes the per-slot confidences, the pre-coverage lattice
+        confidence, and the coverage/unmapped OOV signal separately, for a
+        downstream engine that wants to localise *which* position the base
+        engine was unsure about. A lexicon-``word_exceptions`` override is a
+        certain answer, so its lattice confidence is ``1.0`` (only coverage
+        can lower it).
+        """
+        exceptions = self.spec.word_exceptions
+        override = (exceptions.get(lower_str(word, self.spec.code))
+                    if exceptions else None)
+        unmapped, coverage = self._unmapped_chars(word)
+        if override is not None:
+            slots: List[SegmentSlot] = []
+            per_slot: Tuple[float, ...] = ()
+            lattice = 1.0
+        else:
+            slots = self.ipa_lattice(word, beam_width=beam_width)
+            per_slot = tuple(slot_confidence(s) for s in slots)
+            lattice = lattice_confidence(slots)
+        return ConfidenceBreakdown(
+            value=lattice * coverage,
+            lattice=lattice,
+            per_slot=per_slot,
+            coverage=coverage,
+            unmapped=unmapped,
+        )
+
     # ─── pipeline stages ─────────────────────────────────────────────
 
     @staticmethod
@@ -438,12 +532,21 @@ class G2P:
         unmapped, coverage = self._unmapped_chars(word)
         if unmapped:
             self._handle_unmapped(word, unmapped)
+        # Per-word confidence (B5): a lexicon override is a certain answer
+        # (lattice_conf = 1.0); otherwise read the lattice's weakest-link
+        # slot confidence. Coverage folds the OOV signal in either case.
+        lattice_conf = (
+            1.0 if override is not None
+            else lattice_confidence(self.ipa_lattice(word))
+        )
+        confidence = lattice_conf * coverage
         return WordTranscription(
             word=word,
             ipa=ipa,
             candidates=tuple(paths) if width > 1 else (),
             unmapped=unmapped,
             coverage=coverage,
+            confidence=confidence,
         )
 
     def _unmapped_chars(self, word: str) -> Tuple[Tuple[str, ...], float]:

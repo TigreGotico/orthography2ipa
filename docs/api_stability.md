@@ -64,7 +64,8 @@ the repos audited above. These names may be reshaped more freely; treat any
 reliance on them from outside this repo as unsupported until a downstream
 consumer is added to the inventory above:
 
-- `transcribe`, `G2P`, `TranscriptionResult`, `WordTranscription` (`orthography2ipa.g2p`)
+- `transcribe`, `G2P`, `TranscriptionResult`, `WordTranscription`,
+  `ConfidenceBreakdown` (`orthography2ipa.g2p`)
 - `UnmappedScriptError` (`orthography2ipa.exceptions`)
 - `resolve`, `available_codes`, `available_families` (`orthography2ipa.registry`)
 - `load_lexicon` (`orthography2ipa.json_loader`)
@@ -76,8 +77,8 @@ consumer is added to the inventory above:
 - `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`,
   `script_distance_by_name` (`orthography2ipa.script_distance`)
 - `PhonetokTokenizer`, `Token`, `TokenKind`, `IPAPath`, `Candidate`,
-  `SegmentSlot`, `GraphemeContext`, `TokenSequence`
-  (`orthography2ipa.phonetok`)
+  `SegmentSlot`, `GraphemeContext`, `TokenSequence`, `slot_confidence`,
+  `lattice_confidence` (`orthography2ipa.phonetok`)
 - `segment_distance`, `inventory_distance`, `grapheme_divergence`,
   `allophone_overlap`, `phonological_distance`, `ancestry_similarity`,
   `full_distance`, `pairwise_distances`, `feature_vector`,
@@ -111,6 +112,33 @@ The default (`on_unmapped="ignore"`) reproduces the exact prior behavior —
 callers that never pass `on_unmapped` and never read the new
 `WordTranscription` fields see no change in `transcribe()` /
 `transcribe_detailed()` output.
+
+## Per-word confidence / OOV signal (additive)
+
+`G2P` and `WordTranscription` (`orthography2ipa.g2p`) expose an optional,
+additive per-word **confidence** — a pure, deterministic read off the
+pronunciation lattice (Workstream B5) so a downstream specialized phonemizer
+can spend its lexicon/rules only where the base engine is unsure. It changes
+no existing output: `transcribe`, `transcribe_detailed().ipa`, `ipa_best`,
+and the scoreboard are byte-identical whether or not it is read.
+
+- `WordTranscription.confidence: float = 1.0` — confidence that `ipa` is the
+  right pronunciation, in `[0.0, 1.0]`. The `[0, 1]`-normalised weakest-link
+  of the per-slot top-1/top-2 `cost` margin, each slot's winner rarity, and
+  the word's `coverage`. `1.0` is the neutral default for a
+  `WordTranscription` constructed without the lattice.
+- `G2P.word_confidence(word, *, beam_width=8) -> float` — the same number for
+  a single word.
+- `G2P.confidence_breakdown(word, *, beam_width=8) -> ConfidenceBreakdown` —
+  the per-signal detail (`value`, `lattice`, `per_slot`, `coverage`,
+  `unmapped`).
+- `ConfidenceBreakdown` (`orthography2ipa.g2p`, re-exported from
+  `orthography2ipa`) — the frozen breakdown dataclass.
+
+The exact formula is documented in [`lattice.md`](lattice.md). This surface
+is versioned as part of the stable import surface below; a plain
+`WordTranscription(word=..., ipa=...)` keeps `confidence == 1.0`, so existing
+callers are unaffected.
 
 This is a documentation-only audit: it records the current import surface
 and stability commitment, and does not rename, deprecate, or otherwise

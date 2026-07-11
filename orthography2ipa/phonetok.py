@@ -39,6 +39,7 @@ Usage
 """
 from __future__ import annotations
 
+import math
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -69,6 +70,8 @@ __all__ = [
     "GraphemeContext",
     "TokenSequence",
     "flat_contexts",
+    "slot_confidence",
+    "lattice_confidence",
     "PhonetokTokenizer",
     "lower_str",
 ]
@@ -271,6 +274,77 @@ class SegmentSlot:
             f"SegmentSlot({self.grapheme!r}, span={self.span}, "
             f"candidates={self.candidates!r})"
         )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Per-word confidence / OOV signal (B5)
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# A pure, deterministic read off the lattice slots — no global state, no
+# randomness, thread-safe. The signal answers one question for a downstream
+# specialized phonemizer: *where should it spend its expensive lexicon/rules?*
+# High confidence ⇒ trust the base engine's fallback; low confidence ⇒ the
+# base engine is unsure, so the specialized engine earns its keep there.
+#
+# It is built entirely from costs the lattice already carries
+# (``Candidate.cost`` = −log P for a weighted spec, rank cost otherwise; see
+# ``docs/lattice.md``), combining three signals:
+#
+# 1. **Ambiguity** — the top-1 vs top-2 ``cost`` margin *within* a slot. A
+#    large margin means one option dominates (confident); a margin of ``0``
+#    means two options tie (maximally ambiguous). A slot with a single
+#    candidate has no rival, so its margin is ``+inf`` (fully unambiguous).
+#    Mapped to ``[0, 1]`` by ``1 − exp(−margin)``: ``margin=0 → 0``,
+#    ``margin=+inf → 1``.
+# 2. **Rarity** — the absolute cost of the *best* candidate. A slot whose
+#    winner is itself high-cost (a rare mapping, large −log P) is less
+#    trustworthy than one whose winner is the canonical ``cost=0`` option.
+#    Mapped by ``exp(−cost1)``: ``cost1=0 → 1``, larger cost → smaller.
+# 3. **Coverage / OOV** — folded in by the caller (see
+#    :meth:`G2P.word_confidence`): any unmapped grapheme multiplies the
+#    lattice confidence by ``coverage`` (< 1), sharply lowering it.
+#
+# Per slot the ambiguity and rarity factors multiply; across the word the
+# **minimum** slot confidence wins ("weakest link"): a single ambiguous or
+# rare position drags the whole word down, which is exactly the position a
+# downstream engine should target.
+
+
+def slot_confidence(slot: "SegmentSlot") -> float:
+    """Confidence in ``slot.top`` being the right realisation, in ``[0, 1]``.
+
+    Combines the intra-slot **ambiguity** margin (top-1 vs top-2 ``cost``)
+    with the **rarity** of the winning candidate (its absolute ``cost``).
+    Returns ``1.0`` for an unambiguous, canonical slot (single candidate, or
+    a decisive margin over a zero-cost winner) and approaches ``0.0`` as the
+    top two candidates tie and/or the winner is a rare (high-cost) mapping.
+    A pure function of the slot — no state, deterministic.
+    """
+    cands = slot.candidates
+    if not cands:
+        return 0.0
+    cost1 = cands[0].cost
+    if len(cands) >= 2:
+        margin = cands[1].cost - cost1
+        ambiguity = 1.0 - math.exp(-margin)
+    else:
+        ambiguity = 1.0  # no rival candidate → unambiguous
+    rarity = math.exp(-cost1) if cost1 > 0.0 else 1.0
+    return ambiguity * rarity
+
+
+def lattice_confidence(slots: Sequence["SegmentSlot"]) -> float:
+    """Aggregate :func:`slot_confidence` across a word's lattice ``slots``.
+
+    Uses the **minimum** ("weakest link") slot confidence: the least
+    confident position bounds the word. An empty lattice (no grapheme slots)
+    returns ``1.0`` — there is nothing the engine was unsure about. Does not
+    fold OOV/coverage; the caller multiplies that in (see
+    :meth:`G2P.word_confidence`).
+    """
+    if not slots:
+        return 1.0
+    return min(slot_confidence(s) for s in slots)
 
 
 # ═══════════════════════════════════════════════════════════════════════════

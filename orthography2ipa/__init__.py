@@ -30,6 +30,7 @@ from orthography2ipa.distance import (
     tone_distance,
 )
 from orthography2ipa.g2p import (
+    ConfidenceBreakdown,
     G2P,
     TranscriptionResult,
     WordTranscription,
@@ -88,6 +89,7 @@ from orthography2ipa.types import (
 __all__ = [
     "transcribe",
     "G2P",
+    "ConfidenceBreakdown",
     "TranscriptionResult",
     "WordTranscription",
     "get",
