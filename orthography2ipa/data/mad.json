@@ -1,7 +1,6 @@
 {
   "code": "mad",
   "name": "Madurese",
-  "family": "Austronesian",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -149,6 +148,15 @@
       "url": "https://glottolog.org/resource/languoid/id/nucl1460",
       "pages": null,
       "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+    }
+  ],
+  "parent": "x-clade-mala1545",
+  "ancestors": [
+    {
+      "code": "x-clade-mala1545",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
   ]
 }
