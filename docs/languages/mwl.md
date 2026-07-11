@@ -79,20 +79,51 @@ Stress follows the Convenção § Acento: paroxytone by default, with the
 oxytone-attracting endings `-r -l -z -ç -in -un -on -is -us -ns -ão` and any
 written accent overriding.
 
+The spec transcribes /u/ as **[u]**. The `mirandese_g2p` gold instead writes it
+narrowly as the centralised **[ʉ]** — and does so for *both* stressed ⟨u/ú⟩
+(`brúzio` → [ˈbɾʉziʉ], `bufanda` → [bʉˈfãdɐ]) and reduced final ⟨-o⟩
+(`bagaroso` → [bɐɣɐˈɾoz̺ʉ]). Because [ʉ] there is the transcriber's realisation
+symbol for /u/ generally, not a distinct vowel in complementary distribution,
+the [ʉ]↔[u] disagreements are a **notation artifact**, not a spec error: the
+spec is deliberately left with the broad [u] and the mismatch is not chased.
+
 ## Allophony (post-lexical)
 
-The spec declares two cited [allophone rules](../allophony.md):
-coda /n/ assimilates in place to a following **labial** ([m]) or **velar**
-([ŋ]) stop (Mateus & d'Andrade 2000).
+The spec declares cited [allophone rules](../allophony.md). First, coda /n/
+assimilates in place to a following **labial** ([m]) or **velar** ([ŋ]) stop
+(Mateus & d'Andrade 2000:11).
 
-Ibero-Romance **intervocalic voiced-stop spirantisation** (⟨b d g⟩ →
-[β ð ɣ]) is a genuine native process, but in the expert gold it is
-**lexically variable and stop-dominant** (b:54 / β:13; d:41 / ð:12) because
-the attested wordlist is loan-heavy and conservatively transcribed. A blanket
-spirantisation rule *regresses* this gold, so the spirants are declared in the
-`allophones` inventory (available to the lattice and downstream engines) but
-are **not** applied as a default rewrite — realising them is left to the
-downstream `mwl_phonemizer`, where lexical conditioning is available.
+Second, **intervocalic /b/ spirantisation** (⟨b⟩ → [β] between vowels):
+`haber` → [ɐˈβeɾ], `rabudo` → [rɐˈβudu], `nuobo` → [ˈnwoβu]. This is the
+general Ibero-Romance lenition of voiced stops — /b d ɡ/ surface as the
+fricatives/approximants [β ð ɣ] everywhere **except** after a pause or a nasal
+(Mateus & d'Andrade 2000:11; Ferreira & Raposo 1999; the [Mirandese Wikipedia
+phonology](https://en.wikipedia.org/wiki/Mirandese_language#Consonants):
+"voiced stops /b d ɡ/ may be lenited as fricatives [β ð ɣ]"), which is why the
+rule requires a preceding vowel (word-initial and post-nasal ⟨b⟩ keep the stop:
+`bibal` → [biˈβal], `ambos` → [ˈambus̺]).
+
+The rule is applied **per phoneme**, on the evidence of the expert-human
+`mirandese_g2p` gold measured at true oral-intervocalic positions (post-nasal
+excluded):
+
+- **/b/ → [β]**: spirant-dominant (β:9 / b:5), so it is rewritten. It is a net
+  win on the human gold (PER 0.1901 → 0.1851); the residual over-spirantised
+  loans (`brabo`, `alternatibo`) are the lexical variability the downstream
+  `mwl_phonemizer` can condition on.
+- **/ɡ/ → [ɣ]**: already spirantised intervocalically at the
+  `positional_graphemes` layer (`mogadouro` → [muɣɐˈdowɾu]), so it needs **no**
+  allophone rule; adding one only misfires after a diphthong glide (`eigual` →
+  gold stop [ɐjˈɡwal]).
+- **/d/**: intervocalic /d/ is **stop-dominant** in the gold (d:13 / ð:7) — the
+  documented Asturleonese conservatism/occlusion of /d/, and why the Wikipedia
+  wording is hedged ("may be"). It keeps its positional default [d] (`nada` →
+  [ˈnadɐ]); [ð] stays only an `allophones` inventory / lattice candidate,
+  realisable by the downstream `mwl_phonemizer` where lexical conditioning is
+  available.
+
+Spirantisation is **pan-Mirandese**: the sub-dialects inherit the /b/ rule via
+`graphemes_base = mwl` (`haber` → [ɐˈβeɾ] in Sendinês and Ifanês too).
 
 ## Sub-dialects
 
@@ -103,7 +134,7 @@ declare only their **deltas**:
   1. **Monophthongisation**: ⟨iê/ie⟩ → /i/, ⟨uô/uo⟩ → /u/ (`puorta` →
      [ˈpuɾtɐ]).
   2. **Depalatalisation**: /ʎ/ → /l/ — words other dialects say with ⟨lh⟩ are
-     said with /l/ (`lhobo` → [ˈlobu], `alhá` → [ɐˈla]); word-initial ⟨l⟩ is
+     said with /l/ (`lhado` → [ˈladu], `alhá` → [ɐˈla]); word-initial ⟨l⟩ is
      likewise plain /l/. The Primeiro Aditamento (2000) permits Sendinese
      writers to spell word-initial ⟨l-⟩.
 - **Ifanês (`mwl-x-ifanes`)** — the Northern/Raiano speech of Ifanes. The
@@ -127,12 +158,17 @@ Measured against `TigreGotico/mirandese_g2p` (expert-human, small-`n`):
 
 | Code | n | PER |
 |:--|--:|--:|
-| `mwl` | 205 | ≈0.20 |
-| `mwl-x-sendim` | 11 | ≈0.37 (wide CI — do not over-read) |
+| `mwl` | 205 | 0.1851 (was 0.1901 before /b/ spirantisation) |
+| `mwl-x-sendim` | 11 | 0.3914 (wide CI — do not over-read) |
 
-Residual error is dominated by gold-notation choices the rules cannot and
-should not chase: the transcriber's centralised final vowel [ʉ] for
-unstressed final ⟨-o⟩, and lexically variable spirantisation (see above).
+The /b/-spirantisation rule *lowers* the central-Mirandese PER (the largest,
+most trustworthy row). The Sendinês row nudges up because its one
+intervocalic-/b/ token, `lhobo`, is transcribed with a stop [ˈlobʊ] in the
+`n = 11` gold — small-`n` lexical variability, not a Sendinês-specific block on
+a pan-Ibero-Romance process. Residual error is otherwise dominated by
+gold-notation choices the rules cannot and should not chase: the transcriber's
+centralised final vowel [ʉ] for unstressed final ⟨-o⟩ (see below), and the
+lexically variable /d/ occlusion (see Allophony above).
 
 ## Sources
 

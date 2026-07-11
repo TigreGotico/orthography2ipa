@@ -97,14 +97,20 @@ def test_nasal_place_assimilation_rules_present():
     assert {"MWL_NASAL_LABIAL", "MWL_NASAL_VELAR"} <= ids
 
 
-def test_spirants_declared_but_not_default():
-    """Voiced-stop spirants are inventory allophones, not a default rewrite
-    (the expert gold is stop-dominant)."""
+def test_spirants_declared_in_inventory():
+    """The voiced-stop spirants are declared in the allophone inventory."""
     spec = get("mwl")
     assert "β" in spec.allophones["b"]
     assert "ð" in spec.allophones["d"]
-    # default realisation keeps the stop
-    assert _t("mwl").transcribe("rabudo") == "rɐˈbudu"
+
+
+def test_intervocalic_d_spirant_declared_but_not_default():
+    """[ð] stays an inventory allophone / lattice candidate: intervocalic /d/
+    is stop-dominant in the expert gold (Asturleonese /d/-occlusion), so it is
+    NOT rewritten by default — contrast /b/, which IS (see the spirantisation
+    tests below)."""
+    assert _t("mwl").transcribe("nada") == "ˈnadɐ"
+    assert _t("mwl").transcribe("rabudo") == "rɐˈβudu"  # /b/ lenites, /d/ does not
 
 
 # --- Sendinês deltas --------------------------------------------------------
@@ -117,8 +123,10 @@ def test_sendim_monophthongisation():
 
 def test_sendim_depalatalisation():
     g = _t("mwl-x-sendim")
-    # ⟨lh⟩ -> /l/ and no initial-l palatalisation
-    assert g.transcribe("lhobo") == "ˈlobu"
+    # ⟨lh⟩ -> /l/ and no initial-l palatalisation (isolate the lateral: use
+    # words without an intervocalic voiced stop so the /b/-spirant rule does
+    # not muddy the assertion)
+    assert g.transcribe("lhado") == "ˈladu"
     assert g.transcribe("alhá") == "ɐˈla"
     assert g.transcribe("luç") == "ˈlus"
 
@@ -141,3 +149,63 @@ def test_ifanes_tracks_central():
 def test_ifanes_promoted_to_research():
     assert get("mwl-x-ifanes").quality == "research"
     assert get("mwl-x-sendim").quality == "research"
+
+
+# --- intervocalic voiced-stop spirantisation --------------------------------
+# Ibero-Romance lenition: /b d ɡ/ → [β ð ɣ] between vowels, except after a
+# pause or a nasal (Mateus & d'Andrade 2000:11; Ferreira & Raposo 1999; mwl
+# Wikipedia phonology). Grounded per-phoneme on the TigreGotico/mirandese_g2p
+# expert gold: /b/ is spirant-dominant intervocalically (β:9/b:5) so it is
+# rewritten; intervocalic ⟨g⟩ is already spirantised at the positional layer;
+# intervocalic /d/ is stop-dominant (d:13/ð:7, Asturleonese /d/-occlusion) and
+# is deliberately left as a stop.
+
+def test_intervocalic_b_spirantises_to_beta():
+    g = _t("mwl")
+    # /b/ between vowels lenites to [β] (gold: haber→ɐˈβeɾ, rabudo→rɐˈβudu)
+    assert g.transcribe("haber") == "ɐˈβeɾ"
+    assert g.transcribe("rabudo") == "rɐˈβudu"
+    assert g.transcribe("nuobo") == "ˈnwoβu"
+
+
+def test_word_initial_and_post_nasal_b_stays_a_stop():
+    g = _t("mwl")
+    # word-initial ⟨b⟩ is a stop; only the intervocalic one lenites
+    assert g.transcribe("bibal") == "biˈβal"
+    # post-nasal ⟨b⟩ (after [m]) keeps the stop — the spirant rule requires a
+    # preceding vowel, not a nasal
+    assert g.transcribe("ambos") == "ˈambus̺"
+    assert g.transcribe("cambo") == "ˈkambu"
+
+
+def test_intervocalic_d_is_not_spirantised():
+    # Asturleonese /d/ resists intervocalic spirantisation (gold stop-dominant):
+    # ⟨d⟩ between vowels stays [d], NOT [ð]
+    g = _t("mwl")
+    assert g.transcribe("nada") == "ˈnadɐ"
+    assert "ð" not in g.transcribe("nada")
+
+
+def test_intervocalic_g_spirantises_via_positional_layer():
+    # intervocalic ⟨g⟩ → [ɣ] is handled at the positional_graphemes layer, so
+    # no allophone rule is needed and none double-applies after a glide
+    g = _t("mwl")
+    assert g.transcribe("mogadouro") == "muɣɐˈdowɾu"
+    # ⟨g⟩ after the glide of a falling diphthong keeps the stop (gold: eigual
+    # → [ɐjˈɡwal]); a naive /ɡ/→[ɣ] allophone rule would wrongly lenite it
+    assert g.transcribe("eigual") == "eˈjɡal"
+
+
+def test_only_the_b_spirant_rule_is_declared():
+    ids = [r.id for r in get("mwl").allophone_rules]
+    assert "MWL_SPIRANT_B" in ids
+    # /ɡ/ (positional layer) and /d/ (stop-dominant) get no allophone rewrite
+    assert "MWL_SPIRANT_G" not in ids
+    assert "MWL_SPIRANT_D" not in ids
+
+
+def test_spirantisation_is_pan_mirandese():
+    # /b/ spirantisation is inherited by the sub-dialects (graphemes_base=mwl)
+    assert _t("mwl-x-sendim").transcribe("haber") == "ɐˈβeɾ"
+    assert _t("mwl-x-ifanes").transcribe("haber") == "ɐˈβeɾ"
+    assert "MWL_SPIRANT_B" in [r.id for r in get("mwl-x-sendim").allophone_rules]
