@@ -3,13 +3,250 @@
   "name": "Komi-Permyak",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "stub",
+  "quality": "research",
   "iso639_3": "koi",
   "glottolog_code": "komi1269",
   "wikidata_qid": "Q56318",
-  "graphemes": {},
-  "allophones": {},
-  "notes": "Komi-Permyak (перем коми / коми-пермяцкӧй кыв) of Perm Krai, written in a Cyrillic alphabet extended with ⟨ӧ⟩ and ⟨і⟩. The grapheme inventory is NOT yet specified. Komi orthography encodes consonant palatalisation through the following vowel letter and the soft sign, in a system that differs from Russian; a reliable letter → IPA table requires a descriptive source that has not been consulted. The historic Molodtsov alphabet is not covered. Metadata only. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode komi1269), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "graphemes": {
+    "а": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "дж": [
+      "dʒ"
+    ],
+    "дз": [
+      "dʑ"
+    ],
+    "тш": [
+      "tʃ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "e",
+      "je"
+    ],
+    "ё": [
+      "o",
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "і": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "ɫ"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "o"
+    ],
+    "ӧ": [
+      "ɘ"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tɕ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ʃtʃ",
+      "ʃː"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "u",
+      "ju"
+    ],
+    "я": [
+      "a",
+      "ja"
+    ],
+    "ь": [
+      "ʲ"
+    ],
+    "ъ": [
+      ""
+    ],
+    "дь": [
+      "ɟ"
+    ],
+    "де": [
+      "ɟe"
+    ],
+    "дё": [
+      "ɟo"
+    ],
+    "ди": [
+      "ɟi"
+    ],
+    "дю": [
+      "ɟu"
+    ],
+    "дя": [
+      "ɟa"
+    ],
+    "зь": [
+      "ʑ"
+    ],
+    "зе": [
+      "ʑe"
+    ],
+    "зё": [
+      "ʑo"
+    ],
+    "зи": [
+      "ʑi"
+    ],
+    "зю": [
+      "ʑu"
+    ],
+    "зя": [
+      "ʑa"
+    ],
+    "ль": [
+      "ʎ"
+    ],
+    "ле": [
+      "ʎe"
+    ],
+    "лё": [
+      "ʎo"
+    ],
+    "ли": [
+      "ʎi"
+    ],
+    "лю": [
+      "ʎu"
+    ],
+    "ля": [
+      "ʎa"
+    ],
+    "нь": [
+      "ɲ"
+    ],
+    "не": [
+      "ɲe"
+    ],
+    "нё": [
+      "ɲo"
+    ],
+    "ни": [
+      "ɲi"
+    ],
+    "ню": [
+      "ɲu"
+    ],
+    "ня": [
+      "ɲa"
+    ],
+    "сь": [
+      "ɕ"
+    ],
+    "се": [
+      "ɕe"
+    ],
+    "сё": [
+      "ɕo"
+    ],
+    "си": [
+      "ɕi"
+    ],
+    "сю": [
+      "ɕu"
+    ],
+    "ся": [
+      "ɕa"
+    ],
+    "ть": [
+      "c"
+    ],
+    "те": [
+      "ce"
+    ],
+    "тё": [
+      "co"
+    ],
+    "ти": [
+      "ci"
+    ],
+    "тю": [
+      "cu"
+    ],
+    "тя": [
+      "ca"
+    ]
+  },
+  "allophones": {
+    "ɫ": [
+      "ɫ",
+      "l"
+    ],
+    "ɘ": [
+      "ɘ",
+      "ə"
+    ]
+  },
+  "notes": "Komi-Permyak (перем коми / коми-пермяцкӧй кыв) of Perm Krai, Russia — the second Permic literary standard alongside Komi-Zyrian. INPUT CONTRACT: modern Komi-Permyak Cyrillic text, Unicode NFC. Orthography (1938): all the Russian letters plus ⟨І і⟩ and ⟨Ӧ ӧ⟩, i.e. the same alphabet as Komi-Zyrian, and the two standards are described as sharing the same 26 native consonants and 7 vowels (i ɨ u e ə o a); ⟨ц ф х⟩ occur essentially only in Russian loanwords. The grapheme map is therefore the Komi-Zyrian one: ⟨д з л н с т⟩ → /ɟ ʑ ʎ ɲ ɕ c/ before ⟨е ё и ю я ь⟩ (entered as multigraph keys so maximal munch prefers them), ⟨і⟩ = 'hard i' /i/ leaving the preceding consonant hard, and the affricate digraphs ⟨дж⟩ /dʒ/, ⟨дз⟩ /dʑ/, ⟨тш⟩ /tʃ/. Iotated ⟨е ё ю я⟩ list the plain vowel first, the [j]-initial reading (word-initial / post-vocalic) second. Dialect-level differences from Komi-Zyrian are lexical and phonetic rather than orthographic and are not modelled. The historic Molodtsov alphabet is out of scope.",
   "sources": [
     {
       "id": "koi_wiki",
@@ -23,14 +260,26 @@
       "notes": null
     },
     {
-      "id": "phoible",
-      "author": "Moran, Steven & McCloy, Daniel (eds.)",
-      "year": 2019,
-      "title": "PHOIBLE 2.0",
-      "publisher": "Max Planck Institute for the Science of Human History",
-      "url": "https://phoible.org/",
+      "id": "komi_permyak_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Komi-Permyak language — Alphabet and Phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Komi-Permyak_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Komi-Permyak_language",
       "pages": null,
-      "notes": "Attested phoneme inventory for glottocode komi1269."
+      "notes": "States that the 1938 Komi-Permyak alphabet is the Russian alphabet plus і and ӧ, identical to Komi-Zyrian, and that both standards share the same 26 consonant and 7 vowel phonemes (ts, f, x only in Russian loans)."
+    },
+    {
+      "id": "komi_alphabet_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Komi language — Writing system (Cyrillic alphabet with IPA values) and Phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Komi_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Komi_language",
+      "pages": null,
+      "notes": "Letter→IPA table shared by the two Komi standards; supplies the actual IPA values used here (і, ӧ /ɘ/, дж /dʒ/, дз /dʑ/, тш /tʃ/, and the д з л н с т palatalisation rule)."
     }
   ],
   "wikipedia": [

@@ -9,7 +9,7 @@
   "wikidata_qid": "Q23014",
   "graphemes": {},
   "allophones": {},
-  "notes": "Palatine German (Pälzisch/Pfälzisch), a West Central German (Rhine Franconian) dialect group. The grapheme inventory is NOT yet specified — and deliberately so: Palatine German has NO standardised orthography. It is written ad hoc with German spelling conventions, which do not encode the dialect's characteristic features (lenition of /p t k/, monophthongisation, vowel qualities differing from Standard German), and spelling varies between authors and sub-dialects. A defensible spec would have to pick and cite one written norm; none is adopted here. Metadata only.",
+  "notes": "STUB (deliberate): the grapheme inventory of Palatine German is NOT specified. Pälzisch/Pfälzisch is a West Central German (Rhine Franconian) dialect group. It has NO published spelling norm and no letter->IPA table exists in any consultable source: it is written ad hoc in German spelling, which does not encode the dialect's lenition of /p t k/, its monophthongisation, or its vowel qualities. Documented facts that a future spec could build on, but which are not a map: rounded front vowels are absent (Standard German ö -> [e], ü -> [i], e.g. 'kenne' for 'können'); MHG ei surfaces as [ɛɪ̯], written <ää> (Schdää 'Stein'); intervocalic <g> -> [ç] (Nachel 'Nagel'); the written convention <gh-> is used to keep morphology visible (ghowe = gehoben). Building a map would require inventing IPA values, so none is claimed. INPUT CONTRACT (for any future spec): Latin-script, German-convention Palatine text. The closely related Pennsylvania German (pdc) DOES have a citable norm (Buffington-Barba) and is specced.",
   "sources": [
     {
       "id": "pfl_wiki",
@@ -21,6 +21,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Palatine_German_dialects",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "pfl_de_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Pfälzische Dialekte",
+      "publisher": "Wikipedia (German)",
+      "url": "https://de.wikipedia.org/wiki/Pf%C3%A4lzische_Dialekte",
+      "wikipedia_url": "https://de.wikipedia.org/wiki/Pf%C3%A4lzische_Dialekte",
+      "pages": null,
+      "notes": "Consulted: gives no orthography table and no phoneme chart, only prose correspondences (no ö/ü; ei -> [ɛɪ̯] written <ää>; intervocalic g -> [ç]; the <gh-> writing convention)."
     }
   ],
   "wikipedia": [

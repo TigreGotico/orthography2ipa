@@ -3,13 +3,151 @@
   "name": "Kalmyk",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "stub",
+  "quality": "research",
   "iso639_3": "xal",
   "glottolog_code": "kalm1244",
   "wikidata_qid": "Q33634",
-  "graphemes": {},
+  "graphemes": {
+    "аа": [
+      "aː"
+    ],
+    "әә": [
+      "æː"
+    ],
+    "ээ": [
+      "eː"
+    ],
+    "ии": [
+      "iː"
+    ],
+    "оо": [
+      "oː"
+    ],
+    "өө": [
+      "øː"
+    ],
+    "уу": [
+      "uː"
+    ],
+    "үү": [
+      "yː"
+    ],
+    "а": [
+      "a"
+    ],
+    "ә": [
+      "æ"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ",
+      "ɢ"
+    ],
+    "һ": [
+      "ɣ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "e",
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "җ": [
+      "d͡ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "ң": [
+      "ŋ"
+    ],
+    "о": [
+      "o"
+    ],
+    "ө": [
+      "ø"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ү": [
+      "y"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "t͡s"
+    ],
+    "ч": [
+      "t͡ʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕː"
+    ],
+    "ы": [
+      "i"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "jʊ"
+    ],
+    "я": [
+      "ja"
+    ]
+  },
   "allophones": {},
-  "notes": "Kalmyk Oirat (хальмг келн) of Kalmykia, written in a Cyrillic alphabet with extra letters (ә, ө, ү, җ, ң, һ). The grapheme inventory is NOT yet specified. Kalmyk spelling interacts with vowel harmony, reduced/short vowels in non-initial syllables that are often written but not pronounced, and the Russian-derived letters used only in loans; a reliable letter → IPA table requires a descriptive source that has not been consulted. The historic Clear Script (Todo bichig) is not covered. Metadata only.",
+  "notes": "Kalmyk Oirat (хальмг келн), the Mongolic language of Kalmykia, written since 1938 in a Cyrillic alphabet: the Russian letters plus Әә /æ/, Өө /ø/, Үү /y/, Җҗ /d͡ʒ/, Ңң /ŋ/ and Һһ /ɣ/. Kalmyk has front–back vowel harmony and a phonemic vowel-length contrast; the Cyrillic orthography denotes long vowels by DOUBLING the vowel letter, so the doubled digraphs (аа әә ээ ии оо өө уу үү) are given as their own keys and win under maximal-munch matching. Most consonant letters also have palatalised realisations before front vowels / ⟨ь⟩; only the plain values are mapped here, so palatalisation is under-specified rather than invented. The soft sign ⟨ь⟩ and hard sign ⟨ъ⟩ are NOT mapped: they denote palatalisation of the preceding consonant, not a segment of their own. Ф, п, щ and the iotated letters are essentially confined to Russian loans. The historic Clear Script (Todo bichig) is out of scope. INPUT CONTRACT: Cyrillic Kalmyk text, Unicode NFC.",
   "sources": [
     {
       "id": "xal_wiki",
@@ -21,6 +159,28 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Kalmyk_Oirat",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "kalmyk_alphabet_ipa_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Kalmyk Oirat — Alphabet matching table and Phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kalmyk_Oirat",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kalmyk_Oirat",
+      "pages": null,
+      "notes": "Letter->IPA table (ә /æ/, һ /ɣ/, җ /d͡ʒ/, ң /ŋ/, ө /ø/, ү /y/, ы /i/ …) and the statement that long vowels are written by doubling the letter."
+    },
+    {
+      "id": "cyrillic_alphabets_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Cyrillic alphabets — Kalmyk and Buryat sections",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Cyrillic_alphabets",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Cyrillic_alphabets",
+      "pages": null,
+      "notes": "Cross-check of the extra letters: Kalmyk ә /æ/, һ /ɣ/, ө /ø/, җ /dʒ/, ң /ŋ/; Buryat һ /h/."
     }
   ],
   "wikipedia": [

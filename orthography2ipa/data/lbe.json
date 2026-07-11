@@ -3,10 +3,180 @@
   "name": "Lak",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "stub",
-  "graphemes": {},
+  "quality": "research",
+  "graphemes": {
+    "хьхь": [
+      "xː"
+    ],
+    "аь": [
+      "æ",
+      "ɛ"
+    ],
+    "оь": [
+      "oˤ",
+      "ø"
+    ],
+    "гъ": [
+      "ʁ"
+    ],
+    "гь": [
+      "h"
+    ],
+    "къ": [
+      "qː"
+    ],
+    "кк": [
+      "kː"
+    ],
+    "кь": [
+      "qʼ"
+    ],
+    "кӏ": [
+      "kʼ"
+    ],
+    "пп": [
+      "pː"
+    ],
+    "пӏ": [
+      "pʼ"
+    ],
+    "сс": [
+      "sː"
+    ],
+    "тт": [
+      "tː"
+    ],
+    "тӏ": [
+      "tʼ"
+    ],
+    "хх": [
+      "χː"
+    ],
+    "хъ": [
+      "q"
+    ],
+    "хь": [
+      "x"
+    ],
+    "хӏ": [
+      "ħ"
+    ],
+    "цц": [
+      "t͡sː"
+    ],
+    "цӏ": [
+      "t͡sʼ"
+    ],
+    "чч": [
+      "t͡ʃː"
+    ],
+    "чӏ": [
+      "t͡ʃʼ"
+    ],
+    "а": [
+      "a",
+      "ə",
+      "ɛ"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "w",
+      "β"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "e",
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i",
+      "y"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u",
+      "y"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "χ"
+    ],
+    "ц": [
+      "t͡s"
+    ],
+    "ч": [
+      "t͡ʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ʃʷ"
+    ],
+    "ъ": [
+      "ʔ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju",
+      "y"
+    ],
+    "я": [
+      "ja",
+      "æ"
+    ]
+  },
   "allophones": {},
-  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Lak (Dagestan) is written in a Cyrillic alphabet (the 'Lak script'). As in the other Northeast Caucasian orthographies, a large consonant inventory (ejectives, tense/geminate consonants, uvulars, pharyngeals) is written with digraphs and trigraphs built on the palochka ⟨Ӏ⟩ (кӏ, къ, кь, хъ, хь, цӏ, чӏ, тӏ, пӏ …) and with doubled letters for the tense series, so a correct longest-match grapheme table has yet to be built and verified. No map is claimed. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode lakk1252), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "notes": "Lak (лакку маз), a Northeast Caucasian language of Dagestan, written in a Cyrillic alphabet (48 letters, later 54 with the doubled letters). INPUT CONTRACT: Cyrillic orthography, Unicode NFC, lowercased; the palochka must be U+04CF ⟨ӏ⟩ / U+04C0 ⟨Ӏ⟩ — Latin 'I'/'l'/'1' substitutes are not accepted, as no consulted source documents them. The alphabet writes the large consonant inventory with multigraphs: ejectives кӏ пӏ тӏ цӏ чӏ, uvulars хъ /q/, къ /qː/, кь /qʼ/, гъ /ʁ/, pharyngeal хӏ /ħ/, /h/ гь, and a tense (fortis/geminate) series spelled with doubled letters кк пп сс тт хх цц чч plus the quadrigraph хьхь /xː/. Matching is maximal munch, so хьхь and the doubled letters win over the single letters. Vowel letters are polyvalent (а = [a]~[ə]~[ɛ], и/у also [y] by umlaut), and pharyngealisation is only partly written (аь, оь), so candidate lists are ordered best-first. The letters ы and ь carry no independent value in Lak and are LEFT OUT of the map; ь occurs only inside the digraphs гь, кь, хь, аь, оь. Е is given as [e] first (its value after a consonant) with [je] as the second candidate (word-initial / post-vocalic), since the source lists both without positional detail.",
   "iso639_3": "lbe",
   "glottolog_code": "lakk1252",
   "wikidata_qid": "Q36206",
@@ -38,14 +208,26 @@
       "notes": "Reference phonology of Lak."
     },
     {
-      "id": "phoible",
-      "author": "Moran, Steven & McCloy, Daniel (eds.)",
-      "year": 2019,
-      "title": "PHOIBLE 2.0",
-      "publisher": "Max Planck Institute for the Science of Human History",
-      "url": "https://phoible.org/",
+      "id": "lak_alphabet_wiki_table",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Lak language — Writing system: comparative Cyrillic / Latin / Perso-Arabic / IPA table",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lak_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lak_language",
       "pages": null,
-      "notes": "Attested phoneme inventory for glottocode lakk1252."
+      "notes": "Letter-by-letter IPA table actually read (wikitext via action=raw); its IPA column is referenced to Schulze's description of Lak."
+    },
+    {
+      "id": "schulze_lak",
+      "author": "Schulze, Wolfgang",
+      "year": 2007,
+      "title": "Lak (Northeast Caucasian): a grammatical sketch",
+      "publisher": "Ludwig-Maximilians-Universität München",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Cited as the source of the IPA values in the Wikipedia Lak alphabet table used here."
     }
   ],
   "timespan": {

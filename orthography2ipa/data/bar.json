@@ -9,7 +9,7 @@
   "iso639_3": "bar",
   "glottolog_code": "bava1246",
   "wikidata_qid": "Q29540",
-  "notes": "STUB: the grapheme inventory of Bavarian is NOT yet specified (graphemes/allophones are empty). Bavarian (Boarisch) is an Upper German variety of Bavaria, Austria and South Tyrol, written in the Latin script. It has NO single official orthography: writers use German spelling conventions adapted ad hoc, and the phoneme–grapheme mapping differs substantially between the Northern, Central and Southern dialect areas, so a single sourced letter→IPA table cannot honestly be given. INPUT CONTRACT: Latin-script (German-convention) Bavarian text. See also the existing de-x-bavarian spec for the Bavarian-influenced German variety.",
+  "notes": "STUB (deliberate): the grapheme inventory of Bavarian is NOT specified. Bavarian (Boarisch) is an Upper German variety of Bavaria, Austria and South Tyrol. The English Wikipedia article states plainly that 'there is no common orthographic standard': writers adapt German spelling ad hoc, and Northern, Central and Southern Bavarian differ substantially in their (large) vowel systems, so the same letter has different values per area. Wikipedia does print a pan-dialectal spelling->IPA convention (a=/ɐ/ vs à=/a/ vs å=/ɑ/, ä è é, diphthongs ea ia oa ua ei oi öi ui au ou), but it is an editorial convention of that article, not a published norm, and it commits to no variety; the bar.wikipedia spelling guideline page does not exist. Per the project rule that a spec must name ONE variety plus ONE cited spelling norm, none is adopted and no map is claimed. INPUT CONTRACT (for any future spec): Latin-script, German-convention Bavarian text. See also the de-x-bavarian spec for Bavarian-accented Standard German.",
   "sources": [
     {
       "id": "bavarian_language_wiki",
@@ -20,7 +20,7 @@
       "url": "https://en.wikipedia.org/wiki/Bavarian_language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Bavarian_language",
       "pages": null,
-      "notes": null
+      "notes": "States that Bavarian has no common orthographic standard; also prints a pan-dialectal spelling->IPA convention that is editorial, not a published norm."
     }
   ],
   "wikipedia": [

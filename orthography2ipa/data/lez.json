@@ -3,13 +3,152 @@
   "name": "Lezgian",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "stub",
+  "quality": "research",
   "iso639_3": "lez",
   "glottolog_code": "lezg1247",
   "wikidata_qid": "Q31746",
-  "graphemes": {},
+  "graphemes": {
+    "гъ": [
+      "ʁ"
+    ],
+    "гь": [
+      "h"
+    ],
+    "къ": [
+      "q"
+    ],
+    "кь": [
+      "qʼ"
+    ],
+    "кӏ": [
+      "kʼ"
+    ],
+    "пӏ": [
+      "pʼ"
+    ],
+    "тӏ": [
+      "tʼ"
+    ],
+    "уь": [
+      "y"
+    ],
+    "хъ": [
+      "qʰ"
+    ],
+    "хь": [
+      "x"
+    ],
+    "цӏ": [
+      "t͡sʼ"
+    ],
+    "чӏ": [
+      "t͡ʃʼ"
+    ],
+    "а": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "w",
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "e",
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "kʰ",
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "pʰ",
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "tʰ",
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "χ"
+    ],
+    "ц": [
+      "t͡sʰ",
+      "t͡s"
+    ],
+    "ч": [
+      "t͡ʃʰ",
+      "t͡ʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "ъ": [
+      "ʔ"
+    ],
+    "ы": [
+      "ə"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju",
+      "y"
+    ],
+    "я": [
+      "ja",
+      "æ"
+    ]
+  },
   "allophones": {},
-  "notes": "Lezgian (лезги чӏал) of Dagestan and Azerbaijan, written in a Cyrillic alphabet. The grapheme inventory is NOT yet specified. Lezgian has a large consonant inventory with a four-way stop contrast (voiced / voiceless aspirated / voiceless unaspirated / ejective) and uvular and pharyngeal series, encoded by Cyrillic digraphs and the palochka ⟨ӏ⟩; establishing the letter/digraph → IPA table reliably requires a proper descriptive source (Haspelmath's grammar), which has not been consulted. Metadata only. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode lezg1247), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "notes": "Lezgian (лезги чӏал) of Dagestan and Azerbaijan, written in a Cyrillic alphabet since 1938 (41 letters). INPUT CONTRACT: Cyrillic orthography, Unicode NFC, lowercased; the palochka must be U+04CF ⟨ӏ⟩ / U+04C0 ⟨Ӏ⟩ — the Latin 'I'/'l'/'1' shapes seen in some printed fonts are not accepted as input, because no consulted source documents them as a spelling convention. Multigraphs carry the ejective, uvular and front-vowel series — кӏ пӏ тӏ цӏ чӏ (ejectives), къ /q/, кь /qʼ/, хъ /qʰ/, гъ /ʁ/, гь /h/, хь /x/, уь /y/ — and are matched by maximal munch, so they win over their component letters; ь never occurs alone. Aspiration is phonemic but NOT written, so к п т ц ч are given aspirated-first with the unaspirated variant as a second candidate; this ambiguity cannot be resolved from the orthography alone. Щ occurs only in Russian loanwords and is LEFT OUT: no source consulted assigns it a Lezgian IPA value. Labialised consonants (a large part of the 54-consonant inventory) are likewise not distinguished in the orthography and are not modelled. Е is given as [e] first (its value after a consonant) with [je] as the second candidate (word-initial / post-vocalic), since the source lists both without positional detail.",
   "sources": [
     {
       "id": "lez_wiki",
@@ -23,14 +162,26 @@
       "notes": null
     },
     {
-      "id": "phoible",
-      "author": "Moran, Steven & McCloy, Daniel (eds.)",
-      "year": 2019,
-      "title": "PHOIBLE 2.0",
-      "publisher": "Max Planck Institute for the Science of Human History",
-      "url": "https://phoible.org/",
+      "id": "lezgin_alphabets_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Lezgin alphabets — comparative table of Arabic / Latin / Cyrillic / IPA",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lezgin_alphabets",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lezgin_alphabets",
       "pages": null,
-      "notes": "Attested phoneme inventory for glottocode lezg1247."
+      "notes": "Letter-by-letter Cyrillic→IPA table actually read (wikitext via action=raw); also the notes that ы = [ə], ё occurs only in ёъ [joʔ] and щ only in Russian loans."
+    },
+    {
+      "id": "haspelmath1993",
+      "author": "Haspelmath, Martin",
+      "year": 1993,
+      "title": "A Grammar of Lezgian",
+      "publisher": "Mouton de Gruyter (Mouton Grammar Library 9)",
+      "url": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lezgian_language",
+      "pages": null,
+      "notes": "Standard reference grammar; the four-way stop contrast (voiced / aspirated / unaspirated / ejective) and the fact that aspiration is unwritten. Full text not accessible online; used as background, all grapheme values here come from the read Wikipedia tables."
     }
   ],
   "wikipedia": [

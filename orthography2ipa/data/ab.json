@@ -3,9 +3,393 @@
   "name": "Abkhaz",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
+  "quality": "research",
+  "graphemes": {
+    "а": [
+      "ɑ"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "гь": [
+      "ɡʲ"
+    ],
+    "гә": [
+      "ɡʷ"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "ӷь": [
+      "ʁʲ"
+    ],
+    "ӷә": [
+      "ʁʷ"
+    ],
+    "ӷ": [
+      "ʁ"
+    ],
+    "дә": [
+      "dʷ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "e"
+    ],
+    "жь": [
+      "ʒ"
+    ],
+    "жә": [
+      "ʒʷ"
+    ],
+    "ж": [
+      "ʐ"
+    ],
+    "з": [
+      "z"
+    ],
+    "ӡә": [
+      "d͡ʑʷ"
+    ],
+    "ӡ": [
+      "d͡z"
+    ],
+    "и": [
+      "i",
+      "ji",
+      "iː"
+    ],
+    "кь": [
+      "kʲʼ"
+    ],
+    "кә": [
+      "kʷʼ"
+    ],
+    "к": [
+      "kʼ"
+    ],
+    "қь": [
+      "kʲ"
+    ],
+    "қә": [
+      "kʷ"
+    ],
+    "қ": [
+      "k"
+    ],
+    "ҟь": [
+      "qʲʼ"
+    ],
+    "ҟә": [
+      "qʷʼ"
+    ],
+    "ҟ": [
+      "qʼ"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "pʼ"
+    ],
+    "ԥ": [
+      "pʰ"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "ҫ": [
+      "ɕ"
+    ],
+    "тә": [
+      "tʷʼ"
+    ],
+    "т": [
+      "tʼ"
+    ],
+    "ҭә": [
+      "tʷʰ"
+    ],
+    "ҭ": [
+      "tʰ"
+    ],
+    "у": [
+      "w",
+      "u",
+      "uː"
+    ],
+    "ф": [
+      "f"
+    ],
+    "хь": [
+      "χʲ"
+    ],
+    "хә": [
+      "χʷ"
+    ],
+    "х": [
+      "χ"
+    ],
+    "ҳә": [
+      "ħʷ"
+    ],
+    "ҳ": [
+      "ħ"
+    ],
+    "цә": [
+      "t͡ɕʷʰ"
+    ],
+    "ц": [
+      "t͡sʰ"
+    ],
+    "ҵә": [
+      "t͡ɕʷʼ"
+    ],
+    "ҵ": [
+      "t͡sʼ"
+    ],
+    "ч": [
+      "t͡ʃʰ"
+    ],
+    "ҷ": [
+      "t͡ʃʼ"
+    ],
+    "ҽ": [
+      "ʈ͡ʂʰ"
+    ],
+    "ҿ": [
+      "ʈ͡ʂʼ"
+    ],
+    "шь": [
+      "ʃ"
+    ],
+    "шә": [
+      "ʃʷ"
+    ],
+    "ш": [
+      "ʂ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "ҩ": [
+      "ɥ"
+    ],
+    "џь": [
+      "d͡ʒ"
+    ],
+    "џ": [
+      "ɖ͡ʐ"
+    ]
+  },
+  "allophones": {
+    "ɑ": [
+      "ɑ"
+    ],
+    "b": [
+      "b"
+    ],
+    "v": [
+      "v"
+    ],
+    "ɡʲ": [
+      "ɡʲ"
+    ],
+    "ɡʷ": [
+      "ɡʷ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ʁʲ": [
+      "ʁʲ"
+    ],
+    "ʁʷ": [
+      "ʁʷ"
+    ],
+    "ʁ": [
+      "ʁ"
+    ],
+    "dʷ": [
+      "dʷ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʒʷ": [
+      "ʒʷ"
+    ],
+    "ʐ": [
+      "ʐ"
+    ],
+    "z": [
+      "z"
+    ],
+    "d͡ʑʷ": [
+      "d͡ʑʷ"
+    ],
+    "d͡z": [
+      "d͡z"
+    ],
+    "i": [
+      "i"
+    ],
+    "kʲʼ": [
+      "kʲʼ"
+    ],
+    "kʷʼ": [
+      "kʷʼ"
+    ],
+    "kʼ": [
+      "kʼ"
+    ],
+    "kʲ": [
+      "kʲ"
+    ],
+    "kʷ": [
+      "kʷ"
+    ],
+    "k": [
+      "k"
+    ],
+    "qʲʼ": [
+      "qʲʼ"
+    ],
+    "qʷʼ": [
+      "qʷʼ"
+    ],
+    "qʼ": [
+      "qʼ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "pʼ": [
+      "pʼ"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɕ": [
+      "ɕ"
+    ],
+    "tʷʼ": [
+      "tʷʼ"
+    ],
+    "tʼ": [
+      "tʼ"
+    ],
+    "tʷʰ": [
+      "tʷʰ"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "w": [
+      "w"
+    ],
+    "f": [
+      "f"
+    ],
+    "χʲ": [
+      "χʲ"
+    ],
+    "χʷ": [
+      "χʷ"
+    ],
+    "χ": [
+      "χ"
+    ],
+    "ħʷ": [
+      "ħʷ"
+    ],
+    "ħ": [
+      "ħ"
+    ],
+    "t͡ɕʷʰ": [
+      "t͡ɕʷʰ"
+    ],
+    "t͡sʰ": [
+      "t͡sʰ"
+    ],
+    "t͡ɕʷʼ": [
+      "t͡ɕʷʼ"
+    ],
+    "t͡sʼ": [
+      "t͡sʼ"
+    ],
+    "t͡ʃʰ": [
+      "t͡ʃʰ"
+    ],
+    "t͡ʃʼ": [
+      "t͡ʃʼ"
+    ],
+    "ʈ͡ʂʰ": [
+      "ʈ͡ʂʰ"
+    ],
+    "ʈ͡ʂʼ": [
+      "ʈ͡ʂʼ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʃʷ": [
+      "ʃʷ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "ɥ": [
+      "ɥ"
+    ],
+    "d͡ʒ": [
+      "d͡ʒ"
+    ],
+    "ɖ͡ʐ": [
+      "ɖ͡ʐ"
+    ]
+  },
   "iso639_3": "abk",
   "glottolog_code": "abkh1244",
   "wikidata_qid": "Q5111",
@@ -36,17 +420,18 @@
       "notes": "Reference grammar; the source to use when filling the inventory."
     },
     {
-      "id": "phoible",
-      "author": "Moran, Steven & McCloy, Daniel (eds.)",
-      "year": 2019,
-      "title": "PHOIBLE 2.0",
-      "publisher": "Max Planck Institute for the Science of Human History",
-      "url": "https://phoible.org/",
+      "id": "abkhaz_alphabet_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Abkhaz alphabet",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Abkhaz_alphabet",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Abkhaz_alphabet",
       "pages": null,
-      "notes": "Attested phoneme inventory for glottocode abkh1244."
+      "notes": "Letter-by-letter table of the modern Abkhaz Cyrillic alphabet with IPA values, including the ⟨ь⟩/⟨ә⟩ palatalised and labialised digraphs; source of the grapheme map."
     }
   ],
-  "notes": "Abkhaz (аԥсшәа) — Northwest Caucasian language of Abkhazia, written in an extended Cyrillic alphabet since 1954. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED in this spec (graphemes/allophones are empty). The alphabet has 62+ letters and digraphs encoding a very large consonant inventory (~58 consonants, only 2 phonemic vowels /a ə/), with three-way plain/labialised/palatalised series and productive ejectives; a reliable letter→IPA table needs research against a reference grammar (Hewitt 1979) before it can be claimed here. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode abkh1244), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "notes": "Abkhaz (аԥсшәа) — Northwest Caucasian, written since 1954 in an extended Cyrillic alphabet. INPUT CONTRACT: Cyrillic text in the modern (1954) Abkhaz orthography, Unicode NFC, lowercase folding applied by the engine. The orthography is heavily DIGRAPHIC: the modifier letters ⟨ь⟩ (palatalisation) and ⟨ә⟩ U+04D9 (labialisation) combine with a base consonant to spell a distinct phoneme (гь /ɡʲ/, гә /ɡʷ/, шь /ʃ/, шә /ʃʷ/, ҟә /qʷʼ/ …), so every such digraph is listed as its own grapheme key and is matched by maximal munch ahead of the bare letter. Only two vowels are phonemic, /ɑ/ and /ɨ/; ⟨е о и у⟩ historically represent /ɑj ɑw jɨ wɨ/ sequences and are mapped to their surface values /e o i(j) u(w)/ as given in the alphabet table. ⟨ь⟩ and ⟨ә⟩ never occur alone as phonemes and are therefore not given standalone entries.",
   "timespan": {
     "start_year": 1862,
     "end_year": null
