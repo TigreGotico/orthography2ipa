@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.69.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.69.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.68.0a1...1.69.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): European Portuguese accent enrichment \(Coimbra/Braga/São-Miguel + validations\) [\#247](https://github.com/TigreGotico/orthography2ipa/pull/247) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.68.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.68.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.67.0a1...1.68.0a1)
@@ -696,10 +704,6 @@
 ## [1.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.6.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.5.0a1...1.6.0a1)
-
-**Merged pull requests:**
-
-- docs: credit the mirandese gold set's native-speaker provenance [\#55](https://github.com/TigreGotico/orthography2ipa/pull/55) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.5.0a1) (2026-06-11)
 
