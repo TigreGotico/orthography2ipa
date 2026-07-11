@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.65.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.65.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.64.0a1...1.65.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): Portuguese external /s/-sandhi before vowels \(Algarve/Azores \[ʒ\], standard \[z\]\) [\#238](https://github.com/TigreGotico/orthography2ipa/pull/238) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.64.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.64.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.63.0a1...1.64.0a1)
@@ -689,10 +697,6 @@
 ## [1.3.1a2](https://github.com/TigreGotico/orthography2ipa/tree/1.3.1a2) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.3.1a1...1.3.1a2)
-
-**Merged pull requests:**
-
-- docs: benchmark harness, dataset provenance and reference numbers [\#48](https://github.com/TigreGotico/orthography2ipa/pull/48) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.3.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.3.1a1) (2026-06-11)
 
