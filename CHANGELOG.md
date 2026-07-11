@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.42.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.42.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.41.0a1...1.42.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model Açoriano and Madeirense European Portuguese dialects [\#168](https://github.com/TigreGotico/orthography2ipa/pull/168) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.41.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.41.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.40.0a1...1.41.0a1)
