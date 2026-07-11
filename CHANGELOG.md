@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.73.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.73.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.72.1a1...1.73.0a1)
+
+**Merged pull requests:**
+
+- feat: lexicon overlay \(sidecar TSV\) — word\_exceptions at scale \(E3\) [\#263](https://github.com/TigreGotico/orthography2ipa/pull/263) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.72.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.72.1a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.72.0a1...1.72.1a1)
