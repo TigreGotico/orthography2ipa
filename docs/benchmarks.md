@@ -38,9 +38,12 @@ be read:
   phonemizer/espeak-lineage; an espeak-vs-o2i table on that gold measures
   how similarly two systems diverge from the truth, not who is closer to
   it.
-- **Absolute PER is noisy — treat it as directional, not precise.** Runs
-  are capped at 300 alphabetically-ordered words; the same spec can move
-  ±several points between slices. Read numbers as relative/ranking
+- **Absolute PER is noisy — treat it as directional, not precise.** The
+  published scoreboard scores the **full** gold set of every language (see
+  "Full-dataset scoreboard" below), so its `N` is the number of gold words
+  actually covered — not a sample — and its
+  PER is the whole-set number — but PER is still bound by the gold's own
+  notation conventions and provenance, so read numbers as relative/ranking
   signals, not measurements to three decimals.
 - **Small-`N` rows are anecdotes.** Many `clup_dialect` rows are `N=1–17`
   and several `ep_dialects`/`mirandese` rows are `N<30`. Always
@@ -157,9 +160,11 @@ metropolitan variant of its region — `lbx` (Lisbon Standard) → `pt-PT`,
 second-metropolitan codes (`lbn`, `rjx`, `rjo`, `spo`, `map`) are skipped:
 each is a register variant of a region already covered by its Standard
 code, and no distinct spec exists for it, so scoring it would duplicate a
-row or conflate registers. 617k rows are far too many to score in full, so
-each region is sampled with a fixed seed (`SAMPLE_SEED`), de-duplicating by
-spelling. Provenance: **semi-automated, community-scraped** IPA →
+row or conflate registers. The published `--scoreboard` run scores the
+**entire** de-duplicated regional set (no cap); a `--limit N` or CI-sample
+run instead draws a fixed-seed (`SAMPLE_SEED`) sample of N words per region,
+de-duplicating by spelling, so the smaller slice stays unbiased and
+reproducible. Provenance: **semi-automated, community-scraped** IPA →
 `crowd-scraped` tier, directional only. This row is what finally measures
 the recently built `pt-AO`, `pt-MZ` and `pt-TL` specs.
 
@@ -249,10 +254,12 @@ tags, `pt-PT` here for consistency with `portuguese_lexicon` and
 (`pronunciations` field) are all scored, and the harness keeps the best
 match per the standard multi-reference handling.
 
-The file is alphabetically ordered, so the harness does **not** take its
-head (that would be a biased all-"a…" slice): it reads the whole file and
-draws a fixed-seed (`SAMPLE_SEED`) random sample of up to `--limit` words,
-so the slice is unbiased yet fully reproducible across runs. Provenance:
+The file is alphabetically ordered, so the harness never takes its head
+(that would be a biased all-"a…" slice): it reads the whole file. The
+published `--scoreboard` run scores **every** entry (no cap); a `--limit N`
+or CI-sample run draws a fixed-seed (`SAMPLE_SEED`) random sample of N words
+so the smaller slice is unbiased yet fully reproducible across runs.
+Provenance:
 Infopédia is a reputable published dictionary, but **the methodology that
 produced its IPA is undocumented** — it is not stated to be hand-checked,
 nor is the tooling behind it known — so this row is `lexicon-derived` and
@@ -457,8 +464,15 @@ downloading the full parquet), whitespace-tokenizes each paragraph's
 `text` and `phonemes` in lockstep (ahoNT emits one phoneme token per
 source word, punctuation attached to the token, per the dataset card),
 pairs tokens positionally, strips surrounding punctuation from both
-sides, and keeps the first `limit` (default 300) deduplicated
-single-word pairs. Single word-tokens are used as the scored unit —
+sides, and collects deduplicated single-word pairs. This loader carries an
+intrinsic, language-agnostic bound that `--limit` cannot lift: it stops
+after `_HITZ_BASQUE_MAX_PARAGRAPHS` (500) paginated paragraphs rather than
+pulling the full 1.67M-row set, so even the full `--scoreboard` run scores
+the word pairs harvested from those first 500 paragraphs, not the entire
+corpus. This is the one dataset that remains bounded under the full
+scoreboard, and it is bounded by paging infrastructure (uniformly, not
+per language), not by a sampling `--limit`. Single word-tokens are used as
+the scored unit —
 following `load_ep_dialects`'s precedent of scoring non-lexicon-shaped
 gold through the harness's standard `transcribe_word`/PER pipeline —
 rather than whole sentences, since paragraph-level ahoNT stress
@@ -541,8 +555,9 @@ this harness at all *and* a language tag registered in this repo's specs
 from G2P+ training). The loader (`load_ipa_childes` in
 `scripts/benchmark.py`) splits each row's orthographic sentence and its
 `ipa_g2p_plus` column on whitespace/`" | "` respectively, pairs tokens
-positionally, skips rows whose token counts don't line up, and keeps the
-first `limit` (default 300) deduplicated single-word pairs — the same
+positionally, skips rows whose token counts don't line up, and collects
+deduplicated single-word pairs (the full `--scoreboard` run reads the whole
+test split; `--limit N` keeps only the first N) — the same
 positional-alignment technique `load_hitz_basque` uses for paragraph-level
 gold, applied here to dataset-native sentence-level alignment instead of
 manual tokenization.
@@ -671,9 +686,47 @@ the pair's count dropped.
   bars) are stripped from both sides — gold sets differ in
   transcription depth, and the engine should not be scored on notation
   conventions. `--keep-stress` / `--narrow` disable this.
-- Runs are capped at 300 words by default — gold sets are alphabetical,
-  so treat single-slice numbers as reference points, not leaderboard
-  entries.
+- The committed `--scoreboard` scores the **full** gold set of every
+  language (no cap), so each row's `N` is the number of gold words covered,
+  not a sample (see
+  "Full-dataset scoreboard" below). Ad-hoc `--limit N` runs (and the CI
+  regression sample) apply a uniform cap for speed; those are reference
+  points, not the published number.
+
+### Full-dataset scoreboard
+
+The committed scoreboard (`docs/scoreboard.md` / `benchmarks/results.json`)
+is **full-dataset**: `scripts/benchmark.py --scoreboard` scores the entire
+gold set of every registered dataset/language with **no cap**, applied
+uniformly (there is no per-language limit). The `N` column is therefore the
+real number of covered gold words, not a sample size. Regenerating it is
+slow (the 617k-row `portuguese_phonetic_lexicon` and 102k-row `infopedia_pt`
+dominate the runtime), which is why the CI regression gate does *not* re-run
+it in full — see below.
+
+`--limit N` still exists for ad-hoc fast runs and applies the **same** cap
+`N` to every language (never a per-language mix). The one dataset that stays
+bounded even under the full run is `hitz_basque_ipa`: its loader pages the
+Hugging Face rows API and stops at `_HITZ_BASQUE_MAX_PARAGRAPHS` (500)
+paragraphs rather than pulling the full 1.67M-row corpus — a fixed,
+language-agnostic paging bound, not a sampling `--limit`, disclosed in its
+dataset section above.
+
+**CI regression strategy (full-vs-sample would be dishonest, so it isn't
+done).** Re-running the full scoreboard inside a PR CI job is too slow to be
+practical, but comparing a *sampled* current run against the *full* baseline
+would compare two different slices and manufacture spurious "regressions".
+So the gate never mixes slices: `scripts/check_benchmark_regression.py`
+re-scores at a fixed **uniform** sample (`benchmark.CI_SAMPLE_LIMIT`, the
+same cap for every language) and compares against a **separate** baseline
+committed at that identical cap, `benchmarks/results_ci_sample.json`
+(generated by `scripts/benchmark.py --ci-sample`, clearly labeled the "CI
+regression sample"). Both sides are sliced identically, so a flagged
+regression is a real PER change, not slice noise. The published docs
+scoreboard stays full regardless. A minimum-scored-row floor still fails the
+gate closed if a wholesale dataset-loading outage would otherwise produce a
+false green. Refresh `results_ci_sample.json` whenever the full scoreboard is
+regenerated.
 
 ### Confidence intervals
 

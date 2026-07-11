@@ -4,9 +4,21 @@
 Reuses :func:`scripts.benchmark.build_scoreboard` (no duplicated
 loading/scoring logic) to re-run every registered gold dataset/language
 combination against the current checkout, then compares each resulting
-row's PER to the matching row already committed in
-``benchmarks/results.json`` (written by ``scripts/benchmark.py
---scoreboard``, see PR #76).
+row's PER to the matching row in the committed baseline.
+
+FULL-vs-SAMPLE, never mixed. The PUBLISHED scoreboard
+(``benchmarks/results.json`` / ``docs/scoreboard.md``) is FULL-dataset —
+every gold word, no cap — and is far too slow to re-run in a CI job (the
+617k-row ``portuguese_phonetic_lexicon`` and 102k-row ``infopedia_pt``
+alone take the better part of an hour). So this gate does NOT compare
+against the full scoreboard. It re-scores at a fixed, UNIFORM sample size
+(``benchmark.CI_SAMPLE_LIMIT``, the SAME cap for every language — no
+per-language juggling) and compares against a SEPARATE baseline committed
+at that identical cap (``benchmarks/results_ci_sample.json``, written by
+``scripts/benchmark.py --ci-sample``). Because both sides are sliced
+identically, there is never a mixed-slice comparison producing spurious
+"regressions". Refresh the sample baseline whenever the full scoreboard is
+regenerated.
 
 A row regresses when its new PER exceeds the baseline PER by more than
 an absolute epsilon (default ``0.005`` — small enough to catch a real
@@ -27,7 +39,7 @@ against.
 Usage::
 
     python scripts/check_benchmark_regression.py
-    python scripts/check_benchmark_regression.py --epsilon 0.01 --limit 300
+    python scripts/check_benchmark_regression.py --epsilon 0.01 --limit 500
 """
 from __future__ import annotations
 
@@ -40,7 +52,8 @@ from typing import Dict, List, Tuple
 sys.path.insert(0, os.path.dirname(__file__))
 
 from benchmark import (  # noqa: E402
-    build_scoreboard, REPO_ROOT, SCOREBOARD_JSON, HARNESS_VERSION,
+    build_scoreboard, CI_SAMPLE_JSON, CI_SAMPLE_LIMIT,
+    HARNESS_VERSION,
 )
 
 DEFAULT_EPSILON = 0.005
@@ -186,20 +199,24 @@ def check_harness_and_limit(
             f"baseline was generated with harness_version(s) "
             f"{sorted(v for v in baseline_versions if v)} but this "
             f"checkout's harness_version is {HARNESS_VERSION!r} — "
-            f"regenerate benchmarks/results.json "
-            f"(scripts/benchmark.py --scoreboard) before comparing."
+            f"regenerate the CI sample baseline "
+            f"(scripts/benchmark.py --ci-sample) before comparing."
         )
 
-    baseline_limits = {
-        r.get("limit") for r in baseline.values() if r.get("limit") is not None
-    }
+    # ``None`` is a meaningful limit — it marks a full-dataset row. Keep it in
+    # the set so a full baseline (results.json) compared against a sampled run
+    # trips the mismatch instead of slipping through an empty set.
+    baseline_limits = {r.get("limit") for r in baseline.values()}
     if baseline_limits and baseline_limits - {limit}:
+        shown = sorted(
+            ("full" if v is None else v) for v in baseline_limits
+        ) if None in baseline_limits else sorted(baseline_limits)
         sys.exit(
-            f"baseline was generated with limit(s) {sorted(baseline_limits)} "
-            f"but this run used --limit {limit} — a different slice size "
-            f"per dataset produces spurious PER deltas unrelated to real "
-            f"regressions. Re-run with --limit matching the baseline "
-            f"(or regenerate the baseline at the new limit)."
+            f"baseline was generated with limit(s) {shown} "
+            f"but this run used --limit {'full' if limit is None else limit} — "
+            f"a different slice size per dataset produces spurious PER deltas "
+            f"unrelated to real regressions. Re-run with --limit matching the "
+            f"baseline (or regenerate the baseline at the new limit)."
         )
 
 
@@ -209,12 +226,16 @@ def main() -> None:
                      help=f"Max allowed absolute PER worsening vs. "
                           f"baseline before a row counts as a regression "
                           f"(default {DEFAULT_EPSILON}).")
-    ap.add_argument("--limit", type=int, default=300,
-                     help="Rows per dataset/lang to evaluate (passed "
-                          "through to build_scoreboard).")
-    ap.add_argument("--baseline", default=SCOREBOARD_JSON,
-                     help="Path to the committed baseline JSON "
-                          "(default benchmarks/results.json).")
+    ap.add_argument("--limit", type=int, default=CI_SAMPLE_LIMIT,
+                     help="Uniform rows per dataset/lang to evaluate "
+                          "(passed through to build_scoreboard). Must match "
+                          "the sample baseline's limit; defaults to "
+                          f"benchmark.CI_SAMPLE_LIMIT ({CI_SAMPLE_LIMIT}).")
+    ap.add_argument("--baseline", default=CI_SAMPLE_JSON,
+                     help="Path to the committed CI sample baseline JSON "
+                          "(default benchmarks/results_ci_sample.json). This "
+                          "is the UNIFORM-sample baseline, NOT the full "
+                          "published benchmarks/results.json.")
     args = ap.parse_args()
 
     baseline = load_baseline(args.baseline)
