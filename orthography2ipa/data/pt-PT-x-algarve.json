@@ -75,7 +75,7 @@
     }
   },
   "parent": "pt-PT",
-  "notes": "Algarvio Portuguese, southernmost continental dialect (Faro, Portimão, Quarteira, Lagos). Categorical features per DIALECT_PATTERNS / whitepaper5 (TigreGotico internal dialect research): (1) /ej/ → [e] MONOPHTHONG (Alentejo-like); (2) /ow/ → [o] MONOPHTHONG; (3) SIBILANT VOICING — word-final /s/ → [ʒ] (mas a→[maʒ ɐ], muitos amigos→[ˈmũj̃tuʒ ɐˈmiɡuʒ]); encoded in positional_graphemes s/word_final→[ʒ], coda→[ʒ]; this is a distinct feature from Alentejo (which uses s→z cross-word sandhi); (4) nasal -em endings: /ɐ̃j̃/ → [ẽ] class (shared with Alentejo); (5) open vowel qualities [ɛ, ɔ]; (6) no betacism, /v/ ≠ /b/. NOTES-ONLY: apico-alveolar sibilant tendency (older/rural speakers) not encoded. Historical Mozarabic/Arabic prosodic features are suprasegmental.",
+  "notes": "Algarvio Portuguese, southernmost continental dialect (Faro, Portimão, Lagos, Sagres). Modelled features: (1) DEFINING Barlavento feature — fronting of the stressed labio-velar /u/ → [y] (tudo→[ˈtydu], lume→[ˈlymɨ], mudo→[ˈmydu]); encoded as the allophone rule ALG_U_FRONTING, stressed nucleus only (Cintra 1971; Brissos 2014; Segura da Cruz 1989). (2) /ej/ → [e] and /ow/ → [o] monophthongs (leite→[ˈletɨ], outro→[ˈotɾu]). (3) Southern sibilant voicing — word-final /s/ → [ʒ] (mas→[maʒ], muitos amigos→[ˈmũj̃tuʒ ɐˈmiɡuʒ]); encoded in positional_graphemes s/coda→[ʒ], word_final→[ʒ]. (4) Open stressed vowel qualities [ɛ, ɔ]. (5) Dark coda /l/→[ł] and coda /s,z/→[ʃ,ʒ] inherited from the pt-PT base allophone_rules. NOT MODELLED: the older/rural apico-alveolar sibilant [s̥] (articulatory, not phoneme-level simulable — Cintra 1971 flags this class of feature as non-modellable); the broader stressed [a]→[ɛ] / [ɔ]→[o̝] chain shift (context-conditioned; see ALG_U_FRONTING notes). No betacism: /v/ ≠ /b/. PROCLITIC GUARD: the common function words o/os/no/nos/do/dos/ao/aos/pelo/pelos/um/uns are given word_exceptions with their correct [u]-vowel forms (o→[u], no→[nu]); the word-level stress detector mis-marks these monosyllabic clitics as stressed, so without the override ALG_U_FRONTING would wrongly front the article/contraction vowel to [y]. Genuine stressed lexical /u/ still fronts (tudo→[ˈtydu], sul→[ˈsyɫ]).",
   "quality": "research",
   "ancestors": [
     {
@@ -90,6 +90,36 @@
   ],
   "script_type": "alphabet",
   "sources": [
+    {
+      "id": "cintra1971",
+      "author": "Cintra, L. F. Lindley",
+      "year": 1971,
+      "title": "Nova proposta de classificação dos dialectos galego-portugueses",
+      "publisher": "Boletim de Filologia (Centro de Estudos Filológicos, Lisboa), 22: 81–116",
+      "url": "https://cvc.instituto-camoes.pt/hlp/biblioteca/novaproposta.pdf",
+      "pages": "81–116",
+      "notes": "Foundational classification of European Portuguese dialects. Delimits the Barlavento Algarvio by the isogloss of stressed-/u/ palatalisation (‘a palatalização, em maior ou menor grau, da vogal tónica u’) and lists final unstressed high-vowel deletion (‘a queda das vogais finais -u, -i (ou -e), outro dos fenómenos mais típicos desta região’) as a central-southern (Alto Alentejo / Beira Baixa) feature."
+    },
+    {
+      "id": "brissos2014",
+      "author": "Brissos, Fernando",
+      "year": 2014,
+      "title": "New insights into Portuguese central-southern dialects: understanding their present and past forms through acoustic data from stressed vowels",
+      "publisher": "Journal of Portuguese Linguistics 13(1): 63–115",
+      "url": "https://www.clul.ulisboa.pt/files/849/Brissos_2014_comprimido.pdf",
+      "pages": "63–115",
+      "notes": "Acoustic study of central-southern EP vowel systems. Documents Algarvio stressed /u/ → [y] ([tˈyd] ‘tudo’, [lˈymɨ] ‘lume’) and final unstressed [u] deletion/reduction ([sˈœʃt] ‘cesto’); cites Lüdtke (1957) and Maia (1975–78) that the /u/ palatalisation is stressed-only."
+    },
+    {
+      "id": "segura_dacruz1989",
+      "author": "Segura da Cruz, Maria Luísa",
+      "year": 1989,
+      "title": "La palatalisation de [u] dans le «Barlavento Algarvio»",
+      "publisher": "Espaces romans (études de dialectologie et de géolinguistique offertes à Gaston Tuaillon), II: 434–456. Grenoble: Université Stendhal / ELLUG",
+      "url": null,
+      "pages": "434–456",
+      "notes": "Monograph devoted to the stressed-/u/ → [y] fronting isogloss of the western (Barlavento) Algarve."
+    },
     {
       "id": "mateus_dandrade2000",
       "author": "Mateus, M.H.M. & d'Andrade, E.",
@@ -119,16 +149,6 @@
       "url": null,
       "pages": null,
       "notes": null
-    },
-    {
-      "id": "tigregotico_dialect_research_2026",
-      "author": "TigreGotico",
-      "year": 2026,
-      "title": "DIALECT_PATTERNS.md and whitepaper5: Phoneme-Level Dialect Transforms for European Portuguese",
-      "publisher": "TigreGotico internal research",
-      "url": null,
-      "pages": null,
-      "notes": "Internal dialect feature matrix and IPA transform inventory; pending external peer review"
     }
   ],
   "wikipedia": [
@@ -178,5 +198,31 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "allophone_rules": [
+    {
+      "id": "ALG_U_FRONTING",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "y",
+      "stress": "stressed",
+      "syllable_position": "nucleus",
+      "notes": "Barlavento Algarvio fronting of the stressed labio-velar /u/ to the front rounded [y] — the defining and most salient feature of the western Algarve. Cintra (1971) delimits the sub-dialect by exactly this isogloss (‘a palatalização, em maior ou menor grau, da vogal tónica u’); Brissos (2014) gives [tˈyd] ‘tudo’ and [lˈymɨ] ‘lume’; Segura da Cruz (1989) is a study dedicated to it. Restricted to the STRESSED nucleus (stress=‘stressed’): it does not apply to unstressed /u/ (Lüdtke 1957; Maia 1975–78, via Cintra 1971 and Brissos 2014), so the condition also blocks it from feeding on the inherited pt-PT unstressed /o/→[u] reduction. NOTES-ONLY (not modelled): the wider central-southern chain shift — stressed [a]→[ɛ] in high-vowel/palatal contexts and [ɔ]→[o̝] raising (Brissos 2014) — is context-conditioned and left to notes to avoid a cascade collapse of the vowel space; only the categorical /u/→[y] is realised here."
+    }
+  ],
+  "word_exceptions": {
+    "o": "u",
+    "os": "uʒ",
+    "no": "nu",
+    "nos": "nuʒ",
+    "do": "du",
+    "dos": "duʒ",
+    "ao": "aw",
+    "aos": "awʒ",
+    "pelo": "pɛlu",
+    "pelos": "pɛluʒ",
+    "um": "ũ",
+    "uns": "ũʒ"
   }
 }
