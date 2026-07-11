@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.47.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.47.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.46.1a1...1.47.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): add Uruguayan Portuguese \(Riverense / DPU\) [\#188](https://github.com/TigreGotico/orthography2ipa/pull/188) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.46.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.46.1a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.46.0a1...1.46.1a1)
@@ -608,7 +616,6 @@
 - fix: py3.9 annotation compatibility, plugin-failure logging, public exports [\#17](https://github.com/TigreGotico/orthography2ipa/pull/17) ([JarbasAl](https://github.com/JarbasAl))
 - Update phonetic representation of graphemes in an.json [\#14](https://github.com/TigreGotico/orthography2ipa/pull/14) ([Juanpabl](https://github.com/Juanpabl))
 - feat: ast+gl [\#8](https://github.com/TigreGotico/orthography2ipa/pull/8) ([JarbasAl](https://github.com/JarbasAl))
-- Latin graphemes + portuguese 4way sibilant distinction [\#7](https://github.com/TigreGotico/orthography2ipa/pull/7) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
