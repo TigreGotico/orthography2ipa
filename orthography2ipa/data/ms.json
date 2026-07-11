@@ -74,7 +74,8 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Malay_language",
-    "https://ms.wikipedia.org/wiki/Bahasa_Melayu"
+    "https://ms.wikipedia.org/wiki/Bahasa_Melayu",
+    "https://en.wikipedia.org/wiki/Proto-Malayo-Polynesian_language"
   ],
   "timespan": {
     "start_year": 1400,
@@ -88,5 +89,44 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Malay default stress is penultimate (-2). Penult schwa in native Malay roots may shift stress to antepenult; this variation is lexical and not modeled. Source: Clynes & Deterding (2011), Adelaar & Himmelmann (2005)."
-  }
+  },
+  "parent": "poz",
+  "ancestors": [
+    {
+      "code": "poz",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Malayo-Polynesian branch of Austronesian."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Sanskrit adstrate: Old-Malay Hindu-Buddhist stratum."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Arabic adstrate: religious vocabulary and the Jawi script."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Persian adstrate: courtly loanwords via Islamic trade."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: colonial and modern loanwords."
+    },
+    {
+      "code": "pt-PT",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Portuguese adstrate: early trade loanwords."
+    }
+  ]
 }

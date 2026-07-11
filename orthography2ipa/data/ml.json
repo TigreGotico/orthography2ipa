@@ -430,5 +430,6 @@
     "end_year": null
   },
   "glottolog_code": "mala1464",
-  "iso639_3": "mal"
+  "iso639_3": "mal",
+  "parent": "ta"
 }

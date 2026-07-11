@@ -136,8 +136,13 @@ class TestDistanceMetrics:
         assert sim == pytest.approx(0.12)
 
     def test_unrelated_language_zero_ancestry(self, kab):
-        """Basque shares no ancestry node with kab."""
-        assert ancestry_similarity(kab, orthography2ipa.get("eu")) == pytest.approx(0.0)
+        """A genetically unrelated language with no shared contact stratum has
+        zero ancestry overlap with Kabyle. Finnish (Uralic) is used as the
+        control: unlike Basque — which since round-2 enrichment carries a
+        Romance/Andalusi-Arabic adstrate that faintly touches the Semitic node
+        shared with Kabyle's Arabic adstrate — Finnish's ancestry tree
+        (Proto-Uralic, Russian) never intersects Kabyle's."""
+        assert ancestry_similarity(kab, orthography2ipa.get("fi")) == pytest.approx(0.0)
 
     def test_closer_ancestry_than_unrelated(self, kab):
         """kab is ancestrally closer to Berber than to Basque."""

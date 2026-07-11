@@ -296,7 +296,8 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Swahili_language"
+    "https://en.wikipedia.org/wiki/Swahili_language",
+    "https://en.wikipedia.org/wiki/Proto-Bantu_language"
   ],
   "urls": [
     "https://en.wikipedia.org/wiki/Swahili_language",
@@ -316,5 +317,38 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Swahili (Standard, as spoken in Tanzania/Kenya) has regular penultimate stress in native vocabulary. Loanwords may carry final stress but those are a minority. Source: Nurse & Hinnebusch (1993), Swahili and Sabaki; Wikipedia: https://en.wikipedia.org/wiki/Swahili_phonology"
-  }
+  },
+  "parent": "bnt",
+  "ancestors": [
+    {
+      "code": "bnt",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Bantu (Sabaki) branch of Niger-Congo."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.18,
+      "notes": "Arabic adstrate: the dominant contact layer of the Swahili coast — a very large share of the lexicon."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "English adstrate: colonial and modern loanwords."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Persian adstrate: early Indian-Ocean trade vocabulary."
+    },
+    {
+      "code": "pt-PT",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Portuguese adstrate: 16th-c. coastal trade loanwords."
+    }
+  ]
 }

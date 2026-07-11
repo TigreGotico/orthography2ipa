@@ -240,10 +240,32 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Yoruba_language",
-    "https://en.wikipedia.org/wiki/Yoruba_phonology"
+    "https://en.wikipedia.org/wiki/Yoruba_phonology",
+    "https://en.wikipedia.org/wiki/Volta%E2%80%93Niger_languages"
   ],
   "timespan": {
     "start_year": 1800,
     "end_year": null
-  }
+  },
+  "parent": "nic",
+  "ancestors": [
+    {
+      "code": "nic",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Volta-Niger (Defoid) branch of Niger-Congo."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.07,
+      "notes": "English adstrate: colonial and modern loanwords (Nigeria)."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Arabic adstrate: Islamic religious vocabulary."
+    }
+  ]
 }

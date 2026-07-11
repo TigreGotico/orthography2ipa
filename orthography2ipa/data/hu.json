@@ -347,7 +347,8 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hungarian_language",
     "https://hu.wikipedia.org/wiki/Magyar_nyelv",
-    "https://en.wikipedia.org/wiki/Hungarian_phonology"
+    "https://en.wikipedia.org/wiki/Hungarian_phonology",
+    "https://en.wikipedia.org/wiki/Proto-Uralic_language"
   ],
   "positional_graphemes": {
     "b": {
@@ -407,5 +408,38 @@
     "marked_vowels": [],
     "stress_mark": "ˈ",
     "notes": "Hungarian has categorical initial stress. Long vowels (á é í ó ő ú ü ű) mark vowel length and quality, not stress. Source: Siptár & Törkenczy (2000), The Phonology of Hungarian; Wikipedia: https://en.wikipedia.org/wiki/Hungarian_phonology"
-  }
+  },
+  "parent": "urj",
+  "ancestors": [
+    {
+      "code": "urj",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Ugric branch of Uralic."
+    },
+    {
+      "code": "sla",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Slavic adstrate: large layer of loanwords after the Magyar settlement in the Carpathian basin."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "German adstrate: Habsburg-era vocabulary."
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Turkic adstrate: Old Turkic and later Ottoman loanwords."
+    },
+    {
+      "code": "la",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Latin adstrate: ecclesiastical and scholarly vocabulary."
+    }
+  ]
 }

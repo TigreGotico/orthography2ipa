@@ -114,8 +114,45 @@
   },
   "allophones": {},
   "positional_graphemes": {},
-  "ancestors": [],
-  "parent": null,
+  "ancestors": [
+    {
+      "code": "ccs",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Kartvelian."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Persian adstrate: long Iranian cultural/political contact."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Arabic adstrate: mostly via Persian."
+    },
+    {
+      "code": "grc",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Greek adstrate: Byzantine ecclesiastical vocabulary."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Russian adstrate: imperial/Soviet-era lexicon."
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Turkic adstrate: Ottoman-era loanwords."
+    }
+  ],
+  "parent": "ccs",
   "notes": "Georgian (Kartuli), official language of Georgia. Written in Mkhedruli script. Three-way consonant distinction: voiced (ბ,გ,დ,ვ,ზ,ჟ,ჯ,ძ), aspirated (თ,ფ,ქ,ჩ,ც,ხ,ჰ), ejective (კ,პ,ტ,ყ,წ,ჭ). Complex consonant clusters. Kartvelian language family unrelated to Indo-European.",
   "sources": [
     {
@@ -136,6 +173,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Georgian_language",
     "https://en.wikipedia.org/wiki/Georgian_phonology",
-    "https://ka.wikipedia.org/wiki/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%A3%E1%83%9A%E1%83%98_%E1%83%94%E1%83%9C%E1%83%90"
+    "https://ka.wikipedia.org/wiki/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%A3%E1%83%9A%E1%83%98_%E1%83%94%E1%83%9C%E1%83%90",
+    "https://en.wikipedia.org/wiki/Proto-Kartvelian_language"
   ]
 }

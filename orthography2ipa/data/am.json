@@ -274,8 +274,36 @@
       "notes": null
     }
   ],
+  "parent": "sem-x-ethiopic",
+  "ancestors": [
+    {
+      "code": "sem-x-ethiopic",
+      "role": "parent",
+      "weight": 0.72,
+      "notes": "Ethiopian (South) Semitic."
+    },
+    {
+      "code": "gez",
+      "role": "ancestor",
+      "weight": 0.12,
+      "notes": "Geʽez ancestor/prestige source: liturgical and literary layer."
+    },
+    {
+      "code": "cus",
+      "role": "substrate",
+      "weight": 0.12,
+      "notes": "Cushitic (Agaw) substrate: SOV order, ejectives, gemination — the chief non-Semitic layer."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Arabic adstrate: religious and lexical borrowing."
+    }
+  ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Amharic"
+    "https://en.wikipedia.org/wiki/Amharic",
+    "https://en.wikipedia.org/wiki/Ethiopian_Semitic_languages"
   ],
   "timespan": {
     "start_year": 1300,

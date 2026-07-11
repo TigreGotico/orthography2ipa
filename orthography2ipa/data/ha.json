@@ -212,10 +212,32 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Hausa_language"
+    "https://en.wikipedia.org/wiki/Hausa_language",
+    "https://en.wikipedia.org/wiki/Chadic_languages"
   ],
   "timespan": {
     "start_year": 1900,
     "end_year": null
-  }
+  },
+  "parent": "cdc",
+  "ancestors": [
+    {
+      "code": "cdc",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "West Chadic branch of Afroasiatic."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.14,
+      "notes": "Arabic adstrate: massive religious/scholarly borrowing via Islam and Ajami literacy."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: colonial and modern loanwords (Nigeria)."
+    }
+  ]
 }

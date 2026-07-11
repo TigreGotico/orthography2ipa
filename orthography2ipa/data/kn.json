@@ -407,5 +407,6 @@
     "end_year": null
   },
   "glottolog_code": "kann1255",
-  "iso639_3": "kan"
+  "iso639_3": "kan",
+  "parent": "ta-x-proto-dravidian"
 }

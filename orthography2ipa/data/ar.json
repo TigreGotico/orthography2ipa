@@ -215,5 +215,20 @@
       ],
       "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
     }
+  ],
+  "parent": "xpa",
+  "ancestors": [
+    {
+      "code": "xpa",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Arabic / Old Arabic (Central Semitic)."
+    },
+    {
+      "code": "arc",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Aramaic adstrate: the Near-Eastern lingua franca before and alongside Arabic."
+    }
   ]
 }

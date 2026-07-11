@@ -295,12 +295,40 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Korean_language",
-    "https://ko.wikipedia.org/wiki/한국어"
+    "https://ko.wikipedia.org/wiki/한국어",
+    "https://en.wikipedia.org/wiki/Sino-Korean_vocabulary"
   ],
   "timespan": {
     "start_year": 1200,
     "end_year": null
   },
   "glottolog_code": "kore1280",
-  "iso639_3": "kor"
+  "iso639_3": "kor",
+  "parent": "pko",
+  "ancestors": [
+    {
+      "code": "pko",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Descent from Proto-Koreanic."
+    },
+    {
+      "code": "ltc",
+      "role": "adstrate",
+      "weight": 0.18,
+      "notes": "Middle Chinese adstrate: the Sino-Korean (hanja) stratum, a huge share of the lexicon."
+    },
+    {
+      "code": "ja",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Japanese adstrate: colonial-era loanwords."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: modern loanwords."
+    }
+  ]
 }

@@ -454,10 +454,38 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Vietnamese_language",
-    "https://en.wikipedia.org/wiki/Vietnamese_phonology"
+    "https://en.wikipedia.org/wiki/Vietnamese_phonology",
+    "https://en.wikipedia.org/wiki/Sino-Vietnamese_vocabulary"
   ],
   "timespan": {
     "start_year": 1651,
     "end_year": null
-  }
+  },
+  "parent": "kha-x-proto-mon-khmer",
+  "ancestors": [
+    {
+      "code": "kha-x-proto-mon-khmer",
+      "role": "parent",
+      "weight": 0.7,
+      "notes": "Vietic branch of Austroasiatic (Mon-Khmer)."
+    },
+    {
+      "code": "ltc",
+      "role": "adstrate",
+      "weight": 0.22,
+      "notes": "Middle Chinese adstrate: the Sino-Vietnamese stratum — an enormous share of the lexicon and the source of the register/tone reshaping."
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "French adstrate: colonial loanwords."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Sanskrit adstrate: older Indic learned terms."
+    }
+  ]
 }

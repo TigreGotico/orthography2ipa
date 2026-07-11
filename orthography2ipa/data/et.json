@@ -101,13 +101,31 @@
   "positional_graphemes": {},
   "ancestors": [
     {
+      "code": "urj",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Finnic branch of Uralic."
+    },
+    {
       "code": "fi",
       "role": "related",
-      "weight": 0.5,
-      "notes": "Closely related Finnic language; shares common Finno-Ugric ancestry"
+      "weight": 0.4,
+      "notes": "Finnish is the closest sister language (mutual Finnic features)."
+    },
+    {
+      "code": "nds",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Middle Low German adstrate: the dominant contact layer under the Baltic-German nobility."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "Russian adstrate."
     }
   ],
-  "parent": null,
+  "parent": "urj",
   "notes": "Estonian, Finnic language with three phonemic quantity degrees (short, long, overlong). Loanword consonants b, d, g are phonemically lenis (partially voiced). Vowel õ /ɤ/ is typologically unusual. No grammatical gender.",
   "sources": [
     {
@@ -128,7 +146,8 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Estonian_language",
     "https://en.wikipedia.org/wiki/Estonian_phonology",
-    "https://et.wikipedia.org/wiki/Eesti_keel"
+    "https://et.wikipedia.org/wiki/Eesti_keel",
+    "https://en.wikipedia.org/wiki/Proto-Uralic_language"
   ],
   "stress": {
     "default_position": 1,

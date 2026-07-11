@@ -108,12 +108,30 @@
   "ancestors": [
     {
       "code": "ar",
-      "role": "ancestor",
+      "role": "parent",
       "weight": 0.8,
-      "notes": "Evolved from Siculo-Arabic; heavily influenced by Sicilian Italian and later English"
+      "notes": "Descent from Siculo-Arabic (Maghrebi Arabic of Sicily)."
+    },
+    {
+      "code": "scn",
+      "role": "superstrate",
+      "weight": 0.12,
+      "notes": "Sicilian superstrate: absorbed prestige layer, large share of the lexicon."
+    },
+    {
+      "code": "it-IT",
+      "role": "superstrate",
+      "weight": 0.08,
+      "notes": "Italian superstrate: further Romance vocabulary and phonemes."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: colonial and modern loanwords."
     }
   ],
-  "parent": null,
+  "parent": "ar",
   "notes": "Maltese, the only Semitic language written in the Latin script and official EU language. Evolved from Siculo-Arabic. Digraph għ represents pharyngeal fricative, h is silent. Ċ and ġ are retroflex-palatal affricates. Extensive lexical borrowing from Sicilian/Italian and English.",
   "sources": [
     {
@@ -134,6 +152,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Maltese_language",
     "https://en.wikipedia.org/wiki/Maltese_phonology",
-    "https://mt.wikipedia.org/wiki/Malti"
+    "https://mt.wikipedia.org/wiki/Malti",
+    "https://en.wikipedia.org/wiki/Siculo-Arabic"
   ]
 }
