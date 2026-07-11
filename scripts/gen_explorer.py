@@ -138,6 +138,23 @@ def build_data():
         spec = o2i.get(code)
         languages[code] = _spec_to_dict(spec, bench_by_lang)
 
+    # Structural family/proto flag: a node used as someone's genetic parent
+    # whose timespan has ENDED is an ancestry grouping (Galaico-Portuguese
+    # 1100–1400, Medieval Portuguese 1200–1500, Hispanic Latin 200–900), not a
+    # living variety. Still-spoken languages that also parent a sub-variety
+    # (gl, es-ES, pt-PT) have an open-ended timespan, so they are NOT flagged —
+    # this avoids mislabelling a modern language whose gold is keyed under a
+    # bare code (es vs es-ES).
+    parent_set = {d["parent"] for d in languages.values() if d["parent"]}
+    for code, d in languages.items():
+        ts = d["timespan"]
+        ended = bool(ts and ts.get("end_year") is not None)
+        # A grouping is a genetic parent that is either a closed historical
+        # stage (ended timespan: Galaico-Portuguese, Medieval Portuguese) or a
+        # pure ancestry stub carrying no data of its own ("… (family node)",
+        # proto-language nodes) — those have tier `stub` and often no timespan.
+        d["is_family"] = bool(code in parent_set and (ended or d["quality"] == "stub"))
+
     families = sorted({d["family"] for d in languages.values() if d["family"]})
     scripts = sorted({d["script"] for d in languages.values() if d["script"]})
     tiers = ["production", "research", "skeleton", "stub"]
@@ -283,6 +300,75 @@ ul.plain li { padding: 4px 0; border-bottom: 1px dashed var(--border); font-size
 .chip { display: inline-block; background: var(--panel2); border: 1px solid var(--border);
   border-radius: 4px; padding: 2px 6px; margin: 2px; font-size: 0.8rem; }
 footer { padding: 10px 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; background: var(--panel); }
+
+/* ── Lineage view tokens (complement the existing blue accent) ──────────── */
+:root {
+  --edge-parent: #5aa89d; --edge-adstrate: #dca94e;
+  --edge-substrate: #c76a6a; --edge-superstrate: #8593c4;
+}
+@media (prefers-color-scheme: light) {
+  :root { --edge-parent: #3e7c74; --edge-adstrate: #c0872d; --edge-substrate: #9a3b3b; --edge-superstrate: #4c5b8a; }
+}
+:root[data-theme="dark"] { --edge-parent: #5aa89d; --edge-adstrate: #dca94e; --edge-substrate: #c76a6a; --edge-superstrate: #8593c4; }
+:root[data-theme="light"] { --edge-parent: #3e7c74; --edge-adstrate: #c0872d; --edge-substrate: #9a3b3b; --edge-superstrate: #4c5b8a; }
+
+/* View switcher */
+.viewnav { display: flex; gap: 4px; padding: 8px 20px 0; background: var(--panel); }
+.viewnav button {
+  font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--muted);
+  background: transparent; border: 1px solid transparent; border-bottom: none;
+  padding: 8px 16px; border-radius: 7px 7px 0 0; cursor: pointer;
+}
+.viewnav button[aria-selected="true"] { color: var(--text); background: var(--bg); border-color: var(--border); }
+.viewnav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.view { flex: 1; min-height: 0; }
+.view[hidden] { display: none !important; }
+#view-browse { display: flex; min-height: 0; }
+
+/* Family tree */
+#view-tree, #view-graph { overflow: auto; padding: 18px 24px; }
+.tree-toolbar { display: flex; gap: 8px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+.tree-toolbar button { font: inherit; font-size: 0.8rem; color: var(--text); background: var(--panel2);
+  border: 1px solid var(--border); border-radius: 5px; padding: 5px 10px; cursor: pointer; }
+.tree-toolbar .hint { color: var(--muted); font-size: 0.8rem; }
+.tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+.tree ul { padding-left: 22px; position: relative; }
+.tree ul ul::before { content: ""; position: absolute; left: 9px; top: 0; bottom: 13px; width: 1px; background: var(--border); }
+.tree li { position: relative; }
+.trow { display: flex; align-items: center; gap: 8px; padding: 3px 8px; border-radius: 6px; }
+.trow:hover { background: var(--panel2); }
+.trow.toggle { cursor: pointer; }
+.trow .tw { width: 13px; font-size: 0.65rem; color: var(--muted); flex: none; transition: transform 0.12s; text-align: center; }
+.collapsed > .trow .tw { transform: rotate(-90deg); }
+.collapsed > ul { display: none; }
+.trow .tdot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.trow .tdot.production { background: var(--production); } .trow .tdot.research { background: var(--research); }
+.trow .tdot.skeleton { background: var(--skeleton); } .trow .tdot.stub { background: var(--stub); }
+.trow .tname { color: var(--text); text-decoration: none; }
+.trow .tname:hover { text-decoration: underline; }
+.trow.fam .tname { font-style: italic; font-weight: 600; }
+.trow.fam .tdot { background: transparent; border: 1.5px dashed var(--muted); }
+.trow .tcode { font-family: monospace; font-size: 0.74rem; color: var(--muted); }
+.trow .fam-tag { font-family: monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--edge-parent); border: 1px solid var(--edge-parent); border-radius: 10px; padding: 0 6px; }
+.trow.sel { background: color-mix(in srgb, var(--accent) 16%, transparent); box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* Contact graph */
+.graph-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+.graph-head h2 { margin: 0; font-size: 1.15rem; }
+.graph-head .sub { color: var(--muted); font-size: 0.85rem; }
+.graph-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.8rem; color: var(--muted); margin: 8px 0 12px; }
+.graph-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.graph-legend i { width: 22px; height: 0; display: inline-block; }
+.lg-parent { border-top: 2.5px solid var(--edge-parent); }
+.lg-adstrate { border-top: 2.5px dashed var(--edge-adstrate); }
+.lg-substrate { border-top: 2.5px dotted var(--edge-substrate); }
+.lg-superstrate { border-top: 2.5px dashed var(--edge-superstrate); }
+#graph-svg { width: 100%; max-width: 760px; height: auto; display: block; }
+#graph-svg text { font-family: monospace; fill: var(--text); }
+#graph-svg .gnode { cursor: pointer; }
+#graph-svg .gnode circle { transition: r 0.1s; }
+.graph-empty { color: var(--muted); font-style: italic; }
 </style>
 </head>
 <body>
@@ -299,17 +385,45 @@ footer { padding: 10px 20px; border-top: 1px solid var(--border); color: var(--m
     <a href="benchmarks.md">docs/benchmarks.md</a> and <a href="scoreboard.md">docs/scoreboard.md</a>.</div>
   <div class="counts" id="counts-line"></div>
 </header>
+<nav class="viewnav" role="tablist" aria-label="Explorer views">
+  <button role="tab" id="vb-browse" aria-selected="true" aria-controls="view-browse">Browse</button>
+  <button role="tab" id="vb-tree" aria-selected="false" aria-controls="view-tree">Family tree</button>
+  <button role="tab" id="vb-graph" aria-selected="false" aria-controls="view-graph">Contact graph</button>
+</nav>
 <main>
-  <div id="sidebar">
-    <div class="controls">
-      <input type="text" id="search" placeholder="Search code, name, family...">
-      <select id="filter-family"><option value="">All families</option></select>
-      <select id="filter-script"><option value="">All scripts</option></select>
-      <select id="filter-tier"><option value="">All tiers</option></select>
+  <div class="view" id="view-browse" role="tabpanel" aria-labelledby="vb-browse">
+    <div id="sidebar">
+      <div class="controls">
+        <input type="text" id="search" placeholder="Search code, name, family...">
+        <select id="filter-family"><option value="">All families</option></select>
+        <select id="filter-script"><option value="">All scripts</option></select>
+        <select id="filter-tier"><option value="">All tiers</option></select>
+      </div>
+      <div id="lang-list"><ul id="lang-ul"></ul></div>
     </div>
-    <div id="lang-list"><ul id="lang-ul"></ul></div>
+    <div id="detail"><p class="empty">Select a language from the list.</p></div>
   </div>
-  <div id="detail"><p class="empty">Select a language from the list.</p></div>
+  <div class="view" id="view-tree" hidden role="tabpanel" aria-labelledby="vb-tree">
+    <div class="tree-toolbar">
+      <button id="tree-expand">Expand all</button>
+      <button id="tree-collapse">Collapse all</button>
+      <span class="hint">Genetic descent from each spec's <code>parent</code>. Dashed rings are ancestry groupings (proto-languages, medieval stages) with no gold of their own. Click a name to open it.</span>
+    </div>
+    <ul class="tree" id="tree-root"></ul>
+  </div>
+  <div class="view" id="view-graph" hidden role="tabpanel" aria-labelledby="vb-graph">
+    <div class="graph-head">
+      <h2 id="graph-title">Contact graph</h2>
+      <span class="sub" id="graph-sub"></span>
+    </div>
+    <div class="graph-legend">
+      <span><i class="lg-parent"></i>parent (descent)</span>
+      <span><i class="lg-adstrate"></i>adstrate</span>
+      <span><i class="lg-substrate"></i>substrate</span>
+      <span><i class="lg-superstrate"></i>superstrate</span>
+    </div>
+    <div id="graph-holder"><p class="graph-empty">Select a language (from Browse or the tree) to see its lineage &amp; contact neighbourhood.</p></div>
+  </div>
 </main>
 <footer>orthography2ipa · static, offline, no network requests · data generated from the registry</footer>
 <script>
@@ -622,11 +736,195 @@ const DATA = __DATA_JSON__;
     highlightActive();
   }
 
+  // ── View switching ────────────────────────────────────────────────────
+  const VIEWS = { "vb-browse": "view-browse", "vb-tree": "view-tree", "vb-graph": "view-graph" };
+  let activeView = "vb-browse";
+  function switchView(btnId) {
+    activeView = btnId;
+    Object.keys(VIEWS).forEach(function (b) {
+      const on = b === btnId;
+      const btn = document.getElementById(b);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+      document.getElementById(VIEWS[b]).hidden = !on;
+    });
+    if (btnId === "vb-tree") { renderTree(); markTreeSelection(); }
+    if (btnId === "vb-graph") renderGraph(currentCode());
+  }
+  const viewBtnIds = Object.keys(VIEWS);
+  viewBtnIds.forEach(function (b) {
+    const btn = document.getElementById(b);
+    btn.addEventListener("click", function () { switchView(b); });
+    btn.addEventListener("keydown", function (e) {
+      const i = viewBtnIds.indexOf(b);
+      let j = -1;
+      if (e.key === "ArrowRight") j = (i + 1) % viewBtnIds.length;
+      else if (e.key === "ArrowLeft") j = (i - 1 + viewBtnIds.length) % viewBtnIds.length;
+      if (j >= 0) { e.preventDefault(); const nb = document.getElementById(viewBtnIds[j]); nb.focus(); switchView(viewBtnIds[j]); }
+    });
+  });
+
+  // ── Family tree (genetic descent from parent pointers) ────────────────
+  let FOREST = null;
+  function buildForest() {
+    const children = {};
+    const hasParent = {};
+    DATA.codes.forEach(function (code) {
+      const p = DATA.languages[code].parent;
+      if (p && DATA.languages[p]) {
+        (children[p] = children[p] || []).push(code);
+        hasParent[code] = true;
+      }
+    });
+    Object.keys(children).forEach(function (p) {
+      children[p].sort(function (a, b) {
+        return DATA.languages[a].name.localeCompare(DATA.languages[b].name);
+      });
+    });
+    const roots = DATA.codes.filter(function (c) { return !hasParent[c]; })
+      .sort(function (a, b) { return DATA.languages[a].name.localeCompare(DATA.languages[b].name); });
+    return { children: children, roots: roots };
+  }
+
+  function treeNode(code, depth) {
+    const d = DATA.languages[code];
+    const kids = (FOREST.children[code] || []);
+    const li = document.createElement("li");
+    li.dataset.code = code;
+    const row = document.createElement("div");
+    row.className = "trow" + (kids.length ? " toggle" : "") + (d.is_family ? " fam" : "");
+    const tw = document.createElement("span");
+    tw.className = "tw"; tw.textContent = kids.length ? "▾" : "";
+    const dot = document.createElement("span");
+    dot.className = "tdot " + esc(d.quality);
+    const name = document.createElement("a");
+    name.className = "tname"; name.href = "#" + encodeURIComponent(code); name.textContent = d.name;
+    name.addEventListener("click", function (e) { e.stopPropagation(); });
+    const codeEl = document.createElement("span");
+    codeEl.className = "tcode"; codeEl.textContent = code;
+    row.appendChild(tw); row.appendChild(dot); row.appendChild(name); row.appendChild(codeEl);
+    if (d.is_family) {
+      const tag = document.createElement("span");
+      tag.className = "fam-tag"; tag.textContent = "family";
+      row.appendChild(tag);
+    }
+    li.appendChild(row);
+    if (kids.length) {
+      const ul = document.createElement("ul");
+      kids.forEach(function (k) { ul.appendChild(treeNode(k, depth + 1)); });
+      li.appendChild(ul);
+      if (depth >= 1) li.classList.add("collapsed");
+      row.addEventListener("click", function () { li.classList.toggle("collapsed"); });
+      row.setAttribute("tabindex", "0"); row.setAttribute("role", "button");
+      row.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); li.classList.toggle("collapsed"); }
+      });
+    }
+    return li;
+  }
+
+  let treeBuilt = false;
+  function renderTree() {
+    if (treeBuilt) return;
+    FOREST = FOREST || buildForest();
+    const root = document.getElementById("tree-root");
+    const frag = document.createDocumentFragment();
+    FOREST.roots.forEach(function (r) { frag.appendChild(treeNode(r, 0)); });
+    root.appendChild(frag);
+    treeBuilt = true;
+    document.getElementById("tree-expand").addEventListener("click", function () {
+      root.querySelectorAll("li.collapsed").forEach(function (li) { li.classList.remove("collapsed"); });
+    });
+    document.getElementById("tree-collapse").addEventListener("click", function () {
+      root.querySelectorAll("li > ul").forEach(function (ul) { ul.parentElement.classList.add("collapsed"); });
+    });
+  }
+
+  function markTreeSelection() {
+    const cur = currentCode();
+    const root = document.getElementById("tree-root");
+    if (!root) return;
+    root.querySelectorAll(".trow.sel").forEach(function (r) { r.classList.remove("sel"); });
+    const li = root.querySelector('li[data-code="' + (window.CSS && CSS.escape ? CSS.escape(cur) : cur) + '"]');
+    if (li) {
+      li.querySelector(".trow").classList.add("sel");
+      // reveal ancestors
+      let p = li.parentElement;
+      while (p && p.id !== "tree-root") {
+        if (p.tagName === "LI") p.classList.remove("collapsed");
+        p = p.parentElement;
+      }
+      li.scrollIntoView({ block: "center" });
+    }
+  }
+
+  // ── Contact graph (radial lineage + contact neighbourhood) ────────────
+  const EDGE = {
+    parent:      { color: "var(--edge-parent)",      dash: "" },
+    adstrate:    { color: "var(--edge-adstrate)",    dash: "7 5" },
+    substrate:   { color: "var(--edge-substrate)",   dash: "1.5 6" },
+    superstrate: { color: "var(--edge-superstrate)", dash: "9 4 2 4" }
+  };
+  function renderGraph(code) {
+    const holder = document.getElementById("graph-holder");
+    const title = document.getElementById("graph-title");
+    const sub = document.getElementById("graph-sub");
+    const d = code ? DATA.languages[code] : null;
+    if (!d) {
+      title.textContent = "Contact graph";
+      sub.textContent = "";
+      holder.innerHTML = '<p class="graph-empty">Select a language (from Browse or the tree) to see its lineage &amp; contact neighbourhood.</p>';
+      return;
+    }
+    title.textContent = d.name;
+    sub.textContent = code + " — parent (descent) plus substrate / superstrate / adstrate contact";
+    const seen = {};
+    const nbrs = [];
+    if (d.parent && DATA.languages[d.parent]) { nbrs.push({ code: d.parent, role: "parent", weight: null }); seen[d.parent] = true; }
+    (d.ancestors || []).forEach(function (a) {
+      if (seen[a.code]) return; seen[a.code] = true;
+      nbrs.push({ code: a.code, role: a.role, weight: a.weight });
+    });
+    if (!nbrs.length) {
+      holder.innerHTML = '<p class="graph-empty">No lineage or contact edges recorded for ' + esc(code) + '.</p>';
+      return;
+    }
+    const W = 760, H = Math.max(360, 220 + nbrs.length * 26), cx = W / 2, cy = H / 2, R = Math.min(cx, cy) - 70;
+    let edges = "", nodes = "";
+    nbrs.forEach(function (nb, i) {
+      const ang = (-Math.PI / 2) + (2 * Math.PI * i / nbrs.length);
+      const x = cx + R * Math.cos(ang), y = cy + R * Math.sin(ang);
+      const e = EDGE[nb.role] || EDGE.parent;
+      const w = 1.6 + (nb.weight ? Math.min(2.4, nb.weight * 3) : 1);
+      edges += '<line x1="' + cx + '" y1="' + cy + '" x2="' + x + '" y2="' + y +
+        '" stroke="' + e.color + '" stroke-width="' + w.toFixed(1) + '" stroke-linecap="round"' +
+        (e.dash ? ' stroke-dasharray="' + e.dash + '"' : "") + '></line>';
+      const known = !!DATA.languages[nb.code];
+      const r = 20;
+      nodes += '<g class="gnode" data-code="' + esc(nb.code) + '" transform="translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ')">' +
+        '<circle r="' + r + '" fill="var(--panel2)" stroke="' + e.color + '" stroke-width="2"' + (known ? "" : ' stroke-dasharray="3 3"') + '></circle>' +
+        '<text text-anchor="middle" dy="-1" font-size="10">' + esc(nb.code.length > 11 ? nb.code.slice(0, 10) + "…" : nb.code) + '</text>' +
+        '<text text-anchor="middle" dy="11" font-size="7.5" fill="var(--muted)">' + esc(nb.role) + '</text>' +
+        '</g>';
+    });
+    const center = '<g transform="translate(' + cx + ',' + cy + ')">' +
+      '<circle r="30" fill="var(--accent)"></circle>' +
+      '<text text-anchor="middle" dy="3" font-size="11" fill="var(--bg)">' + esc(code.length > 12 ? code.slice(0, 11) + "…" : code) + '</text></g>';
+    holder.innerHTML = '<svg id="graph-svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Lineage and contact graph for ' + esc(d.name) + '">' +
+      '<g fill="none">' + edges + '</g>' + nodes + center + '</svg>';
+    holder.querySelectorAll(".gnode").forEach(function (g) {
+      g.addEventListener("click", function () { const c = g.dataset.code; if (DATA.languages[c]) goTo(c); });
+    });
+  }
+
   searchEl.addEventListener("input", renderList);
   familySel.addEventListener("change", renderList);
   scriptSel.addEventListener("change", renderList);
   tierSel.addEventListener("change", renderList);
-  window.addEventListener("hashchange", onHashChange);
+  window.addEventListener("hashchange", function () {
+    onHashChange();
+    if (activeView === "vb-graph") renderGraph(currentCode());
+    if (activeView === "vb-tree") markTreeSelection();
+  });
 
   renderList();
   onHashChange();
