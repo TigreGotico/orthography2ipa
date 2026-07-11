@@ -151,6 +151,11 @@ def grapheme_positions(
             pos.append(GraphemePosition.AFTER_FRONT_VOWEL)
         elif prev_ctx.is_back:
             pos.append(GraphemePosition.AFTER_BACK_VOWEL)
+        # Palatal is decided by the neighbour's IPA, so a vowel *letter*
+        # realised as a palatal glide (⟨i⟩/⟨y⟩ → /j/) is palatal too — mirror
+        # the unconditional BEFORE_PALATAL emission so the two sides agree.
+        if prev_ctx.is_palatal:
+            pos.append(GraphemePosition.AFTER_PALATAL)
         pos.append(GraphemePosition.AFTER_VOWEL)
     elif prev_ctx is not None:
         # Preceding grapheme is a consonant: the palatal class (decided by

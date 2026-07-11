@@ -244,7 +244,7 @@ _PALATAL_SINGLE = frozenset(
 
 # Affricates whose *first* segment is a coronal stop, not a palatal — matched
 # as a prefix of the (tie-bar-stripped) IPA string.
-_PALATAL_AFFRICATES = ("tʃ", "dʒ", "tɕ", "dʑ", "cç", "ɟʝ")
+_PALATAL_AFFRICATES = ("tʃ", "dʒ", "tɕ", "dʑ")
 
 # Combining tie bar (U+0361) joining an affricate's two symbols.
 _TIE_BAR = "͡"

@@ -220,11 +220,13 @@ For any grapheme + neighbouring-context, the engine tries positions
    `AFTER_PALATAL`.
 3. **Default grapheme mapping** — the base `graphemes[grapheme]` list.
 
-A palatal consonant is never a front/back *vowel*, so the palatal class never
-collides with the vowel classes for the same neighbour; both sit at the same
-class tier below the exact-letter positions. When a neighbour is *both* an exact
-letter and a palatal — e.g. ⟨i⟩ realised as the glide /j/ — the exact-letter
-position (`BEFORE_I`) still wins over `BEFORE_PALATAL`.
+Palatality is decided by the neighbour's **IPA**, so it usually applies to a
+consonant grapheme that the vowel classes ignore — but the two classes *can*
+co-occur when a vowel *letter* is realised as the palatal glide /j/ (⟨i⟩/⟨y⟩).
+In that case both the vowel class and the palatal class are emitted, with the
+vowel class first, so `BEFORE_FRONT_VOWEL` out-ranks `BEFORE_PALATAL` for a
+glide-spelled neighbour; and an exact-letter position (`BEFORE_I`) still wins
+over both.
 
 So a spec can declare `BEFORE_FRONT_VOWEL` for the general case and still add a
 narrower `BEFORE_E` override for one letter that behaves differently — the exact

@@ -127,6 +127,18 @@ def test_after_palatal_fires_only_after_palatal_grapheme():
     assert engine.transcribe_word("le") == "le"
 
 
+def test_after_palatal_fires_after_vowel_letter_glide():
+    # A vowel *letter* realised as the palatal glide /j/ (⟨i⟩→/j/) is palatal
+    # too, so AFTER_PALATAL must fire for it — mirroring BEFORE_PALATAL.
+    spec = _palatal_spec(
+        {"e": {GraphemePosition.AFTER_PALATAL: ["ɐ"]}},
+        extra_graphemes={"i": ["j"]},
+    )
+    engine = _engine_with_spec(spec)
+    assert engine.transcribe_word("ie") == "jɐ"   # e after ⟨i⟩→/j/ (palatal)
+    assert engine.transcribe_word("ae") == "ae"   # e after ⟨a⟩ (non-palatal)
+
+
 def test_before_palatal_inert_on_tokenizer_path():
     # Standalone tokenizer resolves positions too (no stress needed here).
     spec = _palatal_spec({"e": {GraphemePosition.BEFORE_PALATAL: ["ɐ"]}})
