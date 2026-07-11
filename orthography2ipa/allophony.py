@@ -150,6 +150,10 @@ class AllophoneRescorer(LatticeRescorer):
             nxt = ctx.next_slot
             if nxt is None or nxt.top.ipa not in rule.followed_by_phoneme:
                 return False
+        if rule.grapheme is not None:
+            g = ctx.grapheme.grapheme
+            if not g or g.lower() not in rule.grapheme:
+                return False
         return True
 
 

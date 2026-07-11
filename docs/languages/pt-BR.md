@@ -23,6 +23,7 @@ map (phoneme → surface allophone, in `allophone_rules`).
 | /t d/ affrication | ⟨t d⟩ → [t͡ʃ d͡ʒ] before ⟨i⟩ | `tio` [ˈt͡ʃiu], `dia` [ˈd͡ʒiɐ] |
 | Coda /l/ vocalisation | ⟨l⟩ → [w] in coda / word-final | `sol` [ˈsɔw], `sal` [ˈsaw] |
 | Coda /s/ | stays alveolar [s]/[z] (no chiado) | `mesmo` [ˈmezmu] |
+| Coda ⟨m/n⟩ nasalisation | ⟨m/n⟩ → [̃] (U+0303) in coda / word-final | `campo` [ˈkɐ̃pu], `sim` [ˈsĩ], `mundo` [ˈmũdu] |
 | Unstressed /a/ | → [ɐ] final/posttonic | `capa` [ˈkapɐ] |
 
 The chiado (coda /s/ → [ʃ]) is a **carioca/RJ dialect delta**, not general
@@ -34,8 +35,34 @@ Two rules make the second map live for BP:
 
 | id | Process | Rule | Example |
 |:---|:---|:---|:---|
+| `PT_NASAL_A_RAISE` | Nasal vowel quality | [a] → [ɐ] / _[̃] | `campo` [ˈkɐ̃pu] |
+| `PT_NASAL_E_RAISE` | Nasal vowel quality | [ɛ] → [e] / _[̃] | `tempo` [ˈtẽpu] |
+| `PT_NASAL_O_RAISE` | Nasal vowel quality | [ɔ] → [o] / _[̃] | `bom` [ˈbõ] |
 | `BR_RAISE_FINAL_E` | Final vowel raising | [ɪ] → [i] / _# | `leite` [ˈlejti] |
 | `BR_RAISE_FINAL_O` | Final vowel raising | [ʊ] → [u] / _# | `gato` [ˈɡatu] |
+
+**Coda vowel nasalisation.** BP retains the general-Portuguese process by which
+a vowel before a **coda** ⟨m/n⟩ (word-finally or before a consonant) nasalises,
+the nasal consonant being absorbed (Mateus & d'Andrade 2000: ch. 2; Barbosa &
+Albano 2004). The nasalisation itself is pre-lexical — the `positional_graphemes`
+`m`/`n` coda positions map to a **U+0303 combining tilde**, deleting the nasal and
+nasalising the preceding vowel — while the three `PT_NASAL_*_RAISE` rules supply
+only the vowel *quality* (the **oral** base of the nasal vowel, so the tilde is
+never doubled), conditioned on a following tilde. An **onset** (intervocalic)
+⟨m/n⟩ leaves the vowel oral (`cama` [ˈkamɐ], `ano` [ˈanu]); ⟨nh⟩ tokenises first
+so `banho` [ˈbaɲu] is untouched; the nasal diphthongs ⟨ão ãe õe⟩ are whole
+graphemes and unaffected. The high vowels ⟨i u⟩ need no quality rule ([ĩ ũ] share
+the oral bases [i u]): `sim` [ˈsĩ], `mundo` [ˈmũdu]. Unlike EP, BP does **not**
+reduce unstressed ⟨o⟩ to [u], so its ⟨o⟩ before a coda nasal is already [o]
+([õ] with the tilde) and the EP-only `PT_NASAL_O_UNRED` rule is not needed here
+(`contar` [kõˈtaɾ], `bondade` [bõˈdadi]).
+
+A shared engine guard (`_expand_beam`) emits the nasalisation tilde **only when
+it attaches to a vowel or a nasal-diphthong glide**, falling back to the oral
+consonant otherwise. This keeps BP output valid IPA where the pre-existing
+⟨gu⟩→[ɡ] vowel-drop strands a consonant in the coda-nasal slot (`algum`
+[ˈawɡm], `segundo` [ˈseɡndu] — no stray tilde on [ɡ]) and prevents a doubled
+tilde on ⟨nn⟩ loans (`inn`, `Finn`).
 
 Word-final unstressed /e o/ raise to the close vowels [i]/[u] (Barbosa &
 Albano 2004: 229; Câmara Jr. 1970). The positional map selects the
@@ -74,11 +101,16 @@ Measured on the committed gold set (PER, lower is better):
 
 | Row | Gold | Before | After | Δ |
 |:---|:---|---:|---:|---:|
-| pt-BR | wikipron (n=124) | 0.1901 | 0.1578 | **−0.0323** |
+| pt-BR | wikipron (n=124) | 0.1535 | 0.1083 | **−0.0452** |
+| pt-BR | portuguese_lexicon (n=300) | 0.2458 | 0.1877 | **−0.0581** |
+| pt-BR | portuguese_phonetic_lexicon (n=300) | 0.2754 | 0.2226 | **−0.0528** |
 
-Final-vowel raising to [i]/[u] both matches the gold's transcription and is
-the cited BP realisation. The `pt` styletts2 row is unaffected: it resolves
-to `pt-PT`, a different spec.
+Coda vowel nasalisation is the dominant driver of these gains — it applies to a
+large fraction of BP words and every measured `pt-BR` gold rewards absorbing the
+coda nasal into the nasal vowel. Final-vowel raising to [i]/[u] both matches the
+gold's transcription and is the cited BP realisation. The `pt` styletts2 row
+resolves to `pt-PT`, a different spec (its small +0.005 movement is discussed in
+the [pt-PT](pt-PT.md) reference).
 
 ---
 

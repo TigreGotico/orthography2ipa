@@ -562,6 +562,14 @@ class AllophoneRule:
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
         assimilation, which conditions on the following consonant's place).
         Empty = don't care.
+    grapheme : Optional[Tuple[str, ...]]
+        Require the slot's own *source grapheme* to be one of these (matched
+        case-insensitively). This lets a rule target a surface shift that
+        depends on where the phoneme came from — e.g. Portuguese unstressed
+        ⟨o⟩ reduces to [u], but before a coda nasal that reduced [u] lowers
+        back to [o] ([õ]) whereas a lexical ⟨u⟩ stays [ũ]; both are the same
+        phoneme [u], so only the source grapheme distinguishes them. ``None``
+        / empty = don't care.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -576,6 +584,7 @@ class AllophoneRule:
     followed_by: Optional[str] = None
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
+    grapheme: Optional[Tuple[str, ...]] = None
     notes: str = ""
 
     def __post_init__(self) -> None:
@@ -587,6 +596,10 @@ class AllophoneRule:
             self, "preceded_by_phoneme", tuple(self.preceded_by_phoneme))
         object.__setattr__(
             self, "followed_by_phoneme", tuple(self.followed_by_phoneme))
+        if self.grapheme is not None:
+            object.__setattr__(
+                self, "grapheme",
+                tuple(g.lower() for g in self.grapheme))
         if self.stress is not None and self.stress not in (
                 "stressed", "unstressed"):
             raise ValueError(

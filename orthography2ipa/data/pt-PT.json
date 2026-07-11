@@ -221,10 +221,73 @@
       "posttonic": [
         "ɐ"
       ]
+    },
+    "m": {
+      "before_consonant": [
+        "̃"
+      ],
+      "word_final": [
+        "̃"
+      ]
+    },
+    "n": {
+      "before_consonant": [
+        "̃"
+      ],
+      "word_final": [
+        "̃"
+      ]
     }
   },
   "parent": "pt-PT-x-medieval",
   "allophone_rules": [
+    {
+      "id": "PT_NASAL_A_RAISE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɐ",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "notes": "Coda-conditioned vowel nasalisation, general Portuguese (Mateus & d'Andrade 2000: ch.2, 'Nasality'): a vowel followed by a tautosyllabic (coda) nasal ⟨m/n⟩ nasalises while the nasal consonant is absorbed into the nasal vowel (campo, canto, ambos). The nasalisation itself is modelled pre-lexically by the positional 'm'/'n' before_consonant/word_final → [̃] (U+0303 combining tilde) map, which deletes the coda nasal and nasalises the preceding vowel by concatenation. This rule supplies only the accompanying VOWEL-QUALITY shift for ⟨a⟩: the nasal low vowel is the central [ɐ̃] (not [ã]), so the stressed oral [a] selected by the positional map raises to [ɐ] before the tilde — [ɐ]+[̃] = the nasal vowel [ɐ̃] (campo [ˈkɐ̃pu], cantar [kɐ̃ˈtaɾ]). The surface is the ORAL base [ɐ]; the nasal tilde comes only from the separate m/n slot, so no vowel is ever double-tilded. It fires ONLY when the next lattice slot is the nasalisation tilde, so an INTERVOCALIC (onset) ⟨m/n⟩ — which stays a consonant and leaves the vowel oral — is untouched (cama [ˈkamɐ], ano [ˈɐnu]). The word-initial ⟨a⟩ already selects [ɐ] (ambos [ˈɐ̃buʃ]), which this rule leaves unchanged."
+    },
+    {
+      "id": "PT_NASAL_E_RAISE",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "notes": "Vowel-quality companion of the coda-nasalisation (see PT_NASAL_A_RAISE; Mateus & d'Andrade 2000: ch.2). The nasal mid front vowel of Portuguese is the close-mid [ẽ], so the open [ɛ] selected by the pre-lexical map raises to [e] before the nasalisation tilde — [e]+[̃] = [ẽ] (tempo [ˈtẽpu], entre, sempre). Surface is the ORAL [e]; the tilde is supplied only by the coda m/n slot (no double tilde). Fires only when the following slot is the tilde, so an oral ⟨e⟩ before an onset ⟨m/n⟩ (nome, pena) is unchanged."
+    },
+    {
+      "id": "PT_NASAL_O_RAISE",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "notes": "Vowel-quality companion of the coda-nasalisation (see PT_NASAL_A_RAISE; Mateus & d'Andrade 2000: ch.2). The nasal mid back vowel of Portuguese is the close-mid [õ], so the open [ɔ] selected by the pre-lexical map raises to [o] before the nasalisation tilde — [o]+[̃] = [õ] (bom [ˈbõ], onde, ombro). Surface is the ORAL [o]; the tilde is supplied only by the coda m/n slot (no double tilde). Fires only when the following slot is the tilde, so an oral ⟨o⟩ before an onset ⟨m/n⟩ (fome, sono) is unchanged. A LEXICAL high vowel ⟨i⟩ or ⟨u⟩ needs no companion rule — its nasal quality [ĩ ũ] shares the oral base [i u] (sim [ˈsĩ], fim [ˈfĩ], mundo [ˈmũdu], um [ˈũ]); the one high-vowel case that DOES need a rule is a REDUCED [u] that came from an unstressed ⟨o⟩, which lowers back to [o] before the nasal — see PT_NASAL_O_UNRED."
+    },
+    {
+      "id": "PT_NASAL_O_UNRED",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "o",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "grapheme": [
+        "o"
+      ],
+      "notes": "European-Portuguese unstressed vowel reduction lowers ⟨o⟩ to [u] (pretonic/atonic o → u: contar [kũˈtaɾ] would be wrong). But that reduction is BLOCKED before a tautosyllabic nasal: an unstressed ⟨o⟩ before a coda ⟨m/n⟩ surfaces as the nasal mid [õ], not [ũ] (Mateus & d'Andrade 2000: ch.2, 'Nasality' — EP nasal [õ] does not raise to [ũ]). The pre-lexical map has already reduced this ⟨o⟩ to [u], so this rule lowers that reduced [u] back to the ORAL [o] before the nasalisation tilde — [o]+[̃] = [õ] (contar [kõˈtaɾ], comprar, montanha, bondade [bõˈdadɨ], pombal, conselho, and the first syllable of bombom [bõˈbõ]). It is gated on grapheme ⟨o⟩ so it fires ONLY on a reduced ⟨o⟩: a LEXICAL ⟨u⟩ before a nasal is a genuine high [ũ] and is left untouched (mundo [ˈmũdu], um [ˈũ], algum [aɫˈɡũ], segundo [sɨˈɡũdu]). pt-BR and the non-reducing Lusophone variants (pt-AO/MZ/TL) never reduce ⟨o⟩→[u], so their ⟨o⟩ before a nasal is already [o] and this rule is inert there."
+    },
     {
       "id": "PT_CODA_L_DARK",
       "phonemes": [
@@ -284,7 +347,7 @@
   ],
   "quality": "research",
   "script_type": "alphabet",
-  "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features. Post-lexical allophony: the diagnostic EP unstressed vowel reduction (unstressed /a/->[ɐ], /e/->[ɨ] (word-final often deletable), /o/->[u]) is realised in the PRE-lexical positional_graphemes map (the nucleus_stressed/nucleus_unstressed/pretonic/posttonic/word_final rows), so no redundant allophone rule restates it. The allophone_rules layer adds the post-lexical CONSONANT realisations that the grapheme map cannot reach cleanly at word edges: dark coda /l/->[ɫ], and the Lisbon-standard coda sibilants /s/->[ʃ], /z/->[ʒ] (the 'chiado'). Intervocalic voiced-stop spirantisation (/b d ɡ/->[β ð ɣ]; Mateus & d'Andrade 2000) is a genuine EP process but is DELIBERATELY NOT encoded here: every available pt gold (infopedia_pt, ep_dialects, wikipron) is broad/phonemic and transcribes the stops, so a spirantisation rule is correct yet regresses all measurable golds with none rewarding it; it is left for a future narrow-transcription task. Dialect-specific sibilant/vocalism deltas (northern apico-alveolar coda [s̺], insular vocalism) are handled by the pt-PT-x-* dialect specs, not the base. Benchmark honesty: the coda sibilant rules improve every pt gold; the dark-l rule improves the narrow human golds (infopedia_pt, ep_dialects) but regresses the broader WikiPron pt row (which transcribes coda /l/ as plain [l]) — it is kept per the honesty gate because the higher-quality golds reward it, with the divergence documented.",
+  "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features. Post-lexical allophony: the diagnostic EP unstressed vowel reduction (unstressed /a/->[ɐ], /e/->[ɨ] (word-final often deletable), /o/->[u]) is realised in the PRE-lexical positional_graphemes map (the nucleus_stressed/nucleus_unstressed/pretonic/posttonic/word_final rows), so no redundant allophone rule restates it. The allophone_rules layer adds the post-lexical CONSONANT realisations that the grapheme map cannot reach cleanly at word edges: dark coda /l/->[ɫ], and the Lisbon-standard coda sibilants /s/->[ʃ], /z/->[ʒ] (the 'chiado'). Intervocalic voiced-stop spirantisation (/b d ɡ/->[β ð ɣ]; Mateus & d'Andrade 2000) is a genuine EP process but is DELIBERATELY NOT encoded here: every available pt gold (infopedia_pt, ep_dialects, wikipron) is broad/phonemic and transcribes the stops, so a spirantisation rule is correct yet regresses all measurable golds with none rewarding it; it is left for a future narrow-transcription task. Dialect-specific sibilant/vocalism deltas (northern apico-alveolar coda [s̺], insular vocalism) are handled by the pt-PT-x-* dialect specs, not the base. Benchmark honesty: the coda sibilant rules improve every pt gold; the dark-l rule improves the narrow human golds (infopedia_pt, ep_dialects) but regresses the broader WikiPron pt row (which transcribes coda /l/ as plain [l]) — it is kept per the honesty gate because the higher-quality golds reward it, with the divergence documented. Coda vowel nasalisation: a vowel before a tautosyllabic (coda) ⟨m/n⟩ nasalises (campo [ˈkɐ̃pu], sim [ˈsĩ], bom [ˈbõ]); this is modelled by the positional m/n before_consonant/word_final → U+0303 tilde plus the PT_NASAL_*_RAISE / PT_NASAL_O_UNRED vowel-quality rules (Mateus & d'Andrade 2000: ch.2, 'Nasality'). KNOWN SIMPLIFICATION: word-final ⟨-am⟩ and ⟨-em/-ém⟩ are the nasal DIPHTHONGS [ɐ̃w̃] and [ɐ̃j̃] (cantam [ˈkɐ̃tɐ̃w̃], homem [ˈɔmɐ̃j̃], bem [ˈbɐ̃j̃]); this base spec currently renders them as the nasal MONOPHTHONGS [ɐ̃]/[ẽ] (cantam→[ˈkɐ̃tɐ̃], bem→[ˈbẽ]), because the final-nasal offglide is a separate whole-cluster process not yet modelled — it is a pre-existing gap left for a dedicated final-nasal-diphthong task, out of scope for the coda-nasalisation work. Related pre-existing gap (NOT introduced by nasalisation): the ⟨gu⟩ digraph maps to [ɡ] dropping a NUCLEAR ⟨u⟩ before a consonant (algum, segundo, água), which is wrong for gu+a/o/u; the coda-nasalisation engine guard only ensures no invalid tilde is emitted onto the stranded [ɡ], it does not fix the ⟨gu⟩ vowel-drop itself.",
   "sources": [
     {
       "id": "mateus_dandrade2000",

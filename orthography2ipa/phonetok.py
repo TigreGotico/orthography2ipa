@@ -55,6 +55,22 @@ from orthography2ipa.vowels import (
     is_palatal_consonant,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
+
+# ── Positional-nasalisation guard (see PhonetokTokenizer._expand_beam) ──
+# The combining tilde a coda ⟨m/n⟩ slot emits to nasalise the preceding
+# vowel. It is a valid segment only when it lands on an ORAL vowel or a
+# glide; landing on a consonant or an already-nasalised nucleus yields
+# invalid IPA, so the guard drops such a branch.
+_NASAL_TILDE = "̃"
+_NASAL_CARRIERS = frozenset(
+    # oral IPA vowels (deliberately excludes the precomposed nasal vowels
+    # ã ẽ ĩ õ ũ and every combining mark, so a second tilde never stacks)
+    "aeiou"
+    "ɛɔəɨʉɯæɐʌɒœøɪʊɤɵɞɑɘɚɜɝɶy"
+    # glides that legitimately carry a nasal offglide (nasal diphthongs
+    # ɐ̃w̃ / ɐ̃j̃ from ⟨ão ãe õe⟩)
+    "wjɥɰ"
+)
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
@@ -1470,11 +1486,39 @@ class PhonetokTokenizer:
             branches: List[Tuple[str, float]],
             beam_width: int,
     ) -> List[Tuple[List[str], float]]:
-        """Expand every beam entry with every branch, then prune."""
+        """Expand every beam entry with every branch, then prune.
+
+        Positional-nasalisation guard: a lone combining tilde branch
+        (U+0303 emitted by a coda ⟨m/n⟩ → nasalised-vowel slot) is only a
+        valid segment when it attaches to a preceding *oral vowel or glide*.
+        If the phoneme it would land on is a consonant (e.g. a ⟨gu⟩→[ɡ]
+        vowel-drop artefact: *algum* → [ɡ̃]) or an already-nasalised nucleus
+        (double tilde: *inn* → [ĩ̃]), the tilde would produce invalid IPA, so
+        that branch is dropped and the slot's oral fallback (the coda nasal
+        as a plain consonant) wins instead. This suppresses only the invalid
+        tilde-on-consonant / double-tilde; every branch that lands on a vowel
+        is untouched, so all pre-existing behaviour is byte-identical.
+        """
         new_beam: List[Tuple[List[str], float]] = []
         for segs, sc in beam:
             for ipa, cost in branches:
+                if ipa == _NASAL_TILDE:
+                    tail = ""
+                    for seg in reversed(segs):
+                        if seg:
+                            tail = seg[-1]
+                            break
+                    if tail not in _NASAL_CARRIERS:
+                        continue
                 new_beam.append((segs + [ipa], sc + cost))
+        if not new_beam:
+            # Every branch was a guarded tilde with no valid carrier and no
+            # oral alternative in this slot — keep them rather than drop the
+            # slot entirely (defensive; the coda ⟨m/n⟩ slots always carry an
+            # oral consonant fallback so this is not reached in practice).
+            for segs, sc in beam:
+                for ipa, cost in branches:
+                    new_beam.append((segs + [ipa], sc + cost))
         # Sort by score, keep top beam_width
         new_beam.sort(key=lambda x: x[1])
         return new_beam[:beam_width]

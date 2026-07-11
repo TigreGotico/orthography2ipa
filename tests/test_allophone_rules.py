@@ -118,6 +118,24 @@ def test_neighbor_phoneme_condition_nasal_assimilation():
     assert _tok_best(spec, "ana") == "ana"    # n before a → unchanged
 
 
+def test_grapheme_source_condition():
+    # A rule gated on the slot's SOURCE grapheme fires only for that
+    # spelling, even when two graphemes map to the same phoneme. Here both
+    # ⟨o⟩ and ⟨u⟩ realise as [u]; the rule lowers [u]→[o] only from ⟨o⟩.
+    rule = AllophoneRule(id="SRC", phonemes=("u",), surface="o",
+                         grapheme=("o",))
+    spec = _spec({"o": ["u"], "u": ["u"], "t": ["t"]}, (rule,))
+    assert _tok_best(spec, "to") == "to"   # ⟨o⟩→[u] lowered to [o]
+    assert _tok_best(spec, "tu") == "tu"   # lexical ⟨u⟩→[u] untouched
+
+
+def test_grapheme_source_condition_case_insensitive():
+    rule = AllophoneRule(id="SRC", phonemes=("u",), surface="o",
+                         grapheme=("o",))
+    spec = _spec({"O": ["u"], "t": ["t"]}, (rule,))
+    assert _tok_best(spec, "tO") == "to"
+
+
 def test_stress_condition_fires_only_on_unstressed_engine_path():
     # Stress needs the engine's stress context. Use es-ES (has stress, does
     # not itself reduce), inject a synthetic 'unstressed /a/ → [ɐ]' rule and

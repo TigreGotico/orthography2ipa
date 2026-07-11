@@ -254,9 +254,58 @@
       "posttonic": [
         "ɐ"
       ]
+    },
+    "m": {
+      "before_consonant": [
+        "̃"
+      ],
+      "word_final": [
+        "̃"
+      ]
+    },
+    "n": {
+      "before_consonant": [
+        "̃"
+      ],
+      "word_final": [
+        "̃"
+      ]
     }
   },
   "allophone_rules": [
+    {
+      "id": "PT_NASAL_A_RAISE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɐ",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "notes": "Coda-conditioned vowel nasalisation, general Portuguese, retained in Brazilian Portuguese (Mateus & d'Andrade 2000: ch.2, 'Nasality'; Barbosa & Albano 2004; Câmara Jr. 1970 §III): a vowel followed by a tautosyllabic (coda) nasal ⟨m/n⟩ nasalises and the nasal consonant is absorbed (campo, canto, ambos). The nasalisation is modelled pre-lexically by the positional 'm'/'n' before_consonant/word_final → [̃] (U+0303 combining tilde) map. This rule supplies only the VOWEL-QUALITY shift for ⟨a⟩: BP nasal /a/ is the raised central [ɐ̃] (campo [ˈkɐ̃pu]), so the oral [a] selected by the positional map raises to the ORAL base [ɐ] before the tilde — [ɐ]+[̃] = [ɐ̃]. The tilde comes only from the m/n slot, so no vowel is double-tilded. Fires ONLY when the next slot is the tilde, so an INTERVOCALIC (onset) ⟨m/n⟩ leaves the vowel oral (cama [ˈkamɐ], ano [ˈanu])."
+    },
+    {
+      "id": "PT_NASAL_E_RAISE",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "notes": "Vowel-quality companion of the coda-nasalisation (see PT_NASAL_A_RAISE; Mateus & d'Andrade 2000: ch.2). BP nasal /e/ is the close-mid [ẽ], so the open [ɛ] raises to the oral base [e] before the nasalisation tilde — [e]+[̃] = [ẽ] (tempo [ˈtẽpu], sempre). Surface is oral [e]; the tilde is supplied only by the coda m/n slot (no double tilde). Fires only before the tilde, so an oral ⟨e⟩ before an onset ⟨m/n⟩ (nome, pena) is unchanged."
+    },
+    {
+      "id": "PT_NASAL_O_RAISE",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "notes": "Vowel-quality companion of the coda-nasalisation (see PT_NASAL_A_RAISE; Mateus & d'Andrade 2000: ch.2). BP nasal /o/ is the close-mid [õ], so the open [ɔ] raises to the oral base [o] before the nasalisation tilde — [o]+[̃] = [õ] (bom [ˈbõ], onde). Surface is oral [o]; the tilde is supplied only by the coda m/n slot (no double tilde). Fires only before the tilde, so an oral ⟨o⟩ before an onset ⟨m/n⟩ (fome, sono) is unchanged. High vowels ⟨i u⟩ need no companion rule — [ĩ ũ] share the oral base [i u] (sim [ˈsĩ], mundo [ˈmũdu])."
+    },
     {
       "id": "BR_RAISE_FINAL_E",
       "phonemes": [

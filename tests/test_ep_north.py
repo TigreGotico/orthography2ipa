@@ -58,8 +58,9 @@ class TestFourSibilants:
         assert eng.transcribe_word("coser") != eng.transcribe_word("cozer")
 
     def test_laminal_c_cinco(self, eng):
-        # ⟨c⟩ before i -> laminal [s], never apico
-        assert eng.transcribe_word("cinco") == "ˈsinku"
+        # ⟨c⟩ before i -> laminal [s], never apico; the coda ⟨n⟩ nasalises
+        # the preceding vowel (i + U+0303), leaving the laminal [s] intact.
+        assert eng.transcribe_word("cinco") == "ˈsĩku"
 
     def test_apico_word_initial_sal(self, eng):
         assert eng.transcribe_word("sal") == "ˈs̺aɫ"
