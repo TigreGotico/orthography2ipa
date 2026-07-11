@@ -46,40 +46,49 @@
       "notes": "Levantine (South Levantine) Arabic base"
     }
   ],
-  "notes": "Palestinian Arabic — South Levantine, internally diverse along an urban/rural/Bedouin axis. ق qaf reflexes are the classic three-way split: URBAN (Jerusalem, Jaffa, Nazareth koine) → /ʔ/; CENTRAL RURAL (West Bank fellahin) → /k/ (with /k/→[tʃ] palatalisation, the famous 'kaf shift'); SOUTHERN/Bedouin (Negev, Gaza periphery) → /ɡ/. All four listed (ʔ first for the prestige urban form, then k, ɡ, q). ج jim → /ʒ/ urban, /dʒ/ rural/Bedouin. ك kaf → /tʃ/ before front vowels in central rural speech. Interdentals merged in urban koine, conserved in rural/Bedouin. Source: Levantine Arabic phonology (Wikipedia); Holes (2004); Cowell (1964).",
-  "quality": "skeleton",
+  "notes": "Palestinian Arabic — South Levantine, internally diverse along an urban/rural/Bedouin axis. INPUT CONTRACT: fully-diacritized Arabic. ق qaf is the classic four-way split (Fadda 2016:28, after Al-Wer & Herin 2011:60): URBAN koine (Jerusalem, Jaffa, Nazareth) → [ʔ]; CENTRAL/NORTHERN RURAL West Bank fellahin → [k] (with the 'kaf shift' /k/→[tʃ]); SOUTHERN/Bedouin (Negev, and indigenous Gaza City) → [ɡ] (Cotter 2016:152); [q] retained only in qeltu enclaves. All four listed, ʔ first for the prestige urban form. ج jim → /ʒ/ (urban) ~ /dʒ/ (rural/Bedouin). ك kaf → [tʃ] before front vowels in central rural speech. Interdentals /θ ð ðˤ/ merge to stops [t d dˤ] in the urban koine (Cotter 2016:150-154, after Bergsträßer 1915 & Palva 1984:361-62), conserved in rural/Bedouin varieties. Diphthong monophthongization /aj aw/→[eː oː] and emphasis backing are inherited from the Levantine parent.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
-      "url": null,
-      "pages": null,
-      "notes": "Documents the urban/rural/Bedouin qaf split in Palestinian."
+      "id": "cotter2016",
+      "author": "Cotter, W.M.",
+      "year": 2016,
+      "title": "One Piece of the Puzzle: Notes on the Historic Interdental Fricatives /θ, ð, ðˤ/ in the Arabic Dialect of Gaza City",
+      "publisher": "Journal of Arabic and Islamic Studies 16",
+      "url": "https://www.lancaster.ac.uk/jais/volume/docs/vol16/v16_05_cotter_149-162.pdf",
+      "pages": "149-162",
+      "notes": "READ in full. Urban Palestinian interdentals → stops [t d dˤ] (Bergsträßer 1915 Map 1; Palva 1984:361-62). Gaza City indigenous qaf → [ɡ] (Bedouin, Cotter 2016); historically [ʔ] (Bergsträßer). Amman qaf variable [ɡ]~[ʔ] (Al-Wer 2007:66-68, cited p.152)."
+    },
+    {
+      "id": "fadda2016",
+      "author": "Fadda, H.",
+      "year": 2016,
+      "title": "Language Variation in Western Amman",
+      "publisher": "MA thesis, Canada Institute of Linguistics (CanIL)",
+      "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
+      "pages": "27-30",
+      "notes": "READ (phonology chapter). Ammani koine consonants = urban Palestinian [ʔ t d dˤ ʒ], 'identical to other Levantine cities' (pp.27-28). Qaf labels (Al-Wer & Herin 2011:60): [g] gilit, [q] qeltu, [ʔ] Jerusalem, [k] rural West Bank. Vowels: short /i u a/, long /iː uː eː oː aː/ (Al-Wer 2011:4). Diphthongs /aj aw/→[eː oː] except before glide: bajt→beːt, sˤawt→sˤoːtˤ (p.30)."
+    },
+    {
+      "id": "almbark2015",
+      "author": "Almbark, R. & Hellmuth, S.",
+      "year": 2015,
+      "title": "Acoustic analysis of the Syrian Arabic vowel system",
+      "publisher": "Proceedings of ICPhS 2015 (paper 0612), Glasgow",
+      "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf",
+      "pages": "1-4",
+      "notes": "READ in full. Damascus/Syrian vowel system: five long /iː eː aː oː uː/, three short contrastive /i a u/; mid short [e o] and schwa are allophones of /i u/ (§3-4). Mid-long /eː oː/ from /aj aw/ coalescence (§1.1). /aː/ higher/fronter in Coastal Syria than Damascus (p.2)."
     },
     {
       "id": "cowell1964",
       "author": "Cowell, M.W.",
       "year": 1964,
-      "title": "A Reference Grammar of Syrian Arabic",
+      "title": "A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus)",
       "publisher": "Georgetown University Press",
-      "url": null,
+      "url": "https://archive.org/details/referencegrammar0000cowe",
       "pages": null,
-      "notes": "Reference for the broader South Levantine continuum."
-    },
-    {
-      "id": "watson2002",
-      "author": "Watson, J.C.E.",
-      "year": 2002,
-      "title": "The Phonology and Morphology of Arabic",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+      "notes": "Standard Damascus grammar. Primary text NOT obtained (Internet Archive borrow-only, no full text); its Damascene vowel classification (5 long / 5 short + schwa) is cited here only as reported and tested by Almbark & Hellmuth 2015 §1.3."
     }
   ],
   "wikipedia": [

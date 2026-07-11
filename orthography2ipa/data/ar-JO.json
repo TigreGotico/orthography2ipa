@@ -36,39 +36,49 @@
       "notes": "Levantine (South Levantine) Arabic base"
     }
   ],
-  "notes": "Jordanian Arabic — Ammani koine, South Levantine but markedly Bedouin/Ḥōrāni-influenced. DISTINGUISHING FEATURE vs the Syro-Lebanese koines: ق qaf → /ɡ/ is widespread and prestigious (rural, Bedouin, and much male urban speech), alongside the urban /ʔ/ (more frequent in Ammani women's and Palestinian-origin speech); both are listed, ɡ first. ج jim → /dʒ/ (affricate retained, Bedouin pattern) more than /ʒ/. Interdentals frequently CONSERVED in Bedouin/rural Jordanian (θ, ð, ðˤ), unlike the urban Syro-Lebanese merger — but variable; the Levantine parent's merged variants remain available. Source: Holes (2004); Levantine Arabic phonology (Wikipedia); Al-Wer (2007) The formation of the dialect of Amman.",
-  "quality": "skeleton",
+  "notes": "Jordanian Arabic — Ammani koine, a new dialect formed from Jordanian + urban Palestinian contact (Al-Wer 2020). INPUT CONTRACT: fully-diacritized Arabic. ق qaf is a socially reallocated variable: [ɡ] (traditional Jordanian, much male speech) alongside [ʔ] (urban Palestinian / the emerging Ammani prestige — third-generation women use [ʔ] consistently, men use both: Al-Wer 2020:560). Both are listed, ɡ first as the distinctively Jordanian value. ج jim → [dʒ]~[ʒ] (men vary, women [ʒ]: Al-Wer 2020:560). Interdentals: the Ammani koine favours the merged stops [t d dˤ] (Al-Wer 2020:560; Fadda 2016:27-28 — the koine consonant system is 'identical to other Levantine cities'); the interdental variants persist in traditional Jordanian/Bedouin speech and remain in the inventory via the parent. Vowels /i u a/ + /iː uː eː oː aː/ and /aj aw/→[eː oː] (bajt→beːt, sˤawt→sˤoːtˤ: Fadda 2016:30) are inherited from the Levantine parent.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
-      "id": "alwer2007",
+      "id": "alwer2020",
       "author": "Al-Wer, E.",
-      "year": 2007,
-      "title": "The formation of the dialect of Amman: From chaos to order",
-      "publisher": "In: Arabic in the City (Routledge)",
-      "url": null,
-      "pages": null,
-      "notes": "Sociolinguistic account of the Ammani koine: g/ʔ qaf variation by gender and origin."
+      "year": 2020,
+      "title": "New-dialect formation: The Amman dialect",
+      "publisher": "In: Lucas & Manfredi (eds.), Arabic and contact-induced change, 551-566. Berlin: Language Science Press",
+      "url": "https://langsci-press.org/catalog/book/235",
+      "pages": "551-566",
+      "notes": "READ in full. Amman koine: (q) is a socially reallocated variable, [ɡ] (Jordanian) ~ [ʔ] (urban Palestinian); gen-III women use [ʔ] consistently, men both (p.560). (ǧ) jim: [dʒ]~[ʒ], women [ʒ] (p.560). Interdentals: both genders favour stop variants (p.560)."
     },
     {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
+      "id": "fadda2016",
+      "author": "Fadda, H.",
+      "year": 2016,
+      "title": "Language Variation in Western Amman",
+      "publisher": "MA thesis, Canada Institute of Linguistics (CanIL)",
+      "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
+      "pages": "27-30",
+      "notes": "READ (phonology chapter). Ammani koine consonants = urban Palestinian [ʔ t d dˤ ʒ], 'identical to other Levantine cities' (pp.27-28). Qaf labels (Al-Wer & Herin 2011:60): [g] gilit, [q] qeltu, [ʔ] Jerusalem, [k] rural West Bank. Vowels: short /i u a/, long /iː uː eː oː aː/ (Al-Wer 2011:4). Diphthongs /aj aw/→[eː oː] except before glide: bajt→beːt, sˤawt→sˤoːtˤ (p.30)."
+    },
+    {
+      "id": "almbark2015",
+      "author": "Almbark, R. & Hellmuth, S.",
+      "year": 2015,
+      "title": "Acoustic analysis of the Syrian Arabic vowel system",
+      "publisher": "Proceedings of ICPhS 2015 (paper 0612), Glasgow",
+      "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf",
+      "pages": "1-4",
+      "notes": "READ in full. Damascus/Syrian vowel system: five long /iː eː aː oː uː/, three short contrastive /i a u/; mid short [e o] and schwa are allophones of /i u/ (§3-4). Mid-long /eː oː/ from /aj aw/ coalescence (§1.1). /aː/ higher/fronter in Coastal Syria than Damascus (p.2)."
     },
     {
       "id": "cowell1964",
       "author": "Cowell, M.W.",
       "year": 1964,
-      "title": "A Reference Grammar of Syrian Arabic",
+      "title": "A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus)",
       "publisher": "Georgetown University Press",
-      "url": null,
+      "url": "https://archive.org/details/referencegrammar0000cowe",
       "pages": null,
-      "notes": "Reference for the broader South Levantine continuum."
+      "notes": "Standard Damascus grammar. Primary text NOT obtained (Internet Archive borrow-only, no full text); its Damascene vowel classification (5 long / 5 short + schwa) is cited here only as reported and tested by Almbark & Hellmuth 2015 §1.3."
     }
   ],
   "wikipedia": [

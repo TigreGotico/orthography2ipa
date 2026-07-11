@@ -38,29 +38,49 @@
       "notes": "Levantine Arabic base"
     }
   ],
-  "notes": "Syrian Arabic — Damascene (شامي) urban koine, the most influential prestige form of Levantine. ق qaf → /ʔ/ glottal stop in the Damascus koine (rural/Bedouin /ɡ/ retained via the Levantine parent's variant list). ج jim → /ʒ/. Interdentals merged to stops in urban speech (θ→/t/, ð→/d/, ðˤ/ض→/dˤ/), conserved by rural/Druze speakers. Moderate imāla raises /aː/ → [eː] near front consonants. Source: Cowell (1964) A Reference Grammar of Syrian Arabic; Holes (2004).",
-  "quality": "skeleton",
+  "notes": "Syrian Arabic — Damascene (شامي) urban koine, the most influential prestige form of Levantine. INPUT CONTRACT: fully-diacritized Arabic (short vowels surface only when written). ق qaf → /ʔ/ in the Damascus koine (rural/Bedouin /ɡ/ retained via the Levantine parent's variant list). ج jim → /ʒ/. Interdentals merged to stops in urban speech (θ→/t/, ð→/d/, ظ/ض→/dˤ/), conserved by rural/Druze speakers. Diphthongs /aj aw/ → [eː oː] and emphasis backing /a aː/→[ɑ ɑː] are inherited from the Levantine parent's allophone_rules. Vowel system: five long /iː eː aː oː uː/ over three contrastive short /i a u/; [e o ə] are allophones of /i u/ (Almbark & Hellmuth 2015, an acoustic study of fifteen Damascene speakers, §3-4). Damascene /aː/ is LESS fronted than Coastal Syrian, so no strong imāla rule is declared here (contrast ar-LB).",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
+    {
+      "id": "almbark2015",
+      "author": "Almbark, R. & Hellmuth, S.",
+      "year": 2015,
+      "title": "Acoustic analysis of the Syrian Arabic vowel system",
+      "publisher": "Proceedings of ICPhS 2015 (paper 0612), Glasgow",
+      "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf",
+      "pages": "1-4",
+      "notes": "READ in full. Damascus/Syrian vowel system: five long /iː eː aː oː uː/, three short contrastive /i a u/; mid short [e o] and schwa are allophones of /i u/ (§3-4). Mid-long /eː oː/ from /aj aw/ coalescence (§1.1). /aː/ higher/fronter in Coastal Syria than Damascus (p.2)."
+    },
+    {
+      "id": "fadda2016",
+      "author": "Fadda, H.",
+      "year": 2016,
+      "title": "Language Variation in Western Amman",
+      "publisher": "MA thesis, Canada Institute of Linguistics (CanIL)",
+      "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
+      "pages": "27-30",
+      "notes": "READ (phonology chapter). Ammani koine consonants = urban Palestinian [ʔ t d dˤ ʒ], 'identical to other Levantine cities' (pp.27-28). Qaf labels (Al-Wer & Herin 2011:60): [g] gilit, [q] qeltu, [ʔ] Jerusalem, [k] rural West Bank. Vowels: short /i u a/, long /iː uː eː oː aː/ (Al-Wer 2011:4). Diphthongs /aj aw/→[eː oː] except before glide: bajt→beːt, sˤawt→sˤoːtˤ (p.30)."
+    },
     {
       "id": "cowell1964",
       "author": "Cowell, M.W.",
       "year": 1964,
-      "title": "A Reference Grammar of Syrian Arabic",
+      "title": "A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus)",
       "publisher": "Georgetown University Press",
-      "url": null,
+      "url": "https://archive.org/details/referencegrammar0000cowe",
       "pages": null,
-      "notes": "Standard reference grammar; describes Damascus qaf→ʔ, jim→ʒ, interdental merger."
+      "notes": "Standard Damascus grammar. Primary text NOT obtained (Internet Archive borrow-only, no full text); its Damascene vowel classification (5 long / 5 short + schwa) is cited here only as reported and tested by Almbark & Hellmuth 2015 §1.3."
     },
     {
-      "id": "holes2004",
-      "author": "Holes, C.",
-      "year": 2004,
-      "title": "Modern Arabic: Structures, Functions, and Varieties",
-      "publisher": "Georgetown University Press",
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Emphasis (pharyngealization) spreading onto neighbouring low vowels. Not obtained in full; cited for the widely-described emphasis-spreading process."
     }
   ],
   "wikipedia": [
