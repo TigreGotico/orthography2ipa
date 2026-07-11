@@ -1137,11 +1137,12 @@ class TestBahianBrazilian:
 class TestAzoreanPortuguese:
     """Azorean Portuguese — pt-PT-x-acores.
 
-    The Azorean dialect preserves some archaic features and has distinctive
-    nasal vowel realisations.  Key features:
-    - <ão> → [õw̃] — nasal diphthong.
-    - Schwa [ɨ] may be realised as [e] in some positions.
-    - Nasal /ɐ̃/ may be realised as [õ].
+    The Azorean (São Miguel class) dialect fronts a stressed open-syllable
+    /u/ to a front rounded [y] and preserves the ⟨ou⟩ diphthong. Key
+    features (Rogers 1948, island-specific):
+    - stressed open /u/ → [y] (número → [ˈnymɨɾu]);
+    - ⟨ou⟩ → [ow] preserved;
+    - proclitic guard: the article ``o`` is [u], never [y].
     """
 
     LANGUAGE_CODE = "pt-PT-x-acores"
@@ -1155,33 +1156,29 @@ class TestAzoreanPortuguese:
         """Azorean parent must be European Portuguese (pt-PT)."""
         assert self.spec.parent == "pt-PT"
 
-    def test_ao_nasal_diphthong(self) -> None:
-        """<ão> → [õw̃] — nasal diphthong realisation in Azorean."""
-        _assert_contains(
-            _grapheme(self.spec, "ão"), "õw̃",
-            label="Azorean ão→õw̃",
-        )
+    def test_stressed_u_fronting_rule(self) -> None:
+        """São Miguel-class stressed open /u/ → [y] is a declared rule."""
+        ids = [r.id for r in self.spec.allophone_rules]
+        assert "ACO_STRESSED_U_FRONTING" in ids
+        assert "ACO_U_KEEP_BEFORE_CODA" in ids
 
-    def test_schwa_has_e_allophone(self) -> None:
-        """Azorean ə allophone includes [e] — less reduced than Lisbon ɨ."""
+    def test_ou_preserved_grapheme(self) -> None:
+        """⟨ou⟩ → [ow] — the falling diphthong is preserved."""
         _assert_contains(
-            _allophone(self.spec, "ə"), "e",
-            label="Azorean ɨ→e allophone",
+            _grapheme(self.spec, "ou"), "ow",
+            label="Azorean ou→ow",
         )
 
     def test_schwa_retains_high_central(self) -> None:
-        """Allophone of [ɨ] retains [ɨ] as primary."""
+        """Allophone of [ɨ] retains [ɨ] as primary (inherited from pt-PT)."""
         _assert_first(
             _allophone(self.spec, "ɨ"), "ɨ",
             label="Azorean ɨ first allophone",
         )
 
-    def test_nasal_a_has_o_allophone(self) -> None:
-        """Allophone of /ɐ̃/ includes [õ] — nasal vowel shift in Azorean."""
-        _assert_contains(
-            _allophone(self.spec, "ɐ̃"), "õ",
-            label="Azorean ɐ̃→õ allophone",
-        )
+    def test_article_o_clitic_guard(self) -> None:
+        """The proclitic ``o`` is pinned to [u] so fronting cannot reach it."""
+        assert self.spec.word_exceptions.get("o") == "u"
 
 
 @pytest.mark.iberian
