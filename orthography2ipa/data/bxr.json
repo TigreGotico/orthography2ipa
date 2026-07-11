@@ -9,7 +9,7 @@
   "allophones": {},
   "notes": "Buryat (буряад хэлэн), a Mongolic language of the Republic of Buryatia, Russia. STUB: the grapheme inventory is NOT yet specified. Script: Cyrillic alphabet — the Russian alphabet plus ⟨Үү⟩, ⟨Өө⟩ and ⟨Һһ⟩. A full spec must model vowel harmony, long vowels (written as doubled vowel letters) and diphthongs, the palatalisation contrast carried by the soft sign and the iotated vowel letters, and the many Russian-loanword letters (ф, ц, ч, щ, в) that are marginal in native words. Buryat is also written in Mongolian script (Mongolia/China) and was written in Latin 1931-1939; input is assumed to be the Cyrillic orthography.",
   "iso639_3": "bua",
-  "glottolog_code": "buri1258",
+  "glottolog_code": "russ1264",
   "wikidata_qid": "Q33120",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Buryat_language",

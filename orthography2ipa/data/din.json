@@ -37,7 +37,7 @@
       "notes": "On the length/voice-quality/tone system the orthography under-marks."
     }
   ],
-  "notes": "Dinka (Thuɔŋjäŋ) — Western Nilotic language of South Sudan, written in a Latin alphabet extended with ⟨ɛ ɔ ɣ ŋ⟩ and diaereses. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Dinka's phonology is exceptionally hard to map from spelling: it contrasts three vowel lengths, breathy vs. modal (creaky) voice, and lexical tone, and the orthography marks these only partially and inconsistently across the Agar/Bor/Padang/Rek standards. A grapheme map would need to commit to one dialect standard and to a documented convention for voice quality and tone.",
+  "notes": "Dinka (Thuɔŋjäŋ) — Western Nilotic language of South Sudan, written in a Latin alphabet extended with ⟨ɛ ɔ ɣ ŋ⟩ and diaereses. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Dinka's phonology is exceptionally hard to map from spelling: it contrasts three vowel lengths, breathy vs. modal (creaky) voice, and lexical tone, and the orthography marks these only partially and inconsistently across the Agar/Bor/Padang/Rek standards. A grapheme map would need to commit to one dialect standard and to a documented convention for voice quality and tone. Glottolog: `din` is the Dinka macrolanguage, so `dink1262` is a family node by necessity.",
   "timespan": {
     "start_year": 1900,
     "end_year": null

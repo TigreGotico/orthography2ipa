@@ -10,7 +10,7 @@
   "iso639_3": "kau",
   "glottolog_code": "kanu1279",
   "wikidata_qid": "Q36094",
-  "notes": "STUB: the grapheme inventory of Kanuri is NOT yet specified (graphemes/allophones are empty). Kanuri is a Saharan (Nilo-Saharan) language of Nigeria, Niger, Chad and Cameroon. It is written both in the Latin script (the modern standard, with letters such as ǝ and digraphs) and, traditionally, in the Ajami (Arabic) script. INPUT CONTRACT: Latin-script Kanuri orthography; Arabic-script (Ajami) input is out of scope. `kr` is a macrolanguage code (Manga and Yerwa Kanuri).",
+  "notes": "STUB: the grapheme inventory of Kanuri is NOT yet specified (graphemes/allophones are empty). Kanuri is a Saharan (Nilo-Saharan) language of Nigeria, Niger, Chad and Cameroon. It is written both in the Latin script (the modern standard, with letters such as ǝ and digraphs) and, traditionally, in the Ajami (Arabic) script. INPUT CONTRACT: Latin-script Kanuri orthography; Arabic-script (Ajami) input is out of scope. `kr` is a macrolanguage code (Manga and Yerwa Kanuri). Glottolog: `kr` is the Kanuri macrolanguage, so `kanu1279` is a family node by necessity.",
   "sources": [
     {
       "id": "kanuri_language_wiki",

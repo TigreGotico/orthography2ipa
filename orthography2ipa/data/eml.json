@@ -7,7 +7,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "notes": "Emilian–Romagnol (emiliàn e rumagnòl), a Gallo-Italic language group of northern Italy. STUB: the grapheme inventory is NOT yet specified. There is no single accepted orthography — several competing spelling conventions exist per city/variety, and vowel length and the front rounded vowels are written differently in each. Grapheme-to-IPA mapping is therefore variety- and orthography-specific; the Emilian side is tracked separately as `egl`.",
+  "notes": "Emilian–Romagnol (emiliàn e rumagnòl), a Gallo-Italic language group of northern Italy. STUB: the grapheme inventory is NOT yet specified. There is no single accepted orthography — several competing spelling conventions exist per city/variety, and vowel length and the front rounded vowels are written differently in each. Grapheme-to-IPA mapping is therefore variety- and orthography-specific; the Emilian side is tracked separately as `egl`. Glottolog: `eml` covers Emilian + Romagnol jointly, so the code is necessarily the `emil1243` family node; the language-level languoids are `emil1241` (Emilian, ISO `egl`) and `roma1328` (Romagnol, ISO `rgn`).",
   "iso639_3": null,
   "glottolog_code": "emil1243",
   "wikidata_qid": "Q242648",

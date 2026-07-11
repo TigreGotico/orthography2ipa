@@ -216,7 +216,7 @@
   "notes": "Karakalpak (Qaraqalpaqsha), Kipchak Turkic language of Karakalpakstan (Uzbekistan). The mapping above is the 2016 Latin alphabet, the current official script; a Cyrillic alphabet is also in use and is not modelled here — Latin input is assumed. Regular one-letter-one-phoneme orthography with front/back vowel harmony (⟨á ó ú i e⟩ front, ⟨a o u ı⟩ back). ISO 639-3 is kaa and Glottolog kara1467; the Wikidata row supplied for this code pointed at the Karakalpak Wiktionary project rather than the language item, so no QID is asserted here.",
   "iso639_3": "kaa",
   "glottolog_code": null,
-  "wikidata_qid": null,
+  "wikidata_qid": "Q33541",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Karakalpak_language"
   ],

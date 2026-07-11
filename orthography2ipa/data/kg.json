@@ -232,9 +232,9 @@
       "notes": "Kikongo is a core Bantu (Zone H) language."
     }
   ],
-  "notes": "Kongo / Kikongo (Kikôngo), Bantu zone H (DRC, Congo, Angola). Latin orthography, five vowels with contrastive length written double. Prenasalised consonants are written as digraphs (mb, mp, mf, mv, nd, nt, ns, nz, nk, ng); <ng> is ambiguous between prenasalised /ŋɡ/ and plain /ŋ/. Kikongo is tonal, but tone is not marked in the standard orthography and is therefore not modelled.",
+  "notes": "Kongo / Kikongo (Kikôngo), Bantu zone H (DRC, Congo, Angola). Latin orthography, five vowels with contrastive length written double. Prenasalised consonants are written as digraphs (mb, mp, mf, mv, nd, nt, ns, nz, nk, ng); <ng> is ambiguous between prenasalised /ŋɡ/ and plain /ŋ/. Kikongo is tonal, but tone is not marked in the standard orthography and is therefore not modelled. Glottolog: `kg` is the Kongo macrolanguage; the code recorded is the language-level languoid for Koongo (ISO `kng`). The former `core1256` no longer resolves.",
   "iso639_3": "kon",
-  "glottolog_code": "core1256",
+  "glottolog_code": "koon1244",
   "wikidata_qid": "Q33702",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kongo_language",

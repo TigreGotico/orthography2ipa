@@ -214,7 +214,7 @@
   },
   "notes": "Wolof, the main language of Senegal (also Gambia, Mauritania). The official Latin orthography (Senegalese decree; latest revision 2005) is close to one-to-one with the phonemes: ⟨c⟩ = palatal /c/, ⟨j⟩ = /ɟ/, ⟨ñ⟩ = /ɲ/, ⟨ŋ⟩ = /ŋ/, ⟨x⟩ = /x/, ⟨q⟩ = uvular /q/ (always geminate-like), ⟨y⟩ = /j/. Vowel letters distinguish quality: ⟨a⟩ [ɐ] vs ⟨à⟩ [a] (the latter also marking a following geminate), ⟨e⟩ [ɛ] vs ⟨é⟩ [e], ⟨o⟩ [ɔ] vs ⟨ó⟩ [o], ⟨ë⟩ [ə]. Vowel length is written by doubling the vowel; consonant gemination by doubling the consonant. Word-initial prenasalised consonants are written ⟨mb nd nj ng⟩. Wolof is also written in the Arabic-based Wolofal script, which this spec does not cover; input is assumed to be in the official Latin orthography.",
   "iso639_3": "wol",
-  "glottolog_code": "wolo1247",
+  "glottolog_code": "nucl1347",
   "wikidata_qid": "Q34257",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Wolof_language"

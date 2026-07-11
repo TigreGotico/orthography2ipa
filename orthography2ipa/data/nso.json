@@ -250,7 +250,7 @@
     ]
   },
   "iso639_3": "nso",
-  "glottolog_code": "nort2794",
+  "glottolog_code": "pedi1238",
   "wikidata_qid": "Q33890",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Northern_Sotho",
@@ -295,5 +295,5 @@
     "start_year": 1900,
     "end_year": null
   },
-  "notes": "Northern Sotho / Sepedi (Bantu S32), Latin orthography. Seven written vowels: a e ê i o ô u (/a e ɛ i o ɔ u/; the circumflexes are frequently omitted in everyday text, which makes ⟨e⟩ and ⟨o⟩ ambiguous between the close-mid and open-mid values). Digraphs: š /ʃ/, tš /tʃ/, kg /kx/, hl /ɬ/, tlh /tɬʰ/, ng /ŋ/, ny /ɲ/, and the aspirated series ph th kh tsh tšh. Tone (H/L) is phonemic but unwritten and therefore not recoverable from the orthography."
+  "notes": "Northern Sotho / Sepedi (Bantu S32), Latin orthography. Seven written vowels: a e ê i o ô u (/a e ɛ i o ɔ u/; the circumflexes are frequently omitted in everyday text, which makes ⟨e⟩ and ⟨o⟩ ambiguous between the close-mid and open-mid values). Digraphs: š /ʃ/, tš /tʃ/, kg /kx/, hl /ɬ/, tlh /tɬʰ/, ng /ŋ/, ny /ɲ/, and the aspirated series ph th kh tsh tšh. Tone (H/L) is phonemic but unwritten and therefore not recoverable from the orthography. Glottolog: the previously used `nort2794` is superseded; the Northern Sotho languoid at language level is `pedi1238` (verified via ISO 639-3 `nso`)."
 }

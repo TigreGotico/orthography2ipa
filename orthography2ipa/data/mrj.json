@@ -16,10 +16,10 @@
       "notes": "Mari branch of Uralic."
     }
   ],
-  "notes": "Hill Mari / Western Mari (кырык мары), Mari El, Russia. STUB: the grapheme inventory is NOT yet specified. Written in a 34-letter Cyrillic alphabet (Russian letters plus Ӓ, Ӧ, Ӱ, Ӹ) with vowel harmony. The values of the two reduced vowels <ы> and <ӹ> and the extent of semi-palatalisation could not be established with confidence from a citable letter-to-phoneme table, so no grapheme map is claimed rather than guessing. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "notes": "Hill Mari / Western Mari (кырык мары), Mari El, Russia. STUB: the grapheme inventory is NOT yet specified. Written in a 34-letter Cyrillic alphabet (Russian letters plus Ӓ, Ӧ, Ӱ, Ӹ) with vowel harmony. The values of the two reduced vowels <ы> and <ӹ> and the extent of semi-palatalisation could not be established with confidence from a citable letter-to-phoneme table, so no grapheme map is claimed rather than guessing.",
   "iso639_3": null,
   "glottolog_code": null,
-  "wikidata_qid": null,
+  "wikidata_qid": "Q1776032",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hill_Mari_Wikipedia",
     "https://mrj.wikipedia.org/wiki/%D0%9A%D1%8B%D1%80%D1%8B%D0%BA_%D0%BC%D0%B0%D1%80%D1%8B_%D0%92%D0%B8%D0%BA%D0%B8%D0%BF%D0%B5%D0%B4%D0%B8"

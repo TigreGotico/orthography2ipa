@@ -244,7 +244,7 @@
       "notes": null
     }
   ],
-  "notes": "Malagasy — Austronesian (Barito) language of Madagascar; the standard is based on the Merina dialect and is written in the Latin script (21 letters; c, q, u, w, x are unused). Orthography is largely phonemic: ⟨o⟩ = /u/, ⟨ô⟩ = /o/ (mostly in loans; northern dialects have /o/ for ⟨o⟩), ⟨y⟩ = /i/ word-finally, ⟨j⟩ = /dz/. ⟨tr⟩/⟨dr⟩ are retroflex affricates and ⟨ts⟩ an alveolar affricate. Prenasalised stops/affricates are written mb, mp, nd, nt, ng, nk, nj, nts, ndr, ntr. Final /a, u, i/ after the stress are reduced ([ə], [ʷ], [ʲ]) and word-final vowels are often devoiced. Stress is contrastive; it is written with an acute only where disambiguation is needed.",
+  "notes": "Malagasy — Austronesian (Barito) language of Madagascar; the standard is based on the Merina dialect and is written in the Latin script (21 letters; c, q, u, w, x are unused). Orthography is largely phonemic: ⟨o⟩ = /u/, ⟨ô⟩ = /o/ (mostly in loans; northern dialects have /o/ for ⟨o⟩), ⟨y⟩ = /i/ word-finally, ⟨j⟩ = /dz/. ⟨tr⟩/⟨dr⟩ are retroflex affricates and ⟨ts⟩ an alveolar affricate. Prenasalised stops/affricates are written mb, mp, nd, nt, ng, nk, nj, nts, ndr, ntr. Final /a, u, i/ after the stress are reduced ([ə], [ʷ], [ʲ]) and word-final vowels are often devoiced. Stress is contrastive; it is written with an acute only where disambiguation is needed. Glottolog: `mg` is the Malagasy macrolanguage, so `mala1537` is a family node by necessity.",
   "timespan": {
     "start_year": 1823,
     "end_year": null

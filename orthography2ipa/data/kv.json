@@ -7,7 +7,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "notes": "Komi (коми кыв), a Permic (Uralic) language of the Komi Republic, Russia, covering Komi-Zyrian and Komi-Permyak. STUB: the grapheme inventory is NOT yet specified. Script: Cyrillic alphabet — the Russian alphabet plus ⟨І і⟩ and ⟨Ӧ ӧ⟩ (/ɘ/). A full spec must model the palatalisation contrast (soft sign, iotated vowel letters, and the hard-⟨і⟩ vs ⟨и⟩ distinction that marks the preceding consonant's hardness), the affricates written ⟨дж дз тш⟩ (multigraphs, ambiguous with letter sequences), and the Russian-loanword letters. Komi was historically written in the Old Permic (Abur) and Molodtsov alphabets; input is assumed to be the modern Cyrillic orthography.",
+  "notes": "Komi (коми кыв), a Permic (Uralic) language of the Komi Republic, Russia, covering Komi-Zyrian and Komi-Permyak. STUB: the grapheme inventory is NOT yet specified. Script: Cyrillic alphabet — the Russian alphabet plus ⟨І і⟩ and ⟨Ӧ ӧ⟩ (/ɘ/). A full spec must model the palatalisation contrast (soft sign, iotated vowel letters, and the hard-⟨і⟩ vs ⟨и⟩ distinction that marks the preceding consonant's hardness), the affricates written ⟨дж дз тш⟩ (multigraphs, ambiguous with letter sequences), and the Russian-loanword letters. Komi was historically written in the Old Permic (Abur) and Molodtsov alphabets; input is assumed to be the modern Cyrillic orthography. Glottolog: `kv` is the Komi macrolanguage, so `komi1267` is a family node by necessity.",
   "iso639_3": "kom",
   "glottolog_code": "komi1267",
   "wikidata_qid": "Q36126",

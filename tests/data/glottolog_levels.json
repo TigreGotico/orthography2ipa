@@ -1,0 +1,1918 @@
+{
+  "abkh1244": {
+    "name": "Abkhaz",
+    "level": "language"
+  },
+  "achi1257": {
+    "name": "Acehnese",
+    "level": "language"
+  },
+  "adyg1241": {
+    "name": "West Circassian",
+    "level": "language"
+  },
+  "afar1241": {
+    "name": "Afar",
+    "level": "language"
+  },
+  "afri1274": {
+    "name": "Afrikaans",
+    "level": "language"
+  },
+  "afro1255": {
+    "name": "Afro-Asiatic",
+    "level": "family"
+  },
+  "ainu1240": {
+    "name": "Hokkaido Ainu",
+    "level": "language"
+  },
+  "akan1250": {
+    "name": "Akan",
+    "level": "language"
+  },
+  "alba1267": {
+    "name": "Albanian",
+    "level": "family"
+  },
+  "alem1243": {
+    "name": "Alemannic",
+    "level": "family"
+  },
+  "alge1239": {
+    "name": "Algerian Arabic",
+    "level": "language"
+  },
+  "amer1254": {
+    "name": "Latin American Spanish",
+    "level": "dialect"
+  },
+  "amha1245": {
+    "name": "Amharic",
+    "level": "language"
+  },
+  "amis1246": {
+    "name": "Amis",
+    "level": "language"
+  },
+  "anci1242": {
+    "name": "Ionic-Attic Ancient Greek",
+    "level": "language"
+  },
+  "anci1248": {
+    "name": "Ancient Ligurian",
+    "level": "language"
+  },
+  "anda1279": {
+    "name": "Andalusian",
+    "level": "dialect"
+  },
+  "anda1287": {
+    "name": "Andalusian Arabic",
+    "level": "language"
+  },
+  "ande1250": {
+    "name": "Andean Bolivian Spanish",
+    "level": "dialect"
+  },
+  "angi1238": {
+    "name": "Angika",
+    "level": "language"
+  },
+  "ango1258": {
+    "name": "Angolar",
+    "level": "language"
+  },
+  "arag1245": {
+    "name": "Aragonese",
+    "level": "language"
+  },
+  "aran1260": {
+    "name": "Aranese",
+    "level": "dialect"
+  },
+  "arom1237": {
+    "name": "Aromanian",
+    "level": "language"
+  },
+  "assa1263": {
+    "name": "Assamese",
+    "level": "language"
+  },
+  "astu1245": {
+    "name": "Asturian-Leonese-Cantabrian",
+    "level": "language"
+  },
+  "atay1247": {
+    "name": "Atayal",
+    "level": "language"
+  },
+  "atik1240": {
+    "name": "Atikamekw",
+    "level": "language"
+  },
+  "atla1278": {
+    "name": "Atlantic-Congo",
+    "level": "family"
+  },
+  "aust1314": {
+    "name": "Australian English",
+    "level": "dialect"
+  },
+  "avar1256": {
+    "name": "Avar",
+    "level": "language"
+  },
+  "awad1243": {
+    "name": "Awadhi",
+    "level": "language"
+  },
+  "azte1234": {
+    "name": "Aztec",
+    "level": "family"
+  },
+  "bale1256": {
+    "name": "Balear",
+    "level": "dialect"
+  },
+  "bali1278": {
+    "name": "Balinese",
+    "level": "language"
+  },
+  "bamb1269": {
+    "name": "Bambara",
+    "level": "language"
+  },
+  "banj1239": {
+    "name": "Banjar",
+    "level": "language"
+  },
+  "bash1264": {
+    "name": "Bashkir",
+    "level": "language"
+  },
+  "basq1248": {
+    "name": "Basque",
+    "level": "language"
+  },
+  "basq1250": {
+    "name": "Souletin",
+    "level": "dialect"
+  },
+  "bata1289": {
+    "name": "Batak Toba",
+    "level": "language"
+  },
+  "bata1291": {
+    "name": "Batak Mandailing",
+    "level": "language"
+  },
+  "bava1246": {
+    "name": "Bavarian",
+    "level": "language"
+  },
+  "bela1254": {
+    "name": "Belarusian",
+    "level": "language"
+  },
+  "beng1280": {
+    "name": "Bengali",
+    "level": "language"
+  },
+  "berb1260": {
+    "name": "Berber",
+    "level": "family"
+  },
+  "bhoj1244": {
+    "name": "Bhojpuri",
+    "level": "language"
+  },
+  "bisc1236": {
+    "name": "Biscayan",
+    "level": "dialect"
+  },
+  "bish1244": {
+    "name": "Bishnupriya Manipuri",
+    "level": "language"
+  },
+  "bisl1239": {
+    "name": "Bislama",
+    "level": "language"
+  },
+  "bodo1269": {
+    "name": "Bodo-Mech",
+    "level": "language"
+  },
+  "boli1265": {
+    "name": "Bolivian Spanish",
+    "level": "dialect"
+  },
+  "bosn1245": {
+    "name": "Bosnian Standard",
+    "level": "dialect"
+  },
+  "braz1246": {
+    "name": "Brazilian Portuguese",
+    "level": "dialect"
+  },
+  "bret1244": {
+    "name": "Breton",
+    "level": "language"
+  },
+  "bryt1239": {
+    "name": "Brythonic",
+    "level": "family"
+  },
+  "bugi1244": {
+    "name": "Buginese",
+    "level": "language"
+  },
+  "bulg1262": {
+    "name": "Bulgarian",
+    "level": "language"
+  },
+  "camp1261": {
+    "name": "Campidanese Sardinian",
+    "level": "language"
+  },
+  "cana1268": {
+    "name": "Canadian English",
+    "level": "dialect"
+  },
+  "cana1269": {
+    "name": "Canary Islands Spanish",
+    "level": "dialect"
+  },
+  "cant1236": {
+    "name": "Cantonese",
+    "level": "dialect"
+  },
+  "cant1245": {
+    "name": "Cantabrian",
+    "level": "dialect"
+  },
+  "cast1244": {
+    "name": "Castilian",
+    "level": "dialect"
+  },
+  "cata1291": {
+    "name": "Català Nord-Occidental",
+    "level": "dialect"
+  },
+  "cebu1242": {
+    "name": "Cebuano",
+    "level": "language"
+  },
+  "celt1247": {
+    "name": "Celtiberian",
+    "level": "language"
+  },
+  "celt1248": {
+    "name": "Celtic",
+    "level": "family"
+  },
+  "cent1972": {
+    "name": "Central Kurdish",
+    "level": "language"
+  },
+  "cent1989": {
+    "name": "Central Khmer",
+    "level": "language"
+  },
+  "cent2087": {
+    "name": "Coastal-Naga Bikol",
+    "level": "language"
+  },
+  "cent2100": {
+    "name": "Kadazan Dusun",
+    "level": "language"
+  },
+  "cent2236": {
+    "name": "Central Semitic",
+    "level": "family"
+  },
+  "chad1249": {
+    "name": "Chadian Arabic",
+    "level": "language"
+  },
+  "chad1250": {
+    "name": "Chadic",
+    "level": "family"
+  },
+  "cham1312": {
+    "name": "Chamorro",
+    "level": "language"
+  },
+  "chav1241": {
+    "name": "Chavacano",
+    "level": "language"
+  },
+  "chec1245": {
+    "name": "Chechen",
+    "level": "language"
+  },
+  "cher1273": {
+    "name": "Cherokee",
+    "level": "language"
+  },
+  "chey1247": {
+    "name": "Cheyenne",
+    "level": "language"
+  },
+  "chil1286": {
+    "name": "Chilean Spanish",
+    "level": "dialect"
+  },
+  "choc1276": {
+    "name": "Choctaw",
+    "level": "language"
+  },
+  "chur1257": {
+    "name": "Church Slavic",
+    "level": "language"
+  },
+  "chuv1255": {
+    "name": "Chuvash",
+    "level": "language"
+  },
+  "cisa1237": {
+    "name": "Cisalpine Gaulish",
+    "level": "language"
+  },
+  "copt1239": {
+    "name": "Coptic",
+    "level": "language"
+  },
+  "corn1251": {
+    "name": "Cornish",
+    "level": "language"
+  },
+  "cors1241": {
+    "name": "Corsican",
+    "level": "language"
+  },
+  "cree1270": {
+    "name": "Creek",
+    "level": "language"
+  },
+  "cree1271": {
+    "name": "Cree-Montagnais-Naskapi",
+    "level": "family"
+  },
+  "crim1257": {
+    "name": "Crimean Tatar",
+    "level": "language"
+  },
+  "croa1245": {
+    "name": "Croatian Standard",
+    "level": "dialect"
+  },
+  "cuba1237": {
+    "name": "Cuban Spanish",
+    "level": "dialect"
+  },
+  "cush1243": {
+    "name": "Cushitic",
+    "level": "family"
+  },
+  "cypr1248": {
+    "name": "Cypriot Arabic",
+    "level": "language"
+  },
+  "cypr1249": {
+    "name": "Cypriot Greek",
+    "level": "language"
+  },
+  "czec1258": {
+    "name": "Czech",
+    "level": "language"
+  },
+  "daci1234": {
+    "name": "Dacian",
+    "level": "language"
+  },
+  "dagb1246": {
+    "name": "Dagbani",
+    "level": "language"
+  },
+  "dani1285": {
+    "name": "Danish",
+    "level": "language"
+  },
+  "dari1249": {
+    "name": "Dari",
+    "level": "language"
+  },
+  "dhiv1236": {
+    "name": "Dhivehi",
+    "level": "language"
+  },
+  "diml1238": {
+    "name": "Dimli",
+    "level": "language"
+  },
+  "dink1262": {
+    "name": "Dinka",
+    "level": "family"
+  },
+  "domi1242": {
+    "name": "Dominican Spanish",
+    "level": "dialect"
+  },
+  "doty1234": {
+    "name": "Dotyali",
+    "level": "language"
+  },
+  "drav1251": {
+    "name": "Dravidian",
+    "level": "family"
+  },
+  "dutc1256": {
+    "name": "Dutch",
+    "level": "language"
+  },
+  "dzon1239": {
+    "name": "Dzongkha",
+    "level": "language"
+  },
+  "east2272": {
+    "name": "Eastern Asturian",
+    "level": "dialect"
+  },
+  "east2273": {
+    "name": "Eastern Aragonese",
+    "level": "dialect"
+  },
+  "east2282": {
+    "name": "East Latvian",
+    "level": "dialect"
+  },
+  "east2295": {
+    "name": "Eastern Yiddish",
+    "level": "language"
+  },
+  "egyp1246": {
+    "name": "Egyptian (Ancient)",
+    "level": "language"
+  },
+  "egyp1253": {
+    "name": "Egyptian Arabic",
+    "level": "language"
+  },
+  "emil1241": {
+    "name": "Emiliano",
+    "level": "language"
+  },
+  "emil1243": {
+    "name": "Emiliano-Romagnolo",
+    "level": "family"
+  },
+  "erzy1239": {
+    "name": "Erzya",
+    "level": "language"
+  },
+  "espe1235": {
+    "name": "Esperanto",
+    "level": "language"
+  },
+  "esto1258": {
+    "name": "Estonian",
+    "level": "language"
+  },
+  "ethi1244": {
+    "name": "Ethiosemitic",
+    "level": "family"
+  },
+  "etru1241": {
+    "name": "Etruscan",
+    "level": "language"
+  },
+  "ewee1241": {
+    "name": "Ewe",
+    "level": "language"
+  },
+  "extr1243": {
+    "name": "Extremaduran",
+    "level": "language"
+  },
+  "fala1241": {
+    "name": "Fala",
+    "level": "language"
+  },
+  "faro1244": {
+    "name": "Faroese",
+    "level": "language"
+  },
+  "fiji1242": {
+    "name": "Fiji Hindi",
+    "level": "language"
+  },
+  "fiji1243": {
+    "name": "Fijian",
+    "level": "language"
+  },
+  "finn1318": {
+    "name": "Finnish",
+    "level": "language"
+  },
+  "fonn1241": {
+    "name": "Fon",
+    "level": "language"
+  },
+  "fran1260": {
+    "name": "Arpitan",
+    "level": "language"
+  },
+  "friu1240": {
+    "name": "Friulian",
+    "level": "language"
+  },
+  "fula1264": {
+    "name": "Fula",
+    "level": "family"
+  },
+  "gaga1249": {
+    "name": "Gagauz",
+    "level": "language"
+  },
+  "gala1252": {
+    "name": "Galatian",
+    "level": "language"
+  },
+  "gali1258": {
+    "name": "Galician",
+    "level": "language"
+  },
+  "gali1263": {
+    "name": "Galician Romance",
+    "level": "family"
+  },
+  "ganc1239": {
+    "name": "Gan Chinese",
+    "level": "language"
+  },
+  "gand1255": {
+    "name": "Ganda",
+    "level": "language"
+  },
+  "geez1241": {
+    "name": "Geez",
+    "level": "language"
+  },
+  "germ1287": {
+    "name": "Germanic",
+    "level": "family"
+  },
+  "ghan1244": {
+    "name": "Ghanaian Pidgin English",
+    "level": "language"
+  },
+  "gila1241": {
+    "name": "Gilaki",
+    "level": "language"
+  },
+  "goan1235": {
+    "name": "Goan Konkani",
+    "level": "language"
+  },
+  "goid1240": {
+    "name": "Goidelic",
+    "level": "family"
+  },
+  "goro1259": {
+    "name": "Gorontalo",
+    "level": "language"
+  },
+  "goth1244": {
+    "name": "Gothic",
+    "level": "language"
+  },
+  "guia1246": {
+    "name": "Guianese Creole French",
+    "level": "language"
+  },
+  "guip1235": {
+    "name": "Guipuzcoan",
+    "level": "dialect"
+  },
+  "guja1252": {
+    "name": "Gujarati",
+    "level": "language"
+  },
+  "gulf1241": {
+    "name": "Gulf Arabic",
+    "level": "language"
+  },
+  "gunn1250": {
+    "name": "Gun",
+    "level": "language"
+  },
+  "hait1244": {
+    "name": "Haitian",
+    "level": "language"
+  },
+  "hakk1236": {
+    "name": "Hakka Chinese",
+    "level": "language"
+  },
+  "halh1238": {
+    "name": "Halh Mongolian",
+    "level": "language"
+  },
+  "hass1238": {
+    "name": "Hassaniyya",
+    "level": "language"
+  },
+  "haus1257": {
+    "name": "Hausa",
+    "level": "language"
+  },
+  "hawa1245": {
+    "name": "Hawaiian",
+    "level": "language"
+  },
+  "haza1239": {
+    "name": "Hazaragi",
+    "level": "language"
+  },
+  "hebr1245": {
+    "name": "Modern Hebrew",
+    "level": "language"
+  },
+  "here1253": {
+    "name": "Herero",
+    "level": "language"
+  },
+  "hija1235": {
+    "name": "Hijazi Arabic",
+    "level": "language"
+  },
+  "hind1269": {
+    "name": "Hindi",
+    "level": "language"
+  },
+  "hiri1237": {
+    "name": "Hiri Motu",
+    "level": "language"
+  },
+  "homs1234": {
+    "name": "Western Armenian",
+    "level": "language"
+  },
+  "hung1274": {
+    "name": "Hungarian",
+    "level": "language"
+  },
+  "iban1264": {
+    "name": "Iban",
+    "level": "language"
+  },
+  "iber1250": {
+    "name": "Iberian",
+    "level": "language"
+  },
+  "icel1247": {
+    "name": "Icelandic",
+    "level": "language"
+  },
+  "idoo1234": {
+    "name": "Ido",
+    "level": "language"
+  },
+  "ilok1237": {
+    "name": "Iloko",
+    "level": "language"
+  },
+  "impe1235": {
+    "name": "Imperial Aramaic (700-300 BCE)",
+    "level": "language"
+  },
+  "inar1241": {
+    "name": "Inari Saami",
+    "level": "language"
+  },
+  "indo1316": {
+    "name": "Standard Indonesian",
+    "level": "language"
+  },
+  "indo1319": {
+    "name": "Indo-European",
+    "level": "family"
+  },
+  "indo1320": {
+    "name": "Indo-Iranian",
+    "level": "family"
+  },
+  "ingu1240": {
+    "name": "Ingush",
+    "level": "language"
+  },
+  "inte1239": {
+    "name": "Interlingua (International Auxiliary Language Association)",
+    "level": "language"
+  },
+  "inte1260": {
+    "name": "Interlingue (Occidental)",
+    "level": "language"
+  },
+  "inup1234": {
+    "name": "Alaskan Inupiaq",
+    "level": "family"
+  },
+  "iran1269": {
+    "name": "Iranian",
+    "level": "family"
+  },
+  "iris1253": {
+    "name": "Irish",
+    "level": "language"
+  },
+  "iris1255": {
+    "name": "Irish English",
+    "level": "dialect"
+  },
+  "iron1242": {
+    "name": "Iron Ossetian",
+    "level": "language"
+  },
+  "ital1282": {
+    "name": "Italian",
+    "level": "language"
+  },
+  "ital1284": {
+    "name": "Italic",
+    "level": "family"
+  },
+  "jama1262": {
+    "name": "Jamaican Creole English",
+    "level": "language"
+  },
+  "japo1237": {
+    "name": "Japonic",
+    "level": "family"
+  },
+  "java1254": {
+    "name": "Javanese",
+    "level": "language"
+  },
+  "kaba1278": {
+    "name": "Kabardian",
+    "level": "language"
+  },
+  "kabi1261": {
+    "name": "Kabiyé",
+    "level": "language"
+  },
+  "kabu1256": {
+    "name": "Kabuverdianu",
+    "level": "language"
+  },
+  "kaby1243": {
+    "name": "Kabyle",
+    "level": "language"
+  },
+  "kaby1244": {
+    "name": "Kabyle-Atlas Berber",
+    "level": "family"
+  },
+  "kala1399": {
+    "name": "Kalaallisut",
+    "level": "language"
+  },
+  "kalm1244": {
+    "name": "Kalmyk",
+    "level": "dialect"
+  },
+  "kanu1279": {
+    "name": "Kanuri-Kanembu",
+    "level": "family"
+  },
+  "kara1465": {
+    "name": "Karachay-Balkar",
+    "level": "language"
+  },
+  "kart1248": {
+    "name": "Kartvelian",
+    "level": "family"
+  },
+  "kash1274": {
+    "name": "Kashubian",
+    "level": "language"
+  },
+  "kash1277": {
+    "name": "Kashmiri",
+    "level": "language"
+  },
+  "kaza1248": {
+    "name": "Kazakh",
+    "level": "language"
+  },
+  "khas1269": {
+    "name": "Khasi",
+    "level": "language"
+  },
+  "khoe1240": {
+    "name": "Khoe-Kwadi",
+    "level": "family"
+  },
+  "khor1275": {
+    "name": "Khorasan Persian",
+    "level": "dialect"
+  },
+  "kich1262": {
+    "name": "K'iche'",
+    "level": "language"
+  },
+  "kiku1240": {
+    "name": "Kikuyu",
+    "level": "language"
+  },
+  "kimb1241": {
+    "name": "Kimbundu",
+    "level": "language"
+  },
+  "kiny1244": {
+    "name": "Kinyarwanda",
+    "level": "language"
+  },
+  "kirg1245": {
+    "name": "Kirghiz",
+    "level": "language"
+  },
+  "kols1241": {
+    "name": "Kölsch",
+    "level": "language"
+  },
+  "komi1267": {
+    "name": "Komi",
+    "level": "family"
+  },
+  "komi1269": {
+    "name": "Komi-Permyak",
+    "level": "language"
+  },
+  "koon1244": {
+    "name": "South-Central Koongo",
+    "level": "language"
+  },
+  "kore1280": {
+    "name": "Korean",
+    "level": "language"
+  },
+  "kore1284": {
+    "name": "Koreanic",
+    "level": "family"
+  },
+  "kota1280": {
+    "name": "Kotava",
+    "level": "language"
+  },
+  "kuan1247": {
+    "name": "Kuanyama",
+    "level": "language"
+  },
+  "kuki1246": {
+    "name": "Kuki-Chin",
+    "level": "family"
+  },
+  "ladi1250": {
+    "name": "Ladin",
+    "level": "language"
+  },
+  "ladi1251": {
+    "name": "Ladino",
+    "level": "language"
+  },
+  "lakk1252": {
+    "name": "Lak",
+    "level": "language"
+  },
+  "laoo1244": {
+    "name": "Lao",
+    "level": "language"
+  },
+  "late1252": {
+    "name": "Late Latin",
+    "level": "dialect"
+  },
+  "lati1261": {
+    "name": "Latin",
+    "level": "language"
+  },
+  "latv1249": {
+    "name": "Latvian",
+    "level": "language"
+  },
+  "leon1250": {
+    "name": "Leonese",
+    "level": "dialect"
+  },
+  "lepo1240": {
+    "name": "Lepontic",
+    "level": "language"
+  },
+  "lezg1247": {
+    "name": "Lezgian",
+    "level": "language"
+  },
+  "liby1240": {
+    "name": "Libyan Arabic",
+    "level": "language"
+  },
+  "ligu1248": {
+    "name": "Ligurian",
+    "level": "language"
+  },
+  "limb1263": {
+    "name": "Limburgan",
+    "level": "language"
+  },
+  "ling1263": {
+    "name": "Kinshasa Lingala",
+    "level": "language"
+  },
+  "ling1267": {
+    "name": "Lingua Franca Nova",
+    "level": "language"
+  },
+  "lite1248": {
+    "name": "Classical Chinese",
+    "level": "language"
+  },
+  "lith1251": {
+    "name": "Lithuanian",
+    "level": "language"
+  },
+  "livv1243": {
+    "name": "Livvi",
+    "level": "language"
+  },
+  "logu1236": {
+    "name": "Logudorese Sardinian",
+    "level": "language"
+  },
+  "lojb1234": {
+    "name": "Lojban",
+    "level": "language"
+  },
+  "lomb1257": {
+    "name": "Lombard",
+    "level": "language"
+  },
+  "lowe1385": {
+    "name": "Lower Sorbian",
+    "level": "language"
+  },
+  "luxe1241": {
+    "name": "Moselle Franconian",
+    "level": "language"
+  },
+  "maca1262": {
+    "name": "Macanese",
+    "level": "language"
+  },
+  "mace1250": {
+    "name": "Macedonian",
+    "level": "language"
+  },
+  "maga1260": {
+    "name": "Magahi",
+    "level": "language"
+  },
+  "mait1250": {
+    "name": "Maithili",
+    "level": "language"
+  },
+  "mala1464": {
+    "name": "Malayalam",
+    "level": "language"
+  },
+  "mala1537": {
+    "name": "Malagasic",
+    "level": "family"
+  },
+  "mala1545": {
+    "name": "Malayo-Polynesian",
+    "level": "family"
+  },
+  "malt1254": {
+    "name": "Maltese",
+    "level": "language"
+  },
+  "mand1415": {
+    "name": "Mandarin Chinese",
+    "level": "language"
+  },
+  "mani1292": {
+    "name": "Manipuri",
+    "level": "language"
+  },
+  "manx1243": {
+    "name": "Manx",
+    "level": "language"
+  },
+  "maor1246": {
+    "name": "Maori",
+    "level": "language"
+  },
+  "mapu1245": {
+    "name": "Mapudungun",
+    "level": "language"
+  },
+  "mara1378": {
+    "name": "Marathi",
+    "level": "language"
+  },
+  "mars1254": {
+    "name": "Marshallese",
+    "level": "language"
+  },
+  "maza1291": {
+    "name": "Mazanderani",
+    "level": "language"
+  },
+  "meso1252": {
+    "name": "Gilit Mesopotamian Arabic",
+    "level": "language"
+  },
+  "mexi1248": {
+    "name": "Mexican Spanish",
+    "level": "dialect"
+  },
+  "midd1317": {
+    "name": "Middle English",
+    "level": "language"
+  },
+  "midd1344": {
+    "name": "Middle Chinese",
+    "level": "language"
+  },
+  "mina1268": {
+    "name": "Minangkabau",
+    "level": "language"
+  },
+  "mind1253": {
+    "name": "Min Dong Chinese",
+    "level": "language"
+  },
+  "ming1252": {
+    "name": "Mingrelian",
+    "level": "language"
+  },
+  "minn1241": {
+    "name": "Min Nan Chinese",
+    "level": "language"
+  },
+  "mira1251": {
+    "name": "Mirandese",
+    "level": "language"
+  },
+  "mode1248": {
+    "name": "Modern Greek",
+    "level": "language"
+  },
+  "moks1248": {
+    "name": "Moksha",
+    "level": "language"
+  },
+  "mong1329": {
+    "name": "Mongolic",
+    "level": "family"
+  },
+  "monn1252": {
+    "name": "Mon",
+    "level": "language"
+  },
+  "moro1292": {
+    "name": "Moroccan Arabic",
+    "level": "language"
+  },
+  "moss1236": {
+    "name": "Mossi",
+    "level": "language"
+  },
+  "moza1249": {
+    "name": "Mozarabic",
+    "level": "language"
+  },
+  "mund1320": {
+    "name": "Mundari",
+    "level": "language"
+  },
+  "murc1238": {
+    "name": "Murcian",
+    "level": "dialect"
+  },
+  "najd1235": {
+    "name": "Najdi Arabic",
+    "level": "language"
+  },
+  "narr1281": {
+    "name": "Narrow Bantu",
+    "level": "family"
+  },
+  "naur1243": {
+    "name": "Nauru",
+    "level": "language"
+  },
+  "nava1243": {
+    "name": "Navajo",
+    "level": "language"
+  },
+  "ndon1254": {
+    "name": "Ndonga",
+    "level": "language"
+  },
+  "neap1235": {
+    "name": "Continental Southern Italian",
+    "level": "language"
+  },
+  "nepa1254": {
+    "name": "Nepali",
+    "level": "language"
+  },
+  "newa1246": {
+    "name": "Kathmandu Valley Newari",
+    "level": "language"
+  },
+  "nias1242": {
+    "name": "Nias",
+    "level": "language"
+  },
+  "nkoa1234": {
+    "name": "N'Ko",
+    "level": "language"
+  },
+  "norm1245": {
+    "name": "Normand",
+    "level": "dialect"
+  },
+  "nort2626": {
+    "name": "Northern Frisian",
+    "level": "language"
+  },
+  "nort2627": {
+    "name": "Eastern Low German",
+    "level": "language"
+  },
+  "nort2641": {
+    "name": "Northern Kurdish",
+    "level": "language"
+  },
+  "nort2645": {
+    "name": "Northern Luri",
+    "level": "language"
+  },
+  "nort2671": {
+    "name": "North Saami",
+    "level": "language"
+  },
+  "nort2690": {
+    "name": "Northern Uzbek",
+    "level": "language"
+  },
+  "nort2697": {
+    "name": "North Azerbaijani",
+    "level": "language"
+  },
+  "nort3139": {
+    "name": "Levantine Arabic",
+    "level": "language"
+  },
+  "nort3142": {
+    "name": "North Mesopotamian Arabic",
+    "level": "language"
+  },
+  "nort3160": {
+    "name": "North Germanic",
+    "level": "family"
+  },
+  "nort3175": {
+    "name": "North Sea Germanic",
+    "level": "family"
+  },
+  "nort3385": {
+    "name": "Northern Peninsular Mexican Spanish",
+    "level": "dialect"
+  },
+  "norw1258": {
+    "name": "Norwegian",
+    "level": "language"
+  },
+  "norw1259": {
+    "name": "Norwegian Bokmål",
+    "level": "dialect"
+  },
+  "norw1262": {
+    "name": "Norwegian Nynorsk",
+    "level": "dialect"
+  },
+  "novi1234": {
+    "name": "Novial",
+    "level": "language"
+  },
+  "nucl1235": {
+    "name": "Eastern Armenian",
+    "level": "language"
+  },
+  "nucl1276": {
+    "name": "Nuclear Pashto",
+    "level": "family"
+  },
+  "nucl1301": {
+    "name": "Turkish",
+    "level": "language"
+  },
+  "nucl1302": {
+    "name": "Georgian",
+    "level": "language"
+  },
+  "nucl1305": {
+    "name": "Kannada",
+    "level": "language"
+  },
+  "nucl1310": {
+    "name": "Burmese",
+    "level": "language"
+  },
+  "nucl1347": {
+    "name": "Wolof",
+    "level": "language"
+  },
+  "nucl1417": {
+    "name": "Igbo",
+    "level": "language"
+  },
+  "nucl1460": {
+    "name": "Madurese",
+    "level": "language"
+  },
+  "nucl1643": {
+    "name": "Japanese",
+    "level": "language"
+  },
+  "nucl1667": {
+    "name": "Central-Southern Aymara",
+    "level": "family"
+  },
+  "nyan1308": {
+    "name": "Nyanja",
+    "level": "language"
+  },
+  "occi1239": {
+    "name": "Occitan",
+    "level": "language"
+  },
+  "oldc1244": {
+    "name": "Old Chinese",
+    "level": "language"
+  },
+  "olde1238": {
+    "name": "Old English (ca. 450-1100)",
+    "level": "language"
+  },
+  "oldf1241": {
+    "name": "Old Frisian",
+    "level": "language"
+  },
+  "oldh1241": {
+    "name": "Old High German (ca. 750-1050)",
+    "level": "language"
+  },
+  "oldj1239": {
+    "name": "Old Japanese",
+    "level": "language"
+  },
+  "oldl1238": {
+    "name": "Old Latin",
+    "level": "language"
+  },
+  "oldn1244": {
+    "name": "Old Norse",
+    "level": "language"
+  },
+  "oldp1254": {
+    "name": "Old Persian (ca. 600-400 B.C.)",
+    "level": "language"
+  },
+  "oldp1257": {
+    "name": "Old Portuguese",
+    "level": "dialect"
+  },
+  "olds1249": {
+    "name": "Old Spanish",
+    "level": "language"
+  },
+  "olds1250": {
+    "name": "Old Saxon",
+    "level": "language"
+  },
+  "oman1239": {
+    "name": "Omani Arabic",
+    "level": "language"
+  },
+  "oriy1255": {
+    "name": "Odia",
+    "level": "language"
+  },
+  "osca1245": {
+    "name": "Oscan",
+    "level": "language"
+  },
+  "pahl1241": {
+    "name": "Pahlavi",
+    "level": "language"
+  },
+  "paiw1248": {
+    "name": "Paiwan",
+    "level": "language"
+  },
+  "pala1330": {
+    "name": "Pfaelzisch-Lothringisch",
+    "level": "language"
+  },
+  "pali1273": {
+    "name": "Pali",
+    "level": "language"
+  },
+  "pamp1243": {
+    "name": "Pampanga",
+    "level": "language"
+  },
+  "pang1290": {
+    "name": "Pangasinan",
+    "level": "language"
+  },
+  "panj1256": {
+    "name": "Eastern Panjabi",
+    "level": "language"
+  },
+  "paok1235": {
+    "name": "Pa'o Karen",
+    "level": "language"
+  },
+  "papi1253": {
+    "name": "Papiamento",
+    "level": "language"
+  },
+  "para1311": {
+    "name": "Paraguayan Guaraní",
+    "level": "language"
+  },
+  "pedi1238": {
+    "name": "Pedi",
+    "level": "language"
+  },
+  "penn1240": {
+    "name": "Pennsylvania German",
+    "level": "language"
+  },
+  "phoe1239": {
+    "name": "Phoenician",
+    "level": "language"
+  },
+  "pica1241": {
+    "name": "Picard",
+    "level": "language"
+  },
+  "piem1238": {
+    "name": "Piemontese",
+    "level": "language"
+  },
+  "pipi1250": {
+    "name": "Pipil",
+    "level": "language"
+  },
+  "pitc1234": {
+    "name": "Pitcairn-Norfolk",
+    "level": "language"
+  },
+  "poli1260": {
+    "name": "Polish",
+    "level": "language"
+  },
+  "pont1253": {
+    "name": "Pontic",
+    "level": "language"
+  },
+  "port1283": {
+    "name": "Portuguese",
+    "level": "language"
+  },
+  "prin1242": {
+    "name": "Principense",
+    "level": "language"
+  },
+  "puer1238": {
+    "name": "Puerto Rican Spanish",
+    "level": "dialect"
+  },
+  "quec1387": {
+    "name": "Quechuan",
+    "level": "family"
+  },
+  "rakh1245": {
+    "name": "Rakhine",
+    "level": "language"
+  },
+  "riop1234": {
+    "name": "Rioplatense Spanish",
+    "level": "dialect"
+  },
+  "roma1326": {
+    "name": "Romansh",
+    "level": "language"
+  },
+  "roma1327": {
+    "name": "Romanian",
+    "level": "language"
+  },
+  "ronc1236": {
+    "name": "Roncalese",
+    "level": "dialect"
+  },
+  "ross1234": {
+    "name": "Rossellonès",
+    "level": "dialect"
+  },
+  "rund1242": {
+    "name": "Rundi",
+    "level": "language"
+  },
+  "russ1263": {
+    "name": "Russian",
+    "level": "language"
+  },
+  "russ1264": {
+    "name": "Russia Buriat",
+    "level": "language"
+  },
+  "rusy1239": {
+    "name": "Rusyn",
+    "level": "language"
+  },
+  "saki1247": {
+    "name": "Sakizaya",
+    "level": "language"
+  },
+  "samo1265": {
+    "name": "Samogitian",
+    "level": "dialect"
+  },
+  "samo1305": {
+    "name": "Samoan",
+    "level": "language"
+  },
+  "sana1295": {
+    "name": "Sanaani Arabic",
+    "level": "language"
+  },
+  "sang1328": {
+    "name": "Sango",
+    "level": "language"
+  },
+  "sans1269": {
+    "name": "Sanskrit",
+    "level": "language"
+  },
+  "sant1410": {
+    "name": "Santali",
+    "level": "language"
+  },
+  "sard1257": {
+    "name": "Southern Romance",
+    "level": "family"
+  },
+  "sate1242": {
+    "name": "Ems-Weser Frisian",
+    "level": "language"
+  },
+  "scot1243": {
+    "name": "Scots",
+    "level": "language"
+  },
+  "scot1245": {
+    "name": "Scottish Gaelic",
+    "level": "language"
+  },
+  "semi1276": {
+    "name": "Semitic",
+    "level": "family"
+  },
+  "sera1259": {
+    "name": "Saraiki",
+    "level": "language"
+  },
+  "serb1264": {
+    "name": "Serbian Standard",
+    "level": "dialect"
+  },
+  "shan1277": {
+    "name": "Shan",
+    "level": "language"
+  },
+  "shon1251": {
+    "name": "Shona",
+    "level": "language"
+  },
+  "sich1238": {
+    "name": "Sichuan Yi",
+    "level": "language"
+  },
+  "sici1248": {
+    "name": "Sicilian",
+    "level": "language"
+  },
+  "sile1253": {
+    "name": "Silesian",
+    "level": "language"
+  },
+  "sind1272": {
+    "name": "Sindhi",
+    "level": "language"
+  },
+  "sinh1246": {
+    "name": "Sinhala",
+    "level": "language"
+  },
+  "sino1245": {
+    "name": "Sino-Tibetan",
+    "level": "family"
+  },
+  "slav1255": {
+    "name": "Slavic",
+    "level": "family"
+  },
+  "slov1268": {
+    "name": "Slovenian",
+    "level": "language"
+  },
+  "slov1269": {
+    "name": "Slovak",
+    "level": "language"
+  },
+  "soma1255": {
+    "name": "Somali",
+    "level": "language"
+  },
+  "sout2694": {
+    "name": "Southern Altai",
+    "level": "language"
+  },
+  "sout2697": {
+    "name": "South Azerbaijani",
+    "level": "language"
+  },
+  "sout2807": {
+    "name": "Southern Sotho",
+    "level": "language"
+  },
+  "sout2808": {
+    "name": "Sumayela Ndebele",
+    "level": "language"
+  },
+  "sout3123": {
+    "name": "South Levantine Arabic",
+    "level": "dialect"
+  },
+  "sout3331": {
+    "name": "Southern African English",
+    "level": "dialect"
+  },
+  "sran1240": {
+    "name": "Sranan Tongo",
+    "level": "language"
+  },
+  "stan1289": {
+    "name": "Catalan",
+    "level": "language"
+  },
+  "stan1290": {
+    "name": "French",
+    "level": "language"
+  },
+  "stan1293": {
+    "name": "English",
+    "level": "language"
+  },
+  "stan1295": {
+    "name": "German",
+    "level": "language"
+  },
+  "stan1306": {
+    "name": "Standard Malay",
+    "level": "language"
+  },
+  "stan1318": {
+    "name": "Standard Arabic",
+    "level": "language"
+  },
+  "stan1323": {
+    "name": "Standard Lebanese Arabic",
+    "level": "dialect"
+  },
+  "stan1324": {
+    "name": "Standard Moroccan Tamazight",
+    "level": "dialect"
+  },
+  "suda1236": {
+    "name": "Sudanese Arabic",
+    "level": "language"
+  },
+  "sund1252": {
+    "name": "Sundanese",
+    "level": "language"
+  },
+  "swah1253": {
+    "name": "Swahili",
+    "level": "language"
+  },
+  "swat1243": {
+    "name": "Swati",
+    "level": "language"
+  },
+  "swed1254": {
+    "name": "Swedish",
+    "level": "language"
+  },
+  "sylh1242": {
+    "name": "Sylheti",
+    "level": "language"
+  },
+  "tach1249": {
+    "name": "Chaouia of the Aures",
+    "level": "language"
+  },
+  "tach1250": {
+    "name": "Tachelhit",
+    "level": "language"
+  },
+  "taga1270": {
+    "name": "Tagalog",
+    "level": "language"
+  },
+  "tahi1242": {
+    "name": "Tahitian",
+    "level": "language"
+  },
+  "taik1256": {
+    "name": "Tai-Kadai",
+    "level": "family"
+  },
+  "taji1245": {
+    "name": "Tajik",
+    "level": "language"
+  },
+  "taly1247": {
+    "name": "North-Central Talysh",
+    "level": "language"
+  },
+  "tami1289": {
+    "name": "Tamil",
+    "level": "language"
+  },
+  "taro1264": {
+    "name": "Seediq",
+    "level": "language"
+  },
+  "tart1237": {
+    "name": "Tartessian",
+    "level": "language"
+  },
+  "tata1255": {
+    "name": "Tatar",
+    "level": "language"
+  },
+  "telu1262": {
+    "name": "Telugu",
+    "level": "language"
+  },
+  "tetu1245": {
+    "name": "Tetum",
+    "level": "language"
+  },
+  "thai1261": {
+    "name": "Thai",
+    "level": "language"
+  },
+  "tibe1272": {
+    "name": "Tibetan",
+    "level": "language"
+  },
+  "tigr1271": {
+    "name": "Tigrinya",
+    "level": "language"
+  },
+  "toki1239": {
+    "name": "Toki Pona",
+    "level": "language"
+  },
+  "tokp1240": {
+    "name": "Tok Pisin",
+    "level": "language"
+  },
+  "tong1325": {
+    "name": "Tonga (Tonga Islands)",
+    "level": "language"
+  },
+  "tran1282": {
+    "name": "Transalpine Gaulish",
+    "level": "language"
+  },
+  "tson1249": {
+    "name": "Tsonga",
+    "level": "language"
+  },
+  "tswa1253": {
+    "name": "Tswana",
+    "level": "language"
+  },
+  "tulu1258": {
+    "name": "Tulu",
+    "level": "language"
+  },
+  "tumb1250": {
+    "name": "Tumbuka",
+    "level": "language"
+  },
+  "tuni1259": {
+    "name": "Tunisian Arabic",
+    "level": "language"
+  },
+  "tupi1273": {
+    "name": "Tupinambá",
+    "level": "language"
+  },
+  "turk1304": {
+    "name": "Turkmen",
+    "level": "language"
+  },
+  "turk1311": {
+    "name": "Turkic",
+    "level": "family"
+  },
+  "tuvi1240": {
+    "name": "Tuvinian",
+    "level": "language"
+  },
+  "tyap1238": {
+    "name": "Tyap",
+    "level": "language"
+  },
+  "udmu1245": {
+    "name": "Udmurt",
+    "level": "language"
+  },
+  "uigh1240": {
+    "name": "Uighur",
+    "level": "language"
+  },
+  "ukra1253": {
+    "name": "Ukrainian",
+    "level": "language"
+  },
+  "umbr1253": {
+    "name": "Umbrian",
+    "level": "language"
+  },
+  "uppe1395": {
+    "name": "Upper Sorbian",
+    "level": "language"
+  },
+  "uppe1455": {
+    "name": "Upper Guinea Crioulo",
+    "level": "language"
+  },
+  "ural1272": {
+    "name": "Uralic",
+    "level": "family"
+  },
+  "urdu1245": {
+    "name": "Urdu",
+    "level": "language"
+  },
+  "vale1252": {
+    "name": "Valencià",
+    "level": "dialect"
+  },
+  "vall1258": {
+    "name": "Valluno Spanish",
+    "level": "dialect"
+  },
+  "vedi1234": {
+    "name": "Vedic Sanskrit",
+    "level": "dialect"
+  },
+  "vend1245": {
+    "name": "Venda",
+    "level": "language"
+  },
+  "vene1258": {
+    "name": "Venetian",
+    "level": "language"
+  },
+  "vene1262": {
+    "name": "Venezuelan Spanish",
+    "level": "dialect"
+  },
+  "veps1250": {
+    "name": "Veps",
+    "level": "language"
+  },
+  "viet1252": {
+    "name": "Vietnamese",
+    "level": "language"
+  },
+  "vlaa1240": {
+    "name": "Western Flemish",
+    "level": "language"
+  },
+  "vlax1238": {
+    "name": "Vlax Romani",
+    "level": "language"
+  },
+  "vola1234": {
+    "name": "Volapük",
+    "level": "language"
+  },
+  "voro1243": {
+    "name": "Võro",
+    "level": "dialect"
+  },
+  "wall1255": {
+    "name": "Walloon",
+    "level": "language"
+  },
+  "wara1300": {
+    "name": "Waray (Philippines)",
+    "level": "language"
+  },
+  "wayu1243": {
+    "name": "Wayuu",
+    "level": "language"
+  },
+  "wels1247": {
+    "name": "Welsh",
+    "level": "language"
+  },
+  "west2339": {
+    "name": "Western Asturian",
+    "level": "dialect"
+  },
+  "west2340": {
+    "name": "Western Aragonese",
+    "level": "dialect"
+  },
+  "west2354": {
+    "name": "Western Frisian",
+    "level": "language"
+  },
+  "west2369": {
+    "name": "Western Farsi",
+    "level": "language"
+  },
+  "west2386": {
+    "name": "Western Panjabi",
+    "level": "language"
+  },
+  "west2721": {
+    "name": "West Central Oromo",
+    "level": "language"
+  },
+  "west2786": {
+    "name": "West Semitic",
+    "level": "family"
+  },
+  "wuch1236": {
+    "name": "Wu Chinese",
+    "level": "language"
+  },
+  "xhos1239": {
+    "name": "Xhosa",
+    "level": "language"
+  },
+  "yaku1245": {
+    "name": "Sakha",
+    "level": "language"
+  },
+  "yong1276": {
+    "name": "Yongbei Zhuang",
+    "level": "language"
+  },
+  "yoru1245": {
+    "name": "Yoruba",
+    "level": "language"
+  },
+  "yuca1254": {
+    "name": "Yucatec Maya",
+    "level": "language"
+  },
+  "zeeu1238": {
+    "name": "Zeeuws",
+    "level": "language"
+  },
+  "zulu1248": {
+    "name": "Zulu",
+    "level": "language"
+  }
+}

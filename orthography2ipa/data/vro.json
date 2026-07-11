@@ -180,7 +180,7 @@
   "notes": "Võro (võro kiil), a South Estonian (Finnic) language of south-eastern Estonia with its own literary standard, regulated by the Võro Institute. The orthography is Estonian-based with two distinctive additions: ⟨q⟩ writes the glottal stop (the Võro plural/negation marker), and palatalisation is marked with an acute accent or apostrophe. Vowels include ⟨õ⟩ /ɤ/, ⟨ä⟩ /æ/, ⟨ö⟩ /ø/, ⟨ü⟩ /y/. Estonian's three-way quantity system is present but is not written and is not modelled. The Wikidata row supplied for this code pointed at a Wikimedia project page rather than the language item, so no QID is asserted here.",
   "iso639_3": "vro",
   "glottolog_code": "voro1243",
-  "wikidata_qid": null,
+  "wikidata_qid": "Q32762",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/V%C3%B5ro_language"
   ],

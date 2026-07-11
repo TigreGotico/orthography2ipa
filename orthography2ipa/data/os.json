@@ -267,7 +267,7 @@
     ]
   },
   "iso639_3": null,
-  "glottolog_code": "osse1245",
+  "glottolog_code": "iron1242",
   "wikidata_qid": "Q33968",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ossetian_language",
@@ -296,7 +296,7 @@
       "notes": null
     }
   ],
-  "notes": "Ossetian (ирон æвзаг), Iron literary standard — Eastern Iranian language of the Caucasus, written in Cyrillic since 1938. The alphabet extends Russian Cyrillic with ⟨ӕ⟩ /ɐ/, the ejective digraphs ⟨къ пъ тъ цъ чъ⟩, the uvulars ⟨хъ⟩ /q/ and ⟨гъ⟩ /ʁ/, and the labialised series written with a following ⟨у⟩ (гу, ку, хъу, …). Note the Iron sound shifts the spelling preserves: ⟨с⟩ is [ʃ], ⟨з⟩ is [ʒ], ⟨ц⟩ is [s] and ⟨дз⟩ is [z] in Iron (the Digor dialect keeps the sibilant/affricate values). Letters used only in Russian loanwords (ё, ш, щ, ъ, ь, э, ю, я) are not mapped. Stress falls on the first or second syllable depending on vowel strength.",
+  "notes": "Ossetian (ирон æвзаг), Iron literary standard — Eastern Iranian language of the Caucasus, written in Cyrillic since 1938. The alphabet extends Russian Cyrillic with ⟨ӕ⟩ /ɐ/, the ejective digraphs ⟨къ пъ тъ цъ чъ⟩, the uvulars ⟨хъ⟩ /q/ and ⟨гъ⟩ /ʁ/, and the labialised series written with a following ⟨у⟩ (гу, ку, хъу, …). Note the Iron sound shifts the spelling preserves: ⟨с⟩ is [ʃ], ⟨з⟩ is [ʒ], ⟨ц⟩ is [s] and ⟨дз⟩ is [z] in Iron (the Digor dialect keeps the sibilant/affricate values). Letters used only in Russian loanwords (ё, ш, щ, ъ, ь, э, ю, я) are not mapped. Stress falls on the first or second syllable depending on vowel strength. Glottolog code targets the Iron languoid (`iron1242`), the literary standard this spec models; `osse1245` is the family node.",
   "timespan": {
     "start_year": 1798,
     "end_year": null

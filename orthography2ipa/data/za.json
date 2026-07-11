@@ -8,7 +8,7 @@
   "graphemes": {},
   "allophones": {},
   "iso639_3": "zha",
-  "glottolog_code": "nort3180",
+  "glottolog_code": "yong1276",
   "wikidata_qid": "Q13216",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Zhuang_languages",
@@ -50,7 +50,7 @@
       "notes": null
     }
   ],
-  "notes": "Zhuang (Vahcuengh) — Tai language cluster of Guangxi, China; the spec targets Standard Zhuang, based on the Wuming dialect. INPUT CONTRACT: the official 1982 Latin orthography is NOT a plain letter→phoneme alphabet — the word-final letters ⟨z j x q h⟩ (and bare/unmarked) are TONE letters, not consonants, and the same letters are ordinary consonants elsewhere in the word. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty) because a correct map requires positional rules separating the tone-letter slot from the segmental slots, which needs sourcing before it can be claimed. The traditional Sawndip script is logographic (Han-derived characters) and no character map is claimed either.",
+  "notes": "Zhuang (Vahcuengh) — Tai language cluster of Guangxi, China; the spec targets Standard Zhuang, based on the Wuming dialect. INPUT CONTRACT: the official 1982 Latin orthography is NOT a plain letter→phoneme alphabet — the word-final letters ⟨z j x q h⟩ (and bare/unmarked) are TONE letters, not consonants, and the same letters are ordinary consonants elsewhere in the word. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty) because a correct map requires positional rules separating the tone-letter slot from the segmental slots, which needs sourcing before it can be claimed. The traditional Sawndip script is logographic (Han-derived characters) and no character map is claimed either. Glottolog: ISO `zha` (Zhuang) resolves only to the `nort3180` FAMILY node (Northern Daic), which is the wrong level; the code recorded is Yongbei Zhuang (`zyb`), the variety Standard Zhuang is based on.",
   "timespan": {
     "start_year": 1957,
     "end_year": null
