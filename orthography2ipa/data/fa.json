@@ -1,4 +1,18 @@
 {
+  "ancestors": [
+    {
+      "code": "ira",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Descent from Proto-Iranian via Old Persian and Middle Persian (Pahlavi) to New Persian."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Arabic adstrate: after the Islamic conquest a very large lexical layer entered New Persian (and the Perso-Arabic script), though core phonology and grammar stayed Iranian."
+    }
+  ],
   "code": "fa",
   "name": "Persian (Farsi)",
   "family": "Iranian",
@@ -230,7 +244,7 @@
       "uː"
     ]
   },
-  "parent": "ine",
+  "parent": "ira",
   "notes": "Tehran standard. Many Arabic emphatic/pharyngeal consonants have merged with plain counterparts. 6-vowel system: /ɒː, æ, e, o, iː, uː/.",
   "quality": "research",
   "script_type": "abjad",

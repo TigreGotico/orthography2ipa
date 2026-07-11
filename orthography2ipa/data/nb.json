@@ -1,4 +1,24 @@
 {
+  "ancestors": [
+    {
+      "code": "no",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Norwegian macrolanguage node; Bokmal is the Dano-Norwegian written standard."
+    },
+    {
+      "code": "non",
+      "role": "ancestor",
+      "weight": 0.1,
+      "notes": "Old Norse (West Norse) — the historical stage underlying all mainland Scandinavian."
+    },
+    {
+      "code": "da",
+      "role": "superstrate",
+      "weight": 0.12,
+      "notes": "Danish superstrate: four centuries of Dano-Norwegian union made written Danish the base of Bokmal; heavy orthographic and lexical layer."
+    }
+  ],
   "code": "nb",
   "name": "Norwegian Bokmål",
   "family": "Germanic",

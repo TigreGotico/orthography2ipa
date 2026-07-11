@@ -1,4 +1,30 @@
 {
+  "ancestors": [
+    {
+      "code": "es-ES-x-medieval",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Direct descent from Old/Medieval Castilian (Toledo norm), itself from Hispanic Vulgar Latin."
+    },
+    {
+      "code": "xaq",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Basque/Aquitanian substrate in the Castilian homeland: the Latin f->h change (filium>hijo), reinforcement of the 5-vowel system."
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Visigothic (Gothic) superstrate: lexical layer (guerra, guardar, ropa, ganso) and some onomastics."
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Andalusi Arabic adstrate: ~4000 loanwords (alcohol, almohada, aceite), inherited via the medieval stage."
+    }
+  ],
   "code": "es-ES",
   "name": "Castilian Spanish",
   "family": "Romance",

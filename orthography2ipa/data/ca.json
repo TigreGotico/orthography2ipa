@@ -1,4 +1,36 @@
 {
+  "ancestors": [
+    {
+      "code": "la-x-late",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Descent from Late/Tarraconensis Vulgar Latin; Catalan is a transitional Gallo-Ibero-Romance variety."
+    },
+    {
+      "code": "xib",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Iberian (non-IE) substrate of the eastern Iberian coast, plus a Celtiberian layer inland."
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Visigothic (Gothic) superstrate: onomastic and lexical Germanic layer shared with the rest of Hispania."
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Andalusi Arabic adstrate: al- loanwords (alberginia, safareig, raval), lighter than in Castilian."
+    },
+    {
+      "code": "oc",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Occitan adstrate: close Gallo-Romance sister; strong medieval literary and lexical convergence (troubadour koine)."
+    }
+  ],
   "code": "ca",
   "name": "Catalan",
   "family": "Romance",

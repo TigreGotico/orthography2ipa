@@ -1,4 +1,24 @@
 {
+  "ancestors": [
+    {
+      "code": "pt-PT-x-medieval",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Galician-Portuguese / medieval European Portuguese carried to Brazil from the 16th c."
+    },
+    {
+      "code": "tpw",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Old Tupi (lingua geral) substrate: toponyms and everyday lexicon (abacaxi, mandioca, capim, jacare, peteca)."
+    },
+    {
+      "code": "kmb",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "West-Central African (Kimbundu/Kikongo/Yoruba) adstrate from the enslaved population: samba, moleque, cacula, cafune, quilombo; often invoked for open pretonic vowels and syllable-timing tendencies."
+    }
+  ],
   "code": "pt-BR",
   "name": "Brazilian Portuguese",
   "family": "Romance",
