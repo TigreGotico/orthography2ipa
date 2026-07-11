@@ -29,7 +29,7 @@ def _extract_data(html: str) -> dict:
 def test_render_html_contains_every_registered_code():
     data = gen_explorer.build_data()
     html = gen_explorer.render_html(data)
-    all_codes = set(o2i.available_codes())
+    all_codes = set(o2i.available_codes(include_clades=True))
     assert set(data["codes"]) == all_codes
     for code in all_codes:
         assert json.dumps(code) in html
@@ -40,7 +40,8 @@ def test_embedded_data_is_valid_json_and_matches_registry():
     html = gen_explorer.render_html(data)
     embedded = _extract_data(html)
     assert embedded["codes"] == data["codes"]
-    assert set(embedded["languages"].keys()) == set(o2i.available_codes())
+    assert set(embedded["languages"].keys()) == set(
+        o2i.available_codes(include_clades=True))
 
 
 def test_no_external_resource_references_in_html_tags():
@@ -104,6 +105,9 @@ def test_is_family_flags_ended_ancestor_stages_not_living_languages():
     # `stub` and often no timespan — they must still be flagged as groupings.
     assert langs["bnt"]["is_family"] is True   # Proto-Bantu (family node)
     assert langs["afa"]["is_family"] is True   # Afroasiatic (family node)
+    # Clade nodes are groupings by definition.
+    assert langs["x-clade-roma1334"]["is_family"] is True
+    assert langs["x-clade-roma1334"]["clade"] is True
 
 
 def test_explorer_ships_tree_and_graph_views():

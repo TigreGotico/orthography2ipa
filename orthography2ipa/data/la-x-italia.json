@@ -1,7 +1,6 @@
 {
   "code": "la-x-italia",
   "name": "Italo-Romance Vulgar Latin",
-  "family": "Indo-European > Italic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -280,7 +279,7 @@
       "u"
     ]
   },
-  "parent": "la-x-late",
+  "parent": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "la",

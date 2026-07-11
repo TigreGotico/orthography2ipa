@@ -1,7 +1,6 @@
 {
   "code": "ar-SY",
   "name": "Syrian Arabic (Damascene)",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-levantine",
   "graphemes": {

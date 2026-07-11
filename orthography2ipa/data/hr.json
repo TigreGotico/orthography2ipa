@@ -27,7 +27,6 @@
   ],
   "code": "hr",
   "name": "Croatian",
-  "family": "Indo-European > Slavic > South Slavic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -226,7 +225,7 @@
       "u"
     ]
   },
-  "parent": "sla",
+  "parent": "x-clade-sout3147",
   "notes": "Standard Croatian (Štokavian Ijekavian dialect basis). Latin script only (unlike Serbian). Shares the two palatal affricate pairs with Serbian: ⟨ć⟩ = [tɕ] (softer), ⟨č⟩ = [tʃ] (harder); ⟨đ⟩ = [dʑ], ⟨dž⟩ = [dʒ]. Four-pitch-accent system. Syllabic /r̩/ (e.g. *prst* 'finger'). Ijekavian: Proto-Slavic yat /æː/ → ije/je (vs Serbian Ekavian e).",
   "quality": "research",
   "script_type": "alphabet",

@@ -21,7 +21,6 @@
   ],
   "code": "be",
   "name": "Belarusian",
-  "family": "Indo-European > Slavic > East Slavic",
   "script": "Cyrillic",
   "graphemes": {
     "а": [
@@ -282,7 +281,7 @@
       "ʊ"
     ]
   },
-  "parent": "sla",
+  "parent": "x-clade-east1426",
   "notes": "Standard Belarusian (Tarashkevitsa/Narkamaŭka). Distinctive features: ⟨г⟩ = [ɣ] (voiced velar fricative, not plosive), ⟨ў⟩ = [w] (unique letter for non-syllabic /w/), pervasive аканне (unstressed /ɔ/ → [a]), яканне (unstressed /ɛ/ → [i] after soft consonants), full affricate writing: ⟨дз⟩ = [dz], ⟨дж⟩ = [dʒ].",
   "quality": "research",
   "script_type": "alphabet",

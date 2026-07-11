@@ -1,9 +1,8 @@
 {
   "code": "la-x-hispania",
   "name": "Hispanic Vulgar Latin",
-  "family": "Indo-European > Italic",
   "script": "Latin",
-  "parent": "la-x-late",
+  "parent": "x-clade-roma1334",
   "graphemes_base": "la-x-late",
   "graphemes": {
     "f": [

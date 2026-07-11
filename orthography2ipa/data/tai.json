@@ -1,7 +1,7 @@
 {
   "code": "tai",
   "name": "Proto-Tai-Kadai (family node)",
-  "family": "Tai-Kadai",
+  "parent": "x-clade-taik1256",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [

@@ -1,7 +1,6 @@
 {
   "code": "ja",
   "name": "Japanese",
-  "family": "Japonic",
   "script": "Kana",
   "graphemes": {
     "あ": [

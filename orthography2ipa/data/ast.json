@@ -2,11 +2,10 @@
   "code": "ast",
   "glottolog_code": "astu1245",
   "name": "Asturian",
-  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "la-x-hispania",
+  "parent": "x-clade-astu1244",
   "graphemes": {
     "a": [
       "a"

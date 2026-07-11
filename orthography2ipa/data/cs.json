@@ -21,7 +21,6 @@
   ],
   "code": "cs",
   "name": "Czech",
-  "family": "Indo-European > Slavic > West Slavic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -320,7 +319,7 @@
       "uː"
     ]
   },
-  "parent": "sla",
+  "parent": "x-clade-west2792",
   "notes": "Standard Czech. Notable for the unique phoneme /r̝/ (⟨ř⟩) and systematic vowel length contrast. ⟨ch⟩ is the only official digraph and sorts as a separate letter. FINAL DEVOICING: obstruents devoice in coda/word-finally (b→p, d→t, ď→ť, g→k, v→f, z→s, ž→š, h→ch). H: voiced [ɦ] in onset; devoices to [x] in coda. Ě: [jɛ] after most consonants; causes palatal softening of preceding d/t/n. Sources: Palková (1994), Šimáčková et al. (2012), Short (1993).",
   "quality": "research",
   "script_type": "alphabet",

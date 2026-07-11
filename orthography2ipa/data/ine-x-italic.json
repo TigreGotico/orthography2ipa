@@ -1,10 +1,9 @@
 {
   "code": "ine-x-italic",
   "name": "Proto-Italic",
-  "family": "Indo-European > Italic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
-  "parent": "ine",
+  "parent": "x-clade-ital1284",
   "graphemes": {
     "p": [
       "p"

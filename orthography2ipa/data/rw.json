@@ -1,8 +1,8 @@
 {
   "code": "rw",
   "name": "Kinyarwanda",
+  "parent": "x-clade-narr1281",
   "glottolog_code": "kiny1244",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "kin",

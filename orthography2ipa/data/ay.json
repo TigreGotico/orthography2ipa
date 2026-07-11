@@ -1,7 +1,7 @@
 {
   "code": "ay",
   "name": "Aymara",
-  "family": "Aymaran",
+  "parent": "x-clade-ayma1253",
   "script": "Latin",
   "graphemes": {
     "a": [

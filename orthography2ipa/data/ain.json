@@ -1,7 +1,7 @@
 {
   "code": "ain",
   "name": "Ainu",
-  "family": "Ainu",
+  "parent": "x-clade-ainu1252",
   "script": "Latin",
   "graphemes": {
     "a": [

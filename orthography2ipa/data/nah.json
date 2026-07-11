@@ -1,7 +1,7 @@
 {
   "code": "nah",
   "name": "Nahuatl",
-  "family": "Uto-Aztecan",
+  "parent": "x-clade-utoa1244",
   "script": "Latin",
   "graphemes": {
     "a": [

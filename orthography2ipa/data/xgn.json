@@ -1,7 +1,7 @@
 {
   "code": "xgn",
   "name": "Proto-Mongolic (family node)",
-  "family": "Mongolic-Khitan > Mongolic",
+  "parent": "x-clade-mong1349",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [

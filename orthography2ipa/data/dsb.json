@@ -1,7 +1,6 @@
 {
   "code": "dsb",
   "name": "Lower Sorbian",
-  "family": "Indo-European > Slavic > West Slavic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -140,7 +139,7 @@
       "notes": "German adstrate: heavily German-influenced Slavic island in Lower Lusatia; closely related to Upper Sorbian."
     }
   ],
-  "parent": null,
+  "parent": "x-clade-west2792",
   "notes": "Lower Sorbian (Dolnoserbski), West Slavic minority language spoken in Lower Lusatia, Germany. Closely related to Upper Sorbian. Distinct palatal fricatives ś /ɕ/ and ź /ʑ/. More conservative vowel system than Upper Sorbian.",
   "sources": [
     {

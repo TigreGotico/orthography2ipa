@@ -1,7 +1,7 @@
 {
   "code": "pko",
   "name": "Proto-Koreanic (family node)",
-  "family": "Koreanic",
+  "parent": "x-clade-kore1284",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [

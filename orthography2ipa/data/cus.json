@@ -1,7 +1,6 @@
 {
   "code": "cus",
   "name": "Proto-Cushitic (family node)",
-  "family": "Afro-Asiatic > Cushitic",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [
@@ -87,7 +86,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Cushitic_languages"
     }
   ],
-  "parent": "afa",
+  "parent": "x-clade-cush1243",
   "ancestors": [
     {
       "code": "afa",

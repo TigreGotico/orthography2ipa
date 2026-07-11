@@ -1,7 +1,7 @@
 {
   "code": "brx-x-proto-boro-garo",
   "name": "Proto-Boro-Garo (reconstructed)",
-  "family": "Sino-Tibetan",
+  "parent": "x-clade-sino1245",
   "script": "Latin",
   "graphemes": {
     "a": [

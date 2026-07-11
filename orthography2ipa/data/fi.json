@@ -1,7 +1,6 @@
 {
   "code": "fi",
   "name": "Finnish",
-  "family": "Uralic > Finnic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -354,7 +353,7 @@
     "stress_mark": "ˈ",
     "notes": "Finnish has categorical initial (first-syllable) stress. Vowel length (aa ee ii oo uu yy ää öö) marks quantity, not stress. Secondary stress falls on odd-numbered syllables (3rd, 5th…). Source: Karlsson (1999), Finnish: An Essential Grammar; Wikipedia: https://en.wikipedia.org/wiki/Finnish_phonology"
   },
-  "parent": "urj",
+  "parent": "x-clade-finn1317",
   "ancestors": [
     {
       "code": "urj",

@@ -1,9 +1,8 @@
 {
   "code": "oc",
   "name": "Occitan",
-  "family": "Indo-European > Romance",
   "script": "Latin",
-  "parent": "la-x-gallia",
+  "parent": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",

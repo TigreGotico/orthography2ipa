@@ -1,7 +1,6 @@
 {
   "code": "xum",
   "name": "Umbrian",
-  "family": "Indo-European > Italic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -139,7 +138,7 @@
       "r"
     ]
   },
-  "parent": "ine",
+  "parent": "x-clade-ital1284",
   "notes": "Umbrian (3rd–1st c. BCE). Sabellic language of Umbria. Main source: Iguvine Tablets (7 bronze tablets, longest Italic text outside Latin). Distinctive sibilant /ʃ/ and extensive rhotacism. Substrate in central Italian dialects (Rix 2002).",
   "quality": "research",
   "script_type": "alphabet",

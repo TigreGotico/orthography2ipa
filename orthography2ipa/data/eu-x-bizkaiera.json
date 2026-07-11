@@ -1,7 +1,6 @@
 {
   "code": "eu-x-bizkaiera",
   "name": "Biscayan Basque (Bizkaiera)",
-  "family": "Basque",
   "script": "Latin",
   "graphemes_base": "eu",
   "graphemes": {

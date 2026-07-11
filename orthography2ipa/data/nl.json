@@ -1,7 +1,6 @@
 {
   "code": "nl",
   "name": "Dutch",
-  "family": "Indo-European > Germanic > West Germanic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -309,7 +308,7 @@
       "œʏ"
     ]
   },
-  "parent": "gem",
+  "parent": "x-clade-west2793",
   "ancestors": [
     {
       "code": "gem",

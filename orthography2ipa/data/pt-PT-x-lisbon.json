@@ -1,7 +1,7 @@
 {
   "code": "pt-PT-x-lisbon",
   "name": "Lisbon Portuguese",
-  "family": "Indo-European > Romance > Ibero-Romance",
+  "parent": "pt-PT",
   "script": "Latin",
   "graphemes_base": "pt-PT",
   "graphemes": {

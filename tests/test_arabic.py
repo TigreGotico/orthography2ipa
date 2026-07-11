@@ -173,7 +173,7 @@ class TestArabicMSA:
 
     def test_family(self):
         """Arabic is Semitic."""
-        assert self.spec.family == "Afro-Asiatic > Semitic > Central Semitic"
+        assert {"Afro-Asiatic", "Semitic", "Central Semitic"} <= set(self.spec.family_path)
 
 
 # ═══════════════════════════════════════════════════════════════════════════

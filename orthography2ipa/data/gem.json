@@ -1,10 +1,9 @@
 {
   "code": "gem",
   "name": "Proto-Germanic (reconstructed)",
-  "family": "Indo-European > Germanic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
-  "parent": "ine",
+  "parent": "x-clade-germ1287",
   "graphemes": {
     "p": [
       "p"

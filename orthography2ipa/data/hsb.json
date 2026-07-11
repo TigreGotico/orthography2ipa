@@ -1,7 +1,6 @@
 {
   "code": "hsb",
   "name": "Upper Sorbian",
-  "family": "Indo-European > Slavic > West Slavic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -138,7 +137,7 @@
       "notes": "German adstrate: a Slavic island entirely surrounded by German for a millennium; pervasive lexical and structural influence."
     }
   ],
-  "parent": null,
+  "parent": "x-clade-west2792",
   "notes": "Upper Sorbian (Hornjoserbsce), West Slavic minority language of the Sorbian people in Lusatia, Germany. Palatal affricates ć /tɕ/ and dź /dʑ/ are distinctive. Ě = /jɛ/, ł = /w/. Dual grammatical number preserved.",
   "sources": [
     {

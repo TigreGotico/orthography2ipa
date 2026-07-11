@@ -1,7 +1,6 @@
 {
   "code": "la-x-balkans",
   "name": "Balkan Romance Vulgar Latin",
-  "family": "Indo-European > Italic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -211,7 +210,7 @@
       "ɨ"
     ]
   },
-  "parent": "la-x-late",
+  "parent": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "la",

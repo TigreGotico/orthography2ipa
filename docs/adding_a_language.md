@@ -115,7 +115,6 @@ Create `orthography2ipa/data/{code}.json`:
 {
   "code": "xx-YY",
   "name": "Language Name",
-  "family": "FamilyName",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -192,7 +191,7 @@ uv run pytest tests/ -v
 The test suite validates:
 
 - All JSON files parse correctly
-- Every spec has required fields (graphemes, allophones, name, family, script)
+- Every spec has required fields (graphemes, allophones, name, script)
 - Every `parent` field points to an existing spec
 - Every PARENT-role ancestor exists in the dataset
 - Linguistic accuracy for key languages (Spanish θ, English th, German Auslautverhärtung, etc.)

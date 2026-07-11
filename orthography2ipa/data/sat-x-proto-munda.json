@@ -1,7 +1,7 @@
 {
   "code": "sat-x-proto-munda",
   "name": "Proto-Munda (reconstructed)",
-  "family": "Austroasiatic",
+  "parent": "x-clade-aust1305",
   "script": "Latin",
   "graphemes": {
     "a": [

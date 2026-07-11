@@ -1,7 +1,6 @@
 {
   "code": "lt",
   "name": "Lithuanian",
-  "family": "Indo-European > Balto-Slavic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -129,7 +128,7 @@
       "notes": "Descended from Proto-Indo-European via Proto-Baltic"
     }
   ],
-  "parent": null,
+  "parent": "x-clade-east2280",
   "notes": "Lithuanian, the oldest attested Baltic language. Retains many archaic Indo-European features. Long vowels marked with macron/ogonek. Pitch accent system. Digraphs dž and dz precede single letters in processing order.",
   "sources": [
     {

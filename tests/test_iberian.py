@@ -18,7 +18,7 @@ from __future__ import annotations
 import pytest
 
 import orthography2ipa
-from orthography2ipa.registry import get
+from orthography2ipa.registry import ancestry_chain, get
 from orthography2ipa.types import GraphemePosition
 
 
@@ -106,7 +106,7 @@ class TestSpanishES:
         assert "Spanish" in self._spec.name or "Castilian" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -461,7 +461,7 @@ class TestPortuguesePT:
         assert "Portuguese" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -741,13 +741,14 @@ class TestCatalan:
         assert "Catalan" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance"
+        assert {"Indo-European", "Romance"} <= set(self._spec.family_path)
 
     def test_script(self):
         assert self._spec.script == "Latin"
 
     def test_parent_late_latin(self):
-        assert self._spec.parent == "la-x-late"
+        assert ancestry_chain(self._spec.code)[:2] == ["x-clade-roma1334",
+                                                       "la-x-late"]
 
     # --- Vowels ---
 
@@ -1046,7 +1047,7 @@ class TestGalician:
         assert "Galician" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -1310,7 +1311,7 @@ class TestBasqueEU:
 
     def test_family_basque(self):
         """Basque is Vasconic — Glottolog files it under its own "Basque" family, not Romance."""
-        assert self._spec.family == "Basque"
+        assert {"Vasconic"} <= set(self._spec.family_path)
 
     def test_script(self):
         assert self._spec.script == "Latin"
@@ -1513,10 +1514,10 @@ class TestAsturian:
         assert "Asturian" in self._spec.name
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_hispanic_latin(self):
-        assert "hispania" in self._spec.parent or "la-x" in self._spec.parent
+        assert "la-x-hispania" in ancestry_chain(self._spec.code)
 
     # --- Vowels ---
 
@@ -1736,7 +1737,7 @@ class TestMirandese:
         assert "Mirandese" in self._spec.name
 
     def test_family_asturleonese(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_medieval_asturian(self):
         assert self._spec.parent == "ast-PT-x-medieval"
@@ -1821,7 +1822,7 @@ class TestAragonese:
         assert "Romance" in self._spec.family
 
     def test_parent_hispanic_latin(self):
-        assert "hispania" in self._spec.parent
+        assert "la-x-hispania" in ancestry_chain(self._spec.code)
 
     # --- Vowels ---
 
@@ -2207,7 +2208,7 @@ class TestSpanishAndalusianEast:
         assert self._spec.code == "es-ES-x-andalusia-e"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_castilian(self):
         assert "es-ES" in self._spec.parent or "medieval" in self._spec.parent
@@ -2243,7 +2244,7 @@ class TestSpanishRioplatense:
         assert self._spec.code == "es-AR"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_spanish(self):
         assert "es" in self._spec.parent
@@ -2282,7 +2283,7 @@ class TestCatalanValencian:
         assert self._spec.code == "ca-x-valencia"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance"
+        assert {"Indo-European", "Romance"} <= set(self._spec.family_path)
 
     def test_has_grapheme_table(self):
         assert len(self._spec.graphemes) > 10
@@ -2312,7 +2313,7 @@ class TestCatalanBalearic:
         assert self._spec.code == "ca-x-balear"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance"
+        assert {"Indo-European", "Romance"} <= set(self._spec.family_path)
 
     def test_parent_catalan(self):
         assert "ca" in self._spec.parent or self._spec.parent == "ca"
@@ -2335,7 +2336,7 @@ class TestPortugueseBrazilian:
         assert self._spec.code == "pt-BR"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_is_pt(self):
         assert "pt" in self._spec.parent
@@ -2377,7 +2378,7 @@ class TestGalicianWestern:
         assert self._spec.code == "gl-x-occidental"
 
     def test_family(self):
-        assert self._spec.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_galician(self):
         assert "gl" in self._spec.parent

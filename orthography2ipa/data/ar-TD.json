@@ -1,7 +1,6 @@
 {
   "code": "ar-TD",
   "name": "Chadian Arabic",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-mashriqi",
   "graphemes": {

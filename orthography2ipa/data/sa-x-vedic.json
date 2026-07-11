@@ -1,7 +1,6 @@
 {
     "code": "sa-x-vedic",
     "name": "Vedic Sanskrit",
-    "family": "Indo-European > Indo-Aryan",
     "script": "Devanagari",
     "graphemes": {
         "अ": [
@@ -360,7 +359,7 @@
             "ɭ"
         ]
     },
-    "parent": "ine",
+    "parent": "x-clade-indo1321",
     "ancestors": [
         {
             "code": "ine",

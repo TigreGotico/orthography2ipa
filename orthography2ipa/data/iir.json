@@ -1,7 +1,6 @@
 {
     "code": "iir",
     "name": "Proto-Indo-Iranian",
-    "family": "Indo-European > Indo-Iranian",
     "script": "Latin",
     "graphemes": {
         "p": [
@@ -212,7 +211,7 @@
             "dʒʱ"
         ]
     },
-    "parent": "ine",
+    "parent": "x-clade-indo1320",
     "ancestors": [
         {
             "code": "ine",

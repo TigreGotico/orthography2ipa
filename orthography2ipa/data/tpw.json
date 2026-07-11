@@ -1,7 +1,7 @@
 {
   "code": "tpw",
   "name": "Old Tupi (Tupinambá)",
-  "family": "Tupian",
+  "parent": "x-clade-tupi1275",
   "script": "Latin",
   "graphemes": {
     "a": ["a"],

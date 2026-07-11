@@ -1,7 +1,6 @@
 {
   "code": "it-IT",
   "name": "Italian",
-  "family": "Indo-European > Romance > Italo-Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -373,7 +372,7 @@
       "dːz"
     ]
   },
-  "parent": "la-x-italia",
+  "parent": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",

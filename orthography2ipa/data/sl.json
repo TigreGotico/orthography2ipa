@@ -21,7 +21,6 @@
   ],
     "code": "sl",
     "name": "Slovenian",
-    "family": "Indo-European > Slavic > South Slavic",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -239,7 +238,7 @@
             "ə"
         ]
     },
-    "parent": "sla",
+    "parent": "x-clade-sout3147",
     "notes": "Standard Slovenian. Unique among Slavic languages: retains a dual number in grammar. ⟨l⟩ → [w] in syllable coda (e.g. *delal* [dɛˈlaw]). ⟨v⟩ is variable [v ~ ʋ ~ w ~ f] depending on context. Standard language has phonemic pitch accent (tone); many dialects are toneless. No palatal stops (unlike Czech/Slovak), but ⟨lj nj⟩ = [ʎ ɲ].",
     "quality": "research",
     "script_type": "alphabet",

@@ -1,7 +1,6 @@
 {
   "code": "la-x-galloitalic",
   "name": "Gallo-Italic Vulgar Latin",
-  "family": "Indo-European > Italic",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -150,7 +149,7 @@
       "y"
     ]
   },
-  "parent": "la-x-italia",
+  "parent": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",

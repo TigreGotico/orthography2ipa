@@ -1,7 +1,6 @@
 {
   "code": "ar-PS",
   "name": "Palestinian Arabic",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-levantine",
   "graphemes": {

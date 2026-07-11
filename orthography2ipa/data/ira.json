@@ -1,7 +1,6 @@
 {
   "code": "ira",
   "name": "Proto-Iranian",
-  "family": "Indo-European > Iranian",
   "script": "Latin",
   "graphemes": {
     "p": [
@@ -189,7 +188,7 @@
       "dʒ"
     ]
   },
-  "parent": "iir",
+  "parent": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "iir",

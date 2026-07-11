@@ -1,7 +1,6 @@
 {
   "code": "rom",
   "name": "Romani",
-  "family": "Indo-European > Indo-Aryan",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -63,7 +62,7 @@
       "notes": "Descended from Sanskrit/Prakrit; Indo-Aryan language brought to Europe by Roma people from northern India"
     }
   ],
-  "parent": null,
+  "parent": "x-clade-indo1321",
   "notes": "Romani (Vlax dialect group, standard reference). Indo-Aryan language of the Roma people. Highly diverse with many dialects. Aspirated stops čh, kh, ph, th are distinctive (Sanskrit inheritance). Phonology influenced by contact with European languages. No single standardized orthography; Romani Writing Standard (RWS) used here.",
   "sources": [
     {

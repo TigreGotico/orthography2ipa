@@ -48,7 +48,7 @@ class TestRegistryLoad:
         assert rionor.name == "Rionorese"
 
     def test_family(self, rionor):
-        assert rionor.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(rionor.family_path)
 
     def test_parent(self, rionor):
         assert rionor.parent == "ast-PT-x-medieval"

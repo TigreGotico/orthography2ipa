@@ -1,7 +1,6 @@
 {
   "code": "szl",
   "name": "Silesian",
-  "family": "Indo-European > Slavic > West Slavic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -164,7 +163,7 @@
       "notes": "Czech adstrate along the Moravian-Silesian border."
     }
   ],
-  "parent": null,
+  "parent": "x-clade-west2792",
   "notes": "Silesian (Ślůnski), West Slavic variety spoken in Silesia (Poland/Czech Republic). Classification as language vs. Polish dialect debated. Distinctive vowels ô /o/ and the palatal sibilants ś, ź. German loanword influence significant. No single standard orthography.",
   "sources": [
     {

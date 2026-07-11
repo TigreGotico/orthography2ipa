@@ -1,7 +1,6 @@
 {
   "code": "gem-x-ingvaeonic",
   "name": "Proto-Ingvaeonic (North Sea Germanic)",
-  "family": "Indo-European > Germanic > West Germanic",
   "script": "Latin",
   "graphemes_base": "gem-x-northwest",
   "graphemes": {
@@ -141,7 +140,7 @@
       "ð"
     ]
   },
-  "parent": "gem-x-northwest",
+  "parent": "x-clade-west2793",
   "ancestors": [
     {
       "code": "gem-x-northwest",

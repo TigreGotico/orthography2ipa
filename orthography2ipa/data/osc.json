@@ -1,7 +1,6 @@
 {
     "code": "osc",
     "name": "Oscan",
-    "family": "Indo-European > Italic",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -179,7 +178,7 @@
             "ow"
         ]
     },
-    "parent": "ine",
+    "parent": "x-clade-ital1284",
     "notes": "Oscan (5th c. BCE – 1st c. CE). Sabellic (Osco-Umbrian) language of Samnium, Campania, Lucania, Bruttium. ~400 inscriptions. Closest Italic relative of Latin. Substrate in Southern Italo-Romance: possible influence on Neapolitan and Sicilian vowel systems. Distinct from Latin in vowel diphthongisation patterns (Buck 1928, Rix 2002).",
     "quality": "research",
     "script_type": "alphabet",

@@ -11,13 +11,13 @@ def test_family_filter_matches_any_step_of_the_classification_path(capsys):
     for arg in ("Romance", "romance"):
         main(["list", "--family", arg])
         out = capsys.readouterr().out
-        assert "Indo-European > Romance" in out
+        assert "Indo-European > Italic > Romance" in out
         assert "pt-PT" in out
 
     # The stock selects every family beneath it, not just an exact key.
     main(["list", "--family", "Indo-European"])
     out = capsys.readouterr().out
-    assert "Indo-European > Romance" in out
+    assert "Indo-European > Italic > Romance" in out
     assert "Indo-European > Armenic" in out
 
     # An unknown family is still an error.

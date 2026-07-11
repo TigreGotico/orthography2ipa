@@ -1,7 +1,6 @@
 {
   "code": "ru-x-northern",
   "name": "Northern Russian",
-  "family": "Indo-European > Slavic > East Slavic",
   "script": "Cyrillic",
   "graphemes_base": "ru",
   "graphemes": {

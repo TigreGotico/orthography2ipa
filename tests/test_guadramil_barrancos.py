@@ -39,7 +39,7 @@ class TestGuadramilRegistry:
         assert guadramil.name == "Guadramilese"
 
     def test_family(self, guadramil):
-        assert guadramil.family == "Indo-European > Romance > Ibero-Romance"
+        assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(guadramil.family_path)
 
     def test_parent(self, guadramil):
         assert guadramil.parent == "ast-PT-x-medieval"

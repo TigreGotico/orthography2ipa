@@ -1,7 +1,6 @@
 {
   "code": "ps",
   "name": "Pashto (Standard Afghan)",
-  "family": "Indo-European > Iranian",
   "script": "Arabic",
   "graphemes": {
     "ا": [
@@ -289,7 +288,7 @@
       "ə"
     ]
   },
-  "parent": "ine",
+  "parent": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "ine",

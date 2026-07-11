@@ -1,7 +1,6 @@
 {
     "code": "fur",
     "name": "Friulian",
-    "family": "Indo-European > Romance > Italo-Romance",
     "script": "Latin",
     "graphemes": {
         "a": [
@@ -228,7 +227,7 @@
             "uː"
         ]
     },
-    "parent": "la-x-italia",
+    "parent": "x-clade-italorom",
     "ancestors": [
         {
             "code": "la-x-italia",

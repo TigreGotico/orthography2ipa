@@ -1,7 +1,7 @@
 {
   "code": "urj",
   "name": "Proto-Uralic (family node)",
-  "family": "Uralic",
+  "parent": "x-clade-ural1272",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [

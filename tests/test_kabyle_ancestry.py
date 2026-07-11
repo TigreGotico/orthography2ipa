@@ -12,6 +12,7 @@ structural STUB specs (no invented phonology).
 import pytest
 
 import orthography2ipa
+from orthography2ipa.registry import ancestry_chain
 from orthography2ipa import phonological_distance
 from orthography2ipa.types import QualityTier, AncestorRole
 from orthography2ipa.distance import (
@@ -73,8 +74,11 @@ class TestKabAncestry:
 
     def test_intermediate_links_up(self):
         assert orthography2ipa.get("ber-x-kabyle-atlas").parent == "ber"
-        assert orthography2ipa.get("ber").parent == "afa"
-        assert orthography2ipa.get("afa").parent is None
+        # Proto-Berber hangs under the Berber clade node, which hangs under the
+        # `afa` node: the chain is unchanged, the classification step explicit.
+        assert ancestry_chain("ber-x-kabyle-atlas")[:4] == [
+            "ber", "x-clade-berb1260", "afa", "x-clade-afro1255"]
+        assert orthography2ipa.get("x-clade-afro1255").parent is None
 
 
 # ---------------------------------------------------------------------------

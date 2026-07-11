@@ -1,7 +1,6 @@
 {
     "code": "gem-x-north",
     "name": "Proto-North Germanic (Proto-Norse)",
-    "family": "Indo-European > Germanic > North Germanic",
     "script": "IPA-reconstruction",
     "graphemes": {
         "a": [
@@ -213,7 +212,7 @@
             "øː"
         ]
     },
-    "parent": "gem-x-northwest",
+    "parent": "x-clade-nort3160",
     "ancestors": [
         {
             "code": "gem-x-northwest",

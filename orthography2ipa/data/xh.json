@@ -1,8 +1,8 @@
 {
   "code": "xh",
   "name": "Xhosa",
+  "parent": "x-clade-narr1281",
   "glottolog_code": "xhos1239",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "xho",

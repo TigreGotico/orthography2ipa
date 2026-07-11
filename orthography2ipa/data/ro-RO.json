@@ -1,7 +1,6 @@
 {
   "code": "ro-RO",
   "name": "Romanian",
-  "family": "Indo-European > Romance > Eastern Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -274,7 +273,7 @@
       "u"
     ]
   },
-  "parent": "la-x-balkans",
+  "parent": "x-clade-east2714",
   "ancestors": [
     {
       "code": "la-x-balkans",

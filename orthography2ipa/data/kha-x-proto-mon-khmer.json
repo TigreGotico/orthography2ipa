@@ -1,7 +1,7 @@
 {
   "code": "kha-x-proto-mon-khmer",
   "name": "Proto-Mon-Khmer (reconstructed)",
-  "family": "Austroasiatic",
+  "parent": "x-clade-aust1305",
   "script": "Latin",
   "graphemes": {
     "a": [

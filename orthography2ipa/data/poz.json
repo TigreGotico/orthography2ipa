@@ -1,7 +1,7 @@
 {
   "code": "poz",
   "name": "Proto-Malayo-Polynesian (family node)",
-  "family": "Austronesian",
+  "parent": "x-clade-aust1307",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [

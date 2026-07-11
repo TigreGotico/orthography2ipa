@@ -1,7 +1,7 @@
 {
   "code": "sit",
   "name": "Proto-Sino-Tibetan (family node)",
-  "family": "Sino-Tibetan",
+  "parent": "x-clade-sino1245",
   "script": "IPA-reconstruction",
   "graphemes": {
     "a": [

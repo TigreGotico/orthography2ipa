@@ -1,7 +1,6 @@
 {
   "code": "roa-x-galaicopt",
   "name": "Galaico-Portuguese",
-  "family": "Indo-European > Romance > Ibero-Romance",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -300,7 +299,7 @@
       ]
     }
   },
-  "parent": "la-x-hispania",
+  "parent": "x-clade-iberrom",
   "ancestors": [
     {
       "code": "la-x-hispania",

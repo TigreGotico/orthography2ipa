@@ -1,7 +1,7 @@
 {
     "code": "etr",
     "name": "Etruscan",
-    "family": "Isolate",
+    "parent": "x-clade-tyrsen",
     "script": "Latin",
     "graphemes": {
         "a": [

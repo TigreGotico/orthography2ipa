@@ -1,7 +1,6 @@
 {
   "code": "ar-EG",
   "name": "Egyptian Arabic (Cairene)",
-  "family": "Afro-Asiatic > Semitic > Central Semitic",
   "script": "Arabic",
   "graphemes_base": "ar-x-mashriqi",
   "graphemes": {

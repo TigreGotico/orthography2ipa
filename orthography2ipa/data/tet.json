@@ -2,7 +2,7 @@
   "code": "tet",
   "glottolog_code": "tetu1245",
   "name": "Tetum (Tetun Praça)",
-  "family": "Austronesian",
+  "parent": "x-clade-mala1545",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",

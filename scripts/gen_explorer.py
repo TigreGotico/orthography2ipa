@@ -109,6 +109,8 @@ def _spec_to_dict(spec, bench_by_lang):
         "code": spec.code,
         "name": spec.name,
         "family": spec.family,
+        "family_path": list(spec.family_path),
+        "clade": spec.clade,
         "script": spec.script,
         "script_type": spec.script_type.value if spec.script_type else None,
         "quality": spec.quality.value if spec.quality else None,
@@ -132,7 +134,9 @@ def _spec_to_dict(spec, bench_by_lang):
 
 def build_data():
     bench_by_lang = _load_benchmarks()
-    codes = sorted(o2i.available_codes())
+    # Clade nodes are included: they are the backbone of the ancestry tree
+    # the explorer renders, and the source of every language's family path.
+    codes = sorted(o2i.available_codes(include_clades=True))
     languages = {}
     for code in codes:
         spec = o2i.get(code)
@@ -153,9 +157,14 @@ def build_data():
         # stage (ended timespan: Galaico-Portuguese, Medieval Portuguese) or a
         # pure ancestry stub carrying no data of its own ("… (family node)",
         # proto-language nodes) — those have tier `stub` and often no timespan.
-        d["is_family"] = bool(code in parent_set and (ended or d["quality"] == "stub"))
+        d["is_family"] = bool(d["clade"] or (code in parent_set
+                                            and (ended or d["quality"] == "stub")))
 
-    families = sorted({d["family"] for d in languages.values() if d["family"]})
+    # Every step of every classification path is selectable, so the filter
+    # offers both "Romance" and "Ibero-Romance".
+    families = sorted({f for d in languages.values() for f in d["family_path"]}
+                      | {d["family"] for d in languages.values()
+                         if d["family"] and not d["family_path"]})
     scripts = sorted({d["script"] for d in languages.values() if d["script"]})
     tiers = ["production", "research", "skeleton", "stub"]
     counts = {t: 0 for t in tiers}
@@ -507,10 +516,12 @@ const DATA = __DATA_JSON__;
   function matchesFilters(d) {
     const q = searchEl.value.trim().toLowerCase();
     if (q) {
-      const hay = (d.code + " " + d.name + " " + d.family).toLowerCase();
+      const hay = (d.code + " " + d.name + " " + d.family + " "
+                   + (d.family_path || []).join(" ")).toLowerCase();
       if (hay.indexOf(q) === -1) return false;
     }
-    if (familySel.value && d.family !== familySel.value) return false;
+    if (familySel.value && !(d.family_path || []).includes(familySel.value)
+        && d.family !== familySel.value) return false;
     if (scriptSel.value && d.script !== scriptSel.value) return false;
     if (tierSel.value && d.quality !== tierSel.value) return false;
     return true;

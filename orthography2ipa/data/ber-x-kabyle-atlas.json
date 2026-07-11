@@ -1,7 +1,6 @@
 {
   "code": "ber-x-kabyle-atlas",
   "name": "Kabyle-Atlas Berber",
-  "family": "Afro-Asiatic > Berber",
   "script": "Latin",
   "parent": "ber",
   "ancestors": [

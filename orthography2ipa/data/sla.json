@@ -1,7 +1,6 @@
 {
   "code": "sla",
   "name": "Proto-Slavic",
-  "family": "Indo-European > Slavic",
   "script": "Latin",
   "graphemes": {
     "ъ": [
@@ -281,7 +280,7 @@
       "ɪ"
     ]
   },
-  "parent": "ine",
+  "parent": "x-clade-slav1255",
   "notes": "Reconstructed Late Proto-Slavic (c. 600–800 CE). Key features: open syllable law (no closed syllables), palatalisation alternations (three Slavic palatalisations), nasal vowels /ẽ õ/, yers /ĭ ŭ/, yat /æː/. Transcription follows standard Slavicist convention.",
   "quality": "research",
   "script_type": "alphabet",

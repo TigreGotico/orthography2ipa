@@ -21,7 +21,6 @@
   ],
   "code": "sr",
   "name": "Serbian",
-  "family": "Indo-European > Slavic > South Slavic",
   "script": "Cyrillic",
   "graphemes": {
     "а": [
@@ -309,7 +308,7 @@
       "u"
     ]
   },
-  "parent": "sla",
+  "parent": "x-clade-sout3147",
   "notes": "Standard Serbian (Štokavian dialect, Ekavian variant in Serbia). Written in Cyrillic (primary) and Latin (Gaj) scripts. Four-accent system: short/long × falling/rising pitch accent. Two palatal affricate pairs: ⟨ћ/ć⟩ = [tɕ], ⟨ч/č⟩ = [tʃ]; ⟨ђ/đ⟩ = [dʑ], ⟨џ/dž⟩ = [dʒ]. No vowel reduction (unlike Russian). Syllabic /r̩/.",
   "quality": "research",
   "script_type": "alphabet",
