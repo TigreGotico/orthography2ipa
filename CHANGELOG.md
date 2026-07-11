@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.72.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.72.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.71.1a1...1.72.0a1)
+
+**Merged pull requests:**
+
+- feat: feature-export API — o2i as linguistic features for ML/CRF downstream \(F1\) [\#260](https://github.com/TigreGotico/orthography2ipa/pull/260) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.71.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.71.1a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.71.0a1...1.71.1a1)
@@ -688,10 +696,6 @@
 ## [1.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.12.0a1) (2026-06-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.11.0a1...1.12.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): brazilian portuguese dialect expansion [\#66](https://github.com/TigreGotico/orthography2ipa/pull/66) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.11.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.11.0a1) (2026-06-12)
 
