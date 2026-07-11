@@ -56,6 +56,7 @@ each tier actually certifies.
 | [it-IT.md](it-IT.md) | Italian in detail |
 | [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
 | [pt-PT.md](pt-PT.md) | European Portuguese in detail (coda allophony, vowel reduction) |
+| [pt-UY.md](pt-UY.md) | Uruguayan Portuguese / Riverense / DPU (border-contact variety: ⟨lh⟩→[j], dental /t d/ before /i/) |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 
 ### Asturleonese
