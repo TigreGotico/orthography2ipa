@@ -101,6 +101,14 @@ transform) fits together, then look at `G2PPlugin` in
 [arbtok](https://github.com/TigreGotico/arbtok) and
 [tugaphone](https://github.com/TigreGotico/tugaphone) build on.
 
+**I want the ranked pronunciation lattice, or to build a specialised
+phonemizer.**
+The lattice is the library's headline building block.
+[lattice.md](lattice.md) covers the structured `ipa_lattice` (ranked IPA
+candidates with `-log P` costs per grapheme), the per-word confidence / OOV
+signal, and the `LatticeRescorer` seam — how a downstream engine refines the
+shared beam by re-costing candidates instead of forking a tokenizer.
+
 **I want to understand the benchmark and quality-tier system.**
 [quality_tiers.md](quality_tiers.md) defines what `stub` → `skeleton` →
 `research` → `production` actually require, and
