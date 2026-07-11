@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.61.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.61.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.60.1a2...1.61.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): barranquenho + mirandese synthetic IPA-dict gold rows [\#230](https://github.com/TigreGotico/orthography2ipa/pull/230) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.60.1a2](https://github.com/TigreGotico/orthography2ipa/tree/1.60.1a2) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.60.1a1...1.60.1a2)
@@ -697,10 +705,6 @@
 ## [1.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.1a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.1.0a1...1.1.1a1)
-
-**Merged pull requests:**
-
-- fix\(data\): apply confirmed findings of the full-library linguistic review [\#31](https://github.com/TigreGotico/orthography2ipa/pull/31) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.1.0a1) (2026-06-11)
 
