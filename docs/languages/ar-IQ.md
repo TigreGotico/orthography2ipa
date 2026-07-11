@@ -90,3 +90,9 @@ predictable from the orthography and is a documented **engine limit**, not captu
 **Not obtained** (listed for completeness, no claim sourced to it): Erwin, W.M. (1963)
 *A Short Reference Grammar of Iraqi Arabic*, Georgetown University Press — the standard
 descriptive grammar of gilit Baghdadi, library/paywall only for this pass.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [ar](ar.md), [ar-x-levantine](ar-x-levantine.md)*

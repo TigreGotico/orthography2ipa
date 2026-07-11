@@ -98,3 +98,9 @@ rather than hidden.
 - Nasal vowels and nasal diphthongs (`ão`, `ãe`, `õe`) are diagnostic and
   drive final-stress placement.
 - Input is standard orthography under the Acordo Ortográfico (1990).
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-BR](pt-BR.md), [romance](romance.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md), [pt-PT-x-porto](pt-PT-x-porto.md)*

@@ -79,3 +79,9 @@ eng.transcribe_word("porta")   # ˈpoɾtɐ  — alveolar tap, no retroflex
 - **Amaral, Amadeu (1920).** *O Dialeto Caipira.* Casa Editora "O Livro", São
   Paulo. (§6b, cited only for the contrast between the interior retroflex /r/
   and the Curitibano tap modelled here.)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-BR](pt-BR.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-caipira](pt-BR-x-caipira.md)*

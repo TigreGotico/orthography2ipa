@@ -119,3 +119,9 @@ source-grounded model and is kept per the honesty gate.
   [doi:10.5334/jpl.62](https://doi.org/10.5334/jpl.62)
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
   Oxford University Press.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-PT-x-minho](pt-PT-x-minho.md), [pt-PT-x-porto](pt-PT-x-porto.md)*

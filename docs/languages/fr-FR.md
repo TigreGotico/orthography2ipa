@@ -149,3 +149,9 @@ Tranel (1995) formalises liaison and elision within Optimality Theory as both dr
 - Fougeron, C. & Smith, C.L. (1993). Illustrations of the IPA: French. *Journal of the International Phonetic Association*, 23(2), 73–76.
 - Tranel, B. (1995). French liaison and elision revisited: A unified account within Optimality Theory. Rutgers Optimality Archive, ROA-15.
 - Wikipedia: [French phonology](https://en.wikipedia.org/wiki/French_phonology)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [romance](romance.md), [it-IT](it-IT.md), [pt-PT](pt-PT.md)*

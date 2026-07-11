@@ -47,3 +47,9 @@ G2P("pt-BR-x-fluminense").transcribe_word("mar")    # ˈmah
 
 `/t d/` affrication before /i/, coda /l/ → [w], and final-vowel raising all
 come from the pt-BR base. See [pt-BR.md](pt-BR.md).
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-BR](pt-BR.md), [pt-BR-x-rj](pt-BR-x-rj.md), [pt-BR-x-sp](pt-BR-x-sp.md)*

@@ -94,3 +94,9 @@ betacism is applied to all four zones below.
   features: a comparison with Cintra's proposal*, Journal of Portuguese
   Linguistics 13(1):29–62, DOI 10.5334/jpl.62 (pp. 35–39).
 * Mateus, M. H. M. & d'Andrade, E. (2000), *The Phonology of Portuguese*, OUP.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-PT-x-beira](pt-PT-x-beira.md), [pt-PT-x-porto](pt-PT-x-porto.md)*

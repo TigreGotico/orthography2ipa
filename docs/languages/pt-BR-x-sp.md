@@ -75,3 +75,9 @@ eng.transcribe_word("tia")     # ˈt͡ʃiɐ  — palatalisation inherited
 - **Amaral, Amadeu (1920).** *O Dialeto Caipira.* Casa Editora "O Livro", São
   Paulo. (§6b, cited only for the contrast: the retroflex /r/ is an interior
   Caipira, not a capital, feature.)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-BR](pt-BR.md), [pt-BR-x-caipira](pt-BR-x-caipira.md), [pt-BR-x-rj](pt-BR-x-rj.md)*

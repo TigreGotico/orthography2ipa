@@ -135,3 +135,9 @@ Catalan occupies a phonological position between French and Iberian Romance:
 - Lepschy & Lepschy (1988). *The Italian Language Today*. Routledge.
 - Mateus, M.H. & d'Andrade, E. (2000). *The Phonology of Portuguese*. OUP.
 - Maiden, M. & Parry, M. (1997). *The Dialects of Italy*. Routledge.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [fr-FR](fr-FR.md), [it-IT](it-IT.md), [pt-PT](pt-PT.md), [mwl](mwl.md)*

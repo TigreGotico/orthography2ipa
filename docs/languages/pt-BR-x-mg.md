@@ -52,3 +52,9 @@ G2P("pt-BR-x-mg").transcribe_word("mesmo")   # ˈmesmu  (no chiado)
 - **Extreme posttonic reduction and syllable loss** are a stereotyped Mineiro
   trait but are prosodic/segmental-deletion processes outside the scope of a
   grapheme-conditioned spec, so they are not encoded.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-BR](pt-BR.md), [pt-BR-x-caipira](pt-BR-x-caipira.md), [pt-BR-x-sp](pt-BR-x-sp.md)*

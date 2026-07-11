@@ -79,3 +79,9 @@ Measured on the committed gold set (PER, lower is better):
 Final-vowel raising to [i]/[u] both matches the gold's transcription and is
 the cited BP realisation. The `pt` styletts2 row is unaffected: it resolves
 to `pt-PT`, a different spec.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [romance](romance.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-rj](pt-BR-x-rj.md)*

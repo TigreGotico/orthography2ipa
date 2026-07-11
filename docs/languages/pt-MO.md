@@ -72,3 +72,9 @@ the inherited-uvular rhotic `allophones` already present. `mar` → [ˈmaʁ],
 - English Wikipedia, *Macanese Portuguese* — **flagged secondary**, Phonology
   section uncited; the only phonological description available for the
   Portuguese variety.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-TL](pt-TL.md), [romance](romance.md)*

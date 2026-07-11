@@ -106,3 +106,9 @@ Italian has 7 vowel phonemes (5 in unstressed position):
 - Maiden, M. (1995). *A Linguistic History of Italian*. Longman.
 - Rogers, D. & d'Arcangeli, L. (2004). *Italian*. Journal of the IPA, 34(1), 117–121.
 - Wikipedia: [Italian phonology](https://en.wikipedia.org/wiki/Italian_phonology)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [romance](romance.md), [fr-FR](fr-FR.md), [lij](lij.md)*

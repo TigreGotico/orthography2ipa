@@ -82,3 +82,9 @@ production bar (gold n≥500) is unreachable at present.
 - Mateus, M. H. & d'Andrade, E. (2000). *The Phonology of Portuguese*. OUP.
   (EP baseline; via Albuquerque 2010:276)
 - Thomaz, L. F. F. R. (2002). *Babel Loro Sa'e*. Instituto Camões.
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [pt-PT](pt-PT.md), [pt-MO](pt-MO.md), [romance](romance.md)*

@@ -182,3 +182,9 @@ Encoded as:
 - Roach, P. (2004). British English: Received Pronunciation. *Journal of the International Phonetic Association*, 34(2), 239-245.
 - Cruttenden, A. [ed.] (2014). *Gimson's Pronunciation of English* (8th ed.). Routledge.
 - Wikipedia: [English phonology](https://en.wikipedia.org/wiki/English_phonology), [General American](https://en.wikipedia.org/wiki/General_American_English)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+
+*Related: [germanic](germanic.md), [de-DE](de-DE.md)*

@@ -126,3 +126,7 @@ Many speakers, especially in colloquial speech, replace these with native equiva
 - Ohala, M. (1983). *Aspects of Hindi Phonology*. Motilal Banarsidass.
 - Pandey, P. (2014). Hindi. In: *Phonologies of Asia and Africa*. Eisenbrauns.
 - Wikipedia: [Hindi phonology](https://en.wikipedia.org/wiki/Hindi_phonology)
+
+---
+
+**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
