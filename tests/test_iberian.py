@@ -695,7 +695,7 @@ class TestPortuguesePT:
 
     def test_sandhi_coda_s_resyllabification(self):
         ids = {r.id for r in self._spec.sandhi_rules}
-        assert "PT_CODA_S_REVOWEL" in ids
+        assert "PT_FINAL_S_PREVOCALIC_VOICE" in ids
 
     def test_sandhi_schwa_elision(self):
         ids = {r.id for r in self._spec.sandhi_rules}

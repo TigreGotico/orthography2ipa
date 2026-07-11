@@ -69,8 +69,11 @@ monophthongises or lowers them: ⟨ou⟩ → [ow] (Lisbon [o]) and ⟨ei⟩ → 
 
 Dark coda /l/ → [ɫ] (`sol` → ˈsɔɫ, `alto` → ˈɐɫtu), the coda-sibilant *chiado*
 /s z/ → [ʃ ʒ] (`véspera` → …ʃp…), extreme unstressed vowel reduction, and the
-coda-s voicing/resyllabification sandhi are all inherited from the parent and
-not restated here.
+coda-s sandhi are inherited from the parent and not restated here. In
+particular, the **external /s/-sandhi before a vowel keeps the standard
+alveolar [z]** in the North (`estás a ver` → [eˈʃtaz ˈɐ ˈbɛɾ], with the
+inherited betacism v→b): the palatal [ʒ] realisation is a Southern/Azorean
+feature, not a Northern one (see [pt-PT](pt-PT.md), [pt-PT-x-algarve](pt-PT-x-algarve.md)).
 
 ## Known limits (documented, not faked)
 

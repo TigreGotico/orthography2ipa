@@ -264,13 +264,13 @@
       "notes": "os dois → ɔʒ dojʃ"
     },
     {
-      "id": "PT_CODA_S_REVOWEL",
-      "name": "coda-s-resyllabification",
+      "id": "PT_FINAL_S_PREVOCALIC_VOICE",
+      "name": "final-s-prevocalic-voicing",
       "left_context": "[ʃ]$",
-      "right_context": "^[aeiouɛɔ]",
-      "transform": "z‿",
+      "right_context": "^[ˈˌ]?[aeiouɛɔɐɨəãõẽĩũ]",
+      "transform": "z",
       "obligatory": true,
-      "notes": "os amigos → uz‿ɐmiɡuʃ"
+      "notes": "External (cross-word) sandhi: a word-final coda /s/ — which surfaces [ʃ] in isolation and pre-consonantally via the coda 'chiado' PT_CODA_S_HUSH — VOICES across the word boundary to [z] before a vowel-initial following word (the final sibilant is resyllabified and treated as intervocalic): estás a ver → [eˈʃtaz ˈɐ ˈvɛɾ], os amigos → [ˈoz ɐˈmiɡuʃ], as aves → [ˈɐz ˈɐvɨʃ]. Alveolar [z] is the standard/broad European Portuguese realisation and is the value across the North (Porto, Braga), Lisbon and the neutral centre (Coimbra) — Mateus & d'Andrade (2000: ch.2), for whom a word-final sibilant before a vowel is treated as intervocalic; the standard EP transcription gives [z] here (Wikipedia 'Portuguese phonology', Consonant-sandhi section: 'If the next word begins with a vowel, the final sibilant is treated as intervocalic, and pronounced [z]', e.g. bons amigos [bõz ɐˈmiɣuʃ]). The SOUTHERN (Algarve, strongest/categorical) and AZOREAN (São Miguel) varieties instead realise this prevocalic sibilant as the post-alveolar [ʒ] (the 'Tajaver' pronunciation of estás a ver) — a dialect delta carried by pt-PT-x-algarve (via its word-final [ʒ] positional map) and pt-PT-x-acores (which re-declares this rule id with transform ʒ); the neutral Coimbra centre is variable [z]~[ʒ]. Lisbon and the North do NOT palatalise here — they keep [z]. The right_context matches an OPTIONAL leading stress mark [ˈˌ] then any word-initial vowel — oral (a e i o u ɛ ɔ), reduced (ɐ ɨ ə) or nasal (ã õ ẽ ĩ ũ, i.e. a base vowel + combining tilde) — because the engine's per-word IPA carries a leading stress mark and strong vowel reduction, so a bare [aeiou] class would never fire on the real word forms."
     },
     {
       "id": "PT_ELISION",

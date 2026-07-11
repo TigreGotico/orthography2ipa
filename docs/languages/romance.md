@@ -77,7 +77,7 @@ Portuguese ⟨s⟩ has the most complex distribution in Romance:
 | Before voiced consonant | [ʒ] | `mesmo` [ˈmeʒmu] |
 | Before voiceless consonant | [ʃ] | `estar` [ɨʃˈtar] |
 | Word-final | [ʃ] (Lisbon) | `gatos` [ˈɡatuʃ] |
-| Cross-word before vowel | [z] | `os amigos` [uz‿ɐˈmiɡuʃ] |
+| Cross-word before vowel | [z] (standard: North, Lisbon) / [ʒ] (Algarve, Azores) | `os amigos` [ˈoz ɐˈmiɡuʃ]; `estás a ver` standard [eˈʃtaz…] / Algarve·Azores [eˈʃtaʒ…] |
 
 This is fully encoded in `pt-PT.json`'s `positional_graphemes`.
 

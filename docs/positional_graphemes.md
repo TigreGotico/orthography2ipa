@@ -26,7 +26,7 @@ But the distribution is entirely predictable by position:
 | Coda (before voiceless) | [ʃ] | e**s**tar → [ɨʃtar] |
 | Coda (before voiced) | [ʒ] | me**s**mo → [meʒmu] |
 | Word-final | [ʃ] | gato**s** → [gatuʃ] |
-| Cross-word before vowel | [z] | os amigos → [uz‿ɐmiɡuʃ] |
+| Cross-word before vowel | [z] | os amigos → [ˈoz ɐmiɡuʃ] |
 
 The `positional_graphemes` field captures this directly:
 

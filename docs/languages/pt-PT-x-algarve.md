@@ -73,10 +73,28 @@ and still fronts.
 |:---|:---|:---|
 | /ej/ → [e] monophthong | `graphemes` delta | `leite` [ˈletɨ] |
 | /ow/ → [o] monophthong | `graphemes` delta | `outro` [ˈotɾu] |
-| Word-final /s/ → [ʒ] (sibilant voicing) | `positional_graphemes` delta | `mas` [maʒ] |
+| Word-final /s/ → [ʒ] (sibilant voicing) | `positional_graphemes` delta | `mas` [maʒ]; `estás a ver` → [eˈʃtaʒ ˈɐ ˈvɛɾ] |
 | Dark coda /l/ → [ɫ] | inherited `allophone_rules` | `sol` [ˈsɔɫ] |
 | Coda /s/ → [ʃ] (chiado) | inherited `allophone_rules` | `gosto` [ˈɡɔʃtu] |
 | Open stressed vowels [ɛ, ɔ] | inherited | `forte` [ˈfɔɾtɨ] |
+
+### The strongest `/ʒ/`-for-`/z/` external sandhi
+
+The Algarve carries the **strongest** form of the Southern `/ʒ/`-for-`/z/`
+external sandhi: a word-final /s/ before a following vowel-initial word surfaces
+`[ʒ]`, not the standard `[z]` — the "Tajaver" pronunciation of *estás a ver*
+→ [eˈʃtaʒ ˈɐ ˈvɛɾ], *muitos amigos* → […ʒ ɐˈmiɡuʒ]. Because the Algarve value is
+**categorical** across every word-final position, it is produced by the
+positional `word_final` → [ʒ] map (so it also surfaces before a consonant or
+pause: `estás` → [eˈʃtaʒ]), and no separate prevocalic sandhi rule is needed.
+This feature is shared — more weakly, and prevocalic-only — by São Miguel
+([pt-PT-x-acores](pt-PT-x-acores.md)); it is **variable in Coimbra** and
+**absent in Lisbon and the North** (which keep [z]). Source: *Portuguese With
+Leo*, "The 8 accents" (native-speaker; [video](https://www.youtube.com/watch?v=pitj0XxYO7I)).
+A page-pinned academic source for the prevocalic-[ʒ] sandhi specifically was not
+located; the [ʒ] voicing of the final sibilant sits within the documented
+southern sibilant behaviour (Cintra 1971; Brissos 2014; Segura da Cruz 1989 for
+the Barlavento).
 
 ## What the spec deliberately does NOT model
 
