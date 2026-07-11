@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.71.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.71.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.70.2a1...1.71.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): Maghrebi + Yemeni + Sudanese Arabic dialects [\#254](https://github.com/TigreGotico/orthography2ipa/pull/254) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.70.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.70.2a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.70.1a1...1.70.2a1)
@@ -683,10 +691,6 @@
 ## [1.10.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.10.0a1) (2026-06-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.9.0a1...1.10.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): arabic dialect expansion and review [\#62](https://github.com/TigreGotico/orthography2ipa/pull/62) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.9.0a1) (2026-06-12)
 
