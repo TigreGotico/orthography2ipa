@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.79.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.79.1a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.79.0a1...1.79.1a1)
+
+**Merged pull requests:**
+
+- fix: wire the new stubs into the clade chain instead of authoring a family [\#285](https://github.com/TigreGotico/orthography2ipa/pull/285) ([JarbasAl](https://github.com/JarbasAl))
+
+## [1.79.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.79.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.78.0a1...1.79.0a1)
+
 ## [1.78.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.78.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.77.0a1...1.78.0a1)
@@ -690,10 +702,6 @@
 ## [1.16.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.16.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.15.2a1...1.16.0a1)
-
-**Merged pull requests:**
-
-- feat\(ru\): register WikiPron gold benchmark and ground spec in phonology sources [\#92](https://github.com/TigreGotico/orthography2ipa/pull/92) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.15.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.15.2a1) (2026-07-09)
 
