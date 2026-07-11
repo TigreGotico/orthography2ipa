@@ -103,12 +103,43 @@ spec transcribes the fully-diacritized forms correctly (the changes are scoped t
   vowel.
 - **Word-final ي/و prefer the long-vowel reading.** Via `positional_graphemes`
   (`word_final`), so يُصَلِّي → […iː], not a stranded glide […j] (Ryding 2005, **pp. 25–27**,
-  on the long vowels /ii/ /uu/ spelled with yāʾ/wāw).
+  on the long vowels /ii/ /uu/ spelled with yāʾ/wāw). This preference is now **guarded**
+  by the coda-glide rule below: it only lengthens after a homorganic short vowel, never
+  after a sukūn-marked coda consonant.
 - **ة (tāʾ marbūṭa) is the pausal /a/.** Word-final ة after a harakat contributes nothing
   (the preceding fatḥa already supplies the /a/), so مَدْرَسَة → [madrasa], not
   *[madrasaa]*. The context-sensitive /at/ construct-state reading (تاء مربوطة in *iḍāfa*)
   needs the **following** word and is therefore an engine limit (see
   [Remaining engine limits](#remaining-engine-limits) below).
+
+## Alif-maksūra merge and the coda-glide guard (`arb`-level, inherited by all Arabic)
+
+Two further fixes surfaced by the arbtok migration live in the shared `arb` grapheme
+table (not the `ar` leaf), so **every** Arabic-script spec that inherits `arb`'s graphemes
+— Classical `arb`, MSA `ar`, and the dialects — gets them. Both are Classical/MSA-correct
+and both only fire on **diacritized** input, so the undiacritized WikiPron gold is
+byte-identical (PER holds at 0.1868).
+
+- **Fatḥa + standalone alif-maksūra ⟨ـَى⟩ merges to a single [aː].** `arb` already merged
+  fatḥa + alif ⟨ـَا⟩ → [aː] and read a bare ى as [aː]; the fatḥa + alif-maksūra *sequence*
+  was missing, so حَتَّى came out *ħattaaː* (the fatḥa's /a/ then a second /aː/ from ى). A
+  new digraph ⟨ـَى⟩ → [aː] completes the mater-lectionis set: حَتَّى → [ħattaː], رَمَى →
+  [ramaː]. Alif maqṣūra is only a *spelling* of final /aː/ (Wright 1896, Vol. I, Part
+  First "Orthography", alif maqṣūra as final ā, **pp. ~10–25**; Ryding 2005, "Phonology
+  and script", long vowels spelled with the matres, **pp. 25–27**).
+- **Word-final glide after a coda consonant (sukūn) stays a glide.** The `word_final`
+  long-vowel preference for ي/و (above) previously over-fired even after a sukūn-marked
+  coda consonant with no homorganic short vowel, so ظَبْي → *ðˤ…iː* and رَمْي → *ramiː*. But
+  a long /iː/ /uː/ is spelled with the **homorganic** short vowel (kasra ⟨ـِي⟩, ḍamma
+  ⟨ـُو⟩) — captured by the inherited ⟨ـِي⟩→[iː] / ⟨ـُو⟩→[uː] digraphs — whereas a
+  sukūn-bearing consonant is *quiescent* (vowelless) and a following ي/و is the coda/onset
+  **glide** /j/ /w/ (Wright 1896, Vol. I, Part First "Orthography", the jazma/sukūn marks a
+  vowelless consonant, **pp. ~10–20**; Ryding 2005, **pp. 25–27, 29–30**). New digraphs
+  ⟨ـْي⟩ → [j] and ⟨ـْو⟩ → [w] encode this: رَمْي → [ramj], ظَبْي → [ðˤɑbj] (the [ɑ] is the
+  pre-existing emphatic backing after ظ /ðˤ/), and word-medially دُنْيَا → [dunjaː] (the /j/
+  onset of the following syllable). It is keyed on the **explicit** sukūn, so it never
+  touches ⟨يْ⟩ (a diphthong offglide, بَيْت → [bajt]) nor the graceful undiacritized
+  fallback (في → [fiː], no sukūn present).
 
 ## Remaining engine limits (honest scope)
 
@@ -219,6 +250,39 @@ stress requirement per `docs/quality_tiers.md`.
 CUNY-CL/wikipron `ara_arab_broad.tsv` (Wiktionary-sourced broad IPA transcriptions,
 community-curated, ~17.5k pairs), registered as the `ar` entry of the `wikipron` dataset
 in `scripts/benchmark.py`, matching the precedent used for gl/es/pt in this project.
+
+### Error analysis: why the remaining PER is a gold-contract limit, not a spec bug
+
+Running `python scripts/error_analysis.py ar` (259 scored words) shows the top phoneme
+confusion pairs are **all** consequences of the gold being 100 % undiacritized — the very
+short-vowel / gemination information the [input contract](#input-contract--known-limitation-diacritics)
+says the spec cannot recover — plus the already-documented emphatic-backing broad-gold
+gap. None is a principled MSA-phonology error left to fix, so no fallback is tuned to the
+gold (doing so would overfit the spec to this one lexicon):
+
+- **`a → ∅` (×145), `i → ∅` (×56), `u → ∅` (×35)** — the gold carries short vowels that
+  the bare consonantal skeleton simply does not write (e.g. أحبك gold `ʔuħibbuka`, hyp
+  `ʔaħbk`). Unrecoverable without tashkeel; **not** fixable by the spec.
+- **`ː → w` (×27), `ː → j` (×17)** — a medial mater-lectionis ambiguity: an undiacritized
+  و/ي between consonants is read as the default glide /w/ /j/, but the gold happens to want
+  a long /uː/ /iː/ (أبوت gold `ʔubuːt`, hyp `ʔabwt`). Glide vs. long vowel here is
+  genuinely undecidable without the diacritic, so the default is **not** flipped to the
+  long vowel (that would only chase this gold's noun/loan-heavy lexicon and regress
+  glide-final skeletons).
+- **`j → ∅` (×17), `j → ː` (×10)** — word-final nisba ⟨ـيّ⟩ /-ijj/ vs. plain long ⟨ـي⟩
+  /-iː/: both are written ي with no diacritic (آشوري gold `ʔaːʃuːrijj`, hyp `ʔaːʃwriː`).
+  The gemination that distinguishes them is unmarked in the gold — a shadda gap, not a
+  rule gap.
+- **`u → a` (×16)** — the hamza-carrier / bare-vowel default (أ → `ʔa`) guessing the wrong
+  short vowel on an undiacritized skeleton (أبدة gold `ʔubbada`, hyp `ʔabda`). Same
+  tashkeel gap.
+- **`a → ɑ` (×7)** — the correct narrow emphatic backing [ɑ] that the **broad** gold
+  writes as plain /a/; already documented under [emphatic spreading](#emphatic-pharyngealization-spreading)
+  as a broad-gold measurement limit, retained because it is linguistically correct.
+
+The two diacritized fixes in this round (alif-maksūra merge, coda-glide guard) therefore
+leave the gold PER **byte-identical at 0.1868** — they correct diacritized transcription,
+which this undiacritized gold cannot reward or penalize.
 
 ## Egyptian Arabic — Cairene (`ar-EG`)
 
@@ -352,6 +416,7 @@ therefore *not* cited as primary reads — only as works reported within the sou
 
 ## References
 
+- Wright, W. (1896). *A Grammar of the Arabic Language*, 3rd ed., Vol. I. Cambridge University Press. (Part First, "Orthography and Orthoepy": the matres lectionis, alif maqṣūra as a spelling of final /aː/, and the jazma/sukūn as the mark of a vowelless consonant.)
 - Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press.
 - Ryding, K.C. (2005). *A Reference Grammar of Modern Standard Arabic*. Cambridge University Press.
 - Mitchell, T.F. (1956). *An Introduction to Egyptian Colloquial Arabic*. Oxford University Press.
