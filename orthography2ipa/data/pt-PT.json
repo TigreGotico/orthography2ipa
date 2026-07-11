@@ -258,10 +258,10 @@
       "id": "PT_CODA_S_VOICING",
       "name": "coda-s-voicing",
       "left_context": "[ʃ]$",
-      "right_context": "^[bdgvzʒmnɲɾʁlʎ]",
+      "right_context": "^[ˈˌ]?[bdgvzʒmnɲɾʁlʎ]",
       "transform": "ʒ",
       "obligatory": true,
-      "notes": "os dois → ɔʒ dojʃ"
+      "notes": "External (cross-word) VOICING ASSIMILATION of coda /s/: a word-final coda /s/ — which surfaces [ʃ] in isolation and before a voiceless consonant via the coda 'chiado' PT_CODA_S_HUSH — assimilates in voicing to a following VOICED consonant across the word boundary, surfacing as the post-alveolar [ʒ]: as bocas → [ˈɐʒ ˈbɔkɐʃ], os dois → [ˈoʒ ˈdojʃ], os meus → [uʒ ˈmewʃ]. This is the regular European Portuguese sandhi of coda sibilants (Mateus & d'Andrade 2000: ch.2; Wikipedia 'Portuguese phonology', Consonant-sandhi section: a coda sibilant is [ʒ] before a voiced consonant, [ʃ] before a voiceless one, and [z] before a vowel). Only VOICED consonants trigger it — a following voiceless consonant keeps [ʃ] (estás feliz → [eˈʃtaʃ fɨˈliʃ]). The right_context matches an OPTIONAL leading primary/secondary stress mark [ˈˌ] then a voiced consonant, because the engine's per-word IPA carries a leading stress mark on a stress-initial word (bocas → ˈbɔkɐʃ), so a bare consonant class would never fire on the real word forms."
     },
     {
       "id": "PT_FINAL_S_PREVOCALIC_VOICE",

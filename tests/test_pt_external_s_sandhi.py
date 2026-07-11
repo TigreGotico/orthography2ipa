@@ -1,19 +1,26 @@
 """External (cross-word) word-final /s/ sandhi in European Portuguese.
 
-A word-final coda /s/ (which surfaces [ʃ] in isolation and pre-consonantally
-via the coda 'chiado') voices across a word boundary before a vowel-initial
-following word. Its place of articulation splits dialectally:
+A word-final coda /s/ (which surfaces [ʃ] in isolation and before a voiceless
+consonant via the coda 'chiado') undergoes two cross-word sandhi processes:
+
+- **Voicing assimilation before a VOICED consonant** → post-alveolar [ʒ]
+  (``PT_CODA_S_VOICING``): as bocas → [ˈɐʒ ˈbɔkɐʃ], os dois → [ˈoʒ ˈdojʃ].
+  A following *voiceless* consonant keeps [ʃ] (estás feliz → [eˈʃtaʃ fɨˈliʃ]).
+- **Voicing before a VOWEL** → [z]/[ʒ] (``PT_FINAL_S_PREVOCALIC_VOICE``), whose
+  place of articulation splits dialectally:
 
 - **Standard [z]** — the North (Porto, Braga), Lisbon and the neutral centre
   (Coimbra, though Coimbra is variable). Base rule ``PT_FINAL_S_PREVOCALIC_VOICE``.
 - **Post-alveolar [ʒ]** — the SOUTH (Algarve, strongest/categorical) and the
   Azores (São Miguel). The Algarve realises word-final /s/ as [ʒ] categorically
   (via its positional word_final map), so it surfaces [ʒ] prevocalically too;
-  São Miguel (pt-PT-x-acores) applies [ʒ] *only* prevocalically (a re-declared
-  sandhi override), keeping [ʃ] before a consonant or pause.
+  São Miguel (pt-PT-x-acores) applies its *prevocalic* [ʒ] only before a vowel (a
+  re-declared sandhi override), keeping [ʃ] before a voiceless consonant or pause;
+  before a voiced consonant the inherited voicing-assimilation rule still gives [ʒ].
 
 Sources: standard [z] — Mateus & d'Andrade (2000: ch.2); Wikipedia 'Portuguese
-phonology' (bons amigos [bõz ɐˈmiɣuʃ]). Southern/Azorean [ʒ] — Portuguese With
+phonology' (bons amigos [bõz ɐˈmiɣuʃ]; coda sibilant is [ʒ] before a voiced
+consonant, [ʃ] before a voiceless one). Southern/Azorean [ʒ] — Portuguese With
 Leo, 'The 8 accents' (native-speaker, https://www.youtube.com/watch?v=pitj0XxYO7I);
 Lisbon and the North are explicitly [z], not [ʒ]. See the spec notes for the
 honesty caveat that a page-pinned academic source for the prevocalic-[ʒ]
@@ -41,9 +48,21 @@ class TestStandardZ:
         assert out == "eˈʃtaz ˈɐ ˈvɛɾ"
         assert "ʃtaʒ" not in out
 
-    def test_before_consonant_stays_hush(self):
+    def test_before_voiceless_consonant_stays_hush(self):
+        # Before a VOICELESS consonant the coda /s/ keeps [ʃ] (no assimilation).
         for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
-            assert G2P(loc).transcribe("estás bem") == "eˈʃtaʃ ˈbɛm"
+            assert G2P(loc).transcribe("estás só") == "eˈʃtaʃ ˈsɔ"
+
+    def test_before_voiced_consonant_voices_to_palatal(self):
+        # Voicing assimilation: coda /s/ -> [ʒ] before a voiced consonant (PT_CODA_S_VOICING).
+        for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
+            assert G2P(loc).transcribe("estás bem") == "eˈʃtaʒ ˈbɛm"
+
+    def test_as_bocas_voices_before_b(self):
+        assert G2P("pt-PT").transcribe("as bocas") == "ˈɐʒ ˈbɔkɐʃ"
+
+    def test_os_dois_voices_before_d(self):
+        assert G2P("pt-PT").transcribe("os dois") == "ˈoʒ ˈdojʃ"
 
     def test_voiceless_initial_does_not_voice(self):
         assert G2P("pt-PT").transcribe("estás feliz") == "eˈʃtaʃ fɨˈliʃ"
@@ -71,11 +90,15 @@ class TestSouthernPalatal:
         assert out == "eˈʃtaʒ ˈɐ ˈvɛɾ"
         assert "ʃtaʒ" in out
 
-    def test_acores_stays_hush_before_consonant_and_pause(self):
-        # São Miguel [ʒ] is prevocalic-only: [ʃ] before a consonant / in isolation
-        assert G2P("pt-PT-x-acores").transcribe("estás bem") == "eˈʃtaʃ ˈbɛm"
+    def test_acores_stays_hush_before_voiceless_consonant_and_pause(self):
+        # São Miguel: [ʃ] before a VOICELESS consonant and in isolation.
         assert G2P("pt-PT-x-acores").transcribe("estás só") == "eˈʃtaʃ ˈsɔ"
         assert G2P("pt-PT-x-acores").transcribe("estás") == "eˈʃtaʃ"
+
+    def test_acores_voices_before_voiced_consonant(self):
+        # The general EP voicing-assimilation (PT_CODA_S_VOICING, inherited) still
+        # applies before a voiced consonant: coda /s/ -> [ʒ].
+        assert G2P("pt-PT-x-acores").transcribe("estás bem") == "eˈʃtaʒ ˈbɛm"
 
 
 class TestSouthVsStandardDiverge:
@@ -101,3 +124,12 @@ class TestRuleDeclaration:
         rule = next(r for r in spec.sandhi_rules
                     if r.id == "PT_FINAL_S_PREVOCALIC_VOICE")
         assert rule.transform == "ʒ"
+
+    def test_coda_s_voicing_right_context_tolerates_stress(self):
+        # The consonant-triggered voicing rule must fire on a stress-initial word,
+        # so its right_context has to admit an optional leading [ˈˌ] stress mark.
+        for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
+            spec = G2P(loc).spec
+            rule = next(r for r in spec.sandhi_rules if r.id == "PT_CODA_S_VOICING")
+            assert rule.transform == "ʒ", loc
+            assert rule.right_context.startswith("^[ˈˌ]?"), loc

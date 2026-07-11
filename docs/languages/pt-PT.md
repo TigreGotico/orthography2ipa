@@ -74,11 +74,32 @@ as intervocalic). The base `pt-PT` gives the **standard alveolar `[z]`**:
 | `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | `estás a ver` → [eˈʃtaz ˈɐ ˈvɛɾ] |
 | | | `os amigos` → [ˈoz ɐˈmiɡuʃ] |
 
-The rule fires only before a **vowel**: before a consonant the sibilant stays
-`[ʃ]` (`estás bem` → [eˈʃtaʃ ˈbɛm]), and a voiceless-initial next word does not
-voice (`estás feliz` → [eˈʃtaʃ fɨˈliʃ]). Single-word transcription is
-unchanged (`estás` → [eˈʃtaʃ]); the benchmark scores single words, so this
-cross-word rule never affects the scoreboard.
+This rule fires only before a **vowel**. Coda /s/ before a *consonant* is
+handled by the separate voicing-assimilation rule below: it voices to `[ʒ]`
+before a **voiced** consonant (`estás bem` → [eˈʃtaʒ ˈbɛm]) and stays `[ʃ]`
+before a **voiceless** one (`estás feliz` → [eˈʃtaʃ fɨˈliʃ]). Single-word
+transcription is unchanged (`estás` → [eˈʃtaʃ]); the benchmark scores single
+words, so these cross-word rules never affect the scoreboard.
+
+## External /s/-sandhi before a consonant — voicing assimilation (`sandhi_rules`)
+
+Across a word boundary, a word-final coda /s/ **assimilates in voicing** to the
+following consonant, surfacing as post-alveolar `[ʒ]` before a **voiced**
+consonant and staying `[ʃ]` before a **voiceless** one (regular EP coda-sibilant
+sandhi; Mateus & d'Andrade 2000: ch.2):
+
+| Rule id | Context | Example |
+|:---|:---|:---|
+| `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | `as bocas` → [ˈɐʒ ˈbɔkɐʃ] |
+| | | `os dois` → [ˈoʒ ˈdojʃ] |
+
+The `right_context` admits an optional leading primary/secondary stress mark
+(`^[ˈˌ]?[bdgvzʒmnɲɾʁlʎ]`) so it fires on a stress-initial next word, whose
+per-word IPA begins with `ˈ` (`bocas` → `ˈbɔkɐʃ`). All `pt-PT-x-*` varieties
+inherit this rule by id-keyed overlay, so São Miguel — which keeps `[ʃ]` before
+a *voiceless* consonant and in isolation — still voices to `[ʒ]` before a voiced
+one (`estás bem` → [eˈʃtaʒ ˈbɛm]); the Algarve already realises every word-final
+/s/ as `[ʒ]` via its positional `word_final` map.
 
 The place of articulation splits **dialectally**. The standard alveolar `[z]`
 holds across the North (Porto, Braga), Lisbon and — variably — the neutral
@@ -95,9 +116,10 @@ palatalise this prevocalic sibilant to `[ʒ]` (the "Tajaver" pronunciation):
 
 The Algarve realises word-final /s/ as `[ʒ]` in **all** word-final positions
 (via its positional `word_final` map), so `[ʒ]` also surfaces prevocalically;
-São Miguel restricts `[ʒ]` to the **prevocalic** sandhi (re-declaring
+São Miguel restricts its *prevocalic* `[ʒ]` to before a vowel (re-declaring
 `PT_FINAL_S_PREVOCALIC_VOICE` with transform `ʒ`), keeping `[ʃ]` before a
-consonant or pause. Coimbra is variable `[z]`~`[ʒ]`; its dedicated spec
+voiceless consonant or pause (before a voiced consonant the inherited
+`PT_CODA_S_VOICING` still gives `[ʒ]`). Coimbra is variable `[z]`~`[ʒ]`; its dedicated spec
 [pt-PT-x-coimbra](pt-PT-x-coimbra.md) models the marked local `[ʒ]` pole (the
 Coimbra speaker in *Portuguese With Leo*, "Coimbra tem sotaque?", demonstrates
 "os olhos" with the J-sound). **Flagged counter-evidence:** the
