@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.35.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.34.0a2...1.35.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): research-grounded Ligurian \(Genoese\) spec from grafia ofiçiâ [\#151](https://github.com/TigreGotico/orthography2ipa/pull/151) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.34.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.34.0a2) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.34.0a1...1.34.0a2)
