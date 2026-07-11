@@ -41,6 +41,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from benchmark import (  # noqa: E402
     build_scoreboard, REPO_ROOT, SCOREBOARD_JSON, HARNESS_VERSION,
+    DEFAULT_LIMIT,
 )
 
 DEFAULT_EPSILON = 0.005

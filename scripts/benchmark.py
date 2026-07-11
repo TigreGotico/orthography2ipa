@@ -60,6 +60,41 @@ CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".benchmark_cache")
 
 HARNESS_VERSION = "1.1"
 
+# Default per-(dataset, language) sample cap. Applied to every row unless
+# overridden below.
+DEFAULT_LIMIT = 300
+
+# Per-language sample-cap overrides.
+#
+# The `production` quality tier (docs/quality_tiers.md) requires a gold
+# benchmark of at least 500 evaluated entries. The scoreboard's default
+# cap (DEFAULT_LIMIT = 300) is below that floor, so any production
+# language must be scored at a higher, explicit limit. Pinning it here —
+# rather than bumping the global default (which would re-slice and thus
+# change EVERY committed row) — keeps the change minimal: only these
+# languages score at the raised limit; every other row stays at 300 and
+# byte-identical.
+#
+# Both `build_scoreboard` (via `--scoreboard`) AND
+# `scripts/check_benchmark_regression.py` resolve limits through
+# `limit_for_lang`, so the committed rows and the CI re-run use the SAME
+# per-language limit and reproduce exactly. Keep this in sync with which
+# specs declare `"quality": "production"`.
+PRODUCTION_LIMITS: Dict[str, int] = {
+    "eo": 600,   # Esperanto — WikiPron epo_latn_broad, n=600
+    "fi": 600,   # Finnish   — WikiPron fin_latn_broad, n=568 covered
+}
+
+
+def limit_for_lang(lang: str, default_limit: int) -> int:
+    """Resolve the sample cap for ``lang``.
+
+    Production-tier languages override the default so they are scored on
+    at least 500 gold entries (see ``PRODUCTION_LIMITS``); every other
+    language uses ``default_limit``.
+    """
+    return PRODUCTION_LIMITS.get(lang, default_limit)
+
 # Fixed seed for the bootstrap confidence-interval resampling below --
 # never randomized, so the same per-word PER list always yields the same
 # CI bounds across runs/machines.
@@ -1190,8 +1225,13 @@ def build_scoreboard(limit: int) -> List[dict]:
     rows: List[dict] = []
     for dataset_name, (loader, langs) in DATASETS.items():
         for lang in langs:
+            # Production-tier languages are scored at a raised, explicit
+            # per-language cap (>= 500 gold entries); all others use the
+            # passed default. Resolved identically here and in the
+            # regression checker so committed rows reproduce exactly.
+            row_limit = limit_for_lang(lang, limit)
             try:
-                pairs = loader(lang, limit)
+                pairs = loader(lang, row_limit)
             except Exception as exc:
                 print(f"skip {dataset_name} lang={lang}: {exc}",
                       file=sys.stderr)
@@ -1211,7 +1251,7 @@ def build_scoreboard(limit: int) -> List[dict]:
                 "quality_tier": _quality_tier(lang),
                 "provenance": PROVENANCE[dataset_name],
                 "harness_version": HARNESS_VERSION,
-                "limit": limit,
+                "limit": row_limit,
             })
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows
@@ -1284,7 +1324,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dataset", choices=sorted(DATASETS))
     ap.add_argument("--lang", default=None)
-    ap.add_argument("--limit", type=int, default=300)
+    ap.add_argument("--limit", type=int, default=DEFAULT_LIMIT,
+                    help="Default per-(dataset, lang) sample cap. "
+                         "Production-tier languages override it via "
+                         "PRODUCTION_LIMITS so the scoreboard scores them "
+                         "on >= 500 gold entries.")
     ap.add_argument("--keep-stress", action="store_true",
                     help="Compare stress marks too (stripped by default)")
     ap.add_argument("--narrow", action="store_true",
