@@ -1,0 +1,30 @@
+[
+  {
+    "lexicon": "en-GB",
+    "lang": "en",
+    "gold": "wikipron",
+    "lexicon_entries": 5000,
+    "n_full": 2280,
+    "per_rules_only_full": 0.4416,
+    "per_with_lexicon_full": 0.4329,
+    "n_covered": 82,
+    "per_rules_only_covered": 0.4165,
+    "per_with_lexicon_covered": 0.1761,
+    "limit": 3000,
+    "harness_version": "1.1"
+  },
+  {
+    "lexicon": "en-GB",
+    "lang": "en-GB",
+    "gold": "wikipron",
+    "lexicon_entries": 5000,
+    "n_full": 2378,
+    "per_rules_only_full": 0.4242,
+    "per_with_lexicon_full": 0.4156,
+    "n_covered": 80,
+    "per_rules_only_covered": 0.3902,
+    "per_with_lexicon_covered": 0.1344,
+    "limit": 3000,
+    "harness_version": "1.1"
+  }
+]

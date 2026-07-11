@@ -33,6 +33,7 @@ stress rules and base types — and own their richer pipelines.
 from __future__ import annotations
 
 import logging
+import unicodedata
 from dataclasses import dataclass
 from typing import Callable, List, Optional, Set, Tuple
 
@@ -42,6 +43,7 @@ from orthography2ipa.features import (
     WordFeatures,
     build_word_features,
 )
+from orthography2ipa.lexicon import get_lexicon
 from orthography2ipa.phonetok import (
     Candidate,
     IPAPath,
@@ -551,9 +553,7 @@ class G2P:
         certain answer, so its lattice confidence is ``1.0`` (only coverage
         can lower it).
         """
-        exceptions = self.spec.word_exceptions
-        override = (exceptions.get(lower_str(word, self.spec.code))
-                    if exceptions else None)
+        override = self._override_for(word)
         unmapped, coverage = self._unmapped_chars(word)
         if override is not None:
             slots: List[SegmentSlot] = []
@@ -652,9 +652,33 @@ class G2P:
         ]
         return flagged
 
-    def _transcribe_word(self, word: str, width: int) -> WordTranscription:
+    def _override_for(self, word: str) -> Optional[str]:
+        """Whole-word IPA override for *word*, or ``None`` to fall to rules.
+
+        Precedence — inline ``spec.word_exceptions`` > sidecar lexicon
+        (``data/lexicons/{lang}.tsv``) > ``None``. Both are matched on the same
+        language-aware lowercased key, so a lexicon hit rejoins the *identical*
+        override pathway an inline exception uses (stress-mark insertion,
+        cross-word sandhi and ``confidence == 1.0`` all apply unchanged). The
+        lexicon is read lazily on first use per language (see
+        :mod:`orthography2ipa.lexicon`); a language with no sidecar gets an
+        empty map here, so its behaviour is byte-identical to before E3.
+        """
+        key = lower_str(word, self.spec.code)
         exceptions = self.spec.word_exceptions
-        override = exceptions.get(lower_str(word, self.spec.code)) if exceptions else None
+        if exceptions:
+            inline = exceptions.get(key)
+            if inline is not None:
+                return inline
+        lex = get_lexicon(self.lang)
+        if lex:
+            hit = lex.get(unicodedata.normalize("NFC", key))
+            if hit is not None:
+                return hit
+        return None
+
+    def _transcribe_word(self, word: str, width: int) -> WordTranscription:
+        override = self._override_for(word)
         paths: List[IPAPath] = []
         if override is not None:
             ipa = override

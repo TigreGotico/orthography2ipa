@@ -91,18 +91,22 @@ class TestOrdering:
         assert e.word_confidence("gato") < 0.8
 
     def test_english_th_ambiguity_lowers_confidence(self):
-        # en-GB "bar" is unambiguous; "myth"/"with" carry an ambiguous
-        # grapheme (⟨th⟩ → ð/θ, ⟨y⟩, …) and must score lower.
+        # en-GB "scarf" is unambiguous; "myth"/"plinth" carry an ambiguous
+        # grapheme (⟨th⟩ → ð/θ, ⟨y⟩, …) and must score lower. (Words are
+        # chosen OUTSIDE the shipped en-GB pilot lexicon so this exercises the
+        # rules-based lattice confidence, not a lexicon override — a lexicon
+        # hit is a certain answer with confidence 1.0 by design.)
         e = G2P("en-GB")
-        assert e.word_confidence("bar") == pytest.approx(1.0)
-        assert e.word_confidence("with") < e.word_confidence("bar")
-        assert e.word_confidence("myth") < e.word_confidence("bar")
+        assert e.word_confidence("scarf") == pytest.approx(1.0)
+        assert e.word_confidence("plinth") < e.word_confidence("scarf")
+        assert e.word_confidence("myth") < e.word_confidence("scarf")
 
     def test_weighted_spec_gives_graded_confidence(self):
         # en-GB ⟨er⟩ carries −log P weights (əɹ P=0.8, ɜːɹ P=0.2): the
         # margin is < the flat rank separation and the winner is not free,
-        # so "her" lands strictly between 0 and 1.
-        c = G2P("en-GB").word_confidence("her")
+        # so "deter" lands strictly between 0 and 1. ("deter" is outside the
+        # shipped pilot lexicon, so this reads the rules lattice, not a hit.)
+        c = G2P("en-GB").word_confidence("deter")
         assert 0.0 < c < 1.0
 
 

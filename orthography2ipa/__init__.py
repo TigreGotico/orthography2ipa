@@ -39,6 +39,12 @@ from orthography2ipa.g2p import (
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
 from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
 from orthography2ipa.json_loader import load_lexicon
+from orthography2ipa.lexicon import (
+    available_lexicon_codes,
+    get_lexicon,
+    is_ipa_string,
+    validate_lexicon_text,
+)
 from orthography2ipa.phonetok import (
     Candidate,
     GraphemeContext,
@@ -107,6 +113,10 @@ __all__ = [
     "available_codes",
     "available_families",
     "load_lexicon",
+    "get_lexicon",
+    "available_lexicon_codes",
+    "is_ipa_string",
+    "validate_lexicon_text",
     "G2PPlugin",
     "WordContext",
     "SandhiEngine",

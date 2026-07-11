@@ -700,6 +700,34 @@ uncertainty rather than as a false-precision leaderboard entry:
   and is a signal to grow the gold set before trusting a narrow slice
   of PER movement as a real regression or improvement.
 
+### Rules-only vs with-lexicon PER (lexicon overlay)
+
+Languages that ship an optional lexicon overlay
+(`orthography2ipa/data/lexicons/{code}.tsv` — see
+[`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale))
+are scored **twice** on the same gold — once with the lexicon disabled
+(`get_lexicon` stubbed to `{}`, the "rules-only PER") and once with it active
+(the "with-lexicon PER"). This keeps rule quality honest: the overlay has to
+*improve* PER without letting the underlying grapheme rules rot behind lexicon
+coverage. The results live in a dedicated report, separate from the main
+scoreboard (which is untouched — languages with no lexicon are byte-identical
+with or without this feature):
+
+```bash
+python scripts/benchmark.py --lexicon-report
+```
+
+writes [`lexicon_scoreboard.md`](lexicon_scoreboard.md) and
+`benchmarks/lexicon_results.json`. Each row reports both the **full-slice**
+delta and the **covered-subset** delta (scoring restricted to gold words the
+lexicon actually contains — where the overlay can act). The covered-subset
+delta is the honest measure of the lexicon's own accuracy vs the rules on the
+*same* words; the full-slice number is diluted by every gold word outside the
+deliberately capped, top-frequency pilot lexicon. The shipped `en-GB` pilot
+(CMUdict-derived, General American) cuts PER on covered words roughly in half
+against the independent WikiPron gold — the pilot proves the mechanism; full
+production lexica belong downstream.
+
 ## Reference numbers
 
 `python scripts/benchmark.py --dataset <d> --lang <l> --limit 300`:

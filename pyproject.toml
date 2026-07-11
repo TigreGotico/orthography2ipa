@@ -45,4 +45,4 @@ orthography2ipa = "orthography2ipa.cli:main"
 include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
-"orthography2ipa" = ["data/*.json", "data/SCHEMA.md", "data/lexicons/*.csv"]
+"orthography2ipa" = ["data/*.json", "data/SCHEMA.md", "data/lexicons/*.csv", "data/lexicons/*.tsv"]
