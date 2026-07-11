@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.76.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.76.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.75.0a1...1.76.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): align language metadata + glottolog\_code to Glottolog; audit hierarchy [\#271](https://github.com/TigreGotico/orthography2ipa/pull/271) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.75.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.75.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.74.0a1...1.75.0a1)
@@ -712,8 +720,6 @@
 **Merged pull requests:**
 
 - test: add hypothesis property tests for transcribe, tokenizer, and registry [\#81](https://github.com/TigreGotico/orthography2ipa/pull/81) ([JarbasAl](https://github.com/JarbasAl))
-- fix: build maximal-munch trie from positional-only grapheme keys too [\#79](https://github.com/TigreGotico/orthography2ipa/pull/79) ([JarbasAl](https://github.com/JarbasAl))
-- docs: public API stability audit [\#78](https://github.com/TigreGotico/orthography2ipa/pull/78) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.13.0a1) (2026-06-12)
 
