@@ -66,7 +66,7 @@ SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 
 _STRESS_MARKS = "ˈˌ"
-_NARROW_MARKS = "̝̞̪̘̙͜͡.·‿()"
+_NARROW_MARKS = "̝̞̪̺̼̘̙͜͡.·‿()"
 
 _WIKIPRON_BASE = (
     "https://raw.githubusercontent.com/CUNY-CL/wikipron/master/data/scrape/tsv/"

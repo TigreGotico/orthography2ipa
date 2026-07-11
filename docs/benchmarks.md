@@ -171,6 +171,17 @@ repository, same CC-BY-SA provenance:
 | `ru` | `rus_cyrl_narrow.tsv` | ~large | Russian (Cyrillic). **Narrow, not broad** — see note below. |
 | `ar` | `ara_arab_broad.tsv` | 17 563 | Modern Standard Arabic (Arabic script, WikiPron's `ara` macro-language code). Entries come from Wiktionary's fully-vocalized (tashkeel-marked) headwords, matching the `ar` spec's documented tashkeel-dependent input contract (see the spec's `notes` field). |
 
+Broad-mode normalization (`normalize(..., broad=True)`, the harness
+default) folds narrow place-of-articulation diacritics — dental (U+032A
+̪), apical (U+033A ̺), and laminal (U+033C ̼) — along with the other
+marks in `_NARROW_MARKS`, so e.g. an apico-alveolar `[s̺]`/`[z̺]` scores
+identically to plain `[s]`/`[z]` against a gold set that only writes the
+latter. This keeps dialects that transcribe articulatory place detail
+(e.g. Mirandese, and the pt-PT-x-trasosmontes/viana/minho/beira/aveiro/
+alfena dialects) from being penalized per-sibilant for detail that broad
+transcription conventions never encode in the first place. Narrow mode
+(`--narrow`) does not fold these marks.
+
 Russian has no `_broad.tsv` in `data/scrape/tsv/`; upstream's own README
 states some languages were only scraped in one transcription width
 ("some languages only have broad or narrow transcriptions, e.g. Russian
