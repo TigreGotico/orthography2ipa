@@ -88,7 +88,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Aragonese_language"
+    "https://en.wikipedia.org/wiki/Aragonese_language",
+    "https://an.wikipedia.org/wiki/Idioma_aragon%C3%A9s",
+    "https://es.wikipedia.org/wiki/Idioma_aragon%C3%A9s"
   ],
   "timespan": {
     "start_year": 1100,

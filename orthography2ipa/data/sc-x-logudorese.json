@@ -48,7 +48,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Logudorese_dialect"
+    "https://en.wikipedia.org/wiki/Logudorese_dialect",
+    "https://sc.wikipedia.org/wiki/Sardu_logudoresu",
+    "https://it.wikipedia.org/wiki/Lingua_sarda_logudorese"
   ],
   "timespan": {
     "start_year": 1000,

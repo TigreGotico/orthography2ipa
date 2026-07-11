@@ -91,7 +91,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Gipuzkoan_dialect"
+    "https://en.wikipedia.org/wiki/Gipuzkoan_dialect",
+    "https://eu.wikipedia.org/wiki/Gipuzkera",
+    "https://es.wikipedia.org/wiki/Dialecto_central_del_euskera"
   ],
   "timespan": {
     "start_year": 1600,

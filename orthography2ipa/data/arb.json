@@ -375,7 +375,8 @@
     "wikipedia": [
         "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
         "https://ar.wikipedia.org/wiki/لغة_عربية",
-        "https://en.wikipedia.org/wiki/Arabic_phonology"
+        "https://en.wikipedia.org/wiki/Arabic_phonology",
+        "https://en.wikipedia.org/wiki/Arabic"
     ],
     "timespan": {
         "start_year": 600,

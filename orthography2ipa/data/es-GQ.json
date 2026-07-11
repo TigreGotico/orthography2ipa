@@ -76,7 +76,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Equatorial_Guinea"
+    "https://en.wikipedia.org/wiki/Equatorial_Guinea",
+    "https://es.wikipedia.org/wiki/Espa%C3%B1ol_ecuatoguineano",
+    "https://en.wikipedia.org/wiki/Equatoguinean_Spanish"
   ],
   "timespan": {
     "start_year": 1900,

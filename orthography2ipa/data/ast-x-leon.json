@@ -210,7 +210,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Leonese_dialect"
+    "https://en.wikipedia.org/wiki/Leonese_dialect",
+    "https://ast.wikipedia.org/wiki/Lleon%C3%A9s_(lling%C3%BC%C3%ADstica)",
+    "https://es.wikipedia.org/wiki/Leon%C3%A9s_(asturleon%C3%A9s_de_Le%C3%B3n_y_Zamora)"
   ],
   "timespan": {
     "start_year": 1000,

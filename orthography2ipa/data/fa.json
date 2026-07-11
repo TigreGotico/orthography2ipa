@@ -283,7 +283,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Persian_language",
     "https://fa.wikipedia.org/wiki/زبان_فارسی",
-    "https://en.wikipedia.org/wiki/Persian_phonology"
+    "https://en.wikipedia.org/wiki/Persian_phonology",
+    "https://fa.wikipedia.org/wiki/%D8%B2%D8%A8%D8%A7%D9%86_%D9%81%D8%A7%D8%B1%D8%B3%DB%8C",
+    "https://fa.wikipedia.org/wiki/%D9%88%D8%A7%D8%AC%E2%80%8C%D8%B4%D9%86%D8%A7%D8%B3%DB%8C_%D9%81%D8%A7%D8%B1%D8%B3%DB%8C"
   ],
   "timespan": {
     "start_year": 1000,

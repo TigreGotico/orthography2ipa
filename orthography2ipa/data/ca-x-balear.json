@@ -83,7 +83,10 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Balearic_dialect",
-    "https://ca.wikipedia.org/wiki/Dialecte_balear"
+    "https://ca.wikipedia.org/wiki/Dialecte_balear",
+    "https://ca.wikipedia.org/wiki/Catal%C3%A0_balear",
+    "https://en.wikipedia.org/wiki/Balearic_Catalan",
+    "https://es.wikipedia.org/wiki/Catal%C3%A1n_de_Baleares"
   ],
   "timespan": {
     "start_year": 1300,

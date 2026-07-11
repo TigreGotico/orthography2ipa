@@ -100,7 +100,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Viana_do_Castelo",
-    "https://pt.wikipedia.org/wiki/Dialetos_da_língua_portuguesa"
+    "https://pt.wikipedia.org/wiki/Dialetos_da_língua_portuguesa",
+    "https://en.wikipedia.org/wiki/Portuguese_dialects",
+    "https://pt.wikipedia.org/wiki/Dialetos_da_l%C3%ADngua_portuguesa"
   ],
   "timespan": {
     "start_year": 1400,

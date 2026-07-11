@@ -395,7 +395,10 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Southern_Brazil"
+    "https://en.wikipedia.org/wiki/Southern_Brazil",
+    "https://pt.wikipedia.org/wiki/Dialeto_sulista_(Brasil)",
+    "https://pt.wikipedia.org/wiki/Dialeto_ga%C3%BAcho",
+    "https://en.wikipedia.org/wiki/Ga%C3%BAcho_dialect"
   ],
   "timespan": {
     "start_year": 1800,

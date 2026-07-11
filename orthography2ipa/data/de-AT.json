@@ -45,7 +45,8 @@
     ],
     "wikipedia": [
         "https://en.wikipedia.org/wiki/Austrian_German",
-        "https://de.wikipedia.org/wiki/Österreichisches_Deutsch"
+        "https://de.wikipedia.org/wiki/Österreichisches_Deutsch",
+        "https://de.wikipedia.org/wiki/%C3%96sterreichisches_Deutsch"
     ],
     "timespan": {
         "start_year": 1800,

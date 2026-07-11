@@ -59,7 +59,8 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Swedish_language"
+    "https://en.wikipedia.org/wiki/Swedish_language",
+    "https://sv.wikipedia.org/wiki/Svenska"
   ],
   "timespan": {
     "start_year": 1800,

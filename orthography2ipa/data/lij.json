@@ -320,7 +320,11 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ligurian_language_(Romance)",
     "https://en.wikipedia.org/wiki/Genoese_dialect",
-    "https://it.wikipedia.org/wiki/Lingua_ligure"
+    "https://it.wikipedia.org/wiki/Lingua_ligure",
+    "https://lij.wikipedia.org/wiki/Lengoa_ligure",
+    "https://lij.wikipedia.org/wiki/Lengoa_zeneize",
+    "https://en.wikipedia.org/wiki/Ligurian_language",
+    "https://it.wikipedia.org/wiki/Dialetto_genovese"
   ],
   "urls": [
     "http://www.zeneize.net/",

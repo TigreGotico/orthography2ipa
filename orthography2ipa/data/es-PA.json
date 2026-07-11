@@ -126,7 +126,8 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Panamanian_Spanish"
+    "https://en.wikipedia.org/wiki/Panamanian_Spanish",
+    "https://es.wikipedia.org/wiki/Espa%C3%B1ol_paname%C3%B1o"
   ],
   "timespan": {
     "start_year": 1700,

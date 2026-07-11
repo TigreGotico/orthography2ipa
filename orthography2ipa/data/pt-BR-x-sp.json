@@ -372,7 +372,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/São_Paulo"
+    "https://en.wikipedia.org/wiki/São_Paulo",
+    "https://pt.wikipedia.org/wiki/Dialeto_paulistano",
+    "https://en.wikipedia.org/wiki/Paulistano_dialect"
   ],
   "timespan": {
     "start_year": 1800,

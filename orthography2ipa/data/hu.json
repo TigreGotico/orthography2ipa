@@ -348,7 +348,9 @@
     "https://en.wikipedia.org/wiki/Hungarian_language",
     "https://hu.wikipedia.org/wiki/Magyar_nyelv",
     "https://en.wikipedia.org/wiki/Hungarian_phonology",
-    "https://en.wikipedia.org/wiki/Proto-Uralic_language"
+    "https://en.wikipedia.org/wiki/Proto-Uralic_language",
+    "https://hu.wikipedia.org/wiki/Magyar_hangtan",
+    "https://hu.wikipedia.org/wiki/Ur%C3%A1li_alapnyelv"
   ],
   "positional_graphemes": {
     "b": {

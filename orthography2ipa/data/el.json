@@ -305,7 +305,10 @@
     "https://en.wikipedia.org/wiki/Modern_Greek",
     "https://el.wikipedia.org/wiki/Ελληνική_γλώσσα",
     "https://en.wikipedia.org/wiki/Modern_Greek_phonology",
-    "https://el.wikipedia.org/wiki/%CE%95%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AE_%CE%B3%CE%BB%CF%8E%CF%83%CF%83%CE%B1"
+    "https://el.wikipedia.org/wiki/%CE%95%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AE_%CE%B3%CE%BB%CF%8E%CF%83%CF%83%CE%B1",
+    "https://el.wikipedia.org/wiki/%CE%9D%CE%AD%CE%B1_%CE%B5%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AE_%CE%B3%CE%BB%CF%8E%CF%83%CF%83%CE%B1",
+    "https://en.wikipedia.org/wiki/Greek_language",
+    "https://el.wikipedia.org/wiki/%CE%A6%CF%89%CE%BD%CE%BF%CE%BB%CE%BF%CE%B3%CE%AF%CE%B1_%CF%84%CE%B7%CF%82_%CE%9D%CE%AD%CE%B1%CF%82_%CE%95%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AE%CF%82"
   ],
   "positional_graphemes": {
     "γ": {

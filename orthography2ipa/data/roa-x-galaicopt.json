@@ -400,7 +400,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Galician-Portuguese"
+    "https://en.wikipedia.org/wiki/Galician-Portuguese",
+    "https://es.wikipedia.org/wiki/Idioma_galaicoportugu%C3%A9s",
+    "https://pt.wikipedia.org/wiki/Galego-portugu%C3%AAs"
   ],
   "timespan": {
     "start_year": 1100,
