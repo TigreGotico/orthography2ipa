@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.57.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.57.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.56.0a4...1.57.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): South/Central-West/North Brazilian Portuguese dialects [\#215](https://github.com/TigreGotico/orthography2ipa/pull/215) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.56.0a4](https://github.com/TigreGotico/orthography2ipa/tree/1.56.0a4) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.56.0a3...1.56.0a4)
@@ -685,10 +693,6 @@
 ## [0.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.4.0a1) (2026-06-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/0.3.0a1...0.4.0a1)
-
-**Merged pull requests:**
-
-- feat\(schema\): declarative stress rules with detection and IPA marking [\#23](https://github.com/TigreGotico/orthography2ipa/pull/23) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/0.3.0a1) (2026-06-11)
 
