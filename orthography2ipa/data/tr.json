@@ -1,4 +1,25 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Turkic (Oghuz branch)."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Persian adstrate: dominant literary/prestige language of the Ottoman court; large lexical layer."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary, largely via Persian; Ottoman Turkish was heavily Arabo-Persian."
+    }
+  ],
   "code": "tr",
   "name": "Turkish",
   "family": "Turkic",

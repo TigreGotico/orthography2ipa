@@ -124,12 +124,18 @@
   },
   "allophones": {},
   "positional_graphemes": {},
-  "ancestors": [
+  "ancestors":   [
     {
       "code": "sla",
-      "role": "proto_language",
-      "weight": 1.0,
-      "notes": "West Slavic language of the Sorbian subgroup spoken in Lusatia (eastern Germany)"
+      "role": "parent",
+      "weight": 0.86,
+      "notes": "Descent from Proto-Slavic (West Slavic, Sorbian/Lusatian subgroup)."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.16,
+      "notes": "German adstrate: a Slavic island entirely surrounded by German for a millennium; pervasive lexical and structural influence."
     }
   ],
   "parent": null,

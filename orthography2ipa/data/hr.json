@@ -1,4 +1,30 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Slavic (South Slavic, western subgroup / Serbo-Croatian)."
+    },
+    {
+      "code": "it-IT",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Italian/Venetian adstrate along the Adriatic (Dalmatian coast) lexicon."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "German adstrate via centuries of Habsburg administration."
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Ottoman Turkish adstrate (weaker than in Serbian/Bosnian)."
+    }
+  ],
   "code": "hr",
   "name": "Croatian",
   "family": "Slavic",

@@ -1,4 +1,24 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Slavic (East Slavic subgroup) via Old East Slavic."
+    },
+    {
+      "code": "pl",
+      "role": "adstrate",
+      "weight": 0.07,
+      "notes": "Polish adstrate: substantial Commonwealth-era lexical influence."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Russian adstrate: modern superposed contact influence."
+    }
+  ],
     "code": "uk",
     "name": "Ukrainian",
     "family": "Slavic",

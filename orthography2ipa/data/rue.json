@@ -127,18 +127,36 @@
   },
   "allophones": {},
   "positional_graphemes": {},
-  "ancestors": [
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Descent from Proto-Slavic (East Slavic, Rusyn subgroup)."
+    },
     {
       "code": "uk",
       "role": "related",
-      "weight": 0.6,
-      "notes": "East Slavic variety closely related to Ukrainian; spoken in Carpathian region"
+      "weight": 0.55,
+      "notes": "East Slavic variety closely related to Ukrainian; language-vs-dialect classification disputed."
     },
     {
-      "code": "ru",
-      "role": "related",
-      "weight": 0.4,
-      "notes": "Shares many features with Russian; classification as language vs. dialect disputed"
+      "code": "sk",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Slovak adstrate (Prešov/Carpathian contact zone)."
+    },
+    {
+      "code": "hu",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Hungarian adstrate within the former Kingdom of Hungary."
+    },
+    {
+      "code": "pl",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Polish adstrate (Lemko contact zone)."
     }
   ],
   "parent": null,

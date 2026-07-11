@@ -1,4 +1,18 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Descent from Proto-Slavic (East Slavic subgroup) via Old East Slavic."
+    },
+    {
+      "code": "cu",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Church Slavonic adstrate: pervasive literary/lexical layer (South Slavic doublets, e.g. gorod/grad); a defining feature of literary Russian."
+    }
+  ],
   "code": "ru",
   "name": "Russian",
   "family": "Slavic",

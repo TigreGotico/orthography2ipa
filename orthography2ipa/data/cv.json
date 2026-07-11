@@ -1,4 +1,25 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Descent from Proto-Turkic (divergent Oghur/Bolgar branch)."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Russian adstrate: long Volga contact and Soviet-era lexicon."
+    },
+    {
+      "code": "tt",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Tatar adstrate: neighbouring Volga-Kipchak contact."
+    }
+  ],
   "code": "cv",
   "name": "Chuvash",
   "family": "Turkic",

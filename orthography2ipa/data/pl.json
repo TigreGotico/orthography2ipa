@@ -1,4 +1,24 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Slavic (West Slavic, Lechitic subgroup)."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "German adstrate: extensive medieval Ostsiedlung, urban German lexicon (dach, handel)."
+    },
+    {
+      "code": "la",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Latin adstrate: strong scholarly/ecclesiastical and Renaissance influence."
+    }
+  ],
   "code": "pl",
   "name": "Polish",
   "family": "Slavic",

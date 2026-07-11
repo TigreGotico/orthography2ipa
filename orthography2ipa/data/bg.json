@@ -1,4 +1,30 @@
 {
+  "ancestors":   [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Proto-Slavic via Old Church Slavonic / Old Bulgarian."
+    },
+    {
+      "code": "cu",
+      "role": "ancestor",
+      "weight": 0.1,
+      "notes": "Old Church Slavonic (Old Bulgarian) literary ancestor of the Bulgarian literary language."
+    },
+    {
+      "code": "tr",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Ottoman Turkish adstrate: ~5 centuries of Ottoman rule; heavy lexical borrowing (chorba, komshia)."
+    },
+    {
+      "code": "el",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Greek adstrate; Balkan sprachbund member (loss of infinitive, postposed article)."
+    }
+  ],
   "code": "bg",
   "name": "Bulgarian",
   "family": "Slavic",

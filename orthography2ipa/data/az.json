@@ -1,4 +1,31 @@
 {
+  "parent": "trk",
+  "ancestors":   [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Turkic (Oghuz branch)."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.16,
+      "notes": "Persian adstrate: very strong, sustained bilingual contact in Iranian Azerbaijan."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary, largely via Persian."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Russian adstrate: Soviet-era technical/administrative lexicon."
+    }
+  ],
   "code": "az",
   "name": "Azerbaijani",
   "family": "Turkic",
