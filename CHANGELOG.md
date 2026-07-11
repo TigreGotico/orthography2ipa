@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.44.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.44.0a2) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.44.0a1...1.44.0a2)
+
+**Merged pull requests:**
+
+- chore: remove private DIALECT\_PATTERNS reference from EP-dialect gold docstring [\#181](https://github.com/TigreGotico/orthography2ipa/pull/181) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.44.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.44.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.43.0a2...1.44.0a1)
@@ -579,7 +587,6 @@
 - Latin graphemes + portuguese 4way sibilant distinction [\#7](https://github.com/TigreGotico/orthography2ipa/pull/7) ([JarbasAl](https://github.com/JarbasAl))
 - refactor to json [\#6](https://github.com/TigreGotico/orthography2ipa/pull/6) ([JarbasAl](https://github.com/JarbasAl))
 - feat: positional graphemmes [\#4](https://github.com/TigreGotico/orthography2ipa/pull/4) ([JarbasAl](https://github.com/JarbasAl))
-- add release automations [\#3](https://github.com/TigreGotico/orthography2ipa/pull/3) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
