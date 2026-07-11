@@ -317,7 +317,8 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Scottish_Gaelic",
-    "https://gd.wikipedia.org/wiki/Gàidhlig"
+    "https://gd.wikipedia.org/wiki/Gàidhlig",
+    "https://gd.wikipedia.org/wiki/G%C3%A0idhlig"
   ],
   "timespan": {
     "start_year": 1600,

@@ -341,7 +341,9 @@
     "wikipedia": [
         "https://en.wikipedia.org/wiki/Tamil_language",
         "https://ta.wikipedia.org/wiki/தமிழ்",
-        "https://en.wikipedia.org/wiki/Tamil_phonology"
+        "https://en.wikipedia.org/wiki/Tamil_phonology",
+        "https://ta.wikipedia.org/wiki/%E0%AE%A4%E0%AE%AE%E0%AE%BF%E0%AE%B4%E0%AF%8D",
+        "https://ta.wikipedia.org/wiki/%E0%AE%A4%E0%AE%AE%E0%AE%BF%E0%AE%B4%E0%AF%8D_%E0%AE%92%E0%AE%B2%E0%AE%BF%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%AE%E0%AF%81%E0%AE%B1%E0%AF%88"
     ],
     "timespan": {
         "start_year": -300,

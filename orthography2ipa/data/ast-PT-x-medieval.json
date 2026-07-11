@@ -197,7 +197,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Old_Portuguese"
+    "https://en.wikipedia.org/wiki/Old_Portuguese",
+    "https://ast.wikipedia.org/wiki/Galaicoportugu%C3%A9s",
+    "https://es.wikipedia.org/wiki/Idioma_galaicoportugu%C3%A9s"
   ],
   "timespan": {
     "start_year": 1100,

@@ -311,7 +311,9 @@
     "https://en.wikipedia.org/wiki/Finnish_language",
     "https://fi.wikipedia.org/wiki/Suomen_kieli",
     "https://en.wikipedia.org/wiki/Finnish_phonology",
-    "https://en.wikipedia.org/wiki/Proto-Uralic_language"
+    "https://en.wikipedia.org/wiki/Proto-Uralic_language",
+    "https://fi.wikipedia.org/wiki/Suomen_kielen_%C3%A4%C3%A4nnerakenne",
+    "https://fi.wikipedia.org/wiki/Kantaurali"
   ],
   "positional_graphemes": {
     "d": {

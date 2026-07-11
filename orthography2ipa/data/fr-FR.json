@@ -531,7 +531,9 @@
     "wikipedia": [
         "https://en.wikipedia.org/wiki/French_language",
         "https://fr.wikipedia.org/wiki/Français",
-        "https://en.wikipedia.org/wiki/French_phonology"
+        "https://en.wikipedia.org/wiki/French_phonology",
+        "https://fr.wikipedia.org/wiki/Fran%C3%A7ais",
+        "https://fr.wikipedia.org/wiki/Prononciation_du_fran%C3%A7ais"
     ],
     "positional_graphemes": {
         "c": {

@@ -146,7 +146,10 @@
     "https://en.wikipedia.org/wiki/Arabic",
     "https://ar.wikipedia.org/wiki/لغة_عربية",
     "https://en.wikipedia.org/wiki/Standard_Arabic_phonology",
-    "https://en.wikipedia.org/wiki/Sun_and_moon_letters"
+    "https://en.wikipedia.org/wiki/Sun_and_moon_letters",
+    "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9",
+    "https://ar.wikipedia.org/wiki/%D8%A3%D8%B5%D9%88%D8%A7%D8%AA_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9",
+    "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%84%D8%A7%D9%85_%D8%A7%D9%84%D8%B4%D9%85%D8%B3%D9%8A%D8%A9_%D9%88%D8%A7%D9%84%D9%84%D8%A7%D9%85_%D8%A7%D9%84%D9%82%D9%85%D8%B1%D9%8A%D8%A9"
   ],
   "timespan": {
     "start_year": 1400,

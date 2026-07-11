@@ -56,7 +56,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Campidanese_dialect"
+    "https://en.wikipedia.org/wiki/Campidanese_dialect",
+    "https://sc.wikipedia.org/wiki/Sardu_campidanesu",
+    "https://it.wikipedia.org/wiki/Lingua_sarda_campidanese"
   ],
   "timespan": {
     "start_year": 1000,

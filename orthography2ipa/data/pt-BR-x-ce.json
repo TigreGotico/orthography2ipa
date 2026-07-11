@@ -362,7 +362,11 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Ceará"
+    "https://en.wikipedia.org/wiki/Ceará",
+    "https://pt.wikipedia.org/wiki/Dialeto_nordestino",
+    "https://en.wikipedia.org/wiki/Central_northeastern_Portuguese",
+    "https://pt.wikipedia.org/wiki/Dialeto_da_costa_norte",
+    "https://en.wikipedia.org/wiki/North_coast_Portuguese"
   ],
   "timespan": {
     "start_year": 1700,

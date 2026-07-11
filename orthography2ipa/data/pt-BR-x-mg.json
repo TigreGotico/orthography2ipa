@@ -383,7 +383,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Minas_Gerais"
+    "https://en.wikipedia.org/wiki/Minas_Gerais",
+    "https://pt.wikipedia.org/wiki/Dialeto_mineiro",
+    "https://en.wikipedia.org/wiki/Mineiro"
   ],
   "timespan": {
     "start_year": 1700,

@@ -164,7 +164,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Cantabrian_dialect"
+    "https://en.wikipedia.org/wiki/Cantabrian_dialect",
+    "https://ast.wikipedia.org/wiki/Monta%C3%B1%C3%A9s",
+    "https://es.wikipedia.org/wiki/C%C3%A1ntabro_(ling%C3%BC%C3%ADstica)"
   ],
   "timespan": {
     "start_year": 1000,

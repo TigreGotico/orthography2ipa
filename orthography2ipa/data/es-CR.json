@@ -77,7 +77,8 @@
         }
     ],
     "wikipedia": [
-        "https://en.wikipedia.org/wiki/Costa_Rican_Spanish"
+        "https://en.wikipedia.org/wiki/Costa_Rican_Spanish",
+        "https://es.wikipedia.org/wiki/Espa%C3%B1ol_costarricense"
     ],
     "timespan": {
         "start_year": 1800,

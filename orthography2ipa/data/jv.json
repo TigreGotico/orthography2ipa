@@ -113,7 +113,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Javanese_language",
-    "https://en.wikipedia.org/wiki/Old_Javanese"
+    "https://en.wikipedia.org/wiki/Old_Javanese",
+    "https://jv.wikipedia.org/wiki/Basa_Jawa",
+    "https://jv.wikipedia.org/wiki/Basa_Kawi"
   ],
   "timespan": {
     "start_year": 1900,

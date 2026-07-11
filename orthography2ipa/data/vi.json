@@ -456,7 +456,10 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Vietnamese_language",
     "https://en.wikipedia.org/wiki/Vietnamese_phonology",
-    "https://en.wikipedia.org/wiki/Sino-Vietnamese_vocabulary"
+    "https://en.wikipedia.org/wiki/Sino-Vietnamese_vocabulary",
+    "https://vi.wikipedia.org/wiki/Ti%E1%BA%BFng_Vi%E1%BB%87t",
+    "https://vi.wikipedia.org/wiki/%C3%82m_v%E1%BB%8B_h%E1%BB%8Dc_ti%E1%BA%BFng_Vi%E1%BB%87t",
+    "https://vi.wikipedia.org/wiki/T%E1%BB%AB_H%C3%A1n-Vi%E1%BB%87t"
   ],
   "timespan": {
     "start_year": 1651,

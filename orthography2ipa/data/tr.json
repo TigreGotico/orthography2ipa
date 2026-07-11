@@ -269,7 +269,9 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Turkish_language",
     "https://tr.wikipedia.org/wiki/Türkçe",
-    "https://en.wikipedia.org/wiki/Turkish_phonology"
+    "https://en.wikipedia.org/wiki/Turkish_phonology",
+    "https://tr.wikipedia.org/wiki/T%C3%BCrk%C3%A7e",
+    "https://tr.wikipedia.org/wiki/T%C3%BCrk%C3%A7e_sesbilgisi"
   ],
   "positional_graphemes": {
     "k": {

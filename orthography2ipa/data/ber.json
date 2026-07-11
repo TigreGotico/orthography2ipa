@@ -360,7 +360,10 @@
     ],
     "wikipedia": [
         "https://en.wikipedia.org/wiki/Berber_languages",
-        "https://en.wikipedia.org/wiki/Proto-Berber_language"
+        "https://en.wikipedia.org/wiki/Proto-Berber_language",
+        "https://ar.wikipedia.org/wiki/%D9%84%D8%BA%D8%A7%D8%AA_%D8%A3%D9%85%D8%A7%D8%B2%D9%8A%D8%BA%D9%8A%D8%A9",
+        "https://fr.wikipedia.org/wiki/Langues_berb%C3%A8res",
+        "https://ar.wikipedia.org/wiki/%D9%84%D8%BA%D8%A9_%D8%A3%D9%85%D8%A7%D8%B2%D9%8A%D8%BA%D9%8A%D8%A9_%D8%A8%D8%AF%D8%A7%D8%A6%D9%8A%D8%A9"
     ],
     "timespan": {
         "start_year": -1000,

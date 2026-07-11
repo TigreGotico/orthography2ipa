@@ -96,7 +96,9 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Valencian",
-    "https://ca.wikipedia.org/wiki/Valenci%C3%A0"
+    "https://ca.wikipedia.org/wiki/Valenci%C3%A0",
+    "https://en.wikipedia.org/wiki/Valencian_language",
+    "https://es.wikipedia.org/wiki/Idioma_valenciano"
   ],
   "timespan": {
     "start_year": 1200,

@@ -306,7 +306,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Barranquenho"
+    "https://en.wikipedia.org/wiki/Barranquenho",
+    "https://es.wikipedia.org/wiki/Dialecto_barranque%C3%B1o",
+    "https://pt.wikipedia.org/wiki/Dialeto_barranquenho"
   ],
   "timespan": {
     "start_year": 1600,

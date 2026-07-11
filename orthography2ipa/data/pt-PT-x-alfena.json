@@ -90,7 +90,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Alfena"
+    "https://en.wikipedia.org/wiki/Alfena",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_do_Norte",
+    "https://en.wikipedia.org/wiki/Northern_Portuguese"
   ],
   "timespan": {
     "start_year": 1400,

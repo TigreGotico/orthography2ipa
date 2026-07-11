@@ -1,0 +1,202 @@
+{
+  "code": "ht",
+  "name": "Haitian Creole",
+  "family": "French Creole",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "ou": [
+      "u"
+    ],
+    "an": [
+      "ã"
+    ],
+    "en": [
+      "ɛ̃"
+    ],
+    "on": [
+      "ɔ̃"
+    ],
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "ɣ"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "ɛ̃": [
+      "ɛ̃"
+    ],
+    "ɔ̃": [
+      "ɔ̃"
+    ],
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "notes": "LEAF STUB (not a modelled G2P target). Haitian Creole (French Creole). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "iso639_3": "hat",
+  "glottolog_code": "hait1244",
+  "wikipedia": [
+    "https://ht.wikipedia.org/wiki/Krey%C3%B2l_ayisyen",
+    "https://en.wikipedia.org/wiki/Haitian_Creole"
+  ],
+  "urls": [
+    "https://glottolog.org/resource/languoid/id/hait1244"
+  ],
+  "sources": [
+    {
+      "id": "glottolog5",
+      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "year": 2024,
+      "title": "Glottolog 5.0",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/hait1244",
+      "pages": null,
+      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+    }
+  ]
+}

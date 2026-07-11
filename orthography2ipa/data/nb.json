@@ -75,7 +75,8 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Bokmål",
     "https://no.wikipedia.org/wiki/Bokmål",
-    "https://no.wikipedia.org/wiki/Bokm%C3%A5l"
+    "https://no.wikipedia.org/wiki/Bokm%C3%A5l",
+    "https://en.wikipedia.org/wiki/Bokm%C3%A5l"
   ],
   "timespan": {
     "start_year": 1500,

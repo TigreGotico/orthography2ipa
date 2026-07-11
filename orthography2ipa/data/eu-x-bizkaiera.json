@@ -92,7 +92,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Biscayan_dialect"
+    "https://en.wikipedia.org/wiki/Biscayan_dialect",
+    "https://eu.wikipedia.org/wiki/Mendebaleko_euskara",
+    "https://es.wikipedia.org/wiki/Dialecto_occidental_del_euskera"
   ],
   "timespan": {
     "start_year": 1600,

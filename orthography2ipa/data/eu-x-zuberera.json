@@ -100,7 +100,9 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Souletin_dialect"
+    "https://en.wikipedia.org/wiki/Souletin_dialect",
+    "https://eu.wikipedia.org/wiki/Zuberera",
+    "https://es.wikipedia.org/wiki/Dialecto_suletino_del_euskera"
   ],
   "timespan": {
     "start_year": 1600,

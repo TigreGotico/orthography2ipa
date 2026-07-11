@@ -240,7 +240,11 @@
     ],
     "wikipedia": [
         "https://en.wikipedia.org/wiki/Punjabi_language",
-        "https://en.wikipedia.org/wiki/Shahmukhi_alphabet"
+        "https://en.wikipedia.org/wiki/Shahmukhi_alphabet",
+        "https://pa.wikipedia.org/wiki/%E0%A8%AA%E0%A9%B0%E0%A8%9C%E0%A8%BE%E0%A8%AC%E0%A9%80_%E0%A8%AD%E0%A8%BE%E0%A8%B8%E0%A8%BC%E0%A8%BE",
+        "https://pnb.wikipedia.org/wiki/%D9%BE%D9%86%D8%AC%D8%A7%D8%A8%DB%8C",
+        "https://pa.wikipedia.org/wiki/%E0%A8%B8%E0%A8%BC%E0%A8%BE%E0%A8%B9%E0%A8%AE%E0%A9%81%E0%A8%96%E0%A9%80",
+        "https://pnb.wikipedia.org/wiki/%D8%B4%D8%A7%DB%81_%D9%85%DA%A9%DA%BE%DB%8C_%D9%84%D9%BE%DB%8C"
     ],
     "timespan": {
         "start_year": 1500,

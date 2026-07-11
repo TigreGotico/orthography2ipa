@@ -147,7 +147,9 @@
     "https://en.wikipedia.org/wiki/Estonian_language",
     "https://en.wikipedia.org/wiki/Estonian_phonology",
     "https://et.wikipedia.org/wiki/Eesti_keel",
-    "https://en.wikipedia.org/wiki/Proto-Uralic_language"
+    "https://en.wikipedia.org/wiki/Proto-Uralic_language",
+    "https://et.wikipedia.org/wiki/Eesti_keele_foneetika",
+    "https://et.wikipedia.org/wiki/Uurali_algkeel"
   ],
   "stress": {
     "default_position": 1,

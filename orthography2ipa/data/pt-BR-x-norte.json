@@ -398,7 +398,11 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Northern_Brazil"
+    "https://en.wikipedia.org/wiki/Northern_Brazil",
+    "https://pt.wikipedia.org/wiki/Amazofonia",
+    "https://en.wikipedia.org/wiki/Amazofonia",
+    "https://pt.wikipedia.org/wiki/Dialeto_da_costa_norte",
+    "https://en.wikipedia.org/wiki/North_coast_Portuguese"
   ],
   "timespan": {
     "start_year": 1700,

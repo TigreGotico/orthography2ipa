@@ -63,7 +63,8 @@
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Latin_American_Spanish"
+    "https://en.wikipedia.org/wiki/Latin_American_Spanish",
+    "https://es.wikipedia.org/wiki/Espa%C3%B1ol_de_Am%C3%A9rica"
   ],
   "timespan": {
     "start_year": 1500,

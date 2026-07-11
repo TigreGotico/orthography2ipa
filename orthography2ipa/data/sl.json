@@ -278,7 +278,9 @@
     ],
     "wikipedia": [
         "https://en.wikipedia.org/wiki/Slovenian_language",
-        "https://sl.wikipedia.org/wiki/Slovenščina"
+        "https://sl.wikipedia.org/wiki/Slovenščina",
+        "https://sl.wikipedia.org/wiki/Sloven%C5%A1%C4%8Dina",
+        "https://en.wikipedia.org/wiki/Slovene_language"
     ],
     "timespan": {
         "start_year": 1500,

@@ -338,7 +338,8 @@
     ],
     "wikipedia": [
         "https://en.wikipedia.org/wiki/Danish_language",
-        "https://da.wikipedia.org/wiki/Dansk"
+        "https://da.wikipedia.org/wiki/Dansk",
+        "https://da.wikipedia.org/wiki/Dansk_(sprog)"
     ],
     "timespan": {
         "start_year": 1500,
