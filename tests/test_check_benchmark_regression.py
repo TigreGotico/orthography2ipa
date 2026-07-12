@@ -87,3 +87,34 @@ class TestRegressionDetection:
         current = [_row(per=0.102)]
         diff_rows, regressed_rows = cbr.compare(baseline, current, epsilon=0.005)
         assert regressed_rows == []
+
+
+class TestCompetitorDerivedGoldNeverGates:
+    """A worse score against espeak-/epitran-derived or LLM gold measures
+    increased DISAGREEMENT with a competitor, and diverging from a
+    competitor may be exactly what the cited source demands — the same
+    rule can_gate_promotion applies to tier promotion. Such rows report
+    as `drifted` and never fail the gate."""
+
+    def test_espeak_derived_regression_is_drift_not_failure(self):
+        baseline = {("el", "styletts2_phonemes"):
+                    _row(lang="el", dataset="styletts2_phonemes", per=0.20)}
+        cur = _row(lang="el", dataset="styletts2_phonemes", per=0.30)
+        cur["provenance"] = "espeak-derived"
+        diff_rows, regressed_rows = cbr.compare(baseline, [cur], epsilon=0.005)
+        assert regressed_rows == []
+        assert diff_rows[0]["status"] == "drifted"
+
+    def test_trusted_gold_still_gates(self):
+        baseline = {("el", "wikipron"): _row(lang="el", per=0.10)}
+        cur = _row(lang="el", per=0.20)
+        cur["provenance"] = "crowd-scraped"
+        diff_rows, regressed_rows = cbr.compare(baseline, [cur], epsilon=0.005)
+        assert len(regressed_rows) == 1
+
+    def test_missing_provenance_still_gates(self):
+        baseline = {("el", "wikipron"): _row(lang="el", per=0.10)}
+        cur = _row(lang="el", per=0.20)
+        cur.pop("provenance", None)
+        diff_rows, regressed_rows = cbr.compare(baseline, [cur], epsilon=0.005)
+        assert len(regressed_rows) == 1
