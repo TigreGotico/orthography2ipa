@@ -59,12 +59,25 @@ was produced*, not a guarantee of correctness.
 
 ### Reliability tiers
 
-The machine-readable tier per dataset lives in the `provenance` column of
+The machine-readable tier per row lives in the `provenance` column of
 [`docs/scoreboard.md`](scoreboard.md) and the `provenance` field of
-[`benchmarks/results.json`](../benchmarks/results.json), sourced from the
-single `PROVENANCE` map in `scripts/benchmark.py` (a test forces every
-registered dataset to carry a tier, so a new dataset cannot be added
+[`benchmarks/results.json`](../benchmarks/results.json), resolved by
+`provenance_for(dataset, lang)` in `scripts/benchmark.py` (a test forces
+every registered dataset to carry a tier, so a new dataset cannot be added
 without classifying it).
+
+Most datasets are one source, so one `PROVENANCE` tier describes them.
+Some are **collections of independently sourced files**, and for those a
+single tier would be a lie — ipa-dict ships a human Icelandic dictionary,
+a Wiktionary-built German list and *espeak-generated* British English side
+by side. Those datasets carry a **per-language** tier in
+`PROVENANCE_BY_LANG`, which `provenance_for` prefers over the dataset-wide
+value, so the row's tier is always the tier of the *file it was scored
+against*. The dataset-wide value then serves only as a fallback, and is
+deliberately set to that dataset's most pessimistic tier: an unclassified
+file degrades to "distrust it" rather than inheriting a tier it did not
+earn. A test forces every wired ipa-dict language to carry its own
+classification.
 
 | Tier | What it means | Grain of salt |
 |---|---|---|
@@ -91,7 +104,7 @@ stated rather than papered over.
 | `portuguese_phonetic_lexicon` | crowd-scraped | Portal da Língua Portuguesa (semi-automated) | Direct stdlib CSV loader over `TigreGotico/portuguese_phonetic_lexicon` (~617k rows scraped from the INESC-ID Portal). Its IPA is **semi-automated (rule/tooling-generated), not hand-checked**, so it is directional only. One Standard regional variant per spec (`lbx`→`pt-PT`, `spx`→`pt-BR`, `lda`→`pt-AO`, `mpx`→`pt-MZ`, `dli`→`pt-TL`); fixed-seed sample per region. Finally measures the `pt-AO`/`pt-MZ`/`pt-TL` specs. |
 | `infopedia_pt` | lexicon-derived | Infopédia (Porto Editora) dictionary | Fixed-seed sample of a graph-crawl extraction of a published European-Portuguese dictionary (`TigreGotico/infopedia-pt-ipa`, 102,685 entries → `pt-PT`). A reputable published source, but **the methodology behind its IPA is undocumented/unknown** (not stated to be hand-checked, nor which tooling produced it) — directional, not peer-validated ground truth. |
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`; the transform adds artifacts. |
-| `ipadict` | lexicon-derived | Hjal/malfong Icelandic linguists (`is` only) | Only the human-curated `is` file is wired; the ipa-dict *project* is mixed-provenance and many of its files are tool-generated (see "Rejected candidates") — do not generalize this tier to other ipa-dict languages. |
+| `ipadict` | **per-language** (see below) | Depends on the file: human dictionaries, Wiktionary scrapes, rule scripts, **espeak** | The only mixed-provenance dataset here: ipa-dict is a *collection* of independently sourced files, so each row carries the tier of the file it was scored against, not a dataset-wide tier. Full per-language table in [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). |
 | `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size; some entries are editor-rule output, not attested; multiple valid variants per word. |
 | `styletts2_phonemes` | machine-generated | Automatic phonemizer (TTS `synthetic` tag) | **Grain of salt maximal.** Phonemizer/espeak-lineage; low PER = agrees with the phonemizer; espeak comparison on this gold is partly circular. |
 | `ipa_childes` | machine-generated | CHILDES "G2P+" automatic phonemizer | Tool-phonemized child-language corpus; accepted under the academic-corpus exception, still tool output. |
@@ -418,20 +431,73 @@ sentence-level, PER reflects connected-speech phonology on top of
 grapheme-to-phoneme rules, so it is naturally higher than the
 lexicon-style benchmarks. No rows are excluded.
 
-### Icelandic Pronunciation Dictionary (ipa-dict)
+### ipa-dict pronunciation dictionaries (`ipadict`)
 
-[open-dict-data/ipa-dict `is.txt`](https://github.com/open-dict-data/ipa-dict/blob/master/data/is.txt):
-~60k Icelandic entries sourced from the
-[Hjal project / Pronunciation Dictionary for Icelandic](http://malfong.is/?pg=framburdur&lang=en)
-(malfong.is), released under **CC BY 3.0**. The ipa-dict README states:
-"Icelandic IPA is from the Pronunciation Dictionary for Icelandic by
-the Hjal project, released under CC BY 3.0, with some changes." The
-Hjal project is an Icelandic NLP initiative; the source dictionary is
-human-curated by Icelandic linguists. This provides higher coverage
-than the WikiPron `isl_latn_broad.tsv` (~11k rows) and uses the
-`word TAB /IPA/` format with slashes stripped by the loader. Use as
-the primary Icelandic gold (`ipadict is`); the WikiPron Icelandic row
-is wired as a secondary cross-check.
+[open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict):
+31 open pronunciation dictionaries in `word TAB /IPA/` format (a word with
+several attested pronunciations lists them comma-separated, `est  /ɛst/,
+/ɛ/`; the loader emits each variant as its own gold pair, and the scorer
+keeps the best-matching one). The project is MIT-licensed; each
+third-party dataset keeps its own licence.
+
+**Read the tier before the number.** ipa-dict is not one source. Its
+README Credits section — the only authority on where each file's IPA came
+from — shows it mixing published human dictionaries, Wiktionary scrapes,
+rule scripts and phonemizer output in a single repository, so this dataset
+is classified **per language** (`_IPADICT_PROVENANCE` in
+`scripts/benchmark.py`, surfaced per row by `provenance_for`). The
+notorious case is **`en_UK`, which is espeak output**: it is credited to
+[ipacards](https://github.com/leoboiko/ipacards), whose own `CREDITS` and
+`bin/add-ipa-to-freq.py` shell out to `espeak`. That row measures agreement
+with a competitor, so per [quality tiers](quality_tiers.md) it can **neither
+qualify nor block** English — read the CMUdict and WikiPron English rows
+instead. Where the Credits section names no source at all, the file is
+classified `machine-generated` with the provenance recorded as UNVERIFIED;
+a tier is never upgraded on a guess.
+
+| Lang | ipa-dict file | Tier | Source (per the ipa-dict README Credits) |
+|---|---|---|---|
+| `is` | `is.txt` | lexicon-derived | [Pronunciation Dictionary for Icelandic](http://malfong.is/?pg=framburdur&lang=en) (Hjal project, malfong.is), CC BY 3.0 — human-curated by Icelandic linguists. Higher coverage (~60k) than WikiPron `isl` (~11k): the primary Icelandic gold, with WikiPron as cross-check. |
+| `en-US` | `en_US.txt` | lexicon-derived | [cmudict-ipa](https://github.com/lingz/cmudict-ipa) (CMU hand-curated ARPABET) + [syllabify](https://github.com/kylebgorman/syllabify) stress, MIT. Same lineage as the `cmudict` row, different notation transform. |
+| `ja` | `ja.txt` | lexicon-derived | [EDICT](https://www.edrdg.org/jmdict/edict.html) readings (EDRDG), CC BY-SA 3.0. Only the kana entries score: kanji headwords transcribe to `''` and drop out of `N`. |
+| `jam` | `jam.txt` | lexicon-derived | [A Learner's Grammar of Jamaican](https://github.com/opengrammar/jam-learners-grammar) (Open Grammar Project), CC BY 4.0. |
+| `km` | `km.txt` | lexicon-derived | [Khmer-English Dictionary](https://www.aakanee.com/AC-Khmer/X/dict.html) (aakanee.com), CC BY-NC-SA 4.0. |
+| `ro-RO` | `ro.txt` | lexicon-derived | [MaRePhoR](https://speech.utcluj.ro/marephor/) phonetic dictionary (UTCluj), CC BY-NC. |
+| `sv` | `sv.txt` | lexicon-derived | [Folkets lexikon](https://folkets-lexikon.csc.kth.se/folkets/) (KTH), CC BY-SA 2.5. |
+| `de-DE` | `de.txt` | crowd-scraped | [german-ipa-dict](https://github.com/devio-at/german-ipa-dict), built from Wiktionary, CC BY-SA. |
+| `ar` | `ar.txt` | machine-generated | Tim Buckwalter's Arabic Morphological Analyzer output. |
+| `es-ES` | `es_ES.txt` | machine-generated | [spanish-pronunciation-rules](https://github.com/easypronunciation/spanish-pronunciation-rules-php) PHP script; README calls it "experimental". |
+| `es-MX` | `es_MX.txt` | machine-generated | Same script; the file is near-identical to `es_ES` (the two differ by ~11 lines), so the two rows are not independent evidence. |
+| `fa` | `fa.txt` | machine-generated | Wiktionary + [PersPred](http://perspred.cnrs.fr/perspred-project) + "a great deal of guesswork"; README: "extremely experimental". |
+| `fi` | `fi.txt` | machine-generated | [prosodic1b](https://github.com/jsfalk/prosodic1b) (rule-based) over the Kotus wordlist, GPL 2.0. |
+| `nl` | `nl.txt` | machine-generated | Instituut voor de Nederlandse Taal, CC BY — README: "an automated conversion from different data sources … no manual correction or revision has been done". |
+| `or` | `or.txt` | machine-generated | [OdiaWikimedia Converter](https://github.com/OdiaWikimedia/Converter/tree/master/IPA-Romanization) over Wikimedia dumps. |
+| `vi` | `vi_N.txt` | machine-generated | [vPhon](https://github.com/kirbyj/vPhon) converter over Ho Ngoc Duc's wordlist. Northern/Hanoi = the standard the `vi` spec targets. |
+| `nb` | `nb.txt` | machine-generated | Base generation method **undocumented**; the README credits Dr. Espen Stranger-Johannessen for *correcting and updating* it, which is not evidence of expert authorship — so the tier is not upgraded. |
+| `eo` | `eo.txt` | machine-generated | **PROVENANCE UNVERIFIED** — the Credits section names no source for Esperanto. |
+| `fr-FR` | `fr_FR.txt` | machine-generated | **PROVENANCE UNVERIFIED** — no source credited for French. |
+| `ms` | `ma.txt` | machine-generated | **PROVENANCE UNVERIFIED** — no source credited. ipa-dict's `ma` is "Malay (Malaysian and Indonesian)", i.e. the `ms` spec, *not* Moroccan Arabic. |
+| `pt-BR` | `pt_BR.txt` | machine-generated | **PROVENANCE UNVERIFIED** — no source credited for Brazilian Portuguese. |
+| `sw` | `sw.txt` | machine-generated | **PROVENANCE UNVERIFIED** — no source credited for Swahili (the entries even preserve capitalisation in the IPA, e.g. `Abadoni /Aɓaɗoni/`). |
+| `en-GB` | `en_UK.txt` | **espeak-derived** | [ipacards](https://github.com/leoboiko/ipacards) (GPL 3.0), whose CREDITS list "Espeak" and whose `bin/add-ipa-to-freq.py` calls `espeak` directly. **Cannot qualify or block English.** |
+
+Files deliberately **not** wired (recorded in `_IPADICT_UNWIRED`):
+
+| File | Why not |
+|---|---|
+| `zh_hans`, `zh_hant` | Han-script gold, and no spec can read it: `zh` is a **pinyin/romanization** spec (`OrthographyKind.ROMANIZATION`), and the Han-script `zh-Hani` spec emits nothing for Han characters (`G2P("zh-Hani").transcribe_word("一") == ""`). Forcing either would produce a `PER=1.0`, `N=0` non-result. The two files carry identical pronunciations anyway (they differ only in written standard). |
+| `yue` | Same: Han-script gold, and `G2P("yue")` emits nothing for it. The gold itself (KFCD Pingyam + 開放粵語詞典, CC BY 3.0) is good — the gap is on our side. |
+| `ko` | Same: Hangul gold (Korean Wiktionary via [korean-word-ipa-dictionary](https://github.com/laviande22/korean-word-ipa-dictionary), CC BY-SA), and `G2P("ko")` emits nothing for Hangul syllable blocks. |
+| `fr_QC` | No Québécois spec is registered. The file is also qc-ipa script output over `fr_FR` ("highly experimental"). |
+| `tts` | Isan / Northeastern Thai ([Isaan-English Dictionary](https://www.aakanee.com/AC-Isaan/X/dict.html), CC BY-NC-SA 4.0). No `tts` spec; the `th` spec is a different language and must not stand in for it. |
+| `vi_C`, `vi_S` | No Central/Southern Vietnamese specs (only `vi`). |
+
+The Han/Hangul rows above are an **engine/spec gap, not a gold problem**:
+those three golds are among the better-sourced files in the project and are
+ready to wire the moment the logographic/Hangul orthographies are readable.
+Odia (`or`) is scorable but is an **abugida**, so its number should be read
+against the state of the abugida handling, not as a verdict on the `or`
+spec.
 
 ### HiTZ Basque Wikipedia IPA corpus (`hitz_basque_ipa`)
 
@@ -611,14 +677,10 @@ provenance:
 
 | Dataset | Verdict | Evidence |
 |---|---|---|
-| **ipa-dict `fi.txt`** | CIRCULAR | README: "prosodic1b by @jsfalk for Finnish IPA data" — prosodic1b is a rule-based syllabification and stress tool, not human IPA annotation. |
-| **ipa-dict `es_ES.txt` / `es_MX.txt`** | CIRCULAR | README: "generated using Timur Baytukalov's spanish-pronunciation-rules PHP script. Experimental." |
-| **ipa-dict `ar.txt`** | CIRCULAR | README: "generated by Tim Buckwalter's Arabic Morphological Analyzer with adjustments." |
-| **ipa-dict `fa.txt`** | CIRCULAR | README: "pieced together from Wiktionary, PersPred, and a great deal of **guesswork**. Should be considered extremely experimental." |
-| **ipa-dict `fr_QC.txt`** | CIRCULAR | README: "generated using the qc-ipa converter and is _highly experimental_." |
-| **ipa-dict `vi_*.txt`** | CIRCULAR | README: "generated by @TasseDeCafe using vPhon." |
-| **ipa-dict `nb.txt`** | USE-WITH-CARE | README credits Dr. Espen Stranger-Johannessen for "correcting and updating" but the generation method for the base data is not documented. WikiPron `nob` used instead. |
-| **ipa-dict `nl.txt`** | USE-WITH-CARE | README: "automated conversion from different data sources and no manual correction or revision has been done on the entire set" (INT/CC BY). WikiPron `nld` preferred (Wiktionary community). |
+| **ipa-dict (tool-generated files: `ar`, `es_*`, `fa`, `fi`, `nb`, `nl`, `or`, `vi_*`, and the espeak-derived `en_UK`)** | WIRED, TIERED — not rejected | Each is registered with the tier its own provenance earns (`machine-generated`, or `espeak-derived` for `en_UK`), never `lexicon-derived`; see [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). A tool-generated gold is admitted explicitly, with the caveat travelling on the row — it is not silently promoted, and the espeak row can neither qualify nor block a language. |
+| **ipa-dict `fr_QC.txt`** | EXCLUDED — no spec | No Québécois French spec is registered; the file is also qc-ipa script output over `fr_FR` ("highly experimental"). |
+| **ipa-dict `tts.txt`** | EXCLUDED — no spec | Isan / Northeastern Thai; no `tts` spec, and the `th` spec is a different language. |
+| **ipa-dict `zh_*`, `yue`, `ko`** | EXCLUDED — untranscribable | Well-sourced golds (Unihan/KFCD, KFCD Pingyam, Korean Wiktionary), but the engine emits nothing for Han script or Hangul, and the `zh` spec is a pinyin/romanization spec. An engine gap, not a gold problem. |
 | **Lexique 3.82 (French)** | EXCLUDED — complex notation | Data is human-curated (Boris New / Christophe Pallier, CNRS) and CC BY-SA 4.0, but uses a custom phonemic notation (not X-SAMPA, not IPA) — `§`=ɔ̃, `°`=schwa-variant, `5`=ɛ̃, `8`=œ̃ etc. — not covered by `scriptconv.notation.xsampa_to_ipa`. A dedicated Lexique converter would be a clean follow-up; WikiPron `fra` is used in the interim. |
 | **NST Swedish/Norwegian lexicons (Språkbanken/NB)** | EXCLUDED — no programmatic download | Authoritative SAMPA lexicons for sv/nb/da from Nasjonalbiblioteket. Human-curated. However no stable raw-download URL suitable for `urllib.request`; the portal serves interactive/catalogue pages. WikiPron Scandinavian TSVs used instead. |
 | **CELEX2 (de/nl/en)** | EXCLUDED — proprietary | LDC license (LDC96L14), not freely downloadable. |
