@@ -65,7 +65,11 @@ def test_mark_supplying_no_vowel_leaves_the_inherent_vowel_standing():
 
 @pytest.mark.parametrize("lang,word,expected", [
     # C + virama + C is just a cluster once the virama suppresses the vowel.
-    ("ta", "வணக்கம்", "ʋaɳakkam"),   # க்க → kk, not kaka
+    # க்க → a k-cluster, not kaka. Tamil's own data then states that a doubled
+    # consonant is a long one (TA_GEM*, tests/test_indic_allophony.py), so the
+    # cluster surfaces as [kː] — the engine's job here is only to suppress the
+    # inherent vowel.
+    ("ta", "வணக்கம்", "ʋaɳakːam"),
     ("kn", "ಕನ್ನಡ", "kannaɖa"),      # ನ್ನ → nn, not nana
     ("ta", "நான்", "naːn"),          # final virama: no trailing vowel
     ("ta", "தமிழ்", "t̪amiɻ"),       # matra + final virama together
