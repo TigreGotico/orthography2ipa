@@ -193,6 +193,19 @@ def _expand_arabic_gemination(text: str) -> str:
 _TR_LOWER_MAP: Dict[str, str] = {"I": "ı", "İ": "i"}
 
 
+#: Unicode canonical combining class assigned to every Brahmic virama/halant
+#: (Devanagari, Bengali, Tamil, Telugu, Kannada, Malayalam, Sinhala, Khmer,
+#: Myanmar, …). Testing the class rather than enumerating codepoints keeps the
+#: abugida model script-agnostic: a script the library has never seen works.
+_VIRAMA_COMBINING_CLASS = 9
+
+
+def _is_virama(ch: str) -> bool:
+    """True if ``ch`` is a virama/halant — a mark that suppresses the
+    inherent vowel of the consonant it follows."""
+    return unicodedata.combining(ch) == _VIRAMA_COMBINING_CLASS
+
+
 def _is_turkish(lang: str) -> bool:
     return lang == "tr" or lang.startswith("tr-")
 
@@ -258,8 +271,14 @@ class Token:
     """What kind of token this is."""
 
     grapheme: str
-    """The surface string exactly as it appeared in the input
-    (lower-cased for GRAPHEME tokens; original case for others)."""
+    """The grapheme key this token matched (lower-cased for GRAPHEME tokens;
+    original case for others).
+
+    This is the *table key*, not necessarily the full input span: an abugida
+    consonant followed by a virama matches the bare consonant key while
+    consuming the virama too. Use :meth:`text_span` to recover the characters
+    actually consumed — ``length`` is authoritative, ``len(grapheme)`` is not.
+    """
 
     ipa: Tuple[str, ...]
     """Possible IPA values for this token.  Empty for non-GRAPHEME tokens."""
@@ -269,6 +288,14 @@ class Token:
 
     length: int
     """Number of characters consumed from the input."""
+
+    def text_span(self, text: str) -> str:
+        """The characters this token consumed from *text*.
+
+        *text* must be the same (normalised) string the token was produced
+        from, since :attr:`position` indexes into it.
+        """
+        return text[self.position:self.position + self.length]
 
     def __repr__(self) -> str:
         ipa_str = "|".join(self.ipa) if self.ipa else ""
@@ -880,6 +907,37 @@ class PhonetokTokenizer:
 
         self._trie = _GraphemeTrie(self._grapheme_ipa, spec.code)
 
+    def _supplies_vowel(self, ch: str) -> bool:
+        """True if *ch* is a combining mark that supplies a vowel of its own.
+
+        This is what distinguishes a dependent vowel sign (matra) — which
+        *replaces* a consonant's inherent vowel — from the other marks that may
+        follow a consonant (anusvara, candrabindu, nukta, visarga), which do
+        not and so leave the inherent vowel standing.
+
+        The test is data-driven rather than a codepoint list: a mark supplies a
+        vowel when the spec itself maps it to one. A spec that maps its
+        anusvara to a nasal consonant therefore keeps the inherent vowel with
+        no special-casing anywhere in the engine.
+        """
+        if unicodedata.category(ch) not in ("Mn", "Mc"):
+            return False
+        ipa_vals = self._grapheme_ipa.get(ch)
+        if not ipa_vals:
+            return False
+        first = ipa_vals[0]
+        if not first:
+            return False
+        head = first[0]
+        if unicodedata.combining(head):
+            # The mark's IPA opens with a combining diacritic (e.g. Malayalam
+            # anusvara → "◌̃m"). A diacritic *modifies* a neighbouring vowel; it
+            # never supplies a syllable nucleus of its own, so the consonant's
+            # inherent vowel still surfaces and is what the diacritic attaches
+            # to.
+            return False
+        return is_ipa_vowel(head)
+
     def weights_for(self, grapheme: str) -> Optional[Tuple[float, ...]]:
         """Return the per-candidate weights for *grapheme*, or ``None``.
 
@@ -972,27 +1030,28 @@ class PhonetokTokenizer:
             if gkey is not None:
                 ipa_vals = self._grapheme_ipa[gkey]
                 consumed = len(gkey)
-                # Inherent vowel for abugidas: after a consonant grapheme,
-                # append the inherent vowel unless a virama/halant follows.
+                # Inherent vowel for abugidas. A consonant letter carries an
+                # inherent vowel, but that vowel is *cancelled* — not added to —
+                # when the following character supplies the syllable's vowel
+                # itself (a dependent vowel sign) or suppresses it (a virama).
+                # Both are combining marks, so one lookahead decides. Marks that
+                # supply no vowel (anusvara, nukta, visarga) leave it standing.
                 if self.spec.inherent_vowel and ipa_vals:
-                    next_pos = pos + consumed
-                    next_ch = text[next_pos] if next_pos < n else ""
-                    # Virama/halant characters across Brahmic scripts
-                    if next_ch in ("\u094D", "\u09CD", "\u0A4D", "\u0ACD",
-                                   "\u0B4D", "\u0BCD", "\u0C4D", "\u0CCD",
-                                   "\u0D4D", "\u0E3A", "\u1039", "\u17D2"):
-                        # Virama follows — pure consonant, consume virama
-                        consumed += 1
-                    else:
-                        # Check if the first IPA value is consonantal
-                        # (not a vowel grapheme) by checking if it's NOT
-                        # in the vowel set. Simple heuristic: if the IPA
-                        # value contains only consonant symbols.
-                        first_ipa = ipa_vals[0]
-                        if first_ipa and not is_ipa_vowel(first_ipa[0]):
+                    first_ipa = ipa_vals[0]
+                    if first_ipa and not is_ipa_vowel(first_ipa[0]):
+                        next_pos = pos + consumed
+                        next_ch = text[next_pos] if next_pos < n else ""
+                        if next_ch and _is_virama(next_ch):
+                            # Virama — bare consonant; consume the mark so that
+                            # C+virama+C falls out as a cluster (conjuncts).
+                            consumed += 1
+                        elif not (next_ch and self._supplies_vowel(next_ch)):
+                            # Nothing supplies a vowel: the inherent one surfaces.
                             ipa_vals = tuple(
                                 v + self.spec.inherent_vowel for v in ipa_vals
                             )
+                        # else: a dependent vowel sign follows and is tokenised on
+                        # the next pass, supplying this syllable's vowel instead.
                 tokens.append(Token(
                     kind=TokenKind.GRAPHEME, grapheme=gkey,
                     ipa=ipa_vals, position=pos, length=consumed,
