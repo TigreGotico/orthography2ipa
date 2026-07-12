@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a2) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.0a1...3.0.0a2)
+
+**Merged pull requests:**
+
+- refactor\(benchmark\): drop the tugalex wrapper, load the HF lexicon directly [\#319](https://github.com/TigreGotico/orthography2ipa/pull/319) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/2.0.0a1...3.0.0a1)
@@ -685,10 +693,6 @@
 ## [1.28.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.28.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.27.0a1...1.28.0a1)
-
-**Merged pull requests:**
-
-- feat\(engine\): per-spec candidate weights for probabilistic beam scoring [\#133](https://github.com/TigreGotico/orthography2ipa/pull/133) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.27.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.27.0a1) (2026-07-10)
 
