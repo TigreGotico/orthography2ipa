@@ -46,7 +46,11 @@ def _positions(lang: str, word: str, grapheme: str):
 
 
 @pytest.mark.parametrize("lang, word, grapheme, position", [
-    # Devanagari: hi declares ⟨ड⟩ intervocalic → [ɽ]. ⟨आ⟩/⟨ा⟩ are vowels.
+    # Devanagari: ⟨आ⟩/⟨ा⟩ must be recognised as vowels, so a consonant between
+    # them is INTERVOCALIC. (hi declares no vowel-conditioned rule of its own —
+    # its ⟨ड⟩ intervocalic entry was removed as a wrong analysis; the flap is the
+    # separate nukta letter ⟨ड़⟩. What is asserted here is that the POSITION is
+    # computed, which is the bug: before this, it never could be.)
     ("hi", "आडा", "ड", GraphemePosition.INTERVOCALIC),
     ("hi", "आडा", "ड", GraphemePosition.BEFORE_VOWEL),
     ("hi", "आडा", "ड", GraphemePosition.AFTER_VOWEL),
@@ -64,11 +68,13 @@ def test_vowel_conditioned_position_fires_in_non_latin_script(
 
 
 def test_intervocalic_actually_changes_the_transcription():
-    """Hindi /ɖ/ → [ɽ] between vowels — the rule the spec always declared."""
-    g2p = G2P("hi")
-    assert "ɽ" in str(g2p.transcribe("आडा"))
-    # …and only between vowels: word-initial ⟨ड⟩ stays [ɖ].
-    assert str(g2p.transcribe("डाल")).startswith("ɖ")
+    """Arabic ⟨ة⟩ (ta marbuta) elides after a vowel — a rule ar always declared
+    and that could never fire, because Arabic letters were not vowels."""
+    g2p = G2P("ar")
+    # إحالة: the final ⟨ة⟩ follows a vowel and drops.
+    assert not str(g2p.transcribe("إحالة")).endswith("t")
+    # …and ⟨أ⟩ before a vowel is the glottal stop.
+    assert str(g2p.transcribe("أنأى")).startswith("ʔ")
 
 
 def test_after_vowel_actually_changes_the_transcription():
