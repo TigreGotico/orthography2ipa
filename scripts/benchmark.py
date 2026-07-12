@@ -98,13 +98,31 @@ LEXICON_SCOREBOARD_JSON = os.path.join(
 CI_SAMPLE_LIMIT = 1000
 CI_SAMPLE_JSON = os.path.join(REPO_ROOT, "benchmarks", "results_ci_sample.json")
 
-_STRESS_MARKS = "ˈˌ"
+#: Stress marks stripped from BOTH sides when ``strip_stress`` is set.
+#: U+02C8/U+02CC are the IPA primary/secondary marks. The ASCII apostrophe is
+#: not IPA at all, but several expert gold sets (4catac) use it as the stress
+#: mark — leaving it in made every stressed syllable in the gold an unmatched
+#: character, which cost Catalan ~7 PER points of pure notation. The IPA
+#: modifier apostrophe U+02BC is deliberately NOT here: it marks ejectives and
+#: is a real segment.
+_STRESS_MARKS = "ˈˌ'"
 _NARROW_MARKS = "̝̞̪̺̼̘̙͜͡.·‿()"
+#: Prosodic/orthographic punctuation carried by sentence-level gold sets
+#: (phrase breaks, commas, full stops). None of it is a phoneme, so scoring it
+#: as one penalises a transcription for text the engine correctly ignores.
+_PUNCT_MARKS = "|‖,.;:!?¡¿\"«»—–-"
 
 _WIKIPRON_BASE = (
     "https://raw.githubusercontent.com/CUNY-CL/wikipron/master/data/scrape/tsv/"
 )
 _WIKIPRON_FILES = {
+    # --- Iberian ---
+    # Catalan's only other gold (4catac) is 160 expert SENTENCES; this is its
+    # sole word-level set. Small (176 rows) but it isolates grapheme->phoneme
+    # accuracy from the sentence-level stress and sandhi the other gold mixes in.
+    "ca": "cat_latn_broad.tsv",
+    "an": "arg_latn_broad.tsv",          # Aragonese, ~1.3k rows
+    "lad": "lad_latn_broad.tsv",         # Ladino, ~145 rows
     # --- already wired ---
     "gl": "glg_latn_broad.tsv",
     "es": "spa_latn_la_broad.tsv",
@@ -1054,12 +1072,27 @@ def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
     if strip_stress:
         for ch in _STRESS_MARKS:
             s = s.replace(ch, "")
+    # Punctuation is not a phoneme. Sentence-level gold sets carry phrase
+    # breaks and commas the engine never emits; counting them as segments
+    # penalises a correct transcription for text it rightly ignored.
+    for ch in _PUNCT_MARKS:
+        s = s.replace(ch, "")
     if broad:
         decomposed = unicodedata.normalize("NFD", s)
         s = unicodedata.normalize(
             "NFC", "".join(c for c in decomposed if c not in _NARROW_MARKS))
     # comparison is segmentation-free: some gold sets space-separate phonemes
     return "".join(s.split())
+
+
+def _is_multiword(entry: str) -> bool:
+    """True if *entry* is a phrase/sentence rather than a single word.
+
+    Whitespace is the signal: a gold set is either word-level (WikiPron,
+    CMUdict) or sentence-level (4catac, styletts2_phonemes), and the scorer
+    must call the matching engine API for each.
+    """
+    return len(entry.split()) > 1
 
 
 def levenshtein(a: str, b: str) -> int:
@@ -1152,8 +1185,16 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     wrong, covered = 0, 0
     for word, golds in refs.items():
         try:
-            hyp = normalize(engine.transcribe_word(word),
-                            strip_stress, broad)
+            # Pick the API that matches the entry's granularity. Several gold
+            # sets are sentence-level (4catac, styletts2_phonemes), and
+            # transcribe_word() treats a whole sentence as ONE word: word
+            # boundaries vanish, per-word stress collapses to a single mark,
+            # and word-final rules (Catalan final-⟨r⟩ deletion, Danish schwa)
+            # never fire. That is a harness artifact, not an engine error —
+            # it cost Catalan ~7 and English ~16 PER points.
+            transcribe = (engine.transcribe if _is_multiword(word)
+                          else engine.transcribe_word)
+            hyp = normalize(transcribe(word), strip_stress, broad)
         except Exception:
             continue
         if not hyp:
