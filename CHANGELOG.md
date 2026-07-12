@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a2) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.1.0a1...3.1.0a2)
+
+**Merged pull requests:**
+
+- chore\(benchmarks\): regenerate full-dataset scoreboard + CI sample [\#326](https://github.com/TigreGotico/orthography2ipa/pull/326) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.1a1...3.1.0a1)
@@ -685,10 +693,6 @@
 ## [1.31.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.31.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.30.0a1...1.31.0a1)
-
-**Merged pull requests:**
-
-- feat\(phonetok\): add structured IPA lattice API [\#139](https://github.com/TigreGotico/orthography2ipa/pull/139) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.30.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.30.0a1) (2026-07-10)
 
