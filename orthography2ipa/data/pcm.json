@@ -195,7 +195,9 @@
   "iso639_3": null,
   "glottolog_code": null,
   "wikidata_qid": "Q33655",
-  "wikipedia": [],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nigerian_Pidgin"
+  ],
   "sources": [
     {
       "id": "nla_standard_naija_orthography",

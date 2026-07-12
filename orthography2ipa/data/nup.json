@@ -232,7 +232,9 @@
       "notes": "Documents the Latin and Ajami writing traditions of Nupe (cited by the Wikipedia article for the script statement)."
     }
   ],
-  "wikipedia": [],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nupe_language"
+  ],
   "parent": "x-clade-atla1278",
   "ancestors": [
     {

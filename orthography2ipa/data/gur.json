@@ -212,7 +212,9 @@
   "iso639_3": null,
   "glottolog_code": null,
   "wikidata_qid": null,
-  "wikipedia": [],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Frafra_language"
+  ],
   "sources": [
     {
       "id": "farefare_wiki",
