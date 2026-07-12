@@ -19,6 +19,11 @@ from orthography2ipa.types import GraphemePosition
 _SENTINEL = object()
 
 
+def _segments(ipa: str) -> str:
+    """Strip stress marks, leaving only the segmental string."""
+    return ipa.replace("\u02c8", "").replace("\u02cc", "")
+
+
 def _load(code: str):
     """Load a LanguageSpec, skipping the test if the language code is unavailable."""
     try:
@@ -446,6 +451,66 @@ class TestIrish:
         """Fricative /ɣ/ (from lenited ⟨dh⟩/⟨gh⟩) has single surface form [ɣ]."""
         _assert_contains(_allophone(self.spec, "ɣ"), "ɣ", label="ga:ɣ allophone")
 
+    # ── Broad/slender quality (leathan/caol) ────────────────────────────────
+    #
+    # "Caol le caol agus leathan le leathan": a consonant is slender
+    # (palatalised) beside ⟨e i⟩ and broad (velarised) beside ⟨a o u⟩. The
+    # flanking vowel that carries the signal is often silent — "⟨e⟩ before
+    # ⟨a⟩ or ⟨o⟩ and ⟨i⟩ bordering either side of ⟨u⟩ are silent, but mark a
+    # slender consonant" (https://en.wikipedia.org/wiki/Irish_orthography).
+    #
+    # Reference forms below are the Wiktionary/WikiPron citation forms.
+
+    @pytest.mark.parametrize("word,expected", [
+        # ⟨ea⟩: mute ⟨e⟩ slenderises ⟨b⟩ → [bʲ]; the nucleus is /a/; ⟨n⟩ stays
+        # broad after ⟨a⟩. Ref. /bʲanˠ/ ~ /bʲan̪ˠ/.
+        ("bean", "bʲan̪ˠ"),
+        # ⟨io⟩: the ⟨o⟩ is the mute BROAD marker keeping ⟨s⟩ = [sˠ], while the
+        # ⟨i⟩ slenderises ⟨f⟩ → [fʲ]. Ref. /fʲɪsˠ/.
+        ("fios", "fʲɪsˠ"),
+        # ⟨ai⟩: mute ⟨i⟩ slenderises ⟨l⟩ → [lʲ]; ⟨í⟩ = /iː/; final ⟨n⟩ slender.
+        # Ref. /kalʲiːnʲ/.
+        ("cailín", "kalʲiːnʲ"),
+        # ⟨fea⟩: slender ⟨f⟩, broad ⟨r⟩. Ref. /fʲaɾˠ/.
+        ("fear", "fʲaɾˠ"),
+        # ⟨ai⟩ + mute marker: slender ⟨l⟩; final ⟨e⟩ → [ə]. Ref. /bˠalʲə/.
+        ("baile", "bˠalʲə"),
+        # Slender ⟨c⟩ = palatal [c] before ⟨e⟩. Ref. /can̪ˠ/.
+        ("ceann", "can̪ˠ"),
+        # Svarabhakti: an epenthetic /ə/ breaks up the ⟨r⟩+⟨m⟩ cluster after a
+        # short vowel. Ref. /ˈɡɔɾˠəmˠ/.
+        ("gorm", "ɡɔɾˠəmˠ"),
+        # All-broad word, unstressed vowel reduced. Ref. /ˈmˠad̪ˠɾˠə/.
+        ("madra", "mˠad̪ˠɾˠə"),
+    ])
+    def test_broad_slender_words(self, word, expected):
+        """Cited word→IPA pairs exercising the quality system end to end.
+
+        Compared on the segmental string; see the Scottish Gaelic counterpart
+        for why the stress mark is asserted separately.
+        """
+        assert _segments(orthography2ipa.transcribe(word, "ga")) == expected
+
+    def test_stress_is_word_initial(self):
+        """Irish (Connacht/Ulster) stresses the first syllable."""
+        assert orthography2ipa.transcribe("madra", "ga").startswith("ˈ")
+
+    def test_marker_vowels_are_silent(self):
+        """The quality-marker vowels map to the empty string, not a nucleus."""
+        pg = self.spec.positional_graphemes
+        assert pg["e"][GraphemePosition.BEFORE_BACK_VOWEL] == [""], (
+            "ga: ⟨e⟩ before ⟨a o⟩ is silent but marks a slender consonant")
+        assert pg["i"][GraphemePosition.AFTER_VOWEL] == [""], (
+            "ga: ⟨i⟩ after a vowel is a mute slender marker (⟨ai oi ui ei⟩)")
+        assert pg["o"][GraphemePosition.AFTER_FRONT_VOWEL] == [""], (
+            "ga: the ⟨o⟩ of ⟨io⟩/⟨ío⟩ is a mute broad marker")
+
+    def test_svarabhakti_rules_exist(self):
+        """Epenthesis is declared as data (allophone_rules), not engine code."""
+        ids = {r.id for r in (self.spec.allophone_rules or [])}
+        assert any(i.startswith("GA_SVARABHAKTI_") for i in ids), (
+            "ga: svarabhakti epenthesis rules should be present")
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Scottish Gaelic (gd)
@@ -512,19 +577,27 @@ class TestScottishGaelic:
         """
         _assert_first(_grapheme(self.spec, "b"), "p", label="gd:b primary=p (devoiced)")
 
-    def test_b_secondary_includes_voiced(self):
-        """⟨b⟩ also has voiced /b/ as a secondary (medial/post-nasal) realisation."""
+    def test_b_has_no_voiced_realisation(self):
+        """⟨b⟩ is /p/ only — Scottish Gaelic has no voiced stop series.
+
+        The stop system opposes unaspirated /p t̪ k/ (written ⟨b d g⟩) to
+        aspirated /pʰ t̪ʰ kʰ/ (written ⟨p t c⟩); voicing is not contrastive,
+        so a voiced [b] is not part of the inventory
+        (https://en.wikipedia.org/wiki/Scottish_Gaelic_phonology).
+        """
         vals = _grapheme(self.spec, "b")
-        _assert_contains(vals, "b", label="gd:b secondary voiced")
+        assert vals == ["p"], f"gd:b should be /p/ only, got {vals!r}"
 
     def test_c_maps_to_aspirated_stops(self):
-        """⟨c⟩ maps to aspirated /kʰ/ (broad) and /cʰ/ (slender palatal).
+        """⟨c⟩ maps to aspirated /kʰ/ (broad) and /kʲʰ/ (slender).
 
         Scottish Gaelic is notable for obligatory aspiration of voiceless
         stops — ⟨c⟩ is always aspirated, distinguishing it from Irish /k/.
+        The slender counterpart is a PALATALISED velar /kʲʰ/, not a palatal
+        /cʰ/ (https://en.wikipedia.org/wiki/Scottish_Gaelic_phonology).
         """
         vals = _grapheme(self.spec, "c")
-        _assert_contains(vals, "kʰ", "cʰ", label="gd:c aspirated")
+        _assert_contains(vals, "kʰ", "kʲʰ", label="gd:c aspirated")
 
     def test_p_maps_to_aspirated_stop(self):
         """⟨p⟩ maps to the aspirated /pʰ/ (voiceless bilabial aspirated stop)."""
@@ -545,10 +618,10 @@ class TestScottishGaelic:
         vals = _grapheme(self.spec, "ch")
         _assert_contains(vals, "x", "ç", label="gd:ch→x/ç")
 
-    def test_dh_maps_to_gamma_and_j(self):
-        """Lenited ⟨dh⟩ gives /ɣ/ (broad voiced velar fricative) or /j/ (slender)."""
+    def test_dh_maps_to_gamma_and_palatal(self):
+        """Lenited ⟨dh⟩ gives /ɣ/ (broad voiced velar fricative) or /ʝ/ (slender)."""
         vals = _grapheme(self.spec, "dh")
-        _assert_contains(vals, "ɣ", "j", label="gd:dh→ɣ/j")
+        _assert_contains(vals, "ɣ", "ʝ", label="gd:dh→ɣ/ʝ")
 
     def test_fh_is_silent(self):
         """Lenited ⟨fh⟩ is silent — maps to an empty string, as in Irish."""
@@ -558,10 +631,10 @@ class TestScottishGaelic:
             f"gd:fh should be silent (empty string), got {vals!r}"
         )
 
-    def test_gh_maps_to_gamma_and_j(self):
-        """Lenited ⟨gh⟩ gives /ɣ/ (broad) or /j/ (slender), parallel to ⟨dh⟩."""
+    def test_gh_maps_to_gamma_and_palatal(self):
+        """Lenited ⟨gh⟩ gives /ɣ/ (broad) or /ʝ/ (slender), parallel to ⟨dh⟩."""
         vals = _grapheme(self.spec, "gh")
-        _assert_contains(vals, "ɣ", "j", label="gd:gh→ɣ/j")
+        _assert_contains(vals, "ɣ", "ʝ", label="gd:gh→ɣ/ʝ")
 
     def test_mh_maps_to_v(self):
         """Lenited ⟨mh⟩ maps to /v/ — same output as ⟨bh⟩ in Scottish Gaelic."""
@@ -594,9 +667,65 @@ class TestScottishGaelic:
         """Aspirated phoneme /kʰ/ has single surface form [kʰ]."""
         _assert_contains(_allophone(self.spec, "kʰ"), "kʰ", label="gd:kʰ allophone")
 
-    def test_ch_aspirated_allophone_is_stable(self):
-        """Aspirated palatal phoneme /cʰ/ has single surface form [cʰ]."""
-        _assert_contains(_allophone(self.spec, "cʰ"), "cʰ", label="gd:cʰ allophone")
+    def test_slender_aspirated_velar_allophone_is_stable(self):
+        """Aspirated slender phoneme /kʲʰ/ has single surface form [kʲʰ]."""
+        _assert_contains(_allophone(self.spec, "kʲʰ"), "kʲʰ",
+                         label="gd:kʲʰ allophone")
+
+    # ── Broad/slender quality (leathann/caol) ───────────────────────────────
+    #
+    # "Caol le caol agus leathann le leathann" — a consonant is slender
+    # (palatalised) when the adjacent vowel letter is ⟨e i⟩ and broad
+    # (velarised) when it is ⟨a o u⟩. Crucially, the flanking vowel that
+    # signals the quality is frequently NOT pronounced: it is a quality
+    # marker, not a nucleus (Gaelic Orthographic Conventions; Bauer 2011;
+    # https://en.wikipedia.org/wiki/Scottish_Gaelic_orthography).
+    #
+    # Reference forms below are the Wiktionary/WikiPron citation forms.
+
+    @pytest.mark.parametrize("word,expected", [
+        # ⟨s⟩ is slender [ʃ] before ⟨e⟩; final ⟨e⟩ reduces to [ə].
+        ("mise", "miʃə"),
+        # ⟨ai⟩ = /a/: the ⟨i⟩ is a mute slender marker for the ⟨l⟩ that
+        # follows, and the ⟨e⟩ of ⟨ea⟩ is a mute marker too — neither is a
+        # nucleus. Ref. /ˈkʰalak/ ~ [ˈkʰaləɡ].
+        ("caileag", "kʰalək"),
+        # ⟨ui⟩ = /ɯ/, ⟨i⟩ mute; ⟨s⟩ and ⟨g⟩ slender → [ʃ], [kʲ]. Ref. /ˈɯʃkʲə/.
+        ("uisge", "ɯʃkʲə"),
+        # ⟨oi⟩: mute ⟨i⟩ slenderises ⟨l⟩; ⟨sg⟩ stays broad. Ref. /s̪kɔl/.
+        ("sgoil", "s̪kɔl"),
+        # ⟨g⟩ after a mute slender marker ⟨i⟩ → [kʲ]. Ref. /akʲ/.
+        ("aig", "akʲ"),
+        # ⟨ll⟩ slender = [ʎ]; ⟨g⟩ slender = [kʲ]. Ref. /ˈkʲiʎə/.
+        ("gille", "kʲiʎə"),
+        # Broad throughout — no front vowel anywhere. Ref. /kl̪ˠas̪/.
+        ("glas", "kl̪ˠas̪"),
+        # Preaspiration of a stop after a stressed vowel. Ref. /kʰaht̪/.
+        ("cat", "kʰaht̪"),
+        # ⟨d⟩ broad = [t̪] (no voiced series); ⟨ui⟩ = /ɯ/; ⟨n⟩ slender = [ɲ].
+        ("duine", "t̪ɯɲə"),
+    ])
+    def test_broad_slender_words(self, word, expected):
+        """Cited word→IPA pairs exercising the quality system end to end.
+
+        Compared on the segmental string: the primary-stress mark is asserted
+        separately (``test_stress_is_word_initial``) because a rule that
+        rewrites one phoneme into a two-segment surface (preaspiration,
+        svarabhakti) shifts where the engine places the mark.
+        """
+        assert _segments(orthography2ipa.transcribe(word, "gd")) == expected
+
+    def test_stress_is_word_initial(self):
+        """Scottish Gaelic stresses the first syllable."""
+        assert orthography2ipa.transcribe("mise", "gd").startswith("ˈ")
+
+    def test_marker_vowels_are_silent(self):
+        """The quality-marker vowels map to the empty string, not a nucleus."""
+        pg = self.spec.positional_graphemes
+        assert pg["i"][GraphemePosition.AFTER_VOWEL] == [""], (
+            "gd: ⟨i⟩ after a vowel is a mute slender marker (⟨ai oi ui ei⟩)")
+        assert pg["e"][GraphemePosition.BEFORE_BACK_VOWEL] == [""], (
+            "gd: ⟨e⟩ before a back vowel is a mute slender marker (⟨ea eo⟩)")
 
     def test_t_dental_allophone_includes_aspirated(self):
         """Dental phoneme /t̪/ has both [t̪] and [t̪ʰ] surface forms (pre-aspiration)."""
