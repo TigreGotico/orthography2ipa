@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.81.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.81.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.80.0a1...1.81.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): locations for regional dialects [\#288](https://github.com/TigreGotico/orthography2ipa/pull/288) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.80.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.79.1a1...1.80.0a1)
@@ -713,10 +721,6 @@
 ## [1.15.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.15.2a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.15.1a1...1.15.2a1)
-
-**Merged pull requests:**
-
-- feat: add 4catac Catalan benchmark dataset [\#95](https://github.com/TigreGotico/orthography2ipa/pull/95) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.15.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.15.1a1) (2026-07-09)
 
