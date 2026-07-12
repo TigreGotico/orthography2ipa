@@ -100,7 +100,8 @@ from orthography2ipa.script_distance import (
 )
 from orthography2ipa.types import (
     AllophoneMap, AllophoneRule, Ancestor, AncestorRole, Grapheme2IPA,
-    LanguageSpec, Location, OrthographyStandard, PositionalGrapheme2IPA, QualityTier,
+    LanguageSpec, Location, OrthographyKind, OrthographyStandard,
+    PositionalGrapheme2IPA, QualityTier,
     SandhiRule, ScriptType, StressRules,
 )
 
@@ -127,6 +128,7 @@ __all__ = [
     "SandhiEngine",
     "LanguageSpec",
     "Location",
+    "OrthographyKind",
     "OrthographyStandard",
     "Grapheme2IPA",
     "AllophoneMap",

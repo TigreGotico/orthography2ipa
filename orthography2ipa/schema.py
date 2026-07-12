@@ -37,6 +37,7 @@ from pydantic import (
 )
 
 from orthography2ipa.types import (
+    OrthographyKind,
     AncestorRole,
     GraphemePosition,
     QualityTier,
@@ -258,6 +259,7 @@ class LanguageSpecModel(_Strict):
     # unwritten language has sounds and no spelling, and a logographic script
     # spells no sounds. Derived from `graphemes` when absent.
     phonemes: Optional[List[str]] = None
+    orthography_kind: OrthographyKind = OrthographyKind.NATIVE
 
     # ─── positional overrides ───────────────────────────────────────
     positional_graphemes: Optional[
