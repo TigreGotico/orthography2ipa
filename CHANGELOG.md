@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.86.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.86.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.85.0a1...1.86.0a1)
+
+**Breaking changes:**
+
+- feat!: phonological\_distance stops reading the writing system [\#299](https://github.com/TigreGotico/orthography2ipa/pull/299) ([JarbasAl](https://github.com/JarbasAl))
+
+**Merged pull requests:**
+
+- fix\(benchmark\): score sentence gold with the sentence API, not the word API [\#302](https://github.com/TigreGotico/orthography2ipa/pull/302) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(scandinavian\): quantity, reduction and lenition for da/nb/sv [\#298](https://github.com/TigreGotico/orthography2ipa/pull/298) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.85.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.85.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.84.0a1...1.85.0a1)
@@ -659,7 +672,6 @@
 **Merged pull requests:**
 
 - docs: narrative overhaul of README, index, getting started, and language index [\#122](https://github.com/TigreGotico/orthography2ipa/pull/122) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(benchmark\): add ipa-childes gold data for en-US, et, hu, id, ko, sr, zh [\#106](https://github.com/TigreGotico/orthography2ipa/pull/106) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.22.2a2](https://github.com/TigreGotico/orthography2ipa/tree/1.22.2a2) (2026-07-10)
 
@@ -705,10 +717,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.0a1...1.21.1a1)
 
-**Merged pull requests:**
-
-- fix\(g2p\): route word\_exceptions overrides through stress marking [\#109](https://github.com/TigreGotico/orthography2ipa/pull/109) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.20.0a1...1.21.0a1)
@@ -716,10 +724,6 @@
 ## [1.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.20.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.19.1a1...1.20.0a1)
-
-**Merged pull requests:**
-
-- feat\(ar\): ground Modern Standard Arabic spec in cited phonology sources [\#107](https://github.com/TigreGotico/orthography2ipa/pull/107) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.19.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.19.1a1) (2026-07-09)
 
