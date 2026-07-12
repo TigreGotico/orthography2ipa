@@ -134,9 +134,9 @@
   "glottolog_code": "anda1279",
   "iso639_3": "spa",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Andalusian."
+    "latitude": 37.175,
+    "longitude": -3.6,
+    "source": "wikidata",
+    "notes": "Granada — a representative city of the eastern Andalusian area (with Almería and Jaén). [Wikidata Q8810 P625]"
   }
 }

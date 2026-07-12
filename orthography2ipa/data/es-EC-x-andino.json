@@ -85,5 +85,11 @@
     "https://en.wikipedia.org/wiki/Andean_Spanish",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_ecuatoriano",
     "https://en.wikipedia.org/wiki/Ecuadorian_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -0.22,
+    "longitude": -78.5125,
+    "source": "wikidata",
+    "notes": "Quito — the centre of the Ecuadorian sierra. [Wikidata Q2900 P625]"
+  }
 }

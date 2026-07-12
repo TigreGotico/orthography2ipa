@@ -104,9 +104,9 @@
   "glottolog_code": "sout3123",
   "iso639_3": "ajp",
   "location": {
-    "latitude": 31.5601,
-    "longitude": 38.0837,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for South Levantine Arabic."
+    "latitude": 31.896944,
+    "longitude": 35.201667,
+    "source": "wikidata",
+    "notes": "Ramallah — a representative city of the Palestinian area. [Wikidata Q158119 P625]"
   }
 }

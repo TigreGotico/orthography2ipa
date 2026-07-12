@@ -83,5 +83,11 @@
       ]
     }
   },
-  "wikidata_qid": "Q5840034"
+  "wikidata_qid": "Q5840034",
+  "location": {
+    "latitude": 6.2502,
+    "longitude": -75.567585,
+    "source": "wikidata",
+    "notes": "Medellín — the centre of the Paisa/Antioqueño area. [Wikidata Q48278 P625]"
+  }
 }

@@ -174,5 +174,11 @@
         "β"
       ]
     }
+  },
+  "location": {
+    "latitude": 40.638889,
+    "longitude": -8.655278,
+    "source": "wikidata",
+    "notes": "Aveiro — the centre of the Beira Litoral coastal zone (Aveiro, Vagos). [Wikidata Q485581 P625]"
   }
 }

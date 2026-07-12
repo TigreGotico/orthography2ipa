@@ -107,9 +107,9 @@
   "iso639_3": "cat",
   "wikidata_qid": "Q32641",
   "location": {
-    "latitude": 41.453,
-    "longitude": 1.569,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Valencià."
+    "latitude": 39.47,
+    "longitude": -0.376389,
+    "source": "wikidata",
+    "notes": "Valencia — the centre of the Valencian area. [Wikidata Q8818 P625]"
   }
 }

@@ -157,9 +157,9 @@
   },
   "wikidata_qid": "Q3175284",
   "location": {
-    "latitude": 41.453,
-    "longitude": 1.569,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Rossellonès."
+    "latitude": 42.6975,
+    "longitude": 2.894722,
+    "source": "wikidata",
+    "notes": "Perpignan — the centre of Northern Catalan (Rossellonès), the only Catalan variety spoken in France. [Wikidata Q6730 P625]"
   }
 }

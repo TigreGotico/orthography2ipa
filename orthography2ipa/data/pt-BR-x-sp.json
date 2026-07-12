@@ -422,5 +422,11 @@
   "graphemes_base": "pt-BR",
   "allophones_base": "pt-BR",
   "positional_graphemes_base": "pt-BR",
-  "positional_graphemes": {}
+  "positional_graphemes": {},
+  "location": {
+    "latitude": -23.550394,
+    "longitude": -46.633947,
+    "source": "wikidata",
+    "notes": "São Paulo city — the Paulistano reference variety. [Wikidata Q174 P625]"
+  }
 }

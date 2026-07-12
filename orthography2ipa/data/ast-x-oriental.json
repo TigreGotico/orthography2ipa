@@ -64,9 +64,9 @@
   "iso639_3": "ast",
   "quality": "research",
   "location": {
-    "latitude": 42.4181,
-    "longitude": -6.02227,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Eastern Asturian."
+    "latitude": 43.421121,
+    "longitude": -4.753083,
+    "source": "wikidata",
+    "notes": "Llanes — a representative locality of eastern Asturias. [Wikidata Q503094 P625]"
   }
 }

@@ -76,9 +76,9 @@
   "iso639_3": "eus",
   "wikidata_qid": "Q12953386",
   "location": {
-    "latitude": 43.2787,
-    "longitude": -1.31622,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Navarro-Labourdin Basque."
+    "latitude": 43.4,
+    "longitude": -1.45,
+    "source": "wikidata",
+    "notes": "Lapurdi (Labourd) — the historical province the dialect is named for. [Wikidata Q671023 P625]"
   }
 }

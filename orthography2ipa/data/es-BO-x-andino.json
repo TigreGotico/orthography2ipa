@@ -91,9 +91,9 @@
     "https://en.wikipedia.org/wiki/Andean_Spanish"
   ],
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Andean Bolivian Spanish."
+    "latitude": -16.495833,
+    "longitude": -68.133333,
+    "source": "wikidata",
+    "notes": "La Paz — the centre of the Bolivian Andean highlands. [Wikidata Q1491 P625]"
   }
 }

@@ -46,5 +46,11 @@
   },
   "glottolog_code": null,
   "iso639_3": null,
-  "quality": "stub"
+  "quality": "stub",
+  "location": {
+    "latitude": 41.533333,
+    "longitude": -8.416667,
+    "source": "wikidata",
+    "notes": "Braga (Bracara Augusta) — capital of the Suebic kingdom of Gallaecia (411–585). Suebic Germanic is attested only as a superstrate here; the point marks the kingdom's seat, not a speech community. [Wikidata Q83247 P625]"
+  }
 }

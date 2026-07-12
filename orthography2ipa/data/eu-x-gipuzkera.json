@@ -101,9 +101,9 @@
   "iso639_3": "eus",
   "wikidata_qid": "Q954141",
   "location": {
-    "latitude": 43.2787,
-    "longitude": -1.31622,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Guipuzcoan."
+    "latitude": 43.166667,
+    "longitude": -2.166667,
+    "source": "wikidata",
+    "notes": "Gipuzkoa — the province the dialect is named for. [Wikidata Q95010 P625]"
   }
 }

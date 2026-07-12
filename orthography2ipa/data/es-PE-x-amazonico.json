@@ -77,5 +77,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_amaz%C3%B3nico",
     "https://en.wikipedia.org/wiki/Amazonic_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -3.733333,
+    "longitude": -73.25,
+    "source": "wikidata",
+    "notes": "Iquitos — the principal city of the Peruvian Amazon (Loreto/Ucayali). [Wikidata Q193289 P625]"
+  }
 }

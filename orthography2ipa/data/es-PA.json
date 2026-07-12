@@ -134,5 +134,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "spa",
-  "wikidata_qid": "Q2691385"
+  "wikidata_qid": "Q2691385",
+  "location": {
+    "latitude": 8.971111,
+    "longitude": -79.534722,
+    "source": "wikidata",
+    "notes": "Panama City. A national variety: the capital stands in for the country. [Wikidata Q3306 P625]"
+  }
 }

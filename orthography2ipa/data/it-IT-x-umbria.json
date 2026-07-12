@@ -367,5 +367,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "ita"
+  "iso639_3": "ita",
+  "location": {
+    "latitude": 42.983333,
+    "longitude": 12.566667,
+    "source": "wikidata",
+    "notes": "Umbria — the region the (modern Romance) dialect is named for. [Wikidata Q1280 P625]"
+  }
 }

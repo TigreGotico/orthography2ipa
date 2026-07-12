@@ -137,5 +137,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "spa"
+  "iso639_3": "spa",
+  "location": {
+    "latitude": 19.190278,
+    "longitude": -96.153333,
+    "source": "wikidata",
+    "notes": "Veracruz — a representative city of the Mexican Gulf lowlands (Veracruz, Tabasco). [Wikidata Q173270 P625]"
+  }
 }

@@ -179,5 +179,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "lat",
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 46.5,
+    "longitude": 2.9,
+    "source": "wikidata",
+    "notes": "Gaul — the territory whose spoken Latin this stage describes. A point for a whole Roman diocese: a centroid, and weak. [Wikidata Q38060 P625]"
+  }
 }

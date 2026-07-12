@@ -464,5 +464,11 @@
       ]
     }
   },
-  "wikidata_qid": "Q10265994"
+  "wikidata_qid": "Q10265994",
+  "location": {
+    "latitude": -22.725165,
+    "longitude": -47.649327,
+    "source": "wikidata",
+    "notes": "Piracicaba — a representative locality of the caipira area, whose retroflex-rhotic region stretches from interior São Paulo across Goiás and Mato Grosso. A point badly under-describes it. [Wikidata Q330175 P625]"
+  }
 }

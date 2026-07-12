@@ -121,9 +121,9 @@
   "iso639_3": "spa",
   "wikidata_qid": "Q980944",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Murcian."
+    "latitude": 38,
+    "longitude": -1.833333,
+    "source": "wikidata",
+    "notes": "the Region of Murcia — the community the Panocho variety is spoken in. [Wikidata Q5772 P625]"
   }
 }

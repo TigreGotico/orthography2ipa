@@ -75,5 +75,11 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties"
-  ]
+  ],
+  "location": {
+    "latitude": -31.416667,
+    "longitude": -64.183333,
+    "source": "wikidata",
+    "notes": "Córdoba (Argentina) — the centre of the Cordobés area. [Wikidata Q44210 P625]"
+  }
 }

@@ -51,5 +51,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 51.737222,
+    "longitude": 36.187222,
+    "source": "wikidata",
+    "notes": "Kursk — the western half of the Kursk–Orel Southern zone. [Wikidata Q3159 P625]"
+  }
 }

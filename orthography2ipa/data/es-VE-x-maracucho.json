@@ -77,5 +77,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_venezolano",
     "https://en.wikipedia.org/wiki/Venezuelan_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": 10.633333,
+    "longitude": -71.633333,
+    "source": "wikidata",
+    "notes": "Maracaibo — the centre of the Maracucho/Zuliano area. [Wikidata Q171632 P625]"
+  }
 }

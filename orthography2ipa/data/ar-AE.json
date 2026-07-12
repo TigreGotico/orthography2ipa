@@ -61,9 +61,9 @@
   "glottolog_code": "gulf1241",
   "iso639_3": "ara",
   "location": {
-    "latitude": 30.17,
-    "longitude": 47.5,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Gulf Arabic."
+    "latitude": 24.451111,
+    "longitude": 54.396944,
+    "source": "wikidata",
+    "notes": "Abu Dhabi. A national variety within the Gulf continuum: the capital stands in for the country. [Wikidata Q1519 P625]"
   }
 }

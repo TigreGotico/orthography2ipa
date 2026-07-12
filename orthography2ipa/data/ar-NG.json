@@ -1,95 +1,101 @@
 {
-    "code": "ar-NG",
-    "name": "Nigerian Arabic (Shuwa)",
-    "script": "Arabic",
-    "graphemes_base": "ar-TD",
-    "graphemes": {
-        "ث": [
-            "t"
-        ],
-        "ذ": [
-            "d"
-        ],
-        "ق": [
-            "q",
-            "ɡ"
-        ]
-    },
-    "allophones_base": "ar-TD",
-    "allophones": {
-        "q": [
-            "q",
-            "ɡ"
-        ],
-        "θ": [
-            "t"
-        ],
-        "ð": [
-            "d"
-        ],
-        "aː": [
-            "aː"
-        ],
-        "iː": [
-            "iː"
-        ],
-        "uː": [
-            "uː"
-        ]
-    },
-    "parent": "ar-TD",
-    "ancestors": [
-        {
-            "code": "ar-TD",
-            "role": "parent",
-            "weight": 0.85,
-            "notes": "Closely related to Chadian Arabic"
-        }
+  "code": "ar-NG",
+  "name": "Nigerian Arabic (Shuwa)",
+  "script": "Arabic",
+  "graphemes_base": "ar-TD",
+  "graphemes": {
+    "ث": [
+      "t"
     ],
-    "notes": "Nigerian Shuwa Arabic. Spoken in Borno and Yobe states (NE Nigeria), Cameroon, Niger. Shuwa Arab ethnic group. More contact-modified than Chadian Arabic. θ → /t/, ð → /d/ (complete merger — Hausa influence). ق → /q/ educated speech; /ɡ/ vernacular. Hausa substrate: /ɓ, ɗ/ implosives; /ŋ/ phoneme. Possible incipient lexical tone in some varieties (Owens 1993 — debated). Owens (1993) *A Reference Grammar of Nigerian Arabic* is the primary source.",
-    "quality": "skeleton",
-    "script_type": "abjad",
-    "sources": [
-        {
-            "id": "watson2002",
-            "author": "Watson, J.C.E.",
-            "year": 2002,
-            "title": "The Phonology and Morphology of Arabic",
-            "publisher": "Oxford University Press",
-            "url": null,
-            "pages": null,
-            "notes": null,
-            "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
-        },
-        {
-            "id": "holes2004",
-            "author": "Holes, C.",
-            "year": 2004,
-            "title": "Modern Arabic: Structures, Functions, and Varieties",
-            "publisher": "Georgetown University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "versteegh2001",
-            "author": "Versteegh, K.",
-            "year": 2001,
-            "title": "The Arabic Language",
-            "publisher": "Edinburgh University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+    "ذ": [
+      "d"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Chadian_Arabic",
-        "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%AA%D8%B4%D8%A7%D8%AF%D9%8A%D8%A9"
+    "ق": [
+      "q",
+      "ɡ"
+    ]
+  },
+  "allophones_base": "ar-TD",
+  "allophones": {
+    "q": [
+      "q",
+      "ɡ"
     ],
-    "timespan": {
-        "start_year": 1700,
-        "end_year": null
+    "θ": [
+      "t"
+    ],
+    "ð": [
+      "d"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "uː": [
+      "uː"
+    ]
+  },
+  "parent": "ar-TD",
+  "ancestors": [
+    {
+      "code": "ar-TD",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Closely related to Chadian Arabic"
+    }
+  ],
+  "notes": "Nigerian Shuwa Arabic. Spoken in Borno and Yobe states (NE Nigeria), Cameroon, Niger. Shuwa Arab ethnic group. More contact-modified than Chadian Arabic. θ → /t/, ð → /d/ (complete merger — Hausa influence). ق → /q/ educated speech; /ɡ/ vernacular. Hausa substrate: /ɓ, ɗ/ implosives; /ŋ/ phoneme. Possible incipient lexical tone in some varieties (Owens 1993 — debated). Owens (1993) *A Reference Grammar of Nigerian Arabic* is the primary source.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
     },
-    "glottolog_code": null,
-    "iso639_3": "shu"
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chadian_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%AA%D8%B4%D8%A7%D8%AF%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "shu",
+  "location": {
+    "latitude": 11.5,
+    "longitude": 13,
+    "source": "wikidata",
+    "notes": "Borno State — the Nigerian heartland of Shuwa Arabic, which also reaches Yobe, Cameroon and Niger. [Wikidata Q130626 P625]"
+  }
 }

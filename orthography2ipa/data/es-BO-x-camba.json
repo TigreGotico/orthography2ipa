@@ -82,5 +82,11 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_camba"
-  ]
+  ],
+  "location": {
+    "latitude": -17.789167,
+    "longitude": -63.1975,
+    "source": "wikidata",
+    "notes": "Santa Cruz de la Sierra — the centre of the Camba eastern lowlands. [Wikidata Q170688 P625]"
+  }
 }

@@ -186,9 +186,9 @@
   "iso639_3": "spa",
   "wikidata_qid": "Q489811",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Andalusian."
+    "latitude": 37.388611,
+    "longitude": -5.995556,
+    "source": "wikidata",
+    "notes": "Seville — the centre of the western Andalusian area. [Wikidata Q8717 P625]"
   }
 }

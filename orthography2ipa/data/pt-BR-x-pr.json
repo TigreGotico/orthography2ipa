@@ -472,5 +472,11 @@
         "e"
       ]
     }
+  },
+  "location": {
+    "latitude": -25.429722,
+    "longitude": -49.271944,
+    "source": "wikidata",
+    "notes": "Curitiba — the centre of the Curitibano/Paranaense area. [Wikidata Q4361 P625]"
   }
 }

@@ -102,5 +102,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "glg",
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 43.133333,
+    "longitude": -7.066667,
+    "source": "wikidata",
+    "notes": "A Fonsagrada (eastern Lugo, on the Asturian border) — a representative locality of the eastern Galician block, where Asturleonese contact is strongest. [Wikidata Q1465213 P625]"
+  }
 }

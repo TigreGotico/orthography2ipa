@@ -206,5 +206,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "ast",
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 41.5,
+    "longitude": -6.266667,
+    "source": "wikidata",
+    "notes": "Miranda do Douro — the centre of the Terra de Miranda, where the medieval Asturleonese of Portugal took root. A historical variety: the point is the surviving core of its area, not a capital. [Wikidata Q373475 P625]"
+  }
 }

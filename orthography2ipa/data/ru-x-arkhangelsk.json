@@ -51,5 +51,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 64.543056,
+    "longitude": 40.5375,
+    "source": "wikidata",
+    "notes": "Arkhangelsk — the city the Northern subtype is named for. [Wikidata Q1851 P625]"
+  }
 }

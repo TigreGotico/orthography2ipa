@@ -125,5 +125,11 @@
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions inherited from pt-PT: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   },
-  "wikidata_qid": "Q9290867"
+  "wikidata_qid": "Q9290867",
+  "location": {
+    "latitude": 22.19,
+    "longitude": 113.538056,
+    "source": "wikidata",
+    "notes": "Macau — the territory this co-official variety is confined to. [Wikidata Q14773 P625]"
+  }
 }

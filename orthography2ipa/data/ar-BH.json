@@ -57,9 +57,9 @@
   "wikidata_qid": "Q56576",
   "wals_code": "abh",
   "location": {
-    "latitude": 30.17,
-    "longitude": 47.5,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Gulf Arabic."
+    "latitude": 26.216667,
+    "longitude": 50.583333,
+    "source": "wikidata",
+    "notes": "Manama. A national variety within the Gulf continuum. [Wikidata Q3882 P625]"
   }
 }

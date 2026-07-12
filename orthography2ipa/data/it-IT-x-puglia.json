@@ -381,5 +381,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "ita"
+  "iso639_3": "ita",
+  "location": {
+    "latitude": 41.008611,
+    "longitude": 16.512778,
+    "source": "wikidata",
+    "notes": "Puglia — a region-level point; the Salento south differs from the north. [Wikidata Q1447 P625]"
+  }
 }

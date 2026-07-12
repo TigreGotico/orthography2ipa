@@ -110,9 +110,9 @@
   "wikidata_qid": "Q957764",
   "wals_code": "spc",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Canary Islands Spanish."
+    "latitude": 28,
+    "longitude": -15.75,
+    "source": "wikidata",
+    "notes": "the Canary Islands — the archipelago the variety is spoken in. [Wikidata Q5813 P625]"
   }
 }

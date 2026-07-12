@@ -456,5 +456,11 @@
         "ʊ"
       ]
     }
+  },
+  "location": {
+    "latitude": -19.928056,
+    "longitude": -43.941944,
+    "source": "wikidata",
+    "notes": "Belo Horizonte — the centre of the Mineiro area. [Wikidata Q42800 P625]"
   }
 }

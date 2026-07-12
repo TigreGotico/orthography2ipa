@@ -84,5 +84,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "arg",
-  "wikidata_qid": "Q11906349"
+  "wikidata_qid": "Q11906349",
+  "location": {
+    "latitude": 42.666667,
+    "longitude": -0.316667,
+    "source": "wikidata",
+    "notes": "the Valle de Tena (Alto Gállego, Huesca) — the valley the variety is named for and confined to. [Wikidata Q3054031 P625]"
+  }
 }

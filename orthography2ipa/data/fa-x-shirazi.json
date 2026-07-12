@@ -71,5 +71,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "fas"
+  "iso639_3": "fas",
+  "location": {
+    "latitude": 29.61,
+    "longitude": 52.5425,
+    "source": "wikidata",
+    "notes": "Shiraz — the city the variety is named for. [Wikidata Q6397066 P625]"
+  }
 }

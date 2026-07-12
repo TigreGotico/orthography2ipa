@@ -146,5 +146,11 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "location": {
+    "latitude": 41.7,
+    "longitude": -8.833333,
+    "source": "wikidata",
+    "notes": "Viana do Castelo — the centre of the Alto Minho. [Wikidata Q208158 P625]"
   }
 }

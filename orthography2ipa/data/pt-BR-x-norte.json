@@ -504,5 +504,11 @@
         "ʃ"
       ]
     }
+  },
+  "location": {
+    "latitude": -1.455833,
+    "longitude": -48.503889,
+    "source": "wikidata",
+    "notes": "Belém — the reference city of the Nortista/Amazônico area (with Manaus, 1,300 km west: a single point is a poor summary of Amazonia). [Wikidata Q12829733 P625]"
   }
 }

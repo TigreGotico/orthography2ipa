@@ -58,5 +58,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "rus",
-  "wikidata_qid": "Q4418262"
+  "wikidata_qid": "Q4418262",
+  "location": {
+    "latitude": 55.033333,
+    "longitude": 82.916667,
+    "source": "wikidata",
+    "notes": "Novosibirsk — a representative city of the Siberian old-settler zone (with Tomsk and Krasnoyarsk). Siberia is 13 million km²: this point is close to meaningless as a summary and should be treated as such. [Wikidata Q883 P625]"
+  }
 }

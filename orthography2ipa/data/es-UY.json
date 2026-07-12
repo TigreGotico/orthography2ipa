@@ -76,5 +76,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "spa",
-  "wikidata_qid": "Q4477330"
+  "wikidata_qid": "Q4477330",
+  "location": {
+    "latitude": -34.905917,
+    "longitude": -56.191311,
+    "source": "wikidata",
+    "notes": "Montevideo. A national variety: the capital stands in for the country. [Wikidata Q1335 P625]"
+  }
 }

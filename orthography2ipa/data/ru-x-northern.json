@@ -68,5 +68,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 60.083333,
+    "longitude": 40.45,
+    "source": "wikidata",
+    "notes": "Vologda Oblast — a representative point in the Northern Russian dialect zone (Arkhangelsk–Vologda–Kostroma). A dialect GROUP: the point is a stand-in for a very large area. [Wikidata Q2015 P625]"
+  }
 }

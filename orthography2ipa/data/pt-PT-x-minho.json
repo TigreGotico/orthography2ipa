@@ -219,5 +219,11 @@
         "β"
       ]
     }
+  },
+  "location": {
+    "latitude": 41.551018,
+    "longitude": -8.428378,
+    "source": "wikidata",
+    "notes": "the historical Minho province — the Baixo-Minho zone (Braga, Guimarães, Vizela) the variety covers. [Wikidata Q512317 P625]"
   }
 }

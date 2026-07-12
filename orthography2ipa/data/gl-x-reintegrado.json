@@ -64,5 +64,11 @@
     "https://en.wikipedia.org/wiki/Reintegrationism",
     "https://gl.wikipedia.org/wiki/Reintegracionismo",
     "https://pt.wikipedia.org/wiki/Reintegracionismo"
-  ]
+  ],
+  "location": {
+    "latitude": 42.8,
+    "longitude": -7.9,
+    "source": "wikidata",
+    "notes": "Galicia. This spec is an ORTHOGRAPHY, not a speech variety — it shares its phonology and its territory with `gl`, so it shares its point. [Wikidata Q3908 P625]"
+  }
 }

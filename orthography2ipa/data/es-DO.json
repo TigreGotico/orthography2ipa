@@ -145,9 +145,9 @@
   "iso639_3": "spa",
   "wikidata_qid": "Q1238032",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Dominican Spanish."
+    "latitude": 18.4625,
+    "longitude": -69.936111,
+    "source": "wikidata",
+    "notes": "Santo Domingo. A national variety: the capital stands in for the country. [Wikidata Q34820 P625]"
   }
 }

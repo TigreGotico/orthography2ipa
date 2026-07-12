@@ -85,5 +85,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "arg",
-  "wikidata_qid": "Q3573993"
+  "wikidata_qid": "Q3573993",
+  "location": {
+    "latitude": 42.738889,
+    "longitude": -0.750278,
+    "source": "wikidata",
+    "notes": "the Echo/Hecho valley (Huesca) — the valley the variety is named for and confined to. [Wikidata Q1766550 P625]"
+  }
 }

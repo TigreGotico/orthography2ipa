@@ -424,9 +424,9 @@
   "wikidata_qid": "Q1321",
   "wals_code": "spa",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Castilian."
+    "latitude": 40.416944,
+    "longitude": -3.703333,
+    "source": "wikidata",
+    "notes": "Madrid — the centre of the Castilian norm. Glottolog's point for cast1244 is the generic Spanish point and says nothing about Castilian specifically. [Wikidata Q2807 P625]"
   }
 }

@@ -194,5 +194,11 @@
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   },
-  "wikidata_qid": "Q5035141"
+  "wikidata_qid": "Q5035141",
+  "location": {
+    "latitude": 14.917719,
+    "longitude": -23.509156,
+    "source": "wikidata",
+    "notes": "Praia. The formal L2 Portuguese of Cape Verde — the capital stands in for the archipelago. [Wikidata Q3751 P625]"
+  }
 }

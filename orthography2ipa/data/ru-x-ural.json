@@ -51,5 +51,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 56.835556,
+    "longitude": 60.612778,
+    "source": "wikidata",
+    "notes": "Yekaterinburg — the principal city of the Urals (with Perm). [Wikidata Q887 P625]"
+  }
 }

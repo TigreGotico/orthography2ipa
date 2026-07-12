@@ -70,5 +70,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "glg"
+  "iso639_3": "glg",
+  "location": {
+    "latitude": 43.011667,
+    "longitude": -7.557222,
+    "source": "wikidata",
+    "notes": "Lugo — a representative locality of the central Galician block (Lugo, eastern A Coruña, Ourense). [Wikidata Q11125 P625]"
+  }
 }

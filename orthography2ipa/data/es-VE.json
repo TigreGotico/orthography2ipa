@@ -136,9 +136,9 @@
   "iso639_3": "spa",
   "wikidata_qid": "Q840017",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Venezuelan Spanish."
+    "latitude": 10.506111,
+    "longitude": -66.914444,
+    "source": "wikidata",
+    "notes": "Caracas. A national variety: the capital stands in for the country. [Wikidata Q1533 P625]"
   }
 }

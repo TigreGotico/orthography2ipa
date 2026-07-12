@@ -148,9 +148,9 @@
   "iso639_3": "spa",
   "wikidata_qid": "Q824909",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Cuban Spanish."
+    "latitude": 23.136667,
+    "longitude": -82.358889,
+    "source": "wikidata",
+    "notes": "Havana. A national variety: the capital stands in for the island. [Wikidata Q1563 P625]"
   }
 }

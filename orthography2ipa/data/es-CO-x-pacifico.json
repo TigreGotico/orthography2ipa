@@ -77,5 +77,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_colombiano",
     "https://en.wikipedia.org/wiki/Colombian_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": 3.877222,
+    "longitude": -77.026667,
+    "source": "wikidata",
+    "notes": "Buenaventura — the principal city of the Colombian Pacific coast (Chocó–Valle littoral). [Wikidata Q996581 P625]"
+  }
 }

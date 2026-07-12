@@ -80,5 +80,11 @@
       "ʎ",
       "ʝ"
     ]
+  },
+  "location": {
+    "latitude": 43.333333,
+    "longitude": -4,
+    "source": "wikidata",
+    "notes": "Cantabria — the autonomous community the Montañés variety is spoken in. [Wikidata Q3946 P625]"
   }
 }

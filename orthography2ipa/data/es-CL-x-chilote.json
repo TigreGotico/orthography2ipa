@@ -83,5 +83,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_chilote",
     "https://en.wikipedia.org/wiki/Chilote_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -42.6,
+    "longitude": -73.95,
+    "source": "wikidata",
+    "notes": "the Chiloé archipelago — the island group the variety is named for. [Wikidata Q177608 P625]"
+  }
 }

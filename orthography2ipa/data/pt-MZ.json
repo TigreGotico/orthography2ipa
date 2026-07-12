@@ -279,5 +279,11 @@
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   },
-  "wikidata_qid": "Q4373398"
+  "wikidata_qid": "Q4373398",
+  "location": {
+    "latitude": -25.968889,
+    "longitude": 32.573333,
+    "source": "wikidata",
+    "notes": "Maputo. A national L2 variety: the capital stands in for the country. Weak. [Wikidata Q3889 P625]"
+  }
 }

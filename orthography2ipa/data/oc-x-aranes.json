@@ -387,9 +387,9 @@
   },
   "wikidata_qid": "Q10196",
   "location": {
-    "latitude": 44.1415,
-    "longitude": 6.82979,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Aranese."
+    "latitude": 42.7225,
+    "longitude": 0.837222,
+    "source": "wikidata",
+    "notes": "the Val d'Aran — the single valley Aranese is spoken in. Glottolog's point for it is the generic Occitan point in Provence. [Wikidata Q12602 P625]"
   }
 }

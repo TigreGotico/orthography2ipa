@@ -168,9 +168,9 @@
   ],
   "wikidata_qid": "Q857295",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Chilean Spanish."
+    "latitude": -33.4375,
+    "longitude": -70.65,
+    "source": "wikidata",
+    "notes": "Santiago — the central-valley capital, the Chilean reference norm. [Wikidata Q2887 P625]"
   }
 }

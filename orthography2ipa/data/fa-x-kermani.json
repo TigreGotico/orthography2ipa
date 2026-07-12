@@ -75,5 +75,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "fas"
+  "iso639_3": "fas",
+  "location": {
+    "latitude": 30.291111,
+    "longitude": 57.067778,
+    "source": "wikidata",
+    "notes": "Kerman — the city the variety is named for. [Wikidata Q171714 P625]"
+  }
 }

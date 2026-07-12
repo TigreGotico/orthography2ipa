@@ -161,9 +161,9 @@
   ],
   "wikidata_qid": "Q1516642",
   "location": {
-    "latitude": 34.1709,
-    "longitude": 36.0468,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Standard Lebanese Arabic."
+    "latitude": 33.886944,
+    "longitude": 35.513056,
+    "source": "wikidata",
+    "notes": "Beirut — the city the Beiruti variety is named for. [Wikidata Q3820 P625]"
   }
 }

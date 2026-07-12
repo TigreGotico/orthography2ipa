@@ -116,9 +116,9 @@
   "iso639_3": "cat",
   "wikidata_qid": "Q2941598",
   "location": {
-    "latitude": 41.453,
-    "longitude": 1.569,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Català Nord-Occidental."
+    "latitude": 41.616667,
+    "longitude": 0.633333,
+    "source": "wikidata",
+    "notes": "Lleida — the centre of the north-western (Lleidatà) area. [Wikidata Q15090 P625]"
   }
 }

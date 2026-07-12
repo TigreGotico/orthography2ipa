@@ -103,5 +103,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "eng",
-  "wikidata_qid": "Q7976"
+  "wikidata_qid": "Q7976",
+  "location": {
+    "latitude": 39.828175,
+    "longitude": -98.5795,
+    "source": "wikidata",
+    "notes": "the geographic centre of the United States. General American is a media/education reference accent with NO regional home at all — this is the weakest point in the dataset and should be read as such. [Wikidata Q30 P625]"
+  }
 }

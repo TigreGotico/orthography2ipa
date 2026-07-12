@@ -79,9 +79,9 @@
   "glottolog_code": "west2340",
   "iso639_3": "arg",
   "location": {
-    "latitude": 42.4669,
-    "longitude": -0.00919,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Western Aragonese."
+    "latitude": 42.55,
+    "longitude": -0.55,
+    "source": "wikidata",
+    "notes": "Jaca — a representative locality of the western Aragonese area. [Wikidata Q49581 P625]"
   }
 }

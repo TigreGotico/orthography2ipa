@@ -148,5 +148,11 @@
   },
   "glottolog_code": null,
   "iso639_3": null,
-  "wikidata_qid": "Q3094789"
+  "wikidata_qid": "Q3094789",
+  "location": {
+    "latitude": 42.755,
+    "longitude": -7.8661,
+    "source": "wikidata",
+    "notes": "the Roman province of Gallaecia — the NW-Iberian territory the Gallaecian Celtic epigraphic and toponymic record comes from. A province-wide point for an extinct language: weak by construction. [Wikidata Q369692 P625]"
+  }
 }

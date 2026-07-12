@@ -141,9 +141,9 @@
   "iso639_3": "spa",
   "wikidata_qid": "Q7258609",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Puerto Rican Spanish."
+    "latitude": 18.465278,
+    "longitude": -66.116667,
+    "source": "wikidata",
+    "notes": "San Juan, Puerto Rico. A national variety: the capital stands in for the island. [Wikidata Q41211 P625]"
   }
 }

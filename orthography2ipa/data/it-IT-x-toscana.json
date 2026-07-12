@@ -378,5 +378,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "ita",
-  "wikidata_qid": "Q1990745"
+  "wikidata_qid": "Q1990745",
+  "location": {
+    "latitude": 43.45,
+    "longitude": 11.2,
+    "source": "wikidata",
+    "notes": "Tuscany — the region whose dialect is the basis of standard Italian. [Wikidata Q1273 P625]"
+  }
 }

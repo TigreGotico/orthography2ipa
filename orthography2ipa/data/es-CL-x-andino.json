@@ -85,5 +85,11 @@
     "https://en.wikipedia.org/wiki/Andean_Spanish",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_chileno",
     "https://en.wikipedia.org/wiki/Chilean_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -18.478389,
+    "longitude": -70.321222,
+    "source": "wikidata",
+    "notes": "Arica — the northern Chilean city at the Andean/Altiplano edge. [Wikidata Q2203 P625]"
+  }
 }

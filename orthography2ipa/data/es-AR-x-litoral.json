@@ -83,5 +83,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_rioplatense",
     "https://en.wikipedia.org/wiki/Rioplatense_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -27.483333,
+    "longitude": -58.816667,
+    "source": "wikidata",
+    "notes": "Corrientes — a representative city of the Guaraní-contact Litoral (Corrientes and Misiones). [Wikidata Q44211 P625]"
+  }
 }

@@ -73,9 +73,9 @@
   "iso639_3": "eng",
   "wikidata_qid": "Q44676",
   "location": {
-    "latitude": 53.0,
-    "longitude": -1.0,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Canadian English."
+    "latitude": 56,
+    "longitude": -109,
+    "source": "wikidata",
+    "notes": "Canada's representative point. A national variety: weak. [Wikidata Q16 P625]"
   }
 }

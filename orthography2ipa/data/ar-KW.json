@@ -56,9 +56,9 @@
   "wikidata_qid": "Q6448936",
   "wals_code": "arj",
   "location": {
-    "latitude": 30.17,
-    "longitude": 47.5,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Gulf Arabic."
+    "latitude": 29.375,
+    "longitude": 47.98,
+    "source": "wikidata",
+    "notes": "Kuwait City. A national variety within the Gulf continuum. [Wikidata Q35178 P625]"
   }
 }

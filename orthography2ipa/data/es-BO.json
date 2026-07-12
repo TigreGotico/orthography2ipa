@@ -151,9 +151,9 @@
   ],
   "wikidata_qid": "Q510730",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Bolivian Spanish."
+    "latitude": -16.495833,
+    "longitude": -68.133333,
+    "source": "wikidata",
+    "notes": "La Paz — the highland seat of government; this national spec is Andean-centred. [Wikidata Q1491 P625]"
   }
 }

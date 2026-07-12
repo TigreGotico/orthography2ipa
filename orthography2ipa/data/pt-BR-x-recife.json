@@ -474,5 +474,11 @@
         "ʃ"
       ]
     }
+  },
+  "location": {
+    "latitude": -8.053889,
+    "longitude": -34.880833,
+    "source": "wikidata",
+    "notes": "Recife — the centre of the Pernambucano area. [Wikidata Q48344 P625]"
   }
 }
