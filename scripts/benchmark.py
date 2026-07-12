@@ -723,6 +723,57 @@ def load_wikipron(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+#: Arabic short-vowel / tanwīn / sukūn combining marks (harakat). Used to
+#: strip word-FINAL case vowels (iʿrāb) from diacritized words — gold
+#: pronunciations are pausal forms, which drop them.
+_ARABIC_HARAKAT = "ًٌٍَُِْ"
+
+
+def _strip_final_harakat(word: str) -> str:
+    return word.rstrip(_ARABIC_HARAKAT)
+
+
+def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """The WikiPron Arabic gold with tashkeel RESTORED on the input side.
+
+    0/3000 raw WikiPron Arabic words carry harakat, so the raw ``ar`` row
+    scores the engine on unvocalized text it cannot vowelize — its PER is
+    dominated by missing short vowels, not by rule errors. This row keeps
+    the SAME gold IPA and diacritizes only the INPUT word with
+    ``text2tashkeel`` (ONNX Arabic diacritizer, rawi default model,
+    ~2% DER), then strips word-final harakat: the restored case endings
+    (iʿrāb) are real, but WikiPron gold records pausal forms, which drop
+    them. Diacritization is input NORMALIZATION and lives here in the
+    harness — o2i itself does no normalization by design.
+
+    ``text2tashkeel`` is an optional dependency: when it is not
+    importable this loader raises and ``build_scoreboard`` catch-and-skips
+    the row (the ``cmudict``/``scriptconv`` pattern). Results are cached
+    to ``CACHE_DIR`` so scoreboard reruns are fast and deterministic for
+    a given cache; delete the cache file to re-diacritize.
+    """
+    from text2tashkeel import Diacritizer  # optional; skip row if missing
+
+    fname = "wikipron_ar_diacritized.tsv"
+    dest = os.path.join(CACHE_DIR, fname)
+    if not os.path.exists(dest):
+        raw = load_wikipron(lang, sys.maxsize)
+        dia = Diacritizer()
+        rows = [(_strip_final_harakat(dia.diacritize(w)), ipa)
+                for w, ipa in raw]
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        with open(dest, "w", encoding="utf-8") as fh:
+            fh.writelines(f"{w}\t{ipa}\n" for w, ipa in rows)
+    pairs = []
+    for line in open(dest, encoding="utf-8").read().strip().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 2:
+            pairs.append((parts[0], parts[1]))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Mirandese HUMAN gold set (TigreGotico/mirandese_g2p on Hugging Face).
 
@@ -1218,6 +1269,7 @@ _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 DATASETS = {
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
+    "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
@@ -1344,6 +1396,11 @@ PROVENANCE: Dict[str, str] = {
     "ipadict": "machine-generated",
     # community-scraped Wiktionary
     "wikipron": "crowd-scraped",
+    # SAME crowd-scraped WikiPron ar gold; only the INPUT word is
+    # machine-diacritized (text2tashkeel, ~2% DER), which adds a small
+    # machine noise floor on top of the gold's own tier. Diagnostic for
+    # the vowelized-Arabic rules; certifies nothing beyond the raw row.
+    "wikipron_ar_diacritized": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
     "portuguese_phonetic_lexicon": "crowd-scraped",
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the

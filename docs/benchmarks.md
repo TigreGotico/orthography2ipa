@@ -118,6 +118,7 @@ stated rather than papered over.
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`; the transform adds artifacts. |
 | `ipadict` | **per-language** (see below) | Depends on the file: human dictionaries, Wiktionary scrapes, rule scripts, **espeak** | The only mixed-provenance dataset here: ipa-dict is a *collection* of independently sourced files, so each row carries the tier of the file it was scored against, not a dataset-wide tier. Full per-language table in [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). |
 | `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size; some entries are editor-rule output, not attested; multiple valid variants per word. |
+| `wikipron_ar_diacritized` | crowd-scraped | Wiktionary editors + `text2tashkeel` input restoration | Same Arabic gold IPA as `wikipron`; only the INPUT word is machine-diacritized (~2% DER noise floor). Diagnostic for the vowelized-Arabic rules; certifies nothing beyond the raw row. See [Arabic with tashkeel restored](#arabic-with-tashkeel-restored-wikipron_ar_diacritized). |
 | `styletts2_phonemes` | machine-generated | Automatic phonemizer (TTS `synthetic` tag) | **Grain of salt maximal.** Phonemizer/espeak-lineage; low PER = agrees with the phonemizer; espeak comparison on this gold is partly circular. |
 | `ipa_childes` | **per-language** (see below) | Depends on the language: `phonemizer` (espeak-ng), `epitran`, or `pinyin_to_ipa` | Mixed-provenance like `ipadict`: the IPA-CHILDES card names a **different phonemizing tool per language**, so each row carries the tier its own tool earns — `espeak-derived`, `epitran-derived`, or `machine-generated` for Mandarin's `pinyin_to_ipa` table. Full per-language tool table in [IPA-CHILDES split](#ipa-childes-split-ipa_childes). |
 | `ipa_babylm` | espeak-derived | G2P+ with the `phonemizer` backend (= espeak-ng), `en-us` | BabyLM 2024 corpora phonemized by [G2P+](https://github.com/codebyzeb/g2p-plus), which is a wrapper over `phonemizer`/`epitran`; the conversion notebook ([codebyzeb/babylm-ipa](https://github.com/codebyzeb/babylm-ipa)) calls the `phonemizer` backend, which requires espeak-ng. So this is espeak output: it can neither qualify nor block English. |
@@ -199,6 +200,28 @@ seseo/gheada); the harness scores against all of them and keeps the
 best match.
 
 Core wired tags: `gl`, `es`, `pt`, `pt-BR`, `en`, `en-GB`.
+
+### Arabic with tashkeel restored (`wikipron_ar_diacritized`)
+
+Written Arabic omits the short vowels (harakat): 0 of the ~14k raw
+WikiPron Arabic words carry them, so the raw `ar` row scores the engine
+on unvocalized input it cannot vowelize and its PER is dominated by
+missing vowels rather than rule errors. This row keeps the **same gold
+IPA** and restores tashkeel on the **input side only**, with
+[text2tashkeel](https://github.com/TigreGotico/text2tashkeel) (ONNX
+Arabic diacritizer, rawi default model, ~2% DER). Word-final harakat
+are then stripped: the restored case endings (iʿrāb) are real Arabic,
+but WikiPron gold records pausal pronunciations, which drop them.
+
+Diacritization is input **normalization** and lives in the harness —
+orthography2ipa itself does no normalization by design; a downstream
+Arabic consumer is expected to feed vocalized (or diacritizer-restored)
+text. Both rows are published: raw (deployment floor on bare text) and
+diacritized (what the rules actually earn on vowelized input).
+`text2tashkeel` is an optional dependency; without it the row is
+skipped, never faked. The diacritized words are cached in
+`.benchmark_cache/wikipron_ar_diacritized.tsv` for reproducibility —
+delete the file to re-diacritize.
 
 Additional wired languages — all from `data/scrape/tsv/` on the
 [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) GitHub
