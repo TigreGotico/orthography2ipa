@@ -745,3 +745,69 @@ class TestDiphthongs:
     def test_syllabification_is_lossless(self):
         for word in ["tenia", "aigua", "ciutat", "veïna", "feia", "coses"]:
             assert "".join(syllabify(word, diphthongs=self.CA)) == word
+
+
+class TestEpentheticSchwaAnchoring:
+    """Regression for the stress-lands-a-syllable-late bug (#19).
+
+    When an allophone rule EPENTHESIZES a nucleus (Goidelic svarabhakti:
+    ``gorm`` → ɡɔ-ɾˠəmˠ), the IPA gains a syllable over the orthographic
+    count and the end-anchored index conversion used to land the mark one
+    syllable late — on the epenthetic schwa itself. Excess ə-nucleus
+    syllables are folded back into the preceding syllable for counting.
+    The fold must NOT touch the undercounted-orthography overflow class
+    (Spanish ``ayer``: 1 orth syllable, IPA a-ʝeɾ, FULL vowels), where
+    end-anchoring already lands correctly.
+    """
+
+    @pytest.fixture(scope="class")
+    def rules(self):
+        return get("pt-PT").stress  # only supplies the mark character
+
+    def test_epenthetic_closed_final_schwa_merged(self, rules):
+        # Irish gorm: 1 orth syllable, stress index 0; the ə syllable is
+        # word-final but CLOSED (coda mˠ) — classic anaptyxis, merged.
+        assert apply_stress_mark(
+            "ɡɔɾˠəmˠ", rules, 0, syllables=["gorm"]) == "ˈɡɔɾˠəmˠ"
+
+    def test_epenthetic_medial_schwa_merged(self, rules):
+        # Irish dorcha: 2 orth syllables (dor-cha), stress index 0. The
+        # medial ɾˠə merges; the final OPEN xə is the written vowel of
+        # ⟨cha⟩ and must survive as its own syllable.
+        assert apply_stress_mark(
+            "d̪ˠɔɾˠəxə", rules, 0,
+            syllables=["dor", "cha"]) == "ˈd̪ˠɔɾˠəxə"
+
+    def test_full_vowel_overflow_untouched(self, rules):
+        # Spanish ayer: the orthographic syllabifier undercounts ⟨aye⟩ as
+        # one nucleus, but the IPA split is FULL vowels — no ə to merge,
+        # end-anchoring lands on the final syllable as before.
+        assert apply_stress_mark(
+            "aʝeɾ", rules, 0, syllables=["ayer"]) == "aˈʝeɾ"
+
+    def test_open_final_schwa_is_a_real_vowel(self, rules):
+        # Catalan-style word-final open ə (casa → ka-zə) with NO overflow:
+        # the fold is dead code and the mark places normally.
+        assert apply_stress_mark(
+            "kazə", rules, 0, syllables=["ca", "sa"]) == "ˈkazə"
+
+    def test_no_syllables_hint_unchanged(self, rules):
+        # Without an orthographic hint n_orth == len(ipa_sylls): no
+        # overflow, the fold is dead code, and the index is applied over
+        # the IPA syllables directly (index 0 → initial).
+        assert apply_stress_mark("ɡɔɾˠəmˠ", rules, 0) == "ˈɡɔɾˠəmˠ"
+
+
+class TestEpentheticSchwaEndToEnd:
+    """The engine-level symptom that motivated the fix, pinned on real
+    Irish data: initial stress (Ó Siadhail, Modern Irish §2.1; Foclóir
+    Póca headword transcriptions) with svarabhakti epenthesis."""
+
+    def test_irish_svarabhakti_words_stress_initial(self):
+        from orthography2ipa import G2P
+        g = G2P("ga")
+        # gold: Foclóir Póca /ˈɡɔɾˠəmˠ/, /ˈdʲaɾˠəɡ/, /ˈanʲəmʲ/-family
+        assert g.transcribe_word("gorm").startswith("ˈ")
+        assert g.transcribe_word("dearg").startswith("ˈ")
+        assert g.transcribe_word("ainm").startswith("ˈ")
+        assert g.transcribe_word("dorcha").startswith("ˈ")
