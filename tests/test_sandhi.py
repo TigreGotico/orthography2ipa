@@ -70,16 +70,18 @@ class TestSandhiEngine:
         assert result[1] == "amiz"
 
 
-# ─── Regressive (right-side) sandhi ────────────────────────────────────────
+# ─── Right-side (right_transform) sandhi ───────────────────────────────────
 
 class TestRightTransform:
     """``SandhiRule.right_transform`` rewrites the RIGHT word of a boundary.
 
-    Progressive sandhi (rewriting the left word) cannot state a regressive
-    process such as Catalan phrase-level spirantization, where the following
-    word's initial /b d ɡ/ lenites after a continuant: ``de decidir`` →
-    [ðə ðəsiˈði]. Both halves of a boundary can fire — ``els dos`` voices the
-    left ⟨-s⟩ AND lenites the right ⟨d-⟩ — so the sides resolve independently.
+    A left-only rule set cannot state a process whose TARGET is the right word,
+    such as Catalan phrase-level spirantization — a PROGRESSIVE
+    (left-conditioned) continuant-spreading rule in which the following word's
+    initial /b d ɡ/ lenites because the preceding word ends in a continuant:
+    ``de decidir`` → [ðə ðəsiˈði]. Both halves of a boundary can fire — ``els
+    dos`` voices the left ⟨-s⟩ AND lenites the right ⟨d-⟩ — so the sides
+    resolve independently.
     """
 
     def test_right_transform_rewrites_the_following_word(self):

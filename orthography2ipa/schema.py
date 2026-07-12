@@ -143,6 +143,24 @@ class SandhiRuleModel(_Strict):
     obligatory: bool = True
     notes: str = ""
 
+    @model_validator(mode="after")
+    def _at_least_one_transform(self) -> "SandhiRuleModel":
+        """A rule must rewrite at least one side of the boundary.
+
+        ``transform`` targets the left word and ``right_transform`` the right
+        one; both are optional so a rule can act on one side only. With
+        neither, the rule matches a boundary and then does nothing — a
+        silently inert rule that no amount of testing distinguishes from a
+        typo in its contexts.
+        """
+        if self.transform is None and self.right_transform is None:
+            raise ValueError(
+                f"sandhi rule '{self.id}' declares neither 'transform' nor "
+                "'right_transform', so it can never change anything; give it "
+                "at least one"
+            )
+        return self
+
 
 class AllophoneRuleModel(_Strict):
     """A post-lexical phoneme→surface rewrite (``allophone_rules[]``).

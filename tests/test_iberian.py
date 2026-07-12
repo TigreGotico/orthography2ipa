@@ -747,7 +747,10 @@ class TestCatalan:
         assert self._spec.script == "Latin"
 
     def test_parent_late_latin(self):
-        assert ancestry_chain(self._spec.code)[:2] == ["x-clade-roma1334",
+        """Modern Catalan hangs under Old Catalan, which hangs under the
+        Romance clade and Late Latin."""
+        assert ancestry_chain(self._spec.code)[:3] == ["ca-x-medieval",
+                                                       "x-clade-roma1334",
                                                        "la-x-late"]
 
     # --- Vowels ---
@@ -897,9 +900,9 @@ class TestCatalan:
     @pytest.mark.parametrize("word,expected", [
         ("rei", "ˈrej"),        # STRESSED ⟨ei⟩ is [ej] — it does not reduce
         ("taula", "ˈtawlə"),    # ⟨au⟩ = [aw]
-        ("bou", "ˈbow"),        # ⟨ou⟩ = [ow]
+        ("bou", "ˈbɔw"),        # ⟨ou⟩ = [ɔw]
         ("cuina", "ˈkujnə"),    # ⟨ui⟩ = [uj]
-        ("remei", "rəˈmej"),    # pretonic ⟨e⟩ reduces, the diphthong does not
+        ("remei", "rəˈmɛj"),    # pretonic ⟨e⟩ reduces, the diphthong does not
     ])
     def test_diphthongs_are_compositional(self, word, expected):
         """A Catalan diphthong is a vowel plus a GLIDE, not a fixed digraph.
@@ -984,12 +987,17 @@ class TestCatalan:
         assert "ɣ" in orthography2ipa.transcribe("pagar", "ca")
 
     def test_stressed_vowel_keeps_quality(self):
-        """Stressed nuclei keep full quality; reduction is unstressed-only."""
+        """Stressed nuclei keep full quality; reduction is unstressed-only.
+
+        The stressed close/open mid contrast is not written (⟨gos⟩ is [ˈɡos]
+        but ⟨dona⟩ is [ˈdɔnə]), so the spec's default is the open-mid vowel
+        and the close-mid words are listed in ``word_exceptions``.
+        """
         assert orthography2ipa.transcribe("gos", "ca") == "ˈɡos"
-        assert orthography2ipa.transcribe("fred", "ca") == "ˈfɾet"
+        assert orthography2ipa.transcribe("fred", "ca") == "ˈfɾɛt"
         # unstressed nuclei DO reduce (Central/Eastern): a/e → ə, o → u
         assert orthography2ipa.transcribe("casa", "ca") == "ˈkazə"
-        assert orthography2ipa.transcribe("dona", "ca") == "ˈdonə"
+        assert orthography2ipa.transcribe("dona", "ca") == "ˈdɔnə"
 
     def test_positional_a_nucleus_unstressed_schwa(self):
         """VOWEL REDUCTION: a in an UNSTRESSED nucleus → [ə]."""

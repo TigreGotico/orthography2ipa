@@ -83,7 +83,7 @@ def test_diaeresis_is_not_a_stress_mark():
     # ⟨c⟩ and ⟨g⟩ before a front vowel (Wheeler 2005 §5.1)
     ("germana", "ʒərmanə"),
     ("gener", "ʒəne"),
-    ("cel", "sel"),
+    ("cel", "sɛl"),
     ("ciutat", "siwtat"),
     # word-final ⟨-r⟩ deletion (Wheeler 2005 §10.4)
     ("cantar", "kənta"),
@@ -115,7 +115,7 @@ def test_diaeresis_is_not_a_stress_mark():
     ("aigua", "ajɣwə"),
     ("sigui", "siɣi"),
     # reduction + spirantization together
-    ("coses", "kozəs"),
+    ("coses", "kɔzəs"),
     ("seva", "seβə"),
 ])
 def test_central_word_forms(word, expected):
@@ -208,21 +208,48 @@ def test_valencian_does_not_reduce_where_central_does():
         assert "ə" not in transcribe(word, "ca-x-valencia"), word
 
 
-def test_final_cluster_after_a_lateral_is_an_east_west_isogloss():
-    """⟨molt⟩ is [ˈmol] in the East and [ˈmolt] in the West.
+def test_final_cluster_isogloss_is_not_the_east_west_line():
+    """⟨molt⟩ is [ˈmol] in Central and North-Western, [ˈmolt] in Valencian
+    and Balearic.
 
-    Both blocks simplify a cluster after a NASAL (⟨important⟩ → [-ˈtan]);
-    only the Eastern block does it after a LATERAL (Veny 1982 ch. 3; AVL
-    grammar ch. 2), which the 4catac gold shows on both sides.
+    Deleting an ABSOLUTELY word-final stop is an innovation of Central,
+    North-Western and Northern Catalan; Valencian and Balearic keep it. The
+    isogloss therefore runs Central + North-Western against Valencian +
+    Balearic and is NOT the Eastern/Western line — Balearic is Eastern and
+    keeps the stop, North-Western is Western and drops it (Veny 1982 ch. 3;
+    Wiktionary, per-dialect: Central/North-Western [ˈmol], Balearic/Valencian
+    [ˈmolt]; the 4catac expert gold has molt alta = [ˈmol ˈaltə] in
+    Central/North-Western and [ˈmolt ˈalta] in Valencian/Balearic).
+
+    Before a following CONSONANT every variety loses the stop; that is the
+    pan-Catalan pre-consonantal rule, not this one.
     """
     assert transcribe("molt", "ca") == "ˈmol"
-    assert transcribe("molt", "ca-x-balear") == "ˈmol"
+    assert transcribe("molt", "ca-x-occidental") == "ˈmol"
     assert transcribe("molt", "ca-x-valencia") == "ˈmolt"
-    assert transcribe("molt", "ca-x-occidental") == "ˈmolt"
+    assert transcribe("molt", "ca-x-balear") == "ˈmolt"
+    assert transcribe("camp", "ca") == "ˈkam"
+    assert transcribe("camp", "ca-x-valencia") == "ˈkamp"
+    assert transcribe("camp", "ca-x-balear") == "ˈkamp"
+    assert transcribe("sang", "ca") == "ˈsaŋ"
+    assert transcribe("sang", "ca-x-valencia") == "ˈsaŋk"
+    assert transcribe("sang", "ca-x-balear") == "ˈsaŋk"
     # ⟨ny⟩ is not a stress ending: ⟨any⟩ is [ˈaɲ], not *[ˈəɲ]
     assert transcribe("any", "ca") == "ˈaɲ"
+    # The PLURAL (pre-⟨-s⟩) deletion is pan-Catalan
     for code in ["ca", "ca-x-valencia", "ca-x-occidental", "ca-x-balear"]:
-        assert transcribe("important", code).endswith("n"), code
+        assert transcribe("importants", code).endswith("ns"), code
+
+
+def test_preconsonantal_cluster_deletion_is_pan_catalan():
+    """Valencian and Balearic keep the final stop before a vowel and lose it
+    before a consonant — 4catac has ⟨molt alta⟩ = [ˈmolt ˈalta] but ⟨el vint
+    de juny⟩ = [el ˈvin de …]. Central has already lost it in both.
+    """
+    for code in ["ca-x-valencia", "ca-x-balear"]:
+        assert transcribe("molt alta", code).split()[0].endswith("lt"), code
+        assert transcribe("vint dies", code).split()[0].endswith("n"), code
+    assert transcribe("molt alta", "ca").split()[0] == "ˈmol"
 
 
 def test_valencian_affricate_and_western_x():
@@ -251,3 +278,69 @@ def test_stress_mark_placement_is_onset_maximising():
     """
     assert transcribe("germana", "ca") == "ʒəˈrmanə"   # not "ʒərˈmanə"
     assert transcribe("germana", "ca").replace("ˈ", "") == "ʒərmanə"
+
+
+# ─── Genealogy: the Old-Catalan common core ────────────────────────────────
+
+_MODERN = ["ca", "ca-x-valencia", "ca-x-balear", "ca-x-occidental",
+           "ca-x-nord"]
+
+
+def test_every_modern_variety_descends_from_old_catalan():
+    """The modern varieties did not descend from modern Central Catalan.
+
+    The Eastern/Western split predates the standard, and Balearic descends
+    from the Eastern (Empordà) settlers of the 13th-century conquest — so
+    ⟨ca⟩ is a sibling of the dialects, not their parent. It stays the code
+    for "Catalan" (the IEC standard), but the inheritance edge points at
+    ca-x-medieval.
+    """
+    for code in _MODERN:
+        assert get(code).parent == "ca-x-medieval", code
+    assert get("ca-x-medieval").parent == "x-clade-roma1334"
+
+
+def test_old_catalan_is_data_bearing_not_a_clade():
+    """A clade node carries no phonology and ``_nearest_data_ancestor`` walks
+    straight through it, so a clade parent would leave the dialects inheriting
+    nothing. The common core has to be a real, transcribable spec."""
+    core = get("ca-x-medieval")
+    assert not core.clade
+    assert core.graphemes and core.allophone_rules and core.sandhi_rules
+    assert transcribe("cantar", "ca-x-medieval") == "kaˈntaɾ"
+
+
+def test_central_innovations_do_not_leak_into_the_other_varieties():
+    """⟨ca⟩ holds only Central's own innovations. Because no variety inherits
+    from it, none of them can be forced into a Central rule it does not have —
+    which is what put the final-cluster simplification into Balearic and
+    Valencian when ``ca`` was their parent."""
+    # Vowel reduction: Central and the Eastern block only.
+    assert "ə" in transcribe("casa", "ca")
+    assert "ə" not in transcribe("casa", "ca-x-valencia")
+    assert "ə" not in transcribe("casa", "ca-x-occidental")
+    # Betacism and the fricative ⟨j⟩: Central, not Valencian.
+    assert transcribe("vaca", "ca").startswith("ˈb")
+    assert transcribe("vaca", "ca-x-valencia").startswith("ˈv")
+    assert "ʒ" in transcribe("juny", "ca")
+    assert "dʒ" in transcribe("juny", "ca-x-valencia")
+    # Final ⟨-r⟩: deleted in Central, kept in Valencian.
+    assert transcribe("cantar", "ca").endswith("a")
+    assert transcribe("cantar", "ca-x-valencia").endswith("ɾ")
+
+
+# ─── Word-final ⟨-r⟩ retainers ─────────────────────────────────────────────
+
+def test_final_r_retainers_are_the_cited_ones():
+    """Word-final ⟨-r⟩ deletion has a closed set of lexical exceptions
+    (Bonet & Lloret, *Crazy rules and lexical exceptions*): car, clar, cor,
+    dur, far, mar, or, pur, tir keep it. ⟨por⟩ and ⟨flor⟩ do NOT — they are
+    [ˈpɔ] and [ˈflɔ] — and ⟨sur⟩ is not a Catalan word at all (Catalan is
+    ⟨sud⟩; ⟨sur⟩ is Spanish).
+    """
+    for word in ["car", "clar", "cor", "dur", "mar", "or", "pur"]:
+        assert transcribe(word, "ca").endswith("r"), word
+    for word in ["por", "flor"]:
+        assert not transcribe(word, "ca").endswith("r"), word
+    assert "sur" not in get("ca").word_exceptions
+    assert "sur" not in get("ca-x-balear").word_exceptions

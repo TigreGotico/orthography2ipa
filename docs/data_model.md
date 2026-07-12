@@ -355,15 +355,20 @@ Fields: `id`, `name`, `left_context`, `right_context`, `transform`,
 
 A boundary has two sides and a rule may rewrite either or both:
 
-- `transform` substitutes for the `left_context` match in the LEFT word —
-  progressive sandhi (European Portuguese coda-/s/ voicing). `None` leaves the
-  left word alone.
+- `transform` substitutes for the `left_context` match in the LEFT word — the
+  shape a right-conditioned (regressive) process needs, e.g. European
+  Portuguese coda-/s/ voicing. `None` leaves the left word alone.
 - `right_transform` substitutes for the `right_context` match in the RIGHT word
-  — **regressive** sandhi. Catalan phrase-level spirantization lenites the
-  *following* word's initial /b d ɡ/ after a continuant (`de decidir` →
-  [ðə ðəsiˈði]); Spanish and Galician have the same shape. `None` (the default)
-  leaves the right word alone, so a rule that declares only `transform` behaves
-  exactly as it always has.
+  — the shape a left-conditioned (**progressive**) process needs. Catalan
+  phrase-level spirantization is one: continuant-spreading rightwards across
+  the boundary, so the *following* word's initial /b d ɡ/ lenites after a
+  continuant (`de decidir` → [ðə ðəsiˈði]); Spanish and Galician have the same
+  shape. `None` (the default) leaves the right word alone, so a rule that
+  declares only `transform` behaves exactly as it always has.
+
+Which side is rewritten is the rule's TARGET, not its direction of
+conditioning; a rule must declare at least one of the two, or it matches a
+boundary and changes nothing (the schema rejects it).
 
 The two sides resolve independently — first matching rule wins *per side* — so
 one boundary can both voice the left word's coda and lenite the right word's

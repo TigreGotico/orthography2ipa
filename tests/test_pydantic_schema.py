@@ -7,6 +7,7 @@ import pytest
 
 from orthography2ipa.schema import (
     LanguageSpecModel,
+    SandhiRuleModel,
     format_failure,
     iter_spec_files,
     validate_spec_file,
@@ -57,3 +58,42 @@ def test_extra_keys_are_forbidden():
                 "bogus_unknown_key": 1,
             }
         )
+
+
+# ─── SandhiRuleModel ───────────────────────────────────────────────────────
+
+_SANDHI_BASE = {
+    "id": "X_RULE",
+    "name": "x-rule",
+    "left_context": "s$",
+    "right_context": "^[aeiou]",
+}
+
+
+def test_sandhi_rule_accepts_a_left_transform():
+    rule = SandhiRuleModel.model_validate({**_SANDHI_BASE, "transform": "z"})
+    assert rule.transform == "z"
+    assert rule.right_transform is None
+
+
+def test_sandhi_rule_accepts_a_right_transform():
+    rule = SandhiRuleModel.model_validate(
+        {**_SANDHI_BASE, "right_transform": "ð"}
+    )
+    assert rule.right_transform == "ð"
+    assert rule.transform is None
+
+
+def test_sandhi_rule_accepts_both_transforms():
+    rule = SandhiRuleModel.model_validate(
+        {**_SANDHI_BASE, "transform": "z", "right_transform": "ð"}
+    )
+    assert rule.transform == "z" and rule.right_transform == "ð"
+
+
+def test_sandhi_rule_without_any_transform_is_rejected():
+    """A rule with neither ``transform`` nor ``right_transform`` matches a
+    boundary and then changes nothing — a silently inert rule, indistinguishable
+    at runtime from a typo in its contexts. The schema must reject it."""
+    with pytest.raises(Exception, match="right_transform"):
+        SandhiRuleModel.model_validate(dict(_SANDHI_BASE))

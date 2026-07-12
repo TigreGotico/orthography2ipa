@@ -31,7 +31,7 @@ from orthography2ipa import transcribe
 
 @pytest.mark.parametrize("word,expected", [
     ("pare", "ˈpaɾə"),    # stressed a → [a]; unstressed e → [ə]
-    ("porta", "ˈportə"),  # stressed o keeps a MID quality, never [u]
+    ("porta", "ˈpɔrtə"),  # stressed ⟨o⟩ keeps its OPEN-mid quality, never [u]
     ("casa", "ˈkazə"),    # stressed a → [a]; unstressed a → [ə]
 ])
 def test_central_stressed_vowel_keeps_quality(word, expected):

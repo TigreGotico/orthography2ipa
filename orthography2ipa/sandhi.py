@@ -71,7 +71,7 @@ class SandhiEngine:
             # The two sides of a boundary are resolved independently: the
             # first matching rule wins *per side*. A left-only rule set (every
             # rule declaring `transform` and no `right_transform` — the shape
-            # every spec had before regressive sandhi existed) therefore still
+            # every spec had before ``right_transform`` existed) therefore still
             # applies exactly one rule per boundary, to the left word.
             # Contexts are always matched against the ORIGINAL words, so the
             # side that fires first cannot mask the other's trigger.

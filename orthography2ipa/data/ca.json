@@ -1,324 +1,35 @@
 {
-  "ancestors": [
-    {
-      "code": "la-x-late",
-      "role": "parent",
-      "weight": 0.82,
-      "notes": "Descent from Late/Tarraconensis Vulgar Latin; Catalan is a transitional Gallo-Ibero-Romance variety."
-    },
-    {
-      "code": "xib",
-      "role": "substrate",
-      "weight": 0.05,
-      "notes": "Iberian (non-IE) substrate of the eastern Iberian coast, plus a Celtiberian layer inland."
-    },
-    {
-      "code": "got",
-      "role": "superstrate",
-      "weight": 0.04,
-      "notes": "Visigothic (Gothic) superstrate: onomastic and lexical Germanic layer shared with the rest of Hispania."
-    },
-    {
-      "code": "xaa",
-      "role": "adstrate",
-      "weight": 0.05,
-      "notes": "Andalusi Arabic adstrate: al- loanwords (alberginia, safareig, raval), lighter than in Castilian."
-    },
-    {
-      "code": "oc",
-      "role": "adstrate",
-      "weight": 0.06,
-      "notes": "Occitan adstrate: close Gallo-Romance sister; strong medieval literary and lexical convergence (troubadour koine)."
-    }
-  ],
   "code": "ca",
   "name": "Catalan",
   "script": "Latin",
+  "parent": "ca-x-medieval",
+  "ancestors": [
+    {
+      "code": "ca-x-medieval",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Central Catalan continues Old Catalan directly; the substrate/superstrate/adstrate layers (Iberian, Gothic, Andalusi Arabic, Occitan) are declared on the Old-Catalan node."
+    }
+  ],
+  "graphemes_base": "ca-x-medieval",
   "graphemes": {
-    "l·l": [
-      "lː",
-      "ɫː"
-    ],
-    "gu": [
-      "ɡ",
-      "ɡw"
+    "v": [
+      "b"
     ],
     "ix": [
       "ʃ"
     ],
-    "ll": [
-      "ʎ"
-    ],
-    "ny": [
-      "ɲ"
-    ],
-    "qu": [
-      "k",
-      "kw"
-    ],
-    "rr": [
-      "r"
-    ],
-    "rs": [
-      "rs",
-      "s"
-    ],
-    "ss": [
-      "s"
-    ],
-    "tg": [
-      "dʒ"
-    ],
-    "tj": [
-      "dʒ"
-    ],
-    "tx": [
-      "tʃ"
-    ],
-    "tz": [
-      "dz"
-    ],
-    "'": [
-      ""
-    ],
-    "a": [
-      "a",
-      "ə"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "k",
-      "s"
-    ],
-    "d": [
-      "d"
-    ],
-    "e": [
-      "e",
-      "ɛ",
-      "ə"
-    ],
-    "f": [
-      "f"
+    "j": [
+      "ʒ"
     ],
     "g": [
       "ɡ",
       "ʒ"
-    ],
-    "h": [
-      ""
-    ],
-    "i": [
-      "i",
-      "j"
-    ],
-    "j": [
-      "ʒ"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "o": [
-      "o",
-      "ɔ",
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "q": [
-      "k"
-    ],
-    "r": [
-      "ɾ",
-      "r"
-    ],
-    "s": [
-      "s",
-      "z"
-    ],
-    "t": [
-      "t"
-    ],
-    "u": [
-      "u",
-      "w"
-    ],
-    "v": [
-      "b"
-    ],
-    "w": [
-      "w"
-    ],
-    "x": [
-      "ʃ",
-      "ks"
-    ],
-    "z": [
-      "z"
-    ],
-    "à": [
-      "a"
-    ],
-    "ç": [
-      "s"
-    ],
-    "è": [
-      "ɛ"
-    ],
-    "é": [
-      "e"
-    ],
-    "í": [
-      "i"
-    ],
-    "ï": [
-      "i"
-    ],
-    "ò": [
-      "ɔ"
-    ],
-    "ó": [
-      "o"
-    ],
-    "ú": [
-      "u"
-    ],
-    "ü": [
-      "u",
-      "w"
-    ],
-    "’": [
-      ""
     ]
   },
-  "allophones": {
-    "b": [
-      "b",
-      "β"
-    ],
-    "d": [
-      "d",
-      "ð"
-    ],
-    "ɡ": [
-      "ɡ",
-      "ɣ"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v",
-      "β"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ʒ": [
-      "ʒ"
-    ],
-    "tʃ": [
-      "tʃ"
-    ],
-    "dʒ": [
-      "dʒ"
-    ],
-    "m": [
-      "m",
-      "ɱ"
-    ],
-    "n": [
-      "n",
-      "m",
-      "ɱ",
-      "ŋ",
-      "ɲ"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "l": [
-      "l"
-    ],
-    "ʎ": [
-      "ʎ"
-    ],
-    "lː": [
-      "lː"
-    ],
-    "ɾ": [
-      "ɾ"
-    ],
-    "r": [
-      "r"
-    ],
-    "j": [
-      "j"
-    ],
-    "w": [
-      "w"
-    ],
-    "a": [
-      "a"
-    ],
-    "ə": [
-      "ə"
-    ],
-    "e": [
-      "e"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "u": [
-      "u"
-    ],
-    "dz": [
-      "dz"
-    ],
-    "ts": [
-      "ts"
-    ]
-  },
+  "allophones_base": "ca-x-medieval",
+  "allophones": {},
+  "positional_graphemes_base": "ca-x-medieval",
   "positional_graphemes": {
     "a": {
       "default": [
@@ -330,8 +41,8 @@
     },
     "e": {
       "default": [
-        "e",
-        "ɛ"
+        "ɛ",
+        "e"
       ],
       "nucleus_unstressed": [
         "ə"
@@ -339,43 +50,11 @@
     },
     "o": {
       "default": [
-        "o",
-        "ɔ"
+        "ɔ",
+        "o"
       ],
       "nucleus_unstressed": [
         "u"
-      ]
-    },
-    "i": {
-      "after_vowel": [
-        "j"
-      ],
-      "default": [
-        "i"
-      ]
-    },
-    "u": {
-      "after_vowel": [
-        "w"
-      ],
-      "default": [
-        "u"
-      ]
-    },
-    "ü": {
-      "after_consonant": [
-        "w"
-      ],
-      "default": [
-        "u"
-      ]
-    },
-    "c": {
-      "before_front_vowel": [
-        "s"
-      ],
-      "default": [
-        "k"
       ]
     },
     "g": {
@@ -384,47 +63,6 @@
       ],
       "default": [
         "ɡ"
-      ]
-    },
-    "qu": {
-      "before_front_vowel": [
-        "k"
-      ],
-      "before_vowel": [
-        "kw"
-      ],
-      "default": [
-        "ku"
-      ]
-    },
-    "gu": {
-      "before_front_vowel": [
-        "ɡ"
-      ],
-      "before_vowel": [
-        "ɡw"
-      ],
-      "default": [
-        "ɡu"
-      ]
-    },
-    "x": {
-      "intervocalic": [
-        "ks"
-      ],
-      "before_consonant": [
-        "ks"
-      ],
-      "default": [
-        "ʃ"
-      ]
-    },
-    "s": {
-      "default": [
-        "s"
-      ],
-      "intervocalic": [
-        "z"
       ]
     },
     "r": {
@@ -451,145 +89,9 @@
       "default": [
         "rs"
       ]
-    },
-    "l": {
-      "onset": [
-        "l"
-      ],
-      "coda": [
-        "l",
-        "ɫ"
-      ]
     }
   },
-  "parent": "x-clade-roma1334",
-  "notes": "Central Catalan (Barcelona standard). Vowel reduction applies ONLY in UNSTRESSED syllables (Wheeler 2005 §2.3): unstressed /a e ɛ/ → [ə] and /o ɔ/ → [u]; STRESSED vowels keep full quality (gos → [ˈɡɔs], dòna → [ˈdɔnə]). Reduction is therefore keyed to the ⟨nucleus_unstressed⟩ positional slot, not to every nucleus. Intervocalic spirantization of /b d ɡ/ → [β ð ɣ] and final-obstruent devoicing/nasal place assimilation are modelled as post-lexical allophone_rules. ⟨l·l⟩ (ela geminada) is a unique Catalan digraph.",
-  "quality": "research",
-  "script_type": "alphabet",
-  "sources": [
-    {
-      "id": "wheeler2005",
-      "author": "Wheeler, M. W.",
-      "year": 2005,
-      "title": "The Phonology of Catalan",
-      "publisher": "Oxford University Press",
-      "url": "https://global.oup.com/academic/product/the-phonology-of-catalan-9780199258147",
-      "pages": null,
-      "notes": "The reference phonology of Catalan and the primary authority for this spec. Cited by SECTION, not page: §2.3 vowel systems and the unstressed reduction of the Eastern block (reduction is stress-conditioned; the Western block does not reduce); §2.5 the diphthong inventory; §3.1 stress and its orthographic marking; §5.1 the consonant inventory, ⟨c/g⟩ before a front vowel, ⟨x⟩ and word-final ⟨-ig⟩; §5.2 spirantization of /b d ɡ/ after a continuant and the pre-lateral gemination that blocks it; §5.3 final-obstruent devoicing and cross-word voicing assimilation; §10.2–§10.5 the post-lexical/phrase-level processes — final-rhotic loss, final-cluster simplification, nasal place assimilation and phrase-level lenition. Section numbers are given because the printed page numbers were not verified."
-    },
-    {
-      "id": "recasens1993",
-      "author": "Recasens, D.",
-      "year": 1993,
-      "title": "Fonètica i fonologia",
-      "publisher": "Enciclopèdia Catalana",
-      "url": null,
-      "pages": null,
-      "notes": "Descriptive phonetics of Central Catalan: nasal place assimilation (labial before /p b m f/, velar before /k ɡ/, palato-alveolar before /ʃ ʒ tʃ dʒ ʎ/), spirantization and final-obstruent devoicing. Pages not verified."
-    },
-    {
-      "id": "recasens1996",
-      "author": "Recasens, D.",
-      "year": 1996,
-      "title": "Fonètica descriptiva del català: assaig de caracterització de la pronúncia del vocalisme i consonantisme del català al segle XX",
-      "publisher": "Institut d'Estudis Catalans",
-      "url": null,
-      "pages": null,
-      "notes": "The descriptive survey of Catalan vowels and consonants across the dialects: the Western block (Valencian, North-Western) does not reduce unstressed vowels; Balearic reduces ⟨a⟩/⟨e⟩ to [ə] but does NOT raise unstressed ⟨o⟩ to [u]; the North-Western word-final ⟨-a⟩ = [ɛ]. Pages not verified."
-    },
-    {
-      "id": "iec2016",
-      "author": "Institut d'Estudis Catalans",
-      "year": 2016,
-      "title": "Gramàtica de la llengua catalana",
-      "publisher": "Institut d'Estudis Catalans",
-      "url": "https://giec.iec.cat/",
-      "pages": null,
-      "notes": "The normative grammar. Ch. 3 (l'accent) is the source for the stress block: the written accent marks the stressed vowel and always wins; unmarked words ending in a vowel, a vowel+⟨-s⟩ or ⟨-en/-in⟩ are paroxytone and all other endings — including the consonant+⟨s⟩ plurals — are oxytone; the diaeresis ⟨ï ü⟩ marks hiatus, not stress. §6.2 and the 'mots àtons' list are the source for the clitic function words (articles, contractions, atonic prepositions/conjunctions and weak pronouns) that carry no stress and therefore reduce. Cited by chapter; pages not verified."
-    },
-    {
-      "id": "veny1982",
-      "author": "Veny, J.",
-      "year": 1982,
-      "title": "Els parlars catalans: síntesi de dialectologia",
-      "publisher": "Editorial Moll",
-      "url": null,
-      "pages": null,
-      "notes": "The standard dialectology of Catalan and the source for the isoglosses this spec encodes per dialect: final ⟨-r⟩ retained in Valencian and deleted in the rest; final-cluster simplification after a nasal everywhere but after a lateral only in the Eastern block; Western [tʃ] for initial ⟨x⟩ and [jʃ] for ⟨ix⟩; the lleidatà final ⟨-a⟩ = [ɛ]. Pages not verified."
-    },
-    {
-      "id": "ladefoged_maddieson1996",
-      "author": "Ladefoged, P. & Maddieson, I.",
-      "year": 1996,
-      "title": "The Sounds of the World's Languages",
-      "publisher": "Blackwell",
-      "url": null,
-      "pages": null,
-      "notes": "Cross-linguistic phonetic reference for the segment inventory symbols used here."
-    },
-    {
-      "id": "wikipedia_catalan_phonology",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Catalan phonology (Wikipedia)",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Catalan_phonology",
-      "pages": null,
-      "notes": "Accessible overview of the vowel and consonant inventories, the Eastern/Western reduction split, spirantization, final devoicing and final-cluster simplification; useful as a cross-check on the primary sources above."
-    },
-    {
-      "id": "wikipedia_catalan_orthography",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Catalan orthography (Wikipedia)",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Catalan_orthography",
-      "pages": null,
-      "notes": "Accessible overview of the grapheme→sound correspondences encoded in the graphemes table: ⟨ll⟩, ⟨ny⟩, ⟨l·l⟩, ⟨tx⟩, ⟨tg/tj⟩, ⟨ix⟩, word-final ⟨-ig⟩, ⟨ç⟩, ⟨qu/gu⟩ and the diaeresis."
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Catalan_language",
-    "https://ca.wikipedia.org/wiki/Català",
-    "https://ca.wikipedia.org/wiki/Catal%C3%A0",
-    "https://es.wikipedia.org/wiki/Idioma_catal%C3%A1n",
-    "https://en.wikipedia.org/wiki/Catalan_phonology",
-    "https://en.wikipedia.org/wiki/Catalan_orthography"
-  ],
-  "timespan": {
-    "start_year": 1200,
-    "end_year": null
-  },
-  "glottolog_code": "stan1289",
-  "iso639_3": "cat",
   "allophone_rules": [
-    {
-      "id": "CA_FINAL_IG_AFFRICATE",
-      "phonemes": [
-        "ɡ"
-      ],
-      "surface": "tʃ",
-      "word_final": true,
-      "preceded_by_phoneme": [
-        "i",
-        "j"
-      ],
-      "notes": "Word-final ⟨-ig⟩ is the voiceless palato-alveolar affricate [tʃ] (Wheeler 2005 §5.1; IEC orthography ch. 2): vaig [ˈbatʃ], mig [ˈmitʃ], desig [dəˈzitʃ], passeig [pəˈsɛtʃ]. The ⟨i⟩ is part of the digraph and is absorbed by the affricate, so the glide it would otherwise contribute after another vowel is deleted."
-    },
-    {
-      "id": "CA_FINAL_IG_GLIDE_ABSORB",
-      "phonemes": [
-        "j"
-      ],
-      "surface": "",
-      "followed_by_phoneme": [
-        "ɡ"
-      ],
-      "grapheme": [
-        "i"
-      ],
-      "notes": "Word-final ⟨-ig⟩ is the voiceless palato-alveolar affricate [tʃ] (Wheeler 2005 §5.1; IEC orthography ch. 2): vaig [ˈbatʃ], mig [ˈmitʃ], desig [dəˈzitʃ], passeig [pəˈsɛtʃ]. The ⟨i⟩ is part of the digraph and is absorbed by the affricate, so the glide it would otherwise contribute after another vowel is deleted."
-    },
     {
       "id": "CA_CLUSTER_T_FINAL",
       "phonemes": [
@@ -603,24 +105,7 @@
         "l",
         "ɫ"
       ],
-      "notes": "Final cluster simplification / consonant-cluster reduction (Wheeler 2005 §10.4; Recasens 1993): a word-final stop is deleted after a homorganic nasal or lateral, both word-finally and before the plural -s — quant [ˈkwan], important [impurˈtan], importants [impurˈtans], camp [ˈkam], temps [ˈtems], cinc [ˈsiŋ], blancs [ˈblaŋs]. Ordered before the devoicing rules so the deleted stop never surfaces."
-    },
-    {
-      "id": "CA_CLUSTER_T_PLURAL",
-      "phonemes": [
-        "t",
-        "d"
-      ],
-      "surface": "",
-      "preceded_by_phoneme": [
-        "n",
-        "l",
-        "ɫ"
-      ],
-      "followed_by_phoneme": [
-        "s"
-      ],
-      "notes": "Final cluster simplification / consonant-cluster reduction (Wheeler 2005 §10.4; Recasens 1993): a word-final stop is deleted after a homorganic nasal or lateral, both word-finally and before the plural -s — quant [ˈkwan], important [impurˈtan], importants [impurˈtans], camp [ˈkam], temps [ˈtems], cinc [ˈsiŋ], blancs [ˈblaŋs]. Ordered before the devoicing rules so the deleted stop never surfaces."
+      "notes": "Word-final cluster simplification (Wheeler 2005 §10.4; Recasens 1993; Veny 1982 ch. 3): an ABSOLUTELY word-final stop is DELETED after a homorganic nasal or lateral — camp [ˈkam], sang [ˈsaŋ], quant [ˈkwan], molt [ˈmol]. An innovation of CENTRAL, NORTH-WESTERN and NORTHERN Catalan against the Old-Catalan core, which keeps the stop; VALENCIAN and BALEARIC keep it too (camp [ˈkamp], molt [ˈmolt]), and the 4catac expert transcriptions confirm the split on the one token that is diagnostic because a vowel follows — molt alta = Central/North-Western [ˈmol ˈalt-] vs Valencian/Balearic [ˈmolt ˈalt-]. The isogloss is therefore Central + North-Western (+ Northern) against Valencian + Balearic; it is NOT the Eastern/Western line. Overrides the core's conservative CA_CLUSTER_*_FINAL rule by id."
     },
     {
       "id": "CA_CLUSTER_P_FINAL",
@@ -633,22 +118,7 @@
       "preceded_by_phoneme": [
         "m"
       ],
-      "notes": "Final cluster simplification / consonant-cluster reduction (Wheeler 2005 §10.4; Recasens 1993): a word-final stop is deleted after a homorganic nasal or lateral, both word-finally and before the plural -s — quant [ˈkwan], important [impurˈtan], importants [impurˈtans], camp [ˈkam], temps [ˈtems], cinc [ˈsiŋ], blancs [ˈblaŋs]. Ordered before the devoicing rules so the deleted stop never surfaces."
-    },
-    {
-      "id": "CA_CLUSTER_P_PLURAL",
-      "phonemes": [
-        "p",
-        "b"
-      ],
-      "surface": "",
-      "preceded_by_phoneme": [
-        "m"
-      ],
-      "followed_by_phoneme": [
-        "s"
-      ],
-      "notes": "Final cluster simplification / consonant-cluster reduction (Wheeler 2005 §10.4; Recasens 1993): a word-final stop is deleted after a homorganic nasal or lateral, both word-finally and before the plural -s — quant [ˈkwan], important [impurˈtan], importants [impurˈtans], camp [ˈkam], temps [ˈtems], cinc [ˈsiŋ], blancs [ˈblaŋs]. Ordered before the devoicing rules so the deleted stop never surfaces."
+      "notes": "Word-final cluster simplification (Wheeler 2005 §10.4; Recasens 1993; Veny 1982 ch. 3): an ABSOLUTELY word-final stop is DELETED after a homorganic nasal or lateral — camp [ˈkam], sang [ˈsaŋ], quant [ˈkwan], molt [ˈmol]. An innovation of CENTRAL, NORTH-WESTERN and NORTHERN Catalan against the Old-Catalan core, which keeps the stop; VALENCIAN and BALEARIC keep it too (camp [ˈkamp], molt [ˈmolt]), and the 4catac expert transcriptions confirm the split on the one token that is diagnostic because a vowel follows — molt alta = Central/North-Western [ˈmol ˈalt-] vs Valencian/Balearic [ˈmolt ˈalt-]. The isogloss is therefore Central + North-Western (+ Northern) against Valencian + Balearic; it is NOT the Eastern/Western line. Overrides the core's conservative CA_CLUSTER_*_FINAL rule by id."
     },
     {
       "id": "CA_CLUSTER_K_FINAL",
@@ -662,373 +132,7 @@
         "n",
         "ŋ"
       ],
-      "notes": "Final cluster simplification / consonant-cluster reduction (Wheeler 2005 §10.4; Recasens 1993): a word-final stop is deleted after a homorganic nasal or lateral, both word-finally and before the plural -s — quant [ˈkwan], important [impurˈtan], importants [impurˈtans], camp [ˈkam], temps [ˈtems], cinc [ˈsiŋ], blancs [ˈblaŋs]. Ordered before the devoicing rules so the deleted stop never surfaces."
-    },
-    {
-      "id": "CA_CLUSTER_K_PLURAL",
-      "phonemes": [
-        "k",
-        "ɡ"
-      ],
-      "surface": "",
-      "preceded_by_phoneme": [
-        "n",
-        "ŋ"
-      ],
-      "followed_by_phoneme": [
-        "s"
-      ],
-      "notes": "Final cluster simplification / consonant-cluster reduction (Wheeler 2005 §10.4; Recasens 1993): a word-final stop is deleted after a homorganic nasal or lateral, both word-finally and before the plural -s — quant [ˈkwan], important [impurˈtan], importants [impurˈtans], camp [ˈkam], temps [ˈtems], cinc [ˈsiŋ], blancs [ˈblaŋs]. Ordered before the devoicing rules so the deleted stop never surfaces."
-    },
-    {
-      "id": "CA_DEVOICE_B",
-      "phonemes": [
-        "b"
-      ],
-      "surface": "p",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3; Recasens 1993): word-final /b/ → [p]."
-    },
-    {
-      "id": "CA_DEVOICE_D",
-      "phonemes": [
-        "d"
-      ],
-      "surface": "t",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /d/ → [t] (fred [ˈfɾet])."
-    },
-    {
-      "id": "CA_DEVOICE_G",
-      "phonemes": [
-        "ɡ"
-      ],
-      "surface": "k",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /ɡ/ → [k]."
-    },
-    {
-      "id": "CA_DEVOICE_Z",
-      "phonemes": [
-        "z"
-      ],
-      "surface": "s",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /z/ → [s]."
-    },
-    {
-      "id": "CA_DEVOICE_ZH",
-      "phonemes": [
-        "ʒ"
-      ],
-      "surface": "ʃ",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /ʒ/ → [ʃ]."
-    },
-    {
-      "id": "CA_DEVOICE_V",
-      "phonemes": [
-        "v"
-      ],
-      "surface": "f",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /v/ → [f]."
-    },
-    {
-      "id": "CA_DEVOICE_DZH",
-      "phonemes": [
-        "dʒ"
-      ],
-      "surface": "tʃ",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): the word-final affricate /dʒ/ → [tʃ] (jutge is [ˈdʒudʒə] but mig [ˈmitʃ])."
-    },
-    {
-      "id": "CA_DEVOICE_DZ",
-      "phonemes": [
-        "dz"
-      ],
-      "surface": "ts",
-      "word_final": true,
-      "notes": "Final-obstruent devoicing (Wheeler 2005 §5.3): word-final /dz/ → [ts]."
-    },
-    {
-      "id": "CA_NASAL_LABIAL",
-      "phonemes": [
-        "n"
-      ],
-      "surface": "m",
-      "followed_by_phoneme": [
-        "p",
-        "b",
-        "m",
-        "f"
-      ],
-      "notes": "Nasal place assimilation (Recasens 1993; Wheeler 2005 §10.3): /n/ → [m] before a labial consonant."
-    },
-    {
-      "id": "CA_NASAL_VELAR",
-      "phonemes": [
-        "n"
-      ],
-      "surface": "ŋ",
-      "followed_by_phoneme": [
-        "k",
-        "ɡ"
-      ],
-      "notes": "Nasal place assimilation (Recasens 1993; Wheeler 2005 §10.3): /n/ → [ŋ] before a velar consonant."
-    },
-    {
-      "id": "CA_NASAL_PALATAL",
-      "phonemes": [
-        "n"
-      ],
-      "surface": "ɲ",
-      "followed_by_phoneme": [
-        "ʃ",
-        "ʒ",
-        "tʃ",
-        "dʒ",
-        "ʎ"
-      ],
-      "notes": "Nasal place assimilation to a PALATO-ALVEOLAR (Recasens 1993; Wheeler 2005 §10.3): /n/ → [ɲ] before /ʃ ʒ tʃ dʒ ʎ/ — àngel [ˈaɲʒəl], un jutge [uɲ ˈdʒudʒə], any llunyà [ˈaɲ ʎuˈɲa]. Sits with the labial and velar assimilation rules; the palato-alveolar context is the one Catalan adds to the familiar labial/velar pair."
-    },
-    {
-      "id": "CA_GEMINATE_BL",
-      "phonemes": [
-        "b"
-      ],
-      "surface": "b",
-      "followed_by_phoneme": [
-        "l",
-        "ɫ"
-      ],
-      "notes": "Pre-lateral GEMINATION blocks spirantization: /b/ and /ɡ/ before a lateral geminate rather than lenite — poble [ˈpɔbːlə], regla [ˈreɡːlə], not *[ˈpɔβlə] (Wheeler 2005 §5.2, §10.2; Recasens 1993). The rule is an identity rewrite placed BEFORE the spirantization rules: first match wins, so the stop survives. The gemination itself (length) is not written, only the stop quality."
-    },
-    {
-      "id": "CA_GEMINATE_GL",
-      "phonemes": [
-        "ɡ"
-      ],
-      "surface": "ɡ",
-      "followed_by_phoneme": [
-        "l",
-        "ɫ"
-      ],
-      "notes": "Pre-lateral GEMINATION blocks spirantization: /b/ and /ɡ/ before a lateral geminate rather than lenite — poble [ˈpɔbːlə], regla [ˈreɡːlə], not *[ˈpɔβlə] (Wheeler 2005 §5.2, §10.2; Recasens 1993). The rule is an identity rewrite placed BEFORE the spirantization rules: first match wins, so the stop survives. The gemination itself (length) is not written, only the stop quality."
-    },
-    {
-      "id": "CA_SPIRANT_B",
-      "phonemes": [
-        "b"
-      ],
-      "surface": "β",
-      "preceded_by": "vowel",
-      "notes": "Post-vocalic spirantization (Wheeler 2005 §5.2; Recasens 1993): /b/ → the approximant [β] after a vowel — roba [ˈrɔβə], sobre [ˈsoβɾə]. Blocked word-finally, where the devoicing rules above fire first."
-    },
-    {
-      "id": "CA_SPIRANT_D",
-      "phonemes": [
-        "d"
-      ],
-      "surface": "ð",
-      "preceded_by": "vowel",
-      "notes": "Post-vocalic spirantization (Wheeler 2005 §5.2; Recasens 1993): /d/ → [ð] after a vowel (cada [ˈkaðə])."
-    },
-    {
-      "id": "CA_SPIRANT_G",
-      "phonemes": [
-        "ɡ"
-      ],
-      "surface": "ɣ",
-      "preceded_by": "vowel",
-      "notes": "Post-vocalic spirantization (Wheeler 2005 §5.2; Recasens 1993): /ɡ/ → [ɣ] after a vowel (pagar [pəˈɣa])."
-    },
-    {
-      "id": "CA_SPIRANT_GW",
-      "phonemes": [
-        "ɡw"
-      ],
-      "surface": "ɣw",
-      "preceded_by": "vowel",
-      "notes": "Post-vocalic spirantization of the ⟨gu⟩ = [ɡw] trie key (aigua [ˈajɣwə]); same rule as CA_SPIRANT_G."
-    },
-    {
-      "id": "CA_SPIRANT_GU",
-      "phonemes": [
-        "ɡu"
-      ],
-      "surface": "ɣu",
-      "preceded_by": "vowel",
-      "notes": "Post-vocalic spirantization of the ⟨gu⟩ = [ɡu] trie key before a consonant (recorregut [rəkurəˈɣut]); same rule as CA_SPIRANT_G."
-    },
-    {
-      "id": "CA_SPIRANT_B_CONT",
-      "phonemes": [
-        "b"
-      ],
-      "surface": "β",
-      "preceded_by_phoneme": [
-        "ɾ",
-        "r",
-        "l",
-        "ɫ",
-        "s",
-        "z",
-        "ʃ",
-        "ʒ",
-        "f",
-        "v",
-        "j",
-        "w",
-        "β",
-        "ð",
-        "ɣ",
-        "i",
-        "u",
-        "a",
-        "e",
-        "o",
-        "ɛ",
-        "ɔ",
-        "ə"
-      ],
-      "notes": "Post-continuant spirantization (Wheeler 2005 §5.2): /b d ɡ/ lenite to [β ð ɣ] after any continuant, not only after a vowel — arbres [ˈaɾβɾəs], serveix [sərˈβɛʃ]. Complements the post-vocalic rule; /d/ is excluded after a lateral, where it stays a stop."
-    },
-    {
-      "id": "CA_SPIRANT_G_CONT",
-      "phonemes": [
-        "ɡ"
-      ],
-      "surface": "ɣ",
-      "preceded_by_phoneme": [
-        "ɾ",
-        "r",
-        "l",
-        "ɫ",
-        "s",
-        "z",
-        "ʃ",
-        "ʒ",
-        "f",
-        "v",
-        "j",
-        "w",
-        "β",
-        "ð",
-        "ɣ",
-        "i",
-        "u",
-        "a",
-        "e",
-        "o",
-        "ɛ",
-        "ɔ",
-        "ə"
-      ],
-      "notes": "Post-continuant spirantization (Wheeler 2005 §5.2): /b d ɡ/ lenite to [β ð ɣ] after any continuant, not only after a vowel — arbres [ˈaɾβɾəs], serveix [sərˈβɛʃ]. Complements the post-vocalic rule; /d/ is excluded after a lateral, where it stays a stop."
-    },
-    {
-      "id": "CA_SPIRANT_GW_CONT",
-      "phonemes": [
-        "ɡw"
-      ],
-      "surface": "ɣw",
-      "preceded_by_phoneme": [
-        "ɾ",
-        "r",
-        "l",
-        "ɫ",
-        "s",
-        "z",
-        "ʃ",
-        "ʒ",
-        "f",
-        "v",
-        "j",
-        "w",
-        "β",
-        "ð",
-        "ɣ",
-        "i",
-        "u",
-        "a",
-        "e",
-        "o",
-        "ɛ",
-        "ɔ",
-        "ə"
-      ],
-      "notes": "Post-continuant spirantization (Wheeler 2005 §5.2): /b d ɡ/ lenite to [β ð ɣ] after any continuant, not only after a vowel — arbres [ˈaɾβɾəs], serveix [sərˈβɛʃ]. Complements the post-vocalic rule; /d/ is excluded after a lateral, where it stays a stop."
-    },
-    {
-      "id": "CA_SPIRANT_GU_CONT",
-      "phonemes": [
-        "ɡu"
-      ],
-      "surface": "ɣu",
-      "preceded_by_phoneme": [
-        "ɾ",
-        "r",
-        "l",
-        "ɫ",
-        "s",
-        "z",
-        "ʃ",
-        "ʒ",
-        "f",
-        "v",
-        "j",
-        "w",
-        "β",
-        "ð",
-        "ɣ",
-        "i",
-        "u",
-        "a",
-        "e",
-        "o",
-        "ɛ",
-        "ɔ",
-        "ə"
-      ],
-      "notes": "Post-continuant spirantization (Wheeler 2005 §5.2): /b d ɡ/ lenite to [β ð ɣ] after any continuant, not only after a vowel — arbres [ˈaɾβɾəs], serveix [sərˈβɛʃ]. Complements the post-vocalic rule; /d/ is excluded after a lateral, where it stays a stop."
-    },
-    {
-      "id": "CA_SPIRANT_D_CONT",
-      "phonemes": [
-        "d"
-      ],
-      "surface": "ð",
-      "preceded_by_phoneme": [
-        "ɾ",
-        "r",
-        "s",
-        "z",
-        "ʃ",
-        "ʒ",
-        "f",
-        "v",
-        "j",
-        "w",
-        "β",
-        "ð",
-        "ɣ"
-      ],
-      "notes": "Post-continuant spirantization of /d/ (Wheeler 2005 §5.2). Unlike /b/ and /ɡ/, /d/ does NOT lenite after a lateral (or a nasal): el dia keeps the stop."
-    },
-    {
-      "id": "CA_X_GZ",
-      "phonemes": [
-        "ks"
-      ],
-      "surface": "ɡz",
-      "preceded_by": "front_vowel",
-      "followed_by": "vowel",
-      "grapheme": [
-        "x"
-      ],
-      "notes": "⟨x⟩ in the learned prefix ex- before a vowel is the voiced cluster [ɡz] (Wheeler 2005 §5.1; IEC orthography ch. 2): examen [əɡˈzamən], exercici [əɡzərˈsisi], exacte [əɡˈzaktə]. Elsewhere between vowels ⟨x⟩ stays [ks] (màxim [ˈmaksim])."
+      "notes": "Word-final cluster simplification (Wheeler 2005 §10.4; Recasens 1993; Veny 1982 ch. 3): an ABSOLUTELY word-final stop is DELETED after a homorganic nasal or lateral — camp [ˈkam], sang [ˈsaŋ], quant [ˈkwan], molt [ˈmol]. An innovation of CENTRAL, NORTH-WESTERN and NORTHERN Catalan against the Old-Catalan core, which keeps the stop; VALENCIAN and BALEARIC keep it too (camp [ˈkamp], molt [ˈmolt]), and the 4catac expert transcriptions confirm the split on the one token that is diagnostic because a vowel follows — molt alta = Central/North-Western [ˈmol ˈalt-] vs Valencian/Balearic [ˈmolt ˈalt-]. The isogloss is therefore Central + North-Western (+ Northern) against Valencian + Balearic; it is NOT the Eastern/Western line. Overrides the core's conservative CA_CLUSTER_*_FINAL rule by id."
     }
   ],
   "stress": {
@@ -1116,6 +220,135 @@
     ],
     "notes": "Catalan accentuation per the Institut d'Estudis Catalans (IEC) norm (Gramàtica de la llengua catalana, ch. 3; Wheeler 2005 §3.1). A written accent (à è é í ò ó ú) always wins and marks the stressed vowel. Unmarked words are OXYTONE when they end in a consonant other than -s-preceded-by-a-vowel and other than -en/-in — including the consonant+s plurals (-ns, -rs, -ts, -nts, -ps …), which are oxytone because the plural preserves the stress of the singular (important → importants). A word ending in a falling DIPHTHONG (-ai -au -ei -eu -iu -oi -ou) is oxytone (remei [rəˈmɛj], correu [kuˈrɛw], avui [əˈβuj]) — the diphthong is one syllable, so the word does not end in a bare vowel. Unmarked words are PAROXYTONE when they end in a (single) vowel, in a vowel + -s (-as, -es, -is, -os, -us) or in -en/-in (semblen, parlin). The diaeresis ⟨ï ü⟩ marks hiatus/pronounced ⟨u⟩, NOT stress, so it is deliberately absent from marked_vowels (següent is [səˈɣwen], not [səˈɣwent] with stress on ⟨ü⟩). Proparoxytones always carry a written accent, so the unmarked default is paroxytone. The diphthongs list is the Catalan inventory of tautosyllabic vowel sequences (Wheeler 2005 §2.5; IEC grammar ch. 4): the falling diphthongs ⟨ai au ei eu iu oi ou ui⟩ and the rising ⟨ua ue uo ui⟩ after ⟨g/q⟩. Every other vowel sequence is HIATUS and counts as two syllables — te-ni-a, ve-ï-na, di-a — which is what puts the stress, and therefore the unstressed-vowel reduction, on the right vowel."
   },
+  "notes": "CENTRAL CATALAN (the Barcelona standard codified by the Institut d'Estudis Catalans). ⟨ca⟩ is the standard language and remains the code for 'Catalan'; what it is NOT is the parent of the other varieties — they inherit from ca-x-medieval (Old Catalan), so nothing declared here can leak into them. Everything in this file is a CENTRAL innovation against the Old-Catalan core: (1) stress-conditioned unstressed vowel reduction — unstressed /a e ɛ/ → [ə] and /o ɔ/ → [u], STRESSED vowels keeping full quality (gos [ˈɡos], dona [ˈdɔnə]) — keyed to the ⟨nucleus_unstressed⟩ slot, not to every nucleus (Wheeler 2005 §2.3); (2) betacism, ⟨v⟩ merged into /b/; (3) the fricative [ʒ] for ⟨j⟩ and ⟨g⟩ before a front vowel, where Old Catalan (and Valencian, and North-Western) has the affricate [dʒ]; (4) ⟨ix⟩ = [ʃ], the glide absorbed; (5) deletion of word-final ⟨-r⟩ (cantar [kənˈta]); and (6) deletion of an absolutely word-final stop in an ⟨-nt/-lt/-mp/-nc⟩ cluster (camp [ˈkam], molt [ˈmol]) — an innovation shared with North-Western and Northern but NOT with Valencian or Balearic. The stressed ⟨e⟩/⟨o⟩ close/open contrast is NOT recoverable from Catalan spelling (gos [ˈɡos] vs cos [ˈkɔs]); the default prior is OPEN-mid first, and the close-mid words are listed in word_exceptions.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wheeler2005",
+      "author": "Wheeler, M. W.",
+      "year": 2005,
+      "title": "The Phonology of Catalan",
+      "publisher": "Oxford University Press",
+      "url": "https://global.oup.com/academic/product/the-phonology-of-catalan-9780199258147",
+      "pages": null,
+      "notes": "The reference phonology of Catalan and the primary authority for this spec. Cited by SECTION, not page: §2.3 vowel systems and the unstressed reduction of the Eastern block (reduction is stress-conditioned; the Western block does not reduce); §2.5 the diphthong inventory; §3.1 stress and its orthographic marking; §5.1 the consonant inventory, ⟨c/g⟩ before a front vowel, ⟨x⟩ and word-final ⟨-ig⟩; §5.2 spirantization of /b d ɡ/ after a continuant and the pre-lateral gemination that blocks it; §5.3 final-obstruent devoicing and cross-word voicing assimilation; §10.2–§10.5 the post-lexical/phrase-level processes — final-rhotic loss, final-cluster simplification, nasal place assimilation and phrase-level lenition. Section numbers are given because the printed page numbers were not verified."
+    },
+    {
+      "id": "badia_i_margarit1994",
+      "author": "Badia i Margarit, A. M.",
+      "year": 1994,
+      "title": "Gramàtica de la llengua catalana: descriptiva, normativa, diatòpica, diacrònica",
+      "publisher": "Enciclopèdia Catalana",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive, normative, diatopic and diachronic grammar of Catalan; the cross-check used here for the consonant and vowel inventories, the stress rules and the dialect isoglosses. Pages not verified."
+    },
+    {
+      "id": "recasens1993",
+      "author": "Recasens, D.",
+      "year": 1993,
+      "title": "Fonètica i fonologia",
+      "publisher": "Enciclopèdia Catalana",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive phonetics of Central Catalan: nasal place assimilation (labial before /p b m f/, velar before /k ɡ/, palato-alveolar before /ʃ ʒ tʃ dʒ ʎ/), spirantization and final-obstruent devoicing. Pages not verified."
+    },
+    {
+      "id": "recasens1996",
+      "author": "Recasens, D.",
+      "year": 1996,
+      "title": "Fonètica descriptiva del català: assaig de caracterització de la pronúncia del vocalisme i consonantisme del català al segle XX",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": null,
+      "pages": null,
+      "notes": "The descriptive survey of Catalan vowels and consonants across the dialects: the Western block (Valencian, North-Western) does not reduce unstressed vowels; Balearic reduces ⟨a⟩/⟨e⟩ to [ə] but does NOT raise unstressed ⟨o⟩ to [u]; the North-Western word-final ⟨-a⟩ = [ɛ]. Pages not verified."
+    },
+    {
+      "id": "iec2016",
+      "author": "Institut d'Estudis Catalans",
+      "year": 2016,
+      "title": "Gramàtica de la llengua catalana",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": "https://giec.iec.cat/",
+      "pages": null,
+      "notes": "The normative grammar. Ch. 3 (l'accent) is the source for the stress block: the written accent marks the stressed vowel and always wins; unmarked words ending in a vowel, a vowel+⟨-s⟩ or ⟨-en/-in⟩ are paroxytone and all other endings — including the consonant+⟨s⟩ plurals — are oxytone; the diaeresis ⟨ï ü⟩ marks hiatus, not stress. §6.2 and the 'mots àtons' list are the source for the clitic function words (articles, contractions, atonic prepositions/conjunctions and weak pronouns) that carry no stress and therefore reduce. Cited by chapter; pages not verified."
+    },
+    {
+      "id": "veny1982",
+      "author": "Veny, J.",
+      "year": 1982,
+      "title": "Els parlars catalans: síntesi de dialectologia",
+      "publisher": "Editorial Moll",
+      "url": null,
+      "pages": null,
+      "notes": "The standard dialectology of Catalan and the source for the isoglosses this spec encodes per dialect: final ⟨-r⟩ retained in Valencian and deleted in the rest; final-cluster simplification after a nasal everywhere but after a lateral only in the Eastern block; Western [tʃ] for initial ⟨x⟩ and [jʃ] for ⟨ix⟩; the lleidatà final ⟨-a⟩ = [ɛ]. Pages not verified."
+    },
+    {
+      "id": "dcvb",
+      "author": "Alcover, A. M. & Moll, F. de B.",
+      "year": 1962,
+      "title": "Diccionari català-valencià-balear",
+      "publisher": "Editorial Moll",
+      "url": "https://dcvb.iec.cat/",
+      "pages": null,
+      "notes": "The dialectal dictionary of Catalan; it records the pronunciation of each headword per dialect and is the authority for the lexical stressed-mid-vowel entries in word_exceptions (gos, tot, dos, molt are close-mid [o]; cos, pont, font, tres are open-mid). Catalan spelling does not mark the ⟨e⟩/⟨o⟩ close/open contrast in unaccented syllables, so this contrast is lexical and can only be listed, not derived. Cited by headword; the dictionary is not paginated online."
+    },
+    {
+      "id": "wiktionary_ca",
+      "author": "Wiktionary contributors",
+      "year": 2026,
+      "title": "Wiktionary, the free dictionary — Catalan entries",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wiktionary.org/wiki/Category:Catalan_lemmas",
+      "pages": null,
+      "notes": "Per-dialect IPA transcriptions (Central / Valencian / North-Western / Balearic / Northern) for the individual headwords listed in word_exceptions; each entry there cites GDLC, DNV or DCVB. Used as a convenience cross-check on the DCVB, never as a primary source."
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": "Cross-linguistic phonetic reference for the segment inventory symbols used here."
+    },
+    {
+      "id": "wikipedia_catalan_phonology",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Catalan phonology (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Catalan_phonology",
+      "pages": null,
+      "notes": "Accessible overview of the vowel and consonant inventories, the Eastern/Western reduction split, spirantization, final devoicing and final-cluster simplification; useful as a cross-check on the primary sources above."
+    },
+    {
+      "id": "wikipedia_catalan_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Catalan orthography (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Catalan_orthography",
+      "pages": null,
+      "notes": "Accessible overview of the grapheme→sound correspondences encoded in the graphemes table: ⟨ll⟩, ⟨ny⟩, ⟨l·l⟩, ⟨tx⟩, ⟨tg/tj⟩, ⟨ix⟩, word-final ⟨-ig⟩, ⟨ç⟩, ⟨qu/gu⟩ and the diaeresis."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Catalan_language",
+    "https://ca.wikipedia.org/wiki/Català",
+    "https://ca.wikipedia.org/wiki/Catal%C3%A0",
+    "https://es.wikipedia.org/wiki/Idioma_catal%C3%A1n",
+    "https://en.wikipedia.org/wiki/Catalan_phonology",
+    "https://en.wikipedia.org/wiki/Catalan_orthography"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "stan1289",
+  "iso639_3": "cat",
   "wikidata_qid": "Q7026",
   "phoible_id": "stan1289",
   "wals_code": "ctl",
@@ -1125,137 +358,23 @@
     "source": "glottolog",
     "notes": "Glottolog's representative point for Catalan."
   },
-  "sandhi_rules": [
-    {
-      "id": "CA_FINAL_PS_VOICING",
-      "name": "final-ps-voicing",
-      "left_context": "ps$",
-      "right_context": "^[ˈˌ]?[aeiouəɛɔɐbdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "bz",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices."
-    },
-    {
-      "id": "CA_FINAL_TS_VOICING",
-      "name": "final-ts-voicing",
-      "left_context": "ts$",
-      "right_context": "^[ˈˌ]?[aeiouəɛɔɐbdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "dz",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices."
-    },
-    {
-      "id": "CA_FINAL_KS_VOICING",
-      "name": "final-ks-voicing",
-      "left_context": "ks$",
-      "right_context": "^[ˈˌ]?[aeiouəɛɔɐbdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "ɡz",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices."
-    },
-    {
-      "id": "CA_FINAL_S_VOICING",
-      "name": "final-s-voicing",
-      "left_context": "s$",
-      "right_context": "^[ˈˌ]?[aeiouəɛɔɐbdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "z",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices."
-    },
-    {
-      "id": "CA_FINAL_TSH_VOICING",
-      "name": "final-affricate-voicing",
-      "left_context": "tʃ$",
-      "right_context": "^[ˈˌ]?[aeiouəɛɔɐbdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "dʒ",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices."
-    },
-    {
-      "id": "CA_FINAL_SH_VOICING",
-      "name": "final-sh-voicing",
-      "left_context": "ʃ$",
-      "right_context": "^[ˈˌ]?[aeiouəɛɔɐbdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "ʒ",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices."
-    },
-    {
-      "id": "CA_FINAL_T_VOICING",
-      "name": "final-t-voicing",
-      "left_context": "t$",
-      "right_context": "^[ˈˌ]?[bdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "d",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices. A single word-final STOP voices only before a voiced CONSONANT — before a vowel it stays voiceless (poc a poc [ˈpɔk ə ˈpɔk], soc un [ˈsɔk un]), unlike a sibilant, which voices before a vowel too."
-    },
-    {
-      "id": "CA_FINAL_P_VOICING",
-      "name": "final-p-voicing",
-      "left_context": "p$",
-      "right_context": "^[ˈˌ]?[bdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "b",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices. A single word-final STOP voices only before a voiced CONSONANT — before a vowel it stays voiceless (poc a poc [ˈpɔk ə ˈpɔk], soc un [ˈsɔk un]), unlike a sibilant, which voices before a vowel too."
-    },
-    {
-      "id": "CA_FINAL_K_VOICING",
-      "name": "final-k-voicing",
-      "left_context": "k$",
-      "right_context": "^[ˈˌ]?[bdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "ɡ",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices. A single word-final STOP voices only before a voiced CONSONANT — before a vowel it stays voiceless (poc a poc [ˈpɔk ə ˈpɔk], soc un [ˈsɔk un]), unlike a sibilant, which voices before a vowel too."
-    },
-    {
-      "id": "CA_FINAL_F_VOICING",
-      "name": "final-f-voicing",
-      "left_context": "f$",
-      "right_context": "^[ˈˌ]?[bdɡβðɣvzʒmnɲŋlʎɫɾrjw]",
-      "transform": "v",
-      "obligatory": true,
-      "notes": "External (cross-word) VOICING ASSIMILATION of a word-final obstruent: Catalan word-final obstruents are voiceless in isolation and before a voiceless segment, but voice before a following vowel or voiced consonant inside the phonological phrase (Wheeler 2005 §5.3, §10.5; Recasens 1993): els amics [əlz əˈmiks], coses importants [ˈkɔzəz impurˈtans], cops havíem [ˈkɔbz əˈβiəm], vaig obrir [ˈbadʒ uˈβɾi]. Longer clusters are listed first so the whole cluster voices. A single word-final STOP voices only before a voiced CONSONANT — before a vowel it stays voiceless (poc a poc [ˈpɔk ə ˈpɔk], soc un [ˈsɔk un]), unlike a sibilant, which voices before a vowel too."
-    },
-    {
-      "id": "CA_EXT_SPIRANT_B",
-      "name": "external-spirantization-b",
-      "left_context": "[aeiouəɛɔiuwjszʃʒfvβðɣɾrlɫ]$",
-      "right_context": "^([ˈˌ]?)b",
-      "right_transform": "\\1β",
-      "obligatory": true,
-      "notes": "PHRASE-LEVEL (cross-word) SPIRANTIZATION: Catalan lenition of /b d ɡ/ is not word-bounded — inside a phonological phrase an initial /b d ɡ/ surfaces as the approximant [β ð ɣ] whenever the preceding word ends in a continuant (a vowel, glide, liquid or fricative), and stays a stop after a pause, a nasal or another stop (Wheeler 2005 §5.2, §10.5; Recasens 1993): la seva germana [lə ˈseβə ʒərˈmanə], de decidir [ðə ðəsiˈði], es va [əz ˈβa] — but un glop [uŋ ˈɡlɔp] keeps the stop after the nasal. /d/ additionally resists lenition after a lateral, so its left context excludes ⟨l⟩."
-    },
-    {
-      "id": "CA_EXT_SPIRANT_G",
-      "name": "external-spirantization-g",
-      "left_context": "[aeiouəɛɔiuwjszʃʒfvβðɣɾrlɫ]$",
-      "right_context": "^([ˈˌ]?)ɡ",
-      "right_transform": "\\1ɣ",
-      "obligatory": true,
-      "notes": "PHRASE-LEVEL (cross-word) SPIRANTIZATION: Catalan lenition of /b d ɡ/ is not word-bounded — inside a phonological phrase an initial /b d ɡ/ surfaces as the approximant [β ð ɣ] whenever the preceding word ends in a continuant (a vowel, glide, liquid or fricative), and stays a stop after a pause, a nasal or another stop (Wheeler 2005 §5.2, §10.5; Recasens 1993): la seva germana [lə ˈseβə ʒərˈmanə], de decidir [ðə ðəsiˈði], es va [əz ˈβa] — but un glop [uŋ ˈɡlɔp] keeps the stop after the nasal. /d/ additionally resists lenition after a lateral, so its left context excludes ⟨l⟩."
-    },
-    {
-      "id": "CA_EXT_SPIRANT_D",
-      "name": "external-spirantization-d",
-      "left_context": "[aeiouəɛɔiuwjszʃʒfvβðɣɾr]$",
-      "right_context": "^([ˈˌ]?)d",
-      "right_transform": "\\1ð",
-      "obligatory": true,
-      "notes": "PHRASE-LEVEL (cross-word) SPIRANTIZATION: Catalan lenition of /b d ɡ/ is not word-bounded — inside a phonological phrase an initial /b d ɡ/ surfaces as the approximant [β ð ɣ] whenever the preceding word ends in a continuant (a vowel, glide, liquid or fricative), and stays a stop after a pause, a nasal or another stop (Wheeler 2005 §5.2, §10.5; Recasens 1993): la seva germana [lə ˈseβə ʒərˈmanə], de decidir [ðə ðəsiˈði], es va [əz ˈβa] — but un glop [uŋ ˈɡlɔp] keeps the stop after the nasal. /d/ additionally resists lenition after a lateral, so its left context excludes ⟨l⟩."
-    }
-  ],
   "word_exceptions": {
     "a": "ə",
     "al": "əl",
     "als": "əls",
     "amb": "əm",
+    "amor": "əmo",
     "car": "kar",
+    "carrer": "kəre",
+    "carrers": "kəres",
     "clar": "klar",
     "cor": "kɔr",
+    "cotxe": "kotʃə",
     "d": "d",
     "de": "də",
     "del": "dəl",
     "dels": "dəls",
+    "dos": "dos",
     "dur": "dur",
     "el": "əl",
     "els": "əls",
@@ -1266,7 +385,8 @@
     "es": "əs",
     "et": "ət",
     "far": "far",
-    "flor": "flɔr",
+    "gener": "ʒəne",
+    "gos": "ɡos",
     "hi": "i",
     "ho": "u",
     "i": "i",
@@ -1278,6 +398,8 @@
     "m": "m",
     "mar": "mar",
     "me": "mə",
+    "molt": "mol",
+    "molts": "mols",
     "n": "n",
     "ne": "nə",
     "ni": "ni",
@@ -1287,16 +409,19 @@
     "pel": "pəl",
     "pels": "pəls",
     "per": "pər",
-    "por": "por",
     "pur": "pur",
     "que": "kə",
+    "rei": "rej",
     "s": "s",
     "se": "sə",
-    "sur": "sur",
+    "seva": "seβə",
     "són": "son",
     "t": "t",
     "te": "tə",
+    "temps": "tems",
     "tir": "tir",
+    "tot": "tot",
+    "tots": "tots",
     "us": "us",
     "és": "es"
   }

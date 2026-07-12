@@ -753,8 +753,10 @@ class TestCatalanNord:
         """o allophone includes u — vowel raising."""
         _assert_contains(_allophone(self.spec, "o"), "u", label="o allophone")
 
-    def test_parent_is_ca(self):
-        assert self.spec.parent == "ca"
+    def test_parent_is_old_catalan(self):
+        """The dialects descend from Old Catalan, not from modern Central
+        Catalan — nothing Central innovates can leak into them."""
+        assert self.spec.parent == "ca-x-medieval"
 
 
 @pytest.mark.iberian
@@ -788,8 +790,10 @@ class TestCatalanOccidental:
         assert orthography2ipa.transcribe("casa", "ca-x-occidental") == "ˈkazɛ"
         assert orthography2ipa.transcribe("casa", "ca-x-valencia") == "ˈkaza"
 
-    def test_parent_is_ca(self):
-        assert self.spec.parent == "ca"
+    def test_parent_is_old_catalan(self):
+        """The dialects descend from Old Catalan, not from modern Central
+        Catalan — nothing Central innovates can leak into them."""
+        assert self.spec.parent == "ca-x-medieval"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

@@ -583,11 +583,16 @@ class SandhiRule:
         Replacement pattern substituted for the ``right_context`` match in the
         RIGHT word. ``None`` (the default) leaves the right word untouched, so
         a rule that declares only ``transform`` behaves exactly as it always
-        has. This is the mirror of :attr:`transform` and is what regressive
-        (right-conditioned) sandhi needs: Catalan phrase-level spirantization
-        lenites the *following* word's initial /b d ɡ/ after a continuant
-        (``de`` → [ðə] in ``la seva germana … de decidir``), and the same
-        shape covers Spanish/Galician phrase-level lenition.
+        has. This is the mirror of :attr:`transform`: it is what a rule needs
+        when the TARGET of the change is the right word, whatever conditions
+        it. Catalan phrase-level spirantization is the case in point — a
+        PROGRESSIVE (left-conditioned) process, continuant-spreading rightwards
+        across the boundary: the *following* word's initial /b d ɡ/ lenites
+        because the *preceding* word ends in a continuant (``de`` → [ðə] in
+        ``la seva germana … de decidir``). The same shape covers
+        Spanish/Galician phrase-level lenition. Nothing in the field is tied to
+        the direction of conditioning: a genuinely regressive rule (right
+        context conditioning the left word) is expressed with ``transform``.
 
         A single boundary may need both halves (``els dos`` → [əlz ðos]:
         the left ⟨s⟩ voices *and* the right ⟨d⟩ lenites), so the two sides are
