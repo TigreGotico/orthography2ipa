@@ -942,10 +942,15 @@ class TestDanish:
         """<nk> → /ŋk/ in Danish (e.g., *bank*, *tanke*)."""
         _assert_first(_grapheme(self._spec, "nk"), "ŋk", label="da nk")
 
-    def test_sk_and_sj_palatal(self):
-        """<sk>/<sj> before front vowels → /ɕ/ in Danish (palatal sibilant)."""
-        g_sk = _grapheme(self._spec, "sk")
-        _assert_contains(g_sk, "ɕ", label="da sk includes ɕ")
+    def test_sk_unaspirated_cluster(self):
+        """<sk> → /sɡ/ in Danish (*skole* [sɡoːlə]).
+
+        Danish does not palatalise ⟨sk⟩ before front vowels (unlike Swedish
+        ⟨sk⟩ → [ɧ] and Norwegian ⟨sk⟩ → [ʃ]): the stop simply loses its
+        aspiration after /s/ and is written with the lenis symbol
+        (Grønnum 2005). Palatal [ɕ] in Danish comes from ⟨sj⟩/⟨tj⟩/⟨kj⟩.
+        """
+        _assert_first(_grapheme(self._spec, "sk"), "sɡ", label="da sk")
 
     def test_kj_palatal(self):
         """<kj> → /ɕ/ in Danish (e.g., *kær*, *kærlighed* via kj- spelling)."""
