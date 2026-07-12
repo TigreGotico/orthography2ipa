@@ -8,12 +8,17 @@ Validates:
   else may not
 """
 import json
+import os
 import pathlib
+import sys
 
 import pytest
 
 from orthography2ipa import get
 from orthography2ipa.types import QualityTier
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+from benchmark import can_gate_promotion  # noqa: E402
 
 DATA_DIR = (pathlib.Path(__file__).parent.parent
             / "orthography2ipa" / "data")
@@ -63,6 +68,15 @@ RESULTS_JSON = (pathlib.Path(__file__).parent.parent
                  / "benchmarks" / "results.json")
 
 
+def _gate_eligible(tier) -> bool:
+    if not isinstance(tier, str):
+        return False
+    try:
+        return can_gate_promotion(tier)
+    except ValueError:
+        return False
+
+
 def _benchmark_rows():
     if not RESULTS_JSON.exists():
         return []
@@ -91,11 +105,29 @@ def test_production_tier_has_qualifying_benchmark(code):
         return
 
     rows = _benchmark_rows()
+
+    def _matches(row_lang: str) -> bool:
+        # docs/quality_tiers.md: the gold may be registered under "one of
+        # the spec's language tags" — benchmark rows record the tag the
+        # dataset was registered with (wikipron "es"), which the registry
+        # resolves to the reference variety's spec ("es-ES"). Resolve the
+        # row tag the same way the engine would before comparing.
+        if row_lang == spec.code:
+            return True
+        try:
+            return get(row_lang).code == spec.code
+        except Exception:
+            return False
+
     qualifying = [
         row for row in rows
-        if row.get("lang") == spec.code
+        if _matches(row.get("lang", ""))
         and row.get("n", 0) >= _PRODUCTION_MIN_N
         and row.get("per", 1.0) <= _PRODUCTION_DEEP_PER_CEILING
+        # a row on a competitor-derived or LLM tier can never qualify a
+        # promotion (docs/quality_tiers.md); rows without a provenance
+        # field predate the tier system and cannot vouch either
+        and _gate_eligible(row.get("provenance"))
     ]
     assert qualifying, (
         f"{code} claims production tier but has no benchmarks/results.json "

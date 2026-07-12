@@ -52,6 +52,8 @@ each tier actually certifies.
 | Doc | Languages covered |
 |:---|:---|
 | [romance.md](romance.md) | es-ES, fr-FR, it-IT, pt-PT, pt-BR, ca, ro-RO (comparative) |
+| [es-ES.md](es-ES.md) | Castilian Spanish in detail — **production tier** (shallow, ≤0.15) |
+| [ro-RO.md](ro-RO.md) | Romanian in detail — **production tier** (shallow, ≤0.15; documented stress exemption) |
 | [fr-FR.md](fr-FR.md) | French in detail |
 | [it-IT.md](it-IT.md) | Italian in detail |
 | [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
@@ -139,7 +141,19 @@ phonology claimed (the `afa.json` pattern).
 
 | Doc | Languages covered |
 |:---|:---|
-| [eu.md](eu.md) | Basque (Euskara Batua) and its dialects: Biscayan, Gipuzkoan, Upper & Lower Navarrese, Lapurdian, Souletin, and the extinct Roncalese — sibilant systems, aspiration, Souletin /y/ and nasal vowels |
+| [eu.md](eu.md) | Basque (Euskara Batua) and its dialects: Biscayan, Gipuzkoan, Upper & Lower Navarrese, Lapurdian, Souletin, and the extinct Roncalese — sibilant systems, aspiration, Souletin /y/ and nasal vowels — **production tier** (shallow, ≤0.15) |
+
+### Uralic
+
+| Doc | Languages covered |
+|:---|:---|
+| [fi.md](fi.md) | Finnish in detail — **production tier** (shallow, ≤0.15) |
+
+### Constructed
+
+| Doc | Languages covered |
+|:---|:---|
+| [eo.md](eo.md) | Esperanto in detail — **production tier** (shallow, ≤0.15) |
 
 If the language you need isn't in any table above, it doesn't have a
 prose page yet — go straight to its JSON spec via `orthography2ipa.get(code)`

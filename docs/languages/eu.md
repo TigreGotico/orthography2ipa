@@ -171,4 +171,26 @@ dialects score `0.81`. Because the corrections above touch mostly
 
 ---
 
+## Production tier: orthographic depth, threshold, and benchmark
+
+**Shallow (phonemic) orthography — the ≤ 0.15 PER production threshold
+applies** ([quality tiers](../quality_tiers.md)). Euskara Batua spelling
+is regular; the palatalization conventions (⟨tt⟩, ⟨dd⟩, ⟨ñ⟩) and
+affricate digraphs (⟨tz⟩, ⟨ts⟩, ⟨tx⟩) are closed, encodable rules.
+
+| dataset | provenance | n | PER |
+|---|---|---:|---:|
+| `wikipron` | crowd-scraped (gate-eligible) | 12 010 | **0.0391** |
+| `ipa_childes` | espeak-derived (cannot gate/block) | 3 969 | 0.1297 |
+| `hitz_basque_ipa` | machine-generated (cannot certify) | 3 113 | 0.2089 |
+
+The qualifying row is `wikipron`, far below the shallow threshold. The
+`hitz_basque_ipa` gap is documented in that dataset's own provenance
+note (tool-generated transcriptions in the StyleTTS2 convention), not a
+spec regression.
+
+Known engine-limit notes: Basque accent is dialect-variable and never
+written (see the spec's documented stress exemption); no stress marks
+are emitted.
+
 **Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
