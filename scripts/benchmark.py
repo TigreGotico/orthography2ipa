@@ -9,16 +9,13 @@ datasets, their sources and the methodology are documented in
 
 Usage::
 
-    python scripts/benchmark.py --dataset portuguese_lexicon --lang pt-PT
+    python scripts/benchmark.py --dataset portuguese_phonetic_lexicon --lang pt-PT
     python scripts/benchmark.py --dataset wikipron --lang gl --broad
     python scripts/benchmark.py --dataset mirandese_g2p --lang mwl
     python scripts/benchmark.py --list
 
 Dataset access:
 
-- ``portuguese_lexicon`` needs the ``tugalex`` package
-  (https://github.com/TigreGotico/tugalex), which wraps the
-  TigreGotico/portuguese_phonetic_lexicon dataset on Hugging Face.
 - ``cmudict`` needs the ``scriptconv`` package for ARPABET→IPA.
 - ``wikipron`` and ``mirandese_g2p`` download TSVs directly (stdlib only).
 - ``infopedia_pt`` downloads a JSONL gold file directly and samples it with
@@ -712,22 +709,6 @@ def _fetch(url: str, name: str) -> str:
 
 # ─── dataset loaders ────────────────────────────────────────────────────────
 
-def load_portuguese_lexicon(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """Portal da Língua Portuguesa lexicon, one region per language tag.
-
-    Loaded through ``tugalex``; the underlying data is the
-    TigreGotico/portuguese_phonetic_lexicon dataset on Hugging Face
-    (~617k entries scraped from the INESC-ID Portal da Língua
-    Portuguesa, with per-region IPA).
-    """
-    from tugalex import TugaLexicon  # https://github.com/TigreGotico/tugalex
-
-    lex = TugaLexicon()
-    region = lex.lang_to_region(lang)
-    ipa_map = lex.get_ipa_map(region=region)
-    return list(ipa_map.items())[:limit]
-
-
 def load_wikipron(lang: str, limit: int) -> List[Tuple[str, str]]:
     """WikiPron broad transcriptions (community-curated Wiktionary IPA)."""
     fname = _WIKIPRON_FILES[lang]
@@ -888,9 +869,8 @@ def load_portuguese_phonetic_lexicon(lang: str, limit: int) -> List[Tuple[str, s
     (TigreGotico/portuguese_phonetic_lexicon on Hugging Face, ~617k rows).
 
     Scraped from the public Portal da Língua Portuguesa (INESC-ID). This is a
-    DIRECT stdlib CSV loader (columns ``word,phones,postag,region_code,…``),
-    independent of the ``tugalex`` wrapper used by ``portuguese_lexicon``; it
-    lets the Lusophone family (``pt-PT``/``pt-BR``/``pt-AO``/``pt-MZ``/``pt-TL``)
+    DIRECT stdlib CSV loader (columns ``word,phones,postag,region_code,…``);
+    it lets the Lusophone family (``pt-PT``/``pt-BR``/``pt-AO``/``pt-MZ``/``pt-TL``)
     be scored with no extra package installed. See ``_PT_LEXICON_REGIONS`` for
     the spec→region_code mapping and the skipped register variants.
 
@@ -1237,8 +1217,6 @@ _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 
 DATASETS = {
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
-    "portuguese_lexicon": (load_portuguese_lexicon,
-                           ["pt-PT", "pt-BR", "pt-AO", "pt-MZ", "pt-TL"]),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
@@ -1354,7 +1332,6 @@ PROVENANCE: Dict[str, str] = {
     "4catac": "expert-human",            # expert annotators, IEC guidelines, consensus review
     "clup_dialect": "expert-human",      # U.Porto CLUP dialect archive; see note (IPA-column provenance undocumented, many rows n=1-17)
     # human lexicographers via dictionary notation conventions
-    "portuguese_lexicon": "lexicon-derived",  # Portal da Língua Portuguesa (tugalex)
     "infopedia_pt": "lexicon-derived",        # Infopédia (Porto Editora) dictionary extraction
     "cmudict": "lexicon-derived",             # CMU hand-curated ARPABET, mechanically mapped to IPA
     # ipa-dict is MIXED-PROVENANCE and is classified PER LANGUAGE in

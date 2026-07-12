@@ -118,7 +118,7 @@ LANGS: Dict[str, dict] = {
     "es": {"dataset": ("wikipron", "es"), "espeak": "es",
            "epitran": "spa-Latn", "gruut": "es",
            "ahotts": {"lang": "es", "version": "classic"}},
-    "pt-PT": {"dataset": ("portuguese_lexicon", "pt-PT"), "espeak": "pt",
+    "pt-PT": {"dataset": ("portuguese_phonetic_lexicon", "pt-PT"), "espeak": "pt",
               "epitran": "por-Latn", "gruut": "pt"},
     "fr": {"dataset": ("wikipron", "fr"), "espeak": "fr-fr",
            "epitran": "fra-Latn", "gruut": "fr"},

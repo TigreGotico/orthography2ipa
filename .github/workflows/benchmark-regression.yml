@@ -49,16 +49,14 @@ jobs:
         # This job only reliably gates the self-contained gold datasets:
         # wikipron, mirandese and ipadict fetch their TSVs directly over
         # plain HTTP (stdlib urllib, no credentials), and ep_dialects is
-        # bundled in tests/data/. portuguese_lexicon (needs the
-        # TigreGotico-internal `tugalex` package) and cmudict (needs the
-        # TigreGotico-internal `scriptconv` package) are not installed
-        # here; scripts/benchmark.py's build_scoreboard() already
-        # catches their ImportError and skips them, and
-        # check_benchmark_regression.py treats a baseline row that
-        # wasn't reproduced this run as "missing" (noted, not a
-        # regression) rather than failing the job. Those two datasets
-        # are effectively best-effort/manual until their loaders are
-        # made CI-installable.
+        # bundled in tests/data/. cmudict (needs the TigreGotico-internal
+        # `scriptconv` package) is not installed here;
+        # scripts/benchmark.py's build_scoreboard() already catches its
+        # ImportError and skips it, and check_benchmark_regression.py
+        # treats a baseline row that wasn't reproduced this run as
+        # "missing" (noted, not a regression) rather than failing the
+        # job. That dataset is effectively best-effort/manual until its
+        # loader is made CI-installable.
         #
         # epsilon=0.005 (absolute PER worsening) is the default: tight
         # enough to catch a real grapheme/allophone regression, loose

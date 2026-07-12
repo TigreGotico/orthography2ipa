@@ -333,8 +333,8 @@ differs from its parent. The full field list is in
 
 ## Benchmarks
 
-The engine is evaluated against the best gold sets available — the Portal da
-Língua Portuguesa lexicon (via [tugalex](https://github.com/TigreGotico/tugalex)),
+The engine is evaluated against the best gold sets available — the
+[Portal da Língua Portuguesa lexicon](https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon),
 WikiPron, Infopédia, CMUdict, the Mirandese gold set, 4CatAc and others. The
 published [scoreboard](docs/scoreboard.md) scores the **entire** gold set of every
 registered dataset/language pair — no cap — so each row's `N` is the real number of
