@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.1a1...3.1.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmark\): Arabic gold with tashkeel restored [\#324](https://github.com/TigreGotico/orthography2ipa/pull/324) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.0.1a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.1a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.0a2...3.0.1a1)
@@ -685,10 +693,6 @@
 ## [1.30.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.30.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.29.0a1...1.30.0a1)
-
-**Merged pull requests:**
-
-- feat\(phonetok\): apply positional graphemes in beam search [\#137](https://github.com/TigreGotico/orthography2ipa/pull/137) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.29.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.29.0a1) (2026-07-10)
 
