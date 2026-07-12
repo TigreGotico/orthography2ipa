@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.82.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.82.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.81.0a1...1.82.0a1)
+
+**Merged pull requests:**
+
+- feat: state the phoneme inventory directly, independent of the orthography [\#287](https://github.com/TigreGotico/orthography2ipa/pull/287) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.81.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.81.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.80.0a1...1.81.0a1)
@@ -701,10 +709,6 @@
 ## [1.18.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.18.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.17.0a1...1.18.0a1)
-
-**Merged pull requests:**
-
-- feat: add CLUP dialect archive benchmark data [\#96](https://github.com/TigreGotico/orthography2ipa/pull/96) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.17.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.17.0a1) (2026-07-09)
 
