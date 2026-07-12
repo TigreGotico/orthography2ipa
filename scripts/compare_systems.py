@@ -511,7 +511,13 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
     for word in words:
         golds = refs[word]
         try:
-            o2i_rows.append((engine.transcribe_word(word), golds))
+            # Sentence-level gold entries (4catac) go through the
+            # utterance API so cross-word sandhi and per-word dispatch
+            # apply — the same multiword rule benchmark.evaluate_words
+            # uses; transcribe_word on a whole sentence mis-scores it.
+            transcribe = (engine.transcribe if len(word.split()) > 1
+                          else engine.transcribe_word)
+            o2i_rows.append((transcribe(word), golds))
         except Exception:
             o2i_rows.append((None, golds))
 

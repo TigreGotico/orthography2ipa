@@ -654,3 +654,38 @@ class TestEspeakBatchTranscribe:
         out = cs.espeak_batch_transcribe(["a", "b", "c"], "es")
         assert inputs == [["a", "b"], ["c"]]
         assert out == {"a": "ipa-a", "b": "ipa-b", "c": "ipa-c"}
+
+
+class TestMultiwordDispatch:
+    """Sentence-level gold (4catac) must go through the utterance API —
+    the same rule benchmark.evaluate_words applies since the sentence
+    datasets were mis-scored by the word-level call."""
+
+    def test_multiword_entry_uses_transcribe(self, monkeypatch):
+        calls = {}
+
+        class FakeG2P:
+            def __init__(self, lang): pass
+            def transcribe(self, s):
+                calls.setdefault("transcribe", []).append(s)
+                return "ipa"
+            def transcribe_word(self, w):
+                calls.setdefault("transcribe_word", []).append(w)
+                return "ipa"
+
+        import orthography2ipa
+        monkeypatch.setattr(orthography2ipa, "G2P", FakeG2P)
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake": (lambda lang, limit: [("una frase curta", "ipa"),
+                                           ("mot", "ipa")], ["xx"])})
+        monkeypatch.setitem(
+            cs.LANGS, "xx",
+            {"dataset": ("fake", "xx"), "espeak": None,
+             "epitran": None, "gruut": None})
+        try:
+            cs.compare_lang("xx", 10)
+        finally:
+            cs.LANGS.pop("xx", None)
+        assert calls["transcribe"] == ["una frase curta"]
+        assert calls["transcribe_word"] == ["mot"]

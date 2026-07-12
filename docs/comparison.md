@@ -29,10 +29,10 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 
 | Lang | Dataset | N | o2i PER | espeak PER | epitran PER | gruut PER | pycotovia PER | ahotts-g2p PER |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| ca | 4catac | 160 | 0.2495 | 0.0451 | 0.4673 | n/a | n/a | n/a |
-| ca-x-balear | 4catac | 160 | 0.2726 | 0.0817 | 0.5025 | n/a | n/a | n/a |
-| ca-x-occidental | 4catac | 160 | 0.1798 | 0.0588 | 0.4403 | n/a | n/a | n/a |
-| ca-x-valencia | 4catac | 160 | 0.1302 | 0.0515 | 0.3820 | n/a | n/a | n/a |
+| ca | 4catac | 160 | 0.1054 | 0.0451 | 0.4673 | n/a | n/a | n/a |
+| ca-x-balear | 4catac | 160 | 0.1927 | 0.0817 | 0.5025 | n/a | n/a | n/a |
+| ca-x-occidental | 4catac | 160 | 0.1204 | 0.0588 | 0.4403 | n/a | n/a | n/a |
+| ca-x-valencia | 4catac | 160 | 0.0946 | 0.0515 | 0.3820 | n/a | n/a | n/a |
 | cy | wikipron | 14486 | 0.2153 | 0.2976 | 0.2228 | n/a | n/a | n/a |
 | de | wikipron | 53011 | 0.3265 | 0.2381 | 0.3083 | n/a | n/a | n/a |
 | el | wikipron | 19108 | 0.1318 | 0.0797 | n/a | n/a | n/a | n/a |
@@ -64,7 +64,7 @@ All three BSC dialect voices (`ca-ba`, `ca-nw`, `ca-va`) were found on this mach
 
 | Dialect | o2i spec | espeak voice | N | o2i PER | espeak PER |
 |---|---|---|---:|---:|---:|
-| central | ca | ca | 160 | 0.2495 | 0.0451 |
-| balear | ca-x-balear | ca-ba | 160 | 0.2726 | 0.0817 |
-| valencian | ca-x-valencia | ca-va | 160 | 0.1302 | 0.0515 |
-| occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.1798 | 0.0588 |
+| central | ca | ca | 160 | 0.1054 | 0.0451 |
+| balear | ca-x-balear | ca-ba | 160 | 0.1927 | 0.0817 |
+| valencian | ca-x-valencia | ca-va | 160 | 0.0946 | 0.0515 |
+| occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.1204 | 0.0588 |
