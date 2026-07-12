@@ -63,6 +63,8 @@ from typing import Dict, List, Optional, Tuple
 # script from a checkout measures THAT checkout
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from orthography2ipa.vowels import is_ipa_vowel  # noqa: E402
+
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".benchmark_cache")
 
@@ -1461,6 +1463,34 @@ def provenance_for(dataset: str, lang: str) -> str:
 
 # ─── metric ─────────────────────────────────────────────────────────────────
 
+#: Affricates whose long form doubles the FIRST element in doubled-letter
+#: notation (Italian convention): [tʃː] and [ttʃ] are the same phoneme.
+_AFFRICATE_LENGTH = {
+    "tʃː": "ttʃ", "dʒː": "ddʒ", "tsː": "tts", "dzː": "ddz",
+    "tɕː": "ttɕ", "dʑː": "ddʑ", "tʂː": "ttʂ", "dʐː": "ddʐ",
+}
+
+
+def _expand_consonant_length(s: str) -> str:
+    """Canonicalize CONSONANT length to doubled-letter notation.
+
+    [lː] and [ll] are the same phoneme string — two transcription
+    conventions, not two pronunciations — so both sides score in one
+    notation. Affricates double their first element ([tʃː] → [ttʃ]).
+    VOWEL length is untouched: it is phonemic and single-notation
+    (Finnish [aː] never appears as [aa] in the wired gold sets).
+    """
+    for long, doubled in _AFFRICATE_LENGTH.items():
+        s = s.replace(long, doubled)
+    out = []
+    for i, ch in enumerate(s):
+        if ch == "ː" and i > 0 and not is_ipa_vowel(s[i - 1]):
+            out.append(s[i - 1])
+        else:
+            out.append(ch)
+    return "".join(out)
+
+
 def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
     s = unicodedata.normalize("NFC", ipa)
     if strip_stress:
@@ -1473,6 +1503,7 @@ def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
         s = s.replace(ch, "")
     for ch in _TIE_BARS:
         s = s.replace(ch, "")
+    s = _expand_consonant_length(s)
     if broad:
         decomposed = unicodedata.normalize("NFD", s)
         s = unicodedata.normalize(
