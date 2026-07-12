@@ -60,8 +60,10 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `script`                    | string | yes      | Primary writing script                       |
 | `family`                    | string | no       | **Do not author this.** `family` is DERIVED from the clade nodes on the ancestry chain (see [Clade nodes](#clade-nodes-and-the-derived-family)). It stays accepted as an override only for groupings that are not genetic clades — creoles, constructed languages, isolates, unclassified languages. |
 | `clade`                     | bool   | no       | This spec is a classification-only node — a family, not a language (default: `false`). See [Clade nodes](#clade-nodes-and-the-derived-family). |
-| `graphemes`                 | object | yes      | Grapheme → IPA mapping. Each value is either a plain IPA list `[str]` **or** a weighted object `{"ipa": [str], "weights": [float]}` (candidate frequencies). Both normalise to the same internal shape; absent weights == rank ordering. See [candidate scoring](../../docs/candidate_scoring.md). |
-| `allophones`                | object | yes      | Phoneme → allophone mapping (`{str: [str]}`) |
+| `graphemes`                 | object | see note | Grapheme → IPA mapping. Each value is either a plain IPA list `[str]` **or** a weighted object `{"ipa": [str], "weights": [float]}` (candidate frequencies). Both normalise to the same internal shape; absent weights == rank ordering. See [candidate scoring](../../docs/candidate_scoring.md). |
+| `allophones`                | object | see note | Phoneme → allophone mapping (`{str: [str]}`). Derived as an identity map from `graphemes` when absent. |
+| `phonemes`                  | array  | see note | The phoneme inventory, stated directly and independently of `graphemes` (`["p", "t", "k", ...]`). **A spec must declare `graphemes` or `phonemes`; it may not be silent about both.** See [The inventory](#phonemes--the-inventory-stated-directly). |
+| `orthography_kind`          | string | no       | What kind of writing the graphemes are: `"native"` (default), `"romanization"`, `"transliteration"`. See [Orthography kind](#orthography-kind). |
 | `positional_graphemes`      | object | no       | Position-dependent grapheme mappings         |
 | `parent`                    | string | no       | Primary parent language code                 |
 | `ancestors`                 | array  | no       | Full ancestry specification                  |
@@ -131,6 +133,54 @@ So a language is classified by pointing its `parent` at the right node — never
 authoring a `family` string. If the clade does not exist yet, add the node. The
 CLI filter matches any single step of the path, so `--family Romance` and
 `--family Ibero-Romance` both return `pt-BR`.
+
+## `phonemes` — the inventory, stated directly
+
+A language's sounds are not a property of its writing system. Most of the world's
+languages are unwritten or barely written (PHOIBLE catalogues inventories for
+thousands of them), and a logographic script encodes no sound at all — so reading
+the inventory out of the spelling cannot work for either.
+
+```json
+{
+  "code": "zh-Hani",
+  "name": "Chinese (Han script)",
+  "script": "Han",
+  "script_type": "logographic",
+  "orthography_kind": "native",
+  "graphemes": {},
+  "allophones": {},
+  "phonemes": ["p", "pʰ", "m", "f", "t", "tʰ", "n", "l", "..."]
+}
+```
+
+When `phonemes` is absent the inventory is DERIVED from `graphemes` — every phoneme
+any grapheme can produce — so a spec that declares nothing keeps the inventory it
+always had. That derivation is a **fallback, not the definition**: it reads the
+sounds out of the spelling, which is backwards, and it is why a reconstructed
+language (Proto-Indo-European) once had to fake an identity orthography, `p` → [p],
+merely to have an inventory at all. A reconstruction now declares its 30 phonemes.
+
+**Integrity invariant:** a spec must declare `graphemes` **or** `phonemes`. It may
+not be silent about both. "Every language has graphemes" is false — logographic
+scripts and unwritten languages are the counterexamples — but a spec that has
+neither sounds nor spelling describes nothing.
+
+## Orthography kind
+
+`orthography_kind` says what kind of writing a spec's `graphemes` encode, because
+Han characters, Pinyin and Buckwalter ASCII are three different claims:
+
+| Value | Meaning | Standards body |
+|---|---|---|
+| `native` (default) | The language's own writing system | Usually |
+| `romanization` | An alternative orthography people READ AND WRITE — Pinyin (ISO 7098), Jyutping, Hepburn. A real orthography *of* the language, usually a plain alphabet, which is why it can be rule-transcribed when the native script cannot. | Yes |
+| `transliteration` | A lossless machine re-encoding of ANOTHER script — Buckwalter, ITRANS, Harvard-Kyoto. Nobody reads it as a language, and it inherits every limit of the script it re-encodes. | No — that absence is the tell |
+
+So `zh` is a **romanization** (it reads Pinyin, not Hanzi), `zh-Hani` is the
+**native** spec with an empty grapheme map and a declared phonology, and
+`ar-Latn-buckwalter` is a **transliteration**. See
+[orthography kind](../../docs/orthography_kind.md).
 
 ## Inheritance
 

@@ -166,6 +166,8 @@ class LanguageSpec:
     script: str                                        # Primary script
     graphemes: Grapheme2IPA                            # Grapheme → IPA
     allophones: AllophoneMap                           # Phoneme → allophones
+    phonemes: Tuple[str, ...] = ()                     # The inventory, stated directly
+    orthography_kind: OrthographyKind = OrthographyKind.NATIVE  # native | romanization | transliteration
     parent: Optional[str] = None                       # Primary parent code (shorthand)
     ancestors: Tuple[Ancestor, ...] = ()               # Full ancestry specification
     positional_graphemes: PositionalGrapheme2IPA = None # Context-sensitive IPA (normalised to {} in __post_init__)
@@ -190,6 +192,56 @@ class LanguageSpec:
     wikipedia: Tuple[str, ...] = ()                    # Wikipedia article URLs
     urls: Tuple[str, ...] = ()                         # Other reference URLs
 ```
+
+### `phonemes` — the inventory, stated directly
+
+`phonemes` is the language's phoneme inventory: the sounds it **has**, declared
+independently of `graphemes`. A language's sounds are not a property of its writing
+system. Most of the world's languages are unwritten or barely written and PHOIBLE
+catalogues inventories for thousands of them; a logographic script encodes no sound
+at all. Reading the inventory out of the spelling cannot work for either.
+
+```python
+import orthography2ipa
+
+ine = orthography2ipa.get("ine")        # Proto-Indo-European — never written
+len(ine.phonemes)                       # 30 reconstructed phonemes, declared
+
+han = orthography2ipa.get("zh-Hani")    # Chinese in Han script
+han.graphemes                           # {} — no grapheme→IPA rule exists to write
+len(han.phonemes)                       # 60 — the phonology is known regardless
+```
+
+When `phonemes` is empty the inventory is **derived** from `graphemes` — every
+phoneme any grapheme can produce — so a spec that says nothing keeps exactly the
+inventory it always had. That derivation is a *fallback*, not the definition: it
+reads the sounds out of the spelling, which is backwards, and it is why a
+reconstructed language once had to fake an identity orthography (`p` → [p]) merely
+to have an inventory. `distance._extract_phonemes` applies the rule — declared
+inventory wins, grapheme map is the fallback — and every phonological metric is
+built on it.
+
+**The integrity invariant:** a spec must declare `graphemes` **or** `phonemes`. It
+may not be silent about both. "Every language has graphemes" is false — logographic
+scripts and unwritten languages are the counterexamples — and no spec is allowed to
+claim it has neither sounds nor spelling.
+
+### `orthography_kind` — what kind of writing the graphemes are
+
+`native` (default) | `romanization` | `transliteration`. Han characters, Pinyin and
+Buckwalter ASCII make three different claims, and a consumer must be able to tell
+them apart:
+
+```python
+import orthography2ipa
+
+orthography2ipa.get("zh").orthography_kind                   # ROMANIZATION — Pinyin (ISO 7098)
+orthography2ipa.get("zh-Hani").orthography_kind              # NATIVE — Han script
+orthography2ipa.get("ar-Latn-buckwalter").orthography_kind   # TRANSLITERATION — Arabic in ASCII
+```
+
+Full treatment, with the reason a romanization is transcribable where the native
+script is not: [orthography_kind.md](orthography_kind.md).
 
 ### Derived classification: `family`, `family_path`, `clade`
 

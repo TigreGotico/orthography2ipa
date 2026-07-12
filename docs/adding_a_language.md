@@ -8,6 +8,13 @@ language code. The engine is language-agnostic: adding a language means writing
 cited data, never code. The field-by-field authoring reference is
 [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md); this page is the walkthrough.
 
+A spec must declare **`graphemes` or `phonemes`** — the spelling, the inventory, or
+both. It may not be silent about both. "Every language has graphemes" is false: a
+logographic script has no grapheme→IPA rule to write (`zh-Hani` ships an empty map
+on purpose), and an unwritten or reconstructed language has no orthography at all,
+yet both have a phonology. Say which kind of writing the graphemes are with
+[`orthography_kind`](orthography_kind.md).
+
 Two things a spec does **not** declare:
 
 - **No `family` string.** Classification comes from the clade nodes above the
@@ -237,7 +244,7 @@ uv run pytest tests/ -v
 The test suite validates:
 
 - All JSON files parse correctly
-- Every spec has required fields (graphemes, allophones, name, script)
+- Every spec has its required fields (name, script, and `graphemes` **or** `phonemes` — a spec may not be silent about both)
 - Every `parent` field points to an existing spec
 - Every PARENT-role ancestor exists in the dataset
 - Linguistic accuracy for key languages (Spanish θ, English th, German Auslautverhärtung, etc.)

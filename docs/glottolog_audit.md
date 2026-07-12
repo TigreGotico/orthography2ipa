@@ -28,9 +28,9 @@ Counted over the shipped specs (`orthography2ipa/data/*.json`):
 
 | | Count |
 |---|---:|
-| Language specs | 491 |
+| Language specs | 493 |
 | Clade nodes | 63 |
-| Total spec files | 554 |
+| Total spec files | 556 |
 | Specs carrying a `glottolog_code` | 420 (362 languages, 58 clades) |
 | Distinct derived family paths | 68 |
 | Top-level families | 30 |
@@ -41,7 +41,7 @@ Regenerate the numbers straight from the data:
 ```python
 import orthography2ipa
 
-codes = orthography2ipa.available_codes()                       # 491 languages
+codes = orthography2ipa.available_codes()                       # 493 languages
 clades = set(orthography2ipa.available_codes(include_clades=True)) - set(codes)   # 63
 with_code = [c for c in codes if orthography2ipa.get(c).glottolog_code]           # 362
 families = orthography2ipa.available_families()                                   # 68 paths
@@ -63,13 +63,13 @@ nothing.
 
 ## Where Glottolog has no node
 
-129 language specs carry no `glottolog_code`, and that is the correct value for them:
+131 language specs carry no `glottolog_code`, and that is the correct value for them:
 
 - **102 are dialect or historical varieties** (`-x-` codes: `pt-PT-x-porto`,
   `es-ES-x-andalusia-w`, `la-x-hispania`, …). Glottolog resolves at the language level and files
   these under the national language; a code pointing at the parent would claim the spec *is* the
   parent, which is exactly the error `null` avoids.
-- **27 are national varieties** Glottolog does not separate (`en-US`, `de-AT`, `nl-BE`, `pt-AO`,
+- **29 are national varieties** Glottolog does not separate (`en-US`, `de-AT`, `nl-BE`, `pt-AO`,
   `es-CR`, …) — the same argument one level up.
 - A handful of **reconstructed proto-nodes** have no node of their own
   (`brx-x-proto-boro-garo`, `xpa`).

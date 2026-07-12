@@ -44,9 +44,9 @@ drive a grapheme-to-IPA engine:
 'oˈla ˈmũdu'
 ```
 
-**491 languages** and **63 clade nodes** ship with the package (554 spec files in
-`orthography2ipa/data/`; `available_codes()` returns the 491 languages,
-`available_codes(include_clades=True)` all 554), spread across 30 top-level
+**493 languages** and **63 clade nodes** ship with the package (556 spec files in
+`orthography2ipa/data/`; `available_codes()` returns the 493 languages,
+`available_codes(include_clades=True)` all 556), spread across 30 top-level
 families from Indo-European to Quechuan, plus reconstructed proto-languages,
 regional dialects and creoles.
 
@@ -60,6 +60,38 @@ and how those phonemes surface in context. A shared, language-agnostic engine �
 tokenizer, beam search, allophone rules, stress, sandhi — turns that data into
 transcriptions. There are no trained weights to ship, and adding a language means
 writing cited data, not training a model.
+
+### Sounds are not a property of spelling
+
+A spec states its **`phonemes`** — the inventory — directly, independently of its
+graphemes. Most of the world's languages are unwritten or barely written, and a
+logographic script encodes no sound at all, so reading the inventory out of the
+spelling cannot work for either. Proto-Indo-European declares its 30 reconstructed
+phonemes instead of faking an identity orthography to have an inventory; `zh-Hani`
+(Chinese in Han script) has **no grapheme map at all** — there is no rule to write —
+and a complete phonology regardless.
+
+```python
+import orthography2ipa
+
+han = orthography2ipa.get("zh-Hani")
+han.graphemes     # {} — honest, not a gap: a Han character encodes no sound
+len(han.phonemes) # 60 — the phonology is known anyway
+```
+
+When `phonemes` is absent the inventory is derived from `graphemes`, so nothing
+changes for a spec that says nothing — but that derivation is a *fallback*, not the
+definition. The invariant is: **a spec declares graphemes or a phoneme inventory,
+and may not be silent about both.**
+
+A spec also states its **`orthography_kind`** — `native`, `romanization` or
+`transliteration` — because Han characters, Pinyin and Buckwalter ASCII make three
+different claims. `zh` is a **romanization**: it reads Pinyin (ISO 7098), not Hanzi,
+and Pinyin's being a plain alphabet is exactly why it is rule-transcribable when the
+native script is not. `ar-Latn-buckwalter` is a **transliteration**: a machine
+re-encoding of the Arabic script with no standards body, lossless against it, and
+inheriting the abjad limit it cannot escape — re-encoding does not recover vowels
+the script never wrote. See [docs/orthography_kind.md](docs/orthography_kind.md).
 
 ### Two maps, kept apart
 
@@ -224,7 +256,7 @@ orthography2ipa.resolve("pt")      # 'pt-PT' — reference variety
 orthography2ipa.resolve("en-NZ")   # 'en-GB' — nearest registered
 
 # Discover what's available
-orthography2ipa.available_codes()      # 491 language codes (clades excluded)
+orthography2ipa.available_codes()      # 493 language codes (clades excluded)
 orthography2ipa.available_families()   # codes grouped by derived family path
 ```
 
@@ -278,16 +310,17 @@ orthography2ipa distance es-ES it-IT --json
 
 Every `LanguageSpec` provides:
 
-1. **Graphemes** — orthographic units (characters, digraphs, trigraphs) mapped to canonical IPA phonemes.
-2. **Allophones** — each phoneme mapped to its positional/contextual surface realisations.
-3. **Positional graphemes** — context-sensitive overrides (word-initial, intervocalic, before a front vowel, …).
-4. **Allophone rules** — post-lexical `phoneme → surface` rewrites (final devoicing, assimilation, reduction, flapping).
-5. **Ancestry** — weighted multi-ancestor lineage (parent, substrate, superstrate, adstrate, …), through which `family` is derived.
-6. **Sandhi rules** — cross-word phonological processes.
-7. **Stress rules**, **tone inventory** and **word exceptions**, where applicable.
-8. **Orthography standard** — the official published spelling norm, when the language has one.
-9. **Location** and **timespan** — where and when the variety is spoken.
-10. **Provenance** — `QualityTier` (stub → skeleton → research → production), `ScriptType`, bibliographic `sources`, `wikipedia` / `urls`, and cross-reference identifiers (`glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3`).
+1. **Graphemes** — orthographic units (characters, digraphs, trigraphs) mapped to canonical IPA phonemes, and an **`orthography_kind`** saying whether they are the native script, a romanization or a transliteration.
+2. **Phonemes** — the inventory, stated directly; derived from the graphemes only as a fallback.
+3. **Allophones** — each phoneme mapped to its positional/contextual surface realisations.
+4. **Positional graphemes** — context-sensitive overrides (word-initial, intervocalic, before a front vowel, …).
+5. **Allophone rules** — post-lexical `phoneme → surface` rewrites (final devoicing, assimilation, reduction, flapping).
+6. **Ancestry** — weighted multi-ancestor lineage (parent, substrate, superstrate, adstrate, …), through which `family` is derived.
+7. **Sandhi rules** — cross-word phonological processes.
+8. **Stress rules**, **tone inventory** and **word exceptions**, where applicable.
+9. **Orthography standard** — the official published spelling norm, when the language has one.
+10. **Location** and **timespan** — where and when the variety is spoken.
+11. **Provenance** — `QualityTier` (stub → skeleton → research → production), `ScriptType`, bibliographic `sources`, `wikipedia` / `urls`, and cross-reference identifiers (`glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3`).
 
 Regional varieties get their own `LanguageSpec` linked through ancestry, and
 `graphemes_base` / `allophones_base` inheritance lets a dialect declare only what

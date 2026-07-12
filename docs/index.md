@@ -14,8 +14,8 @@ orthography into an IPA (International Phonetic Alphabet) transcription.
 'hələʊ wɜːld'
 ```
 
-491 languages and 63 clade nodes ship with the package
-(`available_codes()` returns the 491; `available_codes(include_clades=True)`
+493 languages and 63 clade nodes ship with the package
+(`available_codes()` returns the 493; `available_codes(include_clades=True)`
 adds the clades, which are classification-only).
 
 ## The relational axes
@@ -174,10 +174,12 @@ below.
   look at neighbouring words or meaning. Beam search surfaces the
   alternatives; it does not disambiguate them for you.
 - **Some languages have an input contract that is not plain native
-  text.** `zh` expects Pinyin romanisation, not Hanzi — converting Hanzi
-  to Pinyin (e.g. via a CC-CEDICT-backed dictionary) is a separate step
-  this library does not perform; tone marks are not encoded either.
-  `ko` expects decomposed jamo (ㄱ, ㅏ, ㄴ…), not composed Hangul
+  text.** `zh` is a **romanization** spec: it reads Pinyin, not Hanzi, and
+  says so (`orthography_kind == ROMANIZATION`). The native `zh-Hani` spec
+  has no grapheme map at all, because a Han character encodes no sound —
+  its input contract is a dictionary (CC-CEDICT), a lexical lookup rather
+  than a phonological rule, and this library does not perform it. Tone
+  marks are not encoded either. `ko` expects decomposed jamo (ㄱ, ㅏ, ㄴ…), not composed Hangul
   syllable blocks (가, 는…) — the grapheme map is keyed on individual
   jamo, so a Hangul-decomposition step comes first. Check a language's
   `notes` field
@@ -221,7 +223,8 @@ below.
 | :--- | :--- |
 | [getting_started.md](getting_started.md) | Narrative on-ramp: install → first call → what happened → where next |
 | [architecture.md](architecture.md) | Module layout, pipeline stages, design decisions |
-| [data_model.md](data_model.md) | `LanguageSpec` and every field it carries |
+| [data_model.md](data_model.md) | `LanguageSpec` and every field it carries — including `phonemes`, the inventory stated directly |
+| [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations — and why Pinyin is transcribable where Hanzi is not |
 | [registry.md](registry.md) | Full language registry, code resolution, `G2PPlugin` |
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |

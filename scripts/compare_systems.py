@@ -598,7 +598,7 @@ def write_comparison(rows: List[dict],
         "Not every gold language has a mapping for every competitor "
         "system: espeak-ng, epitran, gruut, pycotovia, and ahotts-g2p "
         "each cover a different, smaller subset of languages than "
-        "orthography2ipa's 491 language codes. A missing mapping, or a system "
+        "orthography2ipa's 493 language codes. A missing mapping, or a system "
         "that isn't installed, is reported as `n/a` for that row rather "
         "than skipped or faked — this table never crashes and never "
         "silently drops a system, it just says when it has nothing to "
