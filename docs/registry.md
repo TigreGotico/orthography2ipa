@@ -104,10 +104,11 @@ derived from them — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-
 | `it` | Italian |
 | `ro` | Romanian |
 | `ca` | Catalan |
+| `ca-x-medieval` | Old Catalan (the common core every modern variety inherits from) |
 | `ca-x-valencia` | Valencian |
 | `ca-x-balear` | Balearic Catalan |
 | `ca-x-nord` | Northern Catalan |
-| `ca-x-occidental` | Western Catalan |
+| `ca-x-occidental` | North-Western Catalan |
 | `oc` | Occitan |
 | `oc-x-aranes` | Aranese (Gascon Occitan) |
 | `gl` | Galician |

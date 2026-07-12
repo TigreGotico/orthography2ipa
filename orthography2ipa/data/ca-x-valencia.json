@@ -2,13 +2,10 @@
   "code": "ca-x-valencia",
   "name": "Valencian",
   "script": "Latin",
-  "graphemes_base": "ca",
-  "graphemes": {
-    "v": [
-      "v"
-    ]
-  },
-  "allophones_base": "ca",
+  "parent": "ca-x-medieval",
+  "graphemes_base": "ca-x-medieval",
+  "graphemes": {},
+  "allophones_base": "ca-x-medieval",
   "allophones": {
     "v": [
       "v"
@@ -28,49 +25,170 @@
       "e"
     ]
   },
-  "positional_graphemes_base": "ca",
+  "positional_graphemes_base": "ca-x-medieval",
   "positional_graphemes": {
-    "a": {
-      "default": [
-        "a"
-      ],
-      "nucleus": [
-        "a"
-      ]
-    },
     "e": {
       "default": [
-        "ɛ",
-        "e"
+        "e",
+        "ɛ"
       ],
-      "nucleus": [
+      "nucleus_unstressed": [
         "e"
       ]
     },
     "o": {
       "default": [
-        "ɔ",
-        "o"
+        "o",
+        "ɔ"
       ],
-      "nucleus": [
+      "nucleus_unstressed": [
         "o"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "word_final": [
+        "ɾ"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_vowel": [
+        "ɾ"
+      ],
+      "default": [
+        "ɾ"
+      ]
+    },
+    "x": {
+      "word_initial": [
+        "tʃ"
+      ],
+      "after_consonant": [
+        "tʃ"
+      ],
+      "intervocalic": [
+        "ks"
+      ],
+      "before_consonant": [
+        "ks"
+      ],
+      "default": [
+        "ʃ"
       ]
     }
   },
-  "parent": "ca",
-  "notes": "Valencian (Valencià). Western Catalan block, co-official in Comunitat Valenciana. Key differences from Central Catalan: /v/ vs /b/ distinction preserved, apico-alveolar sibilants [s̺, z̺], MINIMAL vowel reduction (no schwa — unstressed /a/ stays [a], /e/ stays [e], /o/ stays [o]). Word-final -r pronounced. Voiced affricate [dʒ] more robust. Regulated by Acadèmia Valenciana de la Llengua (AVL).",
+  "allophone_rules": [],
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "t",
+      "d",
+      "p",
+      "b",
+      "c",
+      "k",
+      "g",
+      "m",
+      "f",
+      "x",
+      "j",
+      "ç",
+      "z",
+      "ig",
+      "ll",
+      "ns",
+      "rs",
+      "ls",
+      "ts",
+      "ps",
+      "cs",
+      "ms",
+      "ds",
+      "bs",
+      "gs",
+      "fs",
+      "nts",
+      "lts",
+      "rts",
+      "sts",
+      "ncs",
+      "igs",
+      "tzs",
+      "ig",
+      "rn",
+      "rm",
+      "ai",
+      "au",
+      "ei",
+      "eu",
+      "iu",
+      "oi",
+      "ou"
+    ],
+    "penult_stress_endings": [
+      "as",
+      "es",
+      "is",
+      "os",
+      "us",
+      "en",
+      "in"
+    ],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "í",
+      "ò",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "diphthongs": [
+      "ai",
+      "au",
+      "ei",
+      "eu",
+      "iu",
+      "oi",
+      "ou",
+      "ui",
+      "ua",
+      "ue",
+      "uo",
+      "gü",
+      "qü"
+    ],
+    "notes": "Catalan accentuation per the Institut d'Estudis Catalans (IEC) norm (Gramàtica de la llengua catalana, ch. 3; Wheeler 2005 §3.1). A written accent (à è é í ò ó ú) always wins and marks the stressed vowel. Unmarked words are OXYTONE when they end in a consonant other than -s-preceded-by-a-vowel and other than -en/-in — including the consonant+s plurals (-ns, -rs, -ts, -nts, -ps …), which are oxytone because the plural preserves the stress of the singular (important → importants). A word ending in a falling DIPHTHONG (-ai -au -ei -eu -iu -oi -ou) is oxytone (remei [rəˈmɛj], correu [kuˈrɛw], avui [əˈβuj]) — the diphthong is one syllable, so the word does not end in a bare vowel. Unmarked words are PAROXYTONE when they end in a (single) vowel, in a vowel + -s (-as, -es, -is, -os, -us) or in -en/-in (semblen, parlin). The diaeresis ⟨ï ü⟩ marks hiatus/pronounced ⟨u⟩, NOT stress, so it is deliberately absent from marked_vowels (següent is [səˈɣwen], not [səˈɣwent] with stress on ⟨ü⟩). Proparoxytones always carry a written accent, so the unmarked default is paroxytone. The diphthongs list is the Catalan inventory of tautosyllabic vowel sequences (Wheeler 2005 §2.5; IEC grammar ch. 4): the falling diphthongs ⟨ai au ei eu iu oi ou ui⟩ and the rising ⟨ua ue uo ui⟩ after ⟨g/q⟩. Every other vowel sequence is HIATUS and counts as two syllables — te-ni-a, ve-ï-na, di-a — which is what puts the stress, and therefore the unstressed-vowel reduction, on the right vowel."
+  },
+  "notes": "VALENCIAN (valencià), the southern half of the WESTERN block; co-official in the Comunitat Valenciana and codified by the Acadèmia Valenciana de la Llengua. It descends from Old Catalan (ca-x-medieval), not from Central Catalan, and it is the most CONSERVATIVE of the modern varieties: on nearly every point where Central innovated, Valencian kept the medieval state, which is why this file declares so little. Kept from Old Catalan and therefore simply inherited: NO unstressed vowel reduction (les [les], que [ke], de [de]); /v/ distinct from /b/; the affricate [dʒ] for ⟨j⟩ and ⟨g⟩ before a front vowel (germà [dʒeɾˈma]); the glide of ⟨ix⟩ = [jʃ] (caixa [ˈkajʃa]); word-final ⟨-r⟩ PRONOUNCED (cantar [kanˈtaɾ]) — the clearest isogloss against Central; and the final ⟨-nt/-lt/-mp/-nc⟩ clusters INTACT (molt [ˈmolt], camp [ˈkamp], sang [ˈsaŋk]), which Central and North-Western simplify. Its own declarations are the apico-alveolar sibilants, the coda rhotic [ɾ], and ⟨x⟩ = [tʃ] word-initially and after a consonant (xiquet [tʃiˈket]) — the Western affricate (Wheeler 2005 §5.1; Veny 1982 ch. 3; AVL 2006; Recasens 1991). Cluster simplification before a CONSONANT (el vint de juny) is pan-Catalan and comes from the common core.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
       "id": "wheeler2005",
-      "author": "Wheeler, M.",
+      "author": "Wheeler, M. W.",
       "year": 2005,
       "title": "The Phonology of Catalan",
       "publisher": "Oxford University Press",
-      "url": null,
+      "url": "https://global.oup.com/academic/product/the-phonology-of-catalan-9780199258147",
       "pages": null,
-      "notes": null
+      "notes": "The reference phonology of Catalan and the primary authority for this spec. Cited by SECTION, not page: §2.3 vowel systems and the unstressed reduction of the Eastern block (reduction is stress-conditioned; the Western block does not reduce); §2.5 the diphthong inventory; §3.1 stress and its orthographic marking; §5.1 the consonant inventory, ⟨c/g⟩ before a front vowel, ⟨x⟩ and word-final ⟨-ig⟩; §5.2 spirantization of /b d ɡ/ after a continuant and the pre-lateral gemination that blocks it; §5.3 final-obstruent devoicing and cross-word voicing assimilation; §10.2–§10.5 the post-lexical/phrase-level processes — final-rhotic loss, final-cluster simplification, nasal place assimilation and phrase-level lenition. Section numbers are given because the printed page numbers were not verified."
+    },
+    {
+      "id": "avl2006",
+      "author": "Acadèmia Valenciana de la Llengua",
+      "year": 2006,
+      "title": "Gramàtica normativa valenciana",
+      "publisher": "Publicacions de l'Acadèmia Valenciana de la Llengua",
+      "url": "https://www.avl.gva.es/",
+      "pages": null,
+      "notes": "The normative grammar of Valencian and the authority for the Valencian spec: no unstressed vowel reduction, /v/ distinct from /b/, word-final ⟨-r⟩ pronounced, ⟨j⟩ and ⟨g⟩+front vowel as the affricate [dʒ], ⟨x⟩ = [tʃ] initially. Cited by chapter; pages not verified."
     },
     {
       "id": "recasens1991",
@@ -80,7 +198,57 @@
       "publisher": "Institut d'Estudis Catalans",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "First edition of the descriptive phonetics of Catalan; the source for the Valencian consonant realisations used here (apico-alveolar sibilants, the affricate [dʒ] for ⟨j⟩/⟨g+e,i⟩, ⟨x⟩ = [tʃ]). Pages not verified."
+    },
+    {
+      "id": "recasens1996",
+      "author": "Recasens, D.",
+      "year": 1996,
+      "title": "Fonètica descriptiva del català: assaig de caracterització de la pronúncia del vocalisme i consonantisme del català al segle XX",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": null,
+      "pages": null,
+      "notes": "The descriptive survey of Catalan vowels and consonants across the dialects: the Western block (Valencian, North-Western) does not reduce unstressed vowels; Balearic reduces ⟨a⟩/⟨e⟩ to [ə] but does NOT raise unstressed ⟨o⟩ to [u]; the North-Western word-final ⟨-a⟩ = [ɛ]. Pages not verified."
+    },
+    {
+      "id": "veny1982",
+      "author": "Veny, J.",
+      "year": 1982,
+      "title": "Els parlars catalans: síntesi de dialectologia",
+      "publisher": "Editorial Moll",
+      "url": null,
+      "pages": null,
+      "notes": "The standard dialectology of Catalan and the source for the isoglosses this spec encodes per dialect: final ⟨-r⟩ retained in Valencian and deleted in the rest; final-cluster simplification after a nasal everywhere but after a lateral only in the Eastern block; Western [tʃ] for initial ⟨x⟩ and [jʃ] for ⟨ix⟩; the lleidatà final ⟨-a⟩ = [ɛ]. Pages not verified."
+    },
+    {
+      "id": "iec2016",
+      "author": "Institut d'Estudis Catalans",
+      "year": 2016,
+      "title": "Gramàtica de la llengua catalana",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": "https://giec.iec.cat/",
+      "pages": null,
+      "notes": "The normative grammar. Ch. 3 (l'accent) is the source for the stress block: the written accent marks the stressed vowel and always wins; unmarked words ending in a vowel, a vowel+⟨-s⟩ or ⟨-en/-in⟩ are paroxytone and all other endings — including the consonant+⟨s⟩ plurals — are oxytone; the diaeresis ⟨ï ü⟩ marks hiatus, not stress. §6.2 and the 'mots àtons' list are the source for the clitic function words (articles, contractions, atonic prepositions/conjunctions and weak pronouns) that carry no stress and therefore reduce. Cited by chapter; pages not verified."
+    },
+    {
+      "id": "dcvb",
+      "author": "Alcover, A. M. & Moll, F. de B.",
+      "year": 1962,
+      "title": "Diccionari català-valencià-balear",
+      "publisher": "Editorial Moll",
+      "url": "https://dcvb.iec.cat/",
+      "pages": null,
+      "notes": "The dialectal dictionary of Catalan; it records the pronunciation of each headword per dialect and is the authority for the lexical stressed-mid-vowel entries in word_exceptions (gos, tot, dos, molt are close-mid [o]; cos, pont, font, tres are open-mid). Catalan spelling does not mark the ⟨e⟩/⟨o⟩ close/open contrast in unaccented syllables, so this contrast is lexical and can only be listed, not derived. Cited by headword; the dictionary is not paginated online."
+    },
+    {
+      "id": "wiktionary_ca",
+      "author": "Wiktionary contributors",
+      "year": 2026,
+      "title": "Wiktionary, the free dictionary — Catalan entries",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wiktionary.org/wiki/Category:Catalan_lemmas",
+      "pages": null,
+      "notes": "Per-dialect IPA transcriptions (Central / Valencian / North-Western / Balearic / Northern) for the individual headwords listed in word_exceptions; each entry there cites GDLC, DNV or DCVB. Used as a convenience cross-check on the DCVB, never as a primary source."
     },
     {
       "id": "ladefoged_maddieson1996",
@@ -90,17 +258,39 @@
       "publisher": "Blackwell",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Cross-linguistic phonetic reference for the segment inventory symbols used here."
+    },
+    {
+      "id": "wikipedia_catalan_phonology",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Catalan phonology (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Catalan_phonology",
+      "pages": null,
+      "notes": "Accessible overview of the vowel and consonant inventories, the Eastern/Western reduction split, spirantization, final devoicing and final-cluster simplification; useful as a cross-check on the primary sources above."
+    },
+    {
+      "id": "wikipedia_catalan_dialects",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Catalan dialects (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Catalan_dialects",
+      "pages": null,
+      "notes": "Accessible overview of the Eastern/Western split, of the 13th-century repopulation that carried Eastern Catalan to the Balearic Islands and Western Catalan to most of the Valencian Country, and of the isoglosses encoded in the dialect specs."
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Valencian",
     "https://ca.wikipedia.org/wiki/Valenci%C3%A0",
     "https://en.wikipedia.org/wiki/Valencian_language",
-    "https://es.wikipedia.org/wiki/Idioma_valenciano"
+    "https://es.wikipedia.org/wiki/Idioma_valenciano",
+    "https://en.wikipedia.org/wiki/Catalan_phonology",
+    "https://en.wikipedia.org/wiki/Catalan_dialects"
   ],
   "timespan": {
-    "start_year": 1200,
+    "start_year": 1500,
     "end_year": null
   },
   "glottolog_code": "vale1252",
@@ -111,5 +301,48 @@
     "longitude": -0.376389,
     "source": "wikidata",
     "notes": "Valencia — the centre of the Valencian area. [Wikidata Q8818 P625]"
+  },
+  "word_exceptions": {
+    "a": "a",
+    "al": "al",
+    "als": "als",
+    "amb": "am",
+    "d": "d",
+    "de": "de",
+    "del": "del",
+    "dels": "dels",
+    "el": "el",
+    "els": "els",
+    "em": "em",
+    "en": "en",
+    "ens": "ens",
+    "es": "es",
+    "et": "et",
+    "hi": "i",
+    "ho": "o",
+    "i": "i",
+    "l": "l",
+    "la": "la",
+    "les": "les",
+    "li": "li",
+    "lo": "lo",
+    "m": "m",
+    "me": "me",
+    "n": "n",
+    "ne": "ne",
+    "ni": "ni",
+    "no": "no",
+    "on": "on",
+    "pel": "pel",
+    "pels": "pels",
+    "per": "peɾ",
+    "que": "ke",
+    "s": "s",
+    "se": "se",
+    "són": "son",
+    "t": "t",
+    "te": "te",
+    "us": "us",
+    "és": "es"
   }
 }

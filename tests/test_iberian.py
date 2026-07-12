@@ -747,7 +747,10 @@ class TestCatalan:
         assert self._spec.script == "Latin"
 
     def test_parent_late_latin(self):
-        assert ancestry_chain(self._spec.code)[:2] == ["x-clade-roma1334",
+        """Modern Catalan hangs under Old Catalan, which hangs under the
+        Romance clade and Late Latin."""
+        assert ancestry_chain(self._spec.code)[:3] == ["ca-x-medieval",
+                                                       "x-clade-roma1334",
                                                        "la-x-late"]
 
     # --- Vowels ---
@@ -870,7 +873,15 @@ class TestCatalan:
     # --- Digraphs / affricates ---
 
     def test_ig_word_final_affricate(self):
-        _assert_first(_grapheme(self._spec, "ig"), "tʃ", "ca ig")
+        """⟨-ig⟩ = [tʃ] word-finally, and ONLY word-finally.
+
+        A flat ⟨ig⟩ trie key would shadow every other use of the letters —
+        ⟨aigua⟩, ⟨sigui⟩, ⟨vigilar⟩ — so the affricate is a post-lexical
+        rule conditioned on the word edge (Wheeler 2005 §5.1).
+        """
+        assert orthography2ipa.transcribe("vaig", "ca").endswith("tʃ")
+        assert orthography2ipa.transcribe("mig", "ca").endswith("tʃ")
+        assert orthography2ipa.transcribe("vigilar", "ca") == "biʒiˈla"
 
     def test_ix_postalveolar(self):
         _assert_first(_grapheme(self._spec, "ix"), "ʃ", "ca ix")
@@ -886,25 +897,23 @@ class TestCatalan:
 
     # --- Diphthongs ---
 
-    def test_diphthong_ai(self):
-        _assert_first(_grapheme(self._spec, "ai"), "aj", "ca ai")
+    @pytest.mark.parametrize("word,expected", [
+        ("rei", "ˈrej"),        # STRESSED ⟨ei⟩ is [ej] — it does not reduce
+        ("taula", "ˈtawlə"),    # ⟨au⟩ = [aw]
+        ("bou", "ˈbɔw"),        # ⟨ou⟩ = [ɔw]
+        ("cuina", "ˈkujnə"),    # ⟨ui⟩ = [uj]
+        ("remei", "rəˈmɛj"),    # pretonic ⟨e⟩ reduces, the diphthong does not
+    ])
+    def test_diphthongs_are_compositional(self, word, expected):
+        """A Catalan diphthong is a vowel plus a GLIDE, not a fixed digraph.
 
-    def test_diphthong_ei_mid_schwa(self):
-        """Central Catalan: ei → [əj] (not [ej])."""
-        _assert_first(_grapheme(self._spec, "ei"), "əj", "ca ei")
-
-    def test_diphthong_oi(self):
-        _assert_first(_grapheme(self._spec, "oi"), "ɔj", "ca oi")
-
-    def test_diphthong_au(self):
-        _assert_first(_grapheme(self._spec, "au"), "aw", "ca au")
-
-    def test_diphthong_eu_mid_schwa(self):
-        """Central Catalan: eu → [əw]."""
-        _assert_first(_grapheme(self._spec, "eu"), "əw", "ca eu")
-
-    def test_diphthong_ui(self):
-        _assert_first(_grapheme(self._spec, "ui"), "uj", "ca ui")
+        Flat ⟨ai⟩/⟨ei⟩/⟨au⟩/⟨eu⟩ trie keys with a baked-in [əj]/[əw] applied
+        the unstressed reduction unconditionally, so a STRESSED ⟨ei⟩ came out
+        [əj] (⟨rei⟩ → *[ˈrəj]) — reduction is unstressed-only (Wheeler 2005
+        §2.3). The glide falls out of ⟨i⟩/⟨u⟩ after a vowel instead, so the
+        nucleus keeps whatever quality its stress gives it.
+        """
+        assert orthography2ipa.transcribe(word, "ca") == expected
 
     # --- Allophones ---
 
@@ -978,8 +987,13 @@ class TestCatalan:
         assert "ɣ" in orthography2ipa.transcribe("pagar", "ca")
 
     def test_stressed_vowel_keeps_quality(self):
-        """Stressed nuclei keep full quality; reduction is unstressed-only."""
-        assert orthography2ipa.transcribe("gos", "ca") == "ˈɡɔs"
+        """Stressed nuclei keep full quality; reduction is unstressed-only.
+
+        The stressed close/open mid contrast is not written (⟨gos⟩ is [ˈɡos]
+        but ⟨dona⟩ is [ˈdɔnə]), so the spec's default is the open-mid vowel
+        and the close-mid words are listed in ``word_exceptions``.
+        """
+        assert orthography2ipa.transcribe("gos", "ca") == "ˈɡos"
         assert orthography2ipa.transcribe("fred", "ca") == "ˈfɾɛt"
         # unstressed nuclei DO reduce (Central/Eastern): a/e → ə, o → u
         assert orthography2ipa.transcribe("casa", "ca") == "ˈkazə"

@@ -186,6 +186,22 @@ class StressRules:
         syllable (``á é í ó ú â ê ô ã õ``).
     stress_mark : str
         IPA symbol inserted before the stressed syllable (``ˈ``).
+    diphthongs : Tuple[str, ...]
+        Orthographic vowel sequences that form a SINGLE syllable nucleus.
+        The bundled syllabifier counts each maximal run of vowel letters as
+        one nucleus, which is right for a language whose vowel runs are all
+        diphthongs but wrong wherever the orthography also writes hiatus:
+        Catalan ``tenia`` is te-ni-a, not te-nia, and mis-counting its
+        syllables puts the stress (and therefore the unstressed-vowel
+        reduction it conditions) on the wrong vowel.
+
+        When this tuple is non-empty the syllabifier splits a vowel run into
+        nuclei, consuming a listed sequence (longest first) as one nucleus and
+        every other vowel letter as a nucleus of its own — so Catalan's
+        ``("ai", "au", "ei", "eu", "iu", "oi", "ou", "ui", "ua", "ue", "uo")``
+        keeps ``ciu-tat`` and ``ai-gua`` intact while splitting ``te-ni-a``.
+        Empty (the default) preserves the merge-the-whole-run behaviour, so
+        every spec that does not declare it is unaffected.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -194,6 +210,7 @@ class StressRules:
     penult_stress_endings: Tuple[str, ...] = ()
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
+    diphthongs: Tuple[str, ...] = ()
     notes: str = ""
 
 
@@ -558,8 +575,28 @@ class SandhiRule:
         Regex on IPA of word-final segment(s).
     right_context : str
         Regex on IPA of next-word-initial segment(s).
-    transform : str
-        Replacement pattern applied to the left boundary.
+    transform : Optional[str]
+        Replacement pattern substituted for the ``left_context`` match in the
+        LEFT word. ``None`` leaves the left word untouched (a right-only
+        rule); ``""`` deletes the match.
+    right_transform : Optional[str]
+        Replacement pattern substituted for the ``right_context`` match in the
+        RIGHT word. ``None`` (the default) leaves the right word untouched, so
+        a rule that declares only ``transform`` behaves exactly as it always
+        has. This is the mirror of :attr:`transform`: it is what a rule needs
+        when the TARGET of the change is the right word, whatever conditions
+        it. Catalan phrase-level spirantization is the case in point — a
+        PROGRESSIVE (left-conditioned) process, continuant-spreading rightwards
+        across the boundary: the *following* word's initial /b d ɡ/ lenites
+        because the *preceding* word ends in a continuant (``de`` → [ðə] in
+        ``la seva germana … de decidir``). The same shape covers
+        Spanish/Galician phrase-level lenition. Nothing in the field is tied to
+        the direction of conditioning: a genuinely regressive rule (right
+        context conditioning the left word) is expressed with ``transform``.
+
+        A single boundary may need both halves (``els dos`` → [əlz ðos]:
+        the left ⟨s⟩ voices *and* the right ⟨d⟩ lenites), so the two sides are
+        resolved independently — see :meth:`~orthography2ipa.sandhi.SandhiEngine.apply`.
     obligatory : bool
         Whether this rule applies unconditionally.
     notes : str
@@ -569,7 +606,8 @@ class SandhiRule:
     name: str
     left_context: str
     right_context: str
-    transform: str
+    transform: Optional[str] = None
+    right_transform: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
 
@@ -625,6 +663,13 @@ class AllophoneRule:
     phonemes : Tuple[str, ...]
         The underlying phoneme(s) this rule targets. A bare string is
         accepted and normalised to a 1-tuple.
+
+        An **empty** tuple targets nothing, so the rule can never fire. That
+        is how a child spec **disables** a rule it inherits by ``id``: the
+        overlay replaces rules by id but cannot delete them, and a dialect
+        that simply lacks a parent's process needs to say so. Valencian
+        keeps word-final ⟨-r⟩ and the final ⟨-nt⟩ stop that Central Catalan
+        deletes, and states it by re-declaring those ids with no phonemes.
     surface : str
         The surface realisation the matched phoneme is rewritten to.
     word_initial, word_final : Optional[bool]

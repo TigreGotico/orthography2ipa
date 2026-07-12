@@ -753,8 +753,10 @@ class TestCatalanNord:
         """o allophone includes u — vowel raising."""
         _assert_contains(_allophone(self.spec, "o"), "u", label="o allophone")
 
-    def test_parent_is_ca(self):
-        assert self.spec.parent == "ca"
+    def test_parent_is_old_catalan(self):
+        """The dialects descend from Old Catalan, not from modern Central
+        Catalan — nothing Central innovates can leak into them."""
+        assert self.spec.parent == "ca-x-medieval"
 
 
 @pytest.mark.iberian
@@ -780,18 +782,18 @@ class TestCatalanOccidental:
         atonic position (Recasens 1996; Veny 1982).
         """
         import orthography2ipa
-        for word, expected in [
-            ("casa", "kaza"),   # unstressed a stays [a] (Central: kazə)
-            ("dona", "dɔna"),   # unstressed a stays [a]
-            ("tenir", "tɛniɾ"),  # unstressed e stays [e]/[ɛ] (Central: təniɾ)
-            ("porta", "pɔɾta"),  # unstressed a stays [a]
-        ]:
+        for word in ["casa", "dona", "tenir", "porta", "comú"]:
             out = orthography2ipa.transcribe(word, "ca-x-occidental")
             assert "ə" not in out, f"occidental {word!r}: {out!r} has schwa"
-            assert out == expected, f"occidental {word!r}: {out!r} != {expected!r}"
+        # a word-final unstressed ⟨-a⟩ opens to the lleidatà [ɛ] — NOT the
+        # Central [ə] and not the Valencian [a] (Veny 1982 ch. 3).
+        assert orthography2ipa.transcribe("casa", "ca-x-occidental") == "ˈkazɛ"
+        assert orthography2ipa.transcribe("casa", "ca-x-valencia") == "ˈkaza"
 
-    def test_parent_is_ca(self):
-        assert self.spec.parent == "ca"
+    def test_parent_is_old_catalan(self):
+        """The dialects descend from Old Catalan, not from modern Central
+        Catalan — nothing Central innovates can leak into them."""
+        assert self.spec.parent == "ca-x-medieval"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

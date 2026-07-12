@@ -161,9 +161,12 @@ def test_clade_parent_does_not_break_rule_inheritance():
     chain = ancestry_chain("ast")
     assert chain[0].startswith("x-clade-")
     assert "la-x-hispania" in chain
-    # Catalan's own rules survive a clade parent (its parent is the Romance
-    # clade, spliced above Late Latin).
-    assert get("ca").parent.startswith("x-clade-")
+    # Old Catalan's own rules survive a clade parent (its parent is the
+    # Romance clade, spliced above Late Latin) — and modern Catalan, which
+    # hangs under it, still resolves its overlay fields through it.
+    assert get("ca-x-medieval").parent.startswith("x-clade-")
+    assert get("ca-x-medieval").allophone_rules
+    assert get("ca").parent == "ca-x-medieval"
     assert get("ca").allophone_rules
 
 
