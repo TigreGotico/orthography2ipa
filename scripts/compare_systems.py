@@ -118,8 +118,12 @@ LANGS: Dict[str, dict] = {
     "es": {"dataset": ("wikipron", "es"), "espeak": "es",
            "epitran": "spa-Latn", "gruut": "es",
            "ahotts": {"lang": "es", "version": "classic"}},
+    # sample_n: the Portal lexicon is ~617k rows; epitran/gruut transcribe
+    # word-by-word in-process and cannot batch, so a full pass is days of
+    # wall clock. Scored on a fixed-seed (loader SAMPLE_SEED) sample of
+    # 3000 — an EXPLICIT, row-flagged sample, not a silent cap.
     "pt-PT": {"dataset": ("portuguese_phonetic_lexicon", "pt-PT"), "espeak": "pt",
-              "epitran": "por-Latn", "gruut": "pt"},
+              "epitran": "por-Latn", "gruut": "pt", "sample_n": 3000},
     "fr": {"dataset": ("wikipron", "fr"), "espeak": "fr-fr",
            "epitran": "fra-Latn", "gruut": "fr"},
     "de": {"dataset": ("wikipron", "de"), "espeak": "de",
@@ -244,6 +248,64 @@ def discover_catalan_dialect_voices() -> Dict[str, Optional[str]]:
         else:
             result[tag] = None
     return result
+
+
+#: Words per espeak-ng subprocess in the batched path. espeak-ng emits one
+#: IPA line per input line (empty output lines included), so alignment is
+#: positional; the chunk bounds memory and keeps a single hung call from
+#: stalling the whole language.
+_ESPEAK_CHUNK = 500
+
+
+def espeak_batch_transcribe(words: List[str],
+                            voice: str) -> Dict[str, Optional[str]]:
+    """Transcribe *words* with espeak-ng, one subprocess per chunk of
+    ``_ESPEAK_CHUNK`` instead of one per word — the difference between an
+    uncapped full-gold run finishing in minutes and taking days.
+
+    espeak-ng preserves line alignment: N input lines produce exactly N
+    output lines (a word espeak drops yields an empty line, not a missing
+    one). That invariant is CHECKED per chunk; on any mismatch the chunk
+    falls back to the per-word path, so a batching surprise can degrade
+    speed but never mis-attribute a transcription to the wrong word.
+    Words containing a newline (impossible for gold entries, guarded
+    anyway) also take the per-word path.
+    """
+    out: Dict[str, Optional[str]] = {}
+    batchable = [w for w in words if "\n" not in w]
+    for w in words:
+        if "\n" in w:
+            out[w] = espeak_transcribe(w, voice)
+    for i in range(0, len(batchable), _ESPEAK_CHUNK):
+        chunk = batchable[i:i + _ESPEAK_CHUNK]
+        lines: Optional[List[str]] = None
+        try:
+            proc = subprocess.run(
+                # NO --stdin flag: with it espeak-ng joins all input lines
+                # into one utterance; reading piped stdin without it emits
+                # one IPA line per input line (the alignment this relies on)
+                ["espeak-ng", "-q", "--ipa", "-v", voice],
+                input="\n".join(chunk) + "\n",
+                capture_output=True, text=True,
+                timeout=30 + len(chunk),
+            )
+            if proc.returncode == 0:
+                candidate = proc.stdout.split("\n")
+                # trailing newline → one empty trailing element
+                if candidate and candidate[-1] == "":
+                    candidate.pop()
+                if len(candidate) == len(chunk):
+                    lines = candidate
+        except (OSError, subprocess.TimeoutExpired):
+            lines = None
+        if lines is None:
+            for w in chunk:
+                out[w] = espeak_transcribe(w, voice)
+        else:
+            for w, line in zip(chunk, lines):
+                line = line.strip()
+                out[w] = line or None
+    return out
 
 
 def espeak_transcribe(word: str, voice: str) -> Optional[str]:
@@ -394,13 +456,32 @@ def _score(hyps_and_golds: List[Tuple[Optional[str], List[str]]]) -> Tuple[Optio
     return per_sum / covered, covered
 
 
-def compare_lang(lang: str, limit: int) -> dict:
+def compare_lang(lang: str, limit: Optional[int]) -> dict:
     """Run *lang* through every available system on the same gold rows.
-    Returns a row dict with per-system PER (or ``None`` == "n/a")."""
+    Returns a row dict with per-system PER (or ``None`` == "n/a").
+
+    ``limit=None`` scores the FULL gold set (the published run — same
+    no-caps policy as ``benchmark.py --scoreboard``), except where the
+    language config carries an explicit ``sample_n``: gold sets so large
+    that per-word external systems make a full pass impractical (the
+    617k-row Portal lexicon) are scored on a fixed-seed sample of that
+    documented size, and the row says so (``sampled: true``) instead of
+    hiding the cap.
+    """
     cfg = LANGS[lang]
     dataset_name, loader_lang = cfg["dataset"]
     loader, _ = benchmark.DATASETS[dataset_name]
-    pairs = loader(loader_lang, limit)
+    sample_n = cfg.get("sample_n")
+    if limit is None:
+        effective = sample_n if sample_n is not None else sys.maxsize
+    else:
+        effective = limit
+    pairs = loader(loader_lang, effective)
+    if limit is None and sample_n is not None:
+        print(f"note: {lang}/{dataset_name} scored on a fixed-seed sample "
+              f"of {sample_n} (full set is impractical for the per-word "
+              f"external systems); the row is flagged 'sampled'",
+              file=sys.stderr)
 
     refs: Dict[str, List[str]] = {}
     for word, gold in pairs:
@@ -423,15 +504,25 @@ def compare_lang(lang: str, limit: int) -> dict:
     use_pycotovia = cfg.get("pycotovia") is not None
     use_ahotts = cfg.get("ahotts") is not None
 
+    espeak_out: Dict[str, Optional[str]] = {}
+    if use_espeak:
+        espeak_out = espeak_batch_transcribe(words, cfg["espeak"])
+
     for word in words:
         golds = refs[word]
         try:
-            o2i_rows.append((engine.transcribe_word(word), golds))
+            # Sentence-level gold entries (4catac) go through the
+            # utterance API so cross-word sandhi and per-word dispatch
+            # apply — the same multiword rule benchmark.evaluate_words
+            # uses; transcribe_word on a whole sentence mis-scores it.
+            transcribe = (engine.transcribe if len(word.split()) > 1
+                          else engine.transcribe_word)
+            o2i_rows.append((transcribe(word), golds))
         except Exception:
             o2i_rows.append((None, golds))
 
         if use_espeak:
-            espeak_rows.append((espeak_transcribe(word, cfg["espeak"]), golds))
+            espeak_rows.append((espeak_out.get(word), golds))
         if use_epitran:
             epitran_rows.append((epitran_transcribe(word, cfg["epitran"]), golds))
         if use_gruut:
@@ -472,11 +563,12 @@ def compare_lang(lang: str, limit: int) -> dict:
         "ahotts_n": ahotts_n,
         "ahotts_version": ahotts_version,
         "harness_version": HARNESS_VERSION,
-        "limit": limit,
+        "limit": limit if limit is not None else "full",
+        "sampled": limit is None and sample_n is not None,
     }
 
 
-def build_comparison(limit: int) -> List[dict]:
+def build_comparison(limit: Optional[int]) -> List[dict]:
     rows: List[dict] = []
     for lang in sorted(LANGS):
         try:
@@ -580,9 +672,12 @@ def write_comparison(rows: List[dict],
         "**espeak-ng**, **epitran**, **gruut**, **pycotovia** (Galician), "
         "and **ahotts-g2p** (Basque & Spanish) on the same gold "
         "datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using "
-        "the same default `--limit` — so the `o2i PER` column here "
-        "matches the scoreboard's rows for the same language/dataset "
-        "pair. Regenerate with:",
+        "the FULL gold set of every mapped language (no cap — the same "
+        "no-caps policy as the scoreboard; the one explicitly-flagged "
+        "exception is the 617k-row Portal lexicon, scored on a "
+        "fixed-seed sample and marked `sampled` in the JSON) — so the "
+        "`o2i PER` column here matches the scoreboard's rows for the "
+        "same language/dataset pair. Regenerate with:",
         "",
         "```bash",
         "pip install '.[compare]'  # epitran, gruut, pycotovia, "
@@ -691,9 +786,13 @@ def write_comparison(rows: List[dict],
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--lang", default=None, choices=sorted(LANGS))
-    ap.add_argument("--limit", type=int, default=300,
-                    help="matches benchmark.py --scoreboard's default so "
-                         "rows draw from the same gold slice")
+    ap.add_argument("--limit", type=int, default=None,
+                    help="per-language gold cap for ad-hoc fast runs. "
+                         "Default (unset) scores the FULL gold set — the "
+                         "published comparison is uncapped, same no-caps "
+                         "policy as benchmark.py --scoreboard (huge lexicons "
+                         "with an explicit per-language sample_n are the "
+                         "documented, visibly-flagged exception)")
     ap.add_argument("--list", action="store_true",
                     help="List languages this harness can compare")
     ap.add_argument("--scoreboard", action="store_true",
