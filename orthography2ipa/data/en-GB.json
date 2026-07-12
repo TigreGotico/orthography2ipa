@@ -1,0 +1,675 @@
+{
+  "code": "en-GB",
+  "name": "British English (RP)",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "æ",
+      "ɑː",
+      "eɪ",
+      "ə",
+      "ɔː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ",
+      "iː",
+      "ə"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "ɪ",
+      "iː",
+      "aɪ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "ɒ",
+      "oʊ",
+      "ɔː",
+      "ʌ",
+      "uː"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ɹ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "ʌ",
+      "juː",
+      "uː",
+      "ʊ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks",
+      "ɡz"
+    ],
+    "y": [
+      "j",
+      "iː",
+      "aɪ",
+      "ɪ"
+    ],
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "tʃ",
+      "k",
+      "ʃ"
+    ],
+    "ck": [
+      "k"
+    ],
+    "dg": [
+      "dʒ"
+    ],
+    "gh": {
+      "ipa": [
+        "ɡ",
+        "f",
+        ""
+      ],
+      "weights": [
+        0.03,
+        0.12,
+        0.85
+      ]
+    },
+    "gn": [
+      "n"
+    ],
+    "kn": [
+      "n"
+    ],
+    "ng": [
+      "ŋ",
+      "ŋɡ"
+    ],
+    "ph": [
+      "f"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "sc": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ss": [
+      "s"
+    ],
+    "th": [
+      "θ",
+      "ð"
+    ],
+    "wh": [
+      "w",
+      "ʍ"
+    ],
+    "wr": [
+      "ɹ"
+    ],
+    "tch": [
+      "tʃ"
+    ],
+    "dge": [
+      "dʒ"
+    ],
+    "ai": [
+      "eɪ"
+    ],
+    "ay": [
+      "eɪ"
+    ],
+    "ea": [
+      "iː",
+      "ɛ"
+    ],
+    "ee": [
+      "iː"
+    ],
+    "ei": [
+      "iː",
+      "eɪ"
+    ],
+    "ey": [
+      "iː",
+      "eɪ"
+    ],
+    "ie": {
+      "ipa": [
+        "aɪ",
+        "iː"
+      ],
+      "weights": [
+        0.4,
+        0.6
+      ]
+    },
+    "oa": [
+      "oʊ"
+    ],
+    "oe": [
+      "oʊ",
+      "uː"
+    ],
+    "oo": [
+      "uː",
+      "ʊ"
+    ],
+    "ou": [
+      "aʊ",
+      "ʌ",
+      "uː"
+    ],
+    "ow": [
+      "aʊ",
+      "oʊ"
+    ],
+    "ue": [
+      "juː",
+      "uː"
+    ],
+    "ui": [
+      "uː",
+      "ɪ"
+    ],
+    "eau": [
+      "juː",
+      "oʊ"
+    ],
+    "igh": [
+      "aɪ"
+    ],
+    "ough": [
+      "ɔː",
+      "oʊ",
+      "ʌf",
+      "ɒf",
+      "aʊ",
+      "uː"
+    ],
+    "ar": [
+      "ɑːɹ"
+    ],
+    "er": {
+      "ipa": [
+        "ɜːɹ",
+        "əɹ"
+      ],
+      "weights": [
+        0.2,
+        0.8
+      ]
+    },
+    "ir": [
+      "ɜːɹ"
+    ],
+    "or": [
+      "ɔːɹ"
+    ],
+    "ur": [
+      "ɜːɹ"
+    ],
+    "air": [
+      "ɛəɹ"
+    ],
+    "are": [
+      "ɛəɹ"
+    ],
+    "ear": [
+      "ɪəɹ",
+      "ɛəɹ"
+    ],
+    "eer": [
+      "ɪəɹ"
+    ],
+    "ire": [
+      "aɪəɹ"
+    ],
+    "oar": [
+      "ɔːɹ"
+    ],
+    "ore": [
+      "ɔːɹ"
+    ],
+    "our": [
+      "aʊəɹ",
+      "ɔːɹ"
+    ],
+    "ure": [
+      "jʊəɹ",
+      "ʊəɹ"
+    ],
+    "tion": [
+      "ʃən"
+    ],
+    "cian": [
+      "ʃən"
+    ],
+    "cious": [
+      "ʃəs"
+    ],
+    "tious": [
+      "ʃəs"
+    ],
+    "tial": [
+      "ʃəl"
+    ],
+    "cial": [
+      "ʃəl"
+    ],
+    "ssion": [
+      "ʃən"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ",
+      "p̚"
+    ],
+    "b": [
+      "b",
+      "b̥"
+    ],
+    "t": [
+      "t",
+      "tʰ",
+      "ʔ",
+      "ɾ"
+    ],
+    "d": [
+      "d",
+      "d̥",
+      "ɾ"
+    ],
+    "k": [
+      "k",
+      "kʰ",
+      "k̚"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɡ̊"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "v̥"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð",
+      "d̪"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z",
+      "z̥"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʒ̊"
+    ],
+    "h": [
+      "h",
+      "ɦ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "dʒ̊"
+    ],
+    "m": [
+      "m",
+      "ɱ"
+    ],
+    "n": [
+      "n",
+      "n̪",
+      "ɱ",
+      "ŋ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɹ": [
+      "ɹ",
+      ""
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "w": [
+      "w",
+      "ʍ",
+      "w̥"
+    ],
+    "j": [
+      "j"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "æ": [
+      "æ",
+      "ɑː"
+    ],
+    "ɑː": [
+      "ɑː",
+      "ɒ"
+    ],
+    "ɒ": [
+      "ɒ",
+      "ɑ"
+    ],
+    "ɔː": [
+      "ɔː"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː",
+      "ʉː"
+    ],
+    "ʌ": [
+      "ʌ",
+      "ɐ"
+    ],
+    "ɜːɹ": [
+      "ɜːɹ",
+      "ɝː"
+    ],
+    "ə": [
+      "ə",
+      "ɚ"
+    ],
+    "eɪ": [
+      "eɪ"
+    ],
+    "aɪ": [
+      "aɪ",
+      "ɑɪ"
+    ],
+    "ɔɪ": [
+      "ɔɪ"
+    ],
+    "oʊ": [
+      "əʊ",
+      "oʊ"
+    ],
+    "aʊ": [
+      "aʊ",
+      "æʊ"
+    ]
+  },
+  "parent": "enm",
+  "ancestors": [
+    {
+      "code": "enm",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Middle English descent"
+    }
+  ],
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule). CANDIDATE WEIGHTS: a few ambiguous graphemes carry per-candidate `weights` (candidate frequencies) so the beam favours the corpus-dominant phoneme rather than the declared-first one — `er` = [ɜːɹ 0.2, əɹ 0.8] (unstressed schwar dominates the lexicon), `gh` = [ɡ 0.03, f 0.12, silent 0.85] (⟨gh⟩ is silent in the vast majority of words: night, though, high, weigh), `ie` = [aɪ 0.4, iː 0.6] (the /iː~i/ realisation of -ie/-ies edges out /aɪ/). Values are approximate frequencies grounded in Gontijo et al. (2003) British-English and Berndt et al. (1987) grapheme-phoneme probability studies, not PER-tuned parameters; graphemes without weights keep uniform rank ordering. See docs/candidate_scoring.md.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wells1982_vol1",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 1: An Introduction",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "wells1982_vol2",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 2: The British Isles",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "roach2009",
+      "author": "Roach, P.",
+      "year": 2009,
+      "title": "English Phonetics and Phonology: A Practical Course (4th ed.)",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "gimson2014",
+      "author": "Cruttenden, A. (ed.)",
+      "year": 2014,
+      "title": "Gimson's Pronunciation of English (8th ed.)",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "roach2004_jipa",
+      "author": "Roach, P.",
+      "year": 2004,
+      "title": "British English: Received Pronunciation",
+      "publisher": "Journal of the International Phonetic Association, 34(2), 239-245",
+      "url": "https://doi.org/10.1017/S0025100304001768",
+      "pages": "239-245",
+      "notes": "Illustrations of the IPA series entry; RP phoneme inventory and worked transcription."
+    },
+    {
+      "id": "gontijo2003",
+      "author": "Gontijo, P.F.D., Gontijo, I., & Shillcock, R.",
+      "year": 2003,
+      "title": "Grapheme-phoneme probabilities in British English",
+      "publisher": "Behavior Research Methods, Instruments, & Computers, 35(1), 136-157",
+      "url": "https://doi.org/10.3758/BF03195506",
+      "pages": "136-157",
+      "notes": "Corpus-derived conditional probabilities of grapheme-to-phoneme correspondences in British English. Basis for the `weights` on the `er`, `gh` and `ie` grapheme entries: candidate frequencies, not tuned parameters."
+    },
+    {
+      "id": "berndt1987",
+      "author": "Berndt, R.S., Reggia, J.A., & Mitchum, C.C.",
+      "year": 1987,
+      "title": "Empirically derived probabilities for grapheme-to-phoneme correspondences in English",
+      "publisher": "Behavior Research Methods, Instruments, & Computers, 19(1), 1-9",
+      "url": "https://doi.org/10.3758/BF03207663",
+      "pages": "1-9",
+      "notes": "Grapheme-to-phoneme correspondence probabilities from a 17,310-word corpus. Corroborates the dominant correspondences encoded in the weighted grapheme entries (e.g. `gh` most frequently silent; unstressed `er` = schwar)."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/British_English",
+    "https://simple.wikipedia.org/wiki/British_English",
+    "https://en.wikipedia.org/wiki/English_phonology"
+  ],
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "dʒ",
+        "ɡ"
+      ],
+      "before_i": [
+        "dʒ",
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "word_final": [
+        "s",
+        "z"
+      ],
+      "default": [
+        "s"
+      ]
+    },
+    "x": {
+      "word_initial": [
+        "z"
+      ],
+      "default": [
+        "ks"
+      ]
+    },
+    "th": {
+      "word_initial": [
+        "θ",
+        "ð"
+      ],
+      "intervocalic": [
+        "ð"
+      ],
+      "default": [
+        "θ"
+      ]
+    },
+    "e": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "ɛ",
+        "iː",
+        "ə"
+      ]
+    },
+    "sion": {
+      "after_vowel": [
+        "ʒən",
+        "ʃən"
+      ],
+      "after_consonant": [
+        "ʃən",
+        "ʒən"
+      ],
+      "default": [
+        "ʒən",
+        "ʃən"
+      ]
+    }
+  },
+  "word_exceptions": {
+    "the": "ðə",
+    "be": "biː",
+    "he": "hiː",
+    "me": "miː",
+    "we": "wiː",
+    "she": "ʃiː"
+  },
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "stan1293",
+  "iso639_3": "eng",
+  "wikidata_qid": "Q7979",
+  "phoible_id": "stan1293",
+  "location": {
+    "latitude": 53.0,
+    "longitude": -1.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for English."
+  }
+}

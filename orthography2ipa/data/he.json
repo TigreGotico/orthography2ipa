@@ -1,0 +1,295 @@
+{
+  "code": "he",
+  "name": "Hebrew",
+  "glottolog_code": "hebr1245",
+  "script": "Hebrew",
+  "script_type": "abjad",
+  "iso639_3": "heb",
+  "quality": "research",
+  "graphemes": {
+    "א": [
+      "ʔ",
+      ""
+    ],
+    "ב": [
+      "b",
+      "v"
+    ],
+    "ג": [
+      "ɡ"
+    ],
+    "ד": [
+      "d"
+    ],
+    "ה": [
+      "h",
+      ""
+    ],
+    "ו": [
+      "v",
+      "w"
+    ],
+    "ז": [
+      "z"
+    ],
+    "ח": [
+      "χ"
+    ],
+    "ט": [
+      "t"
+    ],
+    "י": [
+      "j"
+    ],
+    "כ": [
+      "k",
+      "χ"
+    ],
+    "ך": [
+      "χ"
+    ],
+    "ל": [
+      "l"
+    ],
+    "מ": [
+      "m"
+    ],
+    "ם": [
+      "m"
+    ],
+    "נ": [
+      "n"
+    ],
+    "ן": [
+      "n"
+    ],
+    "ס": [
+      "s"
+    ],
+    "ע": [
+      "ʔ",
+      ""
+    ],
+    "פ": [
+      "p",
+      "f"
+    ],
+    "ף": [
+      "f"
+    ],
+    "צ": [
+      "ts"
+    ],
+    "ץ": [
+      "ts"
+    ],
+    "ק": [
+      "k"
+    ],
+    "ר": [
+      "ʁ",
+      "r"
+    ],
+    "ש": [
+      "ʃ",
+      "s"
+    ],
+    "ת": [
+      "t"
+    ]
+  },
+  "allophones": {
+    "ʔ": [
+      "ʔ",
+      ""
+    ],
+    "b": [
+      "b"
+    ],
+    "v": [
+      "v"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "d": [
+      "d"
+    ],
+    "h": [
+      "h",
+      ""
+    ],
+    "z": [
+      "z"
+    ],
+    "χ": [
+      "χ",
+      "x"
+    ],
+    "t": [
+      "t"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "s": [
+      "s"
+    ],
+    "p": [
+      "p"
+    ],
+    "f": [
+      "f"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ʁ": [
+      "ʁ",
+      "r"
+    ],
+    "ʃ": [
+      "ʃ"
+    ]
+  },
+  "positional_graphemes": {
+    "ב": {
+      "word_initial": [
+        "b"
+      ],
+      "after_consonant": [
+        "b"
+      ],
+      "intervocalic": [
+        "v"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "כ": {
+      "word_initial": [
+        "k"
+      ],
+      "after_consonant": [
+        "k"
+      ],
+      "default": [
+        "χ"
+      ]
+    },
+    "פ": {
+      "word_initial": [
+        "p"
+      ],
+      "after_consonant": [
+        "p"
+      ],
+      "default": [
+        "f"
+      ]
+    },
+    "ה": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "h"
+      ]
+    }
+  },
+  "notes": "Modern Israeli Hebrew. Consonantal abjad — vowel diacritics (niqqud) normally omitted in adult text. Bgdkpt rule: ב/כ/פ = stops after consonant or word-initially, fricatives elsewhere. ר = /ʁ/ in most Israeli speech. ח and כ (final) both = /χ/. ע and א are /ʔ/ or silent in colloquial speech. Dagesh lene distinguishes stop vs. fricative in ב,כ,פ.",
+  "sources": [
+    {
+      "id": "bolozky1997",
+      "author": "Bolozky, S.",
+      "year": 1997,
+      "title": "Israeli Hebrew Phonology",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hebrew_phonology_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Modern Hebrew phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hebrew_language",
+    "https://en.wikipedia.org/wiki/Modern_Hebrew_phonology",
+    "https://en.wikipedia.org/wiki/Aramaic",
+    "https://en.wikipedia.org/wiki/Revival_of_the_Hebrew_language",
+    "https://he.wikipedia.org/wiki/%D7%A2%D7%91%D7%A8%D7%99%D7%AA",
+    "https://he.wikipedia.org/wiki/%D7%94%D7%92%D7%99%D7%99%D7%AA_%D7%94%D7%A2%D7%91%D7%A8%D7%99%D7%AA",
+    "https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%9E%D7%99%D7%AA",
+    "https://he.wikipedia.org/wiki/%D7%AA%D7%97%D7%99%D7%99%D7%AA_%D7%94%D7%9C%D7%A9%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99%D7%AA"
+  ],
+  "timespan": {
+    "start_year": 1948,
+    "end_year": null
+  },
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Modern Israeli Hebrew default is milra (final stress, -1). Milel (penultimate) is common in a substantial minority of words (especially segolate nouns: מֶלֶךְ, שֶׁמֶשׁ) and cannot be predicted from unvocalized orthography. With niqqud the stressed syllable is identifiable; without niqqud (the norm in adult text) stress placement is not reliably computable from orthography alone. This block models the milra default only. Source: Bolozky (1997)."
+  },
+  "parent": "sem-x-central",
+  "ancestors": [
+    {
+      "code": "sem-x-central",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Canaanite (Northwest Semitic), a branch of Central Semitic."
+    },
+    {
+      "code": "arc",
+      "role": "adstrate",
+      "weight": 0.14,
+      "notes": "Aramaic adstrate: dominant vernacular of Second-Temple Judea; heavy lexical/phonological layer."
+    },
+    {
+      "code": "yi",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Yiddish adstrate on Revived (Modern) Hebrew: European-substrate phonology of the first speakers."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Arabic adstrate: shared Semitic areal features and modern loanwords."
+    }
+  ],
+  "wikidata_qid": "Q9288",
+  "phoible_id": "hebr1245",
+  "wals_code": "heb",
+  "location": {
+    "latitude": 31.1056,
+    "longitude": 35.0179,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Modern Hebrew."
+  }
+}

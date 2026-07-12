@@ -1,0 +1,129 @@
+{
+  "code": "ar-LY",
+  "name": "Libyan Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "t",
+      "θ"
+    ],
+    "ذ": [
+      "d",
+      "ð"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "t",
+      "θ"
+    ],
+    "ð": [
+      "d",
+      "ð"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "i": [
+      "i",
+      "ə"
+    ],
+    "u": [
+      "u",
+      "ə"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Maghrebi Arabic base"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.07,
+      "notes": "Berber substrate (Nafusa plateau / interior)"
+    }
+  ],
+  "notes": "Libyan Arabic. Two main varieties: Western (Tripoli): Maghrebi features, θ → /t/; Eastern (Benghazi/Barqa): more conservative, θ preserved, Egyptian-influenced features. ق → /q/ PRESERVED in most Libyan varieties (conservative). Vowel reduction less extreme than Moroccan. Italian colonial influence (1911–1943): /p/ in loans, some /tʃ/.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Libyan_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D9%84%D9%8A%D8%A8%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
+  "glottolog_code": "liby1240",
+  "iso639_3": "ayl",
+  "wikidata_qid": "Q56503",
+  "phoible_id": "liby1240",
+  "wals_code": "ael",
+  "location": {
+    "latitude": 22.0032,
+    "longitude": 15.0014,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Libyan Arabic."
+  }
+}

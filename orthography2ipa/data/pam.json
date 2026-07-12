@@ -1,0 +1,191 @@
+{
+  "code": "pam",
+  "name": "Kapampangan",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "x-clade-mala1545",
+  "graphemes": {
+    "a": [
+      "a",
+      "ə"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a",
+      "ə"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d",
+      "dʒ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "s": [
+      "s",
+      "ʃ"
+    ],
+    "t": [
+      "t",
+      "tʃ"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʔ": [
+      "ʔ"
+    ]
+  },
+  "notes": "Kapampangan (Kapampangan / Pampanga) — Central Luzon (Austronesian) language. Written in the Latin-based Sulat Wawa orthography, which uses ⟨k⟩ rather than ⟨c⟩/⟨q⟩ for /k/; ⟨ng⟩ is a single letter /ŋ/ and occurs word-initially. Five vowel phonemes: /a ~ ə/ (written ⟨a⟩; [ə] unstressed, [aː] stressed), /ɛ/, /i/, /o/, /u/. Fifteen consonants /m n ŋ p b t d tʃ dʒ k ɡ ʔ s ʃ ɾ~r l j w/; all stops are unaspirated. [tʃ dʒ ʃ] mostly arise from /t d s/ before /i/ + vowel and in loanwords. Glottal stop is phonemic but usually unwritten.",
+  "iso639_3": "pam",
+  "glottolog_code": "pamp1243",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kapampangan_language",
+    "https://pam.wikipedia.org/wiki/Kapampangan_%28amanu%29"
+  ],
+  "sources": [
+    {
+      "id": "forman1971",
+      "author": "Forman, Michael L.",
+      "year": 1971,
+      "title": "Kapampangan Grammar Notes",
+      "publisher": "University of Hawai'i Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar; phonology and orthography."
+    },
+    {
+      "id": "pam_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kapampangan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kapampangan_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kapampangan_language",
+      "pages": null,
+      "notes": "Phonology and orthography sections."
+    }
+  ],
+  "ancestors": [
+    {
+      "code": "x-clade-mala1545",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
+    }
+  ],
+  "location": {
+    "latitude": 14.9603,
+    "longitude": 120.502,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pampanga."
+  }
+}

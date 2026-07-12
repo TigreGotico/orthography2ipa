@@ -1,0 +1,347 @@
+import unittest
+from dataclasses import FrozenInstanceError
+
+from orthography2ipa.types import (
+    Ancestor,
+    AncestorRole,
+    GraphemePosition,
+    LanguageSpec,
+)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Helpers
+# ═══════════════════════════════════════════════════════════════════════════
+
+def make_minimal_spec():
+    return LanguageSpec(
+        code="xx", name="Test Language", family="TestFamily", script="Latin",
+        graphemes={"a": ["a"], "b": ["b"], "s": ["s", "z"]},
+        allophones={"a": ["a"], "b": ["b", "β"], "s": ["s", "z"]},
+    )
+
+
+def make_positional_spec():
+    """Portuguese-like positional patterns."""
+    return LanguageSpec(
+        code="xx-pos", name="Test Positional", family="TestFamily",
+        script="Latin",
+        graphemes={
+            "a": ["a"], "e": ["e", "ɛ"], "s": ["s", "z"], "l": ["l"],
+            "t": ["t"], "r": ["ɾ"], "rr": ["ʁ"],
+        },
+        allophones={
+            "a": ["a"], "e": ["e", "ɛ", "ɨ"],
+            "s": ["s", "z", "ʃ", "ʒ"], "l": ["l", "w", "ɫ"],
+            "t": ["t", "tʃ"], "ɾ": ["ɾ"], "ʁ": ["ʁ", "χ", "ʀ", "h"],
+        },
+        positional_graphemes={
+            "s": {
+                GraphemePosition.WORD_INITIAL: ["s"],
+                GraphemePosition.INTERVOCALIC: ["z"],
+                GraphemePosition.WORD_FINAL: ["ʃ"],
+                GraphemePosition.INTERVOCALIC_CROSS_WORD: ["z"],
+                GraphemePosition.CODA: ["ʃ", "ʒ"],
+            },
+            "l": {
+                GraphemePosition.ONSET: ["l"],
+                GraphemePosition.CODA: ["w"],
+            },
+            "t": {
+                GraphemePosition.ONSET: ["t", "tʃ"],
+            },
+            "r": {
+                GraphemePosition.WORD_INITIAL: ["ʁ"],
+                GraphemePosition.INTERVOCALIC: ["ɾ"],
+                GraphemePosition.CODA: ["ɾ", "ʁ"],
+            },
+        },
+    )
+
+
+def make_ancestry_positional_spec():
+    return LanguageSpec(
+        code="xx-complex", name="Complex Test Language",
+        family="TestFamily", script="Latin",
+        graphemes={"a": ["a"], "b": ["b"], "d": ["d"]},
+        allophones={"a": ["a"], "b": ["b"], "d": ["d", "ð"]},
+        parent="yy-parent",
+        ancestors=(
+            Ancestor("yy-parent", AncestorRole.PARENT, 0.80, "Primary descent"),
+            Ancestor("zz-sub", AncestorRole.SUBSTRATE, 0.10, "Substrate lang"),
+        ),
+        positional_graphemes={
+            "d": {
+                GraphemePosition.WORD_INITIAL: ["d"],
+                GraphemePosition.INTERVOCALIC: ["ð"],
+                GraphemePosition.WORD_FINAL: ["t"],
+            },
+        },
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# GraphemePosition enum
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestGraphemePosition(unittest.TestCase):
+
+    def test_all_positions_exist(self):
+        expected = {
+            "word_initial", "word_final",
+            "intervocalic", "intervocalic_cross_word",
+            "onset", "nucleus_stressed", "nucleus_unstressed", "coda",
+            "first_pretonic", "pretonic", "posttonic",
+            "before_vowel", "after_vowel",
+            "before_consonant", "after_consonant",
+            "before_a", "before_e", "before_i", "before_o", "before_u",
+            "after_a", "after_e", "after_i", "after_o", "after_u",
+            "before_front_vowel", "before_back_vowel",
+            "after_front_vowel", "after_back_vowel",
+            "before_palatal", "after_palatal",
+            "vocalic", "consonantal",
+            "default", "nucleus",
+        }
+        actual = {p.value for p in GraphemePosition}
+        self.assertEqual(actual, expected)
+
+    def test_position_values_are_strings(self):
+        for pos in GraphemePosition:
+            self.assertIsInstance(pos.value, str)
+
+    def test_position_lookup_by_value(self):
+        self.assertEqual(GraphemePosition("word_initial"), GraphemePosition.WORD_INITIAL)
+        self.assertEqual(GraphemePosition("coda"), GraphemePosition.CODA)
+
+    def test_position_lookup_invalid(self):
+        with self.assertRaises(ValueError):
+            GraphemePosition("nonexistent")
+
+    def test_positions_are_unique(self):
+        values = [p.value for p in GraphemePosition]
+        self.assertEqual(len(values), len(set(values)))
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Backward compatibility
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestBackwardCompatibility(unittest.TestCase):
+
+    def setUp(self):
+        self.spec = make_minimal_spec()
+
+    def test_no_positional_defaults_to_empty_dict(self):
+        self.assertEqual(self.spec.positional_graphemes, {})
+
+    def test_has_positional_data_false(self):
+        self.assertFalse(self.spec.has_positional_data())
+
+    def test_positional_grapheme_keys_empty(self):
+        self.assertEqual(self.spec.positional_grapheme_keys(), frozenset())
+
+    def test_positions_for_grapheme_empty(self):
+        self.assertEqual(self.spec.positions_for_grapheme("s"), ())
+
+    def test_resolve_any_position_falls_back(self):
+        self.assertEqual(
+            self.spec.resolve_grapheme("s", GraphemePosition.WORD_INITIAL), ["s", "z"])
+        self.assertEqual(
+            self.spec.resolve_grapheme("s", GraphemePosition.CODA), ["s", "z"])
+
+    def test_resolve_unknown_key_raises(self):
+        with self.assertRaises(KeyError):
+            self.spec.resolve_grapheme("xyz")
+
+    def test_immutability(self):
+        with self.assertRaises(FrozenInstanceError):
+            self.spec.code = "yy"
+
+    def test_none_positional_normalised(self):
+        spec = LanguageSpec(
+            code="xx", name="Test", family="TestFamily", script="Latin",
+            graphemes={"a": ["a"]}, allophones={"a": ["a"]},
+            positional_graphemes=None,
+        )
+        self.assertEqual(spec.positional_graphemes, {})
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Positional grapheme resolution
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPositionalResolution(unittest.TestCase):
+
+    def setUp(self):
+        self.spec = make_positional_spec()
+
+    def test_has_positional_data_true(self):
+        self.assertTrue(self.spec.has_positional_data())
+
+    def test_positional_grapheme_keys(self):
+        self.assertEqual(self.spec.positional_grapheme_keys(),
+                         frozenset({"s", "l", "t", "r"}))
+
+    def test_positions_for_s(self):
+        positions = set(self.spec.positions_for_grapheme("s"))
+        expected = {
+            GraphemePosition.WORD_INITIAL,
+            GraphemePosition.INTERVOCALIC, GraphemePosition.WORD_FINAL,
+            GraphemePosition.INTERVOCALIC_CROSS_WORD, GraphemePosition.CODA,
+        }
+        self.assertEqual(positions, expected)
+
+    def test_resolve_default(self):
+        self.assertEqual(self.spec.resolve_grapheme("s"), ["s", "z"])
+
+    def test_resolve_word_initial(self):
+        self.assertEqual(self.spec.resolve_grapheme("s", GraphemePosition.WORD_INITIAL), ["s"])
+
+    def test_resolve_intervocalic(self):
+        self.assertEqual(self.spec.resolve_grapheme("s", GraphemePosition.INTERVOCALIC), ["z"])
+
+    def test_resolve_word_final(self):
+        self.assertEqual(self.spec.resolve_grapheme("s", GraphemePosition.WORD_FINAL), ["ʃ"])
+
+    def test_resolve_coda(self):
+        self.assertEqual(self.spec.resolve_grapheme("s", GraphemePosition.CODA), ["ʃ", "ʒ"])
+
+    def test_resolve_cross_word(self):
+        self.assertEqual(
+            self.spec.resolve_grapheme("s", GraphemePosition.INTERVOCALIC_CROSS_WORD), ["z"])
+
+    def test_resolve_l_onset(self):
+        self.assertEqual(self.spec.resolve_grapheme("l", GraphemePosition.ONSET), ["l"])
+
+    def test_resolve_l_coda(self):
+        self.assertEqual(self.spec.resolve_grapheme("l", GraphemePosition.CODA), ["w"])
+
+    def test_resolve_l_fallback_to_base(self):
+        self.assertEqual(self.spec.resolve_grapheme("l", GraphemePosition.WORD_INITIAL), ["l"])
+
+    def test_resolve_r_word_initial(self):
+        self.assertEqual(self.spec.resolve_grapheme("r", GraphemePosition.WORD_INITIAL), ["ʁ"])
+
+    def test_resolve_r_intervocalic(self):
+        self.assertEqual(self.spec.resolve_grapheme("r", GraphemePosition.INTERVOCALIC), ["ɾ"])
+
+    def test_resolve_non_positional_grapheme(self):
+        self.assertEqual(self.spec.resolve_grapheme("a"), ["a"])
+        self.assertEqual(self.spec.resolve_grapheme("a", GraphemePosition.CODA), ["a"])
+
+    def test_resolve_digraph_fallback(self):
+        self.assertEqual(self.spec.resolve_grapheme("rr"), ["ʁ"])
+
+    def test_resolve_unknown_raises(self):
+        with self.assertRaises(KeyError):
+            self.spec.resolve_grapheme("xyz")
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Positional + ancestry combined
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPositionalWithAncestry(unittest.TestCase):
+
+    def setUp(self):
+        self.spec = make_ancestry_positional_spec()
+
+    def test_ancestry_works(self):
+        self.assertEqual(len(self.spec.get_ancestors()), 2)
+        self.assertEqual(self.spec.primary_parent, "yy-parent")
+
+    def test_positional_works(self):
+        self.assertEqual(
+            self.spec.resolve_grapheme("d", GraphemePosition.WORD_INITIAL), ["d"])
+        self.assertEqual(
+            self.spec.resolve_grapheme("d", GraphemePosition.INTERVOCALIC), ["ð"])
+        self.assertEqual(
+            self.spec.resolve_grapheme("d", GraphemePosition.WORD_FINAL), ["t"])
+
+    def test_non_positional_grapheme(self):
+        self.assertEqual(self.spec.resolve_grapheme("a"), ["a"])
+        self.assertEqual(self.spec.resolve_grapheme("b"), ["b"])
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Edge cases
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestEdgeCases(unittest.TestCase):
+
+    def test_empty_positional_dict(self):
+        spec = LanguageSpec(
+            code="xx", name="Test", family="TestFamily", script="Latin",
+            graphemes={"a": ["a"]}, allophones={"a": ["a"]},
+            positional_graphemes={},
+        )
+        self.assertFalse(spec.has_positional_data())
+        self.assertEqual(spec.resolve_grapheme("a"), ["a"])
+
+    def test_positional_without_default_fallback(self):
+        spec = LanguageSpec(
+            code="xx", name="Test", family="TestFamily", script="Latin",
+            graphemes={"a": ["a", "ə"]}, allophones={"a": ["a"]},
+            positional_graphemes={"a": {GraphemePosition.CODA: ["ɐ"]}},
+        )
+        self.assertEqual(spec.resolve_grapheme("a", GraphemePosition.CODA), ["ɐ"])
+        self.assertEqual(spec.resolve_grapheme("a", GraphemePosition.ONSET), ["a", "ə"])
+        self.assertEqual(spec.resolve_grapheme("a"), ["a", "ə"])
+
+    def test_nucleus_position(self):
+        spec = LanguageSpec(
+            code="xx", name="Test", family="TestFamily", script="Latin",
+            graphemes={"e": ["e", "ɛ"]}, allophones={"e": ["e", "ɛ", "ɨ"]},
+            positional_graphemes={"e": {GraphemePosition.NUCLEUS_UNSTRESSED: ["ɨ"]}},
+        )
+        self.assertEqual(spec.resolve_grapheme("e", GraphemePosition.NUCLEUS_UNSTRESSED), ["ɨ"])
+        self.assertEqual(spec.resolve_grapheme("e", GraphemePosition.ONSET), ["e", "ɛ"])
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Ancestor tests (preserved from original)
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestAncestorRole(unittest.TestCase):
+    def test_all_roles_exist(self):
+        expected = {"parent", "parent_dialect", "proto_language", "ancestor",
+                    "substrate", "superstrate", "adstrate",
+                    "lexifier", "creole_base", "related"}
+        self.assertEqual({r.value for r in AncestorRole}, expected)
+
+
+class TestAncestor(unittest.TestCase):
+    def test_repr(self):
+        a = Ancestor("la", AncestorRole.PARENT, 0.85, "Latin parent")
+        self.assertIn("la", repr(a))
+        self.assertIn("parent", repr(a))
+
+    def test_immutability(self):
+        a = Ancestor("la", AncestorRole.PARENT, 0.85)
+        with self.assertRaises(FrozenInstanceError):
+            a.code = "xx"
+
+
+class TestLanguageSpecAncestry(unittest.TestCase):
+    def test_get_ancestors_from_parent_field(self):
+        spec = LanguageSpec(
+            code="xx-d", name="Test Dialect", family="TestFamily",
+            script="Latin", graphemes={"a": ["a"]}, allophones={"a": ["a"]},
+            parent="xx",
+        )
+        ancestors = spec.get_ancestors()
+        self.assertEqual(len(ancestors), 1)
+        self.assertEqual(ancestors[0].code, "xx")
+
+    def test_primary_parent(self):
+        spec = make_ancestry_positional_spec()
+        self.assertEqual(spec.primary_parent, "yy-parent")
+
+    def test_no_parent_no_ancestors(self):
+        spec = make_minimal_spec()
+        self.assertIsNone(spec.primary_parent)
+        self.assertEqual(spec.get_ancestors(), ())
+
+
+if __name__ == "__main__":
+    unittest.main()

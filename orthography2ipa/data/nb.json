@@ -1,0 +1,2354 @@
+{
+  "ancestors": [
+    {
+      "code": "no",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Norwegian macrolanguage node; Bokmal is the Dano-Norwegian written standard."
+    },
+    {
+      "code": "non",
+      "role": "ancestor",
+      "weight": 0.1,
+      "notes": "Old Norse (West Norse) — the historical stage underlying all mainland Scandinavian."
+    },
+    {
+      "code": "da",
+      "role": "superstrate",
+      "weight": 0.12,
+      "notes": "Danish superstrate: four centuries of Dano-Norwegian union made written Danish the base of Bokmal; heavy orthographic and lexical layer."
+    }
+  ],
+  "code": "nb",
+  "name": "Norwegian Bokmål",
+  "script": "Latin",
+  "graphemes_base": "no",
+  "allophones_base": "no",
+  "allophones": {
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "rn": [
+      "ɳ"
+    ],
+    "rd": [
+      "ɖ"
+    ],
+    "rt": [
+      "ʈ"
+    ],
+    "rs": [
+      "ʂ"
+    ],
+    "rl": [
+      "ɭ"
+    ],
+    "ʋ": [
+      "ʋ",
+      "v"
+    ]
+  },
+  "parent": "no",
+  "notes": "Norwegian Bokmål — majority written standard (~85%), Urban East Norwegian phonology (Kristoffersen 2000). QUANTITY: as in Swedish, a stressed vowel is long before a single consonant and short before a geminate or a cluster; doubled letters are grapheme keys mapping to /Cː/, clusters map to the concatenated phonemes, and allophone rules shorten the stressed nucleus before them. VOWELS: short ⟨a⟩ is [a], long is [ɑː]; unstressed ⟨e⟩ is [ə] (the ubiquitous ending vowel). RETROFLEXION: ⟨rt rd rn rs rl⟩ → [ʈ ɖ ɳ ʂ ɭ]. SOFTENING: ⟨k g sk⟩ → [ç j ʃ] before a front vowel. SILENT D: word-final ⟨nd⟩→[n], ⟨ld⟩→[l]; ⟨hv⟩→[v]. R: the phoneme is the apical /r/ (Kristoffersen); the tap [ɾ] is one realisation. TONEMES (accent 1/2) are suprasegmental and are NOT encoded; the gold marks them (¹/²), a convention difference rather than an error.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "haugen1976",
+      "author": "Haugen, E.",
+      "year": 1976,
+      "title": "The Scandinavian Languages: An Introduction to their History",
+      "publisher": "Faber and Faber",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "kristoffersen2000",
+      "author": "Kristoffersen, G.",
+      "year": 2000,
+      "title": "The Phonology of Norwegian",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Urban East Norwegian: vowel quantity and the length rule, retroflexion of /r/+coronal, the /r/ phoneme, schwa in unstressed syllables, tonal accent."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode norw1259."
+    },
+    {
+      "id": "wikipedia_norwegian_phonology",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Norwegian phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Norwegian_phonology",
+      "pages": null,
+      "notes": "Accessible overview: complementary vowel/consonant length, retroflex allophones of /r/+coronal, unstressed [ə], and the two tonemes."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bokmål",
+    "https://no.wikipedia.org/wiki/Bokmål",
+    "https://no.wikipedia.org/wiki/Bokm%C3%A5l",
+    "https://en.wikipedia.org/wiki/Bokm%C3%A5l",
+    "https://en.wikipedia.org/wiki/Norwegian_phonology"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "norw1259",
+  "iso639_3": "nob",
+  "wikidata_qid": "Q25167",
+  "phoible_id": "norw1259",
+  "wals_code": "nor",
+  "location": {
+    "latitude": 61.112,
+    "longitude": 8.886,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Norwegian Bokmål."
+  },
+  "phonemes": [
+    "a",
+    "ai",
+    "aː",
+    "b",
+    "d̪",
+    "eː",
+    "e̞",
+    "f",
+    "h",
+    "iː",
+    "j",
+    "kʰ",
+    "l",
+    "l̪",
+    "l̪̩",
+    "m",
+    "m̥",
+    "n̪",
+    "o̞ː",
+    "pʰ",
+    "s",
+    "t̪ʰ",
+    "u",
+    "uː",
+    "yː",
+    "æ",
+    "æi",
+    "æʉ",
+    "æː",
+    "ç",
+    "øy",
+    "ø̞ː",
+    "ŋ",
+    "œ",
+    "ɑː",
+    "ɒ̝",
+    "ɔy",
+    "ɖ",
+    "ə",
+    "ɡ",
+    "ɪ",
+    "ɭ",
+    "ɭ̩",
+    "ɳ",
+    "ɹ̩",
+    "ɾ",
+    "ʃ",
+    "ʈʰ",
+    "ʉ",
+    "ʉː",
+    "ʊ",
+    "ʋ",
+    "ʏ",
+    "ʔ",
+    "˥˧˥",
+    "˩˨"
+  ],
+  "graphemes": {
+    "bd": [
+      "bd"
+    ],
+    "bf": [
+      "bf"
+    ],
+    "bg": [
+      "bɡ"
+    ],
+    "bk": [
+      "bk"
+    ],
+    "bl": [
+      "bl"
+    ],
+    "bm": [
+      "bm"
+    ],
+    "bn": [
+      "bn"
+    ],
+    "bp": [
+      "bp"
+    ],
+    "br": [
+      "br"
+    ],
+    "bs": [
+      "bs"
+    ],
+    "bt": [
+      "bt"
+    ],
+    "bv": [
+      "bʋ"
+    ],
+    "db": [
+      "db"
+    ],
+    "df": [
+      "df"
+    ],
+    "dg": [
+      "dɡ"
+    ],
+    "dk": [
+      "dk"
+    ],
+    "dl": [
+      "dl"
+    ],
+    "dm": [
+      "dm"
+    ],
+    "dn": [
+      "dn"
+    ],
+    "dp": [
+      "dp"
+    ],
+    "dr": [
+      "dr"
+    ],
+    "ds": [
+      "ds"
+    ],
+    "dt": [
+      "dt"
+    ],
+    "dv": [
+      "dʋ"
+    ],
+    "fb": [
+      "fb"
+    ],
+    "fd": [
+      "fd"
+    ],
+    "fg": [
+      "fɡ"
+    ],
+    "fk": [
+      "fk"
+    ],
+    "fl": [
+      "fl"
+    ],
+    "fm": [
+      "fm"
+    ],
+    "fn": [
+      "fn"
+    ],
+    "fp": [
+      "fp"
+    ],
+    "fr": [
+      "fr"
+    ],
+    "fs": [
+      "fs"
+    ],
+    "ft": [
+      "ft"
+    ],
+    "fv": [
+      "fʋ"
+    ],
+    "gb": [
+      "ɡb"
+    ],
+    "gd": [
+      "ɡd"
+    ],
+    "gf": [
+      "ɡf"
+    ],
+    "gk": [
+      "ɡk"
+    ],
+    "gl": [
+      "ɡl"
+    ],
+    "gm": [
+      "ɡm"
+    ],
+    "gp": [
+      "ɡp"
+    ],
+    "gr": [
+      "ɡr"
+    ],
+    "gs": [
+      "ɡs"
+    ],
+    "gt": [
+      "ɡt"
+    ],
+    "gv": [
+      "ɡʋ"
+    ],
+    "kb": [
+      "kb"
+    ],
+    "kd": [
+      "kd"
+    ],
+    "kf": [
+      "kf"
+    ],
+    "kg": [
+      "kɡ"
+    ],
+    "kl": [
+      "kl"
+    ],
+    "km": [
+      "km"
+    ],
+    "kn": [
+      "kn"
+    ],
+    "kp": [
+      "kp"
+    ],
+    "kr": [
+      "kr"
+    ],
+    "ks": [
+      "ks"
+    ],
+    "kt": [
+      "kt"
+    ],
+    "kv": [
+      "kʋ"
+    ],
+    "lb": [
+      "lb"
+    ],
+    "ld": [
+      "ld"
+    ],
+    "lf": [
+      "lf"
+    ],
+    "lg": [
+      "lɡ"
+    ],
+    "lk": [
+      "lk"
+    ],
+    "lm": [
+      "lm"
+    ],
+    "ln": [
+      "ln"
+    ],
+    "lp": [
+      "lp"
+    ],
+    "lr": [
+      "lr"
+    ],
+    "ls": [
+      "ls"
+    ],
+    "lt": [
+      "lt"
+    ],
+    "lv": [
+      "lʋ"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "md": [
+      "md"
+    ],
+    "mf": [
+      "mf"
+    ],
+    "mg": [
+      "mɡ"
+    ],
+    "mk": [
+      "mk"
+    ],
+    "ml": [
+      "ml"
+    ],
+    "mn": [
+      "mn"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "mr": [
+      "mr"
+    ],
+    "ms": [
+      "ms"
+    ],
+    "mt": [
+      "mt"
+    ],
+    "mv": [
+      "mʋ"
+    ],
+    "nb": [
+      "nb"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "nf": [
+      "nf"
+    ],
+    "nl": [
+      "nl"
+    ],
+    "nm": [
+      "nm"
+    ],
+    "np": [
+      "np"
+    ],
+    "nr": [
+      "nr"
+    ],
+    "ns": [
+      "ns"
+    ],
+    "nt": [
+      "nt"
+    ],
+    "nv": [
+      "nʋ"
+    ],
+    "pb": [
+      "pb"
+    ],
+    "pd": [
+      "pd"
+    ],
+    "pf": [
+      "pf"
+    ],
+    "pg": [
+      "pɡ"
+    ],
+    "pk": [
+      "pk"
+    ],
+    "pl": [
+      "pl"
+    ],
+    "pm": [
+      "pm"
+    ],
+    "pn": [
+      "pn"
+    ],
+    "pr": [
+      "pr"
+    ],
+    "ps": [
+      "ps"
+    ],
+    "pt": [
+      "pt"
+    ],
+    "pv": [
+      "pʋ"
+    ],
+    "rb": [
+      "rb"
+    ],
+    "rf": [
+      "rf"
+    ],
+    "rg": [
+      "rɡ"
+    ],
+    "rk": [
+      "rk"
+    ],
+    "rm": [
+      "rm"
+    ],
+    "rp": [
+      "rp"
+    ],
+    "rv": [
+      "rʋ"
+    ],
+    "sb": [
+      "sb"
+    ],
+    "sd": [
+      "sd"
+    ],
+    "sf": [
+      "sf"
+    ],
+    "sg": [
+      "sɡ"
+    ],
+    "sl": [
+      "sl"
+    ],
+    "sm": [
+      "sm"
+    ],
+    "sn": [
+      "sn"
+    ],
+    "sp": [
+      "sp"
+    ],
+    "sr": [
+      "sr"
+    ],
+    "st": [
+      "st"
+    ],
+    "sv": [
+      "sʋ"
+    ],
+    "tb": [
+      "tb"
+    ],
+    "td": [
+      "td"
+    ],
+    "tf": [
+      "tf"
+    ],
+    "tg": [
+      "tɡ"
+    ],
+    "tk": [
+      "tk"
+    ],
+    "tl": [
+      "tl"
+    ],
+    "tm": [
+      "tm"
+    ],
+    "tn": [
+      "tn"
+    ],
+    "tp": [
+      "tp"
+    ],
+    "tr": [
+      "tr"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tv": [
+      "tʋ"
+    ],
+    "vb": [
+      "ʋb"
+    ],
+    "vd": [
+      "ʋd"
+    ],
+    "vf": [
+      "ʋf"
+    ],
+    "vg": [
+      "ʋɡ"
+    ],
+    "vk": [
+      "ʋk"
+    ],
+    "vl": [
+      "ʋl"
+    ],
+    "vm": [
+      "ʋm"
+    ],
+    "vn": [
+      "ʋn"
+    ],
+    "vp": [
+      "ʋp"
+    ],
+    "vr": [
+      "ʋr"
+    ],
+    "vs": [
+      "ʋs"
+    ],
+    "vt": [
+      "ʋt"
+    ],
+    "bb": [
+      "bː"
+    ],
+    "dd": [
+      "dː"
+    ],
+    "ff": [
+      "fː"
+    ],
+    "gg": [
+      "ɡː"
+    ],
+    "kk": [
+      "kː"
+    ],
+    "ll": [
+      "lː"
+    ],
+    "mm": [
+      "mː"
+    ],
+    "nn": [
+      "nː"
+    ],
+    "pp": [
+      "pː"
+    ],
+    "rr": [
+      "rː"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "tt": [
+      "tː"
+    ],
+    "vv": [
+      "ʋː"
+    ],
+    "ck": [
+      "kː"
+    ],
+    "hv": [
+      "ʋ"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "v": [
+      "ʋ"
+    ],
+    "w": [
+      "ʋ"
+    ]
+  },
+  "positional_graphemes": {
+    "a": {
+      "nucleus_stressed": [
+        "ɑː"
+      ],
+      "default": [
+        "a"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "eː"
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "default": [
+        "ɛ"
+      ]
+    },
+    "i": {
+      "nucleus_stressed": [
+        "iː"
+      ],
+      "default": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "uː"
+      ],
+      "default": [
+        "ɔ"
+      ]
+    },
+    "u": {
+      "nucleus_stressed": [
+        "ʉː"
+      ],
+      "default": [
+        "ʉ"
+      ]
+    },
+    "y": {
+      "nucleus_stressed": [
+        "yː"
+      ],
+      "default": [
+        "ʏ"
+      ]
+    },
+    "æ": {
+      "nucleus_stressed": [
+        "æː"
+      ],
+      "default": [
+        "æ"
+      ]
+    },
+    "ø": {
+      "nucleus_stressed": [
+        "øː"
+      ],
+      "default": [
+        "œ"
+      ]
+    },
+    "å": {
+      "nucleus_stressed": [
+        "oː"
+      ],
+      "default": [
+        "ɔ"
+      ]
+    },
+    "k": {
+      "before_front_vowel": [
+        "ç"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_front_vowel": [
+        "j"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "sk": {
+      "before_front_vowel": [
+        "ʃ"
+      ],
+      "default": [
+        "sk"
+      ]
+    }
+  },
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Germanic initial stress."
+  },
+  "allophone_rules": [
+    {
+      "id": "NB_SHORTEN_A",
+      "phonemes": [
+        "ɑː"
+      ],
+      "surface": "a",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_E",
+      "phonemes": [
+        "eː"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_I",
+      "phonemes": [
+        "iː"
+      ],
+      "surface": "ɪ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_O",
+      "phonemes": [
+        "uː"
+      ],
+      "surface": "ɔ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_U",
+      "phonemes": [
+        "ʉː"
+      ],
+      "surface": "ʉ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_Y",
+      "phonemes": [
+        "yː"
+      ],
+      "surface": "ʏ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_Æ",
+      "phonemes": [
+        "æː"
+      ],
+      "surface": "æ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_Ø",
+      "phonemes": [
+        "øː"
+      ],
+      "surface": "œ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SHORTEN_Å",
+      "phonemes": [
+        "oː"
+      ],
+      "surface": "ɔ",
+      "followed_by_phoneme": [
+        "bd",
+        "bf",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bp",
+        "br",
+        "bs",
+        "bt",
+        "bɡ",
+        "bʋ",
+        "bː",
+        "db",
+        "df",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "dp",
+        "dr",
+        "ds",
+        "dt",
+        "dɡ",
+        "dʋ",
+        "dː",
+        "fb",
+        "fd",
+        "fk",
+        "fl",
+        "fm",
+        "fn",
+        "fp",
+        "fr",
+        "fs",
+        "ft",
+        "fɡ",
+        "fʋ",
+        "fː",
+        "kb",
+        "kd",
+        "kf",
+        "kl",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "ks",
+        "kt",
+        "kɡ",
+        "kʋ",
+        "kː",
+        "lb",
+        "ld",
+        "lf",
+        "lk",
+        "lm",
+        "ln",
+        "lp",
+        "lr",
+        "ls",
+        "lt",
+        "lɡ",
+        "lʋ",
+        "lː",
+        "mb",
+        "md",
+        "mf",
+        "mk",
+        "ml",
+        "mn",
+        "mp",
+        "mr",
+        "ms",
+        "mt",
+        "mɡ",
+        "mʋ",
+        "mː",
+        "nb",
+        "nd",
+        "nf",
+        "nl",
+        "nm",
+        "np",
+        "nr",
+        "ns",
+        "nt",
+        "nʋ",
+        "nː",
+        "pb",
+        "pd",
+        "pf",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pɡ",
+        "pʋ",
+        "pː",
+        "rb",
+        "rf",
+        "rk",
+        "rm",
+        "rp",
+        "rɡ",
+        "rʋ",
+        "rː",
+        "sb",
+        "sd",
+        "sf",
+        "sl",
+        "sm",
+        "sn",
+        "sp",
+        "sr",
+        "st",
+        "sɡ",
+        "sʋ",
+        "sː",
+        "tb",
+        "td",
+        "tf",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "tp",
+        "tr",
+        "ts",
+        "tɡ",
+        "tʋ",
+        "tː",
+        "ŋ",
+        "ŋk",
+        "ɡb",
+        "ɡd",
+        "ɡf",
+        "ɡk",
+        "ɡl",
+        "ɡm",
+        "ɡp",
+        "ɡr",
+        "ɡs",
+        "ɡt",
+        "ɡʋ",
+        "ɡː",
+        "ʋb",
+        "ʋd",
+        "ʋf",
+        "ʋk",
+        "ʋl",
+        "ʋm",
+        "ʋn",
+        "ʋp",
+        "ʋr",
+        "ʋs",
+        "ʋt",
+        "ʋɡ",
+        "ʋː"
+      ],
+      "notes": "quantity"
+    },
+    {
+      "id": "NB_SILENT_D_ND",
+      "phonemes": [
+        "nd"
+      ],
+      "surface": "n",
+      "word_final": true,
+      "notes": "Word-final ⟨d⟩ after ⟨n⟩ is silent (land [lɑn]); the cluster still shortens the vowel.",
+      "followed_by_phoneme": []
+    },
+    {
+      "id": "NB_SILENT_D_LD",
+      "phonemes": [
+        "ld"
+      ],
+      "surface": "l",
+      "word_final": true,
+      "notes": "Word-final ⟨d⟩ after ⟨l⟩ is silent (kveld [kʋɛl]).",
+      "followed_by_phoneme": []
+    }
+  ]
+}

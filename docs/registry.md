@@ -2,7 +2,7 @@
 
 ## Overview
 
-The registry (`registry.py`) is the central dispatch table that maps language codes to the Python modules that define their `LanguageSpec`. Languages are loaded **lazily** — only when first requested.
+The registry (`registry.py:68-82`) resolves language codes and lazily loads `LanguageSpec` objects from JSON data files under `orthography2ipa/data/`. Languages are loaded **lazily** — only when first requested via `get()`.
 
 ---
 
@@ -14,13 +14,25 @@ import orthography2ipa
 # Fetch a spec by code
 spec = orthography2ipa.get("pt-BR")
 
-# List all registered codes
+# List all registered language codes — 493 of them
 codes = orthography2ipa.available_codes()
 
-# Group codes by family
+# ...plus the 63 classification-only clade nodes (556 total)
+all_codes = orthography2ipa.available_codes(include_clades=True)
+
+# Group codes by their derived family path
 families = orthography2ipa.available_families()
-# Returns: {'Romance': ['ca', 'es', ...], 'Germanic': ['de', 'en', ...], ...}
+# {'Indo-European > Italic > Romance > Ibero-Romance': ['an', 'es-ES', 'pt-PT', ...],
+#  'Indo-European > Germanic > Northwest Germanic > West Germanic': ['de-DE', 'en-GB', ...], ...}
+
+# The clade chain above a code, nearest ancestor first
+orthography2ipa.ancestry_chain("pt-BR")
+# ['pt-PT-x-medieval', 'roa-x-galaicopt', 'x-clade-iberrom', 'la-x-hispania', ...]
 ```
+
+Clade nodes are classification-only: they carry no phoneme data, are never
+inherited from, and are excluded from `available_codes()` by default. `family` is
+derived from them — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
 
 ---
 
@@ -92,10 +104,11 @@ families = orthography2ipa.available_families()
 | `it` | Italian |
 | `ro` | Romanian |
 | `ca` | Catalan |
+| `ca-x-medieval` | Old Catalan (the common core every modern variety inherits from) |
 | `ca-x-valencia` | Valencian |
 | `ca-x-balear` | Balearic Catalan |
 | `ca-x-nord` | Northern Catalan |
-| `ca-x-occidental` | Western Catalan |
+| `ca-x-occidental` | North-Western Catalan |
 | `oc` | Occitan |
 | `oc-x-aranes` | Aranese (Gascon Occitan) |
 | `gl` | Galician |
@@ -286,3 +299,9 @@ Slavic: cs, pl, ru, uk
 Turkic: tr
 Uralic: fi
 ```
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Ancestry](ancestry.md) · [Data model](data_model.md) · [Adding a language](adding_a_language.md)*

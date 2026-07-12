@@ -1,0 +1,140 @@
+{
+  "code": "ar-SD",
+  "name": "Sudanese Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-mashriqi",
+  "graphemes": {
+    "ج": [
+      "ɟ",
+      "dʒ"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
+    ],
+    "ث": [
+      "t",
+      "s"
+    ],
+    "ذ": [
+      "d",
+      "z"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ]
+  },
+  "allophones_base": "ar-x-mashriqi",
+  "allophones": {
+    "dʒ": [
+      "ɟ",
+      "dʒ"
+    ],
+    "q": [
+      "ɡ",
+      "q"
+    ],
+    "θ": [
+      "t",
+      "s"
+    ],
+    "ð": [
+      "d",
+      "z"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ɮˤ": [
+      "dˤ"
+    ]
+  },
+  "parent": "ar-x-mashriqi",
+  "ancestors": [
+    {
+      "code": "ar-x-mashriqi",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Eastern (Mashriqi / Egypto-Sudanic) Arabic base"
+    }
+  ],
+  "notes": "Sudanese Arabic — Khartoum/central Sudan koine, part of the Egypto-Sudanic group. DEFINING FEATURE: ج jim → /ɟ/ (voiced PALATAL stop) — an archaic reflex distinguishing Sudanese from both Egyptian (/ɡ/) and Levantine (/ʒ/); /dʒ/ also occurs. Leddy-Cecere (2021) §3.1.1: 'the palatal articulation /ɟ/ dominates in the core Sudanic region represented by the dialects of Khartoum and the Šukriyya… perhaps of high salience, given its comparative rarity outside this region.' ق qaf → /ɡ/ (voiced velar stop, Bedouin-origin reflex): Leddy-Cecere §3.1 '/g/ of Old Arabic *q, robustly characteristic of all varieties in the sample outside of Cairo'; Youssef (2021) §3.1 lists Sudan among the /ɡ/-reflex areas. Interdentals MERGE to STOPS (not retained): ث θ → /t/, ذ ð → /d/, ظ/ض → /dˤ/ (~/s z zˤ/ in MSA loanwords) — Leddy-Cecere §3.1: 'merger of the Old Arabic interdental series *θ, ð, ð̣ with corresponding alveolar stops *t, d, ḍ', with a distinctive extra emphatic /ḍ/ reflex of *ð in the Sudanic area. Nubian/Beja/Nilotic substrate is documented for the LEXICON (Gasim 1965 via Wikipedia), not as a phonological cause. Dickins (2007) is the standard primary monograph (not obtained for this pass).",
+  "quality": "research",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "leddycecere2021",
+      "author": "Leddy-Cecere, T.A.",
+      "year": 2021,
+      "title": "Interrogating the Egypto-Sudanic Arabic Connection",
+      "publisher": "Languages 6(3): 123",
+      "url": "https://doi.org/10.3390/languages6030123",
+      "pages": null,
+      "notes": "Read (open-access, cited by section — printed PDF pages behind an Akamai JS challenge). §3.1.1: palatal /ɟ/ dominates in the core Sudanic region (Khartoum + Šukriyya), rare elsewhere. §3.1: /ɡ/ reflex of Old Arabic *q robustly characteristic of all sampled varieties outside Cairo; merger of interdental series *θ *ð *ð̣ with dental stops *t *d *ḍ, plus an additional emphatic /ḍ/ reflex of *ð in the Sudanic area."
+    },
+    {
+      "id": "youssef2021",
+      "author": "Youssef, I.",
+      "year": 2021,
+      "title": "Contrastive Feature Typologies of Arabic Consonant Reflexes",
+      "publisher": "Languages 6(3): 141",
+      "url": "https://doi.org/10.3390/languages6030141",
+      "pages": null,
+      "notes": "Read (open-access, cited by section). §3.1: the voiced velar stop /ɡ/ is by far the most common reflex of *q, covering Sudan among other areas."
+    },
+    {
+      "id": "dickins2007",
+      "author": "Dickins, J.",
+      "year": 2007,
+      "title": "Sudanese Arabic: Phonematics and Syllable Structure",
+      "publisher": "Harrassowitz",
+      "url": null,
+      "pages": null,
+      "notes": "Standard primary monograph (jim→ɟ, qaf→ɡ, interdental merger); not obtained to a readable page for this pass."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sudanese_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "suda1236",
+  "iso639_3": "apd",
+  "wikidata_qid": "Q56573",
+  "phoible_id": "suda1236",
+  "location": {
+    "latitude": 17.8021,
+    "longitude": 33.3179,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sudanese Arabic."
+  }
+}

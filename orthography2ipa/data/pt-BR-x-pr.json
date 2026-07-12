@@ -1,0 +1,482 @@
+{
+  "code": "pt-BR-x-pr",
+  "name": "Curitibano/Paranaense Portuguese",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɐ"
+    ],
+    "e": [
+      "e",
+      "ɛ",
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ",
+      "u"
+    ],
+    "u": [
+      "u"
+    ],
+    "á": [
+      "a"
+    ],
+    "à": [
+      "a"
+    ],
+    "â": [
+      "ɐ"
+    ],
+    "ã": [
+      "ɐ̃"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ô": [
+      "o"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ú": [
+      "u"
+    ],
+    "ü": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "d": [
+      "d",
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l",
+      "w"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ɾ",
+      "h",
+      "x"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t",
+      "tʃ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ʃ",
+      "ks",
+      "z",
+      "s"
+    ],
+    "y": [
+      "i"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "rr": [
+      "ʁ"
+    ],
+    "ss": [
+      "s"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "gu": [
+      "ɡ",
+      "ɡw"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "ão": [
+      "ɐ̃w̃"
+    ],
+    "ãe": [
+      "ɐ̃j̃"
+    ],
+    "õe": [
+      "õj̃"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t",
+      "tʃ"
+    ],
+    "d": [
+      "d",
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʁ": [
+      "h",
+      "x",
+      "ɾ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɫ": [
+      "w"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɐ": [
+      "ɐ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ə": [
+      "i"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɐ̃": [
+      "ɐ̃"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ]
+  },
+  "parent": "pt-BR",
+  "notes": "Curitibano / Paranaense (Curitiba, Paraná). Transitional Sulista–Paulistano. Encoded conservative default: non-palatalising /t,d/ and final /e/ often retained as [e] (the well-documented Curitiba 'e/o fechados'), with palatalisation present in younger and Paulista-influenced speech (noted). Coda /S/ alveolar; coda /R/ tap. Heterogeneous: Curitiba diverges from the more caipira-like Paraná interior. Slavic/Italian settler substrata. This spec models the Curitiba/Sulista-type coda /r/ as an alveolar tap [ɾ]; the retroflex 'r caipira' (Amaral 1920 §6b) is instead characteristic of the northern/interior Paraná hinterland, which patterns with pt-BR-x-caipira.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "amaral1920",
+      "author": "Amaral, A.",
+      "year": 1920,
+      "title": "O Dialeto Caipira",
+      "publisher": "Casa Editora \"O Livro\", São Paulo",
+      "url": "https://www.epedagogia.com.br/materialbibliotecaonine/1280-dialeto-caipira.pdf",
+      "pages": "§6b",
+      "notes": "Cited for contrast: the retroflex coda /r/ belongs to the interior caipira zone, not the Curitibano/Sulista variety modelled here."
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "callou_leite2001",
+      "author": "Callou, D. & Leite, Y.",
+      "year": 2001,
+      "title": "Iniciação à fonética e à fonologia (8th ed.)",
+      "publisher": "Zahar",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "silva2002",
+      "author": "Silva, T.C.",
+      "year": 2002,
+      "title": "Fonética e fonologia do português",
+      "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
+    },
+    {
+      "id": "noll2008",
+      "author": "Noll, V.",
+      "year": 2008,
+      "title": "O português brasileiro: formação e contrastes",
+      "publisher": "Globo",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Paraná_(state)",
+    "https://pt.wikipedia.org/wiki/Dialeto_sulista_(Brasil)"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "r": {
+      "word_initial": [
+        "h",
+        "x",
+        "ʁ"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ],
+      "word_final": [
+        "ɾ"
+      ]
+    },
+    "t": {
+      "before_i": [
+        "t"
+      ]
+    },
+    "d": {
+      "before_i": [
+        "d"
+      ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "e"
+      ],
+      "word_final": [
+        "e"
+      ],
+      "posttonic": [
+        "e"
+      ]
+    }
+  },
+  "location": {
+    "latitude": -25.429722,
+    "longitude": -49.271944,
+    "source": "wikidata",
+    "notes": "Curitiba — the centre of the Curitibano/Paranaense area. [Wikidata Q4361 P625]"
+  }
+}

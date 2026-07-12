@@ -1,0 +1,323 @@
+{
+  "code": "inh",
+  "name": "Ingush",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "иэ": [
+      "ie"
+    ],
+    "уо": [
+      "uo"
+    ],
+    "оа": [
+      "oɑ"
+    ],
+    "ий": [
+      "ij"
+    ],
+    "эи": [
+      "ei"
+    ],
+    "ои": [
+      "oi"
+    ],
+    "уи": [
+      "ui"
+    ],
+    "ов": [
+      "ow"
+    ],
+    "ув": [
+      "uw"
+    ],
+    "рхӏ": [
+      "r̥"
+    ],
+    "аь": [
+      "æ"
+    ],
+    "яь": [
+      "jæ"
+    ],
+    "гӏ": [
+      "ʁ"
+    ],
+    "кх": [
+      "q"
+    ],
+    "къ": [
+      "qʼ"
+    ],
+    "кӏ": [
+      "kʼ"
+    ],
+    "пӏ": [
+      "pʼ"
+    ],
+    "тӏ": [
+      "tʼ"
+    ],
+    "хь": [
+      "ħ"
+    ],
+    "хӏ": [
+      "h"
+    ],
+    "цӏ": [
+      "t͡sʼ"
+    ],
+    "чӏ": [
+      "t͡ʃʼ"
+    ],
+    "а": [
+      "ɑː"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "ʋ"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "e",
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "ɪ"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "ʊ"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "t͡s"
+    ],
+    "ч": [
+      "t͡ʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "ъ": [
+      "ʔ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ],
+    "ӏ": [
+      "ʡ"
+    ]
+  },
+  "allophones": {},
+  "notes": "Ingush (гӏалгӏай мотт), a Nakh (Northeast Caucasian) language of Ingushetia, written in a Cyrillic alphabet since 1938. INPUT CONTRACT: Cyrillic orthography, Unicode NFC, lowercased; the palochka must be U+04CF ⟨ӏ⟩ (lowercase) / U+04C0 ⟨Ӏ⟩ — Latin 'I', 'l' and the digit '1' are NOT accepted, since no consulted source documents them for Ingush. The orthography uses digraphs and one trigraph for the Nakh consonant inventory: ejectives пӏ тӏ кӏ цӏ чӏ, uvular кх /q/ and къ /qʼ/, pharyngeal хь /ħ/, laryngeal хӏ /h/, uvular fricative гӏ /ʁ/, the epiglottal stop ӏ /ʡ/, and рхӏ for the voiceless trill /r̥/; the engine matches these by maximal munch, so multigraphs win over their component letters. The written diphthongs listed by Nichols (иэ, уо, оа, ий, эи, ои, уи, ов, ув) are mapped as units. Consonant gemination and the ultra-short unstressed schwa are morphophonemic and not written, so they are not modelled. The letters щ, ы and ь occur only in Russian loanwords and are LEFT OUT: no source consulted gives them an Ingush IPA value. The iotated letters е, ё, ю, я, яь follow the standard Cyrillic j+V convention and are given as such. Е is given as [e] first (its value after a consonant) with [je] as the second candidate (word-initial / post-vocalic), since the source lists both without positional detail.",
+  "iso639_3": "inh",
+  "glottolog_code": "ingu1240",
+  "wikidata_qid": "Q33509",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ingush_language",
+    "https://inh.wikipedia.org/wiki/%D0%93%D3%80%D0%B0%D0%BB%D0%B3%D3%80%D0%B0%D0%B9_%D0%BC%D0%BE%D1%82%D1%82"
+  ],
+  "sources": [
+    {
+      "id": "ingush_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Ingush language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ingush_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ingush_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    },
+    {
+      "id": "nichols2011_ingush_grammar",
+      "author": "Nichols, Johanna",
+      "year": 2011,
+      "title": "Ingush Grammar",
+      "publisher": "University of California Press",
+      "url": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ingush_language",
+      "pages": "20",
+      "notes": "Source of the consonant chart (with Cyrillic orthography given per phoneme) reproduced in the Wikipedia 'Ingush language' article, read at https://en.wikipedia.org/wiki/Ingush_language (Phonology and Writing system sections)."
+    },
+    {
+      "id": "omniglot_ingush",
+      "author": "Ager, Simon",
+      "year": 2024,
+      "title": "Ingush language, alphabet and pronunciation",
+      "publisher": "Omniglot",
+      "url": "https://www.omniglot.com/writing/ingush.htm",
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Confirms that ё, щ, ъ, ы and ь are used only in Russian loanwords and names."
+    }
+  ],
+  "timespan": {
+    "start_year": 1938,
+    "end_year": null
+  },
+  "phonemes": [
+    "a",
+    "aː",
+    "b",
+    "bˤ",
+    "dz",
+    "d̠ʒ",
+    "d̪",
+    "d̪ˤ",
+    "e",
+    "ea",
+    "f",
+    "h",
+    "i",
+    "ie",
+    "iː",
+    "iːɛ",
+    "j",
+    "k",
+    "kʰ",
+    "kʲʰ",
+    "kʲʼ",
+    "kʼ",
+    "l",
+    "l̪",
+    "m",
+    "mˤ",
+    "n",
+    "nˤ",
+    "o",
+    "oa",
+    "p",
+    "pʰ",
+    "pʼ",
+    "pˤʰ",
+    "q",
+    "qʰ",
+    "qʼ",
+    "qː",
+    "r̺̥",
+    "s",
+    "sː",
+    "ts",
+    "tsʰ",
+    "tsʼ",
+    "tsˤʰ",
+    "t̠ʃ",
+    "t̠ʃʰ",
+    "t̠ʃʼ",
+    "t̠ʃˤʰ",
+    "t̠ʃˤʼ",
+    "t̪",
+    "t̪ʰ",
+    "t̪ʼ",
+    "t̪ː",
+    "t̪ˤʰ",
+    "t̪ˤʼ",
+    "u",
+    "uo",
+    "uː",
+    "uːʌ",
+    "v",
+    "vˤ",
+    "x",
+    "x̠",
+    "z",
+    "zˤ",
+    "æ",
+    "ħ",
+    "ɔaː",
+    "ɛ",
+    "ɛ̯æː",
+    "ɡ",
+    "ɡʲ",
+    "ɢ",
+    "ɨ",
+    "ɪ",
+    "ɾ",
+    "ɾ̥",
+    "ɾ̺",
+    "ʁ",
+    "ʃ",
+    "ʊ",
+    "ʌ",
+    "ʒ",
+    "ʒˤ",
+    "ʔ",
+    "ʔˤ",
+    "ʜ",
+    "ʡ"
+  ],
+  "parent": "x-clade-nakh1245",
+  "ancestors": [
+    {
+      "code": "x-clade-nakh1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Nakh-Daghestanian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 43.11,
+    "longitude": 45.03,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ingush."
+  }
+}

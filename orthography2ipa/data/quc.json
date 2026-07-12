@@ -1,0 +1,138 @@
+{
+  "code": "quc",
+  "name": "K'iche'",
+  "parent": "x-clade-maya1287",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "s": [
+      "s"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "h": [
+      "h"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "s": [
+      "s"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "h": [
+      "h"
+    ]
+  },
+  "notes": "STRUCTURAL ADSTRATE STUB (not a modelled G2P target). K'iche' (Quiché, Mayan). Representative highland-Mayan adstrate of Guatemalan Spanish. It exists here only so that the ancestry / phylogenetic-distance metrics of the Latin American Spanish varieties that reference it as an indigenous adstrate have a node to resolve to; the minimal grapheme set is a placeholder and NO phonology is claimed or modelled (afa.json / ber-x-kabyle-atlas.json stub pattern).",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "iso639_3": "quc",
+  "glottolog_code": "kich1262",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kiche_language"
+  ],
+  "urls": [
+    "https://glottolog.org/resource/languoid/id/kich1262"
+  ],
+  "sources": [
+    {
+      "id": "campbell1997",
+      "author": "Campbell, Lyle",
+      "year": 1997,
+      "title": "American Indian Languages: The Historical Linguistics of Native America",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference for the classification and geographic distribution of this contact language (structural adstrate node only)."
+    }
+  ],
+  "wikidata_qid": "Q36494",
+  "phoible_id": "kich1262",
+  "wals_code": "qch",
+  "location": {
+    "latitude": 14.5278,
+    "longitude": -91.1696,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for K'iche'."
+  }
+}

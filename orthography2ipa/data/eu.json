@@ -1,0 +1,315 @@
+{
+  "code": "eu",
+  "name": "Basque (Euskara)",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j",
+      "x"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s̺"
+    ],
+    "t": [
+      "t"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "z": [
+      "s̻"
+    ],
+    "dd": [
+      "ɟ"
+    ],
+    "ll": [
+      "ʎ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "ts": [
+      "ts̺"
+    ],
+    "tz": [
+      "ts̻"
+    ],
+    "tx": [
+      "tʃ"
+    ],
+    "tt": [
+      "c"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ei": [
+      "ei"
+    ],
+    "oi": [
+      "oi"
+    ],
+    "au": [
+      "au"
+    ],
+    "eu": [
+      "eu"
+    ],
+    "ui": [
+      "ui"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b",
+      "β"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "c": [
+      "c"
+    ],
+    "ɟ": [
+      "ɟ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s̺": [
+      "s̺"
+    ],
+    "s̻": [
+      "s̻"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ts̻": [
+      "ts̻"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ts̺": [
+      "ts̺"
+    ]
+  },
+  "parent": "xaq",
+  "glottolog_code": "basq1248",
+  "notes": "Standard Basque (Euskara Batua), codified by the Royal Academy of the Basque Language (Euskaltzaindia) from 1968. Conservative Basque varieties have a three-way sibilant place contrast: lamino-alveolar /s̻/ (spelled z), apico-alveolar /s̺/ (spelled s) and postalveolar /ʃ/ (spelled x), with the matching affricates /ts̻/ (tz), /ts̺/ (ts) and /tʃ/ (tx); this three-way contrast is fully stable in eastern and Navarrese varieties such as Goizueta but is neutralised further west (Hualde, Lujanbio & Zubiri 2010: 119). Palatal stops /c/ (tt) and /ɟ/ (dd), palatal nasal /ɲ/ (ñ) and palatal lateral /ʎ/ (ll) arise historically by palatalisation of /t d n l/ after /i/. Voiced stops /b d ɡ/ are realised as approximants [β ð ɣ] intervocalically (Hualde et al. 2010: 116), and nasals assimilate in place to a following consonant (2010: 120). Five vowels /i e a o u/. Aspiration (/h/, aspirated stops) is preserved only in the eastern (continental) dialects and was lost in the west (Hualde 2018: 2). Dialectal variation across the historical dialects is extensive; Batua draws primarily from Gipuzkoan and Lapurdian sources. Basque is a language isolate with no demonstrated genetic relationship to any other language family. STRESS EXEMPTION (research/production tier rule): Basque accent is dialect-variable (pitch-accent in some western varieties, weak demarcative stress elsewhere; Hualde 1999) and never marked in Batua orthography, so the spec carries no stress block per docs/quality_tiers.md.",
+  "quality": "production",
+  "urls": [
+    "https://en.wikipedia.org/wiki/Basque_language",
+    "https://glottolog.org/resource/languoid/id/basq1248"
+  ],
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "hualde_ortiz_de_urbina2003",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": "15-65 (Hualde, 'Segmental phonology')",
+      "notes": null
+    },
+    {
+      "id": "hualde_lujanbio_zubiri2010",
+      "author": "Hualde, J.I., Lujanbio, O. & Zubiri, J.J.",
+      "year": 2010,
+      "title": "Goizueta Basque (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 40(1)",
+      "url": "https://doi.org/10.1017/S0025100309990260",
+      "pages": "113-127",
+      "notes": "Read for the base sibilant/affricate system (p.119), voiced-stop spirantization (p.116), nasal assimilation and lateral delateralization (p.120), and the five-vowel system (p.122)."
+    },
+    {
+      "id": "bedialauneta_hualde2023",
+      "author": "Bedialauneta Txurruka, I. & Hualde, J.I.",
+      "year": 2023,
+      "title": "Markina Basque (Illustration of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 53(3)",
+      "url": "https://doi.org/10.1017/S0025100322000032",
+      "pages": "1095-1122",
+      "notes": "Read for the Western/Biscayan sibilant and palatal-stop mergers (p.1098) and for the note that Zuberoan has a three-way plosive contrast (p.1099)."
+    },
+    {
+      "id": "hualde2018_aspiration",
+      "author": "Hualde, J.I.",
+      "year": 2018,
+      "title": "Aspiration in Basque",
+      "publisher": "Papers in Historical Phonology 3",
+      "url": "https://doi.org/10.2218/pihph.3.2018.2602",
+      "pages": "1-27",
+      "notes": "Read for the east/west distribution of /h/ and aspirated stops (pp.1-3, 84 fn.) and the Zuberoan three-way plosive contrast (p.2)."
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Basque_language",
+    "https://eu.wikipedia.org/wiki/Euskara",
+    "https://es.wikipedia.org/wiki/Euskera"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "iso639_3": "eus",
+  "ancestors": [
+    {
+      "code": "xaq",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Basque / Aquitanian (non-IE isolate)."
+    },
+    {
+      "code": "la",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Latin/Romance adstrate: two millennia of contact left a very large lexical layer."
+    },
+    {
+      "code": "es-ES",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Spanish adstrate: modern loanwords and phonological pressure."
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "French adstrate: on the northern (Iparralde) dialects."
+    }
+  ],
+  "wikidata_qid": "Q8752",
+  "phoible_id": "basq1248",
+  "wals_code": "bsq",
+  "location": {
+    "latitude": 43.2787,
+    "longitude": -1.31622,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Basque."
+  }
+}

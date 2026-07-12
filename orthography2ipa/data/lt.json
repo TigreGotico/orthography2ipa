@@ -1,0 +1,163 @@
+{
+  "code": "lt",
+  "name": "Lithuanian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "lit",
+  "glottolog_code": "lith1251",
+  "timespan": {
+    "start_year": 1547,
+    "end_year": null
+  },
+  "graphemes": {
+    "dž": [
+      "dʒ"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "a": [
+      "a"
+    ],
+    "ą": [
+      "aː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "ė": [
+      "eː"
+    ],
+    "ę": [
+      "ɛː"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "ɣ",
+      "x"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "į": [
+      "iː"
+    ],
+    "y": [
+      "iː"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "oː"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "ʊ"
+    ],
+    "ų": [
+      "uː"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "ch": [
+      "x"
+    ]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "ine",
+      "role": "proto_language",
+      "weight": 1.0,
+      "notes": "Descended from Proto-Indo-European via Proto-Baltic"
+    }
+  ],
+  "parent": "x-clade-east2280",
+  "notes": "Lithuanian, the oldest attested Baltic language. Retains many archaic Indo-European features. Long vowels marked with macron/ogonek. Pitch accent system. Digraphs dž and dz precede single letters in processing order.",
+  "sources": [
+    {
+      "id": "wiki-lt",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lithuanian language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lithuanian_language"
+    },
+    {
+      "id": "wiki-lt-phon",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lithuanian phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lithuanian_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lithuanian_language",
+    "https://en.wikipedia.org/wiki/Lithuanian_phonology",
+    "https://lt.wikipedia.org/wiki/Lietuvi%C5%B3_kalba"
+  ],
+  "wikidata_qid": "Q9083",
+  "phoible_id": "lith1251",
+  "wals_code": "lit",
+  "location": {
+    "latitude": 55.1429,
+    "longitude": 23.9601,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Lithuanian."
+  }
+}

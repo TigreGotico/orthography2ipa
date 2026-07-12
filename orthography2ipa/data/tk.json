@@ -1,0 +1,267 @@
+{
+  "parent": "trk",
+  "ancestors": [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Turkic (Oghuz branch)."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.12,
+      "notes": "Persian adstrate: Central Asian literary/prestige influence."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Arabic adstrate: religious/scholarly vocabulary, largely via Persian."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Russian adstrate: Soviet-era lexicon."
+    }
+  ],
+  "code": "tk",
+  "name": "Turkmen",
+  "glottolog_code": "turk1304",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "iso639_3": "tuk",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "ç": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "ä": [
+      "æ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ň": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ş": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "ü": [
+      "y"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "ý": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b",
+      "p"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "e": [
+      "e"
+    ],
+    "æ": [
+      "æ"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ",
+      "tʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "notes": "Turkmen in Latin script (official since 1993). 8-vowel system with vowel harmony. Ä = /æ/. Ň = /ŋ/. W is a labial-velar approximant. Ž = /ʒ/ for Russian loanwords.",
+  "sources": [
+    {
+      "id": "turkmen_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Turkmen language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Turkmen_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Turkmen_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "johanson_csato1998",
+      "author": "Johanson, L. & Csató, É.",
+      "year": 1998,
+      "title": "The Turkic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Turkmen_language",
+    "https://tk.wikipedia.org/wiki/T%C3%BCrkmen_dili"
+  ],
+  "timespan": {
+    "start_year": 1993,
+    "end_year": null
+  },
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Turkmen default stress is word-final (-1). Some grammatical suffixes (negation, question) attract stress to their own syllable; not modeled here. Source: Comrie (1997) in Johanson & Csató."
+  },
+  "wikidata_qid": "Q9267",
+  "phoible_id": "turk1304",
+  "wals_code": "tkm",
+  "location": {
+    "latitude": 37.08719,
+    "longitude": 59.17574,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Turkmen."
+  }
+}

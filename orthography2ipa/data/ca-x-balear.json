@@ -1,0 +1,376 @@
+{
+  "code": "ca-x-balear",
+  "name": "Balearic Catalan",
+  "script": "Latin",
+  "parent": "ca-x-medieval",
+  "graphemes_base": "ca-x-medieval",
+  "graphemes": {
+    "ix": [
+      "ʃ"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ]
+  },
+  "allophones_base": "ca-x-medieval",
+  "allophones": {
+    "tʃ": [
+      "tʃ",
+      "ʃ"
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "e": [
+      "e",
+      "ə"
+    ],
+    "o": [
+      "o",
+      "u",
+      "ə"
+    ]
+  },
+  "positional_graphemes_base": "ca-x-medieval",
+  "positional_graphemes": {
+    "a": {
+      "default": [
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ]
+    },
+    "e": {
+      "default": [
+        "ɛ",
+        "e"
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ]
+    },
+    "g": {
+      "before_front_vowel": [
+        "ʒ"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "word_final": [
+        ""
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_vowel": [
+        "ɾ"
+      ],
+      "default": [
+        "r"
+      ]
+    },
+    "rs": {
+      "word_final": [
+        "s"
+      ],
+      "default": [
+        "rs"
+      ]
+    }
+  },
+  "allophone_rules": [],
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "t",
+      "d",
+      "p",
+      "b",
+      "c",
+      "k",
+      "g",
+      "m",
+      "f",
+      "x",
+      "j",
+      "ç",
+      "z",
+      "ig",
+      "ll",
+      "ns",
+      "rs",
+      "ls",
+      "ts",
+      "ps",
+      "cs",
+      "ms",
+      "ds",
+      "bs",
+      "gs",
+      "fs",
+      "nts",
+      "lts",
+      "rts",
+      "sts",
+      "ncs",
+      "igs",
+      "tzs",
+      "ig",
+      "rn",
+      "rm",
+      "ai",
+      "au",
+      "ei",
+      "eu",
+      "iu",
+      "oi",
+      "ou"
+    ],
+    "penult_stress_endings": [
+      "as",
+      "es",
+      "is",
+      "os",
+      "us",
+      "en",
+      "in"
+    ],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "í",
+      "ò",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "diphthongs": [
+      "ai",
+      "au",
+      "ei",
+      "eu",
+      "iu",
+      "oi",
+      "ou",
+      "ui",
+      "ua",
+      "ue",
+      "uo",
+      "gü",
+      "qü"
+    ],
+    "notes": "Catalan accentuation per the Institut d'Estudis Catalans (IEC) norm (Gramàtica de la llengua catalana, ch. 3; Wheeler 2005 §3.1). A written accent (à è é í ò ó ú) always wins and marks the stressed vowel. Unmarked words are OXYTONE when they end in a consonant other than -s-preceded-by-a-vowel and other than -en/-in — including the consonant+s plurals (-ns, -rs, -ts, -nts, -ps …), which are oxytone because the plural preserves the stress of the singular (important → importants). A word ending in a falling DIPHTHONG (-ai -au -ei -eu -iu -oi -ou) is oxytone (remei [rəˈmɛj], correu [kuˈrɛw], avui [əˈβuj]) — the diphthong is one syllable, so the word does not end in a bare vowel. Unmarked words are PAROXYTONE when they end in a (single) vowel, in a vowel + -s (-as, -es, -is, -os, -us) or in -en/-in (semblen, parlin). The diaeresis ⟨ï ü⟩ marks hiatus/pronounced ⟨u⟩, NOT stress, so it is deliberately absent from marked_vowels (següent is [səˈɣwen], not [səˈɣwent] with stress on ⟨ü⟩). Proparoxytones always carry a written accent, so the unmarked default is paroxytone. The diphthongs list is the Catalan inventory of tautosyllabic vowel sequences (Wheeler 2005 §2.5; IEC grammar ch. 4): the falling diphthongs ⟨ai au ei eu iu oi ou ui⟩ and the rising ⟨ua ue uo ui⟩ after ⟨g/q⟩. Every other vowel sequence is HIATUS and counts as two syllables — te-ni-a, ve-ï-na, di-a — which is what puts the stress, and therefore the unstressed-vowel reduction, on the right vowel."
+  },
+  "notes": "BALEARIC (mallorquí, menorquí, eivissenc). It descends from Old Catalan (ca-x-medieval) by way of the EASTERN settlers — mostly from the Empordà — of the 13th-century conquest, NOT from modern Central Catalan, and the two have innovated separately ever since (Veny 1982 ch. 4; Wikipedia, Catalan dialects). What it shares with Central it declares here on its own merits: unstressed ⟨a⟩/⟨e⟩ → [ə], deletion of word-final ⟨-r⟩, the fricative [ʒ] for ⟨j⟩/⟨g+e,i⟩, ⟨ix⟩ = [ʃ] and the clitic (atonic) function words. What it does NOT share: (1) the raising of unstressed ⟨o⟩ to [u] — Balearic unstressed ⟨o⟩ stays [o] (xocolata [ʃokoˈlatə], not [ʃukuˈlatə]) — Recasens 1996; Veny 1982 ch. 3; Wheeler 2005 §2.3; and (2) the deletion of an absolutely word-final stop in an ⟨-nt/-lt/-mp/-nc⟩ cluster: Balearic keeps it (molt [ˈmolt], camp [ˈkamp]), and the 4catac expert transcriptions confirm it (molt alta = [ˈmolt ˈaltə], with the stop, exactly as in Valencian, against Central and North-Western [ˈmol ˈaltə]). The final-cluster isogloss therefore runs Central + North-Western against Valencian + Balearic; it is NOT the Eastern/Western line. /v/ is preserved as a distinct phoneme across most of the archipelago and is inherited from the core. NOT modelled, deliberately: (a) Majorcan STRESSED [ə], an eighth vowel that continues Latin ē/ĭ (Wheeler 2005 §2.3) — an ETYMOLOGICAL split, not an orthographic one, so a grapheme rule cannot predict which stressed ⟨e⟩ takes it; (b) the Majorcan phrase-level TOTAL ASSIMILATION of a coda stop to a following consonant (aquests vailets [əˈkev vəjˈlɛv]).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wheeler2005",
+      "author": "Wheeler, M. W.",
+      "year": 2005,
+      "title": "The Phonology of Catalan",
+      "publisher": "Oxford University Press",
+      "url": "https://global.oup.com/academic/product/the-phonology-of-catalan-9780199258147",
+      "pages": null,
+      "notes": "The reference phonology of Catalan and the primary authority for this spec. Cited by SECTION, not page: §2.3 vowel systems and the unstressed reduction of the Eastern block (reduction is stress-conditioned; the Western block does not reduce); §2.5 the diphthong inventory; §3.1 stress and its orthographic marking; §5.1 the consonant inventory, ⟨c/g⟩ before a front vowel, ⟨x⟩ and word-final ⟨-ig⟩; §5.2 spirantization of /b d ɡ/ after a continuant and the pre-lateral gemination that blocks it; §5.3 final-obstruent devoicing and cross-word voicing assimilation; §10.2–§10.5 the post-lexical/phrase-level processes — final-rhotic loss, final-cluster simplification, nasal place assimilation and phrase-level lenition. Section numbers are given because the printed page numbers were not verified."
+    },
+    {
+      "id": "badia_i_margarit1994",
+      "author": "Badia i Margarit, A. M.",
+      "year": 1994,
+      "title": "Gramàtica de la llengua catalana: descriptiva, normativa, diatòpica, diacrònica",
+      "publisher": "Enciclopèdia Catalana",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive, normative, diatopic and diachronic grammar of Catalan; the cross-check used here for the consonant and vowel inventories, the stress rules and the dialect isoglosses. Pages not verified."
+    },
+    {
+      "id": "recasens1996",
+      "author": "Recasens, D.",
+      "year": 1996,
+      "title": "Fonètica descriptiva del català: assaig de caracterització de la pronúncia del vocalisme i consonantisme del català al segle XX",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": null,
+      "pages": null,
+      "notes": "The descriptive survey of Catalan vowels and consonants across the dialects: the Western block (Valencian, North-Western) does not reduce unstressed vowels; Balearic reduces ⟨a⟩/⟨e⟩ to [ə] but does NOT raise unstressed ⟨o⟩ to [u]; the North-Western word-final ⟨-a⟩ = [ɛ]. Pages not verified."
+    },
+    {
+      "id": "veny1982",
+      "author": "Veny, J.",
+      "year": 1982,
+      "title": "Els parlars catalans: síntesi de dialectologia",
+      "publisher": "Editorial Moll",
+      "url": null,
+      "pages": null,
+      "notes": "The standard dialectology of Catalan and the source for the isoglosses this spec encodes per dialect: final ⟨-r⟩ retained in Valencian and deleted in the rest; final-cluster simplification after a nasal everywhere but after a lateral only in the Eastern block; Western [tʃ] for initial ⟨x⟩ and [jʃ] for ⟨ix⟩; the lleidatà final ⟨-a⟩ = [ɛ]. Pages not verified."
+    },
+    {
+      "id": "iec2016",
+      "author": "Institut d'Estudis Catalans",
+      "year": 2016,
+      "title": "Gramàtica de la llengua catalana",
+      "publisher": "Institut d'Estudis Catalans",
+      "url": "https://giec.iec.cat/",
+      "pages": null,
+      "notes": "The normative grammar. Ch. 3 (l'accent) is the source for the stress block: the written accent marks the stressed vowel and always wins; unmarked words ending in a vowel, a vowel+⟨-s⟩ or ⟨-en/-in⟩ are paroxytone and all other endings — including the consonant+⟨s⟩ plurals — are oxytone; the diaeresis ⟨ï ü⟩ marks hiatus, not stress. §6.2 and the 'mots àtons' list are the source for the clitic function words (articles, contractions, atonic prepositions/conjunctions and weak pronouns) that carry no stress and therefore reduce. Cited by chapter; pages not verified."
+    },
+    {
+      "id": "dcvb",
+      "author": "Alcover, A. M. & Moll, F. de B.",
+      "year": 1962,
+      "title": "Diccionari català-valencià-balear",
+      "publisher": "Editorial Moll",
+      "url": "https://dcvb.iec.cat/",
+      "pages": null,
+      "notes": "The dialectal dictionary of Catalan; it records the pronunciation of each headword per dialect and is the authority for the lexical stressed-mid-vowel entries in word_exceptions (gos, tot, dos, molt are close-mid [o]; cos, pont, font, tres are open-mid). Catalan spelling does not mark the ⟨e⟩/⟨o⟩ close/open contrast in unaccented syllables, so this contrast is lexical and can only be listed, not derived. Cited by headword; the dictionary is not paginated online."
+    },
+    {
+      "id": "wiktionary_ca",
+      "author": "Wiktionary contributors",
+      "year": 2026,
+      "title": "Wiktionary, the free dictionary — Catalan entries",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wiktionary.org/wiki/Category:Catalan_lemmas",
+      "pages": null,
+      "notes": "Per-dialect IPA transcriptions (Central / Valencian / North-Western / Balearic / Northern) for the individual headwords listed in word_exceptions; each entry there cites GDLC, DNV or DCVB. Used as a convenience cross-check on the DCVB, never as a primary source."
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": "Cross-linguistic phonetic reference for the segment inventory symbols used here."
+    },
+    {
+      "id": "wikipedia_catalan_phonology",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Catalan phonology (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Catalan_phonology",
+      "pages": null,
+      "notes": "Accessible overview of the vowel and consonant inventories, the Eastern/Western reduction split, spirantization, final devoicing and final-cluster simplification; useful as a cross-check on the primary sources above."
+    },
+    {
+      "id": "wikipedia_catalan_dialects",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Catalan dialects (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Catalan_dialects",
+      "pages": null,
+      "notes": "Accessible overview of the Eastern/Western split, of the 13th-century repopulation that carried Eastern Catalan to the Balearic Islands and Western Catalan to most of the Valencian Country, and of the isoglosses encoded in the dialect specs."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Balearic_dialect",
+    "https://ca.wikipedia.org/wiki/Dialecte_balear",
+    "https://ca.wikipedia.org/wiki/Catal%C3%A0_balear",
+    "https://en.wikipedia.org/wiki/Balearic_Catalan",
+    "https://es.wikipedia.org/wiki/Catal%C3%A1n_de_Baleares",
+    "https://en.wikipedia.org/wiki/Catalan_phonology",
+    "https://en.wikipedia.org/wiki/Catalan_dialects"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "bale1256",
+  "iso639_3": "cat",
+  "wikidata_qid": "Q804899",
+  "location": {
+    "latitude": 39.566667,
+    "longitude": 2.649722,
+    "source": "wikidata",
+    "notes": "Palma — the centre of the Balearic islands. [Wikidata Q8826 P625]"
+  },
+  "word_exceptions": {
+    "a": "ə",
+    "al": "əl",
+    "als": "əls",
+    "amb": "əm",
+    "amor": "əmo",
+    "car": "kar",
+    "carrer": "kəre",
+    "carrers": "kəres",
+    "clar": "klar",
+    "cor": "kɔr",
+    "cotxe": "kotʃə",
+    "d": "d",
+    "de": "də",
+    "del": "dəl",
+    "dels": "dəls",
+    "dos": "dos",
+    "dur": "dur",
+    "el": "əl",
+    "els": "əls",
+    "el·la": "ɛɫːə",
+    "em": "əm",
+    "en": "ən",
+    "ens": "əns",
+    "es": "əs",
+    "et": "ət",
+    "far": "far",
+    "gener": "ʒəne",
+    "gos": "ɡos",
+    "hi": "i",
+    "ho": "u",
+    "i": "i",
+    "l": "l",
+    "la": "lə",
+    "les": "ləs",
+    "li": "li",
+    "lo": "lu",
+    "m": "m",
+    "mar": "mar",
+    "me": "mə",
+    "molt": "molt",
+    "molts": "mols",
+    "n": "n",
+    "ne": "nə",
+    "ni": "ni",
+    "no": "no",
+    "on": "on",
+    "or": "ɔr",
+    "pel": "pəl",
+    "pels": "pəls",
+    "per": "pər",
+    "pur": "pur",
+    "que": "kə",
+    "rei": "rej",
+    "s": "s",
+    "se": "sə",
+    "seva": "sevə",
+    "són": "son",
+    "t": "t",
+    "te": "tə",
+    "temps": "tems",
+    "tir": "tir",
+    "tot": "tot",
+    "tots": "tots",
+    "us": "us",
+    "és": "es"
+  }
+}

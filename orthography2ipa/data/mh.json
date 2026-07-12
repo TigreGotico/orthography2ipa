@@ -1,0 +1,239 @@
+{
+  "code": "mh",
+  "name": "Marshallese",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "kw": [
+      "kʷ"
+    ],
+    "ñw": [
+      "ŋʷ"
+    ],
+    "ṇw": [
+      "nʷ"
+    ],
+    "ḷw": [
+      "lʷ"
+    ],
+    "rw": [
+      "rʷ"
+    ],
+    "bw": [
+      "pˠ"
+    ],
+    "ṃw": [
+      "mˠ"
+    ],
+    "p": [
+      "pʲ"
+    ],
+    "b": [
+      "pˠ"
+    ],
+    "j": [
+      "tʲ",
+      "zʲ"
+    ],
+    "t": [
+      "tˠ"
+    ],
+    "k": [
+      "k"
+    ],
+    "m": [
+      "mʲ"
+    ],
+    "ṃ": [
+      "mˠ"
+    ],
+    "n": [
+      "nʲ"
+    ],
+    "ṇ": [
+      "nˠ"
+    ],
+    "ñ": [
+      "ŋ"
+    ],
+    "d": [
+      "rʲ"
+    ],
+    "r": [
+      "rˠ"
+    ],
+    "l": [
+      "lʲ"
+    ],
+    "ḷ": [
+      "lˠ"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "i": [
+      "i"
+    ],
+    "ū": [
+      "ɯ"
+    ],
+    "u": [
+      "u"
+    ],
+    "e": [
+      "ɛ",
+      "e"
+    ],
+    "ō": [
+      "ɤ",
+      "ʌ"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ā": [
+      "æ"
+    ],
+    "a": [
+      "ɑ"
+    ],
+    "ọ": [
+      "ɒ"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "ūū": [
+      "ɯː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "ee": [
+      "ɛː",
+      "eː"
+    ],
+    "ōō": [
+      "ɤː",
+      "ʌː"
+    ],
+    "oo": [
+      "oː",
+      "ɔː"
+    ],
+    "āā": [
+      "æː"
+    ],
+    "aa": [
+      "ɑː"
+    ],
+    "ọọ": [
+      "ɒː"
+    ]
+  },
+  "allophones": {
+    "pʲ": [
+      "pʲ",
+      "bʲ"
+    ],
+    "pˠ": [
+      "pˠ",
+      "bˠ"
+    ],
+    "tˠ": [
+      "tˠ",
+      "dˠ"
+    ],
+    "k": [
+      "k",
+      "ɡ"
+    ],
+    "kʷ": [
+      "kʷ",
+      "ɡʷ"
+    ],
+    "tʲ": [
+      "tʲ",
+      "zʲ"
+    ],
+    "lˠ": [
+      "lˠ",
+      "ɫ"
+    ],
+    "lʷ": [
+      "lʷ",
+      "ɫʷ"
+    ]
+  },
+  "notes": "Marshallese (Kajin Ṃajeḷ), a Micronesian language of the Marshall Islands. ORTHOGRAPHY: the map commits to the 'new' standard orthography of the Marshallese-English Dictionary (Abo, Bender, Capelle & DeBrum 1976), in the MOD (Marshallese-English Online Dictionary) letterforms ⟨ḷ ṃ ṇ ñ ọ⟩ — the print standard writes the same letters with combining cedillas ⟨l̗ m̧ ņ n̄ o̧⟩. Every consonant carries a secondary articulation: ⟨p b⟩ = /pʲ pˠ/, ⟨j t⟩ = /tʲ tˠ/, ⟨m ṃ⟩ = /mʲ mˠ/, ⟨n ṇ⟩ = /nʲ nˠ/, ⟨l ḷ⟩ = /lʲ lˠ/, ⟨d r⟩ = /rʲ rˠ/, ⟨ñ⟩ = /ŋ/; ⟨w⟩ after a consonant marks the rounded series (⟨kw ñw ṇw ḷw rw⟩ = /kʷ ŋʷ nʷ lʷ rʷ/) and after ⟨b ṃ⟩ merely marks the already-velarised bilabial (⟨bw ṃw⟩ = /pˠ mˠ/), so ⟨w⟩ is only an independent /w/ word-initially or between vowels. VOWELS: Marshallese has a vertical four-vowel system whose front/back/rounded qualities are allophones of the flanking consonants' secondary articulation, but the spelling records the SURFACE quality, so the nine vowel letters ⟨i ū u / e ō o / ā a ọ⟩ map to surface monophthongs, not to the four phonemes. The values given here are the MED surface qualities (with cardinal back-unrounded symbols): ⟨i ū u⟩ = [i ɯ u], ⟨e ō o⟩ = [ɛ~e ɤ~ʌ o~ɔ] (the mid row conflates the two mid phonemes), ⟨ā a ọ⟩ = [æ ɑ ɒ]. Doubled vowel letters are long vowels. Short diphthongs (a vowel that glides between two consonant-conditioned qualities) are NOT derivable from the spelling alone, which usually writes only one of the two qualities; the unwritten glides /j ɰ w/ are likewise not recoverable. This map is therefore a per-letter surface approximation, not a full phonetic transcription. Stops are partially voiced between vowels when not geminated ([b d ɡ]), and ⟨j⟩ is usually a voiced fricative [zʲ] word-internally — recorded in allophones. INPUT CONTRACT: text in the new/MOD orthography (⟨ḷ ṃ ṇ ñ ọ ā ō ū⟩ present). Old-orthography text (⟨dr⟩, ⟨b⟩ for both /pʲ pˠ/, no cedillas) is out of scope and must be converted upstream.",
+  "iso639_3": "mah",
+  "glottolog_code": "mars1254",
+  "wikidata_qid": "Q36280",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Marshallese_language",
+    "https://mh.wikipedia.org/wiki/Kajin_M%CC%A7aje%C4%BC"
+  ],
+  "sources": [
+    {
+      "id": "marshallese_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Marshallese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Marshallese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Marshallese_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "med1976",
+      "author": "Abo, Takaji; Bender, Byron W.; Capelle, Alfred; DeBrum, Tony",
+      "year": 1976,
+      "title": "Marshallese-English Dictionary",
+      "publisher": "University of Hawaii Press",
+      "url": "http://www.trussel2.com/MOD/",
+      "pages": null,
+      "notes": "Section 4, 'The Sounds of Marshallese': the new-orthography consonant and vowel letter tables this map follows."
+    },
+    {
+      "id": "bender1969",
+      "author": "Bender, Byron W.",
+      "year": 1969,
+      "title": "Spoken Marshallese: An Intensive Language Course with Grammatical Notes and Glossary",
+      "publisher": "University of Hawaii Press",
+      "url": null,
+      "pages": "xiii-xvii",
+      "notes": "Four-vowel (vertical) analysis and the consonant-conditioned vowel allophony the spelling records."
+    },
+    {
+      "id": "willson2003",
+      "author": "Willson, Heather",
+      "year": 2003,
+      "title": "Marshallese Phonology and Morphology",
+      "publisher": "UCLA",
+      "url": null,
+      "pages": "1-6",
+      "notes": "Consonant secondary-articulation series; 24 short diphthongs arising from consonant-conditioned vowel transitions."
+    }
+  ],
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 8.72,
+    "longitude": 167.73,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Marshallese."
+  }
+}

@@ -1,0 +1,520 @@
+[
+  {
+    "lang": "cy",
+    "voice": "cy",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.27,
+    "segmental": 0.7721455026455033,
+    "oov_rate": 0.03333333333333333,
+    "oov_symbols": {
+      "̥": 6,
+      "̊": 2,
+      "ʃ": 2
+    },
+    "limit": 300
+  },
+  {
+    "lang": "da",
+    "voice": "da",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.03666666666666667,
+    "segmental": 0.5062439105012635,
+    "oov_rate": 0.20333333333333334,
+    "oov_symbols": {
+      "v": 33,
+      "ø": 16,
+      "ɕ": 15
+    },
+    "limit": 300
+  },
+  {
+    "lang": "de",
+    "voice": "de",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.006666666666666667,
+    "segmental": 0.6076420354689802,
+    "oov_rate": 0.5133333333333333,
+    "oov_symbols": {
+      "ʁ": 154
+    },
+    "limit": 300
+  },
+  {
+    "lang": "el",
+    "voice": "el",
+    "n": 300,
+    "exact": 0.10666666666666667,
+    "exact_nostress": 0.57,
+    "segmental": 0.899214646464647,
+    "oov_rate": 0.0,
+    "oov_symbols": {},
+    "limit": 300
+  },
+  {
+    "lang": "en",
+    "voice": "en-gb",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.03666666666666667,
+    "segmental": 0.5132245069745067,
+    "oov_rate": 0.8333333333333334,
+    "oov_symbols": {
+      "æ": 250
+    },
+    "limit": 300
+  },
+  {
+    "lang": "en-GB",
+    "voice": "en-gb",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.03,
+    "segmental": 0.49688936063936107,
+    "oov_rate": 0.86,
+    "oov_symbols": {
+      "æ": 258,
+      "o": 1
+    },
+    "limit": 300
+  },
+  {
+    "lang": "eo",
+    "voice": "eo",
+    "n": 300,
+    "exact": 0.03,
+    "exact_nostress": 0.77,
+    "segmental": 0.9690130702630709,
+    "oov_rate": 0.056666666666666664,
+    "oov_symbols": {
+      "w": 17
+    },
+    "limit": 300
+  },
+  {
+    "lang": "es",
+    "voice": "es",
+    "n": 300,
+    "exact": 0.05,
+    "exact_nostress": 0.5533333333333333,
+    "segmental": 0.9147180134680141,
+    "oov_rate": 0.0,
+    "oov_symbols": {},
+    "limit": 300
+  },
+  {
+    "lang": "eu",
+    "voice": "eu",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.38333333333333336,
+    "segmental": 0.8814464915745879,
+    "oov_rate": 0.09333333333333334,
+    "oov_symbols": {
+      "h": 28
+    },
+    "limit": 300
+  },
+  {
+    "lang": "fi",
+    "voice": "fi",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.6217937247937249,
+    "oov_rate": 1.0,
+    "oov_symbols": {
+      "ɑ": 300,
+      "ʋ": 29
+    },
+    "limit": 300
+  },
+  {
+    "lang": "fr",
+    "voice": "fr-fr",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.48,
+    "segmental": 0.8645790228290235,
+    "oov_rate": 0.0,
+    "oov_symbols": {},
+    "limit": 300
+  },
+  {
+    "lang": "ga",
+    "voice": "ga",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.4147180512842279,
+    "oov_rate": 0.9833333333333333,
+    "oov_symbols": {
+      "ˠ": 290,
+      "ɾ": 132,
+      "w": 16
+    },
+    "limit": 300
+  },
+  {
+    "lang": "gd",
+    "voice": "gd",
+    "n": 300,
+    "exact": 0.006666666666666667,
+    "exact_nostress": 0.006666666666666667,
+    "segmental": 0.2856537753325681,
+    "oov_rate": 0.66,
+    "oov_symbols": {
+      "ˠ": 198
+    },
+    "limit": 300
+  },
+  {
+    "lang": "hi",
+    "voice": "hi",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.4989913335861475,
+    "oov_rate": 0.85,
+    "oov_symbols": {
+      "̃": 232,
+      "̪": 133,
+      "ʱ": 28,
+      "ʒ": 21,
+      "ɦ": 6
+    },
+    "limit": 300
+  },
+  {
+    "lang": "hr",
+    "voice": "hr",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.05333333333333334,
+    "segmental": 0.6815905760905755,
+    "oov_rate": 0.36666666666666664,
+    "oov_symbols": {
+      "ɔ": 103,
+      "x": 9
+    },
+    "limit": 300
+  },
+  {
+    "lang": "hy",
+    "voice": "hy",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.5537653318903316,
+    "oov_rate": 1.0,
+    "oov_symbols": {
+      "ɑ": 300,
+      "ɾ": 127,
+      "ɛ": 70,
+      "ʁ": 16
+    },
+    "limit": 300
+  },
+  {
+    "lang": "is",
+    "voice": "is",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.0033333333333333335,
+    "segmental": 0.6130320758676017,
+    "oov_rate": 0.6,
+    "oov_symbols": {
+      "p": 85,
+      "ʏ": 79,
+      "ʰ": 61,
+      "v": 8,
+      "̥": 4
+    },
+    "limit": 300
+  },
+  {
+    "lang": "it",
+    "voice": "it",
+    "n": 300,
+    "exact": 0.043333333333333335,
+    "exact_nostress": 0.36333333333333334,
+    "segmental": 0.8625599400599406,
+    "oov_rate": 0.0,
+    "oov_symbols": {},
+    "limit": 300
+  },
+  {
+    "lang": "ml",
+    "voice": "ml",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.3518594872692274,
+    "oov_rate": 0.6166666666666667,
+    "oov_symbols": {
+      "ã": 114,
+      "̪": 75,
+      "ʋ": 36,
+      "ʑ": 26,
+      "ʃ": 20,
+      "ʱ": 18,
+      "̃": 4,
+      "ɻ": 3,
+      "ũ": 1
+    },
+    "limit": 300
+  },
+  {
+    "lang": "nb",
+    "voice": "nb",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.01,
+    "segmental": 0.5212417917050267,
+    "oov_rate": 0.56,
+    "oov_symbols": {
+      "ɾ": 124,
+      "ʈ": 16,
+      "ʏ": 13,
+      "ɖ": 11,
+      "æ": 6,
+      "ʂ": 6,
+      "ɭ": 4,
+      "ç": 2,
+      "ɳ": 2
+    },
+    "limit": 300
+  },
+  {
+    "lang": "nl",
+    "voice": "nl",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.14333333333333334,
+    "segmental": 0.6995153721550786,
+    "oov_rate": 0.14666666666666667,
+    "oov_symbols": {
+      "ɦ": 30,
+      "ʏ": 14
+    },
+    "limit": 300
+  },
+  {
+    "lang": "pl",
+    "voice": "pl",
+    "n": 300,
+    "exact": 0.11,
+    "exact_nostress": 0.45,
+    "segmental": 0.9027600640100643,
+    "oov_rate": 0.13333333333333333,
+    "oov_symbols": {
+      "ʂ": 31,
+      "ʐ": 9
+    },
+    "limit": 300
+  },
+  {
+    "lang": "pt",
+    "voice": "pt",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.10666666666666667,
+    "segmental": 0.7119282569282568,
+    "oov_rate": 0.03,
+    "oov_symbols": {
+      "ã": 5,
+      "̺": 4
+    },
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-acores",
+    "voice": "pt",
+    "n": 30,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.6156909842962695,
+    "oov_rate": 0.3333333333333333,
+    "oov_symbols": {
+      "y": 10
+    },
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-alentejo",
+    "voice": "pt",
+    "n": 30,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.5985203059654535,
+    "oov_rate": 0.03333333333333333,
+    "oov_symbols": {
+      "̺": 1
+    },
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-algarve",
+    "voice": "pt",
+    "n": 30,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.6725821537137328,
+    "oov_rate": 0.1,
+    "oov_symbols": {
+      "̺": 3
+    },
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-lisbon",
+    "voice": "pt",
+    "n": 45,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.602630904222862,
+    "oov_rate": 0.4444444444444444,
+    "oov_symbols": {
+      "j": 16,
+      "̺": 5,
+      "ã": 2
+    },
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-madeira",
+    "voice": "pt",
+    "n": 30,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.6799285370059366,
+    "oov_rate": 0.0,
+    "oov_symbols": {},
+    "limit": 300
+  },
+  {
+    "lang": "pt-PT-x-porto",
+    "voice": "pt",
+    "n": 40,
+    "exact": 0.0,
+    "exact_nostress": 0.0,
+    "segmental": 0.5446107470101279,
+    "oov_rate": 0.275,
+    "oov_symbols": {
+      "j": 10,
+      "̺": 2
+    },
+    "limit": 300
+  },
+  {
+    "lang": "ro",
+    "voice": "ro",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.5166666666666667,
+    "segmental": 0.8805227735227733,
+    "oov_rate": 0.06,
+    "oov_symbols": {
+      "̯": 18
+    },
+    "limit": 300
+  },
+  {
+    "lang": "ru",
+    "voice": "ru",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.10333333333333333,
+    "segmental": 0.695441928441928,
+    "oov_rate": 0.5133333333333333,
+    "oov_symbols": {
+      "l": 133,
+      "ʐ": 13,
+      "ɨ": 13,
+      "ʂ": 5,
+      "ɕ": 4
+    },
+    "limit": 300
+  },
+  {
+    "lang": "sk",
+    "voice": "sk",
+    "n": 300,
+    "exact": 0.13333333333333333,
+    "exact_nostress": 0.2733333333333333,
+    "segmental": 0.8299225589225597,
+    "oov_rate": 0.6633333333333333,
+    "oov_symbols": {
+      "ɛ": 108,
+      "ɔ": 94,
+      "ɦ": 15,
+      "c": 11,
+      "ɟ": 8,
+      "ɐ": 5
+    },
+    "limit": 300
+  },
+  {
+    "lang": "sq",
+    "voice": "sq",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.11666666666666667,
+    "segmental": 0.6768605098605104,
+    "oov_rate": 0.6066666666666667,
+    "oov_symbols": {
+      "ɾ": 105,
+      "o": 83,
+      "ɟ": 19,
+      "c": 13
+    },
+    "limit": 300
+  },
+  {
+    "lang": "sv",
+    "voice": "sv",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.06666666666666667,
+    "segmental": 0.6242083109528925,
+    "oov_rate": 0.13333333333333333,
+    "oov_symbols": {
+      "ʏ": 11,
+      "ɭ": 10,
+      "ɳ": 9,
+      "ʈ": 6,
+      "ɧ": 3,
+      "ɖ": 2
+    },
+    "limit": 300
+  },
+  {
+    "lang": "ta",
+    "voice": "ta",
+    "n": 300,
+    "exact": 0.0,
+    "exact_nostress": 0.0033333333333333335,
+    "segmental": 0.4691659617157299,
+    "oov_rate": 0.5233333333333333,
+    "oov_symbols": {
+      "̪": 84,
+      "ɕ": 59,
+      "ʋ": 24,
+      "x": 16
+    },
+    "limit": 300
+  },
+  {
+    "lang": "tr",
+    "voice": "tr",
+    "n": 300,
+    "exact": 0.006666666666666667,
+    "exact_nostress": 0.20333333333333334,
+    "segmental": 0.80027941965442,
+    "oov_rate": 0.0,
+    "oov_symbols": {},
+    "limit": 300
+  }
+]

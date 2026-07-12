@@ -1,0 +1,255 @@
+{
+  "code": "ar-SA-x-najd",
+  "name": "Najdi Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-peninsular",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ج": [
+      "dʒ",
+      "ɡ"
+    ],
+    "ض": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
+    ]
+  },
+  "allophones_base": "ar-x-peninsular",
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "q": [
+      "ɡ",
+      "q"
+    ],
+    "ɮˤ": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "ɡ"
+    ],
+    "a": [
+      "a",
+      "ɑ"
+    ],
+    "u": [
+      "u",
+      "o"
+    ],
+    "aː": [
+      "aː",
+      "ɑː",
+      "oː"
+    ]
+  },
+  "parent": "ar-x-peninsular",
+  "ancestors": [
+    {
+      "code": "ar-x-peninsular",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Peninsular Arabic base — most conservative"
+    }
+  ],
+  "notes": "Najdi Arabic (نجدي), central Arabia incl. Riyadh; the prestige variety within Saudi Arabia. Primary reference Ingham (1994) Najdi Arabic: Central Arabian. DEFINING FEATURES modeled here: (1) qaf ق → /ɡ/ (Bedouin/traditional; /q/ retained in MSA loans/proper names, e.g. القرآن); (2) VELAR AFFRICATION — /k/ → [ts] and /ɡ/ → [dz] in the environment of front vowels (كلب [tsalb]), declared as allophone_rules NAJD_AFFRIC_* (Ingham 1994); (3) GAHAWA SYNDROME — epenthetic /a/ after a guttural /h x ɣ ħ ʕ/ in a low-vowel+guttural+consonant context (gahwa → gahawa), allophone_rules NAJD_GAHAWA_* (Ingham 1994); (4) interdentals PRESERVED — ث /θ/, ذ /ð/; the Old-Arabic ض/ظ contrast is neutralised to a single emphatic interdental [ðˤ] (Ingham 1994), so ض is transcribed [ðˤ] (with urban [dˤ] variant); (5) emphatic (pharyngealization) spreading backs low vowels to [ɑ]/[ɑː] — inherited from the ar-x-peninsular parent (AR_PEN_EMPH_*), not restated here. jim ج → /dʒ/ (urban) ~ /ɡ/ (Bedouin). No English-style stress block: Najdi stress is quantity-sensitive and not orthography-predictable. INPUT CONTRACT: like all dialect specs this transcribes what the orthography+harakat give; dialectal Arabic is usually written defectively, so short vowels surface only when the input is vocalised.",
+  "quality": "research",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "ingham1994",
+      "author": "Ingham, B.",
+      "year": 1994,
+      "title": "Najdi Arabic: Central Arabian",
+      "publisher": "John Benjamins (Library of Arabic Linguistics 1)",
+      "url": null,
+      "pages": "13-16",
+      "notes": "Primary reference: /k/→[ts], /ɡ/→[dz] affrication in front-vowel environments (كلب [tsalb]); gahawa-syndrome epenthetic /a/ after gutturals; ض/ظ merge to [ðˤ]; qaf→/ɡ/."
+    },
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Najdi_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D9%86%D8%AC%D8%AF%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "najd1235",
+  "iso639_3": "ars",
+  "allophone_rules": [
+    {
+      "id": "NAJD_AFFRIC_K_BEFORE",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "ts",
+      "followed_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Najdi velar affrication (Ingham 1994, pp.13-14): /k/ → [ts] in the environment of a front vowel, e.g. كلب [tsalb] 'dog'. Conditioned on an adjacent (following) front vowel; purely lexicalized affrication before a historical front vowel is not captured."
+    },
+    {
+      "id": "NAJD_AFFRIC_K_AFTER",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "ts",
+      "preceded_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Najdi velar affrication (Ingham 1994): /k/ → [ts] after an adjacent front vowel."
+    },
+    {
+      "id": "NAJD_AFFRIC_G_BEFORE",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "dz",
+      "followed_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Najdi velar affrication (Ingham 1994): /ɡ/ (chiefly the qaf reflex) → [dz] before an adjacent front vowel."
+    },
+    {
+      "id": "NAJD_AFFRIC_G_AFTER",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "dz",
+      "preceded_by_phoneme": [
+        "i",
+        "iː",
+        "j",
+        "e",
+        "eː"
+      ],
+      "notes": "Najdi velar affrication (Ingham 1994): /ɡ/ → [dz] after an adjacent front vowel."
+    },
+    {
+      "id": "NAJD_GAHAWA_h",
+      "phonemes": [
+        "h"
+      ],
+      "surface": "ha",
+      "syllable_position": "coda",
+      "preceded_by_phoneme": [
+        "a",
+        "ɑ"
+      ],
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /h/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+    },
+    {
+      "id": "NAJD_GAHAWA_x",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "xa",
+      "syllable_position": "coda",
+      "preceded_by_phoneme": [
+        "a",
+        "ɑ"
+      ],
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /x/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+    },
+    {
+      "id": "NAJD_GAHAWA_0263",
+      "phonemes": [
+        "ɣ"
+      ],
+      "surface": "ɣa",
+      "syllable_position": "coda",
+      "preceded_by_phoneme": [
+        "a",
+        "ɑ"
+      ],
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ɣ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+    },
+    {
+      "id": "NAJD_GAHAWA_0127",
+      "phonemes": [
+        "ħ"
+      ],
+      "surface": "ħa",
+      "syllable_position": "coda",
+      "preceded_by_phoneme": [
+        "a",
+        "ɑ"
+      ],
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ħ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+    },
+    {
+      "id": "NAJD_GAHAWA_0295",
+      "phonemes": [
+        "ʕ"
+      ],
+      "surface": "ʕa",
+      "syllable_position": "coda",
+      "preceded_by_phoneme": [
+        "a",
+        "ɑ"
+      ],
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ʕ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+    }
+  ],
+  "wikidata_qid": "Q56574",
+  "phoible_id": "najd1235",
+  "location": {
+    "latitude": 30.3371,
+    "longitude": 42.1773,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Najdi Arabic."
+  }
+}

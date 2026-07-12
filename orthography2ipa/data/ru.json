@@ -1,0 +1,1930 @@
+{
+  "ancestors": [
+    {
+      "code": "sla",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Descent from Proto-Slavic (East Slavic subgroup) via Old East Slavic."
+    },
+    {
+      "code": "cu",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Church Slavonic adstrate: pervasive literary/lexical layer (South Slavic doublets, e.g. gorod/grad); a defining feature of literary Russian."
+    }
+  ],
+  "code": "ru",
+  "name": "Russian",
+  "script": "Cyrillic",
+  "graphemes": {
+    "а": [
+      "a"
+    ],
+    "е": [
+      "je",
+      "e"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "и": [
+      "i"
+    ],
+    "о": [
+      "o"
+    ],
+    "у": [
+      "u"
+    ],
+    "э": [
+      "ɛ"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      "ʲ"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "ж": [
+      "ʐ"
+    ],
+    "з": [
+      "z"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "ɫ"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tɕ"
+    ],
+    "ш": [
+      "ʂ"
+    ],
+    "щ": [
+      "ɕː"
+    ],
+    "бь": [
+      "bʲ"
+    ],
+    "вь": [
+      "vʲ"
+    ],
+    "дь": [
+      "dʲ"
+    ],
+    "зь": [
+      "zʲ"
+    ],
+    "ль": [
+      "lʲ"
+    ],
+    "мь": [
+      "mʲ"
+    ],
+    "нь": [
+      "nʲ"
+    ],
+    "пь": [
+      "pʲ"
+    ],
+    "рь": [
+      "rʲ"
+    ],
+    "сь": [
+      "sʲ"
+    ],
+    "ть": [
+      "tʲ"
+    ],
+    "фь": [
+      "fʲ"
+    ],
+    "бе": [
+      "bʲe"
+    ],
+    "би": [
+      "bʲi"
+    ],
+    "бя": [
+      "bʲa"
+    ],
+    "бё": [
+      "bʲɵ"
+    ],
+    "бю": [
+      "bʲu"
+    ],
+    "ве": [
+      "vʲe"
+    ],
+    "ви": [
+      "vʲi"
+    ],
+    "вя": [
+      "vʲa"
+    ],
+    "вё": [
+      "vʲɵ"
+    ],
+    "вю": [
+      "vʲu"
+    ],
+    "ге": [
+      "ɡʲe"
+    ],
+    "ги": [
+      "ɡʲi"
+    ],
+    "гя": [
+      "ɡʲa"
+    ],
+    "гё": [
+      "ɡʲɵ"
+    ],
+    "гю": [
+      "ɡʲu"
+    ],
+    "де": [
+      "dʲe"
+    ],
+    "ди": [
+      "dʲi"
+    ],
+    "дя": [
+      "dʲa"
+    ],
+    "дё": [
+      "dʲɵ"
+    ],
+    "дю": [
+      "dʲu"
+    ],
+    "зе": [
+      "zʲe"
+    ],
+    "зи": [
+      "zʲi"
+    ],
+    "зя": [
+      "zʲa"
+    ],
+    "зё": [
+      "zʲɵ"
+    ],
+    "зю": [
+      "zʲu"
+    ],
+    "ке": [
+      "kʲe"
+    ],
+    "ки": [
+      "kʲi"
+    ],
+    "кя": [
+      "kʲa"
+    ],
+    "кё": [
+      "kʲɵ"
+    ],
+    "кю": [
+      "kʲu"
+    ],
+    "ле": [
+      "lʲe"
+    ],
+    "ли": [
+      "lʲi"
+    ],
+    "ля": [
+      "lʲa"
+    ],
+    "лё": [
+      "lʲɵ"
+    ],
+    "лю": [
+      "lʲu"
+    ],
+    "ме": [
+      "mʲe"
+    ],
+    "ми": [
+      "mʲi"
+    ],
+    "мя": [
+      "mʲa"
+    ],
+    "мё": [
+      "mʲɵ"
+    ],
+    "мю": [
+      "mʲu"
+    ],
+    "не": [
+      "nʲe"
+    ],
+    "ни": [
+      "nʲi"
+    ],
+    "ня": [
+      "nʲa"
+    ],
+    "нё": [
+      "nʲɵ"
+    ],
+    "ню": [
+      "nʲu"
+    ],
+    "пе": [
+      "pʲe"
+    ],
+    "пи": [
+      "pʲi"
+    ],
+    "пя": [
+      "pʲa"
+    ],
+    "пё": [
+      "pʲɵ"
+    ],
+    "пю": [
+      "pʲu"
+    ],
+    "ре": [
+      "rʲe"
+    ],
+    "ри": [
+      "rʲi"
+    ],
+    "ря": [
+      "rʲa"
+    ],
+    "рё": [
+      "rʲɵ"
+    ],
+    "рю": [
+      "rʲu"
+    ],
+    "се": [
+      "sʲe"
+    ],
+    "си": [
+      "sʲi"
+    ],
+    "ся": [
+      "sʲa"
+    ],
+    "сё": [
+      "sʲɵ"
+    ],
+    "сю": [
+      "sʲu"
+    ],
+    "те": [
+      "tʲe"
+    ],
+    "ти": [
+      "tʲi"
+    ],
+    "тя": [
+      "tʲa"
+    ],
+    "тё": [
+      "tʲɵ"
+    ],
+    "тю": [
+      "tʲu"
+    ],
+    "фе": [
+      "fʲe"
+    ],
+    "фи": [
+      "fʲi"
+    ],
+    "фя": [
+      "fʲa"
+    ],
+    "фё": [
+      "fʲɵ"
+    ],
+    "фю": [
+      "fʲu"
+    ],
+    "хе": [
+      "xʲe"
+    ],
+    "хи": [
+      "xʲi"
+    ],
+    "хя": [
+      "xʲa"
+    ],
+    "хё": [
+      "xʲɵ"
+    ],
+    "хю": [
+      "xʲu"
+    ],
+    "жи": [
+      "ʐɨ"
+    ],
+    "же": [
+      "ʐɛ"
+    ],
+    "ши": [
+      "ʂɨ"
+    ],
+    "ше": [
+      "ʂɛ"
+    ],
+    "ци": [
+      "tsɨ"
+    ],
+    "це": [
+      "tsɛ"
+    ],
+    "шь": [
+      "ʂ"
+    ],
+    "жь": [
+      "ʐ"
+    ],
+    "чь": [
+      "tɕ"
+    ],
+    "щь": [
+      "ɕː"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b",
+      "p"
+    ],
+    "bʲ": [
+      "bʲ",
+      "pʲ"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "dʲ": [
+      "dʲ",
+      "tʲ"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "p": [
+      "p"
+    ],
+    "pʲ": [
+      "pʲ"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʲ": [
+      "tʲ"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "fʲ": [
+      "fʲ"
+    ],
+    "v": [
+      "v",
+      "f"
+    ],
+    "vʲ": [
+      "vʲ",
+      "fʲ"
+    ],
+    "s": [
+      "s"
+    ],
+    "sʲ": [
+      "sʲ"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "zʲ": [
+      "zʲ",
+      "sʲ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "ʐ": [
+      "ʐ",
+      "ʂ"
+    ],
+    "ɕː": [
+      "ɕː"
+    ],
+    "x": [
+      "x",
+      "xʲ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "m": [
+      "m"
+    ],
+    "mʲ": [
+      "mʲ"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "nʲ": [
+      "nʲ"
+    ],
+    "l": [
+      "ɫ"
+    ],
+    "lʲ": [
+      "lʲ"
+    ],
+    "r": [
+      "r"
+    ],
+    "rʲ": [
+      "rʲ"
+    ],
+    "j": [
+      "j"
+    ],
+    "ɡʲ": [
+      "ɡʲ",
+      "kʲ"
+    ],
+    "kʲ": [
+      "kʲ"
+    ],
+    "xʲ": [
+      "xʲ"
+    ],
+    "a": [
+      "a",
+      "ɐ",
+      "ə"
+    ],
+    "o": [
+      "o",
+      "ɐ",
+      "ə"
+    ],
+    "e": [
+      "e",
+      "ɪ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i",
+      "ɪ"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ]
+  },
+  "parent": "x-clade-east1426",
+  "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o,a/ -> [ɐ] pretonic, [ə] elsewhere after hard consonants) and Иканье (unstressed /e,i/ (and /a/ after soft consonants) -> [ɪ]). г = [ɡ] plosive. FINAL DEVOICING: all obstruents (plain and palatalised) devoiced in coda/word-final position (б/бь->п/пь, в/вь->ф/фь, г->к, д/дь->т/тʲ, з/зь->с/сʲ, ж->ш); this positional devoicing only applies to the bare-consonant and soft-sign graphemes (б бь в вь г д дь з зь), never to the iotated-vowel CV digraphs (e.g. дя, зе), because those digraphs always resolve to a consonant immediately followed by a vowel and are therefore never actually in coda position, regardless of their position within the word string. Regressive voicing/palatalisation assimilation across consonant clusters (e.g. сделать [zʲdʲelətʲ]) is a known engine limitation, not modelled at the single-grapheme level used here. VOWEL REDUCTION: о/а reduce to [ɐ] in 1st pretonic syllable, [ə] elsewhere (unstressed); this positional rule only fires when the stressed syllable is known (see STRESS note below), otherwise the 'default' (unreduced) mapping is used. IOTATED VOWELS + и: е/я/ю/ё/и palatalise an immediately preceding consonant (soft-sign ь does the same); modelled as explicit two-grapheme tokens for the 15 consonants that contrast plain/palatalised (б в г д з к л м н п р с т ф х): 12 pre-existing soft-sign digraphs (бь вь дь зь ль мь нь пь рь сь ть фь) plus 75 new iotated-vowel digraphs (each of the 15 consonants x е/и/я/ё/ю, e.g. 'бе'->'bʲe', 'би'->'bʲi', 'дя'->'dʲa'); ц/ш/ж remain hard unconditionally and й/ч/щ remain soft unconditionally (their base grapheme entries already carry the sole realisation), so no digraphs are needed for those six letters. STRESS: Russian word stress is lexical and free (not derivable from spelling) and is not marked in standard orthography, so this spec intentionally carries no `stress` block (per the research-tier exemption for orthographically unpredictable stress) -- this also means the pretonic/posttonic/nucleus_unstressed positional rules below are only reachable when a caller supplies pre-stressed input (e.g. combining acute accent) through a future stress-marked variant; on ordinary unmarked spelling the engine cannot locate the stressed syllable and the 'default' (unstressed/unreduced) branch of each positional entry is used instead. This is the primary source of PER against unmarked gold sets and is why quality stays at 'research', not 'production'. Г IN GENITIVE: -ого/-его endings: г->[v] (его=[jɪvo]). Sources: Jones & Ward (1969), Timberlake (2004), Padgett & Tabain (2005), Avanesov (1956).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "jones_ward1969",
+      "author": "Jones, D. & Ward, D.",
+      "year": 1969,
+      "title": "The Phonetics of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Cited via Wikipedia's Russian phonology and Vowel reduction in Russian articles, which reference this work for: akanye/ikanye mergers, pretonic [ɐ]/[ʌ] vs. further-unstressed [ə], post-soft-consonant merger of unstressed vowels to [ɪ], and regressive voicing assimilation including v/vʲ transparency.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
+    },
+    {
+      "id": "timberlake2004",
+      "author": "Timberlake, A.",
+      "year": 2004,
+      "title": "A Reference Grammar of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Cited via Wikipedia's Russian phonology article, which references this work.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
+    },
+    {
+      "id": "padgett_tabain2005",
+      "author": "Padgett, J. & Tabain, M.",
+      "year": 2005,
+      "title": "Adaptive Dispersion Theory and Phonological Vowel Reduction in Russian",
+      "publisher": "Phonetica",
+      "url": null,
+      "pages": null,
+      "notes": "Cited via Wikipedia's Akanye article, which references this work for: pretonic akanye realised as [ɐ]/[ʌ], further reduction to [ə]; ikanye treated as a phonologically distinct (postlexical) process from akanye (lexical).",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Akanye"
+    },
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+    },
+    {
+      "id": "wikipron_lee2020",
+      "author": "Lee, J. L., Ashby, L. F. E., Garza, M. E., Lee-Sikka, Y., Miller, S., Wong, A., McCarthy, A. D. & Gorman, K.",
+      "year": 2020,
+      "title": "WikiPron: Mining Wiktionary for Massively Multilingual Pronunciation Data",
+      "publisher": "LREC",
+      "url": "https://github.com/CUNY-CL/wikipron",
+      "pages": null,
+      "notes": "Source of the ru gold benchmark row (rus_cyrl_narrow.tsv). Upstream README (fetched directly) confirms Russian was scraped only in narrow transcription, not broad: 'some languages only have broad or narrow transcriptions, e.g. Russian only has the latter.'",
+      "wikipedia_url": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Russian_language",
+    "https://ru.wikipedia.org/wiki/Русский_язык",
+    "https://en.wikipedia.org/wiki/Russian_phonology",
+    "https://ru.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA",
+    "https://ru.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F_%D1%84%D0%BE%D0%BD%D0%B5%D1%82%D0%B8%D0%BA%D0%B0"
+  ],
+  "positional_graphemes": {
+    "б": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "в": {
+      "word_final": [
+        "f"
+      ],
+      "coda": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "г": {
+      "word_final": [
+        "k"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "д": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "з": {
+      "word_final": [
+        "s"
+      ],
+      "coda": [
+        "s"
+      ],
+      "default": [
+        "z"
+      ]
+    },
+    "ж": {
+      "word_final": [
+        "ʂ"
+      ],
+      "coda": [
+        "ʂ"
+      ],
+      "default": [
+        "ʐ"
+      ]
+    },
+    "о": {
+      "first_pretonic": [
+        "ɐ"
+      ],
+      "pretonic": [
+        "ə"
+      ],
+      "posttonic": [
+        "ə"
+      ]
+    },
+    "а": {
+      "first_pretonic": [
+        "ɐ"
+      ],
+      "pretonic": [
+        "ə"
+      ],
+      "posttonic": [
+        "ə"
+      ]
+    },
+    "е": {
+      "pretonic": [
+        "jɪ",
+        "ɪ"
+      ],
+      "posttonic": [
+        "jɪ",
+        "ɪ"
+      ]
+    },
+    "я": {
+      "pretonic": [
+        "jɪ"
+      ],
+      "posttonic": [
+        "jə"
+      ]
+    },
+    "ё": {
+      "default": [
+        "jo"
+      ]
+    },
+    "бь": {
+      "word_final": [
+        "pʲ"
+      ],
+      "coda": [
+        "pʲ"
+      ],
+      "default": [
+        "bʲ"
+      ]
+    },
+    "вь": {
+      "word_final": [
+        "fʲ"
+      ],
+      "coda": [
+        "fʲ"
+      ],
+      "default": [
+        "vʲ"
+      ]
+    },
+    "дь": {
+      "word_final": [
+        "tʲ"
+      ],
+      "coda": [
+        "tʲ"
+      ],
+      "default": [
+        "dʲ"
+      ]
+    },
+    "зь": {
+      "word_final": [
+        "sʲ"
+      ],
+      "coda": [
+        "sʲ"
+      ],
+      "default": [
+        "zʲ"
+      ]
+    },
+    "и": {
+      "pretonic": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "у": {
+      "pretonic": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    },
+    "ю": {
+      "pretonic": [
+        "jʊ"
+      ],
+      "posttonic": [
+        "jʊ"
+      ]
+    },
+    "э": {
+      "pretonic": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "бе": {
+      "pretonic": [
+        "bʲɪ"
+      ],
+      "posttonic": [
+        "bʲɪ"
+      ]
+    },
+    "би": {
+      "pretonic": [
+        "bʲɪ"
+      ],
+      "posttonic": [
+        "bʲɪ"
+      ]
+    },
+    "бя": {
+      "pretonic": [
+        "bʲɪ"
+      ],
+      "posttonic": [
+        "bʲə"
+      ]
+    },
+    "бю": {
+      "pretonic": [
+        "bʲʊ"
+      ],
+      "posttonic": [
+        "bʲʊ"
+      ]
+    },
+    "ве": {
+      "pretonic": [
+        "vʲɪ"
+      ],
+      "posttonic": [
+        "vʲɪ"
+      ]
+    },
+    "ви": {
+      "pretonic": [
+        "vʲɪ"
+      ],
+      "posttonic": [
+        "vʲɪ"
+      ]
+    },
+    "вя": {
+      "pretonic": [
+        "vʲɪ"
+      ],
+      "posttonic": [
+        "vʲə"
+      ]
+    },
+    "вю": {
+      "pretonic": [
+        "vʲʊ"
+      ],
+      "posttonic": [
+        "vʲʊ"
+      ]
+    },
+    "ге": {
+      "pretonic": [
+        "ɡʲɪ"
+      ],
+      "posttonic": [
+        "ɡʲɪ"
+      ]
+    },
+    "ги": {
+      "pretonic": [
+        "ɡʲɪ"
+      ],
+      "posttonic": [
+        "ɡʲɪ"
+      ]
+    },
+    "гя": {
+      "pretonic": [
+        "ɡʲɪ"
+      ],
+      "posttonic": [
+        "ɡʲə"
+      ]
+    },
+    "гю": {
+      "pretonic": [
+        "ɡʲʊ"
+      ],
+      "posttonic": [
+        "ɡʲʊ"
+      ]
+    },
+    "де": {
+      "pretonic": [
+        "dʲɪ"
+      ],
+      "posttonic": [
+        "dʲɪ"
+      ]
+    },
+    "ди": {
+      "pretonic": [
+        "dʲɪ"
+      ],
+      "posttonic": [
+        "dʲɪ"
+      ]
+    },
+    "дя": {
+      "pretonic": [
+        "dʲɪ"
+      ],
+      "posttonic": [
+        "dʲə"
+      ]
+    },
+    "дю": {
+      "pretonic": [
+        "dʲʊ"
+      ],
+      "posttonic": [
+        "dʲʊ"
+      ]
+    },
+    "зе": {
+      "pretonic": [
+        "zʲɪ"
+      ],
+      "posttonic": [
+        "zʲɪ"
+      ]
+    },
+    "зи": {
+      "pretonic": [
+        "zʲɪ"
+      ],
+      "posttonic": [
+        "zʲɪ"
+      ]
+    },
+    "зя": {
+      "pretonic": [
+        "zʲɪ"
+      ],
+      "posttonic": [
+        "zʲə"
+      ]
+    },
+    "зю": {
+      "pretonic": [
+        "zʲʊ"
+      ],
+      "posttonic": [
+        "zʲʊ"
+      ]
+    },
+    "ке": {
+      "pretonic": [
+        "kʲɪ"
+      ],
+      "posttonic": [
+        "kʲɪ"
+      ]
+    },
+    "ки": {
+      "pretonic": [
+        "kʲɪ"
+      ],
+      "posttonic": [
+        "kʲɪ"
+      ]
+    },
+    "кя": {
+      "pretonic": [
+        "kʲɪ"
+      ],
+      "posttonic": [
+        "kʲə"
+      ]
+    },
+    "кю": {
+      "pretonic": [
+        "kʲʊ"
+      ],
+      "posttonic": [
+        "kʲʊ"
+      ]
+    },
+    "ле": {
+      "pretonic": [
+        "lʲɪ"
+      ],
+      "posttonic": [
+        "lʲɪ"
+      ]
+    },
+    "ли": {
+      "pretonic": [
+        "lʲɪ"
+      ],
+      "posttonic": [
+        "lʲɪ"
+      ]
+    },
+    "ля": {
+      "pretonic": [
+        "lʲɪ"
+      ],
+      "posttonic": [
+        "lʲə"
+      ]
+    },
+    "лю": {
+      "pretonic": [
+        "lʲʊ"
+      ],
+      "posttonic": [
+        "lʲʊ"
+      ]
+    },
+    "ме": {
+      "pretonic": [
+        "mʲɪ"
+      ],
+      "posttonic": [
+        "mʲɪ"
+      ]
+    },
+    "ми": {
+      "pretonic": [
+        "mʲɪ"
+      ],
+      "posttonic": [
+        "mʲɪ"
+      ]
+    },
+    "мя": {
+      "pretonic": [
+        "mʲɪ"
+      ],
+      "posttonic": [
+        "mʲə"
+      ]
+    },
+    "мю": {
+      "pretonic": [
+        "mʲʊ"
+      ],
+      "posttonic": [
+        "mʲʊ"
+      ]
+    },
+    "не": {
+      "pretonic": [
+        "nʲɪ"
+      ],
+      "posttonic": [
+        "nʲɪ"
+      ]
+    },
+    "ни": {
+      "pretonic": [
+        "nʲɪ"
+      ],
+      "posttonic": [
+        "nʲɪ"
+      ]
+    },
+    "ня": {
+      "pretonic": [
+        "nʲɪ"
+      ],
+      "posttonic": [
+        "nʲə"
+      ]
+    },
+    "ню": {
+      "pretonic": [
+        "nʲʊ"
+      ],
+      "posttonic": [
+        "nʲʊ"
+      ]
+    },
+    "пе": {
+      "pretonic": [
+        "pʲɪ"
+      ],
+      "posttonic": [
+        "pʲɪ"
+      ]
+    },
+    "пи": {
+      "pretonic": [
+        "pʲɪ"
+      ],
+      "posttonic": [
+        "pʲɪ"
+      ]
+    },
+    "пя": {
+      "pretonic": [
+        "pʲɪ"
+      ],
+      "posttonic": [
+        "pʲə"
+      ]
+    },
+    "пю": {
+      "pretonic": [
+        "pʲʊ"
+      ],
+      "posttonic": [
+        "pʲʊ"
+      ]
+    },
+    "ре": {
+      "pretonic": [
+        "rʲɪ"
+      ],
+      "posttonic": [
+        "rʲɪ"
+      ]
+    },
+    "ри": {
+      "pretonic": [
+        "rʲɪ"
+      ],
+      "posttonic": [
+        "rʲɪ"
+      ]
+    },
+    "ря": {
+      "pretonic": [
+        "rʲɪ"
+      ],
+      "posttonic": [
+        "rʲə"
+      ]
+    },
+    "рю": {
+      "pretonic": [
+        "rʲʊ"
+      ],
+      "posttonic": [
+        "rʲʊ"
+      ]
+    },
+    "се": {
+      "pretonic": [
+        "sʲɪ"
+      ],
+      "posttonic": [
+        "sʲɪ"
+      ]
+    },
+    "си": {
+      "pretonic": [
+        "sʲɪ"
+      ],
+      "posttonic": [
+        "sʲɪ"
+      ]
+    },
+    "ся": {
+      "pretonic": [
+        "sʲɪ"
+      ],
+      "posttonic": [
+        "sʲə"
+      ]
+    },
+    "сю": {
+      "pretonic": [
+        "sʲʊ"
+      ],
+      "posttonic": [
+        "sʲʊ"
+      ]
+    },
+    "те": {
+      "pretonic": [
+        "tʲɪ"
+      ],
+      "posttonic": [
+        "tʲɪ"
+      ]
+    },
+    "ти": {
+      "pretonic": [
+        "tʲɪ"
+      ],
+      "posttonic": [
+        "tʲɪ"
+      ]
+    },
+    "тя": {
+      "pretonic": [
+        "tʲɪ"
+      ],
+      "posttonic": [
+        "tʲə"
+      ]
+    },
+    "тю": {
+      "pretonic": [
+        "tʲʊ"
+      ],
+      "posttonic": [
+        "tʲʊ"
+      ]
+    },
+    "фе": {
+      "pretonic": [
+        "fʲɪ"
+      ],
+      "posttonic": [
+        "fʲɪ"
+      ]
+    },
+    "фи": {
+      "pretonic": [
+        "fʲɪ"
+      ],
+      "posttonic": [
+        "fʲɪ"
+      ]
+    },
+    "фя": {
+      "pretonic": [
+        "fʲɪ"
+      ],
+      "posttonic": [
+        "fʲə"
+      ]
+    },
+    "фю": {
+      "pretonic": [
+        "fʲʊ"
+      ],
+      "posttonic": [
+        "fʲʊ"
+      ]
+    },
+    "хе": {
+      "pretonic": [
+        "xʲɪ"
+      ],
+      "posttonic": [
+        "xʲɪ"
+      ]
+    },
+    "хи": {
+      "pretonic": [
+        "xʲɪ"
+      ],
+      "posttonic": [
+        "xʲɪ"
+      ]
+    },
+    "хя": {
+      "pretonic": [
+        "xʲɪ"
+      ],
+      "posttonic": [
+        "xʲə"
+      ]
+    },
+    "хю": {
+      "pretonic": [
+        "xʲʊ"
+      ],
+      "posttonic": [
+        "xʲʊ"
+      ]
+    },
+    "же": {
+      "pretonic": [
+        "ʐɨ"
+      ],
+      "posttonic": [
+        "ʐɨ"
+      ]
+    },
+    "ше": {
+      "pretonic": [
+        "ʂɨ"
+      ],
+      "posttonic": [
+        "ʂɨ"
+      ]
+    },
+    "це": {
+      "pretonic": [
+        "tsɨ"
+      ],
+      "posttonic": [
+        "tsɨ"
+      ]
+    }
+  },
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  },
+  "glottolog_code": "russ1263",
+  "iso639_3": "rus",
+  "wikidata_qid": "Q7737",
+  "phoible_id": "russ1263",
+  "wals_code": "rus",
+  "location": {
+    "latitude": 59.0,
+    "longitude": 50.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Russian."
+  },
+  "stress": {
+    "default_position": -2,
+    "marked_vowels": [
+      "ё"
+    ],
+    "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced."
+  },
+  "allophone_rules": [
+    {
+      "id": "RU_REGR_DEVOICE_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "p",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_bʲ",
+      "phonemes": [
+        "bʲ"
+      ],
+      "surface": "pʲ",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_v",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "f",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_vʲ",
+      "phonemes": [
+        "vʲ"
+      ],
+      "surface": "fʲ",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "t",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_dʲ",
+      "phonemes": [
+        "dʲ"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_ɡ",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "k",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_ɡʲ",
+      "phonemes": [
+        "ɡʲ"
+      ],
+      "surface": "kʲ",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "s",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_zʲ",
+      "phonemes": [
+        "zʲ"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_DEVOICE_ʐ",
+      "phonemes": [
+        "ʐ"
+      ],
+      "surface": "ʂ",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tɕ",
+        "ɕː",
+        "pʲ",
+        "tʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing: an obstruent devoices before a voiceless obstruent (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): водка [votkə], всё [fsʲɵ], абсолют [ɐpsɐlʲut]."
+    },
+    {
+      "id": "RU_REGR_VOICE_p",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "b",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_pʲ",
+      "phonemes": [
+        "pʲ"
+      ],
+      "surface": "bʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "d",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_tʲ",
+      "phonemes": [
+        "tʲ"
+      ],
+      "surface": "dʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_k",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "ɡ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_kʲ",
+      "phonemes": [
+        "kʲ"
+      ],
+      "surface": "ɡʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "z",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_sʲ",
+      "phonemes": [
+        "sʲ"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_f",
+      "phonemes": [
+        "f"
+      ],
+      "surface": "v",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_fʲ",
+      "phonemes": [
+        "fʲ"
+      ],
+      "surface": "vʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_VOICE_ʂ",
+      "phonemes": [
+        "ʂ"
+      ],
+      "surface": "ʐ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "z",
+        "ʐ",
+        "bʲ",
+        "dʲ",
+        "ɡʲ",
+        "zʲ"
+      ],
+      "notes": "Regressive voicing: an obstruent voices before a voiced obstruent, /v/ excluded as a trigger (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.2): сделать [zʲdʲelətʲ], вокзал [vɐɡzaɫ]."
+    },
+    {
+      "id": "RU_REGR_PALAT_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
+      ],
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
+    },
+    {
+      "id": "RU_REGR_PALAT_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
+      ],
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
+    },
+    {
+      "id": "RU_REGR_PALAT_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʲ",
+      "followed_by_phoneme": [
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
+      ],
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
+    },
+    {
+      "id": "RU_REGR_PALAT_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
+      ],
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
+    },
+    {
+      "id": "RU_REGR_PALAT_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "dʲ",
+      "followed_by_phoneme": [
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
+      ],
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
+    }
+  ]
+}

@@ -1,6 +1,23 @@
 # Distance Metrics
 
-The `distance` module provides a suite of phonological distance metrics grounded in distinctive feature theory. All distances are normalized to [0.0, 1.0] where 0.0 = identical and 1.0 = maximally different.
+Languages relate along several independent axes, and a pair can be close on one
+and far apart on another. The `distance` module measures each axis separately
+rather than collapsing them into one number. Unless stated otherwise, distances
+are normalized to [0.0, 1.0] where 0.0 = identical and 1.0 = maximally different.
+
+| Axis | Question | Function |
+|---|---|---|
+| Phonological | Do they use the same sounds? | [`inventory_distance`](#inventory_distancespec_a-spec_b), [`allophone_overlap`](#allophone_overlapspec_a-spec_b), [`phonological_distance`](#phonological_distancespec_a-spec_b) |
+| Reading | Same *text* — do they sound alike? | [`grapheme_divergence`](#grapheme_divergencespec_a-spec_b) |
+| Spelling | Same *sound* — do they write it alike? | [`spelling_divergence`](#spelling_divergencespec_a-spec_b) |
+| Script | Are the writing systems typologically alike? | `script_distance`, `orthographic_distance` |
+| Genealogical | Do they share ancestors? | [`ancestry_similarity`](#ancestry_similarityspec_a-spec_b) |
+| Temporal | Were they spoken at the same time? | `temporal_distance` (also decays ancestry weights) |
+| Geographic | Are they spoken in the same place? | [`geographic_distance`](#geographic_distancespec_a-spec_b-normalizetrue) |
+
+Reading and spelling are inverses of each other, and the pair that shows why both
+are needed is Galician: the RAG norm and the reintegrationist norm are the same
+language with the same phonology, yet one writes /ɲ/ as ⟨ñ⟩ and the other as ⟨nh⟩.
 
 ---
 
@@ -166,35 +183,53 @@ Returns a value in [0, 1] where 1.0 = identical allophone inventories, 0.0 = no 
 
 ## `phonological_distance(spec_a, spec_b)`
 
-The main combined distance metric.
+The main combined SOUND distance metric.
 
 ```python
 from orthography2ipa.distance import phonological_distance
 
 d = phonological_distance(
     orthography2ipa.get("la"),
-    orthography2ipa.get("it"),
-    w_inventory=0.40,   # weight for inventory component
-    w_grapheme=0.30,    # weight for grapheme divergence component
-    w_allophone=0.30,   # weight for allophone component
+    orthography2ipa.get("it-IT"),
+    w_inventory=0.60,   # weight for inventory component
+    w_allophone=0.40,   # weight for allophone component
 )
 print(d)
-# PhonologicalDistance(combined=0.307, inv=0.142, graph=0.203, allo=0.412)
+# PhonologicalDistance(combined=0.272, inv=0.054, allo=0.403, [graph=0.098 not scored])
 ```
+
+### Orthography is not scored
+
+`combined` is a function of the phoneme inventories and the allophone systems, and
+of nothing else. The writing system takes no part in it. Two languages with one
+phonology and two scripts — Hindi in Devanagari and Urdu in the Arabic script,
+Serbian in Cyrillic and Croatian in Latin — are phonologically near-identical, and
+a metric that read their spelling would wrongly place them at opposite ends of the
+scale. Changing a spec's `graphemes` without changing its `phonemes` does not move
+this number at all.
+
+The inventory is taken from the spec's declared `phonemes` when it has one, and
+derived from `graphemes` only as a fallback for specs that do not.
+
+For the orthographic axes use [`grapheme_divergence`](#grapheme_divergencespec_a-spec_b)
+(reading), [`spelling_divergence`](#spelling_divergencespec_a-spec_b) (writing) or
+[`orthographic_distance`](#orthographic_distancespec_a-spec_b) (which also factors in
+the script). To weigh sound and spelling together in a single number, use
+[`weighted_full_distance`](#weighted_full_distancespec_a-spec_b--w_inventory-w_grapheme-w_allophone-w_ancestry---weighteddistance),
+which keeps an explicit `w_grapheme` term.
 
 ### `PhonologicalDistance` fields
 
 | Field | Type | Description |
 |---|---|---|
 | `inventory` | `InventoryDistance` | Full inventory comparison result |
-| `grapheme` | `GraphemeDivergence` | Full grapheme divergence result |
 | `allophone_sim` | float | Allophone Jaccard similarity |
-| `combined` | float | Weighted combination |
+| `combined` | float | Weighted combination of the two above |
+| `grapheme` | `GraphemeDivergence` | Full grapheme divergence result — reported for reference, **not** a term of `combined` |
 
 **Formula:**
 ```
 combined = w_inventory × inventory.feature_mean
-         + w_grapheme  × grapheme.mean_ipa_distance
          + w_allophone × (1 - allophone_sim)
 ```
 
@@ -278,3 +313,194 @@ The matrix is symmetric (`matrix[i][j] == matrix[j][i]`) and has zeros on the di
 | pt-BR vs pt-PT | 0.05–0.15 | Dialects of same language |
 
 These are rough empirical ranges; exact values depend on the completeness of each language's grapheme and allophone data.
+
+---
+
+## `segment_distance(a, b, strict=False)`
+
+The `strict` parameter controls behaviour for unknown IPA segments:
+
+```python
+segment_distance("ℵ", "p")              # returns float in [0, 1] (graceful)
+segment_distance("ℵ", "p", strict=True) # raises ValueError: Unknown IPA segment
+```
+
+| `strict` | Unknown segment behaviour |
+|---|---|
+| `False` (default) | Returns a value based on the neutral vector (all-0.5) |
+| `True` | Raises `ValueError` immediately |
+
+---
+
+## `phoneme_coverage(spec_native, spec_target) -> float`
+
+Asymmetric measure: fraction of `spec_target`'s phonemes already present in `spec_native`'s inventory.
+
+```python
+from orthography2ipa.distance import phoneme_coverage
+import orthography2ipa
+
+es = orthography2ipa.get("es-ES")
+pt = orthography2ipa.get("pt-PT")
+
+phoneme_coverage(es, pt)   # Spanish→Portuguese: how much of pt's inventory es covers
+phoneme_coverage(pt, es)   # May differ (asymmetric)
+phoneme_coverage(es, es)   # 1.0 — identity
+```
+
+- `1.0` = native language covers all target phonemes (easy transfer)
+- `0.0` = no shared phonemes (maximum difficulty)
+
+Use this to predict L2 phonological acquisition difficulty: a high coverage score indicates the learner's native inventory already contains most target sounds.
+
+---
+
+## `weighted_full_distance(spec_a, spec_b, *, w_inventory, w_grapheme, w_allophone, w_ancestry) -> WeightedDistance`
+
+Single configurable entry point combining all four distance components.
+
+```python
+from orthography2ipa.distance import weighted_full_distance
+
+result = weighted_full_distance(spec_a, spec_b)
+# WeightedDistance(inventory=0.12, grapheme=0.31, allophone=0.67, ancestry=0.54, combined=0.41, ...)
+
+# Custom weights — focus purely on phoneme inventory
+result = weighted_full_distance(spec_a, spec_b, w_inventory=1.0, w_grapheme=0.0, w_allophone=0.0, w_ancestry=0.0)
+assert result.combined == result.inventory
+```
+
+### `WeightedDistance` fields — `orthography2ipa.types.WeightedDistance`
+
+| Field | Description |
+|---|---|
+| `inventory` | `feature_mean` from `inventory_distance()` — [0, 1] |
+| `grapheme` | `mean_ipa_distance` from `grapheme_divergence()` — [0, 1] |
+| `allophone` | Jaccard allophone *similarity* — [0, 1] (higher = more overlap) |
+| `ancestry` | Ancestry *similarity* — [0, 1] (higher = more related) |
+| `combined` | Weighted combined *distance* — [0, 1] |
+| `weights` | `(w_inventory, w_grapheme, w_allophone, w_ancestry)` tuple used |
+
+Note: `allophone` and `ancestry` are stored as *similarities*; the formula converts them to distances internally: `combined = (w_inv * inventory + w_gra * grapheme + w_allo * (1 - allophone) + w_anc * (1 - ancestry)) / total_w`.
+
+### Default weights
+
+| Component | Default weight | Rationale |
+|---|---|---|
+| `w_inventory` | 0.25 | Phoneme inventory is a strong signal |
+| `w_grapheme` | 0.20 | Grapheme overlap matters for script-sharing languages |
+| `w_allophone` | 0.15 | Surface realisation similarity |
+| `w_ancestry` | 0.40 | Phylogenetic relatedness is the dominant factor |
+
+---
+
+## `positional_divergence(spec_a, spec_b) -> float`
+
+Measures how differently two specs use positional grapheme overrides (initial/medial/final/intervocalic etc.).
+
+```python
+from orthography2ipa.distance import positional_divergence
+
+d = positional_divergence(spec_a, spec_b)  # float in [0.0, 1.0]
+```
+
+- `0.0` = identical positional override sets (or neither spec has positional data)
+- `1.0` = maximally different positional usage
+
+For each grapheme that appears in either spec's `positional_graphemes`:
+- If only one spec has overrides for it: contributes 1.0 to divergence
+- If both have overrides: per-position IPA distance is measured using `segment_distance()`
+
+Result is normalised by the total number of graphemes with any positional data.
+
+---
+
+## `spelling_divergence(spec_a, spec_b)`
+
+How differently two orthographies **write the same sounds**. This is the inverse
+of `grapheme_divergence`, and the two answer genuinely different questions:
+
+- `grapheme_divergence` — *reading*: given the same TEXT, do these two sound
+  alike? (⟨j⟩ is /ʒ/ in Portuguese, /x/ in Spanish.)
+- `spelling_divergence` — *spelling*: given the same SOUND, do these two write it
+  alike?
+
+Each spec's grapheme map is inverted into `phoneme → {graphemes that write it}`,
+and for every phoneme both orthographies can spell, the two spelling sets are
+compared by Jaccard distance. The result is the mean over the shared phonemes.
+
+```python
+import orthography2ipa as o2i
+from orthography2ipa.distance import grapheme_divergence, spelling_divergence
+
+gl = o2i.get("gl")                  # RAG norm: /ɲ/ is written ⟨ñ⟩
+glr = o2i.get("gl-x-reintegrado")   # reintegrationist norm: /ɲ/ is written ⟨nh⟩
+
+grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233 — they read almost identically
+spelling_divergence(gl, glr).mean_distance       # 0.0659 — but they spell differently
+
+sd = spelling_divergence(gl, glr)
+sd.shared_phonemes        # 43 — phonemes both orthographies can spell
+sd.identical_spellings    # 39 — spelled exactly alike
+sd.disjoint_spellings     # 2  — no shared spelling at all
+```
+
+### `SpellingDivergence` fields
+
+| Field | Description |
+|---|---|
+| `shared_phonemes` | Phonemes both orthographies can spell |
+| `total_phonemes` | Union of the two inverted maps |
+| `mean_distance` | Mean spelling distance over the shared phonemes (0.0 = spelled identically) |
+| `identical_spellings` | Shared phonemes the two spell exactly alike |
+| `disjoint_spellings` | Shared phonemes for which they share no spelling at all |
+
+Returns `mean_distance` 1.0 when the two share no phoneme at all. Silent graphemes
+(a grapheme mapping to the empty string) spell no phoneme and contribute nothing.
+
+---
+
+## `geographic_distance(spec_a, spec_b, normalize=True)`
+
+Great-circle distance between the two specs' representative points, from the
+`location` field (`latitude`, `longitude`, `source`). Kilometres when `normalize`
+is False; otherwise scaled by half the Earth's circumference — the furthest two
+points can be.
+
+```python
+import orthography2ipa as o2i
+from orthography2ipa.distance import geographic_distance
+
+pt, es = o2i.get("pt-PT"), o2i.get("es-ES")
+
+geographic_distance(pt, es, normalize=False)   # 377.8 — kilometres
+geographic_distance(pt, es)                    # 0.0189 — normalized to [0, 1]
+
+o2i.get("ca").location
+# Location(latitude=41.453, longitude=1.569, source='glottolog',
+#          notes="Glottolog's representative point for Catalan.")
+```
+
+**Read this before trusting the number.** A point is a crude proxy for an AREA,
+and the crudeness is not uniform:
+
+- It is a fair summary for a **dialect anchored to a region**, which is where the
+  metric earns its keep — measuring a dialect continuum, where the ordering of
+  points tracks the ordering of isoglosses.
+- It is close to **meaningless for a widespread macrolanguage**, where one point
+  is arbitrary: Spanish spans two hemispheres, and the distance from "Spanish" to
+  anything says more about which point Glottolog picked than about the language.
+- A clade node's point is a computed **centroid** of its descendants, and is
+  weaker still.
+
+Weight this axis low, or turn it off, when comparing macrolanguages.
+
+Returns `None` — not `0.0` — when either spec has no `location`. Absence is not
+proximity: two languages of unknown position are not thereby neighbours. Callers
+must handle `None` rather than folding it into an average.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Ancestry](ancestry.md) · [IPA reference](ipa_reference.md) · [Data model](data_model.md)*

@@ -1,0 +1,244 @@
+{
+  "code": "pt-PT-x-medieval",
+  "name": "Old Portuguese",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɐ"
+    ],
+    "e": [
+      "e",
+      "ɛ",
+      "ə"
+    ],
+    "o": [
+      "o",
+      "ɔ",
+      "u"
+    ],
+    "à": [
+      "a"
+    ],
+    "c": [
+      "k",
+      "s",
+      "s̺"
+    ],
+    "ç": [
+      "s̺",
+      "s"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "z": [
+      "z",
+      "z̺"
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "ou": [
+      "ow",
+      "o"
+    ],
+    "ão": [
+      "ɐ̃w̃"
+    ],
+    "ãe": [
+      "ɐ̃j̃"
+    ],
+    "õe": [
+      "õj̃"
+    ],
+    "uão": [
+      "wɐ̃w̃"
+    ],
+    "uãe": [
+      "wɐ̃j̃"
+    ],
+    "uõe": [
+      "wõj̃"
+    ],
+    "ü": [
+      "w",
+      "u"
+    ],
+    "th": [
+      "t"
+    ],
+    "ph": [
+      "f"
+    ],
+    "rh": [
+      "ɾ"
+    ]
+  },
+  "allophones": {
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "ɐ": [
+      "ɐ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "t͡ʃ": [
+      "t͡ʃ",
+      "ʃ"
+    ],
+    "t͡s": null,
+    "d͡z": null,
+    "d͡ʒ": null
+  },
+  "graphemes_base": "roa-x-galaicopt",
+  "allophones_base": "roa-x-galaicopt",
+  "positional_graphemes_base": "roa-x-galaicopt",
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s̺"
+      ],
+      "before_i": [
+        "s̺"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z̺"
+      ]
+    },
+    "z": {
+      "intervocalic": [
+        "z̺"
+      ],
+      "word_initial": [
+        "z"
+      ],
+      "word_final": [
+        "z"
+      ]
+    },
+    "a": {
+      "nucleus_stressed": [
+        "a"
+      ],
+      "nucleus_unstressed": [
+        "a"
+      ],
+      "coda": [
+        "ɐ"
+      ],
+      "word_initial": [
+        "ɐ",
+        "a"
+      ],
+      "word_final": [
+        "ɐ"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "ɛ"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "ɔ"
+      ]
+    }
+  },
+  "parent": "roa-x-galaicopt",
+  "quality": "research",
+  "script_type": "alphabet",
+  "notes": "Old Portuguese (~14th–16th c. CE). The Portuguese language after the split from Galician, spoken during the Aviz dynasty and early Age of Discovery. Attested: Fernão Lopes chronicles (~1380–1460), Gil Vicente plays (~1465–1536), Cancioneiro Geral (1516), royal charters. KEY CHANGES FROM GALAICO-PORTUGUESE: (1) Sibilant deaffrication: /ts/→/s/, /dz/→/z/ — the 4-way contrast collapses to 2 (~14th–15th c.). (2) Vowel reduction beginning (unstressed /e/→[ə], /o/→[u]). (3) Nasal vowels fully phonemicised. (4) /dʒ/→/ʒ/ simplification. (5) /ou/ → [o] monophthongisation beginning centrally. (6) /tʃ/ → /ʃ/ deaffrication in progress. trema and grave accent start occasionally appearing. Source: Williams (1962), Mattos e Silva (2006), Castro (2006).",
+  "sources": [
+    {
+      "id": "maia1986",
+      "author": "Maia, C.A.",
+      "year": 1986,
+      "title": "História do galego-português",
+      "publisher": "INIC",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Portuguese",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_arcaico",
+    "https://pt.wikipedia.org/wiki/Galego-portugu%C3%AAs",
+    "https://en.wikipedia.org/wiki/Galician%E2%80%93Portuguese"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Old_Portuguese",
+    "https://en.wikipedia.org/wiki/Galician-Portuguese",
+    "https://pt.wikipedia.org/wiki/Portugu%C3%AAs_arcaico"
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": 1500
+  },
+  "glottolog_code": "oldp1257",
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "à"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Medieval Portuguese stress: paroxytone default; grave accent (à) marks stress override; no written circumflex or acute in early medieval orthography."
+  },
+  "location": {
+    "latitude": 39.91,
+    "longitude": -8.1,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Old Portuguese."
+  }
+}

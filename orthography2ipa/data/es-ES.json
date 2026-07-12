@@ -1,0 +1,432 @@
+{
+  "ancestors": [
+    {
+      "code": "es-ES-x-medieval",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Direct descent from Old/Medieval Castilian (Toledo norm), itself from Hispanic Vulgar Latin."
+    },
+    {
+      "code": "xaq",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Basque/Aquitanian substrate in the Castilian homeland: the Latin f->h change (filium>hijo), reinforcement of the 5-vowel system."
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Visigothic (Gothic) superstrate: lexical layer (guerra, guardar, ropa, ganso) and some onomastics."
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Andalusi Arabic adstrate: ~4000 loanwords (alcohol, almohada, aceite), inherited via the medieval stage."
+    }
+  ],
+  "code": "es-ES",
+  "name": "Castilian Spanish",
+  "script": "Latin",
+  "parent": "es-ES-x-medieval",
+  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
+  "sources": [
+    {
+      "id": "hualde2005",
+      "author": "Hualde, J.I.",
+      "year": 2005,
+      "title": "The Sounds of Spanish",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Spanish_phonology"
+    },
+    {
+      "id": "penny2002",
+      "author": "Penny, R.",
+      "year": 2002,
+      "title": "A History of the Spanish Language",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "harris1969",
+      "author": "Harris, J.W.",
+      "year": 1969,
+      "title": "Spanish Phonology",
+      "publisher": "MIT Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Spanish_language",
+    "https://es.wikipedia.org/wiki/Idioma_español",
+    "https://es.wikipedia.org/wiki/Idioma_espa%C3%B1ol"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "cast1244",
+  "iso639_3": "spa",
+  "quality": "production",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "é": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ó": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "θ"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "x"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "x"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ll": [
+      "ʝ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "b"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks",
+      "s"
+    ],
+    "y": [
+      "ʝ",
+      "i"
+    ],
+    "z": [
+      "θ"
+    ],
+    "güe": [
+      "ɡwe"
+    ],
+    "güi": [
+      "ɡwi"
+    ],
+    "ie": [
+      "je"
+    ],
+    "ue": [
+      "we"
+    ],
+    "ia": [
+      "ja"
+    ],
+    "io": [
+      "jo"
+    ],
+    "ua": [
+      "wa"
+    ],
+    "uo": [
+      "wo"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "iu": [
+      "ju"
+    ],
+    "ui": [
+      "wi"
+    ],
+    "ü": [
+      "w"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "f": [
+      "f"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "s": [
+      "s̺"
+    ],
+    "x": [
+      "x",
+      "χ"
+    ],
+    "ʝ": [
+      "ʝ",
+      "ɟʝ",
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "positional_graphemes": {
+    "b": {
+      "intervocalic": [
+        "β"
+      ]
+    },
+    "d": {
+      "intervocalic": [
+        "ð"
+      ],
+      "word_final": [
+        "ð"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "x"
+      ],
+      "before_i": [
+        "x"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "θ"
+      ],
+      "before_i": [
+        "θ"
+      ]
+    },
+    "x": {
+      "before_consonant": [
+        "s"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ]
+    },
+    "n": {
+      "coda": [
+        "n",
+        "ŋ"
+      ]
+    }
+  },
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "d",
+      "z",
+      "j",
+      "x",
+      "k",
+      "f",
+      "ión",
+      "ión",
+      "ad",
+      "or",
+      "al"
+    ],
+    "penult_stress_endings": [
+      "n",
+      "s",
+      "ns"
+    ],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "RAE accentuation rules: written accent wins (á é í ó ú). Default paroxytone for words ending in a vowel, -n, or -s. Words ending in any other consonant (r, l, d, z, j, x, k, f, and consonant clusters) are oxytone. The final_stress_endings list encodes the oxytone-attracting consonant endings; penult_stress_endings encodes -n/-s/-ns as explicit paroxytone attractors (overriding the default for coda -n/-s when stress position is ambiguous). Proparoxytones (esdrújulas) always carry a written accent so marked_vowels captures them."
+  },
+  "wikidata_qid": "Q1321",
+  "wals_code": "spa",
+  "location": {
+    "latitude": 40.416944,
+    "longitude": -3.703333,
+    "source": "wikidata",
+    "notes": "Madrid — the centre of the Castilian norm. Glottolog's point for cast1244 is the generic Spanish point and says nothing about Castilian specifically. [Wikidata Q2807 P625]"
+  }
+}

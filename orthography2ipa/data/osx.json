@@ -1,0 +1,253 @@
+{
+  "code": "osx",
+  "name": "Old Saxon",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ā": [
+      "aː"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "ia": [
+      "iɑ"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "io": [
+      "io"
+    ],
+    "uo": [
+      "uo"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "f": [
+      "f",
+      "v"
+    ],
+    "þ": [
+      "θ",
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h",
+      "x"
+    ],
+    "sk": [
+      "sk"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "f": [
+      "f",
+      "v"
+    ],
+    "θ": [
+      "θ",
+      "ð"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "h": [
+      "h",
+      "x"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "iɑ": [
+      "iɑ"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "io": [
+      "io"
+    ],
+    "uo": [
+      "uo"
+    ]
+  },
+  "parent": "gem-x-ingvaeonic",
+  "ancestors": [
+    {
+      "code": "gem-x-ingvaeonic",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Ingvaeonic base; closely related to Old English"
+    }
+  ],
+  "notes": "Old Saxon (~800–1100 CE). Ancestor of Low German (Plattdeutsch). Major text: Heliand (~830 CE) — a Saxon gospel harmony in alliterative verse. NO HIGH GERMAN CONSONANT SHIFT: OS p, t, k unchanged (cf. OHG pf/ff, tz/ss, hh). OS makōn vs. OHG mahhōn 'to make'; OS water vs. OHG wazzer 'water'. Closely related to Old English and Old Frisian (all Ingvaeonic). Preserved þ as interdental, like OE. Source: Gallée (1993), Robinson (1992).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "iso639_3": "osx",
+  "sources": [
+    {
+      "id": "gallee1910",
+      "author": "Gallée, J.H.",
+      "year": 1910,
+      "title": "Altsächsische Grammatik (2nd ed.)",
+      "publisher": "Max Niemeyer",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Saxon",
+    "https://de.wikipedia.org/wiki/Alts%C3%A4chsische_Sprache"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Old_Saxon",
+    "https://en.wikipedia.org/wiki/Ingvaeonic_languages",
+    "https://en.wikipedia.org/wiki/Heliand",
+    "https://de.wikipedia.org/wiki/Alts%C3%A4chsische_Sprache"
+  ],
+  "timespan": {
+    "start_year": 800,
+    "end_year": 1150
+  },
+  "glottolog_code": "olds1250",
+  "wikidata_qid": "Q35219",
+  "location": {
+    "latitude": 52.37,
+    "longitude": 9.72,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Old Saxon."
+  }
+}

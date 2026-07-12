@@ -1,0 +1,81 @@
+{
+  "code": "en-CA",
+  "name": "Canadian English",
+  "script": "Latin",
+  "graphemes_base": "en-GB",
+  "allophones_base": "en-GB",
+  "allophones": {
+    "t": [
+      "t",
+      "tʰ",
+      "ɾ",
+      "ʔ",
+      "t̚"
+    ],
+    "ɹ": [
+      "ɹ"
+    ],
+    "l": [
+      "ɫ",
+      "l"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ɪ"
+    ],
+    "æ": [
+      "æ",
+      "eə"
+    ],
+    "ɒ": [
+      "ɑː"
+    ],
+    "ɔː": [
+      "ɑː"
+    ],
+    "aɪ": [
+      "aɪ",
+      "ʌɪ"
+    ],
+    "oʊ": [
+      "oʊ",
+      "əʊ"
+    ],
+    "aʊ": [
+      "aʊ",
+      "ʌʊ"
+    ]
+  },
+  "parent": "en-GB",
+  "notes": "Canadian English. Rhotic; close to GA with: CANADIAN RAISING: /aɪ/ → [ʌɪ] before voiceless C (knife, ice); /aʊ/ → [ʌʊ] before voiceless C (out, about). CAUGHT-COT merger universal. Source: Wells (1982) vol. 3.",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wells1982_vol3",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 3: Beyond the British Isles",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Canadian_English"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "glottolog_code": "cana1268",
+  "iso639_3": "eng",
+  "wikidata_qid": "Q44676",
+  "location": {
+    "latitude": 56,
+    "longitude": -109,
+    "source": "wikidata",
+    "notes": "Canada's representative point. A national variety: weak. [Wikidata Q16 P625]"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "code": "bug",
+  "name": "Bugis",
+  "script": "Lontara",
+  "script_type": "abugida",
+  "quality": "stub",
+  "parent": "poz",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Buginese (Basa Ugi) — South Sulawesi (Austronesian) language of Indonesia. Traditionally written in the Lontara script, a Brahmic abugida (each consonant letter carries an inherent /a/ modified by vowel diacritics; final consonants and geminates are systematically not written), and today also in the Latin script. GRAPHEME INVENTORY NOT YET SPECIFIED for either script: the Lontara defective encoding of codas and gemination makes a reliable grapheme→IPA table a research task. INPUT CONTRACT: input is expected in the Lontara script (Unicode block Buginese) or in the Latin orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode bugi1244), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "iso639_3": "bug",
+  "glottolog_code": "bugi1244",
+  "wikidata_qid": "Q33190",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Buginese_language",
+    "https://bug.wikipedia.org/wiki/%E1%A8%85%E1%A8%94_%E1%A8%95%E1%A8%98%E1%A8%81%E1%A8%97"
+  ],
+  "sources": [
+    {
+      "id": "bug_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Buginese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Buginese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Buginese_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode bugi1244."
+    }
+  ],
+  "phonemes": [
+    "a",
+    "b",
+    "d",
+    "d̠ʒ",
+    "e",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "r",
+    "s",
+    "t",
+    "t̠ʃ",
+    "u",
+    "w",
+    "ŋ",
+    "ə",
+    "ɡ",
+    "ɲ",
+    "ʔ"
+  ],
+  "location": {
+    "latitude": -4.47,
+    "longitude": 119.977,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Buginese."
+  }
+}

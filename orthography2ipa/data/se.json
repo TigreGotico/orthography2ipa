@@ -1,0 +1,155 @@
+{
+  "code": "se",
+  "name": "Northern Sami",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "sme",
+  "glottolog_code": "nort2671",
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
+  "graphemes": {
+    "č": [
+      "tʃ"
+    ],
+    "đ": [
+      "ð"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "ŧ": [
+      "θ"
+    ],
+    "á": [
+      "aː"
+    ],
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "c": [
+      "ts"
+    ],
+    "z": [
+      "dz"
+    ]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "urj",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Samic branch of Uralic."
+    },
+    {
+      "code": "fi",
+      "role": "related",
+      "weight": 0.1,
+      "notes": "Finnish/Finnic areal contact and shared inheritance."
+    },
+    {
+      "code": "nb",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Norwegian adstrate: dominant Scandinavian contact language."
+    },
+    {
+      "code": "sv",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Swedish adstrate."
+    }
+  ],
+  "parent": "x-clade-saam1281",
+  "notes": "Northern Sami, largest Sami language spoken in Norway, Sweden and Finland. Sami alphabets include several extended characters: č /tʃ/, đ /ð/, ŋ /ŋ/, š /ʃ/, ž /ʒ/, ŧ /θ/. Consonant gradation system similar to Finnish. Polysynthetic morphology.",
+  "sources": [
+    {
+      "id": "wiki-se",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Northern Sami",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Northern_Sami"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Northern_Sami",
+    "https://en.wikipedia.org/wiki/Proto-Uralic_language",
+    "https://se.wikipedia.org/wiki/Davvis%C3%A1megiella"
+  ],
+  "wikidata_qid": "Q33947",
+  "phoible_id": "nort2671",
+  "wals_code": "sno",
+  "location": {
+    "latitude": 68.725,
+    "longitude": 22.1113,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for North Saami."
+  }
+}

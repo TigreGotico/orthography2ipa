@@ -24,8 +24,12 @@ Architecture
 5. **Allophone overlap**: How much two languages' allophone systems
    share surface realisations.
 
-6. **Combined phylogenetic distance**: Weighted combination providing
-   a single scalar estimate of overall phonological relatedness.
+6. **Combined phonological distance**: Weighted combination of the SOUND
+   axes — inventory and allophony — providing a single scalar estimate of
+   phonological relatedness.  Orthography (4) is measured but deliberately
+   excluded: a language's script is not part of its phonology, and mixing it
+   in would put Hindi and Urdu, or Serbian and Croatian, far apart.  To weigh
+   sound and spelling together in one number, use ``weighted_full_distance``.
 
 Usage
 ─────
@@ -45,12 +49,14 @@ Usage
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+import math
+
+import functools
+from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Set, Tuple
 
-from orthography2ipa.types import LanguageSpec
 from orthography2ipa.feats import NUM_FEATURES, phonetic_distance, vectorize_phones
-
+from orthography2ipa.types import Ancestor, LanguageSpec, WeightedDistance
 
 __all__ = [
     "Feature",
@@ -68,6 +74,13 @@ __all__ = [
     "pairwise_distances",
     "ancestry_similarity",
     "full_distance",
+    "tone_distance",
+    "orthographic_distance",
+    "phoneme_coverage",
+    "weighted_full_distance",
+    "positional_divergence",
+    "temporal_distance",
+    "WeightedDistance",
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -112,6 +125,8 @@ _FEATURE_NAMES: Tuple[Feature, ...] = (
     "round",  # 18
     "tense",  # 19
     "long",  # 20
+    "click",  # 21
+    "nasal_vowel",  # 22
 )
 
 _NEUTRAL: FeatureVector = tuple(0.5 for _ in range(NUM_FEATURES))
@@ -163,7 +178,7 @@ def feature_names() -> Tuple[str, ...]:
 # Segment-level distance
 # ═══════════════════════════════════════════════════════════════════════════
 
-def segment_distance(seg_a: str, seg_b: str) -> float:
+def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
     """Phonetic distance between two IPA segments, normalised to [0.0, 1.0].
 
     Uses a weighted feature distance, which gives higher
@@ -171,11 +186,30 @@ def segment_distance(seg_a: str, seg_b: str) -> float:
     and lower weight to minor features (strident, distributed, long).
 
     Vowel↔consonant mismatches always return 1.0.
+
+    Parameters
+    ----------
+    seg_a, seg_b : str
+        IPA segments to compare.
+    strict : bool
+        If ``True``, raise ``ValueError`` when a segment produces an
+        all-0.5 (unknown) feature vector.  Default is ``False`` (degrade
+        gracefully).
+
+    Raises
+    ------
+    ValueError
+        If ``strict=True`` and either segment is unknown.
     """
     if seg_a == seg_b:
         return 0.0
     if not seg_a or not seg_b or seg_a == "∅" or seg_b == "∅":
         return 1.0
+    if strict:
+        for seg in (seg_a, seg_b):
+            vec = feature_vector(seg)
+            if all(v == 0.5 for v in vec):
+                raise ValueError(f"Unknown IPA segment: {seg!r}")
     try:
         d = phonetic_distance(seg_a, seg_b)
         # returns 0–1 for vowels, 0–2 for consonants.
@@ -194,7 +228,20 @@ def segment_distance(seg_a: str, seg_b: str) -> float:
 # ═══════════════════════════════════════════════════════════════════════════
 
 def _extract_phonemes(spec: LanguageSpec) -> Set[str]:
-    """Extract the set of unique IPA phonemes from a language spec."""
+    """The language's phoneme inventory.
+
+    Prefers the inventory the spec DECLARES. A language's sounds are not a
+    property of its writing system: an unwritten language has a phonology and no
+    graphemes, and a logographic script encodes no sound at all, so reading the
+    inventory out of the spelling cannot work for either.
+
+    Falls back to deriving it from ``graphemes`` when no inventory is declared —
+    which is what every spec did before ``phonemes`` existed, and what leaves them
+    unchanged.
+    """
+    if spec.phonemes:
+        return {p for p in spec.phonemes if p}
+
     phonemes: Set[str] = set()
     for ipa_list in spec.graphemes.values():
         for ipa in ipa_list:
@@ -358,19 +405,37 @@ def allophone_overlap(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
 
 @dataclass(frozen=True)
 class PhonologicalDistance:
-    """Combined multi-metric phonological distance between two languages."""
+    """Combined phonological distance between two languages.
+
+    ``combined`` is computed from the two axes that describe SOUND — the phoneme
+    inventory and the allophone system.  It says nothing about how either language
+    is WRITTEN, and it must not: Hindi and Urdu share a phonology and not a script,
+    Serbian and Croatian likewise; a phonological metric that read the writing system
+    would call each of those pairs distant, which is simply false.
+
+    The orthographic axes are measured separately and deliberately kept out of the
+    score: :func:`grapheme_divergence` (reading — same letters, which sounds?),
+    :func:`spelling_divergence` (spelling — same sounds, which letters?) and
+    :func:`orthographic_distance` (which also factors in the script).
+    """
     inventory: InventoryDistance
     grapheme: GraphemeDivergence
+    """Grapheme (reading) divergence, reported for reference only.
+
+    NOT a term of ``combined`` — orthography is not phonology.  Read it when you want
+    the orthographic side; do not read it expecting it to be inside the score.
+    """
     allophone_sim: float
     combined: float
-    """Weighted combination: 0.0 = identical, 1.0 = maximally different."""
+    """Weighted combination of the PHONOLOGICAL axes only (inventory + allophony):
+    0.0 = identical, 1.0 = maximally different."""
 
     def __repr__(self) -> str:
         return (
             f"PhonologicalDistance(combined={self.combined:.3f}, "
             f"inv={self.inventory.feature_mean:.3f}, "
-            f"graph={self.grapheme.mean_ipa_distance:.3f}, "
-            f"allo={self.allophone_sim:.3f})"
+            f"allo={self.allophone_sim:.3f}, "
+            f"[graph={self.grapheme.mean_ipa_distance:.3f} not scored])"
         )
 
 
@@ -378,16 +443,25 @@ def phonological_distance(
         spec_a: LanguageSpec,
         spec_b: LanguageSpec,
         *,
-        w_inventory: float = 0.40,
-        w_grapheme: float = 0.30,
-        w_allophone: float = 0.30,
+        w_inventory: float = 0.60,
+        w_allophone: float = 0.40,
 ) -> PhonologicalDistance:
     """Compute a combined phonological distance between two languages.
 
+    The score is built from the phoneme inventories (preferring each spec's declared
+    ``phonemes``, see :func:`_extract_phonemes`) and the allophone systems.  The
+    grapheme mapping is reported on the result but takes no part in the score: how a
+    language is spelled is not part of how it sounds, and two languages with one
+    phonology and two scripts must come out phonologically near-identical.
+
+    For the orthographic side use :func:`grapheme_divergence`,
+    :func:`spelling_divergence` or :func:`orthographic_distance`; to weigh sound and
+    spelling together in one number use :func:`weighted_full_distance`.
+
     Parameters
     ----------
-    w_inventory, w_grapheme, w_allophone : float
-        Weights for each component (should sum to 1.0).
+    w_inventory, w_allophone : float
+        Weights for each phonological component (should sum to 1.0).
     """
     inv = inventory_distance(spec_a, spec_b)
     gra = grapheme_divergence(spec_a, spec_b)
@@ -398,7 +472,6 @@ def phonological_distance(
 
     combined = (
             w_inventory * inv.feature_mean
-            + w_grapheme * gra.mean_ipa_distance
             + w_allophone * allo_dist
     )
 
@@ -461,15 +534,53 @@ def pairwise_distances(
 # Ancestry-weighted phylogenetic distance
 # ═══════════════════════════════════════════════════════════════════════════
 
+def _data_ancestors(spec: LanguageSpec) -> Tuple[Ancestor, ...]:
+    """Return *spec*'s ancestors with classification-only clade nodes skipped.
+
+    A clade (``Romance``, ``West Germanic``) is a step in the classification
+    chain, not a language: it has no phonology, so it contributes nothing to a
+    genealogical distance. Each clade ancestor is therefore replaced by the
+    nearest data-bearing ancestor above it (dropped when there is none), which
+    keeps ancestry weights identical to a graph with no clade nodes in it.
+    """
+    from orthography2ipa.registry import get as _get
+
+    resolved: List[Ancestor] = []
+    for ancestor in spec.get_ancestors():
+        code: Optional[str] = ancestor.code
+        seen: Set[str] = set()
+        while code and code not in seen:
+            seen.add(code)
+            try:
+                candidate = _get(code)
+            except KeyError:
+                code = None
+                break
+            if not candidate.clade:
+                break
+            code = candidate.parent
+        if code and code != ancestor.code:
+            resolved.append(replace(ancestor, code=code))
+        elif code:
+            resolved.append(ancestor)
+    return tuple(resolved)
+
+
 def _build_ancestor_graph(
         code: str,
         _visited: Optional[Set[str]] = None,
-        _registry: Optional[Dict[str, "LanguageSpec"]] = None,
+        _registry: Optional[Dict[str, List[Tuple[str, float]]]] = None,
+        _path: Optional[List[str]] = None,
 ) -> Dict[str, List[Tuple[str, float]]]:
     """Build a directed graph {code: [(ancestor_code, weight), ...]}
     by recursively following all ancestor links.
 
     Returns a graph covering the full ancestry of *code*.
+
+    Raises
+    ------
+    ValueError
+        If a circular ancestry reference is detected.
     """
     from orthography2ipa.registry import get as _get
 
@@ -477,38 +588,112 @@ def _build_ancestor_graph(
         _visited = set()
     if _registry is None:
         _registry = {}
+    if _path is None:
+        _path = []
+
+    if code in _path:
+        raise ValueError(f"Circular ancestry detected: {code!r} already visited")
 
     if code in _visited:
         return _registry
 
     _visited.add(code)
+    _path = _path + [code]
 
     try:
         spec = _get(code)
     except KeyError:
         return _registry
 
-    ancestors = spec.get_ancestors()
+    ancestors = _data_ancestors(spec)
     if ancestors:
         _registry[code] = [(a.code, a.weight) for a in ancestors]
         for a in ancestors:
-            _build_ancestor_graph(a.code, _visited, _registry)
+            _build_ancestor_graph(a.code, _visited, _registry, _path)
     else:
         _registry[code] = []
 
     return _registry
 
 
+@functools.lru_cache(maxsize=256)
+def _get_ancestry_weights_by_code(code: str) -> Dict[str, float]:
+    """Return the ancestry weight map for *code*, cached by language code.
+
+    Delegates to ``_trace_ancestry_weights`` with a default max_depth of 10.
+    """
+    return _trace_ancestry_weights(code)
+
+
+def _get_ancestry_weights(spec: LanguageSpec) -> Dict[str, float]:
+    """Return the ancestry weight map for *spec*.
+
+    Thin wrapper over the cached ``_get_ancestry_weights_by_code``.
+    """
+    return _get_ancestry_weights_by_code(spec.code)
+
+
+def _temporal_decay(
+        ancestor_spec: LanguageSpec,
+        descendant_spec: LanguageSpec,
+        decay_halflife: float = 1000.0,
+) -> float:
+    """Exponential weight multiplier based on temporal gap between ancestor and descendant.
+
+    Returns 1.0 when either language lacks timespan data (no penalty applied).
+    Uses the gap between ancestor's end (or start if no end) and descendant's
+    start to compute: ``exp(-gap / halflife)``.
+
+    Parameters
+    ----------
+    ancestor_spec : LanguageSpec
+        The ancestor language.
+    descendant_spec : LanguageSpec
+        The descendant language.
+    decay_halflife : float
+        Years for weight to decay to ~0.37 (exp(-1)).  Default 1000 years.
+
+    Returns
+    -------
+    float
+        Multiplier in (0.0, 1.0].
+    """
+    import math
+    if ancestor_spec.timespan is None or descendant_spec.timespan is None:
+        return 1.0
+    anc_end = ancestor_spec.timespan.end_year if ancestor_spec.timespan.end_year is not None \
+        else ancestor_spec.timespan.start_year
+    gap = descendant_spec.timespan.start_year - anc_end
+    if gap <= 0:
+        return 1.0
+    return math.exp(-gap / decay_halflife)
+
+
 def ancestry_similarity(
         spec_a: LanguageSpec,
         spec_b: LanguageSpec,
         max_depth: int = 10,
+        temporal_decay: bool = False,
+        decay_halflife: float = 1000.0,
 ) -> float:
     """Compute ancestry-weighted similarity between two languages.
 
     Traces all ancestor paths for both languages, finds shared ancestors,
     and computes similarity as the sum of products of weights along the
     best connecting paths.
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+    max_depth : int
+        Maximum recursion depth for ancestry tracing.
+    temporal_decay : bool
+        If ``True`` and ``timespan`` data is available, multiply each ancestor
+        weight by an exponential decay factor based on the temporal gap between
+        the ancestor's era and the descendant.  Default ``False`` (static weights).
+    decay_halflife : float
+        Years for weight to decay to ~0.37 when ``temporal_decay=True``.
 
     Returns a value in [0.0, 1.0]:
     - 1.0: identical language
@@ -518,12 +703,18 @@ def ancestry_similarity(
     - ~0.05-0.2: remote connection (substrate/adstrate only)
     - 0.0: no traceable connection
     """
+    from orthography2ipa.registry import get as _get
+
     if spec_a.code == spec_b.code:
         return 1.0
 
     # Build weighted paths from each language to all reachable ancestors.
-    paths_a = _trace_ancestry_weights(spec_a.code, max_depth)
-    paths_b = _trace_ancestry_weights(spec_b.code, max_depth)
+    if temporal_decay:
+        paths_a = _trace_ancestry_weights_temporal(spec_a, decay_halflife=decay_halflife)
+        paths_b = _trace_ancestry_weights_temporal(spec_b, decay_halflife=decay_halflife)
+    else:
+        paths_a = _get_ancestry_weights(spec_a)
+        paths_b = _get_ancestry_weights(spec_b)
 
     # Check if A is a DIRECT parent of B or vice versa
     # (only applies when the path weight is high — not transitive traces)
@@ -588,13 +779,67 @@ def _trace_ancestry_weights(
         except KeyError:
             continue
 
-        ancestors = spec.get_ancestors()
+        ancestors = _data_ancestors(spec)
         for a in ancestors:
             path_weight = weight * a.weight
             # Only keep the strongest path to each ancestor
             if a.code not in result or path_weight > result[a.code]:
                 result[a.code] = path_weight
                 queue.append((a.code, path_weight, depth + 1))
+
+    return result
+
+
+def _trace_ancestry_weights_temporal(
+        spec: LanguageSpec,
+        max_depth: int = 10,
+        decay_halflife: float = 1000.0,
+) -> Dict[str, float]:
+    """Like ``_trace_ancestry_weights`` but multiplies each path weight by
+    a temporal decay factor based on the gap between ancestor and descendant.
+
+    Parameters
+    ----------
+    spec : LanguageSpec
+        Starting language.
+    max_depth : int
+        Maximum recursion depth.
+    decay_halflife : float
+        Years for weight to halve (exponential decay).
+
+    Returns
+    -------
+    Dict[str, float]
+        Mapping of ancestor code → temporally-decayed max path weight.
+    """
+    from orthography2ipa.registry import get as _get
+
+    result: Dict[str, float] = {}
+    # Queue: (code_to_visit, accumulated_weight, depth, last_spec_with_timespan)
+    queue: List[Tuple[str, float, int, LanguageSpec]] = [(spec.code, 1.0, 0, spec)]
+
+    while queue:
+        current, weight, depth, descendant_spec = queue.pop(0)
+        if depth > max_depth:
+            continue
+        try:
+            current_spec = _get(current)
+        except KeyError:
+            continue
+
+        ancestors = _data_ancestors(current_spec)
+        for a in ancestors:
+            try:
+                anc_spec = _get(a.code)
+            except KeyError:
+                anc_spec = None
+
+            decay = _temporal_decay(anc_spec, descendant_spec, decay_halflife) if anc_spec else 1.0
+            path_weight = weight * a.weight * decay
+            if a.code not in result or path_weight > result[a.code]:
+                result[a.code] = path_weight
+                next_descendant = anc_spec if anc_spec else descendant_spec
+                queue.append((a.code, path_weight, depth + 1, next_descendant))
 
     return result
 
@@ -609,8 +854,11 @@ def full_distance(
     """Combined phonological + ancestry distance.
 
     This is the most complete distance metric, combining:
-    - Phonological distance (inventory, grapheme, allophone comparisons)
+    - Phonological distance (inventory + allophone comparisons; no orthography)
     - Ancestry-weighted phylogenetic distance (traces shared ancestors)
+
+    To factor the writing system in as well, use :func:`weighted_full_distance`,
+    which carries an explicit ``w_grapheme`` term.
 
     Parameters
     ----------
@@ -625,3 +873,395 @@ def full_distance(
     pd = phonological_distance(spec_a, spec_b)
     anc_sim = ancestry_similarity(spec_a, spec_b)
     return w_phonological * pd.combined + w_ancestry * (1.0 - anc_sim)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Tone distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+def tone_distance(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
+    """Jaccard distance on tone inventories.
+
+    Languages with no tones get distance 0.0 from each other,
+    maximal distance (1.0) from tonal languages.
+    """
+    inv_a = spec_a.tone_inventory
+    inv_b = spec_b.tone_inventory
+    set_a = set(inv_a.keys()) if inv_a else set()
+    set_b = set(inv_b.keys()) if inv_b else set()
+
+    if not set_a and not set_b:
+        return 0.0
+    if not set_a or not set_b:
+        return 1.0
+
+    union = set_a | set_b
+    shared = set_a & set_b
+    return 1.0 - (len(shared) / len(union))
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Orthographic distance (integrates script distance)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def orthographic_distance(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
+    """Combined distance factoring in script difference.
+
+    For same-script languages, this reduces to grapheme divergence.
+    For cross-script languages, adds script typological distance.
+    """
+    from orthography2ipa.script_distance import SCRIPT_REGISTRY, script_distance_by_name
+
+    gra = grapheme_divergence(spec_a, spec_b)
+
+    # Try to get script distance
+    try:
+        s_dist = script_distance_by_name(spec_a.script, spec_b.script)
+    except KeyError:
+        s_dist = 0.0 if spec_a.script == spec_b.script else 0.5
+
+    if s_dist == 0.0:
+        return gra.mean_ipa_distance
+    return 0.6 * s_dist + 0.4 * gra.mean_ipa_distance
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Phoneme coverage (asymmetric)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def phoneme_coverage(spec_native: LanguageSpec, spec_target: LanguageSpec) -> float:
+    """Asymmetric: fraction of spec_target's phonemes already in spec_native's inventory.
+
+    Parameters
+    ----------
+    spec_native : LanguageSpec
+        The learner's native language.
+    spec_target : LanguageSpec
+        The language being acquired.
+
+    Returns
+    -------
+    float
+        1.0 = spec_native covers all of spec_target's phonemes (easy transfer).
+        0.0 = no shared phonemes (hard transfer).
+    """
+    native_phones = _extract_phonemes(spec_native)
+    target_phones = _extract_phonemes(spec_target)
+    if not target_phones:
+        return 1.0
+    return len(native_phones & target_phones) / len(target_phones)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Weighted full distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+def weighted_full_distance(
+        spec_a: LanguageSpec,
+        spec_b: LanguageSpec,
+        *,
+        w_inventory: float = 0.25,
+        w_grapheme: float = 0.20,
+        w_allophone: float = 0.15,
+        w_ancestry: float = 0.40,
+        w_temporal: float = 0.0,
+        reference_year: int = 2025,
+) -> "WeightedDistance":
+    """Single configurable entry point combining all distance components.
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+    w_inventory, w_grapheme, w_allophone, w_ancestry : float
+        Component weights; need not sum to 1.0 (normalised internally).
+    w_temporal : float
+        Weight for temporal distance.  Default ``0.0`` (disabled) to preserve
+        backward compatibility.  Set to a positive value to include
+        :func:`temporal_distance` in the combined score.  If timespan data is
+        missing for either language, this component is excluded and the
+        remaining weights are renormalised.
+    reference_year : int
+        Passed to :func:`temporal_distance` for living languages.
+
+    Returns
+    -------
+    WeightedDistance
+        Frozen dataclass with per-component scores and the weighted ``combined``
+        value in [0.0, 1.0].
+    """
+    inv = inventory_distance(spec_a, spec_b)
+    gra = grapheme_divergence(spec_a, spec_b)
+    allo = allophone_overlap(spec_a, spec_b)
+    anc = ancestry_similarity(spec_a, spec_b)
+    temp = temporal_distance(spec_a, spec_b, reference_year=reference_year)
+
+    # If temporal data is unavailable, exclude it from the combined score
+    effective_w_temporal = w_temporal if temp is not None else 0.0
+    total_w = w_inventory + w_grapheme + w_allophone + w_ancestry + effective_w_temporal
+    combined = (
+        w_inventory * inv.feature_mean
+        + w_grapheme * gra.mean_ipa_distance
+        + w_allophone * (1.0 - allo)
+        + w_ancestry * (1.0 - anc)
+        + effective_w_temporal * (temp if temp is not None else 0.0)
+    ) / total_w
+    return WeightedDistance(
+        inventory=inv.feature_mean,
+        grapheme=gra.mean_ipa_distance,
+        allophone=allo,
+        ancestry=anc,
+        temporal=temp,
+        combined=combined,
+        weights=(w_inventory, w_grapheme, w_allophone, w_ancestry, w_temporal),
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Temporal distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+def temporal_distance(
+        spec_a: LanguageSpec,
+        spec_b: LanguageSpec,
+        reference_year: int = 2025,
+) -> Optional[float]:
+    """Jaccard-interval distance between two languages' attestation periods.
+
+    Returns ``None`` if either language lacks a :class:`~orthography2ipa.types.TimeSpan`.
+
+    The metric is based on the Jaccard index of the two time intervals.
+    Living languages (``end_year=None``) are treated as ongoing to
+    ``reference_year``.
+
+    Distance values:
+    - ``0.0``: intervals are identical.
+    - ``(0, 1)``: partial temporal overlap (higher = less overlap).
+    - ``1.0``: no temporal overlap (languages lived in completely different eras).
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+    reference_year : int
+        Year to treat as the current end for living languages.  Default 2025.
+
+    Returns
+    -------
+    Optional[float]
+        Temporal distance in [0.0, 1.0], or ``None`` if data is missing.
+
+    Examples
+    --------
+    >>> from orthography2ipa.types import TimeSpan, LanguageSpec
+    >>> # Languages with full overlap → distance 0.0
+    >>> # Languages in different eras → distance 1.0
+    """
+    if spec_a.timespan is None or spec_b.timespan is None:
+        return None
+
+    start_a = spec_a.timespan.start_year
+    end_a = spec_a.timespan.end_year if spec_a.timespan.end_year is not None else reference_year
+    start_b = spec_b.timespan.start_year
+    end_b = spec_b.timespan.end_year if spec_b.timespan.end_year is not None else reference_year
+
+    overlap = max(0, min(end_a, end_b) - max(start_a, start_b))
+    union_span = max(end_a, end_b) - min(start_a, start_b)
+
+    if union_span <= 0:
+        return 0.0
+
+    jaccard = overlap / union_span
+    return 1.0 - jaccard
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Positional divergence
+# ═══════════════════════════════════════════════════════════════════════════
+
+def positional_divergence(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
+    """Measures how differently two specs use positional grapheme overrides.
+
+    Returns 0.0 when neither spec has positional graphemes or when specs are
+    identical.  Returns a float in [0.0, 1.0].
+
+    Parameters
+    ----------
+    spec_a, spec_b : LanguageSpec
+        Languages to compare.
+
+    Returns
+    -------
+    float
+        0.0 = identical positional usage; 1.0 = maximally different.
+    """
+    def _get_positional_mappings(spec: LanguageSpec) -> Dict[str, Dict[str, str]]:
+        """Return {grapheme: {position_value: ipa_candidates}} for positional graphemes."""
+        result: Dict[str, Dict[str, str]] = {}
+        for grapheme, pos_map in spec.positional_graphemes.items():
+            entry: Dict[str, str] = {}
+            for pos, ipa_list in pos_map.items():
+                pos_key = pos.value if hasattr(pos, "value") else str(pos)
+                entry[pos_key] = ipa_list[0] if ipa_list else ""
+            if entry:
+                result[grapheme] = entry
+        return result
+
+    pos_a = _get_positional_mappings(spec_a)
+    pos_b = _get_positional_mappings(spec_b)
+
+    if not pos_a and not pos_b:
+        return 0.0
+
+    all_graphemes = set(pos_a) | set(pos_b)
+    if not all_graphemes:
+        return 0.0
+
+    total_divergence = 0.0
+    for g in all_graphemes:
+        if g in pos_a and g not in pos_b:
+            total_divergence += 1.0
+        elif g in pos_b and g not in pos_a:
+            total_divergence += 1.0
+        else:
+            # Both have positional overrides for this grapheme
+            positions = set(pos_a[g]) | set(pos_b[g])
+            for pos in positions:
+                ipa_a = pos_a[g].get(pos)
+                ipa_b = pos_b[g].get(pos)
+                if ipa_a is None or ipa_b is None:
+                    total_divergence += 1.0 / len(positions)
+                else:
+                    total_divergence += segment_distance(ipa_a, ipa_b) / len(positions)
+
+    return min(1.0, total_divergence / len(all_graphemes))
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Spelling divergence — the inverse of grapheme divergence
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class SpellingDivergence:
+    """How differently two orthographies WRITE the same sounds."""
+
+    shared_phonemes: int
+    """Number of phonemes both orthographies can spell."""
+    total_phonemes: int
+    """Number of phonemes in the union of the two inverted maps."""
+    mean_distance: float
+    """Mean spelling distance over the shared phonemes (0 = spelled identically)."""
+    identical_spellings: int
+    """Shared phonemes the two orthographies spell exactly alike."""
+    disjoint_spellings: int
+    """Shared phonemes for which the two share no spelling at all."""
+
+
+def _invert_graphemes(spec: LanguageSpec) -> Dict[str, Set[str]]:
+    """Invert a spec's grapheme map into ``phoneme -> {graphemes that write it}``.
+
+    ``graphemes`` answers "how is this written pronounced?"; the inverse answers
+    "how is this sound written?". A grapheme with several candidates contributes
+    to each of them, and a phoneme is routinely spelled several ways.
+    """
+    inverted: Dict[str, Set[str]] = {}
+    for grapheme, ipas in (spec.graphemes or {}).items():
+        for ipa in (ipas or ()):
+            if not ipa:
+                continue  # a silent grapheme spells no phoneme
+            inverted.setdefault(ipa, set()).add(grapheme.lower())
+    return inverted
+
+
+def spelling_divergence(
+        spec_a: LanguageSpec, spec_b: LanguageSpec) -> SpellingDivergence:
+    """Measure how differently two orthographies spell the same phonemes.
+
+    This is the INVERSE of :func:`grapheme_divergence`, and the two answer
+    genuinely different questions:
+
+    - :func:`grapheme_divergence` — *reading*: given the same TEXT, do these two
+      sound alike?  (``j`` is /ʒ/ in Portuguese and /x/ in Spanish.)
+    - :func:`spelling_divergence` — *spelling*: given the same SOUND, do these
+      two write it alike?
+
+    Orthography and phonology are orthogonal, and only this function can see it.
+    Reintegrationist and RAG Galician are the same language with the same
+    phonology: both spell /ɲ/ with a grapheme that maps to /ɲ/, so their
+    *reading* divergence is nil and their graphemes are not even shared — yet one
+    writes ``nh`` (as Portuguese does) and the other ``ñ`` (as Castilian does).
+    That difference is invisible to every other metric here.
+
+    Returns 1.0 (maximal divergence) when the two share no phoneme at all.
+    """
+    inv_a = _invert_graphemes(spec_a)
+    inv_b = _invert_graphemes(spec_b)
+    shared = set(inv_a) & set(inv_b)
+    union = set(inv_a) | set(inv_b)
+    if not shared:
+        return SpellingDivergence(0, len(union), 1.0, 0, 0)
+
+    distances: List[float] = []
+    identical = 0
+    disjoint = 0
+    for phoneme in shared:
+        spellings_a, spellings_b = inv_a[phoneme], inv_b[phoneme]
+        overlap = spellings_a & spellings_b
+        # Jaccard distance over the sets of graphemes that write this phoneme:
+        # 0.0 when both orthographies spell it exactly the same way, 1.0 when
+        # they share no spelling for it at all.
+        distance = 1.0 - len(overlap) / len(spellings_a | spellings_b)
+        distances.append(distance)
+        if distance == 0.0:
+            identical += 1
+        elif not overlap:
+            disjoint += 1
+
+    return SpellingDivergence(
+        shared_phonemes=len(shared),
+        total_phonemes=len(union),
+        mean_distance=sum(distances) / len(distances),
+        identical_spellings=identical,
+        disjoint_spellings=disjoint,
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Geographic distance — where the languages are
+# ═══════════════════════════════════════════════════════════════════════════
+
+_EARTH_RADIUS_KM = 6371.0088
+
+
+def geographic_distance(
+        spec_a: LanguageSpec, spec_b: LanguageSpec,
+        normalize: bool = True) -> Optional[float]:
+    """Great-circle distance between two languages' representative points.
+
+    Kilometres when ``normalize`` is False; otherwise scaled by half the Earth's
+    circumference, the furthest two points can be. Returns ``None`` when either
+    spec has no location — absence, not zero, because two languages of unknown
+    position are not thereby neighbours.
+
+    READ THIS BEFORE TRUSTING THE NUMBER. A point is a crude proxy for an AREA,
+    and the crudeness is not uniform. It is a fair summary for a dialect anchored
+    to a region — which is where this metric earns its keep, measuring a dialect
+    continuum — and close to meaningless for a widespread language, where a single
+    point is arbitrary (Spanish spans two hemispheres). A family node's point is a
+    computed centroid and is weaker still. Weight this axis low, or off, when
+    comparing macrolanguages.
+    """
+    loc_a, loc_b = spec_a.location, spec_b.location
+    if loc_a is None or loc_b is None:
+        return None
+
+    lat1, lon1, lat2, lon2 = map(
+        math.radians,
+        (loc_a.latitude, loc_a.longitude, loc_b.latitude, loc_b.longitude))
+    dlat, dlon = lat2 - lat1, lon2 - lon1
+    h = (math.sin(dlat / 2) ** 2
+         + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2)
+    km = 2 * _EARTH_RADIUS_KM * math.asin(math.sqrt(h))
+    if not normalize:
+        return km
+    return km / (math.pi * _EARTH_RADIUS_KM)

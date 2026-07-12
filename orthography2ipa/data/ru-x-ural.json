@@ -1,0 +1,61 @@
+{
+  "code": "ru-x-ural",
+  "name": "Ural Russian",
+  "script": "Cyrillic",
+  "graphemes_base": "ru",
+  "allophones_base": "ru",
+  "parent": "ru",
+  "notes": "Ural Russian (Perm, Yekaterinburg region). Predominantly standard-like; traces of Northern аканье in older speech. Tatar and Bashkir substrate influence.",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+    },
+    {
+      "id": "timberlake2004",
+      "author": "Timberlake, A.",
+      "year": 2004,
+      "title": "A Reference Grammar of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
+    },
+    {
+      "id": "zalizniak1985",
+      "author": "Zalizniak, A.A.",
+      "year": 1985,
+      "title": "Ot praslavyanskoy aktsentovki k russkoy",
+      "publisher": "Nauka",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Russian_language",
+    "https://ru.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 56.835556,
+    "longitude": 60.612778,
+    "source": "wikidata",
+    "notes": "Yekaterinburg — the principal city of the Urals (with Perm). [Wikidata Q887 P625]"
+  }
+}

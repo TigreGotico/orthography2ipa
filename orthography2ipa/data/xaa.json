@@ -1,0 +1,79 @@
+{
+  "code": "xaa",
+  "name": "Andalusi Arabic",
+  "script": "Arabic",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "allophones": {
+    "aː": [
+      "aː",
+      "eː"
+    ],
+    "θ": [
+      "θ",
+      "t",
+      "s"
+    ],
+    "ɮˤ": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "ðˤ": [
+      "ðˤ",
+      "dˤ"
+    ]
+  },
+  "parent": "arb",
+  "notes": "Andalusi Arabic (8th–17th c. CE). Western Arabic dialect of Al-Andalus. Best-documented through Ibn Quzmān, kharjas, Pedro de Alcalá (1505), Vocabulista. Per Corriente (2013): (1) IMĀLA: /aː/ → [eː] (diagnostic feature). (2) Interdental merger: /θ/ → /t/ or /s/. (3) Emphatic merger: /ḍ/ and /ḏ̣/ conflate. (4) Romance-origin /p/ added. (5) Heavy Romance substrate/adstrate. ~4000 Andalusi Arabic loanwords survive in Ibero-Romance (alcalde, algodón, azúcar, alfombra...).",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "corriente1997",
+      "author": "Corriente, F.",
+      "year": 1997,
+      "title": "A Dictionary of Andalusi Arabic",
+      "publisher": "Brill",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Andalusi_Arabic"
+  ],
+  "timespan": {
+    "start_year": 711,
+    "end_year": 1492
+  },
+  "glottolog_code": "anda1287",
+  "iso639_3": "xaa",
+  "quality": "research",
+  "script_type": "abjad",
+  "wikidata_qid": "Q1137945",
+  "location": {
+    "latitude": 36.54,
+    "longitude": -5.2,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Andalusian Arabic."
+  }
+}

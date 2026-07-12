@@ -15,6 +15,39 @@ Purely synchronic phonological comparison (inventory distance, grapheme divergen
 
 ---
 
+## Clade Nodes and the Derived `family`
+
+The ancestry graph carries two kinds of non-leaf node, and the distinction matters:
+
+- A **proto-language** (`ine` Proto-Indo-European, `bnt` Proto-Bantu, `la-x-hispania` Hispanic Vulgar Latin) is a *reconstructed language*. It has phonology, it carries graphemes, and it is a legitimate data ancestor: a descendant may inherit graphemes, sandhi rules and allophone rules from it.
+- A **clade node** (`x-clade-roma1334` Romance, `x-clade-west2793` West Germanic) is *classification only*. It is flagged `"clade": true`, has empty `graphemes`/`allophones` and tier `stub`, and is **never** a data-inheritance source. It exists to make the classification hierarchy part of the one ancestry graph, instead of a hand-maintained string on every spec.
+
+Every clade node cites its Glottolog languoid (`glottolog_code`, e.g. `roma1334` Romance, `celt1248` Celtic, `semi1276` Semitic) and its Wikipedia page. Where Glottolog has no node with exactly that membership (Ibero-Romance, Gallo-Romance, Italo-Romance, Vasconic, Tyrsenian), the node cites Wikipedia and its `notes` name Glottolog's nearest equivalent.
+
+Clade nodes are spliced *into* the parent chain, never in place of it:
+
+```
+pt-PT → pt-PT-x-medieval → roa-x-galaicopt → [Ibero-Romance] → la-x-hispania
+      → la-x-late → [Romance] … [Italic] → ine → [Indo-European]
+```
+
+`family` is then **derived**, not authored. The loader walks `parent` upwards and collects the clade names it passes, broadest first:
+
+```python
+get("pt-PT").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
+get("pt-PT").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
+```
+
+Because it is a chain rather than a fixed-depth string, a consumer can ask at any depth — `available_families()` indexes a language under *every* step of its path, so `--family Romance` and `--family Ibero-Romance` both return `pt-PT`.
+
+A spec may still carry an explicit `family` string, which wins over the derived one. That escape hatch is for groupings that are not genetic clades: creoles (`Portuguese Creole`), constructed languages, isolates, and unclassified languages.
+
+### Clades never change inheritance
+
+`parent` is the fallback data-inheritance edge for `sandhi_rules` and `allophone_rules` (used when a spec declares no `graphemes_base`). Splicing a contentless node into that edge would silently strip a spec's inherited rules, so the loader **walks through** clade nodes when it looks for the nearest data-bearing ancestor, and the distance metrics do the same when they weight ancestry. A clade node on the chain is therefore transparent: transcription and ancestry weights are exactly what they would be without it.
+
+---
+
 ## The Ancestry Model
 
 Each `LanguageSpec` has an `ancestors` tuple of `Ancestor` objects:
@@ -213,3 +246,9 @@ When computing ancestry similarity, the system follows the full tree recursively
 - Spanish and Portuguese are close not only because both have `la-x-hispania` as parent, but because `la-x-hispania` → `la` (Classical Latin) → `ine` (Proto-Indo-European), and both languages inherit these deep connections.
 - Two dialects of the same language will show near-1.0 ancestry similarity because they share essentially all ancestors.
 - Unrelated language families will converge to 0.0 because their ancestry trees never intersect.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Registry](registry.md) · [Distance](distance.md) · [Data model](data_model.md)*

@@ -1,0 +1,113 @@
+{
+  "code": "en-US",
+  "name": "American English (General American)",
+  "script": "Latin",
+  "graphemes_base": "en-GB",
+  "allophones_base": "en-GB",
+  "allophones": {
+    "t": [
+      "t",
+      "tʰ",
+      "ɾ",
+      "ʔ",
+      "t̚"
+    ],
+    "ɹ": [
+      "ɹ"
+    ],
+    "l": [
+      "ɫ",
+      "l"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ɪ"
+    ],
+    "æ": [
+      "æ",
+      "eə"
+    ],
+    "ɒ": [
+      "ɑː"
+    ],
+    "ɔː": [
+      "ɑː",
+      "ɔː"
+    ],
+    "oʊ": [
+      "oʊ",
+      "əʊ"
+    ]
+  },
+  "parent": "en-GB",
+  "ancestors": [
+    {
+      "code": "enm",
+      "role": "parent",
+      "weight": 0.93,
+      "notes": "Middle English descent via colonial English"
+    }
+  ],
+  "notes": "General American (GA) — reference accent for US media/education. RHOTIC: /r/ preserved in all positions. No TRAP-BATH split (bath words = /æ/). LOT-PALM merger: /ɑː/ for both. T-FLAPPING: /t/ → [ɾ] between vowels (butter, water, city). CAUGHT-COT merger common (thought = lot for most speakers). Source: Wells (1982) vol. 3, Ladefoged & Johnson (2011). FLAPPING: /t/ and /d/ → [ɾ] intervocalically in unstressed syllables (butter, ladder, city). RHOTIC: fully rhotic — /r/ preserved in all positions.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wells1982_vol3",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 3: Beyond the British Isles",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged1999_ame",
+      "author": "Ladefoged, P.",
+      "year": 1999,
+      "title": "American English",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "In: Handbook of the International Phonetic Association"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/American_English"
+  ],
+  "positional_graphemes": {
+    "t": {
+      "intervocalic": [
+        "ɾ"
+      ],
+      "word_initial": [
+        "tʰ"
+      ],
+      "default": [
+        "t"
+      ]
+    },
+    "d": {
+      "intervocalic": [
+        "ɾ"
+      ],
+      "default": [
+        "d"
+      ]
+    }
+  },
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "eng",
+  "wikidata_qid": "Q7976",
+  "location": {
+    "latitude": 39.828175,
+    "longitude": -98.5795,
+    "source": "wikidata",
+    "notes": "the geographic centre of the United States. General American is a media/education reference accent with NO regional home at all — this is the weakest point in the dataset and should be read as such. [Wikidata Q30 P625]"
+  }
+}

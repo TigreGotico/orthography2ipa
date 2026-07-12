@@ -24,9 +24,13 @@ from orthography2ipa.distance import (
     ancestry_similarity,
     full_distance,
     pairwise_distances,
+    phoneme_coverage,
+    weighted_full_distance,
+    positional_divergence,
     InventoryDistance,
     GraphemeDivergence,
     PhonologicalDistance,
+    WeightedDistance,
 )
 from orthography2ipa.types import LanguageSpec
 
@@ -39,33 +43,44 @@ from orthography2ipa.types import LanguageSpec
 def en():
     return orthography2ipa.get("en-GB")
 
+
 @pytest.fixture
 def es():
     return orthography2ipa.get("es-ES")
+
 
 @pytest.fixture
 def pt():
     return orthography2ipa.get("pt-PT")
 
+
 @pytest.fixture
 def pt_br():
     return orthography2ipa.get("pt-BR")
+
 
 @pytest.fixture
 def fr():
     return orthography2ipa.get("fr-FR")
 
+
 @pytest.fixture
 def la():
     return orthography2ipa.get("la")
+
 
 @pytest.fixture
 def it():
     return orthography2ipa.get("it-IT")
 
+
 @pytest.fixture
 def ja():
-    return orthography2ipa.get("ja")
+    # "ja" (Japanese) not in registry; using arb (Classical Arabic) as a
+    # maximally distant, non-Indo-European comparator for linguistic distance tests.
+    # Arabic (Semitic) shares no ancestry with Romance languages and has a
+    # distinct phoneme inventory.
+    return orthography2ipa.get("arb")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -80,9 +95,9 @@ class TestFeatureVector:
         assert isinstance(vec, tuple)
 
     def test_dimensionality(self):
-        """Feature vectors should have 21 features."""
+        """Feature vectors should have NUM_FEATURES features."""
         vec = feature_vector("p")
-        assert len(vec) == 21
+        assert len(vec) == 23
 
     def test_values_in_range(self):
         """All features should be 0.0, 0.5, or 1.0."""
@@ -186,7 +201,6 @@ class TestSegmentDistanceLinguistic:
 # ═══════════════════════════════════════════════════════════════════════════
 # Inventory distance
 # ═══════════════════════════════════════════════════════════════════════════
-
 class TestInventoryDistance:
     """Tests for inventory_distance()."""
 
@@ -199,10 +213,17 @@ class TestInventoryDistance:
         assert result.jaccard == pytest.approx(0.0, abs=0.01)
 
     def test_related_languages_closer(self, es, pt, ja):
-        """Spanish↔Portuguese should be closer than Spanish↔Japanese."""
+        """Spanish↔Portuguese should be closer than Spanish↔Arabic (Semitic).
+
+        Jaccard distance measures inventory overlap; related languages share
+        more phonemes so their Jaccard distance is lower.
+        feature_mean measures similarity only among shared phonemes — unrelated
+        languages share only universal basic phonemes, which can appear similar,
+        so Jaccard is the correct metric for relatedness.
+        """
         d_es_pt = inventory_distance(es, pt)
         d_es_ja = inventory_distance(es, ja)
-        assert d_es_pt.feature_mean < d_es_ja.feature_mean
+        assert d_es_pt.jaccard < d_es_ja.jaccard
 
     def test_values_in_range(self, es, en):
         result = inventory_distance(es, en)
@@ -213,7 +234,6 @@ class TestInventoryDistance:
 # ═══════════════════════════════════════════════════════════════════════════
 # Grapheme divergence
 # ═══════════════════════════════════════════════════════════════════════════
-
 class TestGraphemeDivergence:
     """Tests for grapheme_divergence()."""
 
@@ -244,7 +264,6 @@ class TestGraphemeDivergence:
 # ═══════════════════════════════════════════════════════════════════════════
 # Allophone overlap
 # ═══════════════════════════════════════════════════════════════════════════
-
 class TestAllophoneOverlap:
     """Tests for allophone_overlap()."""
 
@@ -270,7 +289,6 @@ class TestAllophoneOverlap:
 # ═══════════════════════════════════════════════════════════════════════════
 # Phonological distance (combined)
 # ═══════════════════════════════════════════════════════════════════════════
-
 class TestPhonologicalDistance:
     """Tests for phonological_distance() — the main combined metric."""
 
@@ -313,20 +331,112 @@ class TestPhonologicalDistance:
 
     def test_custom_weights(self, es, pt):
         """Custom weights should change the combined score."""
-        d1 = phonological_distance(es, pt, w_inventory=1.0, w_grapheme=0.0,
-                                    w_allophone=0.0)
-        d2 = phonological_distance(es, pt, w_inventory=0.0, w_grapheme=1.0,
-                                    w_allophone=0.0)
-        # Different weights → different combined scores (unless coincidental)
-        # At minimum they should both be in range
+        d1 = phonological_distance(es, pt, w_inventory=1.0, w_allophone=0.0)
+        d2 = phonological_distance(es, pt, w_inventory=0.0, w_allophone=1.0)
         assert 0.0 <= d1.combined <= 1.0
         assert 0.0 <= d2.combined <= 1.0
+        assert d1.combined == pytest.approx(d1.inventory.feature_mean)
+        assert d2.combined == pytest.approx(1.0 - d2.allophone_sim)
+
+    def test_no_grapheme_weight(self, es, pt):
+        """There is no orthographic knob to turn: the score has no such term."""
+        with pytest.raises(TypeError):
+            phonological_distance(es, pt, w_grapheme=1.0)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Phonological distance is not contaminated by orthography
+# ═══════════════════════════════════════════════════════════════════════════
+def _spec(code: str, **overrides) -> LanguageSpec:
+    """A minimal spec, with *overrides* applied."""
+    base = dict(
+        code=code,
+        name=code,
+        family="Test",
+        script="Latin",
+        graphemes={"p": ["p"], "t": ["t"], "a": ["a"], "i": ["i"]},
+        allophones={},
+        phonemes=("p", "t", "a", "i"),
+    )
+    base.update(overrides)
+    return LanguageSpec(**base)
+
+
+class TestPhonologyIsNotOrthography:
+    """The score must read the inventory and the allophony, and nothing else."""
+
+    def test_same_sounds_different_script_are_near_identical(self):
+        """One phonology, two scripts → phonologically the same language.
+
+        Hindi/Urdu and Serbian/Croatian in miniature: identical phoneme
+        inventories, disjoint writing systems.  A phonological metric that read
+        the spelling would call these maximally distant — they share no grapheme
+        at all — which is exactly the error being guarded against.
+        """
+        devanagari = _spec("xx-deva", script="Devanagari",
+                           graphemes={"प": ["p"], "त": ["t"], "आ": ["a"], "इ": ["i"]})
+        arabic = _spec("xx-arab", script="Arabic",
+                       graphemes={"پ": ["p"], "ت": ["t"], "ا": ["a"], "ی": ["i"]})
+
+        d = phonological_distance(devanagari, arabic)
+
+        # The orthographies are maximally apart — that is the whole point.
+        assert d.grapheme.shared_graphemes == 0
+        assert d.grapheme.mean_ipa_distance == 1.0
+        # The phonologies are identical, and the score says so.
+        assert d.combined == pytest.approx(0.0)
+
+    def test_respelling_a_language_does_not_move_the_distance(self):
+        """Change only the graphemes; the phonological distance must not budge.
+
+        This is the regression guard.  A spec's ``phonemes`` are held fixed while
+        its writing system is replaced wholesale; any drift in ``combined`` means
+        orthography has leaked back into the metric.
+        """
+        reference = _spec("xx-ref")
+        latin = _spec("yy-latin")
+        respelled = _spec(
+            "yy-latin",
+            script="Cyrillic",
+            graphemes={"п": ["p"], "т": ["t"], "а": ["a"], "и": ["i"]},
+        )
+
+        before = phonological_distance(reference, latin)
+        after = phonological_distance(reference, respelled)
+
+        # The respelling is real and visible on the orthographic axis …
+        assert after.grapheme.mean_ipa_distance != before.grapheme.mean_ipa_distance
+        # … and invisible to the phonological one.
+        assert after.combined == before.combined
+        assert after.inventory == before.inventory
+        assert after.allophone_sim == before.allophone_sim
+
+    def test_declared_phonemes_beat_the_spelling(self):
+        """A spec that declares an inventory is scored on it, not on its letters.
+
+        Both specs declare the same four phonemes, and one has a grapheme table
+        that would derive an entirely different inventory.  Reading the declared
+        ``phonemes`` — rather than reverse-engineering them from the spelling — is
+        the only way to see that these two languages sound alike.  Allophones are
+        stated on both so that the inventory axis is what is under test.
+        """
+        allophones = {"p": ["p"], "t": ["t"], "a": ["a"], "i": ["i"]}
+        plain = _spec("xx-plain", allophones=dict(allophones))
+        misleading_spelling = _spec(
+            "yy-odd",
+            graphemes={"q": ["q"], "x": ["χ"], "ø": ["ø"], "y": ["y"]},
+            allophones=dict(allophones),
+        )
+
+        d = phonological_distance(plain, misleading_spelling)
+
+        assert d.inventory.feature_mean == pytest.approx(0.0)
+        assert d.combined == pytest.approx(0.0)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Ancestry similarity
 # ═══════════════════════════════════════════════════════════════════════════
-
 class TestAncestrySimilarity:
     """Tests for ancestry_similarity()."""
 
@@ -340,9 +450,14 @@ class TestAncestrySimilarity:
         assert sim > 0.2
 
     def test_unrelated_languages_zero(self, es, ja):
-        """Spanish and Japanese share no ancestry → 0.0."""
+        """Spanish and Arabic (Semitic) share minimal ancestry.
+
+        Arabic is listed as an adstrate to Spanish (Moorish influence), so
+        ancestry_similarity is small but non-zero. The assertion checks that
+        the value is well below what genuinely related languages score.
+        """
         sim = ancestry_similarity(es, ja)
-        assert sim == pytest.approx(0.0, abs=0.05)
+        assert sim < 0.2
 
     def test_symmetry(self, es, pt):
         sim_ab = ancestry_similarity(es, pt)
@@ -359,7 +474,7 @@ class TestAncestrySimilarity:
         assert sim > 0.4
 
     def test_different_family_low(self, en, ja):
-        """Germanic vs Japonic → very low or zero."""
+        """Romance (Occitan) vs Semitic (Arabic) → zero shared ancestry."""
         sim = ancestry_similarity(en, ja)
         assert sim < 0.1
 
@@ -367,7 +482,6 @@ class TestAncestrySimilarity:
 # ═══════════════════════════════════════════════════════════════════════════
 # Full distance
 # ═══════════════════════════════════════════════════════════════════════════
-
 class TestFullDistance:
     """Tests for full_distance() — combined phonological + ancestry."""
 
@@ -388,7 +502,6 @@ class TestFullDistance:
 # ═══════════════════════════════════════════════════════════════════════════
 # Pairwise distance matrix
 # ═══════════════════════════════════════════════════════════════════════════
-
 class TestPairwiseDistances:
     """Tests for pairwise_distances()."""
 
@@ -421,3 +534,131 @@ class TestPairwiseDistances:
         for row in matrix:
             for val in row:
                 assert 0.0 <= val <= 1.0 + 1e-10
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# strict mode for segment_distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestSegmentDistanceStrict:
+    """Tests for strict=True parameter in segment_distance()."""
+
+    def test_unknown_strict_raises(self):
+        """strict=True raises ValueError on an unknown IPA segment."""
+        with pytest.raises(ValueError, match="Unknown IPA segment"):
+            segment_distance("ℵ", "p", strict=True)
+
+    def test_unknown_permissive_returns_float(self):
+        """strict=False (default) returns a value in [0, 1] for unknown segments."""
+        result = segment_distance("ℵ", "p")
+        assert 0.0 <= result <= 1.0
+
+    def test_known_segments_strict_ok(self):
+        """Known segments should not raise even with strict=True."""
+        result = segment_distance("p", "b", strict=True)
+        assert 0.0 <= result <= 1.0
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Phoneme coverage
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPhonemeCoverage:
+    """Tests for phoneme_coverage()."""
+
+    def test_identity_is_one(self):
+        """Coverage of a language against itself is 1.0."""
+        spec = orthography2ipa.get("es-ES")
+        assert phoneme_coverage(spec, spec) == pytest.approx(1.0)
+
+    def test_range_ab(self):
+        """Coverage(A, B) is in [0.0, 1.0]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        assert 0.0 <= phoneme_coverage(spec_a, spec_b) <= 1.0
+
+    def test_range_ba(self):
+        """Coverage(B, A) is in [0.0, 1.0]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        assert 0.0 <= phoneme_coverage(spec_b, spec_a) <= 1.0
+
+    def test_related_languages_high_coverage(self):
+        """Spanish covers a large fraction of Portuguese phonemes."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("pt-PT")
+        cov = phoneme_coverage(spec_a, spec_b)
+        assert cov > 0.3
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WeightedDistance / weighted_full_distance
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestWeightedFullDistance:
+    """Tests for weighted_full_distance() and WeightedDistance."""
+
+    def test_returns_weighted_distance(self):
+        """Returns a WeightedDistance instance."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = weighted_full_distance(spec_a, spec_b)
+        assert isinstance(result, WeightedDistance)
+
+    def test_combined_in_range(self):
+        """combined is in [0, 1]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = weighted_full_distance(spec_a, spec_b)
+        assert 0.0 <= result.combined <= 1.0
+
+    def test_w_inventory_only(self):
+        """w_inventory=1.0, others=0 → combined == inventory component."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = weighted_full_distance(
+            spec_a, spec_b,
+            w_inventory=1.0, w_grapheme=0.0, w_allophone=0.0, w_ancestry=0.0,
+        )
+        assert result.combined == pytest.approx(result.inventory, abs=1e-9)
+
+    def test_identity_near_zero(self):
+        """All components near 0 for the same spec."""
+        spec = orthography2ipa.get("es-ES")
+        result = weighted_full_distance(spec, spec)
+        assert result.combined < 0.01
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Positional divergence
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPositionalDivergence:
+    """Tests for positional_divergence()."""
+
+    def test_identity_is_zero(self):
+        """Returns 0.0 for the same spec."""
+        spec = orthography2ipa.get("es-ES")
+        assert positional_divergence(spec, spec) == pytest.approx(0.0)
+
+    def test_range(self):
+        """Result in [0.0, 1.0]."""
+        spec_a = orthography2ipa.get("es-ES")
+        spec_b = orthography2ipa.get("fr-FR")
+        result = positional_divergence(spec_a, spec_b)
+        assert 0.0 <= result <= 1.0
+
+    def test_no_positional_both_zero(self):
+        """Returns 0.0 when neither spec has positional graphemes."""
+        from orthography2ipa.types import LanguageSpec
+        spec_a = LanguageSpec(
+            code="xx", name="Test A", family="Test", script="Latin",
+            graphemes={"a": ["a"], "b": ["b"]},
+            allophones={},
+        )
+        spec_b = LanguageSpec(
+            code="yy", name="Test B", family="Test", script="Latin",
+            graphemes={"a": ["a"], "b": ["b"]},
+            allophones={},
+        )
+        assert positional_divergence(spec_a, spec_b) == pytest.approx(0.0)

@@ -1,0 +1,119 @@
+{
+  "code": "ar-x-mashriqi",
+  "name": "Proto-Mashriqi Arabic",
+  "script": "Arabic",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "positional_graphemes_base": "arb",
+  "graphemes": {
+    "ث": [
+      "t",
+      "θ"
+    ],
+    "ذ": [
+      "d",
+      "ð"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ڤ": [
+      "v"
+    ],
+    "چ": [
+      "tʃ"
+    ]
+  },
+  "allophones": {
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "θ",
+      "t",
+      "s"
+    ],
+    "ð": [
+      "ð",
+      "d",
+      "z"
+    ],
+    "q": [
+      "q",
+      "ʔ",
+      "ɡ"
+    ],
+    "p": [
+      "p"
+    ],
+    "v": [
+      "v"
+    ]
+  },
+  "parent": "arb",
+  "ancestors": [
+    {
+      "code": "arb",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Descent from Classical Arabic"
+    }
+  ],
+  "notes": "Proto-Mashriqi (Eastern) Arabic — abstract ancestor node for Egyptian, Sudanese, Levantine, Iraqi, and Gulf Arabic. Key shared Eastern features: short vowels generally retained; ج /dʒ/ preserved; ث → /t/, ذ → /d/ in sedentary varieties; ض → /dˤ/ (lateral lost); long vowels maintained.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mesopotamian_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%B9%D8%B1%D8%A7%D9%82%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "ara"
+}

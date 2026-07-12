@@ -1,0 +1,294 @@
+{
+  "code": "lo",
+  "name": "Lao",
+  "glottolog_code": "laoo1244",
+  "script": "Lao",
+  "script_type": "abugida",
+  "inherent_vowel": "o",
+  "iso639_3": "lao",
+  "quality": "skeleton",
+  "tone_inventory": {
+    "low_class_no_mark": "mid",
+    "low_class_mai_ek": "falling",
+    "low_class_mai_tho": "high",
+    "mid_class_no_mark": "low",
+    "mid_class_mai_ek": "low",
+    "mid_class_mai_tho": "mid",
+    "high_class_no_mark": "rising",
+    "high_class_mai_ek": "mid",
+    "high_class_mai_tho": "high"
+  },
+  "graphemes": {
+    "ກ": [
+      "k"
+    ],
+    "ຂ": [
+      "kʰ"
+    ],
+    "ຄ": [
+      "kʰ"
+    ],
+    "ງ": [
+      "ŋ"
+    ],
+    "ຈ": [
+      "tɕ"
+    ],
+    "ສ": [
+      "s"
+    ],
+    "ຊ": [
+      "s"
+    ],
+    "ຍ": [
+      "ɲ"
+    ],
+    "ດ": [
+      "d"
+    ],
+    "ຕ": [
+      "t"
+    ],
+    "ຖ": [
+      "tʰ"
+    ],
+    "ທ": [
+      "tʰ"
+    ],
+    "ນ": [
+      "n"
+    ],
+    "ບ": [
+      "b"
+    ],
+    "ປ": [
+      "p"
+    ],
+    "ຜ": [
+      "pʰ"
+    ],
+    "ຝ": [
+      "f"
+    ],
+    "ພ": [
+      "pʰ"
+    ],
+    "ຟ": [
+      "f"
+    ],
+    "ມ": [
+      "m"
+    ],
+    "ຢ": [
+      "j"
+    ],
+    "ຣ": [
+      "r"
+    ],
+    "ລ": [
+      "l"
+    ],
+    "ວ": [
+      "w"
+    ],
+    "ຫ": [
+      "h"
+    ],
+    "ອ": [
+      "ʔ"
+    ],
+    "ຮ": [
+      "h"
+    ],
+    "◌າ": [
+      "aː"
+    ],
+    "◌ິ": [
+      "i"
+    ],
+    "◌ີ": [
+      "iː"
+    ],
+    "◌ຶ": [
+      "ɯ"
+    ],
+    "◌ື": [
+      "ɯː"
+    ],
+    "◌ຸ": [
+      "u"
+    ],
+    "◌ູ": [
+      "uː"
+    ],
+    "ເ◌": [
+      "eː"
+    ],
+    "ແ◌": [
+      "ɛː"
+    ],
+    "ໂ◌": [
+      "oː"
+    ],
+    "ໃ◌": [
+      "aj"
+    ],
+    "ໄ◌": [
+      "aj"
+    ]
+  },
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "f": [
+      "f"
+    ],
+    "m": [
+      "m"
+    ],
+    "j": [
+      "j"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "h": [
+      "h"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɯ": [
+      "ɯ"
+    ],
+    "ɯː": [
+      "ɯː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "oː": [
+      "oː"
+    ]
+  },
+  "notes": "Lao (Laotian). Tai-Kadai abugida closely related to Thai script. 6-tone language. Consonants in three classes (low/mid/high) interact with tone marks. Inherent vowel is /o/ (short). Simplified compared to Thai: no ช/ซ/ถ/ท distinctions — Lao merged many Thai letters.",
+  "sources": [
+    {
+      "id": "lao_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lao language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lao_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lao_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "parent": "tai",
+  "ancestors": [
+    {
+      "code": "tai",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Southwestern Tai branch of Tai-Kadai (Kra-Dai)."
+    },
+    {
+      "code": "pi",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Pali adstrate: Theravada Buddhist religious vocabulary."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Sanskrit adstrate: learned vocabulary."
+    },
+    {
+      "code": "km",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Khmer adstrate: shared areal/royal vocabulary."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lao_language",
+    "https://en.wikipedia.org/wiki/Kra%E2%80%93Dai_languages",
+    "https://lo.wikipedia.org/wiki/%E0%BA%9E%E0%BA%B2%E0%BA%AA%E0%BA%B2%E0%BA%A5%E0%BA%B2%E0%BA%A7"
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  },
+  "wikidata_qid": "Q9211",
+  "phoible_id": "laoo1244",
+  "wals_code": "lao",
+  "location": {
+    "latitude": 19.0,
+    "longitude": 102.46,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Lao."
+  }
+}

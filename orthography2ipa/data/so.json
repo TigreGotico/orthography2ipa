@@ -1,0 +1,251 @@
+{
+  "code": "so",
+  "name": "Somali",
+  "parent": "x-clade-cush1243",
+  "glottolog_code": "soma1255",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "iso639_3": "som",
+  "quality": "research",
+  "tone_inventory": {
+    "◌́": "high",
+    "◌̀": "low"
+  },
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ʕ"
+    ],
+    "d": [
+      "d"
+    ],
+    "dh": [
+      "ɖ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "x"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ħ"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "b": [
+      "b"
+    ],
+    "ʕ": [
+      "ʕ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "x": [
+      "x"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "w": [
+      "w"
+    ],
+    "ħ": [
+      "ħ"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "notes": "Somali in official Latin orthography (1972). C = pharyngeal /ʕ/; X = pharyngeal /ħ/; DH = retroflex /ɖ/; Q = uvular /q/; KH = velar fricative /x/. Vowel length is phonemic (doubled letters). Tone is high/low marked only in formal contexts. The language has two noun genders and grammatical tone.",
+  "sources": [
+    {
+      "id": "saeed1999",
+      "author": "Saeed, J.I.",
+      "year": 1999,
+      "title": "Somali",
+      "publisher": "John Benjamins",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "somali_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Somali language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Somali_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Somali_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Somali_language",
+    "https://so.wikipedia.org/wiki/Af_Soomaali"
+  ],
+  "timespan": {
+    "start_year": 1972,
+    "end_year": null
+  },
+  "wikidata_qid": "Q13275",
+  "phoible_id": "soma1255",
+  "wals_code": "som",
+  "location": {
+    "latitude": 4.778704,
+    "longitude": 45.152856,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Somali."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "code": "lrc",
+  "name": "Northern Luri",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "quality": "stub",
+  "parent": "ira",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Northern Luri (لۊری شومالی) — Southwestern Iranian language of Iran (Lorestan and neighbouring provinces). Written in a Perso-Arabic (Arabic-script) alphabet with additional letters for Luri vowels. GRAPHEME INVENTORY NOT YET SPECIFIED: as an abjad, short vowels are normally unwritten, so grapheme→phoneme conversion requires a lexicon or vowel-restoration model rather than a letter table. INPUT CONTRACT: input is expected in the Perso-Arabic Northern Luri orthography.",
+  "iso639_3": "lrc",
+  "glottolog_code": "nort2645",
+  "wikidata_qid": "Q19933293",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Northern_Luri_language"
+  ],
+  "sources": [
+    {
+      "id": "lrc_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Northern Luri language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_Luri_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Northern_Luri_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "location": {
+    "latitude": 32.5438,
+    "longitude": 47.916,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Northern Luri."
+  }
+}

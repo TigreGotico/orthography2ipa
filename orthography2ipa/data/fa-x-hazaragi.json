@@ -1,0 +1,85 @@
+{
+  "code": "fa-x-hazaragi",
+  "name": "Hazaragi (Afghan Dari, Hazara)",
+  "script": "Arabic",
+  "graphemes_base": "fa-AF",
+  "allophones_base": "fa-AF",
+  "allophones": {
+    "ɣ": [
+      "ɣ",
+      "ɢ"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "q": [
+      "q",
+      "ɢ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "fa-AF",
+  "ancestors": [
+    {
+      "code": "fa-AF",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Dari base"
+    }
+  ],
+  "notes": "Hazaragi (هزارگی). Dari dialect of Hazara people of central Afghanistan (Hazarajat). Hazara descend from Mongol-Turkic settlers (~13th c. CE) who adopted Dari but retain Mongolian substrate features. /q/ and /ɢ/ prominent; /ŋ/ phonemic in Mongolian loanwords. Some uvular vowel features. Spoken by ~2–3 million people; large diaspora in Iran, Pakistan, and internationally.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "bindemann1987",
+      "author": "Bindemann, R.",
+      "year": 1987,
+      "title": "The Hazara of Afghanistan",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hazaragi_dialect",
+    "https://fa.wikipedia.org/wiki/%DA%AF%D9%88%DB%8C%D8%B4_%D9%87%D8%B2%D8%A7%D8%B1%DA%AF%DB%8C"
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  },
+  "glottolog_code": "haza1239",
+  "iso639_3": "haz",
+  "wikidata_qid": "Q33398",
+  "location": {
+    "latitude": 33.3708,
+    "longitude": 64.5105,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hazaragi."
+  }
+}

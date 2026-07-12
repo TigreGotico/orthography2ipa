@@ -3,15 +3,17 @@
 Validates the core data model: immutability, accessor methods, convenience
 properties, and edge-case handling.
 """
+from dataclasses import FrozenInstanceError, fields
+
 import pytest
-from dataclasses import FrozenInstanceError
 
 from orthography2ipa.types import (
     Ancestor,
     AncestorRole,
+    FIELD_INHERITANCE,
+    InheritanceMode,
     LanguageSpec,
-    Grapheme2IPA,
-    AllophoneMap,
+    fields_missing_inheritance_decision,
 )
 
 
@@ -74,8 +76,9 @@ class TestAncestorRole:
     """Tests for the AncestorRole enum."""
 
     def test_all_roles_exist(self):
-        expected = {"PARENT", "SUBSTRATE", "SUPERSTRATE", "ADSTRATE",
-                    "LEXIFIER", "CREOLE_BASE"}
+        expected = {"PARENT", "PARENT_DIALECT", "PROTO_LANGUAGE", "ANCESTOR",
+                    "SUBSTRATE", "SUPERSTRATE", "ADSTRATE",
+                    "LEXIFIER", "CREOLE_BASE", "RELATED"}
         actual = {r.name for r in AncestorRole}
         assert actual == expected
 
@@ -239,3 +242,54 @@ class TestLanguageSpecAncestry:
         """Filtering by LEXIFIER should return empty tuple."""
         lexifiers = spec_with_full_ancestry.get_ancestors(AncestorRole.LEXIFIER)
         assert lexifiers == ()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# FIELD_INHERITANCE — the manifest's forcing function
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestFieldInheritanceManifest:
+    """Every ``LanguageSpec`` field must have a registered inheritance
+    decision in ``FIELD_INHERITANCE``. This is the enforcement mechanism
+    for R1: a field added to the dataclass without an explicit decision
+    here fails this test, instead of silently defaulting to "not
+    inherited" the way ``sandhi_rules`` and ``word_exceptions`` did before
+    this manifest existed.
+    """
+
+    def test_every_dataclass_field_has_a_decision(self):
+        missing = fields_missing_inheritance_decision()
+        assert not missing, (
+            f"LanguageSpec field(s) {sorted(missing)} have no registered "
+            f"InheritanceMode in FIELD_INHERITANCE (orthography2ipa/types.py). "
+            f"Every field must explicitly declare BASE_MERGE, OVERLAY_BY_ID, "
+            f"NOT_INHERITED or OWN_ONLY."
+        )
+
+    def test_no_stale_manifest_entries(self):
+        """FIELD_INHERITANCE should not reference fields that no longer
+        exist on LanguageSpec (keeps the manifest honest as the dataclass
+        evolves)."""
+        declared = {f.name for f in fields(LanguageSpec)}
+        stale = set(FIELD_INHERITANCE.keys()) - declared
+        assert not stale, f"FIELD_INHERITANCE references removed field(s): {sorted(stale)}"
+
+    def test_sandhi_rules_is_overlay_by_id(self):
+        """sandhi_rules is id-keyed rule data (not a plain dict), so it must
+        use OVERLAY_BY_ID, not BASE_MERGE — a blind dict-splat is wrong for
+        a tuple of rule objects."""
+        assert FIELD_INHERITANCE["sandhi_rules"] is InheritanceMode.OVERLAY_BY_ID
+
+    def test_word_exceptions_and_stress_stay_not_inherited(self):
+        """Per the documented modeling intent (types.py docstrings), these
+        fields are deliberately own-file-only."""
+        assert FIELD_INHERITANCE["word_exceptions"] is InheritanceMode.NOT_INHERITED
+        assert FIELD_INHERITANCE["stress"] is InheritanceMode.NOT_INHERITED
+
+    def test_graphemes_family_is_base_merge(self):
+        for field_name in ("graphemes", "allophones", "positional_graphemes"):
+            assert FIELD_INHERITANCE[field_name] is InheritanceMode.BASE_MERGE
+
+    def test_identity_fields_are_own_only(self):
+        for field_name in ("code", "name", "family", "script"):
+            assert FIELD_INHERITANCE[field_name] is InheritanceMode.OWN_ONLY

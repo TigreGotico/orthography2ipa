@@ -1,0 +1,145 @@
+{
+  "code": "ar-TN",
+  "name": "Tunisian Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "t",
+      "θ"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ق": [
+      "q",
+      "ɡ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "q": [
+      "q",
+      "ɡ"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "t",
+      "θ",
+      "s"
+    ],
+    "ð": [
+      "d",
+      "z"
+    ],
+    "a": [
+      "a",
+      "ə",
+      ""
+    ],
+    "i": [
+      "i",
+      "ɪ",
+      "ə",
+      ""
+    ],
+    "u": [
+      "u",
+      "ʊ",
+      "ə",
+      ""
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.83,
+      "notes": "Maghrebi Arabic base"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.08,
+      "notes": "Berber substrate (less dense than Morocco/Kabylie)"
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.04,
+      "notes": "French adstrate: /p/, /v/ established"
+    }
+  ],
+  "notes": "Tunisian Arabic (Derja تونسية). Intermediate Maghrebi variety. Vowel reduction significant but less extreme than Moroccan. θ → /t/ (urban Tunis); some rural varieties preserve /θ/. ق → /q/ conservative; /ɡ/ in urban Tunis. Historical Italian/Sicilian contact: /tʃ/ in some loans. Best-documented Maghrebi dialect (Gibson 2002, Talmoudi 1980).",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "grand_henry1972",
+      "author": "Grand'Henry, J.",
+      "year": 1972,
+      "title": "Le parler arabe de Cherchell (Algérie)",
+      "publisher": "Institut Orientaliste de Louvain",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tunisian_Arabic",
+    "https://ar.wikipedia.org/wiki/الدارجة_التونسية",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%AA%D9%88%D9%86%D8%B3%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  },
+  "glottolog_code": "tuni1259",
+  "iso639_3": "aeb",
+  "wikidata_qid": "Q56240",
+  "wals_code": "atu",
+  "location": {
+    "latitude": 33.7966,
+    "longitude": 9.56156,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tunisian Arabic."
+  }
+}

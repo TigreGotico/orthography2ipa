@@ -1,0 +1,98 @@
+{
+  "code": "ain",
+  "name": "Ainu",
+  "parent": "x-clade-ainu1252",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "h": [
+      "h"
+    ]
+  },
+  "allophones": {},
+  "notes": "STRUCTURAL CONTACT STUB (not a modelled G2P target). Ainu is a language isolate of Hokkaido, treated in some accounts as a pre-Japonic contact / substrate layer in northern Japan. It exists here only so specs referencing it as a (debated, low-weight) contact node have something to resolve to; the grapheme set is a placeholder and no phonology is claimed (gn.json stub pattern).",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "iso639_3": "ain",
+  "glottolog_code": "ainu1240",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ainu_language"
+  ],
+  "urls": [
+    "https://glottolog.org/resource/languoid/id/ainu1240"
+  ],
+  "sources": [
+    {
+      "id": "shibatani1990",
+      "author": "Shibatani, M.",
+      "year": 1990,
+      "title": "The Languages of Japan",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference for Ainu and its contact status (contact node only).",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ainu_language"
+    }
+  ],
+  "wikidata_qid": "Q27969",
+  "phoible_id": "ainu1240",
+  "location": {
+    "latitude": 43.633654,
+    "longitude": 142.46167,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hokkaido Ainu."
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "code": "egy",
+  "name": "Ancient Egyptian",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "h": [
+      "h"
+    ]
+  },
+  "allophones": {},
+  "notes": "STRUCTURAL ANCESTRY NODE (not a modelled G2P target). Ancient Egyptian is the Afroasiatic language of pharaonic Egypt and the direct ancestor of Coptic; its latest stage, Demotic, precedes Coptic. It exists here only so the ancestry / phylogenetic-distance metrics of the modern varieties that reference it have a node to resolve to; NO phonology is claimed or reconstructed and the minimal grapheme set is a placeholder (afa.json / trk.json stub pattern).",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "iso639_3": "egy",
+  "glottolog_code": "egyp1246",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Egyptian_language"
+  ],
+  "urls": [
+    "https://glottolog.org/resource/languoid/id/egyp1246"
+  ],
+  "sources": [
+    {
+      "id": "loprieno1995",
+      "author": "Loprieno, A.",
+      "year": 1995,
+      "title": "Ancient Egyptian: A Linguistic Introduction",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference for Egyptian and its descent to Coptic (ancestry node only).",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Egyptian_language"
+    }
+  ],
+  "parent": "x-clade-egyp1245",
+  "ancestors": [
+    {
+      "code": "afa",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Egyptian branch of Afroasiatic."
+    }
+  ],
+  "wikidata_qid": "Q50868",
+  "location": {
+    "latitude": 28.381735,
+    "longitude": 30.834959,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Egyptian (Ancient)."
+  }
+}

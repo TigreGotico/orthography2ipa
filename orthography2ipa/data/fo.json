@@ -1,0 +1,314 @@
+{
+  "code": "fo",
+  "name": "Faroese",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "á": [
+      "ɔa"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "ɪ",
+      "i"
+    ],
+    "í": [
+      "iː"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "ó": [
+      "oː",
+      "ɔu"
+    ],
+    "u": [
+      "ʊ"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "y": [
+      "ɪ"
+    ],
+    "ý": [
+      "iː"
+    ],
+    "ø": [
+      "ø",
+      "œ"
+    ],
+    "æ": [
+      "ɛː"
+    ],
+    "ei": [
+      "aɪ"
+    ],
+    "ey": [
+      "ɛɪ"
+    ],
+    "au": [
+      "ɛaʊ"
+    ],
+    "av": [
+      "ɛaʊ"
+    ],
+    "oy": [
+      "ɔɪ"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "k": [
+      "kʰ"
+    ],
+    "b": [
+      "p"
+    ],
+    "d": [
+      "d",
+      "j"
+    ],
+    "g": [
+      "ɡ",
+      "w",
+      "j"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "ð": [
+      "",
+      "j",
+      "v",
+      "w"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "ng": [
+      "ŋɡ",
+      "ŋ"
+    ],
+    "nn": [
+      "nː",
+      "tn"
+    ],
+    "ll": [
+      "lː",
+      "tl"
+    ],
+    "kk": [
+      "ʰk"
+    ],
+    "pp": [
+      "ʰp"
+    ],
+    "tt": [
+      "ʰt"
+    ]
+  },
+  "allophones": {
+    "pʰ": [
+      "pʰ"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "ɡ": [
+      "ɡ",
+      "w",
+      "j"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "ʰp": [
+      "ʰp"
+    ],
+    "ʰt": [
+      "ʰt"
+    ],
+    "ʰk": [
+      "ʰk"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɔa": [
+      "ɔa"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ɔu": [
+      "ɔu"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "ɛɪ": [
+      "ɛɪ"
+    ],
+    "ɛaʊ": [
+      "ɛaʊ"
+    ],
+    "øɪ": [
+      "øɪ"
+    ],
+    "aɪ": [
+      "aɪ"
+    ],
+    "ɔɪ": [
+      "ɔɪ"
+    ]
+  },
+  "parent": "non",
+  "ancestors": [
+    {
+      "code": "non",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Old West Norse descent"
+    },
+    {
+      "code": "da",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Danish adstrate — administrative language until 1948; heavy lexical influence"
+    }
+  ],
+  "notes": "Faroese (føroyskt). ~50,000 speakers in Faroe Islands. Old West Norse descent alongside Icelandic, but more innovative. ⟨á⟩ = [ɔa] (cf. Icelandic á = [au]); ⟨ð⟩ → [j] or [∅] between vowels (weakening); ⟨g⟩ → [w] before back vowels, [j] elsewhere. Preaspiration present (⟨pp tt kk⟩ = [ʰp ʰt ʰk]). No voiceless sonorants (unlike Icelandic). Danish administrative language until 1948; heavy Danish loanwords. Source: Árnason (2011), Hanssen (2010).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "arnason2011",
+      "author": "Árnason, K.",
+      "year": 2011,
+      "title": "The Phonology of Icelandic and Faroese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Faroese_language",
+    "https://fo.wikipedia.org/wiki/Føroyskt_mál",
+    "https://fo.wikipedia.org/wiki/F%C3%B8royskt_m%C3%A1l"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "faro1244",
+  "iso639_3": "fao",
+  "wikidata_qid": "Q25258",
+  "phoible_id": "faro1244",
+  "wals_code": "far",
+  "location": {
+    "latitude": 62.0732,
+    "longitude": -6.88497,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Faroese."
+  }
+}

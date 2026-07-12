@@ -1,0 +1,164 @@
+{
+  "code": "sq",
+  "name": "Albanian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "sqi",
+  "glottolog_code": "alba1267",
+  "timespan": {
+    "start_year": 1462,
+    "end_year": null
+  },
+  "graphemes": {
+    "dh": [
+      "ð"
+    ],
+    "gj": [
+      "ɟ"
+    ],
+    "ll": [
+      "ɫ"
+    ],
+    "nj": [
+      "ɲ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "th": [
+      "θ"
+    ],
+    "xh": [
+      "dʒ"
+    ],
+    "zh": [
+      "ʒ"
+    ],
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "ç": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "ë": [
+      "ə"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "c"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "x": [
+      "dz"
+    ],
+    "y": [
+      "y"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "ine",
+      "role": "proto_language",
+      "weight": 1.0,
+      "notes": "Isolated Indo-European branch; possibly descended from Illyrian or Thraco-Dacian"
+    }
+  ],
+  "parent": "x-clade-alba1267",
+  "notes": "Standard Albanian based on Tosk dialect. Unique Indo-European branch. Digraphs (dh, gj, ll, nj, rr, sh, th, xh, zh) listed before single letters. Ë = schwa /ə/. Q = palatal stop /c/. R = tap /ɾ/, rr = trill /r/.",
+  "sources": [
+    {
+      "id": "wiki-sq",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Albanian language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Albanian_language"
+    },
+    {
+      "id": "wiki-sq-phon",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Albanian phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Albanian_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Albanian_language",
+    "https://en.wikipedia.org/wiki/Albanian_phonology",
+    "https://sq.wikipedia.org/wiki/Gjuha_shqipe"
+  ],
+  "wikidata_qid": "Q8748",
+  "wals_code": "alb",
+  "location": {
+    "latitude": 40.99952,
+    "longitude": 20.791828,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Albanian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
+}

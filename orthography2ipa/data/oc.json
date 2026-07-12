@@ -1,0 +1,485 @@
+{
+  "code": "oc",
+  "name": "Occitan",
+  "script": "Latin",
+  "parent": "x-clade-gallorom",
+  "ancestors": [
+    {
+      "code": "la-x-gallia",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Gallo-Romance Vulgar Latin"
+    },
+    {
+      "code": "xtg",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Gaulish substrate: S. Gaul varieties, less Frankish overlay than N. French; cf. Lambert (2003)"
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.04,
+      "notes": "Visigothic superstrate: Toulouse kingdom (418-507 CE), strongest Germanic influence on Occitan"
+    },
+    {
+      "code": "xaq",
+      "role": "substrate",
+      "weight": 0.03,
+      "notes": "Basque substrate: primarily in Gascon dialect area; h- aspiration, loss of Latin f-, unique definite article eth/era; cf. Rohlfs (1970)"
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Arabic adstrate: minor, via Iberian transmission"
+    }
+  ],
+  "notes": "Lengadocian reference variety in the classical (Alibertine) norm. Key traits: unmarked o reads [u] (ó [u], ò [ɔ]); word-final unstressed a reads [ɔ]; u is fronted [y]; v merges with b (betacism); voiced stops lenite to approximants between vowels; word-final n and infinitive -r are silent. Substantial dialectal variation across Gascon, Provençal, Limousin, Auvergnat, and Vivaro-Alpine is not encoded here.",
+  "sources": [
+    {
+      "id": "alibert1976",
+      "author": "Alibert, L.",
+      "year": 1976,
+      "title": "Gramatica occitana",
+      "publisher": "Institut d'Estudis Occitans",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "bec1973",
+      "author": "Bec, P.",
+      "year": 1973,
+      "title": "Manuel pratique d'occitan moderne",
+      "publisher": "Picard",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "wheeler1988",
+      "author": "Wheeler, M. W.",
+      "year": 1988,
+      "title": "Occitan",
+      "publisher": "In Harris & Vincent (eds.), The Romance Languages, Routledge",
+      "url": null,
+      "pages": "246-278",
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Occitan_language",
+    "https://oc.wikipedia.org/wiki/Occitan",
+    "https://fr.wikipedia.org/wiki/Occitan"
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  },
+  "glottolog_code": "occi1239",
+  "iso639_3": "oci",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɔ"
+    ],
+    "à": [
+      "a"
+    ],
+    "á": [
+      "ɔ"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "é": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "i": [
+      "i",
+      "j"
+    ],
+    "í": [
+      "i"
+    ],
+    "ï": [
+      "i"
+    ],
+    "o": [
+      "u"
+    ],
+    "ó": [
+      "u"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "u": [
+      "y",
+      "w"
+    ],
+    "ú": [
+      "y"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "èi": [
+      "ɛj"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "èu": [
+      "ɛw"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "oi": [
+      "uj"
+    ],
+    "òi": [
+      "ɔj"
+    ],
+    "òu": [
+      "ɔw"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ",
+      "ɣ"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "l": [
+      "l"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      ""
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "r": [
+      "ɾ",
+      "r",
+      ""
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "ss": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "tg": [
+      "dʒ"
+    ],
+    "tj": [
+      "dʒ"
+    ],
+    "tz": [
+      "ts",
+      "z"
+    ],
+    "v": [
+      "b",
+      "β"
+    ],
+    "x": [
+      "ts",
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "cc": [
+      "ks"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b",
+      "β"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a",
+      "ɔ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ɔ": [
+      "ɔ"
+    ]
+  },
+  "positional_graphemes": {
+    "a": {
+      "default": [
+        "a"
+      ],
+      "word_final": [
+        "ɔ"
+      ]
+    },
+    "b": {
+      "default": [
+        "b"
+      ],
+      "intervocalic": [
+        "β"
+      ]
+    },
+    "d": {
+      "default": [
+        "d"
+      ],
+      "intervocalic": [
+        "ð"
+      ]
+    },
+    "g": {
+      "default": [
+        "ɡ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    },
+    "v": {
+      "default": [
+        "b"
+      ],
+      "intervocalic": [
+        "β"
+      ]
+    },
+    "s": {
+      "default": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "default": [
+        "ɾ"
+      ],
+      "word_final": [
+        ""
+      ]
+    },
+    "n": {
+      "default": [
+        "n"
+      ],
+      "word_final": [
+        ""
+      ]
+    }
+  },
+  "quality": "research",
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [
+      "a",
+      "e",
+      "i",
+      "u",
+      "as",
+      "es",
+      "is",
+      "us",
+      "atz",
+      "itz",
+      "ar",
+      "er",
+      "ir"
+    ],
+    "marked_vowels": [
+      "à",
+      "á",
+      "è",
+      "é",
+      "í",
+      "ò",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Occitan classical (Alibertine) norm accentuation (Bec 1973, Alibert): final stress by default. Words ending in a vowel (a e i u, not o which maps [u]) or -s endings are paroxytone. Infinitives in -ar/-er/-ir are paroxytone (the final -r is silent in spoken Occitan but syllabified here, so penult_stress_endings must list them explicitly). Written accents (à á è é í ò ó ú) always win. Proparoxytones are rare and always written-accented. Note: o-final words are rare in Oc orthography since o reads [u]; nominal -or/-on are oxytone."
+  },
+  "wikidata_qid": "Q14185",
+  "phoible_id": "occi1239",
+  "wals_code": "occ",
+  "location": {
+    "latitude": 44.1415,
+    "longitude": 6.82979,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Occitan."
+  }
+}

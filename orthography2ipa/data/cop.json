@@ -1,0 +1,281 @@
+{
+  "code": "cop",
+  "name": "Coptic (Sahidic)",
+  "script": "Coptic",
+  "graphemes": {
+    "ⲁ": [
+      "a"
+    ],
+    "ⲉ": [
+      "ɛ"
+    ],
+    "ⲏ": [
+      "eː"
+    ],
+    "ⲓ": [
+      "i"
+    ],
+    "ⲟ": [
+      "ɔ"
+    ],
+    "ⲱ": [
+      "oː"
+    ],
+    "ⲩ": [
+      "u"
+    ],
+    "ⲃ": [
+      "b"
+    ],
+    "ⲅ": [
+      "ɡ"
+    ],
+    "ⲇ": [
+      "d"
+    ],
+    "ⲍ": [
+      "z"
+    ],
+    "ⲑ": [
+      "tʰ"
+    ],
+    "ⲕ": [
+      "k"
+    ],
+    "ⲗ": [
+      "l"
+    ],
+    "ⲙ": [
+      "m"
+    ],
+    "ⲛ": [
+      "n"
+    ],
+    "ⲝ": [
+      "ks"
+    ],
+    "ⲡ": [
+      "p"
+    ],
+    "ⲣ": [
+      "ɾ"
+    ],
+    "ⲥ": [
+      "s"
+    ],
+    "ⲧ": [
+      "t"
+    ],
+    "ⲫ": [
+      "pʰ"
+    ],
+    "ⲭ": [
+      "kʰ"
+    ],
+    "ⲯ": [
+      "ps"
+    ],
+    "ϣ": [
+      "ʃ"
+    ],
+    "ϥ": [
+      "f"
+    ],
+    "ϩ": [
+      "h"
+    ],
+    "ϫ": [
+      "tʃ"
+    ],
+    "ϭ": [
+      "kʲ"
+    ],
+    "ϯ": [
+      "ti"
+    ],
+    "ⲛ̄": [
+      "n̩"
+    ],
+    "ⲙ̄": [
+      "m̩"
+    ],
+    "ⲟⲩ": [
+      "uː"
+    ],
+    "ⲉⲓ": [
+      "iː"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "kʲ": [
+      "kʲ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m",
+      "m̩"
+    ],
+    "n": [
+      "n",
+      "n̩",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a",
+      "ɐ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "notes": "Coptic — final stage of the Ancient Egyptian language. Sahidic dialect (Upper Egypt, literary standard, ~4th–10th c. CE). Written in Coptic alphabet (Greek + 6 Demotic letters). Classification: Afroasiatic > Egyptian (own primary branch). Extinct as spoken language ~14th–17th c. CE (replaced by Arabic). Survives as liturgical language of Coptic Orthodox Church. SUBSTRATE EFFECTS ON EGYPTIAN ARABIC: primarily lexical (agricultural terms, place names); minimal phonological impact. KEY DIFFERENCES FROM OLD EGYPTIAN: emphatics lost, pharyngeals lost, aspirated stops (pʰ tʰ kʰ), affricate /tʃ/ from *tj, rich qualitative vowel system. Refs: Loprieno (1995), Layton (2000), Peust (1999).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "iso639_3": "cop",
+  "sources": [
+    {
+      "id": "reintges2004",
+      "author": "Reintges, C.H.",
+      "year": 2004,
+      "title": "Coptic Egyptian (Sahidic Dialect): A Learner's Grammar",
+      "publisher": "Rüdiger Köppe Verlag",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "layton2011",
+      "author": "Layton, B.",
+      "year": 2011,
+      "title": "A Coptic Grammar (3rd ed.)",
+      "publisher": "Harrassowitz",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Coptic_language",
+    "https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ",
+    "https://en.wikipedia.org/wiki/Egyptian_language"
+  ],
+  "timespan": {
+    "start_year": 200,
+    "end_year": 1400
+  },
+  "glottolog_code": "copt1239",
+  "parent": "egy",
+  "ancestors": [
+    {
+      "code": "egy",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Direct descent from Ancient Egyptian (via Demotic)."
+    },
+    {
+      "code": "grc",
+      "role": "adstrate",
+      "weight": 0.2,
+      "notes": "Greek adstrate: the Coptic alphabet is Greek-based and Greek supplied a huge share of the lexicon."
+    }
+  ],
+  "wikidata_qid": "Q36155",
+  "wals_code": "cop",
+  "location": {
+    "latitude": 29.472,
+    "longitude": 31.2053,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Coptic."
+  }
+}

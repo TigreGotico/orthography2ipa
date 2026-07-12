@@ -1,0 +1,68 @@
+{
+  "code": "nn",
+  "name": "Norwegian Nynorsk",
+  "script": "Latin",
+  "graphemes_base": "no",
+  "allophones_base": "no",
+  "allophones": {
+    "r": [
+      "r"
+    ],
+    "rn": [
+      "rn",
+      "ɳ"
+    ],
+    "ej": [
+      "ej"
+    ],
+    "au": [
+      "au"
+    ],
+    "øy": [
+      "øy"
+    ]
+  },
+  "parent": "no",
+  "notes": "Norwegian Nynorsk — minority written standard (~15%). Based on western Norwegian dialects. Alveolar /r/ [r]; less retroflexion than Bokmål/Eastern. More diphthongs preserved from Old Norse: ei, au, øy. Source: Kristoffersen (2000).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "haugen1976",
+      "author": "Haugen, E.",
+      "year": 1976,
+      "title": "The Scandinavian Languages: An Introduction to their History",
+      "publisher": "Faber and Faber",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "kristoffersen2000",
+      "author": "Kristoffersen, G.",
+      "year": 2000,
+      "title": "The Phonology of Norwegian",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nynorsk",
+    "https://nn.wikipedia.org/wiki/Nynorsk"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "norw1262",
+  "iso639_3": "nno",
+  "wikidata_qid": "Q25164",
+  "location": {
+    "latitude": 59.92,
+    "longitude": 10.71,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Norwegian Nynorsk."
+  }
+}

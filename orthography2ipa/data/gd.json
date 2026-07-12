@@ -1,0 +1,689 @@
+{
+  "code": "gd",
+  "name": "Scottish Gaelic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "ə"
+    ],
+    "à": [
+      "aː"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "è": [
+      "ɛː"
+    ],
+    "é": [
+      "eː"
+    ],
+    "i": [
+      "i",
+      "ɪ"
+    ],
+    "ì": [
+      "iː"
+    ],
+    "o": [
+      "ɔ",
+      "o"
+    ],
+    "ò": [
+      "ɔː"
+    ],
+    "ó": [
+      "oː"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ],
+    "ù": [
+      "uː"
+    ],
+    "ao": [
+      "ɯː"
+    ],
+    "b": [
+      "p"
+    ],
+    "bh": [
+      "v"
+    ],
+    "c": [
+      "kʰ",
+      "kʲʰ"
+    ],
+    "ch": [
+      "x",
+      "ç"
+    ],
+    "chd": [
+      "xk"
+    ],
+    "d": [
+      "t̪",
+      "tʲ"
+    ],
+    "dh": [
+      "ɣ",
+      "ʝ"
+    ],
+    "f": [
+      "f"
+    ],
+    "fh": [
+      ""
+    ],
+    "g": [
+      "k",
+      "kʲ"
+    ],
+    "gh": [
+      "ɣ",
+      "ʝ"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l̪ˠ",
+      "l",
+      "ʎ"
+    ],
+    "ll": [
+      "l̪ˠ",
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "mh": [
+      "v"
+    ],
+    "n": [
+      "n̪ˠ",
+      "n",
+      "ɲ"
+    ],
+    "nn": [
+      "n̪ˠ",
+      "ɲ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "ph": [
+      "f"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s̪",
+      "ʃ"
+    ],
+    "sh": [
+      "h"
+    ],
+    "t": [
+      "t̪ʰ",
+      "tʲʰ"
+    ],
+    "th": [
+      "h"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔː": [
+      "ɔː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "u": [
+      "u"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ɯː": [
+      "ɯː"
+    ],
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "v": [
+      "v"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "kʲʰ": [
+      "kʲʰ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ç": [
+      "ç"
+    ],
+    "xk": [
+      "xk"
+    ],
+    "t̪": [
+      "t̪",
+      "t̪ʰ"
+    ],
+    "tʲ": [
+      "tʲ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "ʝ": [
+      "ʝ"
+    ],
+    "f": [
+      "f"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʲ": [
+      "kʲ"
+    ],
+    "h": [
+      "h"
+    ],
+    "l̪ˠ": [
+      "l̪ˠ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n̪ˠ": [
+      "n̪ˠ"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "s̪": [
+      "s̪"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "tʲʰ": [
+      "tʲʰ"
+    ],
+    "ɾʲ": [
+      "ɾʲ"
+    ],
+    "j": [
+      "j"
+    ],
+    "ɯ": [
+      "ɯ"
+    ],
+    "çkʲ": [
+      "çkʲ"
+    ],
+    "ht̪": [
+      "ht̪"
+    ],
+    "htʲ": [
+      "htʲ"
+    ],
+    "hp": [
+      "hp"
+    ]
+  },
+  "parent": "cel-x-goidelic",
+  "ancestors": [
+    {
+      "code": "cel-x-goidelic",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Goidelic descent"
+    }
+  ],
+  "notes": "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). Highlands and Islands of Scotland. PERVASIVE BROAD/SLENDER (leathann/caol) CONSONANT QUALITY: a consonant is slender (palatalised) beside ⟨e i⟩ and broad beside ⟨a o u⟩ ('caol le caol agus leathann le leathann'), and the flanking vowel letter that signals the quality is very often NOT itself pronounced — it is a quality marker, not a nucleus. Both halves are encoded in positional_graphemes: consonants take before_front_vowel/after_front_vowel slender variants, and the marker vowels map to the empty string. Stops are voiceless throughout (⟨b d g⟩ = unaspirated /p t̪ k/, ⟨p t c⟩ = aspirated), and slender velars are palatalised /kʲ kʲʰ/ rather than palatal /c ɟ/. Preaspiration of ⟨p t c⟩ after stressed vowels is encoded (GD_PREASP_*): [hp ht hk] broadly, with the velar realised as [x] before broad ⟨c⟩ (mac [maxk]). The realisation is strongly dialectal — six distinct patterns are attested — so the rules encode the central/general pattern only, not the dialect variation. Refs: Wikipedia 'Scottish Gaelic orthography'/'Scottish Gaelic phonology', Bauer (2011), Ó Maolalaigh (2008). Inventory and preaspiration cross-checked against Gillies (2009) and Ó Baoill (2010).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Celtic_languages"
+    },
+    {
+      "id": "oftedal1956",
+      "author": "Oftedal, M.",
+      "year": 1956,
+      "title": "The Gaelic of Leurbost, Isle of Lewis",
+      "publisher": "Norsk Tidsskrift for Sprogvidenskap",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "iosad2015",
+      "author": "Iosad, P.",
+      "year": 2015,
+      "title": "A Substance-Free Framework for Phonology: An Analysis of the Brythonic Languages",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "bauer2011",
+      "author": "Bauer, M.",
+      "year": 2011,
+      "title": "Blas na Gàidhlig: The Practical Guide to Scottish Gaelic Pronunciation",
+      "publisher": "Akerbeltz",
+      "url": "https://www.akerbeltz.org/",
+      "pages": null,
+      "notes": "Reference grammar of Gaelic pronunciation; source for the broad/slender consonant series and the vowel-digraph values. Consulted via the Akerbeltz site; no printed page verified."
+    },
+    {
+      "id": "goc2009",
+      "author": "Scottish Qualifications Authority",
+      "year": 2009,
+      "title": "Gaelic Orthographic Conventions (GOC)",
+      "publisher": "SQA",
+      "url": "https://www.sqa.org.uk/",
+      "pages": null,
+      "notes": "The standard orthography, incl. 'caol le caol agus leathann le leathann' and the grave-accent-only convention."
+    },
+    {
+      "id": "wp_gd_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Scottish Gaelic orthography",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_orthography",
+      "pages": null,
+      "notes": "Accessible overview; source of the vowel-digraph table (⟨ai⟩ /a/, ⟨ea⟩ /e ɤ ɛ a/, ⟨ei⟩ /e/, ⟨io⟩, ⟨ui⟩ /ɯ/, ⟨eu⟩ /eː/, ⟨ao⟩ /ɯː/) and of the lenition values of ⟨bh mh ch dh gh th sh fh⟩.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_orthography"
+    },
+    {
+      "id": "wp_gd_phonology",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Scottish Gaelic phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_phonology",
+      "pages": null,
+      "notes": "Accessible overview; source of the consonant inventory used here: /p pʰ t̪ t̪ʰ tʲ tʲʰ k kʰ kʲ kʲʰ/, /s̪ ʃ x ç ɣ ʝ/, /m n̪ˠ n ɲ/, /l̪ˠ l ʎ/, /r ɾ ɾʲ/ — i.e. palatalised /kʲ/ not palatal /c/, and dental /s̪/.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Scottish_Gaelic",
+    "https://gd.wikipedia.org/wiki/Gàidhlig",
+    "https://gd.wikipedia.org/wiki/G%C3%A0idhlig"
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
+  "glottolog_code": "scot1245",
+  "iso639_3": "gla",
+  "wikidata_qid": "Q9314",
+  "phoible_id": "scot1245",
+  "wals_code": "gae",
+  "location": {
+    "latitude": 56.7574,
+    "longitude": -5.24366,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Scottish Gaelic."
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_front_vowel": [
+        "kʲʰ"
+      ],
+      "after_front_vowel": [
+        "kʲʰ"
+      ]
+    },
+    "g": {
+      "before_front_vowel": [
+        "kʲ"
+      ],
+      "after_front_vowel": [
+        "kʲ"
+      ]
+    },
+    "d": {
+      "before_front_vowel": [
+        "tʲ"
+      ],
+      "after_front_vowel": [
+        "tʲ"
+      ]
+    },
+    "t": {
+      "before_front_vowel": [
+        "tʲʰ"
+      ],
+      "after_front_vowel": [
+        "tʲʰ"
+      ]
+    },
+    "s": {
+      "before_front_vowel": [
+        "ʃ"
+      ],
+      "after_front_vowel": [
+        "ʃ"
+      ]
+    },
+    "ch": {
+      "before_front_vowel": [
+        "ç"
+      ],
+      "after_front_vowel": [
+        "ç"
+      ]
+    },
+    "l": {
+      "before_front_vowel": [
+        "l",
+        "ʎ"
+      ],
+      "after_front_vowel": [
+        "l",
+        "ʎ"
+      ],
+      "intervocalic": [
+        "l"
+      ]
+    },
+    "ll": {
+      "before_front_vowel": [
+        "ʎ"
+      ],
+      "after_front_vowel": [
+        "ʎ"
+      ]
+    },
+    "n": {
+      "before_front_vowel": [
+        "ɲ",
+        "n"
+      ],
+      "after_front_vowel": [
+        "ɲ",
+        "n"
+      ],
+      "intervocalic": [
+        "n"
+      ]
+    },
+    "nn": {
+      "before_front_vowel": [
+        "ɲ"
+      ],
+      "after_front_vowel": [
+        "ɲ"
+      ]
+    },
+    "r": {
+      "before_front_vowel": [
+        "ɾʲ"
+      ],
+      "after_front_vowel": [
+        "ɾʲ"
+      ],
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ]
+    },
+    "dh": {
+      "before_front_vowel": [
+        "ʝ",
+        "j"
+      ],
+      "after_front_vowel": [
+        "j",
+        "ʝ"
+      ],
+      "word_final": [
+        ""
+      ]
+    },
+    "gh": {
+      "before_front_vowel": [
+        "ʝ",
+        "j"
+      ],
+      "after_front_vowel": [
+        "j",
+        "ʝ"
+      ],
+      "word_final": [
+        "j",
+        ""
+      ]
+    },
+    "th": {
+      "word_final": [
+        ""
+      ]
+    },
+    "i": {
+      "before_u": [
+        ""
+      ],
+      "before_a": [
+        "i"
+      ],
+      "after_vowel": [
+        ""
+      ]
+    },
+    "e": {
+      "before_u": [
+        "eː"
+      ],
+      "before_back_vowel": [
+        ""
+      ],
+      "word_final": [
+        "ə"
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ]
+    },
+    "o": {
+      "after_e": [
+        "ɔ"
+      ],
+      "after_front_vowel": [
+        ""
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ]
+    },
+    "u": {
+      "before_i": [
+        "ɯ",
+        "u"
+      ],
+      "before_a": [
+        "u"
+      ],
+      "before_front_vowel": [
+        ""
+      ],
+      "after_e": [
+        ""
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ]
+    },
+    "a": {
+      "before_i": [
+        "a"
+      ],
+      "after_e": [
+        "a",
+        "ɛ",
+        "e"
+      ],
+      "after_i": [
+        "ə"
+      ],
+      "after_u": [
+        "ə"
+      ],
+      "word_final": [
+        "ə"
+      ],
+      "nucleus_unstressed": [
+        "ə"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "GD_PREASP_C_BROAD",
+      "phonemes": [
+        "kʰ"
+      ],
+      "surface": "xk",
+      "preceded_by": "vowel",
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+    },
+    {
+      "id": "GD_PREASP_C_SLENDER",
+      "phonemes": [
+        "kʲʰ"
+      ],
+      "surface": "çkʲ",
+      "preceded_by": "vowel",
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+    },
+    {
+      "id": "GD_PREASP_T_BROAD",
+      "phonemes": [
+        "t̪ʰ"
+      ],
+      "surface": "ht̪",
+      "preceded_by": "vowel",
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+    },
+    {
+      "id": "GD_PREASP_T_SLENDER",
+      "phonemes": [
+        "tʲʰ"
+      ],
+      "surface": "htʲ",
+      "preceded_by": "vowel",
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+    },
+    {
+      "id": "GD_PREASP_P",
+      "phonemes": [
+        "pʰ"
+      ],
+      "surface": "hp",
+      "preceded_by": "vowel",
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+    }
+  ],
+  "stress": {
+    "default_position": 1,
+    "stress_mark": "ˈ",
+    "notes": "Scottish Gaelic stresses the FIRST syllable of the word (Wikipedia, 'Scottish Gaelic phonology'); unstressed vowels reduce to /ə/."
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "code": "pt-PT-x-aveiro",
+  "name": "Beira Litoral Portuguese",
+  "script": "Latin",
+  "graphemes_base": "pt-PT",
+  "allophones_base": "pt-PT",
+  "allophones": {
+    "l": [
+      "l",
+      "ɭ"
+    ],
+    "ł": [
+      "ł",
+      "ɭ"
+    ]
+  },
+  "positional_graphemes_base": "pt-PT",
+  "parent": "pt-PT",
+  "notes": "Beira-Litoral Portuguese (Aveiro, Vagos), a northern-coastal EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group (Beira Litoral). MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — ⟨s/ss⟩ AND ⟨c/ç/z⟩ all merge to apico-alveolar [s̺]/[z̺] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38, this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep chiado [ʃ]/[ʒ]. (2) BETACISM — /v/–/b/ merged to /b/ ~ [β]; Pérez 2014 pp.35-37 shows the bilabial-merger area extends along the coast north of Coimbra (i.e. the Aveiro littoral). A local retroflex lateral [ɱ... ]/[ɭ] realisation of /l/ is reported in regional-dialect literature (not in Cintra/Pérez) and is enumerated as a secondary allophonic variant only. Porto je/wo diphthongisation is not applied. Inherits pt-PT base.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cunha_cintra1984",
+      "author": "Cunha, C. & Cintra, L.F.L.",
+      "year": 1984,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Sá da Costa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "boleo1974",
+      "author": "Boléo, M.P.",
+      "year": 1974,
+      "title": "Estudos de linguística portuguesa e românica",
+      "publisher": "Universidade de Coimbra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cintra1971",
+      "author": "Cintra, L. F. Lindley",
+      "year": 1971,
+      "title": "Nova proposta de classificação dos dialectos galego-portugueses",
+      "publisher": "Boletim de Filologia 22:81-116",
+      "url": null,
+      "pages": "88, 92-93",
+      "notes": "Foundational EP dialect classification. p.93: the Baixo-Minhoto-Duriense-Beirao group reduces the archaic four-sibilant system to two apico-alveolar sibilants [s̺ z̺]; p.88: /v/-/b/ merger and apico-alveolar sibilants are diagnostic northern features."
+    },
+    {
+      "id": "alvarezperez2014",
+      "author": "Álvarez Pérez, Xosé Afonso",
+      "year": 2014,
+      "title": "European Portuguese dialectal features: a comparison with Cintra's proposal",
+      "publisher": "Journal of Portuguese Linguistics 13(1):29-62",
+      "url": "https://doi.org/10.5334/jpl.62",
+      "pages": "35-39",
+      "notes": "ALEPG-corpus quantitative reassessment. pp.37-38: Baixo-Minhotos, Durienses and Beirões 'kept only the apico-alveolar branch' (both s/ss and c/ç/z merge to apical), vs the conservative four-sibilant Transmontano/Alto-Minhoto. pp.35-37: /b/-/v/ merger extends along the coast beyond Coimbra and through the eastern districts (Guarda, Castelo Branco)."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Aveiro,_Portugal"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes": {
+    "ç": [
+      "s̺"
+    ],
+    "z": [
+      "z̺"
+    ],
+    "v": [
+      "b",
+      "β"
+    ]
+  },
+  "positional_graphemes": {
+    "s": {
+      "word_initial": [
+        "s̺"
+      ],
+      "intervocalic": [
+        "z̺"
+      ],
+      "coda": [
+        "ʃ",
+        "ʒ"
+      ],
+      "word_final": [
+        "ʃ"
+      ],
+      "intervocalic_cross_word": [
+        "z̺"
+      ]
+    },
+    "c": {
+      "before_e": [
+        "s̺"
+      ],
+      "before_i": [
+        "s̺"
+      ]
+    },
+    "z": {
+      "word_final": [
+        "ʃ",
+        "z̺"
+      ],
+      "coda": [
+        "ʃ"
+      ]
+    },
+    "v": {
+      "intervocalic": [
+        "β"
+      ],
+      "intervocalic_cross_word": [
+        "β"
+      ]
+    }
+  },
+  "location": {
+    "latitude": 40.638889,
+    "longitude": -8.655278,
+    "source": "wikidata",
+    "notes": "Aveiro — the centre of the Beira Litoral coastal zone (Aveiro, Vagos). [Wikidata Q485581 P625]"
+  }
+}

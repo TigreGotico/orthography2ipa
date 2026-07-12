@@ -1,0 +1,303 @@
+{
+  "ancestors": [
+    {
+      "code": "ira",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Descent from Proto-Iranian via Old Persian and Middle Persian (Pahlavi) to New Persian."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Arabic adstrate: after the Islamic conquest a very large lexical layer entered New Persian (and the Perso-Arabic script), though core phonology and grammar stayed Iranian."
+    }
+  ],
+  "code": "fa",
+  "name": "Persian (Farsi)",
+  "script": "Arabic",
+  "graphemes": {
+    "ا": [
+      "ʔ",
+      "ɒː"
+    ],
+    "آ": [
+      "ʔɒː"
+    ],
+    "ب": [
+      "b"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ت": [
+      "t"
+    ],
+    "ث": [
+      "s"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "ح": [
+      "h"
+    ],
+    "خ": [
+      "x"
+    ],
+    "د": [
+      "d"
+    ],
+    "ذ": [
+      "z"
+    ],
+    "ر": [
+      "ɾ"
+    ],
+    "ز": [
+      "z"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "س": [
+      "s"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ص": [
+      "s"
+    ],
+    "ض": [
+      "z"
+    ],
+    "ط": [
+      "t"
+    ],
+    "ظ": [
+      "z"
+    ],
+    "ع": [
+      "ʔ"
+    ],
+    "غ": [
+      "ɣ",
+      "ɢ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ق": [
+      "ɣ",
+      "ɢ"
+    ],
+    "ک": [
+      "k"
+    ],
+    "گ": [
+      "ɡ"
+    ],
+    "ل": [
+      "l"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "و": [
+      "v",
+      "uː",
+      "ow"
+    ],
+    "ه": [
+      "h",
+      "e"
+    ],
+    "ی": [
+      "j",
+      "iː"
+    ],
+    "َ": [
+      "æ"
+    ],
+    "ِ": [
+      "e"
+    ],
+    "ُ": [
+      "o"
+    ],
+    "ها": [
+      "hɒː"
+    ],
+    "ء": [
+      "ʔ"
+    ],
+    "أ": [
+      "ʔ"
+    ],
+    "ؤ": [
+      "ʔ"
+    ],
+    "ئ": [
+      "ʔ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p",
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t",
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k",
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɣ": [
+      "ɣ",
+      "ʁ"
+    ],
+    "h": [
+      "h"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "ɒː": [
+      "ɒː"
+    ],
+    "æ": [
+      "æ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "uː": [
+      "uː"
+    ]
+  },
+  "parent": "ira",
+  "notes": "Tehran standard. Many Arabic emphatic/pharyngeal consonants have merged with plain counterparts. 6-vowel system: /ɒː, æ, e, o, iː, uː/.",
+  "quality": "research",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lazard1992",
+      "author": "Lazard, G.",
+      "year": 1992,
+      "title": "A Grammar of Contemporary Persian",
+      "publisher": "Mazda Publishers",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Persian_language",
+    "https://fa.wikipedia.org/wiki/زبان_فارسی",
+    "https://en.wikipedia.org/wiki/Persian_phonology",
+    "https://fa.wikipedia.org/wiki/%D8%B2%D8%A8%D8%A7%D9%86_%D9%81%D8%A7%D8%B1%D8%B3%DB%8C",
+    "https://fa.wikipedia.org/wiki/%D9%88%D8%A7%D8%AC%E2%80%8C%D8%B4%D9%86%D8%A7%D8%B3%DB%8C_%D9%81%D8%A7%D8%B1%D8%B3%DB%8C"
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  },
+  "glottolog_code": "west2369",
+  "iso639_3": "fas",
+  "wikidata_qid": "Q9168",
+  "phoible_id": "west2369",
+  "location": {
+    "latitude": 32.9,
+    "longitude": 53.3,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Western Farsi."
+  }
+}

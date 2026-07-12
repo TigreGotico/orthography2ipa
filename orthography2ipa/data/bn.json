@@ -1,0 +1,387 @@
+{
+  "code": "bn",
+  "name": "Bengali",
+  "script": "Bengali",
+  "graphemes": {
+    "অ": [
+      "ɔ"
+    ],
+    "আ": [
+      "a"
+    ],
+    "ই": [
+      "i"
+    ],
+    "ঈ": [
+      "i"
+    ],
+    "উ": [
+      "u"
+    ],
+    "ঊ": [
+      "u"
+    ],
+    "ঋ": [
+      "ri"
+    ],
+    "এ": [
+      "e",
+      "æ"
+    ],
+    "ঐ": [
+      "oi"
+    ],
+    "ও": [
+      "o"
+    ],
+    "ঔ": [
+      "ou"
+    ],
+    "া": [
+      "a"
+    ],
+    "ি": [
+      "i"
+    ],
+    "ী": [
+      "i"
+    ],
+    "ু": [
+      "u"
+    ],
+    "ূ": [
+      "u"
+    ],
+    "ৃ": [
+      "ri"
+    ],
+    "ে": [
+      "e",
+      "æ"
+    ],
+    "ৈ": [
+      "oi"
+    ],
+    "ো": [
+      "o"
+    ],
+    "ৌ": [
+      "ou"
+    ],
+    "ং": [
+      "ŋ"
+    ],
+    "ঃ": [
+      "h"
+    ],
+    "ঁ": [
+      "̃"
+    ],
+    "্": [
+      ""
+    ],
+    "ক": [
+      "k"
+    ],
+    "খ": [
+      "kʰ"
+    ],
+    "গ": [
+      "ɡ"
+    ],
+    "ঘ": [
+      "ɡʱ"
+    ],
+    "ঙ": [
+      "ŋ"
+    ],
+    "চ": [
+      "tɕ"
+    ],
+    "ছ": [
+      "tɕʰ"
+    ],
+    "জ": [
+      "dʑ"
+    ],
+    "ঝ": [
+      "dʑʱ"
+    ],
+    "ঞ": [
+      "n"
+    ],
+    "ট": [
+      "ʈ"
+    ],
+    "ঠ": [
+      "ʈʰ"
+    ],
+    "ড": [
+      "ɖ"
+    ],
+    "ঢ": [
+      "ɖʱ"
+    ],
+    "ণ": [
+      "n"
+    ],
+    "ত": [
+      "t"
+    ],
+    "থ": [
+      "tʰ"
+    ],
+    "দ": [
+      "d"
+    ],
+    "ধ": [
+      "dʱ"
+    ],
+    "ন": [
+      "n"
+    ],
+    "প": [
+      "p"
+    ],
+    "ফ": [
+      "pʰ",
+      "f"
+    ],
+    "ব": [
+      "b",
+      "w"
+    ],
+    "ভ": [
+      "bʱ",
+      "v"
+    ],
+    "ম": [
+      "m"
+    ],
+    "য": [
+      "dʑ",
+      "j"
+    ],
+    "য়": [
+      "j"
+    ],
+    "র": [
+      "r"
+    ],
+    "ড়": [
+      "ɽ"
+    ],
+    "ঢ়": [
+      "ɽʱ"
+    ],
+    "ল": [
+      "l"
+    ],
+    "শ": [
+      "ʃ"
+    ],
+    "ষ": [
+      "ʃ"
+    ],
+    "স": [
+      "s",
+      "ʃ"
+    ],
+    "হ": [
+      "h"
+    ],
+    "ৎ": [
+      "t"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "d": [
+      "d"
+    ],
+    "dʱ": [
+      "dʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "tɕʰ": [
+      "tɕʰ"
+    ],
+    "dʑ": [
+      "dʑ"
+    ],
+    "dʑʱ": [
+      "dʑʱ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "s": [
+      "s",
+      "ʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɽ": [
+      "ɽ"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "ɔ": [
+      "ɔ",
+      "o"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "e": [
+      "e",
+      "æ"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "sa",
+  "ancestors": [
+    {
+      "code": "sa",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Descent via Magadhi Apabhraṃśa through Middle Indo-Aryan"
+    },
+    {
+      "code": "hi",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Contact with Hindi belt"
+    }
+  ],
+  "notes": "Standard Bengali (Dhaka/Kolkata). Key features: inherent vowel is /ɔ/ (not /ə/ like Hindi); ⟨য⟩ = [dʑ] word-initially, [j] elsewhere; ⟨শ⟩ and ⟨ষ⟩ both → [ʃ] (two Sanskrit sibilants merged); dental/retroflex contrast maintained; breathy stops phonemic but weakening in Bangladesh speech.",
+  "quality": "research",
+  "script_type": "abugida",
+  "inherent_vowel": "ɔ",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "thompson2012",
+      "author": "Thompson, H.S.",
+      "year": 2012,
+      "title": "Bengali",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bengali_language",
+    "https://bn.wikipedia.org/wiki/বাংলা_ভাষা",
+    "https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE_%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "glottolog_code": "beng1280",
+  "iso639_3": "ben",
+  "wikidata_qid": "Q9610",
+  "phoible_id": "beng1280",
+  "wals_code": "ben",
+  "location": {
+    "latitude": 24.0,
+    "longitude": 90.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bengali."
+  }
+}

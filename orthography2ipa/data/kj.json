@@ -1,0 +1,81 @@
+{
+  "code": "kj",
+  "name": "Kwanyama",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "bnt",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Kwanyama (Oshikwanyama / Kuanyama) — Bantu language of northern Namibia and southern Angola, one of the two written standards of Ovambo. Written in the Latin script. GRAPHEME INVENTORY NOT YET SPECIFIED: the Kwanyama orthography and phoneme inventory (including prenasalised stops, the ⟨sh⟩/⟨tsh⟩ digraphs and tone, which is not written) need documented sourcing before a letter→phoneme table can be asserted. INPUT CONTRACT: input is expected in the Latin-script Kwanyama orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode kuan1247), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "iso639_3": "kua",
+  "glottolog_code": "kuan1247",
+  "wikidata_qid": "Q1405077",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kwanyama"
+  ],
+  "sources": [
+    {
+      "id": "kj_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kwanyama",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kwanyama",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kwanyama",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode kuan1247."
+    }
+  ],
+  "phonemes": [
+    "a",
+    "d",
+    "d̠ʒ",
+    "f",
+    "fʲ",
+    "i",
+    "j",
+    "k",
+    "l",
+    "lʲ",
+    "m",
+    "mb",
+    "m̥",
+    "n",
+    "nd",
+    "ndʲ",
+    "n̠d̠ʒ",
+    "n̥",
+    "p",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "ŋɡ",
+    "ŋ̥",
+    "ɔ",
+    "ɛ",
+    "ɲ",
+    "ʃ",
+    "ʒ",
+    "˦",
+    "˨"
+  ],
+  "location": {
+    "latitude": -17.7176,
+    "longitude": 16.58,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kuanyama."
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "code": "ar-x-maghrebi",
+  "name": "Proto-Maghrebi Arabic",
+  "script": "Arabic",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "positional_graphemes_base": "arb",
+  "graphemes": {
+    "ث": [
+      "t",
+      "s"
+    ],
+    "ذ": [
+      "d"
+    ],
+    "ظ": [
+      "dˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ],
+    "ق": [
+      "q"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ڤ": [
+      "v"
+    ]
+  },
+  "allophones": {
+    "ɮˤ": [
+      "dˤ"
+    ],
+    "ðˤ": [
+      "dˤ"
+    ],
+    "θ": [
+      "t",
+      "s",
+      "θ"
+    ],
+    "ð": [
+      "d"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
+    ],
+    "a": [
+      "a",
+      ""
+    ],
+    "i": [
+      "i",
+      ""
+    ],
+    "u": [
+      "u",
+      ""
+    ],
+    "p": [
+      "p"
+    ],
+    "v": [
+      "v"
+    ]
+  },
+  "parent": "arb",
+  "ancestors": [
+    {
+      "code": "arb",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Classical Arabic via 7th–8th c. expansion"
+    }
+  ],
+  "notes": "Proto-Maghrebi Arabic — abstract ancestor node for Moroccan, Algerian, Tunisian, Libyan, and Hassaniya Arabic. Key shared Maghrebi features: vowel reduction/deletion (short vowels → schwa [ə] or Ø, yielding heavy consonant clusters — the defining Maghrebi trait); ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghreb) not /dʒ/; ث → /t/; ذ → /d/; ق → /q/ preserved in sedentary/pre-Hilali varieties (/ɡ/ in Bedouin/rural); Berber (Amazigh) substrate reinforcing pharyngeals and emphatics and licensing the cluster phonotactics.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": "13, 15-17",
+      "notes": "Read (full open-access PDF; printed pages). p.16: Maghribi jīm has no initial occlusive element, realized /ž/ [ʒ]. p.15: sedentary interdental→dental-stop merger. p.17: *q maintained (sedentary) vs /ɡ/ (Bedouin). p.13: unstressed-vowel deletion → initial clusters.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Maghrebi_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A7%D8%AA_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9_%D9%85%D8%BA%D8%A7%D8%B1%D8%A8%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  },
+  "glottolog_code": "nort3191",
+  "iso639_3": "ara",
+  "wikidata_qid": "Q1194795",
+  "location": {
+    "latitude": 26.132563,
+    "longitude": 14.573491,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the North African Arabic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
+}

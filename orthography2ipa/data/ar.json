@@ -1,0 +1,242 @@
+{
+  "code": "ar",
+  "name": "Arabic",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "iso639_3": "ara",
+  "quality": "research",
+  "graphemes_base": "arb",
+  "allophones_base": "arb",
+  "graphemes": {
+    "ض": [
+      "dˤ"
+    ],
+    "يَ": [
+      "ja"
+    ],
+    "وَ": [
+      "wa"
+    ],
+    "يِ": [
+      "ji"
+    ],
+    "وُ": [
+      "wu"
+    ],
+    "وَا": [
+      "waː"
+    ],
+    "يَا": [
+      "jaː"
+    ]
+  },
+  "positional_graphemes": {
+    "أ": {
+      "before_vowel": [
+        "ʔ"
+      ],
+      "default": [
+        "ʔa"
+      ]
+    },
+    "إ": {
+      "before_vowel": [
+        "ʔ"
+      ],
+      "default": [
+        "ʔi"
+      ]
+    },
+    "ي": {
+      "word_final": [
+        "iː",
+        "j"
+      ],
+      "default": [
+        "j",
+        "iː"
+      ]
+    },
+    "و": {
+      "word_final": [
+        "uː",
+        "w"
+      ],
+      "default": [
+        "w",
+        "uː"
+      ]
+    },
+    "ا": {
+      "word_initial": [
+        "ʔ",
+        "aː"
+      ],
+      "default": [
+        "aː",
+        "ʔ"
+      ]
+    },
+    "ة": {
+      "after_vowel": [
+        ""
+      ],
+      "default": [
+        "a",
+        "at"
+      ]
+    }
+  },
+  "allophones": {},
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Consulted for the consonant inventory (28 phonemes, 4 emphatics ط ض ص ظ, pharyngeals ح ع), sun/moon letter assimilation as a synchronic coronal-place-driven rule, and MSA gemination via shadda.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "thelwall1990",
+      "author": "Thelwall, R. and Sa'Adeddin, M.A.",
+      "year": 1990,
+      "title": "Illustrations of the IPA: Arabic",
+      "publisher": "Journal of the International Phonetic Association, 20(2), 37-39",
+      "url": "https://phoible.org/sources/arb_thelwall1990",
+      "pages": "37-39",
+      "notes": "Cross-checked the emphatic/pharyngealized consonant set (sˤ, dˤ, tˤ, ðˤ) and glottal stop realisation against the JIPA reference illustration inventory catalogued in PHOIBLE."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ryding2005",
+      "author": "Ryding, K.C.",
+      "year": 2005,
+      "title": "A Reference Grammar of Modern Standard Arabic",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": "15-35",
+      "notes": "Ch. 2 'Phonology and script', read for the arbtok engine-improvement work: doubling of consonants (gemination) and the approximants/semivowels waaw & yaa as consonants (pp. 15–16); 'Strong hamza is a regular consonant and is pronounced under all circumstances' (p. 16); long vowels /ii/ /uu/ spelled with yaaʾ/waaw (pp. 25–27); 'Diphthongs and glides' — the diphthongs are /aw/ and /ay/, short-vowel + following semivowel (pp. 29–30). Also MSA emphatic (velarized/pharyngealized) consonants and their backing effect on adjacent vowels; four-emphatic inventory /tˤ dˤ sˤ ðˤ/ (pp. 33–35)."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Arabic",
+    "https://ar.wikipedia.org/wiki/لغة_عربية",
+    "https://en.wikipedia.org/wiki/Standard_Arabic_phonology",
+    "https://en.wikipedia.org/wiki/Sun_and_moon_letters",
+    "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9",
+    "https://ar.wikipedia.org/wiki/%D8%A3%D8%B5%D9%88%D8%A7%D8%AA_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9",
+    "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%84%D8%A7%D9%85_%D8%A7%D9%84%D8%B4%D9%85%D8%B3%D9%8A%D8%A9_%D9%88%D8%A7%D9%84%D9%84%D8%A7%D9%85_%D8%A7%D9%84%D9%82%D9%85%D8%B1%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "stan1318",
+  "notes": "Modern Standard Arabic (MSA). Inherits its grapheme/allophone inventory from Classical Arabic (arb) via graphemes_base/allophones_base, with one MSA-specific override: ض is transcribed [dˤ] (emphatic alveolar stop), not the Classical lateral-fricative [ɮˤ] Sibawayhi describes and arb.json retains — MSA has merged ض onto the plosive series (Watson 2002; Standard_Arabic_phonology). INPUT CONTRACT / KNOWN LIMITATION: this spec assumes fully-diacritized (fully tashkeel-marked) input. Standard written MSA text omits short-vowel diacritics (fatḥa/ḍamma/kasra/sukūn/shadda/tanwīn) almost everywhere outside the Quran, children's books, and pedagogical material; undiacritized input is NOT disambiguated by this spec (no morphological/statistical diacritic-restoration is implemented) and will transcribe incorrectly or incompletely wherever short vowels or gemination are orthographically absent. To degrade gracefully on undiacritized skeletons the hamza carriers أ/إ fall back to their hamza+vowel default readings (ʔa/ʔi) and the matres ا/ي/و default to their long-vowel readings medially/finally. ENGINE IMPROVEMENTS (arbtok migration): (1) LIGATURE / PRESENTATION-FORM NORMALIZATION — the engine decomposes Arabic Presentation Forms-A/B (U+FB50–FDFF, U+FE70–FEFF), incl. the lam-alif ligatures ﻻ/ﻷ/ﻵ/ﻹ, to their canonical letters before tokenization, so ﻻ → [laː] (was empty). Arabic-script-scoped; no other script touched. (2) GEMINATION — shadda (ّ) now geminates its consonant (a doubled consonant, not a stranded length mark), for ALL consonants incl. the glides ي/و, via a normalization-time transform handling both C+shadda+harakat and C+harakat+shadda orderings: عَمَّ → [ʕamma], عُيِّنَ → [ʕujjina], قَوَّاس → [qawwaːs] (Ryding 2005 ch.2, pp.15–16; Watson 2002). This replaces the old inherited ّ → ː mapping. Known limit: a kasra on a geminate glide (ـِيّ, e.g. حُرِّيَّة) is under-resolved (the ـِي digraph greedily reads as long /iː/). (3) ar-LEAF SPEC FIXES — يَ/وَ are onsets /ja/,/wa/ (not diphthongs; diphthongs /aj/,/aw/ come from fatḥa-first َي/َو; Ryding 2005 pp.29–30); أ/إ are bare /ʔ/ before a written vowel with the vowel from the harakat (Ryding 2005 p.16 'strong hamza is a regular consonant'), so إِيْمَان → [ʔiːmaːn] (no ʔiiː doubling); word-final ي/و prefer the long-vowel reading via positional_graphemes word_final (يُصَلِّي → …[iː]; Ryding 2005 pp.25–27); ة after a harakat is the pausal /a/ (the preceding fatḥa supplies it) so مَدْرَسَة → [madrasa]. Remaining engine limits (need sentence/cross-word context, left unmodeled): ة construct-state /at/ in iḍāfa; pausal iʿrāb and word-final ا; cross-word sun-letter assimilation (see AR_SUN_ASSIMILATION). sandhi_rules is inherited directly from arb (AR_SUN_ASSIMILATION, AR_HAMZAT_WASL, AR_PAUSAL_TANWIN) with no leaf-level override; AR_SUN_ASSIMILATION only fires between whitespace-separated tokens and therefore does NOT trigger on standard Arabic orthography, where the definite article ال- is written attached to the following word as one token — see docs/languages/ar.md and the rule's own notes for detail. No stress block is declared: MSA word stress is quantity-sensitive (driven by syllable weight, not written vowel-length-independent orthography) and highly register/dialect-variable in connected speech, so it is not reliably orthography-predictable; this exempts the spec from the research-tier stress requirement per docs/quality_tiers.md. Gold benchmark: CUNY-CL/wikipron 'ara_arab_broad.tsv' (Wiktionary-sourced broad IPA transcriptions, community-curated, ~17.5k pairs) registered as the 'ar' entry of the 'wikipron' dataset in scripts/benchmark.py, matching the precedent already used for gl/es/pt in this project. EMPHATIC SPREADING: this spec now models pharyngealization (emphasis) spreading via allophone_rules (AR_EMPH_BACK_*): short /a/ and long /aː/ back to [ɑ]/[ɑː] when adjacent to an emphatic consonant /tˤ dˤ sˤ ðˤ/ (Watson 2002 ch. Emphasis; Ryding 2005 §2). HONESTY NOTE ON THE GOLD: the registered 'ar wikipron' gold is a BROAD Wiktionary transcription that writes the backed vowel as plain /a/, so it cannot reward the (correct) narrow [ɑ] realisation; activating the rule therefore adds a small uniform penalty (~+0.0015 PER, well below the 0.005 benchmark-regression epsilon). This is the same broad-gold limitation documented for the Catalan nasal-assimilation pilot (docs/allophony.md); the rule is retained because it is linguistically correct and the movement is within measurement noise. Sun-letter /l/ assimilation is handled by the inherited AR_SUN_ASSIMILATION sandhi rule (not duplicated here); it fires only across whitespace-separated tokens, so with the article ال written attached it does not trigger on standard orthography (see its rule notes).",
+  "allophone_rules": [
+    {
+      "id": "AR_EMPH_BACK_A_AFTER",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis (pharyngealization) spreading: short /a/ backs to [ɑ] when it follows an emphatic consonant /tˤ dˤ sˤ ðˤ (zˤ)/. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    },
+    {
+      "id": "AR_EMPH_BACK_A_BEFORE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): short /a/ backs to [ɑ] before an adjacent emphatic consonant. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    },
+    {
+      "id": "AR_EMPH_BACK_AA_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "preceded_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading: long /aː/ backs to [ɑː] after an adjacent emphatic. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    },
+    {
+      "id": "AR_EMPH_BACK_AA_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "followed_by_phoneme": [
+        "tˤ",
+        "dˤ",
+        "sˤ",
+        "ðˤ",
+        "zˤ"
+      ],
+      "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002, The Phonology and Morphology of Arabic (OUP), ch. 'Emphasis', pp. 267-286: pharyngealization spreads bidirectionally within the phonological word, backing low vowels."
+    }
+  ],
+  "parent": "xpa",
+  "ancestors": [
+    {
+      "code": "xpa",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Descent from Proto-Arabic / Old Arabic (Central Semitic)."
+    },
+    {
+      "code": "arc",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Aramaic adstrate: the Near-Eastern lingua franca before and alongside Arabic."
+    }
+  ],
+  "location": {
+    "latitude": 27.9625,
+    "longitude": 43.8525,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Standard Arabic."
+  }
+}

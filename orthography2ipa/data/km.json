@@ -1,0 +1,301 @@
+{
+  "code": "km",
+  "name": "Khmer",
+  "glottolog_code": "cent1989",
+  "script": "Khmer",
+  "script_type": "abugida",
+  "inherent_vowel": "a",
+  "iso639_3": "khm",
+  "quality": "skeleton",
+  "graphemes": {
+    "ក": [
+      "k"
+    ],
+    "ខ": [
+      "kʰ"
+    ],
+    "គ": [
+      "k"
+    ],
+    "ឃ": [
+      "kʰ"
+    ],
+    "ង": [
+      "ŋ"
+    ],
+    "ច": [
+      "c"
+    ],
+    "ឆ": [
+      "cʰ"
+    ],
+    "ជ": [
+      "c"
+    ],
+    "ឈ": [
+      "cʰ"
+    ],
+    "ញ": [
+      "ɲ"
+    ],
+    "ដ": [
+      "d"
+    ],
+    "ឋ": [
+      "tʰ"
+    ],
+    "ឌ": [
+      "d"
+    ],
+    "ឍ": [
+      "tʰ"
+    ],
+    "ណ": [
+      "n"
+    ],
+    "ត": [
+      "t"
+    ],
+    "ថ": [
+      "tʰ"
+    ],
+    "ទ": [
+      "t"
+    ],
+    "ធ": [
+      "tʰ"
+    ],
+    "ន": [
+      "n"
+    ],
+    "ប": [
+      "ɓ"
+    ],
+    "ផ": [
+      "pʰ"
+    ],
+    "ព": [
+      "p"
+    ],
+    "ភ": [
+      "pʰ"
+    ],
+    "ម": [
+      "m"
+    ],
+    "យ": [
+      "j"
+    ],
+    "រ": [
+      "r"
+    ],
+    "ល": [
+      "l"
+    ],
+    "វ": [
+      "v",
+      "w"
+    ],
+    "ស": [
+      "s"
+    ],
+    "ហ": [
+      "h"
+    ],
+    "ឡ": [
+      "l"
+    ],
+    "អ": [
+      "ʔ"
+    ],
+    "◌ា": [
+      "a"
+    ],
+    "◌ិ": [
+      "ɘ"
+    ],
+    "◌ី": [
+      "əj"
+    ],
+    "◌ឹ": [
+      "ə"
+    ],
+    "◌ឺ": [
+      "əː"
+    ],
+    "◌ុ": [
+      "o"
+    ],
+    "◌ូ": [
+      "uː"
+    ],
+    "◌ួ": [
+      "uə"
+    ],
+    "◌ើ": [
+      "aə"
+    ],
+    "◌ឿ": [
+      "ɨə"
+    ],
+    "◌ៀ": [
+      "iə"
+    ],
+    "◌េ": [
+      "eː"
+    ],
+    "◌ែ": [
+      "ɛː"
+    ],
+    "◌ៃ": [
+      "aj"
+    ],
+    "◌ោ": [
+      "ao"
+    ],
+    "◌ៅ": [
+      "aw"
+    ]
+  },
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "c": [
+      "c"
+    ],
+    "cʰ": [
+      "cʰ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "d": [
+      "d"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɓ": [
+      "ɓ"
+    ],
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "j": [
+      "j"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "əː": [
+      "əː"
+    ],
+    "o": [
+      "o"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ]
+  },
+  "notes": "Khmer (Cambodian) abugida. Two consonant series (first/second class) affect vowel quality. ប = implosive /ɓ/. No tonal system (unlike neighboring SE Asian languages). Vowel symbols combine with consonant class to yield different phonemes. This spec gives first-class consonant readings; second-class shifts vowels. Final consonants are unreleased.",
+  "sources": [
+    {
+      "id": "khmer_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Khmer language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Khmer_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Khmer_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "parent": "kha-x-proto-mon-khmer",
+  "ancestors": [
+    {
+      "code": "kha-x-proto-mon-khmer",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Khmeric branch of Austroasiatic (Mon-Khmer)."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.14,
+      "notes": "Sanskrit adstrate: the Hindu-Buddhist learned/royal register."
+    },
+    {
+      "code": "pi",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Pali adstrate: Theravada Buddhist religious vocabulary."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Khmer_language",
+    "https://km.wikipedia.org/wiki/%E1%9E%97%E1%9E%B6%E1%9E%9F%E1%9E%B6%E1%9E%81%E1%9F%92%E1%9E%98%E1%9F%82%E1%9E%9A"
+  ],
+  "timespan": {
+    "start_year": 611,
+    "end_year": null
+  },
+  "wikidata_qid": "Q9205",
+  "phoible_id": "cent1989",
+  "wals_code": "khm",
+  "location": {
+    "latitude": 12.0515,
+    "longitude": 105.015,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Central Khmer."
+  }
+}

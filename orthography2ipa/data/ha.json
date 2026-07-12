@@ -1,0 +1,254 @@
+{
+  "code": "ha",
+  "name": "Hausa",
+  "glottolog_code": "haus1257",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "iso639_3": "hau",
+  "quality": "research",
+  "tone_inventory": {
+    "◌́": "high",
+    "◌̀": "low",
+    "◌̂": "falling"
+  },
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "ɓ": [
+      "ɓ"
+    ],
+    "c": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɗ": [
+      "ɗ"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "ƙ": [
+      "kʼ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "ts": [
+      "tsʼ"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ƴ": [
+      "ʔʲ"
+    ],
+    "ʼy": [
+      "ʔj"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "ɓ": [
+      "ɓ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɗ": [
+      "ɗ"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʼ": [
+      "kʼ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "tsʼ": [
+      "tsʼ"
+    ],
+    "u": [
+      "u"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʔʲ": [
+      "ʔʲ"
+    ]
+  },
+  "notes": "Hausa in Latin script (Boko). Implosives: Ɓ = /ɓ/, Ɗ = /ɗ/. Ƙ = ejective /kʼ/. Ts = ejective /tsʼ/. Ƴ = palatal glottal. 2-tone language (high, low) with falling contour. Long vowels written doubled.",
+  "sources": [
+    {
+      "id": "newman2000",
+      "author": "Newman, P.",
+      "year": 2000,
+      "title": "The Hausa Language: An Encyclopedic Reference Grammar",
+      "publisher": "Yale University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hausa_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Hausa language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Hausa_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Hausa_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hausa_language",
+    "https://en.wikipedia.org/wiki/Chadic_languages",
+    "https://ha.wikipedia.org/wiki/Harshen_Hausa",
+    "https://ha.wikipedia.org/wiki/Yarukan_Chadi"
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "parent": "cdc",
+  "ancestors": [
+    {
+      "code": "cdc",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "West Chadic branch of Afroasiatic."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.14,
+      "notes": "Arabic adstrate: massive religious/scholarly borrowing via Islam and Ajami literacy."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: colonial and modern loanwords (Nigeria)."
+    }
+  ],
+  "wikidata_qid": "Q56475",
+  "phoible_id": "haus1257",
+  "wals_code": "hau",
+  "location": {
+    "latitude": 11.1513,
+    "longitude": 8.7804,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hausa."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "code": "ru-x-don",
+  "name": "Don Cossack Russian",
+  "script": "Cyrillic",
+  "graphemes_base": "ru-x-southern",
+  "allophones_base": "ru-x-southern",
+  "parent": "ru-x-southern",
+  "notes": "Don Cossack dialect (Rostov region). South Russian base with Ukrainian contact features: г = [ɣ], аканье.",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "comrie_corbett1993",
+      "author": "Comrie, B. & Corbett, G. (eds.)",
+      "year": 1993,
+      "title": "The Slavonic Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavic_languages"
+    },
+    {
+      "id": "timberlake2004",
+      "author": "Timberlake, A.",
+      "year": 2004,
+      "title": "A Reference Grammar of Russian",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
+    },
+    {
+      "id": "zalizniak1985",
+      "author": "Zalizniak, A.A.",
+      "year": 1985,
+      "title": "Ot praslavyanskoy aktsentovki k russkoy",
+      "publisher": "Nauka",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 47.2225,
+    "longitude": 39.71,
+    "source": "wikidata",
+    "notes": "Rostov-on-Don — the principal city of the Don Cossack region. [Wikidata Q908 P625]"
+  }
+}

@@ -1,0 +1,738 @@
+{
+  "code": "fr-FR",
+  "name": "French",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "â": [
+      "ɑ"
+    ],
+    "e": [
+      "ə",
+      "e",
+      "ɛ"
+    ],
+    "é": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "ê": [
+      "ɛ"
+    ],
+    "ë": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "î": [
+      "i"
+    ],
+    "ï": [
+      "i"
+    ],
+    "o": [
+      "ɔ",
+      "o"
+    ],
+    "ô": [
+      "o"
+    ],
+    "u": [
+      "y"
+    ],
+    "û": [
+      "y"
+    ],
+    "ù": [
+      "y"
+    ],
+    "ü": [
+      "y"
+    ],
+    "y": [
+      "i",
+      "j"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ʁ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w",
+      "v"
+    ],
+    "x": [
+      "ks",
+      "ɡz"
+    ],
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "ph": [
+      "f"
+    ],
+    "qu": [
+      "k"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "th": [
+      "t"
+    ],
+    "ss": [
+      "s"
+    ],
+    "ill": [
+      "ij",
+      "il"
+    ],
+    "sch": [
+      "ʃ"
+    ],
+    "bb": [
+      "b"
+    ],
+    "dd": [
+      "d"
+    ],
+    "ff": [
+      "f"
+    ],
+    "gg": [
+      "ɡ"
+    ],
+    "ll": [
+      "l"
+    ],
+    "mm": [
+      "m"
+    ],
+    "nn": [
+      "n"
+    ],
+    "pp": [
+      "p"
+    ],
+    "rr": [
+      "ʁ"
+    ],
+    "tt": [
+      "t"
+    ],
+    "ai": [
+      "ɛ",
+      "e"
+    ],
+    "ei": [
+      "ɛ"
+    ],
+    "au": [
+      "o"
+    ],
+    "ou": [
+      "u"
+    ],
+    "oi": [
+      "wa"
+    ],
+    "eu": [
+      "ø",
+      "œ"
+    ],
+    "œu": [
+      "ø",
+      "œ"
+    ],
+    "eau": [
+      "o"
+    ],
+    "oui": [
+      "wi"
+    ],
+    "an": [
+      "ɑ̃"
+    ],
+    "am": [
+      "ɑ̃"
+    ],
+    "en": [
+      "ɑ̃"
+    ],
+    "em": [
+      "ɑ̃"
+    ],
+    "in": [
+      "ɛ̃"
+    ],
+    "im": [
+      "ɛ̃"
+    ],
+    "on": [
+      "ɔ̃"
+    ],
+    "om": [
+      "ɔ̃"
+    ],
+    "un": [
+      "œ̃"
+    ],
+    "um": [
+      "œ̃"
+    ],
+    "ain": [
+      "ɛ̃"
+    ],
+    "aim": [
+      "ɛ̃"
+    ],
+    "ein": [
+      "ɛ̃"
+    ],
+    "ien": [
+      "jɛ̃"
+    ],
+    "oin": [
+      "wɛ̃"
+    ],
+    "ui": [
+      "ɥi"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʁ": [
+      "ʁ",
+      "ʀ",
+      "χ",
+      "ɣ",
+      "r"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ",
+      "nj"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "ɥ": [
+      "ɥ"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɑ": [
+      "ɑ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "ɑ̃": [
+      "ɑ̃"
+    ],
+    "ɛ̃": [
+      "ɛ̃",
+      "æ̃"
+    ],
+    "ɔ̃": [
+      "ɔ̃"
+    ],
+    "œ̃": [
+      "œ̃",
+      "ɛ̃"
+    ]
+  },
+  "parent": "x-clade-gallorom",
+  "ancestors": [
+    {
+      "code": "la-x-gallia",
+      "role": "parent",
+      "weight": 0.72,
+      "notes": "Gallo-Romance Vulgar Latin"
+    },
+    {
+      "code": "gem",
+      "role": "superstrate",
+      "weight": 0.18,
+      "notes": "Frankish superstrate: /h/ restoration, initial stress, massive vocabulary (guerre, jardin, blanc). Strongest in Romance."
+    },
+    {
+      "code": "xcg",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Gaulish substrate (already in la-x-gallia, additional direct traces)"
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.03,
+      "notes": "Visigothic superstrate (pre-Frankish)"
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.02,
+      "notes": "Arabic via Iberian transmission"
+    }
+  ],
+  "sandhi_rules": [
+    {
+      "id": "FR_LIAISON_Z",
+      "name": "z-liaison",
+      "left_context": "z$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "les amis → lez‿ami"
+    },
+    {
+      "id": "FR_LIAISON_T",
+      "name": "t-liaison",
+      "left_context": "t$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "petit ami → pətit‿ami"
+    },
+    {
+      "id": "FR_LIAISON_N",
+      "name": "n-liaison",
+      "left_context": "n$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "n‿",
+      "obligatory": true,
+      "notes": "un ami → ɛ̃n‿ami"
+    },
+    {
+      "id": "FR_LIAISON_R",
+      "name": "r-liaison",
+      "left_context": "ʁ$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "ʁ‿",
+      "obligatory": false,
+      "notes": "premier étage → optional"
+    },
+    {
+      "id": "FR_LIAISON_P",
+      "name": "p-liaison",
+      "left_context": "p$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "p‿",
+      "obligatory": false,
+      "notes": "trop aimable → optional"
+    },
+    {
+      "id": "FR_ENCHAÎNEMENT",
+      "name": "enchaînement",
+      "left_context": "[bdgvzʒ]$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "‿",
+      "obligatory": true,
+      "notes": "une amie → resyllabification"
+    }
+  ],
+  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. Elision (le/la/je/de/que + vowel → l'/j'/d'/qu') is already resolved in standard orthography (words are written with the apostrophe), so it needs no additional G2P rule. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "fouche1959",
+      "author": "Fouché, P.",
+      "year": 1959,
+      "title": "Traité de prononciation française",
+      "publisher": "Klincksieck",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "tranel1987",
+      "author": "Tranel, B.",
+      "year": 1987,
+      "title": "The Sounds of French",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fougeron_smith1993",
+      "author": "Fougeron, C. & Smith, C.L.",
+      "year": 1993,
+      "title": "Illustrations of the IPA: French",
+      "publisher": "Journal of the International Phonetic Association, 23(2)",
+      "url": "https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/french/E2BC8B1DD975FE4B272B088B8345B933",
+      "pages": "73-76",
+      "notes": "Documents the ɛ̃/œ̃ merger in Parisian speech (speakers use only /ɛ̃/, especially in northern France) and the loi de position (close-mid e/ø/o in open syllables, open-mid ɛ/œ/ɔ in closed syllables)."
+    },
+    {
+      "id": "tranel1995",
+      "author": "Tranel, B.",
+      "year": 1995,
+      "title": "French liaison and elision revisited: A unified account within Optimality Theory",
+      "publisher": "Rutgers Optimality Archive (ROA-15)",
+      "url": "https://roa.rutgers.edu/files/15-0594/15-0594-TRANEL-0-0.PDF",
+      "pages": null,
+      "notes": "Formalises liaison (silent word-final consonant surfaces before a vowel-initial word, e.g. les amis [lezami]) and elision (word-final vowel deleted before a vowel-initial word, e.g. l'ami) as ONSET-driven; establishes that h-aspiré words (hibou) block both liaison and elision despite being phonetically vowel-initial (les hiboux *[lezibu], le hibou *[libu])."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/French_language",
+    "https://fr.wikipedia.org/wiki/Français",
+    "https://en.wikipedia.org/wiki/French_phonology",
+    "https://fr.wikipedia.org/wiki/Fran%C3%A7ais",
+    "https://fr.wikipedia.org/wiki/Prononciation_du_fran%C3%A7ais"
+  ],
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "s": {
+      "intervocalic": [
+        "z"
+      ],
+      "word_final": [
+        ""
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ],
+      "default": [
+        "s"
+      ]
+    },
+    "t": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "t"
+      ]
+    },
+    "d": {
+      "word_final": [
+        ""
+      ],
+      "intervocalic_cross_word": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "p": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "p"
+      ]
+    },
+    "x": {
+      "word_final": [
+        ""
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ],
+      "default": [
+        "ks"
+      ]
+    },
+    "r": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "ʁ"
+      ]
+    },
+    "e": {
+      "word_final": [
+        "",
+        "ə"
+      ],
+      "default": [
+        "ə",
+        "e",
+        "ɛ"
+      ]
+    },
+    "an": {
+      "before_vowel": [
+        "an"
+      ],
+      "default": [
+        "ɑ̃"
+      ]
+    },
+    "am": {
+      "before_vowel": [
+        "am"
+      ],
+      "default": [
+        "ɑ̃"
+      ]
+    },
+    "en": {
+      "before_vowel": [
+        "ɛn"
+      ],
+      "default": [
+        "ɑ̃"
+      ]
+    },
+    "em": {
+      "before_vowel": [
+        "ɛm"
+      ],
+      "default": [
+        "ɑ̃"
+      ]
+    },
+    "in": {
+      "before_vowel": [
+        "in"
+      ],
+      "default": [
+        "ɛ̃"
+      ]
+    },
+    "im": {
+      "before_vowel": [
+        "im"
+      ],
+      "default": [
+        "ɛ̃"
+      ]
+    },
+    "on": {
+      "before_vowel": [
+        "ɔn"
+      ],
+      "default": [
+        "ɔ̃"
+      ]
+    },
+    "om": {
+      "before_vowel": [
+        "ɔm"
+      ],
+      "default": [
+        "ɔ̃"
+      ]
+    },
+    "un": {
+      "before_vowel": [
+        "yn"
+      ],
+      "default": [
+        "œ̃"
+      ]
+    },
+    "um": {
+      "before_vowel": [
+        "ym"
+      ],
+      "default": [
+        "œ̃"
+      ]
+    }
+  },
+  "word_exceptions": {
+    "le": "lə",
+    "de": "də",
+    "que": "kə",
+    "ce": "sə",
+    "ne": "nə",
+    "se": "sə",
+    "je": "ʒə",
+    "me": "mə",
+    "te": "tə"
+  },
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  },
+  "glottolog_code": "stan1290",
+  "iso639_3": "fra",
+  "wikidata_qid": "Q150",
+  "phoible_id": "stan1290",
+  "wals_code": "fre",
+  "location": {
+    "latitude": 48.0,
+    "longitude": 2.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for French."
+  }
+}

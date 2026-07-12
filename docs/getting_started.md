@@ -1,166 +1,250 @@
 # Getting Started
 
-## Installation
+## The problem, in one call
+
+Say you're building a TTS pipeline and need to know how a Portuguese
+sentence sounds before you synthesize it:
+
+```python
+>>> import orthography2ipa
+>>> orthography2ipa.transcribe("olá mundo", "pt")
+'oˈla ˈmũdu'
+```
+
+That's it — `transcribe(text, language_code)` returns an IPA string with
+stress marks (`ˈ`) already placed. The rest of this page walks from that
+one call out to the full API: language specs, the tokenizer underneath
+`transcribe()`, beam search over ambiguous spellings, and the distance
+metrics used to compare languages.
+
+## Install
 
 ```bash
 pip install orthography2ipa
 ```
 
-The package depends on **phonematcher** for its 21-feature distinctive-feature system. This is installed automatically as a dependency.
+The only runtime dependency is **phonematcher**, which supplies the
+21-feature distinctive-feature system the distance metrics use. It's
+installed automatically.
 
----
+## What just happened
 
-## Quick Start
+`transcribe()` ran a fixed pipeline: normalize the input text, tokenize
+it into graphemes using the target language's spec, pick the most
+likely IPA phoneme for each grapheme (greedy search by default), attach
+stress marks where the language's spec declares stress rules, apply
+cross-word sandhi if the language has any, and join the result. Every
+step is driven by data in the language's `LanguageSpec` — there's no
+hidden model behind it.
 
-### 1. Fetch a language spec
+```python
+orthography2ipa.transcribe("hello world", "en")   # 'hələʊ wɜːld'
+orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnyɛjt'
+```
+
+## Fetching a language spec directly
+
+`transcribe()` is a convenience wrapper. Most non-trivial use — ranking
+alternatives, inspecting allophones, comparing languages — starts from
+`get()`, which returns the underlying `LanguageSpec`:
 
 ```python
 import orthography2ipa
 
-# By BCP-47 code
-en = orthography2ipa.get("en")
-es = orthography2ipa.get("es")
-pt = orthography2ipa.get("pt")
-pt_br = orthography2ipa.get("pt-BR")
-
-# By ISO 639-3 code (aliases are supported)
-eng = orthography2ipa.get("eng")   # same as "en"
-por = orthography2ipa.get("por")   # same as "pt"
+en = orthography2ipa.get("en-GB")     # by BCP-47 code
+eng = orthography2ipa.get("eng")      # ISO 639-3 alias — same spec
+pt_br = orthography2ipa.get("pt-BR")  # regional variety
 ```
 
-### 2. Explore grapheme → IPA mappings
+Lookups are lazy and cached: importing the package costs nothing, and
+each language's JSON file is parsed only the first time it's requested.
+
+### Grapheme → IPA mappings
+
+Each grapheme key maps to a *list* of possible IPA phonemes — the first
+entry is the most common:
 
 ```python
-# Each grapheme key maps to a list of possible IPA phonemes
-en.graphemes["th"]     # ['θ', 'ð']   — voiceless and voiced dental fricative
-en.graphemes["c"]      # ['k', 's']   — /k/ or /s/
-es.graphemes["c"]      # ['k', 'θ']   — Castilian: /k/ or /θ/
-es.graphemes["ll"]     # ['ʎ', 'ʝ']  — traditional lleísmo vs yeísmo
-pt_br.graphemes["lh"]  # ['ʎ']        — palatal lateral (unique to Portuguese)
-
-# Digraphs are first-class keys
-es.graphemes["ch"]     # ['tʃ']
-en.graphemes["sh"]     # ['ʃ']
+en.graphemes["th"]      # ['θ', 'ð']   — voiceless vs. voiced dental fricative
+en.graphemes["c"]       # ['k', 's']
+es = orthography2ipa.get("es-ES")
+es.graphemes["c"]       # ['k', 'θ']   — Castilian /k/ or /θ/
+es.graphemes["ll"]      # ['ʝ']        — modern yeísmo merger of ⟨ll⟩ with ⟨y⟩
+pt_br.graphemes["lh"]   # ['ʎ']
 ```
 
-### 3. Explore allophone inventories
+Digraphs and trigraphs are first-class keys, matched by maximal munch
+(longest orthographic unit first) — see [tokenizer.md](tokenizer.md) for
+how that's implemented.
+
+### Allophone inventories
+
+Allophones describe how a *phoneme*, once chosen, actually surfaces
+depending on context:
 
 ```python
-# Allophones are the contextual surface realisations of phonemes
-en.allophones["t"]     # ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
-# tʰ = aspirated (word-initial), ɾ = flap (intervocalic), ʔ = glottalised, t̚ = unreleased
+en.allophones["t"]      # ['t', 'tʰ', 'ʔ', 'ɾ']
+# tʰ aspirated (word-initial), ɾ flapped (intervocalic, US), ʔ glottalised (pre-pausal)
 
-es.allophones["b"]     # ['b', 'β']
-# b = after pause/nasal, β = intervocalic (lenition)
-
-es.allophones["n"]     # ['n', 'm', 'ɱ', 'n̪', 'ŋ', 'ɲ']
-# nasal place assimilation
+es.allophones["b"]      # ['b', 'β']
+# b after pause/nasal, β intervocalic (lenition)
 ```
 
-### 4. Tokenise text and get IPA paths
+## Ranking ambiguous spellings with beam search
+
+`transcribe()` uses greedy search — it always takes the single most
+likely candidate at each grapheme. When you need the full ranked list
+(useful for debugging a bad transcription, or for downstream re-scoring),
+use `PhonetokTokenizer` directly:
 
 ```python
+from orthography2ipa import get
 from orthography2ipa.phonetok import PhonetokTokenizer
 
-tok = PhonetokTokenizer(orthography2ipa.get("pt-BR"))
+tok = PhonetokTokenizer(get("en-GB"))
 
-# Tokenise — returns a list of Token objects
-tokens = tok.tokenize("chuva")
-print([t.grapheme for t in tokens])  # ['ch', 'u', 'v', 'a']
+tok.ipa_best("through")   # 'θɹɔː'
 
-# Get all possible IPA transcriptions (beam search)
-paths = tok.ipa_beam("chuva", beam_width=4)
-print(paths[0].ipa)   # 'ʃuva'
-print(paths[0].score) # 0.0 (most canonical path)
+for path in tok.ipa_beam("through", beam_width=8):
+    print(path.ipa, path.score)
+# θɹɔː 0.0
+# ðɹɔː 1.0
+# θɹoʊ 1.0
+# ðɹoʊ 2.0
+# θɹʌf 2.0
+# ...
 ```
 
-### 5. Measure phonological distance
+Score is a rank-distance, not a probability — 0.0 is the top candidate,
+and each step away from it costs 1.0 per grapheme substitution. This is
+the naive-ordering limitation mentioned in [index.md](index.md#honest-limitations-read-this-before-you-trust-a-tier):
+there's no context beyond the word itself informing the ranking.
+
+For per-word candidates alongside a full sentence transcription, use
+`G2P.transcribe_detailed`:
+
+```python
+from orthography2ipa import G2P
+
+engine = G2P("pt-PT")
+result = engine.transcribe_detailed("um café", search="beam", beam_width=4)
+result.ipa                  # 'ˈũ kɐˈfɛ'
+result.words[1].candidates  # ranked IPAPath alternatives for "café"
+```
+
+## Measuring distance between languages
+
+Two languages (or two dialects of the same language) can be compared
+across phoneme inventory, grapheme mapping, and allophone overlap:
 
 ```python
 from orthography2ipa.distance import phonological_distance, segment_distance
 
-# Distance between two IPA segments
-d_pb = segment_distance("p", "b")   # 0.0625 — differ only in voicing
-d_pa = segment_distance("p", "a")   # 0.75   — consonant vs vowel
+# Segment-level: how different are two IPA sounds?
+segment_distance("p", "b")   # 0.0426 — differ only in voicing
+segment_distance("p", "a")   # 1.0    — consonant vs. vowel, maximally different
 
-# Distance between languages
-la = orthography2ipa.get("la")
-it = orthography2ipa.get("it")
-dist = phonological_distance(la, it)
-print(dist.combined)           # ~0.31
-print(dist.inventory.jaccard)  # ~0.40
+# Language-level: how different are two varieties overall?
+pt_pt = orthography2ipa.get("pt-PT")
+dist = phonological_distance(pt_br, pt_pt)
+dist.combined                    # 0.046 — near-identical (inventory + allophony)
+dist.inventory.feature_mean      # phoneme-inventory distance
+dist.allophone_sim               # allophone-overlap similarity (higher = more similar)
+dist.grapheme.mean_ipa_distance  # grapheme-mapping divergence — reported, NOT scored:
+                                 # how a language is spelled is not how it sounds
 ```
 
----
+See [distance.md](distance.md) for the full metric catalogue and
+[ancestry.md](ancestry.md) for phylogenetically-weighted variants.
 
-## Language Codes
+## The command line
 
-The package uses **BCP-47** codes as the primary identifier:
+Everything above is also reachable from the shell once the package is
+installed:
 
-| Code | Language |
-|---|---|
-| `en` | English |
-| `es` | Spanish (Castilian) |
-| `es-AR` | Rioplatense Spanish |
-| `pt` | Portuguese (European) |
-| `pt-BR` | Brazilian Portuguese |
-| `pt-BR-x-rj` | Rio de Janeiro Portuguese |
-| `fr` | French |
-| `it` | Italian |
-| `la` | Classical Latin |
-| `de` | German |
-| `eu` | Basque |
-| `ar` | Arabic |
-| `zh` | Mandarin Chinese |
-| `ja` | Japanese |
-
-For the full list, see [Language Registry](registry.md) or call:
-
-```python
-orthography2ipa.available_codes()
+```bash
+orthography2ipa list                          # every language code
+orthography2ipa list --family Romance          # matches any step of the family path
+orthography2ipa list --family Ibero-Romance   # ... including the sub-branch
+orthography2ipa info pt-BR                     # spec summary
+orthography2ipa info pt-BR --graphemes         # full grapheme→IPA map
+orthography2ipa transcribe en-GB "through" --search beam --beam-width 8
+orthography2ipa distance pt-BR pt-PT
 ```
 
-ISO 639-3 three-letter codes are also accepted as aliases:
+Every subcommand accepts `--json` for machine-readable output. Run
+`orthography2ipa --help` for the full list.
+
+## Finding a language code
+
+Codes are **BCP-47** (`pt-BR`, `en-GB`, `zh`), with ISO 639-3 three-letter
+codes accepted as aliases:
 
 ```python
-orthography2ipa.get("por")  # → pt
-orthography2ipa.get("spa")  # → es
-orthography2ipa.get("lat")  # → la
+orthography2ipa.get("por")   # → resolves to the pt-PT spec
+orthography2ipa.get("spa")   # → resolves to the es-ES spec
+orthography2ipa.resolve("pt")     # 'pt-PT' — reference variety for a bare tag
+orthography2ipa.resolve("en-NZ")  # 'en-GB' — nearest registered variety
 ```
 
----
-
-## Inspecting Language Metadata
-
-Every `LanguageSpec` carries rich metadata:
+To browse what's available:
 
 ```python
-spec = orthography2ipa.get("es")
-print(spec.name)     # "Spanish (Castilian)"
-print(spec.family)   # "Romance"
-print(spec.script)   # "Latin"
-print(spec.notes)    # free-form linguistic notes
+orthography2ipa.available_codes()                      # 493 language codes
+orthography2ipa.available_codes(include_clades=True)   # 556 — plus the clade nodes
+orthography2ipa.available_families()                   # codes grouped by derived family path
+```
 
-# Ancestry
-print(spec.primary_parent)      # "la-x-hispania"
-print(spec.substrate_codes)     # ('xaq',)  ← Basque substrate
-print(spec.contact_codes)       # ('xaq', 'xaa', 'got')
+Clade nodes (`Romance`, `West Germanic`, …) are classification-only specs: they
+carry no phoneme data and are excluded unless you ask for them.
 
-for anc in spec.get_ancestors():
+or see the full table in [registry.md](registry.md).
+
+## Inspecting language metadata
+
+Every `LanguageSpec` carries provenance and ancestry alongside the
+phoneme data:
+
+```python
+es = orthography2ipa.get("es-ES")
+es.name      # 'Castilian Spanish'
+es.family    # 'Indo-European > Italic > Romance > Ibero-Romance' — derived, not authored
+es.script    # 'Latin'
+es.quality   # QualityTier.RESEARCH — see quality_tiers.md
+es.location  # Location(latitude=40.416944, longitude=-3.703333, source='wikidata', ...)
+
+for anc in es.get_ancestors():
     print(anc)
-# Ancestor('la-x-hispania', parent, w=0.80)
-# Ancestor('xaq', substrate, w=0.08)
-# Ancestor('xaa', adstrate, w=0.07)
-# Ancestor('got', superstrate, w=0.05)
+# Ancestor('es-ES-x-medieval', parent, w=0.85)
+# Ancestor('xaq', substrate, w=0.06)
+# Ancestor('got', superstrate, w=0.04)
+# Ancestor('xaa', adstrate, w=0.06)
 ```
 
----
+`family` is the chain of clade nodes above the spec in the ancestry graph, joined
+with `" > "` — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
 
-## Error Handling
+## Handling unknown codes
 
 ```python
 try:
-    spec = orthography2ipa.get("xx")
+    orthography2ipa.get("xx")
 except KeyError as e:
-    print(e)  # "Language 'xx' is not registered. Available: ..."
+    print(e)  # "unsupported language: 'xx.json' not found. Available: {...}"
 ```
+
+## Where to go next
+
+- Building a pipeline around this? [tokenizer.md](tokenizer.md) and
+  [architecture.md](architecture.md) cover the engine internals.
+- Adding or fixing a language? [adding_a_language.md](adding_a_language.md).
+- Deciding whether a language is accurate enough to ship?
+  [quality_tiers.md](quality_tiers.md) and [scoreboard.md](scoreboard.md).
+- Full field-by-field reference for `LanguageSpec` and friends:
+  [data_model.md](data_model.md).
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Tokenizer](tokenizer.md) · [Data model](data_model.md) · [Quality tiers](quality_tiers.md) · [Distance](distance.md)*

@@ -1,0 +1,63 @@
+{
+  "code": "de-x-alemannic",
+  "name": "Alemannic German",
+  "script": "Latin",
+  "graphemes_base": "de-CH",
+  "allophones_base": "de-CH",
+  "parent": "de-CH",
+  "notes": "Alemannic German (Schwyzerdütsch, Alsatian, Swabian, Vorarlbergisch). No glottal stop. Alveolar /r/. Geminate consonants phonemic. Covers Swiss German dialects, Alsace (France), Vorarlberg (Austria), southwestern Germany.",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wiese1996",
+      "author": "Wiese, R.",
+      "year": 1996,
+      "title": "The Phonology of German",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/German_phonology"
+    },
+    {
+      "id": "russ1994",
+      "author": "Russ, C.",
+      "year": 1994,
+      "title": "The Dialects of Modern German",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "haas2000",
+      "author": "Haas, W.",
+      "year": 2000,
+      "title": "Schweizerdeutsch",
+      "publisher": "in H. Goebl et al. (eds.), Dialektologie",
+      "url": "de Gruyter",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Alemannic_German",
+    "https://de.wikipedia.org/wiki/Alemannische_Dialekte",
+    "https://als.wikipedia.org/wiki/Alemannisch"
+  ],
+  "timespan": {
+    "start_year": 1000,
+    "end_year": null
+  },
+  "glottolog_code": "alem1243",
+  "iso639_3": "gsw",
+  "wikidata_qid": "Q131339",
+  "wals_code": "gos",
+  "location": {
+    "latitude": 47.631173,
+    "longitude": 9.405268,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Alemannic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
+}

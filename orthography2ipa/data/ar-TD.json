@@ -1,0 +1,122 @@
+{
+  "code": "ar-TD",
+  "name": "Chadian Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-mashriqi",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "چ": [
+      "tʃ"
+    ]
+  },
+  "allophones_base": "ar-x-mashriqi",
+  "allophones": {
+    "b": [
+      "b",
+      "ɓ"
+    ],
+    "d": [
+      "d",
+      "ɗ"
+    ],
+    "θ": [
+      "θ",
+      "t"
+    ],
+    "ð": [
+      "ð",
+      "d"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "i": [
+      "i",
+      "ə"
+    ],
+    "u": [
+      "u",
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "ar-x-mashriqi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Maghrebi/peripheral Arabic base"
+    }
+  ],
+  "notes": "Chadian Arabic (ʕarabī šuwā). Spoken in Chad, northern Cameroon, CAR, and northeastern Nigeria. Arrived via Sudan/Saharan trade routes (~11th–14th c. CE). CONSERVATIVE: θ (ث) and ð (ذ) often preserved. ق → /q/ maintained. ض → /dˤ/ (lateral lost). Sub-Saharan Chadic substrate (Hausa, Kanuri, Sara, Maba, Fulani): implosive allophones /ɓ, ɗ/; /ŋ/ phoneme; prenasalised stops [ᵐb, ⁿd] in some varieties. Moderate vowel reduction.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chadian_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%AA%D8%B4%D8%A7%D8%AF%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "glottolog_code": "chad1249",
+  "iso639_3": "shu",
+  "location": {
+    "latitude": 14.67,
+    "longitude": 13.5,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Chadian Arabic."
+  }
+}

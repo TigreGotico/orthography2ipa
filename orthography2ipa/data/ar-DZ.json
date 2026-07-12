@@ -1,0 +1,141 @@
+{
+  "code": "ar-DZ",
+  "name": "Algerian Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ذ": [
+      "d",
+      "z"
+    ],
+    "ظ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "ق": [
+      "q",
+      "ɡ"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "q": [
+      "q",
+      "ɡ"
+    ],
+    "ðˤ": [
+      "dˤ",
+      "zˤ"
+    ],
+    "θ": [
+      "t",
+      "s"
+    ],
+    "ð": [
+      "d",
+      "z"
+    ],
+    "a": [
+      "a",
+      "ə",
+      ""
+    ],
+    "i": [
+      "i",
+      "ə",
+      ""
+    ],
+    "u": [
+      "u",
+      "ə",
+      ""
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Maghrebi Arabic base"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.12,
+      "notes": "Berber (Tamazight/Kabyle) substrate: vowel reduction, consonant cluster tolerance; dense Berber-speaking areas especially Kabylie"
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "French adstrate (1830–1962): /p/, /v/ phonemes, heavy loanword influence"
+    }
+  ],
+  "notes": "Algerian Arabic. Complex dialect landscape from Oran (west) to Constantine (east). Intermediate between Moroccan (more reduced) and Tunisian. θ → /t/ or /s/; ð → /d/ or /z/. ق → /q/ (eastern) or /ɡ/ (western, Oran area). Berber substrate (especially Kabylie) reinforces emphatics. French integration deepest of all Maghrebi dialects (130+ years colonial rule).",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "grand_henry1972",
+      "author": "Grand'Henry, J.",
+      "year": 1972,
+      "title": "Le parler arabe de Cherchell (Algérie)",
+      "publisher": "Institut Orientaliste de Louvain",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Algerian_Arabic",
+    "https://ar.wikipedia.org/wiki/لهجة_جزائرية",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "glottolog_code": "alge1239",
+  "iso639_3": "arq",
+  "wikidata_qid": "Q56499",
+  "location": {
+    "latitude": 35.4208,
+    "longitude": 3.23033,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Algerian Arabic."
+  }
+}

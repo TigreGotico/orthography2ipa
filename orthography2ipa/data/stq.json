@@ -1,0 +1,470 @@
+{
+  "code": "stq",
+  "glottolog_code": "sate1242",
+  "name": "Saterland Frisian",
+  "script": "Latin",
+  "quality": "research",
+  "script_type": "alphabet",
+  "parent": "ofs",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "ä": [
+      "ɛ"
+    ],
+    "e": [
+      "ɛ",
+      "ə"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "ö": [
+      "œ"
+    ],
+    "u": [
+      "ʊ"
+    ],
+    "ü": [
+      "ʏ"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ää": [
+      "ɛː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "ie": [
+      "iː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "öö": [
+      "øː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "üü": [
+      "yː"
+    ],
+    "oa": [
+      "oə"
+    ],
+    "ua": [
+      "uə"
+    ],
+    "ia": [
+      "iə"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "äi": [
+      "ɛi"
+    ],
+    "ei": [
+      "ɛi"
+    ],
+    "oi": [
+      "ɔi"
+    ],
+    "ou": [
+      "ɔu"
+    ],
+    "öi": [
+      "œi"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "ch": [
+      "x"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "sch": [
+      "ʃ"
+    ],
+    "sk": [
+      "sk"
+    ],
+    "sp": [
+      "ʃp"
+    ],
+    "st": [
+      "ʃt"
+    ],
+    "t": [
+      "t"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "v",
+      "w"
+    ],
+    "x": [
+      "ks"
+    ],
+    "z": [
+      "ts"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v",
+      "f"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "øː": [
+      "øː"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "iə": [
+      "iə"
+    ],
+    "oə": [
+      "oə"
+    ],
+    "uə": [
+      "uə"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ɛi": [
+      "ɛi"
+    ],
+    "ɔi": [
+      "ɔi"
+    ],
+    "ɔu": [
+      "ɔu"
+    ],
+    "œi": [
+      "œi"
+    ]
+  },
+  "positional_graphemes": {
+    "b": {
+      "word_final": [
+        "p"
+      ],
+      "coda": [
+        "p"
+      ],
+      "default": [
+        "b"
+      ]
+    },
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "coda": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "coda": [
+        "k"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "v": {
+      "word_final": [
+        "f"
+      ],
+      "default": [
+        "v"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "z"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "default": [
+        "s"
+      ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "nucleus_stressed": [
+        "ɛ"
+      ],
+      "default": [
+        "ɛ",
+        "ə"
+      ]
+    }
+  },
+  "ancestors": [
+    {
+      "code": "ofs",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Descent from Old Frisian (East Frisian branch). Saterland Frisian is the last surviving dialect of East Frisian, spoken in the Saterland (Seelterland) municipalities since medieval Frisian colonisation of the bogs."
+    },
+    {
+      "code": "nds",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Low German adstrate: Saterland is surrounded by Low German speakers. Heavy Low German influence on lexicon and some phonological convergence, especially in younger speakers."
+    },
+    {
+      "code": "de-DE",
+      "role": "adstrate",
+      "weight": 0.07,
+      "notes": "Standard German adstrate: dominant language of education and administration. All Saterland Frisians are trilingual (Saterland Frisian, Low German, Standard German)."
+    },
+    {
+      "code": "nl",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Dutch adstrate: historical trade contacts with the Netherlands; some Dutch-influenced lexical items, particularly in older vocabulary."
+    }
+  ],
+  "notes": "Saterland Frisian (Seeltersk) — the last surviving variety of East Frisian, spoken by ~1,000–2,500 people in the four Saterland municipalities (Ramsloh, Strücklingen, Scharrel, Sedelsberg) in the Cloppenburg district of Lower Saxony, Germany. Severely endangered; recognised as a minority language under the European Charter. KEY FEATURES: (1) MOST CONSERVATIVE FRISIAN: preserves features lost in West and North Frisian, including some Old Frisian vowel distinctions and diphthong patterns. (2) CENTRING DIPHTHONGS /iə, oə, uə/ — shared Frisian heritage. (3) FINAL DEVOICING as in all Frisian and continental West Germanic. (4) VOICED STOP /ɡ/ — retained from Old Frisian. (5) /sp, st/ → [ʃp, ʃt] word-initially (shared with Low German). (6) /s/ → [z] intervocalically and word-initially before vowels. (7) RICH FRONT ROUNDED VOWELS: ö/öö, ü/üü from i-umlaut. (8) Long ää /ɛː/ preserved as distinct from ee /eː/. (9) THREE-LANGUAGE ecology: all speakers also speak Low German and Standard German. Sources: Fort (1980), Markey (1981), Kramer (1982).",
+  "sources": [
+    {
+      "id": "fort1980",
+      "author": "Fort, M.C.",
+      "year": 1980,
+      "title": "Saterfriesisches Wörterbuch",
+      "publisher": "Helmut Buske Verlag",
+      "url": null,
+      "pages": null,
+      "notes": "Comprehensive dictionary of Saterland Frisian"
+    },
+    {
+      "id": "kramer1982",
+      "author": "Kramer, P.",
+      "year": 1982,
+      "title": "Ksjansen: The Sounds of Saterland Frisian",
+      "publisher": "Fryske Akademy",
+      "url": null,
+      "pages": null,
+      "notes": "Phonological description of Saterland Frisian"
+    },
+    {
+      "id": "markey1981",
+      "author": "Markey, T.L.",
+      "year": 1981,
+      "title": "Frisian",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": "Trends in Linguistics series; covers all Frisian branches"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Saterland_Frisian",
+    "https://de.wikipedia.org/wiki/Saterfriesische_Sprache",
+    "https://en.wikipedia.org/wiki/Saterland_Frisian_language",
+    "https://stq.wikipedia.org/wiki/Seeltersk"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Saterland_Frisian",
+    "https://de.wikipedia.org/wiki/Saterfriesische_Sprache",
+    "https://en.wikipedia.org/wiki/Frisian_languages",
+    "https://en.wikipedia.org/wiki/Saterland",
+    "https://en.wikipedia.org/wiki/East_Frisian_language",
+    "https://fy.wikipedia.org/wiki/Sealterfrysk",
+    "https://nl.wikipedia.org/wiki/Saterfries",
+    "https://nds.wikipedia.org/wiki/Seeltersk"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "iso639_3": "stq",
+  "wikidata_qid": "Q27154",
+  "location": {
+    "latitude": 53.117,
+    "longitude": 7.721,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ems-Weser Frisian."
+  }
+}

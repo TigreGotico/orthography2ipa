@@ -1,0 +1,387 @@
+{
+  "code": "kok",
+  "name": "Konkani",
+  "script": "Devanagari",
+  "graphemes": {
+    "अ": [
+      "ə"
+    ],
+    "आ": [
+      "aː"
+    ],
+    "इ": [
+      "i"
+    ],
+    "ई": [
+      "iː"
+    ],
+    "उ": [
+      "u"
+    ],
+    "ऊ": [
+      "uː"
+    ],
+    "ए": [
+      "eː"
+    ],
+    "ऐ": [
+      "əi"
+    ],
+    "ओ": [
+      "oː"
+    ],
+    "औ": [
+      "əu"
+    ],
+    "ा": [
+      "aː"
+    ],
+    "ि": [
+      "i"
+    ],
+    "ी": [
+      "iː"
+    ],
+    "ु": [
+      "u"
+    ],
+    "ू": [
+      "uː"
+    ],
+    "े": [
+      "eː"
+    ],
+    "ै": [
+      "əi"
+    ],
+    "ो": [
+      "oː"
+    ],
+    "ौ": [
+      "əu"
+    ],
+    "ं": [
+      "̃"
+    ],
+    "ः": [
+      "h"
+    ],
+    "ँ": [
+      "̃"
+    ],
+    "्": [
+      ""
+    ],
+    "क": [
+      "k"
+    ],
+    "ख": [
+      "kʰ"
+    ],
+    "ग": [
+      "ɡ"
+    ],
+    "घ": [
+      "ɡʱ"
+    ],
+    "ङ": [
+      "ŋ"
+    ],
+    "च": [
+      "tʃ"
+    ],
+    "छ": [
+      "tʃʰ"
+    ],
+    "ज": [
+      "dʒ"
+    ],
+    "झ": [
+      "dʒʱ"
+    ],
+    "ञ": [
+      "ɲ"
+    ],
+    "ट": [
+      "ʈ"
+    ],
+    "ठ": [
+      "ʈʰ"
+    ],
+    "ड": [
+      "ɖ"
+    ],
+    "ढ": [
+      "ɖʱ"
+    ],
+    "ण": [
+      "ɳ"
+    ],
+    "त": [
+      "t̪"
+    ],
+    "थ": [
+      "t̪ʰ"
+    ],
+    "द": [
+      "d̪"
+    ],
+    "ध": [
+      "d̪ʱ"
+    ],
+    "न": [
+      "n"
+    ],
+    "प": [
+      "p"
+    ],
+    "फ": [
+      "pʰ",
+      "f"
+    ],
+    "ब": [
+      "b"
+    ],
+    "भ": [
+      "bʱ"
+    ],
+    "म": [
+      "m"
+    ],
+    "य": [
+      "j"
+    ],
+    "र": [
+      "r"
+    ],
+    "ल": [
+      "l"
+    ],
+    "व": [
+      "ʋ"
+    ],
+    "ळ": [
+      "ɭ"
+    ],
+    "ड़": [
+      "ɽ"
+    ],
+    "श": [
+      "ʃ"
+    ],
+    "ष": [
+      "ʂ"
+    ],
+    "स": [
+      "s"
+    ],
+    "ह": [
+      "ɦ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t̪": [
+      "t̪"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "d̪": [
+      "d̪"
+    ],
+    "d̪ʱ": [
+      "d̪ʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "tʃʰ": [
+      "tʃʰ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "dʒʱ": [
+      "dʒʱ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɦ": [
+      "ɦ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɽ": [
+      "ɽ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɭ": [
+      "ɭ"
+    ],
+    "ʋ": [
+      "ʋ"
+    ],
+    "j": [
+      "j"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "oː": [
+      "oː"
+    ]
+  },
+  "parent": "sa",
+  "ancestors": [
+    {
+      "code": "sa",
+      "role": "parent",
+      "weight": 0.78,
+      "notes": "Descent via Shauraseni / Maharashtri Apabhraṃśa"
+    },
+    {
+      "code": "mr",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Strong Marathi adstrate influence"
+    },
+    {
+      "code": "ta",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Dravidian substrate from pre-IA population of Goa"
+    }
+  ],
+  "notes": "Konkani, 22nd scheduled language of India (1992). Spoken in Goa (official), Karnataka, and Kerala. Multiple scripts: Devanagari (official Goa), Kannada, Roman. Strong Dravidian substrate features: retroflex ⟨ळ⟩ = [ɭ]. Close to Marathi but considered separate language by speakers.",
+  "quality": "research",
+  "script_type": "abugida",
+  "inherent_vowel": "ə",
+  "iso639_3": "kok",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "almeida1989",
+      "author": "Almeida, T.",
+      "year": 1989,
+      "title": "A Description of Konkani",
+      "publisher": "Goa University",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Konkani_language"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "glottolog_code": "goan1235",
+  "wikidata_qid": "Q34239",
+  "location": {
+    "latitude": 15.2732,
+    "longitude": 74.2098,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Goan Konkani."
+  }
+}

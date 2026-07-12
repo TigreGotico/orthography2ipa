@@ -1,0 +1,175 @@
+{
+  "code": "lb",
+  "name": "Luxembourgish",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "ltz",
+  "glottolog_code": "luxe1241",
+  "timespan": {
+    "start_year": 1340,
+    "end_year": null
+  },
+  "graphemes": {
+    "sch": [
+      "ʃ"
+    ],
+    "ch": [
+      "x"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ei": [
+      "ɑɪ"
+    ],
+    "au": [
+      "au"
+    ],
+    "eu": [
+      "œɪ"
+    ],
+    "é": [
+      "eː"
+    ],
+    "ä": [
+      "ɛː"
+    ],
+    "ë": [
+      "ə"
+    ],
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ʀ"
+    ],
+    "s": [
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "f"
+    ],
+    "w": [
+      "v"
+    ],
+    "z": [
+      "ts"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "éi": [
+      "əɪ"
+    ],
+    "ou": [
+      "əʊ"
+    ],
+    "ue": [
+      "uə"
+    ],
+    "ie": [
+      "iə"
+    ],
+    "äi": [
+      "æːɪ"
+    ],
+    "ai": [
+      "ɑɪ"
+    ]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "gem",
+      "role": "proto_language",
+      "weight": 1.0,
+      "notes": "Moselle Franconian variety of West Germanic"
+    }
+  ],
+  "parent": "x-clade-west2793",
+  "notes": "Luxembourgish (Lëtzebuergesch), Moselle Franconian West Germanic language, co-official in Luxembourg alongside French and German. Trigraph sch = /ʃ/, digraph ch = /x/. Vowel ë = schwa. Eifeler Regel: final /n/ deletion before certain consonants.",
+  "sources": [
+    {
+      "id": "wiki-lb",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Luxembourgish language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Luxembourgish_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Luxembourgish_language",
+    "https://lb.wikipedia.org/wiki/L%C3%ABtzebuergesch"
+  ],
+  "wikidata_qid": "Q9051",
+  "phoible_id": "luxe1241",
+  "wals_code": "lux",
+  "location": {
+    "latitude": 49.6839,
+    "longitude": 6.14931,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Moselle Franconian."
+  }
+}

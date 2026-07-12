@@ -1,0 +1,269 @@
+{
+  "code": "mn",
+  "name": "Mongolian",
+  "glottolog_code": "halh1238",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "iso639_3": "mon",
+  "quality": "skeleton",
+  "graphemes": {
+    "а": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "w",
+      "v"
+    ],
+    "г": [
+      "ɡ",
+      "ɣ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "jɛ"
+    ],
+    "ё": [
+      "jɔ"
+    ],
+    "ж": [
+      "dʒ"
+    ],
+    "з": [
+      "dz"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "ɔ"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "ʊ"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ʃ"
+    ],
+    "ы": [
+      "ɪ"
+    ],
+    "э": [
+      "ɛ"
+    ],
+    "ю": [
+      "jʊ"
+    ],
+    "я": [
+      "ja"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "w": [
+      "w"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "d": [
+      "d"
+    ],
+    "jɛ": [
+      "jɛ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "y": [
+      "y"
+    ],
+    "f": [
+      "f"
+    ],
+    "x": [
+      "x"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ]
+  },
+  "notes": "Khalkha Mongolian in Cyrillic script (Mongolia). 7-vowel system with vowel harmony (masculine: a, o, u; feminine: e, ö, ü; neutral: i). Ö = /ø/; Ü = /y/; О = /ɔ/; У = /ʊ/. V → /w/ natively, /v/ in loanwords. Г → /ɣ/ intervocalically.",
+  "sources": [
+    {
+      "id": "mongolian_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Mongolian language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mongolian_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mongolian_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "parent": "xgn",
+  "ancestors": [
+    {
+      "code": "xgn",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Descent from Proto-Mongolic (via Middle Mongol)."
+    },
+    {
+      "code": "bo",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Tibetan adstrate: Buddhist religious vocabulary."
+    },
+    {
+      "code": "sa",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Sanskrit adstrate: Buddhist learned terms via Tibetan."
+    },
+    {
+      "code": "zh",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Chinese adstrate: areal and Inner-Mongolian loanwords."
+    },
+    {
+      "code": "ru",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Russian adstrate: Soviet-era technical/administrative lexicon."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mongolian_language",
+    "https://en.wikipedia.org/wiki/Mongolic_languages",
+    "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D1%85%D1%8D%D0%BB",
+    "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D1%85%D1%8D%D0%BB%D0%BD%D0%B8%D0%B9_%D1%8F%D0%B7%D0%B3%D1%83%D1%83%D1%80"
+  ],
+  "timespan": {
+    "start_year": 1941,
+    "end_year": null
+  },
+  "wikidata_qid": "Q9246",
+  "phoible_id": "halh1238",
+  "location": {
+    "latitude": 48.32397,
+    "longitude": 106.28874,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Halh Mongolian."
+  }
+}

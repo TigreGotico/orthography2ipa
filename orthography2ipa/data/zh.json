@@ -1,0 +1,436 @@
+{
+  "code": "zh",
+  "name": "Mandarin Chinese",
+  "script": "Latin",
+  "graphemes": {
+    "b": [
+      "p"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "f": [
+      "f"
+    ],
+    "d": [
+      "t"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "g": [
+      "k"
+    ],
+    "k": [
+      "kʰ"
+    ],
+    "h": [
+      "x"
+    ],
+    "j": [
+      "tɕ"
+    ],
+    "q": [
+      "tɕʰ"
+    ],
+    "x": [
+      "ɕ"
+    ],
+    "zh": [
+      "ʈʂ"
+    ],
+    "ch": [
+      "ʈʂʰ"
+    ],
+    "sh": [
+      "ʂ"
+    ],
+    "r": [
+      "ɻ"
+    ],
+    "z": [
+      "ts"
+    ],
+    "c": [
+      "tsʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "o": [
+      "o"
+    ],
+    "e": [
+      "ɤ"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ei": [
+      "ei"
+    ],
+    "ao": [
+      "au"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "iu": [
+      "iou"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "uo": [
+      "uo"
+    ],
+    "ui": [
+      "uei"
+    ],
+    "üe": [
+      "ye"
+    ],
+    "an": [
+      "an"
+    ],
+    "in": [
+      "in"
+    ],
+    "un": [
+      "uən"
+    ],
+    "ün": [
+      "yn"
+    ],
+    "ang": [
+      "ɑŋ"
+    ],
+    "eng": [
+      "əŋ"
+    ],
+    "ing": [
+      "iŋ"
+    ],
+    "ong": [
+      "uŋ"
+    ],
+    "ian": [
+      "iɛn"
+    ],
+    "uan": [
+      "uan"
+    ],
+    "üan": [
+      "yan"
+    ],
+    "iang": [
+      "iɑŋ"
+    ],
+    "uang": [
+      "uɑŋ"
+    ],
+    "iong": [
+      "yŋ"
+    ],
+    "ueng": [
+      "uəŋ"
+    ],
+    "er": [
+      "aɻ"
+    ],
+    "-i": [
+      "ɨ"
+    ],
+    "en": [
+      "ən"
+    ],
+    "iao": [
+      "iau"
+    ],
+    "uai": [
+      "uai"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "tɕʰ": [
+      "tɕʰ"
+    ],
+    "ʈʂ": [
+      "ʈʂ"
+    ],
+    "ʈʂʰ": [
+      "ʈʂʰ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tsʰ": [
+      "tsʰ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɕ": [
+      "ɕ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɻ": [
+      "ɻ",
+      "ʐ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a",
+      "ɑ",
+      "ɛ"
+    ],
+    "o": [
+      "o",
+      "uo"
+    ],
+    "ɤ": [
+      "ɤ",
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ɨ": [
+      "ɨ",
+      "ɯ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "tone_inventory": {
+    "˥": "high (1st)",
+    "˧˥": "rising (2nd)",
+    "˨˩˦": "dipping (3rd)",
+    "˥˩": "falling (4th)",
+    "": "neutral (5th)"
+  },
+  "notes": "Standard Mandarin (Pǔtōnghuà), Beijing-based. THIS SPEC READS PINYIN, NOT HANZI — its graphemes are Pinyin units and the input contract is Pinyin. Nothing here reads a Han character, and nothing could: a Han character does not encode sound, so no rule engine can pronounce one. That limit is stated by `zh-Hani`. Pinyin, being an alphabet, is fully transcribable — which is why the romanization is the tractable orthography and the native script is not. Going from Hanzi to this spec needs a dictionary (CC-CEDICT), not rules. Four lexical tones plus neutral.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "duanmu2007",
+      "author": "Duanmu, S.",
+      "year": 2007,
+      "title": "The Phonology of Standard Chinese (2nd ed.)",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "chao1968",
+      "author": "Chao, Y.R.",
+      "year": 1968,
+      "title": "A Grammar of Spoken Chinese",
+      "publisher": "University of California Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chinese_language",
+    "https://zh.wikipedia.org/wiki/汉语",
+    "https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%AD",
+    "https://en.wikipedia.org/wiki/Old_Chinese",
+    "https://zh.wikipedia.org/wiki/%E4%B8%8A%E5%8F%A4%E6%B1%89%E8%AF%AD"
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  },
+  "glottolog_code": "mand1415",
+  "iso639_3": "zho",
+  "parent": "ltc",
+  "ancestors": [
+    {
+      "code": "ltc",
+      "role": "parent",
+      "weight": 0.88,
+      "notes": "Descent from Middle Chinese (via the northern Mandarin lineage)."
+    },
+    {
+      "code": "och",
+      "role": "ancestor",
+      "weight": 0.08,
+      "notes": "Old Chinese: deeper Sinitic ancestor."
+    }
+  ],
+  "wikidata_qid": "Q7850",
+  "phoible_id": "mand1415",
+  "location": {
+    "latitude": 40.0209,
+    "longitude": 116.228,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Mandarin Chinese."
+  },
+  "orthography_kind": "romanization",
+  "phonemes": [
+    "a",
+    "ai",
+    "an",
+    "au",
+    "aɻ",
+    "ei",
+    "f",
+    "i",
+    "ia",
+    "iau",
+    "ie",
+    "in",
+    "iou",
+    "iŋ",
+    "iɑŋ",
+    "iɛn",
+    "j",
+    "k",
+    "kʰ",
+    "l",
+    "m",
+    "n",
+    "o",
+    "ou",
+    "p",
+    "pʰ",
+    "s",
+    "t",
+    "ts",
+    "tsʰ",
+    "tɕ",
+    "tɕʰ",
+    "tʰ",
+    "u",
+    "ua",
+    "uai",
+    "uan",
+    "uei",
+    "uo",
+    "uŋ",
+    "uɑŋ",
+    "uən",
+    "uəŋ",
+    "w",
+    "x",
+    "y",
+    "yan",
+    "ye",
+    "yn",
+    "yŋ",
+    "ɑŋ",
+    "ɕ",
+    "ən",
+    "əŋ",
+    "ɤ",
+    "ɨ",
+    "ɻ",
+    "ʂ",
+    "ʈʂ",
+    "ʈʂʰ"
+  ],
+  "orthography_standard": {
+    "name": "Scheme for the Chinese Phonetic Alphabet (Hanyu Pinyin)",
+    "authority": "State Council of the PRC; ISO 7098",
+    "year": 1958,
+    "url": "https://www.iso.org/standard/61420.html",
+    "notes": "Pinyin is an official orthography of Standard Mandarin, not merely a transcription aid: it is taught, legislated and standardised (ISO 7098). That it is a plain alphabet is why this spec works at all."
+  }
+}

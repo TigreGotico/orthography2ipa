@@ -210,4 +210,8 @@ RP English has lengthened `[ɑː]` for words like *bath*, *dance*, *path* (the B
 - Fortson, B. (2010). *Indo-European Language and Culture* (2nd ed.). Wiley-Blackwell.
 - Gorrochategui, J. (1984). *Onomástica indígena de Aquitania*. Univ. País Vasco.
 
-For a full bibliography organized by language module, see the docstring at the top of each `.py` file.
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Quality tiers](quality_tiers.md) · [Benchmarks](benchmarks.md)*

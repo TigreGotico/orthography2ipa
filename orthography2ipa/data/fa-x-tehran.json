@@ -1,0 +1,96 @@
+{
+  "code": "fa-x-tehran",
+  "name": "Tehran Persian (Standard Iranian)",
+  "script": "Arabic",
+  "graphemes_base": "fa",
+  "allophones_base": "fa",
+  "allophones": {
+    "ʔ": [
+      "ʔ",
+      ""
+    ],
+    "ɣ": [
+      "ɣ",
+      "ɢ"
+    ],
+    "q": [
+      "ɣ",
+      "ɢ"
+    ],
+    "i": [
+      "i",
+      "e"
+    ],
+    "u": [
+      "u",
+      "o"
+    ]
+  },
+  "parent": "fa",
+  "ancestors": [
+    {
+      "code": "fa-x-early",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "New Persian descent; Tehran dialect became standard ~19th c."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Arabic adstrate: 40–50% of formal vocabulary; consonants θ/ð/ħ/ʕ/q assimilated phonologically"
+    }
+  ],
+  "notes": "Tehran Standard Persian — the national standard of Iran. DEFINING VOWEL SHIFT (vs. Classical/Dari/Tajik): Classical ā [aː] → Tehran [ɒː] (backed); Classical a → [æ] (fronted). 6-VOWEL SYSTEM: ɒː, æ, e, o, iː, uː (no contrastive length). Voiceless stops aspirated [pʰ tʰ kʰ] in onset. q/ɣ merger: Arabic ق and غ both → [ɣ] or [ɢ]. ħ → h (pharyngeal lost); ʕ → ʔ (often deleted). r → [ɾ] tap in most positions.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "mahootian1997",
+      "author": "Mahootian, S.",
+      "year": 1997,
+      "title": "Persian",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "windfuhr1979",
+      "author": "Windfuhr, G.",
+      "year": 1979,
+      "title": "Persian Grammar: History and State of Its Study",
+      "publisher": "Mouton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lazard1992",
+      "author": "Lazard, G.",
+      "year": 1992,
+      "title": "A Grammar of Contemporary Persian",
+      "publisher": "Mazda Publishers",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tehran",
+    "https://fa.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D9%87_%D8%AA%D9%87%D8%B1%D8%A7%D9%86%DB%8C"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "fas",
+  "wikidata_qid": "Q7694905",
+  "location": {
+    "latitude": 35.688889,
+    "longitude": 51.389722,
+    "source": "wikidata",
+    "notes": "Tehran — the city whose speech IS the Iranian standard. [Wikidata Q3616 P625]"
+  }
+}

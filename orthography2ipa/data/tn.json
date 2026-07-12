@@ -1,0 +1,44 @@
+{
+  "code": "tn",
+  "name": "Tswana",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "x-clade-narr1281",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Tswana (Setswana) — Sotho-Tswana (Bantu) language, official in Botswana and South Africa. Written in the Latin script, disjunctively; the South African and Botswana orthographies differ (e.g. ⟨tlh⟩/⟨th⟩ conventions, use of ⟨š⟩ vs ⟨sh⟩). GRAPHEME INVENTORY NOT YET SPECIFIED: an accurate spec must model the ejective and aspirated stop series, the affricates and lateral obstruents (tl, tlh, tš), the click ⟨q⟩ found in ideophones and loans, and the two competing national orthographies; tone is contrastive but unwritten. INPUT CONTRACT: input is expected in a standard Latin-script Setswana orthography.",
+  "iso639_3": "tsn",
+  "glottolog_code": "tswa1253",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tswana_language",
+    "https://tn.wikipedia.org/wiki/Setswana"
+  ],
+  "sources": [
+    {
+      "id": "tn_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tswana language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tswana_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tswana_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "ancestors": [
+    {
+      "code": "x-clade-narr1281",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Bantu, within Atlantic-Congo."
+    }
+  ],
+  "location": {
+    "latitude": -24.368,
+    "longitude": 24.7587,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tswana."
+  }
+}

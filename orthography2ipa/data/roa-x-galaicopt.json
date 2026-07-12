@@ -1,0 +1,420 @@
+{
+  "code": "roa-x-galaicopt",
+  "name": "Galaico-Portuguese",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "t͡s"
+    ],
+    "ç": [
+      "t͡s"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "d͡ʒ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "d͡ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s̺"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "z": [
+      "d͡z",
+      "z̺"
+    ],
+    "ch": [
+      "t͡ʃ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "ss": [
+      "s̺"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "gu": [
+      "ɡ",
+      "ɡw"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "uei": [
+      "wɛj"
+    ],
+    "y": [
+      "i",
+      "j"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b",
+      "β"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "v": [
+      "v"
+    ],
+    "t͡s": [
+      "t͡s"
+    ],
+    "d͡z": [
+      "d͡z"
+    ],
+    "t͡ʃ": [
+      "t͡ʃ"
+    ],
+    "d͡ʒ": [
+      "d͡ʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "ã": [
+      "ɐ̃"
+    ],
+    "s̺": [
+      "s̺"
+    ],
+    "z̺": [
+      "z̺"
+    ]
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "t͡s"
+      ],
+      "before_i": [
+        "t͡s"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s̺"
+      ],
+      "intervocalic": [
+        "z̺"
+      ]
+    },
+    "z": {
+      "intervocalic": [
+        "d͡z"
+      ],
+      "word_initial": [
+        "d͡z"
+      ],
+      "word_final": [
+        "z̺"
+      ]
+    }
+  },
+  "parent": "x-clade-iberrom",
+  "ancestors": [
+    {
+      "code": "la-x-hispania",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Primary descent from Hispanic Vulgar Latin. The NW Iberian development of spoken Latin."
+    },
+    {
+      "code": "cel-x-gallaecia",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Gallaecian Celtic substrate: strongest in NW Iberia. Castro culture, toponyms, possible influence on nasal vowel development."
+    },
+    {
+      "code": "xlg",
+      "role": "substrate",
+      "weight": 0.04,
+      "notes": "Lusitanian substrate: pre-Celtic IE language of western Iberia. Possible influence on /v/≠/b/ preservation."
+    },
+    {
+      "code": "gem-x-suebi",
+      "role": "superstrate",
+      "weight": 0.05,
+      "notes": "Suebi (Germanic) superstrate in Gallaecia (411–585 CE): Kingdom of the Suebi. ~200 place names, vocabulary (guerra, roubar, branco)."
+    },
+    {
+      "code": "got",
+      "role": "superstrate",
+      "weight": 0.03,
+      "notes": "Visigothic superstrate shared with all Ibero-Romance."
+    },
+    {
+      "code": "oc",
+      "role": "adstrate",
+      "weight": 0.01,
+      "notes": "Occitan adstrate: nh and lh digraphs inherited from occitan"
+    },
+    {
+      "code": "mxi",
+      "role": "adstrate",
+      "weight": 0.02,
+      "notes": "Mozarabic adstrate: less intense in the NW than in central/southern Iberia due to shorter Moorish presence."
+    },
+    {
+      "code": "xaa",
+      "role": "adstrate",
+      "weight": 0.02,
+      "notes": "Andalusi Arabic adstrate: less intense in the NW than in central/southern Iberia due to shorter Moorish presence."
+    },
+    {
+      "code": "ast-x-leon",
+      "role": "adstrate",
+      "weight": 0.02,
+      "notes": "Asturleonese/Leonese adstrate: the Kingdom of Asturias and León was the dominant political power of Christian Iberia during the formative period of Galaico-Portuguese (8th–12th c.). The Leonese chancery language influenced administrative writing conventions, shared the 4-way sibilant system, and contributed some lexical and phonological features across the border. The split between the Galaico-Portuguese and Asturleonese traditions became clear only after the County of Portugal's independence (~1139)."
+    }
+  ],
+  "notes": "Galaico-Portuguese (~9th–14th c. CE). The shared ancestor of modern Galician and Portuguese. Attested in troubadour lyric poetry (Cantigas de Santa Maria, cantigas de amigo, cantigas de amor — >1,600 texts), early legal documents (Notícia de Torto ~1214, Testamento de D. Afonso II ~1214). KEY FEATURES: (1) Medieval 4-way sibilant contrast: /ts/ ⟨ç⟩ vs /d͡z/ ⟨z⟩ vs /s/ ⟨ss⟩ vs /z/ ⟨-s-⟩. (2) /ʎ/ ⟨lh⟩, /ɲ/ ⟨nh⟩ digraph convention from Occitan. (3) /b/ ≠ /v/ preserved. (4) F- preserved (filho, not hijo). (5) /ou/ still a true diphthong. (6) Nasal vowels developing but not fully phonemicised. The split into Galician and Portuguese is conventionally dated to ~mid-14th c. when the Portuguese court settled in Lisbon and Galician fell under Castilian influence. Source: Maia (1986), Castro (2006), Teyssier (1982).",
+  "urls": [
+    "https://en.wikipedia.org/wiki/Galician%E2%80%93Portuguese",
+    "https://pt.wikipedia.org/wiki/Galego-portugu%C3%AAs",
+    "https://gl.wikipedia.org/wiki/Galego-portugu%C3%A9s",
+    "https://es.wikipedia.org/wiki/Idioma_galaicoportugu%C3%A9s",
+    "https://ast.wikipedia.org/wiki/Galaicoportugu%C3%A9s",
+    "https://ca.wikipedia.org/wiki/Galaicoportugu%C3%A8s",
+    "https://an.wikipedia.org/wiki/Galaicoportugu%C3%A9s"
+  ],
+  "sources": [
+    {
+      "id": "maia1986",
+      "author": "Maia, C.A.",
+      "year": 1986,
+      "title": "História do galego-português",
+      "publisher": "INIC",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "freixeiro_mato1998",
+      "author": "Freixeiro Mato, X.R.",
+      "year": 1998,
+      "title": "Gramática da Lingua Galega",
+      "publisher": "A Nosa Terra",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Galician-Portuguese",
+    "https://es.wikipedia.org/wiki/Idioma_galaicoportugu%C3%A9s",
+    "https://pt.wikipedia.org/wiki/Galego-portugu%C3%AAs"
+  ],
+  "timespan": {
+    "start_year": 1100,
+    "end_year": 1400
+  },
+  "glottolog_code": "gali1263",
+  "iso639_3": "por",
+  "quality": "research",
+  "wikidata_qid": "Q1072111",
+  "location": {
+    "latitude": 35.811428,
+    "longitude": 14.472667,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Galician Romance family — a summary of a whole clade's range, not a place anyone speaks."
+  }
+}

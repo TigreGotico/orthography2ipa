@@ -1,0 +1,93 @@
+{
+  "code": "mwl-x-ifanes",
+  "name": "Ifanês (Mirandese septentrional)",
+  "script": "Latin",
+  "graphemes_base": "mwl",
+  "graphemes": {},
+  "allophones_base": "mwl",
+  "positional_graphemes_base": "mwl",
+  "parent": "mwl",
+  "notes": "Ifanês is the local speech of Ifanes (Infainç) in the northern part of Terra de Miranda; it belongs to the Northern / Raiano (border) subdialect of Mirandese. Phonologically it tracks Central Mirandese: the published descriptions record NO segmental orthography→phoneme divergence for the Northern/Raiano group. In particular, Central and Raiano BOTH keep the Leonese diphthongs ⟨iê/ie⟩ = [je] and ⟨uô/uo⟩ = [wo] (only Sendinês monophthongises them to [i]/[u]), and BOTH keep the palatal lateral /ʎ/ where Sendinês has /l/. This is corroborated by the small Raiano gold sample (raiano 'fuogo' → [ˈfwo.ʊ], diphthong retained). The Raiano/Northern distinctives that ARE reported are morphosyntactic and lexical (definite-article forms, some nasalisation and syntactic constructions) — out of scope for a grapheme→IPA spec. This spec therefore inherits the full Central Mirandese system unchanged and is grounded by documentation rather than by a distinct rule set; an earlier draft's monophthongisation ⟨iê⟩→[e] was unsourced and is removed as contradicted by both the literature and the Raiano gold.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "vasconcelos1900",
+      "author": "Vasconcelos, J. Leite de",
+      "year": 1900,
+      "title": "Estudos de Philologia Mirandesa (Vol. I)",
+      "publisher": "Imprensa Nacional, Lisboa",
+      "url": "https://archive.org/details/estudosdephilolo01leit",
+      "pages": null,
+      "notes": "Foundational description that first delimits the Mirandese subdialects (central, the northern/raiano speech of the Miranda plateau, and Sendinês) and their phonology."
+    },
+    {
+      "id": "convencao1999",
+      "author": "Ferreira, M.B. & Raposo, D. (coords.)",
+      "year": 1999,
+      "title": "Convenção Ortográfica da Língua Mirandesa",
+      "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
+      "url": "http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf",
+      "pages": "62",
+      "notes": "Official orthography, built on the Central/Raiano norm; records that the ⟨iê/uô⟩ spelling reflected the [je]/[wo] pronunciation of the Central and Raiano dialects (reduced to [i]/[u] only in Sendinês)."
+    },
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference for the shared Ibero-Romance processes (nasal place assimilation, spirantisation) inherited from the Central spec."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mirandese_language",
+    "https://mwl.wikipedia.org/wiki/Lh%C3%A9ngua_mirandesa",
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_mirandesa"
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "mwl",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "ç",
+      "in",
+      "un",
+      "on",
+      "is",
+      "us",
+      "ns",
+      "ão"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "ã",
+      "ẽ",
+      "ĩ",
+      "õ",
+      "ũ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. Dialect mwl-x-ifanes: no evidence of stress-pattern divergence from standard Mirandese; block copied from mwl."
+  },
+  "location": {
+    "latitude": 41.581667,
+    "longitude": -6.265,
+    "source": "wikidata",
+    "notes": "Ifanes (Infainç) — the northern Terra de Miranda village the sub-dialect is named for. [Wikidata Q1657046 P625]"
+  }
+}

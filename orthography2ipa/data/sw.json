@@ -1,0 +1,363 @@
+{
+  "code": "sw",
+  "glottolog_code": "swah1253",
+  "name": "Swahili",
+  "script": "Latin",
+  "quality": "research",
+  "script_type": "alphabet",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "dh": [
+      "ð"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "mv": [
+      "mv"
+    ],
+    "n": [
+      "n"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "ng'": [
+      "ŋ"
+    ],
+    "nj": [
+      "ndʒ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "th": [
+      "θ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "positional_graphemes": {
+    "mb": {
+      "word_initial": [
+        "mb"
+      ]
+    },
+    "mv": {
+      "word_initial": [
+        "mv"
+      ]
+    },
+    "nd": {
+      "word_initial": [
+        "nd"
+      ]
+    },
+    "ng'": {
+      "word_initial": [
+        "ŋ"
+      ],
+      "word_final": [
+        "ŋ"
+      ]
+    },
+    "nj": {
+      "word_initial": [
+        "ndʒ"
+      ]
+    },
+    "m": {
+      "word_initial": [
+        "m",
+        "m̩"
+      ]
+    },
+    "n": {
+      "word_initial": [
+        "n",
+        "n̩"
+      ]
+    },
+    "k": {
+      "word_final": [
+        "k"
+      ]
+    },
+    "t": {
+      "word_final": [
+        "t"
+      ]
+    },
+    "p": {
+      "word_final": [
+        "p"
+      ]
+    }
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "notes": "Swahili (Kiswahili). Bantu lingua franca of East Africa; official language of Tanzania, Kenya, Uganda, DRC, Rwanda. ~200 million total speakers. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e=[ɛ], o=[ɔ] (fully open). (2) PRENASALIZED STOPS: mb/nd/nj/ng are single phonemes, may appear word-initially. (3) SYLLABIC NASALS: m- and n- prefixes are syllabic in noun classes (e.g., mtu /m̩.tu/). (4) NG vs NG': <ng'> = [ŋ] (velar nasal alone), <ng> = [ŋɡ] (prenasalized stop). (5) ARABIC LOANS: dh=[ð], th=[θ], gh=[ɣ] from Arabic via coastal contact (Swahili Coast trade). (6) NO TONES: Standard Swahili (Kiunguja/Zanzibar-based) is not tonal, unlike many other Bantu languages. (7) NOUN CLASS SYSTEM: prefixes (m-/wa-, ki-/vi-, n-, etc.) mark noun class but do not affect grapheme-phoneme mapping.",
+  "sources": [
+    {
+      "id": "nurse_hinnebusch1993",
+      "author": "Nurse, D. & Hinnebusch, T.J.",
+      "year": 1993,
+      "title": "Swahili and Sabaki: A Linguistic History",
+      "publisher": "University of California Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ashton1944",
+      "author": "Ashton, E.O.",
+      "year": 1944,
+      "title": "Swahili Grammar",
+      "publisher": "Longmans",
+      "url": null,
+      "pages": null,
+      "notes": "Classic pedagogical grammar with full phonological description"
+    },
+    {
+      "id": "mkude2004",
+      "author": "Mkude, D., Mvungi, M. & Msanjila, Y.",
+      "year": 2004,
+      "title": "Sarufi ya Kiswahili",
+      "publisher": "Oxford University Press Eastern Africa",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Swahili_language",
+    "https://en.wikipedia.org/wiki/Proto-Bantu_language",
+    "https://sw.wikipedia.org/wiki/Kiswahili"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Swahili_language",
+    "https://en.wikipedia.org/wiki/Swahili_phonology",
+    "https://glottolog.org/resource/languoid/id/swah1253",
+    "https://www.ethnologue.com/language/swh/"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "iso639_3": "swh",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Swahili (Standard, as spoken in Tanzania/Kenya) has regular penultimate stress in native vocabulary. Loanwords may carry final stress but those are a minority. Source: Nurse & Hinnebusch (1993), Swahili and Sabaki; Wikipedia: https://en.wikipedia.org/wiki/Swahili_phonology"
+  },
+  "parent": "bnt",
+  "ancestors": [
+    {
+      "code": "bnt",
+      "role": "parent",
+      "weight": 0.75,
+      "notes": "Bantu (Sabaki) branch of Niger-Congo."
+    },
+    {
+      "code": "ar",
+      "role": "adstrate",
+      "weight": 0.18,
+      "notes": "Arabic adstrate: the dominant contact layer of the Swahili coast — a very large share of the lexicon."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "English adstrate: colonial and modern loanwords."
+    },
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Persian adstrate: early Indian-Ocean trade vocabulary."
+    },
+    {
+      "code": "pt-PT",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "Portuguese adstrate: 16th-c. coastal trade loanwords."
+    }
+  ],
+  "wikidata_qid": "Q7838",
+  "phoible_id": "swah1253",
+  "wals_code": "swa",
+  "location": {
+    "latitude": -8.25605,
+    "longitude": 37.624,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Swahili."
+  }
+}

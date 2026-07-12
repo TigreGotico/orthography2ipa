@@ -1,0 +1,416 @@
+{
+  "code": "sa",
+  "name": "Sanskrit",
+  "script": "Devanagari",
+  "graphemes": {
+    "अ": [
+      "ə"
+    ],
+    "आ": [
+      "aː"
+    ],
+    "इ": [
+      "i"
+    ],
+    "ई": [
+      "iː"
+    ],
+    "उ": [
+      "u"
+    ],
+    "ऊ": [
+      "uː"
+    ],
+    "ऋ": [
+      "r̩"
+    ],
+    "ॠ": [
+      "r̩ː"
+    ],
+    "ऌ": [
+      "l̩"
+    ],
+    "ए": [
+      "eː"
+    ],
+    "ऐ": [
+      "əi"
+    ],
+    "ओ": [
+      "oː"
+    ],
+    "औ": [
+      "əu"
+    ],
+    "ा": [
+      "aː"
+    ],
+    "ि": [
+      "i"
+    ],
+    "ी": [
+      "iː"
+    ],
+    "ु": [
+      "u"
+    ],
+    "ू": [
+      "uː"
+    ],
+    "ृ": [
+      "r̩"
+    ],
+    "ॄ": [
+      "r̩ː"
+    ],
+    "ॢ": [
+      "l̩"
+    ],
+    "े": [
+      "eː"
+    ],
+    "ै": [
+      "əi"
+    ],
+    "ो": [
+      "oː"
+    ],
+    "ौ": [
+      "əu"
+    ],
+    "ं": [
+      "̃ŋ"
+    ],
+    "ः": [
+      "h"
+    ],
+    "ँ": [
+      "̃"
+    ],
+    "्": [
+      ""
+    ],
+    "क": [
+      "k"
+    ],
+    "ख": [
+      "kʰ"
+    ],
+    "ग": [
+      "ɡ"
+    ],
+    "घ": [
+      "ɡʱ"
+    ],
+    "ङ": [
+      "ŋ"
+    ],
+    "च": [
+      "tɕ"
+    ],
+    "छ": [
+      "tɕʰ"
+    ],
+    "ज": [
+      "dʑ"
+    ],
+    "झ": [
+      "dʑʱ"
+    ],
+    "ञ": [
+      "ɲ"
+    ],
+    "ट": [
+      "ʈ"
+    ],
+    "ठ": [
+      "ʈʰ"
+    ],
+    "ड": [
+      "ɖ"
+    ],
+    "ढ": [
+      "ɖʱ"
+    ],
+    "ण": [
+      "ɳ"
+    ],
+    "त": [
+      "t̪"
+    ],
+    "थ": [
+      "t̪ʰ"
+    ],
+    "द": [
+      "d̪"
+    ],
+    "ध": [
+      "d̪ʱ"
+    ],
+    "न": [
+      "n̪"
+    ],
+    "प": [
+      "p"
+    ],
+    "फ": [
+      "pʰ"
+    ],
+    "ब": [
+      "b"
+    ],
+    "भ": [
+      "bʱ"
+    ],
+    "म": [
+      "m"
+    ],
+    "य": [
+      "j"
+    ],
+    "र": [
+      "r"
+    ],
+    "ल": [
+      "l"
+    ],
+    "व": [
+      "ʋ"
+    ],
+    "श": [
+      "ɕ"
+    ],
+    "ष": [
+      "ʂ"
+    ],
+    "स": [
+      "s"
+    ],
+    "ह": [
+      "ɦ"
+    ],
+    "क्ष": [
+      "kʂ"
+    ],
+    "ज्ञ": [
+      "dʑɲ"
+    ],
+    "त्र": [
+      "t̪r"
+    ]
+  },
+  "allophones": {
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "tɕʰ": [
+      "tɕʰ"
+    ],
+    "dʑ": [
+      "dʑ"
+    ],
+    "dʑʱ": [
+      "dʑʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "t̪": [
+      "t̪"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "d̪": [
+      "d̪"
+    ],
+    "d̪ʱ": [
+      "d̪ʱ"
+    ],
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n̪": [
+      "n̪",
+      "n",
+      "ŋ",
+      "ɲ",
+      "ɳ"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɕ": [
+      "ɕ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɦ": [
+      "ɦ"
+    ],
+    "h": [
+      "h"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʋ": [
+      "ʋ",
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "r̩": [
+      "r̩"
+    ],
+    "l̩": [
+      "l̩"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "r̩ː": [
+      "r̩ː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "əi": [
+      "əi"
+    ],
+    "əu": [
+      "əu"
+    ]
+  },
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "ine",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Direct descendant of Proto-Indo-European"
+    }
+  ],
+  "notes": "Classical Sanskrit (Pāṇinian standard, c. 4th c. BCE onward). Five-point place-of-articulation system: velar, palatal, retroflex, dental, labial. Four-way laryngeal contrast (plain/aspirated × voiced/voiceless). No short /e/ or /o/ (only long). ⟨व⟩ = [ʋ] labiodental approximant. Sandhi rules are extensive but modeled at the allophone level here.",
+  "quality": "research",
+  "script_type": "abugida",
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "coulson1992",
+      "author": "Coulson, M.",
+      "year": 1992,
+      "title": "Sanskrit: An Introduction to the Classical Language",
+      "publisher": "Hodder & Stoughton",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sanskrit",
+    "https://sa.wikipedia.org/wiki/संस्कृतम्",
+    "https://en.wikipedia.org/wiki/Sanskrit_phonology",
+    "https://sa.wikipedia.org/wiki/%E0%A4%B8%E0%A4%82%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A5%83%E0%A4%A4%E0%A4%AE%E0%A5%8D"
+  ],
+  "timespan": {
+    "start_year": -1500,
+    "end_year": null
+  },
+  "glottolog_code": "sans1269",
+  "iso639_3": "san",
+  "wikidata_qid": "Q11059",
+  "phoible_id": "sans1269",
+  "location": {
+    "latitude": 20.0,
+    "longitude": 77.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sanskrit."
+  }
+}

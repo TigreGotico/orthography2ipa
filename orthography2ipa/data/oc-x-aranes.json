@@ -1,0 +1,395 @@
+{
+  "code": "oc-x-aranes",
+  "name": "Aranese (Gascon Occitan)",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɔ"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "u",
+      "ɔ"
+    ],
+    "u": [
+      "y"
+    ],
+    "à": [
+      "a"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "é": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "ó": [
+      "u"
+    ],
+    "ú": [
+      "y"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f",
+      "h"
+    ],
+    "g": [
+      "ɡ",
+      "dʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "b",
+      "β"
+    ],
+    "x": [
+      "ks"
+    ],
+    "z": [
+      "z"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "ss": [
+      "s"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "gu": [
+      "ɡ",
+      "ɡw"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "th": [
+      "t"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "oi": [
+      "uj"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "ui": [
+      "yj"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b",
+      "β"
+    ],
+    "d": [
+      "d",
+      "ð"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f",
+      "h"
+    ],
+    "h": [
+      "h"
+    ],
+    "v": [
+      "v",
+      "β"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ]
+  },
+  "positional_graphemes": {
+    "b": {
+      "default": [
+        "b"
+      ],
+      "intervocalic": [
+        "β"
+      ]
+    },
+    "d": {
+      "default": [
+        "d"
+      ],
+      "intervocalic": [
+        "ð"
+      ]
+    },
+    "g": {
+      "default": [
+        "ɡ"
+      ],
+      "intervocalic": [
+        "ɣ"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "onset": [
+        "ɾ"
+      ],
+      "coda": [
+        "ɾ"
+      ]
+    }
+  },
+  "parent": "oc",
+  "notes": "Aranese (Aranès). Gascon variety of Occitan spoken in Val d'Aran, Catalonia. ~2,800 speakers. Co-official with Catalan and Spanish in Catalonia. Hallmark Gascon features: Latin F- → [h] aspiration (fo→hòc, flor→hlòr), final -a → [ɔ], front rounded /y/ (⟨u⟩). Regulated by Conselh Generau d'Aran. Classical Occitan orthography with Gascon conventions.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "alibert1976",
+      "author": "Alibert, L.",
+      "year": 1976,
+      "title": "Gramatica occitana",
+      "publisher": "Institut d'Estudis Occitans",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "bec1973",
+      "author": "Bec, P.",
+      "year": 1973,
+      "title": "Manuel pratique d'occitan moderne",
+      "publisher": "Picard",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Aranese_dialect",
+    "https://oc.wikipedia.org/wiki/Aranés",
+    "https://oc.wikipedia.org/wiki/Aran%C3%A9s",
+    "https://fr.wikipedia.org/wiki/Aranais"
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  },
+  "glottolog_code": "aran1260",
+  "iso639_3": "oci",
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u",
+      "as",
+      "es",
+      "is",
+      "os",
+      "us",
+      "ar",
+      "er",
+      "ir",
+      "or"
+    ],
+    "marked_vowels": [
+      "à",
+      "è",
+      "é",
+      "í",
+      "ò",
+      "ó",
+      "ú"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Aranese (Gascon Occitan) accentuation per the Conselh Generau dAran norm: same default-final, vowel/vowel+s → paroxytone rule as standard Occitan; written accents override. Aranese ⟨a⟩ in stressed position is typically [a] (not [ɔ] as standard Oc). Pattern inherited from Gascon prosody."
+  },
+  "wikidata_qid": "Q10196",
+  "location": {
+    "latitude": 42.7225,
+    "longitude": 0.837222,
+    "source": "wikidata",
+    "notes": "the Val d'Aran — the single valley Aranese is spoken in. Glottolog's point for it is the generic Occitan point in Provence. [Wikidata Q12602 P625]"
+  }
+}

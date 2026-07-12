@@ -1,0 +1,96 @@
+{
+  "code": "tpw",
+  "name": "Old Tupi (Tupinambá)",
+  "parent": "x-clade-tupi1275",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "ᵐb"
+    ],
+    "s": [
+      "s"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʔ": [
+      "ʔ"
+    ]
+  },
+  "allophones": {},
+  "notes": "STRUCTURAL ANCESTRY / CONTACT NODE (metadata only, not a modelled G2P target). Old Tupi (Tupinambá, the lingua franca 'língua geral' of colonial Brazil) is referenced only as the indigenous substrate/adstrate of Brazilian Portuguese (toponyms and lexicon: abacaxi, mandioca, capim, jacaré). No phonology is claimed; the minimal grapheme set is a placeholder (afa.json / trk.json stub pattern). Glottolog tupi1273 (Tupinambá).",
+  "quality": "stub",
+  "script_type": "alphabet",
+  "iso639_3": "tpw",
+  "glottolog_code": "tupi1273",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Tupi_language"
+  ],
+  "urls": [
+    "https://glottolog.org/resource/languoid/id/tupi1273"
+  ],
+  "sources": [
+    {
+      "id": "rodrigues1985",
+      "author": "Rodrigues, A. D.",
+      "year": 1985,
+      "title": "Evidence for Tupi-Guarani Genetic Relationship",
+      "publisher": "University of Texas Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference for Old Tupi / Tupí-Guaraní; cited as the indigenous contact layer of Brazilian Portuguese (structural node only).",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Old_Tupi_language"
+    }
+  ],
+  "wikidata_qid": "Q56944",
+  "phoible_id": "tupi1273",
+  "wals_code": "tup",
+  "location": {
+    "latitude": -22.807778,
+    "longitude": -42.106389,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tupinambá."
+  }
+}

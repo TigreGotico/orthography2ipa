@@ -1,0 +1,293 @@
+{
+  "code": "gv",
+  "name": "Manx",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "æ"
+    ],
+    "aa": [
+      "eː"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "ee": [
+      "iː"
+    ],
+    "i": [
+      "ɪ",
+      "ə"
+    ],
+    "oo": [
+      "uː"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "ʊ",
+      "ɤ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "c": [
+      "k"
+    ],
+    "ck": [
+      "k"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "th": [
+      "θ",
+      "ð"
+    ],
+    "ch": [
+      "x"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "qu": [
+      "kw"
+    ],
+    "çh": [
+      "tʃ"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "æ": [
+      "æ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ɤ": [
+      "ɤ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ]
+  },
+  "parent": "cel-x-goidelic",
+  "ancestors": [
+    {
+      "code": "cel-x-goidelic",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "Goidelic descent"
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "English adstrate: heavy influence, English-based orthography"
+    }
+  ],
+  "notes": "Manx (Gaelg). Isle of Man. Last native speaker (Ned Maddrell) died 1974. Revival since 1970s; ~1,800 speakers (est. 2020). English-based orthography (unlike Irish/Scots Gaelic). Simplified mutation system vs. Irish/Scots Gaelic. Refs: Thomson (1992), Broderick (1984).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "macaulay1992",
+      "author": "MacAulay, D. (ed.)",
+      "year": 1992,
+      "title": "The Celtic Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Celtic_languages"
+    },
+    {
+      "id": "broderick1984",
+      "author": "Broderick, G.",
+      "year": 1984,
+      "title": "A Handbook of Late Spoken Manx",
+      "publisher": "Niemeyer",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "ladefoged_maddieson1996",
+      "author": "Ladefoged, P. & Maddieson, I.",
+      "year": 1996,
+      "title": "The Sounds of the World's Languages",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Manx_language",
+    "https://gv.wikipedia.org/wiki/Gaelg"
+  ],
+  "timespan": {
+    "start_year": 600,
+    "end_year": null
+  },
+  "glottolog_code": "manx1243",
+  "iso639_3": "glv",
+  "wikidata_qid": "Q12175",
+  "wals_code": "mnx",
+  "location": {
+    "latitude": 54.2604,
+    "longitude": -4.45437,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Manx."
+  }
+}

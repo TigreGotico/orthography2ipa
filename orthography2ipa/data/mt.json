@@ -1,0 +1,168 @@
+{
+  "code": "mt",
+  "name": "Maltese",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "mlt",
+  "glottolog_code": "malt1254",
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "graphemes": {
+    "għ": [
+      "ʕ"
+    ],
+    "ie": [
+      "ɪə"
+    ],
+    "ċ": [
+      "tʃ"
+    ],
+    "ġ": [
+      "dʒ"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "ħ": [
+      "ħ"
+    ],
+    "ż": [
+      "z"
+    ],
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "ʔ"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "z": [
+      "ts"
+    ]
+  },
+  "allophones": {},
+  "positional_graphemes": {},
+  "ancestors": [
+    {
+      "code": "ar",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Descent from Siculo-Arabic (Maghrebi Arabic of Sicily)."
+    },
+    {
+      "code": "scn",
+      "role": "superstrate",
+      "weight": 0.12,
+      "notes": "Sicilian superstrate: absorbed prestige layer, large share of the lexicon."
+    },
+    {
+      "code": "it-IT",
+      "role": "superstrate",
+      "weight": 0.08,
+      "notes": "Italian superstrate: further Romance vocabulary and phonemes."
+    },
+    {
+      "code": "en-GB",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "English adstrate: colonial and modern loanwords."
+    }
+  ],
+  "parent": "ar",
+  "notes": "Maltese, the only Semitic language written in the Latin script and official EU language. Evolved from Siculo-Arabic. Digraph għ represents pharyngeal fricative, h is silent. Ċ and ġ are retroflex-palatal affricates. Extensive lexical borrowing from Sicilian/Italian and English.",
+  "sources": [
+    {
+      "id": "wiki-mt",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Maltese language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Maltese_language"
+    },
+    {
+      "id": "wiki-mt-phon",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Maltese phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Maltese_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Maltese_language",
+    "https://en.wikipedia.org/wiki/Maltese_phonology",
+    "https://mt.wikipedia.org/wiki/Malti",
+    "https://en.wikipedia.org/wiki/Siculo-Arabic",
+    "https://mt.wikipedia.org/wiki/Lingwa_Maltija",
+    "https://mt.wikipedia.org/wiki/G%C4%A7arbi_Sqalli"
+  ],
+  "wikidata_qid": "Q9166",
+  "phoible_id": "malt1254",
+  "wals_code": "mlt",
+  "location": {
+    "latitude": 35.8884,
+    "longitude": 14.4508,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Maltese."
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "code": "bi",
+  "name": "Bislama",
+  "family": "English Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ae": [
+      "ae"
+    ],
+    "ao": [
+      "ao"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ae": [
+      "ae"
+    ],
+    "ao": [
+      "ao"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "dʒ": [
+      "dʒ",
+      "tʃ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "notes": "Bislama — English-lexifier creole (national language of Vanuatu), with an Oceanic (Austronesian) phonology and grammar. Post-1995 standard orthography: 5 vowels, the digraphs ⟨ae⟩ and ⟨ao⟩ for diphthongs, ⟨ng⟩ /ŋ/. The pre-1995 spelling used ⟨é⟩, ⟨ai⟩/⟨au⟩ and macron-marked ⟨m̄⟩ /mʷ/, ⟨p̄⟩ /pʷ/; labialised consonants are now written with a following ⟨w⟩ (mw, pw) — labialisation is not modelled here. Spelling is broadly phonemic. Some speakers have a few Oceanic-substrate phonemes (/pʷ/, /mʷ/) not present for all.",
+  "iso639_3": "bis",
+  "glottolog_code": "bisl1239",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bislama",
+    "https://bi.wikipedia.org/wiki/Bislama"
+  ],
+  "sources": [
+    {
+      "id": "crowley2004",
+      "author": "Crowley, Terry",
+      "year": 2004,
+      "title": "Bislama Reference Grammar",
+      "publisher": "University of Hawaiʻi Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar; phonology and the standard orthography."
+    },
+    {
+      "id": "bislama_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Bislama",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Bislama",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bislama",
+      "pages": null,
+      "notes": "Alphabet and orthography reform."
+    }
+  ],
+  "timespan": {
+    "start_year": 1860,
+    "end_year": null
+  },
+  "location": {
+    "latitude": -15.4,
+    "longitude": 166.89,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bislama."
+  }
+}

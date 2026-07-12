@@ -1,0 +1,334 @@
+{
+  "code": "kea",
+  "glottolog_code": "kabu1256",
+  "name": "Kabuverdianu (Cape Verdean Creole)",
+  "script": "Latin",
+  "quality": "research",
+  "script_type": "alphabet",
+  "parent": "pt-PT",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "dj": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "tx": [
+      "tʃ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ʃ"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "n̈": [
+      "ŋ"
+    ]
+  },
+  "positional_graphemes": {
+    "s": {
+      "word_final": [
+        "s",
+        "ʃ"
+      ]
+    },
+    "b": {
+      "word_final": [
+        "b",
+        ""
+      ]
+    },
+    "d": {
+      "word_final": [
+        "d",
+        ""
+      ]
+    },
+    "g": {
+      "word_final": [
+        "ɡ",
+        ""
+      ]
+    },
+    "r": {
+      "word_final": [
+        "r",
+        ""
+      ],
+      "word_initial": [
+        "r"
+      ]
+    },
+    "lh": {
+      "word_initial": [
+        "ʎ"
+      ]
+    },
+    "nh": {
+      "word_initial": [
+        "ɲ"
+      ]
+    }
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "ancestors": [
+    {
+      "code": "pt-PT",
+      "role": "superstrate",
+      "weight": 0.75,
+      "notes": "European Portuguese superstrate: colonial contact from 1460s. The lexifier. Vocabulary, much of morphology and some phonology derive from 15th–17th century Portuguese."
+    }
+  ],
+  "notes": "Kabuverdianu / Cape Verdean Creole (ALUPEC orthography). Portuguese-based creole; vernacular language of Cape Verde (~600,000 speakers). Two macro-dialects: Badiu (Santiago island, Sotavento group) and Sampadjudo (Barlavento islands). KEY FEATURES: (1) NASAL VOWELS: ã/ẽ/ĩ/õ/ũ are phonemic, from African substrate influence and retention of archaic PT nasality. (2) FIVE-VOWEL SYSTEM: no /ɨ/; unstressed vowels preserved. (3) SILENT H: <h> has no phonetic value. (4) AFFRICATES: tx=[tʃ], dj=[dʒ] — innovations relative to PT. (5) WORD-FINAL WEAKENING: final obstruents may be deleted, especially in Badiu variety. (6) SIBILANT: x=[ʃ], j=[ʒ], s=[s]. (7) RHOTIC: alveolar [r] throughout. Official orthography ALUPEC (Alfabeto Unificado para a Escrita do Cabo-Verdiano) adopted 1998, revised 2009.",
+  "sources": [
+    {
+      "id": "baptista2002",
+      "author": "Baptista, M.",
+      "year": 2002,
+      "title": "The Syntax of Cape Verdean Creole: The Sotavento Varieties",
+      "publisher": "John Benjamins",
+      "url": null,
+      "pages": null,
+      "notes": "Definitive syntactic description; phonological inventory in chapter 2"
+    },
+    {
+      "id": "veiga2002",
+      "author": "Veiga, M.",
+      "year": 2002,
+      "title": "O Cabo-verdiano em 45 Lições",
+      "publisher": "INIC, Praia",
+      "url": null,
+      "pages": null,
+      "notes": "Pedagogical description with phonological chapter; Barlavento variety focus"
+    },
+    {
+      "id": "lang2013",
+      "author": "Lang, J.",
+      "year": 2013,
+      "title": "Creole Genesis and the Acquisition of Grammar: The Case of Cape Verde Creole",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Cape_Verdean_Creole"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Cape_Verdean_Creole",
+    "https://en.wikipedia.org/wiki/ALUPEC",
+    "https://en.wikipedia.org/wiki/Languages_of_Cape_Verde",
+    "https://glottolog.org/resource/languoid/id/kabu1256",
+    "https://www.ethnologue.com/language/kea/"
+  ],
+  "timespan": {
+    "start_year": 1500,
+    "end_year": null
+  },
+  "iso639_3": "kea",
+  "wikidata_qid": "Q35963",
+  "phoible_id": "kabu1256",
+  "location": {
+    "latitude": 15.0586,
+    "longitude": -23.6148,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kabuverdianu."
+  }
+}

@@ -1,0 +1,478 @@
+{
+  "code": "pt-BR-x-ce",
+  "name": "Cearense Portuguese",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɐ"
+    ],
+    "e": [
+      "e",
+      "ɛ",
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ",
+      "u"
+    ],
+    "u": [
+      "u"
+    ],
+    "á": [
+      "a"
+    ],
+    "à": [
+      "a"
+    ],
+    "â": [
+      "ɐ"
+    ],
+    "ã": [
+      "ɐ̃"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ô": [
+      "o"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ú": [
+      "u"
+    ],
+    "ü": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "s"
+    ],
+    "d": [
+      "d",
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l",
+      "w"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ɾ",
+      "h",
+      "x"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t",
+      "tʃ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ʃ",
+      "ks",
+      "z",
+      "s"
+    ],
+    "y": [
+      "i"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "ch": [
+      "ʃ"
+    ],
+    "lh": [
+      "ʎ"
+    ],
+    "nh": [
+      "ɲ"
+    ],
+    "rr": [
+      "ʁ"
+    ],
+    "ss": [
+      "s"
+    ],
+    "qu": [
+      "k",
+      "kw"
+    ],
+    "gu": [
+      "ɡ",
+      "ɡw"
+    ],
+    "ai": [
+      "aj"
+    ],
+    "au": [
+      "aw"
+    ],
+    "ei": [
+      "ej"
+    ],
+    "eu": [
+      "ew"
+    ],
+    "iu": [
+      "iw"
+    ],
+    "oi": [
+      "oj"
+    ],
+    "ou": [
+      "ow"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "ão": [
+      "ɐ̃w̃"
+    ],
+    "ãe": [
+      "ɐ̃j̃"
+    ],
+    "õe": [
+      "õj̃"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s",
+      "h"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʁ": [
+      "h",
+      "x",
+      "ɦ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɫ": [
+      "w"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "a": [
+      "a"
+    ],
+    "ɐ": [
+      "ɐ"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ə": [
+      "i"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ɐ̃": [
+      "ɐ̃"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ]
+  },
+  "parent": "pt-BR",
+  "notes": "Cearense (Fortaleza). Northeastern-type open pretonic vowels /e/ -> [ɛ], /o/ -> [ɔ]. RESOLVED variability: ALiB and the Fortaleza urban norm make /t,d/ palatalisation before /i/ the prestige default (attributed to northern-dialect influence), so palatalisation is RETAINED (base default). Diagnostic coda /S/ aspiration -> [h] before a consonant (as costas -> [ˈkahtɐs]), distinct from both the alveolar [s] and the palatal chiado; word-final /S/ kept [s]. Distinctive melodic prosody.",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "mateus_dandrade2000",
+      "author": "Mateus, M.H.M. & d'Andrade, E.",
+      "year": 2000,
+      "title": "The Phonology of Portuguese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "callou_leite2001",
+      "author": "Callou, D. & Leite, Y.",
+      "year": 2001,
+      "title": "Iniciação à fonética e à fonologia (8th ed.)",
+      "publisher": "Zahar",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "silva2002",
+      "author": "Silva, T.C.",
+      "year": 2002,
+      "title": "Fonética e fonologia do português",
+      "publisher": "Contexto",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardoso_etal2014",
+      "author": "Cardoso, S.A.M. et al.",
+      "year": 2014,
+      "title": "Atlas Linguístico do Brasil (ALiB), vols. 1-2",
+      "publisher": "EDUEL",
+      "url": null,
+      "pages": null,
+      "notes": "Geolinguistic atlas; pretonic-vowel and palatalization isoglosses."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ceará",
+    "https://pt.wikipedia.org/wiki/Dialeto_nordestino",
+    "https://en.wikipedia.org/wiki/Central_northeastern_Portuguese",
+    "https://pt.wikipedia.org/wiki/Dialeto_da_costa_norte",
+    "https://en.wikipedia.org/wiki/North_coast_Portuguese"
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "iso639_3": "por",
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns",
+      "ão",
+      "ãe",
+      "õe",
+      "au",
+      "éu",
+      "éi",
+      "ói"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "graphemes_base": "pt-BR",
+  "allophones_base": "pt-BR",
+  "positional_graphemes_base": "pt-BR",
+  "positional_graphemes": {
+    "e": {
+      "pretonic": [
+        "ɛ"
+      ],
+      "word_final": [
+        "ɪ"
+      ],
+      "posttonic": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "pretonic": [
+        "ɔ"
+      ],
+      "word_final": [
+        "ʊ"
+      ],
+      "posttonic": [
+        "ʊ"
+      ]
+    },
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "z"
+      ],
+      "before_consonant": [
+        "h"
+      ],
+      "coda": [
+        "h"
+      ],
+      "word_final": [
+        "s"
+      ],
+      "intervocalic_cross_word": [
+        "z"
+      ]
+    },
+    "z": {
+      "before_consonant": [
+        "h"
+      ],
+      "coda": [
+        "h"
+      ],
+      "word_final": [
+        "s"
+      ]
+    }
+  },
+  "location": {
+    "latitude": -3.7275,
+    "longitude": -38.5275,
+    "source": "wikidata",
+    "notes": "Fortaleza — the centre of the Cearense area. [Wikidata Q43463 P625]"
+  }
+}

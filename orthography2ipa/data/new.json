@@ -1,0 +1,89 @@
+{
+  "code": "new",
+  "name": "Newar",
+  "script": "Devanagari",
+  "script_type": "abugida",
+  "quality": "stub",
+  "iso639_3": "new",
+  "glottolog_code": "newa1246",
+  "wikidata_qid": "Q33979",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Newar (Nepal Bhasa, नेपाल भाषा) of the Kathmandu Valley, written today in Devanagari (historically in the Ranjana and other Nepalese scripts). The grapheme inventory is NOT yet specified: Devanagari is an abugida with an inherent vowel, dependent vowel signs, conjuncts and the virama, and the Newar sound system (including its tonal/phonation and vowel-length contrasts) does not map to the Devanagari letters the same way Nepali or Hindi does. Metadata only. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode newa1246), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "sources": [
+    {
+      "id": "new_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Newar language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Newar_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Newar_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode newa1246."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Newar_language",
+    "https://new.wikipedia.org/wiki/%E0%A4%A8%E0%A5%87%E0%A4%AA%E0%A4%BE%E0%A4%B2%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BE"
+  ],
+  "phonemes": [
+    "a̟",
+    "ã̟",
+    "b",
+    "b̤",
+    "d̪z̪|dz",
+    "d̪z̪̤|dz̤",
+    "d̪|d",
+    "d̪̤|d̤",
+    "i",
+    "ĩ",
+    "k",
+    "kʰ",
+    "l̪|l",
+    "l̪̤|l̤",
+    "m",
+    "m̤",
+    "n̪|n",
+    "n̪̤|n̤",
+    "p",
+    "pʰ",
+    "s̪|s",
+    "t̪s̪|ts",
+    "t̪s̪ʰ|tsʰ",
+    "t̪|t",
+    "t̪ʰ|tʰ",
+    "u",
+    "ũ",
+    "ɡ",
+    "ɡ̤",
+    "ɤ̞",
+    "ɤ̞̃",
+    "ɦ"
+  ],
+  "parent": "x-clade-sino1245",
+  "ancestors": [
+    {
+      "code": "x-clade-sino1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Sino-Tibetan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 27.67,
+    "longitude": 85.326,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kathmandu Valley Newari."
+  }
+}

@@ -1,72 +1,54 @@
 # orthography2ipa — Documentation
 
-**orthography2ipa** is a Python package providing linguistically motivated grapheme-to-IPA (International Phonetic Alphabet) mappings and allophone inventories for 50+ languages and dialects. It is designed for researchers, NLP engineers, and computational linguists who need accurate orthographic-to-phonemic conversion grounded in the phonological literature.
+**[index.md](index.md) is the front door.** It routes you by what you are trying
+to do — integrate the engine, add a language, build a downstream phonemizer,
+evaluate the library for production — and states the accuracy limits up front.
 
----
+`orthography2ipa` measures how languages relate to each other across independent
+axes (phonological, reading, spelling, script, genealogical, temporal,
+geographic), and converts orthography to IPA from the same per-language data:
+493 languages plus 63 classification-only clade nodes, all as cited JSON specs
+with no trained weights.
 
-## Documentation Contents
+```python
+import orthography2ipa as o2i
+from orthography2ipa.distance import grapheme_divergence, spelling_divergence
+
+o2i.transcribe("olá mundo", "pt")   # 'oˈla ˈmũdu'
+
+gl, glr = o2i.get("gl"), o2i.get("gl-x-reintegrado")
+grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233 — they read alike
+spelling_divergence(gl, glr).mean_distance       # 0.0659 — they are written differently
+```
+
+## Contents
 
 | Document | Description |
 |---|---|
-| [Getting Started](getting_started.md) | Installation, quickstart, and first examples |
-| [Architecture](architecture.md) | Package structure, modules, design decisions |
-| [Data Model](data_model.md) | `LanguageSpec`, `Grapheme2IPA`, `AllophoneMap`, ancestry types |
-| [Language Registry](registry.md) | All supported languages, codes, families |
-| [Tokenizer](tokenizer.md) | `PhonetokTokenizer`, beam search, `Token`, `IPAPath` |
-| [Distance Metrics](distance.md) | Segment, inventory, grapheme, allophone, and combined distances |
-| [Ancestry System](ancestry.md) | `Ancestor`, `AncestorRole`, phylogenetic distance, substrate/superstrate |
-| [Adding a Language](adding_a_language.md) | Step-by-step guide to contributing a new language mapping |
-| [Linguistic Accuracy Guide](linguistic_accuracy.md) | Standards, sources, and methodology for phonological data |
-| [IPA Reference](ipa_reference.md) | IPA symbols used in the package and their feature values |
+| [Index](index.md) | Front door: what the library is, where to go, honest limitations |
+| [Getting Started](getting_started.md) | Install, first call, the API walkthrough |
+| [Architecture](architecture.md) | Package structure, pipeline stages, design decisions |
+| [Data Model](data_model.md) | `LanguageSpec` and every field it carries |
+| [Orthography kind](orthography_kind.md) | Native scripts, romanizations and transliterations |
+| [Language Registry](registry.md) | Code resolution, `available_codes`, `G2PPlugin` |
+| [Tokenizer](tokenizer.md) | `PhonetokTokenizer`, maximal munch, beam search |
+| [Lattice](lattice.md) | The ranked pronunciation lattice and the `LatticeRescorer` seam |
+| [Sentence context](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer` |
+| [Features](features.md) | Feature export for ML / CRF G2P |
+| [Candidate scoring](candidate_scoring.md) | Per-candidate weights and how they become beam costs |
+| [Distance Metrics](distance.md) | Every relational axis, with its caveats |
+| [Ancestry](ancestry.md) | Clade nodes, the derived `family`, ancestor roles, phylogenetic distance |
+| [Allophony](allophony.md) | Post-lexical `allophone_rules` |
+| [Positional graphemes](positional_graphemes.md) | Context-sensitive grapheme overrides |
+| [Adding a Language](adding_a_language.md) | Step-by-step guide to contributing a spec |
+| [Linguistic Accuracy](linguistic_accuracy.md) | Sourcing standards and IPA conventions |
+| [Quality tiers](quality_tiers.md) | What `stub` / `skeleton` / `research` / `production` require |
+| [Benchmarks](benchmarks.md) | Gold datasets, provenance tiers, methodology |
+| [Scoreboard](scoreboard.md) | Every measured PER / exact-match result |
+| [Comparison](comparison.md) | Cross-system PER vs espeak-ng, epitran, gruut |
+| [IPA Reference](ipa_reference.md) | IPA symbols and their feature values |
+| [Bibliography](bibliography.md) | Citation management, `LinguisticSource` |
+| [API stability](api_stability.md) | What is public and version-guarded |
 
----
-
-## Package at a Glance
-
-```python
-import orthography2ipa
-
-# Fetch a language spec
-en = orthography2ipa.get("en")
-es = orthography2ipa.get("es")
-pt_br = orthography2ipa.get("pt-BR")
-
-# Inspect grapheme→IPA mappings
-en.graphemes["th"]         # ['θ', 'ð']
-es.graphemes["ll"]         # ['ʎ', 'ʝ']
-pt_br.graphemes["lh"]      # ['ʎ']
-
-# Inspect allophone inventories
-en.allophones["t"]         # ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
-es.allophones["b"]         # ['b', 'β']
-
-# Tokenize and get IPA paths
-from orthography2ipa.phonetok import PhonetokTokenizer
-tok = PhonetokTokenizer(es)
-paths = tok.ipa_beam("ciudad", beam_width=4)
-
-# Measure phonological distance
-from orthography2ipa.distance import phonological_distance
-d = phonological_distance(orthography2ipa.get("la"), orthography2ipa.get("it"))
-print(d.combined)   # ~0.31
-
-# List available languages
-orthography2ipa.available_codes()
-orthography2ipa.available_families()
-```
-
----
-
-## Design Goals
-
-1. **Linguistic accuracy over simplicity** — every mapping is grounded in published phonological descriptions. Sources are cited in each module.
-2. **Dialect coverage** — standard varieties are not enough; the package covers dozens of regional dialects with their own phonological quirks.
-3. **Layered ancestry** — languages carry structured ancestry metadata (parent, substrate, superstrate, adstrate) that enables phylogenetically-informed distance calculations.
-4. **Separation of concerns** — grapheme mappings, allophone inventories, tokenization, and distance metrics are cleanly separated.
-5. **Composability** — dialect modules extend parent modules rather than duplicating data.
-
----
-
-## Version
-
-Current version: **0.1.0**
+The authoring reference for a spec JSON file is
+[`orthography2ipa/data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md).

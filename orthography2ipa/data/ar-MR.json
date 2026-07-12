@@ -1,0 +1,141 @@
+{
+  "code": "ar-MR",
+  "name": "Hassaniya Arabic (Mauritanian)",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-maghrebi",
+  "graphemes": {
+    "ث": [
+      "θ",
+      "t"
+    ],
+    "ج": [
+      "ʒ",
+      "dʒ"
+    ],
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "ض": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "ظ": [
+      "ðˤ",
+      "dˤ"
+    ]
+  },
+  "allophones_base": "ar-x-maghrebi",
+  "allophones": {
+    "ɮˤ": [
+      "dˤ",
+      "ðˤ"
+    ],
+    "ðˤ": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "θ": [
+      "θ",
+      "t"
+    ],
+    "ð": [
+      "ð",
+      "d"
+    ],
+    "dʒ": [
+      "ʒ",
+      "dʒ"
+    ],
+    "a": [
+      "a",
+      "ə"
+    ],
+    "i": [
+      "i",
+      "ə"
+    ],
+    "u": [
+      "u",
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 0.8,
+      "notes": "Maghrebi Arabic base (but more conservative)"
+    },
+    {
+      "code": "ber",
+      "role": "substrate",
+      "weight": 0.1,
+      "notes": "Berber (Znaga/Sanhaja) substrate"
+    }
+  ],
+  "notes": "Hassaniya Arabic (ħassāniyya حسانية). Spoken in Mauritania, Western Sahara, southern Morocco/Algeria, Mali, Senegal. MOST CONSERVATIVE Maghrebi dialect: θ and ð often preserved (unlike other Maghrebi varieties); ðˤ (ظ) preserved in many varieties; ق → /q/ preserved; vowel reduction less extreme. Berber (Znaga/Sanhaja) substrate: phonological reinforcement. Sub-Saharan contact (Wolof, Fulani, Soninke): some borrowings; /ŋ/ phoneme present in some Fulani-influenced varieties.",
+  "quality": "skeleton",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "watson2002",
+      "author": "Watson, J.C.E.",
+      "year": 2002,
+      "title": "The Phonology and Morphology of Arabic",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hassaniya_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D8%AD%D8%B3%D8%A7%D9%86%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "hass1238",
+  "iso639_3": "mey",
+  "wikidata_qid": "Q56231",
+  "wals_code": "ahs",
+  "location": {
+    "latitude": 18.29,
+    "longitude": -14.11,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hassaniyya."
+  }
+}

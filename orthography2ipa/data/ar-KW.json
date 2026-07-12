@@ -1,0 +1,64 @@
+{
+  "code": "ar-KW",
+  "name": "Kuwaiti Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-gulf",
+  "allophones_base": "ar-x-gulf",
+  "allophones": {
+    "ŋ": [
+      "ŋ"
+    ]
+  },
+  "parent": "ar-x-gulf",
+  "ancestors": [
+    {
+      "code": "ar-x-gulf",
+      "role": "parent",
+      "weight": 0.92,
+      "notes": "Gulf Arabic base — inherits *q→[ɡ], velar affrication, interdental retention and emphatic spreading."
+    }
+  ],
+  "notes": "Kuwaiti Arabic — the best-documented Gulf variety. Inherits the Gulf features: *q → [ɡ] (with [q] a formal/MSA candidate); velar affrication /k/→[tʃ] and /ɡ/→[dʒ] before high front /i, iː/; interdentals /θ ð ðˤ/ retained. Kuwaiti-specific: Matar (1969), as reported in Alshammari 2026 p.1335, describes /ɡ/ → [dʒ] adjacent to front vowels, sometimes across an intervening /r, l/ (e.g. qariːb→dʒiriːb), and in emphatic contexts (ðˤiːg → ðˤiːdʒ) — the non-adjacent trigger is NOT modelled (see GULF_G_AFFRICATION notes). The 2nd-person-feminine-singular suffix affricates to -tʃ (kashkasha), a morphological process outside base-orthography scope. Heavy English influence (post-1950s oil era): /p/, /v/, /ŋ/ well-established from loanwords. Input contract: fully diacritised (tashkeel) Arabic.",
+  "quality": "research",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "alshammari2026",
+      "author": "Alshammari, K. K.",
+      "year": 2026,
+      "title": "An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic",
+      "publisher": "Journal of Language Teaching and Research 17(4)",
+      "url": "https://doi.org/10.17507/jltr.1704.19",
+      "pages": "1333-1341",
+      "notes": "Read in full (open-access PDF). Reports (p.1335) Matar's (1969) study of Kuwaiti /ɡ/→[dʒ] affrication adjacent to front vowels and in emphatic context, and Johnstone (1967) on the lexicalisation of velar affrication in Eastern Arabic."
+    },
+    {
+      "id": "albalushi2016",
+      "author": "Al-Balushi, R.",
+      "year": 2016,
+      "title": "Omani Arabic: More than a Dialect",
+      "publisher": "Macrolinguistics 4(1)",
+      "url": "https://macrolinguistics.nju.edu.cn/23/17/c27354a467735/page.htm",
+      "pages": "80-125",
+      "notes": "Read the phonology sections. Notes /q/→[ɣ] in some Kuwaiti varieties (e.g. ɣirš 'shark' < qirš), cross-referenced with Eastern Arabian /q/ reflexes (p.89)."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+    "https://ar.wikipedia.org/wiki/%D9%84%D9%87%D8%AC%D8%A9_%D9%83%D9%88%D9%8A%D8%AA%D9%8A%D8%A9"
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "glottolog_code": "gulf1241",
+  "iso639_3": "afb",
+  "wikidata_qid": "Q6448936",
+  "wals_code": "arj",
+  "location": {
+    "latitude": 29.375,
+    "longitude": 47.98,
+    "source": "wikidata",
+    "notes": "Kuwait City. A national variety within the Gulf continuum. [Wikidata Q35178 P625]"
+  }
+}

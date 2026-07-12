@@ -1,0 +1,604 @@
+{
+  "code": "li",
+  "name": "Limburgish",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "aaë": [
+      "aːə"
+    ],
+    "aaj": [
+      "aːj"
+    ],
+    "aaw": [
+      "aːw"
+    ],
+    "aej": [
+      "æːj"
+    ],
+    "aew": [
+      "æːw"
+    ],
+    "aoë": [
+      "ɒːə"
+    ],
+    "aoj": [
+      "ɒːj",
+      "ɔːj"
+    ],
+    "aow": [
+      "ɒːw",
+      "ɔːw"
+    ],
+    "äöj": [
+      "œːi"
+    ],
+    "äöw": [
+      "œːw"
+    ],
+    "eej": [
+      "eːj"
+    ],
+    "eew": [
+      "eːw"
+    ],
+    "euë": [
+      "øːə"
+    ],
+    "euj": [
+      "øːj"
+    ],
+    "euw": [
+      "øːw"
+    ],
+    "ieë": [
+      "iːə"
+    ],
+    "iej": [
+      "iːj"
+    ],
+    "iew": [
+      "iːw"
+    ],
+    "ieè": [
+      "iːɛ"
+    ],
+    "oeë": [
+      "uːə"
+    ],
+    "oej": [
+      "uːj"
+    ],
+    "oew": [
+      "uːw"
+    ],
+    "oea": [
+      "uːɑ"
+    ],
+    "oeè": [
+      "uːɛ"
+    ],
+    "ooë": [
+      "oːə"
+    ],
+    "ooj": [
+      "oːj"
+    ],
+    "oow": [
+      "oːw"
+    ],
+    "uuë": [
+      "yːə"
+    ],
+    "uuj": [
+      "yːj"
+    ],
+    "uuw": [
+      "yːw"
+    ],
+    "uuè": [
+      "yːɛ"
+    ],
+    "aë": [
+      "aə"
+    ],
+    "aj": [
+      "aj"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ae": [
+      "æː"
+    ],
+    "ao": [
+      "ɒː",
+      "ɔː"
+    ],
+    "äö": [
+      "œː"
+    ],
+    "au": [
+      "ɑu"
+    ],
+    "aw": [
+      "ɑw"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "eë": [
+      "æə",
+      "eːə"
+    ],
+    "ei": [
+      "ɛi",
+      "ɛː"
+    ],
+    "ej": [
+      "æj"
+    ],
+    "eu": [
+      "øː"
+    ],
+    "ew": [
+      "æw",
+      "ɛw"
+    ],
+    "èè": [
+      "ɛː"
+    ],
+    "èë": [
+      "ɛːə"
+    ],
+    "èw": [
+      "ɛːw"
+    ],
+    "ie": [
+      "i",
+      "iː"
+    ],
+    "iê": [
+      "iː"
+    ],
+    "ië": [
+      "ɪə"
+    ],
+    "iè": [
+      "iɛ"
+    ],
+    "iw": [
+      "ɪw"
+    ],
+    "ij": [
+      "ɛi"
+    ],
+    "oa": [
+      "ɔɑ"
+    ],
+    "oe": [
+      "u",
+      "uː"
+    ],
+    "oê": [
+      "uː"
+    ],
+    "oë": [
+      "ɔə"
+    ],
+    "oj": [
+      "ɔj"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "ou": [
+      "ɔu",
+      "au"
+    ],
+    "óa": [
+      "oɑ"
+    ],
+    "óë": [
+      "oə"
+    ],
+    "ój": [
+      "oj"
+    ],
+    "ów": [
+      "ow"
+    ],
+    "öä": [
+      "œɑ"
+    ],
+    "öë": [
+      "œə"
+    ],
+    "öw": [
+      "œw"
+    ],
+    "ui": [
+      "œy"
+    ],
+    "uj": [
+      "œj"
+    ],
+    "uu": [
+      "y",
+      "yː"
+    ],
+    "uw": [
+      "œw"
+    ],
+    "uë": [
+      "yːə"
+    ],
+    "uè": [
+      "yɛ"
+    ],
+    "ch": [
+      "ç"
+    ],
+    "dj": [
+      "dʒ",
+      "ɟ"
+    ],
+    "gk": [
+      "ɡ"
+    ],
+    "lj": [
+      "ʎ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "nj": [
+      "ɲ"
+    ],
+    "qu": [
+      "kʷ"
+    ],
+    "sj": [
+      "ʃ"
+    ],
+    "tj": [
+      "tʃ",
+      "c"
+    ],
+    "zj": [
+      "ʒ"
+    ],
+    "a": [
+      "ɑ",
+      "aː"
+    ],
+    "á": [
+      "a"
+    ],
+    "â": [
+      "aː"
+    ],
+    "e": [
+      "ə",
+      "æ",
+      "eː"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "i": [
+      "ɪ",
+      "iː"
+    ],
+    "o": [
+      "ɔ",
+      "oː"
+    ],
+    "ó": [
+      "o"
+    ],
+    "ö": [
+      "œ"
+    ],
+    "u": [
+      "ʏ",
+      "yː"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ʝ"
+    ],
+    "h": [
+      "h",
+      "ɦ"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "kʷ"
+    ],
+    "r": [
+      "ʁ",
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w",
+      "β"
+    ],
+    "x": [
+      "ks"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ç": [
+      "ç"
+    ],
+    "ʝ": [
+      "ʝ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ɦ": [
+      "ɦ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "ʁ": [
+      "ʁ"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "β": [
+      "β"
+    ],
+    "ɑ": [
+      "ɑ"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "æ": [
+      "æ"
+    ],
+    "æː": [
+      "æː"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ɒː": [
+      "ɒː"
+    ],
+    "ɔː": [
+      "ɔː"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "œː": [
+      "œː"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "y": [
+      "y"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "øː": [
+      "øː"
+    ]
+  },
+  "iso639_3": "lim",
+  "glottolog_code": "limb1263",
+  "wikidata_qid": "Q102172",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Limburgish",
+    "https://li.wikipedia.org/wiki/Limburgs"
+  ],
+  "sources": [
+    {
+      "id": "limburgish_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Limburgish",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Limburgish",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Limburgish",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "gussenhoven1999",
+      "author": "Gussenhoven, Carlos & Aarts, Flor",
+      "year": 1999,
+      "title": "The dialect of Maastricht",
+      "publisher": "Journal of the International Phonetic Association 29(2)",
+      "url": null,
+      "pages": "pp. 155-166",
+      "notes": "Illustration of a Limburgish variety incl. its tone contrast; a model source for a future spec."
+    },
+    {
+      "id": "veldeke_spelling2003",
+      "author": "Bakkes, Pierre; Crompvoets, Herman; Notten, Jan; Walraven, Frans",
+      "year": 2003,
+      "title": "Spelling 2003 voor de Limburgse dialecten",
+      "publisher": "Raod veur 't Limburgs / Veldeke Limburg",
+      "url": "https://www.veldeke.net/wp-content/uploads/2024/02/Spelling-2003.pdf",
+      "pages": null,
+      "notes": "The adopted spelling norm; ISBN 90-77457-02-X. Sign list (§4) describes the vowels by analogy rather than in IPA."
+    },
+    {
+      "id": "spelling2003_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Spelling 2003 for the Limburgian dialects",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Spelling_2003_for_the_Limburgian_dialects",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Spelling_2003_for_the_Limburgian_dialects",
+      "pages": null,
+      "notes": "Renders the Spelling 2003 sign list into IPA; source of the grapheme->IPA values used here."
+    }
+  ],
+  "notes": "Limburgish (Limburgs) — West Germanic (Low Franconian) of the Meuse-Rhenish area. COMMITMENT: this map implements the *Spelling 2003 voor de Limburgse dialecten* (the 'Veldekespelling'), adopted by the Raod veur 't Limburgs and Veldeke-Limburg, using the grapheme->IPA rendering of that system; the norm's own reference variety is Remunjs (Roermond), and the values here are the pan-Limburgish values the norm assigns, not any single village dialect. INPUT CONTRACT: Limburgish text written in Spelling 2003, lowercase, already normalised; Dutch-based or German-based ad-hoc spellings are OUT OF SCOPE and will mis-transcribe. Spelling 2003 is deliberately readable-first: it writes the same sound the same way across dialects, so a grapheme such as <ae> or <ao> stands for the *norm's* vowel, which a given dialect may realise differently. TONE IS NOT REPRESENTED: Limburgish contrasts sleeptoon (dragging tone, Accent 1) with stoottoon (push tone, Accent 2); Spelling 2003 does not write the contrast, so no tonal information can be recovered from the orthography and none is emitted. Mouillering is written with the <j> digraphs (tj, dj, sj, zj, nj, lj).",
+  "parent": "x-clade-germ1287",
+  "ancestors": [
+    {
+      "code": "x-clade-germ1287",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Germanic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 51.015,
+    "longitude": 5.87705,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Limburgan."
+  }
+}

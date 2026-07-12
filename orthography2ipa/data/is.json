@@ -1,0 +1,349 @@
+{
+  "code": "is",
+  "name": "Icelandic",
+  "script": "Latin",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "á": [
+      "au"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "é": [
+      "jɛ"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "í": [
+      "iː"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "ó": [
+      "ou"
+    ],
+    "u": [
+      "ʏ"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "y": [
+      "ɪ"
+    ],
+    "ý": [
+      "iː"
+    ],
+    "ö": [
+      "œ"
+    ],
+    "ei": [
+      "eɪ"
+    ],
+    "ey": [
+      "eɪ"
+    ],
+    "au": [
+      "øɪ"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "k": [
+      "kʰ",
+      "c",
+      "cʰ"
+    ],
+    "b": [
+      "p"
+    ],
+    "d": [
+      "t"
+    ],
+    "g": [
+      "ɡ",
+      "ɣ",
+      "j"
+    ],
+    "f": [
+      "f",
+      "v"
+    ],
+    "v": [
+      "v"
+    ],
+    "þ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "hl": [
+      "l̥"
+    ],
+    "hn": [
+      "n̥"
+    ],
+    "hr": [
+      "r̥"
+    ],
+    "pp": [
+      "ʰp"
+    ],
+    "tt": [
+      "ʰt"
+    ],
+    "kk": [
+      "ʰk"
+    ],
+    "ff": [
+      "fː"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "ll": [
+      "tl"
+    ],
+    "nn": [
+      "nː",
+      "tn"
+    ],
+    "ng": [
+      "ŋɡ",
+      "ŋk"
+    ],
+    "nk": [
+      "ŋkʰ"
+    ],
+    "æ": [
+      "ai"
+    ],
+    "hv": [
+      "kv",
+      "xv"
+    ]
+  },
+  "allophones": {
+    "pʰ": [
+      "pʰ"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "f": [
+      "f",
+      "v"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "v": [
+      "v"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ɣ",
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "l̥": [
+      "l̥"
+    ],
+    "r": [
+      "r"
+    ],
+    "r̥": [
+      "r̥"
+    ],
+    "n̥": [
+      "n̥"
+    ],
+    "ʰp": [
+      "ʰp"
+    ],
+    "ʰt": [
+      "ʰt"
+    ],
+    "ʰk": [
+      "ʰk"
+    ],
+    "a": [
+      "a"
+    ],
+    "au": [
+      "au"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "jɛ": [
+      "jɛ"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ʏ": [
+      "ʏ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "eɪ": [
+      "eɪ"
+    ],
+    "øɪ": [
+      "øɪ"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "nː": [
+      "nː"
+    ]
+  },
+  "parent": "non",
+  "ancestors": [
+    {
+      "code": "non",
+      "role": "parent",
+      "weight": 0.95,
+      "notes": "Old West Norse descent — most conservative"
+    }
+  ],
+  "notes": "Icelandic (íslenska). Most conservative modern North Germanic language. PRESERVED: 4-case system; 3 grammatical genders; subjunctive; thorn þ [θ] and eth ð [ð]; full umlaut (y, ø, œ). UNIQUE: Voiceless sonorants — hl [l̥], hn [n̥], hr [r̥]. PREASPIRATION: ⟨pp tt kk⟩ = [ʰp ʰt ʰk] (retroflex in medial). ⟨u⟩ = [ʏ] (front rounded!); ⟨á⟩ = [au]; ⟨au⟩ = [øɪ]. No stød, no tonal accent. Source: Árnason (2011).",
+  "quality": "research",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "einarsson1945",
+      "author": "Einarsson, S.",
+      "year": 1945,
+      "title": "Icelandic: Grammar, Texts, Glossary",
+      "publisher": "Johns Hopkins Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "arnason2011",
+      "author": "Árnason, K.",
+      "year": 2011,
+      "title": "The Phonology of Icelandic and Faroese",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Icelandic_language",
+    "https://is.wikipedia.org/wiki/Íslenska",
+    "https://is.wikipedia.org/wiki/%C3%8Dslenska"
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": null
+  },
+  "glottolog_code": "icel1247",
+  "iso639_3": "isl",
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Icelandic has categorical initial stress. Accent letters (á é í ó ú ý ö) mark vowel quality, not stress placement. Source: Einarsson (1945), Icelandic; Wikipedia: https://en.wikipedia.org/wiki/Icelandic_phonology"
+  },
+  "wikidata_qid": "Q294",
+  "phoible_id": "icel1247",
+  "wals_code": "ice",
+  "location": {
+    "latitude": 63.4837,
+    "longitude": -19.0212,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Icelandic."
+  }
+}
