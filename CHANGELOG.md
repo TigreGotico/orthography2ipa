@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.87.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.87.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.86.2a1...1.87.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmark\): wire the full ipa-dict corpus with per-language provenance [\#304](https://github.com/TigreGotico/orthography2ipa/pull/304) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.86.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.86.2a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.86.1a1...1.86.2a1)
@@ -701,10 +709,6 @@
 ## [1.22.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.22.2a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.22.1a1...1.22.2a1)
-
-**Merged pull requests:**
-
-- fix\(inheritance\): enforce explicit per-field manifest, fix sandhi\_rules inheritance [\#116](https://github.com/TigreGotico/orthography2ipa/pull/116) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.22.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.22.1a1) (2026-07-10)
 
