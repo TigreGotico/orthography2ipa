@@ -203,13 +203,17 @@ below.
   [scoreboard](scoreboard.md) (`provenance` column); the taxonomy and
   per-dataset evidence are in
   [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number).
-- **`espeak-derived` gold measures agreement, not correctness.** The
-  `styletts2_phonemes` rows are the output of an espeak-ng-backed
-  phonemizer — a competitor this library benchmarks *against* in
-  [comparison.md](comparison.md). A divergence from espeak can mean the
-  spec is right and espeak is wrong, and it still scores as a *worse*
-  number there. An `espeak-derived` row can neither qualify a language for
-  a production promotion nor block one.
+- **Competitor-derived gold measures agreement, not correctness.** The
+  `espeak-derived` rows (`styletts2_phonemes`, `ipa_babylm`, the
+  `phonemizer`-phonemized `ipa_childes` languages) are espeak-ng output and
+  the `epitran-derived` rows (the `epitran`-phonemized `ipa_childes`
+  languages) are epitran output — both are competitors this library
+  benchmarks *against* in [comparison.md](comparison.md). A divergence can
+  mean the spec is right and the competitor is wrong, and it still scores as
+  a *worse* number there. Such a row can neither qualify a language for a
+  production promotion nor block one.
+- **`llm-generated` gold has no error model.** No lexicon, no rules, nothing
+  to attribute an error to — it certifies nothing and diagnoses nothing.
 - **No language is at `production` tier yet.** Every registered language
   is at `research` tier or below — it has at least one cited source and
   usually a benchmark, but has not cleared the volume and accuracy bar
