@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.1a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.0a2...3.0.1a1)
+
+**Merged pull requests:**
+
+- fix\(stress\): epenthetic schwa no longer shifts the stress mark a syllable late [\#322](https://github.com/TigreGotico/orthography2ipa/pull/322) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.0.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a2) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.0a1...3.0.0a2)
@@ -685,10 +693,6 @@
 ## [1.29.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.29.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.28.0a1...1.29.0a1)
-
-**Merged pull requests:**
-
-- feat\(phonetok\): context-aware grapheme token model \(B1\) [\#135](https://github.com/TigreGotico/orthography2ipa/pull/135) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.28.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.28.0a1) (2026-07-10)
 
