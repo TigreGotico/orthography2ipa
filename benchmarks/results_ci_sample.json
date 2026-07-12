@@ -1196,7 +1196,7 @@
     "limit": 1000
   },
   {
-    "lang": "pt",
+    "lang": "pt-PT",
     "dataset": "wikipron",
     "n": 795,
     "per": 0.1535,

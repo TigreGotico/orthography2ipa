@@ -134,7 +134,11 @@ _WIKIPRON_FILES = {
     # --- already wired ---
     "gl": "glg_latn_broad.tsv",
     "es": "spa_latn_la_broad.tsv",
-    "pt": "por_latn_po_broad.tsv",
+    # Explicitly regional: the ⟨po⟩ file is European Portuguese and is
+    # scored against the pt-PT spec (vowel reduction makes a higher PER
+    # expected than pt-BR); the ⟨bz⟩ file is Brazilian. No bare "pt" row —
+    # generic Portuguese defaults to pt-BR elsewhere in the registry.
+    "pt-PT": "por_latn_po_broad.tsv",
     "pt-BR": "por_latn_bz_broad.tsv",
     "en": "eng_latn_us_broad.tsv",
     "en-GB": "eng_latn_uk_broad.tsv",
