@@ -156,11 +156,17 @@ def test_new_predicates_are_superset_of_old_stress_set():
 # Integration: Malayalam abugida inherent-vowel heuristic
 # ═══════════════════════════════════════════════════════════════════════════
 
-def test_malayalam_precomposed_nasal_vowel_blocks_spurious_inherent_vowel():
-    # Recognising the nasal vowel produced for anusvara as an IPA vowel stops
-    # phonetok.py's abugida inherent-vowel heuristic from appending a spurious
-    # trailing vowel (previously "malajaa\u02d0\u026d\u00e3ma").
+def test_malayalam_anusvara_keeps_inherent_vowel_matra_replaces_it():
+    # \u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02 exercises both halves of the abugida inherent-vowel rule:
+    #
+    #   \u0d2f + \u0d3e  a dependent vowel sign SUPPLIES the syllable's vowel, so the
+    #          inherent vowel is cancelled rather than added to \u2192 "ja\u02d0",
+    #          not "jaa\u02d0".
+    #   \u0d33 + \u0d02  the anusvara's IPA opens with a combining tilde, a diacritic
+    #          that MODIFIES a vowel without supplying one \u2014 so \u0d33 keeps its
+    #          inherent vowel for the tilde to attach to \u2192 "\u026da\u0303m".
+    #
     # The pipeline emits NFD (bare "a" + combining tilde U+0303); build the
     # expected string from escapes to keep the combining char unambiguous.
-    expected = "malajaa\u02d0\u026da\u0303m"
+    expected = "malaja\u02d0\u026da\u0303m"
     assert transcribe("\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02", "ml") == expected

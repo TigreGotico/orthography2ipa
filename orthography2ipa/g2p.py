@@ -639,7 +639,17 @@ class G2P:
                     words[-1] = _Word(surface=words[-1].surface,
                                       pausal=True)
             else:
-                current.append(token.grapheme)
+                # Reconstruct the *surface* span, not just the grapheme key.
+                # A token may consume more characters than its grapheme names:
+                # an abugida consonant followed by a virama has a 1-character
+                # grapheme but a 2-character span. Joining grapheme keys alone
+                # would drop the virama from the rebuilt word, and the word is
+                # re-tokenised downstream — so the suppressed inherent vowel
+                # would silently come back. For every token whose span equals
+                # its grapheme (i.e. every non-abugida token) the tail is empty
+                # and the rebuilt word is unchanged.
+                tail = token.text_span(text)[len(token.grapheme):]
+                current.append(token.grapheme + tail)
         flush()
 
         if not words:
