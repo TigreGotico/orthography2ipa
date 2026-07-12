@@ -26,8 +26,7 @@ grapheme/allophone regression, large enough to absorb harness-level
 float noise between runs).
 
 Datasets that need packages not installable in a plain CI runner
-(``portuguese_lexicon`` needs ``tugalex``, ``cmudict`` needs
-``scriptconv``, both TigreGotico-internal) fail to load and are
+(``cmudict`` needs ``scriptconv``, TigreGotico-internal) fail to load and are
 skipped by ``build_scoreboard`` itself (catch-and-skip, matching PR
 #76's existing behavior); this script does not treat those absences as
 regressions, it only notes them. Baseline rows with no corresponding

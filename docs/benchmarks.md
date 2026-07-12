@@ -6,7 +6,7 @@ harness produces. Run any row yourself with
 [`scripts/benchmark.py`](../scripts/benchmark.py):
 
 ```bash
-python scripts/benchmark.py --dataset portuguese_lexicon --lang pt-PT
+python scripts/benchmark.py --dataset portuguese_phonetic_lexicon --lang pt-PT
 python scripts/benchmark.py --dataset wikipron --lang fi
 python scripts/benchmark.py --list
 ```
@@ -113,7 +113,6 @@ stated rather than papered over.
 | `mirandese_g2p` | expert-human | Native Mirandese speaker | The reference gold and **most trustworthy signal for Mirandese** (row id `mirandese_g2p`, from `TigreGotico/mirandese_g2p`), split by the `dialect` column: central → `mwl` (`N≈205`), sendinese → `mwl-x-sendim` (`N≈11`), raiano → `mwl-x-ifanes` (`N≈2` — an anecdote, read the CI not the point PER). Small-`N`; a separate, more reliable source than any synthetic Mirandese IPA dictionary. |
 | `4catac` | expert-human | Expert annotators (Projecte AINA/BSC) | IEC guidelines, multi-annotator consensus review; sentence-level, `N=160`, `0.00` exact-match reflects notation/connected-speech mismatch, not total failure. |
 | `clup_dialect` | expert-human | U.Porto CLUP dialect archive | Interview corpus is expert university dialectology, **but who/what produced the IPA column (`ArquivoDialetalCLUP_ipa`) is not documented in the loader or dataset card — treat the tier as "best case".** Many rows `N=1–17`: read the CI, not the point PER. |
-| `portuguese_lexicon` | lexicon-derived | Portal da Língua Portuguesa | Via the `tugalex` wrapper (not installed by default, so this row usually does not materialize; the direct `portuguese_phonetic_lexicon` loader below covers the same data offline). The Portal's IPA is in fact **semi-automated**, not hand-verified per entry — see `portuguese_phonetic_lexicon`. |
 | `portuguese_phonetic_lexicon` | crowd-scraped | Portal da Língua Portuguesa (semi-automated) | Direct stdlib CSV loader over `TigreGotico/portuguese_phonetic_lexicon` (~617k rows scraped from the INESC-ID Portal). Its IPA is **semi-automated (rule/tooling-generated), not hand-checked**, so it is directional only. One Standard regional variant per spec (`lbx`→`pt-PT`, `spx`→`pt-BR`, `lda`→`pt-AO`, `mpx`→`pt-MZ`, `dli`→`pt-TL`); fixed-seed sample per region. Finally measures the `pt-AO`/`pt-MZ`/`pt-TL` specs. |
 | `infopedia_pt` | lexicon-derived | Infopédia (Porto Editora) dictionary | Fixed-seed sample of a graph-crawl extraction of a published European-Portuguese dictionary (`TigreGotico/infopedia-pt-ipa`, 102,685 entries → `pt-PT`). A reputable published source, but **the methodology behind its IPA is undocumented/unknown** (not stated to be hand-checked, nor which tooling produced it) — directional, not peer-validated ground truth. |
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`; the transform adds artifacts. |
@@ -160,29 +159,16 @@ real sources, not ground truth.
 
 ## Datasets
 
-### Portal da Língua Portuguesa lexicon
+### Portal da Língua Portuguesa phonetic lexicon (`portuguese_phonetic_lexicon`)
 
-Per-region IPA for ~617k Portuguese entries, scraped from the
-INESC-ID [Portal da Língua Portuguesa](https://www.portaldalinguaportuguesa.org/)
-and published as
+The
 [TigreGotico/portuguese_phonetic_lexicon](https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon)
-on Hugging Face. The harness loads it through
-[tugalex](https://github.com/TigreGotico/tugalex), the lexicon library
-that wraps this dataset; one region maps to each language tag (Lisbon →
-`pt-PT`, Rio de Janeiro → `pt-BR`, Luanda → `pt-AO`, Maputo → `pt-MZ`,
-Díli → `pt-TL`). `tugalex` is an optional dependency, so in a default
-checkout this row does not materialize; the direct loader below scores the
-same data with no extra package. The Portal's IPA is **semi-automated**
-(rule/tooling-generated), not hand-verified per entry.
-
-### Portal da Língua Portuguesa phonetic lexicon (direct, `portuguese_phonetic_lexicon`)
-
-The same
-[TigreGotico/portuguese_phonetic_lexicon](https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon)
-dataset (~617k rows scraped from the public
+dataset (~617k rows scraped from the public INESC-ID
 [Portal da Língua Portuguesa](https://www.portaldalinguaportuguesa.org/)),
-loaded **directly** from its `dataset.csv` with the standard library — no
-`tugalex` install required — so the Lusophone family is actually scored.
+loaded **directly** from its `dataset.csv` with the standard library, so
+the Lusophone family is scored with no extra package installed. The
+Portal's IPA is **semi-automated** (rule/tooling-generated), not
+hand-verified per entry.
 Each row's `phones` field flattens syllables with `|`; the separator is
 stripped and the whole-word IPA is scored. The dataset tags ten regional
 variants; each orthography2ipa spec is mapped to the **Standard**
@@ -281,7 +267,7 @@ of the dictionary that ran to convergence. License: `other` /
 `infopedia-derived` — see the
 [dataset card](https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa)
 for terms. Covers European Portuguese (unmarked `pt` in the dataset
-tags, `pt-PT` here for consistency with `portuguese_lexicon` and
+tags, `pt-PT` here for consistency with `portuguese_phonetic_lexicon` and
 `wikipron`). Entries carrying more than one distinct pronunciation
 (`pronunciations` field) are all scored, and the harness keeps the best
 match per the standard multi-reference handling.
@@ -976,11 +962,6 @@ production lexica belong downstream.
 | ep_dialects | pt-PT-x-lisbon | 45 | 0.398 | 1.00 |
 | ep_dialects | pt-PT-x-alentejo | 30 | 0.423 | 1.00 |
 | ep_dialects | pt-PT-x-acores | 29 | 0.474 | 1.00 |
-| portuguese_lexicon | pt-PT | 300 | 0.167 | 0.73 |
-| portuguese_lexicon | pt-MZ | 300 | 0.288 | 0.86 |
-| portuguese_lexicon | pt-BR | 300 | 0.420 | 1.00 |
-| portuguese_lexicon | pt-AO | 300 | 0.398 | 1.00 |
-| portuguese_lexicon | pt-TL | 300 | 0.487 | 1.00 |
 | wikipron | nl | 260 | 0.314 | 0.83 |
 | wikipron | fr | 279 | 0.318 | 0.81 |
 | wikipron | sv | 279 | 0.351 | 0.94 |
@@ -1047,9 +1028,8 @@ PYTHONPATH=$PWD python scripts/espeak_agreement.py --scoreboard
 
 This is a snapshot, not a CI-gated check — there is no ground truth to
 regress against, so `scripts/check_benchmark_regression.py` never reads
-these numbers. A handful of languages (`pt-PT`, `pt-BR`, `pt-AO`,
-`pt-MZ`, `pt-TL`, `en-US`) need the optional `tugalex`/`scriptconv`
-loaders, and a handful of sentence-level sources (`ca` and its regional
+these numbers. One language (`en-US`) needs the optional `scriptconv`
+loader, and a handful of sentence-level sources (`ca` and its regional
 variants) trip espeak-ng's own sentence-splitting on punctuation, which
 misaligns the word-for-word comparison; both cases are skipped with a
 visible warning rather than reported as fabricated numbers — rerun with
