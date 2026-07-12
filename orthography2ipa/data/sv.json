@@ -434,5 +434,11 @@
   "iso639_3": "swe",
   "wikidata_qid": "Q9027",
   "phoible_id": "swed1254",
-  "wals_code": "swe"
+  "wals_code": "swe",
+  "location": {
+    "latitude": 59.800634,
+    "longitude": 17.389526,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Swedish."
+  }
 }

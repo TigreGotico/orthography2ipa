@@ -344,5 +344,11 @@
   },
   "iso639_3": "tso",
   "wikidata_qid": "Q34327",
-  "wals_code": "tsn"
+  "wals_code": "tsn",
+  "location": {
+    "latitude": -23.5754,
+    "longitude": 31.8105,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tsonga."
+  }
 }

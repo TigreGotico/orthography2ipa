@@ -235,8 +235,13 @@
     "start_year": -2500,
     "end_year": -1500
   },
-  "glottolog_code": null,
+  "glottolog_code": "aust1305",
   "iso639_3": null,
   "wikidata_qid": "Q33199",
-  "glottolog_code": "aust1305"
+  "location": {
+    "latitude": 15.339586,
+    "longitude": 97.72641,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Austroasiatic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

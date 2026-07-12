@@ -160,5 +160,11 @@
       "notes": "Yucatec Maya indigenous adstrate (see stub yua.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q616620"
+  "wikidata_qid": "Q616620",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Mexican Spanish."
+  }
 }

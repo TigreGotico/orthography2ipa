@@ -128,5 +128,11 @@
   ],
   "wikidata_qid": "Q33730",
   "phoible_id": "mapu1245",
-  "wals_code": "map"
+  "wals_code": "map",
+  "location": {
+    "latitude": -38.7392,
+    "longitude": -71.277,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Mapudungun."
+  }
 }

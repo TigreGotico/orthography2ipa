@@ -23,5 +23,11 @@
   "glottolog_code": "arau1255",
   "urls": [
     "https://glottolog.org/resource/languoid/id/arau1255"
-  ]
+  ],
+  "location": {
+    "latitude": -39.4043,
+    "longitude": -72.022,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Araucanian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -23,5 +23,11 @@
   "glottolog_code": "sino1245",
   "urls": [
     "https://glottolog.org/resource/languoid/id/sino1245"
-  ]
+  ],
+  "location": {
+    "latitude": 28.19748,
+    "longitude": 97.679025,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Sino-Tibetan family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -24,5 +24,11 @@
   "glottolog_code": "east1426",
   "urls": [
     "https://glottolog.org/resource/languoid/id/east1426"
-  ]
+  ],
+  "location": {
+    "latitude": 53.876893,
+    "longitude": 34.06467,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the East Slavic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

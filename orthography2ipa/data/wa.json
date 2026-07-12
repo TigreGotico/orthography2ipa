@@ -168,5 +168,11 @@
     "https://wa.wikipedia.org/wiki/Walon_(lingaedje)",
     "https://fr.wikipedia.org/wiki/Wallon"
   ],
-  "wikidata_qid": "Q34219"
+  "wikidata_qid": "Q34219",
+  "location": {
+    "latitude": 50.2235,
+    "longitude": 5.14509,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Walloon."
+  }
 }

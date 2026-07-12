@@ -184,5 +184,11 @@
   },
   "glottolog_code": "anda1279",
   "iso639_3": "spa",
-  "wikidata_qid": "Q489811"
+  "wikidata_qid": "Q489811",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Andalusian."
+  }
 }

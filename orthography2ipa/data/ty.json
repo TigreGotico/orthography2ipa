@@ -122,5 +122,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": -17.6485,
+    "longitude": -149.45,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tahitian."
+  }
 }

@@ -323,5 +323,11 @@
     "end_year": null
   },
   "glottolog_code": "vene1258",
-  "wikidata_qid": "Q32724"
+  "wikidata_qid": "Q32724",
+  "location": {
+    "latitude": 45.503581,
+    "longitude": 12.214167,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Venetian."
+  }
 }

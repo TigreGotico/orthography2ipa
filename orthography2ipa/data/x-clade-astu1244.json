@@ -24,5 +24,11 @@
   "glottolog_code": "astu1244",
   "urls": [
     "https://glottolog.org/resource/languoid/id/astu1244"
-  ]
+  ],
+  "location": {
+    "latitude": 41.9778,
+    "longitude": -6.20299,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Asturo-Leonese family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

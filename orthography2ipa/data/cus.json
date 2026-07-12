@@ -95,5 +95,11 @@
       "notes": "Cushitic branch of Afroasiatic."
     }
   ],
-  "wikidata_qid": "Q33248"
+  "wikidata_qid": "Q33248",
+  "location": {
+    "latitude": 5.285465,
+    "longitude": 37.767811,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Cushitic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

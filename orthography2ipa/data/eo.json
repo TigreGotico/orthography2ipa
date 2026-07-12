@@ -221,5 +221,11 @@
     "stress_mark": "ˈ",
     "notes": "Esperanto has perfectly regular penultimate stress. The stress rule is part of the Fundamento de Esperanto (Zamenhof 1905). No exceptions exist in native vocabulary. Source: Wells (1989), Lingvistikaj aspektoj de Esperanto; Wikipedia: https://en.wikipedia.org/wiki/Esperanto_phonology"
   },
-  "wikidata_qid": "Q143"
+  "wikidata_qid": "Q143",
+  "location": {
+    "latitude": 49.3273,
+    "longitude": 2.81045,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Esperanto."
+  }
 }

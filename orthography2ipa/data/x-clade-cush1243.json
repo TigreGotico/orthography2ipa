@@ -24,5 +24,11 @@
   "glottolog_code": "cush1243",
   "urls": [
     "https://glottolog.org/resource/languoid/id/cush1243"
-  ]
+  ],
+  "location": {
+    "latitude": 5.285465,
+    "longitude": 37.767811,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Cushitic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

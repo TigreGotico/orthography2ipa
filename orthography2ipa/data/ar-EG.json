@@ -198,5 +198,11 @@
   ],
   "wikidata_qid": "Q29919",
   "phoible_id": "egyp1253",
-  "wals_code": "aeg"
+  "wals_code": "aeg",
+  "location": {
+    "latitude": 31.0,
+    "longitude": 31.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Egyptian Arabic."
+  }
 }

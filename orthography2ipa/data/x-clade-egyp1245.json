@@ -24,5 +24,11 @@
   "glottolog_code": "egyp1245",
   "urls": [
     "https://glottolog.org/resource/languoid/id/egyp1245"
-  ]
+  ],
+  "location": {
+    "latitude": 28.926868,
+    "longitude": 31.02013,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Egyptian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

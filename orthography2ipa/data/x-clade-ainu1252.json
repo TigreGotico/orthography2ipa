@@ -23,5 +23,11 @@
   "glottolog_code": "ainu1252",
   "urls": [
     "https://glottolog.org/resource/languoid/id/ainu1252"
-  ]
+  ],
+  "location": {
+    "latitude": 46.374701,
+    "longitude": 143.625743,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Ainu family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

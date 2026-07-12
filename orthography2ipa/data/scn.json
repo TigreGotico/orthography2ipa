@@ -381,5 +381,11 @@
     "end_year": null
   },
   "glottolog_code": "sici1248",
-  "wikidata_qid": "Q33973"
+  "wikidata_qid": "Q33973",
+  "location": {
+    "latitude": 37.5735,
+    "longitude": 14.0414,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sicilian."
+  }
 }

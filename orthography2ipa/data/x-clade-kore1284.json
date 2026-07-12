@@ -23,5 +23,11 @@
   "glottolog_code": "kore1284",
   "urls": [
     "https://glottolog.org/resource/languoid/id/kore1284"
-  ]
+  ],
+  "location": {
+    "latitude": 35.46025,
+    "longitude": 126.7677,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Koreanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

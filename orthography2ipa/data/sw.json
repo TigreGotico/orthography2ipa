@@ -353,5 +353,11 @@
   ],
   "wikidata_qid": "Q7838",
   "phoible_id": "swah1253",
-  "wals_code": "swa"
+  "wals_code": "swa",
+  "location": {
+    "latitude": -8.25605,
+    "longitude": 37.624,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Swahili."
+  }
 }

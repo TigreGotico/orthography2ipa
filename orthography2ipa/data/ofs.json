@@ -393,5 +393,11 @@
     "end_year": 1500
   },
   "iso639_3": "ofs",
-  "wikidata_qid": "Q35133"
+  "wikidata_qid": "Q35133",
+  "location": {
+    "latitude": 53.35,
+    "longitude": 6.8,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Old Frisian."
+  }
 }

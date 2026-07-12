@@ -57,5 +57,11 @@
   },
   "glottolog_code": "logu1236",
   "iso639_3": "srd",
-  "wikidata_qid": "Q777974"
+  "wikidata_qid": "Q777974",
+  "location": {
+    "latitude": 40.49,
+    "longitude": 9.09957,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Logudorese Sardinian."
+  }
 }

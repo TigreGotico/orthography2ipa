@@ -168,5 +168,11 @@
       "pages": null,
       "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
     }
-  ]
+  ],
+  "location": {
+    "latitude": -15.4,
+    "longitude": 166.89,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bislama."
+  }
 }

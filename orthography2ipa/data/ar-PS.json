@@ -102,5 +102,11 @@
     "end_year": null
   },
   "glottolog_code": "sout3123",
-  "iso639_3": "ajp"
+  "iso639_3": "ajp",
+  "location": {
+    "latitude": 31.5601,
+    "longitude": 38.0837,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for South Levantine Arabic."
+  }
 }

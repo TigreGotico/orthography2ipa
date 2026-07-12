@@ -344,5 +344,11 @@
     "end_year": 1500
   },
   "glottolog_code": "midd1317",
-  "wikidata_qid": "Q36395"
+  "wikidata_qid": "Q36395",
+  "location": {
+    "latitude": 51.65,
+    "longitude": -1.11,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Middle English."
+  }
 }

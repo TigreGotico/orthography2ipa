@@ -66,5 +66,11 @@
   "glottolog_code": "camp1261",
   "iso639_3": "srd",
   "wikidata_qid": "Q35348",
-  "phoible_id": "camp1261"
+  "phoible_id": "camp1261",
+  "location": {
+    "latitude": 39.0566,
+    "longitude": 9.03935,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Campidanese Sardinian."
+  }
 }

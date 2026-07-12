@@ -329,5 +329,11 @@
     "end_year": null
   },
   "glottolog_code": "fran1260",
-  "wikidata_qid": "Q15087"
+  "wikidata_qid": "Q15087",
+  "location": {
+    "latitude": 45.8051,
+    "longitude": 6.48152,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Arpitan."
+  }
 }

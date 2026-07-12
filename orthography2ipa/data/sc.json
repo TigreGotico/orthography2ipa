@@ -301,5 +301,11 @@
   "glottolog_code": "sard1257",
   "iso639_3": "srd",
   "wikidata_qid": "Q33976",
-  "wals_code": "srd"
+  "wals_code": "srd",
+  "location": {
+    "latitude": 39.7733,
+    "longitude": 9.06946,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Southern Romance family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

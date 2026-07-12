@@ -128,5 +128,11 @@
   ],
   "wikidata_qid": "Q13354",
   "phoible_id": "yuca1254",
-  "wals_code": "yct"
+  "wals_code": "yct",
+  "location": {
+    "latitude": 18.7757,
+    "longitude": -88.9567,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Yucatec Maya."
+  }
 }

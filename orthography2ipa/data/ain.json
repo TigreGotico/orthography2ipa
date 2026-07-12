@@ -88,5 +88,11 @@
     }
   ],
   "wikidata_qid": "Q27969",
-  "phoible_id": "ainu1240"
+  "phoible_id": "ainu1240",
+  "location": {
+    "latitude": 43.633654,
+    "longitude": 142.46167,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hokkaido Ainu."
+  }
 }

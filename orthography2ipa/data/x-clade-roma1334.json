@@ -24,5 +24,11 @@
   "glottolog_code": "roma1334",
   "urls": [
     "https://glottolog.org/resource/languoid/id/roma1334"
-  ]
+  ],
+  "location": {
+    "latitude": 41.588281,
+    "longitude": 12.532343,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Romance family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

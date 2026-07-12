@@ -1,6 +1,6 @@
 {
   "parent": "trk",
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "trk",
       "role": "parent",
@@ -298,6 +298,12 @@
     "stress_mark": "ˈ",
     "notes": "Kazakh default stress is word-final (-1). Certain derivational and inflectional suffixes (negation, question) are unstressed or attract stress irregularly; not modeled here. Source: Krippes (1994), Johanson & Csató (1998)."
   },
-      "wikidata_qid": "Q9252",
-      "wals_code": "kaz"
+  "wikidata_qid": "Q9252",
+  "wals_code": "kaz",
+  "location": {
+    "latitude": 51.17,
+    "longitude": 71.454,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kazakh."
+  }
 }

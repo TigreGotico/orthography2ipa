@@ -24,5 +24,11 @@
   "glottolog_code": "semi1276",
   "urls": [
     "https://glottolog.org/resource/languoid/id/semi1276"
-  ]
+  ],
+  "location": {
+    "latitude": 29.169495,
+    "longitude": 41.753591,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Semitic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

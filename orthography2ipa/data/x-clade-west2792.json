@@ -24,5 +24,11 @@
   "glottolog_code": "west2792",
   "urls": [
     "https://glottolog.org/resource/languoid/id/west2792"
-  ]
+  ],
+  "location": {
+    "latitude": 51.076289,
+    "longitude": 15.973677,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the West Slavic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

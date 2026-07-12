@@ -297,5 +297,11 @@
   "iso639_3": "tet",
   "wikidata_qid": "Q34125",
   "phoible_id": "tetu1245",
-  "wals_code": "ttn"
+  "wals_code": "ttn",
+  "location": {
+    "latitude": -9.11217,
+    "longitude": 125.528,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tetum."
+  }
 }

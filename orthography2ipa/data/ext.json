@@ -201,5 +201,11 @@
   },
   "iso639_3": "ext",
   "quality": "research",
-  "wikidata_qid": "Q30007"
+  "wikidata_qid": "Q30007",
+  "location": {
+    "latitude": 39.1926,
+    "longitude": -6.10179,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Extremaduran."
+  }
 }

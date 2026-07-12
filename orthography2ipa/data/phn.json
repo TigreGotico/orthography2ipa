@@ -252,5 +252,11 @@
     "end_year": 100
   },
   "glottolog_code": "phoe1239",
-  "wikidata_qid": "Q36734"
+  "wikidata_qid": "Q36734",
+  "location": {
+    "latitude": 34.12,
+    "longitude": 35.65,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Phoenician."
+  }
 }

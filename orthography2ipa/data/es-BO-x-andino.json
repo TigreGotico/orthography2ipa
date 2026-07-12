@@ -89,5 +89,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_andino",
     "https://en.wikipedia.org/wiki/Andean_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Andean Bolivian Spanish."
+  }
 }

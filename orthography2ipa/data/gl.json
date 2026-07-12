@@ -494,5 +494,11 @@
   },
   "wikidata_qid": "Q9307",
   "phoible_id": "gali1258",
-  "wals_code": "glc"
+  "wals_code": "glc",
+  "location": {
+    "latitude": 42.2446,
+    "longitude": -7.5343,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Galician."
+  }
 }

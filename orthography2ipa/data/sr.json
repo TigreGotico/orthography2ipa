@@ -1,5 +1,5 @@
 {
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "sla",
       "role": "parent",
@@ -356,6 +356,12 @@
   },
   "glottolog_code": "serb1264",
   "iso639_3": "srp",
-      "wikidata_qid": "Q9299",
-      "phoible_id": "serb1264"
+  "wikidata_qid": "Q9299",
+  "phoible_id": "serb1264",
+  "location": {
+    "latitude": 44.3238,
+    "longitude": 21.9192,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Serbian Standard."
+  }
 }

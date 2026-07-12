@@ -297,5 +297,11 @@
     "end_year": null
   },
   "iso639_3": "mzs",
-  "wikidata_qid": "Q35785"
+  "wikidata_qid": "Q35785",
+  "location": {
+    "latitude": 22.1902,
+    "longitude": 113.5379,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Macanese."
+  }
 }

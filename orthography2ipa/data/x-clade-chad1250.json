@@ -24,5 +24,11 @@
   "glottolog_code": "chad1250",
   "urls": [
     "https://glottolog.org/resource/languoid/id/chad1250"
-  ]
+  ],
+  "location": {
+    "latitude": 10.434045,
+    "longitude": 13.960241,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Chadic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

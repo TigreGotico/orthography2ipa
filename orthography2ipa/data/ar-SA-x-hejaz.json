@@ -154,5 +154,11 @@
     }
   ],
   "wikidata_qid": "Q56608",
-  "wals_code": "arh"
+  "wals_code": "arh",
+  "location": {
+    "latitude": 22.8346,
+    "longitude": 38.9237,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hijazi Arabic."
+  }
 }

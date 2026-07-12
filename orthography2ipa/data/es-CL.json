@@ -166,5 +166,11 @@
       "notes": "Mapudungun indigenous adstrate (see stub arn.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q857295"
+  "wikidata_qid": "Q857295",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Chilean Spanish."
+  }
 }

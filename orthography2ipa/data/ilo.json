@@ -158,5 +158,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 15.9361,
+    "longitude": 120.993,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Iloko."
+  }
 }

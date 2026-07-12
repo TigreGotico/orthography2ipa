@@ -83,7 +83,13 @@
   },
   "glottolog_code": "norw1259",
   "iso639_3": "nob",
-      "wikidata_qid": "Q25167",
-      "phoible_id": "norw1259",
-      "wals_code": "nor"
+  "wikidata_qid": "Q25167",
+  "phoible_id": "norw1259",
+  "wals_code": "nor",
+  "location": {
+    "latitude": 61.112,
+    "longitude": 8.886,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Norwegian Bokmål."
+  }
 }

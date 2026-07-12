@@ -86,5 +86,11 @@
       "notes": "Reference for Uralic branching (structural ancestry node only).",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Proto-Uralic_language"
     }
-  ]
+  ],
+  "location": {
+    "latitude": 59.504611,
+    "longitude": 43.638397,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Uralic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

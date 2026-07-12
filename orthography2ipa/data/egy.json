@@ -95,5 +95,11 @@
       "notes": "Egyptian branch of Afroasiatic."
     }
   ],
-  "wikidata_qid": "Q50868"
+  "wikidata_qid": "Q50868",
+  "location": {
+    "latitude": 28.381735,
+    "longitude": 30.834959,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Egyptian (Ancient)."
+  }
 }

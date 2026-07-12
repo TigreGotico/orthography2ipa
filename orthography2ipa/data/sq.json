@@ -11,42 +11,114 @@
     "end_year": null
   },
   "graphemes": {
-    "dh": ["ð"],
-    "gj": ["ɟ"],
-    "ll": ["ɫ"],
-    "nj": ["ɲ"],
-    "rr": ["r"],
-    "sh": ["ʃ"],
-    "th": ["θ"],
-    "xh": ["dʒ"],
-    "zh": ["ʒ"],
-    "a": ["a"],
-    "b": ["b"],
-    "c": ["ts"],
-    "ç": ["tʃ"],
-    "d": ["d"],
-    "e": ["e"],
-    "ë": ["ə"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "h": ["h"],
-    "i": ["i"],
-    "j": ["j"],
-    "k": ["k"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "o": ["o"],
-    "p": ["p"],
-    "q": ["c"],
-    "r": ["ɾ"],
-    "s": ["s"],
-    "t": ["t"],
-    "u": ["u"],
-    "v": ["v"],
-    "x": ["dz"],
-    "y": ["y"],
-    "z": ["z"]
+    "dh": [
+      "ð"
+    ],
+    "gj": [
+      "ɟ"
+    ],
+    "ll": [
+      "ɫ"
+    ],
+    "nj": [
+      "ɲ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "th": [
+      "θ"
+    ],
+    "xh": [
+      "dʒ"
+    ],
+    "zh": [
+      "ʒ"
+    ],
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "ç": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "ë": [
+      "ə"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "c"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "x": [
+      "dz"
+    ],
+    "y": [
+      "y"
+    ],
+    "z": [
+      "z"
+    ]
   },
   "allophones": {},
   "positional_graphemes": {},
@@ -82,5 +154,11 @@
     "https://sq.wikipedia.org/wiki/Gjuha_shqipe"
   ],
   "wikidata_qid": "Q8748",
-  "wals_code": "alb"
+  "wals_code": "alb",
+  "location": {
+    "latitude": 40.99952,
+    "longitude": 20.791828,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Albanian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

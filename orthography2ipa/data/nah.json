@@ -121,5 +121,11 @@
       "notes": "Reference for the classification and geographic distribution of this contact language (structural adstrate node only)."
     }
   ],
-  "wikidata_qid": "Q13300"
+  "wikidata_qid": "Q13300",
+  "location": {
+    "latitude": 17.666056,
+    "longitude": -97.459862,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Aztec family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

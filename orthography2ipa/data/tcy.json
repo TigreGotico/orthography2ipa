@@ -352,5 +352,11 @@
   "glottolog_code": "tulu1258",
   "wikidata_qid": "Q34251",
   "phoible_id": "tulu1258",
-  "wals_code": "tul"
+  "wals_code": "tul",
+  "location": {
+    "latitude": 12.8114,
+    "longitude": 75.2651,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tulu."
+  }
 }

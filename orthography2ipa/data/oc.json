@@ -475,5 +475,11 @@
   },
   "wikidata_qid": "Q14185",
   "phoible_id": "occi1239",
-  "wals_code": "occ"
+  "wals_code": "occ",
+  "location": {
+    "latitude": 44.1415,
+    "longitude": 6.82979,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Occitan."
+  }
 }

@@ -23,5 +23,11 @@
   "glottolog_code": "aust1307",
   "urls": [
     "https://glottolog.org/resource/languoid/id/aust1307"
-  ]
+  ],
+  "location": {
+    "latitude": 18.021904,
+    "longitude": 122.057005,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Austronesian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

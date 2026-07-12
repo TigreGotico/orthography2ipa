@@ -158,5 +158,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 13.7574,
+    "longitude": 123.403,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Coastal-Naga Bikol."
+  }
 }

@@ -492,7 +492,13 @@
   },
   "glottolog_code": "hind1269",
   "iso639_3": "hin",
-      "wikidata_qid": "Q1568",
-      "phoible_id": "hind1269",
-      "wals_code": "hin"
+  "wikidata_qid": "Q1568",
+  "phoible_id": "hind1269",
+  "wals_code": "hin",
+  "location": {
+    "latitude": 25.0,
+    "longitude": 77.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hindi."
+  }
 }

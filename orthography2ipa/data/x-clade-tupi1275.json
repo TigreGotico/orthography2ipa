@@ -23,5 +23,11 @@
   "glottolog_code": "tupi1275",
   "urls": [
     "https://glottolog.org/resource/languoid/id/tupi1275"
-  ]
+  ],
+  "location": {
+    "latitude": -10.120533,
+    "longitude": -59.823473,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Tupian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

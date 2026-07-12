@@ -156,5 +156,11 @@
   "iso639_3": "ary",
   "wikidata_qid": "Q56426",
   "phoible_id": "moro1292",
-  "wals_code": "amr"
+  "wals_code": "amr",
+  "location": {
+    "latitude": 32.5,
+    "longitude": -7.5,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Moroccan Arabic."
+  }
 }

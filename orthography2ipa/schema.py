@@ -178,6 +178,15 @@ class OrthographyStandardModel(_Strict):
     notes: Optional[str] = None
 
 
+class LocationModel(_Strict):
+    """Representative point for where a language is spoken (``location``)."""
+
+    latitude: float = Field(ge=-90.0, le=90.0)
+    longitude: float = Field(ge=-180.0, le=180.0)
+    source: Optional[str] = None
+    notes: Optional[str] = None
+
+
 class TimeSpanModel(_Strict):
     """Attestation period (``timespan``). Mirrors ``TimeSpan``."""
 
@@ -280,6 +289,7 @@ class LanguageSpecModel(_Strict):
     urls: Optional[List[str]] = None
     timespan: Optional[TimeSpanModel] = None
     orthography_standard: Optional[OrthographyStandardModel] = None
+    location: Optional[LocationModel] = None
 
     # ─── bundled-lexicon reference (consumed by load_lexicon) ────────
     lexicon_csv: Optional[str] = None

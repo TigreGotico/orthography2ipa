@@ -1,5 +1,5 @@
 {
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "sla",
       "role": "parent",
@@ -771,7 +771,13 @@
   },
   "glottolog_code": "russ1263",
   "iso639_3": "rus",
-      "wikidata_qid": "Q7737",
-      "phoible_id": "russ1263",
-      "wals_code": "rus"
+  "wikidata_qid": "Q7737",
+  "phoible_id": "russ1263",
+  "wals_code": "rus",
+  "location": {
+    "latitude": 59.0,
+    "longitude": 50.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Russian."
+  }
 }

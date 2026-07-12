@@ -24,5 +24,11 @@
   "glottolog_code": "nort3152",
   "urls": [
     "https://glottolog.org/resource/languoid/id/nort3152"
-  ]
+  ],
+  "location": {
+    "latitude": 55.349837,
+    "longitude": 9.600438,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Northwest Germanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

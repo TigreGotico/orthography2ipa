@@ -283,5 +283,11 @@
   "glottolog_code": "manx1243",
   "iso639_3": "glv",
   "wikidata_qid": "Q12175",
-  "wals_code": "mnx"
+  "wals_code": "mnx",
+  "location": {
+    "latitude": 54.2604,
+    "longitude": -4.45437,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Manx."
+  }
 }

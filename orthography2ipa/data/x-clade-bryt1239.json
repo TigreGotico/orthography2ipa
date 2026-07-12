@@ -24,5 +24,11 @@
   "glottolog_code": "bryt1239",
   "urls": [
     "https://glottolog.org/resource/languoid/id/bryt1239"
-  ]
+  ],
+  "location": {
+    "latitude": 51.233218,
+    "longitude": -3.914736,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Brythonic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

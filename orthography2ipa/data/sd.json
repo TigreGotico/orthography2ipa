@@ -389,5 +389,11 @@
   "iso639_3": "snd",
   "wikidata_qid": "Q33997",
   "phoible_id": "sind1272",
-  "wals_code": "sdh"
+  "wals_code": "sdh",
+  "location": {
+    "latitude": 26.0,
+    "longitude": 69.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sindhi."
+  }
 }

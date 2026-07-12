@@ -110,5 +110,11 @@
   },
   "glottolog_code": "oman1239",
   "iso639_3": "acx",
-  "wikidata_qid": "Q56630"
+  "wikidata_qid": "Q56630",
+  "location": {
+    "latitude": 23.25,
+    "longitude": 58.5,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Omani Arabic."
+  }
 }

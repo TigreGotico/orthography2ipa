@@ -366,5 +366,11 @@
   "glottolog_code": "bhoj1244",
   "wikidata_qid": "Q33268",
   "phoible_id": "bhoj1244",
-  "wals_code": "bho"
+  "wals_code": "bho",
+  "location": {
+    "latitude": 26.458455,
+    "longitude": 84.817115,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bhojpuri."
+  }
 }

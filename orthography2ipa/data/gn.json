@@ -128,5 +128,11 @@
   ],
   "wikidata_qid": "Q17478066",
   "phoible_id": "para1311",
-  "wals_code": "gua"
+  "wals_code": "gua",
+  "location": {
+    "latitude": -25.60551,
+    "longitude": -57.08816,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Paraguayan Guaraní."
+  }
 }

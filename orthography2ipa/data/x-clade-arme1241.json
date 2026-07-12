@@ -24,5 +24,11 @@
   "glottolog_code": "arme1241",
   "urls": [
     "https://glottolog.org/resource/languoid/id/arme1241"
-  ]
+  ],
+  "location": {
+    "latitude": 39.343583,
+    "longitude": 43.044186,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Armenic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

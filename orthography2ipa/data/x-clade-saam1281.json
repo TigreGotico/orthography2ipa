@@ -24,5 +24,11 @@
   "glottolog_code": "saam1281",
   "urls": [
     "https://glottolog.org/resource/languoid/id/saam1281"
-  ]
+  ],
+  "location": {
+    "latitude": 66.852224,
+    "longitude": 25.622576,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Saami family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

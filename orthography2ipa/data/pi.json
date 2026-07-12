@@ -308,5 +308,11 @@
   },
   "glottolog_code": "pali1273",
   "iso639_3": "pli",
-  "wikidata_qid": "Q36727"
+  "wikidata_qid": "Q36727",
+  "location": {
+    "latitude": 24.5271,
+    "longitude": 82.251,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pali."
+  }
 }

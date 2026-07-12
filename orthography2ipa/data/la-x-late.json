@@ -120,5 +120,11 @@
   "glottolog_code": "late1252",
   "iso639_3": "lat",
   "quality": "research",
-  "wikidata_qid": "Q1503113"
+  "wikidata_qid": "Q1503113",
+  "location": {
+    "latitude": 41.9026,
+    "longitude": 12.4502,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Late Latin."
+  }
 }

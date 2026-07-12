@@ -377,5 +377,11 @@
   "iso639_3": "ben",
   "wikidata_qid": "Q9610",
   "phoible_id": "beng1280",
-  "wals_code": "ben"
+  "wals_code": "ben",
+  "location": {
+    "latitude": 24.0,
+    "longitude": 90.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bengali."
+  }
 }

@@ -71,5 +71,11 @@
   },
   "glottolog_code": "cana1268",
   "iso639_3": "eng",
-  "wikidata_qid": "Q44676"
+  "wikidata_qid": "Q44676",
+  "location": {
+    "latitude": 53.0,
+    "longitude": -1.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Canadian English."
+  }
 }

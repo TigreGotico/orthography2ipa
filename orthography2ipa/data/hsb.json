@@ -123,7 +123,7 @@
   },
   "allophones": {},
   "positional_graphemes": {},
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "sla",
       "role": "parent",
@@ -163,5 +163,11 @@
   },
   "wikidata_qid": "Q13248",
   "phoible_id": "uppe1395",
-  "wals_code": "sou"
+  "wals_code": "sou",
+  "location": {
+    "latitude": 51.2403,
+    "longitude": 14.4098,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Upper Sorbian."
+  }
 }

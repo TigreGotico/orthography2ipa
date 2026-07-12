@@ -327,5 +327,11 @@
   "iso639_3": "gla",
   "wikidata_qid": "Q9314",
   "phoible_id": "scot1245",
-  "wals_code": "gae"
+  "wals_code": "gae",
+  "location": {
+    "latitude": 56.7574,
+    "longitude": -5.24366,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Scottish Gaelic."
+  }
 }

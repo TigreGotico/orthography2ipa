@@ -23,5 +23,11 @@
   "glottolog_code": "ural1272",
   "urls": [
     "https://glottolog.org/resource/languoid/id/ural1272"
-  ]
+  ],
+  "location": {
+    "latitude": 59.504611,
+    "longitude": 43.638397,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Uralic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

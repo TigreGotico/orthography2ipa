@@ -184,5 +184,11 @@
     "end_year": 100
   },
   "glottolog_code": "umbr1253",
-  "wikidata_qid": "Q36957"
+  "wikidata_qid": "Q36957",
+  "location": {
+    "latitude": 42.75,
+    "longitude": 13.02,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Umbrian."
+  }
 }

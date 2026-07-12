@@ -22,6 +22,7 @@ from orthography2ipa.distance import (
     ancestry_similarity,
     feature_vector,
     full_distance,
+    geographic_distance,
     grapheme_divergence,
     spelling_divergence,
     inventory_distance,
@@ -99,7 +100,7 @@ from orthography2ipa.script_distance import (
 )
 from orthography2ipa.types import (
     AllophoneMap, AllophoneRule, Ancestor, AncestorRole, Grapheme2IPA,
-    LanguageSpec, OrthographyStandard, PositionalGrapheme2IPA, QualityTier,
+    LanguageSpec, Location, OrthographyStandard, PositionalGrapheme2IPA, QualityTier,
     SandhiRule, ScriptType, StressRules,
 )
 
@@ -125,6 +126,7 @@ __all__ = [
     "WordContext",
     "SandhiEngine",
     "LanguageSpec",
+    "Location",
     "OrthographyStandard",
     "Grapheme2IPA",
     "AllophoneMap",
@@ -165,6 +167,7 @@ __all__ = [
     "segment_distance",
     "inventory_distance",
     "grapheme_divergence",
+    "geographic_distance",
     "allophone_overlap",
     "phonological_distance",
     "ancestry_similarity",

@@ -152,5 +152,11 @@
   },
   "glottolog_code": "iber1250",
   "iso639_3": "xib",
-  "wikidata_qid": "Q855215"
+  "wikidata_qid": "Q855215",
+  "location": {
+    "latitude": 40.624,
+    "longitude": 0.212401,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Iberian."
+  }
 }

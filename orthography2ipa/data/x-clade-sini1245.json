@@ -24,5 +24,11 @@
   "glottolog_code": "sini1245",
   "urls": [
     "https://glottolog.org/resource/languoid/id/sini1245"
-  ]
+  ],
+  "location": {
+    "latitude": 30.422658,
+    "longitude": 113.886243,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Sinitic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

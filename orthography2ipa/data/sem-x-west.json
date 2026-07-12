@@ -47,5 +47,11 @@
   "glottolog_code": "west2786",
   "iso639_3": null,
   "quality": "research",
-  "wikidata_qid": "Q124901"
+  "wikidata_qid": "Q124901",
+  "location": {
+    "latitude": 18.349486,
+    "longitude": 44.091774,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the West Semitic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

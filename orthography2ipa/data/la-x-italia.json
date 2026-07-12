@@ -349,8 +349,13 @@
     "start_year": 200,
     "end_year": 900
   },
-  "glottolog_code": null,
+  "glottolog_code": "ital1286",
   "iso639_3": "lat",
   "wikidata_qid": "Q3313381",
-  "glottolog_code": "ital1286"
+  "location": {
+    "latitude": 43.489784,
+    "longitude": 13.639199,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Italo-Dalmatian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

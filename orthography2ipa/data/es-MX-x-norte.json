@@ -78,5 +78,11 @@
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_mexicano",
     "https://en.wikipedia.org/wiki/Mexican_Spanish",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_norte%C3%B1o_mexicano"
-  ]
+  ],
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Northern Peninsular Mexican Spanish."
+  }
 }

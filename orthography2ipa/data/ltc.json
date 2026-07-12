@@ -95,5 +95,11 @@
       "notes": "Descent from Old Chinese."
     }
   ],
-  "wikidata_qid": "Q2016252"
+  "wikidata_qid": "Q2016252",
+  "location": {
+    "latitude": 34.27,
+    "longitude": 108.9,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Middle Chinese."
+  }
 }

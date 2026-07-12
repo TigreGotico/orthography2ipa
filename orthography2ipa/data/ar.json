@@ -232,5 +232,11 @@
       "weight": 0.08,
       "notes": "Aramaic adstrate: the Near-Eastern lingua franca before and alongside Arabic."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 27.9625,
+    "longitude": 43.8525,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Standard Arabic."
+  }
 }

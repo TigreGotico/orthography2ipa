@@ -158,5 +158,11 @@
       "weight": 1.0,
       "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 2.09041,
+    "longitude": 112.934,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Iban."
+  }
 }

@@ -86,5 +86,11 @@
       "notes": "Reference for Kartvelian reconstruction (structural node only).",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Proto-Kartvelian_language"
     }
-  ]
+  ],
+  "location": {
+    "latitude": 42.390201,
+    "longitude": 42.624392,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Kartvelian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

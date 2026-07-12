@@ -356,5 +356,11 @@
     }
   ],
   "wikidata_qid": "Q7850",
-  "phoible_id": "mand1415"
+  "phoible_id": "mand1415",
+  "location": {
+    "latitude": 40.0209,
+    "longitude": 116.228,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Mandarin Chinese."
+  }
 }

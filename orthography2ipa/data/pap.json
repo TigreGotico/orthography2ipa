@@ -312,5 +312,11 @@
   },
   "iso639_3": "pap",
   "wikidata_qid": "Q33856",
-  "wals_code": "pap"
+  "wals_code": "pap",
+  "location": {
+    "latitude": 12.48485,
+    "longitude": -69.93988,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Papiamento."
+  }
 }

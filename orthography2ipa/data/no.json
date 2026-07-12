@@ -338,5 +338,11 @@
   "glottolog_code": "norw1258",
   "iso639_3": "nor",
   "wikidata_qid": "Q9043",
-  "phoible_id": "norw1258"
+  "phoible_id": "norw1258",
+  "location": {
+    "latitude": 59.92,
+    "longitude": 10.71,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Norwegian."
+  }
 }

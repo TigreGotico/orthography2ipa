@@ -87,5 +87,11 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Mongolic_languages"
     }
   ],
-  "wikidata_qid": "Q33750"
+  "wikidata_qid": "Q33750",
+  "location": {
+    "latitude": 41.516709,
+    "longitude": 96.85676,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Mongolic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

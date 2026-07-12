@@ -131,5 +131,11 @@
   "glottolog_code": "hass1238",
   "iso639_3": "mey",
   "wikidata_qid": "Q56231",
-  "wals_code": "ahs"
+  "wals_code": "ahs",
+  "location": {
+    "latitude": 18.29,
+    "longitude": -14.11,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hassaniyya."
+  }
 }

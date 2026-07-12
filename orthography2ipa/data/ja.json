@@ -818,5 +818,11 @@
   ],
   "wikidata_qid": "Q5287",
   "phoible_id": "nucl1643",
-  "wals_code": "jpn"
+  "wals_code": "jpn",
+  "location": {
+    "latitude": 35.0,
+    "longitude": 135.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Japanese."
+  }
 }

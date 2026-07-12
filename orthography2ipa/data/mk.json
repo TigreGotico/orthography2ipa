@@ -1,5 +1,5 @@
 {
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "sla",
       "role": "parent",
@@ -280,7 +280,13 @@
   },
   "glottolog_code": "mace1250",
   "iso639_3": "mkd",
-      "wikidata_qid": "Q9296",
-      "phoible_id": "mace1250",
-      "wals_code": "mcd"
+  "wikidata_qid": "Q9296",
+  "phoible_id": "mace1250",
+  "wals_code": "mcd",
+  "location": {
+    "latitude": 41.5957,
+    "longitude": 21.7932,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Macedonian."
+  }
 }

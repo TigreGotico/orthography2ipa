@@ -108,5 +108,11 @@
   "glottolog_code": "cana1269",
   "iso639_3": "spa",
   "wikidata_qid": "Q957764",
-  "wals_code": "spc"
+  "wals_code": "spc",
+  "location": {
+    "latitude": 40.4414,
+    "longitude": -1.11788,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Canary Islands Spanish."
+  }
 }

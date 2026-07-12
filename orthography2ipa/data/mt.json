@@ -158,5 +158,11 @@
   ],
   "wikidata_qid": "Q9166",
   "phoible_id": "malt1254",
-  "wals_code": "mlt"
+  "wals_code": "mlt",
+  "location": {
+    "latitude": 35.8884,
+    "longitude": 14.4508,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Maltese."
+  }
 }

@@ -322,5 +322,11 @@
   "iso639_3": "cym",
   "wikidata_qid": "Q9309",
   "phoible_id": "wels1247",
-  "wals_code": "wel"
+  "wals_code": "wel",
+  "location": {
+    "latitude": 52.0,
+    "longitude": -4.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Welsh."
+  }
 }

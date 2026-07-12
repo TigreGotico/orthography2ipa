@@ -344,5 +344,11 @@
   "glottolog_code": "nucl1276",
   "iso639_3": "pus",
   "wikidata_qid": "Q58680",
-  "wals_code": "psh"
+  "wals_code": "psh",
+  "location": {
+    "latitude": 32.471767,
+    "longitude": 68.827633,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Nuclear Pashto family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

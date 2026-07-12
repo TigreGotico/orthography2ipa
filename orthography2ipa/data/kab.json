@@ -3,154 +3,391 @@
   "name": "Kabyle",
   "script": "Latin",
   "graphemes": {
-    "a": ["a"],
-    "e": ["ə"],
-    "i": ["i"],
-    "u": ["u"],
-    "y": ["j"],
-    "w": ["w"],
-    "b": ["b"],
-    "c": ["ʃ"],
-    "č": ["t͡ʃ"],
-    "d": ["d"],
-    "ḍ": ["dˤ"],
-    "f": ["f"],
-    "g": ["ɡ"],
-    "ǧ": ["d͡ʒ"],
-    "ɣ": ["ɣ"],
-    "h": ["h"],
-    "ḥ": ["ħ"],
-    "j": ["ʒ"],
-    "k": ["k"],
-    "l": ["l"],
-    "m": ["m"],
-    "n": ["n"],
-    "p": ["p"],
-    "q": ["q"],
-    "r": ["r"],
-    "ṛ": ["rˤ"],
-    "s": ["s"],
-    "ṣ": ["sˤ"],
-    "t": ["t"],
-    "ṭ": ["tˤ"],
-    "x": ["χ"],
-    "z": ["z"],
-    "ẓ": ["zˤ"],
-    "ɛ": ["ʕ"],
-    "bb": ["bː"],
-    "dd": ["dː"],
-    "tt": ["tː"],
-    "kk": ["kː"],
-    "gg": ["ɡː"],
-    "ḍḍ": ["dˤː"],
-    "ṭṭ": ["tˤː"],
-    "ff": ["fː"],
-    "ll": ["lː"],
-    "mm": ["mː"],
-    "nn": ["nː"],
-    "rr": ["rː"],
-    "ṛṛ": ["rˤː"],
-    "ss": ["sː"],
-    "ṣṣ": ["sˤː"],
-    "zz": ["zː"],
-    "ẓẓ": ["zˤː"],
-    "cc": ["ʃː"],
-    "čč": ["t͡ʃː"],
-    "ǧǧ": ["d͡ʒː"],
-    "ɣɣ": ["ɣː"],
-    "ḥḥ": ["ħː"],
-    "qq": ["qː"],
-    "ɛɛ": ["ʕː"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ʃ"
+    ],
+    "č": [
+      "t͡ʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ḍ": [
+      "dˤ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ǧ": [
+      "d͡ʒ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ḥ": [
+      "ħ"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "ṛ": [
+      "rˤ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ṣ": [
+      "sˤ"
+    ],
+    "t": [
+      "t"
+    ],
+    "ṭ": [
+      "tˤ"
+    ],
+    "x": [
+      "χ"
+    ],
+    "z": [
+      "z"
+    ],
+    "ẓ": [
+      "zˤ"
+    ],
+    "ɛ": [
+      "ʕ"
+    ],
+    "bb": [
+      "bː"
+    ],
+    "dd": [
+      "dː"
+    ],
+    "tt": [
+      "tː"
+    ],
+    "kk": [
+      "kː"
+    ],
+    "gg": [
+      "ɡː"
+    ],
+    "ḍḍ": [
+      "dˤː"
+    ],
+    "ṭṭ": [
+      "tˤː"
+    ],
+    "ff": [
+      "fː"
+    ],
+    "ll": [
+      "lː"
+    ],
+    "mm": [
+      "mː"
+    ],
+    "nn": [
+      "nː"
+    ],
+    "rr": [
+      "rː"
+    ],
+    "ṛṛ": [
+      "rˤː"
+    ],
+    "ss": [
+      "sː"
+    ],
+    "ṣṣ": [
+      "sˤː"
+    ],
+    "zz": [
+      "zː"
+    ],
+    "ẓẓ": [
+      "zˤː"
+    ],
+    "cc": [
+      "ʃː"
+    ],
+    "čč": [
+      "t͡ʃː"
+    ],
+    "ǧǧ": [
+      "d͡ʒː"
+    ],
+    "ɣɣ": [
+      "ɣː"
+    ],
+    "ḥḥ": [
+      "ħː"
+    ],
+    "qq": [
+      "qː"
+    ],
+    "ɛɛ": [
+      "ʕː"
+    ]
   },
   "allophones": {
-    "b": ["β", "b"],
-    "d": ["ð", "d"],
-    "t": ["θ", "t"],
-    "k": ["ç", "k"],
-    "ɡ": ["ʝ", "ɡ"],
-    "dˤ": ["ðˤ", "dˤ"],
-    "bː": ["bː"],
-    "dː": ["dː"],
-    "tː": ["tː"],
-    "kː": ["kː"],
-    "ɡː": ["ɡː"],
-    "f": ["f"],
-    "s": ["s"],
-    "sˤ": ["sˤ"],
-    "z": ["z"],
-    "zˤ": ["zˤ"],
-    "ʃ": ["ʃ"],
-    "ʒ": ["ʒ"],
-    "t͡ʃ": ["t͡ʃ"],
-    "d͡ʒ": ["d͡ʒ"],
-    "ɣ": ["ɣ", "ʁ"],
-    "χ": ["χ"],
-    "ħ": ["ħ"],
-    "ʕ": ["ʕ"],
-    "h": ["h"],
-    "q": ["q"],
-    "m": ["m"],
-    "n": ["n", "ŋ", "m"],
-    "r": ["r"],
-    "rˤ": ["rˤ"],
-    "l": ["l"],
-    "j": ["j"],
-    "w": ["w"],
-    "p": ["p"],
-    "a": ["a", "æ", "ɑ"],
-    "i": ["i", "e"],
-    "u": ["u", "o"],
-    "ə": ["ə"]
+    "b": [
+      "β",
+      "b"
+    ],
+    "d": [
+      "ð",
+      "d"
+    ],
+    "t": [
+      "θ",
+      "t"
+    ],
+    "k": [
+      "ç",
+      "k"
+    ],
+    "ɡ": [
+      "ʝ",
+      "ɡ"
+    ],
+    "dˤ": [
+      "ðˤ",
+      "dˤ"
+    ],
+    "bː": [
+      "bː"
+    ],
+    "dː": [
+      "dː"
+    ],
+    "tː": [
+      "tː"
+    ],
+    "kː": [
+      "kː"
+    ],
+    "ɡː": [
+      "ɡː"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "sˤ": [
+      "sˤ"
+    ],
+    "z": [
+      "z"
+    ],
+    "zˤ": [
+      "zˤ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "t͡ʃ": [
+      "t͡ʃ"
+    ],
+    "d͡ʒ": [
+      "d͡ʒ"
+    ],
+    "ɣ": [
+      "ɣ",
+      "ʁ"
+    ],
+    "χ": [
+      "χ"
+    ],
+    "ħ": [
+      "ħ"
+    ],
+    "ʕ": [
+      "ʕ"
+    ],
+    "h": [
+      "h"
+    ],
+    "q": [
+      "q"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m"
+    ],
+    "r": [
+      "r"
+    ],
+    "rˤ": [
+      "rˤ"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "p": [
+      "p"
+    ],
+    "a": [
+      "a",
+      "æ",
+      "ɑ"
+    ],
+    "i": [
+      "i",
+      "e"
+    ],
+    "u": [
+      "u",
+      "o"
+    ],
+    "ə": [
+      "ə"
+    ]
   },
   "allophone_rules": [
     {
       "id": "KAB_SPIRANT_B",
-      "phonemes": ["b"],
+      "phonemes": [
+        "b"
+      ],
       "surface": "β",
       "notes": "Spirantization of the lax (non-geminate) bilabial stop: /b/ → [β]. Kossmann & Stroomer (1997), Berber Phonology, p.466: \"Spirantization implies the development of lax stops into fricatives, e.g., b becoming ß\"; \"It reaches its culminating points in Riffian and Kabyle.\" The tense (geminate) counterpart, written ⟨bb⟩ and mapped to /bː/, is a distinct phoneme and is NOT targeted by this rule (p.466: \"Spirantization never affects tense consonants\")."
     },
     {
       "id": "KAB_SPIRANT_D",
-      "phonemes": ["d"],
+      "phonemes": [
+        "d"
+      ],
       "surface": "ð",
       "notes": "Spirantization of the lax dental stop: /d/ → [ð] (Kossmann & Stroomer 1997 p.466, 468: Riffian/Kabyle lax d → ð). E.g. adrar 'mountain' → [aðrar]. Geminate ⟨dd⟩ = /dː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_T",
-      "phonemes": ["t"],
+      "phonemes": [
+        "t"
+      ],
       "surface": "θ",
       "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-468). Geminate ⟨tt⟩ = /tː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_K",
-      "phonemes": ["k"],
+      "phonemes": [
+        "k"
+      ],
       "surface": "ç",
       "notes": "Spirantization of the lax velar stop, with palatal shift: /k/ → [ç] (Kossmann & Stroomer 1997 p.469: Riffian/Kabyle k → ʃ or ç; Karaoui et al. 2024 list [ç] in the Kabyle fricative inventory). Geminate ⟨kk⟩ = /kː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_G",
-      "phonemes": ["ɡ"],
+      "phonemes": [
+        "ɡ"
+      ],
       "surface": "ʝ",
       "notes": "Spirantization of the lax velar stop, with palatal shift: /ɡ/ → [ʝ] (Kossmann & Stroomer 1997 p.469: Riffian/Kabyle g → ʝ; Karaoui et al. 2024 list [ʝ] in the Kabyle fricative inventory). E.g. argaz 'man' → [arʝaz]. Geminate ⟨gg⟩ = /ɡː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_DH_EMPH",
-      "phonemes": ["dˤ"],
+      "phonemes": [
+        "dˤ"
+      ],
       "surface": "ðˤ",
       "notes": "Spirantization of the lax emphatic (pharyngealized) dental stop: /dˤ/ → [ðˤ] (Kossmann & Stroomer 1997 p.468: spirantized ḍ). Geminate ⟨ḍḍ⟩ = /dˤː/ stays a stop."
     },
     {
       "id": "KAB_N_VELAR_ASSIM",
-      "phonemes": ["n"],
+      "phonemes": [
+        "n"
+      ],
       "surface": "ŋ",
-      "followed_by_phoneme": ["k", "ɡ", "kː", "ɡː", "q", "qː", "χ", "ɣ"],
+      "followed_by_phoneme": [
+        "k",
+        "ɡ",
+        "kː",
+        "ɡː",
+        "q",
+        "qː",
+        "χ",
+        "ɣ"
+      ],
       "notes": "Nasal place assimilation: /n/ → [ŋ] before a dorsal (velar/uvular) consonant."
     },
     {
       "id": "KAB_N_LABIAL_ASSIM",
-      "phonemes": ["n"],
+      "phonemes": [
+        "n"
+      ],
       "surface": "m",
-      "followed_by_phoneme": ["b", "bː", "p", "f", "m", "mː"],
+      "followed_by_phoneme": [
+        "b",
+        "bː",
+        "p",
+        "f",
+        "m",
+        "mː"
+      ],
       "notes": "Nasal place assimilation: /n/ → [m] before a labial consonant."
     }
   ],
@@ -227,5 +464,11 @@
   },
   "wikidata_qid": "Q35853",
   "phoible_id": "kaby1243",
-  "wals_code": "kbl"
+  "wals_code": "kbl",
+  "location": {
+    "latitude": 36.4103,
+    "longitude": 4.76137,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kabyle."
+  }
 }

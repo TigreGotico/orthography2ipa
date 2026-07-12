@@ -399,5 +399,11 @@
   "parent": "ta-x-proto-dravidian",
   "wikidata_qid": "Q8097",
   "phoible_id": "telu1262",
-  "wals_code": "tel"
+  "wals_code": "tel",
+  "location": {
+    "latitude": 16.4529,
+    "longitude": 78.7024,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Telugu."
+  }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "trk",
-  "ancestors":   [
+  "ancestors": [
     {
       "code": "trk",
       "role": "parent",
@@ -260,7 +260,13 @@
     "stress_mark": "ˈ",
     "notes": "Uzbek default stress is word-final (-1). Some endings (question, negation, certain postpositions) and place-name suffixes deviate; lexical and not modeled. Source: Sjoberg (1963), Johanson & Csató (1998)."
   },
-      "wikidata_qid": "Q9264",
-      "phoible_id": "nort2690",
-      "wals_code": "uzb"
+  "wikidata_qid": "Q9264",
+  "phoible_id": "nort2690",
+  "wals_code": "uzb",
+  "location": {
+    "latitude": 40.886,
+    "longitude": 69.211,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Northern Uzbek."
+  }
 }

@@ -454,5 +454,11 @@
   },
   "wikidata_qid": "Q5146",
   "phoible_id": "port1283",
-  "wals_code": "por"
+  "wals_code": "por",
+  "location": {
+    "latitude": 39.91,
+    "longitude": -8.1,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Portuguese."
+  }
 }

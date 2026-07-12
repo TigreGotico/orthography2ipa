@@ -124,8 +124,13 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": null,
+  "glottolog_code": "nort3191",
   "iso639_3": "ara",
   "wikidata_qid": "Q1194795",
-  "glottolog_code": "nort3191"
+  "location": {
+    "latitude": 26.132563,
+    "longitude": 14.573491,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the North African Arabic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -24,5 +24,11 @@
   "glottolog_code": "mala1545",
   "urls": [
     "https://glottolog.org/resource/languoid/id/mala1545"
-  ]
+  ],
+  "location": {
+    "latitude": 6.18651,
+    "longitude": 124.245779,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Malayo-Polynesian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

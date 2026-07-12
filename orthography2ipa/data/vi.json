@@ -493,5 +493,11 @@
   ],
   "wikidata_qid": "Q9199",
   "phoible_id": "viet1252",
-  "wals_code": "vie"
+  "wals_code": "vie",
+  "location": {
+    "latitude": 20.681188,
+    "longitude": 105.774071,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Vietnamese."
+  }
 }

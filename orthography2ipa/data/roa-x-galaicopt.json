@@ -410,5 +410,11 @@
   "glottolog_code": "gali1263",
   "iso639_3": "por",
   "quality": "research",
-  "wikidata_qid": "Q1072111"
+  "wikidata_qid": "Q1072111",
+  "location": {
+    "latitude": 35.811428,
+    "longitude": 14.472667,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Galician Romance family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -165,5 +165,11 @@
   ],
   "wikidata_qid": "Q9051",
   "phoible_id": "luxe1241",
-  "wals_code": "lux"
+  "wals_code": "lux",
+  "location": {
+    "latitude": 49.6839,
+    "longitude": 6.14931,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Moselle Franconian."
+  }
 }

@@ -23,5 +23,11 @@
   "glottolog_code": "ayma1253",
   "urls": [
     "https://glottolog.org/resource/languoid/id/ayma1253"
-  ]
+  ],
+  "location": {
+    "latitude": -14.900467,
+    "longitude": -72.641763,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Aymaran family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

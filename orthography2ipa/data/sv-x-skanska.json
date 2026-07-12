@@ -78,8 +78,13 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": null,
+  "glottolog_code": "skan1239",
   "iso639_3": "swe",
   "wikidata_qid": "Q768017",
-  "glottolog_code": "skan1239"
+  "location": {
+    "latitude": 55.52,
+    "longitude": 13.04,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Skånska."
+  }
 }

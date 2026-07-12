@@ -218,8 +218,13 @@
     "start_year": 500,
     "end_year": 1100
   },
-  "glottolog_code": null,
+  "glottolog_code": "gall1279",
   "iso639_3": "lat",
   "wikidata_qid": "Q516074",
-  "glottolog_code": "gall1279"
+  "location": {
+    "latitude": 44.318751,
+    "longitude": 9.845129,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Gallo-Italian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

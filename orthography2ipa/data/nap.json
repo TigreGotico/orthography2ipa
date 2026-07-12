@@ -364,5 +364,11 @@
   },
   "glottolog_code": "neap1235",
   "wikidata_qid": "Q33845",
-  "wals_code": "itn"
+  "wals_code": "itn",
+  "location": {
+    "latitude": 39.2288,
+    "longitude": 16.4225,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Continental Southern Italian."
+  }
 }

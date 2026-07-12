@@ -285,5 +285,11 @@
   ],
   "wikidata_qid": "Q9288",
   "phoible_id": "hebr1245",
-  "wals_code": "heb"
+  "wals_code": "heb",
+  "location": {
+    "latitude": 31.1056,
+    "longitude": 35.0179,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Modern Hebrew."
+  }
 }

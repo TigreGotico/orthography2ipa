@@ -198,5 +198,11 @@
       "pages": null,
       "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 18.795135,
+    "longitude": -72.136115,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Haitian."
+  }
 }

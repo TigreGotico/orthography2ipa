@@ -96,5 +96,11 @@
       "notes": "Northwest/Central Semitic."
     }
   ],
-  "wikidata_qid": "Q28602"
+  "wikidata_qid": "Q28602",
+  "location": {
+    "latitude": 33.905,
+    "longitude": 42.185,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Imperial Aramaic (700-300 BCE)."
+  }
 }

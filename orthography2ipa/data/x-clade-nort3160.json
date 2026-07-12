@@ -24,5 +24,11 @@
   "glottolog_code": "nort3160",
   "urls": [
     "https://glottolog.org/resource/languoid/id/nort3160"
-  ]
+  ],
+  "location": {
+    "latitude": 59.150177,
+    "longitude": 11.26358,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the North Germanic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

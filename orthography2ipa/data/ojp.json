@@ -95,5 +95,11 @@
       "notes": "Descent from Proto-Japonic."
     }
   ],
-  "wikidata_qid": "Q5736700"
+  "wikidata_qid": "Q5736700",
+  "location": {
+    "latitude": 34.68333,
+    "longitude": 135.8,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Old Japanese."
+  }
 }

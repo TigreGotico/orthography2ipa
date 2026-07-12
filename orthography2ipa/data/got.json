@@ -1,52 +1,58 @@
 {
-    "code": "got",
-    "name": "Gothic",
-    "script": "Gothic",
-    "parent": "x-clade-east2805",
-    "notes": "Gothic (4th c. CE text; spoken in Iberia 5th–8th c.). East Germanic, earliest well-attested Germanic language. Wulfila's Bible (Codex Argenteus). VISIGOTHIC kingdom in Iberia ~470–711 CE; Gothic substrate loanwords in Ibero-Romance: guerra, guardar, ropa, yelmo. Gothic alphabet from Greek/Latin/runic. Conservative Germanic: no HG consonant shift. Labiovelar fricative /xʷ/ (ƕ). Voiced fricatives [β ð ɣ] as allophones of /b d g/.",
-    "sources": [
-        {
-            "id": "lambdin2006",
-            "author": "Lambdin, T.O.",
-            "year": 2006,
-            "title": "An Introduction to the Gothic Language",
-            "publisher": "Wipf & Stock",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "braune_heidermanns2004",
-            "author": "Braune, W. & Heidermanns, F.",
-            "year": 2004,
-            "title": "Gotische Grammatik (20th ed.)",
-            "publisher": "Niemeyer",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "fortson2010",
-            "author": "Fortson, B.W.",
-            "year": 2010,
-            "title": "Indo-European Language and Culture: An Introduction",
-            "publisher": "Blackwell",
-            "url": null,
-            "pages": null,
-            "notes": null,
-            "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
-        }
-    ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Gothic_language",
-        "https://got.wikipedia.org/wiki/%F0%90%8C%B2%F0%90%8C%BF%F0%90%8D%84%F0%90%8D%82%F0%90%8C%B0%F0%90%8C%B6%F0%90%8C%B3%F0%90%8C%B0"
-    ],
-    "timespan": {
-        "start_year": 350,
-        "end_year": 600
+  "code": "got",
+  "name": "Gothic",
+  "script": "Gothic",
+  "parent": "x-clade-east2805",
+  "notes": "Gothic (4th c. CE text; spoken in Iberia 5th–8th c.). East Germanic, earliest well-attested Germanic language. Wulfila's Bible (Codex Argenteus). VISIGOTHIC kingdom in Iberia ~470–711 CE; Gothic substrate loanwords in Ibero-Romance: guerra, guardar, ropa, yelmo. Gothic alphabet from Greek/Latin/runic. Conservative Germanic: no HG consonant shift. Labiovelar fricative /xʷ/ (ƕ). Voiced fricatives [β ð ɣ] as allophones of /b d g/.",
+  "sources": [
+    {
+      "id": "lambdin2006",
+      "author": "Lambdin, T.O.",
+      "year": 2006,
+      "title": "An Introduction to the Gothic Language",
+      "publisher": "Wipf & Stock",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "glottolog_code": "goth1244",
-    "iso639_3": "got",
-    "quality": "stub",
-    "wikidata_qid": "Q35722"
+    {
+      "id": "braune_heidermanns2004",
+      "author": "Braune, W. & Heidermanns, F.",
+      "year": 2004,
+      "title": "Gotische Grammatik (20th ed.)",
+      "publisher": "Niemeyer",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "fortson2010",
+      "author": "Fortson, B.W.",
+      "year": 2010,
+      "title": "Indo-European Language and Culture: An Introduction",
+      "publisher": "Blackwell",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-European_languages"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gothic_language",
+    "https://got.wikipedia.org/wiki/%F0%90%8C%B2%F0%90%8C%BF%F0%90%8D%84%F0%90%8D%82%F0%90%8C%B0%F0%90%8C%B6%F0%90%8C%B3%F0%90%8C%B0"
+  ],
+  "timespan": {
+    "start_year": 350,
+    "end_year": 600
+  },
+  "glottolog_code": "goth1244",
+  "iso639_3": "got",
+  "quality": "stub",
+  "wikidata_qid": "Q35722",
+  "location": {
+    "latitude": 46.9304,
+    "longitude": 29.9786,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gothic."
+  }
 }

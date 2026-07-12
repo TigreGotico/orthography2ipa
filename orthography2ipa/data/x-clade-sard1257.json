@@ -24,5 +24,11 @@
   "glottolog_code": "sard1257",
   "urls": [
     "https://glottolog.org/resource/languoid/id/sard1257"
-  ]
+  ],
+  "location": {
+    "latitude": 39.7733,
+    "longitude": 9.06946,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Southern Romance family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

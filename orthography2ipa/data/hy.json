@@ -182,5 +182,11 @@
   ],
   "wikidata_qid": "Q8785",
   "phoible_id": "nucl1235",
-  "wals_code": "arz"
+  "wals_code": "arz",
+  "location": {
+    "latitude": 40.0,
+    "longitude": 45.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Eastern Armenian."
+  }
 }

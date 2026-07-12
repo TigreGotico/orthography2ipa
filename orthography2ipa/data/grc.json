@@ -377,5 +377,11 @@
   "glottolog_code": "anci1242",
   "iso639_3": "grc",
   "quality": "research",
-  "wikidata_qid": "Q35497"
+  "wikidata_qid": "Q35497",
+  "location": {
+    "latitude": 39.8155,
+    "longitude": 21.9129,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ionic-Attic Ancient Greek."
+  }
 }

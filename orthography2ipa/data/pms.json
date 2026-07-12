@@ -178,5 +178,11 @@
   },
   "glottolog_code": "piem1238",
   "wikidata_qid": "Q15085",
-  "wals_code": "itu"
+  "wals_code": "itu",
+  "location": {
+    "latitude": 45.4633,
+    "longitude": 8.32366,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Piemontese."
+  }
 }

@@ -1,392 +1,398 @@
 {
-    "code": "gu",
-    "name": "Gujarati",
-    "script": "Gujarati",
-    "graphemes": {
-        "અ": [
-            "ə"
-        ],
-        "આ": [
-            "aː"
-        ],
-        "ઇ": [
-            "i"
-        ],
-        "ઈ": [
-            "iː"
-        ],
-        "ઉ": [
-            "u"
-        ],
-        "ઊ": [
-            "uː"
-        ],
-        "ઋ": [
-            "r̩"
-        ],
-        "એ": [
-            "e"
-        ],
-        "ઐ": [
-            "əi"
-        ],
-        "ઓ": [
-            "o"
-        ],
-        "ઔ": [
-            "əu"
-        ],
-        "ા": [
-            "aː"
-        ],
-        "િ": [
-            "i"
-        ],
-        "ી": [
-            "iː"
-        ],
-        "ુ": [
-            "u"
-        ],
-        "ૂ": [
-            "uː"
-        ],
-        "ૃ": [
-            "r̩"
-        ],
-        "ે": [
-            "e"
-        ],
-        "ૈ": [
-            "əi"
-        ],
-        "ો": [
-            "o"
-        ],
-        "ૌ": [
-            "əu"
-        ],
-        "ં": [
-            "̃"
-        ],
-        "ઃ": [
-            "h"
-        ],
-        "ઁ": [
-            "̃"
-        ],
-        "્": [
-            ""
-        ],
-        "ક": [
-            "k"
-        ],
-        "ખ": [
-            "kʰ"
-        ],
-        "ગ": [
-            "ɡ"
-        ],
-        "ઘ": [
-            "ɡʱ"
-        ],
-        "ઙ": [
-            "ŋ"
-        ],
-        "ચ": [
-            "tɕ"
-        ],
-        "છ": [
-            "tɕʰ"
-        ],
-        "જ": [
-            "dʑ"
-        ],
-        "ઝ": [
-            "dʑʱ"
-        ],
-        "ઞ": [
-            "ɲ"
-        ],
-        "ટ": [
-            "ʈ"
-        ],
-        "ઠ": [
-            "ʈʰ"
-        ],
-        "ડ": [
-            "ɖ"
-        ],
-        "ઢ": [
-            "ɖʱ"
-        ],
-        "ણ": [
-            "ɳ"
-        ],
-        "ત": [
-            "t̪"
-        ],
-        "થ": [
-            "t̪ʰ"
-        ],
-        "દ": [
-            "d̪"
-        ],
-        "ધ": [
-            "d̪ʱ"
-        ],
-        "ન": [
-            "n"
-        ],
-        "પ": [
-            "p"
-        ],
-        "ફ": [
-            "pʰ",
-            "f"
-        ],
-        "બ": [
-            "b"
-        ],
-        "ભ": [
-            "bʱ"
-        ],
-        "મ": [
-            "m"
-        ],
-        "ય": [
-            "j"
-        ],
-        "ર": [
-            "r"
-        ],
-        "ળ": [
-            "ɭ"
-        ],
-        "લ": [
-            "l"
-        ],
-        "વ": [
-            "ʋ"
-        ],
-        "શ": [
-            "ʃ"
-        ],
-        "ષ": [
-            "ʂ"
-        ],
-        "સ": [
-            "s"
-        ],
-        "હ": [
-            "ɦ"
-        ],
-        "ઝ઼": [
-            "z"
-        ],
-        "ફ઼": [
-            "f"
-        ]
-    },
-    "allophones": {
-        "p": [
-            "p"
-        ],
-        "pʰ": [
-            "pʰ"
-        ],
-        "b": [
-            "b"
-        ],
-        "bʱ": [
-            "bʱ"
-        ],
-        "t̪": [
-            "t̪"
-        ],
-        "t̪ʰ": [
-            "t̪ʰ"
-        ],
-        "d̪": [
-            "d̪"
-        ],
-        "d̪ʱ": [
-            "d̪ʱ"
-        ],
-        "ʈ": [
-            "ʈ"
-        ],
-        "ʈʰ": [
-            "ʈʰ"
-        ],
-        "ɖ": [
-            "ɖ"
-        ],
-        "ɖʱ": [
-            "ɖʱ"
-        ],
-        "k": [
-            "k"
-        ],
-        "kʰ": [
-            "kʰ"
-        ],
-        "ɡ": [
-            "ɡ"
-        ],
-        "ɡʱ": [
-            "ɡʱ"
-        ],
-        "tɕ": [
-            "tɕ"
-        ],
-        "tɕʰ": [
-            "tɕʰ"
-        ],
-        "dʑ": [
-            "dʑ"
-        ],
-        "dʑʱ": [
-            "dʑʱ"
-        ],
-        "m": [
-            "m"
-        ],
-        "n": [
-            "n",
-            "ɳ",
-            "ŋ"
-        ],
-        "ɲ": [
-            "ɲ"
-        ],
-        "ɳ": [
-            "ɳ"
-        ],
-        "ʃ": [
-            "ʃ"
-        ],
-        "ʂ": [
-            "ʂ"
-        ],
-        "s": [
-            "s"
-        ],
-        "ɦ": [
-            "ɦ",
-            "h"
-        ],
-        "r": [
-            "r"
-        ],
-        "ɭ": [
-            "ɭ"
-        ],
-        "l": [
-            "l"
-        ],
-        "ʋ": [
-            "ʋ",
-            "w"
-        ],
-        "j": [
-            "j"
-        ],
-        "ə": [
-            "ə"
-        ],
-        "aː": [
-            "aː"
-        ],
-        "i": [
-            "i"
-        ],
-        "iː": [
-            "iː"
-        ],
-        "u": [
-            "u"
-        ],
-        "uː": [
-            "uː"
-        ],
-        "e": [
-            "e"
-        ],
-        "o": [
-            "o"
-        ],
-        "əi": [
-            "əi"
-        ],
-        "əu": [
-            "əu"
-        ]
-    },
-    "parent": "sa",
-    "ancestors": [
-        {
-            "code": "sa",
-            "role": "parent",
-            "weight": 0.82,
-            "notes": "Descent via Shauraseni Apabhraṃśa / Old Gujarati"
-        },
-        {
-            "code": "fa",
-            "role": "adstrate",
-            "weight": 0.08,
-            "notes": "Persian influence through Mughal period and Parsi community"
-        }
+  "code": "gu",
+  "name": "Gujarati",
+  "script": "Gujarati",
+  "graphemes": {
+    "અ": [
+      "ə"
     ],
-    "notes": "Standard Gujarati (Gujarat, India). Distinct Gujarati script derived from Devanagari. ⟨ળ⟩ = [ɭ] retroflex lateral is a phoneme (unlike most IA). Four-way laryngeal contrast retained. Short /ə/ deleted in word-final position (schwa deletion).",
-    "quality": "research",
-    "script_type": "abugida",
-    "inherent_vowel": "ə",
-    "sources": [
-        {
-            "id": "masica1991",
-            "author": "Masica, C.",
-            "year": 1991,
-            "title": "The Indo-Aryan Languages",
-            "publisher": "Cambridge University Press",
-            "url": null,
-            "pages": null,
-            "notes": null,
-            "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
-        },
-        {
-            "id": "cardona_jain2003",
-            "author": "Cardona, G. & Jain, D. (eds.)",
-            "year": 2003,
-            "title": "The Indo-Aryan Languages",
-            "publisher": "Routledge",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "cardona1965",
-            "author": "Cardona, G.",
-            "year": 1965,
-            "title": "A Gujarati Reference Grammar",
-            "publisher": "University of Pennsylvania Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        }
+    "આ": [
+      "aː"
     ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Gujarati_language",
-        "https://gu.wikipedia.org/wiki/ગુજરાતી_ભાષા",
-        "https://gu.wikipedia.org/wiki/%E0%AA%97%E0%AB%81%E0%AA%9C%E0%AA%B0%E0%AA%BE%E0%AA%A4%E0%AB%80_%E0%AA%AD%E0%AA%BE%E0%AA%B7%E0%AA%BE"
+    "ઇ": [
+      "i"
     ],
-    "timespan": {
-        "start_year": 1400,
-        "end_year": null
+    "ઈ": [
+      "iː"
+    ],
+    "ઉ": [
+      "u"
+    ],
+    "ઊ": [
+      "uː"
+    ],
+    "ઋ": [
+      "r̩"
+    ],
+    "એ": [
+      "e"
+    ],
+    "ઐ": [
+      "əi"
+    ],
+    "ઓ": [
+      "o"
+    ],
+    "ઔ": [
+      "əu"
+    ],
+    "ા": [
+      "aː"
+    ],
+    "િ": [
+      "i"
+    ],
+    "ી": [
+      "iː"
+    ],
+    "ુ": [
+      "u"
+    ],
+    "ૂ": [
+      "uː"
+    ],
+    "ૃ": [
+      "r̩"
+    ],
+    "ે": [
+      "e"
+    ],
+    "ૈ": [
+      "əi"
+    ],
+    "ો": [
+      "o"
+    ],
+    "ૌ": [
+      "əu"
+    ],
+    "ં": [
+      "̃"
+    ],
+    "ઃ": [
+      "h"
+    ],
+    "ઁ": [
+      "̃"
+    ],
+    "્": [
+      ""
+    ],
+    "ક": [
+      "k"
+    ],
+    "ખ": [
+      "kʰ"
+    ],
+    "ગ": [
+      "ɡ"
+    ],
+    "ઘ": [
+      "ɡʱ"
+    ],
+    "ઙ": [
+      "ŋ"
+    ],
+    "ચ": [
+      "tɕ"
+    ],
+    "છ": [
+      "tɕʰ"
+    ],
+    "જ": [
+      "dʑ"
+    ],
+    "ઝ": [
+      "dʑʱ"
+    ],
+    "ઞ": [
+      "ɲ"
+    ],
+    "ટ": [
+      "ʈ"
+    ],
+    "ઠ": [
+      "ʈʰ"
+    ],
+    "ડ": [
+      "ɖ"
+    ],
+    "ઢ": [
+      "ɖʱ"
+    ],
+    "ણ": [
+      "ɳ"
+    ],
+    "ત": [
+      "t̪"
+    ],
+    "થ": [
+      "t̪ʰ"
+    ],
+    "દ": [
+      "d̪"
+    ],
+    "ધ": [
+      "d̪ʱ"
+    ],
+    "ન": [
+      "n"
+    ],
+    "પ": [
+      "p"
+    ],
+    "ફ": [
+      "pʰ",
+      "f"
+    ],
+    "બ": [
+      "b"
+    ],
+    "ભ": [
+      "bʱ"
+    ],
+    "મ": [
+      "m"
+    ],
+    "ય": [
+      "j"
+    ],
+    "ર": [
+      "r"
+    ],
+    "ળ": [
+      "ɭ"
+    ],
+    "લ": [
+      "l"
+    ],
+    "વ": [
+      "ʋ"
+    ],
+    "શ": [
+      "ʃ"
+    ],
+    "ષ": [
+      "ʂ"
+    ],
+    "સ": [
+      "s"
+    ],
+    "હ": [
+      "ɦ"
+    ],
+    "ઝ઼": [
+      "z"
+    ],
+    "ફ઼": [
+      "f"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "t̪": [
+      "t̪"
+    ],
+    "t̪ʰ": [
+      "t̪ʰ"
+    ],
+    "d̪": [
+      "d̪"
+    ],
+    "d̪ʱ": [
+      "d̪ʱ"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "tɕʰ": [
+      "tɕʰ"
+    ],
+    "dʑ": [
+      "dʑ"
+    ],
+    "dʑʱ": [
+      "dʑʱ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ɳ",
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʂ": [
+      "ʂ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ɦ": [
+      "ɦ",
+      "h"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɭ": [
+      "ɭ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ʋ": [
+      "ʋ",
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ],
+    "əi": [
+      "əi"
+    ],
+    "əu": [
+      "əu"
+    ]
+  },
+  "parent": "sa",
+  "ancestors": [
+    {
+      "code": "sa",
+      "role": "parent",
+      "weight": 0.82,
+      "notes": "Descent via Shauraseni Apabhraṃśa / Old Gujarati"
     },
-    "glottolog_code": "guja1252",
-    "iso639_3": "guj",
-    "wikidata_qid": "Q5137",
-    "phoible_id": "guja1252",
-    "wals_code": "guj"
+    {
+      "code": "fa",
+      "role": "adstrate",
+      "weight": 0.08,
+      "notes": "Persian influence through Mughal period and Parsi community"
+    }
+  ],
+  "notes": "Standard Gujarati (Gujarat, India). Distinct Gujarati script derived from Devanagari. ⟨ળ⟩ = [ɭ] retroflex lateral is a phoneme (unlike most IA). Four-way laryngeal contrast retained. Short /ə/ deleted in word-final position (schwa deletion).",
+  "quality": "research",
+  "script_type": "abugida",
+  "inherent_vowel": "ə",
+  "sources": [
+    {
+      "id": "masica1991",
+      "author": "Masica, C.",
+      "year": 1991,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
+    },
+    {
+      "id": "cardona_jain2003",
+      "author": "Cardona, G. & Jain, D. (eds.)",
+      "year": 2003,
+      "title": "The Indo-Aryan Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "cardona1965",
+      "author": "Cardona, G.",
+      "year": 1965,
+      "title": "A Gujarati Reference Grammar",
+      "publisher": "University of Pennsylvania Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gujarati_language",
+    "https://gu.wikipedia.org/wiki/ગુજરાતી_ભાષા",
+    "https://gu.wikipedia.org/wiki/%E0%AA%97%E0%AB%81%E0%AA%9C%E0%AA%B0%E0%AA%BE%E0%AA%A4%E0%AB%80_%E0%AA%AD%E0%AA%BE%E0%AA%B7%E0%AA%BE"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "glottolog_code": "guja1252",
+  "iso639_3": "guj",
+  "wikidata_qid": "Q5137",
+  "phoible_id": "guja1252",
+  "wals_code": "guj",
+  "location": {
+    "latitude": 22.687,
+    "longitude": 71.0962,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gujarati."
+  }
 }

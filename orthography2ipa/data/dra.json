@@ -4,30 +4,78 @@
   "parent": "x-clade-drav1251",
   "script": "IPA-reconstruction",
   "graphemes": {
-    "a": ["a"],
-    "aː": ["aː"],
-    "i": ["i"],
-    "iː": ["iː"],
-    "u": ["u"],
-    "uː": ["uː"],
-    "e": ["e"],
-    "o": ["o"],
-    "p": ["p"],
-    "t": ["t"],
-    "ʈ": ["ʈ"],
-    "k": ["k"],
-    "c": ["c"],
-    "m": ["m"],
-    "n": ["n"],
-    "ɳ": ["ɳ"],
-    "ɲ": ["ɲ"],
-    "ŋ": ["ŋ"],
-    "l": ["l"],
-    "ɭ": ["ɭ"],
-    "r": ["r"],
-    "ɻ": ["ɻ"],
-    "ʋ": ["ʋ"],
-    "j": ["j"]
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "k": [
+      "k"
+    ],
+    "c": [
+      "c"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "ɭ": [
+      "ɭ"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɻ": [
+      "ɻ"
+    ],
+    "ʋ": [
+      "ʋ"
+    ],
+    "j": [
+      "j"
+    ]
   },
   "allophones": {},
   "notes": "STRUCTURAL ANCESTRY / SUBSTRATE NODE (not a modelled G2P target). Proto-Dravidian is the reconstructed common ancestor of the Dravidian family (South, Central, North Dravidian). It is referenced here only as the leading candidate substrate of the Indo-Aryan languages — the retroflex series (ʈ ɖ ɳ ɭ) that distinguishes Indo-Aryan from the rest of Indo-European is widely attributed to Dravidian (and Munda) substratal influence. No phonology is claimed for G2P; the inventory is a placeholder sketch (afa.json / trk.json stub pattern). Glottolog drav1251.",
@@ -53,5 +101,11 @@
       "notes": "Reference for Proto-Dravidian and the Dravidian substrate hypothesis for Indo-Aryan retroflexion (structural node only).",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Proto-Dravidian_language"
     }
-  ]
+  ],
+  "location": {
+    "latitude": 22.000695,
+    "longitude": 79.457649,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Dravidian family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

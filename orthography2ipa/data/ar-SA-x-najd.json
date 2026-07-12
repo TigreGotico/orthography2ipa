@@ -245,5 +245,11 @@
     }
   ],
   "wikidata_qid": "Q56574",
-  "phoible_id": "najd1235"
+  "phoible_id": "najd1235",
+  "location": {
+    "latitude": 30.3371,
+    "longitude": 42.1773,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Najdi Arabic."
+  }
 }

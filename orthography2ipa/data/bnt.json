@@ -94,5 +94,11 @@
       "weight": 0.9,
       "notes": "Bantu branch of Niger-Congo (Atlantic-Congo)."
     }
-  ]
+  ],
+  "location": {
+    "latitude": -5.550099,
+    "longitude": 20.644617,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Narrow Bantu family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

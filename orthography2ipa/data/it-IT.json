@@ -529,5 +529,11 @@
   },
   "wikidata_qid": "Q652",
   "phoible_id": "ital1282",
-  "wals_code": "ifi"
+  "wals_code": "ifi",
+  "location": {
+    "latitude": 43.0464,
+    "longitude": 12.6489,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Italian."
+  }
 }

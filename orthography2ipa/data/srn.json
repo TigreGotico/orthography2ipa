@@ -168,5 +168,11 @@
       "pages": null,
       "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 5.83,
+    "longitude": -55.33,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sranan Tongo."
+  }
 }

@@ -117,7 +117,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": null,
+  "glottolog_code": "arab1393",
   "iso639_3": "ara",
   "allophone_rules": [
     {
@@ -182,5 +182,10 @@
     }
   ],
   "wikidata_qid": "Q15043573",
-  "glottolog_code": "arab1393"
+  "location": {
+    "latitude": 20.423635,
+    "longitude": 45.762512,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Arabian Peninsula Arabic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

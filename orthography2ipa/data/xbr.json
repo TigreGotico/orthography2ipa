@@ -213,5 +213,11 @@
     "end_year": 900
   },
   "glottolog_code": "bryt1239",
-  "wikidata_qid": "Q156877"
+  "wikidata_qid": "Q156877",
+  "location": {
+    "latitude": 51.233218,
+    "longitude": -3.914736,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Brythonic family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -410,5 +410,11 @@
   "parent": "ta-x-proto-dravidian",
   "wikidata_qid": "Q33673",
   "phoible_id": "nucl1305",
-  "wals_code": "knd"
+  "wals_code": "knd",
+  "location": {
+    "latitude": 13.5878,
+    "longitude": 76.1198,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kannada."
+  }
 }

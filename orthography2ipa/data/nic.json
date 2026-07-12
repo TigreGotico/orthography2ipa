@@ -87,5 +87,11 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Niger%E2%80%93Congo_languages"
     }
   ],
-  "wikidata_qid": "Q33838"
+  "wikidata_qid": "Q33838",
+  "location": {
+    "latitude": 9.740652,
+    "longitude": -8.642392,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Atlantic-Congo family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

@@ -238,5 +238,11 @@
     "end_year": -2500
   },
   "glottolog_code": "indo1319",
-  "iso639_3": null
+  "iso639_3": null,
+  "location": {
+    "latitude": 41.836725,
+    "longitude": 33.20682,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Indo-European family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }
