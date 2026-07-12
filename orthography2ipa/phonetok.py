@@ -942,13 +942,23 @@ class PhonetokTokenizer:
                 pos = m.end()
                 continue
 
-            # (b) Punctuation — unless the spec explicitly registers this
-            # exact span as a grapheme (e.g. apostrophe as glottal stop
-            # in Tetum), in which case the grapheme mapping wins.
+            # (b) Punctuation — unless a grapheme claims these characters, in
+            # which case the grapheme wins. Two ways that happens: the spec
+            # registers the punctuation span itself as a grapheme (apostrophe
+            # as glottal stop in Tetum), or a LONGER grapheme starts here and
+            # merely opens with punctuation (pinyin's empty rime ⟨-i⟩). The
+            # second case needs the trie: matching punctuation first would bite
+            # off the ⟨-⟩ and leave ⟨i⟩ behind, so ⟨-i⟩ could never be matched
+            # at all. Maximal munch is the tokenizer's rule; it must hold here
+            # too.
             m = _PUNCT_RE.match(text, pos)
             if m:
                 span = m.group()
-                if span not in self._grapheme_ipa:
+                claimed_by_grapheme = (
+                    span in self._grapheme_ipa
+                    or self._trie.longest_match(text, pos) is not None
+                )
+                if not claimed_by_grapheme:
                     tokens.append(Token(
                         kind=TokenKind.PUNCTUATION, grapheme=span,
                         ipa=(), position=pos, length=len(span),
