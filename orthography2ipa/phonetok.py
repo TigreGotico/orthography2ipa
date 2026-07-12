@@ -206,6 +206,24 @@ def _is_virama(ch: str) -> bool:
     return unicodedata.combining(ch) == _VIRAMA_COMBINING_CLASS
 
 
+#: Combining marks that make the segment they attach to SYLLABIC — i.e. a
+#: nucleus. U+0329 (below) and U+030D (above) are the IPA syllabicity marks;
+#: they are what makes /r̩/ in ⟨कृ⟩ a nucleus rather than an onset.
+_SYLLABIC_MARKS = "̩̍"
+
+
+def _is_nucleus(ipa: str) -> bool:
+    """True if *ipa* can be a syllable nucleus.
+
+    A nucleus is a vowel **or a syllabic consonant**. The second half matters
+    for abugidas: the vocalic-R/L matras map to /r̩/, /l̩/ — consonant letters
+    carrying a syllabicity mark — and they are the syllable's nucleus just as
+    a vowel is.
+    """
+    return (any(is_ipa_vowel(c) for c in ipa)
+            or any(m in ipa for m in _SYLLABIC_MARKS))
+
+
 def _is_turkish(lang: str) -> bool:
     return lang == "tr" or lang.startswith("tr-")
 
@@ -936,7 +954,15 @@ class PhonetokTokenizer:
             # inherent vowel still surfaces and is what the diacritic attaches
             # to.
             return False
-        return is_ipa_vowel(head)
+        # What cancels the inherent vowel is a NUCLEUS — and a nucleus is not
+        # only a vowel letter. The vocalic-R/L matras (Devanagari ⟨ृ⟩ and its
+        # cognates across Brahmic) map to SYLLABIC CONSONANTS — /r̩/, /l̩/ —
+        # which are the syllable's nucleus exactly as /a/ is. Testing only the
+        # head character misses them, because that head is a consonant letter:
+        # ⟨कृ⟩ → "r̩" left the inherent vowel standing, giving कृष्ण *kər̩əʂɳə
+        # for kr̩ʂɳə. Syllabicity is marked by a combining diacritic (U+0329
+        # below, U+030D above), so scan the whole string rather than the head.
+        return _is_nucleus(first)
 
     def weights_for(self, grapheme: str) -> Optional[Tuple[float, ...]]:
         """Return the per-candidate weights for *grapheme*, or ``None``.
@@ -1036,9 +1062,18 @@ class PhonetokTokenizer:
                 # itself (a dependent vowel sign) or suppresses it (a virama).
                 # Both are combining marks, so one lookahead decides. Marks that
                 # supply no vowel (anusvara, nukta, visarga) leave it standing.
+                #
+                # The inherent vowel belongs to a consonant LETTER. Deciding
+                # that from the IPA alone is a phonetic proxy that misfires: a
+                # combining MARK whose IPA happens to be consonantal (Bengali
+                # anusvara ⟨ং⟩ → /ŋ/) would collect an inherent vowel of its
+                # own — বাংলা *baŋɔla for baŋla. So gate on the grapheme's
+                # Unicode category, and use the IPA only to tell a consonant
+                # letter from a vowel letter.
                 if self.spec.inherent_vowel and ipa_vals:
                     first_ipa = ipa_vals[0]
-                    if first_ipa and not is_ipa_vowel(first_ipa[0]):
+                    is_mark = unicodedata.category(gkey[-1]) in ("Mn", "Mc")
+                    if first_ipa and not is_mark and not _is_nucleus(first_ipa):
                         next_pos = pos + consumed
                         next_ch = text[next_pos] if next_pos < n else ""
                         if next_ch and _is_virama(next_ch):
