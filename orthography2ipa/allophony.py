@@ -36,7 +36,9 @@ position and neighbour conditions work on both paths.
 """
 from __future__ import annotations
 
-from typing import List, Optional, Sequence
+import unicodedata
+from dataclasses import dataclass
+from typing import List, Optional, Sequence, Tuple
 
 from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
@@ -45,7 +47,73 @@ from orthography2ipa.types import AllophoneRule
 __all__ = [
     "AllophoneRescorer",
     "compile_allophone_rescorer",
+    "segment_ipa",
 ]
+
+
+def _is_modifier(ch: str) -> bool:
+    """Whether *ch* attaches to the preceding IPA base character.
+
+    Combining marks (tense ◌͈, unreleased ◌̚, nasal ◌̃), modifier letters
+    (ʰ ʲ ˠ ː) and modifier symbols never start a segment of their own.
+    """
+    return bool(unicodedata.combining(ch)) or \
+        unicodedata.category(ch) in ("Lm", "Sk")
+
+
+def segment_ipa(ipa: str, atoms: Sequence[str] = ()) -> List[str]:
+    """Split an IPA candidate string into phoneme-sized segments.
+
+    *atoms* — multi-character phonemes the caller cares about (affricates
+    like ``tɕ``, rule targets/surfaces), tried longest-first so ``tɕʰ``
+    is one segment, never ``t`` + ``ɕʰ``. Everything else groups as one
+    base character plus its trailing modifiers. A single-phoneme string
+    round-trips to itself, so single-segment slots behave exactly as the
+    pre-segmentation rescorer did.
+    """
+    segments: List[str] = []
+    i, n = 0, len(ipa)
+    while i < n:
+        seg = _match_atom(ipa, i, atoms)
+        if seg is None:
+            j = i + 1
+            while j < n and _is_modifier(ipa[j]):
+                j += 1
+            seg = ipa[i:j]
+        segments.append(seg)
+        i += len(seg)
+    return segments
+
+
+def _match_atom(ipa: str, start: int, atoms: Sequence[str]) -> Optional[str]:
+    """The longest *atom* starting at *start*, or ``None``.
+
+    An atom only matches when not immediately followed by a modifier —
+    ``k`` must not steal the base of ``k͈`` (tense) or ``kʰ`` (aspirated),
+    which are different phonemes.
+    """
+    for atom in atoms:
+        end = start + len(atom)
+        if not ipa.startswith(atom, start):
+            continue
+        if end < len(ipa) and _is_modifier(ipa[end]):
+            continue
+        return atom
+    return None
+
+
+@dataclass(frozen=True)
+class SegmentContext:
+    """One segment's phonological neighbourhood inside a word.
+
+    Neighbours look across slot boundaries: the segment before the first
+    segment of a slot is the LAST segment of the previous slot's top
+    candidate (and symmetrically after the last). ``None`` = word edge.
+    """
+    prev: Optional[str]
+    next: Optional[str]
+    is_word_initial: bool
+    is_word_final: bool
 
 
 def _syllable_position(ctx: GraphemeContext) -> str:
@@ -95,10 +163,11 @@ class AllophoneRescorer(LatticeRescorer):
     can skip it cheaply.
     """
 
-    __slots__ = ("rules",)
+    __slots__ = ("rules", "_atoms")
 
     def __init__(self, rules: Sequence[AllophoneRule]) -> None:
         self.rules = tuple(rules)
+        self._atoms = _rule_atoms(self.rules)
 
     def rescore(
         self, slot: "SegmentSlot", context: RescoreContext,
@@ -113,20 +182,79 @@ class AllophoneRescorer(LatticeRescorer):
         return new if new is not None else slot.candidates
 
     def _realize(self, ipa: str, context: RescoreContext) -> Optional[str]:
-        """The surface form of *ipa* in *context*, or ``None`` if no rule fires."""
+        """The surface form of *ipa* in *context*, or ``None`` if no rule fires.
+
+        Two passes. The whole-candidate pass is the original semantics —
+        a single-phoneme slot equal to a rule target — and stays first so
+        every existing single-segment spec is byte-identical. The segment
+        pass then serves slots whose one candidate carries SEVERAL
+        phonemes (a Hangul syllable block, an abugida consonant with its
+        inherent vowel): each segment is matched and rewritten in place,
+        with neighbour context read across slot boundaries.
+        """
         for rule in self.rules:
             if ipa in rule.phonemes and self._matches(rule, context):
                 return rule.surface
+        segments = segment_ipa(ipa, self._atoms)
+        if len(segments) <= 1:
+            return None
+        return self._realize_segments(segments, context)
+
+    def _realize_segments(
+        self, segments: List[str], context: RescoreContext,
+    ) -> Optional[str]:
+        """Apply the first matching rule to each segment; ``None`` = no-op."""
+        changed = False
+        out: List[str] = []
+        for i, seg in enumerate(segments):
+            seg_ctx = _segment_context(segments, i, context, self._atoms)
+            surface = self._realize_one_segment(seg, seg_ctx, context)
+            if surface is not None and surface != seg:
+                changed = True
+                out.append(surface)
+            else:
+                out.append(seg)
+        return "".join(out) if changed else None
+
+    def _realize_one_segment(
+        self, seg: str, seg_ctx: SegmentContext, context: RescoreContext,
+    ) -> Optional[str]:
+        for rule in self.rules:
+            if _is_segmental(rule) \
+                    and seg in rule.phonemes \
+                    and _matches_segment(rule, seg_ctx) \
+                    and self._matches_slot(rule, context):
+                return rule.surface
         return None
 
-    @staticmethod
-    def _matches(rule: AllophoneRule, ctx: RescoreContext) -> bool:
+    @classmethod
+    def _matches(cls, rule: AllophoneRule, ctx: RescoreContext) -> bool:
+        """Whole-candidate match: word flags + slot neighbours + slot flags.
+
+        This is the original single-phoneme-slot semantics, kept intact so
+        the whole-candidate pass is byte-identical to the pre-segment
+        rescorer.
+        """
         if rule.word_initial is not None and \
                 rule.word_initial != ctx.is_word_initial:
             return False
         if rule.word_final is not None and \
                 rule.word_final != ctx.is_word_final:
             return False
+        if rule.preceded_by_phoneme:
+            prev = ctx.prev_slot
+            if prev is None or prev.top.ipa not in rule.preceded_by_phoneme:
+                return False
+        if rule.followed_by_phoneme:
+            nxt = ctx.next_slot
+            if nxt is None or nxt.top.ipa not in rule.followed_by_phoneme:
+                return False
+        return cls._matches_slot(rule, ctx)
+
+    @staticmethod
+    def _matches_slot(rule: AllophoneRule, ctx: RescoreContext) -> bool:
+        """The conditions that describe the SLOT, not one of its segments:
+        stress, syllable position, and grapheme-class neighbours."""
         if rule.stress is not None:
             stressed = ctx.is_stressed
             if stressed is None:  # no stress context (tokenizer path)
@@ -142,19 +270,97 @@ class AllophoneRescorer(LatticeRescorer):
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next):
                 return False
-        if rule.preceded_by_phoneme:
-            prev = ctx.prev_slot
-            if prev is None or prev.top.ipa not in rule.preceded_by_phoneme:
-                return False
-        if rule.followed_by_phoneme:
-            nxt = ctx.next_slot
-            if nxt is None or nxt.top.ipa not in rule.followed_by_phoneme:
-                return False
         if rule.grapheme is not None:
             g = ctx.grapheme.grapheme
             if not g or g.lower() not in rule.grapheme:
                 return False
         return True
+
+
+def _is_segmental(rule: AllophoneRule) -> bool:
+    """Whether *rule* may fire on a segment INSIDE a multi-phoneme slot.
+
+    Only rules that declare phoneme-neighbour context
+    (``preceded_by_phoneme``/``followed_by_phoneme``) qualify. A rule
+    without one was written under whole-slot semantics, where its target
+    matched the slot's ENTIRE candidate — the spec's own phoneme unit. A
+    diphthong slot like ``ow`` segments into ``o``+``w``, but it is one
+    phoneme to its spec, and a neighbour-less ``[o] → [wo]``
+    diphthongisation rule must not fire on the ``o`` inside it. A rule
+    that states its segment adjacency, by contrast, is asking for exactly
+    this granularity.
+    """
+    return bool(rule.preceded_by_phoneme or rule.followed_by_phoneme)
+
+
+def _matches_segment(rule: AllophoneRule, seg_ctx: SegmentContext) -> bool:
+    """The conditions that describe ONE SEGMENT of a multi-phoneme slot:
+    word-edge flags and phoneme neighbours, read at segment granularity."""
+    if rule.word_initial is not None and \
+            rule.word_initial != seg_ctx.is_word_initial:
+        return False
+    if rule.word_final is not None and \
+            rule.word_final != seg_ctx.is_word_final:
+        return False
+    if rule.preceded_by_phoneme:
+        if seg_ctx.prev is None or \
+                seg_ctx.prev not in rule.preceded_by_phoneme:
+            return False
+    if rule.followed_by_phoneme:
+        if seg_ctx.next is None or \
+                seg_ctx.next not in rule.followed_by_phoneme:
+            return False
+    return True
+
+
+def _segment_context(
+    segments: List[str], index: int,
+    ctx: RescoreContext, atoms: Sequence[str],
+) -> SegmentContext:
+    """Build one segment's :class:`SegmentContext` within its word.
+
+    Neighbours fall back across slot boundaries to the ADJACENT SLOT's
+    top candidate (its last segment on the left, first on the right), so
+    an intervocalic rule sees 바+다 the same way it would see a single
+    slot carrying ``pata``.
+    """
+    if index > 0:
+        prev = segments[index - 1]
+    elif ctx.prev_slot is not None:
+        prev_segs = segment_ipa(ctx.prev_slot.top.ipa, atoms)
+        prev = prev_segs[-1] if prev_segs else None
+    else:
+        prev = None
+    if index < len(segments) - 1:
+        nxt = segments[index + 1]
+    elif ctx.next_slot is not None:
+        next_segs = segment_ipa(ctx.next_slot.top.ipa, atoms)
+        nxt = next_segs[0] if next_segs else None
+    else:
+        nxt = None
+    return SegmentContext(
+        prev=prev, next=nxt,
+        is_word_initial=ctx.is_word_initial and index == 0,
+        is_word_final=ctx.is_word_final and index == len(segments) - 1,
+    )
+
+
+def _rule_atoms(rules: Sequence[AllophoneRule]) -> Tuple[str, ...]:
+    """Every multi-character phoneme the rules mention, longest first.
+
+    These are the segmentation atoms: a rule about ``tɕ`` must see ``tɕ``
+    as one segment, never ``t`` + ``ɕ``. Single characters segment
+    naturally and need no atom entry.
+    """
+    atoms = set()
+    for rule in rules:
+        atoms.update(rule.phonemes or ())
+        atoms.update(rule.preceded_by_phoneme or ())
+        atoms.update(rule.followed_by_phoneme or ())
+        if rule.surface:
+            atoms.add(rule.surface)
+    return tuple(sorted((a for a in atoms if len(a) > 1),
+                        key=len, reverse=True))
 
 
 def compile_allophone_rescorer(

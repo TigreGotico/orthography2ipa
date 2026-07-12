@@ -39,6 +39,7 @@ Usage
 """
 from __future__ import annotations
 
+import itertools
 import math
 import re
 import unicodedata
@@ -192,6 +193,11 @@ def _expand_arabic_gemination(text: str) -> str:
 # (`tr`, `tr-*`), keep every other language on plain `str.lower()`.
 _TR_LOWER_MAP: Dict[str, str] = {"I": "ı", "İ": "i"}
 
+
+#: Cap on candidate combinations synthesized for one canonically-decomposed
+#: character (step d2 in ``tokenize``): pieces' candidate lists multiply, and
+#: a 3-piece Hangul syllable with ambiguous jamo must not explode the beam.
+_MAX_DECOMPOSED_COMBOS = 4
 
 #: Unicode canonical combining class assigned to every Brahmic virama/halant
 #: (Devanagari, Bengali, Tamil, Telugu, Kannada, Malayalam, Sinhala, Khmer,
@@ -1114,8 +1120,35 @@ class PhonetokTokenizer:
                 pos += consumed
                 continue
 
-            # (e) Unknown single character
+            # (d2) Canonical decomposition fallback. The tokenizer works on
+            # NFC text, so a script whose atoms only exist *composed* never
+            # meets its own graphemes: a Hangul syllable block (한 U+D55C)
+            # canonically decomposes to conjoining jamo (ᄒ+ᅡ+ᆫ) — the units
+            # a spec can actually map — but NFC recomposes them on input.
+            # When a character has no trie entry of its own, decompose it
+            # canonically; if EVERY piece is a mapped grapheme, emit ONE
+            # token for the original character whose candidates are the
+            # (ranked, capped) combinations of the pieces' candidates.
+            # Pure Unicode canonical equivalence — no script special-cased;
+            # any precomposed character whose parts the spec maps benefits.
+            # All pieces must map: a partial match would silently drop
+            # phonemes, and UNKNOWN is the honest answer there.
             ch = text[pos]
+            decomposed = unicodedata.normalize("NFD", ch)
+            if decomposed != ch:
+                piece_vals = [self._grapheme_ipa.get(p) for p in decomposed]
+                if all(v is not None for v in piece_vals):
+                    combos = itertools.islice(
+                        itertools.product(*piece_vals), _MAX_DECOMPOSED_COMBOS)
+                    ipa_vals = tuple("".join(c) for c in combos)
+                    tokens.append(Token(
+                        kind=TokenKind.GRAPHEME, grapheme=ch,
+                        ipa=ipa_vals, position=pos, length=1,
+                    ))
+                    pos += 1
+                    continue
+
+            # (e) Unknown single character
             tokens.append(Token(
                 kind=TokenKind.UNKNOWN, grapheme=ch,
                 ipa=(), position=pos, length=1,
