@@ -224,7 +224,20 @@ def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
 # ═══════════════════════════════════════════════════════════════════════════
 
 def _extract_phonemes(spec: LanguageSpec) -> Set[str]:
-    """Extract the set of unique IPA phonemes from a language spec."""
+    """The language's phoneme inventory.
+
+    Prefers the inventory the spec DECLARES. A language's sounds are not a
+    property of its writing system: an unwritten language has a phonology and no
+    graphemes, and a logographic script encodes no sound at all, so reading the
+    inventory out of the spelling cannot work for either.
+
+    Falls back to deriving it from ``graphemes`` when no inventory is declared —
+    which is what every spec did before ``phonemes`` existed, and what leaves them
+    unchanged.
+    """
+    if spec.phonemes:
+        return {p for p in spec.phonemes if p}
+
     phonemes: Set[str] = set()
     for ipa_list in spec.graphemes.values():
         for ipa in ipa_list:

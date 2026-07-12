@@ -430,6 +430,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         clade=bool(raw.get("clade", False)),
         script=raw["script"],
         graphemes=graphemes,
+        phonemes=tuple(raw.get("phonemes") or ()),
         allophones=allophones,
         positional_graphemes=positional_graphemes or {},  # will auto cast to enum
         parent=parent_lang,

@@ -804,6 +804,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "quality": InheritanceMode.OWN_ONLY,
     "script_type": InheritanceMode.OWN_ONLY,
     "inherent_vowel": InheritanceMode.OWN_ONLY,
+    "phonemes": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
     "wikidata_qid": InheritanceMode.OWN_ONLY,
     "phoible_id": InheritanceMode.OWN_ONLY,
@@ -885,6 +886,23 @@ class LanguageSpec:
 
     allophones: AllophoneMap
     """Phoneme -> contextual surface realisations."""
+
+    phonemes: Tuple[str, ...] = ()
+    """The language's phoneme inventory — the sounds it HAS, stated directly.
+
+    Deliberately independent of :attr:`graphemes`. A language's sounds are not a
+    property of its writing system: most of the world's languages have a
+    documented phonology and NO orthography at all (PHOIBLE catalogues inventories
+    for thousands of them), and a logographic script encodes no sound, so reading
+    the inventory out of the spelling cannot work for either.
+
+    When empty, the inventory is DERIVED from ``graphemes`` — which is what every
+    spec did before this field existed, and what leaves them unchanged. That
+    derivation is a fallback, not the definition: it reads the sounds out of the
+    spelling, which is backwards, and it is why a reconstructed language had to
+    fake an identity orthography (Proto-Indo-European declaring ``p`` -> [p])
+    merely to have an inventory at all.
+    """
 
     parent: Optional[str] = None
     """Primary parent code (backward-compatible shorthand).
