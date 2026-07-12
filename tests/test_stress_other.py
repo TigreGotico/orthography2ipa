@@ -302,3 +302,43 @@ class TestTuluVowels:
         spec = get("tcy")
         assert "ŭ" in spec.graphemes, "Tulu ŭ /ɨ~ɯ/ should be in graphemes"
         assert "ɨ" in spec.graphemes["ŭ"]
+
+
+class TestPolishPhonology:
+    """Gussmann (2007) The Phonology of Polish (OUP) — the rules behind
+    the pl spec's positional ⟨i⟩, nasal-vowel decomposition, and
+    obstruent voicing assimilation."""
+
+    @staticmethod
+    def _t(w):
+        from orthography2ipa import G2P
+        return G2P("pl").transcribe_word(w).replace("ˈ", "")
+
+    def test_prevocalic_i_is_a_glide(self):
+        assert self._t("wie") == "vjɛ"
+
+    def test_i_after_palatal_digraph_is_mute_before_vowel(self):
+        # ⟨zie⟩: the i only marks palatality (Gussmann §5)
+        assert self._t("Abchazie") == "apxaʑɛ"
+
+    def test_nasal_vowel_decomposes_before_stop(self):
+        assert self._t("ząb") == "zɔmp"       # §2.4, homorganic m + final devoicing
+        assert self._t("ręka") == "rɛŋka"     # velar → ŋ
+
+    def test_word_final_a_ogonek_keeps_nasal_glide(self):
+        assert self._t("są") == "sɔw̃"        # §2.4
+
+    def test_word_final_e_ogonek_denasalizes(self):
+        assert self._t("się") == "ɕɛ"
+
+    def test_regressive_devoicing(self):
+        assert self._t("wódka") == "vutka"    # ch. 8
+
+    def test_regressive_voicing(self):
+        assert self._t("prośba") == "prɔʑba"  # ch. 8
+
+    def test_progressive_devoicing_of_v(self):
+        assert self._t("kwiat") == "kfjat"    # ch. 8 — v assimilates rightward
+
+    def test_velar_nasal_assimilation(self):
+        assert self._t("bank") == "baŋk"      # §2.3

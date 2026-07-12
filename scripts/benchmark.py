@@ -106,7 +106,13 @@ CI_SAMPLE_JSON = os.path.join(REPO_ROOT, "benchmarks", "results_ci_sample.json")
 #: modifier apostrophe U+02BC is deliberately NOT here: it marks ejectives and
 #: is a real segment.
 _STRESS_MARKS = "ˈˌ'"
-_NARROW_MARKS = "̝̞̪̺̼̘̙͜͡.·‿()"
+#: Tie bars are notation, not phonology: t͡s and ts are the same phoneme
+#: string at every transcription tier, so they are stripped from BOTH
+#: sides unconditionally (unlike the narrow diacritics below, which only
+#: strip under --broad).
+_TIE_BARS = "͜͡‿"
+
+_NARROW_MARKS = "̝̞̪̺̼̘̙.·()"
 #: Prosodic/orthographic punctuation carried by sentence-level gold sets
 #: (phrase breaks, commas, full stops). None of it is a phoneme, so scoring it
 #: as one penalises a transcription for text the engine correctly ignores.
@@ -1472,6 +1478,8 @@ def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
     # breaks and commas the engine never emits; counting them as segments
     # penalises a correct transcription for text it rightly ignored.
     for ch in _PUNCT_MARKS:
+        s = s.replace(ch, "")
+    for ch in _TIE_BARS:
         s = s.replace(ch, "")
     if broad:
         decomposed = unicodedata.normalize("NFD", s)
