@@ -96,24 +96,28 @@
       "dz"
     ],
     "ci": [
-      "tʃ"
+      "tʃ",
+      "tʃi"
     ],
     "gi": [
-      "dʒ"
+      "dʒ",
+      "dʒi"
     ],
     "sc": [
       "ʃ",
       "sk"
     ],
     "sci": [
-      "ʃ"
+      "ʃ",
+      "ʃi"
     ],
     "gl": [
       "ʎ",
       "ɡl"
     ],
     "gli": [
-      "ʎ"
+      "ʎ",
+      "ʎi"
     ],
     "gn": [
       "ɲ"
@@ -479,6 +483,7 @@
         "dz"
       ],
       "after_consonant": [
+        "ts",
         "dz"
       ],
       "default": [
@@ -502,6 +507,38 @@
       ],
       "default": [
         "ɡl"
+      ]
+    },
+    "ci": {
+      "before_vowel": [
+        "tʃ"
+      ],
+      "default": [
+        "tʃi"
+      ]
+    },
+    "gi": {
+      "before_vowel": [
+        "dʒ"
+      ],
+      "default": [
+        "dʒi"
+      ]
+    },
+    "sci": {
+      "before_vowel": [
+        "ʃ"
+      ],
+      "default": [
+        "ʃi"
+      ]
+    },
+    "gli": {
+      "before_vowel": [
+        "ʎ"
+      ],
+      "default": [
+        "ʎi"
       ]
     }
   },
@@ -535,5 +572,57 @@
     "longitude": 12.6489,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Italian."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "IT_INHERENT_GEMINATE_GN",
+      "phonemes": [
+        "ɲ"
+      ],
+      "surface": "ɲɲ",
+      "preceded_by": "vowel",
+      "followed_by": "vowel",
+      "notes": "Intervocalic /ɲ/ is inherently long in Italian (Krämer (2009) The Phonology of Italian (OUP) §7.2; Canepari DiPI): bagno [baɲɲo], aglio [aʎʎo], pesce [peʃʃe], vizio [vittsjo]."
+    },
+    {
+      "id": "IT_INHERENT_GEMINATE_GLI",
+      "phonemes": [
+        "ʎ"
+      ],
+      "surface": "ʎʎ",
+      "preceded_by": "vowel",
+      "followed_by": "vowel",
+      "notes": "Intervocalic /ʎ/ is inherently long in Italian (Krämer (2009) The Phonology of Italian (OUP) §7.2; Canepari DiPI): bagno [baɲɲo], aglio [aʎʎo], pesce [peʃʃe], vizio [vittsjo]."
+    },
+    {
+      "id": "IT_INHERENT_GEMINATE_SC",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "ʃʃ",
+      "preceded_by": "vowel",
+      "followed_by": "vowel",
+      "notes": "Intervocalic /ʃ/ is inherently long in Italian (Krämer (2009) The Phonology of Italian (OUP) §7.2; Canepari DiPI): bagno [baɲɲo], aglio [aʎʎo], pesce [peʃʃe], vizio [vittsjo]."
+    },
+    {
+      "id": "IT_INHERENT_GEMINATE_TS",
+      "phonemes": [
+        "ts"
+      ],
+      "surface": "tts",
+      "preceded_by": "vowel",
+      "followed_by": "vowel",
+      "notes": "Intervocalic /ts/ is inherently long in Italian (Krämer (2009) The Phonology of Italian (OUP) §7.2; Canepari DiPI): bagno [baɲɲo], aglio [aʎʎo], pesce [peʃʃe], vizio [vittsjo]."
+    },
+    {
+      "id": "IT_INHERENT_GEMINATE_DZ",
+      "phonemes": [
+        "dz"
+      ],
+      "surface": "ddz",
+      "preceded_by": "vowel",
+      "followed_by": "vowel",
+      "notes": "Intervocalic /dz/ is inherently long in Italian (Krämer (2009) The Phonology of Italian (OUP) §7.2; Canepari DiPI): bagno [baɲɲo], aglio [aʎʎo], pesce [peʃʃe], vizio [vittsjo]."
+    }
+  ]
 }
