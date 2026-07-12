@@ -110,7 +110,7 @@ class TestNorwegianScandinavian:
         assert _ipa("nb", "bord") == "buːɖ"
 
     def test_softening_before_front_vowel(self):
-        assert _ipa("nb", "kjøre") == "çøːrə"
+        assert _ipa("nb", "kjøre") == "çøːɾə"
         assert _ipa("nb", "skip") == "ʃiːp"
 
     def test_silent_letters(self):
