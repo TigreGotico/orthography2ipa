@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.88.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.88.0a2) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.88.0a1...1.88.0a2)
+
+**Merged pull requests:**
+
+- refactor\(data\): drop Tamil/Malayalam allophone rules that can never fire [\#313](https://github.com/TigreGotico/orthography2ipa/pull/313) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.88.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.88.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.87.0a1...1.88.0a1)
@@ -694,17 +702,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.23.0a1...1.24.0a1)
 
-**Merged pull requests:**
-
-- feat\(scripts\): add error-analysis tool for per-language failure diagnosis [\#125](https://github.com/TigreGotico/orthography2ipa/pull/125) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.23.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.23.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.22.2a2...1.23.0a1)
-
-**Merged pull requests:**
-
-- docs: narrative overhaul of README, index, getting started, and language index [\#122](https://github.com/TigreGotico/orthography2ipa/pull/122) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.22.2a2](https://github.com/TigreGotico/orthography2ipa/tree/1.22.2a2) (2026-07-10)
 
