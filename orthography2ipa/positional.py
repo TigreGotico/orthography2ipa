@@ -44,7 +44,7 @@ from __future__ import annotations
 from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
-from orthography2ipa.vowels import is_front_vowel, is_back_vowel
+from orthography2ipa.vowels import is_back_vowel, is_front_vowel, is_ipa_vowel
 from orthography2ipa.weights import candidate_base_costs
 
 __all__ = [
@@ -54,6 +54,16 @@ __all__ = [
     "resolve_branches",
 ]
 
+
+def _carries_nucleus(ctx) -> bool:
+    """True when a non-vowel grapheme's primary IPA candidate contains a
+    vowel — a CV unit (Cyrillic ⟨дя⟩ → dʲa, soft-consonant + nucleus)
+    whose realisation is stress-conditioned like a plain vowel letter's.
+    Reads the flat-table candidates (``ctx.ipa``), never a positional
+    result, so the answer cannot be circular."""
+    primary = next(iter(getattr(ctx, "ipa", ()) or ()), "")
+    return any(is_ipa_vowel(ch) for ch in primary)
+
 # Map an exact next/prev vowel letter to its BEFORE_*/AFTER_* position.
 _BEFORE_EXACT: Dict[str, GraphemePosition] = {
     "a": GraphemePosition.BEFORE_A,
@@ -61,6 +71,17 @@ _BEFORE_EXACT: Dict[str, GraphemePosition] = {
     "i": GraphemePosition.BEFORE_I,
     "o": GraphemePosition.BEFORE_O,
     "u": GraphemePosition.BEFORE_U,
+    # Cyrillic plain vowel letters map onto the same exact-letter axes so
+    # positional keys like before_o work for Cyrillic-script specs
+    # (Ukrainian ⟨в⟩ → [w] before rounded vowels). The iotated letters
+    # (е ё ю я) are deliberately absent: they open with a glide, which is
+    # the neighbour that matters.
+    "а": GraphemePosition.BEFORE_A,
+    "э": GraphemePosition.BEFORE_E,
+    "и": GraphemePosition.BEFORE_I,
+    "і": GraphemePosition.BEFORE_I,
+    "о": GraphemePosition.BEFORE_O,
+    "у": GraphemePosition.BEFORE_U,
 }
 _AFTER_EXACT: Dict[str, GraphemePosition] = {
     "a": GraphemePosition.AFTER_A,
@@ -130,13 +151,21 @@ def grapheme_positions(
     if prev_is_v and next_is_v:
         pos.append(GraphemePosition.INTERVOCALIC)
 
-    # 4. nucleus_stressed / nucleus_unstressed for vowels
-    if is_vowel and stressed_syll_idx is not None and syll_idx is not None:
+    # 4. nucleus_stressed / nucleus_unstressed for graphemes carrying a
+    # nucleus. Besides plain vowel letters this covers CV units whose IPA
+    # contains a vowel — e.g. the Cyrillic iotated-vowel digraphs (⟨дя⟩ →
+    # dʲa) — whose reduction is conditioned on the same stress geometry.
+    # Emitting the extra positions is inert unless the spec defines them
+    # for that grapheme, so vowel-less digraphs are unaffected.
+    if stressed_syll_idx is not None and syll_idx is not None and (
+            is_vowel or _carries_nucleus(ctx)):
         if syll_idx == stressed_syll_idx:
             pos.append(GraphemePosition.NUCLEUS_STRESSED)
         else:
             pos.append(GraphemePosition.NUCLEUS_UNSTRESSED)
             if syll_idx < stressed_syll_idx:
+                if syll_idx == stressed_syll_idx - 1:
+                    pos.append(GraphemePosition.FIRST_PRETONIC)
                 pos.append(GraphemePosition.PRETONIC)
             else:
                 pos.append(GraphemePosition.POSTTONIC)

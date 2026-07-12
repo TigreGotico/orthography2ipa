@@ -651,9 +651,10 @@ class TestBelarusian:
         """Belarusian г maps to [ɣ] — the voiced velar fricative (not [ɡ] or [ɦ])."""
         _assert_first(_grapheme(self._spec, "г"), "ɣ", label="be:г")
 
-    def test_short_u_is_w(self):
-        """Belarusian ў (short u) maps to [w] — a letter unique to the Belarusian alphabet."""
-        _assert_first(_grapheme(self._spec, "ў"), "w", label="be:ў")
+    def test_short_u_is_nonsyllabic_u(self):
+        """Belarusian ў (short u) maps to non-syllabic [u̯] (Mayo 1993) —
+        realised [w] only word-initially (positional override)."""
+        _assert_first(_grapheme(self._spec, "ў"), "u̯", label="be:ў")
 
 
 # ---------------------------------------------------------------------------

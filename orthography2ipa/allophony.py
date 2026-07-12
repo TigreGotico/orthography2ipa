@@ -227,13 +227,17 @@ class AllophoneRescorer(LatticeRescorer):
                 return rule.surface
         return None
 
-    @classmethod
-    def _matches(cls, rule: AllophoneRule, ctx: RescoreContext) -> bool:
+    def _matches(self, rule: AllophoneRule, ctx: RescoreContext) -> bool:
         """Whole-candidate match: word flags + slot neighbours + slot flags.
 
-        This is the original single-phoneme-slot semantics, kept intact so
-        the whole-candidate pass is byte-identical to the pre-segment
-        rescorer.
+        Slot neighbours match on the ADJACENT boundary segment — the last
+        segment of the previous slot's top candidate and the first segment
+        of the next slot's — never the whole candidate string. A rule with
+        ``followed_by_phoneme=("ʂ",)`` must fire before a slot realised as
+        ``ʂɨ`` (the assimilation trigger is the adjacent consonant, not the
+        vowel behind it); for single-phoneme neighbours the boundary
+        segment IS the whole candidate, so those keep the original
+        semantics unchanged.
         """
         if rule.word_initial is not None and \
                 rule.word_initial != ctx.is_word_initial:
@@ -243,13 +247,19 @@ class AllophoneRescorer(LatticeRescorer):
             return False
         if rule.preceded_by_phoneme:
             prev = ctx.prev_slot
-            if prev is None or prev.top.ipa not in rule.preceded_by_phoneme:
+            if prev is None or not prev.top.ipa:
+                return False
+            boundary = segment_ipa(prev.top.ipa, self._atoms)[-1]
+            if boundary not in rule.preceded_by_phoneme:
                 return False
         if rule.followed_by_phoneme:
             nxt = ctx.next_slot
-            if nxt is None or nxt.top.ipa not in rule.followed_by_phoneme:
+            if nxt is None or not nxt.top.ipa:
                 return False
-        return cls._matches_slot(rule, ctx)
+            boundary = segment_ipa(nxt.top.ipa, self._atoms)[0]
+            if boundary not in rule.followed_by_phoneme:
+                return False
+        return self._matches_slot(rule, ctx)
 
     @staticmethod
     def _matches_slot(rule: AllophoneRule, ctx: RescoreContext) -> bool:
