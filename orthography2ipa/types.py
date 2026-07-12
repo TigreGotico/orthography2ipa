@@ -32,6 +32,30 @@ AllophoneMap = Dict[str, List[str]]
 
 PositionalGrapheme2IPA = Dict[str, Dict["GraphemePosition", List[str]]]
 """Grapheme → {position: IPA candidates} for context-sensitive mappings."""
+class OrthographyKind(str, Enum):
+    """What kind of writing a spec's ``graphemes`` actually encode.
+
+    A consumer must be able to tell "this is how Mandarin is officially written"
+    from "this is Arabic letters in ASCII". Those are not the same claim.
+    """
+
+    NATIVE = "native"
+    """The language's own writing system — Han for Chinese, Arabic for Arabic."""
+
+    ROMANIZATION = "romanization"
+    """An official or standard alternative orthography that PEOPLE READ AND WRITE:
+    Pinyin (ISO 7098), Jyutping, Hepburn, Revised Romanization. A romanization is
+    a real orthography OF the language, not a re-encoding of another one, and it is
+    usually a plain alphabet — which is why a romanization can be fully
+    transcribable when the native script is not."""
+
+    TRANSLITERATION = "transliteration"
+    """A lossless re-encoding of ANOTHER SCRIPT, for machines: Buckwalter (Arabic
+    letters in ASCII), ITRANS, Harvard-Kyoto. Nobody reads it as a language. It
+    inherits every property of the script it re-encodes, including the limits —
+    unvocalized Buckwalter is exactly as unreadable as unvocalized Arabic. The
+    tell is that a transliteration has no standards body."""
+
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -805,6 +829,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "script_type": InheritanceMode.OWN_ONLY,
     "inherent_vowel": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
+    "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
     "wikidata_qid": InheritanceMode.OWN_ONLY,
     "phoible_id": InheritanceMode.OWN_ONLY,
@@ -903,6 +928,10 @@ class LanguageSpec:
     fake an identity orthography (Proto-Indo-European declaring ``p`` -> [p])
     merely to have an inventory at all.
     """
+
+    orthography_kind: OrthographyKind = OrthographyKind.NATIVE
+    """Whether ``graphemes`` encodes the language's own script, a romanization
+    people actually use, or a machine transliteration of another script."""
 
     parent: Optional[str] = None
     """Primary parent code (backward-compatible shorthand).

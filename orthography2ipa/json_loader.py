@@ -32,6 +32,7 @@ from orthography2ipa.types import (
     LanguageSpec,
     LinguisticSource,
     Location,
+    OrthographyKind,
     OrthographyStandard,
     QualityTier,
     SandhiRule,
@@ -431,6 +432,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         script=raw["script"],
         graphemes=graphemes,
         phonemes=tuple(raw.get("phonemes") or ()),
+        orthography_kind=OrthographyKind(raw.get("orthography_kind") or "native"),
         allophones=allophones,
         positional_graphemes=positional_graphemes or {},  # will auto cast to enum
         parent=parent_lang,

@@ -76,12 +76,27 @@ class TestAllLanguagesStructure:
         code, spec = lang
         assert spec.script, f"{code}: empty script"
 
-    def test_graphemes_nonempty(self, lang):
+    def test_has_graphemes_or_a_declared_inventory(self, lang):
+        """A spec must say SOMETHING about the language's sound.
+
+        The old rule was "every language has graphemes", which is false: a Han
+        character encodes no sound, so there is no grapheme->IPA rule to write,
+        and most of the world's languages are unwritten. What a spec may never do
+        is be silent about both — no spelling AND no sounds is not a language, it
+        is an empty file.
+        """
         code, spec = lang
-        assert len(spec.graphemes) > 0, f"{code}: no graphemes"
+        assert len(spec.graphemes) > 0 or spec.phonemes, (
+            f"{code}: declares neither graphemes nor a phoneme inventory — "
+            "a spec with no spelling must at least state its sounds")
 
     def test_allophones_nonempty(self, lang):
         code, spec = lang
+        if not spec.graphemes and spec.phonemes:
+            # A language with no orthography (a logographic native script, an
+            # unwritten language) has an inventory but nothing to derive
+            # allophony from. That is honest, not incomplete.
+            return
         assert len(spec.allophones) > 0, f"{code}: no allophones"
 
     def test_grapheme_keys_are_strings(self, lang):
