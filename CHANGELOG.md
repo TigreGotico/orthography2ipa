@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/2.0.0a1...3.0.0a1)
+
+**Breaking changes:**
+
+- feat!: script-agnostic vowel classification \(spec-derived, not a Latin letter list\) [\#316](https://github.com/TigreGotico/orthography2ipa/pull/316) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [2.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/2.0.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.88.0a2...2.0.0a1)
@@ -685,10 +693,6 @@
 ## [1.27.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.27.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.26.0a1...1.27.0a1)
-
-**Merged pull requests:**
-
-- feat\(benchmark\): add bootstrap confidence intervals to scoreboard [\#129](https://github.com/TigreGotico/orthography2ipa/pull/129) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.26.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.26.0a1) (2026-07-10)
 
