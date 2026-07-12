@@ -138,7 +138,8 @@ class SandhiRuleModel(_Strict):
     name: str = Field(min_length=1)
     left_context: str
     right_context: str
-    transform: str
+    transform: Optional[str] = None
+    right_transform: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
 
@@ -211,6 +212,7 @@ class StressRulesModel(_Strict):
     penult_stress_endings: Optional[List[str]] = None
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
+    diphthongs: Optional[List[str]] = None
     notes: Optional[str] = None
 
     @field_validator("default_position")

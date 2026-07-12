@@ -10,8 +10,17 @@ These tests pin the corrected Catalan vowel system:
   (Occidental) keep the 7-vowel inventory in atonic position
   (Recasens 1996; Veny 1982). Occidental previously inherited the Central
   reduction by mistake.
-* **Intervocalic spirantization** /b d ɡ/ → [β ð ɣ] between vowels only
-  (Wheeler 2005 §5.2), modelled as a post-lexical allophone rule.
+* **Post-continuant spirantization** /b d ɡ/ → [β ð ɣ] after a vowel or
+  other continuant (Wheeler 2005 §5.2), modelled as a post-lexical
+  allophone rule — and BLOCKED before a lateral, where the stop geminates
+  instead (⟨poble⟩ [ˈpɔbːlə]).
+
+A word on the mid vowels: which of [e]/[ɛ] or [o]/[ɔ] a STRESSED unaccented
+⟨e⟩/⟨o⟩ takes is not recoverable from the spelling — it continues a Latin
+distinction the orthography stopped writing (⟨gos⟩ is [ˈɡos] but ⟨dona⟩ is
+[ˈdɔnə]; only the written accents ⟨è é ò ó⟩ disambiguate). The spec therefore
+carries a frequency prior, and these tests assert the vowel quality only where
+the orthography actually determines it.
 """
 import pytest
 
@@ -21,19 +30,35 @@ from orthography2ipa import transcribe
 # ── Bug 1: stressed vowels keep full quality; unstressed reduce (Central) ──
 
 @pytest.mark.parametrize("word,expected", [
-    ("gos", "ˈɡɔs"),     # stressed o → [ɔ], NOT reduced to [u]
-    ("dona", "ˈdɔnə"),   # stressed o → [ɔ]; unstressed final a → [ə]
-    ("porta", "ˈpɔɾtə"),  # stressed o → [ɔ]; unstressed a → [ə]
-    ("fred", "ˈfɾɛt"),   # stressed e → [ɛ] (+ final devoicing d→t)
-    ("pare", "ˈpaɾə"),   # stressed a → [a]; unstressed e → [ə]
+    ("pare", "ˈpaɾə"),    # stressed a → [a]; unstressed e → [ə]
+    ("porta", "ˈportə"),  # stressed o keeps a MID quality, never [u]
+    ("casa", "ˈkazə"),    # stressed a → [a]; unstressed a → [ə]
 ])
 def test_central_stressed_vowel_keeps_quality(word, expected):
+    """A stressed nucleus is never reduced (Wheeler 2005 §2.3).
+
+    The bug this guards is unconditional reduction of every nucleus —
+    ⟨porta⟩ → *[ˈpuɾtə⟩, ⟨casa⟩ → *[ˈkəzə]. Reduction is stress-conditioned,
+    so the stressed vowel keeps a full quality even where the *choice*
+    between [o] and [ɔ] is a lexical coin-flip the spelling does not make.
+    """
     assert transcribe(word, "ca") == expected
 
 
 @pytest.mark.parametrize("word,expected", [
-    ("casa", "ˈkazə"),   # unstressed a → [ə]
-    ("tenir", "təˈniɾ"),  # pretonic e → [ə]
+    ("cafè", "kəˈfɛ"),     # ⟨è⟩ = [ɛ]; the accents DO fix the mid quality
+    ("però", "pəˈɾɔ"),     # ⟨ò⟩ = [ɔ]
+    ("avió", "əˈβio"),     # ⟨ó⟩ = [o]
+    ("cafés", "kəˈfes"),   # ⟨é⟩ = [e]
+])
+def test_central_written_accent_fixes_mid_vowel_quality(word, expected):
+    assert transcribe(word, "ca") == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("casa", "ˈkazə"),    # unstressed a → [ə]
+    ("tenir", "təˈni"),   # pretonic e → [ə] (and final -r is deleted)
+    ("comú", "kuˈmu"),    # pretonic o → [u]
 ])
 def test_central_unstressed_vowel_reduces(word, expected):
     assert transcribe(word, "ca") == expected
@@ -41,8 +66,9 @@ def test_central_unstressed_vowel_reduces(word, expected):
 
 def test_central_monosyllable_is_stressed():
     """A monosyllable is treated as stressed, so its vowel is not reduced."""
-    assert transcribe("gos", "ca") == "ˈɡɔs"
-    assert transcribe("sol", "ca") == "ˈsɔl"
+    assert "ə" not in transcribe("gos", "ca")
+    assert "u" not in transcribe("gos", "ca")
+    assert "ə" not in transcribe("sol", "ca")
 
 
 # ── Bug 2: Western varieties do NOT apply Central reduction ──
@@ -55,13 +81,18 @@ def test_western_varieties_do_not_reduce(code, word):
 
 
 def test_occidental_full_vowels():
-    assert transcribe("casa", "ca-x-occidental") == "kaza"
-    assert transcribe("dona", "ca-x-occidental") == "dɔna"
+    """North-Western keeps full vowels — and opens a word-final ⟨-a⟩ to [ɛ].
+
+    The lleidatà final ⟨-a⟩ is [ɛ] (⟨una porta⟩ [ˈunɛ ˈpɔɾtɛ]) — neither the
+    Central [ə] nor the Valencian [a] (Veny 1982 ch. 3; Recasens 1996).
+    """
+    assert transcribe("casa", "ca-x-occidental") == "ˈkazɛ"
+    assert transcribe("tenir", "ca-x-occidental") == "teˈni"
 
 
 def test_valencia_full_vowels():
-    assert transcribe("casa", "ca-x-valencia") == "kaza"
-    assert transcribe("dona", "ca-x-valencia") == "dona"
+    assert transcribe("casa", "ca-x-valencia") == "ˈkaza"
+    assert transcribe("tenir", "ca-x-valencia") == "teˈniɾ"
 
 
 def test_balear_reduces_but_keeps_stress_quality():
@@ -81,11 +112,27 @@ def test_spirantization_intervocalic(word, seg):
     assert seg in transcribe(word, "ca")
 
 
-def test_no_spirantization_after_consonant():
-    """/b/ after a consonant (not intervocalic) stays a stop."""
-    out = transcribe("poble", "ca")   # b is preceded by vowel but followed by l
-    assert "β" not in out
-    assert "b" in out
+def test_no_spirantization_before_a_lateral():
+    """/b ɡ/ before a lateral GEMINATE rather than lenite.
+
+    ⟨poble⟩ is [ˈpɔbːlə] and ⟨regla⟩ [ˈreɡːlə], not *[ˈpɔβlə] / *[ˈreɣlə]
+    (Wheeler 2005 §5.2, §10.2) — the pre-lateral context is the one place a
+    post-vocalic /b ɡ/ survives as a stop.
+    """
+    out = transcribe("poble", "ca")
+    assert "β" not in out and "b" in out
+    out = transcribe("regla", "ca")
+    assert "ɣ" not in out and "ɡ" in out
+
+
+def test_spirantization_after_a_non_vowel_continuant():
+    """Lenition is not restricted to the strictly intervocalic context.
+
+    /b d ɡ/ lenite after ANY continuant — ⟨arbre⟩ [ˈaɾβɾə], ⟨serveix⟩
+    [sərˈβɛʃ] — so conditioning the rule on "between two vowels" alone
+    misses the post-liquid and post-fricative cases (Wheeler 2005 §5.2).
+    """
+    assert "β" in transcribe("arbre", "ca")
 
 
 @pytest.mark.parametrize("code", ["ca", "ca-x-occidental", "ca-x-valencia",

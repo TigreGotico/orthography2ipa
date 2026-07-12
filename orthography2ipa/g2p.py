@@ -481,7 +481,8 @@ class G2P:
         stressed_syll_idx: Optional[int] = None
         sylls: List[str] = []
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang)
+            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
+                                   if self.spec.stress else ())
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
@@ -692,7 +693,8 @@ class G2P:
                     rescorer=self._rescorers or None)
             ipa = paths[0].ipa if paths else word
         if (self.apply_stress and self.spec.stress is not None and ipa):
-            sylls = _syllables_for(word, self.lang)
+            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
+                                   if self.spec.stress else ())
             idx = detect_stress(word, self.spec.stress, syllables=sylls)
             ipa = apply_stress_mark(ipa, self.spec.stress, idx,
                                     syllables=sylls)
@@ -785,7 +787,8 @@ class G2P:
         stressed_syll_idx: Optional[int] = None
         sylls: List[str] = []
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang)
+            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
+                                   if self.spec.stress else ())
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)

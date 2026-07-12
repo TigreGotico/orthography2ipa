@@ -50,7 +50,38 @@ def _is_vowel_char(ch: str) -> bool:
 _GLIDES = set("jw" "ʲʷ")
 
 
-def syllabify(word: str, vowels: Optional[set] = None) -> List[str]:
+def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
+    """Split a vowel *run* into nuclei using the spec's *diphthongs*.
+
+    Greedy longest-first: a run position that starts a listed sequence
+    consumes it as ONE nucleus, any other vowel letter is a nucleus of its
+    own. With no diphthongs declared the whole run is one nucleus, which is
+    the behaviour every spec had before :attr:`StressRules.diphthongs`
+    existed.
+    """
+    if not diphthongs or len(run) < 2:
+        return [run]
+    ordered = sorted(diphthongs, key=len, reverse=True)
+    lowered = run.lower()
+    nuclei: List[str] = []
+    i = 0
+    while i < len(run):
+        for diph in ordered:
+            if lowered.startswith(diph, i):
+                nuclei.append(run[i:i + len(diph)])
+                i += len(diph)
+                break
+        else:
+            nuclei.append(run[i])
+            i += 1
+    return nuclei
+
+
+def syllabify(
+    word: str,
+    vowels: Optional[set] = None,
+    diphthongs: Sequence[str] = (),
+) -> List[str]:
     """Split *word* into syllables by vowel groups.
 
     Each maximal run of vowel characters becomes a nucleus; consonants
@@ -58,10 +89,18 @@ def syllabify(word: str, vowels: Optional[set] = None) -> List[str]:
     consonants to the last syllable. This is intentionally naive — it
     exists to *count* end-anchored syllables, not to draw perfect
     boundaries.
+
+    *diphthongs* (a spec's :attr:`~orthography2ipa.types.StressRules.diphthongs`)
+    splits a vowel run into several nuclei wherever the orthography writes
+    hiatus rather than a diphthong — Catalan ``tenia`` is te-ni-a, and the
+    syllable count decides where stress (and the vowel reduction it
+    conditions) lands. Empty = merge each run into one nucleus, unchanged.
     """
     is_vowel_char = (lambda c: c.lower() in vowels) if vowels is not None else _is_vowel_char
     if not word:
         return []
+    if diphthongs:
+        return _syllabify_with_diphthongs(word, is_vowel_char, diphthongs)
     # indices of nucleus starts
     syllables: List[str] = []
     current = ""
@@ -91,8 +130,50 @@ def syllabify(word: str, vowels: Optional[set] = None) -> List[str]:
     return syllables
 
 
-def _syllables_for(word: str, lang: Optional[str]) -> List[str]:
-    """Syllabify *word*: registered plugin for *lang* first, naive fallback."""
+def _syllabify_with_diphthongs(
+    word: str,
+    is_vowel_char,
+    diphthongs: Sequence[str],
+) -> List[str]:
+    """:func:`syllabify` with a vowel run split into nuclei by *diphthongs*.
+
+    Onset-maximising exactly like the plain splitter: a whole consonant run
+    opens the syllable of the nucleus that follows it, a trailing consonant
+    run joins the last syllable, and only the run→nuclei step differs.
+    """
+    syllables: List[str] = []
+    onset = ""
+    i = 0
+    while i < len(word):
+        if not is_vowel_char(word[i]):
+            onset += word[i]
+            i += 1
+            continue
+        j = i
+        while j < len(word) and is_vowel_char(word[j]):
+            j += 1
+        for k, nucleus in enumerate(_split_nuclei(word[i:j], diphthongs)):
+            syllables.append((onset if k == 0 else "") + nucleus)
+        onset = ""
+        i = j
+    if onset:
+        if syllables:
+            syllables[-1] += onset
+        else:
+            syllables.append(onset)
+    return syllables
+
+
+def _syllables_for(
+    word: str,
+    lang: Optional[str],
+    diphthongs: Sequence[str] = (),
+) -> List[str]:
+    """Syllabify *word*: registered plugin for *lang* first, naive fallback.
+
+    *diphthongs* reaches the bundled splitter only; a language that ships a
+    real syllabifier plugin does not need it.
+    """
     if lang:
         from orthography2ipa.registry import get_syllabifier
         plugin = get_syllabifier(lang)
@@ -105,7 +186,7 @@ def _syllables_for(word: str, lang: Optional[str]) -> List[str]:
                 logging.getLogger(__name__).warning(
                     "syllabifier plugin %r failed on word %r: %s",
                     type(plugin).__name__, word, exc)
-    return syllabify(word)
+    return syllabify(word, diphthongs=diphthongs)
 
 
 def detect_stress(
@@ -135,7 +216,7 @@ def detect_stress(
         :func:`syllabify` is the fallback.
     """
     sylls = (list(syllables) if syllables is not None
-             else _syllables_for(word, lang))
+             else _syllables_for(word, lang, rules.diphthongs))
     n = len(sylls)
     if n <= 1:
         return 0

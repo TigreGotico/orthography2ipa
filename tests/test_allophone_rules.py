@@ -241,9 +241,9 @@ def test_apply_allophony_noop_for_spec_without_rules():
 # ─── Catalan pilots on gold-derived words ──────────────────────────────
 
 @pytest.mark.parametrize("word,expected_final", [
-    ("fred", "t"),   # /d/# → [t]  (Wheeler 2005)
+    ("fred", "t"),   # /d/# → [t]  (Wheeler 2005 §5.3)
     ("verd", "t"),
-    ("sang", "k"),   # /ɡ/# → [k]
+    ("club", "p"),   # /b/# → [p]
 ])
 def test_pilot_catalan_final_devoicing(word, expected_final):
     assert G2P("ca").transcribe_word(word).endswith(expected_final)
@@ -252,9 +252,32 @@ def test_pilot_catalan_final_devoicing(word, expected_final):
         word).endswith(expected_final)
 
 
-@pytest.mark.parametrize("word", ["banc", "sang", "àngel"])
+def test_catalan_final_ng_is_velar_nasal_not_devoiced_stop():
+    """⟨-ng⟩ is [ŋ], not a devoiced [k].
+
+    Final-cluster simplification deletes the stop of a final nasal+stop
+    cluster BEFORE devoicing can apply to it, so ⟨sang⟩ is [ˈsaŋ] and
+    ⟨fang⟩ [ˈfaŋ] (Wheeler 2005 §10.4) — a final [k] there would be an
+    artefact of running the devoicing rule on a stop that is not
+    pronounced at all.
+    """
+    assert G2P("ca").transcribe_word("sang") == "ˈsaŋ"
+    assert G2P("ca").transcribe_word("fang") == "ˈfaŋ"
+
+
+@pytest.mark.parametrize("word", ["banc", "sang", "fang"])
 def test_pilot_catalan_nasal_velar_assimilation(word):
     # /n/ → [ŋ] before a velar (Recasens 1993).
     out = G2P("ca").transcribe_word(word)
     assert "ŋ" in out
     assert "ŋ" not in G2P("ca", apply_allophony=False).transcribe_word(word)
+
+
+def test_pilot_catalan_nasal_palatal_assimilation():
+    """/n/ → [ɲ] before a palato-alveolar, not [ŋ].
+
+    ⟨àngel⟩ is [ˈaɲʒəl]: ⟨g⟩ before a front vowel is /ʒ/, so the nasal
+    assimilates to the palato-alveolar place, not to a velar that is not
+    there (Recasens 1993; Wheeler 2005 §10.3).
+    """
+    assert G2P("ca").transcribe_word("àngel") == "ˈaɲʒəl"

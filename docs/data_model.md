@@ -350,7 +350,38 @@ Fields: `id`, `author`, `year`, `title`, `publisher`, `url`, `wikipedia_url`, `p
 
 `orthography2ipa/types.py:300`
 
-Fields: `id`, `name`, `left_context`, `right_context`, `transform`, `obligatory`, `notes`.
+Fields: `id`, `name`, `left_context`, `right_context`, `transform`,
+`right_transform`, `obligatory`, `notes`.
+
+A boundary has two sides and a rule may rewrite either or both:
+
+- `transform` substitutes for the `left_context` match in the LEFT word —
+  progressive sandhi (European Portuguese coda-/s/ voicing). `None` leaves the
+  left word alone.
+- `right_transform` substitutes for the `right_context` match in the RIGHT word
+  — **regressive** sandhi. Catalan phrase-level spirantization lenites the
+  *following* word's initial /b d ɡ/ after a continuant (`de decidir` →
+  [ðə ðəsiˈði]); Spanish and Galician have the same shape. `None` (the default)
+  leaves the right word alone, so a rule that declares only `transform` behaves
+  exactly as it always has.
+
+The two sides resolve independently — first matching rule wins *per side* — so
+one boundary can both voice the left word's coda and lenite the right word's
+onset (`els dos` → [əlz ðos]). Contexts are always matched against the original
+words, so the side that fires first cannot mask the other's trigger.
+
+### `StressRules.diphthongs`
+
+The bundled syllabifier counts each maximal run of vowel LETTERS as one nucleus.
+That is right for a language whose vowel runs are all diphthongs and wrong
+wherever the orthography also writes hiatus. `diphthongs` lists the vowel
+sequences that form a single nucleus; every other vowel letter in a run becomes
+a nucleus of its own, so Catalan `ciutat` stays ci-u-tat = ciu-tat while `tenia`
+splits te-ni-a. Empty (the default) merges the whole run, unchanged.
+
+This matters far beyond the stress mark: in a language with stress-conditioned
+vowel reduction, a wrong syllable count reduces the wrong vowel and the whole
+word is wrong.
 
 ---
 
