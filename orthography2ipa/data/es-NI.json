@@ -123,5 +123,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "spa",
-  "wikidata_qid": "Q16707702"
+  "wikidata_qid": "Q16707702",
+  "location": {
+    "latitude": 12.154681,
+    "longitude": -86.273725,
+    "source": "wikidata",
+    "notes": "Managua. A national variety: the capital stands in for the country. [Wikidata Q3274 P625]"
+  }
 }

@@ -102,9 +102,9 @@
   "iso639_3": "eus",
   "wikidata_qid": "Q749166",
   "location": {
-    "latitude": 43.2787,
-    "longitude": -1.31622,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Biscayan."
+    "latitude": 43.261944,
+    "longitude": -2.932222,
+    "source": "wikidata",
+    "notes": "Bizkaia — the province the dialect is named for. [Wikidata Q93366 P625]"
   }
 }

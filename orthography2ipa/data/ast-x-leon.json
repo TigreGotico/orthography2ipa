@@ -221,9 +221,9 @@
   "quality": "research",
   "wikidata_qid": "Q34108",
   "location": {
-    "latitude": 42.4181,
-    "longitude": -6.02227,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Leonese."
+    "latitude": 42.620046,
+    "longitude": -5.84066,
+    "source": "wikidata",
+    "notes": "the province of León — the core of the Leonese area. [Wikidata Q71140 P625]"
   }
 }

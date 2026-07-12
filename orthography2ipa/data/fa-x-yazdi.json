@@ -71,5 +71,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "fas"
+  "iso639_3": "fas",
+  "location": {
+    "latitude": 31.897222,
+    "longitude": 54.3675,
+    "source": "wikidata",
+    "notes": "Yazd — the city the variety is named for. [Wikidata Q182394 P625]"
+  }
 }

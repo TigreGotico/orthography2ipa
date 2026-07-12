@@ -329,5 +329,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 54.63,
+    "longitude": 39.7425,
+    "source": "wikidata",
+    "notes": "Ryazan — a representative point in the Southern Russian dialect zone (Ryazan, Kursk, Voronezh, Tula). A dialect GROUP: a weak point. [Wikidata Q2746 P625]"
+  }
 }

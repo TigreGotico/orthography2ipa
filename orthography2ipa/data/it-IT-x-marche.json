@@ -368,5 +368,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "ita",
-  "wikidata_qid": "Q3541176"
+  "wikidata_qid": "Q3541176",
+  "location": {
+    "latitude": 43.316667,
+    "longitude": 13,
+    "source": "wikidata",
+    "notes": "Marche — a region-level point for a transitional dialect area. [Wikidata Q1279 P625]"
+  }
 }

@@ -418,5 +418,11 @@
   "graphemes_base": "pt-BR",
   "allophones_base": "pt-BR",
   "positional_graphemes_base": "pt-BR",
-  "positional_graphemes": {}
+  "positional_graphemes": {},
+  "location": {
+    "latitude": -15.793889,
+    "longitude": -47.882778,
+    "source": "wikidata",
+    "notes": "Brasília — the planned capital whose migration koiné this spec models. [Wikidata Q2844 P625]"
+  }
 }

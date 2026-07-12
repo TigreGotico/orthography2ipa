@@ -97,5 +97,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "glg",
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 42.433611,
+    "longitude": -8.6475,
+    "source": "wikidata",
+    "notes": "Pontevedra — a representative locality of the western Galician block (Pontevedra province and coastal A Coruña), the gheada heartland. [Wikidata Q12411 P625]"
+  }
 }

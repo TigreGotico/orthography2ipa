@@ -84,5 +84,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "spa"
+  "iso639_3": "spa",
+  "location": {
+    "latitude": 3.752064,
+    "longitude": 8.7737,
+    "source": "wikidata",
+    "notes": "Malabo. A national L2 variety: the capital stands in for the country, and the point ignores the mainland/island split. Weak. [Wikidata Q3818 P625]"
+  }
 }

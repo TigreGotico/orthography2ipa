@@ -94,9 +94,9 @@
   "iso639_3": "arg",
   "wikidata_qid": "Q3574358",
   "location": {
-    "latitude": 42.4669,
-    "longitude": -0.00919,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Western Aragonese."
+    "latitude": 42.75,
+    "longitude": -0.816667,
+    "source": "wikidata",
+    "notes": "the Ansó valley (Huesca) — the valley the variety is named for. [Wikidata Q570484 P625]"
   }
 }

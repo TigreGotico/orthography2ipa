@@ -193,5 +193,11 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "location": {
+    "latitude": 38.708042,
+    "longitude": -9.139016,
+    "source": "wikidata",
+    "notes": "Lisbon — the city the Estremenho urban variety is named for. [Wikidata Q597 P625]"
   }
 }

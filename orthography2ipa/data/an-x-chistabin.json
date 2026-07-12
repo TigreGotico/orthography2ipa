@@ -107,5 +107,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "arg",
-  "wikidata_qid": "Q11023714"
+  "wikidata_qid": "Q11023714",
+  "location": {
+    "latitude": 42.65,
+    "longitude": 0.35,
+    "source": "wikidata",
+    "notes": "the Gistaín/Chistau valley (Sobrarbe, Huesca) — the valley the variety is named for and confined to. [Wikidata Q3102588 P625]"
+  }
 }

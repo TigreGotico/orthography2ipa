@@ -367,5 +367,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "ita"
+  "iso639_3": "ita",
+  "location": {
+    "latitude": 42.216667,
+    "longitude": 13.833333,
+    "source": "wikidata",
+    "notes": "Abruzzo — the region the dialect is named for (it reaches into Molise). [Wikidata Q1284 P625]"
+  }
 }

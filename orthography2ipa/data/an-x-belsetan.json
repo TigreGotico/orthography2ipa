@@ -91,5 +91,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "arg",
-  "wikidata_qid": "Q3574052"
+  "wikidata_qid": "Q3574052",
+  "location": {
+    "latitude": 42.659007,
+    "longitude": 0.210128,
+    "source": "wikidata",
+    "notes": "the Bielsa valley (Sobrarbe, Huesca) — the valley the variety is named for and confined to. [Wikidata Q21036658 P625]"
+  }
 }

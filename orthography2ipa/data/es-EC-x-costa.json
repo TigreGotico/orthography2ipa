@@ -77,5 +77,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_ecuatoriano",
     "https://en.wikipedia.org/wiki/Ecuadorian_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -2.19,
+    "longitude": -79.8875,
+    "source": "wikidata",
+    "notes": "Guayaquil — the centre of the Ecuadorian coast. [Wikidata Q43509 P625]"
+  }
 }

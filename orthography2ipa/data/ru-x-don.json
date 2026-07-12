@@ -48,5 +48,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 47.2225,
+    "longitude": 39.71,
+    "source": "wikidata",
+    "notes": "Rostov-on-Don — the principal city of the Don Cossack region. [Wikidata Q908 P625]"
+  }
 }

@@ -487,5 +487,11 @@
       "notes": "Non-final coda /R/ -> velar fricative [x] in the coastal prestige norm (Callou 2010:138)."
     }
   ],
-  "wikidata_qid": "Q10265999"
+  "wikidata_qid": "Q10265999",
+  "location": {
+    "latitude": -22.033333,
+    "longitude": -42.7,
+    "source": "wikidata",
+    "notes": "the state of Rio de Janeiro — this spec is the state BEYOND the capital, so the point is the state's centroid, not the city's. [Wikidata Q41428 P625]"
+  }
 }

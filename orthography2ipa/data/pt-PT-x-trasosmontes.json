@@ -155,5 +155,11 @@
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   },
-  "wikidata_qid": "Q10266011"
+  "wikidata_qid": "Q10266011",
+  "location": {
+    "latitude": 41.295471,
+    "longitude": -7.746264,
+    "source": "wikidata",
+    "notes": "the centre of the Trás-os-Montes e Alto Douro dialect area (Bragança, Chaves, Valpaços) — a province-level point, not a town. [Wikidata Q369458 P625]"
+  }
 }

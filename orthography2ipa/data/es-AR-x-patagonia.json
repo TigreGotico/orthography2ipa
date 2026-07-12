@@ -83,5 +83,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_rioplatense",
     "https://en.wikipedia.org/wiki/Rioplatense_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -41.81015,
+    "longitude": -68.90627,
+    "source": "wikidata",
+    "notes": "Patagonia — a region-level centroid spanning Argentina and Chile; the spec is the Argentine side. A weak point. [Wikidata Q1507 P625]"
+  }
 }

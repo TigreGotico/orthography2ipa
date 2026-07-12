@@ -66,5 +66,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "swe"
+  "iso639_3": "swe",
+  "location": {
+    "latitude": 59.329444,
+    "longitude": 18.068611,
+    "source": "wikidata",
+    "notes": "Stockholm — Rikssvenska is the Central Swedish standard of the Stockholm area. [Wikidata Q1754 P625]"
+  }
 }

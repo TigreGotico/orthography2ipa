@@ -84,5 +84,11 @@
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_salvadore%C3%B1o",
     "https://en.wikipedia.org/wiki/Salvadoran_Spanish"
   ],
-  "wikidata_qid": "Q7406481"
+  "wikidata_qid": "Q7406481",
+  "location": {
+    "latitude": 13.697597,
+    "longitude": -89.191156,
+    "source": "wikidata",
+    "notes": "San Salvador. A national variety: the capital stands in for the country. [Wikidata Q3110 P625]"
+  }
 }

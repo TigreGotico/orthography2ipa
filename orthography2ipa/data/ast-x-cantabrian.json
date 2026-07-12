@@ -175,9 +175,9 @@
   "quality": "research",
   "wikidata_qid": "Q917021",
   "location": {
-    "latitude": 42.4181,
-    "longitude": -6.02227,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Cantabrian."
+    "latitude": 43.333333,
+    "longitude": -4,
+    "source": "wikidata",
+    "notes": "Cantabria — the community the Cantabrian variety is spoken in. [Wikidata Q3946 P625]"
   }
 }

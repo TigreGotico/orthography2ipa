@@ -202,5 +202,11 @@
     "stress_mark": "ˈ",
     "notes": "Portuguese stress conventions as in the Brazilian base (paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x and nasal diphthongs attract final stress). No DPU-specific stress divergence is documented in the read sources, so the pt-BR pattern is retained."
   },
-  "wikidata_qid": "Q3265815"
+  "wikidata_qid": "Q3265815",
+  "location": {
+    "latitude": -30.900086,
+    "longitude": -55.540817,
+    "source": "wikidata",
+    "notes": "Rivera — the border city at the heart of the DPU (Uruguayan Portuguese) area along the Brazilian frontier. [Wikidata Q646498 P625]"
+  }
 }

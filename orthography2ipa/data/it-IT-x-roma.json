@@ -374,5 +374,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "ita",
-  "wikidata_qid": "Q1231625"
+  "wikidata_qid": "Q1231625",
+  "location": {
+    "latitude": 41.893056,
+    "longitude": 12.482778,
+    "source": "wikidata",
+    "notes": "Rome — the city Romanesco is the dialect of. [Wikidata Q220 P625]"
+  }
 }

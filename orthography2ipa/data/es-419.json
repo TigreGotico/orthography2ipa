@@ -109,9 +109,9 @@
     "notes": "Standard Spanish accentuation (inherited from es-ES): default paroxytone; written accent wins; oxytone before consonant codas other than n/s; proparoxytones always written-accented."
   },
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Latin American Spanish."
+    "latitude": -1.106889,
+    "longitude": -68.097391,
+    "source": "wikidata",
+    "notes": "the centroid of Latin America. A continent-wide cover variety: the weakest possible point, and only meaningful as 'not Spain' — which is where Glottolog put it. [Wikidata Q12585 P625]"
   }
 }

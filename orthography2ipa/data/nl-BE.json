@@ -40,5 +40,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "nld",
-  "wikidata_qid": "Q1404296"
+  "wikidata_qid": "Q1404296",
+  "location": {
+    "latitude": 51,
+    "longitude": 4.5,
+    "source": "wikidata",
+    "notes": "the Flemish Region — the Dutch-speaking part of Belgium, not Belgium as a whole. A region-level point. [Wikidata Q9337 P625]"
+  }
 }

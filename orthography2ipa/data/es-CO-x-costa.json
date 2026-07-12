@@ -144,5 +144,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "spa"
+  "iso639_3": "spa",
+  "location": {
+    "latitude": 10.983333,
+    "longitude": -74.801944,
+    "source": "wikidata",
+    "notes": "Barranquilla — a representative city of the Colombian Caribbean coast (with Cartagena and Santa Marta). [Wikidata Q62823 P625]"
+  }
 }

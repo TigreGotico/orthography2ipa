@@ -392,5 +392,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "ita",
-  "wikidata_qid": "Q617315"
+  "wikidata_qid": "Q617315",
+  "location": {
+    "latitude": 39,
+    "longitude": 16.5,
+    "source": "wikidata",
+    "notes": "Calabria — a region-level point for an internally diverse area (northern Calabria patterns with Neapolitan, southern with Sicilian). [Wikidata Q1458 P625]"
+  }
 }

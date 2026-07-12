@@ -83,5 +83,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_andino",
     "https://en.wikipedia.org/wiki/Andean_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -24.788333,
+    "longitude": -65.410556,
+    "source": "wikidata",
+    "notes": "Salta — the principal city of the Argentine Andean northwest. [Wikidata Q36307 P625]"
+  }
 }

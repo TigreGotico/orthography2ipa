@@ -112,5 +112,11 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "location": {
+    "latitude": 40.211111,
+    "longitude": -8.428889,
+    "source": "wikidata",
+    "notes": "Coimbra — the city the Conimbricense variety is named for. [Wikidata Q45412 P625]"
   }
 }

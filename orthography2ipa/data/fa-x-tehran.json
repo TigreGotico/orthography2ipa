@@ -86,5 +86,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "fas",
-  "wikidata_qid": "Q7694905"
+  "wikidata_qid": "Q7694905",
+  "location": {
+    "latitude": 35.688889,
+    "longitude": 51.389722,
+    "source": "wikidata",
+    "notes": "Tehran — the city whose speech IS the Iranian standard. [Wikidata Q3616 P625]"
+  }
 }

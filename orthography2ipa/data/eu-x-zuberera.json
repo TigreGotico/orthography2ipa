@@ -112,9 +112,9 @@
   "phoible_id": "basq1250",
   "wals_code": "bso",
   "location": {
-    "latitude": 43.2787,
-    "longitude": -1.31622,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Souletin."
+    "latitude": 43.233333,
+    "longitude": -0.883333,
+    "source": "wikidata",
+    "notes": "Zuberoa (Soule) — the historical province the dialect is named for. [Wikidata Q673040 P625]"
   }
 }

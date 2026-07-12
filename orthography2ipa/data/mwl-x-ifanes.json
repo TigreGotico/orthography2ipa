@@ -83,5 +83,11 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. Dialect mwl-x-ifanes: no evidence of stress-pattern divergence from standard Mirandese; block copied from mwl."
+  },
+  "location": {
+    "latitude": 41.581667,
+    "longitude": -6.265,
+    "source": "wikidata",
+    "notes": "Ifanes (Infainç) — the northern Terra de Miranda village the sub-dialect is named for. [Wikidata Q1657046 P625]"
   }
 }

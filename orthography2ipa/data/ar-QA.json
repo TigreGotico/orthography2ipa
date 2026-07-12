@@ -49,9 +49,9 @@
   "glottolog_code": "gulf1241",
   "iso639_3": "afb",
   "location": {
-    "latitude": 30.17,
-    "longitude": 47.5,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Gulf Arabic."
+    "latitude": 25.286111,
+    "longitude": 51.529444,
+    "source": "wikidata",
+    "notes": "Doha. A national variety within the Gulf continuum. [Wikidata Q3861 P625]"
   }
 }

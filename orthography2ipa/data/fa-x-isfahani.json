@@ -67,5 +67,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "fas"
+  "iso639_3": "fas",
+  "location": {
+    "latitude": 32.6525,
+    "longitude": 51.675,
+    "source": "wikidata",
+    "notes": "Isfahan — the city the variety is named for. [Wikidata Q42053 P625]"
+  }
 }

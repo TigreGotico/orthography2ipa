@@ -486,5 +486,11 @@
         "e"
       ]
     }
+  },
+  "location": {
+    "latitude": -30.032778,
+    "longitude": -51.23,
+    "source": "wikidata",
+    "notes": "Porto Alegre — the centre of the Sulista/Gaúcho area. [Wikidata Q40269 P625]"
   }
 }

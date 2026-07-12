@@ -94,9 +94,9 @@
   "iso639_3": "ajp",
   "wikidata_qid": "Q3444016",
   "location": {
-    "latitude": 31.5601,
-    "longitude": 38.0837,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for South Levantine Arabic."
+    "latitude": 31.95,
+    "longitude": 35.933333,
+    "source": "wikidata",
+    "notes": "Amman — the city the Ammani koine is named for. [Wikidata Q3805 P625]"
   }
 }

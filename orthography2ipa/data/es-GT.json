@@ -113,5 +113,11 @@
       "notes": "K'iche' indigenous adstrate (see stub quc.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q3334987"
+  "wikidata_qid": "Q3334987",
+  "location": {
+    "latitude": 14.641667,
+    "longitude": -90.513333,
+    "source": "wikidata",
+    "notes": "Guatemala City — the highland capital. A national variety: the point stands in for the country. [Wikidata Q1555 P625]"
+  }
 }

@@ -49,5 +49,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "rus",
-  "wikidata_qid": "Q4304412"
+  "wikidata_qid": "Q4304412",
+  "location": {
+    "latitude": 55.750556,
+    "longitude": 37.6175,
+    "source": "wikidata",
+    "notes": "Moscow — the Central Russian city the standard is based on. [Wikidata Q649 P625]"
+  }
 }

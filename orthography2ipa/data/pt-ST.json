@@ -183,5 +183,11 @@
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   },
-  "wikidata_qid": "Q36536"
+  "wikidata_qid": "Q36536",
+  "location": {
+    "latitude": 0.3375,
+    "longitude": 6.728333,
+    "source": "wikidata",
+    "notes": "the city of São Tomé. Note the spec's wikidata_qid (Q36536) is Forro CREOLE, a different language from this Portuguese variety, so it was NOT used as the source of this point. [Wikidata Q3932 P625]"
+  }
 }

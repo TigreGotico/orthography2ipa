@@ -51,5 +51,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 59.216667,
+    "longitude": 39.9,
+    "source": "wikidata",
+    "notes": "Vologda — the city the Northern subtype is named for. [Wikidata Q1957 P625]"
+  }
 }

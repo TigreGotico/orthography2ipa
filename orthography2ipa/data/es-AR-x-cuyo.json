@@ -77,5 +77,11 @@
     "https://en.wikipedia.org/wiki/Spanish_dialects_and_varieties",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_cuyano",
     "https://en.wikipedia.org/wiki/Cuyo_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -32.90726,
+    "longitude": -68.0603,
+    "source": "wikidata",
+    "notes": "the Cuyo region (Mendoza, San Juan, San Luis) — a region-level point. [Wikidata Q1146743 P625]"
+  }
 }

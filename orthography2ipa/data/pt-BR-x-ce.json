@@ -468,5 +468,11 @@
         "s"
       ]
     }
+  },
+  "location": {
+    "latitude": -3.7275,
+    "longitude": -38.5275,
+    "source": "wikidata",
+    "notes": "Fortaleza — the centre of the Cearense area. [Wikidata Q43463 P625]"
   }
 }

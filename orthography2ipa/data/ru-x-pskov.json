@@ -57,5 +57,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "rus"
+  "iso639_3": "rus",
+  "location": {
+    "latitude": 57.816667,
+    "longitude": 28.333333,
+    "source": "wikidata",
+    "notes": "Pskov — the city of the Pskov–Novgorod transitional zone. [Wikidata Q2214 P625]"
+  }
 }

@@ -79,9 +79,9 @@
   "glottolog_code": "khor1275",
   "iso639_3": "fas",
   "location": {
-    "latitude": 32.9,
-    "longitude": 53.3,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Khorasan Persian."
+    "latitude": 35.772528,
+    "longitude": 58.785194,
+    "source": "wikidata",
+    "notes": "Razavi Khorasan — the province the Khorasani variety is named for. Glottolog's point for it is the generic Persian point in central Iran. [Wikidata Q587090 P625]"
   }
 }

@@ -79,5 +79,11 @@
     "https://en.wikipedia.org/wiki/Llanero_Spanish",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_venezolano",
     "https://en.wikipedia.org/wiki/Venezuelan_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": 8.633333,
+    "longitude": -70.216667,
+    "source": "wikidata",
+    "notes": "Barinas — a representative city of the Venezuelan interior plains (Llanos). [Wikidata Q695623 P625]"
+  }
 }

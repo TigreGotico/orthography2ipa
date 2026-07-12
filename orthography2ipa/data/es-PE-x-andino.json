@@ -91,5 +91,11 @@
     "https://en.wikipedia.org/wiki/Andean_Spanish",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_peruano",
     "https://en.wikipedia.org/wiki/Peruvian_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": -13.516944,
+    "longitude": -71.978611,
+    "source": "wikidata",
+    "notes": "Cusco — a representative city of the Peruvian Andean highlands. [Wikidata Q5582862 P625]"
+  }
 }

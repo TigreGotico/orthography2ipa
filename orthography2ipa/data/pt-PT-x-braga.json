@@ -171,5 +171,11 @@
     ],
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+  },
+  "location": {
+    "latitude": 41.533333,
+    "longitude": -8.416667,
+    "source": "wikidata",
+    "notes": "Braga — the city the Bracarense variety is named for. [Wikidata Q83247 P625]"
   }
 }

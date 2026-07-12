@@ -162,9 +162,9 @@
   ],
   "wikidata_qid": "Q616620",
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Mexican Spanish."
+    "latitude": 19.353773,
+    "longitude": -99.13589,
+    "source": "wikidata",
+    "notes": "Mexico City — the highland centre this spec models. [Wikidata Q1489 P625]"
   }
 }

@@ -78,5 +78,11 @@
     "https://es.wikipedia.org/wiki/Dialecto_santandereano-tachirense",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_colombiano",
     "https://en.wikipedia.org/wiki/Colombian_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": 7.118611,
+    "longitude": -73.116111,
+    "source": "wikidata",
+    "notes": "Bucaramanga — the capital of Santander and centre of the Santandereano area. [Wikidata Q243766 P625]"
+  }
 }

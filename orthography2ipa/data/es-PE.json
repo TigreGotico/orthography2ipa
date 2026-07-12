@@ -139,5 +139,11 @@
       "notes": "Aymara indigenous adstrate (see stub ay.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q736236"
+  "wikidata_qid": "Q736236",
+  "location": {
+    "latitude": -13.516944,
+    "longitude": -71.978611,
+    "source": "wikidata",
+    "notes": "Cusco — a representative city of the Peruvian Andean highlands, which is what this national spec actually describes. [Wikidata Q5582862 P625]"
+  }
 }

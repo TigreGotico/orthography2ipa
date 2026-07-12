@@ -78,5 +78,11 @@
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_hondure%C3%B1o",
     "https://en.wikipedia.org/wiki/Honduran_Spanish"
   ],
-  "wikidata_qid": "Q5840049"
+  "wikidata_qid": "Q5840049",
+  "location": {
+    "latitude": 14.105783,
+    "longitude": -87.204706,
+    "source": "wikidata",
+    "notes": "Tegucigalpa. A national variety: the capital stands in for the country. [Wikidata Q3238 P625]"
+  }
 }

@@ -451,5 +451,11 @@
         "ʊ"
       ]
     }
+  },
+  "location": {
+    "latitude": -12.983056,
+    "longitude": -38.492778,
+    "source": "wikidata",
+    "notes": "Salvador — the centre of the Baiano area. [Wikidata Q36947 P625]"
   }
 }

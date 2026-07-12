@@ -84,5 +84,11 @@
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_yucateco",
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_mexicano",
     "https://en.wikipedia.org/wiki/Mexican_Spanish"
-  ]
+  ],
+  "location": {
+    "latitude": 20.97,
+    "longitude": -89.62,
+    "source": "wikidata",
+    "notes": "Mérida (Yucatán) — the centre of the Yucatán peninsula. [Wikidata Q165204 P625]"
+  }
 }

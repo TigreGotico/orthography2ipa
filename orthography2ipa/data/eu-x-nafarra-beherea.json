@@ -90,5 +90,11 @@
     "start_year": 1600,
     "end_year": null
   },
-  "iso639_3": "eus"
+  "iso639_3": "eus",
+  "location": {
+    "latitude": 43.166667,
+    "longitude": -1.233333,
+    "source": "wikidata",
+    "notes": "Lower Navarre (Basse-Navarre, Pyrénées-Atlantiques) — the historical province the dialect is named for. [Wikidata Q638503 P625]"
+  }
 }

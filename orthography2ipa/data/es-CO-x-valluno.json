@@ -80,9 +80,9 @@
     "https://en.wikipedia.org/wiki/Colombian_Spanish"
   ],
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Valluno Spanish."
+    "latitude": 3.44,
+    "longitude": -76.519722,
+    "source": "wikidata",
+    "notes": "Cali — the centre of the Valle del Cauca. [Wikidata Q51103 P625]"
   }
 }

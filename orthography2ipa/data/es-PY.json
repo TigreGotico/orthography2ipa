@@ -129,5 +129,11 @@
       "notes": "Guaraní indigenous adstrate (see stub gn.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q773631"
+  "wikidata_qid": "Q773631",
+  "location": {
+    "latitude": -25.28,
+    "longitude": -57.634444,
+    "source": "wikidata",
+    "notes": "Asunción. A national variety: the capital stands in for the country. [Wikidata Q2933 P625]"
+  }
 }

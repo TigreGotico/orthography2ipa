@@ -112,9 +112,9 @@
   "iso639_3": "ast",
   "quality": "research",
   "location": {
-    "latitude": 42.4181,
-    "longitude": -6.02227,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Western Asturian."
+    "latitude": 43.176203,
+    "longitude": -6.548861,
+    "source": "wikidata",
+    "notes": "Cangas del Narcea — a representative locality of western Asturias. [Wikidata Q737421 P625]"
   }
 }

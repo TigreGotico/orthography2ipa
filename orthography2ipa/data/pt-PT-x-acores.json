@@ -159,5 +159,11 @@
     "stress_mark": "ˈ",
     "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
   },
-  "wikidata_qid": "Q10265988"
+  "wikidata_qid": "Q10265988",
+  "location": {
+    "latitude": 38.624,
+    "longitude": -28.031,
+    "source": "wikidata",
+    "notes": "the Azores archipelago — a centroid over islands whose accents differ sharply from each other. Weak by construction. [Wikidata Q25263 P625]"
+  }
 }

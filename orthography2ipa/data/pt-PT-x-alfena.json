@@ -193,5 +193,11 @@
         "β"
       ]
     }
+  },
+  "location": {
+    "latitude": 41.238056,
+    "longitude": -8.525278,
+    "source": "wikidata",
+    "notes": "Alfena (Valongo, Greater Porto) — the single locality the vowel-breaking variety is described for. [Wikidata Q1971893 P625]"
   }
 }

@@ -363,5 +363,11 @@
     "cual": "kwal",
     "pur": "puɾ"
   },
-  "wikidata_qid": "Q2982964"
+  "wikidata_qid": "Q2982964",
+  "location": {
+    "latitude": 38.130733,
+    "longitude": -6.976103,
+    "source": "wikidata",
+    "notes": "Barrancos (Baixo Alentejo) — the single border municipality Barranquenho is spoken in. [Wikidata Q368867 P625]"
+  }
 }

@@ -62,5 +62,11 @@
   },
   "glottolog_code": null,
   "iso639_3": "dan",
-  "wikidata_qid": "Q837073"
+  "wikidata_qid": "Q837073",
+  "location": {
+    "latitude": 55.676111,
+    "longitude": 12.568889,
+    "source": "wikidata",
+    "notes": "Copenhagen — the city rigsdansk is the speech of. [Wikidata Q1748 P625]"
+  }
 }

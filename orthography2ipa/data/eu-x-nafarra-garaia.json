@@ -92,5 +92,11 @@
     "end_year": null
   },
   "iso639_3": "eus",
-  "wikidata_qid": "Q3125314"
+  "wikidata_qid": "Q3125314",
+  "location": {
+    "latitude": 42.816667,
+    "longitude": -1.65,
+    "source": "wikidata",
+    "notes": "Pamplona — the centre of the Pamplona basin and of the High Navarrese area. [Wikidata Q10282 P625]"
+  }
 }

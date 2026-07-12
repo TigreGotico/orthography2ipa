@@ -80,9 +80,9 @@
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_norte%C3%B1o_mexicano"
   ],
   "location": {
-    "latitude": 40.4414,
-    "longitude": -1.11788,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Northern Peninsular Mexican Spanish."
+    "latitude": 25.684444,
+    "longitude": -100.318056,
+    "source": "wikidata",
+    "notes": "Monterrey — the principal city of northern Mexico. [Wikidata Q81033 P625]"
   }
 }

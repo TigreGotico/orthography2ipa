@@ -174,5 +174,11 @@
     "end_year": null
   },
   "iso639_3": "ast",
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 42.0797,
+    "longitude": -6.68972,
+    "source": "wikidata",
+    "notes": "the Sanabria comarca (Zamora) — the centre of the Sanabrese area, which continues across the border into Guadramil and Rio de Onor. [Wikidata Q2605814 P625]"
+  }
 }

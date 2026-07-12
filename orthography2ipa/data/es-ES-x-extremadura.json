@@ -97,5 +97,11 @@
     "https://glottolog.org/resource/languoid/id/cast1244"
   ],
   "iso639_3": "spa",
-  "wikidata_qid": "Q2941553"
+  "wikidata_qid": "Q2941553",
+  "location": {
+    "latitude": 39.2,
+    "longitude": -6.15,
+    "source": "wikidata",
+    "notes": "Extremadura (Cáceres and Badajoz) — the autonomous community the variety is spoken in. [Wikidata Q5777 P625]"
+  }
 }

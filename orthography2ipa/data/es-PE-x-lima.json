@@ -71,5 +71,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "spa"
+  "iso639_3": "spa",
+  "location": {
+    "latitude": -12.06,
+    "longitude": -77.0375,
+    "source": "wikidata",
+    "notes": "Lima — the coastal capital whose speech this spec models. [Wikidata Q2868 P625]"
+  }
 }

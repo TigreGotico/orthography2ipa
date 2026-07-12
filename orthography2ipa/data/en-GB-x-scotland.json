@@ -1,86 +1,92 @@
 {
-    "code": "en-GB-x-scotland",
-    "name": "Scottish English",
-    "script": "Latin",
-    "graphemes_base": "en-GB",
-    "allophones_base": "en-GB",
-    "allophones": {
-        "t": [
-            "t",
-            "tʰ",
-            "ʔ"
-        ],
-        "ɹ": [
-            "ɹ",
-            "r"
-        ],
-        "æ": [
-            "æ"
-        ],
-        "ɑː": [
-            "a",
-            "ɑ"
-        ],
-        "ʌ": [
-            "ʌ",
-            "ʊ"
-        ],
-        "oʊ": [
-            "oʊ",
-            "əʊ"
-        ],
-        "x": [
-            "x"
-        ]
+  "code": "en-GB-x-scotland",
+  "name": "Scottish English",
+  "script": "Latin",
+  "graphemes_base": "en-GB",
+  "allophones_base": "en-GB",
+  "allophones": {
+    "t": [
+      "t",
+      "tʰ",
+      "ʔ"
+    ],
+    "ɹ": [
+      "ɹ",
+      "r"
+    ],
+    "æ": [
+      "æ"
+    ],
+    "ɑː": [
+      "a",
+      "ɑ"
+    ],
+    "ʌ": [
+      "ʌ",
+      "ʊ"
+    ],
+    "oʊ": [
+      "oʊ",
+      "əʊ"
+    ],
+    "x": [
+      "x"
+    ]
+  },
+  "parent": "en-GB",
+  "ancestors": [
+    {
+      "code": "en-GB",
+      "role": "parent",
+      "weight": 0.85,
+      "notes": "English standard"
     },
-    "parent": "en-GB",
-    "ancestors": [
-        {
-            "code": "en-GB",
-            "role": "parent",
-            "weight": 0.85,
-            "notes": "English standard"
-        },
-        {
-            "code": "gd",
-            "role": "substrate",
-            "weight": 0.07,
-            "notes": "Scottish Gaelic substrate"
-        }
-    ],
-    "notes": "Scottish English. Rhotic (unlike RP). Scottish Vowel Length Rule (SVLR): vowels long only before /r, v, ð, z/ and morpheme-final position. /x/ phonemic (loch [lɔx]). No TRAP-BATH split. FOOT-STRUT often merged. Scots (a related language) has additional distinct features. Source: Wells (1982) vol. 2.",
-    "quality": "skeleton",
-    "script_type": "alphabet",
-    "sources": [
-        {
-            "id": "wells1982_vol2",
-            "author": "Wells, J.C.",
-            "year": 1982,
-            "title": "Accents of English, Vol. 2: The British Isles",
-            "publisher": "Cambridge University Press",
-            "url": null,
-            "pages": null,
-            "notes": null
-        },
-        {
-            "id": "stuartsmith2003",
-            "author": "Stuart-Smith, J.",
-            "year": 2003,
-            "title": "Glasgow",
-            "publisher": "Arnold",
-            "url": null,
-            "pages": null,
-            "notes": "In: Upton, C. (ed.) Urban Voices"
-        }
-    ],
-    "wikipedia": [
-        "https://en.wikipedia.org/wiki/Scottish_English"
-    ],
-    "timespan": {
-        "start_year": 1600,
-        "end_year": null
+    {
+      "code": "gd",
+      "role": "substrate",
+      "weight": 0.07,
+      "notes": "Scottish Gaelic substrate"
+    }
+  ],
+  "notes": "Scottish English. Rhotic (unlike RP). Scottish Vowel Length Rule (SVLR): vowels long only before /r, v, ð, z/ and morpheme-final position. /x/ phonemic (loch [lɔx]). No TRAP-BATH split. FOOT-STRUT often merged. Scots (a related language) has additional distinct features. Source: Wells (1982) vol. 2.",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "wells1982_vol2",
+      "author": "Wells, J.C.",
+      "year": 1982,
+      "title": "Accents of English, Vol. 2: The British Isles",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": null
     },
-    "glottolog_code": null,
-    "iso639_3": "eng",
-    "wikidata_qid": "Q1553250"
+    {
+      "id": "stuartsmith2003",
+      "author": "Stuart-Smith, J.",
+      "year": 2003,
+      "title": "Glasgow",
+      "publisher": "Arnold",
+      "url": null,
+      "pages": null,
+      "notes": "In: Upton, C. (ed.) Urban Voices"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Scottish_English"
+  ],
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "eng",
+  "wikidata_qid": "Q1553250",
+  "location": {
+    "latitude": 57,
+    "longitude": -5,
+    "source": "wikidata",
+    "notes": "Scotland's representative point. A country-wide variety: weak. [Wikidata Q22 P625]"
+  }
 }

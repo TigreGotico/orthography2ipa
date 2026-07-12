@@ -64,5 +64,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "fas"
+  "iso639_3": "fas",
+  "location": {
+    "latitude": 36.297494,
+    "longitude": 59.605923,
+    "source": "wikidata",
+    "notes": "Mashhad — the city the variety is named for. [Wikidata Q121157 P625]"
+  }
 }

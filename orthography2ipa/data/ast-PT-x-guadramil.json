@@ -82,5 +82,11 @@
     "end_year": null
   },
   "iso639_3": "ast",
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 41.9153,
+    "longitude": -6.5697,
+    "source": "wikidata",
+    "notes": "Guadramil (Bragança) — the single border village the variety is spoken in. [Wikidata Q8965253 P625]"
+  }
 }

@@ -317,5 +317,11 @@
     "end_year": null
   },
   "iso639_3": "ast",
-  "quality": "research"
+  "quality": "research",
+  "location": {
+    "latitude": 41.940278,
+    "longitude": -6.616389,
+    "source": "wikidata",
+    "notes": "Rio de Onor (Bragança) — the single border village, straddling the frontier with Rihonor de Castilla, that the variety is spoken in. [Wikidata Q2119682 P625]"
+  }
 }

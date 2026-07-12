@@ -49,5 +49,11 @@
     "end_year": null
   },
   "glottolog_code": null,
-  "iso639_3": "ast"
+  "iso639_3": "ast",
+  "location": {
+    "latitude": 42.620046,
+    "longitude": -5.84066,
+    "source": "wikidata",
+    "notes": "the province of León — the core of the Leonese area, which also reaches into Zamora and Salamanca. A province-wide point, not a town. [Wikidata Q71140 P625]"
+  }
 }

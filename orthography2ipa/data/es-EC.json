@@ -144,5 +144,11 @@
       "notes": "Quechua indigenous adstrate (see stub qu.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q603188"
+  "wikidata_qid": "Q603188",
+  "location": {
+    "latitude": -0.22,
+    "longitude": -78.5125,
+    "source": "wikidata",
+    "notes": "Quito — the highland capital whose sierra speech this spec models. [Wikidata Q2900 P625]"
+  }
 }

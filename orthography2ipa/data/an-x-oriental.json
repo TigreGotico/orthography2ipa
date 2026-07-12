@@ -119,9 +119,9 @@
     }
   },
   "location": {
-    "latitude": 42.4669,
-    "longitude": -0.00919,
-    "source": "glottolog",
-    "notes": "Glottolog's representative point for Eastern Aragonese."
+    "latitude": 42.45,
+    "longitude": 0.533333,
+    "source": "wikidata",
+    "notes": "the Ribagorza comarca — the eastern (Ribagorçan) Aragonese area, transitional to Catalan. [Wikidata Q1425491 P625]"
   }
 }
