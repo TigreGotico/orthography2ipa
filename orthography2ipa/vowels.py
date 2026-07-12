@@ -141,8 +141,17 @@ _IPA_VOWELS = frozenset(
 # without hand-listing each one.
 
 # Base vowel letters once axis-preserving diacritics are removed.
-_FRONT_BASE = frozenset("eiy")
-_BACK_BASE = frozenset("aou")
+#: Base letters classified on the front/back axis. Greek is included —
+#: Modern Greek ⟨ε η ι υ⟩ are all front (υ merged into /i/ by iotacism;
+#: Holton, Mackridge & Philippaki-Warburton ch. 1.1) and ⟨α ο ω⟩ back —
+#: because the class positions (BEFORE_FRONT_VOWEL …) must work for
+#: Greek text: the velar palatalization κ→[c]/γ→[ʝ]/χ→[ç] is conditioned
+#: on exactly this axis. Accented forms (ά έ ή ί ό ύ ώ) classify through
+#: the axis-preserving acute below; dialytika (ϊ ϋ ΐ ΰ) is
+#: axis-preserving for the already-front ι/υ, listed explicitly since
+#: the Latin diaeresis rule (back → front) does not apply.
+_FRONT_BASE = frozenset("eiy" "εηιυ")
+_BACK_BASE = frozenset("aou" "αοω")
 
 # Combining diacritics that keep the base vowel's front/back axis: acute,
 # grave, circumflex, caron/háček, macron, breve, ogonek, dot-above, dot-below,
@@ -170,6 +179,9 @@ _FRONT_EXPLICIT = frozenset(
     "ı"
     # non-decomposing front / front-rounded letters
     "ø" "œ" "æ"
+    # Greek dialytika forms: ι/υ are already front, the mark only breaks
+    # a digraph, never changes the axis
+    "ϊ" "ϋ" "ΐ" "ΰ"
 )
 
 # Ring vowels (å, ẙ) genuinely straddle the axis — Scandinavian ⟨å⟩ ≈ /ɔ o/ is

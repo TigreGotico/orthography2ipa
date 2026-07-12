@@ -170,3 +170,61 @@ def test_malayalam_anusvara_keeps_inherent_vowel_matra_replaces_it():
     # expected string from escapes to keep the combining char unambiguous.
     expected = "malaja\u02d0\u026da\u0303m"
     assert transcribe("\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02", "ml") == expected
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Greek front/back axis (velar palatalization depends on it)
+# ═══════════════════════════════════════════════════════════════════════════
+
+@pytest.mark.parametrize("ch", list("εηιυ") + ["έ", "ή", "ί", "ύ", "ϊ", "ϋ", "ΐ", "ΰ"])
+def test_greek_front_vowels_axis(ch):
+    # Modern Greek ε η ι υ are all front (υ by iotacism; Holton,
+    # Mackridge & Philippaki-Warburton ch. 1.1); the acute and the
+    # dialytika preserve the axis.
+    from orthography2ipa.vowels import is_back_vowel, is_front_vowel
+    assert is_front_vowel(ch)
+    assert not is_back_vowel(ch)
+
+
+@pytest.mark.parametrize("ch", list("αοω") + ["ά", "ό", "ώ"])
+def test_greek_back_vowels_axis(ch):
+    from orthography2ipa.vowels import is_back_vowel, is_front_vowel
+    assert is_back_vowel(ch)
+    assert not is_front_vowel(ch)
+
+
+class TestGreekPhonology:
+    """Modern Greek spec behaviors that ride on the axis fix + the el
+    spec overhaul (Arvaniti 2007, JIPA Illustrations: Standard Modern
+    Greek; Holton, Mackridge & Philippaki-Warburton ch. 1)."""
+
+    @staticmethod
+    def _t(w):
+        from orthography2ipa.g2p import transcribe as _tr
+        return _tr(w, "el").replace("ˈ", "")
+
+    def test_velar_palatalization_before_front_vowel(self):
+        assert self._t("Άκης") == "acis"          # κ → [c]
+        assert self._t("χέρι") == "çeɾi"           # χ → [ç]
+        assert self._t("Αγγελική") == "aŋɟelici"   # γγ → [ŋɟ]
+
+    def test_velars_stay_plain_before_back_vowels(self):
+        assert self._t("καλός") == "kalos"
+        assert self._t("γάτα") == "ɣata"
+
+    def test_accented_digraph_is_one_vowel(self):
+        assert self._t("αίμα") == "ema"            # αί = /e/
+        assert self._t("Αδριανούπολη") == "aðɾianupoli"  # ού = /u/
+
+    def test_s_voices_before_voiced_consonant(self):
+        assert self._t("κόσμος") == "kozmos"
+
+    def test_double_consonants_degeminate(self):
+        assert self._t("Έλλην") == "elin"
+
+    def test_nasal_stop_digraphs_positional(self):
+        assert self._t("Όλυμπος") == "olimbos"     # medial μπ = [mb]
+        assert self._t("μπάλα").startswith("b")    # initial μπ = [b]
+
+    def test_rho_is_a_tap(self):
+        assert self._t("ρόδα") == "ɾoða"
