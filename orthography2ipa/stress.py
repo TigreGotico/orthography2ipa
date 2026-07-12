@@ -285,6 +285,45 @@ def apply_stress_mark(
         offset_from_end = -stress_index
     else:
         n_orth = len(syllables) if syllables is not None else len(ipa_sylls)
+        overflow = len(ipa_sylls) - n_orth
+        if overflow > 0:
+            # The IPA has MORE syllables than the orthography. Two very
+            # different causes share these counts:
+            #
+            # * the orthographic syllabifier UNDERCOUNTED a vowel
+            #   sequence (Spanish ``ayer`` → 1 orth syllable, IPA
+            #   a-ʝeɾ) — end-anchoring below still lands right, because
+            #   ``detect_stress`` computed its index over the same
+            #   undercounted syllables;
+            # * an allophone rule EPENTHESIZED a nucleus (Irish
+            #   svarabhakti, ``gorm`` → ɡɔ-ɾˠəmˠ) — end-anchoring now
+            #   lands one syllable LATE, on the epenthetic vowel.
+            #
+            # The discriminator is the nucleus itself: anaptyctic vowels
+            # are reduced (ə — the cross-linguistic epenthesis default),
+            # while an undercounted written sequence splits into FULL
+            # vowels. Fold excess non-initial ə-nucleus syllables back
+            # into the preceding syllable for COUNTING, then end-anchor
+            # as before. A word-final OPEN ə syllable is normally a real
+            # written vowel (Catalan ``casa`` → ka-zə, Irish ``-cha`` →
+            # xə) and is left alone; a word-final CLOSED one is the
+            # classic anaptyxis site (Irish ``gorm`` → ɡɔ-ɾˠəmˠ) and
+            # merges. When there is no overflow this is dead code, so
+            # languages whose ə is a real written vowel are untouched.
+            def _epenthetic(syll: str, final: bool) -> bool:
+                if [c for c in syll if _is_vowel_char(c)] != ["ə"]:
+                    return False
+                return not (final and syll.endswith("ə"))
+
+            merged: List[str] = [ipa_sylls[0]]
+            for i, syll in enumerate(ipa_sylls[1:], start=1):
+                if overflow > 0 and _epenthetic(
+                        syll, final=i == len(ipa_sylls) - 1):
+                    merged[-1] += syll
+                    overflow -= 1
+                else:
+                    merged.append(syll)
+            ipa_sylls = merged
         offset_from_end = max(1, n_orth - stress_index)
 
     target = max(0, len(ipa_sylls) - offset_from_end)
