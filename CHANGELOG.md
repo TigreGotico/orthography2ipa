@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.86.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.86.1a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.86.0a1...1.86.1a1)
+
+**Merged pull requests:**
+
+- fix: let maximal munch win over punctuation \(fixes flaky TestTokenizerRoundTrip\) [\#305](https://github.com/TigreGotico/orthography2ipa/pull/305) ([JarbasAl](https://github.com/JarbasAl))
+- feat: encode the Goidelic broad/slender system \(ga, gd\) [\#301](https://github.com/TigreGotico/orthography2ipa/pull/301) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.86.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.86.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.85.0a1...1.86.0a1)
@@ -693,10 +702,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.22.0a1...1.22.1a1)
 
-**Merged pull requests:**
-
-- fix\(tr\): correct dotted/dotless I casing in tokenizer normalization [\#113](https://github.com/TigreGotico/orthography2ipa/pull/113) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.22.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.22.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.2a1...1.22.0a1)
@@ -708,10 +713,6 @@
 ## [1.21.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.2a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.21.1a1...1.21.2a1)
-
-**Merged pull requests:**
-
-- fix: freeze cached phone vectors as tuples, log syllabifier plugin failures [\#112](https://github.com/TigreGotico/orthography2ipa/pull/112) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.21.1a1) (2026-07-10)
 
