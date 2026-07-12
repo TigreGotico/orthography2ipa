@@ -309,17 +309,28 @@ class TestUnmappedCharObservability:
         assert word.coverage == 1.0
 
     def test_on_unmapped_raise_raises_unmapped_script_error(self):
-        """`on_unmapped="raise"` raises UnmappedScriptError for the
-        Korean precomposed-Hangul-into-compatibility-jamo scenario
-        (PR #106)."""
+        """`on_unmapped="raise"` raises UnmappedScriptError for a script
+        the spec genuinely cannot map. Hangul — the original PR #106
+        scenario — is no longer one: syllable blocks canonically
+        decompose to the spec's conjoining jamo. Han characters have no
+        canonical decomposition and no lexicon, so Sino-Korean text
+        written in hanja is the honest raise case for `ko`.
+        """
         from orthography2ipa.exceptions import UnmappedScriptError
 
         engine = G2P("ko", on_unmapped="raise")
         with pytest.raises(UnmappedScriptError) as excinfo:
-            engine.transcribe("안녕하세요")
+            engine.transcribe("韓國")
         assert excinfo.value.lang == "ko"
-        assert excinfo.value.word == "안녕하세요"
+        assert excinfo.value.word == "韓國"
         assert excinfo.value.unmapped
+
+    def test_hangul_syllable_blocks_are_mapped(self):
+        """The PR #106 Hangul scenario now transcribes instead of
+        raising: 안녕하세요 decomposes to conjoining jamo and maps."""
+        engine = G2P("ko", on_unmapped="raise")
+        ipa = engine.transcribe("안녕하세요")
+        assert ipa and "ŋ" in ipa
 
     def test_on_unmapped_log_emits_warning_without_raising(self, caplog):
         """`on_unmapped="log"` emits a warning once per (lang, word) and

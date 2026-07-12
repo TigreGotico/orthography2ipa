@@ -356,16 +356,10 @@ _IPA_CHILDES_BASE = (
 # - ja-JP: CHILDES Japanese transcripts here are romaji only (no kana/kanji
 #   column in the dataset); the ja spec's grapheme table is hiragana, so
 #   there is no clean grapheme match either.
-# - ko-KR: this repo's ko spec's grapheme table is keyed on individual
-#   compatibility jamo (e.g. U+3131 "ㄱ"), while real Korean text --
-#   including this dataset's -- is precomposed Hangul syllable blocks
-#   (e.g. "아홉"), which neither match the compatibility-jamo graphemes
-#   directly nor decompose into them under NFD (NFD splits a Hangul
-#   syllable into *conjoining* jamo, U+11xx, a different Unicode block
-#   from the *compatibility* jamo, U+31xx, the spec's grapheme table
-#   uses). G2P('ko').transcribe_word(...) returns an empty string for
-#   every real Hangul word, so scoring this row would not measure
-#   phonological accuracy.
+# - ko-KR: WIRABLE NOW, pending verification — the ko spec reads Hangul
+#   syllable blocks since the conjoining-jamo graphemes + canonical
+#   decomposition landed. This corpus's Korean column still needs its own
+#   check (phonemizer tool, romanization vs Hangul) before wiring.
 # - yue-CN: the yue spec is a STUB with an empty grapheme inventory (Cantonese
 #   is written in Chinese characters); the dataset's own romanized column is
 #   Jyutping-with-tone-numbers, which the stub does not model either, so
@@ -602,6 +596,7 @@ _IPADICT_BASE = (
 # the reason for each.
 _IPADICT_FILES = {
     "ar": "ar.txt",
+    "ko": "ko.txt",
     "de-DE": "de.txt",
     "en-GB": "en_UK.txt",
     "en-US": "en_US.txt",
@@ -636,10 +631,6 @@ _IPADICT_UNWIRED: Dict[str, str] = {
            "language and must not be used as a stand-in.",
     "vi_C": "no Central-Vietnamese spec is registered (only `vi`).",
     "vi_S": "no Southern-Vietnamese spec is registered (only `vi`).",
-    "ko": "UNTRANSCRIBABLE GOLD: the gold is Hangul, and the `ko` spec's rules "
-          "emit nothing for Hangul syllable blocks (`G2P('ko')` returns '' for "
-          "가), so every row would be uncovered — a PER=1.0 non-result. An "
-          "engine/spec gap to report, not a benchmark row.",
     "yue": "UNTRANSCRIBABLE GOLD: the gold is Han script and the `yue` spec "
            "emits nothing for it (`G2P('yue')` returns '' for 水).",
     "zh_hans": "UNTRANSCRIBABLE GOLD: the gold is Han script. The `zh` spec is "
@@ -667,6 +658,7 @@ _IPADICT_PROVENANCE: Dict[str, str] = {
     "ro-RO": "lexicon-derived",    # MaRePhoR phonetic dictionary (UTCluj), CC BY-NC
     "sv": "lexicon-derived",       # Folkets lexikon (KTH), CC BY-SA 2.5
     # ─ Wiktionary community edits ─
+    "ko": "crowd-scraped",         # Korean Wiktionary scrape (open-dict-data); Hangul readable since the conjoining-jamo graphemes landed
     "de-DE": "crowd-scraped",      # german-ipa-dict (@devio-at), built from Wiktionary, CC BY-SA
     # ─ tool output: a rule script / analyzer / phonemizer produced the IPA ─
     "ar": "machine-generated",     # Buckwalter Arabic Morphological Analyzer output
