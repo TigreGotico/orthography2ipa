@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/2.0.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.88.0a2...2.0.0a1)
+
+**Breaking changes:**
+
+- feat\(ca\)!: re-root the Catalan family on Old Catalan and restore the open-mid default [\#315](https://github.com/TigreGotico/orthography2ipa/pull/315) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.88.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.88.0a2) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.88.0a1...1.88.0a2)
@@ -686,17 +694,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.25.0a1...1.26.0a1)
 
-**Merged pull requests:**
-
-- feat\(scripts\): add cross-system G2P comparison harness [\#127](https://github.com/TigreGotico/orthography2ipa/pull/127) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.25.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.25.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.24.0a1...1.25.0a1)
-
-**Merged pull requests:**
-
-- feat\(types\): add vowel-class grapheme positions [\#126](https://github.com/TigreGotico/orthography2ipa/pull/126) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.24.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.24.0a1) (2026-07-10)
 
