@@ -405,8 +405,8 @@
       "title": "Malayalam",
       "publisher": "Routledge",
       "url": null,
-      "pages": null,
-      "notes": null
+      "pages": "405-406",
+      "notes": "Malayalam phonology; the intervocalic and post-nasal voicing of the plosive series, and its blocking in geminates. Source for the ml TA_VOICE_tɕ* overrides."
     },
     {
       "id": "ladefoged_maddieson1996",
@@ -439,5 +439,39 @@
     "longitude": 76.7651,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Malayalam."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "TA_VOICE_tɕa",
+      "phonemes": [
+        "tɕa"
+      ],
+      "surface": "dʑa",
+      "word_initial": false,
+      "notes": "Malayalam inherits the Dravidian intervocalic/post-nasal voicing rules from its parent (ta): plosives are voiceless word-initially and when geminated, voiced between vowels and after a nasal (Asher & Kumari 1997: 405-406; Krishnamurti 2003: 4.2) — പകർച്ച [paɡar-], മരുതം [marud̪am]. It differs from Tamil in ONE realisation: the palatal ⟨ച⟩ does not lenite to [s] between vowels, it voices to [dʑ] like the rest of the series (Asher & Kumari 1997: 405-406). These rules override the inherited TA_VOICE_tɕ* by id."
+    },
+    {
+      "id": "TA_VOICE_tɕ",
+      "phonemes": [
+        "tɕ"
+      ],
+      "surface": "dʑ",
+      "word_initial": false,
+      "followed_by_phoneme": [
+        "a",
+        "aː",
+        "i",
+        "iː",
+        "u",
+        "uː",
+        "e",
+        "eː",
+        "ai",
+        "o",
+        "oː",
+        "au"
+      ],
+      "notes": "Malayalam inherits the Dravidian intervocalic/post-nasal voicing rules from its parent (ta): plosives are voiceless word-initially and when geminated, voiced between vowels and after a nasal (Asher & Kumari 1997: 405-406; Krishnamurti 2003: 4.2) — പകർച്ച [paɡar-], മരുതം [marud̪am]. It differs from Tamil in ONE realisation: the palatal ⟨ച⟩ does not lenite to [s] between vowels, it voices to [dʑ] like the rest of the series (Asher & Kumari 1997: 405-406). These rules override the inherited TA_VOICE_tɕ* by id."
+    }
+  ]
 }
