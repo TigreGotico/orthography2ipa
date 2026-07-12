@@ -1,7 +1,6 @@
 {
   "code": "rsk",
   "name": "Pannonian Rusyn",
-  "family": "Slavic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "stub",
@@ -24,5 +23,14 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Pannonian_Rusyn_Wikipedia"
+  ],
+  "parent": "x-clade-slav1255",
+  "ancestors": [
+    {
+      "code": "x-clade-slav1255",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Slavic — the classification node this language sits under."
+    }
   ]
 }

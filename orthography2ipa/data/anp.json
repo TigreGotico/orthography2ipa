@@ -1,7 +1,6 @@
 {
   "code": "anp",
   "name": "Angika",
-  "family": "Indo-Aryan",
   "script": "Devanagari",
   "script_type": "abugida",
   "quality": "stub",
@@ -28,5 +27,20 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 26.0047,
+    "longitude": 85.534,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Angika."
+  }
 }

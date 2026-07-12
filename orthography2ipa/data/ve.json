@@ -1,7 +1,6 @@
 {
   "code": "ve",
   "name": "Venda",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -383,5 +382,20 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Venda_language",
     "https://ve.wikipedia.org/wiki/TshiVen%E1%B8%93a"
-  ]
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": -22.188,
+    "longitude": 29.9523,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Venda."
+  }
 }

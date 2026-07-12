@@ -1,7 +1,6 @@
 {
   "code": "crh",
   "name": "Crimean Tatar",
-  "family": "Turkic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -233,5 +232,20 @@
     "https://en.wikipedia.org/wiki/Crimean_Tatar_language",
     "https://crh.wikipedia.org/wiki/Q%C4%B1r%C4%B1mtatar_tili",
     "https://en.wikipedia.org/wiki/Crimean_Tatar_alphabets"
-  ]
+  ],
+  "parent": "x-clade-turk1311",
+  "ancestors": [
+    {
+      "code": "x-clade-turk1311",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Turkic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 45.0,
+    "longitude": 34.08,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Crimean Tatar."
+  }
 }

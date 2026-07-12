@@ -1,7 +1,6 @@
 {
   "code": "syl",
   "name": "Sylheti",
-  "family": "Indo-Aryan",
   "script": "Sylheti Nagri",
   "script_type": "abugida",
   "quality": "stub",
@@ -53,5 +52,20 @@
   "timespan": {
     "start_year": 1500,
     "end_year": null
+  },
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 24.83724,
+    "longitude": 92.25347,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sylheti."
   }
 }

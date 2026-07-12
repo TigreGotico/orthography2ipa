@@ -1,7 +1,6 @@
 {
   "code": "os",
   "name": "Ossetian",
-  "family": "Iranian",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
@@ -300,5 +299,20 @@
   "timespan": {
     "start_year": 1798,
     "end_year": null
+  },
+  "parent": "x-clade-iran1269",
+  "ancestors": [
+    {
+      "code": "x-clade-iran1269",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Iranian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 42.98,
+    "longitude": 44.61,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Iron Ossetian."
   }
 }

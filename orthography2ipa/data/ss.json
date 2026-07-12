@@ -1,7 +1,6 @@
 {
   "code": "ss",
   "name": "Swazi",
-  "family": "Niger-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -28,5 +27,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": -26.0,
+    "longitude": 31.5,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Swati."
+  }
 }

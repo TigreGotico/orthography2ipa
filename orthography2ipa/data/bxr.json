@@ -1,13 +1,12 @@
 {
   "code": "bxr",
   "name": "Buryat (Russia)",
-  "family": "Mongolic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "notes": "Buryat (буряад хэлэн), a Mongolic language of the Republic of Buryatia, Russia. STUB: the grapheme inventory is NOT yet specified. Script: Cyrillic alphabet — the Russian alphabet plus ⟨Үү⟩, ⟨Өө⟩ and ⟨Һһ⟩. A full spec must model vowel harmony, long vowels (written as doubled vowel letters) and diphthongs, the palatalisation contrast carried by the soft sign and the iotated vowel letters, and the many Russian-loanword letters (ф, ц, ч, щ, в) that are marginal in native words. Buryat is also written in Mongolian script (Mongolia/China) and was written in Latin 1931-1939; input is assumed to be the Cyrillic orthography.",
+  "notes": "Buryat (буряад хэлэн), a Mongolic language of the Republic of Buryatia, Russia. STUB: the grapheme inventory is NOT yet specified. Script: Cyrillic alphabet — the Russian alphabet plus ⟨Үү⟩, ⟨Өө⟩ and ⟨Һһ⟩. A full spec must model vowel harmony, long vowels (written as doubled vowel letters) and diphthongs, the palatalisation contrast carried by the soft sign and the iotated vowel letters, and the many Russian-loanword letters (ф, ц, ч, щ, в) that are marginal in native words. Buryat is also written in Mongolian script (Mongolia/China) and was written in Latin 1931-1939; input is assumed to be the Cyrillic orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode russ1264), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "bua",
   "glottolog_code": "russ1264",
   "wikidata_qid": "Q33120",
@@ -26,10 +25,82 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Buryat_language",
       "pages": null,
       "notes": "Overview of the language, script and orthography."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode russ1264."
     }
   ],
   "timespan": {
     "start_year": 1930,
     "end_year": null
+  },
+  "phonemes": [
+    "b",
+    "bʲ",
+    "dʲ",
+    "d̺",
+    "i",
+    "iː",
+    "j",
+    "l",
+    "lʲ",
+    "m",
+    "mʲ",
+    "n",
+    "nʲ",
+    "pʰ",
+    "pʲʰ",
+    "r̺",
+    "r̺ʲ",
+    "s̺",
+    "tʲʰ",
+    "t̺ʰ",
+    "u",
+    "ui",
+    "uː",
+    "xʲ",
+    "z̺",
+    "ħ",
+    "œ̞ɛ̞",
+    "ɑ",
+    "ɑː",
+    "ɔ",
+    "ɔː",
+    "ɛː",
+    "ɡʲ",
+    "ɢ",
+    "ɤː",
+    "ɤ̟",
+    "ɨː",
+    "ɴ",
+    "ɵː",
+    "ʃ",
+    "ʊ",
+    "ʊi",
+    "ʊː",
+    "ʒ",
+    "χ"
+  ],
+  "parent": "x-clade-mong1349",
+  "ancestors": [
+    {
+      "code": "x-clade-mong1349",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Mongolic-Khitan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 50.85331,
+    "longitude": 105.5637,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Russia Buriat."
   }
 }

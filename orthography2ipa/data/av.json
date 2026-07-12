@@ -1,7 +1,6 @@
 {
   "code": "av",
   "name": "Avar",
-  "family": "Northeast Caucasian",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
@@ -366,5 +365,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-nakh1245",
+  "ancestors": [
+    {
+      "code": "x-clade-nakh1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Nakh-Daghestanian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 41.7047,
+    "longitude": 46.558,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Avar."
+  }
 }

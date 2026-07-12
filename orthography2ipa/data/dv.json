@@ -1,13 +1,12 @@
 {
   "code": "dv",
   "name": "Maldivian (Dhivehi)",
-  "family": "Indo-Aryan",
   "script": "Thaana",
   "script_type": "abugida",
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Dhivehi is written in Thaana, right-to-left. Thaana is precisely an alphabet-like abugida: its consonant letters carry NO inherent vowel, and each is obligatorily accompanied by a fili — one of the ten vowel diacritics, or the sukun marking absence of a vowel — so every vowel IS written (unlike a true abjad), yet vowels remain diacritics on a consonant base rather than independent letters (unlike a true alphabet). `abugida` is the closest of the schema's categories; because Thaana has no default vowel, no `inherent_vowel` is declared. The older Dhives Akuru script and the Malé Latin transliteration are not modelled here. No Thaana-to-IPA map is claimed.",
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Dhivehi is written in Thaana, right-to-left. Thaana is precisely an alphabet-like abugida: its consonant letters carry NO inherent vowel, and each is obligatorily accompanied by a fili — one of the ten vowel diacritics, or the sukun marking absence of a vowel — so every vowel IS written (unlike a true abjad), yet vowels remain diacritics on a consonant base rather than independent letters (unlike a true alphabet). `abugida` is the closest of the schema's categories; because Thaana has no default vowel, no `inherent_vowel` is declared. The older Dhives Akuru script and the Malé Latin transliteration are not modelled here. No Thaana-to-IPA map is claimed. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode dhiv1236), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "div",
   "glottolog_code": "dhiv1236",
   "wikidata_qid": "Q32656",
@@ -48,10 +47,76 @@
       "wikipedia_url": null,
       "pages": null,
       "notes": "Reference description of Dhivehi phonology and orthography."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode dhiv1236."
     }
   ],
   "timespan": {
     "start_year": 1200,
     "end_year": null
+  },
+  "phonemes": [
+    "ä",
+    "äu̯",
+    "äː",
+    "b",
+    "cʰ",
+    "d̪",
+    "e",
+    "eː",
+    "f",
+    "h",
+    "i",
+    "iː",
+    "j",
+    "kʰ",
+    "l",
+    "m",
+    "mb",
+    "n",
+    "n̪d̪",
+    "o",
+    "oː",
+    "pʰ",
+    "s",
+    "t̪ʰ",
+    "u",
+    "uː",
+    "v",
+    "z̪",
+    "æː",
+    "ŋɡ",
+    "ɖ",
+    "ɟ",
+    "ɡ",
+    "ɭ",
+    "ɲ",
+    "ɳɖ",
+    "ɾ",
+    "ʂ",
+    "ʈʰ"
+  ],
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 1.928498,
+    "longitude": 73.54433,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Dhivehi."
   }
 }

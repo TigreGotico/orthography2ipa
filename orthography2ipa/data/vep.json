@@ -1,7 +1,6 @@
 {
   "code": "vep",
   "name": "Veps",
-  "family": "Uralic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -214,5 +213,20 @@
   "timespan": {
     "start_year": 1989,
     "end_year": null
+  },
+  "parent": "x-clade-ural1272",
+  "ancestors": [
+    {
+      "code": "x-clade-ural1272",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Uralic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 60.3353,
+    "longitude": 34.7865,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Veps."
   }
 }

@@ -1,7 +1,6 @@
 {
   "code": "koi",
   "name": "Komi-Permyak",
-  "family": "Uralic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "stub",
@@ -10,7 +9,7 @@
   "wikidata_qid": "Q56318",
   "graphemes": {},
   "allophones": {},
-  "notes": "Komi-Permyak (перем коми / коми-пермяцкӧй кыв) of Perm Krai, written in a Cyrillic alphabet extended with ⟨ӧ⟩ and ⟨і⟩. The grapheme inventory is NOT yet specified. Komi orthography encodes consonant palatalisation through the following vowel letter and the soft sign, in a system that differs from Russian; a reliable letter → IPA table requires a descriptive source that has not been consulted. The historic Molodtsov alphabet is not covered. Metadata only.",
+  "notes": "Komi-Permyak (перем коми / коми-пермяцкӧй кыв) of Perm Krai, written in a Cyrillic alphabet extended with ⟨ӧ⟩ and ⟨і⟩. The grapheme inventory is NOT yet specified. Komi orthography encodes consonant palatalisation through the following vowel letter and the soft sign, in a system that differs from Russian; a reliable letter → IPA table requires a descriptive source that has not been consulted. The historic Molodtsov alphabet is not covered. Metadata only. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode komi1269), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "sources": [
     {
       "id": "koi_wiki",
@@ -22,10 +21,74 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Komi-Permyak_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode komi1269."
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Komi-Permyak_language",
     "https://koi.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%B8-%D0%BF%D0%B5%D1%80%D0%BC%D1%8F%D1%86%D0%BA%D3%A7%D0%B9_%D0%BA%D1%8B%D0%B2"
-  ]
+  ],
+  "phonemes": [
+    "ä̠",
+    "b",
+    "c",
+    "dʑ",
+    "d̻",
+    "e",
+    "f",
+    "i",
+    "j",
+    "k",
+    "l̻",
+    "m",
+    "n̻",
+    "o",
+    "p",
+    "r",
+    "rʲ",
+    "s̻",
+    "tɕ",
+    "t̻",
+    "t̻s̪̻",
+    "u",
+    "x",
+    "z̻",
+    "ɕ",
+    "ɖʐ",
+    "ɘ̠",
+    "ɟ",
+    "ɡ",
+    "ɨ̠",
+    "ɲ",
+    "ʂ",
+    "ʈʂ",
+    "ʋ",
+    "ʎ",
+    "ʐ",
+    "ʑ"
+  ],
+  "parent": "x-clade-ural1272",
+  "ancestors": [
+    {
+      "code": "x-clade-ural1272",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Uralic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 59.6602,
+    "longitude": 54.7959,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Komi-Permyak."
+  }
 }

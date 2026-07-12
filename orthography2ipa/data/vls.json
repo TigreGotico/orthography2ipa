@@ -1,7 +1,6 @@
 {
   "code": "vls",
   "name": "West Flemish",
-  "family": "Germanic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -36,5 +35,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 51.0754,
+    "longitude": 3.11345,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Western Flemish."
+  }
 }

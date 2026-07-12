@@ -1,7 +1,6 @@
 {
   "code": "glk",
   "name": "Gilaki",
-  "family": "Iranian",
   "script": "Arabic",
   "script_type": "abjad",
   "quality": "stub",
@@ -27,5 +26,20 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gilaki_language",
     "https://glk.wikipedia.org/wiki/%DA%AF%D9%8A%D9%84%DA%A9%D9%8A_%D8%B2%D9%88%D8%A4%D9%86"
-  ]
+  ],
+  "parent": "x-clade-iran1269",
+  "ancestors": [
+    {
+      "code": "x-clade-iran1269",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Iranian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 37.1344,
+    "longitude": 49.8359,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gilaki."
+  }
 }

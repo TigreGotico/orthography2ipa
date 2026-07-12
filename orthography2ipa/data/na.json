@@ -1,7 +1,6 @@
 {
   "code": "na",
   "name": "Nauruan",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -30,5 +29,20 @@
   "timespan": {
     "start_year": 1900,
     "end_year": null
+  },
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": -0.52957,
+    "longitude": 166.922,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Nauru."
   }
 }

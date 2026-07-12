@@ -1,7 +1,6 @@
 {
   "code": "rki",
   "name": "Rakhine",
-  "family": "Sino-Tibetan",
   "script": "Burmese",
   "script_type": "abugida",
   "quality": "stub",
@@ -29,5 +28,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 20.527429,
+    "longitude": 93.145906,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Rakhine."
+  }
 }

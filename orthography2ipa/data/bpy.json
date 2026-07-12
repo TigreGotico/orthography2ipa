@@ -1,7 +1,6 @@
 {
   "code": "bpy",
   "name": "Bishnupriya Manipuri",
-  "family": "Indo-Aryan",
   "script": "Bengali-Assamese",
   "script_type": "abugida",
   "quality": "stub",
@@ -28,5 +27,20 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 24.4578,
+    "longitude": 92.0157,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bishnupriya Manipuri."
+  }
 }

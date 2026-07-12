@@ -1,7 +1,6 @@
 {
   "code": "chr",
   "name": "Cherokee",
-  "family": "Iroquoian",
   "script": "Cherokee",
   "script_type": "syllabary",
   "quality": "research",
@@ -571,5 +570,20 @@
   "timespan": {
     "start_year": 1821,
     "end_year": null
+  },
+  "parent": "x-clade-iroq1247",
+  "ancestors": [
+    {
+      "code": "x-clade-iroq1247",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Iroquoian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 35.4664,
+    "longitude": -83.163,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Cherokee."
   }
 }

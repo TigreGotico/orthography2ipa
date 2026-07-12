@@ -1,7 +1,6 @@
 {
   "code": "mag",
   "name": "Magahi",
-  "family": "Indo-Aryan",
   "script": "Devanagari",
   "script_type": "abugida",
   "quality": "stub",
@@ -10,7 +9,7 @@
   "iso639_3": "mag",
   "glottolog_code": "maga1260",
   "wikidata_qid": "Q33728",
-  "notes": "STUB: the grapheme inventory of Magahi is NOT yet specified (graphemes/allophones are empty). Magahi (मगही) is an Eastern Indo-Aryan (Bihari) language of Bihar and Jharkhand, India, written in DEVANAGARI — an ABUGIDA: each consonant letter carries an inherent vowel /ə/ which is cancelled by virama and overridden by vowel matras, and the mapping must also handle schwa deletion. INPUT CONTRACT: Devanagari Magahi text (Unicode, NFC).",
+  "notes": "STUB: the grapheme inventory of Magahi is NOT yet specified (graphemes/allophones are empty). Magahi (मगही) is an Eastern Indo-Aryan (Bihari) language of Bihar and Jharkhand, India, written in DEVANAGARI — an ABUGIDA: each consonant letter carries an inherent vowel /ə/ which is cancelled by virama and overridden by vowel matras, and the mapping must also handle schwa deletion. INPUT CONTRACT: Devanagari Magahi text (Unicode, NFC). PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode maga1260), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "sources": [
     {
       "id": "magahi_language_wiki",
@@ -22,10 +21,87 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Magahi_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode maga1260."
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Magahi_language"
   ],
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "phonemes": [
+    "a",
+    "ã",
+    "b",
+    "bʰ",
+    "c",
+    "cʰ",
+    "d̪",
+    "d̪ʰ",
+    "e",
+    "ẽ",
+    "h",
+    "i",
+    "ĩ",
+    "j",
+    "k",
+    "kʰ",
+    "l",
+    "lʰ",
+    "m",
+    "mʰ",
+    "n",
+    "nʰ",
+    "o",
+    "õ",
+    "p",
+    "pʰ",
+    "r",
+    "rʰ",
+    "s",
+    "t̪",
+    "t̪ʰ",
+    "u",
+    "ũ",
+    "w",
+    "ɖ",
+    "ɖʰ",
+    "əi",
+    "əu",
+    "ə̃ĩ",
+    "ə̃ũ",
+    "ɟ",
+    "ɟʰ",
+    "ɡ",
+    "ɡʰ",
+    "ɽ",
+    "ɽʰ",
+    "ʈ",
+    "ʈʰ",
+    "ʌ",
+    "ʌ̃"
+  ],
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 25.0915,
+    "longitude": 85.3335,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Magahi."
+  }
 }

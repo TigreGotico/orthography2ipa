@@ -1,7 +1,6 @@
 {
   "code": "guw",
   "name": "Gun (Gungbe)",
-  "family": "Niger-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -295,5 +294,11 @@
     "start_year": 1923,
     "end_year": null
   },
-  "notes": "Gun / Gungbe (Gbe, Benin), written in the Benin national alphabet (Africa-alphabet based; closely following Fon). Special letters: ⟨ɛ⟩ /ɛ/, ⟨ɔ⟩ /ɔ/, ⟨ɖ⟩ /ɖ/; digraphs ⟨gb⟩ /ɡ͡b/, ⟨kp⟩ /k͡p/, ⟨xw⟩ /xʷ/, ⟨hw⟩ /hʷ/, ⟨ny⟩ /ɲ/. A vowel followed by ⟨n⟩ (an, ɛn, in, ɔn, un) writes a nasal vowel. /b ɖ l/ surface as [m n n] before nasal vowels. Gungbe is tonal (H/L); tone is not consistently written and is therefore not recoverable from ordinary spelling."
+  "notes": "Gun / Gungbe (Gbe, Benin), written in the Benin national alphabet (Africa-alphabet based; closely following Fon). Special letters: ⟨ɛ⟩ /ɛ/, ⟨ɔ⟩ /ɔ/, ⟨ɖ⟩ /ɖ/; digraphs ⟨gb⟩ /ɡ͡b/, ⟨kp⟩ /k͡p/, ⟨xw⟩ /xʷ/, ⟨hw⟩ /hʷ/, ⟨ny⟩ /ɲ/. A vowel followed by ⟨n⟩ (an, ɛn, in, ɔn, un) writes a nasal vowel. /b ɖ l/ surface as [m n n] before nasal vowels. Gungbe is tonal (H/L); tone is not consistently written and is therefore not recoverable from ordinary spelling.",
+  "location": {
+    "latitude": 6.48529,
+    "longitude": 2.76767,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gun."
+  }
 }

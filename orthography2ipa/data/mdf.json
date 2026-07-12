@@ -1,7 +1,6 @@
 {
   "code": "mdf",
   "name": "Moksha",
-  "family": "Uralic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
@@ -279,5 +278,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 54.1855,
+    "longitude": 42.6728,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Moksha."
+  }
 }

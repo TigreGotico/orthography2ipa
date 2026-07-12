@@ -1,7 +1,6 @@
 {
   "code": "iu",
   "name": "Inuktitut",
-  "family": "Eskimo-Aleut",
   "script": "Canadian Aboriginal Syllabics",
   "script_type": "abugida",
   "quality": "stub",
@@ -38,5 +37,14 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Inuktitut",
     "https://iu.wikipedia.org/wiki/%E1%90%83%E1%93%84%E1%92%83%E1%91%8E%E1%91%90%E1%91%A6"
+  ],
+  "parent": "x-clade-eski1264",
+  "ancestors": [
+    {
+      "code": "x-clade-eski1264",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Eskimo-Aleut — the classification node this language sits under."
+    }
   ]
 }

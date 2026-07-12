@@ -27,5 +27,11 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/French_Guianese_Creole",
     "https://gcr.wikipedia.org/wiki/Kriy%C3%B2l_Gwiyannen"
-  ]
+  ],
+  "location": {
+    "latitude": 4.94804,
+    "longitude": -52.7336,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Guianese Creole French."
+  }
 }

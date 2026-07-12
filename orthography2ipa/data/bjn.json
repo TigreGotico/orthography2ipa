@@ -237,9 +237,9 @@
   },
   "notes": "Banjar (Banjarese), Latin script following the Indonesian spelling convention (the Pegon/Arabic tradition is not modelled here). Digraphs: ng /ŋ/, ny /ɲ/, sy /ʃ/, kh /x/. Word-final ⟨k⟩ is [ʔ]. [ə] is an allophone of /ɛ/.",
   "location": {
-    "latitude": -1.001693,
-    "longitude": 115.715,
+    "latitude": 0.747105,
+    "longitude": 115.79,
     "source": "glottolog",
-    "notes": "Glottolog's computed centroid for the Banjar-Bukit Malay family — a summary of a whole clade's range, not a place anyone speaks."
+    "notes": "Glottolog's representative point for Banjar."
   }
 }

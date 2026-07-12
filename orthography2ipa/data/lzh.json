@@ -1,7 +1,6 @@
 {
   "code": "lzh",
   "name": "Literary Chinese (Classical Chinese)",
-  "family": "Sinitic",
   "script": "Han",
   "script_type": "logographic",
   "quality": "stub",
@@ -67,5 +66,11 @@
   "timespan": {
     "start_year": -500,
     "end_year": 1919
+  },
+  "location": {
+    "latitude": 34.09,
+    "longitude": 109.05,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Classical Chinese."
   }
 }

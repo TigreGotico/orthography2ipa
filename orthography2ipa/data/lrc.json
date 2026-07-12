@@ -1,7 +1,6 @@
 {
   "code": "lrc",
   "name": "Northern Luri",
-  "family": "Iranian",
   "script": "Arabic",
   "script_type": "abjad",
   "quality": "stub",
@@ -27,5 +26,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 32.5438,
+    "longitude": 47.916,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Northern Luri."
+  }
 }

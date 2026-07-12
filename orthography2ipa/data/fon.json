@@ -1,13 +1,12 @@
 {
   "code": "fon",
   "name": "Fon",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "notes": "Fon (fɔ̀ngbè) — Gbe (Atlantic-Congo) language of Benin. Written in a Latin-based alphabet following the Africa Alphabet, with letters such as ɖ, ɛ, ɔ and digraphs for prenasalised and labialised consonants, plus obligatory tone diacritics (Fon is a tonal language with contrastive high/low and contour tones). GRAPHEME INVENTORY NOT YET SPECIFIED: a reliable spec must jointly model the segmental letters, nasal vowels and the tone-marking system, which requires dedicated sourcing. INPUT CONTRACT: input is expected in the Latin-script Fon orthography with tone diacritics.",
+  "notes": "Fon (fɔ̀ngbè) — Gbe (Atlantic-Congo) language of Benin. Written in a Latin-based alphabet following the Africa Alphabet, with letters such as ɖ, ɛ, ɔ and digraphs for prenasalised and labialised consonants, plus obligatory tone diacritics (Fon is a tonal language with contrastive high/low and contour tones). GRAPHEME INVENTORY NOT YET SPECIFIED: a reliable spec must jointly model the segmental letters, nasal vowels and the tone-marking system, which requires dedicated sourcing. INPUT CONTRACT: input is expected in the Latin-script Fon orthography with tone diacritics. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode fonn1241), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "fon",
   "glottolog_code": "fonn1241",
   "wikidata_qid": "Q33291",
@@ -26,6 +25,75 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Fon_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode fonn1241."
     }
-  ]
+  ],
+  "phonemes": [
+    "a",
+    "ã",
+    "b",
+    "d",
+    "d̠ʒ",
+    "e",
+    "ẽ",
+    "f",
+    "h",
+    "i",
+    "ĩ",
+    "j",
+    "k",
+    "kp",
+    "l",
+    "m",
+    "n",
+    "o",
+    "õ",
+    "p",
+    "r",
+    "s",
+    "t",
+    "t̠ʃ",
+    "u",
+    "ũ",
+    "v",
+    "w",
+    "x",
+    "z",
+    "ɔ",
+    "ɔ̃",
+    "ɖ",
+    "ɛ",
+    "ɛ̃",
+    "ɡ",
+    "ɡb",
+    "ɲ",
+    "˦",
+    "˧",
+    "˨",
+    "˨˦"
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 7.15484,
+    "longitude": 1.66495,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Fon."
+  }
 }

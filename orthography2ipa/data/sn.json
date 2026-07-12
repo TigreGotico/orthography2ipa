@@ -338,9 +338,9 @@
     }
   ],
   "location": {
-    "latitude": -18.937149,
-    "longitude": 32.806771,
+    "latitude": -17.20849,
+    "longitude": 29.75725,
     "source": "glottolog",
-    "notes": "Glottolog's computed centroid for the Core Shona family — a summary of a whole clade's range, not a place anyone speaks."
+    "notes": "Glottolog's representative point for Shona."
   }
 }

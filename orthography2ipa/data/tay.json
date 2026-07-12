@@ -1,7 +1,6 @@
 {
   "code": "tay",
   "name": "Atayal",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -10,7 +9,7 @@
   "iso639_3": "tay",
   "glottolog_code": "atay1247",
   "wikidata_qid": "Q715766",
-  "notes": "STUB: the grapheme inventory of Atayal is NOT yet specified (graphemes/allophones are empty). Atayal (Tayal) is a Formosan (Austronesian) language of northern Taiwan, written in the Latin script under the Council of Indigenous Peoples' 2005 romanisation. Dialects (Squliq, Cʼuliʼ/Matuʼuwal) differ phonologically, so a single letter→IPA table would need to be dialect-scoped. INPUT CONTRACT: Latin-script (official romanisation) Atayal text.",
+  "notes": "STUB: the grapheme inventory of Atayal is NOT yet specified (graphemes/allophones are empty). Atayal (Tayal) is a Formosan (Austronesian) language of northern Taiwan, written in the Latin script under the Council of Indigenous Peoples' 2005 romanisation. Dialects (Squliq, Cʼuliʼ/Matuʼuwal) differ phonologically, so a single letter→IPA table would need to be dialect-scoped. INPUT CONTRACT: Latin-script (official romanisation) Atayal text. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode atay1247), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "sources": [
     {
       "id": "atayal_language_wiki",
@@ -22,9 +21,72 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Atayal_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode atay1247."
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Atayal_language"
-  ]
+  ],
+  "phonemes": [
+    "a",
+    "ä",
+    "i",
+    "iː",
+    "j",
+    "k",
+    "l",
+    "l̪|l",
+    "m",
+    "n",
+    "n̪|n",
+    "p",
+    "q",
+    "r",
+    "s",
+    "s̪|s",
+    "t",
+    "ts",
+    "t̪s̪|ts",
+    "t̪|t",
+    "u",
+    "uː",
+    "w",
+    "x",
+    "y",
+    "ħ",
+    "ŋ",
+    "ɔ",
+    "ə̆",
+    "ɛ",
+    "ɣ",
+    "ɾ",
+    "ɾ̪|ɾ",
+    "ʒ",
+    "ʔ",
+    "β"
+  ],
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 24.5209,
+    "longitude": 121.388,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Atayal."
+  }
 }

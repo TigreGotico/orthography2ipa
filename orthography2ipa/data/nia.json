@@ -1,7 +1,6 @@
 {
   "code": "nia",
   "name": "Nias",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -222,5 +221,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 0.90691,
+    "longitude": 97.4961,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Nias."
+  }
 }

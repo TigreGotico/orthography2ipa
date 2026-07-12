@@ -1,7 +1,6 @@
 {
   "code": "hif",
   "name": "Fiji Hindi",
-  "family": "Indo-Aryan",
   "script": "Devanagari",
   "script_type": "abugida",
   "quality": "stub",
@@ -28,5 +27,20 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": -17.8148,
+    "longitude": 177.772,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Fiji Hindi."
+  }
 }

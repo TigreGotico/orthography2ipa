@@ -1,7 +1,6 @@
 {
   "code": "bs",
   "name": "Bosnian",
-  "family": "Slavic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -242,5 +241,20 @@
     "year": 1996,
     "url": null,
     "notes": "Gaj's Latin alphabet; Cyrillic is also constitutionally co-official but rarely used."
+  },
+  "parent": "x-clade-slav1255",
+  "ancestors": [
+    {
+      "code": "x-clade-slav1255",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Slavic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 43.859,
+    "longitude": 17.046,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bosnian Standard."
   }
 }

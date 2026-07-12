@@ -1,7 +1,6 @@
 {
   "code": "kv",
   "name": "Komi",
-  "family": "Uralic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "stub",
@@ -31,5 +30,20 @@
   "timespan": {
     "start_year": 1918,
     "end_year": null
+  },
+  "parent": "x-clade-ural1272",
+  "ancestors": [
+    {
+      "code": "x-clade-ural1272",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Uralic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 61.476633,
+    "longitude": 55.165967,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Komi family — a summary of a whole clade's range, not a place anyone speaks."
   }
 }

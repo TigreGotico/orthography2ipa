@@ -1,7 +1,6 @@
 {
   "code": "myv",
   "name": "Erzya",
-  "family": "Uralic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
@@ -221,5 +220,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-ural1272",
+  "ancestors": [
+    {
+      "code": "x-clade-ural1272",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Uralic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 52.8548,
+    "longitude": 45.3901,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Erzya."
+  }
 }

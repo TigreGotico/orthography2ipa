@@ -1,7 +1,6 @@
 {
   "code": "ace",
   "name": "Acehnese",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -207,5 +206,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 3.90757,
+    "longitude": 96.6032,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Acehnese."
+  }
 }

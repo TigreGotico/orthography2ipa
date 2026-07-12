@@ -1,7 +1,6 @@
 {
   "code": "kaa",
   "name": "Karakalpak",
-  "family": "Turkic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -231,6 +230,15 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Karakalpak_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    }
+  ],
+  "parent": "x-clade-turk1311",
+  "ancestors": [
+    {
+      "code": "x-clade-turk1311",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Turkic — the classification node this language sits under."
     }
   ]
 }

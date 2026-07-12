@@ -1,7 +1,6 @@
 {
   "code": "ki",
   "name": "Kikuyu",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -185,5 +184,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": -0.29005,
+    "longitude": 36.719,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kikuyu."
+  }
 }

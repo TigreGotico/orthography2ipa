@@ -1,7 +1,6 @@
 {
   "code": "li",
   "name": "Limburgish",
-  "family": "Germanic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -37,5 +36,20 @@
       "notes": "Illustration of a Limburgish variety incl. its tone contrast; a model source for a future spec."
     }
   ],
-  "notes": "Limburgish (Limburgs) — West Germanic language/dialect group of the Meuse-Rhenish area (Netherlands, Belgium, Germany). THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Limburgish is written in the Latin script but has no single accepted orthography: Dutch-based, German-based and the 2003 Veldeke spelling all coexist, and the varieties differ substantially in their (very large) vowel inventories. It is furthermore a tonal language, contrasting sleeptoon (dragging tone) and stoottoon (push tone), which the spellings do not mark. A grapheme map would have to commit to one variety plus one spelling norm and cite it."
+  "notes": "Limburgish (Limburgs) — West Germanic language/dialect group of the Meuse-Rhenish area (Netherlands, Belgium, Germany). THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Limburgish is written in the Latin script but has no single accepted orthography: Dutch-based, German-based and the 2003 Veldeke spelling all coexist, and the varieties differ substantially in their (very large) vowel inventories. It is furthermore a tonal language, contrasting sleeptoon (dragging tone) and stoottoon (push tone), which the spellings do not mark. A grapheme map would have to commit to one variety plus one spelling norm and cite it.",
+  "parent": "x-clade-germ1287",
+  "ancestors": [
+    {
+      "code": "x-clade-germ1287",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Germanic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 51.015,
+    "longitude": 5.87705,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Limburgan."
+  }
 }

@@ -1,7 +1,6 @@
 {
   "code": "nr",
   "name": "Southern Ndebele",
-  "family": "Niger-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -28,5 +27,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": -25.6272,
+    "longitude": 29.048,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Sumayela Ndebele."
+  }
 }

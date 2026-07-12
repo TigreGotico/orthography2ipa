@@ -1,7 +1,6 @@
 {
   "code": "zgh",
   "name": "Standard Moroccan Tamazight",
-  "family": "Afroasiatic",
   "script": "Tifinagh",
   "script_type": "alphabet",
   "quality": "research",
@@ -269,5 +268,11 @@
   "timespan": {
     "start_year": 2001,
     "end_year": null
+  },
+  "location": {
+    "latitude": 32.7415,
+    "longitude": -2.40872,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Standard Moroccan Tamazight."
   }
 }

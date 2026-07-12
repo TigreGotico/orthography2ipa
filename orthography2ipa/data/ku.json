@@ -1,7 +1,6 @@
 {
   "code": "ku",
   "name": "Kurdish (Kurmanji)",
-  "family": "Iranian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -227,5 +226,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-iran1269",
+  "ancestors": [
+    {
+      "code": "x-clade-iran1269",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Iranian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 37.0,
+    "longitude": 43.0,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Northern Kurdish."
+  }
 }

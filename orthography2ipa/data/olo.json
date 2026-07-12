@@ -1,7 +1,6 @@
 {
   "code": "olo",
   "name": "Livvi-Karelian",
-  "family": "Uralic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -227,5 +226,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 61.6565,
+    "longitude": 29.0726,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Livvi."
+  }
 }

@@ -1,7 +1,6 @@
 {
   "code": "ik",
   "name": "Iñupiaq",
-  "family": "Eskimo-Aleut",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -170,5 +169,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-eski1264",
+  "ancestors": [
+    {
+      "code": "x-clade-eski1264",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Eskimo-Aleut — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 68.3217,
+    "longitude": -133.532,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Alaskan Inupiaq family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

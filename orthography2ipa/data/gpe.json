@@ -27,5 +27,11 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 5.793241,
+    "longitude": -0.283641,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ghanaian Pidgin English."
+  }
 }

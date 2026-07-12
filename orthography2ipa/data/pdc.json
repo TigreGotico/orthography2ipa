@@ -1,7 +1,6 @@
 {
   "code": "pdc",
   "name": "Pennsylvania German (Pennsylvania Dutch)",
-  "family": "Germanic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -42,5 +41,20 @@
   "timespan": {
     "start_year": 1700,
     "end_year": null
+  },
+  "parent": "x-clade-germ1287",
+  "ancestors": [
+    {
+      "code": "x-clade-germ1287",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Germanic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 40.030507,
+    "longitude": -76.3211,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pennsylvania German."
   }
 }

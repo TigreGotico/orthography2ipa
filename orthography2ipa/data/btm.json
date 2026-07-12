@@ -1,7 +1,6 @@
 {
   "code": "btm",
   "name": "Mandailing Batak",
-  "family": "Austronesian",
   "script": "Batak",
   "script_type": "abugida",
   "quality": "stub",
@@ -38,5 +37,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 0.85805,
+    "longitude": 99.898,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Batak Mandailing."
+  }
 }

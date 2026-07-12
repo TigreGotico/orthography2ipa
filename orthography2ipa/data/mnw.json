@@ -1,7 +1,6 @@
 {
   "code": "mnw",
   "name": "Mon",
-  "family": "Austroasiatic",
   "script": "Myanmar",
   "script_type": "abugida",
   "quality": "stub",
@@ -27,5 +26,20 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mon_language",
     "https://mnw.wikipedia.org/wiki/%E1%80%99%E1%80%94%E1%80%BA"
-  ]
+  ],
+  "parent": "x-clade-aust1305",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1305",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austroasiatic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 15.49394,
+    "longitude": 98.122465,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Mon."
+  }
 }

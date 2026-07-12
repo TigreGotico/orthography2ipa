@@ -1,7 +1,6 @@
 {
   "code": "guc",
   "name": "Wayuu",
-  "family": "Arawakan",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -222,5 +221,20 @@
       "pages": null,
       "notes": "Phonology and orthography tables."
     }
-  ]
+  ],
+  "parent": "x-clade-araw1281",
+  "ancestors": [
+    {
+      "code": "x-clade-araw1281",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Arawakan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 11.395566,
+    "longitude": -72.199791,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Wayuu."
+  }
 }

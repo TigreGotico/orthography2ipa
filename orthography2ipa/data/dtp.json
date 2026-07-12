@@ -1,7 +1,6 @@
 {
   "code": "dtp",
   "name": "Kadazandusun",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -28,5 +27,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 6.02998,
+    "longitude": 116.681,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kadazan Dusun."
+  }
 }

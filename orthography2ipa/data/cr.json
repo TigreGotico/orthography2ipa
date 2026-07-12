@@ -1,7 +1,6 @@
 {
   "code": "cr",
   "name": "Cree",
-  "family": "Algic",
   "script": "Canadian Aboriginal Syllabics",
   "script_type": "abugida",
   "quality": "stub",
@@ -41,5 +40,20 @@
   "timespan": {
     "start_year": 1840,
     "end_year": null
+  },
+  "parent": "x-clade-algi1248",
+  "ancestors": [
+    {
+      "code": "x-clade-algi1248",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Algic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 52.248638,
+    "longitude": -74.549675,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Cree-Montagnais-Naskapi family — a summary of a whole clade's range, not a place anyone speaks."
   }
 }

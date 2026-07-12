@@ -256,5 +256,11 @@
     "start_year": 1951,
     "end_year": null
   },
-  "notes": "Interlingua (IALA, Gode & Blair 1951). Near-phonemic Latin orthography with 'continental' values. ⟨c⟩ = /k/, but /ts/ before e, i, y; ⟨ch⟩ = /ʃ/ in French-derived words, /k/ in Greek/Italian-derived ones; ⟨s⟩ is often voiced [z] between vowels; ⟨qu⟩ = /kw/ (but /k/ in que, qui). Default stress falls on the vowel before the last consonant (plural -es ignored)."
+  "notes": "Interlingua (IALA, Gode & Blair 1951). Near-phonemic Latin orthography with 'continental' values. ⟨c⟩ = /k/, but /ts/ before e, i, y; ⟨ch⟩ = /ʃ/ in French-derived words, /k/ in Greek/Italian-derived ones; ⟨s⟩ is often voiced [z] between vowels; ⟨qu⟩ = /kw/ (but /k/ in que, qui). Default stress falls on the vowel before the last consonant (plural -es ignored).",
+  "location": {
+    "latitude": 48.203,
+    "longitude": 2.615,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Interlingua (International Auxiliary Language Association)."
+  }
 }

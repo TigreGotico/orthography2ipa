@@ -254,5 +254,11 @@
     "start_year": 1700,
     "end_year": null
   },
-  "notes": "Zamboangueño Chavacano, a Spanish-lexifier creole of the Philippines, written with the Spanish alphabet. Seseo throughout (⟨c⟩ before e/i, ⟨z⟩ = /s/; no /θ/); ⟨j⟩ and ⟨g⟩ before e/i = /h/~/x/; yeísmo (⟨ll⟩ = /j/, ʎ conservative); ⟨v⟩ = /b/. Unlike most Spanish varieties, /b d ɡ/ keep their stop realisation between vowels (no approximant lenition), so the allophone map is deliberately non-lenited."
+  "notes": "Zamboangueño Chavacano, a Spanish-lexifier creole of the Philippines, written with the Spanish alphabet. Seseo throughout (⟨c⟩ before e/i, ⟨z⟩ = /s/; no /θ/); ⟨j⟩ and ⟨g⟩ before e/i = /h/~/x/; yeísmo (⟨ll⟩ = /j/, ʎ conservative); ⟨v⟩ = /b/. Unlike most Spanish varieties, /b d ɡ/ keep their stop realisation between vowels (no approximant lenition), so the allophone map is deliberately non-lenited.",
+  "location": {
+    "latitude": 7.435034,
+    "longitude": 122.18849,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Chavacano."
+  }
 }

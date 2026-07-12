@@ -1,7 +1,6 @@
 {
   "code": "gag",
   "name": "Gagauz",
-  "family": "Turkic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -242,5 +241,20 @@
   "timespan": {
     "start_year": 1957,
     "end_year": null
+  },
+  "parent": "x-clade-turk1311",
+  "ancestors": [
+    {
+      "code": "x-clade-turk1311",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Turkic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 44.59876,
+    "longitude": 28.02769,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gagauz."
   }
 }

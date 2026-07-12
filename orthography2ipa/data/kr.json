@@ -1,7 +1,6 @@
 {
   "code": "kr",
   "name": "Kanuri",
-  "family": "Nilo-Saharan",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -26,5 +25,20 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kanuri_language"
-  ]
+  ],
+  "parent": "x-clade-nilo1247",
+  "ancestors": [
+    {
+      "code": "x-clade-nilo1247",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Nilotic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 13.58425,
+    "longitude": 12.955131,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Kanuri-Kanembu family — a summary of a whole clade's range, not a place anyone speaks."
+  }
 }

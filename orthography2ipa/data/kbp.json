@@ -1,7 +1,6 @@
 {
   "code": "kbp",
   "name": "Kabiye",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -230,5 +229,20 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kabiye_language",
     "https://kbp.wikipedia.org/wiki/Kab%C9%A9y%C9%9B_k%CA%8An%CA%8A%C5%8B"
-  ]
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 8.96816,
+    "longitude": 0.495023,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kabiyé."
+  }
 }

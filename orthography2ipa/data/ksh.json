@@ -1,7 +1,6 @@
 {
   "code": "ksh",
   "name": "Colognian (Kölsch)",
-  "family": "Germanic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -48,5 +47,20 @@
       "notes": "Standard Kölsch dictionary; a starting point for a future orthography map."
     }
   ],
-  "notes": "Kölsch (Ripoarisch) — the Ripuarian (Central Franconian, West Germanic) dialect of Cologne. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Kölsch has no single official orthography: writers use ad-hoc German-based spellings, and the two competing conventions (Akademie för uns Kölsche Sproch's 'Rheinische Dokumenta' vs. traditional German-style spelling) map the same letters to different sounds. It also carries a phonemic tone accent (Rhenish Accent 1/2) that is not written at all, so a letter→IPA table would be underdetermined without first committing to one written norm."
+  "notes": "Kölsch (Ripoarisch) — the Ripuarian (Central Franconian, West Germanic) dialect of Cologne. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Kölsch has no single official orthography: writers use ad-hoc German-based spellings, and the two competing conventions (Akademie för uns Kölsche Sproch's 'Rheinische Dokumenta' vs. traditional German-style spelling) map the same letters to different sounds. It also carries a phonemic tone accent (Rhenish Accent 1/2) that is not written at all, so a letter→IPA table would be underdetermined without first committing to one written norm.",
+  "parent": "x-clade-germ1287",
+  "ancestors": [
+    {
+      "code": "x-clade-germ1287",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Germanic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 50.947,
+    "longitude": 6.927,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Kölsch."
+  }
 }

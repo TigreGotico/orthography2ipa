@@ -1,13 +1,12 @@
 {
   "code": "hz",
   "name": "Herero",
-  "family": "Niger-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "notes": "Herero (Otjiherero), a Bantu language of Namibia and Botswana. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet (the OshiHerero alphabet, established by 19th-century missionary orthography). A full spec must model the dental vs alveolar stop and nasal contrast (/t̪ t/, /n̪ n/), the prenasalised series (ᵐb ⁿd̪ ⁿd ⁿdʒ ᵑɡ), the interdental fricatives /θ ð/, contrastive vowel length, and tone — the mapping from the missionary spelling to these is not one-to-one and no normative letter-to-IPA table was found. Input is assumed to be the standard Latin Herero orthography.",
+  "notes": "Herero (Otjiherero), a Bantu language of Namibia and Botswana. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet (the OshiHerero alphabet, established by 19th-century missionary orthography). A full spec must model the dental vs alveolar stop and nasal contrast (/t̪ t/, /n̪ n/), the prenasalised series (ᵐb ⁿd̪ ⁿd ⁿdʒ ᵑɡ), the interdental fricatives /θ ð/, contrastive vowel length, and tone — the mapping from the missionary spelling to these is not one-to-one and no normative letter-to-IPA table was found. Input is assumed to be the standard Latin Herero orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode here1253), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "her",
   "glottolog_code": "here1253",
   "wikidata_qid": "Q33315",
@@ -25,10 +24,63 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Herero_language",
       "pages": null,
       "notes": "Overview of the language, script and orthography."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode here1253."
     }
   ],
   "timespan": {
     "start_year": 1880,
     "end_year": null
+  },
+  "phonemes": [
+    "a",
+    "e",
+    "h",
+    "i",
+    "j",
+    "k",
+    "mb",
+    "n",
+    "ndʑ",
+    "nd̪",
+    "n̪",
+    "o",
+    "p",
+    "t",
+    "t̪",
+    "u",
+    "v",
+    "w",
+    "ð",
+    "ŋɡ",
+    "ɕ",
+    "ɲ",
+    "ɾ",
+    "˦",
+    "˨",
+    "θ"
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": -21.0231,
+    "longitude": 20.5655,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Herero."
   }
 }

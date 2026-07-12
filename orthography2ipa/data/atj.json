@@ -1,7 +1,6 @@
 {
   "code": "atj",
   "name": "Atikamekw",
-  "family": "Algic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -157,5 +156,20 @@
   "timespan": {
     "start_year": 1900,
     "end_year": null
+  },
+  "parent": "x-clade-algi1248",
+  "ancestors": [
+    {
+      "code": "x-clade-algi1248",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Algic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 47.9555,
+    "longitude": -73.7989,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Atikamekw."
   }
 }

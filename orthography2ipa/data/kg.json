@@ -1,7 +1,6 @@
 {
   "code": "kg",
   "name": "Kongo",
-  "family": "Niger-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -262,5 +261,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": -5.57722,
+    "longitude": 14.4771,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for South-Central Koongo."
+  }
 }

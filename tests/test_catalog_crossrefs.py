@@ -182,6 +182,12 @@ _FAMILY_LEVEL_OK = {
     # Dialect-group nodes whose Glottolog counterpart is a subfamily.
     "ber-x-kabyle-atlas", "de-x-alemannic", "gem-x-ingvaeonic",
     "roa-x-galaicopt",
+    # Reconstructed stages and regional Latin/Arabic groupings. Glottolog has no
+    # language-level node for a proto-stage or a dialect continuum's ancestor —
+    # the subfamily IS the node, so a family languoid is the only correct answer.
+    "sat-x-proto-munda", "kha-x-proto-mon-khmer", "gem-x-northwest",
+    "la-x-hispania", "la-x-italia", "la-x-galloitalic", "la-x-balkans",
+    "ar-x-peninsular", "ar-x-maghrebi",
 }
 
 
@@ -229,6 +235,10 @@ def test_glottolog_code_level_is_a_language_not_a_family():
         if code in _FAMILY_LEVEL_OK:
             continue
         spec = o2i.get(code)
+        if getattr(spec, "clade", False) or code.startswith("x-clade-"):
+            # A clade IS a family. Pointing it at a family-level languoid is not
+            # the bug this test hunts — it is the only correct answer.
+            continue
         if spec.script_type is not None and str(
                 getattr(spec.script_type, "value", spec.script_type)
         ) == "reconstruction":

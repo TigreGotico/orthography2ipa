@@ -1,7 +1,6 @@
 {
   "code": "nv",
   "name": "Navajo",
-  "family": "Na-Dene",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -456,5 +455,20 @@
   "timespan": {
     "start_year": 1930,
     "end_year": null
+  },
+  "parent": "x-clade-atha1245",
+  "ancestors": [
+    {
+      "code": "x-clade-atha1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Athabaskan-Eyak-Tlingit — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 36.33,
+    "longitude": -109.38,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Navajo."
   }
 }

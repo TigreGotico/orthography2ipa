@@ -1,7 +1,6 @@
 {
   "code": "ho",
   "name": "Hiri Motu",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -156,5 +155,20 @@
   "timespan": {
     "start_year": 1880,
     "end_year": null
+  },
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": -9.33333,
+    "longitude": 147.083,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Hiri Motu."
   }
 }

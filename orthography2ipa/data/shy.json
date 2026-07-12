@@ -1,7 +1,6 @@
 {
   "code": "shy",
   "name": "Shawiya (Tacawit)",
-  "family": "Afroasiatic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -275,5 +274,11 @@
     "start_year": 1900,
     "end_year": null
   },
-  "notes": "Shawiya (Tacawit), a Zenati Berber language of the Aurès. Written here in the Northern-Berber Latin alphabet (the same convention as Kabyle: ⟨c⟩ = /ʃ/, ⟨ɣ⟩, ⟨x⟩ = /χ/, ⟨ɛ⟩ = /ʕ/, dot-under letters = emphatics). Tifinagh and Arabic-script spellings also exist and are NOT modelled here. Spirantisation is pervasive: /t d b k ɡ/ surface as [θ ð β ç ʝ] outside tense/geminate positions, which is captured in the allophone map."
+  "notes": "Shawiya (Tacawit), a Zenati Berber language of the Aurès. Written here in the Northern-Berber Latin alphabet (the same convention as Kabyle: ⟨c⟩ = /ʃ/, ⟨ɣ⟩, ⟨x⟩ = /χ/, ⟨ɛ⟩ = /ʕ/, dot-under letters = emphatics). Tifinagh and Arabic-script spellings also exist and are NOT modelled here. Spirantisation is pervasive: /t d b k ɡ/ surface as [θ ð β ç ʝ] outside tense/geminate positions, which is captured in the allophone map.",
+  "location": {
+    "latitude": 35.1867,
+    "longitude": 6.88901,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Chaouia of the Aures."
+  }
 }

@@ -1,7 +1,6 @@
 {
   "code": "bar",
   "name": "Bavarian",
-  "family": "Germanic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -27,5 +26,20 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Bavarian_language",
     "https://bar.wikipedia.org/wiki/Boarisch"
-  ]
+  ],
+  "parent": "x-clade-germ1287",
+  "ancestors": [
+    {
+      "code": "x-clade-germ1287",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Germanic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 47.9232,
+    "longitude": 13.246,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bavarian."
+  }
 }

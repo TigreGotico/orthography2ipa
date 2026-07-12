@@ -1,7 +1,6 @@
 {
   "code": "nso",
   "name": "Northern Sotho (Sepedi)",
-  "family": "Niger-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -295,5 +294,11 @@
     "start_year": 1900,
     "end_year": null
   },
-  "notes": "Northern Sotho / Sepedi (Bantu S32), Latin orthography. Seven written vowels: a e ê i o ô u (/a e ɛ i o ɔ u/; the circumflexes are frequently omitted in everyday text, which makes ⟨e⟩ and ⟨o⟩ ambiguous between the close-mid and open-mid values). Digraphs: š /ʃ/, tš /tʃ/, kg /kx/, hl /ɬ/, tlh /tɬʰ/, ng /ŋ/, ny /ɲ/, and the aspirated series ph th kh tsh tšh. Tone (H/L) is phonemic but unwritten and therefore not recoverable from the orthography. Glottolog: the previously used `nort2794` is superseded; the Northern Sotho languoid at language level is `pedi1238` (verified via ISO 639-3 `nso`)."
+  "notes": "Northern Sotho / Sepedi (Bantu S32), Latin orthography. Seven written vowels: a e ê i o ô u (/a e ɛ i o ɔ u/; the circumflexes are frequently omitted in everyday text, which makes ⟨e⟩ and ⟨o⟩ ambiguous between the close-mid and open-mid values). Digraphs: š /ʃ/, tš /tʃ/, kg /kx/, hl /ɬ/, tlh /tɬʰ/, ng /ŋ/, ny /ɲ/, and the aspirated series ph th kh tsh tšh. Tone (H/L) is phonemic but unwritten and therefore not recoverable from the orthography. Glottolog: the previously used `nort2794` is superseded; the Northern Sotho languoid at language level is `pedi1238` (verified via ISO 639-3 `nso`).",
+  "location": {
+    "latitude": -24.7993,
+    "longitude": 29.4718,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pedi."
+  }
 }

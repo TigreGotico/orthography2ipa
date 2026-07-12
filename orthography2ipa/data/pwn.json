@@ -1,7 +1,6 @@
 {
   "code": "pwn",
   "name": "Paiwan",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -195,5 +194,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 22.3271,
+    "longitude": 120.806,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Paiwan."
+  }
 }

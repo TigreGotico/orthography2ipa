@@ -1,7 +1,6 @@
 {
   "code": "tdd",
   "name": "Tai Nuea",
-  "family": "Tai-Kadai",
   "script": "Tai Le",
   "script_type": "abugida",
   "quality": "stub",
@@ -21,6 +20,15 @@
       "url": "https://www.wikidata.org/wiki/Q130548871",
       "pages": null,
       "notes": "Language identity, script and code cross-references."
+    }
+  ],
+  "parent": "x-clade-taik1256",
+  "ancestors": [
+    {
+      "code": "x-clade-taik1256",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Tai-Kadai — the classification node this language sits under."
     }
   ]
 }

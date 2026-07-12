@@ -1,7 +1,6 @@
 {
   "code": "sgs",
   "name": "Samogitian",
-  "family": "Baltic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -214,5 +213,20 @@
       "pages": null,
       "notes": "Orthography / phonology reference."
     }
-  ]
+  ],
+  "parent": "x-clade-balt1263",
+  "ancestors": [
+    {
+      "code": "x-clade-balt1263",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Balto-Slavic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 55.1429,
+    "longitude": 23.9601,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Samogitian."
+  }
 }

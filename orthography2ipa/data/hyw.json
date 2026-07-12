@@ -1,7 +1,6 @@
 {
   "code": "hyw",
   "name": "Western Armenian",
-  "family": "Indo-European",
   "script": "Armenian",
   "script_type": "alphabet",
   "quality": "research",
@@ -280,5 +279,11 @@
       "pages": null,
       "notes": "Letter table with Western and Eastern Armenian IPA values."
     }
-  ]
+  ],
+  "location": {
+    "latitude": 40.1897,
+    "longitude": 44.4839,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Western Armenian."
+  }
 }

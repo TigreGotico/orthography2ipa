@@ -261,5 +261,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 18.13,
+    "longitude": -77.2612,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Jamaican Creole English."
+  }
 }

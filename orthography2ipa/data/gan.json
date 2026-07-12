@@ -1,7 +1,6 @@
 {
   "code": "gan",
   "name": "Gan Chinese",
-  "family": "Sinitic",
   "script": "Han",
   "script_type": "logographic",
   "quality": "stub",
@@ -57,5 +56,11 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
+  },
+  "location": {
+    "latitude": 27.9896,
+    "longitude": 115.166,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gan Chinese."
   }
 }

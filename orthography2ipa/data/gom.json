@@ -1,7 +1,6 @@
 {
   "code": "gom",
   "name": "Goan Konkani",
-  "family": "Indo-Aryan",
   "script": "Devanagari",
   "script_type": "abugida",
   "quality": "stub",
@@ -23,5 +22,20 @@
       "pages": null,
       "notes": "Language identity, script and code cross-references."
     }
-  ]
+  ],
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 15.2732,
+    "longitude": 74.2098,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Goan Konkani."
+  }
 }

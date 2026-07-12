@@ -1,7 +1,6 @@
 {
   "code": "krc",
   "name": "Karachay-Balkar",
-  "family": "Turkic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
@@ -278,5 +277,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 43.565,
+    "longitude": 42.2606,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Karachay-Balkar."
+  }
 }

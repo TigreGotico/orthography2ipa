@@ -26,5 +26,11 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Pitkern"
-  ]
+  ],
+  "location": {
+    "latitude": -24.379858,
+    "longitude": -128.324075,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pitcairn-Norfolk."
+  }
 }

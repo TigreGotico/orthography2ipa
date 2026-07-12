@@ -1,7 +1,6 @@
 {
   "code": "za",
   "name": "Zhuang",
-  "family": "Tai-Kadai",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -54,5 +53,20 @@
   "timespan": {
     "start_year": 1957,
     "end_year": null
+  },
+  "parent": "x-clade-taik1256",
+  "ancestors": [
+    {
+      "code": "x-clade-taik1256",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Tai-Kadai — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 23.1,
+    "longitude": 108.15,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Yongbei Zhuang."
   }
 }

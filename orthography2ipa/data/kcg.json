@@ -1,7 +1,6 @@
 {
   "code": "kcg",
   "name": "Tyap",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -27,5 +26,20 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tyap",
     "https://kcg.wikipedia.org/wiki/Tyap_%28a%CC%B1lyem%29"
-  ]
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 9.75568,
+    "longitude": 8.3082,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tyap."
+  }
 }

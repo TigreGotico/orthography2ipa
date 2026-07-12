@@ -1,7 +1,6 @@
 {
   "code": "nrm",
   "name": "Norman",
-  "family": "Romance",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -31,5 +30,20 @@
   "timespan": {
     "start_year": 1000,
     "end_year": null
+  },
+  "parent": "x-clade-roma1334",
+  "ancestors": [
+    {
+      "code": "x-clade-roma1334",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Romance — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 49.081,
+    "longitude": -0.6591,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Normand."
   }
 }

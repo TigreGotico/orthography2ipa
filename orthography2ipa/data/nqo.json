@@ -1,7 +1,6 @@
 {
   "code": "nqo",
   "name": "N'Ko (Manding koiné)",
-  "family": "Mande",
   "script": "N'Ko",
   "script_type": "alphabet",
   "quality": "stub",
@@ -43,5 +42,14 @@
   "timespan": {
     "start_year": 1949,
     "end_year": null
-  }
+  },
+  "parent": "x-clade-mand1469",
+  "ancestors": [
+    {
+      "code": "x-clade-mand1469",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Mande — the classification node this language sits under."
+    }
+  ]
 }

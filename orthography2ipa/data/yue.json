@@ -1,7 +1,6 @@
 {
   "code": "yue",
   "name": "Cantonese",
-  "family": "Sinitic",
   "script": "Han",
   "script_type": "logographic",
   "quality": "stub",
@@ -35,5 +34,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 23.0118,
+    "longitude": 113.2021,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Cantonese."
+  }
 }

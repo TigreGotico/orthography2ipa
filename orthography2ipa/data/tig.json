@@ -1,7 +1,6 @@
 {
   "code": "tig",
   "name": "Tigre",
-  "family": "Semitic",
   "script": "Ge'ez",
   "script_type": "abugida",
   "quality": "stub",
@@ -48,5 +47,14 @@
       "notes": "Reference grammar; the source for a future syllabary map."
     }
   ],
-  "notes": "Tigre (ትግሬ, also Tigrayit/Xasa) — North Ethiopic Semitic language of Eritrea and eastern Sudan, written in the Geʽez (Ethiopic) script. INPUT CONTRACT: Geʽez is an ABUGIDA — each glyph is a consonant + one of seven vowel orders — so a grapheme map must enumerate the syllabograms, not letters; THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Tigre also uses the script with a different sound value set from Amharic/Tigrinya (it retains the pharyngeals and lacks ejective/other mergers), so it cannot inherit an existing Ethiopic map. Wikidata gives no ISO 639-3 or Glottolog code for this Wikimedia item (the language is tig / tigr1247 in those registries, but that value is not asserted here since it was not verified from Wikidata)."
+  "notes": "Tigre (ትግሬ, also Tigrayit/Xasa) — North Ethiopic Semitic language of Eritrea and eastern Sudan, written in the Geʽez (Ethiopic) script. INPUT CONTRACT: Geʽez is an ABUGIDA — each glyph is a consonant + one of seven vowel orders — so a grapheme map must enumerate the syllabograms, not letters; THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Tigre also uses the script with a different sound value set from Amharic/Tigrinya (it retains the pharyngeals and lacks ejective/other mergers), so it cannot inherit an existing Ethiopic map. Wikidata gives no ISO 639-3 or Glottolog code for this Wikimedia item (the language is tig / tigr1247 in those registries, but that value is not asserted here since it was not verified from Wikidata).",
+  "parent": "x-clade-semi1276",
+  "ancestors": [
+    {
+      "code": "x-clade-semi1276",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Semitic — the classification node this language sits under."
+    }
+  ]
 }

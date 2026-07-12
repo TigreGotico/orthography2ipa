@@ -1,7 +1,6 @@
 {
   "code": "ch",
   "name": "Chamorro",
-  "family": "Austronesian",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -195,5 +194,11 @@
       "pages": null,
       "notes": null
     }
-  ]
+  ],
+  "location": {
+    "latitude": 13.438011,
+    "longitude": 144.74474,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Chamorro."
+  }
 }

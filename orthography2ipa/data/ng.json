@@ -1,7 +1,6 @@
 {
   "code": "ng",
   "name": "Ndonga",
-  "family": "Atlantic-Congo",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
@@ -10,7 +9,7 @@
   "iso639_3": "ndo",
   "glottolog_code": "ndon1254",
   "wikidata_qid": "Q33900",
-  "notes": "STUB: the grapheme inventory of Ndonga is NOT yet specified (graphemes/allophones are empty). Ndonga (Oshindonga) is a Bantu (Atlantic-Congo) language of Namibia and Angola, one of the two standardised Ovambo varieties (with Kwanyama), written in the Latin script. INPUT CONTRACT: Latin-script Oshindonga orthography.",
+  "notes": "STUB: the grapheme inventory of Ndonga is NOT yet specified (graphemes/allophones are empty). Ndonga (Oshindonga) is a Bantu (Atlantic-Congo) language of Namibia and Angola, one of the two standardised Ovambo varieties (with Kwanyama), written in the Latin script. INPUT CONTRACT: Latin-script Oshindonga orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode ndon1254), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "sources": [
     {
       "id": "ndonga_wiki",
@@ -22,10 +21,85 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Ndonga",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode ndon1254."
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ndonga",
     "https://ng.wikipedia.org/wiki/Ndonga"
-  ]
+  ],
+  "phonemes": [
+    "a",
+    "b",
+    "d",
+    "dʲ",
+    "e",
+    "f",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "lʲ",
+    "m",
+    "mb",
+    "m̥",
+    "m̥ʰ",
+    "n",
+    "nd",
+    "ndʲ",
+    "n̠d̠ʒ",
+    "n̥",
+    "o",
+    "p",
+    "s",
+    "t",
+    "ts",
+    "t̠ʃ",
+    "u",
+    "v",
+    "w",
+    "x",
+    "z",
+    "ð",
+    "ŋ",
+    "ŋɡ",
+    "ɔ",
+    "ɛ",
+    "ɡ",
+    "ɣ",
+    "ɲ",
+    "ɲʒ",
+    "ɲ̥",
+    "ʃ",
+    "ʒ",
+    "ʔ",
+    "˦",
+    "˨",
+    "θ"
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": -17.22,
+    "longitude": 17.35,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Ndonga."
+  }
 }

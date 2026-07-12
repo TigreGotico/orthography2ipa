@@ -1,7 +1,6 @@
 {
   "code": "alt",
   "name": "Southern Altai",
-  "family": "Turkic",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
@@ -264,5 +263,11 @@
     "start_year": 1922,
     "end_year": null
   },
-  "notes": "Southern Altai (Turkic, Altai Republic), written in a Cyrillic alphabet = the Russian alphabet plus ⟨ј⟩ /dʒ~ɟ/, ⟨ҥ⟩ /ŋ/, ⟨ӧ⟩ /ø/, ⟨ӱ⟩ /y/. Vowel harmony (front/back, rounding) operates throughout; vowel length is phonemic and written by doubling. ⟨ф х ц щ ъ ь⟩ occur essentially only in Russian loanwords; the silent signs ⟨ъ⟩ and ⟨ь⟩ are omitted from the grapheme map. ⟨е ё ю я⟩ are the Russian iotated letters."
+  "notes": "Southern Altai (Turkic, Altai Republic), written in a Cyrillic alphabet = the Russian alphabet plus ⟨ј⟩ /dʒ~ɟ/, ⟨ҥ⟩ /ŋ/, ⟨ӧ⟩ /ø/, ⟨ӱ⟩ /y/. Vowel harmony (front/back, rounding) operates throughout; vowel length is phonemic and written by doubling. ⟨ф х ц щ ъ ь⟩ occur essentially only in Russian loanwords; the silent signs ⟨ъ⟩ and ⟨ь⟩ are omitted from the grapheme map. ⟨е ё ю я⟩ are the Russian iotated letters.",
+  "location": {
+    "latitude": 50.1347,
+    "longitude": 86.8705,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Southern Altai."
+  }
 }

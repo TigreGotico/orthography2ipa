@@ -1,7 +1,6 @@
 {
   "code": "aa",
   "name": "Afar",
-  "family": "Afroasiatic",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -234,5 +233,11 @@
   "timespan": {
     "start_year": 1976,
     "end_year": null
+  },
+  "location": {
+    "latitude": 12.2281,
+    "longitude": 41.8083,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Afar."
   }
 }

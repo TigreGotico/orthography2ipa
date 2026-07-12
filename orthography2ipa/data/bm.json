@@ -1,7 +1,6 @@
 {
   "code": "bm",
   "name": "Bambara",
-  "family": "Mande",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -218,5 +217,20 @@
   "timespan": {
     "start_year": 1967,
     "end_year": null
+  },
+  "parent": "x-clade-mand1469",
+  "ancestors": [
+    {
+      "code": "x-clade-mand1469",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Mande — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 12.9,
+    "longitude": -7.65,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Bambara."
   }
 }
