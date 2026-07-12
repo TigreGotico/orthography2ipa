@@ -593,3 +593,64 @@ class TestCatalanDialectTableSection:
         assert "not** found" in text
         assert "ca (fallback, no dialect voice found)" in text
         assert "| occidental (nord-occidental) | ca-x-occidental | n/a | 0 | n/a | n/a |" in text
+
+
+class TestEspeakBatchTranscribe:
+    """The batched espeak path must never mis-attribute output to the
+    wrong word: alignment is positional, checked per chunk, and any
+    surprise degrades to the per-word path instead of misaligning."""
+
+    def test_aligned_chunk_maps_words_positionally(self, monkeypatch):
+        class P:
+            returncode = 0
+            stdout = "kasa\n\nporta\n"   # middle word: espeak emitted nothing
+
+        monkeypatch.setattr(cs.subprocess, "run", lambda *a, **k: P())
+        out = cs.espeak_batch_transcribe(["casa", "xyz", "porta"], "es")
+        assert out == {"casa": "kasa", "xyz": None, "porta": "porta"}
+
+    def test_line_count_mismatch_falls_back_to_per_word(self, monkeypatch):
+        class P:
+            returncode = 0
+            stdout = "only-one-line\n"   # 3 words in, 1 line out
+
+        monkeypatch.setattr(cs.subprocess, "run", lambda *a, **k: P())
+        calls = []
+
+        def per_word(word, voice):
+            calls.append(word)
+            return f"ipa-{word}"
+
+        monkeypatch.setattr(cs, "espeak_transcribe", per_word)
+        out = cs.espeak_batch_transcribe(["a", "b", "c"], "es")
+        assert calls == ["a", "b", "c"]
+        assert out == {"a": "ipa-a", "b": "ipa-b", "c": "ipa-c"}
+
+    def test_subprocess_failure_falls_back_to_per_word(self, monkeypatch):
+        def boom(*a, **k):
+            raise OSError("espeak exploded")
+
+        monkeypatch.setattr(cs.subprocess, "run", boom)
+        monkeypatch.setattr(cs, "espeak_transcribe",
+                            lambda w, v: f"ipa-{w}")
+        out = cs.espeak_batch_transcribe(["a", "b"], "es")
+        assert out == {"a": "ipa-a", "b": "ipa-b"}
+
+    def test_words_are_chunked(self, monkeypatch):
+        monkeypatch.setattr(cs, "_ESPEAK_CHUNK", 2)
+        inputs = []
+
+        class P:
+            returncode = 0
+
+        def fake_run(cmd, *, input, **k):
+            words = input.strip().split("\n")
+            inputs.append(words)
+            p = P()
+            p.stdout = "".join(f"ipa-{w}\n" for w in words)
+            return p
+
+        monkeypatch.setattr(cs.subprocess, "run", fake_run)
+        out = cs.espeak_batch_transcribe(["a", "b", "c"], "es")
+        assert inputs == [["a", "b"], ["c"]]
+        assert out == {"a": "ipa-a", "b": "ipa-b", "c": "ipa-c"}
