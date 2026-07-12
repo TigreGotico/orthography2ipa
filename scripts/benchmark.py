@@ -52,6 +52,7 @@ import csv
 import json
 import os
 import random
+import re
 import sys
 import time
 import unicodedata
@@ -422,15 +423,113 @@ _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
 # ipa-dict: open pronunciation dictionaries maintained by the open-dict-data project.
-# Source per-language; always verify provenance via the Credits section of the README.
-# https://github.com/open-dict-data/ipa-dict
+# https://github.com/open-dict-data/ipa-dict — MIT, third-party datasets keep
+# their own licence (see the README Credits section, which is the ONLY
+# authority on where each file's IPA came from).
+#
+# The project is MIXED-PROVENANCE: some files are human dictionaries, some are
+# Wiktionary scrapes, several are the output of a rule script or phonemizer —
+# and `en_UK` is literally espeak output. So this dataset carries a
+# PER-LANGUAGE tier (``_IPADICT_PROVENANCE`` below), not a dataset-wide one.
+# Every claim below is sourced from the ipa-dict README Credits (and, for
+# en_UK, from the credited ipacards project's own CREDITS/`bin/`, which shell
+# out to `espeak`).
 _IPADICT_BASE = (
     "https://raw.githubusercontent.com/open-dict-data/ipa-dict/master/data/"
 )
-# Icelandic: from the Hjal project / "Pronunciation Dictionary for Icelandic"
-# (Malfong.is), CC BY 3.0. ~60k entries. Human-curated by Icelandic linguists.
+
+# orthography2ipa language tag → ipa-dict filename.
+#
+# Codes are mapped to the repo's registered specs (``available_codes()``);
+# ipa-dict files with no corresponding spec, or whose orthography the spec
+# cannot read, are NOT registered — see ``_IPADICT_UNWIRED`` for the list and
+# the reason for each.
 _IPADICT_FILES = {
+    "ar": "ar.txt",
+    "de-DE": "de.txt",
+    "en-GB": "en_UK.txt",
+    "en-US": "en_US.txt",
+    "eo": "eo.txt",
+    "es-ES": "es_ES.txt",
+    "es-MX": "es_MX.txt",
+    "fa": "fa.txt",
+    "fi": "fi.txt",
+    "fr-FR": "fr_FR.txt",
     "is": "is.txt",
+    "ja": "ja.txt",
+    "jam": "jam.txt",
+    "km": "km.txt",
+    "ms": "ma.txt",          # ipa-dict `ma` = "Malay (Malaysian and Indonesian)"
+    "nb": "nb.txt",
+    "nl": "nl.txt",
+    "or": "or.txt",
+    "pt-BR": "pt_BR.txt",
+    "ro-RO": "ro.txt",
+    "sv": "sv.txt",
+    "sw": "sw.txt",
+    "vi": "vi_N.txt",        # Northern (Hanoi) = the standard the `vi` spec targets
+}
+
+# ipa-dict files deliberately NOT registered, with the reason. Kept as data so
+# the gap is visible (and so a test can assert the two sets never overlap).
+_IPADICT_UNWIRED: Dict[str, str] = {
+    "fr_QC": "no Québécois French spec (`fr-QC`) is registered; the file is "
+             "also qc-ipa script output over fr_FR ('highly experimental').",
+    "tts": "Isan / Northeastern Thai (aakanee Isaan-English Dictionary). No "
+           "`tts` spec is registered; the `th` (Thai) spec is a different "
+           "language and must not be used as a stand-in.",
+    "vi_C": "no Central-Vietnamese spec is registered (only `vi`).",
+    "vi_S": "no Southern-Vietnamese spec is registered (only `vi`).",
+    "ko": "UNTRANSCRIBABLE GOLD: the gold is Hangul, and the `ko` spec's rules "
+          "emit nothing for Hangul syllable blocks (`G2P('ko')` returns '' for "
+          "가), so every row would be uncovered — a PER=1.0 non-result. An "
+          "engine/spec gap to report, not a benchmark row.",
+    "yue": "UNTRANSCRIBABLE GOLD: the gold is Han script and the `yue` spec "
+           "emits nothing for it (`G2P('yue')` returns '' for 水).",
+    "zh_hans": "UNTRANSCRIBABLE GOLD: the gold is Han script. The `zh` spec is "
+               "PINYIN/romanization (`OrthographyKind.ROMANIZATION`), so it "
+               "cannot read it, and the Han-script `zh-Hani` spec emits nothing "
+               "for Han characters (`G2P('zh-Hani')` returns '' for 一). "
+               "Forcing either would measure nothing.",
+    "zh_hant": "same as zh_hans (ipa-dict README: the codes differ only in "
+               "written standard, not pronunciation) — untranscribable for the "
+               "same reason.",
+}
+
+# PER-LANGUAGE provenance for ipa-dict, sourced from the README Credits.
+# Overrides the dataset-wide fallback in ``PROVENANCE`` (see ``provenance_for``).
+# A tier is never upgraded on a guess: where the Credits section names no
+# source at all, the file is classified ``machine-generated`` and the note says
+# the provenance is UNVERIFIED.
+_IPADICT_PROVENANCE: Dict[str, str] = {
+    # ─ human dictionaries / published lexicographic sources ─
+    "is": "lexicon-derived",       # Hjal / "Pronunciation Dictionary for Icelandic" (malfong.is), CC BY 3.0
+    "en-US": "lexicon-derived",    # cmudict-ipa (CMU hand-curated ARPABET) + syllabify stress, MIT
+    "ja": "lexicon-derived",       # EDICT readings (EDRDG), CC BY-SA 3.0; only the kana entries are scorable (kanji entries transcribe to '' and drop out of `covered`)
+    "jam": "lexicon-derived",      # "A Learner's Grammar of Jamaican" (Open Grammar Project), CC BY 4.0
+    "km": "lexicon-derived",       # Khmer-English Dictionary (aakanee.com), CC BY-NC-SA 4.0
+    "ro-RO": "lexicon-derived",    # MaRePhoR phonetic dictionary (UTCluj), CC BY-NC
+    "sv": "lexicon-derived",       # Folkets lexikon (KTH), CC BY-SA 2.5
+    # ─ Wiktionary community edits ─
+    "de-DE": "crowd-scraped",      # german-ipa-dict (@devio-at), built from Wiktionary, CC BY-SA
+    # ─ tool output: a rule script / analyzer / phonemizer produced the IPA ─
+    "ar": "machine-generated",     # Buckwalter Arabic Morphological Analyzer output
+    "es-ES": "machine-generated",  # spanish-pronunciation-rules PHP script ("experimental")
+    "es-MX": "machine-generated",  # same script; the file is near-identical to es_ES
+    "fa": "machine-generated",     # Wiktionary + PersPred + "a great deal of guesswork"; README: "extremely experimental"
+    "fi": "machine-generated",     # prosodic1b (rule-based) over the Kotus wordlist
+    "nl": "machine-generated",     # INT: "automated conversion … no manual correction or revision"
+    "or": "machine-generated",     # OdiaWikimedia Converter (IPA-Romanization) over Wikimedia dumps
+    "vi": "machine-generated",     # vPhon converter over Ho Ngoc Duc's wordlist
+    # ─ tool output, base source UNDOCUMENTED (never upgraded on a guess) ─
+    "nb": "machine-generated",     # base generation method undocumented; expert-CORRECTED (Dr. E. Stranger-Johannessen) but not shown to be expert-authored
+    "eo": "machine-generated",     # PROVENANCE UNVERIFIED: the Credits section names no source for Esperanto
+    "fr-FR": "machine-generated",  # PROVENANCE UNVERIFIED: no source credited for French
+    "ms": "machine-generated",     # PROVENANCE UNVERIFIED: no source credited for Malay
+    "pt-BR": "machine-generated",  # PROVENANCE UNVERIFIED: no source credited for Brazilian Portuguese
+    "sw": "machine-generated",     # PROVENANCE UNVERIFIED: no source credited for Swahili
+    # ─ a COMPETITOR's output as the reference: cannot qualify OR block a language ─
+    "en-GB": "espeak-derived",     # ipacards (@leoboiko): its CREDITS and bin/add-ipa-to-freq.py shell out to `espeak`
 }
 
 
@@ -845,30 +944,49 @@ def load_cmudict(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+_IPADICT_VARIANT_RE = re.compile(r"/([^/]+)/")
+
+
 def load_ipadict(lang: str, limit: int) -> List[Tuple[str, str]]:
     """ipa-dict pronunciation dictionaries (open-dict-data/ipa-dict).
 
-    Provenance is **per-language** — see ``_IPADICT_FILES`` docstrings and
-    the project README Credits section before adding new languages. Each
-    entry uses the format ``word TAB /IPA/`` with IPA enclosed in slashes.
+    Provenance is **per-language**: the project mixes human dictionaries,
+    Wiktionary scrapes and tool output in one repository, so every wired
+    language carries its own tier in ``_IPADICT_PROVENANCE`` (surfaced per
+    scoreboard row via :func:`provenance_for`) rather than inheriting a
+    single dataset-wide tier. ``en-GB`` in particular is **espeak output**
+    and can therefore neither qualify nor block a language
+    (docs/quality_tiers.md). Consult the project README Credits section —
+    never assume — before wiring another language.
 
-    Currently wired languages:
+    Each entry is ``word TAB /IPA/``. A word with several attested
+    pronunciations lists them comma-separated (``est  /ɛst/, /ɛ/``); each
+    variant is emitted as its own ``(word, ipa)`` pair, which is how the
+    scorer consumes multiple valid golds per word (``evaluate_words``
+    groups pairs by word and keeps the best-matching gold).
 
-    - ``is`` (Icelandic): from the Hjal project / "Pronunciation Dictionary
-      for Icelandic" (malfong.is), CC BY 3.0, ~60k human-curated entries.
+    ``limit`` caps the number of emitted pairs, matching every other loader.
     """
     fname = _IPADICT_FILES[lang]
     text = _fetch(_IPADICT_BASE + fname, f"ipadict_{fname}")
-    pairs = []
+    pairs: List[Tuple[str, str]] = []
     for line in text.strip().splitlines():
         parts = line.split("\t")
-        if len(parts) == 2:
-            word = parts[0].strip().lower()
-            ipa = parts[1].strip().strip("/")
-            if word and ipa:
-                pairs.append((word, ipa))
-        if len(pairs) >= limit:
-            break
+        if len(parts) != 2:
+            continue
+        word = parts[0].strip().lower()
+        if not word:
+            continue
+        variants = _IPADICT_VARIANT_RE.findall(parts[1])
+        if not variants:  # tolerate an unslashed field
+            variants = [parts[1].strip()]
+        for variant in variants:
+            ipa = variant.strip()
+            if not ipa:
+                continue
+            pairs.append((word, ipa))
+            if len(pairs) >= limit:
+                return pairs
     return pairs
 
 
@@ -1041,7 +1159,14 @@ PROVENANCE: Dict[str, str] = {
     "portuguese_lexicon": "lexicon-derived",  # Portal da Língua Portuguesa (tugalex)
     "infopedia_pt": "lexicon-derived",        # Infopédia (Porto Editora) dictionary extraction
     "cmudict": "lexicon-derived",             # CMU hand-curated ARPABET, mechanically mapped to IPA
-    "ipadict": "lexicon-derived",             # only human `is` (Hjal/malfong) wired; project is mixed-provenance
+    # ipa-dict is MIXED-PROVENANCE and is classified PER LANGUAGE in
+    # PROVENANCE_BY_LANG below (human dictionaries, Wiktionary scrapes, rule
+    # scripts, and — for en-GB — espeak output all live in the same project).
+    # This dataset-wide value is only the fallback for a language with no
+    # explicit classification, so it is the most pessimistic tier, never an
+    # average: an unclassified ipa-dict file is not to be trusted. A test
+    # forbids leaving a registered ipadict language unclassified.
+    "ipadict": "machine-generated",
     # community-scraped Wiktionary
     "wikipron": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
@@ -1063,6 +1188,32 @@ PROVENANCE: Dict[str, str] = {
     "barranquenho_dict": "machine-generated",   # LLM-generated (research-conditioned), not human-verified
     "mirandese_dict": "machine-generated",      # LLM-generated (research-conditioned), not human-verified
 }
+
+# Per-LANGUAGE provenance overrides, for datasets that are not one source but a
+# COLLECTION of independently-sourced files. A single dataset-wide tier lies
+# about such a dataset: ipa-dict ships a human Icelandic dictionary, a
+# Wiktionary-built German list, and espeak-generated British English side by
+# side, and a row must carry the tier of the FILE it was scored against — a
+# language cannot be promoted (or blocked) on a tier that belongs to somebody
+# else's file. Keys are dataset names; values map language tag → tier.
+PROVENANCE_BY_LANG: Dict[str, Dict[str, str]] = {
+    "ipadict": _IPADICT_PROVENANCE,
+}
+
+
+def provenance_for(dataset: str, lang: str) -> str:
+    """Reliability tier of one scoreboard row.
+
+    Returns the per-language tier when the dataset is mixed-provenance and
+    the language is classified in ``PROVENANCE_BY_LANG``; otherwise the
+    dataset-wide ``PROVENANCE`` tier. The fallback is deliberately the
+    dataset's most pessimistic tier, so an unclassified language degrades
+    to "distrust it" rather than silently inheriting a better one.
+    """
+    per_lang = PROVENANCE_BY_LANG.get(dataset)
+    if per_lang and lang in per_lang:
+        return per_lang[lang]
+    return PROVENANCE[dataset]
 
 
 # ─── metric ─────────────────────────────────────────────────────────────────
@@ -1300,7 +1451,7 @@ def build_scoreboard(limit: Optional[int]) -> List[dict]:
                 "per_ci_high": round(ci_high, 4),
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
-                "provenance": PROVENANCE[dataset_name],
+                "provenance": provenance_for(dataset_name, lang),
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
