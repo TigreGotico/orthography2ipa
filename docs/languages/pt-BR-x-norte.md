@@ -100,4 +100,4 @@ eng.transcribe_word("menino")  # mɛˈninʊ — open pretonic /e/
 
 **Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
 
-*Related: [pt-BR](pt-BR.md), [pt-BR-x-rj](pt-BR-x-rj.md), [pt-BR-x-recife](pt-BR-x-recife.md)*
+*Related: [pt-BR](pt-BR.md), [pt-BR-x-rj](pt-BR-x-rj.md), [pt-BR-x-fluminense](pt-BR-x-fluminense.md)*

@@ -109,7 +109,7 @@ HARNESS_VERSION = "1.0"
 #
 # A curated subset of DATASETS languages with reasonably confident
 # third-party mappings — not every registered gold language, since most
-# competitor systems only cover a fraction of orthography2ipa's 350+ codes.
+# competitor systems only cover a fraction of orthography2ipa's language codes.
 LANGS: Dict[str, dict] = {
     "en-US": {"dataset": ("cmudict", "en-US"), "espeak": "en-us",
                "epitran": "eng-Latn", "gruut": "en-us"},
@@ -598,7 +598,7 @@ def write_comparison(rows: List[dict],
         "Not every gold language has a mapping for every competitor "
         "system: espeak-ng, epitran, gruut, pycotovia, and ahotts-g2p "
         "each cover a different, smaller subset of languages than "
-        "orthography2ipa's 350+ codes. A missing mapping, or a system "
+        "orthography2ipa's 493 language codes. A missing mapping, or a system "
         "that isn't installed, is reported as `n/a` for that row rather "
         "than skipped or faked — this table never crashes and never "
         "silently drops a system, it just says when it has nothing to "

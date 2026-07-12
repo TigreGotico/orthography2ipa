@@ -1,6 +1,23 @@
 # Distance Metrics
 
-The `distance` module provides a suite of phonological distance metrics grounded in distinctive feature theory. All distances are normalized to [0.0, 1.0] where 0.0 = identical and 1.0 = maximally different.
+Languages relate along several independent axes, and a pair can be close on one
+and far apart on another. The `distance` module measures each axis separately
+rather than collapsing them into one number. Unless stated otherwise, distances
+are normalized to [0.0, 1.0] where 0.0 = identical and 1.0 = maximally different.
+
+| Axis | Question | Function |
+|---|---|---|
+| Phonological | Do they use the same sounds? | [`inventory_distance`](#inventory_distancespec_a-spec_b), [`allophone_overlap`](#allophone_overlapspec_a-spec_b), [`phonological_distance`](#phonological_distancespec_a-spec_b) |
+| Reading | Same *text* — do they sound alike? | [`grapheme_divergence`](#grapheme_divergencespec_a-spec_b) |
+| Spelling | Same *sound* — do they write it alike? | [`spelling_divergence`](#spelling_divergencespec_a-spec_b) |
+| Script | Are the writing systems typologically alike? | `script_distance`, `orthographic_distance` |
+| Genealogical | Do they share ancestors? | [`ancestry_similarity`](#ancestry_similarityspec_a-spec_b) |
+| Temporal | Were they spoken at the same time? | `temporal_distance` (also decays ancestry weights) |
+| Geographic | Are they spoken in the same place? | [`geographic_distance`](#geographic_distancespec_a-spec_b-normalizetrue) |
+
+Reading and spelling are inverses of each other, and the pair that shows why both
+are needed is Galician: the RAG norm and the reintegrationist norm are the same
+language with the same phonology, yet one writes /ɲ/ as ⟨ñ⟩ and the other as ⟨nh⟩.
 
 ---
 
@@ -377,6 +394,92 @@ For each grapheme that appears in either spec's `positional_graphemes`:
 - If both have overrides: per-position IPA distance is measured using `segment_distance()`
 
 Result is normalised by the total number of graphemes with any positional data.
+
+---
+
+## `spelling_divergence(spec_a, spec_b)`
+
+How differently two orthographies **write the same sounds**. This is the inverse
+of `grapheme_divergence`, and the two answer genuinely different questions:
+
+- `grapheme_divergence` — *reading*: given the same TEXT, do these two sound
+  alike? (⟨j⟩ is /ʒ/ in Portuguese, /x/ in Spanish.)
+- `spelling_divergence` — *spelling*: given the same SOUND, do these two write it
+  alike?
+
+Each spec's grapheme map is inverted into `phoneme → {graphemes that write it}`,
+and for every phoneme both orthographies can spell, the two spelling sets are
+compared by Jaccard distance. The result is the mean over the shared phonemes.
+
+```python
+import orthography2ipa as o2i
+from orthography2ipa.distance import grapheme_divergence, spelling_divergence
+
+gl = o2i.get("gl")                  # RAG norm: /ɲ/ is written ⟨ñ⟩
+glr = o2i.get("gl-x-reintegrado")   # reintegrationist norm: /ɲ/ is written ⟨nh⟩
+
+grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233 — they read almost identically
+spelling_divergence(gl, glr).mean_distance       # 0.0659 — but they spell differently
+
+sd = spelling_divergence(gl, glr)
+sd.shared_phonemes        # 43 — phonemes both orthographies can spell
+sd.identical_spellings    # 39 — spelled exactly alike
+sd.disjoint_spellings     # 2  — no shared spelling at all
+```
+
+### `SpellingDivergence` fields
+
+| Field | Description |
+|---|---|
+| `shared_phonemes` | Phonemes both orthographies can spell |
+| `total_phonemes` | Union of the two inverted maps |
+| `mean_distance` | Mean spelling distance over the shared phonemes (0.0 = spelled identically) |
+| `identical_spellings` | Shared phonemes the two spell exactly alike |
+| `disjoint_spellings` | Shared phonemes for which they share no spelling at all |
+
+Returns `mean_distance` 1.0 when the two share no phoneme at all. Silent graphemes
+(a grapheme mapping to the empty string) spell no phoneme and contribute nothing.
+
+---
+
+## `geographic_distance(spec_a, spec_b, normalize=True)`
+
+Great-circle distance between the two specs' representative points, from the
+`location` field (`latitude`, `longitude`, `source`). Kilometres when `normalize`
+is False; otherwise scaled by half the Earth's circumference — the furthest two
+points can be.
+
+```python
+import orthography2ipa as o2i
+from orthography2ipa.distance import geographic_distance
+
+pt, es = o2i.get("pt-PT"), o2i.get("es-ES")
+
+geographic_distance(pt, es, normalize=False)   # 377.8 — kilometres
+geographic_distance(pt, es)                    # 0.0189 — normalized to [0, 1]
+
+o2i.get("ca").location
+# Location(latitude=41.453, longitude=1.569, source='glottolog',
+#          notes="Glottolog's representative point for Catalan.")
+```
+
+**Read this before trusting the number.** A point is a crude proxy for an AREA,
+and the crudeness is not uniform:
+
+- It is a fair summary for a **dialect anchored to a region**, which is where the
+  metric earns its keep — measuring a dialect continuum, where the ordering of
+  points tracks the ordering of isoglosses.
+- It is close to **meaningless for a widespread macrolanguage**, where one point
+  is arbitrary: Spanish spans two hemispheres, and the distance from "Spanish" to
+  anything says more about which point Glottolog picked than about the language.
+- A clade node's point is a computed **centroid** of its descendants, and is
+  weaker still.
+
+Weight this axis low, or turn it off, when comparing macrolanguages.
+
+Returns `None` — not `0.0` — when either spec has no `location`. Absence is not
+proximity: two languages of unknown position are not thereby neighbours. Callers
+must handle `None` rather than folding it into an average.
 
 ---
 

@@ -2,9 +2,27 @@
 
 ## Overview
 
-Language phonological data (graphemes, allophones, positional graphemes, ancestry) has been extracted from Python
-modules into standalone JSON files. This separation of data from code improves maintainability: linguistic data can be
-reviewed, edited, and validated independently of the Python codebase.
+All phonological data — graphemes, allophones, positional graphemes, ancestry,
+sources — lives in standalone JSON files under `orthography2ipa/data/`, one per
+language code. The engine is language-agnostic: adding a language means writing
+cited data, never code. The field-by-field authoring reference is
+[`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md); this page is the walkthrough.
+
+A spec must declare **`graphemes` or `phonemes`** — the spelling, the inventory, or
+both. It may not be silent about both. "Every language has graphemes" is false: a
+logographic script has no grapheme→IPA rule to write (`zh-Hani` ships an empty map
+on purpose), and an unwritten or reconstructed language has no orthography at all,
+yet both have a phonology. Say which kind of writing the graphemes are with
+[`orthography_kind`](orthography_kind.md).
+
+Two things a spec does **not** declare:
+
+- **No `family` string.** Classification comes from the clade nodes above the
+  spec in the ancestry graph — set `parent` and `family` derives itself. See
+  [Classification](#classification-wire-it-into-the-clade-chain) below.
+- **No engine hooks.** If a language needs behaviour the shared engine cannot
+  express, that is a gap in the engine or in the spec vocabulary, not a reason
+  for language-specific code.
 
 ---
 
@@ -160,6 +178,41 @@ Create `orthography2ipa/data/{code}.json`:
 The parent language must have its own JSON file. If adding a dialect, ensure the standard variety is already in the
 dataset. For historical languages, ensure the ancestral chain connects back to a proto-language.
 
+### Classification: wire it into the clade chain
+
+A family is a **clade node**: a spec whose JSON carries `"clade": true`, a
+`name` (`"Ibero-Romance"`), and a `parent` pointing at the next clade up. It is
+classification and nothing else — no graphemes, no allophones, never inherited
+from, and excluded from `available_codes()` unless `include_clades=True`.
+
+So a new language is classified by pointing its `parent` at the right node, and
+`family` / `family_path` derive themselves:
+
+```python
+import orthography2ipa
+
+orthography2ipa.get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
+orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
+```
+
+If the clade the language belongs to has no node yet, add the node — do not
+author a `family` string to route around the missing one. The one case where an
+explicit `family` string is right is a grouping that is *not* a genetic clade:
+creoles, constructed languages, isolates, unclassified languages.
+
+### Metadata worth filling in
+
+Beyond the phonology, a spec is the place to record what the language *is*:
+
+| Field | Why it matters |
+|---|---|
+| `sources` | The citation bar for `research` tier — every mapping traceable to a published description |
+| `orthography_standard` | The official spelling norm, where one exists: the primary authority for what a grapheme *is* |
+| `location` | Representative point (lat/lon); feeds `geographic_distance` — most meaningful for region-anchored dialects |
+| `timespan` | Attestation period; decays ancestry weights across time |
+| `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references. `wikidata_qid` is the hub — one QID resolves the rest |
+| `wikipedia`, `urls` | Human-readable references |
+
 ### Step 3: For dialects, use inheritance
 
 If the language shares most phonological data with a parent:
@@ -191,7 +244,7 @@ uv run pytest tests/ -v
 The test suite validates:
 
 - All JSON files parse correctly
-- Every spec has required fields (graphemes, allophones, name, script)
+- Every spec has its required fields (name, script, and `graphemes` **or** `phonemes` — a spec may not be silent about both)
 - Every `parent` field points to an existing spec
 - Every PARENT-role ancestor exists in the dataset
 - Linguistic accuracy for key languages (Spanish θ, English th, German Auslautverhärtung, etc.)

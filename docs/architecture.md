@@ -102,22 +102,39 @@ on instead of re-rolling per-consumer index arithmetic and private vowel sets.
 
 ### `distance.py`
 
-Phonological distance metrics built on the 21-feature SPE/IPA system — `distance.py:1-850+`:
+The relational axes — one function per question, never collapsed into a single
+similarity number. Built on the 21-feature SPE/IPA system. See
+[distance.md](distance.md) for the full catalogue and each axis's caveats.
 
-- `feature_vector(segment)` → 21-element float tuple — `distance.py:140`
-- `feature_names()` → tuple of feature name strings — `distance.py:165`
-- `segment_distance(a, b)` → normalized [0,1] phonetic distance — `distance.py:174`
-- `inventory_distance(spec_a, spec_b)` → `InventoryDistance` — `distance.py:266`
-- `grapheme_divergence(spec_a, spec_b)` → `GraphemeDivergence` — `distance.py:321`
-- `allophone_overlap(spec_a, spec_b)` → Jaccard similarity float — `distance.py:371`
-- `phonological_distance(spec_a, spec_b)` → `PhonologicalDistance` (combined) — `distance.py:404`
-- `ancestry_similarity(spec_a, spec_b)` → float based on shared ancestors — `distance.py:558`
-- `full_distance(spec_a, spec_b)` → combined phonological + ancestry distance — `distance.py:658`
-- `pairwise_distances(specs, metric)` → N×N distance matrix — `distance.py:444`
-- `tone_distance(spec_a, spec_b)` → tone inventory distance — `distance.py:690`
-- `orthographic_distance(spec_a, spec_b)` → grapheme-level distance — `distance.py:715`
-- `weighted_full_distance(spec_a, spec_b)` → `WeightedDistance` with component breakdown — `distance.py:767`
-- `positional_divergence(spec_a, spec_b)` → positional grapheme divergence — `distance.py:816`
+Phonological:
+
+- `feature_vector(segment)` → 21-element float tuple
+- `feature_names()` → tuple of feature name strings
+- `segment_distance(a, b)` → normalized [0,1] phonetic distance
+- `inventory_distance(spec_a, spec_b)` → `InventoryDistance`
+- `allophone_overlap(spec_a, spec_b)` → Jaccard similarity float
+- `phonological_distance(spec_a, spec_b)` → `PhonologicalDistance` (combined)
+- `tone_distance(spec_a, spec_b)` → tone-inventory distance
+- `phoneme_coverage(spec_native, spec_target)` → asymmetric transfer coverage
+
+Orthographic — reading vs spelling, which are inverses of each other:
+
+- `grapheme_divergence(spec_a, spec_b)` → `GraphemeDivergence` (same text → same sounds?)
+- `spelling_divergence(spec_a, spec_b)` → `SpellingDivergence` (same sounds → same spelling?)
+- `positional_divergence(spec_a, spec_b)` → positional-grapheme divergence
+- `orthographic_distance(spec_a, spec_b)` → grapheme divergence folded with script distance
+
+Genealogical, temporal, geographic:
+
+- `ancestry_similarity(spec_a, spec_b)` → float based on shared, time-decayed ancestors
+- `temporal_distance(spec_a, spec_b)` → attestation-period distance
+- `geographic_distance(spec_a, spec_b, normalize=True)` → great-circle distance, or `None` when either spec has no `location`
+
+Combined (when a caller really does want one number):
+
+- `full_distance(spec_a, spec_b)` → phonological + ancestry
+- `weighted_full_distance(spec_a, spec_b)` → `WeightedDistance` with per-component breakdown
+- `pairwise_distances(specs, metric)` → N×N distance matrix
 
 ### `feats.py`
 

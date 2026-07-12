@@ -166,6 +166,8 @@ class LanguageSpec:
     script: str                                        # Primary script
     graphemes: Grapheme2IPA                            # Grapheme → IPA
     allophones: AllophoneMap                           # Phoneme → allophones
+    phonemes: Tuple[str, ...] = ()                     # The inventory, stated directly
+    orthography_kind: OrthographyKind = OrthographyKind.NATIVE  # native | romanization | transliteration
     parent: Optional[str] = None                       # Primary parent code (shorthand)
     ancestors: Tuple[Ancestor, ...] = ()               # Full ancestry specification
     positional_graphemes: PositionalGrapheme2IPA = None # Context-sensitive IPA (normalised to {} in __post_init__)
@@ -175,15 +177,116 @@ class LanguageSpec:
     script_type: ScriptType = ScriptType.ALPHABET      # Writing system typology
     inherent_vowel: Optional[str] = None               # For abugidas (e.g. "ə" for Hindi)
     iso639_3: Optional[str] = None                     # ISO 639-3 code
-    sandhi_rules: Tuple[SandhiRule, ...] = ()           # Cross-word phonological rules
+    wikidata_qid: Optional[str] = None                 # Wikidata item id — the linked-data hub
+    phoible_id: Optional[str] = None                   # PHOIBLE inventory identifier
+    wals_code: Optional[str] = None                    # WALS typological cross-reference
+    sandhi_rules: Tuple[SandhiRule, ...] = ()          # Cross-word phonological rules
+    allophone_rules: Tuple[AllophoneRule, ...] = ()    # Post-lexical phoneme → surface rewrites
+    stress: Optional[StressRules] = None               # Stress placement rules
     tone_inventory: Optional[Dict[str, str]] = None    # IPA tone mark → label
+    word_exceptions: Optional[Dict[str, str]] = None   # Whole-word overrides for an irregular set
+    orthography_standard: Optional[OrthographyStandard] = None  # Official spelling norm
+    location: Optional[Location] = None                # Representative point (lat/lon)
+    timespan: Optional[TimeSpan] = None                # Attestation period
     sources: Tuple[LinguisticSource, ...] = ()         # Bibliographic references
     wikipedia: Tuple[str, ...] = ()                    # Wikipedia article URLs
+    urls: Tuple[str, ...] = ()                         # Other reference URLs
+```
+
+### `phonemes` — the inventory, stated directly
+
+`phonemes` is the language's phoneme inventory: the sounds it **has**, declared
+independently of `graphemes`. A language's sounds are not a property of its writing
+system. Most of the world's languages are unwritten or barely written and PHOIBLE
+catalogues inventories for thousands of them; a logographic script encodes no sound
+at all. Reading the inventory out of the spelling cannot work for either.
+
+```python
+import orthography2ipa
+
+ine = orthography2ipa.get("ine")        # Proto-Indo-European — never written
+len(ine.phonemes)                       # 30 reconstructed phonemes, declared
+
+han = orthography2ipa.get("zh-Hani")    # Chinese in Han script
+han.graphemes                           # {} — no grapheme→IPA rule exists to write
+len(han.phonemes)                       # 60 — the phonology is known regardless
+```
+
+When `phonemes` is empty the inventory is **derived** from `graphemes` — every
+phoneme any grapheme can produce — so a spec that says nothing keeps exactly the
+inventory it always had. That derivation is a *fallback*, not the definition: it
+reads the sounds out of the spelling, which is backwards, and it is why a
+reconstructed language once had to fake an identity orthography (`p` → [p]) merely
+to have an inventory. `distance._extract_phonemes` applies the rule — declared
+inventory wins, grapheme map is the fallback — and every phonological metric is
+built on it.
+
+**The integrity invariant:** a spec must declare `graphemes` **or** `phonemes`. It
+may not be silent about both. "Every language has graphemes" is false — logographic
+scripts and unwritten languages are the counterexamples — and no spec is allowed to
+claim it has neither sounds nor spelling.
+
+### `orthography_kind` — what kind of writing the graphemes are
+
+`native` (default) | `romanization` | `transliteration`. Han characters, Pinyin and
+Buckwalter ASCII make three different claims, and a consumer must be able to tell
+them apart:
+
+```python
+import orthography2ipa
+
+orthography2ipa.get("zh").orthography_kind                   # ROMANIZATION — Pinyin (ISO 7098)
+orthography2ipa.get("zh-Hani").orthography_kind              # NATIVE — Han script
+orthography2ipa.get("ar-Latn-buckwalter").orthography_kind   # TRANSLITERATION — Arabic in ASCII
+```
+
+Full treatment, with the reason a romanization is transcribable where the native
+script is not: [orthography_kind.md](orthography_kind.md).
+
+### Derived classification: `family`, `family_path`, `clade`
+
+`family` is not authored on a spec. Families are **clade nodes** in the ancestry
+graph — specs flagged `clade=True`, which carry classification and nothing else —
+and the loader derives `family_path` by walking the `parent` chain upwards and
+collecting the clade names it passes, broadest first. `family` is that path joined
+with `" > "`:
+
+```python
+import orthography2ipa
+
+orthography2ipa.get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
+orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
+orthography2ipa.get("pt-BR").clade         # False
+```
+
+A spec may still carry an explicit `family` string, which wins over the derived
+one; that escape hatch exists for groupings that are not genetic clades (creoles,
+constructed languages, isolates, unclassified languages). Clade nodes are excluded
+from `available_codes()` unless `include_clades=True` is passed. See
+[ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
+
+### `Location`, `OrthographyStandard`, `TimeSpan`
+
+| Type | Fields | Purpose |
+|---|---|---|
+| `Location` | `latitude`, `longitude`, `source`, `notes` | Representative point for the variety; feeds `geographic_distance`. A clade's point is a centroid of its descendants. |
+| `OrthographyStandard` | `name`, `authority`, `year`, `url`, `notes` | The official published spelling norm, when one exists. A property of the language, not of every dialect of it — a dialect that spells by its standard language's norm omits the field and consumers walk the ancestry chain. |
+| `TimeSpan` | `start_year`, `end_year` | Attestation period; decays ancestry weights across time and drives `temporal_distance`. |
+
+```python
+import orthography2ipa
+
+orthography2ipa.get("gl").orthography_standard.authority
+# 'Real Academia Galega / Instituto da Lingua Galega'
+orthography2ipa.get("ca").location.latitude   # 41.453
 ```
 
 ### Accessor methods and properties
 
 ```python
+import orthography2ipa
+from orthography2ipa.types import AncestorRole, GraphemePosition
+
 spec = orthography2ipa.get("es-ES")
 
 # Primary parent code
@@ -217,7 +320,7 @@ For new languages and dialects, always populate the `ancestors` tuple for riches
 
 | Value | Description |
 |---|---|
-| `STUB` | Code + name + family + script only |
+| `STUB` | Code + name + script + a parent to hang the clade chain on; no phoneme data |
 | `SKELETON` | Graphemes + allophones from auto-generation (unvalidated) |
 | `RESEARCH` | Validated against published phonology; positional rules present |
 | `PRODUCTION` | Full coverage, regression-tested, cited sources |
@@ -278,8 +381,8 @@ Contract:
 - **Precedence:** inline `word_exceptions` **>** lexicon **>** rules. An inline
   exception always wins; the sidecar always wins over the grapheme/positional
   beam.
-- **Absent lexicon → byte-identical.** A language with no `{code}.tsv` gets an
-  empty overlay and behaves exactly as before this feature existed.
+- **Absent lexicon → no effect.** A language with no `{code}.tsv` gets an empty
+  overlay, and the rules alone decide the transcription.
 
 Every shipped TSV is validated (parseable `word<TAB>ipa`, NFC, lowercase word,
 IPA-characters-only) by `lexicon.validate_lexicon_text`; the shipped-data test

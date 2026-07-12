@@ -299,6 +299,8 @@ spec.resolve_grapheme(grapheme, position=GraphemePosition.DEFAULT) -> List[str]
 ### Introspection methods
 
 ```python
+spec = orthography2ipa.get("pt-PT")
+
 spec.has_positional_data()           # bool — any positional overrides?
 spec.positional_grapheme_keys()      # frozenset — which graphemes have overrides
 spec.positions_for_grapheme("s")     # tuple of GraphemePosition values

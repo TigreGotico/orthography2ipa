@@ -291,7 +291,7 @@ Where it does not reach:
   **non-local context** — cross-word sandhi, pausal or phrase-final forms,
   morphological decomposition, part of speech — do not fit a per-slot
   rescorer; they belong in a thin orchestration layer *above* the lattice,
-  not inside it. That layer is now shared: the
+  not inside it. That layer is shared: the
   [sentence-context seam](sentence_context.md) (`SentenceLattice` +
   `SentenceRescorer`) gives cross-word adjacency and phrase / utterance
   position so a downstream engine need not fork its own.

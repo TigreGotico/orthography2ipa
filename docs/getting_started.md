@@ -8,7 +8,7 @@ sentence sounds before you synthesize it:
 ```python
 >>> import orthography2ipa
 >>> orthography2ipa.transcribe("olá mundo", "pt")
-'oˈla ˈmundu'
+'oˈla ˈmũdu'
 ```
 
 That's it — `transcribe(text, language_code)` returns an IPA string with
@@ -38,7 +38,7 @@ step is driven by data in the language's `LanguageSpec` — there's no
 hidden model behind it.
 
 ```python
-orthography2ipa.transcribe("hello world", "en")   # 'hɛllɒ wɔːɹld'
+orthography2ipa.transcribe("hello world", "en")   # 'hələʊ wɜːld'
 orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnyɛjt'
 ```
 
@@ -128,7 +128,7 @@ from orthography2ipa import G2P
 
 engine = G2P("pt-PT")
 result = engine.transcribe_detailed("um café", search="beam", beam_width=4)
-result.ipa                  # 'ˈum kɐˈfɛ'
+result.ipa                  # 'ˈũ kɐˈfɛ'
 result.words[1].candidates  # ranked IPAPath alternatives for "café"
 ```
 
@@ -189,9 +189,13 @@ orthography2ipa.resolve("en-NZ")  # 'en-GB' — nearest registered variety
 To browse what's available:
 
 ```python
-orthography2ipa.available_codes()      # every registered code
-orthography2ipa.available_families()   # codes grouped by language family
+orthography2ipa.available_codes()                      # 493 language codes
+orthography2ipa.available_codes(include_clades=True)   # 556 — plus the clade nodes
+orthography2ipa.available_families()                   # codes grouped by derived family path
 ```
+
+Clade nodes (`Romance`, `West Germanic`, …) are classification-only specs: they
+carry no phoneme data and are excluded unless you ask for them.
 
 or see the full table in [registry.md](registry.md).
 
@@ -203,14 +207,21 @@ phoneme data:
 ```python
 es = orthography2ipa.get("es-ES")
 es.name      # 'Castilian Spanish'
-es.family    # 'Indo-European > Romance > Ibero-Romance'
+es.family    # 'Indo-European > Italic > Romance > Ibero-Romance' — derived, not authored
 es.script    # 'Latin'
 es.quality   # QualityTier.RESEARCH — see quality_tiers.md
+es.location  # Location(latitude=40.416944, longitude=-3.703333, source='wikidata', ...)
 
 for anc in es.get_ancestors():
     print(anc)
-# Ancestor('es-ES-x-medieval', parent, w=1.00)
+# Ancestor('es-ES-x-medieval', parent, w=0.85)
+# Ancestor('xaq', substrate, w=0.06)
+# Ancestor('got', superstrate, w=0.04)
+# Ancestor('xaa', adstrate, w=0.06)
 ```
+
+`family` is the chain of clade nodes above the spec in the ancestry graph, joined
+with `" > "` — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
 
 ## Handling unknown codes
 

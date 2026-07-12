@@ -14,13 +14,25 @@ import orthography2ipa
 # Fetch a spec by code
 spec = orthography2ipa.get("pt-BR")
 
-# List all registered codes
+# List all registered language codes — 493 of them
 codes = orthography2ipa.available_codes()
 
-# Group codes by family
+# ...plus the 63 classification-only clade nodes (556 total)
+all_codes = orthography2ipa.available_codes(include_clades=True)
+
+# Group codes by their derived family path
 families = orthography2ipa.available_families()
-# Returns: {'Romance': ['ca', 'es', ...], 'Germanic': ['de', 'en', ...], ...}
+# {'Indo-European > Italic > Romance > Ibero-Romance': ['an', 'es-ES', 'pt-PT', ...],
+#  'Indo-European > Germanic > Northwest Germanic > West Germanic': ['de-DE', 'en-GB', ...], ...}
+
+# The clade chain above a code, nearest ancestor first
+orthography2ipa.ancestry_chain("pt-BR")
+# ['pt-PT-x-medieval', 'roa-x-galaicopt', 'x-clade-iberrom', 'la-x-hispania', ...]
 ```
+
+Clade nodes are classification-only: they carry no phoneme data, are never
+inherited from, and are excluded from `available_codes()` by default. `family` is
+derived from them — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
 
 ---
 
