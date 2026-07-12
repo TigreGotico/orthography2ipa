@@ -24,8 +24,12 @@ Architecture
 5. **Allophone overlap**: How much two languages' allophone systems
    share surface realisations.
 
-6. **Combined phylogenetic distance**: Weighted combination providing
-   a single scalar estimate of overall phonological relatedness.
+6. **Combined phonological distance**: Weighted combination of the SOUND
+   axes — inventory and allophony — providing a single scalar estimate of
+   phonological relatedness.  Orthography (4) is measured but deliberately
+   excluded: a language's script is not part of its phonology, and mixing it
+   in would put Hindi and Urdu, or Serbian and Croatian, far apart.  To weigh
+   sound and spelling together in one number, use ``weighted_full_distance``.
 
 Usage
 ─────
@@ -401,19 +405,37 @@ def allophone_overlap(spec_a: LanguageSpec, spec_b: LanguageSpec) -> float:
 
 @dataclass(frozen=True)
 class PhonologicalDistance:
-    """Combined multi-metric phonological distance between two languages."""
+    """Combined phonological distance between two languages.
+
+    ``combined`` is computed from the two axes that describe SOUND — the phoneme
+    inventory and the allophone system.  It says nothing about how either language
+    is WRITTEN, and it must not: Hindi and Urdu share a phonology and not a script,
+    Serbian and Croatian likewise; a phonological metric that read the writing system
+    would call each of those pairs distant, which is simply false.
+
+    The orthographic axes are measured separately and deliberately kept out of the
+    score: :func:`grapheme_divergence` (reading — same letters, which sounds?),
+    :func:`spelling_divergence` (spelling — same sounds, which letters?) and
+    :func:`orthographic_distance` (which also factors in the script).
+    """
     inventory: InventoryDistance
     grapheme: GraphemeDivergence
+    """Grapheme (reading) divergence, reported for reference only.
+
+    NOT a term of ``combined`` — orthography is not phonology.  Read it when you want
+    the orthographic side; do not read it expecting it to be inside the score.
+    """
     allophone_sim: float
     combined: float
-    """Weighted combination: 0.0 = identical, 1.0 = maximally different."""
+    """Weighted combination of the PHONOLOGICAL axes only (inventory + allophony):
+    0.0 = identical, 1.0 = maximally different."""
 
     def __repr__(self) -> str:
         return (
             f"PhonologicalDistance(combined={self.combined:.3f}, "
             f"inv={self.inventory.feature_mean:.3f}, "
-            f"graph={self.grapheme.mean_ipa_distance:.3f}, "
-            f"allo={self.allophone_sim:.3f})"
+            f"allo={self.allophone_sim:.3f}, "
+            f"[graph={self.grapheme.mean_ipa_distance:.3f} not scored])"
         )
 
 
@@ -421,16 +443,25 @@ def phonological_distance(
         spec_a: LanguageSpec,
         spec_b: LanguageSpec,
         *,
-        w_inventory: float = 0.40,
-        w_grapheme: float = 0.30,
-        w_allophone: float = 0.30,
+        w_inventory: float = 0.60,
+        w_allophone: float = 0.40,
 ) -> PhonologicalDistance:
     """Compute a combined phonological distance between two languages.
 
+    The score is built from the phoneme inventories (preferring each spec's declared
+    ``phonemes``, see :func:`_extract_phonemes`) and the allophone systems.  The
+    grapheme mapping is reported on the result but takes no part in the score: how a
+    language is spelled is not part of how it sounds, and two languages with one
+    phonology and two scripts must come out phonologically near-identical.
+
+    For the orthographic side use :func:`grapheme_divergence`,
+    :func:`spelling_divergence` or :func:`orthographic_distance`; to weigh sound and
+    spelling together in one number use :func:`weighted_full_distance`.
+
     Parameters
     ----------
-    w_inventory, w_grapheme, w_allophone : float
-        Weights for each component (should sum to 1.0).
+    w_inventory, w_allophone : float
+        Weights for each phonological component (should sum to 1.0).
     """
     inv = inventory_distance(spec_a, spec_b)
     gra = grapheme_divergence(spec_a, spec_b)
@@ -441,7 +472,6 @@ def phonological_distance(
 
     combined = (
             w_inventory * inv.feature_mean
-            + w_grapheme * gra.mean_ipa_distance
             + w_allophone * allo_dist
     )
 
@@ -824,8 +854,11 @@ def full_distance(
     """Combined phonological + ancestry distance.
 
     This is the most complete distance metric, combining:
-    - Phonological distance (inventory, grapheme, allophone comparisons)
+    - Phonological distance (inventory + allophone comparisons; no orthography)
     - Ancestry-weighted phylogenetic distance (traces shared ancestors)
+
+    To factor the writing system in as well, use :func:`weighted_full_distance`,
+    which carries an explicit ``w_grapheme`` term.
 
     Parameters
     ----------

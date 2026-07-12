@@ -147,10 +147,11 @@ segment_distance("p", "a")   # 1.0    — consonant vs. vowel, maximally differe
 # Language-level: how different are two varieties overall?
 pt_pt = orthography2ipa.get("pt-PT")
 dist = phonological_distance(pt_br, pt_pt)
-dist.combined                    # 0.046 — near-identical
+dist.combined                    # 0.046 — near-identical (inventory + allophony)
 dist.inventory.feature_mean      # phoneme-inventory distance
-dist.grapheme.mean_ipa_distance  # grapheme-mapping divergence
 dist.allophone_sim               # allophone-overlap similarity (higher = more similar)
+dist.grapheme.mean_ipa_distance  # grapheme-mapping divergence — reported, NOT scored:
+                                 # how a language is spelled is not how it sounds
 ```
 
 See [distance.md](distance.md) for the full metric catalogue and

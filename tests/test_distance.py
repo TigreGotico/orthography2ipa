@@ -32,6 +32,7 @@ from orthography2ipa.distance import (
     PhonologicalDistance,
     WeightedDistance,
 )
+from orthography2ipa.types import LanguageSpec
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -330,14 +331,107 @@ class TestPhonologicalDistance:
 
     def test_custom_weights(self, es, pt):
         """Custom weights should change the combined score."""
-        d1 = phonological_distance(es, pt, w_inventory=1.0, w_grapheme=0.0,
-                                   w_allophone=0.0)
-        d2 = phonological_distance(es, pt, w_inventory=0.0, w_grapheme=1.0,
-                                   w_allophone=0.0)
-        # Different weights → different combined scores (unless coincidental)
-        # At minimum they should both be in range
+        d1 = phonological_distance(es, pt, w_inventory=1.0, w_allophone=0.0)
+        d2 = phonological_distance(es, pt, w_inventory=0.0, w_allophone=1.0)
         assert 0.0 <= d1.combined <= 1.0
         assert 0.0 <= d2.combined <= 1.0
+        assert d1.combined == pytest.approx(d1.inventory.feature_mean)
+        assert d2.combined == pytest.approx(1.0 - d2.allophone_sim)
+
+    def test_no_grapheme_weight(self, es, pt):
+        """There is no orthographic knob to turn: the score has no such term."""
+        with pytest.raises(TypeError):
+            phonological_distance(es, pt, w_grapheme=1.0)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Phonological distance is not contaminated by orthography
+# ═══════════════════════════════════════════════════════════════════════════
+def _spec(code: str, **overrides) -> LanguageSpec:
+    """A minimal spec, with *overrides* applied."""
+    base = dict(
+        code=code,
+        name=code,
+        family="Test",
+        script="Latin",
+        graphemes={"p": ["p"], "t": ["t"], "a": ["a"], "i": ["i"]},
+        allophones={},
+        phonemes=("p", "t", "a", "i"),
+    )
+    base.update(overrides)
+    return LanguageSpec(**base)
+
+
+class TestPhonologyIsNotOrthography:
+    """The score must read the inventory and the allophony, and nothing else."""
+
+    def test_same_sounds_different_script_are_near_identical(self):
+        """One phonology, two scripts → phonologically the same language.
+
+        Hindi/Urdu and Serbian/Croatian in miniature: identical phoneme
+        inventories, disjoint writing systems.  A phonological metric that read
+        the spelling would call these maximally distant — they share no grapheme
+        at all — which is exactly the error being guarded against.
+        """
+        devanagari = _spec("xx-deva", script="Devanagari",
+                           graphemes={"प": ["p"], "त": ["t"], "आ": ["a"], "इ": ["i"]})
+        arabic = _spec("xx-arab", script="Arabic",
+                       graphemes={"پ": ["p"], "ت": ["t"], "ا": ["a"], "ی": ["i"]})
+
+        d = phonological_distance(devanagari, arabic)
+
+        # The orthographies are maximally apart — that is the whole point.
+        assert d.grapheme.shared_graphemes == 0
+        assert d.grapheme.mean_ipa_distance == 1.0
+        # The phonologies are identical, and the score says so.
+        assert d.combined == pytest.approx(0.0)
+
+    def test_respelling_a_language_does_not_move_the_distance(self):
+        """Change only the graphemes; the phonological distance must not budge.
+
+        This is the regression guard.  A spec's ``phonemes`` are held fixed while
+        its writing system is replaced wholesale; any drift in ``combined`` means
+        orthography has leaked back into the metric.
+        """
+        reference = _spec("xx-ref")
+        latin = _spec("yy-latin")
+        respelled = _spec(
+            "yy-latin",
+            script="Cyrillic",
+            graphemes={"п": ["p"], "т": ["t"], "а": ["a"], "и": ["i"]},
+        )
+
+        before = phonological_distance(reference, latin)
+        after = phonological_distance(reference, respelled)
+
+        # The respelling is real and visible on the orthographic axis …
+        assert after.grapheme.mean_ipa_distance != before.grapheme.mean_ipa_distance
+        # … and invisible to the phonological one.
+        assert after.combined == before.combined
+        assert after.inventory == before.inventory
+        assert after.allophone_sim == before.allophone_sim
+
+    def test_declared_phonemes_beat_the_spelling(self):
+        """A spec that declares an inventory is scored on it, not on its letters.
+
+        Both specs declare the same four phonemes, and one has a grapheme table
+        that would derive an entirely different inventory.  Reading the declared
+        ``phonemes`` — rather than reverse-engineering them from the spelling — is
+        the only way to see that these two languages sound alike.  Allophones are
+        stated on both so that the inventory axis is what is under test.
+        """
+        allophones = {"p": ["p"], "t": ["t"], "a": ["a"], "i": ["i"]}
+        plain = _spec("xx-plain", allophones=dict(allophones))
+        misleading_spelling = _spec(
+            "yy-odd",
+            graphemes={"q": ["q"], "x": ["χ"], "ø": ["ø"], "y": ["y"]},
+            allophones=dict(allophones),
+        )
+
+        d = phonological_distance(plain, misleading_spelling)
+
+        assert d.inventory.feature_mean == pytest.approx(0.0)
+        assert d.combined == pytest.approx(0.0)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
