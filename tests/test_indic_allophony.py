@@ -25,8 +25,12 @@ Word→IPA pairs are the cited ones:
 """
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import pytest
 
+import orthography2ipa
 from orthography2ipa import G2P, get
 
 
@@ -168,3 +172,64 @@ def test_sources_are_declared(code, source_ids):
     assert spec.allophone_rules
     assert source_ids <= {s.id for s in spec.sources}
     assert all(r.notes for r in spec.allophone_rules)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# The rules are REACHABLE — the slot-shape invariant
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# ``AllophoneRescorer._realize`` matches a whole SLOT's IPA string
+# (``ipa in rule.phonemes``). In an abugida a slot is one grapheme, so its IPA
+# is only ever a candidate of that grapheme, optionally with the inherent vowel
+# appended (phonetok: the inherent vowel surfaces unless a matra or virama
+# cancels it) — ``k`` or ``ka``, NEVER ``kaː``/``ki``/``ku``, because a matra is
+# a slot of its own. A rule keyed on ``kaː`` is therefore dead by construction.
+#
+# Enumerating a full C × V cross-product is the natural way to write these rules
+# by hand and it is always wrong; this test pins the invariant so the dead-rule
+# cross-product cannot grow back.
+
+
+def _reachable_slot_ipas(code):
+    """Every IPA string a slot can ever carry: {C} ∪ {C + inherent_vowel}."""
+    spec = get(code)
+    vals = set()
+    for cands in spec.graphemes.values():
+        vals.update(cands)
+    for entry in (spec.positional_graphemes or {}).values():
+        for cands in entry.values():
+            for cand in cands:
+                ipa = getattr(cand, "ipa", cand)
+                if isinstance(ipa, str):
+                    vals.add(ipa)
+    iv = spec.inherent_vowel
+    if iv:
+        vals |= {v + iv for v in vals}
+    return vals
+
+
+@pytest.mark.parametrize("code", ["hi", "ta", "ml", "sa"])
+def test_allophone_rules_key_only_on_reachable_slot_shapes(code):
+    """Every rule a spec DECLARES must key on a shape that spec can emit.
+
+    Read from the raw JSON, not the resolved spec: an inherited rule may key on
+    a shape only its declaring ancestor emits (ta's grantha ⟨ஜ⟩ /dʒ/ is not a
+    Malayalam letter), which is fine — the file that states a rule is the file
+    that has to be able to fire it.
+    """
+    raw = json.loads(
+        (Path(orthography2ipa.__file__).parent / "data" / f"{code}.json").read_text()
+    )
+    reachable = _reachable_slot_ipas(code)
+    for rule in raw.get("allophone_rules", ()):
+        assert rule["phonemes"], rule["id"]
+        dead = [p for p in rule["phonemes"] if p not in reachable]
+        assert not dead, (
+            f"{code}: rule {rule['id']} keys on slot IPA(s) {dead} that the "
+            f"tokenizer can never emit (a slot is C or C+inherent vowel)"
+        )
+        for field in ("preceded_by_phoneme", "followed_by_phoneme"):
+            dead = [p for p in rule.get(field) or () if p not in reachable]
+            assert not dead, (
+                f"{code}: rule {rule['id']} has unreachable neighbour IPA(s) {dead}"
+            )
