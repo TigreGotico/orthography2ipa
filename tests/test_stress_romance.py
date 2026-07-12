@@ -142,7 +142,11 @@ class TestCatalanStress:
         assert spec.stress.default_position == -2
         assert "à" in spec.stress.marked_vowels
         assert "é" in spec.stress.marked_vowels
-        assert "ï" in spec.stress.marked_vowels
+        # The DIAERESIS is not a stress mark: ⟨ï ü⟩ mark hiatus and a
+        # pronounced ⟨u⟩ (següent, raïm), so treating them as accents put the
+        # stress on the wrong syllable (IEC grammar ch. 3).
+        assert "ï" not in spec.stress.marked_vowels
+        assert "ü" not in spec.stress.marked_vowels
 
     def test_ca_vowel_final_paroxytone(self):
         # casa → -2

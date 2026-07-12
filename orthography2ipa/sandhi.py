@@ -68,10 +68,25 @@ class SandhiEngine:
         for i in range(len(result) - 1):
             left = result[i]
             right = result[i + 1]
+            # The two sides of a boundary are resolved independently: the
+            # first matching rule wins *per side*. A left-only rule set (every
+            # rule declaring `transform` and no `right_transform` — the shape
+            # every spec had before regressive sandhi existed) therefore still
+            # applies exactly one rule per boundary, to the left word.
+            # Contexts are always matched against the ORIGINAL words, so the
+            # side that fires first cannot mask the other's trigger.
+            left_done = right_done = False
             for rule, left_re, right_re in self._compiled:
+                if left_done and right_done:
+                    break
                 if obligatory_only and not rule.obligatory:
                     continue
-                if left_re.search(left) and right_re.search(right):
+                if not (left_re.search(left) and right_re.search(right)):
+                    continue
+                if rule.transform is not None and not left_done:
                     result[i] = left_re.sub(rule.transform, left)
-                    break  # first matching rule wins per boundary
+                    left_done = True
+                if rule.right_transform is not None and not right_done:
+                    result[i + 1] = right_re.sub(rule.right_transform, right)
+                    right_done = True
         return result

@@ -287,7 +287,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 name=sr["name"],
                 left_context=sr["left_context"],
                 right_context=sr["right_context"],
-                transform=sr["transform"],
+                transform=sr.get("transform"),
+                right_transform=sr.get("right_transform"),
                 obligatory=sr.get("obligatory", True),
                 notes=sr.get("notes", ""),
             )
@@ -399,6 +400,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             penult_stress_endings=tuple(raw_stress.get("penult_stress_endings", ())),
             marked_vowels=tuple(raw_stress.get("marked_vowels", ())),
             stress_mark=raw_stress.get("stress_mark", "ˈ"),
+            diphthongs=tuple(raw_stress.get("diphthongs", ())),
             notes=raw_stress.get("notes", "") or "",
         )
 

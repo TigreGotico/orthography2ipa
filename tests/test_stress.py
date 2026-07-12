@@ -709,3 +709,39 @@ class TestGreekStress:
     ])
     def test_greek_gold(self, rules, word, expected):
         assert detect_stress(word, rules) == expected
+
+
+# ─── Diphthong-aware syllabification ───────────────────────────────────────
+
+class TestDiphthongs:
+    """``StressRules.diphthongs`` splits a vowel run into nuclei.
+
+    The bundled splitter counts a maximal run of vowel letters as ONE
+    nucleus. That is right for a language whose vowel runs are all
+    diphthongs and wrong wherever the orthography also writes hiatus:
+    Catalan ⟨tenia⟩ is te-ni-a, and mis-counting its syllables moves the
+    stress — and therefore the unstressed-vowel reduction it conditions —
+    onto the wrong vowel.
+    """
+
+    CA = ("ai", "au", "ei", "eu", "iu", "oi", "ou", "ui", "ua", "ue", "uo")
+
+    def test_empty_diphthongs_merges_the_whole_run(self):
+        assert syllabify("tenia") == ["te", "nia"]
+        assert syllabify("tenia", diphthongs=()) == ["te", "nia"]
+
+    def test_hiatus_splits_into_separate_nuclei(self):
+        assert syllabify("tenia", diphthongs=self.CA) == ["te", "ni", "a"]
+        assert syllabify("dia", diphthongs=self.CA) == ["di", "a"]
+
+    def test_a_listed_diphthong_stays_one_nucleus(self):
+        assert syllabify("ciutat", diphthongs=self.CA) == ["ciu", "tat"]
+        assert syllabify("aigua", diphthongs=self.CA) == ["ai", "gua"]
+
+    def test_longest_diphthong_wins_and_the_rest_split(self):
+        # ⟨eia⟩ = the diphthong ⟨ei⟩ plus a nucleus ⟨a⟩
+        assert syllabify("feia", diphthongs=self.CA) == ["fei", "a"]
+
+    def test_syllabification_is_lossless(self):
+        for word in ["tenia", "aigua", "ciutat", "veïna", "feia", "coses"]:
+            assert "".join(syllabify(word, diphthongs=self.CA)) == word
