@@ -1,0 +1,37 @@
+{
+  "code": "gcr",
+  "name": "Guianese Creole",
+  "family": "Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "iso639_3": "gcr",
+  "glottolog_code": "guia1246",
+  "wikidata_qid": "Q1363072",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "French Guianese Creole (kriyòl gwiyannen) — a French-lexifier creole. The grapheme inventory is NOT yet specified. The Wikipedia article documents spelling conventions (q→k, x→z, ⟨ch⟩=/ʃ/, no silent h, ⟨ou⟩→⟨w⟩ for [w]) but no full letter → IPA table or phoneme inventory, and the orthography is not fully standardised; nasal vowels and the treatment of ⟨r⟩ in particular need a cited source. Rather than infer a table, this entry carries metadata only until a descriptive grammar is consulted.",
+  "sources": [
+    {
+      "id": "gcr_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Guianese Creole language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/French_Guianese_Creole",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/French_Guianese_Creole",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/French_Guianese_Creole",
+    "https://gcr.wikipedia.org/wiki/Kriy%C3%B2l_Gwiyannen"
+  ],
+  "location": {
+    "latitude": 4.94804,
+    "longitude": -52.7336,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Guianese Creole French."
+  }
+}

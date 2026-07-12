@@ -2,39 +2,35 @@
   "code": "bcl",
   "name": "Central Bikol",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
   "graphemes": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
+    "b": [
+      "b"
     ],
     "k": [
       "k"
     ],
-    "b": [
-      "b"
-    ],
     "d": [
       "d"
     ],
+    "e": [
+      "e"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,58 +41,83 @@
     "ng": [
       "ŋ"
     ],
-    "s": [
-      "s"
+    "o": [
+      "o",
+      "u"
     ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "r": [
       "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "sy": [
+      "ʃ"
+    ],
+    "ty": [
+      "tʃ"
+    ],
+    "dy": [
+      "dʒ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ly": [
+      "ʎ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
     ]
   },
   "allophones": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
+    "b": [
+      "b"
     ],
     "k": [
       "k"
     ],
-    "b": [
-      "b"
-    ],
     "d": [
       "d"
     ],
+    "e": [
+      "e"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,49 +128,89 @@
     "ŋ": [
       "ŋ"
     ],
-    "s": [
-      "s"
+    "o": [
+      "o"
     ],
-    "h": [
-      "h"
+    "u": [
+      "u"
     ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "ɾ": [
       "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ʎ": [
+      "ʎ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Central Bikol (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
   "iso639_3": "bcl",
   "glottolog_code": "cent2087",
   "wikipedia": [
-    "https://bcl.wikipedia.org/wiki/Tataramon_na_Bikol_Sentral",
-    "https://en.wikipedia.org/wiki/Central_Bikol"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/cent2087"
+    "https://en.wikipedia.org/wiki/Central_Bikol",
+    "https://bcl.wikipedia.org/wiki/Tataramon_na_Bikol_Sentral"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/cent2087",
+      "id": "mintz1971",
+      "author": "Mintz, Malcolm W.",
+      "year": 1971,
+      "title": "Bikol Grammar Notes",
+      "publisher": "University of Hawaii Press",
+      "url": null,
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Reference grammar; phoneme inventory and orthography."
+    },
+    {
+      "id": "bikol_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Central Bikol",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Central_Bikol",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Central_Bikol",
+      "pages": null,
+      "notes": null
     }
   ],
+  "notes": "Central Bikol (Bikol Sentral) — Philippine language of the Bicol Region, written in the Latin script (the Abakada-derived alphabet a b k d e g h i l m n ng o p r s t u w y, extended for loans). Native three-vowel system /a i u/; /u/ surfaces as [o] in final syllables, which the orthography writes ⟨o⟩. /e/ is a marginal phoneme from Spanish loans. ⟨ng⟩ is the velar nasal /ŋ/. The palatal digraphs sy/ty/dy/ny/ly and the letters f, v occur only in Spanish and English loanwords. Glottal stop is phonemic but usually left unwritten (optionally ⟨'⟩ or a hyphen). Stress is contrastive and not consistently marked.",
+  "timespan": {
+    "start_year": 1600,
+    "end_year": null
+  },
   "parent": "x-clade-mala1545",
   "ancestors": [
     {

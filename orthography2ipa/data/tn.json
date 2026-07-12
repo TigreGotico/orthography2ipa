@@ -2,197 +2,31 @@
   "code": "tn",
   "name": "Tswana",
   "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ny": [
-      "ɲ"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "y": [
-      "j"
-    ],
-    "ch": [
-      "t͡ʃ"
-    ],
-    "sh": [
-      "ʃ"
-    ],
-    "j": [
-      "d͡ʒ"
-    ]
-  },
-  "allophones": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "t͡ʃ": [
-      "t͡ʃ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "d͡ʒ": [
-      "d͡ʒ"
-    ]
-  },
-  "notes": "LEAF STUB (not a modelled G2P target). Tswana (Niger-Congo). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
   "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "x-clade-narr1281",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Tswana (Setswana) — Sotho-Tswana (Bantu) language, official in Botswana and South Africa. Written in the Latin script, disjunctively; the South African and Botswana orthographies differ (e.g. ⟨tlh⟩/⟨th⟩ conventions, use of ⟨š⟩ vs ⟨sh⟩). GRAPHEME INVENTORY NOT YET SPECIFIED: an accurate spec must model the ejective and aspirated stop series, the affricates and lateral obstruents (tl, tlh, tš), the click ⟨q⟩ found in ideophones and loans, and the two competing national orthographies; tone is contrastive but unwritten. INPUT CONTRACT: input is expected in a standard Latin-script Setswana orthography.",
   "iso639_3": "tsn",
   "glottolog_code": "tswa1253",
   "wikipedia": [
-    "https://tn.wikipedia.org/wiki/Setswana",
-    "https://en.wikipedia.org/wiki/Tswana_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/tswa1253"
+    "https://en.wikipedia.org/wiki/Tswana_language",
+    "https://tn.wikipedia.org/wiki/Setswana"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "id": "tn_wiki",
+      "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/tswa1253",
+      "title": "Tswana language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tswana_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tswana_language",
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": null
     }
   ],
-  "parent": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

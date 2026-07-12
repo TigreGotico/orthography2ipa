@@ -3,30 +3,19 @@
   "name": "Tok Pisin",
   "family": "English Creole",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "tpi",
+  "glottolog_code": "tokp1240",
   "graphemes": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
+    "ai": [
+      "ai"
     ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+    "au": [
+      "au"
     ],
     "b": [
       "b"
@@ -34,8 +23,29 @@
     "d": [
       "d"
     ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -44,60 +54,49 @@
       "n"
     ],
     "ng": [
-      "ŋ"
+      "ŋ",
+      "ŋɡ"
+    ],
+    "o": [
+      "o"
+    ],
+    "oi": [
+      "oi"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
     ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "t": [
+      "t"
     ],
-    "l": [
-      "l"
+    "u": [
+      "u"
     ],
-    "r": [
-      "ɾ"
+    "v": [
+      "v"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "j": [
-      "d͡ʒ"
     ]
   },
   "allophones": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
+    "ai": [
+      "ai"
     ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+    "au": [
+      "au"
     ],
     "b": [
       "b"
@@ -105,8 +104,29 @@
     "d": [
       "d"
     ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -117,58 +137,63 @@
     "ŋ": [
       "ŋ"
     ],
+    "ŋɡ": [
+      "ŋɡ"
+    ],
+    "o": [
+      "o"
+    ],
+    "oi": [
+      "oi"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ɾ",
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "t": [
+      "t"
     ],
-    "l": [
-      "l"
+    "u": [
+      "u"
     ],
-    "ɾ": [
-      "ɾ"
+    "v": [
+      "v"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "d͡ʒ": [
-      "d͡ʒ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Tok Pisin (English Creole). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
-  "iso639_3": "tpi",
-  "glottolog_code": "tokp1240",
-  "wikipedia": [
-    "https://tpi.wikipedia.org/wiki/Tok_Pisin",
-    "https://en.wikipedia.org/wiki/Tok_Pisin"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/tokp1240"
-  ],
+  "notes": "Tok Pisin — English-lexifier creole of Papua New Guinea, one of its official languages. The orthography is phonemic: 21 Latin letters, five vowels /i e a o u/, digraphs ⟨ai au oi⟩ for the diphthongs and ⟨ng⟩ for /ŋ/ (also /ŋɡ/ in some words). ⟨r⟩ is usually an alveolar tap [ɾ]. Final obstruents are devoiced (pik 'pig'). More educated speakers may distinguish more vowels under English influence.",
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "id": "tpi_wiki",
+      "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/tokp1240",
+      "title": "Tok Pisin",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tok_Pisin",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tok_Pisin",
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Orthography (21 letters, digraphs) and phoneme inventory."
     }
   ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tok_Pisin",
+    "https://tpi.wikipedia.org/wiki/Tok_Pisin"
+  ],
+  "timespan": {
+    "start_year": 1880,
+    "end_year": null
+  },
   "location": {
     "latitude": -9.41971,
     "longitude": 147.303,

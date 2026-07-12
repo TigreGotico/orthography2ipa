@@ -1,0 +1,36 @@
+{
+  "code": "ann",
+  "name": "Obolo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": null,
+  "notes": "STUB: the grapheme inventory of Obolo is NOT yet specified (graphemes/allophones are empty). Obolo (Andoni) is a Cross River (Atlantic-Congo) language of Rivers and Akwa Ibom States, Nigeria, written in the Latin script with additional letters and a tonal system. INPUT CONTRACT: Latin-script Obolo orthography. No ISO 639-3 or Glottolog code is recorded for this Wikimedia code in Wikidata, so those fields are null. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "sources": [
+    {
+      "id": "obolo_wikidata",
+      "author": "Wikidata contributors",
+      "year": 2026,
+      "title": "Obolo (Q130548769)",
+      "publisher": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q130548769",
+      "pages": null,
+      "notes": "Only verified identifier for this Wikimedia language code.",
+      "wikipedia_url": null
+    }
+  ],
+  "wikipedia": [],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ]
+}

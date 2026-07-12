@@ -117,6 +117,7 @@ def test_family_is_not_authored_in_json():
         # a creole. The family tree cannot classify one, so these keep an
         # authored label rather than deriving a descent that does not exist.
         "English Creole", "French Creole", "Portuguese Creole",
+        "Spanish Creole", "Creole",
     }, authored
 
 

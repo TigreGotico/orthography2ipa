@@ -1,0 +1,106 @@
+{
+  "code": "awa",
+  "name": "Awadhi",
+  "script": "Devanagari",
+  "script_type": "abugida",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Awadhi (अवधी), an Eastern Hindi / Indo-Aryan language of the Awadh region of Uttar Pradesh, India (the language of Tulsidas's Ramcharitmanas). STUB: the grapheme inventory is NOT yet specified. Script: Devanagari, an abugida — consonant letters carry an inherent vowel (schwa) that is cancelled by virama ⟨्⟩ and overridden by dependent vowel signs (matras); a full spec needs the inherent-vowel/schwa-deletion rules, conjunct (ligature) handling, nukta letters and anusvara/candrabindu nasalisation, which differ from those of standard Hindi. Awadhi is also historically written in the Kaithi and Perso-Arabic scripts; input is assumed to be Devanagari. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode awad1243), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "iso639_3": "awa",
+  "glottolog_code": "awad1243",
+  "wikidata_qid": "Q29579",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Awadhi_language",
+    "https://awa.wikipedia.org/wiki/%E0%A4%85%E0%A4%B5%E0%A4%A7%E0%A5%80"
+  ],
+  "sources": [
+    {
+      "id": "awadhi_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Awadhi language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Awadhi_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Awadhi_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode awad1243."
+    }
+  ],
+  "timespan": {
+    "start_year": 1300,
+    "end_year": null
+  },
+  "phonemes": [
+    "b",
+    "b̤",
+    "cç",
+    "cçʰ",
+    "d̪",
+    "d̪̤",
+    "e",
+    "h",
+    "i",
+    "j",
+    "k",
+    "kʰ",
+    "l",
+    "l̤",
+    "m",
+    "m̤",
+    "n",
+    "o",
+    "p",
+    "pʰ",
+    "r",
+    "r̤",
+    "s",
+    "t̪",
+    "t̪ʰ",
+    "u",
+    "w",
+    "æ",
+    "ŋ",
+    "ɑ",
+    "ɔ",
+    "ɖ",
+    "ɖ̤",
+    "ɛ",
+    "ɟʝ",
+    "ɟ̤ʝ",
+    "ɡ",
+    "ɡʱ",
+    "ɦ",
+    "ɲ",
+    "ɳ",
+    "ɽ",
+    "ɽ̤",
+    "ʈ",
+    "ʈʰ"
+  ],
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Indo-Aryan — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 27.5907,
+    "longitude": 82.4663,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Awadhi."
+  }
+}

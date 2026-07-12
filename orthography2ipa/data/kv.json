@@ -1,0 +1,49 @@
+{
+  "code": "kv",
+  "name": "Komi",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Komi (коми кыв), a Permic (Uralic) language of the Komi Republic, Russia, covering Komi-Zyrian and Komi-Permyak. STUB: the grapheme inventory is NOT yet specified. Script: Cyrillic alphabet — the Russian alphabet plus ⟨І і⟩ and ⟨Ӧ ӧ⟩ (/ɘ/). A full spec must model the palatalisation contrast (soft sign, iotated vowel letters, and the hard-⟨і⟩ vs ⟨и⟩ distinction that marks the preceding consonant's hardness), the affricates written ⟨дж дз тш⟩ (multigraphs, ambiguous with letter sequences), and the Russian-loanword letters. Komi was historically written in the Old Permic (Abur) and Molodtsov alphabets; input is assumed to be the modern Cyrillic orthography. Glottolog: `kv` is the Komi macrolanguage, so `komi1267` is a family node by necessity.",
+  "iso639_3": "kom",
+  "glottolog_code": "komi1267",
+  "wikidata_qid": "Q36126",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Komi_language",
+    "https://kv.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%B8_%D0%BA%D1%8B%D0%B2"
+  ],
+  "sources": [
+    {
+      "id": "komi_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Komi language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Komi_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Komi_language",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    }
+  ],
+  "timespan": {
+    "start_year": 1918,
+    "end_year": null
+  },
+  "parent": "x-clade-ural1272",
+  "ancestors": [
+    {
+      "code": "x-clade-ural1272",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Uralic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 61.476633,
+    "longitude": 55.165967,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Komi family — a summary of a whole clade's range, not a place anyone speaks."
+  }
+}

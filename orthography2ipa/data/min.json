@@ -2,39 +2,56 @@
   "code": "min",
   "name": "Minangkabau",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "x-clade-mala1545",
+  "ancestors": [
+    {
+      "code": "x-clade-mala1545",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
+    }
+  ],
   "graphemes": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
     "b": [
       "b"
+    ],
+    "c": [
+      "tʃ"
     ],
     "d": [
       "d"
     ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "x"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,58 +62,92 @@
     "ng": [
       "ŋ"
     ],
+    "ny": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "sy": [
+      "ʃ"
     ],
-    "l": [
-      "l"
+    "t": [
+      "t"
     ],
-    "r": [
-      "ɾ"
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
     ],
     "w": [
       "w"
     ],
+    "x": [
+      "ks"
+    ],
     "y": [
       "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "'": [
+      "ʔ"
     ]
   },
   "allophones": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
     "b": [
       "b"
+    ],
+    "tʃ": [
+      "tʃ"
     ],
     "d": [
       "d"
     ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k",
+      "ʔ"
+    ],
+    "x": [
+      "x"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,58 +158,95 @@
     "ŋ": [
       "ŋ"
     ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "ʃ": [
+      "ʃ"
     ],
-    "l": [
-      "l"
+    "t": [
+      "t"
     ],
-    "ɾ": [
-      "ɾ"
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
     ],
     "w": [
       "w"
     ],
+    "ks": [
+      "ks"
+    ],
     "j": [
       "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʔ": [
+      "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Minangkabau (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
+  "positional_graphemes": {
+    "k": {
+      "word_final": [
+        "ʔ",
+        "k"
+      ],
+      "default": [
+        "k"
+      ]
+    }
+  },
   "iso639_3": "min",
   "glottolog_code": "mina1268",
   "wikipedia": [
-    "https://min.wikipedia.org/wiki/Bahaso_Minangkabau",
-    "https://en.wikipedia.org/wiki/Minangkabau_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/mina1268"
+    "https://en.wikipedia.org/wiki/Minangkabau_language",
+    "https://min.wikipedia.org/wiki/Bahaso_Minangkabau"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "id": "minangkabau_wiki",
+      "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/mina1268",
-      "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
-    }
-  ],
-  "parent": "x-clade-mala1545",
-  "ancestors": [
+      "title": "Minangkabau language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Minangkabau_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Minangkabau_language",
+      "pages": "Consonant/vowel inventory and Latin orthography (c=/tʃ/, j=/dʒ/, ny=/ɲ/, ng=/ŋ/, final k=[ʔ]).",
+      "notes": null
+    },
     {
-      "code": "x-clade-mala1545",
-      "role": "parent",
-      "weight": 1.0,
-      "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
+      "id": "moussay1981",
+      "author": "Moussay, Gérard",
+      "year": 1981,
+      "title": "La langue minangkabau",
+      "publisher": "Association Archipel",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Reference grammar and phonology of Minangkabau."
     }
   ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "notes": "Minangkabau, written today in the Latin script following the Indonesian spelling convention (the Jawi/Arabic tradition is not modelled here). Digraphs: ng /ŋ/, ny /ɲ/, sy /ʃ/, kh /x/. Final ⟨k⟩ is realised as a glottal stop [ʔ]. Five monophthongs /i e a o u/ plus diphthongs (ia, ua, ui, ai, au).",
   "location": {
     "latitude": -0.896,
     "longitude": 100.44,

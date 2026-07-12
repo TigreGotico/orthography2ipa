@@ -1,0 +1,45 @@
+{
+  "code": "eml",
+  "name": "Emilian–Romagnol",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Emilian–Romagnol (emiliàn e rumagnòl), a Gallo-Italic language group of northern Italy. STUB: the grapheme inventory is NOT yet specified. There is no single accepted orthography — several competing spelling conventions exist per city/variety, and vowel length and the front rounded vowels are written differently in each. Grapheme-to-IPA mapping is therefore variety- and orthography-specific; the Emilian side is tracked separately as `egl`. Glottolog: `eml` covers Emilian + Romagnol jointly, so the code is necessarily the `emil1243` family node; the language-level languoids are `emil1241` (Emilian, ISO `egl`) and `roma1328` (Romagnol, ISO `rgn`).",
+  "iso639_3": null,
+  "glottolog_code": "emil1243",
+  "wikidata_qid": "Q242648",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol",
+    "https://eml.wikipedia.org/wiki/L%C3%A4ngua_emigli%C3%A8na-rumagn%C3%B4la"
+  ],
+  "sources": [
+    {
+      "id": "eml_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Emilian–Romagnol",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "parent": "x-clade-roma1334",
+  "ancestors": [
+    {
+      "code": "x-clade-roma1334",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Romance — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 44.29425,
+    "longitude": 11.64915,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Emiliano-Romagnolo family — a summary of a whole clade's range, not a place anyone speaks."
+  }
+}

@@ -2,30 +2,12 @@
   "code": "ilo",
   "name": "Ilocano",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "x-clade-mala1545",
   "graphemes": {
     "a": [
       "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
     ],
     "b": [
       "b"
@@ -33,8 +15,24 @@
     "d": [
       "d"
     ],
+    "e": [
+      "ɛ",
+      "ɯ"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,49 +43,45 @@
     "ng": [
       "ŋ"
     ],
-    "s": [
-      "s"
+    "o": [
+      "o",
+      "u"
     ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "r": [
       "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
+    ],
+    "ts": [
+      "tʃ"
+    ],
+    "'": [
+      "ʔ"
     ]
   },
   "allophones": {
     "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+      "a",
+      "ɐ"
     ],
     "b": [
       "b"
@@ -95,8 +89,28 @@
     "d": [
       "d"
     ],
+    "ɛ": [
+      "ɛ",
+      "e"
+    ],
+    "ɯ": [
+      "ɯ"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i",
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,50 +121,71 @@
     "ŋ": [
       "ŋ"
     ],
-    "s": [
-      "s"
+    "o": [
+      "o"
     ],
-    "h": [
-      "h"
+    "u": [
+      "u",
+      "w"
     ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "ɾ": [
       "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "ʔ": [
+      "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Ilocano (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
+  "notes": "Ilocano (Iloko / Pagsasao nga Ilokano) — Northern Philippine (Austronesian) language of Luzon. Latin orthography; the digraph ⟨ng⟩ is a single letter /ŋ/. Native morphemes write /u/ as ⟨o⟩ in the ultima and ⟨u⟩ elsewhere, so ⟨o⟩ is ambiguous between /o/ and /u/. ⟨e⟩ is /ɛ~e/ in the nuclear dialects and loanwords but /ɯ/ in native words in non-nuclear dialects. ⟨r⟩ is a tap /ɾ/, ⟨rr⟩ a trill /r/. Unstressed /a/ is [ɐ] outside final syllables; /i/ and /u/ glide to [j]/[w] before another vowel. Glottal stop is phonemic but generally unwritten (⟨'⟩ / hyphen where marked).",
   "iso639_3": "ilo",
   "glottolog_code": "ilok1237",
   "wikipedia": [
-    "https://ilo.wikipedia.org/wiki/Pagsasao_nga_Ilokano",
-    "https://en.wikipedia.org/wiki/Ilocano_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/ilok1237"
+    "https://en.wikipedia.org/wiki/Ilocano_language",
+    "https://ilo.wikipedia.org/wiki/Pagsasao_nga_Ilokano"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/ilok1237",
+      "id": "rubino2000",
+      "author": "Rubino, Carl R. Galvez",
+      "year": 2000,
+      "title": "Ilocano Dictionary and Grammar: Ilocano-English, English-Ilocano",
+      "publisher": "University of Hawai'i Press",
+      "url": null,
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Reference grammar; orthography and phonology."
+    },
+    {
+      "id": "ilo_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Ilocano language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ilocano_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ilocano_language",
+      "pages": null,
+      "notes": "Phonology and orthography tables."
     }
   ],
-  "parent": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

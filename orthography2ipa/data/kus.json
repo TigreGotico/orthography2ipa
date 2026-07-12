@@ -1,0 +1,22 @@
+{
+  "code": "kus",
+  "name": "Kusaal",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Kusaal (Kʋsaal) — Mabia/Gur (Atlantic-Congo) language of northeastern Ghana and adjacent Burkina Faso and Togo. Written in a Latin-based alphabet using Africa Alphabet letters (ɛ, ɔ, ʋ, ŋ). GRAPHEME INVENTORY NOT YET SPECIFIED: Kusaal is tonal and has an ATR vowel-harmony system; a reliable spec must model the vowel set, tone and the two written dialects (Agole and Toende), which requires dedicated sourcing. INPUT CONTRACT: input is expected in the Latin-script Kusaal orthography. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": null,
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ]
+}

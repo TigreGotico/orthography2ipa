@@ -2,39 +2,65 @@
   "code": "mad",
   "name": "Madurese",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "mad",
+  "glottolog_code": "nucl1460",
   "graphemes": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+    "â": [
+      "ɤ"
     ],
     "b": [
       "b"
     ],
+    "bh": [
+      "bʱ"
+    ],
+    "c": [
+      "tʃ"
+    ],
     "d": [
       "d"
     ],
+    "dh": [
+      "dʱ"
+    ],
+    "e": [
+      "ə",
+      "ɨ"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
     "g": [
       "ɡ"
+    ],
+    "gh": [
+      "ɡʱ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "jh": [
+      "dʒʱ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,17 +71,26 @@
     "ng": [
       "ŋ"
     ],
+    "ny": [
+      "ɲ"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "t": [
+      "t"
     ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "ɾ"
+    "u": [
+      "u"
     ],
     "w": [
       "w"
@@ -68,35 +103,60 @@
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+    "ɤ": [
+      "ɤ"
     ],
     "b": [
       "b"
     ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
     "d": [
       "d"
     ],
+    "dʱ": [
+      "dʱ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ɨ": [
+      "ɨ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "dʒʱ": [
+      "dʒʱ"
+    ],
+    "k": [
+      "k",
+      "ʔ"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,17 +167,26 @@
     "ŋ": [
       "ŋ"
     ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "t": [
+      "t"
     ],
-    "l": [
-      "l"
-    ],
-    "ɾ": [
-      "ɾ"
+    "u": [
+      "u"
     ],
     "w": [
       "w"
@@ -126,29 +195,23 @@
       "j"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Madurese (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
-  "iso639_3": "mad",
-  "glottolog_code": "nucl1460",
-  "wikipedia": [
-    "https://mad.wikipedia.org/wiki/Bh%C3%A2sa_Madhur%C3%A2",
-    "https://en.wikipedia.org/wiki/Madurese_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/nucl1460"
-  ],
+  "notes": "Madurese (Bhâsa Madhurâ) in the Latin orthography (Alfabet Latèn); a Javanese-script orthography also exists and is not covered here. Distinctive three-way laryngeal contrast in stops — voiceless unaspirated, voiced, and a breathy/aspirated series written with ⟨h⟩ digraphs (bh, dh, jh, gh). Nine vowels; the Latin norm writes /ɛ/ as ⟨è⟩ and /ɤ/ as ⟨â⟩, while plain ⟨e⟩ covers /ə/ and /ɨ/, so ⟨e⟩ is genuinely ambiguous. Retroflex ṭ/ḍ and the retroflex nasal are dialectal/typographic variants not represented in the base map.",
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "id": "mad_wiki",
+      "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/nucl1460",
+      "title": "Madurese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Madurese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Madurese_language",
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Latin alphabet (Alfabet Latèn), 9-vowel table with Latin spellings, and the three-way stop contrast."
     }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Madurese_language",
+    "https://mad.wikipedia.org/wiki/Bh%C3%A2sa_Madhur%C3%A2"
   ],
   "parent": "x-clade-mala1545",
   "ancestors": [

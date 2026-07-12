@@ -1,0 +1,45 @@
+{
+  "code": "kcg",
+  "name": "Tyap",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "kcg",
+  "glottolog_code": "tyap1238",
+  "wikidata_qid": "Q3912765",
+  "notes": "STUB: the grapheme inventory of Tyap is NOT yet specified (graphemes/allophones are empty). Tyap (a̱lyem Tyap) is a Plateau (Atlantic-Congo) language of Kaduna State, Nigeria, written in the Latin script (with the macron-below vowel ⟨a̱⟩ and other digraphs) and tonal; an indigenous Akai script also exists but is marginal. INPUT CONTRACT: Latin-script Tyap orthography.",
+  "sources": [
+    {
+      "id": "tyap_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Tyap",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tyap",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tyap",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tyap",
+    "https://kcg.wikipedia.org/wiki/Tyap_%28a%CC%B1lyem%29"
+  ],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 9.75568,
+    "longitude": 8.3082,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Tyap."
+  }
+}

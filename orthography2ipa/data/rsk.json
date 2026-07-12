@@ -1,0 +1,36 @@
+{
+  "code": "rsk",
+  "name": "Pannonian Rusyn",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "wikidata_qid": "Q35660",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Pannonian Rusyn (руски язик) of Vojvodina and Croatia — a West-Slavic-influenced Rusyn variety with its own codified Cyrillic orthography, distinct from Carpathian Rusyn. The grapheme inventory is NOT yet specified: the standard Cyrillic alphabet and its palatalisation conventions have not been verified against the codified grammar (Kostelnik/Ramač), and Wikidata supplies no ISO 639-3 or Glottolog code for this Wikimedia code. Metadata only.",
+  "sources": [
+    {
+      "id": "rsk_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Pannonian Rusyn Wikipedia",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pannonian_Rusyn_Wikipedia",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pannonian_Rusyn_Wikipedia",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pannonian_Rusyn_Wikipedia"
+  ],
+  "parent": "x-clade-slav1255",
+  "ancestors": [
+    {
+      "code": "x-clade-slav1255",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Slavic — the classification node this language sits under."
+    }
+  ]
+}

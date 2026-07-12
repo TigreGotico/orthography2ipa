@@ -1,0 +1,38 @@
+{
+  "code": "bdr",
+  "name": "West Coast Bajau",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "West Coast Bajau (Bajau Sama), a Sama–Bajaw language of Sabah, Malaysia. STUB: the grapheme inventory is NOT yet specified. The language is written in the Latin script (Malay-based conventions), but no citable letter-to-phoneme table could be verified, so no grapheme map is claimed here. The Wikidata row supplied for this code identified the West Coast Bajaw Wikipedia project rather than the language item, so no QID is asserted; ISO 639-3 bdr and Glottolog west2560 are the codes usually given for this language but were not verified here and are left null.",
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": null,
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sama%E2%80%93Bajaw_languages"
+  ],
+  "sources": [
+    {
+      "id": "sama–bajaw_languages_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Sama–Bajaw languages",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sama%E2%80%93Bajaw_languages",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sama%E2%80%93Bajaw_languages",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ],
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ]
+}

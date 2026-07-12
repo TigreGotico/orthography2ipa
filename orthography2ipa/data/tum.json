@@ -2,39 +2,62 @@
   "code": "tum",
   "name": "Tumbuka",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
   "graphemes": {
+    "ng'": [
+      "ŋ"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
     "a": [
       "a"
     ],
     "e": [
-      "e"
+      "ɛ"
     ],
     "i": [
       "i"
     ],
     "o": [
-      "o"
+      "ɔ"
     ],
     "u": [
       "u"
     ],
-    "p": [
-      "p"
-    ],
     "b": [
-      "b"
+      "ɓ"
     ],
-    "t": [
-      "t"
+    "c": [
+      "tʃ"
     ],
     "d": [
-      "d"
+      "ɗ"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
     ],
     "k": [
       "k"
     ],
-    "g": [
-      "ɡ"
+    "l": [
+      "ɽ"
+    ],
+    "r": [
+      "ɽ"
     ],
     "m": [
       "m"
@@ -42,32 +65,17 @@
     "n": [
       "n"
     ],
-    "ny": [
-      "ɲ"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
+    "p": [
+      "p"
     ],
     "s": [
       "s"
     ],
-    "z": [
-      "z"
+    "t": [
+      "t"
     ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
+    "v": [
+      "v"
     ],
     "w": [
       "w"
@@ -75,49 +83,66 @@
     "y": [
       "j"
     ],
-    "ch": [
-      "t͡ʃ"
+    "z": [
+      "z"
     ],
-    "sh": [
-      "ʃ"
-    ],
-    "j": [
-      "d͡ʒ"
+    "ŵ": [
+      "β"
     ]
   },
   "allophones": {
+    "ŋ": [
+      "ŋ"
+    ],
+    "ŋɡ": [
+      "ŋɡ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
     "a": [
       "a"
     ],
-    "e": [
-      "e"
+    "ɛ": [
+      "ɛ"
     ],
     "i": [
       "i"
     ],
-    "o": [
-      "o"
+    "ɔ": [
+      "ɔ"
     ],
     "u": [
       "u"
     ],
-    "p": [
-      "p"
+    "ɓ": [
+      "ɓ"
     ],
-    "b": [
-      "b"
+    "tʃ": [
+      "tʃ"
     ],
-    "t": [
-      "t"
+    "ɗ": [
+      "ɗ"
     ],
-    "d": [
-      "d"
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "dʒ": [
+      "dʒ"
     ],
     "k": [
       "k"
     ],
-    "ɡ": [
-      "ɡ"
+    "ɽ": [
+      "ɽ",
+      "l",
+      "r"
     ],
     "m": [
       "m"
@@ -125,32 +150,17 @@
     "n": [
       "n"
     ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
+    "p": [
+      "p"
     ],
     "s": [
       "s"
     ],
-    "z": [
-      "z"
+    "t": [
+      "t"
     ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
+    "v": [
+      "v"
     ],
     "w": [
       "w"
@@ -158,40 +168,13 @@
     "j": [
       "j"
     ],
-    "t͡ʃ": [
-      "t͡ʃ"
+    "z": [
+      "z"
     ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "d͡ʒ": [
-      "d͡ʒ"
+    "β": [
+      "β"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Tumbuka (Niger-Congo). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
-  "iso639_3": "tum",
-  "glottolog_code": "tumb1250",
-  "wikipedia": [
-    "https://tum.wikipedia.org/wiki/ChiTumbuka",
-    "https://en.wikipedia.org/wiki/Tumbuka_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/tumb1250"
-  ],
-  "sources": [
-    {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/tumb1250",
-      "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
-    }
-  ],
   "parent": "x-clade-narr1281",
   "ancestors": [
     {
@@ -199,6 +182,36 @@
       "role": "parent",
       "weight": 1.0,
       "notes": "Bantu, within Atlantic-Congo."
+    }
+  ],
+  "notes": "Tumbuka (chiTumbuka), Bantu N.21, Malawi and Zambia. Latin orthography: <b> and <d> are implosives /ɓ ɗ/; <ŵ> is the bilabial fricative /β/ (a distinctive Tumbuka letter); <c> = /tʃ/, <j> = /dʒ/; <l> and <r> are allographs of one flap phoneme /ɽ/; <ng'> = /ŋ/ vs <ng> = prenasalised /ŋɡ/. Five vowels /a ɛ i ɔ u/, plus syllabic /m̩/. Tumbuka has lost lexical tone in most varieties; tone is not written and is not modelled.",
+  "iso639_3": "tum",
+  "glottolog_code": "tumb1250",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tumbuka_language",
+    "https://tum.wikipedia.org/wiki/ChiTumbuka"
+  ],
+  "sources": [
+    {
+      "id": "turner1952",
+      "author": "Turner, W. Y.",
+      "year": 1952,
+      "title": "Tumbuka–Tonga–English Dictionary",
+      "publisher": "Hetherwick Press, Blantyre",
+      "url": null,
+      "pages": null,
+      "notes": "Reference lexicon establishing the standard Tumbuka orthography."
+    },
+    {
+      "id": "tumbuka_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tumbuka language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tumbuka_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tumbuka_language",
+      "pages": null,
+      "notes": null
     }
   ],
   "location": {

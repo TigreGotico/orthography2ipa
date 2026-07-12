@@ -2,39 +2,44 @@
   "code": "iba",
   "name": "Iban",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "iso639_3": "iba",
+  "glottolog_code": "iban1264",
   "graphemes": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
     "b": [
       "b"
+    ],
+    "c": [
+      "tʃ"
     ],
     "d": [
       "d"
     ],
+    "e": [
+      "e",
+      "ə"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,17 +50,26 @@
     "ng": [
       "ŋ"
     ],
+    "ny": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "t": [
+      "t"
     ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "ɾ"
+    "u": [
+      "u"
     ],
     "w": [
       "w"
@@ -66,37 +80,43 @@
   },
   "allophones": {
     "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+      "a",
+      "ã"
     ],
     "b": [
       "b"
     ],
+    "tʃ": [
+      "tʃ"
+    ],
     "d": [
       "d"
     ],
+    "e": [
+      "e"
+    ],
+    "ə": [
+      "ə"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i",
+      "ĩ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k",
+      "ʔ"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,17 +127,27 @@
     "ŋ": [
       "ŋ"
     ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "t": [
+      "t"
     ],
-    "l": [
-      "l"
-    ],
-    "ɾ": [
-      "ɾ"
+    "u": [
+      "u",
+      "ũ"
     ],
     "w": [
       "w"
@@ -126,29 +156,23 @@
       "j"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Iban (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
-  "iso639_3": "iba",
-  "glottolog_code": "iban1264",
-  "wikipedia": [
-    "https://iba.wikipedia.org/wiki/Jaku_Iban",
-    "https://en.wikipedia.org/wiki/Iban_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/iban1264"
-  ],
+  "notes": "Iban (Jaku Iban) of Sarawak, written in the Latin script with Malay-style spelling conventions: ⟨ny⟩=/ɲ/, ⟨ng⟩=/ŋ/, ⟨c⟩=/tʃ/, ⟨j⟩=/dʒ/, ⟨y⟩=/j/. Six vowels /i e ə a o u/, with ⟨e⟩ writing both /e/ and /ə/. Vowels are nasalised after a nasal consonant; word-final ⟨k⟩ is commonly a glottal stop. The indigenous Dunging script exists but is not in general use and is not covered here.",
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "id": "iba_wiki",
+      "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/iban1264",
+      "title": "Iban language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Iban_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Iban_language",
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Consonant and vowel phoneme inventories with orthographic digraphs (ny, ng, ch/c, j, y)."
     }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Iban_language",
+    "https://iba.wikipedia.org/wiki/Jaku_Iban"
   ],
   "parent": "x-clade-mala1545",
   "ancestors": [

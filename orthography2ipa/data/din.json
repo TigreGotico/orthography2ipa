@@ -1,0 +1,120 @@
+{
+  "code": "din",
+  "name": "Dinka",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "din",
+  "glottolog_code": "dink1262",
+  "wikidata_qid": "Q56466",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dinka_language",
+    "https://din.wikipedia.org/wiki/W%C9%9B%CC%88t_c%C9%94l_Dinka"
+  ],
+  "sources": [
+    {
+      "id": "dinka_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Dinka language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Dinka_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dinka_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "remijsen2005",
+      "author": "Remijsen, Bert & Gilley, Leoma",
+      "year": 2008,
+      "title": "Why are three-level vowel length systems rare? Insights from Dinka (Luanyjang dialect)",
+      "publisher": "Journal of Phonetics 36(2)",
+      "url": null,
+      "pages": null,
+      "notes": "On the length/voice-quality/tone system the orthography under-marks."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode dink1262."
+    }
+  ],
+  "notes": "Dinka (Thuɔŋjäŋ) — Western Nilotic language of South Sudan, written in a Latin alphabet extended with ⟨ɛ ɔ ɣ ŋ⟩ and diaereses. THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). Dinka's phonology is exceptionally hard to map from spelling: it contrasts three vowel lengths, breathy vs. modal (creaky) voice, and lexical tone, and the orthography marks these only partially and inconsistently across the Agar/Bor/Padang/Rek standards. A grapheme map would need to commit to one dialect standard and to a documented convention for voice quality and tone. Glottolog: `din` is the Dinka macrolanguage, so `dink1262` is a family node by necessity. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode dink1262), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "phonemes": [
+    "a",
+    "aː",
+    "a̤",
+    "a̤ː",
+    "b",
+    "c",
+    "d",
+    "d̪",
+    "e",
+    "eː",
+    "e̤",
+    "e̤ː",
+    "i",
+    "iː",
+    "i̤",
+    "i̤ː",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "n̪",
+    "o",
+    "oː",
+    "o̤",
+    "o̤ː",
+    "p",
+    "t",
+    "t̪",
+    "u",
+    "uː",
+    "w",
+    "ŋ",
+    "ɔ",
+    "ɔː",
+    "ɔ̤",
+    "ɔ̤ː",
+    "ɛ",
+    "ɛː",
+    "ɛ̤",
+    "ɛ̤ː",
+    "ɟ",
+    "ɡ",
+    "ɣ",
+    "ɲ",
+    "ɾ",
+    "˦",
+    "˧",
+    "˨"
+  ],
+  "parent": "x-clade-nilo1247",
+  "ancestors": [
+    {
+      "code": "x-clade-nilo1247",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Nilotic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 8.42021,
+    "longitude": 30.147818,
+    "source": "glottolog",
+    "notes": "Glottolog's computed centroid for the Dinka family — a summary of a whole clade's range, not a place anyone speaks."
+  }
+}

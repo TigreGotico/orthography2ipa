@@ -1,0 +1,28 @@
+{
+  "code": "gur",
+  "name": "Farefare (Frafra)",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Farefare / Frafra (farefare), a Gur (Mabia) language of the Upper East Region of Ghana and southern Burkina Faso. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet, with the additional vowel letters ⟨ɛ ɔ ɩ ʋ⟩ typical of Ghanaian orthographies. A full spec must model ATR vowel harmony, nasal vowels and lexical tone (none of which is written), and the orthography is not fully standardised across the Gurenɛ/Nankani/Booni varieties. Wikidata gives no ISO 639-3 or Glottolog code for the Wikimedia code `gur` as such (the Wikidata item is the Farefare Wikipedia); the Glottolog/ISO code for the language itself (`gur`/`gure1255` family names collide with the Gur family label) was not verified, so both fields are left null rather than guessed. Input is assumed to be the Latin Farefare orthography. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": null,
+  "wikipedia": [],
+  "sources": [],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ]
+}

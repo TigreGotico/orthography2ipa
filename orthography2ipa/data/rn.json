@@ -1,197 +1,9 @@
 {
   "code": "rn",
-  "name": "Kirundi",
+  "name": "Kirundi (Rundi)",
   "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ny": [
-      "ɲ"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "y": [
-      "j"
-    ],
-    "ch": [
-      "t͡ʃ"
-    ],
-    "sh": [
-      "ʃ"
-    ],
-    "j": [
-      "d͡ʒ"
-    ]
-  },
-  "allophones": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "t͡ʃ": [
-      "t͡ʃ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "d͡ʒ": [
-      "d͡ʒ"
-    ]
-  },
-  "notes": "LEAF STUB (not a modelled G2P target). Kirundi (Niger-Congo). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
   "script_type": "alphabet",
-  "iso639_3": "run",
-  "glottolog_code": "rund1242",
-  "wikipedia": [
-    "https://rn.wikipedia.org/wiki/Ikirundi",
-    "https://en.wikipedia.org/wiki/Kirundi"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/rund1242"
-  ],
-  "sources": [
-    {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/rund1242",
-      "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
-    }
-  ],
+  "quality": "research",
   "parent": "x-clade-narr1281",
   "ancestors": [
     {
@@ -201,6 +13,227 @@
       "notes": "Bantu, within Atlantic-Congo."
     }
   ],
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "ɟ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "n": [
+      "n"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "pf": [
+      "pf"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɟ": [
+      "ɟ",
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "pf": [
+      "pf"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "iso639_3": "run",
+  "glottolog_code": "rund1242",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kirundi",
+    "https://rn.wikipedia.org/wiki/Ikirundi"
+  ],
+  "sources": [
+    {
+      "id": "kirundi_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kirundi",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kirundi",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kirundi",
+      "pages": "Consonant and vowel inventory, orthographic correspondences (c=/tʃ/, j=/ɟ/, sh=/ʃ/, ny=/ɲ/, y=/j/), phonemic vowel length and H/L tone.",
+      "notes": null
+    },
+    {
+      "id": "meeussen1959",
+      "author": "Meeussen, A. E.",
+      "year": 1959,
+      "title": "Essai de grammaire rundi",
+      "publisher": "Musée Royal du Congo Belge",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Classic reference grammar and phonology of Rundi."
+    }
+  ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "notes": "Kirundi (Rundi, Bantu JD62), Latin orthography. ⟨c⟩ = /tʃ/, ⟨j⟩ = /ɟ/, ⟨sh⟩ = /ʃ/, ⟨ny⟩ = /ɲ/, ⟨y⟩ = /j/, ⟨r⟩ = flap [ɾ]. Vowel length is phonemic and written by doubling the vowel (aa, ee, …); tone (H/L) is phonemic but is NOT written in the standard orthography, so no tone can be recovered from spelling alone.",
   "location": {
     "latitude": -2.94,
     "longitude": 29.97,

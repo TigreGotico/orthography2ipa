@@ -1,0 +1,304 @@
+{
+  "code": "guw",
+  "name": "Gun (Gungbe)",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "nic",
+  "ancestors": [
+    {
+      "code": "nic",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Niger-Congo > Volta-Niger > Gbe (Fon cluster)."
+    }
+  ],
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "an": [
+      "ã"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛn": [
+      "ɛ̃"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gb": [
+      "ɡ͡b"
+    ],
+    "h": [
+      "h"
+    ],
+    "hw": [
+      "hʷ"
+    ],
+    "i": [
+      "i"
+    ],
+    "in": [
+      "ĩ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kp": [
+      "k͡p"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ɔn": [
+      "ɔ̃"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "un": [
+      "ũ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "xw": [
+      "xʷ"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "b": [
+      "b",
+      "m"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ",
+      "n"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛ̃": [
+      "ɛ̃"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɡ͡b": [
+      "ɡ͡b"
+    ],
+    "h": [
+      "h"
+    ],
+    "hʷ": [
+      "hʷ"
+    ],
+    "i": [
+      "i"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "k͡p": [
+      "k͡p"
+    ],
+    "l": [
+      "l",
+      "n"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ɔ̃": [
+      "ɔ̃"
+    ],
+    "p": [
+      "p"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "xʷ": [
+      "xʷ"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "iso639_3": "guw",
+  "glottolog_code": "gunn1250",
+  "wikidata_qid": "Q3111668",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gun_language",
+    "https://guw.wikipedia.org/wiki/Gungbe"
+  ],
+  "sources": [
+    {
+      "id": "gun_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Gun language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Gun_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gun_language",
+      "pages": "Consonant and vowel inventory (seven oral vowels plus nasal counterparts), labial-velars gb/kp, /b ɖ/ → [m n] before nasal vowels, and the Benin (1975) orthography using ⟨ɛ⟩ ⟨ɔ⟩ ⟨ɖ⟩.",
+      "notes": null
+    },
+    {
+      "id": "aboh2004",
+      "author": "Aboh, Enoch O.",
+      "year": 2004,
+      "title": "The Morphosyntax of Complement-Head Sequences: Clause Structure and Word Order Patterns in Kwa",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Reference work on Gungbe; includes its phonological description."
+    },
+    {
+      "id": "benin_alphabet",
+      "author": "Commission Nationale de Linguistique (Benin)",
+      "year": 1975,
+      "title": "Alphabet des langues nationales du Bénin",
+      "publisher": "République du Bénin",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "The national orthography whose letter values (ɛ, ɔ, ɖ, gb, kp, ny, xw/hw) this spec follows."
+    }
+  ],
+  "timespan": {
+    "start_year": 1923,
+    "end_year": null
+  },
+  "notes": "Gun / Gungbe (Gbe, Benin), written in the Benin national alphabet (Africa-alphabet based; closely following Fon). Special letters: ⟨ɛ⟩ /ɛ/, ⟨ɔ⟩ /ɔ/, ⟨ɖ⟩ /ɖ/; digraphs ⟨gb⟩ /ɡ͡b/, ⟨kp⟩ /k͡p/, ⟨xw⟩ /xʷ/, ⟨hw⟩ /hʷ/, ⟨ny⟩ /ɲ/. A vowel followed by ⟨n⟩ (an, ɛn, in, ɔn, un) writes a nasal vowel. /b ɖ l/ surface as [m n n] before nasal vowels. Gungbe is tonal (H/L); tone is not consistently written and is therefore not recoverable from ordinary spelling.",
+  "location": {
+    "latitude": 6.48529,
+    "longitude": 2.76767,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gun."
+  }
+}

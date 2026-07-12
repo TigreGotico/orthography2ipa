@@ -1,0 +1,55 @@
+{
+  "code": "gor",
+  "name": "Gorontalo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "gor",
+  "glottolog_code": "goro1259",
+  "wikidata_qid": "Q2501174",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gorontalo_language",
+    "https://gor.wikipedia.org/wiki/Bahasa_Hulontalo"
+  ],
+  "sources": [
+    {
+      "id": "gorontalo_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Gorontalo language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Gorontalo_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gorontalo_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "steinhauer1991",
+      "author": "Steinhauer, Hein",
+      "year": 1991,
+      "title": "Sentence-initial elements in Gorontalo",
+      "publisher": "Pacific Linguistics",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive source on Gorontalo; a starting point for a future grapheme map."
+    }
+  ],
+  "notes": "Gorontalo (Bahasa Hulontalo) — Philippine-type Austronesian language of northern Sulawesi, Indonesia; written in the Latin script today (historically also in Jawi/Arabic script). THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty). The phoneme inventory is known — five vowels /a e i o u/ plus nasals /m n ɲ ŋ/, plosives /p t d̠ c k ʔ b d ɟ ɡ/, the implosives /ɓ ɗ/ and sonorants /w r j h l/ — but no published, citable letter→IPA table exists for the Latin orthography, in particular for how the implosives and the palatal series are written, so no map is claimed rather than guessing an Indonesian-style convention.",
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 0.62689,
+    "longitude": 122.288,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Gorontalo."
+  }
+}

@@ -2,6 +2,8 @@
   "code": "mg",
   "name": "Malagasy",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
   "graphemes": {
     "a": [
       "a"
@@ -18,44 +20,32 @@
     "o": [
       "u"
     ],
-    "p": [
-      "p"
+    "ô": [
+      "o"
     ],
     "b": [
       "b"
     ],
-    "t": [
-      "t"
-    ],
     "d": [
       "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "g": [
-      "ɡ"
     ],
     "f": [
       "f"
     ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
+    "g": [
+      "ɡ"
     ],
     "h": [
       "h"
     ],
+    "j": [
+      "dz"
+    ],
+    "k": [
+      "k"
+    ],
     "l": [
       "l"
-    ],
-    "r": [
-      "r"
     ],
     "m": [
       "m"
@@ -63,11 +53,62 @@
     "n": [
       "n"
     ],
-    "j": [
-      "d͡z"
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
     ],
     "ts": [
-      "t͡s"
+      "ts"
+    ],
+    "tr": [
+      "ʈʂ"
+    ],
+    "dr": [
+      "ɖʐ"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "nt": [
+      "nt"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "nj": [
+      "ndz"
+    ],
+    "nts": [
+      "nts"
+    ],
+    "ndr": [
+      "ɳɖʐ"
+    ],
+    "ntr": [
+      "ɳʈʂ"
     ]
   },
   "allophones": {
@@ -83,44 +124,32 @@
     "u": [
       "u"
     ],
-    "p": [
-      "p"
+    "o": [
+      "o"
     ],
     "b": [
       "b"
     ],
-    "t": [
-      "t"
-    ],
     "d": [
       "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ"
     ],
     "f": [
       "f"
     ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
+    "ɡ": [
+      "ɡ"
     ],
     "h": [
       "h"
     ],
+    "dz": [
+      "dz"
+    ],
+    "k": [
+      "k"
+    ],
     "l": [
       "l"
-    ],
-    "r": [
-      "r"
     ],
     "m": [
       "m"
@@ -128,37 +157,98 @@
     "n": [
       "n"
     ],
-    "d͡z": [
-      "d͡z"
+    "p": [
+      "p"
     ],
-    "t͡s": [
-      "t͡s"
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ʈʂ": [
+      "ʈʂ"
+    ],
+    "ɖʐ": [
+      "ɖʐ"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "mp": [
+      "mp"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "nt": [
+      "nt"
+    ],
+    "ŋɡ": [
+      "ŋɡ"
+    ],
+    "ŋk": [
+      "ŋk"
+    ],
+    "ndz": [
+      "ndz"
+    ],
+    "nts": [
+      "nts"
+    ],
+    "ɳɖʐ": [
+      "ɳɖʐ"
+    ],
+    "ɳʈʂ": [
+      "ɳʈʂ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Malagasy (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
   "iso639_3": "mlg",
   "glottolog_code": "mala1537",
   "wikipedia": [
-    "https://mg.wikipedia.org/wiki/Fiteny_malagasy",
-    "https://en.wikipedia.org/wiki/Malagasy_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/mala1537"
+    "https://en.wikipedia.org/wiki/Malagasy_language",
+    "https://mg.wikipedia.org/wiki/Fiteny_malagasy"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/mala1537",
+      "id": "dahl1951",
+      "author": "Dahl, Otto Christian",
+      "year": 1951,
+      "title": "Malgache et Maanjan: une comparaison linguistique",
+      "publisher": "Egede-Instituttet, Oslo",
+      "url": null,
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Classic descriptive source on Malagasy phonology."
+    },
+    {
+      "id": "malagasy_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Malagasy language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Malagasy_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Malagasy_language",
+      "pages": null,
+      "notes": null
     }
   ],
+  "notes": "Malagasy — Austronesian (Barito) language of Madagascar; the standard is based on the Merina dialect and is written in the Latin script (21 letters; c, q, u, w, x are unused). Orthography is largely phonemic: ⟨o⟩ = /u/, ⟨ô⟩ = /o/ (mostly in loans; northern dialects have /o/ for ⟨o⟩), ⟨y⟩ = /i/ word-finally, ⟨j⟩ = /dz/. ⟨tr⟩/⟨dr⟩ are retroflex affricates and ⟨ts⟩ an alveolar affricate. Prenasalised stops/affricates are written mb, mp, nd, nt, ng, nk, nj, nts, ndr, ntr. Final /a, u, i/ after the stress are reduced ([ə], [ʷ], [ʲ]) and word-final vowels are often devoiced. Stress is contrastive; it is written with an acute only where disambiguation is needed. Glottolog: `mg` is the Malagasy macrolanguage, so `mala1537` is a family node by necessity.",
+  "timespan": {
+    "start_year": 1823,
+    "end_year": null
+  },
   "parent": "x-clade-mala1545",
   "ancestors": [
     {

@@ -1,197 +1,46 @@
 {
   "code": "st",
-  "name": "Southern Sotho",
+  "name": "Southern Sotho (Sesotho)",
   "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ny": [
-      "ɲ"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "y": [
-      "j"
-    ],
-    "ch": [
-      "t͡ʃ"
-    ],
-    "sh": [
-      "ʃ"
-    ],
-    "j": [
-      "d͡ʒ"
-    ]
-  },
-  "allophones": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "b": [
-      "b"
-    ],
-    "t": [
-      "t"
-    ],
-    "d": [
-      "d"
-    ],
-    "k": [
-      "k"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "s": [
-      "s"
-    ],
-    "z": [
-      "z"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "r"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "t͡ʃ": [
-      "t͡ʃ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "d͡ʒ": [
-      "d͡ʒ"
-    ]
-  },
-  "notes": "LEAF STUB (not a modelled G2P target). Southern Sotho (Niger-Congo). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
   "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Southern Sotho (Sesotho), a Sotho-Tswana (Bantu) language, official in Lesotho and South Africa. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet, heavily digraph- and trigraph-based (kg, kh, tlh, tsh, hl, ny, ng, qh for the click series, ...). There are TWO divergent official orthographies — the Lesotho one (diacritics, ⟨kh⟩, ⟨š⟩) and the South African one (⟨kg⟩, ⟨tsh⟩) — which assign different spellings to the same phonemes, so a single grapheme table would be wrong for one of the two countries; separate st-LS / st-ZA specs are the honest unit of work. A full spec must also model the ejective/aspirated stop contrast, the clicks, and tone (unwritten). Input contract: the orthography variant (Lesotho or South African) must be chosen. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode sout2807), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "sot",
   "glottolog_code": "sout2807",
   "wikipedia": [
-    "https://st.wikipedia.org/wiki/Sesotho",
-    "https://en.wikipedia.org/wiki/Sotho_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/sout2807"
+    "https://en.wikipedia.org/wiki/Sotho_language",
+    "https://en.wikipedia.org/wiki/Sesotho_orthography",
+    "https://st.wikipedia.org/wiki/Sesotho"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "id": "sesotho_orthography_wiki",
+      "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/sout2807",
+      "title": "Sesotho orthography",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sesotho_orthography",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sesotho_orthography",
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Overview of the language, script and orthography."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode sout2807."
     }
   ],
+  "timespan": {
+    "start_year": 1830,
+    "end_year": null
+  },
   "parent": "x-clade-narr1281",
   "ancestors": [
     {
@@ -206,5 +55,53 @@
     "longitude": 27.89,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Southern Sotho."
-  }
+  },
+  "phonemes": [
+    "a",
+    "b",
+    "bz",
+    "dz",
+    "e",
+    "f",
+    "fʃ",
+    "h",
+    "i",
+    "j",
+    "kxʰ",
+    "kǃ",
+    "kʰ",
+    "kʼ",
+    "l",
+    "m",
+    "n",
+    "o",
+    "pʃʰ",
+    "pʃʼ",
+    "pʰ",
+    "pʼ",
+    "r",
+    "s",
+    "tsʼ",
+    "tɬʰ",
+    "tɬʼ",
+    "tʰ",
+    "tʼ",
+    "t̠ʃ",
+    "t̠ʃʰ",
+    "t̠ʃʼ",
+    "u",
+    "v",
+    "w",
+    "x",
+    "z",
+    "ŋ",
+    "ɔ",
+    "ɛ",
+    "ɪ",
+    "ɬ",
+    "ɮ",
+    "ɲ",
+    "ʊ",
+    "ʒ"
+  ]
 }

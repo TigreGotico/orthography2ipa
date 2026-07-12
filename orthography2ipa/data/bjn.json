@@ -2,39 +2,59 @@
   "code": "bjn",
   "name": "Banjar",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "x-clade-mala1545",
+  "ancestors": [
+    {
+      "code": "x-clade-mala1545",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
+    }
+  ],
   "graphemes": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
     "b": [
       "b"
+    ],
+    "c": [
+      "tʃ"
     ],
     "d": [
       "d"
     ],
+    "e": [
+      "ɛ"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "f": [
+      "f"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "x"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,58 +65,84 @@
     "ng": [
       "ŋ"
     ],
+    "ny": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "sy": [
+      "ʃ"
     ],
-    "l": [
-      "l"
+    "t": [
+      "t"
     ],
-    "r": [
-      "ɾ"
+    "u": [
+      "u"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "'": [
+      "ʔ"
     ]
   },
   "allophones": {
     "a": [
       "a"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
     "b": [
       "b"
+    ],
+    "tʃ": [
+      "tʃ"
     ],
     "d": [
       "d"
     ],
+    "ɛ": [
+      "ɛ",
+      "ə"
+    ],
+    "f": [
+      "f"
+    ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k",
+      "ʔ"
+    ],
+    "x": [
+      "x"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,62 +153,93 @@
     "ŋ": [
       "ŋ"
     ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
     "s": [
       "s"
     ],
-    "h": [
-      "h"
+    "ʃ": [
+      "ʃ"
     ],
-    "l": [
-      "l"
+    "t": [
+      "t"
     ],
-    "ɾ": [
-      "ɾ"
+    "u": [
+      "u"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʔ": [
+      "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Banjar (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
+  "positional_graphemes": {
+    "k": {
+      "word_final": [
+        "ʔ",
+        "k"
+      ],
+      "default": [
+        "k"
+      ]
+    }
+  },
   "iso639_3": "bjn",
-  "glottolog_code": "banj1241",
+  "glottolog_code": "banj1239",
   "wikipedia": [
-    "https://bjn.wikipedia.org/wiki/Basa_Banjar",
-    "https://en.wikipedia.org/wiki/Banjarese_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/banj1241"
+    "https://en.wikipedia.org/wiki/Banjarese_language",
+    "https://bjn.wikipedia.org/wiki/Basa_Banjar"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
+      "id": "banjar_wiki",
+      "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/banj1241",
-      "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
-    }
-  ],
-  "parent": "x-clade-mala1545",
-  "ancestors": [
+      "title": "Banjarese language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Banjarese_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Banjarese_language",
+      "pages": "19-consonant inventory, vowels /i ɛ a o u/ with [ə] as an allophone of /ɛ/, final /k/ → [ʔ].",
+      "notes": null
+    },
     {
-      "code": "x-clade-mala1545",
-      "role": "parent",
-      "weight": 1.0,
-      "notes": "Malayo-Polynesian, the Austronesian branch containing every Austronesian language outside Formosa."
+      "id": "abdul_djebar1977",
+      "author": "Abdul Djebar Hapip",
+      "year": 1977,
+      "title": "Kamus Banjar-Indonesia",
+      "publisher": "Pusat Pembinaan dan Pengembangan Bahasa",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Standard Banjar dictionary; documents the Latin (Indonesian-convention) spelling."
     }
   ],
+  "timespan": {
+    "start_year": 1900,
+    "end_year": null
+  },
+  "notes": "Banjar (Banjarese), Latin script following the Indonesian spelling convention (the Pegon/Arabic tradition is not modelled here). Digraphs: ng /ŋ/, ny /ɲ/, sy /ʃ/, kh /x/. Word-final ⟨k⟩ is [ʔ]. [ə] is an allophone of /ɛ/.",
   "location": {
-    "latitude": -1.001693,
-    "longitude": 115.715,
+    "latitude": 0.747105,
+    "longitude": 115.79,
     "source": "glottolog",
-    "notes": "Glottolog's computed centroid for the Banjar-Bukit Malay family — a summary of a whole clade's range, not a place anyone speaks."
+    "notes": "Glottolog's representative point for Banjar."
   }
 }

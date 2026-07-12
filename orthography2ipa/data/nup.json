@@ -1,0 +1,22 @@
+{
+  "code": "nup",
+  "name": "Nupe",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "wikidata_qid": null,
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Nupe, a Nupoid (Volta-Niger) language of central Nigeria, written in a Latin orthography with subdot letters and tone marks. The grapheme inventory is NOT yet specified: Wikidata supplies no ISO 639-3 code, Glottolog code, script statement or Wikipedia article for this Wikimedia language code, and the Nupe orthography (which marks three tones and labialised/palatalised consonant series) has not been verified against a descriptive source. Metadata only. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "sources": [],
+  "wikipedia": [],
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ]
+}

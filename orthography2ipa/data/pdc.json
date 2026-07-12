@@ -1,0 +1,60 @@
+{
+  "code": "pdc",
+  "name": "Pennsylvania German (Pennsylvania Dutch)",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Pennsylvania German has NO standardised orthography: two incompatible writing systems are in current use — the Buffington-Barba system, which spells by Standard German conventions, and an English-based system (Beam / 'Deitsch' spelling) which spells by American English conventions — and the same word is spelled differently in each with no difference in pronunciation. A single letter-to-phoneme map is therefore not well-defined for the code as such; a Tier-A spec must first pick ONE orthography and declare it (the German-conventional Buffington-Barba system is the tractable choice), which has not been done and verified here. Phonologically the variety continues Palatine (Rhine Franconian) German, with the well-known shifts German /œ yː ɔʏ/ → /ɛ iː aɪ/, lenition of /p t k/ → [b d ɡ], intervocalic /b/ → [v] and post-vocalic /ɡ/ → [j].",
+  "iso639_3": "pdc",
+  "glottolog_code": "penn1240",
+  "wikidata_qid": "Q22711",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pennsylvania_Dutch_language",
+    "https://pdc.wikipedia.org/wiki/Pennsilfaanisch_Deitsch"
+  ],
+  "sources": [
+    {
+      "id": "pdc_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Pennsylvania Dutch language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pennsylvania_Dutch_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pennsylvania_Dutch_language",
+      "pages": null,
+      "notes": "The two competing orthographies (Buffington-Barba vs English-based) and the phonological differences from Standard German."
+    },
+    {
+      "id": "buffington_barba1954",
+      "author": "Buffington, Albert F. & Barba, Preston A.",
+      "year": 1954,
+      "title": "A Pennsylvania German Grammar",
+      "publisher": "Schlechter's",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "The German-conventional orthography and the grammar/phonology of Pennsylvania German."
+    }
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "parent": "x-clade-germ1287",
+  "ancestors": [
+    {
+      "code": "x-clade-germ1287",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Germanic — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 40.030507,
+    "longitude": -76.3211,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pennsylvania German."
+  }
+}

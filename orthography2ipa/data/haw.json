@@ -2,7 +2,33 @@
   "code": "haw",
   "name": "Hawaiian",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
   "graphemes": {
+    "ʻ": [
+      "ʔ"
+    ],
+    "h": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "w": [
+      "w"
+    ],
     "a": [
       "a"
     ],
@@ -32,18 +58,22 @@
     ],
     "ū": [
       "uː"
-    ],
-    "p": [
-      "p"
-    ],
-    "k": [
-      "k"
+    ]
+  },
+  "allophones": {
+    "ʔ": [
+      "ʔ"
     ],
     "h": [
       "h"
     ],
+    "k": [
+      "k",
+      "t"
+    ],
     "l": [
-      "l"
+      "l",
+      "n"
     ],
     "m": [
       "m"
@@ -51,15 +81,13 @@
     "n": [
       "n"
     ],
-    "w": [
-      "v",
-      "w"
+    "p": [
+      "p"
     ],
-    "ʻ": [
-      "ʔ"
-    ]
-  },
-  "allophones": {
+    "w": [
+      "w",
+      "v"
+    ],
     "a": [
       "a"
     ],
@@ -89,56 +117,54 @@
     ],
     "uː": [
       "uː"
-    ],
-    "p": [
-      "p"
-    ],
-    "k": [
-      "k"
-    ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "v": [
-      "v"
-    ],
-    "ʔ": [
-      "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Hawaiian (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
   "iso639_3": "haw",
   "glottolog_code": "hawa1245",
-  "wikipedia": [
-    "https://haw.wikipedia.org/wiki/%CA%BB%C5%8Clelo_Hawai%CA%BBi",
-    "https://en.wikipedia.org/wiki/Hawaiian_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/hawa1245"
-  ],
+  "notes": "Hawaiian (ʻŌlelo Hawaiʻi), Polynesian. The alphabet (pīʻāpā) has 13 letters: five vowels a e i o u, eight consonants h k l m n p w and the ʻokina ⟨ʻ⟩ = glottal stop /ʔ/, which is a full consonant. The kahakō (macron: ā ē ī ō ū) marks a long vowel. The orthography is essentially one-to-one phonemic. Allophony: /k/ varies [k]~[t] ([k] almost universally word-initially, [t] favoured before /i/); /w/ varies [w]~[v] ([v] usually after /i/ and /e/, [w] after /u/ and /o/); /l/ varies with [n] in some dialects. Diphthongs are written as vowel sequences and fall out of the single-vowel graphemes.",
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/hawa1245",
+      "id": "elbert_pukui1979",
+      "author": "Elbert, Samuel H. & Pukui, Mary Kawena",
+      "year": 1979,
+      "title": "Hawaiian Grammar",
+      "publisher": "University of Hawaii Press",
+      "url": null,
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Standard reference grammar; phoneme inventory and orthography.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Hawaiian_language"
+    },
+    {
+      "id": "hawaiian_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Hawaiian language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Hawaiian_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Hawaiian_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "hawaiian_phonology_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Hawaiian phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Hawaiian_phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Hawaiian_phonology",
+      "pages": null,
+      "notes": null
     }
   ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hawaiian_language",
+    "https://haw.wikipedia.org/wiki/%CA%BB%C5%8Clelo_Hawai%CA%BBi"
+  ],
+  "timespan": {
+    "start_year": 1826,
+    "end_year": null
+  },
   "parent": "x-clade-mala1545",
   "ancestors": [
     {

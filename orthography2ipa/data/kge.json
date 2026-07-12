@@ -1,0 +1,50 @@
+{
+  "code": "kge",
+  "name": "Komering",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": null,
+  "glottolog_code": null,
+  "wikidata_qid": "Q49224",
+  "wikipedia": [
+    "https://kge.wikipedia.org/wiki/Wikipidiya_basa_Kumoring",
+    "https://en.wikipedia.org/wiki/Komering_language"
+  ],
+  "sources": [
+    {
+      "id": "komering_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Komering language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Komering_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Komering_language",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "lampung_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2025,
+      "title": "Lampung language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lampung_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lampung_language",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "notes": "Komering (Kumoring) — Lampungic (Malayo-Polynesian) language of South Sumatra, Indonesia; written today in the Latin script (historically in the Lampung/Kaganga abugida). THE GRAPHEME INVENTORY IS NOT YET SPECIFIED here (graphemes/allophones are empty): there is no widely published, citable letter→IPA table and no standardised orthography, and Wikidata records no writing system for this item. Wikidata gives no ISO 639-3 or Glottolog code for this Wikimedia code; Komering is often treated as a dialect of Lampung Api (ljp).",
+  "parent": "x-clade-aust1307",
+  "ancestors": [
+    {
+      "code": "x-clade-aust1307",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Austronesian — the classification node this language sits under."
+    }
+  ]
+}

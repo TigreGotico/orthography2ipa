@@ -2,30 +2,13 @@
   "code": "pam",
   "name": "Kapampangan",
   "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "parent": "x-clade-mala1545",
   "graphemes": {
     "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+      "a",
+      "ə"
     ],
     "b": [
       "b"
@@ -33,8 +16,23 @@
     "d": [
       "d"
     ],
+    "e": [
+      "ɛ"
+    ],
     "g": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -45,58 +43,66 @@
     "ng": [
       "ŋ"
     ],
-    "s": [
-      "s"
+    "o": [
+      "o"
     ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "r": [
       "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
     ],
     "w": [
       "w"
     ],
     "y": [
       "j"
+    ],
+    "'": [
+      "ʔ"
     ]
   },
   "allophones": {
     "a": [
-      "a"
+      "a",
+      "ə"
     ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
+    "ə": [
+      "ə"
     ],
     "b": [
       "b"
     ],
     "d": [
-      "d"
+      "d",
+      "dʒ"
+    ],
+    "ɛ": [
+      "ɛ"
     ],
     "ɡ": [
       "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
     ],
     "m": [
       "m"
@@ -107,50 +113,67 @@
     "ŋ": [
       "ŋ"
     ],
-    "s": [
-      "s"
+    "o": [
+      "o"
     ],
-    "h": [
-      "h"
-    ],
-    "l": [
-      "l"
+    "p": [
+      "p"
     ],
     "ɾ": [
-      "ɾ"
+      "ɾ",
+      "r"
+    ],
+    "s": [
+      "s",
+      "ʃ"
+    ],
+    "t": [
+      "t",
+      "tʃ"
+    ],
+    "u": [
+      "u"
     ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "ʔ": [
+      "ʔ"
     ]
   },
-  "notes": "LEAF STUB (not a modelled G2P target). Kapampangan (Austronesian). Added so the language resolves in the registry; the grapheme inventory is a placeholder read off the standard Latin orthography and has NOT been validated against the phonological literature -- NO phonology is claimed. Flesh out before scoring (ms.json / yua.json stub pattern).",
-  "quality": "stub",
-  "script_type": "alphabet",
+  "notes": "Kapampangan (Kapampangan / Pampanga) — Central Luzon (Austronesian) language. Written in the Latin-based Sulat Wawa orthography, which uses ⟨k⟩ rather than ⟨c⟩/⟨q⟩ for /k/; ⟨ng⟩ is a single letter /ŋ/ and occurs word-initially. Five vowel phonemes: /a ~ ə/ (written ⟨a⟩; [ə] unstressed, [aː] stressed), /ɛ/, /i/, /o/, /u/. Fifteen consonants /m n ŋ p b t d tʃ dʒ k ɡ ʔ s ʃ ɾ~r l j w/; all stops are unaspirated. [tʃ dʒ ʃ] mostly arise from /t d s/ before /i/ + vowel and in loanwords. Glottal stop is phonemic but usually unwritten.",
   "iso639_3": "pam",
   "glottolog_code": "pamp1243",
   "wikipedia": [
-    "https://pam.wikipedia.org/wiki/Kapampangan_%28amanu%29",
-    "https://en.wikipedia.org/wiki/Kapampangan_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/pamp1243"
+    "https://en.wikipedia.org/wiki/Kapampangan_language",
+    "https://pam.wikipedia.org/wiki/Kapampangan_%28amanu%29"
   ],
   "sources": [
     {
-      "id": "glottolog5",
-      "author": "Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S.",
-      "year": 2024,
-      "title": "Glottolog 5.0",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/pamp1243",
+      "id": "forman1971",
+      "author": "Forman, Michael L.",
+      "year": 1971,
+      "title": "Kapampangan Grammar Notes",
+      "publisher": "University of Hawai'i Press",
+      "url": null,
       "pages": null,
-      "notes": "Classification and ISO/Glottolog identification only; the placeholder inventory is not sourced from this reference."
+      "notes": "Reference grammar; phonology and orthography."
+    },
+    {
+      "id": "pam_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kapampangan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kapampangan_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kapampangan_language",
+      "pages": null,
+      "notes": "Phonology and orthography sections."
     }
   ],
-  "parent": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

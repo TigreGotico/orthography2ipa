@@ -1,0 +1,100 @@
+{
+  "code": "ckb",
+  "name": "Central Kurdish (Sorani)",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Central Kurdish / Sorani (کوردیی ناوەندی), the main Kurdish variety of Iraq and western Iran. STUB: the grapheme inventory is NOT yet specified. Script: the Kurdish Arabic alphabet, a Perso-Arabic script. Typologically an ABJAD by origin, but the Sorani orthography is close to fully alphabetic in practice: most vowels are written with letters (ا ە ێ ی ۆ و وو), with the short /i/ the main systematically unwritten vowel — which is exactly the part that requires lexical knowledge to restore, so no honest letter-to-IPA table can be given here without also modelling that. A full spec would also need contextual letter forms (initial/medial/final/isolated) to be normalised first, the ڕ/ر (trill/tap) and ڵ/ل (velarised/plain lateral) contrasts, and the ezafe. Sorani is also written in a Latin alphabet; input is assumed to be the Arabic-script orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode cent1972), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "iso639_3": "ckb",
+  "glottolog_code": "cent1972",
+  "wikidata_qid": "Q36811",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Central_Kurdish",
+    "https://ckb.wikipedia.org/wiki/%DA%A9%D9%88%D8%B1%D8%AF%DB%8C%DB%8C_%D9%86%D8%A7%D9%88%DB%95%D9%86%D8%AF%DB%8C"
+  ],
+  "sources": [
+    {
+      "id": "central_kurdish_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Central Kurdish",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Central_Kurdish",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Central_Kurdish",
+      "pages": null,
+      "notes": "Overview of the language, script and orthography."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode cent1972."
+    }
+  ],
+  "timespan": {
+    "start_year": 1920,
+    "end_year": null
+  },
+  "phonemes": [
+    "äː",
+    "b",
+    "d̠ʒ",
+    "d̪",
+    "eː",
+    "f",
+    "h",
+    "iː",
+    "j",
+    "k",
+    "l̪",
+    "m",
+    "n̪",
+    "oː",
+    "p",
+    "q",
+    "r̪",
+    "sˤ",
+    "s̪",
+    "t̠ʃ",
+    "t̪",
+    "uː",
+    "v",
+    "w",
+    "x",
+    "z̪",
+    "ħ",
+    "ŋ",
+    "ə",
+    "ɡ",
+    "ɣ",
+    "ɫ̪",
+    "ɯ̽",
+    "ɾ̪",
+    "ʃ",
+    "ʊ",
+    "ʒ",
+    "ʔ",
+    "ʕ"
+  ],
+  "parent": "x-clade-iran1269",
+  "ancestors": [
+    {
+      "code": "x-clade-iran1269",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Iranian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 35.6539,
+    "longitude": 45.8077,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Central Kurdish."
+  }
+}

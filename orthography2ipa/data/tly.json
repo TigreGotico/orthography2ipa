@@ -1,0 +1,45 @@
+{
+  "code": "tly",
+  "name": "Talysh",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Talysh (tolışi), a Northwestern Iranian language of the Caspian littoral in Azerbaijan and Iran. STUB: the grapheme inventory is NOT yet specified. Talysh is written in THREE scripts with no single dominant norm — an Azerbaijani-style Latin alphabet (used by the tly Wikipedia), a Cyrillic alphabet, and a Perso-Arabic script (an abjad) in Iran — and the vowel systems assumed by the Latin and Cyrillic norms differ. No letter-to-phoneme map is claimed; a future spec should target the Latin orthography and state that explicitly as its input contract.",
+  "iso639_3": "tly",
+  "glottolog_code": "taly1247",
+  "wikidata_qid": "Q34318",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Talysh_language",
+    "https://tly.wikipedia.org/wiki/Toly%C5%A1%C9%99_zyvon"
+  ],
+  "sources": [
+    {
+      "id": "talysh_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Talysh language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Talysh_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Talysh_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    }
+  ],
+  "parent": "x-clade-iran1269",
+  "ancestors": [
+    {
+      "code": "x-clade-iran1269",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Iranian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 38.4552,
+    "longitude": 48.6349,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for North-Central Talysh."
+  }
+}

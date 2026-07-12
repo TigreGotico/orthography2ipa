@@ -1,0 +1,101 @@
+{
+  "code": "diq",
+  "name": "Zazaki",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Zazaki (Dimli / Kirmanjki), a Northwestern Iranian language of eastern Anatolia. STUB: the grapheme inventory is NOT yet specified. Zazaki is written in a Latin alphabet derived from the Kurdish Hawar alphabet, and also (historically and in some communities) in an Arabic-derived script; no authoritative letter-to-phoneme table for the Zazaki Latin alphabet could be verified, and the phoneme inventory includes pharyngealised consonants and a central-vowel contrast whose orthographic representation is not settled. Latin-script input is assumed for any future map; the Arabic-script tradition (an abjad) is out of scope. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode diml1238), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "iso639_3": "zza",
+  "glottolog_code": "diml1238",
+  "wikidata_qid": "Q10199",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Zaza_language",
+    "https://diq.wikipedia.org/wiki/Zazaki"
+  ],
+  "sources": [
+    {
+      "id": "zaza_language_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Zaza language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Zaza_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Zaza_language",
+      "pages": null,
+      "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "phoible",
+      "author": "Moran, Steven & McCloy, Daniel (eds.)",
+      "year": 2019,
+      "title": "PHOIBLE 2.0",
+      "publisher": "Max Planck Institute for the Science of Human History",
+      "url": "https://phoible.org/",
+      "pages": null,
+      "notes": "Attested phoneme inventory for glottocode diml1238."
+    }
+  ],
+  "phonemes": [
+    "a",
+    "ai",
+    "au",
+    "b",
+    "d̠ʒ",
+    "d̪",
+    "e",
+    "f",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "oi",
+    "p",
+    "q",
+    "r",
+    "s̪",
+    "s̪ˤ",
+    "t̠ʃ",
+    "t̪",
+    "t̪ˤ",
+    "u",
+    "v",
+    "w",
+    "x",
+    "z̪",
+    "ħ",
+    "ə",
+    "əi",
+    "əu",
+    "ɡ",
+    "ɣ",
+    "ɨ",
+    "ɫ",
+    "ɾ",
+    "ʃ",
+    "ʉ",
+    "ʉi",
+    "ʒ",
+    "ʕ"
+  ],
+  "parent": "x-clade-iran1269",
+  "ancestors": [
+    {
+      "code": "x-clade-iran1269",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Iranian — the classification node this language sits under."
+    }
+  ],
+  "location": {
+    "latitude": 38.6147,
+    "longitude": 39.6388,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Dimli."
+  }
+}

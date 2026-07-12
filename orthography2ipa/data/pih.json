@@ -1,0 +1,36 @@
+{
+  "code": "pih",
+  "name": "Pitkern-Norfolk",
+  "family": "Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "iso639_3": "pih",
+  "glottolog_code": "pitc1234",
+  "wikidata_qid": "Q36554",
+  "notes": "STUB: the grapheme inventory of Pitkern is NOT yet specified (graphemes/allophones are empty). Pitkern-Norfolk (Pitkern on Pitcairn, Norfuk on Norfolk Island) is an English-lexifier creole with a Tahitian substrate, written in the Latin script. Spelling is NOT standardised — several competing conventions exist (e.g. the Norfuk orthographies of Buffett and of Nobbs Palmer) — so no single sourced letter→IPA table can honestly be given. INPUT CONTRACT: Latin-script Pitkern/Norfuk text.",
+  "sources": [
+    {
+      "id": "pitkern_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Pitkern",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pitkern",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pitkern",
+      "pages": null,
+      "notes": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pitkern"
+  ],
+  "location": {
+    "latitude": -24.379858,
+    "longitude": -128.324075,
+    "source": "glottolog",
+    "notes": "Glottolog's representative point for Pitcairn-Norfolk."
+  }
+}
