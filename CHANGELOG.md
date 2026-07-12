@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.3.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.2.0a1...3.3.0a1)
+
+**Merged pull requests:**
+
+- feat\(pl\): Polish phonology overhaul + tie-bar-free scoring [\#331](https://github.com/TigreGotico/orthography2ipa/pull/331) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.2.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.1.0a2...3.2.0a1)
@@ -685,10 +693,6 @@
 ## [1.33.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.33.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.32.0a1...1.33.0a1)
-
-**Merged pull requests:**
-
-- feat\(engine\): apply context-conditioned allophone rules as post-lexical rescorer \(B8\) [\#143](https://github.com/TigreGotico/orthography2ipa/pull/143) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.32.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.32.0a1) (2026-07-10)
 
