@@ -272,7 +272,7 @@
     ]
   },
   "notes": "Standard Finnish. Highly transparent orthography. Phonemic consonant and vowel length. 18 diphthongs are all phonemic. PHONEMIC ORTHOGRAPHY: Finnish spelling is almost perfectly phonemic — one grapheme = one phoneme. CONSONANT GRADATION: stop alternations in inflectional paradigms (k↔∅/v/j, p↔v, t↔d). VOWEL HARMONY: front/back vowel pairs (a/ä, o/ö, u/y) never mix in native words. GEMINATE CONSONANTS: written as double letters (kk, pp, tt...) = phonemically long. Sources: Karlsson (1999), Hakulinen & Karlsson (1979), Suomi et al. (2008).",
-  "quality": "research",
+  "quality": "production",
   "script_type": "alphabet",
   "sources": [
     {

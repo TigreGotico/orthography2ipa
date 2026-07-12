@@ -114,6 +114,25 @@ the [pt-PT](pt-PT.md) reference).
 
 ---
 
+## Production tier: orthographic depth, threshold, and benchmark
+
+**Deep orthography — the ≤ 0.25 PER production threshold applies**
+([quality tiers](../quality_tiers.md)): Portuguese spelling is
+morphophonemic with substantial contextual vowel quality (pretonic
+reduction, nasalization) that the page's rules encode but gold sets
+disagree on at the margins.
+
+| dataset | provenance | n | PER |
+|---|---|---:|---:|
+| `wikipron` | crowd-scraped (gate-eligible) | 57 814 | **0.0662** |
+| `portuguese_phonetic_lexicon` | crowd-scraped | 53 346 | 0.2199 |
+| `ipadict` | machine-generated (cannot certify) | 95 933 | 0.2436 |
+
+The qualifying row is `wikipron`, which in fact clears even the shallow
+0.15 bar; the Portal lexicon row reflects that source's semi-automated,
+region-coded transcription conventions (see benchmarks.md) rather than
+spec drift — the divergence is documented, not hidden.
+
 **Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
 
 *Related: [pt-PT](pt-PT.md), [romance](romance.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-rj](pt-BR-x-rj.md)*
