@@ -114,8 +114,9 @@ for pair, (a, b) in [("la ↔ it", (la, it)), ("es ↔ pt", (es, pt)), ("es ↔ 
     print(f"\n  {pair}")
     print(f"    Combined:  {pd.combined:.3f}")
     print(f"    Inventory: {pd.inventory.jaccard:.3f}  (jaccard)")
-    print(f"    Grapheme:  {pd.grapheme.mean_ipa_distance:.3f}  (mean IPA dist)")
     print(f"    Allophone: {pd.allophone_sim:.3f}  (similarity)")
+    print(f"    Grapheme:  {pd.grapheme.mean_ipa_distance:.3f}  "
+          f"(mean IPA dist — orthography, not part of combined)")
 
 
 # ── 6. Ancestry similarity ───────────────────────────────────────────────

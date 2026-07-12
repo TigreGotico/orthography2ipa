@@ -270,9 +270,12 @@ from orthography2ipa.distance import (phonological_distance, spelling_divergence
 pt, es = o2i.get("pt-PT"), o2i.get("es-ES")
 
 d = phonological_distance(pt, es)
-d.combined                              # 0.1859 — sound-level distance
+d.combined                              # 0.2062 — sound-level distance: inventory
+                                        #          and allophony, never orthography
 d.inventory.feature_mean                # phoneme-inventory distance
-d.grapheme.mean_ipa_distance            # 0.1102 — reading divergence
+d.allophone_sim                         # allophone overlap
+d.grapheme.mean_ipa_distance            # 0.1102 — reading divergence; reported here
+                                        #          but NOT part of `combined`
 
 spelling_divergence(pt, es).mean_distance      # 0.2068 — writing divergence
 ancestry_similarity(pt, es)                    # 0.5304 — shared-ancestor weight

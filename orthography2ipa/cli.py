@@ -254,8 +254,9 @@ def _cmd_distance(args: argparse.Namespace) -> None:
         print(f"{s1.name} ({s1.code}) ↔ {s2.name} ({s2.code})")
         print(f"  combined:   {dist.combined:.4f}")
         print(f"  inventory:  {dist.inventory.feature_mean:.4f}")
-        print(f"  grapheme:   {dist.grapheme.mean_ipa_distance:.4f}")
         print(f"  allophone:  {dist.allophone_sim:.4f}")
+        print(f"  grapheme:   {dist.grapheme.mean_ipa_distance:.4f}"
+              f"   (orthography — not part of combined)")
 
 
 def _cmd_validate(args: argparse.Namespace) -> None:

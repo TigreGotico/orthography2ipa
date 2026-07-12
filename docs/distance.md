@@ -183,35 +183,53 @@ Returns a value in [0, 1] where 1.0 = identical allophone inventories, 0.0 = no 
 
 ## `phonological_distance(spec_a, spec_b)`
 
-The main combined distance metric.
+The main combined SOUND distance metric.
 
 ```python
 from orthography2ipa.distance import phonological_distance
 
 d = phonological_distance(
     orthography2ipa.get("la"),
-    orthography2ipa.get("it"),
-    w_inventory=0.40,   # weight for inventory component
-    w_grapheme=0.30,    # weight for grapheme divergence component
-    w_allophone=0.30,   # weight for allophone component
+    orthography2ipa.get("it-IT"),
+    w_inventory=0.60,   # weight for inventory component
+    w_allophone=0.40,   # weight for allophone component
 )
 print(d)
-# PhonologicalDistance(combined=0.307, inv=0.142, graph=0.203, allo=0.412)
+# PhonologicalDistance(combined=0.272, inv=0.054, allo=0.403, [graph=0.098 not scored])
 ```
+
+### Orthography is not scored
+
+`combined` is a function of the phoneme inventories and the allophone systems, and
+of nothing else. The writing system takes no part in it. Two languages with one
+phonology and two scripts — Hindi in Devanagari and Urdu in the Arabic script,
+Serbian in Cyrillic and Croatian in Latin — are phonologically near-identical, and
+a metric that read their spelling would wrongly place them at opposite ends of the
+scale. Changing a spec's `graphemes` without changing its `phonemes` does not move
+this number at all.
+
+The inventory is taken from the spec's declared `phonemes` when it has one, and
+derived from `graphemes` only as a fallback for specs that do not.
+
+For the orthographic axes use [`grapheme_divergence`](#grapheme_divergencespec_a-spec_b)
+(reading), [`spelling_divergence`](#spelling_divergencespec_a-spec_b) (writing) or
+[`orthographic_distance`](#orthographic_distancespec_a-spec_b) (which also factors in
+the script). To weigh sound and spelling together in a single number, use
+[`weighted_full_distance`](#weighted_full_distancespec_a-spec_b--w_inventory-w_grapheme-w_allophone-w_ancestry---weighteddistance),
+which keeps an explicit `w_grapheme` term.
 
 ### `PhonologicalDistance` fields
 
 | Field | Type | Description |
 |---|---|---|
 | `inventory` | `InventoryDistance` | Full inventory comparison result |
-| `grapheme` | `GraphemeDivergence` | Full grapheme divergence result |
 | `allophone_sim` | float | Allophone Jaccard similarity |
-| `combined` | float | Weighted combination |
+| `combined` | float | Weighted combination of the two above |
+| `grapheme` | `GraphemeDivergence` | Full grapheme divergence result — reported for reference, **not** a term of `combined` |
 
 **Formula:**
 ```
 combined = w_inventory × inventory.feature_mean
-         + w_grapheme  × grapheme.mean_ipa_distance
          + w_allophone × (1 - allophone_sim)
 ```
 
