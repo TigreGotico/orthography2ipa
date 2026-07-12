@@ -48,10 +48,10 @@ from typing import Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
-    is_back_vowel,
-    is_front_vowel,
+    SYLLABIC_MARKS,
+    grapheme_is_vowel,
+    grapheme_vowel_axis,
     is_ipa_vowel,
-    is_orthographic_vowel,
     is_palatal_consonant,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
@@ -208,8 +208,10 @@ def _is_virama(ch: str) -> bool:
 
 #: Combining marks that make the segment they attach to SYLLABIC — i.e. a
 #: nucleus. U+0329 (below) and U+030D (above) are the IPA syllabicity marks;
-#: they are what makes /r̩/ in ⟨कृ⟩ a nucleus rather than an onset.
-_SYLLABIC_MARKS = "̩̍"
+#: they are what makes /r̩/ in ⟨कृ⟩ a nucleus rather than an onset. Owned by
+#: :mod:`orthography2ipa.vowels`, which shares the notion with the
+#: script-agnostic vowel-hood predicates.
+_SYLLABIC_MARKS = SYLLABIC_MARKS
 
 
 def _is_nucleus(ipa: str) -> bool:
@@ -626,9 +628,15 @@ class GraphemeContext:
 
     @property
     def is_vowel(self) -> bool:
-        """True if the grapheme's leading character is a written vowel
-        letter (:func:`orthography2ipa.vowels.is_orthographic_vowel`)."""
-        return bool(self.grapheme) and is_orthographic_vowel(self.grapheme[0])
+        """True if this grapheme is a written vowel — in **any** script
+        (:func:`orthography2ipa.vowels.grapheme_is_vowel`).
+
+        Latin and Greek are decided by the letter itself; every other script is
+        decided by the spec's own data (the grapheme's flat-table IPA) and by
+        Unicode. ``self.ipa`` is the *flat* ``spec.graphemes`` entry, not a
+        positionally-resolved realisation, so the positional resolution that
+        consults this predicate cannot loop back into itself."""
+        return grapheme_is_vowel(self.grapheme, self.ipa)
 
     @property
     def is_consonant(self) -> bool:
@@ -638,15 +646,17 @@ class GraphemeContext:
 
     @property
     def is_front(self) -> bool:
-        """True if the grapheme's leading character is a *front* vowel
-        letter (:func:`orthography2ipa.vowels.is_front_vowel`)."""
-        return bool(self.grapheme) and is_front_vowel(self.grapheme[0])
+        """True if this grapheme is a *front* vowel, in any script
+        (:func:`orthography2ipa.vowels.grapheme_vowel_axis`) — the letter for
+        Latin/Greek, the spec's IPA elsewhere."""
+        return grapheme_vowel_axis(self.grapheme, self.ipa) == "front"
 
     @property
     def is_back(self) -> bool:
-        """True if the grapheme's leading character is a *back* vowel
-        letter (:func:`orthography2ipa.vowels.is_back_vowel`)."""
-        return bool(self.grapheme) and is_back_vowel(self.grapheme[0])
+        """True if this grapheme is a *back* vowel, in any script
+        (:func:`orthography2ipa.vowels.grapheme_vowel_axis`) — the letter for
+        Latin/Greek, the spec's IPA elsewhere."""
+        return grapheme_vowel_axis(self.grapheme, self.ipa) == "back"
 
     @property
     def is_palatal(self) -> bool:

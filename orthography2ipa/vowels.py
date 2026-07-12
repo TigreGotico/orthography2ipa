@@ -74,6 +74,10 @@ __all__ = [
     "is_front_vowel",
     "is_back_vowel",
     "is_palatal_consonant",
+    "is_nucleus_only",
+    "grapheme_is_vowel",
+    "grapheme_vowel_axis",
+    "SYLLABIC_MARKS",
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -311,3 +315,236 @@ def is_back_vowel(ch: str) -> bool:
     (see the module docstring). Comparison is case-insensitive.
     """
     return _vowel_axis(ch) == "back"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Script-agnostic vowel-hood: spec data first, Unicode second
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# The letter sets above enumerate written vowels for the scripts they cover.
+# They cannot be extended per script — a list of "which letters are vowels" is
+# language/script knowledge, and that belongs in DATA, not in the engine.
+# Devanagari, Cyrillic, Arabic letters, Tamil, Hebrew, Thai and every script the
+# library has never seen must still be able to answer "is this grapheme an
+# orthographic vowel?", because that answer is what makes INTERVOCALIC /
+# BEFORE_VOWEL / AFTER_FRONT_VOWEL and the vowel-conditioned allophone classes
+# fire at all. When it silently answers "no" for a whole script, every such rule
+# in that script's spec is inert.
+#
+# :func:`grapheme_is_vowel` answers it from three sources, in order:
+#
+# 1. The letter sets above — unchanged, and *authoritative* (see below).
+# 2. **The spec's own data**: a grapheme whose flat-table IPA is a syllable
+#    nucleus and nothing else (a vowel, or a syllabic consonant like /r̩/) IS an
+#    orthographic vowel. This needs zero new tables and
+#    generalises to any script: the spec already says what each grapheme sounds
+#    like, and vowel-hood is derivable from that.
+# 3. **Unicode**, where the spec is silent: a character whose Unicode NAME
+#    marks it a vowel (``DEVANAGARI VOWEL SIGN AA``, ``TAMIL VOWEL SIGN I``,
+#    ``… LETTER VOCALIC R``) is a vowel. This is a Unicode property, not a
+#    per-script list.
+#
+# **Where the letter sets are authoritative (why Latin/Greek cannot change).**
+# Sources 2 and 3 are only consulted for characters the letter sets have no
+# jurisdiction over. Jurisdiction is derived from the sets themselves, not
+# hardcoded: for each member we take its script (from its Unicode name) and
+# whether it is a combining mark, and the resulting (script, is-mark) pairs are
+# the closed inventories. The Latin and Greek members are *letters*, so the sets
+# enumerate those scripts' vowel LETTERS exhaustively — a Latin letter absent
+# from them (⟨y⟩, ⟨w⟩, ⟨r⟩) is a consonant letter by that closed inventory, and
+# stays one no matter what IPA a spec gives it. The Arabic members are the
+# harakat — *marks* — so the sets close Arabic COMBINING MARKS only; Arabic
+# letters (⟨ا⟩ → /aː/, ⟨و⟩, ⟨ي⟩) fall through to the spec, as they must.
+# Consequence: for Latin and Greek, :func:`grapheme_is_vowel` returns exactly
+# what :func:`is_orthographic_vowel` returned before, by construction.
+
+#: Combining marks that make the segment they attach to SYLLABIC — the IPA
+#: syllabicity marks (U+0329 below, U+030D above). They are what makes /r̩/ a
+#: nucleus rather than an onset. Shared with :mod:`orthography2ipa.phonetok`.
+SYLLABIC_MARKS = "̩̍"
+
+
+def is_nucleus_only(ipa: str) -> bool:
+    """True if *ipa* is **nothing but** syllable nucleus.
+
+    A nucleus is a vowel or a syllabic consonant (/r̩/, /l̩/). Every segment must
+    be one — a grapheme is a written vowel only when its realisation carries no
+    consonant. Length, nasality, tone and other diacritics ride along with their
+    base (``aː``, ``ẽ``) and do not disqualify it.
+
+    Both halves of "every" matter, in both directions:
+
+    - an abugida consonant carrying a vowel (⟨क⟩ → /kə/) is NOT a vowel — were
+      the leading segment alone inspected it would pass on its vowel tail and
+      every consonant in the script would become a vowel;
+    - a multigraph realised as a whole syllable (Arabic ⟨ال⟩ → /al/) is NOT a
+      vowel either — it ends in a consonant, and treating it as one makes the
+      grapheme after it wrongly ``AFTER_VOWEL``.
+
+    The single exception is a **leading on-glide**: the iotated Cyrillic vowel
+    letters ⟨я е ё ю⟩ realise as /ja je jo ju/ and are vowel letters all the
+    same. A bare glide (⟨й⟩ → /j/, ⟨य⟩ → /j/) is not.
+    """
+    if not ipa:
+        return False
+    found = False
+    i = 0
+    n = len(ipa)
+    if n > 1 and ipa[0] in _ONGLIDES:
+        # A leading glide does not make the grapheme a consonant: the iotated
+        # Cyrillic vowel letters ⟨я е ё ю⟩ → /ja je jo ju/ are vowel letters
+        # whose realisation carries an on-glide. Only a LEADING one is allowed,
+        # and only with a nucleus behind it, so /j/ alone (⟨й⟩, ⟨य⟩) stays a
+        # consonant.
+        i = 1
+    while i < n:
+        ch = ipa[i]
+        nxt = ipa[i + 1] if i + 1 < n else ""
+        if nxt and nxt in SYLLABIC_MARKS:
+            # A syllabic consonant (/r̩/): base + syllabicity mark = a nucleus.
+            found = True
+            i += 2
+            continue
+        if unicodedata.combining(ch) or unicodedata.category(ch) in ("Lm", "Sk"):
+            # Length mark, tone letter, nasalisation, stress mark …: a modifier
+            # on the preceding segment, never a segment of its own — and never a
+            # nucleus by itself. A grapheme realised as a bare mark (the
+            # Devanagari anusvāra ⟨ं⟩ → nasalisation) is NOT a vowel: counting
+            # it as one makes a following consonant wrongly INTERVOCALIC
+            # (⟨अंडा⟩ would flap its ⟨ड⟩).
+            i += 1
+            continue
+        if is_ipa_vowel(ch):
+            found = True
+            i += 1
+            continue
+        return False  # a consonant: this grapheme is not a written vowel
+    return found
+
+
+# Tokens in a Unicode character NAME that mark the character a written vowel.
+# "VOWEL" covers the Brahmic/Thai/Khmer vowel signs and letters ("DEVANAGARI
+# VOWEL SIGN AA", "TAMIL VOWEL SIGN I"); "VOCALIC" covers the syllabic-liquid
+# vowel letters ("DEVANAGARI LETTER VOCALIC R"), whose IPA is a consonant plus
+# a vowel and so is not nucleus-initial.
+_UNICODE_VOWEL_NAME_TOKENS = ("VOWEL", "VOCALIC")
+
+
+def _script_key(ch: str):
+    """A (script, is-combining-mark) key for *ch*, derived from Unicode.
+
+    The script is the first word of the character's Unicode name (``LATIN``,
+    ``GREEK``, ``ARABIC``, ``DEVANAGARI`` …) — the stdlib exposes no script
+    property, and the name prefix IS the script for letters and marks. Returns
+    ``None`` for unnamed characters.
+    """
+    try:
+        name = unicodedata.name(ch)
+    except ValueError:
+        return None
+    return name.split()[0], unicodedata.combining(ch) != 0
+
+
+#: The (script, is-mark) inventories the letter sets above enumerate
+#: exhaustively — derived from their own members, never hardcoded. For these,
+#: absence from the sets means "not a vowel" and no other source is consulted.
+_CLOSED_INVENTORIES = frozenset(
+    key for key in (_script_key(c) for c in _ORTHOGRAPHIC_VOWELS)
+    if key is not None
+)
+
+
+def _is_letter_or_mark(ch: str) -> bool:
+    """True if *ch* is a Unicode letter or combining mark — the only two
+    categories a written vowel can belong to."""
+    return unicodedata.category(ch)[0] in ("L", "M")
+
+
+def _closed(ch: str) -> bool:
+    """True if *ch* falls inside an inventory the letter sets close."""
+    key = _script_key(ch)
+    return key is not None and key in _CLOSED_INVENTORIES
+
+
+def _unicode_says_vowel(ch: str) -> bool:
+    try:
+        name = unicodedata.name(ch)
+    except ValueError:
+        return False
+    return any(tok in name for tok in _UNICODE_VOWEL_NAME_TOKENS)
+
+
+def grapheme_is_vowel(grapheme: str, ipa=()) -> bool:
+    """True if *grapheme* is an orthographic vowel, in any script.
+
+    *ipa* is the grapheme's **flat-table** candidate list (``spec.graphemes``),
+    never its positionally-resolved realisation — positional resolution asks
+    this question, so answering it from a positional result would be circular.
+
+    Resolution order: the Latin/Greek/harakat letter sets (authoritative for
+    the inventories they close), then the spec's own IPA (nucleus-initial →
+    vowel), then the character's Unicode name. See the section comment above.
+    """
+    if not grapheme:
+        return False
+    ch = grapheme[0]
+    if is_orthographic_vowel(ch):
+        return True
+    if not _is_letter_or_mark(ch):
+        # A written vowel is a letter or a mark. Symbols, digits and
+        # punctuation never are — including the ASCII symbols a
+        # transliteration scheme presses into service (Buckwalter ⟨>⟩, ⟨&⟩).
+        return False
+    if _closed(ch):
+        return False
+    primary = ipa[0] if ipa else ""
+    if is_nucleus_only(primary):
+        return True
+    return _unicode_says_vowel(ch)
+
+
+#: IPA vowel symbols by front/back axis, read off the IPA vowel chart (this is
+#: IPA knowledge, not language knowledge). Central vowels (ɨ ʉ ə ɘ ɜ ɞ ɐ) belong
+#: to neither axis and are deliberately omitted, exactly as ⟨å⟩ is omitted from
+#: the orthographic classes.
+#: IPA on-glides. A grapheme realised as glide + nucleus is still a vowel letter
+#: (Cyrillic ⟨я⟩ → /ja/); a grapheme realised as a bare glide is not (⟨й⟩ → /j/).
+_ONGLIDES = frozenset("jwɥ")
+
+_IPA_FRONT = frozenset("iyɪʏeøɛœæaɶ")
+_IPA_BACK = frozenset("uʊɯoɤɔɑɒʌ")
+
+
+def _ipa_axis(ipa: str):
+    if not ipa:
+        return None
+    for c in ipa:
+        if c in _IPA_FRONT:
+            return "front"
+        if c in _IPA_BACK:
+            return "back"
+        if is_ipa_vowel(c):
+            return None  # a central vowel: on neither axis
+    return None
+
+
+def grapheme_vowel_axis(grapheme: str, ipa=()):
+    """``"front"`` / ``"back"`` / ``None`` for *grapheme*, in any script.
+
+    Latin and Greek keep the orthographic letter classification exactly (the
+    letter sets close those inventories, so ⟨å⟩ stays axis-less and ⟨y⟩ stays
+    non-vowel). Everywhere else the axis is read off the IPA the spec maps the
+    grapheme to — ⟨ि⟩ → /ɪ/ is front, ⟨ु⟩ → /ʊ/ is back — so
+    ``before_front_vowel`` / ``before_back_vowel`` work outside Latin too.
+    """
+    if not grapheme:
+        return None
+    ch = grapheme[0]
+    axis = _vowel_axis(ch)
+    if axis is not None:
+        return axis
+    if _closed(ch) or not _is_letter_or_mark(ch):
+        return None
+    if not grapheme_is_vowel(grapheme, ipa):
+        return None
+    return _ipa_axis(ipa[0] if ipa else "")
