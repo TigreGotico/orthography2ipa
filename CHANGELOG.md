@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.2.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.1.0a2...3.2.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): promote the first six languages to production tier [\#328](https://github.com/TigreGotico/orthography2ipa/pull/328) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.1.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a2) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.1.0a1...3.1.0a2)
@@ -685,10 +693,6 @@
 ## [1.32.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.32.0a1) (2026-07-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.31.0a1...1.32.0a1)
-
-**Merged pull requests:**
-
-- feat\(phonetok\): add lattice rescorer hook \(B4\) [\#141](https://github.com/TigreGotico/orthography2ipa/pull/141) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.31.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.31.0a1) (2026-07-10)
 
