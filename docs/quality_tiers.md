@@ -9,7 +9,8 @@ subjective label.
 
 ## `stub`
 
-- Placeholder entry: `code`, `name`, `family`, `script` are populated.
+- Placeholder entry: `code`, `name`, `script` and a `parent` (so the clade
+  chain, and with it `family`, resolves) are populated.
 - `graphemes` and `allophones` may be empty.
 - No gold benchmark required.
 - Reserved for languages the library has not yet started encoding, or

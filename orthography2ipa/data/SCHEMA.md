@@ -9,7 +9,6 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 {
   "code": "es-ES",
   "name": "Spanish (Castilian)",
-  "family": "Romance",
   "script": "Latin",
   "graphemes_base": null,
   "graphemes": {
@@ -58,8 +57,9 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 |-----------------------------|--------|----------|----------------------------------------------|
 | `code`                      | string | yes      | BCP-47 or ISO 639 language code              |
 | `name`                      | string | yes      | Human-readable language name                 |
-| `family`                    | string | yes      | Language family                              |
 | `script`                    | string | yes      | Primary writing script                       |
+| `family`                    | string | no       | **Do not author this.** `family` is DERIVED from the clade nodes on the ancestry chain (see [Clade nodes](#clade-nodes-and-the-derived-family)). It stays accepted as an override only for groupings that are not genetic clades — creoles, constructed languages, isolates, unclassified languages. |
+| `clade`                     | bool   | no       | This spec is a classification-only node — a family, not a language (default: `false`). See [Clade nodes](#clade-nodes-and-the-derived-family). |
 | `graphemes`                 | object | yes      | Grapheme → IPA mapping. Each value is either a plain IPA list `[str]` **or** a weighted object `{"ipa": [str], "weights": [float]}` (candidate frequencies). Both normalise to the same internal shape; absent weights == rank ordering. See [candidate scoring](../../docs/candidate_scoring.md). |
 | `allophones`                | object | yes      | Phoneme → allophone mapping (`{str: [str]}`) |
 | `positional_graphemes`      | object | no       | Position-dependent grapheme mappings         |
@@ -74,6 +74,8 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
+| `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |
+| `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
@@ -84,8 +86,51 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) |
 | `urls`                      | array  | no       | Other reference URLs (Glottolog, Ethnologue, dialect articles, …) |
 | `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
+| `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
 | `lexicon_csv`               | string | no       | Path (relative to `data/`) of a bundled IPA lexicon CSV |
+
+## Clade Nodes and the Derived `family`
+
+A language family is a **clade node**: a spec file whose JSON sets
+`"clade": true` and carries classification and nothing else — a `name`, a
+`parent` pointing at the next clade up, and (optionally) sources, identifiers and
+a centroid `location`. It has no graphemes and no allophones, is never inherited
+from, is never a data source, and is excluded from `available_codes()` unless
+`include_clades=True` is passed.
+
+```json
+{
+  "code": "x-clade-iberrom",
+  "name": "Ibero-Romance",
+  "clade": true,
+  "script": "Zyyy",
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
+  "parent": "la-x-hispania",
+  "notes": "Classification-only clade node for the Ibero-Romance branch."
+}
+```
+
+Clade files are named `x-clade-{slug}.json`, use `Zyyy` (undetermined) as their
+script, and sit at `quality: "stub"` with empty maps. A clade's `parent` is
+whatever comes next up the chain — another clade, or the ancestral language the
+branch descends from (`la-x-hispania` here).
+
+The loader derives each spec's `family_path` by walking `parent` upwards and
+collecting the clade names it passes, broadest first; `family` is that path joined
+with `" > "`:
+
+```python
+get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
+get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
+```
+
+So a language is classified by pointing its `parent` at the right node — never by
+authoring a `family` string. If the clade does not exist yet, add the node. The
+CLI filter matches any single step of the path, so `--family Romance` and
+`--family Ibero-Romance` both return `pt-BR`.
 
 ## Inheritance
 
@@ -159,7 +204,7 @@ the four overridden entries.
 list of declarative, context-conditioned `phoneme → surface` rewrites (the
 mirror of `positional_graphemes`, on the phoneme side). They compile into a
 lattice rescorer the engine applies after phoneme selection and before
-stress/sandhi. Empty by default → no-op → byte-identical output. See
+stress/sandhi. Empty by default → no-op: the rules alone decide the output. See
 [allophony](../../docs/allophony.md).
 
 ```json
@@ -203,6 +248,59 @@ fires for a slot when the slot's chosen phoneme is in `phonemes` **and** every
 condition holds, rewriting that candidate to `surface` at the same beam cost.
 Inheritance is id-keyed overlay: a child spec setting `graphemes_base`
 inherits the parent's rules and can override one by `id` or append new ones.
+
+## Stress Schema
+
+Declarative stress placement. The engine applies it after phoneme selection; a
+spec with no `stress` block gets no stress marks.
+
+```json
+"stress": {
+  "default_position": -2,
+  "final_stress_endings": ["r", "l", "z"],
+  "marked_vowels": ["á", "é", "í", "ó", "ú"],
+  "stress_mark": "ˈ",
+  "notes": "Paroxytone by default; oxytone before the listed final consonants."
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `default_position` | int | no | Default stressed syllable. Negative counts from the end (`-1` oxytone, `-2` paroxytone — the default, down to `-4`); positive counts from the start (`1` first syllable, `2` second). `0` is invalid. |
+| `final_stress_endings` | array | no | Word endings that force final stress |
+| `penult_stress_endings` | array | no | Word endings that force penultimate stress |
+| `marked_vowels` | array | no | Orthographic vowels whose diacritic marks stress directly |
+| `stress_mark` | string | no | IPA mark to insert (default `"ˈ"`) |
+| `notes` | string | no | Provenance / convention notes |
+
+## Location Schema
+
+Where the variety is spoken — a single representative point, consumed by
+`geographic_distance`.
+
+```json
+"location": {
+  "latitude": 41.453,
+  "longitude": 1.569,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point for Catalan."
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `latitude` | float | **yes** | −90.0 … 90.0 |
+| `longitude` | float | **yes** | −180.0 … 180.0 |
+| `source` | string | no | Where the point comes from (`glottolog`, `wikidata`, …) |
+| `notes` | string | no | Why this point, and what it does *not* claim |
+
+A point is a crude proxy for an AREA. It is a fair summary for a dialect anchored
+to a region — which is where the geographic axis earns its keep — and close to
+meaningless for a widespread macrolanguage, where the point is arbitrary. Prefer
+a point that describes *this* variety (the centre of the norm, the heart of the
+dialect region) over a generic national point, and say so in `notes`. Omit the
+field entirely rather than guess: `geographic_distance` returns `None` for a spec
+without a location, which is honest, whereas a made-up point is not.
 
 ## Sources Schema
 

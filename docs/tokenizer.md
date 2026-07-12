@@ -146,13 +146,16 @@ for t in tokens:
 # PUNCTUATION   '.'       ()
 ```
 
-### `ipa_beam(text, beam_width, include_allophones)`
+### `ipa_beam(text, *, beam_width, expand_allophones, ...)`
 
 ```python
 paths: List[IPAPath] = tok.ipa_beam(
     text,
-    beam_width=8,        # max number of paths (default 8)
-    include_allophones=False  # expand to allophone level (default False)
+    beam_width=8,             # max number of paths (default 8)
+    expand_allophones=False,  # expand to allophone level (default False)
+    length_norm=False,        # divide the score by path length (default off)
+    diversity=0.0,            # penalise near-duplicate paths (default off)
+    rescorer=None,            # a LatticeRescorer to re-cost candidates
 )
 ```
 
@@ -165,36 +168,33 @@ paths = tok_es.ipa_beam("ciudad", beam_width=6)
 for p in paths:
     print(f"  score={p.score:.1f}  /{p.ipa}/")
 
-# score=0.0  /θjuðað/    ← canonical Castilian (θ for ⟨c⟩, ð for ⟨d⟩ allophones)
-# score=1.0  /sjuðað/    ← seseo variant
+# score=0.0  /θjuðað/    ← canonical Castilian (θ for ⟨c⟩)
+# score=1.0  /kjuðað/    ← ⟨c⟩ taken as /k/
+# score=1.0  /θjudað/    ← ⟨d⟩ taken as the stop
 # ...
 ```
 
-### `ipa_expand(tokens, include_allophones)`
+### `ipa_lattice(text)`
 
-```python
-paths: List[IPAPath] = tok.ipa_expand(
-    tokens,                     # List[Token] from tokenize()
-    include_allophones=False
-)
-```
-
-Lower-level version of `ipa_beam` that works directly on pre-tokenized input. Useful if you want to tokenize once and expand multiple times.
+For a *structured* view of the same search space — ranked candidates per grapheme
+rather than flattened path strings — use `ipa_lattice`, which returns a
+`SegmentSlot` per grapheme carrying its span and ranked `Candidate(ipa, cost)`
+options. See [lattice.md](lattice.md).
 
 ---
 
 ## Allophone Expansion
 
-When `include_allophones=True`, IPA paths are further expanded to include allophonic variants from `spec.allophones`:
+When `expand_allophones=True`, IPA paths are further expanded to include allophonic variants from `spec.allophones`:
 
 ```python
 tok = PhonetokTokenizer(orthography2ipa.get("es"))
-paths = tok.ipa_beam("habla", beam_width=10, include_allophones=True)
+paths = tok.ipa_beam("habla", beam_width=10, expand_allophones=True)
 
-# Without allophones: /aβla/  (lenited /b/)
-# With allophones:
-#   /abla/   ← [b] stop variant (post-pause)
-#   /aβla/   ← [β] spirant variant (intervocalic)
+for p in paths[:2]:
+    print(p.score, p.ipa)
+# 0.0 abla    ← [b] stop variant (post-pause)
+# 0.5 aβla    ← [β] spirant variant (intervocalic)
 ```
 
 This is useful for:
@@ -272,12 +272,11 @@ Each `GraphemeContext` exposes:
 
 ### Why it exists: replacing hand-rolled index arithmetic
 
-Downstream phonemizers historically re-implemented all of the above by
-hand — raw string indexing plus their own vowel sets. The context model is
-the shared substrate that replaces that. For a c-softening rule
-(`c` → /s/ before a front vowel):
+Without this context model a downstream phonemizer re-implements all of the
+above by hand — raw string indexing plus its own vowel set. Take a c-softening
+rule (`c` → /s/ before a front vowel).
 
-Before — raw index arithmetic and a private vowel list:
+By hand — raw index arithmetic and a private vowel list:
 
 ```python
 chars = list(word.lower())
@@ -287,7 +286,7 @@ for idx, char in enumerate(chars):
         phonemes[idx] = "s" if next_char in ("e", "i", "é", "í", "y") else "k"
 ```
 
-After — one shared, accent-aware predicate:
+With the context model — one shared, accent-aware predicate:
 
 ```python
 for c in tok.tokenize_with_context(word):
@@ -296,9 +295,9 @@ for c in tok.tokenize_with_context(word):
         emit("s" if soft else "k")
 ```
 
-`is_front` already covers `e i y` plus every accented/diaeresis variant, so
-the after-form needs no per-letter enumeration and cannot drift from the
-rest of the library's vowel classification.
+`is_front` already covers `e i y` plus every accented/diaeresis variant, so the
+second form needs no per-letter enumeration and cannot drift from the rest of the
+library's vowel classification.
 
 ### The beam uses the context model too
 
