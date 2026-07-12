@@ -27,12 +27,11 @@
       "a"
     ],
     "е": [
-      "jɛ",
-      "ɛ"
+      "je",
+      "e"
     ],
     "ё": [
-      "jɔ",
-      "ɔ"
+      "jo"
     ],
     "і": [
       "i"
@@ -41,7 +40,7 @@
       "j"
     ],
     "о": [
-      "ɔ"
+      "o"
     ],
     "у": [
       "u"
@@ -74,13 +73,13 @@
       "d"
     ],
     "дж": [
-      "dʒ"
+      "dʐ"
     ],
     "дз": [
       "dz"
     ],
     "ж": [
-      "ʒ"
+      "ʐ"
     ],
     "з": [
       "z"
@@ -89,7 +88,7 @@
       "k"
     ],
     "л": [
-      "l"
+      "ɫ"
     ],
     "м": [
       "m"
@@ -110,7 +109,7 @@
       "t"
     ],
     "ў": [
-      "w"
+      "u̯"
     ],
     "ф": [
       "f"
@@ -122,13 +121,13 @@
       "ts"
     ],
     "ч": [
-      "tʃ"
+      "tʂ"
     ],
     "ш": [
-      "ʃ"
+      "ʂ"
     ],
     "шч": [
-      "ʃtʃ"
+      "ʂtʂ"
     ],
     "'": [
       ""
@@ -153,6 +152,312 @@
     ],
     "зь": [
       "zʲ"
+    ],
+    "бе": [
+      "bʲe"
+    ],
+    "бё": [
+      "bʲo"
+    ],
+    "бю": [
+      "bʲu"
+    ],
+    "бя": [
+      "bʲa"
+    ],
+    "бі": [
+      "bʲi"
+    ],
+    "ве": [
+      "vʲe"
+    ],
+    "вё": [
+      "vʲo"
+    ],
+    "вю": [
+      "vʲu"
+    ],
+    "вя": [
+      "vʲa"
+    ],
+    "ві": [
+      "vʲi"
+    ],
+    "ге": [
+      "ɣʲe"
+    ],
+    "гё": [
+      "ɣʲo"
+    ],
+    "гю": [
+      "ɣʲu"
+    ],
+    "гя": [
+      "ɣʲa"
+    ],
+    "гі": [
+      "ɣʲi"
+    ],
+    "зе": [
+      "zʲe"
+    ],
+    "зё": [
+      "zʲo"
+    ],
+    "зю": [
+      "zʲu"
+    ],
+    "зя": [
+      "zʲa"
+    ],
+    "зі": [
+      "zʲi"
+    ],
+    "ке": [
+      "kʲe"
+    ],
+    "кё": [
+      "kʲo"
+    ],
+    "кю": [
+      "kʲu"
+    ],
+    "кя": [
+      "kʲa"
+    ],
+    "кі": [
+      "kʲi"
+    ],
+    "ле": [
+      "lʲe"
+    ],
+    "лё": [
+      "lʲo"
+    ],
+    "лю": [
+      "lʲu"
+    ],
+    "ля": [
+      "lʲa"
+    ],
+    "лі": [
+      "lʲi"
+    ],
+    "ме": [
+      "mʲe"
+    ],
+    "мё": [
+      "mʲo"
+    ],
+    "мю": [
+      "mʲu"
+    ],
+    "мя": [
+      "mʲa"
+    ],
+    "мі": [
+      "mʲi"
+    ],
+    "не": [
+      "nʲe"
+    ],
+    "нё": [
+      "nʲo"
+    ],
+    "ню": [
+      "nʲu"
+    ],
+    "ня": [
+      "nʲa"
+    ],
+    "ні": [
+      "nʲi"
+    ],
+    "пе": [
+      "pʲe"
+    ],
+    "пё": [
+      "pʲo"
+    ],
+    "пю": [
+      "pʲu"
+    ],
+    "пя": [
+      "pʲa"
+    ],
+    "пі": [
+      "pʲi"
+    ],
+    "се": [
+      "sʲe"
+    ],
+    "сё": [
+      "sʲo"
+    ],
+    "сю": [
+      "sʲu"
+    ],
+    "ся": [
+      "sʲa"
+    ],
+    "сі": [
+      "sʲi"
+    ],
+    "фе": [
+      "fʲe"
+    ],
+    "фё": [
+      "fʲo"
+    ],
+    "фю": [
+      "fʲu"
+    ],
+    "фя": [
+      "fʲa"
+    ],
+    "фі": [
+      "fʲi"
+    ],
+    "хе": [
+      "xʲe"
+    ],
+    "хё": [
+      "xʲo"
+    ],
+    "хю": [
+      "xʲu"
+    ],
+    "хя": [
+      "xʲa"
+    ],
+    "хі": [
+      "xʲi"
+    ],
+    "це": [
+      "tsʲe"
+    ],
+    "цё": [
+      "tsʲo"
+    ],
+    "цю": [
+      "tsʲu"
+    ],
+    "ця": [
+      "tsʲa"
+    ],
+    "ці": [
+      "tsʲi"
+    ],
+    "дзе": [
+      "dzʲe"
+    ],
+    "дзё": [
+      "dzʲo"
+    ],
+    "дзю": [
+      "dzʲu"
+    ],
+    "дзя": [
+      "dzʲa"
+    ],
+    "дзі": [
+      "dzʲi"
+    ],
+    "цц": [
+      "tsː"
+    ],
+    "нне": [
+      "nʲːe"
+    ],
+    "ннё": [
+      "nʲːo"
+    ],
+    "нню": [
+      "nʲːu"
+    ],
+    "ння": [
+      "nʲːa"
+    ],
+    "нні": [
+      "nʲːi"
+    ],
+    "лле": [
+      "lʲːe"
+    ],
+    "ллё": [
+      "lʲːo"
+    ],
+    "ллю": [
+      "lʲːu"
+    ],
+    "лля": [
+      "lʲːa"
+    ],
+    "ллі": [
+      "lʲːi"
+    ],
+    "ссе": [
+      "sʲːe"
+    ],
+    "ссё": [
+      "sʲːo"
+    ],
+    "ссю": [
+      "sʲːu"
+    ],
+    "сся": [
+      "sʲːa"
+    ],
+    "ссі": [
+      "sʲːi"
+    ],
+    "ззе": [
+      "zʲːe"
+    ],
+    "ззё": [
+      "zʲːo"
+    ],
+    "ззю": [
+      "zʲːu"
+    ],
+    "ззя": [
+      "zʲːa"
+    ],
+    "ззі": [
+      "zʲːi"
+    ],
+    "цце": [
+      "tsʲːe"
+    ],
+    "ццё": [
+      "tsʲːo"
+    ],
+    "ццю": [
+      "tsʲːu"
+    ],
+    "цця": [
+      "tsʲːa"
+    ],
+    "цці": [
+      "tsʲːi"
+    ],
+    "дздзе": [
+      "dzʲːe"
+    ],
+    "дздзё": [
+      "dzʲːo"
+    ],
+    "дздзю": [
+      "dzʲːu"
+    ],
+    "дздзя": [
+      "dzʲːa"
+    ],
+    "дздзі": [
+      "dzʲːi"
+    ],
+    "іі": [
+      "iji"
     ]
   },
   "allophones": {
@@ -306,17 +611,6 @@
       "url": null,
       "pages": null,
       "notes": null
-    },
-    {
-      "id": "timberlake2004",
-      "author": "Timberlake, A.",
-      "year": 2004,
-      "title": "A Reference Grammar of Russian",
-      "publisher": "Cambridge University Press",
-      "url": null,
-      "pages": null,
-      "notes": null,
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
     }
   ],
   "wikipedia": [
@@ -337,5 +631,314 @@
     "longitude": 25.6038,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Belarusian."
-  }
+  },
+  "positional_graphemes": {
+    "і": {
+      "word_initial": [
+        "ji"
+      ],
+      "default": [
+        "i"
+      ]
+    },
+    "ў": {
+      "word_initial": [
+        "w"
+      ],
+      "default": [
+        "u̯"
+      ]
+    },
+    "б": {
+      "word_final": [
+        "p"
+      ]
+    },
+    "д": {
+      "word_final": [
+        "t"
+      ]
+    },
+    "г": {
+      "word_final": [
+        "x"
+      ]
+    },
+    "з": {
+      "word_final": [
+        "s"
+      ]
+    },
+    "ж": {
+      "word_final": [
+        "ʂ"
+      ]
+    },
+    "в": {
+      "word_final": [
+        "f"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "BE_REGR_PALAT_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "tsʲ",
+        "dzʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "bʲ",
+        "vʲ",
+        "mʲ",
+        "pʲ",
+        "fʲ",
+        "ʋʲ"
+      ],
+      "notes": "Regressive palatalization before soft dentals (Mayo (1993) Belarusian, in Comrie & Corbett (eds.) The Slavonic Languages, Routledge, phonology section): адкласці [atkɫasʲtsʲi]. s/z also soften before soft labials: звер [zʲvʲer]."
+    },
+    {
+      "id": "BE_REGR_PALAT_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "tsʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "bʲ",
+        "vʲ",
+        "mʲ",
+        "pʲ",
+        "fʲ",
+        "ʋʲ"
+      ],
+      "notes": "Regressive palatalization before soft dentals (Mayo (1993) Belarusian, in Comrie & Corbett (eds.) The Slavonic Languages, Routledge, phonology section): адкласці [atkɫasʲtsʲi]. s/z also soften before soft labials: звер [zʲvʲer]."
+    },
+    {
+      "id": "BE_REGR_PALAT_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʲ",
+      "followed_by_phoneme": [
+        "tsʲ",
+        "dzʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ"
+      ],
+      "notes": "Regressive palatalization before soft dentals (Mayo (1993) Belarusian, in Comrie & Corbett (eds.) The Slavonic Languages, Routledge, phonology section): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "p",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "t",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_ɡ",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "k",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "s",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_ʐ",
+      "phonemes": [
+        "ʐ"
+      ],
+      "surface": "ʂ",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_v",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "f",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_dz",
+      "phonemes": [
+        "dz"
+      ],
+      "surface": "ts",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    },
+    {
+      "id": "BE_REGR_DEVOICE_ɣ",
+      "phonemes": [
+        "ɣ"
+      ],
+      "surface": "x",
+      "followed_by_phoneme": [
+        "p",
+        "t",
+        "k",
+        "f",
+        "s",
+        "ʂ",
+        "x",
+        "ts",
+        "tʂ",
+        "tsʲ",
+        "pʲ",
+        "kʲ",
+        "fʲ",
+        "sʲ",
+        "xʲ"
+      ],
+      "notes": "Regressive devoicing before voiceless obstruents (Mayo 1993): адкласці [atkɫasʲtsʲi]."
+    }
+  ]
 }

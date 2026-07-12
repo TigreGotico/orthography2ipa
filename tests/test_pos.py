@@ -91,7 +91,7 @@ class TestGraphemePosition(unittest.TestCase):
             "word_initial", "word_final",
             "intervocalic", "intervocalic_cross_word",
             "onset", "nucleus_stressed", "nucleus_unstressed", "coda",
-            "pretonic", "posttonic",
+            "first_pretonic", "pretonic", "posttonic",
             "before_vowel", "after_vowel",
             "before_consonant", "after_consonant",
             "before_a", "before_e", "before_i", "before_o", "before_u",

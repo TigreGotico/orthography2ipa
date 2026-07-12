@@ -106,6 +106,12 @@ _ORTHOGRAPHIC_VOWELS = frozenset(
     # treat a consonant followed by a harakat as standing before a vowel.
     # sukūn (U+0652, vowel *absence*) is deliberately excluded.
     "ًٌٍَُِٰ"
+    # Cyrillic vowel letters: East/South Slavic core (а е ё и о у ы э ю я),
+    # Ukrainian і ї є, plus the grave-accented forms ѐ ѝ used to mark
+    # stress in Bulgarian/Macedonian text. The glides ў (Belarusian /w/)
+    # and й (/j/) are deliberately excluded, as are the vowel-less signs
+    # ь and ъ.
+    "аеёиоуыэюяіїєѐѝ"
 )
 
 # ═══════════════════════════════════════════════════════════════════════════

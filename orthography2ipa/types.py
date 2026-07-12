@@ -292,6 +292,14 @@ class GraphemePosition(str, Enum):
     Korean obstruent neutralisation in coda;
     Portuguese ⟨l⟩ → [w] in coda (Brazilian)."""
 
+    FIRST_PRETONIC = "first_pretonic"
+    """The syllable immediately before the stressed one. Languages whose
+    reduction distinguishes the immediate pretonic from further pretonic
+    syllables (Russian akanje: first-pretonic [ɐ] vs. [ə] elsewhere,
+    Timberlake 2004 §2.2.4) key on this; it is emitted BEFORE the generic
+    PRETONIC, so a spec that defines both gets the specific one here and
+    the generic one everywhere else before the stress."""
+
     PRETONIC = "pretonic"
     """default value when before the stressed/tonic syllable."""
 
