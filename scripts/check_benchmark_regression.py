@@ -51,9 +51,24 @@ from typing import Dict, List, Tuple
 sys.path.insert(0, os.path.dirname(__file__))
 
 from benchmark import (  # noqa: E402
-    build_scoreboard, CI_SAMPLE_JSON, CI_SAMPLE_LIMIT,
+    build_scoreboard, can_gate_promotion, CI_SAMPLE_JSON, CI_SAMPLE_LIMIT,
     HARNESS_VERSION,
 )
+
+
+def _gate_eligible(tier) -> bool:
+    """Whether a row on this provenance tier may FAIL the regression gate.
+
+    Rows without a provenance field (or on an unknown tier) stay
+    gate-eligible: only an explicit competitor/LLM classification earns
+    the non-blocking `drifted` status.
+    """
+    if not isinstance(tier, str):
+        return True
+    try:
+        return can_gate_promotion(tier)
+    except ValueError:
+        return True
 
 DEFAULT_EPSILON = 0.005
 
@@ -118,7 +133,18 @@ def compare(
             continue
 
         delta = cur_row["per"] - base_row["per"]
-        status = "regressed" if delta > epsilon else "ok"
+        if delta > epsilon:
+            # Competitor-derived and LLM tiers can never GATE (the same
+            # rule can_gate_promotion applies to tier promotion, and for
+            # the same reason): a worse score against espeak-derived or
+            # epitran-derived gold measures increased DISAGREEMENT with
+            # a competitor, and diverging from a competitor may be
+            # exactly what the cited source demands. Such rows are
+            # reported as `drifted` — visible, never blocking.
+            gates = _gate_eligible(cur_row.get("provenance"))
+            status = "regressed" if gates else "drifted"
+        else:
+            status = "ok"
         row = {
             "lang": lang, "dataset": dataset,
             "baseline_per": base_row["per"], "new_per": cur_row["per"],
@@ -150,6 +176,8 @@ def print_report(diff_rows: List[dict], epsilon: float) -> None:
         )
         if row["status"] == "regressed":
             line += "  <-- REGRESSION"
+        elif row["status"] == "drifted":
+            line += "  (competitor-derived gold: drift noted, never gates)"
         print(line)
     print("-" * len(header))
     print(f"epsilon={epsilon} (absolute PER worsening allowed vs. baseline)")
