@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.83.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.83.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.82.0a1...1.83.0a1)
+
+**Merged pull requests:**
+
+- feat: distinguish native scripts, romanizations and transliterations — and stop zh lying [\#291](https://github.com/TigreGotico/orthography2ipa/pull/291) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.82.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.82.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.81.0a1...1.82.0a1)
@@ -713,10 +721,6 @@
 ## [1.17.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.17.0a1) (2026-07-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.16.0a1...1.17.0a1)
-
-**Merged pull requests:**
-
-- feat: add HiTZ Basque Wikipedia IPA gold dataset to eu benchmark [\#97](https://github.com/TigreGotico/orthography2ipa/pull/97) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.16.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.16.0a1) (2026-07-09)
 
