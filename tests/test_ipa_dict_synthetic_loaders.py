@@ -78,7 +78,10 @@ def test_synthetic_dict_loaders_registered():
     assert langs == ["mwl", "mwl-x-ifanes", "mwl-x-sendim"]
 
 
-def test_synthetic_dict_loaders_are_machine_generated():
-    # LLM-generated golds must sit at the lowest reliability tier
-    assert benchmark.PROVENANCE["barranquenho_dict"] == "machine-generated"
-    assert benchmark.PROVENANCE["mirandese_dict"] == "machine-generated"
+def test_synthetic_dict_loaders_are_llm_generated():
+    # LLM-generated golds must sit at the lowest reliability tier: an LLM has
+    # no lexicon and no rules, so its IPA has no error model at all and can
+    # never gate a promotion (docs/quality_tiers.md).
+    assert benchmark.PROVENANCE["barranquenho_dict"] == "llm-generated"
+    assert benchmark.PROVENANCE["mirandese_dict"] == "llm-generated"
+    assert not benchmark.can_gate_promotion("llm-generated")

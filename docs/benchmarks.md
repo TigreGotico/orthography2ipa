@@ -22,9 +22,15 @@ reference**. This is not a defect to hide; it is the state of the field,
 and it changes how every number on the [scoreboard](scoreboard.md) must
 be read:
 
-- **A low PER against a `machine-generated` gold means "agrees with that
-  tool", NOT "correct".** `styletts2_phonemes`, `ipa_childes` and
-  `hitz_basque_ipa` are all the output of an automatic phonemizer. Scoring
+- **A gold set's value is its error model.** Human/lexicon gold is
+  trustworthy. Rule-system gold (espeak, epitran) measures *agreement with a
+  competitor* — informative, because a deterministic rule system's
+  disagreements can be traced to a rule and adjudicated, but it can never
+  certify us. LLM gold has *no error model at all*: no lexicon, no rules,
+  nothing to attribute an error to, so a disagreement is not even diagnostic.
+- **A low PER against a tool-generated gold means "agrees with that
+  tool", NOT "correct".** `styletts2_phonemes`, `ipa_childes`, `ipa_babylm`
+  and `hitz_basque_ipa` are all the output of an automatic phonemizer. Scoring
   well there says o2i reproduces that tool's decisions, right or wrong.
 - **Scoring a system against a gold its own generator produced is
   near-tautological.** `hitz_basque_ipa` *is* the output of HiTZ's
@@ -34,10 +40,15 @@ be read:
   evaluated system shares the gold's generator: use an **independent**
   gold (here, `wikipron` `eu`) for the fair comparison.
 - **Comparing o2i to espeak on an espeak-derived gold is partly
-  circular** for the same reason. `styletts2_phonemes` is
+  circular** for the same reason. `styletts2_phonemes`, `ipa_babylm` and the
+  `phonemizer`-phonemized `ipa_childes` languages are all
   phonemizer/espeak-lineage; an espeak-vs-o2i table on that gold measures
   how similarly two systems diverge from the truth, not who is closer to
-  it.
+  it. **The same trap applies to epitran**, which
+  [comparison](comparison.md) also benchmarks o2i against (`epitran_per`):
+  the six `epitran`-phonemized `ipa_childes` languages are epitran's own
+  output, so treating them as truth would double-count epitran as both rival
+  and referee.
 - **Absolute PER is noisy — treat it as directional, not precise.** The
   published scoreboard scores the **full** gold set of every language (see
   "Full-dataset scoreboard" below), so its `N` is the number of gold words
@@ -85,7 +96,9 @@ classification.
 | **lexicon-derived** | Human lexicographers, via a published dictionary's notation — sometimes through a mechanical notation transform (ARPABET→IPA, slashed-phonemic→IPA). | Dictionary conventions ≠ surface phonetics; the transform step can add its own artifacts. |
 | **crowd-scraped** | Wiktionary community edits (WikiPron). | Uneven per language; some entries are themselves editor-applied rule output, not attested transcriptions. |
 | **machine-generated** | A phonemizer's *own output* reused as the reference. | **Biggest grain of salt.** Low PER = agreement with that tool, not correctness. |
-| **espeak-derived** | A **competitor's** output reused as the reference (`styletts2_phonemes`, from the espeak-ng-backed phonemizer). | **Never gate a quality decision on this.** The row measures *agreement with espeak* — and espeak is a system we benchmark ourselves *against* ([comparison](comparison.md)). Diverging from it can mean we are right and it is wrong, which shows up here as a *worse* score. Quality also varies by language. Judge any divergence against a cited source, never against this number. Kept for its breadth as a directional signal. |
+| **espeak-derived** | A **competitor's** output reused as the reference: espeak-ng, directly or through a wrapper (`styletts2_phonemes`; `ipa_babylm` via G2P+; the `phonemizer`-phonemized `ipa_childes` languages). | **Never gate a quality decision on this.** The row measures *agreement with espeak* — and espeak is a system we benchmark ourselves *against* ([comparison](comparison.md)). Diverging from it can mean we are right and it is wrong, which shows up here as a *worse* score. Quality also varies by language. Judge any divergence against a cited source, never against this number. Kept for its breadth as a directional signal. |
+| **epitran-derived** | A **competitor's** output reused as the reference: [epitran](https://github.com/dmort27/epitran) (the six `epitran`-phonemized `ipa_childes` languages — `de-DE`, `es-ES`, `hr`, `hu`, `id`, `sr`). | **Never gate a quality decision on this** — same reason as `espeak-derived`, and epitran is likewise a system [comparison](comparison.md) scores us against (`epitran_per`). Scoring o2i against epitran's own output and calling it gold would count the same system as both rival and truth. Still diagnostic (epitran is a deterministic rule system, so a disagreement can be traced to a rule and adjudicated against a cited source), but never certifying. |
+| **llm-generated** | The gold was produced by a large language model (`barranquenho_dict`, `mirandese_dict` — Claude, research-conditioned). | **Worst of all, and never a gate.** An LLM has no lexicon, no G2P model and no rules, therefore **no error model**: it emits plausible-*looking* IPA that can be confidently wrong with no systematic structure, and a disagreement cannot be attributed to anything. Certifies nothing and diagnoses nothing; read as a curiosity, not as evidence. This is why the GPT-4o-Mini-generated `dsvv-cair` dataset is [rejected outright](#rejected-candidates) rather than wired. |
 
 ### Per-dataset classification
 
@@ -107,26 +120,31 @@ stated rather than papered over.
 | `ipadict` | **per-language** (see below) | Depends on the file: human dictionaries, Wiktionary scrapes, rule scripts, **espeak** | The only mixed-provenance dataset here: ipa-dict is a *collection* of independently sourced files, so each row carries the tier of the file it was scored against, not a dataset-wide tier. Full per-language table in [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). |
 | `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size; some entries are editor-rule output, not attested; multiple valid variants per word. |
 | `styletts2_phonemes` | machine-generated | Automatic phonemizer (TTS `synthetic` tag) | **Grain of salt maximal.** Phonemizer/espeak-lineage; low PER = agrees with the phonemizer; espeak comparison on this gold is partly circular. |
-| `ipa_childes` | machine-generated | CHILDES "G2P+" automatic phonemizer | Tool-phonemized child-language corpus; accepted under the academic-corpus exception, still tool output. |
+| `ipa_childes` | **per-language** (see below) | Depends on the language: `phonemizer` (espeak-ng), `epitran`, or `pinyin_to_ipa` | Mixed-provenance like `ipadict`: the IPA-CHILDES card names a **different phonemizing tool per language**, so each row carries the tier its own tool earns — `espeak-derived`, `epitran-derived`, or `machine-generated` for Mandarin's `pinyin_to_ipa` table. Full per-language tool table in [IPA-CHILDES split](#ipa-childes-split-ipa_childes). |
+| `ipa_babylm` | espeak-derived | G2P+ with the `phonemizer` backend (= espeak-ng), `en-us` | BabyLM 2024 corpora phonemized by [G2P+](https://github.com/codebyzeb/g2p-plus), which is a wrapper over `phonemizer`/`epitran`; the conversion notebook ([codebyzeb/babylm-ipa](https://github.com/codebyzeb/babylm-ipa)) calls the `phonemizer` backend, which requires espeak-ng. So this is espeak output: it can neither qualify nor block English. |
 | `hitz_basque_ipa` | machine-generated | HiTZ **ahoNT / AhoTTS** phonemizer | University-published (HiTZ/UPV-EHU), but the gold **is ahoNT/AhoTTS output** — it was generated by that phonemizer, not human-annotated. So a low PER **for the AhoTTS/ahotts-g2p engine on this row is near-tautological** (a tool scored against its own output); the independent, Wiktionary-sourced `wikipron` `eu` row is the fair comparison for Basque. |
-| `barranquenho_dict` | machine-generated | **LLM (Claude), research-conditioned** | IPA generated by a large language model prompted with the *Convenção Ortográfica do Barranquenho* and descriptive research on the variety — **not** a phonemizer, not orthography2ipa, not any downstream o2i consumer, so scoring o2i against it is **not circular**. But LLM IPA can be plausibly wrong and is **not human-verified**: directional only. |
-| `mirandese_dict` | machine-generated | **LLM (Claude), research-conditioned** | IPA generated by a large language model prompted with the *Convenção Ortográfica da Língua Mirandesa* and sub-dialect descriptions — **not** a phonemizer, not orthography2ipa, not any downstream o2i consumer, so scoring o2i against it is **not circular**. Complementary to the native-speaker `mirandese` gold. LLM IPA is plausibly wrong and **not human-verified**: directional only. |
+| `barranquenho_dict` | llm-generated | **LLM (Claude), research-conditioned** | IPA generated by a large language model prompted with the *Convenção Ortográfica do Barranquenho* and descriptive research on the variety — **not** a phonemizer, not orthography2ipa, not any downstream o2i consumer, so scoring o2i against it is **not circular**. But LLM IPA can be plausibly wrong and is **not human-verified**: directional only. |
+| `mirandese_dict` | llm-generated | **LLM (Claude), research-conditioned** | IPA generated by a large language model prompted with the *Convenção Ortográfica da Língua Mirandesa* and sub-dialect descriptions — **not** a phonemizer, not orthography2ipa, not any downstream o2i consumer, so scoring o2i against it is **not circular**. Complementary to the native-speaker `mirandese` gold. LLM IPA is plausibly wrong and **not human-verified**: directional only. |
 
 ## Provenance discipline
 
 Because reliable gold is scarce, the harness applies a deliberate
 discipline: prefer human/community provenance, and where tool-generated
 IPA is admitted, admit it **explicitly, per dataset, with the reason
-recorded** — never silently. Five tool-generated sources are wired in:
-three are automatic-phonemizer output (`hitz_basque_ipa`, `ipa_childes`,
-`styletts2_phonemes`) and two are LLM-generated IPA dictionaries
-(`barranquenho_dict`, `mirandese_dict`), each under a documented,
-dataset-specific exception (academic-corpus provenance, an explicit task
-override, or the LLM-gold rationale below) rather than a blanket
-relaxation. Their rows carry the `machine-generated` tier so the caveat
-above travels with every number they produce. Adding another
-tool-generated source requires the same explicit call; it is not the
-default.
+recorded** — never silently. Six tool-generated sources are wired in: four
+are automatic-phonemizer output (`hitz_basque_ipa`, `ipa_childes`,
+`ipa_babylm`, `styletts2_phonemes`) and two are LLM-generated IPA
+dictionaries (`barranquenho_dict`, `mirandese_dict`), each under a
+documented, dataset-specific exception (academic-corpus provenance, an
+explicit task override, or the LLM-gold rationale below) rather than a
+blanket relaxation. Each row carries the tier its own generator earns —
+`machine-generated`, `espeak-derived`, `epitran-derived` or `llm-generated`
+— so the caveat above travels with every number it produces, and
+`can_gate_promotion()` in `scripts/benchmark.py` refuses the last three as
+promotion evidence. Adding another tool-generated source requires the same
+explicit call; it is not the default. A gold whose provenance cannot be
+established does **not** default to a flattering tier: it is classified at
+the most pessimistic tier its evidence permits, or rejected.
 
 The two LLM-generated dictionaries (`barranquenho_dict`, `mirandese_dict`)
 sit at the `machine-generated` tier for a specific reason: their IPA was
@@ -613,13 +631,62 @@ sentence-level utterance with several IPA columns; this harness uses
 publishes pipe-(" | ")-delimited with one segment per orthographic word,
 aligned positionally with the whitespace-tokenized orthographic sentence.
 Per the CHILDES/academic-corpus exception, tool-generated transcriptions
-from this dataset are accepted as gold here.
+from this dataset are accepted as gold here — but **which** tool matters,
+and it is not the same tool for every language.
 
-Wired under the `ipa_childes` dataset key for `en-US`, `et`, `hu`, `id`,
-`sr`, `zh` — 6 of the dataset languages with no prior gold coverage in
-this harness at all *and* a language tag registered in this repo's specs
-(`orthography2ipa/data/*.json`). Only the `test` split is read (held out
-from G2P+ training). The loader (`load_ipa_childes` in
+#### Provenance: one tool per language, and every one of them is a competitor
+
+The [IPA-CHILDES dataset card](https://huggingface.co/datasets/phonemetransformers/IPA-CHILDES)
+states the phonemizing tool per language in its own table. Most languages
+were run through `phonemizer` (whose backend is **espeak-ng**), six through
+**epitran**, Mandarin through `pinyin_to_ipa` and Cantonese through
+`pingyam`. espeak and epitran are *both* systems this project benchmarks
+itself against ([comparison](comparison.md) has `espeak_per` and
+`epitran_per` columns), so an IPA-CHILDES row measures **agreement with a
+competitor**, not correctness. Every row is therefore tiered by its own
+tool (`_IPA_CHILDES_TOOL` → `_IPA_CHILDES_PROVENANCE` in
+`scripts/benchmark.py`, mechanically, with a test enforcing the mapping),
+and none of the espeak/epitran rows can qualify or block a language for
+`production` ([quality tiers](quality_tiers.md)).
+
+| Language tag | Dataset folder | Tool (dataset card) | Tier | `N` | PER |
+|---|---|---|---|---|---|
+| `ca` | `ca-ES` | `phonemizer` (espeak-ng), `ca` | espeak-derived | 3814 | 0.3223 |
+| `cy` | `cy-GB` | `phonemizer` (espeak-ng), `cy` | espeak-derived | 4666 | 0.3009 |
+| `da` | `da-DK` | `phonemizer` (espeak-ng), `da` | espeak-derived | 2233 | 0.5170 |
+| `de-DE` | `de-DE` | `epitran`, `deu-Latn` | epitran-derived | 24859 | 0.3881 |
+| `en-GB` | `en-GB` | `phonemizer` (espeak-ng), `en-gb` | espeak-derived | 11447 | 0.3864 |
+| `en-US` | `en-US` | `phonemizer` (espeak-ng), `en-us` | espeak-derived | 18055 | 0.4296 |
+| `es-ES` | `es-ES` | `epitran`, `spa-Latn` | epitran-derived | 13155 | 0.0945 |
+| `et` | `et-EE` | `phonemizer` (espeak-ng), `et` | espeak-derived | 11041 | 0.2953 |
+| `eu` | `eu-ES` | `phonemizer` (espeak-ng), `eu` | espeak-derived | 3969 | 0.1297 |
+| `fr-FR` | `fr-FR` | `phonemizer` (espeak-ng), `fr-fr` | espeak-derived | 9465 | 0.1966 |
+| `ga` | `ga-IE` | `phonemizer` (espeak-ng), `ga` | espeak-derived | 1612 | 0.4406 |
+| `hr` | `hr-HR` | `epitran`, `hrv-Latn` | epitran-derived | 4770 | 0.2066 |
+| `hu` | `hu-HU` | `epitran`, `hun-Latn` | epitran-derived | 4781 | 0.1331 |
+| `id` | `id-ID` | `epitran`, `ind-Latn` | epitran-derived | 9647 | 0.1223 |
+| `is` | `is-IS` | `phonemizer` (espeak-ng), `is` | espeak-derived | 4106 | 0.3935 |
+| `it-IT` | `it-IT` | `phonemizer` (espeak-ng), `it` | espeak-derived | 4584 | 0.2599 |
+| `nb` | `nb-NO` | `phonemizer` (espeak-ng), `nb` | espeak-derived | 3176 | 0.4633 |
+| `nl` | `nl-NL` | `phonemizer` (espeak-ng), `nl` | espeak-derived | 8108 | 0.3459 |
+| `pl` | `pl-PL` | `phonemizer` (espeak-ng), `pl` | espeak-derived | 15524 | 0.3063 |
+| `pt-BR` | `pt-BR` | `phonemizer` (espeak-ng), `pt-br` | espeak-derived | 2117 | 0.2536 |
+| `pt-PT` | `pt-PT` | `phonemizer` (espeak-ng), `pt` | espeak-derived | 3846 | 0.2449 |
+| `qu` | `qu-PE` | `phonemizer` (espeak-ng), `qu` | espeak-derived | 1855 | 0.4421 |
+| `ro-RO` | `ro-RO` | `phonemizer` (espeak-ng), `ro` | espeak-derived | 2312 | 0.2647 |
+| `sr` | `sr-RS` | `epitran`, `srp-Latn` | epitran-derived | 9838 | 0.4244 |
+| `sv` | `sv-SE` | `phonemizer` (espeak-ng), `sv` | espeak-derived | 5202 | 0.4482 |
+| `tr` | `tr-TR` | `phonemizer` (espeak-ng), `tr` | espeak-derived | 2748 | 0.1374 |
+| `zh` | `zh-CN` | `pinyin_to_ipa`, `mandarin` | machine-generated | 4718 | 0.5167 |
+
+Mandarin's `pinyin_to_ipa` is a deterministic Pinyin→IPA table rather than a
+G2P system we compete with, so it is `machine-generated`, not
+competitor-derived — but it is still a tool's output and still cannot be
+read as truth. The Mandarin row is also read through the tokenizer that
+[#305](https://github.com/TigreGotico/orthography2ipa/pull/305) reworks for
+Han/punctuation input, so its number on this branch may move.
+
+Only the `test` split is read (held out from G2P+ training). The loader (`load_ipa_childes` in
 `scripts/benchmark.py`) splits each row's orthographic sentence and its
 `ipa_g2p_plus` column on whitespace/`" | "` respectively, pairs tokens
 positionally, skips rows whose token counts don't line up, and collects
@@ -661,14 +728,44 @@ Present in the dataset but **not** wired in:
   only — the dataset has no kana/kanji column for Japanese — while the
   `ja` spec here has a hiragana grapheme table, so there is no clean
   grapheme match either.
-- **`ca-ES`, `cy-GB`, `da-DK`, `de-DE`, `en-GB`, `es-ES`, `eu-ES`, `fr-FR`,
-  `ga-IE`, `hr-HR`, `is-IS`, `it-IT`, `nb-NO`, `nl-NL`, `pl-PL`, `pt-BR`,
-  `pt-PT`, `ro-RO`, `sv-SE`, `tr-TR`**: language codes with an existing
-  spec in this repo, but every one of them already has gold coverage from
-  another dataset above; not worth the extra CSV download for
-  already-measured languages.
-- **`qu-PE`** (Quechua), **`yue-CN`** (Cantonese): no corresponding spec
-  exists in this repo at all.
+- **`yue-CN`** (Cantonese): the `yue` spec is a stub with an **empty
+  grapheme inventory** (Cantonese is written in Chinese characters, and the
+  stub claims no letter-to-sound mapping); the dataset's own romanized
+  column is Jyutping-with-tone-numbers, which the stub does not model
+  either, so `G2P('yue').transcribe_word(...)` returns `""` for every row.
+  A spec gap, not a gold problem.
+
+### IPA-BabyLM (`ipa_babylm`)
+
+[phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)
+on Hugging Face: the BabyLM 2024 pre-training corpora (BNC spoken, CHILDES,
+Gutenberg, OpenSubtitles, Simple Wikipedia, Switchboard) converted to
+phonemes with [G2P+](https://github.com/codebyzeb/g2p-plus). English only.
+The two configs (`strict`, `strict-small`) differ **only** in their train
+split and share one `dev` split, so there is exactly one gold set here, not
+two; the harness reads the held-out `dev` split alone, never the train
+portions the LMs were pre-trained on.
+
+**Provenance — espeak, at one remove.** G2P+ is a *wrapper*: its backends
+are `phonemizer` and `epitran`, and its `phonemizer` backend requires
+espeak-ng. The conversion notebook that produced this dataset
+([codebyzeb/babylm-ipa](https://github.com/codebyzeb/babylm-ipa),
+`prepare_babylm.ipynb`) calls
+`transcribe_utterances(..., "phonemizer", language="en-us", ...)`. So this
+gold is espeak-ng output: it is tiered **`espeak-derived`** and can neither
+qualify nor block English, exactly like `styletts2_phonemes`.
+
+The loader pairs the `text` column with the `phonemized_utterance` column
+(space-separated IPA segments, `WORD_BOUNDARY`-delimited between words) by
+positional alignment, skipping rows whose token counts disagree, and
+collects deduplicated word-level pairs. Full dev split: `N=20344`,
+**PER 0.5257** — a high number that says o2i's English diverges *from
+espeak* on a corpus of conversational/literary text; it is agreement, not
+accuracy, and the far more informative English rows are `cmudict`
+(lexicon-derived) and `wikipron`.
+
+**Licence:** the dataset card declares none; the underlying BabyLM corpora
+keep their own licences. Eval-only use.
 
 ## Rejected candidates
 
@@ -677,6 +774,7 @@ provenance:
 
 | Dataset | Verdict | Evidence |
 |---|---|---|
+| **[dsvv-cair/ipa-transcription-datase](https://huggingface.co/datasets/dsvv-cair/ipa-transcription-datase)** (English, 122,594 rows, CC BY-NC 4.0) | **REJECTED — LLM-generated (GPT-4o Mini)** | The dataset card states it plainly: *"we constructed a large-scale, phonemically rich dataset using the **GPT-4o Mini API**"*. This is LLM-hallucinated IPA, and it is strictly worse than espeak/epitran gold rather than merely different: espeak and epitran are deterministic rule systems with characterisable failure modes, so a disagreement can be traced to a rule and adjudicated; an LLM has no lexicon, no G2P model and no rules, so its errors are unbounded, uncorrelated, and **not attributable to anything**. Scoring against it would measure "agreement with an LLM's guess" and would carry no diagnostic information. Not wired in any tier — the licence (CC BY-NC, fine for eval-only gold) is not the reason; the absent error model is. |
 | **ipa-dict (tool-generated files: `ar`, `es_*`, `fa`, `fi`, `nb`, `nl`, `or`, `vi_*`, and the espeak-derived `en_UK`)** | WIRED, TIERED — not rejected | Each is registered with the tier its own provenance earns (`machine-generated`, or `espeak-derived` for `en_UK`), never `lexicon-derived`; see [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). A tool-generated gold is admitted explicitly, with the caveat travelling on the row — it is not silently promoted, and the espeak row can neither qualify nor block a language. |
 | **ipa-dict `fr_QC.txt`** | EXCLUDED — no spec | No Québécois French spec is registered; the file is also qc-ipa script output over `fr_FR` ("highly experimental"). |
 | **ipa-dict `tts.txt`** | EXCLUDED — no spec | Isan / Northeastern Thai; no `tts` spec, and the `th` spec is a different language. |

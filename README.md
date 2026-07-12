@@ -347,14 +347,20 @@ phonemizer's own output reused as a reference. Read PER as *directional*, not
 precise. Every dataset carries a reliability tier in the scoreboard's `provenance`
 column, and one of those tiers deserves naming here:
 
-> **`espeak-derived` gold measures agreement with espeak, not correctness.**
-> The `styletts2_phonemes` rows are the output of an espeak-ng-backed phonemizer —
-> a competitor this library benchmarks *against* in
-> [comparison.md](docs/comparison.md). Diverging from espeak can mean we are right
-> and it is wrong, which shows up in those rows as a *worse* score. An
-> `espeak-derived` row can therefore neither qualify a language for a production
-> promotion nor block one. It is breadth, and a directional signal, and nothing
-> more.
+> **Competitor-derived gold measures agreement, not correctness.**
+> The `espeak-derived` rows (`styletts2_phonemes`, `ipa_babylm`, and the
+> `phonemizer`-phonemized `ipa_childes` languages) are espeak-ng output, and the
+> `epitran-derived` rows (the `epitran`-phonemized `ipa_childes` languages) are
+> epitran output — both are competitors this library benchmarks *against* in
+> [comparison.md](docs/comparison.md). Diverging from them can mean we are right
+> and they are wrong, which shows up in those rows as a *worse* score. Such a row
+> can therefore neither qualify a language for a production promotion nor block
+> one. It is breadth, and a directional signal, and nothing more.
+>
+> **`llm-generated` gold has no error model at all.** An LLM has no lexicon and no
+> rules, so its IPA can be confidently wrong with no systematic structure and a
+> disagreement cannot be attributed to anything. It certifies nothing and
+> diagnoses nothing.
 
 Contextual (positional) scoring is still limited, no language currently sits at the
 `production` quality tier, and PER is genuinely mediocre for several languages —

@@ -33,6 +33,8 @@ Dataset access:
   (stdlib only).
 - ``ipa_childes`` downloads per-language CSVs from the
   fdemelo/ipa-childes-split Hugging Face dataset directly (stdlib only).
+- ``ipa_babylm`` downloads the dev-split CSVs of the
+  phonemetransformers/IPA-BabyLM Hugging Face dataset directly (stdlib only).
 
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
@@ -361,16 +363,94 @@ _IPA_CHILDES_BASE = (
 #   uses). G2P('ko').transcribe_word(...) returns an empty string for
 #   every real Hangul word, so scoring this row would not measure
 #   phonological accuracy.
-# - qu-PE, yue-CN: no corresponding spec exists in this repo at all.
+# - yue-CN: the yue spec is a STUB with an empty grapheme inventory (Cantonese
+#   is written in Chinese characters); the dataset's own romanized column is
+#   Jyutping-with-tone-numbers, which the stub does not model either, so
+#   G2P('yue') returns "" for every row.
 _IPA_CHILDES_FOLDERS: Dict[str, str] = {
+    "ca": "ca-ES",
+    "cy": "cy-GB",
+    "da": "da-DK",
+    "de-DE": "de-DE",
+    "en-GB": "en-GB",
     "en-US": "en-US",
+    "es-ES": "es-ES",
     "et": "et-EE",
+    "eu": "eu-ES",
+    "fr-FR": "fr-FR",
+    "ga": "ga-IE",
+    "hr": "hr-HR",
     "hu": "hu-HU",
     "id": "id-ID",
+    "is": "is-IS",
+    "it-IT": "it-IT",
+    "nb": "nb-NO",
+    "nl": "nl-NL",
+    "pl": "pl-PL",
+    "pt-BR": "pt-BR",
+    "pt-PT": "pt-PT",
+    "qu": "qu-PE",
+    "ro-RO": "ro-RO",
     "sr": "sr-RS",
+    "sv": "sv-SE",
+    "tr": "tr-TR",
     "zh": "zh-CN",
 }
 _IPA_CHILDES_STEM_COLUMN = {"zh"}
+
+# The TOOL that produced each language's ``ipa_g2p_plus`` column, verbatim from
+# the IPA-CHILDES dataset card's own per-language table
+# (https://huggingface.co/datasets/phonemetransformers/IPA-CHILDES). The tool is
+# NOT uniform across the corpus, so neither is the reliability of the gold: most
+# languages were run through ``phonemizer`` (whose backend is espeak-ng), six
+# through ``epitran``, Mandarin through ``pinyin_to_ipa`` and Cantonese through
+# ``pingyam``. espeak and epitran are both systems this project benchmarks
+# itself AGAINST (docs/comparison.md), so a row scored on their output measures
+# agreement with a competitor, not correctness — hence the per-language tiers in
+# ``_IPA_CHILDES_PROVENANCE`` below rather than one dataset-wide tier.
+_IPA_CHILDES_TOOL: Dict[str, str] = {
+    "ca": "phonemizer (espeak-ng), ca",
+    "cy": "phonemizer (espeak-ng), cy",
+    "da": "phonemizer (espeak-ng), da",
+    "de-DE": "epitran, deu-Latn",
+    "en-GB": "phonemizer (espeak-ng), en-gb",
+    "en-US": "phonemizer (espeak-ng), en-us",
+    "es-ES": "epitran, spa-Latn",
+    "et": "phonemizer (espeak-ng), et",
+    "eu": "phonemizer (espeak-ng), eu",
+    "fr-FR": "phonemizer (espeak-ng), fr-fr",
+    "ga": "phonemizer (espeak-ng), ga",
+    "hr": "epitran, hrv-Latn",
+    "hu": "epitran, hun-Latn",
+    "id": "epitran, ind-Latn",
+    "is": "phonemizer (espeak-ng), is",
+    "it-IT": "phonemizer (espeak-ng), it",
+    "nb": "phonemizer (espeak-ng), nb",
+    "nl": "phonemizer (espeak-ng), nl",
+    "pl": "phonemizer (espeak-ng), pl",
+    "pt-BR": "phonemizer (espeak-ng), pt-br",
+    "pt-PT": "phonemizer (espeak-ng), pt",
+    "qu": "phonemizer (espeak-ng), qu",
+    "ro-RO": "phonemizer (espeak-ng), ro",
+    "sr": "epitran, srp-Latn",
+    "sv": "phonemizer (espeak-ng), sv",
+    "tr": "phonemizer (espeak-ng), tr",
+    "zh": "pinyin_to_ipa, mandarin",
+}
+
+# Per-language reliability tier for ipa_childes, derived MECHANICALLY from
+# _IPA_CHILDES_TOOL (a test enforces the mapping): phonemizer → espeak-derived,
+# epitran → epitran-derived, anything else → machine-generated. Mandarin's
+# pinyin_to_ipa is a deterministic Pinyin→IPA table rather than a G2P system we
+# compete with, so it stays machine-generated.
+_IPA_CHILDES_PROVENANCE: Dict[str, str] = {
+    lang: (
+        "espeak-derived" if tool.startswith("phonemizer")
+        else "epitran-derived" if tool.startswith("epitran")
+        else "machine-generated"
+    )
+    for lang, tool in _IPA_CHILDES_TOOL.items()
+}
 
 
 def load_ipa_childes(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -416,6 +496,79 @@ def load_ipa_childes(lang: str, limit: int) -> List[Tuple[str, str]]:
                 break
         if len(pairs) >= limit:
             break
+    return pairs
+
+
+_IPA_BABYLM_BASE = (
+    "https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM/"
+    "resolve/main/dev/{shard}.csv"
+)
+# Only the held-out ``dev`` split is read (never train_100M/train_10M — those
+# are the LM pre-training portions). The two dataset configs, ``strict`` and
+# ``strict-small``, differ ONLY in their train split; they share this dev split,
+# so there is exactly one gold set here, not two.
+#
+# PROVENANCE — the IPA was produced by G2P+ (https://github.com/codebyzeb/
+# g2p-plus), which is a wrapper: its backends are ``phonemizer`` and
+# ``epitran``. The BabyLM conversion notebook (codebyzeb/babylm-ipa,
+# prepare_babylm.ipynb) calls it as ``transcribe_utterances(..., 'phonemizer',
+# language='en-us', ...)``, and G2P+'s phonemizer backend requires espeak-ng.
+# So this gold is espeak output: espeak-derived, a COMPETITOR's transcription
+# (docs/comparison.md). It can neither qualify nor block English.
+#
+# LICENCE — the dataset card declares none; the underlying BabyLM 2024 corpora
+# (BNC, CHILDES, Gutenberg, OpenSubtitles, Simple Wikipedia, Switchboard) keep
+# their own licences. Eval-only use.
+_IPA_BABYLM_SHARDS = (
+    "bnc_spoken",
+    "childes",
+    "gutenberg",
+    "open_subtitles",
+    "simple_wiki",
+    "switchboard",
+)
+_BABYLM_WORD_BOUNDARY = "WORD_BOUNDARY"
+
+
+def load_ipa_babylm(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """IPA-BabyLM (phonemetransformers/IPA-BabyLM on Hugging Face): the BabyLM
+    2024 pre-training corpora phonemized with G2P+ (espeak-ng under the hood —
+    see the provenance note above). English only.
+
+    Sentence-level CSV with a ``text`` column and a ``phonemized_utterance``
+    column of space-separated IPA segments with ``WORD_BOUNDARY`` markers
+    between words. Rows are split into word-level (word, IPA) pairs by aligning
+    the whitespace-tokenized text against the WORD_BOUNDARY-delimited phoneme
+    groups; rows whose token counts disagree are skipped rather than guessed
+    at, the same way ``load_ipa_childes`` does.
+    """
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    for shard in _IPA_BABYLM_SHARDS:
+        url = _IPA_BABYLM_BASE.format(shard=shard)
+        text = _fetch(url, f"ipa_babylm_dev_{shard}.csv")
+        reader = csv.DictReader(text.splitlines())
+        for row in reader:
+            sentence = (row.get("text") or "").strip()
+            ipa = (row.get("phonemized_utterance") or "").strip()
+            if not sentence or not ipa:
+                continue
+            words = sentence.split()
+            phones = [
+                "".join(group.split())
+                for group in ipa.split(_BABYLM_WORD_BOUNDARY)
+                if group.strip()
+            ]
+            if len(words) != len(phones):
+                continue
+            for word, phone in zip(words, phones):
+                key = word.lower()
+                if not word or not phone or key in seen:
+                    continue
+                seen.add(key)
+                pairs.append((word, phone))
+                if len(pairs) >= limit:
+                    return pairs
     return pairs
 
 
@@ -1101,6 +1254,7 @@ DATASETS = {
     "styletts2_phonemes": (load_styletts2_phonemes,
                            sorted(_STYLETTS2_PHONEMES_FILES)),
     "ipa_childes": (load_ipa_childes, sorted(_IPA_CHILDES_FOLDERS)),
+    "ipa_babylm": (load_ipa_babylm, ["en-US"]),
 }
 
 
@@ -1129,21 +1283,65 @@ DATASETS = {
 #   crowd-scraped    — Wiktionary community edits; uneven per language, and
 #                      some entries are themselves editor-applied rule output
 #                      rather than attested transcriptions.
-#   machine-generated— a phonemizer's own output used as the reference (the
-#                      biggest grain of salt). Scoring against it measures
-#                      AGREEMENT WITH THAT TOOL, not correctness; comparing
-#                      o2i to espeak on an espeak-derived gold is partly
-#                      circular.
+#   machine-generated— some other tool's output used as the reference (a
+#                      transliteration table, a research phonemizer we do not
+#                      compete with). Scoring against it measures AGREEMENT
+#                      WITH THAT TOOL, not correctness.
+#
+# A GOLD SET'S VALUE IS ITS ERROR MODEL. The three tiers below are ordered by
+# how much a disagreement tells you:
+#
+#   espeak-derived   — the gold is espeak-ng's own output (directly, or via
+#   epitran-derived    phonemizer/G2P+ which wrap it), or epitran's. Both are
+#                      COMPETITORS we benchmark ourselves against
+#                      (docs/comparison.md has espeak_per and epitran_per
+#                      columns), so the row measures AGREEMENT WITH A
+#                      COMPETITOR. It is still diagnostic — they are
+#                      deterministic rule systems, so a disagreement can be
+#                      traced to a rule and adjudicated against a cited source,
+#                      and diverging from them may be exactly right. But it can
+#                      never CERTIFY us: it can neither qualify a language for
+#                      promotion nor block one (docs/quality_tiers.md).
+#   llm-generated    — the gold was produced by a large language model. Worst
+#                      of all: no lexicon, no G2P model, no rules — therefore
+#                      NO ERROR MODEL. The output is plausible-looking IPA that
+#                      can be confidently wrong with no systematic structure, so
+#                      a disagreement is not even diagnostic: you cannot
+#                      attribute it to anything. Certifies nothing, diagnoses
+#                      nothing. Directional curiosity only; never gate on it.
 RELIABILITY_TIERS = (
     "expert-human",
     "lexicon-derived",
     "crowd-scraped",
     "machine-generated",
-    # Least trustworthy of all: a COMPETITOR's output used as the reference, so
-    # the score measures agreement with that competitor rather than
-    # correctness. Never gate a quality decision on it (docs/quality_tiers.md).
     "espeak-derived",
+    "epitran-derived",
+    "llm-generated",
 )
+
+# Gold produced by a G2P system we ourselves benchmark AGAINST. The specific
+# tool is recorded in the tier name (rather than one flat "competitor-derived"
+# label) because the identity of the competitor is what a reader needs in order
+# to interpret the row: an espeak-derived row on English and an epitran-derived
+# row on Spanish are non-comparable evidence, and the circularity warning for
+# each points at a different column of docs/comparison.md.
+COMPETITOR_DERIVED_TIERS = frozenset({"espeak-derived", "epitran-derived"})
+
+# Tiers that can never gate a quality decision: a competitor's output (measures
+# agreement, not correctness) or an LLM's (no error model at all). A language
+# whose only >=500-entry gold sits in one of these has NO usable gold and stays
+# at `research`, and a poor score on one of these rows can equally never BLOCK a
+# language that clears the bar on a trustworthy gold. See docs/quality_tiers.md.
+NON_QUALIFYING_TIERS = COMPETITOR_DERIVED_TIERS | {"llm-generated"}
+
+
+def can_gate_promotion(tier: str) -> bool:
+    """Whether a scoreboard row on this tier may qualify (or block) a language
+    for the `production` quality tier. False for competitor-derived and
+    LLM-generated gold; see docs/quality_tiers.md."""
+    if tier not in RELIABILITY_TIERS:
+        raise ValueError(f"unknown reliability tier: {tier!r}")
+    return tier not in NON_QUALIFYING_TIERS
 
 # Every key in DATASETS MUST appear here (a test enforces it, so a new
 # dataset cannot be registered without an explicit, evidence-based
@@ -1180,13 +1378,25 @@ PROVENANCE: Dict[str, str] = {
     # against a cited source instead. Kept because it is broad coverage and a
     # useful directional signal.
     "styletts2_phonemes": "espeak-derived",
-    "ipa_childes": "machine-generated",         # CHILDES "G2P+" automatic phonemizer column
+    # IPA-BabyLM: G2P+ (github.com/codebyzeb/g2p-plus) with the `phonemizer`
+    # backend, language en-us — i.e. espeak-ng output. Same circularity as
+    # styletts2_phonemes; cannot qualify or block English.
+    "ipa_babylm": "espeak-derived",
+    # IPA-CHILDES is MIXED-PROVENANCE and is classified PER LANGUAGE in
+    # PROVENANCE_BY_LANG below: its dataset card names a DIFFERENT phonemizing
+    # tool per language (phonemizer/espeak for most, epitran for six,
+    # pinyin_to_ipa for Mandarin). The dataset-wide value here is only the
+    # fallback for an unclassified language and is deliberately pessimistic —
+    # every classified language is either espeak- or epitran-derived, so an
+    # unclassified one is assumed competitor-derived and cannot gate.
+    "ipa_childes": "epitran-derived",
     "hitz_basque_ipa": "machine-generated",     # HiTZ ahoNT automatic phonemizer
-    # LLM-generated (Claude, research-conditioned) IPA dictionaries — NOT a
-    # phonemizer's / o2i's own output (so not circular), but unverified by
-    # human phoneticians; directional only, lowest tier.
-    "barranquenho_dict": "machine-generated",   # LLM-generated (research-conditioned), not human-verified
-    "mirandese_dict": "machine-generated",      # LLM-generated (research-conditioned), not human-verified
+    # LLM-generated (Claude, research-conditioned) IPA dictionaries. Not
+    # circular (no G2P system produced them) but they have NO ERROR MODEL: an
+    # LLM has no lexicon and no rules, so a disagreement cannot be attributed to
+    # anything. Lowest tier; can never gate a promotion.
+    "barranquenho_dict": "llm-generated",
+    "mirandese_dict": "llm-generated",
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a
@@ -1198,6 +1408,7 @@ PROVENANCE: Dict[str, str] = {
 # else's file. Keys are dataset names; values map language tag → tier.
 PROVENANCE_BY_LANG: Dict[str, Dict[str, str]] = {
     "ipadict": _IPADICT_PROVENANCE,
+    "ipa_childes": _IPA_CHILDES_PROVENANCE,
 }
 
 
@@ -1484,8 +1695,14 @@ def write_scoreboard(rows: List[dict]) -> None:
         "**expert-human** (phonetician / native-speaker / expert-annotator) > "
         "**lexicon-derived** (dictionary, human lexicographers) > "
         "**crowd-scraped** (Wiktionary) > "
-        "**machine-generated** (a phonemizer's own output — biggest grain of "
-        "salt; agreement-with-tool, not correctness).",
+        "**machine-generated** (some other tool's output; agreement-with-tool, "
+        "not correctness) > "
+        "**espeak-derived** / **epitran-derived** (a COMPETITOR's output: "
+        "measures agreement with a system we benchmark ourselves against, so it "
+        "can neither qualify a language for `production` nor block one) > "
+        "**llm-generated** (an LLM's output: no lexicon, no rules, therefore no "
+        "error model — a disagreement is not even diagnostic; never gate on "
+        "it).",
         "",
         "Committed PER/exact-match results for every gold dataset/language "
         "combination registered in `scripts/benchmark.py`. Regenerate with:",
