@@ -3,13 +3,231 @@
   "name": "Dagbani",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ŋm": [
+      "ŋ͡m"
+    ],
+    "kp": [
+      "k͡p"
+    ],
+    "gb": [
+      "ɡ͡b"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i",
+      "ɪ"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ",
+      "ʔ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s",
+      "h"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "ŋ͡m": [
+      "ŋ͡m"
+    ],
+    "k͡p": [
+      "k͡p"
+    ],
+    "ɡ͡b": [
+      "ɡ͡b"
+    ],
+    "ʔ": [
+      "ʔ"
+    ]
+  },
   "iso639_3": "dag",
   "glottolog_code": "dagb1246",
   "wikidata_qid": "Q32238",
-  "notes": "STUB: the grapheme inventory of Dagbani is NOT yet specified (graphemes/allophones are empty). Dagbani (Dagbanli) is a Gur (Atlantic-Congo) language of northern Ghana, written in the Latin script with Africa-Alphabet letters (ɛ ɔ ŋ ʒ) and digraphs; it is tonal, and tone is not marked in ordinary orthography. INPUT CONTRACT: Latin-script Dagbani orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode dagb1246), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "notes": "Dagbani (Dagbanli), a Gur / Mabia (Atlantic-Congo) language of northern Ghana. INPUT CONTRACT: text is assumed to be in the modern Latin Dagbani orthography fixed by the Dagbani Orthography Committee: the Latin letters plus ⟨ɛ ɔ ŋ ɣ ʒ⟩, the apostrophe, and the digraphs ⟨ch sh ny ŋm kp gb⟩. (The historical Ajami/Arabic-script tradition is out of scope.) KEY FEATURES: (1) LABIAL-VELARS ⟨kp gb ŋm⟩ are single double-closure phonemes /k͡p ɡ͡b ŋ͡m/. (2) ⟨ɣ⟩ = /ɣ/, ⟨ʒ⟩ = /ʒ/, ⟨sh⟩ = /ʃ/, ⟨ch⟩ = /tʃ/, ⟨j⟩ = /dʒ/, ⟨ny⟩ = /ɲ/, ⟨y⟩ = /j/. (3) The apostrophe spells a glottal stop [ʔ] (also the post-vocalic realisation of /ɡ/). (4) ALLOPHONY: /s/ is often debuccalised to [h] intervocalically; the vowel pairs i~ɪ, e~ɛ, u~ʊ, o~ɔ alternate by tongue-root (ATR) harmony, and the orthography writes them as e/ɛ and o/ɔ but does not distinguish i~ɪ or u~ʊ, so both realisations are listed as allophones. (5) VOWEL LENGTH is contrastive and written by doubling the vowel letter. (6) TONE: Dagbani is a TONE LANGUAGE (two level tones plus downstep). The standard orthography DOES NOT MARK TONE, so tone is NOT RECOVERABLE from orthographic input and is not modelled here.",
   "sources": [
     {
       "id": "dagbani_language_wiki",
@@ -23,14 +241,22 @@
       "notes": null
     },
     {
-      "id": "phoible",
-      "author": "Moran, Steven & McCloy, Daniel (eds.)",
-      "year": 2019,
-      "title": "PHOIBLE 2.0",
-      "publisher": "Max Planck Institute for the Science of Human History",
-      "url": "https://phoible.org/",
-      "pages": null,
-      "notes": "Attested phoneme inventory for glottocode dagb1246."
+      "id": "olawsky1999",
+      "author": "Olawsky, Knut J.",
+      "year": 1999,
+      "title": "Aspects of Dagbani Grammar, with special emphasis on phonology and morphology",
+      "publisher": "LINCOM Europa",
+      "url": "https://user.phil.hhu.de/~olawsky/hp-ortin.htm",
+      "notes": "Author's companion page 'Some remarks about Dagbani and its orthography' (read 2026-07-11); discusses the gaps and redundancies of the standard alphabet."
+    },
+    {
+      "id": "dagbani_orthography_committee",
+      "author": "Dagbani Orthography Committee",
+      "year": 1997,
+      "title": "Dagbani Orthography",
+      "publisher": "Ghana Institute of Linguistics, Literacy and Bible Translation (GILLBT), Tamale",
+      "url": null,
+      "notes": "The orthographic standard assumed by this spec; tone is not marked."
     }
   ],
   "wikipedia": [

@@ -3,10 +3,229 @@
   "name": "Zazaki",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
-  "notes": "Zazaki (Dimli / Kirmanjki), a Northwestern Iranian language of eastern Anatolia. STUB: the grapheme inventory is NOT yet specified. Zazaki is written in a Latin alphabet derived from the Kurdish Hawar alphabet, and also (historically and in some communities) in an Arabic-derived script; no authoritative letter-to-phoneme table for the Zazaki Latin alphabet could be verified, and the phoneme inventory includes pharyngealised consonants and a central-vowel contrast whose orthographic representation is not settled. Latin-script input is assumed for any future map; the Arabic-script tradition (an abjad) is out of scope. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode diml1238), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a",
+      "ɑ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "d͡ʒ"
+    ],
+    "ç": [
+      "t͡ʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ğ": [
+      "ɣ"
+    ],
+    "ẍ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "ı": [
+      "ɪ"
+    ],
+    "î": [
+      "i"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "ɾ",
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ş": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "ʊ"
+    ],
+    "û": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n",
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "t͡ʃ": [
+      "t͡ʃ"
+    ],
+    "k": [
+      "k"
+    ],
+    "q": [
+      "q"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "d͡ʒ": [
+      "d͡ʒ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l",
+      "ɫ"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ],
+    "i": [
+      "i"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ɨ": [
+      "ɨ",
+      "ɪ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɑ": [
+      "ɑ",
+      "ɑ̃"
+    ],
+    "a": [
+      "a"
+    ]
+  },
+  "notes": "Zazaki (Dimli / Kirmanjki), a Northwestern Iranian language of eastern Anatolia. COMMITMENT: this map implements the 32-letter ZAZA LATIN ALPHABET derived from the Kurdish Hawar (Bedirxan) alphabet — the alphabet used by the Zazaki Wikipedia and by modern Zazaki publishing. INPUT CONTRACT: lowercase Latin-script Zazaki with its diacritics intact (ç ê î ş û, and ğ/ẍ, ı/i). The Perso-Arabic writing tradition (an abjad) is OUT OF SCOPE. Do NOT cross-apply Kurmanji Hawar values: in Zaza, <u> = /ʊ/ and <û> = /u/, <î> = /i/, <i>/<ı> = /ɪ/, <e> = /ɛ/ and <ê> = /e/ — there are no phonemic long vowels marked by the circumflex. <ğ> (also written <ẍ>) = /ɣ/. <c> = /d͡ʒ/, <ç> = /t͡ʃ/, <j> = /ʒ/, <ş> = /ʃ/, <x> = /x/, <q> = /q/, <y> = /j/, <w> = /w/. NOT WRITTEN: the pharyngeal and pharyngealised consonants of the phoneme inventory (/ħ ʕ tˁ sˤ/) and the velarised lateral /ɫ/ have no distinct letters, and vowel nasalisation before /n/ is allophonic; these are carried in the allophone table, not recoverable from the spelling.",
   "iso639_3": "zza",
   "glottolog_code": "diml1238",
   "wikidata_qid": "Q10199",
@@ -24,17 +243,38 @@
       "url": "https://en.wikipedia.org/wiki/Zaza_language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Zaza_language",
       "pages": null,
-      "notes": "Orthography / phonology reference."
+      "notes": "Carries the 32-letter Zaza Latin alphabet with its IPA row, and the phoneme inventory / allophony used here."
     },
     {
-      "id": "phoible",
-      "author": "Moran, Steven & McCloy, Daniel (eds.)",
-      "year": 2019,
-      "title": "PHOIBLE 2.0",
-      "publisher": "Max Planck Institute for the Science of Human History",
-      "url": "https://phoible.org/",
+      "id": "paul1998_zazaki",
+      "author": "Paul, Ludwig",
+      "year": 1998,
+      "title": "Zazaki: Grammatik und Versuch einer Dialektologie",
+      "publisher": "Reichert, Wiesbaden",
+      "url": null,
       "pages": null,
-      "notes": "Attested phoneme inventory for glottocode diml1238."
+      "notes": "Reference grammar; the descriptive source behind the Zazaki phoneme inventory."
+    },
+    {
+      "id": "todd2008_dimili",
+      "author": "Todd, Terry Lynn",
+      "year": 2008,
+      "title": "A Grammar of Dimili (also known as Zaza)",
+      "publisher": "Iremet Förlag, Stockholm",
+      "url": null,
+      "pages": null,
+      "notes": "Grammar of Dimili/Zazaki; second descriptive source for the phoneme inventory."
+    },
+    {
+      "id": "kurdish_alphabets_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Kurdish alphabets",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kurdish_alphabets",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kurdish_alphabets",
+      "pages": null,
+      "notes": "The Hawar (Bedirxan) alphabet the Zaza Latin alphabet derives from; its DIFFERENT vowel values are noted in this spec so they are not cross-applied."
     }
   ],
   "phonemes": [

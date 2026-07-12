@@ -3,13 +3,238 @@
   "name": "Nupe",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "stub",
+  "quality": "research",
   "wikidata_qid": null,
-  "graphemes": {},
-  "allophones": {},
-  "notes": "Nupe, a Nupoid (Volta-Niger) language of central Nigeria, written in a Latin orthography with subdot letters and tone marks. The grapheme inventory is NOT yet specified: Wikidata supplies no ISO 639-3 code, Glottolog code, script statement or Wikipedia article for this Wikimedia language code, and the Nupe orthography (which marks three tones and labialised/palatalised consonant series) has not been verified against a descriptive source. Metadata only. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
-  "sources": [],
-  "wikipedia": [],
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "t͡ʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "dz": [
+      "d͡z"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "gb": [
+      "ɡ͡b"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "d͡ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "kp": [
+      "k͡p"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "ts": [
+      "t͡s"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "zh": [
+      "ʒ"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "k͡p": [
+      "k͡p"
+    ],
+    "ɡ͡b": [
+      "ɡ͡b"
+    ],
+    "t͡s": [
+      "t͡s"
+    ],
+    "d͡z": [
+      "d͡z"
+    ],
+    "t͡ʃ": [
+      "t͡ʃ"
+    ],
+    "d͡ʒ": [
+      "d͡ʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ]
+  },
+  "notes": "Nupe (Nupe-Nupe-Tako), a Nupoid (Volta-Niger, Atlantic-Congo) language of Niger and Kwara States, central Nigeria. ORTHOGRAPHY: Latin-based, 24 base letters (a b c d e f g h i j k l m n o p r s t u v w y z) plus the digraphs dz, gb, kp, sh, ts and zh. Letter values that differ from a naive IPA reading: ⟨c⟩ = /t͡ʃ/, ⟨j⟩ = /d͡ʒ/, ⟨y⟩ = /j/, ⟨sh⟩ = /ʃ/, ⟨zh⟩ = /ʒ/, ⟨ts⟩ = /t͡s/, ⟨dz⟩ = /d͡z/, ⟨gb⟩ = /ɡ͡b/, ⟨kp⟩ = /k͡p/; ⟨r⟩ is a trill/tap. Vowels: oral /i e a o u/ with nasal counterparts /ĩ ã ũ/. LABIALISATION AND PALATALISATION: Nupe has extensive secondary articulation, written consonant + ⟨w⟩ and consonant + ⟨y⟩. These are NOT enumerated as separate grapheme keys: the sources consulted do not fix a closed list of Cw / Cy digraphs, so ⟨w⟩ and ⟨y⟩ are transcribed as the glides /w/ and /j/, which under-specifies Cʷ/Cʲ. NASAL VOWELS: written vowel + ⟨n⟩ (an = /ã/, in = /ĩ/, un = /ũ/), homographic with a vowel followed by consonantal /n/; without lexical or syllable-structure context the mapping cannot disambiguate, so ⟨n⟩ always yields /n/ and nasal vowels are under-generated. INPUT CONTRACT: input is assumed to be the modern Latin (NOT Ajami) Nupe orthography, one word per token, already normalised. TONE: Nupe is tonal — three level tones plus falling and rising contours. Tone is marked with diacritics in dictionaries and careful writing (´ high, ` low, unmarked mid, ˆ/ˇ contours) but is routinely omitted in everyday text. This spec transcribes SEGMENTS ONLY: tone diacritics are not converted into tone marks, and where tone is unwritten it is NOT RECOVERABLE from the orthography.",
+  "sources": [
+    {
+      "id": "nupe_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Nupe language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Nupe_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nupe_language",
+      "pages": null,
+      "notes": "Consonant and vowel charts annotated with the orthographic grapheme for each phoneme (kp, gb, ts, dz, c, j, sh, zh, y, r), plus the tone-marking table; basis of the grapheme map here."
+    },
+    {
+      "id": "wiktionary_nupe_guidelines",
+      "author": "Wiktionary contributors",
+      "year": 2025,
+      "title": "Wiktionary:Nupe entry guidelines",
+      "publisher": "Wiktionary",
+      "url": "https://en.wiktionary.org/wiki/Wiktionary:Nupe_entry_guidelines",
+      "pages": null,
+      "notes": "Orthography conventions: digraphs dz, gb, kp, sh, ts, zh; nasal vowels written V + n; tone marked acute (high) / grave (low) / unmarked (mid)."
+    },
+    {
+      "id": "blench_nupoid",
+      "author": "Blench, Roger M.",
+      "year": 2013,
+      "title": "Oral literature genres of the Nupe of Central Nigeria",
+      "publisher": "Kay Williamson Educational Foundation",
+      "url": "https://web.archive.org/web/20150421033828/http://www.rogerblench.info/Language/Niger-Congo/VN/Nupoid/Nupe%20oral%20literature%20genres.pdf",
+      "pages": "5-6",
+      "notes": "Documents the Latin and Ajami writing traditions of Nupe (cited by the Wikipedia article for the script statement)."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nupe_language"
+  ],
   "parent": "x-clade-atla1278",
   "ancestors": [
     {

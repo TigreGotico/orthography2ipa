@@ -3,13 +3,108 @@
   "name": "Atayal",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
+  "quality": "research",
+  "graphemes": {
+    "ng": [
+      "ŋ"
+    ],
+    "n_g": [
+      "nɣ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "q": [
+      "q"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "’": [
+      "ʔ"
+    ],
+    "ʼ": [
+      "ʔ"
+    ],
+    "c": [
+      "ts"
+    ],
+    "b": [
+      "β",
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "x": [
+      "x"
+    ],
+    "g": [
+      "ɣ"
+    ],
+    "h": [
+      "ħ",
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "i": [
+      "i"
+    ],
+    "e": [
+      "e",
+      "ə"
+    ],
+    "a": [
+      "a"
+    ],
+    "u": [
+      "u"
+    ],
+    "o": [
+      "o"
+    ]
+  },
+  "allophones": {
+    "s": [
+      "s",
+      "ɕ"
+    ],
+    "ts": [
+      "ts",
+      "tɕ"
+    ]
+  },
   "iso639_3": "tay",
   "glottolog_code": "atay1247",
   "wikidata_qid": "Q715766",
-  "notes": "STUB: the grapheme inventory of Atayal is NOT yet specified (graphemes/allophones are empty). Atayal (Tayal) is a Formosan (Austronesian) language of northern Taiwan, written in the Latin script under the Council of Indigenous Peoples' 2005 romanisation. Dialects (Squliq, Cʼuliʼ/Matuʼuwal) differ phonologically, so a single letter→IPA table would need to be dialect-scoped. INPUT CONTRACT: Latin-script (official romanisation) Atayal text. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode atay1247), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "notes": "Atayal (Tayal) — Formosan (Austronesian) language of northern Taiwan. The map commits to the OFFICIAL ROMANISATION of the Council of Indigenous Peoples / Ministry of Education, 原住民族語言書寫系統 (15 December 2005), Atayal writing system (covering the Squliq, Skikun, Ciʼuli, Matuʼuwal/Mayrinax and Plngawan dialects). Letters whose value departs from the IPA: ⟨b⟩ = /β/ (~[v]), ⟨c⟩ = /ts/, ⟨g⟩ = /ɣ/, ⟨h⟩ = the voiceless PHARYNGEAL fricative /ħ/ (Li 1980; realised [h] by some speakers), ⟨x⟩ = /x/, ⟨y⟩ = /j/, ⟨z⟩ = /z/, ⟨ng⟩ = /ŋ/, and the apostrophe ⟨ʼ⟩ = /ʔ/. The official standard writes ⟨n_g⟩ for a /n/+/ɣ/ sequence, to disambiguate it from ⟨ng⟩ = /ŋ/. ⟨r⟩ is the alveolar trill /r/ in most dialects but the flap /ɾ/ in Plngawan (Wanda) Atayal, so both are listed. Vowels ⟨i e a u o⟩ = /i e a u o/; the letter ⟨e⟩ also covers the schwa /ə/ found in most dialects (Plngawan lacks it), and in several dialects the schwa is simply not written, producing long surface consonant clusters (e.g. pspngun /pəsəpəŋun/) — such omitted vowels are NOT recoverable from the spelling. /s/ and /ts/ are palatalised to [ɕ tɕ] before /i/ and /j/ (allophones). DIALECT SCOPE: a single letter→IPA table across dialects; where the dialects differ (⟨q⟩ is absent from Skikun, ⟨z⟩ from Yilan Ciʼuli) the letter simply does not occur in that dialect's text. INPUT CONTRACT: Latin-script Atayal in the 2005 official orthography; older missionary or ⟨ḳ č š ž⟩ conventions are out of scope.",
   "sources": [
     {
       "id": "atayal_language_wiki",
@@ -23,14 +118,25 @@
       "notes": null
     },
     {
-      "id": "phoible",
-      "author": "Moran, Steven & McCloy, Daniel (eds.)",
-      "year": 2019,
-      "title": "PHOIBLE 2.0",
-      "publisher": "Max Planck Institute for the Science of Human History",
-      "url": "https://phoible.org/",
+      "id": "cip2005_writing",
+      "author": "Council of Indigenous Peoples; Ministry of Education (Republic of China)",
+      "year": 2005,
+      "title": "原住民族語言書寫系統 (Writing Systems for the Indigenous Languages)",
+      "publisher": "Ministry of Education, Taipei",
+      "url": "https://ws.moe.tw/001/Upload/6/RelFile/6508/7828/aboriginal.pdf",
+      "pages": "9",
+      "notes": "Official orthography promulgated 2005-12-15; section (二) 泰雅語書寫系統 gives the 20 consonant and 5 vowel letters with their IPA values."
+    },
+    {
+      "id": "formosan_writing_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Writing systems of Formosan languages",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Writing_systems_of_Formosan_languages",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Writing_systems_of_Formosan_languages",
       "pages": null,
-      "notes": "Attested phoneme inventory for glottocode atay1247."
+      "notes": "Consolidated letter→IPA table for the 16 officially recognised Formosan languages, plus the 2016-2018 revision decisions."
     }
   ],
   "wikipedia": [

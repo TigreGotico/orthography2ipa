@@ -10,7 +10,7 @@
   "iso639_3": "pih",
   "glottolog_code": "pitc1234",
   "wikidata_qid": "Q36554",
-  "notes": "STUB: the grapheme inventory of Pitkern is NOT yet specified (graphemes/allophones are empty). Pitkern-Norfolk (Pitkern on Pitcairn, Norfuk on Norfolk Island) is an English-lexifier creole with a Tahitian substrate, written in the Latin script. Spelling is NOT standardised — several competing conventions exist (e.g. the Norfuk orthographies of Buffett and of Nobbs Palmer) — so no single sourced letter→IPA table can honestly be given. INPUT CONTRACT: Latin-script Pitkern/Norfuk text.",
+  "notes": "STUB (deliberate): the grapheme inventory of Pitkern-Norfolk is NOT specified. Pitkern (Pitcairn) / Norfuk (Norfolk Island) is an English-lexifier creole with a Tahitian substrate. English Wikipedia states outright that 'Pitkern spelling is not standardised', and the Norfuk article — while recording that Norfuk was made official by the 2004 Norfolk Island Language Act and that Alice Buffett & Donald Laycock produced a standardised orthography (Speak Norfuk Today, 1988), alongside Beryl Nobbs-Palmer's 1986 dictionary — still notes a lack of standardisation and contains NO letter->IPA table. Buffett's orthography is not available online, and the Omniglot chart is an image. The only IPA on record is A. C. Gimson's transcription of a 1951 Moverley dialogue, which is a text transcription, not a grapheme map. No map is claimed. INPUT CONTRACT (for any future spec): Latin-script Pitkern/Norfuk text, after ONE orthography (realistically Buffett 1988) is obtained and cited.",
   "sources": [
     {
       "id": "pitkern_wiki",
@@ -22,6 +22,27 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Pitkern",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "norfuk_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Norfuk language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Norfuk_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Norfuk_language",
+      "pages": null,
+      "notes": "Standardisation history (Buffett & Laycock 1988; Nobbs-Palmer 1986; 2004 Language Act). Contains no letter->IPA table and still reports a lack of standardisation."
+    },
+    {
+      "id": "buffett_laycock1988",
+      "author": "Buffett, Alice & Laycock, Donald",
+      "year": 1988,
+      "title": "Speak Norfuk Today: An Encyclopaedia of the Norfolk Island Language",
+      "publisher": "Himii Publishing Company, Norfolk Island",
+      "url": null,
+      "pages": null,
+      "notes": "The only credible normative Norfuk orthography. Not available online; not consulted, so no grapheme map is derived from it."
     }
   ],
   "wikipedia": [

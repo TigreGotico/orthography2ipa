@@ -3,10 +3,345 @@
   "name": "Norman",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
-  "notes": "Norman (Nouormand), an Oïl (Gallo-Romance) language of Normandy, Jersey (Jèrriais), Guernsey (Guernésiais) and Sark. STUB: the grapheme inventory is NOT yet specified. Script: Latin alphabet using French-based spelling conventions. It is NOT one orthography: Jèrriais, Guernésiais, Cotentinais and the continental varieties each have their own spelling systems and differing sound values for the same digraphs, and the deep etymological (French-style) spelling means a letter-to-phoneme table is highly rule- and variety-dependent. A per-variety spec (e.g. Jèrriais) would be the honest unit of work. Input is assumed to be a Latin Norman orthography, unspecified variety.",
+  "quality": "research",
+  "graphemes": {
+    "ngn": [
+      "ɲ"
+    ],
+    "ill": [
+      "j"
+    ],
+    "tch": [
+      "tʃ"
+    ],
+    "dg": [
+      "dʒ"
+    ],
+    "sc": [
+      "s"
+    ],
+    "qu": [
+      "k"
+    ],
+    "th": [
+      "ð",
+      "θ"
+    ],
+    "ôn": [
+      "õː"
+    ],
+    "ûn": [
+      "ø̃ː"
+    ],
+    "ên": [
+      "ɛ̃ː"
+    ],
+    "ân": [
+      "ɑ̃ː"
+    ],
+    "în": [
+      "ẽː"
+    ],
+    "in": [
+      "ẽ"
+    ],
+    "un": [
+      "ø̃"
+    ],
+    "on": [
+      "õ"
+    ],
+    "en": [
+      "ɛ̃"
+    ],
+    "an": [
+      "ɑ̃"
+    ],
+    "oû": [
+      "uː"
+    ],
+    "ou": [
+      "u"
+    ],
+    "ée": [
+      "eː"
+    ],
+    "oê": [
+      "øː"
+    ],
+    "oe": [
+      "ø"
+    ],
+    "òê": [
+      "œː"
+    ],
+    "òe": [
+      "œ"
+    ],
+    "î": [
+      "iː"
+    ],
+    "û": [
+      "yː"
+    ],
+    "é": [
+      "e"
+    ],
+    "ô": [
+      "oː"
+    ],
+    "ê": [
+      "ɛː"
+    ],
+    "â": [
+      "aː"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i",
+      "j"
+    ],
+    "u": [
+      "y"
+    ],
+    "o": [
+      "o"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ç": [
+      "ʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "ʒ"
+    ],
+    "h": [
+      "",
+      "h"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p",
+      ""
+    ],
+    "r": [
+      "r",
+      ""
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "s",
+      "z"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "θ": [
+      "θ"
+    ],
+    "ð": [
+      "ð"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "j": [
+      "j"
+    ],
+    "w": [
+      "w"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "y": [
+      "y"
+    ],
+    "yː": [
+      "yː"
+    ],
+    "u": [
+      "u"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ø": [
+      "ø"
+    ],
+    "øː": [
+      "øː"
+    ],
+    "o": [
+      "o"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "œ": [
+      "œ"
+    ],
+    "œː": [
+      "œː"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ẽː": [
+      "ẽː"
+    ],
+    "ø̃": [
+      "ø̃"
+    ],
+    "ø̃ː": [
+      "ø̃ː"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "õː": [
+      "õː"
+    ],
+    "ɛ̃": [
+      "ɛ̃"
+    ],
+    "ɛ̃ː": [
+      "ɛ̃ː"
+    ],
+    "ɑ̃": [
+      "ɑ̃"
+    ],
+    "ɑ̃ː": [
+      "ɑ̃ː"
+    ]
+  },
+  "notes": "Norman (Nouormand), an Oïl (Gallo-Romance) language. COMMITMENT: this map implements ONE variety and ONE norm — JÈRRIAIS (Jersey Norman) in its standard dictionary orthography. Norman is not one orthography: Guernésiais, Sercquiais, Cotentinais and the continental varieties each have their own spelling systems and assign different values to the same digraphs; they are OUT OF SCOPE here and would each merit their own spec. INPUT CONTRACT: lowercase Jèrriais text with its circumflexes and graves intact (â ê î ô û é è òe òê) — the accents carry vowel length and quality, so stripping them destroys the mapping. Distinctively Jèrriais: <th> = /ð/ (voiced) or /θ/, <ç> = /ʃ/, <tch> = /tʃ/, <dg> = /dʒ/, <ngn> = /ɲ/, <qu> = /k/, <ou> = /u/, <u> = /y/. Silent letters: <h> is usually mute (but /h/ in e.g. happer), <l> before <i>/<y> is mute (pliat), final <p> and infinitive/agentive <r> are mute. Five nasal vowels, each with a long counterpart written with a circumflex. Etymological French spelling means residual irregularity remains.",
   "iso639_3": "nrf",
   "glottolog_code": "norm1245",
   "wikidata_qid": "Q33850",
@@ -25,6 +360,27 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Norman_language",
       "pages": null,
       "notes": "Overview of the language, script and orthography."
+    },
+    {
+      "id": "jerriais_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Jèrriais",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/J%C3%A8rriais",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/J%C3%A8rriais",
+      "pages": null,
+      "notes": "Carries the complete Jèrriais spelling->IPA table (consonants, oral vowels, nasal vowels) followed by this spec."
+    },
+    {
+      "id": "lemaistre1966",
+      "author": "Le Maistre, Frank",
+      "year": 1966,
+      "title": "Dictionnaire Jersiais-Français",
+      "publisher": "Don Balleine Trust, Jersey",
+      "url": null,
+      "pages": null,
+      "notes": "The reference dictionary that fixed the modern Jèrriais orthography."
     }
   ],
   "timespan": {

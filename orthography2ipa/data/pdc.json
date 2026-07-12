@@ -3,10 +3,249 @@
   "name": "Pennsylvania German (Pennsylvania Dutch)",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
-  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Pennsylvania German has NO standardised orthography: two incompatible writing systems are in current use — the Buffington-Barba system, which spells by Standard German conventions, and an English-based system (Beam / 'Deitsch' spelling) which spells by American English conventions — and the same word is spelled differently in each with no difference in pronunciation. A single letter-to-phoneme map is therefore not well-defined for the code as such; a Tier-A spec must first pick ONE orthography and declare it (the German-conventional Buffington-Barba system is the tractable choice), which has not been done and verified here. Phonologically the variety continues Palatine (Rhine Franconian) German, with the well-known shifts German /œ yː ɔʏ/ → /ɛ iː aɪ/, lenition of /p t k/ → [b d ɡ], intervocalic /b/ → [v] and post-vocalic /ɡ/ → [j].",
+  "quality": "research",
+  "graphemes": {
+    "sch": [
+      "ʃ"
+    ],
+    "chs": [
+      "ks"
+    ],
+    "ch": [
+      "ç",
+      "x"
+    ],
+    "tz": [
+      "ts"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "nk": [
+      "ŋk"
+    ],
+    "aa": [
+      "ɔː"
+    ],
+    "ae": [
+      "eː"
+    ],
+    "ai": [
+      "aɪ"
+    ],
+    "au": [
+      "aʊ"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "ei": [
+      "aɪ"
+    ],
+    "ie": [
+      "iː"
+    ],
+    "oi": [
+      "ɔɪ"
+    ],
+    "a": [
+      "a",
+      "aː"
+    ],
+    "e": [
+      "ɛ",
+      "eː",
+      "ə"
+    ],
+    "i": [
+      "ɪ",
+      "iː"
+    ],
+    "o": [
+      "ɔ",
+      "oː"
+    ],
+    "u": [
+      "ʊ",
+      "uː"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "j",
+      "k"
+    ],
+    "h": [
+      "h",
+      ""
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r",
+      "ɐ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "f"
+    ],
+    "w": [
+      "ʋ"
+    ],
+    "x": [
+      "ks"
+    ],
+    "y": [
+      "j",
+      "ɪ"
+    ],
+    "z": [
+      "ts"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "ç": [
+      "ç"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɐ": [
+      "ɐ"
+    ],
+    "j": [
+      "j"
+    ],
+    "ʋ": [
+      "ʋ"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "æː": [
+      "æː"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "ɔː": [
+      "ɔː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "aɪ": [
+      "aɪ"
+    ],
+    "aʊ": [
+      "aʊ"
+    ],
+    "ɔɪ": [
+      "ɔɪ"
+    ]
+  },
+  "notes": "Pennsylvania German / Pennsylvania Dutch (Pennsilfaanisch Deitsch), a Palatine (Rhine Franconian) West Germanic variety of North America. COMMITMENT: this map implements ONE of the two rival writing systems — the BUFFINGTON-BARBA (later Buffington-Barba-Beam, 'BBB') orthography, which spells by Standard German conventions. The competing English-based spelling (which writes the same words by American English conventions, with no difference in pronunciation) is OUT OF SCOPE and will mis-transcribe here. INPUT CONTRACT: lowercase BBB-spelled Pennsylvania German. BBB letter values that differ from Standard German: <v> = /f/, <w> = the unrounded labial approximant /ʋ/, <y> = /j/ initially but /ɪ/ medially, <o> short = /ɔ/, <aa> = /ɔː/, <ei> = /aɪ/ while <ai> is also /aɪ/, <g> = /ɡ/ initially, /k/ finally and a palatal glide [j] medially, <r> is vocalised to [ɐ] after <e>. The IPA values here render the BBB pronunciation key (which is stated in English/German keywords, not IPA) against the IPA vowel inventory documented for the variety. <tz> = /ts/ follows from BBB's Standard-German spelling conventions (as does <z>). Unstressed <e> may also be the reduced /ə/ documented for the variety. Graphemes for which no BBB row exists (e.g. <ä>, <oo>, <eu>, <tsch>) are deliberately OMITTED rather than guessed. Phonologically the variety continues Palatine German: SG /œ øː yː/ -> /ɛ eː iː/, intervocalic /b/ -> /v/, post-vocalic /ɡ/ -> /j/, and final /n/ deletion.",
   "iso639_3": "pdc",
   "glottolog_code": "penn1240",
   "wikidata_qid": "Q22711",
@@ -36,6 +275,26 @@
       "wikipedia_url": null,
       "pages": null,
       "notes": "The German-conventional orthography and the grammar/phonology of Pennsylvania German."
+    },
+    {
+      "id": "padutchdictionary_bbb",
+      "author": "Pennsylvania Dutch Dictionary (padutchdictionary.com)",
+      "year": 2024,
+      "title": "About: the Buffington-Barba-Beam orthography and pronunciation key",
+      "publisher": "padutchdictionary.com",
+      "url": "https://www.padutchdictionary.com/about.html",
+      "pages": null,
+      "notes": "Letter-by-letter BBB pronunciation key (vowels and consonants), given in English/German keywords."
+    },
+    {
+      "id": "padutch_net_pronunciation",
+      "author": "padutch.net",
+      "year": 2024,
+      "title": "Pennsylvania Dutch pronunciation",
+      "publisher": "padutch.net",
+      "url": "https://padutch.net/pronunciation/",
+      "pages": null,
+      "notes": "IPA vowel inventory of Pennsylvania German (long i e æ a ɔ o u; short ɪ ɛ a ɔ ʊ; diphthongs aɪ ɔɪ; reduced ə ɐ)."
     }
   ],
   "timespan": {

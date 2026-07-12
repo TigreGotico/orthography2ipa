@@ -7,7 +7,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "notes": "Ghanaian Pidgin English, an English-lexifier West African pidgin/creole. STUB: the grapheme inventory is NOT yet specified. The language is written in the Latin script but has NO standardised orthography — writers use ad-hoc English-based spellings, so no letter-to-phoneme mapping can be claimed with confidence. A standardised (e.g. Naija/ NBTT-style) orthography would be required as input before a grapheme map is meaningful.",
+  "notes": "Ghanaian Pidgin English, an English-lexifier West African pidgin/creole. DELIBERATE STUB: the grapheme inventory is NOT specified and must not be guessed. The language is written in the Latin script but has NO official or standardised orthography: APiCS Online (Huber, survey chapter 16) states plainly that 'there is no official orthography for Ghanaian Pidgin English, which is almost never used in print, but enjoys growing popularity in e-mails, chat groups, etc.' Writers use ad-hoc, English-etymological spellings, which are by definition not phonemic, so no cited letter-to-IPA table exists and none can be constructed without inventing one. The phonology itself IS described (Huber 2008, 'Ghanaian Pidgin English: phonology', in Varieties of English 4: Africa, South and Southeast Asia): 7-9 monophthongs with optional length and phonemic nasalisation, six diphthongs /ai au ɔi iɛ ɛa uɔ/, non-rhotic, with processes such as final-consonant devoicing and syllable simplification — but a phonology is not an orthography, and the mapping from ad-hoc English spelling to those phonemes is not recoverable. To lift this stub, an actual published GPE spelling standard with a letter-to-sound table is required (e.g. if a Naijá-SNO-style convention is ever adopted for Ghana); until then an honest stub is preferred over a fabricated English-like map.",
   "iso639_3": "gpe",
   "glottolog_code": "ghan1244",
   "wikidata_qid": "Q5555465",
@@ -26,6 +26,28 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Ghanaian_Pidgin_English",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "huber_apics_gpe",
+      "author": "Huber, Magnus",
+      "year": 2013,
+      "title": "Ghanaian Pidgin English (Survey chapter 16)",
+      "publisher": "The Atlas of Pidgin and Creole Language Structures Online, Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://apics-online.info/surveys/16",
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Explicit statement that there is no official orthography for Ghanaian Pidgin English; it is almost never used in print. Basis for keeping this spec a stub."
+    },
+    {
+      "id": "huber_gpe_phonology",
+      "author": "Huber, Magnus",
+      "year": 2008,
+      "title": "Ghanaian Pidgin English: phonology",
+      "publisher": "Varieties of English 4: Africa, South and Southeast Asia, Mouton de Gruyter",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/9783110208429.1.93/html",
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Segmental phonology (7-9 monophthongs, nasalisation, six diphthongs /ai au ɔi iɛ ɛa uɔ/, non-rhotic). Describes sounds, not a letter-to-sound mapping, so it cannot by itself yield a grapheme table."
     }
   ],
   "location": {
