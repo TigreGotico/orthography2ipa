@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.6.0a1) (2026-07-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.5.0a1...3.6.0a1)
+
+**Merged pull requests:**
+
+- feat\(compare\): uncap the published cross-system comparison; batch espeak-ng [\#321](https://github.com/TigreGotico/orthography2ipa/pull/321) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.5.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.4.0a1...3.5.0a1)
@@ -699,10 +707,6 @@
 ## [1.34.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.34.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.33.0a1...1.34.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): model Brazilian Portuguese allophony \(pt-BR\) [\#147](https://github.com/TigreGotico/orthography2ipa/pull/147) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.33.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.33.0a1) (2026-07-11)
 
