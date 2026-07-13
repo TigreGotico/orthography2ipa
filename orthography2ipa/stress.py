@@ -35,8 +35,14 @@ from orthography2ipa.vowels import is_ipa_vowel, is_orthographic_vowel
 
 __all__ = [
     "syllabify",
+    "syllabify_ipa",
+    "syllable_weight",
     "detect_stress",
+    "detect_stress_by_weight",
     "apply_stress_mark",
+    "LIGHT",
+    "HEAVY",
+    "SUPERHEAVY",
 ]
 
 
@@ -329,3 +335,159 @@ def apply_stress_mark(
     target = max(0, len(ipa_sylls) - offset_from_end)
     ipa_sylls[target] = rules.stress_mark + ipa_sylls[target]
     return "".join(ipa_sylls)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Quantity-sensitive stress — placement by syllable weight
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# The systems above are end-anchored: an orthographic ending picks the
+# stressed syllable. Arabic and Latin do not work that way. Their stress is
+# *quantity-sensitive* — it falls on a syllable because that syllable is
+# HEAVY, and weight is a property of the transcription (a long vowel, a coda),
+# not of the spelling. No ending table can express it.
+#
+# The catch is that weight depends on where a syllable ends, so the syllable
+# division has to be right. The bundled `syllabify` is onset-maximising, which
+# hands every medial consonant forward to the next onset and leaves the
+# previous syllable with no coda: `mudarris` comes out `mu-da-rris`, its penult
+# is light, and the stress lands on the antepenult. The correct division obeys
+# the language's onset limit — Arabic takes exactly one consonant as an onset,
+# so it is `mu-dar-ris`, the penult is heavy, and the stress lands there:
+# `muˈdarris`. Weight-based stress therefore ships its own syllabifier.
+
+#: Length mark; a nucleus carrying it is long.
+_LENGTH = "ː"
+
+LIGHT, HEAVY, SUPERHEAVY = "light", "heavy", "superheavy"
+
+
+def syllabify_ipa(ipa: str, max_onset: int = 1) -> List[str]:
+    """Split an IPA word into syllables, dividing clusters by *max_onset*.
+
+    Each maximal vowel run is a nucleus. A consonant cluster between two
+    nuclei is divided so the following syllable takes at most *max_onset*
+    consonants as its onset and the rest close the preceding syllable. Leading
+    consonants are the first onset; trailing consonants are the last coda.
+
+    Unlike :func:`syllabify`, this draws boundaries that are *phonologically*
+    meaningful rather than merely countable, because weight depends on them.
+    """
+    if not ipa:
+        return []
+
+    # Nucleus spans: maximal runs of IPA vowels (a length mark belongs to the
+    # vowel it lengthens, so it extends the run).
+    nuclei: List[List[int]] = []
+    i = 0
+    while i < len(ipa):
+        if is_ipa_vowel(ipa[i]):
+            start = i
+            while i < len(ipa) and (is_ipa_vowel(ipa[i]) or ipa[i] == _LENGTH):
+                i += 1
+            nuclei.append([start, i])
+        else:
+            i += 1
+
+    if not nuclei:
+        return [ipa]
+
+    syllables: List[str] = []
+    for n, (start, end) in enumerate(nuclei):
+        if n == 0:
+            onset_start = 0  # everything before the first nucleus is its onset
+        else:
+            prev_end = nuclei[n - 1][1]
+            cluster = start - prev_end
+            # The following syllable takes at most max_onset consonants; the
+            # rest stay behind as the previous syllable's coda.
+            onset_start = start - min(max_onset, cluster)
+
+        if n + 1 < len(nuclei):
+            nxt_start = nuclei[n + 1][0]
+            cluster = nxt_start - end
+            coda_end = nxt_start - min(max_onset, cluster)
+        else:
+            coda_end = len(ipa)  # trailing consonants close the last syllable
+
+        syllables.append(ipa[onset_start:coda_end])
+
+    return syllables
+
+
+def syllable_weight(syllable: str) -> str:
+    """Classify one IPA syllable as ``light``, ``heavy`` or ``superheavy``.
+
+    Weight is the nucleus plus what follows it:
+
+    ===============  =========================  ==================
+    weight           shape                      example
+    ===============  =========================  ==================
+    ``light``        short vowel, open (CV)     ``ki``
+    ``heavy``        long vowel (CVː)           ``taː``
+    ``heavy``        short vowel + 1 coda (CVC) ``dar``
+    ``superheavy``   long vowel + coda (CVːC)   ``taːb``
+    ``superheavy``   short vowel + 2 codas      ``bint``
+    ===============  =========================  ==================
+    """
+    start = next((i for i, ch in enumerate(syllable) if is_ipa_vowel(ch)), None)
+    if start is None:
+        return LIGHT  # no nucleus — nothing to weigh
+
+    end = start
+    while end < len(syllable) and (
+        is_ipa_vowel(syllable[end]) or syllable[end] == _LENGTH
+    ):
+        end += 1
+
+    nucleus = syllable[start:end]
+    coda = syllable[end:]
+
+    long_vowel = _LENGTH in nucleus or sum(
+        1 for ch in nucleus if is_ipa_vowel(ch)
+    ) > 1  # a diphthong counts as long
+
+    if long_vowel and coda:
+        return SUPERHEAVY
+    if len(coda) >= 2:
+        return SUPERHEAVY
+    if long_vowel or coda:
+        return HEAVY
+    return LIGHT
+
+
+def detect_stress_by_weight(
+    ipa: str,
+    rules: StressRules,
+) -> int:
+    """Locate the stressed syllable of *ipa* by weight. Returns an end-anchored
+    index (``-1`` final, ``-2`` penult, …), ready for :func:`apply_stress_mark`.
+
+    The cascade (Ryding, *A Reference Grammar of MSA*, CUP 2005, § 2.3; Watson,
+    *The Phonology and Morphology of Arabic*, OUP 2002, ch. 3):
+
+    1. a **superheavy final** syllable takes the stress — ``kiˈtaːb`` — unless
+       the language never stresses a final syllable
+       (:attr:`~StressRules.superheavy_final_attracts`);
+    2. otherwise a **heavy penult** takes it — ``muˈdarris``;
+    3. otherwise the default position — the antepenult for Arabic —
+       ``ˈmadrasa``.
+
+    A word with fewer syllables than the default position reaches for falls
+    back to its first syllable.
+    """
+    syllables = syllabify_ipa(ipa, rules.max_onset)
+    n = len(syllables)
+    if n <= 1:
+        return -1
+
+    if rules.superheavy_final_attracts and syllable_weight(syllables[-1]) == SUPERHEAVY:
+        return -1
+
+    if n >= 2 and syllable_weight(syllables[-2]) in (HEAVY, SUPERHEAVY):
+        return -2
+
+    default = rules.default_position
+    if default < 0:
+        return default if n >= -default else -n
+    return -n  # a positive default counts from the start: the first syllable

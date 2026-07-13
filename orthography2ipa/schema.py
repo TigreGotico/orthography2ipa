@@ -231,6 +231,9 @@ class StressRulesModel(_Strict):
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
     diphthongs: Optional[List[str]] = None
+    quantity_sensitive: bool = False
+    superheavy_final_attracts: bool = True
+    max_onset: int = Field(default=1, ge=1, le=3)
     notes: Optional[str] = None
 
     @field_validator("default_position")

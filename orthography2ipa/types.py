@@ -202,6 +202,37 @@ class StressRules:
         keeps ``ciu-tat`` and ``ai-gua`` intact while splitting ``te-ni-a``.
         Empty (the default) preserves the merge-the-whole-run behaviour, so
         every spec that does not declare it is unaffected.
+    quantity_sensitive : bool
+        Stress is placed by **syllable weight**, not by an orthographic
+        ending. A quantity-sensitive system reads the *transcription* — a
+        syllable is heavy because its vowel is long or it has a coda — so no
+        ending table can express it, and the four detection rules above do not
+        apply. This is the Arabic and Latin system.
+
+        When set, stress is computed from the IPA by
+        :func:`~orthography2ipa.stress.detect_stress_by_weight`:
+
+        1. the final syllable, if it is **superheavy** (CVːC / CVCC) and
+           :attr:`superheavy_final_attracts` is set;
+        2. otherwise the penult, if it is **heavy** (CVː / CVC);
+        3. otherwise :attr:`default_position` (the antepenult, for Arabic).
+
+        Weight is only recoverable when the transcription is complete — for an
+        abjad that means the input must be diacritized. An undiacritized
+        skeleton has no vowels to weigh.
+    superheavy_final_attracts : bool
+        A superheavy final syllable takes the stress (Arabic ``kiˈtaːb``).
+        Unset for a system that never stresses the final syllable regardless of
+        its weight — the Latin rule. Only read when
+        :attr:`quantity_sensitive` is set.
+    max_onset : int
+        The most consonants a syllable may take as its onset, used to divide a
+        medial cluster between the previous syllable's coda and the next one's
+        onset. Weight depends entirely on where that boundary falls: with an
+        onset-maximising split, ``mudarris`` is ``mu-da-rris`` and its penult is
+        light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
+        penult is heavy, and the stress lands there — ``muˈdarris``, which is
+        the correct form. Only read when :attr:`quantity_sensitive` is set.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -211,6 +242,9 @@ class StressRules:
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
+    quantity_sensitive: bool = False
+    superheavy_final_attracts: bool = True
+    max_onset: int = 1
     notes: str = ""
 
 
