@@ -241,5 +241,6 @@
     "longitude": -7.935278,
     "source": "wikidata",
     "notes": "the Algarve — Portugal's southernmost region (Faro, Portimão, Lagos). [Wikidata Q26831 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

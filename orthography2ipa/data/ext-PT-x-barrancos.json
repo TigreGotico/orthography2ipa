@@ -369,5 +369,6 @@
     "longitude": -6.976103,
     "source": "wikidata",
     "notes": "Barrancos (Baixo Alentejo) — the single border municipality Barranquenho is spoken in. [Wikidata Q368867 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

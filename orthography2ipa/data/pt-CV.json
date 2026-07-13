@@ -200,5 +200,6 @@
     "longitude": -23.509156,
     "source": "wikidata",
     "notes": "Praia. The formal L2 Portuguese of Cape Verde — the capital stands in for the archipelago. [Wikidata Q3751 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

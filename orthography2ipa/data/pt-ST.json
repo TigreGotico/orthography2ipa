@@ -189,5 +189,6 @@
     "longitude": 6.728333,
     "source": "wikidata",
     "notes": "the city of São Tomé. Note the spec's wikidata_qid (Q36536) is Forro CREOLE, a different language from this Portuguese variety, so it was NOT used as the source of this point. [Wikidata Q3932 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

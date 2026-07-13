@@ -285,5 +285,6 @@
     "longitude": 32.573333,
     "source": "wikidata",
     "notes": "Maputo. A national L2 variety: the capital stands in for the country. Weak. [Wikidata Q3889 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

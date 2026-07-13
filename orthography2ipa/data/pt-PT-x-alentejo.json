@@ -196,5 +196,6 @@
     "longitude": -7.43349,
     "source": "wikidata",
     "notes": "the Alto Alentejo (Portalegre, Évora, Beja) — a subregion-level point. [Wikidata Q443376 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

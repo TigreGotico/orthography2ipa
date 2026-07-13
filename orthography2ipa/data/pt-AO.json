@@ -257,5 +257,6 @@
     "longitude": 13.234444,
     "source": "wikidata",
     "notes": "Luanda. A national L2/second-norm variety: the capital stands in for the country. Weak. [Wikidata Q3897 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

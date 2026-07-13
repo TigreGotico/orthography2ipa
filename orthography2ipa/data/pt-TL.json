@@ -308,5 +308,6 @@
     "longitude": 125.578333,
     "source": "wikidata",
     "notes": "Dili. Portuguese is an L2 for nearly all speakers: the capital stands in for the country. [Wikidata Q9310 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

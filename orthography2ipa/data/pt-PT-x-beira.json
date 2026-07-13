@@ -230,5 +230,6 @@
     "longitude": -7.913889,
     "source": "wikidata",
     "notes": "Viseu — a representative locality of the Beiras (Beira Litoral, Alta and Baixa), an area far larger than any one town. [Wikidata Q117676 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }
