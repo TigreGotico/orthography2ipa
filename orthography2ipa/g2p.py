@@ -73,7 +73,10 @@ from orthography2ipa.sentence import (
     normalize_sentence_rescorers,
     span_position,
 )
-from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
+from orthography2ipa.stress import (
+    _syllables_for, apply_stress_mark, detect_stress, detect_stress_by_weight,
+    syllabify,
+)
 from orthography2ipa.types import LanguageSpec
 
 __all__ = [
@@ -703,11 +706,19 @@ class G2P:
                     rescorer=self._rescorers or None)
             ipa = paths[0].ipa if paths else word
         if (self.apply_stress and self.spec.stress is not None and ipa):
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
-            idx = detect_stress(word, self.spec.stress, syllables=sylls)
-            ipa = apply_stress_mark(ipa, self.spec.stress, idx,
-                                    syllables=sylls)
+            if self.spec.stress.quantity_sensitive:
+                # Weight is a property of the transcription, not the spelling —
+                # a syllable is heavy because its vowel is long or it has a
+                # coda. So this system reads the IPA we just produced, and no
+                # orthographic syllabification is involved.
+                idx = detect_stress_by_weight(ipa, self.spec.stress)
+                ipa = apply_stress_mark(ipa, self.spec.stress, idx)
+            else:
+                sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
+                                       if self.spec.stress else ())
+                idx = detect_stress(word, self.spec.stress, syllables=sylls)
+                ipa = apply_stress_mark(ipa, self.spec.stress, idx,
+                                        syllables=sylls)
         unmapped, coverage = self._unmapped_chars(word)
         if unmapped:
             self._handle_unmapped(word, unmapped)

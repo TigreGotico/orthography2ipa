@@ -415,6 +415,10 @@ def load_json_spec(code: str) -> LanguageSpec:
             marked_vowels=tuple(raw_stress.get("marked_vowels", ())),
             stress_mark=raw_stress.get("stress_mark", "ˈ"),
             diphthongs=tuple(raw_stress.get("diphthongs", ())),
+            quantity_sensitive=bool(raw_stress.get("quantity_sensitive", False)),
+            superheavy_final_attracts=bool(
+                raw_stress.get("superheavy_final_attracts", True)),
+            max_onset=int(raw_stress.get("max_onset", 1)),
             notes=raw_stress.get("notes", "") or "",
         )
 
