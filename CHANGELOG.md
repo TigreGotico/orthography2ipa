@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.0a1) (2026-07-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.4.0a1...4.5.0a1)
+
+**Merged pull requests:**
+
+- feat\(gold\): Arabic TTS gold set — 125 diacritized sentences across all 25 lects + connected-speech orthography fixes [\#358](https://github.com/TigreGotico/orthography2ipa/pull/358) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [4.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.4.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.3.0a1...4.4.0a1)
