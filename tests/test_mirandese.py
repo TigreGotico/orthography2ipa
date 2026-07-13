@@ -193,7 +193,9 @@ def test_intervocalic_g_spirantises_via_positional_layer():
     assert g.transcribe("mogadouro") == "muɣɐˈdowɾu"
     # ⟨g⟩ after the glide of a falling diphthong keeps the stop (gold: eigual
     # → [ɐjˈɡwal]); a naive /ɡ/→[ɣ] allophone rule would wrongly lenite it
-    assert g.transcribe("eigual") == "eˈjɡal"
+    # the native gold has eigual [ɐjˈɡwal]: ⟨gu⟩ keeps the glide
+    # before ⟨a⟩; the point here is only that /ɡ/ stays a stop
+    assert g.transcribe("eigual") == "eˈjɡwal"
 
 
 def test_only_the_b_spirant_rule_is_declared():
@@ -209,3 +211,33 @@ def test_spirantisation_is_pan_mirandese():
     assert _t("mwl-x-sendim").transcribe("haber") == "ɐˈβeɾ"
     assert _t("mwl-x-ifanes").transcribe("haber") == "ɐˈβeɾ"
     assert "MWL_SPIRANT_B" in [r.id for r in get("mwl-x-sendim").allophone_rules]
+
+
+class TestConvencaoWave:
+    """Convenção Ortográfica da Língua Mirandesa (1999) orthography-table
+    units, validated against the native-speaker gold
+    (TigreGotico/mirandese_g2p)."""
+
+    @staticmethod
+    def _t(w):
+        import orthography2ipa
+        return orthography2ipa.transcribe(w, "mwl").replace("ˈ", "")
+
+    def test_am_prefix_nasalises_before_voiceless_stop(self):
+        # amportante [ɐ̃puɾtɐ̃tɨ]; AN/AM = /ɐ̃/ before a voiceless stop
+        assert self._t("amportante").startswith("ɐ̃p")
+
+    def test_am_keeps_nasal_consonant_before_voiced_stop(self):
+        # stem-internal ⟨amb⟩: the nasal stays [m], /b/ stays a stop
+        assert self._t("ambos") == "ambus̺"
+
+    def test_ui_is_a_falling_diphthong(self):
+        # fui [fuj] — the falling-diphthong system is preserved
+        assert self._t("fui") == "fuj"
+
+    def test_gu_keeps_glide_before_a(self):
+        # guapo [ɡwapu], eigual [ɐjˈɡwal] in the gold
+        assert self._t("guapo") == "ɡwapu"
+
+    def test_gu_is_bare_stop_before_front_vowels(self):
+        assert "ɡw" not in self._t("guerra")

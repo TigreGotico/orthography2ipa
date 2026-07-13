@@ -184,6 +184,16 @@
     ],
     "unh": [
       "uɲ"
+    ],
+    "ui": [
+      "uj"
+    ],
+    "gu": [
+      "ɡw",
+      "ɡ"
+    ],
+    "amp": [
+      "ɐ̃p"
     ]
   },
   "positional_graphemes": {
@@ -325,6 +335,17 @@
     "un": {
       "before_vowel": [
         "un"
+      ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
       ]
     }
   },
