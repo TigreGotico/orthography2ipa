@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.1.1a1) (2026-07-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.1.0a1...4.1.1a1)
+
+**Merged pull requests:**
+
+- fix: modern Arabic varieties read MSA orthography, not Classical [\#348](https://github.com/TigreGotico/orthography2ipa/pull/348) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [4.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.1.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.0.0a1...4.1.0a1)
