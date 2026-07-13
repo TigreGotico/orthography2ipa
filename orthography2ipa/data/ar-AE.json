@@ -65,5 +65,17 @@
     "longitude": 54.396944,
     "source": "wikidata",
     "notes": "Abu Dhabi. A national variety within the Gulf continuum: the capital stands in for the country. [Wikidata Q1519 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

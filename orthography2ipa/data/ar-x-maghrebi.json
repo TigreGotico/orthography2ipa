@@ -132,5 +132,17 @@
     "longitude": 14.573491,
     "source": "glottolog",
     "notes": "Glottolog's computed centroid for the North African Arabic family — a summary of a whole clade's range, not a place anyone speaks."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

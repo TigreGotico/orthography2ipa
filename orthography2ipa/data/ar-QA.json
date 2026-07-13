@@ -53,5 +53,17 @@
     "longitude": 51.529444,
     "source": "wikidata",
     "notes": "Doha. A national variety within the Gulf continuum. [Wikidata Q3861 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

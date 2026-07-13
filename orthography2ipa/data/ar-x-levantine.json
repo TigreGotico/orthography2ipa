@@ -246,5 +246,17 @@
     "longitude": 36.0468,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Levantine Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

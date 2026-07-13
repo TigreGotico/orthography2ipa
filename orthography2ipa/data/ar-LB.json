@@ -165,5 +165,17 @@
     "longitude": 35.513056,
     "source": "wikidata",
     "notes": "Beirut — the city the Beiruti variety is named for. [Wikidata Q3820 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

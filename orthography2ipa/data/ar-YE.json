@@ -124,5 +124,17 @@
     "longitude": 44.8412,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Sanaani Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

@@ -128,5 +128,17 @@
     "longitude": 42.0047,
     "source": "glottolog",
     "notes": "Glottolog's representative point for North Mesopotamian Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

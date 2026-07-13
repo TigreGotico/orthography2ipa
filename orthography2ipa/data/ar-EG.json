@@ -204,5 +204,17 @@
     "longitude": 31.0,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Egyptian Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

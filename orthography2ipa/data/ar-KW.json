@@ -60,5 +60,17 @@
     "longitude": 47.98,
     "source": "wikidata",
     "notes": "Kuwait City. A national variety within the Gulf continuum. [Wikidata Q35178 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

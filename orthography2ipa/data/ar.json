@@ -294,5 +294,17 @@
     "longitude": 43.8525,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Standard Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

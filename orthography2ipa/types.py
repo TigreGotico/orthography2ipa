@@ -922,6 +922,10 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "quality": InheritanceMode.OWN_ONLY,
     "script_type": InheritanceMode.OWN_ONLY,
     "inherent_vowel": InheritanceMode.OWN_ONLY,
+    # Which marks the orthography omits is a property of the writing system, and
+    # a spec that inherits a grapheme table does not thereby inherit a script —
+    # so each spec declares its own, exactly as it declares script_type.
+    "optional_marks": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -1077,6 +1081,26 @@ class LanguageSpec:
     inherent_vowel: Optional[str] = None
     """For abugidas — the vowel assumed when no vowel mark is present
     (e.g. ``"ə"`` for Hindi, ``"a"`` for Sanskrit)."""
+
+    optional_marks: Tuple[str, ...] = ()
+    """The diacritics this orthography habitually **omits** — the Arabic
+    ḥarakāt, the Hebrew niqqud.
+
+    :attr:`script_type` records that an orthography is an abjad; this records
+    what that costs. Standard Arabic writes no short vowels outside the Qurʾān,
+    children's books and pedagogy, so a letter carrying none of these marks is
+    **underdetermined**: the engine cannot know which vowel follows it, and any
+    reading it produces is a guess dressed as an answer.
+
+    Declaring the marks makes that measurable rather than invisible — see
+    :mod:`orthography2ipa.underspecification`, which reports where a reading is
+    underdetermined instead of letting a spec silently default. It changes no
+    transcription: it is the *honesty* layer over one, and the substrate a
+    downstream diacritizer needs to act as a scorer over licensed candidates
+    rather than a free generator.
+
+    Empty for every orthography that writes its vowels (the default), which is
+    most of them."""
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""

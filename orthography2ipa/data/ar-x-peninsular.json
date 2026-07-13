@@ -187,5 +187,17 @@
     "longitude": 45.762512,
     "source": "glottolog",
     "notes": "Glottolog's computed centroid for the Arabian Peninsula Arabic family — a summary of a whole clade's range, not a place anyone speaks."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }
