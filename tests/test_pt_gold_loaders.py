@@ -1,12 +1,12 @@
-"""Tests for the three Portuguese/Mirandese gold loaders in
-scripts/benchmark.py:
+"""Tests for the Portuguese/Mirandese gold loaders in scripts/benchmark.py:
 
 - ``load_mirandese`` (TigreGotico/mirandese_g2p, human gold, row
   ``mirandese_g2p``) — dialect-column split incl. Raiano → ``mwl-x-ifanes``;
-- ``load_infopedia_pt`` (TigreGotico/infopedia-pt-ipa) — fixed-seed sampling;
-- ``load_portuguese_phonetic_lexicon``
-  (TigreGotico/portuguese_phonetic_lexicon) — per-region split, ``|``
-  stripping, fixed-seed sampling.
+- ``load_portuguese_unified``
+  (TigreGotico/portuguese-unified-pronunciation-lexicon) — the single
+  merged Portuguese gold (Infopedia + Portal lexicon + Wiktionary):
+  per-region split, ipa_narrow scoring, variant preservation, fixed-seed
+  sampling, untagged-"pt" exclusion.
 
 Network access is mocked via benchmark._fetch so these run offline and
 deterministically, mirroring tests/test_hitz_basque_loader.py.
@@ -63,76 +63,89 @@ def test_mirandese_g2p_registered_expert_human():
     assert "mirandese" not in benchmark.DATASETS
 
 
-# ─── load_infopedia_pt (fixed-seed sampling) ─────────────────────────────────
+# ─── load_portuguese_unified (region split, narrow IPA, sampling) ───────────
 
 def _jsonl(rows):
-    return "\n".join(json.dumps(r) for r in rows)
+    return "\n".join(json.dumps(r, ensure_ascii=False) for r in rows)
 
 
-def test_load_infopedia_pt_emits_all_pronunciation_variants(monkeypatch):
-    data = _jsonl([
-        {"word": "casa", "ipa": "ˈkazɐ", "pronunciations": ["ˈkazɐ"]},
-        {"word": "voltear", "pronunciations": ["vɔɫtjar", "voɫtjar"]},
-    ])
-    monkeypatch.setattr(benchmark, "_fetch", lambda url, name: data)
-    pairs = benchmark.load_infopedia_pt("pt-PT", 10)
-    assert ("casa", "ˈkazɐ") in pairs
-    assert ("voltear", "vɔɫtjar") in pairs
-    assert ("voltear", "voɫtjar") in pairs
+_UNIFIED_ROWS = [
+    {"word": "casa", "region": "pt-PT", "ipa_narrow": "ˈkazɐ", "ipa_broad": "ˈkaza"},
+    {"word": "casa", "region": "pt-PT", "ipa_narrow": "ˈkazɐ"},          # duplicate variant
+    {"word": "voltear", "region": "pt-PT", "ipa_narrow": "vɔɫtjˈaɾ"},
+    {"word": "voltear", "region": "pt-PT", "ipa_narrow": "voɫtjˈaɾ"},    # real variant
+    {"word": "ovo", "region": "pt-TL-x-dili", "ipa_narrow": "ˈɔvʊ"},
+    {"word": "maputo", "region": "pt-MZ-x-maputo", "ipa_narrow": "mɐˈputu"},
+    {"word": "geral", "region": "pt", "ipa_narrow": "ʒɨˈɾaɫ"},           # untagged: excluded
+    {"word": "vazio", "region": "pt-PT", "ipa_narrow": ""},              # empty: skipped
+]
 
 
-def test_load_infopedia_pt_sampling_is_fixed_seed_and_bounded(monkeypatch):
-    rows = [{"word": f"w{i}", "pronunciations": [f"p{i}"]} for i in range(50)]
+def test_load_unified_splits_by_region(monkeypatch):
+    monkeypatch.setattr(benchmark, "_fetch",
+                        lambda url, name: _jsonl(_UNIFIED_ROWS))
+    pt = benchmark.load_portuguese_unified("pt-PT", 10)
+    words = {w for w, _ in pt}
+    assert words == {"casa", "voltear"}
+    assert benchmark.load_portuguese_unified("pt-TL", 10) == [("ovo", "ˈɔvʊ")]
+    assert benchmark.load_portuguese_unified("pt-MZ", 10) == [("maputo", "mɐˈputu")]
+
+
+def test_load_unified_excludes_untagged_pt_rows(monkeypatch):
+    monkeypatch.setattr(benchmark, "_fetch",
+                        lambda url, name: _jsonl(_UNIFIED_ROWS))
+    for lang in benchmark._PT_UNIFIED_REGIONS:
+        assert all(w != "geral"
+                   for w, _ in benchmark.load_portuguese_unified(lang, 100))
+
+
+def test_load_unified_keeps_variants_dedupes_exact(monkeypatch):
+    monkeypatch.setattr(benchmark, "_fetch",
+                        lambda url, name: _jsonl(_UNIFIED_ROWS))
+    pt = benchmark.load_portuguese_unified("pt-PT", 10)
+    assert pt.count(("casa", "ˈkazɐ")) == 1            # exact dupes collapse
+    assert ("voltear", "vɔɫtjˈaɾ") in pt               # both real variants kept
+    assert ("voltear", "voɫtjˈaɾ") in pt
+
+
+def test_load_unified_sampling_is_fixed_seed_and_word_bounded(monkeypatch):
+    rows = [{"word": f"w{i}", "region": "pt-PT", "ipa_narrow": f"p{i}"}
+            for i in range(50)]
     monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _jsonl(rows))
-    first = benchmark.load_infopedia_pt("pt-PT", 5)
-    second = benchmark.load_infopedia_pt("pt-PT", 5)
-    assert first == second                 # deterministic
-    assert len({w for w, _ in first}) == 5  # capped at limit words
-    # a genuine sample, not the alphabetical head (w0..w4)
-    assert [w for w, _ in first] != [f"w{i}" for i in range(5)]
+    first = benchmark.load_portuguese_unified("pt-PT", 5)
+    second = benchmark.load_portuguese_unified("pt-PT", 5)
+    assert first == second                  # deterministic
+    assert len({w for w, _ in first}) == 5  # capped at limit WORDS
+    assert [w for w, _ in first] != [f"w{i}" for i in range(5)]  # not the head
 
 
-def test_infopedia_pt_registered_lexicon_derived():
-    assert benchmark.DATASETS["infopedia_pt"][1] == ["pt-PT"]
-    assert benchmark.PROVENANCE["infopedia_pt"] == "lexicon-derived"
+def test_unified_registration_and_provenance():
+    loader, langs = benchmark.DATASETS["portuguese_unified"]
+    assert loader is benchmark.load_portuguese_unified
+    assert langs == sorted(benchmark._PT_UNIFIED_REGIONS)
+    assert benchmark.PROVENANCE["portuguese_unified"] == "lexicon-derived"
+    # the three superseded datasets are gone (merged, not duplicated)
+    for old in ("infopedia_pt", "portuguese_phonetic_lexicon",
+                "wiktionary_pt", "styletts2_phonemes"):
+        assert old not in benchmark.DATASETS
+        assert old not in benchmark.PROVENANCE
 
 
-# ─── load_portuguese_phonetic_lexicon (region split) ─────────────────────────
-
-_LEXICON_CSV = "\n".join([
-    "id,word,postag,gender,phones,syllables,region_code",
-    "n_male_ovo_lbx,ovo,nome,male,ˈo|vu,o|vo,lbx",
-    "n_f_casa_lbx,casa,nome,female,ˈka|zɐ,ca|sa,lbx",
-    "n_male_ovo_dli,ovo,nome,male,ˈɔ|vʊ,o|vo,dli",
-    "n_x_maputo_map,maputo,nome,,mɐ|ˈpu|tu,ma|pu|to,map",  # non-std, skipped
-])
+def test_vox_communis_registration_and_provenance():
+    loader, langs = benchmark.DATASETS["vox_communis"]
+    assert loader is benchmark.load_vox_communis
+    assert langs == sorted(benchmark._VOX_COMMUNIS_FILES)
+    # epitran-built lexicons: competitor tier, never gates
+    assert benchmark.PROVENANCE["vox_communis"] == "epitran-derived"
+    assert not benchmark.can_gate_promotion("epitran-derived")
 
 
-def test_load_lexicon_splits_by_region_and_strips_separator(monkeypatch):
-    monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _LEXICON_CSV)
-    pt = benchmark.load_portuguese_phonetic_lexicon("pt-PT", 10)
-    assert ("ovo", "ˈovu") in pt          # lbx, "|" stripped
-    assert ("casa", "ˈkazɐ") in pt
-    assert all(w in {"ovo", "casa"} for w, _ in pt)
-    tl = benchmark.load_portuguese_phonetic_lexicon("pt-TL", 10)
-    assert tl == [("ovo", "ˈɔvʊ")]        # dli only
-
-
-def test_load_lexicon_sampling_is_fixed_seed(monkeypatch):
-    rows = ["id,word,postag,gender,phones,syllables,region_code"]
-    rows += [f"i{i},w{i},n,,p{i},s{i},lbx" for i in range(40)]
-    csv_text = "\n".join(rows)
-    monkeypatch.setattr(benchmark, "_fetch", lambda url, name: csv_text)
-    first = benchmark.load_portuguese_phonetic_lexicon("pt-PT", 5)
-    second = benchmark.load_portuguese_phonetic_lexicon("pt-PT", 5)
-    assert first == second
-    assert len(first) == 5
-    assert [w for w, _ in first] != [f"w{i}" for i in range(5)]
-
-
-def test_lexicon_registered_crowd_scraped():
-    assert "portuguese_phonetic_lexicon" in benchmark.DATASETS
-    loader, langs = benchmark.DATASETS["portuguese_phonetic_lexicon"]
-    assert loader is benchmark.load_portuguese_phonetic_lexicon
-    assert langs == ["pt-AO", "pt-BR", "pt-MZ", "pt-PT", "pt-TL"]
-    assert benchmark.PROVENANCE["portuguese_phonetic_lexicon"] == "crowd-scraped"
+def test_load_vox_communis_word_alignment(monkeypatch):
+    tsv = "\n".join([
+        "path\tclient_id\tsentence_id\tlocale\tduration\tsentence\taligned_sentence\tphonemized_sentence\tsentence_domain\tphone_set\taccents\tvariant\tage\tgender\tspeaker_id",
+        "a.mp3\t\t\t\t1.0\tOla mundo\tola mundo\tˈo l a | m ˈu n d u\t\tvxc\t\t\t\t\t1",
+        "b.mp3\t\t\t\t1.0\tMau\tmau linha\tm ˈa w\t\tvxc\t\t\t\t\t2",  # count mismatch: skipped
+    ])
+    monkeypatch.setattr(benchmark, "_fetch", lambda url, name: tsv)
+    pairs = benchmark.load_vox_communis("ca", 10)
+    assert pairs == [("ola", "ˈola"), ("mundo", "mˈundu")]

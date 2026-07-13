@@ -9,7 +9,7 @@ datasets, their sources and the methodology are documented in
 
 Usage::
 
-    python scripts/benchmark.py --dataset portuguese_phonetic_lexicon --lang pt-PT
+    python scripts/benchmark.py --dataset portuguese_unified --lang pt-PT
     python scripts/benchmark.py --dataset wikipron --lang gl --broad
     python scripts/benchmark.py --dataset mirandese_g2p --lang mwl
     python scripts/benchmark.py --list
@@ -18,15 +18,14 @@ Dataset access:
 
 - ``cmudict`` needs the ``scriptconv`` package for ARPABET→IPA.
 - ``wikipron`` and ``mirandese_g2p`` download TSVs directly (stdlib only).
-- ``infopedia_pt`` downloads a JSONL gold file directly and samples it with
+- ``portuguese_unified`` downloads a JSONL gold file directly and samples it with
   a fixed seed (stdlib only).
-- ``portuguese_phonetic_lexicon`` downloads the Portal da Língua Portuguesa
-  CSV directly and samples it per region with a fixed seed (stdlib only).
+  (It merges the former separate infopedia / wiktionary / Portal-lexicon
+  golds; one region is scored per registered language tag.)
 - ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
 - ``clup_dialect`` downloads a CSV gold file directly (stdlib only).
-- ``styletts2_phonemes`` downloads per-language JSON files directly
   (stdlib only).
 - ``ipa_childes`` downloads per-language CSVs from the
   fdemelo/ipa-childes-split Hugging Face dataset directly (stdlib only).
@@ -77,7 +76,7 @@ BOOTSTRAP_SEED = 20260710
 BOOTSTRAP_REPS = 1000
 
 # Fixed seed for loaders that draw a random sample from a large gold file
-# (infopedia_pt, portuguese_phonetic_lexicon) instead of the alphabetical
+# (portuguese_unified) instead of the alphabetical
 # head. Never randomized, so the same ``limit`` always selects the same
 # words across runs/machines — an unbiased but fully reproducible slice.
 SAMPLE_SEED = 20260711
@@ -90,8 +89,8 @@ LEXICON_SCOREBOARD_JSON = os.path.join(
 # ── CI regression sample ────────────────────────────────────────────────────
 # The committed scoreboard (SCOREBOARD_JSON) is FULL-dataset — every gold
 # word of every language, no cap — which is far too slow to re-run inside a
-# CI job (the 617k-row portuguese_phonetic_lexicon and 102k-row infopedia_pt
-# alone take the better part of an hour). So the CI regression gate re-scores
+# CI job (the 598k-row portuguese_unified gold alone takes the better part
+# of an hour). So the CI regression gate re-scores
 # at a fixed, UNIFORM sample size — the SAME cap for every language, no
 # per-language juggling — and compares against a SEPARATE baseline committed
 # at that identical cap (never against the full scoreboard, so there is never
@@ -231,33 +230,56 @@ _MIRANDESE_DICT_DIALECTS: Dict[str, set] = {
     "mwl-x-sendim": {"sendinês"},
     "mwl-x-ifanes": {"raiano"},
 }
-_INFOPEDIA_PT_URL = (
-    "https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa"
-    "/resolve/main/infopedia_pt_ipa.jsonl"
+_PT_UNIFIED_URL = (
+    "https://huggingface.co/datasets/TigreGotico/"
+    "portuguese-unified-pronunciation-lexicon"
+    "/resolve/main/portuguese_pronunciation_lexicon.jsonl"
 )
-_PT_LEXICON_URL = (
-    "https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon"
-    "/resolve/main/dataset.csv"
-)
-# TigreGotico/portuguese_phonetic_lexicon (~617k rows) scraped from the
-# public Portal da Língua Portuguesa (INESC-ID). Its IPA is SEMI-AUTOMATED
-# and community-scraped → classified ``crowd-scraped``. Each row carries a
-# ``region_code`` for one of ten regional variants (dataset card mapping).
-# orthography2ipa spec → the ONE region_code scored under it: the STANDARD
-# metropolitan variant of that country/region. Each spec gets a single row.
-_PT_LEXICON_REGIONS: Dict[str, str] = {
-    "pt-PT": "lbx",   # Lisbon (Standard) — standard European Portuguese
-    "pt-BR": "spx",   # São Paulo (Standard) — Brazilian standard
-    "pt-AO": "lda",   # Luanda — Angolan Portuguese (only Angola code)
-    "pt-MZ": "mpx",   # Maputo (Standard) — Mozambican Portuguese
-    "pt-TL": "dli",   # Dili — Timorese Portuguese (only Timor code)
+#: orthography2ipa language tag -> unified-dataset region tag. Only regions
+#: with a matching o2i spec AND a usable row count are scored; the tiny
+#: paulistano/paulista registers (~50 words each) and untagged "pt" rows
+#: are deliberately left out.
+_PT_UNIFIED_REGIONS: Dict[str, str] = {
+    "pt-PT": "pt-PT",                       # Infopedia + Wiktionary EP, ~116k rows
+    "pt-PT-x-lisbon": "pt-PT-x-lisboa",     # Portal lexicon Lisbon, ~62k rows
+    "pt-BR": "pt-BR",                       # Wiktionary BR, ~3.6k rows
+    "pt-BR-x-sp": "pt-BR-x-saopaulo",       # Portal lexicon Sao Paulo, ~92k rows
+    "pt-BR-x-rj": "pt-BR-x-riodejaneiro",   # Portal lexicon Rio, ~64k rows
+    "pt-BR-x-carioca": "pt-BR-x-carioca",   # Wiktionary carioca, ~566 words
+    "pt-BR-x-caipira": "pt-BR-x-caipira",   # Wiktionary caipira, ~83 words
+    "pt-AO": "pt-AO",                       # Portal lexicon Luanda, ~53k rows
+    "pt-MZ": "pt-MZ-x-maputo",              # Portal lexicon Maputo, ~95k rows
+    "pt-TL": "pt-TL-x-dili",                # Portal lexicon Dili, ~53k rows
 }
-# region_codes deliberately NOT scored (each is a non-standard register, or a
-# second Brazilian metropolitan norm, of a region already covered by its
-# Standard code above; no distinct orthography2ipa spec exists for them, so
-# scoring them would duplicate a spec's row or conflate registers):
-#   lbn (Lisbon non-std), rjx/rjo (Rio std/non-std), spo (São Paulo non-std),
-#   map (Maputo non-std).
+_VOX_COMMUNIS_BASE = (
+    "https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p"
+    "/resolve/main/"
+)
+#: orthography2ipa language tag -> vox-communis TSV file name (without .tsv).
+#: Direct matches are generated from the intersection of the dataset's 78
+#: per-language files with the spec inventory; the alias entries map the
+#: dataset's regionalised file names onto the spec that covers them. The
+#: ``pt`` file is registered under pt-BR: Common Voice Portuguese is
+#: predominantly Brazilian and the file itself is region-untagged (same
+#: policy as the WikiPron generic-pt row).
+_VOX_COMMUNIS_FILES: Dict[str, str] = {
+    lang: lang for lang in (
+        "ab", "am", "as", "ba", "be", "bg", "bn", "ca", "ckb", "cs", "cv",
+        "cy", "dv", "el", "et", "eu", "fi", "gl", "gn", "ha", "hi", "hsb",
+        "hu", "id", "ja", "ka", "kab", "kk", "ko", "ky", "lg", "lij", "lt",
+        "mk", "ml", "mn", "mr", "mt", "myv", "nl", "or", "pl", "ru", "rw",
+        "sah", "sk", "sl", "sq", "sr", "sw", "ta", "th", "tk", "tn", "tr",
+        "tt", "ug", "uk", "uz", "vi", "yo", "yue",
+    )
+}
+_VOX_COMMUNIS_FILES.update({
+    "es": "es", "it": "it", "ro": "ro",       # bare tags resolve via registry
+    "pt-BR": "pt",                            # region-untagged; see note above
+    "sv": "sv-se", "zh": "zh-cn", "hy": "hy-am",
+    "fy": "fy-nl", "pa": "pa-in",
+})
+
+
 _4CATAC_BASE = (
     "https://huggingface.co/datasets/projecte-aina/4catac/resolve/main/"
 )
@@ -318,31 +340,6 @@ _CLUP_LOCALITY_MAP: Dict[str, str] = {
     "Alfena, Porto": "pt-PT-x-alfena",
 }
 _CLUP_LANGS = sorted(set(_CLUP_DISTRICT_MAP.values()) | set(_CLUP_LOCALITY_MAP.values()))
-_STYLETTS2_PHONEMES_BASE = (
-    "https://huggingface.co/datasets/styletts2-community/"
-    "multilingual-phonemes-10k-alpha/resolve/main/"
-)
-# orthography2ipa language tag → dataset config file name.
-# All 15 of the dataset's single-language configs are wired (the
-# ``en-xl`` config is a 100K-row scale-up of the same "en" language
-# already covered by the ``en`` config here plus ``wikipron``/``cmudict``,
-# so it is left out as redundant rather than a new gold source).
-_STYLETTS2_PHONEMES_FILES: Dict[str, str] = {
-    "en": "en.json",
-    "ca": "ca.json",
-    "de": "de.json",
-    "es": "es.json",
-    "el": "el.json",
-    "fa": "fa.json",
-    "fi": "fi.json",
-    "fr": "fr.json",
-    "it": "it.json",
-    "pl": "pl.json",
-    "pt": "pt.json",
-    "ru": "ru.json",
-    "sv": "sv.json",
-    "uk": "uk.json",
-}
 
 _IPA_CHILDES_BASE = (
     "https://huggingface.co/datasets/fdemelo/ipa-childes-split/resolve/main/"
@@ -881,93 +878,106 @@ def load_mirandese_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
-def load_infopedia_pt(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """European Portuguese (``pt-PT``) IPA lexicon (TigreGotico/infopedia-pt-ipa
-    on Hugging Face, 102,685 entries), extracted from a crawl of Infopédia
-    (Porto Editora), a reputable published European-Portuguese dictionary.
+def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Portuguese unified pronunciation lexicon, one REGION per language tag
+    (TigreGotico/portuguese-unified-pronunciation-lexicon on Hugging Face,
+    ~598k rows / 122k words, CC BY-SA 4.0).
 
-    Each JSONL row is ``{"word", "ipa", "pronunciations", "syllabification"}``;
-    ``pronunciations`` carries every distinct IPA form found for the word
-    (a handful of entries have more than one), so all of them are emitted
-    as separate reference pairs and scored via the harness's standard
-    multi-reference-per-word handling.
+    Merges the three previous TigreGotico Portuguese golds into one
+    convention-normalized dataset — Infopedia (Porto Editora dictionary),
+    pt.wiktionary.org, and the Portal da Lingua Portuguesa 10-region
+    lexicon — and REPLACES their separate loaders here. Each JSONL row is a
+    word x region x source x POS tuple carrying both a broad phonemic and a
+    narrow phonetic transcription normalized across sources.
 
-    PROVENANCE — classified ``lexicon-derived``: a published dictionary, but
-    the IPA transcriptions are Porto Editora's own and the METHODOLOGY BEHIND
-    THEM IS UNDOCUMENTED/UNKNOWN (not stated to be hand-checked, nor which
-    tooling produced them), so this is directional, not a peer-validated
-    ground truth. See docs/benchmarks.md "Provenance and reliability".
+    ``ipa_narrow`` is scored: it matches the transcription depth of the
+    o2i pt specs and of the previous gold (explicit [ɐ ɨ ɾ ʀ ɫ]).
+    Untagged plain-"pt" rows are excluded from every regional row: they are
+    the pan-Portuguese subset and would dilute regional contrasts. See
+    ``_PT_UNIFIED_REGIONS`` for the spec -> region mapping.
 
-    SAMPLING — 102k entries is far too many to score in full and the file is
-    alphabetically ordered, so the first ``limit`` lines would be a biased
-    all-"a…" slice. Instead the whole file is read and a fixed-seed
-    (``SAMPLE_SEED``) random sample of up to ``limit`` WORDS is drawn (all of
-    a sampled word's pronunciation variants are kept), giving an unbiased yet
-    fully reproducible slice. Portuguese is Latin-script; no special contract.
+    PROVENANCE — classified ``lexicon-derived``: the bulk of the rows come
+    from published-dictionary extractions (Infopedia) and the Portal's
+    semi-automated lexicon; the Wiktionary minority is crowd-scraped. Both
+    tiers may gate regressions, so the mixed classification is safe (only
+    competitor-derived/LLM tiers are exempt from gating).
+
+    SAMPLING — the file is grouped by word, so the first ``limit`` lines
+    would be a biased alphabetical slice; the whole file is read and a
+    fixed-seed (``SAMPLE_SEED``) random sample of up to ``limit`` WORDS is
+    drawn, keeping all of a sampled word's variants for the chosen region.
     """
-    del lang  # single language (pt-PT); kept for the uniform signature
-    text = _fetch(_INFOPEDIA_PT_URL, "infopedia_pt_ipa.jsonl")
-    words: List[Tuple[str, List[str]]] = []
+    region = _PT_UNIFIED_REGIONS[lang]
+    text = _fetch(_PT_UNIFIED_URL, "portuguese_pronunciation_lexicon.jsonl")
+    by_word: Dict[str, List[str]] = {}
     for line in text.strip().splitlines():
         if not line.strip():
             continue
         row = json.loads(line)
+        if row.get("region") != region:
+            continue
         word = row.get("word")
-        variants = [v for v in (row.get("pronunciations") or [row.get("ipa")]) if v]
-        if word and variants:
-            words.append((word, variants))
+        ipa = (row.get("ipa_narrow") or "").strip()
+        if not word or not ipa:
+            continue
+        by_word.setdefault(word, []).append(ipa)
+    words = sorted(by_word.items())
     rng = random.Random(SAMPLE_SEED)
     rng.shuffle(words)
     pairs: List[Tuple[str, str]] = []
     for word, variants in words[:limit]:
-        for ipa in variants:
+        for ipa in dict.fromkeys(variants):
             pairs.append((word, ipa))
     return pairs
 
 
-def load_portuguese_phonetic_lexicon(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """Portuguese phonetic lexicon, ONE regional variant per language tag
-    (TigreGotico/portuguese_phonetic_lexicon on Hugging Face, ~617k rows).
+def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """VoxCommunis parallel G2P pairs (fdemelo/vox-communis-parallel-g2p on
+    Hugging Face, CC0): Common Voice utterances force-aligned by the
+    VoxCommunis Corpus, with per-utterance phone strings whose lexicons came
+    from Epitran, the XPF Corpus, Charsiu and custom dictionaries (manually
+    corrected in part). One small TSV per language (~hundreds of rows).
 
-    Scraped from the public Portal da Língua Portuguesa (INESC-ID). This is a
-    DIRECT stdlib CSV loader (columns ``word,phones,postag,region_code,…``);
-    it lets the Lusophone family (``pt-PT``/``pt-BR``/``pt-AO``/``pt-MZ``/``pt-TL``)
-    be scored with no extra package installed. See ``_PT_LEXICON_REGIONS`` for
-    the spec→region_code mapping and the skipped register variants.
+    The ``phonemized_sentence`` column is space-separated phones with ``|``
+    between words, aligned with the whitespace-tokenized
+    ``aligned_sentence``; rows are split into word-level (word, IPA) pairs
+    the same way ``load_ipa_childes`` does, skipping rows whose token counts
+    do not match. Alignment artifacts (underscores, stray apostrophes) are
+    stripped from the phone side.
 
-    PROVENANCE — classified ``crowd-scraped``: the Portal's IPA is
-    SEMI-AUTOMATED (rule/tooling-generated, not hand-verified per entry), so
-    it is directional only, never ground truth. See docs/benchmarks.md.
-
-    The ``phones`` field flattens syllables with ``|`` (e.g. ``ˈkːa|zɐ``); the
-    separator is stripped so the whole-word IPA is scored. Portuguese is
-    Latin-script; no special input contract applies. The region's rows are read
-    in full; when ``limit`` is set (ad-hoc runs and the CI sample) a fixed-seed
-    (``SAMPLE_SEED``) random sample of up to ``limit`` words is drawn — unbiased
-    but fully reproducible. Under the published ``--scoreboard`` run (``limit``
-    unset) every row is scored. Duplicate words (same spelling) are
-    de-duplicated, keeping the first pronunciation.
+    PROVENANCE — classified ``epitran-derived`` (the competitor tier): the
+    phone tier's lexicons are built with Epitran — a scored competitor in
+    docs/comparison.md — alongside XPF/Charsiu, so a disagreement here
+    measures divergence from a competitor's output. Directional signal
+    only; can never gate a regression or a tier promotion.
     """
-    region = _PT_LEXICON_REGIONS[lang]
-    text = _fetch(_PT_LEXICON_URL, "portuguese_phonetic_lexicon.csv")
+    fname = _VOX_COMMUNIS_FILES[lang] + ".tsv"
+    text = _fetch(_VOX_COMMUNIS_BASE + fname, f"vox_communis_{fname}")
+    pairs: List[Tuple[str, str]] = []
     seen = set()
-    candidates: List[Tuple[str, str]] = []
-    reader = csv.DictReader(text.splitlines())
+    reader = csv.DictReader(text.splitlines(), delimiter="\t")
     for row in reader:
-        if (row.get("region_code") or "").strip() != region:
+        sentence = (row.get("aligned_sentence") or "").strip()
+        ipa = (row.get("phonemized_sentence") or "").strip()
+        if not sentence or not ipa:
             continue
-        word = (row.get("word") or "").strip()
-        ipa = (row.get("phones") or "").replace("|", "").strip()
-        if not word or not ipa:
+        words = sentence.split()
+        phones = ["".join(seg.split()) for seg in ipa.split("|")]
+        phones = [p.replace("_", "").replace("'", "") for p in phones]
+        if len(words) != len(phones):
             continue
-        key = word.lower()
-        if key in seen:
-            continue
-        seen.add(key)
-        candidates.append((word, ipa))
-    rng = random.Random(SAMPLE_SEED)
-    rng.shuffle(candidates)
-    return candidates[:limit]
+        for word, phone in zip(words, phones):
+            word = word.strip(".,;:!?\u00bf\u00a1\"'()")
+            if not word or not phone:
+                continue
+            key = word.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            pairs.append((word, phone))
+            if len(pairs) >= limit:
+                return pairs
+    return pairs
 
 
 def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -1185,27 +1195,6 @@ def load_ipadict(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 
 
-def load_styletts2_phonemes(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """StyleTTS2 community multilingual phonemes gold set (sentence-level,
-    styletts2-community/multilingual-phonemes-10k-alpha on Hugging Face):
-    ~10K ``text``/``phonemes`` sentence pairs per language, synthesized for
-    TTS-phonemizer training/evaluation, one JSON file per language config.
-    See ``_STYLETTS2_PHONEMES_FILES`` for the full set of wired languages.
-    """
-    fname = _STYLETTS2_PHONEMES_FILES[lang]
-    text = _fetch(_STYLETTS2_PHONEMES_BASE + fname, f"styletts2_{fname}")
-    data = json.loads(text)
-    pairs = []
-    for row in data:
-        sentence = row.get("text")
-        ipa = row.get("phonemes")
-        if sentence and ipa:
-            pairs.append((sentence.strip(), ipa.strip()))
-        if len(pairs) >= limit:
-            break
-    return pairs
-
-
 # Dialect code mapping for ep_dialects dataset
 # CSV dialect_code  →  orthography2ipa language tag
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1283,17 +1272,14 @@ DATASETS = {
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
-    "portuguese_phonetic_lexicon": (load_portuguese_phonetic_lexicon,
-                                    sorted(_PT_LEXICON_REGIONS)),
-    "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
+    "portuguese_unified": (load_portuguese_unified, sorted(_PT_UNIFIED_REGIONS)),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
     "clup_dialect": (load_clup_dialect, _CLUP_LANGS),
     "cmudict": (load_cmudict, ["en-US"]),
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
-    "styletts2_phonemes": (load_styletts2_phonemes,
-                           sorted(_STYLETTS2_PHONEMES_FILES)),
     "ipa_childes": (load_ipa_childes, sorted(_IPA_CHILDES_FOLDERS)),
+    "vox_communis": (load_vox_communis, sorted(_VOX_COMMUNIS_FILES)),
     "ipa_babylm": (load_ipa_babylm, ["en-US"]),
 }
 
@@ -1394,7 +1380,6 @@ PROVENANCE: Dict[str, str] = {
     "4catac": "expert-human",            # expert annotators, IEC guidelines, consensus review
     "clup_dialect": "expert-human",      # U.Porto CLUP dialect archive; see note (IPA-column provenance undocumented, many rows n=1-17)
     # human lexicographers via dictionary notation conventions
-    "infopedia_pt": "lexicon-derived",        # Infopédia (Porto Editora) dictionary extraction
     "cmudict": "lexicon-derived",             # CMU hand-curated ARPABET, mechanically mapped to IPA
     # ipa-dict is MIXED-PROVENANCE and is classified PER LANGUAGE in
     # PROVENANCE_BY_LANG below (human dictionaries, Wiktionary scrapes, rule
@@ -1406,13 +1391,13 @@ PROVENANCE: Dict[str, str] = {
     "ipadict": "machine-generated",
     # community-scraped Wiktionary
     "wikipron": "crowd-scraped",
+    "portuguese_unified": "lexicon-derived",  # Infopedia + Portal lexicon + Wiktionary, convention-normalized
     # SAME crowd-scraped WikiPron ar gold; only the INPUT word is
     # machine-diacritized (text2tashkeel, ~2% DER), which adds a small
     # machine noise floor on top of the gold's own tier. Diagnostic for
     # the vowelized-Arabic rules; certifies nothing beyond the raw row.
     "wikipron_ar_diacritized": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
-    "portuguese_phonetic_lexicon": "crowd-scraped",
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
     # not correctness — and espeak is a system we benchmark ourselves *against*
@@ -1421,11 +1406,14 @@ PROVENANCE: Dict[str, str] = {
     # language. Never gate a quality decision on this row; judge any divergence
     # against a cited source instead. Kept because it is broad coverage and a
     # useful directional signal.
-    "styletts2_phonemes": "espeak-derived",
     # IPA-BabyLM: G2P+ (github.com/codebyzeb/g2p-plus) with the `phonemizer`
-    # backend, language en-us — i.e. espeak-ng output. Same circularity as
-    # styletts2_phonemes; cannot qualify or block English.
+    # backend, language en-us — i.e. espeak-ng output. espeak output can
+    # never qualify or block a spec: a disagreement measures divergence
+    # from espeak, which may be exactly what the cited source demands.
     "ipa_babylm": "espeak-derived",
+    # VoxCommunis lexicons are built with Epitran (a scored competitor),
+    # XPF and Charsiu; partially hand-corrected, but not attributably so.
+    "vox_communis": "epitran-derived",
     # IPA-CHILDES is MIXED-PROVENANCE and is classified PER LANGUAGE in
     # PROVENANCE_BY_LANG below: its dataset card names a DIFFERENT phonemizing
     # tool per language (phonemizer/espeak for most, epitran for six,
@@ -1526,7 +1514,7 @@ def _is_multiword(entry: str) -> bool:
     """True if *entry* is a phrase/sentence rather than a single word.
 
     Whitespace is the signal: a gold set is either word-level (WikiPron,
-    CMUdict) or sentence-level (4catac, styletts2_phonemes), and the scorer
+    CMUdict) or sentence-level (4catac, vox_communis), and the scorer
     must call the matching engine API for each.
     """
     return len(entry.split()) > 1
@@ -1623,7 +1611,7 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     for word, golds in refs.items():
         try:
             # Pick the API that matches the entry's granularity. Several gold
-            # sets are sentence-level (4catac, styletts2_phonemes), and
+            # sets are sentence-level (4catac, vox_communis), and
             # transcribe_word() treats a whole sentence as ONE word: word
             # boundaries vanish, per-word stress collapses to a single mark,
             # and word-final rules (Catalan final-⟨r⟩ deletion, Danish schwa)
