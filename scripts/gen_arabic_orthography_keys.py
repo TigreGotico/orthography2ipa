@@ -80,7 +80,12 @@ ARB_ADDITIONS = {
     # doubled glides from the shadda expansion in other vowel contexts, and
     # final /aːj/ (e.g. شاي); fatha + final ta marbuta = /a/ (no doubling)
     "وو": ["ww"], "يي": ["jj"], "َوو": ["aww"], "َيي": ["ajj"],
-    "َاي": ["aːj"], "ُوي": ["uːj"], "َة": ["a"],
+    "َاي": ["aːj"], "ُوي": ["uːj"], "ُوَا": ["uwaː"], "ِيَا": ["ijaː"],
+    # vocalized glide onsets: fatha + glide + vowel is /aCV/, not a diphthong
+    # (the diphthong keys َو/َي only apply when the glide closes the syllable)
+    "َوَ": ["awa"], "َوِ": ["awi"], "َوُ": ["awu"], "َوَا": ["awaː"],
+    "َيَ": ["aja"], "َيِ": ["aji"], "َيُ": ["aju"], "َيَا": ["ajaː"],
+    "َة": ["a"],
     # silent alif al-fasila after the plural waw (كتبوا = /katabuː/)
     "ُوا": ["uː"],
     # the colloquial article اِلْ (Cairene /il/, Badawi & Hinds 1986)
