@@ -90,6 +90,13 @@ from orthography2ipa.transforms import (
     debias_lisbon,
     load_clup_profile,
 )
+from orthography2ipa.inventory import (
+    STRESS_MARKS,
+    dead_allophone_rules,
+    emission_inventory,
+    phoneme_inventory,
+    tokenize,
+)
 from orthography2ipa.stress import apply_stress_mark, detect_stress, syllabify
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
@@ -142,6 +149,11 @@ __all__ = [
     "AllophoneRescorer",
     "compile_allophone_rescorer",
     "StressRules",
+    "emission_inventory",
+    "phoneme_inventory",
+    "tokenize",
+    "dead_allophone_rules",
+    "STRESS_MARKS",
     "detect_stress",
     "apply_stress_mark",
     "syllabify",
