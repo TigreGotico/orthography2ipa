@@ -2,9 +2,9 @@
   "code": "ar-x-maghrebi",
   "name": "Proto-Maghrebi Arabic",
   "script": "Arabic",
-  "graphemes_base": "arb",
+  "graphemes_base": "ar",
   "allophones_base": "arb",
-  "positional_graphemes_base": "arb",
+  "positional_graphemes_base": "ar",
   "graphemes": {
     "ث": [
       "t",
@@ -80,7 +80,7 @@
       "notes": "Descent from Classical Arabic via 7th–8th c. expansion"
     }
   ],
-  "notes": "Proto-Maghrebi Arabic — abstract ancestor node for Moroccan, Algerian, Tunisian, Libyan, and Hassaniya Arabic. Key shared Maghrebi features: vowel reduction/deletion (short vowels → schwa [ə] or Ø, yielding heavy consonant clusters — the defining Maghrebi trait); ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghreb) not /dʒ/; ث → /t/; ذ → /d/; ق → /q/ preserved in sedentary/pre-Hilali varieties (/ɡ/ in Bedouin/rural); Berber (Amazigh) substrate reinforcing pharyngeals and emphatics and licensing the cluster phonotactics.",
+  "notes": "Proto-Maghrebi Arabic — abstract ancestor node for Moroccan, Algerian, Tunisian, Libyan, and Hassaniya Arabic. Key shared Maghrebi features: vowel reduction/deletion (short vowels → schwa [ə] or Ø, yielding heavy consonant clusters — the defining Maghrebi trait); ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghreb) not /dʒ/; ث → /t/; ذ → /d/; ق → /q/ preserved in sedentary/pre-Hilali varieties (/ɡ/ in Bedouin/rural); Berber (Amazigh) substrate reinforcing pharyngeals and emphatics and licensing the cluster phonotactics. ORTHOGRAPHIC READING BASE: graphemes/positional_graphemes inherit from the modern MSA leaf `ar` (not Classical `arb`), because the modern spoken varieties are written in MSA orthography — so they must read it the way `ar` does: the onset-glide digraphs يَ/وَ (/ja/,/wa/, not diphthongs), the hamza carriers أ/إ as bare /ʔ/ before an explicit harakah, word-final ي/و preferring the long-vowel reading, and pausal tāʾ marbūṭa. Genealogy is unchanged (parent/ancestors still point at Classical); only the data-inheritance base moves. Each variety's own phonological overrides (interdentals, qāf reflex, affrication) sit in its own tables and continue to win over the inherited layer.",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [

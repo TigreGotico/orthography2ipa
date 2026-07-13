@@ -223,6 +223,18 @@ def load_json_spec(code: str) -> LanguageSpec:
     base_field_langs: Dict[str, Optional[str]] = {
         field: raw.get(f"{field}_base") for field in _BASE_MERGE_FIELDS
     }
+    # ``positional_graphemes`` refine the grapheme table they belong to: a
+    # positional entry keys the *same* grapheme, narrowing its reading by
+    # position (word-final ي as /iː/ rather than /j/). Inheriting a grapheme
+    # table without its positional refinements yields half a table — the
+    # graphemes read, but every position-conditioned reading silently
+    # reverts to the default. So when a spec declares no
+    # ``positional_graphemes_base`` of its own, it follows ``graphemes_base``.
+    # Phonological layers (``allophones_base``) are a different stratum and
+    # keep requiring their own explicit edge.
+    if base_field_langs.get("positional_graphemes") is None:
+        base_field_langs["positional_graphemes"] = base_field_langs.get("graphemes")
+
     ancestors = raw.get("ancestors", [])
     ancestor_langs = [ancestor["code"] for ancestor in ancestors]
     # Base specs (graphemes_base etc.) MUST be loadable — they provide data.

@@ -2,9 +2,9 @@
   "code": "ar-x-peninsular",
   "name": "Proto-Peninsular Arabic",
   "script": "Arabic",
-  "graphemes_base": "arb",
+  "graphemes_base": "ar",
   "allophones_base": "arb",
-  "positional_graphemes_base": "arb",
+  "positional_graphemes_base": "ar",
   "graphemes": {
     "ث": [
       "θ",
@@ -73,7 +73,7 @@
       "notes": "Descent from Classical Arabic"
     }
   ],
-  "notes": "Proto-Peninsular Arabic — abstract ancestor node for Hejazi, Najdi, Gulf, Yemeni, and Omani Arabic. Key shared peninsular features: interdentals often preserved; ق → /q/ or /ɡ/ (Bedouin); conservative consonant system. Emphatic (pharyngealization) spreading — low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/ — is declared here as allophone_rules (AR_PEN_EMPH_*) and inherited by all Peninsular descendants.",
+  "notes": "Proto-Peninsular Arabic — abstract ancestor node for Hejazi, Najdi, Gulf, Yemeni, and Omani Arabic. Key shared peninsular features: interdentals often preserved; ق → /q/ or /ɡ/ (Bedouin); conservative consonant system. Emphatic (pharyngealization) spreading — low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/ — is declared here as allophone_rules (AR_PEN_EMPH_*) and inherited by all Peninsular descendants. ORTHOGRAPHIC READING BASE: graphemes/positional_graphemes inherit from the modern MSA leaf `ar` (not Classical `arb`), because the modern spoken varieties are written in MSA orthography — so they must read it the way `ar` does: the onset-glide digraphs يَ/وَ (/ja/,/wa/, not diphthongs), the hamza carriers أ/إ as bare /ʔ/ before an explicit harakah, word-final ي/و preferring the long-vowel reading, and pausal tāʾ marbūṭa. Genealogy is unchanged (parent/ancestors still point at Classical); only the data-inheritance base moves. Each variety's own phonological overrides (interdentals, qāf reflex, affrication) sit in its own tables and continue to win over the inherited layer.",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
