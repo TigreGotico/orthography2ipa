@@ -136,5 +136,17 @@
     "longitude": 33.3179,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Sudanese Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

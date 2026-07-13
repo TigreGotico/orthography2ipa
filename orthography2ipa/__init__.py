@@ -97,6 +97,11 @@ from orthography2ipa.inventory import (
     phoneme_inventory,
     tokenize,
 )
+from orthography2ipa.underspecification import (
+    is_underdetermined,
+    mark_density,
+    underdetermined_positions,
+)
 from orthography2ipa.stress import apply_stress_mark, detect_stress, syllabify
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
@@ -154,6 +159,9 @@ __all__ = [
     "tokenize",
     "dead_allophone_rules",
     "STRESS_MARKS",
+    "is_underdetermined",
+    "underdetermined_positions",
+    "mark_density",
     "detect_stress",
     "apply_stress_mark",
     "syllabify",

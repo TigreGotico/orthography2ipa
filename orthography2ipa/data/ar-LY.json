@@ -125,5 +125,17 @@
     "longitude": 15.0014,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Libyan Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

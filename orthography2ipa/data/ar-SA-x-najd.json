@@ -251,5 +251,17 @@
     "longitude": 42.1773,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Najdi Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

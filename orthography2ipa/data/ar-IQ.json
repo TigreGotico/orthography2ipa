@@ -280,5 +280,17 @@
     "longitude": 43.1095,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Gilit Mesopotamian Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

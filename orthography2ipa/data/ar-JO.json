@@ -98,5 +98,17 @@
     "longitude": 35.933333,
     "source": "wikidata",
     "notes": "Amman — the city the Ammani koine is named for. [Wikidata Q3805 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

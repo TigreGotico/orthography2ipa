@@ -116,5 +116,17 @@
     "longitude": 58.5,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Omani Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

@@ -99,5 +99,17 @@
     "longitude": 36.291944,
     "source": "wikidata",
     "notes": "Damascus — the city the Damascene variety is named for. [Wikidata Q3766 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

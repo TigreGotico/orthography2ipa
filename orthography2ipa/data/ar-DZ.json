@@ -137,5 +137,17 @@
     "longitude": 3.23033,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Algerian Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

@@ -61,5 +61,17 @@
     "longitude": 50.583333,
     "source": "wikidata",
     "notes": "Manama. A national variety within the Gulf continuum. [Wikidata Q3882 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

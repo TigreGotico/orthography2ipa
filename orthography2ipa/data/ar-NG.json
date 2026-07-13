@@ -97,5 +97,17 @@
     "longitude": 13,
     "source": "wikidata",
     "notes": "Borno State — the Nigerian heartland of Shuwa Arabic, which also reaches Yobe, Cameroon and Niger. [Wikidata Q130626 P625]"
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

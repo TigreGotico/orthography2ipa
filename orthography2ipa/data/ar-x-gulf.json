@@ -150,5 +150,17 @@
     "longitude": 47.5,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Gulf Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

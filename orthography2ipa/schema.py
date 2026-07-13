@@ -304,6 +304,7 @@ class LanguageSpecModel(_Strict):
     quality: QualityTier = QualityTier.RESEARCH
     script_type: ScriptType = ScriptType.ALPHABET
     inherent_vowel: Optional[str] = None
+    optional_marks: Optional[List[str]] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
     wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")

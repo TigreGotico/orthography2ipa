@@ -141,5 +141,17 @@
     "longitude": 9.56156,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Tunisian Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

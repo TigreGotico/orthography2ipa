@@ -162,5 +162,17 @@
     "longitude": -7.5,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Moroccan Arabic."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }

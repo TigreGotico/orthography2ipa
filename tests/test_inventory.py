@@ -111,8 +111,14 @@ def test_multi_character_segments_stay_whole():
 #: *should* target, which is not a mechanical fix. Listed rather than skipped so
 #: they stay visible, and so no NEW dead rule can be added without failing here.
 KNOWN_DEAD_RULES = {
-    # Inherited Arabic emphatic backing; Maltese emits no /aː/.
-    "mt": {"AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE"},
+    # Maltese inherits the Arabic allophone rules wholesale but emits neither
+    # the long vowels they target (/aː/, /iː/, /uː/) nor their environments, so
+    # the whole inherited family is unreachable there.
+    "mt": {
+        "AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+        "AR_GLIDE_YA_BEFORE_GEMINATE", "AR_GLIDE_YA_GEMINATE_COPY",
+        "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_WAW_CONSONANTAL",
+    },
     # Targets /ɪ/, which these specs never emit.
     "pt-BR-x-pr": {"BR_RAISE_FINAL_E"},
     "pt-BR-x-sul": {"BR_RAISE_FINAL_E"},

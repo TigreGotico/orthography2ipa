@@ -137,5 +137,17 @@
     "longitude": -14.11,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Hassaniyya."
-  }
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ]
 }
