@@ -63,7 +63,7 @@ LECTS = [
 SUN = "تثدذرزسشصضطظلن"
 SHADDA = "ّ"
 # clitic orthography -> clitic IPA (invariant across lects in vocalized text)
-CLITICS = {"وَ": "wa", "فَ": "fa", "بِ": "bi", "كَ": "ka"}
+CLITICS = {"وَ": "wa", "فَ": "fa", "بِ": "bi", "كَ": "ka", "وِ": "wi"}
 
 ARB_FIXES = {
     "يَ": ["ja"], "وَ": ["wa"], "يِ": ["ji"], "وُ": ["wu"], "اَ": ["a"],
@@ -77,19 +77,27 @@ ARB_ADDITIONS = {
     # geminate glides: the tokenizer pre-expands shadda to a doubled letter
     # (phonetok "Gemination" transform), so the keys target the doubled form
     "ِيي": ["ijj"], "ُوو": ["uww"],
+    # doubled glides from the shadda expansion in other vowel contexts, and
+    # final /aːj/ (e.g. شاي); fatha + final ta marbuta = /a/ (no doubling)
+    "وو": ["ww"], "يي": ["jj"], "َوو": ["aww"], "َيي": ["ajj"],
+    "َاي": ["aːj"], "َة": ["a"],
+    # silent alif al-fasila after the plural waw (كتبوا = /katabuː/)
+    "ُوا": ["uː"],
+    # the colloquial article اِلْ (Cairene /il/, Badawi & Hinds 1986)
+    "اِل": ["il"],
     # ta marbuta + vowel/tanwin = /t/ + vowel: the vowel of the preceding
     # syllable is written on the preceding letter (Ryding 2005 §2.5)
     "ةَ": ["ta"], "ةُ": ["tu"], "ةِ": ["ti"],
     "ةً": ["tan"], "ةٌ": ["tun"], "ةٍ": ["tin"],
     "ًا": ["an"], "ًى": ["an"], "اً": ["an"],
-    "وَال": ["wal"], "فَال": ["fal"], "بِال": ["bil"], "كَال": ["kal"], "لِل": ["lil"],
+    "وَال": ["wal"], "فَال": ["fal"], "بِال": ["bil"], "كَال": ["kal"], "لِل": ["lil"], "وِال": ["wil"],
 }
 
 SANDHI = [
     {
         "id": "AR_HAMZAT_WASL_ARTICLE",
         "name": "hamzat-al-wasl (article) elision",
-        "left_context": "[aiu]ː?$",
+        "left_context": "[aiueoɑæə]ː?$",
         "right_context": "^[aɑ](?=[^aeiouɑɐæɪʊəɛɔː])",
         "transform": None,
         "right_transform": "",
@@ -112,7 +120,7 @@ def sun_keys(letter_ipa):
     a doubled consonant before trie matching, so the keys are generated on
     the doubled-letter form ("السس" etc.)."""
     out = {}
-    prefixes = {"ال": "a", "اَل": "a", "لِل": "li"}
+    prefixes = {"ال": "a", "اَل": "a", "اِل": "i", "لِل": "li"}
     for cl_orth, cl_ipa in CLITICS.items():
         prefixes[cl_orth + "ال"] = cl_ipa
     for s in SUN:
