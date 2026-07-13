@@ -1,8 +1,20 @@
 # Changelog
 
+## [4.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.3.0a1) (2026-07-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.2.1a1...4.3.0a1)
+
+**Merged pull requests:**
+
+- feat: underspecification — say what the writing does not [\#351](https://github.com/TigreGotico/orthography2ipa/pull/351) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [4.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.2.1a1) (2026-07-13)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.1.1a1...4.2.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.2.0a1...4.2.1a1)
+
+## [4.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.2.0a1) (2026-07-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.1.1a1...4.2.0a1)
 
 **Merged pull requests:**
 
