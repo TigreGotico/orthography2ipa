@@ -37,14 +37,14 @@ def _spec(code: str):
 
 def test_gilit_qaf_is_g():
     """Gilit: OA qaf ق → [ɡ] — the 'gilit' reflex (Blanc §3.26; Jasim §2.4)."""
-    assert _ipa(GILIT, "قَالَ") == "ɡaːla"      # 'he said'
-    assert _ipa(GILIT, "قَلْب") == "ɡalb"       # 'heart'
+    assert _ipa(GILIT, "قَالَ") == "ˈɡaːla"      # 'he said'
+    assert _ipa(GILIT, "قَلْب") == "ˈɡalb"       # 'heart'
 
 
 def test_qeltu_qaf_is_q():
     """Qəltu: OA qaf ق → [q] retained — the 'qəltu' reflex (Blanc §3.26)."""
-    assert _ipa(QELTU, "قَالَ") == "qaːla"
-    assert _ipa(QELTU, "قَلْب") == "qalb"
+    assert _ipa(QELTU, "قَالَ") == "ˈqaːla"
+    assert _ipa(QELTU, "قَلْب") == "ˈqalb"
 
 
 def test_qaf_split_differs_between_varieties():
@@ -56,30 +56,30 @@ def test_qaf_split_differs_between_varieties():
 
 def test_gilit_kaf_affricates_before_front_vowel():
     """Gilit: kaf ك → [tʃ] adjacent to a front vowel (Blanc §3.25; Jasim §2.9.2)."""
-    assert _ipa(GILIT, "كِيلو").startswith("tʃ")   # k before /iː/
-    assert _ipa(GILIT, "دِيك").endswith("tʃ")       # k after /iː/
+    assert _ipa(GILIT, "كِيلو").lstrip("ˈˌ").startswith("tʃ")   # k before /iː/
+    assert _ipa(GILIT, "دِيك").lstrip("ˈˌ").endswith("tʃ")       # k after /iː/
 
 
 def test_qeltu_kaf_stays_k():
     """Qəltu: no kaf affrication — /k/ and /tʃ/ are separate phonemes (Jasim §2.9.2)."""
-    assert _ipa(QELTU, "كِيلو").startswith("k")
-    assert _ipa(QELTU, "دِيك").endswith("k")
+    assert _ipa(QELTU, "كِيلو").lstrip("ˈˌ").startswith("k")
+    assert _ipa(QELTU, "دِيك").lstrip("ˈˌ").endswith("k")
 
 
 def test_kaf_not_affricated_away_from_front_vowel():
     """The modelled affrication is the phonetically-conditioned part only; kaf
     not adjacent to a front vowel stays [k] in gilit (the lexicalised residue,
     e.g. čan < kān, is an documented engine limit)."""
-    assert _ipa(GILIT, "كَلْب") == "kalb"           # k next to /a/, not front
+    assert _ipa(GILIT, "كَلْب") == "ˈkalb"           # k next to /a/, not front
 
 
 # ── qaf-reflex /ɡ/ → [dʒ] affrication (gilit only) ─────────────────────────
 
 def test_gilit_g_affricates_before_front_vowel():
     """Gilit: the /ɡ/ reflex of qaf → [dʒ] before a front vowel (Blanc §3.26)."""
-    assert _ipa(GILIT, "قِرْد") == "dʒird"          # qaf→ɡ→dʒ / _i
+    assert _ipa(GILIT, "قِرْد") == "ˈdʒird"          # qaf→ɡ→dʒ / _i
     # back-vowel 'he said' must NOT affricate
-    assert _ipa(GILIT, "قَالَ") == "ɡaːla"
+    assert _ipa(GILIT, "قَالَ") == "ˈɡaːla"
 
 
 # ── Interdental retention (both varieties, conservative Mesopotamian) ───────
@@ -94,7 +94,7 @@ def test_interdentals_retained(code):
 
 @pytest.mark.parametrize("code", [GILIT, QELTU])
 def test_jim_is_dʒ(code):
-    assert _ipa(code, "جَمَل") == "dʒamal"          # 'camel'
+    assert _ipa(code, "جَمَل") == "ˈdʒamal"          # 'camel'
 
 
 # ── Emphatic backing / tafxim (inherited into qəltu) ───────────────────────
@@ -102,7 +102,7 @@ def test_jim_is_dʒ(code):
 @pytest.mark.parametrize("code", [GILIT, QELTU])
 def test_emphatic_backs_low_vowel(code):
     """Low vowels /a aː/ → [ɑ ɑː] adjacent to an emphatic (Jasim 2020, tafxim)."""
-    assert _ipa(code, "طَالِب").startswith("tˤɑː")   # 'student'
+    assert _ipa(code, "طَالِب").lstrip("ˈˌ").startswith("tˤɑː")   # 'student'
     assert "sˤɑ" in _ipa(code, "صَبَاح")            # 'morning'
 
 

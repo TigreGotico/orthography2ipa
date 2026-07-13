@@ -72,9 +72,9 @@ def test_intervocalic_actually_changes_the_transcription():
     and that could never fire, because Arabic letters were not vowels."""
     g2p = G2P("ar")
     # إحالة: the final ⟨ة⟩ follows a vowel and drops.
-    assert not str(g2p.transcribe("إحالة")).endswith("t")
+    assert not str(g2p.transcribe("إحالة")).lstrip("ˈˌ").endswith("t")
     # …and ⟨أ⟩ before a vowel is the glottal stop.
-    assert str(g2p.transcribe("أنأى")).startswith("ʔ")
+    assert str(g2p.transcribe("أنأى")).lstrip("ˈˌ").startswith("ʔ")
 
 
 def test_after_vowel_actually_changes_the_transcription():

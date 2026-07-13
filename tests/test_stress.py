@@ -28,7 +28,9 @@ class TestSchema:
 
     def test_specs_without_stress_are_none(self):
         assert get("en-GB").stress is None
-        assert get("ar").stress is None
+        # `ar` now declares a quantity-sensitive block, so it is no longer an
+        # example of a spec without stress.
+        assert get("arc").stress is None
 
     def test_pydantic_model_validates(self):
         model = StressRulesModel(

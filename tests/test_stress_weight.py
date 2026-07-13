@@ -96,24 +96,21 @@ def test_monosyllable():
 
 # ─── end to end, through the G2P ────────────────────────────────────────
 
-def test_g2p_uses_weight_when_the_spec_is_quantity_sensitive(monkeypatch):
-    """A quantity-sensitive spec reads the IPA, never the spelling.
+@pytest.mark.parametrize("word,expected,why", [
+    ("كِتَاب", "kiˈtaːb", "superheavy final CVːC"),
+    ("مُدَرِّس", "muˈdarris", "heavy penult CVC"),
+    ("مَدْرَسَة", "ˈmadrasa", "all-light tail → antepenult"),
+    ("قَهْوَة", "ˈqahwa", "heavy penult, two syllables"),
+    ("كَتَبَ", "ˈkataba", "all light → antepenult"),
+])
+def test_arabic_is_stressed_end_to_end(word, expected, why):
+    """The system this was built for, through the real shipped spec."""
+    assert G2P("ar").transcribe(word) == expected, why
 
-    Asserted against the Arabic spec with the block injected, rather than a
-    spec that ships it: declaring stress on Arabic changes ~100 transcriptions
-    and regresses PER against the registered (stress-free, broad) wikipron
-    gold, so that is a deliberate follow-up rather than a side effect of adding
-    the engine capability.
-    """
-    import dataclasses
-    g2p = G2P("ar")
-    object.__setattr__(
-        g2p, "spec", dataclasses.replace(get("ar"), stress=ARABIC),
-    )
-    assert g2p.transcribe("كِتَاب") == "kiˈtaːb"
-    assert g2p.transcribe("مُدَرِّس") == "muˈdarris"
-    assert g2p.transcribe("مَدْرَسَة") == "ˈmadrasa"
-    assert g2p.transcribe("قَهْوَة") == "ˈqahwa"
+
+@pytest.mark.parametrize("lang", ["ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"])
+def test_the_varieties_are_stressed_too(lang):
+    assert G2P(lang).transcribe("كِتَاب").endswith("ˈtaːb")
 
 
 def test_end_anchored_languages_are_untouched():
@@ -122,11 +119,13 @@ def test_end_anchored_languages_are_untouched():
     assert not get("pt").stress.quantity_sensitive
 
 
-def test_no_shipped_spec_is_quantity_sensitive_yet():
-    """The capability lands before any spec opts in — so nothing moves."""
+def test_the_arabic_specs_opt_in():
+    """Arabic is the system this was built for, and it now declares the block."""
     from orthography2ipa import available_codes
-    opted_in = [
+    opted_in = {
         code for code in available_codes()
         if (get(code).stress and get(code).stress.quantity_sensitive)
-    ]
-    assert opted_in == []
+    }
+    assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
+    # Nothing outside Arabic opted in, so no other language moved.
+    assert all(c.startswith("ar") for c in opted_in), sorted(opted_in)
