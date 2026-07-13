@@ -6,7 +6,7 @@ harness produces. Run any row yourself with
 [`scripts/benchmark.py`](../scripts/benchmark.py):
 
 ```bash
-python scripts/benchmark.py --dataset portuguese_phonetic_lexicon --lang pt-PT
+python scripts/benchmark.py --dataset portuguese_unified --lang pt-PT
 python scripts/benchmark.py --dataset wikipron --lang fi
 python scripts/benchmark.py --list
 ```
@@ -29,7 +29,7 @@ be read:
   certify us. LLM gold has *no error model at all*: no lexicon, no rules,
   nothing to attribute an error to, so a disagreement is not even diagnostic.
 - **A low PER against a tool-generated gold means "agrees with that
-  tool", NOT "correct".** `styletts2_phonemes`, `ipa_childes`, `ipa_babylm`
+  tool", NOT "correct".** `vox_communis`, `ipa_childes`, `ipa_babylm`
   and `hitz_basque_ipa` are all the output of an automatic phonemizer. Scoring
   well there says o2i reproduces that tool's decisions, right or wrong.
 - **Scoring a system against a gold its own generator produced is
@@ -40,7 +40,7 @@ be read:
   evaluated system shares the gold's generator: use an **independent**
   gold (here, `wikipron` `eu`) for the fair comparison.
 - **Comparing o2i to espeak on an espeak-derived gold is partly
-  circular** for the same reason. `styletts2_phonemes`, `ipa_babylm` and the
+  circular** for the same reason. `vox_communis`, `ipa_babylm` and the
   `phonemizer`-phonemized `ipa_childes` languages are all
   phonemizer/espeak-lineage; an espeak-vs-o2i table on that gold measures
   how similarly two systems diverge from the truth, not who is closer to
@@ -96,7 +96,7 @@ classification.
 | **lexicon-derived** | Human lexicographers, via a published dictionary's notation — sometimes through a mechanical notation transform (ARPABET→IPA, slashed-phonemic→IPA). | Dictionary conventions ≠ surface phonetics; the transform step can add its own artifacts. |
 | **crowd-scraped** | Wiktionary community edits (WikiPron). | Uneven per language; some entries are themselves editor-applied rule output, not attested transcriptions. |
 | **machine-generated** | A phonemizer's *own output* reused as the reference. | **Biggest grain of salt.** Low PER = agreement with that tool, not correctness. |
-| **espeak-derived** | A **competitor's** output reused as the reference: espeak-ng, directly or through a wrapper (`styletts2_phonemes`; `ipa_babylm` via G2P+; the `phonemizer`-phonemized `ipa_childes` languages). | **Never gate a quality decision on this.** The row measures *agreement with espeak* — and espeak is a system we benchmark ourselves *against* ([comparison](comparison.md)). Diverging from it can mean we are right and it is wrong, which shows up here as a *worse* score. Quality also varies by language. Judge any divergence against a cited source, never against this number. Kept for its breadth as a directional signal. |
+| **espeak-derived** | A **competitor's** output reused as the reference: espeak-ng, directly or through a wrapper (`ipa_babylm` via G2P+; the `phonemizer`-phonemized `ipa_childes` languages). | **Never gate a quality decision on this.** The row measures *agreement with espeak* — and espeak is a system we benchmark ourselves *against* ([comparison](comparison.md)). Diverging from it can mean we are right and it is wrong, which shows up here as a *worse* score. Quality also varies by language. Judge any divergence against a cited source, never against this number. Kept for its breadth as a directional signal. |
 | **epitran-derived** | A **competitor's** output reused as the reference: [epitran](https://github.com/dmort27/epitran) (the six `epitran`-phonemized `ipa_childes` languages — `de-DE`, `es-ES`, `hr`, `hu`, `id`, `sr`). | **Never gate a quality decision on this** — same reason as `espeak-derived`, and epitran is likewise a system [comparison](comparison.md) scores us against (`epitran_per`). Scoring o2i against epitran's own output and calling it gold would count the same system as both rival and truth. Still diagnostic (epitran is a deterministic rule system, so a disagreement can be traced to a rule and adjudicated against a cited source), but never certifying. |
 | **llm-generated** | The gold was produced by a large language model (`barranquenho_dict`, `mirandese_dict` — Claude, research-conditioned). | **Worst of all, and never a gate.** An LLM has no lexicon, no G2P model and no rules, therefore **no error model**: it emits plausible-*looking* IPA that can be confidently wrong with no systematic structure, and a disagreement cannot be attributed to anything. Certifies nothing and diagnoses nothing; read as a curiosity, not as evidence. This is why the GPT-4o-Mini-generated `dsvv-cair` dataset is [rejected outright](#rejected-candidates) rather than wired. |
 
@@ -113,13 +113,11 @@ stated rather than papered over.
 | `mirandese_g2p` | expert-human | Native Mirandese speaker | The reference gold and **most trustworthy signal for Mirandese** (row id `mirandese_g2p`, from `TigreGotico/mirandese_g2p`), split by the `dialect` column: central → `mwl` (`N≈205`), sendinese → `mwl-x-sendim` (`N≈11`), raiano → `mwl-x-ifanes` (`N≈2` — an anecdote, read the CI not the point PER). Small-`N`; a separate, more reliable source than any synthetic Mirandese IPA dictionary. |
 | `4catac` | expert-human | Expert annotators (Projecte AINA/BSC) | IEC guidelines, multi-annotator consensus review; sentence-level, `N=160`, `0.00` exact-match reflects notation/connected-speech mismatch, not total failure. |
 | `clup_dialect` | expert-human | U.Porto CLUP dialect archive | Interview corpus is expert university dialectology, **but who/what produced the IPA column (`ArquivoDialetalCLUP_ipa`) is not documented in the loader or dataset card — treat the tier as "best case".** Many rows `N=1–17`: read the CI, not the point PER. |
-| `portuguese_phonetic_lexicon` | crowd-scraped | Portal da Língua Portuguesa (semi-automated) | Direct stdlib CSV loader over `TigreGotico/portuguese_phonetic_lexicon` (~617k rows scraped from the INESC-ID Portal). Its IPA is **semi-automated (rule/tooling-generated), not hand-checked**, so it is directional only. One Standard regional variant per spec (`lbx`→`pt-PT`, `spx`→`pt-BR`, `lda`→`pt-AO`, `mpx`→`pt-MZ`, `dli`→`pt-TL`); fixed-seed sample per region. Finally measures the `pt-AO`/`pt-MZ`/`pt-TL` specs. |
-| `infopedia_pt` | lexicon-derived | Infopédia (Porto Editora) dictionary | Fixed-seed sample of a graph-crawl extraction of a published European-Portuguese dictionary (`TigreGotico/infopedia-pt-ipa`, 102,685 entries → `pt-PT`). A reputable published source, but **the methodology behind its IPA is undocumented/unknown** (not stated to be hand-checked, nor which tooling produced it) — directional, not peer-validated ground truth. |
+| `portuguese_unified` | lexicon-derived | Infopédia + Portal da Língua Portuguesa + pt.wiktionary.org (convention-normalized merge) | Single Portuguese gold (`TigreGotico/portuguese-unified-pronunciation-lexicon`, ~598k rows / 122k words, CC BY-SA 4.0), replacing the three separate golds it merges. One region per registered tag (see `_PT_UNIFIED_REGIONS`); `ipa_narrow` is scored; untagged plain-`pt` rows are excluded. The Infopédia/Portal majority is dictionary/semi-automated lexicography and the Wiktionary minority is crowd-scraped — directional, not peer-validated ground truth. |
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`; the transform adds artifacts. |
 | `ipadict` | **per-language** (see below) | Depends on the file: human dictionaries, Wiktionary scrapes, rule scripts, **espeak** | The only mixed-provenance dataset here: ipa-dict is a *collection* of independently sourced files, so each row carries the tier of the file it was scored against, not a dataset-wide tier. Full per-language table in [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). |
 | `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size; some entries are editor-rule output, not attested; multiple valid variants per word. |
 | `wikipron_ar_diacritized` | crowd-scraped | Wiktionary editors + `text2tashkeel` input restoration | Same Arabic gold IPA as `wikipron`; only the INPUT word is machine-diacritized (~2% DER noise floor). Diagnostic for the vowelized-Arabic rules; certifies nothing beyond the raw row. See [Arabic with tashkeel restored](#arabic-with-tashkeel-restored-wikipron_ar_diacritized). |
-| `styletts2_phonemes` | machine-generated | Automatic phonemizer (TTS `synthetic` tag) | **Grain of salt maximal.** Phonemizer/espeak-lineage; low PER = agrees with the phonemizer; espeak comparison on this gold is partly circular. |
 | `ipa_childes` | **per-language** (see below) | Depends on the language: `phonemizer` (espeak-ng), `epitran`, or `pinyin_to_ipa` | Mixed-provenance like `ipadict`: the IPA-CHILDES card names a **different phonemizing tool per language**, so each row carries the tier its own tool earns — `espeak-derived`, `epitran-derived`, or `machine-generated` for Mandarin's `pinyin_to_ipa` table. Full per-language tool table in [IPA-CHILDES split](#ipa-childes-split-ipa_childes). |
 | `ipa_babylm` | espeak-derived | G2P+ with the `phonemizer` backend (= espeak-ng), `en-us` | BabyLM 2024 corpora phonemized by [G2P+](https://github.com/codebyzeb/g2p-plus), which is a wrapper over `phonemizer`/`epitran`; the conversion notebook ([codebyzeb/babylm-ipa](https://github.com/codebyzeb/babylm-ipa)) calls the `phonemizer` backend, which requires espeak-ng. So this is espeak output: it can neither qualify nor block English. |
 | `hitz_basque_ipa` | machine-generated | HiTZ **ahoNT / AhoTTS** phonemizer | University-published (HiTZ/UPV-EHU), but the gold **is ahoNT/AhoTTS output** — it was generated by that phonemizer, not human-annotated. So a low PER **for the AhoTTS/ahotts-g2p engine on this row is near-tautological** (a tool scored against its own output); the independent, Wiktionary-sourced `wikipron` `eu` row is the fair comparison for Basque. |
@@ -133,7 +131,7 @@ discipline: prefer human/community provenance, and where tool-generated
 IPA is admitted, admit it **explicitly, per dataset, with the reason
 recorded** — never silently. Six tool-generated sources are wired in: four
 are automatic-phonemizer output (`hitz_basque_ipa`, `ipa_childes`,
-`ipa_babylm`, `styletts2_phonemes`) and two are LLM-generated IPA
+`ipa_babylm`, `vox_communis`) and two are LLM-generated IPA
 dictionaries (`barranquenho_dict`, `mirandese_dict`), each under a
 documented, dataset-specific exception (academic-corpus provenance, an
 explicit task override, or the LLM-gold rationale below) rather than a
@@ -160,32 +158,34 @@ real sources, not ground truth.
 
 ## Datasets
 
-### Portal da Língua Portuguesa phonetic lexicon (`portuguese_phonetic_lexicon`)
+### Portuguese unified pronunciation lexicon (`portuguese_unified`)
 
-The
-[TigreGotico/portuguese_phonetic_lexicon](https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon)
-dataset (~617k rows scraped from the public INESC-ID
-[Portal da Língua Portuguesa](https://www.portaldalinguaportuguesa.org/)),
-loaded **directly** from its `dataset.csv` with the standard library, so
-the Lusophone family is scored with no extra package installed. The
-Portal's IPA is **semi-automated** (rule/tooling-generated), not
-hand-verified per entry.
-Each row's `phones` field flattens syllables with `|`; the separator is
-stripped and the whole-word IPA is scored. The dataset tags ten regional
-variants; each orthography2ipa spec is mapped to the **Standard**
-metropolitan variant of its region — `lbx` (Lisbon Standard) → `pt-PT`,
-`spx` (São Paulo Standard) → `pt-BR`, `lda` (Luanda) → `pt-AO`, `mpx`
-(Maputo Standard) → `pt-MZ`, `dli` (Dili) → `pt-TL`. The non-standard and
-second-metropolitan codes (`lbn`, `rjx`, `rjo`, `spo`, `map`) are skipped:
-each is a register variant of a region already covered by its Standard
-code, and no distinct spec exists for it, so scoring it would duplicate a
-row or conflate registers. The published `--scoreboard` run scores the
-**entire** de-duplicated regional set (no cap); a `--limit N` or CI-sample
-run instead draws a fixed-seed (`SAMPLE_SEED`) sample of N words per region,
-de-duplicating by spelling, so the smaller slice stays unbiased and
-reproducible. Provenance: **semi-automated, community-scraped** IPA →
-`crowd-scraped` tier, directional only. This row is what finally measures
-the recently built `pt-AO`, `pt-MZ` and `pt-TL` specs.
+[TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon)
+(~598k rows / 121,938 words, CC BY-SA 4.0) merges the three previous
+Portuguese golds into one convention-normalized dataset and REPLACES their
+separate loaders here:
+
+- **Infopédia** (Porto Editora) — 102,685 dictionary extractions (European
+  Portuguese, broad phonemic);
+- **Portal da Língua Portuguesa** (INESC-ID) — the 10-region semi-automated
+  phonetic lexicon (53,349 words);
+- **pt.wiktionary.org** — 15,720 community-transcribed words with explicit
+  region tags.
+
+Each row is a word × region × source × POS tuple carrying both a broad
+phonemic (`ipa_broad`) and a narrow phonetic (`ipa_narrow`) transcription
+normalized across the three source conventions (`ə/ɨ`, `r/ɾ/ʀ`, `a/ɐ`,
+optional-segment and syllable-marker stripping). **`ipa_narrow` is
+scored**: it matches the transcription depth of the pt specs and of the
+previous gold (explicit [ɐ ɨ ɾ ʀ ɫ]).
+
+One region is scored per registered language tag (`_PT_UNIFIED_REGIONS`):
+`pt-PT`, `pt-PT-x-lisbon`←`pt-PT-x-lisboa`, `pt-BR` (Wiktionary),
+`pt-BR-x-sp`←`saopaulo`, `pt-BR-x-rj`←`riodejaneiro`, `pt-BR-x-carioca`,
+`pt-BR-x-caipira`, `pt-AO`, `pt-MZ`←`maputo`, `pt-TL`←`dili`. Untagged
+plain-`pt` rows (pan-Portuguese, 944) are excluded from every regional row.
+The whole file is read and a fixed-seed random sample of up to `limit`
+words is drawn per region (alphabetical heads would be biased).
 
 ### WikiPron
 
@@ -280,31 +280,6 @@ diacritics (`_NARROW_MARKS`) before scoring, so `rus_cyrl_narrow.tsv` is
 directly comparable to the broad-tier gold used for the other languages
 in this table; it is wired despite shipping only as a narrow file, with no
 documented quality concern excluding it.
-
-### European Portuguese IPA Lexicon (Infopédia)
-
-[TigreGotico/infopedia-pt-ipa](https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa)
-on Hugging Face: 102,685 word/IPA rows extracted from
-[Infopédia](https://www.infopedia.pt/) (Porto Editora) via a graph crawl
-of the dictionary that ran to convergence. License: `other` /
-`infopedia-derived` — see the
-[dataset card](https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa)
-for terms. Covers European Portuguese (unmarked `pt` in the dataset
-tags, `pt-PT` here for consistency with `portuguese_phonetic_lexicon` and
-`wikipron`). Entries carrying more than one distinct pronunciation
-(`pronunciations` field) are all scored, and the harness keeps the best
-match per the standard multi-reference handling.
-
-The file is alphabetically ordered, so the harness never takes its head
-(that would be a biased all-"a…" slice): it reads the whole file. The
-published `--scoreboard` run scores **every** entry (no cap); a `--limit N`
-or CI-sample run draws a fixed-seed (`SAMPLE_SEED`) random sample of N words
-so the smaller slice is unbiased yet fully reproducible across runs.
-Provenance:
-Infopédia is a reputable published dictionary, but **the methodology that
-produced its IPA is undocumented** — it is not stated to be hand-checked,
-nor is the tooling behind it known — so this row is `lexicon-derived` and
-directional, never treated as peer-validated ground truth.
 
 ### CMU Pronouncing Dictionary
 
@@ -573,60 +548,27 @@ rather than whole sentences, since paragraph-level ahoNT stress
 placement is not verified to depend on sentence context, making the
 single-token span the more conservative unit to score in isolation.
 
-### StyleTTS2 community multilingual phonemes (`styletts2_phonemes`)
+### VoxCommunis parallel G2P (`vox_communis`)
 
-[styletts2-community/multilingual-phonemes-10k-alpha](https://huggingface.co/datasets/styletts2-community/multilingual-phonemes-10k-alpha)
-on Hugging Face: sentence-level `text`/`phonemes` pairs, one JSON
-config file per language, released under **CC BY-SA 3.0**. The
-transcriptions are machine-generated (phonemized for TTS
-training/evaluation, per the `synthetic` dataset tag) rather than
-hand-annotated; per an explicit, task-specific override this benchmark
-treats them as usable gold regardless of human-vs-tool provenance,
-same as the `hitz_basque_ipa` exception above but without the
-academic-publisher condition attached — this override is scoped to
-this dataset only.
+[fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)
+(CC0): Common Voice utterances force-aligned by the VoxCommunis Corpus,
+with per-utterance phone strings whose lexicons were built with **Epitran,
+the XPF Corpus, Charsiu and custom dictionaries** (partially hand-corrected
+by VoxCommunis, but not attributably per row). One small TSV per language;
+71 language tags are wired (every per-language file with a matching spec,
+plus a few regionalised aliases — `sv-se`→`sv`, `zh-cn`→`zh`, `hy-am`→`hy`,
+`fy-nl`→`fy`, `pa-in`→`pa`, and the region-untagged `pt` file under `pt-BR`,
+the same policy as the WikiPron generic-pt row).
 
-The dataset ships 15 single-language configs plus an `en-xl` config
-(a 100K-row scale-up of the same English data already covered by the
-`en` config here and by `wikipron`/`cmudict`, so it is left out as
-redundant). 14 of the 15 single-language configs are wired, each
-against the `orthography2ipa` language tag matching its config name:
+The `phonemized_sentence` column is space-separated phones with `|` between
+words, aligned with the whitespace-tokenized `aligned_sentence`; rows are
+split into word-level pairs like `ipa_childes`, skipping token-count
+mismatches and stripping alignment artifacts.
 
-| Lang | Rows (full file) |
-|---|---:|
-| `en` | 10,212 |
-| `ca` | 13,451 |
-| `de` | 11,355 |
-| `es` | 10,449 |
-| `el` | 10,260 |
-| `fa` | 13,031 |
-| `fi` | 10,347 |
-| `fr` | 10,395 |
-| `it` | 10,235 |
-| `pl` | 11,446 |
-| `pt` | 11,585 |
-| `ru` | 10,604 |
-| `sv` | 2,706 |
-| `uk` | 11,064 |
-
-`fa` and `uk` have gold coverage in this harness only through this
-dataset; the rest are additive, complementary sentence-level
-cross-checks to their word-level `wikipron`/lexicon entries.
-
-`zh` was evaluated but is excluded from this dataset: this repo's
-`zh` spec (`orthography2ipa/data/zh.json`) declares graphemes that are
-romanized pinyin letters and expects romanized pinyin input, while the
-`styletts2_phonemes` dataset's `zh` config's `text` field is raw hanzi
-(e.g. `"分布于美洲的北温带..."`). The engine cannot transcribe hanzi at
-all (`G2P('zh').transcribe_word('你好')` returns an empty string), so
-scoring this row would not measure phonological accuracy — it is a
-script/input-contract mismatch between the dataset and this repo's
-`zh` spec, not a gap in the engine's Mandarin coverage.
-
-The loader (`load_styletts2_phonemes` in `scripts/benchmark.py`)
-downloads each language's JSON file directly and pairs `text` with
-`phonemes` positionally, scored as sentence-level spans through the
-harness's standard pipeline (as with `4catac`/`ep_dialects`).
+**Tier: `epitran-derived`** — Epitran is a scored competitor in
+[comparison.md](comparison.md), so a disagreement here measures divergence
+from a competitor's output. Directional breadth signal only; can never gate
+a regression or qualify a spec for the production tier.
 
 ### IPA-CHILDES split (`ipa_childes`)
 
@@ -762,7 +704,7 @@ espeak-ng. The conversion notebook that produced this dataset
 `prepare_babylm.ipynb`) calls
 `transcribe_utterances(..., "phonemizer", language="en-us", ...)`. So this
 gold is espeak-ng output: it is tiered **`espeak-derived`** and can neither
-qualify nor block English, exactly like `styletts2_phonemes`.
+qualify nor block English, exactly like the other espeak-lineage golds.
 
 The loader pairs the `text` column with the `phonemized_utterance` column
 (space-separated IPA segments, `WORD_BOUNDARY`-delimited between words) by
@@ -802,7 +744,7 @@ spec work starts from evidence instead of guesswork. It is strictly
 read-only — it never touches a spec or any other file.
 
 ```bash
-PYTHONPATH=$PWD python scripts/error_analysis.py pt-PT --dataset infopedia_pt --limit 300
+PYTHONPATH=$PWD python scripts/error_analysis.py pt-PT --dataset portuguese_unified --limit 300
 ```
 
 `<lang>` is required; `--dataset` is optional (when omitted, the first
@@ -870,8 +812,8 @@ is **full-dataset**: `scripts/benchmark.py --scoreboard` scores the entire
 gold set of every registered dataset/language with **no cap**, applied
 uniformly (there is no per-language limit). The `N` column is therefore the
 real number of covered gold words, not a sample size. Regenerating it is
-slow (the 617k-row `portuguese_phonetic_lexicon` and 102k-row `infopedia_pt`
-dominate the runtime), which is why the CI regression gate does *not* re-run
+slow (the 598k-row `portuguese_unified` gold
+dominates the runtime), which is why the CI regression gate does *not* re-run
 it in full — see below.
 
 `--limit N` still exists for ad-hoc fast runs and applies the **same** cap

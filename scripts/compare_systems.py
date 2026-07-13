@@ -118,11 +118,11 @@ LANGS: Dict[str, dict] = {
     "es": {"dataset": ("wikipron", "es"), "espeak": "es",
            "epitran": "spa-Latn", "gruut": "es",
            "ahotts": {"lang": "es", "version": "classic"}},
-    # sample_n: the Portal lexicon is ~617k rows; epitran/gruut transcribe
+    # sample_n: the unified pt gold is ~116k pt-PT words; epitran/gruut transcribe
     # word-by-word in-process and cannot batch, so a full pass is days of
     # wall clock. Scored on a fixed-seed (loader SAMPLE_SEED) sample of
     # 3000 — an EXPLICIT, row-flagged sample, not a silent cap.
-    "pt-PT": {"dataset": ("portuguese_phonetic_lexicon", "pt-PT"), "espeak": "pt",
+    "pt-PT": {"dataset": ("portuguese_unified", "pt-PT"), "espeak": "pt",
               "epitran": "por-Latn", "gruut": "pt", "sample_n": 3000},
     "fr": {"dataset": ("wikipron", "fr"), "espeak": "fr-fr",
            "epitran": "fra-Latn", "gruut": "fr"},

@@ -9,8 +9,8 @@ row's PER to the matching row in the committed baseline.
 FULL-vs-SAMPLE, never mixed. The PUBLISHED scoreboard
 (``benchmarks/results.json`` / ``docs/scoreboard.md``) is FULL-dataset —
 every gold word, no cap — and is far too slow to re-run in a CI job (the
-617k-row ``portuguese_phonetic_lexicon`` and 102k-row ``infopedia_pt``
-alone take the better part of an hour). So this gate does NOT compare
+598k-row ``portuguese_unified`` gold
+alone takes the better part of an hour). So this gate does NOT compare
 against the full scoreboard. It re-scores at a fixed, UNIFORM sample size
 (``benchmark.CI_SAMPLE_LIMIT``, the SAME cap for every language — no
 per-language juggling) and compares against a SEPARATE baseline committed
