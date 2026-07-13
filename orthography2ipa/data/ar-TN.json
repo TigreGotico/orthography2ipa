@@ -5,12 +5,12 @@
   "graphemes_base": "ar-x-maghrebi",
   "graphemes": {
     "ث": [
-      "t",
-      "θ"
+      "θ",
+      "t"
     ],
     "ظ": [
-      "dˤ",
-      "zˤ"
+      "ðˤ",
+      "dˤ"
     ],
     "ق": [
       "q",
@@ -21,6 +21,118 @@
     ],
     "o": [
       "o"
+    ],
+    "الثث": [
+      "aθθ",
+      "att"
+    ],
+    "اَلثث": [
+      "aθθ",
+      "att"
+    ],
+    "لِلثث": [
+      "liθθ",
+      "litt"
+    ],
+    "وَالثث": [
+      "waθθ",
+      "watt"
+    ],
+    "فَالثث": [
+      "faθθ",
+      "fatt"
+    ],
+    "بِالثث": [
+      "biθθ",
+      "bitt"
+    ],
+    "كَالثث": [
+      "kaθθ",
+      "katt"
+    ],
+    "الظظ": [
+      "aðˤðˤ",
+      "adˤdˤ"
+    ],
+    "اَلظظ": [
+      "aðˤðˤ",
+      "adˤdˤ"
+    ],
+    "لِلظظ": [
+      "liðˤðˤ",
+      "lidˤdˤ"
+    ],
+    "وَالظظ": [
+      "waðˤðˤ",
+      "wadˤdˤ"
+    ],
+    "فَالظظ": [
+      "faðˤðˤ",
+      "fadˤdˤ"
+    ],
+    "بِالظظ": [
+      "biðˤðˤ",
+      "bidˤdˤ"
+    ],
+    "كَالظظ": [
+      "kaðˤðˤ",
+      "kadˤdˤ"
+    ],
+    "اِلثث": [
+      "iθθ",
+      "itt"
+    ],
+    "اِلظظ": [
+      "iðˤðˤ",
+      "idˤdˤ"
+    ],
+    "وِالثث": [
+      "wiθθ",
+      "witt"
+    ],
+    "وِالظظ": [
+      "wiðˤðˤ",
+      "widˤdˤ"
+    ],
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "الذذ": [
+      "aðð",
+      "add"
+    ],
+    "اَلذذ": [
+      "aðð",
+      "add"
+    ],
+    "اِلذذ": [
+      "iðð",
+      "idd"
+    ],
+    "لِلذذ": [
+      "liðð",
+      "lidd"
+    ],
+    "وَالذذ": [
+      "waðð",
+      "wadd"
+    ],
+    "فَالذذ": [
+      "faðð",
+      "fadd"
+    ],
+    "بِالذذ": [
+      "biðð",
+      "bidd"
+    ],
+    "كَالذذ": [
+      "kaðð",
+      "kadd"
+    ],
+    "وِالذذ": [
+      "wiðð",
+      "widd"
     ]
   },
   "allophones_base": "ar-x-maghrebi",
@@ -121,6 +233,14 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "gibson2009",
+      "author": "Maik Gibson",
+      "year": 2009,
+      "title": "Tunis Arabic (article in Encyclopedia of Arabic Language and Linguistics, vol. 4)",
+      "publisher": "Brill",
+      "notes": "Tunis Arabic retains the interdentals /θ ð ðˤ/ (θlāθa 'three'); basis for reordering the ث/ذ/ظ reflexes to interdental-primary."
     }
   ],
   "wikipedia": [

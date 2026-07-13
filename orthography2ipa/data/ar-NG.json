@@ -11,8 +11,62 @@
       "d"
     ],
     "ق": [
-      "q",
-      "ɡ"
+      "ɡ",
+      "q"
+    ],
+    "الثث": [
+      "att"
+    ],
+    "اَلثث": [
+      "att"
+    ],
+    "لِلثث": [
+      "litt"
+    ],
+    "وَالثث": [
+      "watt"
+    ],
+    "فَالثث": [
+      "fatt"
+    ],
+    "بِالثث": [
+      "bitt"
+    ],
+    "كَالثث": [
+      "katt"
+    ],
+    "الذذ": [
+      "add"
+    ],
+    "اَلذذ": [
+      "add"
+    ],
+    "لِلذذ": [
+      "lidd"
+    ],
+    "وَالذذ": [
+      "wadd"
+    ],
+    "فَالذذ": [
+      "fadd"
+    ],
+    "بِالذذ": [
+      "bidd"
+    ],
+    "كَالذذ": [
+      "kadd"
+    ],
+    "اِلثث": [
+      "itt"
+    ],
+    "اِلذذ": [
+      "idd"
+    ],
+    "وِالثث": [
+      "witt"
+    ],
+    "وِالذذ": [
+      "widd"
     ]
   },
   "allophones_base": "ar-TD",
@@ -80,6 +134,14 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "owens1993",
+      "author": "Jonathan Owens",
+      "year": 1993,
+      "title": "A Grammar of Nigerian Arabic",
+      "publisher": "Harrassowitz",
+      "notes": "Nigerian Arabic (Shuwa) realizes qāf as [g]; reordered reflex."
     }
   ],
   "wikipedia": [

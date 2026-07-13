@@ -21,6 +21,118 @@
     ],
     "o": [
       "o"
+    ],
+    "الثث": [
+      "att",
+      "aθθ"
+    ],
+    "اَلثث": [
+      "att",
+      "aθθ"
+    ],
+    "لِلثث": [
+      "litt",
+      "liθθ"
+    ],
+    "وَالثث": [
+      "watt",
+      "waθθ"
+    ],
+    "فَالثث": [
+      "fatt",
+      "faθθ"
+    ],
+    "بِالثث": [
+      "bitt",
+      "biθθ"
+    ],
+    "كَالثث": [
+      "katt",
+      "kaθθ"
+    ],
+    "الذذ": [
+      "add",
+      "aðð"
+    ],
+    "اَلذذ": [
+      "add",
+      "aðð"
+    ],
+    "لِلذذ": [
+      "lidd",
+      "liðð"
+    ],
+    "وَالذذ": [
+      "wadd",
+      "waðð"
+    ],
+    "فَالذذ": [
+      "fadd",
+      "faðð"
+    ],
+    "بِالذذ": [
+      "bidd",
+      "biðð"
+    ],
+    "كَالذذ": [
+      "kadd",
+      "kaðð"
+    ],
+    "الظظ": [
+      "adˤdˤ",
+      "azˤzˤ"
+    ],
+    "اَلظظ": [
+      "adˤdˤ",
+      "azˤzˤ"
+    ],
+    "لِلظظ": [
+      "lidˤdˤ",
+      "lizˤzˤ"
+    ],
+    "وَالظظ": [
+      "wadˤdˤ",
+      "wazˤzˤ"
+    ],
+    "فَالظظ": [
+      "fadˤdˤ",
+      "fazˤzˤ"
+    ],
+    "بِالظظ": [
+      "bidˤdˤ",
+      "bizˤzˤ"
+    ],
+    "كَالظظ": [
+      "kadˤdˤ",
+      "kazˤzˤ"
+    ],
+    "اِلثث": [
+      "itt",
+      "iθθ"
+    ],
+    "اِلذذ": [
+      "idd",
+      "iðð"
+    ],
+    "اِلظظ": [
+      "idˤdˤ",
+      "izˤzˤ"
+    ],
+    "وِالثث": [
+      "witt",
+      "wiθθ"
+    ],
+    "وِالذذ": [
+      "widd",
+      "wiðð"
+    ],
+    "وِالظظ": [
+      "widˤdˤ",
+      "wizˤzˤ"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
     ]
   },
   "allophones_base": "ar-x-maghrebi",
@@ -105,6 +217,14 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "pereira2008",
+      "author": "Christophe Pereira",
+      "year": 2008,
+      "title": "Libya (article in Encyclopedia of Arabic Language and Linguistics, vol. 3)",
+      "publisher": "Brill",
+      "notes": "Libyan Arabic (Tripoli) qāf is realized [g] as in the Bedouin-type Maghrebi dialects; basis for reordering the qaf reflex to /ɡ/ primary."
     }
   ],
   "wikipedia": [

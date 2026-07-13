@@ -14,6 +14,82 @@
     ],
     "چ": [
       "tʃ"
+    ],
+    "الثث": [
+      "aθθ",
+      "att"
+    ],
+    "اَلثث": [
+      "aθθ",
+      "att"
+    ],
+    "لِلثث": [
+      "liθθ",
+      "litt"
+    ],
+    "وَالثث": [
+      "waθθ",
+      "watt"
+    ],
+    "فَالثث": [
+      "faθθ",
+      "fatt"
+    ],
+    "بِالثث": [
+      "biθθ",
+      "bitt"
+    ],
+    "كَالثث": [
+      "kaθθ",
+      "katt"
+    ],
+    "الذذ": [
+      "aðð",
+      "add"
+    ],
+    "اَلذذ": [
+      "aðð",
+      "add"
+    ],
+    "لِلذذ": [
+      "liðð",
+      "lidd"
+    ],
+    "وَالذذ": [
+      "waðð",
+      "wadd"
+    ],
+    "فَالذذ": [
+      "faðð",
+      "fadd"
+    ],
+    "بِالذذ": [
+      "biðð",
+      "bidd"
+    ],
+    "كَالذذ": [
+      "kaðð",
+      "kadd"
+    ],
+    "اِلثث": [
+      "iθθ",
+      "itt"
+    ],
+    "اِلذذ": [
+      "iðð",
+      "idd"
+    ],
+    "وِالثث": [
+      "wiθθ",
+      "witt"
+    ],
+    "وِالذذ": [
+      "wiðð",
+      "widd"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
     ]
   },
   "allophones_base": "ar-x-mashriqi",
@@ -101,6 +177,14 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "owens1993",
+      "author": "Jonathan Owens",
+      "year": 1993,
+      "title": "A Grammar of Nigerian Arabic",
+      "publisher": "Harrassowitz",
+      "notes": "Nigerian/Chadian (West-Sudanic) Arabic realizes qāf as [g] (gāl 'he said'); basis for the /ɡ/-primary qaf reflex in ar-TD/ar-NG."
     }
   ],
   "wikipedia": [
