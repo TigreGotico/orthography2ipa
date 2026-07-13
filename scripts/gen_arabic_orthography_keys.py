@@ -80,7 +80,7 @@ ARB_ADDITIONS = {
     # doubled glides from the shadda expansion in other vowel contexts, and
     # final /aːj/ (e.g. شاي); fatha + final ta marbuta = /a/ (no doubling)
     "وو": ["ww"], "يي": ["jj"], "َوو": ["aww"], "َيي": ["ajj"],
-    "َاي": ["aːj"], "َة": ["a"],
+    "َاي": ["aːj"], "ُوي": ["uːj"], "َة": ["a"],
     # silent alif al-fasila after the plural waw (كتبوا = /katabuː/)
     "ُوا": ["uː"],
     # the colloquial article اِلْ (Cairene /il/, Badawi & Hinds 1986)

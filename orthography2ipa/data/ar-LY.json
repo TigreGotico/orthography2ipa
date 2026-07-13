@@ -129,6 +129,10 @@
     "وِالظظ": [
       "widˤdˤ",
       "wizˤzˤ"
+    ],
+    "ق": [
+      "ɡ",
+      "q"
     ]
   },
   "allophones_base": "ar-x-maghrebi",
@@ -213,6 +217,14 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "pereira2008",
+      "author": "Christophe Pereira",
+      "year": 2008,
+      "title": "Libya (article in Encyclopedia of Arabic Language and Linguistics, vol. 3)",
+      "publisher": "Brill",
+      "notes": "Libyan Arabic (Tripoli) qāf is realized [g] as in the Bedouin-type Maghrebi dialects; basis for reordering the qaf reflex to /ɡ/ primary."
     }
   ],
   "wikipedia": [

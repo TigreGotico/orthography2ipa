@@ -121,8 +121,9 @@ def diacritization_gaps(sentence: str):
             rest = letters[i + 1:]
             if not any(ch in CONSONANTS or ch in LONG_CARRIERS for ch in rest):
                 continue  # word-final consonant: pausal bare form allowed
-            if letters[i] == "ل" and i >= 1 and (
-                letters[i - 1] == "ا" or (letters[i - 1] in "َِ" and i >= 2 and letters[i - 2] == "ا")
+            if letters[i] == "ل" and (
+                (i >= 1 and letters[i - 1] == "ا")
+                or (i >= 2 and letters[i - 1] in "َِ" and letters[i - 2] in "ال")
             ):
                 # lam of the definite article before a sun letter is often
                 # left bare (the assimilation is written on the sun letter)
