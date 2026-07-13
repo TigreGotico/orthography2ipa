@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.0.0a1) (2026-07-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.8.1a1...4.0.0a1)
+
+**Breaking changes:**
+
+- feat\(bench\)!: single unified Portuguese gold; drop styletts2; add VoxCommunis [\#344](https://github.com/TigreGotico/orthography2ipa/pull/344) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [3.8.1a1](https://github.com/TigreGotico/orthography2ipa/tree/3.8.1a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.8.0...3.8.1a1)
