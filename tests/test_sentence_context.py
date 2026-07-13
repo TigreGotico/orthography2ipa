@@ -23,6 +23,7 @@ from orthography2ipa import (
     WordSlot,
 )
 from orthography2ipa.sentence import (
+
     apply_sentence_rescorers,
     normalize_sentence_rescorers,
     span_position,
@@ -33,6 +34,15 @@ _VOWELS = set("aeiouɑɐɛɔøœyəɪʊæ")
 
 
 # ─── helpers: toy rescorers (examples of the abstraction, not shipped data) ──
+
+def _segments(ipa: str) -> str:
+    """Drop the stress marks: these tests assert SANDHI, not prosody.
+
+    Stress can land inside a word (aˈlktaːb), so the marks have to come out
+    everywhere, not just off the front.
+    """
+    return ipa.replace("ˈ", "").replace("ˌ", "")
+
 
 class _NoOp(SentenceRescorer):
     """Returns each word unchanged — must be byte-identical to no rescorer."""
@@ -48,8 +58,10 @@ class WaslElision(SentenceRescorer):
 
     def rescore(self, word, context):
         ipa = context.this_word_ipa
-        if context.prev_word is not None and ipa.startswith("al"):
-            return ipa[1:]  # drop the elided initial vowel
+        if context.prev_word is not None and _segments(ipa).startswith("al"):
+            # Drop the elided initial vowel. Index 0 of a stressed word is the
+            # stress mark, not the vowel, so work on the segments.
+            return _segments(ipa)[1:]
         return ipa
 
 
@@ -59,7 +71,7 @@ class PausalForm(SentenceRescorer):
 
     def rescore(self, word, context):
         ipa = context.this_word_ipa
-        if context.is_phrase_final and ipa and not ipa.endswith("ʔ"):
+        if context.is_phrase_final and ipa and not _segments(ipa).endswith("ʔ"):
             return ipa + "ʔ"
         return ipa
 
@@ -197,10 +209,10 @@ def test_arabic_wasl_and_pausal_change_winner_across_boundary():
     words = cross.split(" ")
     # (a) waṣl: the SECOND word lost its initial article vowel across the
     # boundary — a right-word rewrite driven by the preceding word.
-    assert plain.split(" ")[1].startswith("al")
-    assert not words[1].startswith("al")
+    assert _segments(plain.split(" ")[1]).startswith("al")
+    assert not _segments(words[1]).startswith("al")
     # (b) pausal: the phrase-FINAL word took its pausal form.
-    assert words[1].endswith("ʔ")
+    assert _segments(words[1]).endswith("ʔ")
     # The utterance-initial word is untouched (waṣl needs a preceding word).
     assert words[0] == plain.split(" ")[0]
 
@@ -209,7 +221,7 @@ def test_arabic_wasl_not_applied_utterance_initial():
     """The article on the first word must NOT elide (no preceding word)."""
     g = G2P("ar", sentence_rescorer=WaslElision())
     out = g.transcribe("الكتاب الجديد")
-    assert out.split(" ")[0].startswith("al")
+    assert _segments(out.split(" ")[0]).startswith("al")
 
 
 # ─── worked example 2: French liaison (bidirectional resyllabification) ──────
@@ -227,7 +239,7 @@ def test_french_liaison_attaches_onset_to_next_word():
     # The RIGHT word gained a /z/ onset — resyllabification across the
     # boundary, exactly what a left-only rewrite cannot express.
     assert right.startswith("z")
-    assert not plain.split(" ")[1].startswith("z")
+    assert not plain.split(" ")[1].lstrip("ˈˌ").startswith("z")
     # The left word marks the liaison tie.
     assert "‿" in left
 
@@ -255,7 +267,7 @@ def test_chain_composes_in_order():
     sl = g.sentence_lattice("الكتاب الجديد")
     out = apply_sentence_rescorers(sl, [WaslElision(), PausalForm()])
     # word1: waṣl drops the 'a', then pausal appends 'ʔ' to that result.
-    assert out[1].startswith("l") and out[1].endswith("ʔ")
+    assert out[1].lstrip("ˈˌ").startswith("l") and out[1].lstrip("ˈˌ").endswith("ʔ")
 
 
 def test_normalize_sentence_rescorers():

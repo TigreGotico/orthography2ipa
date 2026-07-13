@@ -16,21 +16,21 @@ AR = G2P("ar")
 
 @pytest.mark.parametrize("word,expected,why", [
     # The nisba: a shadda doubles the yāʾ, so ⟨ِيّ⟩ is /ijj/, never /ijiː/.
-    ("مِصْرِيّ", "misˤrijj", "nisba -iyy (Ryding 2005 §5.4.1)"),
-    ("عَلِيّ", "ʕalijj", "nisba -iyy"),
+    ("مِصْرِيّ", "miˈsˤrijj", "nisba -iyy (Ryding 2005 §5.4.1)"),
+    ("عَلِيّ", "ʕaˈlijj", "nisba -iyy"),
     # The feminine nisba ⟨ِيَّة⟩ is /ijja/.
-    ("حُرِّيَّة", "ħurrijja", "nisba -iyya"),
-    ("عَرَبِيَّة", "ʕarabijja", "nisba -iyya"),
+    ("حُرِّيَّة", "ħuˈrrijja", "nisba -iyya"),
+    ("عَرَبِيَّة", "ʕaraˈbijja", "nisba -iyya"),
 ])
 def test_consonantal_glide_is_not_a_long_vowel(word, expected, why):
     assert AR.transcribe(word) == expected, why
 
 
 @pytest.mark.parametrize("word,expected", [
-    ("فِي", "fiː"),          # word-final, quiescent → genuinely long
-    ("فِيهِ", "fiːhi"),      # preconsonantal, quiescent → genuinely long
-    ("يُصَلِّي", "jusˤɑlliː"),  # word-final, quiescent
-    ("كِتَاب", "kitaːb"),
+    ("فِي", "ˈfiː"),          # word-final, quiescent → genuinely long
+    ("فِيهِ", "ˈfiːhi"),      # preconsonantal, quiescent → genuinely long
+    ("يُصَلِّي", "juˈsˤɑlliː"),  # word-final, quiescent
+    ("كِتَاب", "kiˈtaːb"),
 ])
 def test_a_quiescent_glide_stays_a_long_vowel(word, expected):
     """The rules must fire only where the glide is consonantal."""
