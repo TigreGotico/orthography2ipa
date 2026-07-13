@@ -199,5 +199,6 @@
     "longitude": -9.139016,
     "source": "wikidata",
     "notes": "Lisbon — the city the Estremenho urban variety is named for. [Wikidata Q597 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

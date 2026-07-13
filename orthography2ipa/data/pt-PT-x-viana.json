@@ -152,5 +152,6 @@
     "longitude": -8.833333,
     "source": "wikidata",
     "notes": "Viana do Castelo — the centre of the Alto Minho. [Wikidata Q208158 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

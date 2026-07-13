@@ -161,5 +161,6 @@
     "longitude": -7.746264,
     "source": "wikidata",
     "notes": "the centre of the Trás-os-Montes e Alto Douro dialect area (Bragança, Chaves, Valpaços) — a province-level point, not a town. [Wikidata Q369458 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

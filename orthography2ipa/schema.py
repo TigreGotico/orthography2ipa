@@ -290,6 +290,7 @@ class LanguageSpecModel(_Strict):
     graphemes_base: Optional[str] = None
     allophones_base: Optional[str] = None
     positional_graphemes_base: Optional[str] = None
+    word_exceptions_base: Optional[str] = None
 
     # ─── ancestry ───────────────────────────────────────────────────
     parent: Optional[str] = None

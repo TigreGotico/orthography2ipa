@@ -258,7 +258,9 @@ def load_json_spec(code: str) -> LanguageSpec:
         base_lang = base_field_langs.get(field)
         if base_lang and base_lang in _specs:
             merged_base_fields[field] = {
-                **getattr(_specs[base_lang], field),
+                # a base spec may hold None for an optional dict field
+                # (word_exceptions) — treat that as empty, not an error
+                **(getattr(_specs[base_lang], field) or {}),
                 **own_value,
             }
         else:
@@ -458,7 +460,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         location=location,
         timespan=timespan,
         stress=stress,
-        word_exceptions=raw.get("word_exceptions"),
+        word_exceptions=merged_base_fields["word_exceptions"] or None,
         grapheme_weights=own_grapheme_weights or None,
     )
 

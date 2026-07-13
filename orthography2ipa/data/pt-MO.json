@@ -131,5 +131,6 @@
     "longitude": 113.538056,
     "source": "wikidata",
     "notes": "Macau — the territory this co-official variety is confined to. [Wikidata Q14773 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

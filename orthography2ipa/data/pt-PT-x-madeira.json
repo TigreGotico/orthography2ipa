@@ -131,5 +131,6 @@
     "longitude": -17,
     "source": "wikidata",
     "notes": "Madeira (Funchal reference) — the autonomous region the variety is named for. [Wikidata Q26253 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

@@ -280,11 +280,17 @@ class TestFieldInheritanceManifest:
         a tuple of rule objects."""
         assert FIELD_INHERITANCE["sandhi_rules"] is InheritanceMode.OVERLAY_BY_ID
 
-    def test_word_exceptions_and_stress_stay_not_inherited(self):
-        """Per the documented modeling intent (types.py docstrings), these
-        fields are deliberately own-file-only."""
-        assert FIELD_INHERITANCE["word_exceptions"] is InheritanceMode.NOT_INHERITED
+    def test_stress_stays_not_inherited(self):
+        """Per the documented modeling intent (types.py docstrings), stress
+        is deliberately own-file-only."""
         assert FIELD_INHERITANCE["stress"] is InheritanceMode.NOT_INHERITED
+
+    def test_word_exceptions_is_base_merge(self):
+        """A dialect child that pulls graphemes from the standard must see
+        the standard's word-level exception overrides too (previously the
+        child silently dropped ALL parent exceptions). Opt-in via the
+        word_exceptions_base JSON key; the child's own entries win."""
+        assert FIELD_INHERITANCE["word_exceptions"] is InheritanceMode.BASE_MERGE
 
     def test_graphemes_family_is_base_merge(self):
         for field_name in ("graphemes", "allophones", "positional_graphemes"):

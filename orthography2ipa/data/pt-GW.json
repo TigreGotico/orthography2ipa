@@ -189,5 +189,6 @@
     "longitude": -15.583333,
     "source": "wikidata",
     "notes": "Bissau. Portuguese here is an elite L1/official register — the capital stands in for the country. [Wikidata Q3739 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

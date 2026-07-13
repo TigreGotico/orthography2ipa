@@ -843,7 +843,14 @@ class InheritanceMode(str, Enum):
     """Own-file-only by design. The field never propagates through
     inheritance even though a base/parent is set — this is a deliberate
     modeling choice (documented per-field), not an oversight. Used by
-    ``stress``, ``word_exceptions`` and ``grapheme_weights``.
+    ``stress`` and ``grapheme_weights``.
+
+    ``word_exceptions`` moved from this mode to BASE_MERGE: a dialect child
+    that pulls its graphemes from the standard should see the standard's
+    word-level exception overrides too (a child previously dropped ALL of
+    the parent's exceptions silently). Like every BASE_MERGE field it is
+    opt-in via the ``word_exceptions_base`` JSON key, and the child's own
+    entries win per word.
 
     ``grapheme_weights`` is own-only for two reasons. First, candidate
     weights are *corpus-frequency* data specific to one variety — the
@@ -897,7 +904,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "location": InheritanceMode.OWN_ONLY,
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
-    "word_exceptions": InheritanceMode.NOT_INHERITED,
+    "word_exceptions": InheritanceMode.BASE_MERGE,
     "grapheme_weights": InheritanceMode.NOT_INHERITED,
     "clade": InheritanceMode.OWN_ONLY,
     "family_path": InheritanceMode.OWN_ONLY,

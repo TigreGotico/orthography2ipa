@@ -165,5 +165,6 @@
     "longitude": -28.031,
     "source": "wikidata",
     "notes": "the Azores archipelago — a centroid over islands whose accents differ sharply from each other. Weak by construction. [Wikidata Q25263 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

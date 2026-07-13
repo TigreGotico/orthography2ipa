@@ -183,5 +183,6 @@
     "longitude": -8.610833,
     "source": "wikidata",
     "notes": "Porto — the city the Portuense variety is named for. [Wikidata Q36433 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

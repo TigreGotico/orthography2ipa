@@ -118,5 +118,6 @@
     "longitude": -8.428889,
     "source": "wikidata",
     "notes": "Coimbra — the city the Conimbricense variety is named for. [Wikidata Q45412 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }
