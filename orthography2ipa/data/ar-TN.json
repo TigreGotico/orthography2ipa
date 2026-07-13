@@ -5,12 +5,12 @@
   "graphemes_base": "ar-x-maghrebi",
   "graphemes": {
     "ث": [
-      "t",
-      "θ"
+      "θ",
+      "t"
     ],
     "ظ": [
-      "dˤ",
-      "zˤ"
+      "ðˤ",
+      "dˤ"
     ],
     "ق": [
       "q",
@@ -23,76 +23,116 @@
       "o"
     ],
     "الثث": [
-      "att",
-      "aθθ"
+      "aθθ",
+      "att"
     ],
     "اَلثث": [
-      "att",
-      "aθθ"
+      "aθθ",
+      "att"
     ],
     "لِلثث": [
-      "litt",
-      "liθθ"
+      "liθθ",
+      "litt"
     ],
     "وَالثث": [
-      "watt",
-      "waθθ"
+      "waθθ",
+      "watt"
     ],
     "فَالثث": [
-      "fatt",
-      "faθθ"
+      "faθθ",
+      "fatt"
     ],
     "بِالثث": [
-      "bitt",
-      "biθθ"
+      "biθθ",
+      "bitt"
     ],
     "كَالثث": [
-      "katt",
-      "kaθθ"
+      "kaθθ",
+      "katt"
     ],
     "الظظ": [
-      "adˤdˤ",
-      "azˤzˤ"
+      "aðˤðˤ",
+      "adˤdˤ"
     ],
     "اَلظظ": [
-      "adˤdˤ",
-      "azˤzˤ"
+      "aðˤðˤ",
+      "adˤdˤ"
     ],
     "لِلظظ": [
-      "lidˤdˤ",
-      "lizˤzˤ"
+      "liðˤðˤ",
+      "lidˤdˤ"
     ],
     "وَالظظ": [
-      "wadˤdˤ",
-      "wazˤzˤ"
+      "waðˤðˤ",
+      "wadˤdˤ"
     ],
     "فَالظظ": [
-      "fadˤdˤ",
-      "fazˤzˤ"
+      "faðˤðˤ",
+      "fadˤdˤ"
     ],
     "بِالظظ": [
-      "bidˤdˤ",
-      "bizˤzˤ"
+      "biðˤðˤ",
+      "bidˤdˤ"
     ],
     "كَالظظ": [
-      "kadˤdˤ",
-      "kazˤzˤ"
+      "kaðˤðˤ",
+      "kadˤdˤ"
     ],
     "اِلثث": [
-      "itt",
-      "iθθ"
+      "iθθ",
+      "itt"
     ],
     "اِلظظ": [
-      "idˤdˤ",
-      "izˤzˤ"
+      "iðˤðˤ",
+      "idˤdˤ"
     ],
     "وِالثث": [
-      "witt",
-      "wiθθ"
+      "wiθθ",
+      "witt"
     ],
     "وِالظظ": [
-      "widˤdˤ",
-      "wizˤzˤ"
+      "wiðˤðˤ",
+      "widˤdˤ"
+    ],
+    "ذ": [
+      "ð",
+      "d"
+    ],
+    "الذذ": [
+      "aðð",
+      "add"
+    ],
+    "اَلذذ": [
+      "aðð",
+      "add"
+    ],
+    "اِلذذ": [
+      "iðð",
+      "idd"
+    ],
+    "لِلذذ": [
+      "liðð",
+      "lidd"
+    ],
+    "وَالذذ": [
+      "waðð",
+      "wadd"
+    ],
+    "فَالذذ": [
+      "faðð",
+      "fadd"
+    ],
+    "بِالذذ": [
+      "biðð",
+      "bidd"
+    ],
+    "كَالذذ": [
+      "kaðð",
+      "kadd"
+    ],
+    "وِالذذ": [
+      "wiðð",
+      "widd"
     ]
   },
   "allophones_base": "ar-x-maghrebi",
@@ -193,6 +233,14 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "gibson2009",
+      "author": "Maik Gibson",
+      "year": 2009,
+      "title": "Tunis Arabic (article in Encyclopedia of Arabic Language and Linguistics, vol. 4)",
+      "publisher": "Brill",
+      "notes": "Tunis Arabic retains the interdentals /θ ð ðˤ/ (θlāθa 'three'); basis for reordering the ث/ذ/ظ reflexes to interdental-primary."
     }
   ],
   "wikipedia": [

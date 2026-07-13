@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Internal helper used while authoring the Arabic TTS gold set: takes a
-python file defining ROWS = [(sentence, gloss, shape_tags, notes), ...] and a
-lect, computes raw / o2i IPA / auto feature tags, and writes the TSV.
-Not part of the shipped procedure (scripts/arabic_tts_gold.py is); kept in
-the scratch area only."""
+"""Authoring helper for the Arabic TTS gold set: takes a python file defining
+ROWS = [(sentence, gloss_en, shape_tags, notes), ...] and a lect code,
+computes raw / o2i IPA / auto feature tags, and (re)writes the lect's gold
+TSV. Complements scripts/arabic_tts_gold.py (checklist/draft/validate) —
+see docs/arabic-tts-gold.md for the full procedure."""
 import csv, importlib.util, sys
 from pathlib import Path
 

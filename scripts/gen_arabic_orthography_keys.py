@@ -72,7 +72,7 @@ ARB_ADDITIONS = {
     "اَل": ["al"],
     # hamza seats with baked vowels (أ→ʔa, إ→ʔi) double the vowel when the
     # text is fully vocalized (أَ = seat + explicit fatha) — vocalized digraphs
-    "أَ": ["ʔa"], "أُ": ["ʔu"], "إِ": ["ʔi"],
+    "أَ": ["ʔa"], "أُ": ["ʔu"], "إِ": ["ʔi"], "إِي": ["ʔiː"], "أُو": ["ʔuː"],
     "ِيَ": ["ija"], "ُوَ": ["uwa"],
     # geminate glides: the tokenizer pre-expands shadda to a doubled letter
     # (phonetok "Gemination" transform), so the keys target the doubled form
