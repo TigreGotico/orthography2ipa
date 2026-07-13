@@ -281,3 +281,34 @@ def test_pilot_catalan_nasal_palatal_assimilation():
     there (Recasens 1993; Wheeler 2005 §10.3).
     """
     assert G2P("ca").transcribe_word("àngel") == "ˈaɲʒəl"
+
+
+class TestConsonantClusterContext:
+    """The ``consonant_cluster`` neighbour class.
+
+    A cluster is two or more consonant segments read away from the anchor.
+    It is what closed-syllable shortening needs, and it is stated over
+    phonological classes only — enumerating the clusters as graphemes is a
+    design violation, so the engine has to be able to see them.
+    """
+
+    def test_fires_before_two_consonants(self):
+        from orthography2ipa.allophony import _begins_consonant_cluster
+        from orthography2ipa.phonetok import PhonetokTokenizer
+
+        spec = get("sv")
+        tok = PhonetokTokenizer(spec)
+
+        def cluster_after(word: str, index: int) -> bool:
+            ctxs = [c for c in tok.tokenize_with_context(word)]
+            nxt = ctxs[index].next
+            return nxt is not None and _begins_consonant_cluster(nxt, 1)
+
+        # ⟨i⟩ in "vitt" is followed by the geminate ⟨tt⟩ → a cluster
+        assert cluster_after("vitt", 1) is True
+        # ⟨i⟩ in "vit" is followed by a single ⟨t⟩ → not a cluster
+        assert cluster_after("vit", 1) is False
+
+    def test_open_syllable_keeps_the_long_vowel(self):
+        # The rule must not fire when a single consonant is followed by a vowel
+        assert "iː" in G2P("sv").transcribe_word("vit")

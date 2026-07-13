@@ -287,7 +287,7 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `word_final` | bool | no | Require (or forbid) word-final position |
 | `stress` | string | no | `"stressed"` / `"unstressed"` — engine path only (needs stress context) |
 | `syllable_position` | string | no | `"onset"` / `"coda"` / `"nucleus"` (maximal-onset heuristic) |
-| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary` |
+| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `consonant_cluster`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary`. `consonant_cluster` = the neighbour begins two or more consonant segments counting away from this grapheme (a geminate, a multi-consonant grapheme such as ⟨x⟩ /ks/, or a consonant whose own neighbour is a consonant) — the context closed-syllable shortening and complementary quantity need. **Never enumerate clusters as grapheme keys**; see [allophony](../../docs/allophony.md#consonant_cluster) |
 | `followed_by` | string | no | Next-grapheme class (same value set) |
 | `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |

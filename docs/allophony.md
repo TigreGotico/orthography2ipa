@@ -55,7 +55,7 @@ unset is "don't care"):
 | `word_initial` / `word_final` | `true` / `false` | the grapheme is (not) at the word edge |
 | `stress` | `"stressed"` / `"unstressed"` | the grapheme's syllable carries (not) primary stress — engine path only |
 | `syllable_position` | `"onset"` / `"coda"` / `"nucleus"` | a vowel is a nucleus; a consonant before a vowel is an onset, else a coda (maximal-onset heuristic) |
-| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA — see `is_palatal_consonant`) |
+| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"consonant_cluster"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA — see `is_palatal_consonant`; `"consonant_cluster"` — see below) |
 | `preceded_by_phoneme` / `followed_by_phoneme` | list of IPA strings | the previous / next lattice slot's **chosen phoneme** is one of them |
 
 This small vocabulary expresses the common post-lexical processes:
@@ -66,6 +66,27 @@ This small vocabulary expresses the common post-lexical processes:
 - **Nasal place assimilation** — `followed_by_phoneme: ["k", "ɡ"]` (→ velar)
   or `["p", "b", "m"]` (→ labial), conditioning on the *following* phoneme's
   place.
+- **Closed-syllable shortening / complementary quantity** —
+  `followed_by: "consonant_cluster"`.
+
+### `consonant_cluster`
+
+The neighbour begins **two or more consonant segments**, counted away from the
+anchor grapheme. Three ways to qualify, all decided phonemically:
+
+- the neighbour realises a long/geminate consonant (`tː`) — moraic on its own;
+- the neighbour is one grapheme spelling several consonants (⟨x⟩ → /ks/);
+- the grapheme beyond the neighbour is also a consonant (⟨s⟩⟨t⟩).
+
+This is the context that mainland-Scandinavian complementary quantity needs
+(Riad 2014; Kristoffersen 2000; Basbøll 2005): a stressed vowel is long in an
+open syllable and short before a cluster, so Swedish ⟨vit⟩ is [viːt] but ⟨vitt⟩
+is [vɪtː].
+
+Stating it as a class is the *only* correct encoding. Enumerating the clusters
+as grapheme keys (`bl`, `bf`, `st`, …) asserts spellings the orthography does not
+have, explodes combinatorially, and — because the tokenizer is maximal-munch —
+silently changes how neighbouring rules see the word.
 
 Rules are **pure data** — no code in specs. See
 [`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema)

@@ -176,11 +176,11 @@ class AllophoneRuleModel(_Strict):
     stress: Optional[Literal["stressed", "unstressed"]] = None
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
-        "vowel", "consonant", "front_vowel", "back_vowel", "palatal",
-        "word_boundary"]] = None
+        "vowel", "consonant", "consonant_cluster", "front_vowel",
+        "back_vowel", "palatal", "word_boundary"]] = None
     followed_by: Optional[Literal[
-        "vowel", "consonant", "front_vowel", "back_vowel", "palatal",
-        "word_boundary"]] = None
+        "vowel", "consonant", "consonant_cluster", "front_vowel",
+        "back_vowel", "palatal", "word_boundary"]] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
