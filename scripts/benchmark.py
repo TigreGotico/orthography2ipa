@@ -1265,7 +1265,68 @@ def load_ep_dialects(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 
+
+_PRIMARY_SOURCES_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "primary_sources",
+)
+_PRIMARY_SOURCES_ROWS = os.path.join(_PRIMARY_SOURCES_DIR, "rows.jsonl")
+
+
+def read_primary_source_rows() -> List[Dict[str, object]]:
+    """Every row of the primary-source gold, unfiltered.
+
+    Rows carry their full provenance (source id, printed page, the source's
+    own notation, broad/narrow, confidence); the benchmark loader below
+    projects them down to the (word, ipa) pairs the harness scores, and the
+    tests use this richer view.
+    """
+    rows: List[Dict[str, object]] = []
+    with open(_PRIMARY_SOURCES_ROWS, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    return rows
+
+
+def load_primary_sources(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Example transcriptions mined from the PRIMARY SOURCES the language
+    specs themselves cite (grammars, phonology monographs, theses).
+
+    Each row is one worked example printed by the linguist who described the
+    variety — the orthographic form, the IPA as that source wrote it, and the
+    printed page it came from. See the dataset README for the per-source row
+    counts, the notation-normalization decisions, and the rows where a source
+    contradicts a spec.
+
+    The scored input word is the vocalized orthography where the row has one
+    (Arabic: o2i's input contract is fully-diacritized text, and the sources
+    print their examples in transcription, so the ḥarakāt are editor-supplied
+    and flagged as such per row), otherwise the orthography as printed.
+    """
+    pairs: List[Tuple[str, str]] = []
+    for row in read_primary_source_rows():
+        if row.get("lang") != lang:
+            continue
+        word = row.get("orthography_vocalized") or row.get("orthography")
+        ipa = row.get("ipa")
+        if not word or not ipa:
+            continue
+        pairs.append((str(word), str(ipa)))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+def _primary_source_langs() -> List[str]:
+    return sorted({
+        str(row["lang"]) for row in read_primary_source_rows() if row.get("lang")
+    })
+
+
 DATASETS = {
+    "primary_sources": (load_primary_sources, _primary_source_langs()),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
@@ -1374,6 +1435,13 @@ def can_gate_promotion(tier: str) -> bool:
 # reliability classification). Classifications are justified per-dataset in
 # docs/benchmarks.md "Provenance and reliability".
 PROVENANCE: Dict[str, str] = {
+    # The transcriptions are the published examples of the phonologists and
+    # dialectologists the specs cite — the most authoritative gold in the
+    # harness, and the only one whose every row names the page it came from.
+    # Still small-n, still bound by each source's own conventions (and by the
+    # editor-supplied Arabic ḥarakāt: see the dataset README), so it diagnoses
+    # rules rather than certifying a language on its own.
+    "primary_sources": "expert-human",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
     "mirandese_g2p": "expert-human",     # TigreGotico/mirandese_g2p; native-speaker collected; small-n

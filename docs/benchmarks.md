@@ -109,6 +109,7 @@ stated rather than papered over.
 
 | Dataset | Tier | IPA produced by | Notes / grain of salt |
 |---|---|---|---|
+| `primary_sources` | expert-human | The phonologists and dialectologists the specs cite | Example transcriptions copied out of the cited grammars/monographs/theses, one printed page per row (`N=65` across 7 varieties). The most authoritative gold here — and the smallest. Arabic ḥarakāt on the input side are editor-supplied (the sources print transcription, not script); see the dataset README. |
 | `ep_dialects` | expert-human | TigreGotico team, manual annotation | Internal dialect research, **pending external peer validation**; sentence-level, `N≈29–45`. |
 | `mirandese_g2p` | expert-human | Native Mirandese speaker | The reference gold and **most trustworthy signal for Mirandese** (row id `mirandese_g2p`, from `TigreGotico/mirandese_g2p`), split by the `dialect` column: central → `mwl` (`N≈205`), sendinese → `mwl-x-sendim` (`N≈11`), raiano → `mwl-x-ifanes` (`N≈2` — an anecdote, read the CI not the point PER). Small-`N`; a separate, more reliable source than any synthetic Mirandese IPA dictionary. |
 | `4catac` | expert-human | Expert annotators (Projecte AINA/BSC) | IEC guidelines, multi-annotator consensus review; sentence-level, `N=160`, `0.00` exact-match reflects notation/connected-speech mismatch, not total failure. |
@@ -157,6 +158,28 @@ directional benchmarks that surface disagreements to investigate against
 real sources, not ground truth.
 
 ## Datasets
+
+### Primary-source gold (`primary_sources`)
+
+`orthography2ipa/data/gold/primary_sources/` — every row is a worked example
+printed by a linguist in a source one of our own specs cites: Almbark & Hellmuth
+(2015) for Damascene, Jasim (2020) for Baghdadi gilit and Muslawi qəltu, Fadda
+(2016) for Ammani, Cotter (2016) for Gaza City, Brissos (2014) for the European
+Portuguese central-interior and southwestern dialects. 65 rows, 7 varieties.
+
+Each row carries the source id, the **printed** page (not the PDF page index —
+they diverge, and `sources.json` records the offset per source), the source's own
+notation verbatim, whether the source wrote it broad `/…/` or narrow `[…]`, and a
+confidence. Nothing is silently coerced: transliterated rows can never be
+`confidence: high`, and the Arabic input words carry editor-supplied ḥarakāt,
+flagged per row.
+
+It is deliberately tiny and deliberately adversarial: several rows exist
+*because* the source contradicts the spec (gilit kaf affrication is not
+front-vowel-conditioned; Ammani emphasis spreads onto a final /t/; the Beira and
+Alentejo chain shifts are modelled only in their /u/ → [y] leg). The dataset
+README lists all of them. Diagnose rules with it; do not gate a language on
+`N=12`.
 
 ### Portuguese unified pronunciation lexicon (`portuguese_unified`)
 

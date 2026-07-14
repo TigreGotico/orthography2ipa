@@ -1,0 +1,57 @@
+{
+  "almbark2015": {
+    "authors": "Almbark, R. & Hellmuth, S.",
+    "year": 2015,
+    "title": "Acoustic analysis of the Syrian Arabic vowel system",
+    "venue": "Proceedings of ICPhS 2015, paper 0612, Glasgow",
+    "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf",
+    "access": "open",
+    "pagination": "The ICPhS 2015 proceedings paper carries no printed folio; `page` records the paper-internal page (1-5), which coincides with the PDF page index.",
+    "notation": "ipa",
+    "describes": "Damascene / Syrian Arabic (speakers from Damascus and coastal Syria)"
+  },
+  "jasim2020": {
+    "authors": "Jasim, M.",
+    "year": 2020,
+    "title": "Tafxi:m in the vowels of Muslawi Qəltu and Baghdadi Gilit dialects of Arabic",
+    "venue": "PhD thesis, Newcastle University",
+    "url": "https://theses.ncl.ac.uk/jspui/bitstream/10443/4899/1/Jasim%20M%202020.pdf",
+    "access": "open",
+    "pagination": "Printed folio is centred/right in the page footer; printed page = pdftotext page index − 23 (verified on the Abbreviations page and on body pages 17, 18, 37).",
+    "notation": "ipa",
+    "describes": "Baghdadi Gilit (Muslim Baghdad) and Muslawi Qəltu (Mosul)"
+  },
+  "fadda2016": {
+    "authors": "Fadda, H.",
+    "year": 2016,
+    "title": "Language Variation in Western Amman",
+    "venue": "MA thesis, Canada Institute of Linguistics",
+    "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
+    "access": "open",
+    "pagination": "Printed folio is in the page header and coincides with the PDF page index (verified on pages 15, 29, 30, 33).",
+    "notation": "ipa",
+    "describes": "Ammani Arabic (Jordanian/urban-Palestinian koine)"
+  },
+  "cotter2016": {
+    "authors": "Cotter, W.M.",
+    "year": 2016,
+    "title": "One Piece of the Puzzle: Notes on the Historic Interdental Fricatives /θ, ð, ðˤ/ in the Arabic Dialect of Gaza City",
+    "venue": "Journal of Arabic and Islamic Studies 16:149-162",
+    "url": "https://www.lancaster.ac.uk/jais/volume/docs/vol16/v16_05_cotter_149-162.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head (`Historic /θ, ð, ðˤ/ in Gaza Arabic  <n>`); the article runs 149-162.",
+    "notation": "arabicist-transliteration",
+    "describes": "Gaza City Arabic (urban Palestinian)"
+  },
+  "brissos2014": {
+    "authors": "Brissos, F.",
+    "year": 2014,
+    "title": "New insights into Portuguese central-southern dialects: understanding their present and past forms through acoustic data from stressed vowels",
+    "venue": "Journal of Portuguese Linguistics 13(1):65-116",
+    "url": "https://www.clul.ulisboa.pt/files/849/Brissos_2014_comprimido.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head (`66  Fernando Brissos` / `Portuguese central-southern dialects  67`).",
+    "notation": "ipa",
+    "describes": "Portuguese central-southern dialects: CI = the central-interior subdialect (Castelo Branco / Beira Baixa); SW = the southwestern subdialect (Baixo Alentejo / Alentejo littoral)"
+  }
+}
