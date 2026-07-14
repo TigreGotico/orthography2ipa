@@ -28,6 +28,7 @@ Usage
 from __future__ import annotations
 
 import logging
+import unicodedata
 from typing import List, Optional, Sequence
 
 from orthography2ipa.types import StressRules
@@ -49,7 +50,14 @@ __all__ = [
 def _is_vowel_char(ch: str) -> bool:
     """Vowel test used by the naive syllabifier: orthographic vowels of
     Latin/Greek-script languages (with accented forms) plus IPA vocoids,
-    so the same splitter works on spellings and on transcriptions."""
+    so the same splitter works on spellings and on transcriptions.
+
+    A combining mark is never a nucleus: it modifies the character it sits
+    on. Counting one as a vowel splits a nasal diphthong down the middle —
+    ⟨pão⟩ /pɐ̃w̃/ becomes pɐ̃-w̃, and the stress mark lands on the offglide.
+    """
+    if unicodedata.combining(ch):
+        return False
     return is_orthographic_vowel(ch) or is_ipa_vowel(ch)
 
 
@@ -112,6 +120,11 @@ def syllabify(
     current = ""
     in_nucleus = False
     for ch in word:
+        if unicodedata.combining(ch):
+            # a combining mark belongs to the character it sits on: it never
+            # opens or closes a syllable, and never counts as a nucleus
+            current += ch
+            continue
         is_vowel = is_vowel_char(ch)
         if is_vowel and not in_nucleus and current and any(
                 is_vowel_char(c) for c in current):
@@ -154,9 +167,14 @@ def _syllabify_with_diphthongs(
         if not is_vowel_char(word[i]):
             onset += word[i]
             i += 1
+            # a combining mark rides along with whatever it sits on
+            while i < len(word) and unicodedata.combining(word[i]):
+                onset += word[i]
+                i += 1
             continue
         j = i
-        while j < len(word) and is_vowel_char(word[j]):
+        while j < len(word) and (
+                is_vowel_char(word[j]) or unicodedata.combining(word[j])):
             j += 1
         for k, nucleus in enumerate(_split_nuclei(word[i:j], diphthongs)):
             syllables.append((onset if k == 0 else "") + nucleus)
