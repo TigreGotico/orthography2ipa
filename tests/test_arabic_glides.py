@@ -14,12 +14,17 @@ from orthography2ipa.g2p import G2P
 AR = G2P("ar")
 
 
+# The stress mark sits where Arabic's own onset limit puts the syllable
+# boundary — one consonant opens a syllable, the rest close the previous one
+# (max_onset=1, the division the spec's stress block describes): mis-rijj,
+# ħur-rij-ja. It is NOT onset-maximised (*mi-srijj, *ħu-rrijja); a geminate in
+# particular is split across the boundary by definition.
 @pytest.mark.parametrize("word,expected,why", [
     # The nisba: a shadda doubles the yāʾ, so ⟨ِيّ⟩ is /ijj/, never /ijiː/.
-    ("مِصْرِيّ", "miˈsˤrijj", "nisba -iyy (Ryding 2005 §5.4.1)"),
+    ("مِصْرِيّ", "misˤˈrijj", "nisba -iyy (Ryding 2005 §5.4.1)"),
     ("عَلِيّ", "ʕaˈlijj", "nisba -iyy"),
     # The feminine nisba ⟨ِيَّة⟩ is /ijja/.
-    ("حُرِّيَّة", "ħuˈrrijja", "nisba -iyya"),
+    ("حُرِّيَّة", "ħurˈrijja", "nisba -iyya"),
     ("عَرَبِيَّة", "ʕaraˈbijja", "nisba -iyya"),
 ])
 def test_consonantal_glide_is_not_a_long_vowel(word, expected, why):

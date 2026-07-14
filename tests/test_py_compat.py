@@ -79,6 +79,6 @@ class TestPublicExports:
     def test_exports(self):
         import orthography2ipa
 
-        for name in ("G2PPlugin", "WordContext", "SandhiEngine"):
+        for name in ("WordContext", "SandhiEngine"):
             assert name in orthography2ipa.__all__
             assert hasattr(orthography2ipa, name)

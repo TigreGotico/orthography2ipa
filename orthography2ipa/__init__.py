@@ -40,7 +40,6 @@ from orthography2ipa.g2p import (
     transcribe,
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
-from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
     clear_lexicons,
@@ -63,6 +62,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.sentence import (
+    WordContext,
     Position,
     SentenceLattice,
     SentenceRescoreContext,
@@ -93,6 +93,12 @@ from orthography2ipa.transforms import (
     debias_lisbon,
     load_clup_profile,
 )
+from orthography2ipa.registry import get_rescorers, who_answers
+from orthography2ipa.rescorer_plugin import RescorerPlugin
+from orthography2ipa.stress_plugin import StressPlugin
+from orthography2ipa.plugins import NormalizePlugin, SandhiPlugin, STAGES
+from orthography2ipa.registry import MissingPlugin
+from orthography2ipa.registry import get_stress_plugin
 from orthography2ipa.inventory import (
     STRESS_MARKS,
     dead_allophone_rules,
@@ -134,14 +140,13 @@ __all__ = [
     "available_codes",
     "available_families",
     "get_lexicon",
-    "register_lexicon",
     "set_lexicon_dir",
-    "clear_lexicons",
     "resolve_lexicon_source",
+    "register_lexicon",
+    "clear_lexicons",
     "available_lexicon_codes",
     "is_ipa_string",
     "validate_lexicon_text",
-    "G2PPlugin",
     "WordContext",
     "SandhiEngine",
     "LanguageSpec",
@@ -160,6 +165,15 @@ __all__ = [
     "AllophoneRescorer",
     "compile_allophone_rescorer",
     "StressRules",
+    "get_rescorers",
+    "who_answers",
+    "RescorerPlugin",
+    "StressPlugin",
+    "NormalizePlugin",
+    "SandhiPlugin",
+    "MissingPlugin",
+    "STAGES",
+    "get_stress_plugin",
     "emission_inventory",
     "phoneme_inventory",
     "tokenize",

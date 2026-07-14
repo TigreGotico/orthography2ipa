@@ -418,6 +418,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             superheavy_final_attracts=bool(
                 raw_stress.get("superheavy_final_attracts", True)),
             max_onset=int(raw_stress.get("max_onset", 1)),
+            source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )
 
@@ -460,6 +461,10 @@ def load_json_spec(code: str) -> LanguageSpec:
         quality=raw.get("quality", QualityTier.RESEARCH),
         script_type=raw.get("script_type", ScriptType.ALPHABET),
         inherent_vowel=raw.get("inherent_vowel"),
+        plugins={
+            stage: ((names,) if isinstance(names, str) else tuple(names))
+            for stage, names in (raw.get("plugins", {}) or {}).items()
+        },
         optional_marks=tuple(raw.get("optional_marks", ()) or ()),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),

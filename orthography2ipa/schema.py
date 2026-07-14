@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, List, Literal, Optional, Tuple, Union
+from typing import Literal, Dict, List, Literal, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -234,6 +234,7 @@ class StressRulesModel(_Strict):
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = Field(default=1, ge=1, le=3)
+    source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 
     @field_validator("default_position")

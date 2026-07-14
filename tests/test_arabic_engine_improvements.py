@@ -79,8 +79,10 @@ def test_gemination_glide_yaa(ar):
 
 
 def test_gemination_glide_waw(ar):
-    # قَوَّاس → [qawwaːs]: geminate و before the long-ā digraph.
-    assert ar.transcribe_word("قَوَّاس") == "qaˈwwaːs"
+    # قَوَّاس → [qawwaːs]: geminate و before the long-ā digraph. The geminate
+    # splits across the syllable boundary (qaw-waːs), so the mark goes before
+    # the SECOND half of it.
+    assert ar.transcribe_word("قَوَّاس") == "qawˈwaːs"
 
 
 def test_gemination_expander_doubles_consonant():
@@ -118,8 +120,10 @@ def test_hamza_alif_no_baked_vowel(ar):
 
 def test_hamza_kasra_no_doubling_on_iman(ar):
     # إِيْمَان → [ʔiːmaːn]: إ is bare /ʔ/ + the long ī from ـِي, never the
-    # ʔiiː double the old baked-vowel mapping produced.
-    assert ar.transcribe_word("إِيْمَان") == "ʔiˈːmaːn"
+    # ʔiiː double the old baked-vowel mapping produced. Stress falls on the
+    # superheavy final -maːn; the mark precedes the syllable, never landing
+    # inside the long vowel of the previous one (*ʔiˈːmaːn is not IPA).
+    assert ar.transcribe_word("إِيْمَان") == "ʔiːˈmaːn"
 
 
 def test_hamza_bare_fallback_vowel_undiacritized(ar):
@@ -128,7 +132,7 @@ def test_hamza_bare_fallback_vowel_undiacritized(ar):
     # carry a vowel (this is what keeps the WikiPron gold PER from
     # regressing).
     assert ar.transcribe_word("أخ") == "ˈʔax"
-    assert ar.transcribe_word("إسلام") == "ʔiˈslaːm"
+    assert ar.transcribe_word("إسلام") == "ʔisˈlaːm"  # ʔis-laːm, onset limit 1
 
 
 def test_word_final_yaa_is_long_vowel(ar):

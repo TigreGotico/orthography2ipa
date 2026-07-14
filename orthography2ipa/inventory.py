@@ -42,6 +42,7 @@ from orthography2ipa.types import LanguageSpec
 __all__ = [
     "emission_inventory",
     "phoneme_inventory",
+    "phoneme_atoms",
     "tokenize",
     "dead_allophone_rules",
     "STRESS_MARKS",
@@ -122,6 +123,18 @@ def phoneme_inventory(spec: LanguageSpec) -> FrozenSet[str]:
     for emission in emission_inventory(spec):
         tokens.update(tokenize(emission, spec))
     return frozenset(tokens)
+
+
+def phoneme_atoms(spec: LanguageSpec) -> List[str]:
+    """The multi-character segments *this spec declares*, longest first.
+
+    Public because segmentation is not only a tokenizer concern: syllable
+    weight has to know that a spec's ``ts`` is one consonant, or it counts the
+    coda of ``lidz`` as two and calls the syllable superheavy. The list is
+    derived from the spec's own tables, so what counts as a segment is decided
+    by the *data*, exactly as in :func:`phoneme_inventory`.
+    """
+    return _atoms(spec)
 
 
 def _atoms(spec: LanguageSpec) -> List[str]:

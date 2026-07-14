@@ -75,7 +75,7 @@ from orthography2ipa.sentence import (
 )
 from orthography2ipa.stress import (
     _syllables_for, apply_stress_mark, detect_stress, detect_stress_by_weight,
-    syllabify,
+    syllabify, syllabify_ipa,
 )
 from orthography2ipa.types import LanguageSpec
 
@@ -186,6 +186,41 @@ class _Word:
     sentence_final: bool = False
 
 
+
+def _as_names(plugins: dict) -> dict:
+    """Normalise a caller's ``{stage: name}`` / ``{stage: [names]}`` to tuples."""
+    return {
+        stage: ((names,) if isinstance(names, str) else tuple(names))
+        for stage, names in plugins.items()
+    }
+
+
+class _StagePlugins:
+    """The plugins this engine runs, resolved once, per stage.
+
+    Resolution is lazy per stage and cached: a spec that names nothing pays
+    nothing, and a spec that names something missing fails the first time that
+    stage runs — loudly, with the name it wanted and the names it found.
+    """
+
+    def __init__(self, spec, declared: dict) -> None:
+        self._spec = spec
+        self._declared = declared
+        self._cache: dict = {}
+
+    def get(self, stage: str) -> list:
+        if stage not in self._cache:
+            from dataclasses import replace
+
+            from orthography2ipa.registry import get_declared_plugins
+
+            # The caller's choice overrides the spec's, so resolve against the
+            # merged view rather than the spec's own block.
+            merged = replace(self._spec, plugins=self._declared)
+            self._cache[stage] = get_declared_plugins(stage, merged)
+        return self._cache[stage]
+
+
 class G2P:
     """Grapheme→IPA engine for one language.
 
@@ -249,6 +284,7 @@ class G2P:
         apply_stress: bool = True,
         apply_allophony: bool = True,
         normalizer: Optional[Callable[[str], str]] = None,
+        plugins: Optional[dict] = None,
         on_unmapped: str = "ignore",
         rescorer: RescorerArg = None,
         sentence_rescorer: SentenceRescorerArg = None,
@@ -272,15 +308,50 @@ class G2P:
             if apply_allophony else None
         )
         self._allophone_rescorer = allophone_rescorer
+
+        # Rescorers come from DECLARED plugins only — named by the spec or by the
+        # caller. Discovery alone never contributes phonology: a rescorer changes
+        # the transcription, and `pip install` must not.
+        #
+        # The spec's own allophone rules run last and keep the last word: they are
+        # declared data a language owner wrote, and a plugin refines that phonology
+        # rather than overruling it.
         self._rescorers: Tuple[LatticeRescorer, ...] = (
-            user_rescorers + (allophone_rescorer,)
-            if allophone_rescorer is not None else user_rescorers
+            user_rescorers
+            + ((allophone_rescorer,) if allophone_rescorer is not None else ())
         )
+        self._plugin_rescorers_resolved = False
         self.expand_allophones = expand_allophones
         self.dialect_profile = dialect_profile
         self.apply_sandhi = apply_sandhi
         self.apply_stress = apply_stress
         self.normalizer = normalizer
+
+        # Which plugin this engine runs, per stage. The SPEC names the ones that
+        # are intrinsic to the language; the CALLER overrides, which is how a
+        # downstream engine composes its own pipeline — arbtok does not edit this
+        # library's shipped ar.json to say it wants a diacritizer, it passes one.
+        #
+        # Either way it is a DECLARATION. What is never allowed is for discovery
+        # alone to decide: `pip install` must not change a transcription.
+        self.plugins = {**(self.spec.plugins or {}), **_as_names(plugins or {})}
+        self._stage_plugins = _StagePlugins(self.spec, self.plugins)
+
+        declared_rescorers = tuple(
+            r
+            for plugin in self._stage_plugins.get("rescore")
+            for r in plugin.rescorers(self.lang)
+        )
+        if declared_rescorers:
+            allophone_last = (
+                (self._allophone_rescorer,)
+                if self._allophone_rescorer is not None else ()
+            )
+            base = tuple(
+                r for r in self._rescorers if r is not self._allophone_rescorer
+            )
+            self._rescorers = base + declared_rescorers + allophone_last
+
         self.on_unmapped = on_unmapped
         self._warned_unmapped: Set[Tuple[str, str]] = set()
         self._tokenizer = PhonetokTokenizer(self.spec)
@@ -295,6 +366,19 @@ class G2P:
             normalize_sentence_rescorers(sentence_rescorer))
 
     # ─── public API ──────────────────────────────────────────────────
+
+    def _normalize(self, text: str) -> str:
+        """What the input IS, canonically, before anything reads it.
+
+        The declared `normalize` plugin runs first — diacritic restoration for an
+        abjad, number expansion — and then the caller's own normalizer, which is
+        the last word because the caller is closest to the text.
+        """
+        for plugin in self._stage_plugins.get("normalize"):
+            text = plugin.normalize(text, self.lang)
+        if self.normalizer is not None:
+            text = self.normalizer(text)
+        return text
 
     def transcribe(
         self,
@@ -323,8 +407,7 @@ class G2P:
     ) -> TranscriptionResult:
         """Transcribe *text*, returning per-word detail."""
         width = self._width(search, beam_width)
-        normalized = (self.normalizer(text) if self.normalizer is not None
-                      else text)
+        normalized = self._normalize(text)
         words = self._split_words(normalized)
         if not words:
             return TranscriptionResult(ipa="", words=(), lang=self.lang)
@@ -345,6 +428,27 @@ class G2P:
                 lattice, self._sentence_rescorers)
         if self.apply_sandhi and self._sandhi is not None:
             ipa_words = self._sandhi.apply(ipa_words)
+
+        # Cross-word phonology that needs code rather than a declarative rule: a
+        # final /n/ that assimilates to the next onset, a case ending a pause
+        # removes. The plugin sees each word's SPELLING as well as its IPA — whether
+        # a word ends in a case ending is a fact about the page, and guessing it
+        # from the last characters of the IPA confuses an ending with a stem.
+        for plugin in self._stage_plugins.get("sandhi"):
+            surfaces = [w.surface for w in words]
+            # The pause has to be HANDED to the plugin: punctuation is stripped
+            # during word splitting, so by now it is gone from the input — and a
+            # pause is exactly what removes a case ending.
+            pausal = [w.pausal for w in words]
+            rewritten = plugin.apply(
+                list(ipa_words), surfaces, pausal, self.lang)
+            if len(rewritten) != len(ipa_words):
+                raise ValueError(
+                    f"the sandhi plugin {type(plugin).__name__} returned "
+                    f"{len(rewritten)} words for {len(ipa_words)} — it rewrote the "
+                    f"sentence, not its sandhi"
+                )
+            ipa_words = rewritten
 
         ipa = " ".join(w for w in ipa_words if w)
         if self.dialect_profile:
@@ -384,8 +488,7 @@ class G2P:
         per-word (post-stress, pre-cross-word) reading.
         """
         width = self._width(search, beam_width)
-        normalized = (self.normalizer(text) if self.normalizer is not None
-                      else text)
+        normalized = self._normalize(text)
         words = self._split_words(normalized)
         if not words:
             return SentenceLattice(words=(), lang=self.lang)
@@ -595,8 +698,7 @@ class G2P:
         JSON-able, CRF-consumable feature dict. See ``docs/features.md`` for
         the CRF-as-rescorer pattern and a worked example.
         """
-        normalized = (self.normalizer(text) if self.normalizer is not None
-                      else text)
+        normalized = self._normalize(text)
         out: List[WordFeatures] = []
         for w in self._split_words(normalized):
             word = w.surface
@@ -712,7 +814,14 @@ class G2P:
                 # coda. So this system reads the IPA we just produced, and no
                 # orthographic syllabification is involved.
                 idx = detect_stress_by_weight(ipa, self.spec.stress)
-                ipa = apply_stress_mark(ipa, self.spec.stress, idx)
+                # Mark the mark against the SAME division the weights were read
+                # off. The naive `syllabify` cuts `saːliq` as `sa|ːliq`, which
+                # would drop the mark inside the long vowel: `saˈːliq`.
+                ipa = apply_stress_mark(
+                    ipa, self.spec.stress, idx,
+                    ipa_syllables=syllabify_ipa(
+                        ipa, self.spec.stress.max_onset),
+                )
             else:
                 sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
                                        if self.spec.stress else ())

@@ -31,6 +31,7 @@ import logging
 import unicodedata
 from typing import List, Optional, Sequence
 
+from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.types import StressRules
 from orthography2ipa.vowels import is_ipa_vowel, is_orthographic_vowel
 
@@ -221,6 +222,23 @@ def _syllables_for(
     return syllabify(word, diphthongs=diphthongs)
 
 
+def _plugin_stress(word, syllables, lang):
+    """Ask the registered stress plugin, or fail loudly if the spec expects one."""
+    from orthography2ipa.registry import MissingStressPlugin, get_stress_plugin
+
+    plugin = get_stress_plugin(lang) if lang else None
+    if plugin is None:
+        raise MissingStressPlugin(
+            f"the {lang!r} spec sets stress.source = 'plugin', but no stress plugin "
+            f"is registered for it.\n\n"
+            f"This is fatal on purpose. The spec is saying its stress cannot be "
+            f"expressed by the declarative rules, so falling back to them would not "
+            f"be a graceful degradation — it would be a DIFFERENT ANSWER, silently. "
+            f"Install the plugin the spec expects, or change the spec."
+        )
+    return plugin.stressed_index(word, list(syllables), lang)
+
+
 def detect_stress(
     word: str,
     rules: StressRules,
@@ -252,6 +270,17 @@ def detect_stress(
     n = len(sylls)
     if n <= 1:
         return 0
+
+    # 0. The spec may say its stress is not expressible here at all, and name a
+    #    plugin instead. It has to SAY so: a plugin that places the stress changes
+    #    the transcription, and the transcription must be a function of the spec
+    #    and the input — never of what happens to be installed. A plugin that is
+    #    unsure returns None and the declarative rules take over from here.
+    if rules.source == "plugin":
+        index = _plugin_stress(word, sylls, lang)
+        if index is not None:
+            return max(0, min(index, n - 1))
+
 
     # 1. written accent overrides everything
     if rules.marked_vowels:
@@ -286,6 +315,7 @@ def apply_stress_mark(
     rules: StressRules,
     stress_index: int,
     syllables: Optional[Sequence[str]] = None,
+    ipa_syllables: Optional[Sequence[str]] = None,
 ) -> str:
     """Insert ``rules.stress_mark`` before the stressed syllable of *ipa*.
 
@@ -304,6 +334,12 @@ def apply_stress_mark(
     syllables : Optional[Sequence[str]]
         Pre-computed orthographic syllables matching *stress_index*;
         needed only for non-negative ``stress_index`` conversion.
+    ipa_syllables : Optional[Sequence[str]]
+        Pre-computed syllables OF THE IPA, concatenating to *ipa*. A
+        quantity-sensitive caller has already divided the transcription (that
+        division is what its weights were read off), and must pass it back:
+        the naive :func:`syllabify` used otherwise cuts ``saːliq`` as
+        ``sa|ːliq``, so the mark would land *inside* the long vowel.
 
     Already-marked transcriptions are returned unchanged.
     """
@@ -314,7 +350,8 @@ def apply_stress_mark(
     # syllable early (⟨coelho⟩ /kuɐʎu/ → ˈkuɐʎu instead of kuˈɐʎu). A language
     # whose diphthongs are written with glides (Portuguese /aj aw/) therefore
     # leaves only true hiatus as a two-vowel run, and it must split.
-    ipa_sylls = syllabify(ipa, diphthongs=rules.diphthongs)
+    ipa_sylls = (list(ipa_syllables) if ipa_syllables
+                 else syllabify(ipa, diphthongs=rules.diphthongs))
     if not ipa_sylls:
         return ipa
 
@@ -393,7 +430,36 @@ _LENGTH = "ː"
 LIGHT, HEAVY, SUPERHEAVY = "light", "heavy", "superheavy"
 
 
-def syllabify_ipa(ipa: str, max_onset: int = 1) -> List[str]:
+#: Affricates written as two symbols. An affricate is ONE consonant — it is a
+#: single stop-fricative contour, not a cluster — so a coda ``dz``/``dʒ`` must
+#: count once when weighing a syllable, and must never be split across a
+#: syllable boundary. This is a closed, cross-linguistic list (the IPA's
+#: affricate series), not a per-language table: no language weighs ``t͡ʃ`` as
+#: two consonants. Both spellings are listed: the tie bar is a combining mark
+#: and binds only to the ``t``, so ``t͡ʃ`` needs its own entry to be one segment.
+_BARE_AFFRICATES = (
+    "tʃ", "dʒ", "tɕ", "dʑ", "ts", "dz", "ʈʂ", "ɖʐ", "pf", "tɬ", "dɮ", "kx",
+)
+_TIE = "\u0361"
+_AFFRICATES: Sequence[str] = tuple(
+    a[0] + _TIE + a[1:] for a in _BARE_AFFRICATES
+) + _BARE_AFFRICATES
+
+
+def _is_vowel_segment(seg: str) -> bool:
+    """Whether a segment is a vocoid — decided by its BASE character.
+
+    ``segment_ipa`` glues a base to its trailing modifiers, so the length mark
+    of ``aː`` and the pharyngealization of ``tˤ`` never stand alone.
+    """
+    return bool(seg) and is_ipa_vowel(seg[0])
+
+
+def syllabify_ipa(
+    ipa: str,
+    max_onset: int = 1,
+    atoms: Sequence[str] = (),
+) -> List[str]:
     """Split an IPA word into syllables, dividing clusters by *max_onset*.
 
     Each maximal vowel run is a nucleus. A consonant cluster between two
@@ -403,18 +469,26 @@ def syllabify_ipa(ipa: str, max_onset: int = 1) -> List[str]:
 
     Unlike :func:`syllabify`, this draws boundaries that are *phonologically*
     meaningful rather than merely countable, because weight depends on them.
+
+    The division is over **segments**, not characters: a base plus its trailing
+    modifiers (``tˤ``, ``aː``, ``kʰ``) is one consonant, and so is any declared
+    multi-character *atom* (an affricate such as ``ts``/``dʒ``). Counting a
+    two-character affricate as a two-consonant cluster would split it across a
+    syllable boundary, which no language does.
     """
     if not ipa:
         return []
 
-    # Nucleus spans: maximal runs of IPA vowels (a length mark belongs to the
-    # vowel it lengthens, so it extends the run).
+    segs = segment_ipa(ipa, tuple(atoms) + tuple(_AFFRICATES))
+
+    # Nucleus spans (in SEGMENTS): maximal runs of vocoids. A length mark rides
+    # on the vowel it lengthens, so it is already inside its segment.
     nuclei: List[List[int]] = []
     i = 0
-    while i < len(ipa):
-        if is_ipa_vowel(ipa[i]):
+    while i < len(segs):
+        if _is_vowel_segment(segs[i]):
             start = i
-            while i < len(ipa) and (is_ipa_vowel(ipa[i]) or ipa[i] == _LENGTH):
+            while i < len(segs) and _is_vowel_segment(segs[i]):
                 i += 1
             nuclei.append([start, i])
         else:
@@ -439,14 +513,14 @@ def syllabify_ipa(ipa: str, max_onset: int = 1) -> List[str]:
             cluster = nxt_start - end
             coda_end = nxt_start - min(max_onset, cluster)
         else:
-            coda_end = len(ipa)  # trailing consonants close the last syllable
+            coda_end = len(segs)  # trailing consonants close the last syllable
 
-        syllables.append(ipa[onset_start:coda_end])
+        syllables.append("".join(segs[onset_start:coda_end]))
 
     return syllables
 
 
-def syllable_weight(syllable: str) -> str:
+def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     """Classify one IPA syllable as ``light``, ``heavy`` or ``superheavy``.
 
     Weight is the nucleus plus what follows it:
@@ -460,23 +534,26 @@ def syllable_weight(syllable: str) -> str:
     ``superheavy``   long vowel + coda (CVːC)   ``taːb``
     ``superheavy``   short vowel + 2 codas      ``bint``
     ===============  =========================  ==================
+
+    The coda is counted in **segments**, not characters. ``latˤ`` is CVC and so
+    merely heavy — ``tˤ`` is one pharyngealized consonant, not /t/ + /ˤ/ — and
+    ``lidz`` is CVC too when ``dz`` is a declared affricate *atom*. Counting
+    characters made both superheavy and pulled the stress onto them.
     """
-    start = next((i for i, ch in enumerate(syllable) if is_ipa_vowel(ch)), None)
+    segs = segment_ipa(syllable, tuple(atoms) + tuple(_AFFRICATES))
+    start = next((i for i, s in enumerate(segs) if _is_vowel_segment(s)), None)
     if start is None:
         return LIGHT  # no nucleus — nothing to weigh
 
     end = start
-    while end < len(syllable) and (
-        is_ipa_vowel(syllable[end]) or syllable[end] == _LENGTH
-    ):
+    while end < len(segs) and _is_vowel_segment(segs[end]):
         end += 1
 
-    nucleus = syllable[start:end]
-    coda = syllable[end:]
+    nucleus = segs[start:end]
+    coda = segs[end:]
 
-    long_vowel = _LENGTH in nucleus or sum(
-        1 for ch in nucleus if is_ipa_vowel(ch)
-    ) > 1  # a diphthong counts as long
+    # A long vowel or a diphthong is a branching (heavy) nucleus.
+    long_vowel = any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
 
     if long_vowel and coda:
         return SUPERHEAVY
@@ -490,6 +567,7 @@ def syllable_weight(syllable: str) -> str:
 def detect_stress_by_weight(
     ipa: str,
     rules: StressRules,
+    atoms: Sequence[str] = (),
 ) -> int:
     """Locate the stressed syllable of *ipa* by weight. Returns an end-anchored
     index (``-1`` final, ``-2`` penult, …), ready for :func:`apply_stress_mark`.
@@ -507,15 +585,16 @@ def detect_stress_by_weight(
     A word with fewer syllables than the default position reaches for falls
     back to its first syllable.
     """
-    syllables = syllabify_ipa(ipa, rules.max_onset)
+    syllables = syllabify_ipa(ipa, rules.max_onset, atoms)
     n = len(syllables)
     if n <= 1:
         return -1
 
-    if rules.superheavy_final_attracts and syllable_weight(syllables[-1]) == SUPERHEAVY:
+    if (rules.superheavy_final_attracts
+            and syllable_weight(syllables[-1], atoms) == SUPERHEAVY):
         return -1
 
-    if n >= 2 and syllable_weight(syllables[-2]) in (HEAVY, SUPERHEAVY):
+    if n >= 2 and syllable_weight(syllables[-2], atoms) in (HEAVY, SUPERHEAVY):
         return -2
 
     default = rules.default_position

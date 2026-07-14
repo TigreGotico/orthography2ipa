@@ -225,3 +225,189 @@ def get_syllabifier(code: str) -> Optional["SyllabifierPlugin"]:
         _syllabifiers = _discover_syllabifiers()
     code = _resolve_code(code)
     return _syllabifiers.get(code)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Rescorer plugins — phonology contributed for one language
+# ═══════════════════════════════════════════════════════════════════════════
+
+_rescorer_plugins: Optional[Dict[str, List["RescorerPlugin"]]] = None
+
+
+def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
+    """Discover rescorer plugins via importlib entry points.
+
+    Unlike a syllabifier, several rescorer plugins may claim the same language and
+    ALL of them run: realization is a cascade, not a competition. They are ordered
+    by priority, lowest first, so a higher-priority plugin sees the lower one's
+    work and gets the last word.
+    """
+    import logging
+    from importlib.metadata import entry_points
+
+    plugins: Dict[str, List["RescorerPlugin"]] = {}
+    for ep in entry_points(group="orthography2ipa.rescore"):
+        try:
+            instance = ep.load()()
+            for code in instance.language_codes:
+                plugins.setdefault(code, []).append(instance)
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "failed to load rescorer plugin %r: %s", ep.name, exc)
+            continue
+    for code in plugins:
+        plugins[code].sort(key=lambda p: p.priority)
+    return plugins
+
+
+def get_rescorers(code: str) -> List["LatticeRescorer"]:
+    """The rescorers every registered plugin contributes for *code*, in order."""
+    global _rescorer_plugins
+    if _rescorer_plugins is None:
+        _rescorer_plugins = _discover_rescorer_plugins()
+    resolved = _resolve_code(code)
+    out: List["LatticeRescorer"] = []
+    for plugin in _rescorer_plugins.get(resolved, ()):
+        out.extend(plugin.rescorers(resolved))
+    return out
+
+
+def who_answers(code: str) -> Dict[str, object]:
+    """Who is answering for *code*, and from where.
+
+    The first question anyone debugging a plugin asks, given an API. A
+    transcription that depends on what is installed should at least be able to say
+    what is installed.
+    """
+    resolved = _resolve_code(code)
+    syllabifier = get_syllabifier(resolved)
+    global _rescorer_plugins
+    if _rescorer_plugins is None:
+        _rescorer_plugins = _discover_rescorer_plugins()
+    return {
+        "code": resolved,
+        "syllabify": (
+            f"{type(syllabifier).__module__}.{type(syllabifier).__name__}"
+            if syllabifier is not None else "built-in"
+        ),
+        "rescore": [
+            f"{type(p).__module__}.{type(p).__name__} (priority {p.priority})"
+            for p in _rescorer_plugins.get(resolved, ())
+        ] or ["built-in (spec allophone_rules only)"],
+    }
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Stress plugins — consulted only when the SPEC asks for one
+# ═══════════════════════════════════════════════════════════════════════════
+
+_stress_plugins: Optional[Dict[str, "StressPlugin"]] = None
+
+
+def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
+    import logging
+    from importlib.metadata import entry_points
+
+    plugins: Dict[str, "StressPlugin"] = {}
+    for ep in entry_points(group="orthography2ipa.stress"):
+        try:
+            instance = ep.load()()
+            for code in instance.language_codes:
+                incumbent = plugins.get(code)
+                if incumbent is None or instance.priority > incumbent.priority:
+                    plugins[code] = instance
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "failed to load stress plugin %r: %s", ep.name, exc)
+            continue
+    return plugins
+
+
+def get_stress_plugin(code: str) -> Optional["StressPlugin"]:
+    """The stress plugin registered for *code*, if any."""
+    global _stress_plugins
+    if _stress_plugins is None:
+        _stress_plugins = _discover_stress_plugins()
+    return _stress_plugins.get(_resolve_code(code))
+
+
+class MissingStressPlugin(RuntimeError):
+    """A spec asked for a stress plugin and none is registered.
+
+    Deliberately fatal. A spec that sets ``stress.source = "plugin"`` is saying its
+    stress cannot be expressed by the declarative rules — so falling back to them
+    would not be a graceful degradation, it would be a DIFFERENT ANSWER, silently.
+    The transcription must be a function of the spec and the input; quietly
+    substituting a different stress model makes it a function of what happens to
+    be installed, which is the bug this rule exists to prevent.
+    """
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Declared plugins — the spec names them, by entry-point name
+# ═══════════════════════════════════════════════════════════════════════════
+
+class MissingPlugin(RuntimeError):
+    """A spec named a plugin and it is not installed.
+
+    Deliberately fatal. The spec asked for this plugin because the built-in answer
+    is not the answer it wants — so falling back to the built-in would not be a
+    graceful degradation, it would be a DIFFERENT TRANSCRIPTION, silently, with no
+    way for the caller to know which one they got.
+    """
+
+
+_declared: Dict[str, Dict[str, object]] = {}
+
+
+def _discover_stage(stage: str) -> Dict[str, object]:
+    """Every plugin registered for *stage*, keyed by its ENTRY-POINT NAME.
+
+    The name is the plugin's identity, and it is what a spec names. That makes the
+    declaration readable and greppable — and it means two packages cannot fight
+    over a language, because the spec already said which one it wanted.
+    """
+    import logging
+    from importlib.metadata import entry_points
+
+    from orthography2ipa.plugins import ENTRY_POINT_GROUPS
+
+    found: Dict[str, object] = {}
+    for ep in entry_points(group=ENTRY_POINT_GROUPS[stage]):
+        try:
+            found[ep.name] = ep.load()()
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "failed to load %s plugin %r: %s", stage, ep.name, exc)
+    return found
+
+
+def get_declared_plugins(stage: str, spec) -> List[object]:
+    """The plugins *spec* names for *stage*, in the order it names them.
+
+    Raises :class:`MissingPlugin` for a name the spec asks for and nothing
+    provides.
+    """
+    names = (spec.plugins or {}).get(stage, ())
+    if not names:
+        return []
+
+    if stage not in _declared:
+        _declared[stage] = _discover_stage(stage)
+    available = _declared[stage]
+
+    out: List[object] = []
+    for name in names:
+        plugin = available.get(name)
+        if plugin is None:
+            raise MissingPlugin(
+                f"the {spec.code!r} spec names the {stage} plugin {name!r}, and it "
+                f"is not installed.\n\n"
+                f"Installed for this stage: {sorted(available) or 'nothing'}.\n\n"
+                f"This is fatal on purpose. The spec asked for this plugin because "
+                f"the built-in answer is not the answer it wants — so falling back "
+                f"would not be a graceful degradation, it would be a DIFFERENT "
+                f"TRANSCRIPTION, silently. Install it, or change the spec."
+            )
+        out.append(plugin)
+    return out

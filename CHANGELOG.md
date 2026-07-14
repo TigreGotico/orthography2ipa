@@ -1,5 +1,74 @@
 # Changelog
 
+## [5.2.2a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.2a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.1a1...5.2.2a1)
+
+**Merged pull requests:**
+
+- fix: segment-aware syllable weight + Saudi Arabic \(Najdi/Hejazi\) audit [\#380](https://github.com/TigreGotico/orthography2ipa/pull/380) ([JarbasAl](https://github.com/JarbasAl))
+
+## [5.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.1a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.0a1...5.2.1a1)
+
+**Merged pull requests:**
+
+- fix: a sandhi plugin must be TOLD where the pause is [\#378](https://github.com/TigreGotico/orthography2ipa/pull/378) ([JarbasAl](https://github.com/JarbasAl))
+
+## [5.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.1.0a1...5.2.0a1)
+
+**Merged pull requests:**
+
+- feat: normalize and sandhi are pluggable, and one declaration governs all of them [\#376](https://github.com/TigreGotico/orthography2ipa/pull/376) ([JarbasAl](https://github.com/JarbasAl))
+
+## [5.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.1.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.0.0a1...5.1.0a1)
+
+**Merged pull requests:**
+
+- feat: stress plugins, and the rule that makes any output-changing plugin safe [\#373](https://github.com/TigreGotico/orthography2ipa/pull/373) ([JarbasAl](https://github.com/JarbasAl))
+
+## [5.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.0.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.6.0a1...5.0.0a1)
+
+**Breaking changes:**
+
+- feat!: drop G2PPlugin — it was never a plugin [\#372](https://github.com/TigreGotico/orthography2ipa/pull/372) ([JarbasAl](https://github.com/JarbasAl))
+
+## [4.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.6.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.2a1...4.6.0a1)
+
+**Merged pull requests:**
+
+- feat: plugin contracts, lattice plugins, and silabificador as an optional extra [\#368](https://github.com/TigreGotico/orthography2ipa/pull/368) ([JarbasAl](https://github.com/JarbasAl))
+
+## [4.5.2a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.2a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.1a1...4.5.2a1)
+
+**Merged pull requests:**
+
+- fix: Portuguese output depended on whether a plugin happened to be installed [\#367](https://github.com/TigreGotico/orthography2ipa/pull/367) ([JarbasAl](https://github.com/JarbasAl))
+
+## [4.5.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.1a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.0a2...4.5.1a1)
+
+**Merged pull requests:**
+
+- fix: the syllabifier-discovery tests asserted the environment, not the code [\#366](https://github.com/TigreGotico/orthography2ipa/pull/366) ([JarbasAl](https://github.com/JarbasAl))
+- fix: a tāʾ marbūṭa carrying a vowel is pronounced [\#365](https://github.com/TigreGotico/orthography2ipa/pull/365) ([JarbasAl](https://github.com/JarbasAl))
+
+## [4.5.0a2](https://github.com/TigreGotico/orthography2ipa/tree/4.5.0a2) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.0a1...4.5.0a2)
+
 ## [4.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.4.0a1...4.5.0a1)

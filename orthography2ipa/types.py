@@ -233,6 +233,18 @@ class StressRules:
         light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
         penult is heavy, and the stress lands there — ``muˈdarris``, which is
         the correct form. Only read when :attr:`quantity_sensitive` is set.
+    source : str
+        Where the stress comes from. ``"rules"`` (the default) means this block —
+        declarative data a language owner wrote, that anyone can read, cite and
+        diff. ``"plugin"`` means *this language's stress is not expressible here*,
+        and a registered :class:`~orthography2ipa.stress_plugin.StressPlugin` must
+        supply it.
+
+        A spec has to opt in, because a plugin that places the stress **changes
+        the transcription**, and the transcription must be a function of the spec
+        and the input — never of what happens to be installed. If a spec asks for
+        a plugin and none is registered, that is an error, not a quiet fallback to
+        a different answer.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -245,6 +257,7 @@ class StressRules:
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
+    source: str = "rules"
     notes: str = ""
 
 
@@ -932,6 +945,10 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     # Which marks the orthography omits is a property of the writing system, and
     # a spec that inherits a grapheme table does not thereby inherit a script —
     # so each spec declares its own, exactly as it declares script_type.
+    # A dialect inherits its parent's engine choices unless it says otherwise:
+    # Najdi wants the same diacritizer as MSA. OVERLAY_BY_ID would need ids; a
+    # plain dict merge is what "same, plus my overrides" means here.
+    "plugins": InheritanceMode.OWN_ONLY,
     "optional_marks": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1088,6 +1105,24 @@ class LanguageSpec:
     inherent_vowel: Optional[str] = None
     """For abugidas — the vowel assumed when no vowel mark is present
     (e.g. ``"ə"`` for Hindi, ``"a"`` for Sanskrit)."""
+
+    plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
+    """Which plugin this language wants, per stage — keyed by entry-point name.
+
+    A plugin that CHANGES THE TRANSCRIPTION must be named here. That is what keeps
+    the output a function of the spec and the input rather than of whatever
+    happens to be installed::
+
+        "plugins": {"normalize": "text2tashkeel", "sandhi": "arbtok"}
+
+    A named plugin that is not installed is an ERROR, not a quiet fallback — a
+    quiet fallback is how you get two transcriptions for one word and no way to
+    know which one you got.
+
+    ``syllabify`` is deliberately NOT declared here: a syllabifier is a
+    refinement, not a decision. It must reach the same answer by better means, and
+    the conformance kit fails it if it does not. See
+    :mod:`orthography2ipa.plugins`."""
 
     optional_marks: Tuple[str, ...] = ()
     """The diacritics this orthography habitually **omits** — the Arabic
