@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.1a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.0a1...5.2.1a1)
+
+**Merged pull requests:**
+
+- fix: a sandhi plugin must be TOLD where the pause is [\#378](https://github.com/TigreGotico/orthography2ipa/pull/378) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [5.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.1.0a1...5.2.0a1)
