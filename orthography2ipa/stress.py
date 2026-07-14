@@ -88,6 +88,11 @@ def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
         else:
             nuclei.append(run[i])
             i += 1
+        # a combining mark is not a nucleus of its own: it rides on the vowel
+        # it was written over (⟨ão⟩ /ɐ̃w̃/ — the tilde belongs to the ɐ)
+        while i < len(run) and unicodedata.combining(run[i]):
+            nuclei[-1] += run[i]
+            i += 1
     return nuclei
 
 
@@ -301,7 +306,12 @@ def apply_stress_mark(
     """
     if rules.stress_mark in ipa:
         return ipa
-    ipa_sylls = syllabify(ipa)
+    # The spec's diphthongs split the IPA too, not just the spelling: without
+    # them a vowel run is one nucleus, so a HIATUS merges and the mark lands a
+    # syllable early (⟨coelho⟩ /kuɐʎu/ → ˈkuɐʎu instead of kuˈɐʎu). A language
+    # whose diphthongs are written with glides (Portuguese /aj aw/) therefore
+    # leaves only true hiatus as a two-vowel run, and it must split.
+    ipa_sylls = syllabify(ipa, diphthongs=rules.diphthongs)
     if not ipa_sylls:
         return ipa
 

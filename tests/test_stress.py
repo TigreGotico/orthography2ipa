@@ -83,9 +83,9 @@ class TestDetectStress:
         # paroxytone default
         ("casa", 0), ("livro", 0), ("homem", 0), ("falam", 0),
         ("rapazes", 1),
-        # hiatus 'ia' counts as one nucleus for the naive syllabifier;
-        # the stressed vowel still falls inside the returned syllable
-        ("viagem", 0),
+        # 'ia' is HIATUS: pt-PT declares its diphthongs, so the naive
+        # splitter separates vi-A-gem and lands on the stressed vowel
+        ("viagem", 1),
         # oxytone endings
         ("falar", 1), ("azul", 1), ("rapaz", 1), ("jardim", 1),
         ("caju", 1), ("abacaxi", 3), ("atuns", 1),
@@ -161,15 +161,17 @@ class TestSyllabifierPlugins:
         from orthography2ipa import get
         self._install(monkeypatch)
         rules = get("pt-PT").stress
-        # with the hiatus-aware plugin, viagem is correctly paroxytone
-        # over three syllables (vi-A-gem)
+        # viagem is paroxytone over three syllables (vi-A-gem)
         assert detect_stress("viagem", rules, lang="pt-PT") == 1
 
     def test_no_plugin_falls_back_to_naive(self, monkeypatch):
+        """The plugin is registered for pt-PT only, so en-GB uses the naive
+        splitter — which, because pt-PT declares its diphthongs, separates the
+        hiatus and agrees with the plugin here (vi-A-gem)."""
         from orthography2ipa import get
         self._install(monkeypatch)
         rules = get("pt-PT").stress
-        assert detect_stress("viagem", rules, lang="en-GB") == 0
+        assert detect_stress("viagem", rules, lang="en-GB") == 1
 
     def test_explicit_syllables_beat_plugin(self, monkeypatch):
         from orthography2ipa import get

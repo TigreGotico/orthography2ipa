@@ -109,8 +109,11 @@ class TestStressedEPrePalatal:
     """
 
     def test_coelho(self):
-        # co-E-lho: stressed <e> before <lh> (ʎ) -> [ɐ]
-        assert G2P(LISBON).transcribe_word("coelho") == "ˈkoɐʎu"
+        # co-E-lho: stressed <e> before <lh> (ʎ) -> [ɐ]. The pretonic <o> is
+        # unstressed and reduces to [u] like any other EP pretonic <o>, and
+        # <oe> is HIATUS, so the mark sits on the stressed nucleus: kuˈɐʎu
+        # (Mateus & d'Andrade 2000).
+        assert G2P(LISBON).transcribe_word("coelho") == "kuˈɐʎu"
 
     def test_espelho(self):
         assert "ɐʎ" in G2P(LISBON).transcribe_word("espelho")

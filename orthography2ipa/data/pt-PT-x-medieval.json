@@ -233,7 +233,34 @@
       "à"
     ],
     "stress_mark": "ˈ",
-    "notes": "Medieval Portuguese stress: paroxytone default; grave accent (à) marks stress override; no written circumflex or acute in early medieval orthography."
+    "notes": "Medieval Portuguese stress: paroxytone default; grave accent (à) marks stress override; no written circumflex or acute in early medieval orthography.",
+    "diphthongs": [
+      "ai",
+      "ãe",
+      "ão",
+      "au",
+      "ei",
+      "eu",
+      "éi",
+      "éu",
+      "iu",
+      "oi",
+      "ói",
+      "õe",
+      "ou",
+      "ui",
+      "aj",
+      "aw",
+      "ej",
+      "ɐj",
+      "ɛj",
+      "ɔj",
+      "oj",
+      "uj",
+      "iw",
+      "ew",
+      "ɛw"
+    ]
   },
   "location": {
     "latitude": 39.91,

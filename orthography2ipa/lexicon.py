@@ -203,6 +203,12 @@ def _fetch_hf(spec: str) -> Path:
     Needs ``huggingface_hub``; it is an optional dependency because a lexicon
     is optional and the library must import without network machinery.
     """
+    ref, _, revision = spec.partition("@")
+    owner, repo, *rest = ref.split("/")
+    if not rest:
+        raise ValueError(
+            f"hf lexicon must be 'hf://<owner>/<repo>/<file>', got 'hf://{spec}'"
+        )
     try:
         from huggingface_hub import hf_hub_download
     except ImportError as exc:                              # pragma: no cover
@@ -210,12 +216,6 @@ def _fetch_hf(spec: str) -> Path:
             "a hf:// lexicon needs huggingface_hub — "
             "pip install orthography2ipa[hf]"
         ) from exc
-    ref, _, revision = spec.partition("@")
-    owner, repo, *rest = ref.split("/")
-    if not rest:
-        raise ValueError(
-            f"hf lexicon must be 'hf://<owner>/<repo>/<file>', got 'hf://{spec}'"
-        )
     return Path(hf_hub_download(
         repo_id=f"{owner}/{repo}",
         filename="/".join(rest),

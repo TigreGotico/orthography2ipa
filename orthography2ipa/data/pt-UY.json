@@ -200,7 +200,34 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Portuguese stress conventions as in the Brazilian base (paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x and nasal diphthongs attract final stress). No DPU-specific stress divergence is documented in the read sources, so the pt-BR pattern is retained."
+    "notes": "Portuguese stress conventions as in the Brazilian base (paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x and nasal diphthongs attract final stress). No DPU-specific stress divergence is documented in the read sources, so the pt-BR pattern is retained.",
+    "diphthongs": [
+      "ai",
+      "ãe",
+      "ão",
+      "au",
+      "ei",
+      "eu",
+      "éi",
+      "éu",
+      "iu",
+      "oi",
+      "ói",
+      "õe",
+      "ou",
+      "ui",
+      "aj",
+      "aw",
+      "ej",
+      "ɐj",
+      "ɛj",
+      "ɔj",
+      "oj",
+      "uj",
+      "iw",
+      "ew",
+      "ɛw"
+    ]
   },
   "wikidata_qid": "Q3265815",
   "location": {

@@ -172,7 +172,34 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Acordo Ortográfico 1990 conventions inherited from pt-PT: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Albuquerque (2010:279–280) documents that PTL reinforces the paroxytone default — speakers regularise even EP-irregular stress toward the penult and almost never produce proparoxytones — under Austronesian influence; this is a tendency the orthography-predictable rules already approximate, not an extra rule set."
+    "notes": "Acordo Ortográfico 1990 conventions inherited from pt-PT: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Albuquerque (2010:279–280) documents that PTL reinforces the paroxytone default — speakers regularise even EP-irregular stress toward the penult and almost never produce proparoxytones — under Austronesian influence; this is a tendency the orthography-predictable rules already approximate, not an extra rule set.",
+    "diphthongs": [
+      "ai",
+      "ãe",
+      "ão",
+      "au",
+      "ei",
+      "eu",
+      "éi",
+      "éu",
+      "iu",
+      "oi",
+      "ói",
+      "õe",
+      "ou",
+      "ui",
+      "aj",
+      "aw",
+      "ej",
+      "ɐj",
+      "ɛj",
+      "ɔj",
+      "oj",
+      "uj",
+      "iw",
+      "ew",
+      "ɛw"
+    ]
   },
   "positional_graphemes": {
     "a": {
