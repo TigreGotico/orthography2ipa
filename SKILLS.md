@@ -114,6 +114,28 @@ A cluster is **never** a grapheme: use `followed_by: "consonant_cluster"`
 a different hat. A closed natural class (`["p","t","k"]`) is fine; a cartesian
 product is not.
 
+**Audit `positional_graphemes` too.** The script above only reads `graphemes`,
+and that is exactly where a cartesian hides: `ru` and `uk` keep 99 enumerated
+C×V keys in `positional_graphemes` (see AGENTS.md, *Known violation*), and
+German ⟨ig⟩ and Mirandese ⟨an⟩ lived there too. Multi-character positional keys
+are worth listing every time:
+
+```bash
+python3 - <<'EOF'
+import json, glob, os
+for f in sorted(glob.glob('orthography2ipa/data/*.json')):
+    pg = json.load(open(f)).get('positional_graphemes')
+    if not isinstance(pg, dict):
+        continue
+    multi = [k for k in pg if len(k) > 1]
+    if multi:
+        print(f"{os.path.basename(f)[:-5]:24s} {multi}")
+EOF
+```
+
+Judge each by the same three §2 tests. A real multigraph (⟨ch⟩, ⟨sch⟩, ⟨mb⟩)
+belongs there; a C×V or V+C pair does not.
+
 ## Supply a lexicon
 
 Deep orthographies (English, Danish, Irish) cannot reach production accuracy from

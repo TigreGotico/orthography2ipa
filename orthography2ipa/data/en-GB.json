@@ -613,20 +613,6 @@
         "iː",
         "ə"
       ]
-    },
-    "sion": {
-      "after_vowel": [
-        "ʒən",
-        "ʃən"
-      ],
-      "after_consonant": [
-        "ʃən",
-        "ʒən"
-      ],
-      "default": [
-        "ʒən",
-        "ʃən"
-      ]
     }
   },
   "word_exceptions": {

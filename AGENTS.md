@@ -144,6 +144,34 @@ When a spec references an ancestor or a related lect that has no file, add a
 cited stub rather than leaving a dangling reference. Grouping/family nodes are
 allowed only when the literature recognises them (`clade: true`).
 
+## Known violation: the ru/uk positional cartesian
+
+`ru` (67 keys) and `uk` (32) enumerate a consonant × soft-vowel product in
+**`positional_graphemes`** — `бе би бя бю ве ви вя вю …`. It is the same
+violation as constraint 2/3, and it is still there on purpose: **do not remove
+it without first adding the engine capability it is standing in for.**
+
+An attempt to replace it with rules (palatalisation before a soft vowel, keyed
+on the boundary phoneme `j i ɪ ʲ`; de-iotation after a plain consonant; a silent
+soft sign) is *nearly* right but loses two facts, and both are cited phonology,
+not gold trivia:
+
+- **Final devoicing through a silent ⟨ь⟩.** ⟨любовь⟩ is [lʲʊˈbofʲ] (Jones & Ward
+  1969): the ⟨в⟩ devoices although the *last grapheme* is ⟨ь⟩. `word_final` is a
+  property of the anchor slot, so no rule can see past the soft sign. The
+  enumerated `бь` key encoded it by brute force (`word_final → pʲ`).
+- The soft-vowel reduction series after a consonant degrades badly
+  (wikipron ɪ→i 29→117, ɪ→e 31→87; PER 0.1475 → 0.1757).
+
+The missing capability is **offset context** — a rule that can test the grapheme
+*two* positions away ("the ⟨ь⟩ after me is word-final"). The same gap forced a
+workaround in Mirandese (⟨mb nd ng⟩ as graphemes, so the nasal is not read as a
+coda). Add offset context first; then this cartesian, and that Mirandese
+workaround, both come out cleanly.
+
+Akanye errors in the ru gold (ɐ→a, ɐ→ə) are **pre-existing and unrelated** — do
+not attribute them to a palatalisation change.
+
 ## Setup
 
 ```bash

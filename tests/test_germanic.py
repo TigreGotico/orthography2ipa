@@ -541,8 +541,17 @@ class TestDutch:
         _assert_first(_grapheme(self._spec, "ch"), "x", label="nl-NL ch")
 
     def test_sch_onset(self):
-        """<sch> → /sx/ (e.g., *school*, *schip*) — note reversed from German."""
-        _assert_first(_grapheme(self._spec, "sch"), "sx", label="nl-NL sch")
+        """⟨sch⟩ → /sx/ (e.g. *school*, *schip*) — note reversed from German.
+
+        It needs no grapheme key of its own: ⟨s⟩ + ⟨ch⟩ already compose to
+        /sx/, unlike German ⟨sch⟩ → /ʃ/, which does earn one. Assert the
+        pronunciation, not the spelling table.
+        """
+        from orthography2ipa.g2p import transcribe
+
+        assert transcribe("school", "nl-NL").replace("ˈ", "") == "sxoːl"
+        assert transcribe("schip", "nl-NL").replace("ˈ", "") == "sxɪp"
+        assert "sch" not in self._spec.graphemes
 
     def test_w_is_labiodental_approximant(self):
         """<w> in Dutch is the labiodental approximant /ʋ/."""
