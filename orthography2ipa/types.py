@@ -739,6 +739,14 @@ class AllophoneRule:
         mirror of the ``BEFORE_PALATAL`` position) or ``"word_boundary"``
         (no neighbour). Predicates delegate to
         :mod:`orthography2ipa.vowels`.
+    preceded_by_2, followed_by_2 : Optional[str]
+        The same neighbour-class vocabulary, tested TWO graphemes away. A
+        phonological process often looks past a mute letter: Russian
+        final devoicing applies to the ⟨в⟩ of ⟨любовь⟩ [lʲʊˈbofʲ] because the
+        ⟨ь⟩ that follows it is word-final, and the ⟨ь⟩ itself is silent
+        (``followed_by_phoneme=["ʲ"]`` + ``followed_by_2="word_boundary"``).
+        Without it a spec has to enumerate the consonant × soft-vowel product
+        as spellings, which is a design violation.
     preceded_by_phoneme, followed_by_phoneme : Tuple[str, ...]
         The chosen phoneme of the previous / next lattice slot must be one of
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
@@ -764,6 +772,8 @@ class AllophoneRule:
     syllable_position: Optional[str] = None
     preceded_by: Optional[str] = None
     followed_by: Optional[str] = None
+    preceded_by_2: Optional[str] = None
+    followed_by_2: Optional[str] = None
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
@@ -795,7 +805,8 @@ class AllophoneRule:
                 f"got {self.syllable_position!r}")
         _classes = ("vowel", "consonant", "consonant_cluster", "coda",
                     "coda_nasal", "front_vowel", "back_vowel", "palatal", "word_boundary")
-        for attr in ("preceded_by", "followed_by"):
+        for attr in ("preceded_by", "followed_by",
+                     "preceded_by_2", "followed_by_2"):
             val = getattr(self, attr)
             if val is not None and val not in _classes:
                 raise ValueError(

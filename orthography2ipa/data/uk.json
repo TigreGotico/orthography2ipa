@@ -593,262 +593,6 @@
       "posttonic": [
         "ɐ"
       ]
-    },
-    "дя": {
-      "pretonic": [
-        "dʲɐ"
-      ],
-      "posttonic": [
-        "dʲɐ"
-      ]
-    },
-    "дю": {
-      "pretonic": [
-        "dʲʊ"
-      ],
-      "posttonic": [
-        "dʲʊ"
-      ]
-    },
-    "тя": {
-      "pretonic": [
-        "tʲɐ"
-      ],
-      "posttonic": [
-        "tʲɐ"
-      ]
-    },
-    "тю": {
-      "pretonic": [
-        "tʲʊ"
-      ],
-      "posttonic": [
-        "tʲʊ"
-      ]
-    },
-    "зя": {
-      "pretonic": [
-        "zʲɐ"
-      ],
-      "posttonic": [
-        "zʲɐ"
-      ]
-    },
-    "зю": {
-      "pretonic": [
-        "zʲʊ"
-      ],
-      "posttonic": [
-        "zʲʊ"
-      ]
-    },
-    "ся": {
-      "pretonic": [
-        "sʲɐ"
-      ],
-      "posttonic": [
-        "sʲɐ"
-      ]
-    },
-    "сю": {
-      "pretonic": [
-        "sʲʊ"
-      ],
-      "posttonic": [
-        "sʲʊ"
-      ]
-    },
-    "ця": {
-      "pretonic": [
-        "tsʲɐ"
-      ],
-      "posttonic": [
-        "tsʲɐ"
-      ]
-    },
-    "цю": {
-      "pretonic": [
-        "tsʲʊ"
-      ],
-      "posttonic": [
-        "tsʲʊ"
-      ]
-    },
-    "ля": {
-      "pretonic": [
-        "lʲɐ"
-      ],
-      "posttonic": [
-        "lʲɐ"
-      ]
-    },
-    "лю": {
-      "pretonic": [
-        "lʲʊ"
-      ],
-      "posttonic": [
-        "lʲʊ"
-      ]
-    },
-    "ня": {
-      "pretonic": [
-        "nʲɐ"
-      ],
-      "posttonic": [
-        "nʲɐ"
-      ]
-    },
-    "ню": {
-      "pretonic": [
-        "nʲʊ"
-      ],
-      "posttonic": [
-        "nʲʊ"
-      ]
-    },
-    "ря": {
-      "pretonic": [
-        "rʲɐ"
-      ],
-      "posttonic": [
-        "rʲɐ"
-      ]
-    },
-    "рю": {
-      "pretonic": [
-        "rʲʊ"
-      ],
-      "posttonic": [
-        "rʲʊ"
-      ]
-    },
-    "ддя": {
-      "pretonic": [
-        "dʲːɐ"
-      ],
-      "posttonic": [
-        "dʲːɐ"
-      ]
-    },
-    "ддю": {
-      "pretonic": [
-        "dʲːʊ"
-      ],
-      "posttonic": [
-        "dʲːʊ"
-      ]
-    },
-    "ття": {
-      "pretonic": [
-        "tʲːɐ"
-      ],
-      "posttonic": [
-        "tʲːɐ"
-      ]
-    },
-    "ттю": {
-      "pretonic": [
-        "tʲːʊ"
-      ],
-      "posttonic": [
-        "tʲːʊ"
-      ]
-    },
-    "ззя": {
-      "pretonic": [
-        "zʲːɐ"
-      ],
-      "posttonic": [
-        "zʲːɐ"
-      ]
-    },
-    "ззю": {
-      "pretonic": [
-        "zʲːʊ"
-      ],
-      "posttonic": [
-        "zʲːʊ"
-      ]
-    },
-    "сся": {
-      "pretonic": [
-        "sʲːɐ"
-      ],
-      "posttonic": [
-        "sʲːɐ"
-      ]
-    },
-    "ссю": {
-      "pretonic": [
-        "sʲːʊ"
-      ],
-      "posttonic": [
-        "sʲːʊ"
-      ]
-    },
-    "цця": {
-      "pretonic": [
-        "tsʲːɐ"
-      ],
-      "posttonic": [
-        "tsʲːɐ"
-      ]
-    },
-    "ццю": {
-      "pretonic": [
-        "tsʲːʊ"
-      ],
-      "posttonic": [
-        "tsʲːʊ"
-      ]
-    },
-    "лля": {
-      "pretonic": [
-        "lʲːɐ"
-      ],
-      "posttonic": [
-        "lʲːɐ"
-      ]
-    },
-    "ллю": {
-      "pretonic": [
-        "lʲːʊ"
-      ],
-      "posttonic": [
-        "lʲːʊ"
-      ]
-    },
-    "ння": {
-      "pretonic": [
-        "nʲːɐ"
-      ],
-      "posttonic": [
-        "nʲːɐ"
-      ]
-    },
-    "нню": {
-      "pretonic": [
-        "nʲːʊ"
-      ],
-      "posttonic": [
-        "nʲːʊ"
-      ]
-    },
-    "рря": {
-      "pretonic": [
-        "rʲːɐ"
-      ],
-      "posttonic": [
-        "rʲːɐ"
-      ]
-    },
-    "ррю": {
-      "pretonic": [
-        "rʲːʊ"
-      ],
-      "posttonic": [
-        "rʲːʊ"
-      ]
     }
   },
   "stress": {
@@ -856,6 +600,541 @@
     "notes": "Ukrainian stress is lexical and free (Shevelov 1993); the penultimate default is a statistical approximation that gates the unstressed-vowel contexts."
   },
   "allophone_rules": [
+    {
+      "id": "UK_HARD_BACK_jɪ",
+      "phonemes": [
+        "jɪ"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "UK_HARD_BACK_je",
+      "phonemes": [
+        "je"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "UK_HARD_BACK_ɪ",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "UK_HARD_BACK_i",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "UK_HARD_BACK_e",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "UK_PALAT_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "bʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_v",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "vʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "dʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_k",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "kʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_ɫ",
+      "phonemes": [
+        "ɫ"
+      ],
+      "surface": "lʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_l",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "lʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_m",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "mʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_p",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "pʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_r",
+      "phonemes": [
+        "r"
+      ],
+      "surface": "rʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_f",
+      "phonemes": [
+        "f"
+      ],
+      "surface": "fʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_x",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "xʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_ts",
+      "phonemes": [
+        "ts"
+      ],
+      "surface": "tsʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_PALAT_dz",
+      "phonemes": [
+        "dz"
+      ],
+      "surface": "dzʲ",
+      "followed_by_phoneme": [
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "UK_SOFT_SIGN_SILENT",
+      "phonemes": [
+        "ʲ"
+      ],
+      "surface": "",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "⟨ь⟩ marks palatalisation of the preceding consonant, which the palatalisation rule applies; the sign itself is silent"
+    },
+    {
+      "id": "UK_DEIOTA_jɪ",
+      "phonemes": [
+        "jɪ"
+      ],
+      "surface": "ɪ",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "UK_DEIOTA_jə",
+      "phonemes": [
+        "jə"
+      ],
+      "surface": "ə",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "UK_DEIOTA_jʊ",
+      "phonemes": [
+        "jʊ"
+      ],
+      "surface": "ʊ",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "UK_DEIOTA_je",
+      "phonemes": [
+        "je"
+      ],
+      "surface": "e",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "UK_DEIOTA_ja",
+      "phonemes": [
+        "ja"
+      ],
+      "surface": "a",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "UK_DEIOTA_ju",
+      "phonemes": [
+        "ju"
+      ],
+      "surface": "u",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "UK_DEIOTA_jo",
+      "phonemes": [
+        "jo"
+      ],
+      "surface": "o",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
     {
       "id": "UK_REGR_PALAT_s",
       "phonemes": [

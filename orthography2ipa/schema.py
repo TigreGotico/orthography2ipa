@@ -181,6 +181,12 @@ class AllophoneRuleModel(_Strict):
     followed_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
         "back_vowel", "palatal", "word_boundary"]] = None
+    preceded_by_2: Optional[Literal[
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
+        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+    followed_by_2: Optional[Literal[
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
+        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None

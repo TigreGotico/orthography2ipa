@@ -332,6 +332,12 @@ class AllophoneRescorer(LatticeRescorer):
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
                 return False
+        if rule.preceded_by_2 is not None:
+            if not _neighbor_is(rule.preceded_by_2, ctx.grapheme.at(-2), -1):
+                return False
+        if rule.followed_by_2 is not None:
+            if not _neighbor_is(rule.followed_by_2, ctx.grapheme.at(2), 1):
+                return False
         if rule.grapheme is not None:
             g = ctx.grapheme.grapheme
             if not g or g.lower() not in rule.grapheme:
