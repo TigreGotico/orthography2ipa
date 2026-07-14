@@ -48,9 +48,11 @@ not to certify a language on its own.
 | Brissos (2014), JPL | EP central-interior (CI) / southwestern (SW) | `pt-PT-x-beira` / `pt-PT-x-alentejo` | 8 / 5 |
 | Almbark & Hellmuth (2015), ICPhS | Damascene | `ar-SY` | 11 |
 | Cotter (2016), JAIS | Gaza City | `ar-PS` | 4 |
-| **total** | | | **200** |
+| Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté (2003), JIPA Illustration | Castilian Spanish | `es-ES` | 41 |
+| Coloma (2018), JIPA Illustration | Buenos Aires / River Plate Spanish | `es-AR` | 29 |
+| **total** | | | **270** |
 
-Broad `/…/`: 160. Narrow `[…]`: 40. `confidence`: 144 high, 54 medium, 2 low.
+Broad `/…/`: 218. Narrow `[…]`: 52. `confidence`: 214 high, 54 medium, 2 low.
 
 ## Notation-normalization decisions
 
@@ -180,6 +182,26 @@ running the engine over these rows.
     (galo `[ɡalʊ]`, caro `[kaɾʊ]`); o2i raises it all the way to `[u]`. And `carro` is
     `[kaɣʊ]` there (a velar fricative /R/) against o2i's uvular `[ʁ]` — the source says
     the /R/ realization varies across Brazil, so this is a variety choice, not an error.
+
+18. **`es-ES` has no lleísmo.** The Castilian Illustration (p.255) transcribes allí
+    `[aˈʎi]` and yate `[ˈɟ͡ʝate]` — /ʎ/ and /ɟ͡ʝ/ are distinct phonemes in the variety
+    it describes. o2i merges both to `[ʝ]` (`aˈʝi`, `ˈʝate`).
+19. **`es-ES` word-final ⟨y⟩ is a glide, not a consonant.** soy is `[ˈsoi̯]` (p.256);
+    o2i gives `ˈsoʝ`. This is a bug, not a modelling choice — the same engine handles
+    peine and pausa as diphthongs.
+20. **`es-ES` / `es-AR` spirantization of /b d ɡ/ is not applied.** cuadro `[ˈkwaðɾo]`
+    (Castilian p.256), pava `[ˈpaβa]`, huevo `[ˈweβo]`, nada `[ˈnaða]`, maga `[ˈmaɣa]`
+    (Argentine p.244) — o2i gives the stops throughout. The Argentine article lists
+    these explicitly in an ALLOPHONES column, so they are narrow rows; the Castilian
+    ones are in the source's broad transcription.
+21. **`es-AR` /s/ → [h] before a consonant.** pasta `[ˈpahta]` (p.244); o2i gives
+    `ˈpasta`. The article calls this a regular process of the variety.
+22. **`es-ES` / `es-AR` nasal place assimilation.** manga `[ˈmaŋɡa]` (p.244) and the
+    nasalized vowel of mamá `[mãˈma]` (p.255); o2i gives `ˈmanɡa`, `maˈma`.
+23. **Affricate tie-bars.** The Spanish, Ukrainian and Russian sources write `t͡ʃ`,
+    `t͡s`, `d͡z` with the tie bar; o2i emits the bare sequence. Cosmetic, but it is a
+    real difference between what the cited source prints and what we produce, so it is
+    recorded rather than normalized away.
 
 ## Adding rows
 

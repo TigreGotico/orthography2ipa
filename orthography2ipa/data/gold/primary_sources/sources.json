@@ -65,6 +65,28 @@
     "notation": "ipa",
     "describes": "Standard Russian (Moscow-type pronunciation)"
   },
+  "martinezceldran2003": {
+    "authors": "Martínez-Celdrán, E., Fernández-Planas, A.M. & Carrera-Sabaté, J.",
+    "year": 2003,
+    "title": "Castilian Spanish (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 33(2):255-259",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/39B1C556856D62AF8FC53D3F22435750/S0025100303001373a.pdf/castilian-spanish.pdf",
+    "access": "open",
+    "pagination": "The article's FIRST page (consonants) carries no printed folio; it is 255, since the following page prints 256 and the article runs 255-259. PDF page index 1 = printed 255. The scan's text layer drops the IPA entirely, so the rows were transcribed from a render of the page.",
+    "notation": "ipa",
+    "describes": "Formal Castilian Spanish (central Spain), educated middle-aged speakers"
+  },
+  "coloma2018": {
+    "authors": "Coloma, G.",
+    "year": 2018,
+    "title": "Argentine Spanish (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 48(2):243-250",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2B2B77C73AC33BDC2BBC79F242ADC682/S0025100317000275a.pdf/div-class-title-argentine-spanish-div.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the word lists are on printed page 244 (PDF page index 2). Text-layer artifact: β extracts as 'B'; resolved against a render of the page.",
+    "notation": "ipa",
+    "describes": "Buenos Aires / River Plate Spanish"
+  },
   "cruzferreira1995": {
     "authors": "Cruz-Ferreira, M.",
     "year": 1995,

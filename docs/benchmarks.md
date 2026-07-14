@@ -109,7 +109,7 @@ stated rather than papered over.
 
 | Dataset | Tier | IPA produced by | Notes / grain of salt |
 |---|---|---|---|
-| `primary_sources` | expert-human | The phonologists and dialectologists the specs cite | Example transcriptions copied out of the cited grammars/monographs/theses, one printed page per row (`N=200` across 11 varieties). The most authoritative gold here — and the smallest. Arabic ḥarakāt on the input side are editor-supplied (the sources print transcription, not script); see the dataset README. |
+| `primary_sources` | expert-human | The phonologists and dialectologists the specs cite | Example transcriptions copied out of the cited grammars/monographs/theses, one printed page per row (`N=270` across 13 varieties). The most authoritative gold here — and the smallest. Arabic ḥarakāt on the input side are editor-supplied (the sources print transcription, not script); see the dataset README. |
 | `ep_dialects` | expert-human | TigreGotico team, manual annotation | Internal dialect research, **pending external peer validation**; sentence-level, `N≈29–45`. |
 | `mirandese_g2p` | expert-human | Native Mirandese speaker | The reference gold and **most trustworthy signal for Mirandese** (row id `mirandese_g2p`, from `TigreGotico/mirandese_g2p`), split by the `dialect` column: central → `mwl` (`N≈205`), sendinese → `mwl-x-sendim` (`N≈11`), raiano → `mwl-x-ifanes` (`N≈2` — an anecdote, read the CI not the point PER). Small-`N`; a separate, more reliable source than any synthetic Mirandese IPA dictionary. |
 | `4catac` | expert-human | Expert annotators (Projecte AINA/BSC) | IEC guidelines, multi-annotator consensus review; sentence-level, `N=160`, `0.00` exact-match reflects notation/connected-speech mismatch, not total failure. |
@@ -169,7 +169,8 @@ Portuguese central-interior and southwestern dialects, and the JIPA *Illustratio
 the IPA* word lists for Ukrainian (Pompino-Marschall, Steriopolo & Żygis 2017),
 Russian (Yanushevskaya & Bunčić 2015), European Portuguese (Cruz-Ferreira 1995) and
 Brazilian Portuguese (Barbosa & Albano 2004) — the last two cited by the `pt-PT` and
-`pt-BR` specs themselves. 200 rows, 11 varieties.
+`pt-BR` specs themselves. the Castilian (Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté 2003) and Argentine
+(Coloma 2018) Spanish Illustrations. 270 rows, 13 varieties.
 
 Each row carries the source id, the **printed** page (not the PDF page index —
 they diverge, and `sources.json` records the offset per source), the source's own
