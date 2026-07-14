@@ -200,7 +200,29 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Portuguese stress conventions as in the Brazilian base (paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x and nasal diphthongs attract final stress). No DPU-specific stress divergence is documented in the read sources, so the pt-BR pattern is retained."
+    "notes": "Portuguese stress conventions as in the Brazilian base (paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x and nasal diphthongs attract final stress). No DPU-specific stress divergence is documented in the read sources, so the pt-BR pattern is retained. DIPHTHONGS: declared so the bundled syllabifier counts nuclei correctly — without them every vowel run merges into one nucleus and co-e-lho is read as coe-lho, one syllable short, putting the stress and its vowel reduction on the wrong vowel. ⟨oe⟩ is hiatus, not a diphthong (Cunha & Cintra, §Ditongos).",
+    "diphthongs": [
+      "ãe",
+      "ão",
+      "õe",
+      "ai",
+      "ái",
+      "au",
+      "áu",
+      "ei",
+      "éi",
+      "êi",
+      "eu",
+      "éu",
+      "êu",
+      "iu",
+      "oi",
+      "ói",
+      "ôi",
+      "ou",
+      "ui",
+      "uí"
+    ]
   },
   "wikidata_qid": "Q3265815",
   "location": {

@@ -109,8 +109,12 @@ class TestStressedEPrePalatal:
     """
 
     def test_coelho(self):
-        # co-E-lho: stressed <e> before <lh> (ʎ) -> [ɐ]
-        assert G2P(LISBON).transcribe_word("coelho") == "ˈkoɐʎu"
+        # co-E-lho: stressed <e> before <lh> (ʎ) -> [ɐ]. The first <o> is
+        # unstressed and raises to [u], which it did not before pt-PT declared
+        # its diphthongs — until then the bundled syllabifier merged the ⟨oe⟩
+        # hiatus into one nucleus, one syllable short, and the stress (and the
+        # reduction it conditions) landed on the wrong vowel.
+        assert G2P(LISBON).transcribe_word("coelho") == "ˈkuɐʎu"
 
     def test_espelho(self):
         assert "ɐʎ" in G2P(LISBON).transcribe_word("espelho")
