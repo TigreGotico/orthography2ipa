@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.0.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.2a1...6.0.0a1)
+
+**Breaking changes:**
+
+- feat!: enforce the grapheme/rule boundary — drop enumerated n-grams, morphology and bundled corpora [\#361](https://github.com/TigreGotico/orthography2ipa/pull/361) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [5.2.2a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.2a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.1a1...5.2.2a1)
