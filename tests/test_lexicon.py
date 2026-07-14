@@ -1,72 +1,103 @@
-"""Tests for T-10: bundled IPA lexicon support.
+"""The lexicon overlay is supplied by the caller, never bundled.
 
-Validates that load_lexicon() correctly reads the ast-PT-x-rionor CSV
-(917 entries) and that the lexicon_csv field in the JSON is honoured.
+A word lexicon is a corpus, not a description of a language, so the library
+ships none. The caller registers one from a local file, a URL, or a Hugging
+Face id, and an unregistered language behaves exactly as if this module did not
+exist.
 """
+from __future__ import annotations
+
 import pytest
 
 import orthography2ipa
-from orthography2ipa.json_loader import load_lexicon
+from orthography2ipa.lexicon import (
+    available_lexicon_codes,
+    clear_lexicons,
+    get_lexicon,
+    lexicon_path,
+    register_lexicon,
+    resolve_lexicon_source,
+    set_lexicon_dir,
+)
 
 
-class TestLoadLexicon:
-    def test_returns_dict(self):
-        lex = load_lexicon("ast-PT-x-rionor")
-        assert isinstance(lex, dict)
+@pytest.fixture(autouse=True)
+def _no_lexicons():
+    """Every test starts and ends with nothing registered."""
+    clear_lexicons()
+    yield
+    clear_lexicons()
 
-    def test_entry_count(self):
-        """CSV has 917 data rows (918 lines including header)."""
-        lex = load_lexicon("ast-PT-x-rionor")
-        assert len(lex) == 917
 
-    def test_known_attested_entry(self):
-        """'abajo' is attested (Macias 2003, p.33)."""
-        lex = load_lexicon("ast-PT-x-rionor")
-        assert "abajo" in lex
-        assert lex["abajo"] == "aˈbaʒo"
+@pytest.fixture
+def tsv(tmp_path):
+    p = tmp_path / "en-GB.tsv"
+    p.write_text("nation\tˈneɪʃən\ncat\tkæt\n", encoding="utf-8")
+    return p
 
-    def test_keys_are_lowercase(self):
-        lex = load_lexicon("ast-PT-x-rionor")
-        for word in lex:
-            assert word == word.lower(), f"Key not lowercase: {word!r}"
 
-    def test_values_are_strings(self):
-        lex = load_lexicon("ast-PT-x-rionor")
-        for word, ipa in lex.items():
-            assert isinstance(ipa, str) and len(ipa) > 0, \
-                f"Empty IPA for {word!r}"
+class TestNothingIsBundled:
+    def test_no_lexicon_ships(self):
+        assert available_lexicon_codes() == []
+        assert get_lexicon("en-GB") == {}
+        assert lexicon_path("en-GB") is None
 
-    def test_returns_none_for_missing_lexicon(self):
-        """Languages without lexicon_csv return None."""
-        lex = load_lexicon("pt-PT")
-        assert lex is None
+    def test_unregistered_language_uses_rules_only(self):
+        """No lexicon → the engine behaves as if the overlay did not exist."""
+        assert orthography2ipa.transcribe("nation", "en-GB") == "nætɪɒn"
 
-    def test_returns_none_for_unknown_code(self):
-        lex = load_lexicon("xx-UNKNOWN")
-        assert lex is None
-
-    def test_accessible_via_top_level_import(self):
-        """load_lexicon is part of the public API."""
-        assert hasattr(orthography2ipa, "load_lexicon")
-        lex = orthography2ipa.load_lexicon("ast-PT-x-rionor")
-        assert lex is not None
-
-    def test_betacism_entries_use_b_not_v(self):
-        """All Rionorese IPA entries should use /b/ not /v/ (betacism)."""
-        lex = load_lexicon("ast-PT-x-rionor")
-        violations = {
-            word: ipa for word, ipa in lex.items() if "v" in ipa
-        }
-        assert not violations, \
-            f"Betacism violation — entries with /v/ in IPA: {list(violations.items())[:5]}"
-
-    def test_lexicon_csv_field_in_json(self):
-        """ast-PT-x-rionor.json has a lexicon_csv field pointing to the CSV."""
-        import json
+    def test_no_lexicon_files_in_the_package(self):
         from pathlib import Path
-        data_dir = Path(orthography2ipa.__file__).parent / "data"
-        with (data_dir / "ast-PT-x-rionor.json").open() as f:
-            raw = json.load(f)
-        assert "lexicon_csv" in raw
-        csv_path = data_dir / raw["lexicon_csv"]
-        assert csv_path.exists(), f"CSV declared in JSON not found: {csv_path}"
+        data = Path(orthography2ipa.__file__).parent / "data"
+        assert not (data / "lexicons").exists()
+
+
+class TestLocalFile:
+    def test_register_path(self, tsv):
+        register_lexicon("en-GB", str(tsv))
+        assert get_lexicon("en-GB")["cat"] == "kæt"
+        assert available_lexicon_codes() == ["en-GB"]
+
+    def test_lexicon_overrides_the_rules(self, tsv):
+        register_lexicon("en-GB", str(tsv))
+        assert orthography2ipa.transcribe("nation", "en-GB") == "ˈneɪʃən"
+
+    def test_clear_restores_rules_only(self, tsv):
+        register_lexicon("en-GB", str(tsv))
+        clear_lexicons()
+        assert orthography2ipa.transcribe("nation", "en-GB") == "nætɪɒn"
+
+    def test_missing_file_is_an_error(self):
+        register_lexicon("en-GB", "/no/such/lexicon.tsv")
+        with pytest.raises(FileNotFoundError):
+            get_lexicon("en-GB")
+
+
+class TestLexiconDir:
+    def test_dir_is_discovered_by_code(self, tsv):
+        set_lexicon_dir(tsv.parent)
+        assert available_lexicon_codes() == ["en-GB"]
+        assert orthography2ipa.transcribe("nation", "en-GB") == "ˈneɪʃən"
+
+    def test_registered_source_wins_over_the_dir(self, tsv, tmp_path):
+        other = tmp_path / "other.tsv"
+        other.write_text("nation\tnaʃon\n", encoding="utf-8")
+        set_lexicon_dir(tsv.parent)
+        register_lexicon("en-GB", str(other))
+        assert get_lexicon("en-GB")["nation"] == "naʃon"
+
+    def test_env_var(self, tsv, monkeypatch):
+        monkeypatch.setenv("ORTHOGRAPHY2IPA_LEXICON_DIR", str(tsv.parent))
+        get_lexicon.cache_clear()
+        assert get_lexicon("en-GB")["cat"] == "kæt"
+
+
+class TestRemoteSources:
+    def test_hf_id_must_name_a_file(self):
+        with pytest.raises(ValueError, match="hf://"):
+            resolve_lexicon_source("hf://Owner/repo")
+
+    def test_registration_does_not_fetch(self):
+        """Lazy: no network until the language is actually transcribed."""
+        register_lexicon("en-GB", "https://example.invalid/en.tsv")
+        assert available_lexicon_codes() == ["en-GB"]

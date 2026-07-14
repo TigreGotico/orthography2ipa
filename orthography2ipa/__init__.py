@@ -41,11 +41,14 @@ from orthography2ipa.g2p import (
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
 from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
-from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
+    clear_lexicons,
     get_lexicon,
     is_ipa_string,
+    register_lexicon,
+    resolve_lexicon_source,
+    set_lexicon_dir,
     validate_lexicon_text,
 )
 from orthography2ipa.phonetok import (
@@ -130,8 +133,11 @@ __all__ = [
     "ancestry_chain",
     "available_codes",
     "available_families",
-    "load_lexicon",
     "get_lexicon",
+    "register_lexicon",
+    "set_lexicon_dir",
+    "clear_lexicons",
+    "resolve_lexicon_source",
     "available_lexicon_codes",
     "is_ipa_string",
     "validate_lexicon_text",

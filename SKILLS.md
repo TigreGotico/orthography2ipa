@@ -9,6 +9,7 @@ touches `orthography2ipa/data/*.json`. Reference docs live in [`docs/`](docs/).
 | add or extend a language spec | [Add a language](#add-a-language) |
 | express a context-dependent sound | [Express a context](#express-a-context) |
 | check data for design violations | [Audit the data](#audit-the-data) |
+| use a word lexicon | [Supply a lexicon](#supply-a-lexicon) |
 | measure accuracy | [Benchmark](#benchmark) |
 | find out *why* a word is wrong | [Error analysis](#error-analysis) |
 | give the engine a new capability | [Extend the engine](#extend-the-engine) |
@@ -112,6 +113,37 @@ A cluster is **never** a grapheme: use `followed_by: "consonant_cluster"`
 `followed_by_phoneme` list of 170 cluster strings is the same violation wearing
 a different hat. A closed natural class (`["p","t","k"]`) is fine; a cartesian
 product is not.
+
+## Supply a lexicon
+
+Deep orthographies (English, Danish, Irish) cannot reach production accuracy from
+grapheme rules alone. The answer is a word lexicon — **and it is never bundled**
+(AGENTS.md §6). Do not try to buy the accuracy back inside a spec by adding
+suffix pseudo-graphemes (⟨tion⟩) or fattening `word_exceptions`.
+
+The caller registers one, from a local file, a URL, or a Hugging Face id:
+
+```python
+import orthography2ipa as o2i
+
+o2i.register_lexicon("en-GB", "/data/en-GB.tsv")
+o2i.register_lexicon("en-GB", "https://example.org/en-GB.tsv")
+o2i.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")   # needs .[hf]
+
+o2i.set_lexicon_dir("~/lexicons")        # or $ORTHOGRAPHY2IPA_LEXICON_DIR
+```
+
+Format is `word<TAB>ipa`, UTF-8, NFC, lowercase keys, first entry wins. Validate
+before registering:
+
+```python
+problems = o2i.validate_lexicon_text(open("en-GB.tsv").read())
+```
+
+Precedence is `word_exceptions` > lexicon > rules. Resolution is lazy (nothing is
+read or fetched until the first transcription for that language) and remote
+sources are cached under `$XDG_CACHE_HOME/orthography2ipa`.
+`scripts/build_en_lexicon.py` builds a CMUdict-derived English one.
 
 ## Benchmark
 

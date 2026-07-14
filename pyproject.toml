@@ -29,6 +29,7 @@ version = {attr = "orthography2ipa.version.VERSION_STR"}
 dependencies = {file = ["requirements.txt"]}
 
 [project.optional-dependencies]
+hf = ["huggingface_hub"]
 validation = ["pydantic>=2"]
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency
@@ -45,4 +46,4 @@ orthography2ipa = "orthography2ipa.cli:main"
 include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
-"orthography2ipa" = ["data/*.json", "data/SCHEMA.md", "data/lexicons/*.csv", "data/lexicons/*.tsv"]
+"orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]

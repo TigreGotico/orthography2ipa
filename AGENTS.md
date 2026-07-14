@@ -28,7 +28,7 @@ A key must be something the writing system actually treats as a symbol:
   ⟨tch⟩ /tʃ/, ⟨ng⟩ /ŋ/, or a unit of a designed romanisation (pinyin finals
   ⟨iang⟩, ⟨uai⟩).
 
-A multigraph earns its key if **either** test passes:
+A multigraph earns its key if **any** of these three tests passes:
 
 1. **Its IPA is not merely the concatenation of its parts' IPA.** ⟨sch⟩→/ʃ/ earns
    its key because s+c+h would give /sx/.
@@ -111,13 +111,34 @@ byte-identical agreement with a gold set or with espeak — gold sets are not
 trusted, and a disagreement that you can cite is a **win**, not a regression.
 Retain Wikipedia sources alongside primary literature; never strip them.
 
-### 6. The library does not normalise text
+### 6. No corpora — the payload is the description, not the data
+
+The package ships language *descriptions*: grapheme maps, rules, inventories,
+ancestry. It ships **no word lists, no lexicons, no gold sets, no weights**. A
+lexicon is a corpus, not a description of a language; bundling one bloats the
+wheel and freezes a corpus into a release.
+
+The lexicon overlay is caller-supplied — a local path, a URL, or a Hugging Face
+id:
+
+```python
+orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")
+orthography2ipa.set_lexicon_dir("~/lexicons")   # or $ORTHOGRAPHY2IPA_LEXICON_DIR
+```
+
+Resolution is lazy and cached; nothing is fetched unless the caller asked for it.
+English is the illustration: without a lexicon ⟨nation⟩ is /nætɪɒn/, and that is
+the *honest* output of English grapheme rules. The fix is a lexicon the caller
+supplies, or a morphological analyser downstream — never a ⟨tion⟩ pseudo-grapheme
+smuggled into the spec.
+
+### 7. The library does not normalise text
 
 Specs assume already-normalised input. Orthographic reform handling, diacritic
 restoration, and script conversion belong downstream (bifonia, arbtok, tugaphone,
 scriptconv), never here.
 
-### 7. Leave no holes in the graph
+### 8. Leave no holes in the graph
 
 When a spec references an ancestor or a related lect that has no file, add a
 cited stub rather than leaving a dangling reference. Grouping/family nodes are
@@ -150,7 +171,7 @@ No linter or type checker is configured. Code uses `from __future__ import annot
 ## Layout
 
 - `orthography2ipa/types.py` — frozen dataclasses: `LanguageSpec`, `Grapheme2IPA`, `AllophoneMap`, `Ancestor`, `PositionalGrapheme2IPA`, `SandhiRule`; enums `QualityTier`/`ScriptType`/`AncestorRole`.
-- `orthography2ipa/data/*.json` — 356 language/dialect spec files (the actual payload). `data/SCHEMA.md` documents the format; dialects inherit via `graphemes_base`/`allophones_base`. `data/lexicons/*.csv` hold reference word lists.
+- `orthography2ipa/data/*.json` — 356 language/dialect spec files (the actual payload). `data/SCHEMA.md` documents the format; dialects inherit via `graphemes_base`/`allophones_base`. No lexicons are bundled — a word list is a corpus, not a description of a language; callers register one (path / URL / `hf://` id).
 - `orthography2ipa/json_loader.py` — loads JSON specs and lexicons, resolves multi-ancestor inheritance.
 - `orthography2ipa/registry.py` — `get()`, `available_codes()`, `available_families()`; lazy cache + plugin discovery + ISO alias table.
 - `orthography2ipa/phonetok.py` — `PhonetokTokenizer`, beam-search IPA expansion (`IPAPath`, `Token`, `TokenKind`).

@@ -868,7 +868,7 @@ uncertainty rather than as a false-precision leaderboard entry:
 ### Rules-only vs with-lexicon PER (lexicon overlay)
 
 Languages that ship an optional lexicon overlay
-(`orthography2ipa/data/lexicons/{code}.tsv` — see
+(a caller-registered TSV, never bundled — see
 [`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale))
 are scored **twice** on the same gold — once with the lexicon disabled
 (`get_lexicon` stubbed to `{}`, the "rules-only PER") and once with it active

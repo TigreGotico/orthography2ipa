@@ -400,7 +400,7 @@ accuracy from grapheme rules alone — too many words are irregular. The
 irregulars inline in the JSON, but it does not scale to thousands of entries.
 
 A **lexicon** is an optional, convention-based sidecar file
-`orthography2ipa/data/lexicons/{code}.tsv` — one `word<TAB>ipa` pair per line,
+a caller-registered TSV (`orthography2ipa.register_lexicon(code, path_or_url_or_hf_id)`; nothing is bundled) — one `word<TAB>ipa` pair per line,
 UTF-8, NFC-normalised, lowercase words, sorted, first-entry-wins. It needs **no
 new spec field and no JSON change**: the file is discovered by its name (the
 resolved language code, e.g. `en-GB.tsv`), so `FIELD_INHERITANCE` is untouched.

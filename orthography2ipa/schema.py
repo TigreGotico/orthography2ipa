@@ -323,8 +323,6 @@ class LanguageSpecModel(_Strict):
     orthography_standard: Optional[OrthographyStandardModel] = None
     location: Optional[LocationModel] = None
 
-    # ─── bundled-lexicon reference (consumed by load_lexicon) ────────
-    lexicon_csv: Optional[str] = None
 
     # ─── whole-word overrides for a closed irregular set ─────────────
     word_exceptions: Optional[Dict[str, str]] = None

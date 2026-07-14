@@ -1808,7 +1808,7 @@ def write_scoreboard(rows: List[dict]) -> None:
 # how much of a language's accuracy comes from the *rules* versus the shipped
 # sidecar TSV. This report re-scores the same gold twice — once with the
 # lexicon disabled ("rules-only PER") and once with it on ("with-lexicon PER")
-# — for every language that ships a data/lexicons/{code}.tsv, so a regression
+# — for every language with a registered lexicon (none are bundled), so a regression
 # in rule quality can't hide behind lexicon coverage. It is a SEPARATE artifact
 # from the main scoreboard (docs/scoreboard.md is left untouched): languages
 # with no lexicon are byte-identical with or without this feature.
@@ -1854,7 +1854,7 @@ def _score_pairs(pairs, lang: str) -> Tuple[int, float]:
 def build_lexicon_report(limit: Optional[int]) -> List[dict]:
     """Rules-only vs with-lexicon PER for every shipped lexicon language.
 
-    For each ``data/lexicons/{code}.tsv`` and each wikipron gold tag that
+    For each registered lexicon (see ``orthography2ipa.register_lexicon``) and each wikipron gold tag that
     resolves to it, reports PER on the full ``limit`` slice AND on just the
     subset of gold words the lexicon actually covers (where the overlay can
     possibly act) — the covered-subset delta is the honest measure of the
@@ -1910,7 +1910,7 @@ def write_lexicon_report(rows: List[dict]) -> None:
         "# Lexicon-overlay scoreboard",
         "",
         "Rules-only vs with-lexicon PER for every language that ships an "
-        "optional sidecar lexicon (`orthography2ipa/data/lexicons/{code}.tsv` "
+        "optional caller-registered lexicon (never bundled) "
         "— see [`docs/data_model.md`](data_model.md) and "
         "[`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the "
         "overlay must *improve* PER without letting the underlying grapheme "
@@ -1978,7 +1978,7 @@ def main() -> None:
                          "published scoreboard).")
     ap.add_argument("--lexicon-report", action="store_true",
                     help="Score rules-only vs with-lexicon PER for every "
-                         "language shipping a data/lexicons/{code}.tsv and "
+                         "language with a registered lexicon and "
                          "write docs/lexicon_scoreboard.md + "
                          "benchmarks/lexicon_results.json")
     args = ap.parse_args()

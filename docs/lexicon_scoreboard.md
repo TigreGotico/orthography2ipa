@@ -1,6 +1,6 @@
 # Lexicon-overlay scoreboard
 
-Rules-only vs with-lexicon PER for every language that ships an optional sidecar lexicon (`orthography2ipa/data/lexicons/{code}.tsv` — see [`docs/data_model.md`](data_model.md) and [`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the overlay must *improve* PER without letting the underlying grapheme rules rot behind lexicon coverage. Same gold, scored twice — once with `get_lexicon` stubbed to `{}` (rules-only) and once with the sidecar active. Regenerate with:
+Rules-only vs with-lexicon PER for every language with a caller-registered lexicon (never bundled — see [`docs/data_model.md`](data_model.md) and [`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the overlay must *improve* PER without letting the underlying grapheme rules rot behind lexicon coverage. Same gold, scored twice — once with `get_lexicon` stubbed to `{}` (rules-only) and once with the sidecar active. Regenerate with:
 
 ```bash
 PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report

@@ -90,7 +90,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
 | `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
-| `lexicon_csv`               | string | no       | Path (relative to `data/`) of a bundled IPA lexicon CSV |
+| *(lexicon)*                 | —      | —        | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. |
 
 ## Clade Nodes and the Derived `family`
 

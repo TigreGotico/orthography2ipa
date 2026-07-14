@@ -670,7 +670,7 @@ class G2P:
         """Whole-word IPA override for *word*, or ``None`` to fall to rules.
 
         Precedence — inline ``spec.word_exceptions`` > sidecar lexicon
-        (``data/lexicons/{lang}.tsv``) > ``None``. Both are matched on the same
+        (caller-registered; see :mod:`orthography2ipa.lexicon`) > ``None``. Both are matched on the same
         language-aware lowercased key, so a lexicon hit rejoins the *identical*
         override pathway an inline exception uses (stress-mark insertion,
         cross-word sandhi and ``confidence == 1.0`` all apply unchanged). The
