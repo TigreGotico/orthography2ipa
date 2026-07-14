@@ -254,6 +254,7 @@ def detect_stress(
         if index is not None:
             return max(0, min(index, n - 1))
 
+
     # 1. written accent overrides everything
     if rules.marked_vowels:
         marked = set(rules.marked_vowels)

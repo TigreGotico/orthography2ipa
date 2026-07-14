@@ -938,6 +938,10 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     # Which marks the orthography omits is a property of the writing system, and
     # a spec that inherits a grapheme table does not thereby inherit a script —
     # so each spec declares its own, exactly as it declares script_type.
+    # A dialect inherits its parent's engine choices unless it says otherwise:
+    # Najdi wants the same diacritizer as MSA. OVERLAY_BY_ID would need ids; a
+    # plain dict merge is what "same, plus my overrides" means here.
+    "plugins": InheritanceMode.OWN_ONLY,
     "optional_marks": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1094,6 +1098,24 @@ class LanguageSpec:
     inherent_vowel: Optional[str] = None
     """For abugidas — the vowel assumed when no vowel mark is present
     (e.g. ``"ə"`` for Hindi, ``"a"`` for Sanskrit)."""
+
+    plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
+    """Which plugin this language wants, per stage — keyed by entry-point name.
+
+    A plugin that CHANGES THE TRANSCRIPTION must be named here. That is what keeps
+    the output a function of the spec and the input rather than of whatever
+    happens to be installed::
+
+        "plugins": {"normalize": "text2tashkeel", "sandhi": "arbtok"}
+
+    A named plugin that is not installed is an ERROR, not a quiet fallback — a
+    quiet fallback is how you get two transcriptions for one word and no way to
+    know which one you got.
+
+    ``syllabify`` is deliberately NOT declared here: a syllabifier is a
+    refinement, not a decision. It must reach the same answer by better means, and
+    the conformance kit fails it if it does not. See
+    :mod:`orthography2ipa.plugins`."""
 
     optional_marks: Tuple[str, ...] = ()
     """The diacritics this orthography habitually **omits** — the Arabic
