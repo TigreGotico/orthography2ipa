@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.6.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.2a1...4.6.0a1)
+
+**Merged pull requests:**
+
+- feat: plugin contracts, lattice plugins, and silabificador as an optional extra [\#368](https://github.com/TigreGotico/orthography2ipa/pull/368) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [4.5.2a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.2a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.1a1...4.5.2a1)
