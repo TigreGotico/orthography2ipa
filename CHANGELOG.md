@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.1.0a1...5.2.0a1)
+
+**Merged pull requests:**
+
+- feat: normalize and sandhi are pluggable, and one declaration governs all of them [\#376](https://github.com/TigreGotico/orthography2ipa/pull/376) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [5.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.1.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.0.0a1...5.1.0a1)
