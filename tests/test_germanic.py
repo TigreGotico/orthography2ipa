@@ -1755,3 +1755,37 @@ class TestOldFrisian:
     def test_ancestry_ingvaeonic(self):
         assert "gem-x-ingvaeonic" in _ancestor_codes(self._spec), \
             "ofs should descend from Proto-Ingvaeonic"
+
+
+class TestGermanFinalIg:
+    """⟨-ig⟩ is not a grapheme: word-final ⟨g⟩ after /ɪ/ spirantises to [ç].
+
+    Stating it as a rule keyed on the ⟨g⟩ grapheme keeps ⟨-ik⟩ (Musik) and
+    every other final ⟨g⟩ (Tag) out of it.
+    """
+
+    @staticmethod
+    def _t(word):
+        from orthography2ipa.g2p import transcribe
+        return transcribe(word, "de-DE").replace("ˈ", "")
+
+    def test_final_ig_spirantises(self):
+        assert self._t("König") == "kœnɪç"
+        assert self._t("ewig") == "ɛvɪç"
+        assert self._t("wichtig") == "vɪçtɪç"
+
+    def test_non_final_ig_stays_a_stop(self):
+        assert self._t("Königin") == "kœnɪɡɪn"
+
+    def test_other_final_g_just_devoices(self):
+        assert self._t("Tag") == "tak"
+        assert self._t("Weg") == "vɛk"
+
+    def test_final_ik_is_untouched(self):
+        assert self._t("Musik") == "mʊzɪk"
+
+    def test_ig_is_not_a_grapheme(self):
+        from orthography2ipa import get
+        spec = get("de-DE")
+        assert "ig" not in spec.graphemes
+        assert "ig" not in (spec.positional_graphemes or {})

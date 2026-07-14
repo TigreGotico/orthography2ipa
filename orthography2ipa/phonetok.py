@@ -1586,17 +1586,28 @@ class PhonetokTokenizer:
         return ids
 
     def decode(self, ids: Sequence[int]) -> str:
-        """Decode integer token IDs back into a grapheme string."""
-        inv = {v: k for k, v in self.vocab.items()}
+        """Decode integer token IDs back into a grapheme string.
+
+        A special token is identified by its **id** (the reserved 0…6 block),
+        never by its spelling: a transliteration scheme may use ``<`` as a
+        letter — Buckwalter writes ⟨إ⟩ as ``<`` — and a ``startswith("<")``
+        test would silently drop it.
+        """
+        v = self.vocab
+        inv = {i: tok for tok, i in v.items()}
+        whitespace = v["<ws>"]
+        special = {v[t] for t in
+                   ("<pad>", "<bos>", "<eos>", "<unk>", "<punct>", "<digit>")}
         parts: List[str] = []
         for i in ids:
-            tok = inv.get(i, "<unk>")
-            if tok == "<ws>":
+            if i == whitespace:
                 parts.append(" ")
-            elif tok.startswith("<"):
-                continue  # skip special tokens in decode
+            elif i in special:
+                continue
             else:
-                parts.append(tok)
+                tok = inv.get(i)
+                if tok is not None:
+                    parts.append(tok)
         return "".join(parts)
 
     # ─── Internal helpers ───────────────────────────────────────────────
