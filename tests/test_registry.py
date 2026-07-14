@@ -9,6 +9,8 @@ Validates:
 """
 import pytest
 
+from orthography2ipa import registry
+
 import orthography2ipa
 from orthography2ipa.registry import (
     get,
@@ -166,19 +168,37 @@ class TestTopLevelAPI:
 class TestSyllabifierDiscovery:
     """get_syllabifier() dispatches to entry-point plugins.
 
-    No third-party syllabifier package is installed in this environment,
-    so discovery must handle the zero-plugins case without crashing and
-    simply report that no syllabifier is registered.
+    These assert BEHAVIOUR, not the contents of the environment. Whether a
+    syllabifier is installed is not a property of this library: tugaphone ships
+    one, and it is a normal — indeed the intended — downstream configuration. A
+    test that asserts "nothing is installed" passes only where nothing is, which
+    means it fails for exactly the users who wired the plugin system up correctly.
+    So the zero-plugin case is *constructed* here rather than assumed.
     """
 
-    def test_no_plugins_installed_returns_none(self):
-        assert get_syllabifier("pt-PT") is None
+    def test_zero_plugins_returns_none(self, monkeypatch):
+        """The zero-plugin case must not crash — it must simply report nothing."""
+        monkeypatch.setattr(registry, "_syllabifiers", {})
+        assert registry.get_syllabifier("pt-PT") is None
 
     def test_unknown_code_returns_none(self):
+        """A code no plugin claims resolves to nothing, installed or not."""
         assert get_syllabifier("xx-nonexistent-code") is None
 
     def test_repeated_calls_are_stable(self):
-        """Discovery is cached; repeated lookups don't re-scan or raise."""
+        """Discovery is cached: repeated lookups return the same object and do
+        not re-scan the entry points."""
         first = get_syllabifier("pt-PT")
         second = get_syllabifier("pt-PT")
-        assert first is second is None
+        assert first is second
+
+    def test_an_installed_plugin_is_discovered(self):
+        """When a plugin IS installed, it is found and it is a syllabifier.
+
+        Skipped where none is installed, because that is a fact about the
+        environment and not about this code.
+        """
+        plugin = get_syllabifier("pt-PT")
+        if plugin is None:
+            pytest.skip("no syllabifier plugin installed in this environment")
+        assert hasattr(plugin, "syllabify")
