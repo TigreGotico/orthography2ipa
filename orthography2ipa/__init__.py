@@ -90,6 +90,8 @@ from orthography2ipa.transforms import (
     debias_lisbon,
     load_clup_profile,
 )
+from orthography2ipa.registry import get_rescorers, who_answers
+from orthography2ipa.rescorer_plugin import RescorerPlugin
 from orthography2ipa.inventory import (
     STRESS_MARKS,
     dead_allophone_rules,
@@ -154,6 +156,9 @@ __all__ = [
     "AllophoneRescorer",
     "compile_allophone_rescorer",
     "StressRules",
+    "get_rescorers",
+    "who_answers",
+    "RescorerPlugin",
     "emission_inventory",
     "phoneme_inventory",
     "tokenize",
