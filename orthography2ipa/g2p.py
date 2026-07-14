@@ -436,7 +436,12 @@ class G2P:
         # from the last characters of the IPA confuses an ending with a stem.
         for plugin in self._stage_plugins.get("sandhi"):
             surfaces = [w.surface for w in words]
-            rewritten = plugin.apply(list(ipa_words), surfaces, self.lang)
+            # The pause has to be HANDED to the plugin: punctuation is stripped
+            # during word splitting, so by now it is gone from the input — and a
+            # pause is exactly what removes a case ending.
+            pausal = [w.pausal for w in words]
+            rewritten = plugin.apply(
+                list(ipa_words), surfaces, pausal, self.lang)
             if len(rewritten) != len(ipa_words):
                 raise ValueError(
                     f"the sandhi plugin {type(plugin).__name__} returned "
