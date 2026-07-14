@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.5.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.1a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.0a2...4.5.1a1)
+
+**Merged pull requests:**
+
+- fix: the syllabifier-discovery tests asserted the environment, not the code [\#366](https://github.com/TigreGotico/orthography2ipa/pull/366) ([JarbasAl](https://github.com/JarbasAl))
+- fix: a tāʾ marbūṭa carrying a vowel is pronounced [\#365](https://github.com/TigreGotico/orthography2ipa/pull/365) ([JarbasAl](https://github.com/JarbasAl))
+
+## [4.5.0a2](https://github.com/TigreGotico/orthography2ipa/tree/4.5.0a2) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.0a1...4.5.0a2)
+
 ## [4.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.4.0a1...4.5.0a1)
