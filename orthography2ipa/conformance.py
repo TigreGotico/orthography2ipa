@@ -214,16 +214,23 @@ def assert_rescorer_conforms(
     spec = get(lang)
     declared = phoneme_inventory(spec)
 
-    saved = registry._rescorer_plugins
+    # Declared, not discovered. A rescorer changes the transcription, so it only
+    # ever runs because something NAMED it — here, the caller, which is exactly how
+    # a downstream engine composes its own pipeline.
+    saved = registry._declared.get("rescore")
     try:
-        registry._rescorer_plugins = {
-            code: [plugin] for code in {*plugin.language_codes, lang}
-        }
-        engine = G2P(lang)
+        registry._declared["rescore"] = {"__conformance__": plugin}
+        engine = G2P(lang, plugins={"rescore": "__conformance__"})
         first = {w: engine.transcribe_word(w) for w in words}
-        second = {w: G2P(lang).transcribe_word(w) for w in words}
+        second = {
+            w: G2P(lang, plugins={"rescore": "__conformance__"}).transcribe_word(w)
+            for w in words
+        }
     finally:
-        registry._rescorer_plugins = saved
+        if saved is None:
+            registry._declared.pop("rescore", None)
+        else:
+            registry._declared["rescore"] = saved
 
     unstable = {w: (first[w], second[w]) for w in words if first[w] != second[w]}
     if unstable:

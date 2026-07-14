@@ -341,3 +341,73 @@ class MissingStressPlugin(RuntimeError):
     substituting a different stress model makes it a function of what happens to
     be installed, which is the bug this rule exists to prevent.
     """
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Declared plugins — the spec names them, by entry-point name
+# ═══════════════════════════════════════════════════════════════════════════
+
+class MissingPlugin(RuntimeError):
+    """A spec named a plugin and it is not installed.
+
+    Deliberately fatal. The spec asked for this plugin because the built-in answer
+    is not the answer it wants — so falling back to the built-in would not be a
+    graceful degradation, it would be a DIFFERENT TRANSCRIPTION, silently, with no
+    way for the caller to know which one they got.
+    """
+
+
+_declared: Dict[str, Dict[str, object]] = {}
+
+
+def _discover_stage(stage: str) -> Dict[str, object]:
+    """Every plugin registered for *stage*, keyed by its ENTRY-POINT NAME.
+
+    The name is the plugin's identity, and it is what a spec names. That makes the
+    declaration readable and greppable — and it means two packages cannot fight
+    over a language, because the spec already said which one it wanted.
+    """
+    import logging
+    from importlib.metadata import entry_points
+
+    from orthography2ipa.plugins import ENTRY_POINT_GROUPS
+
+    found: Dict[str, object] = {}
+    for ep in entry_points(group=ENTRY_POINT_GROUPS[stage]):
+        try:
+            found[ep.name] = ep.load()()
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "failed to load %s plugin %r: %s", stage, ep.name, exc)
+    return found
+
+
+def get_declared_plugins(stage: str, spec) -> List[object]:
+    """The plugins *spec* names for *stage*, in the order it names them.
+
+    Raises :class:`MissingPlugin` for a name the spec asks for and nothing
+    provides.
+    """
+    names = (spec.plugins or {}).get(stage, ())
+    if not names:
+        return []
+
+    if stage not in _declared:
+        _declared[stage] = _discover_stage(stage)
+    available = _declared[stage]
+
+    out: List[object] = []
+    for name in names:
+        plugin = available.get(name)
+        if plugin is None:
+            raise MissingPlugin(
+                f"the {spec.code!r} spec names the {stage} plugin {name!r}, and it "
+                f"is not installed.\n\n"
+                f"Installed for this stage: {sorted(available) or 'nothing'}.\n\n"
+                f"This is fatal on purpose. The spec asked for this plugin because "
+                f"the built-in answer is not the answer it wants — so falling back "
+                f"would not be a graceful degradation, it would be a DIFFERENT "
+                f"TRANSCRIPTION, silently. Install it, or change the spec."
+            )
+        out.append(plugin)
+    return out
