@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.2.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.1.0a1...6.2.0a1)
+
+**Merged pull requests:**
+
+- feat: force a pronunciation with SSML \<phoneme\> [\#384](https://github.com/TigreGotico/orthography2ipa/pull/384) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.1.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.0.0a1...6.1.0a1)
