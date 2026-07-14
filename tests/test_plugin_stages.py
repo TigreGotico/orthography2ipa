@@ -31,7 +31,7 @@ class _Diacritizer(NormalizePlugin):
 class _NunAssimilation(SandhiPlugin):
     """Stands in for arbtok's cross-word layer: min + rabbihim -> mir rabbihim."""
 
-    def apply(self, words, surfaces, lang):
+    def apply(self, words, surfaces, pausal, lang):
         out = list(words)
         for i, ipa in enumerate(out[:-1]):
             if ipa.endswith("n") and out[i + 1][:1] == "r":
@@ -106,3 +106,40 @@ def test_no_shipped_spec_names_a_plugin():
     from orthography2ipa import available_codes
     named = [c for c in available_codes() if get(c).plugins]
     assert named == []
+
+
+# ─── the pause has to be HANDED to the plugin ───────────────────────────
+
+class _PausalDropsTheEnding(SandhiPlugin):
+    """A word at a pause loses its case ending. It cannot find the pause itself."""
+
+    seen: list = []
+
+    def apply(self, words, surfaces, pausal, lang):
+        type(self).seen = list(pausal)
+        return [
+            w[:-2] if at_pause and w.endswith("un") else w
+            for w, at_pause in zip(words, pausal)
+        ]
+
+    @property
+    def language_codes(self):
+        return ["ar"]
+
+
+def test_a_sandhi_plugin_is_told_where_the_pause_is(monkeypatch):
+    """Punctuation is stripped during word splitting, so by the time a plugin sees
+    the words the pause is GONE from the input — and a pause is exactly what
+    removes a case ending. It has to be handed over, not inferred.
+
+    Found by the first real consumer: arbtok's cross-word layer silently did
+    nothing, because it could not tell that the utterance had ended.
+    """
+    monkeypatch.setitem(
+        registry._declared, "sandhi", {"pausal": _PausalDropsTheEnding()})
+
+    engine = G2P("ar", plugins={"sandhi": "pausal"})
+    out = engine.transcribe("قَلَمٌ")
+
+    assert _PausalDropsTheEnding.seen == [True]     # the last word IS at a pause
+    assert out.endswith("qalam")                    # …so the ending goes

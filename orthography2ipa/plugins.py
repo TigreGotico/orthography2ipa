@@ -149,6 +149,7 @@ class SandhiPlugin(ABC):
         self,
         words: Sequence[str],
         surfaces: Sequence[str],
+        pausal: Sequence[bool],
         lang: str,
     ) -> List[str]:
         """Rewrite the IPA of each word, given its neighbours.
@@ -158,8 +159,18 @@ class SandhiPlugin(ABC):
             surfaces: each word's orthographic form, aligned with *words*. The
                 spelling is not redundant: whether a word ends in a case ending is
                 a fact about the page, and guessing it from the last characters of
-                the IPA confuses an ending with a stem.
+                the IPA confuses an ending with a stem — the ``-in`` of قَاضٍ is an
+                ending and the ``-in`` of مُؤْمِن is the word.
+            pausal: whether each word stands before a pause — punctuation, or the
+                end of the utterance. This has to be given, not inferred: the
+                engine strips punctuation during word splitting, so by the time a
+                plugin sees the words the pause is *gone from the input*, and a
+                pause is precisely what removes a case ending.
             lang: the resolved code.
+
+        The IPA may already carry a stress mark: stress is placed per word, before
+        this runs. A plugin matching on the shape of a word must account for that
+        — ``ˈmin`` is still *min*.
 
         Returns a list of the same length. A plugin that returns a different
         length has rewritten the sentence, not its sandhi.
