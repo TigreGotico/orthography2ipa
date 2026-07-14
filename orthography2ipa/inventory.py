@@ -72,7 +72,7 @@ def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
       rule is a *new* source of IPA, so an inventory read off the graphemes
       alone would miss Najdi's ``ts`` entirely;
     * the word-level overrides — inline ``word_exceptions`` and the sidecar
-      lexicon (``data/lexicons/{code}.tsv``) — which carry arbitrary IPA per
+      lexicon (caller-registered, never bundled) — which carry arbitrary IPA per
       word and bypass the tables completely;
     * the stress marks, when the spec declares stress rules.
 

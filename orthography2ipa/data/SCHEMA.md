@@ -90,7 +90,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
 | `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
-| `lexicon_csv`               | string | no       | Path (relative to `data/`) of a bundled IPA lexicon CSV |
+| *(lexicon)*                 | —      | —        | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. |
 
 ## Clade Nodes and the Derived `family`
 
@@ -287,7 +287,7 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `word_final` | bool | no | Require (or forbid) word-final position |
 | `stress` | string | no | `"stressed"` / `"unstressed"` — engine path only (needs stress context) |
 | `syllable_position` | string | no | `"onset"` / `"coda"` / `"nucleus"` (maximal-onset heuristic) |
-| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary` |
+| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `consonant_cluster`, `coda`, `coda_nasal`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary`. `consonant_cluster` = the neighbour begins two or more consonant segments counting away from this grapheme (a geminate, a multi-consonant grapheme such as ⟨x⟩ /ks/, or a consonant whose own neighbour is a consonant) — the context closed-syllable shortening and complementary quantity need. `coda` = the neighbour is in coda position; `coda_nasal` = a coda nasal — what a vowel nasalises before (⟨bon⟩ [bɔ̃] vs ⟨bonne⟩ [bɔn]). **Never enumerate clusters or nasal vowels as grapheme keys** (⟨an⟩ is not a digraph); see [allophony](../../docs/allophony.md#consonant_cluster) |
 | `followed_by` | string | no | Next-grapheme class (same value set) |
 | `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |

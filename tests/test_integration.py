@@ -71,16 +71,22 @@ class TestPipelineRionorese:
         ipa = tok_rio.ipa_best("chamar")
         assert "ʃ" in ipa
 
-    def test_lexicon_then_transform(self):
-        """Lexicon lookup for known word, then apply Leonese transform."""
-        lex = orthography2ipa.load_lexicon("ast-PT-x-rionor")
-        assert lex is not None
-        ipa = lex.get("abajo")
-        assert ipa is not None
-        # Apply leonese transform (should be mostly idempotent on already-
-        # Rionorese IPA, since betacism is already applied in the lexicon)
-        result = apply_transform(ipa, "leonese", debias=False)
-        assert isinstance(result, str)
+    def test_lexicon_then_transform(self, tmp_path):
+        """A caller-supplied lexicon feeds the transform pipeline.
+
+        No lexicon is bundled — the caller registers one (path, URL or hf id).
+        """
+        lex_file = tmp_path / "ast-PT-x-rionor.tsv"
+        lex_file.write_text("abajo\taˈbaʒo\n", encoding="utf-8")
+        orthography2ipa.register_lexicon("ast-PT-x-rionor", str(lex_file))
+        try:
+            ipa = orthography2ipa.get_lexicon("ast-PT-x-rionor")["abajo"]
+            # betacism is already applied in the lexicon, so the Leonese
+            # transform is mostly idempotent here
+            result = apply_transform(ipa, "leonese", debias=False)
+            assert isinstance(result, str)
+        finally:
+            orthography2ipa.clear_lexicons()
 
 
 class TestPipelineBarranquenho:

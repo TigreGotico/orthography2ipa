@@ -355,10 +355,14 @@ class TestTokenizerTranscription:
         result = tok.ipa_best("puârta")
         assert "wɐ" in result
 
-    def test_pan_nasal(self, tok):
-        """pan → pɐ̃ (an→ɐ̃ digraph from parent)."""
-        result = tok.ipa_best("pan")
-        assert "ɐ̃" in result
+    def test_pan_nasal(self):
+        """pan → pɐ̃.
+
+        Nasalisation is an allophone rule (a vowel before a coda nasal), not
+        an ⟨an⟩ digraph, so it is only visible through the full pipeline —
+        the raw tokenizer does not run the rule layer.
+        """
+        assert "ɐ̃" in orthography2ipa.G2P("ast-PT-x-rionor").transcribe_word("pan")
 
     def test_xusticia_x(self, tok):
         """xusticia: x is always ʃ."""

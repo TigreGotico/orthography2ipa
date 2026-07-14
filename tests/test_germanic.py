@@ -541,8 +541,17 @@ class TestDutch:
         _assert_first(_grapheme(self._spec, "ch"), "x", label="nl-NL ch")
 
     def test_sch_onset(self):
-        """<sch> → /sx/ (e.g., *school*, *schip*) — note reversed from German."""
-        _assert_first(_grapheme(self._spec, "sch"), "sx", label="nl-NL sch")
+        """⟨sch⟩ → /sx/ (e.g. *school*, *schip*) — note reversed from German.
+
+        It needs no grapheme key of its own: ⟨s⟩ + ⟨ch⟩ already compose to
+        /sx/, unlike German ⟨sch⟩ → /ʃ/, which does earn one. Assert the
+        pronunciation, not the spelling table.
+        """
+        from orthography2ipa.g2p import transcribe
+
+        assert transcribe("school", "nl-NL").replace("ˈ", "") == "sxoːl"
+        assert transcribe("schip", "nl-NL").replace("ˈ", "") == "sxɪp"
+        assert "sch" not in self._spec.graphemes
 
     def test_w_is_labiodental_approximant(self):
         """<w> in Dutch is the labiodental approximant /ʋ/."""
@@ -1755,3 +1764,37 @@ class TestOldFrisian:
     def test_ancestry_ingvaeonic(self):
         assert "gem-x-ingvaeonic" in _ancestor_codes(self._spec), \
             "ofs should descend from Proto-Ingvaeonic"
+
+
+class TestGermanFinalIg:
+    """⟨-ig⟩ is not a grapheme: word-final ⟨g⟩ after /ɪ/ spirantises to [ç].
+
+    Stating it as a rule keyed on the ⟨g⟩ grapheme keeps ⟨-ik⟩ (Musik) and
+    every other final ⟨g⟩ (Tag) out of it.
+    """
+
+    @staticmethod
+    def _t(word):
+        from orthography2ipa.g2p import transcribe
+        return transcribe(word, "de-DE").replace("ˈ", "")
+
+    def test_final_ig_spirantises(self):
+        assert self._t("König") == "kœnɪç"
+        assert self._t("ewig") == "ɛvɪç"
+        assert self._t("wichtig") == "vɪçtɪç"
+
+    def test_non_final_ig_stays_a_stop(self):
+        assert self._t("Königin") == "kœnɪɡɪn"
+
+    def test_other_final_g_just_devoices(self):
+        assert self._t("Tag") == "tak"
+        assert self._t("Weg") == "vɛk"
+
+    def test_final_ik_is_untouched(self):
+        assert self._t("Musik") == "mʊzɪk"
+
+    def test_ig_is_not_a_grapheme(self):
+        from orthography2ipa import get
+        spec = get("de-DE")
+        assert "ig" not in spec.graphemes
+        assert "ig" not in (spec.positional_graphemes or {})

@@ -73,7 +73,6 @@ Loads `LanguageSpec` objects from JSON files under `data/` — `json_loader.py:1
 - `load_json_spec(code)` — load and resolve a single spec with inheritance — `json_loader.py:87`
 - `load_all_json_specs()` — load all specs from the data directory — `json_loader.py:250`
 - `available_json_codes()` — sorted list of all codes with JSON data files — `json_loader.py:270`
-- `load_lexicon(code)` — load an optional word list for a language — `json_loader.py:275`
 
 Inheritance is resolved via `graphemes_base`, `allophones_base`, and `positional_graphemes_base` fields in JSON.
 

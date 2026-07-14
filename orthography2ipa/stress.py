@@ -28,6 +28,7 @@ Usage
 from __future__ import annotations
 
 import logging
+import unicodedata
 from typing import List, Optional, Sequence
 
 from orthography2ipa.allophony import segment_ipa
@@ -50,7 +51,14 @@ __all__ = [
 def _is_vowel_char(ch: str) -> bool:
     """Vowel test used by the naive syllabifier: orthographic vowels of
     Latin/Greek-script languages (with accented forms) plus IPA vocoids,
-    so the same splitter works on spellings and on transcriptions."""
+    so the same splitter works on spellings and on transcriptions.
+
+    A combining mark is never a nucleus: it modifies the character it sits
+    on. Counting one as a vowel splits a nasal diphthong down the middle —
+    ⟨pão⟩ /pɐ̃w̃/ becomes pɐ̃-w̃, and the stress mark lands on the offglide.
+    """
+    if unicodedata.combining(ch):
+        return False
     return is_orthographic_vowel(ch) or is_ipa_vowel(ch)
 
 
@@ -80,6 +88,14 @@ def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
                 break
         else:
             nuclei.append(run[i])
+            i += 1
+        # a combining mark is not a nucleus of its own: it rides on the vowel
+        # it was written over (⟨ão⟩ /ɐ̃w̃/ — the tilde belongs to the ɐ)
+        while i < len(run) and unicodedata.combining(run[i]):
+            if nuclei:
+                nuclei[-1] += run[i]
+            else:                       # a run cannot start with a mark today
+                nuclei.append(run[i])
             i += 1
     return nuclei
 
@@ -113,6 +129,11 @@ def syllabify(
     current = ""
     in_nucleus = False
     for ch in word:
+        if unicodedata.combining(ch):
+            # a combining mark belongs to the character it sits on: it never
+            # opens or closes a syllable, and never counts as a nucleus
+            current += ch
+            continue
         is_vowel = is_vowel_char(ch)
         if is_vowel and not in_nucleus and current and any(
                 is_vowel_char(c) for c in current):
@@ -155,9 +176,14 @@ def _syllabify_with_diphthongs(
         if not is_vowel_char(word[i]):
             onset += word[i]
             i += 1
+            # a combining mark rides along with whatever it sits on
+            while i < len(word) and unicodedata.combining(word[i]):
+                onset += word[i]
+                i += 1
             continue
         j = i
-        while j < len(word) and is_vowel_char(word[j]):
+        while j < len(word) and (
+                is_vowel_char(word[j]) or unicodedata.combining(word[j])):
             j += 1
         for k, nucleus in enumerate(_split_nuclei(word[i:j], diphthongs)):
             syllables.append((onset if k == 0 else "") + nucleus)
@@ -319,7 +345,13 @@ def apply_stress_mark(
     """
     if rules.stress_mark in ipa:
         return ipa
-    ipa_sylls = list(ipa_syllables) if ipa_syllables else syllabify(ipa)
+    # The spec's diphthongs split the IPA too, not just the spelling: without
+    # them a vowel run is one nucleus, so a HIATUS merges and the mark lands a
+    # syllable early (⟨coelho⟩ /kuɐʎu/ → ˈkuɐʎu instead of kuˈɐʎu). A language
+    # whose diphthongs are written with glides (Portuguese /aj aw/) therefore
+    # leaves only true hiatus as a two-vowel run, and it must split.
+    ipa_sylls = (list(ipa_syllables) if ipa_syllables
+                 else syllabify(ipa, diphthongs=rules.diphthongs))
     if not ipa_sylls:
         return ipa
 

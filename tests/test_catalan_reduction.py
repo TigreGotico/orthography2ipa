@@ -48,7 +48,7 @@ def test_central_stressed_vowel_keeps_quality(word, expected):
 @pytest.mark.parametrize("word,expected", [
     ("cafè", "kəˈfɛ"),     # ⟨è⟩ = [ɛ]; the accents DO fix the mid quality
     ("però", "pəˈɾɔ"),     # ⟨ò⟩ = [ɔ]
-    ("avió", "əˈβio"),     # ⟨ó⟩ = [o]
+    ("avió", "əβiˈo"),     # ⟨ó⟩ = [o]; oxytone a-vi-Ó (the ⟨io⟩ is hiatus)
     ("cafés", "kəˈfes"),   # ⟨é⟩ = [e]
 ])
 def test_central_written_accent_fixes_mid_vowel_quality(word, expected):

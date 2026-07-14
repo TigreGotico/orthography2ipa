@@ -67,7 +67,6 @@ consumer is added to the inventory above:
   `ConfidenceBreakdown` (`orthography2ipa.g2p`)
 - `UnmappedScriptError` (`orthography2ipa.exceptions`)
 - `resolve`, `available_codes`, `available_families` (`orthography2ipa.registry`)
-- `load_lexicon` (`orthography2ipa.json_loader`)
 - `SandhiEngine` (`orthography2ipa.sandhi`)
 - `LanguageSpec`, `Grapheme2IPA`, `AllophoneMap`, `Ancestor`, `AncestorRole`,
   `PositionalGrapheme2IPA`, `QualityTier`, `ScriptType`, `SandhiRule`,

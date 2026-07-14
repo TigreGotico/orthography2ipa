@@ -176,11 +176,11 @@ class AllophoneRuleModel(_Strict):
     stress: Optional[Literal["stressed", "unstressed"]] = None
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
-        "vowel", "consonant", "front_vowel", "back_vowel", "palatal",
-        "word_boundary"]] = None
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
+        "back_vowel", "palatal", "word_boundary"]] = None
     followed_by: Optional[Literal[
-        "vowel", "consonant", "front_vowel", "back_vowel", "palatal",
-        "word_boundary"]] = None
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
+        "back_vowel", "palatal", "word_boundary"]] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
@@ -324,8 +324,6 @@ class LanguageSpecModel(_Strict):
     orthography_standard: Optional[OrthographyStandardModel] = None
     location: Optional[LocationModel] = None
 
-    # ─── bundled-lexicon reference (consumed by load_lexicon) ────────
-    lexicon_csv: Optional[str] = None
 
     # ─── whole-word overrides for a closed irregular set ─────────────
     word_exceptions: Optional[Dict[str, str]] = None

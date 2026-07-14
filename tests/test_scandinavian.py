@@ -124,3 +124,38 @@ class TestNorwegianScandinavian:
     def test_tonemes_are_not_transcribed(self):
         out = G2P("nb").transcribe_word("bønder")
         assert "²" not in out and "¹" not in out
+
+
+class TestComplementaryQuantity:
+    """Quantity comes from the ``consonant_cluster`` context, not from
+    enumerated cluster graphemes.
+
+    A stressed vowel is long in an open syllable and short before a
+    consonant cluster or a geminate (Riad 2014; Kristoffersen 2000;
+    Basbøll 2005). The minimal pairs below differ only in the coda, so
+    they isolate the quantity rule itself.
+    """
+
+    def test_swedish_minimal_pair(self):
+        assert _ipa("sv", "vit") == "viːt"      # single coda consonant
+        assert _ipa("sv", "vitt") == "vɪtː"     # geminate shortens
+
+    def test_norwegian_minimal_pair(self):
+        assert _ipa("nb", "tak") == "tɑːk"
+        assert _ipa("nb", "takk") == "takː"
+
+    def test_danish_shortens_before_cluster(self):
+        assert _ipa("da", "hus") == "huːs"      # open syllable
+        assert _ipa("da", "hest") == "hɛsd"     # cluster shortens
+
+    def test_no_enumerated_cluster_graphemes(self):
+        """A cluster is a context, never a grapheme.
+
+        ``bf``/``bk``/``dp`` are not units of any Scandinavian
+        orthography; they only ever existed to stand in for the missing
+        cluster context.
+        """
+        for lang in ("da", "sv", "nb"):
+            graphemes = G2P(lang).spec.graphemes
+            for fake in ("bf", "bk", "dp", "fb", "bl", "gm"):
+                assert fake not in graphemes, f"{lang}: {fake!r} is not a grapheme"

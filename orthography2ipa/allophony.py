@@ -43,6 +43,7 @@ from typing import List, Optional, Sequence, Tuple
 from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.types import AllophoneRule
+from orthography2ipa.vowels import is_ipa_vowel
 
 __all__ = [
     "AllophoneRescorer",
@@ -132,8 +133,50 @@ def _syllable_position(ctx: GraphemeContext) -> str:
     return "coda"
 
 
-def _neighbor_is(cls: str, gctx: Optional[GraphemeContext]) -> bool:
-    """Whether neighbour grapheme *gctx* matches the neighbour class *cls*."""
+#: Nasal consonants, by IPA. A vowel nasalises before one of these in coda;
+#: the class is decided by the neighbour's IPA, never by the language.
+_NASALS = frozenset("mnɲŋɳɴ")
+
+
+def _begins_consonant_cluster(gctx: GraphemeContext, step: int) -> bool:
+    """Whether *gctx* starts a consonant cluster, reading in *step* direction.
+
+    A cluster is two or more consonant segments in a row, counted away from
+    the anchor (``step`` is ``+1`` for a following neighbour, ``-1`` for a
+    preceding one). Three ways to qualify, all decided phonemically:
+
+    * the neighbour realises a long/geminate consonant (``tː``) — moraic on
+      its own;
+    * the neighbour is a single grapheme spelling several consonants (⟨x⟩
+      → /ks/);
+    * the grapheme beyond it is also a consonant (⟨s⟩⟨t⟩).
+
+    This is what closed-syllable shortening and complementary quantity need
+    (Riad 2014; Kristoffersen 2000; Basbøll 2005), and it is stated over
+    phonological classes only — no language, script or code is consulted.
+    """
+    if not gctx.is_consonant:
+        return False
+    ipa = gctx.ipa[0] if gctx.ipa else ""
+    if "ː" in ipa:
+        return True
+    if len([s for s in segment_ipa(ipa) if not is_ipa_vowel(s[0])]) >= 2:
+        return True
+    beyond = gctx.at(step)
+    return beyond is not None and beyond.is_consonant
+
+
+def _neighbor_is(
+        cls: str,
+        gctx: Optional[GraphemeContext],
+        step: int = 1,
+) -> bool:
+    """Whether neighbour grapheme *gctx* matches the neighbour class *cls*.
+
+    *step* is the direction the neighbour lies in (``+1`` = the grapheme
+    after the anchor, ``-1`` = the one before); only the direction-sensitive
+    classes read it.
+    """
     if cls == "word_boundary":
         return gctx is None
     if gctx is None:
@@ -142,6 +185,15 @@ def _neighbor_is(cls: str, gctx: Optional[GraphemeContext]) -> bool:
         return gctx.is_vowel
     if cls == "consonant":
         return gctx.is_consonant
+    if cls == "consonant_cluster":
+        return _begins_consonant_cluster(gctx, step)
+    if cls == "coda":
+        return _syllable_position(gctx) == "coda"
+    if cls == "coda_nasal":
+        if _syllable_position(gctx) != "coda":
+            return False
+        ipa = gctx.ipa[0] if gctx.ipa else ""
+        return bool(ipa) and ipa[0] in _NASALS
     if cls == "front_vowel":
         return gctx.is_front
     if cls == "back_vowel":
@@ -275,10 +327,10 @@ class AllophoneRescorer(LatticeRescorer):
             if _syllable_position(ctx.grapheme) != rule.syllable_position:
                 return False
         if rule.preceded_by is not None:
-            if not _neighbor_is(rule.preceded_by, ctx.grapheme.prev):
+            if not _neighbor_is(rule.preceded_by, ctx.grapheme.prev, -1):
                 return False
         if rule.followed_by is not None:
-            if not _neighbor_is(rule.followed_by, ctx.grapheme.next):
+            if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
                 return False
         if rule.grapheme is not None:
             g = ctx.grapheme.grapheme

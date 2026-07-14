@@ -82,7 +82,7 @@ language's JSON spec (see `data/SCHEMA.md` for the schema).
 
 ## Shipped lexicon data
 
-The optional lexicon overlay (`orthography2ipa/data/lexicons/{code}.tsv`, see
+The optional lexicon overlay (caller-registered TSV, never bundled — see
 [`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale))
 ships one pilot lexicon, built from the sources below by
 `scripts/build_en_lexicon.py`.

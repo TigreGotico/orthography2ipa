@@ -51,12 +51,6 @@
     ],
     "ôi": [
       "õj"
-    ],
-    "em": [
-      "em"
-    ],
-    "en": [
-      "en"
     ]
   },
   "allophones": {
@@ -143,28 +137,6 @@
         "z"
       ]
     },
-    "em": {
-      "word_final": [
-        "ẽ"
-      ],
-      "coda": [
-        "ẽ"
-      ],
-      "before_consonant": [
-        "ẽ"
-      ]
-    },
-    "en": {
-      "word_final": [
-        "ẽ"
-      ],
-      "coda": [
-        "ẽ"
-      ],
-      "before_consonant": [
-        "ẽ"
-      ]
-    },
     "m": {
       "before_consonant": [
         "̃"
@@ -231,6 +203,18 @@
         "̃"
       ],
       "notes": "Vowel-quality companion of the coda-nasalisation (see PT_NASAL_A_RAISE): nasal /ɔ/ raises to [õ] before the nasalisation tilde (bom→[bõ], ôi→[õj]), so a stressed open [ɔ] does not surface as [ɔ̃]. Fires only when the following slot is the tilde, leaving oral ⟨o⟩ before an onset ⟨m/n⟩ unchanged. Coda ⟨om/on⟩ nasal vowels: Convenção Ortográfica do Barranquenho (2025) p. 26."
+    },
+    {
+      "id": "EXT_E_RAISE_BEFORE_NASAL",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "notes": "/e/ is raised to [e] before a nasal consonant, including an ONSET nasal that leaves the vowel oral (⟨pequenu⟩ [pɨˈkenu])"
     }
   ],
   "ancestors": [

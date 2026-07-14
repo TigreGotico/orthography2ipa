@@ -13,6 +13,11 @@ from orthography2ipa.types import GraphemePosition
 _SENTINEL = object()
 
 
+def _ipa(lang: str, word: str) -> str:
+    """Transcription without the primary-stress mark."""
+    return orthography2ipa.G2P(lang).transcribe_word(word).replace("ˈ", "")
+
+
 def _load(code):
     """Load a LanguageSpec by BCP-47 code, skipping the test if unavailable."""
     try:
@@ -808,3 +813,61 @@ class TestMacedonian:
     def test_unique_kje(self):
         """Macedonian ќ maps to [c] — unique voiceless palatal stop in Macedonian Cyrillic."""
         _assert_first(_grapheme(self._spec, "ќ"), "c", label="mk:ќ")
+
+
+class TestBelarusianPalatalisation:
+    """Palatalisation is a rule keyed on the following soft vowel, not a
+    grapheme per consonant×vowel pair.
+
+    Belarusian ⟨е ё ю я і⟩ palatalise the preceding consonant, and ⟨д т⟩
+    surface as [dzʲ tsʲ] before them (дзеканне / цеканне). Iotation itself
+    is only word-initial or post-vocalic, so the vowel is plain after a
+    consonant.
+    """
+
+    def test_dzekanne(self):
+        assert _ipa("be", "дзень") == "dzʲenʲ"
+
+    def test_palatalisation_before_back_soft_vowels(self):
+        assert _ipa("be", "зямля") == "zʲamlʲa"
+        assert _ipa("be", "нёс") == "nʲos"
+
+    def test_palatalised_geminate(self):
+        assert _ipa("be", "жыццё") == "ʐɨtsʲːo"
+        assert _ipa("be", "насенне") == "nasʲenʲːe"
+
+    def test_hard_vowels_do_not_palatalise(self):
+        assert _ipa("be", "дом") == "dom"
+
+    def test_no_enumerated_consonant_vowel_graphemes(self):
+        """A palatalising context is a rule, never a spelling."""
+        graphemes = _load("be").graphemes
+        for fake in ("дзе", "дзё", "нне", "ллі", "цце", "дздзе"):
+            assert fake not in graphemes, f"{fake!r} is not a grapheme"
+
+
+class TestBelarusianIotation:
+    """Iotation is lost only after a PLAIN consonant.
+
+    It survives word-initially, after a vowel, after the separating apostrophe
+    and after the soft sign. The rule keys on the previous slot's boundary
+    PHONEME, not on the neighbouring grapheme: ⟨лі⟩ is a single grapheme that
+    ends in a vowel, and a grapheme's consonant/vowel class is decided by its
+    LEADING character — so a grapheme-level test misreads it as a consonant.
+    """
+
+    def test_iotation_survives_after_a_vowel(self):
+        assert _ipa("be", "Італія") == "jitalʲija"
+        assert _ipa("be", "Азія") == "azʲija"
+        assert _ipa("be", "мая") == "maja"
+
+    def test_iotation_survives_after_the_apostrophe(self):
+        assert _ipa("be", "Дар'я") == "darja"
+
+    def test_iotation_survives_after_the_soft_sign(self):
+        assert _ipa("be", "Ілья") == "jilʲja"
+
+    def test_iotation_is_lost_after_a_plain_consonant(self):
+        assert _ipa("be", "зямля") == "zʲamlʲa"
+        assert _ipa("be", "нёс") == "nʲos"
+        assert _ipa("be", "дзень") == "dzʲenʲ"

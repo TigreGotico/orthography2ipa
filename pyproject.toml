@@ -29,6 +29,7 @@ version = {attr = "orthography2ipa.version.VERSION_STR"}
 dependencies = {file = ["requirements.txt"]}
 
 [project.optional-dependencies]
+hf = ["huggingface_hub"]
 validation = ["pydantic>=2"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
 # own (pt-PT declares its diphthongs), and this only draws better boundaries.
@@ -51,4 +52,4 @@ orthography2ipa = "orthography2ipa.cli:main"
 include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
-"orthography2ipa" = ["data/*.json", "data/SCHEMA.md", "data/lexicons/*.csv", "data/lexicons/*.tsv"]
+"orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]

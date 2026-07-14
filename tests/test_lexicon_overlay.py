@@ -7,7 +7,7 @@ Covers the four contract gates:
 - **Precedence** — inline ``word_exceptions`` > sidecar lexicon > rules.
 - **Stress** — a lexicon hit still routes through the ``word_exceptions``
   pathway, so stress marks are applied (for a spec that declares stress).
-- **Data quality** — every shipped ``data/lexicons/*.tsv`` is clean (format,
+- **Data quality** — the validator callers run over a lexicon before registering it (format,
   NFC, lowercase, IPA-only, sorted, no duplicates).
 - **Byte-identical** — a language with no lexicon file is unchanged.
 """
@@ -22,29 +22,52 @@ from orthography2ipa import g2p as g2p_module
 from orthography2ipa import lexicon as lexmod
 
 
+@pytest.fixture(autouse=True)
+def _clean_lexicons():
+    """No lexicon is bundled, so every test starts with none registered."""
+    lexmod.clear_lexicons()
+    yield
+    lexmod.clear_lexicons()
+
+
+@pytest.fixture
+def en_lexicon(tmp_path):
+    """Register a small en-GB lexicon, the way a caller would."""
+    p = tmp_path / "en-GB.tsv"
+    p.write_text("nature\tˈneɪtʃə\n", encoding="utf-8")
+    lexmod.register_lexicon("en-GB", str(p))
+    return p
+
+
 # ─── lazy load ───────────────────────────────────────────────────────────────
 
-def test_import_and_spec_load_read_no_lexicon():
-    """A fresh interpreter: importing the package and loading a spec must NOT
-    read any lexicon file; the first transcribe() triggers exactly one read.
+def test_import_spec_load_and_register_read_no_lexicon(tmp_path):
+    """A fresh interpreter: importing the package, loading a spec, and even
+    REGISTERING a lexicon must read no file; the first transcribe() triggers
+    exactly one read.
 
     Run in a subprocess so the process-global lru_cache is pristine (other
     tests in this session will have populated it otherwise).
     """
-    script = (
-        "import orthography2ipa as o\n"
-        "from orthography2ipa import lexicon as L\n"
+    lex = tmp_path / "en-GB.tsv"
+    lex.write_text("nature\tˈneɪtʃə\n", encoding="utf-8")
+    script = "\n".join([
+        "import orthography2ipa as o",
+        "from orthography2ipa import lexicon as L",
         # import alone: nothing cached
-        "assert L.get_lexicon.cache_info().misses == 0, 'read at import'\n"
+        "assert L.get_lexicon.cache_info().misses == 0, 'read at import'",
         # loading a LanguageSpec must not read a lexicon either
-        "spec = o.get('en-GB')\n"
-        "assert L.get_lexicon.cache_info().misses == 0, 'read at spec load'\n"
+        "spec = o.get('en-GB')",
+        "assert L.get_lexicon.cache_info().misses == 0, 'read at spec load'",
+        # registering a source resolves nothing — that is lazy too
+        f"o.register_lexicon('en-GB', {str(lex)!r})",
+        "assert L.get_lexicon.cache_info().misses == 0, 'read at register'",
         # first transcription triggers the (single) lazy read
-        "o.G2P('en-GB').transcribe_word('nature')\n"
-        "info = L.get_lexicon.cache_info()\n"
-        "assert info.misses == 1, info\n"
-        "print('OK')\n"
-    )
+        "o.G2P('en-GB').transcribe_word('nature')",
+        "info = L.get_lexicon.cache_info()",
+        "assert info.misses == 1, info",
+        "print('OK')",
+    ])
     out = subprocess.run(
         [sys.executable, "-c", script],
         capture_output=True, text=True,
@@ -69,11 +92,10 @@ def test_absent_lexicon_returns_empty_map():
 
 # ─── shipped pilot ───────────────────────────────────────────────────────────
 
-def test_en_pilot_ships_and_is_used():
-    assert "en-GB" in lexmod.available_lexicon_codes()
+def test_a_registered_lexicon_is_used(en_lexicon):
+    """No lexicon ships; a registered one is used for its code."""
     lex = lexmod.get_lexicon("en-GB")
-    assert 0 < len(lex) <= 5000
-    # a lexicon word transcribes to its lexicon IPA
+    assert lex["nature"] == "ˈneɪtʃə"
     eng = orthography2ipa.G2P("en-GB")
     assert eng.transcribe_word("nature") == lex["nature"]
     # bare "en" resolves to the en-GB spec and shares the lexicon
@@ -82,7 +104,7 @@ def test_en_pilot_ships_and_is_used():
 
 # ─── precedence: inline > lexicon > rules ───────────────────────────────────
 
-def test_lexicon_beats_rules(monkeypatch):
+def test_lexicon_beats_rules(monkeypatch, en_lexicon):
     """A word only in the lexicon (not inline word_exceptions) uses the lexicon
     IPA, and that differs from the pure-rules output."""
     eng = orthography2ipa.G2P("en-GB")
@@ -134,7 +156,7 @@ def test_lexicon_entry_gets_stress_applied(monkeypatch):
     assert out == "ˈkaza"
 
 
-def test_lexicon_hit_has_full_confidence():
+def test_lexicon_hit_has_full_confidence(en_lexicon):
     """A lexicon override is a certain answer: confidence == 1.0, like an
     inline exception (coverage is 1.0 for a fully-mapped word)."""
     eng = orthography2ipa.G2P("en-GB")
@@ -155,36 +177,19 @@ def test_non_lexicon_language_unchanged(lang, monkeypatch):
     assert baseline == disabled
 
 
-def test_only_en_ships_a_lexicon():
-    """Guards the byte-identical claim: en-GB is the only shipped lexicon, so
-    no other language's behaviour can have changed."""
-    assert lexmod.available_lexicon_codes() == ["en-GB"]
+def test_nothing_ships_a_lexicon():
+    """A word lexicon is a corpus, not a description of a language: the library
+    bundles none, so no language's behaviour depends on one being present."""
+    assert lexmod.available_lexicon_codes() == []
 
 
 # ─── data-quality guard over every shipped TSV ──────────────────────────────
 
-def test_every_shipped_lexicon_is_clean():
-    codes = lexmod.available_lexicon_codes()
-    assert codes, "no lexicons found to validate"
-    for code in codes:
-        text = lexmod.lexicon_path(code).read_text(encoding="utf-8")
-        problems = lexmod.validate_lexicon_text(text)
-        assert not problems, f"{code}.tsv has issues: {problems[:5]}"
-
-
-def test_every_shipped_lexicon_is_sorted():
-    for code in lexmod.available_lexicon_codes():
-        text = lexmod.lexicon_path(code).read_text(encoding="utf-8")
-        words = [ln.split("\t")[0] for ln in text.split("\n")
-                 if ln.strip() and "\t" in ln]
-        assert words == sorted(words), f"{code}.tsv not sorted"
-
-
-def test_every_shipped_lexicon_ipa_is_nfc():
-    for code in lexmod.available_lexicon_codes():
-        for word, ipa in lexmod.get_lexicon(code).items():
-            assert unicodedata.normalize("NFC", ipa) == ipa
-            assert unicodedata.normalize("NFC", word) == word
+def test_validator_accepts_a_clean_lexicon_and_rejects_a_dirty_one():
+    """The data-quality guard callers should run before registering a lexicon."""
+    assert lexmod.validate_lexicon_text("cat\tkæt\nnature\tˈneɪtʃə\n") == []
+    problems = lexmod.validate_lexicon_text("Cat\tkæt\nnoipa\n")
+    assert problems and any("lowercase" in why for _, why in problems)
 
 
 # ─── helper unit tests ───────────────────────────────────────────────────────

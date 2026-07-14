@@ -40,11 +40,14 @@ from orthography2ipa.g2p import (
     transcribe,
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
-from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
+    clear_lexicons,
     get_lexicon,
     is_ipa_string,
+    register_lexicon,
+    resolve_lexicon_source,
+    set_lexicon_dir,
     validate_lexicon_text,
 )
 from orthography2ipa.phonetok import (
@@ -136,8 +139,11 @@ __all__ = [
     "ancestry_chain",
     "available_codes",
     "available_families",
-    "load_lexicon",
     "get_lexicon",
+    "set_lexicon_dir",
+    "resolve_lexicon_source",
+    "register_lexicon",
+    "clear_lexicons",
     "available_lexicon_codes",
     "is_ipa_string",
     "validate_lexicon_text",
