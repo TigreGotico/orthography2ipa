@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.1.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.0.0a1...5.1.0a1)
+
+**Merged pull requests:**
+
+- feat: stress plugins, and the rule that makes any output-changing plugin safe [\#373](https://github.com/TigreGotico/orthography2ipa/pull/373) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [5.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.0.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.6.0a1...5.0.0a1)
