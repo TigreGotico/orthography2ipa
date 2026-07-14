@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.1.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.0.0a1...6.1.0a1)
+
+**Merged pull requests:**
+
+- feat: offset context — ru/uk palatalisation is a rule, not a 229-key cartesian [\#364](https://github.com/TigreGotico/orthography2ipa/pull/364) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.0.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.2a1...6.0.0a1)
