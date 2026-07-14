@@ -844,3 +844,30 @@ class TestBelarusianPalatalisation:
         graphemes = _load("be").graphemes
         for fake in ("дзе", "дзё", "нне", "ллі", "цце", "дздзе"):
             assert fake not in graphemes, f"{fake!r} is not a grapheme"
+
+
+class TestBelarusianIotation:
+    """Iotation is lost only after a PLAIN consonant.
+
+    It survives word-initially, after a vowel, after the separating apostrophe
+    and after the soft sign. The rule keys on the previous slot's boundary
+    PHONEME, not on the neighbouring grapheme: ⟨лі⟩ is a single grapheme that
+    ends in a vowel, and a grapheme's consonant/vowel class is decided by its
+    LEADING character — so a grapheme-level test misreads it as a consonant.
+    """
+
+    def test_iotation_survives_after_a_vowel(self):
+        assert _ipa("be", "Італія") == "jitalʲija"
+        assert _ipa("be", "Азія") == "azʲija"
+        assert _ipa("be", "мая") == "maja"
+
+    def test_iotation_survives_after_the_apostrophe(self):
+        assert _ipa("be", "Дар'я") == "darja"
+
+    def test_iotation_survives_after_the_soft_sign(self):
+        assert _ipa("be", "Ілья") == "jilʲja"
+
+    def test_iotation_is_lost_after_a_plain_consonant(self):
+        assert _ipa("be", "зямля") == "zʲamlʲa"
+        assert _ipa("be", "нёс") == "nʲos"
+        assert _ipa("be", "дзень") == "dzʲenʲ"
