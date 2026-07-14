@@ -120,7 +120,7 @@ reference.
 need the plugin ABCs.**
 Read [architecture.md](architecture.md) for how the engine pipeline
 (normalize → tokenize → beam search → stress → sandhi → dialect
-transform) fits together, then look at `G2PPlugin` in
+transform) fits together, then look at the step plugins in
 [registry.md](registry.md) — that is the extension point
 [arbtok](https://github.com/TigreGotico/arbtok) and
 [tugaphone](https://github.com/TigreGotico/tugaphone) build on.
@@ -229,7 +229,7 @@ below.
 | [architecture.md](architecture.md) | Module layout, pipeline stages, design decisions |
 | [data_model.md](data_model.md) | `LanguageSpec` and every field it carries — including `phonemes`, the inventory stated directly |
 | [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations — and why Pinyin is transcribable where Hanzi is not |
-| [registry.md](registry.md) | Full language registry, code resolution, `G2PPlugin` |
+| [registry.md](registry.md) | Full language registry, code resolution, step plugins |
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
 | [sentence_context.md](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer`, phrase / utterance position |

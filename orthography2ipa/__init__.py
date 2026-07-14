@@ -40,7 +40,6 @@ from orthography2ipa.g2p import (
     transcribe,
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
-from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
 from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
@@ -60,6 +59,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.sentence import (
+    WordContext,
     Position,
     SentenceLattice,
     SentenceRescoreContext,
@@ -137,7 +137,6 @@ __all__ = [
     "available_lexicon_codes",
     "is_ipa_string",
     "validate_lexicon_text",
-    "G2PPlugin",
     "WordContext",
     "SandhiEngine",
     "LanguageSpec",

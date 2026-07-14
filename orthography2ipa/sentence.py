@@ -436,3 +436,58 @@ def apply_sentence_rescorers(
             )
             ipas[i] = rescorer.rescore(word, ctx)
     return ipas
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WordContext — what a word can see of its neighbours
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Lives here because this is where cross-word context lives. It used to sit in a
+# module called `g2p_plugin`, beside an abstract base class for a plugin system
+# that did not exist: nothing in orthography2ipa ever discovered or called a
+# `G2PPlugin`. The engines that implemented it — arbtok, tugaphone — are not
+# plugins TO this library, they are engines built ON it, which is the opposite
+# direction. The base class is gone; the TYPE is real, and it is shared
+# vocabulary for exactly the thing this module is about.
+
+@dataclass(frozen=True)
+class WordContext:
+    """Context for a word in a sentence, enabling sandhi/liaison.
+
+    All fields default so existing call sites keep working; engines
+    populate as much as they know.
+    """
+
+    prev_word_ipa: Optional[str] = None
+    """IPA of the preceding word, if already transcribed."""
+
+    next_word_ipa: Optional[str] = None
+    """IPA of the following word, if already transcribed."""
+
+    is_pausal: bool = False
+    """The word stands before a pause — punctuation or end of input.
+
+    Pausal position conditions e.g. Arabic tanwīn suppression and
+    tāʾ marbūṭa realisation."""
+
+    is_sentence_initial: bool = False
+    """The word opens the sentence (conditions e.g. hamzat al-waṣl)."""
+
+    prev_word: Optional[str] = None
+    """Orthographic form of the preceding word."""
+
+    next_word: Optional[str] = None
+    """Orthographic form of the following word."""
+
+    is_sentence_final: bool = False
+    """The word closes the sentence."""
+
+    word_index: int = 0
+    """Zero-based position of the word in the sentence."""
+
+    word_count: int = 1
+    """Total number of words in the sentence."""
+
+    lang: Optional[str] = None
+    """Resolved BCP-47 code the transcription was requested for —
+    lets a multi-dialect plugin pick the right variety."""

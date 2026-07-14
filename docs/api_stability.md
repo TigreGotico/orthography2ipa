@@ -29,8 +29,7 @@ never hardcoded into a comment or doc.
 
 | Symbol | Source module | Used by |
 | --- | --- | --- |
-| `G2PPlugin` | `orthography2ipa.g2p_plugin` | arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer |
-| `WordContext` | `orthography2ipa.g2p_plugin` | arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer |
+| `WordContext` | `orthography2ipa` (from `sentence`) | arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer |
 | `SyllabifierPlugin` | `orthography2ipa.syllabifier_plugin` | tugaphone |
 | `get` | `orthography2ipa` (top-level) | tugaphone, g2p_barranquenho, mwl_phonemizer, arbtok |
 | `get_syllabifier` | `orthography2ipa` (top-level) | tugaphone |
@@ -43,7 +42,7 @@ Notes on the table:
   orthography2ipa import get`. Both call paths route through the same
   `orthography2ipa/__init__.py` re-export and `orthography2ipa/registry.py`
   implementation, so both forms are covered.
-- `G2PPlugin` and `WordContext` are the shared contract every downstream
+- `WordContext` is the shared cross-word vocabulary every downstream
   G2P plugin (arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer)
   subclasses/consumes to implement its own language plugin. A downstream
   plugin's **phonological rule cascade** (sun-letter assimilation,
