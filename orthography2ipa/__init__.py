@@ -92,6 +92,8 @@ from orthography2ipa.transforms import (
 )
 from orthography2ipa.registry import get_rescorers, who_answers
 from orthography2ipa.rescorer_plugin import RescorerPlugin
+from orthography2ipa.stress_plugin import StressPlugin
+from orthography2ipa.registry import get_stress_plugin
 from orthography2ipa.inventory import (
     STRESS_MARKS,
     dead_allophone_rules,
@@ -158,6 +160,8 @@ __all__ = [
     "get_rescorers",
     "who_answers",
     "RescorerPlugin",
+    "StressPlugin",
+    "get_stress_plugin",
     "emission_inventory",
     "phoneme_inventory",
     "tokenize",

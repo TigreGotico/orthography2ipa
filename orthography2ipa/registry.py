@@ -295,3 +295,49 @@ def who_answers(code: str) -> Dict[str, object]:
             for p in _rescorer_plugins.get(resolved, ())
         ] or ["built-in (spec allophone_rules only)"],
     }
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Stress plugins — consulted only when the SPEC asks for one
+# ═══════════════════════════════════════════════════════════════════════════
+
+_stress_plugins: Optional[Dict[str, "StressPlugin"]] = None
+
+
+def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
+    import logging
+    from importlib.metadata import entry_points
+
+    plugins: Dict[str, "StressPlugin"] = {}
+    for ep in entry_points(group="orthography2ipa.stress"):
+        try:
+            instance = ep.load()()
+            for code in instance.language_codes:
+                incumbent = plugins.get(code)
+                if incumbent is None or instance.priority > incumbent.priority:
+                    plugins[code] = instance
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "failed to load stress plugin %r: %s", ep.name, exc)
+            continue
+    return plugins
+
+
+def get_stress_plugin(code: str) -> Optional["StressPlugin"]:
+    """The stress plugin registered for *code*, if any."""
+    global _stress_plugins
+    if _stress_plugins is None:
+        _stress_plugins = _discover_stress_plugins()
+    return _stress_plugins.get(_resolve_code(code))
+
+
+class MissingStressPlugin(RuntimeError):
+    """A spec asked for a stress plugin and none is registered.
+
+    Deliberately fatal. A spec that sets ``stress.source = "plugin"`` is saying its
+    stress cannot be expressed by the declarative rules — so falling back to them
+    would not be a graceful degradation, it would be a DIFFERENT ANSWER, silently.
+    The transcription must be a function of the spec and the input; quietly
+    substituting a different stress model makes it a function of what happens to
+    be installed, which is the bug this rule exists to prevent.
+    """
