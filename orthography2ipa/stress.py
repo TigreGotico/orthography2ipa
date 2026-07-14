@@ -195,6 +195,23 @@ def _syllables_for(
     return syllabify(word, diphthongs=diphthongs)
 
 
+def _plugin_stress(word, syllables, lang):
+    """Ask the registered stress plugin, or fail loudly if the spec expects one."""
+    from orthography2ipa.registry import MissingStressPlugin, get_stress_plugin
+
+    plugin = get_stress_plugin(lang) if lang else None
+    if plugin is None:
+        raise MissingStressPlugin(
+            f"the {lang!r} spec sets stress.source = 'plugin', but no stress plugin "
+            f"is registered for it.\n\n"
+            f"This is fatal on purpose. The spec is saying its stress cannot be "
+            f"expressed by the declarative rules, so falling back to them would not "
+            f"be a graceful degradation — it would be a DIFFERENT ANSWER, silently. "
+            f"Install the plugin the spec expects, or change the spec."
+        )
+    return plugin.stressed_index(word, list(syllables), lang)
+
+
 def detect_stress(
     word: str,
     rules: StressRules,
@@ -226,6 +243,16 @@ def detect_stress(
     n = len(sylls)
     if n <= 1:
         return 0
+
+    # 0. The spec may say its stress is not expressible here at all, and name a
+    #    plugin instead. It has to SAY so: a plugin that places the stress changes
+    #    the transcription, and the transcription must be a function of the spec
+    #    and the input — never of what happens to be installed. A plugin that is
+    #    unsure returns None and the declarative rules take over from here.
+    if rules.source == "plugin":
+        index = _plugin_stress(word, sylls, lang)
+        if index is not None:
+            return max(0, min(index, n - 1))
 
     # 1. written accent overrides everything
     if rules.marked_vowels:

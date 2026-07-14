@@ -419,6 +419,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             superheavy_final_attracts=bool(
                 raw_stress.get("superheavy_final_attracts", True)),
             max_onset=int(raw_stress.get("max_onset", 1)),
+            source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )
 

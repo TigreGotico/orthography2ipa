@@ -233,6 +233,18 @@ class StressRules:
         light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
         penult is heavy, and the stress lands there — ``muˈdarris``, which is
         the correct form. Only read when :attr:`quantity_sensitive` is set.
+    source : str
+        Where the stress comes from. ``"rules"`` (the default) means this block —
+        declarative data a language owner wrote, that anyone can read, cite and
+        diff. ``"plugin"`` means *this language's stress is not expressible here*,
+        and a registered :class:`~orthography2ipa.stress_plugin.StressPlugin` must
+        supply it.
+
+        A spec has to opt in, because a plugin that places the stress **changes
+        the transcription**, and the transcription must be a function of the spec
+        and the input — never of what happens to be installed. If a spec asks for
+        a plugin and none is registered, that is an error, not a quiet fallback to
+        a different answer.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -245,6 +257,7 @@ class StressRules:
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
+    source: str = "rules"
     notes: str = ""
 
 
