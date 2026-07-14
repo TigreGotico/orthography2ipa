@@ -28,9 +28,31 @@ A key must be something the writing system actually treats as a symbol:
   ⟨tch⟩ /tʃ/, ⟨ng⟩ /ŋ/, or a unit of a designed romanisation (pinyin finals
   ⟨iang⟩, ⟨uai⟩).
 
-The test a multigraph must pass: **its IPA is not merely the concatenation of its
-parts' IPA.** ⟨sch⟩→/ʃ/ earns its key because s+c+h would give /sx/. ⟨bl⟩→/bl/
-does not: b+l already yields /bl/, so the key adds nothing but noise.
+A multigraph earns its key if **either** test passes:
+
+1. **Its IPA is not merely the concatenation of its parts' IPA.** ⟨sch⟩→/ʃ/ earns
+   its key because s+c+h would give /sx/.
+2. **It spells a single phonological unit** — one segment or one syllable
+   nucleus — even where the IPA string happens to read as a concatenation:
+   diphthongs and triphthongs (Finnish ⟨ai⟩, Limburgish ⟨aaj⟩ — one nucleus),
+   affricates (⟨dž⟩ /dʒ/, ⟨ts⟩), prenasalized stops (Bantu ⟨mb⟩ /mb/), clicks
+   (⟨gc⟩ /ɡǀ/), aspirates (Urdu ⟨پھ⟩ /pʰ/), geminates (⟨tt⟩ /tː/), and the
+   letter+diacritic units of an abjad or abugida. Collapsing these into one slot
+   is a *claim about the phonology*, and it is the right one.
+
+3. **It blocks a wrong maximal-munch match.** The tokenizer is greedy, so a key
+   can earn its place by defeating a longer-but-wrong neighbour. Mirandese
+   ⟨anh⟩ /aɲ/ exists because without it ⟨an⟩ (the nasal-vowel digraph) wins and
+   ⟨danho⟩ comes out /dɐ̃u/ instead of /daɲu/. Say so in `notes`.
+
+Fail all three and the key is noise. ⟨bl⟩→/bl/ fails: b+l already yields /bl/,
+and a consonant cluster is not a unit. Russian ⟨бь⟩→/bʲ/ fails: ь is a diacritic
+the engine already composes as /ʲ/, so the key never disambiguates anything.
+
+Before deleting a key the audit flags, **check all three** — then delete it and
+run the suite. A key that turns out to be load-bearing is telling you it encodes
+a fact; find the fact and state it properly (usually as a rule), or keep the key
+and record which test it passes.
 
 Forbidden as keys:
 

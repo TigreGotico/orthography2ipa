@@ -732,7 +732,9 @@ class AllophoneRule:
         this grapheme — a geminate, a multi-consonant grapheme such as ⟨x⟩
         /ks/, or a consonant whose own neighbour is a consonant; this is the
         context closed-syllable shortening and complementary quantity need),
-        ``"front_vowel"``, ``"back_vowel"``, ``"palatal"`` (a palatal /
+        ``"coda"`` (the neighbour is in coda position — what a vowel needs to
+        see to nasalise before a coda nasal, while leaving an onset nasal
+        alone), ``"front_vowel"``, ``"back_vowel"``, ``"palatal"`` (a palatal /
         palato-alveolar consonant, decided by the neighbour's IPA — the
         mirror of the ``BEFORE_PALATAL`` position) or ``"word_boundary"``
         (no neighbour). Predicates delegate to
@@ -791,8 +793,8 @@ class AllophoneRule:
                 f"AllophoneRule {self.id!r}: syllable_position must be "
                 f"'onset', 'coda', 'nucleus' or None, "
                 f"got {self.syllable_position!r}")
-        _classes = ("vowel", "consonant", "consonant_cluster", "front_vowel",
-                    "back_vowel", "palatal", "word_boundary")
+        _classes = ("vowel", "consonant", "consonant_cluster", "coda",
+                    "coda_nasal", "front_vowel", "back_vowel", "palatal", "word_boundary")
         for attr in ("preceded_by", "followed_by"):
             val = getattr(self, attr)
             if val is not None and val not in _classes:

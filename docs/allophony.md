@@ -88,6 +88,37 @@ as grapheme keys (`bl`, `bf`, `st`, …) asserts spellings the orthography does 
 have, explodes combinatorially, and — because the tokenizer is maximal-munch —
 silently changes how neighbouring rules see the word.
 
+### `coda` and `coda_nasal`
+
+`coda` — the neighbour sits in coda position (the maximal-onset heuristic of
+`syllable_position`, applied to the neighbour instead of the anchor).
+
+`coda_nasal` — the neighbour is a coda **and** its IPA is a nasal consonant.
+This is what nasal vowels need: a vowel nasalises before a nasal that *closes*
+the syllable, and stays oral before one that opens the next (French ⟨bon⟩ [bɔ̃]
+but ⟨bonne⟩ [bɔn]; Mirandese ⟨pan⟩ [pɐ̃] but ⟨cana⟩ [kanɐ]). Pair it with an
+absorb rule that deletes the coda nasal:
+
+```json
+{"id": "FR_NASAL_a", "phonemes": ["a"], "surface": "ɑ̃",
+ "followed_by": "coda_nasal"},
+{"id": "FR_NASAL_ABSORB", "phonemes": ["n", "m"], "surface": "",
+ "syllable_position": "coda", "preceded_by": "vowel"}
+```
+
+⟨an⟩ is **not** a digraph — no orthography has one. It is a vowel letter and a
+nasal letter, and the nasality is a rule. Spelling the nasal vowels out as
+`{"an": ["ɑ̃"], "am": ["ɑ̃"], "en": ["ɑ̃"], …}` cannot express the onset contrast
+at all, and forces further pseudo-graphemes (⟨anh⟩) to defeat the ones it
+created. Follow the language's official orthography for what a digraph is:
+Mirandese has ⟨nh⟩ and ⟨lh⟩, not ⟨an⟩.
+
+**Ordering.** Neighbour lookups read the *original* slots, so a rule cannot feed
+another within a sweep. That is why the vowel rule keys on `coda_nasal` (a
+**grapheme**-level class, immune to the nasal's slot being emptied) while the
+absorb rule keys on the slot. Reverse them and the absorb bleeds the
+nasalisation — the vowel rule finds an empty next slot and never fires.
+
 Rules are **pure data** — no code in specs. See
 [`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema)
 for the JSON shape.

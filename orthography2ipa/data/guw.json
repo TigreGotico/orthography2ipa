@@ -59,9 +59,6 @@
     "i": [
       "i"
     ],
-    "in": [
-      "ĩ"
-    ],
     "j": [
       "dʒ"
     ],
@@ -106,9 +103,6 @@
     ],
     "u": [
       "u"
-    ],
-    "un": [
-      "ũ"
     ],
     "v": [
       "v"
@@ -300,5 +294,36 @@
     "longitude": 2.76767,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Gun."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "GUW_NASAL_i",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ĩ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "GUW_NASAL_u",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "GUW_NASAL_ABSORB",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "",
+      "syllable_position": "coda",
+      "notes": "the coda nasal is absorbed into the nasal vowel it created; keyed on the nasal vowel so it cannot bleed the rule that makes it",
+      "preceded_by": "vowel"
+    }
+  ]
 }

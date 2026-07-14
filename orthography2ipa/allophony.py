@@ -133,6 +133,11 @@ def _syllable_position(ctx: GraphemeContext) -> str:
     return "coda"
 
 
+#: Nasal consonants, by IPA. A vowel nasalises before one of these in coda;
+#: the class is decided by the neighbour's IPA, never by the language.
+_NASALS = frozenset("mnɲŋɳɴ")
+
+
 def _begins_consonant_cluster(gctx: GraphemeContext, step: int) -> bool:
     """Whether *gctx* starts a consonant cluster, reading in *step* direction.
 
@@ -182,6 +187,13 @@ def _neighbor_is(
         return gctx.is_consonant
     if cls == "consonant_cluster":
         return _begins_consonant_cluster(gctx, step)
+    if cls == "coda":
+        return _syllable_position(gctx) == "coda"
+    if cls == "coda_nasal":
+        if _syllable_position(gctx) != "coda":
+            return False
+        ipa = gctx.ipa[0] if gctx.ipa else ""
+        return bool(ipa) and ipa[0] in _NASALS
     if cls == "front_vowel":
         return gctx.is_front
     if cls == "back_vowel":

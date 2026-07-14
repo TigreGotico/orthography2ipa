@@ -22,21 +22,6 @@
     "ũ": [
       "ũ"
     ],
-    "an": [
-      "ɐ̃"
-    ],
-    "en": [
-      "ẽ"
-    ],
-    "in": [
-      "ĩ"
-    ],
-    "on": [
-      "õ"
-    ],
-    "un": [
-      "ũ"
-    ],
     "lh": [
       "ʎ"
     ],
@@ -114,10 +99,6 @@
       ]
     },
     "n": {
-      "word_final": [
-        "ɐ̃",
-        "ẽ"
-      ],
       "coda": [
         "n",
         "ŋ"
@@ -212,5 +193,63 @@
     "longitude": -6.266667,
     "source": "wikidata",
     "notes": "Miranda do Douro — the centre of the Terra de Miranda, where the medieval Asturleonese of Portugal took root. A historical variety: the point is the surviving core of its area, not a capital. [Wikidata Q373475 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "AST_NASAL_a",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɐ̃",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "AST_NASAL_e",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ẽ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "AST_NASAL_i",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ĩ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "AST_NASAL_o",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "õ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "AST_NASAL_u",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "AST_NASAL_ABSORB",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "",
+      "syllable_position": "coda",
+      "notes": "the coda nasal is absorbed into the nasal vowel it created; keyed on the nasal vowel so it cannot bleed the rule that makes it",
+      "preceded_by": "vowel"
+    }
+  ]
 }

@@ -28,6 +28,11 @@ from orthography2ipa.allophony import (
     compile_allophone_rescorer,
 )
 from orthography2ipa.g2p import G2P
+
+
+def _ipa(lang: str, word: str) -> str:
+    """Transcription without the primary-stress mark."""
+    return G2P(lang).transcribe_word(word).replace("ˈ", "")
 from orthography2ipa.json_loader import _overlay_by_id
 from orthography2ipa.phonetok import Candidate, PhonetokTokenizer
 from orthography2ipa.rescorer import LatticeRescorer
@@ -312,3 +317,32 @@ class TestConsonantClusterContext:
     def test_open_syllable_keeps_the_long_vowel(self):
         # The rule must not fire when a single consonant is followed by a vowel
         assert "iː" in G2P("sv").transcribe_word("vit")
+
+
+class TestCodaNasalContext:
+    """The ``coda_nasal`` neighbour class.
+
+    A vowel nasalises before a nasal that CLOSES its syllable, and stays oral
+    before one that opens the next. ⟨an⟩ is not a digraph in any orthography;
+    the nasality is a rule, and only a rule can draw this contrast.
+    """
+
+    def test_french_nasal_vowel_from_coda(self):
+        assert _ipa("fr-FR", "bon") == "bɔ̃"
+        assert _ipa("fr-FR", "an") == "ɑ̃"
+
+    def test_french_onset_nasal_stays_oral(self):
+        assert _ipa("fr-FR", "bonne") == "bɔn"
+        assert _ipa("fr-FR", "ami") == "ami"
+
+    def test_mirandese_follows_its_orthography(self):
+        # ⟨nh⟩ is the digraph the Convenção defines; ⟨an⟩ is not one
+        assert _ipa("mwl", "pan") == "pɐ̃"
+        assert _ipa("mwl", "cana") == "kanɐ"
+        assert _ipa("mwl", "danho") == "daɲu"
+
+    def test_vn_pseudo_digraphs_are_gone(self):
+        for lang in ("fr-FR", "ast-PT-x-medieval"):
+            graphemes = get(lang).graphemes
+            for fake in ("an", "en", "in", "on", "un"):
+                assert fake not in graphemes, f"{lang}: {fake!r} is not a grapheme"

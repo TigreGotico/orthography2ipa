@@ -179,15 +179,6 @@
     "ϋ": [
       "i"
     ],
-    "γι": [
-      "ʝi"
-    ],
-    "γεί": [
-      "ʝi"
-    ],
-    "γει": [
-      "ʝi"
-    ],
     "λλ": [
       "l"
     ],
@@ -550,6 +541,18 @@
         "z"
       ],
       "notes": "/s/ voices to [z] before voiced consonants (Arvaniti 2007 §2.2; Holton, Mackridge & Philippaki-Warburton, Greek: A Comprehensive Grammar, ch. 1.1): Άρκανσας [aɾkanzas], σβήνω [zvino], κόσμος [kozmos]."
+    },
+    {
+      "id": "EL_GAMMA_FRONTING",
+      "phonemes": [
+        "ɣ"
+      ],
+      "surface": "ʝ",
+      "grapheme": [
+        "γ"
+      ],
+      "followed_by": "front_vowel",
+      "notes": "⟨γ⟩ is [ʝ] before a front vowel"
     }
   ]
 }
