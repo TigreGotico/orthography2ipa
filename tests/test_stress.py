@@ -83,9 +83,9 @@ class TestDetectStress:
         # paroxytone default
         ("casa", 0), ("livro", 0), ("homem", 0), ("falam", 0),
         ("rapazes", 1),
-        # hiatus 'ia' counts as one nucleus for the naive syllabifier;
-        # the stressed vowel still falls inside the returned syllable
-        ("viagem", 0),
+        # hiatus: vi-A-gem. The bundled syllabifier splits it now that pt-PT
+        # declares its diphthongs, so it agrees with the plugin.
+        ("viagem", 1),
         # oxytone endings
         ("falar", 1), ("azul", 1), ("rapaz", 1), ("jardim", 1),
         ("caju", 1), ("abacaxi", 3), ("atuns", 1),
@@ -138,10 +138,14 @@ class TestSyllabifierPlugins:
     """Per-language syllabifier plugins supersede the naive splitter."""
 
     class _FakeSyllabifier:
+        """A plugin that returns a deliberately WRONG split, so the test can tell
+        whether it was consulted at all. (It used to return the *right* split and
+        the bundled splitter the wrong one — which stopped distinguishing them
+        the moment the bundled splitter learned to separate hiatus.)"""
+
         def syllabify(self, word, lang=None):
-            # hiatus-aware: the naive splitter cannot separate 'i-a'
             if word == "viagem":
-                return ["vi", "a", "gem"]
+                return ["via", "gem"]   # one syllable short, on purpose
             return [word]
 
         @property
@@ -158,18 +162,20 @@ class TestSyllabifierPlugins:
             registry, "_syllabifiers", {"pt-PT": self._FakeSyllabifier()})
 
     def test_plugin_used_for_lang(self, monkeypatch):
+        """The plugin's split is used — even when it disagrees with the bundled one."""
         from orthography2ipa import get
         self._install(monkeypatch)
         rules = get("pt-PT").stress
-        # with the hiatus-aware plugin, viagem is correctly paroxytone
-        # over three syllables (vi-A-gem)
-        assert detect_stress("viagem", rules, lang="pt-PT") == 1
+        # The fake plugin says via-gem (2 syllables), so the penult is index 0.
+        assert detect_stress("viagem", rules, lang="pt-PT") == 0
 
     def test_no_plugin_falls_back_to_naive(self, monkeypatch):
+        """A language the plugin does not claim falls back to the bundled splitter,
+        which now splits the hiatus itself: vi-A-gem."""
         from orthography2ipa import get
         self._install(monkeypatch)
         rules = get("pt-PT").stress
-        assert detect_stress("viagem", rules, lang="en-GB") == 0
+        assert detect_stress("viagem", rules, lang="en-GB") == 1
 
     def test_explicit_syllables_beat_plugin(self, monkeypatch):
         from orthography2ipa import get
