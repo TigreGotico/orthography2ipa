@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.0.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.6.0a1...5.0.0a1)
+
+**Breaking changes:**
+
+- feat!: drop G2PPlugin — it was never a plugin [\#372](https://github.com/TigreGotico/orthography2ipa/pull/372) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [4.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.6.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.2a1...4.6.0a1)
