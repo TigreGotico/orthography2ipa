@@ -91,7 +91,10 @@ def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
         # a combining mark is not a nucleus of its own: it rides on the vowel
         # it was written over (⟨ão⟩ /ɐ̃w̃/ — the tilde belongs to the ɐ)
         while i < len(run) and unicodedata.combining(run[i]):
-            nuclei[-1] += run[i]
+            if nuclei:
+                nuclei[-1] += run[i]
+            else:                       # a run cannot start with a mark today
+                nuclei.append(run[i])
             i += 1
     return nuclei
 
