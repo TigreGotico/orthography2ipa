@@ -51,7 +51,7 @@
       "ju"
     ],
     "я": [
-      "jɑ"
+      "ja"
     ],
     "б": [
       "b"
@@ -127,237 +127,6 @@
     ],
     "'": [
       ""
-    ],
-    "дя": [
-      "dʲa"
-    ],
-    "дю": [
-      "dʲu"
-    ],
-    "дє": [
-      "dʲe"
-    ],
-    "ді": [
-      "dʲi"
-    ],
-    "тя": [
-      "tʲa"
-    ],
-    "тю": [
-      "tʲu"
-    ],
-    "тє": [
-      "tʲe"
-    ],
-    "ті": [
-      "tʲi"
-    ],
-    "зя": [
-      "zʲa"
-    ],
-    "зю": [
-      "zʲu"
-    ],
-    "зє": [
-      "zʲe"
-    ],
-    "зі": [
-      "zʲi"
-    ],
-    "ся": [
-      "sʲa"
-    ],
-    "сю": [
-      "sʲu"
-    ],
-    "сє": [
-      "sʲe"
-    ],
-    "сі": [
-      "sʲi"
-    ],
-    "ця": [
-      "tsʲa"
-    ],
-    "цю": [
-      "tsʲu"
-    ],
-    "цє": [
-      "tsʲe"
-    ],
-    "ці": [
-      "tsʲi"
-    ],
-    "ля": [
-      "lʲa"
-    ],
-    "лю": [
-      "lʲu"
-    ],
-    "лє": [
-      "lʲe"
-    ],
-    "лі": [
-      "lʲi"
-    ],
-    "ня": [
-      "nʲa"
-    ],
-    "ню": [
-      "nʲu"
-    ],
-    "нє": [
-      "nʲe"
-    ],
-    "ні": [
-      "nʲi"
-    ],
-    "ря": [
-      "rʲa"
-    ],
-    "рю": [
-      "rʲu"
-    ],
-    "рє": [
-      "rʲe"
-    ],
-    "рі": [
-      "rʲi"
-    ],
-    "ддя": [
-      "dʲːa"
-    ],
-    "ддю": [
-      "dʲːu"
-    ],
-    "ддє": [
-      "dʲːe"
-    ],
-    "дді": [
-      "dʲːi"
-    ],
-    "ття": [
-      "tʲːa"
-    ],
-    "ттю": [
-      "tʲːu"
-    ],
-    "ттє": [
-      "tʲːe"
-    ],
-    "тті": [
-      "tʲːi"
-    ],
-    "ззя": [
-      "zʲːa"
-    ],
-    "ззю": [
-      "zʲːu"
-    ],
-    "ззє": [
-      "zʲːe"
-    ],
-    "ззі": [
-      "zʲːi"
-    ],
-    "сся": [
-      "sʲːa"
-    ],
-    "ссю": [
-      "sʲːu"
-    ],
-    "ссє": [
-      "sʲːe"
-    ],
-    "ссі": [
-      "sʲːi"
-    ],
-    "цця": [
-      "tsʲːa"
-    ],
-    "ццю": [
-      "tsʲːu"
-    ],
-    "ццє": [
-      "tsʲːe"
-    ],
-    "цці": [
-      "tsʲːi"
-    ],
-    "лля": [
-      "lʲːa"
-    ],
-    "ллю": [
-      "lʲːu"
-    ],
-    "ллє": [
-      "lʲːe"
-    ],
-    "ллі": [
-      "lʲːi"
-    ],
-    "ння": [
-      "nʲːa"
-    ],
-    "нню": [
-      "nʲːu"
-    ],
-    "ннє": [
-      "nʲːe"
-    ],
-    "нні": [
-      "nʲːi"
-    ],
-    "рря": [
-      "rʲːa"
-    ],
-    "ррю": [
-      "rʲːu"
-    ],
-    "ррє": [
-      "rʲːe"
-    ],
-    "ррі": [
-      "rʲːi"
-    ],
-    "бі": [
-      "bʲi"
-    ],
-    "ві": [
-      "ʋʲi"
-    ],
-    "гі": [
-      "ɦʲi"
-    ],
-    "ґі": [
-      "ɡʲi"
-    ],
-    "кі": [
-      "kʲi"
-    ],
-    "мі": [
-      "mʲi"
-    ],
-    "пі": [
-      "pʲi"
-    ],
-    "фі": [
-      "fʲi"
-    ],
-    "хі": [
-      "xʲi"
-    ],
-    "жі": [
-      "ʒʲi"
-    ],
-    "ші": [
-      "ʃʲi"
-    ],
-    "чі": [
-      "tʃʲi"
-    ],
-    "щі": [
-      "ʃtʃʲi"
     ]
   },
   "allophones": {
@@ -593,262 +362,6 @@
       "posttonic": [
         "ɐ"
       ]
-    },
-    "дя": {
-      "pretonic": [
-        "dʲɐ"
-      ],
-      "posttonic": [
-        "dʲɐ"
-      ]
-    },
-    "дю": {
-      "pretonic": [
-        "dʲʊ"
-      ],
-      "posttonic": [
-        "dʲʊ"
-      ]
-    },
-    "тя": {
-      "pretonic": [
-        "tʲɐ"
-      ],
-      "posttonic": [
-        "tʲɐ"
-      ]
-    },
-    "тю": {
-      "pretonic": [
-        "tʲʊ"
-      ],
-      "posttonic": [
-        "tʲʊ"
-      ]
-    },
-    "зя": {
-      "pretonic": [
-        "zʲɐ"
-      ],
-      "posttonic": [
-        "zʲɐ"
-      ]
-    },
-    "зю": {
-      "pretonic": [
-        "zʲʊ"
-      ],
-      "posttonic": [
-        "zʲʊ"
-      ]
-    },
-    "ся": {
-      "pretonic": [
-        "sʲɐ"
-      ],
-      "posttonic": [
-        "sʲɐ"
-      ]
-    },
-    "сю": {
-      "pretonic": [
-        "sʲʊ"
-      ],
-      "posttonic": [
-        "sʲʊ"
-      ]
-    },
-    "ця": {
-      "pretonic": [
-        "tsʲɐ"
-      ],
-      "posttonic": [
-        "tsʲɐ"
-      ]
-    },
-    "цю": {
-      "pretonic": [
-        "tsʲʊ"
-      ],
-      "posttonic": [
-        "tsʲʊ"
-      ]
-    },
-    "ля": {
-      "pretonic": [
-        "lʲɐ"
-      ],
-      "posttonic": [
-        "lʲɐ"
-      ]
-    },
-    "лю": {
-      "pretonic": [
-        "lʲʊ"
-      ],
-      "posttonic": [
-        "lʲʊ"
-      ]
-    },
-    "ня": {
-      "pretonic": [
-        "nʲɐ"
-      ],
-      "posttonic": [
-        "nʲɐ"
-      ]
-    },
-    "ню": {
-      "pretonic": [
-        "nʲʊ"
-      ],
-      "posttonic": [
-        "nʲʊ"
-      ]
-    },
-    "ря": {
-      "pretonic": [
-        "rʲɐ"
-      ],
-      "posttonic": [
-        "rʲɐ"
-      ]
-    },
-    "рю": {
-      "pretonic": [
-        "rʲʊ"
-      ],
-      "posttonic": [
-        "rʲʊ"
-      ]
-    },
-    "ддя": {
-      "pretonic": [
-        "dʲːɐ"
-      ],
-      "posttonic": [
-        "dʲːɐ"
-      ]
-    },
-    "ддю": {
-      "pretonic": [
-        "dʲːʊ"
-      ],
-      "posttonic": [
-        "dʲːʊ"
-      ]
-    },
-    "ття": {
-      "pretonic": [
-        "tʲːɐ"
-      ],
-      "posttonic": [
-        "tʲːɐ"
-      ]
-    },
-    "ттю": {
-      "pretonic": [
-        "tʲːʊ"
-      ],
-      "posttonic": [
-        "tʲːʊ"
-      ]
-    },
-    "ззя": {
-      "pretonic": [
-        "zʲːɐ"
-      ],
-      "posttonic": [
-        "zʲːɐ"
-      ]
-    },
-    "ззю": {
-      "pretonic": [
-        "zʲːʊ"
-      ],
-      "posttonic": [
-        "zʲːʊ"
-      ]
-    },
-    "сся": {
-      "pretonic": [
-        "sʲːɐ"
-      ],
-      "posttonic": [
-        "sʲːɐ"
-      ]
-    },
-    "ссю": {
-      "pretonic": [
-        "sʲːʊ"
-      ],
-      "posttonic": [
-        "sʲːʊ"
-      ]
-    },
-    "цця": {
-      "pretonic": [
-        "tsʲːɐ"
-      ],
-      "posttonic": [
-        "tsʲːɐ"
-      ]
-    },
-    "ццю": {
-      "pretonic": [
-        "tsʲːʊ"
-      ],
-      "posttonic": [
-        "tsʲːʊ"
-      ]
-    },
-    "лля": {
-      "pretonic": [
-        "lʲːɐ"
-      ],
-      "posttonic": [
-        "lʲːɐ"
-      ]
-    },
-    "ллю": {
-      "pretonic": [
-        "lʲːʊ"
-      ],
-      "posttonic": [
-        "lʲːʊ"
-      ]
-    },
-    "ння": {
-      "pretonic": [
-        "nʲːɐ"
-      ],
-      "posttonic": [
-        "nʲːɐ"
-      ]
-    },
-    "нню": {
-      "pretonic": [
-        "nʲːʊ"
-      ],
-      "posttonic": [
-        "nʲːʊ"
-      ]
-    },
-    "рря": {
-      "pretonic": [
-        "rʲːɐ"
-      ],
-      "posttonic": [
-        "rʲːɐ"
-      ]
-    },
-    "ррю": {
-      "pretonic": [
-        "rʲːʊ"
-      ],
-      "posttonic": [
-        "rʲːʊ"
-      ]
     }
   },
   "stress": {
@@ -857,27 +370,544 @@
   },
   "allophone_rules": [
     {
+      "id": "UK_PALAT_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "bʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_ʋ",
+      "phonemes": [
+        "ʋ"
+      ],
+      "surface": "ʋʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_ɦ",
+      "phonemes": [
+        "ɦ"
+      ],
+      "surface": "ɦʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_ɡ",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɡʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "dʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_k",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "kʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_ɫ",
+      "phonemes": [
+        "ɫ"
+      ],
+      "surface": "lʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_l",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "lʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_m",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "mʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_p",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "pʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_r",
+      "phonemes": [
+        "r"
+      ],
+      "surface": "rʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_f",
+      "phonemes": [
+        "f"
+      ],
+      "surface": "fʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_x",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "xʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_PALAT_ts",
+      "phonemes": [
+        "ts"
+      ],
+      "surface": "tsʲ",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "palatalised before a soft vowel ⟨і ї є я ю⟩ or ⟨ь⟩; ⟨и⟩ /ɪ/ is HARD and never triggers it"
+    },
+    {
+      "id": "UK_DEIOTA_jɛ",
+      "phonemes": [
+        "jɛ"
+      ],
+      "surface": "ɛ",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation"
+    },
+    {
+      "id": "UK_DEIOTA_ja",
+      "phonemes": [
+        "ja"
+      ],
+      "surface": "a",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation (⟨дядько⟩ [ˈdʲadʲko])"
+    },
+    {
+      "id": "UK_DEIOTA_ji",
+      "phonemes": [
+        "ji"
+      ],
+      "surface": "i",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation"
+    },
+    {
+      "id": "UK_HARD_BACK_ɪ",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]",
+      "followed_by_phoneme_2": []
+    },
+    {
+      "id": "UK_HARD_BACK_i",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]",
+      "followed_by_phoneme_2": []
+    },
+    {
+      "id": "UK_HARD_BACK_e",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "tʂ"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]",
+      "followed_by_phoneme_2": []
+    },
+    {
+      "id": "UK_SOFT_SIGN_SILENT",
+      "phonemes": [
+        "ʲ"
+      ],
+      "surface": "",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "⟨ь⟩ marks palatalisation of the preceding consonant, which the palatalisation rule applies; the sign itself is silent"
+    },
+    {
+      "id": "UK_DEIOTA_ju",
+      "phonemes": [
+        "ju"
+      ],
+      "surface": "u",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʃ",
+        "ʋ",
+        "ʒ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
       "id": "UK_REGR_PALAT_s",
       "phonemes": [
         "s"
       ],
       "surface": "sʲ",
       "followed_by_phoneme": [
-        "tʲ",
-        "dʲ",
-        "nʲ",
-        "sʲ",
-        "zʲ",
-        "lʲ",
-        "tsʲ",
-        "bʲ",
-        "vʲ",
-        "mʲ",
-        "pʲ",
-        "fʲ",
-        "ʋʲ"
+        "t",
+        "d",
+        "n",
+        "s",
+        "z",
+        "ɫ",
+        "l",
+        "ts",
+        "dz"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer]."
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer].",
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ]
     },
     {
       "id": "UK_REGR_PALAT_z",
@@ -886,21 +916,27 @@
       ],
       "surface": "zʲ",
       "followed_by_phoneme": [
-        "tʲ",
-        "dʲ",
-        "nʲ",
-        "sʲ",
-        "zʲ",
-        "lʲ",
-        "tsʲ",
-        "bʲ",
-        "vʲ",
-        "mʲ",
-        "pʲ",
-        "fʲ",
-        "ʋʲ"
+        "t",
+        "d",
+        "n",
+        "s",
+        "z",
+        "ɫ",
+        "l",
+        "ts",
+        "dz"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer]."
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer].",
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ]
     },
     {
       "id": "UK_REGR_PALAT_n",
@@ -909,15 +945,27 @@
       ],
       "surface": "nʲ",
       "followed_by_phoneme": [
-        "tʲ",
-        "dʲ",
-        "nʲ",
-        "sʲ",
-        "zʲ",
-        "lʲ",
-        "tsʲ"
+        "t",
+        "d",
+        "n",
+        "s",
+        "z",
+        "ɫ",
+        "l",
+        "ts",
+        "dz"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]."
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ].",
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ]
     },
     {
       "id": "UK_REGR_PALAT_t",
@@ -926,15 +974,27 @@
       ],
       "surface": "tʲ",
       "followed_by_phoneme": [
-        "tʲ",
-        "dʲ",
-        "nʲ",
-        "sʲ",
-        "zʲ",
-        "lʲ",
-        "tsʲ"
+        "t",
+        "d",
+        "n",
+        "s",
+        "z",
+        "ɫ",
+        "l",
+        "ts",
+        "dz"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]."
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ].",
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ]
     },
     {
       "id": "UK_REGR_PALAT_d",
@@ -943,15 +1003,27 @@
       ],
       "surface": "dʲ",
       "followed_by_phoneme": [
-        "tʲ",
-        "dʲ",
-        "nʲ",
-        "sʲ",
-        "zʲ",
-        "lʲ",
-        "tsʲ"
+        "t",
+        "d",
+        "n",
+        "s",
+        "z",
+        "ɫ",
+        "l",
+        "ts",
+        "dz"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]."
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ].",
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ]
     }
   ]
 }

@@ -110,6 +110,10 @@ def test_multi_character_segments_stay_whole():
 #: the spec does not use — and each needs a language owner to say what the rule
 #: *should* target, which is not a mechanical fix. Listed rather than skipped so
 #: they stay visible, and so no NEW dead rule can be added without failing here.
+_RU_REDUCED_DEAD = {
+    "RU_DEIOTA_jə", "RU_DEIOTA_jɪ", "RU_DEIOTA_jʊ", "RU_HARD_BACK_jɪ",
+}
+
 KNOWN_DEAD_RULES = {
     # Maltese inherits the Arabic allophone rules wholesale but emits neither
     # the long vowels they target (/aː/, /iː/, /uː/) nor their environments, so
@@ -126,6 +130,13 @@ KNOWN_DEAD_RULES = {
     # positional readings, so the vowel the rule targets is never emitted.
     # Fixed by the positional-inheritance default in #348, which revives it.
     "da-x-copenhagen": {"DA_SHORTEN_A"},
+    # The southern Russian lects have their own unstressed-vowel system and
+    # never emit the standard reduced /ɪ ə ʊ/, so the de-iotation rules that
+    # target them are inert here. They inherit correctly for every lect that
+    # does reduce; the rule set is the standard language's, not theirs.
+    "ru-x-don": _RU_REDUCED_DEAD,
+    "ru-x-kursk-orel": _RU_REDUCED_DEAD,
+    "ru-x-southern": _RU_REDUCED_DEAD,
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
