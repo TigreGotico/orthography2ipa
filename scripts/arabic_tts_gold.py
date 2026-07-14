@@ -60,6 +60,11 @@ CONSONANTS = set("بتثجحخدذرزسشصضطظعغفقكلمنهةءئؤأإ
 LONG_CARRIERS = set("اوىيآ")
 SUN_LETTERS = set("تثدذرزسشصضطظلن")
 
+
+def unmark(ipa: str) -> str:
+    """*ipa* with the stress marks stripped, for feature-presence scanning."""
+    return ipa.replace("ˈ", "").replace("ˌ", "")
+
 # Feature tags and how each is verified. "raw" predicates look at the
 # undiacritized orthography (reflexes like qaf/jim vary per dialect, so the
 # *grapheme* is the stable witness); "ipa" predicates look at the o2i output
@@ -74,8 +79,12 @@ FEATURES = {
     "sun_assim":   ("raw",  lambda raw, ipa: re.search("ال[" + "".join(SUN_LETTERS) + "]", raw) is not None),
     "emphatic":    ("ipa",  lambda raw, ipa: "ˤ" in ipa or "ɫ" in ipa),
     "pharyngeal":  ("ipa",  lambda raw, ipa: "ħ" in ipa or "ʕ" in ipa),
-    "geminate":    ("ipa",  lambda raw, ipa: re.search(r"([^\Wa-z\d])\1", ipa) is not None
-                                             or re.search(r"([bcdfghjklmnpqrstvwxzʃʒðθħʕɣχʁqβɸ])\1", ipa) is not None
+    # Scan the IPA with the stress marks REMOVED. A geminate is precisely the
+    # consonant that straddles a syllable boundary (dar|ris), so the stress
+    # mark lands *between* its two halves — rˈradʒulu — and a doubled-character
+    # search over the marked string would never see it.
+    "geminate":    ("ipa",  lambda raw, ipa: re.search(r"([^\Wa-z\d])\1", unmark(ipa)) is not None
+                                             or re.search(r"([bcdfghjklmnpqrstvwxzʃʒðθħʕɣχʁqβɸ])\1", unmark(ipa)) is not None
                                              or SHADDA in raw),
     "long_vowel":  ("ipa",  lambda raw, ipa: re.search(r"[aeiouɑɐæɪʊəɛɔ]ː", ipa) is not None),
     "diphthong":   ("ipa",  lambda raw, ipa: re.search(r"[aɑæ][wj]|eː|oː", ipa) is not None),

@@ -75,7 +75,7 @@ from orthography2ipa.sentence import (
 )
 from orthography2ipa.stress import (
     _syllables_for, apply_stress_mark, detect_stress, detect_stress_by_weight,
-    syllabify,
+    syllabify, syllabify_ipa,
 )
 from orthography2ipa.types import LanguageSpec
 
@@ -814,7 +814,14 @@ class G2P:
                 # coda. So this system reads the IPA we just produced, and no
                 # orthographic syllabification is involved.
                 idx = detect_stress_by_weight(ipa, self.spec.stress)
-                ipa = apply_stress_mark(ipa, self.spec.stress, idx)
+                # Mark the mark against the SAME division the weights were read
+                # off. The naive `syllabify` cuts `saːliq` as `sa|ːliq`, which
+                # would drop the mark inside the long vowel: `saˈːliq`.
+                ipa = apply_stress_mark(
+                    ipa, self.spec.stress, idx,
+                    ipa_syllables=syllabify_ipa(
+                        ipa, self.spec.stress.max_onset),
+                )
             else:
                 sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
                                        if self.spec.stress else ())

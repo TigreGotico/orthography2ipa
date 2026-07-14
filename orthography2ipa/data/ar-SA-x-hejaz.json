@@ -4,6 +4,12 @@
   "script": "Arabic",
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {
+    "يَوْ": [
+      "joː"
+    ],
+    "وَيْ": [
+      "weː"
+    ],
     "ث": [
       "t",
       "θ"
@@ -204,7 +210,7 @@
       "notes": "Peninsular Arabic base"
     }
   ],
-  "notes": "Hejazi Arabic (حجازي), urban western Saudi Arabia: Mecca, Medina, Jeddah. References Omar (1975) and Abdoh (2010). DEFINING FEATURES modeled here: (1) qaf ق → /ɡ/ (voiced velar stop) in inherited vocabulary — part of the early Hejazi /q/→/ɡ/ shift; /q/ retained only in learned/scientific/religious borrowings (older descriptions positing a /ʔ/ reflex are a misattribution of the Levantine/Egyptian feature); (2) jim ج → /dʒ/ (affricate; [ʒ] for some speakers); (3) interdentals MERGED TO STOPS in the urban koine — ث → /t/ (~/s/), ذ → /d/ (~/z/), ظ → /dˤ/ (~/zˤ/); interdentals are retained only in Bedouin/rural speech; (4) MONOPHTHONGIZATION — Classical /aj aw/ → [eː oː] (bayt→beːt, yawm→joːm), declared as allophone_rules HEJ_MONO_* (Omar 1975; Abdoh 2010), giving the 8-vowel system /a u i; aː uː iː eː oː/; (5) four emphatics /sˤ dˤ tˤ zˤ/ with pharyngealization spreading that backs low vowels — inherited from the ar-x-peninsular parent (AR_PEN_EMPH_*). No k→[tʃ] Gulf/Najdi affrication. Cosmopolitan koine shaped by Hajj contact. INPUT CONTRACT: transcribes orthography+harakat; short vowels surface only when the input is vocalised (dialectal Arabic is normally written defectively).",
+  "notes": "Hejazi Arabic (حجازي), urban western Saudi Arabia: Mecca, Medina, Jeddah. References Omar (1975) and Abdoh (2010). DEFINING FEATURES modeled here: (1) qaf ق → /ɡ/ (voiced velar stop) in inherited vocabulary — part of the early Hejazi /q/→/ɡ/ shift; /q/ retained only in learned/scientific/religious borrowings (older descriptions positing a /ʔ/ reflex are a misattribution of the Levantine/Egyptian feature); (2) jim ج → /dʒ/ (affricate; [ʒ] for some speakers); (3) interdentals MERGED TO STOPS in the urban koine — ث → /t/ (~/s/), ذ → /d/ (~/z/), ظ → /dˤ/ (~/zˤ/); interdentals are retained only in Bedouin/rural speech; (4) MONOPHTHONGIZATION — Classical /aj aw/ → [eː oː] (bayt→beːt, yawm→joːm), declared as allophone_rules HEJ_MONO_* (Omar 1975; Abdoh 2010), giving the 8-vowel system /a u i; aː uː iː eː oː/. TOKENIZATION NOTE: those rules rewrite the /aj/ and /aw/ ATOMS that the ⟨َي⟩/⟨َو⟩ digraphs emit, and in ⟨يَوْ⟩ and ⟨وَيْ⟩ the fatha is already spoken for — the inherited `ar` onset digraphs يَ→/ja/ and وَ→/wa/ claim it, so the glide that follows is a bare /w/ or /j/ and the diphthong atom never forms (يَوْم came out *[jawm]). The two sequences are therefore spelled out in `graphemes` as يَوْ→[joː] and وَيْ→[weː], which is the same monophthongization, reached from the spelling instead of from the atom. The explicit sukun in both keys is what keeps حَيَوَان /ħajawaːn/ and يَوَدّ /jawadd/ — where the waw carries its own vowel and there is no diphthong — out of the rule; (5) four emphatics /sˤ dˤ tˤ zˤ/ with pharyngealization spreading that backs low vowels — inherited from the ar-x-peninsular parent (AR_PEN_EMPH_*). No k→[tʃ] Gulf/Najdi affrication. Cosmopolitan koine shaped by Hajj contact. INPUT CONTRACT: transcribes orthography+harakat; short vowels surface only when the input is vocalised (dialectal Arabic is normally written defectively).",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -227,6 +233,16 @@
       "url": null,
       "pages": null,
       "notes": "Urban Meccan/Hejazi vowel chart; 8-vowel system with /eː oː/ from monophthongized diphthongs; four emphatics /sˤ dˤ tˤ zˤ/."
+    },
+    {
+      "id": "almahmoud2020",
+      "author": "Al Mahmoud, M.S.",
+      "year": 2020,
+      "title": "A Constraint-based Analysis of Velar Affrication in Najdi vs. Hijazi Arabic",
+      "publisher": "Education and Linguistics Research 6(2), 62-72. doi:10.5296/elr.v6i2.17551",
+      "url": "https://doi.org/10.5296/elr.v6i2.17551",
+      "pages": "62-72",
+      "notes": "Native-informant evidence that Hijazi has NO velar affrication: /kis/, /dik/, /ʕɪlk/, /keɪf/, /kɛlb/ all keep [k] in HA while Najdi alternates with [ts]; the qaf reflex is [ɡ] with no [dz]. Supports the k:[k] allophone list here."
     },
     {
       "id": "watson2002",

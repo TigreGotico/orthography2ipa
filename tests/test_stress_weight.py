@@ -129,3 +129,51 @@ def test_the_arabic_specs_opt_in():
     assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
     # Nothing outside Arabic opted in, so no other language moved.
     assert all(c.startswith("ar") for c in opted_in), sorted(opted_in)
+
+
+# ─── weight is counted in SEGMENTS, not characters ──────────────────────
+#
+# A modifier letter (pharyngealization ˤ, aspiration ʰ, length ː) rides on the
+# consonant it modifies, and an affricate is one consonant, not a cluster.
+# Counting characters made a CVC coda look like CVCC, called the syllable
+# superheavy and pulled the stress onto it: /ɣalatˤ/ came out ɣaˈlɑtˤ and
+# /xaradʒ/ xaˈradʒ, both wrong.
+
+@pytest.mark.parametrize("syllable,weight,why", [
+    ("latˤ", HEAVY, "tˤ is ONE pharyngealized consonant — CVC, not CVCC"),
+    ("radʒ", HEAVY, "dʒ is ONE affricate — CVC"),
+    ("lidz", HEAVY, "so is the Najdi affricate dz"),
+    ("lit͡s", HEAVY, "tie-barred spelling likewise"),
+    ("bakʰt", SUPERHEAVY, "a real two-consonant coda is still superheavy"),
+])
+def test_syllable_weight_counts_segments(syllable, weight, why):
+    assert syllable_weight(syllable) == weight, why
+
+
+@pytest.mark.parametrize("ipa,index,why", [
+    ("ɣalatˤ", -2, "final CVC is only heavy, so it does not attract"),
+    ("xaradʒ", -2, "same, with an affricate coda"),
+    ("saːlidz", -2, "heavy penult saː keeps the stress"),
+])
+def test_detect_stress_by_weight_counts_segments(ipa, index, why):
+    assert detect_stress_by_weight(ipa, ARABIC) == index, why
+
+
+def test_an_affricate_is_never_split_across_a_syllable_boundary():
+    assert syllabify_ipa("katsib", max_onset=1) == ["ka", "tsib"]
+    assert syllabify_ipa("matˤɑr", max_onset=1) == ["ma", "tˤɑr"]
+
+
+def test_the_stress_mark_never_lands_inside_a_long_vowel():
+    """The mark is placed against the weight syllabifier's own division.
+
+    The naive `syllabify` cuts `saːliq` as sa|ːliq, so marking the final
+    syllable there produced `saˈːliq` — a stress mark inside a long vowel,
+    which is not well-formed IPA.
+    """
+    from orthography2ipa.stress import apply_stress_mark
+    marked = apply_stress_mark(
+        "saːliq", ARABIC, -1,
+        ipa_syllables=syllabify_ipa("saːliq", ARABIC.max_onset),
+    )
+    assert marked == "saːˈliq"
