@@ -127,6 +127,30 @@
     ],
     "'": [
       ""
+    ],
+    "нн": [
+      "nː"
+    ],
+    "лл": [
+      "ɫː"
+    ],
+    "дд": [
+      "dː"
+    ],
+    "тт": [
+      "tː"
+    ],
+    "зз": [
+      "zː"
+    ],
+    "сс": [
+      "sː"
+    ],
+    "цц": [
+      "tsː"
+    ],
+    "рр": [
+      "rː"
     ]
   },
   "allophones": {
@@ -369,6 +393,150 @@
     "notes": "Ukrainian stress is lexical and free (Shevelov 1993); the penultimate default is a statistical approximation that gates the unstressed-vowel contexts."
   },
   "allophone_rules": [
+    {
+      "id": "UK_PALAT_nː",
+      "phonemes": [
+        "nː"
+      ],
+      "surface": "nʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
+    {
+      "id": "UK_PALAT_ɫː",
+      "phonemes": [
+        "ɫː"
+      ],
+      "surface": "lʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
+    {
+      "id": "UK_PALAT_dː",
+      "phonemes": [
+        "dː"
+      ],
+      "surface": "dʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
+    {
+      "id": "UK_PALAT_tː",
+      "phonemes": [
+        "tː"
+      ],
+      "surface": "tʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
+    {
+      "id": "UK_PALAT_zː",
+      "phonemes": [
+        "zː"
+      ],
+      "surface": "zʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
+    {
+      "id": "UK_PALAT_sː",
+      "phonemes": [
+        "sː"
+      ],
+      "surface": "sʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
+    {
+      "id": "UK_PALAT_tsː",
+      "phonemes": [
+        "tsː"
+      ],
+      "surface": "tsʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
+    {
+      "id": "UK_PALAT_rː",
+      "phonemes": [
+        "rː"
+      ],
+      "surface": "rʲː",
+      "followed_by_phoneme": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a long consonant palatalises before a soft vowel just as its short counterpart does (⟨життя⟩ [ʒɪˈtʲːɑ], ⟨знання⟩ [znɐˈnʲːɑ])"
+    },
     {
       "id": "UK_PALAT_b",
       "phonemes": [
@@ -702,20 +870,28 @@
       "preceded_by_phoneme": [
         "b",
         "d",
+        "dː",
         "f",
         "j",
         "k",
         "m",
         "n",
+        "nː",
         "p",
         "r",
+        "rː",
         "s",
+        "sː",
         "t",
+        "tsː",
+        "tː",
         "x",
         "z",
+        "zː",
         "ɡ",
         "ɦ",
         "ɫ",
+        "ɫː",
         "ʃ",
         "ʋ",
         "ʒ"
@@ -731,20 +907,28 @@
       "preceded_by_phoneme": [
         "b",
         "d",
+        "dː",
         "f",
         "j",
         "k",
         "m",
         "n",
+        "nː",
         "p",
         "r",
+        "rː",
         "s",
+        "sː",
         "t",
+        "tsː",
+        "tː",
         "x",
         "z",
+        "zː",
         "ɡ",
         "ɦ",
         "ɫ",
+        "ɫː",
         "ʃ",
         "ʋ",
         "ʒ"
@@ -760,67 +944,33 @@
       "preceded_by_phoneme": [
         "b",
         "d",
+        "dː",
         "f",
         "j",
         "k",
         "m",
         "n",
+        "nː",
         "p",
         "r",
+        "rː",
         "s",
+        "sː",
         "t",
+        "tsː",
+        "tː",
         "x",
         "z",
+        "zː",
         "ɡ",
         "ɦ",
         "ɫ",
+        "ɫː",
         "ʃ",
         "ʋ",
         "ʒ"
       ],
       "notes": "after a plain consonant the glide is absorbed into palatalisation"
-    },
-    {
-      "id": "UK_HARD_BACK_ɪ",
-      "phonemes": [
-        "ɪ"
-      ],
-      "surface": "ɨ",
-      "preceded_by_phoneme": [
-        "ʐ",
-        "ʂ",
-        "tʂ"
-      ],
-      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]",
-      "followed_by_phoneme_2": []
-    },
-    {
-      "id": "UK_HARD_BACK_i",
-      "phonemes": [
-        "i"
-      ],
-      "surface": "ɨ",
-      "preceded_by_phoneme": [
-        "ʐ",
-        "ʂ",
-        "tʂ"
-      ],
-      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]",
-      "followed_by_phoneme_2": []
-    },
-    {
-      "id": "UK_HARD_BACK_e",
-      "phonemes": [
-        "e"
-      ],
-      "surface": "ɨ",
-      "preceded_by_phoneme": [
-        "ʐ",
-        "ʂ",
-        "tʂ"
-      ],
-      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]",
-      "followed_by_phoneme_2": []
     },
     {
       "id": "UK_SOFT_SIGN_SILENT",
@@ -860,20 +1010,28 @@
       "preceded_by_phoneme": [
         "b",
         "d",
+        "dː",
         "f",
         "j",
         "k",
         "m",
         "n",
+        "nː",
         "p",
         "r",
+        "rː",
         "s",
+        "sː",
         "t",
+        "tsː",
+        "tː",
         "x",
         "z",
+        "zː",
         "ɡ",
         "ɦ",
         "ɫ",
+        "ɫː",
         "ʃ",
         "ʋ",
         "ʒ"
@@ -887,27 +1045,21 @@
       ],
       "surface": "sʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts",
-        "dz"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tsʲ",
+        "bʲ",
+        "vʲ",
+        "mʲ",
+        "pʲ",
+        "fʲ",
+        "ʋʲ"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer].",
-      "followed_by_phoneme_2": [
-        "ji",
-        "jɛ",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer]."
     },
     {
       "id": "UK_REGR_PALAT_z",
@@ -916,27 +1068,21 @@
       ],
       "surface": "zʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts",
-        "dz"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tsʲ",
+        "bʲ",
+        "vʲ",
+        "mʲ",
+        "pʲ",
+        "fʲ",
+        "ʋʲ"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer].",
-      "followed_by_phoneme_2": [
-        "ji",
-        "jɛ",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]. s/z also soften before soft labials: звер [zʲvʲer]."
     },
     {
       "id": "UK_REGR_PALAT_n",
@@ -945,27 +1091,15 @@
       ],
       "surface": "nʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts",
-        "dz"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tsʲ"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ].",
-      "followed_by_phoneme_2": [
-        "ji",
-        "jɛ",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]."
     },
     {
       "id": "UK_REGR_PALAT_t",
@@ -974,27 +1108,15 @@
       ],
       "surface": "tʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts",
-        "dz"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tsʲ"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ].",
-      "followed_by_phoneme_2": [
-        "ji",
-        "jɛ",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]."
     },
     {
       "id": "UK_REGR_PALAT_d",
@@ -1003,27 +1125,15 @@
       ],
       "surface": "dʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts",
-        "dz"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tsʲ"
       ],
-      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ].",
-      "followed_by_phoneme_2": [
-        "ji",
-        "jɛ",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization of dentals before soft dentals (Pompino-Marschall, Pashchenko & Mołczanow (2017) Ukrainian, JIPA 47(3), consonant section): кістка [kʲisʲtʲkɐ]."
     }
   ]
 }

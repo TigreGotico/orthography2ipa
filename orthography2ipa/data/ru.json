@@ -1709,12 +1709,7 @@
       "followed_by_phoneme": [
         "t",
         "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts"
+        "n"
       ],
       "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek].",
       "followed_by_phoneme_2": [
@@ -1740,12 +1735,7 @@
       "followed_by_phoneme": [
         "t",
         "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts"
+        "n"
       ],
       "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek].",
       "followed_by_phoneme_2": [
@@ -1769,29 +1759,16 @@
       ],
       "surface": "nʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
       ],
-      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek].",
-      "followed_by_phoneme_2": [
-        "jɪ",
-        "jə",
-        "jʊ",
-        "je",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ɪ",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
     },
     {
       "id": "RU_REGR_PALAT_t",
@@ -1800,29 +1777,16 @@
       ],
       "surface": "tʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
       ],
-      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek].",
-      "followed_by_phoneme_2": [
-        "jɪ",
-        "jə",
-        "jʊ",
-        "je",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ɪ",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
     },
     {
       "id": "RU_REGR_PALAT_d",
@@ -1831,29 +1795,16 @@
       ],
       "surface": "dʲ",
       "followed_by_phoneme": [
-        "t",
-        "d",
-        "n",
-        "s",
-        "z",
-        "ɫ",
-        "l",
-        "ts"
+        "tʲ",
+        "dʲ",
+        "nʲ",
+        "sʲ",
+        "zʲ",
+        "lʲ",
+        "tɕ",
+        "ɕː"
       ],
-      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek].",
-      "followed_by_phoneme_2": [
-        "jɪ",
-        "jə",
-        "jʊ",
-        "je",
-        "ja",
-        "ju",
-        "jo",
-        "j",
-        "i",
-        "ɪ",
-        "ʲ"
-      ]
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
     }
   ]
 }
