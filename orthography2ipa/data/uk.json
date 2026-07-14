@@ -394,6 +394,272 @@
   },
   "allophone_rules": [
     {
+      "id": "UK_ASSIM_PALAT_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "dʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "dz",
+        "f",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʋ"
+      ],
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a dental softens before a consonant that is itself softened by a following soft vowel (⟨Індія⟩ [inʲˈdʲijɐ])"
+    },
+    {
+      "id": "UK_ASSIM_PALAT_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "dz",
+        "f",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʋ"
+      ],
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a dental softens before a consonant that is itself softened by a following soft vowel (⟨Індія⟩ [inʲˈdʲijɐ])"
+    },
+    {
+      "id": "UK_ASSIM_PALAT_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "dz",
+        "f",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʋ"
+      ],
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a dental softens before a consonant that is itself softened by a following soft vowel (⟨Індія⟩ [inʲˈdʲijɐ])"
+    },
+    {
+      "id": "UK_ASSIM_PALAT_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "dz",
+        "f",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʋ"
+      ],
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a dental softens before a consonant that is itself softened by a following soft vowel (⟨Індія⟩ [inʲˈdʲijɐ])"
+    },
+    {
+      "id": "UK_ASSIM_PALAT_ts",
+      "phonemes": [
+        "ts"
+      ],
+      "surface": "tsʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "dz",
+        "f",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʋ"
+      ],
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a dental softens before a consonant that is itself softened by a following soft vowel (⟨Індія⟩ [inʲˈdʲijɐ])"
+    },
+    {
+      "id": "UK_ASSIM_PALAT_ɫ",
+      "phonemes": [
+        "ɫ"
+      ],
+      "surface": "lʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "dz",
+        "f",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʋ"
+      ],
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a dental softens before a consonant that is itself softened by a following soft vowel (⟨Індія⟩ [inʲˈdʲijɐ])"
+    },
+    {
+      "id": "UK_ASSIM_PALAT_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʲ",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "dz",
+        "f",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "x",
+        "z",
+        "ɡ",
+        "ɦ",
+        "ɫ",
+        "ʋ"
+      ],
+      "followed_by_phoneme_2": [
+        "ji",
+        "jɛ",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ʲ"
+      ],
+      "notes": "a dental softens before a consonant that is itself softened by a following soft vowel (⟨Індія⟩ [inʲˈdʲijɐ])"
+    },
+    {
       "id": "UK_PALAT_nː",
       "phonemes": [
         "nː"

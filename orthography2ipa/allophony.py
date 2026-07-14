@@ -313,8 +313,7 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         return self._matches_slot(rule, ctx)
 
-    @staticmethod
-    def _matches_slot(rule: AllophoneRule, ctx: RescoreContext) -> bool:
+    def _matches_slot(self, rule: AllophoneRule, ctx: RescoreContext) -> bool:
         """The conditions that describe the SLOT, not one of its segments:
         stress, syllable position, and grapheme-class neighbours."""
         if rule.stress is not None:
