@@ -89,7 +89,9 @@ language's JSON spec (see `data/SCHEMA.md` for the schema).
 The [`primary_sources`](../orthography2ipa/data/gold/primary_sources/README.md)
 benchmark set is built from the worked example transcriptions printed in the
 sources above — `almbark2015`, `jasim2020`, `fadda2016`, `cotter2016` (Arabic)
-and `brissos2014` (Portuguese). Each gold row names its source and its **printed**
+`brissos2014` (Portuguese), and the JIPA *Illustrations of the IPA* for Ukrainian
+(`pompino2017`), Russian (`yanushevskaya2015`), European Portuguese
+(`cruzferreira1995`) and Brazilian Portuguese (`barbosa2004`). Each gold row names its source and its **printed**
 page, and `sources.json` in that directory records, per source, how the printed
 folio maps to the PDF page index.
 

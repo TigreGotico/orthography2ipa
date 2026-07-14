@@ -39,16 +39,18 @@ not to certify a language on its own.
 
 | source | variety | lang | rows |
 |---|---|---|---|
-| Almbark & Hellmuth (2015) | Syrian (Damascene) | `ar-SY` | 11 |
-| Jasim (2020), Newcastle PhD | Baghdadi Gilit | `ar-IQ` | 12 |
-| Jasim (2020) | Muslawi Qəltu | `ar-IQ-x-qeltu` | 12 |
+| Pompino-Marschall, Steriopolo & Żygis (2017), JIPA Illustration | Standard Ukrainian | `uk` | 45 |
+| Yanushevskaya & Bunčić (2015), JIPA Illustration | Standard Russian | `ru` | 36 |
+| Cruz-Ferreira (1995), JIPA Illustration | European Portuguese (Lisbon) | `pt-PT-x-lisbon` | 33 |
+| Jasim (2020), Newcastle PhD | Baghdadi Gilit / Muslawi Qəltu | `ar-IQ` / `ar-IQ-x-qeltu` | 12 / 12 |
+| Barbosa & Albano (2004), JIPA Illustration | Brazilian Portuguese | `pt-BR` | 21 |
 | Fadda (2016), MA thesis | Ammani | `ar-JO` | 13 |
-| Cotter (2016) | Gaza City | `ar-PS` | 4 |
-| Brissos (2014) | EP central-interior (CI) | `pt-PT-x-beira` | 8 |
-| Brissos (2014) | EP southwestern (SW) | `pt-PT-x-alentejo` | 5 |
-| **total** | | | **65** |
+| Brissos (2014), JPL | EP central-interior (CI) / southwestern (SW) | `pt-PT-x-beira` / `pt-PT-x-alentejo` | 8 / 5 |
+| Almbark & Hellmuth (2015), ICPhS | Damascene | `ar-SY` | 11 |
+| Cotter (2016), JAIS | Gaza City | `ar-PS` | 4 |
+| **total** | | | **200** |
 
-Broad `/…/`: 25. Narrow `[…]`: 40. `confidence`: 45 high, 18 medium, 2 low.
+Broad `/…/`: 160. Narrow `[…]`: 40. `confidence`: 144 high, 54 medium, 2 low.
 
 ## Notation-normalization decisions
 
@@ -67,6 +69,16 @@ Broad `/…/`: 25. Narrow `[…]`: 40. `confidence`: 45 high, 18 medium, 2 low.
 - **`x` vs `χ`.** Almbark writes `/xoːd/` where o2i's Arabic specs use `/χ/`.
   Kept as printed: this is a notation difference between phonologists, not a
   claim about Syrian Arabic.
+- **Scanned PDFs are read as images, never guessed.** The Cruz-Ferreira (1995) and
+  Barbosa & Albano (2004) Illustrations are scans whose text layer mangles the IPA;
+  the Ukrainian and Russian Illustrations have text-layer glyph substitutions (ɪ→`I`,
+  ɔ→`ↄ`, ɨ→`-i`, ʲ→`j`). In every one of these cases the rows were transcribed from a
+  **render of the printed page**, which is authoritative. No mangled font was
+  hand-decoded from its byte values.
+- **Russian Cyrillic is editor-supplied.** The Illustration prints its words in
+  scholarly transliteration (`pal'cy`), not Cyrillic, so the Cyrillic is ours —
+  unambiguous given transliteration plus gloss, but flagged, and every Russian row is
+  capped at `confidence: medium`.
 - **Arabic ḥarakāt are editor-supplied.** The Arabic sources print their examples
   in transcription, not in script. o2i's Arabic input contract is fully-diacritized
   text, so a diacritized spelling of the cited lexeme is supplied in
@@ -139,6 +151,35 @@ running the engine over these rows.
 10. **`pt-PT-x-alentejo` chain shift.** Brissos p.67 has `[e]` → `[ɛ]`
     (`seda`), `[ɛ]` → `[æ]` (`erva`), `[a]` → `[ɒ]` (`mar`), `[ɔ]` → `[ɔ̝]`
     (`avó`); the spec models the /u/ → [y] leg only.
+
+11. **`ru` sibilants: /ʃ ʒ/ vs the spec's [ʂ ʐ].** The JIPA Illustration analyses the
+    Russian hard sibilants as post-alveolar /ʃ ʒ/ (шар /ˈʃar/, жар /ˈʒar/, p.222) and
+    the soft ones as /tʃʲ/ and /ʃʲː/ (чары, щука); o2i produces [ʂ], [ʐ], [tɕ], [ɕː].
+    Both analyses are current in the literature — this is a genuine disagreement
+    between our spec and a source, not an engine bug, and the rows record it.
+12. **`ru` Гёте / Хюбнер**: the source keeps the unstressed vowels unreduced in its
+    phonemic transcription (/ˈɡʲote/, /ˈxʲubner/) where o2i applies reduction
+    (`ˈɡʲɵtʲɪ`, `ˈxʲubnʲɪr`). The gold here is broad; the engine is narrow. A reminder
+    that a broad-vs-narrow mismatch is a measurement artefact, not an error — which is
+    exactly why `level` is recorded per row.
+13. **`uk` stress placement.** перелаз / перелазь are stressed on the final syllable in
+    the source (`pɛrɛˈɫaz`); o2i stresses the second (`peˈrɛɫɐz`) and reduces the
+    unstressed vowels, which the source does not.
+14. **`uk` long palatalized consonants.** піддашшя `[pʲiˈdːaʃʲːa]` and ніччю
+    `[ˈnʲit͡ʃʲːu]` show gemination-with-palatalization that o2i renders as a plain
+    cluster plus /j/ (`ˈpʲiddaʃʃjɑ`, `ˈnʲitʃtʃju`). Same for мяу and свят: the source has
+    a palatalized consonant (`mʲau̯`, `sʲʋʲat`), o2i inserts a /j/ and backs the vowel.
+15. **`pt-PT-x-lisbon` mute ⟨c⟩.** Cruz-Ferreira p.91 gives tacto `[ˈtatu]`, cacto
+    `[ˈkatu]`, jacto `[ˈʒatu]` — the ⟨c⟩ is not pronounced in the pre-AO1990 spelling.
+    o2i pronounces it (`ˈtaktu`, `ˈkaktu`, `ˈʒaktu`). Note this is precisely an
+    orthography-normalization question, and o2i deliberately does no normalization: the
+    modern spellings (tato, cato, jato) would transcribe correctly.
+16. **`pt-BR` nasalization before a palatal nasal.** ganho is `[ɡẽɲʊ]` in Barbosa &
+    Albano p.228; o2i gives `ˈɡaɲu` — the vowel is not nasalized.
+17. **`pt-BR` final unstressed /o/.** The Illustration transcribes it `[ʊ]`
+    (galo `[ɡalʊ]`, caro `[kaɾʊ]`); o2i raises it all the way to `[u]`. And `carro` is
+    `[kaɣʊ]` there (a velar fricative /R/) against o2i's uvular `[ʁ]` — the source says
+    the /R/ realization varies across Brazil, so this is a variety choice, not an error.
 
 ## Adding rows
 

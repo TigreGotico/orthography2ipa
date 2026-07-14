@@ -43,6 +43,50 @@
     "notation": "arabicist-transliteration",
     "describes": "Gaza City Arabic (urban Palestinian)"
   },
+  "pompino2017": {
+    "authors": "Pompino-Marschall, B., Steriopolo, E. & Żygis, M.",
+    "year": 2017,
+    "title": "Ukrainian (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 47(3):349-357",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D20ECF62B57E4162670BD938A4B8EA33/S0025100316000372a.pdf/ukrainian.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 349-357. The word list is on printed page 351 (PDF page index 3).",
+    "notation": "ipa",
+    "describes": "Standard Ukrainian; the speaker was born in Bukovina and educated in Kyiv"
+  },
+  "yanushevskaya2015": {
+    "authors": "Yanushevskaya, I. & Bunčić, D.",
+    "year": 2015,
+    "title": "Russian (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 45(2):221-228",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/55589EC639ADEF1764B5ECD0B76970FA/S0025100314000395a.pdf/russian.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 221-228. The consonant word list is on printed page 222 (PDF page index 2).",
+    "notation": "ipa",
+    "describes": "Standard Russian (Moscow-type pronunciation)"
+  },
+  "cruzferreira1995": {
+    "authors": "Cruz-Ferreira, M.",
+    "year": 1995,
+    "title": "European Portuguese (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 25(2):90-94",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/0A8156D240CCB941A73C4C0EC1672A19/S0025100300005223a.pdf/european_portuguese.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 90-94. The word lists are on printed page 91 (PDF page index 2). The PDF is a scan with an unreliable text layer — the rows were transcribed from a render of the page, not from pdftotext.",
+    "notation": "ipa",
+    "describes": "European Portuguese, Lisbon dialect (cited by the pt-PT and pt-PT-x-lisbon specs)"
+  },
+  "barbosa2004": {
+    "authors": "Barbosa, P.A. & Albano, E.C.",
+    "year": 2004,
+    "title": "Brazilian Portuguese (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 34(2):227-232",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/8EE69D52AE2D06C1EDA2841EA2E14FEC/S0025100304001756a.pdf/brazilian_portuguese.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 227-232. The consonant word list is on printed page 228 (PDF page index 2). The text layer mangles the IPA, so the rows were transcribed from a render of the page.",
+    "notation": "ipa",
+    "describes": "Brazilian Portuguese (the variety illustrated has dental affrication before [i]); cited by the pt-BR and pt-BR-x-sp specs"
+  },
   "brissos2014": {
     "authors": "Brissos, F.",
     "year": 2014,
