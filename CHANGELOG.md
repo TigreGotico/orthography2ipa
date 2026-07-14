@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.5.2a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.2a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.1a1...4.5.2a1)
+
+**Merged pull requests:**
+
+- fix: Portuguese output depended on whether a plugin happened to be installed [\#367](https://github.com/TigreGotico/orthography2ipa/pull/367) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [4.5.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.1a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.0a2...4.5.1a1)
