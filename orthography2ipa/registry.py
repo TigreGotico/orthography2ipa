@@ -225,3 +225,73 @@ def get_syllabifier(code: str) -> Optional["SyllabifierPlugin"]:
         _syllabifiers = _discover_syllabifiers()
     code = _resolve_code(code)
     return _syllabifiers.get(code)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Rescorer plugins — phonology contributed for one language
+# ═══════════════════════════════════════════════════════════════════════════
+
+_rescorer_plugins: Optional[Dict[str, List["RescorerPlugin"]]] = None
+
+
+def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
+    """Discover rescorer plugins via importlib entry points.
+
+    Unlike a syllabifier, several rescorer plugins may claim the same language and
+    ALL of them run: realization is a cascade, not a competition. They are ordered
+    by priority, lowest first, so a higher-priority plugin sees the lower one's
+    work and gets the last word.
+    """
+    import logging
+    from importlib.metadata import entry_points
+
+    plugins: Dict[str, List["RescorerPlugin"]] = {}
+    for ep in entry_points(group="orthography2ipa.rescore"):
+        try:
+            instance = ep.load()()
+            for code in instance.language_codes:
+                plugins.setdefault(code, []).append(instance)
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "failed to load rescorer plugin %r: %s", ep.name, exc)
+            continue
+    for code in plugins:
+        plugins[code].sort(key=lambda p: p.priority)
+    return plugins
+
+
+def get_rescorers(code: str) -> List["LatticeRescorer"]:
+    """The rescorers every registered plugin contributes for *code*, in order."""
+    global _rescorer_plugins
+    if _rescorer_plugins is None:
+        _rescorer_plugins = _discover_rescorer_plugins()
+    resolved = _resolve_code(code)
+    out: List["LatticeRescorer"] = []
+    for plugin in _rescorer_plugins.get(resolved, ()):
+        out.extend(plugin.rescorers(resolved))
+    return out
+
+
+def who_answers(code: str) -> Dict[str, object]:
+    """Who is answering for *code*, and from where.
+
+    The first question anyone debugging a plugin asks, given an API. A
+    transcription that depends on what is installed should at least be able to say
+    what is installed.
+    """
+    resolved = _resolve_code(code)
+    syllabifier = get_syllabifier(resolved)
+    global _rescorer_plugins
+    if _rescorer_plugins is None:
+        _rescorer_plugins = _discover_rescorer_plugins()
+    return {
+        "code": resolved,
+        "syllabify": (
+            f"{type(syllabifier).__module__}.{type(syllabifier).__name__}"
+            if syllabifier is not None else "built-in"
+        ),
+        "rescore": [
+            f"{type(p).__module__}.{type(p).__name__} (priority {p.priority})"
+            for p in _rescorer_plugins.get(resolved, ())
+        ] or ["built-in (spec allophone_rules only)"],
+    }

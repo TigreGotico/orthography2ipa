@@ -272,9 +272,17 @@ class G2P:
             if apply_allophony else None
         )
         self._allophone_rescorer = allophone_rescorer
+
+        # Rescorers contributed by plugins for this language, then the spec's own
+        # allophone rules. The spec has the last word: its rules are declared data
+        # a language owner wrote, and a plugin refines that phonology rather than
+        # overruling it. See orthography2ipa.rescorer_plugin.
+        from orthography2ipa.registry import get_rescorers
+        plugin_rescorers = tuple(get_rescorers(self.lang))
+
         self._rescorers: Tuple[LatticeRescorer, ...] = (
-            user_rescorers + (allophone_rescorer,)
-            if allophone_rescorer is not None else user_rescorers
+            user_rescorers + plugin_rescorers
+            + ((allophone_rescorer,) if allophone_rescorer is not None else ())
         )
         self.expand_allophones = expand_allophones
         self.dialect_profile = dialect_profile
