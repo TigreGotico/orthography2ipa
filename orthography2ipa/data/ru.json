@@ -120,249 +120,6 @@
     "ль": [
       "lʲ"
     ],
-    "бе": [
-      "bʲe"
-    ],
-    "би": [
-      "bʲi"
-    ],
-    "бя": [
-      "bʲa"
-    ],
-    "бё": [
-      "bʲɵ"
-    ],
-    "бю": [
-      "bʲu"
-    ],
-    "ве": [
-      "vʲe"
-    ],
-    "ви": [
-      "vʲi"
-    ],
-    "вя": [
-      "vʲa"
-    ],
-    "вё": [
-      "vʲɵ"
-    ],
-    "вю": [
-      "vʲu"
-    ],
-    "ге": [
-      "ɡʲe"
-    ],
-    "ги": [
-      "ɡʲi"
-    ],
-    "гя": [
-      "ɡʲa"
-    ],
-    "гё": [
-      "ɡʲɵ"
-    ],
-    "гю": [
-      "ɡʲu"
-    ],
-    "де": [
-      "dʲe"
-    ],
-    "ди": [
-      "dʲi"
-    ],
-    "дя": [
-      "dʲa"
-    ],
-    "дё": [
-      "dʲɵ"
-    ],
-    "дю": [
-      "dʲu"
-    ],
-    "зе": [
-      "zʲe"
-    ],
-    "зи": [
-      "zʲi"
-    ],
-    "зя": [
-      "zʲa"
-    ],
-    "зё": [
-      "zʲɵ"
-    ],
-    "зю": [
-      "zʲu"
-    ],
-    "ке": [
-      "kʲe"
-    ],
-    "ки": [
-      "kʲi"
-    ],
-    "кя": [
-      "kʲa"
-    ],
-    "кё": [
-      "kʲɵ"
-    ],
-    "кю": [
-      "kʲu"
-    ],
-    "ле": [
-      "lʲe"
-    ],
-    "ли": [
-      "lʲi"
-    ],
-    "ля": [
-      "lʲa"
-    ],
-    "лё": [
-      "lʲɵ"
-    ],
-    "лю": [
-      "lʲu"
-    ],
-    "ме": [
-      "mʲe"
-    ],
-    "ми": [
-      "mʲi"
-    ],
-    "мя": [
-      "mʲa"
-    ],
-    "мё": [
-      "mʲɵ"
-    ],
-    "мю": [
-      "mʲu"
-    ],
-    "не": [
-      "nʲe"
-    ],
-    "ни": [
-      "nʲi"
-    ],
-    "ня": [
-      "nʲa"
-    ],
-    "нё": [
-      "nʲɵ"
-    ],
-    "ню": [
-      "nʲu"
-    ],
-    "пе": [
-      "pʲe"
-    ],
-    "пи": [
-      "pʲi"
-    ],
-    "пя": [
-      "pʲa"
-    ],
-    "пё": [
-      "pʲɵ"
-    ],
-    "пю": [
-      "pʲu"
-    ],
-    "ре": [
-      "rʲe"
-    ],
-    "ри": [
-      "rʲi"
-    ],
-    "ря": [
-      "rʲa"
-    ],
-    "рё": [
-      "rʲɵ"
-    ],
-    "рю": [
-      "rʲu"
-    ],
-    "се": [
-      "sʲe"
-    ],
-    "си": [
-      "sʲi"
-    ],
-    "ся": [
-      "sʲa"
-    ],
-    "сё": [
-      "sʲɵ"
-    ],
-    "сю": [
-      "sʲu"
-    ],
-    "те": [
-      "tʲe"
-    ],
-    "ти": [
-      "tʲi"
-    ],
-    "тя": [
-      "tʲa"
-    ],
-    "тё": [
-      "tʲɵ"
-    ],
-    "тю": [
-      "tʲu"
-    ],
-    "фе": [
-      "fʲe"
-    ],
-    "фи": [
-      "fʲi"
-    ],
-    "фя": [
-      "fʲa"
-    ],
-    "фё": [
-      "fʲɵ"
-    ],
-    "фю": [
-      "fʲu"
-    ],
-    "хе": [
-      "xʲe"
-    ],
-    "хи": [
-      "xʲi"
-    ],
-    "хя": [
-      "xʲa"
-    ],
-    "хё": [
-      "xʲɵ"
-    ],
-    "хю": [
-      "xʲu"
-    ],
-    "жи": [
-      "ʐɨ"
-    ],
-    "же": [
-      "ʐɛ"
-    ],
-    "ши": [
-      "ʂɨ"
-    ],
-    "ше": [
-      "ʂɛ"
-    ],
-    "ци": [
-      "tsɨ"
-    ],
-    "це": [
-      "tsɛ"
-    ],
     "шь": [
       "ʂ"
     ],
@@ -704,50 +461,6 @@
         "jo"
       ]
     },
-    "бь": {
-      "word_final": [
-        "pʲ"
-      ],
-      "coda": [
-        "pʲ"
-      ],
-      "default": [
-        "bʲ"
-      ]
-    },
-    "вь": {
-      "word_final": [
-        "fʲ"
-      ],
-      "coda": [
-        "fʲ"
-      ],
-      "default": [
-        "vʲ"
-      ]
-    },
-    "дь": {
-      "word_final": [
-        "tʲ"
-      ],
-      "coda": [
-        "tʲ"
-      ],
-      "default": [
-        "dʲ"
-      ]
-    },
-    "зь": {
-      "word_final": [
-        "sʲ"
-      ],
-      "coda": [
-        "sʲ"
-      ],
-      "default": [
-        "zʲ"
-      ]
-    },
     "и": {
       "pretonic": [
         "ɪ"
@@ -779,510 +492,6 @@
       "posttonic": [
         "ɪ"
       ]
-    },
-    "бе": {
-      "pretonic": [
-        "bʲɪ"
-      ],
-      "posttonic": [
-        "bʲɪ"
-      ]
-    },
-    "би": {
-      "pretonic": [
-        "bʲɪ"
-      ],
-      "posttonic": [
-        "bʲɪ"
-      ]
-    },
-    "бя": {
-      "pretonic": [
-        "bʲɪ"
-      ],
-      "posttonic": [
-        "bʲə"
-      ]
-    },
-    "бю": {
-      "pretonic": [
-        "bʲʊ"
-      ],
-      "posttonic": [
-        "bʲʊ"
-      ]
-    },
-    "ве": {
-      "pretonic": [
-        "vʲɪ"
-      ],
-      "posttonic": [
-        "vʲɪ"
-      ]
-    },
-    "ви": {
-      "pretonic": [
-        "vʲɪ"
-      ],
-      "posttonic": [
-        "vʲɪ"
-      ]
-    },
-    "вя": {
-      "pretonic": [
-        "vʲɪ"
-      ],
-      "posttonic": [
-        "vʲə"
-      ]
-    },
-    "вю": {
-      "pretonic": [
-        "vʲʊ"
-      ],
-      "posttonic": [
-        "vʲʊ"
-      ]
-    },
-    "ге": {
-      "pretonic": [
-        "ɡʲɪ"
-      ],
-      "posttonic": [
-        "ɡʲɪ"
-      ]
-    },
-    "ги": {
-      "pretonic": [
-        "ɡʲɪ"
-      ],
-      "posttonic": [
-        "ɡʲɪ"
-      ]
-    },
-    "гя": {
-      "pretonic": [
-        "ɡʲɪ"
-      ],
-      "posttonic": [
-        "ɡʲə"
-      ]
-    },
-    "гю": {
-      "pretonic": [
-        "ɡʲʊ"
-      ],
-      "posttonic": [
-        "ɡʲʊ"
-      ]
-    },
-    "де": {
-      "pretonic": [
-        "dʲɪ"
-      ],
-      "posttonic": [
-        "dʲɪ"
-      ]
-    },
-    "ди": {
-      "pretonic": [
-        "dʲɪ"
-      ],
-      "posttonic": [
-        "dʲɪ"
-      ]
-    },
-    "дя": {
-      "pretonic": [
-        "dʲɪ"
-      ],
-      "posttonic": [
-        "dʲə"
-      ]
-    },
-    "дю": {
-      "pretonic": [
-        "dʲʊ"
-      ],
-      "posttonic": [
-        "dʲʊ"
-      ]
-    },
-    "зе": {
-      "pretonic": [
-        "zʲɪ"
-      ],
-      "posttonic": [
-        "zʲɪ"
-      ]
-    },
-    "зи": {
-      "pretonic": [
-        "zʲɪ"
-      ],
-      "posttonic": [
-        "zʲɪ"
-      ]
-    },
-    "зя": {
-      "pretonic": [
-        "zʲɪ"
-      ],
-      "posttonic": [
-        "zʲə"
-      ]
-    },
-    "зю": {
-      "pretonic": [
-        "zʲʊ"
-      ],
-      "posttonic": [
-        "zʲʊ"
-      ]
-    },
-    "ке": {
-      "pretonic": [
-        "kʲɪ"
-      ],
-      "posttonic": [
-        "kʲɪ"
-      ]
-    },
-    "ки": {
-      "pretonic": [
-        "kʲɪ"
-      ],
-      "posttonic": [
-        "kʲɪ"
-      ]
-    },
-    "кя": {
-      "pretonic": [
-        "kʲɪ"
-      ],
-      "posttonic": [
-        "kʲə"
-      ]
-    },
-    "кю": {
-      "pretonic": [
-        "kʲʊ"
-      ],
-      "posttonic": [
-        "kʲʊ"
-      ]
-    },
-    "ле": {
-      "pretonic": [
-        "lʲɪ"
-      ],
-      "posttonic": [
-        "lʲɪ"
-      ]
-    },
-    "ли": {
-      "pretonic": [
-        "lʲɪ"
-      ],
-      "posttonic": [
-        "lʲɪ"
-      ]
-    },
-    "ля": {
-      "pretonic": [
-        "lʲɪ"
-      ],
-      "posttonic": [
-        "lʲə"
-      ]
-    },
-    "лю": {
-      "pretonic": [
-        "lʲʊ"
-      ],
-      "posttonic": [
-        "lʲʊ"
-      ]
-    },
-    "ме": {
-      "pretonic": [
-        "mʲɪ"
-      ],
-      "posttonic": [
-        "mʲɪ"
-      ]
-    },
-    "ми": {
-      "pretonic": [
-        "mʲɪ"
-      ],
-      "posttonic": [
-        "mʲɪ"
-      ]
-    },
-    "мя": {
-      "pretonic": [
-        "mʲɪ"
-      ],
-      "posttonic": [
-        "mʲə"
-      ]
-    },
-    "мю": {
-      "pretonic": [
-        "mʲʊ"
-      ],
-      "posttonic": [
-        "mʲʊ"
-      ]
-    },
-    "не": {
-      "pretonic": [
-        "nʲɪ"
-      ],
-      "posttonic": [
-        "nʲɪ"
-      ]
-    },
-    "ни": {
-      "pretonic": [
-        "nʲɪ"
-      ],
-      "posttonic": [
-        "nʲɪ"
-      ]
-    },
-    "ня": {
-      "pretonic": [
-        "nʲɪ"
-      ],
-      "posttonic": [
-        "nʲə"
-      ]
-    },
-    "ню": {
-      "pretonic": [
-        "nʲʊ"
-      ],
-      "posttonic": [
-        "nʲʊ"
-      ]
-    },
-    "пе": {
-      "pretonic": [
-        "pʲɪ"
-      ],
-      "posttonic": [
-        "pʲɪ"
-      ]
-    },
-    "пи": {
-      "pretonic": [
-        "pʲɪ"
-      ],
-      "posttonic": [
-        "pʲɪ"
-      ]
-    },
-    "пя": {
-      "pretonic": [
-        "pʲɪ"
-      ],
-      "posttonic": [
-        "pʲə"
-      ]
-    },
-    "пю": {
-      "pretonic": [
-        "pʲʊ"
-      ],
-      "posttonic": [
-        "pʲʊ"
-      ]
-    },
-    "ре": {
-      "pretonic": [
-        "rʲɪ"
-      ],
-      "posttonic": [
-        "rʲɪ"
-      ]
-    },
-    "ри": {
-      "pretonic": [
-        "rʲɪ"
-      ],
-      "posttonic": [
-        "rʲɪ"
-      ]
-    },
-    "ря": {
-      "pretonic": [
-        "rʲɪ"
-      ],
-      "posttonic": [
-        "rʲə"
-      ]
-    },
-    "рю": {
-      "pretonic": [
-        "rʲʊ"
-      ],
-      "posttonic": [
-        "rʲʊ"
-      ]
-    },
-    "се": {
-      "pretonic": [
-        "sʲɪ"
-      ],
-      "posttonic": [
-        "sʲɪ"
-      ]
-    },
-    "си": {
-      "pretonic": [
-        "sʲɪ"
-      ],
-      "posttonic": [
-        "sʲɪ"
-      ]
-    },
-    "ся": {
-      "pretonic": [
-        "sʲɪ"
-      ],
-      "posttonic": [
-        "sʲə"
-      ]
-    },
-    "сю": {
-      "pretonic": [
-        "sʲʊ"
-      ],
-      "posttonic": [
-        "sʲʊ"
-      ]
-    },
-    "те": {
-      "pretonic": [
-        "tʲɪ"
-      ],
-      "posttonic": [
-        "tʲɪ"
-      ]
-    },
-    "ти": {
-      "pretonic": [
-        "tʲɪ"
-      ],
-      "posttonic": [
-        "tʲɪ"
-      ]
-    },
-    "тя": {
-      "pretonic": [
-        "tʲɪ"
-      ],
-      "posttonic": [
-        "tʲə"
-      ]
-    },
-    "тю": {
-      "pretonic": [
-        "tʲʊ"
-      ],
-      "posttonic": [
-        "tʲʊ"
-      ]
-    },
-    "фе": {
-      "pretonic": [
-        "fʲɪ"
-      ],
-      "posttonic": [
-        "fʲɪ"
-      ]
-    },
-    "фи": {
-      "pretonic": [
-        "fʲɪ"
-      ],
-      "posttonic": [
-        "fʲɪ"
-      ]
-    },
-    "фя": {
-      "pretonic": [
-        "fʲɪ"
-      ],
-      "posttonic": [
-        "fʲə"
-      ]
-    },
-    "фю": {
-      "pretonic": [
-        "fʲʊ"
-      ],
-      "posttonic": [
-        "fʲʊ"
-      ]
-    },
-    "хе": {
-      "pretonic": [
-        "xʲɪ"
-      ],
-      "posttonic": [
-        "xʲɪ"
-      ]
-    },
-    "хи": {
-      "pretonic": [
-        "xʲɪ"
-      ],
-      "posttonic": [
-        "xʲɪ"
-      ]
-    },
-    "хя": {
-      "pretonic": [
-        "xʲɪ"
-      ],
-      "posttonic": [
-        "xʲə"
-      ]
-    },
-    "хю": {
-      "pretonic": [
-        "xʲʊ"
-      ],
-      "posttonic": [
-        "xʲʊ"
-      ]
-    },
-    "же": {
-      "pretonic": [
-        "ʐɨ"
-      ],
-      "posttonic": [
-        "ʐɨ"
-      ]
-    },
-    "ше": {
-      "pretonic": [
-        "ʂɨ"
-      ],
-      "posttonic": [
-        "ʂɨ"
-      ]
-    },
-    "це": {
-      "pretonic": [
-        "tsɨ"
-      ],
-      "posttonic": [
-        "tsɨ"
-      ]
     }
   },
   "timespan": {
@@ -1308,6 +517,694 @@
     "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced."
   },
   "allophone_rules": [
+    {
+      "id": "RU_HARD_BACK_jɪ",
+      "phonemes": [
+        "jɪ"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "ts"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "RU_HARD_BACK_je",
+      "phonemes": [
+        "je"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "ts"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "RU_HARD_BACK_ɪ",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "ts"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "RU_HARD_BACK_i",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "ts"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "RU_HARD_BACK_e",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɨ",
+      "preceded_by_phoneme": [
+        "ʐ",
+        "ʂ",
+        "ts"
+      ],
+      "notes": "⟨ж ш ц⟩ are unpaired hard: a following ⟨е и⟩ backs to [ɨ]"
+    },
+    {
+      "id": "RU_DEVOICE_SOFT_FIN_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "pʲ",
+      "followed_by_phoneme": [
+        "ʲ"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "a voiced obstruent devoices (and palatalises) before a word-final/coda ⟨ь⟩, which is itself silent — the ⟨ь⟩ is looked past with followed_by_2"
+    },
+    {
+      "id": "RU_DEVOICE_SOFT_FIN_v",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "fʲ",
+      "followed_by_phoneme": [
+        "ʲ"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "a voiced obstruent devoices (and palatalises) before a word-final/coda ⟨ь⟩, which is itself silent — the ⟨ь⟩ is looked past with followed_by_2"
+    },
+    {
+      "id": "RU_DEVOICE_SOFT_FIN_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "ʲ"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "a voiced obstruent devoices (and palatalises) before a word-final/coda ⟨ь⟩, which is itself silent — the ⟨ь⟩ is looked past with followed_by_2"
+    },
+    {
+      "id": "RU_DEVOICE_SOFT_FIN_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "ʲ"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "a voiced obstruent devoices (and palatalises) before a word-final/coda ⟨ь⟩, which is itself silent — the ⟨ь⟩ is looked past with followed_by_2"
+    },
+    {
+      "id": "RU_DEVOICE_SOFT_FIN_ɡ",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "kʲ",
+      "followed_by_phoneme": [
+        "ʲ"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "a voiced obstruent devoices (and palatalises) before a word-final/coda ⟨ь⟩, which is itself silent — the ⟨ь⟩ is looked past with followed_by_2"
+    },
+    {
+      "id": "RU_PALAT_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "bʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_v",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "vʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_ɡ",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɡʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "dʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_k",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "kʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_ɫ",
+      "phonemes": [
+        "ɫ"
+      ],
+      "surface": "lʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_m",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "mʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_p",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "pʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_r",
+      "phonemes": [
+        "r"
+      ],
+      "surface": "rʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_f",
+      "phonemes": [
+        "f"
+      ],
+      "surface": "fʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_PALAT_x",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "xʲ",
+      "followed_by_phoneme": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ],
+      "notes": "palatalised before ⟨е ё ю я и⟩ or ⟨ь⟩ — a context, not a spelling per consonant×vowel pair"
+    },
+    {
+      "id": "RU_SOFT_SIGN_SILENT",
+      "phonemes": [
+        "ʲ"
+      ],
+      "surface": "",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "⟨ь⟩ marks palatalisation of the preceding consonant, which the palatalisation rule applies; the sign itself is silent"
+    },
+    {
+      "id": "RU_DEIOTA_jɪ",
+      "phonemes": [
+        "jɪ"
+      ],
+      "surface": "ɪ",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "RU_DEIOTA_jə",
+      "phonemes": [
+        "jə"
+      ],
+      "surface": "ə",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "RU_DEIOTA_jʊ",
+      "phonemes": [
+        "jʊ"
+      ],
+      "surface": "ʊ",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "RU_DEIOTA_je",
+      "phonemes": [
+        "je"
+      ],
+      "surface": "e",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "RU_DEIOTA_ja",
+      "phonemes": [
+        "ja"
+      ],
+      "surface": "a",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "RU_DEIOTA_ju",
+      "phonemes": [
+        "ju"
+      ],
+      "surface": "u",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
+    {
+      "id": "RU_DEIOTA_jo",
+      "phonemes": [
+        "jo"
+      ],
+      "surface": "ɵ",
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "f",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "r",
+        "s",
+        "t",
+        "ts",
+        "tɕ",
+        "v",
+        "x",
+        "z",
+        "ɕː",
+        "ɡ",
+        "ɫ",
+        "ʂ",
+        "ʐ"
+      ],
+      "notes": "after a plain consonant the glide is absorbed into palatalisation; it survives elsewhere"
+    },
     {
       "id": "RU_REGR_DEVOICE_b",
       "phonemes": [
@@ -1810,16 +1707,24 @@
       ],
       "surface": "sʲ",
       "followed_by_phoneme": [
-        "tʲ",
-        "dʲ",
-        "nʲ",
-        "sʲ",
-        "zʲ",
-        "lʲ",
-        "tɕ",
-        "ɕː"
+        "t",
+        "d",
+        "n"
       ],
-      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek].",
+      "followed_by_phoneme_2": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ]
     },
     {
       "id": "RU_REGR_PALAT_z",
@@ -1828,16 +1733,24 @@
       ],
       "surface": "zʲ",
       "followed_by_phoneme": [
-        "tʲ",
-        "dʲ",
-        "nʲ",
-        "sʲ",
-        "zʲ",
-        "lʲ",
-        "tɕ",
-        "ɕː"
+        "t",
+        "d",
+        "n"
       ],
-      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
+      "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek].",
+      "followed_by_phoneme_2": [
+        "jɪ",
+        "jə",
+        "jʊ",
+        "je",
+        "ja",
+        "ju",
+        "jo",
+        "j",
+        "i",
+        "ɪ",
+        "ʲ"
+      ]
     },
     {
       "id": "RU_REGR_PALAT_n",

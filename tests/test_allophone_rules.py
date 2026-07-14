@@ -346,3 +346,50 @@ class TestCodaNasalContext:
             graphemes = get(lang).graphemes
             for fake in ("an", "en", "in", "on", "un"):
                 assert fake not in graphemes, f"{lang}: {fake!r} is not a grapheme"
+
+
+class TestOffsetContext:
+    """A rule can test the grapheme TWO away.
+
+    Some processes look past the grapheme next door. Russian final devoicing
+    reaches the ⟨в⟩ of ⟨любовь⟩ because the ⟨ь⟩ after it is word-final and is
+    itself silent; the ⟨с⟩ of ⟨гости⟩ softens because the ⟨т⟩ after it stands
+    before a soft vowel. Without offset context a spec has to enumerate the
+    consonant × soft-vowel product as spellings.
+    """
+
+    def test_the_loader_keeps_the_offset_fields(self):
+        """The regression that hid this feature for a whole PR.
+
+        json_loader builds AllophoneRule from an explicit key list. When the
+        offset keys were missing from it they were dropped at LOAD time and
+        every offset rule matched on its OTHER conditions alone — silently, and
+        in a direction that still looked plausible.
+        """
+        rule = next(r for r in get("ru").allophone_rules
+                    if r.id == "RU_REGR_PALAT_s")
+        assert rule.followed_by_phoneme_2, (
+            "the offset condition was dropped at load time — the rule now fires "
+            "before ANY dental, not one standing before a soft vowel"
+        )
+
+    def test_devoicing_reaches_past_a_silent_soft_sign(self):
+        assert _ipa("ru", "любовь") == "lʲubəfʲ"   # ⟨ь⟩ is word-final
+        assert _ipa("ru", "кровь") == "krofʲ"
+
+    def test_but_not_past_a_non_final_soft_sign(self):
+        """⟨возьми⟩ keeps its voiced ⟨з⟩ — the enumerated keys got this wrong."""
+        assert "zʲ" in _ipa("ru", "возьми")
+
+    def test_dental_softens_before_a_dental_that_stands_before_a_soft_vowel(self):
+        assert _ipa("ru", "гости") == "ɡosʲtʲɪ"      # Avanesov 1984
+        assert _ipa("ru", "снег") == "sʲnʲek"
+
+    def test_but_not_before_a_plain_dental(self):
+        assert _ipa("ru", "Анн") == "ann"
+
+    def test_ukrainian_assimilation(self):
+        assert _ipa("uk", "Індія") == "inʲdʲija"
+        assert _ipa("uk", "Ізмір") == "izʲmʲir"
+        # ⟨знання⟩ keeps a plain ⟨з⟩: the ⟨н⟩ after it is not softened by ⟨а⟩
+        assert _ipa("uk", "знання") == "znanʲːa"

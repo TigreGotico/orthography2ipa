@@ -144,33 +144,53 @@ When a spec references an ancestor or a related lect that has no file, add a
 cited stub rather than leaving a dangling reference. Grouping/family nodes are
 allowed only when the literature recognises them (`clade: true`).
 
-## Known violation: the ru/uk positional cartesian
+## A cartesian can hide behind a non-trivial value
 
-`ru` (67 keys) and `uk` (32) enumerate a consonant × soft-vowel product in
-**`positional_graphemes`** — `бе би бя бю ве ви вя вю …`. It is the same
-violation as constraint 2/3, and it is still there on purpose: **do not remove
-it without first adding the engine capability it is standing in for.**
+The derivable-key audit looks for a key whose IPA is the **concatenation of its
+parts**. That is necessary, not sufficient. `ru` hid 85 enumerated keys in
+`graphemes` — ⟨ки⟩ → /kʲɪ/ is *not* к+и, because it bundles palatalisation AND
+vowel reduction into one spelling, so it sailed through the test. The full ru
+cartesian was 152 keys across both tables, and the audit reported it clean.
 
-An attempt to replace it with rules (palatalisation before a soft vowel, keyed
-on the boundary phoneme `j i ɪ ʲ`; de-iotation after a plain consonant; a silent
-soft sign) is *nearly* right but loses two facts, and both are cited phonology,
-not gold trivia:
+**Audit for the SHAPE, not just the value.** A block of keys that is every C×V
+or C×C pair is a cartesian whatever its values say. Sweep
+`positional_graphemes` too (see SKILLS.md).
 
-- **Final devoicing through a silent ⟨ь⟩.** ⟨любовь⟩ is [lʲʊˈbofʲ] (Jones & Ward
-  1969): the ⟨в⟩ devoices although the *last grapheme* is ⟨ь⟩. `word_final` is a
-  property of the anchor slot, so no rule can see past the soft sign. The
-  enumerated `бь` key encoded it by brute force (`word_final → pʲ`).
-- The soft-vowel reduction series after a consonant degrades badly
-  (wikipron ɪ→i 29→117, ɪ→e 31→87; PER 0.1475 → 0.1757).
+## A shared alphabet is not a shared phonology
 
-The missing capability is **offset context** — a rule that can test the grapheme
-*two* positions away ("the ⟨ь⟩ after me is word-final"). The same gap forced a
-workaround in Mirandese (⟨mb nd ng⟩ as graphemes, so the nasal is not read as a
-coda). Add offset context first; then this cartesian, and that Mirandese
-workaround, both come out cleanly.
+Generating a second language's rules from a first language's template gets it
+wrong every time. Ukrainian is not Russian, and assuming otherwise produced five
+separate bugs in one sitting:
 
-Akanye errors in the ru gold (ɐ→a, ɐ→ə) are **pre-existing and unrelated** — do
-not attribute them to a palatalisation change.
+- uk ⟨и⟩ is /ɪ/ and **hard** — treating it as a soft trigger (as ru's ⟨и⟩ is)
+  palatalises before every ⟨и⟩ in the language.
+- uk had a rule backing ⟨и⟩ to **/ɨ/, a phoneme Ukrainian does not have**.
+- Russian's assimilative softening does not hold in uk: ⟨знання⟩ is [znɐˈnʲːɑ].
+- uk ⟨л⟩ is velarised /ɫ/, so the geminate is /ɫː/ — ⟨Аллах⟩ is [ɐˈɫːax].
+- uk ⟨я⟩ was /jɑ/ while ⟨а⟩ was /a/ — the same vowel spelled two ways, an
+  inconsistency the enumerated ⟨ся⟩ key had been hiding.
+
+Derive each language's inventory FROM ITS OWN SPEC, and check every generated
+rule against a cited form in that language.
+
+## Offset context
+
+`preceded_by_2` / `followed_by_2` (neighbour classes) and
+`preceded_by_phoneme_2` / `followed_by_phoneme_2` (phonemes) test the grapheme
+**two** away. Some processes must look past the grapheme next door:
+
+- ⟨любовь⟩ is [lʲʊˈbofʲ] — the ⟨в⟩ devoices because the ⟨ь⟩ after it is
+  word-final, and the ⟨ь⟩ is itself silent. But ⟨возьми⟩ is [vɐzʲˈmʲi]: a
+  NON-final ⟨ь⟩ does not devoice, which the enumerated keys got wrong.
+- ⟨гости⟩ is [ˈɡosʲtʲɪ] (Avanesov 1984) — the ⟨с⟩ softens because the ⟨т⟩ after
+  it stands before a soft vowel.
+
+**A new rule field must be added to `json_loader` as well.** It builds
+`AllophoneRule` from an explicit key list, so a field absent from that list is
+dropped at LOAD time and the rule silently matches on its other conditions
+alone. That hid this feature for an entire PR: the rules read correctly, the
+spot-checks passed, and the PER gap had a plausible and completely wrong
+explanation ready. `tests/test_allophone_rules.py::TestOffsetContext` pins it.
 
 ## Setup
 

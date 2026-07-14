@@ -313,8 +313,7 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         return self._matches_slot(rule, ctx)
 
-    @staticmethod
-    def _matches_slot(rule: AllophoneRule, ctx: RescoreContext) -> bool:
+    def _matches_slot(self, rule: AllophoneRule, ctx: RescoreContext) -> bool:
         """The conditions that describe the SLOT, not one of its segments:
         stress, syllable position, and grapheme-class neighbours."""
         if rule.stress is not None:
@@ -331,6 +330,31 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
+                return False
+        if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2:
+            # The grapheme TWO away, by its first IPA candidate. Read from the
+            # grapheme layer (not the slot), so it is the underlying phoneme —
+            # which is the point: ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩
+            # after it stands before a soft vowel, and that is knowable before
+            # any rule has rewritten the ⟨т⟩.
+            def _phoneme_at(step: int) -> Optional[str]:
+                g = ctx.grapheme.at(step)
+                if g is None or not g.ipa or not g.ipa[0]:
+                    return None
+                return segment_ipa(g.ipa[0], self._atoms)[0]
+            if rule.preceded_by_phoneme_2:
+                p2 = _phoneme_at(-2)
+                if p2 is None or p2 not in rule.preceded_by_phoneme_2:
+                    return False
+            if rule.followed_by_phoneme_2:
+                n2 = _phoneme_at(2)
+                if n2 is None or n2 not in rule.followed_by_phoneme_2:
+                    return False
+        if rule.preceded_by_2 is not None:
+            if not _neighbor_is(rule.preceded_by_2, ctx.grapheme.at(-2), -1):
+                return False
+        if rule.followed_by_2 is not None:
+            if not _neighbor_is(rule.followed_by_2, ctx.grapheme.at(2), 1):
                 return False
         if rule.grapheme is not None:
             g = ctx.grapheme.grapheme
