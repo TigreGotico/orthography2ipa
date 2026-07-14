@@ -34,7 +34,7 @@ from __future__ import annotations
 
 import logging
 import unicodedata
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Callable, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
@@ -43,7 +43,10 @@ from orthography2ipa.features import (
     WordFeatures,
     build_word_features,
 )
+from orthography2ipa.inventory import phoneme_inventory
+from orthography2ipa.inventory import tokenize as inventory_tokenize
 from orthography2ipa.lexicon import get_lexicon
+from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     Candidate,
     IPAPath,
@@ -88,6 +91,7 @@ __all__ = [
     "WordFeatures",
     "GraphemeFeatures",
     "UnmappedScriptError",
+    "MarkupError",
 ]
 
 _log = logging.getLogger(__name__)
@@ -184,6 +188,8 @@ class _Word:
     pausal: bool = False  # followed by pause punctuation or end of text
     sentence_initial: bool = False
     sentence_final: bool = False
+    #: IPA the caller forced with ``<phoneme ph="…">``, bypassing the rules.
+    forced_ipa: Optional[str] = None
 
 
 
@@ -288,7 +294,9 @@ class G2P:
         on_unmapped: str = "ignore",
         rescorer: RescorerArg = None,
         sentence_rescorer: SentenceRescorerArg = None,
+        allow_undeclared_phonemes: bool = False,
     ) -> None:
+        self.allow_undeclared_phonemes = allow_undeclared_phonemes
         if on_unmapped not in ("ignore", "log", "raise"):
             raise ValueError(
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
@@ -407,13 +415,13 @@ class G2P:
     ) -> TranscriptionResult:
         """Transcribe *text*, returning per-word detail."""
         width = self._width(search, beam_width)
-        normalized = self._normalize(text)
-        words = self._split_words(normalized)
+        words = self._split_words(text)
         if not words:
             return TranscriptionResult(ipa="", words=(), lang=self.lang)
 
         transcribed: List[WordTranscription] = [
-            self._transcribe_word(w.surface, width) for w in words
+            self._transcribe_word(w.surface, width, forced_ipa=w.forced_ipa)
+            for w in words
         ]
 
         ipa_words = [wt.ipa for wt in transcribed]
@@ -453,8 +461,11 @@ class G2P:
         ipa = " ".join(w for w in ipa_words if w)
         if self.dialect_profile:
             from orthography2ipa.transforms import apply_transform
+            # The spelling the transform reads is the words', normalized — which is
+            # also the only spelling there is: a forced word contributes the text it
+            # wrapped, and the markup itself is not part of the utterance.
             ipa = apply_transform(ipa, self.dialect_profile,
-                                  ortho=normalized)
+                                  ortho=" ".join(w.surface for w in words))
 
         final_words = tuple(
             WordTranscription(word=wt.word, ipa=iw, candidates=wt.candidates,
@@ -488,11 +499,12 @@ class G2P:
         per-word (post-stress, pre-cross-word) reading.
         """
         width = self._width(search, beam_width)
-        normalized = self._normalize(text)
-        words = self._split_words(normalized)
+        words = self._split_words(text)
         if not words:
             return SentenceLattice(words=(), lang=self.lang)
-        transcribed = [self._transcribe_word(w.surface, width) for w in words]
+        transcribed = [self._transcribe_word(w.surface, width,
+                                             forced_ipa=w.forced_ipa)
+                       for w in words]
         return self._build_sentence_lattice(words, transcribed, width)
 
     def _build_sentence_lattice(
@@ -698,9 +710,8 @@ class G2P:
         JSON-able, CRF-consumable feature dict. See ``docs/features.md`` for
         the CRF-as-rescorer pattern and a worked example.
         """
-        normalized = self._normalize(text)
         out: List[WordFeatures] = []
-        for w in self._split_words(normalized):
+        for w in self._split_words(text):
             word = w.surface
             slots = self.ipa_lattice(word)
             confidence = self.confidence_breakdown(word).value
@@ -723,9 +734,71 @@ class G2P:
             f"search must be 'greedy' or 'beam', got {search!r}")
 
     def _split_words(self, text: str) -> List[_Word]:
-        """Group the token stream into words with pausal/position flags."""
-        tokens = self._tokenizer.tokenize(text)
+        """Parse the input into words, forced pronunciations included.
+
+        Markup is read *before* normalization, so a ``normalize`` plugin — a
+        diacritizer, a number expander — never sees a tag. It is handed the plain
+        runs and nothing else, which is the only text it has any business
+        rewriting: the caller who wrote ``ph`` has already said what that word is.
+        """
         words: List[_Word] = []
+        for chunk in parse_markup(text):
+            if chunk.is_forced:
+                words.append(_Word(surface=chunk.text.strip(),
+                                   forced_ipa=self._check_forced(chunk.forced_ipa)))
+            else:
+                self._group_words(self._normalize(chunk.text), words)
+        return self._flag(words)
+
+    def _check_forced(self, ipa: str) -> str:
+        """Hold forced IPA to the spec's declared inventory.
+
+        A symbol the spec never declares has no vector in a TTS frontend's
+        embedding table — it is built from the declared inventory before training
+        — so a word carrying it is mispronounced permanently, and silently. Better
+        to say so here, at the call site that asked for it.
+        """
+        ipa = ipa.strip()
+        if self.allow_undeclared_phonemes:
+            return ipa
+        declared = phoneme_inventory(self.spec)
+        outside = [t for t in inventory_tokenize(ipa, self.spec) if t not in declared]
+        if outside:
+            raise MarkupError(
+                f"<phoneme ph={ipa!r}> uses {outside!r}, which the {self.spec.code} "
+                f"spec does not declare.\n\n"
+                f"A phoneme outside the inventory has no embedding at synthesis time, "
+                f"so the word carrying it is mispronounced permanently and silently. "
+                f"This is the usual shape of a loanword forced in its donor's "
+                f"phonology: English 'meeting' is not [ˈmiːtɪŋ] in Arabic, it is "
+                f"nativised, and /ɪ/ and /ŋ/ are not Arabic phonemes.\n\n"
+                f"Give the nativised reading, or — if the phonology really does have "
+                f"this sound — declare it in the spec, where it can be read, cited "
+                f"and diffed."
+            )
+        return ipa
+
+    def _flag(self, words: List[_Word]) -> List[_Word]:
+        """Mark the edges of the utterance. The last word stands before a pause."""
+        if not words:
+            return []
+        return [
+            replace(w, pausal=w.pausal or i == len(words) - 1,
+                    sentence_initial=i == 0,
+                    sentence_final=i == len(words) - 1)
+            for i, w in enumerate(words)
+        ]
+
+    def _group_words(self, text: str, words: List[_Word]) -> None:
+        """Group a plain run's token stream into words, appending to *words*.
+
+        It appends rather than returns because a pause is not confined to the run
+        it is written in: punctuation opening a plain run falls *after* whatever
+        preceded it, and what preceded it may be a forced word. Grouping each run
+        in isolation would drop that pause, and a pause is exactly what strips a
+        case ending.
+        """
+        tokens = self._tokenizer.tokenize(text)
         current: List[str] = []
 
         def flush():
@@ -758,16 +831,6 @@ class G2P:
                 current.append(token.grapheme + tail)
         flush()
 
-        if not words:
-            return []
-        flagged = [
-            _Word(surface=w.surface, pausal=w.pausal or i == len(words) - 1,
-                  sentence_initial=i == 0,
-                  sentence_final=i == len(words) - 1)
-            for i, w in enumerate(words)
-        ]
-        return flagged
-
     def _override_for(self, word: str) -> Optional[str]:
         """Whole-word IPA override for *word*, or ``None`` to fall to rules.
 
@@ -793,8 +856,9 @@ class G2P:
                 return hit
         return None
 
-    def _transcribe_word(self, word: str, width: int) -> WordTranscription:
-        override = self._override_for(word)
+    def _transcribe_word(self, word: str, width: int,
+                         forced_ipa: Optional[str] = None) -> WordTranscription:
+        override = forced_ipa if forced_ipa is not None else self._override_for(word)
         paths: List[IPAPath] = []
         if override is not None:
             ipa = override
@@ -807,7 +871,12 @@ class G2P:
                     expand_allophones=self.expand_allophones,
                     rescorer=self._rescorers or None)
             ipa = paths[0].ipa if paths else word
-        if (self.apply_stress and self.spec.stress is not None and ipa):
+        # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
+        # all. A caller who wrote a mark has placed the stress, and one who wrote
+        # none has said this word carries none — re-deriving it from the spelling
+        # would overrule the very thing being forced.
+        if (forced_ipa is None
+                and self.apply_stress and self.spec.stress is not None and ipa):
             if self.spec.stress.quantity_sensitive:
                 # Weight is a property of the transcription, not the spelling —
                 # a syllable is heavy because its vowel is long or it has a
