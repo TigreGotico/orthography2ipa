@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.3.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.2.0a1...6.3.0a1)
+
+**Merged pull requests:**
+
+- feat\(wln\): audit and cite the Walloon spec [\#388](https://github.com/TigreGotico/orthography2ipa/pull/388) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.2.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.1.0a1...6.2.0a1)
