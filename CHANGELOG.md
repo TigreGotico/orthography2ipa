@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- feat\(fy\): audit and cite the West Frisian spec [\#389](https://github.com/TigreGotico/orthography2ipa/pull/389) ([JarbasAl](https://github.com/JarbasAl))
 - feat\(wln\): audit and cite the Walloon spec [\#388](https://github.com/TigreGotico/orthography2ipa/pull/388) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [6.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.2.0a1) (2026-07-14)
