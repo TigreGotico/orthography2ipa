@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.21.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.20.0a1...6.21.0a1)
+
+**Merged pull requests:**
+
+- feat: Arabic TTS gold-20 — 20 sentences for all 33 lects [\#455](https://github.com/TigreGotico/orthography2ipa/pull/455) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.20.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.19.0a1...6.20.0a1)
@@ -458,61 +466,25 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.88.0a1...1.88.0a2)
 
-**Merged pull requests:**
-
-- refactor\(data\): drop Tamil/Malayalam allophone rules that can never fire [\#313](https://github.com/TigreGotico/orthography2ipa/pull/313) ([JarbasAl](https://github.com/JarbasAl))
-- Release 1.88.0a1 [\#312](https://github.com/TigreGotico/orthography2ipa/pull/312) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [1.88.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.88.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.87.0a1...1.88.0a1)
-
-**Merged pull requests:**
-
-- Release 1.87.0a1 [\#311](https://github.com/TigreGotico/orthography2ipa/pull/311) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(benchmarks\): tier competitor- and LLM-derived gold; wire IPA-CHILDES + IPA-BabyLM [\#308](https://github.com/TigreGotico/orthography2ipa/pull/308) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.87.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.87.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.86.2a1...1.87.0a1)
 
-**Merged pull requests:**
-
-- Release 1.86.2a1 [\#310](https://github.com/TigreGotico/orthography2ipa/pull/310) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(benchmark\): wire the full ipa-dict corpus with per-language provenance [\#304](https://github.com/TigreGotico/orthography2ipa/pull/304) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.86.2a1](https://github.com/TigreGotico/orthography2ipa/tree/1.86.2a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.86.1a1...1.86.2a1)
-
-**Merged pull requests:**
-
-- Release 1.86.1a1 [\#309](https://github.com/TigreGotico/orthography2ipa/pull/309) ([github-actions[bot]](https://github.com/apps/github-actions))
-- fix: cancel the inherent vowel in abugidas instead of always appending it [\#303](https://github.com/TigreGotico/orthography2ipa/pull/303) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.86.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.86.1a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.86.0a1...1.86.1a1)
 
-**Merged pull requests:**
-
-- Release 1.86.0a1 [\#306](https://github.com/TigreGotico/orthography2ipa/pull/306) ([github-actions[bot]](https://github.com/apps/github-actions))
-- fix: let maximal munch win over punctuation \(fixes flaky TestTokenizerRoundTrip\) [\#305](https://github.com/TigreGotico/orthography2ipa/pull/305) ([JarbasAl](https://github.com/JarbasAl))
-- feat: encode the Goidelic broad/slender system \(ga, gd\) [\#301](https://github.com/TigreGotico/orthography2ipa/pull/301) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.86.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.86.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.85.0a1...1.86.0a1)
-
-**Breaking changes:**
-
-- feat!: phonological\_distance stops reading the writing system [\#299](https://github.com/TigreGotico/orthography2ipa/pull/299) ([JarbasAl](https://github.com/JarbasAl))
-
-**Merged pull requests:**
-
-- fix\(benchmark\): score sentence gold with the sentence API, not the word API [\#302](https://github.com/TigreGotico/orthography2ipa/pull/302) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(scandinavian\): quantity, reduction and lenition for da/nb/sv [\#298](https://github.com/TigreGotico/orthography2ipa/pull/298) ([JarbasAl](https://github.com/JarbasAl))
-- Release 1.85.0a1 [\#297](https://github.com/TigreGotico/orthography2ipa/pull/297) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.85.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.85.0a1) (2026-07-12)
 
@@ -522,53 +494,25 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.83.0a2...1.84.0a1)
 
-**Merged pull requests:**
-
-- Release 1.84.0a1 [\#296](https://github.com/TigreGotico/orthography2ipa/pull/296) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [1.83.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.83.0a2) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.83.0a1...1.83.0a2)
-
-**Merged pull requests:**
-
-- Release 1.83.0a2 [\#295](https://github.com/TigreGotico/orthography2ipa/pull/295) ([github-actions[bot]](https://github.com/apps/github-actions))
-- docs: refresh the README and docs to match the library [\#292](https://github.com/TigreGotico/orthography2ipa/pull/292) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.83.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.83.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.82.0a1...1.83.0a1)
 
-**Merged pull requests:**
-
-- Release 1.83.0a1 [\#294](https://github.com/TigreGotico/orthography2ipa/pull/294) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat: distinguish native scripts, romanizations and transliterations — and stop zh lying [\#291](https://github.com/TigreGotico/orthography2ipa/pull/291) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.82.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.82.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.81.0a1...1.82.0a1)
-
-**Merged pull requests:**
-
-- Release 1.82.0a1 [\#293](https://github.com/TigreGotico/orthography2ipa/pull/293) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat: state the phoneme inventory directly, independent of the orthography [\#287](https://github.com/TigreGotico/orthography2ipa/pull/287) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.81.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.81.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.80.0a1...1.81.0a1)
 
-**Merged pull requests:**
-
-- Release 1.81.0a1 [\#290](https://github.com/TigreGotico/orthography2ipa/pull/290) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(data\): locations for regional dialects [\#288](https://github.com/TigreGotico/orthography2ipa/pull/288) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.80.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.79.1a1...1.80.0a1)
-
-**Merged pull requests:**
-
-- Release 1.80.0a1 [\#289](https://github.com/TigreGotico/orthography2ipa/pull/289) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.79.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.79.1a1) (2026-07-11)
 
