@@ -901,6 +901,7 @@ class PhonetokTokenizer:
             collapse_whitespace: bool = True,
     ) -> None:
         self.spec = spec
+        self._fold_diacritics = frozenset(spec.fold_diacritics)
         self.add_bos = add_bos
         self.add_eos = add_eos
         self.collapse_whitespace = collapse_whitespace
@@ -1007,6 +1008,17 @@ class PhonetokTokenizer:
         # NFC normalization handles combining marks (Arabic harakat,
         # Devanagari matras, accented Latin characters)
         text = unicodedata.normalize("NFC", text)
+
+        # Fold away the diacritics the spec declares as segment-less — the Greek
+        # pitch accents and length marks, say. Decompose so a precomposed letter
+        # exposes its combining marks, drop the listed ones, recompose: ⟨ό⟩ →
+        # ⟨ο⟩, which the grapheme table can read, instead of an UNKNOWN token
+        # that drops the vowel with it.
+        if self._fold_diacritics:
+            decomposed = unicodedata.normalize("NFD", text)
+            stripped = "".join(c for c in decomposed
+                               if c not in self._fold_diacritics)
+            text = unicodedata.normalize("NFC", stripped)
 
         # Arabic-script pre-tokenization normalization (script-scoped; no
         # other script is touched). See the module block comment for detail.

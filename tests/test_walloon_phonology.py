@@ -180,14 +180,6 @@ def test_final_atonic_e_is_mute():
 
 # ─── Known engine limitation, pinned so it cannot drift silently ───────────
 
-@pytest.mark.xfail(strict=True, reason=(
-    "Engine limitation: word-final devoicing does not fire on a consonant "
-    "followed by a word-final SILENT grapheme. is_word_final is computed on "
-    "the grapheme chain (RescoreContext.is_word_final = grapheme.next is None), "
-    "so the mute final ⟨e⟩ still counts as the final grapheme and the preceding "
-    "⟨dj⟩ is not word-final. The fix is to compute word-finality over surviving "
-    "SEGMENTS (ignoring slots that emit the empty string), not over graphemes."
-))
 def test_rodje_and_rotche_are_homophones():
     """⟨rodje⟩ 'red' and ⟨rotche⟩ 'rock' are homophones [ʀɔtʃ]: the final ⟨e⟩
     is mute and the exposed ⟨dj⟩ /dʒ/ devoices to [tʃ] (Wikipedia: "rodje and

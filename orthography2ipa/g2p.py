@@ -98,6 +98,28 @@ _log = logging.getLogger(__name__)
 
 _PAUSE_PUNCTUATION = set(".,;:!?…")
 
+#: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
+#: Length and stress marks are not segments, so a run is identical across them.
+_VOWEL_IPA = set("aeiouɑɐɒæɓəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
+
+
+def _collapse_geminates(ipa: str) -> str:
+    """Collapse a run of the same consonant to one — ``sʌmmə`` → ``sʌmə``.
+
+    For a language whose orthographic doubling is not gemination (``spec.
+    collapse_geminates``). Only identical adjacent CONSONANT segments merge; a
+    doubled vowel letter is a long vowel and is left alone, and a length or
+    stress mark riding between two identical consonants does not block the
+    merge (there is none to ride in these orthographies, but the guard is cheap).
+    """
+    out: List[str] = []
+    for ch in ipa:
+        if (out and ch == out[-1] and ch not in _VOWEL_IPA
+                and ch not in "ːˑ" and not ch.isspace()):
+            continue
+        out.append(ch)
+    return "".join(out)
+
 
 @dataclass(frozen=True)
 class WordTranscription:
@@ -871,6 +893,8 @@ class G2P:
                     expand_allophones=self.expand_allophones,
                     rescorer=self._rescorers or None)
             ipa = paths[0].ipa if paths else word
+            if self.spec.collapse_geminates and ipa:
+                ipa = _collapse_geminates(ipa)
         # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
         # all. A caller who wrote a mark has placed the stress, and one who wrote
         # none has said this word carries none — re-deriving it from the spelling

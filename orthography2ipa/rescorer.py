@@ -158,8 +158,34 @@ class RescoreContext:
 
     @property
     def is_word_final(self) -> bool:
-        """True if this is the last grapheme of its word."""
-        return self.grapheme.next is None
+        """True if this is the last *pronounced* grapheme of its word.
+
+        Not merely the last grapheme: a word-final silent letter emits nothing,
+        so the consonant before it is what a listener hears at the word's end. A
+        rule keyed on ``word_final`` — final devoicing, above all — must fire on
+        that consonant. French *grande* ends [ɡʁɑ̃d]→[ɡʁɑ̃t] over a mute ⟨e⟩;
+        Walloon *rodje* likewise. Counting the mute ⟨e⟩ as the last grapheme
+        hid the devoicing from every one of them.
+
+        So this is true when every later grapheme in the word is silent — none
+        of them can emit a non-empty candidate.
+        """
+        if self.grapheme.next is None:
+            return True
+        return all(
+            self._slot_is_silent(self.slots[j])
+            for j in range(self.index + 1, len(self.slots))
+        )
+
+    @staticmethod
+    def _slot_is_silent(slot: "SegmentSlot") -> bool:
+        """True when a slot's chosen reading emits nothing — a silent letter.
+
+        Read off the top candidate, not the whole list: a word-final ⟨e⟩ carries
+        the empty reading *and* its ordinary ⟨ɛ/ə⟩, and the positional table has
+        already ranked the silence first. What matters for word-finality is what
+        the slot actually contributes, which is its top."""
+        return not slot.candidates or slot.top.ipa == ""
 
     @property
     def is_stressed(self) -> Optional[bool]:

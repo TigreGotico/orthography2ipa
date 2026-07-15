@@ -613,6 +613,23 @@
         "iː",
         "ə"
       ]
+    },
+    "y": {
+      "word_initial": [
+        "j"
+      ],
+      "before_vowel": [
+        "j"
+      ],
+      "word_final": [
+        "i",
+        "aɪ"
+      ],
+      "default": [
+        "ɪ",
+        "aɪ",
+        "i"
+      ]
     }
   },
   "word_exceptions": {
@@ -636,5 +653,6 @@
     "longitude": -1.0,
     "source": "glottolog",
     "notes": "Glottolog's representative point for English."
-  }
+  },
+  "collapse_geminates": true
 }

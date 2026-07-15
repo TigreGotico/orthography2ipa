@@ -350,5 +350,6 @@
     "longitude": -1.11,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Middle English."
-  }
+  },
+  "collapse_geminates": true
 }
