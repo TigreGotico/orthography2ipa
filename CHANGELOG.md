@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.3a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.2a1...7.0.3a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): dagger-alif long vowel, Allah ligature, explicit alif-waṣla [\#467](https://github.com/TigreGotico/orthography2ipa/pull/467) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.0.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.2a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.1a1...7.0.2a1)
@@ -472,10 +480,6 @@
 ## [3.0.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a2) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.0a1...3.0.0a2)
-
-**Merged pull requests:**
-
-- Release 3.0.0a2 [\#320](https://github.com/TigreGotico/orthography2ipa/pull/320) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a1) (2026-07-12)
 
