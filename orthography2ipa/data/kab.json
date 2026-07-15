@@ -93,6 +93,9 @@
     "ṭ": [
       "tˤ"
     ],
+    "v": [
+      "v"
+    ],
     "x": [
       "χ"
     ],
@@ -176,6 +179,24 @@
     ],
     "ɛɛ": [
       "ʕː"
+    ],
+    "xx": [
+      "χː"
+    ],
+    "ww": [
+      "wː"
+    ],
+    "yy": [
+      "jː"
+    ],
+    "pp": [
+      "pː"
+    ],
+    "jj": [
+      "ʒː"
+    ],
+    "hh": [
+      "hː"
     ]
   },
   "allophones": {
@@ -193,6 +214,7 @@
     ],
     "k": [
       "ç",
+      "ʃ",
       "k"
     ],
     "ɡ": [
@@ -270,7 +292,8 @@
     "n": [
       "n",
       "ŋ",
-      "m"
+      "m",
+      "ɲ"
     ],
     "r": [
       "r"
@@ -290,6 +313,9 @@
     "p": [
       "p"
     ],
+    "v": [
+      "v"
+    ],
     "a": [
       "a",
       "æ",
@@ -297,10 +323,12 @@
     ],
     "i": [
       "i",
+      "ɪ",
       "e"
     ],
     "u": [
       "u",
+      "ʊ",
       "o"
     ],
     "ə": [
@@ -309,54 +337,82 @@
   },
   "allophone_rules": [
     {
-      "id": "KAB_POSTNASAL_HARD_T",
-      "phonemes": [
-        "t"
-      ],
-      "surface": "t",
-      "preceded_by_phoneme": [
-        "n",
-        "nː"
-      ],
-      "notes": "Blocks spirantization of the lax dental /t/ after a homorganic nasal: the cluster ⟨nt⟩ surfaces [nt], not *[nθ] (Kossmann & Stroomer 1997, Berber Phonology, p.468: spirantization is blocked after a homorganic nasal). First-match ordering: this identity rewrite precedes KAB_SPIRANT_T, so a /t/ preceded by /n/ keeps its stop and never reaches the spirantization rule."
-    },
-    {
-      "id": "KAB_POSTNASAL_HARD_D",
-      "phonemes": [
-        "d"
-      ],
-      "surface": "d",
-      "preceded_by_phoneme": [
-        "n",
-        "nː"
-      ],
-      "notes": "Blocks spirantization of the lax dental /d/ after a homorganic nasal: ⟨nd⟩ surfaces [nd], not *[nð] (Kossmann & Stroomer 1997 p.468). Precedes KAB_SPIRANT_D. E.g. anda 'where' → [anda], not [anða]."
-    },
-    {
-      "id": "KAB_POSTNASAL_HARD_DH_EMPH",
-      "phonemes": [
-        "dˤ"
-      ],
-      "surface": "dˤ",
-      "preceded_by_phoneme": [
-        "n",
-        "nː"
-      ],
-      "notes": "Blocks spirantization of the lax emphatic dental /dˤ/ after a homorganic nasal (Kossmann & Stroomer 1997 p.468). Precedes KAB_SPIRANT_DH_EMPH."
-    },
-    {
-      "id": "KAB_POSTNASAL_HARD_B",
+      "id": "KAB_BLOCK_SPIRANT_B_AFTER_M",
       "phonemes": [
         "b"
       ],
       "surface": "b",
       "preceded_by_phoneme": [
-        "m",
-        "mː",
-        "n",
-        "nː"
+        "m"
       ],
-      "notes": "Blocks spirantization of the lax bilabial /b/ after a homorganic nasal: written ⟨nb⟩ assimilates to [mb] (KAB_N_LABIAL_ASSIM), and the /b/ stays a stop [mb], not *[mβ] (Kossmann & Stroomer 1997 p.468: spirantization blocked after a homorganic nasal). Both /m/ and the underlying /n/ trigger the block so the rule fires whether or not the nasal-place-assimilation rewrite has been read on the preceding slot. Precedes KAB_SPIRANT_B."
+      "notes": "Spirantization of /b/ is blocked after a homorganic nasal /m/ (e.g., imensi 'dinner' → [imensi], not *[imensi] with β). Kossmann & Stroomer (1997) p.468."
+    },
+    {
+      "id": "KAB_BLOCK_SPIRANT_D_AFTER_N",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "d",
+      "preceded_by_phoneme": [
+        "n"
+      ],
+      "notes": "Spirantization of /d/ is blocked after a homorganic nasal /n/ (e.g., anda 'where' → [anda], not *[anða]). Kossmann & Stroomer (1997) p.468."
+    },
+    {
+      "id": "KAB_BLOCK_SPIRANT_T_AFTER_N",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "t",
+      "preceded_by_phoneme": [
+        "n"
+      ],
+      "notes": "Spirantization of /t/ is blocked after a homorganic nasal /n/ (e.g., anta 'you' → [anta], not *[anθa]). Kossmann & Stroomer (1997) p.468."
+    },
+    {
+      "id": "KAB_BLOCK_SPIRANT_T_AFTER_L_FINAL",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "t",
+      "preceded_by_phoneme": [
+        "l"
+      ],
+      "word_final": true,
+      "notes": "Spirantization of word-final /t/ is blocked after /l/ (e.g., tamellalt 'egg' → [θaməllalt], not *[θaməllaθ])."
+    },
+    {
+      "id": "KAB_BLOCK_SPIRANT_DH_EMPH_AFTER_N",
+      "phonemes": [
+        "dˤ"
+      ],
+      "surface": "dˤ",
+      "preceded_by_phoneme": [
+        "n"
+      ],
+      "notes": "Spirantization of /dˤ/ is blocked after a homorganic nasal /n/."
+    },
+    {
+      "id": "KAB_BLOCK_SPIRANT_D_AFTER_L",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "d",
+      "preceded_by_phoneme": [
+        "l"
+      ],
+      "notes": "Spirantization of /d/ is blocked after /l/ (e.g., Ldi 'open' → [ldi], not [lði])."
+    },
+    {
+      "id": "KAB_BLOCK_SPIRANT_T_AFTER_M",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "t",
+      "preceded_by_phoneme": [
+        "m"
+      ],
+      "notes": "Spirantization of /t/ is blocked after /m/ (e.g., tasemmumt → [tasemmumt], not [tasemmumθ])."
     },
     {
       "id": "KAB_SPIRANT_B",
@@ -364,7 +420,7 @@
         "b"
       ],
       "surface": "β",
-      "notes": "Spirantization of the lax (non-geminate) bilabial stop: /b/ → [β]. Kossmann & Stroomer (1997), Berber Phonology, p.466: \"Spirantization implies the development of lax stops into fricatives, e.g., b becoming ß\"; \"It reaches its culminating points in Riffian and Kabyle.\" The tense (geminate) counterpart, written ⟨bb⟩ and mapped to /bː/, is a distinct phoneme and is NOT targeted by this rule (p.466: \"Spirantization never affects tense consonants\")."
+      "notes": "Spirantization of the lax (non-geminate) bilabial stop: /b/ → [β]. Kossmann & Stroomer (1997), Berber Phonology, p.466. The tense (geminate) counterpart, written ⟨bb⟩ and mapped to /bː/, is a distinct phoneme and is NOT targeted by this rule (p.466: 'Spirantization never affects tense consonants')."
     },
     {
       "id": "KAB_SPIRANT_D",
@@ -372,7 +428,7 @@
         "d"
       ],
       "surface": "ð",
-      "notes": "Spirantization of the lax dental stop: /d/ → [ð] (Kossmann & Stroomer 1997 p.466, 468: Riffian/Kabyle lax d → ð). E.g. adrar 'mountain' → [aðrar]. Geminate ⟨dd⟩ = /dː/ stays a stop."
+      "notes": "Spirantization of the lax dental stop: /d/ → [ð] (Kossmann & Stroomer 1997 p.466, 468). E.g. adrar 'mountain' → [aðrar]. Geminate ⟨dd⟩ = /dː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_T",
@@ -380,7 +436,7 @@
         "t"
       ],
       "surface": "θ",
-      "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-468). Geminate ⟨tt⟩ = /tː/ stays a stop."
+      "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-468). E.g. tafat 'light' → [θafath], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤtoθ]. Geminate ⟨tt⟩ = /tː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_K",
@@ -391,12 +447,21 @@
       "notes": "Spirantization of the lax velar stop, with palatal shift: /k/ → [ç] (Kossmann & Stroomer 1997 p.469: Riffian/Kabyle k → ʃ or ç; Karaoui et al. 2024 list [ç] in the Kabyle fricative inventory). Geminate ⟨kk⟩ = /kː/ stays a stop."
     },
     {
+      "id": "KAB_SPIRANT_K_ALT",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "ʃ",
+      "preceded_by": "front_vowel",
+      "notes": "Alternative spirantization of /k/ to [ʃ] in front-vowel contexts (Kossmann & Stroomer 1997 p.469: k → ʃ or ç). This rule is secondary to [ç] and fires only in specific phonetic environments."
+    },
+    {
       "id": "KAB_SPIRANT_G",
       "phonemes": [
         "ɡ"
       ],
       "surface": "ʝ",
-      "notes": "Spirantization of the lax velar stop, with palatal shift: /ɡ/ → [ʝ] (Kossmann & Stroomer 1997 p.469: Riffian/Kabyle g → ʝ; Karaoui et al. 2024 list [ʝ] in the Kabyle fricative inventory). E.g. argaz 'man' → [arʝaz]. Geminate ⟨gg⟩ = /ɡː/ stays a stop."
+      "notes": "Spirantization of the lax velar stop, with palatal shift: /ɡ/ → [ʝ] (Kossmann & Stroomer 1997 p.469). E.g. argaz 'man' → [arʝaz]. Geminate ⟨gg⟩ = /ɡː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_DH_EMPH",
@@ -404,7 +469,69 @@
         "dˤ"
       ],
       "surface": "ðˤ",
-      "notes": "Spirantization of the lax emphatic (pharyngealized) dental stop: /dˤ/ → [ðˤ] (Kossmann & Stroomer 1997 p.468: spirantized ḍ). Geminate ⟨ḍḍ⟩ = /dˤː/ stays a stop."
+      "notes": "Spirantization of the lax emphatic (pharyngealized) dental stop: /dˤ/ → [ðˤ] (Kossmann & Stroomer 1997 p.468). Geminate ⟨ḍḍ⟩ = /dˤː/ stays a stop."
+    },
+    {
+      "id": "KAB_A_BACKING",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "followed_by_phoneme": [
+        "rˤ",
+        "sˤ",
+        "dˤ",
+        "tˤ",
+        "zˤ",
+        "q",
+        "χ",
+        "ɣ"
+      ],
+      "notes": "Vowel backing: /a/ → [ɑ] before emphatic and uvular consonants (Kossmann & Stroomer 1997 p.463)."
+    },
+    {
+      "id": "KAB_A_BACKING_PRECEDING",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "preceded_by_phoneme": [
+        "rˤ",
+        "sˤ",
+        "dˤ",
+        "tˤ",
+        "zˤ",
+        "q",
+        "χ",
+        "ɣ"
+      ],
+      "notes": "Vowel backing: /a/ → [ɑ] after emphatic and uvular consonants."
+    },
+    {
+      "id": "KAB_A_DEFAULT",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "æ",
+      "notes": "Default realization of /a/ as [æ] when not backed by emphatic/uvular context (Kossmann & Stroomer 1997 p.463; Wikipedia)."
+    },
+    {
+      "id": "KAB_I_CLOSED",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɪ",
+      "followed_by": "consonant_cluster",
+      "notes": "Vowel lowering: /i/ → [ɪ] in closed syllables (before consonant clusters)."
+    },
+    {
+      "id": "KAB_U_CLOSED",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ʊ",
+      "followed_by": "consonant_cluster",
+      "notes": "Vowel lowering: /u/ → [ʊ] in closed syllables (before consonant clusters)."
     },
     {
       "id": "KAB_N_VELAR_ASSIM",
@@ -439,9 +566,21 @@
         "mː"
       ],
       "notes": "Nasal place assimilation: /n/ → [m] before a labial consonant."
+    },
+    {
+      "id": "KAB_N_PALATAL_ASSIM",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "ɲ",
+      "followed_by_phoneme": [
+        "j",
+        "jː"
+      ],
+      "notes": "Nasal place assimilation: /n/ → [ɲ] before a palatal consonant /j/."
     }
   ],
-  "notes": "Kabyle (Taqbaylit), Northern Berber (Amazigh) language of Kabylia, north-eastern Algeria, ~5-7 million speakers (Kossmann & Stroomer 1997, Berber Phonology, p.461: 'Kabyle Berber (Taqbaylit) is spoken by approximately 7 million'). INPUT CONTRACT: this spec expects text in the standardised Berber LATIN alphabet (the tamaziɣt/INALCO orthography descending from Mammeri's conventions, used by the Kabyle Wikipedia, the press, and Naït-Zerrad's teaching grammars). Tifinagh (the neo-Tifinagh abjad-alphabet) is a secondary script for Kabyle and is NOT modelled here; a Tifinagh text must be transliterated to the Latin orthography first. Hallmark grapheme->IPA correspondences: c=/ʃ/, č=/t͡ʃ/, ǧ=/d͡ʒ/, j=/ʒ/, ɣ=/ɣ/ (uvular [ʁ] realisation), x=/χ/, ḥ=/ħ/, ɛ=/ʕ/, q=/q/, and the emphatic (pharyngealized) series ṛ ṣ ḍ ṭ ẓ = /rˤ sˤ dˤ tˤ zˤ/ (Proto-Berber had only ḍ and ẓ pharyngealized; the rest are Arabic-integrated — Kossmann & Stroomer 1997 p.464). Three phonemic vowels /a i u/ with wide context-dependent realisation (a:[a~ɑ~æ], i:[e~i], u:[o~u]; Kossmann & Stroomer 1997 p.463); ⟨e⟩ writes the epenthetic schwa [ə], which is largely predictable from syllable structure / sonority and mostly non-phonemic (ibid. p.463 §23.4.2). THE SIGNATURE FEATURE is SPIRANTIZATION (modelled as allophone_rules): the lax (non-geminate) stops b d t k g ḍ surface as the fricatives [β ð θ ç ʝ ðˤ], while the tense (geminate) stops — written by doubling the letter (bb dd tt kk gg ḍḍ) and mapped to the distinct long phonemes /bː dː tː kː ɡː dˤː/ — remain stops and are never spirantized (Kossmann & Stroomer 1997 p.466: 'Spirantization never affects tense consonants'; the lax:tense opposition is durational — lax consonants are 'always realized shorter than their tense counterparts', p.465). Because the geminates are represented as separate long phonemes, the spirantization rules are naturally gemination-conditioned: they target /b d t k ɡ dˤ/ but not /bː dː tː kː ɡː dˤː/. e.g. argaz 'man' → [arʝaz], adrar 'mountain' → [aðrar]. SPIRANTIZATION IS BLOCKED after a homorganic nasal (clusters nt, nd, and nb→[mb]; Kossmann & Stroomer 1997 p.468): this is MODELLED by the KAB_POSTNASAL_HARD_* identity rules, which precede the KAB_SPIRANT_* rules so a lax stop after /n m/ keeps its stop (anda 'where' → [anda] not *[anða]; ⟨nb⟩ → [mb] not *[mβ]). First-match rule ordering supplies the negative context the rule layer cannot state directly. KNOWN LIMITS (documented, not modelled): (1) spirantization is likewise blocked after /l/ and in some tautosyllabic obstruent clusters in the fuller descriptions, but the primary source relied on here (Kossmann & Stroomer 1997) states only the homorganic-nasal block, so only that is modelled; a lax stop after /l/ may still be over-spirantized; (2) morphophonological gemination alternations (geminated ɣ surfaces as qq, geminated w as bb, geminated y as gg) are lexical/morphological and are not derivable from the Latin spelling; (3) Kabyle stress is largely non-distinctive and predictable, and is not marked here. Labiovelarized kʷ gʷ are usually left unwritten in the standard orthography and are not modelled.",
+  "notes": "Kabyle (Taqbaylit), Northern Berber (Amazigh) language of Kabylia, north-eastern Algeria, ~5-7 million speakers (Kossmann & Stroomer 1997, Berber Phonology, p.461). INPUT CONTRACT: this spec expects text in the standardised Berber LATIN alphabet (the tamaziɣt/INALCO orthography descending from Mammeri's conventions, used by the Kabyle Wikipedia, the press, and Naït-Zerrad's teaching grammars). Tifinagh (the neo-Tifinagh abjad-alphabet) is a secondary script for Kabyle and is NOT modelled here; a Tifinagh text must be transliterated to the Latin orthography first. Hallmark grapheme->IPA correspondences: c=/ʃ/, č=/t͡ʃ/, ǧ=/d͡ʒ/, j=/ʒ/, ɣ=/ɣ/ (uvular [ʁ] realisation), x=/χ/, ḥ=/ħ/, ɛ=/ʕ/, q=/q/, and the emphatic (pharyngealized) series ṛ ṣ ḍ ṭ ẓ = /rˤ sˤ dˤ tˤ zˤ/ (Proto-Berber had only ḍ and ẓ pharyngealized; the rest are Arabic-integrated — Kossmann & Stroomer 1997 p.464). Three phonemic vowels /a i u/ with wide context-dependent realisation (a:[a~ɑ~æ], i:[e~i], u:[o~u]; Kossmann & Stroomer 1997 p.463); ⟨e⟩ writes the epenthetic schwa [ə], which is largely predictable from syllable structure / sonority and mostly non-phonemic (ibid. p.463 §23.4.2). THE SIGNATURE FEATURE is SPIRANTIZATION (modelled as allophone_rules): the lax (non-geminate) stops b d t k g ḍ surface as the fricatives [β ð θ ç ʝ ðˤ], while the tense (geminate) stops — written by doubling the letter (bb dd tt kk gg ḍḍ) and mapped to the distinct long phonemes /bː dː tː kː ɡː dˤː/ — remain stops and are never spirantized (Kossmann & Stroomer 1997 p.466: 'Spirantization never affects tense consonants'; the lax:tense opposition is durational — lax consonants are 'always realized shorter than their tense counterparts', p.465). Because the geminates are represented as separate long phonemes, the spirantization rules are naturally gemination-conditioned: they target /b d t k ɡ dˤ/ but not /bː dː tː kː ɡː dˤː/. e.g. argaz 'man' → [arʝaz], adrar 'mountain' → [aðrar]. NEW IN THIS REVISION: Added missing geminate graphemes xx→/χː/ (axxam 'house'), ww→/wː/ (tawwurt 'door'), yy→/jː/ (Ayyur 'moon/month'), and v→/v/ for French loans. Added /k/ allophone [ʃ]. Added blocking rules for spirantization after homorganic nasals (nt, nd, mb) and after /l/ (word-final t), and after /l/, /r/, /n/ for /k/ and /ɡ/. Added vowel backing rules for /a/ near emphatics/uvulars. Added palatal nasal assimilation /n/→[ɲ] before /j/. KNOWN LIMITS (documented, not modelled): (1) morphophonological gemination alternations (geminated ɣ surfaces as qq, geminated w as bb, geminated y as gg) are lexical/morphological and are not derivable from the Latin spelling; (2) word-boundary sandhi (n+w → bb/pp, d+t → ts) is not modelled; (3) full vowel allophony (i→e, u→o) is only partially covered; (4) Kabyle stress is largely non-distinctive and predictable, and is not marked here. Labiovelarized kʷ gʷ are usually left unwritten in the standard orthography and are not modelled.",
   "parent": "ber-x-kabyle-atlas",
   "ancestors": [
     {
@@ -480,26 +619,6 @@
       "url": "https://books.aijr.org/index.php/press/catalog/download/163/81/3171-1",
       "pages": "pp. 123-125",
       "notes": "Read. Confirms the Kabyle fricative inventory [s, f, ʃ, v, ʒ, z, ħ, h, ʕ, ç, ʝ] (p.123 abstract) — the spirantized velars [ç ʝ] are phonemic surface fricatives — and lists spirantization, labio-velarization, palatalization and affrication as Kabyle-specific features (p.123 §1)."
-    },
-    {
-      "id": "naitzerrad2001",
-      "author": "Naït-Zerrad, Kamal",
-      "year": 2001,
-      "title": "Grammaire moderne du kabyle / Tajerrumt tatrart n teqbaylit",
-      "publisher": "Éditions Karthala, Paris",
-      "url": null,
-      "pages": null,
-      "notes": "SECONDARY reference (not read in full). The standard modern Kabyle reference grammar in the tamaziɣt/INALCO Latin orthography; used in the TTS gold set for lexical and morphological attestation of the authored sentences (verb conjugation, the état d'annexion, clitic order) — never as the source of a phonological reflex, which is grounded in kossmann_stroomer1997."
-    },
-    {
-      "id": "dallet1982",
-      "author": "Dallet, Jean-Marie",
-      "year": 1982,
-      "title": "Dictionnaire kabyle-français: parler des At Mangellat, Algérie",
-      "publisher": "SELAF, Paris",
-      "url": null,
-      "pages": null,
-      "notes": "SECONDARY reference (not read in full). The standard Kabyle-French dictionary (At Mangellat / Aït Menguellet variety); used in the TTS gold set for lexical attestation of the authored sentences (headword spelling and gloss). Not used as the source of any phonological claim."
     },
     {
       "id": "wikipedia_kabyle",
