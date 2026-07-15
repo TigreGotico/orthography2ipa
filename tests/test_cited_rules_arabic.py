@@ -165,6 +165,68 @@ def test_ar_lam_alif_ligature_normalized():
     assert _bare("ar", "ﻻ") == "laː"
 
 
+def test_ar_dagger_alif_is_a_long_vowel_mark():
+    """Dagger alif (U+0670) reads /aː/ — beyond Allah (هَٰذَا, رَحْمَٰن, ذَٰلِك).
+
+    ar notes: "Dagger alif (superscript alef, U+0670): a long-/aː/ mark of
+    Quranic and careful orthography that is NOT the letter alif ... Fully
+    vocalized it sits on a fatḥa (فتحة+dagger together read /aː/)" (Ryding 2005
+    §1.2; Wright I §1).
+    """
+    assert _bare("ar", "هَٰذَا") == "haːðaː"
+    assert _bare("ar", "رَحْمَٰن") == "raħmaːn"
+    assert _bare("ar", "ذَٰلِك") == "ðaːlik"
+
+
+def test_ar_allah_ligature_keeps_the_long_vowel():
+    """⟨الله⟩ carries an unwritten long /aː/ — [allaːh], not *[allh].
+
+    ar notes: "Allah / li-llāh: the ligature spellings carry an UNWRITTEN long
+    /aː/ (the bare الله/لله has no alif and no dagger) — a fixed lexical
+    convention, so keyed whole" (Ryding 2005 §2.10). The dagger-alif spelling
+    اللّٰه reaches the same surface through the sun-assimilated ⟨لل⟩ key plus the
+    dagger key.
+    """
+    assert _bare("ar", "الله") == "allaːh"
+    assert _bare("ar", "اللّٰه") == "allaːh"
+
+
+def test_ar_bare_llah_does_not_collide_with_ordinary_words():
+    """The bare ⟨لله⟩ is NOT keyed — ⟨كُلّهُم⟩ stays /kullhum/, not *lillaːh.
+
+    ar notes: "the bare ⟨لله⟩ (li-llāh) is deliberately NOT keyed — the sequence
+    ⟨...لّه⟩ is far more often '…-la-hu / …-lla' inside an ordinary word ... than
+    the word li-llāh, and a context-free key cannot tell them apart."
+    """
+    assert _bare("ar", "كُلّهُم") == "kullhum"
+
+
+def test_ar_explicit_alif_wasla_elides_after_proclitic():
+    """Explicit alif-waṣla ⟨ٱ⟩ elides: ⟨وَٱشْتَرَيْت⟩ → wa-štarayt.
+
+    ar notes: "Only the EXPLICIT alif-waṣla ⟨ٱ⟩ (U+0671) is keyed — the
+    unambiguous seat whose own /a/ never surfaces: after a proclitic the
+    proclitic's short vowel is kept and the seat elides (⟨وَٱشْتَرَيْت⟩ → wa-,
+    not waː-)" (Ryding 2005 §2.10).
+    """
+    assert _bare("ar", "وَٱشْتَرَيْت") == "waʃtarajt"
+    assert _bare("ar", "فَٱشْتَغَل") == "faʃtaɣal"
+
+
+def test_ar_bare_alif_wasl_is_not_disambiguated():
+    """The BARE-alif waṣl is honestly left unresolved — no reliable discriminator.
+
+    ar notes: "A bare alif after a proclitic (⟨وَاشْتَرَيْت⟩) is NOT reliably
+    disambiguable from a genuine long-/aː/ mater: the sukūn that would mark the
+    waṣl also closes an ordinary /aː/ syllable (⟨فَات⟩ /faːt/, ⟨واحِد⟩ /waːħid/,
+    ⟨واسِع⟩ /waːsiʕ/)". The pin: the common maters are preserved, and the bare
+    waṣl form keeps its (over-long) reading until spelled with ⟨ٱ⟩.
+    """
+    assert _bare("ar", "فَات") == "faːt"          # mater preserved
+    assert _bare("ar", "واحِد") == "waːħid"        # mater preserved
+    assert _bare("ar", "وَاشْتَرَيْت") == "waːʃtarajt"  # bare waṣl: not resolved
+
+
 # --- stress: the quantity-sensitive cascade (Ryding 2005 §2.3; Watson 2002 ch.3)
 
 
