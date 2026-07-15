@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.8.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.8.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.7.1a1...6.8.0a1)
+
+**Merged pull requests:**
+
+- feat\(he\): model Hebrew niqqud — pointed text no longer drops vowels [\#402](https://github.com/TigreGotico/orthography2ipa/pull/402) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.7.1a1](https://github.com/TigreGotico/orthography2ipa/tree/6.7.1a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.7.0a2...6.7.1a1)
