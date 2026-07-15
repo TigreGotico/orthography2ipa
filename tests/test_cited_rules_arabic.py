@@ -285,8 +285,10 @@ def test_arb_hamzat_wasl_article_elides_after_vowel():
     the article's seat vowel is deleted."
 
     A sandhi rule, so it is exercised across the word boundary via transcribe().
+    فِي is a preposition — a prosodic clitic bearing no word stress (Watson 2002
+    ch.3), hence no ˈ on fiː; the article-elision this test checks is unaffected.
     """
-    assert G2P("arb").transcribe("فِي الْبَيْتِ") == "ˈfiː lˈbajti"
+    assert G2P("arb").transcribe("فِي الْبَيْتِ") == "fiː lˈbajti"
 
 
 # ---------------------------------------------------------------------------

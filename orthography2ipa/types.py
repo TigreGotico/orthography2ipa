@@ -233,6 +233,25 @@ class StressRules:
         light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
         penult is heavy, and the stress lands there — ``muˈdarris``, which is
         the correct form. Only read when :attr:`quantity_sensitive` is set.
+    cliticless_words : Tuple[str, ...]
+        Orthographic forms that carry **no lexical stress** of their own —
+        prosodic clitics. A clitic is not an independent phonological word: it
+        leans on an adjacent host and falls inside the host's stress domain, so
+        it is never assigned a word stress (Watson 2002, *The Phonology and
+        Morphology of Arabic*, ch. 3, on stress domains; a clitic attaches to a
+        host and the host bears the stress). The four end-anchored rules and the
+        quantity-sensitive cascade both assume the word is a full prosodic word
+        and place a stress on it; for a listed form that assumption is wrong, and
+        this class turns the placement off so the form surfaces unstressed.
+
+        The forms are matched against the input word language-aware-lowercased
+        and NFC-normalized — the same key an inline ``word_exceptions`` entry
+        uses — so a spec lists them in the orthography of its input contract (for
+        Arabic, the diacritized function words ``مَا فِي مِن يَا …``). The class is
+        opt-in: a spec that does not declare it is unaffected. It is a purely
+        orthographic rule and cannot see syntax, so a homograph that is a clitic
+        in one reading and a full word in another (Gulf ``يَا`` — vocative
+        particle vs. the verb *yā* 'came') is destressed in every occurrence.
     source : str
         Where the stress comes from. ``"rules"`` (the default) means this block —
         declarative data a language owner wrote, that anyone can read, cite and
@@ -257,6 +276,7 @@ class StressRules:
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
+    cliticless_words: Tuple[str, ...] = ()
     source: str = "rules"
     notes: str = ""
 
