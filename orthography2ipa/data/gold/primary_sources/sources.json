@@ -152,5 +152,16 @@
     "pagination": "Open-access advance-article PDF; `page` records the printed folio shown in the article header (verified for pp.310, 318).",
     "notation": "arabicist-transliteration",
     "describes": "Gahawa syndrome across Arabic dialects; Nigerian/Lake Chad and Chadian data"
+  },
+  "guerrero2019": {
+    "authors": "Guerrero, J.",
+    "year": 2019,
+    "title": "Reflexes of Old Arabic */ǧ/ in the Maghrebi Dialects",
+    "venue": "Arabica 66(1-2):137-169",
+    "url": "https://hal.science/hal-03516978",
+    "access": "open",
+    "pagination": "The published Arabica article runs pp.137-169; the open-access HAL preprint (hal-03516978v1) carries no printed folio, so `page` records the HAL preprint PDF page index (its two-page HAL cover/authorization sheet is pages 1-2, the article body begins on page 2).",
+    "notation": "arabicist-transliteration",
+    "describes": "Old Arabic *ǧ across the Maghreb (Morocco, Algeria, Tunisia, Libya, Mauritania/Ḥassāniyya)"
   }
 }
