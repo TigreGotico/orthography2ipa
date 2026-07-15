@@ -333,6 +333,23 @@ def test_najd_gahawa_epenthesis_after_hha():
     assert _bare("ar-SA-x-najd", "لَحْم") == "laħam"
 
 
+def test_najd_gahawa_needs_a_following_consonant():
+    """Gahawa epenthesis is CaGC→CaGaC — it needs a following consonant.
+
+    Rule notes: "The epenthesis needs a FOLLOWING tautosyllabic consonant
+    (CaGC→CaGaC): followed_by=consonant guards it, so a word-final guttural
+    with nothing after it does not epenthesise ... while medial …aGC… still
+    does" (Ingham 1994, pp.15-16).
+
+    أَفْرَح ends in a word-final guttural /ħ/ after /a/ with nothing following,
+    so no /a/ is inserted: [ʔafraħ], not *[ʔafraħa]. The minimal contrast is
+    لَحْم /laħm/, where the same /ħ/ is followed by /m/ and DOES epenthesise
+    to [laħam].
+    """
+    assert _bare("ar-SA-x-najd", "أَفْرَح") == "ʔafraħ"
+    assert _bare("ar-SA-x-najd", "لَحْم") == "laħam"
+
+
 def test_najd_qaf_is_voiced_velar_stop():
     """Najdi ⟨ق⟩ is /ɡ/ (Bedouin/traditional reflex).
 

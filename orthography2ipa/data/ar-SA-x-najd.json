@@ -279,11 +279,12 @@
       ],
       "surface": "ha",
       "syllable_position": "coda",
+      "followed_by": "consonant",
       "preceded_by_phoneme": [
         "a",
         "ɑ"
       ],
-      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /h/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /h/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]. The epenthesis needs a FOLLOWING tautosyllabic consonant (CaGC→CaGaC): followed_by=consonant guards it, so a word-final guttural with nothing after it does not epenthesise (أَفْرَح → [ʔafraħ], not *[ʔafraħa]), while medial …aGC… still does (لَحْم → [laħam])."
     },
     {
       "id": "NAJD_GAHAWA_x",
@@ -292,11 +293,12 @@
       ],
       "surface": "xa",
       "syllable_position": "coda",
+      "followed_by": "consonant",
       "preceded_by_phoneme": [
         "a",
         "ɑ"
       ],
-      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /x/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /x/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]. The epenthesis needs a FOLLOWING tautosyllabic consonant (CaGC→CaGaC): followed_by=consonant guards it, so a word-final guttural with nothing after it does not epenthesise (أَفْرَح → [ʔafraħ], not *[ʔafraħa]), while medial …aGC… still does (لَحْم → [laħam])."
     },
     {
       "id": "NAJD_GAHAWA_0263",
@@ -305,11 +307,12 @@
       ],
       "surface": "ɣa",
       "syllable_position": "coda",
+      "followed_by": "consonant",
       "preceded_by_phoneme": [
         "a",
         "ɑ"
       ],
-      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ɣ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ɣ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]. The epenthesis needs a FOLLOWING tautosyllabic consonant (CaGC→CaGaC): followed_by=consonant guards it, so a word-final guttural with nothing after it does not epenthesise (أَفْرَح → [ʔafraħ], not *[ʔafraħa]), while medial …aGC… still does (لَحْم → [laħam])."
     },
     {
       "id": "NAJD_GAHAWA_0127",
@@ -318,11 +321,12 @@
       ],
       "surface": "ħa",
       "syllable_position": "coda",
+      "followed_by": "consonant",
       "preceded_by_phoneme": [
         "a",
         "ɑ"
       ],
-      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ħ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ħ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]. The epenthesis needs a FOLLOWING tautosyllabic consonant (CaGC→CaGaC): followed_by=consonant guards it, so a word-final guttural with nothing after it does not epenthesise (أَفْرَح → [ʔafraħ], not *[ʔafraħa]), while medial …aGC… still does (لَحْم → [laħam])."
     },
     {
       "id": "NAJD_GAHAWA_0295",
@@ -331,11 +335,12 @@
       ],
       "surface": "ʕa",
       "syllable_position": "coda",
+      "followed_by": "consonant",
       "preceded_by_phoneme": [
         "a",
         "ɑ"
       ],
-      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ʕ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]."
+      "notes": "Gahawa syndrome (Ingham 1994, pp.15-16): epenthetic /a/ is inserted after a guttural /ʕ/ standing in a coda after a low vowel (…aXC…), e.g. gahwa → gahawa, laħm → laħam. Modeled as rewriting the coda guttural to guttural+[a]. The epenthesis needs a FOLLOWING tautosyllabic consonant (CaGC→CaGaC): followed_by=consonant guards it, so a word-final guttural with nothing after it does not epenthesise (أَفْرَح → [ʔafraħ], not *[ʔafraħa]), while medial …aGC… still does (لَحْم → [laħam])."
     }
   ],
   "wikidata_qid": "Q56574",
