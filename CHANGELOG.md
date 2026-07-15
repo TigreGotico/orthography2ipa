@@ -1,8 +1,24 @@
 # Changelog
 
+## [7.3.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.2a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.1a1...7.3.2a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): dialect reflexes + loan-class exemptions from the verification leads [\#482](https://github.com/TigreGotico/orthography2ipa/pull/482) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.3.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.1a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.3.1a1)
+
 ## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.3.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.0a1)
+
+## [7.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.2.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.2.0a1)
 
 **Merged pull requests:**
 
@@ -486,10 +502,6 @@
 ## [3.1.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a2) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.1.0a1...3.1.0a2)
-
-**Merged pull requests:**
-
-- Release 3.1.0a2 [\#327](https://github.com/TigreGotico/orthography2ipa/pull/327) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a1) (2026-07-12)
 
