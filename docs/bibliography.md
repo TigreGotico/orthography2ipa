@@ -78,6 +78,25 @@ language's JSON spec (see `data/SCHEMA.md` for the schema).
 - **cowell1964** — Cowell, M.W. (1964). *A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus).* Georgetown University Press. Not obtained (Internet Archive borrow-only); cited only as reported/re-tested by Almbark & Hellmuth (2015).
 - **watson2002** — Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic.* Oxford University Press. Cited for emphasis-spreading.
 
+### Mesopotamian Arabic
+
+- **jasim2020** — Jasim, M. (2020). *Tafxiːm in the vowels of Muslawi Qəltu and Baghdadi Gilit dialects of Arabic.* PhD thesis, Newcastle University. [PDF](https://theses.ncl.ac.uk/jspui/bitstream/10443/4899/1/Jasim%20M%202020.pdf) — chapters 2 and 4 read; mined for the `primary_sources` gold.
+
+---
+
+## Sources mined for gold
+
+The [`primary_sources`](../orthography2ipa/data/gold/primary_sources/README.md)
+benchmark set is built from the worked example transcriptions printed in the
+sources above — `almbark2015`, `jasim2020`, `fadda2016`, `cotter2016` (Arabic)
+`brissos2014` (Portuguese), and the JIPA *Illustrations of the IPA* for Ukrainian
+(`pompino2017`), Russian (`yanushevskaya2015`), European Portuguese
+(`cruzferreira1995`) and Brazilian Portuguese (`barbosa2004`). Each gold row names its source and its **printed**
+page, and `sources.json` in that directory records, per source, how the printed
+folio maps to the PDF page index.
+
+- **brissos2014** — Brissos, F. (2014). *New insights into Portuguese central-southern dialects: understanding their present and past forms through acoustic data from stressed vowels.* Journal of Portuguese Linguistics 13(1):65–116. [PDF](https://www.clul.ulisboa.pt/files/849/Brissos_2014_comprimido.pdf) — read in full.
+
 ---
 
 ## Shipped lexicon data
