@@ -1,8 +1,20 @@
 # Changelog
 
+## [6.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.7.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.6.0a1...6.7.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): gold IPA mined from the primary sources the specs cite [\#383](https://github.com/TigreGotico/orthography2ipa/pull/383) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.6.0a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.4.1a1...6.6.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.5.0a1...6.6.0a1)
+
+## [6.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.5.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.4.1a1...6.5.0a1)
 
 **Merged pull requests:**
 
