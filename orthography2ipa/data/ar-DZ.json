@@ -156,8 +156,8 @@
       "notes": "French adstrate (1830–1962): /p/, /v/ phonemes, heavy loanword influence"
     }
   ],
-  "notes": "Algerian Arabic. Complex dialect landscape from Oran (west) to Constantine (east). Intermediate between Moroccan (more reduced) and Tunisian. θ → /t/ or /s/; ð → /d/ or /z/. ق → /q/ (eastern) or /ɡ/ (western, Oran area). Berber substrate (especially Kabylie) reinforces emphatics. French integration deepest of all Maghrebi dialects (130+ years colonial rule).",
-  "quality": "skeleton",
+  "notes": "Algerian Arabic (Dziriya; ISO 639-3 arq), Algiers (al-ʿĀṣima) urban baseline. Sedentary pre-Hilalian phonology of the old city, with the Bedouin/rural layer diffusing in. INTERDENTALS MERGED to stops in Algiers: ث → /t/, ذ → /d/, ظ/ض → /dˤ/ (θalāθa → tlaːta) — Boucherit 2002; Marçais 1902 (Tlemcen); the isogloss against Tunis, which retains /θ ð ðˤ/. QĀF ق → /q/ in old-urban Algiers, with the Bedouin/rural variant /ɡ/ current across the country (dual /q ~ ɡ/) — Boucherit 2002; Grand'Henry 1972 (Cherchell). ǦĪM ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghrebi; Watson 2002 p.16); the pre-Hilalian Algiers affricate /dʒ/ survives as the secondary candidate (Boucherit 2002; Marçais 1902). HEAVY SYNCOPE: short /a i u/ reduce to schwa [ə] or ∅ in weak positions, licensing initial consonant clusters (ktaːb, tlaːta) — the defining Maghrebi trait, reinforced by the Berber (Amazigh) substrate; Boucherit 2002; Marçais 1902. NO strong imāla — long /aː/ keeps its back quality (ktaːb, not the Tunis ktɛːb). Emphasis spreads, backing /a aː/ to [ɑ ɑː] near emphatics (inherited layer; Watson 2002). TĀʾ MARBŪṬA: /-a/ in pause, /-at/ in the construct (inherited pausal handling; Boucherit 2002). French adstrate is the deepest of the Maghrebi dialects (130+ years): /p/ /v/ phonemes and heavy loan integration.",
+  "quality": "research",
   "script_type": "abjad",
   "sources": [
     {
@@ -187,6 +187,36 @@
       "year": 1972,
       "title": "Le parler arabe de Cherchell (Algérie)",
       "publisher": "Institut Orientaliste de Louvain",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "boucherit2002",
+      "author": "Boucherit, A.",
+      "year": 2002,
+      "title": "L'arabe parlé à Alger: aspects sociolinguistiques et énonciatifs",
+      "publisher": "Peeters, Paris–Louvain",
+      "url": null,
+      "pages": null,
+      "notes": "The reference monograph on the Arabic of Algiers. Documents the urban Algiers pre-Hilalian phonology: qāf /q/ in the old-urban variety with the Bedouin/rural /ɡ/ spreading in; interdentals /θ ð ðˤ/ merged to the dental stops /t d dˤ/ in Algiers; ǧīm as the postalveolar /ʒ/ (with the affricate /dʒ/ in pre-Hilalian/eastern varieties); heavy short-vowel syncope yielding initial clusters; tāʾ marbūṭa as /-a/ in pause, /-at/ in the construct. Standard reference; not obtained to a readable folio for this pass."
+    },
+    {
+      "id": "marcais1902",
+      "author": "Marçais, W.",
+      "year": 1902,
+      "title": "Le dialecte arabe parlé à Tlemcen",
+      "publisher": "Ernest Leroux, Paris",
+      "url": "https://archive.org/details/arabe_tlemcen",
+      "pages": null,
+      "notes": "Classic (public-domain) description of a western-Algerian sedentary pre-Hilalian dialect: interdental merger to stops, ǧīm /ʒ/, heavy syncope. Tlemcen itself has the divergent qāf → [ʔ] reflex (not the Algiers /q/), so it is cited for the shared consonantism and syncope, not the qāf reflex."
+    },
+    {
+      "id": "versteegh2001",
+      "author": "Versteegh, K.",
+      "year": 2001,
+      "title": "The Arabic Language",
+      "publisher": "Edinburgh University Press",
       "url": null,
       "pages": null,
       "notes": null
@@ -229,5 +259,12 @@
     "max_onset": 1,
     "stress_mark": "ˈ",
     "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER."
+  },
+  "orthography_standard": {
+    "name": "CODA (Conventional Orthography for Dialectal Arabic), Algerian guidelines",
+    "authority": "Habash et al. (CODA*)",
+    "year": 2018,
+    "url": "https://arxiv.org/abs/1906.05758",
+    "notes": "Algerian dialectal text is written in MSA-shaped Arabic script; CODA* provides the per-dialect conventions, plus the supplemental letters پ /p/, ڤ /v/, گ /ɡ/ for French/Berber loans."
   }
 }
