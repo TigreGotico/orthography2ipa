@@ -466,9 +466,6 @@ def test_id_default_stress_is_penultimate():
     assert G2P("id").transcribe_word("bahasa") == "baˈhasa"
 
 
-@pytest.mark.xfail(strict=True, reason="ms spec carries ONLY the five vowel "
-                                       "graphemes — every consonant is dropped: "
-                                       "makan → ˈaa, not ˈmakan")
 def test_ms_default_stress_is_penultimate():
     """"Malay default stress is penultimate (-2)." Clynes & Deterding (2011);
     Adelaar & Himmelmann (2005): makan → [ˈmakan]."""

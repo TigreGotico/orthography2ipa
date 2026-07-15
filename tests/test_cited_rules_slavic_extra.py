@@ -249,13 +249,6 @@ def test_pl_progr_devoice_v_after_voiceless():
     assert _bare("pl", "kwiat") == "kfjat"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="PL_PROGR_DEVOICE_ʐ cites przy [pʂɨ]; engine produces [bʂɨ] — the /ʐ/ "
-    "does devoice, but /p/ is simultaneously voiced to [b] because the "
-    "PL_REGR_VOICE_* rules list ʐ among their triggers, contradicting their own "
-    "note 'v and ʐ do not trigger'",
-)
 def test_pl_progr_devoice_zh_after_voiceless():
     """PL_PROGR_DEVOICE_ʐ: /ʐ/ → [ʂ] after a voiceless obstruent.
 
@@ -300,12 +293,6 @@ def test_pl_final_devoicing():
     assert _bare("pl", "wozu") == "vɔzu"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="pl notes claim all obstruents devoice word-finally; engine produces "
-    "[wudʑ] for łódź — word-final /dʑ/ stays voiced, while the plain /ʑ/ of weź "
-    "and the /dz/ of wódz both devoice, so the affricate dʑ is the one gap",
-)
 def test_pl_final_devoicing_of_dz_palatal():
     """Word-final /dʑ/ devoices to [tɕ].
 

@@ -646,13 +646,6 @@ def test_la_final_m_weakens_to_nasalisation():
     assert _bare("la", "mensa").startswith("m")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="la notes claim '/s/ always voiceless'; engine produces [rora] for "
-    "rosa, [kara] for casa and [pʰiloropʰia] for philosophia — a synchronic "
-    "intervocalic s→r rhotacism rule is applied in the CLASSICAL spec, where "
-    "rhotacism is a prehistoric change already lexicalised. DATA BUG in la",
-)
 def test_la_intervocalic_s_stays_a_voiceless_sibilant():
     """⟨s⟩ is always the voiceless sibilant [s], including between vowels.
 
@@ -1209,6 +1202,11 @@ def test_grc_ei_and_ou_already_monophthongs():
     assert _bare("grc", "λογου").endswith("oː")
 
 
+@pytest.mark.xfail(
+    strict=True,
+    reason="Allen (1968): rough breathing = [h]; grc produces [als] for ἁλς and "
+    "[ɛːmera] for ἡμερα — the breathing adds no [h] onset",
+)
 def test_grc_rough_breathing_is_h():
     """The rough breathing is [h].
 
