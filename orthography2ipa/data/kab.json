@@ -190,7 +190,7 @@
       "id": "KAB_SPIRANT_T",
       "phonemes": ["t"],
       "surface": "θ",
-      "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafath], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤtoθ]. Geminate ⟨tt⟩ = /tː/ stays a stop."
+      "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤːθ]. Geminate ⟨tt⟩ = /tː/ stays a stop."
     },
     {
       "id": "KAB_SPIRANT_G",
