@@ -11,6 +11,12 @@
     "ج": [
       "ʒ",
       "dʒ"
+    ],
+    "وَيْ": [
+      "weː"
+    ],
+    "يَوْ": [
+      "joː"
     ]
   },
   "allophones_base": "ar-x-levantine",
@@ -37,7 +43,7 @@
       "notes": "Levantine Arabic base"
     }
   ],
-  "notes": "Syrian Arabic — Damascene (شامي) urban koine, the most influential prestige form of Levantine. INPUT CONTRACT: fully-diacritized Arabic (short vowels surface only when written). ق qaf → /ʔ/ in the Damascus koine (rural/Bedouin /ɡ/ retained via the Levantine parent's variant list). ج jim → /ʒ/. Interdentals merged to stops in urban speech (θ→/t/, ð→/d/, ظ/ض→/dˤ/), conserved by rural/Druze speakers. Diphthongs /aj aw/ → [eː oː] and emphasis backing /a aː/→[ɑ ɑː] are inherited from the Levantine parent's allophone_rules. Vowel system: five long /iː eː aː oː uː/ over three contrastive short /i a u/; [e o ə] are allophones of /i u/ (Almbark & Hellmuth 2015, an acoustic study of fifteen Damascene speakers, §3-4). Damascene /aː/ is LESS fronted than Coastal Syrian, so no strong imāla rule is declared here (contrast ar-LB).",
+  "notes": "Syrian Arabic — Damascene (شامي) urban koine, the most influential prestige form of Levantine. INPUT CONTRACT: fully-diacritized Arabic (short vowels surface only when written). ق qaf → /ʔ/ in the Damascus koine (rural/Bedouin /ɡ/ retained via the Levantine parent's variant list). ج jim → /ʒ/. Interdentals merged to stops in urban speech (θ→/t/, ð→/d/, ظ/ض→/dˤ/), conserved by rural/Druze speakers. Diphthongs /aj aw/ → [eː oː] and emphasis backing /a aː/→[ɑ ɑː] are inherited from the Levantine parent's allophone_rules. Vowel system: five long /iː eː aː oː uː/ over three contrastive short /i a u/; [e o ə] are allophones of /i u/ (Almbark & Hellmuth 2015, an acoustic study of fifteen Damascene speakers, §3-4). Damascene /aː/ is LESS fronted than Coastal Syrian, so no strong imāla rule is declared here (contrast ar-LB). TOKENIZATION NOTE (word-initial diphthong digraphs): the inherited Levantine monophthongization AR_LEV_MONO_AY/AW rewrites the /aj//aw/ ATOMS that the ⟨َي⟩/⟨َو⟩ digraphs emit, but word-initially the onset digraphs يَ→/ja/ and وَ→/wa/ claim the fatha before an /aj//aw/ atom can form, so ⟨وَيْ⟩ came out *[waj] (وَين *wajn) and ⟨يَوْ⟩ *[jaw]. The two sequences are therefore spelled out in `graphemes` as وَيْ→[weː] (وَيْن → weːn 'where', Cowell 1964; the monophthong /eː/ from /aj/ per Almbark & Hellmuth 2015 §1.1) and يَوْ→[joː] (يَوْم → joːm 'day'), which is the same monophthongization reached from the spelling instead of from the atom — exactly the device the Hejazi/Qassimi specs use for their identical seam. The explicit sukun in both keys keeps حَيَوان /ħajawaːn/ and يَوَدّ /jawadd/ — where the glide carries its own vowel and there is no diphthong — out of the rule.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
