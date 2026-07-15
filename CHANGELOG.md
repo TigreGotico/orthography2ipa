@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.16.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.16.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.15.0a1...6.16.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): model São Miguel \[ø\] and add the Terceira Azorean dialect [\#417](https://github.com/TigreGotico/orthography2ipa/pull/417) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.15.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.14.0a1...6.15.0a1)
@@ -554,7 +562,6 @@
 **Merged pull requests:**
 
 - Release 1.78.0a1 [\#283](https://github.com/TigreGotico/orthography2ipa/pull/283) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat: spelling divergence — how differently two orthographies write the same sounds [\#281](https://github.com/TigreGotico/orthography2ipa/pull/281) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.77.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.77.0a1) (2026-07-11)
 
