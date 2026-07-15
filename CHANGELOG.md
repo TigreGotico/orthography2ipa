@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.19.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.19.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.18.0a1...6.19.0a1)
+
+**Merged pull requests:**
+
+- feat: Arabic-based creole specs \(Juba Arabic, Ki-Nubi\) + Borg-cited Cypriot Arabic [\#423](https://github.com/TigreGotico/orthography2ipa/pull/423) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(ar\): deepen Saudi Arabic — Qassimi, Rijāl Almaʿ, Eastern \(Sharqiyya\) [\#422](https://github.com/TigreGotico/orthography2ipa/pull/422) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.18.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.18.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.17.0a1...6.18.0a1)
@@ -560,15 +569,10 @@
 **Merged pull requests:**
 
 - Release 1.79.1a1 [\#286](https://github.com/TigreGotico/orthography2ipa/pull/286) ([github-actions[bot]](https://github.com/apps/github-actions))
-- fix: wire the new stubs into the clade chain instead of authoring a family [\#285](https://github.com/TigreGotico/orthography2ipa/pull/285) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.79.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.79.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.78.0a1...1.79.0a1)
-
-**Merged pull requests:**
-
-- Release 1.79.0a1 [\#284](https://github.com/TigreGotico/orthography2ipa/pull/284) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.78.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.78.0a1) (2026-07-11)
 
