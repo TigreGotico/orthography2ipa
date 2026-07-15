@@ -51,9 +51,11 @@ not to certify a language on its own.
 | Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté (2003), JIPA Illustration | Castilian Spanish | `es-ES` | 41 |
 | Coloma (2018), JIPA Illustration | Buenos Aires / River Plate Spanish | `es-AR` | 29 |
 | Laufer (1999), Handbook of the IPA Illustration | Modern Israeli Hebrew (Non-Oriental / Oriental) | `he` | 33 |
-| **total** | | | **303** |
+| Owens (2006), A Linguistic History of Arabic | Nigerian Arabic (Shuwa) | `ar-NG` | 8 |
+| Procházka (2026), JSS gahawa survey | Nigeria (Lake Chad Arabic) | `ar-NG` | 1 |
+| **total** | | | **312** |
 
-Broad `/…/`: 251. Narrow `[…]`: 52. `confidence`: 242 high, 59 medium, 2 low.
+Broad `/…/`: 260. Narrow `[…]`: 52. `confidence`: 242 high, 66 medium, 4 low.
 
 ## Notation-normalization decisions
 
