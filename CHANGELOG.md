@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.4.1a1](https://github.com/TigreGotico/orthography2ipa/tree/6.4.1a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.4.0a1...6.4.1a1)
+
+**Merged pull requests:**
+
+- fix: seven broken languages, two engine features, and a word-final root cause [\#393](https://github.com/TigreGotico/orthography2ipa/pull/393) ([JarbasAl](https://github.com/JarbasAl))
+
+## [6.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.4.0a1) (2026-07-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.3.0a1...6.4.0a1)
+
 ## [6.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.3.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.2.0a1...6.3.0a1)
