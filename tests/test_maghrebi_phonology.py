@@ -13,7 +13,7 @@ leaves build on. Every claim below is isolated on a real Arabic word and cited:
   merger), p.16 (Maghribi ǧīm = /ž/ [ʒ]), p.17 (*q maintained sedentary /
   /ɡ/ Bedouin);
 * Guerrero, J. (2019), "Reflexes of Old Arabic */ǧ/ in the Maghrebi Dialects",
-  *Arabica* 66(1-2):137-193 — /ʒ/ is by far the most common *ǧ reflex across
+  *Arabica* 66(1-2):137-169 — /ʒ/ is by far the most common *ǧ reflex across
   Libya, Tunisia, Mauritania and Morocco; /dʒ/ retained by pre-Hilali sedentary
   north-Algerian dialects;
 * Guerrero, J. (2021), "On Interdental Fricatives in the First-Layer Dialects of
