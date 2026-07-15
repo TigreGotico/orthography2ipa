@@ -85,3 +85,40 @@ class TestWordFinalSeesThroughSilentLetters:
         # French has no final devoicing; ⟨grande⟩ keeps its [d] behind the mute ⟨e⟩.
         from orthography2ipa import G2P
         assert G2P("fr-FR").transcribe_word("grande") == "ɡʁɑ̃d"
+
+
+class TestSpanishFinalYIsAVowel:
+    """Word-final ⟨y⟩ is the vowel /i/ (soy, rey, y 'and'), not the consonant /ʝ/
+    — which stays only before a vowel (yo, playa). soy was /soʝ/."""
+
+    def test_final_y(self):
+        from orthography2ipa import G2P
+        assert G2P("es").transcribe_word("soy") == "ˈsoi"
+        assert G2P("es").transcribe_word("y") == "ˈi"
+
+    def test_prevocalic_y_is_the_consonant(self):
+        from orthography2ipa import G2P
+        assert G2P("es").transcribe_word("yo") == "ˈʝo"
+        assert G2P("es").transcribe_word("playa") == "plaˈʝa"
+
+
+class TestPolishRzDoesNotVoiceThePrecedingStop:
+    """⟨rz⟩ /ʐ/ progressively DEVOICES after a voiceless obstruent (przy [pʂɨ]); it
+    does not trigger regressive voicing of the stop, as the rule's own note says
+    ('v and ʐ do not trigger'). przy was /bʂɨ/, także /taɡʂɛ/."""
+
+    def test_rz_after_voiceless_stop(self):
+        from orthography2ipa import G2P
+        g = G2P("pl")
+        assert g.transcribe_word("przy") == "ˈpʂɨ"
+        assert g.transcribe_word("trzy") == "ˈtʂɨ"
+        assert g.transcribe_word("także") == "ˈtakʂɛ"
+
+    def test_a_real_voiced_obstruent_still_triggers(self):
+        # prośba: ⟨ś⟩ voices to [ʑ] before /b/ — regressive voicing is intact.
+        from orthography2ipa import G2P
+        assert G2P("pl").transcribe_word("prośba") == "ˈprɔʑba"
+
+    def test_final_affricate_devoices(self):
+        from orthography2ipa import G2P
+        assert G2P("pl").transcribe_word("łódź") == "ˈwutɕ"
