@@ -6,6 +6,19 @@ concrete Arabic lects in the catalogue. Built to validate Arabic TTS voices
 per dialect (synthesize each sentence, ASR/listen, compare against the gold
 IPA) and to regression-pin sentence-level o2i behaviour.
 
+Beside the concrete lects, the five **grouping (proto/koine) nodes**
+(`ar-x-gulf`, `ar-x-levantine`, `ar-x-maghrebi`, `ar-x-mashriqi`,
+`ar-x-peninsular`) each carry a 20-row set whose register is **pan-group** —
+the sentence lexicon is restricted to items attested across the group's leaves
+(e.g. Gulf `šlon`/`wāyid`, Levantine `qaddēsh`/`baddi`, pan-Maghrebi
+`bzzāf`/`shri` in the Heath/Marçais sense) rather than any single leaf's
+idiolect. A grouping node deliberately does not *pick* a reflex where its
+leaves diverge; the gold therefore **surfaces the node's rank-1 candidate
+ranking** (e.g. `ar-x-maghrebi` keeps `/q/` and ʒ-first ǧīm; `ar-x-peninsular`
+keeps fricative-first interdentals and retained diphthongs; `ar-x-gulf`/
+`ar-x-levantine` monophthongize ay/aw→ē/ō). That surfacing is the node's
+documented behaviour and is noted per row, not fought.
+
 ## Schema
 
 TSV, tab-separated, UTF-8, header row:

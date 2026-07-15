@@ -266,6 +266,22 @@
         "zˤ"
       ],
       "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002 (Cairene as primary case) ch. Emphasis; Egyptian emphatics /tˤ dˤ sˤ zˤ/ with strong bidirectional spreading."
+    },
+    {
+      "id": "EG_MONO_AY",
+      "phonemes": [
+        "aj"
+      ],
+      "surface": "eː",
+      "notes": "Cairene monophthongization (Watson 2002 ch.2: Classical /aj/ → [eː], bajt→beːt; Mitchell 1956; Badawi & Hinds 1986 passim, e.g. feːn 'where'). Geminate [jj] (izzajjak) is a CjjV sequence, not the /aj/ diphthong atom, and is untouched — same tokenization behaviour as HEJ_MONO_AY/QAS_MONO_AY."
+    },
+    {
+      "id": "EG_MONO_AW",
+      "phonemes": [
+        "aw"
+      ],
+      "surface": "oː",
+      "notes": "Cairene monophthongization (Watson 2002 ch.2: Classical /aw/ → [oː], lawn→loːn; Mitchell 1956). Geminate [ww] (ɡaww) is not the diphthong atom and is untouched."
     }
   ],
   "wikidata_qid": "Q29919",
