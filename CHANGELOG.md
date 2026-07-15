@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/6.21.1a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.21.0a1...6.21.1a1)
+
+**Merged pull requests:**
+
+- fix\(arabic-gold\): enforce citations & sync stale ظ sun-letter keys [\#457](https://github.com/TigreGotico/orthography2ipa/pull/457) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.21.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.20.0a1...6.21.0a1)
@@ -457,10 +465,6 @@
 **Breaking changes:**
 
 - feat\(ca\)!: re-root the Catalan family on Old Catalan and restore the open-mid default [\#315](https://github.com/TigreGotico/orthography2ipa/pull/315) ([JarbasAl](https://github.com/JarbasAl))
-
-**Merged pull requests:**
-
-- Release 1.88.0a2 [\#314](https://github.com/TigreGotico/orthography2ipa/pull/314) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.88.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.88.0a2) (2026-07-12)
 
