@@ -1375,6 +1375,10 @@
     "name": "Novial",
     "level": "language"
   },
+  "nubi1253": {
+    "name": "Nubi",
+    "level": "language"
+  },
   "nucl1235": {
     "name": "Eastern Armenian",
     "level": "language"
@@ -1805,6 +1809,10 @@
   },
   "suda1236": {
     "name": "Sudanese Arabic",
+    "level": "language"
+  },
+  "suda1237": {
+    "name": "South Sudanese Creole Arabic",
     "level": "language"
   },
   "sund1252": {
