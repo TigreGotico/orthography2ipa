@@ -1,5 +1,26 @@
 # Changelog
 
+## [7.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.9.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.8.0a1...7.9.0a1)
+
+**Merged pull requests:**
+
+- feat\(gold\): Azorean Portuguese TTS gold sets \(acores, sao-miguel, terceira\) [\#496](https://github.com/TigreGotico/orthography2ipa/pull/496) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Madeiran Portuguese TTS gold set \(pt-PT-x-madeira\) [\#495](https://github.com/TigreGotico/orthography2ipa/pull/495) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.8.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.8.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.7.0a1...7.8.0a1)
+
+## [7.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.7.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.6.0a1...7.7.0a1)
+
+## [7.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.6.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.5.0a1...7.6.0a1)
+
 ## [7.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.5.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.4.0a1...7.5.0a1)
@@ -487,17 +508,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.4.0a1...3.5.0a1)
 
-**Merged pull requests:**
-
-- Release 3.5.0a1 [\#335](https://github.com/TigreGotico/orthography2ipa/pull/335) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [3.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.4.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.3.0a1...3.4.0a1)
-
-**Merged pull requests:**
-
-- Release 3.4.0a1 [\#334](https://github.com/TigreGotico/orthography2ipa/pull/334) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.3.0a1) (2026-07-12)
 
