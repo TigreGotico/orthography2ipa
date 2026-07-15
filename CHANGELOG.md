@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.22.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.22.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.21.1a1...6.22.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar-LY\): monophthongize Classical diphthongs /aj aw/ → \[eː oː\] [\#459](https://github.com/TigreGotico/orthography2ipa/pull/459) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/6.21.1a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.21.0a1...6.21.1a1)
@@ -461,10 +469,6 @@
 ## [2.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/2.0.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.88.0a2...2.0.0a1)
-
-**Breaking changes:**
-
-- feat\(ca\)!: re-root the Catalan family on Old Catalan and restore the open-mid default [\#315](https://github.com/TigreGotico/orthography2ipa/pull/315) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.88.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.88.0a2) (2026-07-12)
 
