@@ -210,7 +210,6 @@ def cmd_validate(args):
     lects = args.lects or LECTS
     import orthography2ipa
     failures = []
-    uncited = []
     total = 0
     for lect in lects:
         rows = _load(lect)
@@ -259,17 +258,16 @@ def cmd_validate(args):
             for cid in re.findall(CITE_ID, notes):
                 if cid not in src_ids:
                     failures.append(f"{rid}: notes cite {cid!r}, not in {lect} spec sources")
-            # every row's notes SHOULD carry a resolvable source id; today many
-            # rows explain a convention or an inline reflex without one, so this
-            # is a WARNING (tracked for follow-up), not a gate.
+            # every row's notes MUST carry a resolvable source id from the lect's
+            # spec sources: a reflex/lexical/rule claim is grounded in the source
+            # that documents it, and a pure coverage note names the source whose
+            # scope covers the row's phonology. A note with no resolvable id is a
+            # hard failure (a free-text author-year cite already failed above).
             if not resolvable and not FREE_TEXT_CITE.search(notes):
-                uncited.append(rid)
+                failures.append(f"{rid}: notes carry no resolvable source id "
+                                f"(cite a {lect} spec source, or reword to a "
+                                f"coverage note that names one)")
     print(f"validated {total} rows across {len(lects)} lects")
-    if uncited:
-        print(f"\nWARNING: {len(uncited)} row(s) have no resolvable source id in notes "
-              f"(follow-up — not a gate):")
-        for rid in uncited:
-            print("  ~", rid)
     if failures:
         print(f"\n{len(failures)} FAILURE(S):")
         for f in failures:
