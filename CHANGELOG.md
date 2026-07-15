@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.6.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.4.1a1...6.6.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): new WikiPron-backed specs \(Finnic, Nheengatu, Nahuatl\) [\#394](https://github.com/TigreGotico/orthography2ipa/pull/394) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(tet,kea\): audit and cite the Tetum and Kabuverdianu specs [\#392](https://github.com/TigreGotico/orthography2ipa/pull/392) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.4.1a1](https://github.com/TigreGotico/orthography2ipa/tree/6.4.1a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.4.0a1...6.4.1a1)
