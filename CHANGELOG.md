@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.3.0a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): Levantine/Gulf verification-round spec leads [\#478](https://github.com/TigreGotico/orthography2ipa/pull/478) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Portuguese-dialects TTS gold set infrastructure [\#477](https://github.com/TigreGotico/orthography2ipa/pull/477) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(ar-MA,ar-DZ\): Maghrebi weak-position short-vowel reduction to schwa [\#476](https://github.com/TigreGotico/orthography2ipa/pull/476) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.1.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.1.1a2) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a1...7.1.1a2)
@@ -480,16 +490,10 @@
 **Merged pull requests:**
 
 - Release 3.1.0a2 [\#327](https://github.com/TigreGotico/orthography2ipa/pull/327) ([github-actions[bot]](https://github.com/apps/github-actions))
-- chore\(benchmarks\): regenerate full-dataset scoreboard + CI sample [\#326](https://github.com/TigreGotico/orthography2ipa/pull/326) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.1a1...3.1.0a1)
-
-**Merged pull requests:**
-
-- Release 3.1.0a1 [\#325](https://github.com/TigreGotico/orthography2ipa/pull/325) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(benchmark\): Arabic gold with tashkeel restored [\#324](https://github.com/TigreGotico/orthography2ipa/pull/324) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.0.1a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.1a1) (2026-07-12)
 
