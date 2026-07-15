@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.7.0a2](https://github.com/TigreGotico/orthography2ipa/tree/6.7.0a2) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.7.0a1...6.7.0a2)
+
+**Merged pull requests:**
+
+- test: prove every cited rule, spec by spec [\#382](https://github.com/TigreGotico/orthography2ipa/pull/382) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.7.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.6.0a1...6.7.0a1)
