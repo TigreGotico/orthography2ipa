@@ -66,9 +66,10 @@ not to certify a language on its own.
 | Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro), ALUSTP standardization article | `cri` | 13 |
 | Baxter (1988), Pacific Linguistics B-95 | Kristang (Malacca Creole Portuguese) | `mcm` | 33 |
 | Brissos (2018), Estud. ling. galega, vol. esp. I | NW Portuguese (variedade do noroeste) | `pt-PT-x-porto` | 9 |
-| **total** | | | **478** |
+| Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `ext-PT-x-barrancos` | 10 |
+| **total** | | | **488** |
 
-Broad `/…/`: 338. Narrow `[…]`: 140. `confidence`: 296 high, 168 medium, 14 low.
+Broad `/…/`: 338. Narrow `[…]`: 150. `confidence`: 306 high, 168 medium, 14 low.
 
 ## Notation-normalization decisions
 

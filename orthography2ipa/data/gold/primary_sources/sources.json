@@ -295,5 +295,16 @@
     "pagination": "Running foot `© 2018 Estudos de lingüística galega. Volume especial I: 193-208` with the body folio in the header/footer (e.g. `Proposta de reformulação ... 199`, `200  F. Brissos`); `page` records that printed folio. The PDF page index runs 192 behind the printed page (printed 193 = PDF page 1). Examples are the diphthongization set of §2.1-2.2, printed pp.199-201, reproduced from Brissos & Rodrigues (2016).",
     "notation": "ipa",
     "describes": "The diphthongizing 'variedade do noroeste' (Cintra's Baixo-Minho / Douro-Litoral, extended north) — tonic-vowel diphthongization of both close and open mids, the within-axis subtype (RD1: [i̯e i̯ɛ], [u̯o u̯ɔ]) and the toward-central subtype (RD2: [eɐ̯ ɛɐ̯], [oɐ̯ ɔɐ̯]), plus the marginal /i/ -> [ei̯]"
+  },
+  "navas2011": {
+    "authors": "Navas Sánchez-Élez, M. V.",
+    "year": 2011,
+    "title": "El barranqueño: un modelo de lenguas en contacto",
+    "venue": "Editorial Complutense / Centro de Linguística da Universidade de Lisboa, Madrid, 320 pp. (ISBN 978-84-9938-099-5)",
+    "url": "https://docta.ucm.es/rest/api/core/bitstreams/7d70beef-df2e-495f-8a74-7387d9c95f7e/content",
+    "access": "open",
+    "pagination": "Open-access scan on Docta Complutense (handle hdl.handle.net/20.500.14352/46845). The printed folio sits in the page running foot and coincides with the PDF page index (verified: PDF page 49 = folio 49, 50 = folio 50, 52 = folio 52, 53 = folio 53). The book uses a Spanish (RFE-influenced) phonetic notation: primary stress is an apostrophe placed BEFORE the stressed syllable (normalized to IPA ˈ), and [∫]=ʃ, [γ]=ɣ, [δ]=ð, [β]=β, with final unstressed <a> written [α]/[a] and read [ɐ]; the `ipa` field carries the IPA normalization and `source_notation` keeps the book's glyphs verbatim.",
+    "notation": "ipa",
+    "describes": "Barranquenho (ext-PT-x-barrancos) — the Portuguese-Spanish contact variety of Barrancos (Baixo Alentejo, on the Extremadura/Andalusia border); Alentejo-Portuguese phonetic base with southern-peninsular Spanish overlay (coda /s/ aspiration, betacism, final-vowel apocope). Already cited by the ext-PT-x-barrancos spec."
   }
 }
