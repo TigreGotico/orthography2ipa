@@ -343,6 +343,10 @@
     "name": "Kadazan Dusun",
     "level": "language"
   },
+  "cent2132": {
+    "name": "Tlaxcala-Puebla-Central Nahuatl",
+    "level": "language"
+  },
   "cent2236": {
     "name": "Central Semitic",
     "level": "family"
@@ -393,6 +397,10 @@
   },
   "cisa1237": {
     "name": "Cisalpine Gaulish",
+    "level": "language"
+  },
+  "clas1250": {
+    "name": "Classical Nahuatl",
     "level": "language"
   },
   "copt1239": {
@@ -803,6 +811,10 @@
     "name": "Indo-Aryan",
     "level": "family"
   },
+  "ingr1248": {
+    "name": "Ingrian",
+    "level": "language"
+  },
   "ingu1240": {
     "name": "Ingush",
     "level": "language"
@@ -897,6 +909,10 @@
   },
   "kara1465": {
     "name": "Karachay-Balkar",
+    "level": "language"
+  },
+  "kare1335": {
+    "name": "Karelian",
     "level": "language"
   },
   "kart1248": {
@@ -1265,6 +1281,10 @@
   },
   "newa1246": {
     "name": "Kathmandu Valley Newari",
+    "level": "language"
+  },
+  "nhen1239": {
+    "name": "Nhengatu",
     "level": "language"
   },
   "nias1242": {
@@ -2014,6 +2034,10 @@
   "voro1243": {
     "name": "Võro",
     "level": "dialect"
+  },
+  "voti1245": {
+    "name": "Votic",
+    "level": "language"
   },
   "wall1255": {
     "name": "Walloon",
