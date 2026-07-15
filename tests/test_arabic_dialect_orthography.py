@@ -55,7 +55,10 @@ def test_dialect_inherits_onset_glide_digraphs(code):
 
 def test_classical_does_not_carry_the_msa_readings():
     """Guards the premise: ``arb`` is the layer that lacks them."""
-    assert not (get("arb").positional_graphemes or {})
+    # Classical carries exactly the tāʾ marbūṭa positional pair — [at] when a
+    # vowel follows (inflected context), [a] pre-pausally — which is Classical
+    # grammar (Wright I §297), not an MSA-only reading. Nothing else.
+    assert set((get("arb").positional_graphemes or {})) <= {"ة", "َة"}
 
 
 @pytest.mark.parametrize("code,expected_qaf", [
