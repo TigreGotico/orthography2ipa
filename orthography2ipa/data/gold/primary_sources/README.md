@@ -59,10 +59,10 @@ not to certify a language on its own.
 | Benkato (2020), *Maghrebi Arabic* (Lucas & Manfredi, eds.) | Libyan Arabic (Tripoli / Benghazi) | `ar-LY` | 3 |
 | Taine-Cheikh (2007), EALL *Ḥassāniyya Arabic* | Ḥassāniyya (Mauritania, Gǝbla) | `ar-MR` | 18 |
 | La Rosa (2021), Languages 6:145 | Tunisian Sahel (Mahdia/Msaken) | `ar-TN` | 7 |
-| Watson (2002), The Phonology and Morphology of Arabic | Cairene / Moroccan (Lmnabha, as quoted from Elmedlaoui) | `ar-EG` / `ar-MA` | 18 / 1 |
-| **total** | | | **391** |
+| Watson (2002), The Phonology and Morphology of Arabic | Cairene / Moroccan (Lmnabha, as quoted from Elmedlaoui) / Ṣanʿānī | `ar-EG` / `ar-MA` / `ar-YE` | 18 / 1 / 15 |
+| **total** | | | **406** |
 
-Broad `/…/`: 315. Narrow `[…]`: 76. `confidence`: 254 high, 127 medium, 10 low.
+Broad `/…/`: 330. Narrow `[…]`: 76. `confidence`: 254 high, 142 medium, 10 low.
 
 ## Notation-normalization decisions
 
