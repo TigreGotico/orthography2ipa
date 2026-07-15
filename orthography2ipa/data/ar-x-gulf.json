@@ -2,6 +2,9 @@
   "code": "ar-x-gulf",
   "name": "Proto-Gulf Arabic",
   "script": "Arabic",
+  "word_exceptions": {
+    "سَاكِن": "saːkin"
+  },
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {
     "وَيْ": [
@@ -186,7 +189,7 @@
         "i",
         "iː"
       ],
-      "notes": "Velar affrication (kashkasha): /k/ → [tʃ] adjacent to a high front vowel /i, iː/. Alshammari 2026 (JLTR 17(4):1333-1341), literature review p.1335: 'Mustafawi (2006, 2007) examines the affrication phenomenon of velar stops /k/ and /g/ in Qatari Arabic (QA)... She proposes that the velar stop undergoes affrication only in the stem when adjacent to the high front vowels /i/ or /i:/. Conversely, affrication is blocked by the presence of any other segments including front vowels that are [-high].' The general Gulf/Peninsular pattern (attributed there to Ingham 1994; Holes 1991) affricates /k/ to [tʃ] 'in the presence of front vowels'. LIMITATIONS: the alternation is historically lexicalised — per Johnstone (1967), as reported in Alshammari 2026 p.1335, velar affrication 'is clearly no longer productive in Eastern Arabic' and /tʃ/ has 'attained the status of an independent phoneme'. It is further blocked by adjacent emphatics and by the OCP near /s z/. This rule models only the regular onset case (following high front vowel); coda affrication (e.g. samak → simatʃ) and emphatic/OCP blocking are not modelled. Input contract: fully diacritised (tashkeel) Arabic, so the conditioning vowel is a written kasra/yāʔ."
+      "notes": "Velar affrication (kashkasha): /k/ → [tʃ] adjacent to a high front vowel /i, iː/. Alshammari 2026 (JLTR 17(4):1333-1341), literature review p.1335: 'Mustafawi (2006, 2007) examines the affrication phenomenon of velar stops /k/ and /g/ in Qatari Arabic (QA)... She proposes that the velar stop undergoes affrication only in the stem when adjacent to the high front vowels /i/ or /i:/. Conversely, affrication is blocked by the presence of any other segments including front vowels that are [-high].' The general Gulf/Peninsular pattern (attributed there to Ingham 1994; Holes 1991) affricates /k/ to [tʃ] 'in the presence of front vowels'. LIMITATIONS: the alternation is historically lexicalised — per Johnstone (1967), as reported in Alshammari 2026 p.1335, velar affrication 'is clearly no longer productive in Eastern Arabic' and /tʃ/ has 'attained the status of an independent phoneme'. It is further blocked by adjacent emphatics and by the OCP near /s z/. This rule models only the regular onset case (following high front vowel); coda affrication (e.g. samak → simatʃ) and emphatic/OCP blocking are not modelled. LEXICALIZED-CLASS EXEMPTION: because the alternation is lexicalized rather than productive (Johnstone 1967, as reported in Alshammari 2026 p.1335), the rule's bare 'front-vowel adjacency' condition OVER-APPLIES to words that stand outside the affricating class — سَاكِن 'living/resident' keeps [saːkin], not *[saːtʃin] (arbitrated gold, both judges; Johnstone). Such items are carried as word_exceptions, since a purely phonological onset rule cannot see lexical class membership. Input contract: fully diacritised (tashkeel) Arabic, so the conditioning vowel is a written kasra/yāʔ."
     },
     {
       "id": "GULF_G_AFFRICATION",
