@@ -97,6 +97,37 @@ ARB_ADDITIONS = {
     "ةً": ["tan"], "ةٌ": ["tun"], "ةٍ": ["tin"],
     "ًا": ["an"], "ًى": ["an"], "اً": ["an"],
     "وَال": ["wal"], "فَال": ["fal"], "بِال": ["bil"], "كَال": ["kal"], "لِل": ["lil"], "وِال": ["wil"],
+    # Dagger alif (superscript alef, U+0670): a long-/aː/ mark of Quranic and
+    # careful orthography that is NOT the letter alif — it appears far beyond
+    # Allah (هَٰذَا, رَحْمَٰن, ذَٰلِك). Fully vocalized it sits on a fatḥa
+    # (فتحة+dagger together read /aː/, the fatḥa absorbed); the bare mark, used
+    # in defective spelling, reads /aː/ on its own. Ryding 2005 §1.2; Wright I
+    # §1. Keyed on the shadda-un-expanded mark itself (a combining char).
+    "َٰ": ["aː"], "ٰ": ["aː"],
+    # Allah / li-llāh: the ligature spellings carry an UNWRITTEN long /aː/ (the
+    # bare الله/لله has no alif and no dagger) — a fixed lexical convention, so
+    # keyed whole. Both the plain spelling and the shadda-doubled ⟨لّ⟩ (which the
+    # tokenizer pre-expands to a tripled lam) are covered; the dagger-alif
+    # spelling اللّٰه falls out of the sun-assimilated ⟨اللل⟩ key plus the dagger
+    # key above. Ryding 2005 §1.2, §2.10.
+    "الله": ["allaːh"], "اللله": ["allaːh"],
+    # NB: the bare ⟨لله⟩ (li-llāh) is deliberately NOT keyed — the sequence
+    # ⟨...لّه⟩ is far more often "…-la-hu / …-lla" inside an ordinary word
+    # (كُلّهُم /kullhum/, بِكُلّه /bikullih/) than the word li-llāh, and a
+    # context-free key cannot tell them apart. The dagger-alif spelling ⟨لِلّٰه⟩
+    # transcribes correctly via the sun-assimilated ⟨لل⟩ key plus the dagger key.
+    # Hamzat-waṣl elision. A bare alif after a proclitic (⟨وَاشْتَرَيْت⟩) is
+    # NOT reliably disambiguable from a genuine long-/aː/ mater: the sukūn that
+    # would mark the waṣl also closes an ordinary /aː/ syllable (⟨فَات⟩ /faːt/,
+    # ⟨واحِد⟩ /waːħid/, ⟨واسِع⟩ /waːsiʕ/), so a bare-alif rule mis-shortens more
+    # words than it fixes. Only the EXPLICIT alif-waṣla ⟨ٱ⟩ (U+0671) is keyed —
+    # the unambiguous seat whose own /a/ never surfaces: after a proclitic the
+    # proclitic's short vowel is kept and the seat elides (⟨وَٱشْتَرَيْت⟩ → wa-,
+    # not waː-), the definite article written with it reads /al/ word-initially,
+    # and a bare seat is silent. The definite-article waṣl after a proclitic is
+    # already covered by the ⟨وَال⟩/⟨فَال⟩/... keys above. Ryding 2005 §2.10.
+    "وَٱ": ["wa"], "فَٱ": ["fa"], "بِٱ": ["bi"], "كَٱ": ["ka"], "وِٱ": ["wi"],
+    "ٱل": ["al"], "ٱ": [""],
 }
 
 SANDHI = [
