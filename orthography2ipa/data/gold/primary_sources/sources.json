@@ -262,5 +262,27 @@
     "pagination": "`page` is the thesis printed folio; Example 2-1 is on printed p.17.",
     "notation": "ipa",
     "describes": "Hasawi Arabic (al-Hasa/al-Ahsāʾ, Eastern Province Saudi Arabia), a Gulf-type dialect"
+  },
+  "araujoagostinho2010": {
+    "authors": "Araujo, G. A. de & Agostinho, A. L. dos S.",
+    "year": 2010,
+    "title": "Padronização das línguas nacionais de São Tomé e Príncipe",
+    "venue": "Revista de Letras (UFC), ed. 26",
+    "url": "http://www.revistalinguas.com/edicao26/artigo_3.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the journal's running head; the article spans printed pp. 51-79 and the `page` field records that printed folio.",
+    "notation": "ipa",
+    "describes": "Santome (Forro) and the ALUSTP standard orthography (also covers Angolar and Lung'ie)"
+  },
+  "baxter1988": {
+    "authors": "Baxter, A. N.",
+    "year": 1988,
+    "title": "A Grammar of Kristang (Malacca Creole Portuguese)",
+    "venue": "Pacific Linguistics Series B-95, Australian National University",
+    "url": "https://openresearch-repository.anu.edu.au/bitstream/1885/145643/1/PL-B95.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the page header of the ANU scan; `page` records the printed folio. The scan is missing printed pp. 33-48 (one gathering); no row cites those pages. OCR frequently drops Baxter's acute stress diacritic — rows whose stress mark was restored from his penultimate default are capped at confidence medium.",
+    "notation": "ipa",
+    "describes": "Kristang / Papia Kristang (Malacca Creole Portuguese), ch. 2 phonology"
   }
 }
