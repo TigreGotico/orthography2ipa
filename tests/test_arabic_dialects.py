@@ -100,6 +100,11 @@ class TestEgyptianArabic:
         """ذَهَب 'gold' → [dahab] — ذ merges to /d/."""
         assert _ipa(self.CODE, "ذَهَب") == "ˈdahab"
 
+    def test_sanya_lexical_tha_to_s(self):
+        """ثَانْيَة 'second' → [sanja] — lexeme-specific ث → /s/, not the /t/
+        merger (Badawi & Hinds 1986)."""
+        assert _ipa(self.CODE, "ثَانْيَة") == "ˈsanja"
+
     # --- grapheme level (variants / merger alternates) ---
     def test_jim_grapheme_only_g(self):
         """ج maps to /ɡ/ alone — no /dʒ/ or /ʒ/ in native Cairene."""
@@ -274,6 +279,10 @@ class TestJordanianArabic:
         """ج primary /dʒ/, /ʒ/ available (Syro-Lebanese contact)."""
         _assert_first(_grapheme(self.spec, "ج"), "dʒ", label="ج")
         _assert_contains(_grapheme(self.spec, "ج"), "ʒ", label="ج")
+
+    def test_iza_dhal_to_z(self):
+        """إِذَا → [ʔizaː] — Levantine 'if' has /z/ for the ذ (Cowell 1964)."""
+        assert _ipa(self.CODE, "إِذَا") == "ˈʔizaː"
 
     def test_parent(self):
         assert self.spec.parent == "ar-x-levantine"

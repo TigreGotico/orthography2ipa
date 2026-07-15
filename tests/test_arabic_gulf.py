@@ -136,3 +136,21 @@ def test_all_gulf_specs_are_research_tier_with_read_sources():
         ids = {s.id for s in sp.sources}
         # every Gulf spec cites at least one of the actually-read sources
         assert ids & {"alshammari2026", "albalushi2016", "szreder_derrick2023"}, code
+
+
+# ─── Emirati lexical / function-word fixes (blind-verification round) ────
+
+def test_emirati_law_resists_monophthongisation():
+    """لَو 'if' keeps the /aw/ diphthong — a function word does not undergo the
+    Gulf aw→oː monophthongisation (Holes 2016)."""
+    assert _t("ar-AE", "لَو") == "ˈlaw"
+
+
+def test_emirati_eesh_value():
+    """عِيش 'rice/living' → [ʕeːʃ] — the Gulf lexeme has /eː/ (Holes 2016)."""
+    assert _t("ar-AE", "عِيش") == "ˈʕeːʃ"
+
+
+def test_emirati_il_yawm_lexical_article():
+    """الْيَوم 'today' → [iljoːm] — the frozen adverb carries the /il/ article."""
+    assert _t("ar-AE", "الْيَوم") == "ilˈjoːm"

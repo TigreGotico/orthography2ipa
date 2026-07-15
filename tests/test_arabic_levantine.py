@@ -145,6 +145,49 @@ class TestLebaneseBeiruti:
     def test_mono_inherited(self):
         assert _ipa(self.CODE, "بَيْت") == "ˈbeːt"
 
+    def test_imala_blocked_by_r(self):
+        """مْبَارِح mbāriḥ → [mbaːriħ] — imāla blocked adjacent to /r/.
+
+        The Beiruti blocking set is emphatic + guttural + /r/; /r/ was missing
+        from the engine's block, so the /aː/ over-fronted (Cowell 1964)."""
+        ids = {r.id for r in self.spec.allophone_rules}
+        assert {"LB_IMALA_BLOCK_R_BEFORE", "LB_IMALA_BLOCK_R_AFTER"} <= ids
+        assert _ipa(self.CODE, "مْبَارِح") == "ˈmbaːriħ"
+
+    def test_tamarbuta_imala_blocked_by_guttural(self):
+        """طَالْعَة ṭālʕa → [tˤɑːlʕa] — final -a imāla blocked after guttural /ʕ/."""
+        assert "LB_IMALA_TAMARBUTA_BLOCK_GUTT" in {
+            r.id for r in self.spec.allophone_rules}
+        assert _ipa(self.CODE, "طَالْعَة") == "ˈtˤɑːlʕa"
+
+    def test_function_words_do_not_front(self):
+        """Negator مَا and preposition عَ keep /a/ (function words; Cowell 1964)."""
+        assert _ipa(self.CODE, "مَا") == "ˈmaː"
+        assert _ipa(self.CODE, "عَ") == "ˈʕa"
+
+    def test_hayda_retains_diphthong(self):
+        """هَيْدَا hayda keeps /aj/ lexically — no monophthong, no fronting."""
+        assert _ipa(self.CODE, "هَيْدَا") == "ˈhajda"
+
+    def test_final_short_a_no_imala(self):
+        """بُكْرَا bukra, فَرَنْسَا faransa — final short -a takes no imāla."""
+        assert _ipa(self.CODE, "بُكْرَا") == "ˈbukra"
+        assert _ipa(self.CODE, "فَرَنْسَا") == "faˈransa"
+
+    def test_article_il(self):
+        """Beiruti definite article is /il/ before a moon letter (Cowell 1964)."""
+        assert _ipa(self.CODE, "اَلْبَحْر") == "ilˈbaħr"
+        assert _ipa(self.CODE, "الْجَاي") == "ilˈʒaːj"
+
+    def test_article_al_before_guttural(self):
+        """The article keeps /a/ before a guttural onset: الأكل → [alʔakil]."""
+        assert _ipa(self.CODE, "الْأَكِل") == "ˈalʔakil"
+        assert _ipa(self.CODE, "الْحَكِيم") == "alħaˈkiːm"
+
+    def test_al_yawm_lexicalised(self):
+        """'today' الْيَوم is the frozen adverb al-yōm, not il- (Cowell 1964)."""
+        assert _ipa(self.CODE, "الْيَوم") == "alˈjoːm"
+
     def test_parent(self):
         assert self.spec.parent == "ar-x-levantine"
 

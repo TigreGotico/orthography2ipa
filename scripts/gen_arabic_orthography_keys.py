@@ -63,6 +63,7 @@ LECTS = [
 
 SUN = "تثدذرزسشصضطظلن"
 SHADDA = "ّ"
+SUKUN = "ْ"
 # clitic orthography -> clitic IPA (invariant across lects in vocalized text)
 CLITICS = {"وَ": "wa", "فَ": "fa", "بِ": "bi", "كَ": "ka", "وِ": "wi"}
 
@@ -149,15 +150,63 @@ SANDHI = [
 
 VOWELS = {"\u064e": "a", "\u064f": "u", "\u0650": "i"}
 
+# \u2500\u2500 Definite-article vowel (colloquial reflex) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+# MSA and most lects keep the article's /a/ (\u0627\u064e\u0644 \u2192 /al/, ARB_ADDITIONS). A few
+# spoken varieties raise it: the Levantine and Gulf urban article is /il/
+# (Cowell 1964 \u00a72; Fadda 2016). The gold input is MSA-diacritized (the article
+# is spelled \u0627\u064e\u0644\u0652), so the raised vowel is a lect fact the spec must supply, not
+# something the spelling carries. Listed lects get article keys with this
+# vowel before a MOON letter. Before a SUN letter the /l/ assimilates
+# (sun_keys already emits an i-vowel variant); before a GUTTURAL/laryngeal
+# onset the low /a/ is retained (article-vowel lowering next to a guttural \u2014
+# \u0627\u0644\u0642\u062f\u0633 /al\u0294uds/, \u0627\u0644\u0639\u0635\u0631 /al\u0295as\u02e4r/, \u0627\u0644\u062d\u0643\u064a\u0645 /al\u0127aki\u02d0m/ stay /al/ even in /il/
+# dialects, while \u0627\u0644\u0642\u0631\u0634 /il\u0294ir\u0161/, whose /\u0294/ is a qaf reflex not an underlying
+# guttural, does not). Only concrete leaves are listed so the pan-group
+# grouping nodes are untouched.
+ARTICLE_VOWEL = {
+    "ar-LB": "i",
+}
+# Lects that also raise the vowel of the SUN-assimilated article (اِسّوق /issuːʔ/,
+# اِدّكّان /iddukkaːn/). Beiruti and Emirati keep /a/ before a sun letter even
+# though their moon article is /il/ (النّور /annuːr/, السّوق /assuːɡ/), so only
+# lects with a fully raised article are listed.
+ARTICLE_SUN_VOWEL = {
+}
+# Guttural/laryngeal onset letters that keep the article's low /a/.
+ARTICLE_GUTT_ONSET = {
+    "\u0621": "\u0294", "\u0623": "\u0294", "\u0625": "\u0294", "\u0624": "\u0294", "\u0626": "\u0294",
+    "\u0622": "\u0294a\u02d0", "\u0639": "\u0295", "\u062d": "\u0127", "\u0647": "h", "\u062e": "x", "\u063a": "\u0263",
+}
 
-def sun_keys(letter_ipa):
+
+def article_keys(vowel):
+    """Definite-article grapheme keys for a lect whose article vowel is *vowel*.
+
+    Emits the bare article before a moon letter (\u0627\u064e\u0644/\u0627\u0644/\u0627\u0650\u0644 \u2192 /Vl/) and the
+    guttural-retention keys (\u0627\u064e\u0644\u0639 \u2192 /al\u0295/, \u0627\u064e\u0644\u0623 \u2192 /al\u0294/, \u2026) that keep the low
+    /a/ before a guttural onset. Longer, so they win maximal munch over the
+    bare key; the still-longer sun-assimilation keys win over both."""
+    out = {}
+    for orth in ("\u0627\u0644", "\u0627\u064e\u0644", "\u0627\u0650\u0644"):
+        out[orth] = [vowel + "l"]
+        # The article's lam carries a suk\u016bn before a moon/guttural onset in
+        # vocalized text (\u0627\u064e\u0644\u0652\u2026); the guttural-retention key must span it, so
+        # both the bare and the suk\u016bn-bearing forms are keyed.
+        for lam in (orth, orth + SUKUN):
+            for g, onset in ARTICLE_GUTT_ONSET.items():
+                out[lam + g] = ["al" + onset]
+    return out
+
+
+def sun_keys(letter_ipa, article_vowel=None):
     """Assimilated-article keys for one effective letter mapping.
 
     The tokenizer's Arabic gemination transform rewrites consonant+shadda to
     a doubled consonant before trie matching, so the keys are generated on
     the doubled-letter form ("السس" etc.)."""
     out = {}
-    prefixes = {"ال": "a", "اَل": "a", "اِل": "i", "لِل": "li"}
+    av = article_vowel or "a"
+    prefixes = {"ال": av, "اَل": av, "اِل": "i", "لِل": "li"}
     for cl_orth, cl_ipa in CLITICS.items():
         prefixes[cl_orth + "ال"] = cl_ipa
     for s in SUN:
@@ -216,6 +265,12 @@ def main():
                     if v != effective.get(anc, {}).get(s)}
             if diff:
                 graphemes.update(sun_keys(diff))
+            if code in ARTICLE_VOWEL:
+                graphemes.update(article_keys(ARTICLE_VOWEL[code]))
+            if code in ARTICLE_SUN_VOWEL:
+                graphemes.update(
+                    sun_keys(effective[code],
+                             article_vowel=ARTICLE_SUN_VOWEL[code]))
 
         spec["graphemes"] = graphemes
         after = json.dumps(spec.get("graphemes"), sort_keys=True, ensure_ascii=False)
