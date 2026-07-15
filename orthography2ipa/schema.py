@@ -242,6 +242,7 @@ class StressRulesModel(_Strict):
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = Field(default=1, ge=1, le=3)
+    cliticless_words: Optional[List[str]] = None
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 
@@ -257,7 +258,7 @@ class StressRulesModel(_Strict):
         return v
 
     @field_validator("final_stress_endings", "penult_stress_endings",
-                     "marked_vowels")
+                     "marked_vowels", "cliticless_words")
     @classmethod
     def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:
         if v is not None and any(not entry for entry in v):

@@ -878,6 +878,39 @@ class G2P:
                 return hit
         return None
 
+    def _cliticless_keys(self) -> frozenset:
+        """The spec's ``stress.cliticless_words`` as a normalized lookup set.
+
+        Cached per engine. Keyed exactly like :meth:`_override_for` — language-
+        aware lowercased and NFC-normalized — so a form listed in the spec's
+        input orthography matches the input word regardless of case or Unicode
+        composition.
+        """
+        cached = getattr(self, "_cliticless_cache", None)
+        if cached is None:
+            forms = (self.spec.stress.cliticless_words
+                     if self.spec.stress is not None else ())
+            cached = frozenset(
+                unicodedata.normalize("NFC", lower_str(f, self.spec.code))
+                for f in forms
+            )
+            self._cliticless_cache = cached
+        return cached
+
+    def _is_cliticless(self, word: str) -> bool:
+        """Whether *word* is a declared prosodic clitic that takes no stress.
+
+        A clitic leans on an adjacent host and lives inside the host's stress
+        domain, so no word stress is placed on it (Watson 2002, ch. 3). This is
+        an orthographic-form test — it cannot tell a clitic homograph from a
+        full-word one — matching the spec's ``stress.cliticless_words``.
+        """
+        keys = self._cliticless_keys()
+        if not keys:
+            return False
+        return unicodedata.normalize(
+            "NFC", lower_str(word, self.spec.code)) in keys
+
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
         override = forced_ipa if forced_ipa is not None else self._override_for(word)
@@ -900,7 +933,8 @@ class G2P:
         # none has said this word carries none — re-deriving it from the spelling
         # would overrule the very thing being forced.
         if (forced_ipa is None
-                and self.apply_stress and self.spec.stress is not None and ipa):
+                and self.apply_stress and self.spec.stress is not None and ipa
+                and not self._is_cliticless(word)):
             if self.spec.stress.quantity_sensitive:
                 # Weight is a property of the transcription, not the spelling —
                 # a syllable is heavy because its vowel is long or it has a

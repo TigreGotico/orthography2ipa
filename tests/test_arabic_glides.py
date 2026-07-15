@@ -32,7 +32,10 @@ def test_consonantal_glide_is_not_a_long_vowel(word, expected, why):
 
 
 @pytest.mark.parametrize("word,expected", [
-    ("فِي", "ˈfiː"),          # word-final, quiescent → genuinely long
+    # فِي is a preposition — a prosodic clitic that bears no word stress
+    # (Watson 2002 ch.3, stress domains), so no ˈ; the yāʾ is still a genuinely
+    # long vowel, which is what this test verifies.
+    ("فِي", "fiː"),           # word-final, quiescent → genuinely long
     ("فِيهِ", "ˈfiːhi"),      # preconsonantal, quiescent → genuinely long
     ("يُصَلِّي", "juˈsˤɑlliː"),  # word-final, quiescent
     ("كِتَاب", "kiˈtaːb"),

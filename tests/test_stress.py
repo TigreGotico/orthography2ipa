@@ -815,3 +815,38 @@ class TestEpentheticSchwaEndToEnd:
         assert g.transcribe_word("dearg").startswith("ˈ")
         assert g.transcribe_word("ainm").startswith("ˈ")
         assert g.transcribe_word("dorcha").startswith("ˈ")
+
+
+class TestCliticlessWords:
+    """Prosodic clitics carry no word stress.
+
+    A clitic is not an independent phonological word: it leans on an adjacent
+    host and lives inside the host's stress domain, so it is never assigned a
+    word stress (Watson 2002, *The Phonology and Morphology of Arabic*, ch.3,
+    stress domains). The spec declares the class in ``stress.cliticless_words``
+    and the engine suppresses stress-mark insertion for a matching form.
+    """
+
+    def test_arabic_monosyllabic_prepositions_are_unstressed(self):
+        from orthography2ipa import G2P
+        g = G2P("ar")
+        # فِي / مِن are prepositions — clitics, no ˈ — but a full content word
+        # is still stressed (كِتَاب → kiˈtaːb).
+        assert g.transcribe_word("فِي") == "fiː"
+        assert g.transcribe_word("مِن") == "min"
+        assert g.transcribe_word("كِتَاب").startswith("ˈ") or "ˈ" in \
+            g.transcribe_word("كِتَاب")
+
+    def test_clitic_is_unstressed_inside_an_utterance(self):
+        from orthography2ipa import G2P
+        g = G2P("ar-x-gulf")
+        # مُو (copula negator) and مَا (negator) destress; content words keep ˈ.
+        out = g.transcribe("مُو حَرّ")
+        assert out.split()[0] == "muː"          # no leading ˈ
+        assert "ˈ" in out.split()[1]            # ħarr stays stressed
+
+    def test_class_is_opt_in_per_spec(self):
+        # A spec that does not declare the class is unaffected: a Portuguese
+        # monosyllable is stressed exactly as before.
+        from orthography2ipa import G2P
+        assert G2P("pt-PT").transcribe_word("mais").startswith("ˈ")
