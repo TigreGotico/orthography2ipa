@@ -196,5 +196,27 @@
     "pagination": "Open-access MDPI article; the printed folio is the running footer 'N of 23' and coincides with the value recorded in `page` (verified on the footers of the phonology pages 8-11).",
     "notation": "arabicist-transliteration",
     "describes": "Tunisian Sahel Arabic (Mahdia, Msaken, Monastir), with reference to Tunis and Sousse"
+  },
+  "silva2008": {
+    "authors": "Silva, D. J.",
+    "year": 2008,
+    "title": "The Persistence of Stereotyped Dialect Features among Portuguese-American Immigrants from São Miguel, Azores",
+    "venue": "Journal of Portuguese Linguistics 7-1 (2008):3-21",
+    "url": "https://pdfs.semanticscholar.org/af59/84a6a35d9d46413b424ddcd815e56815ac2e.pdf",
+    "access": "open",
+    "pagination": "Running head `Journal of Portuguese Linguistics, 7-1 (2008), 3-21` with body folio in the header (`4  David J. Silva`); `page` records that printed folio. The examples used here are the emblematic front-rounded set in list (1) and the chain-shift set in the abstract/list (2), pages 3-4.",
+    "notation": "ipa",
+    "describes": "Micaelense (São Miguel, Azores) European Portuguese — the front rounded vowels [y] < stressed /u/ and [ø] < the diphthongs oi/ou, plus the tonic-vowel chain shift"
+  },
+  "mikolajczak2014": {
+    "authors": "Mikołajczak, S.",
+    "year": 2014,
+    "title": "Caraterísticas fonéticas do Português da Ilha Terceira",
+    "venue": "Studia Iberystyczne 13:417-424, Uniwersytet Jagielloński",
+    "url": "https://filg.uj.edu.pl/documents/41616/135700213/SI_13_2014_Mikolajczak.pdf",
+    "access": "open",
+    "pagination": "Multi-article volume; printed folio is in the running head (`418  Sylwia Mikołajczak` / `Caraterísticas fonéticas do Português da Ilha Terceira  419`) and differs from the PDF page index (front matter precedes p.417). `page` is the printed folio. Source marks stress with an apostrophe AFTER the onset ([pw'orku]), normalized to the IPA stress mark before the stressed syllable.",
+    "notation": "ipa",
+    "describes": "Terceirense (Ilha Terceira, central Azores) — crescent/anti-hiatic on-glide diphthongisation and the a-metaphony before final -o; explicitly NOT the São-Miguel [u]>[y] fronting"
   }
 }
