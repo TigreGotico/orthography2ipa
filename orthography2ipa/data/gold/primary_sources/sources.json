@@ -163,5 +163,16 @@
     "pagination": "The published Arabica article runs pp.137-169; the open-access HAL preprint (hal-03516978v1) carries no printed folio, so `page` records the HAL preprint PDF page index (its two-page HAL cover/authorization sheet is pages 1-2, the article body begins on page 2).",
     "notation": "arabicist-transliteration",
     "describes": "Old Arabic *ǧ across the Maghreb (Morocco, Algeria, Tunisia, Libya, Mauritania/Ḥassāniyya)"
+  },
+  "benkato2020": {
+    "authors": "Benkato, A.",
+    "year": 2020,
+    "title": "Maghrebi Arabic (chapter 9)",
+    "venue": "In C. Lucas & S. Manfredi (eds.), Arabic and Contact-Induced Change, 197-212. Berlin: Language Science Press",
+    "url": "https://langsci-press.org/catalog/book/235",
+    "access": "open",
+    "pagination": "`page` records the printed folio shown in the book's running footer (the chapter runs pp. 197-212); the PDF page index is offset from it.",
+    "notation": "arabicist-transliteration",
+    "describes": "Maghrebi Arabic contact phonology, with Libyan (Tripoli / Benghazi) examples"
   }
 }
