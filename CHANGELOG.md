@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.10.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.10.0a2) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.10.0a1...7.10.0a2)
+
+**Merged pull requests:**
+
+- data\(pt\): Barranquenho primary gold + Centro-Sul /u/ citation strengthening [\#498](https://github.com/TigreGotico/orthography2ipa/pull/498) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.10.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.10.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.9.0a1...7.10.0a1)
+
 ## [7.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.9.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.8.0a1...7.9.0a1)
@@ -499,10 +511,6 @@
 ## [3.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.6.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.5.0a1...3.6.0a1)
-
-**Merged pull requests:**
-
-- Release 3.6.0a1 [\#336](https://github.com/TigreGotico/orthography2ipa/pull/336) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.5.0a1) (2026-07-12)
 
