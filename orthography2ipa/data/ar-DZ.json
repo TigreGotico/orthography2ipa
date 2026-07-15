@@ -135,6 +135,17 @@
       "o"
     ]
   },
+  "allophone_rules": [
+    {
+      "id": "DZ_SHORT_REDUCE",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ə",
+      "followed_by": "consonant_cluster",
+      "notes": "Algiers short-vowel reduction (heavy syncope): a historic short high vowel /i/ in the weak position before a consonant cluster reduces to schwa [ə], licensing the initial clusters that define Maghrebi vocalism — Boucherit (2002); Marçais (1902); the same weak-position class the ar-MA spec cites off Heath (2020) p.216 and Watson (2002) p.13. Blind-judge consensus (verification round C9): both judges independently corrected these full vowels to [ə], the same arbitration as ar-MA. SCOPED to /i/-before-cluster for the same reason as MA_SHORT_REDUCE: short /a/ also reduces but is retained next to gutturals/pharyngeals (Heath 2002) and the condition vocabulary has no negated-neighbour 'guttural' class to express that, so a categorical /a/→ə rule over-generates; deferred pending that engine class. Short /u/ retained. Runs post-lexically after the inherited emphasis-backing rules."
+    }
+  ],
   "parent": "ar-x-maghrebi",
   "ancestors": [
     {

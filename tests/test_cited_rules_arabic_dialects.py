@@ -405,6 +405,60 @@ def test_ng_interdentals_merge_completely():
 
 
 # ---------------------------------------------------------------------------
+# ar-MA / ar-DZ — Maghrebi short-vowel reduction (weak-position schwa)
+# ---------------------------------------------------------------------------
+
+
+def test_ma_short_i_reduces_to_schwa_before_cluster():
+    """MA_SHORT_REDUCE: short high /i/ → [ə] in the weak position before a cluster.
+
+    Rule notes: "a historic short high vowel /i/ in a metrically WEAK position —
+    before a consonant cluster ... — reduces to schwa [ə]. Heath (2020) p.216 ...
+    'syncopate in weak metrical positions'; Watson (2002) p.13" (heath2020,
+    watson2002; verification-round C9 blind-judge consensus).
+
+    بِكْرِي 'early': the kasra /i/ before the -kr- cluster surfaces as [ə].
+    """
+    assert _bare("ar-MA", "بِكْرِي") == "bəkriː"
+
+
+def test_ma_reduction_is_leaf_specific_not_the_grouping_node():
+    """The grouping node ar-x-maghrebi does NOT reduce — glue-node discipline.
+
+    Short-vowel reduction is not uniform across the Maghreb (Tunis retains a
+    fuller vocalism), so it is declared on the leaves (ar-MA, ar-DZ), never on
+    the ar-x-maghrebi proto-node, which surfaces its rank-1 candidate ranking.
+    The same بِكْرِي is [bikriː] on the node and [bəkriː] on the Moroccan leaf.
+    """
+    assert _bare("ar-x-maghrebi", "بِكْرِي") == "bikriː"
+    assert _bare("ar-MA", "بِكْرِي") == "bəkriː"
+
+
+def test_ma_reduction_spares_u_and_a():
+    """MA_SHORT_REDUCE is scoped to /i/: short /u/ and /a/ are NOT reduced.
+
+    Rule notes: "Short /u/ is retained (rounded reflex ...)"; /a/ reduction is
+    "deferred pending an engine 'guttural neighbour' class". خُبْز keeps its /u/
+    and قَهْوة keeps its /a/ (the latter also guttural-flanked), so neither
+    becomes schwa.
+    """
+    assert _bare("ar-MA", "خُبْز") == "xubz"
+    assert _bare("ar-MA", "قَهْوة") == "qahwa"
+
+
+def test_dz_short_i_reduces_to_schwa_before_cluster():
+    """DZ_SHORT_REDUCE: Algiers short high /i/ → [ə] before a cluster (syncope).
+
+    Rule notes: "a historic short high vowel /i/ in the weak position before a
+    consonant cluster reduces to schwa [ə] ... Boucherit (2002); Marçais (1902)"
+    (boucherit2002, marcais1902; verification-round C9).
+
+    مِلْح 'salt': the kasra /i/ before the -lħ- cluster surfaces as [ə].
+    """
+    assert _bare("ar-DZ", "مِلْح") == "məlħ"
+
+
+# ---------------------------------------------------------------------------
 # xaa — Andalusi Arabic (Corriente 2013)
 # ---------------------------------------------------------------------------
 
