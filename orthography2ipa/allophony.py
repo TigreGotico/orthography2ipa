@@ -233,6 +233,43 @@ class AllophoneRescorer(LatticeRescorer):
                 new[idx] = Candidate(ipa=surface, cost=cand.cost)
         return new if new is not None else slot.candidates
 
+    def _is_geminate_half(self, ipa: str, context: RescoreContext) -> bool:
+        """Whether this slot is one half of a written (doubled) geminate.
+
+        A geminate is a single long consonant that the input spells — and the
+        tokenizer's shadda expansion realises — as two identical, contiguous,
+        same-grapheme slots. The twin is an immediately adjacent slot whose
+        source grapheme is the same (case-insensitively), whose span abuts this
+        slot's, and whose pre-rescorer top candidate is the same consonant
+        *ipa*. Read from the slot layer, so the comparison is on underlying
+        phonemes, before any rewrite.
+
+        The doubled phoneme must be a **bare consonant** — no vowel in it. A
+        true written geminate is a doubled consonant with no vowel between its
+        halves (Arabic shadda expansion gives two bare ⟨ق⟩ /ɡ/ slots). Two
+        adjacent identical CV units of an abugida (Tamil ⟨கக⟩ = /kaka/, each
+        slot carrying its inherent /a/) are two syllables, not a geminate, and
+        must not be swept up — so a slot whose phoneme contains a vowel is
+        never a geminate half.
+        """
+        if not ipa or any(is_ipa_vowel(seg[0]) for seg in segment_ipa(ipa)):
+            return False
+        own_g = (context.grapheme.grapheme or "").lower()
+        for step in (1, -1):
+            j = context.index + step
+            neighbour = context.slots[j] if 0 <= j < len(context.slots) else None
+            g_neighbour = context.grapheme.at(step)
+            if neighbour is None or g_neighbour is None:
+                continue
+            if not neighbour.candidates or neighbour.top.ipa != ipa:
+                continue
+            if own_g != (g_neighbour.grapheme or "").lower():
+                continue
+            near, far = context.slot.span, neighbour.span
+            if near[1] == far[0] or far[1] == near[0]:  # contiguous
+                return True
+        return False
+
     def _realize(self, ipa: str, context: RescoreContext) -> Optional[str]:
         """The surface form of *ipa* in *context*, or ``None`` if no rule fires.
 
@@ -244,8 +281,17 @@ class AllophoneRescorer(LatticeRescorer):
         inherent vowel): each segment is matched and rewritten in place,
         with neighbour context read across slot boundaries.
         """
+        is_geminate = self._is_geminate_half(ipa, context)
         for rule in self.rules:
             if ipa in rule.phonemes and self._matches(rule, context):
+                if is_geminate and not _is_geminate_aware(rule, ipa):
+                    # A geminate is one long segment: a rule triggered purely
+                    # by material OUTSIDE it must not rewrite a single half and
+                    # split the unit into a heterorganic cluster (Najdi
+                    # affrication does not apply to geminates — Ingham 1994,
+                    # Alhoody 2020). Only a rule conditioned on the twin itself
+                    # (a genuine gemination process, e.g. Tamil ⟨க்க⟩→[kː]) may.
+                    continue
                 return rule.surface
         segments = segment_ipa(ipa, self._atoms)
         if len(segments) <= 1:
@@ -361,6 +407,26 @@ class AllophoneRescorer(LatticeRescorer):
             if not g or g.lower() not in rule.grapheme:
                 return False
         return True
+
+
+def _is_geminate_aware(rule: AllophoneRule, ipa: str) -> bool:
+    """Whether *rule* is conditioned on a geminate twin of *ipa*.
+
+    A gemination process references the doubled phoneme in its own phoneme
+    neighbourhood: Tamil's paired ``TA_GEM1``/``TA_GEM2`` fire the first half
+    ``followed_by_phoneme`` its twin and the second ``preceded_by_phoneme``
+    its twin, so they realise ⟨க்க⟩ as the coordinated [kː]. Such a rule is
+    *about* the geminate and may rewrite a half. A rule whose neighbour
+    context does not mention the twin fired on external material and would
+    split the geminate, so :meth:`AllophoneRescorer._realize` blocks it on a
+    geminate half. The twin is matched either as the bare phoneme (``k``) or
+    as that phoneme carrying a following vowel (``ka``) — the shape the other
+    half takes once its own inherent vowel is attached.
+    """
+    for ctx in (rule.preceded_by_phoneme, rule.followed_by_phoneme):
+        if any(n == ipa or n.startswith(ipa) for n in ctx):
+            return True
+    return False
 
 
 def _is_segmental(rule: AllophoneRule) -> bool:
