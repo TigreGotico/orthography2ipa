@@ -10,70 +10,201 @@
   "wikidata_qid": "Q35772",
   "parent": "x-clade-sudanic-creole",
   "graphemes": {
-    "a": ["a"],
-    "á": ["a"],
-    "e": ["e"],
-    "é": ["e"],
-    "i": ["i"],
-    "í": ["i"],
-    "o": ["o"],
-    "ó": ["o"],
-    "u": ["u"],
-    "ú": ["u"],
-    "b": ["b"],
-    "ɓ": ["ɓ"],
-    "p": ["p"],
-    "t": ["t"],
-    "d": ["d"],
-    "k": ["k"],
-    "g": ["ɡ"],
-    "j": ["dʒ"],
-    "f": ["f"],
-    "s": ["s"],
-    "z": ["z"],
-    "sh": ["ʃ"],
-    "š": ["ʃ"],
-    "x": ["x"],
-    "gh": ["ɣ"],
-    "h": ["h"],
-    "m": ["m"],
-    "n": ["n"],
-    "ny": ["ɲ"],
-    "ng": ["ŋ"],
-    "r": ["r"],
-    "l": ["l"],
-    "w": ["w"],
-    "y": ["j"]
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "é": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ó": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "ɓ": [
+      "ɓ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
   },
   "allophones": {
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"],
-    "b": ["b"],
-    "ɓ": ["ɓ"],
-    "p": ["p"],
-    "t": ["t"],
-    "d": ["d"],
-    "k": ["k", "x"],
-    "ɡ": ["ɡ"],
-    "dʒ": ["dʒ", "z"],
-    "f": ["f"],
-    "s": ["s", "ʃ"],
-    "z": ["z", "dʒ"],
-    "ʃ": ["ʃ", "s"],
-    "x": ["x", "h", "k"],
-    "ɣ": ["ɣ"],
-    "h": ["h"],
-    "m": ["m"],
-    "n": ["n"],
-    "ɲ": ["ɲ"],
-    "ŋ": ["ŋ"],
-    "r": ["r"],
-    "l": ["l"],
-    "w": ["w"],
-    "j": ["j"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "ɓ": [
+      "ɓ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k",
+      "x"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "z"
+    ],
+    "f": [
+      "f"
+    ],
+    "s": [
+      "s",
+      "ʃ"
+    ],
+    "z": [
+      "z",
+      "dʒ"
+    ],
+    "ʃ": [
+      "ʃ",
+      "s"
+    ],
+    "x": [
+      "x",
+      "h",
+      "k"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
   },
   "ancestors": [
     {
@@ -104,7 +235,7 @@
       "title": "Juba Arabic (Survey chapter and structure dataset)",
       "publisher": "In: Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.), Atlas of Pidgin and Creole Language Structures Online, chapter 64, Max Planck Institute for Evolutionary Anthropology",
       "url": "https://apics-online.info/surveys/64",
-      "notes": "Open-access, verifiable online. Twenty phonemic consonants (no pharyngeals, no emphatics), five vowels a e i o u, stress = distinctive high pitch. Source of the harvested primary-source gold rows."
+      "notes": "Open-access, verifiable online. Twenty phonemic consonants (no pharyngeals, no emphatics), five vowels a e i o u, stress = distinctive high pitch. Example IPA cited in spec notes and tests (chapter+example numbers); not harvestable into primary-source gold for lack of printed folios."
     },
     {
       "id": "manfredi2017",
@@ -144,7 +275,13 @@
   },
   "stress": {
     "default_position": -2,
-    "marked_vowels": ["á", "é", "í", "ó", "ú"],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú"
+    ],
     "stress_mark": "ˈ",
     "notes": "Stress is realised phonetically as a HIGH PITCH and is lexically and grammatically distinctive (Manfredi & Petrollino 2013, APiCS ch. 64: sába 'seven' vs. sabá 'morning'; záman 'when' vs. zamán 'ancient times'). Because it is contrastive it cannot be predicted from syllable weight the way Arabic stress can; the practical orthography marks it with an acute accent, so a written acute pins the stressed vowel directly. default_position -2 is only the fallback for unaccented input."
   }

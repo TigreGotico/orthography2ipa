@@ -10,70 +10,198 @@
   "wikidata_qid": "Q3096908",
   "parent": "x-clade-sudanic-creole",
   "graphemes": {
-    "a": ["a"],
-    "á": ["a"],
-    "e": ["e"],
-    "é": ["e"],
-    "i": ["i"],
-    "í": ["i"],
-    "o": ["o"],
-    "ó": ["o"],
-    "u": ["u"],
-    "ú": ["u"],
-    "b": ["b"],
-    "p": ["p"],
-    "t": ["t"],
-    "d": ["d"],
-    "k": ["k"],
-    "g": ["ɡ"],
-    "j": ["dʒ"],
-    "f": ["f"],
-    "v": ["v"],
-    "s": ["s"],
-    "z": ["z"],
-    "sh": ["ʃ"],
-    "š": ["ʃ"],
-    "x": ["x"],
-    "gh": ["ɣ"],
-    "h": ["h"],
-    "m": ["m"],
-    "n": ["n"],
-    "ny": ["ɲ"],
-    "ng": ["ŋ"],
-    "r": ["r"],
-    "l": ["l"],
-    "w": ["w"],
-    "y": ["j"]
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "é": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ó": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "x": [
+      "x"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
   },
   "allophones": {
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"],
-    "b": ["b"],
-    "p": ["p"],
-    "t": ["t"],
-    "d": ["d"],
-    "k": ["k"],
-    "ɡ": ["ɡ"],
-    "dʒ": ["dʒ", "tʃ"],
-    "f": ["f"],
-    "v": ["v"],
-    "s": ["s"],
-    "z": ["z"],
-    "ʃ": ["ʃ"],
-    "x": ["x", "h", "k"],
-    "ɣ": ["ɣ", "ɡ"],
-    "h": ["h"],
-    "m": ["m"],
-    "n": ["n"],
-    "ɲ": ["ɲ"],
-    "ŋ": ["ŋ"],
-    "r": ["r"],
-    "l": ["l"],
-    "w": ["w"],
-    "j": ["j"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "dʒ": [
+      "dʒ",
+      "tʃ"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "x": [
+      "x",
+      "h",
+      "k"
+    ],
+    "ɣ": [
+      "ɣ",
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
   },
   "ancestors": [
     {
@@ -104,7 +232,7 @@
       "title": "Kinubi (Survey chapter and structure dataset)",
       "publisher": "In: Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.), Atlas of Pidgin and Creole Language Structures Online, chapter 63, Max Planck Institute for Evolutionary Anthropology",
       "url": "https://apics-online.info/surveys/63",
-      "notes": "Open-access, verifiable online. Consonants with marginal (loan-only) segments in parentheses (p, tš, ŋ, x, ġ), five vowels i e a o u, length non-distinctive, stress lexically and grammatically distinctive. Source of the harvested primary-source gold rows."
+      "notes": "Open-access, verifiable online. Consonants with marginal (loan-only) segments in parentheses (p, tš, ŋ, x, ġ), five vowels i e a o u, length non-distinctive, stress lexically and grammatically distinctive. Example IPA cited in spec notes and tests (chapter+example numbers); not harvestable into primary-source gold for lack of printed folios."
     },
     {
       "id": "wellens2005",
@@ -153,7 +281,13 @@
   },
   "stress": {
     "default_position": -2,
-    "marked_vowels": ["á", "é", "í", "ó", "ú"],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú"
+    ],
     "stress_mark": "ˈ",
     "notes": "Stress is lexically and grammatically distinctive (Luffin, APiCS ch. 63: sába 'seven' vs. sabá 'morning'; límu 'to gather' vs. limú 'to be gathered', the passive marked by a rightward stress shift). Being contrastive it is not weight-predictable; the practical orthography marks it with an acute accent, so a written acute pins the stressed vowel. default_position -2 is only the fallback for unaccented input."
   }
