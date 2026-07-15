@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.1.1a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.0a1...7.1.1a1)
+
+**Merged pull requests:**
+
+- fix\(arabic-gold\): ground all 83 uncited gold notes in spec sources [\#472](https://github.com/TigreGotico/orthography2ipa/pull/472) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.1.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.3a1...7.1.0a1)
@@ -482,7 +490,6 @@
 **Merged pull requests:**
 
 - Release 3.0.1a1 [\#323](https://github.com/TigreGotico/orthography2ipa/pull/323) ([github-actions[bot]](https://github.com/apps/github-actions))
-- fix\(stress\): epenthetic schwa no longer shifts the stress mark a syllable late [\#322](https://github.com/TigreGotico/orthography2ipa/pull/322) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.0.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a2) (2026-07-12)
 
