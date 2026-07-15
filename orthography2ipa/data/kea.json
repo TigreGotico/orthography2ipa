@@ -10,6 +10,12 @@
     "a": [
       "a"
     ],
+    "á": [
+      "a"
+    ],
+    "â": [
+      "a"
+    ],
     "ã": [
       "ã"
     ],
@@ -17,10 +23,19 @@
       "e",
       "ɛ"
     ],
+    "é": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
     "ẽ": [
       "ẽ"
     ],
     "i": [
+      "i"
+    ],
+    "í": [
       "i"
     ],
     "ĩ": [
@@ -30,10 +45,19 @@
       "o",
       "ɔ"
     ],
+    "ó": [
+      "ɔ"
+    ],
+    "ô": [
+      "o"
+    ],
     "õ": [
       "õ"
     ],
     "u": [
+      "u"
+    ],
+    "ú": [
       "u"
     ],
     "ũ": [
@@ -85,7 +109,10 @@
       "p"
     ],
     "r": [
-      "r"
+      "ɾ"
+    ],
+    "rr": [
+      "ʀ"
     ],
     "s": [
       "s"
@@ -142,11 +169,11 @@
     },
     "r": {
       "word_final": [
-        "r",
+        "ɾ",
         ""
       ],
       "word_initial": [
-        "r"
+        "ʀ"
       ]
     },
     "lh": {
@@ -265,6 +292,12 @@
     ],
     "z": [
       "z"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "ʀ": [
+      "ʀ"
     ]
   },
   "ancestors": [
@@ -275,7 +308,7 @@
       "notes": "European Portuguese superstrate: colonial contact from 1460s. The lexifier. Vocabulary, much of morphology and some phonology derive from 15th–17th century Portuguese."
     }
   ],
-  "notes": "Kabuverdianu / Cape Verdean Creole (ALUPEC orthography). Portuguese-based creole; vernacular language of Cape Verde (~600,000 speakers). Two macro-dialects: Badiu (Santiago island, Sotavento group) and Sampadjudo (Barlavento islands). KEY FEATURES: (1) NASAL VOWELS: ã/ẽ/ĩ/õ/ũ are phonemic, from African substrate influence and retention of archaic PT nasality. (2) FIVE-VOWEL SYSTEM: no /ɨ/; unstressed vowels preserved. (3) SILENT H: <h> has no phonetic value. (4) AFFRICATES: tx=[tʃ], dj=[dʒ] — innovations relative to PT. (5) WORD-FINAL WEAKENING: final obstruents may be deleted, especially in Badiu variety. (6) SIBILANT: x=[ʃ], j=[ʒ], s=[s]. (7) RHOTIC: alveolar [r] throughout. Official orthography ALUPEC (Alfabeto Unificado para a Escrita do Cabo-Verdiano) adopted 1998, revised 2009.",
+  "notes": "Kabuverdianu / Cape Verdean Creole (ALUPEC orthography). Portuguese-based creole; vernacular language of Cape Verde (~600,000 speakers). Two macro-dialects: Badiu (Santiago island, Sotavento group) and Sampadjudo (Barlavento islands). KEY FEATURES: (1) NASAL VOWELS: phonemic; in ALUPEC written vowel+n (bon /bõ/), the coda n marking nasality and left unpronounced — the tilde is reserved for the diphthongs ãi/ãu (mãi, nãu). Handled here by the KEA_NASAL_* allophone rules. (2) FIVE-VOWEL SYSTEM: no /ɨ/; unstressed vowels preserved. (3) SILENT H: <h> has no phonetic value. (4) AFFRICATES: tx=[tʃ], dj=[dʒ] — innovations relative to PT. (5) WORD-FINAL WEAKENING: final obstruents may be deleted, especially in Badiu variety. (6) SIBILANT: x=[ʃ], j=[ʒ], s=[s]. (7) RHOTIC: single intervocalic r is a tap /ɾ/; the strong rhotic /ʀ/ is written rr and word-initial r. Official orthography ALUPEC (Alfabeto Unificado para a Escrita do Cabo-Verdiano) adopted 1998, revised 2009.",
   "sources": [
     {
       "id": "baptista2002",
@@ -330,5 +363,96 @@
     "longitude": -23.6148,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Kabuverdianu."
+  },
+  "allophone_rules": [
+    {
+      "id": "KEA_NASAL_A",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ã",
+      "followed_by": "coda_nasal",
+      "notes": "ALUPEC writes nasal vowels as vowel+n: a vowel nasalises before a CODA nasal (bon /bõ/, kansa /ˈkãsa/); an onset nasal before a vowel (mininu, nha) stays oral. ALUPEC alphabet documentation; Baptista 2002, The Syntax of Cape Verdean Creole, ch. 2."
+    },
+    {
+      "id": "KEA_NASAL_E",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ẽ",
+      "followed_by": "coda_nasal",
+      "notes": "See KEA_NASAL_A."
+    },
+    {
+      "id": "KEA_NASAL_I",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ĩ",
+      "followed_by": "coda_nasal",
+      "notes": "See KEA_NASAL_A."
+    },
+    {
+      "id": "KEA_NASAL_O",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "õ",
+      "followed_by": "coda_nasal",
+      "notes": "See KEA_NASAL_A."
+    },
+    {
+      "id": "KEA_NASAL_U",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "followed_by": "coda_nasal",
+      "notes": "See KEA_NASAL_A."
+    },
+    {
+      "id": "KEA_NASAL_ABSORB",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "",
+      "syllable_position": "coda",
+      "preceded_by": "vowel",
+      "notes": "The coda nasal is absorbed into the nasal vowel it created; in ALUPEC the coda n marks nasality of the preceding vowel and is not itself pronounced."
+    }
+  ],
+  "stress": {
+    "default_position": -2,
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô"
+    ],
+    "stress_mark": "ˈ",
+    "diphthongs": [
+      "ai",
+      "au",
+      "ei",
+      "oi",
+      "ou",
+      "iu",
+      "ui"
+    ],
+    "notes": "Stress is penultimate by default; a written acute/circumflex marks a non-penultimate stressed vowel — karapáti 'tick' vs karapati 'to cling' (Baptista 2002; ALUPEC). Oral diphthongs are declared so the syllabifier counts each as one nucleus."
+  },
+  "orthography_standard": {
+    "name": "ALUPEC — Alfabeto Unificado para a Escrita da Língua Cabo-verdiana",
+    "authority": "Governo de Cabo Verde",
+    "year": 2009,
+    "url": "https://en.wikipedia.org/wiki/ALUPEC",
+    "notes": "Approved on a five-year trial by Decreto-Lei 67/98 (1998) and instituted as the official alphabet by Decreto-Lei 8/2009. A phonemic, near-biunique grapheme–phoneme design, NOT the etymological Portuguese-based spelling. This spec targets ALUPEC: nasal vowels written vowel+n (the coda n unpronounced), tilde kept only for the diphthongs ãi/ãu; silent h; affricates tx /tʃ/ and dj /dʒ/; strong rhotic rr and word-initial r, single intervocalic r a tap."
   }
 }
