@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.10.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.10.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.9.0a1...6.10.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar-DZ\): Algerian Arabic \(Algiers baseline\) to research tier [\#409](https://github.com/TigreGotico/orthography2ipa/pull/409) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.9.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.9.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.8.0a1...6.9.0a1)
@@ -440,7 +448,6 @@
 **Merged pull requests:**
 
 - Release 1.84.0a1 [\#296](https://github.com/TigreGotico/orthography2ipa/pull/296) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(data\): add the missing languages \(Tier A specs + honest stubs\) [\#275](https://github.com/TigreGotico/orthography2ipa/pull/275) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.83.0a2](https://github.com/TigreGotico/orthography2ipa/tree/1.83.0a2) (2026-07-12)
 
