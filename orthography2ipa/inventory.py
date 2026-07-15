@@ -33,7 +33,8 @@ it, and a TTS consumer downstream is what would otherwise pay.
 
 from __future__ import annotations
 
-from typing import Dict, FrozenSet, List, Sequence, Tuple
+import re
+from typing import Dict, FrozenSet, List, Sequence, Set, Tuple
 
 from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.lexicon import get_lexicon
@@ -61,25 +62,29 @@ def _positional_readings(spec: LanguageSpec) -> List[str]:
 #: Primary and secondary stress, inserted by ``stress.apply_stress_mark``.
 STRESS_MARKS = ("ˈ", "ˌ")
 
+#: A regex-substitution backreference — ``\1`` or ``\g<name>`` — inside a sandhi
+#: ``transform``. It re-emits text the input already carried, so it introduces no
+#: *new* symbol; only the literal characters around it do.
+_BACKREF = re.compile(r"\\g<[^>]*>|\\\d+")
 
-def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
-    """Every IPA string *spec* can place on a slot.
 
-    The union of **every** source the engine can take IPA from:
+def _transform_literals(transform: str) -> str:
+    """The literal text a sandhi ``transform`` inserts, stripped of backrefs.
 
-    * the grapheme table and the positional grapheme table;
-    * the allophone map's surfaces, and the ``allophone_rules`` surfaces — a
-      rule is a *new* source of IPA, so an inventory read off the graphemes
-      alone would miss Najdi's ``ts`` entirely;
-    * the word-level overrides — inline ``word_exceptions`` and the sidecar
-      lexicon (caller-registered, never bundled) — which carry arbitrary IPA per
-      word and bypass the tables completely;
-    * the stress marks, when the spec declares stress rules.
-
-    The empty string is excluded: a deleted slot emits nothing, which is the
-    absence of a symbol rather than a symbol.
+    A sandhi rule's ``transform`` is a ``re.sub`` replacement string: parts of it
+    are backreferences that copy the matched input (already in the inventory by
+    construction), and the rest is literal IPA the rule *adds* — French liaison's
+    linking tie ``‿`` is added exactly this way. Only the literal remainder is a
+    new source of symbols, so that is what the inventory must read.
     """
-    emissions: set = set()
+    if not transform:
+        return ""
+    return _BACKREF.sub("", transform).replace("\\", "")
+
+
+def _base_emissions(spec: LanguageSpec) -> Set[str]:
+    """Every IPA string the *within-word* tables can place on a slot."""
+    emissions: Set[str] = set()
 
     for readings in spec.graphemes.values():
         emissions.update(readings or ())
@@ -102,7 +107,62 @@ def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
         emissions.update(STRESS_MARKS)
 
     emissions.discard("")
-    return frozenset(emissions)
+    return emissions
+
+
+def _sandhi_emissions(spec: LanguageSpec, base: Set[str]) -> Set[str]:
+    """The segments cross-word ``sandhi_rules`` can insert into the stream.
+
+    Sandhi fires *after* the word tables, between words, so anything its
+    ``transform``/``right_transform`` adds is a symbol source the base tables
+    never saw — and French enchaînement inserts a linking tie ``‿`` that lives in
+    no grapheme, positional or allophone table. The literal inserted text is cut
+    with :func:`~allophony.segment_ipa` against the base atoms (so a re-emitted
+    affricate stays whole and the tie stands as its own segment), exactly as
+    :func:`tokenize` will cut a real transcription.
+    """
+    rules = spec.sandhi_rules or ()
+    if not rules:
+        return set()
+    atoms = sorted(
+        {p for p in (spec.phonemes or ()) if p}
+        | {e for e in base if len(e) > 1 and e not in STRESS_MARKS},
+        key=len,
+        reverse=True,
+    )
+    out: Set[str] = set()
+    for rule in rules:
+        for transform in (rule.transform, rule.right_transform):
+            literal = _transform_literals(transform)
+            for seg in segment_ipa(literal, atoms):
+                if seg and not seg.isspace():
+                    out.add(seg)
+    out.discard("")
+    return out
+
+
+def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
+    """Every IPA string *spec* can place on a slot.
+
+    The union of **every** source the engine can take IPA from:
+
+    * the grapheme table and the positional grapheme table;
+    * the allophone map's surfaces, and the ``allophone_rules`` surfaces — a
+      rule is a *new* source of IPA, so an inventory read off the graphemes
+      alone would miss Najdi's ``ts`` entirely;
+    * the cross-word ``sandhi_rules`` surfaces — sandhi fires between words,
+      after the tables, so a linking tie or an assimilated segment it inserts is
+      a source the within-word tables never carried;
+    * the word-level overrides — inline ``word_exceptions`` and the sidecar
+      lexicon (caller-registered, never bundled) — which carry arbitrary IPA per
+      word and bypass the tables completely;
+    * the stress marks, when the spec declares stress rules.
+
+    The empty string is excluded: a deleted slot emits nothing, which is the
+    absence of a symbol rather than a symbol.
+    """
+    base = _base_emissions(spec)
+    return frozenset(base | _sandhi_emissions(spec, base))
 
 
 def phoneme_inventory(spec: LanguageSpec) -> FrozenSet[str]:
