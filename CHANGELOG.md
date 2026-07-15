@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.17.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.17.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.16.0a1...6.17.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar-x-mashriqi\): raise the Mashriqi grouping node to research tier \(glue node\) [\#420](https://github.com/TigreGotico/orthography2ipa/pull/420) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.16.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.16.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.15.0a1...6.16.0a1)
@@ -536,7 +544,6 @@
 **Merged pull requests:**
 
 - Release 1.80.0a1 [\#289](https://github.com/TigreGotico/orthography2ipa/pull/289) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat: geographic axis — location from Glottolog and great-circle distance [\#282](https://github.com/TigreGotico/orthography2ipa/pull/282) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.79.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.79.1a1) (2026-07-11)
 
