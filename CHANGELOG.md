@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.13.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.12.0a1...6.13.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar-MR\): Ḥassāniyya Arabic to research tier [\#410](https://github.com/TigreGotico/orthography2ipa/pull/410) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.12.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.11.0a1...6.12.0a1)
@@ -540,10 +548,6 @@
 ## [1.77.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.77.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.76.0a1...1.77.0a1)
-
-**Merged pull requests:**
-
-- Release 1.77.0a1 [\#278](https://github.com/TigreGotico/orthography2ipa/pull/278) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.76.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.76.0a1) (2026-07-11)
 
