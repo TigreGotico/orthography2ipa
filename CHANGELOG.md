@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.20.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.19.0a1...6.20.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): Portuguese-based creole specs — Kristang \(mcm\), Sãotomense \(cri\), Korlai \(vkp\), Sri Lanka Portuguese \(idb\) [\#426](https://github.com/TigreGotico/orthography2ipa/pull/426) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.19.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.19.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.18.0a1...6.19.0a1)
@@ -565,10 +573,6 @@
 ## [1.79.1a1](https://github.com/TigreGotico/orthography2ipa/tree/1.79.1a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.79.0a1...1.79.1a1)
-
-**Merged pull requests:**
-
-- Release 1.79.1a1 [\#286](https://github.com/TigreGotico/orthography2ipa/pull/286) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.79.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.79.0a1) (2026-07-11)
 
