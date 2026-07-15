@@ -185,5 +185,16 @@
     "pagination": "`page` records the page of the open-access HAL author manuscript (numbered 1-11 in its own running footer); the manuscript corresponds to EALL vol. 2 pp. 240-250, so manuscript page N maps to printed page 239+N. The phonology examples cited here stand on manuscript pp. 2-3 (EALL pp. 241-242).",
     "notation": "arabicist-transliteration",
     "describes": "Ḥassāniyya Arabic (Mauritania / Western Sahara), the Gǝbla reference variety"
+  },
+  "larosa2021": {
+    "authors": "La Rosa, Cristina",
+    "year": 2021,
+    "title": "Mahdia Dialect: An Urban Vernacular in the Tunisian Sahel Context",
+    "venue": "Languages 6(3): 145",
+    "url": "https://www.mdpi.com/2226-471X/6/3/145",
+    "access": "open",
+    "pagination": "Open-access MDPI article; the printed folio is the running footer 'N of 23' and coincides with the value recorded in `page` (verified on the footers of the phonology pages 8-11).",
+    "notation": "arabicist-transliteration",
+    "describes": "Tunisian Sahel Arabic (Mahdia, Msaken, Monastir), with reference to Tunis and Sousse"
   }
 }
