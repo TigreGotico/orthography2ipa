@@ -69,3 +69,19 @@ class TestEnglishFinalYIsAVowel:
 
     def test_initial_y_is_still_the_glide(self):
         assert G2P("en-GB").transcribe_word("yes") == "jɛs"
+
+
+class TestWordFinalSeesThroughSilentLetters:
+    """A word-final rule must fire on the last PRONOUNCED consonant, even when a
+    silent letter follows it. is_word_final was computed on the grapheme chain,
+    so a mute final ⟨e⟩ hid final devoicing — Walloon ⟨rodje⟩ stayed [ʀɔdʒ]."""
+
+    def test_devoicing_fires_behind_a_mute_e(self):
+        from orthography2ipa import G2P
+        assert G2P("wa").transcribe_word("rodje") == "ʀɔtʃ"
+        assert G2P("wa").transcribe_word("rodje") == G2P("wa").transcribe_word("rotche")
+
+    def test_a_language_without_final_devoicing_is_unaffected(self):
+        # French has no final devoicing; ⟨grande⟩ keeps its [d] behind the mute ⟨e⟩.
+        from orthography2ipa import G2P
+        assert G2P("fr-FR").transcribe_word("grande") == "ɡʁɑ̃d"
