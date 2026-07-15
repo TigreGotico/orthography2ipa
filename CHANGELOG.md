@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.0.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.2a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.1a1...7.0.2a1)
+
+**Merged pull requests:**
+
+- fix\(ar-SA-x-najd\): gahawa epenthesis needs a following consonant [\#466](https://github.com/TigreGotico/orthography2ipa/pull/466) ([JarbasAl](https://github.com/JarbasAl))
+- fix: geminate atomicity in the allophone layer [\#465](https://github.com/TigreGotico/orthography2ipa/pull/465) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.0.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.1a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.0a1...7.0.1a1)
@@ -467,15 +476,10 @@
 **Merged pull requests:**
 
 - Release 3.0.0a2 [\#320](https://github.com/TigreGotico/orthography2ipa/pull/320) ([github-actions[bot]](https://github.com/apps/github-actions))
-- refactor\(benchmark\): drop the tugalex wrapper, load the HF lexicon directly [\#319](https://github.com/TigreGotico/orthography2ipa/pull/319) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/2.0.0a1...3.0.0a1)
-
-**Merged pull requests:**
-
-- Release 3.0.0a1 [\#318](https://github.com/TigreGotico/orthography2ipa/pull/318) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [2.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/2.0.0a1) (2026-07-12)
 
