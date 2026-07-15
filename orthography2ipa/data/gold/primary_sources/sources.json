@@ -284,5 +284,16 @@
     "pagination": "Printed folio in the page header of the ANU scan; `page` records the printed folio. The scan is missing printed pp. 33-48 (one gathering); no row cites those pages. OCR frequently drops Baxter's acute stress diacritic — rows whose stress mark was restored from his penultimate default are capped at confidence medium.",
     "notation": "ipa",
     "describes": "Kristang / Papia Kristang (Malacca Creole Portuguese), ch. 2 phonology"
+  },
+  "brissos2018": {
+    "authors": "Brissos, F.",
+    "year": 2018,
+    "title": "Proposta de reformulação da caracterização dialetal do noroeste português",
+    "venue": "Estudos de Lingüística Galega, Volume especial I (2018):193-208",
+    "url": "https://revistas.usc.gal/index.php/elg/article/view/3560",
+    "access": "open",
+    "pagination": "Running foot `© 2018 Estudos de lingüística galega. Volume especial I: 193-208` with the body folio in the header/footer (e.g. `Proposta de reformulação ... 199`, `200  F. Brissos`); `page` records that printed folio. The PDF page index runs 192 behind the printed page (printed 193 = PDF page 1). Examples are the diphthongization set of §2.1-2.2, printed pp.199-201, reproduced from Brissos & Rodrigues (2016).",
+    "notation": "ipa",
+    "describes": "The diphthongizing 'variedade do noroeste' (Cintra's Baixo-Minho / Douro-Litoral, extended north) — tonic-vowel diphthongization of both close and open mids, the within-axis subtype (RD1: [i̯e i̯ɛ], [u̯o u̯ɔ]) and the toward-central subtype (RD2: [eɐ̯ ɛɐ̯], [oɐ̯ ɔɐ̯]), plus the marginal /i/ -> [ei̯]"
   }
 }

@@ -65,9 +65,10 @@ not to certify a language on its own.
 | Al-Taisan (2022), Essex PhD | Hasawi (al-Hasa, Eastern Province) | `ar-SA-x-sharqiyya` | 2 |
 | Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro), ALUSTP standardization article | `cri` | 13 |
 | Baxter (1988), Pacific Linguistics B-95 | Kristang (Malacca Creole Portuguese) | `mcm` | 33 |
-| **total** | | | **469** |
+| Brissos (2018), Estud. ling. galega, vol. esp. I | NW Portuguese (variedade do noroeste) | `pt-PT-x-porto` | 9 |
+| **total** | | | **478** |
 
-Broad `/…/`: 338. Narrow `[…]`: 131. `confidence`: 287 high, 168 medium, 14 low.
+Broad `/…/`: 338. Narrow `[…]`: 140. `confidence`: 296 high, 168 medium, 14 low.
 
 ## Notation-normalization decisions
 
@@ -234,6 +235,21 @@ running the engine over these rows.
     back (`ceifar [sei'fjar]`, `pintar [pint'jar]`) nor the glide on an unstressed
     syllable (`morrer [mw'orer]`), nor the northern-type raising `soa ['sua]`,
     `flor ['flur]` — all recorded as attested-but-unmodelled rows.
+
+26. **`pt-PT-x-porto` now diphthongizes the open mids, but the base open/close
+    selection still limits the match.** Brissos (2018) pp.199-201 prints the NW
+    diphthongization set. o2i reproduces `pé [ˈpjɛ]` exactly (the added
+    open-mid rule), but `Porto` comes out `[ˈpwɔɾtu]` where the source has
+    `[ˈpu̯oɾtu]` — the base engine mis-selects the OPEN allophone for the
+    spelling-unmarked `⟨o⟩`, so it diphthongizes to `[wɔ]` not `[wo]`; and
+    `toque` comes out `[ˈtukɨ]` where the source has `[ˈtu̯ɔkɨ]` — the base
+    RAISES the stressed `⟨o⟩` to `[u]`, so no mid-vowel rule can fire. Both are
+    the documented pre-lexical open/close/raising limit, not a rule gap.
+27. **`pt-PT-x-porto` does not model RD2 or the /i/-diphthong.** The toward-
+    central subtype (`fazer [fɐˈzeɐ̯ɾ]`, `pé [ˈpɛɐ̯]`, p.200) co-exists with the
+    modelled within-axis RD1, and the marginal `maquia [mɐˈkei̯ɐ]` (`[i]→[ei̯]`,
+    ~19% of tokens, pre-pause/vowel only, p.199) is deliberately left out; the
+    rows record what is and is not covered.
 
 ## Adding rows
 
