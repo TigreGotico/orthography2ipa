@@ -6,6 +6,12 @@
   "allophones_base": "ar-x-mashriqi",
   "positional_graphemes_base": "ar-x-mashriqi",
   "graphemes": {
+    "وَيْ": [
+      "weː"
+    ],
+    "يَوْ": [
+      "joː"
+    ],
     "ق": [
       "ʔ",
       "ɡ",
@@ -227,7 +233,7 @@
       "notes": "Eastern (Mashriqi) Arabic base"
     }
   ],
-  "notes": "Proto-Levantine Arabic (شامي) — abstract ancestor node for Syrian (Damascene), Lebanese (Beiruti), Jordanian (Ammani) and Palestinian Arabic. INPUT CONTRACT: like ar, assumes fully-diacritized (tashkeel-marked) Arabic; short vowels surface only when written. SHARED SEDENTARY URBAN FEATURES modelled here (inherited by all four cities): (1) ق qaf → /ʔ/ in the prestige urban koines (Damascus, Beirut, Jerusalem, urban Amman); /ɡ/ in Bedouin/Ḥōrāni and much rural speech, /k/ in central rural Palestinian — the four qaf reflexes are the classic Levantine variable (Fadda 2016:28, citing Al-Wer & Herin 2011:60: 'gilit' [g], 'qeltu' [q], [ʔ]-dialects e.g. Jerusalem, [k]-dialects e.g. rural West Bank). (2) ج jim → /ʒ/ (urban) ~ /dʒ/ (Bedouin/rural). (3) Interdentals /θ ð ðˤ/ merge to stops [t d dˤ] in the urban koines (Cotter 2016:150-154 for Gaza/Palestine, Bergsträßer 1915 & Palva 1984:361-62; Fadda 2016:27-28 for the Ammani koine), conserved by rural/Bedouin/Druze speakers (variants kept in the inventory). (4) Diphthong monophthongization /aj aw/ → [eː oː] (Almbark & Hellmuth 2015 §1.1; Fadda 2016:30). (5) Emphasis spreading backs /a aː/ → [ɑ ɑː] adjacent to emphatics (Watson 2002). The urban Levantine vowel system is five long /iː eː aː oː uː/ over three contrastive short /i a u/, with [e o ə] analysed as allophones of /i u/ (Almbark & Hellmuth 2015, conclusions §4). Per-city deltas (Lebanese strong imāla, Ammani qaf reallocation, Palestinian kaf-shift) live on the individual specs.",
+  "notes": "Proto-Levantine Arabic (شامي) — abstract ancestor node for Syrian (Damascene), Lebanese (Beiruti), Jordanian (Ammani) and Palestinian Arabic. INPUT CONTRACT: like ar, assumes fully-diacritized (tashkeel-marked) Arabic; short vowels surface only when written. SHARED SEDENTARY URBAN FEATURES modelled here (inherited by all four cities): (1) ق qaf → /ʔ/ in the prestige urban koines (Damascus, Beirut, Jerusalem, urban Amman); /ɡ/ in Bedouin/Ḥōrāni and much rural speech, /k/ in central rural Palestinian — the four qaf reflexes are the classic Levantine variable (Fadda 2016:28, citing Al-Wer & Herin 2011:60: 'gilit' [g], 'qeltu' [q], [ʔ]-dialects e.g. Jerusalem, [k]-dialects e.g. rural West Bank). (2) ج jim → /ʒ/ (urban) ~ /dʒ/ (Bedouin/rural). (3) Interdentals /θ ð ðˤ/ merge to stops [t d dˤ] in the urban koines (Cotter 2016:150-154 for Gaza/Palestine, Bergsträßer 1915 & Palva 1984:361-62; Fadda 2016:27-28 for the Ammani koine), conserved by rural/Bedouin/Druze speakers (variants kept in the inventory). (4) Diphthong monophthongization /aj aw/ → [eː oː] (Almbark & Hellmuth 2015 §1.1; Fadda 2016:30). (5) Emphasis spreading backs /a aː/ → [ɑ ɑː] adjacent to emphatics (Watson 2002). The urban Levantine vowel system is five long /iː eː aː oː uː/ over three contrastive short /i a u/, with [e o ə] analysed as allophones of /i u/ (Almbark & Hellmuth 2015, conclusions §4). Per-city deltas (Lebanese strong imāla, Ammani qaf reallocation, Palestinian kaf-shift) live on the individual specs. TOKENIZATION NOTE (word-initial diphthong digraphs): the monophthongization allophone_rules AR_LEV_MONO_AY/AW rewrite the /aj//aw/ ATOMS that the ⟨َي⟩/⟨َو⟩ digraphs emit, but word-initially the onset digraphs يَ→/ja/ and وَ→/wa/ claim the fatha before an /aj//aw/ atom can form, so ⟨وَيْ⟩ came out *[waj] (وَيْن *wajn) and ⟨يَوْ⟩ *[jaw]. The two sequences are therefore spelled out in `graphemes` as وَيْ→[weː] (وَيْن → weːn 'where', Cowell 1964; the monophthong /eː/ from /aj/ per Almbark & Hellmuth 2015 §1.1) and يَوْ→[joː] (يَوْم → joːm 'day') — the same monophthongization reached from the spelling instead of from the atom, the device already used on ar-SY and on the Hejazi/Qassimi specs for their identical seam. The explicit sukūn in both keys keeps حَيَوان /ħajawaːn/ and يَوَدّ /jawadd/ — where the glide carries its own vowel and there is no diphthong — out of the rule; the leaf specs (ar-LB, ar-JO, ar-PS) inherit these keys via graphemes_base.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
