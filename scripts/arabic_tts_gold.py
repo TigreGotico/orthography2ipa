@@ -49,6 +49,7 @@ LECTS = [
     "ar-SY", "ar-LB", "ar-JO", "ar-PS",
     "ar-AE", "ar-BH", "ar-KW", "ar-QA", "ar-OM",
     "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-YE",
+    "ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya",
     "ar-MA", "ar-TN", "ar-DZ", "ar-LY", "ar-MR",
 ]
 MIN_ROWS = 5

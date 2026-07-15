@@ -60,9 +60,12 @@ not to certify a language on its own.
 | Taine-Cheikh (2007), EALL *Ḥassāniyya Arabic* | Ḥassāniyya (Mauritania, Gǝbla) | `ar-MR` | 18 |
 | La Rosa (2021), Languages 6:145 | Tunisian Sahel (Mahdia/Msaken) | `ar-TN` | 7 |
 | Watson (2002), The Phonology and Morphology of Arabic | Cairene / Moroccan (Lmnabha, as quoted from Elmedlaoui) / Ṣanʿānī | `ar-EG` / `ar-MA` / `ar-YE` | 18 / 1 / 15 |
-| **total** | | | **406** |
+| Alhoody (2019), Newcastle PhD | Qassimi (Qaṣīm) | `ar-SA-x-qassim` | 12 |
+| Watson & Al-Azraqi (2011), PSAS 41 | Rijāl Almaʿ (SW Saudi Tihāmah) | `ar-SA-x-rijal-alma` | 3 |
+| Al-Taisan (2022), Essex PhD | Hasawi (al-Hasa, Eastern Province) | `ar-SA-x-sharqiyya` | 2 |
+| **total** | | | **423** |
 
-Broad `/…/`: 330. Narrow `[…]`: 76. `confidence`: 254 high, 142 medium, 10 low.
+Broad `/…/`: 336. Narrow `[…]`: 87. `confidence`: 262 high, 147 medium, 14 low.
 
 ## Notation-normalization decisions
 

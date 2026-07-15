@@ -92,6 +92,14 @@ colloquial article spelling their literature uses (Cairene/Baghdadi
   Ingham 1994); **ar-SA-x-hejaz**: urban stop interdentals + Cairene-like
   register (Omar 1975; Abdoh 2010). **ar-YE**: aští verb, retained
   diphthongs/interdentals (Watson 2002).
+- **ar-SA-x-qassim** (Qaṣīm, Najdi sub-variety): the Najdi velar affrication
+  [ts]/[dz] plus **monophthongization** /aj aw/→[eː oː] (loːnak, joːm, bureːda)
+  which the central-Najdi parent lacks (Alhoody 2019:42; Al-Rojaie 2013).
+- **ar-SA-x-rijal-alma** (SW ʿAsīr/Tihāmah): the archaic **lateral emphatics** —
+  ض→[ɮˤ] voiced, ظ→[ɬˤ] voiceless, kept distinct — and qaf-retention [q]
+  (Watson & Al-Azraqi 2011; Asiri 2009; Al-Azraqi 2010).
+- **ar-SA-x-sharqiyya** (Eastern Province, Gulf-type): Baḥārna ج→[j] lenition,
+  kaf→[tʃ] affrication, qaf→[ɡ] (Johnstone 1967; Holes 2004; Al-Taisan 2022).
 - **Maghrebi** (MA/TN/DZ/LY/MR): heavy initial clusters, ma-...-š
   negation, n‑ 1sg; ma-ṭīša/zwīn/bzzāf (Harrell 1962; Heath 2020), barša/
   bāhi (TN), mlīḥ/wāš rāk (DZ, PADIC-attested), halba/nibbi (LY — ق=/ɡ/
