@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.12.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.11.0a1...6.12.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar-LY\): Libyan Arabic \(Tripoli\) to research tier [\#406](https://github.com/TigreGotico/orthography2ipa/pull/406) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.11.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.11.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.10.0a1...6.11.0a1)
@@ -540,10 +548,6 @@
 ## [1.76.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.76.0a1) (2026-07-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.75.0a1...1.76.0a1)
-
-**Merged pull requests:**
-
-- Release 1.76.0a1 [\#277](https://github.com/TigreGotico/orthography2ipa/pull/277) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.75.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.75.0a1) (2026-07-11)
 
