@@ -91,11 +91,24 @@ def test_emphasis_backs_adjacent_a():
     assert transcribe("طَاب", "ar-LY") == "ˈtˤɑːb"      # long /aː/ → [ɑː]
 
 
-# ─── Diphthongs: retained, with documented variable monophthongisation ─────
+# ─── Diphthongs: monophthongised as the mainline, retention a documented variant ─
 
-def test_classical_diphthongs_are_retained():
-    """The Classical diphthongs /aj aw/ are retained in the transcription
-    (⟨سَيْف⟩ 'sword' → [sajf]); their monophthongised reflexes [eː oː] are a
-    documented variable outcome (Pereira 2010), not applied by default."""
-    assert transcribe("سَيْف", "ar-LY") == "ˈsajf"
-    assert transcribe("لَوْن", "ar-LY") == "ˈlawn"
+def test_classical_diphthongs_monophthongise():
+    """The urban Tripoli koine monophthongises the Classical diphthongs /aj aw/
+    to [eː oː] as the mainline reflex (⟨سَيْف⟩ 'sword' → [seːf], ⟨لَوْن⟩ 'colour'
+    → [loːn], ⟨زَوْج⟩ → [zoːʒ]) — Pereira 2010:66-67, 2011 EALL, matching the
+    sibling sedentary koines ar-SY / ar-x-gulf / ar-SA-x-qassim (LY_MONO_AY/AW).
+    Diphthong retention (sajf) is a documented residual variant, not the default.
+    The ⟨وَيْ⟩/⟨يَوْ⟩ onset digraphs reach the monophthong via explicit graphemes."""
+    assert transcribe("سَيْف", "ar-LY") == "ˈseːf"
+    assert transcribe("لَوْن", "ar-LY") == "ˈloːn"
+    assert transcribe("زَوْج", "ar-LY") == "ˈzoːʒ"
+    assert transcribe("وَيْن", "ar-LY") == "ˈweːn"
+    assert transcribe("يَوْم", "ar-LY") == "ˈjoːm"
+
+
+def test_geminate_glides_do_not_monophthongise():
+    """LY_MONO_AY/AW fire only on true /aj//aw/ atoms, never on a geminate glide
+    (⟨الْجَوّ⟩ → [alˈʒaww]) or a long vowel plus glide (⟨الْعَايْلَة⟩ → [alˈʕaːjla])."""
+    assert transcribe("الْجَوّ", "ar-LY") == "alˈʒaww"
+    assert transcribe("الْعَايْلَة", "ar-LY") == "alˈʕaːjla"
