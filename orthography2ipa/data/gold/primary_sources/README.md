@@ -50,9 +50,10 @@ not to certify a language on its own.
 | Cotter (2016), JAIS | Gaza City | `ar-PS` | 4 |
 | Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté (2003), JIPA Illustration | Castilian Spanish | `es-ES` | 41 |
 | Coloma (2018), JIPA Illustration | Buenos Aires / River Plate Spanish | `es-AR` | 29 |
-| **total** | | | **270** |
+| Laufer (1999), Handbook of the IPA Illustration | Modern Israeli Hebrew (Non-Oriental / Oriental) | `he` | 33 |
+| **total** | | | **303** |
 
-Broad `/…/`: 218. Narrow `[…]`: 52. `confidence`: 214 high, 54 medium, 2 low.
+Broad `/…/`: 251. Narrow `[…]`: 52. `confidence`: 242 high, 59 medium, 2 low.
 
 ## Notation-normalization decisions
 

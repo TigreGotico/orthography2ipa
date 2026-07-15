@@ -143,6 +143,12 @@ _WIKIPRON_FILES = {
     "en-GB": "eng_latn_uk_broad.tsv",
     # --- Semitic ---
     "ar": "ara_arab_broad.tsv",          # ~17.5k rows (MSA, broad)
+    # Hebrew: Wiktionary headwords are UNPOINTED skeletons (a handful carry
+    # niqqud), so — exactly like the undiacritized 'ar' gold above — short
+    # vowels are orthographically absent from most inputs and a substantial
+    # PER floor is expected. The file also mixes transcription traditions
+    # (some rows are Tiberian-flavoured: ɔː, ə, ŋ); see data/he.json notes.
+    "he": "heb_hebr_broad.tsv",          # ~6.8k rows (Hebrew script, broad)
     # --- Romance ---
     "it": "ita_latn_broad.tsv",          # ~90k rows
     "fr": "fra_latn_broad.tsv",          # ~98k rows

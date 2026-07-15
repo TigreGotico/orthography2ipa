@@ -486,12 +486,6 @@ def test_cop_tsh_affricate():
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="he stress declares milra (final) as the default, but the engine drops "
-           "the niqqud vowels entirely (יְלָדִים → ˈjldjm) so the stress lands "
-           "word-initially",
-)
 def test_he_milra_is_the_default_stress():
     """Hebrew default stress is milra — final.
 
