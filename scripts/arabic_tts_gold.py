@@ -148,7 +148,7 @@ def cmd_checklist(args):
     lect = args.lect
     spec, srcs = _spec_summary(lect)
     print(f"# {lect} — {getattr(spec, 'name', '?')}")
-    print(f"sources: {', '.join(s.get('id', '?') for s in srcs) if srcs else '(none)'}")
+    print(f"sources: {', '.join(getattr(s, 'id', '?') for s in srcs) if srcs else '(none)'}")
     rows = _load(lect)
     covered = set()
     if rows:

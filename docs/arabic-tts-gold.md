@@ -1,6 +1,6 @@
 # Arabic TTS gold set
 
-`orthography2ipa/data/gold/arabic_tts/<code>.tsv` — 5 fully diacritized,
+`orthography2ipa/data/gold/arabic_tts/<code>.tsv` — 5–6 fully diacritized,
 phonetically diverse, literature-justified sentences for each of the 25
 concrete Arabic lects in the catalogue. Built to validate Arabic TTS voices
 per dialect (synthesize each sentence, ASR/listen, compare against the gold
@@ -55,7 +55,7 @@ witness); `emphatic`, `pharyngeal`, `geminate`, `long_vowel`, `diphthong`
 `question`, `negation`, `imperative`, `number`.
 
 Every lect's 5 sentences jointly cover the phonetic tags present in that
-lect plus at least a question, a negation and a number.
+lect plus at least a question, a negation, a number and an imperative.
 
 ## Vocalized connected-speech conventions
 
