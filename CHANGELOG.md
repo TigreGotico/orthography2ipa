@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.11.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.11.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.10.0a1...6.11.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar-x-maghrebi\): raise Maghrebi grouping node to research tier [\#401](https://github.com/TigreGotico/orthography2ipa/pull/401) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.10.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.10.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.9.0a1...6.10.0a1)
@@ -528,7 +536,6 @@
 **Merged pull requests:**
 
 - Release 1.77.0a1 [\#278](https://github.com/TigreGotico/orthography2ipa/pull/278) ([github-actions[bot]](https://github.com/apps/github-actions))
-- fix\(benchmarks\): classify styletts2 as espeak-derived, and never gate on it [\#276](https://github.com/TigreGotico/orthography2ipa/pull/276) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.76.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.76.0a1) (2026-07-11)
 
