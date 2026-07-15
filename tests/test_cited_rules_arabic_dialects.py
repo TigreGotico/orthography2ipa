@@ -176,10 +176,24 @@ def test_qa_ocp_blocking_of_affrication_is_not_modelled():
     identical/similar coronal) ... these blocking environments are NOT modelled in
     the base rule and remain an engine limit."
 
-    The declared over-application, pinned: سِكِّين has an /s/ in the word, so real
-    Qatari blocks affrication by the OCP — the engine affricates anyway.
+    The declared over-application, pinned on a NON-geminate word: مِسْكِين has an
+    /s/ in the word, so real Qatari blocks affrication by the OCP — the engine
+    affricates the /k/ anyway.
     """
-    assert _bare("ar-QA", "سِكِّين") == "siktʃiːn"
+    assert _bare("ar-QA", "مِسْكِين") == "mistʃiːn"
+
+
+def test_qa_affrication_does_not_split_a_geminate():
+    """Qatari: velar affrication does not apply to a geminate /kk/.
+
+    سِكِّين 'knife' is /sikkiːn/ with a geminate ⟨كّ⟩. Affrication is a
+    single-segment process triggered by an adjacent front vowel; a geminate is
+    one long segment, so the rule cannot rewrite a single half and split it
+    into a heterorganic *[ktʃ] cluster. The surface [sikkiːn] also happens to
+    be what Mustafawi's OCP blocking predicts, but the engine reaches it by
+    geminate integrity, not by modelling the OCP.
+    """
+    assert _bare("ar-QA", "سِكِّين") == "sikkiːn"
 
 
 def test_ae_english_loan_phonemes_are_integrated():
