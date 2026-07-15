@@ -127,8 +127,10 @@ def test_the_arabic_specs_opt_in():
         if (get(code).stress and get(code).stress.quantity_sensitive)
     }
     assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
-    # Nothing outside Arabic opted in, so no other language moved.
-    assert all(c.startswith("ar") for c in opted_in), sorted(opted_in)
+    # Outside Arabic, only languages whose stress is cited as quantity-
+    # sensitive may opt in: idb (Sri Lanka Portuguese — stress on the
+    # long-vowel syllable, else initial; Cardoso, APiCS 41).
+    assert all(c.startswith("ar") or c in {"idb"} for c in opted_in), sorted(opted_in)
 
 
 # ─── weight is counted in SEGMENTS, not characters ──────────────────────
