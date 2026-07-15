@@ -55,9 +55,10 @@ not to certify a language on its own.
 | Procházka (2026), JSS gahawa survey | Nigeria (Lake Chad Arabic) | `ar-NG` | 1 |
 | Guerrero (2019), *Arabica* 66(1-2) | Maghrebi *ǧīm* reflexes (Tangiers / Fez / Tunis / Tripoli / Tlemcen) | `ar-MA` / `ar-TN` / `ar-LY` / `ar-DZ` | 4 / 2 / 3 / 1 |
 | Benkato (2020), *Maghrebi Arabic* (Lucas & Manfredi, eds.) | Libyan Arabic (Tripoli / Benghazi) | `ar-LY` | 3 |
-| **total** | | | **325** |
+| Taine-Cheikh (2007), EALL *Ḥassāniyya Arabic* | Ḥassāniyya (Mauritania, Gǝbla) | `ar-MR` | 18 |
+| **total** | | | **343** |
 
-Broad `/…/`: 271. Narrow `[…]`: 54. `confidence`: 242 high, 78 medium, 5 low.
+Broad `/…/`: 289. Narrow `[…]`: 54. `confidence`: 242 high, 92 medium, 9 low.
 
 ## Notation-normalization decisions
 
