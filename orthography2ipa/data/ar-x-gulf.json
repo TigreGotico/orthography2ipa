@@ -4,6 +4,12 @@
   "script": "Arabic",
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {
+    "وَيْ": [
+      "weː"
+    ],
+    "يَوْ": [
+      "joː"
+    ],
     "ث": [
       "θ",
       "t"
@@ -204,7 +210,7 @@
       "notes": "Peninsular Arabic base — interdental retention and emphatic (pharyngealisation) spreading inherited via the AR_PEN_EMPH_* allophone rules."
     }
   ],
-  "notes": "Proto-Gulf Arabic (Khaleeji) — abstract ancestor node for Emirati (ar-AE), Bahraini (ar-BH), Kuwaiti (ar-KW) and Qatari (ar-QA); Omani (ar-OM) is genetically Peninsular and inherits ar-x-peninsular directly. DEFINING FEATURES modelled here and inherited by descendants via graphemes_base/OVERLAY_BY_ID: (1) Old Arabic *q → [ɡ] (Bedouin/sedentary Gulf), with [q] retained as a secondary MSA/formal candidate; (2) velar affrication /k/ → [tʃ] and /ɡ/(<*q) → [dʒ] adjacent to a high front vowel /i, iː/ (allophone_rules GULF_K_AFFRICATION, GULF_G_AFFRICATION); (3) interdentals /θ ð ðˤ/ RETAINED, unlike sedentary Levantine/Egyptian which merge them to stops/sibilants — a Bedouin-type retention (grapheme mappings for ث ذ ظ list the interdental first); (4) jiim /dʒ/ ~ [j] variation (glide realisation common in the eastern Gulf); (5) integrated /p/, /v/ from loanwords (پ, ڤ). Emphatic spreading (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is inherited from ar-x-peninsular (AR_PEN_EMPH_*). Input contract: fully diacritised (tashkeel) Arabic. Grounded in sources actually read: Alshammari 2026 (velar affrication, whose literature review surveys Mustafawi's Qatari and Matar's Kuwaiti data), Al-Balushi 2016 (Omani/Eastern-Arabian reflexes), Szreder & Derrick 2023 (Emirati affricate variability).",
+  "notes": "Proto-Gulf Arabic (Khaleeji) — abstract ancestor node for Emirati (ar-AE), Bahraini (ar-BH), Kuwaiti (ar-KW) and Qatari (ar-QA); Omani (ar-OM) is genetically Peninsular and inherits ar-x-peninsular directly. DEFINING FEATURES modelled here and inherited by descendants via graphemes_base/OVERLAY_BY_ID: (1) Old Arabic *q → [ɡ] (Bedouin/sedentary Gulf), with [q] retained as a secondary MSA/formal candidate; (2) velar affrication /k/ → [tʃ] and /ɡ/(<*q) → [dʒ] adjacent to a high front vowel /i, iː/ (allophone_rules GULF_K_AFFRICATION, GULF_G_AFFRICATION); (3) interdentals /θ ð ðˤ/ RETAINED, unlike sedentary Levantine/Egyptian which merge them to stops/sibilants — a Bedouin-type retention (grapheme mappings for ث ذ ظ list the interdental first); (4) jiim /dʒ/ ~ [j] variation (glide realisation common in the eastern Gulf); (5) integrated /p/, /v/ from loanwords (پ, ڤ). Emphatic spreading (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is inherited from ar-x-peninsular (AR_PEN_EMPH_*). Input contract: fully diacritised (tashkeel) Arabic. Grounded in sources actually read: Alshammari 2026 (velar affrication, whose literature review surveys Mustafawi's Qatari and Matar's Kuwaiti data), Al-Balushi 2016 (Omani/Eastern-Arabian reflexes), Szreder & Derrick 2023 (Emirati affricate variability). MONOPHTHONGIZATION: the node declares the ay/aw→[eː oː] merger as the rank-1 realization of the ⟨َي⟩/⟨َو⟩ digraphs (graphemes َي→[eː,aj], َو→[oː,aw]; Gulf ē/ō monophthongs per Holes, as reported in the affrication sources' literature reviews). TOKENIZATION NOTE (word-initial diphthong digraphs): word-initially the onset digraphs يَ→/ja/ and وَ→/wa/ claim the fatha before an /aj//aw/ atom can form, so ⟨وَيْ⟩ came out *[waj] (وَيْن *wajn) and ⟨يَوْ⟩ *[jaw]. The two sequences are therefore spelled out in `graphemes` as وَيْ→[weː] (وَيْن → weːn 'where') and يَوْ→[joː] (يَوْم → joːm 'day') — the same [eː oː] monophthong the ⟨َي⟩/⟨َو⟩ digraphs already carry, reached from the fuller spelling instead of from the atom, the device already used on ar-SY and on the Hejazi/Qassimi specs for their identical seam. The explicit sukūn in both keys keeps حَيَوان /ħajawaːn/ and يَوَدّ /jawadd/ — where the glide carries its own vowel and there is no diphthong — out of the rule; the leaf specs (ar-AE, ar-BH, ar-KW, ar-QA, ar-SA-x-sharqiyya) inherit these keys via graphemes_base.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
