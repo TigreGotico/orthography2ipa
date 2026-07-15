@@ -51,6 +51,8 @@ LECTS = [
     "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-YE",
     "ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya",
     "ar-MA", "ar-TN", "ar-DZ", "ar-LY", "ar-MR",
+    # Grouping (proto/koine) nodes — pan-group register, node-level rankings.
+    "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi", "ar-x-peninsular",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "raw", "ipa", "gloss_en", "features", "notes"]
