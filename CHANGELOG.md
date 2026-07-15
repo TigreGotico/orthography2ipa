@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.1.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.3a1...7.1.0a1)
+
+**Merged pull requests:**
+
+- feat\(pt\): deepen Centro-Sul & Northwest EP specs from Brissos acoustic-atlas work [\#469](https://github.com/TigreGotico/orthography2ipa/pull/469) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.0.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.3a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.2a1...7.0.3a1)
@@ -412,7 +420,6 @@
 **Merged pull requests:**
 
 - Release 3.6.0a1 [\#336](https://github.com/TigreGotico/orthography2ipa/pull/336) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(compare\): uncap the published cross-system comparison; batch espeak-ng [\#321](https://github.com/TigreGotico/orthography2ipa/pull/321) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.5.0a1) (2026-07-12)
 
