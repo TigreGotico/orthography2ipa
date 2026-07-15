@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.1.1a2) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a1...7.1.1a2)
+
+**Merged pull requests:**
+
+- chore: regenerate scoreboard and comparison [\#474](https://github.com/TigreGotico/orthography2ipa/pull/474) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.1.1a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.0a1...7.1.1a1)
@@ -486,10 +494,6 @@
 ## [3.0.1a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.1a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.0.0a2...3.0.1a1)
-
-**Merged pull requests:**
-
-- Release 3.0.1a1 [\#323](https://github.com/TigreGotico/orthography2ipa/pull/323) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.0.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a2) (2026-07-12)
 
