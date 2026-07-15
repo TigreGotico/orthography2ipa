@@ -1,5 +1,25 @@
 # Changelog
 
+## [7.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.5.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.4.0a1...7.5.0a1)
+
+**Merged pull requests:**
+
+- feat\(gold\): Portuguese TTS gold sets for pt-PT-x-porto and pt-PT-x-braga [\#489](https://github.com/TigreGotico/orthography2ipa/pull/489) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.4.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.2a1...7.4.0a1)
+
+**Merged pull requests:**
+
+- feat\(gold\): Portuguese TTS gold sets for pt-PT-x-beira and pt-PT-x-trasosmontes [\#488](https://github.com/TigreGotico/orthography2ipa/pull/488) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): pt-PT-x-alentejo + pt-PT-x-algarve TTS gold sets [\#487](https://github.com/TigreGotico/orthography2ipa/pull/487) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(stress\): prosodic clitics carry no word stress [\#486](https://github.com/TigreGotico/orthography2ipa/pull/486) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Portuguese TTS gold sets for pt-PT-x-aveiro and pt-PT-x-coimbra [\#485](https://github.com/TigreGotico/orthography2ipa/pull/485) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Portuguese TTS gold sets for pt-PT-x-minho and pt-PT-x-viana [\#484](https://github.com/TigreGotico/orthography2ipa/pull/484) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.3.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.2a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.1a1...7.3.2a1)
@@ -470,7 +490,6 @@
 **Merged pull requests:**
 
 - Release 3.5.0a1 [\#335](https://github.com/TigreGotico/orthography2ipa/pull/335) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(el\): Greek phonology overhaul + Greek front/back vowel axis [\#333](https://github.com/TigreGotico/orthography2ipa/pull/333) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.4.0a1) (2026-07-12)
 
@@ -479,25 +498,14 @@
 **Merged pull requests:**
 
 - Release 3.4.0a1 [\#334](https://github.com/TigreGotico/orthography2ipa/pull/334) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(engine\): Hangul via canonical decomposition + segment-aware allophone rules [\#330](https://github.com/TigreGotico/orthography2ipa/pull/330) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.3.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.2.0a1...3.3.0a1)
 
-**Merged pull requests:**
-
-- Release 3.3.0a1 [\#332](https://github.com/TigreGotico/orthography2ipa/pull/332) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(pl\): Polish phonology overhaul + tie-bar-free scoring [\#331](https://github.com/TigreGotico/orthography2ipa/pull/331) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [3.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.2.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.1.0a2...3.2.0a1)
-
-**Merged pull requests:**
-
-- Release 3.2.0a1 [\#329](https://github.com/TigreGotico/orthography2ipa/pull/329) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat\(data\): promote the first six languages to production tier [\#328](https://github.com/TigreGotico/orthography2ipa/pull/328) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.1.0a2](https://github.com/TigreGotico/orthography2ipa/tree/3.1.0a2) (2026-07-12)
 
