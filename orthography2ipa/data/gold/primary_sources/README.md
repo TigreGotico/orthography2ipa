@@ -46,6 +46,8 @@ not to certify a language on its own.
 | Barbosa & Albano (2004), JIPA Illustration | Brazilian Portuguese | `pt-BR` | 21 |
 | Fadda (2016), MA thesis | Ammani | `ar-JO` | 13 |
 | Brissos (2014), JPL | EP central-interior (CI) / southwestern (SW) | `pt-PT-x-beira` / `pt-PT-x-alentejo` | 8 / 5 |
+| Silva (2008), JPL 7-1 | Micaelense (São Miguel, Azores) | `pt-PT-x-sao-miguel` | 12 |
+| Mikołajczak (2014), Studia Iberystyczne 13 | Terceirense (Ilha Terceira, Azores) | `pt-PT-x-terceira` | 10 |
 | Almbark & Hellmuth (2015), ICPhS | Damascene | `ar-SY` | 11 |
 | Cotter (2016), JAIS | Gaza City | `ar-PS` | 4 |
 | Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté (2003), JIPA Illustration | Castilian Spanish | `es-ES` | 41 |
@@ -57,9 +59,9 @@ not to certify a language on its own.
 | Benkato (2020), *Maghrebi Arabic* (Lucas & Manfredi, eds.) | Libyan Arabic (Tripoli / Benghazi) | `ar-LY` | 3 |
 | Taine-Cheikh (2007), EALL *Ḥassāniyya Arabic* | Ḥassāniyya (Mauritania, Gǝbla) | `ar-MR` | 18 |
 | La Rosa (2021), Languages 6:145 | Tunisian Sahel (Mahdia/Msaken) | `ar-TN` | 7 |
-| **total** | | | **350** |
+| **total** | | | **372** |
 
-Broad `/…/`: 296. Narrow `[…]`: 54. `confidence`: 242 high, 99 medium, 9 low.
+Broad `/…/`: 296. Narrow `[…]`: 76. `confidence`: 254 high, 109 medium, 9 low.
 
 ## Notation-normalization decisions
 
@@ -209,6 +211,23 @@ running the engine over these rows.
     `t͡s`, `d͡z` with the tie bar; o2i emits the bare sequence. Cosmetic, but it is a
     real difference between what the cited source prints and what we produce, so it is
     recorded rather than normalized away.
+24. **`pt-PT-x-sao-miguel` models the [y]/[ø] fronting but not the rest of the
+    micaelense system.** Silva (2008) p.4 gives the full stereotype set. o2i now
+    reproduces the front-rounded monophthongs — [y] < stressed ⟨u⟩ (`uva ['yvɐ]`,
+    `azul [ɐ'zyl]`, and crucially `cruz [kryʃ]` *before a coda*, which is why the
+    Rogers-based coda guard was dropped for this leaf) and [ø] < ⟨oi/ou⟩ (`oito [øt]`,
+    `pouco [pøk]`). It does **not** model (a) the final-unstressed-vowel elision
+    (`oito` is `[øt]` in the source, `ˈøtu` in o2i), (b) the `[ø]` from ⟨o⟩ before
+    `[ʒ]` (`hoje [øʒ]`, o2i `ˈɔʒɨ`), or (c) the tonic chain shift (`sete [sæt]`,
+    `avó [ɐ'vo]`, `avô [ɐ'vu]`). The rows record what is and is not covered.
+25. **`pt-PT-x-terceira` models the a-metaphony and the labial crescent glide, not
+    the harmonic glide.** Mikołajczak (2014) pp.422-423. o2i reproduces the
+    vocalic harmonisation (`pato ['pɔtu]`, `gato ['gɔtu]`) and the labial-conditioned
+    `[w]` on-glide (`porco [pw'orku]`, `bicho [bw'iszu]`). It does **not** reproduce
+    the harmonic `[j]`/`[w]` on-glide whose quality copies a high vowel a syllable
+    back (`ceifar [sei'fjar]`, `pintar [pint'jar]`) nor the glide on an unstressed
+    syllable (`morrer [mw'orer]`), nor the northern-type raising `soa ['sua]`,
+    `flor ['flur]` — all recorded as attested-but-unmodelled rows.
 
 ## Adding rows
 

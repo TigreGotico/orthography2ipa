@@ -3,7 +3,17 @@
   "name": "Micaelense Portuguese",
   "script": "Latin",
   "graphemes_base": "pt-PT",
-  "graphemes": {},
+  "graphemes": {
+    "oi": [
+      "ø"
+    ],
+    "ói": [
+      "ø"
+    ],
+    "ou": [
+      "ø"
+    ]
+  },
   "allophones_base": "pt-PT",
   "allophones": {},
   "positional_graphemes_base": "pt-PT",
@@ -37,30 +47,13 @@
       "notes": "Insular palatalisation of an intervocalic /l/ to [ʎ] after /i/: quilo -> [ˈkiʎu], mochila -> [muˈʃiʎɐ], Filipa -> [fiˈʎipɐ]. SOURCING: attested for São Miguel by the 8-accents overview (Portuguese With Leo, native-speaker source, https://www.youtube.com/watch?v=pitj0XxYO7I), which groups São Miguel with Madeira for the /l/->[ʎ] after /i/ (Filipa -> 'Flhipa'). HONESTY: the São Miguel deep-dive (Portuguese With Leo, 'Sotaque e expressões dos Açores - São Miguel', https://www.youtube.com/watch?v=6IqeBcjK_fk) does NOT itself demonstrate this feature; it is modelled here from the overview and CORROBORATED by the Madeira deep-dive (https://www.youtube.com/watch?v=azx_3sbqwEA), where the same '-il -> -ilh' process is strongly and explicitly attested ('sempre que há um -i antes de um -l ... acrescentamos o som de lhe ao -l', quilómetro -> 'quilhómetro'), and by Segura (2013), who describes intervocalic /l/->[ʎ] palatalisation for the Atlantic islands. Same exact gate as pt-PT-x-madeira MAD_L_PALATALISATION: a preceding /i/ and a following vowel (an /l/ after any other front vowel is untouched: teleférico)."
     },
     {
-      "id": "SM_U_KEEP_BEFORE_CODA",
-      "phonemes": [
-        "u"
-      ],
-      "surface": "u",
-      "followed_by_phoneme": [
-        "ɫ",
-        "l",
-        "ɾ",
-        "ʁ",
-        "ʃ",
-        "ʒ"
-      ],
-      "notes": "Ordered before SM_U_FRONTING to block the fronting before a tautosyllabic coda liquid or sibilant, where the São Miguel fronting does not apply (azul -> [ɐˈzuɫ]). Identity rewrite (u -> u) whose only role is to win the first-match in AllophoneRescorer. Same guard as pt-PT-x-acores ACO_U_KEEP_BEFORE_CODA; source Rogers (1948), the fronting being an open-nucleus process."
-    },
-    {
       "id": "SM_U_FRONTING",
       "phonemes": [
         "u"
       ],
       "surface": "y",
       "stress": "stressed",
-      "followed_by": "consonant",
-      "notes": "The single most stereotyped micaelense feature: fronting of a stressed open-syllable /u/ to the front rounded [y], the trait that makes the accent 'sound French' (número -> [ˈnymɨɾu], tu -> [ty]). NATIVE ATTESTATION: the São Miguel deep-dive (https://www.youtube.com/watch?v=6IqeBcjK_fk) — Catarina: 'o u faz com que pareça realmente um sotaque assim muito francês, é a nossa característica, é o û'; 'non' for não likewise cited as French-like. Categorical in the São Miguel micro-variety (vs only partial/lexical in the other islands: the pt-PT-x-acores Terceira gold has muda -> [ˈmudɐ] while São Miguel has [ˈmydɐ]). Fires when the stressed /u/ opens the next syllable (followed by an onset consonant); blocked before a tautosyllabic coda by the preceding SM_U_KEEP_BEFORE_CODA. The definite-article / contraction clitics are pinned in word_exceptions to their [u]-forms so a proclitic o/do/no/ao mis-marked stressed by the word-level detector is never fronted. Source: Rogers (1948), island-specific field description of eastern-Azorean (São Miguel) pronunciation."
+      "notes": "The single most stereotyped micaelense feature: fronting of every stressed /u/ to the front rounded [y], the trait that makes the accent 'sound French' (fruta -> [ˈfrytɐ], tu -> [ty]). SOURCE UPGRADE (Rogers 1948 -> Silva 2008): the earlier open-nucleus restriction (a KEEP guard blocking the fronting before a tautosyllabic coda) is DROPPED because Silva, David J. (2008), 'The Persistence of Stereotyped Dialect Features...', Journal of Portuguese Linguistics 7-1: 3-21, p. 4, gives the fronting explicitly BEFORE a coda: azul -> [ɐˈzyl] (before coda /l/) and cruz -> [kryʃ] (before coda /ʃ/), alongside the open-syllable uva -> [ˈyvɐ], fruta -> [ˈfrytɐ]. So micaelense [y] is a property of the stressed nucleus, not conditioned by the following coda — unlike the more conservative Rogers-based description kept in the general pt-PT-x-acores node (which retains ACO_U_KEEP_BEFORE_CODA). Gated to the STRESSED nucleus only: unstressed /u/ is untouched (número -> [nuˈmɛɾu], the first /u/ unstressed stays [u]), and the definite-article / contraction clitics are pinned in word_exceptions to their [u]-forms so a proclitic o/do/no/ao mis-marked stressed by the word-level detector is never fronted. NATIVE CORROBORATION: the São Miguel deep-dive (Portuguese With Leo, https://www.youtube.com/watch?v=6IqeBcjK_fk) — Catarina: 'o u faz com que pareça realmente um sotaque assim muito francês, é a nossa característica, é o û'."
     }
   ],
   "sandhi_rules": [
@@ -74,7 +67,7 @@
       "notes": "São Miguel realisation of the external prevocalic /s/-sandhi: a word-final coda /s/ (surfacing [ʃ] in isolation and pre-consonantally via the inherited coda chiado) is realised as the POST-ALVEOLAR [ʒ] before a vowel-initial following word (os olhos -> [ˈuʒ ˈoʎuʃ]), the 'Todojos'/'quijentrar' pronunciation shared with the Algarve. Re-declared here by id (OVERLAY_BY_ID) to override the inherited base [z]; fires ONLY before a vowel (pre-consonantal / pre-pausal word-final /s/ keep [ʃ]), unlike the Algarve which generalises [ʒ] to all word-final positions. SOURCING: described natively for São Miguel by Portuguese With Leo (8-accents overview, https://www.youtube.com/watch?v=pitj0XxYO7I: the shared Algarvean-Azorean J, 'quijentrar', 'Todojos', 'Éjunúmerúm' for 'és o número um'), and corroborated by the Trás-os-Montes deep-dive speaker (https://www.youtube.com/watch?v=70a_vNEa_aw: 'eu sei que em São Miguel fazem assim'). A page-pinned academic source for the São-Miguel prevocalic [ʒ] specifically was not located — the standard/Lisbon literature gives [z] (Mateus & d'Andrade 2000: ch.2); it sits within the documented southern/insular final-sibilant behaviour (Rogers 1948 for eastern-Azorean pronunciation)."
     }
   ],
-  "notes": "Micaelense (São Miguel, Azores) European Portuguese — the eastern-Azorean micro-variety, the most idiosyncratic and stereotyped Azorean accent ('sotaques nos Açores são enormes ... realmente sotaques muito diferentes', Portuguese With Leo, 'Sotaque e expressões dos Açores - São Miguel', native-speaker source, https://www.youtube.com/watch?v=6IqeBcjK_fk). Split out from the general pt-PT-x-acores node (which stays the general/other-islands node, Terceira as its gold reference) so the micro-variety can be modelled precisely without moving the Azorean gold. A DELTA over the broad pt-PT base. MODELLED FEATURES: (1) STRESSED OPEN-SYLLABLE /u/ -> [y] fronting (SM_U_KEEP_BEFORE_CODA then SM_U_FRONTING, plus the pinned shibboleth tu -> [ty]) — the 'French-sounding' micaelense trait, categorical here (número -> [ˈnymɨɾu]); the same machinery pt-PT-x-acores uses, re-declared so São Miguel is self-contained and does NOT inherit the Terceira-specific /ow/ preservation. (2) INTERVOCALIC /l/ -> [ʎ] after /i/ (SM_L_PALATALISATION, quilo -> [ˈkiʎu], Filipa -> [fiˈʎipɐ]) — sourced from the overview + Madeira corroboration (see the rule note; the São Miguel deep-dive does not itself demonstrate it, flagged honestly). (3) [ʒ] PREVOCALIC EXTERNAL /s/-SANDHI (shared with the Algarve; see PT_FINAL_S_PREVOCALIC_VOICE). DELIBERATELY-INHERITED conservative value: (4) NO pre-palatal centralisation — São Miguel keeps the mid front vowel before a palatal (coelho -> [ˈkɔɛʎu]/'coêlho'), where Lisbon centralises to [ɐ] ('coâlho') and Madeira likewise has 'coâlho' [ɐ]; the São Miguel 'coêlho' vs the Madeiran 'coâlho' is the classic island-distinguishing minimal contrast (8-accents overview). Because São Miguel inherits pt-PT (which lacks the Lisbon LX_STRESSED_E_PREPALATAL rule), the mid vowel is kept automatically — no rule added. NOT MODELLED (documented, not faked): (a) the very closed o/u vowels and the general vocalic closing ('os o e os u fecha-se mais') are gradient and only the categorical /u/->[y] is realised. (b) The singular <ão> -> monophthong nasal [ɐ̃] (cão -> 'cã', ladrão -> 'ladrã') is explicitly VARIABLE in the source ('às vezes diz muito como ã') and a blanket override would wrongly hit the frequent monosyllable são -> [sɐ̃w]; left inherited. (c) The word-final -R deletion + accented preceding vowel in verbs (comer -> 'comê', passear -> 'passeá', acentua -> 'acentûa') is real and salient but cannot be gated to infinitives from orthography without also dropping /r/ in mar/cor/flor; left inherited. (d) 'non' for não, the heavy gerund preference and the Anglo-Azorean 'calafão' loan vocabulary are lexical/morphosyntactic, not phonological. Dark coda /l/ [ɫ] and Lisbon-type coda sibilants are inherited from the pt-PT base.",
+  "notes": "Micaelense (São Miguel, Azores) European Portuguese — the eastern-Azorean micro-variety, the most idiosyncratic and stereotyped Azorean accent ('sotaques nos Açores são enormes ... realmente sotaques muito diferentes', Portuguese With Leo, 'Sotaque e expressões dos Açores - São Miguel', native-speaker source, https://www.youtube.com/watch?v=6IqeBcjK_fk). Split out from the general pt-PT-x-acores node (which stays the general/other-islands node, Terceira as its gold reference) so the micro-variety can be modelled precisely without moving the Azorean gold. A DELTA over the broad pt-PT base. MODELLED FEATURES: (1) STRESSED /u/ -> [y] fronting (SM_U_FRONTING, plus the pinned shibboleth tu -> [ty]) — the 'French-sounding' micaelense trait, categorical here (fruta -> [ˈfrytɐ], azul -> [ɐˈzyl]). SOURCE UPGRADE: Silva (2008: 4) shows the fronting applies BEFORE a coda too (azul -> [ɐˈzyl], cruz -> [kryʃ]), so the earlier open-nucleus coda guard (SM_U_KEEP_BEFORE_CODA) is DROPPED for this leaf; the more conservative general pt-PT-x-acores node keeps it. (1b) FRONT-ROUNDED [ø] < the diphthongs ⟨oi⟩/⟨ou⟩ (graphemes oi/ou -> [ø]): oito -> [ˈøtu], noite -> [ˈnøtɨ], pouco -> [ˈpøku] — the second emblematic micaelense monophthong (Silva 2008: 4, [ø] corresponding to standard [ou/oi]). This diverges from the general acores node, which PRESERVES ⟨ou⟩ as the [ow] diphthong (Terceira). (2) INTERVOCALIC /l/ -> [ʎ] after /i/ (SM_L_PALATALISATION, quilo -> [ˈkiʎu], Filipa -> [fiˈʎipɐ]) — sourced from the overview + Madeira corroboration (see the rule note; the São Miguel deep-dive does not itself demonstrate it, flagged honestly). (3) [ʒ] PREVOCALIC EXTERNAL /s/-SANDHI (shared with the Algarve; see PT_FINAL_S_PREVOCALIC_VOICE). DELIBERATELY-INHERITED conservative value: (4) NO pre-palatal centralisation — São Miguel keeps the mid front vowel before a palatal (coelho -> [ˈkɔɛʎu]/'coêlho'), where Lisbon centralises to [ɐ] ('coâlho') and Madeira likewise has 'coâlho' [ɐ]; the São Miguel 'coêlho' vs the Madeiran 'coâlho' is the classic island-distinguishing minimal contrast (8-accents overview). Because São Miguel inherits pt-PT (which lacks the Lisbon LX_STRESSED_E_PREPALATAL rule), the mid vowel is kept automatically — no rule added. NOT MODELLED (documented, not faked): (a) the very closed o/u vowels and the general vocalic closing ('os o e os u fecha-se mais') are gradient and only the categorical /u/->[y] is realised. (b) The singular <ão> -> monophthong nasal [ɐ̃] (cão -> 'cã', ladrão -> 'ladrã') is explicitly VARIABLE in the source ('às vezes diz muito como ã') and a blanket override would wrongly hit the frequent monosyllable são -> [sɐ̃w]; left inherited. (c) The word-final -R deletion + accented preceding vowel in verbs (comer -> 'comê', passear -> 'passeá', acentua -> 'acentûa') is real and salient but cannot be gated to infinitives from orthography without also dropping /r/ in mar/cor/flor; left inherited. (d) 'non' for não, the heavy gerund preference and the Anglo-Azorean 'calafão' loan vocabulary are lexical/morphosyntactic, not phonological. (e) FINAL-UNSTRESSED-VOWEL ELISION (Silva 1998; oito -> [øt], not [ˈøtu]) and the TONIC CHAIN SHIFT (sete -> [sæt], avó -> [ɐˈvo], avô -> [ɐˈvu]; Silva 2008: 3) are documented but not modelled — the elision would need a general final-vowel deletion and the chain shift a full vowel-space rotation; both are left to a downstream engine and recorded in the primary-source gold. (f) The [ø] from ⟨o⟩ before [ʒ] (hoje -> [øʒ]) is NOT covered by the oi/ou grapheme override. Dark coda /l/ [ɫ] and Lisbon-type coda sibilants are inherited from the pt-PT base.",
   "quality": "research",
   "ancestors": [
     {
@@ -123,7 +116,17 @@
       "publisher": "Hispanic Review 16(1), 1-32, University of Pennsylvania Press",
       "url": "https://doi.org/10.2307/470527",
       "pages": "1-32",
-      "notes": "Field description of eastern-Azorean (São Miguel) pronunciation documenting the fronting of stressed /u/ to a front rounded [y] and the vocalic system of the eastern islands."
+      "notes": "Field description of eastern-Azorean (São Miguel) pronunciation documenting the fronting of stressed /u/ to a front rounded [y] and the vocalic system of the eastern islands. Its open-nucleus description of the fronting is superseded for this leaf by Silva (2008), who documents [y] before a coda too."
+    },
+    {
+      "id": "silva2008",
+      "author": "Silva, David J.",
+      "year": 2008,
+      "title": "The Persistence of Stereotyped Dialect Features among Portuguese-American Immigrants from São Miguel, Azores",
+      "publisher": "Journal of Portuguese Linguistics 7-1, 3-21",
+      "url": "https://pdfs.semanticscholar.org/af59/84a6a35d9d46413b424ddcd815e56815ac2e.pdf",
+      "pages": "3-21",
+      "notes": "Acoustic/phonetic account of micaelense. Page 4 list (1) gives the two emblematic front-rounded vowels with example words: [y] < stressed ⟨u⟩ (uva [ˈyvɐ], fruta [ˈfrytɐ], cruz [kryʃ] — before a coda, azul [ɐˈzyl]) and [ø] < the diphthongs ⟨oi⟩/⟨ou⟩ and ⟨o⟩ before [ʒ] (oito [øt], noite [nøt], pouco [pøk], hoje [øʒ]). The abstract and list (2) give the tonic chain shift (sete [sæt], avó [ɐˈvo], avô [ɐˈvu]) and ⟨ei⟩ monophthongisation (leite [leːt]). Grounds the graphemes oi/ou -> [ø] override and the removal of the coda guard on SM_U_FRONTING; the elision and chain shift are recorded as not-modelled gold."
     },
     {
       "id": "segura2013",
