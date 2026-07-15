@@ -174,5 +174,16 @@
     "pagination": "`page` records the printed folio shown in the book's running footer (the chapter runs pp. 197-212); the PDF page index is offset from it.",
     "notation": "arabicist-transliteration",
     "describes": "Maghrebi Arabic contact phonology, with Libyan (Tripoli / Benghazi) examples"
+  },
+  "tainecheikh2007": {
+    "authors": "Taine-Cheikh, C.",
+    "year": 2007,
+    "title": "Ḥassāniyya Arabic",
+    "venue": "In M. Eid, A. Elgibali, K. Versteegh, M. Woidich & A. Zaborski (eds.), Encyclopedia of Arabic Language and Linguistics, vol. 2 (Eg-Lan), 240-250. Leiden: Brill",
+    "url": "https://shs.hal.science/halshs-00563853",
+    "access": "open",
+    "pagination": "`page` records the page of the open-access HAL author manuscript (numbered 1-11 in its own running footer); the manuscript corresponds to EALL vol. 2 pp. 240-250, so manuscript page N maps to printed page 239+N. The phonology examples cited here stand on manuscript pp. 2-3 (EALL pp. 241-242).",
+    "notation": "arabicist-transliteration",
+    "describes": "Ḥassāniyya Arabic (Mauritania / Western Sahara), the Gǝbla reference variety"
   }
 }
