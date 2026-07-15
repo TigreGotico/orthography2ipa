@@ -1,134 +1,156 @@
 {
- "almbark2015": {
-  "authors": "Almbark, R. & Hellmuth, S.",
-  "year": 2015,
-  "title": "Acoustic analysis of the Syrian Arabic vowel system",
-  "venue": "Proceedings of ICPhS 2015, paper 0612, Glasgow",
-  "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf",
-  "access": "open",
-  "pagination": "The ICPhS 2015 proceedings paper carries no printed folio; `page` records the paper-internal page (1-5), which coincides with the PDF page index.",
-  "notation": "ipa",
-  "describes": "Damascene / Syrian Arabic (speakers from Damascus and coastal Syria)"
- },
- "jasim2020": {
-  "authors": "Jasim, M.",
-  "year": 2020,
-  "title": "Tafxi:m in the vowels of Muslawi Qəltu and Baghdadi Gilit dialects of Arabic",
-  "venue": "PhD thesis, Newcastle University",
-  "url": "https://theses.ncl.ac.uk/jspui/bitstream/10443/4899/1/Jasim%20M%202020.pdf",
-  "access": "open",
-  "pagination": "Printed folio is centred/right in the page footer; printed page = pdftotext page index − 23 (verified on the Abbreviations page and on body pages 17, 18, 37).",
-  "notation": "ipa",
-  "describes": "Baghdadi Gilit (Muslim Baghdad) and Muslawi Qəltu (Mosul)"
- },
- "fadda2016": {
-  "authors": "Fadda, H.",
-  "year": 2016,
-  "title": "Language Variation in Western Amman",
-  "venue": "MA thesis, Canada Institute of Linguistics",
-  "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
-  "access": "open",
-  "pagination": "Printed folio is in the page header and coincides with the PDF page index (verified on pages 15, 29, 30, 33).",
-  "notation": "ipa",
-  "describes": "Ammani Arabic (Jordanian/urban-Palestinian koine)"
- },
- "cotter2016": {
-  "authors": "Cotter, W.M.",
-  "year": 2016,
-  "title": "One Piece of the Puzzle: Notes on the Historic Interdental Fricatives /θ, ð, ðˤ/ in the Arabic Dialect of Gaza City",
-  "venue": "Journal of Arabic and Islamic Studies 16:149-162",
-  "url": "https://www.lancaster.ac.uk/jais/volume/docs/vol16/v16_05_cotter_149-162.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the running head (`Historic /θ, ð, ðˤ/ in Gaza Arabic  <n>`); the article runs 149-162.",
-  "notation": "arabicist-transliteration",
-  "describes": "Gaza City Arabic (urban Palestinian)"
- },
- "pompino2017": {
-  "authors": "Pompino-Marschall, B., Steriopolo, E. & Żygis, M.",
-  "year": 2017,
-  "title": "Ukrainian (Illustrations of the IPA)",
-  "venue": "Journal of the International Phonetic Association 47(3):349-357",
-  "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D20ECF62B57E4162670BD938A4B8EA33/S0025100316000372a.pdf/ukrainian.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the running head; the article runs 349-357. The word list is on printed page 351 (PDF page index 3).",
-  "notation": "ipa",
-  "describes": "Standard Ukrainian; the speaker was born in Bukovina and educated in Kyiv"
- },
- "yanushevskaya2015": {
-  "authors": "Yanushevskaya, I. & Bunčić, D.",
-  "year": 2015,
-  "title": "Russian (Illustrations of the IPA)",
-  "venue": "Journal of the International Phonetic Association 45(2):221-228",
-  "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/55589EC639ADEF1764B5ECD0B76970FA/S0025100314000395a.pdf/russian.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the running head; the article runs 221-228. The consonant word list is on printed page 222 (PDF page index 2).",
-  "notation": "ipa",
-  "describes": "Standard Russian (Moscow-type pronunciation)"
- },
- "martinezceldran2003": {
-  "authors": "Martínez-Celdrán, E., Fernández-Planas, A.M. & Carrera-Sabaté, J.",
-  "year": 2003,
-  "title": "Castilian Spanish (Illustrations of the IPA)",
-  "venue": "Journal of the International Phonetic Association 33(2):255-259",
-  "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/39B1C556856D62AF8FC53D3F22435750/S0025100303001373a.pdf/castilian-spanish.pdf",
-  "access": "open",
-  "pagination": "The article's FIRST page (consonants) carries no printed folio; it is 255, since the following page prints 256 and the article runs 255-259. PDF page index 1 = printed 255. The scan's text layer drops the IPA entirely, so the rows were transcribed from a render of the page.",
-  "notation": "ipa",
-  "describes": "Formal Castilian Spanish (central Spain), educated middle-aged speakers"
- },
- "coloma2018": {
-  "authors": "Coloma, G.",
-  "year": 2018,
-  "title": "Argentine Spanish (Illustrations of the IPA)",
-  "venue": "Journal of the International Phonetic Association 48(2):243-250",
-  "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2B2B77C73AC33BDC2BBC79F242ADC682/S0025100317000275a.pdf/div-class-title-argentine-spanish-div.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the running head; the word lists are on printed page 244 (PDF page index 2). Text-layer artifact: β extracts as 'B'; resolved against a render of the page.",
-  "notation": "ipa",
-  "describes": "Buenos Aires / River Plate Spanish"
- },
- "cruzferreira1995": {
-  "authors": "Cruz-Ferreira, M.",
-  "year": 1995,
-  "title": "European Portuguese (Illustrations of the IPA)",
-  "venue": "Journal of the International Phonetic Association 25(2):90-94",
-  "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/0A8156D240CCB941A73C4C0EC1672A19/S0025100300005223a.pdf/european_portuguese.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the running head; the article runs 90-94. The word lists are on printed page 91 (PDF page index 2). The PDF is a scan with an unreliable text layer — the rows were transcribed from a render of the page, not from pdftotext.",
-  "notation": "ipa",
-  "describes": "European Portuguese, Lisbon dialect (cited by the pt-PT and pt-PT-x-lisbon specs)"
- },
- "barbosa2004": {
-  "authors": "Barbosa, P.A. & Albano, E.C.",
-  "year": 2004,
-  "title": "Brazilian Portuguese (Illustrations of the IPA)",
-  "venue": "Journal of the International Phonetic Association 34(2):227-232",
-  "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/8EE69D52AE2D06C1EDA2841EA2E14FEC/S0025100304001756a.pdf/brazilian_portuguese.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the running head; the article runs 227-232. The consonant word list is on printed page 228 (PDF page index 2). The text layer mangles the IPA, so the rows were transcribed from a render of the page.",
-  "notation": "ipa",
-  "describes": "Brazilian Portuguese (the variety illustrated has dental affrication before [i]); cited by the pt-BR and pt-BR-x-sp specs"
- },
- "brissos2014": {
-  "authors": "Brissos, F.",
-  "year": 2014,
-  "title": "New insights into Portuguese central-southern dialects: understanding their present and past forms through acoustic data from stressed vowels",
-  "venue": "Journal of Portuguese Linguistics 13(1):65-116",
-  "url": "https://www.clul.ulisboa.pt/files/849/Brissos_2014_comprimido.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the running head (`66  Fernando Brissos` / `Portuguese central-southern dialects  67`).",
-  "notation": "ipa",
-  "describes": "Portuguese central-southern dialects: CI = the central-interior subdialect (Castelo Branco / Beira Baixa); SW = the southwestern subdialect (Baixo Alentejo / Alentejo littoral)"
- },
- "laufer1999": {
-  "authors": "Laufer, A.",
-  "year": 1999,
-  "title": "Hebrew",
-  "venue": "Handbook of the International Phonetic Association: A Guide to the Use of the International Phonetic Alphabet, Cambridge University Press, pp. 96-99 (Illustrations of the IPA; earlier version: Journal of the International Phonetic Association 20(2), 1990, 40-43)",
-  "url": "https://ia801006.us.archive.org/6/items/intonation-practice/Handbook_of_the_IPA.pdf",
-  "access": "open",
-  "pagination": "Printed folio in the Handbook running head; the Hebrew chapter is printed pages 96-99 (the linked Internet Archive scan of the full Handbook was the copy consulted; the Cambridge record of the 1990 JIPA version is in the venue field). Page numbers cited are the printed Handbook pages.",
-  "notation": "ipa",
-  "describes": "Modern Israeli Hebrew, Oriental and Non-Oriental pronunciations (two Israeli-born informants)"
- }
+  "almbark2015": {
+    "authors": "Almbark, R. & Hellmuth, S.",
+    "year": 2015,
+    "title": "Acoustic analysis of the Syrian Arabic vowel system",
+    "venue": "Proceedings of ICPhS 2015, paper 0612, Glasgow",
+    "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf",
+    "access": "open",
+    "pagination": "The ICPhS 2015 proceedings paper carries no printed folio; `page` records the paper-internal page (1-5), which coincides with the PDF page index.",
+    "notation": "ipa",
+    "describes": "Damascene / Syrian Arabic (speakers from Damascus and coastal Syria)"
+  },
+  "jasim2020": {
+    "authors": "Jasim, M.",
+    "year": 2020,
+    "title": "Tafxi:m in the vowels of Muslawi Qəltu and Baghdadi Gilit dialects of Arabic",
+    "venue": "PhD thesis, Newcastle University",
+    "url": "https://theses.ncl.ac.uk/jspui/bitstream/10443/4899/1/Jasim%20M%202020.pdf",
+    "access": "open",
+    "pagination": "Printed folio is centred/right in the page footer; printed page = pdftotext page index − 23 (verified on the Abbreviations page and on body pages 17, 18, 37).",
+    "notation": "ipa",
+    "describes": "Baghdadi Gilit (Muslim Baghdad) and Muslawi Qəltu (Mosul)"
+  },
+  "fadda2016": {
+    "authors": "Fadda, H.",
+    "year": 2016,
+    "title": "Language Variation in Western Amman",
+    "venue": "MA thesis, Canada Institute of Linguistics",
+    "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
+    "access": "open",
+    "pagination": "Printed folio is in the page header and coincides with the PDF page index (verified on pages 15, 29, 30, 33).",
+    "notation": "ipa",
+    "describes": "Ammani Arabic (Jordanian/urban-Palestinian koine)"
+  },
+  "cotter2016": {
+    "authors": "Cotter, W.M.",
+    "year": 2016,
+    "title": "One Piece of the Puzzle: Notes on the Historic Interdental Fricatives /θ, ð, ðˤ/ in the Arabic Dialect of Gaza City",
+    "venue": "Journal of Arabic and Islamic Studies 16:149-162",
+    "url": "https://www.lancaster.ac.uk/jais/volume/docs/vol16/v16_05_cotter_149-162.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head (`Historic /θ, ð, ðˤ/ in Gaza Arabic  <n>`); the article runs 149-162.",
+    "notation": "arabicist-transliteration",
+    "describes": "Gaza City Arabic (urban Palestinian)"
+  },
+  "pompino2017": {
+    "authors": "Pompino-Marschall, B., Steriopolo, E. & Żygis, M.",
+    "year": 2017,
+    "title": "Ukrainian (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 47(3):349-357",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D20ECF62B57E4162670BD938A4B8EA33/S0025100316000372a.pdf/ukrainian.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 349-357. The word list is on printed page 351 (PDF page index 3).",
+    "notation": "ipa",
+    "describes": "Standard Ukrainian; the speaker was born in Bukovina and educated in Kyiv"
+  },
+  "yanushevskaya2015": {
+    "authors": "Yanushevskaya, I. & Bunčić, D.",
+    "year": 2015,
+    "title": "Russian (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 45(2):221-228",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/55589EC639ADEF1764B5ECD0B76970FA/S0025100314000395a.pdf/russian.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 221-228. The consonant word list is on printed page 222 (PDF page index 2).",
+    "notation": "ipa",
+    "describes": "Standard Russian (Moscow-type pronunciation)"
+  },
+  "martinezceldran2003": {
+    "authors": "Martínez-Celdrán, E., Fernández-Planas, A.M. & Carrera-Sabaté, J.",
+    "year": 2003,
+    "title": "Castilian Spanish (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 33(2):255-259",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/39B1C556856D62AF8FC53D3F22435750/S0025100303001373a.pdf/castilian-spanish.pdf",
+    "access": "open",
+    "pagination": "The article's FIRST page (consonants) carries no printed folio; it is 255, since the following page prints 256 and the article runs 255-259. PDF page index 1 = printed 255. The scan's text layer drops the IPA entirely, so the rows were transcribed from a render of the page.",
+    "notation": "ipa",
+    "describes": "Formal Castilian Spanish (central Spain), educated middle-aged speakers"
+  },
+  "coloma2018": {
+    "authors": "Coloma, G.",
+    "year": 2018,
+    "title": "Argentine Spanish (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 48(2):243-250",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2B2B77C73AC33BDC2BBC79F242ADC682/S0025100317000275a.pdf/div-class-title-argentine-spanish-div.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the word lists are on printed page 244 (PDF page index 2). Text-layer artifact: β extracts as 'B'; resolved against a render of the page.",
+    "notation": "ipa",
+    "describes": "Buenos Aires / River Plate Spanish"
+  },
+  "cruzferreira1995": {
+    "authors": "Cruz-Ferreira, M.",
+    "year": 1995,
+    "title": "European Portuguese (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 25(2):90-94",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/0A8156D240CCB941A73C4C0EC1672A19/S0025100300005223a.pdf/european_portuguese.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 90-94. The word lists are on printed page 91 (PDF page index 2). The PDF is a scan with an unreliable text layer — the rows were transcribed from a render of the page, not from pdftotext.",
+    "notation": "ipa",
+    "describes": "European Portuguese, Lisbon dialect (cited by the pt-PT and pt-PT-x-lisbon specs)"
+  },
+  "barbosa2004": {
+    "authors": "Barbosa, P.A. & Albano, E.C.",
+    "year": 2004,
+    "title": "Brazilian Portuguese (Illustrations of the IPA)",
+    "venue": "Journal of the International Phonetic Association 34(2):227-232",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/8EE69D52AE2D06C1EDA2841EA2E14FEC/S0025100304001756a.pdf/brazilian_portuguese.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head; the article runs 227-232. The consonant word list is on printed page 228 (PDF page index 2). The text layer mangles the IPA, so the rows were transcribed from a render of the page.",
+    "notation": "ipa",
+    "describes": "Brazilian Portuguese (the variety illustrated has dental affrication before [i]); cited by the pt-BR and pt-BR-x-sp specs"
+  },
+  "brissos2014": {
+    "authors": "Brissos, F.",
+    "year": 2014,
+    "title": "New insights into Portuguese central-southern dialects: understanding their present and past forms through acoustic data from stressed vowels",
+    "venue": "Journal of Portuguese Linguistics 13(1):65-116",
+    "url": "https://www.clul.ulisboa.pt/files/849/Brissos_2014_comprimido.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the running head (`66  Fernando Brissos` / `Portuguese central-southern dialects  67`).",
+    "notation": "ipa",
+    "describes": "Portuguese central-southern dialects: CI = the central-interior subdialect (Castelo Branco / Beira Baixa); SW = the southwestern subdialect (Baixo Alentejo / Alentejo littoral)"
+  },
+  "laufer1999": {
+    "authors": "Laufer, A.",
+    "year": 1999,
+    "title": "Hebrew",
+    "venue": "Handbook of the International Phonetic Association: A Guide to the Use of the International Phonetic Alphabet, Cambridge University Press, pp. 96-99 (Illustrations of the IPA; earlier version: Journal of the International Phonetic Association 20(2), 1990, 40-43)",
+    "url": "https://ia801006.us.archive.org/6/items/intonation-practice/Handbook_of_the_IPA.pdf",
+    "access": "open",
+    "pagination": "Printed folio in the Handbook running head; the Hebrew chapter is printed pages 96-99 (the linked Internet Archive scan of the full Handbook was the copy consulted; the Cambridge record of the 1990 JIPA version is in the venue field). Page numbers cited are the printed Handbook pages.",
+    "notation": "ipa",
+    "describes": "Modern Israeli Hebrew, Oriental and Non-Oriental pronunciations (two Israeli-born informants)"
+  },
+  "owens2006": {
+    "authors": "Owens, Jonathan",
+    "year": 2006,
+    "title": "A Linguistic History of Arabic",
+    "venue": "Oxford University Press",
+    "url": "https://archive.org/stream/TheLinguisticHistoryOfArabic/Owens-Linguistic_History_of_Arabic_djvu.txt",
+    "access": "open",
+    "pagination": "Read from the archive.org full-text (djvu.txt) of the print book; `page` records the printed page number Owens cites in running text (verified for pp.13, 19, 25).",
+    "notation": "arabicist-transliteration",
+    "describes": "Nigerian Arabic (Shuwa), the West Sudanic / Lake Chad chain"
+  },
+  "prochazka2026": {
+    "authors": "Prochazka, Stephan",
+    "year": 2026,
+    "title": "The Low Vowel Insertion Rule After Gutturals (aka the Gahawa-Syndrome) in the Arabic Dialects",
+    "venue": "Journal of Semitic Studies LXXI/1",
+    "url": "https://academic.oup.com/jss/advance-article-pdf/doi/10.1093/jss/fgaf037/66148694/fgaf037.pdf",
+    "access": "open",
+    "pagination": "Open-access advance-article PDF; `page` records the printed folio shown in the article header (verified for pp.310, 318).",
+    "notation": "arabicist-transliteration",
+    "describes": "Gahawa syndrome across Arabic dialects; Nigerian/Lake Chad and Chadian data"
+  }
 }
