@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.22.0a1...7.0.0a1)
+
+**Breaking changes:**
+
+- feat\(ar\)!: sukūn-gated وَيْ/يَوْ graphemes on Levantine + Gulf grouping nodes [\#460](https://github.com/TigreGotico/orthography2ipa/pull/460) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.22.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.22.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.21.1a1...6.22.0a1)
@@ -456,10 +464,6 @@
 ## [3.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.0.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/2.0.0a1...3.0.0a1)
-
-**Breaking changes:**
-
-- feat!: script-agnostic vowel classification \(spec-derived, not a Latin letter list\) [\#316](https://github.com/TigreGotico/orthography2ipa/pull/316) ([JarbasAl](https://github.com/JarbasAl))
 
 **Merged pull requests:**
 
