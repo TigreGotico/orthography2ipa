@@ -232,6 +232,11 @@ def cmd_validate(args):
                     failures.append(f"{rid}: unknown feature tag {tag!r}")
                 elif not FEATURES[tag][1](r["raw"], r["ipa"]):
                     failures.append(f"{rid}: feature {tag!r} not verifiable in row")
+            spec = orthography2ipa.get(lect)
+            src_ids = {getattr(s, "id", None) for s in (getattr(spec, "sources", None) or ())}
+            for cid in re.findall(r"\b[a-z][a-z_-]*[0-9]{4}[a-z]*\b", r["notes"]):
+                if cid not in src_ids:
+                    failures.append(f"{rid}: notes cite {cid!r}, not in {lect} spec sources")
     print(f"validated {total} rows across {len(lects)} lects")
     if failures:
         print(f"\n{len(failures)} FAILURE(S):")
