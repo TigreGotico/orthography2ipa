@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.1a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.0.0a1...7.0.1a1)
+
+**Merged pull requests:**
+
+- fix: gold weːn rows use the وَيْن spelling post-monophthong fixes [\#462](https://github.com/TigreGotico/orthography2ipa/pull/462) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.0.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.22.0a1...7.0.0a1)
@@ -468,7 +476,6 @@
 **Merged pull requests:**
 
 - Release 3.0.0a1 [\#318](https://github.com/TigreGotico/orthography2ipa/pull/318) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Release 2.0.0a1 [\#317](https://github.com/TigreGotico/orthography2ipa/pull/317) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [2.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/2.0.0a1) (2026-07-12)
 
