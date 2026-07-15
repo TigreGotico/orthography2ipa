@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.15.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.14.0a1...6.15.0a1)
+
+**Merged pull requests:**
+
+- feat: imperative coverage row for every Arabic TTS gold lect [\#416](https://github.com/TigreGotico/orthography2ipa/pull/416) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.14.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.13.0a1...6.14.0a1)
@@ -547,7 +555,6 @@
 
 - Release 1.78.0a1 [\#283](https://github.com/TigreGotico/orthography2ipa/pull/283) ([github-actions[bot]](https://github.com/apps/github-actions))
 - feat: spelling divergence — how differently two orthographies write the same sounds [\#281](https://github.com/TigreGotico/orthography2ipa/pull/281) ([JarbasAl](https://github.com/JarbasAl))
-- feat: model language families as clade nodes and derive the family field [\#280](https://github.com/TigreGotico/orthography2ipa/pull/280) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.77.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.77.0a1) (2026-07-11)
 
