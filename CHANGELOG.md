@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.14.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.13.0a1...6.14.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar-TN\): Tunisian Arabic \(Tunis baseline\) to research tier [\#407](https://github.com/TigreGotico/orthography2ipa/pull/407) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [6.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.13.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.12.0a1...6.13.0a1)
@@ -460,10 +468,6 @@
 ## [1.85.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.85.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.84.0a1...1.85.0a1)
-
-**Merged pull requests:**
-
-- feat\(data\): grapheme maps for syllabary and alphabet scripts [\#279](https://github.com/TigreGotico/orthography2ipa/pull/279) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [1.84.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.84.0a1) (2026-07-12)
 
