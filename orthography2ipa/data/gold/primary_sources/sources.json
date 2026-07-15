@@ -229,5 +229,38 @@
     "pagination": "Printed folio in the running head; printed page = PDF page index − 15 (verified on printed pages 9, 12, 16-17, 273-274, 279-280). The PDF text layer is font-mangled, so every row was read from a render of the printed page, never from extracted text.",
     "notation": "arabicist-transliteration",
     "describes": "Cairene (Egyptian) and Ṣanʿānī (Yemeni) Arabic, in a comparative frame that also cites Moroccan (Lmnabha) forms"
+  },
+  "alhoody2019": {
+    "authors": "Alhoody, M.M.A.",
+    "year": 2019,
+    "title": "Phonological adaptation of English loanwords into Qassimi Arabic: an optimality-theoretic account",
+    "venue": "PhD thesis, Newcastle University",
+    "url": "https://theses.ncl.ac.uk/jspui/bitstream/10443/4662/1/Alhoody%20MMA%202019.pdf",
+    "access": "open",
+    "pagination": "`page` is the thesis printed page (bottom-centre folio); the phonology sketch is §3.1.2-3.1.4, printed pp.41-43.",
+    "notation": "ipa",
+    "describes": "Qassimi Arabic (Qaṣīm region: Buraydah, ʿUnayzah), a Najdi sub-dialect"
+  },
+  "watson2011": {
+    "authors": "Watson, J.C.E. & Al-Azraqi, M.",
+    "year": 2011,
+    "title": "Lateral fricatives and lateral emphatics in southern Saudi Arabia and Mehri",
+    "venue": "Proceedings of the Seminar for Arabian Studies 41: 425-432",
+    "url": "https://eprints.whiterose.ac.uk/id/eprint/75746/",
+    "access": "open",
+    "pagination": "`page` is the printed Proceedings folio (425-432); the White Rose PDF pages are offset by the front matter.",
+    "notation": "arabicist-transliteration",
+    "describes": "Saudi Tihāmah / ʿAsīr dialects (Rijāl Almaʿ, al-Rubūʿah, al-Ghayil, al-ʿIzzi) and Mehri; lateral(ized) reflexes of *ḍ and *ẓ"
+  },
+  "altaisan2022": {
+    "authors": "Al-Taisan, H.",
+    "year": 2022,
+    "title": "Velar, uvular and pharyngeal alternations in Hasawi Arabic: a Harmonic Serialism OT account",
+    "venue": "PhD thesis, University of Essex",
+    "url": "https://repository.essex.ac.uk/32571/2/Thesis%20HudaAlTaisan.pdf",
+    "access": "open",
+    "pagination": "`page` is the thesis printed folio; Example 2-1 is on printed p.17.",
+    "notation": "ipa",
+    "describes": "Hasawi Arabic (al-Hasa/al-Ahsāʾ, Eastern Province Saudi Arabia), a Gulf-type dialect"
   }
 }

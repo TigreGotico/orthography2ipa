@@ -1,0 +1,104 @@
+{
+  "code": "ar-SA-x-sharqiyya",
+  "name": "Eastern Saudi (Sharqiyya) Arabic",
+  "script": "Arabic",
+  "graphemes_base": "ar-x-gulf",
+  "graphemes": {
+    "ج": [
+      "j",
+      "dʒ"
+    ]
+  },
+  "allophones_base": "ar-x-gulf",
+  "allophones": {},
+  "parent": "ar-x-gulf",
+  "ancestors": [
+    {
+      "code": "ar-x-gulf",
+      "role": "parent",
+      "weight": 0.93,
+      "notes": "The Eastern Province (al-Sharqiyya) of Saudi Arabia — al-Hasa/al-Ahsāʾ and al-Qaṭīf — is dialectologically part of the Gulf (khalījī) area, not the Najdi or Hejazi ones."
+    }
+  ],
+  "notes": "Eastern Saudi / Sharqiyya Arabic (شرقاوي), the Arabic of the Eastern Province of Saudi Arabia: al-Hasa (al-Ahsāʾ, Hofuf) and al-Qaṭīf. It is a GULF (khalījī) dialect, patterning with Bahrain and the lower Gulf rather than with Najd or the Hejaz, so it parents to ar-x-gulf and inherits the Gulf reflexes: qaf ق → [ɡ] (with /q/ robustly retained in a large stratum of local and learned lexemes — the /q/~[ɡ] alternation is the central topic of Al-Taisan 2022 on Hasawi; Smeaton 1973; Prochazka 1988), kaf ك → [tʃ] affrication (allophone_rules GULF_K_AFFRICATION, inherited; Al-Taisan 2022; Aljumah 2008), interdentals ث /θ/ ذ /ð/ retained, and the Gulf /ɡ/ → [dʒ] affrication of the qaf reflex. DEFINING DELTA modeled here: jīm ج → [j] (yōd) as the primary reflex — the Baḥārna-type lenition of *ǧīm to a glide, characteristic of the sedentary Shiʿi communities that dominate al-Qaṭīf and are strongly present in al-Hasa (Johnstone 1967; Holes 2004 on Bahrani Arabic; Al-Taisan 2022 lists /dʒ/→[j] lenition as a shared Northern/Eastern Arabian feature). The affricate [dʒ] is kept as the secondary variant, the reflex of the Sunni/ʿujmān (Bedouin-descended) speakers of the same region — the Eastern Province is sect- and origin-split on this segment, so [j] is modeled as the majority-Qaṭīfi reflex, not a universal. NO ar-SA umbrella node: this leaf demonstrates why — Eastern Saudi is Gulf, southwestern Saudi is peninsular-archaic, Najd is Najdi and the Hejaz is Hejazi; there is no pan-Saudi phonology, so ar-SA stays unassigned (Prochazka 1988 surveys the country precisely as a patchwork). INPUT CONTRACT: transcribes orthography+harakat; short vowels surface only when the input is vocalised.",
+  "quality": "research",
+  "script_type": "abjad",
+  "sources": [
+    {
+      "id": "altaisan2022",
+      "author": "Al-Taisan, H.",
+      "year": 2022,
+      "title": "Velar, uvular and pharyngeal alternations in Hasawi Arabic: a Harmonic Serialism OT account (PhD thesis)",
+      "publisher": "University of Essex",
+      "url": "https://repository.essex.ac.uk/32571/2/Thesis%20HudaAlTaisan.pdf",
+      "pages": "20-30",
+      "notes": "Open-access. On Hasawi Arabic (al-Hasa, Eastern Province). Consonant inventory has both /q/ and /ɡ/ phonemic and the affricate /tʃ/; qaf → [ɡ] with /q/ retained in a large lexical stratum (Smeaton 1973; Prochazka 1988; Mstafawi 2006). Lists the affrication of /k/→[tʃ] and the lenition of /dʒ/→[j] (Johnstone 1967) as characteristic Eastern/Northern Arabian features. The thesis's core is the /q/~/ʁ/ uvular alternation, which is lexically conditioned and left unmodelled here."
+    },
+    {
+      "id": "holes2004",
+      "author": "Holes, C.",
+      "year": 2004,
+      "title": "Modern Arabic: Structures, Functions, and Varieties",
+      "publisher": "Georgetown University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Bahrani (Baḥārna) Arabic — the sedentary Shiʿi Gulf type of al-Qaṭīf and Bahrain — has [j]/[y] for *ǧīm and [ɡ] for *qāf; the ʿArab/Sunni type keeps the affricate. Basis for modeling ج → [j] as the majority Eastern Saudi reflex with [dʒ] as the variant."
+    },
+    {
+      "id": "johnstone1967",
+      "author": "Johnstone, T.M.",
+      "year": 1967,
+      "title": "Eastern Arabian Dialect Studies",
+      "publisher": "Oxford University Press (London Oriental Series 17)",
+      "url": null,
+      "pages": null,
+      "notes": "The foundational survey of the Gulf/Eastern Arabian dialects, including the *ǧīm → [j] lenition and *k → [tʃ] / *q-reflex → [dʒ] affrication that define the area."
+    },
+    {
+      "id": "prochazka1988",
+      "author": "Prochazka, T.",
+      "year": 1988,
+      "title": "Saudi Arabian Dialects",
+      "publisher": "Kegan Paul International (Library of Arabic Linguistics, Monograph 8)",
+      "url": null,
+      "pages": null,
+      "notes": "The first country-wide survey of Saudi dialects, north to south. Documents the Eastern Province (Hofuf/al-Hasa) as a Gulf-type area with qaf → [ɡ], and the country as a dialect patchwork with no single 'Saudi' phonology — grounds the decision to leave ar-SA unassigned."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bahrani_Arabic",
+    "https://en.wikipedia.org/wiki/Gulf_Arabic"
+  ],
+  "timespan": {
+    "start_year": 1400,
+    "end_year": null
+  },
+  "iso639_3": "afb",
+  "allophone_rules": [],
+  "location": {
+    "latitude": 25.3833,
+    "longitude": 49.5833,
+    "source": "manual",
+    "notes": "Al-Hofuf, al-Hasa, Eastern Province, Saudi Arabia."
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ],
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Quantity-sensitive Arabic stress, inherited from the Gulf parent; see ar-SA-x-najd for the cascade and input contract."
+  }
+}
