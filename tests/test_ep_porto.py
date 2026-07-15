@@ -4,17 +4,17 @@ Verifies the Cintra (1971) diagnostic features modelled as ``allophone_rules``
 deltas over the standard pt-PT parent:
 
   * Northern betacism  — /v/ ~ /b/ merger into [b] (Cintra feature 1).
-  * Tonic-closed-vowel diphthongisation — stressed close [e] -> [je],
-    close [o] -> [wo]/[wɔ] (Cintra's defining Porto marker, p.13), gated to
-    the CLOSE mid vowels: genuinely open tonic [ɛ]/[ɔ] must NOT diphthongise.
+  * Tonic-vowel diphthongisation — stressed close [e] -> [je], close
+    [o] -> [wo] (Cintra's defining Porto marker, p.13) AND, per Brissos
+    (2018) / Brissos & Rodrigues (2016, AVOC + ALEPG/ALE), the OPEN mids
+    [ɛ] -> [jɛ], [ɔ] -> [wɔ]: only the cardinal vowels stay stable.
   * Inheritance of the pt-PT base processes (dark coda /l/, coda-sibilant
     chiado) unchanged.
 
-The open/close selection of a spelling-unmarked stressed <e>/<o> is lexical
-and not predictable from orthography; the inherited pt-PT map defaults to the
-OPEN allophone, so words with an underlying close vowel that the base engine
-transcribes open (cedo, medo, Porto) are not reached by the diphthongisation
-rule — a documented engine limit, asserted here so it stays intentional.
+Widening to the open mids resolves the old pre-lexical limit: the open/close
+selection of a spelling-unmarked stressed <e>/<o> is lexical and not
+predictable from orthography, but whichever mid the base engine picks, the
+stressed nucleus now diphthongises (to [je]/[wo] or [jɛ]/[wɔ]).
 """
 from __future__ import annotations
 
@@ -68,21 +68,28 @@ class TestDiphthongisationFires:
         assert _bare(ENG.transcribe_word("ovo")).startswith("wo")
 
 
-class TestDiphthongisationGatedToClose:
-    """Must NOT fire on genuinely OPEN tonic vowels [ɛ]/[ɔ]."""
+class TestOpenMidDiphthongisation:
+    """The OPEN mids diphthongise too: [ɛ] -> [jɛ], [ɔ] -> [wɔ].
+
+    Brissos (2018, pp.196-197, 200-201; reporting Brissos & Rodrigues 2016,
+    AVOC + ALEPG/ALE) overturns the earlier close-mid-only view — NW tonic
+    diphthongisation reaches the open mids as well ('[ˈpi̯ɛ] pé', '[ˈtu̯ɔkɨ]
+    toque'), so only the cardinal vowels stay stable. Modelled as
+    PT_PORTO_DIPHTHONGISE_E_OPEN/_O_OPEN.
+    """
 
     def test_open_e_pe(self):
-        assert ENG.transcribe_word("pé") == "ˈpɛ"
+        assert ENG.transcribe_word("pé") == "ˈpjɛ"
 
     def test_open_e_cafe(self):
-        assert ENG.transcribe_word("café") == "kɐˈfɛ"
+        assert ENG.transcribe_word("café") == "kɐˈfjɛ"
 
     def test_open_o_avo(self):
-        # avó (grandmother), open ó -> [ɔ], no diphthong
-        assert ENG.transcribe_word("avó") == "ɐˈbɔ"
+        # avó (grandmother), open ó -> [ɔ] -> [wɔ]
+        assert ENG.transcribe_word("avó") == "ɐˈbwɔ"
 
     def test_open_o_so(self):
-        assert ENG.transcribe_word("só") == "ˈsɔ"
+        assert ENG.transcribe_word("só") == "ˈswɔ"
 
     def test_unstressed_close_e_not_diphthongised(self):
         # only the STRESSED nucleus diphthongises; pretonic/final stay reduced
@@ -90,26 +97,27 @@ class TestDiphthongisationGatedToClose:
         assert "je" not in _bare(out)
 
 
-class TestOpenCloseEngineLimit:
-    """Documented pre-lexical limit: words whose underlying vowel is close but
-    which the base pt-PT map transcribes OPEN escape the (correctly close-gated)
-    diphthongisation rule. Asserted so the limitation stays intentional, not a
-    silent regression."""
+class TestOpenMidResolvesTheOldLimit:
+    """Widening to the open mids RESOLVES the earlier pre-lexical mis-selection
+    limit: whichever mid the base engine picks for a spelling-unmarked stressed
+    <e>/<o>, it now diphthongises. The emblematic Porto -> [ˈpwɔɾtu] (base
+    mis-selects open [ɔ], but it now diphthongises, approaching the attested
+    close [ˈpu̯oɾtu]); cedo -> [ˈsjɛdu]."""
 
-    def test_porto_stays_open_monophthong(self):
-        # emblematic dialectal form is [ˈpwoɾtu]; the base engine yields the
-        # open monophthong because open/close is unpredictable from spelling.
-        assert ENG.transcribe_word("Porto") == "ˈpɔɾtu"
+    def test_porto_now_diphthongises(self):
+        assert ENG.transcribe_word("Porto") == "ˈpwɔɾtu"
 
-    def test_cedo_stays_open_monophthong(self):
-        assert ENG.transcribe_word("cedo") == "ˈsɛdu"
+    def test_cedo_now_diphthongises(self):
+        assert ENG.transcribe_word("cedo") == "ˈsjɛdu"
 
 
 # ─── Inheritance from pt-PT base ────────────────────────────────────────────
 
 class TestInheritsBase:
     def test_dark_coda_l_sol(self):
-        assert ENG.transcribe_word("sol") == "ˈsɔɫ"
+        # coda /l/ still velarises to [ɫ]; the stressed open [ɔ] now
+        # diphthongises to [wɔ] (open-mid NW diphthongisation, Brissos 2018).
+        assert ENG.transcribe_word("sol") == "ˈswɔɫ"
 
     def test_dark_coda_l_alto(self):
         assert "ɫ" in ENG.transcribe_word("alto")

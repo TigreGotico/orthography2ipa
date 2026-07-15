@@ -39,8 +39,9 @@ class TestStandardZ:
         assert G2P("pt-PT").transcribe("os amigos") == "ˈoz ɐˈmiɡuʃ"
 
     def test_porto_z(self):
-        # Northern [z]; v→b is the inherited Porto betacism
-        assert G2P("pt-PT-x-porto").transcribe("estás a ver") == "eˈʃtaz ˈɐ ˈbɛɾ"
+        # Northern [z]; v→b is the inherited Porto betacism; the stressed open
+        # [ɛ] of 'ver' now diphthongises to [jɛ] (Brissos 2018 NW open-mid).
+        assert G2P("pt-PT-x-porto").transcribe("estás a ver") == "eˈʃtaz ˈɐ ˈbjɛɾ"
 
     def test_lisbon_z_not_palatal(self):
         # Lisbon is standard [z], NOT [ʒ]
@@ -50,8 +51,12 @@ class TestStandardZ:
 
     def test_before_voiceless_consonant_stays_hush(self):
         # Before a VOICELESS consonant the coda /s/ keeps [ʃ] (no assimilation).
-        for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
+        for loc in ("pt-PT", "pt-PT-x-lisbon"):
             assert G2P(loc).transcribe("estás só") == "eˈʃtaʃ ˈsɔ"
+        # Porto keeps the coda [ʃ] too; its stressed open [ɔ] additionally
+        # diphthongises to [wɔ] (Brissos 2018 NW open-mid), which is orthogonal
+        # to the coda-sibilant point being tested here.
+        assert G2P("pt-PT-x-porto").transcribe("estás só") == "eˈʃtaʃ ˈswɔ"
 
     def test_before_voiced_consonant_voices_to_palatal(self):
         # Voicing assimilation: coda /s/ -> [ʒ] before a voiced consonant (PT_CODA_S_VOICING).

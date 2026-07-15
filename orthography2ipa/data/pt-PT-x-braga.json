@@ -43,7 +43,7 @@
       "surface": "je",
       "stress": "stressed",
       "syllable_position": "nucleus",
-      "notes": "Diphthongisation of the tonic CLOSE-mid front vowel [e] -> rising [je] (mês -> [ˈmjeʃ], ele -> [ˈjelɨ]), the diagnostic diphthongisation of the Baixo-Minho / Douro-Litoral zone (of which Braga, in the Minho, is part). Cintra (1971): 'a ditongação, tão caracterizadora, das vogais tónicas fechadas [e] em [je], [o] em [wo]'; Segura (2013) names diphthongisation of stressed vowels the characteristic trait of the north-western variety. NATIVE ATTESTATION: the 8-accents overview (Portuguese With Leo, https://www.youtube.com/watch?v=pitj0XxYO7I) records the Braga 'o quê' -> 'o quiê' (insertion of the [j] onglide: quê [ke] -> [kje]) and 'mieu' (meu). Gated to the CLOSE [e] only (genuinely open tonic [ɛ] does NOT diphthongise); same pre-lexical open/close LIMIT as pt-PT-x-porto — words whose standard value is close [e] but which the base engine transcribes [ɛ] (cedo, medo) escape the rule, which is deliberately not widened to [ɛ]."
+      "notes": "Diphthongisation of the tonic CLOSE-mid front vowel [e] -> rising [je] (mês -> [ˈmjeʃ], ele -> [ˈjelɨ]), the diagnostic diphthongisation of the Baixo-Minho / Douro-Litoral zone (of which Braga, in the Minho, is part). Cintra (1971): 'a ditongação, tão caracterizadora, das vogais tónicas fechadas [e] em [je], [o] em [wo]'; Segura (2013) names diphthongisation of stressed vowels the characteristic trait of the north-western variety. NATIVE ATTESTATION: the 8-accents overview (Portuguese With Leo, https://www.youtube.com/watch?v=pitj0XxYO7I) records the Braga 'o quê' -> 'o quiê' (insertion of the [j] onglide: quê [ke] -> [kje]) and 'mieu' (meu). Gated to the CLOSE [e] only (genuinely open tonic [ɛ] does NOT diphthongise); same pre-lexical open/close LIMIT as pt-PT-x-porto — words whose standard value is close [e] but which the base engine transcribes [ɛ] (cedo, medo) escape the rule, which is deliberately not widened to [ɛ]. Brissos (2018; Brissos & Rodrigues 2016) shows the OPEN mids diphthongize too — see the companion *_DIPHTHONGISE_E_OPEN/_O_OPEN rules; the earlier 'genuinely open [ɛ]/[ɔ] does NOT diphthongise' caution is superseded by that stronger acoustic source."
     },
     {
       "id": "BRA_DIPHTHONGISE_O",
@@ -53,10 +53,30 @@
       "surface": "wo",
       "stress": "stressed",
       "syllable_position": "nucleus",
-      "notes": "Diphthongisation of the tonic CLOSE-mid back vowel [o] -> rising [wo] (avô -> [ɐˈbwo], pôr -> [ˈpwoɾ]), the back-vowel counterpart of BRA_DIPHTHONGISE_E in the same Cintra (1971) Baixo-Minho passage; Segura (2013). Gated to CLOSE [o]; genuinely open tonic [ɔ] does not diphthongise. Same pre-lexical open/close LIMIT as pt-PT-x-porto."
+      "notes": "Diphthongisation of the tonic CLOSE-mid back vowel [o] -> rising [wo] (avô -> [ɐˈbwo], pôr -> [ˈpwoɾ]), the back-vowel counterpart of BRA_DIPHTHONGISE_E in the same Cintra (1971) Baixo-Minho passage; Segura (2013). Gated to CLOSE [o]; genuinely open tonic [ɔ] does not diphthongise. Same pre-lexical open/close LIMIT as pt-PT-x-porto. Brissos (2018; Brissos & Rodrigues 2016) shows the OPEN mids diphthongize too — see the companion *_DIPHTHONGISE_E_OPEN/_O_OPEN rules; the earlier 'genuinely open [ɛ]/[ɔ] does NOT diphthongise' caution is superseded by that stronger acoustic source."
+    },
+    {
+      "id": "BRA_DIPHTHONGISE_E_OPEN",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "jɛ",
+      "stress": "stressed",
+      "syllable_position": "nucleus",
+      "notes": "Diphthongisation of the tonic OPEN-mid front vowel: stressed open [ɛ] -> rising [jɛ] (pé -> [ˈpjɛ], café -> [kɐˈfjɛ]). Brissos (2018, pp.196-197, 200-201; reporting Brissos & Rodrigues 2016, AVOC + ALEPG/ALE) overturns the earlier close-mid-only view: NW diphthongization applies to the open mids too ('[ˈpi̯ɛ] pé'), so that only the cardinal vowels stay phonologically stable. This also RESOLVES the open/close pre-lexical mis-selection that the close-only DIPHTHONGISE_E documented as a limit — whichever mid the base engine selects for a spelling-unmarked stressed <e>, it now diphthongizes (to [je] or [jɛ]). Restricted to the stressed nucleus. NOTES-ONLY (not modelled): the co-existing toward-central subtype RD2 ([ɛɐ̯]) and the marginal /i/->[ei̯]."
+    },
+    {
+      "id": "BRA_DIPHTHONGISE_O_OPEN",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "wɔ",
+      "stress": "stressed",
+      "syllable_position": "nucleus",
+      "notes": "Diphthongisation of the tonic OPEN-mid back vowel: stressed open [ɔ] -> rising [wɔ] (toque -> [ˈtwɔkɨ], só -> [ˈswɔ]; and the emblematic Porto, whose base-engine open [ɔ] now diphthongizes to [ˈpwɔɾtu], approaching the attested close [ˈpu̯oɾtu]). Brissos (2018, pp.196-197, 200-201; Brissos & Rodrigues 2016) — open mids diphthongize in the NW. Restricted to the stressed nucleus. NOTES-ONLY (not modelled): the co-existing toward-central subtype RD2 ([ɔɐ̯]) and the marginal /i/->[ei̯]."
     }
   ],
-  "notes": "Bracarense (Braga) European Portuguese — a Northern (Minho) variety of the Cintra Baixo-Minho / Douro-Litoral zone, described natively as HEAVIER / more strongly Northern than Porto (Portuguese With Leo, 'Sotaque e expressões de Braga', native-speaker source, https://www.youtube.com/watch?v=xaen3F8256M, and the 8-accents overview https://www.youtube.com/watch?v=pitj0XxYO7I). A DELTA spec over the broad pt-PT base; it inherits the whole standard EP system (unstressed vowel reduction, dark coda /l/, coda-sibilant chiado, sandhi) and declares only the Northern deltas. MODELLED FEATURES: (1) BETACISM — /v/~/b/ merge in /b/ (~[β]) (allophone rule BRA_BETACISM), attested more categorically than Porto's variable merger: Miguel 'em Braga vai-me sair naturalmente trocar o V pelo B'. (2) TONIC-CLOSE-VOWEL DIPHTHONGISATION — [e]->[je], [o]->[wo] (BRA_DIPHTHONGISE_E/_O), the Cintra Baixo-Minho marker, natively attested via 'quiê' (quê) and 'mieu' (meu). (3) DIPHTHONG PRESERVATION — <ou>->[ow] (Miguel: 'tu dizes OU, dizes vOU ou bOU') and <ei>->[ej] kept where Lisbon monophthongises/lowers ([o], [ɐj]) (inherited-map grapheme deltas). NOT MODELLED (documented, not faked): (a) the northern 'vogais mais abertas' / prosodic lengthening for emphasis (Miguel: 'abres mais o A em cantÁdo ... prolongar algumas sílabas quando queremos dar uma ênfase especial') and the 'mais musical / mais cantado' cadence are gradient prosodic traits, not segmental rules. (b) The word-final paragogic /r/ release in -ar verbs (Miguel: 'vocês dizem tipo Faláre, gostarE ... a meio caminho entre o ehrr mais inglês e o ere mais certinho') is variable ('já não foi tanto') and hard to gate to infinitives orthographically; left inherited. (c) The 'beim' (bem) realisation is nasal-diphthong detail left to a downstream engine. (d) 'Vós ides / vinde / ide' is a morphosyntactic, not phonological, feature. LIMIT (shared with pt-PT-x-porto): the diphthongisation rules are gated to CLOSE mid vowels; because open/close for spelling-unmarked stressed <e>/<o> is lexical and the inherited pt-PT map defaults to the OPEN allophone, some underlying-close words (cedo, medo) escape diphthongisation — widening to the open vowels would wrongly diphthongise genuinely open tonic vowels (café, avó) and is rejected. The apico-alveolar coda sibilant (Cintra's primary North/South isogloss) is an articulatory distinction not simulable at the phoneme/orthography level.",
+  "notes": "Bracarense (Braga) European Portuguese — a Northern (Minho) variety of the Cintra Baixo-Minho / Douro-Litoral zone, described natively as HEAVIER / more strongly Northern than Porto (Portuguese With Leo, 'Sotaque e expressões de Braga', native-speaker source, https://www.youtube.com/watch?v=xaen3F8256M, and the 8-accents overview https://www.youtube.com/watch?v=pitj0XxYO7I). A DELTA spec over the broad pt-PT base; it inherits the whole standard EP system (unstressed vowel reduction, dark coda /l/, coda-sibilant chiado, sandhi) and declares only the Northern deltas. MODELLED FEATURES: (1) BETACISM — /v/~/b/ merge in /b/ (~[β]) (allophone rule BRA_BETACISM), attested more categorically than Porto's variable merger: Miguel 'em Braga vai-me sair naturalmente trocar o V pelo B'. (2) TONIC-CLOSE-VOWEL DIPHTHONGISATION — [e]->[je], [o]->[wo] (BRA_DIPHTHONGISE_E/_O), the Cintra Baixo-Minho marker, natively attested via 'quiê' (quê) and 'mieu' (meu). (3) DIPHTHONG PRESERVATION — <ou>->[ow] (Miguel: 'tu dizes OU, dizes vOU ou bOU') and <ei>->[ej] kept where Lisbon monophthongises/lowers ([o], [ɐj]) (inherited-map grapheme deltas). NOT MODELLED (documented, not faked): (a) the northern 'vogais mais abertas' / prosodic lengthening for emphasis (Miguel: 'abres mais o A em cantÁdo ... prolongar algumas sílabas quando queremos dar uma ênfase especial') and the 'mais musical / mais cantado' cadence are gradient prosodic traits, not segmental rules. (b) The word-final paragogic /r/ release in -ar verbs (Miguel: 'vocês dizem tipo Faláre, gostarE ... a meio caminho entre o ehrr mais inglês e o ere mais certinho') is variable ('já não foi tanto') and hard to gate to infinitives orthographically; left inherited. (c) The 'beim' (bem) realisation is nasal-diphthong detail left to a downstream engine. (d) 'Vós ides / vinde / ide' is a morphosyntactic, not phonological, feature. LIMIT (shared with pt-PT-x-porto): the diphthongisation rules are gated to CLOSE mid vowels; because open/close for spelling-unmarked stressed <e>/<o> is lexical and the inherited pt-PT map defaults to the OPEN allophone, some underlying-close words (cedo, medo) escape diphthongisation — widening to the open vowels would wrongly diphthongise genuinely open tonic vowels (café, avó) and is rejected. The apico-alveolar coda sibilant (Cintra's primary North/South isogloss) is an articulatory distinction not simulable at the phoneme/orthography level. ACOUSTIC UPDATE (Brissos 2018; Brissos & Rodrigues 2016): the OPEN mids diphthongize too ([ɛ]->[jɛ], [ɔ]->[wɔ]); modelled as BRA_DIPHTHONGISE_E_OPEN/_O_OPEN. RD2 (toward-central) and the marginal /i/->[ei̯] left to notes.",
   "quality": "research",
   "ancestors": [
     {
@@ -117,6 +137,26 @@
       "url": null,
       "pages": null,
       "notes": "Reference EP phonology for the inherited base processes (unstressed vowel reduction, dark coda /l/, coda sibilants) that Braga inherits unchanged from pt-PT."
+    },
+    {
+      "id": "brissos2018",
+      "author": "Brissos, Fernando",
+      "year": 2018,
+      "title": "Proposta de reformulação da caracterização dialetal do noroeste português",
+      "publisher": "Estudos de Lingüística Galega, Volume especial I: 193-208",
+      "url": "https://revistas.usc.gal/index.php/elg/article/view/3560",
+      "pages": "193-208",
+      "notes": "Reformulates the diphthongizing 'variedade do noroeste' (Cintra's Baixo-Minho / Douro-Litoral), reporting AVOC + ALEPG/ALE data largely from Brissos & Rodrigues (2016). Central finding: tonic-vowel diphthongization is NOT limited to the CLOSE mids [e o] — it applies to the OPEN mids [ɛ ɔ] too ('[ˈpi̯ɛ] pé', '[ˈtu̯ɔkɨ] toque', pp.196-197, 200-201), so only the cardinal vowels stay phonologically stable; it also affects, marginally and contextually, the high front /i/ → [ei̯] ('[mɐˈkei̯ɐ] maquia', ~19% of tokens, pre-pause/vowel only, p.199). Two co-existing diphthong subtypes: within-axis (RD1: [i̯e i̯ɛ], [u̯o u̯ɔ]) and toward-central (RD2: [eɐ̯ ɛɐ̯], [oɐ̯ ɔɐ̯], pp.200-201). Grounds widening the diphthongization rules to the open mids; RD2 and the /i/-diphthong are documented but left unmodelled (co-existing variant / contextual)."
+    },
+    {
+      "id": "brissos_rodrigues2016",
+      "author": "Brissos, Fernando & Celeste Rodrigues",
+      "year": 2016,
+      "title": "Vocalismo acentuado do Noroeste português — descrição acústica, variação dialectal e representação fonológica",
+      "publisher": "Revue Romane 51(1):1-35",
+      "url": "https://doi.org/10.1075/rro.51.1.01bri",
+      "pages": "1-35",
+      "notes": "The primary acoustic study behind Brissos (2018): AVOC formant data plus the dense ALEPG/ALE NW network. Argues the NW vowel systems require revising the close-mid-only diphthongization picture and that seven distinct vowel systems are needed to represent the continental dialects. Not open access; its examples and page-cited quadros are used here via the open-access Brissos (2018), which reproduces them."
     }
   ],
   "wikipedia": [
