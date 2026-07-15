@@ -63,9 +63,11 @@ not to certify a language on its own.
 | Alhoody (2019), Newcastle PhD | Qassimi (Qaṣīm) | `ar-SA-x-qassim` | 12 |
 | Watson & Al-Azraqi (2011), PSAS 41 | Rijāl Almaʿ (SW Saudi Tihāmah) | `ar-SA-x-rijal-alma` | 3 |
 | Al-Taisan (2022), Essex PhD | Hasawi (al-Hasa, Eastern Province) | `ar-SA-x-sharqiyya` | 2 |
-| **total** | | | **423** |
+| Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro), ALUSTP standardization article | `cri` | 13 |
+| Baxter (1988), Pacific Linguistics B-95 | Kristang (Malacca Creole Portuguese) | `mcm` | 33 |
+| **total** | | | **469** |
 
-Broad `/…/`: 336. Narrow `[…]`: 87. `confidence`: 262 high, 147 medium, 14 low.
+Broad `/…/`: 338. Narrow `[…]`: 131. `confidence`: 287 high, 168 medium, 14 low.
 
 ## Notation-normalization decisions
 

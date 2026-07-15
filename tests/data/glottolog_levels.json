@@ -243,6 +243,10 @@
     "name": "Bhojpuri",
     "level": "language"
   },
+  "bini1246": {
+    "name": "Bini",
+    "level": "language"
+  },
   "bisc1236": {
     "name": "Biscayan",
     "level": "dialect"
@@ -987,6 +991,10 @@
     "name": "Koreanic",
     "level": "family"
   },
+  "korl1238": {
+    "name": "Korlai Portuguese",
+    "level": "language"
+  },
   "kota1280": {
     "name": "Kotava",
     "level": "language"
@@ -1109,6 +1117,10 @@
   },
   "mala1464": {
     "name": "Malayalam",
+    "level": "language"
+  },
+  "mala1533": {
+    "name": "Malacca-Batavia Portuguese Creole",
     "level": "language"
   },
   "mala1537": {
@@ -1655,6 +1667,10 @@
     "name": "Santali",
     "level": "language"
   },
+  "saot1239": {
+    "name": "Sãotomense",
+    "level": "language"
+  },
   "sard1257": {
     "name": "Southern Romance",
     "level": "family"
@@ -1773,6 +1789,10 @@
   },
   "sran1240": {
     "name": "Sranan Tongo",
+    "level": "language"
+  },
+  "sril1245": {
+    "name": "Sri Lanka Malay",
     "level": "language"
   },
   "stan1289": {
