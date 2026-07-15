@@ -2,23 +2,7 @@
   "code": "ms",
   "name": "Malay",
   "script": "Latin",
-  "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ]
-  },
+  "graphemes": {},
   "allophones": {
     "a": [
       "a"
@@ -36,7 +20,7 @@
       "u"
     ]
   },
-  "quality": "stub",
+  "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "msa",
   "sources": [
@@ -136,5 +120,7 @@
     "longitude": 101.699,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Standard Malay."
-  }
+  },
+  "graphemes_base": "id",
+  "notes": "Standard Malay (Bahasa Melayu) in the Rumi (Latin) script. Malay and Indonesian share the orthography unified by the 1972 spelling reform (the Malaysian Ejaan Rumi Baharu and the Indonesian EYD were harmonised to a single Latin system), so the grapheme->phoneme correspondences are inherited from `id`: ⟨c⟩=/tʃ/, ⟨j⟩=/dʒ/, ⟨ng⟩=/ŋ/, ⟨ny⟩=/ɲ/, ⟨sy⟩=/ʃ/, ⟨kh⟩=/x/, digraph vowels ⟨ai au oi⟩. Source: Asmah Haji Omar, *The Phonological Diversity of the Malay Dialects* (1977); the shared reformed orthography is documented at the Wikipedia 'Malay orthography' and 'Indonesian language' articles."
 }

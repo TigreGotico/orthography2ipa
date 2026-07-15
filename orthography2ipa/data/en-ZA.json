@@ -71,5 +71,6 @@
     "longitude": 24,
     "source": "wikidata",
     "notes": "South Africa's representative point. A national variety: weak. [Wikidata Q258 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

@@ -88,5 +88,6 @@
     "longitude": -5,
     "source": "wikidata",
     "notes": "Scotland's representative point. A country-wide variety: weak. [Wikidata Q22 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

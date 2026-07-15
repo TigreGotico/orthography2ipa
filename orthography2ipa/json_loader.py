@@ -470,6 +470,8 @@ def load_json_spec(code: str) -> LanguageSpec:
             for stage, names in (raw.get("plugins", {}) or {}).items()
         },
         optional_marks=tuple(raw.get("optional_marks", ()) or ()),
+        fold_diacritics=tuple(raw.get("fold_diacritics", ()) or ()),
+        collapse_geminates=bool(raw.get("collapse_geminates", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),
         wikidata_qid=raw.get("wikidata_qid"),

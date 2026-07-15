@@ -967,6 +967,8 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     # plain dict merge is what "same, plus my overrides" means here.
     "plugins": InheritanceMode.OWN_ONLY,
     "optional_marks": InheritanceMode.OWN_ONLY,
+    "fold_diacritics": InheritanceMode.OWN_ONLY,
+    "collapse_geminates": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -1140,6 +1142,34 @@ class LanguageSpec:
     refinement, not a decision. It must reach the same answer by better means, and
     the conformance kit fails it if it does not. See
     :mod:`orthography2ipa.plugins`."""
+
+    collapse_geminates: bool = False
+    """Collapse a doubled consonant letter's phonemes to one.
+
+    English orthographic doubling is not gemination: ⟨tt⟩ in *butter*, ⟨nn⟩ in
+    *running*, ⟨pp⟩ in *happy* each spell a SINGLE consonant (the doubling marks
+    the preceding vowel, historically). Without this the engine reads two, and
+    *summer* comes out /sʌmmə/ for /sʌmə/. A language that CONTRASTS gemination —
+    Italian, Finnish, Arabic — must leave this off; it is inherited, so a family
+    turns it on once. Cruttenden (2014); Carney, *A Survey of English Spelling*
+    (1994)."""
+
+    fold_diacritics: Tuple[str, ...] = ()
+    """Combining marks stripped from the input before it is read — a broad
+    transcription that does not encode them.
+
+    Some scripts write a diacritic that a broad transcription leaves out: the
+    Ancient Greek pitch accents (acute, grave, perispomeni) and the length
+    marks (macron, breve) ride on a vowel letter and are not segments. Without
+    this the accented letter ⟨ό⟩ is a character the grapheme table has never
+    seen — an ``UNKNOWN`` token — and the vowel under it is dropped, so ⟨λόγος⟩
+    reads ``lɡos``.
+
+    Each entry is a single combining codepoint. The input is decomposed, the
+    listed marks removed, and recomposed, before tokenising — so ⟨ό⟩ becomes
+    ⟨ο⟩ and reads as the vowel it is. This is for a mark that carries no segment
+    of its own; a mark that *is* a segment (the Hebrew niqqud, a tone letter the
+    language contrasts) belongs in the grapheme table, not here."""
 
     optional_marks: Tuple[str, ...] = ()
     """The diacritics this orthography habitually **omits** — the Arabic
