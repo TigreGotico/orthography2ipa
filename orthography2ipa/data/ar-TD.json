@@ -137,6 +137,12 @@
     "وِالظظ": [
       "wiðˤðˤ",
       "widˤdˤ"
+    ],
+    "وَيْ": [
+      "weː"
+    ],
+    "يَوْ": [
+      "joː"
     ]
   },
   "allophones_base": "ar-x-mashriqi",
@@ -186,6 +192,27 @@
     ]
   },
   "allophone_rules": [
+    {
+      "id": "TD_MONO_AW",
+      "phonemes": [
+        "aw"
+      ],
+      "surface": "oː",
+      "notes": "Urban N'Djamena monophthongization of /aw/ → [oː] (Kaye 1976; Jullien de Pommerol 1999): يَوْم *yawm > joːm 'day', ثَوْب *θawb > θoːb 'garment', نِدَوْر nidawr > nidoːr 'I look for'. This models the URBAN (sedentary N'Djamena) mainline that the arbitrated ar-TD gold selects for every /aw/ token; the word-initial ⟨يَوْ⟩ spelling is handled by an explicit grapheme because the onset digraph يَ claims the fatha before an /aw/ atom can form. THE BEDOUIN RETENTION IS PRESERVED for /aj/: Owens (1993) documents the diphthong-retaining Bedouin West Sudanic type (bajt, majʃ...), and the arbitrated gold accordingly keeps medial /aj/ as [aj] (بَيْت bajt, مشَيْت maʃajt, اشترَيْت ...rajt) — so NO general /aj/→eː rule is applied; only word-initial ⟨وَيْ⟩ monophthongizes (وَيْن → weːn), which the gold also selects. DELTA documented against the gold: the pronominal -aykum (علَيْكُم) is monophthongized to [eː] in the N'Djamena arbitration but retained here as [aj] on the same Bedouin-retention grounds — an honest under-application, since -aykum is not orthographically separable from the medial /aj/ that is retained. This dual modelling (urban /aw/ + word-initial /aj/ monophthongization as the mainline, Bedouin medial /aj/ retention documented and emitted) is the honest reconciliation the #459 discussion left open for the Chadian node."
+    },
+    {
+      "id": "AR_TD_GAHAWA_H_GLIDE",
+      "phonemes": [
+        "h"
+      ],
+      "surface": "ha",
+      "preceded_by": "vowel",
+      "followed_by_phoneme": [
+        "w",
+        "j"
+      ],
+      "notes": "Gahawa syndrome on the voiceless glottal /h/ (ه, a guttural for this rule) in the MEDIAL environment, the eponymous case: قَهْوَة /ɡahwa/ → [ɡahawa] 'coffee' (Jullien de Pommerol 1999; Owens 1993/2006; surveyed in Prochazka 2026). This CORRECTS the word-final-only scoping of AR_TD_GAHAWA_H/AIN/KH (Prochazka's type 2a), which under-applied by never inserting the echo vowel word-medially, so the canonical gahwa→gahawa was missed. The medial extension is scoped to a FOLLOWING GLIDE (/w j/): that is where the echo vowel surfaces in the gold (ɡa-ha-wa), and it keeps the rule off the medial guttural+obstruent clusters the same gold RETAINS — taʕbaːn (ʕ+b), ʔaxdˤar (x+d), ʔahliː (h+l), raħmat/jaħfɑðˤak (ħ+m, ħ+f) — preserving the taʕbaːn protection intact. /h/ was also absent from the inherited {ħ ʕ x} set, so this is the first gahawa rule to cover the glottal."
+    },
     {
       "id": "AR_TD_GAHAWA_H",
       "phonemes": [

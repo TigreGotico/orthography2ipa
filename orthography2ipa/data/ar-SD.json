@@ -2,6 +2,10 @@
   "code": "ar-SD",
   "name": "Sudanese Arabic",
   "script": "Arabic",
+  "word_exceptions": {
+    "كِيفَك": "keːfak",
+    "التتِلِفُون": "ttilifoːn"
+  },
   "graphemes_base": "ar-x-mashriqi",
   "graphemes": {
     "ج": [
@@ -98,6 +102,12 @@
     "وِالذذ": [
       "widd",
       "wizz"
+    ],
+    "وَيْ": [
+      "weː"
+    ],
+    "يَوْ": [
+      "joː"
     ]
   },
   "allophones_base": "ar-x-mashriqi",
@@ -126,6 +136,24 @@
       "dˤ"
     ]
   },
+  "allophone_rules": [
+    {
+      "id": "SD_MONO_AY",
+      "phonemes": [
+        "aj"
+      ],
+      "surface": "eː",
+      "notes": "Khartoum/central-Sudan monophthongization (Dickins 2007, Sudanese Arabic: Phonematics and Syllable Structure): the Classical diphthong /aj/ is realised [eː] in the sedentary Khartoum koine — بَيْت *bayt > beːt 'house', وَيْن *wayn > weːn 'where', شرَيْت > ʃreːt 'I bought'. This mirrors the sibling sedentary koines (Libyan Tripoli LY_MONO_AY, Gulf, Qassimi) and follows the #459 pattern exactly: the rule fires on the general /aj/ atom, while the word-initial ⟨وَيْ⟩/⟨يَوْ⟩ spellings are handled by explicit graphemes because the onset digraphs وَ/يَ claim the fatha before an /aj/ atom can form (وَيْن → weːn). It does not fire on geminate glides (شَوّية → ʃawwijja, kept, ⟨-ايّ-⟩ is a long vowel + glide, not an /aj/ atom). DELTA/VARIATION documented against the arbitrated gold: the grammatical dual/pronominal diphthongs -ayn (ألفَيْن alfajn 'two thousand'), -ayh (جنيه ɟinajh) and -aykum (علَيْكُم ʕalajkum) are retained as [aj] in the Khartoum arbitration; that morphologically-conditioned retention is not orthographically separable from the lexical /aj/ that monophthongizes (both are ⟨-َيْ-⟩), so those items surface as [eː] here — a known over-application, cited as the honest cost of the categorical rule."
+    },
+    {
+      "id": "SD_MONO_AW",
+      "phonemes": [
+        "aw"
+      ],
+      "surface": "oː",
+      "notes": "Khartoum/central-Sudan monophthongization (Dickins 2007): the Classical diphthong /aw/ is realised [oː] in the sedentary Khartoum koine — لَوْ *law > loː 'if', يَوْم *yawm > joːm 'day'. Sibling of LY_MONO_AW; fires on the general /aw/ atom, with the word-initial ⟨يَوْ⟩ spelling handled by an explicit grapheme. Does not fire on a geminate glide (جَوّ → ɟaww) or a long vowel + glide."
+    }
+  ],
   "parent": "ar-x-mashriqi",
   "ancestors": [
     {
