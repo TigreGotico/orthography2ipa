@@ -196,10 +196,21 @@ def cmd_draft(args):
         w.writerow([f"{lect}-{i:03d}", diac, raw, ipa, "", feats, note])
 
 
+# A source id as written in the spec `sources`: lowercase author + year, e.g.
+# ``watson2002``, ``badawihinds1986`` (optionally a disambiguating letter).
+CITE_ID = r"\b[a-z][a-z_-]*[0-9]{4}[a-z]*\b"
+# A free-text author-year citation the id form is meant to replace, e.g.
+# ``Watson 2002``, ``Badawi & Hinds 1986``. These escape the id regex (leading
+# capital) and must be REJECTED so an unresolvable citation can't pass as prose.
+FREE_TEXT_CITE = re.compile(
+    r"\b[A-Z][a-zA-Z]+(?:\s*(?:&|and|,)\s*[A-Z][a-zA-Z]+)*\s+(?:18|19|20)[0-9]{2}[a-z]?\b")
+
+
 def cmd_validate(args):
     lects = args.lects or LECTS
     import orthography2ipa
     failures = []
+    uncited = []
     total = 0
     for lect in lects:
         rows = _load(lect)
@@ -237,10 +248,28 @@ def cmd_validate(args):
                     failures.append(f"{rid}: feature {tag!r} not verifiable in row")
             spec = orthography2ipa.get(lect)
             src_ids = {getattr(s, "id", None) for s in (getattr(spec, "sources", None) or ())}
-            for cid in re.findall(r"\b[a-z][a-z_-]*[0-9]{4}[a-z]*\b", r["notes"]):
+            notes = r["notes"]
+            # free-text author-year citations must never pass silently — the
+            # gold cites by resolvable source id, not by prose author name
+            for ft in FREE_TEXT_CITE.findall(notes):
+                failures.append(
+                    f"{rid}: free-text citation {ft!r} in notes — use the source id "
+                    f"(watson2002-style) from the {lect} spec sources")
+            resolvable = [c for c in re.findall(CITE_ID, notes) if c in src_ids]
+            for cid in re.findall(CITE_ID, notes):
                 if cid not in src_ids:
                     failures.append(f"{rid}: notes cite {cid!r}, not in {lect} spec sources")
+            # every row's notes SHOULD carry a resolvable source id; today many
+            # rows explain a convention or an inline reflex without one, so this
+            # is a WARNING (tracked for follow-up), not a gate.
+            if not resolvable and not FREE_TEXT_CITE.search(notes):
+                uncited.append(rid)
     print(f"validated {total} rows across {len(lects)} lects")
+    if uncited:
+        print(f"\nWARNING: {len(uncited)} row(s) have no resolvable source id in notes "
+              f"(follow-up — not a gate):")
+        for rid in uncited:
+            print("  ~", rid)
     if failures:
         print(f"\n{len(failures)} FAILURE(S):")
         for f in failures:
