@@ -101,10 +101,10 @@ class TestP2QuGlide:
         assert mwl.transcribe("quantos") == "ˈkwɐ̃tus̺"
 
     def test_medieval_quarenta_keeps_glide(self, medieval):
-        assert medieval.transcribe("quarenta") == "kwaɾẽta"
+        assert medieval.transcribe("quarenta") == "kwaˈɾẽta"
 
     def test_medieval_quando_keeps_glide(self, medieval):
-        assert medieval.transcribe("quando").startswith("kw")
+        assert medieval.transcribe("quando").startswith("ˈkw")
 
     def test_silent_u_before_front_vowel(self, mwl):
         assert mwl.transcribe("quilo") == "ˈkilu"      # qu+i → [k]
@@ -119,15 +119,15 @@ class TestP3Seseo:
     Castilian interdental [θ] that the Sanabria continuum keeps."""
 
     def test_rionor_ç_is_s(self, rionor):
-        assert rionor.transcribe("çapatos") == "sapatos"
+        assert rionor.transcribe("çapatos") == "saˈpatos"
 
     def test_rionor_soft_c_is_s(self, rionor):
-        assert rionor.transcribe("ceu") == "sew"
-        assert rionor.transcribe("cena") == "sena"
+        assert rionor.transcribe("ceu") == "ˈsew"
+        assert rionor.transcribe("cena") == "ˈsena"
 
     def test_guadramil_inherits_seseo(self, guadramil):
-        assert guadramil.transcribe("çapatos") == "sapatos"
-        assert guadramil.transcribe("berças") == "beɾsas"
+        assert guadramil.transcribe("çapatos") == "saˈpatos"
+        assert guadramil.transcribe("berças") == "ˈbeɾsas"
 
     def test_no_interdental_left(self, rionor, guadramil):
         assert "θ" not in rionor.transcribe("çapatos ceu berças")
@@ -136,7 +136,7 @@ class TestP3Seseo:
     def test_sanabria_keeps_interdental(self, sanabria):
         # the eastern continuum is NOT seseante — [θ] is retained
         assert "θ" in sanabria.transcribe("çapatos")
-        assert sanabria.transcribe("ceo").startswith("θ")
+        assert sanabria.transcribe("ceo").startswith("ˈθ")
 
 
 # ── P4: native ⟨tch⟩ affricate ───────────────────────────────────────────────
@@ -146,15 +146,15 @@ class TestP4TchAffricate:
     (< plicare) is native, so its Rionorese spelling is 'tchegar'."""
 
     def test_tchegares_is_affricate(self, rionor, guadramil):
-        assert rionor.transcribe("tchegares") == "tʃeɡaɾes"
-        assert guadramil.transcribe("tchegares") == "tʃeɡaɾes"
+        assert rionor.transcribe("tchegares") == "tʃeˈɡaɾes"
+        assert guadramil.transcribe("tchegares") == "tʃeˈɡaɾes"
 
     def test_tchama_word_initial_affricate(self, rionor):
-        assert rionor.transcribe("Tchama").startswith("tʃ")
+        assert rionor.transcribe("Tchama").startswith("ˈtʃ")
 
     def test_plain_ch_stays_fricative_for_loans(self, rionor):
         # the cited Macias distinction is preserved: ⟨ch⟩ (no t-) = [ʃ]
-        assert rionor.transcribe("chegares") == "ʃeɡaɾes"
+        assert rionor.transcribe("chegares") == "ʃeˈɡaɾes"
 
 
 # ── P5: nasalisation before a coda nasal ─────────────────────────────────────
@@ -209,8 +209,8 @@ class TestP7MedievalZ:
     affricate /d͡z/ ⟨z⟩ parallel to /t͡s/ ⟨ç,c⟩; ⟨z⟩ does not deaffricate."""
 
     def test_z_word_final_affricate(self, medieval):
-        assert medieval.transcribe("luz") == "lud͡z"
-        assert medieval.transcribe("reluz") == "relud͡z"
+        assert medieval.transcribe("luz") == "ˈlud͡z"
+        assert medieval.transcribe("reluz") == "reˈlud͡z"
 
     def test_z_intervocalic_affricate(self, medieval):
         assert "d͡z" in medieval.transcribe("dozena")

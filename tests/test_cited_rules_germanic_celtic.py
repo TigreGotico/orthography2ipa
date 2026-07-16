@@ -317,7 +317,7 @@ def test_sv_rikssvenska_sj_sound():
     realised as [ɧ], [ʃ], [ɕ], or [x] depending on speaker/region."
     Source: Elert (1994).
     """
-    assert _t("sv-x-rikssvenska", "sjö").startswith("ɧ")
+    assert _t("sv-x-rikssvenska", "sjö").startswith("ˈɧ")
 
 
 @pytest.mark.xfail(

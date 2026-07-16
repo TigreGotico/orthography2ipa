@@ -409,7 +409,19 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_ortho.get("notes", "") or "",
         )
 
-    # Parse stress rules (own-file only — not inherited through ancestry)
+    # Parse stress rules. A spec's own ``stress`` block wins outright; when it
+    # declares none (absent or ``null``), the accentuation rules inherit
+    # through the ``graphemes_base`` data edge. Stress assignment is a
+    # language-generic behaviour: a dialect that only overlays graphemes /
+    # allophones over its base — e.g. ``es-ES-x-murcia`` over ``es-ES`` — must
+    # keep the base's stress placement rather than silently emitting unstressed
+    # output. The edge is ``graphemes_base`` and NOT the bare classification
+    # ``parent``, because stress marking is bound to the orthography: a spec's
+    # ``marked_vowels`` are graphemes (á é í …), so the written-accent rules
+    # only transfer to a spec that shares the base's writing system. A creole
+    # that keeps ``parent`` only for genetic classification while authoring its
+    # own orthography (``graphemes_base`` unset, e.g. Angolar ``aoa`` under
+    # ``pt-PT``) does not inherit stress — it declares its own or has none.
     stress: Optional[StressRules] = None
     raw_stress = raw.get("stress")
     if raw_stress and isinstance(raw_stress, dict):
@@ -430,6 +442,13 @@ def load_json_spec(code: str) -> LanguageSpec:
             source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )
+    else:
+        # No own stress block: inherit the graphemes-base spec's resolved
+        # StressRules (already resolved up its own chain), so a child that
+        # shares its base's orthography also shares its accentuation.
+        _stress_base = base_field_langs.get("graphemes")
+        if _stress_base and _stress_base in _specs:
+            stress = _specs[_stress_base].stress
 
     # Derive the classification path from the ancestry chain. The chain is
     # walked through ``parent``; a spec that declares its genetic parent only
