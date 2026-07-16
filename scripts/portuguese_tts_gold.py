@@ -64,11 +64,11 @@ LECTS = [
     # African + Asian
     "pt-AO", "pt-CV", "pt-GW", "pt-MZ", "pt-ST", "pt-MO", "pt-TL",
     "pt-UY",
-    # Asturleonese border falares of Trás-os-Montes (Portugal) and the
-    # Sanabria continuum they belong to — co-hosted in this gold set because
-    # they share the Portuguese-contact sandhi surface the harness checks.
+    # Asturleonese border falares of Trás-os-Montes (Portugal) — co-hosted in
+    # this gold set because they share the Portuguese-contact sandhi surface
+    # the harness checks. (Sanabrese, ast-x-sanabria, is a Spain-territory lect
+    # and lives in the Spain-Romance gold set / harness instead.)
     "ast-PT-x-rionor", "ast-PT-x-guadramil", "ast-PT-x-medieval",
-    "ast-x-sanabria",
     # Mirandese (Asturleonese) — the other Portugal-territory language and its
     # subdialects, gated by the same harness (their gold uses genuine Mirandese
     # orthography per the Convenção Ortográfica, not Portuguese).
