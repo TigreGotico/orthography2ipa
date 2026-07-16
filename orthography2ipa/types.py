@@ -793,6 +793,20 @@ class AllophoneRule:
         back to [o] ([õ]) whereas a lexical ⟨u⟩ stays [ũ]; both are the same
         phoneme [u], so only the source grapheme distinguishes them. ``None``
         / empty = don't care.
+    word : Optional[Tuple[str, ...]]
+        Require the slot's whole **source word** to be one of these (matched
+        case-insensitively against the concatenated source graphemes of the
+        current word). This is the lexeme-level hook for facts that are
+        genuinely lexical rather than phonological — above all the
+        unpredictable open/close quality of a stressed mid vowel in Romance
+        (Portuguese ⟨sopa⟩ [ˈsopɐ] with close [o] vs ⟨sova⟩ [ˈsɔvɐ] with open
+        [ɔ]; the two are spelled and stressed alike, only the lexeme decides).
+        Unlike a whole-word ``word_exceptions`` entry — which freezes the
+        entire pronunciation and so cannot be shared across dialects that
+        differ elsewhere in the word — a ``word``-keyed rule pins ONLY the one
+        surface it rewrites and lets every other process (reduction, sandhi,
+        rhotic choice, affrication) run normally, so it inherits cleanly to
+        child dialects. ``None`` / empty = don't care.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -812,6 +826,7 @@ class AllophoneRule:
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
+    word: Optional[Tuple[str, ...]] = None
     notes: str = ""
 
     def __post_init__(self) -> None:
@@ -831,6 +846,10 @@ class AllophoneRule:
             object.__setattr__(
                 self, "grapheme",
                 tuple(g.lower() for g in self.grapheme))
+        if self.word is not None:
+            object.__setattr__(
+                self, "word",
+                tuple(w.lower() for w in self.word))
         if self.stress is not None and self.stress not in (
                 "stressed", "unstressed"):
             raise ValueError(

@@ -199,25 +199,21 @@ def test_pt_br_raise_final_e():
     assert "ɪ" not in _t("pt-BR", "leite")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="BR_RAISE_FINAL_E cites dente → [ˈdẽt͡ʃi]; engine produces [ˈdẽti] — "
-    "/t/ affrication before a RAISED final ⟨e⟩ is not applied, only before "
-    "grapheme-⟨i⟩ (pt-BR notes defer it to the dialect-delta wave)",
-)
 def test_pt_br_affrication_before_raised_final_e():
-    """BR_RAISE_FINAL_E cites dente → [ˈdẽt͡ʃi] — the /t/ affricates before the raised [i].
+    """BR affricates /t d/ before a RAISED final unstressed ⟨e⟩ — dente → [ˈdẽt͡ʃi].
 
     Rule notes: "word-final unstressed /e/ raises to close [i] (leite →
     [ˈlejt͡ʃi], dente → [ˈdẽt͡ʃi])" (Barbosa & Albano 2004: 229; Câmara Jr. 1970
-    §III).
-
-    The spec's own notes concede the gap — "The phoneme-conditioned refinement
-    of affrication before a raised final ⟨e⟩ (dente→[ˈdẽt͡ʃi]) is left to the
-    dialect-delta wave" — so the rule's cited transcription is not the one the
-    engine produces. Affrication before a grapheme ⟨i⟩ (tio) does fire.
+    §III). The BR_AFFRIC_T_RAISED / BR_AFFRIC_D_RAISED allophone rules close the
+    feeding gap the positional grapheme-⟨i⟩ map could not reach: they condition
+    on the FOLLOWING slot's underlying high front vowel (the near-close [ɪ] the
+    final-⟨e⟩ raising selects, or a lexical [i]), so a /t d/ before it affricates
+    whether the trigger was spelled ⟨i⟩ or a raised ⟨e⟩. The non-palatalising
+    nordeste and conservative-dental caipira/sul/pr/pt-UY varieties opt out by id.
     """
     assert _t("pt-BR", "dente") == "ˈdẽt͡ʃi"
+    assert _t("pt-BR", "leite") == "ˈlejt͡ʃi"
+    assert _t("pt-BR", "tarde") == "ˈtaɾd͡ʒi"
 
 
 def test_pt_br_affrication_before_grapheme_i():
@@ -237,7 +233,7 @@ def test_pt_br_l_vocalisation_in_coda():
 
     Minimal pair against pt-PT's PT_CODA_L_DARK on the same word.
     """
-    assert _bare("pt-BR", "sol") == "sow"
+    assert _bare("pt-BR", "sol") == "sɔw"
     assert _bare("pt-PT", "sol") == "sɔɫ"
 
 

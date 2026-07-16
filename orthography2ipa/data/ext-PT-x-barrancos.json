@@ -215,6 +215,18 @@
         "m"
       ],
       "notes": "/e/ is raised to [e] before a nasal consonant, including an ONSET nasal that leaves the vowel oral (⟨pequenu⟩ [pɨˈkenu])"
+    },
+    {
+      "id": "PT_FINAL_EM_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Barranquenho: word-final ⟨-em/-én⟩ is a nasal MONOPHTHONG [ẽ] (quen [ˈkẽ], bem [ˈbẽ]) per the Convenção Ortográfica do Barranquenho, not the EP nasal diphthong [ɐ̃j̃]. The Alentejo-Extremaduran substrate keeps the mid nasal without the palatal offglide or Lisbon centralisation."
+    },
+    {
+      "id": "PT_FINAL_EM_GLIDE",
+      "phonemes": [],
+      "surface": "̃j̃",
+      "notes": "DISABLED for Barranquenho: word-final ⟨-em/-én⟩ is a nasal MONOPHTHONG [ẽ] (quen [ˈkẽ], bem [ˈbẽ]) per the Convenção Ortográfica do Barranquenho, not the EP nasal diphthong [ɐ̃j̃]. The Alentejo-Extremaduran substrate keeps the mid nasal without the palatal offglide or Lisbon centralisation."
     }
   ],
   "ancestors": [

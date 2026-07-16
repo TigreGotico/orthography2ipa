@@ -406,7 +406,21 @@ class AllophoneRescorer(LatticeRescorer):
             g = ctx.grapheme.grapheme
             if not g or g.lower() not in rule.grapheme:
                 return False
+        if rule.word is not None:
+            if _source_word(ctx).lower() not in rule.word:
+                return False
         return True
+
+
+def _source_word(ctx: RescoreContext) -> str:
+    """Reconstruct the current word's source spelling from its slots.
+
+    ``ctx.slots`` are the grapheme slots of the current word (word-local on
+    both the engine and the standalone tokenizer path), each carrying its
+    source ``grapheme``; joined in order they give back the orthographic word
+    a ``word``-keyed :class:`AllophoneRule` matches against.
+    """
+    return "".join((getattr(s, "grapheme", "") or "") for s in ctx.slots)
 
 
 def _is_geminate_aware(rule: AllophoneRule, ipa: str) -> bool:

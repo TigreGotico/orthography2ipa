@@ -95,7 +95,12 @@ TILDE = "̃"
 def test_br_declares_the_nasal_raise_rules():
     from orthography2ipa import get
     ids = [r.id for r in get("pt-BR").allophone_rules]
-    assert ids[:3] == [
+    # the word-final nasal-diphthong glide rules and the raised-final-e
+    # affrication rules now lead the list; the nasal-raise trio follows.
+    assert ids[:5] == [
+        "BR_FINAL_EM_GLIDE", "BR_FINAL_AM_GLIDE",
+        "BR_AFFRIC_T_RAISED", "BR_AFFRIC_D_RAISED", "PT_NASAL_A_RAISE"]
+    assert [i for i in ids if i.startswith("PT_NASAL")][:3] == [
         "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE"]
     # the BR final-raising rules are preserved after the nasal rules
     assert "BR_RAISE_FINAL_E" in ids and "BR_RAISE_FINAL_O" in ids

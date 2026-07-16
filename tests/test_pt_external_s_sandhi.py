@@ -61,7 +61,7 @@ class TestStandardZ:
     def test_before_voiced_consonant_voices_to_palatal(self):
         # Voicing assimilation: coda /s/ -> [ʒ] before a voiced consonant (PT_CODA_S_VOICING).
         for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
-            assert G2P(loc).transcribe("estás bem") == "eˈʃtaʒ ˈbẽ"
+            assert G2P(loc).transcribe("estás bem") == "eˈʃtaʒ ˈbɐ̃j̃"
 
     def test_as_bocas_voices_before_b(self):
         assert G2P("pt-PT").transcribe("as bocas") == "ɐʒ ˈbɔkɐʃ"
@@ -88,7 +88,7 @@ class TestSouthernPalatal:
     def test_algarve_word_final_palatal_categorical(self):
         # Algarve generalises [ʒ] to all word-final positions (via positional map)
         assert G2P("pt-PT-x-algarve").transcribe("estás") == "eˈʃtaʒ"
-        assert G2P("pt-PT-x-algarve").transcribe("estás bem") == "eˈʃtaʒ ˈbẽ"
+        assert G2P("pt-PT-x-algarve").transcribe("estás bem") == "eˈʃtaʒ ˈbɐ̃j̃"
 
     def test_acores_prevocalic_palatal(self):
         out = G2P("pt-PT-x-acores").transcribe("estás a ver")
@@ -103,7 +103,7 @@ class TestSouthernPalatal:
     def test_acores_voices_before_voiced_consonant(self):
         # The general EP voicing-assimilation (PT_CODA_S_VOICING, inherited) still
         # applies before a voiced consonant: coda /s/ -> [ʒ].
-        assert G2P("pt-PT-x-acores").transcribe("estás bem") == "eˈʃtaʒ ˈbẽ"
+        assert G2P("pt-PT-x-acores").transcribe("estás bem") == "eˈʃtaʒ ˈbɐ̃j̃"
 
 
 class TestSouthVsStandardDiverge:

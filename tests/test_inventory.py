@@ -126,6 +126,23 @@ KNOWN_DEAD_RULES = {
     # Targets /ɪ/, which these specs never emit.
     "pt-BR-x-pr": {"BR_RAISE_FINAL_E"},
     "pt-BR-x-sul": {"BR_RAISE_FINAL_E"},
+    # The Portuguese-based creoles inherit pt-PT's word-final nasal-diphthong
+    # rules (PT_FINAL_EM_GLIDE / PT_FINAL_AM_GLIDE, which target the coda
+    # nasalisation tilde [̃]), but a defining feature of these creoles is the
+    # LOSS of the Portuguese nasal-coda system — they do not emit the tilde the
+    # glide rules attach to, so the rules are inert here. The open/close mid
+    # vowel pins (PT_LEX_*) inherit and fire normally; only the nasal-glide
+    # pair is dead. Inherited correctly for the pt lects that keep nasalisation.
+    "kea": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    "pap": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    "pov": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    "cri": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    "mcm": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_LEX_X_S"},
+    "aoa": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    "mzs": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    "idb": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_LEX_X_S"},
+    "pre": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    "vkp": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
     # Dead only because the spec inherits a grapheme table without its
     # positional readings, so the vowel the rule targets is never emitted.
     # Fixed by the positional-inheritance default in #348, which revives it.

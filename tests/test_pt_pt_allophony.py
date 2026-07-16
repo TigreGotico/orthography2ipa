@@ -40,9 +40,12 @@ def _nfd(code, word):
 def test_pt_pt_declares_the_coda_rules():
     ids = [r.id for r in get("pt-PT").allophone_rules]
     assert ids == [
+        "PT_FINAL_EM_NUCLEUS", "PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE",
         "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
         "PT_NASAL_O_UNRED",
         "PT_CODA_L_DARK", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
+        "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_OPEN_O", "PT_LEX_OPEN_E",
+        "PT_LEX_X_S",
     ]
 
 

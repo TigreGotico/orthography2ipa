@@ -119,17 +119,30 @@ def test_proclitic_mid_does_not_diphthongise(lect):
     assert eng.transcribe("o") == "o"     # article, not [ˈwo]
     assert eng.transcribe("os") == "oʃ"   # not [ˈwoʃ]
     assert eng.transcribe("e") == "i"     # conjunction (raised), not [ˈje]
-    assert _n(eng.transcribe("em")) == _n("ẽ")  # nasal clitic, not [ˈjẽ]
+    # ⟨em⟩ is word-final, so the P2 rule realises it as the FALLING nasal
+    # diphthong [ɐ̃j̃] (offglide AFTER the nucleus); what this test guards is
+    # that the NW metaphony did not fire a RISING [ˈjẽ] (onglide before it).
+    em = _n(eng.transcribe("em"))
+    assert em == _n("ɐ̃j̃"), (lect, em)
+    assert not em.startswith(("j", "ˈj", "w", "ˈw"))  # no rising metaphony onglide
 
 
 @pytest.mark.parametrize("lect", DIPHTHONGISING)
 def test_stressed_nasal_mid_does_not_diphthongise(lect):
     # A genuinely stressed NASAL mid is [ẽ]/[õ], never oral [e]/[o], so it never
-    # matches the oral-mid rule (bem, contente, cimento, momento).
+    # matches the oral-mid NW metaphony rule. Words with a nucleus-internal nasal
+    # mid (before a coda nasal + consonant) show no glide at all.
     eng = G2P(lect)
-    for w in ("bem", "contente", "cimento", "momento", "bom", "contém"):
+    for w in ("contente", "cimento", "momento", "bom"):
         assert "j" not in eng.transcribe(w), (lect, w)
         assert "w" not in eng.transcribe(w), (lect, w)
+    # Word-final ⟨-em/-ém⟩ (bem, contém) DO carry the P2 falling nasal offglide
+    # [ɐ̃j̃] — that is a nasal DIPHTHONG, not the NW metaphony. What must not
+    # happen is the RISING metaphony onglide [ˈjẽ]/[ˈbjẽ]; check for that only.
+    for w in ("bem", "contém"):
+        got = _n(eng.transcribe(w))
+        assert "jẽ" not in got and "je" not in got, (lect, w, got)
+        assert "wõ" not in got and "wo" not in got, (lect, w, got)
 
 
 # ── P4: apocope must not move the stress ─────────────────────────────────────
