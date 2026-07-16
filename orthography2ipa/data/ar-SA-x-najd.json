@@ -167,7 +167,7 @@
       "publisher": "Journal of Language Teaching and Research 17(4)",
       "url": "https://jltr.academypublication.com/index.php/jltr/article/view/13179",
       "pages": null,
-      "notes": "The voiced velar /ɡ/ affricates in a STRICTER environment than /k/ — conditioned by high front /i iː/ — while /k/ tolerates a wider range. Affrication is categorically blocked in back-vowel environments."
+      "notes": "Northern Najdi (NNA, Ḥāʾil), 10 informants. The voiced velar /ɡ/ affricates in a STRICTER environment than /k/ — conditioned by high front /i iː/ only (p.1337: [dziliːb] 'well', [riːdz] 'saliva', [tˤiriːdz] 'road') — while /k/ tolerates a wider range: in NNA /k/→[ts] extends to the CENTRAL vowels /a aː/ too (p.1335-1336: [tsalb] 'dog', [simats] 'fish', [baːtsir] 'tomorrow'). Affrication is categorically blocked in back-vowel environments (p.1336: [ʃoːk] 'thorns', [kuːχ] 'cottage'; p.1337: [ɡumar] 'moon', [foːɡ] 'above'). NOTE ON SCOPE: this spec models the Riyadh/central variety, where the /k/ central-vowel affrication does NOT generalise (Al Mahmoud 2020 §3.1; AlAjroush 2020 p.42 keep [kalb]); the NNA extension to /a/ is a sub-lect boundary, so NAJD_AFFRIC_K stays scoped to the unambiguous front vowels. The voicing asymmetry (/ɡ/ strict /i iː/) is adopted."
     },
     {
       "id": "watson2002",
@@ -199,6 +199,46 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "mahzari2023",
+      "author": "Mahzari, M.",
+      "year": 2023,
+      "title": "The Historical Changes of /k/ and /q/ in Najdi Arabic: A Phonological Analysis",
+      "publisher": "Theory and Practice in Language Studies 13(3), 796-807. doi:10.17507/tpls.1303.30",
+      "url": "https://doi.org/10.17507/tpls.1303.30",
+      "pages": "796-807",
+      "notes": "Two RIYADH-born native informants (the exact variety this spec models). Corroborates the voicing asymmetry: /k/→[ts] with front /i/ AND central /a/ (Table 2, p.800: [tsan] 'was', [mitsan] 'place', [britsah] 'blessing'), but /ɡ/(<q)→[dz] ONLY with high front /i/ (Table 4, p.803: [dzidir] 'pot', [dziblah], [rifiːdz]). /q/→[ɡ] generally (Table 5, p.804), and /q/ RETAINED as [q] before back /u/ in religious/borrowed terms (Table 6, p.804: /qurʔaːn/, /qublah/). Crucially the /a/-affrication cannot be read off the fatha, which is exactly why NAJD_AFFRIC_K excludes /a/ — Mahzari's [tsan] and Al Mahmoud's non-affricating [ɡʌlb] are both written with fatha."
+    },
+    {
+      "id": "algethami2023",
+      "author": "Algethami, G.",
+      "year": 2023,
+      "title": "Acoustic characterization of Najdi Arabic Vowel System",
+      "publisher": "Proc. 20th ICPhS (Prague), paper 868, 3384-3386",
+      "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2023/full_papers/868.pdf",
+      "pages": "3384-3386",
+      "notes": "Acoustic study, 15 male Najdi speakers. Confirms the 8-vowel system /i iː u uː a aː eː oː/ (reproducing Ingham 1994 p.15); long vowels ~1.9× the duration of their short counterparts; short /i u/ significantly centralized ('schwa-like in neutral environments', Ingham p.15); /aː/ shows NO imāla/fronting (unlike Syrian/Egyptian). In his CVC tokens the OA diphthongs /aj aw/ surface as monophthongs [eː oː] ([beːt] 'home', p.3385) — a within-Najd variation set against the central-Najdi diphthong retention this spec keeps (cf. Ingham 1994; alhoody2019 for parallel Qassim monophthongization)."
+    },
+    {
+      "id": "alajroush2020",
+      "author": "AlAjroush, N.A.",
+      "year": 2020,
+      "title": "Phonological Development in Typically Developing Najdi Arabic-Speaking Children Aged 1-4 years",
+      "publisher": "PhD thesis, Newcastle University",
+      "url": "https://theses.ncl.ac.uk/jspui/handle/10443/5250",
+      "pages": "42",
+      "notes": "Adult Najdi target inventory (p.42): the OA emphatic /dˤ/ is 'almost always realised as [ðˤ]' (ض→[ðˤ] merger, corroborating Ingham); jīm = [dʒ]; [q] and [ɡ] are allophones of /q/ 'governed by sociolinguistic and lexical variation'; interdentals /θ ð ðˤ/ retained; /zˤ/ absent. Coda-cluster monosyllables /kalb/ 'dog', /xubz/ 'bread' cited with plain [k] (no central-vowel affrication in Riyadh child speech), supporting NAJD_AFFRIC_K's exclusion of /a/."
+    },
+    {
+      "id": "alruwaili2020",
+      "author": "Alruwaili, S.",
+      "year": 2020,
+      "title": "Negation in Turaif Arabic: A Lexical-Functional Grammar Approach",
+      "publisher": "PhD thesis (Northern Najdi, Turaif)",
+      "url": "https://ourarchive.otago.ac.nz/handle/10523/10456",
+      "pages": null,
+      "notes": "Northern Najdi (Turaif) negation system: sentential/predicate negation by mā and lā; the negative copula mū (with inflected mahu, and mub) marks constituent negation. Validates the gold's مو /muː/ (negative copula, rows 007/013) vs ما /maː/ (verbal/predicate negation, rows 003/020)."
     }
   ],
   "wikipedia": [
@@ -250,12 +290,9 @@
       "surface": "dz",
       "followed_by_phoneme": [
         "i",
-        "iː",
-        "j",
-        "e",
-        "eː"
+        "iː"
       ],
-      "notes": "Najdi velar affrication (Ingham 1994; Al Mahmoud 2020, ex. 10 /qɛlb/ → [dzɛlb] 'opposite'): /ɡ/ (chiefly the qaf reflex) → [dz] before an adjacent front vowel. Alshammari (2026, JLTR 17(4)) finds the voiced velar demands a STRICTER environment than /k/ — high front /i iː/ — so this list is the conservative one and, as for /k/, excludes /a/. /aj/ is deliberately NOT listed here although it IS listed on NAJD_AFFRIC_K_BEFORE: Al Mahmoud's [tsef] 'how' (ex. 4) attests the voiceless case only, and Alshammari's stricter /ɡ/ environment argues against extending it by analogy. An attestation of قيد/قيمة with [dz] would justify adding it."
+      "notes": "Najdi velar affrication (Ingham 1994; Al Mahmoud 2020, ex. 10 /qɛlb/ → [dzɛlb] 'opposite'): /ɡ/ (chiefly the qaf reflex) → [dz] before an adjacent HIGH FRONT vowel /i iː/. The voiced velar demands a STRICTER environment than /k/: Alshammari (2026, JLTR 17(4), §V, p.1337) and Mahzari (2023, TPLS 13(3), Table 4, p.803) both restrict /ɡ/→[dz] to /i iː/ only, excluding the mid /e eː/ and central /a/ that /k/ tolerates. The trigger list is therefore /i iː/ (was previously widened to /j e eː/, which no source attests for the voiced velar). /aj/ is likewise not a trigger — Al Mahmoud's [tsef] 'how' (ex. 4) attests the voiceless case only."
     },
     {
       "id": "NAJD_AFFRIC_G_AFTER",
@@ -265,12 +302,9 @@
       "surface": "dz",
       "preceded_by_phoneme": [
         "i",
-        "iː",
-        "j",
-        "e",
-        "eː"
+        "iː"
       ],
-      "notes": "Najdi velar affrication (Ingham 1994; Al Mahmoud 2020, ex. 13 /lasɪq/ → [lasɪdz]): /ɡ/ → [dz] after an adjacent front vowel. Same tautosyllabic gap as NAJD_AFFRIC_K_AFTER: /rɪzq/ → [rɪzdz] (ex. 11) is missed, because the front vowel is not adjacent to the velar."
+      "notes": "Najdi velar affrication (Ingham 1994; Al Mahmoud 2020, ex. 13 /lasɪq/ → [lasɪdz]): /ɡ/ → [dz] after an adjacent HIGH FRONT vowel /i iː/. Restricted to /i iː/ per Alshammari (2026, p.1337: [riːdz] 'saliva', [tˤiriːdz] 'road') and Mahzari (2023, Table 4, p.803: [rifiːdz], [ʕatiːdz]) — the voicing-conditioned asymmetry (stricter than /k/). Same tautosyllabic gap as NAJD_AFFRIC_K_AFTER: /rɪzq/ → [rɪzdz] is missed because the front vowel is not adjacent to the velar."
     },
     {
       "id": "NAJD_GAHAWA_h",
@@ -377,5 +411,10 @@
       "مِن",
       "يَا"
     ]
+  },
+  "word_exceptions": {
+    "تَذْكِرَة": "taðkira",
+    "مَكِينَة": "makiːna",
+    "مَاكِينَة": "maːkiːna"
   }
 }

@@ -310,35 +310,35 @@
  "algethami2023": {
   "authors": "Algethami, G.",
   "year": 2023,
-  "title": "Acoustic characterization of Najdi Arabic vowel system",
-  "venue": "Proceedings of ICPhS 2023, paper 868, Prague",
-  "url": "https://guctprod.blob.core.windows.net/icphs-proceedings/ICPhS2023/full_papers/3384.pdf",
+  "title": "Acoustic characterization of Najdi Arabic Vowel System",
+  "venue": "Proc. 20th ICPhS (Prague), paper 868, 3384-3386",
+  "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2023/full_papers/868.pdf",
   "access": "open",
-  "pagination": "ICPhS 2023 proceedings; `page` is the printed folio in the running head (3384-3386), which is PDF page index + 3383.",
+  "pagination": "Printed folio in the page footer (ICPhS 2023 proceedings, '3384'-'3386'); printed page = pdftotext page index + 3383. Table 1 elicitation words carry the source's IPA.",
   "notation": "ipa",
-  "describes": "Najdi Arabic (central Saudi Arabia), acoustic vowel study, 15 male speakers"
+  "describes": "Najdi Arabic, 15 male speakers (acoustic study)"
  },
  "mahzari2023": {
   "authors": "Mahzari, M.",
   "year": 2023,
-  "title": "The historical changes of /k/ and /q/ in Najdi Arabic: a phonological analysis",
+  "title": "The Historical Changes of /k/ and /q/ in Najdi Arabic: A Phonological Analysis",
   "venue": "Theory and Practice in Language Studies 13(3), 796-807",
   "url": "https://doi.org/10.17507/tpls.1303.30",
   "access": "open",
-  "pagination": "`page` is the printed journal folio in the running head (796-807), which is PDF page index + 795.",
+  "pagination": "Printed folio in the running header; printed page = pdftotext page index + 795 (title page 796 = pdf page 1). Verified on headers 797-807. Tables 2-6 are the source's own surface transcriptions.",
   "notation": "ipa",
-  "describes": "Najdi Arabic as spoken in Riyadh (two male speakers born and raised in Riyadh); /k/->[ts], /q/->[g]->[dz]"
+  "describes": "Najdi Arabic, two Riyadh-born informants (central/prestige variety)"
  },
  "alshammari2026": {
-  "authors": "Alshammari, K. K.",
+  "authors": "Alshammari, K.K.",
   "year": 2026,
-  "title": "An optimality-theoretic account of velar affrication in Northern Najdi Arabic",
+  "title": "An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic",
   "venue": "Journal of Language Teaching and Research 17(4), 1333-1341",
   "url": "https://doi.org/10.17507/jltr.1704.19",
   "access": "open",
-  "pagination": "`page` is the printed journal folio in the running head (1333-1341), which is PDF page index + 1332.",
+  "pagination": "Printed folio in the running header (e.g. '1335', '1336'); printed page = pdftotext page index + 1332 (title page 1333 = pdf page 1). Verified on headers 1334-1341.",
   "notation": "ipa",
-  "describes": "Northern Najdi Arabic (Ha'il / Jabal Shammar), 10 speakers; velar affrication /k/->[ts], /g/->[dz]"
+  "describes": "Northern Najdi Arabic (NNA), Ha'il region"
  },
  "aljamaan2026": {
   "authors": "Aljamaan, L. & Aljutaily, M.",
