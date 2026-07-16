@@ -85,6 +85,8 @@ LECTS = [
     # American Spanish — Bolivian and Chilean varieties (own morphosyntax/lexicon)
     "es-BO", "es-BO-x-andino", "es-BO-x-camba",
     "es-CL", "es-CL-x-andino", "es-CL-x-chilote",
+    # Central American and Equatoguinean Spanish (Americas/Africa extension)
+    "es-GT", "es-HN", "es-SV", "es-NI", "es-CR", "es-PA", "es-GQ",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
