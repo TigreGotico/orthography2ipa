@@ -79,6 +79,9 @@ LECTS = [
     # Andean Spanish (Americas extension): Peru and Ecuador
     "es-PE", "es-PE-x-lima", "es-PE-x-andino", "es-PE-x-amazonico",
     "es-EC", "es-EC-x-andino", "es-EC-x-costa",
+    # Rioplatense family (Argentina / Uruguay / Paraguay)
+    "es-AR", "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-litoral",
+    "es-AR-x-norte", "es-AR-x-patagonia", "es-UY", "es-PY",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
