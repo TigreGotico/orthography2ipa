@@ -43,6 +43,16 @@ _ALIASES: Dict[str, str] = {
     "tgk": "tg",   # Tajik ISO 639-3
     # Dari alias
     "prs": "fa-AF",  # Dari ISO 639-3
+    # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
+    # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
+    # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
+    # aliases let ``get("arz")`` resolve to the Egyptian Arabic spec, etc.
+    "arz": "ar-EG",           # Egyptian Arabic
+    "ary": "ar-MA",           # Moroccan Arabic (Darija)
+    "apc": "ar-SY",           # North Levantine Arabic (Syrian/Lebanese core)
+    "ajp": "ar-JO",           # South Levantine Arabic (Jordanian/Palestinian)
+    "afb": "ar-x-gulf",       # Gulf Arabic
+    "acw": "ar-SA-x-hejaz",   # Hijazi Arabic
 }
 
 # Default variant for a bare primary-language tag whose specs are all

@@ -43,6 +43,26 @@
       "url": null,
       "pages": null,
       "notes": "The only credible normative Norfuk orthography. Not available online; not consulted, so no grapheme map is derived from it."
+    },
+    {
+      "id": "holm1989",
+      "author": "Holm, John",
+      "year": 1989,
+      "title": "Pidgins and Creoles, Volume II: Reference Survey",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference survey of Atlantic and Pacific pidgins/creoles; lexifier and substrate attributions."
+    },
+    {
+      "id": "apics2013",
+      "author": "Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.)",
+      "year": 2013,
+      "title": "The Atlas of Pidgin and Creole Language Structures (APiCS)",
+      "publisher": "Oxford University Press",
+      "url": "https://apics-online.info/",
+      "pages": null,
+      "notes": "Structural atlas of 76 pidgins/creoles; per-language survey chapters cited in ancestry notes."
     }
   ],
   "wikipedia": [
@@ -53,5 +73,19 @@
     "longitude": -128.324075,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Pitcairn-Norfolk."
-  }
+  },
+  "ancestors": [
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.7,
+      "notes": "English (late-18th-century nautical English of the Bounty mutineers) lexifier; Pitkern-Norfolk. Buffett & Laycock (1988); APiCS ch. 24 (Mühlhäusler)."
+    },
+    {
+      "code": "ty",
+      "role": "substrate",
+      "weight": 0.2,
+      "notes": "Tahitian substrate (the mutineers' Tahitian partners): vowel system, phonotactics and lexical items. Buffett & Laycock (1988)."
+    }
+  ]
 }

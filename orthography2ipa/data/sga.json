@@ -1,0 +1,147 @@
+{
+  "code": "sga",
+  "name": "Old Irish",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "th": [
+      "θ"
+    ],
+    "ch": [
+      "x"
+    ],
+    "ph": [
+      "ɸ"
+    ],
+    "bh": [
+      "β"
+    ],
+    "dh": [
+      "ð"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "mb": [
+      "m"
+    ],
+    "nd": [
+      "n̪d̪"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "ll": [
+      "l̪ˠ"
+    ],
+    "nn": [
+      "n̪ˠ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "á": [
+      "aː"
+    ],
+    "é": [
+      "eː"
+    ],
+    "í": [
+      "iː"
+    ],
+    "ó": [
+      "oː"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "d": [
+      "d̪"
+    ],
+    "f": [
+      "ɸ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n̪"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t̪"
+    ]
+  },
+  "parent": "cel",
+  "ancestors": [
+    {
+      "code": "cel",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Common/Proto-Celtic via Primitive Irish (Ogham); Thurneysen (1946)"
+    }
+  ],
+  "notes": "Skeleton. Old Irish (c. 600-900). The pervasive broad/slender (velarised vs palatalised) consonant contrast is conditioned by the flanking vowels and is NOT encoded here, so the engine outputs the broad/default reflex only and a high PER is expected. Lenited spellings th/ch/ph and nasal clusters mb/nd/ng mapped to their fricative/prenasalised reflexes.",
+  "iso639_3": "sga",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "thurneysen1946",
+      "author": "Thurneysen, Rudolf",
+      "year": 1946,
+      "title": "A Grammar of Old Irish",
+      "publisher": "Dublin Institute for Advanced Studies",
+      "url": null,
+      "pages": null,
+      "notes": "Standard reference grammar; orthography-to-phonology correspondences.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Old_Irish_phonology"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_Irish",
+    "https://en.wikipedia.org/wiki/Old_Irish_phonology"
+  ],
+  "timespan": {
+    "start_year": 600,
+    "end_year": 900
+  }
+}

@@ -231,10 +231,54 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Nigerian_Pidgin",
       "pages": null,
       "notes": "Overview: 23 consonants, seven vowels, two tones; tone may be written with acute/grave accents but 'most written texts in Nigerian Pidgin do not show any tonal markings'."
+    },
+    {
+      "id": "holm1989",
+      "author": "Holm, John",
+      "year": 1989,
+      "title": "Pidgins and Creoles, Volume II: Reference Survey",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference survey of Atlantic and Pacific pidgins/creoles; lexifier and substrate attributions."
+    },
+    {
+      "id": "apics2013",
+      "author": "Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.)",
+      "year": 2013,
+      "title": "The Atlas of Pidgin and Creole Language Structures (APiCS)",
+      "publisher": "Oxford University Press",
+      "url": "https://apics-online.info/",
+      "pages": null,
+      "notes": "Structural atlas of 76 pidgins/creoles; per-language survey chapters cited in ancestry notes."
+    },
+    {
+      "id": "faraclas1996",
+      "author": "Faraclas, Nicholas G.",
+      "year": 1996,
+      "title": "Nigerian Pidgin",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive grammar; Benue-Congo (Yoruba/Igbo/Edo) substrate features."
     }
   ],
   "timespan": {
     "start_year": 1800,
     "end_year": null
-  }
+  },
+  "ancestors": [
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.65,
+      "notes": "English lexifier; Nigerian Pidgin (Naijá). Faraclas (1996); APiCS ch. 16 (Faraclas)."
+    },
+    {
+      "code": "yo",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Yoruba (Benue-Congo) substrate: 7-vowel system, contrastive nasal vowels, tone influence, prenasalized stops. Igbo and Edo (also substrates) are unregistered. Faraclas (1996)."
+    }
+  ]
 }

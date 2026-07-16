@@ -329,6 +329,42 @@ _WIKIPRON_FILES = {
     "pag":       "pag_latn_broad.tsv",              # Pangasinan, ~229 rows
     "ba":        "bak_cyrl_broad.tsv",              # Bashkir, ~208 rows
     "ab":        "abk_cyrl_broad.tsv",              # Abkhazian, ~206 rows
+    # --- Arabic spoken dialects (ISO 639-3 codes → o2i lect) ---
+    #     WikiPron scrapes six spoken Arabic dialects under their ISO 639-3
+    #     codes; each maps onto an existing o2i ``ar-XX`` dialect spec (the
+    #     registry alias table resolves the ISO code too). Like the MSA ``ar``
+    #     row, these Wiktionary headwords are UNPOINTED consonantal skeletons —
+    #     short vowels are orthographically absent, so a substantial PER floor
+    #     from unvowelized input is expected (see the ``ar`` note above); the
+    #     signal is consonant/long-vowel accuracy against the dialect spec, not
+    #     a full-vowel score. Same crowd-scraped Wiktionary tier as the rest.
+    "ar-EG":         "arz_arab_broad.tsv",          # Egyptian Arabic (arz), ~800 rows
+    "ar-MA":         "ary_arab_broad.tsv",          # Moroccan Arabic (ary), ~2168 rows
+    "ar-SY":         "apc_arab_broad.tsv",          # North Levantine (apc), ~618 rows
+    "ar-JO":         "ajp_arab_broad.tsv",          # South Levantine (ajp), ~3182 rows
+    "ar-x-gulf":     "afb_arab_broad.tsv",          # Gulf Arabic (afb), ~763 rows
+    "ar-SA-x-hejaz": "acw_arab_broad.tsv",          # Hijazi Arabic (acw), ~2640 rows
+    # --- new skeleton-tier specs, wired to their upstream WikiPron gold ---
+    #     Each has a fresh skeleton spec added in this round (orthography kind,
+    #     base grapheme inventory, cited ancestry). Smoke-checked to engage;
+    #     scores are honest baselines for a first-pass grapheme map (conditioned
+    #     allophony, tone and vowel length that the spelling does not recover are
+    #     unencoded, so PER is high by construction). Same Wiktionary tier.
+    "kix":       "kix_latn_broad.tsv",              # Khiamniungan Naga, ~4240 rows
+    "sga":       "sga_latn_broad.tsv",              # Old Irish, ~3799 rows
+    "yol":       "yol_latn_broad.tsv",              # Yola, ~2546 rows
+    "liv":       "liv_latn_broad.tsv",              # Livonian, ~2516 rows
+    "phl":       "phl_latn_broad.tsv",              # Phalura, ~2240 rows
+    "hrx":       "hrx_latn_broad.tsv",              # Hunsrik, ~2108 rows
+    "gmh":       "gmh_latn_broad.tsv",              # Middle High German, ~1724 rows
+    "slr":       "slr_latn_broad.tsv",              # Salar, ~1724 rows
+    "orv":       "orv_cyrl_broad.tsv",              # Old East Slavic, ~1612 rows
+    "fro":       "fro_latn_broad.tsv",              # Old French, ~1057 rows
+    "kaw":       "kaw_latn_broad.tsv",              # Kawi / Old Javanese, ~937 rows
+    "sjs":       "sjs_latn_broad.tsv",              # Senhaja de Srair, ~865 rows
+    "mak":       "mak_latn_broad.tsv",              # Makasar, ~834 rows
+    "osp":       "osp_latn_broad.tsv",              # Old Spanish, ~681 rows
+    "akk":       "akk_latn_broad.tsv",              # Akkadian, ~672 rows
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"

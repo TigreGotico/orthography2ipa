@@ -1,0 +1,171 @@
+{
+  "code": "fro",
+  "name": "Old French",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "tʃ"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "qu": [
+      "k"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "th": [
+      "θ"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "ei": [
+      "ei"
+    ],
+    "au": [
+      "au"
+    ],
+    "eu": [
+      "eu"
+    ],
+    "ou": [
+      "ou"
+    ],
+    "oi": [
+      "oi"
+    ],
+    "é": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "y"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "ç": [
+      "ts"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks"
+    ],
+    "y": [
+      "i"
+    ],
+    "z": [
+      "ts"
+    ]
+  },
+  "parent": "la-x-gallia",
+  "ancestors": [
+    {
+      "code": "la-x-gallia",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Descent from Gallo-Romance (Gaulish Vulgar Latin)"
+    },
+    {
+      "code": "cel",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Gaulish (Celtic) substrate"
+    },
+    {
+      "code": "gem",
+      "role": "superstrate",
+      "weight": 0.1,
+      "notes": "Frankish (West Germanic) superstrate: /h/, /w/, some lexis"
+    }
+  ],
+  "notes": "Skeleton. Old French (c. 842-1400). Retains the affricate values ⟨ch⟩=/tʃ/, ⟨j/g⟩=/dʒ/, ⟨c/ç⟩=/ts/, ⟨z⟩=/ts/ that later simplified; final dental spirants (⟨t⟩=/θ/) occur early. Diphthongs and nasal vowels are only partially recoverable from spelling.",
+  "iso639_3": "fro",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "pope1934",
+      "author": "Pope, Mildred K.",
+      "year": 1934,
+      "title": "From Latin to Modern French with Especial Consideration of Anglo-Norman",
+      "publisher": "Manchester University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Historical phonology from Latin through Old French.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Old_French"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Old_French",
+    "https://en.wikipedia.org/wiki/Old_French#Phonology"
+  ],
+  "timespan": {
+    "start_year": 842,
+    "end_year": 1400
+  }
+}

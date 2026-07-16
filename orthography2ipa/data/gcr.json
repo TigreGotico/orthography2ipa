@@ -43,6 +43,26 @@
       "url": "https://www.omniglot.com/writing/guyanais.htm",
       "pages": null,
       "notes": "States Q and X are written K and Z, and C occurs only in the digraph CH = [ʃ]. The full alphabet/pronunciation chart is an image, so no letter->IPA table could be extracted."
+    },
+    {
+      "id": "holm1989",
+      "author": "Holm, John",
+      "year": 1989,
+      "title": "Pidgins and Creoles, Volume II: Reference Survey",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference survey of Atlantic and Pacific pidgins/creoles; lexifier and substrate attributions."
+    },
+    {
+      "id": "apics2013",
+      "author": "Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.)",
+      "year": 2013,
+      "title": "The Atlas of Pidgin and Creole Language Structures (APiCS)",
+      "publisher": "Oxford University Press",
+      "url": "https://apics-online.info/",
+      "pages": null,
+      "notes": "Structural atlas of 76 pidgins/creoles; per-language survey chapters cited in ancestry notes."
     }
   ],
   "wikipedia": [
@@ -54,5 +74,25 @@
     "longitude": -52.7336,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Guianese Creole French."
-  }
+  },
+  "ancestors": [
+    {
+      "code": "fr-FR",
+      "role": "lexifier",
+      "weight": 0.65,
+      "notes": "French lexifier; French Guianese Creole (Guyanais). Holm (1989); APiCS ch. 55 (Corne/APiCS French Guianese)."
+    },
+    {
+      "code": "fon",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Gbe (Fon/Ewe) substrate typical of the Atlantic French-lexifier creoles: nasal vowels, TMA system, postposed determiner."
+    },
+    {
+      "code": "kg",
+      "role": "substrate",
+      "weight": 0.1,
+      "notes": "Kikongo (West Bantu) substrate from enslaved West-Central Africans."
+    }
+  ]
 }

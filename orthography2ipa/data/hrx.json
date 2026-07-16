@@ -1,0 +1,139 @@
+{
+  "code": "hrx",
+  "name": "Hunsrik (Riograndenser Hunsrückisch)",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "sch": [
+      "ʃ"
+    ],
+    "ch": [
+      "x"
+    ],
+    "aa": [
+      "ɔː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "ä": [
+      "ɛ"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ë": [
+      "ɛ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ə"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "ʁ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "f"
+    ],
+    "w": [
+      "v"
+    ],
+    "z": [
+      "ts"
+    ]
+  },
+  "parent": "gmh",
+  "ancestors": [
+    {
+      "code": "gmh",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Middle High German (Rhine-Franconian / Hunsrückisch dialect)"
+    },
+    {
+      "code": "pt-BR",
+      "role": "adstrate",
+      "weight": 0.1,
+      "notes": "Brazilian Portuguese adstrate: loan phonology and code-switching"
+    }
+  ],
+  "notes": "Skeleton. Hunsrik/Riograndenser Hunsrückisch (West-Central German variety of southern Brazil), written in the standardised SWR/Wikipedia Hunsrik orthography. Rhine-Franconian reflexes: initial fortis lenition (t for d, p for b) and ⟨aa⟩=/ɔː/; long Brazilian Portuguese adstrate.",
+  "iso639_3": "hrx",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "altenhofen1996",
+      "author": "Altenhofen, Cléo Vilson",
+      "year": 1996,
+      "title": "Hunsrückisch in Rio Grande do Sul: Ein Beitrag zur Beschreibung einer deutschbrasilianischen Dialektvarietät",
+      "publisher": "Franz Steiner Verlag",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive study of the Hunsrik dialect of Rio Grande do Sul.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Riograndenser_Hunsr%C3%BCckisch"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Riograndenser_Hunsr%C3%BCckisch"
+  ]
+}
