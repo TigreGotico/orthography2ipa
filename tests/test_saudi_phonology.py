@@ -104,10 +104,12 @@ def test_rijal_alma_dha_is_a_voiceless_lateral_emphatic():
     assert RIJ.transcribe_word("ظَهْر")[1] == "ɬˤ"[0]
 
 
-def test_rijal_alma_is_qaf_retaining_and_interdental_keeping():
-    """The southwestern highland/Tihāmah type is conservative: qaf stays [q]
-    (NOT the Najdi/Bedouin [ɡ]), interdentals stay (Asiri 2009)."""
-    assert RIJ.transcribe_word("قَلْب") == "ˈqalb"
+def test_rijal_alma_qaf_is_voiced_and_interdental_keeping():
+    """Asiri's own Rijāl Almaʿ data (quoted in Alfaifi 2024:177-178) realises
+    historical *q as voiced [ɡ] throughout (gābalt, im=bagar, saragu, gaṭaʕaw),
+    NOT [q]. Interdentals stay (Asiri 2008)."""
+    assert RIJ.transcribe_word("قَلْب") == "ˈɡalb"
+    assert RIJ.transcribe_word("قَابَلْت") == "ɡaːˈbalt"
     assert RIJ.transcribe_word("ثَلَاثَة") == "θaˈlaːθa"
 
 
