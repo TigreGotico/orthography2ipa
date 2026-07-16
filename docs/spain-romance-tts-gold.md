@@ -23,6 +23,13 @@ of time without failing CI. Concurrent authors work sibling families and touch
 only their own lects' TSVs; harness `LECTS` appends stay minimal and
 rebase-friendly.
 
+> The Spanish-lexified creoles `pap` (Papiamento), `cbk-zam` (Chavacano) and
+> `pln` (Palenquero) are **not** Iberian Romance and were moved out of this set
+> into the unified creole harness — `scripts/iberian_creole_tts_gold.py`,
+> `docs/iberian-creole-tts-gold.md` — which models the creole-specific axes
+> (prenasalised onsets, coda sibilants, the tx/dj affricates) rather than the
+> distinción/seseo/yeísmo axes below.
+
 ## Schema
 
 TSV, tab-separated, UTF-8, header row:

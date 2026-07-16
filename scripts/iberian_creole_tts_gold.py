@@ -65,14 +65,14 @@ LECTS = [
     "mcm",  # Kristang / Papia Kristang (Malacca Creole Portuguese)
     "idb",  # Sri Lanka Portuguese Creole (Batticaloa/Trincomalee Burgher)
     "vkp",  # Korlai Indo-Portuguese ("Kristi")
-    # Upper Guinea + Gulf of Guinea Portuguese creoles (pending)
-    "kea",  # Kabuverdianu (Cape Verdean)
-    "pov",  # Guinea-Bissau Kriol
-    "pre",  # Principense (Lung'Ie)
-    "aoa",  # Angolar
-    "cri",  # Forro / Santome
-    # Iberian creoles of the Caribbean and the Philippines (pending)
-    "pap",  # Papiamento
+    # Upper Guinea + Gulf of Guinea Portuguese creoles (Atlantic)
+    "kea",  # Kabuverdianu (Cape Verdean), ALUPEC
+    "pov",  # Guinea-Bissau Kriol (Upper Guinea)
+    "pre",  # Principense (Lung'Ie), Gulf of Guinea
+    "aoa",  # Angolar (Gulf of Guinea, Bantu-heavy, tonal)
+    "cri",  # Forro / Santome (Gulf of Guinea), ALUSTP
+    # Spanish-lexified Iberian creoles of the Caribbean and the Philippines
+    "pap",  # Papiamento (Curaçao)
     "cbk-zam",  # Chavacano (Zamboangueno)
     "pln",  # Palenquero
 ]
@@ -88,6 +88,10 @@ IPA_VOWELS = set("aeiouɛɔəæɐ")
 NASAL_CONS = set("mnŋɲɳ")
 STOP_AFFRIC = set("bpdtkɡʈɖ")
 COMBINING_SKIP = "ˈˌ"
+TILDE = "̃"  # U+0303 combining tilde (nasal vowel)
+# Word-initial prenasalised onset graphemes ⟨mb nd ng mp⟩ of the Upper- and
+# Gulf-of-Guinea Atlantic creoles (position-tied trigger for `prenasal_stop`).
+NASAL_GRAPHS = ("mb", "nd", "ng", "mp")
 
 
 def _ipa_tokens(ipa: str):
@@ -141,47 +145,123 @@ def _syllabic_nasal_ipa(ipa: str) -> bool:
     return False
 
 
+# --- orthographic / ipa helpers for the Atlantic (Guinea) creole axes ------
+# The Upper- and Gulf-of-Guinea creoles add position-tied axes: word-initial
+# prenasalised onsets and the ⟨gb kp⟩ labial-velar stops need an orthographic
+# trigger paired with the predicted ipa, and the coda sibilant is read off the
+# token-final segment.
+def _words(sentence: str):
+    return [w for w in re.findall(r"[^\s]+", sentence) if re.search(r"\w", w)]
+
+
+def _strip_punct(word: str) -> str:
+    return word.strip(".,;:!?¿¡\"'«»()—-·").lower()
+
+
+def _has_initial_prenasal_graph(sentence: str) -> bool:
+    """True if some word begins with a ⟨mb nd ng mp⟩ prenasalised onset."""
+    for w in _words(sentence):
+        if _strip_punct(w).startswith(NASAL_GRAPHS):
+            return True
+    return False
+
+
+def _has_labial_velar_graph(sentence: str) -> bool:
+    """True if some word contains a ⟨gb⟩ or ⟨kp⟩ labial-velar-stop digraph."""
+    s = sentence.lower()
+    return "gb" in s or "kp" in s
+
+
+def _has_nasal_vowel(ipa: str) -> bool:
+    """True if any vowel carries a combining tilde — a phonemic nasal vowel.
+    Robust to NFC-composed forms (ã õ ũ ẽ ĩ), which decompose to base+tilde."""
+    return TILDE in ipa or TILDE in unicodedata.normalize("NFD", ipa)
+
+
+def _token_final_sibilant(ipa: str) -> bool:
+    """True if some ipa word ends in a postalveolar sibilant [ʃ]/[ʒ] — the coda
+    sibilant of kea (coda /s/ → [ʃ]) and cri (⟨x⟩ → [ʃ])."""
+    for tok in ipa.split():
+        tok = tok.rstrip("ˈˌ")
+        while tok and unicodedata.combining(tok[-1]):
+            tok = tok[:-1]
+        if tok.endswith(("ʃ", "ʒ")):
+            return True
+    return False
+
+
 # --- feature tags: each predicate is computable from (sentence, ipa) -------
-# All creole axes here are witnessed on the realised IPA (kind "ipa"): the tag
-# asserts that the row's transcription surfaces the reflex. This mirrors the
-# presence-tag style of the sibling harnesses (palatal_nasal, open_mid, …) and
-# keeps every tag machine-verifiable against the o2i output.
+# The unified creole roster spans three shelves — the South/Southeast-Asian
+# Portuguese creoles (mcm idb vkp), the Upper- and Gulf-of-Guinea Atlantic
+# creoles (kea pov pre aoa cri) and the Spanish-lexified Caribbean/Philippine
+# creoles (pln cbk-zam pap). Most axes are witnessed directly on the realised
+# IPA (kind "ipa"); the position-tied Atlantic axes (`prenasal_stop`,
+# `labial_velar`) are kind "both": an orthographic trigger AND the predicted
+# ipa, so a tag proves the row genuinely exercises the axis. Every tag stays
+# machine-verifiable against the o2i output.
 FEATURES = {
+    # === South / Southeast-Asian Portuguese-creole axes (mcm idb vkp) =======
     # South-Asian retroflex series/allophones [ʈ ɖ ɳ ɭ ɽ] (Korlai stops from
     # Marathi contact; Sri Lanka [ɳ ɭ] allophones after back vowels)
-    "retroflex":        ("ipa", lambda s, ipa: any(c in ipa for c in "ʈɖɳɭɽ")),
+    "retroflex":        ("ipa",  lambda s, ipa: any(c in ipa for c in "ʈɖɳɭɽ")),
     # aspirated / breathy-voiced stop series [pʰ tʰ ʈʰ kʰ bʱ dʱ ɡʱ] (Korlai)
-    "aspirated":        ("ipa", lambda s, ipa: "ʰ" in ipa or "ʱ" in ipa),
-    # phonemic nasal vowel (Korlai retains /ĩ ũ ɛ̃ ɔ̃/; Kristang and Sri Lanka
-    # denasalised them — a discriminating axis)
-    "nasal_vowel":      ("ipa", lambda s, ipa: "̃" in ipa),
+    "aspirated":        ("ipa",  lambda s, ipa: "ʰ" in ipa or "ʱ" in ipa),
     # nasal coda from denasalisation / homorganic cluster coda
-    "nasal_coda":       ("ipa", lambda s, ipa: _nasal_coda_ipa(ipa)),
-    # homorganic NC cluster (mb nd ŋɡ ndʒ …)
-    "prenasal_cluster": ("ipa", lambda s, ipa: _homorganic_nc_ipa(ipa)),
+    "nasal_coda":       ("ipa",  lambda s, ipa: _nasal_coda_ipa(ipa)),
+    # homorganic NC cluster anywhere (mb nd ŋɡ ndʒ …) — the medial/any-position
+    # cluster; distinct from `prenasal_stop`, the word-initial Atlantic onset
+    "prenasal_cluster": ("ipa",  lambda s, ipa: _homorganic_nc_ipa(ipa)),
     # syllabic / word-initial onset nasal (Kristang ngua, nsentu)
-    "syllabic_nasal":   ("ipa", lambda s, ipa: _syllabic_nasal_ipa(ipa)),
-    # retained medieval affricates [tʃ dʒ] (⟨ch⟩ ⟨j⟩) and Korlai [ts dz]
-    "affricate":        ("ipa", lambda s, ipa: any(a in ipa for a in ("tʃ", "dʒ", "ts", "dz"))),
-    # palatal nasal [ɲ] (⟨ny⟩ Kristang, ⟨nh⟩ Sri Lanka)
-    "palatal_nasal":    ("ipa", lambda s, ipa: "ɲ" in ipa),
-    # velar nasal [ŋ] (⟨ng⟩; Kristang final -ng from denasalisation)
-    "velar_nasal":      ("ipa", lambda s, ipa: "ŋ" in ipa),
+    "syllabic_nasal":   ("ipa",  lambda s, ipa: _syllabic_nasal_ipa(ipa)),
     # phonemic vowel length [ː] (Sri Lanka Portuguese)
-    "vowel_length":     ("ipa", lambda s, ipa: "ː" in ipa),
-    # open-mid vowels [ɛ ɔ]
-    "open_mid":         ("ipa", lambda s, ipa: "ɛ" in ipa or "ɔ" in ipa),
-    # central vowel / schwa [ə]
-    "schwa":            ("ipa", lambda s, ipa: "ə" in ipa),
+    "vowel_length":     ("ipa",  lambda s, ipa: "ː" in ipa),
     # South-Asian labial approximant [ʋ] for etymological /v/ (Sri Lanka, Korlai)
-    "approximant_v":    ("ipa", lambda s, ipa: "ʋ" in ipa),
-    # trilled rhotic [r] reflex (excludes the tap [ɾ])
-    "rhotic_trill":     ("ipa", lambda s, ipa: "r" in ipa),
+    "approximant_v":    ("ipa",  lambda s, ipa: "ʋ" in ipa),
     # a surfacing glide [j w] (Kristang yo, Korlai lɔ̃j)
-    "glide":            ("ipa", lambda s, ipa: "j" in ipa or "w" in ipa),
+    "glide":            ("ipa",  lambda s, ipa: "j" in ipa or "w" in ipa),
+    # === Upper- and Gulf-of-Guinea Atlantic creole axes (kea pov pre aoa cri) =
+    # word-initial prenasalised onset ⟨mb nd ng mp⟩ → [mb nd ŋɡ mp] (position-
+    # tied): the Gulf-of-Guinea / substrate prenasalised onset
+    "prenasal_stop":    ("both", lambda s, ipa: _has_initial_prenasal_graph(s)
+                                                and ("mb" in ipa or "nd" in ipa
+                                                     or "ŋɡ" in ipa or "mp" in ipa)),
+    # Gulf-of-Guinea labial-velar stop ⟨gb⟩ [ɡ͡b] / ⟨kp⟩ [k͡p] (position-tied)
+    "labial_velar":     ("both", lambda s, ipa: _has_labial_velar_graph(s)
+                                                and ("ɡ͡b" in ipa or "k͡p" in ipa)),
+    # postalveolar sibilant [ʃ]/[ʒ] (⟨x⟩=[ʃ], ⟨j⟩=[ʒ]; Caribbean coda /s/→[ʃ])
+    "postalveolar":     ("ipa",  lambda s, ipa: "ʃ" in ipa or "ʒ" in ipa),
+    # coda sibilant: a word ends in [ʃ]/[ʒ] (kea coda /s/, cri ⟨x⟩, pap coda /s/)
+    "coda_sibilant":    ("ipa",  lambda s, ipa: _token_final_sibilant(ipa)),
+    # velarised coda /l/ → [ɫ] (kea)
+    "velarized_l":      ("ipa",  lambda s, ipa: "ɫ" in ipa),
+    # alveolar tap [ɾ] (single intervocalic ⟨r⟩)
+    "tap":              ("ipa",  lambda s, ipa: "ɾ" in ipa),
+    # lexical stress assigned in the ipa (kea)
+    "stress":           ("ipa",  lambda s, ipa: "ˈ" in ipa),
+    # === shared axes (both families; deduped to one predicate each) =========
+    # phonemic nasal vowel (tilde): Korlai /ĩ ũ ɛ̃ ɔ̃/, the Atlantic ⟨ã ẽ ĩ õ ũ⟩;
+    # Kristang and Sri Lanka denasalised — a discriminating axis
+    "nasal_vowel":      ("ipa",  lambda s, ipa: _has_nasal_vowel(ipa)),
+    # retained/creole affricates [tʃ dʒ] (⟨ch⟩ ⟨j⟩ ⟨tx dj⟩) and Korlai [ts dz]
+    "affricate":        ("ipa",  lambda s, ipa: any(a in ipa for a in ("tʃ", "dʒ", "ts", "dz"))),
+    # palatal nasal [ɲ] (⟨ny⟩ Kristang, ⟨nh⟩ Sri Lanka/kea, ⟨ñ⟩ Caribbean)
+    "palatal_nasal":    ("ipa",  lambda s, ipa: "ɲ" in ipa),
+    # velar nasal [ŋ] (⟨ng⟩; final -ng from denasalisation; prenasal onsets)
+    "velar_nasal":      ("ipa",  lambda s, ipa: "ŋ" in ipa),
+    # open-mid vowels [ɛ ɔ] (Sri Lanka; the cri seven-vowel contrast; pap ⟨ò⟩)
+    "open_mid":         ("ipa",  lambda s, ipa: "ɛ" in ipa or "ɔ" in ipa),
+    # central vowel / schwa [ə] (Korlai central vowel ⟨ï⟩)
+    "schwa":            ("ipa",  lambda s, ipa: "ə" in ipa),
+    # strong rhotic [ʀ]/[r] reflex (excludes the tap [ɾ]) — Kristang/Sri Lanka
+    # trill, kea word-initial/⟨rr⟩ strong rhotic, pov alveolar /r/
+    "strong_rhotic":    ("ipa",  lambda s, ipa: "ʀ" in ipa or "r" in ipa),
 }
-# Non-phonetic shape tags: allowed in `features`, not machine-verified.
-SHAPE_TAGS = {"statement", "question", "negation", "imperative", "number"}
+# Non-phonetic shape / morphosyntax tags: allowed in `features`, not
+# machine-verified. The union carries the Asian set's `number` and the Atlantic
+# set's creole-register tags (`tma`, `no_agreement`, `pronoun`, `plural`,
+# `copula`) documenting genuine creole morphosyntax.
+SHAPE_TAGS = {"statement", "question", "negation", "imperative", "number",
+              "tma", "no_agreement", "pronoun", "plural", "copula"}
 
 
 def _load(lect):
