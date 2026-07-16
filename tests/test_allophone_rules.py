@@ -173,11 +173,13 @@ def test_field_inheritance_manifest_declares_allophone_rules():
 
 
 def test_child_inherits_parent_allophone_rules():
-    parent_ids = {r.id for r in get("ca").allophone_rules}
-    assert parent_ids  # ca declares the pilots
+    # Balearic's parent/graphemes_base is ca-x-medieval, so the overlay edge to
+    # test is medieval -> balear: Balearic inherits the whole medieval rule set
+    # (the final-cluster pilots) through the id-keyed overlay and then appends
+    # its own (stressed-schwa, open-o) rules.
+    parent_ids = {r.id for r in get("ca-x-medieval").allophone_rules}
+    assert parent_ids  # ca-x-medieval declares the final-cluster pilots
     child_ids = {r.id for r in get("ca-x-balear").allophone_rules}
-    # Balearic sets graphemes_base=ca and declares none of its own, so it
-    # inherits the whole rule set through the id-keyed overlay edge.
     assert parent_ids <= child_ids
 
 

@@ -133,9 +133,74 @@
         "ŋ"
       ],
       "notes": "Word-final cluster simplification (Wheeler 2005 §10.4; Recasens 1993; Veny 1982 ch. 3): an ABSOLUTELY word-final stop is DELETED after a homorganic nasal or lateral — camp [ˈkam], sang [ˈsaŋ], quant [ˈkwan], molt [ˈmol]. An innovation of CENTRAL, NORTH-WESTERN and NORTHERN Catalan against the Old-Catalan core, which keeps the stop; VALENCIAN and BALEARIC keep it too (camp [ˈkamp], molt [ˈmolt]), and the 4catac expert transcriptions confirm the split on the one token that is diagnostic because a vowel follows — molt alta = Central/North-Western [ˈmol ˈalt-] vs Valencian/Balearic [ˈmolt ˈalt-]. The isogloss is therefore Central + North-Western (+ Northern) against Valencian + Balearic; it is NOT the Eastern/Western line. Overrides the core's conservative CA_CLUSTER_*_FINAL rule by id."
+    },
+    {
+      "id": "CA_CENTRAL_CLOSE_O",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "word": [
+        "corre",
+        "corren",
+        "correm",
+        "correu"
+      ],
+      "notes": "Central Catalan defaults an unmarked stressed ⟨o⟩ to open-mid [ɔ] and lists the close-[o] lexemes (the DCVB-cited word_exceptions gos/tot/dos/molt). 'corre' (córrer, close [ˈkorə]) was missing from that list, so this word-keyed rule pins ONLY its stressed vowel to close [o] and lets reduction and spirantisation run normally (DCVB s.v. córrer; Recasens 1996; the ca-009 arbitration)."
     }
   ],
   "stress": {
+    "cliticless_words": [
+      "el",
+      "la",
+      "l",
+      "els",
+      "les",
+      "lo",
+      "los",
+      "un",
+      "una",
+      "uns",
+      "unes",
+      "al",
+      "als",
+      "del",
+      "dels",
+      "pel",
+      "pels",
+      "cal",
+      "can",
+      "a",
+      "de",
+      "en",
+      "amb",
+      "per",
+      "que",
+      "com",
+      "des",
+      "i",
+      "o",
+      "ni",
+      "em",
+      "et",
+      "es",
+      "ens",
+      "us",
+      "li",
+      "hi",
+      "ho",
+      "ne",
+      "me",
+      "te",
+      "se",
+      "m",
+      "t",
+      "s",
+      "n",
+      "d",
+      "vos"
+    ],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -218,7 +283,7 @@
       "gü",
       "qü"
     ],
-    "notes": "Catalan accentuation per the Institut d'Estudis Catalans (IEC) norm (Gramàtica de la llengua catalana, ch. 3; Wheeler 2005 §3.1). A written accent (à è é í ò ó ú) always wins and marks the stressed vowel. Unmarked words are OXYTONE when they end in a consonant other than -s-preceded-by-a-vowel and other than -en/-in — including the consonant+s plurals (-ns, -rs, -ts, -nts, -ps …), which are oxytone because the plural preserves the stress of the singular (important → importants). A word ending in a falling DIPHTHONG (-ai -au -ei -eu -iu -oi -ou) is oxytone (remei [rəˈmɛj], correu [kuˈrɛw], avui [əˈβuj]) — the diphthong is one syllable, so the word does not end in a bare vowel. Unmarked words are PAROXYTONE when they end in a (single) vowel, in a vowel + -s (-as, -es, -is, -os, -us) or in -en/-in (semblen, parlin). The diaeresis ⟨ï ü⟩ marks hiatus/pronounced ⟨u⟩, NOT stress, so it is deliberately absent from marked_vowels (següent is [səˈɣwen], not [səˈɣwent] with stress on ⟨ü⟩). Proparoxytones always carry a written accent, so the unmarked default is paroxytone. The diphthongs list is the Catalan inventory of tautosyllabic vowel sequences (Wheeler 2005 §2.5; IEC grammar ch. 4): the falling diphthongs ⟨ai au ei eu iu oi ou ui⟩ and the rising ⟨ua ue uo ui⟩ after ⟨g/q⟩. Every other vowel sequence is HIATUS and counts as two syllables — te-ni-a, ve-ï-na, di-a — which is what puts the stress, and therefore the unstressed-vowel reduction, on the right vowel."
+    "notes": "Catalan accentuation per the Institut d'Estudis Catalans (IEC) norm (Gramàtica de la llengua catalana, ch. 3; Wheeler 2005 §3.1). A written accent (à è é í ò ó ú) always wins and marks the stressed vowel. Unmarked words are OXYTONE when they end in a consonant other than -s-preceded-by-a-vowel and other than -en/-in — including the consonant+s plurals (-ns, -rs, -ts, -nts, -ps …), which are oxytone because the plural preserves the stress of the singular (important → importants). A word ending in a falling DIPHTHONG (-ai -au -ei -eu -iu -oi -ou) is oxytone (remei [rəˈmɛj], correu [kuˈrɛw], avui [əˈβuj]) — the diphthong is one syllable, so the word does not end in a bare vowel. Unmarked words are PAROXYTONE when they end in a (single) vowel, in a vowel + -s (-as, -es, -is, -os, -us) or in -en/-in (semblen, parlin). The diaeresis ⟨ï ü⟩ marks hiatus/pronounced ⟨u⟩, NOT stress, so it is deliberately absent from marked_vowels (següent is [səˈɣwen], not [səˈɣwent] with stress on ⟨ü⟩). Proparoxytones always carry a written accent, so the unmarked default is paroxytone. The diphthongs list is the Catalan inventory of tautosyllabic vowel sequences (Wheeler 2005 §2.5; IEC grammar ch. 4): the falling diphthongs ⟨ai au ei eu iu oi ou ui⟩ and the rising ⟨ua ue uo ui⟩ after ⟨g/q⟩. Every other vowel sequence is HIATUS and counts as two syllables — te-ni-a, ve-ï-na, di-a — which is what puts the stress, and therefore the unstressed-vowel reduction, on the right vowel. CLITICS: cliticless_words lists the Catalan mots atons (IEC Gramatica de la llengua catalana ch. 3 and 6.2; Wheeler 2005 3.1) — definite articles el/la/els/les, the salat/literary lo/los, indefinite un/una/uns/unes, the article-preposition contractions al/als/del/dels/pel/pels, personal articles can/cal, the atonic prepositions a/de/en/amb/per/des, the conjunctions i/o/ni/que and atonic com, and the weak pronouns em/et/es/ens/us/el/la/els/les/li/hi/ho/ne and their reduced shapes. A clitic given a reduced lexical form in word_exceptions must not then be re-stressed (Recasens 1996)."
   },
   "notes": "CENTRAL CATALAN (the Barcelona standard codified by the Institut d'Estudis Catalans). ⟨ca⟩ is the standard language and remains the code for 'Catalan'; what it is NOT is the parent of the other varieties — they inherit from ca-x-medieval (Old Catalan), so nothing declared here can leak into them. Everything in this file is a CENTRAL innovation against the Old-Catalan core: (1) stress-conditioned unstressed vowel reduction — unstressed /a e ɛ/ → [ə] and /o ɔ/ → [u], STRESSED vowels keeping full quality (gos [ˈɡos], dona [ˈdɔnə]) — keyed to the ⟨nucleus_unstressed⟩ slot, not to every nucleus (Wheeler 2005 §2.3); (2) betacism, ⟨v⟩ merged into /b/; (3) the fricative [ʒ] for ⟨j⟩ and ⟨g⟩ before a front vowel, where Old Catalan (and Valencian, and North-Western) has the affricate [dʒ]; (4) ⟨ix⟩ = [ʃ], the glide absorbed; (5) deletion of word-final ⟨-r⟩ (cantar [kənˈta]); and (6) deletion of an absolutely word-final stop in an ⟨-nt/-lt/-mp/-nc⟩ cluster (camp [ˈkam], molt [ˈmol]) — an innovation shared with North-Western and Northern but NOT with Valencian or Balearic. The stressed ⟨e⟩/⟨o⟩ close/open contrast is NOT recoverable from Catalan spelling (gos [ˈɡos] vs cos [ˈkɔs]); the default prior is OPEN-mid first, and the close-mid words are listed in word_exceptions.",
   "quality": "research",
