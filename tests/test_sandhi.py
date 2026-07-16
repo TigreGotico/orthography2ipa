@@ -139,7 +139,7 @@ class TestBasqueNegationSandhi:
         assert self._transcribe("ez zen") == "e ts̻en"
 
     def test_ez_n_deletes_sibilant_before_nasal(self):
-        assert self._transcribe("ez naiz") == "e nais̻"
+        assert self._transcribe("ez naiz") == "e nai̯s̻"
 
     def test_ez_l_deletes_sibilant_before_lateral(self):
         assert self._transcribe("ez luke") == "e luke"
@@ -153,7 +153,7 @@ class TestBasqueNegationSandhi:
     def test_only_the_negator_fires_not_any_z_final_word(self):
         # 'naiz' ends in the same laminal sibilant but is not the negator ez,
         # so a following voiced onset is NOT devoiced.
-        assert self._transcribe("naiz da") == "nais̻ da"
+        assert self._transcribe("naiz da") == "nai̯s̻ da"
 
     def test_rules_inherit_to_dialects(self):
         for lect in ("eu-x-gipuzkera", "eu-x-lapurtera", "eu-x-nafarra-garaia"):
