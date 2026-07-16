@@ -170,9 +170,11 @@ def test_positional_candidates_exact_beats_class():
     # ⟨i⟩ (front, no exact rule): falls to the class rule.
     pos_i = grapheme_positions(_ctx(spec, "ci"))
     assert positional_candidates(spec, "c", pos_i) == ["s"]
-    # ⟨é⟩ (accented front vowel): class rule via the vowel predicate.
+    # ⟨é⟩ (accented front vowel): the exact BEFORE_E position matches too — the
+    # acute is stripped to its base letter ⟨e⟩ for exact-position lookup, so a
+    # soft-c/g rule keyed on before_e fires before ⟨é ê⟩ exactly as before ⟨e⟩.
     pos_acc = grapheme_positions(_ctx(spec, "cé"))
-    assert positional_candidates(spec, "c", pos_acc) == ["s"]
+    assert positional_candidates(spec, "c", pos_acc) == ["ʃ"]
 
 
 def test_positional_candidates_falls_through_to_default():

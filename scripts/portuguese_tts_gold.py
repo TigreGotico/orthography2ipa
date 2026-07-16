@@ -37,6 +37,7 @@ import argparse
 import csv
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -110,6 +111,27 @@ def _coda_l_grapheme(sentence: str) -> bool:
     return False
 
 
+# IPA vowel letters (nucleus carriers). A [ʃ ʒ] followed by one of these is an
+# onset, not a coda — the distinction the coda_sibilant tag must respect.
+IPA_VOWELS = set("aeiouɐɛɔəɨyœøæɪʊ")
+
+
+def _coda_sibilant_hush_ipa(ipa: str) -> bool:
+    """True if a palato-alveolar [ʃ ʒ] surfaces in *coda* position — followed
+    by a consonant or a word/utterance boundary. Onset ⟨ch j x g⟩ realisations
+    (a [ʃ ʒ] before a vowel) are excluded, so the tag no longer fires merely
+    because an unrelated onset [ʒ] sits elsewhere in the utterance."""
+    for m in re.finditer(r"[ʃʒ]", ipa):
+        j = m.end()
+        while j < len(ipa) and (unicodedata.combining(ipa[j]) or ipa[j] in "ˈˌ"):
+            j += 1
+        if j >= len(ipa) or ipa[j] == " ":
+            return True  # word-final / utterance-final
+        if ipa[j] not in IPA_VOWELS:
+            return True  # pre-consonantal
+    return False
+
+
 def _has_sandhi_junction(sentence: str) -> bool:
     """True if some word boundary is a cross-word sandhi site: a vowel-final
     word before a vowel-initial word (elision / liaison), or an /s z/-final
@@ -133,10 +155,13 @@ FEATURES = {
     "vowel_reduction":  ("ipa",  lambda s, ipa: "ɨ" in ipa or "ɐ" in ipa),
     # coda /s z/ → [ʃ ʒ] vs [s z]: needs a coda sibilant AND a palato-alveolar
     "coda_sibilant":    ("both", lambda s, ipa: _coda_sibilant_grapheme(s)
-                                                 and re.search(r"[ʃʒ]", ipa) is not None),
+                                                 and _coda_sibilant_hush_ipa(ipa)),
     "open_mid":         ("ipa",  lambda s, ipa: "ɛ" in ipa or "ɔ" in ipa),
     "close_mid":        ("ipa",  lambda s, ipa: re.search(r"[eo]", ipa) is not None),
-    "nasal_vowel":      ("ipa",  lambda s, ipa: "̃" in ipa),
+    # nasalisation, whether the source spec emits a combining tilde (NFD) or a
+    # precomposed nasal letter (ã õ …, as the historical lects do) — normalise
+    # so the encoding never decides the tag.
+    "nasal_vowel":      ("ipa",  lambda s, ipa: "̃" in unicodedata.normalize("NFD", ipa)),
     # nasal diphthong: a nasalised glide [w̃]/[j̃] (ão, ãe, õe, …)
     "nasal_diphthong":  ("ipa",  lambda s, ipa: re.search(r"[wj]̃", ipa) is not None),
     "palatal":          ("ipa",  lambda s, ipa: "ʎ" in ipa or "ɲ" in ipa),

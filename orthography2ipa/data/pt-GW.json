@@ -116,12 +116,45 @@
         "s"
       ]
     },
+    "z": {
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
+    },
     "e": {
+      "nucleus_stressed": [
+        "ɛ",
+        "e"
+      ],
       "nucleus_unstressed": [
+        "e"
+      ],
+      "pretonic": [
         "e"
       ],
       "word_final": [
         "e"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "ɔ",
+        "o"
+      ],
+      "nucleus_unstressed": [
+        "o"
+      ],
+      "pretonic": [
+        "o"
+      ],
+      "word_final": [
+        "u"
+      ],
+      "posttonic": [
+        "u"
       ]
     }
   },

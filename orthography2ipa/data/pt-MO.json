@@ -9,6 +9,13 @@
   "graphemes_base": "pt-PT",
   "allophones_base": "pt-PT",
   "positional_graphemes_base": "pt-PT",
+  "positional_graphemes": {
+    "r": {
+      "intervocalic": [
+        "ɾ"
+      ]
+    }
+  },
   "graphemes": {
     "r": [
       "ʁ",

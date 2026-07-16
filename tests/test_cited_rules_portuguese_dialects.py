@@ -427,13 +427,6 @@ def test_medieval_dj_simplifies_to_zh():
     assert _bare("roa-x-galaicopt", "jogar").startswith("d͡ʒ")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="pt-PT-x-medieval cites the /dʒ/→/ʒ/ simplification; ⟨j⟩ does yield "
-    "[ʒ] (jogar) but soft ⟨g⟩ does not — gente is transcribed [ˈɡɛnte], the "
-    "grapheme ⟨g⟩ having no before-front-vowel branch in this spec. DATA gap "
-    "(same shape as gl-ES's soft ⟨c⟩), not an engine limit",
-)
 def test_medieval_soft_g_simplifies_to_zh():
     """/dʒ/ → /ʒ/ applies to soft ⟨g⟩ as well as to ⟨j⟩.
 
@@ -445,25 +438,20 @@ def test_medieval_soft_g_simplifies_to_zh():
     assert _bare("pt-PT-x-medieval", "gente").startswith("ʒ")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="pt-PT-x-medieval claims nasal vowels are fully phonemicised; engine "
-    "produces [ˈkampo] and [ˈvɛnto] — a vowel before a coda nasal stays oral and "
-    "the nasal consonant surfaces separately, so no nasal vowel exists outside "
-    "the ⟨ão⟩ digraph. DATA gap: the spec inherits none of pt-PT's "
-    "PT_NASAL_*_RAISE coda-nasalisation rules",
-)
 def test_medieval_nasal_vowels_are_phonemicised():
     """NASAL VOWELS fully phonemicised.
 
     pt-PT-x-medieval notes: "(3) Nasal vowels fully phonemicised." Sources:
     Williams (1962), Mattos e Silva (2006), Castro (2006).
 
-    Modern pt-PT nasalises the vowel and absorbs the coda nasal (campo → [ˈkɐ̃pu]);
-    a fully phonemicised nasal-vowel system must do the same.
+    A coda ⟨n m⟩ nasalises the preceding vowel and is absorbed (campo → nasal
+    vowel + no separate [m]). Unlike modern pt-PT, the medieval vowel keeps its
+    base quality [ã] rather than the raised [ɐ̃] (medieval ⟨a⟩ = [a]).
     """
-    assert "m" not in _bare("pt-PT-x-medieval", "campo")
-    assert "ɐ̃" in _bare("pt-PT-x-medieval", "campo")
+    out = _bare("pt-PT-x-medieval", "campo")
+    assert "m" not in out
+    assert "ã" in unicodedata.normalize("NFC", out)
+    assert "ɐ̃" not in out  # base-vowel quality, not the modern raise
 
 
 # ===========================================================================

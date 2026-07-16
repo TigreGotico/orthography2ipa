@@ -16,11 +16,22 @@ import sys
 from typing import List, Optional
 
 
+def _language_count() -> int:
+    """Number of catalogued languages (clade-only helper nodes excluded),
+    computed from the registry so the help text never goes stale."""
+    from orthography2ipa.registry import available_codes
+
+    return len(available_codes())
+
+
 def _build_parser() -> argparse.ArgumentParser:
     """Build the top-level argument parser with subcommands."""
     parser = argparse.ArgumentParser(
         prog="orthography2ipa",
-        description="Grapheme-to-IPA mappings and phonological tools for 310+ languages.",
+        description=(
+            f"Grapheme-to-IPA mappings and phonological tools for "
+            f"{_language_count()} languages."
+        ),
     )
     parser.add_argument(
         "--version", action="store_true", help="Print version and exit."
