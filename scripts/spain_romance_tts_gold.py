@@ -288,6 +288,38 @@ def _eu_apical_ipa(ipa: str) -> bool:
     return bool(re.search(r"(?<!t)" + _S_APIC, ipa))
 
 
+# Categorical sandhi of the negative particle ez /es̻/ before a following
+# auxiliary/verb-initial consonant (ez+d→ezt, ez+z→etz, ez+n→en, ez+l→el,
+# ez+b→ezp, ez+g→ezk). The predicate proves BOTH the orthographic trigger (a
+# lone ⟨ez⟩ word before a d/z/n/l/b/g onset) AND that the contraction reflex
+# surfaced — i.e. the un-contracted voiced sequence is absent from the ipa.
+# per trigger onset, the (ez-token, next-token-prefix) reflex the rule produces:
+# ez /es̻/ either keeps its sibilant while the onset devoices (d/b/g) or loses it
+# to coalescence/deletion (z/n/l).
+_EU_EZ_REFLEX = {
+    "d": ("e" + _S_LAM, "t"), "b": ("e" + _S_LAM, "p"), "g": ("e" + _S_LAM, "k"),
+    "z": ("e", "t" + _S_LAM), "n": ("e", "n"), "l": ("e", "l"),
+}
+
+
+def _eu_ez_sandhi(sentence: str, ipa: str) -> bool:
+    """True iff a lone ⟨ez⟩ before a d/z/n/l/b/g onset surfaced with its
+    contraction reflex at that exact juncture (token-aligned, so an unrelated
+    ⟨z⟩-final word elsewhere cannot spoof it)."""
+    ws = [_strip_punct(w).lower() for w in _words(sentence)]
+    ws = [w for w in ws if w]
+    toks = ipa.split()
+    if len(ws) != len(toks):
+        return False
+    for i, (a, b) in enumerate(zip(ws, ws[1:])):
+        if a != "ez" or not b or b[0] not in _EU_EZ_REFLEX:
+            continue
+        left, right_prefix = _EU_EZ_REFLEX[b[0]]
+        if toks[i] == left and toks[i + 1].startswith(right_prefix):
+            return True
+    return False
+
+
 def _eu_laminal_ipa(ipa: str) -> bool:
     """[s̻] outside an affricate (a plain lamino-alveolar fricative)."""
     return bool(re.search(r"(?<!t)" + _S_LAM, ipa))
@@ -364,6 +396,9 @@ FEATURES = {
     "eu_front_rounded":         ("both", lambda s, ipa: "ü" in s.lower() and "y" in ipa),
     # laryngeal ⟨h⟩ → [h] (the continental aspiration axis)
     "eu_aspiration":            ("both", lambda s, ipa: "h" in s.lower() and "h" in ipa),
+    # categorical negative-particle sandhi: ez /es̻/ contracts with a following
+    # d/z/n/l/b/g onset (ezt-, etz-, en-, el-, ezp-, ezk-)
+    "eu_negation_sandhi":       ("both", _eu_ez_sandhi),
 }
 # Non-phonetic shape tags: allowed in `features`, not machine-verified.
 SHAPE_TAGS = {"statement", "question", "negation", "imperative", "number"}
