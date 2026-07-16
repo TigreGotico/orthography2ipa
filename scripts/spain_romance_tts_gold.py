@@ -94,6 +94,11 @@ LECTS = [
     "es-CO-x-paisa", "es-CO-x-santander", "es-CO-x-valluno",
     # Spanish-lexifier creoles (part of the Spanish gold program)
     "cbk-zam", "pap", "pln",
+    # Basque (mega-set): Euskara Batua + the dialect specs. Not Romance, but an
+    # Iberian language sharing the harness; its rows use the eu_* feature axes.
+    "eu", "eu-x-bizkaiera", "eu-x-gipuzkera", "eu-x-lapurtera",
+    "eu-x-nafarra-garaia", "eu-x-nafarra-beherea", "eu-x-zuberera",
+    "eu-x-erronkariera",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
@@ -254,6 +259,44 @@ def _diphthong_ie_ue(sentence: str, ipa: str) -> bool:
         bool(re.search(r"[jw][eo]", ipa))
 
 
+# --- Basque (eu family) position-tied predicates ---------------------------
+# Basque is not Romance, but it is an Iberian language and rides the same gold
+# harness (the mega-set). Its diagnostic axes are the three-way coronal sibilant
+# and affricate system, the palatal series, Souletin front-rounded [y] and the
+# continental laryngeal [h]. Each predicate below pairs an orthographic trigger
+# (Euskara Batua / dialect spelling) with the position-tied ipa reflex the engine
+# emits, so a tag proves the row genuinely exercises the axis. Sibilant combining
+# marks: apico-alveolar ⟨s⟩ → [s̺] (s + U+033A), lamino-alveolar ⟨z⟩ → [s̻]
+# (s + U+033B), post-alveolar ⟨x⟩ → [ʃ]; affricates ⟨ts tz tx⟩ → [ts̺ ts̻ tʃ].
+_S_APIC = "s̺"   # [s̺] apico-alveolar
+_S_LAM = "s̻"    # [s̻] lamino-alveolar
+
+
+def _eu_lone_s(sentence: str) -> bool:
+    """⟨s⟩ not part of the affricate ⟨ts⟩ (and not the digraph-less ⟨x⟩)."""
+    return bool(re.search(r"(?<!t)s", sentence.lower()))
+
+
+def _eu_lone_z(sentence: str) -> bool:
+    """⟨z⟩ not part of the affricate ⟨tz⟩."""
+    return bool(re.search(r"(?<!t)z", sentence.lower()))
+
+
+def _eu_apical_ipa(ipa: str) -> bool:
+    """[s̺] outside an affricate (a plain apico-alveolar fricative)."""
+    return bool(re.search(r"(?<!t)" + _S_APIC, ipa))
+
+
+def _eu_laminal_ipa(ipa: str) -> bool:
+    """[s̻] outside an affricate (a plain lamino-alveolar fricative)."""
+    return bool(re.search(r"(?<!t)" + _S_LAM, ipa))
+
+
+def _eu_postalveolar_ipa(ipa: str) -> bool:
+    """[ʃ] outside the affricate [tʃ] (a plain post-alveolar fricative)."""
+    return bool(re.search(r"(?<!t)ʃ", ipa))
+
+
 # --- feature tags: each predicate is computable from (sentence, ipa) -------
 # "ipa" predicates demonstrate a realised reflex; "orth" predicates prove the
 # sentence exercises an axis whose reflex varies across lects; "both" require an
@@ -293,6 +336,29 @@ FEATURES = {
     "rhotic":           ("ipa",  lambda s, ipa: "r" in ipa),
     # cross-word sandhi site (elision / liaison / final-s voicing)
     "sandhi":           ("both", lambda s, ipa: _has_sandhi_junction(s)),
+    # --- Basque (eu family) coronal, palatal, front-rounded and laryngeal axes
+    # apico-alveolar ⟨s⟩ → [s̺]
+    "eu_sibilant_apical":       ("both", lambda s, ipa: _eu_lone_s(s) and _eu_apical_ipa(ipa)),
+    # lamino-alveolar ⟨z⟩ → [s̻] (absent in the Biscayan apical merger)
+    "eu_sibilant_laminal":      ("both", lambda s, ipa: _eu_lone_z(s) and _eu_laminal_ipa(ipa)),
+    # post-alveolar ⟨x⟩ → [ʃ]
+    "eu_sibilant_postalveolar": ("both", lambda s, ipa: "x" in s.lower() and _eu_postalveolar_ipa(ipa)),
+    # Biscayan apical/laminal neutralisation: ⟨z⟩ present yet no [s̻], only [s̺]
+    "eu_sibilant_neutral":      ("both", lambda s, ipa: _eu_lone_z(s)
+                                                        and _S_LAM not in ipa and _S_APIC in ipa),
+    # apico-alveolar affricate ⟨ts⟩ → [ts̺]
+    "eu_affricate_apical":      ("both", lambda s, ipa: "ts" in s.lower() and "t" + _S_APIC in ipa),
+    # lamino-alveolar affricate ⟨tz⟩ → [ts̻]
+    "eu_affricate_laminal":     ("both", lambda s, ipa: "tz" in s.lower() and "t" + _S_LAM in ipa),
+    # post-alveolar affricate ⟨tx⟩ → [tʃ]
+    "eu_affricate_postalveolar":("both", lambda s, ipa: "tx" in s.lower() and "tʃ" in ipa),
+    # palatal plosive ⟨tt⟩ → [c] / ⟨dd⟩ → [ɟ]
+    "eu_palatal_stop":          ("both", lambda s, ipa: bool(re.search(r"tt|dd", s.lower()))
+                                                        and ("c" in ipa or "ɟ" in ipa)),
+    # Souletin (and Roncalese) front-rounded ⟨ü⟩ → [y]
+    "eu_front_rounded":         ("both", lambda s, ipa: "ü" in s.lower() and "y" in ipa),
+    # laryngeal ⟨h⟩ → [h] (the continental aspiration axis)
+    "eu_aspiration":            ("both", lambda s, ipa: "h" in s.lower() and "h" in ipa),
 }
 # Non-phonetic shape tags: allowed in `features`, not machine-verified.
 SHAPE_TAGS = {"statement", "question", "negation", "imperative", "number"}
