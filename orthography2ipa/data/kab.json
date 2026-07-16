@@ -214,7 +214,6 @@
   ],
   "k": [
    "ç",
-   "ʃ",
    "k"
   ],
   "ɡ": [
@@ -333,6 +332,84 @@
   ],
   "ə": [
    "ə"
+  ],
+  "dˤː": [
+   "dˤː"
+  ],
+  "d͡ʒː": [
+   "d͡ʒː"
+  ],
+  "fː": [
+   "fː"
+  ],
+  "hː": [
+   "hː"
+  ],
+  "jː": [
+   "jː"
+  ],
+  "lː": [
+   "lː"
+  ],
+  "mː": [
+   "mː"
+  ],
+  "nː": [
+   "nː"
+  ],
+  "pː": [
+   "pː"
+  ],
+  "qː": [
+   "qː"
+  ],
+  "rː": [
+   "rː"
+  ],
+  "rˤː": [
+   "rˤː"
+  ],
+  "sː": [
+   "sː"
+  ],
+  "sˤː": [
+   "sˤː"
+  ],
+  "tˤ": [
+   "tˤ"
+  ],
+  "tˤː": [
+   "tˤː"
+  ],
+  "t͡ʃː": [
+   "t͡ʃː"
+  ],
+  "wː": [
+   "wː"
+  ],
+  "zː": [
+   "zː"
+  ],
+  "zˤː": [
+   "zˤː"
+  ],
+  "ħː": [
+   "ħː"
+  ],
+  "ɣː": [
+   "ɣː"
+  ],
+  "ʃː": [
+   "ʃː"
+  ],
+  "ʒː": [
+   "ʒː"
+  ],
+  "ʕː": [
+   "ʕː"
+  ],
+  "χː": [
+   "χː"
   ]
  },
  "allophone_rules": [
@@ -345,7 +422,7 @@
    "preceded_by_phoneme": [
     "m"
    ],
-   "notes": "Spirantization of /b/ is blocked after a homorganic nasal /m/ (e.g., imensi 'dinner' → [imensi], not *[imensi] with β). Kossmann & Stroomer (1997) p.469 (illustrated there for the Beni Said Riffian dialect; extended here to Kabyle by analogy — see source notes)."
+   "notes": "Spirantization of /b/ is blocked after a homorganic nasal /m/ (e.g., zembil 'basket' → [zəmbil], not *[zəmβil]). Kossmann & Stroomer (1997) p.469 (illustrated there for the Beni Said Riffian dialect; extended here to Kabyle by analogy — see source notes). Corroborated for Kabyle (Chemini) by Bedar, Quellec & Tifrit (2022): /nβ/ → [mb]."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_D_AFTER_N",
@@ -367,7 +444,7 @@
    "preceded_by_phoneme": [
     "n"
    ],
-   "notes": "Spirantization of /t/ is blocked after a homorganic nasal /n/ (e.g., anta 'you' → [anta], not *[anθa]). Kossmann & Stroomer (1997) p.469 (Riffian example; extended to Kabyle by analogy)."
+   "notes": "Spirantization of /t/ is blocked after a homorganic nasal /n/ (e.g., snat 'two (f.)' → [snat], not *[snaθ]). Kossmann & Stroomer (1997) p.469 (Riffian example; extended to Kabyle by analogy). Corroborated for Kabyle (Chemini) by Bedar, Quellec & Tifrit (2022): /nθ/ → [nt]."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_T_AFTER_L_FINAL",
@@ -415,90 +492,156 @@
    "notes": "Spirantization of /t/ is blocked after /m/ (e.g., tasemmumt → [tasemmumt], not [tasemmumθ])."
   },
   {
-   "id": "KAB_BLOCK_SPIRANT_K_AFTER_R",
+   "id": "KAB_BLOCK_SPIRANT_T_BEFORE_I",
+   "phonemes": [
+    "t"
+   ],
+   "surface": "t",
+   "followed_by_phoneme": [
+    "i"
+   ],
+   "notes": "Spirantization of /t/ is blocked before /i/: /t/ → [θ] before /a, u, ə/ but remains [t] before /i/ (native-speaker judgment). Must be checked before the general KAB_SPIRANT_T rule. CONFIRMED 2026-07-17 against the 2026-07-16 verification table, whose word-initial ti- forms (tibḥirt, ticcert, tiddi, tifinaɣ, tigawt) had been transcribed with [θ] — those transcriptions are superseded and are to be re-checked against the speaker's pronunciation."
+  },
+  {
+   "id": "KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT",
    "phonemes": [
     "k"
    ],
    "surface": "k",
    "preceded_by_phoneme": [
-    "r"
+    "b",
+    "d",
+    "dˤ",
+    "f",
+    "ɡ",
+    "ɣ",
+    "h",
+    "ħ",
+    "ʒ",
+    "k",
+    "l",
+    "m",
+    "n",
+    "p",
+    "q",
+    "r",
+    "rˤ",
+    "s",
+    "sˤ",
+    "t",
+    "tˤ",
+    "v",
+    "χ",
+    "z",
+    "zˤ",
+    "ʕ",
+    "ʃ",
+    "t͡ʃ",
+    "d͡ʒ",
+    "j",
+    "w",
+    "bː",
+    "dː",
+    "dˤː",
+    "fː",
+    "ɡː",
+    "ɣː",
+    "hː",
+    "ħː",
+    "ʒː",
+    "kː",
+    "lː",
+    "mː",
+    "nː",
+    "pː",
+    "qː",
+    "rː",
+    "rˤː",
+    "sː",
+    "sˤː",
+    "tː",
+    "tˤː",
+    "χː",
+    "zː",
+    "zˤː",
+    "ʕː",
+    "ʃː",
+    "t͡ʃː",
+    "d͡ʒː",
+    "jː",
+    "wː"
    ],
-   "notes": "Spirantization of /k/ is blocked after /r/ in Kabyle. Bedar, Quellec & Tifrit (2022) document post-sonorant occlusivization of /ç/ to [k] after /r/ across four Kabyle varieties (Chemini, Aït Mengellat, Makouda, Boghni), providing Kabyle-specific evidence for this blocking environment not explicitly stated in Kossmann & Stroomer (1997) p.469."
+   "notes": "Spirantization of /k/ is blocked after any consonant: /k/ → [ç] only post-vocalically or word-initially (native-speaker judgment, 2026-07). The sonorant cases (after /r, l, n, m/) are corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022, RFP Porto): /nç/ → [ŋk]. Geminate contexts included 2026-07-17: corpus evidence (nettkel, lettkal — k after ⟨tt⟩ /tː/) showed the singleton-only list let k wrongly spirantize after geminates."
   },
   {
-   "id": "KAB_BLOCK_SPIRANT_K_AFTER_L",
-   "phonemes": [
-    "k"
-   ],
-   "surface": "k",
-   "preceded_by_phoneme": [
-    "l"
-   ],
-   "notes": "Spirantization of /k/ is blocked after /l/ in Kabyle. Bedar, Quellec & Tifrit (2022) Table 6 shows /ç/ occlusivizes to [k] after /l/ in all tested Kabyle varieties."
-  },
-  {
-   "id": "KAB_BLOCK_SPIRANT_K_AFTER_N",
-   "phonemes": [
-    "k"
-   ],
-   "surface": "k",
-   "preceded_by_phoneme": [
-    "n"
-   ],
-   "notes": "Spirantization of /k/ is blocked after /n/ in Kabyle. While /n/ is not homorganic with the velar /k/, Bedar, Quellec & Tifrit (2022) show /ç/ occlusivizes to [k] after /n/ across all tested varieties. This extends the nasal-blocking principle beyond the homorganic condition stated in Kossmann & Stroomer (1997) p.469."
-  },
-  {
-   "id": "KAB_BLOCK_SPIRANT_K_AFTER_M",
-   "phonemes": [
-    "k"
-   ],
-   "surface": "k",
-   "preceded_by_phoneme": [
-    "m"
-   ],
-   "notes": "Spirantization of /k/ is blocked after /m/ in Kabyle. Bedar, Quellec & Tifrit (2022) show /ç/ occlusivizes to [k] after /m/ in all tested varieties, despite /m/ being labial and /k/ being velar."
-  },
-  {
-   "id": "KAB_BLOCK_SPIRANT_G_AFTER_R",
+   "id": "KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT",
    "phonemes": [
     "ɡ"
    ],
    "surface": "ɡ",
    "preceded_by_phoneme": [
-    "r"
+    "b",
+    "d",
+    "dˤ",
+    "f",
+    "ɡ",
+    "ɣ",
+    "h",
+    "ħ",
+    "ʒ",
+    "k",
+    "l",
+    "n",
+    "p",
+    "q",
+    "r",
+    "rˤ",
+    "s",
+    "sˤ",
+    "t",
+    "tˤ",
+    "v",
+    "χ",
+    "z",
+    "zˤ",
+    "ʕ",
+    "ʃ",
+    "t͡ʃ",
+    "d͡ʒ",
+    "j",
+    "w",
+    "bː",
+    "dː",
+    "dˤː",
+    "fː",
+    "ɡː",
+    "ɣː",
+    "hː",
+    "ħː",
+    "ʒː",
+    "kː",
+    "lː",
+    "mː",
+    "nː",
+    "pː",
+    "qː",
+    "rː",
+    "rˤː",
+    "sː",
+    "sˤː",
+    "tː",
+    "tˤː",
+    "χː",
+    "zː",
+    "zˤː",
+    "ʕː",
+    "ʃː",
+    "t͡ʃː",
+    "d͡ʒː",
+    "jː",
+    "wː"
    ],
-   "notes": "Spirantization of /ɡ/ is blocked after /r/ in Kabyle. Bedar, Quellec & Tifrit (2022) document post-sonorant occlusivization of /ʝ/ to [ɡ] after /r/ across all tested Kabyle varieties. This supersedes the Riffian example argaz → [arʝaz] from Kossmann & Stroomer (1997) p.469 for Kabyle proper; in Kabyle, argaz surfaces with a stop [arɡaz]."
-  },
-  {
-   "id": "KAB_BLOCK_SPIRANT_G_AFTER_L",
-   "phonemes": [
-    "ɡ"
-   ],
-   "surface": "ɡ",
-   "preceded_by_phoneme": [
-    "l"
-   ],
-   "notes": "Spirantization of /ɡ/ is blocked after /l/ in Kabyle. Bedar, Quellec & Tifrit (2022) Table 6 shows /ʝ/ occlusivizes to [ɡ] after /l/ in all tested varieties."
-  },
-  {
-   "id": "KAB_BLOCK_SPIRANT_G_AFTER_N",
-   "phonemes": [
-    "ɡ"
-   ],
-   "surface": "ɡ",
-   "preceded_by_phoneme": [
-    "n"
-   ],
-   "notes": "Spirantization of /ɡ/ is blocked after /n/ in Kabyle. Bedar, Quellec & Tifrit (2022) show /ʝ/ occlusivizes to [ɡ] after /n/ across all tested varieties. Note that /ɡ/ does NOT occlusivize after /m/ per their data, so no KAB_BLOCK_SPIRANT_G_AFTER_M rule is added."
-  },
-  {
-   "id": "KAB_SPIRANT_K_ALT",
-   "phonemes": [
-    "k"
-   ],
-   "surface": "ʃ",
-   "preceded_by": "front_vowel",
-   "notes": "Alternative spirantization of /k/ to [ʃ] in front-vowel contexts (Kossmann & Stroomer 1997 p.469: k → ʃ or ç, given for the Beni Said Riffian dialect). This rule is more specific than KAB_SPIRANT_K and must be checked first; it fires only in specific phonetic environments."
+   "notes": "Spirantization of /ɡ/ is blocked after any consonant EXCEPT /m/: /ɡ/ → [ʝ] post-vocalically, word-initially, and after /m/ — Bedar, Quellec & Tifrit (2022) document /mʝ/ → [mʝ] in Chemini Kabyle, the one environment where the categorical post-consonant blocking (native-speaker judgment, 2026-07) does not apply. Sonorant cases after /r, l, n/ corroborated by the same study. Geminate contexts (including mː, by categorical default — the documented exception is singleton /m/ only) included 2026-07-17 for symmetry with the k rule."
   },
   {
    "id": "KAB_SPIRANT_K",
@@ -506,7 +649,7 @@
     "k"
    ],
    "surface": "ç",
-   "notes": "Spirantization of the lax velar stop, with palatal shift: /k/ → [ç] (Kossmann & Stroomer 1997 p.469, Riffian; Karaoui et al. 2024 list [ç] in the Kabyle fricative inventory). Fallback when KAB_SPIRANT_K_ALT's front-vowel context does not apply. Geminate ⟨kk⟩ = /kː/ stays a stop."
+   "notes": "Spirantization of the lax velar stop, with palatal shift: /k/ → [ç] (Kossmann & Stroomer 1997 p.469, Riffian; Karaoui et al. 2024 list [ç] in the Kabyle fricative inventory). Applies post-vocalically and word-initially; blocked after any consonant (KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT). The [ʃ] variant reported for Beni Said Riffian (K&S 1997 p.469) does NOT occur in Kabyle (native-speaker judgment, 2026-07) and is not modelled. Geminate ⟨kk⟩ = /kː/ stays a stop."
   },
   {
    "id": "KAB_SPIRANT_B",
@@ -530,7 +673,7 @@
     "t"
    ],
    "surface": "θ",
-   "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤːθ]. Geminate ⟨tt⟩ = /tː/ stays a stop."
+   "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤːθ]. Geminate ⟨tt⟩ = /tː/ stays a stop. Blocked before /i/ (see KAB_BLOCK_SPIRANT_T_BEFORE_I)."
   },
   {
    "id": "KAB_SPIRANT_G",
@@ -538,7 +681,7 @@
     "ɡ"
    ],
    "surface": "ʝ",
-   "notes": "Spirantization of the lax velar stop: /ɡ/ → [ʝ]. Kossmann & Stroomer (1997) p.469 give the Riffian illustration argaz 'man' → [arʝaz]. IMPORTANT: Bedar, Quellec & Tifrit (2022) show that in Kabyle, /ɡ/ occlusivizes to a stop after /r, l, n/ (see KAB_BLOCK_SPIRANT_G_AFTER_R, KAB_BLOCK_SPIRANT_G_AFTER_L, KAB_BLOCK_SPIRANT_G_AFTER_N). The example argaz → [arʝaz] should therefore be treated as Riffian-only; in Kabyle, argaz surfaces with a stop [arɡaz]. Geminate ⟨gg⟩ = /ɡː/ stays a stop in all contexts."
+   "notes": "Spirantization of the lax velar stop: /ɡ/ → [ʝ], post-vocalically and word-initially; blocked after any consonant EXCEPT /m/ (KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT): Bedar, Quellec & Tifrit (2022) document /mʝ/ → [mʝ] in Chemini Kabyle. The Kossmann & Stroomer (1997) p.469 example argaz → [arʝaz] is Riffian-only; in Kabyle, argaz surfaces with a stop [arɡaz]. Geminate ⟨gg⟩ = /ɡː/ stays a stop in all contexts."
   },
   {
    "id": "KAB_SPIRANT_DH_EMPH",
@@ -640,7 +783,9 @@
     "q",
     "qː",
     "χ",
-    "ɣ"
+    "ɣ",
+    "χː",
+    "ɣː"
    ],
    "notes": "Nasal place assimilation: /n/ → [ŋ] before a dorsal (velar/uvular) consonant."
   },
@@ -673,7 +818,7 @@
    "notes": "Nasal place assimilation: /n/ → [ɲ] before a palatal consonant /j/."
   }
  ],
- "notes": "Kabyle (Taqbaylit), Northern Berber (Amazigh) language of Kabylia, north-eastern Algeria, ~5-7 million speakers (Kossmann & Stroomer 1997, Berber Phonology, p.461). INPUT CONTRACT: this spec expects text in the standardised Berber LATIN alphabet (the tamaziɣt/INALCO orthography descending from Mammeri's conventions, used by the Kabyle Wikipedia, the press, and Naït-Zerrad's teaching grammars). Tifinagh (the neo-Tifinagh abjad-alphabet) is a secondary script for Kabyle and is NOT modelled here; a Tifinagh text must be transliterated to the Latin orthography first. Hallmark grapheme->IPA correspondences: c=/ʃ/, č=/t͡ʃ/, ǧ=/d͡ʒ/, j=/ʒ/, ɣ=/ɣ/ (uvular [ʁ] realisation), x=/χ/, ḥ=/ħ/, ɛ=/ʕ/, q=/q/, and the emphatic (pharyngealized) series ṛ ṣ ḍ ṭ ẓ = /rˤ sˤ dˤ tˤ zˤ/ (Proto-Berber had only ḍ and ẓ pharyngealized; the rest are Arabic-integrated — Kossmann & Stroomer 1997 p.464). Three phonemic vowels /a i u/ with wide context-dependent realisation (a:[a~ɑ~æ], i:[e~i], u:[o~u]; Kossmann & Stroomer 1997 p.463); ⟨e⟩ writes the epenthetic schwa [ə], which is largely predictable from syllable structure / sonority and mostly non-phonemic (ibid. p.463 §23.4.2). THE SIGNATURE FEATURE is SPIRANTIZATION (modelled as allophone_rules): the lax (non-geminate) stops b d t k g ḍ surface as the fricatives [β ð θ ç ʝ ðˤ], while the tense (geminate) stops — written by doubling the letter (bb dd tt kk gg ḍḍ) and mapped to the distinct long phonemes /bː dː tː kː ɡː dˤː/ — remain stops and are never spirantized (Kossmann & Stroomer 1997 p.466: 'Spirantization never affects tense consonants'; the lax:tense opposition is durational — lax consonants are 'always realized shorter than their tense counterparts', p.465). Because the geminates are represented as separate long phonemes, the spirantization rules are naturally gemination-conditioned: they target /b d t k ɡ dˤ/ but not /bː dː tː kː ɡː dˤː/. e.g. argaz 'man' → [arʝaz], adrar 'mountain' → [aðrar]. SOURCING CAVEAT: the worked spirantization examples and the homorganic-nasal blocking rule on pp.468-469 are given in the source specifically for the Beni Said Riffian dialect (§23.7.1), not for Kabyle directly — the source's only Kabyle-specific statement is the general remark (§23.5.1, p.466) that spirantization 'reaches its culminating points in Riffian and Kabyle.' These rules are extended to Kabyle here by analogy between the two dialects, not from a Kabyle-specific citation. NEW IN THIS REVISION: Added missing geminate graphemes xx→/χː/ (axxam 'house'), ww→/wː/ (tawwurt 'door'), yy→/jː/ (Ayyur 'moon/month'), and v→/v/ for French loans. Added /k/ allophone [ʃ], with KAB_SPIRANT_K_ALT correctly ordered before the general KAB_SPIRANT_K fallback so the front-vowel-conditioned rule can actually fire. Added blocking rules for spirantization after homorganic nasals (nt, nd, mb) and after /l/ (word-final t), and after /l/ for /d/ and after /m/ for /t/. Added vowel backing rules for /a/ near emphatics/uvulars, now extended to cover geminate uvulars/emphatics (χː, ɣː, qː, tˤː, sˤː, dˤː, zˤː, rˤː) in both KAB_A_BACKING and KAB_A_BACKING_PRECEDING — previously only singletons were listed, causing axxam 'house' to incorrectly surface as [æχːæm] instead of [ɑχːɑm]; this is consistent with the pre-existing KAB_N_VELAR_ASSIM rule, which already paired singleton/geminate velars and uvulars for nasal assimilation. Added palatal nasal assimilation /n/→[ɲ] before /j/. REMOVED IN THIS REVISION: a previously-claimed blocking rule for /k/ and /ɡ/ spirantization after /l/, /r/, /n/ — re-checked directly against Kossmann & Stroomer (1997) p.469 and found unsupported; the source's only blocking condition there is the general homorganic-nasal rule already captured above, not an /l/,/r/ extension specific to k/ɡ. ADDED IN THIS REVISION: Post-sonorant blocking rules for /k/ and /ɡ/ spirantization (KAB_BLOCK_SPIRANT_K_AFTER_R/L/N/M and KAB_BLOCK_SPIRANT_G_AFTER_R/L/N), based on Bedar, Quellec & Tifrit (2022), who document occlusivization of /ç/ and /ʝ/ after /r, l, n/ across four Kabyle varieties. While Kossmann & Stroomer (1997) p.469 does not explicitly state these blocking environments for Kabyle (the worked examples there are for Beni Said Riffian), the Bedar et al. study provides direct Kabyle-specific acoustic evidence. Note that /ɡ/ does NOT occlusivize after /m/ per their data, so no KAB_BLOCK_SPIRANT_G_AFTER_M rule is added. The existing KAB_SPIRANT_G example argaz → [arʝaz] is now flagged as Riffian-only; in Kabyle, argaz surfaces with a stop [arɡaz] due to KAB_BLOCK_SPIRANT_G_AFTER_R. KNOWN LIMITS (documented, not modelled): (1) morphophonological gemination alternations (geminated ɣ surfaces as qq, geminated w as bb, geminated y as gg) are lexical/morphological and are not derivable from the Latin spelling; (2) word-boundary sandhi (n+w → bb/pp, d+t → ts) is not modelled; (3) full vowel allophony (i→e, u→o) is only partially covered; (4) Kabyle stress is largely non-distinctive and predictable, and is not marked here. Labiovelarized kʷ gʷ are usually left unwritten in the standard orthography and are not modelled.",
+ "notes": "Kabyle (Taqbaylit), Northern Berber (Amazigh) language of Kabylia, north-eastern Algeria, ~5-7 million speakers (Kossmann & Stroomer 1997, Berber Phonology, p.461). INPUT CONTRACT: this spec expects text in the standardised Berber LATIN alphabet (the tamaziɣt/INALCO orthography descending from Mammeri's conventions, used by the Kabyle Wikipedia, the press, and Naït-Zerrad's teaching grammars). Tifinagh (the neo-Tifinagh abjad-alphabet) is a secondary script for Kabyle and is NOT modelled here; a Tifinagh text must be transliterated to the Latin orthography first. Hallmark grapheme->IPA correspondences: c=/ʃ/, č=/t͡ʃ/, ǧ=/d͡ʒ/, j=/ʒ/, ɣ=/ɣ/ (uvular [ʁ] realisation), x=/χ/, ḥ=/ħ/, ɛ=/ʕ/, q=/q/, and the emphatic (pharyngealized) series ṛ ṣ ḍ ṭ ẓ = /rˤ sˤ dˤ tˤ zˤ/ (Proto-Berber had only ḍ and ẓ pharyngealized; the rest are Arabic-integrated — Kossmann & Stroomer 1997 p.464). Three phonemic vowels /a i u/ with wide context-dependent realisation (a:[a~ɑ~æ], i:[e~i], u:[o~u]; Kossmann & Stroomer 1997 p.463); ⟨e⟩ writes the epenthetic schwa [ə], which is largely predictable from syllable structure / sonority and mostly non-phonemic (ibid. p.463 §23.4.2). THE SIGNATURE FEATURE is SPIRANTIZATION (modelled as allophone_rules): the lax (non-geminate) stops b d t k g ḍ surface as the fricatives [β ð θ ç ʝ ðˤ], while the tense (geminate) stops — written by doubling the letter (bb dd tt kk gg ḍḍ) and mapped to the distinct long phonemes /bː dː tː kː ɡː dˤː/ — remain stops and are never spirantized (Kossmann & Stroomer 1997 p.466: 'Spirantization never affects tense consonants'; the lax:tense opposition is durational — lax consonants are 'always realized shorter than their tense counterparts', p.465). Because the geminates are represented as separate long phonemes, the spirantization rules are naturally gemination-conditioned: they target /b d t k ɡ dˤ/ but not /bː dː tː kː ɡː dˤː/. e.g. igenni 'sky' → [iʝənni], adrar 'mountain' → [aðrar]. SOURCING CAVEAT: the worked spirantization examples and the homorganic-nasal blocking rule on pp.468-469 are given in the source specifically for the Beni Said Riffian dialect (§23.7.1), not for Kabyle directly — the source's only Kabyle-specific statement is the general remark (§23.5.1, p.466) that spirantization 'reaches its culminating points in Riffian and Kabyle.' These rules are extended to Kabyle here by analogy between the two dialects, not from a Kabyle-specific citation. CURRENT REVISION (2026-07-17): (a) REMOVED KAB_SPIRANT_K_ALT and the [ʃ] allophone of /k/ — the k→ʃ value is given in K&S 1997 p.469 for Beni Said Riffian only; per native-speaker judgment it never occurs in Kabyle. (b) ADDED KAB_BLOCK_SPIRANT_T_BEFORE_I — /t/ → [θ] before /a, u, ə/ but stays [t] before /i/ (native-speaker judgment). (c) GENERALIZED k/ɡ blocking to KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT / KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT: k → [ç] and ɡ → [ʝ] only post-vocalically and word-initially, stops after any consonant (native-speaker judgment), with the single exception /mʝ/ → [mʝ] from Bedar, Quellec & Tifrit (2022). The sonorant cases (k after r/l/n/m; ɡ after r/l/n) are corroborated by that study (Chemini Kabyle). (d) CORRECTED the Bedar–Quellec–Tifrit reference — the study is real but was miscited (wrong author first names, spurious 'BLS 50' venue and eScholarship link, unverifiable 'four varieties/Table 6' claims); the correct reference is Bedar, Quellec & Tifrit (2022), RFP 2022 Porto, HAL hal-03691265. (e) Fixed broken rule examples (zembil for mb-blocking; snat for nt-blocking), completed the allophones table for all phoneme targets (tˤ, dˤː, tˤː and all geminates), and extended KAB_N_VELAR_ASSIM to the geminate uvulars χː/ɣː. Earlier revisions added the geminate graphemes (xx, ww, yy, pp, jj, hh), v→/v/, the vowel-backing rules extended to geminate uvulars/emphatics (axxam → [ɑχːɑm]), palatal nasal assimilation /n/→[ɲ], and the homorganic-nasal plus /l/ and /m/ blocking rules for b/d/t/ḍ. KNOWN LIMITS (documented, not modelled): (1) morphophonological gemination alternations (geminated ɣ surfaces as qq, geminated w as bb, geminated y as gg) are lexical/morphological and are not derivable from the Latin spelling; (2) word-boundary sandhi (n+w → bb/pp, d+t → ts) is not modelled; (3) full vowel allophony (i→e, u→o) is only partially covered; (4) Kabyle stress is largely non-distinctive and predictable, and is not marked here. Labiovelarized kʷ gʷ are usually left unwritten in the standard orthography and are not modelled.",
  "parent": "ber-x-kabyle-atlas",
  "ancestors": [
   {
@@ -701,7 +846,7 @@
    "publisher": "In A. S. Kaye (ed.), Phonologies of Asia and Africa, vol. 1, Eisenbrauns",
    "url": "https://hdl.handle.net/1887/4150",
    "pages": "pp. 461-475",
-   "notes": "PRIMARY source, read in full (verified directly, including a re-check of p.469). p.461: Kabyle ~7 million speakers. p.463 §23.4.1: three vowels a i u and their context realisations; §23.4.2 schwa placement by structure/sonority. p.464 §23.4.3.1: pharyngealization described as an automatic spreading feature under the influence of a pharyngealized phoneme; Proto-Berber only ḍ ẓ pharyngealized. p.465 §23.4.3.1.2: lax vs tense opposition, lax always shorter than tense (geminate). p.466 §23.5.1: general Berber statement that spirantization 'reaches its culminating points in Riffian and Kabyle' and that 'Spirantization never affects tense consonants.' IMPORTANT CAVEAT: the chapter has NO dedicated Kabyle phonology section — only Tashelhit (§23.6), Riffian (§23.7), and Touareg (§23.8) are treated in detail. The worked spirantization examples and values (b→β, d→ð, g→ʝ/ɣ, k→ʃ/ç) and the homorganic-nasal spirantization-blocking rule (illustrated with mb/nd/nt clusters) all appear on pp.468-469 under §23.7.1, specifically for the Beni Said Riffian dialect, and are extended to Kabyle in this spec by analogy rather than by direct citation. Re-checked p.469 specifically for a claimed /l/,/r/,/n/ blocking rule for /k/,/ɡ/ spirantization: NOT FOUND — the only blocking condition stated there is the homorganic-nasal rule; the corresponding allophone rules for k/ɡ were removed from this spec as unsupported. Note: the source does not give an explicit, gemination-specific statement about vowel backing before uvulars/emphatics (the geminate-extension of KAB_A_BACKING/KAB_A_BACKING_PRECEDING rests on phonological reasoning from the p.464 spreading-feature description plus internal consistency with KAB_N_VELAR_ASSIM, not a direct textual citation for geminate contexts)."
+   "notes": "PRIMARY source, read in full (verified directly, including a re-check of p.469). p.461: Kabyle ~7 million speakers. p.463 §23.4.1: three vowels a i u and their context realisations; §23.4.2 schwa placement by structure/sonority. p.464 §23.4.3.1: pharyngealization described as an automatic spreading feature under the influence of a pharyngealized phoneme; Proto-Berber only ḍ ẓ pharyngealized. p.465 §23.4.3.1.2: lax vs tense opposition, lax always shorter than tense (geminate). p.466 §23.5.1: general Berber statement that spirantization 'reaches its culminating points in Riffian and Kabyle' and that 'Spirantization never affects tense consonants.' IMPORTANT CAVEAT: the chapter has NO dedicated Kabyle phonology section — only Tashelhit (§23.6), Riffian (§23.7), and Touareg (§23.8) are treated in detail. The worked spirantization examples and values (b→β, d→ð, g→ʝ/ɣ, k→ʃ/ç) and the homorganic-nasal spirantization-blocking rule (illustrated with mb/nd/nt clusters) all appear on pp.468-469 under §23.7.1, specifically for the Beni Said Riffian dialect, and are extended to Kabyle in this spec by analogy rather than by direct citation. Re-checked p.469 specifically for a claimed /l/,/r/,/n/ blocking rule for /k/,/ɡ/ spirantization: NOT FOUND — the only blocking condition stated there is the homorganic-nasal rule; the generalized post-consonant blocking rules for k/ɡ in this spec therefore rest on native-speaker judgment, corroborated for the sonorant cases by Bedar, Quellec & Tifrit (2022), not on K&S. Note: the source does not give an explicit, gemination-specific statement about vowel backing before uvulars/emphatics (the geminate-extension of KAB_A_BACKING/KAB_A_BACKING_PRECEDING rests on phonological reasoning from the p.464 spreading-feature description plus internal consistency with KAB_N_VELAR_ASSIM, not a direct textual citation for geminate contexts)."
   },
   {
    "id": "karaoui2024_fricatives",
@@ -715,13 +860,13 @@
   },
   {
    "id": "bedar_quellec_tifrit_2022",
-   "author": "Bedar, Nadia; Quellec, Jean-François; Tifrit, Ali",
+   "author": "Bedar, Amazigh; Quellec, Lucie; Tifrit, Ali",
    "year": 2022,
-   "title": "Post-sonorant occlusivization in Kabyle (Berber): a cross-dialectal study",
-   "publisher": "Proceedings of the 50th Annual Meeting of the Berkeley Linguistics Society (BLS 50)",
-   "url": "https://escholarship.org/uc/item/9k02n8gp",
-   "pages": "pp. 1-15",
-   "notes": "PRIMARY Kabyle-specific source on post-sonorant occlusivization. Tests four Kabyle varieties (Chemini, Aït Mengellat, Makouda, Boghni). Table 6 shows that /ç/ (from /k/) occlusivizes to [k] after /r, l, n, m/ and /ʝ/ (from /ɡ/) occlusivizes to [ɡ] after /r, l, n/ (but NOT after /m/) in all tested varieties. Provides direct Kabyle evidence for spirantization-blocking environments not explicitly stated in Kossmann & Stroomer (1997) p.469."
+   "title": "Post-sonorant occlusivization in Kabyle",
+   "publisher": "19th Meeting of the French Phonology Network (RFP 2022), Porto, Portugal, 7-9 June 2022 (conference presentation)",
+   "url": "https://hal.science/hal-03691265",
+   "pages": null,
+   "notes": "Read. Kabyle-specific study of post-sonorant occlusivization based on Chemini Kabyle (south-east Bejaïa), in an Element-Theory framework. Shows lax (non-strident) fricatives occlusivize after sonorants: /nβ/→[mb], /nθ,nð/→[nt,nd], /nç,nʝ/→[ŋk,ŋg] (with homorganic nasal assimilation), /lθ,lð/→[lt,ld]; crucially /mʝ/→[mʝ] — the voiced dorsal does NOT occlusivize after /m/. Corroborates the sonorant subset of the generalized post-consonant k/ɡ blocking rules in this spec; the generalization itself rests on native-speaker judgment. NOTE: an earlier revision of this spec miscited this study (wrong author first names, 'BLS 50' venue, eScholarship link, 'four varieties/Table 6' claims) — corrected 2026-07-17."
   },
   {
    "id": "wikipedia_kabyle",
