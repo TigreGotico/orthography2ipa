@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.19.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.18.0a1...7.19.0a1)
+
+**Merged pull requests:**
+
+- feat\(kab\): post-nasal spirantization block + Kabyle TTS gold set [\#525](https://github.com/TigreGotico/orthography2ipa/pull/525) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.18.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.18.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.17.0a1...7.18.0a1)
@@ -505,10 +513,6 @@
 ## [4.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.4.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.3.0a1...4.4.0a1)
-
-**Merged pull requests:**
-
-- feat: declare quantity-sensitive stress on the Arabic specs [\#354](https://github.com/TigreGotico/orthography2ipa/pull/354) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.3.0a1) (2026-07-13)
 
