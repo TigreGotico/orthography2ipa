@@ -139,8 +139,8 @@ def test_dawasir_jim_is_the_traditional_glide():
     traditional [j] reflex acquired under Bahraini Sunni prestige — the mirror
     image of the sedentary Baḥārna [dʒ], and receding back toward [dʒ]."""
     DAW = G2P("ar-SA-x-dawasir")
-    assert DAW.transcribe_word("جَمَل") == "jamal"
-    assert DAW.transcribe_word("جِيب") == "jiːb"
+    assert DAW.transcribe_word("جَمَل") == "ˈjamal"
+    assert DAW.transcribe_word("جِيب") == "ˈjiːb"
 
 
 def test_sharqiyya_is_gulf_type():

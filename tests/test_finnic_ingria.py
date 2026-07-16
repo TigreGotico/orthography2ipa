@@ -63,13 +63,13 @@ def test_ingrian_sibilant_letters():
 
 def test_ingrian_doubled_vowel_is_long():
     """Doubled vowels mark phonemic length: ⟨maa⟩ → /mɑː/."""
-    assert orthography2ipa.G2P("izh").transcribe_word("maa") == "mɑː"
+    assert orthography2ipa.G2P("izh").transcribe_word("maa") == "ˈmɑː"
 
 
 def test_ingrian_geminate_and_front_vowels():
     """Geminate ⟨kk⟩ → /kː/; ⟨ä ö⟩ = /æ ø/; ⟨š⟩ word-internally."""
-    assert orthography2ipa.G2P("izh").transcribe_word("Afrikka") == "ɑfrikːɑ"
-    assert orthography2ipa.G2P("izh").transcribe_word("šuuri") == "ʃuːri"
+    assert orthography2ipa.G2P("izh").transcribe_word("Afrikka") == "ˈɑfrikːɑ"
+    assert orthography2ipa.G2P("izh").transcribe_word("šuuri") == "ˈʃuːri"
 
 
 @pytest.mark.slow
@@ -89,7 +89,7 @@ def test_votic_special_vowels():
     spec = _load("vot")
     assert spec.graphemes.get("õ") == ["ɤ"]
     assert spec.graphemes.get("ü") == ["y"]
-    assert orthography2ipa.G2P("vot").transcribe_word("sõna") == "sɤnɑ"
+    assert orthography2ipa.G2P("vot").transcribe_word("sõna") == "ˈsɤnɑ"
 
 
 def test_votic_v_is_labiodental():
@@ -101,7 +101,7 @@ def test_votic_v_is_labiodental():
 
 def test_votic_affricate_letter():
     """⟨č⟩ = /t͡ʃ/."""
-    assert orthography2ipa.G2P("vot").transcribe_word("tšikko") == "tʃikːo"
+    assert orthography2ipa.G2P("vot").transcribe_word("tšikko") == "ˈtʃikːo"
 
 
 @pytest.mark.slow
@@ -126,8 +126,8 @@ def test_karelian_affricate_letters():
 
 
 def test_karelian_transcribes_affricate_and_length():
-    assert orthography2ipa.G2P("krl").transcribe_word("čoma") == "t͡ʃomɑ"
-    assert orthography2ipa.G2P("krl").transcribe_word("muužu") == "muːʒu"
+    assert orthography2ipa.G2P("krl").transcribe_word("čoma") == "ˈt͡ʃomɑ"
+    assert orthography2ipa.G2P("krl").transcribe_word("muužu") == "ˈmuːʒu"
 
 
 @pytest.mark.slow
