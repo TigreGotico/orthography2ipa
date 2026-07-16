@@ -216,13 +216,13 @@
   "sources": [
     {
       "id": "omar1975",
-      "author": "Omar, M.K.",
+      "author": "Omar, Margaret K.",
       "year": 1975,
       "title": "Saudi Arabic, Urban Hijazi Dialect: A Basic Course",
       "publisher": "Foreign Service Institute, Washington DC",
       "url": null,
-      "pages": null,
-      "notes": "Urban Hijazi phonemic inventory: qaf→/ɡ/, jim→/dʒ/, interdentals merged to stops, 8-vowel system, monophthongization of /aj aw/ → /eː oː/."
+      "pages": "xi-xvi",
+      "notes": "Pronunciation guide (pp.xi-xvi), informants from Jidda. Page-pinned support for every defining feature modeled here: (a) qaf, p.xiii — '/q/ occurs only in classicized words; it often alternates with /g/', i.e. inherited vocab has [ɡ] (guul قول, gaal قال, giTaar قطار, giSSa قصة) and [q] survives only in learned/borrowed items (qur'aan قرآن, iqtiSaad اقتصاد); (b) interdentals, p.xiv ('The TH Consonants') — θalaaθa→talaata ث→[t], maθalan→masalan ث→[s], haaða→haada ذ→[d], ظ→[ẓ]=/zˤ/; (c) the 8-vowel system, p.xv — 'five basic vowels /a i u/ (long or short) ... two usually occur as long vowels /ee/ and /oo/ because they came from Classical /ay/ and /aw/'; (d) monophthongization, p.xii/xvi — xeer خير, beet بيت, feen فين [eː] < /ay/; Soot صوت, loon لون, moot موت [oː] < /aw/; (e) emphatics incl. velarized lam ḷ in aḷḷaah الله, p.xiv. See data/gold/primary_sources (omar1975-001..026)."
     },
     {
       "id": "abdoh2010",
@@ -243,6 +243,56 @@
       "url": "https://doi.org/10.5296/elr.v6i2.17551",
       "pages": "62-72",
       "notes": "Native-informant evidence that Hijazi has NO velar affrication: /kis/, /dik/, /ʕɪlk/, /keɪf/, /kɛlb/ all keep [k] in HA while Najdi alternates with [ts]; the qaf reflex is [ɡ] with no [dz]. Supports the k:[k] allophone list here."
+    },
+    {
+      "id": "almalky2020",
+      "author": "Almalky, Abdullah G.",
+      "year": 2020,
+      "title": "The Active Participle in Hijazi Arabic: An LFG Perspective (PhD thesis)",
+      "publisher": "University of Essex",
+      "url": null,
+      "pages": "29",
+      "notes": "Urban Hijazi (HA) morphosyntax; pronoun and active-participle paradigms. Confirms HA independent pronouns (Pana أنا, Pint إنت, huw هو with final-vowel loss) and the active-participle forms (e.g. saːkniːn 'residing', cf. gold row 010). Transcription P=ʔ, Q=ʕ, è=ħ."
+    },
+    {
+      "id": "almohanna1998",
+      "author": "Al-Mohanna, Faisal",
+      "year": 1998,
+      "title": "Syllabification and metrification in Urban Hijazi Arabic: Between rules and constraints (PhD thesis)",
+      "publisher": "University of Essex",
+      "url": null,
+      "pages": null,
+      "notes": "The reference account of URBAN (sedentary) Hijazi syllabification and stress — the quantity-sensitive, non-iambic system this node's `stress` block encodes. Distinct from the Bedouin Hijazi metrical system."
+    },
+    {
+      "id": "kabrah2004",
+      "author": "Kabrah, Rawiah S.",
+      "year": 2004,
+      "title": "Opacity and transparency in the phonology of Makkan Arabic: A Stratal Optimality-Theoretic approach (PhD thesis)",
+      "publisher": "Boston University",
+      "url": null,
+      "pages": null,
+      "notes": "Makkan (urban Hijazi) phonology and stress; sedentary quantity-sensitive metrics with a (H́L) foot option word-medially — again the sedentary system, contrasting with Bedouin iambic stress."
+    },
+    {
+      "id": "alsolami2023",
+      "author": "Al Solami, Majed",
+      "year": 2023,
+      "title": "An Optimality-Theoretic analysis of stress in the Bani Sulaim dialect",
+      "publisher": "Lingua Posnaniensis LXV(1), 7-24. doi:10.14746/linpo.2023.65.1.1",
+      "url": "https://doi.org/10.14746/linpo.2023.65.1.1",
+      "pages": "7-24",
+      "notes": "CONTRAST source: Bani Sulaim is a BEDOUIN Hijazi dialect with IAMBIC stress and vowel-deletion processes, explicitly opposed (p.8) to the trochaic stress of the non-Bedouin/urban Hijazi varieties this node models. Establishes that the sedentary koine here is NOT iambic. Bedouin Hijazi also retains interdentals (ʔaχaðu 'they took') — the same rural/Bedouin retention noted below."
+    },
+    {
+      "id": "alrohili2019",
+      "author": "Al-Rohili, Mohammad Awad",
+      "year": 2019,
+      "title": "Depalatalisation of /ɡʲ/ and /kʲ/ in the Ḥarbi dialect in Medina (PhD thesis)",
+      "publisher": "University of Essex",
+      "url": null,
+      "pages": "9-10",
+      "notes": "CONTRAST source: the Bedouin Ḥarbi dialect of Medina (North-West Arabian) has palatalised [ɡʲ]/[kʲ], retained interdentals ([ðiːb] ذيب), and an emphatic ǧiːm [ʒˤ]. None of these are urban-koine features; confirms the urban/Bedouin split within the Hijaz that motivates leaving the bare ar-SA unassigned and modeling only the prestige city variety here."
     },
     {
       "id": "watson2002",
@@ -330,7 +380,7 @@
     "superheavy_final_attracts": true,
     "max_onset": 1,
     "stress_mark": "ˈ",
-    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. URBAN vs BEDOUIN: the cascade above is the SEDENTARY (urban koine) system this node models — quantity-sensitive, non-iambic, with the sedentary trochaic default in disyllables (Al-Mohanna 1998, Syllabification and metrification in Urban Hijazi Arabic; Kabrah 2004 on Makkan). It is NOT the Bedouin Hijazi metrical system, which is IAMBIC with foot inventory (L.Ĺ)/(L.H́)/(H́) and a battery of vowel-deletion processes (Al Solami 2023:8 explicitly opposes Bedouin iambic to non-Bedouin trochaic stress; Al-Mozainy 1981). Modeling this node on the urban system is therefore a deliberate variety choice, not an omission. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
     "cliticless_words": [
       "فِي",
       "لِي",
