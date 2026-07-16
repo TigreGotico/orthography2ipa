@@ -444,7 +444,7 @@
    "preceded_by_phoneme": [
     "n"
    ],
-   "notes": "Spirantization of /t/ is blocked after a homorganic nasal /n/ (e.g., snat 'two (f.)' → [snat], not *[snaθ]). Kossmann & Stroomer (1997) p.469 (Riffian example; extended to Kabyle by analogy). Corroborated for Kabyle (Chemini) by Bedar, Quellec & Tifrit (2022): /nθ/ → [nt]."
+   "notes": "Spirantization of /t/ is blocked after a homorganic nasal /n/ (e.g., anta 'which one (f.)' → [anta], not *[anθa]; also corpus-attested: anteɣ). Kossmann & Stroomer (1997) p.469 (Riffian example; extended to Kabyle by analogy). Corroborated for Kabyle (Chemini) by Bedar, Quellec & Tifrit (2022): /nθ/ → [nt]. SPEAKER NOTE 2026-07-17: anta is a native Kabyle word — 'which one', feminine of anwa 'which one (m.)'. An earlier revision of this note glossed it as 'you' and a later one dismissed the word as Arabic on that basis; the word is native, only the gloss was wrong."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_T_AFTER_L_FINAL",
@@ -490,17 +490,6 @@
     "m"
    ],
    "notes": "Spirantization of /t/ is blocked after /m/ (e.g., tasemmumt → [tasemmumt], not [tasemmumθ])."
-  },
-  {
-   "id": "KAB_BLOCK_SPIRANT_T_BEFORE_I",
-   "phonemes": [
-    "t"
-   ],
-   "surface": "t",
-   "followed_by_phoneme": [
-    "i"
-   ],
-   "notes": "Spirantization of /t/ is blocked before /i/: /t/ → [θ] before /a, u, ə/ but remains [t] before /i/ (native-speaker judgment). Must be checked before the general KAB_SPIRANT_T rule. CONFIRMED 2026-07-17 against the 2026-07-16 verification table, whose word-initial ti- forms (tibḥirt, ticcert, tiddi, tifinaɣ, tigawt) had been transcribed with [θ] — those transcriptions are superseded and are to be re-checked against the speaker's pronunciation."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT",
@@ -673,7 +662,7 @@
     "t"
    ],
    "surface": "θ",
-   "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤːθ]. Geminate ⟨tt⟩ = /tː/ stays a stop. Blocked before /i/ (see KAB_BLOCK_SPIRANT_T_BEFORE_I)."
+   "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤːθ]. Geminate ⟨tt⟩ = /tː/ stays a stop. Applies word-initially before ALL vowels, including /i/ — native-speaker verified 2026-07-17: tifinaɣ, tilufa, tilelli, tikwal all begin [θi-]; consistent with the 2026-07-16 verification table (tibḥirt, ticcert, tiddi, tigawt). Intervocalic -ti- remains to be verified."
   },
   {
    "id": "KAB_SPIRANT_G",
@@ -818,7 +807,7 @@
    "notes": "Nasal place assimilation: /n/ → [ɲ] before a palatal consonant /j/."
   }
  ],
- "notes": "Kabyle (Taqbaylit), Northern Berber (Amazigh) language of Kabylia, north-eastern Algeria, ~5-7 million speakers (Kossmann & Stroomer 1997, Berber Phonology, p.461). INPUT CONTRACT: this spec expects text in the standardised Berber LATIN alphabet (the tamaziɣt/INALCO orthography descending from Mammeri's conventions, used by the Kabyle Wikipedia, the press, and Naït-Zerrad's teaching grammars). Tifinagh (the neo-Tifinagh abjad-alphabet) is a secondary script for Kabyle and is NOT modelled here; a Tifinagh text must be transliterated to the Latin orthography first. Hallmark grapheme->IPA correspondences: c=/ʃ/, č=/t͡ʃ/, ǧ=/d͡ʒ/, j=/ʒ/, ɣ=/ɣ/ (uvular [ʁ] realisation), x=/χ/, ḥ=/ħ/, ɛ=/ʕ/, q=/q/, and the emphatic (pharyngealized) series ṛ ṣ ḍ ṭ ẓ = /rˤ sˤ dˤ tˤ zˤ/ (Proto-Berber had only ḍ and ẓ pharyngealized; the rest are Arabic-integrated — Kossmann & Stroomer 1997 p.464). Three phonemic vowels /a i u/ with wide context-dependent realisation (a:[a~ɑ~æ], i:[e~i], u:[o~u]; Kossmann & Stroomer 1997 p.463); ⟨e⟩ writes the epenthetic schwa [ə], which is largely predictable from syllable structure / sonority and mostly non-phonemic (ibid. p.463 §23.4.2). THE SIGNATURE FEATURE is SPIRANTIZATION (modelled as allophone_rules): the lax (non-geminate) stops b d t k g ḍ surface as the fricatives [β ð θ ç ʝ ðˤ], while the tense (geminate) stops — written by doubling the letter (bb dd tt kk gg ḍḍ) and mapped to the distinct long phonemes /bː dː tː kː ɡː dˤː/ — remain stops and are never spirantized (Kossmann & Stroomer 1997 p.466: 'Spirantization never affects tense consonants'; the lax:tense opposition is durational — lax consonants are 'always realized shorter than their tense counterparts', p.465). Because the geminates are represented as separate long phonemes, the spirantization rules are naturally gemination-conditioned: they target /b d t k ɡ dˤ/ but not /bː dː tː kː ɡː dˤː/. e.g. igenni 'sky' → [iʝənni], adrar 'mountain' → [aðrar]. SOURCING CAVEAT: the worked spirantization examples and the homorganic-nasal blocking rule on pp.468-469 are given in the source specifically for the Beni Said Riffian dialect (§23.7.1), not for Kabyle directly — the source's only Kabyle-specific statement is the general remark (§23.5.1, p.466) that spirantization 'reaches its culminating points in Riffian and Kabyle.' These rules are extended to Kabyle here by analogy between the two dialects, not from a Kabyle-specific citation. CURRENT REVISION (2026-07-17): (a) REMOVED KAB_SPIRANT_K_ALT and the [ʃ] allophone of /k/ — the k→ʃ value is given in K&S 1997 p.469 for Beni Said Riffian only; per native-speaker judgment it never occurs in Kabyle. (b) ADDED KAB_BLOCK_SPIRANT_T_BEFORE_I — /t/ → [θ] before /a, u, ə/ but stays [t] before /i/ (native-speaker judgment). (c) GENERALIZED k/ɡ blocking to KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT / KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT: k → [ç] and ɡ → [ʝ] only post-vocalically and word-initially, stops after any consonant (native-speaker judgment), with the single exception /mʝ/ → [mʝ] from Bedar, Quellec & Tifrit (2022). The sonorant cases (k after r/l/n/m; ɡ after r/l/n) are corroborated by that study (Chemini Kabyle). (d) CORRECTED the Bedar–Quellec–Tifrit reference — the study is real but was miscited (wrong author first names, spurious 'BLS 50' venue and eScholarship link, unverifiable 'four varieties/Table 6' claims); the correct reference is Bedar, Quellec & Tifrit (2022), RFP 2022 Porto, HAL hal-03691265. (e) Fixed broken rule examples (zembil for mb-blocking; snat for nt-blocking), completed the allophones table for all phoneme targets (tˤ, dˤː, tˤː and all geminates), and extended KAB_N_VELAR_ASSIM to the geminate uvulars χː/ɣː. Earlier revisions added the geminate graphemes (xx, ww, yy, pp, jj, hh), v→/v/, the vowel-backing rules extended to geminate uvulars/emphatics (axxam → [ɑχːɑm]), palatal nasal assimilation /n/→[ɲ], and the homorganic-nasal plus /l/ and /m/ blocking rules for b/d/t/ḍ. KNOWN LIMITS (documented, not modelled): (1) morphophonological gemination alternations (geminated ɣ surfaces as qq, geminated w as bb, geminated y as gg) are lexical/morphological and are not derivable from the Latin spelling; (2) word-boundary sandhi (n+w → bb/pp, d+t → ts) is not modelled; (3) full vowel allophony (i→e, u→o) is only partially covered; (4) Kabyle stress is largely non-distinctive and predictable, and is not marked here. Labiovelarized kʷ gʷ are usually left unwritten in the standard orthography and are not modelled.",
+ "notes": "Kabyle (Taqbaylit), Northern Berber (Amazigh) language of Kabylia, north-eastern Algeria, ~5-7 million speakers (Kossmann & Stroomer 1997, Berber Phonology, p.461). INPUT CONTRACT: this spec expects text in the standardised Berber LATIN alphabet (the tamaziɣt/INALCO orthography descending from Mammeri's conventions, used by the Kabyle Wikipedia, the press, and Naït-Zerrad's teaching grammars). Tifinagh (the neo-Tifinagh abjad-alphabet) is a secondary script for Kabyle and is NOT modelled here; a Tifinagh text must be transliterated to the Latin orthography first. Hallmark grapheme->IPA correspondences: c=/ʃ/, č=/t͡ʃ/, ǧ=/d͡ʒ/, j=/ʒ/, ɣ=/ɣ/ (uvular [ʁ] realisation), x=/χ/, ḥ=/ħ/, ɛ=/ʕ/, q=/q/, and the emphatic (pharyngealized) series ṛ ṣ ḍ ṭ ẓ = /rˤ sˤ dˤ tˤ zˤ/ (Proto-Berber had only ḍ and ẓ pharyngealized; the rest are Arabic-integrated — Kossmann & Stroomer 1997 p.464). Three phonemic vowels /a i u/ with wide context-dependent realisation (a:[a~ɑ~æ], i:[e~i], u:[o~u]; Kossmann & Stroomer 1997 p.463); ⟨e⟩ writes the epenthetic schwa [ə], which is largely predictable from syllable structure / sonority and mostly non-phonemic (ibid. p.463 §23.4.2). THE SIGNATURE FEATURE is SPIRANTIZATION (modelled as allophone_rules): the lax (non-geminate) stops b d t k g ḍ surface as the fricatives [β ð θ ç ʝ ðˤ], while the tense (geminate) stops — written by doubling the letter (bb dd tt kk gg ḍḍ) and mapped to the distinct long phonemes /bː dː tː kː ɡː dˤː/ — remain stops and are never spirantized (Kossmann & Stroomer 1997 p.466: 'Spirantization never affects tense consonants'; the lax:tense opposition is durational — lax consonants are 'always realized shorter than their tense counterparts', p.465). Because the geminates are represented as separate long phonemes, the spirantization rules are naturally gemination-conditioned: they target /b d t k ɡ dˤ/ but not /bː dː tː kː ɡː dˤː/. e.g. igenni 'sky' → [iʝənni], adrar 'mountain' → [aðrar]. SOURCING CAVEAT: the worked spirantization examples and the homorganic-nasal blocking rule on pp.468-469 are given in the source specifically for the Beni Said Riffian dialect (§23.7.1), not for Kabyle directly — the source's only Kabyle-specific statement is the general remark (§23.5.1, p.466) that spirantization 'reaches its culminating points in Riffian and Kabyle.' These rules are extended to Kabyle here by analogy between the two dialects, not from a Kabyle-specific citation. CURRENT REVISION (2026-07-17): (a) REMOVED KAB_SPIRANT_K_ALT and the [ʃ] allophone of /k/ — the k→ʃ value is given in K&S 1997 p.469 for Beni Said Riffian only; per native-speaker judgment it never occurs in Kabyle. (b) /t/ before /i/: a KAB_BLOCK_SPIRANT_T_BEFORE_I rule was added and then REMOVED on 2026-07-17 after speaker re-verification — word-initial /t/ before /i/ is ALWAYS [θ] (tifinaɣ, tilufa, tilelli, tikwal); the 2026-07-16 table stands. Intervocalic -ti- (asiti, itiknikanen, tirmitin) is the residual open item. (c) GENERALIZED k/ɡ blocking to KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT / KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT: k → [ç] and ɡ → [ʝ] only post-vocalically and word-initially, stops after any consonant (native-speaker judgment), with the single exception /mʝ/ → [mʝ] from Bedar, Quellec & Tifrit (2022). The sonorant cases (k after r/l/n/m; ɡ after r/l/n) are corroborated by that study (Chemini Kabyle). (d) CORRECTED the Bedar–Quellec–Tifrit reference — the study is real but was miscited (wrong author first names, spurious 'BLS 50' venue and eScholarship link, unverifiable 'four varieties/Table 6' claims); the correct reference is Bedar, Quellec & Tifrit (2022), RFP 2022 Porto, HAL hal-03691265. (e) Fixed broken rule examples (zembil for mb-blocking; snat for nt-blocking), completed the allophones table for all phoneme targets (tˤ, dˤː, tˤː and all geminates), and extended KAB_N_VELAR_ASSIM to the geminate uvulars χː/ɣː. Earlier revisions added the geminate graphemes (xx, ww, yy, pp, jj, hh), v→/v/, the vowel-backing rules extended to geminate uvulars/emphatics (axxam → [ɑχːɑm]), palatal nasal assimilation /n/→[ɲ], and the homorganic-nasal plus /l/ and /m/ blocking rules for b/d/t/ḍ. PENDING SPEAKER CHECKS (2026-07-17): intervocalic -ti- ([t] or [θ]? candidates: asiti, itiknikanen, tirmitin); sk-clusters of the askar type — spec yields [sk] categorically, but one 2026-07-16 table entry had [asçar]; if confirmed without an epenthetic schwa, the k rule needs an /s/ refinement. KNOWN LIMITS (documented, not modelled): (1) morphophonological gemination alternations (geminated ɣ surfaces as qq, geminated w as bb, geminated y as gg) are lexical/morphological and are not derivable from the Latin spelling; (2) word-boundary sandhi (n+w → bb/pp, d+t → ts) is not modelled; (3) full vowel allophony (i→e, u→o) is only partially covered; (4) Kabyle stress is largely non-distinctive and predictable, and is not marked here. Labiovelarized kʷ gʷ are usually left unwritten in the standard orthography and are not modelled.",
  "parent": "ber-x-kabyle-atlas",
  "ancestors": [
   {
@@ -898,6 +887,72 @@
    "url": "https://www.karthala.com/2079-grammaire-moderne-du-kabyle-9782845861725.html",
    "pages": null,
    "notes": "Grammatical/lexical source for the TTS gold sentences."
+  },
+  {
+   "id": "chaker1996_notation",
+   "author": "Chaker, Salem",
+   "year": 1996,
+   "title": "Propositions pour la notation usuelle à base latine du berbère",
+   "publisher": "Centre de Recherche Berbère – INALCO, Paris (synthèse de l'atelier des 24-25 juin 1996)",
+   "url": "https://www.centrederechercheberbere.fr/tl_files/doc-pdf/notation.pdf",
+   "pages": null,
+   "type": "primary (orthography standard)",
+   "notes": "Direct source for the alphabet assumed by the INPUT CONTRACT of this spec. Explicitly phonological in inspiration: its own consonant chart lists the lax stop/spirant pairs (b/β, t/θ, d/ð, k/ç, g/ʝ) and prescribes writing tension by letter doubling. This is the 'tamaziɣt/INALCO' notation the spec's grapheme table encodes."
+  },
+  {
+   "id": "mammeri1976_precis",
+   "author": "Mammeri, Mouloud",
+   "year": 1976,
+   "title": "Précis de grammaire berbère (kabyle)",
+   "publisher": "Paris (rééd. Fichier TAL, 1983)",
+   "url": null,
+   "pages": null,
+   "type": "primary (orthography codification)",
+   "notes": "Codified the Latin orthography for Kabyle on which the INALCO 1996 standard and modern usage build; the conventions assumed by the INPUT CONTRACT descend from this work."
+  },
+  {
+   "id": "souag2019_arabic_script",
+   "author": "Souag, Lameen",
+   "year": 2019,
+   "title": "Kabyle in Arabic Script: A History without Standardisation",
+   "publisher": "In: Creating Standards, De Gruyter, pp. 273-296. DOI 10.1515/9783110639063-011",
+   "url": "https://shs.hal.science/halshs-02945641",
+   "pages": "273-296",
+   "type": "secondary (orthography history)",
+   "notes": "Documents that the Latin orthography became dominant for Kabyle only in the second half of the 20th century (Mammeri codification, then INALCO 1996 standardization); supports the script assumptions of the INPUT CONTRACT."
+  },
+  {
+   "id": "wang2020_syllabification",
+   "author": "Wang, Beini",
+   "year": 2020,
+   "title": "Syllabification and Schwa Epenthesis in Kabyle",
+   "publisher": "McGill Working Papers in Linguistics 26.1, McGill University",
+   "url": "http://people.linguistics.mcgill.ca/~mcgwpl/McGWPL/2020v26n01/2020_26_1_Wang.pdf",
+   "pages": null,
+   "type": "primary (syllable phonology)",
+   "notes": "Argues all Kabyle schwas are epenthetic repairs of ill-formed clusters, and that geminates are never broken by epenthesis (e.g. [θaqqraːts] 'bottle') — supports the schwa statement in KNOWN LIMITS and bears on sk-type clusters (the askar question). NOTE: an internal project report miscited this paper as 'Yuan Wang, The Kabyle Syllable, University of Delaware' — corrected here."
+  },
+  {
+   "id": "mokraoui2026_native_verification",
+   "author": "MOKRAOUI, Athmane (boffire)",
+   "year": 2026,
+   "title": "Native-speaker verification sessions for the Kabyle orthography2ipa spec",
+   "publisher": null,
+   "url": null,
+   "pages": null,
+   "type": "primary (speaker judgments)",
+   "notes": "Item-by-item verification tables of 2026-07-16/17 covering spirantization of /b d t k ɡ/ in word-initial, post-vocalic and post-consonant positions. Rulings incorporated in this spec: categorical post-consonant blocking for k/ɡ with the /mʝ/ exception; word-initial /t/ → [θ] before ALL vowels including /i/ (tifinaɣ, tilufa, tilelli, tikwal); rejection of the [ʃ] allophone of /k/; gloss of anta 'which one (f.)'."
+  },
+  {
+   "id": "corpus_audit_2026_07_17",
+   "author": "MOKRAOUI, Athmane (boffire); corpus analysis run 2026-07-17",
+   "year": 2026,
+   "title": "Kabyle corpus audit for cluster attestation and orthographic contamination",
+   "publisher": null,
+   "url": "https://huggingface.co/boffire",
+   "pages": null,
+   "type": "primary (corpus evidence)",
+   "notes": "31,085 samples / 21,260 unique words from boffire/tatoeba-en-kab, boffire/nllb_en_kab, boffire/kabyle-english-TM, boffire/kabyle-english-translatewiki. Blocked clusters richly attested (rk 116, lk 100, nk 77, fk 81, tk 103; rg 87, ng 155, zg 63); exotic clusters (xk, qk, zk, ɣk) unattested. Motivated the geminate-context extension of the k/ɡ blocking rules (nettkel, lettkal — k after ⟨tt⟩). Greek/Cyrillic lookalike scan: 25 hits in kabyle-english-translatewiki (to be cleaned at source); other three datasets clean."
   }
  ],
  "wikipedia": [
