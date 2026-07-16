@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.11.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.11.0a2) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.10.0a2...7.11.0a2)
+
+**Merged pull requests:**
+
+- docs: refresh counts, fix stale outputs, add lattice/lexicon examples [\#504](https://github.com/TigreGotico/orthography2ipa/pull/504) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Portuguese TTS gold sets for pt-BR interior lects \(caipira, mineiro, brasília\) [\#503](https://github.com/TigreGotico/orthography2ipa/pull/503) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Brazilian Northeast/North Portuguese TTS gold sets \(bahia, recife, ce, norte\) [\#502](https://github.com/TigreGotico/orthography2ipa/pull/502) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Brazilian Portuguese TTS gold sets for four Southeast lects [\#501](https://github.com/TigreGotico/orthography2ipa/pull/501) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.10.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.10.0a2) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.10.0a1...7.10.0a2)
@@ -494,19 +505,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.7.0a1...3.8.0a1)
 
-**Merged pull requests:**
-
-- feat\(ru,uk,be\): East Slavic phonology round — reduction, palatalization, assimilation [\#340](https://github.com/TigreGotico/orthography2ipa/pull/340) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [3.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.7.0a1) (2026-07-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.6.0a1...3.7.0a1)
-
-**Merged pull requests:**
-
-- Release 3.7.0a1 [\#339](https://github.com/TigreGotico/orthography2ipa/pull/339) ([github-actions[bot]](https://github.com/apps/github-actions))
-- fix\(bench\): register the WikiPron Portugal file as pt-PT, not bare pt [\#338](https://github.com/TigreGotico/orthography2ipa/pull/338) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(it\): Italian palatalization markers, post-consonantal z, inherent geminates [\#337](https://github.com/TigreGotico/orthography2ipa/pull/337) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/3.6.0a1) (2026-07-12)
 
