@@ -1,0 +1,55 @@
+{
+  "code": "cbk-x-ternate",
+  "name": "Chavacano (Ternateño / Bahra)",
+  "family": "Spanish Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "cbk-zam",
+  "ancestors": [
+    {
+      "code": "es-ES",
+      "role": "lexifier",
+      "weight": 0.8,
+      "notes": "Spanish is the lexifier; written with the Spanish alphabet."
+    },
+    {
+      "code": "tl",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Tagalog substrate; the earliest layer also carries a Portuguese-Malay (Ternate, Moluccas) Mardijker component."
+    }
+  ],
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Ternateño Chabacano (locally 'Bahra'), the Spanish-lexifier creole of Ternate, Cavite, Luzon, Philippines — the oldest and most conservative Manila-Bay Chabacano, brought by Mardijker settlers from Ternate (Moluccas) in 1663. STUB: no variety-specific grapheme map is claimed yet. It uses the Spanish-alphabet orthography and shares the core Chabacano phonology of cbk-zam (seseo, yeísmo, ⟨j g⟩ before front vowels = [h], ⟨v⟩ = [b]); parent set to cbk-zam pending a dedicated description. Ternateño-specific traits (a Portuguese-Malay lexical layer, distinct pronoun and TMA systems) are documented in Sippola's APiCS survey but not yet encoded here.",
+  "iso639_3": "tmg",
+  "glottolog_code": "tern1248",
+  "wikidata_qid": "Q33281",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ternate_Chavacano"
+  ],
+  "sources": [
+    {
+      "id": "sippola2013ternate",
+      "author": "Sippola, Eeva",
+      "year": 2013,
+      "title": "Ternate Chabacano structure dataset (APiCS Survey chapter 47)",
+      "publisher": "Atlas of Pidgin and Creole Language Structures Online (APiCS), eds. Michaelis, Maurer, Haspelmath & Huber",
+      "url": "https://apics-online.info/contributions/47",
+      "wikipedia_url": null,
+      "pages": "Ternate Chabacano phonology and morphosyntax; Portuguese-Malay Mardijker substrate; oldest Manila-Bay variety.",
+      "notes": "Primary descriptive source for the Ternate variety; grapheme map to be derived from it."
+    }
+  ],
+  "timespan": {
+    "start_year": 1663,
+    "end_year": null
+  },
+  "location": {
+    "latitude": 14.2911,
+    "longitude": 120.7169,
+    "source": "manual",
+    "notes": "Ternate, Cavite, Philippines."
+  }
+}

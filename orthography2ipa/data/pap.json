@@ -10,6 +10,21 @@
     "a": [
       "a"
     ],
+    "á": [
+      "a"
+    ],
+    "é": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "o"
+    ],
+    "ú": [
+      "u"
+    ],
     "e": [
       "e",
       "ɛ"
@@ -263,7 +278,7 @@
       "notes": "Dutch superstrate: Netherlands ruled Curaçao from 1634; Dutch colonial administration contributed vocabulary, and Dutch is still a co-official language. Official Curaçao orthography (2009) reflects phonemic principles distinct from Dutch etymology."
     }
   ],
-  "notes": "Papiamentu (Curaçao/Bonaire) / Papiamento (Aruba). Iberian-based creole; official language of Curaçao, Aruba, and Bonaire. ~330,000 speakers. Two spelling conventions: Curaçao/Bonaire use phonemic orthography (papi-a-men-tu), Aruba uses etymological spelling closer to Spanish/Portuguese. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e and o vary [e]~[ɛ] and [o]~[ɔ]. (2) AFFRICATES: ch=[tʃ], dj=[dʒ]. (3) SIBILANTS: sh=[ʃ], zh=[ʒ], s=[s], z=[z]. (4) PALATAL NASAL: ñ=[ɲ] (from Spanish/Portuguese). (5) LL: renders [j] (from Spanish lateral, reanalysed as glide). (6) DIPHTHONGS: ai/ei/oi/au are phonemic. (7) STRESS: penultimate by default; stress-timed rhythm. One of the best-studied Atlantic creoles with the highest number of L1 speakers per capita in the Caribbean.",
+  "notes": "Papiamentu (Curaçao/Bonaire) / Papiamento (Aruba). Iberian-based creole; official language of Curaçao, Aruba, and Bonaire. ~330,000 speakers. Two spelling conventions: Curaçao/Bonaire use phonemic orthography (papi-a-men-tu), Aruba uses etymological spelling closer to Spanish/Portuguese. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e and o vary [e]~[ɛ] and [o]~[ɔ]. (2) AFFRICATES: ch=[tʃ], dj=[dʒ]. (3) SIBILANTS: sh=[ʃ], zh=[ʒ], s=[s], z=[z]. (4) PALATAL NASAL: ñ=[ɲ] (from Spanish/Portuguese). (5) LL: renders [j] (from Spanish lateral, reanalysed as glide). (6) DIPHTHONGS: ai/ei/oi/au are phonemic. (7) STRESS: penultimate by default; stress-timed rhythm. One of the best-studied Atlantic creoles with the highest number of L1 speakers per capita in the Caribbean. This spec models the CURAÇAO/BONAIRE phonemic orthography (FPI 2009: ⟨k⟩ not ⟨c⟩, acute ⟨á é í ó ú⟩ for stress mapped to base vowels), not the Aruban etymological spelling.",
   "sources": [
     {
       "id": "kouwenberg_murray1994",
@@ -272,8 +287,28 @@
       "title": "Papiamentu",
       "publisher": "Languages of the World/Materials 83, LINCOM Europa",
       "url": null,
-      "pages": null,
-      "notes": "Comprehensive phonological and morphological description"
+      "pages": "Phonology ch.: five-vowel system with [e]~[ɛ], [o]~[ɔ] alternations; affricates [tʃ dʒ]; sibilants [s z ʃ ʒ]; coda /s/ palatalisation to [ʃ] before consonants and word-finally; preverbal TMA markers ta (imperfective), a (perfective), lo (future).",
+      "notes": "Comprehensive phonological and morphological description; source for the vowel and sibilant inventory and the coda-/s/ rule."
+    },
+    {
+      "id": "romer1991",
+      "author": "Römer, Raúl G.",
+      "year": 1991,
+      "title": "Studies in Papiamentu tonology",
+      "publisher": "Caribbean Culture Studies 5, University of Amsterdam",
+      "url": null,
+      "pages": "Lexical tone/stress; interaction of the acute-accent orthography (muhé, kachó, akí) with stressed syllables.",
+      "notes": "Grounds the acute-accented-vowel graphemes as stress marks over the base five vowels."
+    },
+    {
+      "id": "fpi2009",
+      "author": "Fundashon pa Planifikashon di Idioma (FPI)",
+      "year": 2009,
+      "title": "Ortografia di papiamentu (revised Curaçao/Bonaire spelling)",
+      "publisher": "Fundashon pa Planifikashon di Idioma, Willemstad",
+      "url": null,
+      "pages": "Phonemic (fonétiko) convention: ⟨k⟩ not ⟨c⟩; digraphs ⟨ch dj sh zh⟩; diacritics ⟨è ò ù ü⟩ for [ɛ ɔ ʏ y]; acute ⟨á é í ó ú⟩ marks stress. Distinct from the Aruban etymological spelling (⟨c qu⟩, closer to Spanish/Portuguese).",
+      "notes": "Defines the Curaçao/Bonaire phonemic orthography this spec models; the gold register uses this convention, NOT the Aruban etymological one."
     },
     {
       "id": "maurer1998",

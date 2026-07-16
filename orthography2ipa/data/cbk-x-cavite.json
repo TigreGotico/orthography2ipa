@@ -1,0 +1,55 @@
+{
+  "code": "cbk-x-cavite",
+  "name": "Chavacano (Caviteño / Chabacano de Cavite)",
+  "family": "Spanish Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "parent": "cbk-zam",
+  "ancestors": [
+    {
+      "code": "es-ES",
+      "role": "lexifier",
+      "weight": 0.8,
+      "notes": "Spanish is the lexifier; written with the Spanish alphabet."
+    },
+    {
+      "code": "tl",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Tagalog substrate (Manila Bay area): phonology and grammar."
+    }
+  ],
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines — moribund, distinct from Zamboangueño (cbk-zam). STUB: no variety-specific grapheme map is claimed yet. In practice it uses the same Spanish-alphabet orthography and shares the core Chabacano phonology of cbk-zam (seseo, yeísmo, ⟨j g⟩ before front vowels = [h], ⟨v⟩ = [b]); the parent is set to cbk-zam so it inherits that system pending a dedicated Manila-Bay description. Documented differences from Zamboangueño (e.g. TMA particles ta/ya/di, Tagalog rather than Visayan substrate) are described in Sippola's APiCS survey but not yet encoded here.",
+  "iso639_3": "cbk",
+  "glottolog_code": "cavi1254",
+  "wikidata_qid": "Q33281",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chavacano"
+  ],
+  "sources": [
+    {
+      "id": "sippola2013cavite",
+      "author": "Sippola, Eeva",
+      "year": 2013,
+      "title": "Cavite Chabacano structure dataset (APiCS Survey chapter 46)",
+      "publisher": "Atlas of Pidgin and Creole Language Structures Online (APiCS), eds. Michaelis, Maurer, Haspelmath & Huber",
+      "url": "https://apics-online.info/contributions/46",
+      "wikipedia_url": null,
+      "pages": "Manila-Bay Chabacano phonology and morphosyntax; Tagalog substrate; TMA particles distinct from Zamboangueño.",
+      "notes": "Primary descriptive source for the Cavite variety; grapheme map to be derived from it."
+    }
+  ],
+  "timespan": {
+    "start_year": 1700,
+    "end_year": null
+  },
+  "location": {
+    "latitude": 14.4791,
+    "longitude": 120.8969,
+    "source": "manual",
+    "notes": "Cavite City, Cavite, Philippines."
+  }
+}

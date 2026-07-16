@@ -92,6 +92,8 @@ LECTS = [
     # Colombian Spanish (Americas extension): bogotano + regional accents
     "es-CO", "es-CO-x-costa", "es-CO-x-llanero", "es-CO-x-pacifico",
     "es-CO-x-paisa", "es-CO-x-santander", "es-CO-x-valluno",
+    # Spanish-lexifier creoles (part of the Spanish gold program)
+    "cbk-zam", "pap", "pln",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
