@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.21.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.21.0a2) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.8a3...7.21.0a2)
+
+**Merged pull requests:**
+
+- fix\(gold\): dedupe primary-source row ids from parallel Saudi harvests [\#552](https://github.com/TigreGotico/orthography2ipa/pull/552) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.8a3](https://github.com/TigreGotico/orthography2ipa/tree/7.19.8a3) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.8a2...7.19.8a3)
@@ -457,10 +465,6 @@
 ## [6.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.7.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.6.0a1...6.7.0a1)
-
-**Merged pull requests:**
-
-- feat\(benchmarks\): gold IPA mined from the primary sources the specs cite [\#383](https://github.com/TigreGotico/orthography2ipa/pull/383) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [6.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.6.0a1) (2026-07-15)
 
