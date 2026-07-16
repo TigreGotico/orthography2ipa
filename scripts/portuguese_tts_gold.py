@@ -64,6 +64,11 @@ LECTS = [
     # African + Asian
     "pt-AO", "pt-CV", "pt-GW", "pt-MZ", "pt-ST", "pt-MO", "pt-TL",
     "pt-UY",
+    # Asturleonese border falares of Trás-os-Montes (Portugal) and the
+    # Sanabria continuum they belong to — co-hosted in this gold set because
+    # they share the Portuguese-contact sandhi surface the harness checks.
+    "ast-PT-x-rionor", "ast-PT-x-guadramil", "ast-PT-x-medieval",
+    "ast-x-sanabria",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
