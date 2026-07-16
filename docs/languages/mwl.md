@@ -56,9 +56,14 @@ occurs word-finally (`rapaç`, `lhuç`) where Portuguese would spell `-z`.
   in loanwords, proper nouns and the article — a documented residual limit,
   not modelled positionally.
 - **⟨lh⟩ = /ʎ/, ⟨nh⟩ = /ɲ/** in all positions.
-- **Leonese diphthongs.** Latin short Ĕ → ⟨iê/ie⟩ = [jɛ] (stressed),
-  Latin short Ŏ → ⟨uô/uo⟩ = [wɔ]~[wo] (`tierra` → [ˈtjɛrɐ], `puorta` →
-  [ˈpwoɾtɐ]).
+- **Leonese diphthongs.** Latin short Ĕ → ⟨iê/ie⟩ = [je],
+  Latin short Ŏ → ⟨uô/uo⟩ = [wo] (`tierra` → [ˈtjerɐ], `puorta` →
+  [ˈpwoɾtɐ]). Mirandese has a single intermediate mid /e o/ quality
+  ("menos abertos que os nossos"; the ⟨ie⟩ nucleus lies between [i] and [e]
+  — Vasconcelos, *Estudos de Philologia Mirandesa* v1 §§2,4,10, pp.178-183),
+  so the diphthongs are **close**; open [jɛ]/[wɔ] are non-contrastive
+  allophonic variants. This matches the human gold majority
+  (`rabielho` → [rɐˈβjeʎu], `squierdo` → [ˈs̺kjeɾdu]).
 - **Intervocalic /l/ and /n/ preserved** (inherited from the parent) — the
   defining Leonese retention that distinguishes the group from Portuguese.
 
@@ -100,8 +105,18 @@ fricatives/approximants [β ð ɣ] everywhere **except** after a pause or a nasa
 (Mateus & d'Andrade 2000:11; Ferreira & Raposo 1999; the [Mirandese Wikipedia
 phonology](https://en.wikipedia.org/wiki/Mirandese_language#Consonants):
 "voiced stops /b d ɡ/ may be lenited as fricatives [β ð ɣ]"), which is why the
-rule requires a preceding vowel (word-initial and post-nasal ⟨b⟩ keep the stop:
-`bibal` → [biˈβal], `ambos` → [ˈambus̺]).
+rule requires a preceding vowel (word-initial ⟨b⟩ keeps the stop:
+`bibal` → [biˈβal]).
+
+**Pre-consonantal nasalisation.** A nasal digraph ⟨an en in on un⟩ (⟨am…⟩)
+before *any* stop — voiceless or voiced ⟨mb nd ng nt…⟩ — nasalises the vowel
+and the nasal is absorbed, the following stop retained: `brando` → [ˈbɾɐ̃du],
+`quando` → [ˈkwɐ̃du], `bufanda` → [buˈfɐ̃dɐ], `lhéngua` → [ˈʎẽɡwɐ],
+`ambos` → [ˈɐ̃bus̺], `sendo` → [ˈs̺ẽdu]. Stressed open [ɛ ɔ] raise to
+close-mid nasal [ẽ õ]. This is the inherited Ibero-Romance nasal-vowel +
+absorption behaviour and matches the human gold on every nasal+stop word;
+the earlier oral ⟨mb nd ng⟩ digraph treatment was contradicted by the gold
+and removed.
 
 The rule is applied **per phoneme**, on the evidence of the expert-human
 `mirandese_g2p` gold measured at true oral-intervocalic positions (post-nasal
