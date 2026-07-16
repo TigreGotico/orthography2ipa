@@ -1,0 +1,21 @@
+id	sentence	ipa	gloss_en	features	notes
+aoa-001	Ê ka ba mionga odhe.	ẽ ka ba mioŋa odhe	He will go to the sea today.	nasal_vowel;velar_nasal;statement;tma;pronoun	Future/irrealis particle ka before the verb; velar nasal in the Kimbundu-derived noun for sea. maurer1995
+aoa-002	N ka bê kikiê.	n ka bẽ kikiẽ	I will see the fish.	nasal_vowel;statement;tma;pronoun	Preverbal ka marks non-past; circumflex vowels are nasalized. maurer1995
+aoa-003	Bô tha ngê ngai.	bõ tha ŋɡẽ ŋɡai	You are a big person.	nasal_vowel;prenasal_stop;velar_nasal;copula;pronoun	Equative copula tha with a predicate adjective; word-initial digraph ng is a prenasalized velar. maurer1995
+aoa-004	No na thêka bê wa.	no na thẽka bẽ wa	We do not see.	nasal_vowel;negation;tma;plural	Discontinuous negation with clause-final wa framing the progressive marker thêka. maurer1995
+aoa-005	Ane ka landa mionga.	ane ka landa mioŋa	They swim in the sea.	velar_nasal;statement;tma;plural	Plural pronoun ane with preverbal ka; intervocalic ng is a plain velar nasal. maurer1995
+aoa-006	Mbedha tha kai.	mbedha tha kai	The table is in the house.	prenasal_stop;copula;no_agreement	Invariant noun with no article or agreement; word-initial digraph mb is a prenasalized labial stop. hagemeijer2009
+aoa-007	N ka ega ndatxi.	n ka eɡa ndatʃi	I carry the root.	affricate;postalveolar;prenasal_stop;statement;tma;pronoun	Postalveolar affricate tx and word-initial prenasalized nd in a Kimbundu-derived noun. hagemeijer2009
+aoa-008	Bô mêthê awa?	bõ mẽthẽ awa	Do you want water?	nasal_vowel;question;pronoun	Polar question by intonation with no interrogative particle; circumflex marks a nasal vowel. maurer1995
+aoa-009	Ngaba tata!	ŋɡaba tata	Praise the father!	prenasal_stop;velar_nasal;imperative	Bare-verb imperative; word-initial digraph ng is a prenasalized velar. maurer1995
+aoa-010	Mengai ka kuta kikiê.	meŋai ka kuta kikiẽ	The woman dries the fish.	nasal_vowel;velar_nasal;statement;tma;no_agreement	Invariant noun subject; velar nasal and a nasalized circumflex vowel. maurer1995
+aoa-011	N na tê kai wa.	n na tẽ kai wa	I do not have a house.	nasal_vowel;negation;pronoun	Clause-final negator wa; the verb tê carries a nasal vowel. maurer1995
+aoa-012	No ka bê tholo.	no ka bẽ tholo	We will see the sun.	nasal_vowel;statement;tma;plural	First person plural pronoun no with preverbal ka. maurer1995
+aoa-013	Bô ba kai!	bõ ba kai	Go home!	nasal_vowel;imperative;pronoun	Bare-verb imperative addressed with the second person pronoun bô. maurer1995
+aoa-014	Ê thêka landa.	ẽ thẽka landa	He is swimming.	nasal_vowel;statement;tma;pronoun	Progressive particle thêka before the verb. maurer1995
+aoa-015	N'na ka mêthê kikiê.	n na ka mẽthẽ kikiẽ	The child wants fish.	nasal_vowel;statement;tma;no_agreement	Invariant noun n'na with the modal verb mêthê. maurer1995
+aoa-016	Buru tha ngai.	buru tha ŋɡai	The stone is big.	prenasal_stop;velar_nasal;strong_rhotic;copula;no_agreement	Equative copula tha with an invariant noun subject; alveolar rhotic and word-initial prenasalized ng. maurer1995
+aoa-017	Bô eta ngê?	bõ eta ŋɡẽ	Do you know the person?	nasal_vowel;prenasal_stop;velar_nasal;question;pronoun	Polar question by intonation; word-initial prenasalized ng in the word for person. maurer1995
+aoa-018	Ê na landa mionga wa.	ẽ na landa mioŋa wa	He does not swim in the sea.	nasal_vowel;velar_nasal;negation;pronoun	Optional preverbal negator na with the obligatory clause-final negator wa. hagemeijer2009
+aoa-019	Ane ka pê mbedha kai.	ane ka pẽ mbedha kai	They put the table in the house.	nasal_vowel;prenasal_stop;statement;tma;plural	Plural pronoun ane with preverbal ka; word-initial prenasalized mb. hagemeijer2009
+aoa-020	Kikiê futaru a!	kikiẽ futaru a	The fish was stolen!	nasal_vowel;strong_rhotic;statement	Post-nominal emphatic particle a; alveolar rhotic in the participial form. maurer1995

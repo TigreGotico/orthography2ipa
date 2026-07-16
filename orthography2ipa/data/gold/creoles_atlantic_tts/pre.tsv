@@ -1,0 +1,21 @@
+id	sentence	ipa	gloss_en	features	notes
+pre-001	Liman ka twa.	limã ka twa	Lemons are bitter.	nasal_vowel;tma;statement;no_agreement	Invariant noun with the imperfective marker ka; a word-final n nasalises the preceding vowel, liman to limã, per maurer2009.
+pre-002	Mbwa me sa lala.	mbwa me sa lala	My dog is there.	prenasal_stop;copula;statement	Word-initial prenasalised bilabial onset mb realises as mb; sa is the locative copula, per maurer2009.
+pre-003	Txi ka kume kwa se?	tʃi ka kume kwa se	Are you eating this thing?	affricate;postalveolar;question;tma;pronoun	The digraph tx realises as the affricate tʃ; a polar question is marked by intonation with no particle, per maurer2009.
+pre-004	Amanhan n sa kume fa.	amãhã n sa kume fa	Tomorrow I will not eat.	nasal_vowel;negation;pronoun;tma	Negation is framed by the clause-final marker fa; the vowel nasalises before a coda nasal, per maurer2009.
+pre-005	Ine sa nge.	ine sa ŋɡe	They are people.	prenasal_stop;velar_nasal;copula;plural;pronoun	Word-initial ng realises as the prenasalised velar ŋɡ; the plural human subject ine takes no agreement, per maurer2009.
+pre-006	N ka kume akara.	n ka kume akara	I eat fried banana.	strong_rhotic;tma;pronoun;statement	Habitual ka with a first-person subject clitic; an intervocalic r keeps a full alveolar rhotic, per maurer2009.
+pre-007	Kaxi me gaani mo kaxi te.	kaʃi me ɡaãi mo kaʃi te	My house is as big as your house.	nasal_vowel;postalveolar;no_agreement;statement	Equative comparison with mo and no copula between subject and adjective; x realises as ʃ, per maurer2009.
+pre-008	Kaxi se ki te.	kaʃi se ki te	This house is mine.	postalveolar;statement;no_agreement	Identificational clause with the linker ki and no overt copula, per maurer2009.
+pre-009	Ugbami te gaani.	uɡ͡bami te ɡaãi	Your chin is big.	nasal_vowel;labial_velar;statement;no_agreement	The voiced labial-velar stop gb realises as ɡ͡b, a Niger-Congo substrate retention, per hagemeijer2009.
+pre-010	Ukpami sa lala.	uk͡pami sa lala	The fish-drying frame is there.	labial_velar;copula;statement	The voiceless labial-velar stop kp realises as k͡p, a Niger-Congo substrate retention, per hagemeijer2009.
+pre-011	Gbungbun sa kwa gaani.	ɡ͡buŋɡ͡bũ sa kwa ɡaãi	Shark cartilage is a big thing.	nasal_vowel;labial_velar;velar_nasal;copula;statement	The voiced labial-velar stop gb flanks nasalised vowels; sa links subject and predicate, per hagemeijer2009.
+pre-012	Ine mina sa lala.	ine mina sa lala	The children are there.	copula;plural;pronoun;statement	A bare noun after the plural word ine takes no number suffix; sa is the locative copula, per maurer2009.
+pre-013	N tava we lala.	n tava we lala	I had gone there.	tma;pronoun;statement	The anterior marker tava places the event before the reference time, per maurer2009.
+pre-014	Sun se sa omi.	sũ se sa omi	This gentleman is a man.	nasal_vowel;copula;statement;no_agreement	A nominal predicate is joined by the copula sa; a word-final n yields the nasal vowel ũ, per maurer2009.
+pre-015	Kume liman se!	kume limã se	Eat this lemon!	nasal_vowel;imperative	Bare-verb imperative; the object noun carries no article, per maurer2009.
+pre-016	We lala!	we lala	Go there!	imperative	Bare-verb imperative with a locative adverb, per maurer2009.
+pre-017	Txi sa nge Ie?	tʃi sa ŋɡe ie	Are you an islander?	affricate;postalveolar;prenasal_stop;velar_nasal;question;copula;pronoun	The prenasalised ng onset and the affricate tx co-occur; sa is the copula in a polar question, per maurer2009.
+pre-018	N sa lala fa.	n sa lala fa	I am not there.	negation;pronoun;copula	A copular clause is negated by the clause-final marker fa, per maurer2009.
+pre-019	Omi se sa sun.	omi se sa sũ	This man is a gentleman.	nasal_vowel;copula;statement;no_agreement	A nominal predicate with the copula sa; a word-final n yields the nasal vowel ũ, per maurer2009.
+pre-020	Ine ka kume liman.	ine ka kume limã	They eat lemons.	nasal_vowel;tma;plural;pronoun;statement	The plural human subject ine with imperfective ka on an invariant object noun, per maurer2009.
