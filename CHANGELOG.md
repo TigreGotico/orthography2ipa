@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.16.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.16.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.15.0a1...7.16.0a1)
+
+**Merged pull requests:**
+
+- feat: creole ancestry, Arabic dialect aliases, and 15 skeleton stubs [\#517](https://github.com/TigreGotico/orthography2ipa/pull/517) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.15.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a2...7.15.0a1)
@@ -498,7 +506,6 @@
 
 - fix: a consonantal glide is not a long vowel \(Arabic nisba\) [\#352](https://github.com/TigreGotico/orthography2ipa/pull/352) ([JarbasAl](https://github.com/JarbasAl))
 - feat: quantity-sensitive stress — placement by syllable weight [\#350](https://github.com/TigreGotico/orthography2ipa/pull/350) ([JarbasAl](https://github.com/JarbasAl))
-- feat: phoneme inventory, TTS tokenizer, and a dead-rule lint [\#349](https://github.com/TigreGotico/orthography2ipa/pull/349) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.1.1a1) (2026-07-13)
 
