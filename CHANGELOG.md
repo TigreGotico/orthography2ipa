@@ -1,8 +1,23 @@
 # Changelog
 
+## [7.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.13.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.13.0a1)
+
+**Merged pull requests:**
+
+- feat\(gold\): Portuguese TTS gold sets for pt-AO, pt-MZ, pt-ST, pt-GW [\#510](https://github.com/TigreGotico/orthography2ipa/pull/510) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Portuguese TTS gold sets — pt-BR-x-sul, pt-BR-x-pr, pt-UY [\#509](https://github.com/TigreGotico/orthography2ipa/pull/509) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(gold\): Portuguese TTS gold sets for pt-CV, pt-MO, pt-TL [\#508](https://github.com/TigreGotico/orthography2ipa/pull/508) ([JarbasAl](https://github.com/JarbasAl))
+- feat: Portuguese TTS gold sets for medieval, Galaico-Portuguese, Alfena and Barranquenho [\#507](https://github.com/TigreGotico/orthography2ipa/pull/507) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.11.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.11.0a2) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.10.0a2...7.11.0a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a1...7.11.0a2)
+
+## [7.11.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.11.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.10.0a2...7.11.0a1)
 
 **Merged pull requests:**
 
@@ -477,25 +492,13 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.0.0a1...4.1.0a1)
 
-**Merged pull requests:**
-
-- feat\(mwl\): Convenção-1999 orthography units — amp, ui, gu [\#346](https://github.com/TigreGotico/orthography2ipa/pull/346) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [4.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.0.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.8.1a1...4.0.0a1)
 
-**Breaking changes:**
-
-- feat\(bench\)!: single unified Portuguese gold; drop styletts2; add VoxCommunis [\#344](https://github.com/TigreGotico/orthography2ipa/pull/344) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [3.8.1a1](https://github.com/TigreGotico/orthography2ipa/tree/3.8.1a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/3.8.0...3.8.1a1)
-
-**Merged pull requests:**
-
-- fix\(inheritance\): word\_exceptions joins the BASE\_MERGE overlay path [\#342](https://github.com/TigreGotico/orthography2ipa/pull/342) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [3.8.0](https://github.com/TigreGotico/orthography2ipa/tree/3.8.0) (2026-07-12)
 
