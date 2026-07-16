@@ -76,6 +76,59 @@ def _ends_in_vowel(ipa: str) -> bool:
 
 _GLIDES = set("jw" "ʲʷ")
 
+#: Liquids (laterals + rhotics), orthographic ⟨l r⟩ and their IPA realisations.
+#: A liquid that opens a medial cluster cannot be part of a complex onset —
+#: onsets rise in sonority toward the nucleus, and nothing a Latin/Ibero-Romance
+#: language writes after ⟨l r⟩ is *less* sonorous while still forming a legal
+#: onset. So a medial ``liquid + consonant`` cluster syllabifies with the liquid
+#: as the coda of the preceding syllable (bur-mei-lho, not bu-rmei-lho), which
+#: is where a following stress mark must land. See :func:`_capture_coda_liquids`.
+_LIQUIDS = frozenset("lɫʎɬrɾʁʀɽɭɺ")
+
+
+def _capture_coda_liquids(
+    syllables: List[str],
+    is_vowel_char,
+) -> List[str]:
+    """Move a syllable-initial liquid that heads a consonant cluster back onto
+    the preceding syllable as its coda.
+
+    The naive splitter is onset-maximising: it hands a whole medial consonant
+    run forward to the next nucleus. For a ``liquid + C`` cluster that is wrong
+    on sonority grounds (a liquid cannot be the first member of a rising onset),
+    so ``ɾm`` in ``buɾmejʎu`` is split ``buɾ | mejʎu``. Only the *leading*
+    liquid of a ≥2-consonant onset is captured; a lone onset liquid (``ʎu``) or
+    a rising cluster (``bɾ``, ``pl``) is left untouched. Opt-in per spec via
+    :attr:`~orthography2ipa.types.StressRules.coda_liquid_capture`.
+    """
+    if len(syllables) < 2:
+        return syllables
+    out: List[str] = [syllables[0]]
+    for syll in syllables[1:]:
+        # onset = the leading consonant segments before the first nucleus char
+        j = 0
+        while j < len(syll) and (
+                unicodedata.combining(syll[j]) or not is_vowel_char(syll[j])):
+            j += 1
+        onset = syll[:j]
+        # the base consonant characters of the onset (combining marks ride along)
+        cons = [c for c in onset if not unicodedata.combining(c)]
+        # Capture only a FALLING cluster: liquid followed by an equal-or-lower
+        # sonority consonant (nasal/obstruent/liquid). A liquid + glide
+        # (⟨lh⟩+glide ʎj, lj, ɾw) RISES in sonority and is a legal complex
+        # onset — mu-lhier stays muˈʎjeɾ, not muʎˈjeɾ — so it is left intact.
+        if (len(cons) >= 2 and cons[0] in _LIQUIDS
+                and cons[1] not in _GLIDES and out[-1]):
+            # peel the leading liquid (plus any combining marks riding on it)
+            k = 1
+            while k < len(syll) and unicodedata.combining(syll[k]):
+                k += 1
+            out[-1] += syll[:k]
+            out.append(syll[k:])
+        else:
+            out.append(syll)
+    return out
+
 
 def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
     """Split a vowel *run* into nuclei using the spec's *diphthongs*.
@@ -116,6 +169,7 @@ def syllabify(
     word: str,
     vowels: Optional[set] = None,
     diphthongs: Sequence[str] = (),
+    coda_liquid_capture: bool = False,
 ) -> List[str]:
     """Split *word* into syllables by vowel groups.
 
@@ -135,7 +189,10 @@ def syllabify(
     if not word:
         return []
     if diphthongs:
-        return _syllabify_with_diphthongs(word, is_vowel_char, diphthongs)
+        sylls = _syllabify_with_diphthongs(word, is_vowel_char, diphthongs)
+        if coda_liquid_capture:
+            sylls = _capture_coda_liquids(sylls, is_vowel_char)
+        return sylls
     # indices of nucleus starts
     syllables: List[str] = []
     current = ""
@@ -167,6 +224,8 @@ def syllabify(
         else:
             # trailing consonant cluster joins the last syllable
             syllables[-1] += current
+    if coda_liquid_capture:
+        syllables = _capture_coda_liquids(syllables, is_vowel_char)
     return syllables
 
 
@@ -363,7 +422,8 @@ def apply_stress_mark(
     # whose diphthongs are written with glides (Portuguese /aj aw/) therefore
     # leaves only true hiatus as a two-vowel run, and it must split.
     ipa_sylls = (list(ipa_syllables) if ipa_syllables
-                 else syllabify(ipa, diphthongs=rules.diphthongs))
+                 else syllabify(ipa, diphthongs=rules.diphthongs,
+                                coda_liquid_capture=rules.coda_liquid_capture))
     if not ipa_sylls:
         return ipa
 

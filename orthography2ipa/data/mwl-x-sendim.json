@@ -111,6 +111,7 @@
       "ũ"
     ],
     "stress_mark": "ˈ",
+    "coda_liquid_capture": true,
     "cliticless_words": [
       "l", "la", "ls", "las", "lo", "los",
       "a", "an", "de", "por", "cun", "pul", "pula", "puls", "pulas",

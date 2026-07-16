@@ -138,6 +138,7 @@
       "ũ"
     ],
     "stress_mark": "ˈ",
+    "coda_liquid_capture": true,
     "cliticless_words": [
       "l",
       "la",
@@ -211,6 +212,16 @@
     ]
   },
   "positional_graphemes": {
+    "io": {
+      "word_final": [
+        "iu"
+      ]
+    },
+    "iu": {
+      "word_final": [
+        "iw"
+      ]
+    },
     "b": {
       "word_initial": [
         "b"

@@ -425,6 +425,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 raw_stress.get("superheavy_final_attracts", True)),
             max_onset=int(raw_stress.get("max_onset", 1)),
             cliticless_words=tuple(raw_stress.get("cliticless_words", ())),
+            coda_liquid_capture=bool(
+                raw_stress.get("coda_liquid_capture", False)),
             source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )
@@ -482,6 +484,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         wals_code=raw.get("wals_code"),
         sandhi_rules=sandhi_rules,
         allophone_rules=allophone_rules,
+        allophone_passes=int(raw.get("allophone_passes", 1)),
         tone_inventory=raw.get("tone_inventory"),
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
