@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.20.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.20.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.6a1...7.20.0a1)
+
+**Merged pull requests:**
+
+- feat\(data\): Iberian transitional lects \(eonaviego, benasqués, alguerès, pasiego\) + fala sibilant fix [\#539](https://github.com/TigreGotico/orthography2ipa/pull/539) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.6a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.5a1...7.19.6a1)
@@ -524,10 +532,6 @@
 ## [4.5.2a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.2a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.5.1a1...4.5.2a1)
-
-**Merged pull requests:**
-
-- fix: Portuguese output depended on whether a plugin happened to be installed [\#367](https://github.com/TigreGotico/orthography2ipa/pull/367) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.5.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.1a1) (2026-07-14)
 
