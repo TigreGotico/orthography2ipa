@@ -70,13 +70,14 @@ class TestGuadramilInheritsRionorese:
         """tch → tʃ (inherited from Rionorese)."""
         assert guadramil.graphemes.get("tch") == ["tʃ"]
 
-    def test_z_dental_inherited(self, guadramil):
-        """z → θ (dental fricative, inherited from Rionorese)."""
-        assert guadramil.graphemes.get("z") == ["θ"]
+    def test_z_seseo_inherited(self, guadramil):
+        """z → [s] (seseo, inherited from Rionorese; Vasconcelos EPM II p.54
+        documents the galego-merger for guadramilês specifically), not [θ]."""
+        assert guadramil.graphemes.get("z") == ["s"]
 
-    def test_ç_dental_inherited(self, guadramil):
-        """ç → θ (inherited from Rionorese)."""
-        assert guadramil.graphemes.get("ç") == ["θ"]
+    def test_ç_seseo_inherited(self, guadramil):
+        """ç → [s] (seseo, inherited from Rionorese; Vasconcelos EPM II p.54)."""
+        assert guadramil.graphemes.get("ç") == ["s"]
 
     def test_ie_diphthong_inherited(self, guadramil):
         """ie → je (Leonese diphthong, inherited)."""
@@ -95,8 +96,8 @@ class TestGuadramilInheritsRionorese:
         assert guadramil.graphemes.get("ll") == ["ʎ"]
 
     def test_positional_c_before_e(self, guadramil):
-        """c before e → θ (inherited positional rule)."""
-        assert guadramil.resolve_grapheme("c", GraphemePosition.BEFORE_E) == ["θ"]
+        """c before e → [s] (seseo, inherited positional rule), not [θ]."""
+        assert guadramil.resolve_grapheme("c", GraphemePosition.BEFORE_E) == ["s"]
 
     def test_positional_g_before_e(self, guadramil):
         """g before e → x (inherited positional rule)."""

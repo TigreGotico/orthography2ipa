@@ -154,6 +154,11 @@ KNOWN_DEAD_RULES = {
     "ru-x-don": _RU_REDUCED_DEAD,
     "ru-x-kursk-orel": _RU_REDUCED_DEAD,
     "ru-x-southern": _RU_REDUCED_DEAD,
+    # Sendinês monophthongises the Leonese rising diphthongs (⟨ie⟩→[i],
+    # ⟨uo⟩→[u]), so the [jɛ]/[wo] nuclei the inherited Mirandese diphthong-
+    # nasalisation rules target never surface here. The rules are live in the
+    # parent mwl and in mwl-x-ifanes, which keep the diphthongs.
+    "mwl-x-sendim": {"MWL_NASAL_DIPHTHONG_JE", "MWL_NASAL_DIPHTHONG_WO"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
