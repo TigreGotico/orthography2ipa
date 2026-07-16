@@ -11,11 +11,11 @@ orthography into an IPA (International Phonetic Alphabet) transcription.
 >>> orthography2ipa.transcribe("olá mundo", "pt")
 'oˈla ˈmũdu'
 >>> orthography2ipa.transcribe("hello world", "en")
-'hələʊ wɜːld'
+'hɛlɒ wɔːɹld'
 ```
 
-493 languages and 63 clade nodes ship with the package
-(`available_codes()` returns the 493; `available_codes(include_clades=True)`
+676 languages and 73 clade nodes ship with the package
+(`available_codes()` returns the 676; `available_codes(include_clades=True)`
 adds the clades, which are classification-only).
 
 ## The relational axes

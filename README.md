@@ -44,9 +44,9 @@ drive a grapheme-to-IPA engine:
 'oˈla ˈmũdu'
 ```
 
-**493 languages** and **63 clade nodes** ship with the package (556 spec files in
-`orthography2ipa/data/`; `available_codes()` returns the 493 languages,
-`available_codes(include_clades=True)` all 556), spread across 30 top-level
+**676 languages** and **73 clade nodes** ship with the package (749 spec files in
+`orthography2ipa/data/`; `available_codes()` returns the 676 languages,
+`available_codes(include_clades=True)` all 749), spread across 33 top-level
 families from Indo-European to Quechuan, plus reconstructed proto-languages,
 regional dialects and creoles.
 
@@ -220,7 +220,7 @@ library: [arbtok](https://github.com/TigreGotico/arbtok) for Arabic,
 import orthography2ipa
 
 orthography2ipa.transcribe("olá mundo", "pt")     # 'oˈla ˈmũdu'
-orthography2ipa.transcribe("hello world", "en")   # 'hələʊ wɜːld'
+orthography2ipa.transcribe("hello world", "en")   # 'hɛlɒ wɔːɹld'
 orthography2ipa.transcribe("bona nuèit", "oc")    # 'ˈbunɔ ˈnyɛjt'
 
 # Beam search keeps ranked alternatives per word
@@ -256,7 +256,7 @@ orthography2ipa.resolve("pt")      # 'pt-PT' — reference variety
 orthography2ipa.resolve("en-NZ")   # 'en-GB' — nearest registered
 
 # Discover what's available
-orthography2ipa.available_codes()      # 493 language codes (clades excluded)
+orthography2ipa.available_codes()      # 676 language codes (clades excluded)
 orthography2ipa.available_families()   # codes grouped by derived family path
 ```
 
