@@ -126,6 +126,19 @@
         "s"
       ]
     },
+    "z": {
+      "coda": [
+        "s"
+      ],
+      "word_final": [
+        "s"
+      ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ]
+    },
     "e": {
       "nucleus_unstressed": [
         "e"

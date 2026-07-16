@@ -44,7 +44,12 @@ from __future__ import annotations
 from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
-from orthography2ipa.vowels import is_back_vowel, is_front_vowel, is_ipa_vowel
+from orthography2ipa.vowels import (
+    base_vowel_letter,
+    is_back_vowel,
+    is_front_vowel,
+    is_ipa_vowel,
+)
 from orthography2ipa.weights import candidate_base_costs
 
 __all__ = [
@@ -126,7 +131,7 @@ def grapheme_positions(
 
     # 1. before_X (exact letter) then the front/back vowel *class*.
     if next_ctx is not None:
-        nc = next_ctx.grapheme[0].lower()
+        nc = base_vowel_letter(next_ctx.grapheme[0])
         exact = _BEFORE_EXACT.get(nc)
         if exact is not None:
             pos.append(exact)
@@ -172,7 +177,7 @@ def grapheme_positions(
 
     # 5. after/before vowel / consonant context
     if prev_is_v:
-        pc = prev_ctx.grapheme[0].lower()
+        pc = base_vowel_letter(prev_ctx.grapheme[0])
         exact = _AFTER_EXACT.get(pc)
         if exact is not None:
             pos.append(exact)

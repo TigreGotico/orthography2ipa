@@ -49,10 +49,10 @@ that actually discriminate Portuguese lects:
 | tag | verified by | fires when |
 |---|---|---|
 | `vowel_reduction` | ipa | reduction vowel `[ɨ]` or `[ɐ]` present (EP heavy, BR light) |
-| `coda_sibilant` | both | a coda `s/z/x` in the orthography **and** `[ʃ]`/`[ʒ]` in the ipa (the palatalising reflex, not `ch`/`j`) |
+| `coda_sibilant` | both | a coda `s/z/x` in the orthography **and** a `[ʃ]`/`[ʒ]` standing in *coda* position in the ipa — before a consonant or at a word/utterance boundary. An onset `[ʃ ʒ]` (from `ch`, `j`, or soft `g`) elsewhere in the row does not count |
 | `open_mid` | ipa | `[ɛ]` or `[ɔ]` present |
 | `close_mid` | ipa | `[e]` or `[o]` present |
-| `nasal_vowel` | ipa | a nasalised vowel (combining tilde) present |
+| `nasal_vowel` | ipa | a nasalised vowel present, whether the spec emits a combining tilde (NFD) or a precomposed nasal letter (`ã õ …`, as the historical lects do) — the check normalises so the encoding never decides the tag |
 | `nasal_diphthong` | ipa | a nasalised glide `[w̃]`/`[j̃]` (ão, ãe, õe, …) |
 | `palatal` | ipa | `[ʎ]` or `[ɲ]` present |
 | `rhotic` | ipa | a strong-R reflex `[ʀ ʁ r h χ]` (excludes the ubiquitous tap `[ɾ]`) |
