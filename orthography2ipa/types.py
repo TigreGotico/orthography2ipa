@@ -18,6 +18,83 @@ from typing import Dict, FrozenSet, List, Optional, Tuple
 # Type aliases
 # ═══════════════════════════════════════════════════════════════════════════
 
+import copy as _copy
+
+
+class FrozenDict(dict):
+    """A ``dict`` that refuses in-place mutation.
+
+    A ``LanguageSpec`` is a ``frozen`` dataclass, so its attributes cannot be
+    rebound — but ``frozen`` does not reach inside a mutable field. Nothing
+    stopped a caller from writing ``spec.graphemes["aqui"] = [...]`` or
+    ``spec.plugins["stress"] = ...`` on a spec handed out by
+    :func:`registry.get`, and because that spec is the single cached instance
+    shared by every subsequent caller in the process, one such mutation
+    silently corrupts everyone else's transcriptions. That actually happened
+    and poisoned a measurement run.
+
+    Freezing the containers closes the gap at the source, at zero per-``get``
+    cost: the registry can keep returning the shared instance (callers rely on
+    ``get(alias) is get(canonical)``) because the instance can no longer be
+    mutated. It is a real ``dict`` subclass, so reads, ``dataclasses.replace``,
+    ``dataclasses.asdict`` and ``copy.deepcopy`` all keep working — only the
+    mutating methods are blocked.
+    """
+
+    __slots__ = ()
+
+    def _immutable(self, *args, **kwargs):
+        raise TypeError(
+            "this mapping belongs to a LanguageSpec and is immutable; "
+            "registry.get() returns a shared cached instance, so mutating it "
+            "would corrupt every other caller. Build a new dict "
+            "(e.g. dict(spec.graphemes)) or dataclasses.replace() the spec."
+        )
+
+    __setitem__ = _immutable
+    __delitem__ = _immutable
+    pop = _immutable
+    popitem = _immutable
+    clear = _immutable
+    update = _immutable
+    setdefault = _immutable
+
+    # Reconstruct without routing through the blocked __setitem__.
+    def __reduce__(self):
+        return (FrozenDict, (dict(self),))
+
+    def __copy__(self):
+        return FrozenDict(dict(self))
+
+    def __deepcopy__(self, memo):
+        return FrozenDict(
+            {_copy.deepcopy(k, memo): _copy.deepcopy(v, memo)
+             for k, v in self.items()}
+        )
+
+
+def _deep_freeze(value):
+    """Recursively freeze the *dict* containers reachable from *value*.
+
+    Every ``dict`` becomes a :class:`FrozenDict`; lists and tuples are walked so
+    that dicts nested inside them are frozen too, but their own element type is
+    preserved. Lists are deliberately kept as lists rather than turned into
+    tuples: the spec's public contract types grapheme/allophone values as
+    ``List[str]`` (e.g. :meth:`LanguageSpec.resolve_grapheme` returns a list and
+    callers compare against list literals), and this fix targets the corruption
+    that actually happened — reassigning, popping or updating a spec's mapping
+    *keys* on the shared cached instance. Everything else (strings, enums, frozen
+    sub-dataclasses) is already immutable and is returned unchanged.
+    """
+    if isinstance(value, dict):
+        return FrozenDict({k: _deep_freeze(v) for k, v in value.items()})
+    if isinstance(value, list):
+        return [_deep_freeze(v) for v in value]
+    if isinstance(value, tuple):
+        return tuple(_deep_freeze(v) for v in value)
+    return value
+
+
 Grapheme2IPA = Dict[str, List[str]]
 """Orthographic grapheme → list of IPA phoneme candidates."""
 
@@ -202,6 +279,78 @@ class StressRules:
         keeps ``ciu-tat`` and ``ai-gua`` intact while splitting ``te-ni-a``.
         Empty (the default) preserves the merge-the-whole-run behaviour, so
         every spec that does not declare it is unaffected.
+    quantity_sensitive : bool
+        Stress is placed by **syllable weight**, not by an orthographic
+        ending. A quantity-sensitive system reads the *transcription* — a
+        syllable is heavy because its vowel is long or it has a coda — so no
+        ending table can express it, and the four detection rules above do not
+        apply. This is the Arabic and Latin system.
+
+        When set, stress is computed from the IPA by
+        :func:`~orthography2ipa.stress.detect_stress_by_weight`:
+
+        1. the final syllable, if it is **superheavy** (CVːC / CVCC) and
+           :attr:`superheavy_final_attracts` is set;
+        2. otherwise the penult, if it is **heavy** (CVː / CVC);
+        3. otherwise :attr:`default_position` (the antepenult, for Arabic).
+
+        Weight is only recoverable when the transcription is complete — for an
+        abjad that means the input must be diacritized. An undiacritized
+        skeleton has no vowels to weigh.
+    superheavy_final_attracts : bool
+        A superheavy final syllable takes the stress (Arabic ``kiˈtaːb``).
+        Unset for a system that never stresses the final syllable regardless of
+        its weight — the Latin rule. Only read when
+        :attr:`quantity_sensitive` is set.
+    max_onset : int
+        The most consonants a syllable may take as its onset, used to divide a
+        medial cluster between the previous syllable's coda and the next one's
+        onset. Weight depends entirely on where that boundary falls: with an
+        onset-maximising split, ``mudarris`` is ``mu-da-rris`` and its penult is
+        light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
+        penult is heavy, and the stress lands there — ``muˈdarris``, which is
+        the correct form. Only read when :attr:`quantity_sensitive` is set.
+    cliticless_words : Tuple[str, ...]
+        Orthographic forms that carry **no lexical stress** of their own —
+        prosodic clitics. A clitic is not an independent phonological word: it
+        leans on an adjacent host and falls inside the host's stress domain, so
+        it is never assigned a word stress (Watson 2002, *The Phonology and
+        Morphology of Arabic*, ch. 3, on stress domains; a clitic attaches to a
+        host and the host bears the stress). The four end-anchored rules and the
+        quantity-sensitive cascade both assume the word is a full prosodic word
+        and place a stress on it; for a listed form that assumption is wrong, and
+        this class turns the placement off so the form surfaces unstressed.
+
+        The forms are matched against the input word language-aware-lowercased
+        and NFC-normalized — the same key an inline ``word_exceptions`` entry
+        uses — so a spec lists them in the orthography of its input contract (for
+        Arabic, the diacritized function words ``مَا فِي مِن يَا …``). The class is
+        opt-in: a spec that does not declare it is unaffected. It is a purely
+        orthographic rule and cannot see syntax, so a homograph that is a clitic
+        in one reading and a full word in another (Gulf ``يَا`` — vocative
+        particle vs. the verb *yā* 'came') is destressed in every occurrence.
+    coda_liquid_capture : bool
+        Opt-in sonority-based syllabification for the stress-mark splitter. The
+        bundled splitter is onset-maximising and hands a whole medial consonant
+        cluster forward as the next onset; for a ``liquid + consonant`` cluster
+        that is wrong (a liquid cannot open a rising onset), so the mark lands
+        one segment early — ``buˈɾmejʎu`` instead of ``buɾˈmejʎu``. With this set,
+        a leading liquid of a medial cluster closes the preceding syllable as its
+        coda, so the mark lands on the true onset. Default off: it changes only
+        where an existing stress mark is *drawn* (never which nucleus is
+        stressed, nor the segments), and only for specs that opt in.
+    source : str
+        Where the stress comes from. ``"rules"`` (the default) means this block —
+        declarative data a language owner wrote, that anyone can read, cite and
+        diff. ``"plugin"`` means *this language's stress is not expressible here*,
+        and a registered :class:`~orthography2ipa.stress_plugin.StressPlugin` must
+        supply it.
+
+        A spec has to opt in, because a plugin that places the stress **changes
+        the transcription**, and the transcription must be a function of the spec
+        and the input — never of what happens to be installed. If a spec asks for
+        a plugin and none is registered, that is an error, not a quiet fallback to
+        a different answer.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -211,6 +360,12 @@ class StressRules:
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
+    quantity_sensitive: bool = False
+    superheavy_final_attracts: bool = True
+    max_onset: int = 1
+    cliticless_words: Tuple[str, ...] = ()
+    coda_liquid_capture: bool = False
+    source: str = "rules"
     notes: str = ""
 
 
@@ -693,11 +848,26 @@ class AllophoneRule:
         coda (maximal-onset heuristic).
     preceded_by, followed_by : Optional[str]
         A neighbouring-*grapheme* class the previous / next grapheme must
-        match: ``"vowel"``, ``"consonant"``, ``"front_vowel"``,
-        ``"back_vowel"``, ``"palatal"`` (a palatal / palato-alveolar
-        consonant, decided by the neighbour's IPA — the mirror of the
-        ``BEFORE_PALATAL`` position) or ``"word_boundary"`` (no neighbour).
-        Predicates delegate to :mod:`orthography2ipa.vowels`.
+        match: ``"vowel"``, ``"consonant"``, ``"consonant_cluster"`` (the
+        neighbour begins two or more consonant segments, counting away from
+        this grapheme — a geminate, a multi-consonant grapheme such as ⟨x⟩
+        /ks/, or a consonant whose own neighbour is a consonant; this is the
+        context closed-syllable shortening and complementary quantity need),
+        ``"coda"`` (the neighbour is in coda position — what a vowel needs to
+        see to nasalise before a coda nasal, while leaving an onset nasal
+        alone), ``"front_vowel"``, ``"back_vowel"``, ``"palatal"`` (a palatal /
+        palato-alveolar consonant, decided by the neighbour's IPA — the
+        mirror of the ``BEFORE_PALATAL`` position) or ``"word_boundary"``
+        (no neighbour). Predicates delegate to
+        :mod:`orthography2ipa.vowels`.
+    preceded_by_2, followed_by_2 : Optional[str]
+        The same neighbour-class vocabulary, tested TWO graphemes away. A
+        phonological process often looks past a mute letter: Russian
+        final devoicing applies to the ⟨в⟩ of ⟨любовь⟩ [lʲʊˈbofʲ] because the
+        ⟨ь⟩ that follows it is word-final, and the ⟨ь⟩ itself is silent
+        (``followed_by_phoneme=["ʲ"]`` + ``followed_by_2="word_boundary"``).
+        Without it a spec has to enumerate the consonant × soft-vowel product
+        as spellings, which is a design violation.
     preceded_by_phoneme, followed_by_phoneme : Tuple[str, ...]
         The chosen phoneme of the previous / next lattice slot must be one of
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
@@ -711,6 +881,20 @@ class AllophoneRule:
         back to [o] ([õ]) whereas a lexical ⟨u⟩ stays [ũ]; both are the same
         phoneme [u], so only the source grapheme distinguishes them. ``None``
         / empty = don't care.
+    word : Optional[Tuple[str, ...]]
+        Require the slot's whole **source word** to be one of these (matched
+        case-insensitively against the concatenated source graphemes of the
+        current word). This is the lexeme-level hook for facts that are
+        genuinely lexical rather than phonological — above all the
+        unpredictable open/close quality of a stressed mid vowel in Romance
+        (Portuguese ⟨sopa⟩ [ˈsopɐ] with close [o] vs ⟨sova⟩ [ˈsɔvɐ] with open
+        [ɔ]; the two are spelled and stressed alike, only the lexeme decides).
+        Unlike a whole-word ``word_exceptions`` entry — which freezes the
+        entire pronunciation and so cannot be shared across dialects that
+        differ elsewhere in the word — a ``word``-keyed rule pins ONLY the one
+        surface it rewrites and lets every other process (reduction, sandhi,
+        rhotic choice, affrication) run normally, so it inherits cleanly to
+        child dialects. ``None`` / empty = don't care.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -723,9 +907,14 @@ class AllophoneRule:
     syllable_position: Optional[str] = None
     preceded_by: Optional[str] = None
     followed_by: Optional[str] = None
+    preceded_by_2: Optional[str] = None
+    followed_by_2: Optional[str] = None
+    preceded_by_phoneme_2: Tuple[str, ...] = ()
+    followed_by_phoneme_2: Tuple[str, ...] = ()
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
+    word: Optional[Tuple[str, ...]] = None
     notes: str = ""
 
     def __post_init__(self) -> None:
@@ -737,10 +926,18 @@ class AllophoneRule:
             self, "preceded_by_phoneme", tuple(self.preceded_by_phoneme))
         object.__setattr__(
             self, "followed_by_phoneme", tuple(self.followed_by_phoneme))
+        object.__setattr__(
+            self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
+        object.__setattr__(
+            self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
         if self.grapheme is not None:
             object.__setattr__(
                 self, "grapheme",
                 tuple(g.lower() for g in self.grapheme))
+        if self.word is not None:
+            object.__setattr__(
+                self, "word",
+                tuple(w.lower() for w in self.word))
         if self.stress is not None and self.stress not in (
                 "stressed", "unstressed"):
             raise ValueError(
@@ -752,9 +949,10 @@ class AllophoneRule:
                 f"AllophoneRule {self.id!r}: syllable_position must be "
                 f"'onset', 'coda', 'nucleus' or None, "
                 f"got {self.syllable_position!r}")
-        _classes = ("vowel", "consonant", "front_vowel", "back_vowel",
-                    "palatal", "word_boundary")
-        for attr in ("preceded_by", "followed_by"):
+        _classes = ("vowel", "consonant", "consonant_cluster", "coda",
+                    "coda_nasal", "front_vowel", "back_vowel", "palatal", "word_boundary")
+        for attr in ("preceded_by", "followed_by",
+                     "preceded_by_2", "followed_by_2"):
             val = getattr(self, attr)
             if val is not None and val not in _classes:
                 raise ValueError(
@@ -843,7 +1041,14 @@ class InheritanceMode(str, Enum):
     """Own-file-only by design. The field never propagates through
     inheritance even though a base/parent is set — this is a deliberate
     modeling choice (documented per-field), not an oversight. Used by
-    ``stress``, ``word_exceptions`` and ``grapheme_weights``.
+    ``stress`` and ``grapheme_weights``.
+
+    ``word_exceptions`` moved from this mode to BASE_MERGE: a dialect child
+    that pulls its graphemes from the standard should see the standard's
+    word-level exception overrides too (a child previously dropped ALL of
+    the parent's exceptions silently). Like every BASE_MERGE field it is
+    opt-in via the ``word_exceptions_base`` JSON key, and the child's own
+    entries win per word.
 
     ``grapheme_weights`` is own-only for two reasons. First, candidate
     weights are *corpus-frequency* data specific to one variety — the
@@ -881,6 +1086,16 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "quality": InheritanceMode.OWN_ONLY,
     "script_type": InheritanceMode.OWN_ONLY,
     "inherent_vowel": InheritanceMode.OWN_ONLY,
+    # Which marks the orthography omits is a property of the writing system, and
+    # a spec that inherits a grapheme table does not thereby inherit a script —
+    # so each spec declares its own, exactly as it declares script_type.
+    # A dialect inherits its parent's engine choices unless it says otherwise:
+    # Najdi wants the same diacritizer as MSA. OVERLAY_BY_ID would need ids; a
+    # plain dict merge is what "same, plus my overrides" means here.
+    "plugins": InheritanceMode.OWN_ONLY,
+    "optional_marks": InheritanceMode.OWN_ONLY,
+    "fold_diacritics": InheritanceMode.OWN_ONLY,
+    "collapse_geminates": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -889,6 +1104,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "wals_code": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
+    "allophone_passes": InheritanceMode.NOT_INHERITED,
     "tone_inventory": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
     "wikipedia": InheritanceMode.OWN_ONLY,
@@ -897,7 +1113,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "location": InheritanceMode.OWN_ONLY,
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
-    "word_exceptions": InheritanceMode.NOT_INHERITED,
+    "word_exceptions": InheritanceMode.BASE_MERGE,
     "grapheme_weights": InheritanceMode.NOT_INHERITED,
     "clade": InheritanceMode.OWN_ONLY,
     "family_path": InheritanceMode.OWN_ONLY,
@@ -1037,6 +1253,72 @@ class LanguageSpec:
     """For abugidas — the vowel assumed when no vowel mark is present
     (e.g. ``"ə"`` for Hindi, ``"a"`` for Sanskrit)."""
 
+    plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
+    """Which plugin this language wants, per stage — keyed by entry-point name.
+
+    A plugin that CHANGES THE TRANSCRIPTION must be named here. That is what keeps
+    the output a function of the spec and the input rather than of whatever
+    happens to be installed::
+
+        "plugins": {"normalize": "text2tashkeel", "sandhi": "arbtok"}
+
+    A named plugin that is not installed is an ERROR, not a quiet fallback — a
+    quiet fallback is how you get two transcriptions for one word and no way to
+    know which one you got.
+
+    ``syllabify`` is deliberately NOT declared here: a syllabifier is a
+    refinement, not a decision. It must reach the same answer by better means, and
+    the conformance kit fails it if it does not. See
+    :mod:`orthography2ipa.plugins`."""
+
+    collapse_geminates: bool = False
+    """Collapse a doubled consonant letter's phonemes to one.
+
+    English orthographic doubling is not gemination: ⟨tt⟩ in *butter*, ⟨nn⟩ in
+    *running*, ⟨pp⟩ in *happy* each spell a SINGLE consonant (the doubling marks
+    the preceding vowel, historically). Without this the engine reads two, and
+    *summer* comes out /sʌmmə/ for /sʌmə/. A language that CONTRASTS gemination —
+    Italian, Finnish, Arabic — must leave this off; it is inherited, so a family
+    turns it on once. Cruttenden (2014); Carney, *A Survey of English Spelling*
+    (1994)."""
+
+    fold_diacritics: Tuple[str, ...] = ()
+    """Combining marks stripped from the input before it is read — a broad
+    transcription that does not encode them.
+
+    Some scripts write a diacritic that a broad transcription leaves out: the
+    Ancient Greek pitch accents (acute, grave, perispomeni) and the length
+    marks (macron, breve) ride on a vowel letter and are not segments. Without
+    this the accented letter ⟨ό⟩ is a character the grapheme table has never
+    seen — an ``UNKNOWN`` token — and the vowel under it is dropped, so ⟨λόγος⟩
+    reads ``lɡos``.
+
+    Each entry is a single combining codepoint. The input is decomposed, the
+    listed marks removed, and recomposed, before tokenising — so ⟨ό⟩ becomes
+    ⟨ο⟩ and reads as the vowel it is. This is for a mark that carries no segment
+    of its own; a mark that *is* a segment (the Hebrew niqqud, a tone letter the
+    language contrasts) belongs in the grapheme table, not here."""
+
+    optional_marks: Tuple[str, ...] = ()
+    """The diacritics this orthography habitually **omits** — the Arabic
+    ḥarakāt, the Hebrew niqqud.
+
+    :attr:`script_type` records that an orthography is an abjad; this records
+    what that costs. Standard Arabic writes no short vowels outside the Qurʾān,
+    children's books and pedagogy, so a letter carrying none of these marks is
+    **underdetermined**: the engine cannot know which vowel follows it, and any
+    reading it produces is a guess dressed as an answer.
+
+    Declaring the marks makes that measurable rather than invisible — see
+    :mod:`orthography2ipa.underspecification`, which reports where a reading is
+    underdetermined instead of letting a spec silently default. It changes no
+    transcription: it is the *honesty* layer over one, and the substrate a
+    downstream diacritizer needs to act as a scorer over licensed candidates
+    rather than a free generator.
+
+    Empty for every orthography that writes its vowels (the default), which is
+    most of them."""
+
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
 
@@ -1074,6 +1356,29 @@ class LanguageSpec:
     by id-keyed overlay (:class:`InheritanceMode.OVERLAY_BY_ID`), like
     ``sandhi_rules``. See :mod:`orthography2ipa.allophony` and
     ``docs/allophony.md``."""
+
+    allophone_passes: int = 1
+    """How many times the compiled ``allophone_rules`` pass is applied,
+    bounded to feed one rule's output into another's context.
+
+    A single pass reads every rule's neighbouring segments from the state
+    *before* the pass, so two rules cannot feed each other in one word: a
+    Brazilian-Portuguese final ⟨-es⟩ that only becomes [i] by a raising rule
+    cannot then trigger /t/→[t͡ʃ] affrication on its left neighbour, because
+    the affrication rule saw the pre-raise vowel. Setting this to ``2`` (or
+    more) re-runs the whole allophone pass, and each extra pass rebuilds the
+    segment context from the previous pass's output, so the raise now feeds
+    the affrication (estes → [ˈest͡ʃis]).
+
+    Default ``1`` — the engine is byte-identical for every spec that does not
+    opt in. It is opt-in per spec on purpose (``NOT_INHERITED``, like
+    ``stress``): re-running the pass can re-fire a non-idempotent rule, so each
+    spec must restate the count and confirm — against its own gold — that the
+    extra pass changes only the intended feeding cases. A palatalising
+    Brazilian dialect that shares pt-BR's affrication restates ``2``; a
+    conservative-dental dialect that disables the affrication leaves the
+    default ``1`` (its raising needs no second pass). Bounded (no unbounded
+    fixpoint) so a pathological rule set cannot loop."""
 
     tone_inventory: Optional[Dict[str, str]] = None
     """Optional tone inventory: IPA tone mark → label
@@ -1231,6 +1536,12 @@ class LanguageSpec:
                 if a.role == AncestorRole.PARENT:
                     object.__setattr__(self, "parent", a.code)
                     break
+
+        # Deep-freeze every field. All construction-time mutation above is now
+        # done; from here the spec is genuinely immutable, so registry.get()
+        # can safely hand out the shared cached instance (see FrozenDict).
+        for _f in fields(self):
+            object.__setattr__(self, _f.name, _deep_freeze(getattr(self, _f.name)))
 
     # ─── Positional grapheme resolution ─────────────────────────────
     def resolve_grapheme(

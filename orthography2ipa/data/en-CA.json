@@ -77,5 +77,6 @@
     "longitude": -109,
     "source": "wikidata",
     "notes": "Canada's representative point. A national variety: weak. [Wikidata Q16 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

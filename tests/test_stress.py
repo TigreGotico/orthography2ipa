@@ -28,7 +28,9 @@ class TestSchema:
 
     def test_specs_without_stress_are_none(self):
         assert get("en-GB").stress is None
-        assert get("ar").stress is None
+        # `ar` now declares a quantity-sensitive block, so it is no longer an
+        # example of a spec without stress.
+        assert get("arc").stress is None
 
     def test_pydantic_model_validates(self):
         model = StressRulesModel(
@@ -81,9 +83,9 @@ class TestDetectStress:
         # paroxytone default
         ("casa", 0), ("livro", 0), ("homem", 0), ("falam", 0),
         ("rapazes", 1),
-        # hiatus 'ia' counts as one nucleus for the naive syllabifier;
-        # the stressed vowel still falls inside the returned syllable
-        ("viagem", 0),
+        # 'ia' is HIATUS: pt-PT declares its diphthongs, so the naive
+        # splitter separates vi-A-gem and lands on the stressed vowel
+        ("viagem", 1),
         # oxytone endings
         ("falar", 1), ("azul", 1), ("rapaz", 1), ("jardim", 1),
         ("caju", 1), ("abacaxi", 3), ("atuns", 1),
@@ -159,15 +161,17 @@ class TestSyllabifierPlugins:
         from orthography2ipa import get
         self._install(monkeypatch)
         rules = get("pt-PT").stress
-        # with the hiatus-aware plugin, viagem is correctly paroxytone
-        # over three syllables (vi-A-gem)
+        # viagem is paroxytone over three syllables (vi-A-gem)
         assert detect_stress("viagem", rules, lang="pt-PT") == 1
 
     def test_no_plugin_falls_back_to_naive(self, monkeypatch):
+        """The plugin is registered for pt-PT only, so en-GB uses the naive
+        splitter — which, because pt-PT declares its diphthongs, separates the
+        hiatus and agrees with the plugin here (vi-A-gem)."""
         from orthography2ipa import get
         self._install(monkeypatch)
         rules = get("pt-PT").stress
-        assert detect_stress("viagem", rules, lang="en-GB") == 0
+        assert detect_stress("viagem", rules, lang="en-GB") == 1
 
     def test_explicit_syllables_beat_plugin(self, monkeypatch):
         from orthography2ipa import get
@@ -811,3 +815,38 @@ class TestEpentheticSchwaEndToEnd:
         assert g.transcribe_word("dearg").startswith("ˈ")
         assert g.transcribe_word("ainm").startswith("ˈ")
         assert g.transcribe_word("dorcha").startswith("ˈ")
+
+
+class TestCliticlessWords:
+    """Prosodic clitics carry no word stress.
+
+    A clitic is not an independent phonological word: it leans on an adjacent
+    host and lives inside the host's stress domain, so it is never assigned a
+    word stress (Watson 2002, *The Phonology and Morphology of Arabic*, ch.3,
+    stress domains). The spec declares the class in ``stress.cliticless_words``
+    and the engine suppresses stress-mark insertion for a matching form.
+    """
+
+    def test_arabic_monosyllabic_prepositions_are_unstressed(self):
+        from orthography2ipa import G2P
+        g = G2P("ar")
+        # فِي / مِن are prepositions — clitics, no ˈ — but a full content word
+        # is still stressed (كِتَاب → kiˈtaːb).
+        assert g.transcribe_word("فِي") == "fiː"
+        assert g.transcribe_word("مِن") == "min"
+        assert g.transcribe_word("كِتَاب").startswith("ˈ") or "ˈ" in \
+            g.transcribe_word("كِتَاب")
+
+    def test_clitic_is_unstressed_inside_an_utterance(self):
+        from orthography2ipa import G2P
+        g = G2P("ar-x-gulf")
+        # مُو (copula negator) and مَا (negator) destress; content words keep ˈ.
+        out = g.transcribe("مُو حَرّ")
+        assert out.split()[0] == "muː"          # no leading ˈ
+        assert "ˈ" in out.split()[1]            # ħarr stays stressed
+
+    def test_class_is_opt_in_per_spec(self):
+        # A spec that does not declare the class is unaffected: a Portuguese
+        # monosyllable is stressed exactly as before.
+        from orthography2ipa import G2P
+        assert G2P("pt-PT").transcribe_word("mais").startswith("ˈ")

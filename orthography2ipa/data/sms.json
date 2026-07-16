@@ -1,0 +1,147 @@
+{
+  "code": "sms",
+  "name": "Skolt Sami",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "â": [
+      "ɐ"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "đ": [
+      "ð"
+    ],
+    "ǥ": [
+      "ɣ"
+    ],
+    "ǩ": [
+      "kʲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "õ": [
+      "ɘ"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "å": [
+      "ɔ"
+    ],
+    "ä": [
+      "æ"
+    ],
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "parent": "x-clade-saam1281",
+  "ancestors": [
+    {
+      "code": "x-clade-saam1281",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Skolt Saami (skol1241)."
+    }
+  ],
+  "notes": "Skeleton. Skolt Sami is an Eastern Saami language of the Uralic family, written since 1973 in a Latin orthography rich in special letters. The map covers the base Latin letters and the language-specific graphemes: â (near-open central vowel), õ (close-mid central vowel), ä and å, the caron letters č š ž, the barred/hooked consonants đ (ð), ǥ (ɣ) and ǩ (palatalized k), and ŋ. The orthography also marks suprasegmental palatalization with a prime (ˊ/ʹ) and encodes consonant-gradation quantity distinctions; these palatalization marks and length contrasts are not captured by this single-symbol map and are left unencoded, raising the PER floor.",
+  "iso639_3": "sms",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "sms_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Skolt Saami (skol1241)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/skol1241",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "sms_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Skolt Sami language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Skolt_Sami_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Skolt_Sami_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Skolt_Sami_language"
+  ]
+}

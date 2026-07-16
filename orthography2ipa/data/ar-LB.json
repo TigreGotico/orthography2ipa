@@ -11,6 +11,213 @@
     "ج": [
       "ʒ",
       "dʒ"
+    ],
+    "ال": [
+      "il"
+    ],
+    "الء": [
+      "alʔ"
+    ],
+    "الأ": [
+      "alʔ"
+    ],
+    "الإ": [
+      "alʔ"
+    ],
+    "الؤ": [
+      "alʔ"
+    ],
+    "الئ": [
+      "alʔ"
+    ],
+    "الآ": [
+      "alʔaː"
+    ],
+    "الع": [
+      "alʕ"
+    ],
+    "الح": [
+      "alħ"
+    ],
+    "اله": [
+      "alh"
+    ],
+    "الخ": [
+      "alx"
+    ],
+    "الغ": [
+      "alɣ"
+    ],
+    "الْء": [
+      "alʔ"
+    ],
+    "الْأ": [
+      "alʔ"
+    ],
+    "الْإ": [
+      "alʔ"
+    ],
+    "الْؤ": [
+      "alʔ"
+    ],
+    "الْئ": [
+      "alʔ"
+    ],
+    "الْآ": [
+      "alʔaː"
+    ],
+    "الْع": [
+      "alʕ"
+    ],
+    "الْح": [
+      "alħ"
+    ],
+    "الْه": [
+      "alh"
+    ],
+    "الْخ": [
+      "alx"
+    ],
+    "الْغ": [
+      "alɣ"
+    ],
+    "اَل": [
+      "il"
+    ],
+    "اَلء": [
+      "alʔ"
+    ],
+    "اَلأ": [
+      "alʔ"
+    ],
+    "اَلإ": [
+      "alʔ"
+    ],
+    "اَلؤ": [
+      "alʔ"
+    ],
+    "اَلئ": [
+      "alʔ"
+    ],
+    "اَلآ": [
+      "alʔaː"
+    ],
+    "اَلع": [
+      "alʕ"
+    ],
+    "اَلح": [
+      "alħ"
+    ],
+    "اَله": [
+      "alh"
+    ],
+    "اَلخ": [
+      "alx"
+    ],
+    "اَلغ": [
+      "alɣ"
+    ],
+    "اَلْء": [
+      "alʔ"
+    ],
+    "اَلْأ": [
+      "alʔ"
+    ],
+    "اَلْإ": [
+      "alʔ"
+    ],
+    "اَلْؤ": [
+      "alʔ"
+    ],
+    "اَلْئ": [
+      "alʔ"
+    ],
+    "اَلْآ": [
+      "alʔaː"
+    ],
+    "اَلْع": [
+      "alʕ"
+    ],
+    "اَلْح": [
+      "alħ"
+    ],
+    "اَلْه": [
+      "alh"
+    ],
+    "اَلْخ": [
+      "alx"
+    ],
+    "اَلْغ": [
+      "alɣ"
+    ],
+    "اِل": [
+      "il"
+    ],
+    "اِلء": [
+      "alʔ"
+    ],
+    "اِلأ": [
+      "alʔ"
+    ],
+    "اِلإ": [
+      "alʔ"
+    ],
+    "اِلؤ": [
+      "alʔ"
+    ],
+    "اِلئ": [
+      "alʔ"
+    ],
+    "اِلآ": [
+      "alʔaː"
+    ],
+    "اِلع": [
+      "alʕ"
+    ],
+    "اِلح": [
+      "alħ"
+    ],
+    "اِله": [
+      "alh"
+    ],
+    "اِلخ": [
+      "alx"
+    ],
+    "اِلغ": [
+      "alɣ"
+    ],
+    "اِلْء": [
+      "alʔ"
+    ],
+    "اِلْأ": [
+      "alʔ"
+    ],
+    "اِلْإ": [
+      "alʔ"
+    ],
+    "اِلْؤ": [
+      "alʔ"
+    ],
+    "اِلْئ": [
+      "alʔ"
+    ],
+    "اِلْآ": [
+      "alʔaː"
+    ],
+    "اِلْع": [
+      "alʕ"
+    ],
+    "اِلْح": [
+      "alħ"
+    ],
+    "اِلْه": [
+      "alh"
+    ],
+    "اِلْخ": [
+      "alx"
+    ],
+    "اِلْغ": [
+      "alɣ"
     ]
   },
   "allophones_base": "ar-x-levantine",
@@ -142,12 +349,53 @@
       "notes": "Imāla blocked before a guttural consonant: /aː/ stays [aː]. Companion of LB_IMALA_BLOCK_GUTT_AFTER. Emphatic environments are already handled by the inherited AR_LEV_EMPH_BACK_AA_* rules (ordered earlier), which back /aː/→[ɑː]."
     },
     {
+      "id": "LB_IMALA_BLOCK_R_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "aː",
+      "preceded_by_phoneme": [
+        "r"
+      ],
+      "notes": "Imāla is blocked adjacent to /r/: /aː/ stays [aː] after an /r/ (bukra-type environments). The Beiruti imāla blocking set is emphatic + guttural + /r/; /r/ was absent from the engine's phoneme list so these forms over-fronted. Identity rule ordered before LB_IMALA_RAISE_AA."
+    },
+    {
+      "id": "LB_IMALA_BLOCK_R_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "aː",
+      "followed_by_phoneme": [
+        "r"
+      ],
+      "notes": "Imāla blocked before /r/: /aː/ stays [aː] (مْبَارِح mbāriḥ → [mbaːriħ], not [mbeːriħ]). Companion of LB_IMALA_BLOCK_R_AFTER; /r/ added to the blocking set the spec's imāla description names but the engine did not enforce."
+    },
+    {
       "id": "LB_IMALA_RAISE_AA",
       "phonemes": [
         "aː"
       ],
       "surface": "eː",
       "notes": "Strong Lebanese imāla: Classical /aː/ is fronted and raised to [eː] outside emphatic/guttural contexts (e.g. باب bāb → [beːb]). Grounded in the Coastal-vs-Damascus /aː/ fronting Almbark & Hellmuth 2015 (p.2) report, and the [æ]→[eː] raising Fadda 2016:52 documents for the region. The specifically Beiruti magnitude of the raise rests additionally on secondary description (see notes/sources) — Naïm's Beirut grammar was not obtained."
+    },
+    {
+      "id": "LB_IMALA_TAMARBUTA_BLOCK_GUTT",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "a",
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "ħ",
+        "ʕ",
+        "h",
+        "ʔ",
+        "x",
+        "ɣ",
+        "q",
+        "ʁ"
+      ],
+      "notes": "Word-final /-a/ (tāʔ marbūṭa) imāla is blocked after a guttural: طَالْعَة ṭālʕa → [tˤɑːlʕa], not [tˤɑːlʕe]. Identity rule ordered before LB_IMALA_TAMARBUTA, mirroring the LB_IMALA_BLOCK_GUTT guard on the long-vowel raise."
     },
     {
       "id": "LB_IMALA_TAMARBUTA",
@@ -165,5 +413,36 @@
     "longitude": 35.513056,
     "source": "wikidata",
     "notes": "Beirut — the city the Beiruti variety is named for. [Wikidata Q3820 P625]"
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ],
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "cliticless_words": [
+      "مِن"
+    ]
+  },
+  "word_exceptions": {
+    "مَا": "maː",
+    "عَ": "ʕa",
+    "هَيْدَا": "hajda",
+    "فَرَنْسَا": "faransa",
+    "بُكْرَا": "bukra",
+    "الْيَوم": "aljoːm"
   }
 }

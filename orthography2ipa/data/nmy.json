@@ -1,0 +1,156 @@
+{
+  "code": "nmy",
+  "name": "Namuyi",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "q": [
+      "q"
+    ]
+  },
+  "parent": "x-clade-sino1245",
+  "ancestors": [
+    {
+      "code": "x-clade-sino1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Namuyi (namu1246)."
+    }
+  ],
+  "notes": "Skeleton. Namuyi is a Qiangic (Sino-Tibetan) language of Sichuan, China, written here in a Latin-based transcription. Base Latin consonants and vowels plus the digraphs ch/sh/ts/ng/ny and aspirates kh/ph/th are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected. Fine allophonic and vowel-quality detail of narrow transcription is only approximately covered.",
+  "iso639_3": "nmy",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "nmy_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Namuyi (namu1246)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/namu1246",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "nmy_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Namuyi language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Namuyi_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Namuyi_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Namuyi_language"
+  ]
+}

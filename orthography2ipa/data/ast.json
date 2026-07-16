@@ -314,14 +314,38 @@
       "intervocalic": [
         "ɾ"
       ],
-      "coda": [
+      "before_consonant": [
+        "ɾ"
+      ],
+      "word_final": [
         "ɾ"
       ]
     },
     "n": {
-      "coda": [
+      "before_consonant": [
         "n",
         "ŋ"
+      ],
+      "word_final": [
+        "n",
+        "ŋ"
+      ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
+      ],
+      "before_o": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
       ]
     }
   },
@@ -423,6 +447,49 @@
   },
   "iso639_3": "ast",
   "stress": {
+    "cliticless_words": [
+      "el",
+      "la",
+      "lo",
+      "los",
+      "les",
+      "un",
+      "una",
+      "unos",
+      "unes",
+      "al",
+      "del",
+      "na",
+      "nel",
+      "nes",
+      "nos",
+      "pel",
+      "pela",
+      "ples",
+      "polos",
+      "a",
+      "de",
+      "en",
+      "con",
+      "por",
+      "sin",
+      "pa",
+      "ente",
+      "so",
+      "y",
+      "o",
+      "nin",
+      "que",
+      "si",
+      "me",
+      "te",
+      "se",
+      "yos",
+      "vos",
+      "lu",
+      "-y",
+      "-yos"
+    ],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -447,7 +514,7 @@
       "ú"
     ],
     "stress_mark": "ˈ",
-    "notes": "Asturian accentuation per the Gramática Asturiana (ALLA 2001): written accent wins. Default paroxytone. Words ending in a vowel or -s are paroxytone; words ending in any other consonant (r, l, d, z, x, t, n, m, f) are oxytone. Proparoxytones always carry a written accent."
+    "notes": "Asturian accentuation per the Gramática Asturiana (ALLA 2001): written accent wins. Default paroxytone. Words ending in a vowel or -s are paroxytone; words ending in any other consonant (r, l, d, z, x, t, n, m, f) are oxytone. Proparoxytones always carry a written accent. CLITICS: cliticless_words lists the Asturian pallabres atones (Academia de la Llingua Asturiana, Gramatica de la llingua asturiana, prosodia and l'articulu) — articles el/la/lo/los/les, indefinite un/una/unos/unes, the preposition+article contractions al/del/na/nel/pel/polos etc., the atonic prepositions a/de/en/con/por/sin/pa/ente/so, the conjunctions y/o/nin/que/si, and the weak object pronouns me/te/se/y(=lle)/yos/nos/vos/lu/la/los/les. Asturian is enclitic in affirmative finite clauses, but the clitic still bears no word stress."
   },
   "wikidata_qid": "Q29507",
   "phoible_id": "astu1245",

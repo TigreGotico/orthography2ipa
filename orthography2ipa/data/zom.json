@@ -1,0 +1,144 @@
+{
+  "code": "zom",
+  "name": "Zou",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "c"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "aw": [
+      "ɔ"
+    ]
+  },
+  "parent": "mni-x-proto-kuki-chin",
+  "ancestors": [
+    {
+      "code": "mni-x-proto-kuki-chin",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Zou (zouu1235)."
+    }
+  ],
+  "notes": "Skeleton. Zou (Zomi) is a Kuki-Chin (Sino-Tibetan) language of Manipur and Chin State, written in a Latin script developed by J.H. Cope. Base Latin consonants and vowels are mapped; per the orthography ch is the palatal stop [c], and ng/kh/ph/th are the expected digraphs and aspirates. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected.",
+  "iso639_3": "zom",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "zom_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Zou (zouu1235)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/zouu1235",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "zom_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Zou language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Zou_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Zou_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Zou_language"
+  ]
+}

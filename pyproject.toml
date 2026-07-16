@@ -29,10 +29,17 @@ version = {attr = "orthography2ipa.version.VERSION_STR"}
 dependencies = {file = ["requirements.txt"]}
 
 [project.optional-dependencies]
+hf = ["huggingface_hub"]
 validation = ["pydantic>=2"]
+# A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
+# own (pt-PT declares its diphthongs), and this only draws better boundaries.
+portuguese = ["silabificador>=2.1.0a1"]
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency
 compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
+
+[project.entry-points."orthography2ipa.syllabify"]
+silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"
@@ -45,4 +52,4 @@ orthography2ipa = "orthography2ipa.cli:main"
 include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
-"orthography2ipa" = ["data/*.json", "data/SCHEMA.md", "data/lexicons/*.csv", "data/lexicons/*.tsv"]
+"orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]

@@ -78,6 +78,12 @@
     ],
     "rh": [
       "ɾ"
+    ],
+    "éu": [
+      "ɛw"
+    ],
+    "êu": [
+      "ew"
     ]
   },
   "allophones": {
@@ -111,6 +117,30 @@
         "s̺"
       ]
     },
+    "g": {
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
+      ]
+    },
+    "n": {
+      "before_consonant": [
+        "̃"
+      ],
+      "word_final": [
+        "̃"
+      ]
+    },
+    "m": {
+      "before_consonant": [
+        "̃"
+      ],
+      "word_final": [
+        "̃"
+      ]
+    },
     "s": {
       "word_initial": [
         "s"
@@ -136,9 +166,6 @@
       ],
       "nucleus_unstressed": [
         "a"
-      ],
-      "coda": [
-        "ɐ"
       ],
       "word_initial": [
         "ɐ",
@@ -213,6 +240,7 @@
   "glottolog_code": "oldp1257",
   "iso639_3": "por",
   "stress": {
+    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -230,10 +258,40 @@
     ],
     "penult_stress_endings": [],
     "marked_vowels": [
-      "à"
+      "à",
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô"
     ],
     "stress_mark": "ˈ",
-    "notes": "Medieval Portuguese stress: paroxytone default; grave accent (à) marks stress override; no written circumflex or acute in early medieval orthography."
+    "notes": "Medieval Portuguese stress: paroxytone default; grave accent (à) marks stress override. Early medieval orthography did not write the acute or circumflex, but when a modern-normalised input carries them they must attract stress rather than be dropped, so the acute/circumflex vowels join the marked set on the same front/back axis as their base letters. DIPHTHONGS: declared so the bundled syllabifier counts nuclei correctly — without them every vowel run merges into one nucleus and co-e-lho is read as coe-lho, one syllable short, putting the stress and its vowel reduction on the wrong vowel. ⟨oe⟩ is hiatus, not a diphthong (Cunha & Cintra, §Ditongos).",
+    "diphthongs": [
+      "ãe",
+      "ão",
+      "õe",
+      "ai",
+      "ái",
+      "au",
+      "áu",
+      "ei",
+      "éi",
+      "êi",
+      "eu",
+      "éu",
+      "êu",
+      "iu",
+      "oi",
+      "ói",
+      "ôi",
+      "ou",
+      "ui",
+      "uí"
+    ]
   },
   "location": {
     "latitude": 39.91,

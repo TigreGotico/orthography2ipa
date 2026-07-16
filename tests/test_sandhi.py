@@ -118,3 +118,44 @@ class TestRightTransform:
             id="R", name="r", left_context="a$", right_context="^b",
             right_transform="β"),))
         assert engine.apply(["la", "bota"]) == ["la", "βota"]
+
+
+class TestBasqueNegationSandhi:
+    """Categorical connected-speech sandhi of the negative particle ez /es̻/
+    before an auxiliary/verb onset — pan-Basque, modelled on eu (Batua) and
+    inherited by the historical-dialect specs (Hualde & Ortiz de Urbina 2003
+    §Segmental phonology; Hualde 1991). Every speaker contracts: ez+d→ezt,
+    ez+z→etz, ez+n→en, ez+l→el, ez+b→ezp, ez+g→ezk."""
+
+    def _transcribe(self, text, lect="eu"):
+        from orthography2ipa import transcribe
+        return transcribe(text, lect)
+
+    def test_ez_d_devoices_to_ezt(self):
+        assert self._transcribe("ez dut") == "es̻ tut"
+        assert self._transcribe("ez da") == "es̻ ta"
+
+    def test_ez_z_coalesces_to_etz_affricate(self):
+        assert self._transcribe("ez zen") == "e ts̻en"
+
+    def test_ez_n_deletes_sibilant_before_nasal(self):
+        assert self._transcribe("ez naiz") == "e nai̯s̻"
+
+    def test_ez_l_deletes_sibilant_before_lateral(self):
+        assert self._transcribe("ez luke") == "e luke"
+
+    def test_ez_b_devoices_to_ezp(self):
+        assert self._transcribe("ez balitz") == "es̻ palits̻"
+
+    def test_ez_g_devoices_to_ezk(self):
+        assert self._transcribe("ez gara") == "es̻ kaɾa"
+
+    def test_only_the_negator_fires_not_any_z_final_word(self):
+        # 'naiz' ends in the same laminal sibilant but is not the negator ez,
+        # so a following voiced onset is NOT devoiced.
+        assert self._transcribe("naiz da") == "nai̯s̻ da"
+
+    def test_rules_inherit_to_dialects(self):
+        for lect in ("eu-x-gipuzkera", "eu-x-lapurtera", "eu-x-nafarra-garaia"):
+            assert self._transcribe("ez dut", lect) == "es̻ tut"
+            assert self._transcribe("ez zen", lect) == "e ts̻en"

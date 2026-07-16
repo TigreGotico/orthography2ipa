@@ -77,6 +77,7 @@ __all__ = [
     "is_nucleus_only",
     "grapheme_is_vowel",
     "grapheme_vowel_axis",
+    "base_vowel_letter",
     "SYLLABIC_MARKS",
 ]
 
@@ -194,6 +195,29 @@ _FRONT_EXPLICIT = frozenset(
 # back-leaning yet spelled from ⟨a⟩. Left out of BOTH classes rather than
 # forced into one.
 _AXIS_AMBIGUOUS = frozenset("å" "ẙ")
+
+
+def base_vowel_letter(ch: str) -> str:
+    """The bare base vowel letter for *ch* once axis-preserving diacritics are
+    stripped, else *ch* lowercased unchanged.
+
+    ``é ê`` → ``e``; ``í`` → ``i``; ``ó ô`` → ``o``; ``á â ã`` → ``a``. Marks
+    that change the front/back axis (diaeresis ``ü``, ring ``å``) and
+    non-decomposing letters (``ø œ æ``) are preserved, so callers that key on
+    the plain letter (e.g. the ``before_e``/``before_i`` softening positions)
+    treat an accented front vowel like its base without misclassifying a form
+    whose diacritic shifted the axis. Purely orthographic and script-neutral —
+    the same rule that lets ``é è ê`` share ⟨e⟩'s front/back axis above.
+    """
+    if not ch:
+        return ch
+    c = ch.lower()
+    decomposed = unicodedata.normalize("NFD", c)
+    base = decomposed[0]
+    marks = decomposed[1:]
+    if marks and all(m in _AXIS_PRESERVING_MARKS for m in marks):
+        return base
+    return c
 
 
 def _vowel_axis(ch: str):

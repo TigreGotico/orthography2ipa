@@ -25,6 +25,31 @@
       "before_i": [
         "s"
       ]
+    },
+    "r": {
+      "word_initial": [
+        "r"
+      ],
+      "intervocalic": [
+        "ɾ"
+      ],
+      "before_consonant": [
+        "l"
+      ],
+      "word_final": [
+        "l",
+        "ɾ"
+      ]
+    },
+    "d": {
+      "intervocalic": [
+        "",
+        "ð"
+      ],
+      "word_final": [
+        "ð",
+        ""
+      ]
     }
   },
   "parent": "es-CO",
@@ -83,5 +108,24 @@
     "longitude": -77.026667,
     "source": "wikidata",
     "notes": "Buenaventura — the principal city of the Colombian Pacific coast (Chocó–Valle littoral). [Wikidata Q996581 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "GLOTTAL_JOTA",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "h",
+      "notes": "Lowland glottalisation: /x/ (⟨j⟩, ⟨g⟩ before front vowel) is the glottal aspirate [h], not the Castilian velar [x] (Lipski 1994)."
+    },
+    {
+      "id": "CODA_S_DELETION",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "",
+      "syllable_position": "coda",
+      "notes": "Chocó Afro-Hispanic coda /s/ lenition (deletion tier of Lipski's 1994 cline; Schwegler): syllable-final /s/ is radically deleted (esas=[ˈesa], las mujeres=[la muˈheɾe])."
+    }
+  ]
 }

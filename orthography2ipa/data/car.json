@@ -1,0 +1,68 @@
+{
+  "code": "car",
+  "name": "Galibi Carib",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ï": ["ɨ"],
+    "ʼ": ["ʔ"],
+    "p": ["p"],
+    "t": ["t"],
+    "k": ["k"],
+    "b": ["b"],
+    "d": ["d"],
+    "g": ["ɡ"],
+    "m": ["m"],
+    "n": ["n"],
+    "s": ["s"],
+    "r": ["ɾ"],
+    "w": ["w"],
+    "j": ["j"],
+    "y": ["j"],
+    "a": ["a"],
+    "e": ["e"],
+    "i": ["i"],
+    "o": ["o"],
+    "u": ["u"]
+  },
+  "parent": "x-clade-cari1283",
+  "ancestors": [
+    {
+      "code": "x-clade-cari1283",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Galibi Carib (gali1262)."
+    }
+  ],
+  "notes": "Cariban language (Kariña/Galibi) of Venezuela and the Guianas, Latin orthography. The grapheme ï denotes the high central vowel /ɨ/. The voiced stops b/d/g overlap with post-nasal allophones of the voiceless stops p/t/k and are treated by some descriptions as conditioned rather than independent; they are mapped here at face value. Stress, palatalization allophones ([tʃ ʃ ɲ]) and fricative allophones ([β]) that the spelling does not distinguish are left unencoded; there is no tone.",
+  "iso639_3": "car",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "car_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Galibi Carib (gali1262)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/gali1262",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "car_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Carib language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Carib_language",
+      "pages": null,
+      "notes": "Phonology and orthography reference for the skeleton grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Carib_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Carib_language"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "code": "cic",
+  "name": "Chickasaw",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "aa": [
+      "aː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "lh": [
+      "ɬ"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "b": [
+      "b"
+    ],
+    "f": [
+      "f"
+    ],
+    "h": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "parent": "x-clade-musk1252",
+  "ancestors": [
+    {
+      "code": "x-clade-musk1252",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Chickasaw (chic1270)."
+    }
+  ],
+  "notes": "Skeleton. Western Muskogean language of Oklahoma written in the Humes practical orthography. Long vowels are doubled (aa ii oo); ch=[tʃ], sh=[ʃ] and lh=[ɬ] are mapped, with the apostrophe for glottal stop. Contrastive vowel nasalization (often shown by an underline) and pitch accent are not encoded here, and rhythmic vowel lengthening is not recovered from spelling, raising the PER floor.",
+  "iso639_3": "cic",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "cic_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Chickasaw (chic1270)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/chic1270",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "cic_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Chickasaw language, Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Chickasaw_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Chickasaw_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chickasaw_language"
+  ]
+}

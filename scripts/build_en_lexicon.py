@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Build the shipped English pilot lexicon ``data/lexicons/en-GB.tsv``.
+"""Build an English lexicon TSV (``word<TAB>ipa``) for callers to register.
+
+The library bundles no lexicon. Write the file wherever you like and point
+``orthography2ipa.register_lexicon("en-GB", <path>)`` at it (or drop it in a
+directory and use ``set_lexicon_dir()`` / ``$ORTHOGRAPHY2IPA_LEXICON_DIR``).
 
 The E3 lexicon-overlay mechanism (see ``orthography2ipa/lexicon.py`` and
 ``docs/data_model.md``) reads an optional per-language sidecar
-``data/lexicons/{code}.tsv`` (``word<TAB>ipa``) and folds it into the
+a ``{code}.tsv`` (``word<TAB>ipa``) the caller registers, folded into the
 engine's ``word_exceptions`` override pathway. This script regenerates the
 one bundled pilot lexicon that proves the mechanism end-to-end.
 
@@ -48,8 +52,8 @@ FREQ_URL = (
 MAX_ENTRIES = 5000
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-OUT_PATH = os.path.join(
-    REPO_ROOT, "orthography2ipa", "data", "lexicons", "en-GB.tsv")
+#: Default output. NOT inside the package — a lexicon is a corpus, not payload.
+OUT_PATH = os.environ.get("O2I_LEXICON_OUT", os.path.join(REPO_ROOT, "en-GB.tsv"))
 
 # ARPABET (2-letter phone, stress digit stripped) → broad non-rhotic IPA.
 # Vowels lean RP/broad; consonants are the standard 1:1 map. ``ɡ`` is

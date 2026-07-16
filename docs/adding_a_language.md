@@ -255,7 +255,7 @@ The test suite validates:
 
 When grapheme rules cannot reach production accuracy for a deep-orthography
 language, ship a **lexicon**: a sidecar file
-`orthography2ipa/data/lexicons/{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC,
+a caller-registered `{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC, never bundled —
 lowercase words, sorted, first-entry-wins), named by the language's resolved
 code (e.g. `en-GB.tsv`). No JSON change and no new spec field are needed — the
 file is discovered by convention and read lazily on first use. See

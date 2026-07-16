@@ -294,7 +294,10 @@
       "intervocalic": [
         "s"
       ],
-      "coda": [
+      "before_consonant": [
+        "s"
+      ],
+      "word_final": [
         "s"
       ]
     },
@@ -308,7 +311,10 @@
       "onset": [
         "ɾ"
       ],
-      "coda": [
+      "before_consonant": [
+        "ɾ"
+      ],
+      "word_final": [
         "ɾ"
       ]
     },
@@ -316,9 +322,30 @@
       "default": [
         "n"
       ],
-      "coda": [
+      "before_consonant": [
         "n",
         "ŋ"
+      ],
+      "word_final": [
+        "n",
+        "ŋ"
+      ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
+      ],
+      "before_o": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
       ]
     }
   },

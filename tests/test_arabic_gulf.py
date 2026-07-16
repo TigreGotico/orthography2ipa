@@ -54,7 +54,7 @@ def test_gulf_countries_inherit_peninsular_emphatic_spreading():
 def test_qaf_is_g_in_gulf():
     # قَلَم 'pen' — *q → [ɡ], /a/ does not trigger g-affrication
     for code in GULF:
-        assert _t(code, "قَلَم") == "ɡalam", code
+        assert _t(code, "قَلَم") == "ˈɡalam", code
 
 
 # ─── /k/ affrication before a high front vowel, and only there ──────────
@@ -63,14 +63,14 @@ def test_k_affricates_before_front_vowel():
     # كِتَاب 'book' — /k/ before /i/ → [tʃ]
     for code in GULF:
         out = _t(code, "كِتَاب")
-        assert out.startswith("tʃ"), (code, out)
+        assert out.lstrip("ˈˌ").startswith("tʃ"), (code, out)
 
 
 def test_k_does_not_affricate_before_back_or_low_vowel():
     # كَلْب 'dog' — /k/ before /a/ stays [k] (Mustafawi: blocked by [-high])
     for code in GULF:
         out = _t(code, "كَلْب")
-        assert out.startswith("k") and "tʃ" not in out, (code, out)
+        assert out.lstrip("ˈˌ").startswith("k") and "tʃ" not in out, (code, out)
 
 
 # ─── /ɡ/ (< *q) affrication before a high front vowel ───────────────────
@@ -79,7 +79,7 @@ def test_g_affricates_before_front_vowel():
     # قِرْد 'monkey' — *q→[ɡ], then [ɡ] before /i/ → [dʒ]
     for code in GULF:
         out = _t(code, "قِرْد")
-        assert out.startswith("dʒ"), (code, out)
+        assert out.lstrip("ˈˌ").startswith("dʒ"), (code, out)
 
 
 # ─── interdental retention (Bedouin-type) ───────────────────────────────
@@ -106,13 +106,13 @@ def test_omani_is_peninsular_not_gulf():
 
 def test_omani_retains_qaf():
     # قَلَم and قِرْد keep [q] in sedentary Omani (no *q→[ɡ], no g-affrication)
-    assert _t("ar-OM", "قَلَم") == "qalam"
-    assert _t("ar-OM", "قِرْد") == "qird"
+    assert _t("ar-OM", "قَلَم") == "ˈqalam"
+    assert _t("ar-OM", "قِرْد") == "ˈqird"
 
 
 def test_omani_still_affricates_k_before_front_vowel():
     # Bedouin/interior feature present: كِتَاب → tʃitaːb
-    assert _t("ar-OM", "كِتَاب").startswith("tʃ")
+    assert _t("ar-OM", "كِتَاب").lstrip("ˈˌ").startswith("tʃ")
 
 
 def test_emirati_has_english_loan_phonemes():
@@ -136,3 +136,21 @@ def test_all_gulf_specs_are_research_tier_with_read_sources():
         ids = {s.id for s in sp.sources}
         # every Gulf spec cites at least one of the actually-read sources
         assert ids & {"alshammari2026", "albalushi2016", "szreder_derrick2023"}, code
+
+
+# ─── Emirati lexical / function-word fixes (blind-verification round) ────
+
+def test_emirati_law_resists_monophthongisation():
+    """لَو 'if' keeps the /aw/ diphthong — a function word does not undergo the
+    Gulf aw→oː monophthongisation (Holes 2016)."""
+    assert _t("ar-AE", "لَو") == "ˈlaw"
+
+
+def test_emirati_eesh_value():
+    """عِيش 'rice/living' → [ʕeːʃ] — the Gulf lexeme has /eː/ (Holes 2016)."""
+    assert _t("ar-AE", "عِيش") == "ˈʕeːʃ"
+
+
+def test_emirati_il_yawm_lexical_article():
+    """الْيَوم 'today' → [iljoːm] — the frozen adverb carries the /il/ article."""
+    assert _t("ar-AE", "الْيَوم") == "ilˈjoːm"

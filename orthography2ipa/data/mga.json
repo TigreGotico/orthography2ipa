@@ -1,0 +1,126 @@
+{
+  "code": "mga",
+  "name": "Middle Irish (900-1200)",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "x"
+    ],
+    "th": [
+      "θ"
+    ],
+    "ph": [
+      "f"
+    ],
+    "á": [
+      "aː"
+    ],
+    "é": [
+      "eː"
+    ],
+    "í": [
+      "iː"
+    ],
+    "ó": [
+      "oː"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ]
+  },
+  "parent": "x-clade-goid1240",
+  "ancestors": [
+    {
+      "code": "x-clade-goid1240",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Middle Irish (10-12th century) (midd1360)."
+    }
+  ],
+  "notes": "Skeleton. Goidelic (Insular Celtic) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels (with the acute marking length), the plain consonant letters, and the lenition digraphs ch/th/ph. The pervasive broad/slender (velarised vs palatalised) consonant contrast is not orthographically recoverable and is left unencoded; consonant lenition was written inconsistently in the manuscripts and only the h-digraphs are captured. Reconstructed phonetic values carry appreciable uncertainty, so a substantial PER floor is expected.",
+  "iso639_3": "mga",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "mga_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Middle Irish (10-12th century) (midd1360)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/midd1360",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "mga_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Middle Irish (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Middle_Irish",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry; medieval Irish spelling and lenition.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Middle_Irish"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Middle_Irish"
+  ]
+}

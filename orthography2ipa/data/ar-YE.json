@@ -24,6 +24,123 @@
     "ق": [
       "ɡ",
       "q"
+    ],
+    "الثث": [
+      "aθθ"
+    ],
+    "اَلثث": [
+      "aθθ"
+    ],
+    "لِلثث": [
+      "liθθ"
+    ],
+    "وَالثث": [
+      "waθθ"
+    ],
+    "فَالثث": [
+      "faθθ"
+    ],
+    "بِالثث": [
+      "biθθ"
+    ],
+    "كَالثث": [
+      "kaθθ"
+    ],
+    "الذذ": [
+      "aðð"
+    ],
+    "اَلذذ": [
+      "aðð"
+    ],
+    "لِلذذ": [
+      "liðð"
+    ],
+    "وَالذذ": [
+      "waðð"
+    ],
+    "فَالذذ": [
+      "faðð"
+    ],
+    "بِالذذ": [
+      "biðð"
+    ],
+    "كَالذذ": [
+      "kaðð"
+    ],
+    "الضض": [
+      "aðˤðˤ",
+      "adˤdˤ"
+    ],
+    "اَلضض": [
+      "aðˤðˤ",
+      "adˤdˤ"
+    ],
+    "لِلضض": [
+      "liðˤðˤ",
+      "lidˤdˤ"
+    ],
+    "وَالضض": [
+      "waðˤðˤ",
+      "wadˤdˤ"
+    ],
+    "فَالضض": [
+      "faðˤðˤ",
+      "fadˤdˤ"
+    ],
+    "بِالضض": [
+      "biðˤðˤ",
+      "bidˤdˤ"
+    ],
+    "كَالضض": [
+      "kaðˤðˤ",
+      "kadˤdˤ"
+    ],
+    "الظظ": [
+      "aðˤðˤ"
+    ],
+    "اَلظظ": [
+      "aðˤðˤ"
+    ],
+    "لِلظظ": [
+      "liðˤðˤ"
+    ],
+    "وَالظظ": [
+      "waðˤðˤ"
+    ],
+    "فَالظظ": [
+      "faðˤðˤ"
+    ],
+    "بِالظظ": [
+      "biðˤðˤ"
+    ],
+    "كَالظظ": [
+      "kaðˤðˤ"
+    ],
+    "اِلثث": [
+      "iθθ"
+    ],
+    "اِلذذ": [
+      "iðð"
+    ],
+    "اِلضض": [
+      "iðˤðˤ",
+      "idˤdˤ"
+    ],
+    "اِلظظ": [
+      "iðˤðˤ"
+    ],
+    "وِالثث": [
+      "wiθθ"
+    ],
+    "وِالذذ": [
+      "wiðð"
+    ],
+    "وِالضض": [
+      "wiðˤðˤ",
+      "widˤdˤ"
+    ],
+    "وِالظظ": [
+      "wiðˤðˤ"
     ]
   },
   "allophones_base": "ar-x-peninsular",
@@ -124,5 +241,34 @@
     "longitude": 44.8412,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Sanaani Arabic."
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ],
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "cliticless_words": [
+      "بِي",
+      "فِي",
+      "لَو",
+      "مَا",
+      "مِن",
+      "وَمَا",
+      "يَا"
+    ]
   }
 }

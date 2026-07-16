@@ -97,9 +97,9 @@ class TestCompetitorDerivedGoldNeverGates:
     as `drifted` and never fail the gate."""
 
     def test_espeak_derived_regression_is_drift_not_failure(self):
-        baseline = {("el", "styletts2_phonemes"):
-                    _row(lang="el", dataset="styletts2_phonemes", per=0.20)}
-        cur = _row(lang="el", dataset="styletts2_phonemes", per=0.30)
+        baseline = {("el", "vox_communis"):
+                    _row(lang="el", dataset="vox_communis", per=0.20)}
+        cur = _row(lang="el", dataset="vox_communis", per=0.30)
         cur["provenance"] = "espeak-derived"
         diff_rows, regressed_rows = cbr.compare(baseline, [cur], epsilon=0.005)
         assert regressed_rows == []

@@ -48,6 +48,36 @@
       "wikipedia_url": null,
       "pages": null,
       "notes": "Segmental phonology (7-9 monophthongs, nasalisation, six diphthongs /ai au ɔi iɛ ɛa uɔ/, non-rhotic). Describes sounds, not a letter-to-sound mapping, so it cannot by itself yield a grapheme table."
+    },
+    {
+      "id": "holm1989",
+      "author": "Holm, John",
+      "year": 1989,
+      "title": "Pidgins and Creoles, Volume II: Reference Survey",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference survey of Atlantic and Pacific pidgins/creoles; lexifier and substrate attributions."
+    },
+    {
+      "id": "apics2013",
+      "author": "Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.)",
+      "year": 2013,
+      "title": "The Atlas of Pidgin and Creole Language Structures (APiCS)",
+      "publisher": "Oxford University Press",
+      "url": "https://apics-online.info/",
+      "pages": null,
+      "notes": "Structural atlas of 76 pidgins/creoles; per-language survey chapters cited in ancestry notes."
+    },
+    {
+      "id": "huber1999",
+      "author": "Huber, Magnus",
+      "year": 1999,
+      "title": "Ghanaian Pidgin English in its West African Context",
+      "publisher": "John Benjamins",
+      "url": null,
+      "pages": null,
+      "notes": "West African Pidgin English; Akan/Ga (Kwa) substrate."
     }
   ],
   "location": {
@@ -55,5 +85,19 @@
     "longitude": -0.283641,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Ghanaian Pidgin English."
-  }
+  },
+  "ancestors": [
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.65,
+      "notes": "English lexifier; Ghanaian Pidgin English within the West African Pidgin English continuum. Huber (1999); APiCS ch. 17 (Huber)."
+    },
+    {
+      "code": "ak",
+      "role": "substrate",
+      "weight": 0.2,
+      "notes": "Akan (Kwa) substrate: tone/prosody, 7-vowel tendency with ATR harmony, labial-velar stops /kp ɡb/. Ga (also a substrate) is unregistered. Huber (1999)."
+    }
+  ]
 }

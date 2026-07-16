@@ -1,0 +1,21 @@
+id	sentence	ipa	gloss_en	features	notes
+pov-001	N ka sibi.	n ka sibi	I don't know.	negation;tma;pronoun	First-person subject N and preverbal negator ka per kihm1994; sibi 'know' per scantamburlo1999.
+pov-002	I sta la.	i ʃta la	He is there.	postalveolar;pronoun	Third-person subject i per kihm1994; coda /s/ before a stop realised [ʃ] in sta per kihm1994.
+pov-003	Bu na bai matu.	bu na bai matu	You go to the bush.	tma;pronoun	Progressive/future particle na and subject bu per kihm1994; matu 'bush' per scantamburlo1999.
+pov-004	Mininu garandi.	mininu ɡarandi	A big child.	strong_rhotic;no_agreement;statement	Alveolar rhotic [r] in garandi per kihm1994; invariant adjective with no gender agreement per intumbo2007.
+pov-005	N misti kume aroz.	n miʃti kume aroʒ	I want to eat rice.	postalveolar;coda_sibilant;strong_rhotic;pronoun	Coda /s/ raised to [ʃ] in misti and voiced to [ʒ] word-finally in aroz per kihm1994; misti 'want' per scantamburlo1999.
+pov-006	No ta papia kriol.	no ta papia kriol	We speak Creole.	strong_rhotic;tma;pronoun	First-plural subject no and habitual ta per kihm1994; papia 'speak' and kriol per scantamburlo1999.
+pov-007	Bu ka na fala nada.	bu ka na fala nada	You won't say anything.	negation;tma;pronoun	Negator ka before the aspect particle na per kihm1994; fala 'say' per scantamburlo1999.
+pov-008	I na tarbadja tudu dia.	i na tarbadʒa tudu dia	He works every day.	affricate;postalveolar;strong_rhotic;tma	Affricate dj [dʒ] in tarbadja per kihm1994; tarbadja 'work' per scantamburlo1999.
+pov-009	Sol sai serka.	sol sai serka	The sun rises early.	strong_rhotic;statement	Alveolar rhotic [r] in serka per kihm1994; coda /l/ in sol per kihm1994.
+pov-010	Manga i dosi.	maŋa i dosi	The mango is sweet.	velar_nasal;copula	Velar nasal [ŋ] in manga per kihm1994; predicative i per intumbo2007.
+pov-011	Galinha na kanta.	ɡaliɲa na kanta	The hen is crowing.	palatal_nasal;tma	Palatal nasal ⟨nh⟩ [ɲ] in galinha per kihm1994; progressive na per kihm1994.
+pov-012	Bu tene fomi?	bu tene fomi	Are you hungry?	question;pronoun	Verb tene 'have' per kihm1994; polar question by intonation with no inversion per intumbo2007.
+pov-013	No tudu sta kontenti.	no tudu ʃta kontenti	We are all happy.	postalveolar;pronoun;copula	Coda /s/ before a stop realised [ʃ] in sta per kihm1994; kontenti per scantamburlo1999.
+pov-014	Katxor na kore riba.	katʃor na kore riba	The dog runs up.	affricate;postalveolar;strong_rhotic;tma	Affricate tx [tʃ] in katxor per kihm1994; katxor 'dog' per scantamburlo1999.
+pov-015	N ta fitxa porta.	n ta fitʃa porta	I close the door.	affricate;postalveolar;strong_rhotic;tma	Affricate tx [tʃ] in fitxa per kihm1994; alveolar rhotic [r] in porta per kihm1994.
+pov-016	Fidju di omi na padi.	fidʒu di omi na padi	The man's son is being born.	affricate;postalveolar;tma	Affricate dj [dʒ] in fidju per kihm1994; genitive with di per intumbo2007.
+pov-017	Tera di Guine i sabi.	tera di ɡine i sabi	The land of Guinea is good.	strong_rhotic;copula	Alveolar rhotic [r] in tera per kihm1994; predicative i per intumbo2007.
+pov-018	Bu misti bibi agu?	bu miʃti bibi aɡu	Do you want to drink water?	postalveolar;question;pronoun	Coda /s/ [ʃ] in misti per kihm1994; bibi 'drink' and agu 'water' per scantamburlo1999.
+pov-019	Kil omi i garandi.	kil omi i ɡarandi	That man is big.	strong_rhotic;copula	Demonstrative kil per intumbo2007; alveolar rhotic [r] in garandi per kihm1994.
+pov-020	No na bai pa merkadu.	no na bai pa merkadu	We are going to the market.	strong_rhotic;tma;pronoun	Progressive na and directional pa per kihm1994; alveolar rhotic [r] in merkadu per kihm1994.

@@ -45,7 +45,7 @@ def test_new_specs_load_and_inherit_base():
 
 def test_coimbra_prevocalic_s_is_palatal():
     # DELTA: os olhos → [ʒ] (native attestation), where the pt-PT base → [z]
-    assert _t("pt-PT-x-coimbra", "os olhos") == "ˈoʒ ˈoʎuʃ"
+    assert _t("pt-PT-x-coimbra", "os olhos") == "oʒ ˈoʎuʃ"
     assert "ʒ" in _t("pt-PT-x-coimbra", "estás a ver")
     # base contrast: pt-PT keeps [z]
     assert "z" in _t("pt-PT", "estás a ver")
@@ -116,8 +116,11 @@ def test_sao_miguel_stressed_u_fronting():
     # the stereotyped micaelense /u/ → [y] (número → [ˈnymɨɾu], tu → [ty])
     assert _t("pt-PT-x-sao-miguel", "número") == "ˈnymɨɾu"
     assert _t("pt-PT-x-sao-miguel", "tu") == "ˈty"
-    # blocked before a tautosyllabic coda liquid (azul → [ɐˈzuɫ])
-    assert "y" not in _t("pt-PT-x-sao-miguel", "azul")
+    # fronting applies BEFORE a coda too (Silva 2008:4: azul → [ɐˈzyl],
+    # cruz → [kryʃ]) — the coda guard the general acores node keeps is dropped
+    # for this leaf; see SM_U_FRONTING.
+    assert _t("pt-PT-x-sao-miguel", "azul") == "ɐˈzyɫ"
+    assert _t("pt-PT-x-sao-miguel", "cruz") == "ˈkɾyʃ"
     # the clitic guard: the article o is [u], never [y]
     assert _t("pt-PT-x-sao-miguel", "o").replace("ˈ", "") == "u"
 

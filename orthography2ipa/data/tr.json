@@ -292,9 +292,6 @@
       "word_final": [
         "k"
       ],
-      "coda": [
-        "k"
-      ],
       "default": [
         "ɡ"
       ]
@@ -334,9 +331,6 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
@@ -345,18 +339,12 @@
       "word_final": [
         "tʃ"
       ],
-      "coda": [
-        "tʃ"
-      ],
       "default": [
         "dʒ"
       ]
     },
     "d": {
       "word_final": [
-        "t"
-      ],
-      "coda": [
         "t"
       ],
       "default": [

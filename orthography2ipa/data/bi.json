@@ -189,6 +189,26 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Bislama",
       "pages": null,
       "notes": "Alphabet and orthography reform."
+    },
+    {
+      "id": "holm1989",
+      "author": "Holm, John",
+      "year": 1989,
+      "title": "Pidgins and Creoles, Volume II: Reference Survey",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference survey of Atlantic and Pacific pidgins/creoles; lexifier and substrate attributions."
+    },
+    {
+      "id": "apics2013",
+      "author": "Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.)",
+      "year": 2013,
+      "title": "The Atlas of Pidgin and Creole Language Structures (APiCS)",
+      "publisher": "Oxford University Press",
+      "url": "https://apics-online.info/",
+      "pages": null,
+      "notes": "Structural atlas of 76 pidgins/creoles; per-language survey chapters cited in ancestry notes."
     }
   ],
   "timespan": {
@@ -200,5 +220,25 @@
     "longitude": 166.89,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Bislama."
-  }
+  },
+  "ancestors": [
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.65,
+      "notes": "English lexifier (~90% of the lexicon); Bislama is an English-lexifier Melanesian pidgin/creole. Holm (1989:529-535); APiCS ch. 20 (Meyerhoff)."
+    },
+    {
+      "code": "poz",
+      "role": "substrate",
+      "weight": 0.2,
+      "notes": "Central/Northern Vanuatu Oceanic (Malayo-Polynesian) substrate: 5-vowel system, (C)V syllable preference, transitive suffix -em reflecting the Oceanic transitive *-i. The specific substrate languages (e.g. North Efate, Nguna) are unregistered; nearest registered node is Malayo-Polynesian. Crowley (2004); APiCS ch. 20."
+    },
+    {
+      "code": "fr-FR",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "French adstrate from the Anglo-French Condominium period (e.g. pikinini and other lexical items)."
+    }
+  ]
 }

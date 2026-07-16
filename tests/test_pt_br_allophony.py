@@ -95,7 +95,12 @@ TILDE = "̃"
 def test_br_declares_the_nasal_raise_rules():
     from orthography2ipa import get
     ids = [r.id for r in get("pt-BR").allophone_rules]
-    assert ids[:3] == [
+    # the word-final nasal-diphthong glide rules and the raised-final-e
+    # affrication rules now lead the list; the nasal-raise trio follows.
+    assert ids[:5] == [
+        "BR_FINAL_EM_GLIDE", "BR_FINAL_AM_GLIDE",
+        "BR_AFFRIC_T_RAISED", "BR_AFFRIC_D_RAISED", "PT_NASAL_A_RAISE"]
+    assert [i for i in ids if i.startswith("PT_NASAL")][:3] == [
         "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE"]
     # the BR final-raising rules are preserved after the nasal rules
     assert "BR_RAISE_FINAL_E" in ids and "BR_RAISE_FINAL_O" in ids
@@ -136,3 +141,48 @@ def test_br_no_double_tilde():
 def test_br_nh_digraph_unbroken():
     out = _nfd_br("banho")
     assert "ɲ" in out and TILDE not in out, out
+
+
+def test_br_final_es_os_raising_feeds_affrication():
+    """The final unstressed ⟨-es/-os⟩ ending raises to [i]/[u], and the raise
+    feeds /t d/ affrication on a two-pass allophone run (allophone_passes=2).
+
+    ``estes`` [ˈest͡ʃis] cannot surface from a single pass: the affrication
+    reads the vowel BEFORE the raise on the first pass, so it needs the second.
+    """
+    import unicodedata
+    g = G2P("pt-BR")
+
+    def _t(w):
+        return unicodedata.normalize("NFC", g.transcribe_word(w))
+
+    assert g.spec.allophone_passes == 2
+    assert _t("estes") == "ˈest͡ʃis"
+    assert _t("dentes") == unicodedata.normalize("NFC", "ˈdẽt͡ʃis")
+    assert _t("pontes") == unicodedata.normalize("NFC", "ˈpõt͡ʃis")
+    assert _t("verdes") == "ˈveɾd͡ʒis"     # /d/ affrication
+    assert _t("gatos") == "ˈɡatus"          # -os → -us
+    assert _t("pires") == "ˈpiɾis"
+
+
+def test_br_final_raising_is_gated():
+    """The raise fires only on an UNSTRESSED final vowel before a word-final
+    ⟨s⟩: a stressed monosyllable and a medial ⟨s⟩+consonant are left alone."""
+    g = G2P("pt-BR")
+    # stressed -ês/-ás keep their mid/low vowel (no raise, no affrication)
+    assert g.transcribe_word("três") == "ˈtɾes"
+    assert g.transcribe_word("mês") == "ˈmes"
+    # medial ⟨s⟩ before a consonant is not the ending
+    assert g.transcribe_word("festa") == "ˈfestɐ"
+    assert g.transcribe_word("vespa") == "ˈvespɐ"
+    assert g.transcribe_word("gosto") == "ˈɡostu"
+
+
+def test_br_conservative_dialects_raise_without_affrication():
+    """A dental (non-palatalising) dialect still raises the ending but keeps
+    /t d/ dental — a single pass suffices, so it stays at allophone_passes=1."""
+    for lect in ("pt-BR-x-caipira", "pt-BR-x-sul"):
+        g = G2P(lect)
+        assert g.spec.allophone_passes == 1
+        out = g.transcribe_word("dentes")
+        assert out.endswith("is") and "t͡ʃ" not in out, (lect, out)

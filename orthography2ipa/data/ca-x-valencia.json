@@ -80,8 +80,87 @@
       ]
     }
   },
-  "allophone_rules": [],
+  "allophone_rules": [
+    {
+      "id": "VAL_OPEN_E",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "word": [
+        "finestra",
+        "finestres"
+      ],
+      "notes": "Valencian carries open-mid [ɛ] in 'finestra' where the Western default gives close [e]; the contrast is unmarked in spelling and so is listed (AVL 2006; Recasens 1991; the ca-x-valencia-003 arbitration: finestres [fiˈnɛstɾes])."
+    },
+    {
+      "id": "VAL_OPEN_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "word": [
+        "gros",
+        "grossa",
+        "grossos",
+        "grosses"
+      ],
+      "notes": "Valencian carries open-mid [ɔ] in 'gros/grossa' where the default gives close [o] (AVL 2006; Recasens 1991; the ca-x-valencia-003 arbitration: grosses [ˈɡɾɔses])."
+    }
+  ],
   "stress": {
+    "cliticless_words": [
+      "el",
+      "la",
+      "l",
+      "els",
+      "les",
+      "lo",
+      "los",
+      "un",
+      "una",
+      "uns",
+      "unes",
+      "al",
+      "als",
+      "del",
+      "dels",
+      "pel",
+      "pels",
+      "cal",
+      "can",
+      "a",
+      "de",
+      "en",
+      "amb",
+      "per",
+      "que",
+      "com",
+      "des",
+      "i",
+      "o",
+      "ni",
+      "em",
+      "et",
+      "es",
+      "ens",
+      "us",
+      "li",
+      "hi",
+      "ho",
+      "ne",
+      "me",
+      "te",
+      "se",
+      "m",
+      "t",
+      "s",
+      "n",
+      "d",
+      "vos"
+    ],
     "default_position": -2,
     "final_stress_endings": [
       "r",

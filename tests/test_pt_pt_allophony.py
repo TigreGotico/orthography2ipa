@@ -40,9 +40,12 @@ def _nfd(code, word):
 def test_pt_pt_declares_the_coda_rules():
     ids = [r.id for r in get("pt-PT").allophone_rules]
     assert ids == [
+        "PT_FINAL_EM_NUCLEUS", "PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE",
         "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
         "PT_NASAL_O_UNRED",
         "PT_CODA_L_DARK", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
+        "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_OPEN_O", "PT_LEX_OPEN_E",
+        "PT_LEX_X_S",
     ]
 
 
@@ -196,3 +199,26 @@ def test_nasal_diphthongs_intact():
     assert _n("ɐ̃") in _t("pt-PT", "pão")
     assert _n("ɐ̃") in _t("pt-PT", "mãe")
     assert _n("õ") in _t("pt-PT", "põe")
+
+
+class TestNasalDiphthongIsOneNucleus:
+    """A combining mark is not a nucleus.
+
+    ⟨pão⟩ is /pɐ̃w̃/ — one syllable, one nucleus. Counting the nasal tilde as
+    a vowel splits it in two and strands the stress mark on the offglide
+    (pɐ̃ˈw̃), and treating it as a consonant strands the mark between the
+    vowel and its own tilde (kɐˈ̃taɾ).
+    """
+
+    def test_nasal_diphthong_takes_the_stress_as_a_unit(self):
+        assert _t("pt-PT", "pão") == "ˈpɐ̃w̃"
+        assert _t("pt-PT", "mãe") == "ˈmɐ̃j̃"
+        assert _t("pt-PT", "põe") == "ˈpõj̃"
+
+    def test_stress_lands_past_a_nasalised_vowel(self):
+        assert _t("pt-PT", "coração") == "kuɾɐˈsɐ̃w̃"
+        assert _t("pt-PT", "irmão") == "iˈɾmɐ̃w̃"
+
+    def test_the_mark_never_splits_a_vowel_from_its_tilde(self):
+        assert _t("pt-PT", "cantar") == "kɐ̃ˈtaɾ"
+        assert _t("pt-PT", "contar") == "kõˈtaɾ"

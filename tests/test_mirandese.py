@@ -38,8 +38,10 @@ def test_apical_s_marked_dorsal_c_z_plain():
 
 def test_predorsal_sibilant_transcription():
     g = _t("mwl")
-    # ⟨c⟩ before front vowel and ⟨ç⟩ -> plain /s/
-    assert g.transcribe("brício") == "ˈbɾisjo"
+    # ⟨c⟩ before front vowel and ⟨ç⟩ -> plain /s/. The word-final ⟨-io⟩ ending
+    # stays in hiatus [iu] (not the rising glide [jo]), per the mirandese_g2p
+    # human gold (brício -> [ˈbɾisiʉ]); see the io/iu word_final positional.
+    assert g.transcribe("brício") == "ˈbɾisiu"
     assert g.transcribe("rapaç").endswith("s")
     # ⟨z⟩ -> plain /z/
     assert "z" in g.transcribe("bizarro")
@@ -85,7 +87,14 @@ def test_vnh_trigraph_keeps_palatal_nasal():
 
 def test_leonese_diphthongs_central():
     g = _t("mwl")
-    assert g.transcribe("tierra").startswith("ˈtjɛr")   # ie -> [jɛ]
+    # ⟨ie⟩ → [je], ⟨uo⟩ → [wo]: Mirandese has a single mid /e o/ quality
+    # (Vasconcelos, Estudos de Philologia Mirandesa v1 §§2,4, pp.178-180:
+    # "menos abertos que os nossos", intermediate between the Portuguese
+    # open/close pair; the ⟨ie⟩ nucleus is described §10 p.182 as between [i]
+    # and [e]). The close default also matches the human gold majority
+    # (rabielho→rɐˈβjeʎu, squierdo→ˈs̺kjeɾdu). Open [jɛ]/[wɔ] are
+    # non-contrastive allophonic variants, not the target.
+    assert g.transcribe("tierra").startswith("ˈtjer")   # ie -> [je]
     assert "wo" in g.transcribe("puorta")                # uo -> [wo]
 
 
@@ -172,10 +181,11 @@ def test_word_initial_and_post_nasal_b_stays_a_stop():
     g = _t("mwl")
     # word-initial ⟨b⟩ is a stop; only the intervocalic one lenites
     assert g.transcribe("bibal") == "biˈβal"
-    # post-nasal ⟨b⟩ (after [m]) keeps the stop — the spirant rule requires a
-    # preceding vowel, not a nasal
-    assert g.transcribe("ambos") == "ˈambus̺"
-    assert g.transcribe("cambo") == "ˈkambu"
+    # post-nasal ⟨b⟩ keeps the stop — the vowel nasalises and absorbs the nasal
+    # consonant (⟨amb⟩ → [ɐ̃b], see TestConvencaoWave), and /b/ after the nasal
+    # vowel stays a stop rather than lenieting
+    assert g.transcribe("ambos") == "ˈɐ̃bus̺"
+    assert g.transcribe("cambo") == "ˈkɐ̃bu"
 
 
 def test_intervocalic_d_is_not_spirantised():
@@ -193,7 +203,9 @@ def test_intervocalic_g_spirantises_via_positional_layer():
     assert g.transcribe("mogadouro") == "muɣɐˈdowɾu"
     # ⟨g⟩ after the glide of a falling diphthong keeps the stop (gold: eigual
     # → [ɐjˈɡwal]); a naive /ɡ/→[ɣ] allophone rule would wrongly lenite it
-    assert g.transcribe("eigual") == "eˈjɡal"
+    # the native gold has eigual [ɐjˈɡwal]: ⟨gu⟩ keeps the glide
+    # before ⟨a⟩; the point here is only that /ɡ/ stays a stop
+    assert g.transcribe("eigual") == "eˈjɡwal"
 
 
 def test_only_the_b_spirant_rule_is_declared():
@@ -209,3 +221,51 @@ def test_spirantisation_is_pan_mirandese():
     assert _t("mwl-x-sendim").transcribe("haber") == "ɐˈβeɾ"
     assert _t("mwl-x-ifanes").transcribe("haber") == "ɐˈβeɾ"
     assert "MWL_SPIRANT_B" in [r.id for r in get("mwl-x-sendim").allophone_rules]
+
+
+class TestConvencaoWave:
+    """Convenção Ortográfica da Língua Mirandesa (1999) orthography-table
+    units, validated against the native-speaker gold
+    (TigreGotico/mirandese_g2p)."""
+
+    @staticmethod
+    def _t(w):
+        import orthography2ipa
+        return orthography2ipa.transcribe(w, "mwl").replace("ˈ", "")
+
+    def test_am_prefix_nasalises_before_voiceless_stop(self):
+        # amportante [ɐ̃puɾtɐ̃tɨ]; AN/AM = /ɐ̃/ before a voiceless stop
+        assert self._t("amportante").startswith("ɐ̃p")
+
+    def test_amb_nasalises_vowel_before_voiced_stop(self):
+        # stem-internal ⟨amb/anb/ang/and⟩: the nasal digraph nasalises the vowel
+        # and is absorbed, the following stop is retained — matching the
+        # native-speaker gold (brando→bɾɐ̃du, quando→ˈkwɐ̃du, bufanda→bʉˈfɐ̃dɐ,
+        # abandono→abɐ̃ˈdonu). The earlier oral-digraph treatment (⟨amb⟩→[amb])
+        # is contradicted by every nasal+stop word in the gold.
+        assert self._t("ambos") == "ɐ̃bus̺"
+
+    def test_ui_is_a_falling_diphthong(self):
+        # fui [fuj] — the falling-diphthong system is preserved
+        assert self._t("fui") == "fuj"
+
+    def test_gu_keeps_glide_before_a(self):
+        # guapo [ɡwapu], eigual [ɐjˈɡwal] in the gold
+        assert self._t("guapo") == "ɡwapu"
+
+    def test_gu_is_bare_stop_before_front_vowels(self):
+        assert "ɡw" not in self._t("guerra")
+
+
+def test_mwl_coda_liquid_stress_placement():
+    """A liquid that heads a medial ⟨rC/lC⟩ cluster is the coda of the
+    preceding syllable, so the stress mark lands on the true onset:
+    burmeilho -> [buɾˈmejʎu], not [buˈɾmejʎu] (coda_liquid_capture)."""
+    g = _t("mwl")
+    assert g.spec.stress.coda_liquid_capture is True
+    assert g.transcribe_word("burmeilho") == "buɾˈmejʎu"
+    assert g.transcribe_word("armano") == "ɐɾˈmanu"
+    # a rising ⟨lh⟩+glide onset (mu-lhier) is NOT a falling cluster: kept intact
+    assert g.transcribe_word("mulhier") == "muˈʎjeɾ"
+    # a valid rising obstruent+liquid onset (⟨bl⟩) is not captured
+    assert g.transcribe_word("arble").startswith("ˈaɾbl")

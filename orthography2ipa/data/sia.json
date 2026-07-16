@@ -1,0 +1,165 @@
+{
+  "code": "sia",
+  "name": "Akkala Sami",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      ""
+    ],
+    "а": [
+      "a"
+    ],
+    "ӓ": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "һ": [
+      "h"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "ӆ": [
+      "l̥"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "ӈ": [
+      "ŋ"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "ҍ": [
+      ""
+    ],
+    "э": [
+      "e"
+    ],
+    "ӭ": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ]
+  },
+  "parent": "x-clade-saam1281",
+  "ancestors": [
+    {
+      "code": "x-clade-saam1281",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Akkala Saami (akka1237)."
+    }
+  ],
+  "notes": "Skeleton. Akkala Sami is a nearly extinct Kola (Eastern) Saami language of the Uralic family, very close to Kildin Sami and with only a marginal written tradition; where written it uses a Cyrillic alphabet modelled on the Kildin conventions, which this map follows. Base Cyrillic letters are mapped, together with Ӈ (velar nasal), the voiceless lateral Ӆ and Һ (preaspiration). Palatalization, preaspiration and vowel length are not recoverable from the spelling and are left unencoded; because the orthographic norm itself is unsettled, a high PER floor is expected.",
+  "iso639_3": "sia",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "sia_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Akkala Saami (akka1237)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/akka1237",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "sia_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Akkala Sami language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Akkala_Sami_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Akkala_Sami_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Akkala_Sami_language"
+  ]
+}

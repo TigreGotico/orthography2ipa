@@ -1,0 +1,70 @@
+{
+  "code": "chb",
+  "name": "Chibcha",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "qu": ["k"],
+    "ch": ["tʂ"],
+    "a": ["a"],
+    "e": ["e"],
+    "i": ["i"],
+    "o": ["o"],
+    "u": ["u"],
+    "y": ["ɨ"],
+    "b": ["β"],
+    "c": ["k"],
+    "q": ["k"],
+    "g": ["ɣ"],
+    "p": ["p"],
+    "t": ["t"],
+    "m": ["m"],
+    "n": ["n"],
+    "s": ["s"],
+    "z": ["tʂ"],
+    "x": ["ʂ"],
+    "f": ["ɸ"],
+    "h": ["h"],
+    "j": ["j"]
+  },
+  "parent": "x-clade-chib1249",
+  "ancestors": [
+    {
+      "code": "x-clade-chib1249",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Chibcha (chib1270)."
+    }
+  ],
+  "notes": "Chibchan language (Muisca) of the Colombian highlands, extinct since the late 18th century. There is no living pronunciation; phonemic values are RECONSTRUCTED from the colonial Spanish-based orthography of de Lugo (1619) and later grammars, following Constenla (1984) and Gonzalez de Perez (2006). Every value is tentative: c and qu both spell /k/, and the sibilant/affricate series z/ch/x (here read as retroflex) is the chief point of dispute. The grapheme y (an inverse-ypsilon in the sources) denotes the high central vowel. Stress, vowel length and nasalization are not recovered from the spelling.",
+  "iso639_3": "chb",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "chb_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Chibcha (chib1270)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/chib1270",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "chb_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Chibcha language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Chibcha_language",
+      "pages": null,
+      "notes": "Reconstructed phonology and colonial orthography reference; values tentative.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Chibcha_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Chibcha_language"
+  ]
+}

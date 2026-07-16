@@ -40,12 +40,14 @@ from orthography2ipa.g2p import (
     transcribe,
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
-from orthography2ipa.g2p_plugin import G2PPlugin, WordContext
-from orthography2ipa.json_loader import load_lexicon
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
+    clear_lexicons,
     get_lexicon,
     is_ipa_string,
+    register_lexicon,
+    resolve_lexicon_source,
+    set_lexicon_dir,
     validate_lexicon_text,
 )
 from orthography2ipa.phonetok import (
@@ -60,6 +62,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.sentence import (
+    WordContext,
     Position,
     SentenceLattice,
     SentenceRescoreContext,
@@ -90,6 +93,24 @@ from orthography2ipa.transforms import (
     debias_lisbon,
     load_clup_profile,
 )
+from orthography2ipa.registry import get_rescorers, who_answers
+from orthography2ipa.rescorer_plugin import RescorerPlugin
+from orthography2ipa.stress_plugin import StressPlugin
+from orthography2ipa.plugins import NormalizePlugin, SandhiPlugin, STAGES
+from orthography2ipa.registry import MissingPlugin
+from orthography2ipa.registry import get_stress_plugin
+from orthography2ipa.inventory import (
+    STRESS_MARKS,
+    dead_allophone_rules,
+    emission_inventory,
+    phoneme_inventory,
+    tokenize,
+)
+from orthography2ipa.underspecification import (
+    is_underdetermined,
+    mark_density,
+    underdetermined_positions,
+)
 from orthography2ipa.stress import apply_stress_mark, detect_stress, syllabify
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
@@ -118,12 +139,14 @@ __all__ = [
     "ancestry_chain",
     "available_codes",
     "available_families",
-    "load_lexicon",
     "get_lexicon",
+    "set_lexicon_dir",
+    "resolve_lexicon_source",
+    "register_lexicon",
+    "clear_lexicons",
     "available_lexicon_codes",
     "is_ipa_string",
     "validate_lexicon_text",
-    "G2PPlugin",
     "WordContext",
     "SandhiEngine",
     "LanguageSpec",
@@ -142,6 +165,23 @@ __all__ = [
     "AllophoneRescorer",
     "compile_allophone_rescorer",
     "StressRules",
+    "get_rescorers",
+    "who_answers",
+    "RescorerPlugin",
+    "StressPlugin",
+    "NormalizePlugin",
+    "SandhiPlugin",
+    "MissingPlugin",
+    "STAGES",
+    "get_stress_plugin",
+    "emission_inventory",
+    "phoneme_inventory",
+    "tokenize",
+    "dead_allophone_rules",
+    "STRESS_MARKS",
+    "is_underdetermined",
+    "underdetermined_positions",
+    "mark_density",
     "detect_stress",
     "apply_stress_mark",
     "syllabify",

@@ -13,6 +13,9 @@
     ],
     "ll": [
       "ʝ"
+    ],
+    "j": [
+      "h"
     ]
   },
   "allophones_base": "es-ES",
@@ -70,7 +73,7 @@
       "intervocalic": [
         "s"
       ],
-      "coda": [
+      "before_consonant": [
         "h",
         ""
       ],
@@ -93,6 +96,17 @@
       ],
       "before_i": [
         "s"
+      ]
+    },
+    "g": {
+      "before_e": [
+        "h"
+      ],
+      "before_i": [
+        "h"
+      ],
+      "intervocalic": [
+        "ɣ"
       ]
     }
   },

@@ -34,7 +34,7 @@ from __future__ import annotations
 
 import logging
 import unicodedata
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Callable, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
@@ -43,7 +43,10 @@ from orthography2ipa.features import (
     WordFeatures,
     build_word_features,
 )
+from orthography2ipa.inventory import phoneme_inventory
+from orthography2ipa.inventory import tokenize as inventory_tokenize
 from orthography2ipa.lexicon import get_lexicon
+from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     Candidate,
     IPAPath,
@@ -73,7 +76,10 @@ from orthography2ipa.sentence import (
     normalize_sentence_rescorers,
     span_position,
 )
-from orthography2ipa.stress import _syllables_for, apply_stress_mark, detect_stress, syllabify
+from orthography2ipa.stress import (
+    _syllables_for, apply_stress_mark, detect_stress, detect_stress_by_weight,
+    syllabify, syllabify_ipa,
+)
 from orthography2ipa.types import LanguageSpec
 
 __all__ = [
@@ -85,11 +91,45 @@ __all__ = [
     "WordFeatures",
     "GraphemeFeatures",
     "UnmappedScriptError",
+    "MarkupError",
 ]
 
 _log = logging.getLogger(__name__)
 
 _PAUSE_PUNCTUATION = set(".,;:!?…")
+
+#: Sentinel ``stressed_syll_idx`` for a prosodic clitic (a word listed in
+#: ``stress.cliticless_words``). It leans on its host and bears no lexical
+#: stress, so no syllable is "the stressed one". A negative index never equals
+#: a real 0-based syllable index, so ``RescoreContext.is_stressed`` reads
+#: ``False`` (not ``None``) for every syllable: stress-gated allophone rules
+#: (e.g. north-western tonic-mid diphthongisation) are withheld, while
+#: unstressed-gated reduction rules still apply. The stress mark itself is
+#: suppressed separately in ``_transcribe_word`` (Vigário 2003, *The Prosodic
+#: Word in European Portuguese*, on clitics as non-prosodic-words).
+_CLITIC_NO_STRESS = -1
+
+#: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
+#: Length and stress marks are not segments, so a run is identical across them.
+_VOWEL_IPA = set("aeiouɑɐɒæɓəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
+
+
+def _collapse_geminates(ipa: str) -> str:
+    """Collapse a run of the same consonant to one — ``sʌmmə`` → ``sʌmə``.
+
+    For a language whose orthographic doubling is not gemination (``spec.
+    collapse_geminates``). Only identical adjacent CONSONANT segments merge; a
+    doubled vowel letter is a long vowel and is left alone, and a length or
+    stress mark riding between two identical consonants does not block the
+    merge (there is none to ride in these orthographies, but the guard is cheap).
+    """
+    out: List[str] = []
+    for ch in ipa:
+        if (out and ch == out[-1] and ch not in _VOWEL_IPA
+                and ch not in "ːˑ" and not ch.isspace()):
+            continue
+        out.append(ch)
+    return "".join(out)
 
 
 @dataclass(frozen=True)
@@ -181,6 +221,43 @@ class _Word:
     pausal: bool = False  # followed by pause punctuation or end of text
     sentence_initial: bool = False
     sentence_final: bool = False
+    #: IPA the caller forced with ``<phoneme ph="…">``, bypassing the rules.
+    forced_ipa: Optional[str] = None
+
+
+
+def _as_names(plugins: dict) -> dict:
+    """Normalise a caller's ``{stage: name}`` / ``{stage: [names]}`` to tuples."""
+    return {
+        stage: ((names,) if isinstance(names, str) else tuple(names))
+        for stage, names in plugins.items()
+    }
+
+
+class _StagePlugins:
+    """The plugins this engine runs, resolved once, per stage.
+
+    Resolution is lazy per stage and cached: a spec that names nothing pays
+    nothing, and a spec that names something missing fails the first time that
+    stage runs — loudly, with the name it wanted and the names it found.
+    """
+
+    def __init__(self, spec, declared: dict) -> None:
+        self._spec = spec
+        self._declared = declared
+        self._cache: dict = {}
+
+    def get(self, stage: str) -> list:
+        if stage not in self._cache:
+            from dataclasses import replace
+
+            from orthography2ipa.registry import get_declared_plugins
+
+            # The caller's choice overrides the spec's, so resolve against the
+            # merged view rather than the spec's own block.
+            merged = replace(self._spec, plugins=self._declared)
+            self._cache[stage] = get_declared_plugins(stage, merged)
+        return self._cache[stage]
 
 
 class G2P:
@@ -246,10 +323,13 @@ class G2P:
         apply_stress: bool = True,
         apply_allophony: bool = True,
         normalizer: Optional[Callable[[str], str]] = None,
+        plugins: Optional[dict] = None,
         on_unmapped: str = "ignore",
         rescorer: RescorerArg = None,
         sentence_rescorer: SentenceRescorerArg = None,
+        allow_undeclared_phonemes: bool = False,
     ) -> None:
+        self.allow_undeclared_phonemes = allow_undeclared_phonemes
         if on_unmapped not in ("ignore", "log", "raise"):
             raise ValueError(
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
@@ -269,15 +349,55 @@ class G2P:
             if apply_allophony else None
         )
         self._allophone_rescorer = allophone_rescorer
-        self._rescorers: Tuple[LatticeRescorer, ...] = (
-            user_rescorers + (allophone_rescorer,)
-            if allophone_rescorer is not None else user_rescorers
+        # The allophone pass may run more than once (bounded), so a rule that
+        # only fires on another rule's output can feed off it: each repeat
+        # rebuilds the segment context from the previous pass. `allophone_passes`
+        # is 1 for every spec that has not opted in, so the tuple holds exactly
+        # one copy and behaviour is byte-identical.
+        n_passes = max(1, getattr(self.spec, "allophone_passes", 1))
+        self._allophone_chain: Tuple[LatticeRescorer, ...] = (
+            (allophone_rescorer,) * n_passes
+            if allophone_rescorer is not None else ()
         )
+
+        # Rescorers come from DECLARED plugins only — named by the spec or by the
+        # caller. Discovery alone never contributes phonology: a rescorer changes
+        # the transcription, and `pip install` must not.
+        #
+        # The spec's own allophone rules run last and keep the last word: they are
+        # declared data a language owner wrote, and a plugin refines that phonology
+        # rather than overruling it.
+        self._rescorers: Tuple[LatticeRescorer, ...] = (
+            user_rescorers + self._allophone_chain
+        )
+        self._plugin_rescorers_resolved = False
         self.expand_allophones = expand_allophones
         self.dialect_profile = dialect_profile
         self.apply_sandhi = apply_sandhi
         self.apply_stress = apply_stress
         self.normalizer = normalizer
+
+        # Which plugin this engine runs, per stage. The SPEC names the ones that
+        # are intrinsic to the language; the CALLER overrides, which is how a
+        # downstream engine composes its own pipeline — arbtok does not edit this
+        # library's shipped ar.json to say it wants a diacritizer, it passes one.
+        #
+        # Either way it is a DECLARATION. What is never allowed is for discovery
+        # alone to decide: `pip install` must not change a transcription.
+        self.plugins = {**(self.spec.plugins or {}), **_as_names(plugins or {})}
+        self._stage_plugins = _StagePlugins(self.spec, self.plugins)
+
+        declared_rescorers = tuple(
+            r
+            for plugin in self._stage_plugins.get("rescore")
+            for r in plugin.rescorers(self.lang)
+        )
+        if declared_rescorers:
+            base = tuple(
+                r for r in self._rescorers if r is not self._allophone_rescorer
+            )
+            self._rescorers = base + declared_rescorers + self._allophone_chain
+
         self.on_unmapped = on_unmapped
         self._warned_unmapped: Set[Tuple[str, str]] = set()
         self._tokenizer = PhonetokTokenizer(self.spec)
@@ -292,6 +412,19 @@ class G2P:
             normalize_sentence_rescorers(sentence_rescorer))
 
     # ─── public API ──────────────────────────────────────────────────
+
+    def _normalize(self, text: str) -> str:
+        """What the input IS, canonically, before anything reads it.
+
+        The declared `normalize` plugin runs first — diacritic restoration for an
+        abjad, number expansion — and then the caller's own normalizer, which is
+        the last word because the caller is closest to the text.
+        """
+        for plugin in self._stage_plugins.get("normalize"):
+            text = plugin.normalize(text, self.lang)
+        if self.normalizer is not None:
+            text = self.normalizer(text)
+        return text
 
     def transcribe(
         self,
@@ -320,14 +453,13 @@ class G2P:
     ) -> TranscriptionResult:
         """Transcribe *text*, returning per-word detail."""
         width = self._width(search, beam_width)
-        normalized = (self.normalizer(text) if self.normalizer is not None
-                      else text)
-        words = self._split_words(normalized)
+        words = self._split_words(text)
         if not words:
             return TranscriptionResult(ipa="", words=(), lang=self.lang)
 
         transcribed: List[WordTranscription] = [
-            self._transcribe_word(w.surface, width) for w in words
+            self._transcribe_word(w.surface, width, forced_ipa=w.forced_ipa)
+            for w in words
         ]
 
         ipa_words = [wt.ipa for wt in transcribed]
@@ -343,11 +475,35 @@ class G2P:
         if self.apply_sandhi and self._sandhi is not None:
             ipa_words = self._sandhi.apply(ipa_words)
 
+        # Cross-word phonology that needs code rather than a declarative rule: a
+        # final /n/ that assimilates to the next onset, a case ending a pause
+        # removes. The plugin sees each word's SPELLING as well as its IPA — whether
+        # a word ends in a case ending is a fact about the page, and guessing it
+        # from the last characters of the IPA confuses an ending with a stem.
+        for plugin in self._stage_plugins.get("sandhi"):
+            surfaces = [w.surface for w in words]
+            # The pause has to be HANDED to the plugin: punctuation is stripped
+            # during word splitting, so by now it is gone from the input — and a
+            # pause is exactly what removes a case ending.
+            pausal = [w.pausal for w in words]
+            rewritten = plugin.apply(
+                list(ipa_words), surfaces, pausal, self.lang)
+            if len(rewritten) != len(ipa_words):
+                raise ValueError(
+                    f"the sandhi plugin {type(plugin).__name__} returned "
+                    f"{len(rewritten)} words for {len(ipa_words)} — it rewrote the "
+                    f"sentence, not its sandhi"
+                )
+            ipa_words = rewritten
+
         ipa = " ".join(w for w in ipa_words if w)
         if self.dialect_profile:
             from orthography2ipa.transforms import apply_transform
+            # The spelling the transform reads is the words', normalized — which is
+            # also the only spelling there is: a forced word contributes the text it
+            # wrapped, and the markup itself is not part of the utterance.
             ipa = apply_transform(ipa, self.dialect_profile,
-                                  ortho=normalized)
+                                  ortho=" ".join(w.surface for w in words))
 
         final_words = tuple(
             WordTranscription(word=wt.word, ipa=iw, candidates=wt.candidates,
@@ -381,12 +537,12 @@ class G2P:
         per-word (post-stress, pre-cross-word) reading.
         """
         width = self._width(search, beam_width)
-        normalized = (self.normalizer(text) if self.normalizer is not None
-                      else text)
-        words = self._split_words(normalized)
+        words = self._split_words(text)
         if not words:
             return SentenceLattice(words=(), lang=self.lang)
-        transcribed = [self._transcribe_word(w.surface, width) for w in words]
+        transcribed = [self._transcribe_word(w.surface, width,
+                                             forced_ipa=w.forced_ipa)
+                       for w in words]
         return self._build_sentence_lattice(words, transcribed, width)
 
     def _build_sentence_lattice(
@@ -488,6 +644,8 @@ class G2P:
                     word, self.spec.stress, syllables=sylls)
             else:
                 stressed_syll_idx = 0
+            if self._is_cliticless(word):
+                stressed_syll_idx = _CLITIC_NO_STRESS
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
 
         allophone_map = (
@@ -592,10 +750,8 @@ class G2P:
         JSON-able, CRF-consumable feature dict. See ``docs/features.md`` for
         the CRF-as-rescorer pattern and a worked example.
         """
-        normalized = (self.normalizer(text) if self.normalizer is not None
-                      else text)
         out: List[WordFeatures] = []
-        for w in self._split_words(normalized):
+        for w in self._split_words(text):
             word = w.surface
             slots = self.ipa_lattice(word)
             confidence = self.confidence_breakdown(word).value
@@ -618,9 +774,71 @@ class G2P:
             f"search must be 'greedy' or 'beam', got {search!r}")
 
     def _split_words(self, text: str) -> List[_Word]:
-        """Group the token stream into words with pausal/position flags."""
-        tokens = self._tokenizer.tokenize(text)
+        """Parse the input into words, forced pronunciations included.
+
+        Markup is read *before* normalization, so a ``normalize`` plugin — a
+        diacritizer, a number expander — never sees a tag. It is handed the plain
+        runs and nothing else, which is the only text it has any business
+        rewriting: the caller who wrote ``ph`` has already said what that word is.
+        """
         words: List[_Word] = []
+        for chunk in parse_markup(text):
+            if chunk.is_forced:
+                words.append(_Word(surface=chunk.text.strip(),
+                                   forced_ipa=self._check_forced(chunk.forced_ipa)))
+            else:
+                self._group_words(self._normalize(chunk.text), words)
+        return self._flag(words)
+
+    def _check_forced(self, ipa: str) -> str:
+        """Hold forced IPA to the spec's declared inventory.
+
+        A symbol the spec never declares has no vector in a TTS frontend's
+        embedding table — it is built from the declared inventory before training
+        — so a word carrying it is mispronounced permanently, and silently. Better
+        to say so here, at the call site that asked for it.
+        """
+        ipa = ipa.strip()
+        if self.allow_undeclared_phonemes:
+            return ipa
+        declared = phoneme_inventory(self.spec)
+        outside = [t for t in inventory_tokenize(ipa, self.spec) if t not in declared]
+        if outside:
+            raise MarkupError(
+                f"<phoneme ph={ipa!r}> uses {outside!r}, which the {self.spec.code} "
+                f"spec does not declare.\n\n"
+                f"A phoneme outside the inventory has no embedding at synthesis time, "
+                f"so the word carrying it is mispronounced permanently and silently. "
+                f"This is the usual shape of a loanword forced in its donor's "
+                f"phonology: English 'meeting' is not [ˈmiːtɪŋ] in Arabic, it is "
+                f"nativised, and /ɪ/ and /ŋ/ are not Arabic phonemes.\n\n"
+                f"Give the nativised reading, or — if the phonology really does have "
+                f"this sound — declare it in the spec, where it can be read, cited "
+                f"and diffed."
+            )
+        return ipa
+
+    def _flag(self, words: List[_Word]) -> List[_Word]:
+        """Mark the edges of the utterance. The last word stands before a pause."""
+        if not words:
+            return []
+        return [
+            replace(w, pausal=w.pausal or i == len(words) - 1,
+                    sentence_initial=i == 0,
+                    sentence_final=i == len(words) - 1)
+            for i, w in enumerate(words)
+        ]
+
+    def _group_words(self, text: str, words: List[_Word]) -> None:
+        """Group a plain run's token stream into words, appending to *words*.
+
+        It appends rather than returns because a pause is not confined to the run
+        it is written in: punctuation opening a plain run falls *after* whatever
+        preceded it, and what preceded it may be a forced word. Grouping each run
+        in isolation would drop that pause, and a pause is exactly what strips a
+        case ending.
+        """
+        tokens = self._tokenizer.tokenize(text)
         current: List[str] = []
 
         def flush():
@@ -653,21 +871,11 @@ class G2P:
                 current.append(token.grapheme + tail)
         flush()
 
-        if not words:
-            return []
-        flagged = [
-            _Word(surface=w.surface, pausal=w.pausal or i == len(words) - 1,
-                  sentence_initial=i == 0,
-                  sentence_final=i == len(words) - 1)
-            for i, w in enumerate(words)
-        ]
-        return flagged
-
     def _override_for(self, word: str) -> Optional[str]:
         """Whole-word IPA override for *word*, or ``None`` to fall to rules.
 
         Precedence — inline ``spec.word_exceptions`` > sidecar lexicon
-        (``data/lexicons/{lang}.tsv``) > ``None``. Both are matched on the same
+        (caller-registered; see :mod:`orthography2ipa.lexicon`) > ``None``. Both are matched on the same
         language-aware lowercased key, so a lexicon hit rejoins the *identical*
         override pathway an inline exception uses (stress-mark insertion,
         cross-word sandhi and ``confidence == 1.0`` all apply unchanged). The
@@ -688,8 +896,42 @@ class G2P:
                 return hit
         return None
 
-    def _transcribe_word(self, word: str, width: int) -> WordTranscription:
-        override = self._override_for(word)
+    def _cliticless_keys(self) -> frozenset:
+        """The spec's ``stress.cliticless_words`` as a normalized lookup set.
+
+        Cached per engine. Keyed exactly like :meth:`_override_for` — language-
+        aware lowercased and NFC-normalized — so a form listed in the spec's
+        input orthography matches the input word regardless of case or Unicode
+        composition.
+        """
+        cached = getattr(self, "_cliticless_cache", None)
+        if cached is None:
+            forms = (self.spec.stress.cliticless_words
+                     if self.spec.stress is not None else ())
+            cached = frozenset(
+                unicodedata.normalize("NFC", lower_str(f, self.spec.code))
+                for f in forms
+            )
+            self._cliticless_cache = cached
+        return cached
+
+    def _is_cliticless(self, word: str) -> bool:
+        """Whether *word* is a declared prosodic clitic that takes no stress.
+
+        A clitic leans on an adjacent host and lives inside the host's stress
+        domain, so no word stress is placed on it (Watson 2002, ch. 3). This is
+        an orthographic-form test — it cannot tell a clitic homograph from a
+        full-word one — matching the spec's ``stress.cliticless_words``.
+        """
+        keys = self._cliticless_keys()
+        if not keys:
+            return False
+        return unicodedata.normalize(
+            "NFC", lower_str(word, self.spec.code)) in keys
+
+    def _transcribe_word(self, word: str, width: int,
+                         forced_ipa: Optional[str] = None) -> WordTranscription:
+        override = forced_ipa if forced_ipa is not None else self._override_for(word)
         paths: List[IPAPath] = []
         if override is not None:
             ipa = override
@@ -702,12 +944,35 @@ class G2P:
                     expand_allophones=self.expand_allophones,
                     rescorer=self._rescorers or None)
             ipa = paths[0].ipa if paths else word
-        if (self.apply_stress and self.spec.stress is not None and ipa):
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
-            idx = detect_stress(word, self.spec.stress, syllables=sylls)
-            ipa = apply_stress_mark(ipa, self.spec.stress, idx,
-                                    syllables=sylls)
+            if self.spec.collapse_geminates and ipa:
+                ipa = _collapse_geminates(ipa)
+        # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
+        # all. A caller who wrote a mark has placed the stress, and one who wrote
+        # none has said this word carries none — re-deriving it from the spelling
+        # would overrule the very thing being forced.
+        if (forced_ipa is None
+                and self.apply_stress and self.spec.stress is not None and ipa
+                and not self._is_cliticless(word)):
+            if self.spec.stress.quantity_sensitive:
+                # Weight is a property of the transcription, not the spelling —
+                # a syllable is heavy because its vowel is long or it has a
+                # coda. So this system reads the IPA we just produced, and no
+                # orthographic syllabification is involved.
+                idx = detect_stress_by_weight(ipa, self.spec.stress)
+                # Mark the mark against the SAME division the weights were read
+                # off. The naive `syllabify` cuts `saːliq` as `sa|ːliq`, which
+                # would drop the mark inside the long vowel: `saˈːliq`.
+                ipa = apply_stress_mark(
+                    ipa, self.spec.stress, idx,
+                    ipa_syllables=syllabify_ipa(
+                        ipa, self.spec.stress.max_onset),
+                )
+            else:
+                sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
+                                       if self.spec.stress else ())
+                idx = detect_stress(word, self.spec.stress, syllables=sylls)
+                ipa = apply_stress_mark(ipa, self.spec.stress, idx,
+                                        syllables=sylls)
         unmapped, coverage = self._unmapped_chars(word)
         if unmapped:
             self._handle_unmapped(word, unmapped)
@@ -804,6 +1069,8 @@ class G2P:
                     word, self.spec.stress, syllables=sylls)
             else:
                 stressed_syll_idx = 0  # monosyllable → always stressed
+            if self._is_cliticless(word):
+                stressed_syll_idx = _CLITIC_NO_STRESS
 
         # Map each grapheme token index to its syllable index
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)

@@ -37,6 +37,11 @@ def _load(code: str):
         pytest.skip(f"{code!r} not available: {exc}")
 
 
+def _ipa(lang: str, word: str) -> str:
+    """Transcription without the primary-stress mark."""
+    return orthography2ipa.G2P(lang).transcribe_word(word).replace("ˈ", "")
+
+
 def _grapheme(spec, grapheme: str) -> list[str] | None:
     """Return IPA list for a grapheme, or None if absent."""
     return spec.graphemes.get(grapheme)
@@ -133,9 +138,9 @@ class TestSpanishWesternAndalusian:
 
     def test_s_coda_aspiration(self):
         """Coda /s/ realised as [h] or ∅."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None, "s/CODA positional missing"
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
         assert "" in coda, "s/CODA should include ∅ deletion"
 
     def test_s_word_final_aspiration(self):
@@ -231,9 +236,9 @@ class TestSpanishCanarian:
 
     def test_s_coda_aspiration(self):
         """Coda s → [h, s] — aspiration primary in coda."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
 
     def test_s_word_final_aspiration(self):
         """Word-final s → h."""
@@ -287,9 +292,9 @@ class TestSpanishMurcian:
 
     def test_s_coda_aspiration(self):
         """Coda s → [h, s]."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
 
     def test_d_intervocalic_lenition(self):
         """Intervocalic d → [ð, ∅]."""
@@ -392,9 +397,9 @@ class TestSpanishChilean:
 
     def test_s_coda_aspiration(self):
         """Coda s has aspiration."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_contains(coda, "h", label="s/CODA")
+        _assert_contains(coda, "h", label="s/BEFORE_CONSONANT")
 
     def test_parent_is_es_es(self):
         assert self.spec.parent == "es-ES"
@@ -508,9 +513,9 @@ class TestExtremaduran:
 
     def test_s_coda_aspiration(self):
         """Coda s → [h, ∅] — strong aspiration/deletion."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
         assert "" in coda
 
     def test_s_word_final_aspiration(self):
@@ -1200,13 +1205,20 @@ class TestAsturianPortugueseMedieval:
         """ẽ → ẽ (nasal e)."""
         _assert_first(_grapheme(self.spec, "ẽ"), "ẽ", label="ẽ")
 
-    def test_nasal_vowel_an_digraph(self):
-        """an → ɐ̃ (nasal vowel digraph)."""
-        _assert_first(_grapheme(self.spec, "an"), "ɐ̃", label="an")
+    def test_nasal_vowel_before_coda_nasal(self):
+        """A vowel nasalises before a CODA nasal — a rule, not a digraph.
 
-    def test_nasal_vowel_en_digraph(self):
-        """en → ẽ."""
-        _assert_first(_grapheme(self.spec, "en"), "ẽ", label="en")
+        ⟨an⟩ is not a unit of the orthography; ⟨n⟩ is a letter that happens
+        to close the syllable. The nasal is then absorbed.
+        """
+        assert _ipa("ast-PT-x-medieval", "pan") == "pɐ̃"
+
+    def test_onset_nasal_leaves_the_vowel_oral(self):
+        """⟨cana⟩: the ⟨n⟩ is an onset, so the vowel stays oral."""
+        assert _ipa("ast-PT-x-medieval", "cana") == "kana"
+
+    def test_an_is_not_a_grapheme(self):
+        assert _grapheme(self.spec, "an") is None
 
     def test_lh_lateral(self):
         """lh positional → ʎ."""
@@ -1302,8 +1314,10 @@ class TestMiraneseIfanes:
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
     def test_ie_tilde_tracks_central(self):
-        """iê keeps the Central diphthong [jɛ] (Raiano does not monophthongise)."""
-        _assert_first(_grapheme(self.spec, "iê"), "jɛ", label="iê")
+        """iê keeps the Central diphthong [je] (Raiano does not monophthongise,
+        unlike Sendinese which reduces it to [i]). Central quality is the single
+        mid /e/ (Vasconcelos v1 §§2,4,10), so the diphthong is close [je]."""
+        _assert_first(_grapheme(self.spec, "iê"), "je", label="iê")
 
     def test_parent_is_mwl(self):
         assert self.spec.parent == "mwl"
@@ -1446,25 +1460,28 @@ class TestFrench:
         _assert_first(_grapheme(self.spec, "â"), "ɑ", label="â")
 
     # Nasal vowels
-    def test_nasal_an(self):
-        """an → ɑ̃ (nasal a-vowel)."""
-        _assert_first(_grapheme(self.spec, "an"), "ɑ̃", label="an")
+    def test_nasal_vowels_come_from_a_coda_nasal(self):
+        """French nasal vowels are a rule, not ten ⟨V+n/m⟩ digraphs.
 
-    def test_nasal_en(self):
-        """en → ɑ̃ (same nasal vowel as an)."""
-        _assert_first(_grapheme(self.spec, "en"), "ɑ̃", label="en")
+        The vowel nasalises only when the nasal closes the syllable, and the
+        nasal is then absorbed.
+        """
+        assert _ipa("fr-FR", "an") == "ɑ̃"
+        assert _ipa("fr-FR", "bon") == "bɔ̃"
+        assert _ipa("fr-FR", "un") == "œ̃"
+        assert _ipa("fr-FR", "pain") == "pɛ̃"
 
-    def test_nasal_in(self):
-        """in → ɛ̃."""
-        _assert_first(_grapheme(self.spec, "in"), "ɛ̃", label="in")
+    def test_onset_nasal_leaves_the_vowel_oral(self):
+        """The contrast the ⟨an⟩ digraph could not express."""
+        assert _ipa("fr-FR", "canne") == "kan"   # geminate ⟨nn⟩ is an onset
+        assert _ipa("fr-FR", "cane") == "kan"
+        assert _ipa("fr-FR", "bonne") == "bɔn"
+        assert _ipa("fr-FR", "ami") == "ami"
+        assert _ipa("fr-FR", "animal") == "animal"
 
-    def test_nasal_on(self):
-        """on → ɔ̃."""
-        _assert_first(_grapheme(self.spec, "on"), "ɔ̃", label="on")
-
-    def test_nasal_un(self):
-        """un → œ̃."""
-        _assert_first(_grapheme(self.spec, "un"), "œ̃", label="un")
+    def test_vn_digraphs_are_gone(self):
+        for fake in ("an", "am", "en", "em", "in", "im", "on", "om", "un", "um"):
+            assert _grapheme(self.spec, fake) is None, fake
 
     # Consonants
     def test_r_uvular(self):

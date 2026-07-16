@@ -275,5 +275,13 @@
         "iː"
       ]
     }
+  },
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Buckwalter re-encodes the Arabic script losslessly, so it transcribes to the same IPA and must take the same stress: a transliteration inherits every property of the script it re-encodes. See ar.json for the cascade and sources."
   }
 }

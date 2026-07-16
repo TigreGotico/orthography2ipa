@@ -293,27 +293,6 @@
     "ure": [
       "jʊəɹ",
       "ʊəɹ"
-    ],
-    "tion": [
-      "ʃən"
-    ],
-    "cian": [
-      "ʃən"
-    ],
-    "cious": [
-      "ʃəs"
-    ],
-    "tious": [
-      "ʃəs"
-    ],
-    "tial": [
-      "ʃəl"
-    ],
-    "cial": [
-      "ʃəl"
-    ],
-    "ssion": [
-      "ʃən"
     ]
   },
   "allophones": {
@@ -485,7 +464,7 @@
       "notes": "Middle English descent"
     }
   ],
-  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule). CANDIDATE WEIGHTS: a few ambiguous graphemes carry per-candidate `weights` (candidate frequencies) so the beam favours the corpus-dominant phoneme rather than the declared-first one — `er` = [ɜːɹ 0.2, əɹ 0.8] (unstressed schwar dominates the lexicon), `gh` = [ɡ 0.03, f 0.12, silent 0.85] (⟨gh⟩ is silent in the vast majority of words: night, though, high, weigh), `ie` = [aɪ 0.4, iː 0.6] (the /iː~i/ realisation of -ie/-ies edges out /aɪ/). Values are approximate frequencies grounded in Gontijo et al. (2003) British-English and Berndt et al. (1987) grapheme-phoneme probability studies, not PER-tuned parameters; graphemes without weights keep uniform rank ordering. See docs/candidate_scoring.md.",
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule). CANDIDATE WEIGHTS: a few ambiguous graphemes carry per-candidate `weights` (candidate frequencies) so the beam favours the corpus-dominant phoneme rather than the declared-first one — `er` = [ɜːɹ 0.2, əɹ 0.8] (unstressed schwar dominates the lexicon), `gh` = [ɡ 0.03, f 0.12, silent 0.85] (⟨gh⟩ is silent in the vast majority of words: night, though, high, weigh), `ie` = [aɪ 0.4, iː 0.6] (the /iː~i/ realisation of -ie/-ies edges out /aɪ/). Values are approximate frequencies grounded in Gontijo et al. (2003) British-English and Berndt et al. (1987) grapheme-phoneme probability studies, not PER-tuned parameters; graphemes without weights keep uniform rank ordering. See docs/candidate_scoring.md. Suffix spellings (⟨-tion⟩ ⟨-cious⟩ ⟨-tial⟩ …) are morphology, not graphemes: they are not units of the writing system and cannot be stated over phonological classes. English orthography is deep, so a lexicon or a morphological analyser in a downstream consumer of the lattice is the right place for them, not this spec.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -635,18 +614,21 @@
         "ə"
       ]
     },
-    "sion": {
-      "after_vowel": [
-        "ʒən",
-        "ʃən"
+    "y": {
+      "word_initial": [
+        "j"
       ],
-      "after_consonant": [
-        "ʃən",
-        "ʒən"
+      "before_vowel": [
+        "j"
+      ],
+      "word_final": [
+        "i",
+        "aɪ"
       ],
       "default": [
-        "ʒən",
-        "ʃən"
+        "ɪ",
+        "aɪ",
+        "i"
       ]
     }
   },
@@ -671,5 +653,6 @@
     "longitude": -1.0,
     "source": "glottolog",
     "notes": "Glottolog's representative point for English."
-  }
+  },
+  "collapse_geminates": true
 }

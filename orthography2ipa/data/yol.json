@@ -1,0 +1,143 @@
+{
+  "code": "yol",
+  "name": "Yola",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "th": [
+      "θ"
+    ],
+    "wh": [
+      "ʍ"
+    ],
+    "oo": [
+      "uː"
+    ],
+    "ee": [
+      "iː"
+    ],
+    "ou": [
+      "uː"
+    ],
+    "ea": [
+      "eː"
+    ],
+    "ai": [
+      "aɪ"
+    ],
+    "oa": [
+      "oː"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "ʊ"
+    ],
+    "y": [
+      "i"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "z"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "parent": "enm",
+  "ancestors": [
+    {
+      "code": "enm",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Middle English (South-West Midland input); Dolan & Ó Muirithe (1996)"
+    }
+  ],
+  "notes": "Skeleton. Yola (extinct English variety of Forth and Bargy, County Wexford), descended from Middle English. Idiosyncratic 18th-19th c. orthography; a broad English-like grapheme map is used and the elided leading apostrophe (e.g. 'cha) is unencoded. High PER expected.",
+  "iso639_3": "yol",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "dolan_omuirithe1996",
+      "author": "Dolan, T.P. & Ó Muirithe, Diarmaid",
+      "year": 1996,
+      "title": "The Dialect of Forth and Bargy, Co. Wexford, Ireland",
+      "publisher": "Four Courts Press",
+      "url": null,
+      "pages": null,
+      "notes": "Glossary and phonological description of Yola.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Yola_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Yola_language"
+  ],
+  "timespan": {
+    "start_year": 1200,
+    "end_year": 1900
+  }
+}

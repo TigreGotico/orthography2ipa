@@ -187,8 +187,11 @@ def test_atonic_function_words_reduce():
     # 1. UNSTRESSED VOWEL REDUCTION — Eastern only (Recasens 1996; Veny 1982)
     ("casa",   "kazə",   "kaza",    "kazɛ",   "kazə"),
     ("tenir",  "təni",   "teniɾ",   "teni",   "təni"),
-    # 2. unstressed ⟨o⟩ → [u] in Central, but NOT in Balearic
-    ("xocolata", "ʃukulatə", "tʃokolata", "tʃokolatɛ", "ʃokolatə"),
+    # 2. unstressed ⟨o⟩ → [u] in Central AND Majorcan Balearic (mallorquí),
+    #    but not in the non-reducing Western block (Valencian, North-Western).
+    #    Veny 1982 ch. 4; Recasens 1996; the ca-x-balear-010/011 arbitration
+    #    (euros [ˈɛwɾus], torrent [tuˈrent]).
+    ("xocolata", "ʃukulatə", "tʃokolata", "tʃokolatɛ", "ʃukulatə"),
     # 3. word-final ⟨-r⟩ — kept ONLY in Valencian (Veny 1982 ch. 3)
     ("cantar", "kənta",  "kantaɾ",  "kanta",  "kənta"),
 ])
@@ -260,9 +263,12 @@ def test_valencian_affricate_and_western_x():
     assert transcribe("marxar", "ca-x-occidental").endswith("tʃa")
 
 
-def test_balearic_keeps_unstressed_o():
-    """Balearic reduces ⟨a⟩/⟨e⟩ to [ə] but never raises unstressed ⟨o⟩."""
-    assert "u" not in transcribe("xocolata", "ca-x-balear")
+def test_balearic_raises_unstressed_o():
+    """Majorcan Balearic (mallorquí) reduces ⟨a⟩/⟨e⟩ to [ə] AND raises
+    unstressed ⟨o⟩ to [u], like the rest of Eastern Catalan (Veny 1982 ch. 4;
+    Recasens 1996; the ca-x-balear-010/011 arbitration: euros [ˈɛwɾus],
+    torrent [tuˈrent])."""
+    assert "ʃukuˈlatə" == transcribe("xocolata", "ca-x-balear")
     assert "ʃukuˈlatə" == transcribe("xocolata", "ca")
     assert "ə" in transcribe("casa", "ca-x-balear")
 

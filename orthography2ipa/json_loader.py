@@ -16,7 +16,6 @@ See ``data/SCHEMA.md`` for the JSON schema reference.
 """
 from __future__ import annotations
 
-import csv
 import json
 import warnings
 from pathlib import Path
@@ -223,6 +222,18 @@ def load_json_spec(code: str) -> LanguageSpec:
     base_field_langs: Dict[str, Optional[str]] = {
         field: raw.get(f"{field}_base") for field in _BASE_MERGE_FIELDS
     }
+    # ``positional_graphemes`` refine the grapheme table they belong to: a
+    # positional entry keys the *same* grapheme, narrowing its reading by
+    # position (word-final ي as /iː/ rather than /j/). Inheriting a grapheme
+    # table without its positional refinements yields half a table — the
+    # graphemes read, but every position-conditioned reading silently
+    # reverts to the default. So when a spec declares no
+    # ``positional_graphemes_base`` of its own, it follows ``graphemes_base``.
+    # Phonological layers (``allophones_base``) are a different stratum and
+    # keep requiring their own explicit edge.
+    if base_field_langs.get("positional_graphemes") is None:
+        base_field_langs["positional_graphemes"] = base_field_langs.get("graphemes")
+
     ancestors = raw.get("ancestors", [])
     ancestor_langs = [ancestor["code"] for ancestor in ancestors]
     # Base specs (graphemes_base etc.) MUST be loadable — they provide data.
@@ -258,7 +269,9 @@ def load_json_spec(code: str) -> LanguageSpec:
         base_lang = base_field_langs.get(field)
         if base_lang and base_lang in _specs:
             merged_base_fields[field] = {
-                **getattr(_specs[base_lang], field),
+                # a base spec may hold None for an optional dict field
+                # (word_exceptions) — treat that as empty, not an error
+                **(getattr(_specs[base_lang], field) or {}),
                 **own_value,
             }
         else:
@@ -313,10 +326,16 @@ def load_json_spec(code: str) -> LanguageSpec:
                 syllable_position=ar.get("syllable_position"),
                 preceded_by=ar.get("preceded_by"),
                 followed_by=ar.get("followed_by"),
+                preceded_by_2=ar.get("preceded_by_2"),
+                followed_by_2=ar.get("followed_by_2"),
                 preceded_by_phoneme=tuple(ar.get("preceded_by_phoneme", ())),
                 followed_by_phoneme=tuple(ar.get("followed_by_phoneme", ())),
+                preceded_by_phoneme_2=tuple(ar.get("preceded_by_phoneme_2", ())),
+                followed_by_phoneme_2=tuple(ar.get("followed_by_phoneme_2", ())),
                 grapheme=(tuple(ar["grapheme"])
                           if ar.get("grapheme") else None),
+                word=(tuple(ar["word"])
+                      if ar.get("word") else None),
                 notes=ar.get("notes", ""),
             )
             for ar in raw_allophone
@@ -390,7 +409,19 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_ortho.get("notes", "") or "",
         )
 
-    # Parse stress rules (own-file only — not inherited through ancestry)
+    # Parse stress rules. A spec's own ``stress`` block wins outright; when it
+    # declares none (absent or ``null``), the accentuation rules inherit
+    # through the ``graphemes_base`` data edge. Stress assignment is a
+    # language-generic behaviour: a dialect that only overlays graphemes /
+    # allophones over its base — e.g. ``es-ES-x-murcia`` over ``es-ES`` — must
+    # keep the base's stress placement rather than silently emitting unstressed
+    # output. The edge is ``graphemes_base`` and NOT the bare classification
+    # ``parent``, because stress marking is bound to the orthography: a spec's
+    # ``marked_vowels`` are graphemes (á é í …), so the written-accent rules
+    # only transfer to a spec that shares the base's writing system. A creole
+    # that keeps ``parent`` only for genetic classification while authoring its
+    # own orthography (``graphemes_base`` unset, e.g. Angolar ``aoa`` under
+    # ``pt-PT``) does not inherit stress — it declares its own or has none.
     stress: Optional[StressRules] = None
     raw_stress = raw.get("stress")
     if raw_stress and isinstance(raw_stress, dict):
@@ -401,8 +432,23 @@ def load_json_spec(code: str) -> LanguageSpec:
             marked_vowels=tuple(raw_stress.get("marked_vowels", ())),
             stress_mark=raw_stress.get("stress_mark", "ˈ"),
             diphthongs=tuple(raw_stress.get("diphthongs", ())),
+            quantity_sensitive=bool(raw_stress.get("quantity_sensitive", False)),
+            superheavy_final_attracts=bool(
+                raw_stress.get("superheavy_final_attracts", True)),
+            max_onset=int(raw_stress.get("max_onset", 1)),
+            cliticless_words=tuple(raw_stress.get("cliticless_words", ())),
+            coda_liquid_capture=bool(
+                raw_stress.get("coda_liquid_capture", False)),
+            source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )
+    else:
+        # No own stress block: inherit the graphemes-base spec's resolved
+        # StressRules (already resolved up its own chain), so a child that
+        # shares its base's orthography also shares its accentuation.
+        _stress_base = base_field_langs.get("graphemes")
+        if _stress_base and _stress_base in _specs:
+            stress = _specs[_stress_base].stress
 
     # Derive the classification path from the ancestry chain. The chain is
     # walked through ``parent``; a spec that declares its genetic parent only
@@ -443,6 +489,13 @@ def load_json_spec(code: str) -> LanguageSpec:
         quality=raw.get("quality", QualityTier.RESEARCH),
         script_type=raw.get("script_type", ScriptType.ALPHABET),
         inherent_vowel=raw.get("inherent_vowel"),
+        plugins={
+            stage: ((names,) if isinstance(names, str) else tuple(names))
+            for stage, names in (raw.get("plugins", {}) or {}).items()
+        },
+        optional_marks=tuple(raw.get("optional_marks", ()) or ()),
+        fold_diacritics=tuple(raw.get("fold_diacritics", ()) or ()),
+        collapse_geminates=bool(raw.get("collapse_geminates", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),
         wikidata_qid=raw.get("wikidata_qid"),
@@ -450,6 +503,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         wals_code=raw.get("wals_code"),
         sandhi_rules=sandhi_rules,
         allophone_rules=allophone_rules,
+        allophone_passes=int(raw.get("allophone_passes", 1)),
         tone_inventory=raw.get("tone_inventory"),
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
@@ -458,7 +512,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         location=location,
         timespan=timespan,
         stress=stress,
-        word_exceptions=raw.get("word_exceptions"),
+        word_exceptions=merged_base_fields["word_exceptions"] or None,
         grapheme_weights=own_grapheme_weights or None,
     )
 
@@ -490,56 +544,5 @@ def load_all_json_specs() -> Dict[str, LanguageSpec]:
 def available_json_codes() -> List[str]:
     """Return sorted list of all language codes with JSON data files."""
     return sorted(_index.keys())
-
-
-def load_lexicon(code: str) -> Optional[Dict[str, str]]:
-    """Load the bundled IPA lexicon for a language code, if one exists.
-
-    Reads the CSV file declared in the language's JSON ``lexicon_csv`` field.
-    The CSV must have at minimum ``word`` and ``ipa`` columns; additional
-    columns (``source``, ``pt_equivalent``) are ignored.
-
-    Parameters
-    ----------
-    code : str
-        BCP-47 language code (e.g. ``"ast-PT-x-rionor"``).
-
-    Returns
-    -------
-    Dict[str, str] or None
-        Mapping of orthographic word → best IPA string, or ``None`` if the
-        language has no bundled lexicon or the file cannot be found.
-
-    Examples
-    --------
-    >>> lex = load_lexicon("ast-PT-x-rionor")
-    >>> lex["abajo"]
-    'aˈbaʒo'
-    """
-    if code not in _index:
-        return None
-    lang_file: Path = _index[code]
-    with lang_file.open() as f:
-        raw = json.load(f)
-    csv_rel = raw.get("lexicon_csv")
-    if not csv_rel:
-        return None
-    csv_path = _DATA_DIR / csv_rel
-    if not csv_path.exists():
-        warnings.warn(
-            f"lexicon_csv '{csv_rel}' declared for '{code}' but file not found at {csv_path}",
-            stacklevel=2,
-        )
-        return None
-    lexicon: Dict[str, str] = {}
-    with csv_path.open(newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            word = row.get("word", "").strip().lower()
-            ipa = row.get("ipa", "").strip()
-            if word and ipa:
-                lexicon[word] = ipa
-    return lexicon
-
 
 _index_files()

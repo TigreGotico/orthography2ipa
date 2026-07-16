@@ -144,19 +144,19 @@
       "a"
     ],
     "اَ": [
-      "aː"
+      "a"
     ],
     "وُ": [
-      "uː"
+      "wu"
     ],
     "يِ": [
-      "iː"
+      "ji"
     ],
     "وَ": [
-      "aw"
+      "wa"
     ],
     "يَ": [
-      "aj"
+      "ja"
     ],
     "َا": [
       "aː"
@@ -181,6 +181,549 @@
     ],
     "ئ": [
       "ʔ"
+    ],
+    "اَل": [
+      "al"
+    ],
+    "أَ": [
+      "ʔa"
+    ],
+    "أُ": [
+      "ʔu"
+    ],
+    "إِ": [
+      "ʔi"
+    ],
+    "ِيَ": [
+      "ija"
+    ],
+    "ُوَ": [
+      "uwa"
+    ],
+    "ِيي": [
+      "ijj"
+    ],
+    "ُوو": [
+      "uww"
+    ],
+    "ةَ": [
+      "ta"
+    ],
+    "ةُ": [
+      "tu"
+    ],
+    "ةِ": [
+      "ti"
+    ],
+    "ةً": [
+      "tan"
+    ],
+    "ةٌ": [
+      "tun"
+    ],
+    "ةٍ": [
+      "tin"
+    ],
+    "ًا": [
+      "an"
+    ],
+    "ًى": [
+      "an"
+    ],
+    "اً": [
+      "an"
+    ],
+    "وَال": [
+      "wal"
+    ],
+    "فَال": [
+      "fal"
+    ],
+    "بِال": [
+      "bil"
+    ],
+    "كَال": [
+      "kal"
+    ],
+    "لِل": [
+      "lil"
+    ],
+    "التت": [
+      "att"
+    ],
+    "اَلتت": [
+      "att"
+    ],
+    "لِلتت": [
+      "litt"
+    ],
+    "وَالتت": [
+      "watt"
+    ],
+    "فَالتت": [
+      "fatt"
+    ],
+    "بِالتت": [
+      "bitt"
+    ],
+    "كَالتت": [
+      "katt"
+    ],
+    "الثث": [
+      "aθθ"
+    ],
+    "اَلثث": [
+      "aθθ"
+    ],
+    "لِلثث": [
+      "liθθ"
+    ],
+    "وَالثث": [
+      "waθθ"
+    ],
+    "فَالثث": [
+      "faθθ"
+    ],
+    "بِالثث": [
+      "biθθ"
+    ],
+    "كَالثث": [
+      "kaθθ"
+    ],
+    "الدد": [
+      "add"
+    ],
+    "اَلدد": [
+      "add"
+    ],
+    "لِلدد": [
+      "lidd"
+    ],
+    "وَالدد": [
+      "wadd"
+    ],
+    "فَالدد": [
+      "fadd"
+    ],
+    "بِالدد": [
+      "bidd"
+    ],
+    "كَالدد": [
+      "kadd"
+    ],
+    "الذذ": [
+      "aðð"
+    ],
+    "اَلذذ": [
+      "aðð"
+    ],
+    "لِلذذ": [
+      "liðð"
+    ],
+    "وَالذذ": [
+      "waðð"
+    ],
+    "فَالذذ": [
+      "faðð"
+    ],
+    "بِالذذ": [
+      "biðð"
+    ],
+    "كَالذذ": [
+      "kaðð"
+    ],
+    "الرر": [
+      "arr"
+    ],
+    "اَلرر": [
+      "arr"
+    ],
+    "لِلرر": [
+      "lirr"
+    ],
+    "وَالرر": [
+      "warr"
+    ],
+    "فَالرر": [
+      "farr"
+    ],
+    "بِالرر": [
+      "birr"
+    ],
+    "كَالرر": [
+      "karr"
+    ],
+    "الزز": [
+      "azz"
+    ],
+    "اَلزز": [
+      "azz"
+    ],
+    "لِلزز": [
+      "lizz"
+    ],
+    "وَالزز": [
+      "wazz"
+    ],
+    "فَالزز": [
+      "fazz"
+    ],
+    "بِالزز": [
+      "bizz"
+    ],
+    "كَالزز": [
+      "kazz"
+    ],
+    "السس": [
+      "ass"
+    ],
+    "اَلسس": [
+      "ass"
+    ],
+    "لِلسس": [
+      "liss"
+    ],
+    "وَالسس": [
+      "wass"
+    ],
+    "فَالسس": [
+      "fass"
+    ],
+    "بِالسس": [
+      "biss"
+    ],
+    "كَالسس": [
+      "kass"
+    ],
+    "الشش": [
+      "aʃʃ"
+    ],
+    "اَلشش": [
+      "aʃʃ"
+    ],
+    "لِلشش": [
+      "liʃʃ"
+    ],
+    "وَالشش": [
+      "waʃʃ"
+    ],
+    "فَالشش": [
+      "faʃʃ"
+    ],
+    "بِالشش": [
+      "biʃʃ"
+    ],
+    "كَالشش": [
+      "kaʃʃ"
+    ],
+    "الصص": [
+      "asˤsˤ"
+    ],
+    "اَلصص": [
+      "asˤsˤ"
+    ],
+    "لِلصص": [
+      "lisˤsˤ"
+    ],
+    "وَالصص": [
+      "wasˤsˤ"
+    ],
+    "فَالصص": [
+      "fasˤsˤ"
+    ],
+    "بِالصص": [
+      "bisˤsˤ"
+    ],
+    "كَالصص": [
+      "kasˤsˤ"
+    ],
+    "الضض": [
+      "aɮˤɮˤ"
+    ],
+    "اَلضض": [
+      "aɮˤɮˤ"
+    ],
+    "لِلضض": [
+      "liɮˤɮˤ"
+    ],
+    "وَالضض": [
+      "waɮˤɮˤ"
+    ],
+    "فَالضض": [
+      "faɮˤɮˤ"
+    ],
+    "بِالضض": [
+      "biɮˤɮˤ"
+    ],
+    "كَالضض": [
+      "kaɮˤɮˤ"
+    ],
+    "الطط": [
+      "atˤtˤ"
+    ],
+    "اَلطط": [
+      "atˤtˤ"
+    ],
+    "لِلطط": [
+      "litˤtˤ"
+    ],
+    "وَالطط": [
+      "watˤtˤ"
+    ],
+    "فَالطط": [
+      "fatˤtˤ"
+    ],
+    "بِالطط": [
+      "bitˤtˤ"
+    ],
+    "كَالطط": [
+      "katˤtˤ"
+    ],
+    "الظظ": [
+      "aðˤðˤ"
+    ],
+    "اَلظظ": [
+      "aðˤðˤ"
+    ],
+    "لِلظظ": [
+      "liðˤðˤ"
+    ],
+    "وَالظظ": [
+      "waðˤðˤ"
+    ],
+    "فَالظظ": [
+      "faðˤðˤ"
+    ],
+    "بِالظظ": [
+      "biðˤðˤ"
+    ],
+    "كَالظظ": [
+      "kaðˤðˤ"
+    ],
+    "اللل": [
+      "all"
+    ],
+    "اَللل": [
+      "all"
+    ],
+    "لِللل": [
+      "lill"
+    ],
+    "وَاللل": [
+      "wall"
+    ],
+    "فَاللل": [
+      "fall"
+    ],
+    "بِاللل": [
+      "bill"
+    ],
+    "كَاللل": [
+      "kall"
+    ],
+    "النن": [
+      "ann"
+    ],
+    "اَلنن": [
+      "ann"
+    ],
+    "لِلنن": [
+      "linn"
+    ],
+    "وَالنن": [
+      "wann"
+    ],
+    "فَالنن": [
+      "fann"
+    ],
+    "بِالنن": [
+      "binn"
+    ],
+    "كَالنن": [
+      "kann"
+    ],
+    "وو": [
+      "ww"
+    ],
+    "يي": [
+      "jj"
+    ],
+    "َاي": [
+      "aːj"
+    ],
+    "َة": [
+      "a"
+    ],
+    "اِل": [
+      "il"
+    ],
+    "اِلتت": [
+      "itt"
+    ],
+    "اِلثث": [
+      "iθθ"
+    ],
+    "اِلدد": [
+      "idd"
+    ],
+    "اِلذذ": [
+      "iðð"
+    ],
+    "اِلرر": [
+      "irr"
+    ],
+    "اِلزز": [
+      "izz"
+    ],
+    "اِلسس": [
+      "iss"
+    ],
+    "اِلشش": [
+      "iʃʃ"
+    ],
+    "اِلصص": [
+      "isˤsˤ"
+    ],
+    "اِلضض": [
+      "iɮˤɮˤ"
+    ],
+    "اِلطط": [
+      "itˤtˤ"
+    ],
+    "اِلظظ": [
+      "iðˤðˤ"
+    ],
+    "اِللل": [
+      "ill"
+    ],
+    "اِلنن": [
+      "inn"
+    ],
+    "َوو": [
+      "aww"
+    ],
+    "َيي": [
+      "ajj"
+    ],
+    "وِال": [
+      "wil"
+    ],
+    "وِالتت": [
+      "witt"
+    ],
+    "وِالثث": [
+      "wiθθ"
+    ],
+    "وِالدد": [
+      "widd"
+    ],
+    "وِالذذ": [
+      "wiðð"
+    ],
+    "وِالرر": [
+      "wirr"
+    ],
+    "وِالزز": [
+      "wizz"
+    ],
+    "وِالسس": [
+      "wiss"
+    ],
+    "وِالشش": [
+      "wiʃʃ"
+    ],
+    "وِالصص": [
+      "wisˤsˤ"
+    ],
+    "وِالضض": [
+      "wiɮˤɮˤ"
+    ],
+    "وِالطط": [
+      "witˤtˤ"
+    ],
+    "وِالظظ": [
+      "wiðˤðˤ"
+    ],
+    "وِاللل": [
+      "will"
+    ],
+    "وِالنن": [
+      "winn"
+    ],
+    "ُوا": [
+      "uː"
+    ],
+    "ُوي": [
+      "uːj"
+    ],
+    "ُوَا": [
+      "uwaː"
+    ],
+    "ِيَا": [
+      "ijaː"
+    ],
+    "َوَ": [
+      "awa"
+    ],
+    "َوِ": [
+      "awi"
+    ],
+    "َوُ": [
+      "awu"
+    ],
+    "َوَا": [
+      "awaː"
+    ],
+    "َيَ": [
+      "aja"
+    ],
+    "َيِ": [
+      "aji"
+    ],
+    "َيُ": [
+      "aju"
+    ],
+    "َيَا": [
+      "ajaː"
+    ],
+    "إِي": [
+      "ʔiː"
+    ],
+    "أُو": [
+      "ʔuː"
+    ],
+    "َٰ": [
+      "aː"
+    ],
+    "ٰ": [
+      "aː"
+    ],
+    "الله": [
+      "allaːh"
+    ],
+    "اللله": [
+      "allaːh"
+    ],
+    "وَٱ": [
+      "wa"
+    ],
+    "فَٱ": [
+      "fa"
+    ],
+    "بِٱ": [
+      "bi"
+    ],
+    "كَٱ": [
+      "ka"
+    ],
+    "وِٱ": [
+      "wi"
+    ],
+    "ٱل": [
+      "al"
+    ],
+    "ٱ": [
+      ""
     ]
   },
   "allophones": {
@@ -310,34 +853,17 @@
   ],
   "sandhi_rules": [
     {
-      "id": "AR_SUN_ASSIMILATION",
-      "name": "sun-letter-assimilation",
-      "left_context": "l$",
-      "right_context": "^[tθdðszʃnrlɫɮtˤdˤsˤðˤ]",
-      "transform": "",
+      "id": "AR_HAMZAT_WASL_ARTICLE",
+      "name": "hamzat-al-wasl (article) elision",
+      "left_context": "[aiueoɑæə]ː?$",
+      "right_context": "^[aɑ](?=[^aeiouɑɐæɪʊəɛɔː])",
+      "transform": null,
+      "right_transform": "",
       "obligatory": true,
-      "notes": "al-shams → ash-shams (l assimilates to following sun letter). The emphatic sun letters (ص ض ط ظ → sˤ dˤ tˤ ðˤ) are listed explicitly for clarity/completeness, though the base coronal codepoints (t d s ð) already present in the class matched these on their leading codepoint before this addition — so their inclusion is not closing a real assimilation gap."
-    },
-    {
-      "id": "AR_HAMZAT_WASL",
-      "name": "hamzat-al-wasl",
-      "left_context": "[aeiouː]$",
-      "right_context": "^[ʔ]",
-      "transform": "",
-      "obligatory": true,
-      "notes": "fi al-bayt → fil-bayt (hamzat al-wasl elision after vowel)"
-    },
-    {
-      "id": "AR_PAUSAL_TANWIN",
-      "name": "pausal-tanwin",
-      "left_context": "[n]$",
-      "right_context": "$",
-      "transform": "",
-      "obligatory": false,
-      "notes": "kitāban → kitābā (tanwin drops in pause)"
+      "notes": "The hamzat-wasl /a/ of a word-initial definite article elides after a vowel-final word: fiː albajti → fiː lbajti; fiː aʃʃamsi → fiː ʃʃamsi (Ryding 2005 §2.10). Only the article's seat vowel is deleted (right_transform) — hamzat qatʕ words start /ʔ/ and are untouched."
     }
   ],
-  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002).",
+  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002). Tā' marbūṭa: realized [at] when a vowel follows (inflected, non-pausal context) and [a] pre-pausally — Classical behaviour per Watson (2002) and Versteegh (2001); encoded positionally (before_vowel).",
   "sources": [
     {
       "id": "watson2002",
@@ -389,5 +915,88 @@
     "longitude": 43.8525,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Standard Arabic."
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ],
+  "script_type": "abjad",
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "cliticless_words": [
+      "فِي",
+      "وَلَوْ"
+    ]
+  },
+  "positional_graphemes": {
+    "ة": {
+      "after_vowel": [
+        ""
+      ],
+      "default": [
+        "a",
+        "at"
+      ]
+    },
+    "َة": {
+      "before_vowel": [
+        "at"
+      ],
+      "default": [
+        "a"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "AR_WASL_EPENTHESIS",
+      "phonemes": [
+        "ʔ"
+      ],
+      "surface": "ʔi",
+      "word_initial": true,
+      "followed_by": "consonant",
+      "notes": "Hamzat al-waṣl prosthesis (Wright I §19–20; Ryding 2005 §2.10): a word-initial bare waṣl ʼalif before a sukūn consonant takes the default prosthetic vowel /i/, giving [ʔiC…] not the illegal [ʔC…] onset (اسْأَل → [ʔisʔal], اشْتَرَيْت → [ʔiʃtarajt], اتَّصِل → [ʔittasˤil]). The /u/ of u-stem imperatives (اُكْتُب → [ʔuktub]) is written as ḍamma on the ʼalif and read directly, so only the unmarked default needs supplying. Fires only on the bare ʼalif's vowelless /ʔ/; hamzat-qatʕ ء/أ/إ carry their own vowel ([ʔV]) and never match."
+    }
+  ],
+  "word_exceptions": {
+    "هذا": "haːðaː",
+    "هَذَا": "haːðaː",
+    "هٰذَا": "haːðaː",
+    "هذه": "haːðihi",
+    "هَذِهِ": "haːðihi",
+    "هَذِه": "haːðih",
+    "هذي": "haːðiː",
+    "هَذِي": "haːðiː",
+    "ذلك": "ðaːlika",
+    "ذَلِكَ": "ðaːlika",
+    "ذَلِك": "ðaːlik",
+    "لكن": "laːkin",
+    "لَكِن": "laːkin",
+    "لَكِنْ": "laːkin",
+    "لكنّ": "laːkinna",
+    "لَكِنَّ": "laːkinna",
+    "الله": "ɑɫɫɑːh",
+    "اللَّه": "ɑɫɫɑːh",
+    "اللَّهِ": "ɑɫɫɑːhi",
+    "اللَّهُ": "ɑɫɫɑːhu",
+    "اللَّهَ": "ɑɫɫɑːha",
+    "والله": "waɫɫɑːh",
+    "وَالله": "waɫɫɑːh",
+    "وَاللَّه": "waɫɫɑːh",
+    "اللّٰه": "ɑɫɫɑːh"
   }
 }

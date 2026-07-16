@@ -1,0 +1,172 @@
+{
+  "code": "ota",
+  "name": "Ottoman Turkish (1500-1928)",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "quality": "skeleton",
+  "graphemes": {
+    "ب": [
+      "b"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ت": [
+      "t"
+    ],
+    "ث": [
+      "s"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "ح": [
+      "h"
+    ],
+    "خ": [
+      "x"
+    ],
+    "د": [
+      "d"
+    ],
+    "ذ": [
+      "z"
+    ],
+    "ر": [
+      "r"
+    ],
+    "ز": [
+      "z"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "س": [
+      "s"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ص": [
+      "s"
+    ],
+    "ض": [
+      "d"
+    ],
+    "ط": [
+      "t"
+    ],
+    "ظ": [
+      "z"
+    ],
+    "ع": [
+      "ʔ"
+    ],
+    "غ": [
+      "ɣ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ق": [
+      "k"
+    ],
+    "ك": [
+      "k"
+    ],
+    "گ": [
+      "ɡ"
+    ],
+    "ڭ": [
+      "ŋ"
+    ],
+    "ل": [
+      "l"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "و": [
+      "v"
+    ],
+    "ه": [
+      "h"
+    ],
+    "ی": [
+      "j"
+    ],
+    "ء": [
+      "ʔ"
+    ],
+    "ا": [
+      "a"
+    ],
+    "آ": [
+      "aː"
+    ],
+    "ئ": [
+      "ʔ"
+    ],
+    "ة": [
+      "a"
+    ],
+    "َ": [
+      "e"
+    ],
+    "ِ": [
+      "i"
+    ],
+    "ُ": [
+      "u"
+    ],
+    "ْ": [
+      ""
+    ]
+  },
+  "parent": "tr",
+  "ancestors": [
+    {
+      "code": "tr",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Ottoman Turkish (otto1234)."
+    }
+  ],
+  "notes": "Skeleton. Ottoman Turkish, the Arabic-script form of Turkish (Turkic) used until 1928. Consonant letters are mapped to IPA, including the Perso-Turkish additions پ=[p], چ=[tʃ], ژ=[ʒ], گ=[ɡ] and sağır kef ڭ=[ŋ]; the Arabic emphatic and pharyngeal letters ث ص ض ط ظ ح ع fold into plain Turkish consonants. The script is an abjad for Turkish vowels: the eight-vowel harmony system is carried underspecified by و ی ا ه, so vowel quality is largely unrecoverable and a high PER floor is expected. Front/back readings of ك/ق and گ/غ, vowel length in Arabic/Persian loans, and stress are left unencoded.",
+  "iso639_3": "ota",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "ota_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Ottoman Turkish (otto1234)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/otto1234",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "ota_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Ottoman Turkish alphabet",
+      "publisher": "Wikipedia",
+      "url": null,
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ottoman_Turkish_alphabet"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ottoman_Turkish",
+    "https://en.wikipedia.org/wiki/Ottoman_Turkish_alphabet"
+  ]
+}

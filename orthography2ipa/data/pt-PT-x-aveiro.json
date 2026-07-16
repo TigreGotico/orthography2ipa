@@ -80,6 +80,7 @@
   },
   "iso639_3": "por",
   "stress": {
+    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -116,7 +117,29 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam). DIPHTHONGS: declared so the bundled syllabifier counts nuclei correctly — without them every vowel run merges into one nucleus and co-e-lho is read as coe-lho, one syllable short, putting the stress and its vowel reduction on the wrong vowel. ⟨oe⟩ is hiatus, not a diphthong (Cunha & Cintra, §Ditongos).",
+    "diphthongs": [
+      "ãe",
+      "ão",
+      "õe",
+      "ai",
+      "ái",
+      "au",
+      "áu",
+      "ei",
+      "éi",
+      "êi",
+      "eu",
+      "éu",
+      "êu",
+      "iu",
+      "oi",
+      "ói",
+      "ôi",
+      "ou",
+      "ui",
+      "uí"
+    ]
   },
   "graphemes": {
     "ç": [
@@ -138,7 +161,7 @@
       "intervocalic": [
         "z̺"
       ],
-      "coda": [
+      "before_consonant": [
         "ʃ",
         "ʒ"
       ],
@@ -162,7 +185,7 @@
         "ʃ",
         "z̺"
       ],
-      "coda": [
+      "before_consonant": [
         "ʃ"
       ]
     },
@@ -180,5 +203,6 @@
     "longitude": -8.655278,
     "source": "wikidata",
     "notes": "Aveiro — the centre of the Beira Litoral coastal zone (Aveiro, Vagos). [Wikidata Q485581 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

@@ -86,19 +86,24 @@ class TestEgyptianArabic:
     # --- word level (consonant reflexes) ---
     def test_jim_to_g_jabal(self):
         """جَبَل 'mountain' → [ɡabal] — Cairene jim → /ɡ/ (the marquee feature)."""
-        assert _ipa(self.CODE, "جَبَل") == "ɡabal"
+        assert _ipa(self.CODE, "جَبَل") == "ˈɡabal"
 
     def test_qaf_to_glottal_qalb(self):
         """قَلْب 'heart' → [ʔalb] — qaf → /ʔ/ in inherited vocabulary."""
-        assert _ipa(self.CODE, "قَلْب") == "ʔalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈʔalb"
 
     def test_tha_merges_to_t_thalg(self):
         """ثَلْج 'ice/snow' → [talɡ] — ث merges to /t/ (and jim → /ɡ/)."""
-        assert _ipa(self.CODE, "ثَلْج") == "talɡ"
+        assert _ipa(self.CODE, "ثَلْج") == "ˈtalɡ"
 
     def test_dhal_merges_to_d_dahab(self):
         """ذَهَب 'gold' → [dahab] — ذ merges to /d/."""
-        assert _ipa(self.CODE, "ذَهَب") == "dahab"
+        assert _ipa(self.CODE, "ذَهَب") == "ˈdahab"
+
+    def test_sanya_lexical_tha_to_s(self):
+        """ثَانْيَة 'second' → [sanja] — lexeme-specific ث → /s/, not the /t/
+        merger (Badawi & Hinds 1986)."""
+        assert _ipa(self.CODE, "ثَانْيَة") == "ˈsanja"
 
     # --- grapheme level (variants / merger alternates) ---
     def test_jim_grapheme_only_g(self):
@@ -162,7 +167,7 @@ class TestLevantineProto:
 
     def test_qalb_glottal(self):
         """قَلْب → [ʔalb] — urban qaf → /ʔ/."""
-        assert _ipa(self.CODE, "قَلْب") == "ʔalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈʔalb"
 
     def test_parent(self):
         assert self.spec.parent == "ar-x-mashriqi"
@@ -183,15 +188,15 @@ class TestSyrianArabic:
 
     def test_qaf_glottal_qalb(self):
         """قَلْب → [ʔalb] — Damascene qaf → /ʔ/."""
-        assert _ipa(self.CODE, "قَلْب") == "ʔalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈʔalb"
 
     def test_qaf_glottal_qamar(self):
         """قَمَر 'moon' → [ʔamar] — qaf → /ʔ/."""
-        assert _ipa(self.CODE, "قَمَر") == "ʔamar"
+        assert _ipa(self.CODE, "قَمَر") == "ˈʔamar"
 
     def test_jim_zh_jamal(self):
         """جَمَل 'camel' → [ʒamal] — Syrian jim → /ʒ/."""
-        assert _ipa(self.CODE, "جَمَل") == "ʒamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈʒamal"
 
     def test_jim_grapheme_zh_first(self):
         """ج primary /ʒ/."""
@@ -221,11 +226,11 @@ class TestLebaneseArabic:
 
     def test_qaf_glottal_qalb(self):
         """قَلْب → [ʔalb] — Beiruti qaf → /ʔ/."""
-        assert _ipa(self.CODE, "قَلْب") == "ʔalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈʔalb"
 
     def test_jim_zh_jamal(self):
         """جَمَل → [ʒamal] — Lebanese jim → /ʒ/."""
-        assert _ipa(self.CODE, "جَمَل") == "ʒamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈʒamal"
 
     def test_imala_aa_raised(self):
         """aː allophone primary [eː] — Lebanese strong imāla raises /aː/."""
@@ -258,11 +263,11 @@ class TestJordanianArabic:
 
     def test_qaf_g_qalb(self):
         """قَلْب → [ɡalb] — Jordanian qaf → /ɡ/ (Bedouin/rural prestige)."""
-        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈɡalb"
 
     def test_jim_affricate_jamal(self):
         """جَمَل → [dʒamal] — Jordanian jim → /dʒ/ (affricate retained)."""
-        assert _ipa(self.CODE, "جَمَل") == "dʒamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈdʒamal"
 
     def test_qaf_grapheme_g_first(self):
         """ق primary /ɡ/, with /ʔ/ (urban Ammani) and /q/ available."""
@@ -274,6 +279,10 @@ class TestJordanianArabic:
         """ج primary /dʒ/, /ʒ/ available (Syro-Lebanese contact)."""
         _assert_first(_grapheme(self.spec, "ج"), "dʒ", label="ج")
         _assert_contains(_grapheme(self.spec, "ج"), "ʒ", label="ج")
+
+    def test_iza_dhal_to_z(self):
+        """إِذَا → [ʔizaː] — Levantine 'if' has /z/ for the ذ (Cowell 1964)."""
+        assert _ipa(self.CODE, "إِذَا") == "ˈʔizaː"
 
     def test_parent(self):
         assert self.spec.parent == "ar-x-levantine"
@@ -295,11 +304,11 @@ class TestPalestinianArabic:
 
     def test_qaf_glottal_qalb(self):
         """قَلْب → [ʔalb] — urban (Jerusalem) qaf → /ʔ/ (prestige form)."""
-        assert _ipa(self.CODE, "قَلْب") == "ʔalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈʔalb"
 
     def test_jim_zh_jamal(self):
         """جَمَل → [ʒamal] — urban jim → /ʒ/."""
-        assert _ipa(self.CODE, "جَمَل") == "ʒamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈʒamal"
 
     def test_qaf_three_way_split(self):
         """ق lists /ʔ/ (urban), /k/ (central rural fellahin), /ɡ/ (Bedouin), /q/."""
@@ -331,19 +340,19 @@ class TestSudaneseArabic:
 
     def test_jim_palatal_jamal(self):
         """جَمَل → [ɟamal] — Sudanese jim → /ɟ/ (voiced palatal stop)."""
-        assert _ipa(self.CODE, "جَمَل") == "ɟamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈɟamal"
 
     def test_jim_palatal_jabal(self):
         """جَبَل → [ɟabal] — jim → /ɟ/."""
-        assert _ipa(self.CODE, "جَبَل") == "ɟabal"
+        assert _ipa(self.CODE, "جَبَل") == "ˈɟabal"
 
     def test_qaf_g_qalb(self):
         """قَلْب → [ɡalb] — Sudanese qaf → /ɡ/ (Bedouin-origin reflex)."""
-        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈɡalb"
 
     def test_tha_merges_to_t_thalg(self):
         """ثَلْج → [talɟ] — ث merges to /t/, jim → /ɟ/ (Egypto-Sudanic merger)."""
-        assert _ipa(self.CODE, "ثَلْج") == "talɟ"
+        assert _ipa(self.CODE, "ثَلْج") == "ˈtalɟ"
 
     def test_jim_grapheme_palatal_first(self):
         """ج primary /ɟ/ — distinguishes Sudanese from EG /ɡ/ and Levantine /ʒ/."""
@@ -374,11 +383,11 @@ class TestHejaziArabic:
 
     def test_qaf_g_qalb(self):
         """قَلْب → [ɡalb] — Hejazi qaf → /ɡ/ (chain shift q→g→dʒ); NOT /ʔ/."""
-        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈɡalb"
 
     def test_jim_affricate_jamal(self):
         """جَمَل → [dʒamal] — Hejazi jim → /dʒ/."""
-        assert _ipa(self.CODE, "جَمَل") == "dʒamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈdʒamal"
 
     def test_qaf_grapheme_g_first(self):
         """ق primary /ɡ/, /q/ retained only in learned borrowings."""
@@ -405,7 +414,7 @@ class TestGulfCountryReflexes:
     @pytest.mark.parametrize("code", ["ar-AE", "ar-KW", "ar-BH", "ar-QA"])
     def test_qaf_g_qalb(self, code):
         """قَلْب → [ɡalb] — Gulf qaf → /ɡ/ inherited from ar-x-gulf."""
-        assert _ipa(code, "قَلْب") == "ɡalb"
+        assert _ipa(code, "قَلْب") == "ˈɡalb"
 
     @pytest.mark.parametrize("code", ["ar-AE", "ar-KW"])
     def test_jim_yaa_variant(self, code):
@@ -428,8 +437,8 @@ class TestGulfCountryReflexes:
         """
         spec = _load(code)
         assert "GULF_K_AFFRICATION" in [r.id for r in spec.allophone_rules]
-        assert _ipa(code, "كِتَاب").startswith("tʃ")
-        assert _ipa(code, "كَلْب").startswith("k")
+        assert _ipa(code, "كِتَاب").lstrip("ˈˌ").startswith("tʃ")
+        assert _ipa(code, "كَلْب").lstrip("ˈˌ").startswith("k")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -446,11 +455,11 @@ class TestYemeniReflex:
 
     def test_jim_affricate_jabal(self):
         """جَبَل → [dʒabal] — Ṣanʿānī jim → /dʒ/ affricate (Watson 2002 p.11)."""
-        assert _ipa(self.CODE, "جَبَل") == "dʒabal"
+        assert _ipa(self.CODE, "جَبَل") == "ˈdʒabal"
 
     def test_qaf_g_qalb(self):
         """قَلْب → [ɡalb] — Ṣanʿānī qaf → /ɡ/ voiced velar (Watson 2002 §2.2 p.20)."""
-        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈɡalb"
 
     def test_qaf_g_grapheme_first(self):
         """ق primary /ɡ/ — *q realized in no lexeme, even Standard/religious words."""
@@ -485,19 +494,19 @@ class TestYemeniReflex:
 class TestEmphaticSpreading:
     def test_msa_backs_long_a_after_emphatic(self):
         """صَابَ → [sˤɑːba] — MSA /aː/ backs to [ɑː] after emphatic /sˤ/."""
-        assert _ipa("ar", "صَابَ") == "sˤɑːba"
+        assert _ipa("ar", "صَابَ") == "ˈsˤɑːba"
 
     def test_msa_backs_short_a_between_no_emphatic_unchanged(self):
         """قَلْب → [qalb] — no emphatic, so /a/ stays [a] (rule does not fire)."""
-        assert _ipa("ar", "قَلْب") == "qalb"
+        assert _ipa("ar", "قَلْب") == "ˈqalb"
 
     def test_msa_backs_short_a_before_emphatic(self):
         """بَطَل → [bɑtˤɑl] — /a/ backs to [ɑ] on both sides of emphatic /tˤ/."""
-        assert _ipa("ar", "بَطَل") == "bɑtˤɑl"
+        assert _ipa("ar", "بَطَل") == "ˈbɑtˤɑl"
 
     def test_egyptian_emphatic_spreading(self):
         """صَبَاح → [sˤɑbaːħ] — Cairene /a/ backs to [ɑ] next to emphatic /sˤ/."""
-        assert _ipa("ar-EG", "صَبَاح") == "sˤɑbaːħ"
+        assert _ipa("ar-EG", "صَبَاح") == "sˤɑˈbaːħ"
 
     def test_rule_ids_present_on_msa(self):
         """MSA declares the four AR_EMPH_BACK_* allophone rules."""
@@ -531,23 +540,23 @@ class TestNajdiArabic:
 
     def test_qaf_to_g(self):
         """قَلْب → [ɡalb] — Najdi qaf → /ɡ/."""
-        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈɡalb"
 
     def test_k_affricates_before_front_vowel(self):
         """كِلاب → [tsil…] — /k/ → [ts] before front /i/ (Ingham 1994)."""
-        assert _ipa(self.CODE, "كِلاب").startswith("ts")
+        assert _ipa(self.CODE, "كِلاب").lstrip("ˈˌ").startswith("ts")
 
     def test_k_no_affrication_before_back_vowel(self):
         """كَلْب → [kalb] — /k/ stays [k] before back /a/ (no front-vowel env)."""
-        assert _ipa(self.CODE, "كَلْب") == "kalb"
+        assert _ipa(self.CODE, "كَلْب") == "ˈkalb"
 
     def test_g_affricates_before_front_vowel(self):
         """قِرْد → [dzird] — /ɡ/ (qaf reflex) → [dz] before front /i/."""
-        assert _ipa(self.CODE, "قِرْد") == "dzird"
+        assert _ipa(self.CODE, "قِرْد") == "ˈdzird"
 
     def test_gahawa_epenthesis(self):
         """لَحْم → [laħam] — gahawa epenthetic /a/ after guttural /ħ/."""
-        assert _ipa(self.CODE, "لَحْم") == "laħam"
+        assert _ipa(self.CODE, "لَحْم") == "ˈlaħam"
 
     def test_dad_merges_to_emphatic_interdental(self):
         """ض → [ðˤ] first — Old-Arabic ض/ظ neutralise to [ðˤ] (Ingham 1994)."""
@@ -580,15 +589,15 @@ class TestHejaziMonophthong:
 
     def test_ay_monophthong(self):
         """بَيْت → [beːt] — urban Hejazi /aj/ → [eː] (Omar 1975; Abdoh 2010)."""
-        assert _ipa(self.CODE, "بَيْت") == "beːt"
+        assert _ipa(self.CODE, "بَيْت") == "ˈbeːt"
 
     def test_jim_affricate(self):
         """جَمَل → [dʒamal] — Hejazi jim → /dʒ/ preserved."""
-        assert _ipa(self.CODE, "جَمَل") == "dʒamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈdʒamal"
 
     def test_qaf_to_g(self):
         """قَلْب → [ɡalb] — Hejazi qaf → /ɡ/, not /ʔ/."""
-        assert _ipa(self.CODE, "قَلْب") == "ɡalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈɡalb"
 
     def test_mono_rule_ids_present(self):
         ids = {r.id for r in self.spec.allophone_rules}
@@ -625,7 +634,7 @@ class TestMaghrebiJim:
     @pytest.mark.parametrize("code", ["ar-MA", "ar-DZ", "ar-TN", "ar-LY", "ar-MR"])
     def test_jim_zh_jamal(self, code):
         """جَمَل → [ʒamal] — Maghrebi jim → /ʒ/ postalveolar fricative."""
-        assert _ipa(code, "جَمَل") == "ʒamal"
+        assert _ipa(code, "جَمَل") == "ˈʒamal"
 
     @pytest.mark.parametrize("code", ["ar-MA", "ar-DZ", "ar-TN", "ar-LY"])
     def test_jim_grapheme_zh_first(self, code):
@@ -650,11 +659,11 @@ class TestMoroccanDarija:
 
     def test_jim_zh_jamal(self):
         """جَمَل → [ʒamal] — Darija jim → /ʒ/."""
-        assert _ipa(self.CODE, "جَمَل") == "ʒamal"
+        assert _ipa(self.CODE, "جَمَل") == "ˈʒamal"
 
     def test_qaf_preserved_qalb(self):
         """قَلْب → [qalb] — Darija keeps /q/ (pre-Hilali/urban conservative)."""
-        assert _ipa(self.CODE, "قَلْب") == "qalb"
+        assert _ipa(self.CODE, "قَلْب") == "ˈqalb"
 
     def test_tha_merges_to_t(self):
         """ثَلاثة → interdental ث → /t/ (Maghrebi merger, not /θ/)."""

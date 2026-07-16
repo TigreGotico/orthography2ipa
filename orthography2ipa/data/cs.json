@@ -366,18 +366,12 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
     },
     "d": {
       "word_final": [
-        "t"
-      ],
-      "coda": [
         "t"
       ],
       "default": [
@@ -388,18 +382,12 @@
       "word_final": [
         "c"
       ],
-      "coda": [
-        "c"
-      ],
       "default": [
         "ɟ"
       ]
     },
     "g": {
       "word_final": [
-        "k"
-      ],
-      "coda": [
         "k"
       ],
       "default": [
@@ -410,18 +398,12 @@
       "word_final": [
         "f"
       ],
-      "coda": [
-        "f"
-      ],
       "default": [
         "v"
       ]
     },
     "z": {
       "word_final": [
-        "s"
-      ],
-      "coda": [
         "s"
       ],
       "default": [
@@ -432,18 +414,12 @@
       "word_final": [
         "ʃ"
       ],
-      "coda": [
-        "ʃ"
-      ],
       "default": [
         "ʒ"
       ]
     },
     "h": {
       "word_final": [
-        "x"
-      ],
-      "coda": [
         "x"
       ],
       "default": [

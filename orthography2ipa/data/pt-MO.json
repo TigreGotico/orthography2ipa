@@ -9,6 +9,13 @@
   "graphemes_base": "pt-PT",
   "allophones_base": "pt-PT",
   "positional_graphemes_base": "pt-PT",
+  "positional_graphemes": {
+    "r": {
+      "intervocalic": [
+        "ɾ"
+      ]
+    }
+  },
   "graphemes": {
     "r": [
       "ʁ",
@@ -66,6 +73,16 @@
       "url": null,
       "pages": null,
       "notes": "First doctoral thesis on Patuá (maquista) grammar — the CREOLE, not the Portuguese variety; cited only for the creole-vs-Portuguese distinction, not for Macau Portuguese phonology."
+    },
+    {
+      "id": "macanese_wikipedia2024",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Macanese Portuguese",
+      "publisher": "Wikipedia, The Free Encyclopedia",
+      "url": "https://en.wikipedia.org/wiki/Macanese_Portuguese",
+      "pages": null,
+      "notes": "FLAGGED SECONDARY source: the only accessible phonological description of Macau Portuguese proper (as opposed to the creole). Its Phonology section carries NO citations and its distinctive-trait claims ([ʒ]→[ʃ] devoicing, L2 infinitive-/ɾ/ dropping, partial Cantonese-contact non-rhoticity) are L2/variable and not encoded as engine rules. Used here to ground the modelled norm — that Macau Portuguese 'closely follows the standard European dialect' — as the honest basis for the gold, per the honesty rule."
     }
   ],
   "wikipedia": [
@@ -87,6 +104,7 @@
   },
   "iso639_3": "por",
   "stress": {
+    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -123,7 +141,29 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Acordo Ortográfico 1990 conventions inherited from pt-PT: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+    "notes": "Acordo Ortográfico 1990 conventions inherited from pt-PT: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam). DIPHTHONGS: declared so the bundled syllabifier counts nuclei correctly — without them every vowel run merges into one nucleus and co-e-lho is read as coe-lho, one syllable short, putting the stress and its vowel reduction on the wrong vowel. ⟨oe⟩ is hiatus, not a diphthong (Cunha & Cintra, §Ditongos).",
+    "diphthongs": [
+      "ãe",
+      "ão",
+      "õe",
+      "ai",
+      "ái",
+      "au",
+      "áu",
+      "ei",
+      "éi",
+      "êi",
+      "eu",
+      "éu",
+      "êu",
+      "iu",
+      "oi",
+      "ói",
+      "ôi",
+      "ou",
+      "ui",
+      "uí"
+    ]
   },
   "wikidata_qid": "Q9290867",
   "location": {
@@ -131,5 +171,14 @@
     "longitude": 113.538056,
     "source": "wikidata",
     "notes": "Macau — the territory this co-official variety is confined to. [Wikidata Q14773 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT",
+  "allophone_rules": [
+    {
+      "id": "PT_FINAL_EM_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for this variety. The EP Lisbon-standard centralisation of the word-final ⟨-em⟩ nucleus to [ɐ̃] (inherited from pt-PT) does not apply here: this variety keeps the close-mid nasal nucleus [ẽ], so ⟨-em⟩ is [ẽj̃] (glide via PT_FINAL_EM_GLIDE), not [ɐ̃j̃]. Peripheral/non-Iberian Portuguese does not follow the Lisbon centralisation."
+    }
+  ]
 }

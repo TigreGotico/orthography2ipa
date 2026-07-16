@@ -1,0 +1,141 @@
+{
+  "code": "twf",
+  "name": "Northern Tiwa",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "kw": [
+      "kʷ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "p'": [
+      "pʼ"
+    ],
+    "t'": [
+      "tʼ"
+    ],
+    "k'": [
+      "kʼ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "parent": "x-clade-kiow1265",
+  "ancestors": [
+    {
+      "code": "x-clade-kiow1265",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Taos Northern Tiwa (nort1550)."
+    }
+  ],
+  "notes": "Skeleton. Kiowa-Tanoan (Tiwa) language of Taos Pueblo, New Mexico, in a practical Roman orthography. Aspirated stops (ph th kh), ejectives written with a following apostrophe, kw=[kʷ] and the affricates ts/ch are mapped. Taos has a rich system of lexical tone and vowel nasalization that this orthography marks incompletely; tone and nasalization are left unencoded, giving a high PER floor.",
+  "iso639_3": "twf",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "twf_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Taos Northern Tiwa (nort1550)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/nort1550",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "twf_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Taos language (Northern Tiwa), Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Taos_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Taos_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Taos_language"
+  ]
+}

@@ -324,12 +324,15 @@
       "intervocalic": [
         "ɾ"
       ],
-      "coda": [
+      "before_consonant": [
+        "ɾ"
+      ],
+      "word_final": [
         "ɾ"
       ]
     },
     "n": {
-      "coda": [
+      "before_consonant": [
         "n",
         "ŋ"
       ],
@@ -340,9 +343,23 @@
     "l": {
       "onset": [
         "l"
+      ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
       ],
-      "coda": [
-        "ɫ"
+      "before_o": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
       ]
     }
   },
@@ -462,6 +479,50 @@
   "iso639_3": "glg",
   "quality": "research",
   "stress": {
+    "cliticless_words": [
+      "o",
+      "a",
+      "os",
+      "as",
+      "un",
+      "unha",
+      "uns",
+      "unhas",
+      "ao",
+      "aos",
+      "do",
+      "da",
+      "dos",
+      "das",
+      "no",
+      "na",
+      "nos",
+      "nas",
+      "co",
+      "coa",
+      "cos",
+      "coas",
+      "de",
+      "en",
+      "con",
+      "por",
+      "sen",
+      "para",
+      "e",
+      "ou",
+      "nin",
+      "que",
+      "se",
+      "mais",
+      "me",
+      "te",
+      "lle",
+      "lles",
+      "vos",
+      "che",
+      "llo",
+      "lla"
+    ],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -483,7 +544,7 @@
       "ú"
     ],
     "stress_mark": "ˈ",
-    "notes": "Galician accentuation as implemented in the Cotovia front-end (GTM, Universidade de Vigo): written accent wins; words ending in a vowel, -n or -s are paroxytone (casa, cantan, casas); words ending in any other consonant (r l z x d) are oxytone (falar, azul, rapaz)."
+    "notes": "Galician accentuation as implemented in the Cotovia front-end (GTM, Universidade de Vigo): written accent wins; words ending in a vowel, -n or -s are paroxytone (casa, cantan, casas); words ending in any other consonant (r l z x d) are oxytone (falar, azul, rapaz). CLITICS: cliticless_words lists the Galician palabras atonas (Freixeiro Mato 1998, Gramatica da lingua galega, prosodia; RAG/ILG Normas; Regueira 1996) — the articles o/a/os/as, indefinite un/unha(+plurals), the preposition+article contractions ao/do/no/co (and variants), the atonic prepositions de/en/con/por/sen/a/para, the conjunctions e/ou/nin/que/se/mais, and the weak pronouns me/te/se/lle/lles/nos/vos/o/a/os/as/che and combined forms. The polo/pola contractions are TONIC and are deliberately excluded (they bear stress: pola [ˈpɔla])."
   },
   "orthography_standard": {
     "name": "Normas ortográficas e morfolóxicas do idioma galego",
@@ -500,5 +561,22 @@
     "longitude": -7.5343,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Galician."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "GL_OPEN_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "word": [
+        "corre",
+        "corren",
+        "pola",
+        "polas"
+      ],
+      "notes": "Galician tonic ⟨o⟩ is open-mid [ɔ] in these lexemes, unmarked in RAG spelling (⟨ó⟩ is not written on them): corre [ˈkɔre], the tonic contraction pola [ˈpɔla] (Regueira 1996; Freixeiro Mato 1998; the gl-015 arbitration). Pins ONLY the stressed vowel; 'pola' is tonic (declared outside cliticless_words) so it also keeps its stress mark."
+    }
+  ]
 }

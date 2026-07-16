@@ -11,7 +11,7 @@ Machine-readable form: [`benchmarks/comparison.json`](../benchmarks/comparison.j
 
 ## Coverage
 
-Not every gold language has a mapping for every competitor system: espeak-ng, epitran, gruut, pycotovia, and ahotts-g2p each cover a different, smaller subset of languages than orthography2ipa's 493 language codes. A missing mapping, or a system that isn't installed, is reported as `n/a` for that row rather than skipped or faked — this table never crashes and never silently drops a system, it just says when it has nothing to compare. `epitran`/`gruut`/`pycotovia`/`ahotts-g2p` are only installed via the dev-only `[compare]` extra; a committed run generated without them shows `n/a` in those columns for every row — that reflects the generating environment, not a claim those systems don't support the language.
+Not every gold language has a mapping for every competitor system: espeak-ng, epitran, gruut, pycotovia, and ahotts-g2p each cover a different, smaller subset of languages than orthography2ipa's 676 language codes. A missing mapping, or a system that isn't installed, is reported as `n/a` for that row rather than skipped or faked — this table never crashes and never silently drops a system, it just says when it has nothing to compare. `epitran`/`gruut`/`pycotovia`/`ahotts-g2p` are only installed via the dev-only `[compare]` extra; a committed run generated without them shows `n/a` in those columns for every row — that reflects the generating environment, not a claim those systems don't support the language.
 
 ### ahotts-g2p output space (fairness)
 
@@ -29,32 +29,33 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 
 | Lang | Dataset | N | o2i PER | espeak PER | epitran PER | gruut PER | pycotovia PER | ahotts-g2p PER |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| ca | 4catac | 160 | 0.1054 | 0.0451 | 0.4673 | n/a | n/a | n/a |
-| ca-x-balear | 4catac | 160 | 0.1927 | 0.0817 | 0.5025 | n/a | n/a | n/a |
-| ca-x-occidental | 4catac | 160 | 0.1204 | 0.0588 | 0.4403 | n/a | n/a | n/a |
-| ca-x-valencia | 4catac | 160 | 0.0946 | 0.0515 | 0.3820 | n/a | n/a | n/a |
-| cy | wikipron | 14486 | 0.2153 | 0.2976 | 0.2228 | n/a | n/a | n/a |
+| ca | 4catac | 160 | 0.1054 | 0.0451 | 0.4664 | n/a | n/a | n/a |
+| ca-x-balear | 4catac | 160 | 0.1924 | 0.0817 | 0.5017 | n/a | n/a | n/a |
+| ca-x-occidental | 4catac | 160 | 0.1204 | 0.0588 | 0.4394 | n/a | n/a | n/a |
+| ca-x-valencia | 4catac | 160 | 0.0946 | 0.0515 | 0.3815 | n/a | n/a | n/a |
+| cy | wikipron | 14486 | 0.2153 | 0.2990 | 0.2231 | n/a | n/a | n/a |
 | de | wikipron | 53011 | 0.3265 | 0.2381 | 0.3083 | n/a | n/a | n/a |
-| el | wikipron | 19108 | 0.1318 | 0.0797 | n/a | n/a | n/a | n/a |
-| en | wikipron | 78445 | 0.3739 | 0.2126 | 0.8333 | 0.1800 | n/a | n/a |
-| es | wikipron | 131507 | 0.0845 | 0.1072 | 0.0277 | n/a | n/a | 0.1042 |
+| el | wikipron | 19108 | 0.0343 | 0.0797 | n/a | n/a | n/a | n/a |
+| en | wikipron | 78445 | 0.3623 | 0.2126 | 0.8333 | n/a | n/a | n/a |
+| en-US | cmudict | 126052 | 0.5120 | 0.3185 | n/a | n/a | n/a | n/a |
+| es | wikipron | 131507 | 0.0840 | 0.1072 | 0.0277 | n/a | n/a | 0.1042 |
 | eu | hitz_basque_ipa | 3113 | 0.2089 | 0.1588 | n/a | n/a | n/a | 0.0217 |
 | eu-wikipron | wikipron | 12022 | 0.0391 | 0.1077 | n/a | n/a | n/a | 0.1713 |
-| fi | wikipron | 168814 | 0.0552 | 0.2498 | 0.1327 | n/a | n/a | n/a |
-| fr | wikipron | 85516 | 0.1773 | 0.0740 | 0.2280 | n/a | n/a | n/a |
+| fi | wikipron | 168814 | 0.0539 | 0.2354 | 0.1324 | n/a | n/a | n/a |
+| fr | wikipron | 85516 | 0.1670 | 0.0740 | 0.2280 | n/a | n/a | n/a |
 | ga | wikipron | 9621 | 0.1821 | 0.5312 | n/a | n/a | n/a | n/a |
 | gl | wikipron | 8091 | 0.0928 | n/a | n/a | n/a | 0.0898 | n/a |
-| hi | wikipron | 30379 | 0.1563 | 0.2832 | 0.3323 | n/a | n/a | n/a |
-| it | wikipron | 82280 | 0.1083 | 0.1002 | 0.1245 | n/a | n/a | n/a |
+| hi | wikipron | 30379 | 0.1563 | 0.2816 | 0.3323 | n/a | n/a | n/a |
+| it | wikipron | 82280 | 0.0589 | 0.0722 | 0.0852 | n/a | n/a | n/a |
 | nl | wikipron | 45872 | 0.2663 | 0.1265 | 0.2911 | n/a | n/a | n/a |
-| pl | wikipron | 148992 | 0.1213 | 0.1132 | 0.0633 | n/a | n/a | n/a |
-| pt-PT | portuguese_phonetic_lexicon | 3000 | 0.1403 | 0.3313 | 0.3792 | n/a | n/a | n/a |
-| ro | wikipron | 8978 | 0.0348 | 0.0893 | 0.0378 | n/a | n/a | n/a |
-| ru | wikipron | 403873 | 0.3073 | 0.3989 | 0.3212 | n/a | n/a | n/a |
-| sv | wikipron | 5082 | 0.2747 | 0.2582 | 0.3862 | n/a | n/a | n/a |
-| tr | wikipron | 11582 | 0.1236 | 0.2755 | 0.1358 | n/a | n/a | n/a |
+| pl | wikipron | 148992 | 0.0480 | 0.1132 | 0.0633 | n/a | n/a | n/a |
+| pt-PT | portuguese_unified | 3000 | 0.2346 | 0.3669 | 0.4146 | n/a | n/a | n/a |
+| ro | wikipron | 8978 | 0.0356 | 0.0893 | 0.0378 | n/a | n/a | n/a |
+| ru | wikipron | 403873 | 0.1451 | 0.3953 | 0.3202 | n/a | n/a | n/a |
+| sv | wikipron | 5082 | 0.2727 | 0.2580 | 0.3864 | n/a | n/a | n/a |
+| tr | wikipron | 11582 | 0.1232 | 0.2740 | 0.1354 | n/a | n/a | n/a |
 
-**o2i beats espeak on 10 of 23 comparable languages.**
+**o2i beats espeak on 13 of 24 comparable languages.**
 
 ## Catalan dialects vs espeak (BSC)
 
@@ -65,6 +66,6 @@ All three BSC dialect voices (`ca-ba`, `ca-nw`, `ca-va`) were found on this mach
 | Dialect | o2i spec | espeak voice | N | o2i PER | espeak PER |
 |---|---|---|---:|---:|---:|
 | central | ca | ca | 160 | 0.1054 | 0.0451 |
-| balear | ca-x-balear | ca-ba | 160 | 0.1927 | 0.0817 |
+| balear | ca-x-balear | ca-ba | 160 | 0.1924 | 0.0817 |
 | valencian | ca-x-valencia | ca-va | 160 | 0.0946 | 0.0515 |
 | occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.1204 | 0.0588 |

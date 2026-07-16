@@ -79,5 +79,6 @@
     "longitude": -8,
     "source": "wikidata",
     "notes": "Ireland's representative point. A national variety: weak. [Wikidata Q27 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

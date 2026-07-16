@@ -17,10 +17,9 @@ orthography2ipa/
 ├── sandhi.py            # Cross-word-boundary phonological rule engine
 ├── lm.py                # Phoneme n-gram language model utilities
 ├── cli.py               # Command-line interface (entry point)
-├── g2p_plugin.py        # Abstract G2P plugin interface
 ├── plugins/             # Concrete G2P plugin implementations (e.g. Arabic)
 │
-└── data/                # 308 JSON language spec files
+└── data/                # 749 JSON language spec files
     ├── SCHEMA.md        # JSON schema reference
     ├── en-GB.json
     ├── es-ES.json
@@ -74,7 +73,6 @@ Loads `LanguageSpec` objects from JSON files under `data/` — `json_loader.py:1
 - `load_json_spec(code)` — load and resolve a single spec with inheritance — `json_loader.py:87`
 - `load_all_json_specs()` — load all specs from the data directory — `json_loader.py:250`
 - `available_json_codes()` — sorted list of all codes with JSON data files — `json_loader.py:270`
-- `load_lexicon(code)` — load an optional word list for a language — `json_loader.py:275`
 
 Inheritance is resolved via `graphemes_base`, `allophones_base`, and `positional_graphemes_base` fields in JSON.
 
@@ -183,14 +181,23 @@ Phoneme n-gram language model utilities — `lm.py:1-116`:
 - `build_ngram_lm(words, spec, n)` — build n-gram LM over IPA sequences — `lm.py:49`
 - `perplexity(lm, test_words, spec, n)` — evaluate perplexity — `lm.py:79`
 
-### `g2p_plugin.py`
+### Downstream engines
 
-Abstract G2P plugin interface — `g2p_plugin.py:1-55`:
+orthography2ipa is not an engine plugin host. Nothing here discovers or calls a
+"G2P plugin", and the abstract base class that once implied otherwise is gone.
 
-- `WordContext` — sentence context for sandhi/liaison — `g2p_plugin.py:29`
-- `G2PPlugin` — abstract base class with `transcribe()` and `transcribe_word()` — `g2p_plugin.py:38`
+Rich, language-specific engines — **arbtok** (Arabic), **tugaphone** (Portuguese) —
+are **consumers** of this library. They read its spec data, drive its lattice and
+layer their own rescorers on top. That is the opposite direction from a plugin,
+and conflating the two is what made "the plugin system" impossible to reason
+about.
 
-Plugins are discovered via `importlib.metadata` entry points in the `orthography2ipa.g2p` group.
+What *is* pluggable is a **step**: see `syllabifier_plugin.py` and
+`rescorer_plugin.py`, and the contracts in `conformance.py`.
+
+`WordContext` — the cross-word context an engine passes down — lives in
+`sentence.py`, with the rest of the cross-word machinery.
+
 
 ### `syllabifier_plugin.py`
 
@@ -300,7 +307,7 @@ The combinatorial explosion from ambiguous graphemes (e.g., English `c` → /k/ 
 
 ### Why lazy loading?
 
-With 308 JSON data files, eager loading would make `import orthography2ipa` slow and memory-heavy. Lazy loading means only the languages actually used in a session are loaded. The registry is a pure dictionary lookup; no disk I/O until `get()` is called. — `registry.get` — `registry.py:68`
+With 749 JSON data files, eager loading would make `import orthography2ipa` slow and memory-heavy. Lazy loading means only the languages actually used in a session are loaded. The registry is a pure dictionary lookup; no disk I/O until `get()` is called. — `registry.get` — `registry.py:68`
 
 ---
 

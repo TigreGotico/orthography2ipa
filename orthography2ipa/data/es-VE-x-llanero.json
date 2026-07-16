@@ -85,5 +85,24 @@
     "longitude": -70.216667,
     "source": "wikidata",
     "notes": "Barinas — a representative city of the Venezuelan interior plains (Llanos). [Wikidata Q695623 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "GLOTTAL_JOTA",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "h",
+      "notes": "Lowland glottalisation: /x/ (⟨j⟩, ⟨g⟩ before front vowel) is the glottal aspirate [h], not the Castilian velar [x] (Lipski 1994)."
+    },
+    {
+      "id": "CODA_S_ASPIRATION",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "h",
+      "syllable_position": "coda",
+      "notes": "Lowland coda /s/ lenition (aspiration tier of Lipski's 1994 cline): syllable-final /s/ (from ⟨s⟩ and seseante ⟨z⟩) weakens to the glottal aspirate [h] (esta=[ˈehta], los=[loh], diez=[djeh])."
+    }
+  ]
 }

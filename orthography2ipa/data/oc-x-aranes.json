@@ -160,6 +160,9 @@
     ],
     "ui": [
       "yj"
+    ],
+    "tg": [
+      "dʒ"
     ]
   },
   "allophones": {
@@ -289,6 +292,12 @@
       ],
       "intervocalic": [
         "ɣ"
+      ],
+      "before_e": [
+        "ʒ"
+      ],
+      "before_i": [
+        "ʒ"
       ]
     },
     "r": {
@@ -300,9 +309,23 @@
       ],
       "onset": [
         "ɾ"
+      ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
       ],
-      "coda": [
-        "ɾ"
+      "before_o": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
       ]
     }
   },

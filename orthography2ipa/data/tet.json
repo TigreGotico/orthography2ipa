@@ -247,7 +247,7 @@
       "notes": "Indonesian adstrate: Indonesian was imposed as an administrative language during occupation (1975–1999); contributed loanwords especially in formal/technical registers."
     }
   ],
-  "notes": "Tetum (Tetun Praça / Tetun Dili). Austronesian language (Malayo-Polynesian); co-official language of East Timor alongside Portuguese. ~800,000 speakers including L2. Tetun Praça (urban Dili creolized variety) is the official variety, heavily influenced by Portuguese. KEY FEATURES: (1) FINAL OBSTRUENTS: final -k may realize as [ʔ] (glottal stop) — Austronesian feature. (2) PALATAL CONSONANTS: lh=[ʎ], nh=[ɲ], x=[ʃ], j=[dʒ] — borrowed graphemic conventions from Portuguese. (3) NASAL VELAR: ng=[ŋ] may appear word-initially. (4) VOWEL ALTERNATION: e varies [e]~[ɛ], o varies [o]~[ɔ] depending on stress and register. (5) DIPHTHONGS: ai=[aj], au=[aw]. (6) V: phoneme /v/ from Portuguese loanwords; absent in indigenous Austronesian vocabulary. (7) TETUN TERIK: rural traditional variety (Tetum Terik / Tetun Belu) has more conservative phonology and less Portuguese influence — this file models Tetun Praça.",
+  "notes": "Tetum (Tetun Praça / Tetun Dili). Austronesian language (Malayo-Polynesian); co-official language of East Timor alongside Portuguese. ~800,000 speakers including L2. Tetun Praça (urban Dili creolized variety) is the official variety, heavily influenced by Portuguese. KEY FEATURES: (1) FINAL OBSTRUENTS: final -k may realize as [ʔ] (glottal stop) — Austronesian feature. (2) PALATAL CONSONANTS: lh=[ʎ], nh=[ɲ], x=[ʃ], j=[dʒ] — borrowed graphemic conventions from Portuguese. (3) NASAL VELAR: ng=[ŋ] may appear word-initially. (4) VOWEL ALTERNATION: e varies [e]~[ɛ], o varies [o]~[ɔ] depending on stress and register. (5) DIPHTHONGS: ai=[aj], au=[aw]. (6) V: phoneme /v/ from Portuguese loanwords; absent in indigenous Austronesian vocabulary. (7) TETUN TERIK: rural traditional variety (Tetum Terik / Tetun Belu) has more conservative phonology and less Portuguese influence — this file models Tetun Praça in the INL standardised orthography (Government Decree 1/2004).",
   "sources": [
     {
       "id": "hull2001",
@@ -303,5 +303,21 @@
     "longitude": 125.528,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Tetum."
+  },
+  "stress": {
+    "default_position": -2,
+    "stress_mark": "ˈ",
+    "diphthongs": [
+      "ai",
+      "au"
+    ],
+    "notes": "Stress falls on the penultimate syllable in the large majority of words (Williams-van Klinken, Hajek & Nordlinger 2002, Tetun Dili: A Grammar of an East Timorese Language, Pacific Linguistics, ch. 2). Native diphthongs ai [aj] and au [aw] are declared so the syllabifier counts each as a single nucleus; the Portuguese-loan sequences ei and ou are usually monophthongised in ordinary speech and are treated as hiatus."
+  },
+  "orthography_standard": {
+    "name": "Matadalan Ortográfiku ba Tetun Ofisiál (INL standard orthography)",
+    "authority": "Instituto Nacional de Linguística (INL), Universidade Nacional Timor Lorosa'e",
+    "year": 2004,
+    "url": null,
+    "notes": "Declared the official orthography of Tetun by Government Decree 1/2004 (14 April 2004); the INL is the scientific custodian of Official Tetun. This spec targets that standard: the apostrophe for the glottal stop, the digraphs lh/nh/ng and the letters x/j taken over from Portuguese conventions."
   }
 }

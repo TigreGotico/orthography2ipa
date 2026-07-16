@@ -407,18 +407,12 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
     },
     "d": {
       "word_final": [
-        "t"
-      ],
-      "coda": [
         "t"
       ],
       "default": [
@@ -429,18 +423,12 @@
       "word_final": [
         "k"
       ],
-      "coda": [
-        "k"
-      ],
       "default": [
         "ɡ"
       ]
     },
     "v": {
       "word_final": [
-        "f"
-      ],
-      "coda": [
         "f"
       ],
       "default": [
@@ -509,14 +497,6 @@
       "default": [
         "st"
       ]
-    },
-    "ig": {
-      "word_final": [
-        "ɪç"
-      ],
-      "default": [
-        "ɪɡ"
-      ]
     }
   },
   "timespan": {
@@ -533,5 +513,22 @@
     "longitude": 12.4676,
     "source": "glottolog",
     "notes": "Glottolog's representative point for German."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "DE_FINAL_IG_SPIRANT",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "ç",
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "ɪ"
+      ],
+      "grapheme": [
+        "g"
+      ],
+      "notes": "word-final ⟨-ig⟩ is [ɪç] (König, ewig). Keyed on the ⟨g⟩ grapheme after final devoicing, so ⟨-ik⟩ (Musik) is untouched"
+    }
+  ]
 }

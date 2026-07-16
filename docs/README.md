@@ -7,7 +7,7 @@ evaluate the library for production — and states the accuracy limits up front.
 `orthography2ipa` measures how languages relate to each other across independent
 axes (phonological, reading, spelling, script, genealogical, temporal,
 geographic), and converts orthography to IPA from the same per-language data:
-493 languages plus 63 classification-only clade nodes, all as cited JSON specs
+676 languages plus 73 classification-only clade nodes, all as cited JSON specs
 with no trained weights.
 
 ```python
@@ -30,7 +30,7 @@ spelling_divergence(gl, glr).mean_distance       # 0.0659 — they are written d
 | [Architecture](architecture.md) | Package structure, pipeline stages, design decisions |
 | [Data Model](data_model.md) | `LanguageSpec` and every field it carries |
 | [Orthography kind](orthography_kind.md) | Native scripts, romanizations and transliterations |
-| [Language Registry](registry.md) | Code resolution, `available_codes`, `G2PPlugin` |
+| [Language Registry](registry.md) | Code resolution, `available_codes`, step plugins |
 | [Tokenizer](tokenizer.md) | `PhonetokTokenizer`, maximal munch, beam search |
 | [Lattice](lattice.md) | The ranked pronunciation lattice and the `LatticeRescorer` seam |
 | [Sentence context](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer` |

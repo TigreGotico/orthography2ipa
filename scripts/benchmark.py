@@ -9,7 +9,7 @@ datasets, their sources and the methodology are documented in
 
 Usage::
 
-    python scripts/benchmark.py --dataset portuguese_phonetic_lexicon --lang pt-PT
+    python scripts/benchmark.py --dataset portuguese_unified --lang pt-PT
     python scripts/benchmark.py --dataset wikipron --lang gl --broad
     python scripts/benchmark.py --dataset mirandese_g2p --lang mwl
     python scripts/benchmark.py --list
@@ -18,15 +18,14 @@ Dataset access:
 
 - ``cmudict`` needs the ``scriptconv`` package for ARPABET→IPA.
 - ``wikipron`` and ``mirandese_g2p`` download TSVs directly (stdlib only).
-- ``infopedia_pt`` downloads a JSONL gold file directly and samples it with
+- ``portuguese_unified`` downloads a JSONL gold file directly and samples it with
   a fixed seed (stdlib only).
-- ``portuguese_phonetic_lexicon`` downloads the Portal da Língua Portuguesa
-  CSV directly and samples it per region with a fixed seed (stdlib only).
+  (It merges the former separate infopedia / wiktionary / Portal-lexicon
+  golds; one region is scored per registered language tag.)
 - ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
 - ``clup_dialect`` downloads a CSV gold file directly (stdlib only).
-- ``styletts2_phonemes`` downloads per-language JSON files directly
   (stdlib only).
 - ``ipa_childes`` downloads per-language CSVs from the
   fdemelo/ipa-childes-split Hugging Face dataset directly (stdlib only).
@@ -48,6 +47,7 @@ from __future__ import annotations
 import argparse
 import contextlib
 import csv
+import glob
 import json
 import os
 import random
@@ -77,7 +77,7 @@ BOOTSTRAP_SEED = 20260710
 BOOTSTRAP_REPS = 1000
 
 # Fixed seed for loaders that draw a random sample from a large gold file
-# (infopedia_pt, portuguese_phonetic_lexicon) instead of the alphabetical
+# (portuguese_unified) instead of the alphabetical
 # head. Never randomized, so the same ``limit`` always selects the same
 # words across runs/machines — an unbiased but fully reproducible slice.
 SAMPLE_SEED = 20260711
@@ -90,8 +90,8 @@ LEXICON_SCOREBOARD_JSON = os.path.join(
 # ── CI regression sample ────────────────────────────────────────────────────
 # The committed scoreboard (SCOREBOARD_JSON) is FULL-dataset — every gold
 # word of every language, no cap — which is far too slow to re-run inside a
-# CI job (the 617k-row portuguese_phonetic_lexicon and 102k-row infopedia_pt
-# alone take the better part of an hour). So the CI regression gate re-scores
+# CI job (the 598k-row portuguese_unified gold alone takes the better part
+# of an hour). So the CI regression gate re-scores
 # at a fixed, UNIFORM sample size — the SAME cap for every language, no
 # per-language juggling — and compares against a SEPARATE baseline committed
 # at that identical cap (never against the full scoreboard, so there is never
@@ -144,6 +144,12 @@ _WIKIPRON_FILES = {
     "en-GB": "eng_latn_uk_broad.tsv",
     # --- Semitic ---
     "ar": "ara_arab_broad.tsv",          # ~17.5k rows (MSA, broad)
+    # Hebrew: Wiktionary headwords are UNPOINTED skeletons (a handful carry
+    # niqqud), so — exactly like the undiacritized 'ar' gold above — short
+    # vowels are orthographically absent from most inputs and a substantial
+    # PER floor is expected. The file also mixes transcription traditions
+    # (some rows are Tiberian-flavoured: ɔː, ə, ŋ); see data/he.json notes.
+    "he": "heb_hebr_broad.tsv",          # ~6.8k rows (Hebrew script, broad)
     # --- Romance ---
     "it": "ita_latn_broad.tsv",          # ~90k rows
     "fr": "fra_latn_broad.tsv",          # ~98k rows
@@ -194,6 +200,265 @@ _WIKIPRON_FILES = {
     "hi": "hin_deva_broad.tsv",          # ~33k rows, Devanagari
     "ta": "tam_taml_broad.tsv",          # ~10k rows, Tamil script
     "ml": "mal_mlym_broad.tsv",          # ~10k rows, Malayalam script
+    # --- registry sweep against the upstream CUNY-CL/wikipron scrape
+    #     index (data/scrape/summary.tsv). Every language below has a
+    #     broad WikiPron TSV with N>=200 AND a registered o2i spec that
+    #     was NOT yet scored here. Each was smoke-checked: the engine
+    #     produces non-empty output for the file's script (Han-script
+    #     Chinese varieties, Uighur, Shan, Kashmiri, Sindhi, Saraiki,
+    #     Sylheti, Dzongkha, Javanese, Mon, Aramaic, Bavarian, Scots,
+    #     Tachelhit and Tuvinian had zero coverage and were left out).
+    #     Same crowd-scraped Wiktionary tier as the rest of wikipron.
+    "grc":       "grc_grek_broad.tsv",              # Ancient Greek (to 1453), ~198102 rows
+    "ang":       "ang_latn_broad.tsv",              # Old English (ca. 450-1100), ~55835 rows
+    "mt":        "mlt_latn_broad.tsv",              # Maltese, ~21208 rows
+    "id":        "ind_latn_broad.tsv",              # Indonesian, ~18590 rows
+    "th":        "tha_thai_broad.tsv",              # Thai, ~18319 rows
+    "enm":       "enm_latn_broad.tsv",              # Middle English (1100-1500), ~18272 rows
+    "sa":        "san_deva_broad.tsv",              # Sanskrit, ~17859 rows
+    "fa":        "fas_arab_broad.tsv",              # Persian, ~10312 rows
+    "izh":       "izh_latn_broad.tsv",              # Ingrian, ~9755 rows
+    "my":        "mya_mymr_broad.tsv",              # Burmese, ~8288 rows
+    "io":        "ido_latn_broad.tsv",              # Ido, ~7874 rows
+    "ur":        "urd_arab_broad.tsv",              # Urdu, ~7709 rows
+    "bn":        "ben_beng_rarh_broad.tsv",         # Bengali, ~7391 rows
+    "km":        "khm_khmr_broad.tsv",              # Khmer, ~7108 rows
+    "ms":        "msa_latn_broad.tsv",              # Malay (macrolanguage), ~6672 rows
+    "sl":        "slv_latn_broad.tsv",              # Slovenian, ~5955 rows
+    "nn":        "nno_latn_broad.tsv",              # Norwegian Nynorsk, ~5644 rows
+    "se":        "sme_latn_broad.tsv",              # Northern Sami, ~5506 rows
+    "bcl":       "bcl_latn_broad.tsv",              # Central Bikol, ~5432 rows
+    "yi":        "yid_hebr_broad.tsv",              # Yiddish, ~5421 rows
+    "te":        "tel_telu_broad.tsv",              # Telugu, ~5117 rows
+    "yo":        "yor_latn_broad.tsv",              # Yoruba, ~4937 rows
+    "mr":        "mar_deva_broad.tsv",              # Marathi, ~4872 rows
+    "gu":        "guj_gujr_broad.tsv",              # Gujarati, ~4244 rows
+    "egy":       "egy_latn_broad.tsv",              # Egyptian (Ancient), ~4177 rows
+    "ceb":       "ceb_latn_broad.tsv",              # Cebuano, ~4100 rows
+    "lb":        "ltz_latn_broad.tsv",              # Luxembourgish, ~4060 rows
+    "bo":        "bod_tibt_broad.tsv",              # Tibetan, ~3621 rows
+    "mn":        "mon_cyrl_broad.tsv",              # Mongolian, ~3563 rows
+    "tg":        "tgk_cyrl_broad.tsv",              # Tajik, ~3269 rows
+    "as":        "asm_beng_broad.tsv",              # Assamese, ~3223 rows
+    "fo":        "fao_latn_broad.tsv",              # Faroese, ~3024 rows
+    "szl":       "szl_latn_broad.tsv",              # Silesian, ~2925 rows
+    "vot":       "vot_latn_broad.tsv",              # Votic, ~2915 rows
+    "et":        "est_latn_broad.tsv",              # Estonian, ~2903 rows
+    "csb":       "csb_latn_broad.tsv",              # Kashubian, ~2830 rows
+    "dsb":       "dsb_latn_broad.tsv",              # Lower Sorbian, ~2484 rows
+    "wa":        "wln_latn_broad.tsv",              # Walloon, ~2480 rows
+    "ku":        "kmr_latn_broad.tsv",              # Northern Kurdish, ~2193 rows
+    "ha":        "hau_latn_broad.tsv",              # Hausa, ~2176 rows
+    "af":        "afr_latn_broad.tsv",              # Afrikaans, ~2171 rows
+    "haw":       "haw_latn_broad.tsv",              # Hawaiian, ~2152 rows
+    "got":       "got_goth_broad.tsv",              # Gothic, ~1837 rows
+    "zu":        "zul_latn_broad.tsv",              # Zulu, ~1778 rows
+    "aa":        "aar_latn_broad.tsv",              # Afar, ~1728 rows
+    "kn":        "kan_knda_broad.tsv",              # Kannada, ~1713 rows
+    "ht":        "hat_latn_broad.tsv",              # Haitian, ~1695 rows
+    "za":        "zha_latn_broad.tsv",              # Zhuang, ~1691 rows
+    "ny":        "nya_latn_broad.tsv",              # Nyanja, ~1624 rows
+    "scn":       "scn_latn_broad.tsv",              # Sicilian, ~1599 rows
+    "pa":        "pan_guru_broad.tsv",              # Panjabi, ~1586 rows
+    "kl":        "kal_latn_broad.tsv",              # Kalaallisut, ~1581 rows
+    "dv":        "div_thaa_broad.tsv",              # Dhivehi, ~1551 rows
+    "ki":        "kik_latn_broad.tsv",              # Kikuyu, ~1420 rows
+    "ps":        "pus_arab_broad.tsv",              # Pushto, ~1414 rows
+    "no":        "nor_latn_broad.tsv",              # Norwegian, ~1331 rows
+    "fy":        "fry_latn_broad.tsv",              # Western Frisian, ~1246 rows
+    "hsb":       "hsb_latn_broad.tsv",              # Upper Sorbian, ~1130 rows
+    "li":        "lim_latn_broad.tsv",              # Limburgan, ~1128 rows
+    "ilo":       "ilo_latn_broad.tsv",              # Iloko, ~1049 rows
+    "mi":        "mri_latn_broad.tsv",              # Maori, ~1005 rows
+    "nv":        "nav_latn_broad.tsv",              # Navajo, ~995 rows
+    "ckb":       "ckb_arab_broad.tsv",              # Central Kurdish, ~981 rows
+    "mh":        "mah_latn_broad.tsv",              # Marshallese, ~960 rows
+    "pam":       "pam_latn_broad.tsv",              # Pampanga, ~926 rows
+    "pms":       "pms_latn_broad.tsv",              # Piemontese, ~921 rows
+    "kv":        "kpv_cyrl_broad.tsv",              # Komi-Zyrian, ~918 rows
+    "ky":        "kir_cyrl_broad.tsv",              # Kirghiz, ~888 rows
+    "nci":       "nci_latn_broad.tsv",              # Classical Nahuatl, ~886 rows
+    "cop":       "cop_copt_broad.tsv",              # Coptic, ~881 rows
+    "br":        "bre_latn_broad.tsv",              # Breton, ~874 rows
+    "srn":       "srn_latn_broad.tsv",              # Sranan Tongo, ~849 rows
+    "lij":       "lij_latn_broad.tsv",              # Ligurian, ~820 rows
+    "stq":       "stq_latn_broad.tsv",              # Saterfriesisch, ~818 rows
+    "gv":        "glv_latn_broad.tsv",              # Manx, ~785 rows
+    "kk":        "kaz_cyrl_broad.tsv",              # Kazakh, ~774 rows
+    "sc":        "srd_latn_broad.tsv",              # Sardinian, ~722 rows
+    "guw":       "guw_latn_broad.tsv",              # Gun, ~681 rows
+    "fax":       "fax_latn_broad.tsv",              # Fala, ~655 rows
+    "kw":        "cor_latn_broad.tsv",              # Cornish, ~648 rows
+    "krl":       "krl_latn_broad.tsv",              # Karelian, ~645 rows
+    "lmo":       "lmo_latn_broad.tsv",              # Lombard, ~595 rows
+    "iba":       "iba_latn_broad.tsv",              # Iban, ~584 rows
+    "az":        "aze_latn_broad.tsv",              # Azerbaijani, ~513 rows
+    "de-CH":     "gsw_latn_broad.tsv",              # Swiss German, ~511 rows
+    "pdc":       "pdc_latn_broad.tsv",              # Pennsylvania German, ~510 rows
+    "lt":        "lit_latn_broad.tsv",              # Lithuanian, ~507 rows
+    "co":        "cos_latn_broad.tsv",              # Corsican, ~492 rows
+    "nds":       "nds_latn_broad.tsv",              # Low German, ~492 rows
+    "ia":        "ina_latn_broad.tsv",              # Interlingua (International Auxiliary Language Association), ~484 rows
+    "ce":        "che_cyrl_broad.tsv",              # Chechen, ~480 rows
+    "am":        "amh_ethi_broad.tsv",              # Amharic, ~478 rows
+    "nup":       "nup_latn_broad.tsv",              # Nupe-Nupe-Tako, ~453 rows
+    "tk":        "tuk_latn_broad.tsv",              # Turkmen, ~452 rows
+    "vo":        "vol_latn_broad.tsv",              # Volapük, ~446 rows
+    "jam":       "jam_latn_broad.tsv",              # Jamaican Creole English, ~415 rows
+    "si":        "sin_sinh_broad.tsv",              # Sinhala, ~393 rows
+    "war":       "war_latn_broad.tsv",              # Waray (Philippines), ~383 rows
+    "tpw":       "tpw_latn_broad.tsv",              # Tupí, ~375 rows
+    "sw":        "swa_latn_broad.tsv",              # Swahili (macrolanguage), ~370 rows
+    "gn":        "gug_latn_broad.tsv",              # Paraguayan Guaraní, ~348 rows
+    "uz":        "uzb_latn_broad.tsv",              # Uzbek, ~345 rows
+    "xal":       "xal_cyrl_broad.tsv",              # Kalmyk, ~339 rows
+    "mdf":       "mdf_cyrl_broad.tsv",              # Moksha, ~334 rows
+    "non":       "non_latn_broad.tsv",              # Old Norse, ~318 rows
+    "ban":       "ban_latn_broad.tsv",              # Balinese, ~300 rows
+    "inh":       "inh_cyrl_broad.tsv",              # Ingush, ~300 rows
+    "ppl":       "ppl_latn_broad.tsv",              # Pipil, ~283 rows
+    "olo":       "olo_latn_broad.tsv",              # Livvi, ~278 rows
+    "osx":       "osx_latn_broad.tsv",              # Old Saxon, ~273 rows
+    "ace":       "ace_latn_broad.tsv",              # Achinese, ~272 rows
+    "ee":        "ewe_latn_broad.tsv",              # Ewe, ~250 rows
+    "sah":       "sah_cyrl_broad.tsv",              # Yakut, ~240 rows
+    "cho":       "cho_latn_broad.tsv",              # Choctaw, ~235 rows
+    "nrf":       "nrf_latn_broad.tsv",              # Jèrriais, ~234 rows
+    "nap":       "nap_latn_broad.tsv",              # Neapolitan, ~231 rows
+    "koi":       "koi_cyrl_broad.tsv",              # Komi-Permyak, ~229 rows
+    "pag":       "pag_latn_broad.tsv",              # Pangasinan, ~229 rows
+    "ba":        "bak_cyrl_broad.tsv",              # Bashkir, ~208 rows
+    "ab":        "abk_cyrl_broad.tsv",              # Abkhazian, ~206 rows
+    # --- Arabic spoken dialects (ISO 639-3 codes → o2i lect) ---
+    #     WikiPron scrapes six spoken Arabic dialects under their ISO 639-3
+    #     codes; each maps onto an existing o2i ``ar-XX`` dialect spec (the
+    #     registry alias table resolves the ISO code too). Like the MSA ``ar``
+    #     row, these Wiktionary headwords are UNPOINTED consonantal skeletons —
+    #     short vowels are orthographically absent, so a substantial PER floor
+    #     from unvowelized input is expected (see the ``ar`` note above); the
+    #     signal is consonant/long-vowel accuracy against the dialect spec, not
+    #     a full-vowel score. Same crowd-scraped Wiktionary tier as the rest.
+    "ar-EG":         "arz_arab_broad.tsv",          # Egyptian Arabic (arz), ~800 rows
+    "ar-MA":         "ary_arab_broad.tsv",          # Moroccan Arabic (ary), ~2168 rows
+    "ar-SY":         "apc_arab_broad.tsv",          # North Levantine (apc), ~618 rows
+    "ar-JO":         "ajp_arab_broad.tsv",          # South Levantine (ajp), ~3182 rows
+    "ar-x-gulf":     "afb_arab_broad.tsv",          # Gulf Arabic (afb), ~763 rows
+    "ar-SA-x-hejaz": "acw_arab_broad.tsv",          # Hijazi Arabic (acw), ~2640 rows
+    # --- new skeleton-tier specs, wired to their upstream WikiPron gold ---
+    #     Each has a fresh skeleton spec added in this round (orthography kind,
+    #     base grapheme inventory, cited ancestry). Smoke-checked to engage;
+    #     scores are honest baselines for a first-pass grapheme map (conditioned
+    #     allophony, tone and vowel length that the spelling does not recover are
+    #     unencoded, so PER is high by construction). Same Wiktionary tier.
+    "kix":       "kix_latn_broad.tsv",              # Khiamniungan Naga, ~4240 rows
+    "sga":       "sga_latn_broad.tsv",              # Old Irish, ~3799 rows
+    "yol":       "yol_latn_broad.tsv",              # Yola, ~2546 rows
+    "liv":       "liv_latn_broad.tsv",              # Livonian, ~2516 rows
+    "phl":       "phl_latn_broad.tsv",              # Phalura, ~2240 rows
+    "hrx":       "hrx_latn_broad.tsv",              # Hunsrik, ~2108 rows
+    "gmh":       "gmh_latn_broad.tsv",              # Middle High German, ~1724 rows
+    "slr":       "slr_latn_broad.tsv",              # Salar, ~1724 rows
+    "orv":       "orv_cyrl_broad.tsv",              # Old East Slavic, ~1612 rows
+    "fro":       "fro_latn_broad.tsv",              # Old French, ~1057 rows
+    "kaw":       "kaw_latn_broad.tsv",              # Kawi / Old Javanese, ~937 rows
+    "sjs":       "sjs_latn_broad.tsv",              # Senhaja de Srair, ~865 rows
+    "mak":       "mak_latn_broad.tsv",              # Makasar, ~834 rows
+    "osp":       "osp_latn_broad.tsv",              # Old Spanish, ~681 rows
+    "akk":       "akk_latn_broad.tsv",              # Akkadian, ~672 rows
+    # --- wikipron-gap sweep: fresh skeleton/research specs wired to their
+    #     upstream WikiPron gold. Each has a sourced grapheme map added in
+    #     this round; scores are honest first-pass baselines (tone, vowel
+    #     length and conditioned allophony the spelling does not recover are
+    #     unencoded, so PER is high by construction). Same Wiktionary tier.
+    #     Hard-script varieties (Han, Manchu, Tibetan, Canadian syllabics,
+    #     Thai/Tai/Myanmar/Devanagari/Limbu/Hangul abugidas) got a spec but no
+    #     row here: grapheme->IPA there is lexicon-dependent, cov-0 by design.
+    "acm":        "acm_arab_broad.tsv",  # Mesopotamian Arabic, N=108
+    "aii":        "aii_syrc_narrow.tsv",  # Assyrian Neo-Aramaic, N=7851
+    "ale":        "ale_latn_broad.tsv",  # Aleut, N=121
+    "aot":        "aot_latn_broad.tsv",  # Atong (India), N=181
+    "apw":        "apw_latn_narrow.tsv",  # Western Apache, N=147
+    "ayl":        "ayl_arab_broad.tsv",  # Libyan Arabic, N=166
+    "bbl":        "bbl_geor_broad.tsv",  # Bats, N=421
+    "bbn":        "bbn_latn_broad.tsv",  # Uneapa, N=194
+    "bdq":        "bdq_latn_broad.tsv",  # Bahnar, N=198
+    "bjb":        "bjb_latn_broad.tsv",  # Banggarla, N=136
+    "bua":        "bua_cyrl_broad.tsv",  # Buriat, N=140
+    "car":        "car_latn_narrow.tsv",  # Galibi Carib, N=447
+    "chb":        "chb_latn_broad.tsv",  # Chibcha, N=121
+    "cic":        "cic_latn_broad.tsv",  # Chickasaw, N=394
+    "cnk":        "cnk_latn_broad.tsv",  # Khumi Chin, N=350
+    "crk":        "crk_latn_narrow.tsv",  # Plains Cree, N=159
+    "dlm":        "dlm_latn_broad.tsv",  # Dalmatian, N=180
+    "dng":        "dng_cyrl_broad.tsv",  # Dungan, N=297
+    "dum":        "dum_latn_broad.tsv",  # Middle Dutch (ca. 1050-1350), N=222
+    "ett":        "ett_ital_broad.tsv",  # Etruscan, N=208
+    "evn":        "evn_cyrl_broad.tsv",  # Evenki, N=153
+    "fpe":        "fpe_latn_broad.tsv",  # Fernando Po Creole English, N=261
+    "gml":        "gml_latn_broad.tsv",  # Middle Low German, N=175
+    "gul":        "gul_latn_broad.tsv",  # Sea Island Creole English, N=304
+    "gwc":        "gwc_arab_broad.tsv",  # Gawri, N=208
+    "hil":        "hil_latn_broad.tsv",  # Hiligaynon, N=473
+    "hts":        "hts_latn_broad.tsv",  # Hadza, N=335
+    "huu":        "huu_latn_narrow.tsv",  # Murui Huitoto, N=440
+    "kgp":        "kgp_latn_broad.tsv",  # Kaingang, N=107
+    "kld":        "kld_latn_broad.tsv",  # Gamilaraay, N=516
+    "klj":        "klj_latn_broad.tsv",  # Khalaj, N=155
+    "kru":        "kru_deva_narrow.tsv",  # Kurukh, N=187
+    "ktz":        "ktz_latn_broad.tsv",  # Juǀʼhoan, N=135
+    "kwk":        "kwk_latn_broad.tsv",  # Kwakiutl, N=116
+    "kxd":        "kxd_latn_broad.tsv",  # Brunei, N=365
+    "lmy":        "lmy_latn_narrow.tsv",  # Lamboya, N=135
+    "lou":        "lou_latn_broad.tsv",  # Louisiana Creole, N=262
+    "lsi":        "lsi_latn_narrow.tsv",  # Lashi, N=141
+    "lut":        "lut_latn_broad.tsv",  # Lushootseed, N=140
+    "lzz":        "lzz_geor_broad.tsv",  # Laz, N=363
+    "mch":        "mch_latn_narrow.tsv",  # Maquiritari, N=1746
+    "mdh":        "mdh_latn_broad.tsv",  # Maguindanaon, N=205
+    "mfe":        "mfe_latn_broad.tsv",  # Morisyen, N=233
+    "mga":        "mga_latn_broad.tsv",  # Middle Irish (900-1200), N=501
+    "mic":        "mic_latn_broad.tsv",  # Mi'kmaq, N=203
+    "mqs":        "mqs_latn_broad.tsv",  # West Makian, N=791
+    "mtq":        "mtq_latn_broad.tsv",  # Muong, N=194
+    "ngh":        "ngh_latn_broad.tsv",  # Nǁng, N=325
+    "nhg":        "nhg_latn_narrow.tsv",  # Tetelcingo Nahuatl, N=305
+    "nhx":        "nhx_latn_broad.tsv",  # Isthmus-Mecayapan Nahuatl, N=146
+    "niv":        "niv_cyrl_broad.tsv",  # Gilyak, N=627
+    "nmy":        "nmy_latn_narrow.tsv",  # Namuyi, N=354
+    "oji":        "oji_latn_broad.tsv",  # Ojibwa, N=136
+    "ota":        "ota_arab_broad.tsv",  # Ottoman Turkish (1500-1928), N=209
+    "pbv":        "pbv_latn_broad.tsv",  # Pnar, N=101
+    "pcc":        "pcc_latn_broad.tsv",  # Bouyei, N=153
+    "pjt":        "pjt_latn_narrow.tsv",  # Pitjantjatjara, N=125
+    "pox":        "pox_latn_broad.tsv",  # Polabian, N=321
+    "pqm":        "pqm_latn_broad.tsv",  # Malecite-Passamaquoddy, N=151
+    "rgn":        "rgn_latn_broad.tsv",  # Romagnol, N=267
+    "sce":        "sce_latn_broad.tsv",  # Dongxiang, N=169
+    "sdc":        "sdc_latn_broad.tsv",  # Sassarese Sardinian, N=344
+    "sia":        "sia_cyrl_broad.tsv",  # Akkala Sami, N=181
+    "sid":        "sid_latn_broad.tsv",  # Sidamo, N=298
+    "sjd":        "sjd_cyrl_broad.tsv",  # Kildin Sami, N=761
+    "sms":        "sms_latn_broad.tsv",  # Skolt Sami, N=119
+    "srs":        "srs_latn_broad.tsv",  # Sarsi, N=137
+    "syc":        "syc_syrc_broad.tsv",  # Classical Syriac, N=133
+    "tew":        "tew_latn_broad.tsv",  # Tewa (USA), N=106
+    "tft":        "tft_latn_broad.tsv",  # Ternate, N=297
+    "tkl":        "tkl_latn_narrow.tsv",  # Tokelau, N=340
+    "tru":        "tru_syrc_broad.tsv",  # Turoyo, N=232
+    "twf":        "twf_latn_broad.tsv",  # Northern Tiwa, N=135
+    "tzm":        "tzm_tfng_broad.tsv",  # Central Atlas Tamazight, N=690
+    "uby":        "uby_cyrl_narrow.tsv",  # Ubykh, N=1317
+    "ulw":        "ulw_latn_broad.tsv",  # Ulwa, N=103
+    "wau":        "wau_latn_broad.tsv",  # Waurá, N=146
+    "wbk":        "wbk_latn_broad.tsv",  # Waigali, N=154
+    "wiy":        "wiy_latn_broad.tsv",  # Wiyot, N=151
+    "wlm":        "wlm_latn_broad.tsv",  # Middle Welsh, N=435
+    "xsl":        "xsl_latn_narrow.tsv",  # South Slavey, N=304
+    "ycl":        "ycl_latn_narrow.tsv",  # Lolopo, N=111
+    "yrk":        "yrk_cyrl_narrow.tsv",  # Nenets, N=455
+    "yux":        "yux_cyrl_narrow.tsv",  # Southern Yukaghir, N=255
+    "zom":        "zom_latn_narrow.tsv",  # Zou, N=165
+    "zza":        "zza_latn_narrow.tsv",  # Zaza, N=215
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
@@ -231,33 +496,56 @@ _MIRANDESE_DICT_DIALECTS: Dict[str, set] = {
     "mwl-x-sendim": {"sendinês"},
     "mwl-x-ifanes": {"raiano"},
 }
-_INFOPEDIA_PT_URL = (
-    "https://huggingface.co/datasets/TigreGotico/infopedia-pt-ipa"
-    "/resolve/main/infopedia_pt_ipa.jsonl"
+_PT_UNIFIED_URL = (
+    "https://huggingface.co/datasets/TigreGotico/"
+    "portuguese-unified-pronunciation-lexicon"
+    "/resolve/main/portuguese_pronunciation_lexicon.jsonl"
 )
-_PT_LEXICON_URL = (
-    "https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon"
-    "/resolve/main/dataset.csv"
-)
-# TigreGotico/portuguese_phonetic_lexicon (~617k rows) scraped from the
-# public Portal da Língua Portuguesa (INESC-ID). Its IPA is SEMI-AUTOMATED
-# and community-scraped → classified ``crowd-scraped``. Each row carries a
-# ``region_code`` for one of ten regional variants (dataset card mapping).
-# orthography2ipa spec → the ONE region_code scored under it: the STANDARD
-# metropolitan variant of that country/region. Each spec gets a single row.
-_PT_LEXICON_REGIONS: Dict[str, str] = {
-    "pt-PT": "lbx",   # Lisbon (Standard) — standard European Portuguese
-    "pt-BR": "spx",   # São Paulo (Standard) — Brazilian standard
-    "pt-AO": "lda",   # Luanda — Angolan Portuguese (only Angola code)
-    "pt-MZ": "mpx",   # Maputo (Standard) — Mozambican Portuguese
-    "pt-TL": "dli",   # Dili — Timorese Portuguese (only Timor code)
+#: orthography2ipa language tag -> unified-dataset region tag. Only regions
+#: with a matching o2i spec AND a usable row count are scored; the tiny
+#: paulistano/paulista registers (~50 words each) and untagged "pt" rows
+#: are deliberately left out.
+_PT_UNIFIED_REGIONS: Dict[str, str] = {
+    "pt-PT": "pt-PT",                       # Infopedia + Wiktionary EP, ~116k rows
+    "pt-PT-x-lisbon": "pt-PT-x-lisboa",     # Portal lexicon Lisbon, ~62k rows
+    "pt-BR": "pt-BR",                       # Wiktionary BR, ~3.6k rows
+    "pt-BR-x-sp": "pt-BR-x-saopaulo",       # Portal lexicon Sao Paulo, ~92k rows
+    "pt-BR-x-rj": "pt-BR-x-riodejaneiro",   # Portal lexicon Rio, ~64k rows
+    "pt-BR-x-carioca": "pt-BR-x-carioca",   # Wiktionary carioca, ~566 words
+    "pt-BR-x-caipira": "pt-BR-x-caipira",   # Wiktionary caipira, ~83 words
+    "pt-AO": "pt-AO",                       # Portal lexicon Luanda, ~53k rows
+    "pt-MZ": "pt-MZ-x-maputo",              # Portal lexicon Maputo, ~95k rows
+    "pt-TL": "pt-TL-x-dili",                # Portal lexicon Dili, ~53k rows
 }
-# region_codes deliberately NOT scored (each is a non-standard register, or a
-# second Brazilian metropolitan norm, of a region already covered by its
-# Standard code above; no distinct orthography2ipa spec exists for them, so
-# scoring them would duplicate a spec's row or conflate registers):
-#   lbn (Lisbon non-std), rjx/rjo (Rio std/non-std), spo (São Paulo non-std),
-#   map (Maputo non-std).
+_VOX_COMMUNIS_BASE = (
+    "https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p"
+    "/resolve/main/"
+)
+#: orthography2ipa language tag -> vox-communis TSV file name (without .tsv).
+#: Direct matches are generated from the intersection of the dataset's 78
+#: per-language files with the spec inventory; the alias entries map the
+#: dataset's regionalised file names onto the spec that covers them. The
+#: ``pt`` file is registered under pt-BR: Common Voice Portuguese is
+#: predominantly Brazilian and the file itself is region-untagged (same
+#: policy as the WikiPron generic-pt row).
+_VOX_COMMUNIS_FILES: Dict[str, str] = {
+    lang: lang for lang in (
+        "ab", "am", "as", "ba", "be", "bg", "bn", "ca", "ckb", "cs", "cv",
+        "cy", "dv", "el", "et", "eu", "fi", "gl", "gn", "ha", "hi", "hsb",
+        "hu", "id", "ja", "ka", "kab", "kk", "ko", "ky", "lg", "lij", "lt",
+        "mk", "ml", "mn", "mr", "mt", "myv", "nl", "or", "pl", "ru", "rw",
+        "sah", "sk", "sl", "sq", "sr", "sw", "ta", "th", "tk", "tn", "tr",
+        "tt", "ug", "uk", "uz", "vi", "yo", "yue",
+    )
+}
+_VOX_COMMUNIS_FILES.update({
+    "es": "es", "it": "it", "ro": "ro",       # bare tags resolve via registry
+    "pt-BR": "pt",                            # region-untagged; see note above
+    "sv": "sv-se", "zh": "zh-cn", "hy": "hy-am",
+    "fy": "fy-nl", "pa": "pa-in",
+})
+
+
 _4CATAC_BASE = (
     "https://huggingface.co/datasets/projecte-aina/4catac/resolve/main/"
 )
@@ -318,31 +606,6 @@ _CLUP_LOCALITY_MAP: Dict[str, str] = {
     "Alfena, Porto": "pt-PT-x-alfena",
 }
 _CLUP_LANGS = sorted(set(_CLUP_DISTRICT_MAP.values()) | set(_CLUP_LOCALITY_MAP.values()))
-_STYLETTS2_PHONEMES_BASE = (
-    "https://huggingface.co/datasets/styletts2-community/"
-    "multilingual-phonemes-10k-alpha/resolve/main/"
-)
-# orthography2ipa language tag → dataset config file name.
-# All 15 of the dataset's single-language configs are wired (the
-# ``en-xl`` config is a 100K-row scale-up of the same "en" language
-# already covered by the ``en`` config here plus ``wikipron``/``cmudict``,
-# so it is left out as redundant rather than a new gold source).
-_STYLETTS2_PHONEMES_FILES: Dict[str, str] = {
-    "en": "en.json",
-    "ca": "ca.json",
-    "de": "de.json",
-    "es": "es.json",
-    "el": "el.json",
-    "fa": "fa.json",
-    "fi": "fi.json",
-    "fr": "fr.json",
-    "it": "it.json",
-    "pl": "pl.json",
-    "pt": "pt.json",
-    "ru": "ru.json",
-    "sv": "sv.json",
-    "uk": "uk.json",
-}
 
 _IPA_CHILDES_BASE = (
     "https://huggingface.co/datasets/fdemelo/ipa-childes-split/resolve/main/"
@@ -881,93 +1144,106 @@ def load_mirandese_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
-def load_infopedia_pt(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """European Portuguese (``pt-PT``) IPA lexicon (TigreGotico/infopedia-pt-ipa
-    on Hugging Face, 102,685 entries), extracted from a crawl of Infopédia
-    (Porto Editora), a reputable published European-Portuguese dictionary.
+def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Portuguese unified pronunciation lexicon, one REGION per language tag
+    (TigreGotico/portuguese-unified-pronunciation-lexicon on Hugging Face,
+    ~598k rows / 122k words, CC BY-SA 4.0).
 
-    Each JSONL row is ``{"word", "ipa", "pronunciations", "syllabification"}``;
-    ``pronunciations`` carries every distinct IPA form found for the word
-    (a handful of entries have more than one), so all of them are emitted
-    as separate reference pairs and scored via the harness's standard
-    multi-reference-per-word handling.
+    Merges the three previous TigreGotico Portuguese golds into one
+    convention-normalized dataset — Infopedia (Porto Editora dictionary),
+    pt.wiktionary.org, and the Portal da Lingua Portuguesa 10-region
+    lexicon — and REPLACES their separate loaders here. Each JSONL row is a
+    word x region x source x POS tuple carrying both a broad phonemic and a
+    narrow phonetic transcription normalized across sources.
 
-    PROVENANCE — classified ``lexicon-derived``: a published dictionary, but
-    the IPA transcriptions are Porto Editora's own and the METHODOLOGY BEHIND
-    THEM IS UNDOCUMENTED/UNKNOWN (not stated to be hand-checked, nor which
-    tooling produced them), so this is directional, not a peer-validated
-    ground truth. See docs/benchmarks.md "Provenance and reliability".
+    ``ipa_narrow`` is scored: it matches the transcription depth of the
+    o2i pt specs and of the previous gold (explicit [ɐ ɨ ɾ ʀ ɫ]).
+    Untagged plain-"pt" rows are excluded from every regional row: they are
+    the pan-Portuguese subset and would dilute regional contrasts. See
+    ``_PT_UNIFIED_REGIONS`` for the spec -> region mapping.
 
-    SAMPLING — 102k entries is far too many to score in full and the file is
-    alphabetically ordered, so the first ``limit`` lines would be a biased
-    all-"a…" slice. Instead the whole file is read and a fixed-seed
-    (``SAMPLE_SEED``) random sample of up to ``limit`` WORDS is drawn (all of
-    a sampled word's pronunciation variants are kept), giving an unbiased yet
-    fully reproducible slice. Portuguese is Latin-script; no special contract.
+    PROVENANCE — classified ``lexicon-derived``: the bulk of the rows come
+    from published-dictionary extractions (Infopedia) and the Portal's
+    semi-automated lexicon; the Wiktionary minority is crowd-scraped. Both
+    tiers may gate regressions, so the mixed classification is safe (only
+    competitor-derived/LLM tiers are exempt from gating).
+
+    SAMPLING — the file is grouped by word, so the first ``limit`` lines
+    would be a biased alphabetical slice; the whole file is read and a
+    fixed-seed (``SAMPLE_SEED``) random sample of up to ``limit`` WORDS is
+    drawn, keeping all of a sampled word's variants for the chosen region.
     """
-    del lang  # single language (pt-PT); kept for the uniform signature
-    text = _fetch(_INFOPEDIA_PT_URL, "infopedia_pt_ipa.jsonl")
-    words: List[Tuple[str, List[str]]] = []
+    region = _PT_UNIFIED_REGIONS[lang]
+    text = _fetch(_PT_UNIFIED_URL, "portuguese_pronunciation_lexicon.jsonl")
+    by_word: Dict[str, List[str]] = {}
     for line in text.strip().splitlines():
         if not line.strip():
             continue
         row = json.loads(line)
+        if row.get("region") != region:
+            continue
         word = row.get("word")
-        variants = [v for v in (row.get("pronunciations") or [row.get("ipa")]) if v]
-        if word and variants:
-            words.append((word, variants))
+        ipa = (row.get("ipa_narrow") or "").strip()
+        if not word or not ipa:
+            continue
+        by_word.setdefault(word, []).append(ipa)
+    words = sorted(by_word.items())
     rng = random.Random(SAMPLE_SEED)
     rng.shuffle(words)
     pairs: List[Tuple[str, str]] = []
     for word, variants in words[:limit]:
-        for ipa in variants:
+        for ipa in dict.fromkeys(variants):
             pairs.append((word, ipa))
     return pairs
 
 
-def load_portuguese_phonetic_lexicon(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """Portuguese phonetic lexicon, ONE regional variant per language tag
-    (TigreGotico/portuguese_phonetic_lexicon on Hugging Face, ~617k rows).
+def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """VoxCommunis parallel G2P pairs (fdemelo/vox-communis-parallel-g2p on
+    Hugging Face, CC0): Common Voice utterances force-aligned by the
+    VoxCommunis Corpus, with per-utterance phone strings whose lexicons came
+    from Epitran, the XPF Corpus, Charsiu and custom dictionaries (manually
+    corrected in part). One small TSV per language (~hundreds of rows).
 
-    Scraped from the public Portal da Língua Portuguesa (INESC-ID). This is a
-    DIRECT stdlib CSV loader (columns ``word,phones,postag,region_code,…``);
-    it lets the Lusophone family (``pt-PT``/``pt-BR``/``pt-AO``/``pt-MZ``/``pt-TL``)
-    be scored with no extra package installed. See ``_PT_LEXICON_REGIONS`` for
-    the spec→region_code mapping and the skipped register variants.
+    The ``phonemized_sentence`` column is space-separated phones with ``|``
+    between words, aligned with the whitespace-tokenized
+    ``aligned_sentence``; rows are split into word-level (word, IPA) pairs
+    the same way ``load_ipa_childes`` does, skipping rows whose token counts
+    do not match. Alignment artifacts (underscores, stray apostrophes) are
+    stripped from the phone side.
 
-    PROVENANCE — classified ``crowd-scraped``: the Portal's IPA is
-    SEMI-AUTOMATED (rule/tooling-generated, not hand-verified per entry), so
-    it is directional only, never ground truth. See docs/benchmarks.md.
-
-    The ``phones`` field flattens syllables with ``|`` (e.g. ``ˈkːa|zɐ``); the
-    separator is stripped so the whole-word IPA is scored. Portuguese is
-    Latin-script; no special input contract applies. The region's rows are read
-    in full; when ``limit`` is set (ad-hoc runs and the CI sample) a fixed-seed
-    (``SAMPLE_SEED``) random sample of up to ``limit`` words is drawn — unbiased
-    but fully reproducible. Under the published ``--scoreboard`` run (``limit``
-    unset) every row is scored. Duplicate words (same spelling) are
-    de-duplicated, keeping the first pronunciation.
+    PROVENANCE — classified ``epitran-derived`` (the competitor tier): the
+    phone tier's lexicons are built with Epitran — a scored competitor in
+    docs/comparison.md — alongside XPF/Charsiu, so a disagreement here
+    measures divergence from a competitor's output. Directional signal
+    only; can never gate a regression or a tier promotion.
     """
-    region = _PT_LEXICON_REGIONS[lang]
-    text = _fetch(_PT_LEXICON_URL, "portuguese_phonetic_lexicon.csv")
+    fname = _VOX_COMMUNIS_FILES[lang] + ".tsv"
+    text = _fetch(_VOX_COMMUNIS_BASE + fname, f"vox_communis_{fname}")
+    pairs: List[Tuple[str, str]] = []
     seen = set()
-    candidates: List[Tuple[str, str]] = []
-    reader = csv.DictReader(text.splitlines())
+    reader = csv.DictReader(text.splitlines(), delimiter="\t")
     for row in reader:
-        if (row.get("region_code") or "").strip() != region:
+        sentence = (row.get("aligned_sentence") or "").strip()
+        ipa = (row.get("phonemized_sentence") or "").strip()
+        if not sentence or not ipa:
             continue
-        word = (row.get("word") or "").strip()
-        ipa = (row.get("phones") or "").replace("|", "").strip()
-        if not word or not ipa:
+        words = sentence.split()
+        phones = ["".join(seg.split()) for seg in ipa.split("|")]
+        phones = [p.replace("_", "").replace("'", "") for p in phones]
+        if len(words) != len(phones):
             continue
-        key = word.lower()
-        if key in seen:
-            continue
-        seen.add(key)
-        candidates.append((word, ipa))
-    rng = random.Random(SAMPLE_SEED)
-    rng.shuffle(candidates)
-    return candidates[:limit]
+        for word, phone in zip(words, phones):
+            word = word.strip(".,;:!?\u00bf\u00a1\"'()")
+            if not word or not phone:
+                continue
+            key = word.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            pairs.append((word, phone))
+            if len(pairs) >= limit:
+                return pairs
+    return pairs
 
 
 def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -1185,27 +1461,6 @@ def load_ipadict(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 
 
-def load_styletts2_phonemes(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """StyleTTS2 community multilingual phonemes gold set (sentence-level,
-    styletts2-community/multilingual-phonemes-10k-alpha on Hugging Face):
-    ~10K ``text``/``phonemes`` sentence pairs per language, synthesized for
-    TTS-phonemizer training/evaluation, one JSON file per language config.
-    See ``_STYLETTS2_PHONEMES_FILES`` for the full set of wired languages.
-    """
-    fname = _STYLETTS2_PHONEMES_FILES[lang]
-    text = _fetch(_STYLETTS2_PHONEMES_BASE + fname, f"styletts2_{fname}")
-    data = json.loads(text)
-    pairs = []
-    for row in data:
-        sentence = row.get("text")
-        ipa = row.get("phonemes")
-        if sentence and ipa:
-            pairs.append((sentence.strip(), ipa.strip()))
-        if len(pairs) >= limit:
-            break
-    return pairs
-
-
 # Dialect code mapping for ep_dialects dataset
 # CSV dialect_code  →  orthography2ipa language tag
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1276,24 +1531,170 @@ def load_ep_dialects(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 
+
+# ─── sentence-level TTS gold (Arabic + Portuguese) ──────────────────────────
+#
+# Two sibling gold sets of full sentences, one TSV per lect, each row an
+# orthographic sentence paired with a hand-written broad IPA transcription.
+# They are LLM-authored (see the provenance note on ``arabic_tts`` /
+# ``portuguese_tts`` in ``PROVENANCE`` and docs/benchmarks.md): every
+# transcription was drafted by a language model, then engine-pinned and
+# audited row-by-row against the cited phonological literature recorded in
+# each row's ``notes`` column (docs/arabic-tts-gold.md,
+# docs/portuguese-tts-gold.md). Citation-audited is not expert-authored, so
+# the honest tier is ``llm-generated``: it has no error model and can gate no
+# quality decision — a directional signal only.
+#
+# Both are sentence-level, so the scorer routes each row through
+# ``engine.transcribe`` (see ``_is_multiword`` / ``evaluate_words``) and PER
+# is computed over the whole sentence under the same normalization
+# (stress-stripped, broad) as every other dataset. The lang tag scored under
+# each file is simply the file stem (a registered spec code); a test asserts
+# every stem resolves.
+_ARABIC_TTS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "arabic_tts",
+)
+_PORTUGUESE_TTS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "portuguese_tts",
+)
+
+
+def _load_sentence_tts(directory: str, lang: str, limit: int) \
+        -> List[Tuple[str, str]]:
+    """Shared reader for the per-lect sentence-level TTS gold TSVs.
+
+    Each file is ``<lang>.tsv`` with a header row and (at least) a
+    ``sentence`` column (the scored input) and an ``ipa`` column (the gold).
+    The Arabic files also carry an undiacritized ``raw`` column, which is
+    ignored: o2i's Arabic input contract is fully-diacritized text, and the
+    ``sentence`` column is the vocalized form. Punctuation carried by the
+    sentence is not a phoneme and is stripped from the gold by
+    :func:`normalize`.
+    """
+    path = os.path.join(directory, f"{lang}.tsv")
+    pairs: List[Tuple[str, str]] = []
+    with open(path, encoding="utf-8") as fh:
+        reader = csv.DictReader(fh, delimiter="\t")
+        for row in reader:
+            sentence = (row.get("sentence") or "").strip()
+            ipa = (row.get("ipa") or "").strip()
+            if not sentence or not ipa:
+                continue
+            pairs.append((sentence, ipa))
+            if len(pairs) >= limit:
+                break
+    return pairs
+
+
+def _sentence_tts_langs(directory: str) -> List[str]:
+    return sorted(
+        os.path.basename(p)[:-4]
+        for p in glob.glob(os.path.join(directory, "*.tsv"))
+    )
+
+
+def load_arabic_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Arabic sentence-level TTS gold — one TSV per lect, 20 sentences each
+    across 33 Arabic varieties (MSA + regional macro-lects + country/city
+    dialects). Vocalized ``sentence`` column in, broad IPA ``ipa`` column as
+    gold. LLM-authored, literature-audited: see docs/arabic-tts-gold.md and
+    the ``arabic_tts`` provenance note.
+    """
+    return _load_sentence_tts(_ARABIC_TTS_DIR, lang, limit)
+
+
+def load_portuguese_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Portuguese sentence-level TTS gold — one TSV per lect across European
+    Portuguese standard + regional varieties. ``sentence`` column in, broad
+    IPA ``ipa`` column as gold. LLM-authored, literature-audited: see
+    docs/portuguese-tts-gold.md and the ``portuguese_tts`` provenance note.
+    """
+    return _load_sentence_tts(_PORTUGUESE_TTS_DIR, lang, limit)
+
+
+_ARABIC_TTS_LANGS = _sentence_tts_langs(_ARABIC_TTS_DIR)
+_PORTUGUESE_TTS_LANGS = _sentence_tts_langs(_PORTUGUESE_TTS_DIR)
+
+
+_PRIMARY_SOURCES_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "primary_sources",
+)
+_PRIMARY_SOURCES_ROWS = os.path.join(_PRIMARY_SOURCES_DIR, "rows.jsonl")
+
+
+def read_primary_source_rows() -> List[Dict[str, object]]:
+    """Every row of the primary-source gold, unfiltered.
+
+    Rows carry their full provenance (source id, printed page, the source's
+    own notation, broad/narrow, confidence); the benchmark loader below
+    projects them down to the (word, ipa) pairs the harness scores, and the
+    tests use this richer view.
+    """
+    rows: List[Dict[str, object]] = []
+    with open(_PRIMARY_SOURCES_ROWS, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    return rows
+
+
+def load_primary_sources(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Example transcriptions mined from the PRIMARY SOURCES the language
+    specs themselves cite (grammars, phonology monographs, theses).
+
+    Each row is one worked example printed by the linguist who described the
+    variety — the orthographic form, the IPA as that source wrote it, and the
+    printed page it came from. See the dataset README for the per-source row
+    counts, the notation-normalization decisions, and the rows where a source
+    contradicts a spec.
+
+    The scored input word is the vocalized orthography where the row has one
+    (Arabic: o2i's input contract is fully-diacritized text, and the sources
+    print their examples in transcription, so the ḥarakāt are editor-supplied
+    and flagged as such per row), otherwise the orthography as printed.
+    """
+    pairs: List[Tuple[str, str]] = []
+    for row in read_primary_source_rows():
+        if row.get("lang") != lang:
+            continue
+        word = row.get("orthography_vocalized") or row.get("orthography")
+        ipa = row.get("ipa")
+        if not word or not ipa:
+            continue
+        pairs.append((str(word), str(ipa)))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+def _primary_source_langs() -> List[str]:
+    return sorted({
+        str(row["lang"]) for row in read_primary_source_rows() if row.get("lang")
+    })
+
+
 DATASETS = {
+    "primary_sources": (load_primary_sources, _primary_source_langs()),
+    "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
+    "portuguese_tts": (load_portuguese_tts, _PORTUGUESE_TTS_LANGS),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
-    "portuguese_phonetic_lexicon": (load_portuguese_phonetic_lexicon,
-                                    sorted(_PT_LEXICON_REGIONS)),
-    "infopedia_pt": (load_infopedia_pt, ["pt-PT"]),
+    "portuguese_unified": (load_portuguese_unified, sorted(_PT_UNIFIED_REGIONS)),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
     "clup_dialect": (load_clup_dialect, _CLUP_LANGS),
     "cmudict": (load_cmudict, ["en-US"]),
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
-    "styletts2_phonemes": (load_styletts2_phonemes,
-                           sorted(_STYLETTS2_PHONEMES_FILES)),
     "ipa_childes": (load_ipa_childes, sorted(_IPA_CHILDES_FOLDERS)),
+    "vox_communis": (load_vox_communis, sorted(_VOX_COMMUNIS_FILES)),
     "ipa_babylm": (load_ipa_babylm, ["en-US"]),
 }
 
@@ -1388,13 +1789,30 @@ def can_gate_promotion(tier: str) -> bool:
 # reliability classification). Classifications are justified per-dataset in
 # docs/benchmarks.md "Provenance and reliability".
 PROVENANCE: Dict[str, str] = {
+    # The transcriptions are the published examples of the phonologists and
+    # dialectologists the specs cite — the most authoritative gold in the
+    # harness, and the only one whose every row names the page it came from.
+    # Still small-n, still bound by each source's own conventions (and by the
+    # editor-supplied Arabic ḥarakāt: see the dataset README), so it diagnoses
+    # rules rather than certifying a language on its own.
+    "primary_sources": "expert-human",
+    # Arabic + Portuguese sentence-level TTS gold. LLM-authored: every IPA
+    # transcription was drafted by a large language model, then engine-pinned
+    # and audited row-by-row against the phonological literature cited in each
+    # row's `notes` column (docs/arabic-tts-gold.md, docs/portuguese-tts-gold.md).
+    # Citation-auditing raises confidence but does NOT change the error model:
+    # there is still no lexicon, no G2P, no rule system behind the gold, so a
+    # disagreement cannot be attributed to anything. The honest tier is
+    # `llm-generated` (never `expert-human`) — directional signal only, gates
+    # no quality decision (docs/quality_tiers.md).
+    "arabic_tts": "llm-generated",
+    "portuguese_tts": "llm-generated",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
     "mirandese_g2p": "expert-human",     # TigreGotico/mirandese_g2p; native-speaker collected; small-n
     "4catac": "expert-human",            # expert annotators, IEC guidelines, consensus review
     "clup_dialect": "expert-human",      # U.Porto CLUP dialect archive; see note (IPA-column provenance undocumented, many rows n=1-17)
     # human lexicographers via dictionary notation conventions
-    "infopedia_pt": "lexicon-derived",        # Infopédia (Porto Editora) dictionary extraction
     "cmudict": "lexicon-derived",             # CMU hand-curated ARPABET, mechanically mapped to IPA
     # ipa-dict is MIXED-PROVENANCE and is classified PER LANGUAGE in
     # PROVENANCE_BY_LANG below (human dictionaries, Wiktionary scrapes, rule
@@ -1406,13 +1824,13 @@ PROVENANCE: Dict[str, str] = {
     "ipadict": "machine-generated",
     # community-scraped Wiktionary
     "wikipron": "crowd-scraped",
+    "portuguese_unified": "lexicon-derived",  # Infopedia + Portal lexicon + Wiktionary, convention-normalized
     # SAME crowd-scraped WikiPron ar gold; only the INPUT word is
     # machine-diacritized (text2tashkeel, ~2% DER), which adds a small
     # machine noise floor on top of the gold's own tier. Diagnostic for
     # the vowelized-Arabic rules; certifies nothing beyond the raw row.
     "wikipron_ar_diacritized": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
-    "portuguese_phonetic_lexicon": "crowd-scraped",
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
     # not correctness — and espeak is a system we benchmark ourselves *against*
@@ -1421,11 +1839,14 @@ PROVENANCE: Dict[str, str] = {
     # language. Never gate a quality decision on this row; judge any divergence
     # against a cited source instead. Kept because it is broad coverage and a
     # useful directional signal.
-    "styletts2_phonemes": "espeak-derived",
     # IPA-BabyLM: G2P+ (github.com/codebyzeb/g2p-plus) with the `phonemizer`
-    # backend, language en-us — i.e. espeak-ng output. Same circularity as
-    # styletts2_phonemes; cannot qualify or block English.
+    # backend, language en-us — i.e. espeak-ng output. espeak output can
+    # never qualify or block a spec: a disagreement measures divergence
+    # from espeak, which may be exactly what the cited source demands.
     "ipa_babylm": "espeak-derived",
+    # VoxCommunis lexicons are built with Epitran (a scored competitor),
+    # XPF and Charsiu; partially hand-corrected, but not attributably so.
+    "vox_communis": "epitran-derived",
     # IPA-CHILDES is MIXED-PROVENANCE and is classified PER LANGUAGE in
     # PROVENANCE_BY_LANG below: its dataset card names a DIFFERENT phonemizing
     # tool per language (phonemizer/espeak for most, epitran for six,
@@ -1526,7 +1947,7 @@ def _is_multiword(entry: str) -> bool:
     """True if *entry* is a phrase/sentence rather than a single word.
 
     Whitespace is the signal: a gold set is either word-level (WikiPron,
-    CMUdict) or sentence-level (4catac, styletts2_phonemes), and the scorer
+    CMUdict) or sentence-level (4catac, vox_communis), and the scorer
     must call the matching engine API for each.
     """
     return len(entry.split()) > 1
@@ -1623,7 +2044,7 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     for word, golds in refs.items():
         try:
             # Pick the API that matches the entry's granularity. Several gold
-            # sets are sentence-level (4catac, styletts2_phonemes), and
+            # sets are sentence-level (4catac, vox_communis), and
             # transcribe_word() treats a whole sentence as ONE word: word
             # boundaries vanish, per-word stress collapses to a single mark,
             # and word-final rules (Catalan final-⟨r⟩ deletion, Danish schwa)
@@ -1820,7 +2241,7 @@ def write_scoreboard(rows: List[dict]) -> None:
 # how much of a language's accuracy comes from the *rules* versus the shipped
 # sidecar TSV. This report re-scores the same gold twice — once with the
 # lexicon disabled ("rules-only PER") and once with it on ("with-lexicon PER")
-# — for every language that ships a data/lexicons/{code}.tsv, so a regression
+# — for every language with a registered lexicon (none are bundled), so a regression
 # in rule quality can't hide behind lexicon coverage. It is a SEPARATE artifact
 # from the main scoreboard (docs/scoreboard.md is left untouched): languages
 # with no lexicon are byte-identical with or without this feature.
@@ -1866,7 +2287,7 @@ def _score_pairs(pairs, lang: str) -> Tuple[int, float]:
 def build_lexicon_report(limit: Optional[int]) -> List[dict]:
     """Rules-only vs with-lexicon PER for every shipped lexicon language.
 
-    For each ``data/lexicons/{code}.tsv`` and each wikipron gold tag that
+    For each registered lexicon (see ``orthography2ipa.register_lexicon``) and each wikipron gold tag that
     resolves to it, reports PER on the full ``limit`` slice AND on just the
     subset of gold words the lexicon actually covers (where the overlay can
     possibly act) — the covered-subset delta is the honest measure of the
@@ -1922,7 +2343,7 @@ def write_lexicon_report(rows: List[dict]) -> None:
         "# Lexicon-overlay scoreboard",
         "",
         "Rules-only vs with-lexicon PER for every language that ships an "
-        "optional sidecar lexicon (`orthography2ipa/data/lexicons/{code}.tsv` "
+        "optional caller-registered lexicon (never bundled) "
         "— see [`docs/data_model.md`](data_model.md) and "
         "[`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the "
         "overlay must *improve* PER without letting the underlying grapheme "
@@ -1990,7 +2411,7 @@ def main() -> None:
                          "published scoreboard).")
     ap.add_argument("--lexicon-report", action="store_true",
                     help="Score rules-only vs with-lexicon PER for every "
-                         "language shipping a data/lexicons/{code}.tsv and "
+                         "language with a registered lexicon and "
                          "write docs/lexicon_scoreboard.md + "
                          "benchmarks/lexicon_results.json")
     args = ap.parse_args()

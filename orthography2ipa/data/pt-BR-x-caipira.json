@@ -382,6 +382,7 @@
   },
   "iso639_3": "por",
   "stress": {
+    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -418,7 +419,29 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam). DIPHTHONGS: declared so the bundled syllabifier counts nuclei correctly — without them every vowel run merges into one nucleus and co-e-lho is read as coe-lho, one syllable short, putting the stress and its vowel reduction on the wrong vowel. ⟨oe⟩ is hiatus, not a diphthong (Cunha & Cintra, §Ditongos).",
+    "diphthongs": [
+      "ãe",
+      "ão",
+      "õe",
+      "ai",
+      "ái",
+      "au",
+      "áu",
+      "ei",
+      "éi",
+      "êi",
+      "eu",
+      "éu",
+      "êu",
+      "iu",
+      "oi",
+      "ói",
+      "ôi",
+      "ou",
+      "ui",
+      "uí"
+    ]
   },
   "graphemes_base": "pt-BR",
   "allophones_base": "pt-BR",
@@ -433,9 +456,6 @@
         "ɾ"
       ],
       "before_consonant": [
-        "ɻ"
-      ],
-      "coda": [
         "ɻ"
       ],
       "word_final": [
@@ -454,10 +474,6 @@
         "w",
         "ɻ"
       ],
-      "coda": [
-        "w",
-        "ɻ"
-      ],
       "word_final": [
         "w",
         "ɻ"
@@ -470,5 +486,19 @@
     "longitude": -47.649327,
     "source": "wikidata",
     "notes": "Piracicaba — a representative locality of the caipira area, whose retroflex-rhotic region stretches from interior São Paulo across Goiás and Mato Grosso. A point badly under-describes it. [Wikidata Q330175 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "BR_AFFRIC_T_RAISED",
+      "phonemes": [],
+      "surface": "t͡ʃ",
+      "notes": "DISABLED for caipira: the interior Paulista variety keeps a conservative DENTAL /t d/ before a RAISED final unstressed ⟨e⟩ (leite [ˈlejti], tarde [ˈtaɾdi]), even though it does affricate before an etymological ⟨i⟩ (tio, dia, petisca — kept by the positional before_i map). Only the post-lexical final-⟨e⟩ affrication is opted out here."
+    },
+    {
+      "id": "BR_AFFRIC_D_RAISED",
+      "phonemes": [],
+      "surface": "d͡ʒ",
+      "notes": "DISABLED for caipira: the interior Paulista variety keeps a conservative DENTAL /t d/ before a RAISED final unstressed ⟨e⟩ (leite [ˈlejti], tarde [ˈtaɾdi]), even though it does affricate before an etymological ⟨i⟩ (tio, dia, petisca — kept by the positional before_i map). Only the post-lexical final-⟨e⟩ affrication is opted out here."
+    }
+  ]
 }

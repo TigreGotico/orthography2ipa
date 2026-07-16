@@ -386,7 +386,7 @@ class TestSpanishES:
         assert p and "ð" in p
 
     def test_positional_n_coda_includes_velar(self):
-        p = _positional(self._spec, "n", GraphemePosition.CODA)
+        p = _positional(self._spec, "n", GraphemePosition.BEFORE_CONSONANT)
         assert p and "ŋ" in p
 
     # --- Isogloss: Spanish ≠ Portuguese ---
@@ -642,9 +642,16 @@ class TestPortuguesePT:
         assert p and "z" in p
 
     def test_positional_s_coda_postalveolar(self):
-        """s in coda → /ʒ/ (devoiced/postalveolarised in European PT)."""
-        p = _positional(self._spec, "s", GraphemePosition.CODA)
-        assert p and "ʒ" in p
+        """Coda ⟨s⟩ hushes to [ʃ] (the 'chiado') via the syllable-coda
+        allophone rule, not a positional grapheme override — voicing to
+        [ʒ] before a voiced consonant is a downstream sandhi."""
+        rules = self._spec.allophone_rules or []
+        coda_s = [
+            r for r in rules
+            if getattr(r, "syllable_position", None) == "coda"
+            and "s" in (getattr(r, "phonemes", None) or [])
+        ]
+        assert coda_s and any("ʃ" in (r.surface or "") for r in coda_s)
 
     def test_positional_s_word_final_postalveolar(self):
         """s at word end → /ʃ/ (devoiced postalveolar)."""
@@ -652,8 +659,14 @@ class TestPortuguesePT:
         assert p and "ʃ" in p
 
     def test_positional_z_coda_postalveolar(self):
-        p = _positional(self._spec, "z", GraphemePosition.CODA)
-        assert p and "ʃ" in p
+        """Coda ⟨z⟩ hushes to [ʒ] via the syllable-coda allophone rule."""
+        rules = self._spec.allophone_rules or []
+        coda_z = [
+            r for r in rules
+            if getattr(r, "syllable_position", None) == "coda"
+            and "z" in (getattr(r, "phonemes", None) or [])
+        ]
+        assert coda_z and any("ʒ" in (r.surface or "") for r in coda_z)
 
     def test_positional_l_coda_velarized(self):
         """l in coda → /ɫ/ (dark/velarised l)."""
@@ -1035,7 +1048,7 @@ class TestCatalan:
         assert p and "l" in p
 
     def test_positional_l_coda_includes_dark(self):
-        p = _positional(self._spec, "l", GraphemePosition.CODA)
+        p = _positional(self._spec, "l", GraphemePosition.BEFORE_CONSONANT)
         assert p and "ɫ" in p
 
 
@@ -1279,12 +1292,15 @@ class TestGalician:
         p = _positional(self._spec, "b", GraphemePosition.INTERVOCALIC)
         assert p and "β" in p
 
-    def test_positional_l_coda_dark(self):
-        p = _positional(self._spec, "l", GraphemePosition.CODA)
-        assert p and "ɫ" in p
+    def test_positional_l_coda_stays_clear(self):
+        # Galician keeps a CLEAR [l] in the coda — unlike Portuguese, which
+        # velarises it to dark [ɫ]. The pre-consonantal reading falls through
+        # to the plain lateral with no dark override.
+        p = _positional(self._spec, "l", GraphemePosition.BEFORE_CONSONANT)
+        assert "l" in (p or []) and "ɫ" not in (p or [])
 
     def test_positional_n_coda_velar(self):
-        p = _positional(self._spec, "n", GraphemePosition.CODA)
+        p = _positional(self._spec, "n", GraphemePosition.BEFORE_CONSONANT)
         assert p and "ŋ" in p
 
     # --- Ancestry ---
@@ -1401,10 +1417,14 @@ class TestBasqueEU:
 
     # --- H is a phoneme ---
 
-    def test_h_is_phonemic(self):
-        """BASQUE: h is a real phoneme /h/ — NOT silent like in Romance."""
+    def test_h_is_silent_in_the_southern_norm(self):
+        """BASQUE: orthographic ⟨h⟩ is unpronounced in the southern/standard
+        spoken norm; live aspiration survives only in the north-eastern
+        (continental) dialects, which reassert [h] themselves."""
         g = _grapheme(self._spec, "h")
-        assert g == ["h"], f"eu h: expected phonemic [h], got {g}"
+        assert g == [""], f"eu h: expected silent '' (southern norm), got {g}"
+        assert _grapheme(_load("eu-x-zuberera"), "h") == ["h"], \
+            "continental Souletin should keep phonemic [h]"
 
     # --- Other consonants ---
 
@@ -1501,9 +1521,11 @@ class TestBasqueEU:
         # Basque doesn't have v at all in standard orthography
         assert "v" not in self._spec.graphemes, "eu: v should not be in Basque graphemes"
 
-    def test_isogloss_h_phonemic_not_silent(self):
-        g = _grapheme(self._spec, "h")
-        assert g != [""], "eu h: should be phonemic [h], not silent"
+    def test_isogloss_h_southern_silent_continental_phonemic(self):
+        # southern/standard eu drops ⟨h⟩; the continental dialects keep it
+        assert _grapheme(self._spec, "h") == [""], "eu h: southern norm is silent"
+        assert _grapheme(_load("eu-x-lapurtera"), "h") == ["h"], \
+            "continental Lapurdian keeps phonemic [h]"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1709,7 +1731,7 @@ class TestAsturian:
         assert p and "ɾ" in p
 
     def test_positional_n_coda_velar(self):
-        p = _positional(self._spec, "n", GraphemePosition.CODA)
+        p = _positional(self._spec, "n", GraphemePosition.BEFORE_CONSONANT)
         assert p and "ŋ" in p
 
     # --- Isogloss: Asturian ≠ Spanish ---
@@ -2128,15 +2150,18 @@ class TestIberianIsoglosses:
             assert g and "ʁ" in g, f"{spec.code} rr: expected uvular ʁ"
 
     def test_h_silence_vs_phonemic(self):
-        """h is silent/null in Romance Iberian; h is phonemic in Basque.
+        """h is silent/null in Romance Iberian and in the southern/standard
+        Basque spoken norm; live aspiration survives only in the north-eastern
+        (continental) Basque dialects.
 
         es-ES, gl, ast, ca use empty string "" for silent h.
         pt-PT uses "" (the null symbol) for silent h.
-        Basque eu uses "h" (phonemic aspiration).
+        Standard eu is h-less; continental eu-x-zuberera keeps "h".
         """
-        silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"), _load("an")]
+        silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"),
+                        _load("an"), _load("eu")]
         silent_null_sym = [_load("pt-PT")]
-        phonemic = [_load("eu")]
+        phonemic = [_load("eu-x-zuberera")]
 
         for spec in silent_empty:
             g = _grapheme(spec, "h")

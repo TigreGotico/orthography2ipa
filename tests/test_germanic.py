@@ -541,8 +541,17 @@ class TestDutch:
         _assert_first(_grapheme(self._spec, "ch"), "x", label="nl-NL ch")
 
     def test_sch_onset(self):
-        """<sch> → /sx/ (e.g., *school*, *schip*) — note reversed from German."""
-        _assert_first(_grapheme(self._spec, "sch"), "sx", label="nl-NL sch")
+        """⟨sch⟩ → /sx/ (e.g. *school*, *schip*) — note reversed from German.
+
+        It needs no grapheme key of its own: ⟨s⟩ + ⟨ch⟩ already compose to
+        /sx/, unlike German ⟨sch⟩ → /ʃ/, which does earn one. Assert the
+        pronunciation, not the spelling table.
+        """
+        from orthography2ipa.g2p import transcribe
+
+        assert transcribe("school", "nl-NL").replace("ˈ", "") == "sxoːl"
+        assert transcribe("schip", "nl-NL").replace("ˈ", "") == "sxɪp"
+        assert "sch" not in self._spec.graphemes
 
     def test_w_is_labiodental_approximant(self):
         """<w> in Dutch is the labiodental approximant /ʋ/."""
@@ -1207,8 +1216,9 @@ class TestWestFrisian:
 
     West Frisian is an Anglo-Frisian language spoken in Fryslân (Netherlands).
     Key features: breaking diphthongs (/iə/, /ɪə/, /oə/), final devoicing,
-    voiced velar stop /ɡ/ (not fricative), rich vowel system with circumflex
-    orthography (â, ê, ô, û).
+    ⟨g⟩ = [ɡ]~[ɣ] allophony (stop in onset, fricative elsewhere, devoiced to
+    [χ] finally), and a rich vowel system with circumflex orthography (â, ê,
+    ô, û).
     """
 
     LANGUAGE_CODE = "fy"
@@ -1239,8 +1249,8 @@ class TestWestFrisian:
     # --- Short vowels ---
 
     def test_a_short(self):
-        """<a> → /ɑ/ (e.g., *bal*, *kat*)."""
-        _assert_first(_grapheme(self._spec, "a"), "ɑ", label="fy a")
+        """<a> → /a/ (short front; e.g., *pak*), contrasting with long <aa> /aː/."""
+        _assert_first(_grapheme(self._spec, "a"), "a", label="fy a")
 
     def test_e_short(self):
         """<e> → /ɛ/ or /ə/ (stressed vs unstressed)."""
@@ -1336,21 +1346,21 @@ class TestWestFrisian:
     # --- Consonants ---
 
     def test_g_is_voiced_stop(self):
-        """<g> includes voiced stop /ɡ/ — NOT the Dutch fricative /ɣ/."""
+        """<g> is the stop [ɡ] in onset; [ɣ] is its fricative allophone elsewhere."""
         g = _grapheme(self._spec, "g")
         _assert_contains(g, "ɡ", label="fy g")
 
     def test_ch_voiceless_velar(self):
-        """<ch> → /x/ (e.g., *acht*, *nacht*)."""
-        _assert_first(_grapheme(self._spec, "ch"), "x", label="fy ch")
+        """<ch> → /χ/ (voiceless post-velar/uvular fricative; e.g., *sûch*)."""
+        _assert_first(_grapheme(self._spec, "ch"), "χ", label="fy ch")
 
     def test_sj_postalveolar(self):
-        """<sj> → /ʃ/ (e.g., *sjen* 'to see')."""
-        _assert_first(_grapheme(self._spec, "sj"), "ʃ", label="fy sj")
+        """<sj> → /ɕ/ (alveolo-palatal; e.g., *sjippe*)."""
+        _assert_first(_grapheme(self._spec, "sj"), "ɕ", label="fy sj")
 
     def test_tj_affricate(self):
-        """<tj> → /tʃ/ (e.g., *tsjerke* 'church')."""
-        _assert_first(_grapheme(self._spec, "tj"), "tʃ", label="fy tj")
+        """<tj> → /tɕ/ (alveolo-palatal affricate; e.g., *laitsje*)."""
+        _assert_first(_grapheme(self._spec, "tj"), "tɕ", label="fy tj")
 
     def test_w_labiodental(self):
         """<w> → /ʋ/ (primary) or /w/ — labiodental approximant."""
@@ -1378,9 +1388,9 @@ class TestWestFrisian:
         _assert_contains(p, "t", label="fy d word_final")
 
     def test_g_final_devoicing(self):
-        """<g> → /x/ word-finally."""
+        """<g> → /χ/ word-finally (final devoicing of /ɣ/; Tiersma 1999, p. 21)."""
         p = _positional(self._spec, "g", GraphemePosition.WORD_FINAL)
-        _assert_contains(p, "x", label="fy g word_final")
+        _assert_contains(p, "χ", label="fy g word_final")
 
     def test_v_final_devoicing(self):
         """<v> → /f/ word-finally."""
@@ -1755,3 +1765,37 @@ class TestOldFrisian:
     def test_ancestry_ingvaeonic(self):
         assert "gem-x-ingvaeonic" in _ancestor_codes(self._spec), \
             "ofs should descend from Proto-Ingvaeonic"
+
+
+class TestGermanFinalIg:
+    """⟨-ig⟩ is not a grapheme: word-final ⟨g⟩ after /ɪ/ spirantises to [ç].
+
+    Stating it as a rule keyed on the ⟨g⟩ grapheme keeps ⟨-ik⟩ (Musik) and
+    every other final ⟨g⟩ (Tag) out of it.
+    """
+
+    @staticmethod
+    def _t(word):
+        from orthography2ipa.g2p import transcribe
+        return transcribe(word, "de-DE").replace("ˈ", "")
+
+    def test_final_ig_spirantises(self):
+        assert self._t("König") == "kœnɪç"
+        assert self._t("ewig") == "ɛvɪç"
+        assert self._t("wichtig") == "vɪçtɪç"
+
+    def test_non_final_ig_stays_a_stop(self):
+        assert self._t("Königin") == "kœnɪɡɪn"
+
+    def test_other_final_g_just_devoices(self):
+        assert self._t("Tag") == "tak"
+        assert self._t("Weg") == "vɛk"
+
+    def test_final_ik_is_untouched(self):
+        assert self._t("Musik") == "mʊzɪk"
+
+    def test_ig_is_not_a_grapheme(self):
+        from orthography2ipa import get
+        spec = get("de-DE")
+        assert "ig" not in spec.graphemes
+        assert "ig" not in (spec.positional_graphemes or {})

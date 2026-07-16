@@ -40,11 +40,23 @@ def alentejo():
 @pytest.mark.parametrize("word,expected", [
     ("tudo", "ˈtydu"),   # Brissos (2014): [tˈyd] 'tudo'
     ("lume", "ˈlymɨ"),   # Brissos (2014): [lˈymɨ] 'lume'
-    ("mudo", "ˈmydu"),
     ("sul", "ˈsyɫ"),     # stressed lexical /u/ + inherited dark coda l
 ])
 def test_algarve_stressed_u_fronts_to_y(algarve, word, expected):
     assert algarve.transcribe(word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("mudo", "ˈmudu"),   # bilabial /m/ onset — /u/ NOT fronted (Brissos 2014b)
+    ("puro", "ˈpuɾu"),   # bilabial /p/ onset
+    ("burro", "ˈbuʁu"),  # bilabial /b/ onset
+])
+def test_algarve_stressed_u_not_fronted_after_bilabial(algarve, word, expected):
+    # Brissos (2014b, 'A vogal u', AVOC): after a bilabial onset the stressed
+    # /u/ retracts toward [u] (Salema: 25% of F2 space, 'muito mais perto de
+    # [u] do que de [y]'). The ALG_U_NO_FRONT_AFTER_BILABIAL guard keeps [u].
+    assert algarve.transcribe(word) == expected
+    assert "y" not in algarve.transcribe(word)
 
 
 def test_algarve_fronting_has_front_rounded_vowel(algarve):
@@ -62,10 +74,10 @@ def test_algarve_unstressed_u_is_not_fronted(algarve):
 # ── Algarvio: proclitic guard (regression test for the o -> [y] leak) ─────────
 
 @pytest.mark.parametrize("word,expected", [
-    ("o", "ˈu"),    # definite article — [u], NEVER [y]
-    ("no", "ˈnu"),  # em + o contraction
-    ("do", "ˈdu"),  # de + o contraction
-    ("ao", "ˈaw"),  # a + o contraction
+    ("o", "u"),    # definite article — [u], NEVER [y]
+    ("no", "nu"),  # em + o contraction
+    ("do", "du"),  # de + o contraction
+    ("ao", "aw"),  # a + o contraction
 ])
 def test_algarve_proclitics_keep_u_never_front(algarve, word, expected):
     out = algarve.transcribe(word)
@@ -86,12 +98,19 @@ def test_algarve_no_mar_proclitic_is_nu(algarve):
     ("sul", "ˈsyɫ"),    # stressed lexical /u/ + inherited dark coda l
     ("lume", "ˈlym"),   # stressed /u/->[y]; final [ɨ] (< e) then deleted
     ("tudo", "ˈty"),    # /u/->[y]; intervocalic /d/ + final vowel deleted
-    ("mudo", "ˈmy"),
 ])
 def test_alentejo_stressed_u_fronts_to_y(alentejo, word, expected):
     # Cintra (1971): 'a palatalizacao, em maior ou menor grau, da vogal tonica u'
     # delimits the Beira-Baixa / Alto-Alentejo zone; [y] is its phonetic value.
     assert alentejo.transcribe(word) == expected
+
+
+def test_alentejo_stressed_u_not_fronted_after_bilabial(alentejo):
+    # Brissos (2014b): after a bilabial onset /u/ is not fronted. 'mudo' =
+    # /m/ + stressed /u/ (kept [u]) + intervocalic /d/ deleted + final /u/
+    # deleted -> [ˈmu]; contrast the non-bilabial 'tudo' -> [ˈty].
+    assert alentejo.transcribe("mudo") == "ˈmu"
+    assert "y" not in alentejo.transcribe("mudo")
 
 
 def test_alentejo_unstressed_u_is_not_fronted(alentejo):
@@ -104,10 +123,10 @@ def test_alentejo_unstressed_u_is_not_fronted(alentejo):
 # ── Alentejano: proclitic guard (o -> [u], never [y]) ─────────────────────────
 
 @pytest.mark.parametrize("word,expected", [
-    ("o", "ˈu"),    # definite article — [u], NEVER [y]
-    ("no", "ˈnu"),  # em + o contraction
-    ("do", "ˈdu"),  # de + o contraction
-    ("ao", "ˈaw"),  # a + o contraction
+    ("o", "u"),    # definite article — [u], NEVER [y]
+    ("no", "nu"),  # em + o contraction
+    ("do", "du"),  # de + o contraction
+    ("ao", "aw"),  # a + o contraction
 ])
 def test_alentejo_proclitics_keep_u_never_front(alentejo, word, expected):
     out = alentejo.transcribe(word)

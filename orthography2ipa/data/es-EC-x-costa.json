@@ -83,5 +83,16 @@
     "longitude": -79.8875,
     "source": "wikidata",
     "notes": "Guayaquil — the centre of the Ecuadorian coast. [Wikidata Q43509 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "CODA_S_ASPIRATION",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "h",
+      "syllable_position": "coda",
+      "notes": "Lowland coda /s/ lenition (aspiration tier of Lipski's 1994 cline): syllable-final /s/ (from ⟨s⟩ and seseante ⟨z⟩) weakens to the glottal aspirate [h] (esta=[ˈehta], los=[loh], diez=[djeh])."
+    }
+  ]
 }

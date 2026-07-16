@@ -1,0 +1,141 @@
+{
+  "code": "gml",
+  "name": "Middle Low German",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "sch": [
+      "ʃ"
+    ],
+    "ch": [
+      "x"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ck": [
+      "k"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ae": [
+      "ɛː"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "v"
+    ],
+    "z": [
+      "s"
+    ]
+  },
+  "parent": "gem-x-ingvaeonic",
+  "ancestors": [
+    {
+      "code": "gem-x-ingvaeonic",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Middle Low German (midd1318)."
+    }
+  ],
+  "notes": "Skeleton. West Germanic (Ingvaeonic/Low Saxon) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels, doubled long vowels, the digraphs sch [ʃ], ch [x], ng and ck, and the plain consonants with v and w both mapped to [v]. Middle Low German spelling was not standardised across the Hanseatic writing tradition; vowel length and quality were marked inconsistently and are largely left unencoded, so a notable PER floor is expected.",
+  "iso639_3": "gml",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "gml_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Middle Low German (midd1318)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/midd1318",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "gml_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Middle Low German (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Middle_Low_German",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Middle_Low_German"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Middle_Low_German"
+  ]
+}

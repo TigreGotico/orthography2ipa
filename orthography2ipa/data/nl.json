@@ -137,9 +137,6 @@
     "nk": [
       "ŋk"
     ],
-    "sch": [
-      "sx"
-    ],
     "sj": [
       "ʃ"
     ],
@@ -363,18 +360,12 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
     },
     "d": {
       "word_final": [
-        "t"
-      ],
-      "coda": [
         "t"
       ],
       "default": [
@@ -385,9 +376,6 @@
       "word_final": [
         "x"
       ],
-      "coda": [
-        "x"
-      ],
       "default": [
         "ɣ"
       ]
@@ -396,18 +384,12 @@
       "word_final": [
         "f"
       ],
-      "coda": [
-        "f"
-      ],
       "default": [
         "v"
       ]
     },
     "z": {
       "word_final": [
-        "s"
-      ],
-      "coda": [
         "s"
       ],
       "default": [

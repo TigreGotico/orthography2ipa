@@ -2,8 +2,17 @@
   "code": "ar-x-gulf",
   "name": "Proto-Gulf Arabic",
   "script": "Arabic",
+  "word_exceptions": {
+    "سَاكِن": "saːkin"
+  },
   "graphemes_base": "ar-x-peninsular",
   "graphemes": {
+    "وَيْ": [
+      "weː"
+    ],
+    "يَوْ": [
+      "joː"
+    ],
     "ث": [
       "θ",
       "t"
@@ -34,6 +43,110 @@
     ],
     "ڤ": [
       "v"
+    ],
+    "الثث": [
+      "aθθ",
+      "att"
+    ],
+    "اَلثث": [
+      "aθθ",
+      "att"
+    ],
+    "لِلثث": [
+      "liθθ",
+      "litt"
+    ],
+    "وَالثث": [
+      "waθθ",
+      "watt"
+    ],
+    "فَالثث": [
+      "faθθ",
+      "fatt"
+    ],
+    "بِالثث": [
+      "biθθ",
+      "bitt"
+    ],
+    "كَالثث": [
+      "kaθθ",
+      "katt"
+    ],
+    "الضض": [
+      "adˤdˤ"
+    ],
+    "اَلضض": [
+      "adˤdˤ"
+    ],
+    "لِلضض": [
+      "lidˤdˤ"
+    ],
+    "وَالضض": [
+      "wadˤdˤ"
+    ],
+    "فَالضض": [
+      "fadˤdˤ"
+    ],
+    "بِالضض": [
+      "bidˤdˤ"
+    ],
+    "كَالضض": [
+      "kadˤdˤ"
+    ],
+    "الظظ": [
+      "aðˤðˤ"
+    ],
+    "اَلظظ": [
+      "aðˤðˤ"
+    ],
+    "لِلظظ": [
+      "liðˤðˤ"
+    ],
+    "وَالظظ": [
+      "waðˤðˤ"
+    ],
+    "فَالظظ": [
+      "faðˤðˤ"
+    ],
+    "بِالظظ": [
+      "biðˤðˤ"
+    ],
+    "كَالظظ": [
+      "kaðˤðˤ"
+    ],
+    "اِلثث": [
+      "iθθ",
+      "itt"
+    ],
+    "اِلضض": [
+      "idˤdˤ"
+    ],
+    "اِلظظ": [
+      "iðˤðˤ"
+    ],
+    "وِالثث": [
+      "wiθθ",
+      "witt"
+    ],
+    "وِالضض": [
+      "widˤdˤ"
+    ],
+    "وِالظظ": [
+      "wiðˤðˤ"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "َو": [
+      "oː",
+      "aw"
+    ],
+    "َي": [
+      "eː",
+      "aj"
+    ],
+    "گ": [
+      "ɡ"
     ]
   },
   "allophones_base": "ar-x-peninsular",
@@ -76,7 +189,7 @@
         "i",
         "iː"
       ],
-      "notes": "Velar affrication (kashkasha): /k/ → [tʃ] adjacent to a high front vowel /i, iː/. Alshammari 2026 (JLTR 17(4):1333-1341), literature review p.1335: 'Mustafawi (2006, 2007) examines the affrication phenomenon of velar stops /k/ and /g/ in Qatari Arabic (QA)... She proposes that the velar stop undergoes affrication only in the stem when adjacent to the high front vowels /i/ or /i:/. Conversely, affrication is blocked by the presence of any other segments including front vowels that are [-high].' The general Gulf/Peninsular pattern (attributed there to Ingham 1994; Holes 1991) affricates /k/ to [tʃ] 'in the presence of front vowels'. LIMITATIONS: the alternation is historically lexicalised — per Johnstone (1967), as reported in Alshammari 2026 p.1335, velar affrication 'is clearly no longer productive in Eastern Arabic' and /tʃ/ has 'attained the status of an independent phoneme'. It is further blocked by adjacent emphatics and by the OCP near /s z/. This rule models only the regular onset case (following high front vowel); coda affrication (e.g. samak → simatʃ) and emphatic/OCP blocking are not modelled. Input contract: fully diacritised (tashkeel) Arabic, so the conditioning vowel is a written kasra/yāʔ."
+      "notes": "Velar affrication (kashkasha): /k/ → [tʃ] adjacent to a high front vowel /i, iː/. Alshammari 2026 (JLTR 17(4):1333-1341), literature review p.1335: 'Mustafawi (2006, 2007) examines the affrication phenomenon of velar stops /k/ and /g/ in Qatari Arabic (QA)... She proposes that the velar stop undergoes affrication only in the stem when adjacent to the high front vowels /i/ or /i:/. Conversely, affrication is blocked by the presence of any other segments including front vowels that are [-high].' The general Gulf/Peninsular pattern (attributed there to Ingham 1994; Holes 1991) affricates /k/ to [tʃ] 'in the presence of front vowels'. LIMITATIONS: the alternation is historically lexicalised — per Johnstone (1967), as reported in Alshammari 2026 p.1335, velar affrication 'is clearly no longer productive in Eastern Arabic' and /tʃ/ has 'attained the status of an independent phoneme'. It is further blocked by adjacent emphatics and by the OCP near /s z/. This rule models only the regular onset case (following high front vowel); coda affrication (e.g. samak → simatʃ) and emphatic/OCP blocking are not modelled. LEXICALIZED-CLASS EXEMPTION: because the alternation is lexicalized rather than productive (Johnstone 1967, as reported in Alshammari 2026 p.1335), the rule's bare 'front-vowel adjacency' condition OVER-APPLIES to words that stand outside the affricating class — سَاكِن 'living/resident' keeps [saːkin], not *[saːtʃin] (arbitrated gold, both judges; Johnstone). Such items are carried as word_exceptions, since a purely phonological onset rule cannot see lexical class membership. Input contract: fully diacritised (tashkeel) Arabic, so the conditioning vowel is a written kasra/yāʔ."
     },
     {
       "id": "GULF_G_AFFRICATION",
@@ -100,7 +213,7 @@
       "notes": "Peninsular Arabic base — interdental retention and emphatic (pharyngealisation) spreading inherited via the AR_PEN_EMPH_* allophone rules."
     }
   ],
-  "notes": "Proto-Gulf Arabic (Khaleeji) — abstract ancestor node for Emirati (ar-AE), Bahraini (ar-BH), Kuwaiti (ar-KW) and Qatari (ar-QA); Omani (ar-OM) is genetically Peninsular and inherits ar-x-peninsular directly. DEFINING FEATURES modelled here and inherited by descendants via graphemes_base/OVERLAY_BY_ID: (1) Old Arabic *q → [ɡ] (Bedouin/sedentary Gulf), with [q] retained as a secondary MSA/formal candidate; (2) velar affrication /k/ → [tʃ] and /ɡ/(<*q) → [dʒ] adjacent to a high front vowel /i, iː/ (allophone_rules GULF_K_AFFRICATION, GULF_G_AFFRICATION); (3) interdentals /θ ð ðˤ/ RETAINED, unlike sedentary Levantine/Egyptian which merge them to stops/sibilants — a Bedouin-type retention (grapheme mappings for ث ذ ظ list the interdental first); (4) jiim /dʒ/ ~ [j] variation (glide realisation common in the eastern Gulf); (5) integrated /p/, /v/ from loanwords (پ, ڤ). Emphatic spreading (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is inherited from ar-x-peninsular (AR_PEN_EMPH_*). Input contract: fully diacritised (tashkeel) Arabic. Grounded in sources actually read: Alshammari 2026 (velar affrication, whose literature review surveys Mustafawi's Qatari and Matar's Kuwaiti data), Al-Balushi 2016 (Omani/Eastern-Arabian reflexes), Szreder & Derrick 2023 (Emirati affricate variability).",
+  "notes": "Proto-Gulf Arabic (Khaleeji) — abstract ancestor node for Emirati (ar-AE), Bahraini (ar-BH), Kuwaiti (ar-KW) and Qatari (ar-QA); Omani (ar-OM) is genetically Peninsular and inherits ar-x-peninsular directly. DEFINING FEATURES modelled here and inherited by descendants via graphemes_base/OVERLAY_BY_ID: (1) Old Arabic *q → [ɡ] (Bedouin/sedentary Gulf), with [q] retained as a secondary MSA/formal candidate; (2) velar affrication /k/ → [tʃ] and /ɡ/(<*q) → [dʒ] adjacent to a high front vowel /i, iː/ (allophone_rules GULF_K_AFFRICATION, GULF_G_AFFRICATION); (3) interdentals /θ ð ðˤ/ RETAINED, unlike sedentary Levantine/Egyptian which merge them to stops/sibilants — a Bedouin-type retention (grapheme mappings for ث ذ ظ list the interdental first); (4) jiim /dʒ/ ~ [j] variation (glide realisation common in the eastern Gulf); (5) integrated /p/, /v/ from loanwords (پ, ڤ). Emphatic spreading (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is inherited from ar-x-peninsular (AR_PEN_EMPH_*). Input contract: fully diacritised (tashkeel) Arabic. Grounded in sources actually read: Alshammari 2026 (velar affrication, whose literature review surveys Mustafawi's Qatari and Matar's Kuwaiti data), Al-Balushi 2016 (Omani/Eastern-Arabian reflexes), Szreder & Derrick 2023 (Emirati affricate variability). MONOPHTHONGIZATION: the node declares the ay/aw→[eː oː] merger as the rank-1 realization of the ⟨َي⟩/⟨َو⟩ digraphs (graphemes َي→[eː,aj], َو→[oː,aw]; Gulf ē/ō monophthongs per Holes, as reported in the affrication sources' literature reviews). TOKENIZATION NOTE (word-initial diphthong digraphs): word-initially the onset digraphs يَ→/ja/ and وَ→/wa/ claim the fatha before an /aj//aw/ atom can form, so ⟨وَيْ⟩ came out *[waj] (وَيْن *wajn) and ⟨يَوْ⟩ *[jaw]. The two sequences are therefore spelled out in `graphemes` as وَيْ→[weː] (وَيْن → weːn 'where') and يَوْ→[joː] (يَوْم → joːm 'day') — the same [eː oː] monophthong the ⟨َي⟩/⟨َو⟩ digraphs already carry, reached from the fuller spelling instead of from the atom, the device already used on ar-SY and on the Hejazi/Qassimi specs for their identical seam. The explicit sukūn in both keys keeps حَيَوان /ħajawaːn/ and يَوَدّ /jawadd/ — where the glide carries its own vowel and there is no diphthong — out of the rule; the leaf specs (ar-AE, ar-BH, ar-KW, ar-QA, ar-SA-x-sharqiyya) inherit these keys via graphemes_base.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -150,5 +263,32 @@
     "longitude": 47.5,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Gulf Arabic."
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ],
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "cliticless_words": [
+      "فِي",
+      "مَا",
+      "مُو",
+      "مِن",
+      "يَا"
+    ]
   }
 }

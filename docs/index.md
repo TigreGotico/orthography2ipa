@@ -11,11 +11,11 @@ orthography into an IPA (International Phonetic Alphabet) transcription.
 >>> orthography2ipa.transcribe("olá mundo", "pt")
 'oˈla ˈmũdu'
 >>> orthography2ipa.transcribe("hello world", "en")
-'hələʊ wɜːld'
+'hɛlɒ wɔːɹld'
 ```
 
-493 languages and 63 clade nodes ship with the package
-(`available_codes()` returns the 493; `available_codes(include_clades=True)`
+676 languages and 73 clade nodes ship with the package
+(`available_codes()` returns the 676; `available_codes(include_clades=True)`
 adds the clades, which are classification-only).
 
 ## The relational axes
@@ -120,7 +120,7 @@ reference.
 need the plugin ABCs.**
 Read [architecture.md](architecture.md) for how the engine pipeline
 (normalize → tokenize → beam search → stress → sandhi → dialect
-transform) fits together, then look at `G2PPlugin` in
+transform) fits together, then look at the step plugins in
 [registry.md](registry.md) — that is the extension point
 [arbtok](https://github.com/TigreGotico/arbtok) and
 [tugaphone](https://github.com/TigreGotico/tugaphone) build on.
@@ -204,10 +204,10 @@ below.
   per-dataset evidence are in
   [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number).
 - **Competitor-derived gold measures agreement, not correctness.** The
-  `espeak-derived` rows (`styletts2_phonemes`, `ipa_babylm`, the
-  `phonemizer`-phonemized `ipa_childes` languages) are espeak-ng output and
-  the `epitran-derived` rows (the `epitran`-phonemized `ipa_childes`
-  languages) are epitran output — both are competitors this library
+  `espeak-derived` rows (`ipa_babylm`, the `phonemizer`-phonemized
+  `ipa_childes` languages) are espeak-ng output and the `epitran-derived`
+  rows (`vox_communis`, the `epitran`-phonemized `ipa_childes` languages)
+  are epitran output — both are competitors this library
   benchmarks *against* in [comparison.md](comparison.md). A divergence can
   mean the spec is right and the competitor is wrong, and it still scores as
   a *worse* number there. Such a row can neither qualify a language for a
@@ -229,10 +229,11 @@ below.
 | [architecture.md](architecture.md) | Module layout, pipeline stages, design decisions |
 | [data_model.md](data_model.md) | `LanguageSpec` and every field it carries — including `phonemes`, the inventory stated directly |
 | [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations — and why Pinyin is transcribable where Hanzi is not |
-| [registry.md](registry.md) | Full language registry, code resolution, `G2PPlugin` |
+| [registry.md](registry.md) | Full language registry, code resolution, step plugins |
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
 | [sentence_context.md](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer`, phrase / utterance position |
+| [lattice_per.md](lattice_per.md) | Pronunciation-fair phone error rate for ASR: oracle edit distance against the lattice |
 | [features.md](features.md) | Feature export for ML / CRF G2P: `G2P.features`, `WordFeatures`, `GraphemeFeatures`, the CRF-as-rescorer pattern |
 | [candidate_scoring.md](candidate_scoring.md) | Per-candidate weights and how they become beam costs |
 | [distance.md](distance.md) | Every relational axis: phonological, reading, spelling, script, ancestry, temporal, geographic |

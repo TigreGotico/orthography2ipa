@@ -52,7 +52,9 @@ from orthography2ipa.vowels import (
     SYLLABIC_MARKS,
     grapheme_is_vowel,
     grapheme_vowel_axis,
+    is_front_vowel,
     is_ipa_vowel,
+    is_orthographic_vowel,
     is_palatal_consonant,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
@@ -901,6 +903,7 @@ class PhonetokTokenizer:
             collapse_whitespace: bool = True,
     ) -> None:
         self.spec = spec
+        self._fold_diacritics = frozenset(spec.fold_diacritics)
         self.add_bos = add_bos
         self.add_eos = add_eos
         self.collapse_whitespace = collapse_whitespace
@@ -1008,6 +1011,17 @@ class PhonetokTokenizer:
         # Devanagari matras, accented Latin characters)
         text = unicodedata.normalize("NFC", text)
 
+        # Fold away the diacritics the spec declares as segment-less — the Greek
+        # pitch accents and length marks, say. Decompose so a precomposed letter
+        # exposes its combining marks, drop the listed ones, recompose: ⟨ό⟩ →
+        # ⟨ο⟩, which the grapheme table can read, instead of an UNKNOWN token
+        # that drops the vowel with it.
+        if self._fold_diacritics:
+            decomposed = unicodedata.normalize("NFD", text)
+            stripped = "".join(c for c in decomposed
+                               if c not in self._fold_diacritics)
+            text = unicodedata.normalize("NFC", stripped)
+
         # Arabic-script pre-tokenization normalization (script-scoped; no
         # other script is touched). See the module block comment for detail.
         if self.spec.script == "Arabic":
@@ -1080,6 +1094,88 @@ class PhonetokTokenizer:
             # (d) Longest grapheme match (trie)
             gkey = self._trie.longest_match(text, pos)
             if gkey is not None:
+                # Vowel-gated digraph. A consonant-initial digraph ending in a
+                # high glide letter ⟨u⟩/⟨i⟩ (Romance ⟨gu qu gi ci⟩ …) uses that
+                # letter as a mute/glide marker only when a vowel follows —
+                # ⟨gue gua⟩ = [ɡe ɡwa]. Before a consonant or word-end the same
+                # letter is a syllabic nucleus (⟨seguro laguna⟩ = [seɣuɾo
+                # laɣuna], not *[seɣɾo laɣna]); the maximal-munch digraph would
+                # wrongly swallow it. When the digraph-minus-glide is itself a
+                # mapped grapheme, back off to it so the glide letter tokenises
+                # as its own vowel on the next pass. Pure orthographic geometry
+                # (no language hard-coded); vowel-initial diphthongs ⟨au ou ui⟩
+                # are untouched (first letter is a vowel).
+                if (
+                    len(gkey) >= 2
+                    and gkey[-1] in ("u", "i")
+                    and not is_orthographic_vowel(gkey[0])
+                    and gkey[:-1] in self._grapheme_ipa
+                ):
+                    after = pos + len(gkey)
+                    next_ch = text[after] if after < n else ""
+                    nlow = _lower(next_ch, self.spec.code) if next_ch else ""
+                    if not (next_ch and is_orthographic_vowel(next_ch)):
+                        # (1) Before a consonant or word-end the ⟨u⟩/⟨i⟩ may be a
+                        # syllabic nucleus the digraph wrongly swallows. Only
+                        # back off when the reading that would apply here spells
+                        # the letter as no vowel at all — Spanish ⟨gu⟩=[ɡ] or
+                        # ⟨gu⟩=[ɡw] drops/glides ⟨u⟩, so ⟨seguro laguna⟩ recover
+                        # it as [seɣuɾo laɣuna]. Readings that already voice the
+                        # letter as a full vowel (Czech ⟨di⟩=[ɟɪ], a spec that
+                        # spells ⟨gu⟩+C as [ɡu]) keep it and are left intact.
+                        pg = self.spec.positional_graphemes.get(gkey) or {}
+                        if next_ch:
+                            reading = pg.get(GraphemePosition.BEFORE_CONSONANT)
+                        else:
+                            reading = pg.get(GraphemePosition.WORD_FINAL)
+                        if reading is None:
+                            reading = (
+                                pg.get(GraphemePosition.DEFAULT)
+                                or self._grapheme_ipa.get(gkey)
+                            )
+                        if not (
+                            reading
+                            and any(is_ipa_vowel(c) for c in reading[0])
+                        ):
+                            gkey = gkey[:-1]
+                    elif not is_front_vowel(nlow):
+                        # (2) Glide before a back/central vowel, after a plain
+                        # vowel. When the spec reads the digraph as a [w]/[j]
+                        # glide (Spanish ⟨gu⟩+a = [ɡw], flagged by its own
+                        # ``before_a`` entry) and the glide+vowel is itself a
+                        # registered digraph, back off to C + glide-digraph so
+                        # the consonant undergoes its normal positional lenition:
+                        # ⟨agua⟩ = [aɣwa]. The back-off is gated on the PRECEDING
+                        # segment being a plain vowel, which is exactly the
+                        # spirantisation environment — an utterance-initial
+                        # onset (⟨guarda⟩ = [ˈɡwaɾða]), a post-nasal onset
+                        # (⟨lengua⟩ = [ˈlenɡwa]) or a post-glide onset (Mirandese
+                        # ⟨eigual⟩ = [ɐjˈɡwal]) keep the stop, matching the gold.
+                        # Silent-glide readings (⟨gue⟩ = [ɡe], a front vowel) are
+                        # excluded above, so this never disturbs them.
+                        prev_tok = None
+                        for _t in reversed(tokens):
+                            if _t.kind == TokenKind.GRAPHEME:
+                                prev_tok = _t
+                                break
+                        prev_ipa = (
+                            prev_tok.ipa[0] if prev_tok and prev_tok.ipa else ""
+                        )
+                        prev_is_vowel = bool(prev_ipa) and is_ipa_vowel(
+                            prev_ipa[-1]
+                        )
+                        pg = self.spec.positional_graphemes.get(gkey) or {}
+                        marker = (
+                            pg.get(GraphemePosition.BEFORE_A)
+                            or pg.get(GraphemePosition.BEFORE_BACK_VOWEL)
+                        )
+                        if (
+                            prev_is_vowel
+                            and marker
+                            and any(g in marker[0] for g in ("w", "j"))
+                            and (gkey[-1] + nlow) in self._grapheme_ipa
+                        ):
+                            gkey = gkey[:-1]
                 ipa_vals = self._grapheme_ipa[gkey]
                 consumed = len(gkey)
                 # Inherent vowel for abugidas. A consonant letter carries an
@@ -1586,17 +1682,28 @@ class PhonetokTokenizer:
         return ids
 
     def decode(self, ids: Sequence[int]) -> str:
-        """Decode integer token IDs back into a grapheme string."""
-        inv = {v: k for k, v in self.vocab.items()}
+        """Decode integer token IDs back into a grapheme string.
+
+        A special token is identified by its **id** (the reserved 0…6 block),
+        never by its spelling: a transliteration scheme may use ``<`` as a
+        letter — Buckwalter writes ⟨إ⟩ as ``<`` — and a ``startswith("<")``
+        test would silently drop it.
+        """
+        v = self.vocab
+        inv = {i: tok for tok, i in v.items()}
+        whitespace = v["<ws>"]
+        special = {v[t] for t in
+                   ("<pad>", "<bos>", "<eos>", "<unk>", "<punct>", "<digit>")}
         parts: List[str] = []
         for i in ids:
-            tok = inv.get(i, "<unk>")
-            if tok == "<ws>":
+            if i == whitespace:
                 parts.append(" ")
-            elif tok.startswith("<"):
-                continue  # skip special tokens in decode
+            elif i in special:
+                continue
             else:
-                parts.append(tok)
+                tok = inv.get(i)
+                if tok is not None:
+                    parts.append(tok)
         return "".join(parts)
 
     # ─── Internal helpers ───────────────────────────────────────────────

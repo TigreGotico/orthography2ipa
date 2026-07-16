@@ -18,9 +18,6 @@
     "è": [
       "ɛ"
     ],
-    "en": [
-      "ɛ̃"
-    ],
     "i": [
       "i"
     ],
@@ -29,9 +26,6 @@
     ],
     "ò": [
       "ɔ"
-    ],
-    "on": [
-      "ɔ̃"
     ],
     "ou": [
       "u"
@@ -225,6 +219,36 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Haitian_Creole",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "holm1989",
+      "author": "Holm, John",
+      "year": 1989,
+      "title": "Pidgins and Creoles, Volume II: Reference Survey",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference survey of Atlantic and Pacific pidgins/creoles; lexifier and substrate attributions."
+    },
+    {
+      "id": "apics2013",
+      "author": "Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.)",
+      "year": 2013,
+      "title": "The Atlas of Pidgin and Creole Language Structures (APiCS)",
+      "publisher": "Oxford University Press",
+      "url": "https://apics-online.info/",
+      "pages": null,
+      "notes": "Structural atlas of 76 pidgins/creoles; per-language survey chapters cited in ancestry notes."
+    },
+    {
+      "id": "lefebvre1998",
+      "author": "Lefebvre, Claire",
+      "year": 1998,
+      "title": "Creole Genesis and the Acquisition of Grammar: The Case of Haitian Creole",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Relexification account; Fongbe (Gbe) substrate in Haitian Creole."
     }
   ],
   "timespan": {
@@ -236,5 +260,56 @@
     "longitude": -72.136115,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Haitian."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "HT_NASAL_e",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ̃",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "HT_NASAL_o",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ̃",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "HT_NASAL_ABSORB",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "",
+      "syllable_position": "coda",
+      "notes": "the coda nasal is absorbed into the nasal vowel it created; keyed on the nasal vowel so it cannot bleed the rule that makes it",
+      "preceded_by": "vowel"
+    }
+  ],
+  "ancestors": [
+    {
+      "code": "fr-FR",
+      "role": "lexifier",
+      "weight": 0.65,
+      "notes": "French lexifier; Haitian Creole (kreyòl ayisyen). Holm (1989:381-390); APiCS ch. 49 (Fattier)."
+    },
+    {
+      "code": "fon",
+      "role": "substrate",
+      "weight": 0.2,
+      "notes": "Gbe (Fongbe) substrate: nasal vowels, TMA particles, postposed determiner la, serial-verb tendencies. Lefebvre (1998) relexification account."
+    },
+    {
+      "code": "ee",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Ewe (Gbe) substrate, alongside Fongbe."
+    }
+  ]
 }

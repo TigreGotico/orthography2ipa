@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, List, Literal, Optional, Tuple, Union
+from typing import Literal, Dict, List, Literal, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -176,14 +176,23 @@ class AllophoneRuleModel(_Strict):
     stress: Optional[Literal["stressed", "unstressed"]] = None
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
-        "vowel", "consonant", "front_vowel", "back_vowel", "palatal",
-        "word_boundary"]] = None
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
+        "back_vowel", "palatal", "word_boundary"]] = None
     followed_by: Optional[Literal[
-        "vowel", "consonant", "front_vowel", "back_vowel", "palatal",
-        "word_boundary"]] = None
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
+        "back_vowel", "palatal", "word_boundary"]] = None
+    preceded_by_2: Optional[Literal[
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
+        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+    followed_by_2: Optional[Literal[
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
+        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+    preceded_by_phoneme_2: Optional[List[str]] = None
+    followed_by_phoneme_2: Optional[List[str]] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
+    word: Optional[List[str]] = None
     notes: str = ""
 
 
@@ -231,6 +240,12 @@ class StressRulesModel(_Strict):
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
     diphthongs: Optional[List[str]] = None
+    quantity_sensitive: bool = False
+    superheavy_final_attracts: bool = True
+    max_onset: int = Field(default=1, ge=1, le=3)
+    cliticless_words: Optional[List[str]] = None
+    coda_liquid_capture: bool = False
+    source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 
     @field_validator("default_position")
@@ -245,7 +260,7 @@ class StressRulesModel(_Strict):
         return v
 
     @field_validator("final_stress_endings", "penult_stress_endings",
-                     "marked_vowels")
+                     "marked_vowels", "cliticless_words")
     @classmethod
     def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:
         if v is not None and any(not entry for entry in v):
@@ -290,6 +305,7 @@ class LanguageSpecModel(_Strict):
     graphemes_base: Optional[str] = None
     allophones_base: Optional[str] = None
     positional_graphemes_base: Optional[str] = None
+    word_exceptions_base: Optional[str] = None
 
     # ─── ancestry ───────────────────────────────────────────────────
     parent: Optional[str] = None
@@ -300,6 +316,9 @@ class LanguageSpecModel(_Strict):
     quality: QualityTier = QualityTier.RESEARCH
     script_type: ScriptType = ScriptType.ALPHABET
     inherent_vowel: Optional[str] = None
+    optional_marks: Optional[List[str]] = None
+    fold_diacritics: Optional[List[str]] = None
+    collapse_geminates: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
     wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")
@@ -309,6 +328,7 @@ class LanguageSpecModel(_Strict):
     # ─── extended structures ────────────────────────────────────────
     sandhi_rules: Optional[List[SandhiRuleModel]] = None
     allophone_rules: Optional[List[AllophoneRuleModel]] = None
+    allophone_passes: int = Field(default=1, ge=1, le=4)
     stress: Optional[StressRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     sources: Optional[List[SourceModel]] = None
@@ -318,8 +338,6 @@ class LanguageSpecModel(_Strict):
     orthography_standard: Optional[OrthographyStandardModel] = None
     location: Optional[LocationModel] = None
 
-    # ─── bundled-lexicon reference (consumed by load_lexicon) ────────
-    lexicon_csv: Optional[str] = None
 
     # ─── whole-word overrides for a closed irregular set ─────────────
     word_exceptions: Optional[Dict[str, str]] = None

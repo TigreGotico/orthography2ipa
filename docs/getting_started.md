@@ -38,7 +38,7 @@ step is driven by data in the language's `LanguageSpec` — there's no
 hidden model behind it.
 
 ```python
-orthography2ipa.transcribe("hello world", "en")   # 'hələʊ wɜːld'
+orthography2ipa.transcribe("hello world", "en")   # 'hɛlɒ wɔːɹld'
 orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnyɛjt'
 ```
 
@@ -147,7 +147,7 @@ segment_distance("p", "a")   # 1.0    — consonant vs. vowel, maximally differe
 # Language-level: how different are two varieties overall?
 pt_pt = orthography2ipa.get("pt-PT")
 dist = phonological_distance(pt_br, pt_pt)
-dist.combined                    # 0.046 — near-identical (inventory + allophony)
+dist.combined                    # 0.052 — near-identical (inventory + allophony)
 dist.inventory.feature_mean      # phoneme-inventory distance
 dist.allophone_sim               # allophone-overlap similarity (higher = more similar)
 dist.grapheme.mean_ipa_distance  # grapheme-mapping divergence — reported, NOT scored:
@@ -190,8 +190,8 @@ orthography2ipa.resolve("en-NZ")  # 'en-GB' — nearest registered variety
 To browse what's available:
 
 ```python
-orthography2ipa.available_codes()                      # 493 language codes
-orthography2ipa.available_codes(include_clades=True)   # 556 — plus the clade nodes
+orthography2ipa.available_codes()                      # 676 language codes
+orthography2ipa.available_codes(include_clades=True)   # 749 — plus the clade nodes
 orthography2ipa.available_families()                   # codes grouped by derived family path
 ```
 

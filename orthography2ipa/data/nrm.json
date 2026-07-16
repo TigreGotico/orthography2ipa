@@ -33,29 +33,8 @@
     "ûn": [
       "ø̃ː"
     ],
-    "ên": [
-      "ɛ̃ː"
-    ],
-    "ân": [
-      "ɑ̃ː"
-    ],
     "în": [
       "ẽː"
-    ],
-    "in": [
-      "ẽ"
-    ],
-    "un": [
-      "ø̃"
-    ],
-    "on": [
-      "õ"
-    ],
-    "en": [
-      "ɛ̃"
-    ],
-    "an": [
-      "ɑ̃"
     ],
     "oû": [
       "uː"
@@ -401,5 +380,72 @@
     "longitude": -0.6591,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Normand."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "NRM_NASAL_ɛː",
+      "phonemes": [
+        "ɛː"
+      ],
+      "surface": "ɛ̃ː",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "NRM_NASAL_aː",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑ̃ː",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "NRM_NASAL_i",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ẽ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "NRM_NASAL_y",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "ø̃",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "NRM_NASAL_o",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "õ",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "NRM_NASAL_a",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ̃",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "NRM_NASAL_ABSORB",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "",
+      "syllable_position": "coda",
+      "notes": "the coda nasal is absorbed into the nasal vowel it created; keyed on the nasal vowel so it cannot bleed the rule that makes it",
+      "preceded_by": "vowel"
+    }
+  ]
 }

@@ -55,7 +55,7 @@ unset is "don't care"):
 | `word_initial` / `word_final` | `true` / `false` | the grapheme is (not) at the word edge |
 | `stress` | `"stressed"` / `"unstressed"` | the grapheme's syllable carries (not) primary stress — engine path only |
 | `syllable_position` | `"onset"` / `"coda"` / `"nucleus"` | a vowel is a nucleus; a consonant before a vowel is an onset, else a coda (maximal-onset heuristic) |
-| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA — see `is_palatal_consonant`) |
+| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"consonant_cluster"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA — see `is_palatal_consonant`; `"consonant_cluster"` — see below) |
 | `preceded_by_phoneme` / `followed_by_phoneme` | list of IPA strings | the previous / next lattice slot's **chosen phoneme** is one of them |
 
 This small vocabulary expresses the common post-lexical processes:
@@ -66,6 +66,58 @@ This small vocabulary expresses the common post-lexical processes:
 - **Nasal place assimilation** — `followed_by_phoneme: ["k", "ɡ"]` (→ velar)
   or `["p", "b", "m"]` (→ labial), conditioning on the *following* phoneme's
   place.
+- **Closed-syllable shortening / complementary quantity** —
+  `followed_by: "consonant_cluster"`.
+
+### `consonant_cluster`
+
+The neighbour begins **two or more consonant segments**, counted away from the
+anchor grapheme. Three ways to qualify, all decided phonemically:
+
+- the neighbour realises a long/geminate consonant (`tː`) — moraic on its own;
+- the neighbour is one grapheme spelling several consonants (⟨x⟩ → /ks/);
+- the grapheme beyond the neighbour is also a consonant (⟨s⟩⟨t⟩).
+
+This is the context that mainland-Scandinavian complementary quantity needs
+(Riad 2014; Kristoffersen 2000; Basbøll 2005): a stressed vowel is long in an
+open syllable and short before a cluster, so Swedish ⟨vit⟩ is [viːt] but ⟨vitt⟩
+is [vɪtː].
+
+Stating it as a class is the *only* correct encoding. Enumerating the clusters
+as grapheme keys (`bl`, `bf`, `st`, …) asserts spellings the orthography does not
+have, explodes combinatorially, and — because the tokenizer is maximal-munch —
+silently changes how neighbouring rules see the word.
+
+### `coda` and `coda_nasal`
+
+`coda` — the neighbour sits in coda position (the maximal-onset heuristic of
+`syllable_position`, applied to the neighbour instead of the anchor).
+
+`coda_nasal` — the neighbour is a coda **and** its IPA is a nasal consonant.
+This is what nasal vowels need: a vowel nasalises before a nasal that *closes*
+the syllable, and stays oral before one that opens the next (French ⟨bon⟩ [bɔ̃]
+but ⟨bonne⟩ [bɔn]; Mirandese ⟨pan⟩ [pɐ̃] but ⟨cana⟩ [kanɐ]). Pair it with an
+absorb rule that deletes the coda nasal:
+
+```json
+{"id": "FR_NASAL_a", "phonemes": ["a"], "surface": "ɑ̃",
+ "followed_by": "coda_nasal"},
+{"id": "FR_NASAL_ABSORB", "phonemes": ["n", "m"], "surface": "",
+ "syllable_position": "coda", "preceded_by": "vowel"}
+```
+
+⟨an⟩ is **not** a digraph — no orthography has one. It is a vowel letter and a
+nasal letter, and the nasality is a rule. Spelling the nasal vowels out as
+`{"an": ["ɑ̃"], "am": ["ɑ̃"], "en": ["ɑ̃"], …}` cannot express the onset contrast
+at all, and forces further pseudo-graphemes (⟨anh⟩) to defeat the ones it
+created. Follow the language's official orthography for what a digraph is:
+Mirandese has ⟨nh⟩ and ⟨lh⟩, not ⟨an⟩.
+
+**Ordering.** Neighbour lookups read the *original* slots, so a rule cannot feed
+another within a sweep. That is why the vowel rule keys on `coda_nasal` (a
+**grapheme**-level class, immune to the nasal's slot being emptied) while the
+absorb rule keys on the slot. Reverse them and the absorb bleeds the
+nasalisation — the vowel rule finds an empty next slot and never fires.
 
 Rules are **pure data** — no code in specs. See
 [`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema)
@@ -328,6 +380,33 @@ African/Asian varieties that already declare an alveolar coda /s/ in their
 `PT_CODA_S_HUSH`/`PT_CODA_Z_HUSH` back to `[s]`/`[z]` by id so they keep their
 non-*chiado* realisation. (Broader P5 Lusophone-variety deltas are a later
 task; only the already-encoded alveolar-coda intent is preserved here.)
+
+## Multi-pass feeding (`allophone_passes`)
+
+The allophone pass reads every rule's neighbouring segments from the state
+*before* the pass, so within one pass two rules cannot feed each other: a rule
+that only fires on another rule's output never sees it. Brazilian Portuguese is
+the canonical case — the final unstressed `-es`/`-os` ending raises to `[i]`/`[u]`
+(`BR_RAISE_FINAL_ES`/`_OS`), and `/t d/` should then affricate before the raised
+`[i]` (`BR_AFFRIC_T_RAISED`/`_D_RAISED`); but in a single pass the affrication
+reads the *pre-raise* vowel and does not fire, so `estes` surfaces as `[ˈestes]`
+instead of `[ˈest͡ʃis]`.
+
+A spec sets `allophone_passes: N` (default `1`) to run the compiled pass `N`
+times. Each repeat rebuilds the segment context from the previous pass's output,
+so the raise now feeds the affrication on pass 2: `estes → [ˈest͡ʃis]`, `dentes →
+[ˈdẽt͡ʃis]`, `gatos → [ˈɡatus]`. The count is **bounded** (no unbounded fixpoint)
+so a pathological rule set cannot loop.
+
+It is `NOT_INHERITED` (like `stress`) and opt-in per spec on purpose: re-running
+the pass can re-fire a non-idempotent rule, so each spec restates the count and
+confirms — against its own gold — that the extra pass changes only the intended
+feeding cases. pt-BR and its palatalising urban dialects (bahia, brasília,
+fluminense, mg, rj, sp) declare `2`; the conservative-dental dialects that
+disable the affrication (caipira, sul, …) keep the default `1`, since their
+raising needs no second pass. Measured blast radius on the full pt-BR WikiPron
+set: the only pass-1→pass-2 differences are the intended `/t d/` affrications
+before a raised final `-Vs` — no other output moves.
 
 ---
 

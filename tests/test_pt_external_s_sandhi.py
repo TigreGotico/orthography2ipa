@@ -4,7 +4,7 @@ A word-final coda /s/ (which surfaces [ʃ] in isolation and before a voiceless
 consonant via the coda 'chiado') undergoes two cross-word sandhi processes:
 
 - **Voicing assimilation before a VOICED consonant** → post-alveolar [ʒ]
-  (``PT_CODA_S_VOICING``): as bocas → [ˈɐʒ ˈbɔkɐʃ], os dois → [ˈoʒ ˈdojʃ].
+  (``PT_CODA_S_VOICING``): as bocas → [ɐʒ ˈbɔkɐʃ], os dois → [oʒ ˈdojʃ].
   A following *voiceless* consonant keeps [ʃ] (estás feliz → [eˈʃtaʃ fɨˈliʃ]).
 - **Voicing before a VOWEL** → [z]/[ʒ] (``PT_FINAL_S_PREVOCALIC_VOICE``), whose
   place of articulation splits dialectally:
@@ -33,36 +33,41 @@ class TestStandardZ:
     """base pt-PT, North (porto) and Lisbon: prevocalic /s/ → alveolar [z]."""
 
     def test_base_estas_a_ver_z(self):
-        assert G2P("pt-PT").transcribe("estás a ver") == "eˈʃtaz ˈɐ ˈvɛɾ"
+        assert G2P("pt-PT").transcribe("estás a ver") == "eˈʃtaz ɐ ˈvɛɾ"
 
     def test_base_os_amigos_z(self):
-        assert G2P("pt-PT").transcribe("os amigos") == "ˈoz ɐˈmiɡuʃ"
+        assert G2P("pt-PT").transcribe("os amigos") == "oz ɐˈmiɡuʃ"
 
     def test_porto_z(self):
-        # Northern [z]; v→b is the inherited Porto betacism
-        assert G2P("pt-PT-x-porto").transcribe("estás a ver") == "eˈʃtaz ˈɐ ˈbɛɾ"
+        # Northern [z]; v→b is the inherited Porto betacism; the stressed open
+        # [ɛ] of 'ver' now diphthongises to [jɛ] (Brissos 2018 NW open-mid).
+        assert G2P("pt-PT-x-porto").transcribe("estás a ver") == "eˈʃtaz ɐ ˈbjɛɾ"
 
     def test_lisbon_z_not_palatal(self):
         # Lisbon is standard [z], NOT [ʒ]
         out = G2P("pt-PT-x-lisbon").transcribe("estás a ver")
-        assert out == "eˈʃtaz ˈɐ ˈvɛɾ"
+        assert out == "eˈʃtaz ɐ ˈvɛɾ"
         assert "ʃtaʒ" not in out
 
     def test_before_voiceless_consonant_stays_hush(self):
         # Before a VOICELESS consonant the coda /s/ keeps [ʃ] (no assimilation).
-        for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
+        for loc in ("pt-PT", "pt-PT-x-lisbon"):
             assert G2P(loc).transcribe("estás só") == "eˈʃtaʃ ˈsɔ"
+        # Porto keeps the coda [ʃ] too; its stressed open [ɔ] additionally
+        # diphthongises to [wɔ] (Brissos 2018 NW open-mid), which is orthogonal
+        # to the coda-sibilant point being tested here.
+        assert G2P("pt-PT-x-porto").transcribe("estás só") == "eˈʃtaʃ ˈswɔ"
 
     def test_before_voiced_consonant_voices_to_palatal(self):
         # Voicing assimilation: coda /s/ -> [ʒ] before a voiced consonant (PT_CODA_S_VOICING).
         for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
-            assert G2P(loc).transcribe("estás bem") == "eˈʃtaʒ ˈbẽ"
+            assert G2P(loc).transcribe("estás bem") == "eˈʃtaʒ ˈbɐ̃j̃"
 
     def test_as_bocas_voices_before_b(self):
-        assert G2P("pt-PT").transcribe("as bocas") == "ˈɐʒ ˈbɔkɐʃ"
+        assert G2P("pt-PT").transcribe("as bocas") == "ɐʒ ˈbɔkɐʃ"
 
     def test_os_dois_voices_before_d(self):
-        assert G2P("pt-PT").transcribe("os dois") == "ˈoʒ ˈdojʃ"
+        assert G2P("pt-PT").transcribe("os dois") == "oʒ ˈdojʃ"
 
     def test_voiceless_initial_does_not_voice(self):
         assert G2P("pt-PT").transcribe("estás feliz") == "eˈʃtaʃ fɨˈliʃ"
@@ -77,17 +82,17 @@ class TestSouthernPalatal:
 
     def test_algarve_prevocalic_palatal(self):
         out = G2P("pt-PT-x-algarve").transcribe("estás a ver")
-        assert out == "eˈʃtaʒ ˈɐ ˈvɛɾ"
+        assert out == "eˈʃtaʒ ɐ ˈvɛɾ"
         assert "ʃtaʒ" in out
 
     def test_algarve_word_final_palatal_categorical(self):
         # Algarve generalises [ʒ] to all word-final positions (via positional map)
         assert G2P("pt-PT-x-algarve").transcribe("estás") == "eˈʃtaʒ"
-        assert G2P("pt-PT-x-algarve").transcribe("estás bem") == "eˈʃtaʒ ˈbẽ"
+        assert G2P("pt-PT-x-algarve").transcribe("estás bem") == "eˈʃtaʒ ˈbɐ̃j̃"
 
     def test_acores_prevocalic_palatal(self):
         out = G2P("pt-PT-x-acores").transcribe("estás a ver")
-        assert out == "eˈʃtaʒ ˈɐ ˈvɛɾ"
+        assert out == "eˈʃtaʒ ɐ ˈvɛɾ"
         assert "ʃtaʒ" in out
 
     def test_acores_stays_hush_before_voiceless_consonant_and_pause(self):
@@ -98,7 +103,7 @@ class TestSouthernPalatal:
     def test_acores_voices_before_voiced_consonant(self):
         # The general EP voicing-assimilation (PT_CODA_S_VOICING, inherited) still
         # applies before a voiced consonant: coda /s/ -> [ʒ].
-        assert G2P("pt-PT-x-acores").transcribe("estás bem") == "eˈʃtaʒ ˈbẽ"
+        assert G2P("pt-PT-x-acores").transcribe("estás bem") == "eˈʃtaʒ ˈbɐ̃j̃"
 
 
 class TestSouthVsStandardDiverge:

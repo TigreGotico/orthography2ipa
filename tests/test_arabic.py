@@ -370,9 +370,9 @@ class TestGulfArabic:
         ids = [r.id for r in self.spec.allophone_rules]
         assert "GULF_K_AFFRICATION" in ids
         g = G2P(self.LANGUAGE_CODE)
-        assert g.transcribe("كِتَاب").startswith("tʃ")
+        assert g.transcribe("كِتَاب").lstrip("ˈˌ").startswith("tʃ")
         # …and stays [k] before a non-high vowel (blocked by [-high])
-        assert g.transcribe("كَلْب").startswith("k")
+        assert g.transcribe("كَلْب").lstrip("ˈˌ").startswith("k")
 
     def test_q_allophone_g(self):
         """q allophone → ɡ (primary) — qaf→gaf in Gulf."""

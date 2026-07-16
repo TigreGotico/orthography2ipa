@@ -37,7 +37,7 @@
     }
   },
   "parent": "pt-PT",
-  "notes": "Alentejano Portuguese (Portalegre, Évora, Beja; Alto Alentejo type). Modelled features: (1) DEFINING zone feature — palatalisation/fronting of the stressed labio-velar /u/ → [y]. Cintra (1971) delimits the Beira-Baixa / Alto-Alentejo zone by exactly this isogloss, ‘a palatalização, em maior ou menor grau, da vogal tónica u’ (p. 14 of the CVC reflow), within ‘uma profunda alteração de timbre de todo o sistema vocálico, principalmente do tónico’; the explicit [y] value is given in Cintra’s adjacent Barlavento-Algarvio passage of the same ‘reacção em cadeia’, and Alto-Alentejo points are recorded with palatalised ‘ü’ in Cintra’s note 56. Encoded as allophone rule ALE_U_FRONTING (stressed nucleus only), with the same PROCLITIC GUARD as pt-PT-x-algarve — the function words o/os/no/nos/do/dos/ao/aos/pelo/pelos/um/uns get word_exceptions so the monosyllabic-clitic /u/ (mis-marked stressed by the word-level detector) is never fronted to [y]. (2) DELETION of final unstressed high vowels -u/-i/-e; encoded as allophone rule ALE_FINAL_HIGH_VOWEL_DELETION (word-final, unstressed; final /ɐ/ from -a is spared, per the source). Primary source: Brissos (2014), acoustic documentation of central-southern EP. Cintra (1971) also mentions it, but only in note 58 (p. 27), where he is summarising Lüdtke (1956/57) — ‘ocupa-se da queda das vogais finais -u, -i (ou -e), outro dos fenómenos mais típicos desta região’ — expressly noting its isoglosses do not coincide with the zone’s defining feature; it is therefore NOT Cintra’s own main-text diagnostic and must not be cited as such. (3) INTERVOCALIC /d/ deletion (nada→[ˈnaɐ], vida→[ˈviɐ]); positional_graphemes d/intervocalic→[]. (4) /ej/ → [e] and /ow/ → [o] monophthongs (leite→[ˈletɨ], primeiro→[pɼiˈmeɼu]). (5) meu-class /ew/ → [e] (meu→[me]) via the graphemes overlay. (6) Southern vocalism and vowel breaking [ɛ͜ɐ] in some lexical environments (allophones ɛ). (7) Dark coda /l/→[ł] and coda sibilants inherited from the pt-PT base allophone_rules. Both varieties are central-southern and therefore already share the standard’s unstressed reduction (inherited from pt-PT). DIVERGENCE FROM GOLD: the ep_dialects expert set (n=30) transcribes final vowels in full and does not encode the /u/-fronting or the final-vowel deletion, so ALE_U_FRONTING and ALE_FINAL_HIGH_VOWEL_DELETION lower agreement with that small-n gold while being the cited, linguistically-correct realisations — documented, not tuned away.",
+  "notes": "Alentejano Portuguese (Portalegre, Évora, Beja; Alto Alentejo type). Modelled features: (1) DEFINING zone feature — palatalisation/fronting of the stressed labio-velar /u/ → [y]. Cintra (1971) delimits the Beira-Baixa / Alto-Alentejo zone by exactly this isogloss, ‘a palatalização, em maior ou menor grau, da vogal tónica u’ (p. 14 of the CVC reflow), within ‘uma profunda alteração de timbre de todo o sistema vocálico, principalmente do tónico’; the explicit [y] value is given in Cintra’s adjacent Barlavento-Algarvio passage of the same ‘reacção em cadeia’, and Alto-Alentejo points are recorded with palatalised ‘ü’ in Cintra’s note 56. Encoded as allophone rule ALE_U_FRONTING (stressed nucleus only), with the same PROCLITIC GUARD as pt-PT-x-algarve — the function words o/os/no/nos/do/dos/ao/aos/pelo/pelos/um/uns get word_exceptions so the monosyllabic-clitic /u/ (mis-marked stressed by the word-level detector) is never fronted to [y]. (2) DELETION of final unstressed high vowels -u/-i/-e; encoded as allophone rule ALE_FINAL_HIGH_VOWEL_DELETION (word-final, unstressed; final /ɐ/ from -a is spared, per the source). Primary source: Brissos (2014), acoustic documentation of central-southern EP. Cintra (1971) also mentions it, but only in note 58 (p. 27), where he is summarising Lüdtke (1956/57) — ‘ocupa-se da queda das vogais finais -u, -i (ou -e), outro dos fenómenos mais típicos desta região’ — expressly noting its isoglosses do not coincide with the zone’s defining feature; it is therefore NOT Cintra’s own main-text diagnostic and must not be cited as such. (3) INTERVOCALIC /d/ deletion (nada→[ˈnaɐ], vida→[ˈviɐ]); positional_graphemes d/intervocalic→[]. (4) /ej/ → [e] and /ow/ → [o] monophthongs (leite→[ˈletɨ], primeiro→[pɼiˈmeɼu]). (5) meu-class /ew/ → [e] (meu→[me]) via the graphemes overlay. (6) Southern vocalism and vowel breaking [ɛ͜ɐ] in some lexical environments (allophones ɛ). (7) Dark coda /l/→[ł] and coda sibilants inherited from the pt-PT base allophone_rules. Both varieties are central-southern and therefore already share the standard’s unstressed reduction (inherited from pt-PT). DIVERGENCE FROM GOLD: the ep_dialects expert set (n=30) transcribes final vowels in full and does not encode the /u/-fronting or the final-vowel deletion, so ALE_U_FRONTING and ALE_FINAL_HIGH_VOWEL_DELETION lower agreement with that small-n gold while being the cited, linguistically-correct realisations — documented, not tuned away. ACOUSTIC REFINEMENT (Brissos 2014b, 'A vogal u', AVOC): the /u/-fronting is context-conditioned — stressed /u/ is NOT fronted after a bilabial onset (/p,b,m/), where it retracts toward [u]. Encoded as the guard rule ALE_U_NO_FRONT_AFTER_BILABIAL, ordered before ALE_U_FRONTING (so e.g. mudo -> [ˈmu], not [ˈmy]). Brissos & Saramago (2014, pp.55-59, 65) corroborate the Alto-Alentejo (CI-zone) stressed /u/-fronting isogloss from the traditional perceptual-dialectology literature, mapped point by point against the acoustic data.",
   "quality": "research",
   "ancestors": [
     {
@@ -101,6 +101,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "brissos2014b",
+      "author": "Brissos, Fernando",
+      "year": 2014,
+      "title": "A vogal u, os dialectos do Centro-Sul português e a dialectologia acústica",
+      "publisher": "Textos Selecionados, XXIX Encontro Nacional da Associação Portuguesa de Linguística, Porto: APL, pp. 85-102",
+      "url": "https://apl.pt/wp-content/uploads/2017/09/12_BRISSOS.pdf",
+      "pages": "85-102",
+      "notes": "Acoustic-atlas (AVOC) study of stressed /u/ across 13 Centro-Sul survey points. Refinement over Brissos (2014, JPL): the /u/-fronting is CONTEXT-CONDITIONED — after a bilabial onset (/p,b,m/) the vowel loses most of its advancement and sits near [u] (Praia da Salema / Barlavento: after bilabial u = 25% of the F2 acoustic space, 'muito mais perto de [u] do que de [y]', vs 64% after alveo-dental/palatal/velar, pp.87-88; Alpalhão / Centro-Interior: after bilabial u = 11%, 'identificando-se assim com [u]', p.89). Grounds the bilabial guard (stressed /u/ kept [u] after /p,b,m/). Also documents that the fronting spans [ʉ]~[y] (acoustically central, most often written [ʉ] for the Centro-Interior, [y]/threshold-of-[y] for the Barlavento, p.87) and that across the Sul /u/ is frequently NOT the most-backed vowel (7 of 13 points, pp.91-93) — kept to notes, not modelled."
+    },
+    {
+      "id": "brissos_saramago2014",
+      "author": "Brissos, Fernando & Saramago, João",
+      "year": 2014,
+      "title": "O problema da diversidade dialectal do Centro-Sul português: informação perceptiva versus informação acústica",
+      "publisher": "Estudos de Lingüística Galega 6: 53–80",
+      "url": "https://doi.org/10.15304/elg.6.1781",
+      "pages": "53–80",
+      "notes": "Perceptual-vs-acoustic synthesis over Brissos (2014), mapping the Centro-Sul point by point. Corroborates the stressed /u/-palatalisation isogloss for the Beira-Baixa/Alto-Alentejo (CI) and Barlavento-Algarvio (SW) zones (§3, pp.55-59) and reports that across the Sul the stressed /u/ is realised fronted/central rather than as the most-backed vowel of the system (p.65); also records final unstressed <o> realised as a neutral schwa rather than [u] in parts of the Centro-Sul (p.57)."
     }
   ],
   "wikipedia": [
@@ -114,6 +134,7 @@
   },
   "iso639_3": "por",
   "stress": {
+    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -150,9 +171,46 @@
       "õ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam)."
+    "notes": "Acordo Ortográfico 1990 conventions: paroxytone default; written accents override; final -i/-u/-r/-l/-z/-x/-im/-om/-um/-ns and nasal diphthongs attract final stress. Unmarked -em/-am stay paroxytone (homem, falam). DIPHTHONGS: declared so the bundled syllabifier counts nuclei correctly — without them every vowel run merges into one nucleus and co-e-lho is read as coe-lho, one syllable short, putting the stress and its vowel reduction on the wrong vowel. ⟨oe⟩ is hiatus, not a diphthong (Cunha & Cintra, §Ditongos).",
+    "diphthongs": [
+      "ãe",
+      "ão",
+      "õe",
+      "ai",
+      "ái",
+      "au",
+      "áu",
+      "ei",
+      "éi",
+      "êi",
+      "eu",
+      "éu",
+      "êu",
+      "iu",
+      "oi",
+      "ói",
+      "ôi",
+      "ou",
+      "ui",
+      "uí"
+    ]
   },
   "allophone_rules": [
+    {
+      "id": "ALE_U_NO_FRONT_AFTER_BILABIAL",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "u",
+      "stress": "stressed",
+      "syllable_position": "nucleus",
+      "preceded_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Bilabial-context guard: the stressed labio-velar /u/ is NOT fronted after a bilabial onset (/p,b,m/). Brissos (2014b, 'A vogal u', AVOC acoustic atlas) shows the fronting is context-conditioned — after a bilabial the vowel loses most of its advancement and identifies with [u] (Praia da Salema/Barlavento: 25% of the F2 space after bilabial vs 64% elsewhere, pp.87-88; Alpalhão/Centro-Interior: 11%, 'identificando-se assim com [u]', p.89). Ordered BEFORE the fronting rule so it wins (first-matching rule fires): after /p,b,m/ the guard keeps [u]; in every other onset context the fronting rule downstream applies. Categorical simplification of a gradient effect (after a bilabial the vowel is 'much closer to [u]', not exactly [u]); the gradience is documented here, not encoded."
+    },
     {
       "id": "ALE_U_FRONTING",
       "phonemes": [
@@ -196,5 +254,6 @@
     "longitude": -7.43349,
     "source": "wikidata",
     "notes": "the Alto Alentejo (Portalegre, Évora, Beja) — a subregion-level point. [Wikidata Q443376 P625]"
-  }
+  },
+  "word_exceptions_base": "pt-PT"
 }

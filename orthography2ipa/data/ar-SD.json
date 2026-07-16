@@ -2,6 +2,10 @@
   "code": "ar-SD",
   "name": "Sudanese Arabic",
   "script": "Arabic",
+  "word_exceptions": {
+    "كِيفَك": "keːfak",
+    "التتِلِفُون": "ttilifoːn"
+  },
   "graphemes_base": "ar-x-mashriqi",
   "graphemes": {
     "ج": [
@@ -26,6 +30,84 @@
     ],
     "ض": [
       "dˤ"
+    ],
+    "الثث": [
+      "att",
+      "ass"
+    ],
+    "اَلثث": [
+      "att",
+      "ass"
+    ],
+    "لِلثث": [
+      "litt",
+      "liss"
+    ],
+    "وَالثث": [
+      "watt",
+      "wass"
+    ],
+    "فَالثث": [
+      "fatt",
+      "fass"
+    ],
+    "بِالثث": [
+      "bitt",
+      "biss"
+    ],
+    "كَالثث": [
+      "katt",
+      "kass"
+    ],
+    "الذذ": [
+      "add",
+      "azz"
+    ],
+    "اَلذذ": [
+      "add",
+      "azz"
+    ],
+    "لِلذذ": [
+      "lidd",
+      "lizz"
+    ],
+    "وَالذذ": [
+      "wadd",
+      "wazz"
+    ],
+    "فَالذذ": [
+      "fadd",
+      "fazz"
+    ],
+    "بِالذذ": [
+      "bidd",
+      "bizz"
+    ],
+    "كَالذذ": [
+      "kadd",
+      "kazz"
+    ],
+    "اِلثث": [
+      "itt",
+      "iss"
+    ],
+    "اِلذذ": [
+      "idd",
+      "izz"
+    ],
+    "وِالثث": [
+      "witt",
+      "wiss"
+    ],
+    "وِالذذ": [
+      "widd",
+      "wizz"
+    ],
+    "وَيْ": [
+      "weː"
+    ],
+    "يَوْ": [
+      "joː"
     ]
   },
   "allophones_base": "ar-x-mashriqi",
@@ -54,6 +136,24 @@
       "dˤ"
     ]
   },
+  "allophone_rules": [
+    {
+      "id": "SD_MONO_AY",
+      "phonemes": [
+        "aj"
+      ],
+      "surface": "eː",
+      "notes": "Khartoum/central-Sudan monophthongization (Dickins 2007, Sudanese Arabic: Phonematics and Syllable Structure): the Classical diphthong /aj/ is realised [eː] in the sedentary Khartoum koine — بَيْت *bayt > beːt 'house', وَيْن *wayn > weːn 'where', شرَيْت > ʃreːt 'I bought'. This mirrors the sibling sedentary koines (Libyan Tripoli LY_MONO_AY, Gulf, Qassimi) and follows the #459 pattern exactly: the rule fires on the general /aj/ atom, while the word-initial ⟨وَيْ⟩/⟨يَوْ⟩ spellings are handled by explicit graphemes because the onset digraphs وَ/يَ claim the fatha before an /aj/ atom can form (وَيْن → weːn). It does not fire on geminate glides (شَوّية → ʃawwijja, kept, ⟨-ايّ-⟩ is a long vowel + glide, not an /aj/ atom). DELTA/VARIATION documented against the arbitrated gold: the grammatical dual/pronominal diphthongs -ayn (ألفَيْن alfajn 'two thousand'), -ayh (جنيه ɟinajh) and -aykum (علَيْكُم ʕalajkum) are retained as [aj] in the Khartoum arbitration; that morphologically-conditioned retention is not orthographically separable from the lexical /aj/ that monophthongizes (both are ⟨-َيْ-⟩), so those items surface as [eː] here — a known over-application, cited as the honest cost of the categorical rule."
+    },
+    {
+      "id": "SD_MONO_AW",
+      "phonemes": [
+        "aw"
+      ],
+      "surface": "oː",
+      "notes": "Khartoum/central-Sudan monophthongization (Dickins 2007): the Classical diphthong /aw/ is realised [oː] in the sedentary Khartoum koine — لَوْ *law > loː 'if', يَوْم *yawm > joːm 'day'. Sibling of LY_MONO_AW; fires on the general /aw/ atom, with the word-initial ⟨يَوْ⟩ spelling handled by an explicit grapheme. Does not fire on a geminate glide (جَوّ → ɟaww) or a long vowel + glide."
+    }
+  ],
   "parent": "ar-x-mashriqi",
   "ancestors": [
     {
@@ -136,5 +236,32 @@
     "longitude": 33.3179,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Sudanese Arabic."
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ],
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "cliticless_words": [
+      "عَن",
+      "فِي",
+      "مَا",
+      "مِن",
+      "يَا"
+    ]
   }
 }

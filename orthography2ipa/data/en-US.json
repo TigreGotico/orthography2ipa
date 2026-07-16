@@ -109,5 +109,6 @@
     "longitude": -98.5795,
     "source": "wikidata",
     "notes": "the geographic centre of the United States. General American is a media/education reference accent with NO regional home at all — this is the weakest point in the dataset and should be read as such. [Wikidata Q30 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

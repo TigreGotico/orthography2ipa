@@ -254,26 +254,42 @@ class TestBarranquenhoConvencaoSignatures:
         """Coda ⟨s⟩ → [h] aspiration (not [ʃ]): *mehmu, Lihboa, bihtu*.
         Convenção pp. 28–29, stated-explicitly.
         The [ʃ] value is a pt-PT feature NOT documented for Barranquenho."""
-        pos_rules = barrancos.positional_graphemes or {}
-        s_rules = pos_rules.get("s", {})
-        coda = s_rules.get("coda", [])
-        assert "h" in coda, "coda s should include h (aspiration)"
-        assert "ʃ" not in coda, "coda s should NOT include ʃ (pt-PT feature, not Barranquenho)"
+        rules = barrancos.allophone_rules or []
+        coda_s = [
+            r for r in rules
+            if getattr(r, "syllable_position", None) == "coda"
+            and "s" in (getattr(r, "phonemes", None) or [])
+        ]
+        assert coda_s and all(
+            "h" in (r.surface or "") and "ʃ" not in (r.surface or "")
+            for r in coda_s
+        ), "coda s should aspirate to [h], never the pt-PT [ʃ]"
 
     def test_em_en_nasal_vowel_not_diphthong(self, barrancos):
         """⟨em/en⟩ → [ẽ] (plain nasal vowel, NOT diphthong [ɐ̃j] or [ẽj]).
         Convenção p. 26; Gramática p. 15: tempu [tẽpu], quen [kẽ].
-        The /ẽj/ diphthong is pt-PT; Barranquenho has plain [ẽ]."""
-        from orthography2ipa.types import GraphemePosition
+        The /ẽj/ diphthong is pt-PT; Barranquenho has plain [ẽ].
 
-        for g in ("em", "en"):
-            for pos in (GraphemePosition.WORD_FINAL, GraphemePosition.CODA,
-                        GraphemePosition.BEFORE_CONSONANT):
-                got = barrancos.resolve_grapheme(g, pos)
-                assert got == ["ẽ"], f"{g}/{pos.value} → {got}"
-                assert all("j" not in c for c in got)
-        # intervocalic em/en stay oral (temer-class): the plain default
-        assert barrancos.graphemes.get("em") == ["em"]
+        ⟨em⟩ is not a grapheme: a coda nasal nasalises the vowel it closes,
+        and that is a rule. Assert the pronunciation, not the spelling table.
+        """
+        import unicodedata
+
+        from orthography2ipa.g2p import G2P
+
+        def ipa(word):
+            out = G2P("ext-PT-x-barrancos").transcribe_word(word)
+            return unicodedata.normalize("NFC", out).replace("ˈ", "")
+
+        for word, expected in (("tempu", "tẽpu"), ("quen", "kẽ"), ("bem", "bẽ")):
+            got = ipa(word)
+            assert got == expected, f"{word} → {got}"
+            assert "j" not in got, f"{word} diphthongised: {got}"
+        # the ⟨en⟩ pseudo-digraph is gone, and an ONSET nasal leaves the
+        # vowel oral (raised to [e], not lowered to [ɛ])
+        assert barrancos.graphemes.get("em") is None
+        assert barrancos.graphemes.get("en") is None
+        assert ipa("pequenu") == "pɨkenu"
 
     def test_a_circumflex_vowel(self, barrancos):
         """⟨â⟩ → [ɐ] (closed-mid central, Convenção pp. 20-22)."""

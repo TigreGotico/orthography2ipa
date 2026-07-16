@@ -107,15 +107,26 @@ in the allophone layer rather than the base map.
 Two further post-lexical rules handle **nasal place assimilation**:
 `/n/ → [ŋ]` before a dorsal and `/n/ → [m]` before a labial.
 
+### Post-nasal blocking
+
+Spirantization is **blocked** when the lax stop is preceded by a homorganic
+nasal (clusters *nt*, *nd*, and *nb* → `[mb]`; Kossmann & Stroomer 1997 p. 468):
+`anda` 'where' → `[anda]` (not `*[anða]`), `nteddu` 'we go' → `[ntədːu]`. The
+allophone-rule layer has no *negative* context condition, but first-match rule
+ordering supplies it: the identity rules `KAB_POSTNASAL_HARD_T/D/DH_EMPH/B`
+(each `preceded_by_phoneme` = a nasal) are listed **before** the corresponding
+`KAB_SPIRANT_*` rules, so a lax stop after `/n m/` keeps its stop and never
+reaches the spirantization rule.
+
 ---
 
 ## Known limits (documented, not modelled)
 
-- **Post-nasal blocking.** Spirantization is blocked when the stop is preceded
-  by a homorganic nasal (clusters *nt*, *nd*; Kossmann & Stroomer 1997 p. 468).
-  The allophone-rule layer cannot express a *negative* context condition, so a
-  stop after a homorganic nasal is currently over-spirantized. This is a small
-  residue in running text.
+- **Blocking after `/l/`.** Fuller descriptions also block spirantization after
+  `/l/` and in some tautosyllabic obstruent clusters, but the primary source
+  relied on here (Kossmann & Stroomer 1997) states only the homorganic-nasal
+  block, so only that is modelled; a lax stop after `/l/` may still be
+  over-spirantized. This is a small residue in running text.
 - **Morphophonological gemination alternations.** Geminated /ɣ/ surfaces as
   *qq*, geminated /w/ as *bb*, geminated /y/ as *gg*. These are lexical /
   morphological, not recoverable from the Latin spelling, and are not modelled.
@@ -138,8 +149,24 @@ Two further post-lexical rules handle **nasal place assimilation**:
   of the Noise Sources for the Kabyle Fricatives Consonants.* ICAECE'2023
   abstracts, AIJR, pp. 123–125. (Kabyle fricative inventory incl. [ç ʝ];
   spirantization / palatalization / affrication as Kabyle features.)
+- **Naït-Zerrad, Kamal (2001).** *Grammaire moderne du kabyle / Tajerrumt
+  tatrart n teqbaylit.* Éditions Karthala, Paris. (Secondary; lexical /
+  morphological attestation for the TTS gold set — not a phonological source.)
+- **Dallet, Jean-Marie (1982).** *Dictionnaire kabyle-français: parler des At
+  Mangellat, Algérie.* SELAF, Paris. (Secondary; lexical attestation for the TTS
+  gold set — not a phonological source.)
 - **Wikipedia, *Kabyle language*** — secondary cross-check (flagged) of the
   34-letter Berber Latin alphabet table only.
+
+---
+
+## TTS gold set
+
+`orthography2ipa/data/gold/kabyle_tts/kab.tsv` holds 20 phonetically diverse,
+literature-justified Kabyle sentences for validating Kabyle TTS voices and
+regression-pinning sentence-level o2i behaviour. See
+[docs/kabyle-tts-gold.md](../kabyle-tts-gold.md) for the schema, feature tags,
+and authoring procedure.
 
 ---
 

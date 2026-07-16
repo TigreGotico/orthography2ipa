@@ -20,6 +20,30 @@
     "u": [
       "u"
     ],
+    "á": [
+      "a"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ô": [
+      "o"
+    ],
+    "ú": [
+      "u"
+    ],
+    "â": [
+      "a"
+    ],
     "ã": [
       "ã"
     ],
@@ -279,6 +303,54 @@
         "t͡s"
       ]
     },
+    "g": {
+      "before_e": [
+        "d͡ʒ"
+      ],
+      "before_i": [
+        "d͡ʒ"
+      ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
+      ],
+      "before_o": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
+      ]
+    },
+    "qu": {
+      "before_e": [
+        "k"
+      ],
+      "before_i": [
+        "k"
+      ],
+      "before_a": [
+        "kw"
+      ],
+      "before_o": [
+        "kw"
+      ],
+      "before_consonant": [
+        "ku"
+      ],
+      "word_final": [
+        "ku"
+      ],
+      "default": [
+        "ku"
+      ]
+    },
     "s": {
       "word_initial": [
         "s̺"
@@ -298,6 +370,103 @@
         "z̺"
       ]
     }
+  },
+  "stress": {
+    "cliticless_words": [
+      "o",
+      "a",
+      "os",
+      "as",
+      "de",
+      "do",
+      "da",
+      "dos",
+      "das",
+      "em",
+      "no",
+      "na",
+      "nos",
+      "nas",
+      "por",
+      "pelo",
+      "pela",
+      "pelos",
+      "pelas",
+      "ao",
+      "aos",
+      "à",
+      "às",
+      "com",
+      "sem",
+      "e",
+      "que",
+      "se",
+      "me",
+      "te",
+      "lhe",
+      "lhes",
+      "vos",
+      "lo",
+      "la",
+      "los",
+      "las",
+      "lho",
+      "lha",
+      "lhos",
+      "lhas"
+    ],
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "x",
+      "i",
+      "u",
+      "im",
+      "om",
+      "um",
+      "is",
+      "us",
+      "ns"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "â",
+      "ê",
+      "ô",
+      "ã",
+      "õ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Galaico-Portuguese stress: paroxytone default, oxytone on the consonant/high-vowel endings shared with modern Portuguese, and a written accent overrides both. Medieval scribal practice was inconsistent about marking accents, but the axis is the same as its descendants and any accent present in the input must attract stress rather than be dropped. DIPHTHONGS are declared so the bundled syllabifier counts nuclei correctly; without them a vowel run collapses to one nucleus and the stress (and its conditioned reduction) lands on the wrong vowel (Cunha & Cintra, Nova Gramática do Português Contemporâneo, §Ditongos).",
+    "diphthongs": [
+      "ãe",
+      "ão",
+      "õe",
+      "ai",
+      "ái",
+      "au",
+      "áu",
+      "ei",
+      "éi",
+      "êi",
+      "eu",
+      "éu",
+      "êu",
+      "iu",
+      "oi",
+      "ói",
+      "ôi",
+      "ou",
+      "ui",
+      "uí"
+    ]
   },
   "parent": "x-clade-iberrom",
   "ancestors": [

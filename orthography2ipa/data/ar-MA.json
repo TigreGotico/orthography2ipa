@@ -12,6 +12,36 @@
     ],
     "o": [
       "o"
+    ],
+    "الثث": [
+      "att"
+    ],
+    "اَلثث": [
+      "att"
+    ],
+    "لِلثث": [
+      "litt"
+    ],
+    "وَالثث": [
+      "watt"
+    ],
+    "فَالثث": [
+      "fatt"
+    ],
+    "بِالثث": [
+      "bitt"
+    ],
+    "كَالثث": [
+      "katt"
+    ],
+    "اِلثث": [
+      "itt"
+    ],
+    "وِالثث": [
+      "witt"
+    ],
+    "گ": [
+      "ɡ"
     ]
   },
   "allophones_base": "ar-x-maghrebi",
@@ -49,6 +79,17 @@
       "o"
     ]
   },
+  "allophone_rules": [
+    {
+      "id": "MA_SHORT_REDUCE",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ə",
+      "followed_by": "consonant_cluster",
+      "notes": "Darija short-vowel reduction: a historic short high vowel /i/ in a metrically WEAK position — before a consonant cluster (a closed syllable / the cluster-licensing site) — reduces to schwa [ə]. Heath (2020) p.216: the koiné 'reduce[s] all three short vowels to just one short vowel ə', original short vowels 'syncopate in weak metrical positions'; Watson (2002) p.13: Maghrebi unstressed-vowel deletion yields word-initial clusters (Moroccan smin vs Cairene simīn); Noamane (2020) p.49: MA vocalic inventory limited to an epenthetic schwa /ə/. Blind-judge consensus (verification round C9): both judges independently corrected these full vowels to [ə]. The rule is SCOPED to /i/ before a cluster because that is the environment the current condition vocabulary can express without over-generating: short /a/ ALSO reduces in Darija (ʃamʃ→ʃəmʃ, ʒaww→ʒəww) but is RETAINED next to gutturals/pharyngeals (qahwa, binnaʕnaːʕ, nħabb — Heath 2002), and there is no negated-neighbour / 'guttural' condition class to carve that out, so a categorical /a/→ə rule over-generates and net-regresses the gold; that reduction is deferred pending an engine 'guttural neighbour' class (filed as a spec-lead gap). Short /u/ is retained (rounded reflex near labials/velars/emphatics; Noamane 2020 p.49; gold dˤuhr, xubz). Runs post-lexically after the inherited emphasis-backing rules."
+    }
+  ],
   "parent": "ar-x-maghrebi",
   "ancestors": [
     {
@@ -162,5 +203,32 @@
     "longitude": -7.5,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Moroccan Arabic."
+  },
+  "optional_marks": [
+    "ً",
+    "ٌ",
+    "ٍ",
+    "َ",
+    "ُ",
+    "ِ",
+    "ّ",
+    "ْ",
+    "ٰ",
+    "ٓ"
+  ],
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": true,
+    "superheavy_final_attracts": true,
+    "max_onset": 1,
+    "stress_mark": "ˈ",
+    "notes": "Arabic stress is QUANTITY-SENSITIVE: it falls on a syllable because that syllable is heavy, not because of any orthographic ending, so no ending table can express it. The cascade (Ryding, A Reference Grammar of MSA, CUP 2005, §2.3; Watson, The Phonology and Morphology of Arabic, OUP 2002, ch.3): a superheavy final syllable (CVːC/CVCC) takes the stress (kiˈtaːb); otherwise a heavy penult (CVː/CVC) does (muˈdarris); otherwise the antepenult (ˈmadrasa). max_onset=1 because Arabic onsets are obligatory and hold exactly one consonant — a medial cluster splits, closing the preceding syllable, and that boundary is what makes the penult of mudarris heavy. INPUT CONTRACT: weight is only recoverable from a complete transcription, so this requires diacritized input; an undiacritized skeleton has no vowels to weigh. The registered wikipron gold carries no stress marks, but the benchmark strips stress from both sides by default, so this costs no PER. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "cliticless_words": [
+      "عَ",
+      "كِي",
+      "مَا",
+      "مِن",
+      "مِنْ"
+    ]
   }
 }

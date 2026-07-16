@@ -8,7 +8,7 @@
   "parent": "ofs",
   "graphemes": {
     "a": [
-      "ɑ"
+      "a"
     ],
     "â": [
       "ɔː"
@@ -76,7 +76,7 @@
       "s"
     ],
     "ch": [
-      "x"
+      "χ"
     ],
     "d": [
       "d"
@@ -86,7 +86,7 @@
     ],
     "g": [
       "ɡ",
-      "x"
+      "ɣ"
     ],
     "h": [
       "h"
@@ -121,11 +121,8 @@
     "s": [
       "s"
     ],
-    "sch": [
-      "sx"
-    ],
     "sj": [
-      "ʃ"
+      "ɕ"
     ],
     "t": [
       "t"
@@ -133,8 +130,11 @@
     "th": [
       "t"
     ],
+    "tsj": [
+      "tɕ"
+    ],
     "tj": [
-      "tʃ"
+      "tɕ"
     ],
     "ts": [
       "ts"
@@ -171,16 +171,16 @@
       "øy"
     ],
     "aai": [
-      "aːi"
+      "aːj"
     ],
     "oai": [
-      "oːi"
+      "oːj"
     ],
     "oei": [
-      "uːi"
+      "uːj"
     ],
     "iuw": [
-      "iuʋ"
+      "iːw"
     ]
   },
   "allophones": {
@@ -204,6 +204,16 @@
     "ɡ": [
       "ɡ"
     ],
+    "ɣ": [
+      "ɣ",
+      "χ"
+    ],
+    "ɕ": [
+      "ɕ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
     "f": [
       "f"
     ],
@@ -218,8 +228,8 @@
       "z",
       "s"
     ],
-    "x": [
-      "x"
+    "χ": [
+      "χ"
     ],
     "h": [
       "h"
@@ -248,7 +258,8 @@
     "j": [
       "j"
     ],
-    "ɑ": [
+    "a": [
+      "a",
       "ɑ"
     ],
     "aː": [
@@ -320,9 +331,6 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
@@ -331,19 +339,19 @@
       "word_final": [
         "t"
       ],
-      "coda": [
-        "t"
-      ],
       "default": [
         "d"
       ]
     },
     "g": {
-      "word_final": [
-        "x"
+      "word_initial": [
+        "ɡ"
       ],
-      "coda": [
-        "x"
+      "intervocalic": [
+        "ɣ"
+      ],
+      "word_final": [
+        "χ"
       ],
       "default": [
         "ɡ"
@@ -353,18 +361,12 @@
       "word_final": [
         "f"
       ],
-      "coda": [
-        "f"
-      ],
       "default": [
         "v"
       ]
     },
     "z": {
       "word_final": [
-        "s"
-      ],
-      "coda": [
         "s"
       ],
       "default": [
@@ -395,6 +397,41 @@
       ]
     }
   },
+  "stress": {
+    "default_position": 1,
+    "stress_mark": "ˈ",
+    "diphthongs": [
+      "aai",
+      "oai",
+      "oei",
+      "iuw",
+      "aa",
+      "ee",
+      "ii",
+      "ie",
+      "oo",
+      "oe",
+      "uu",
+      "ea",
+      "oa",
+      "ue",
+      "ai",
+      "ei",
+      "au",
+      "ou",
+      "oi",
+      "ui",
+      "iə",
+      "ɪə",
+      "oə",
+      "ɛi",
+      "aj",
+      "ɔu",
+      "øy",
+      "oj"
+    ],
+    "notes": "Germanic word stress falls on the first syllable of the root; prefixes and a small set of loans are the systematic exceptions (Tiersma 1999, ch. 1). The declared sequences are the ones that form a single nucleus: the orthographic digraphs/trigraphs let the bundled syllabifier count one nucleus per diphthong, and their IPA realisations (⟨ei⟩ /ɛi/, ⟨au⟩/⟨ou⟩ /ɔu/, ⟨ui⟩ /øy/, the centring /iə ɪə oə/) are listed too so the same run stays one nucleus when the syllabifier is re-run over the transcription rather than the spelling."
+  },
   "ancestors": [
     {
       "code": "ofs",
@@ -421,7 +458,7 @@
       "notes": "French adstrate: indirect influence through Dutch and Burgundian-period borrowings."
     }
   ],
-  "notes": "West Frisian (Frysk) — the most widely spoken Frisian language, with ~350,000–450,000 speakers in the province of Fryslân (Friesland), Netherlands. Official language alongside Dutch in the province. KEY FEATURES: (1) BREAKING DIPHTHONGS: distinctive centring diphthongs /iə/, /ɪə/, /oə/ from historical long vowels — a hallmark of Frisian. (2) FINAL DEVOICING: voiced obstruents devoiced word-finally and in coda, as in Dutch. (3) /ɡ/ not /ɣ/: West Frisian has a voiced stop /ɡ/ in onset (not the fricative [ɣ] of Dutch). (4) CIRCUMFLEX VOWELS: ⟨â⟩ /ɔː/, ⟨ê⟩ /ɛː/, ⟨ô⟩ /oː/, ⟨û⟩ /yː/ — unique orthographic convention. (5) ⟨y⟩ = /i/ (not a consonant). (6) ⟨u⟩ = /ø/ (front rounded). (7) ANGLO-FRISIAN: shares innovations with English (Anglo-Frisian brightening, nasal loss before fricatives) but diverged after Old Frisian period. (8) Rich vowel system with 12+ monophthongs and multiple diphthongs/centring diphthongs. Sources: Tiersma (1999) *Frisian Reference Grammar*, Visser (1997) *Frysk Wurdboek*, Gorter et al. (2001), Popkema (2006) *Grammatica Fries*.",
+  "notes": "West Frisian (Frysk) — the most widely spoken Frisian language, spoken in the province of Fryslân (Friesland), Netherlands, where it is an official language alongside Dutch. KEY FEATURES: (1) RICH VOWEL SYSTEM: monophthongs contrast in length and rounding, with long vowels (>250 ms) considerably longer than short (<150 ms) (Tiersma 1999, p. 9). Short ⟨a⟩ is front /a/, long ⟨aa⟩ /aː/. (2) CENTRING (BREAKING) DIPHTHONGS: ⟨ie⟩ /iə/, ⟨ea⟩ /ɪə/, ⟨oa⟩ /oə/ from historical long vowels — a hallmark of Frisian. Breaking (brekking) alternates a stressed falling diphthong with a rising one in derivation (stien /stiən/ ~ stiennen /stjɪn.../, beam /bɪəm/ ~ beamke /bjɛm.../; Tiersma 1999); this is a morphophonemic alternation not expressible in the grapheme→IPA map and is not encoded. (3) FINAL OBSTRUENT DEVOICING: word-final /b d v z ɣ/ merge to /p t f s χ/ (Tiersma 1999, p. 21). (4) ⟨g⟩ is a single phoneme with a stop [ɡ] word- and stressed-syllable-initially and a voiced velar fricative [ɣ] elsewhere, devoiced to [χ] word-finally (Hoekstra 2001). (5) DORSAL FRICATIVE: ⟨ch⟩ and the devoiced ⟨g⟩ are the voiceless post-velar/uvular fricative /χ/. (6) PALATALISATION: ⟨sj⟩ /ɕ/, ⟨tsj⟩ and ⟨tj⟩ /tɕ/ (alveolo-palatal). (7) CIRCUMFLEX VOWELS: ⟨â⟩ /ɔː/, ⟨ê⟩ /ɛː/, ⟨ô⟩ /oː/, ⟨û⟩ /uː/, ⟨ú⟩ /yː/ — a distinctive orthographic convention. (8) ⟨y⟩ = /i/ (a vowel, not a consonant); short ⟨i⟩ = /ɪ/; ⟨u⟩ = /ø/. (9) ANGLO-FRISIAN: shares innovations with English but diverged after the Old Frisian period. Sources: Tiersma (1999) *Frisian Reference Grammar*, Hoekstra (2001), Popkema (2006) *Grammatica Fries*.",
   "sources": [
     {
       "id": "tiersma1999",
@@ -432,6 +469,16 @@
       "url": null,
       "pages": null,
       "notes": "Comprehensive reference grammar of Modern West Frisian"
+    },
+    {
+      "id": "hoekstra2001",
+      "author": "Hoekstra, J.",
+      "year": 2001,
+      "title": "Standard West Frisian",
+      "publisher": "In: Munske, H.H. (ed.), Handbuch des Friesischen / Handbook of Frisian Studies, Niemeyer",
+      "url": null,
+      "pages": "pp. 83-98",
+      "notes": "Consonant inventory; the ⟨g⟩ = [ɡ]~[ɣ] allophony and final devoicing to [χ]"
     },
     {
       "id": "popkema2006",
@@ -462,6 +509,8 @@
   ],
   "urls": [
     "https://en.wikipedia.org/wiki/West_Frisian_language",
+    "https://en.wikipedia.org/wiki/West_Frisian_phonology",
+    "https://en.wikipedia.org/wiki/Help:IPA/West_Frisian",
     "https://fy.wikipedia.org/wiki/Fryske_taal",
     "https://en.wikipedia.org/wiki/Frisian_languages",
     "https://en.wikipedia.org/wiki/Anglo-Frisian_languages",

@@ -1,0 +1,174 @@
+{
+  "code": "niv",
+  "name": "Gilyak",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      ""
+    ],
+    "а": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "ғ": [
+      "ɣ"
+    ],
+    "ӷ": [
+      "ʁ"
+    ],
+    "ҕ": [
+      "ʁ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "kʰ"
+    ],
+    "қ": [
+      "q"
+    ],
+    "ӄ": [
+      "q"
+    ],
+    "ҟ": [
+      "qʰ"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "ӈ": [
+      "ŋ"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "pʰ"
+    ],
+    "р": [
+      "r"
+    ],
+    "ҏ": [
+      "r̥"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "tʰ"
+    ],
+    "у": [
+      "u"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ҳ": [
+      "χ"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ]
+  },
+  "parent": "x-clade-nivk1234",
+  "ancestors": [
+    {
+      "code": "x-clade-nivk1234",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Amur Nivkh (gily1242)."
+    }
+  ],
+  "notes": "Skeleton. Nivkh (Gilyak) is a Paleosiberian language isolate; this entry follows the Amur dialect Cyrillic alphabet. Beyond the base Russian letters it covers the language-specific graphemes for the rich dorsal system: Ӈ (velar nasal), the velar/uvular fricatives Ғ (ɣ) and Ӷ/Ҕ (ʁ), the uvular stops Ӄ/Қ and Ҟ, the uvular fricative Ҳ (χ) and the voiceless sonorant Ҏ. Nivkh contrasts aspirated and unaspirated stops and undergoes extensive initial-consonant mutation; the aspiration values assigned here are approximate and the morphophonemic alternations are not recoverable from spelling, so a raised PER floor is expected.",
+  "iso639_3": "niv",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "niv_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Amur Nivkh (gily1242)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/gily1242",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "niv_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Nivkh language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Nivkh_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nivkh_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Nivkh_language"
+  ]
+}

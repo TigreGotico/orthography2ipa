@@ -43,7 +43,7 @@
       "intervocalic": [
         "s"
       ],
-      "coda": [
+      "before_consonant": [
         "h",
         "s"
       ],
@@ -60,6 +60,16 @@
       ]
     }
   },
+  "allophone_rules": [
+    {
+      "id": "CANARIAS_X_TO_H",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "h",
+      "notes": "Canarian /x/ (⟨j⟩ and ⟨g⟩ before front vowel) is a glottal/pharyngeal aspirate [h], never the Castilian velar [x] — a defining Atlantic feature shared with Andalusian and Caribbean Spanish: cojo [ˈkoho], trabajo [tɾaˈβaho], coge [ˈkohe] (Hualde 2005, The Sounds of Spanish, ch. on Canarian and Caribbean varieties; Zamora Vicente 1960, Dialectología española §El español de Canarias). Only the /x/ phoneme is rewritten; intervocalic /ɡ/→[ɣ] (which is a different phoneme) is untouched."
+    }
+  ],
   "parent": "es-ES",
   "notes": "Canarian Spanish (Islas Canarias). Systematic seseo (no /θ/), yeísmo, coda /s/ aspiration (less extreme than Andalusian), partial /x/ aspiration. Strong historical connections to Andalusian and Caribbean Spanish. Conservative affricate [tʃ] preservation. -d deletion in participial -ado.",
   "quality": "research",

@@ -76,13 +76,11 @@
       "intervocalic": [
         "s"
       ],
-      "coda": [
-        "h",
-        ""
+      "before_consonant": [
+        "h"
       ],
       "word_final": [
-        "h",
-        ""
+        "h"
       ]
     }
   },
@@ -138,5 +136,49 @@
     "longitude": -3.6,
     "source": "wikidata",
     "notes": "Granada — a representative city of the eastern Andalusian area (with Almería and Jaén). [Wikidata Q8810 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "EAND_OPEN_E_BEFORE_S",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "h"
+      ],
+      "notes": "Eastern Andalusian vocalismo abierto: the mid/low vowel before an aspirated or lost /s/ opens, and the open vowel becomes the sole surviving cue to the plural / 2sg morpheme once the -s itself is gone (Navarro Tomas 1939, El acento andaluz / vocalismo; Cruz Ortiz, Sociofonetica andaluza). ⟨e⟩ before the [h] reflex of coda/final -s opens to [ɛ]: tres [ˈtɾɛ(h)], puestas [ˈpwɛhtæ]. Fires on the phoneme-level right-neighbour [h] (the only source of [h] in the eastern lect, since ⟨j⟩ keeps its velar [x] here)."
+    },
+    {
+      "id": "EAND_OPEN_O_BEFORE_S",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "followed_by_phoneme": [
+        "h"
+      ],
+      "notes": "⟨o⟩ before the [h] reflex of coda/final -s opens to [ɔ]: estos [ˈɛhtɔ], kilos [ˈkilɔ], euros [ˈɛwɾɔ] (Navarro Tomas 1939; Cruz Ortiz). See EAND_OPEN_E_BEFORE_S."
+    },
+    {
+      "id": "EAND_OPEN_A_BEFORE_S",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "æ",
+      "followed_by_phoneme": [
+        "h"
+      ],
+      "notes": "⟨a⟩ before the [h] reflex of coda/final -s opens to [æ]: tazas [ˈtaθæ], las [ˈlæ], buenas [ˈbwenæ] (Navarro Tomas 1939; Cruz Ortiz). High vowels /i u/ resist opening and are deliberately not rewritten (buscas [ˈbuhkæ], not [ˈbʊhkæ])."
+    },
+    {
+      "id": "EAND_DELETE_FINAL_H",
+      "phonemes": [
+        "h"
+      ],
+      "surface": "",
+      "word_final": true,
+      "notes": "After the preceding vowel has opened, a WORD-FINAL aspirated -s is dropped, so the open vowel alone marks the plural: las tres [læ ˈtɾɛ], los libros [lɔ ˈliβɾɔ]. A word-INTERNAL coda [h] (before a consonant) is kept: estos [ˈɛhtɔ] retains the first [h]. Ordered after the opening rules so the [h] has already conditioned the vowel before it is removed. RESIDUAL / honest scoping: true leftward VOWEL HARMONY across an intervening consonant (the euros e-opening, [ˈɛwɾɔ], where the stressed vowel is not itself adjacent to an -s) is NOT modelled — the allophone layer's neighbour conditions are segment-adjacent (immediate, or one grapheme away by class), so an autosegmental vowel-tier that skips consonants is not expressible here. Only LOCAL opening (a mid/low vowel immediately before the [h] of -s) is applied; this matches the arbitrated gold everywhere except the single euros-type token, which stays half-open."
+    }
+  ]
 }

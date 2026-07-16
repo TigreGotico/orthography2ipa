@@ -108,18 +108,6 @@
     "gh": [
       "ɡ"
     ],
-    "ce": [
-      "tʃe"
-    ],
-    "ci": [
-      "tʃi"
-    ],
-    "ge": [
-      "dʒe"
-    ],
-    "gi": [
-      "dʒi"
-    ],
     "ea": [
       "e̯a"
     ],
@@ -366,5 +354,31 @@
     "longitude": 24.2256,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Romanian."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "RO_SOFT_C",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "tʃ",
+      "grapheme": [
+        "c"
+      ],
+      "followed_by": "front_vowel",
+      "notes": "⟨c⟩ is /tʃ/ before ⟨e i⟩; ⟨ch⟩ keeps /k/ (its own grapheme)"
+    },
+    {
+      "id": "RO_SOFT_G",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "dʒ",
+      "grapheme": [
+        "g"
+      ],
+      "followed_by": "front_vowel",
+      "notes": "⟨g⟩ is /dʒ/ before ⟨e i⟩; ⟨gh⟩ keeps /ɡ/ (its own grapheme)"
+    }
+  ]
 }
