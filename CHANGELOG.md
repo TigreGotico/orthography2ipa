@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.19.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.4a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.3a1...7.19.4a1)
+
+**Merged pull requests:**
+
+- fix: freeze cached specs + Barranquenho 'aqui' stress [\#533](https://github.com/TigreGotico/orthography2ipa/pull/533) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.3a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.2a1...7.19.3a1)
@@ -444,10 +452,6 @@
 ## [6.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.1.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.0.0a1...6.1.0a1)
-
-**Merged pull requests:**
-
-- feat: offset context — ru/uk palatalisation is a rule, not a 229-key cartesian [\#364](https://github.com/TigreGotico/orthography2ipa/pull/364) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [6.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.0.0a1) (2026-07-14)
 
