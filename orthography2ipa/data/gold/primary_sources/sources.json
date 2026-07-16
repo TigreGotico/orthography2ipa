@@ -306,5 +306,49 @@
     "pagination": "Open-access scan on Docta Complutense (handle hdl.handle.net/20.500.14352/46845). The printed folio sits in the page running foot and coincides with the PDF page index (verified: PDF page 49 = folio 49, 50 = folio 50, 52 = folio 52, 53 = folio 53). The book uses a Spanish (RFE-influenced) phonetic notation: primary stress is an apostrophe placed BEFORE the stressed syllable (normalized to IPA ˈ), and [∫]=ʃ, [γ]=ɣ, [δ]=ð, [β]=β, with final unstressed <a> written [α]/[a] and read [ɐ]; the `ipa` field carries the IPA normalization and `source_notation` keeps the book's glyphs verbatim.",
     "notation": "ipa",
     "describes": "Barranquenho (ext-PT-x-barrancos) — the Portuguese-Spanish contact variety of Barrancos (Baixo Alentejo, on the Extremadura/Andalusia border); Alentejo-Portuguese phonetic base with southern-peninsular Spanish overlay (coda /s/ aspiration, betacism, final-vowel apocope). Already cited by the ext-PT-x-barrancos spec."
+  },
+  "algethami2023": {
+    "authors": "Algethami, G.",
+    "year": 2023,
+    "title": "Acoustic characterization of Najdi Arabic vowel system",
+    "venue": "Proceedings of ICPhS 2023, paper 868, Prague",
+    "url": "https://guctprod.blob.core.windows.net/icphs-proceedings/ICPhS2023/full_papers/3384.pdf",
+    "access": "open",
+    "pagination": "ICPhS 2023 proceedings; `page` is the printed folio in the running head (3384-3386), which is PDF page index + 3383.",
+    "notation": "ipa",
+    "describes": "Najdi Arabic (central Saudi Arabia), acoustic vowel study, 15 male speakers"
+  },
+  "mahzari2023": {
+    "authors": "Mahzari, M.",
+    "year": 2023,
+    "title": "The historical changes of /k/ and /q/ in Najdi Arabic: a phonological analysis",
+    "venue": "Theory and Practice in Language Studies 13(3), 796-807",
+    "url": "https://doi.org/10.17507/tpls.1303.30",
+    "access": "open",
+    "pagination": "`page` is the printed journal folio in the running head (796-807), which is PDF page index + 795.",
+    "notation": "ipa",
+    "describes": "Najdi Arabic as spoken in Riyadh (two male speakers born and raised in Riyadh); /k/->[ts], /q/->[g]->[dz]"
+  },
+  "alshammari2026": {
+    "authors": "Alshammari, K. K.",
+    "year": 2026,
+    "title": "An optimality-theoretic account of velar affrication in Northern Najdi Arabic",
+    "venue": "Journal of Language Teaching and Research 17(4), 1333-1341",
+    "url": "https://doi.org/10.17507/jltr.1704.19",
+    "access": "open",
+    "pagination": "`page` is the printed journal folio in the running head (1333-1341), which is PDF page index + 1332.",
+    "notation": "ipa",
+    "describes": "Northern Najdi Arabic (Ha'il / Jabal Shammar), 10 speakers; velar affrication /k/->[ts], /g/->[dz]"
+  },
+  "aljamaan2026": {
+    "authors": "Aljamaan, L. & Aljutaily, M.",
+    "year": 2026,
+    "title": "Towards a phonological model of intonation in Qassimi Arabic: an acoustic study",
+    "venue": "Journal of Language Teaching and Research 17(1), 98-111",
+    "url": "https://doi.org/10.17507/jltr.1701.10",
+    "access": "open",
+    "pagination": "`page` is the printed journal folio in the running head (98-111), which is PDF page index + 97. Prosody study (F0/boundary tones); segmental transcriptions are loose transliteration, so no segmental gold rows are harvested from it.",
+    "notation": "ipa",
+    "describes": "Qassimi Arabic (Qassim region, Buraydah), 20 speakers; declarative vs yes/no-question intonation"
   }
 }
