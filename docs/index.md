@@ -233,6 +233,7 @@ below.
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
 | [sentence_context.md](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer`, phrase / utterance position |
+| [lattice_per.md](lattice_per.md) | Pronunciation-fair phone error rate for ASR: oracle edit distance against the lattice |
 | [features.md](features.md) | Feature export for ML / CRF G2P: `G2P.features`, `WordFeatures`, `GraphemeFeatures`, the CRF-as-rescorer pattern |
 | [candidate_scoring.md](candidate_scoring.md) | Per-candidate weights and how they become beam costs |
 | [distance.md](distance.md) | Every relational axis: phonological, reading, spelling, script, ancestry, temporal, geographic |
