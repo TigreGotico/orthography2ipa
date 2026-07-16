@@ -405,5 +405,27 @@
   "pagination": "`page` is the thesis printed folio (running header); the phonology sketch is Ch.2 pp.42-55, the jīm variable Ch.4 pp.82-125.",
   "notation": "arabicist-transliteration",
   "describes": "Dawāsir Arabic of Dammam (Sunni, Najdi-origin tribe), Eastern Province Saudi Arabia — Najdi-Bedouin core with Gulf overlay"
+ },
+ "alqahtani2015": {
+  "authors": "Alqahtani, Khairiah",
+  "year": 2015,
+  "title": "A sociolinguistic study of the Tihami Qahtani dialect in Asir, Southern Arabia",
+  "venue": "PhD thesis, University of Essex",
+  "url": "https://repository.essex.ac.uk/15298/",
+  "access": "open",
+  "pagination": "Printed page equals the pdftotext page index (no divergence; verified on the phonology chapter, pp.45-52, and Tables 4.1/4.2 pp.149-151).",
+  "notation": "ipa",
+  "describes": "Tihami Qahtani (Tihamat Qahtan, Asir, SW Saudi Arabia) — a neighbour of Rijal Alma; modelled at ar-SA-x-tihama-qahtan"
+ },
+ "alqarni2025": {
+  "authors": "Alqarni, Alaa",
+  "year": 2025,
+  "title": "Dialect Contact and Koineisation in Riyadh: A Study on the Dialect of Alqarni Tribe",
+  "venue": "PhD thesis, University of Essex",
+  "url": "https://repository.essex.ac.uk/43185/",
+  "access": "open",
+  "pagination": "Printed page = pdftotext page index − 15 (per the thesis running head).",
+  "notation": "arabicist-transliteration",
+  "describes": "Qarni / Balqarn (Southern Hijaz–Asir–Tihamah continuum, SW Saudi Arabia); heritage lect measured under Riyadh koineisation. No o2i node — lang=null."
  }
 }
