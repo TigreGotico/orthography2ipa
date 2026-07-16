@@ -394,5 +394,16 @@
   "pagination": "`page` records the printed folio; the consonant and vowel charts sit in the front matter (printed pp.9-10).",
   "notation": "ipa",
   "describes": "BEDOUIN Ḥarbi dialect of Medina (North-West Arabian). Palatalised [ɡʲ]/[kʲ], retained interdentals, emphatic ǧiːm — features absent from the urban koine; rows carry lang=null."
+ },
+ "alaodini2019": {
+  "authors": "Alaodini, H.",
+  "year": 2019,
+  "title": "A Sociolinguistic Study of the Dawāsir Dialect in Dammam, Eastern Arabia: Variation and Change in a Tribal Community",
+  "venue": "PhD thesis, University of Essex",
+  "url": "https://repository.essex.ac.uk/26165/",
+  "access": "open",
+  "pagination": "`page` is the thesis printed folio (running header); the phonology sketch is Ch.2 pp.42-55, the jīm variable Ch.4 pp.82-125.",
+  "notation": "arabicist-transliteration",
+  "describes": "Dawāsir Arabic of Dammam (Sunni, Najdi-origin tribe), Eastern Province Saudi Arabia — Najdi-Bedouin core with Gulf overlay"
  }
 }
