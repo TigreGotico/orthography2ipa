@@ -71,8 +71,20 @@ not to certify a language on its own.
 | Brissos (2018), Estud. ling. galega, vol. esp. I | NW Portuguese (variedade do noroeste) | `pt-PT-x-porto` | 9 |
 | Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `ext-PT-x-barrancos` | 10 |
 | **total** | | | **505** |
-
 Broad `/…/`: 343. Narrow `[…]`: 162. `confidence`: 322 high, 169 medium, 14 low.
+| Omar (1975), FSI *Saudi Arabic, Urban Hijazi Dialect* | Urban Hijazi (Jeddah/Mecca/Medina koine) | `ar-SA-x-hejaz` | 26 |
+| Almalky (2020), Essex PhD | Hijazi Arabic (urban), active participle | `ar-SA-x-hejaz` | 4 |
+| Al Solami (2023), *Lingua Posnaniensis* LXV(1) | Bani Sulaim (Bedouin Hijazi) — iambic-stress contrast | `null` | 5 |
+| Al-Rohili (2019), Essex PhD | Ḥarbi of Medina (Bedouin NW) — palatalisation contrast | `null` | 5 |
+| **total** | | | **528** |
+Broad `/…/`: 369. Narrow `[…]`: 159. `confidence`: 316 high, 198 medium, 14 low.
+The four Saudi/Hijazi sources added in the deep-validation round are page-pinned to the
+literature the `ar-SA-x-hejaz` spec cites. Omar (1975) is the spec's base source; its
+pronunciation guide (pp.xi-xvi) supplies the urban qaf→[ɡ] / interdental-merger / 8-vowel /
+monophthongization attestations. Al Solami (2023) and Al-Rohili (2019) are BEDOUIN Hijazi
+(Bani Sulaim; Ḥarbi of Medina) and are deliberately `lang: null` — they document the
+iambic-stress, interdental-retention and palatalisation features that the *urban* koine node
+does **not** have, i.e. the split that keeps the bare `ar-SA` code unassigned.
 
 ## Notation-normalization decisions
 
@@ -254,6 +266,29 @@ running the engine over these rows.
     modelled within-axis RD1, and the marginal `maquia [mɐˈkei̯ɐ]` (`[i]→[ei̯]`,
     ~19% of tokens, pre-pause/vowel only, p.199) is deliberately left out; the
     rows record what is and is not covered.
+28. **`ar-SA-x-hejaz` over-applies qaf→[ɡ] to classicisms.** Omar (1975) p.xiii states
+    /q/ "occurs only in classicized words; it often alternates with /g/" — the base
+    source's own contract is that inherited vocab has [ɡ] but learned/borrowed items keep
+    [q]. o2i has no lexical stratum, so قُرآن 'Quran' and اِقتِصاد 'economy' come out
+    `[ɡurʔaːn]`, `[ʔiɡtisˤɑːd]` where the source keeps `[qurʔaːn]`, `[iqtisˤaːd]`. Same
+    class as the `ar-PS` MSA-borrowing note (#7): a lexical fact the grapheme rules cannot
+    see. The rows are kept so the cost is visible.
+29. **`ar-SA-x-hejaz` interdental ث lacks the [s] reflex.** Omar p.xiv gives both
+    reflexes of the voiceless interdental: θalaaθa→talaata ([t]) *and* maθalan→masalan
+    ([s]). The spec models only ث→[t,θ], so مَثَلا comes out `[matalaː]` not `[masalan]`.
+    The [s]/[z] sibilant reflexes are the older/minority urban pattern; recorded as an
+    attested-but-unmodelled reflex.
+30. **`ar-SA-x-hejaz` lexical mid vowels aren't derivable from ⟨ِي⟩.** Omar lists فين and
+    اثنين under /ee/=[eː] ([feːn], [itneːn]), but these have no Classical /ay/; the mid
+    vowel is lexical. From the diacritized spellings ⟨فِين⟩/⟨اِثْنِين⟩ o2i correctly reads the
+    kasra+yāʔ as [iː] (`[fiːn]`, `[itniːn]`). [fiːn]~[feːn] coexist; [feːn] would need a
+    lexicon, not a rule — o2i does no normalization. (The monophthong from a real diphthong,
+    e.g. خَيْر→[xeːr], بَيْت→[beːt], صَوْت→[sˤoːt], *is* reproduced.)
+31. **`ar-SA-x-hejaz` final long vowels and emphatic backing are narrow choices.** The FSI
+    broad transcription shortens unstressed final long vowels (مَرحَبا `[marħaba]`, عَرَبي
+    `[ʕarabi]`, أَنا `[ʔana]`) where o2i keeps the orthographic length (`[marħabaː]` etc.),
+    and does not back /aː/ next to an emphatic (قِطار `[ɡitˤaːr]`) where o2i gives narrow
+    `[ɡitˤɑːr]`. Broad-vs-narrow measurement artefacts, recorded per `level`, not bugs.
 
 28. **`ar-SA-x-najd` monophthongization is not modelled, yet the sources say
     central Najd monophthongizes too.** Algethami (2023) p.3385 gives `[beːt]`
