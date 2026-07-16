@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.19.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.3a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.2a1...7.19.3a1)
+
+**Merged pull requests:**
+
+- fix\(mwl,ast\): root-cause the Mirandese/Asturleonese arbitration leads [\#531](https://github.com/TigreGotico/orthography2ipa/pull/531) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.2a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.1a1...7.19.2a1)
