@@ -515,5 +515,19 @@
     "longitude": -51.23,
     "source": "wikidata",
     "notes": "Porto Alegre — the centre of the Sulista/Gaúcho area. [Wikidata Q40269 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "BR_AFFRIC_T_RAISED",
+      "phonemes": [],
+      "surface": "t͡ʃ",
+      "notes": "DISABLED for the Sul variety (Gaúcho/Serra): conservative dental /t d/, no affrication of the final-⟨e⟩ raising context; the positional before_i suppression already keeps ⟨di/ti⟩ dental and this rule must not re-impose it."
+    },
+    {
+      "id": "BR_AFFRIC_D_RAISED",
+      "phonemes": [],
+      "surface": "d͡ʒ",
+      "notes": "DISABLED for the Sul variety (Gaúcho/Serra): conservative dental /t d/, no affrication of the final-⟨e⟩ raising context; the positional before_i suppression already keeps ⟨di/ti⟩ dental and this rule must not re-impose it."
+    }
+  ]
 }

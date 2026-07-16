@@ -273,6 +273,62 @@
   },
   "allophone_rules": [
     {
+      "id": "BR_FINAL_EM_GLIDE",
+      "phonemes": [
+        "̃"
+      ],
+      "surface": "̃j̃",
+      "grapheme": [
+        "m"
+      ],
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "e",
+        "ɛ"
+      ],
+      "notes": "Word-final ⟨-em / -ém / -êm⟩ is the nasal DIPHTHONG in Brazilian Portuguese too — bem [ˈbẽj̃], quem [ˈkẽj̃], também [tãˈbẽj̃], homem [ˈomẽj̃], ontem [ˈõtẽj̃] (Barbosa & Albano 2004: 228; Câmara Jr. 1970 §III; Mateus & d'Andrade 2000: ch.4). Unlike European Portuguese, BP does NOT centralise the nucleus to [ɐ̃]: it keeps the close-mid nasal [ẽ] and adds a nasal palatal offglide [j̃], so [̃]→[̃j̃] with the mid front nucleus left intact (hence no BR analogue of PT_FINAL_EM_NUCLEUS). Gated on the ORIGINAL preceding nucleus being a mid/high front vowel so ⟨-im -om -um⟩ (sim, bom, um) keep a plain nasal monophthong; word-final grapheme ⟨m⟩ only, so an ⟨em⟩ before a consonant (tempo, sempre) and word-final ⟨-en⟩ are excluded."
+    },
+    {
+      "id": "BR_FINAL_AM_GLIDE",
+      "phonemes": [
+        "̃"
+      ],
+      "surface": "̃w̃",
+      "grapheme": [
+        "m"
+      ],
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "a",
+        "ɐ"
+      ],
+      "notes": "Word-final ⟨-am⟩ (3rd-person-plural verb ending) is the nasal diphthong [ɐ̃w̃] in Brazilian Portuguese — falam [ˈfalɐ̃w̃], custam [ˈkustɐ̃w̃], brilham [ˈbɾiʎɐ̃w̃] (Barbosa & Albano 2004: 228; Câmara Jr. 1970 §III). The nucleus [ɐ̃] is supplied by the ⟨a⟩→[ɐ] nasal raise (PT_NASAL_A_RAISE) and this rule adds the [w̃] offglide to the coda ⟨m⟩ tilde: [̃]→[̃w̃]. Gated on the ORIGINAL preceding nucleus being low [a ɐ], disjoint from the ⟨-em⟩ glide; word-final ⟨am⟩ only occurs as this verb ending, and an ⟨am⟩ before a consonant (campo, ambos) is not word-final and keeps the plain nasal [ɐ̃]."
+    },
+    {
+      "id": "BR_AFFRIC_T_RAISED",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "t͡ʃ",
+      "followed_by_phoneme": [
+        "i",
+        "ɪ"
+      ],
+      "notes": "Affrication of /t/ before a RAISED final unstressed vowel (leite [ˈlejt͡ʃi], gente [ˈʒẽt͡ʃi], sete [ˈsɛt͡ʃi]; Barbosa & Albano 2004: 228; Câmara Jr. 1970 §III). The pre-lexical positional map affricates /t d/ only before a GRAPHEME ⟨i⟩ (before_i → tia [ˈt͡ʃiɐ]); it cannot reach the case where the trigger [i] is a word-final unstressed ⟨e⟩ that only becomes [i] post-lexically (positional selects the near-close [ɪ], raised to [i] by BR_RAISE_FINAL_E). This rule closes that feeding gap by conditioning on the FOLLOWING slot's underlying high front vowel — the near-close [ɪ] (the pre-raise realisation the rescorer reads on the neighbour) or a lexical [i] — so a ⟨t⟩ before it affricates regardless of whether the trigger was spelled ⟨i⟩ or a raised ⟨e⟩. It is a no-op where the positional map already produced [t͡ʃ] (the slot phoneme is no longer /t/). The non-palatalising nordeste (recife/norte/ce) and the conservative-dental caipira/sul/pt-UY varieties disable this rule by id."
+    },
+    {
+      "id": "BR_AFFRIC_D_RAISED",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "d͡ʒ",
+      "followed_by_phoneme": [
+        "i",
+        "ɪ"
+      ],
+      "notes": "Voiced counterpart of BR_AFFRIC_T_RAISED: /d/ affricates to [d͡ʒ] before a raised final unstressed vowel (tarde [ˈtaɾd͡ʒi], onde [ˈõd͡ʒi], pode [ˈpɔd͡ʒi]; Barbosa & Albano 2004: 228). Closes the same feeding gap where the trigger [i] is a word-final ⟨e⟩ raised only post-lexically (positional [ɪ] → [i] via BR_RAISE_FINAL_O/E), which the grapheme-⟨i⟩ positional before_i rule cannot see. No-op where the positional map already produced [d͡ʒ]. Disabled by id in the non-palatalising nordeste and conservative-dental caipira/sul/pt-UY varieties."
+    },
+    {
       "id": "PT_NASAL_A_RAISE",
       "phonemes": [
         "a"
@@ -322,6 +378,105 @@
       "surface": "u",
       "word_final": true,
       "notes": "Final unstressed vowel raising (Barbosa & Albano 2004: 229; Câmara Jr. 1970 §III): word-final unstressed /o/ raises to close [u] (gato → [ˈɡatu]). Pretonic reduction is markedly weaker in BP than EP and is not modelled: BP keeps distinct pretonic /e o/, so only the final position raises. Targets the reduced [ʊ] only, leaving conservative dialects that retain a final [o] untouched."
+    },
+    {
+      "id": "PT_LEX_CLOSE_O",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "word": [
+        "sobre",
+        "sopa",
+        "boa",
+        "como",
+        "porto",
+        "calor",
+        "catorze",
+        "saboroso",
+        "gostoso",
+        "famoso"
+      ],
+      "notes": "Lexically CLOSE stressed ⟨o⟩ = [o] for this curated set of frequent lexemes, overriding the pre-lexical default (which is the open [ɔ] in the European standard and, by inheritance, ambiguous elsewhere). Portuguese stressed mid-vowel height is lexically/etymologically fixed and not predictable from spelling — ⟨sopa⟩ [ˈsopɐ] (close, < Gmc *suppa) vs ⟨sova⟩ [ˈsɔvɐ] (open) are spelled and stressed alike (Mateus & d'Andrade 2000: ch.3 'The vowels'; Vigário 2003). This rule pins ONLY the stressed-vowel height and lets reduction, rhotics, sandhi and affrication run normally, so it inherits cleanly to every pt-PT / pt-BR dialect child. Includes the ⟨-oso⟩ masculine adjectival suffix (saboroso, gostoso, famoso), which is regularly close [o] against its open [ɔ] feminine ⟨-osa⟩ (PT_LEX_OPEN_O). SEED LIST — the arbitration-confirmed frequent lexemes; the long tail of Portuguese mid-vowel lexemes is documented residual, to be extended from Mateus & d'Andrade / a pronouncing dictionary."
+    },
+    {
+      "id": "PT_LEX_CLOSE_E",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "word": [
+        "fresco"
+      ],
+      "notes": "Lexically CLOSE stressed ⟨e⟩ = [e] for this curated set, overriding the pre-lexical default (open [ɛ] first in the European standard). Stressed mid-vowel height is a lexical fact in Portuguese (⟨fresco⟩ [ˈfɾe(ʃ)ku] close vs many open ⟨e⟩ lexemes spelled alike; Mateus & d'Andrade 2000: ch.3; Vigário 2003). Pins only the vowel height, inherits cleanly. SEED LIST — documented residual for the tail."
+    },
+    {
+      "id": "PT_LEX_OPEN_O",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "word": [
+        "corre",
+        "mora",
+        "sol",
+        "forte",
+        "nove",
+        "famosa",
+        "gostosa"
+      ],
+      "notes": "Lexically OPEN stressed ⟨o⟩ = [ɔ] for this curated set, overriding the pre-lexical default (which is the close [o] first selected in Brazilian and non-reducing inheritors, giving the wrong height for these lexemes). Height is a lexical/morphological fact (Mateus & d'Andrade 2000: ch.3; Vigário 2003): the 3sg present of ⟨-ar/-er⟩ verbs opens the stressed root vowel (mora, corre, espera), and the ⟨-osa⟩ feminine adjectival suffix is open [ɔ] (famosa, gostosa) against its close [o] masculine ⟨-oso⟩ (PT_LEX_CLOSE_O). This rule pins ONLY the stressed-vowel height (reduction, rhotics, l-vocalisation, affrication run normally), so it inherits cleanly to every pt-PT / pt-BR dialect child. SEED LIST — arbitration-confirmed lexemes; the tail is documented residual."
+    },
+    {
+      "id": "PT_LEX_OPEN_E",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "word": [
+        "era",
+        "dez",
+        "espera",
+        "terra",
+        "serra"
+      ],
+      "notes": "Lexically OPEN stressed ⟨e⟩ = [ɛ] for this curated set, overriding the pre-lexical default where a close [e] is selected (Brazilian and non-reducing inheritors). Includes items whose open height is etymological (Latin short ĕ: terra, serra), morphological (3sg present espera; the copula era) or simply lexical (dez). Mateus & d'Andrade 2000: ch.3; Vigário 2003. Pins only the vowel height and inherits cleanly. SEED LIST — documented residual for the tail."
+    },
+    {
+      "id": "PT_LEX_X_S",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "s",
+      "grapheme": [
+        "x"
+      ],
+      "word": [
+        "trouxe",
+        "trouxeste",
+        "trouxemos",
+        "trouxeram",
+        "trouxera",
+        "trouxeras",
+        "trouxéramos",
+        "trouxesse",
+        "trouxéssemos",
+        "trouxessem",
+        "trouxer",
+        "trouxermos",
+        "trouxerem"
+      ],
+      "notes": "The ⟨x⟩ of the trazer preterite/subjunctive stem ⟨troux-⟩ is [s], not the default [ʃ] (trouxe [ˈtɾo(w)sɨ] / BP [ˈtɾosi]; Cunha & Cintra 1984, §on ⟨x⟩; the value of orthographic ⟨x⟩ is lexically unpredictable — [ʃ] peixe, [s] trouxe/próximo, [ks] fixo, [z] exame). Keyed on the lexeme because no phonological context separates the trouxe ⟨x⟩=[s] from the luxo ⟨x⟩=[ʃ]; gated on grapheme ⟨x⟩ so it never touches a ⟨ch⟩ or lexical [ʃ]. Pins only the consonant, so vowel reduction and the surrounding processes run normally and it inherits to every pt child. SEED — the broader ⟨x⟩=[s]/[ks]/[z] lexicon (próximo, máximo, fixo, exame) is documented residual."
     }
   ],
   "quality": "production",
@@ -377,6 +532,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "vigario2003",
+      "author": "Vigário, Marina",
+      "year": 2003,
+      "title": "The Prosodic Word in European Portuguese",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": "Prosodic-word structure and stress in European Portuguese; background for the stress-conditioned mid-vowel height and reduction facts."
     }
   ],
   "wikipedia": [
