@@ -26,7 +26,7 @@ ADSTRATE_STUBS = ["gn", "qu", "ay", "nah", "arn", "yua", "quc"]
 REGIONAL_STUBS = [
     "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-norte", "es-AR-x-patagonia",
     "es-AR-x-litoral",
-    "es-MX-x-norte", "es-MX-x-yucatan",
+    "es-MX-x-norte",
     "es-CO-x-santander", "es-CO-x-valluno", "es-CO-x-llanero", "es-CO-x-pacifico",
     "es-PE-x-andino", "es-PE-x-amazonico",
     "es-CL-x-andino", "es-CL-x-chilote",
@@ -34,6 +34,16 @@ REGIONAL_STUBS = [
     "es-BO-x-andino", "es-BO-x-camba",
     "es-EC-x-andino", "es-EC-x-costa",
 ]
+
+# Regional nodes that started as stubs and have since been described up to a
+# higher quality tier. They keep every regional-ancestry invariant below but no
+# longer assert stub tier (es-MX-x-yucatan: Yucatec Maya substrate phonology
+# now modelled — final /n/->[m], occlusive /b d g/, /x/->[h]).
+RESEARCH_REGIONALS = ["es-MX-x-yucatan"]
+
+# Union used by the resolve/ancestry/family invariants, which hold regardless
+# of quality tier.
+REGIONAL_NODES = REGIONAL_STUBS + RESEARCH_REGIONALS
 
 NEW_NATIONALS = ["es-HN", "es-SV"]
 
@@ -56,7 +66,7 @@ REGION_ADSTRATE = {
 # Every node resolves and is a stub with the right family
 # ---------------------------------------------------------------------------
 class TestNodesResolve:
-    @pytest.mark.parametrize("code", ADSTRATE_STUBS + REGIONAL_STUBS + NEW_NATIONALS)
+    @pytest.mark.parametrize("code", ADSTRATE_STUBS + REGIONAL_NODES + NEW_NATIONALS)
     def test_resolves(self, code):
         spec = get(code)
         assert spec is not None
@@ -66,7 +76,11 @@ class TestNodesResolve:
     def test_is_stub_tier(self, code):
         assert get(code).quality is QualityTier.STUB
 
-    @pytest.mark.parametrize("code", REGIONAL_STUBS + NEW_NATIONALS)
+    @pytest.mark.parametrize("code", RESEARCH_REGIONALS)
+    def test_is_research_tier(self, code):
+        assert get(code).quality is QualityTier.RESEARCH
+
+    @pytest.mark.parametrize("code", REGIONAL_NODES + NEW_NATIONALS)
     def test_spanish_is_romance(self, code):
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(get(code).family_path)
 
@@ -82,7 +96,7 @@ class TestNodesResolve:
 # Ancestry chains: parent role + es-419 + indigenous adstrate, no dangling refs
 # ---------------------------------------------------------------------------
 class TestRegionalAncestry:
-    @pytest.mark.parametrize("code", REGIONAL_STUBS)
+    @pytest.mark.parametrize("code", REGIONAL_NODES)
     def test_single_parent_is_country(self, code):
         spec = get(code)
         parents = spec.get_ancestors(AncestorRole.PARENT)
@@ -90,12 +104,12 @@ class TestRegionalAncestry:
         # parent code is the national variety (e.g. es-AR for es-AR-x-norte)
         assert code.startswith(parents[0].code + "-x-")
 
-    @pytest.mark.parametrize("code", REGIONAL_STUBS + NEW_NATIONALS)
+    @pytest.mark.parametrize("code", REGIONAL_NODES + NEW_NATIONALS)
     def test_es419_in_chain(self, code):
         weights = _get_ancestry_weights_by_code(code)
         assert "es-419" in weights
 
-    @pytest.mark.parametrize("code", REGIONAL_STUBS + NEW_NATIONALS)
+    @pytest.mark.parametrize("code", REGIONAL_NODES + NEW_NATIONALS)
     def test_chain_reaches_medieval_castilian(self, code):
         """The full es-ES-x-medieval -> es-ES chain resolves transitively."""
         weights = _get_ancestry_weights_by_code(code)
@@ -107,7 +121,7 @@ class TestRegionalAncestry:
         adstrates = {a.code for a in get(code).get_ancestors(AncestorRole.ADSTRATE)}
         assert expected.issubset(adstrates)
 
-    @pytest.mark.parametrize("code", REGIONAL_STUBS + NEW_NATIONALS)
+    @pytest.mark.parametrize("code", REGIONAL_NODES + NEW_NATIONALS)
     def test_no_dangling_ancestor(self, code):
         """Every ancestor code must resolve — no missing-spec KeyError."""
         for anc in get(code).get_ancestors():
