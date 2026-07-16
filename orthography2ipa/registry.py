@@ -43,6 +43,14 @@ _ALIASES: Dict[str, str] = {
     "tgk": "tg",   # Tajik ISO 639-3
     # Dari alias
     "prs": "fa-AF",  # Dari ISO 639-3
+    # Individual-code specs that langcodes would otherwise collapse into a
+    # newly-added macrolanguage spec: ``bxr`` (Russia Buriat) standardizes to
+    # ``bua`` (Buriat macrolanguage) and ``diq`` (Dimli) to ``zza`` (Zaza
+    # macrolanguage). Both the individual and the macro spec exist and are
+    # distinct targets, so pin each individual code to itself before the
+    # macro-collapse step can rewrite it.
+    "bxr": "bxr",
+    "diq": "diq",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These

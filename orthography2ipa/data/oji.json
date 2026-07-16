@@ -1,0 +1,124 @@
+{
+  "code": "oji",
+  "name": "Ojibwa",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "aa": [
+      "aː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "zh": [
+      "ʒ"
+    ],
+    "a": [
+      "ə"
+    ],
+    "e": [
+      "eː"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "o": [
+      "o"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "z": [
+      "z"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "parent": "x-clade-algi1248",
+  "ancestors": [
+    {
+      "code": "x-clade-algi1248",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Ojibwa (None)."
+    }
+  ],
+  "notes": "Skeleton. Algic (Algonquian) language of the Great Lakes written in the Fiero double-vowel Roman orthography. Long vowels are written as doubled letters (aa ii oo) plus e=[eː]; short a=[ə], i=[ɪ]. The lenis/fortis stop contrast is spelled b/p, d/t, g/k and mapped as voiced vs voiceless; fortis length and predictable nasalization (nh) are left unencoded, raising the PER floor.",
+  "iso639_3": "oji",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "oji_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Ojibwa (None)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/None",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "oji_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Ojibwe writing systems (double-vowel orthography), Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Ojibwe_writing_systems",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ojibwe_writing_systems"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ojibwe_language",
+    "https://en.wikipedia.org/wiki/Ojibwe_writing_systems"
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "code": "yrk",
+  "name": "Nenets",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      ""
+    ],
+    "а": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "ӈ": [
+      "ŋ"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ],
+    "ʼ": [
+      "ʔ"
+    ],
+    "ˮ": [
+      "ʔ"
+    ],
+    "”": [
+      "ʔ"
+    ]
+  },
+  "parent": "x-clade-ural1272",
+  "ancestors": [
+    {
+      "code": "x-clade-ural1272",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Tundra Nenets (nene1249)."
+    }
+  ],
+  "notes": "Skeleton. Tundra Nenets is a Samoyedic language of the Uralic family, written in an extended Russian Cyrillic alphabet. Beyond the base letters the map covers Ӈ (velar nasal) and the two apostrophe letters that write the glottal-stop phonemes — the single ʼ (voiceless/nasalizable glottal stop) and the double ˮ — both rendered as ʔ; the voiced/nasalized versus voiceless glottal distinction is not separated. Palatalization signalled by the soft sign and by iotated vowels, and vowel length, are only partly recoverable and are left largely unencoded. The reference gold is a narrow transcription, so a substantial PER floor is expected against this broad letter map.",
+  "iso639_3": "yrk",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "yrk_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Tundra Nenets (nene1249)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/nene1249",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "yrk_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tundra Nenets language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Tundra_Nenets_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tundra_Nenets_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tundra_Nenets_language"
+  ]
+}

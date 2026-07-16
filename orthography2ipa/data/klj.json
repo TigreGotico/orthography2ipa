@@ -1,0 +1,147 @@
+{
+  "code": "klj",
+  "name": "Khalaj",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ç": [
+      "tʃ"
+    ],
+    "ş": [
+      "ʃ"
+    ],
+    "ğ": [
+      "ɣ"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ı": [
+      "ɯ"
+    ],
+    "ə": [
+      "æ"
+    ],
+    "a": [
+      "ɑ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "dʒ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "i"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "parent": "x-clade-turk1311",
+  "ancestors": [
+    {
+      "code": "x-clade-turk1311",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Khalaj Turkic (turk1303)."
+    }
+  ],
+  "notes": "Skeleton. Khalaj is a divergent Turkic language of central Iran, here written in a Latin orthography of the Azerbaijani/Turkish type. Consonant and vowel letters are given their conventional Turkic-Latin values, including c (dʒ), ç (tʃ), ş (ʃ), j (ʒ), x (x), ğ (ɣ), q (uvular/back stop), the front-rounded ö and ü, back unrounded ı, and ə. Khalaj is notable for preserving Proto-Turkic word-initial *h and for a phonemic long/short vowel contrast; vowel length is not marked in this map and is left unencoded, and the exact digraph conventions of the source orthography may vary, so a moderate PER floor is expected.",
+  "iso639_3": "klj",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "klj_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Khalaj Turkic (turk1303)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/turk1303",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "klj_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Khalaj language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Khalaj_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Khalaj_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Khalaj_language"
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "code": "sjd",
+  "name": "Kildin Sami",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      ""
+    ],
+    "а": [
+      "a"
+    ],
+    "ӓ": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "һ": [
+      "h"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "ҋ": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "ӆ": [
+      "l̥"
+    ],
+    "м": [
+      "m"
+    ],
+    "ӎ": [
+      "m̥"
+    ],
+    "н": [
+      "n"
+    ],
+    "ӊ": [
+      "n̥"
+    ],
+    "ӈ": [
+      "ŋ"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "ҏ": [
+      "r̥"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "ҍ": [
+      ""
+    ],
+    "э": [
+      "e"
+    ],
+    "ӭ": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ]
+  },
+  "parent": "x-clade-saam1281",
+  "ancestors": [
+    {
+      "code": "x-clade-saam1281",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Kildin Saami (kild1236)."
+    }
+  ],
+  "notes": "Skeleton. Kildin Sami is a Kola (Eastern) Saami language of the Uralic family, written in an extended Cyrillic alphabet. The map covers the base Cyrillic letters plus the language-specific graphemes: Ӈ (velar nasal), the voiceless-sonorant letters Ӆ Ӎ Ӊ Ҏ, the voiceless glide Ҋ, and Һ (marking preaspiration). Iotated Е Ё Ю Я are given their glide+vowel reading. Suprasegmental palatalization (signalled by Ь/Ҍ and by Ӓ/Ӭ), preaspiration length and distinctive vowel length are not reliably recoverable from the spelling and are left unencoded, so a raised PER floor is expected.",
+  "iso639_3": "sjd",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "sjd_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Kildin Saami (kild1236)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/kild1236",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "sjd_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kildin Sami language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Kildin_Sami_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kildin_Sami_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kildin_Sami_language"
+  ]
+}

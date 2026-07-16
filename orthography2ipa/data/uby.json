@@ -1,0 +1,198 @@
+{
+  "code": "uby",
+  "name": "Ubykh",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "гъ": [
+      "ʁ"
+    ],
+    "къ": [
+      "qʼ"
+    ],
+    "кӏ": [
+      "tʃʼ"
+    ],
+    "лъ": [
+      "ɬ"
+    ],
+    "лӏ": [
+      "ɬʼ"
+    ],
+    "пӏ": [
+      "pʼ"
+    ],
+    "тӏ": [
+      "tʼ"
+    ],
+    "цӏ": [
+      "tsʼ"
+    ],
+    "чӏ": [
+      "tʃʼ"
+    ],
+    "хъ": [
+      "χ"
+    ],
+    "хь": [
+      "ħ"
+    ],
+    "шъ": [
+      "ʃ"
+    ],
+    "шӏ": [
+      "ʃʼ"
+    ],
+    "жь": [
+      "ʒ"
+    ],
+    "дж": [
+      "dʒ"
+    ],
+    "дз": [
+      "dz"
+    ],
+    "тс": [
+      "ts"
+    ],
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      ""
+    ],
+    "а": [
+      "aː"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "e"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "w"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ə"
+    ],
+    "э": [
+      "a"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ],
+    "ӏ": [
+      "ʔ"
+    ]
+  },
+  "parent": "x-clade-abkh1242",
+  "ancestors": [
+    {
+      "code": "x-clade-abkh1242",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Ubykh (ubyk1235)."
+    }
+  ],
+  "notes": "Skeleton. Ubykh was a Northwest Caucasian language (extinct 1992) famous for one of the largest consonant inventories on record (around eighty consonants) contrasted over only two or three vowels. It had no settled native orthography; where written in Cyrillic it followed the digraph conventions of the neighbouring Circassian languages, which this map adopts — palochka ӏ for the glottal stop and ejectives, and digraphs such as гъ (ʁ), къ (qʼ), лъ/лӏ (ɬ, ɬʼ), хъ (χ) and хь (ħ). Because the many secondary articulations (labialization, palatalization, pharyngealization) and the finer places of articulation cannot be recovered from this letter/digraph set, the inventory is heavily under-encoded and a very high PER floor is expected; the entry is best regarded as approximate.",
+  "iso639_3": "uby",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "uby_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Ubykh (ubyk1235)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/ubyk1235",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "uby_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Ubykh language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Ubykh_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ubykh_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ubykh_language"
+  ]
+}

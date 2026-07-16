@@ -1,0 +1,138 @@
+{
+  "code": "lut",
+  "name": "Lushootseed",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "kʷ": [
+      "kʷ"
+    ],
+    "xʷ": [
+      "xʷ"
+    ],
+    "gʷ": [
+      "ɡʷ"
+    ],
+    "qʷ": [
+      "qʷ"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "c": [
+      "ts"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ƛ": [
+      "tɬ"
+    ],
+    "ɬ": [
+      "ɬ"
+    ],
+    "x̌": [
+      "χ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "q": [
+      "q"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "ʼ": [
+      "ʼ"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "parent": "x-clade-sali1255",
+  "ancestors": [
+    {
+      "code": "x-clade-sali1255",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Northern Lushootseed (lush1252)."
+    }
+  ],
+  "notes": "Skeleton. Salishan language of Puget Sound, Washington, written in a near-phonemic Americanist orthography. Symbols are close to IPA: č=[tʃ], c=[ts], š=[ʃ], ƛ=[tɬ], ɬ, x̌=[χ], and labialized kʷ/xʷ/gʷ/qʷ are mapped, with ʔ for glottal stop. The modifier apostrophe ʼ marks ejective/glottalized consonants; because it is written as a separate following symbol its glottalization is not fused onto the preceding stop here, and predictable stress and schwa placement remain the main PER contributors.",
+  "iso639_3": "lut",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "lut_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Northern Lushootseed (lush1252)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/lush1252",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "lut_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lushootseed, Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Lushootseed",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lushootseed"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lushootseed"
+  ]
+}

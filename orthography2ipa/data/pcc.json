@@ -1,0 +1,98 @@
+{
+  "code": "pcc",
+  "name": "Bouyei",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "mb": ["ɓ"],
+    "nd": ["ɗ"],
+    "ng": ["ŋ"],
+    "ny": ["ɲ"],
+    "qy": ["ʔj"],
+    "qv": ["ʔw"],
+    "gv": ["kw"],
+    "by": ["pj"],
+    "gy": ["kj"],
+    "my": ["mj"],
+    "ee": ["ɛ"],
+    "oo": ["ɔ"],
+    "aa": ["aː"],
+    "b": ["p"],
+    "d": ["t"],
+    "g": ["k"],
+    "p": ["pʰ"],
+    "t": ["tʰ"],
+    "k": ["kʰ"],
+    "m": ["m"],
+    "n": ["n"],
+    "f": ["f"],
+    "v": ["v"],
+    "s": ["s"],
+    "x": ["ɕ"],
+    "h": ["x"],
+    "r": ["z"],
+    "l": ["l"],
+    "y": ["j"],
+    "w": ["w"],
+    "q": ["ʔ"],
+    "c": ["ts"],
+    "z": ["s"],
+    "j": ["tɕ"],
+    "i": ["i"],
+    "e": ["e"],
+    "a": ["a"],
+    "o": ["o"],
+    "u": ["u"]
+  },
+  "parent": "x-clade-taik1256",
+  "ancestors": [
+    {
+      "code": "x-clade-taik1256",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Bouyei (bouy1240)."
+    }
+  ],
+  "notes": "Tai-Kadai (Northern Tai) language of Guizhou, China, written in the official 1985 Latin orthography based on the Wangmo County dialect. The map covers the consonant scheme (b/d/g as unaspirated voiceless stops, mb/nd as implosives, ng/ny nasals, x/h/r as fricatives per the scheme) and the base vowel letters with the ee/oo digraphs for open-mid qualities. Crucially, in this Zhuang-style orthography the syllable-final letters l, z, c, x, s, h (and variants j, f, y) are pure tone markers, not segments; a position-blind symbol-to-symbol reading cannot distinguish these tone letters from onset consonants, so tone is left unencoded here and word-final tone letters will surface as spurious consonants, substantially raising the expected error floor. Genuine stop codas share the letters b/d/g with tones 7-8. Some vowel-digraph values vary across descriptions of the scheme.",
+  "iso639_3": "pcc",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "pcc_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Bouyei (bouy1240)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/bouy1240",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "pcc_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Bouyei language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Bouyei_language",
+      "pages": null,
+      "notes": "1985 orthography scheme, consonant/vowel values and tone-letter system.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bouyei_language"
+    },
+    {
+      "id": "pcc_omniglot",
+      "author": "Ager, S.",
+      "year": 2024,
+      "title": "Bouyei language and alphabet",
+      "publisher": "Omniglot",
+      "url": "https://www.omniglot.com/writing/bouyei.htm",
+      "pages": null,
+      "notes": "Letter set of the 1985 romanization including the final tone letters.",
+      "wikipedia_url": null
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bouyei_language"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "code": "kwk",
+  "name": "Kwakiutl",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "kw": [
+      "kʷ"
+    ],
+    "gw": [
+      "ɡʷ"
+    ],
+    "xw": [
+      "xʷ"
+    ],
+    "tł": [
+      "tɬ"
+    ],
+    "dł": [
+      "dl"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "q": [
+      "q"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "ł": [
+      "ɬ"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "x-clade-waka1280",
+  "ancestors": [
+    {
+      "code": "x-clade-waka1280",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Kwak'wala (kwak1269)."
+    }
+  ],
+  "notes": "Skeleton. Northern Wakashan language of northern Vancouver Island and the adjacent British Columbia coast, written in the community (U'mista-style) practical orthography. Lateral obstruents (tł=[tɬ], dł, ł=[ɬ]), affricates ts/dz/ch, labialized kw/gw/xw and uvular q are mapped. Kwakʼwala has an extensive ejective/glottalized series marked by a raised apostrophe that this base map does not fuse, and schwa plus predictable stress are not recovered from spelling, giving a substantial PER floor.",
+  "iso639_3": "kwk",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "kwk_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Kwak'wala (kwak1269)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/kwak1269",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "kwk_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Kwakʼwala, Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Kwak%CA%BCwala",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kwak%CA%BCwala"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Kwak%CA%BCwala"
+  ]
+}

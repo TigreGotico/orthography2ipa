@@ -1,0 +1,150 @@
+{
+  "code": "zza",
+  "name": "Zaza",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "dʒ"
+    ],
+    "ç": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "ê": [
+      "e"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ğ": [
+      "ɣ"
+    ],
+    "h": [
+      "h"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "î": [
+      "iː"
+    ],
+    "ı": [
+      "ɨ"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "o": [
+      "o"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ş": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "u": [
+      "u"
+    ],
+    "û": [
+      "uː"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "parent": "x-clade-iran1269",
+  "ancestors": [
+    {
+      "code": "x-clade-iran1269",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Zaza (zaza1246)."
+    }
+  ],
+  "notes": "Skeleton. Zaza (Zazaki), a Northwestern Iranian (Indo-European) language of eastern Anatolia written in a Bedirxan/Hawar-style Latin alphabet. Kurdish-Latin letter values apply: c=[dʒ], ç=[tʃ], ş=[ʃ], j=[ʒ], x=[x], ğ=[ɣ], q=[q]; circumflex vowels ê/î/û are the tense/long counterparts of e/i/u and dotless ı is the central [ɨ]. Stress is not marked, and the pharyngeals [ħ ʕ] of some varieties are not consistently written; both are left unencoded.",
+  "iso639_3": "zza",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "zza_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Zaza (zaza1246)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/zaza1246",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "zza_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Zaza language",
+      "publisher": "Wikipedia",
+      "url": null,
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Zaza_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Zaza_language"
+  ]
+}

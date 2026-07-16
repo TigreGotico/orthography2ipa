@@ -1,0 +1,182 @@
+{
+  "code": "ayl",
+  "name": "Libyan Arabic",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "quality": "skeleton",
+  "graphemes": {
+    "ب": [
+      "b"
+    ],
+    "ت": [
+      "t"
+    ],
+    "ث": [
+      "θ"
+    ],
+    "ح": [
+      "ħ"
+    ],
+    "خ": [
+      "x"
+    ],
+    "د": [
+      "d"
+    ],
+    "ذ": [
+      "ð"
+    ],
+    "ر": [
+      "r"
+    ],
+    "ز": [
+      "z"
+    ],
+    "س": [
+      "s"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ص": [
+      "sˤ"
+    ],
+    "ض": [
+      "dˤ"
+    ],
+    "ط": [
+      "tˤ"
+    ],
+    "ظ": [
+      "ðˤ"
+    ],
+    "ع": [
+      "ʕ"
+    ],
+    "غ": [
+      "ɣ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ك": [
+      "k"
+    ],
+    "ل": [
+      "l"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "ه": [
+      "h"
+    ],
+    "و": [
+      "w",
+      "uː"
+    ],
+    "ي": [
+      "j",
+      "iː"
+    ],
+    "ة": [
+      "a"
+    ],
+    "ء": [
+      "ʔ"
+    ],
+    "أ": [
+      "ʔ"
+    ],
+    "إ": [
+      "ʔ"
+    ],
+    "آ": [
+      "ʔaː"
+    ],
+    "ى": [
+      "aː"
+    ],
+    "ؤ": [
+      "ʔ"
+    ],
+    "ئ": [
+      "ʔ"
+    ],
+    "ا": [
+      "aː"
+    ],
+    "َ": [
+      "a"
+    ],
+    "ِ": [
+      "i"
+    ],
+    "ُ": [
+      "u"
+    ],
+    "ً": [
+      "an"
+    ],
+    "ٍ": [
+      "in"
+    ],
+    "ٌ": [
+      "un"
+    ],
+    "ْ": [
+      ""
+    ],
+    "ٰ": [
+      "aː"
+    ],
+    "ق": [
+      "ɡ"
+    ],
+    "ج": [
+      "dʒ"
+    ]
+  },
+  "parent": "ar-x-maghrebi",
+  "ancestors": [
+    {
+      "code": "ar-x-maghrebi",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Libyan Arabic (liby1240)."
+    }
+  ],
+  "notes": "Skeleton. Libyan (Sulaymitic Maghrebi) Arabic, a Semitic (Afroasiatic) variety written in the Arabic abjad. Consonant letters are mapped to IPA; qāf ⟨ق⟩ has the voiced velar reflex [ɡ] typical of the Bedouin-type dialect, jīm ⟨ج⟩ is [dʒ], and the interdentals ⟨ث ذ ظ⟩ are retained. Short vowels are not written in the abjad and, apart from optional harakāt, are left unencoded; gemination and stress are not recovered, so a high PER floor is expected.",
+  "iso639_3": "ayl",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "ayl_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Libyan Arabic (liby1240)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/liby1240",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "ayl_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Libyan Arabic",
+      "publisher": "Wikipedia",
+      "url": null,
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier consonant map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Libyan_Arabic"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Libyan_Arabic"
+  ]
+}

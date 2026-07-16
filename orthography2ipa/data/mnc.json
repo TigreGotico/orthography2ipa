@@ -1,0 +1,48 @@
+{
+  "code": "mnc",
+  "name": "Manchu",
+  "script": "Mongolian",
+  "script_type": "alphabet",
+  "quality": "stub",
+  "graphemes": {},
+  "parent": "x-clade-tung1282",
+  "ancestors": [
+    {
+      "code": "x-clade-tung1282",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Manchu (manc1252)."
+    }
+  ],
+  "notes": "Skeleton. Manchu is a Tungusic language of northeastern China, written in the vertical Manchu alphabet adapted from the Mongolian script. Although the script is alphabetic, letter shapes are heavily positional (distinct initial/medial/final allographs), vowel-harmony-conditioned, and disambiguated only by diacritic points, so a reliable letter-to-IPA reading depends on word-level segmentation and a lexicon/romanization stratum that the engine does not bundle. Grapheme mapping over raw Mongolian-script code points would misread the connected forms, so graphemes are left empty and coverage is effectively lexicon-dependent. The gold here is transcribed from the narrow Mollendorff-style tradition rather than derived from the script directly.",
+  "iso639_3": "mnc",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "mnc_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Manchu (manc1252)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/manc1252",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Manchu_language"
+    },
+    {
+      "id": "mnc_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Manchu language; Manchu alphabet",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Manchu_alphabet",
+      "pages": null,
+      "notes": "Describes the Tungusic language and its Mongolian-derived vertical alphabet, including positional letter forms and diacritic disambiguation.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Manchu_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Manchu_language",
+    "https://en.wikipedia.org/wiki/Manchu_alphabet"
+  ]
+}

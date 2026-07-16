@@ -1,0 +1,159 @@
+{
+  "code": "bbl",
+  "name": "Bats",
+  "script": "Georgian",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ა": [
+      "a"
+    ],
+    "ბ": [
+      "b"
+    ],
+    "გ": [
+      "ɡ"
+    ],
+    "დ": [
+      "d"
+    ],
+    "ე": [
+      "ɛ"
+    ],
+    "ვ": [
+      "v"
+    ],
+    "ზ": [
+      "z"
+    ],
+    "თ": [
+      "tʰ"
+    ],
+    "ი": [
+      "i"
+    ],
+    "კ": [
+      "kʼ"
+    ],
+    "ლ": [
+      "l"
+    ],
+    "მ": [
+      "m"
+    ],
+    "ნ": [
+      "n"
+    ],
+    "ო": [
+      "ɔ"
+    ],
+    "პ": [
+      "pʼ"
+    ],
+    "ჟ": [
+      "ʒ"
+    ],
+    "რ": [
+      "r"
+    ],
+    "ს": [
+      "s"
+    ],
+    "ტ": [
+      "tʼ"
+    ],
+    "უ": [
+      "u"
+    ],
+    "ფ": [
+      "pʰ"
+    ],
+    "ქ": [
+      "kʰ"
+    ],
+    "ღ": [
+      "ɣ"
+    ],
+    "ყ": [
+      "qʼ"
+    ],
+    "შ": [
+      "ʃ"
+    ],
+    "ჩ": [
+      "tʃʰ"
+    ],
+    "ც": [
+      "tsʰ"
+    ],
+    "ძ": [
+      "dz"
+    ],
+    "წ": [
+      "tsʼ"
+    ],
+    "ჭ": [
+      "tʃʼ"
+    ],
+    "ხ": [
+      "x"
+    ],
+    "ჯ": [
+      "dʒ"
+    ],
+    "ჰ": [
+      "h"
+    ],
+    "ჷ": [
+      "ə"
+    ],
+    "ჺ": [
+      "ʕ"
+    ],
+    "ჸ": [
+      "ʔ"
+    ],
+    "ჶ": [
+      "f"
+    ]
+  },
+  "parent": "x-clade-nakh1245",
+  "ancestors": [
+    {
+      "code": "x-clade-nakh1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Bats (bats1242)."
+    }
+  ],
+  "notes": "Skeleton. Bats (Tsova-Tush) is a Nakh (Northeast Caucasian) language written in the Georgian Mkhedruli script supplemented by extra letters. The 33 standard Georgian letters take their usual phonemic values, including the ejective series; added signs write the schwa ჷ (ə), the pharyngeal ჺ (ʕ), the glottal stop ჸ (ʔ) and ჶ (f). Bats has a much larger consonant inventory than Georgian — including pharyngealized consonants, additional uvulars, a voiceless-lateral series and nasalized vowels — much of which is written with digraphs and diacritic combinations not resolved by this single-symbol map; those distinctions are left under-encoded, so a substantial PER floor is expected.",
+  "iso639_3": "bbl",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "bbl_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Bats (bats1242)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/bats1242",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "bbl_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Bats language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Bats_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bats_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Bats_language"
+  ]
+}
