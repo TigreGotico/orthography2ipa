@@ -191,6 +191,7 @@
   },
   "iso639_3": "por",
   "stress": {
+    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
     "default_position": -2,
     "final_stress_endings": [
       "r",

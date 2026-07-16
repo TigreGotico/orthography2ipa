@@ -165,10 +165,11 @@ class TestBeiraBaixaUFronting:
         assert "u" in out
 
     def test_proclitics_keep_u_never_front(self):
-        # the stress detector mis-marks monosyllabic clitics as stressed; the
-        # word_exceptions guard keeps their /u/ nucleus (do → [ˈdu], never [ˈdy])
+        # proclitics take no word stress (stress.cliticless_words), and the
+        # word_exceptions guard keeps their /u/ nucleus (do → [du], never [dy]);
+        # the indefinite article um/uns is a prosodic word and keeps its stress
         for word, expected in [
-            ("do", "ˈdu"), ("no", "ˈnu"), ("um", "ˈum"), ("uns", "ˈunʃ"),
+            ("do", "du"), ("no", "nu"), ("um", "ˈum"), ("uns", "ˈunʃ"),
         ]:
             out = transcribe(word, "pt-PT-x-beira")
             assert out == expected

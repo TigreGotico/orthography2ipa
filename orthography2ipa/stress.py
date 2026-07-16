@@ -62,6 +62,18 @@ def _is_vowel_char(ch: str) -> bool:
     return is_orthographic_vowel(ch) or is_ipa_vowel(ch)
 
 
+def _ends_in_vowel(ipa: str) -> bool:
+    """Whether *ipa*'s final phonetic segment is a vowel (ignoring trailing
+    combining marks such as nasality/length). Used to tell a word-final vowel
+    deletion (consonant-final result) from an orthographic syllable over-count
+    (still vowel-final) when the IPA has fewer syllables than the spelling."""
+    for ch in reversed(ipa):
+        if unicodedata.combining(ch):
+            continue
+        return _is_vowel_char(ch)
+    return False
+
+
 _GLIDES = set("jw" "ʲʷ")
 
 
@@ -398,6 +410,23 @@ def apply_stress_mark(
                 else:
                     merged.append(syll)
             ipa_sylls = merged
+        elif (overflow < 0 and stress_index <= len(ipa_sylls) - 1
+              and not _ends_in_vowel(ipa)):
+            # The IPA has FEWER syllables than the orthography, the
+            # start-anchored stress index still points inside it, AND the
+            # transcription ends in a consonant while the spelling ended in a
+            # vowel — the signature of word-final vowel APOCOPE (Alentejo
+            # ⟨fazendo⟩ → [fɐˈzẽd]). The apocope rule only ever deletes
+            # UNSTRESSED final vowels, so the stressed nucleus is untouched and
+            # keeps its start-anchored index; end-anchoring would drag the mark
+            # forward onto an earlier syllable (ˈfɐzẽd). The consonant-final
+            # guard is what separates a real trailing deletion from an
+            # orthographic OVER-count of a digraph (⟨linya⟩ → [ˈliɲa], IPA
+            # still vowel-final): the latter falls through to end-anchoring,
+            # which lands correctly. A loss BEFORE the stress (initial/medial
+            # syncope) overshoots the end and also falls through.
+            ipa_sylls[stress_index] = rules.stress_mark + ipa_sylls[stress_index]
+            return "".join(ipa_sylls)
         offset_from_end = max(1, n_orth - stress_index)
 
     target = max(0, len(ipa_sylls) - offset_from_end)

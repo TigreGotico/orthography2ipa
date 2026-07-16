@@ -124,8 +124,8 @@ def test_pt_pt_coda_s_voicing_before_voiced_consonant():
     Minimal pair across the word boundary: "as bocas" ([ʒ], voiced [b]) vs
     "as portas" ([ʃ], voiceless [p]).
     """
-    assert _s("pt-PT", "as bocas").startswith("ˈɐʒ ")
-    assert _s("pt-PT", "as portas").startswith("ˈɐʃ ")
+    assert _s("pt-PT", "as bocas").startswith("ɐʒ ")
+    assert _s("pt-PT", "as portas").startswith("ɐʃ ")
 
 
 def test_pt_pt_final_s_voices_before_vowel():
@@ -139,7 +139,7 @@ def test_pt_pt_final_s_voices_before_vowel():
     Note the outcome is alveolar [z], not the palatal [ʒ] of the pre-consonantal
     voicing rule above — that contrast is the whole point of having two rules.
     """
-    assert _s("pt-PT", "os amigos").startswith("ˈoz ")
+    assert _s("pt-PT", "os amigos").startswith("oz ")
 
 
 def test_pt_pt_preserves_b_v_distinction():

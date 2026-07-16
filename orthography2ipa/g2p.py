@@ -98,6 +98,17 @@ _log = logging.getLogger(__name__)
 
 _PAUSE_PUNCTUATION = set(".,;:!?…")
 
+#: Sentinel ``stressed_syll_idx`` for a prosodic clitic (a word listed in
+#: ``stress.cliticless_words``). It leans on its host and bears no lexical
+#: stress, so no syllable is "the stressed one". A negative index never equals
+#: a real 0-based syllable index, so ``RescoreContext.is_stressed`` reads
+#: ``False`` (not ``None``) for every syllable: stress-gated allophone rules
+#: (e.g. north-western tonic-mid diphthongisation) are withheld, while
+#: unstressed-gated reduction rules still apply. The stress mark itself is
+#: suppressed separately in ``_transcribe_word`` (Vigário 2003, *The Prosodic
+#: Word in European Portuguese*, on clitics as non-prosodic-words).
+_CLITIC_NO_STRESS = -1
+
 #: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
 #: Length and stress marks are not segments, so a run is identical across them.
 _VOWEL_IPA = set("aeiouɑɐɒæɓəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
@@ -628,6 +639,8 @@ class G2P:
                     word, self.spec.stress, syllables=sylls)
             else:
                 stressed_syll_idx = 0
+            if self._is_cliticless(word):
+                stressed_syll_idx = _CLITIC_NO_STRESS
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
 
         allophone_map = (
@@ -1051,6 +1064,8 @@ class G2P:
                     word, self.spec.stress, syllables=sylls)
             else:
                 stressed_syll_idx = 0  # monosyllable → always stressed
+            if self._is_cliticless(word):
+                stressed_syll_idx = _CLITIC_NO_STRESS
 
         # Map each grapheme token index to its syllable index
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
