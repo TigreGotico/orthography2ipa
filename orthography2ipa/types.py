@@ -18,6 +18,83 @@ from typing import Dict, FrozenSet, List, Optional, Tuple
 # Type aliases
 # ═══════════════════════════════════════════════════════════════════════════
 
+import copy as _copy
+
+
+class FrozenDict(dict):
+    """A ``dict`` that refuses in-place mutation.
+
+    A ``LanguageSpec`` is a ``frozen`` dataclass, so its attributes cannot be
+    rebound — but ``frozen`` does not reach inside a mutable field. Nothing
+    stopped a caller from writing ``spec.graphemes["aqui"] = [...]`` or
+    ``spec.plugins["stress"] = ...`` on a spec handed out by
+    :func:`registry.get`, and because that spec is the single cached instance
+    shared by every subsequent caller in the process, one such mutation
+    silently corrupts everyone else's transcriptions. That actually happened
+    and poisoned a measurement run.
+
+    Freezing the containers closes the gap at the source, at zero per-``get``
+    cost: the registry can keep returning the shared instance (callers rely on
+    ``get(alias) is get(canonical)``) because the instance can no longer be
+    mutated. It is a real ``dict`` subclass, so reads, ``dataclasses.replace``,
+    ``dataclasses.asdict`` and ``copy.deepcopy`` all keep working — only the
+    mutating methods are blocked.
+    """
+
+    __slots__ = ()
+
+    def _immutable(self, *args, **kwargs):
+        raise TypeError(
+            "this mapping belongs to a LanguageSpec and is immutable; "
+            "registry.get() returns a shared cached instance, so mutating it "
+            "would corrupt every other caller. Build a new dict "
+            "(e.g. dict(spec.graphemes)) or dataclasses.replace() the spec."
+        )
+
+    __setitem__ = _immutable
+    __delitem__ = _immutable
+    pop = _immutable
+    popitem = _immutable
+    clear = _immutable
+    update = _immutable
+    setdefault = _immutable
+
+    # Reconstruct without routing through the blocked __setitem__.
+    def __reduce__(self):
+        return (FrozenDict, (dict(self),))
+
+    def __copy__(self):
+        return FrozenDict(dict(self))
+
+    def __deepcopy__(self, memo):
+        return FrozenDict(
+            {_copy.deepcopy(k, memo): _copy.deepcopy(v, memo)
+             for k, v in self.items()}
+        )
+
+
+def _deep_freeze(value):
+    """Recursively freeze the *dict* containers reachable from *value*.
+
+    Every ``dict`` becomes a :class:`FrozenDict`; lists and tuples are walked so
+    that dicts nested inside them are frozen too, but their own element type is
+    preserved. Lists are deliberately kept as lists rather than turned into
+    tuples: the spec's public contract types grapheme/allophone values as
+    ``List[str]`` (e.g. :meth:`LanguageSpec.resolve_grapheme` returns a list and
+    callers compare against list literals), and this fix targets the corruption
+    that actually happened — reassigning, popping or updating a spec's mapping
+    *keys* on the shared cached instance. Everything else (strings, enums, frozen
+    sub-dataclasses) is already immutable and is returned unchanged.
+    """
+    if isinstance(value, dict):
+        return FrozenDict({k: _deep_freeze(v) for k, v in value.items()})
+    if isinstance(value, list):
+        return [_deep_freeze(v) for v in value]
+    if isinstance(value, tuple):
+        return tuple(_deep_freeze(v) for v in value)
+    return value
+
+
 Grapheme2IPA = Dict[str, List[str]]
 """Orthographic grapheme → list of IPA phoneme candidates."""
 
@@ -1424,6 +1501,12 @@ class LanguageSpec:
                 if a.role == AncestorRole.PARENT:
                     object.__setattr__(self, "parent", a.code)
                     break
+
+        # Deep-freeze every field. All construction-time mutation above is now
+        # done; from here the spec is genuinely immutable, so registry.get()
+        # can safely hand out the shared cached instance (see FrozenDict).
+        for _f in fields(self):
+            object.__setattr__(self, _f.name, _deep_freeze(getattr(self, _f.name)))
 
     # ─── Positional grapheme resolution ─────────────────────────────
     def resolve_grapheme(
