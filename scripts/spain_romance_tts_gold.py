@@ -76,6 +76,9 @@ LECTS = [
     # Caribbean Spanish (Americas extension)
     "es-VE", "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-maracucho",
     "es-CU", "es-DO", "es-PR",
+    # Andean Spanish (Americas extension): Peru and Ecuador
+    "es-PE", "es-PE-x-lima", "es-PE-x-andino", "es-PE-x-amazonico",
+    "es-EC", "es-EC-x-andino", "es-EC-x-costa",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
