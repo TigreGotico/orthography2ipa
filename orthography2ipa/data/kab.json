@@ -3,330 +3,835 @@
  "name": "Kabyle",
  "script": "Latin",
  "graphemes": {
-  "a": ["a"],
-  "e": ["ə"],
-  "i": ["i"],
-  "u": ["u"],
-  "y": ["j"],
-  "w": ["w"],
-  "b": ["b"],
-  "c": ["ʃ"],
-  "č": ["t͡ʃ"],
-  "d": ["d"],
-  "ḍ": ["dˤ"],
-  "f": ["f"],
-  "g": ["ɡ"],
-  "ǧ": ["d͡ʒ"],
-  "ɣ": ["ɣ"],
-  "h": ["h"],
-  "ḥ": ["ħ"],
-  "j": ["ʒ"],
-  "k": ["k"],
-  "l": ["l"],
-  "m": ["m"],
-  "n": ["n"],
-  "p": ["p"],
-  "q": ["q"],
-  "r": ["r"],
-  "ṛ": ["rˤ"],
-  "s": ["s"],
-  "ṣ": ["sˤ"],
-  "t": ["t"],
-  "ṭ": ["tˤ"],
-  "v": ["v"],
-  "x": ["χ"],
-  "z": ["z"],
-  "ẓ": ["zˤ"],
-  "ɛ": ["ʕ"],
-  "bb": ["bː"],
-  "dd": ["dː"],
-  "tt": ["tː"],
-  "kk": ["kː"],
-  "gg": ["ɡː"],
-  "ḍḍ": ["dˤː"],
-  "ṭṭ": ["tˤː"],
-  "ff": ["fː"],
-  "ll": ["lː"],
-  "mm": ["mː"],
-  "nn": ["nː"],
-  "rr": ["rː"],
-  "ṛṛ": ["rˤː"],
-  "ss": ["sː"],
-  "ṣṣ": ["sˤː"],
-  "zz": ["zː"],
-  "ẓẓ": ["zˤː"],
-  "cc": ["ʃː"],
-  "čč": ["t͡ʃː"],
-  "ǧǧ": ["d͡ʒː"],
-  "ɣɣ": ["ɣː"],
-  "ḥḥ": ["ħː"],
-  "qq": ["qː"],
-  "ɛɛ": ["ʕː"],
-  "xx": ["χː"],
-  "ww": ["wː"],
-  "yy": ["jː"],
-  "pp": ["pː"],
-  "jj": ["ʒː"],
-  "hh": ["hː"]
+  "a": [
+   "a"
+  ],
+  "e": [
+   "ə"
+  ],
+  "i": [
+   "i"
+  ],
+  "u": [
+   "u"
+  ],
+  "y": [
+   "j"
+  ],
+  "w": [
+   "w"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "ʃ"
+  ],
+  "č": [
+   "t͡ʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "ḍ": [
+   "dˤ"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "ǧ": [
+   "d͡ʒ"
+  ],
+  "ɣ": [
+   "ɣ"
+  ],
+  "h": [
+   "h"
+  ],
+  "ḥ": [
+   "ħ"
+  ],
+  "j": [
+   "ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "p": [
+   "p"
+  ],
+  "q": [
+   "q"
+  ],
+  "r": [
+   "r"
+  ],
+  "ṛ": [
+   "rˤ"
+  ],
+  "s": [
+   "s"
+  ],
+  "ṣ": [
+   "sˤ"
+  ],
+  "t": [
+   "t"
+  ],
+  "ṭ": [
+   "tˤ"
+  ],
+  "v": [
+   "v"
+  ],
+  "x": [
+   "χ"
+  ],
+  "z": [
+   "z"
+  ],
+  "ẓ": [
+   "zˤ"
+  ],
+  "ɛ": [
+   "ʕ"
+  ],
+  "bb": [
+   "bː"
+  ],
+  "dd": [
+   "dː"
+  ],
+  "tt": [
+   "tː"
+  ],
+  "kk": [
+   "kː"
+  ],
+  "gg": [
+   "ɡː"
+  ],
+  "ḍḍ": [
+   "dˤː"
+  ],
+  "ṭṭ": [
+   "tˤː"
+  ],
+  "ff": [
+   "fː"
+  ],
+  "ll": [
+   "lː"
+  ],
+  "mm": [
+   "mː"
+  ],
+  "nn": [
+   "nː"
+  ],
+  "rr": [
+   "rː"
+  ],
+  "ṛṛ": [
+   "rˤː"
+  ],
+  "ss": [
+   "sː"
+  ],
+  "ṣṣ": [
+   "sˤː"
+  ],
+  "zz": [
+   "zː"
+  ],
+  "ẓẓ": [
+   "zˤː"
+  ],
+  "cc": [
+   "ʃː"
+  ],
+  "čč": [
+   "t͡ʃː"
+  ],
+  "ǧǧ": [
+   "d͡ʒː"
+  ],
+  "ɣɣ": [
+   "ɣː"
+  ],
+  "ḥḥ": [
+   "ħː"
+  ],
+  "qq": [
+   "qː"
+  ],
+  "ɛɛ": [
+   "ʕː"
+  ],
+  "xx": [
+   "χː"
+  ],
+  "ww": [
+   "wː"
+  ],
+  "yy": [
+   "jː"
+  ],
+  "pp": [
+   "pː"
+  ],
+  "jj": [
+   "ʒː"
+  ],
+  "hh": [
+   "hː"
+  ]
  },
  "allophones": {
-  "b": ["β", "b"],
-  "d": ["ð", "d"],
-  "t": ["θ", "t"],
-  "k": ["ç", "k"],
-  "ɡ": ["ʝ", "ɡ"],
-  "dˤ": ["ðˤ", "dˤ"],
-  "bː": ["bː"],
-  "dː": ["dː"],
-  "tː": ["tː"],
-  "kː": ["kː"],
-  "ɡː": ["ɡː"],
-  "f": ["f"],
-  "s": ["s"],
-  "sˤ": ["sˤ"],
-  "z": ["z"],
-  "zˤ": ["zˤ"],
-  "ʃ": ["ʃ"],
-  "ʒ": ["ʒ"],
-  "t͡ʃ": ["t͡ʃ"],
-  "d͡ʒ": ["d͡ʒ"],
-  "ɣ": ["ʁ", "ɣ"],
-  "χ": ["χ"],
-  "ħ": ["ħ"],
-  "ʕ": ["ʕ"],
-  "h": ["h"],
-  "q": ["q"],
-  "m": ["m"],
-  "n": ["n", "ŋ", "m", "ɲ"],
-  "r": ["r"],
-  "rˤ": ["rˤ"],
-  "l": ["l"],
-  "j": ["j"],
-  "w": ["w"],
-  "p": ["p"],
-  "v": ["v"],
-  "a": ["a", "æ", "ɑ"],
-  "i": ["i", "ɪ", "e"],
-  "u": ["u", "ʊ", "o"],
-  "ə": ["ə"],
-  "dˤː": ["dˤː"],
-  "d͡ʒː": ["d͡ʒː"],
-  "fː": ["fː"],
-  "hː": ["hː"],
-  "jː": ["jː"],
-  "lː": ["lː"],
-  "mː": ["mː"],
-  "nː": ["nː"],
-  "pː": ["pː"],
-  "qː": ["qː"],
-  "rː": ["rː"],
-  "rˤː": ["rˤː"],
-  "sː": ["sː"],
-  "sˤː": ["sˤː"],
-  "tˤ": ["tˤ"],
-  "tˤː": ["tˤː"],
-  "t͡ʃː": ["t͡ʃː"],
-  "wː": ["wː"],
-  "zː": ["zː"],
-  "zˤː": ["zˤː"],
-  "ħː": ["ħː"],
-  "ɣː": ["ʁː", "ɣː"],
-  "ʃː": ["ʃː"],
-  "ʒː": ["ʒː"],
-  "ʕː": ["ʕː"],
-  "χː": ["χː"]
+  "b": [
+   "β",
+   "b"
+  ],
+  "d": [
+   "ð",
+   "d"
+  ],
+  "t": [
+   "θ",
+   "t"
+  ],
+  "k": [
+   "ç",
+   "k"
+  ],
+  "ɡ": [
+   "ʝ",
+   "ɡ"
+  ],
+  "dˤ": [
+   "ðˤ",
+   "dˤ"
+  ],
+  "bː": [
+   "bː"
+  ],
+  "dː": [
+   "dː"
+  ],
+  "tː": [
+   "tː"
+  ],
+  "kː": [
+   "kː"
+  ],
+  "ɡː": [
+   "ɡː"
+  ],
+  "f": [
+   "f"
+  ],
+  "s": [
+   "s"
+  ],
+  "sˤ": [
+   "sˤ"
+  ],
+  "z": [
+   "z"
+  ],
+  "zˤ": [
+   "zˤ"
+  ],
+  "ʃ": [
+   "ʃ"
+  ],
+  "ʒ": [
+   "ʒ"
+  ],
+  "t͡ʃ": [
+   "t͡ʃ"
+  ],
+  "d͡ʒ": [
+   "d͡ʒ"
+  ],
+  "ɣ": [
+   "ʁ",
+   "ɣ"
+  ],
+  "χ": [
+   "χ"
+  ],
+  "ħ": [
+   "ħ"
+  ],
+  "ʕ": [
+   "ʕ"
+  ],
+  "h": [
+   "h"
+  ],
+  "q": [
+   "q"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n",
+   "ŋ",
+   "m",
+   "ɲ"
+  ],
+  "r": [
+   "r"
+  ],
+  "rˤ": [
+   "rˤ"
+  ],
+  "l": [
+   "l"
+  ],
+  "j": [
+   "j"
+  ],
+  "w": [
+   "w"
+  ],
+  "p": [
+   "p"
+  ],
+  "v": [
+   "v"
+  ],
+  "a": [
+   "a",
+   "æ",
+   "ɑ"
+  ],
+  "i": [
+   "i",
+   "ɪ",
+   "e"
+  ],
+  "u": [
+   "u",
+   "ʊ",
+   "o"
+  ],
+  "ə": [
+   "ə"
+  ],
+  "dˤː": [
+   "dˤː"
+  ],
+  "d͡ʒː": [
+   "d͡ʒː"
+  ],
+  "fː": [
+   "fː"
+  ],
+  "hː": [
+   "hː"
+  ],
+  "jː": [
+   "jː"
+  ],
+  "lː": [
+   "lː"
+  ],
+  "mː": [
+   "mː"
+  ],
+  "nː": [
+   "nː"
+  ],
+  "pː": [
+   "pː"
+  ],
+  "qː": [
+   "qː"
+  ],
+  "rː": [
+   "rː"
+  ],
+  "rˤː": [
+   "rˤː"
+  ],
+  "sː": [
+   "sː"
+  ],
+  "sˤː": [
+   "sˤː"
+  ],
+  "tˤ": [
+   "tˤ"
+  ],
+  "tˤː": [
+   "tˤː"
+  ],
+  "t͡ʃː": [
+   "t͡ʃː"
+  ],
+  "wː": [
+   "wː"
+  ],
+  "zː": [
+   "zː"
+  ],
+  "zˤː": [
+   "zˤː"
+  ],
+  "ħː": [
+   "ħː"
+  ],
+  "ɣː": [
+   "ʁː",
+   "ɣː"
+  ],
+  "ʃː": [
+   "ʃː"
+  ],
+  "ʒː": [
+   "ʒː"
+  ],
+  "ʕː": [
+   "ʕː"
+  ],
+  "χː": [
+   "χː"
+  ]
  },
  "allophone_rules": [
   {
    "id": "KAB_BLOCK_SPIRANT_B_AFTER_M",
-   "phonemes": ["b"],
+   "phonemes": [
+    "b"
+   ],
    "surface": "b",
-   "preceded_by_phoneme": ["m"],
+   "preceded_by_phoneme": [
+    "m"
+   ],
    "notes": "Spirantization of /b/ is blocked after a homorganic nasal /m/ (e.g., zembil 'basket' → [zəmbil], not *[zəmβil]). Kossmann & Stroomer (1997) p.469 (Riffian illustration, extended to Kabyle by analogy). Corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022): /nβ/ → [mb] and /mβ/ → [mb]; this occlusivization is constant across Chemini, Aït Mengellat, Boghni, and Makouda."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_D_AFTER_N",
-   "phonemes": ["d"],
+   "phonemes": [
+    "d"
+   ],
    "surface": "d",
-   "preceded_by_phoneme": ["n"],
+   "preceded_by_phoneme": [
+    "n"
+   ],
    "notes": "Spirantization of /d/ is blocked after a homorganic nasal /n/ (e.g., anda 'where' → [anda], not *[anða]). Kossmann & Stroomer (1997) p.469 (Riffian example, extended to Kabyle by analogy). Corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022): /nð/ → [nd]."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_T_AFTER_N",
-   "phonemes": ["t"],
+   "phonemes": [
+    "t"
+   ],
    "surface": "t",
-   "preceded_by_phoneme": ["n"],
+   "preceded_by_phoneme": [
+    "n"
+   ],
    "notes": "Spirantization of /t/ is blocked after a homorganic nasal /n/ (e.g., anta 'which one (f.)' → [anta], not *[anθa]; also corpus-attested: anteɣ). Anta is native Kabyle, feminine of anwa 'which one (m.)'. Kossmann & Stroomer (1997) p.469 (Riffian example, extended to Kabyle by analogy). Corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022): /nθ/ → [nt]."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_T_AFTER_L_FINAL",
-   "phonemes": ["t"],
+   "phonemes": [
+    "t"
+   ],
    "surface": "t",
-   "preceded_by_phoneme": ["l"],
+   "preceded_by_phoneme": [
+    "l"
+   ],
    "word_final": true,
    "notes": "Spirantization of word-final /t/ is blocked after /l/ (e.g., tamellalt 'egg' → [θaməllalt], not *[θaməllaθ]). Bedar, Quellec & Tifrit (2022) attest /lθ,lð/ → [lt,ld] as a general cluster rule in Chemini Kabyle, not restricted to word-final position; this spec keeps the rule word-final-only pending confirmation that the same blocking holds word-medially."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_DH_EMPH_AFTER_N",
-   "phonemes": ["dˤ"],
+   "phonemes": [
+    "dˤ"
+   ],
    "surface": "dˤ",
-   "preceded_by_phoneme": ["n"],
+   "preceded_by_phoneme": [
+    "n"
+   ],
    "notes": "Spirantization of /dˤ/ is blocked after a homorganic nasal /n/. Based on Kossmann & Stroomer (1997)/analogy and native-speaker judgment; not covered by Bedar, Quellec & Tifrit (2022), whose study treats only the non-emphatic non-strident fricatives /β, θ, ð, ç, ʝ/."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_D_AFTER_L",
-   "phonemes": ["d"],
+   "phonemes": [
+    "d"
+   ],
    "surface": "d",
-   "preceded_by_phoneme": ["l"],
+   "preceded_by_phoneme": [
+    "l"
+   ],
    "notes": "Spirantization of /d/ is blocked after /l/ (e.g., Ldi 'open' → [ldi], not [lði])."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_T_AFTER_M",
-   "phonemes": ["t"],
+   "phonemes": [
+    "t"
+   ],
    "surface": "t",
-   "preceded_by_phoneme": ["m"],
+   "preceded_by_phoneme": [
+    "m"
+   ],
    "notes": "Spirantization of /t/ is blocked after /m/ (e.g., tasemmumt → [tasemmumt], not [tasemmumθ]). Attested for Chemini and Aït Mengellat Kabyle by Bedar, Quellec & Tifrit (2022): /mθ/ → [mt]. Boghni and Makouda do not show this occlusivization (spirantization survives: [mθ]); this spec follows the Chemini/Aït Mengellat pattern."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_D_AFTER_M",
-   "phonemes": ["d"],
+   "phonemes": [
+    "d"
+   ],
    "surface": "d",
-   "preceded_by_phoneme": ["m"],
+   "preceded_by_phoneme": [
+    "m"
+   ],
    "notes": "Spirantization of /d/ is blocked after /m/ (e.g., θamda 'pond' → [θamda], not [θamða]). Corroborated for Chemini and Aït Mengellat Kabyle by Bedar, Quellec & Tifrit (2022): /mð/ → [md]. Boghni and Makouda do not show this occlusivization (spirantization survives: [mð]); this spec follows the Chemini/Aït Mengellat pattern."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT",
-   "phonemes": ["k"],
+   "phonemes": [
+    "k"
+   ],
    "surface": "k",
    "preceded_by_phoneme": [
-    "b", "d", "dˤ", "f", "ɡ", "ɣ", "h", "ħ", "ʒ", "k", "l", "m", "n", "p",
-    "q", "r", "rˤ", "s", "sˤ", "t", "tˤ", "v", "χ", "z", "zˤ", "ʕ", "ʃ",
-    "t͡ʃ", "d͡ʒ", "j", "w", "bː", "dː", "dˤː", "fː", "ɡː", "ɣː", "hː", "ħː",
-    "ʒː", "kː", "lː", "mː", "nː", "pː", "qː", "rː", "rˤː", "sː", "sˤː",
-    "tː", "tˤː", "χː", "zː", "zˤː", "ʕː", "ʃː", "t͡ʃː", "d͡ʒː", "jː", "wː"
+    "b",
+    "d",
+    "dˤ",
+    "f",
+    "ɡ",
+    "ɣ",
+    "h",
+    "ħ",
+    "ʒ",
+    "k",
+    "l",
+    "m",
+    "n",
+    "p",
+    "q",
+    "r",
+    "rˤ",
+    "s",
+    "sˤ",
+    "t",
+    "tˤ",
+    "v",
+    "χ",
+    "z",
+    "zˤ",
+    "ʕ",
+    "ʃ",
+    "t͡ʃ",
+    "d͡ʒ",
+    "j",
+    "w",
+    "bː",
+    "dː",
+    "dˤː",
+    "fː",
+    "ɡː",
+    "ɣː",
+    "hː",
+    "ħː",
+    "ʒː",
+    "kː",
+    "lː",
+    "mː",
+    "nː",
+    "pː",
+    "qː",
+    "rː",
+    "rˤː",
+    "sː",
+    "sˤː",
+    "tː",
+    "tˤː",
+    "χː",
+    "zː",
+    "zˤː",
+    "ʕː",
+    "ʃː",
+    "t͡ʃː",
+    "d͡ʒː",
+    "jː",
+    "wː"
    ],
    "notes": "Spirantization of /k/ is blocked after any consonant, including geminates: /k/ → [ç] only post-vocalically or word-initially (native-speaker judgment). The sonorant cases (after /r, l, n, m/) are corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022): /ç/ occlusivizes to [k] after all four sonorants r, l, n, m — the only one of the five non-strident fricatives with occlusivization across all sonorant contexts."
   },
   {
    "id": "KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT",
-   "phonemes": ["ɡ"],
+   "phonemes": [
+    "ɡ"
+   ],
    "surface": "ɡ",
    "preceded_by_phoneme": [
-    "b", "d", "dˤ", "f", "ɡ", "ɣ", "h", "ħ", "ʒ", "k", "l", "n", "p", "q",
-    "r", "rˤ", "s", "sˤ", "t", "tˤ", "v", "χ", "z", "zˤ", "ʕ", "ʃ", "t͡ʃ",
-    "d͡ʒ", "j", "w", "bː", "dː", "dˤː", "fː", "ɡː", "ɣː", "hː", "ħː", "ʒː",
-    "kː", "lː", "mː", "nː", "pː", "qː", "rː", "rˤː", "sː", "sˤː", "tː",
-    "tˤː", "χː", "zː", "zˤː", "ʕː", "ʃː", "t͡ʃː", "d͡ʒː", "jː", "wː"
+    "b",
+    "d",
+    "dˤ",
+    "f",
+    "ɡ",
+    "ɣ",
+    "h",
+    "ħ",
+    "ʒ",
+    "k",
+    "l",
+    "n",
+    "p",
+    "q",
+    "r",
+    "rˤ",
+    "s",
+    "sˤ",
+    "t",
+    "tˤ",
+    "v",
+    "χ",
+    "z",
+    "zˤ",
+    "ʕ",
+    "ʃ",
+    "t͡ʃ",
+    "d͡ʒ",
+    "j",
+    "w",
+    "bː",
+    "dː",
+    "dˤː",
+    "fː",
+    "ɡː",
+    "ɣː",
+    "hː",
+    "ħː",
+    "ʒː",
+    "kː",
+    "lː",
+    "mː",
+    "nː",
+    "pː",
+    "qː",
+    "rː",
+    "rˤː",
+    "sː",
+    "sˤː",
+    "tː",
+    "tˤː",
+    "χː",
+    "zː",
+    "zˤː",
+    "ʕː",
+    "ʃː",
+    "t͡ʃː",
+    "d͡ʒː",
+    "jː",
+    "wː"
    ],
    "notes": "Spirantization of /ɡ/ is blocked after any consonant EXCEPT /m/: /ɡ/ → [ʝ] post-vocalically, word-initially, and after /m/. Bedar, Quellec & Tifrit (2022) document /mʝ/ → [mʝ] in Chemini Kabyle before /ə, i, a/; before /u/, /ʝ/ instead debuccalizes to [mh], consistently across Chemini, Boghni, and Makouda. The following-vowel conditioning is not modeled by this rule engine (no mechanism for a following-vowel-sensitive exception to a preceding-consonant rule) — see KNOWN LIMITS. The sonorant cases after /r, l, n/ are corroborated by the same study: /ʝ/ occlusivizes after r, l, n but not after m."
   },
   {
    "id": "KAB_SPIRANT_K",
-   "phonemes": ["k"],
+   "phonemes": [
+    "k"
+   ],
    "surface": "ç",
    "notes": "Spirantization of the lax velar stop, with palatal shift: /k/ → [ç] (Kossmann & Stroomer 1997 p.469, Riffian; Karaoui et al. 2024 list [ç] in the Kabyle fricative inventory). Applies post-vocalically and word-initially; blocked after any consonant (KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT). The [ʃ] variant reported for Beni Said Riffian (K&S 1997 p.469) does not occur in Kabyle (native-speaker judgment) and is not modelled. Geminate ⟨kk⟩ = /kː/ stays a stop."
   },
   {
    "id": "KAB_SPIRANT_B",
-   "phonemes": ["b"],
+   "phonemes": [
+    "b"
+   ],
    "surface": "β",
    "notes": "Spirantization of the lax (non-geminate) bilabial stop: /b/ → [β]. Kossmann & Stroomer (1997), Berber Phonology, p.466 (general Berber statement) and p.469 (Riffian illustration). The tense (geminate) counterpart, written ⟨bb⟩ and mapped to /bː/, is a distinct phoneme and is not targeted by this rule (p.466: 'Spirantization never affects tense consonants')."
   },
   {
    "id": "KAB_SPIRANT_D",
-   "phonemes": ["d"],
+   "phonemes": [
+    "d"
+   ],
    "surface": "ð",
    "notes": "Spirantization of the lax dental stop: /d/ → [ð] (Kossmann & Stroomer 1997 p.466, general Berber; p.469, Riffian illustration). E.g. adrar 'mountain' → [aðrar]. Geminate ⟨dd⟩ = /dː/ stays a stop."
   },
   {
    "id": "KAB_SPIRANT_T",
-   "phonemes": ["t"],
+   "phonemes": [
+    "t"
+   ],
    "surface": "θ",
    "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤːθ]. Geminate ⟨tt⟩ = /tː/ stays a stop. Applies word-initially before all vowels, including /i/ (tifinaɣ, tilufa, tilelli, tikwal, tibḥirt, ticcert, tiddi, tigawt all begin [θi-], native-speaker verified). Intervocalic -ti- remains to be verified."
   },
   {
    "id": "KAB_SPIRANT_G",
-   "phonemes": ["ɡ"],
+   "phonemes": [
+    "ɡ"
+   ],
    "surface": "ʝ",
    "notes": "Spirantization of the lax velar stop: /ɡ/ → [ʝ], post-vocalically and word-initially; blocked after any consonant except /m/ (KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT); see that rule's notes for the vowel-conditioned [mh] exception. The Kossmann & Stroomer (1997) p.469 example argaz → [arʝaz] is Riffian-only; in Kabyle, argaz surfaces with a stop [arɡaz]. Geminate ⟨gg⟩ = /ɡː/ stays a stop in all contexts."
   },
   {
    "id": "KAB_SPIRANT_DH_EMPH",
-   "phonemes": ["dˤ"],
+   "phonemes": [
+    "dˤ"
+   ],
    "surface": "ðˤ",
    "notes": "Spirantization of the lax emphatic (pharyngealized) dental stop: /dˤ/ → [ðˤ] (Kossmann & Stroomer 1997 p.468). Geminate ⟨ḍḍ⟩ = /dˤː/ stays a stop."
   },
   {
    "id": "KAB_GH_UVULAR_REALIZATION",
-   "phonemes": ["ɣ"],
+   "phonemes": [
+    "ɣ"
+   ],
    "surface": "ʁ",
    "notes": "/ɣ/ is realized as the uvular fricative [ʁ] in all positions, including word-finally (e.g., tifinaɣ → [θifinɑʁ], bbeɣ 'to dive' → [bːəʁ]). No word-final devoicing to [χ] is documented for Kabyle. The broad velar symbol [ɣ] is retained as a documented variant in the allophones table."
   },
   {
    "id": "KAB_GH_GEM_UVULAR_REALIZATION",
-   "phonemes": ["ɣː"],
+   "phonemes": [
+    "ɣː"
+   ],
    "surface": "ʁː",
    "notes": "Geminate ⟨ɣɣ⟩ = /ɣː/ is realized as long uvular [ʁː]; see KAB_GH_UVULAR_REALIZATION."
   },
   {
    "id": "KAB_A_BACKING",
-   "phonemes": ["a"],
+   "phonemes": [
+    "a"
+   ],
    "surface": "ɑ",
    "followed_by_phoneme": [
-    "rˤ", "rˤː", "sˤ", "sˤː", "dˤ", "dˤː", "tˤ", "tˤː", "zˤ", "zˤː", "q",
-    "qː", "χ", "χː", "ɣ", "ɣː"
+    "rˤ",
+    "rˤː",
+    "sˤ",
+    "sˤː",
+    "dˤ",
+    "dˤː",
+    "tˤ",
+    "tˤː",
+    "zˤ",
+    "zˤː",
+    "q",
+    "qː",
+    "χ",
+    "χː",
+    "ɣ",
+    "ɣː"
    ],
    "notes": "Vowel backing: /a/ → [ɑ] before emphatic and uvular consonants, singleton or geminate (Kossmann & Stroomer 1997 p.463-464: backing/pharyngealization is an automatic, place-conditioned spreading effect). Covers geminate uvulars/emphatics (χː, ɣː, qː, tˤː, etc.), e.g. axxam 'house' → [ɑχːɑm]."
   },
   {
    "id": "KAB_A_BACKING_PRECEDING",
-   "phonemes": ["a"],
+   "phonemes": [
+    "a"
+   ],
    "surface": "ɑ",
    "preceded_by_phoneme": [
-    "rˤ", "rˤː", "sˤ", "sˤː", "dˤ", "dˤː", "tˤ", "tˤː", "zˤ", "zˤː", "q",
-    "qː", "χ", "χː", "ɣ", "ɣː"
+    "rˤ",
+    "rˤː",
+    "sˤ",
+    "sˤː",
+    "dˤ",
+    "dˤː",
+    "tˤ",
+    "tˤː",
+    "zˤ",
+    "zˤː",
+    "q",
+    "qː",
+    "χ",
+    "χː",
+    "ɣ",
+    "ɣː"
    ],
    "notes": "Vowel backing: /a/ → [ɑ] after emphatic and uvular consonants, singleton or geminate (see KAB_A_BACKING)."
   },
   {
    "id": "KAB_A_DEFAULT",
-   "phonemes": ["a"],
+   "phonemes": [
+    "a"
+   ],
    "surface": "æ",
    "notes": "Default realization of /a/ as [æ] when not backed by emphatic/uvular context (Kossmann & Stroomer 1997 p.463; Wikipedia)."
   },
   {
    "id": "KAB_I_CLOSED",
-   "phonemes": ["i"],
+   "phonemes": [
+    "i"
+   ],
    "surface": "ɪ",
    "followed_by": "consonant_cluster",
    "notes": "Vowel lowering: /i/ → [ɪ] in closed syllables (before consonant clusters)."
   },
   {
    "id": "KAB_U_CLOSED",
-   "phonemes": ["u"],
+   "phonemes": [
+    "u"
+   ],
    "surface": "ʊ",
    "followed_by": "consonant_cluster",
    "notes": "Vowel lowering: /u/ → [ʊ] in closed syllables (before consonant clusters)."
   },
   {
    "id": "KAB_N_VELAR_ASSIM",
-   "phonemes": ["n"],
+   "phonemes": [
+    "n"
+   ],
    "surface": "ŋ",
-   "followed_by_phoneme": ["k", "ɡ", "kː", "ɡː", "q", "qː", "χ", "ɣ", "χː", "ɣː"],
+   "followed_by_phoneme": [
+    "k",
+    "ɡ",
+    "kː",
+    "ɡː",
+    "q",
+    "qː",
+    "χ",
+    "ɣ",
+    "χː",
+    "ɣː"
+   ],
    "notes": "Nasal place assimilation: /n/ → [ŋ] before a dorsal (velar/uvular) consonant. Corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022): /nç, nʝ/ → [ŋk, ŋɡ]."
   },
   {
    "id": "KAB_N_LABIAL_ASSIM",
-   "phonemes": ["n"],
+   "phonemes": [
+    "n"
+   ],
    "surface": "m",
-   "followed_by_phoneme": ["b", "bː", "p", "f", "m", "mː"],
+   "followed_by_phoneme": [
+    "b",
+    "bː",
+    "p",
+    "f",
+    "m",
+    "mː"
+   ],
    "notes": "Nasal place assimilation: /n/ → [m] before a labial consonant."
   },
   {
    "id": "KAB_N_PALATAL_ASSIM",
-   "phonemes": ["n"],
+   "phonemes": [
+    "n"
+   ],
    "surface": "ɲ",
-   "followed_by_phoneme": ["j", "jː"],
+   "followed_by_phoneme": [
+    "j",
+    "jː"
+   ],
    "notes": "Nasal place assimilation: /n/ → [ɲ] before a palatal consonant /j/."
   }
  ],
