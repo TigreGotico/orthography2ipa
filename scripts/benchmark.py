@@ -47,6 +47,7 @@ from __future__ import annotations
 import argparse
 import contextlib
 import csv
+import glob
 import json
 import os
 import random
@@ -199,6 +200,135 @@ _WIKIPRON_FILES = {
     "hi": "hin_deva_broad.tsv",          # ~33k rows, Devanagari
     "ta": "tam_taml_broad.tsv",          # ~10k rows, Tamil script
     "ml": "mal_mlym_broad.tsv",          # ~10k rows, Malayalam script
+    # --- registry sweep against the upstream CUNY-CL/wikipron scrape
+    #     index (data/scrape/summary.tsv). Every language below has a
+    #     broad WikiPron TSV with N>=200 AND a registered o2i spec that
+    #     was NOT yet scored here. Each was smoke-checked: the engine
+    #     produces non-empty output for the file's script (Han-script
+    #     Chinese varieties, Uighur, Shan, Kashmiri, Sindhi, Saraiki,
+    #     Sylheti, Dzongkha, Javanese, Mon, Aramaic, Bavarian, Scots,
+    #     Tachelhit and Tuvinian had zero coverage and were left out).
+    #     Same crowd-scraped Wiktionary tier as the rest of wikipron.
+    "grc":       "grc_grek_broad.tsv",              # Ancient Greek (to 1453), ~198102 rows
+    "ang":       "ang_latn_broad.tsv",              # Old English (ca. 450-1100), ~55835 rows
+    "mt":        "mlt_latn_broad.tsv",              # Maltese, ~21208 rows
+    "id":        "ind_latn_broad.tsv",              # Indonesian, ~18590 rows
+    "th":        "tha_thai_broad.tsv",              # Thai, ~18319 rows
+    "enm":       "enm_latn_broad.tsv",              # Middle English (1100-1500), ~18272 rows
+    "sa":        "san_deva_broad.tsv",              # Sanskrit, ~17859 rows
+    "fa":        "fas_arab_broad.tsv",              # Persian, ~10312 rows
+    "izh":       "izh_latn_broad.tsv",              # Ingrian, ~9755 rows
+    "my":        "mya_mymr_broad.tsv",              # Burmese, ~8288 rows
+    "io":        "ido_latn_broad.tsv",              # Ido, ~7874 rows
+    "ur":        "urd_arab_broad.tsv",              # Urdu, ~7709 rows
+    "bn":        "ben_beng_rarh_broad.tsv",         # Bengali, ~7391 rows
+    "km":        "khm_khmr_broad.tsv",              # Khmer, ~7108 rows
+    "ms":        "msa_latn_broad.tsv",              # Malay (macrolanguage), ~6672 rows
+    "sl":        "slv_latn_broad.tsv",              # Slovenian, ~5955 rows
+    "nn":        "nno_latn_broad.tsv",              # Norwegian Nynorsk, ~5644 rows
+    "se":        "sme_latn_broad.tsv",              # Northern Sami, ~5506 rows
+    "bcl":       "bcl_latn_broad.tsv",              # Central Bikol, ~5432 rows
+    "yi":        "yid_hebr_broad.tsv",              # Yiddish, ~5421 rows
+    "te":        "tel_telu_broad.tsv",              # Telugu, ~5117 rows
+    "yo":        "yor_latn_broad.tsv",              # Yoruba, ~4937 rows
+    "mr":        "mar_deva_broad.tsv",              # Marathi, ~4872 rows
+    "gu":        "guj_gujr_broad.tsv",              # Gujarati, ~4244 rows
+    "egy":       "egy_latn_broad.tsv",              # Egyptian (Ancient), ~4177 rows
+    "ceb":       "ceb_latn_broad.tsv",              # Cebuano, ~4100 rows
+    "lb":        "ltz_latn_broad.tsv",              # Luxembourgish, ~4060 rows
+    "bo":        "bod_tibt_broad.tsv",              # Tibetan, ~3621 rows
+    "mn":        "mon_cyrl_broad.tsv",              # Mongolian, ~3563 rows
+    "tg":        "tgk_cyrl_broad.tsv",              # Tajik, ~3269 rows
+    "as":        "asm_beng_broad.tsv",              # Assamese, ~3223 rows
+    "fo":        "fao_latn_broad.tsv",              # Faroese, ~3024 rows
+    "szl":       "szl_latn_broad.tsv",              # Silesian, ~2925 rows
+    "vot":       "vot_latn_broad.tsv",              # Votic, ~2915 rows
+    "et":        "est_latn_broad.tsv",              # Estonian, ~2903 rows
+    "csb":       "csb_latn_broad.tsv",              # Kashubian, ~2830 rows
+    "dsb":       "dsb_latn_broad.tsv",              # Lower Sorbian, ~2484 rows
+    "wa":        "wln_latn_broad.tsv",              # Walloon, ~2480 rows
+    "ku":        "kmr_latn_broad.tsv",              # Northern Kurdish, ~2193 rows
+    "ha":        "hau_latn_broad.tsv",              # Hausa, ~2176 rows
+    "af":        "afr_latn_broad.tsv",              # Afrikaans, ~2171 rows
+    "haw":       "haw_latn_broad.tsv",              # Hawaiian, ~2152 rows
+    "got":       "got_goth_broad.tsv",              # Gothic, ~1837 rows
+    "zu":        "zul_latn_broad.tsv",              # Zulu, ~1778 rows
+    "aa":        "aar_latn_broad.tsv",              # Afar, ~1728 rows
+    "kn":        "kan_knda_broad.tsv",              # Kannada, ~1713 rows
+    "ht":        "hat_latn_broad.tsv",              # Haitian, ~1695 rows
+    "za":        "zha_latn_broad.tsv",              # Zhuang, ~1691 rows
+    "ny":        "nya_latn_broad.tsv",              # Nyanja, ~1624 rows
+    "scn":       "scn_latn_broad.tsv",              # Sicilian, ~1599 rows
+    "pa":        "pan_guru_broad.tsv",              # Panjabi, ~1586 rows
+    "kl":        "kal_latn_broad.tsv",              # Kalaallisut, ~1581 rows
+    "dv":        "div_thaa_broad.tsv",              # Dhivehi, ~1551 rows
+    "ki":        "kik_latn_broad.tsv",              # Kikuyu, ~1420 rows
+    "ps":        "pus_arab_broad.tsv",              # Pushto, ~1414 rows
+    "no":        "nor_latn_broad.tsv",              # Norwegian, ~1331 rows
+    "fy":        "fry_latn_broad.tsv",              # Western Frisian, ~1246 rows
+    "hsb":       "hsb_latn_broad.tsv",              # Upper Sorbian, ~1130 rows
+    "li":        "lim_latn_broad.tsv",              # Limburgan, ~1128 rows
+    "ilo":       "ilo_latn_broad.tsv",              # Iloko, ~1049 rows
+    "mi":        "mri_latn_broad.tsv",              # Maori, ~1005 rows
+    "nv":        "nav_latn_broad.tsv",              # Navajo, ~995 rows
+    "ckb":       "ckb_arab_broad.tsv",              # Central Kurdish, ~981 rows
+    "mh":        "mah_latn_broad.tsv",              # Marshallese, ~960 rows
+    "pam":       "pam_latn_broad.tsv",              # Pampanga, ~926 rows
+    "pms":       "pms_latn_broad.tsv",              # Piemontese, ~921 rows
+    "kv":        "kpv_cyrl_broad.tsv",              # Komi-Zyrian, ~918 rows
+    "ky":        "kir_cyrl_broad.tsv",              # Kirghiz, ~888 rows
+    "nci":       "nci_latn_broad.tsv",              # Classical Nahuatl, ~886 rows
+    "cop":       "cop_copt_broad.tsv",              # Coptic, ~881 rows
+    "br":        "bre_latn_broad.tsv",              # Breton, ~874 rows
+    "srn":       "srn_latn_broad.tsv",              # Sranan Tongo, ~849 rows
+    "lij":       "lij_latn_broad.tsv",              # Ligurian, ~820 rows
+    "stq":       "stq_latn_broad.tsv",              # Saterfriesisch, ~818 rows
+    "gv":        "glv_latn_broad.tsv",              # Manx, ~785 rows
+    "kk":        "kaz_cyrl_broad.tsv",              # Kazakh, ~774 rows
+    "sc":        "srd_latn_broad.tsv",              # Sardinian, ~722 rows
+    "guw":       "guw_latn_broad.tsv",              # Gun, ~681 rows
+    "fax":       "fax_latn_broad.tsv",              # Fala, ~655 rows
+    "kw":        "cor_latn_broad.tsv",              # Cornish, ~648 rows
+    "krl":       "krl_latn_broad.tsv",              # Karelian, ~645 rows
+    "lmo":       "lmo_latn_broad.tsv",              # Lombard, ~595 rows
+    "iba":       "iba_latn_broad.tsv",              # Iban, ~584 rows
+    "az":        "aze_latn_broad.tsv",              # Azerbaijani, ~513 rows
+    "de-CH":     "gsw_latn_broad.tsv",              # Swiss German, ~511 rows
+    "pdc":       "pdc_latn_broad.tsv",              # Pennsylvania German, ~510 rows
+    "lt":        "lit_latn_broad.tsv",              # Lithuanian, ~507 rows
+    "co":        "cos_latn_broad.tsv",              # Corsican, ~492 rows
+    "nds":       "nds_latn_broad.tsv",              # Low German, ~492 rows
+    "ia":        "ina_latn_broad.tsv",              # Interlingua (International Auxiliary Language Association), ~484 rows
+    "ce":        "che_cyrl_broad.tsv",              # Chechen, ~480 rows
+    "am":        "amh_ethi_broad.tsv",              # Amharic, ~478 rows
+    "nup":       "nup_latn_broad.tsv",              # Nupe-Nupe-Tako, ~453 rows
+    "tk":        "tuk_latn_broad.tsv",              # Turkmen, ~452 rows
+    "vo":        "vol_latn_broad.tsv",              # Volapük, ~446 rows
+    "jam":       "jam_latn_broad.tsv",              # Jamaican Creole English, ~415 rows
+    "si":        "sin_sinh_broad.tsv",              # Sinhala, ~393 rows
+    "war":       "war_latn_broad.tsv",              # Waray (Philippines), ~383 rows
+    "tpw":       "tpw_latn_broad.tsv",              # Tupí, ~375 rows
+    "sw":        "swa_latn_broad.tsv",              # Swahili (macrolanguage), ~370 rows
+    "gn":        "gug_latn_broad.tsv",              # Paraguayan Guaraní, ~348 rows
+    "uz":        "uzb_latn_broad.tsv",              # Uzbek, ~345 rows
+    "xal":       "xal_cyrl_broad.tsv",              # Kalmyk, ~339 rows
+    "mdf":       "mdf_cyrl_broad.tsv",              # Moksha, ~334 rows
+    "non":       "non_latn_broad.tsv",              # Old Norse, ~318 rows
+    "ban":       "ban_latn_broad.tsv",              # Balinese, ~300 rows
+    "inh":       "inh_cyrl_broad.tsv",              # Ingush, ~300 rows
+    "ppl":       "ppl_latn_broad.tsv",              # Pipil, ~283 rows
+    "olo":       "olo_latn_broad.tsv",              # Livvi, ~278 rows
+    "osx":       "osx_latn_broad.tsv",              # Old Saxon, ~273 rows
+    "ace":       "ace_latn_broad.tsv",              # Achinese, ~272 rows
+    "ee":        "ewe_latn_broad.tsv",              # Ewe, ~250 rows
+    "sah":       "sah_cyrl_broad.tsv",              # Yakut, ~240 rows
+    "cho":       "cho_latn_broad.tsv",              # Choctaw, ~235 rows
+    "nrf":       "nrf_latn_broad.tsv",              # Jèrriais, ~234 rows
+    "nap":       "nap_latn_broad.tsv",              # Neapolitan, ~231 rows
+    "koi":       "koi_cyrl_broad.tsv",              # Komi-Permyak, ~229 rows
+    "pag":       "pag_latn_broad.tsv",              # Pangasinan, ~229 rows
+    "ba":        "bak_cyrl_broad.tsv",              # Bashkir, ~208 rows
+    "ab":        "abk_cyrl_broad.tsv",              # Abkhazian, ~206 rows
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
@@ -1272,6 +1402,92 @@ def load_ep_dialects(lang: str, limit: int) -> List[Tuple[str, str]]:
 _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 
 
+# ─── sentence-level TTS gold (Arabic + Portuguese) ──────────────────────────
+#
+# Two sibling gold sets of full sentences, one TSV per lect, each row an
+# orthographic sentence paired with a hand-written broad IPA transcription.
+# They are LLM-authored (see the provenance note on ``arabic_tts`` /
+# ``portuguese_tts`` in ``PROVENANCE`` and docs/benchmarks.md): every
+# transcription was drafted by a language model, then engine-pinned and
+# audited row-by-row against the cited phonological literature recorded in
+# each row's ``notes`` column (docs/arabic-tts-gold.md,
+# docs/portuguese-tts-gold.md). Citation-audited is not expert-authored, so
+# the honest tier is ``llm-generated``: it has no error model and can gate no
+# quality decision — a directional signal only.
+#
+# Both are sentence-level, so the scorer routes each row through
+# ``engine.transcribe`` (see ``_is_multiword`` / ``evaluate_words``) and PER
+# is computed over the whole sentence under the same normalization
+# (stress-stripped, broad) as every other dataset. The lang tag scored under
+# each file is simply the file stem (a registered spec code); a test asserts
+# every stem resolves.
+_ARABIC_TTS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "arabic_tts",
+)
+_PORTUGUESE_TTS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "portuguese_tts",
+)
+
+
+def _load_sentence_tts(directory: str, lang: str, limit: int) \
+        -> List[Tuple[str, str]]:
+    """Shared reader for the per-lect sentence-level TTS gold TSVs.
+
+    Each file is ``<lang>.tsv`` with a header row and (at least) a
+    ``sentence`` column (the scored input) and an ``ipa`` column (the gold).
+    The Arabic files also carry an undiacritized ``raw`` column, which is
+    ignored: o2i's Arabic input contract is fully-diacritized text, and the
+    ``sentence`` column is the vocalized form. Punctuation carried by the
+    sentence is not a phoneme and is stripped from the gold by
+    :func:`normalize`.
+    """
+    path = os.path.join(directory, f"{lang}.tsv")
+    pairs: List[Tuple[str, str]] = []
+    with open(path, encoding="utf-8") as fh:
+        reader = csv.DictReader(fh, delimiter="\t")
+        for row in reader:
+            sentence = (row.get("sentence") or "").strip()
+            ipa = (row.get("ipa") or "").strip()
+            if not sentence or not ipa:
+                continue
+            pairs.append((sentence, ipa))
+            if len(pairs) >= limit:
+                break
+    return pairs
+
+
+def _sentence_tts_langs(directory: str) -> List[str]:
+    return sorted(
+        os.path.basename(p)[:-4]
+        for p in glob.glob(os.path.join(directory, "*.tsv"))
+    )
+
+
+def load_arabic_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Arabic sentence-level TTS gold — one TSV per lect, 20 sentences each
+    across 33 Arabic varieties (MSA + regional macro-lects + country/city
+    dialects). Vocalized ``sentence`` column in, broad IPA ``ipa`` column as
+    gold. LLM-authored, literature-audited: see docs/arabic-tts-gold.md and
+    the ``arabic_tts`` provenance note.
+    """
+    return _load_sentence_tts(_ARABIC_TTS_DIR, lang, limit)
+
+
+def load_portuguese_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Portuguese sentence-level TTS gold — one TSV per lect across European
+    Portuguese standard + regional varieties. ``sentence`` column in, broad
+    IPA ``ipa`` column as gold. LLM-authored, literature-audited: see
+    docs/portuguese-tts-gold.md and the ``portuguese_tts`` provenance note.
+    """
+    return _load_sentence_tts(_PORTUGUESE_TTS_DIR, lang, limit)
+
+
+_ARABIC_TTS_LANGS = _sentence_tts_langs(_ARABIC_TTS_DIR)
+_PORTUGUESE_TTS_LANGS = _sentence_tts_langs(_PORTUGUESE_TTS_DIR)
+
+
 _PRIMARY_SOURCES_DIR = os.path.join(
     os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
     "primary_sources",
@@ -1333,6 +1549,8 @@ def _primary_source_langs() -> List[str]:
 
 DATASETS = {
     "primary_sources": (load_primary_sources, _primary_source_langs()),
+    "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
+    "portuguese_tts": (load_portuguese_tts, _PORTUGUESE_TTS_LANGS),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
@@ -1448,6 +1666,17 @@ PROVENANCE: Dict[str, str] = {
     # editor-supplied Arabic ḥarakāt: see the dataset README), so it diagnoses
     # rules rather than certifying a language on its own.
     "primary_sources": "expert-human",
+    # Arabic + Portuguese sentence-level TTS gold. LLM-authored: every IPA
+    # transcription was drafted by a large language model, then engine-pinned
+    # and audited row-by-row against the phonological literature cited in each
+    # row's `notes` column (docs/arabic-tts-gold.md, docs/portuguese-tts-gold.md).
+    # Citation-auditing raises confidence but does NOT change the error model:
+    # there is still no lexicon, no G2P, no rule system behind the gold, so a
+    # disagreement cannot be attributed to anything. The honest tier is
+    # `llm-generated` (never `expert-human`) — directional signal only, gates
+    # no quality decision (docs/quality_tiers.md).
+    "arabic_tts": "llm-generated",
+    "portuguese_tts": "llm-generated",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
     "mirandese_g2p": "expert-human",     # TigreGotico/mirandese_g2p; native-speaker collected; small-n
