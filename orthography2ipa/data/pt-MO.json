@@ -66,6 +66,16 @@
       "url": null,
       "pages": null,
       "notes": "First doctoral thesis on Patuá (maquista) grammar — the CREOLE, not the Portuguese variety; cited only for the creole-vs-Portuguese distinction, not for Macau Portuguese phonology."
+    },
+    {
+      "id": "macanese_wikipedia2024",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Macanese Portuguese",
+      "publisher": "Wikipedia, The Free Encyclopedia",
+      "url": "https://en.wikipedia.org/wiki/Macanese_Portuguese",
+      "pages": null,
+      "notes": "FLAGGED SECONDARY source: the only accessible phonological description of Macau Portuguese proper (as opposed to the creole). Its Phonology section carries NO citations and its distinctive-trait claims ([ʒ]→[ʃ] devoicing, L2 infinitive-/ɾ/ dropping, partial Cantonese-contact non-rhoticity) are L2/variable and not encoded as engine rules. Used here to ground the modelled norm — that Macau Portuguese 'closely follows the standard European dialect' — as the honest basis for the gold, per the honesty rule."
     }
   ],
   "wikipedia": [
