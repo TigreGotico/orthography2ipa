@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.18.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.18.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.17.0a1...7.18.0a1)
+
+**Merged pull requests:**
+
+- feat\(gold\): TTS gold sets for three Mirandese lects \(mwl, mwl-x-ifanes, mwl-x-sendim\) [\#523](https://github.com/TigreGotico/orthography2ipa/pull/523) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.17.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.17.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.16.1a1...7.17.0a1)
@@ -513,10 +521,6 @@
 ## [4.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.2.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.1.1a1...4.2.0a1)
-
-**Merged pull requests:**
-
-- fix: a consonantal glide is not a long vowel \(Arabic nisba\) [\#352](https://github.com/TigreGotico/orthography2ipa/pull/352) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.1.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.1.1a1) (2026-07-13)
 
