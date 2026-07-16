@@ -1,0 +1,138 @@
+{
+  "code": "ale",
+  "name": "Aleut",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ng": [
+      "ŋ"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "hng": [
+      "ŋ̊"
+    ],
+    "hm": [
+      "m̥"
+    ],
+    "hn": [
+      "n̥"
+    ],
+    "hl": [
+      "l̥"
+    ],
+    "hw": [
+      "w̥"
+    ],
+    "hy": [
+      "j̊"
+    ],
+    "x̂": [
+      "χ"
+    ],
+    "ĝ": [
+      "ʁ"
+    ],
+    "l̂": [
+      "ɬ"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "d": [
+      "ð"
+    ],
+    "g": [
+      "ɣ"
+    ],
+    "x": [
+      "x"
+    ],
+    "q": [
+      "q"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ]
+  },
+  "parent": "x-clade-eski1264",
+  "ancestors": [
+    {
+      "code": "x-clade-eski1264",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Aleut (aleu1260)."
+    }
+  ],
+  "notes": "Skeleton. Eskimo-Aleut (Aleut/Unangam) language of the Aleutian Islands written in the Bergsland practical orthography. Long vowels are doubled (aa ii uu); ng=[ŋ], d=[ð], g=[ɣ] with circumflexed x̂=[χ] and ĝ=[ʁ] for the uvular fricatives, and l̂=[ɬ] are mapped. The h-prefixed voiceless sonorants (hm hn hng hl hw hy) are mapped to voiceless counterparts. Predictable stress is left unencoded.",
+  "iso639_3": "ale",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "ale_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Aleut (aleu1260)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/aleu1260",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "ale_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Aleut language, Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Aleut_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Aleut_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Aleut_language"
+  ]
+}

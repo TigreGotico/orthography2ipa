@@ -52,7 +52,7 @@
     "level": "language"
   },
   "algh1238": {
-    "name": "Alguerés",
+    "name": "Algherese",
     "level": "dialect"
   },
   "algi1248": {
@@ -236,8 +236,8 @@
     "level": "language"
   },
   "bena1260": {
-    "name": "Benasqués",
-    "level": "dialect"
+    "name": "Bena (Nigeria)",
+    "level": "language"
   },
   "beng1280": {
     "name": "Bengali",
@@ -319,6 +319,10 @@
     "name": "Cantabrian",
     "level": "dialect"
   },
+  "cari1283": {
+    "name": "Cariban",
+    "level": "family"
+  },
   "cast1244": {
     "name": "Castilian",
     "level": "dialect"
@@ -394,6 +398,10 @@
   "chey1247": {
     "name": "Cheyenne",
     "level": "language"
+  },
+  "chib1249": {
+    "name": "Chibchan",
+    "level": "family"
   },
   "chil1286": {
     "name": "Chilean Spanish",
@@ -727,6 +735,10 @@
     "name": "Gun",
     "level": "language"
   },
+  "hadz1240": {
+    "name": "Hadza",
+    "level": "language"
+  },
   "hait1244": {
     "name": "Haitian",
     "level": "language"
@@ -778,6 +790,10 @@
   "homs1234": {
     "name": "Western Armenian",
     "level": "language"
+  },
+  "huit1251": {
+    "name": "Huitotoan",
+    "level": "family"
   },
   "hung1274": {
     "name": "Hungarian",
@@ -975,6 +991,10 @@
     "name": "Kinyarwanda",
     "level": "language"
   },
+  "kiow1265": {
+    "name": "Kiowa-Tanoan",
+    "level": "family"
+  },
   "kirg1245": {
     "name": "Kirghiz",
     "level": "language"
@@ -1017,6 +1037,10 @@
   },
   "kuki1246": {
     "name": "Kuki-Chin",
+    "level": "family"
+  },
+  "kxaa1236": {
+    "name": "Kxa",
     "level": "family"
   },
   "ladi1250": {
@@ -1223,6 +1247,10 @@
     "name": "Mirandese",
     "level": "language"
   },
+  "misu1242": {
+    "name": "Misumalpan",
+    "level": "family"
+  },
   "mode1248": {
     "name": "Modern Greek",
     "level": "language"
@@ -1319,6 +1347,10 @@
     "name": "Nilotic",
     "level": "family"
   },
+  "nivk1234": {
+    "name": "Nivkh",
+    "level": "family"
+  },
   "nkoa1234": {
     "name": "N'Ko",
     "level": "language"
@@ -1354,6 +1386,10 @@
   "nort2697": {
     "name": "North Azerbaijani",
     "level": "language"
+  },
+  "nort2923": {
+    "name": "North Halmahera",
+    "level": "family"
   },
   "nort3139": {
     "name": "Levantine Arabic",
@@ -1447,6 +1483,10 @@
     "name": "Central-Southern Aymara",
     "level": "family"
   },
+  "nucl1710": {
+    "name": "Nuclear-Macro-Je",
+    "level": "family"
+  },
   "nyan1308": {
     "name": "Nyanja",
     "level": "language"
@@ -1530,6 +1570,10 @@
   "pali1273": {
     "name": "Pali",
     "level": "language"
+  },
+  "pama1250": {
+    "name": "Pama-Nyungan",
+    "level": "family"
   },
   "pamp1243": {
     "name": "Pampanga",
@@ -1658,6 +1702,10 @@
   "saki1247": {
     "name": "Sakizaya",
     "level": "language"
+  },
+  "sali1255": {
+    "name": "Salishan",
+    "level": "family"
   },
   "samo1265": {
     "name": "Samogitian",
@@ -1971,6 +2019,10 @@
     "name": "Tumbuka",
     "level": "language"
   },
+  "tung1282": {
+    "name": "Tungusic",
+    "level": "family"
+  },
   "tuni1259": {
     "name": "Tunisian Arabic",
     "level": "language"
@@ -1989,6 +2041,10 @@
   },
   "turk1311": {
     "name": "Turkic",
+    "level": "family"
+  },
+  "tuuu1241": {
+    "name": "Tuu",
     "level": "family"
   },
   "tuvi1240": {
@@ -2087,6 +2143,10 @@
     "name": "Votic",
     "level": "language"
   },
+  "waka1280": {
+    "name": "Wakashan",
+    "level": "family"
+  },
   "wall1255": {
     "name": "Walloon",
     "level": "language"
@@ -2162,6 +2222,10 @@
   "yuca1254": {
     "name": "Yucatec Maya",
     "level": "language"
+  },
+  "yuka1259": {
+    "name": "Yukaghir",
+    "level": "family"
   },
   "zeeu1238": {
     "name": "Zeeuws",

@@ -1,0 +1,162 @@
+{
+  "code": "dng",
+  "name": "Dungan",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "а": [
+      "a"
+    ],
+    "б": [
+      "p"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "k"
+    ],
+    "д": [
+      "t"
+    ],
+    "е": [
+      "je"
+    ],
+    "ё": [
+      "jɔ"
+    ],
+    "ж": [
+      "ʐ"
+    ],
+    "з": [
+      "ts"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "kʰ"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "ң": [
+      "ŋ"
+    ],
+    "о": [
+      "ɔ"
+    ],
+    "п": [
+      "pʰ"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "tʰ"
+    ],
+    "у": [
+      "u"
+    ],
+    "ў": [
+      "w"
+    ],
+    "ү": [
+      "y"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "tsʰ"
+    ],
+    "ч": [
+      "tʂʰ"
+    ],
+    "ш": [
+      "ʂ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ],
+    "ә": [
+      "ə"
+    ],
+    "җ": [
+      "tʂ"
+    ],
+    "ъ": [
+      "ʔ"
+    ],
+    "ь": [
+      ""
+    ]
+  },
+  "parent": "x-clade-sini1245",
+  "ancestors": [
+    {
+      "code": "x-clade-sini1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Dungan (dung1253)."
+    }
+  ],
+  "notes": "Skeleton. Dungan is a Sinitic (Sino-Tibetan) language — a Mandarin variety of the Central Asian Dungan people — written in a Cyrillic alphabet with the extra letters ә, ў, ү, ң and җ. Letters are mapped to approximate phonemic values (aspirated/unaspirated stop pairs б/п, г/к, д/т; retroflex and alveolo-palatal series). The three-to-four lexical tones are not marked in the orthography and are left unencoded, so an elevated PER floor is expected. Contextual e/je and o/jo readings are only approximately covered.",
+  "iso639_3": "dng",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "dng_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Dungan (dung1253)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/dung1253",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "dng_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Dungan language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Dungan_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dungan_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Dungan_language"
+  ]
+}

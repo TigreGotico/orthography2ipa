@@ -365,6 +365,100 @@ _WIKIPRON_FILES = {
     "mak":       "mak_latn_broad.tsv",              # Makasar, ~834 rows
     "osp":       "osp_latn_broad.tsv",              # Old Spanish, ~681 rows
     "akk":       "akk_latn_broad.tsv",              # Akkadian, ~672 rows
+    # --- wikipron-gap sweep: fresh skeleton/research specs wired to their
+    #     upstream WikiPron gold. Each has a sourced grapheme map added in
+    #     this round; scores are honest first-pass baselines (tone, vowel
+    #     length and conditioned allophony the spelling does not recover are
+    #     unencoded, so PER is high by construction). Same Wiktionary tier.
+    #     Hard-script varieties (Han, Manchu, Tibetan, Canadian syllabics,
+    #     Thai/Tai/Myanmar/Devanagari/Limbu/Hangul abugidas) got a spec but no
+    #     row here: grapheme->IPA there is lexicon-dependent, cov-0 by design.
+    "acm":        "acm_arab_broad.tsv",  # Mesopotamian Arabic, N=108
+    "aii":        "aii_syrc_narrow.tsv",  # Assyrian Neo-Aramaic, N=7851
+    "ale":        "ale_latn_broad.tsv",  # Aleut, N=121
+    "aot":        "aot_latn_broad.tsv",  # Atong (India), N=181
+    "apw":        "apw_latn_narrow.tsv",  # Western Apache, N=147
+    "ayl":        "ayl_arab_broad.tsv",  # Libyan Arabic, N=166
+    "bbl":        "bbl_geor_broad.tsv",  # Bats, N=421
+    "bbn":        "bbn_latn_broad.tsv",  # Uneapa, N=194
+    "bdq":        "bdq_latn_broad.tsv",  # Bahnar, N=198
+    "bjb":        "bjb_latn_broad.tsv",  # Banggarla, N=136
+    "bua":        "bua_cyrl_broad.tsv",  # Buriat, N=140
+    "car":        "car_latn_narrow.tsv",  # Galibi Carib, N=447
+    "chb":        "chb_latn_broad.tsv",  # Chibcha, N=121
+    "cic":        "cic_latn_broad.tsv",  # Chickasaw, N=394
+    "cnk":        "cnk_latn_broad.tsv",  # Khumi Chin, N=350
+    "crk":        "crk_latn_narrow.tsv",  # Plains Cree, N=159
+    "dlm":        "dlm_latn_broad.tsv",  # Dalmatian, N=180
+    "dng":        "dng_cyrl_broad.tsv",  # Dungan, N=297
+    "dum":        "dum_latn_broad.tsv",  # Middle Dutch (ca. 1050-1350), N=222
+    "ett":        "ett_ital_broad.tsv",  # Etruscan, N=208
+    "evn":        "evn_cyrl_broad.tsv",  # Evenki, N=153
+    "fpe":        "fpe_latn_broad.tsv",  # Fernando Po Creole English, N=261
+    "gml":        "gml_latn_broad.tsv",  # Middle Low German, N=175
+    "gul":        "gul_latn_broad.tsv",  # Sea Island Creole English, N=304
+    "gwc":        "gwc_arab_broad.tsv",  # Gawri, N=208
+    "hil":        "hil_latn_broad.tsv",  # Hiligaynon, N=473
+    "hts":        "hts_latn_broad.tsv",  # Hadza, N=335
+    "huu":        "huu_latn_narrow.tsv",  # Murui Huitoto, N=440
+    "kgp":        "kgp_latn_broad.tsv",  # Kaingang, N=107
+    "kld":        "kld_latn_broad.tsv",  # Gamilaraay, N=516
+    "klj":        "klj_latn_broad.tsv",  # Khalaj, N=155
+    "kru":        "kru_deva_narrow.tsv",  # Kurukh, N=187
+    "ktz":        "ktz_latn_broad.tsv",  # Juǀʼhoan, N=135
+    "kwk":        "kwk_latn_broad.tsv",  # Kwakiutl, N=116
+    "kxd":        "kxd_latn_broad.tsv",  # Brunei, N=365
+    "lmy":        "lmy_latn_narrow.tsv",  # Lamboya, N=135
+    "lou":        "lou_latn_broad.tsv",  # Louisiana Creole, N=262
+    "lsi":        "lsi_latn_narrow.tsv",  # Lashi, N=141
+    "lut":        "lut_latn_broad.tsv",  # Lushootseed, N=140
+    "lzz":        "lzz_geor_broad.tsv",  # Laz, N=363
+    "mch":        "mch_latn_narrow.tsv",  # Maquiritari, N=1746
+    "mdh":        "mdh_latn_broad.tsv",  # Maguindanaon, N=205
+    "mfe":        "mfe_latn_broad.tsv",  # Morisyen, N=233
+    "mga":        "mga_latn_broad.tsv",  # Middle Irish (900-1200), N=501
+    "mic":        "mic_latn_broad.tsv",  # Mi'kmaq, N=203
+    "mqs":        "mqs_latn_broad.tsv",  # West Makian, N=791
+    "mtq":        "mtq_latn_broad.tsv",  # Muong, N=194
+    "ngh":        "ngh_latn_broad.tsv",  # Nǁng, N=325
+    "nhg":        "nhg_latn_narrow.tsv",  # Tetelcingo Nahuatl, N=305
+    "nhx":        "nhx_latn_broad.tsv",  # Isthmus-Mecayapan Nahuatl, N=146
+    "niv":        "niv_cyrl_broad.tsv",  # Gilyak, N=627
+    "nmy":        "nmy_latn_narrow.tsv",  # Namuyi, N=354
+    "oji":        "oji_latn_broad.tsv",  # Ojibwa, N=136
+    "ota":        "ota_arab_broad.tsv",  # Ottoman Turkish (1500-1928), N=209
+    "pbv":        "pbv_latn_broad.tsv",  # Pnar, N=101
+    "pcc":        "pcc_latn_broad.tsv",  # Bouyei, N=153
+    "pjt":        "pjt_latn_narrow.tsv",  # Pitjantjatjara, N=125
+    "pox":        "pox_latn_broad.tsv",  # Polabian, N=321
+    "pqm":        "pqm_latn_broad.tsv",  # Malecite-Passamaquoddy, N=151
+    "rgn":        "rgn_latn_broad.tsv",  # Romagnol, N=267
+    "sce":        "sce_latn_broad.tsv",  # Dongxiang, N=169
+    "sdc":        "sdc_latn_broad.tsv",  # Sassarese Sardinian, N=344
+    "sia":        "sia_cyrl_broad.tsv",  # Akkala Sami, N=181
+    "sid":        "sid_latn_broad.tsv",  # Sidamo, N=298
+    "sjd":        "sjd_cyrl_broad.tsv",  # Kildin Sami, N=761
+    "sms":        "sms_latn_broad.tsv",  # Skolt Sami, N=119
+    "srs":        "srs_latn_broad.tsv",  # Sarsi, N=137
+    "syc":        "syc_syrc_broad.tsv",  # Classical Syriac, N=133
+    "tew":        "tew_latn_broad.tsv",  # Tewa (USA), N=106
+    "tft":        "tft_latn_broad.tsv",  # Ternate, N=297
+    "tkl":        "tkl_latn_narrow.tsv",  # Tokelau, N=340
+    "tru":        "tru_syrc_broad.tsv",  # Turoyo, N=232
+    "twf":        "twf_latn_broad.tsv",  # Northern Tiwa, N=135
+    "tzm":        "tzm_tfng_broad.tsv",  # Central Atlas Tamazight, N=690
+    "uby":        "uby_cyrl_narrow.tsv",  # Ubykh, N=1317
+    "ulw":        "ulw_latn_broad.tsv",  # Ulwa, N=103
+    "wau":        "wau_latn_broad.tsv",  # Waurá, N=146
+    "wbk":        "wbk_latn_broad.tsv",  # Waigali, N=154
+    "wiy":        "wiy_latn_broad.tsv",  # Wiyot, N=151
+    "wlm":        "wlm_latn_broad.tsv",  # Middle Welsh, N=435
+    "xsl":        "xsl_latn_narrow.tsv",  # South Slavey, N=304
+    "ycl":        "ycl_latn_narrow.tsv",  # Lolopo, N=111
+    "yrk":        "yrk_cyrl_narrow.tsv",  # Nenets, N=455
+    "yux":        "yux_cyrl_narrow.tsv",  # Southern Yukaghir, N=255
+    "zom":        "zom_latn_narrow.tsv",  # Zou, N=165
+    "zza":        "zza_latn_narrow.tsv",  # Zaza, N=215
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"

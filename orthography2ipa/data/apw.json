@@ -1,0 +1,159 @@
+{
+  "code": "apw",
+  "name": "Western Apache",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "tł'": [
+      "tɬʼ"
+    ],
+    "ts'": [
+      "tsʼ"
+    ],
+    "ch'": [
+      "tʃʼ"
+    ],
+    "dl": [
+      "dl"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "tł": [
+      "tɬ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "zh": [
+      "ʒ"
+    ],
+    "kw": [
+      "kʷ"
+    ],
+    "k'": [
+      "kʼ"
+    ],
+    "t'": [
+      "tʼ"
+    ],
+    "ł": [
+      "ɬ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "x-clade-atha1245",
+  "ancestors": [
+    {
+      "code": "x-clade-atha1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Western Apache (west2615)."
+    }
+  ],
+  "notes": "Skeleton. Southern Athabaskan (Apachean) language of Arizona written in the San Carlos practical orthography. Lateral obstruents (tł, tł', ł=[ɬ]), the affricate series ts/ts'/dz and ch/ch'/j, and ejectives written with a following apostrophe are mapped. Lexical high tone (marked with an acute accent in careful writing) and vowel nasalization are left unencoded, raising the PER floor.",
+  "iso639_3": "apw",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "apw_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Western Apache (west2615)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/west2615",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "apw_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Western Apache language, Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Western_Apache_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Western_Apache_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Western_Apache_language"
+  ]
+}

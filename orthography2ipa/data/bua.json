@@ -1,0 +1,180 @@
+{
+  "code": "bua",
+  "name": "Buriat",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      ""
+    ],
+    "аа": [
+      "aː"
+    ],
+    "ээ": [
+      "eː"
+    ],
+    "оо": [
+      "ɔː"
+    ],
+    "өө": [
+      "øː"
+    ],
+    "уу": [
+      "uː"
+    ],
+    "үү": [
+      "ʊː"
+    ],
+    "ии": [
+      "iː"
+    ],
+    "ыы": [
+      "ɨː"
+    ],
+    "а": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "v"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "о": [
+      "o"
+    ],
+    "ө": [
+      "ø"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ү": [
+      "ʊ"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "һ": [
+      "h"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ]
+  },
+  "parent": "xgn",
+  "ancestors": [
+    {
+      "code": "xgn",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Buriat (buri1258)."
+    }
+  ],
+  "notes": "Skeleton. Buriat (Buryat) is a Mongolic language written in a Cyrillic alphabet that extends Russian with three letters: Ү (near-close back rounded), Ө (close-mid front rounded) and Һ (h). The map covers the base Cyrillic inventory plus these and encodes phonemic long vowels, which Buriat writes as doubled vowel letters (аа, өө, үү …), via longest-match digraph entries. Vowel harmony and the reduced quality of unstressed vowels are conditioned rather than spelled and are left unencoded; Russian loanword letters (в ф ц щ) keep their Russian values.",
+  "iso639_3": "bua",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "bua_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Buriat (buri1258)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/buri1258",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "bua_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Buryat language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Buryat_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Buryat_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Buryat_language"
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "code": "wiy",
+  "name": "Wiyot",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "kw": [
+      "kʷ"
+    ],
+    "gw": [
+      "ɡʷ"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "lh": [
+      "ɬ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "parent": "x-clade-algi1248",
+  "ancestors": [
+    {
+      "code": "x-clade-algi1248",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Wiyot (wiyo1248)."
+    }
+  ],
+  "notes": "Skeleton. Algic language (a divergent isolate within Algic, alongside Yurok) of coastal northern California, written in an Americanist practical orthography. Digraphs kw/gw for labialized velars, ch=[tʃ], ts=[ts] and lh=[ɬ] are mapped, with the apostrophe for glottal stop. Predictable stress and any conditioned allophony are left unencoded, raising the PER floor.",
+  "iso639_3": "wiy",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "wiy_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Wiyot (wiyo1248)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/wiyo1248",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "wiy_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Wiyot language, Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Wiyot_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Wiyot_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Wiyot_language"
+  ]
+}

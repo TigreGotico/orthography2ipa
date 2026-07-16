@@ -1,0 +1,168 @@
+{
+  "code": "pox",
+  "name": "Polabian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "x"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "ɨ"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "å": [
+      "ɔ"
+    ],
+    "ą": [
+      "ɔ̃"
+    ],
+    "ǫ": [
+      "ɔ̃"
+    ],
+    "ė": [
+      "e"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "ĕ": [
+      "ə"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ts"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "ć": [
+      "tɕ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "x"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ľ": [
+      "lʲ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ń": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ś": [
+      "ɕ"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "z": [
+      "z"
+    ],
+    "ź": [
+      "ʑ"
+    ],
+    "ž": [
+      "ʒ"
+    ]
+  },
+  "parent": "x-clade-west2792",
+  "ancestors": [
+    {
+      "code": "x-clade-west2792",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Polabian (pola1255)."
+    }
+  ],
+  "notes": "Skeleton. West Slavic (Lechitic) language of the Elbe, extinct since the 18th century and known only from German-authored word lists and glossaries. The grapheme map follows the scholarly reconstruction transcription (Latin base with diacritics for the reduced/rounded vowels å ü ö ə, the nasals ą/ǫ, and the palatal sibilant/affricate series š ž č ś ź ć ń). Because the primary records were noted down with inconsistent German spelling conventions, the reconstructed values are uncertain; stress and vowel reduction patterns are only partly recoverable and are left unencoded, so an elevated PER floor is expected.",
+  "iso639_3": "pox",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "pox_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Polabian (pola1255)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/pola1255",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "pox_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Polabian language (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Polabian_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier reconstructed entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Polabian_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Polabian_language"
+  ]
+}

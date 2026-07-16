@@ -1,0 +1,183 @@
+{
+  "code": "xsl",
+  "name": "South Slavey",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "tł'": [
+      "tɬʼ"
+    ],
+    "ts'": [
+      "tsʼ"
+    ],
+    "ch'": [
+      "tʃʼ"
+    ],
+    "kw'": [
+      "kʷʼ"
+    ],
+    "dl": [
+      "dl"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "tł": [
+      "tɬ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "zh": [
+      "ʒ"
+    ],
+    "th": [
+      "θ"
+    ],
+    "kw": [
+      "kʷ"
+    ],
+    "gw": [
+      "ɡʷ"
+    ],
+    "xw": [
+      "xʷ"
+    ],
+    "wh": [
+      "ʍ"
+    ],
+    "k'": [
+      "kʼ"
+    ],
+    "t'": [
+      "tʼ"
+    ],
+    "p'": [
+      "pʼ"
+    ],
+    "ł": [
+      "ɬ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "x": [
+      "x"
+    ],
+    "f": [
+      "f"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "x-clade-atha1245",
+  "ancestors": [
+    {
+      "code": "x-clade-atha1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of South Slavey (sout2959)."
+    }
+  ],
+  "notes": "Skeleton. Northern Athabaskan (Dene) language of the Northwest Territories in its practical Roman orthography. Lateral affricates and fricative (tł, tł', ł=[ɬ]), the affricate series ts/ts'/dz and ch/ch'/j, and ejectives written with a following apostrophe are mapped, along with gh=[ɣ] and th=[θ]. Lexical tone (high/low) and vowel nasalization, which this orthography marks inconsistently or not at all, are left unencoded, giving a substantial PER floor.",
+  "iso639_3": "xsl",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "xsl_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: South Slavey (sout2959)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/sout2959",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "xsl_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Slavey language (South Slavey orthography), Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Slavey_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Slavey_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Slavey_language"
+  ]
+}
