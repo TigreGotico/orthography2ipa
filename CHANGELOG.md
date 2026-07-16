@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.21.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.21.1a2) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.21.1a1...7.21.1a2)
+
+**Merged pull requests:**
+
+- Kabyle phonology: native-speaker data \(integrates \#555\) [\#558](https://github.com/TigreGotico/orthography2ipa/pull/558) ([JarbasAl](https://github.com/JarbasAl))
+- fix: consistent Convenção-2025 orthography in the Barranquenho TTS gold [\#557](https://github.com/TigreGotico/orthography2ipa/pull/557) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.21.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.21.1a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.21.0a2...7.21.1a1)
@@ -149,27 +158,27 @@
 
 ## [7.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.15.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.13.0a1...7.15.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a1...7.15.0a1)
 
 **Merged pull requests:**
 
 - feat\(benchmark\): sentence-level TTS gold wiring, wikipron registry sweep, ancestry audit [\#515](https://github.com/TigreGotico/orthography2ipa/pull/515) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.13.0a1) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a1...7.13.0a1)
-
 ## [7.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.14.0a1)
-
-## [7.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.12.0a1) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a2...7.12.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a2...7.14.0a1)
 
 ## [7.14.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a2) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.14.0a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.13.0a1...7.14.0a2)
+
+## [7.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.13.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.13.0a1)
+
+## [7.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.12.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.12.0a1)
 
 **Merged pull requests:**
 
@@ -248,15 +257,11 @@
 
 ## [7.3.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.2a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.2a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.3.2a1)
 
 **Merged pull requests:**
 
 - fix\(ar\): dialect reflexes + loan-class exemptions from the verification leads [\#482](https://github.com/TigreGotico/orthography2ipa/pull/482) ([JarbasAl](https://github.com/JarbasAl))
-
-## [7.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.2.0a1) (2026-07-15)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.2.0a1)
 
 ## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
 
@@ -264,7 +269,11 @@
 
 ## [7.3.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.1a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.3.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.1a1)
+
+## [7.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.2.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.2.0a1)
 
 **Merged pull requests:**
 
@@ -485,7 +494,6 @@
 **Merged pull requests:**
 
 - feat\(data\): new WikiPron-backed specs \(Finnic, Nheengatu, Nahuatl\) [\#394](https://github.com/TigreGotico/orthography2ipa/pull/394) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(tet,kea\): audit and cite the Tetum and Kabuverdianu specs [\#392](https://github.com/TigreGotico/orthography2ipa/pull/392) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [6.4.1a1](https://github.com/TigreGotico/orthography2ipa/tree/6.4.1a1) (2026-07-15)
 
@@ -502,11 +510,6 @@
 ## [6.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.3.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.2.0a1...6.3.0a1)
-
-**Merged pull requests:**
-
-- feat\(fy\): audit and cite the West Frisian spec [\#389](https://github.com/TigreGotico/orthography2ipa/pull/389) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(wln\): audit and cite the Walloon spec [\#388](https://github.com/TigreGotico/orthography2ipa/pull/388) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [6.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.2.0a1) (2026-07-14)
 
