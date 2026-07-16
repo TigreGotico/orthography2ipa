@@ -320,6 +320,23 @@
         "n",
         "ŋ"
       ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
+      ],
+      "before_o": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
+      ]
     }
   },
   "parent": "roa-x-galaicopt",

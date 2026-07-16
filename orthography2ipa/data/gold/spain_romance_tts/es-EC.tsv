@@ -1,5 +1,5 @@
 id	sentence	ipa	gloss_en	features	notes
-es-EC-001	El guagua llora porque tiene mucha hambre.	el ˈɡaɡa ˈʝoɾa ˈpoɾke ˈtjene ˈmutʃa ˈambɾe	The baby cries because it is very hungry.	yeismo;diphthong_ie_ue;statement	Quichua loan guagua; seseo and yeismo per hualde2005
+es-EC-001	El guagua llora porque tiene mucha hambre.	el ˈɡwaɣwa ˈʝoɾa ˈpoɾke ˈtjene ˈmutʃa ˈambɾe	The baby cries because it is very hungry.	yeismo;diphthong_ie_ue;statement	Quichua loan guagua; seseo and yeismo per hualde2005
 es-EC-002	¿Vas a comprar el mote en la plaza mañana?	ˈbas a koˈmpɾaɾ el ˈmote en la ˈplasa maˈɲana	Are you buying the hominy at the square tomorrow?	seseo;palatal_nasal;sandhi;question	Ecuadorian lexicon (mote); palatal nasal mañana; penny2002
 es-EC-003	Ella lleva la llave de la casa en la mano.	ˈeʝa ˈʝeba la ˈʝabe de la ˈkasa en la ˈmano	She carries the house key in her hand.	yeismo;sandhi;statement	yeismo ll/y→[ʝ]; lipski1994
 es-EC-004	No quiero que llegues tarde a la minga.	ˈno ˈkjeɾo ke ˈʝeɡes ˈtaɾde a la ˈminɡa	I don't want you to be late to the communal work.	yeismo;diphthong_ie_ue;sandhi;negation	yeismo llegues→[ʝ]; diphthong quiero→[je]; fontanella_de_weinberg1992
@@ -17,5 +17,5 @@ es-EC-015	¿Por qué no llamaste a tu mamá anoche?	poɾ ˈke ˈno ʝaˈmaste a 
 es-EC-016	Sube al bus que ya nos vamos a Ambato.	ˈsuβe al ˈbus ke ˈʝa nos ˈbamos a aˈmbato	Get on the bus, we are leaving for Ambato.	yeismo;sandhi;imperative	sandhi; Ecuadorian geography; fontanella_de_weinberg1992
 es-EC-017	El cuy asado se sirve con papa y maní.	el ˈkui aˈsaðo se ˈsiɾbe kon ˈpapa i maˈni	Roast guinea pig is served with potato and peanut.	statement	Andean cuisine; seseo n/a; hualde2005
 es-EC-018	La llama pasta tranquila en el páramo verde.	la ˈʝama ˈpasta tɾaˈnkila en el ˈpaɾamo ˈbeɾde	The llama grazes calmly on the green moor.	yeismo;sandhi;statement	yeismo llama→[ʝ]; Ecuadorian páramo; penny2002
-es-EC-019	Guarda bien la cosecha antes de que llueva.	ˈɡaɾda ˈbjen la koˈsetʃa ˈantes de ke ˈʝweba	Store the harvest well before it rains.	yeismo;diphthong_ie_ue;sandhi;imperative	seseo cosecha→[s]; lipski1994
+es-EC-019	Guarda bien la cosecha antes de que llueva.	ˈɡwaɾda ˈbjen la koˈsetʃa ˈantes de ke ˈʝweba	Store the harvest well before it rains.	yeismo;diphthong_ie_ue;sandhi;imperative	seseo cosecha→[s]; lipski1994
 es-EC-020	Ese muchacho estudia en la universidad central.	ˈese muˈtʃatʃo eˈstuðja en la unibeɾsiˈðað seˈntɾal	That young man studies at the central university.	seseo;sandhi;statement	seseo central→[s]; fontanella_de_weinberg1992
