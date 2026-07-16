@@ -183,6 +183,46 @@ class TestGeminateRetention:
         assert orthography2ipa.transcribe("ababbu", "kab") == "aβabːu"
 
 
+class TestPostNasalHardening:
+    """Spirantization is blocked after a homorganic nasal: the lax stop keeps
+    its stop realisation (Kossmann & Stroomer 1997, p.468). Modelled by the
+    KAB_POSTNASAL_HARD_* identity rules, ordered before the KAB_SPIRANT_*
+    rules so first-match blocks the spirantization."""
+
+    def test_rules_present(self, kab):
+        ids = {r.id for r in kab.allophone_rules}
+        assert {"KAB_POSTNASAL_HARD_T", "KAB_POSTNASAL_HARD_D",
+                "KAB_POSTNASAL_HARD_DH_EMPH", "KAB_POSTNASAL_HARD_B"} <= ids
+
+    def test_hardening_precedes_spirantization(self, kab):
+        """First-match ordering is load-bearing: each HARD rule must come
+        before its SPIRANT counterpart in the rule list."""
+        order = [r.id for r in kab.allophone_rules]
+        assert order.index("KAB_POSTNASAL_HARD_T") < order.index("KAB_SPIRANT_T")
+        assert order.index("KAB_POSTNASAL_HARD_D") < order.index("KAB_SPIRANT_D")
+        assert order.index("KAB_POSTNASAL_HARD_B") < order.index("KAB_SPIRANT_B")
+
+    def test_nd_stays_stop(self):
+        """anda 'where' -> [anda]: /d/ after /n/ keeps the stop, not *[anða]."""
+        assert orthography2ipa.transcribe("anda", "kab") == "anda"
+
+    def test_nt_stays_stop(self):
+        """yenta -> [jənta]: /t/ after /n/ keeps the stop, not *[jənθa]."""
+        assert orthography2ipa.transcribe("yenta", "kab") == "jənta"
+
+    def test_nb_stays_stop(self):
+        """anba -> [amba]: ⟨nb⟩ assimilates to [mb] and /b/ keeps the stop,
+        not *[amβa]."""
+        assert orthography2ipa.transcribe("anba", "kab") == "amba"
+
+    def test_spirantization_still_fires_off_nasal(self):
+        """The block is context-bound: a /d/ NOT after a nasal still
+        spirantizes (adrar -> [aðrar]), and a word-initial cluster keeps the
+        rest of its spirantization (tanda -> [θanda])."""
+        assert orthography2ipa.transcribe("adrar", "kab") == "aðrar"
+        assert orthography2ipa.transcribe("tanda", "kab") == "θanda"
+
+
 # ---------------------------------------------------------------------------
 # Nasal place assimilation
 # ---------------------------------------------------------------------------
@@ -198,8 +238,10 @@ class TestNasalAssimilation:
         assert orthography2ipa.transcribe("anki", "kab") == "aŋçi"
 
     def test_n_labialises_before_labial(self):
-        """/n/ -> [m] before a labial; anba -> [amβa]."""
-        assert orthography2ipa.transcribe("anba", "kab") == "amβa"
+        """/n/ -> [m] before a labial; anba -> [amba]. (The /b/ stays a stop
+        rather than spirantizing to [β] because it follows a homorganic
+        nasal — see TestPostNasalHardening.)"""
+        assert orthography2ipa.transcribe("anba", "kab") == "amba"
 
 
 # ---------------------------------------------------------------------------
