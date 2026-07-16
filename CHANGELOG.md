@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.19.8a3](https://github.com/TigreGotico/orthography2ipa/tree/7.19.8a3) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.8a2...7.19.8a3)
+
+**Merged pull requests:**
+
+- feat\(data\): Saudi Najdi \(ar-SA-x-najd\) deep validation — primary-source gold, /ɡ/ trigger, loanword exceptions [\#550](https://github.com/TigreGotico/orthography2ipa/pull/550) ([JarbasAl](https://github.com/JarbasAl))
+- feat\(data\): Tihāmi Qaḥtāni Saudi lect + Rijāl Almaʿ deep-validation round [\#549](https://github.com/TigreGotico/orthography2ipa/pull/549) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(sharqiyya\): correct Eastern Saudi jīm to affricate \[dʒ\] + Dawāsir stub [\#548](https://github.com/TigreGotico/orthography2ipa/pull/548) ([JarbasAl](https://github.com/JarbasAl))
+- gold\(ar-SA-x-hejaz\): deep-validate urban Hijazi against primary sources [\#547](https://github.com/TigreGotico/orthography2ipa/pull/547) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.8a2](https://github.com/TigreGotico/orthography2ipa/tree/7.19.8a2) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.8a1...7.19.8a2)
@@ -122,11 +133,15 @@
 
 ## [7.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.15.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a1...7.15.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.15.0a1)
 
 **Merged pull requests:**
 
 - feat\(benchmark\): sentence-level TTS gold wiring, wikipron registry sweep, ancestry audit [\#515](https://github.com/TigreGotico/orthography2ipa/pull/515) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.12.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a1...7.12.0a1)
 
 ## [7.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a1) (2026-07-16)
 
@@ -138,11 +153,7 @@
 
 ## [7.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.13.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.13.0a1)
-
-## [7.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.12.0a1) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.12.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.13.0a1)
 
 **Merged pull requests:**
 
@@ -189,15 +200,15 @@
 
 ## [7.8.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.8.0a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.7.0a1...7.8.0a1)
-
-## [7.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.7.0a1) (2026-07-15)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.6.0a1...7.7.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.6.0a1...7.8.0a1)
 
 ## [7.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.6.0a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.5.0a1...7.6.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.7.0a1...7.6.0a1)
+
+## [7.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.7.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.5.0a1...7.7.0a1)
 
 ## [7.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.5.0a1) (2026-07-15)
 
@@ -221,11 +232,15 @@
 
 ## [7.3.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.2a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.3.2a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.2a1)
 
 **Merged pull requests:**
 
 - fix\(ar\): dialect reflexes + loan-class exemptions from the verification leads [\#482](https://github.com/TigreGotico/orthography2ipa/pull/482) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.2.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.2.0a1)
 
 ## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
 
@@ -233,11 +248,7 @@
 
 ## [7.3.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.1a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.1a1)
-
-## [7.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.2.0a1) (2026-07-15)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.2.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.3.1a1)
 
 **Merged pull requests:**
 
@@ -443,10 +454,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.7.0a1...6.7.0a2)
 
-**Merged pull requests:**
-
-- test: prove every cited rule, spec by spec [\#382](https://github.com/TigreGotico/orthography2ipa/pull/382) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [6.7.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.7.0a1) (2026-07-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/6.6.0a1...6.7.0a1)
@@ -509,25 +516,13 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.1a1...5.2.2a1)
 
-**Merged pull requests:**
-
-- fix: segment-aware syllable weight + Saudi Arabic \(Najdi/Hejazi\) audit [\#380](https://github.com/TigreGotico/orthography2ipa/pull/380) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [5.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.1a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.0a1...5.2.1a1)
 
-**Merged pull requests:**
-
-- fix: a sandhi plugin must be TOLD where the pause is [\#378](https://github.com/TigreGotico/orthography2ipa/pull/378) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [5.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.1.0a1...5.2.0a1)
-
-**Merged pull requests:**
-
-- feat: normalize and sandhi are pluggable, and one declaration governs all of them [\#376](https://github.com/TigreGotico/orthography2ipa/pull/376) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [5.1.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.1.0a1) (2026-07-14)
 
