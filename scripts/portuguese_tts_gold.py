@@ -69,6 +69,10 @@ LECTS = [
     # they share the Portuguese-contact sandhi surface the harness checks.
     "ast-PT-x-rionor", "ast-PT-x-guadramil", "ast-PT-x-medieval",
     "ast-x-sanabria",
+    # Mirandese (Asturleonese) — the other Portugal-territory language and its
+    # subdialects, gated by the same harness (their gold uses genuine Mirandese
+    # orthography per the Convenção Ortográfica, not Portuguese).
+    "mwl", "mwl-x-ifanes", "mwl-x-sendim",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
