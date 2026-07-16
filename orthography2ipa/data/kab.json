@@ -649,25 +649,23 @@
   },
   {
    "id": "dallet1982",
-   "author": "Kossmann, Maarten G. & Stroomer, Harry J.",
-   "year": 1997,
-   "title": "Berber Phonology",
-   "publisher": "In A. S. Kaye (ed.), Phonologies of Asia and Africa, vol. 1, Eisenbrauns",
-   "url": "https://hdl.handle.net/1887/4150",
-   "pages": "pp. 461-475",
-   "notes": "Lexical source for the TTS gold sentences.",
-   "citation": "Dallet, J.-M. (1982). Dictionnaire kabyle-français. Paris: SELAF."
+   "author": "Dallet, Jean-Marie",
+   "year": 1982,
+   "title": "Dictionnaire kabyle-français: parler des At Mangellat, Algérie",
+   "publisher": "SELAF, Paris",
+   "url": "https://catalogue.bnf.fr/ark:/12148/cb34694452r",
+   "pages": null,
+   "notes": "Lexical source for the TTS gold sentences."
   },
   {
    "id": "naitzerrad2001",
-   "author": "Kossmann, Maarten G. & Stroomer, Harry J.",
-   "year": 1997,
-   "title": "Berber Phonology",
-   "publisher": "In A. S. Kaye (ed.), Phonologies of Asia and Africa, vol. 1, Eisenbrauns",
-   "url": "https://hdl.handle.net/1887/4150",
-   "pages": "pp. 461-475",
-   "notes": "Grammatical/lexical source for the TTS gold sentences.",
-   "citation": "Naït-Zerrad, K. (2001). Grammaire moderne du kabyle. Paris: Karthala."
+   "author": "Naït-Zerrad, Kamal",
+   "year": 2001,
+   "title": "Grammaire moderne du kabyle / tajerrumt tatrart n teqbaylit",
+   "publisher": "Karthala, Paris",
+   "url": "https://www.karthala.com/2079-grammaire-moderne-du-kabyle-9782845861725.html",
+   "pages": null,
+   "notes": "Grammatical/lexical source for the TTS gold sentences."
   }
  ],
  "wikipedia": [
