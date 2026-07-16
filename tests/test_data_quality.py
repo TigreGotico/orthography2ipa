@@ -36,6 +36,31 @@ def test_explicit_quality_tier(code):
 
 
 @pytest.mark.parametrize("code", ALL_CODES)
+def test_positional_graphemes_never_key_on_inert_coda(code):
+    """A ``positional_graphemes`` entry must never be keyed on ``coda``.
+
+    The beam resolver derives its position list in ``grapheme_positions``,
+    which never yields ``GraphemePosition.CODA`` — a syllable-coda consonant
+    is reached as ``word_final`` (final position) or ``before_consonant``
+    (pre-consonantal position). A positional override keyed on ``coda`` is
+    therefore inert: it can never fire. Genuine syllable-coda phonology
+    belongs in an allophone rule (``syllable_position: "coda"``), which is a
+    separate, syllabifier-driven mechanism and is unaffected by this guard.
+    """
+    raw = json.loads((DATA_DIR / f"{code}.json").read_text(encoding="utf-8"))
+    pg = raw.get("positional_graphemes") or {}
+    offenders = [
+        g for g, pos_map in pg.items()
+        if isinstance(pos_map, dict) and "coda" in pos_map
+    ]
+    assert not offenders, (
+        f"{code}.json: positional_graphemes keyed on the inert 'coda' "
+        f"position for {offenders} — use 'word_final'/'before_consonant', "
+        f"or move genuine coda phonology to an allophone rule"
+    )
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
 def test_non_stub_resolves_to_content(code):
     """A spec above stub tier must resolve to usable G2P data.
 

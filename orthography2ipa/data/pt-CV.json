@@ -119,9 +119,6 @@
   "iso639_3": "por",
   "positional_graphemes": {
     "s": {
-      "coda": [
-        "s"
-      ],
       "word_final": [
         "s"
       ],
@@ -136,9 +133,6 @@
       ]
     },
     "z": {
-      "coda": [
-        "s"
-      ],
       "word_final": [
         "s"
       ]

@@ -407,18 +407,12 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
     },
     "d": {
       "word_final": [
-        "t"
-      ],
-      "coda": [
         "t"
       ],
       "default": [
@@ -429,18 +423,12 @@
       "word_final": [
         "k"
       ],
-      "coda": [
-        "k"
-      ],
       "default": [
         "ɡ"
       ]
     },
     "v": {
       "word_final": [
-        "f"
-      ],
-      "coda": [
         "f"
       ],
       "default": [

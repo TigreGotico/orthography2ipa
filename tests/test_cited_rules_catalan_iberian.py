@@ -395,11 +395,6 @@ def test_ext_word_final_s_aspirates():
     assert phrase("ext", "estos hombres")[1].endswith("h")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="the cited form [ˈehtoh] aspirates the PRE-CONSONANTAL /s/ of estos "
-           "as well; the engine aspirates only the word-final one: [estoh]",
-)
 def test_ext_preconsonantal_s_aspirates():
     """Extremaduran notes: "(2) ASPIRATION OF WORD-FINAL AND PRE-CONSONANTAL
     /s/: coda /s/ → [h] or deleted ... 'estos hombres' [ˈehtoh ˈõmbɾeh]."

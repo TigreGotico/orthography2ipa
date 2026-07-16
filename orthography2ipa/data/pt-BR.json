@@ -151,10 +151,6 @@
       "before_consonant": [
         "ɾ"
       ],
-      "coda": [
-        "ɾ",
-        "ʁ"
-      ],
       "word_final": [
         "ɾ",
         ""
@@ -170,9 +166,6 @@
       "before_consonant": [
         "s"
       ],
-      "coda": [
-        "s"
-      ],
       "word_final": [
         "s"
       ],
@@ -182,9 +175,6 @@
     },
     "z": {
       "before_consonant": [
-        "s"
-      ],
-      "coda": [
         "s"
       ],
       "word_final": [
@@ -203,9 +193,6 @@
       ],
       "onset": [
         "l"
-      ],
-      "coda": [
-        "w"
       ]
     },
     "t": {
