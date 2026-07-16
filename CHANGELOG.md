@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.19.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.5a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.4a1...7.19.5a1)
+
+**Merged pull requests:**
+
+- fix\(gold\): restore barrancos+galaicopt to validate LECTS [\#535](https://github.com/TigreGotico/orthography2ipa/pull/535) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.4a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.3a1...7.19.4a1)
@@ -520,7 +528,6 @@
 **Merged pull requests:**
 
 - fix: the syllabifier-discovery tests asserted the environment, not the code [\#366](https://github.com/TigreGotico/orthography2ipa/pull/366) ([JarbasAl](https://github.com/JarbasAl))
-- fix: a tāʾ marbūṭa carrying a vowel is pronounced [\#365](https://github.com/TigreGotico/orthography2ipa/pull/365) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.5.0a2](https://github.com/TigreGotico/orthography2ipa/tree/4.5.0a2) (2026-07-14)
 
