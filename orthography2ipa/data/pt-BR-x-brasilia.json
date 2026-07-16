@@ -1,5 +1,6 @@
 {
   "code": "pt-BR-x-brasilia",
+  "allophone_passes": 2,
   "name": "Brasiliense Portuguese",
   "script": "Latin",
   "graphemes": {

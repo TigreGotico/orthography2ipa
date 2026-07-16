@@ -381,6 +381,33 @@ African/Asian varieties that already declare an alveolar coda /s/ in their
 non-*chiado* realisation. (Broader P5 Lusophone-variety deltas are a later
 task; only the already-encoded alveolar-coda intent is preserved here.)
 
+## Multi-pass feeding (`allophone_passes`)
+
+The allophone pass reads every rule's neighbouring segments from the state
+*before* the pass, so within one pass two rules cannot feed each other: a rule
+that only fires on another rule's output never sees it. Brazilian Portuguese is
+the canonical case — the final unstressed `-es`/`-os` ending raises to `[i]`/`[u]`
+(`BR_RAISE_FINAL_ES`/`_OS`), and `/t d/` should then affricate before the raised
+`[i]` (`BR_AFFRIC_T_RAISED`/`_D_RAISED`); but in a single pass the affrication
+reads the *pre-raise* vowel and does not fire, so `estes` surfaces as `[ˈestes]`
+instead of `[ˈest͡ʃis]`.
+
+A spec sets `allophone_passes: N` (default `1`) to run the compiled pass `N`
+times. Each repeat rebuilds the segment context from the previous pass's output,
+so the raise now feeds the affrication on pass 2: `estes → [ˈest͡ʃis]`, `dentes →
+[ˈdẽt͡ʃis]`, `gatos → [ˈɡatus]`. The count is **bounded** (no unbounded fixpoint)
+so a pathological rule set cannot loop.
+
+It is `NOT_INHERITED` (like `stress`) and opt-in per spec on purpose: re-running
+the pass can re-fire a non-idempotent rule, so each spec restates the count and
+confirms — against its own gold — that the extra pass changes only the intended
+feeding cases. pt-BR and its palatalising urban dialects (bahia, brasília,
+fluminense, mg, rj, sp) declare `2`; the conservative-dental dialects that
+disable the affrication (caipira, sul, …) keep the default `1`, since their
+raising needs no second pass. Measured blast radius on the full pt-BR WikiPron
+set: the only pass-1→pass-2 differences are the intended `/t d/` affrications
+before a raised final `-Vs` — no other output moves.
+
 ---
 
 **Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)

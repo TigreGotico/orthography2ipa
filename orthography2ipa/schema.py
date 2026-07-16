@@ -244,6 +244,7 @@ class StressRulesModel(_Strict):
     superheavy_final_attracts: bool = True
     max_onset: int = Field(default=1, ge=1, le=3)
     cliticless_words: Optional[List[str]] = None
+    coda_liquid_capture: bool = False
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 
@@ -327,6 +328,7 @@ class LanguageSpecModel(_Strict):
     # ─── extended structures ────────────────────────────────────────
     sandhi_rules: Optional[List[SandhiRuleModel]] = None
     allophone_rules: Optional[List[AllophoneRuleModel]] = None
+    allophone_passes: int = Field(default=1, ge=1, le=4)
     stress: Optional[StressRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     sources: Optional[List[SourceModel]] = None

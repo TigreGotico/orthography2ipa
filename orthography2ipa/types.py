@@ -329,6 +329,16 @@ class StressRules:
         orthographic rule and cannot see syntax, so a homograph that is a clitic
         in one reading and a full word in another (Gulf ``يَا`` — vocative
         particle vs. the verb *yā* 'came') is destressed in every occurrence.
+    coda_liquid_capture : bool
+        Opt-in sonority-based syllabification for the stress-mark splitter. The
+        bundled splitter is onset-maximising and hands a whole medial consonant
+        cluster forward as the next onset; for a ``liquid + consonant`` cluster
+        that is wrong (a liquid cannot open a rising onset), so the mark lands
+        one segment early — ``buˈɾmejʎu`` instead of ``buɾˈmejʎu``. With this set,
+        a leading liquid of a medial cluster closes the preceding syllable as its
+        coda, so the mark lands on the true onset. Default off: it changes only
+        where an existing stress mark is *drawn* (never which nucleus is
+        stressed, nor the segments), and only for specs that opt in.
     source : str
         Where the stress comes from. ``"rules"`` (the default) means this block —
         declarative data a language owner wrote, that anyone can read, cite and
@@ -354,6 +364,7 @@ class StressRules:
     superheavy_final_attracts: bool = True
     max_onset: int = 1
     cliticless_words: Tuple[str, ...] = ()
+    coda_liquid_capture: bool = False
     source: str = "rules"
     notes: str = ""
 
@@ -1093,6 +1104,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "wals_code": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
+    "allophone_passes": InheritanceMode.NOT_INHERITED,
     "tone_inventory": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
     "wikipedia": InheritanceMode.OWN_ONLY,
@@ -1344,6 +1356,29 @@ class LanguageSpec:
     by id-keyed overlay (:class:`InheritanceMode.OVERLAY_BY_ID`), like
     ``sandhi_rules``. See :mod:`orthography2ipa.allophony` and
     ``docs/allophony.md``."""
+
+    allophone_passes: int = 1
+    """How many times the compiled ``allophone_rules`` pass is applied,
+    bounded to feed one rule's output into another's context.
+
+    A single pass reads every rule's neighbouring segments from the state
+    *before* the pass, so two rules cannot feed each other in one word: a
+    Brazilian-Portuguese final ⟨-es⟩ that only becomes [i] by a raising rule
+    cannot then trigger /t/→[t͡ʃ] affrication on its left neighbour, because
+    the affrication rule saw the pre-raise vowel. Setting this to ``2`` (or
+    more) re-runs the whole allophone pass, and each extra pass rebuilds the
+    segment context from the previous pass's output, so the raise now feeds
+    the affrication (estes → [ˈest͡ʃis]).
+
+    Default ``1`` — the engine is byte-identical for every spec that does not
+    opt in. It is opt-in per spec on purpose (``NOT_INHERITED``, like
+    ``stress``): re-running the pass can re-fire a non-idempotent rule, so each
+    spec must restate the count and confirm — against its own gold — that the
+    extra pass changes only the intended feeding cases. A palatalising
+    Brazilian dialect that shares pt-BR's affrication restates ``2``; a
+    conservative-dental dialect that disables the affrication leaves the
+    default ``1`` (its raising needs no second pass). Bounded (no unbounded
+    fixpoint) so a pathological rule set cannot loop."""
 
     tone_inventory: Optional[Dict[str, str]] = None
     """Optional tone inventory: IPA tone mark → label

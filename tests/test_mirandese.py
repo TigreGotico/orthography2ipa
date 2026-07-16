@@ -38,8 +38,10 @@ def test_apical_s_marked_dorsal_c_z_plain():
 
 def test_predorsal_sibilant_transcription():
     g = _t("mwl")
-    # ⟨c⟩ before front vowel and ⟨ç⟩ -> plain /s/
-    assert g.transcribe("brício") == "ˈbɾisjo"
+    # ⟨c⟩ before front vowel and ⟨ç⟩ -> plain /s/. The word-final ⟨-io⟩ ending
+    # stays in hiatus [iu] (not the rising glide [jo]), per the mirandese_g2p
+    # human gold (brício -> [ˈbɾisiʉ]); see the io/iu word_final positional.
+    assert g.transcribe("brício") == "ˈbɾisiu"
     assert g.transcribe("rapaç").endswith("s")
     # ⟨z⟩ -> plain /z/
     assert "z" in g.transcribe("bizarro")
@@ -253,3 +255,17 @@ class TestConvencaoWave:
 
     def test_gu_is_bare_stop_before_front_vowels(self):
         assert "ɡw" not in self._t("guerra")
+
+
+def test_mwl_coda_liquid_stress_placement():
+    """A liquid that heads a medial ⟨rC/lC⟩ cluster is the coda of the
+    preceding syllable, so the stress mark lands on the true onset:
+    burmeilho -> [buɾˈmejʎu], not [buˈɾmejʎu] (coda_liquid_capture)."""
+    g = _t("mwl")
+    assert g.spec.stress.coda_liquid_capture is True
+    assert g.transcribe_word("burmeilho") == "buɾˈmejʎu"
+    assert g.transcribe_word("armano") == "ɐɾˈmanu"
+    # a rising ⟨lh⟩+glide onset (mu-lhier) is NOT a falling cluster: kept intact
+    assert g.transcribe_word("mulhier") == "muˈʎjeɾ"
+    # a valid rising obstruent+liquid onset (⟨bl⟩) is not captured
+    assert g.transcribe_word("arble").startswith("ˈaɾbl")

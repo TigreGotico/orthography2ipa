@@ -271,6 +271,7 @@
       ]
     }
   },
+  "allophone_passes": 2,
   "allophone_rules": [
     {
       "id": "BR_FINAL_EM_GLIDE",
@@ -360,6 +361,34 @@
         "̃"
       ],
       "notes": "Vowel-quality companion of the coda-nasalisation (see PT_NASAL_A_RAISE; Mateus & d'Andrade 2000: ch.2). BP nasal /o/ is the close-mid [õ], so the open [ɔ] raises to the oral base [o] before the nasalisation tilde — [o]+[̃] = [õ] (bom [ˈbõ], onde). Surface is oral [o]; the tilde is supplied only by the coda m/n slot (no double tilde). Fires only before the tilde, so an oral ⟨o⟩ before an onset ⟨m/n⟩ (fome, sono) is unchanged. High vowels ⟨i u⟩ need no companion rule — [ĩ ũ] share the oral base [i u] (sim [ˈsĩ], mundo [ˈmũdu])."
+    },
+    {
+      "id": "BR_RAISE_FINAL_ES",
+      "phonemes": [
+        "e",
+        "ɪ"
+      ],
+      "surface": "i",
+      "stress": "unstressed",
+      "followed_by_phoneme": [
+        "s"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "Final unstressed vowel raising in the ⟨-es⟩ ending (Barbosa & Albano 2004: 229; Câmara Jr. 1970 §III): an unstressed word-final ⟨e⟩ raises to close [i] before the plural/2sg coda ⟨-s⟩ exactly as it does word-finally without the ⟨s⟩ (dente [ˈdẽt͡ʃi] : dentes [ˈdẽt͡ʃis]; pote : potes; estes [ˈest͡ʃis]; pires [ˈpiɾis]). The bare-final case is BR_RAISE_FINAL_E; here the ⟨s⟩ intervenes so the nucleus is not word-final and the pre-lexical map leaves it [e] (posttonic nucleus_unstressed), which this rule raises. Gated `unstressed` so a stressed ⟨-ês/-és⟩ monosyllable keeps its mid vowel (três [ˈtɾes], mês [ˈmes], dez [ˈdɛs] — the last is [ɛ] and untargeted anyway). `followed_by_2 = word_boundary` restricts it to the true ending, so a medial ⟨e⟩ before a tautosyllabic ⟨s⟩+C (vespa, festa) is untouched. Feeds the /t d/ affrication (BR_AFFRIC_*_RAISED) on the preceding slot, which is why the pt-BR spec runs the allophone pass twice (allophone_passes): the affrication reads this rule's raised [i] only on the second pass."
+    },
+    {
+      "id": "BR_RAISE_FINAL_OS",
+      "phonemes": [
+        "o",
+        "ʊ"
+      ],
+      "surface": "u",
+      "stress": "unstressed",
+      "followed_by_phoneme": [
+        "s"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "Voiced-vowel counterpart of BR_RAISE_FINAL_ES: an unstressed word-final ⟨o⟩ raises to close [u] before the plural coda ⟨-s⟩ (gato [ˈɡatu] : gatos [ˈɡatus]; tios [ˈt͡ʃius]; montes/pontos). The bare-final case is BR_RAISE_FINAL_O; here the ⟨s⟩ intervenes so the pre-lexical map leaves the nucleus [o] (posttonic), which this rule raises. Gated `unstressed` so a stressed ⟨-ós/-ôs⟩ (nós [ˈnɔs], avós, pôs) keeps its mid vowel; `followed_by_2 = word_boundary` restricts it to the ending so a medial ⟨o⟩ before ⟨s⟩+C (mosca, gosto) is untouched."
     },
     {
       "id": "BR_RAISE_FINAL_E",

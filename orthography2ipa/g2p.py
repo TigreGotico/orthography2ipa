@@ -349,6 +349,16 @@ class G2P:
             if apply_allophony else None
         )
         self._allophone_rescorer = allophone_rescorer
+        # The allophone pass may run more than once (bounded), so a rule that
+        # only fires on another rule's output can feed off it: each repeat
+        # rebuilds the segment context from the previous pass. `allophone_passes`
+        # is 1 for every spec that has not opted in, so the tuple holds exactly
+        # one copy and behaviour is byte-identical.
+        n_passes = max(1, getattr(self.spec, "allophone_passes", 1))
+        self._allophone_chain: Tuple[LatticeRescorer, ...] = (
+            (allophone_rescorer,) * n_passes
+            if allophone_rescorer is not None else ()
+        )
 
         # Rescorers come from DECLARED plugins only — named by the spec or by the
         # caller. Discovery alone never contributes phonology: a rescorer changes
@@ -358,8 +368,7 @@ class G2P:
         # declared data a language owner wrote, and a plugin refines that phonology
         # rather than overruling it.
         self._rescorers: Tuple[LatticeRescorer, ...] = (
-            user_rescorers
-            + ((allophone_rescorer,) if allophone_rescorer is not None else ())
+            user_rescorers + self._allophone_chain
         )
         self._plugin_rescorers_resolved = False
         self.expand_allophones = expand_allophones
@@ -384,14 +393,10 @@ class G2P:
             for r in plugin.rescorers(self.lang)
         )
         if declared_rescorers:
-            allophone_last = (
-                (self._allophone_rescorer,)
-                if self._allophone_rescorer is not None else ()
-            )
             base = tuple(
                 r for r in self._rescorers if r is not self._allophone_rescorer
             )
-            self._rescorers = base + declared_rescorers + allophone_last
+            self._rescorers = base + declared_rescorers + self._allophone_chain
 
         self.on_unmapped = on_unmapped
         self._warned_unmapped: Set[Tuple[str, str]] = set()
