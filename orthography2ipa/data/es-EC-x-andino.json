@@ -12,7 +12,11 @@
       "s"
     ],
     "ll": [
-      "ʝ"
+      "ʒ"
+    ],
+    "y": [
+      "ʒ",
+      "i"
     ]
   },
   "allophones_base": "es-ES",
@@ -24,6 +28,14 @@
       ],
       "before_i": [
         "s"
+      ]
+    },
+    "y": {
+      "before_vowel": [
+        "ʒ"
+      ],
+      "default": [
+        "i"
       ]
     }
   },

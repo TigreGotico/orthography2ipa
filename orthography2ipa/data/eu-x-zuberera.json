@@ -6,6 +6,12 @@
   "graphemes": {
     "ü": [
       "y"
+    ],
+    "h": [
+      "h"
+    ],
+    "kh": [
+      "kʰ"
     ]
   },
   "allophones_base": "eu",

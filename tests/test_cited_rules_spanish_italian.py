@@ -71,7 +71,15 @@ def test_latam_stub_seseo(code):
     assert _bare("es-ES", "cielo").startswith("θ")
 
 
-@pytest.mark.parametrize("code", LATAM_STUBS)
+# The two highland varieties that resist the merger: NW Argentina keeps /ʎ/
+# distinct (ll-retention) and highland Andean Ecuador is zheísta (⟨ll⟩ = [ʒ]).
+# Both are still seseante, so they stay in LATAM_STUBS above but out of the
+# yeísmo cohort here.
+YEISTA_STUBS = [c for c in LATAM_STUBS
+                if c not in ("es-AR-x-norte", "es-EC-x-andino")]
+
+
+@pytest.mark.parametrize("code", YEISTA_STUBS)
 def test_latam_stub_yeismo(code):
     """YEÍSMO: ⟨ll⟩ is /ʝ/ — the historical lateral /ʎ/ is merged away.
 

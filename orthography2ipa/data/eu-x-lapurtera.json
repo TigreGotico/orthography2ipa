@@ -80,5 +80,10 @@
     "longitude": -1.45,
     "source": "wikidata",
     "notes": "Lapurdi (Labourd) — the historical province the dialect is named for. [Wikidata Q671023 P625]"
+  },
+  "graphemes": {
+    "h": [
+      "h"
+    ]
   }
 }
