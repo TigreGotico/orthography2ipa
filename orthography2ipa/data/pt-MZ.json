@@ -142,9 +142,7 @@
   "iso639_3": "por",
   "positional_graphemes": {
     "s": {
-      "coda": [
-        "s"
-      ],
+
       "word_final": [
         "s"
       ],
@@ -165,9 +163,7 @@
       "intervocalic": [
         "ɾ"
       ],
-      "coda": [
-        "ɾ"
-      ],
+
       "word_final": [
         "ɾ"
       ]
@@ -188,9 +184,6 @@
         "ɨ"
       ],
       "word_initial": [
-        "e"
-      ],
-      "coda": [
         "e"
       ]
     },
@@ -215,15 +208,10 @@
     "l": {
       "onset": [
         "l"
-      ],
-      "coda": [
-        "w"
       ]
     },
     "z": {
-      "coda": [
-        "z"
-      ],
+
       "word_final": [
         "z"
       ]

@@ -331,18 +331,12 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
     },
     "d": {
       "word_final": [
-        "t"
-      ],
-      "coda": [
         "t"
       ],
       "default": [
@@ -359,9 +353,6 @@
       "word_final": [
         "χ"
       ],
-      "coda": [
-        "χ"
-      ],
       "default": [
         "ɡ"
       ]
@@ -370,18 +361,12 @@
       "word_final": [
         "f"
       ],
-      "coda": [
-        "f"
-      ],
       "default": [
         "v"
       ]
     },
     "z": {
       "word_final": [
-        "s"
-      ],
-      "coda": [
         "s"
       ],
       "default": [

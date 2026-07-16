@@ -125,10 +125,6 @@
       "intervocalic": [
         "z"
       ],
-      "coda": [
-        "ʃ",
-        "ʒ"
-      ],
       "word_final": [
         "ʃ"
       ],
@@ -140,17 +136,11 @@
       "word_final": [
         "ʃ",
         "z"
-      ],
-      "coda": [
-        "ʃ"
       ]
     },
     "l": {
       "onset": [
         "l"
-      ],
-      "coda": [
-        "ɫ"
       ]
     },
     "e": {
@@ -162,9 +152,6 @@
         "e"
       ],
       "nucleus_unstressed": [
-        "ɨ"
-      ],
-      "coda": [
         "ɨ"
       ],
       "word_initial": [
@@ -184,10 +171,6 @@
       ],
       "nucleus_unstressed": [
         "u"
-      ],
-      "coda": [
-        "u",
-        "o"
       ],
       "word_initial": [
         "o",
@@ -209,9 +192,6 @@
         "a"
       ],
       "word_final": [
-        "ɐ"
-      ],
-      "coda": [
         "ɐ"
       ],
       "pretonic": [

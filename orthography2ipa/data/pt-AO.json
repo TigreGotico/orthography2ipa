@@ -167,9 +167,6 @@
       ],
       "word_final": [
         "a"
-      ],
-      "coda": [
-        "a"
       ]
     },
     "e": {
@@ -216,9 +213,7 @@
       "intervocalic": [
         "ɾ"
       ],
-      "coda": [
-        "ɾ"
-      ],
+
       "word_final": [
         "ɾ"
       ]
@@ -230,17 +225,13 @@
       "intervocalic": [
         "z"
       ],
-      "coda": [
-        "s"
-      ],
+
       "word_final": [
         "s"
       ]
     },
     "z": {
-      "coda": [
-        "z"
-      ],
+
       "word_final": [
         "z"
       ]
@@ -248,9 +239,6 @@
     "l": {
       "onset": [
         "l"
-      ],
-      "coda": [
-        "ɫ"
       ]
     }
   },

@@ -35,12 +35,15 @@
       "intervocalic": [
         "ɾ"
       ],
-      "coda": [
+      "before_consonant": [
+        "ɾ"
+      ],
+      "word_final": [
         "ɾ"
       ]
     },
     "ll": {
-      "coda": [
+      "before_consonant": [
         "l"
       ],
       "word_final": [
