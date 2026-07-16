@@ -1,0 +1,21 @@
+id	sentence	ipa	gloss_en	features	notes
+pln-001	Ese casa poleba vendé nu poque i teneba ma cuatro moná.	ese kasa poleba bende nu poke i teneba ma kuatɾo mona	That house couldn't be sold because I had four children.	final_u;sandhi;statement;negation;number	Postposed negation 'nu' and preposed plural 'ma' per lipski2012; seseo ⟨c⟩=[s] and betacism ⟨v⟩=[b].
+pln-002	Antonce casa suto teneba Barranquilla quelá jue pa majaná.	antonse kasa suto teneba barankija kela hue pa mahana	So the house we had in Barranquilla was left for the kids.	seseo;rhotic;statement	1pl pronoun 'suto', copula 'jue', past 'teneba' per lipski2012; trill ⟨rr⟩=[r] in 'Barranquilla'.
+pln-003	Aquí teneba casa ri material nu.	aki teneba kasa ɾi mateɾial nu	There were no cement-block houses here.	final_u;statement;negation	Postposed negation 'nu' and preposition 'ri' (< de) per lipski2012.
+pln-004	La primera casa de material jue casa ma tatá mi.	la pɾimeɾa kasa de mateɾial hue kasa ma tata mi	The first cement house was my parents' house.	statement	Copula 'jue' (< fue) with ⟨j⟩=[h]; possessive 'mi' postposed per lipski2012.
+pln-005	I taba cu mango pa i cumé poque i a tené jambre.	i taba ku maŋɡo pa i kume poke i a tene hambɾe	I was holding mangoes to eat because I was hungry.	gheada;final_u;velar_nasal;sandhi;statement	1sg pronoun 'i', past 'taba', perfective 'a'; ⟨j⟩=[h] 'jambre' (< hambre) per lipski2012.
+pln-006	E que tenga cumina tenga que ndá a que tenga jambre.	e ke teŋɡa kumina teŋɡa ke nda a ke teŋɡa hambɾe	Those who have food must give to those who are hungry.	gheada;velar_nasal;sandhi;statement	Word-initial prenasalized stop ⟨nd⟩=[nd] in 'ndá' (< dar), the Bantu-substrate diagnostic per apics2013pln.
+pln-007	Si bo trae lágrima aquí a ete vigrio suto te damo plata.	si bo tɾae laɡɾima aki a ete biɡɾio suto te damo plata	If you bring tears in this glass we'll give you money.	sandhi;statement	2sg pronoun 'bo', 1pl 'suto'; ⟨g⟩ before front vowel = [h] neutralised per lipski2012.
+pln-008	I a teneba tre pero a murí ndo, a quelá mi ese.	i a teneba tɾe peɾo a muɾi ndo a kela mi ese	I had three but two died, I have that one left.	sandhi;statement;number	Prenasalized ⟨nd⟩=[nd] in 'ndo' (< dos) per schwegler_morton2003; perfective 'a' per lipski2012.
+pln-009	E ma posá jue di to suto.	e ma posa hue di to suto	That house is ours.	statement	Plural/definite marker 'ma', copula 'jue', 1pl 'suto' per lipski2012.
+pln-010	E ma posá é ri ele.	e ma posa e ɾi ele	That house is his.	sandhi;statement	3sg pronoun 'ele', copula 'é', preposition 'ri' (< de) per lipski2012.
+pln-011	Ese ma mujé ta ngolo.	ese ma muhe ta ŋɡolo	That woman is fat.	gheada;velar_nasal;statement	Prenasalized ⟨ng⟩=[ŋɡ] in 'ngolo' (< gordo) per apics2013pln; ⟨j⟩=[h] 'mujé'.
+pln-012	E ma flo ta amaría.	e ma flo ta amaɾia	That flower is yellow.	sandhi;statement	Imperfective 'ta'; coda-cluster simplification 'flo' (< flor) per lipski2012.
+pln-013	E ma pueta ta abieta.	e ma pueta ta abieta	That door is open.	sandhi;statement	Imperfective copula 'ta'; open-syllable preference 'pueta' (< puerta) per apics2013pln.
+pln-014	Ma puetta ta celao.	ma puetta ta selao	The door is closed.	seseo;statement	Geminate ⟨tt⟩ from coda-liquid assimilation 'puetta' (< puerta) per apics2013pln.
+pln-015	Celá ma puetta.	sela ma puetta	Close the door.	seseo;imperative	Bare-root imperative 'celá'; seseo ⟨c⟩=[s] before front vowel per lipski2012.
+pln-016	Ma centro di reunión ri ma jende.	ma sentɾo di ɾeunion ɾi ma hende	The community meeting centre.	seseo;statement	⟨j⟩=[h] 'jende' (< gente); double plural 'ma ... ma' per lipski2012.
+pln-017	E ma trocha lo que ta ahi ta angota.	e ma tɾotʃa lo ke ta ai ta aŋɡota	That street over there is narrow.	velar_nasal;sandhi;statement	Prenasalized ⟨ng⟩=[ŋɡ] 'angota' (< angosta); relativizer 'lo que' per lipski2012.
+pln-018	Ma pelo asé ndrumí mucho.	ma pelo ase ndɾumi mutʃo	The dogs sleep a lot.	sandhi;statement	Habitual 'asé' and prenasalized ⟨nd⟩=[nd] 'ndrumí' (< dormir) per lipski2012.
+pln-019	Bo a cuchá?	bo a kutʃa	Did you hear?	sandhi;question	2sg 'bo', perfective 'a'; ⟨ch⟩=[tʃ] 'cuchá' (< escuchar); a frequent child-directed phrase per lipski2012.
+pln-020	Onde bo tando?	onde bo tando	Where are you going?	question	Interrogative 'onde'; progressive 'tando'; a frequent child-directed phrase per lipski2012.

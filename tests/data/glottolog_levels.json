@@ -51,6 +51,10 @@
     "name": "Algerian Arabic",
     "level": "language"
   },
+  "algh1238": {
+    "name": "Alguerés",
+    "level": "dialect"
+  },
   "algi1248": {
     "name": "Algic",
     "level": "family"
@@ -231,6 +235,10 @@
     "name": "Belarusian",
     "level": "language"
   },
+  "bena1260": {
+    "name": "Benasqués",
+    "level": "dialect"
+  },
   "beng1280": {
     "name": "Bengali",
     "level": "language"
@@ -317,6 +325,10 @@
   },
   "cata1291": {
     "name": "Català Nord-Occidental",
+    "level": "dialect"
+  },
+  "cavi1254": {
+    "name": "Caviteño",
     "level": "dialect"
   },
   "cebu1242": {
@@ -1511,6 +1523,10 @@
     "name": "Pfaelzisch-Lothringisch",
     "level": "language"
   },
+  "pale1260": {
+    "name": "Palenquero",
+    "level": "language"
+  },
   "pali1273": {
     "name": "Pali",
     "level": "language"
@@ -1903,6 +1919,10 @@
     "name": "Telugu",
     "level": "language"
   },
+  "tern1248": {
+    "name": "Ternateño",
+    "level": "language"
+  },
   "tetu1245": {
     "name": "Tetum",
     "level": "language"
@@ -2150,13 +2170,5 @@
   "zulu1248": {
     "name": "Zulu",
     "level": "language"
-  },
-  "algh1238": {
-    "name": "Alguerés",
-    "level": "dialect"
-  },
-  "bena1260": {
-    "name": "Benasqués",
-    "level": "dialect"
   }
 }
