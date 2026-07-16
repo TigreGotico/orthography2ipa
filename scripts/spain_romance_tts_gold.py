@@ -87,6 +87,8 @@ LECTS = [
     "es-CL", "es-CL-x-andino", "es-CL-x-chilote",
     # Central American and Equatoguinean Spanish (Americas/Africa extension)
     "es-GT", "es-HN", "es-SV", "es-NI", "es-CR", "es-PA", "es-GQ",
+    # Latin American Spanish cover + Mexican varieties (Americas extension)
+    "es-419", "es-MX", "es-MX-x-norte", "es-MX-x-yucatan", "es-MX-x-costa",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
