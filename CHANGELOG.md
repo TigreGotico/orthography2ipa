@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.19.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.8a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.21.0a1...7.19.8a1)
+
+**Merged pull requests:**
+
+- fix\(mwl\): calibrate Mirandese phonology to the human-speaker gold [\#542](https://github.com/TigreGotico/orthography2ipa/pull/542) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.21.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.21.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.20.0a1...7.21.0a1)
@@ -524,10 +532,6 @@
 ## [5.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/5.0.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.6.0a1...5.0.0a1)
-
-**Breaking changes:**
-
-- feat!: drop G2PPlugin — it was never a plugin [\#372](https://github.com/TigreGotico/orthography2ipa/pull/372) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.6.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.6.0a1) (2026-07-14)
 
