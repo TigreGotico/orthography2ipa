@@ -323,9 +323,6 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
@@ -334,18 +331,12 @@
       "word_final": [
         "t"
       ],
-      "coda": [
-        "t"
-      ],
       "default": [
         "d"
       ]
     },
     "g": {
       "word_final": [
-        "k"
-      ],
-      "coda": [
         "k"
       ],
       "default": [

@@ -60,7 +60,7 @@ class TestCaipiraRetroflex:
         # traditional Amaral §22a rhotacised realisation [ɻ] is retained as a
         # declared secondary candidate.
         assert bare(_g("pt-BR-x-caipira").transcribe_word("sol")).endswith("w")
-        assert "ɻ" in get("pt-BR-x-caipira").positional_graphemes["l"]["coda"]
+        assert "ɻ" in get("pt-BR-x-caipira").positional_graphemes["l"]["before_consonant"]
 
 
 # ─── caipira: coda /s/ laminodental, no chiado (Amaral 1920 §6a) ─────────────

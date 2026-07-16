@@ -357,18 +357,12 @@
       "word_final": [
         "p"
       ],
-      "coda": [
-        "p"
-      ],
       "default": [
         "b"
       ]
     },
     "в": {
       "word_final": [
-        "f"
-      ],
-      "coda": [
         "f"
       ],
       "default": [
@@ -387,9 +381,6 @@
       "word_final": [
         "t"
       ],
-      "coda": [
-        "t"
-      ],
       "default": [
         "d"
       ]
@@ -398,18 +389,12 @@
       "word_final": [
         "s"
       ],
-      "coda": [
-        "s"
-      ],
       "default": [
         "z"
       ]
     },
     "ж": {
       "word_final": [
-        "ʂ"
-      ],
-      "coda": [
         "ʂ"
       ],
       "default": [

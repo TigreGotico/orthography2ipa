@@ -323,12 +323,19 @@
       "intervocalic": [
         "ɾ"
       ],
-      "coda": [
+      "before_consonant": [
+        "ɾ"
+      ],
+      "word_final": [
         "ɾ"
       ]
     },
     "n": {
-      "coda": [
+      "before_consonant": [
+        "n",
+        "ŋ"
+      ],
+      "word_final": [
         "n",
         "ŋ"
       ]

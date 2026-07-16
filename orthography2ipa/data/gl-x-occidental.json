@@ -28,7 +28,10 @@
         "h",
         "ɣ"
       ],
-      "coda": [
+      "before_consonant": [
+        "h"
+      ],
+      "word_final": [
         "h"
       ]
     }

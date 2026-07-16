@@ -451,7 +451,11 @@
       "onset": [
         "l"
       ],
-      "coda": [
+      "before_consonant": [
+        "l",
+        "ɫ"
+      ],
+      "word_final": [
         "l",
         "ɫ"
       ]

@@ -206,7 +206,7 @@
       "intervocalic": [
         "z̺"
       ],
-      "coda": [
+      "before_consonant": [
         "ʃ",
         "ʒ"
       ],
@@ -230,7 +230,7 @@
         "ʃ",
         "z̺"
       ],
-      "coda": [
+      "before_consonant": [
         "ʃ"
       ]
     },

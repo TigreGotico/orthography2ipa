@@ -106,7 +106,7 @@
    "intervocalic": [
     "ɾ"
    ],
-   "coda": [
+   "before_consonant": [
     "ɾ"
    ],
    "word_final": [
@@ -125,9 +125,7 @@
    "intervocalic": [
     "z"
    ],
-   "coda": [
-    "h"
-   ],
+
    "word_final": [
     ""
    ]

@@ -470,9 +470,6 @@
       "before_consonant": [
         "h"
       ],
-      "coda": [
-        "h"
-      ],
       "word_final": [
         "s"
       ],
@@ -482,9 +479,6 @@
     },
     "z": {
       "before_consonant": [
-        "h"
-      ],
-      "coda": [
         "h"
       ],
       "word_final": [

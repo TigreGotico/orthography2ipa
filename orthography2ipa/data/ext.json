@@ -43,7 +43,7 @@
       ]
     },
     "s": {
-      "coda": [
+      "before_consonant": [
         "h",
         ""
       ],
@@ -95,13 +95,21 @@
       "intervocalic": [
         "ɾ"
       ],
-      "coda": [
+      "before_consonant": [
+        "ɾ",
+        "h"
+      ],
+      "word_final": [
         "ɾ",
         "h"
       ]
     },
     "n": {
-      "coda": [
+      "before_consonant": [
+        "n",
+        "ŋ"
+      ],
+      "word_final": [
         "n",
         "ŋ"
       ]

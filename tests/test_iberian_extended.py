@@ -138,9 +138,9 @@ class TestSpanishWesternAndalusian:
 
     def test_s_coda_aspiration(self):
         """Coda /s/ realised as [h] or ∅."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None, "s/CODA positional missing"
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
         assert "" in coda, "s/CODA should include ∅ deletion"
 
     def test_s_word_final_aspiration(self):
@@ -236,9 +236,9 @@ class TestSpanishCanarian:
 
     def test_s_coda_aspiration(self):
         """Coda s → [h, s] — aspiration primary in coda."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
 
     def test_s_word_final_aspiration(self):
         """Word-final s → h."""
@@ -292,9 +292,9 @@ class TestSpanishMurcian:
 
     def test_s_coda_aspiration(self):
         """Coda s → [h, s]."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
 
     def test_d_intervocalic_lenition(self):
         """Intervocalic d → [ð, ∅]."""
@@ -397,9 +397,9 @@ class TestSpanishChilean:
 
     def test_s_coda_aspiration(self):
         """Coda s has aspiration."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_contains(coda, "h", label="s/CODA")
+        _assert_contains(coda, "h", label="s/BEFORE_CONSONANT")
 
     def test_parent_is_es_es(self):
         assert self.spec.parent == "es-ES"
@@ -513,9 +513,9 @@ class TestExtremaduran:
 
     def test_s_coda_aspiration(self):
         """Coda s → [h, ∅] — strong aspiration/deletion."""
-        coda = _positional(self.spec, "s", GraphemePosition.CODA)
+        coda = _positional(self.spec, "s", GraphemePosition.BEFORE_CONSONANT)
         assert coda is not None
-        _assert_first(coda, "h", label="s/CODA")
+        _assert_first(coda, "h", label="s/BEFORE_CONSONANT")
         assert "" in coda
 
     def test_s_word_final_aspiration(self):

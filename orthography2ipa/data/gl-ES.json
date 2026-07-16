@@ -294,7 +294,10 @@
       "intervocalic": [
         "s"
       ],
-      "coda": [
+      "before_consonant": [
+        "s"
+      ],
+      "word_final": [
         "s"
       ]
     },
@@ -308,7 +311,10 @@
       "onset": [
         "ɾ"
       ],
-      "coda": [
+      "before_consonant": [
+        "ɾ"
+      ],
+      "word_final": [
         "ɾ"
       ]
     },
@@ -316,7 +322,11 @@
       "default": [
         "n"
       ],
-      "coda": [
+      "before_consonant": [
+        "n",
+        "ŋ"
+      ],
+      "word_final": [
         "n",
         "ŋ"
       ]

@@ -114,13 +114,21 @@
       ]
     },
     "m": {
-      "coda": [
+      "before_consonant": [
+        "m",
+        "̃"
+      ],
+      "word_final": [
         "m",
         "̃"
       ]
     },
     "n": {
-      "coda": [
+      "before_consonant": [
+        "n",
+        "̃"
+      ],
+      "word_final": [
         "n",
         "̃"
       ]

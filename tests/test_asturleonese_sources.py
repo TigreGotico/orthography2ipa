@@ -254,11 +254,16 @@ class TestBarranquenhoConvencaoSignatures:
         """Coda ⟨s⟩ → [h] aspiration (not [ʃ]): *mehmu, Lihboa, bihtu*.
         Convenção pp. 28–29, stated-explicitly.
         The [ʃ] value is a pt-PT feature NOT documented for Barranquenho."""
-        pos_rules = barrancos.positional_graphemes or {}
-        s_rules = pos_rules.get("s", {})
-        coda = s_rules.get("coda", [])
-        assert "h" in coda, "coda s should include h (aspiration)"
-        assert "ʃ" not in coda, "coda s should NOT include ʃ (pt-PT feature, not Barranquenho)"
+        rules = barrancos.allophone_rules or []
+        coda_s = [
+            r for r in rules
+            if getattr(r, "syllable_position", None) == "coda"
+            and "s" in (getattr(r, "phonemes", None) or [])
+        ]
+        assert coda_s and all(
+            "h" in (r.surface or "") and "ʃ" not in (r.surface or "")
+            for r in coda_s
+        ), "coda s should aspirate to [h], never the pt-PT [ʃ]"
 
     def test_em_en_nasal_vowel_not_diphthong(self, barrancos):
         """⟨em/en⟩ → [ẽ] (plain nasal vowel, NOT diphthong [ɐ̃j] or [ẽj]).
