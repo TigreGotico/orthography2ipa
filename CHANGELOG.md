@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.19.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.1a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.0a1...7.19.1a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): clitic prosody, e→\[i\] raising, NW-diphthong gating, apocope stress [\#527](https://github.com/TigreGotico/orthography2ipa/pull/527) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.18.0a1...7.19.0a1)
@@ -505,10 +513,6 @@
 ## [4.5.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.5.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.4.0a1...4.5.0a1)
-
-**Merged pull requests:**
-
-- feat\(gold\): Arabic TTS gold set — 125 diacritized sentences across all 25 lects + connected-speech orthography fixes [\#358](https://github.com/TigreGotico/orthography2ipa/pull/358) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.4.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.4.0a1) (2026-07-13)
 
