@@ -159,6 +159,11 @@ KNOWN_DEAD_RULES = {
     # nasalisation rules target never surface here. The rules are live in the
     # parent mwl and in mwl-x-ifanes, which keep the diphthongs.
     "mwl-x-sendim": {"MWL_NASAL_DIPHTHONG_JE", "MWL_NASAL_DIPHTHONG_WO"},
+    # Cypriot Maronite Arabic lost the glottal stop /ʔ/ entirely (Borg 1985;
+    # Roth 2004), so the inherited hamzat-al-waṣl prosthesis rule — which
+    # targets /ʔ/ — can never fire here. It is live in every Arabic lect that
+    # keeps /ʔ/; the rule set is Classical Arabic's, inherited unchanged.
+    "acy": {"AR_WASL_EPENTHESIS"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
