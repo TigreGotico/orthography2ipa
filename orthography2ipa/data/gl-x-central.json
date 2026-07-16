@@ -2,8 +2,8 @@
   "code": "gl-x-central",
   "name": "Central Galician",
   "script": "Latin",
-  "graphemes_base": "gl-ES",
-  "allophones_base": "gl-ES",
+  "graphemes_base": "gl",
+  "allophones_base": "gl",
   "allophones": {
     "ʎ": [
       "ʎ"
@@ -13,8 +13,8 @@
       "ɣ"
     ]
   },
-  "positional_graphemes_base": "gl-ES",
-  "parent": "gl-ES",
+  "positional_graphemes_base": "gl",
+  "parent": "gl",
   "ancestors": [
     {
       "code": "gl",
