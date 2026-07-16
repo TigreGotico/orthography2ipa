@@ -61,15 +61,18 @@ not to certify a language on its own.
 | La Rosa (2021), Languages 6:145 | Tunisian Sahel (Mahdia/Msaken) | `ar-TN` | 7 |
 | Watson (2002), The Phonology and Morphology of Arabic | Cairene / Moroccan (Lmnabha, as quoted from Elmedlaoui) / Ṣanʿānī | `ar-EG` / `ar-MA` / `ar-YE` | 18 / 1 / 15 |
 | Alhoody (2019), Newcastle PhD | Qassimi (Qaṣīm) | `ar-SA-x-qassim` | 12 |
+| Algethami (2023), ICPhS | Najdi vowels (acoustic) | `ar-SA-x-najd` | 3 |
+| Mahzari (2023), TPLS 13(3) | Najdi /k/,/q/ (Riyadh) | `ar-SA-x-najd` | 8 |
+| Alshammari (2026), JLTR 17(4) | Northern Najdi velar affrication (Ḥāʾil) | `ar-SA-x-najd` / `null` | 4 / 2 |
 | Watson & Al-Azraqi (2011), PSAS 41 | Rijāl Almaʿ (SW Saudi Tihāmah) | `ar-SA-x-rijal-alma` | 3 |
 | Al-Taisan (2022), Essex PhD | Hasawi (al-Hasa, Eastern Province) | `ar-SA-x-sharqiyya` | 2 |
 | Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro), ALUSTP standardization article | `cri` | 13 |
 | Baxter (1988), Pacific Linguistics B-95 | Kristang (Malacca Creole Portuguese) | `mcm` | 33 |
 | Brissos (2018), Estud. ling. galega, vol. esp. I | NW Portuguese (variedade do noroeste) | `pt-PT-x-porto` | 9 |
 | Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `ext-PT-x-barrancos` | 10 |
-| **total** | | | **488** |
+| **total** | | | **505** |
 
-Broad `/…/`: 338. Narrow `[…]`: 150. `confidence`: 306 high, 168 medium, 14 low.
+Broad `/…/`: 343. Narrow `[…]`: 162. `confidence`: 322 high, 169 medium, 14 low.
 
 ## Notation-normalization decisions
 
@@ -251,6 +254,27 @@ running the engine over these rows.
     modelled within-axis RD1, and the marginal `maquia [mɐˈkei̯ɐ]` (`[i]→[ei̯]`,
     ~19% of tokens, pre-pause/vowel only, p.199) is deliberately left out; the
     rows record what is and is not covered.
+
+28. **`ar-SA-x-najd` monophthongization is not modelled, yet the sources say
+    central Najd monophthongizes too.** Algethami (2023) p.3385 gives `[beːt]`
+    'home' and `[soːt]` 'sound', and Ingham (1994:15, reproduced in Algethami's
+    Fig.1) already lists /eː oː/ in the Najdi inventory. o2i's `ar-SA-x-najd`
+    spec retains the diphthongs (`بَيْت → [bajt]`), so these rows score as
+    errors against it. The consequence is that the Qaṣīm leaf's QAS_MONO_AY/AW
+    "defining delta from central Najd" is largely an artifact of the parent
+    modelling diphthong retention — the monophthongs are pan-Najdi. Flagged for
+    the `ar-SA-x-najd` spec (a sibling's file).
+29. **`ar-SA-x-najd` /ɡ/-affrication trigger set is wider than the literature.**
+    Alshammari (2026, `[ɡumar]` 'moon', pp.1335-1337) and Mahzari (2023) both
+    restrict `/ɡ/→[dz]` to HIGH FRONT `/i iː/` only (voicing asymmetry), while
+    `/k/→[ts]` reaches central `/a/` in Northern Najdi (`[tsalb]`, `[simats]` —
+    tagged `null`, an NNA/Shammar extension absent from central Najd/Qaṣīm). The
+    o2i NAJD_AFFRIC_G rules include `/e eː/` in the trigger; no Qaṣīm gold row
+    exercises that leg, so it is inert here but over-generous for the parent.
+30. **`ar-SA-x-najd` lexical exceptions to /k/-affrication are unmodelled.**
+    Mahzari (2023) p.802 Table 3: `kursi → [kirsi]` 'chair' keeps `[k]` despite a
+    surface front `/i/`; the grapheme rule would give `*[tsirsi]`. A lexical
+    stratum the rules cannot see — the sort of fact that belongs in a lexicon.
 
 ## Adding rows
 
