@@ -202,3 +202,71 @@ class TestSyllabifierDiscovery:
         if plugin is None:
             pytest.skip("no syllabifier plugin installed in this environment")
         assert hasattr(plugin, "syllabify")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Cache immutability — a spec handed out by get() cannot be mutated
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestCachedSpecIsImmutable:
+    """get() returns the single cached spec shared by every caller.
+
+    A mutation of that shared instance would silently corrupt every subsequent
+    caller in the process — this actually happened and poisoned a measurement
+    run. The mapping fields are frozen (:class:`FrozenDict`) so the shared
+    instance cannot be mutated in place, while identity is preserved (get() is
+    cheap: no per-call copy) and reads/replace/asdict/deepcopy keep working.
+    """
+
+    def test_grapheme_key_assignment_is_blocked(self):
+        spec = get("ext-PT-x-barrancos")
+        with pytest.raises(TypeError):
+            spec.graphemes["aqui"] = ["x"]
+
+    def test_grapheme_pop_and_update_are_blocked(self):
+        spec = get("pt-PT")
+        with pytest.raises(TypeError):
+            spec.graphemes.pop(next(iter(spec.graphemes)))
+        with pytest.raises(TypeError):
+            spec.graphemes.update({"zzz": ["z"]})
+
+    def test_plugins_mapping_is_blocked(self):
+        spec = get("pt-PT")
+        with pytest.raises(TypeError):
+            spec.plugins["stress"] = ("bogus",)
+
+    def test_attribute_rebinding_is_blocked(self):
+        spec = get("pt-PT")
+        with pytest.raises(Exception):  # FrozenInstanceError
+            spec.graphemes = {}
+
+    def test_a_failed_mutation_leaves_a_fresh_get_pristine(self):
+        """The regression: mutate a fetched spec, then a fresh get() is
+        unaffected. Even a mutation that slips past the guard must not leak
+        into the next caller's spec."""
+        first = get("ext-PT-x-barrancos")
+        before = dict(first.graphemes)
+        # attempts to corrupt the shared instance
+        for attempt in (
+            lambda: first.graphemes.__setitem__("aqui", ["CORRUPT"]),
+            lambda: first.graphemes.update({"aqui": ["CORRUPT"]}),
+        ):
+            try:
+                attempt()
+            except TypeError:
+                pass
+        second = get("ext-PT-x-barrancos")
+        assert second is first          # identity: shared cached instance
+        assert dict(second.graphemes) == before
+        assert "aqui" not in second.graphemes
+
+    def test_identity_is_preserved_for_aliases(self):
+        """Freezing must not turn get() into a copy: alias and canonical code
+        still resolve to the SAME cached object."""
+        assert get("por") is get("pt-PT")
+
+    def test_replace_and_asdict_still_work(self):
+        from dataclasses import replace, asdict
+        spec = get("pt-PT")
+        assert replace(spec, notes="x").notes == "x"
+        assert isinstance(asdict(spec)["graphemes"], dict)
