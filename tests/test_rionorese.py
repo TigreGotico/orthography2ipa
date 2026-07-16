@@ -81,13 +81,15 @@ class TestGraphemeTable:
         """v → b only — full betacism (no v phoneme)."""
         assert rionor.graphemes.get("v") == ["b"]
 
-    def test_z_dental_fricative(self, rionor):
-        """z → θ (dental fricative, not d͡z/z̺ from Leonese parent)."""
-        assert rionor.graphemes.get("z") == ["θ"]
+    def test_z_seseo_s(self, rionor):
+        """z → [s] (seseo: merged with Galician [s], not the Castilian
+        interdental [θ] nor the Leonese-parent affricate d͡z). Vasconcelos
+        EPM II p.54 documents the galego-merger for this NW-corner falar."""
+        assert rionor.graphemes.get("z") == ["s"]
 
-    def test_ç_dental_fricative(self, rionor):
-        """ç → θ."""
-        assert rionor.graphemes.get("ç") == ["θ"]
+    def test_ç_seseo_s(self, rionor):
+        """ç → [s] (seseo, Vasconcelos EPM II p.54), not [θ]."""
+        assert rionor.graphemes.get("ç") == ["s"]
 
     def test_tch_trigraph(self, rionor):
         """tch → tʃ (Rionorese affricate written as trigraph)."""
@@ -138,10 +140,11 @@ class TestGraphemeTable:
         assert rionor.graphemes.get("lh") == ["ʎ"]
 
     def test_c_has_both_values(self, rionor):
-        """c → k (default) or θ (before front vowels) — listed in graphemes."""
+        """c → k (default) or [s] (seseo, before front vowels) — listed in
+        graphemes. Vasconcelos EPM II p.54 galego-merger, not [θ]."""
         vals = rionor.graphemes.get("c")
         assert "k" in vals
-        assert "θ" in vals
+        assert "s" in vals
 
     def test_g_has_both_values(self, rionor):
         """g → ɡ (default) or x (before front vowels)."""
@@ -196,11 +199,11 @@ class TestAllophoneTable:
         assert rionor.allophones.get("v") is None
 
     def test_t_ts_removed(self, rionor):
-        """t͡s is not a Rionorese phoneme (collapsed to θ)."""
+        """t͡s is not a Rionorese phoneme (merged into seseo [s])."""
         assert rionor.allophones.get("t͡s") is None
 
     def test_d_dz_removed(self, rionor):
-        """d͡z is not a Rionorese phoneme (collapsed to θ)."""
+        """d͡z is not a Rionorese phoneme (merged into seseo [s])."""
         assert rionor.allophones.get("d͡z") is None
 
     def test_b_has_fricative_allophone(self, rionor):
@@ -208,8 +211,11 @@ class TestAllophoneTable:
         assert "β" in rionor.allophones.get("b", [])
 
     def test_theta_phoneme(self, rionor):
-        """/θ/ is a phoneme with itself as the only allophone."""
-        assert rionor.allophones.get("θ") == ["θ"]
+        """/θ/ is NOT a Rionorese phoneme: this NW-corner falar is seseante,
+        merging the predorsal sibilant with Galician [s] rather than the
+        Castilian interdental [θ] (Vasconcelos EPM II p.54). The interdental
+        that the Sanabria continuum (ast-x-sanabria) keeps is absent here."""
+        assert rionor.allophones.get("θ") is None
 
     def test_x_phoneme(self, rionor):
         """/x/ is a phoneme (from g before front vowels)."""
@@ -231,15 +237,15 @@ class TestAllophoneTable:
 class TestPositionalGraphemes:
     """Context-sensitive rules via LanguageSpec.resolve_grapheme()."""
 
-    def test_c_before_e_is_theta(self, rionor):
-        """c before e → θ (dental fricative, not k)."""
+    def test_c_before_e_is_seseo_s(self, rionor):
+        """c before e → [s] (seseo, Vasconcelos EPM II p.54), not [θ] or [k]."""
         result = rionor.resolve_grapheme("c", GraphemePosition.BEFORE_E)
-        assert result == ["θ"]
+        assert result == ["s"]
 
-    def test_c_before_i_is_theta(self, rionor):
-        """c before i → θ."""
+    def test_c_before_i_is_seseo_s(self, rionor):
+        """c before i → [s] (seseo, Vasconcelos EPM II p.54), not [θ]."""
         result = rionor.resolve_grapheme("c", GraphemePosition.BEFORE_I)
-        assert result == ["θ"]
+        assert result == ["s"]
 
     def test_c_default_is_k(self, rionor):
         """c in other positions → k (default from graphemes table)."""

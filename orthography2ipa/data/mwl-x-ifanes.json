@@ -6,6 +6,7 @@
   "graphemes": {},
   "allophones_base": "mwl",
   "positional_graphemes_base": "mwl",
+  "word_exceptions_base": "mwl",
   "parent": "mwl",
   "notes": "Ifanês is the local speech of Ifanes (Infainç) in the northern part of Terra de Miranda; it belongs to the Northern / Raiano (border) subdialect of Mirandese. Phonologically it tracks Central Mirandese: the published descriptions record NO segmental orthography→phoneme divergence for the Northern/Raiano group. In particular, Central and Raiano BOTH keep the Leonese diphthongs ⟨iê/ie⟩ = [je] and ⟨uô/uo⟩ = [wo] (only Sendinês monophthongises them to [i]/[u]), and BOTH keep the palatal lateral /ʎ/ where Sendinês has /l/. This is corroborated by the small Raiano gold sample (raiano 'fuogo' → [ˈfwo.ʊ], diphthong retained). The Raiano/Northern distinctives that ARE reported are morphosyntactic and lexical (definite-article forms, some nasalisation and syntactic constructions) — out of scope for a grapheme→IPA spec. This spec therefore inherits the full Central Mirandese system unchanged and is grounded by documentation rather than by a distinct rule set; an earlier draft's monophthongisation ⟨iê⟩→[e] was unsourced and is removed as contradicted by both the literature and the Raiano gold.",
   "quality": "research",
@@ -82,7 +83,14 @@
       "ũ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. Dialect mwl-x-ifanes: no evidence of stress-pattern divergence from standard Mirandese; block copied from mwl."
+    "cliticless_words": [
+      "l", "la", "ls", "las", "lo", "los",
+      "a", "an", "de", "por", "cun", "pul", "pula", "puls", "pulas",
+      "ne", "na", "no", "nas", "nos",
+      "i", "e", "que",
+      "me", "te", "se", "bos"
+    ],
+    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. Dialect mwl-x-ifanes: no evidence of stress-pattern divergence from standard Mirandese; block copied from mwl (cliticless_words included, since stress is not inherited)."
   },
   "location": {
     "latitude": 41.581667,

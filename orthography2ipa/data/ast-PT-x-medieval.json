@@ -46,6 +46,9 @@
     "ch": [
       "tʃ"
     ],
+    "z": [
+      "d͡z"
+    ],
     "v": [
       "v",
       "b"
@@ -102,6 +105,28 @@
       "coda": [
         "n",
         "ŋ"
+      ]
+    },
+    "qu": {
+      "before_e": [
+        "k"
+      ],
+      "before_i": [
+        "k"
+      ],
+      "before_vowel": [
+        "kw"
+      ]
+    },
+    "z": {
+      "word_initial": [
+        "d͡z"
+      ],
+      "intervocalic": [
+        "d͡z"
+      ],
+      "word_final": [
+        "d͡z"
       ]
     }
   },
