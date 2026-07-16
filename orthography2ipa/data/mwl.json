@@ -27,7 +27,7 @@
     }
   ],
   "quality": "research",
-  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/ (written ⟨iê/ie⟩, ⟨uô/uo⟩), palatal lateral /ʎ/ preserved (written ⟨lh⟩ in all positions; word-initial ⟨l⟩ before vowel = /ʎ/ in traditional lexicon per Convenção § L). Heavy Portuguese adstrate via official education and administration. Mirandese preserves the medieval four-way+ sibilant contrast that Portuguese lost, the hallmark of the language: (1) voiceless apico-alveolar /s̺/ ⟨s, ss⟩ and its voiced intervocalic counterpart /z̺/ ⟨-s-⟩; (2) voiceless (pre)dorso-dental /s/ ⟨c (before e/i), ç⟩ and voiced /z/ ⟨z⟩; (3) postalveolar /ʃ/ ⟨x⟩ and /ʒ/ ⟨j, g (before e/i)⟩; (4) the affricate /tʃ/ ⟨ch⟩ (still an affricate, unlike modern European Portuguese). NOTATION CONVENTION (matches the TigreGotico/mirandese_g2p expert gold): the apical/dorsal CONTRAST is written by marking only the apical series with the ̺ diacritic (⟨s⟩ = /s̺/, /z̺/) and leaving the dorso-dental series unmarked (⟨c, ç, z⟩ = plain /s/, /z/); this is IPA-standard, keeps the phonemic contrast explicit, and avoids the over-narrow laminal ̻ diacritic the gold does not use. ⟨ç⟩ is a fricative, not an affricate, and occurs word-finally (rapaç, lhuç) where Portuguese writes -z. ⟨j⟩ is /ʒ/ (western Iberian, never the Asturian palatal ʝ) — ⟨y⟩ is the glide /j/. INITIAL-L PALATALISATION (Leonese): word-initial ⟨l⟩ before a vowel = /ʎ/ (luç → [ˈʎus], Convenção § L; bare ⟨l⟩ /l/ survives only in loanwords, proper nouns and the article — a documented residual limit); ⟨lh⟩ = /ʎ/ and ⟨nh⟩ = /ɲ/. The trigraphs ⟨anh, enh, inh, onh, unh⟩ are given explicitly (oral vowel + /ɲ/, e.g. danho → [ˈdaɲu]) so the greedy nasal-vowel digraph does not swallow the /ɲ/ of a following ⟨nh⟩. Nasal digraphs ⟨an, en, in, on, un⟩ realise Portuguese-adstrate nasal vowels /ɐ̃ ẽ ĩ õ ũ/ before a consonant or at word boundary (brando → [ˈbɾɐ̃du]); before a vowel they are oral vowel + /n/. ALLOPHONY (post-lexical, allophone_rules): coda /n/ assimilates in place to a following labial ([m]) or velar ([ŋ]). Ibero-Romance intervocalic voiced-stop spirantisation (⟨b d g⟩ → [β ð ɣ]) is a REAL native process — voiced stops lenite to [β ð ɣ] everywhere except after a pause or a nasal (Mateus & d'Andrade 2000:11; Ferreira & Raposo 1999; mwl Wikipedia phonology, \"voiced stops /b d ɡ/ MAY be lenited as fricatives [β ð ɣ]\"). It is applied PER PHONEME on the basis of the expert-human TigreGotico/mirandese_g2p gold measured at true oral-intervocalic positions (post-nasal excluded): /b/ is spirant-dominant (β:9/b:5), so MWL_SPIRANT_B rewrites intervocalic /b/→[β] (a net win on the human gold, PER 0.1901→0.1851). /ɡ/ is already spirantised to [ɣ] intervocalically at the positional_graphemes layer (⟨g⟩ intervocalic → [ɣ]), so no allophone rule is needed — adding one only misfires after a diphthong glide (eigual → gold stop [ɐjˈɡwal]). /d/, however, remains STOP-dominant intervocalically in the gold (d:13/ð:7) — the documented Asturleonese conservatism/occlusion of /d/, and the reason the Wikipedia wording is hedged (\"may be\") — so /d/ keeps its positional default [d] and /d/→[ð] is DELIBERATELY NOT applied as a rewrite (a blanket /d/ rule regresses this expert gold); [ð] stays declared in the `allophones` inventory for the lattice / downstream mwl_phonemizer where lexical conditioning is available. Word-onset and post-nasal /b d ɡ/ keep the stop. Nasal+voiced-stop sequences (⟨mb nd ng⟩) keep the nasal consonant and leave the vowel oral (Convenção 1999); they are one grapheme so the nasal is not read as a coda.",
+  "notes": "Mirandese (mirandés), spoken in the Miranda do Douro municipality, northeastern Portugal. Classified as Asturleonese. Recognised as a regional/minority language in Portugal since 1999. Retains archaic Asturleonese features: diphthongisation of Latin short /e/ and /o/ (written ⟨iê/ie⟩, ⟨uô/uo⟩), palatal lateral /ʎ/ preserved (written ⟨lh⟩ in all positions; word-initial ⟨l⟩ before vowel = /ʎ/ in traditional lexicon per Convenção § L). Heavy Portuguese adstrate via official education and administration. Mirandese preserves the medieval four-way+ sibilant contrast that Portuguese lost, the hallmark of the language: (1) voiceless apico-alveolar /s̺/ ⟨s, ss⟩ and its voiced intervocalic counterpart /z̺/ ⟨-s-⟩; (2) voiceless (pre)dorso-dental /s/ ⟨c (before e/i), ç⟩ and voiced /z/ ⟨z⟩; (3) postalveolar /ʃ/ ⟨x⟩ and /ʒ/ ⟨j, g (before e/i)⟩; (4) the affricate /tʃ/ ⟨ch⟩ (still an affricate, unlike modern European Portuguese). NOTATION CONVENTION (matches the TigreGotico/mirandese_g2p expert gold): the apical/dorsal CONTRAST is written by marking only the apical series with the ̺ diacritic (⟨s⟩ = /s̺/, /z̺/) and leaving the dorso-dental series unmarked (⟨c, ç, z⟩ = plain /s/, /z/); this is IPA-standard, keeps the phonemic contrast explicit, and avoids the over-narrow laminal ̻ diacritic the gold does not use. ⟨ç⟩ is a fricative, not an affricate, and occurs word-finally (rapaç, lhuç) where Portuguese writes -z. ⟨j⟩ is /ʒ/ (western Iberian, never the Asturian palatal ʝ) — ⟨y⟩ is the glide /j/. INITIAL-L PALATALISATION (Leonese): word-initial ⟨l⟩ before a vowel = /ʎ/ (luç → [ˈʎus], Convenção § L; bare ⟨l⟩ /l/ survives only in loanwords, proper nouns and the article — a documented residual limit); ⟨lh⟩ = /ʎ/ and ⟨nh⟩ = /ɲ/. The trigraphs ⟨anh, enh, inh, onh, unh⟩ are given explicitly (oral vowel + /ɲ/, e.g. danho → [ˈdaɲu]) so the greedy nasal-vowel digraph does not swallow the /ɲ/ of a following ⟨nh⟩. Nasal digraphs ⟨an, en, in, on, un⟩ realise Portuguese-adstrate nasal vowels /ɐ̃ ẽ ĩ õ ũ/ before a consonant or at word boundary (brando → [ˈbɾɐ̃du]); before a vowel they are oral vowel + /n/. ALLOPHONY (post-lexical, allophone_rules): coda /n/ assimilates in place to a following labial ([m]) or velar ([ŋ]). Ibero-Romance intervocalic voiced-stop spirantisation (⟨b d g⟩ → [β ð ɣ]) is a REAL native process — voiced stops lenite to [β ð ɣ] everywhere except after a pause or a nasal (Mateus & d'Andrade 2000:11; Ferreira & Raposo 1999; mwl Wikipedia phonology, \"voiced stops /b d ɡ/ MAY be lenited as fricatives [β ð ɣ]\"). It is applied PER PHONEME on the basis of the expert-human TigreGotico/mirandese_g2p gold measured at true oral-intervocalic positions (post-nasal excluded): /b/ is spirant-dominant (β:9/b:5), so MWL_SPIRANT_B rewrites intervocalic /b/→[β] (a net win on the human gold, PER 0.1901→0.1851). /ɡ/ is already spirantised to [ɣ] intervocalically at the positional_graphemes layer (⟨g⟩ intervocalic → [ɣ]), so no allophone rule is needed — adding one only misfires after a diphthong glide (eigual → gold stop [ɐjˈɡwal]). /d/, however, remains STOP-dominant intervocalically in the gold (d:13/ð:7) — the documented Asturleonese conservatism/occlusion of /d/, and the reason the Wikipedia wording is hedged (\"may be\") — so /d/ keeps its positional default [d] and /d/→[ð] is DELIBERATELY NOT applied as a rewrite (a blanket /d/ rule regresses this expert gold); [ð] stays declared in the `allophones` inventory for the lattice / downstream mwl_phonemizer where lexical conditioning is available. Word-onset and post-nasal /b d ɡ/ keep the stop. Pre-consonantal nasal digraphs ⟨an en in on un⟩ (and ⟨am…⟩) before ANY stop — voiceless or voiced ⟨mb nd ng nt…⟩ — nasalise the preceding vowel and the nasal is absorbed, with the following stop retained (brando→[ˈbɾɐ̃du], quando→[ˈkwɐ̃du], bufanda→[buˈfɐ̃dɐ], abandono→[abɐ̃ˈdonu], lhéngua→[ˈʎẽɡwɐ], sendo→[ˈs̺ẽdu], mirandés→[miɾɐ̃ˈdes̺]). This is the inherited Ibero-Romance nasal-vowel + AST_NASAL_ABSORB behaviour and matches the native-speaker gold (TigreGotico/mirandese_g2p) on every nasal+stop word; the earlier oral-digraph treatment (⟨mb nd ng⟩ kept as [mb nd ŋɡ] with an oral vowel) was contradicted by the gold and has been removed. The stressed open-mid realisations [ɛ ɔ] raise to close-mid nasal [ẽ õ] (MWL_NASAL_E_OPEN; nasal mid vowels are close-mid, Mateus & d Andrade 2000). HUMAN-GOLD CALIBRATION (TigreGotico/mirandese_g2p, 219 words) vs Vasconcelos, Estudos de Philologia Mirandesa vol.1: (4) the preserved Leonese rising diphthongs are CLOSE — ⟨ie/iê⟩→[je], ⟨uo/uô⟩→[wo] — because Mirandese has a single intermediate mid /e o/ quality, \"menos abertos que os nossos\", and the ⟨ie⟩ nucleus is described as lying between [i] and [e] (Vasconcelos v1 §§2,4,10, pp.178-183); open [jɛ/wɔ] and stressed open [ɛ/ɔ] (fuorte→[ˈfwɔɾtɨ], era→[ˈɛɾɐ]) are non-contrastive allophonic variants of the same mid phoneme, not a separate target, so the spec does not force them. (5) ⟨ei⟩→[ej] is kept as the normative central value; Vasconcelos v1 §11 p.184 records general oscillation ei~ai (eigual~aigual, beilar~bailar), so the gold s [ɐj]/[aj] realisations (purmeiro→[puɾˈmɐjɾu]) are attested free variants, not errors. (6) ⟨s, ss⟩ and intervocalic ⟨-s-⟩ stay apico-alveolar [s̺]/[z̺] (Vasconcelos v1 §12 p.191, \"análogo ao s castelhano\", word-initial and ⟨ss⟩; intervocalic voiced counterpart), distinct from dorsal ⟨c/ç/z⟩ — the medieval sibilant contrast; the gold s plain [s]/[z] is notational under-marking, so the apical diacritic is retained.",
   "sources": [
     {
       "id": "ferreira1995",
@@ -139,11 +139,33 @@
     ],
     "stress_mark": "ˈ",
     "cliticless_words": [
-      "l", "la", "ls", "las", "lo", "los",
-      "a", "an", "de", "por", "cun", "pul", "pula", "puls", "pulas",
-      "ne", "na", "no", "nas", "nos",
-      "i", "e", "que",
-      "me", "te", "se", "bos"
+      "l",
+      "la",
+      "ls",
+      "las",
+      "lo",
+      "los",
+      "a",
+      "an",
+      "de",
+      "por",
+      "cun",
+      "pul",
+      "pula",
+      "puls",
+      "pulas",
+      "ne",
+      "na",
+      "no",
+      "nas",
+      "nos",
+      "i",
+      "e",
+      "que",
+      "me",
+      "te",
+      "se",
+      "bos"
     ],
     "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. cliticless_words are the monosyllabic function words (definite article l/la/ls/las and its prep+article contractions, the prepositions and coordinating conjunctions, and the enclitic object pronouns) that lean prosodically on their host and carry no word stress (Convenção §L article paradigm; the same proclitic/enclitic inventory #527 marks for Portuguese, given in Mirandese orthography)."
   },
@@ -169,13 +191,13 @@
       "j"
     ],
     "ie": [
-      "jɛ"
+      "je"
     ],
     "iê": [
-      "jɛ"
+      "je"
     ],
     "uô": [
-      "wɔ"
+      "wo"
     ],
     "ui": [
       "uj"
@@ -186,15 +208,6 @@
     ],
     "amp": [
       "ɐ̃p"
-    ],
-    "mb": [
-      "mb"
-    ],
-    "nd": [
-      "nd"
-    ],
-    "ng": [
-      "ŋɡ"
     ]
   },
   "positional_graphemes": {
@@ -396,6 +409,7 @@
     {
       "id": "MWL_NASAL_DIPHTHONG_JE",
       "phonemes": [
+        "je",
         "jɛ"
       ],
       "surface": "jẽ",
@@ -411,6 +425,15 @@
       "surface": "wõ",
       "followed_by": "coda_nasal",
       "notes": "Nasalisation of the preserved Leonese rising diphthong ⟨uo/uô⟩ [wo]/[wɔ] before a tautosyllabic coda nasal (fuonte → [ˈfwõtɨ]), the back-vowel counterpart of MWL_NASAL_DIPHTHONG_JE. Both open [wɔ] and close [wo] raise to close-mid nasal [õ], as Portuguese nasal /o/ is always close-mid (Mateus & d'Andrade 2000)."
+    },
+    {
+      "id": "MWL_NASAL_E_OPEN",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ẽ",
+      "followed_by": "coda_nasal",
+      "notes": "Nasalisation of stressed open-mid [ɛ] (from marked ⟨é⟩) before a tautosyllabic coda nasal; Mirandese nasal mid vowels are close-mid (Mateus & d'Andrade 2000), so [ɛ]→[ẽ]: lhéngua → [ˈʎẽɡwɐ]. Counterpart of MWL_NASAL_E_REDUCED for the stressed realisation."
     }
   ],
   "word_exceptions": {

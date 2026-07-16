@@ -1314,8 +1314,10 @@ class TestMiraneseIfanes:
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
     def test_ie_tilde_tracks_central(self):
-        """iê keeps the Central diphthong [jɛ] (Raiano does not monophthongise)."""
-        _assert_first(_grapheme(self.spec, "iê"), "jɛ", label="iê")
+        """iê keeps the Central diphthong [je] (Raiano does not monophthongise,
+        unlike Sendinese which reduces it to [i]). Central quality is the single
+        mid /e/ (Vasconcelos v1 §§2,4,10), so the diphthong is close [je]."""
+        _assert_first(_grapheme(self.spec, "iê"), "je", label="iê")
 
     def test_parent_is_mwl(self):
         assert self.spec.parent == "mwl"

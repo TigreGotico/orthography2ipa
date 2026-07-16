@@ -85,7 +85,14 @@ def test_vnh_trigraph_keeps_palatal_nasal():
 
 def test_leonese_diphthongs_central():
     g = _t("mwl")
-    assert g.transcribe("tierra").startswith("ˈtjɛr")   # ie -> [jɛ]
+    # ⟨ie⟩ → [je], ⟨uo⟩ → [wo]: Mirandese has a single mid /e o/ quality
+    # (Vasconcelos, Estudos de Philologia Mirandesa v1 §§2,4, pp.178-180:
+    # "menos abertos que os nossos", intermediate between the Portuguese
+    # open/close pair; the ⟨ie⟩ nucleus is described §10 p.182 as between [i]
+    # and [e]). The close default also matches the human gold majority
+    # (rabielho→rɐˈβjeʎu, squierdo→ˈs̺kjeɾdu). Open [jɛ]/[wɔ] are
+    # non-contrastive allophonic variants, not the target.
+    assert g.transcribe("tierra").startswith("ˈtjer")   # ie -> [je]
     assert "wo" in g.transcribe("puorta")                # uo -> [wo]
 
 
@@ -172,10 +179,11 @@ def test_word_initial_and_post_nasal_b_stays_a_stop():
     g = _t("mwl")
     # word-initial ⟨b⟩ is a stop; only the intervocalic one lenites
     assert g.transcribe("bibal") == "biˈβal"
-    # post-nasal ⟨b⟩ (after [m]) keeps the stop — the spirant rule requires a
-    # preceding vowel, not a nasal
-    assert g.transcribe("ambos") == "ˈambus̺"
-    assert g.transcribe("cambo") == "ˈkambu"
+    # post-nasal ⟨b⟩ keeps the stop — the vowel nasalises and absorbs the nasal
+    # consonant (⟨amb⟩ → [ɐ̃b], see TestConvencaoWave), and /b/ after the nasal
+    # vowel stays a stop rather than lenieting
+    assert g.transcribe("ambos") == "ˈɐ̃bus̺"
+    assert g.transcribe("cambo") == "ˈkɐ̃bu"
 
 
 def test_intervocalic_d_is_not_spirantised():
@@ -227,9 +235,13 @@ class TestConvencaoWave:
         # amportante [ɐ̃puɾtɐ̃tɨ]; AN/AM = /ɐ̃/ before a voiceless stop
         assert self._t("amportante").startswith("ɐ̃p")
 
-    def test_am_keeps_nasal_consonant_before_voiced_stop(self):
-        # stem-internal ⟨amb⟩: the nasal stays [m], /b/ stays a stop
-        assert self._t("ambos") == "ambus̺"
+    def test_amb_nasalises_vowel_before_voiced_stop(self):
+        # stem-internal ⟨amb/anb/ang/and⟩: the nasal digraph nasalises the vowel
+        # and is absorbed, the following stop is retained — matching the
+        # native-speaker gold (brando→bɾɐ̃du, quando→ˈkwɐ̃du, bufanda→bʉˈfɐ̃dɐ,
+        # abandono→abɐ̃ˈdonu). The earlier oral-digraph treatment (⟨amb⟩→[amb])
+        # is contradicted by every nasal+stop word in the gold.
+        assert self._t("ambos") == "ɐ̃bus̺"
 
     def test_ui_is_a_falling_diphthong(self):
         # fui [fuj] — the falling-diphthong system is preserved

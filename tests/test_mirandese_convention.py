@@ -131,19 +131,22 @@ class TestDiphthongs:
     characteristic Mirandese diphthongisation of Latin /ɛ/ and /ɔ/."""
 
     def test_ie_diphthong(self, mwl):
-        """CON-DIP: ⟨ie⟩ → /jɛ/ (bielho, amarielho)."""
+        """CON-DIP: ⟨ie⟩ → /je/ (bielho, amarielho). Mirandese mid /e/ is a
+        single intermediate quality (Vasconcelos v1 §§2,4,10, pp.178-183);
+        the close default matches the human gold (rabielho→rɐˈβjeʎu)."""
         result = strip_marks(mwl.transcribe("bielho"))
-        assert "jɛ" in result, f"Expected jɛ in {result!r}"
+        assert "je" in result, f"Expected je in {result!r}"
 
     def test_ie_accent_diphthong(self, mwl):
-        """CON-DIP: ⟨iê⟩ → /jɛ/ (tiêrra)."""
+        """CON-DIP: ⟨iê⟩ → /je/ (tiêrra)."""
         result = strip_marks(mwl.transcribe("tiêrra"))
-        assert "jɛ" in result, f"Expected jɛ in {result!r}"
+        assert "je" in result, f"Expected je in {result!r}"
 
     def test_uo_accent_diphthong(self, mwl):
-        """CON-DIP: ⟨uô⟩ → /wɔ/ (fuôrte, puôrta)."""
+        """CON-DIP: ⟨uô⟩ → /wo/ (fuôrte, puôrta) — single mid /o/ quality,
+        Vasconcelos v1 §10 p.183. Open [wɔ] is an allophonic variant."""
         result = strip_marks(mwl.transcribe("fuôrte"))
-        assert "wɔ" in result, f"Expected wɔ in {result!r}"
+        assert "wo" in result, f"Expected wo in {result!r}"
 
     def test_uo_plain_diphthong(self, mwl):
         """CON-DIP: ⟨uo⟩ → /wo/ (buono, nuobo) — unaccented keeps mid vowel."""
