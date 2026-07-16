@@ -28,23 +28,23 @@ Counted over the shipped specs (`orthography2ipa/data/*.json`):
 
 | | Count |
 |---|---:|
-| Language specs | 493 |
-| Clade nodes | 63 |
-| Total spec files | 556 |
-| Specs carrying a `glottolog_code` | 420 (362 languages, 58 clades) |
-| Distinct derived family paths | 68 |
-| Top-level families | 30 |
-| Largest family path | `Indo-European > Italic > Romance > Ibero-Romance` (118 languages) |
+| Language specs | 676 |
+| Clade nodes | 73 |
+| Total spec files | 749 |
+| Specs carrying a `glottolog_code` | 587 (520 languages, 67 clades) |
+| Distinct derived family paths | 81 |
+| Top-level families | 33 |
+| Largest family path | `Indo-European > Italic > Romance > Ibero-Romance` (124 languages) |
 
 Regenerate the numbers straight from the data:
 
 ```python
 import orthography2ipa
 
-codes = orthography2ipa.available_codes()                       # 493 languages
-clades = set(orthography2ipa.available_codes(include_clades=True)) - set(codes)   # 63
-with_code = [c for c in codes if orthography2ipa.get(c).glottolog_code]           # 362
-families = orthography2ipa.available_families()                                   # 68 paths
+codes = orthography2ipa.available_codes()                       # 676 languages
+clades = set(orthography2ipa.available_codes(include_clades=True)) - set(codes)   # 73
+with_code = [c for c in codes if orthography2ipa.get(c).glottolog_code]           # 520
+families = orthography2ipa.available_families()                                   # 81 paths
 ```
 
 ## Why the classification path is not a raw Glottolog slice
@@ -63,16 +63,15 @@ nothing.
 
 ## Where Glottolog has no node
 
-131 language specs carry no `glottolog_code`, and that is the correct value for them:
+156 language specs carry no `glottolog_code`, and that is the correct value for them:
 
-- **102 are dialect or historical varieties** (`-x-` codes: `pt-PT-x-porto`,
+- **106 are dialect or historical varieties** (`-x-` codes: `pt-PT-x-porto`,
   `es-ES-x-andalusia-w`, `la-x-hispania`, …). Glottolog resolves at the language level and files
   these under the national language; a code pointing at the parent would claim the spec *is* the
   parent, which is exactly the error `null` avoids.
-- **29 are national varieties** Glottolog does not separate (`en-US`, `de-AT`, `nl-BE`, `pt-AO`,
-  `es-CR`, …) — the same argument one level up.
-- A handful of **reconstructed proto-nodes** have no node of their own
-  (`brx-x-proto-boro-garo`, `xpa`).
+- **The remaining 50 are national varieties** Glottolog does not separate (`en-US`, `de-AT`,
+  `nl-BE`, `pt-AO`, `es-CR`, …) — the same argument one level up — together with a handful of
+  **reconstructed proto-nodes** that have no node of their own (`brx-x-proto-boro-garo`, `xpa`).
 
 Glottolog does have nodes for the awkward-looking cases, and they are used: Esperanto
 (`espe1235`, family `Constructed`), Iberian (`iber1250`, `Isolate`), Tartessian (`tart1237`,
