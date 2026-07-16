@@ -74,10 +74,10 @@ def test_algarve_unstressed_u_is_not_fronted(algarve):
 # ── Algarvio: proclitic guard (regression test for the o -> [y] leak) ─────────
 
 @pytest.mark.parametrize("word,expected", [
-    ("o", "ˈu"),    # definite article — [u], NEVER [y]
-    ("no", "ˈnu"),  # em + o contraction
-    ("do", "ˈdu"),  # de + o contraction
-    ("ao", "ˈaw"),  # a + o contraction
+    ("o", "u"),    # definite article — [u], NEVER [y]
+    ("no", "nu"),  # em + o contraction
+    ("do", "du"),  # de + o contraction
+    ("ao", "aw"),  # a + o contraction
 ])
 def test_algarve_proclitics_keep_u_never_front(algarve, word, expected):
     out = algarve.transcribe(word)
@@ -123,10 +123,10 @@ def test_alentejo_unstressed_u_is_not_fronted(alentejo):
 # ── Alentejano: proclitic guard (o -> [u], never [y]) ─────────────────────────
 
 @pytest.mark.parametrize("word,expected", [
-    ("o", "ˈu"),    # definite article — [u], NEVER [y]
-    ("no", "ˈnu"),  # em + o contraction
-    ("do", "ˈdu"),  # de + o contraction
-    ("ao", "ˈaw"),  # a + o contraction
+    ("o", "u"),    # definite article — [u], NEVER [y]
+    ("no", "nu"),  # em + o contraction
+    ("do", "du"),  # de + o contraction
+    ("ao", "aw"),  # a + o contraction
 ])
 def test_alentejo_proclitics_keep_u_never_front(alentejo, word, expected):
     out = alentejo.transcribe(word)

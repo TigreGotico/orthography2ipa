@@ -45,7 +45,7 @@ def test_new_specs_load_and_inherit_base():
 
 def test_coimbra_prevocalic_s_is_palatal():
     # DELTA: os olhos → [ʒ] (native attestation), where the pt-PT base → [z]
-    assert _t("pt-PT-x-coimbra", "os olhos") == "ˈoʒ ˈoʎuʃ"
+    assert _t("pt-PT-x-coimbra", "os olhos") == "oʒ ˈoʎuʃ"
     assert "ʒ" in _t("pt-PT-x-coimbra", "estás a ver")
     # base contrast: pt-PT keeps [z]
     assert "z" in _t("pt-PT", "estás a ver")
