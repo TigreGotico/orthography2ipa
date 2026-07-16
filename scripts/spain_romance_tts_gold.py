@@ -92,8 +92,9 @@ LECTS = [
     # Colombian Spanish (Americas extension): bogotano + regional accents
     "es-CO", "es-CO-x-costa", "es-CO-x-llanero", "es-CO-x-pacifico",
     "es-CO-x-paisa", "es-CO-x-santander", "es-CO-x-valluno",
-    # Spanish-lexifier creoles (part of the Spanish gold program)
-    "cbk-zam", "pap", "pln",
+    # (The Spanish-lexified creoles cbk-zam, pap and pln are NOT Iberian
+    # Romance; they moved to the unified creole harness —
+    # scripts/iberian_creole_tts_gold.py — with the rest of the creole roster.)
     # Basque (mega-set): Euskara Batua + the dialect specs. Not Romance, but an
     # Iberian language sharing the harness; its rows use the eu_* feature axes.
     "eu", "eu-x-bizkaiera", "eu-x-gipuzkera", "eu-x-lapurtera",
