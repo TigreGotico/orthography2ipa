@@ -73,6 +73,9 @@ LECTS = [
     "ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia", "ca-x-medieval",
     # Aranese Occitan, Fala, Extremaduran, mixed, Ladino
     "oc-x-aranes", "ext", "fax", "mxi", "lad",
+    # Caribbean Spanish (Americas extension)
+    "es-VE", "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-maracucho",
+    "es-CU", "es-DO", "es-PR",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]
