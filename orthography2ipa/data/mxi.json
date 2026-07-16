@@ -241,7 +241,7 @@
     },
     "y": {
       "before_vowel": [
-        "ʝ"
+        "ɟ"
       ],
       "default": [
         "j"
@@ -264,6 +264,14 @@
         "ɡ"
       ]
     }
+  },
+  "word_exceptions": {
+    "ya": "ja",
+    "yed": "jed",
+    "yo": "jo",
+    "tuyo": "tujo",
+    "creçen": "ˈkɾetsen",
+    "rab": "rabb"
   },
   "stress": {
     "default_position": -2,
@@ -306,6 +314,14 @@
       "ò"
     ],
     "stress_mark": "ˈ",
+    "cliticless_words": [
+      "me",
+      "el",
+      "la",
+      "en",
+      "e",
+      "ya"
+    ],
     "diphthongs": [
       "ai",
       "au",
