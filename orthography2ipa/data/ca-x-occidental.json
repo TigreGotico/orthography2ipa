@@ -132,9 +132,86 @@
         "ŋ"
       ],
       "notes": "Word-final cluster simplification (Wheeler 2005 §10.4; Recasens 1993; Veny 1982 ch. 3): an ABSOLUTELY word-final stop is DELETED after a homorganic nasal or lateral — camp [ˈkam], sang [ˈsaŋ], quant [ˈkwan], molt [ˈmol]. An innovation of CENTRAL, NORTH-WESTERN and NORTHERN Catalan against the Old-Catalan core, which keeps the stop; VALENCIAN and BALEARIC keep it too (camp [ˈkamp], molt [ˈmolt]), and the 4catac expert transcriptions confirm the split on the one token that is diagnostic because a vowel follows — molt alta = Central/North-Western [ˈmol ˈalt-] vs Valencian/Balearic [ˈmolt ˈalt-]. The isogloss is therefore Central + North-Western (+ Northern) against Valencian + Balearic; it is NOT the Eastern/Western line. Overrides the core's conservative CA_CLUSTER_*_FINAL rule by id."
+    },
+    {
+      "id": "NW_FINAL_A_STRESSED_KEEP",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "a",
+      "word_final": true,
+      "stress": "stressed",
+      "notes": "The lleidatà hallmark opens word-final unstressed ⟨-a⟩ to [ɛ] (porta [ˈpɔɾtɛ], dia [ˈðiɛ]), which the positional rule applies to every word-final ⟨a⟩. But a STRESSED final ⟨-a⟩ — a monosyllable like pa [ˈpa], va [ˈba], or an oxytone — does not lower: the opening is a property of the reduced, unstressed final vowel only (Recasens 1996; Veny 1982 ch. 3). This rule restores [a] on a stressed word-final ⟨a⟩ that the positional rule over-lowered (the ca-x-occidental-010 arbitration: pa stays [ˈpa], engine over-lowered to [ˈpɛ])."
+    },
+    {
+      "id": "NW_OPEN_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "word": [
+        "corre",
+        "corren",
+        "vora",
+        "vores",
+        "dona",
+        "dones"
+      ],
+      "notes": "North-Western carries open-mid [ɔ] in these lexemes where the Western default would give close [o] (corre [ˈkɔɾe], vora [ˈβɔɾɛ], dona [ˈdɔnɛ]); Catalan spelling does not mark the contrast, so the open-[ɔ] words are listed (Recasens 1996; Veny 1982; the ca-x-occidental-009/010 arbitration). Pins ONLY the stressed vowel and lets final-⟨a⟩ opening and betacism run on."
     }
   ],
   "stress": {
+    "cliticless_words": [
+      "el",
+      "la",
+      "l",
+      "els",
+      "les",
+      "lo",
+      "los",
+      "un",
+      "una",
+      "uns",
+      "unes",
+      "al",
+      "als",
+      "del",
+      "dels",
+      "pel",
+      "pels",
+      "cal",
+      "can",
+      "a",
+      "de",
+      "en",
+      "amb",
+      "per",
+      "que",
+      "com",
+      "des",
+      "i",
+      "o",
+      "ni",
+      "em",
+      "et",
+      "es",
+      "ens",
+      "us",
+      "li",
+      "hi",
+      "ho",
+      "ne",
+      "me",
+      "te",
+      "se",
+      "m",
+      "t",
+      "s",
+      "n",
+      "d",
+      "vos"
+    ],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -381,7 +458,7 @@
     "on": "on",
     "pel": "pel",
     "pels": "pels",
-    "per": "pe",
+    "per": "per",
     "que": "ke",
     "s": "s",
     "se": "se",

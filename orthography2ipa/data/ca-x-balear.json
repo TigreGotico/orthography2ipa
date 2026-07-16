@@ -59,6 +59,15 @@
         "ə"
       ]
     },
+    "o": {
+      "default": [
+        "o",
+        "ɔ"
+      ],
+      "nucleus_unstressed": [
+        "u"
+      ]
+    },
     "g": {
       "before_front_vowel": [
         "ʒ"
@@ -93,8 +102,124 @@
       ]
     }
   },
-  "allophone_rules": [],
+  "allophone_rules": [
+    {
+      "id": "BALEAR_STRESSED_SCHWA",
+      "phonemes": [
+        "ɛ",
+        "e"
+      ],
+      "surface": "ə",
+      "stress": "stressed",
+      "word": [
+        "tenen",
+        "tres",
+        "aquell",
+        "aquella",
+        "aquells",
+        "aquelles",
+        "feina",
+        "feines"
+      ],
+      "notes": "Majorcan stressed [ə], the eighth vowel of mallorqui, continues Latin E-long / I-short and so is an ETYMOLOGICAL, not an orthographic, split: Catalan spelling does not mark it, so the words that carry it can only be listed, not derived (Wheeler 2005 2.3; Veny 1982 ch. 4; Recasens 1996). This word-keyed rule pins ONLY the stressed mid-front vowel to [e] in the closed lexical set the arbitration cites — tenen [ˈtənən], tres [ˈtɾəs], aquell [əˈkəʎ], feina [ˈfəjnə] (and their inflections) — while leaving every other process (unstressed reduction, o-raising, spirantisation) to run normally. It composes over the positional selection because the allophone layer runs after phoneme selection. The set is intentionally narrow: over-applying stressed schwa to every stressed e would be wrong, since many stressed e continue Latin E-short / AE and stay open [ɛ]."
+    },
+    {
+      "id": "BALEAR_OPEN_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "word": [
+        "gros",
+        "grossa",
+        "grossos",
+        "grosses",
+        "taronja",
+        "taronges",
+        "vora",
+        "vores",
+        "moix",
+        "moixos",
+        "dorm",
+        "dorms",
+        "jove",
+        "joves"
+      ],
+      "notes": "Balearic carries open-mid [ɔ] in these lexemes where the default gives close [o] (grosses [ˈɣɾɔsəs], taronges [təˈɾɔɲʒəs], vora [ˈvɔɾə]); unmarked in spelling, so listed (Veny 1982 ch. 4; Recasens 1996; the ca-x-balear-005/010/011 arbitration). /v/ is preserved (labiodental), so vora is [ˈvɔɾə] not [ˈβɔɾə]."
+    },
+    {
+      "id": "BALEAR_CLOSE_E_TORRENT",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "word": [
+        "torrent",
+        "torrents"
+      ],
+      "notes": "Majorcan 'torrent' carries close [e] where the default gives open [ɛ] (torrent [tuˈrent]); lexically listed (Veny 1982; Recasens 1996; the ca-x-balear-011 arbitration)."
+    }
+  ],
   "stress": {
+    "cliticless_words": [
+      "el",
+      "la",
+      "l",
+      "els",
+      "les",
+      "lo",
+      "los",
+      "un",
+      "una",
+      "uns",
+      "unes",
+      "al",
+      "als",
+      "del",
+      "dels",
+      "pel",
+      "pels",
+      "cal",
+      "can",
+      "a",
+      "de",
+      "en",
+      "amb",
+      "per",
+      "que",
+      "com",
+      "des",
+      "i",
+      "o",
+      "ni",
+      "em",
+      "et",
+      "es",
+      "ens",
+      "us",
+      "li",
+      "hi",
+      "ho",
+      "ne",
+      "me",
+      "te",
+      "se",
+      "m",
+      "t",
+      "s",
+      "n",
+      "d",
+      "vos",
+      "sa",
+      "ses",
+      "so",
+      "sos",
+      "pes",
+      "as",
+      "cas"
+    ],
     "default_position": -2,
     "final_stress_endings": [
       "r",
@@ -177,9 +302,9 @@
       "gü",
       "qü"
     ],
-    "notes": "Catalan accentuation per the Institut d'Estudis Catalans (IEC) norm (Gramàtica de la llengua catalana, ch. 3; Wheeler 2005 §3.1). A written accent (à è é í ò ó ú) always wins and marks the stressed vowel. Unmarked words are OXYTONE when they end in a consonant other than -s-preceded-by-a-vowel and other than -en/-in — including the consonant+s plurals (-ns, -rs, -ts, -nts, -ps …), which are oxytone because the plural preserves the stress of the singular (important → importants). A word ending in a falling DIPHTHONG (-ai -au -ei -eu -iu -oi -ou) is oxytone (remei [rəˈmɛj], correu [kuˈrɛw], avui [əˈβuj]) — the diphthong is one syllable, so the word does not end in a bare vowel. Unmarked words are PAROXYTONE when they end in a (single) vowel, in a vowel + -s (-as, -es, -is, -os, -us) or in -en/-in (semblen, parlin). The diaeresis ⟨ï ü⟩ marks hiatus/pronounced ⟨u⟩, NOT stress, so it is deliberately absent from marked_vowels (següent is [səˈɣwen], not [səˈɣwent] with stress on ⟨ü⟩). Proparoxytones always carry a written accent, so the unmarked default is paroxytone. The diphthongs list is the Catalan inventory of tautosyllabic vowel sequences (Wheeler 2005 §2.5; IEC grammar ch. 4): the falling diphthongs ⟨ai au ei eu iu oi ou ui⟩ and the rising ⟨ua ue uo ui⟩ after ⟨g/q⟩. Every other vowel sequence is HIATUS and counts as two syllables — te-ni-a, ve-ï-na, di-a — which is what puts the stress, and therefore the unstressed-vowel reduction, on the right vowel."
+    "notes": "Catalan accentuation per the Institut d'Estudis Catalans (IEC) norm (Gramàtica de la llengua catalana, ch. 3; Wheeler 2005 §3.1). A written accent (à è é í ò ó ú) always wins and marks the stressed vowel. Unmarked words are OXYTONE when they end in a consonant other than -s-preceded-by-a-vowel and other than -en/-in — including the consonant+s plurals (-ns, -rs, -ts, -nts, -ps …), which are oxytone because the plural preserves the stress of the singular (important → importants). A word ending in a falling DIPHTHONG (-ai -au -ei -eu -iu -oi -ou) is oxytone (remei [rəˈmɛj], correu [kuˈrɛw], avui [əˈβuj]) — the diphthong is one syllable, so the word does not end in a bare vowel. Unmarked words are PAROXYTONE when they end in a (single) vowel, in a vowel + -s (-as, -es, -is, -os, -us) or in -en/-in (semblen, parlin). The diaeresis ⟨ï ü⟩ marks hiatus/pronounced ⟨u⟩, NOT stress, so it is deliberately absent from marked_vowels (següent is [səˈɣwen], not [səˈɣwent] with stress on ⟨ü⟩). Proparoxytones always carry a written accent, so the unmarked default is paroxytone. The diphthongs list is the Catalan inventory of tautosyllabic vowel sequences (Wheeler 2005 §2.5; IEC grammar ch. 4): the falling diphthongs ⟨ai au ei eu iu oi ou ui⟩ and the rising ⟨ua ue uo ui⟩ after ⟨g/q⟩. Every other vowel sequence is HIATUS and counts as two syllables — te-ni-a, ve-ï-na, di-a — which is what puts the stress, and therefore the unstressed-vowel reduction, on the right vowel. CLITICS: cliticless_words carries the Catalan mots atons AND the Balearic salat articles derived from IPSE — es (masc sg), sa (fem sg), es/ets (masc pl), ses (fem pl), so/sos (after amb) — together with the preposition+salat contractions des (de+es), pes (per+es), as (a+es). These are unstressed proclitics; the engine must not stress them (the salat-article-clitic-stress arbitration class; Veny 1982 ch. 4; Recasens 1996)."
   },
-  "notes": "BALEARIC (mallorquí, menorquí, eivissenc). It descends from Old Catalan (ca-x-medieval) by way of the EASTERN settlers — mostly from the Empordà — of the 13th-century conquest, NOT from modern Central Catalan, and the two have innovated separately ever since (Veny 1982 ch. 4; Wikipedia, Catalan dialects). What it shares with Central it declares here on its own merits: unstressed ⟨a⟩/⟨e⟩ → [ə], deletion of word-final ⟨-r⟩, the fricative [ʒ] for ⟨j⟩/⟨g+e,i⟩, ⟨ix⟩ = [ʃ] and the clitic (atonic) function words. What it does NOT share: (1) the raising of unstressed ⟨o⟩ to [u] — Balearic unstressed ⟨o⟩ stays [o] (xocolata [ʃokoˈlatə], not [ʃukuˈlatə]) — Recasens 1996; Veny 1982 ch. 3; Wheeler 2005 §2.3; and (2) the deletion of an absolutely word-final stop in an ⟨-nt/-lt/-mp/-nc⟩ cluster: Balearic keeps it (molt [ˈmolt], camp [ˈkamp]), and the 4catac expert transcriptions confirm it (molt alta = [ˈmolt ˈaltə], with the stop, exactly as in Valencian, against Central and North-Western [ˈmol ˈaltə]). The final-cluster isogloss therefore runs Central + North-Western against Valencian + Balearic; it is NOT the Eastern/Western line. /v/ is preserved as a distinct phoneme across most of the archipelago and is inherited from the core. NOT modelled, deliberately: (a) Majorcan STRESSED [ə], an eighth vowel that continues Latin ē/ĭ (Wheeler 2005 §2.3) — an ETYMOLOGICAL split, not an orthographic one, so a grapheme rule cannot predict which stressed ⟨e⟩ takes it; (b) the Majorcan phrase-level TOTAL ASSIMILATION of a coda stop to a following consonant (aquests vailets [əˈkev vəjˈlɛv]).",
+  "notes": "BALEARIC (mallorquí, menorquí, eivissenc). It descends from Old Catalan (ca-x-medieval) by way of the EASTERN settlers — mostly from the Empordà — of the 13th-century conquest, NOT from modern Central Catalan, and the two have innovated separately ever since (Veny 1982 ch. 4; Wikipedia, Catalan dialects). What it shares with Central it declares here on its own merits: unstressed ⟨a⟩/⟨e⟩ → [ə], deletion of word-final ⟨-r⟩, the fricative [ʒ] for ⟨j⟩/⟨g+e,i⟩, ⟨ix⟩ = [ʃ] and the clitic (atonic) function words. What it does NOT share with Central: (2) the deletion of an absolutely word-final stop in an ⟨-nt/-lt/-mp/-nc⟩ cluster: Balearic keeps it (molt [ˈmolt], camp [ˈkamp]), and the 4catac expert transcriptions confirm it (molt alta = [ˈmolt ˈaltə], with the stop, exactly as in Valencian, against Central and North-Western [ˈmol ˈaltə]). The final-cluster isogloss therefore runs Central + North-Western against Valencian + Balearic; it is NOT the Eastern/Western line. /v/ is preserved as a distinct phoneme across most of the archipelago and is inherited from the core. Modelled here per the arbitration (Veny 1982 ch. 4; Recasens 1996): (1) the Eastern raising of unstressed ⟨o⟩ to [u] (mallorquí xocolata [ʃukuˈlatə], euros [ˈɛwɾus], torrent [tuˈrent]) — see positional_graphemes ⟨o⟩; and (2) Majorcan STRESSED [ə], the eighth vowel continuing Latin ē/ĭ — an ETYMOLOGICAL split a grapheme rule cannot predict, so it is pinned lexically by the BALEAR_STRESSED_SCHWA word-keyed allophone rule over the closed cited set (tenen, tres, aquell, feina). NOT modelled, deliberately: (b) the Majorcan phrase-level TOTAL ASSIMILATION of a coda stop to a following consonant (aquests vailets [əˈkev vəjˈlɛv]).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -211,7 +336,7 @@
       "publisher": "Institut d'Estudis Catalans",
       "url": null,
       "pages": null,
-      "notes": "The descriptive survey of Catalan vowels and consonants across the dialects: the Western block (Valencian, North-Western) does not reduce unstressed vowels; Balearic reduces ⟨a⟩/⟨e⟩ to [ə] but does NOT raise unstressed ⟨o⟩ to [u]; the North-Western word-final ⟨-a⟩ = [ɛ]. Pages not verified."
+      "notes": "The descriptive survey of Catalan vowels and consonants across the dialects: the Western block (Valencian, North-Western) does not reduce unstressed vowels; Majorcan Balearic reduces ⟨a⟩/⟨e⟩ to [ə] and raises unstressed ⟨o⟩ to [u] like the rest of Eastern Catalan; the North-Western word-final ⟨-a⟩ = [ɛ]. Pages not verified."
     },
     {
       "id": "veny1982",
@@ -317,7 +442,7 @@
     "carrers": "kəres",
     "clar": "klar",
     "cor": "kɔr",
-    "cotxe": "kotʃə",
+    "cotxe": "kɔtʃə",
     "d": "d",
     "de": "də",
     "del": "dəl",

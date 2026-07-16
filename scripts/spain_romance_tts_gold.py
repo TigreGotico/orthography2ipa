@@ -327,6 +327,10 @@ FEATURES = {
     "final_u":          ("both", lambda s, ipa: _has_final_u_grapheme(s) and _has_final_u_ipa(ipa)),
     # 7-vowel open-mid contrast (Galician / Catalan / Asturleonese)
     "open_mid":         ("ipa",  lambda s, ipa: "ɛ" in ipa or "ɔ" in ipa),
+    # Eastern Andalusian vocalismo abierto: a lost/aspirated plural -s opens the
+    # preceding vowel ([e o a] → [ɛ ɔ æ]), the surviving cue to the morpheme
+    "vocalismo_abierto": ("both", lambda s, ipa: _coda_s_grapheme(s)
+                                                 and ("æ" in ipa or "ɛ" in ipa or "ɔ" in ipa)),
     # Catalan atonic schwa reduction [ə]
     "schwa":            ("ipa",  lambda s, ipa: "ə" in ipa),
     # velar nasal [ŋ] (Galician coda -n / ⟨nh⟩, Catalan ⟨ng⟩)

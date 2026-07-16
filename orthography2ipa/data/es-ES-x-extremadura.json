@@ -38,6 +38,33 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
+  "positional_graphemes": {
+    "s": {
+      "word_initial": [
+        "s"
+      ],
+      "intervocalic": [
+        "s"
+      ],
+      "before_consonant": [
+        "h",
+        "s"
+      ],
+      "word_final": [
+        "h"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "EXTREMADURA_X_TO_H",
+      "phonemes": [
+        "x"
+      ],
+      "surface": "h",
+      "notes": "Extremaduran /x/ (⟨j⟩ and ⟨g⟩ before front vowel) is the aspirate [h], not the Castilian velar [x] — a southern/western feature shared with Andalusian: coge [ˈkohe], bajo [ˈbaho], juegan [ˈhweɣan], pájaro [ˈpaharo] (González Salgado 2003, Cartografía lingüística de Extremadura; Penny 2002, A History of the Spanish Language §Southern features). Only the /x/ phoneme is rewritten; intervocalic /ɡ/→[ɣ] is a different phoneme and is untouched."
+    }
+  ],
   "parent": "es-ES",
   "ancestors": [
     {

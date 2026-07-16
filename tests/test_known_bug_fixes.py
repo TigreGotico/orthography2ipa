@@ -94,7 +94,10 @@ class TestSpanishFinalYIsAVowel:
     def test_final_y(self):
         from orthography2ipa import G2P
         assert G2P("es").transcribe_word("soy") == "ˈsoi"
-        assert G2P("es").transcribe_word("y") == "ˈi"
+        # ⟨y⟩ 'and' is the vowel /i/, not the consonant /ʝ/. As the atonic
+        # conjunction it is a declared prosodic clitic (stress.cliticless_words),
+        # so it surfaces unstressed — the vowel quality [i] is what this asserts.
+        assert G2P("es").transcribe_word("y") == "i"
 
     def test_prevocalic_y_is_the_consonant(self):
         from orthography2ipa import G2P
