@@ -1,0 +1,151 @@
+{
+  "code": "kix",
+  "name": "Khiamniungan Naga",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ā": [
+      "a"
+    ],
+    "ē": [
+      "ɛ"
+    ],
+    "ī": [
+      "i"
+    ],
+    "ō": [
+      "o"
+    ],
+    "ū": [
+      "u"
+    ],
+    "á": [
+      "a"
+    ],
+    "é": [
+      "ɛ"
+    ],
+    "í": [
+      "i"
+    ],
+    "ó": [
+      "ɔ"
+    ],
+    "ú": [
+      "u"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "parent": "sit",
+  "ancestors": [
+    {
+      "code": "sit",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Sino-Tibetan (Tibeto-Burman, Ao/Konyak group)"
+    }
+  ],
+  "notes": "Skeleton. Tibeto-Burman (Sino-Tibetan) language of Nagaland/Myanmar, Latin roman orthography. Lexical tone (marked in gold by pitch numerals) is NOT orthographically recoverable and is left unencoded, so a high PER floor is expected. Digraphs ch/sh/ts and aspirate kh/ph/th mapped; vowel-diacritic tone marks are treated as their base vowel.",
+  "iso639_3": "kix",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "khiamniungan_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 4.x)",
+      "year": 2023,
+      "title": "Glottolog: Khiamniungan Naga (khia1237)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": null,
+      "pages": null,
+      "notes": "Classification and inventory reference for a stub-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Khiamniungan_Naga_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Khiamniungan_Naga_language"
+  ]
+}

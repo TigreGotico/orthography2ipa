@@ -1,0 +1,133 @@
+{
+  "code": "slr",
+  "name": "Salar",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "a": [
+      "ɑ"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ü": [
+      "y"
+    ],
+    "ö": [
+      "ø"
+    ],
+    "ı": [
+      "ɯ"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "ʝ"
+    ],
+    "ç": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ñ": [
+      "ŋ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "q"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "ş": [
+      "ʃ"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "x"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "parent": "trk",
+  "ancestors": [
+    {
+      "code": "trk",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Common Turkic (Oghuz branch); Dwyer (2007)"
+    }
+  ],
+  "notes": "Skeleton. Salar (Oghuz Turkic; Qinghai/Gansu, China), in the TIP Latin orthography. Retains Oghuz vowel harmony; heavy Chinese and Amdo Tibetan contact (unencoded adstrate). ⟨c⟩=/ʝ/, ⟨q⟩=/q/ per the samples.",
+  "iso639_3": "slr",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "dwyer2007",
+      "author": "Dwyer, Arienne M.",
+      "year": 2007,
+      "title": "Salar: A Study in Inner Asian Language Contact Processes, Part I: Phonology",
+      "publisher": "Harrassowitz Verlag",
+      "url": null,
+      "pages": null,
+      "notes": "Phonology of Salar and its contact history.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Salar_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Salar_language"
+  ]
+}

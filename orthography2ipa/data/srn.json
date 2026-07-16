@@ -225,6 +225,26 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Sranan_Tongo_phonology_and_orthography",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "holm1989",
+      "author": "Holm, John",
+      "year": 1989,
+      "title": "Pidgins and Creoles, Volume II: Reference Survey",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference survey of Atlantic and Pacific pidgins/creoles; lexifier and substrate attributions."
+    },
+    {
+      "id": "apics2013",
+      "author": "Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.)",
+      "year": 2013,
+      "title": "The Atlas of Pidgin and Creole Language Structures (APiCS)",
+      "publisher": "Oxford University Press",
+      "url": "https://apics-online.info/",
+      "pages": null,
+      "notes": "Structural atlas of 76 pidgins/creoles; per-language survey chapters cited in ancestry notes."
     }
   ],
   "timespan": {
@@ -236,5 +256,31 @@
     "longitude": -55.33,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Sranan Tongo."
-  }
+  },
+  "ancestors": [
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.6,
+      "notes": "English lexifier (with later Portuguese and Dutch relexification/borrowing layers); Sranan Tongo of Suriname. Holm (1989:434-445); APiCS ch. 1 (Winford & Plag)."
+    },
+    {
+      "code": "ee",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Gbe (Ewe/Fon) substrate: tone/pitch-accent tendencies, TMA system, serial verbs."
+    },
+    {
+      "code": "kg",
+      "role": "substrate",
+      "weight": 0.1,
+      "notes": "Kikongo (West Bantu) substrate."
+    },
+    {
+      "code": "pt-PT",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Portuguese relexification/adstrate layer from early plantation contact (shared with the maroon creoles)."
+    }
+  ]
 }

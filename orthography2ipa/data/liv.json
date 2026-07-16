@@ -1,0 +1,145 @@
+{
+  "code": "liv",
+  "name": "Livonian",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ā": [
+      "ɑː"
+    ],
+    "ē": [
+      "eː"
+    ],
+    "ī": [
+      "iː"
+    ],
+    "ō": [
+      "oː"
+    ],
+    "ū": [
+      "uː"
+    ],
+    "õ": [
+      "ə"
+    ],
+    "ȱ": [
+      "oː"
+    ],
+    "ǭ": [
+      "ɔː"
+    ],
+    "š": [
+      "ʃ"
+    ],
+    "ž": [
+      "ʒ"
+    ],
+    "č": [
+      "tʃ"
+    ],
+    "ļ": [
+      "ʎ"
+    ],
+    "ņ": [
+      "ɲ"
+    ],
+    "ŗ": [
+      "rʲ"
+    ],
+    "ț": [
+      "tʲ"
+    ],
+    "ḑ": [
+      "dʲ"
+    ],
+    "a": [
+      "ɑ"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "j"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ]
+  },
+  "parent": "urj",
+  "ancestors": [
+    {
+      "code": "urj",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent from Proto-Finnic (Uralic); Viitso & Ernštreits (2012)"
+    },
+    {
+      "code": "lv",
+      "role": "adstrate",
+      "weight": 0.15,
+      "notes": "Latvian adstrate: broken tone, palatalisation patterns, loan phonology"
+    }
+  ],
+  "notes": "Skeleton. Livonian (Finnic, Uralic; last L1 speaker died 2013, now revitalised). Latin orthography with macron length and palatal ļ/ņ/ŗ/ț. The broken tone (stød-like) marked by an apostrophe is unencoded. Long Latvian contact adstrate.",
+  "iso639_3": "liv",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "viitso_ernstreits2012",
+      "author": "Viitso, Tiit-Rein & Ernštreits, Valts",
+      "year": 2012,
+      "title": "Līvõkīel-ēstikīel-lețkīel sõnārōntõz (Livonian-Estonian-Latvian Dictionary)",
+      "publisher": "University of Tartu / Latviešu valodas aģentūra",
+      "url": null,
+      "pages": null,
+      "notes": "Orthography and phonology reference for modern Livonian.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Livonian_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Livonian_language"
+  ]
+}
