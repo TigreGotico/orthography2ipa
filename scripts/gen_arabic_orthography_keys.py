@@ -21,6 +21,22 @@ language-agnostic):
 3. **Tā marbūṭa liaison** (Ryding 2005 §2.5): ``ة`` followed by a vowel sign
    or tanwīn is /at .../ (``المَدْرَسَةِ`` → /almadrasati/); bare final ``ة``
    keeps the pausal /a/ (existing key).
+
+   *Construct-state scope (P3 investigation).* In an iḍāfa the ``ة`` of the
+   first noun surfaces as [t] before the following genitive
+   (``صَلَاةُ الْعَصْر`` → /sˤalaːtu lʕasˤr/). That case is already handled:
+   the liaison keys fire on the **explicit case vowel** a properly vocalised
+   construct writes on the ``ة`` (``ةُ``/``ةِ``/``ةَ``), and the following
+   article's waṣl alif then elides via ``AR_HAMZAT_WASL_ARTICLE`` — verified on
+   ``صَلَاةُ الْعَصْر``, ``مَدْرَسَةُ الْبَنَات``. A **bare** ``ة`` in construct
+   (``صَلَاة الْعَصْر`` with the case vowel omitted) is deliberately NOT forced
+   to [t]: it surfaces pausal /a/, and the default engine path — declarative,
+   IPA-only ``sandhi_rules`` that see the left word's IPA but not that its final
+   /a/ came from ``ة`` — cannot distinguish it from a lexical final /a/
+   (``أَنَا الْوَلَد``), so a boundary [t]-rule there would over-generate. The
+   grapheme-aware construct detection lives in the opt-in ``SentenceRescorer``
+   seam (``orthography2ipa.sentence``), not on the default ``transcribe`` path.
+   Honest scope: vocalise the construct's case vowel to trigger the liaison.
 4. **Tanwīn fatḥ + silent alif/ʼalif maqṣūra** (Ryding 2005 §2.4): the alif
    written after ً is a spelling seat, not /aː/ — ``جِدًّا`` → /dʒiddan/.
 5. Fix reversed vowel-letter digraphs in arb: ``يَ`` is /ja/ (consonant +
@@ -131,6 +147,40 @@ ARB_ADDITIONS = {
     "ٱل": ["al"], "ٱ": [""],
 }
 
+# ── Hamzat al-waṣl prosthesis (P1) ────────────────────────────────────────
+# A word-initial *waṣl* ʼalif written bare — with no helping-vowel diacritic —
+# before a sukūn-bearing consonant would otherwise surface as an illegal
+# glottal-plus-cluster onset [ʔC…] (اسْأَل → *[ʔsʔal]). Classical Arabic
+# repairs it with a prosthetic vowel: /i/ by default, /u/ for the u-stem
+# imperatives (Wright I §19–20; Ryding 2005 §2.10). The /u/ case is written on
+# the ʼalif itself (اُكْتُب, ḍamma on the seat) and is already read directly, so
+# only the UNMARKED default /i/ has to be supplied here. Stated as a pure-data
+# post-lexical allophone rule keyed on the phoneme side (word-initial /ʔ/ that
+# is immediately followed by a consonant — the only /ʔ/ with no vowel of its
+# own, since hamzat-qatʕ ء/أ/إ always carry their vowel and start [ʔV]). Placed
+# on arb and inherited by every Arabic lect (allophone_rules OVERLAY_BY_ID). A
+# bare-ʼalif u-imperative (اكْتُب, ḍamma omitted) is under-vocalised and defaults
+# to /i/ here — the classical reading of an unmarked waṣl — because the /u/ is
+# recoverable only from the ḍamma the writer left off.
+ALLOPHONE_RULES = [
+    {
+        "id": "AR_WASL_EPENTHESIS",
+        "phonemes": ["ʔ"],
+        "surface": "ʔi",
+        "word_initial": True,
+        "followed_by": "consonant",
+        "notes": "Hamzat al-waṣl prosthesis (Wright I §19–20; Ryding 2005 "
+                 "§2.10): a word-initial bare waṣl ʼalif before a sukūn "
+                 "consonant takes the default prosthetic vowel /i/, giving "
+                 "[ʔiC…] not the illegal [ʔC…] onset (اسْأَل → [ʔisʔal], "
+                 "اشْتَرَيْت → [ʔiʃtarajt], اتَّصِل → [ʔittasˤil]). The /u/ of "
+                 "u-stem imperatives (اُكْتُب → [ʔuktub]) is written as ḍamma on "
+                 "the ʼalif and read directly, so only the unmarked default "
+                 "needs supplying. Fires only on the bare ʼalif's vowelless /ʔ/; "
+                 "hamzat-qatʕ ء/أ/إ carry their own vowel ([ʔV]) and never match.",
+    },
+]
+
 SANDHI = [
     {
         "id": "AR_HAMZAT_WASL_ARTICLE",
@@ -146,6 +196,44 @@ SANDHI = [
                  "(right_transform) — hamzat qatʕ words start /ʔ/ and are untouched.",
     },
 ]
+
+
+# \u2500\u2500 Dagger-alif demonstratives + Allah class (P3) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+# A closed class of high-frequency words hides an underlying long /a\u02d0/ that
+# modern orthography does NOT write: the historic dagger alif (superscript
+# alef) of \u0647\u064e\u0670\u0630\u064e\u0627, \u0647\u064e\u0670\u0630\u0650\u0647\u0650, \u0630\u064e\u0670\u0644\u0650\u0643\u064e, \u0644\u064e\u0670\u0643\u0650\u0646\u064e\u0651 and the unwritten mater of the
+# Allah ligature. Careful/Quranic spelling restores the mark (\u0647\u064e\u0670\u0630\u064e\u0627, keyed via
+# the dagger-alif grapheme key), but the everyday spellings \u0647\u0630\u0627/\u0647\u0630\u0647/\u0630\u0644\u0643/\u0644\u0643\u0646
+# carry only a fat\u1e25a (or nothing), so the grapheme layer yields a short vowel
+# ([ha\u00f0a\u02d0], [\u00f0alika]). The long form is a fixed lexical fact, so it is stated
+# as whole-word overrides (Ryding 2005 \u00a71.2, \u00a72.10; Wright I \u00a71, \u00a7348). Kept on
+# arb + ar (MSA/Classical) ONLY: word_exceptions do NOT inherit without an
+# explicit word_exceptions_base, so every dialect leaf keeps its own reflex \u2014
+# the many varieties with genuinely SHORT demonstratives (ha\u00f0a/hada, hadi) are
+# untouched, exactly as their own gold attests. Allah carries the emphatic
+# ("dark") lam [\u026b] with backed /\u0251(\u02d0)/ (the low-vowel context; Ryding 2005
+# \u00a72.10); it is left vowel-initial (no prosthetic [\u0294]) so the wa\u1e63l alif still
+# elides after a vowel (\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0647 \u2192 \u2026\u026b\u026b\u0251\u02d0h), consistent with the engine's
+# no-initial-\u0294 treatment of every other wa\u1e63l word. Keyed on the exact vocalised
+# forms the input carries (the final case vowel is part of the frozen word), so
+# each attested spelling is listed.
+WORD_EXCEPTIONS = {
+    # \u0647\u0630\u0627 'this (m.)' \u2192 ha\u02d0\u00f0a\u02d0
+    "\u0647\u0630\u0627": "ha\u02d0\u00f0a\u02d0", "\u0647\u064e\u0630\u064e\u0627": "ha\u02d0\u00f0a\u02d0", "\u0647\u0670\u0630\u064e\u0627": "ha\u02d0\u00f0a\u02d0",
+    # \u0647\u0630\u0647 'this (f.)' \u2192 ha\u02d0\u00f0ihi (and the case-vowel-less spelling)
+    "\u0647\u0630\u0647": "ha\u02d0\u00f0ihi", "\u0647\u064e\u0630\u0650\u0647\u0650": "ha\u02d0\u00f0ihi", "\u0647\u064e\u0630\u0650\u0647": "ha\u02d0\u00f0ih",
+    # \u0647\u0630\u064a (poetic/older f.) \u2192 ha\u02d0\u00f0i\u02d0
+    "\u0647\u0630\u064a": "ha\u02d0\u00f0i\u02d0", "\u0647\u064e\u0630\u0650\u064a": "ha\u02d0\u00f0i\u02d0",
+    # \u0630\u0644\u0643 'that' \u2192 \u00f0a\u02d0lika
+    "\u0630\u0644\u0643": "\u00f0a\u02d0lika", "\u0630\u064e\u0644\u0650\u0643\u064e": "\u00f0a\u02d0lika", "\u0630\u064e\u0644\u0650\u0643": "\u00f0a\u02d0lik",
+    # \u0644\u0643\u0646(\u0651) 'but' \u2192 la\u02d0kin / la\u02d0kinna
+    "\u0644\u0643\u0646": "la\u02d0kin", "\u0644\u064e\u0643\u0650\u0646": "la\u02d0kin", "\u0644\u064e\u0643\u0650\u0646\u0652": "la\u02d0kin",
+    "\u0644\u0643\u0646\u0651": "la\u02d0kinna", "\u0644\u064e\u0643\u0650\u0646\u064e\u0651": "la\u02d0kinna",
+    # \u0627\u0644\u0644\u0647 / \u0648\u0627\u0644\u0644\u0647 \u2014 dark lam, backed vowel, vowel-initial for wa\u1e63l elision
+    "\u0627\u0644\u0644\u0647": "\u0251\u026b\u026b\u0251\u02d0h", "\u0627\u0644\u0644\u064e\u0651\u0647": "\u0251\u026b\u026b\u0251\u02d0h", "\u0627\u0644\u0644\u0651\u0670\u0647": "\u0251\u026b\u026b\u0251\u02d0h",
+    "\u0627\u0644\u0644\u064e\u0651\u0647\u0650": "\u0251\u026b\u026b\u0251\u02d0hi", "\u0627\u0644\u0644\u064e\u0651\u0647\u064f": "\u0251\u026b\u026b\u0251\u02d0hu", "\u0627\u0644\u0644\u064e\u0651\u0647\u064e": "\u0251\u026b\u026b\u0251\u02d0ha",
+    "\u0648\u0627\u0644\u0644\u0647": "wa\u026b\u026b\u0251\u02d0h", "\u0648\u064e\u0627\u0644\u0644\u0647": "wa\u026b\u026b\u0251\u02d0h", "\u0648\u064e\u0627\u0644\u0644\u064e\u0651\u0647": "wa\u026b\u026b\u0251\u02d0h",
+}
 
 
 VOWELS = {"\u064e": "a", "\u064f": "u", "\u0650": "i"}
@@ -257,6 +345,9 @@ def main():
             graphemes.update(ARB_ADDITIONS)
             graphemes.update(sun_keys(effective["arb"]))
             spec["sandhi_rules"] = SANDHI
+            spec["allophone_rules"] = ALLOPHONE_RULES
+            spec["word_exceptions"] = {**(spec.get("word_exceptions") or {}),
+                                       **WORD_EXCEPTIONS}
         else:
             # letters whose effective value differs from the nearest ancestor
             # in LECTS (falling back to arb) need their own derived keys
@@ -271,10 +362,17 @@ def main():
                 graphemes.update(
                     sun_keys(effective[code],
                              article_vowel=ARTICLE_SUN_VOWEL[code]))
+            # MSA carries the same dagger-alif/Allah lexical overrides as
+            # Classical (word_exceptions do not inherit without an explicit
+            # base edge, so ar states them directly). Dialect leaves are left
+            # untouched — each keeps its own (often short) demonstrative reflex.
+            if code == "ar":
+                spec["word_exceptions"] = {**(spec.get("word_exceptions") or {}),
+                                           **WORD_EXCEPTIONS}
 
         spec["graphemes"] = graphemes
         after = json.dumps(spec.get("graphemes"), sort_keys=True, ensure_ascii=False)
-        if before != after or code == "arb":
+        if before != after or code in ("arb", "ar"):
             path.write_text(json.dumps(spec, ensure_ascii=False, indent=2) + "\n",
                             encoding="utf-8")
             changed.append(code)

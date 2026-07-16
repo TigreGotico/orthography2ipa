@@ -959,5 +959,44 @@
         "a"
       ]
     }
+  },
+  "allophone_rules": [
+    {
+      "id": "AR_WASL_EPENTHESIS",
+      "phonemes": [
+        "ʔ"
+      ],
+      "surface": "ʔi",
+      "word_initial": true,
+      "followed_by": "consonant",
+      "notes": "Hamzat al-waṣl prosthesis (Wright I §19–20; Ryding 2005 §2.10): a word-initial bare waṣl ʼalif before a sukūn consonant takes the default prosthetic vowel /i/, giving [ʔiC…] not the illegal [ʔC…] onset (اسْأَل → [ʔisʔal], اشْتَرَيْت → [ʔiʃtarajt], اتَّصِل → [ʔittasˤil]). The /u/ of u-stem imperatives (اُكْتُب → [ʔuktub]) is written as ḍamma on the ʼalif and read directly, so only the unmarked default needs supplying. Fires only on the bare ʼalif's vowelless /ʔ/; hamzat-qatʕ ء/أ/إ carry their own vowel ([ʔV]) and never match."
+    }
+  ],
+  "word_exceptions": {
+    "هذا": "haːðaː",
+    "هَذَا": "haːðaː",
+    "هٰذَا": "haːðaː",
+    "هذه": "haːðihi",
+    "هَذِهِ": "haːðihi",
+    "هَذِه": "haːðih",
+    "هذي": "haːðiː",
+    "هَذِي": "haːðiː",
+    "ذلك": "ðaːlika",
+    "ذَلِكَ": "ðaːlika",
+    "ذَلِك": "ðaːlik",
+    "لكن": "laːkin",
+    "لَكِن": "laːkin",
+    "لَكِنْ": "laːkin",
+    "لكنّ": "laːkinna",
+    "لَكِنَّ": "laːkinna",
+    "الله": "ɑɫɫɑːh",
+    "اللَّه": "ɑɫɫɑːh",
+    "اللَّهِ": "ɑɫɫɑːhi",
+    "اللَّهُ": "ɑɫɫɑːhu",
+    "اللَّهَ": "ɑɫɫɑːha",
+    "والله": "waɫɫɑːh",
+    "وَالله": "waɫɫɑːh",
+    "وَاللَّه": "waɫɫɑːh",
+    "اللّٰه": "ɑɫɫɑːh"
   }
 }

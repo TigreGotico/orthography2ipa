@@ -179,16 +179,18 @@ def test_ar_dagger_alif_is_a_long_vowel_mark():
 
 
 def test_ar_allah_ligature_keeps_the_long_vowel():
-    """⟨الله⟩ carries an unwritten long /aː/ — [allaːh], not *[allh].
+    """⟨الله⟩ carries an unwritten long /aː/ AND the emphatic ("dark") lam:
+    [ɑɫɫɑːh], not *[allh] and not the plain-lam [allaːh].
 
-    ar notes: "Allah / li-llāh: the ligature spellings carry an UNWRITTEN long
-    /aː/ (the bare الله/لله has no alif and no dagger) — a fixed lexical
-    convention, so keyed whole" (Ryding 2005 §2.10). The dagger-alif spelling
-    اللّٰه reaches the same surface through the sun-assimilated ⟨لل⟩ key plus the
-    dagger key.
+    The Allah class is a whole-word lexical override on arb/ar (P3/P4):
+    the ligature spellings carry an unwritten long /aː/, the dark lam [ɫ]
+    and the backed low vowel /ɑ(ː)/ of that emphatic context (Ryding 2005
+    §2.10; Wright I §1). It is kept vowel-initial (no prosthetic [ʔ]) so the
+    waṣl alif still elides after a vowel. The plain and dagger-alif spellings
+    (⟨الله⟩, ⟨اللّٰه⟩) resolve to the same emphatic surface.
     """
-    assert _bare("ar", "الله") == "allaːh"
-    assert _bare("ar", "اللّٰه") == "allaːh"
+    assert _bare("ar", "الله") == "ɑɫɫɑːh"
+    assert _bare("ar", "اللّٰه") == "ɑɫɫɑːh"
 
 
 def test_ar_bare_llah_does_not_collide_with_ordinary_words():
@@ -225,6 +227,41 @@ def test_ar_bare_alif_wasl_is_not_disambiguated():
     assert _bare("ar", "فَات") == "faːt"          # mater preserved
     assert _bare("ar", "واحِد") == "waːħid"        # mater preserved
     assert _bare("ar", "وَاشْتَرَيْت") == "waːʃtarajt"  # bare waṣl: not resolved
+
+
+def test_ar_wasl_epenthesis_word_initial():
+    """Word-initial bare waṣl ʼalif takes a prosthetic /i/: [ʔiC…], not *[ʔC…].
+
+    arb AR_WASL_EPENTHESIS (Wright I §19–20; Ryding 2005 §2.10): a word-initial
+    waṣl ʼalif written bare (no helping-vowel diacritic) before a sukūn
+    consonant would give an illegal glottal-plus-cluster onset; classical Arabic
+    repairs it with the default prosthetic vowel /i/. Applies word-INITIALLY
+    only, so the proclitic-internal bare waṣl (test above) is untouched.
+    """
+    assert _bare("ar", "اسْأَل") == "ʔisʔal"       # imperative 'ask!'
+    assert _bare("ar", "اشْتَرَيْت") == "ʔiʃtarajt"  # form VIII perfect
+    assert _bare("ar", "اتَّصِل") == "ʔittɑsˤil"     # form VIII imperative (ɑ: emphatic backing)
+    # the /u/ of a u-stem imperative is WRITTEN on the ʼalif (ḍamma) and read
+    # directly — the rule supplies only the unmarked default.
+    assert _bare("ar", "اُكْتُب") == "ʔuktub"
+    # inherited by every Arabic lect (allophone_rules OVERLAY_BY_ID from arb).
+    assert _bare("ar-SA-x-rijal-alma", "اشْتَرَيْت") == "ʔiʃtarajt"
+
+
+def test_ar_dagger_alif_demonstratives_are_long():
+    """MSA demonstratives / لكن hide an unwritten long /aː/: haːðaː, ðaːlika.
+
+    P3 whole-word overrides on arb/ar (Ryding 2005 §1.2; Wright I §1, §348):
+    the everyday spellings هذا/هذه/ذلك carry only a fatḥa, so the grapheme
+    layer yields a short vowel; the historic dagger alif makes them long. Kept
+    on MSA/Classical ONLY — dialect leaves with genuinely SHORT demonstratives
+    keep their own reflex (word_exceptions do not inherit).
+    """
+    assert _bare("ar", "هَذَا") == "haːðaː"
+    assert _bare("ar", "هَذِهِ") == "haːðihi"
+    assert _bare("ar", "ذَلِكَ") == "ðaːlika"
+    # a short-demonstrative dialect is untouched (its own gold attests hV̆ðaː).
+    assert _bare("ar-SA-x-rijal-alma", "هَذَا") == "haðaː"
 
 
 # --- stress: the quantity-sensitive cascade (Ryding 2005 §2.3; Watson 2002 ch.3)
