@@ -162,4 +162,4 @@ def test_p5_extremaduran_j_to_h_and_coda_s_aspiration():
     Salgado 2003; Penny 2002)."""
     assert word("es-ES-x-extremadura", "coge") == "ˈkohe"
     assert word("es-ES-x-extremadura", "bajo") == "ˈbaho"
-    assert phrase("es-ES-x-extremadura", "las llaves") == "lah ˈʝabeh"
+    assert phrase("es-ES-x-extremadura", "las llaves") == "lah ˈʝaβeh"
