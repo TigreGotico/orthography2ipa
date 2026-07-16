@@ -85,6 +85,11 @@ monophthongization attestations. Al Solami (2023) and Al-Rohili (2019) are BEDOU
 (Bani Sulaim; Ḥarbi of Medina) and are deliberately `lang: null` — they document the
 iambic-stress, interdental-retention and palatalisation features that the *urban* koine node
 does **not** have, i.e. the split that keeps the bare `ar-SA` code unassigned.
+| Alshammari (2026), JLTR 17(4) velar affrication | Northern Najdi (Ḥāʾil) | `ar-SA-x-najd` / — | 8 / 2 |
+| Mahzari (2023), TPLS 13(3) k/q change | Najdi (Riyadh) | `ar-SA-x-najd` | 8 |
+| Algethami (2023), ICPhS vowel acoustics | Najdi (15 speakers) | `ar-SA-x-najd` | 3 |
+| **total** | | | **509** |
+Broad `/…/`: 341. Narrow `[…]`: 168. `confidence`: 324 high, 171 medium, 14 low.
 
 ## Notation-normalization decisions
 
@@ -289,7 +294,6 @@ running the engine over these rows.
     `[ʕarabi]`, أَنا `[ʔana]`) where o2i keeps the orthographic length (`[marħabaː]` etc.),
     and does not back /aː/ next to an emphatic (قِطار `[ɡitˤaːr]`) where o2i gives narrow
     `[ɡitˤɑːr]`. Broad-vs-narrow measurement artefacts, recorded per `level`, not bugs.
-
 28. **`ar-SA-x-najd` monophthongization is not modelled, yet the sources say
     central Najd monophthongizes too.** Algethami (2023) p.3385 gives `[beːt]`
     'home' and `[soːt]` 'sound', and Ingham (1994:15, reproduced in Algethami's
@@ -310,6 +314,33 @@ running the engine over these rows.
     Mahzari (2023) p.802 Table 3: `kursi → [kirsi]` 'chair' keeps `[k]` despite a
     surface front `/i/`; the grapheme rule would give `*[tsirsi]`. A lexical
     stratum the rules cannot see — the sort of fact that belongs in a lexicon.
+28. **`ar-SA-x-najd` diphthongs — retained, against Algethami's monophthongized
+    tokens.** Algethami (2023) p.3385 records `bēt`/`sōt` for his 15 Najdi
+    speakers (`aj aw → eː oː`), and Mahzari's Riyadh inventory is 5-vowel
+    (`i u eː oː a`). But the spec RETAINS the diphthongs (`[bajt]`, `[wajn]`),
+    following Ingham's central-Najdi description — and this is not an oversight:
+    Alhoody (2019) frames `/bajt/ → [beːt]` as precisely the *Qassimi* feature
+    that distinguishes it from diphthong-retaining central Najdi (`alhoody2019-002`),
+    and the shipped `ar-SA-x-qassim` monophthongization rules are defined as "the
+    defining vocalic delta from central Najdi, which retains [aj]/[aw]". Flipping
+    `ar-SA-x-najd` to monophthongize would erase that contrast. The tension is a
+    genuine within-Najd / register split; `algethami2023-003` records the
+    monophthongized attestation at `medium` confidence rather than resolving it.
+29. **`ar-SA-x-najd` /ɡ/-affrication trigger tightened to `/i iː/`.** The
+    `NAJD_AFFRIC_G_*` rules previously fired next to `/i iː j e eː/`, but both
+    Alshammari (2026 §V, p.1337) and Mahzari (2023 Table 4, p.803) restrict the
+    voiced-velar affrication to high front `/i iː/` only — the voicing-conditioned
+    asymmetry with `/k/`, which tolerates a wider set. The list was narrowed to
+    `/i iː/` to match the sources; no gold row depended on the mid-vowel triggers.
+30. **`ar-SA-x-najd` loanword /k/-affrication exceptions.** Alshammari (2026)
+    ex.(4) p.1336 lists MSA/foreign borrowings that resist affrication even next
+    to a front vowel — تذكرة `[taðkirah]` 'ticket' (not *[taðtsirah]), مكينة
+    `[mikiːnah]` 'machine' (not *[mitsiːnah]). This is a lexical-stratum effect
+    the grapheme rules cannot see (cf. the `ar-PS` interdental-borrowing case #7);
+    the two clearest cases are carried in the spec's `word_exceptions`
+    (`alshammari2026-009/010`). Mahzari's Table-3 exceptions (kursi, kufuːf, …) are
+    all written with a *back* vowel on the kaf, so o2i already keeps `[k]` and no
+    exception is needed.
 
 ## Adding rows
 
