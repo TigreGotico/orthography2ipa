@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.17.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.17.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.16.1a1...7.17.0a1)
+
+**Merged pull requests:**
+
+- feat\(gold\): Asturleonese-in-Portugal TTS gold sets \(rionor, guadramil, medieval, sanabria\) [\#521](https://github.com/TigreGotico/orthography2ipa/pull/521) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.16.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.16.1a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.16.0a1...7.16.1a1)
@@ -497,10 +505,6 @@
 ## [4.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/4.3.0a1) (2026-07-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/4.2.1a1...4.3.0a1)
-
-**Merged pull requests:**
-
-- feat: underspecification — say what the writing does not [\#351](https://github.com/TigreGotico/orthography2ipa/pull/351) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [4.2.1a1](https://github.com/TigreGotico/orthography2ipa/tree/4.2.1a1) (2026-07-13)
 
