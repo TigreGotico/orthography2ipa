@@ -2150,5 +2150,13 @@
   "zulu1248": {
     "name": "Zulu",
     "level": "language"
+  },
+  "algh1238": {
+    "name": "Alguerés",
+    "level": "dialect"
+  },
+  "bena1260": {
+    "name": "Benasqués",
+    "level": "dialect"
   }
 }
