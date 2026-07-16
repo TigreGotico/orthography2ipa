@@ -91,6 +91,16 @@ does **not** have, i.e. the split that keeps the bare `ar-SA` code unassigned.
 | **total** | | | **509** |
 Broad `/…/`: 341. Narrow `[…]`: 168. `confidence`: 324 high, 171 medium, 14 low.
 
+| Alfaifi (2024), OBP *Diversity across the Arabian Peninsula* ch.5 | Rijāl Almaʿ (quoting Asiri 2008) / Central Faifi | `ar-SA-x-rijal-alma` / `null` | 5 / 2 |
+| Davis, Alshammari, Alahmari & Alhuwaykim (2024), OBP ch.4 | SW Saudi, Northern Tihāmah (Alahmari 2018) | `null` | 3 |
+| **total** | | | **~528** |
+The two OBP-volume chapters added in the Rijāl-Almaʿ increment are page-pinned to the
+literature the `ar-SA-x-rijal-alma` and `ar-SA-x-tihama-qahtan` specs cite. Alfaifi
+(2024:177-178) quotes Asiri (2008) directly and is the source that CORRECTED the
+Rijāl Almaʿ qāf reflex from [q] to [ɡ] (see contradiction #C below). All ten rows are
+`arabicist-transliteration` (so capped at `medium` confidence) with editor-supplied
+orthography.
+
 ## Notation-normalization decisions
 
 - **Nothing is silently coerced.** `source_notation` keeps the source's own
@@ -341,6 +351,22 @@ running the engine over these rows.
     (`alshammari2026-009/010`). Mahzari's Table-3 exceptions (kursi, kufuːf, …) are
     all written with a *back* vowel on the kaf, so o2i already keeps `[k]` and no
     exception is needed.
+
+## Where a source corrected the spec
+
+**C. `ar-SA-x-rijal-alma` qāf was [q], corrected to [ɡ].** The spec originally
+modelled Rijāl Almaʿ qāf as retained [q], inferred from a general "SW-sedentary =
+qaf-retaining" heuristic (its own caveat flagged this rested on Asiri as cited, not
+on Asiri directly). Alfaifi (2024:177-178) quotes Asiri's (2008:72-73) Rijāl Almaʿ
+examples verbatim, and historical *q surfaces as voiced [ɡ] throughout — `gābalt`
+'I met', `im=bagar` 'the cows', `saragu` 'they stole', `gaṭaʕaw` 'they cut' — with
+no [q] anywhere. The neighbouring SW/Tihāmah lects behave identically (Davis et al.
+2024:149 `galam` 'pen'; Central Faifi `gāma`, `lagīt`). The spec was changed to
+ق→[ɡ] (primary) with [q] kept only as a classicism candidate, and the four affected
+`ar-SA-x-rijal-alma` gold sentences were regenerated. Consequence: qāf is no longer
+the "sharpest split" between Rijāl Almaʿ and Tihāmi Qaḥtāni (both [ɡ]); the split is
+the ẓāʾ reflex (voiceless lateral [ɬˤ] kept distinct vs merged [ðˤ]). The diphthong
+retention the spec models is *confirmed* by the same source (`m=bayt`, not *beet).
 
 ## Adding rows
 
