@@ -116,7 +116,7 @@
       "phonemes": ["b"],
       "surface": "b",
       "preceded_by_phoneme": ["m"],
-      "notes": "Spirantization of /b/ is blocked after a homorganic nasal /m/ (e.g., imensi 'dinner' → [imensi], not *[imensi] with β). Kossmann & Stroomer (1997) p.469 (illustrated there for the Beni Said Riffian dialect; extended here to Kabyle by analogy — see source notes)."
+      "notes": "Spirantization of /b/ is blocked after a homorganic nasal /m/ (e.g., mbekk → [mbekk], not *[mbekk] with β). Kossmann & Stroomer (1997) p.469 (illustrated there for the Beni Said Riffian dialect; extended here to Kabyle by analogy — see source notes)."
     },
     {
       "id": "KAB_BLOCK_SPIRANT_D_AFTER_N",
