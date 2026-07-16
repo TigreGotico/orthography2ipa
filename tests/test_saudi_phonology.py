@@ -120,12 +120,25 @@ def test_rijal_alma_lateral_emphatics_are_in_the_inventory():
     assert "ɬˤ" in inv
 
 
-# ── Eastern Province (Sharqiyya): Gulf phonology, Baḥārna jīm ────────────────
-def test_sharqiyya_jim_is_a_glide():
-    """Johnstone 1967; Holes 2004: the Baḥārna/Qatifi *ǧīm → [j] (yōd) lenition,
-    the majority reflex in the Eastern Province Shiʿi communities."""
-    assert SHQ.transcribe_word("جَمَل") == "ˈjamal"
-    assert SHQ.transcribe_word("جِيب") == "ˈjiːb"
+# ── Eastern Province (Sharqiyya): Gulf phonology, affricate jīm ──────────────
+def test_sharqiyya_jim_is_the_affricate():
+    """Al-Taisan 2022: Hasawi jīm is /ʤ/ throughout (inventory p.12 and every
+    example); the *ǧīm → [j] glide-lenition is only *cited* for other Northern
+    Arabian dialects, never attested in Hasawi. In the Gulf sect isogloss [dʒ]
+    is the Šiʿi Baḥārna reflex (the majority in al-Qaṭīf/al-Hasa) while [j] is
+    the Sunni ʕArab/Dawāsir reflex (Holes 1980/2016, in Alaodini 2019:94). So
+    the sedentary Eastern leaf has [dʒ] primary; [j] moves to ar-SA-x-dawasir."""
+    assert SHQ.transcribe_word("جَمَل") == "ˈdʒamal"
+    assert SHQ.transcribe_word("جِيب") == "ˈdʒiːb"
+
+
+def test_dawasir_jim_is_the_traditional_glide():
+    """Alaodini 2019: the Dawāsir (Sunni, Najdi-origin, Dammam) carry the
+    traditional [j] reflex acquired under Bahraini Sunni prestige — the mirror
+    image of the sedentary Baḥārna [dʒ], and receding back toward [dʒ]."""
+    DAW = G2P("ar-SA-x-dawasir")
+    assert DAW.transcribe_word("جَمَل") == "jamal"
+    assert DAW.transcribe_word("جِيب") == "jiːb"
 
 
 def test_sharqiyya_is_gulf_type():
