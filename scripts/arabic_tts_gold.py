@@ -51,6 +51,8 @@ LECTS = [
     "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-YE",
     "ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya",
     "ar-MA", "ar-TN", "ar-DZ", "ar-LY", "ar-MR",
+    # Historical: Andalusi Arabic (medieval al-Andalus), Arabic-script gold
+    "xaa",
     # Grouping (proto/koine) nodes — pan-group register, node-level rankings.
     "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi", "ar-x-peninsular",
 ]
