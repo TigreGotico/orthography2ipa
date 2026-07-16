@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.19.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.2a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.1a1...7.19.2a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): tonic mid-vowel height, final nasal diphthongs, BR affrication feeding [\#528](https://github.com/TigreGotico/orthography2ipa/pull/528) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.19.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.19.1a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.19.0a1...7.19.1a1)
@@ -436,10 +444,6 @@
 ## [6.0.0a1](https://github.com/TigreGotico/orthography2ipa/tree/6.0.0a1) (2026-07-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/5.2.2a1...6.0.0a1)
-
-**Breaking changes:**
-
-- feat!: enforce the grapheme/rule boundary — drop enumerated n-grams, morphology and bundled corpora [\#361](https://github.com/TigreGotico/orthography2ipa/pull/361) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [5.2.2a1](https://github.com/TigreGotico/orthography2ipa/tree/5.2.2a1) (2026-07-14)
 
