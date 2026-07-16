@@ -209,9 +209,12 @@ def cmd_draft(args):
                     "NEEDS-REVIEW: author gloss + citation id from spec sources"])
 
 
-# A source id as written in the spec `sources`: lowercase author + year, e.g.
-# ``cruzferreira1995``, ``mateus_dandrade2000`` (optionally a trailing letter).
-CITE_ID = r"\b[a-z][a-z_-]*[0-9]{4}[a-z]*\b"
+# A source id as written in the spec `sources`: lowercase author + year, with
+# an optional descriptive slug. Both year-last (``cruzferreira1995``,
+# ``mateus_dandrade2000``, ``silva2014alfal``) and year-medial descriptive
+# (``carvalho1998_variation``, ``rona1965_fronterizo``) forms occur across the
+# specs, so the trailing run allows ``_``/``-`` as well as letters.
+CITE_ID = r"\b[a-z][a-z_-]*[0-9]{4}[a-z_-]*\b"
 # A free-text author-year citation the id form is meant to replace, e.g.
 # ``Cruz-Ferreira 1995``, ``Mateus & d'Andrade 2000``. These escape the id
 # regex (leading capital) and must be REJECTED so an unresolvable citation
