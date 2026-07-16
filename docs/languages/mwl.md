@@ -152,14 +152,28 @@ declare only their **deltas**:
      said with /l/ (`lhado` → [ˈladu], `alhá` → [ɐˈla]); word-initial ⟨l⟩ is
      likewise plain /l/. The Primeiro Aditamento (2000) permits Sendinese
      writers to spell word-initial ⟨l-⟩.
-- **Ifanês (`mwl-x-ifanes`)** — the Northern/Raiano speech of Ifanes. The
-  published descriptions record **no** segmental orthography→phoneme
-  divergence from Central: both keep the diphthongs [je]/[wo] and /ʎ/ (only
-  Sendinês diverges), corroborated by the Raiano gold (`fuogo` → [ˈfwo.ʊ],
-  diphthong retained). Its distinctives are morphosyntactic/lexical (article
-  forms, some nasalisation) and out of scope for a grapheme→IPA spec, so it
-  inherits Central unchanged; the ⟨iê⟩ diphthong is preserved rather than
-  monophthongised to [e], for which no source records a divergence.
+- **Ifanês (`mwl-x-ifanes`)** — the Northern/Raiano speech of the raia-sêcca
+  villages (Paradela, Ifanes, Constantim, Cicouro, S. Martinho de Angueira).
+  It is **phonologically identical to Central** in the modeled grapheme→IPA
+  register — a documented **negative result**, not an untested assumption.
+  Vasconcelos surveys the Raiano villages one by one (EPM Vol. II, § "II.
+  Mirandês raiano") and states plainly that the speech of S. Martinho keeps the
+  Leonese diphthongs (`tierra`, `cielo`) and mid outcomes (`nobe`, `bono`,
+  `posto`, `osso`) exactly as Central, and — transcribing a Padre Nosso
+  specimen — that it *"não offerece differenças phoneticas em relação á do
+  centro"*; the differences from Central are *"morphologicas (em pequeno
+  número) e lexicologicas"* (Constantim likewise *"não differe, senão no
+  vocabulário"*). In Vol. I (pp.219-220) he adds that raiano `tierra` *"concorda
+  com o mirandês normal"*, reserving the monophthong /i/ for Sendinês. Both
+  Central and Raiano keep the diphthongs [je]/[wo] and /ʎ/; only Sendinês
+  diverges. The Raiano gold corroborates it (`fuogo` → [ˈfwo.ʊ], diphthong
+  retained; contrast the Sendinês [u]). The attested Raiano distinctives are
+  lexical and morphosyntactic, not segmental: local adverb/pronoun forms at
+  Ifanes (`pa-lhina`, `aquina`, `quina` for Central `alhi`/`eiqui`; `calhe`
+  "street"), the demonstratives `esto`/`aquesto` and lexemes `tolho`,
+  `lureiro`, `frol` at S. Martinho, and the raia connective `antonces` — none of
+  which change a grapheme→phoneme mapping. The spec therefore inherits the full
+  Central system unchanged and declares no deltas.
 
 ## Input contract
 
@@ -195,7 +209,12 @@ lexically variable /d/ occlusion (see Allophony above).
   Convenção Ortográfica da Língua Mirandesa.* — Sendinês provisions.
 - **Vasconcelos, J. Leite de (1900).** *Estudos de Philologia Mirandesa
   (Vol. I).* Imprensa Nacional, Lisboa. — foundational description of the
-  sibilant system and the sub-dialect division.
+  sibilant system and the sub-dialect division (pp.172-173); raiano `tierra`
+  agrees with the central norm (pp.219-220).
+- **Vasconcelos, J. Leite de (1901).** *Estudos de Philologia Mirandesa
+  (Vol. II).* Imprensa Nacional, Lisboa. — § "II. Mirandês raiano" (pp.28-31):
+  the Raiano villages offer no phonetic differences from Central; their
+  divergences are morphological and lexical.
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
   Oxford University Press. — reference for the shared Ibero-Romance processes
   (nasal place assimilation, spirantisation) and the adstrate reduction.
