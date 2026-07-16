@@ -1,0 +1,150 @@
+{
+  "code": "evn",
+  "name": "Evenki",
+  "script": "Cyrillic",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ъ": [
+      ""
+    ],
+    "ь": [
+      ""
+    ],
+    "а": [
+      "a"
+    ],
+    "б": [
+      "b"
+    ],
+    "в": [
+      "w"
+    ],
+    "г": [
+      "ɡ"
+    ],
+    "д": [
+      "d"
+    ],
+    "е": [
+      "je"
+    ],
+    "ё": [
+      "jo"
+    ],
+    "ж": [
+      "ʒ"
+    ],
+    "з": [
+      "z"
+    ],
+    "и": [
+      "i"
+    ],
+    "й": [
+      "j"
+    ],
+    "к": [
+      "k"
+    ],
+    "л": [
+      "l"
+    ],
+    "м": [
+      "m"
+    ],
+    "н": [
+      "n"
+    ],
+    "ӈ": [
+      "ŋ"
+    ],
+    "о": [
+      "o"
+    ],
+    "п": [
+      "p"
+    ],
+    "р": [
+      "r"
+    ],
+    "с": [
+      "s"
+    ],
+    "т": [
+      "t"
+    ],
+    "у": [
+      "u"
+    ],
+    "ф": [
+      "f"
+    ],
+    "х": [
+      "x"
+    ],
+    "ц": [
+      "ts"
+    ],
+    "ч": [
+      "tʃ"
+    ],
+    "ш": [
+      "ʃ"
+    ],
+    "щ": [
+      "ɕ"
+    ],
+    "ы": [
+      "ɨ"
+    ],
+    "э": [
+      "e"
+    ],
+    "ю": [
+      "ju"
+    ],
+    "я": [
+      "ja"
+    ]
+  },
+  "parent": "x-clade-tung1282",
+  "ancestors": [
+    {
+      "code": "x-clade-tung1282",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Evenki (even1259)."
+    }
+  ],
+  "notes": "Skeleton. Evenki is a Northern Tungusic language written in a Cyrillic alphabet that extends Russian with a single extra letter, Ӈ (velar nasal). The base Cyrillic letters are mapped with their usual values (в rendered as the approximant w, as in Evenki); iotated Е Ё Ю Я get their glide+vowel reading. Evenki has phonemic vowel length and pervasive vowel harmony that the practical orthography does not consistently mark; length and harmony are therefore left unencoded, raising the PER floor.",
+  "iso639_3": "evn",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "evn_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Evenki (even1259)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/even1259",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "evn_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Evenki language — writing system and phonology",
+      "publisher": null,
+      "url": "https://en.wikipedia.org/wiki/Evenki_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Evenki_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Evenki_language"
+  ]
+}

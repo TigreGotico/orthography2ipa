@@ -1,0 +1,120 @@
+{
+  "code": "mic",
+  "name": "Mi'kmaq",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "á": [
+      "aː"
+    ],
+    "é": [
+      "eː"
+    ],
+    "í": [
+      "iː"
+    ],
+    "ó": [
+      "oː"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "j": [
+      "tʃ"
+    ],
+    "q": [
+      "x"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "'": [
+      "ʔ"
+    ]
+  },
+  "parent": "x-clade-algi1248",
+  "ancestors": [
+    {
+      "code": "x-clade-algi1248",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Mi'kmaq (mikm1235)."
+    }
+  ],
+  "notes": "Skeleton. Algic (Algonquian) language of Atlantic Canada written in the Francis-Smith Roman orthography. Obstruents p t k q j s are voiceless here but are realized voiced intervocalically; that allophony is left unencoded. Acute-marked vowels denote length. The letter q represents a velar/uvular fricative [x]. Schwa and predictable stress are not consistently recovered from spelling, raising the PER floor.",
+  "iso639_3": "mic",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "mic_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Mi'kmaq (mikm1235)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/mikm1235",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "mic_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Mi'kmaq language (Francis-Smith orthography), Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Mi%27kmaq_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mi%27kmaq_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mi%27kmaq_language"
+  ]
+}

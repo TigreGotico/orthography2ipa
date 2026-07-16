@@ -1,0 +1,156 @@
+{
+  "code": "srs",
+  "name": "Sarsi",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ts'": [
+      "tsʼ"
+    ],
+    "tł'": [
+      "tɬʼ"
+    ],
+    "ch'": [
+      "tʃʼ"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "dl": [
+      "dl"
+    ],
+    "tł": [
+      "tɬ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "gh": [
+      "ɣ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "zh": [
+      "ʒ"
+    ],
+    "kw": [
+      "kʷ"
+    ],
+    "k'": [
+      "kʼ"
+    ],
+    "t'": [
+      "tʼ"
+    ],
+    "ł": [
+      "ɬ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "x-clade-atha1245",
+  "ancestors": [
+    {
+      "code": "x-clade-atha1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Sarsi (sars1236)."
+    }
+  ],
+  "notes": "Skeleton. Northern Athabaskan (Dene) language of Alberta, self-named Tsuutʼina, in its practical orthography. Lateral obstruents (tł, tł', ł=[ɬ]), affricate series and ejectives written with a following apostrophe, and gh=[ɣ] are mapped. Tsuutʼina is strongly tonal, but tone (and nasalization) is not reliably recovered from this orthography and is left unencoded, giving a high PER floor.",
+  "iso639_3": "srs",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "srs_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Sarsi (sars1236)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/sars1236",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "srs_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tsuutʼina language (Sarsi), Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Tsuut%CA%BCina_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tsuut%CA%BCina_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tsuut%CA%BCina_language"
+  ]
+}

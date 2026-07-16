@@ -370,5 +370,12 @@
     "longitude": 72.9195,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Korlai (Korlai village, Raigad district, Maharashtra)."
+  },
+  "positional_graphemes": {
+    "j": {
+      "word_initial": [
+        "dʒ"
+      ]
+    }
   }
 }

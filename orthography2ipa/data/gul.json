@@ -1,0 +1,147 @@
+{
+  "code": "gul",
+  "name": "Sea Island Creole English",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "th": [
+      "t"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "oo": [
+      "u"
+    ],
+    "ee": [
+      "i"
+    ],
+    "ay": [
+      "eɪ"
+    ],
+    "aw": [
+      "ɔ"
+    ],
+    "ow": [
+      "aʊ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ɛ"
+    ],
+    "i": [
+      "ɪ"
+    ],
+    "o": [
+      "ɔ"
+    ],
+    "u": [
+      "ʌ"
+    ],
+    "y": [
+      "j"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "parent": "gem-x-ingvaeonic",
+  "ancestors": [
+    {
+      "code": "gem-x-ingvaeonic",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Sea Island Creole English (gull1241)."
+    }
+  ],
+  "notes": "Skeleton. English-lexifier creole of the South Carolina and Georgia Sea Islands, written in a Latin, largely English-based spelling. Grapheme map uses English digraph conventions (ch, sh, ng; oo [u], ee [i]) but reflects the creole's own phonology where it diverges, notably th realised as a stop [t]/[d]. Gullah has no fixed standard orthography and much text is eye-dialect respelling of English; unstressed-vowel reduction and any prosodic detail are not recoverable and are left unencoded, so a real PER floor is expected.",
+  "iso639_3": "gul",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "gul_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Sea Island Creole English (gull1241)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/gull1241",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "gul_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Gullah language (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Gullah_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gullah_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gullah_language"
+  ]
+}

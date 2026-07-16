@@ -1,0 +1,141 @@
+{
+  "code": "fpe",
+  "name": "Fernando Po Creole English",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "kp": [
+      "k͡p"
+    ],
+    "gb": [
+      "ɡ͡b"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "parent": "gem-x-ingvaeonic",
+  "ancestors": [
+    {
+      "code": "gem-x-ingvaeonic",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Pichi (fern1234)."
+    }
+  ],
+  "notes": "Research tier, consulting Yakpo's grammar of Pichi. English-lexifier Atlantic creole of Bioko (Equatorial Guinea), an offshoot of Krio, written in a Latin phonemic orthography. Grapheme map covers the seven-vowel system (a e ɛ i o ɔ u), the labial-velar stops kp/gb, and the digraphs ch, sh, ny and ng. Pichi is a tone language; lexical and grammatical tone is not marked in the working orthography and is left unencoded, which sets the dominant PER floor for this entry.",
+  "iso639_3": "fpe",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "fpe_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Pichi (fern1234)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/fern1234",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "fpe_yakpo2019",
+      "author": "Yakpo, Kofi",
+      "year": 2019,
+      "title": "A Grammar of Pichi",
+      "publisher": "Language Science Press (Studies in Diversity Linguistics 23)",
+      "url": "https://langsci-press.org/catalog/book/85",
+      "pages": null,
+      "notes": "Reference grammar with phonology and orthography of Pichi.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pichi_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Pichi_language"
+  ]
+}

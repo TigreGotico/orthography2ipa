@@ -1,0 +1,141 @@
+{
+  "code": "tew",
+  "name": "Tewa (USA)",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "kw": [
+      "kʷ"
+    ],
+    "gw": [
+      "ɡʷ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "p'": [
+      "pʼ"
+    ],
+    "t'": [
+      "tʼ"
+    ],
+    "k'": [
+      "kʼ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "v": [
+      "β"
+    ],
+    "s": [
+      "s"
+    ],
+    "x": [
+      "x"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "'": [
+      "ʔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ]
+  },
+  "parent": "x-clade-kiow1265",
+  "ancestors": [
+    {
+      "code": "x-clade-kiow1265",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Rio Grande Tewa (tewa1260)."
+    }
+  ],
+  "notes": "Skeleton. Kiowa-Tanoan (Tewa) language of the Rio Grande pueblos of New Mexico in a practical Roman orthography. Aspirated stops (ph th kh), ejectives with a following apostrophe, labialized kw/gw, v=[β] and the affricates ts/ch are mapped. Tewa is tonal with contrastive vowel nasalization; tone and nasalization are not reliably recovered from this spelling and are left unencoded, raising the PER floor.",
+  "iso639_3": "tew",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "tew_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Rio Grande Tewa (tewa1260)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/tewa1260",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "tew_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tewa language, Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Tewa_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tewa_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Tewa_language"
+  ]
+}

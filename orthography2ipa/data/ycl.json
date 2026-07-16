@@ -1,0 +1,150 @@
+{
+  "code": "ycl",
+  "name": "Lolopo",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "ɯ": [
+      "ɯ"
+    ]
+  },
+  "parent": "x-clade-sino1245",
+  "ancestors": [
+    {
+      "code": "x-clade-sino1245",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Lolopo (lolo1259)."
+    }
+  ],
+  "notes": "Skeleton. Lolopo (Central Yi) is a Loloish (Sino-Tibetan) language of Yunnan, China. Its primary script is the Yi syllabary; this entry maps a Latin-based transcription, covering base Latin consonants and vowels plus digraphs ch/sh/ts/ng/ny and aspirates kh/ph/th. The three lexical tones (low 21, mid 33, high 55) are not recovered by the romanization and are left unencoded, so an elevated PER floor is expected.",
+  "iso639_3": "ycl",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "ycl_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Lolopo (lolo1259)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/lolo1259",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "ycl_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Lolopo language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lolopo_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lolopo_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Lolopo_language"
+  ]
+}

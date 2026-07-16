@@ -1401,10 +1401,14 @@ class TestBasqueEU:
 
     # --- H is a phoneme ---
 
-    def test_h_is_phonemic(self):
-        """BASQUE: h is a real phoneme /h/ — NOT silent like in Romance."""
+    def test_h_is_silent_in_the_southern_norm(self):
+        """BASQUE: orthographic ⟨h⟩ is unpronounced in the southern/standard
+        spoken norm; live aspiration survives only in the north-eastern
+        (continental) dialects, which reassert [h] themselves."""
         g = _grapheme(self._spec, "h")
-        assert g == ["h"], f"eu h: expected phonemic [h], got {g}"
+        assert g == [""], f"eu h: expected silent '' (southern norm), got {g}"
+        assert _grapheme(_load("eu-x-zuberera"), "h") == ["h"], \
+            "continental Souletin should keep phonemic [h]"
 
     # --- Other consonants ---
 
@@ -1501,9 +1505,11 @@ class TestBasqueEU:
         # Basque doesn't have v at all in standard orthography
         assert "v" not in self._spec.graphemes, "eu: v should not be in Basque graphemes"
 
-    def test_isogloss_h_phonemic_not_silent(self):
-        g = _grapheme(self._spec, "h")
-        assert g != [""], "eu h: should be phonemic [h], not silent"
+    def test_isogloss_h_southern_silent_continental_phonemic(self):
+        # southern/standard eu drops ⟨h⟩; the continental dialects keep it
+        assert _grapheme(self._spec, "h") == [""], "eu h: southern norm is silent"
+        assert _grapheme(_load("eu-x-lapurtera"), "h") == ["h"], \
+            "continental Lapurdian keeps phonemic [h]"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -2128,15 +2134,18 @@ class TestIberianIsoglosses:
             assert g and "ʁ" in g, f"{spec.code} rr: expected uvular ʁ"
 
     def test_h_silence_vs_phonemic(self):
-        """h is silent/null in Romance Iberian; h is phonemic in Basque.
+        """h is silent/null in Romance Iberian and in the southern/standard
+        Basque spoken norm; live aspiration survives only in the north-eastern
+        (continental) Basque dialects.
 
         es-ES, gl, ast, ca use empty string "" for silent h.
         pt-PT uses "" (the null symbol) for silent h.
-        Basque eu uses "h" (phonemic aspiration).
+        Standard eu is h-less; continental eu-x-zuberera keeps "h".
         """
-        silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"), _load("an")]
+        silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"),
+                        _load("an"), _load("eu")]
         silent_null_sym = [_load("pt-PT")]
-        phonemic = [_load("eu")]
+        phonemic = [_load("eu-x-zuberera")]
 
         for spec in silent_empty:
             g = _grapheme(spec, "h")

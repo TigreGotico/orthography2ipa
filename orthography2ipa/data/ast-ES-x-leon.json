@@ -55,5 +55,31 @@
     "longitude": -5.84066,
     "source": "wikidata",
     "notes": "the province of León — the core of the Leonese area, which also reaches into Zamora and Salamanca. A province-wide point, not a town. [Wikidata Q71140 P625]"
+  },
+  "graphemes": {
+    "c": [
+      "k",
+      "θ"
+    ],
+    "z": [
+      "θ"
+    ],
+    "ç": [
+      "θ"
+    ],
+    "j": [
+      "h"
+    ]
+  },
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "θ"
+      ],
+      "before_i": [
+        "θ"
+      ]
+    },
+    "z": {}
   }
 }

@@ -1,0 +1,100 @@
+{
+  "code": "crk",
+  "name": "Plains Cree",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "â": [
+      "aː"
+    ],
+    "ê": [
+      "eː"
+    ],
+    "î": [
+      "iː"
+    ],
+    "ô": [
+      "oː"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "c": [
+      "ts"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "parent": "cr",
+  "ancestors": [
+    {
+      "code": "cr",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Plains Cree (plai1258)."
+    }
+  ],
+  "notes": "Skeleton. Algonquian (Cree) variety of the Canadian plains written in the Standard Roman Orthography. Long vowels carry a circumflex (â ê î ô); c=[ts] (ranging to [tʃ]). Stops and s are underlyingly voiceless but voice intervocalically, which is left unencoded. Preaspiration and predictable allophony are not recovered from spelling, raising the PER floor.",
+  "iso639_3": "crk",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "crk_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Plains Cree (plai1258)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/plai1258",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "crk_orthography",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Plains Cree (Standard Roman Orthography), Wikipedia",
+      "publisher": "Wikimedia Foundation",
+      "url": "https://en.wikipedia.org/wiki/Plains_Cree",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Plains_Cree"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Plains_Cree",
+    "https://en.wikipedia.org/wiki/Cree_language"
+  ]
+}

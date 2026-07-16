@@ -1,0 +1,216 @@
+{
+  "code": "gwc",
+  "name": "Gawri",
+  "script": "Arabic",
+  "script_type": "abjad",
+  "quality": "skeleton",
+  "graphemes": {
+    "ٹھ": [
+      "ʈʰ"
+    ],
+    "ڈھ": [
+      "ɖʱ"
+    ],
+    "پھ": [
+      "pʰ"
+    ],
+    "تھ": [
+      "t̪ʰ"
+    ],
+    "کھ": [
+      "kʰ"
+    ],
+    "چھ": [
+      "tʃʰ"
+    ],
+    "بھ": [
+      "bʱ"
+    ],
+    "دھ": [
+      "d̪ʱ"
+    ],
+    "گھ": [
+      "ɡʱ"
+    ],
+    "جھ": [
+      "dʒʱ"
+    ],
+    "ڑھ": [
+      "ɽʱ"
+    ],
+    "ب": [
+      "b"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ت": [
+      "t̪"
+    ],
+    "ٹ": [
+      "ʈ"
+    ],
+    "ث": [
+      "s"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "ح": [
+      "h"
+    ],
+    "خ": [
+      "x"
+    ],
+    "د": [
+      "d̪"
+    ],
+    "ڈ": [
+      "ɖ"
+    ],
+    "ذ": [
+      "z"
+    ],
+    "ر": [
+      "r"
+    ],
+    "ڑ": [
+      "ɽ"
+    ],
+    "ز": [
+      "z"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "س": [
+      "s"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ص": [
+      "s"
+    ],
+    "ض": [
+      "z"
+    ],
+    "ط": [
+      "t̪"
+    ],
+    "ظ": [
+      "z"
+    ],
+    "ع": [
+      "ʔ"
+    ],
+    "غ": [
+      "ɣ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ق": [
+      "q"
+    ],
+    "ک": [
+      "k"
+    ],
+    "گ": [
+      "ɡ"
+    ],
+    "ل": [
+      "l"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "ں": [
+      "̃"
+    ],
+    "و": [
+      "w"
+    ],
+    "ہ": [
+      "h"
+    ],
+    "ھ": [
+      "ʰ"
+    ],
+    "ء": [
+      "ʔ"
+    ],
+    "ی": [
+      "j"
+    ],
+    "ے": [
+      "e"
+    ],
+    "ا": [
+      "aː"
+    ],
+    "آ": [
+      "aː"
+    ],
+    "ئ": [
+      "ʔ"
+    ],
+    "َ": [
+      "a"
+    ],
+    "ِ": [
+      "i"
+    ],
+    "ُ": [
+      "u"
+    ],
+    "ْ": [
+      ""
+    ]
+  },
+  "parent": "x-clade-indo1321",
+  "ancestors": [
+    {
+      "code": "x-clade-indo1321",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Gawri (kala1373)."
+    }
+  ],
+  "notes": "Skeleton. Gawri (Kalam Kohistani), a Dardic Indo-Aryan language of the Swat and Dir Kohistan valleys of Pakistan, written in an Urdu-based Arabic script. Urdu letter values apply: retroflex ٹ ڈ ڑ, postalveolars چ ج ش ژ, and aspiration/breathiness written with do-chashmi he ھ (mapped both as digraphs and as a bare aspiration mark); the Perso-Arabic loan letters ث ذ ص ض ط ظ fold into s/z/t. Short vowels are written only defectively and vowel length, nasalization and the language's pitch accents are largely unrecoverable, so a high PER floor is expected. Any Gawri-specific extra letters beyond the Urdu set (e.g. for retroflex fricatives) are not mapped.",
+  "iso639_3": "gwc",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "gwc_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Gawri (kala1373)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/kala1373",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "gwc_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Gawri language",
+      "publisher": "Wikipedia",
+      "url": null,
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gawri_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Gawri_language"
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "code": "lou",
+  "name": "Louisiana Creole",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "ʃ"
+    ],
+    "ou": [
+      "u"
+    ],
+    "gn": [
+      "ɲ"
+    ],
+    "on": [
+      "ɔ̃"
+    ],
+    "an": [
+      "ã"
+    ],
+    "en": [
+      "ã"
+    ],
+    "in": [
+      "ɛ̃"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "é": [
+      "e"
+    ],
+    "â": [
+      "a"
+    ],
+    "ò": [
+      "ɔ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "y"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "ʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "r": [
+      "ʁ"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "v"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ]
+  },
+  "parent": "x-clade-roma1334",
+  "ancestors": [
+    {
+      "code": "x-clade-roma1334",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Louisiana Creole French (loui1240)."
+    }
+  ],
+  "notes": "Skeleton. French-lexifier creole of Louisiana written in a Latin, French-based spelling. Grapheme map follows French conventions adapted to the creole: ou [u], ch [ʃ], j [ʒ], gn [ɲ], the nasal-vowel digraphs an/en [ã], on [ɔ̃], in [ɛ̃], and accented è/é. Orthographic practice varies between writers and etymological French spellings; final silent letters, liaison and any prosody are not reliably recoverable and are left unencoded, so a PER floor is expected.",
+  "iso639_3": "lou",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "lou_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Louisiana Creole French (loui1240)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/loui1240",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "lou_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Louisiana Creole (Wikipedia)",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Louisiana_Creole",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Louisiana_Creole"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Louisiana_Creole"
+  ]
+}

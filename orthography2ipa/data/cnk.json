@@ -1,0 +1,150 @@
+{
+  "code": "cnk",
+  "name": "Khumi Chin",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "ch": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "p": [
+      "p"
+    ],
+    "r": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "z"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "hl": [
+      "ɬ"
+    ],
+    "aw": [
+      "ɔ"
+    ],
+    "ə": [
+      "ə"
+    ]
+  },
+  "parent": "mni-x-proto-kuki-chin",
+  "ancestors": [
+    {
+      "code": "mni-x-proto-kuki-chin",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Khumi Chin (khum1248)."
+    }
+  ],
+  "notes": "Skeleton. Khumi Chin is a Kuki-Chin (Sino-Tibetan) language of the Chin Hills and Bangladesh, written in a Latin-based orthography. Base Latin consonants and vowels plus digraphs ch/sh/ng/ny, aspirates kh/ph/th and the voiceless lateral hl are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected.",
+  "iso639_3": "cnk",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "cnk_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Khumi Chin (khum1248)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/khum1248",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "cnk_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Khumi language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Khumi_language",
+      "pages": null,
+      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Khumi_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Khumi_language"
+  ]
+}

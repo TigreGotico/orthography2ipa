@@ -1,0 +1,114 @@
+{
+  "code": "aii",
+  "name": "Assyrian Neo-Aramaic",
+  "script": "Syriac",
+  "script_type": "abjad",
+  "quality": "skeleton",
+  "graphemes": {
+    "ܐ": [
+      "ʔ"
+    ],
+    "ܒ": [
+      "b"
+    ],
+    "ܓ": [
+      "ɡ"
+    ],
+    "ܕ": [
+      "d"
+    ],
+    "ܗ": [
+      "h"
+    ],
+    "ܘ": [
+      "w"
+    ],
+    "ܙ": [
+      "z"
+    ],
+    "ܚ": [
+      "x"
+    ],
+    "ܛ": [
+      "tˤ"
+    ],
+    "ܝ": [
+      "j"
+    ],
+    "ܟ": [
+      "k"
+    ],
+    "ܠ": [
+      "l"
+    ],
+    "ܡ": [
+      "m"
+    ],
+    "ܢ": [
+      "n"
+    ],
+    "ܣ": [
+      "s"
+    ],
+    "ܥ": [
+      "ʕ"
+    ],
+    "ܦ": [
+      "p"
+    ],
+    "ܨ": [
+      "sˤ"
+    ],
+    "ܩ": [
+      "q"
+    ],
+    "ܪ": [
+      "r"
+    ],
+    "ܫ": [
+      "ʃ"
+    ],
+    "ܬ": [
+      "t"
+    ]
+  },
+  "parent": "x-clade-cent2236",
+  "ancestors": [
+    {
+      "code": "x-clade-cent2236",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Descent per Glottolog classification of Assyrian Neo-Aramaic (assy1241)."
+    }
+  ],
+  "notes": "Skeleton. Assyrian Neo-Aramaic, a modern Semitic (Afroasiatic, Northeastern Neo-Aramaic) language written in the East Syriac abjad. Consonant letters are mapped to their modern IPA values; ⟨ܚ⟩ is realized as [x] and ⟨ܬ⟩ as [t]. Vowels are indicated only by optional pointing and the matres lectionis ⟨ܐ ܘ ܝ⟩, so unpointed text leaves most vowels unrecovered and a high PER floor is expected. Additional phonemes written with diacritic dots (e.g. [dʒ], [ʒ]) and gemination and stress are left unencoded.",
+  "iso639_3": "aii",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "aii_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Assyrian Neo-Aramaic (assy1241)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/assy1241",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "aii_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Assyrian Neo-Aramaic",
+      "publisher": "Wikipedia",
+      "url": null,
+      "pages": null,
+      "notes": "Alphabet/phonology reference for a skeleton-tier consonant map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Assyrian_Neo-Aramaic"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Assyrian_Neo-Aramaic"
+  ]
+}

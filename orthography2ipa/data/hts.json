@@ -1,0 +1,189 @@
+{
+  "code": "hts",
+  "name": "Hadza",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "skeleton",
+  "graphemes": {
+    "tsh": [
+      "tsʰ"
+    ],
+    "tch": [
+      "tʃʰ"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tc": [
+      "tʃ"
+    ],
+    "sh": [
+      "ʃ"
+    ],
+    "sl": [
+      "ɬ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ngʼ": [
+      "ŋ"
+    ],
+    "ch": [
+      "ǀʰ"
+    ],
+    "qh": [
+      "ǃʰ"
+    ],
+    "xh": [
+      "ǁʰ"
+    ],
+    "nc": [
+      "ᵑǀ"
+    ],
+    "nq": [
+      "ᵑǃ"
+    ],
+    "nx": [
+      "ᵑǁ"
+    ],
+    "cc": [
+      "ᵑǀˀ"
+    ],
+    "qq": [
+      "ᵑǃˀ"
+    ],
+    "xx": [
+      "ᵑǁˀ"
+    ],
+    "dl": [
+      "cʼ"
+    ],
+    "an": [
+      "ã"
+    ],
+    "en": [
+      "ẽ"
+    ],
+    "in": [
+      "ĩ"
+    ],
+    "on": [
+      "õ"
+    ],
+    "un": [
+      "ũ"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "j": [
+      "dʒ"
+    ],
+    "s": [
+      "s"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "h": [
+      "ɦ"
+    ],
+    "c": [
+      "ᵏǀ"
+    ],
+    "q": [
+      "ᵏǃ"
+    ],
+    "x": [
+      "ᵏǁ"
+    ]
+  },
+  "parent": "x-clade-hadz1240",
+  "ancestors": [
+    {
+      "code": "x-clade-hadz1240",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Hadza is a language isolate (Glottolog hadz1240); the clade node represents its own one-member family."
+    }
+  ],
+  "notes": "Language isolate of Tanzania, a click language. The documented practical (Miller-Anyawire) orthography deliberately writes the three clicks with the Latin letters c (dental), q (alveolar) and x (lateral) rather than the click letters, uses h-digraphs for aspiration and gemination (cc/qq/xx) for glottalized nasal clicks. Nasal vowels are written with a following n. This orthography is documented but not widely used by speakers and no single community standard exists, so this is a skeleton map. Phonemic vowel length, intervocalic glottal stop and pitch/stress are not encoded; the dl grapheme is a marginal lateral ejective given as a tentative value.",
+  "iso639_3": "hts",
+  "glottolog_code": null,
+  "sources": [
+    {
+      "id": "hts_glottolog",
+      "author": "Hammarström, H. et al. (Glottolog 5.0)",
+      "year": 2024,
+      "title": "Glottolog: Hadza (hadz1240)",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/hadz1240",
+      "pages": null,
+      "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "hts_wikipedia",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Hadza language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Hadza_language",
+      "pages": null,
+      "notes": "Phonology and practical-orthography reference for the skeleton grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Hadza_language"
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Hadza_language"
+  ]
+}

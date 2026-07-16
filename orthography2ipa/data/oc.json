@@ -436,6 +436,23 @@
       "word_final": [
         ""
       ]
+    },
+    "gu": {
+      "before_a": [
+        "ɡw"
+      ],
+      "before_o": [
+        "ɡw"
+      ],
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "default": [
+        "ɡ"
+      ]
     }
   },
   "quality": "research",

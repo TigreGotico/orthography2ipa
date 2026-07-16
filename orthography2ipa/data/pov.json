@@ -110,6 +110,10 @@
     ],
     "z": [
       "z"
+    ],
+    "gu": [
+      "ɡ",
+      "ɡw"
     ]
   },
   "positional_graphemes": {
@@ -155,6 +159,23 @@
     "ng": {
       "word_initial": [
         "ŋɡ"
+      ]
+    },
+    "gu": {
+      "before_e": [
+        "ɡ"
+      ],
+      "before_i": [
+        "ɡ"
+      ],
+      "before_a": [
+        "ɡw"
+      ],
+      "before_o": [
+        "ɡw"
+      ],
+      "default": [
+        "ɡ"
       ]
     }
   },
@@ -328,5 +349,16 @@
     "longitude": -15.33254,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Upper Guinea Crioulo."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "PT_CODA_L_DARK",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "l",
+      "syllable_position": "coda",
+      "notes": "DISABLES the inherited EP dark coda [ɫ]: Guinea-Bissau Kriol has plain coda [l] (Kihm 1994). Identity rewrite cancels the inherited rule by id."
+    }
+  ]
 }
