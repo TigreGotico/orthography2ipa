@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.31.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a1) (2026-07-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.0a1...7.31.1a1)
+
+**Merged pull requests:**
+
+- fix: resolve Saudi region and dialect Arabic codes to their spec [\#642](https://github.com/TigreGotico/orthography2ipa/pull/642) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.31.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.31.0a1) (2026-07-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.2a1...7.31.0a1)
