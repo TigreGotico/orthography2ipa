@@ -883,8 +883,7 @@
    "publisher": "19th Meeting of the French Phonology Network (RFP 2022), Porto, Portugal, 7-9 June 2022",
    "url": "https://hal.science/hal-03691265",
    "pages": null,
-   "type": "primary (speaker judgments + Element Theory analysis)",
-   "notes": "Kabyle-specific study of post-sonorant occlusivization based on Chemini Kabyle (south-east Bejaïa), with comparative data from Aït Mengellat, Boghni, and Makouda. Confirmed distribution: /β/ occlusivizes after n,m but not r,l; /θ,ð/ occlusivize after l,n,m but not r; /ç/ occlusivizes after all of r,l,n,m; /ʝ/ occlusivizes after r,l,n but not m. Nasal-cluster forms: /nβ/→[mb], /nθ,nð/→[nt,nd], /nç,nʝ/→[ŋk,ŋɡ]. /mʝ/→[mʝ] before ə/i/a, /mʝ/→[mh] (debuccalized) before u, across Chemini, Boghni, and Makouda. Post-/m/ occlusivization of /t,d/ is dialect-split: Chemini and Aït Mengellat occlusivize (/mθ/→[mt], /mð/→[md]); Boghni and Makouda do not. /mβ/→[mb] and /mç/→[mk] are constant across all four varieties."
+   "notes": "Primary (speaker judgments + Element Theory analysis). Kabyle-specific study of post-sonorant occlusivization based on Chemini Kabyle (south-east Bejaïa), with comparative data from Aït Mengellat, Boghni, and Makouda. Confirmed distribution: /β/ occlusivizes after n,m but not r,l; /θ,ð/ occlusivize after l,n,m but not r; /ç/ occlusivizes after all of r,l,n,m; /ʝ/ occlusivizes after r,l,n but not m. Nasal-cluster forms: /nβ/→[mb], /nθ,nð/→[nt,nd], /nç,nʝ/→[ŋk,ŋɡ]. /mʝ/→[mʝ] before ə/i/a, /mʝ/→[mh] (debuccalized) before u, across Chemini, Boghni, and Makouda. Post-/m/ occlusivization of /t,d/ is dialect-split: Chemini and Aït Mengellat occlusivize (/mθ/→[mt], /mð/→[md]); Boghni and Makouda do not. /mβ/→[mb] and /mç/→[mk] are constant across all four varieties."
   },
   {
    "id": "wikipedia_kabyle",
@@ -925,8 +924,7 @@
    "publisher": "Centre de Recherche Berbère – INALCO, Paris (synthèse de l'atelier des 24-25 juin 1996)",
    "url": "https://www.centrederechercheberbere.fr/tl_files/doc-pdf/notation.pdf",
    "pages": null,
-   "type": "primary (orthography standard)",
-   "notes": "Source for the alphabet assumed by the INPUT CONTRACT of this spec. Its consonant chart lists the lax stop/spirant pairs (b/β, t/θ, d/ð, k/ç, g/ʝ) and prescribes writing tension by letter doubling — the 'tamaziɣt/INALCO' notation the spec's grapheme table encodes. Independently cited by Karaoui, Djeradi & Djeradi (2024)."
+   "notes": "Primary (orthography standard). Source for the alphabet assumed by the INPUT CONTRACT of this spec. Its consonant chart lists the lax stop/spirant pairs (b/β, t/θ, d/ð, k/ç, g/ʝ) and prescribes writing tension by letter doubling — the 'tamaziɣt/INALCO' notation the spec's grapheme table encodes. Independently cited by Karaoui, Djeradi & Djeradi (2024)."
   },
   {
    "id": "mammeri1976_precis",
@@ -936,8 +934,7 @@
    "publisher": "Paris (rééd. Fichier TAL, 1983)",
    "url": null,
    "pages": null,
-   "type": "primary (orthography codification)",
-   "notes": "Codified the Latin orthography for Kabyle on which the INALCO 1996 standard and modern usage build."
+   "notes": "Primary (orthography codification). Codified the Latin orthography for Kabyle on which the INALCO 1996 standard and modern usage build."
   },
   {
    "id": "souag2019_arabic_script",
@@ -947,8 +944,7 @@
    "publisher": "In: Creating Standards, De Gruyter, pp. 273-296. DOI 10.1515/9783110639063-011",
    "url": "https://shs.hal.science/halshs-02945641",
    "pages": "273-296",
-   "type": "secondary (orthography history)",
-   "notes": "Documents that the Latin orthography became dominant for Kabyle only in the second half of the 20th century, supporting the script assumptions of the INPUT CONTRACT."
+   "notes": "Secondary (orthography history). Documents that the Latin orthography became dominant for Kabyle only in the second half of the 20th century, supporting the script assumptions of the INPUT CONTRACT."
   },
   {
    "id": "wang2020_syllabification",
@@ -958,8 +954,7 @@
    "publisher": "McGill Working Papers in Linguistics 26.1 ('Topics in Kabyle Linguistics'), McGill University",
    "url": "http://people.linguistics.mcgill.ca/~mcgwpl/McGWPL/2020v26n01/2020_26_1_Wang.pdf",
    "pages": null,
-   "type": "primary (syllable phonology)",
-   "notes": "Argues all Kabyle schwas are epenthetic repairs of ill-formed clusters, and that geminates are never broken by epenthesis. Supports the schwa statement in KNOWN LIMITS and bears on sk-type clusters."
+   "notes": "Primary (syllable phonology). Argues all Kabyle schwas are epenthetic repairs of ill-formed clusters, and that geminates are never broken by epenthesis. Supports the schwa statement in KNOWN LIMITS and bears on sk-type clusters."
   },
   {
    "id": "mokraoui2026_native_verification",
@@ -969,8 +964,7 @@
    "publisher": null,
    "url": null,
    "pages": null,
-   "type": "primary (speaker judgments)",
-   "notes": "Item-by-item verification of spirantization of /b d t k ɡ/ in word-initial, post-vocalic and post-consonant positions. Rulings incorporated: categorical post-consonant blocking for k/ɡ with the /mʝ/ exception; word-initial /t/ → [θ] before all vowels including /i/; rejection of the [ʃ] allophone of /k/; gloss of anta 'which one (f.)'."
+   "notes": "Primary (speaker judgments). Item-by-item verification of spirantization of /b d t k ɡ/ in word-initial, post-vocalic and post-consonant positions. Rulings incorporated: categorical post-consonant blocking for k/ɡ with the /mʝ/ exception; word-initial /t/ → [θ] before all vowels including /i/; rejection of the [ʃ] allophone of /k/; gloss of anta 'which one (f.)'."
   },
   {
    "id": "corpus_audit_2026_07_17",
@@ -980,8 +974,7 @@
    "publisher": null,
    "url": "https://huggingface.co/boffire",
    "pages": null,
-   "type": "primary (corpus evidence)",
-   "notes": "31,085 samples / 21,260 unique words from boffire/tatoeba-en-kab, boffire/nllb_en_kab, boffire/kabyle-english-TM, boffire/kabyle-english-translatewiki. Blocked clusters richly attested (rk, lk, nk, fk, tk, rg, ng, zg); exotic clusters (xk, qk, zk, ɣk) unattested."
+   "notes": "Primary (corpus evidence). 31,085 samples / 21,260 unique words from boffire/tatoeba-en-kab, boffire/nllb_en_kab, boffire/kabyle-english-TM, boffire/kabyle-english-translatewiki. Blocked clusters richly attested (rk, lk, nk, fk, tk, rg, ng, zg); exotic clusters (xk, qk, zk, ɣk) unattested."
   }
  ],
  "wikipedia": [
