@@ -77,8 +77,8 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    _syllables_for, apply_stress_mark, detect_stress, detect_stress_by_weight,
-    syllabify, syllabify_ipa,
+    _syllables_for, apply_stress_mark, cliticless_keys, detect_stress,
+    detect_stress_by_weight, syllabify, syllabify_ipa,
 )
 from orthography2ipa.types import LanguageSpec
 
@@ -896,38 +896,21 @@ class G2P:
                 return hit
         return None
 
-    def _cliticless_keys(self) -> frozenset:
-        """The spec's ``stress.cliticless_words`` as a normalized lookup set.
-
-        Cached per engine. Keyed exactly like :meth:`_override_for` — language-
-        aware lowercased and NFC-normalized — so a form listed in the spec's
-        input orthography matches the input word regardless of case or Unicode
-        composition.
-        """
-        cached = getattr(self, "_cliticless_cache", None)
-        if cached is None:
-            forms = (self.spec.stress.cliticless_words
-                     if self.spec.stress is not None else ())
-            cached = frozenset(
-                unicodedata.normalize("NFC", lower_str(f, self.spec.code))
-                for f in forms
-            )
-            self._cliticless_cache = cached
-        return cached
-
     def _is_cliticless(self, word: str) -> bool:
         """Whether *word* is a declared prosodic clitic that takes no stress.
 
-        A clitic leans on an adjacent host and lives inside the host's stress
-        domain, so no word stress is placed on it (Watson 2002, ch. 3). This is
-        an orthographic-form test — it cannot tell a clitic homograph from a
-        full-word one — matching the spec's ``stress.cliticless_words``.
+        Delegates to :func:`orthography2ipa.stress.is_cliticless` so the engine
+        and every downstream assembler make the identical decision from one place
+        (the keys are cached per engine on first use).
         """
-        keys = self._cliticless_keys()
-        if not keys:
+        cached = getattr(self, "_cliticless_cache", None)
+        if cached is None:
+            cached = cliticless_keys(self.spec)
+            self._cliticless_cache = cached
+        if not cached:
             return False
         return unicodedata.normalize(
-            "NFC", lower_str(word, self.spec.code)) in keys
+            "NFC", lower_str(word, self.spec.code)) in cached
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
