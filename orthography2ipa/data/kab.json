@@ -539,6 +539,7 @@
     "ʃ",
     "t͡ʃ",
     "d͡ʒ",
+    "t͡s",
     "j",
     "w",
     "bː",
@@ -609,6 +610,7 @@
     "ʃ",
     "t͡ʃ",
     "d͡ʒ",
+    "t͡s",
     "j",
     "w",
     "bː",
@@ -674,7 +676,7 @@
     "t"
    ],
    "surface": "θ",
-   "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θametˤːθ]. Geminate ⟨tt⟩ is not this stop's tense counterpart: it is the distinct affricate phoneme /t͡s/ (see spec-level notes), unaffected by this rule. Applies word-initially before all vowels, including /i/ (tifinaɣ, tilufa, tilelli, tikwal, tibḥirt, ticcert, tiddi, tigawt all begin [θi-], native-speaker verified). Intervocalic -ti- remains to be verified."
+   "notes": "Spirantization of the lax voiceless dental stop: /t/ → [θ] (Kossmann & Stroomer 1997 p.466-469). E.g. tafat 'light' → [θafaθ], tawwurt 'door' → [θawwurθ], tameṭṭut 'woman' → [θamətˤːuθ]. Geminate ⟨tt⟩ is not this stop's tense counterpart: it is the distinct affricate phoneme /t͡s/ (see spec-level notes), unaffected by this rule. Applies word-initially before all vowels, including /i/ (tifinaɣ, tilufa, tilelli, tikwal, tibḥirt, ticcert, tiddi, tigawt all begin [θi-], native-speaker verified). Intervocalic -ti- remains to be verified."
   },
   {
    "id": "KAB_SPIRANT_G",
