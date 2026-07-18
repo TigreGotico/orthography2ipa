@@ -35,7 +35,7 @@ from __future__ import annotations
 import logging
 import unicodedata
 from dataclasses import dataclass, replace
-from typing import Callable, List, Optional, Set, Tuple
+from typing import Callable, Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
 from orthography2ipa.features import (
@@ -410,6 +410,16 @@ class G2P:
         # runs and transcribe() is byte-identical to before this seam existed.
         self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
             normalize_sentence_rescorers(sentence_rescorer))
+        # Per-engine memo of two pure, spec-only computations that the profiler
+        # showed dominate the front-end path: syllabification (the silabificador
+        # plugin is not cheap) and the rules-only pronunciation lattice the
+        # confidence read rebuilds. Both are deterministic functions of the word
+        # and this engine's immutable spec — they never consult the runtime-
+        # mutable lexicon — so a fresh engine gets fresh caches and the results
+        # are byte-identical to computing them each time. Real speech repeats
+        # function words heavily, so the hit rate is high.
+        self._syll_cache: Dict[str, List[str]] = {}
+        self._lattice_cache: Dict[Tuple[str, int], List[SegmentSlot]] = {}
 
     # ─── public API ──────────────────────────────────────────────────
 
@@ -629,16 +639,22 @@ class G2P:
         object a downstream rescorer (B4) or confidence signal (B5) reads.
         """
         keep = 2 ** 31 if beam_width < 0 else beam_width
+        cache_key = (word, keep)
+        cached = self._lattice_cache.get(cache_key)
+        if cached is not None:
+            # SegmentSlot is frozen, so sharing the elements is safe; a fresh
+            # list guards the cache against a caller that mutates the sequence.
+            return list(cached)
         g_tokens = self._tokenizer.grapheme_tokens(word)
         if not g_tokens:
+            self._lattice_cache[cache_key] = []
             return []
         contexts = flat_contexts(g_tokens)
 
         stressed_syll_idx: Optional[int] = None
         sylls: List[str] = []
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
+            sylls = self._syllables_cached(word)
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
@@ -678,11 +694,13 @@ class G2P:
                 if s.candidates
             ]
 
-        return [
+        result = [
             SegmentSlot(grapheme=s.grapheme, span=s.span,
                         candidates=s.candidates[:keep])
             for s in slots
         ]
+        self._lattice_cache[cache_key] = result
+        return list(result)
 
     def word_confidence(self, word: str, *, beam_width: int = 8) -> float:
         """Per-word confidence for *word*, in ``[0.0, 1.0]`` (Workstream B5).
@@ -896,6 +914,23 @@ class G2P:
                 return hit
         return None
 
+    def _syllables_cached(self, word: str) -> List[str]:
+        """Syllabify *word* once per engine.
+
+        Syllabification depends only on the word and this engine's fixed
+        stress spec, yet the front-end asks for it several times per word
+        (stress detection and the lattice each need it) and again for every
+        repeat of a function word. The cache collapses all of that to one call;
+        a copy is returned so callers that mutate the list in place (stress
+        assembly appends onsets) never corrupt the cached value.
+        """
+        sylls = self._syll_cache.get(word)
+        if sylls is None:
+            diph = self.spec.stress.diphthongs if self.spec.stress else ()
+            sylls = _syllables_for(word, self.lang, diph)
+            self._syll_cache[word] = sylls
+        return list(sylls)
+
     def _is_cliticless(self, word: str) -> bool:
         """Whether *word* is a declared prosodic clitic that takes no stress.
 
@@ -951,8 +986,7 @@ class G2P:
                         ipa, self.spec.stress.max_onset),
                 )
             else:
-                sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                       if self.spec.stress else ())
+                sylls = self._syllables_cached(word)
                 idx = detect_stress(word, self.spec.stress, syllables=sylls)
                 ipa = apply_stress_mark(ipa, self.spec.stress, idx,
                                         syllables=sylls)
@@ -1045,8 +1079,7 @@ class G2P:
         stressed_syll_idx: Optional[int] = None
         sylls: List[str] = []
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
+            sylls = self._syllables_cached(word)
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
