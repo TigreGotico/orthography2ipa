@@ -7,6 +7,9 @@ on:
 
 jobs:
   coverage:
+    permissions:
+      contents: write
+      pull-requests: write
     uses: OpenVoiceOS/gh-automations/.github/workflows/coverage.yml@dev
     with:
       python_version: '3.11'
