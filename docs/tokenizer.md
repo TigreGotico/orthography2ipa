@@ -40,9 +40,8 @@ By default that ranking is *positional*: candidate `0` costs `0`, candidate `1` 
 ### The structured lattice
 
 `ipa_beam` flattens the search into whole-word `IPAPath` strings. When you
-want the ranked options **per grapheme** — to intervene at one position,
-or to hand a downstream engine a structure it can rescore —
-`tok.ipa_lattice(text)` returns one `SegmentSlot` per grapheme, each with
+want the ranked options **per grapheme**: to intervene at one position,
+or to hand a downstream engine a structure it can rescore: `tok.ipa_lattice(text)` returns one `SegmentSlot` per grapheme, each with
 its span and ranked `Candidate(ipa, cost)` list. Concatenating each slot's
 top candidate reproduces `ipa_best` with its default arguments (the lattice
 has no whitespace/punctuation slots). `ipa_beam` also accepts the opt-in
@@ -176,8 +175,8 @@ for p in paths:
 
 ### `ipa_lattice(text)`
 
-For a *structured* view of the same search space — ranked candidates per grapheme
-rather than flattened path strings — use `ipa_lattice`, which returns a
+For a *structured* view of the same search space: ranked candidates per grapheme
+rather than flattened path strings: use `ipa_lattice`, which returns a
 `SegmentSlot` per grapheme carrying its span and ranked `Candidate(ipa, cost)`
 options. See [lattice.md](lattice.md).
 
@@ -236,8 +235,8 @@ GRAPHEME tokens are **lower-cased** before trie lookup. The `.grapheme` field st
 ## Context Model
 
 `tokenize()` returns a flat `List[Token]`. When a consumer needs to reason
-about a grapheme's *surroundings* — its neighbours, its character span, or
-its phonological class — `tokenize_with_context()` returns a
+about a grapheme's *surroundings*: its neighbours, its character span, or
+its phonological class: `tokenize_with_context()` returns a
 `TokenSequence`: a view that wraps every GRAPHEME token in a
 `GraphemeContext`.
 
@@ -249,23 +248,23 @@ for c in seq:
 
 Each `GraphemeContext` exposes:
 
-- **Neighbours** (word-local — they never cross whitespace, punctuation,
+- **Neighbours** (word-local: they never cross whitespace, punctuation,
   digits or unknown characters):
-  - `.prev` / `.next` — the adjacent grapheme, or `None` at a word edge.
-  - `.at(offset)` — the grapheme `offset` positions away (`at(2)`, `at(-1)`);
+  - `.prev` / `.next`: the adjacent grapheme, or `None` at a word edge.
+  - `.at(offset)`: the grapheme `offset` positions away (`at(2)`, `at(-1)`);
     `None` past a word edge.
-  - `.neighbors(n)` — up to `2*n` graphemes within `±n`, left-to-right,
+  - `.neighbors(n)`: up to `2*n` graphemes within `±n`, left-to-right,
     self excluded, clamped at word edges.
-- **Span** — `.span` → `(start, end)` character offsets that index the
+- **Span**: `.span` → `(start, end)` character offsets that index the
   **NFC-normalised** input `tokenize()` works on, with `.grapheme` itself
   **case-folded**. The exact contract is
   `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme`. A
   raw `text[start:end]` round-trip against the caller's original string
-  only holds when that string is already lower-case NFC — it breaks for
+  only holds when that string is already lower-case NFC: it breaks for
   upper-case input (offsets index the un-folded text) and for NFD input
   (offsets index the NFC-normalised text).
 - **Class predicates**, delegating to `orthography2ipa.vowels` (the single
-  source of truth — no vowel set is defined here): `.is_vowel`,
+  source of truth: no vowel set is defined here): `.is_vowel`,
   `.is_consonant`, `.is_front`, `.is_back`. They classify by the grapheme's
   leading character, so a consonant digraph (`ch`) is a consonant and a
   vowel digraph (`ai`) reports by its leading vowel.
@@ -273,10 +272,10 @@ Each `GraphemeContext` exposes:
 ### Why it exists: replacing hand-rolled index arithmetic
 
 Without this context model a downstream phonemizer re-implements all of the
-above by hand — raw string indexing plus its own vowel set. Take a c-softening
+above by hand: raw string indexing plus its own vowel set. Take a c-softening
 rule (`c` → /s/ before a front vowel).
 
-By hand — raw index arithmetic and a private vowel list:
+By hand: raw index arithmetic and a private vowel list:
 
 ```python
 chars = list(word.lower())
@@ -286,7 +285,7 @@ for idx, char in enumerate(chars):
         phonemes[idx] = "s" if next_char in ("e", "i", "é", "í", "y") else "k"
 ```
 
-With the context model — one shared, accent-aware predicate:
+With the context model: one shared, accent-aware predicate:
 
 ```python
 for c in tok.tokenize_with_context(word):
@@ -317,7 +316,7 @@ engine-only (they need sentence context). See
 
 - The trie is built once at `PhonetokTokenizer` construction and reused for all subsequent calls.
 - `tokenize()` is O(n·k) where n is text length and k is maximum grapheme length.
-- `ipa_beam()` complexity is O(n · beam_width · |IPA alternatives|) — practical for words and short phrases.
+- `ipa_beam()` complexity is O(n · beam_width · |IPA alternatives|): practical for words and short phrases.
 - `tokenize_with_context()` adds one O(n) pass building lightweight flyweight views; neighbour lookups (`prev`/`next`/`at`) are O(1).
 - For very long documents, consider tokenizing sentence-by-sentence.
 

@@ -1,8 +1,8 @@
 # Scoreboard
 
-**Grain of salt — read this first.** Reliable G2P "gold" barely exists. Most datasets below are semi-automated, dictionary-extracted, community-scraped, or a phonemizer's OWN output reused as a reference. A low PER against a `machine-generated` gold means "agrees with that tool", NOT "correct". Absolute PER is noisy — read every number as **directional/relative**, and cross-reference the `95% CI` (a wide or degenerate interval, common on small-`N` rows, means the row cannot support a conclusion). Full per-dataset classification and the honest caveats: [`docs/benchmarks.md`](benchmarks.md) ("Provenance and reliability").
+**Grain of salt: read this first.** Reliable G2P "gold" barely exists. Most datasets below are semi-automated, dictionary-extracted, community-scraped, or a phonemizer's OWN output reused as a reference. A low PER against a `machine-generated` gold means "agrees with that tool", NOT "correct". Absolute PER is noisy: read every number as **directional/relative**, and cross-reference the `95% CI` (a wide or degenerate interval, common on small-`N` rows, means the row cannot support a conclusion). Full per-dataset classification and the honest caveats: [`docs/benchmarks.md`](benchmarks.md) ("Provenance and reliability").
 
-`Provenance` legend (most → least trustworthy, all still subject to notation conventions and small-`N` noise): **expert-human** (phonetician / native-speaker / expert-annotator) > **lexicon-derived** (dictionary, human lexicographers) > **crowd-scraped** (Wiktionary) > **machine-generated** (some other tool's output; agreement-with-tool, not correctness) > **espeak-derived** / **epitran-derived** (a COMPETITOR's output: measures agreement with a system we benchmark ourselves against, so it can neither qualify a language for `production` nor block one) > **llm-generated** (an LLM's output: no lexicon, no rules, therefore no error model — a disagreement is not even diagnostic; never gate on it).
+`Provenance` legend (most → least trustworthy, all still subject to notation conventions and small-`N` noise): **expert-human** (phonetician / native-speaker / expert-annotator) > **lexicon-derived** (dictionary, human lexicographers) > **crowd-scraped** (Wiktionary) > **machine-generated** (some other tool's output; agreement-with-tool, not correctness) > **espeak-derived** / **epitran-derived** (a COMPETITOR's output: measures agreement with a system we benchmark ourselves against, so it can neither qualify a language for `production` nor block one) > **llm-generated** (an LLM's output: no lexicon, no rules, therefore no error model: a disagreement is not even diagnostic; never gate on it).
 
 Committed PER/exact-match results for every gold dataset/language combination registered in `scripts/benchmark.py`. Regenerate with:
 
@@ -12,7 +12,7 @@ PYTHONPATH=$PWD python scripts/benchmark.py --scoreboard
 
 Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). Methodology and dataset provenance: [`docs/benchmarks.md`](benchmarks.md).
 
-The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word PERs resampled with replacement, 1000 reps, fixed seed 20260710) — see [`docs/benchmarks.md`](benchmarks.md).
+The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word PERs resampled with replacement, 1000 reps, fixed seed 20260710): see [`docs/benchmarks.md`](benchmarks.md).
 
 | Lang | Dataset | N | PER | 95% CI | Exact match | Quality tier | Provenance |
 |---|---|---:|---:|---:|---:|---|---|
