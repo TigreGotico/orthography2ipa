@@ -1,8 +1,8 @@
-# orthography2ipa — Documentation
+# orthography2ipa: Documentation
 
 **[index.md](index.md) is the front door.** It routes you by what you are trying
-to do — integrate the engine, add a language, build a downstream phonemizer,
-evaluate the library for production — and states the accuracy limits up front.
+to do: integrate the engine, add a language, build a downstream phonemizer,
+evaluate the library for production: and states the accuracy limits up front.
 
 `orthography2ipa` measures how languages relate to each other across independent
 axes (phonological, reading, spelling, script, genealogical, temporal,
@@ -17,8 +17,8 @@ from orthography2ipa.distance import grapheme_divergence, spelling_divergence
 o2i.transcribe("olá mundo", "pt")   # 'oˈla ˈmũdu'
 
 gl, glr = o2i.get("gl"), o2i.get("gl-x-reintegrado")
-grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233 — they read alike
-spelling_divergence(gl, glr).mean_distance       # 0.0659 — they are written differently
+grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233: they read alike
+spelling_divergence(gl, glr).mean_distance       # 0.0659: they are written differently
 ```
 
 ## Contents
