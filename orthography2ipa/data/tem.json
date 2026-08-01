@@ -41,7 +41,7 @@
     "kp": ["kp"], "l": ["l"], "m": ["m"], "n": ["n"], "ŋ": ["ŋ"], "p": ["p"],
     "r": ["r"], "s": ["s"], "ʃ": ["ʃ"], "t": ["t"], "t̪": ["t̪"], "w": ["w"], "j": ["j"]
   },
-  "notes": "Temne, Mel branch of Atlantic-Congo (not close to Mande, despite sharing Sierra Leone with Mende), spoken by ~2 million people mainly in Northern Sierra Leone and the Western Area. Nine vowel qualities /i e ɛ ə a ʌ o ɔ u/ are attested; the back vowel ⟨ʌ⟩ has an ASCII-safe variant ⟨ȧ⟩ in texts without extended-Latin support, not modelled separately here. Temne unusually distinguishes DENTAL ⟨th⟩ /t̪/ from ALVEOLAR ⟨t⟩ /t/ (with articulatory roles reversed from the cross-linguistic norm: the dental is apical, the alveolar laminal — a fact about articulation, not spelling, and not otherwise relevant to the grapheme map). Labiovelar stops are written ⟨gb⟩ /ɡb/ and ⟨kp⟩ /kp/, as in the neighbouring but unrelated Mende (men) and Susu (sus). Temne is a two-tone (high/low) language; tone is not marked in the standard Latin orthography, so no tone is emitted here. Quality:research — the alphabet table (27 letters/digraphs) is reconstructed from a secondary Wikipedia summary that did not give every letter explicitly; the affricate /tʃ/ attested in the consonant inventory is not assigned a grapheme here because no source consulted states its orthographic letter unambiguously (candidate ⟨ch⟩ is a plausible West African convention but unconfirmed for Temne specifically, so it is omitted rather than guessed, per AGENTS.md §4).",
+  "notes": "Temne, Mel branch of Atlantic-Congo (not close to Mande, despite sharing Sierra Leone with Mende), spoken by ~2 million people mainly in Northern Sierra Leone and the Western Area. Nine vowel qualities /i e ɛ ə a ʌ o ɔ u/ are attested; the back vowel ⟨ʌ⟩ has an ASCII-safe variant ⟨ȧ⟩ in texts without extended-Latin support, not modelled separately here. Temne unusually distinguishes DENTAL ⟨th⟩ /t̪/ from ALVEOLAR ⟨t⟩ /t/ (with articulatory roles reversed from the cross-linguistic norm: the dental is apical, the alveolar laminal — a fact about articulation, not spelling, and not otherwise relevant to the grapheme map). Labiovelar stops are written ⟨gb⟩ /ɡb/ and ⟨kp⟩ /kp/, as in the neighbouring but unrelated Mende (men) and Susu (sus). Temne is a two-tone (high/low) language; tone is not marked in the standard Latin orthography, so no tone is emitted here. The vowel inventory and the dental/alveolar ⟨th⟩=/t̪/ vs ⟨t⟩=/t/ contrast are now confirmed against Kanu & Tucker's (2010) JIPA 'Illustrations of the IPA' article, the primary reference for this spec. That article also states /tʃ/, /ʃ/ and /w/ surface as dialectal variants of /t/, /s/ and /j/ before front vowels /i e a/ rather than as independently spelled phonemes, which is why no separate ⟨ch⟩ grapheme is asserted here (a plausible West African convention, but unconfirmed for Temne specifically and, per this source, not phonemically distinct in all dialects — omitted rather than guessed, per AGENTS.md §4). Quality:research — the full 27-letter alphabet table itself is still reconstructed from a secondary Wikipedia summary that did not give every letter explicitly.",
   "sources": [
     {
       "id": "wilson1961",
@@ -63,6 +63,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Temne_language",
       "pages": null,
       "notes": "Consonant/vowel inventory, tone, 27-letter Latin alphabet."
+    },
+    {
+      "id": "kanu_tucker_2010",
+      "author": "Kanu, Sullay M. and Tucker, Benjamin V.",
+      "year": 2010,
+      "title": "Temne",
+      "publisher": "Journal of the International Phonetic Association 40(2), Illustrations of the IPA",
+      "url": "https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/temne/BD1773945818578E52AF92431AEE168C",
+      "pages": "247-253",
+      "notes": "JIPA Illustration of the IPA. Confirms the 9-vowel inventory /i e ɛ ə ʌ a u o ɔ/ with orthographic ⟨ʌ⟩=/ʌ/; confirms the dental/alveolar stop contrast with the digraph ⟨th⟩=/t̪/ (dental, unaspirated) vs. ⟨t⟩=/t/ (alveolar, aspirated/affricated); states /t/~/tʃ/, /s/~/ʃ/, and /j/~/w/ are dialectal variants before front vowels /i e a/."
     }
   ],
   "wikipedia": [

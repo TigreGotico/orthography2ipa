@@ -39,7 +39,14 @@
     "x": ["x"],
     "y": ["j"],
     "nd": ["nd"],
-    "ng": ["ŋɡ"]
+    "ng": ["ŋɡ"],
+    "an": ["ã"],
+    "en": ["ẽ"],
+    "ɛn": ["ɛ̃"],
+    "in": ["ĩ"],
+    "on": ["õ"],
+    "ɔn": ["ɔ̃"],
+    "un": ["ũ"]
   },
   "allophones": {
     "a": ["a"], "aː": ["aː"], "e": ["e"], "eː": ["eː"], "ɛ": ["ɛ"], "ɛː": ["ɛː"],
@@ -48,9 +55,10 @@
     "b": ["b"], "d": ["d"], "f": ["f"], "ɡ": ["ɡ"], "ɡb": ["ɡb"], "h": ["h"],
     "k": ["k"], "l": ["l"], "m": ["m"], "n": ["n"], "ɲ": ["ɲ"], "ŋ": ["ŋ"],
     "p": ["p"], "r": ["r"], "s": ["s"], "t": ["t"], "w": ["w"], "x": ["x"], "j": ["j"],
-    "nd": ["nd"], "ŋɡ": ["ŋɡ"]
+    "nd": ["nd"], "ŋɡ": ["ŋɡ"],
+    "ã": ["ã"], "ẽ": ["ẽ"], "ɛ̃": ["ɛ̃"], "ĩ": ["ĩ"], "õ": ["õ"], "ɔ̃": ["ɔ̃"], "ũ": ["ũ"]
   },
-  "notes": "Susu (Soso), Central Mande (Susu-Yalunka branch), spoken by ~2.4 million people mainly in coastal Guinea, with communities in Sierra Leone and Guinea-Bissau. Written with the Guinean national-languages Latin alphabet (post-1988 reform), the same convention used for the Bambara (bm) spec in this repo: IPA-style letters ɛ, ɔ, ɲ, ŋ are used directly rather than digraphs, ⟨y⟩ = /j/, and the labial-velar stop is ⟨gb⟩ = /ɡb/. Fourteen oral vowel phonemes (7 qualities x length) are attested; length is written by doubling the vowel letter, following the same convention as ff/wo/bm. Susu also has a full set of nasalized vowel counterparts (ĩ ũ ẽ õ ɛ̃ ɔ̃ ã), attested phonemically by the cited Wikipedia phoneme table, but the source consulted does not state how nasalization is marked in the standard orthography (nasal-vowel diacritic vs. a following ⟨n⟩), so no nasal-vowel graphemes are asserted here — recording an unconfirmed spelling convention would be a fabrication (AGENTS.md §4). Prenasalized ⟨nd⟩ and ⟨ng⟩ are attested directly as phonemes /nd/ and /ŋɡ/ in the same table. This spec is quality:research pending a primary-source, letter-by-letter cross-check of the orthography table.",
+  "notes": "Susu (Soso), Central Mande (Susu-Yalunka branch), spoken by ~2.4 million people mainly in coastal Guinea, with communities in Sierra Leone and Guinea-Bissau. Written with the Guinean national-languages Latin alphabet (post-1988 reform), the same convention used for the Bambara (bm) spec in this repo: IPA-style letters ɛ, ɔ, ɲ, ŋ are used directly rather than digraphs, ⟨y⟩ = /j/, and the labial-velar stop is ⟨gb⟩ = /ɡb/. Fourteen oral vowel phonemes (7 qualities x length) are attested; length is written by doubling the vowel letter, following the same convention as ff/wo/bm. Susu also has a full set of nasalized vowel counterparts (ĩ ũ ẽ õ ɛ̃ ɔ̃ ã), attested phonemically by the cited Wikipedia phoneme table; the same table states these are written orthographically as vowel+⟨n⟩ digraphs (⟨in⟩, ⟨un⟩, ⟨en⟩, ⟨on⟩, ⟨ɛn⟩, ⟨ɔn⟩, ⟨an⟩), so those digraphs are recorded here as graphemes mapping to the corresponding nasalized vowel. Prenasalized ⟨nd⟩ and ⟨ng⟩ are attested directly as phonemes /nd/ and /ŋɡ/ in the same table. This spec is quality:research pending a primary-source, letter-by-letter cross-check of the orthography table.",
   "sources": [
     {
       "id": "houis1963",
@@ -71,7 +79,7 @@
       "url": "https://en.wikipedia.org/wiki/Susu_language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Susu_language",
       "pages": null,
-      "notes": "Consonant and vowel (oral + nasal) phoneme inventory."
+      "notes": "Consonant and vowel (oral + nasal) phoneme inventory; states nasal vowels are written as vowel+n digraphs (in, un, en, on, ɛn, ɔn, an)."
     }
   ],
   "wikipedia": [
