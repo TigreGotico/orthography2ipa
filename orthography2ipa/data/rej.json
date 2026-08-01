@@ -105,6 +105,16 @@
       "j"
     ]
   },
+  "positional_graphemes": {
+    "k": {
+      "word_final": [
+        "ʔ"
+      ],
+      "default": [
+        "k"
+      ]
+    }
+  },
   "allophones": {
     "a": [
       "a"
@@ -163,6 +173,9 @@
     "ɡ": [
       "ɡ"
     ],
+    "ʔ": [
+      "ʔ"
+    ],
     "ᵐb": [
       "ᵐb"
     ],
@@ -206,8 +219,18 @@
       "j"
     ]
   },
-  "notes": "Rejang, spoken by ~350,000 people in Bengkulu and South Sumatra provinces, southwestern Sumatra, Indonesia (Austronesian, Malayo-Polynesian). This spec describes the modern Latin orthography, which has largely superseded the traditional Rejang script (Surat Ulu / aksara Rejang, ISO 15924 'Rjng', an abugida) since the 1960s; that native script is NOT modelled here, only referenced — building a reliable grapheme inventory for it would need a dedicated, separately-sourced spec. There is no single codified Latin spelling standard for Rejang (per Wikipedia); the Latin orthography in use follows Indonesian-like conventions with digraphs and diacritics, which this spec approximates at 'basic' quality. CONSONANTS: plosives /p b t d c ɟ k ɡ/ (⟨c⟩/⟨j⟩ = palatal stops, not affricates — Jaspan/r12a phonemic description), fricatives /s h/, nasals /m n ɲ ŋ/ (⟨ny⟩/⟨ng⟩ digraphs), approximants /l w j/ (⟨y⟩ = /j/), and four PRENASALISED stops /ᵐb ⁿd ᶮɟ ᵑɡ/ (⟨mb nd nj ngg⟩) — a single phonological unit each, not a nasal+stop cluster (AGENTS.md §2 test 2). The trill /r/ occurs only in loanwords. A glottal stop /ʔ/ phoneme is attested but its orthographic representation is not confidently sourced and is left unmodelled. VOWELS: eight qualities /i e ɛ ə a ɔ o u/ realised in the Latin orthography with the same unmarked-schwa / accented-full-vowel convention as neighbouring Sumatran Malayo-Polynesian orthographies (⟨e⟩=/ə/, ⟨é⟩=/e/, ⟨è⟩=/ɛ/); the back-vowel /o/–/ɔ/ contrast is not confidently sourced for the Latin spelling and is left unmarked. Four diphthongs /əu̯ ɛa̯ ai̯ au̯/ (⟨eu ea ai au⟩).",
+  "notes": "Rejang, spoken by ~350,000 people in Bengkulu and South Sumatra provinces, southwestern Sumatra, Indonesia (Austronesian, Malayo-Polynesian). This spec describes the modern Latin orthography, which has largely superseded the traditional Rejang script (Surat Ulu / aksara Rejang, ISO 15924 'Rjng', an abugida) since the 1960s; that native script is NOT modelled here, only referenced — building a reliable grapheme inventory for it would need a dedicated, separately-sourced spec. There is no single codified Latin spelling standard for Rejang (per Wikipedia); the Latin orthography in use follows Indonesian-like conventions with digraphs and diacritics, which this spec approximates at 'basic' quality. CONSONANTS: plosives /p b t d c ɟ k ɡ/ (⟨c⟩/⟨j⟩ = palatal stops, not affricates — Jaspan/r12a phonemic description), fricatives /s h/, nasals /m n ɲ ŋ/ (⟨ny⟩/⟨ng⟩ digraphs), approximants /l w j/ (⟨y⟩ = /j/), and four PRENASALISED stops /ᵐb ⁿd ᶮɟ ᵑɡ/ (⟨mb nd nj ngg⟩) — a single phonological unit each, not a nasal+stop cluster (AGENTS.md §2 test 2). The trill /r/ occurs only in loanwords (r12a). Omniglot's Latin-alphabet chart notes were fetched directly and confirm: word-final ⟨k⟩ is pronounced [ʔ] ('K is pronounced [ʔ] at the end of words'), now modelled as a `positional_graphemes` word-final rule; the same notes state 'Q only appears at the end of words' but do not assign it a distinct IPA value, so ⟨q⟩ itself is left unmodelled for lack of a confidently sourced phonetic value. VOWELS: eight qualities /i e ɛ ə a ɔ o u/ (r12a) realised in the Latin orthography with the same unmarked-schwa / accented-full-vowel convention as neighbouring Sumatran Malayo-Polynesian orthographies (⟨e⟩=/ə/, ⟨é⟩=/e/, ⟨è⟩=/ɛ/); the back-vowel /o/–/ɔ/ contrast is not confidently sourced for the Latin spelling and is left unmarked. Four diphthongs /əu̯ ɛa̯ ai̯ au̯/ (⟨eu ea ai au⟩, r12a).",
   "sources": [
+    {
+      "id": "rej_omniglot",
+      "author": "Ager, Simon",
+      "year": 2024,
+      "title": "Rejang script and language",
+      "publisher": "Omniglot",
+      "url": "https://www.omniglot.com/writing/redjang.htm",
+      "pages": null,
+      "notes": "Latin-alphabet pronunciation notes: word-final ⟨k⟩ = [ʔ]; ⟨q⟩ restricted to word-final position; confirms no standardised Rejang Latin spelling exists."
+    },
     {
       "id": "rej_wiki",
       "author": "Wikipedia contributors",

@@ -80,9 +80,6 @@
     ],
     "w": [
       "w"
-    ],
-    "y": [
-      "j"
     ]
   },
   "allophones": {
@@ -161,12 +158,9 @@
     ],
     "w": [
       "w"
-    ],
-    "j": [
-      "j"
     ]
   },
-  "notes": "Pijin (Solomon Islands Pijin), the lingua franca of the Solomon Islands, an English-lexifier Pacific creole closely related to Tok Pisin (Papua New Guinea) and Bislama (Vanuatu). The orthography is largely phonemic: five cardinal vowels /i e a o u/, diphthongs ⟨ai au oi⟩, and a consonant inventory that simplifies the English source system — English /tʃ/ merges with /s/, and both /θ/ and /ð/ merge with /t/ in Pijin pronunciation (so the English etymon's spelling is not retained for these; a spec cannot assert a ⟨ch⟩/⟨th⟩ grapheme for Pijin because the language does not spell them that way). Consonant clusters and consonant-final syllables are avoided: loanwords from English are adapted with epenthetic vowels chosen by vowel harmony (e.g. 'business' > bisinis/bisinisi), a lexical/morphophonemic process handled by a downstream lexicon, not by this grapheme spec (AGENTS.md §6/§7). No government body standardises Pijin spelling; practical orthography (as used in Bible translations, newspapers such as the Solomon Star, and SIL materials) is the basis here.",
+  "notes": "Pijin (Solomon Islands Pijin), the lingua franca of the Solomon Islands, an English-lexifier Pacific creole closely related to Tok Pisin (Papua New Guinea) and Bislama (Vanuatu). The orthography is largely phonemic: five cardinal vowels /i e a o u/, diphthongs ⟨ai au oi⟩, and a consonant inventory that simplifies the English source system. Fetched Wikipedia examples (quoted directly) show English /tʃ/ AND /ʃ/ both merging with /s/ (tisa 'teacher', sea 'chair', mas 'much'; sot 'short', bus 'bush', masin 'machine'), voiceless English /θ/ merging with /s/, NOT /t/ (maos 'mouth'), voiced English /ð/ merging with /t/ (brata/barata 'brother'), and /z/ merging with /s/ (resa 'razor') — so the English etymon's spelling is not retained for ⟨ch⟩/⟨sh⟩/⟨th⟩/⟨z⟩, none of which are modelled as graphemes here. The standard Pijin Latin alphabet excludes Q, X, Y, and Z (Wikipedia, fetched); the ⟨y⟩ grapheme for /j/ previously in this spec is REMOVED for lack of a confidently sourced attestation — search evidence instead points to ⟨i⟩ being used where English orthography would use y (e.g. 'iu' for 'you'), which is out of scope to model as a positional-i rule without a dedicated phonology source. Consonant clusters and consonant-final syllables are avoided: loanwords from English are adapted with epenthetic vowels chosen by vowel harmony (e.g. 'business' > bisinis/bisinisi), a lexical/morphophonemic process handled by a downstream lexicon, not by this grapheme spec (AGENTS.md §6/§7). No government body standardises Pijin spelling; practical orthography (as used in Bible translations, newspapers such as the Solomon Star, and SIL materials) is the basis here.",
   "sources": [
     {
       "id": "pis_wiki",
