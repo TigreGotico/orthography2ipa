@@ -179,6 +179,10 @@
     "name": "Avar",
     "level": "language"
   },
+  "aves1237": {
+    "name": "Avestan",
+    "level": "language"
+  },
   "awad1243": {
     "name": "Awadhi",
     "level": "language"
@@ -995,6 +999,10 @@
     "name": "Khorasan Persian",
     "level": "dialect"
   },
+  "khot1251": {
+    "name": "Khotanese",
+    "level": "language"
+  },
   "kich1262": {
     "name": "K'iche'",
     "level": "language"
@@ -1627,6 +1635,10 @@
     "name": "Paraguayan Guaraní",
     "level": "language"
   },
+  "part1239": {
+    "name": "Parthian",
+    "level": "language"
+  },
   "pedi1238": {
     "name": "Pedi",
     "level": "language"
@@ -1645,6 +1657,10 @@
   },
   "piem1238": {
     "name": "Piemontese",
+    "level": "language"
+  },
+  "piji1239": {
+    "name": "Pijin",
     "level": "language"
   },
   "pipi1250": {
@@ -1685,6 +1701,10 @@
   },
   "rakh1245": {
     "name": "Rakhine",
+    "level": "language"
+  },
+  "reja1240": {
+    "name": "Rejang",
     "level": "language"
   },
   "riop1234": {
@@ -1771,6 +1791,10 @@
     "name": "Southern Romance",
     "level": "family"
   },
+  "sasa1249": {
+    "name": "Sasak",
+    "level": "language"
+  },
   "sate1242": {
     "name": "Ems-Weser Frisian",
     "level": "language"
@@ -1849,6 +1873,10 @@
   },
   "slov1269": {
     "name": "Slovak",
+    "level": "language"
+  },
+  "sogd1245": {
+    "name": "Sogdian",
     "level": "language"
   },
   "soma1255": {
