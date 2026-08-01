@@ -11,6 +11,10 @@
     "name": "Acehnese",
     "level": "language"
   },
+  "adan1247": {
+    "name": "Adangme",
+    "level": "language"
+  },
   "adyg1241": {
     "name": "West Circassian",
     "level": "language"
@@ -34,6 +38,10 @@
   "ainu1252": {
     "name": "Ainu",
     "level": "family"
+  },
+  "ajab1235": {
+    "name": "Aja (Benin)",
+    "level": "language"
   },
   "akan1250": {
     "name": "Akan",
@@ -615,6 +623,10 @@
     "name": "Fala",
     "level": "language"
   },
+  "fant1241": {
+    "name": "Fante",
+    "level": "dialect"
+  },
   "faro1244": {
     "name": "Faroese",
     "level": "language"
@@ -651,6 +663,10 @@
     "name": "Fula",
     "level": "family"
   },
+  "gaaa1244": {
+    "name": "Ga",
+    "level": "language"
+  },
   "gaga1249": {
     "name": "Gagauz",
     "level": "language"
@@ -681,6 +697,10 @@
   },
   "geez1241": {
     "name": "Geez",
+    "level": "language"
+  },
+  "genn1243": {
+    "name": "Gen",
     "level": "language"
   },
   "germ1287": {
@@ -1211,6 +1231,10 @@
     "name": "Mazanderani",
     "level": "language"
   },
+  "mend1266": {
+    "name": "Mende (Sierra Leone)",
+    "level": "language"
+  },
   "meso1252": {
     "name": "Gilit Mesopotamian Arabic",
     "level": "language"
@@ -1341,6 +1365,10 @@
   },
   "nias1242": {
     "name": "Nias",
+    "level": "language"
+  },
+  "nige1253": {
+    "name": "Hausa States Fulfulde",
     "level": "language"
   },
   "nilo1247": {
@@ -1647,6 +1675,10 @@
     "name": "Puerto Rican Spanish",
     "level": "dialect"
   },
+  "pula1262": {
+    "name": "Pular",
+    "level": "language"
+  },
   "quec1387": {
     "name": "Quechuan",
     "level": "family"
@@ -1763,6 +1795,10 @@
     "name": "Serbian Standard",
     "level": "dialect"
   },
+  "sere1260": {
+    "name": "Sereer",
+    "level": "language"
+  },
   "shan1277": {
     "name": "Shan",
     "level": "language"
@@ -1817,6 +1853,10 @@
   },
   "soma1255": {
     "name": "Somali",
+    "level": "language"
+  },
+  "soni1259": {
+    "name": "Soninke",
     "level": "language"
   },
   "sout2694": {
@@ -1903,6 +1943,10 @@
     "name": "Sundanese",
     "level": "language"
   },
+  "susu1250": {
+    "name": "Susu",
+    "level": "language"
+  },
   "swah1253": {
     "name": "Swahili",
     "level": "language"
@@ -1985,6 +2029,10 @@
   },
   "tigr1271": {
     "name": "Tigrinya",
+    "level": "language"
+  },
+  "timn1235": {
+    "name": "Timne",
     "level": "language"
   },
   "toki1239": {
