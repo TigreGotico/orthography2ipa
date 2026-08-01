@@ -1,0 +1,93 @@
+{
+  "code": "tem",
+  "name": "Temne",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": ["a"],
+    "ʌ": ["ʌ"],
+    "e": ["e"],
+    "ɛ": ["ɛ"],
+    "ə": ["ə"],
+    "i": ["i"],
+    "o": ["o"],
+    "ɔ": ["ɔ"],
+    "u": ["u"],
+    "b": ["b"],
+    "d": ["d"],
+    "f": ["f"],
+    "gb": ["ɡb"],
+    "h": ["h"],
+    "k": ["k"],
+    "kp": ["kp"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "ŋ": ["ŋ"],
+    "p": ["p"],
+    "r": ["r"],
+    "s": ["s"],
+    "sh": ["ʃ"],
+    "t": ["t"],
+    "th": ["t̪"],
+    "w": ["w"],
+    "y": ["j"]
+  },
+  "allophones": {
+    "a": ["a"], "ʌ": ["ʌ"], "e": ["e"], "ɛ": ["ɛ"], "ə": ["ə"], "i": ["i"],
+    "o": ["o"], "ɔ": ["ɔ"], "u": ["u"],
+    "b": ["b"], "d": ["d"], "f": ["f"], "ɡb": ["ɡb"], "h": ["h"], "k": ["k"],
+    "kp": ["kp"], "l": ["l"], "m": ["m"], "n": ["n"], "ŋ": ["ŋ"], "p": ["p"],
+    "r": ["r"], "s": ["s"], "ʃ": ["ʃ"], "t": ["t"], "t̪": ["t̪"], "w": ["w"], "j": ["j"]
+  },
+  "notes": "Temne, Mel branch of Atlantic-Congo (not close to Mande, despite sharing Sierra Leone with Mende), spoken by ~2 million people mainly in Northern Sierra Leone and the Western Area. Nine vowel qualities /i e ɛ ə a ʌ o ɔ u/ are attested; the back vowel ⟨ʌ⟩ has an ASCII-safe variant ⟨ȧ⟩ in texts without extended-Latin support, not modelled separately here. Temne unusually distinguishes DENTAL ⟨th⟩ /t̪/ from ALVEOLAR ⟨t⟩ /t/ (with articulatory roles reversed from the cross-linguistic norm: the dental is apical, the alveolar laminal — a fact about articulation, not spelling, and not otherwise relevant to the grapheme map). Labiovelar stops are written ⟨gb⟩ /ɡb/ and ⟨kp⟩ /kp/, as in the neighbouring but unrelated Mende (men) and Susu (sus). Temne is a two-tone (high/low) language; tone is not marked in the standard Latin orthography, so no tone is emitted here. Quality:research — the alphabet table (27 letters/digraphs) is reconstructed from a secondary Wikipedia summary that did not give every letter explicitly; the affricate /tʃ/ attested in the consonant inventory is not assigned a grapheme here because no source consulted states its orthographic letter unambiguously (candidate ⟨ch⟩ is a plausible West African convention but unconfirmed for Temne specifically, so it is omitted rather than guessed, per AGENTS.md §4).",
+  "sources": [
+    {
+      "id": "wilson1961",
+      "author": "Wilson, William André Auquier",
+      "year": 1961,
+      "title": "An Outline of the Temne Language",
+      "publisher": "School of Oriental and African Studies, University of London",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar; phonology and orthography."
+    },
+    {
+      "id": "temne_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Temne language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Temne_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Temne_language",
+      "pages": null,
+      "notes": "Consonant/vowel inventory, tone, 27-letter Latin alphabet."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Temne_language"
+  ],
+  "urls": [
+    "https://glottolog.org/resource/languoid/id/timn1235",
+    "https://www.wikidata.org/wiki/Q36613"
+  ],
+  "iso639_3": "tem",
+  "glottolog_code": "timn1235",
+  "wikidata_qid": "Q36613",
+  "parent": "x-clade-atla1278",
+  "ancestors": [
+    {
+      "code": "x-clade-atla1278",
+      "role": "parent",
+      "weight": 1.0,
+      "notes": "Atlantic-Congo — Temne belongs to the Mel branch, distinct from the Senegambian (Northern Atlantic) branch of ff/wo/srr."
+    }
+  ],
+  "location": {
+    "latitude": 8.75,
+    "longitude": -12.3,
+    "source": "glottolog",
+    "notes": "Approximate centroid of the Temne-speaking region of Northern Sierra Leone."
+  }
+}
