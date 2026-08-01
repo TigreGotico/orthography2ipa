@@ -14,11 +14,13 @@ import orthography2ipa
 # Fetch a spec by code
 spec = orthography2ipa.get("pt-BR")
 
-# List all registered language codes: 676 of them
+# List all registered language codes
 codes = orthography2ipa.available_codes()
+len(codes)
 
-# ...plus the 73 classification-only clade nodes (749 total)
+# ...plus the classification-only clade nodes
 all_codes = orthography2ipa.available_codes(include_clades=True)
+len(all_codes)
 
 # Group codes by their derived family path
 families = orthography2ipa.available_families()
