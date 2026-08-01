@@ -11,6 +11,10 @@
     "name": "Acehnese",
     "level": "language"
   },
+  "adan1247": {
+    "name": "Adangme",
+    "level": "language"
+  },
   "adyg1241": {
     "name": "West Circassian",
     "level": "language"
@@ -34,6 +38,10 @@
   "ainu1252": {
     "name": "Ainu",
     "level": "family"
+  },
+  "ajab1235": {
+    "name": "Aja (Benin)",
+    "level": "language"
   },
   "akan1250": {
     "name": "Akan",
@@ -615,6 +623,10 @@
     "name": "Fala",
     "level": "language"
   },
+  "fant1241": {
+    "name": "Fante",
+    "level": "dialect"
+  },
   "faro1244": {
     "name": "Faroese",
     "level": "language"
@@ -651,6 +663,10 @@
     "name": "Fula",
     "level": "family"
   },
+  "gaaa1244": {
+    "name": "Ga",
+    "level": "language"
+  },
   "gaga1249": {
     "name": "Gagauz",
     "level": "language"
@@ -681,6 +697,10 @@
   },
   "geez1241": {
     "name": "Geez",
+    "level": "language"
+  },
+  "genn1243": {
+    "name": "Gen",
     "level": "language"
   },
   "germ1287": {

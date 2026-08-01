@@ -51,6 +51,12 @@ _ALIASES: Dict[str, str] = {
     # macro-collapse step can rewrite it.
     "bxr": "bxr",
     "diq": "diq",
+    # ``tw`` (Twi) and ``fat`` (Fante) are individual-language codes that
+    # langcodes' macro=True standardisation collapses into their
+    # macrolanguage ``ak`` (Akan), same class of collision as bxr/diq above.
+    # Both the individual and the macro spec exist and are distinct targets.
+    "tw": "tw",
+    "fat": "fat",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
