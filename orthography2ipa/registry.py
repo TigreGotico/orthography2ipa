@@ -57,6 +57,12 @@ _ALIASES: Dict[str, str] = {
     # Both the individual and the macro spec exist and are distinct targets.
     "tw": "tw",
     "fat": "fat",
+    # Individual-code specs collapsing into the newly-added Mari macrolanguage
+    # spec: ``mhr`` (Eastern/Meadow Mari) and ``mrj`` (Hill/Western Mari)
+    # standardize to ``chm`` (Mari macrolanguage). Pin each individual code to
+    # itself so the macro-collapse step does not rewrite it.
+    "mhr": "mhr",
+    "mrj": "mrj",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
