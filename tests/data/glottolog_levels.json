@@ -11,6 +11,10 @@
     "name": "Acehnese",
     "level": "language"
   },
+  "adan1247": {
+    "name": "Adangme",
+    "level": "language"
+  },
   "adyg1241": {
     "name": "West Circassian",
     "level": "language"
@@ -34,6 +38,10 @@
   "ainu1252": {
     "name": "Ainu",
     "level": "family"
+  },
+  "ajab1235": {
+    "name": "Aja (Benin)",
+    "level": "language"
   },
   "akan1250": {
     "name": "Akan",
@@ -169,6 +177,10 @@
   },
   "avar1256": {
     "name": "Avar",
+    "level": "language"
+  },
+  "aves1237": {
+    "name": "Avestan",
     "level": "language"
   },
   "awad1243": {
@@ -615,6 +627,10 @@
     "name": "Fala",
     "level": "language"
   },
+  "fant1241": {
+    "name": "Fante",
+    "level": "dialect"
+  },
   "faro1244": {
     "name": "Faroese",
     "level": "language"
@@ -651,6 +667,10 @@
     "name": "Fula",
     "level": "family"
   },
+  "gaaa1244": {
+    "name": "Ga",
+    "level": "language"
+  },
   "gaga1249": {
     "name": "Gagauz",
     "level": "language"
@@ -681,6 +701,10 @@
   },
   "geez1241": {
     "name": "Geez",
+    "level": "language"
+  },
+  "genn1243": {
+    "name": "Gen",
     "level": "language"
   },
   "germ1287": {
@@ -975,6 +999,10 @@
     "name": "Khorasan Persian",
     "level": "dialect"
   },
+  "khot1251": {
+    "name": "Khotanese",
+    "level": "language"
+  },
   "kich1262": {
     "name": "K'iche'",
     "level": "language"
@@ -1211,6 +1239,10 @@
     "name": "Mazanderani",
     "level": "language"
   },
+  "mend1266": {
+    "name": "Mende (Sierra Leone)",
+    "level": "language"
+  },
   "meso1252": {
     "name": "Gilit Mesopotamian Arabic",
     "level": "language"
@@ -1341,6 +1373,10 @@
   },
   "nias1242": {
     "name": "Nias",
+    "level": "language"
+  },
+  "nige1253": {
+    "name": "Hausa States Fulfulde",
     "level": "language"
   },
   "nilo1247": {
@@ -1599,6 +1635,10 @@
     "name": "Paraguayan Guaraní",
     "level": "language"
   },
+  "part1239": {
+    "name": "Parthian",
+    "level": "language"
+  },
   "pedi1238": {
     "name": "Pedi",
     "level": "language"
@@ -1617,6 +1657,10 @@
   },
   "piem1238": {
     "name": "Piemontese",
+    "level": "language"
+  },
+  "piji1239": {
+    "name": "Pijin",
     "level": "language"
   },
   "pipi1250": {
@@ -1647,12 +1691,20 @@
     "name": "Puerto Rican Spanish",
     "level": "dialect"
   },
+  "pula1262": {
+    "name": "Pular",
+    "level": "language"
+  },
   "quec1387": {
     "name": "Quechuan",
     "level": "family"
   },
   "rakh1245": {
     "name": "Rakhine",
+    "level": "language"
+  },
+  "reja1240": {
+    "name": "Rejang",
     "level": "language"
   },
   "riop1234": {
@@ -1739,6 +1791,10 @@
     "name": "Southern Romance",
     "level": "family"
   },
+  "sasa1249": {
+    "name": "Sasak",
+    "level": "language"
+  },
   "sate1242": {
     "name": "Ems-Weser Frisian",
     "level": "language"
@@ -1762,6 +1818,10 @@
   "serb1264": {
     "name": "Serbian Standard",
     "level": "dialect"
+  },
+  "sere1260": {
+    "name": "Sereer",
+    "level": "language"
   },
   "shan1277": {
     "name": "Shan",
@@ -1815,8 +1875,16 @@
     "name": "Slovak",
     "level": "language"
   },
+  "sogd1245": {
+    "name": "Sogdian",
+    "level": "language"
+  },
   "soma1255": {
     "name": "Somali",
+    "level": "language"
+  },
+  "soni1259": {
+    "name": "Soninke",
     "level": "language"
   },
   "sout2694": {
@@ -1903,6 +1971,10 @@
     "name": "Sundanese",
     "level": "language"
   },
+  "susu1250": {
+    "name": "Susu",
+    "level": "language"
+  },
   "swah1253": {
     "name": "Swahili",
     "level": "language"
@@ -1985,6 +2057,10 @@
   },
   "tigr1271": {
     "name": "Tigrinya",
+    "level": "language"
+  },
+  "timn1235": {
+    "name": "Timne",
     "level": "language"
   },
   "toki1239": {
