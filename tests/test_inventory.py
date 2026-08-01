@@ -169,6 +169,17 @@ KNOWN_DEAD_RULES = {
     # the inherited French front-rounded/schwa nasalisation rules can never
     # fire here. They are live in fr-FR, which keeps both phonemes.
     "crs": {"FR_NASAL_y", "FR_NASAL_ə"},
+    # jrb (Judeo-Arabic macrolanguage node) and its member-language stubs
+    # (ajt, aju, yhd) are metadata-only: graphemes is intentionally empty
+    # pending a sourced Hebrew-script grapheme table (see their `notes`), so
+    # no phoneme -- including /ʔ/ -- is in the inventory yet and the
+    # inherited Classical-Arabic hamzat-al-waṣl rule can never fire. Same
+    # class of dead rule as "acy" above; will resolve itself once a real
+    # grapheme table is added for these codes.
+    "jrb": {"AR_WASL_EPENTHESIS"},
+    "ajt": {"AR_WASL_EPENTHESIS"},
+    "aju": {"AR_WASL_EPENTHESIS"},
+    "yhd": {"AR_WASL_EPENTHESIS"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
