@@ -1,0 +1,259 @@
+{
+  "code": "sas",
+  "name": "Sasak",
+  "script": "Latin",
+  "script_type": "alphabet",
+  "quality": "research",
+  "graphemes": {
+    "a": [
+      "a"
+    ],
+    "e": [
+      "ə"
+    ],
+    "é": [
+      "e"
+    ],
+    "è": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ae": [
+      "ae"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "uə": [
+      "uə"
+    ],
+    "oe": [
+      "oe"
+    ],
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "c": [
+      "tɕ"
+    ],
+    "j": [
+      "dʑ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "r": [
+      "r"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
+  },
+  "allophones": {
+    "a": [
+      "a"
+    ],
+    "ə": [
+      "ə"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ae": [
+      "ae"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "uə": [
+      "uə"
+    ],
+    "oe": [
+      "oe"
+    ],
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "dʑ": [
+      "dʑ"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "l": [
+      "l"
+    ],
+    "w": [
+      "w"
+    ],
+    "j": [
+      "j"
+    ]
+  },
+  "notes": "Sasak (Bahasa Sasak), spoken by ~2.7 million on Lombok, West Nusa Tenggara, Indonesia (Austronesian, Malayo-Polynesian; closely related to Balinese and Sumbawa). Five dialects with low mutual intelligibility (Kutó-Kuté, Nggetó-Nggeté, Menó-Mené, Ngenó-Ngené, Meriaq-Meriku); this spec is a dialect-neutral basic-quality description, not tied to one variety. Traditionally written in the Sasak script (aksara Sasaq, an abugida), now largely superseded by a Latin orthography adapted from Indonesian conventions. CONSONANTS: /p b t d k ɡ/ plosives, /tɕ dʑ/ (⟨c⟩/⟨j⟩) alveo-palatal affricates, /m n ɲ ŋ/ nasals (⟨ny⟩/⟨ng⟩ digraphs), /s h/ fricatives, /r/ rhotic (realised [r]~[ɾ]), /l w j/ approximants (⟨y⟩ for /j/, ⟨j⟩ reserved for the affricate). VOWELS: eight vowel qualities across dialects; the Latin orthography marks the front-vowel contrast diacritically — unmarked ⟨e⟩ = schwa /ə/, ⟨é⟩ = /e/, ⟨è⟩ = /ɛ/ — a convention shared with other Nusantara Malayo-Polynesian orthographies (cf. Indonesian ⟨e⟩). Six diphthongs /ae ai au ia uə oe/ are attested; the back-vowel diacritic pair ⟨ó⟩/⟨ò⟩ used in some dictionaries for a parallel /o/–/ɔ/ contrast is not modelled here for lack of a consistently sourced mapping. Glottal stop /ʔ/ is present in the phoneme inventory but its orthographic representation (apostrophe vs. unmarked) is not confidently sourced and is left unmodelled; word-final /k/ neutralisation is plausible by areal analogy with neighbouring Malayo-Polynesian languages but is not asserted without a citation.",
+  "sources": [
+    {
+      "id": "sas_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Sasak language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sasak_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sasak_language",
+      "pages": null,
+      "notes": "Consonant/vowel inventory table, dialects, diphthongs, orthographic diacritic conventions."
+    },
+    {
+      "id": "labphon_nasal_sub",
+      "author": "Various",
+      "year": 2021,
+      "title": "Phonological and phonetic properties of nasal substitution in Sasak and Javanese",
+      "publisher": "Laboratory Phonology",
+      "url": "https://www.journal-labphon.org/article/id/6208/",
+      "pages": null,
+      "notes": "Academic phonological description of Sasak nasals and morphophonology (nasal substitution not modelled here — belongs to morphology, out of scope per AGENTS.md §4)."
+    },
+    {
+      "id": "ldtc_sasak",
+      "author": "Language Documentation Training Center",
+      "year": 2023,
+      "title": "Sasak (Nisa) — Orthography & Phonology",
+      "publisher": "LDTC",
+      "url": "https://www.ldtc.org/languages/sasak-nisa/orthography",
+      "pages": null,
+      "notes": "Practical Latin orthography reference for a Sasak dialect."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Sasak_language",
+    "https://en.wikipedia.org/wiki/Sasak_script"
+  ],
+  "urls": [
+    "https://glottolog.org/resource/languoid/id/sasa1249",
+    "https://www.ldtc.org/languages/sasak-nisa/orthography",
+    "https://www.omniglot.com/writing/sasak.htm"
+  ],
+  "iso639_3": "sas",
+  "glottolog_code": "sasa1249",
+  "wikidata_qid": "Q1294047",
+  "parent": "poz",
+  "ancestors": [
+    {
+      "code": "poz",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Malayo-Polynesian branch of Austronesian; Bali-Sasak-Sumbawa subgroup."
+    }
+  ],
+  "location": {
+    "latitude": -8.6529,
+    "longitude": 116.3249,
+    "source": "glottolog",
+    "notes": "Central Lombok, the heartland of Sasak speech."
+  }
+}
