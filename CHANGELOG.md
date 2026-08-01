@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.32.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.32.0a1) (2026-08-01)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.1a3...7.32.0a1)
+
+**Merged pull requests:**
+
+- feat: add Serer, Soninke, Susu, Mende, Temne, Pular and Nigerian Fulfulde specs [\#655](https://github.com/TigreGotico/orthography2ipa/pull/655) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add tw, fat, gaa, ada, gen, aja \(Ghana/Togo Kwa languages\) [\#654](https://github.com/TigreGotico/orthography2ipa/pull/654) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.31.1a3](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a3) (2026-07-30)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.1a2...7.31.1a3)
