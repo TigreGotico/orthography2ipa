@@ -1292,3 +1292,79 @@ def test_iir_satem_shift_gives_a_palatal_sibilant():
     """"Satem shift: PIE palatovelars *ḱ, *ĝ → PII palatal sibilants *ś, *ź."
     The reconstruction *śatam 'hundred' has a palatal sibilant, not a velar."""
     assert G2P("iir").transcribe_word("śatam") == "ɕatam"
+
+
+# ---------------------------------------------------------------------------
+# srr / snk / sus / men / tem / fuf / fuv — West Atlantic and Mande
+# (Senegambia / Guinea / Sierra Leone)
+# ---------------------------------------------------------------------------
+
+def test_srr_double_vowel_is_phonemic_length():
+    """"Five vowels /i e a o u/ contrast length, written by doubling the
+    vowel letter" (Serer Wikipedia orthography table).  The autonym
+    'Seereer' has two doubled vowels, both realised long."""
+    assert G2P("srr").transcribe_word("seereer") == "seːreːr"
+
+
+def test_srr_voiced_implosives_are_distinct_letters():
+    """"Ɓ /ɓ/ (voiced bilabial implosive)" and "Ɗ /ɗ/ (voiced alveolar
+    implosive)" (Serer Wikipedia orthography table).  ɓɗ juxtaposed keeps
+    each implosive distinct from a plain stop."""
+    assert G2P("srr").transcribe_word("ɓɗ") == "ɓɗ"
+
+
+def test_snk_double_vowel_is_phonemic_length():
+    """"Five vowels (i, e, a, o, u) with long variants marked by doubling"
+    (Soninke Wikipedia phonology summary).  The autonym 'Sooninke' has a
+    doubled ⟨oo⟩ realised long."""
+    assert G2P("snk").transcribe_word("sooninke") == "soːninke"
+
+
+def test_snk_c_is_a_palato_alveolar_affricate():
+    """"⟨c⟩ = [tʃ]" (Soninke Wikipedia consonant table), the same
+    West-African convention as Bambara (bm) and Fula (ff)."""
+    assert G2P("snk").transcribe_word("c") == "tʃ"
+
+
+def test_sus_gb_is_a_single_labial_velar_stop():
+    """Attested phoneme /ɡb/ (Susu Wikipedia consonant table) written
+    ⟨gb⟩, following the Guinean national-languages convention shared with
+    Mende (men). Not the sum of g /ɡ/ + b /b/, but one double-articulated
+    segment."""
+    assert G2P("sus").transcribe_word("gb") == "ɡb"
+
+
+def test_men_j_is_a_voiced_affricate_not_a_glide():
+    """"⟨j⟩ = /dʒ/" (Mende Wikipedia alphabet table) — unlike the
+    unrelated Susu (sus), where ⟨j⟩ instead denotes the glide /j/."""
+    assert G2P("men").transcribe_word("j") == "dʒ"
+
+
+def test_men_kp_and_gb_are_labiovelar_stops():
+    """"The digraphs gb and kp represent labiovelar plosives" (Mende
+    Wikipedia). 'kpa' keeps the labiovelar onset as one segment."""
+    assert G2P("men").transcribe_word("kpa") == "kpa"
+
+
+def test_tem_th_is_dental_distinct_from_alveolar_t():
+    """"Temne distinguishes dental and alveolar" stops (Temne Wikipedia
+    phonology summary): ⟨th⟩ = /t̪/ is a distinct grapheme from plain
+    ⟨t⟩ = /t/."""
+    g = G2P("tem")
+    assert g.transcribe_word("th") == "t̪"
+    assert g.transcribe_word("th") != g.transcribe_word("t")
+
+
+def test_fuf_inherits_the_ff_grapheme_table():
+    """Pular (fuf) is the Fouta Djallon variety of Fula and is wired with
+    graphemes_base: "ff" since no source documents a Pular-specific
+    grapheme divergence; 'Pular' transcribes exactly as the shared ff
+    letters predict."""
+    assert G2P("fuf").transcribe_word("pular") == "pular"
+
+
+def test_fuv_inherits_the_ff_grapheme_table():
+    """Nigerian Fulfulde (fuv) is wired with graphemes_base: "ff"; the
+    autonym 'Fulfulde' transcribes exactly as the shared ff letters
+    predict."""
+    assert G2P("fuv").transcribe_word("fulfulde") == "fulfulde"
