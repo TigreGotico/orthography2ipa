@@ -1,2354 +1,2354 @@
 {
   "abkh1242": {
-    "level": "family",
-    "name": "Abkhaz-Adyge"
+    "name": "Abkhaz-Adyge",
+    "level": "family"
   },
   "abkh1244": {
-    "level": "language",
-    "name": "Abkhaz"
+    "name": "Abkhaz",
+    "level": "language"
   },
   "achi1257": {
-    "level": "language",
-    "name": "Acehnese"
+    "name": "Acehnese",
+    "level": "language"
   },
   "adan1247": {
     "name": "Adangme",
     "level": "language"
   },
   "adyg1241": {
-    "level": "language",
-    "name": "West Circassian"
+    "name": "West Circassian",
+    "level": "language"
   },
   "afar1241": {
-    "level": "language",
-    "name": "Afar"
+    "name": "Afar",
+    "level": "language"
   },
   "afri1274": {
-    "level": "language",
-    "name": "Afrikaans"
+    "name": "Afrikaans",
+    "level": "language"
   },
   "afro1255": {
-    "level": "family",
-    "name": "Afro-Asiatic"
+    "name": "Afro-Asiatic",
+    "level": "family"
   },
   "ainu1240": {
-    "level": "language",
-    "name": "Hokkaido Ainu"
+    "name": "Hokkaido Ainu",
+    "level": "language"
   },
   "ainu1252": {
-    "level": "family",
-    "name": "Ainu"
+    "name": "Ainu",
+    "level": "family"
   },
   "ajab1235": {
     "name": "Aja (Benin)",
     "level": "language"
   },
   "akan1250": {
-    "level": "language",
-    "name": "Akan"
+    "name": "Akan",
+    "level": "language"
   },
   "alba1267": {
-    "level": "family",
-    "name": "Albanian"
+    "name": "Albanian",
+    "level": "family"
   },
   "alem1243": {
-    "level": "family",
-    "name": "Alemannic"
+    "name": "Alemannic",
+    "level": "family"
   },
   "alge1239": {
-    "level": "language",
-    "name": "Algerian Arabic"
+    "name": "Algerian Arabic",
+    "level": "language"
   },
   "algh1238": {
-    "level": "dialect",
-    "name": "Algherese"
+    "name": "Algherese",
+    "level": "dialect"
   },
   "algi1248": {
-    "level": "family",
-    "name": "Algic"
+    "name": "Algic",
+    "level": "family"
   },
   "amer1254": {
-    "level": "dialect",
-    "name": "Latin American Spanish"
+    "name": "Latin American Spanish",
+    "level": "dialect"
   },
   "amha1245": {
-    "level": "language",
-    "name": "Amharic"
+    "name": "Amharic",
+    "level": "language"
   },
   "amis1246": {
-    "level": "language",
-    "name": "Amis"
+    "name": "Amis",
+    "level": "language"
   },
   "anci1242": {
-    "level": "language",
-    "name": "Ionic-Attic Ancient Greek"
+    "name": "Ionic-Attic Ancient Greek",
+    "level": "language"
   },
   "anci1248": {
-    "level": "language",
-    "name": "Ancient Ligurian"
+    "name": "Ancient Ligurian",
+    "level": "language"
   },
   "anda1279": {
-    "level": "dialect",
-    "name": "Andalusian"
+    "name": "Andalusian",
+    "level": "dialect"
   },
   "anda1287": {
-    "level": "language",
-    "name": "Andalusian Arabic"
+    "name": "Andalusian Arabic",
+    "level": "language"
   },
   "ande1250": {
-    "level": "dialect",
-    "name": "Andean Bolivian Spanish"
+    "name": "Andean Bolivian Spanish",
+    "level": "dialect"
   },
   "angi1238": {
-    "level": "language",
-    "name": "Angika"
+    "name": "Angika",
+    "level": "language"
   },
   "ango1258": {
-    "level": "language",
-    "name": "Angolar"
+    "name": "Angolar",
+    "level": "language"
   },
   "arab1393": {
-    "level": "family",
-    "name": "Arabian Peninsula Arabic"
+    "name": "Arabian Peninsula Arabic",
+    "level": "family"
   },
   "arag1245": {
-    "level": "language",
-    "name": "Aragonese"
+    "name": "Aragonese",
+    "level": "language"
   },
   "aran1260": {
-    "level": "dialect",
-    "name": "Aranese"
+    "name": "Aranese",
+    "level": "dialect"
   },
   "arau1255": {
-    "level": "family",
-    "name": "Araucanian"
+    "name": "Araucanian",
+    "level": "family"
   },
   "araw1281": {
-    "level": "family",
-    "name": "Arawakan"
+    "name": "Arawakan",
+    "level": "family"
   },
   "arme1241": {
-    "level": "family",
-    "name": "Armenic"
+    "name": "Armenic",
+    "level": "family"
   },
   "arom1237": {
-    "level": "language",
-    "name": "Aromanian"
+    "name": "Aromanian",
+    "level": "language"
   },
   "assa1263": {
-    "level": "language",
-    "name": "Assamese"
+    "name": "Assamese",
+    "level": "language"
   },
   "astu1244": {
-    "level": "family",
-    "name": "Asturo-Leonese"
+    "name": "Asturo-Leonese",
+    "level": "family"
   },
   "astu1245": {
-    "level": "language",
-    "name": "Asturian-Leonese-Cantabrian"
+    "name": "Asturian-Leonese-Cantabrian",
+    "level": "language"
   },
   "atay1247": {
-    "level": "language",
-    "name": "Atayal"
+    "name": "Atayal",
+    "level": "language"
   },
   "atha1245": {
-    "level": "family",
-    "name": "Athabaskan-Eyak-Tlingit"
+    "name": "Athabaskan-Eyak-Tlingit",
+    "level": "family"
   },
   "atik1240": {
-    "level": "language",
-    "name": "Atikamekw"
+    "name": "Atikamekw",
+    "level": "language"
   },
   "atla1278": {
-    "level": "family",
-    "name": "Atlantic-Congo"
+    "name": "Atlantic-Congo",
+    "level": "family"
   },
   "aust1305": {
-    "level": "family",
-    "name": "Austroasiatic"
+    "name": "Austroasiatic",
+    "level": "family"
   },
   "aust1307": {
-    "level": "family",
-    "name": "Austronesian"
+    "name": "Austronesian",
+    "level": "family"
   },
   "aust1314": {
-    "level": "dialect",
-    "name": "Australian English"
+    "name": "Australian English",
+    "level": "dialect"
   },
   "avar1256": {
-    "level": "language",
-    "name": "Avar"
+    "name": "Avar",
+    "level": "language"
   },
   "aves1237": {
     "name": "Avestan",
     "level": "language"
   },
   "awad1243": {
-    "level": "language",
-    "name": "Awadhi"
+    "name": "Awadhi",
+    "level": "language"
   },
   "ayma1253": {
-    "level": "family",
-    "name": "Aymaran"
+    "name": "Aymaran",
+    "level": "family"
   },
   "azte1234": {
-    "level": "family",
-    "name": "Aztec"
+    "name": "Aztec",
+    "level": "family"
   },
   "bale1256": {
-    "level": "dialect",
-    "name": "Balear"
+    "name": "Balear",
+    "level": "dialect"
   },
   "bali1278": {
-    "level": "language",
-    "name": "Balinese"
+    "name": "Balinese",
+    "level": "language"
   },
   "balt1263": {
-    "level": "family",
-    "name": "Balto-Slavic"
+    "name": "Balto-Slavic",
+    "level": "family"
   },
   "bamb1269": {
-    "level": "language",
-    "name": "Bambara"
+    "name": "Bambara",
+    "level": "language"
   },
   "banj1239": {
-    "level": "language",
-    "name": "Banjar"
+    "name": "Banjar",
+    "level": "language"
   },
   "bash1264": {
-    "level": "language",
-    "name": "Bashkir"
+    "name": "Bashkir",
+    "level": "language"
   },
   "basq1248": {
-    "level": "language",
-    "name": "Basque"
+    "name": "Basque",
+    "level": "language"
   },
   "basq1249": {
-    "level": "dialect",
-    "name": "Navarro-Labourdin Basque"
+    "name": "Navarro-Labourdin Basque",
+    "level": "dialect"
   },
   "basq1250": {
-    "level": "dialect",
-    "name": "Souletin"
+    "name": "Souletin",
+    "level": "dialect"
   },
   "bata1289": {
-    "level": "language",
-    "name": "Batak Toba"
+    "name": "Batak Toba",
+    "level": "language"
   },
   "bata1291": {
-    "level": "language",
-    "name": "Batak Mandailing"
+    "name": "Batak Mandailing",
+    "level": "language"
   },
   "bava1246": {
-    "level": "language",
-    "name": "Bavarian"
+    "name": "Bavarian",
+    "level": "language"
   },
   "bela1254": {
-    "level": "language",
-    "name": "Belarusian"
+    "name": "Belarusian",
+    "level": "language"
   },
   "bena1260": {
-    "level": "language",
-    "name": "Bena (Nigeria)"
+    "name": "Bena (Nigeria)",
+    "level": "language"
   },
   "beng1280": {
-    "level": "language",
-    "name": "Bengali"
+    "name": "Bengali",
+    "level": "language"
   },
   "berb1260": {
-    "level": "family",
-    "name": "Berber"
+    "name": "Berber",
+    "level": "family"
   },
   "bhoj1244": {
-    "level": "language",
-    "name": "Bhojpuri"
+    "name": "Bhojpuri",
+    "level": "language"
   },
   "bini1246": {
-    "level": "language",
-    "name": "Bini"
+    "name": "Bini",
+    "level": "language"
   },
   "bisc1236": {
-    "level": "dialect",
-    "name": "Biscayan"
+    "name": "Biscayan",
+    "level": "dialect"
   },
   "bish1244": {
-    "level": "language",
-    "name": "Bishnupriya Manipuri"
+    "name": "Bishnupriya Manipuri",
+    "level": "language"
   },
   "bisl1239": {
-    "level": "language",
-    "name": "Bislama"
+    "name": "Bislama",
+    "level": "language"
   },
   "bodo1269": {
-    "level": "language",
-    "name": "Bodo-Mech"
+    "name": "Bodo-Mech",
+    "level": "language"
   },
   "boli1265": {
-    "level": "dialect",
-    "name": "Bolivian Spanish"
+    "name": "Bolivian Spanish",
+    "level": "dialect"
   },
   "bosn1245": {
-    "level": "dialect",
-    "name": "Bosnian Standard"
+    "name": "Bosnian Standard",
+    "level": "dialect"
   },
   "braz1246": {
-    "level": "dialect",
-    "name": "Brazilian Portuguese"
+    "name": "Brazilian Portuguese",
+    "level": "dialect"
   },
   "bret1244": {
-    "level": "language",
-    "name": "Breton"
+    "name": "Breton",
+    "level": "language"
   },
   "bryt1239": {
-    "level": "family",
-    "name": "Brythonic"
+    "name": "Brythonic",
+    "level": "family"
   },
   "bugi1244": {
-    "level": "language",
-    "name": "Buginese"
+    "name": "Buginese",
+    "level": "language"
   },
   "bulg1262": {
-    "level": "language",
-    "name": "Bulgarian"
+    "name": "Bulgarian",
+    "level": "language"
   },
   "camp1261": {
-    "level": "language",
-    "name": "Campidanese Sardinian"
+    "name": "Campidanese Sardinian",
+    "level": "language"
   },
   "cana1268": {
-    "level": "dialect",
-    "name": "Canadian English"
+    "name": "Canadian English",
+    "level": "dialect"
   },
   "cana1269": {
-    "level": "dialect",
-    "name": "Canary Islands Spanish"
+    "name": "Canary Islands Spanish",
+    "level": "dialect"
   },
   "cant1236": {
-    "level": "dialect",
-    "name": "Cantonese"
+    "name": "Cantonese",
+    "level": "dialect"
   },
   "cant1245": {
-    "level": "dialect",
-    "name": "Cantabrian"
+    "name": "Cantabrian",
+    "level": "dialect"
   },
   "cari1283": {
-    "level": "family",
-    "name": "Cariban"
+    "name": "Cariban",
+    "level": "family"
   },
   "cast1244": {
-    "level": "dialect",
-    "name": "Castilian"
+    "name": "Castilian",
+    "level": "dialect"
   },
   "cata1291": {
-    "level": "dialect",
-    "name": "Català Nord-Occidental"
+    "name": "Català Nord-Occidental",
+    "level": "dialect"
   },
   "cavi1254": {
-    "level": "dialect",
-    "name": "Caviteño"
+    "name": "Caviteño",
+    "level": "dialect"
   },
   "cebu1242": {
-    "level": "language",
-    "name": "Cebuano"
+    "name": "Cebuano",
+    "level": "language"
   },
   "celt1247": {
-    "level": "language",
-    "name": "Celtiberian"
+    "name": "Celtiberian",
+    "level": "language"
   },
   "celt1248": {
-    "level": "family",
-    "name": "Celtic"
+    "name": "Celtic",
+    "level": "family"
   },
   "cent1972": {
-    "level": "language",
-    "name": "Central Kurdish"
+    "name": "Central Kurdish",
+    "level": "language"
   },
   "cent1989": {
-    "level": "language",
-    "name": "Central Khmer"
+    "name": "Central Khmer",
+    "level": "language"
   },
   "cent2087": {
-    "level": "language",
-    "name": "Coastal-Naga Bikol"
+    "name": "Coastal-Naga Bikol",
+    "level": "language"
   },
   "cent2100": {
-    "level": "language",
-    "name": "Kadazan Dusun"
+    "name": "Kadazan Dusun",
+    "level": "language"
   },
   "cent2132": {
-    "level": "language",
-    "name": "Tlaxcala-Puebla-Central Nahuatl"
+    "name": "Tlaxcala-Puebla-Central Nahuatl",
+    "level": "language"
   },
   "cent2236": {
-    "level": "family",
-    "name": "Central Semitic"
+    "name": "Central Semitic",
+    "level": "family"
   },
   "chad1249": {
-    "level": "language",
-    "name": "Chadian Arabic"
+    "name": "Chadian Arabic",
+    "level": "language"
   },
   "chad1250": {
-    "level": "family",
-    "name": "Chadic"
+    "name": "Chadic",
+    "level": "family"
   },
   "cham1312": {
-    "level": "language",
-    "name": "Chamorro"
+    "name": "Chamorro",
+    "level": "language"
   },
   "chav1241": {
-    "level": "language",
-    "name": "Chavacano"
+    "name": "Chavacano",
+    "level": "language"
   },
   "chec1245": {
-    "level": "language",
-    "name": "Chechen"
+    "name": "Chechen",
+    "level": "language"
   },
   "cher1273": {
-    "level": "language",
-    "name": "Cherokee"
+    "name": "Cherokee",
+    "level": "language"
   },
   "chey1247": {
-    "level": "language",
-    "name": "Cheyenne"
-  },
-  "chha1249": {
-    "level": "language",
-    "name": "Chhattisgarhi"
+    "name": "Cheyenne",
+    "level": "language"
   },
   "chib1249": {
-    "level": "family",
-    "name": "Chibchan"
+    "name": "Chibchan",
+    "level": "family"
   },
   "chil1286": {
-    "level": "dialect",
-    "name": "Chilean Spanish"
+    "name": "Chilean Spanish",
+    "level": "dialect"
   },
   "choc1276": {
-    "level": "language",
-    "name": "Choctaw"
+    "name": "Choctaw",
+    "level": "language"
   },
   "chur1257": {
-    "level": "language",
-    "name": "Church Slavic"
+    "name": "Church Slavic",
+    "level": "language"
   },
   "chuv1255": {
-    "level": "language",
-    "name": "Chuvash"
+    "name": "Chuvash",
+    "level": "language"
   },
   "cisa1237": {
-    "level": "language",
-    "name": "Cisalpine Gaulish"
+    "name": "Cisalpine Gaulish",
+    "level": "language"
   },
   "clas1250": {
-    "level": "language",
-    "name": "Classical Nahuatl"
+    "name": "Classical Nahuatl",
+    "level": "language"
   },
   "copt1239": {
-    "level": "language",
-    "name": "Coptic"
+    "name": "Coptic",
+    "level": "language"
   },
   "corn1251": {
-    "level": "language",
-    "name": "Cornish"
+    "name": "Cornish",
+    "level": "language"
   },
   "cors1241": {
-    "level": "language",
-    "name": "Corsican"
+    "name": "Corsican",
+    "level": "language"
   },
   "cree1270": {
-    "level": "language",
-    "name": "Creek"
+    "name": "Creek",
+    "level": "language"
   },
   "cree1271": {
-    "level": "family",
-    "name": "Cree-Montagnais-Naskapi"
+    "name": "Cree-Montagnais-Naskapi",
+    "level": "family"
   },
   "crim1257": {
-    "level": "language",
-    "name": "Crimean Tatar"
+    "name": "Crimean Tatar",
+    "level": "language"
   },
   "croa1245": {
-    "level": "dialect",
-    "name": "Croatian Standard"
+    "name": "Croatian Standard",
+    "level": "dialect"
   },
   "cuba1237": {
-    "level": "dialect",
-    "name": "Cuban Spanish"
+    "name": "Cuban Spanish",
+    "level": "dialect"
   },
   "cush1243": {
-    "level": "family",
-    "name": "Cushitic"
+    "name": "Cushitic",
+    "level": "family"
   },
   "cypr1248": {
-    "level": "language",
-    "name": "Cypriot Arabic"
+    "name": "Cypriot Arabic",
+    "level": "language"
   },
   "cypr1249": {
-    "level": "language",
-    "name": "Cypriot Greek"
+    "name": "Cypriot Greek",
+    "level": "language"
   },
   "czec1258": {
-    "level": "language",
-    "name": "Czech"
+    "name": "Czech",
+    "level": "language"
   },
   "daci1234": {
-    "level": "language",
-    "name": "Dacian"
+    "name": "Dacian",
+    "level": "language"
   },
   "dagb1246": {
-    "level": "language",
-    "name": "Dagbani"
+    "name": "Dagbani",
+    "level": "language"
   },
   "dani1285": {
-    "level": "language",
-    "name": "Danish"
+    "name": "Danish",
+    "level": "language"
   },
   "dari1249": {
-    "level": "language",
-    "name": "Dari"
+    "name": "Dari",
+    "level": "language"
   },
   "dhiv1236": {
-    "level": "language",
-    "name": "Dhivehi"
+    "name": "Dhivehi",
+    "level": "language"
   },
   "diml1238": {
-    "level": "language",
-    "name": "Dimli"
+    "name": "Dimli",
+    "level": "language"
   },
   "dink1262": {
-    "level": "family",
-    "name": "Dinka"
-  },
-  "dogr1250": {
-    "level": "language",
-    "name": "Dogri"
+    "name": "Dinka",
+    "level": "family"
   },
   "domi1242": {
-    "level": "dialect",
-    "name": "Dominican Spanish"
+    "name": "Dominican Spanish",
+    "level": "dialect"
   },
   "doty1234": {
-    "level": "language",
-    "name": "Dotyali"
+    "name": "Dotyali",
+    "level": "language"
   },
   "drav1251": {
-    "level": "family",
-    "name": "Dravidian"
+    "name": "Dravidian",
+    "level": "family"
   },
   "dutc1256": {
-    "level": "language",
-    "name": "Dutch"
+    "name": "Dutch",
+    "level": "language"
   },
   "dzon1239": {
-    "level": "language",
-    "name": "Dzongkha"
+    "name": "Dzongkha",
+    "level": "language"
   },
   "east1426": {
-    "level": "family",
-    "name": "East Slavic"
+    "name": "East Slavic",
+    "level": "family"
   },
   "east2272": {
-    "level": "dialect",
-    "name": "Eastern Asturian"
+    "name": "Eastern Asturian",
+    "level": "dialect"
   },
   "east2273": {
-    "level": "dialect",
-    "name": "Eastern Aragonese"
+    "name": "Eastern Aragonese",
+    "level": "dialect"
   },
   "east2280": {
-    "level": "family",
-    "name": "Eastern Baltic"
+    "name": "Eastern Baltic",
+    "level": "family"
   },
   "east2282": {
-    "level": "dialect",
-    "name": "East Latvian"
+    "name": "East Latvian",
+    "level": "dialect"
   },
   "east2295": {
-    "level": "language",
-    "name": "Eastern Yiddish"
+    "name": "Eastern Yiddish",
+    "level": "language"
   },
   "east2303": {
-    "level": "language",
-    "name": "Archaic Finnish Swedish"
+    "name": "Archaic Finnish Swedish",
+    "level": "language"
   },
   "east2714": {
-    "level": "family",
-    "name": "Eastern Romance"
+    "name": "Eastern Romance",
+    "level": "family"
   },
   "east2805": {
-    "level": "family",
-    "name": "East Germanic"
+    "name": "East Germanic",
+    "level": "family"
   },
   "egyp1245": {
-    "level": "family",
-    "name": "Egyptian"
+    "name": "Egyptian",
+    "level": "family"
   },
   "egyp1246": {
-    "level": "language",
-    "name": "Egyptian (Ancient)"
+    "name": "Egyptian (Ancient)",
+    "level": "language"
   },
   "egyp1253": {
-    "level": "language",
-    "name": "Egyptian Arabic"
+    "name": "Egyptian Arabic",
+    "level": "language"
   },
   "emil1241": {
-    "level": "language",
-    "name": "Emiliano"
+    "name": "Emiliano",
+    "level": "language"
   },
   "emil1243": {
-    "level": "family",
-    "name": "Emiliano-Romagnolo"
+    "name": "Emiliano-Romagnolo",
+    "level": "family"
   },
   "erzy1239": {
-    "level": "language",
-    "name": "Erzya"
+    "name": "Erzya",
+    "level": "language"
   },
   "eski1264": {
-    "level": "family",
-    "name": "Eskimo-Aleut"
+    "name": "Eskimo-Aleut",
+    "level": "family"
   },
   "espe1235": {
-    "level": "language",
-    "name": "Esperanto"
+    "name": "Esperanto",
+    "level": "language"
   },
   "esto1258": {
-    "level": "language",
-    "name": "Estonian"
+    "name": "Estonian",
+    "level": "language"
   },
   "ethi1244": {
-    "level": "family",
-    "name": "Ethiosemitic"
+    "name": "Ethiosemitic",
+    "level": "family"
   },
   "etru1241": {
-    "level": "language",
-    "name": "Etruscan"
+    "name": "Etruscan",
+    "level": "language"
   },
   "ewee1241": {
-    "level": "language",
-    "name": "Ewe"
+    "name": "Ewe",
+    "level": "language"
   },
   "extr1243": {
-    "level": "language",
-    "name": "Extremaduran"
+    "name": "Extremaduran",
+    "level": "language"
   },
   "fala1241": {
-    "level": "language",
-    "name": "Fala"
+    "name": "Fala",
+    "level": "language"
   },
   "fant1241": {
     "name": "Fante",
     "level": "dialect"
   },
   "faro1244": {
-    "level": "language",
-    "name": "Faroese"
+    "name": "Faroese",
+    "level": "language"
   },
   "fiji1242": {
-    "level": "language",
-    "name": "Fiji Hindi"
+    "name": "Fiji Hindi",
+    "level": "language"
   },
   "fiji1243": {
-    "level": "language",
-    "name": "Fijian"
+    "name": "Fijian",
+    "level": "language"
   },
   "finn1317": {
-    "level": "family",
-    "name": "Finnic"
+    "name": "Finnic",
+    "level": "family"
   },
   "finn1318": {
-    "level": "language",
-    "name": "Finnish"
+    "name": "Finnish",
+    "level": "language"
   },
   "fonn1241": {
-    "level": "language",
-    "name": "Fon"
+    "name": "Fon",
+    "level": "language"
   },
   "fran1260": {
-    "level": "language",
-    "name": "Arpitan"
+    "name": "Arpitan",
+    "level": "language"
   },
   "friu1240": {
-    "level": "language",
-    "name": "Friulian"
+    "name": "Friulian",
+    "level": "language"
   },
   "fula1264": {
-    "level": "family",
-    "name": "Fula"
+    "name": "Fula",
+    "level": "family"
   },
   "gaaa1244": {
     "name": "Ga",
     "level": "language"
   },
   "gaga1249": {
-    "level": "language",
-    "name": "Gagauz"
+    "name": "Gagauz",
+    "level": "language"
   },
   "gala1252": {
-    "level": "language",
-    "name": "Galatian"
+    "name": "Galatian",
+    "level": "language"
   },
   "gali1258": {
-    "level": "language",
-    "name": "Galician"
+    "name": "Galician",
+    "level": "language"
   },
   "gali1263": {
-    "level": "family",
-    "name": "Galician Romance"
+    "name": "Galician Romance",
+    "level": "family"
   },
   "gall1279": {
-    "level": "family",
-    "name": "Gallo-Italian"
+    "name": "Gallo-Italian",
+    "level": "family"
   },
   "ganc1239": {
-    "level": "language",
-    "name": "Gan Chinese"
+    "name": "Gan Chinese",
+    "level": "language"
   },
   "gand1255": {
-    "level": "language",
-    "name": "Ganda"
-  },
-  "garo1247": {
-    "level": "language",
-    "name": "Garo"
+    "name": "Ganda",
+    "level": "language"
   },
   "geez1241": {
-    "level": "language",
-    "name": "Geez"
+    "name": "Geez",
+    "level": "language"
   },
   "genn1243": {
     "name": "Gen",
     "level": "language"
   },
   "germ1287": {
-    "level": "family",
-    "name": "Germanic"
+    "name": "Germanic",
+    "level": "family"
   },
   "ghan1244": {
-    "level": "language",
-    "name": "Ghanaian Pidgin English"
+    "name": "Ghanaian Pidgin English",
+    "level": "language"
   },
   "gila1241": {
-    "level": "language",
-    "name": "Gilaki"
+    "name": "Gilaki",
+    "level": "language"
   },
   "goan1235": {
-    "level": "language",
-    "name": "Goan Konkani"
+    "name": "Goan Konkani",
+    "level": "language"
   },
   "goid1240": {
-    "level": "family",
-    "name": "Goidelic"
+    "name": "Goidelic",
+    "level": "family"
   },
   "goro1259": {
-    "level": "language",
-    "name": "Gorontalo"
+    "name": "Gorontalo",
+    "level": "language"
   },
   "goth1244": {
-    "level": "language",
-    "name": "Gothic"
+    "name": "Gothic",
+    "level": "language"
   },
   "gree1276": {
-    "level": "family",
-    "name": "Greek"
+    "name": "Greek",
+    "level": "family"
   },
   "guia1246": {
-    "level": "language",
-    "name": "Guianese Creole French"
+    "name": "Guianese Creole French",
+    "level": "language"
   },
   "guip1235": {
-    "level": "dialect",
-    "name": "Guipuzcoan"
+    "name": "Guipuzcoan",
+    "level": "dialect"
   },
   "guja1252": {
-    "level": "language",
-    "name": "Gujarati"
+    "name": "Gujarati",
+    "level": "language"
   },
   "gulf1241": {
-    "level": "language",
-    "name": "Gulf Arabic"
+    "name": "Gulf Arabic",
+    "level": "language"
   },
   "gunn1250": {
-    "level": "language",
-    "name": "Gun"
+    "name": "Gun",
+    "level": "language"
   },
   "hadz1240": {
-    "level": "language",
-    "name": "Hadza"
+    "name": "Hadza",
+    "level": "language"
   },
   "hait1244": {
-    "level": "language",
-    "name": "Haitian"
-  },
-  "haka1240": {
-    "level": "language",
-    "name": "Haka Chin"
+    "name": "Haitian",
+    "level": "language"
   },
   "hakk1236": {
-    "level": "language",
-    "name": "Hakka Chinese"
+    "name": "Hakka Chinese",
+    "level": "language"
   },
   "halh1238": {
-    "level": "language",
-    "name": "Halh Mongolian"
-  },
-  "hary1238": {
-    "level": "language",
-    "name": "Haryanvi"
+    "name": "Halh Mongolian",
+    "level": "language"
   },
   "hass1238": {
-    "level": "language",
-    "name": "Hassaniyya"
+    "name": "Hassaniyya",
+    "level": "language"
   },
   "haus1257": {
-    "level": "language",
-    "name": "Hausa"
+    "name": "Hausa",
+    "level": "language"
   },
   "hawa1245": {
-    "level": "language",
-    "name": "Hawaiian"
+    "name": "Hawaiian",
+    "level": "language"
   },
   "haza1239": {
-    "level": "language",
-    "name": "Hazaragi"
+    "name": "Hazaragi",
+    "level": "language"
   },
   "hebr1245": {
-    "level": "language",
-    "name": "Modern Hebrew"
+    "name": "Modern Hebrew",
+    "level": "language"
   },
   "here1253": {
-    "level": "language",
-    "name": "Herero"
+    "name": "Herero",
+    "level": "language"
   },
   "hija1235": {
-    "level": "language",
-    "name": "Hijazi Arabic"
+    "name": "Hijazi Arabic",
+    "level": "language"
   },
   "hind1269": {
-    "level": "language",
-    "name": "Hindi"
+    "name": "Hindi",
+    "level": "language"
   },
   "hiri1237": {
-    "level": "language",
-    "name": "Hiri Motu"
+    "name": "Hiri Motu",
+    "level": "language"
   },
   "homs1234": {
-    "level": "language",
-    "name": "Western Armenian"
+    "name": "Western Armenian",
+    "level": "language"
   },
   "huit1251": {
-    "level": "family",
-    "name": "Huitotoan"
+    "name": "Huitotoan",
+    "level": "family"
   },
   "hung1274": {
-    "level": "language",
-    "name": "Hungarian"
+    "name": "Hungarian",
+    "level": "language"
   },
   "iban1264": {
-    "level": "language",
-    "name": "Iban"
+    "name": "Iban",
+    "level": "language"
   },
   "iber1250": {
-    "level": "language",
-    "name": "Iberian"
+    "name": "Iberian",
+    "level": "language"
   },
   "icel1247": {
-    "level": "language",
-    "name": "Icelandic"
+    "name": "Icelandic",
+    "level": "language"
   },
   "idoo1234": {
-    "level": "language",
-    "name": "Ido"
+    "name": "Ido",
+    "level": "language"
   },
   "ilok1237": {
-    "level": "language",
-    "name": "Iloko"
+    "name": "Iloko",
+    "level": "language"
   },
   "impe1235": {
-    "level": "language",
-    "name": "Imperial Aramaic (700-300 BCE)"
+    "name": "Imperial Aramaic (700-300 BCE)",
+    "level": "language"
   },
   "inar1241": {
-    "level": "language",
-    "name": "Inari Saami"
+    "name": "Inari Saami",
+    "level": "language"
   },
   "indo1316": {
-    "level": "language",
-    "name": "Standard Indonesian"
+    "name": "Standard Indonesian",
+    "level": "language"
   },
   "indo1319": {
-    "level": "family",
-    "name": "Indo-European"
+    "name": "Indo-European",
+    "level": "family"
   },
   "indo1320": {
-    "level": "family",
-    "name": "Indo-Iranian"
+    "name": "Indo-Iranian",
+    "level": "family"
   },
   "indo1321": {
-    "level": "family",
-    "name": "Indo-Aryan"
+    "name": "Indo-Aryan",
+    "level": "family"
   },
   "ingr1248": {
-    "level": "language",
-    "name": "Ingrian"
+    "name": "Ingrian",
+    "level": "language"
   },
   "ingu1240": {
-    "level": "language",
-    "name": "Ingush"
+    "name": "Ingush",
+    "level": "language"
   },
   "inte1239": {
-    "level": "language",
-    "name": "Interlingua (International Auxiliary Language Association)"
+    "name": "Interlingua (International Auxiliary Language Association)",
+    "level": "language"
   },
   "inte1260": {
-    "level": "language",
-    "name": "Interlingue (Occidental)"
+    "name": "Interlingue (Occidental)",
+    "level": "language"
   },
   "inup1234": {
-    "level": "family",
-    "name": "Alaskan Inupiaq"
+    "name": "Alaskan Inupiaq",
+    "level": "family"
   },
   "iran1269": {
-    "level": "family",
-    "name": "Iranian"
+    "name": "Iranian",
+    "level": "family"
   },
   "iris1253": {
-    "level": "language",
-    "name": "Irish"
+    "name": "Irish",
+    "level": "language"
   },
   "iris1255": {
-    "level": "dialect",
-    "name": "Irish English"
+    "name": "Irish English",
+    "level": "dialect"
   },
   "iron1242": {
-    "level": "language",
-    "name": "Iron Ossetian"
+    "name": "Iron Ossetian",
+    "level": "language"
   },
   "iroq1247": {
-    "level": "family",
-    "name": "Iroquoian"
+    "name": "Iroquoian",
+    "level": "family"
   },
   "ital1282": {
-    "level": "language",
-    "name": "Italian"
+    "name": "Italian",
+    "level": "language"
   },
   "ital1284": {
-    "level": "family",
-    "name": "Italic"
+    "name": "Italic",
+    "level": "family"
   },
   "ital1286": {
-    "level": "family",
-    "name": "Italo-Dalmatian"
+    "name": "Italo-Dalmatian",
+    "level": "family"
   },
   "jama1262": {
-    "level": "language",
-    "name": "Jamaican Creole English"
+    "name": "Jamaican Creole English",
+    "level": "language"
   },
   "japo1237": {
-    "level": "family",
-    "name": "Japonic"
+    "name": "Japonic",
+    "level": "family"
   },
   "java1254": {
-    "level": "language",
-    "name": "Javanese"
-  },
-  "jing1260": {
-    "level": "family",
-    "name": "Jingpho"
+    "name": "Javanese",
+    "level": "language"
   },
   "kaba1278": {
-    "level": "language",
-    "name": "Kabardian"
+    "name": "Kabardian",
+    "level": "language"
   },
   "kabi1261": {
-    "level": "language",
-    "name": "Kabiyé"
+    "name": "Kabiyé",
+    "level": "language"
   },
   "kabu1256": {
-    "level": "language",
-    "name": "Kabuverdianu"
+    "name": "Kabuverdianu",
+    "level": "language"
   },
   "kaby1243": {
-    "level": "language",
-    "name": "Kabyle"
+    "name": "Kabyle",
+    "level": "language"
   },
   "kaby1244": {
-    "level": "family",
-    "name": "Kabyle-Atlas Berber"
-  },
-  "kach1280": {
-    "level": "language",
-    "name": "Southern Jinghpaw language"
+    "name": "Kabyle-Atlas Berber",
+    "level": "family"
   },
   "kala1399": {
-    "level": "language",
-    "name": "Kalaallisut"
+    "name": "Kalaallisut",
+    "level": "language"
   },
   "kalm1244": {
-    "level": "dialect",
-    "name": "Kalmyk"
+    "name": "Kalmyk",
+    "level": "dialect"
   },
   "kanu1279": {
-    "level": "family",
-    "name": "Kanuri-Kanembu"
+    "name": "Kanuri-Kanembu",
+    "level": "family"
   },
   "kara1465": {
-    "level": "language",
-    "name": "Karachay-Balkar"
+    "name": "Karachay-Balkar",
+    "level": "language"
   },
   "kare1335": {
-    "level": "language",
-    "name": "Karelian"
+    "name": "Karelian",
+    "level": "language"
   },
   "kart1248": {
-    "level": "family",
-    "name": "Kartvelian"
+    "name": "Kartvelian",
+    "level": "family"
   },
   "kash1274": {
-    "level": "language",
-    "name": "Kashubian"
+    "name": "Kashubian",
+    "level": "language"
   },
   "kash1277": {
-    "level": "language",
-    "name": "Kashmiri"
+    "name": "Kashmiri",
+    "level": "language"
   },
   "kaza1248": {
-    "level": "language",
-    "name": "Kazakh"
+    "name": "Kazakh",
+    "level": "language"
   },
   "khas1269": {
-    "level": "language",
-    "name": "Khasi"
+    "name": "Khasi",
+    "level": "language"
   },
   "khoe1240": {
-    "level": "family",
-    "name": "Khoe-Kwadi"
+    "name": "Khoe-Kwadi",
+    "level": "family"
   },
   "khor1275": {
-    "level": "dialect",
-    "name": "Khorasan Persian"
+    "name": "Khorasan Persian",
+    "level": "dialect"
   },
   "khot1251": {
     "name": "Khotanese",
     "level": "language"
   },
   "kich1262": {
-    "level": "language",
-    "name": "K'iche'"
+    "name": "K'iche'",
+    "level": "language"
   },
   "kiku1240": {
-    "level": "language",
-    "name": "Kikuyu"
+    "name": "Kikuyu",
+    "level": "language"
   },
   "kimb1241": {
-    "level": "language",
-    "name": "Kimbundu"
+    "name": "Kimbundu",
+    "level": "language"
   },
   "kiny1244": {
-    "level": "language",
-    "name": "Kinyarwanda"
+    "name": "Kinyarwanda",
+    "level": "language"
   },
   "kiow1265": {
-    "level": "family",
-    "name": "Kiowa-Tanoan"
+    "name": "Kiowa-Tanoan",
+    "level": "family"
   },
   "kirg1245": {
-    "level": "language",
-    "name": "Kirghiz"
+    "name": "Kirghiz",
+    "level": "language"
   },
   "kols1241": {
-    "level": "language",
-    "name": "Kölsch"
+    "name": "Kölsch",
+    "level": "language"
   },
   "komi1267": {
-    "level": "family",
-    "name": "Komi"
+    "name": "Komi",
+    "level": "family"
   },
   "komi1269": {
-    "level": "language",
-    "name": "Komi-Permyak"
+    "name": "Komi-Permyak",
+    "level": "language"
   },
   "koon1244": {
-    "level": "language",
-    "name": "South-Central Koongo"
+    "name": "South-Central Koongo",
+    "level": "language"
   },
   "kore1280": {
-    "level": "language",
-    "name": "Korean"
+    "name": "Korean",
+    "level": "language"
   },
   "kore1284": {
-    "level": "family",
-    "name": "Koreanic"
+    "name": "Koreanic",
+    "level": "family"
   },
   "korl1238": {
-    "level": "language",
-    "name": "Korlai Portuguese"
+    "name": "Korlai Portuguese",
+    "level": "language"
   },
   "kota1280": {
-    "level": "language",
-    "name": "Kotava"
+    "name": "Kotava",
+    "level": "language"
   },
   "kuan1247": {
-    "level": "language",
-    "name": "Kuanyama"
+    "name": "Kuanyama",
+    "level": "language"
   },
   "kuki1246": {
-    "level": "family",
-    "name": "Kuki-Chin"
+    "name": "Kuki-Chin",
+    "level": "family"
   },
   "kxaa1236": {
-    "level": "family",
-    "name": "Kxa"
+    "name": "Kxa",
+    "level": "family"
   },
   "ladi1250": {
-    "level": "language",
-    "name": "Ladin"
+    "name": "Ladin",
+    "level": "language"
   },
   "ladi1251": {
-    "level": "language",
-    "name": "Ladino"
+    "name": "Ladino",
+    "level": "language"
   },
   "lakk1252": {
-    "level": "language",
-    "name": "Lak"
+    "name": "Lak",
+    "level": "language"
   },
   "laoo1244": {
-    "level": "language",
-    "name": "Lao"
+    "name": "Lao",
+    "level": "language"
   },
   "late1252": {
-    "level": "dialect",
-    "name": "Late Latin"
+    "name": "Late Latin",
+    "level": "dialect"
   },
   "lati1261": {
-    "level": "language",
-    "name": "Latin"
+    "name": "Latin",
+    "level": "language"
   },
   "latv1249": {
-    "level": "language",
-    "name": "Latvian"
+    "name": "Latvian",
+    "level": "language"
   },
   "leon1250": {
-    "level": "dialect",
-    "name": "Leonese"
+    "name": "Leonese",
+    "level": "dialect"
   },
   "lepo1240": {
-    "level": "language",
-    "name": "Lepontic"
+    "name": "Lepontic",
+    "level": "language"
   },
   "lezg1247": {
-    "level": "language",
-    "name": "Lezgian"
+    "name": "Lezgian",
+    "level": "language"
   },
   "liby1240": {
-    "level": "language",
-    "name": "Libyan Arabic"
+    "name": "Libyan Arabic",
+    "level": "language"
   },
   "ligu1248": {
-    "level": "language",
-    "name": "Ligurian"
+    "name": "Ligurian",
+    "level": "language"
   },
   "limb1263": {
-    "level": "language",
-    "name": "Limburgan"
+    "name": "Limburgan",
+    "level": "language"
   },
   "ling1263": {
-    "level": "language",
-    "name": "Kinshasa Lingala"
+    "name": "Kinshasa Lingala",
+    "level": "language"
   },
   "ling1267": {
-    "level": "language",
-    "name": "Lingua Franca Nova"
+    "name": "Lingua Franca Nova",
+    "level": "language"
   },
   "lite1248": {
-    "level": "language",
-    "name": "Classical Chinese"
+    "name": "Classical Chinese",
+    "level": "language"
   },
   "lith1251": {
-    "level": "language",
-    "name": "Lithuanian"
+    "name": "Lithuanian",
+    "level": "language"
   },
   "livv1243": {
-    "level": "language",
-    "name": "Livvi"
+    "name": "Livvi",
+    "level": "language"
   },
   "logu1236": {
-    "level": "language",
-    "name": "Logudorese Sardinian"
+    "name": "Logudorese Sardinian",
+    "level": "language"
   },
   "lojb1234": {
-    "level": "language",
-    "name": "Lojban"
+    "name": "Lojban",
+    "level": "language"
   },
   "lomb1257": {
-    "level": "language",
-    "name": "Lombard"
+    "name": "Lombard",
+    "level": "language"
   },
   "lowe1385": {
-    "level": "language",
-    "name": "Lower Sorbian"
-  },
-  "lush1249": {
-    "level": "language",
-    "name": "Mizo"
+    "name": "Lower Sorbian",
+    "level": "language"
   },
   "luxe1241": {
-    "level": "language",
-    "name": "Moselle Franconian"
+    "name": "Moselle Franconian",
+    "level": "language"
   },
   "maca1262": {
-    "level": "language",
-    "name": "Macanese"
+    "name": "Macanese",
+    "level": "language"
   },
   "mace1250": {
-    "level": "language",
-    "name": "Macedonian"
+    "name": "Macedonian",
+    "level": "language"
   },
   "maga1260": {
-    "level": "language",
-    "name": "Magahi"
+    "name": "Magahi",
+    "level": "language"
   },
   "mait1250": {
-    "level": "language",
-    "name": "Maithili"
+    "name": "Maithili",
+    "level": "language"
   },
   "mala1464": {
-    "level": "language",
-    "name": "Malayalam"
+    "name": "Malayalam",
+    "level": "language"
   },
   "mala1533": {
-    "level": "language",
-    "name": "Malacca-Batavia Portuguese Creole"
+    "name": "Malacca-Batavia Portuguese Creole",
+    "level": "language"
   },
   "mala1537": {
-    "level": "family",
-    "name": "Malagasic"
+    "name": "Malagasic",
+    "level": "family"
   },
   "mala1545": {
-    "level": "family",
-    "name": "Malayo-Polynesian"
+    "name": "Malayo-Polynesian",
+    "level": "family"
   },
   "malt1254": {
-    "level": "language",
-    "name": "Maltese"
+    "name": "Maltese",
+    "level": "language"
   },
   "mand1415": {
-    "level": "language",
-    "name": "Mandarin Chinese"
+    "name": "Mandarin Chinese",
+    "level": "language"
   },
   "mand1469": {
-    "level": "family",
-    "name": "Mande"
+    "name": "Mande",
+    "level": "family"
   },
   "mani1292": {
-    "level": "language",
-    "name": "Manipuri"
+    "name": "Manipuri",
+    "level": "language"
   },
   "manx1243": {
-    "level": "language",
-    "name": "Manx"
+    "name": "Manx",
+    "level": "language"
   },
   "maor1246": {
-    "level": "language",
-    "name": "Maori"
+    "name": "Maori",
+    "level": "language"
   },
   "mapu1245": {
-    "level": "language",
-    "name": "Mapudungun"
+    "name": "Mapudungun",
+    "level": "language"
   },
   "mara1378": {
-    "level": "language",
-    "name": "Marathi"
+    "name": "Marathi",
+    "level": "language"
   },
   "mars1254": {
-    "level": "language",
-    "name": "Marshallese"
+    "name": "Marshallese",
+    "level": "language"
   },
   "maya1287": {
-    "level": "family",
-    "name": "Mayan"
+    "name": "Mayan",
+    "level": "family"
   },
   "maza1291": {
-    "level": "language",
-    "name": "Mazanderani"
+    "name": "Mazanderani",
+    "level": "language"
   },
   "mend1266": {
     "name": "Mende (Sierra Leone)",
     "level": "language"
   },
   "meso1252": {
-    "level": "language",
-    "name": "Gilit Mesopotamian Arabic"
+    "name": "Gilit Mesopotamian Arabic",
+    "level": "language"
   },
   "mexi1248": {
-    "level": "dialect",
-    "name": "Mexican Spanish"
+    "name": "Mexican Spanish",
+    "level": "dialect"
   },
   "midd1317": {
-    "level": "language",
-    "name": "Middle English"
+    "name": "Middle English",
+    "level": "language"
   },
   "midd1344": {
-    "level": "language",
-    "name": "Middle Chinese"
+    "name": "Middle Chinese",
+    "level": "language"
   },
   "mina1268": {
-    "level": "language",
-    "name": "Minangkabau"
+    "name": "Minangkabau",
+    "level": "language"
   },
   "mind1253": {
-    "level": "language",
-    "name": "Min Dong Chinese"
+    "name": "Min Dong Chinese",
+    "level": "language"
   },
   "ming1252": {
-    "level": "language",
-    "name": "Mingrelian"
+    "name": "Mingrelian",
+    "level": "language"
   },
   "minn1241": {
-    "level": "language",
-    "name": "Min Nan Chinese"
+    "name": "Min Nan Chinese",
+    "level": "language"
   },
   "mira1251": {
-    "level": "language",
-    "name": "Mirandese"
+    "name": "Mirandese",
+    "level": "language"
   },
   "misu1242": {
-    "level": "family",
-    "name": "Misumalpan"
+    "name": "Misumalpan",
+    "level": "family"
   },
   "mode1248": {
-    "level": "language",
-    "name": "Modern Greek"
+    "name": "Modern Greek",
+    "level": "language"
   },
   "moks1248": {
-    "level": "language",
-    "name": "Moksha"
+    "name": "Moksha",
+    "level": "language"
   },
   "mong1329": {
-    "level": "family",
-    "name": "Mongolic"
+    "name": "Mongolic",
+    "level": "family"
   },
   "mong1349": {
-    "level": "family",
-    "name": "Mongolic-Khitan"
+    "name": "Mongolic-Khitan",
+    "level": "family"
   },
   "monn1252": {
-    "level": "language",
-    "name": "Mon"
+    "name": "Mon",
+    "level": "language"
   },
   "moro1292": {
-    "level": "language",
-    "name": "Moroccan Arabic"
+    "name": "Moroccan Arabic",
+    "level": "language"
   },
   "moss1236": {
-    "level": "language",
-    "name": "Mossi"
+    "name": "Mossi",
+    "level": "language"
   },
   "moza1249": {
-    "level": "language",
-    "name": "Mozarabic"
+    "name": "Mozarabic",
+    "level": "language"
   },
   "mund1320": {
-    "level": "language",
-    "name": "Mundari"
+    "name": "Mundari",
+    "level": "language"
   },
   "mund1335": {
-    "level": "family",
-    "name": "Mundaic"
+    "name": "Mundaic",
+    "level": "family"
   },
   "murc1238": {
-    "level": "dialect",
-    "name": "Murcian"
+    "name": "Murcian",
+    "level": "dialect"
   },
   "musk1252": {
-    "level": "family",
-    "name": "Muskogean"
+    "name": "Muskogean",
+    "level": "family"
   },
   "najd1235": {
-    "level": "language",
-    "name": "Najdi Arabic"
+    "name": "Najdi Arabic",
+    "level": "language"
   },
   "nakh1245": {
-    "level": "family",
-    "name": "Nakh-Daghestanian"
+    "name": "Nakh-Daghestanian",
+    "level": "family"
   },
   "narr1281": {
-    "level": "family",
-    "name": "Narrow Bantu"
+    "name": "Narrow Bantu",
+    "level": "family"
   },
   "naur1243": {
-    "level": "language",
-    "name": "Nauru"
+    "name": "Nauru",
+    "level": "language"
   },
   "nava1243": {
-    "level": "language",
-    "name": "Navajo"
+    "name": "Navajo",
+    "level": "language"
   },
   "ndon1254": {
-    "level": "language",
-    "name": "Ndonga"
+    "name": "Ndonga",
+    "level": "language"
   },
   "neap1235": {
-    "level": "language",
-    "name": "Continental Southern Italian"
+    "name": "Continental Southern Italian",
+    "level": "language"
   },
   "nepa1254": {
-    "level": "language",
-    "name": "Nepali"
+    "name": "Nepali",
+    "level": "language"
   },
   "newa1246": {
-    "level": "language",
-    "name": "Kathmandu Valley Newari"
+    "name": "Kathmandu Valley Newari",
+    "level": "language"
   },
   "nhen1239": {
-    "level": "language",
-    "name": "Nhengatu"
+    "name": "Nhengatu",
+    "level": "language"
   },
   "nias1242": {
-    "level": "language",
-    "name": "Nias"
+    "name": "Nias",
+    "level": "language"
   },
   "nige1253": {
     "name": "Hausa States Fulfulde",
     "level": "language"
   },
   "nilo1247": {
-    "level": "family",
-    "name": "Nilotic"
+    "name": "Nilotic",
+    "level": "family"
   },
   "nivk1234": {
-    "level": "family",
-    "name": "Nivkh"
+    "name": "Nivkh",
+    "level": "family"
   },
   "nkoa1234": {
-    "level": "language",
-    "name": "N'Ko"
+    "name": "N'Ko",
+    "level": "language"
   },
   "norm1245": {
-    "level": "dialect",
-    "name": "Normand"
+    "name": "Normand",
+    "level": "dialect"
   },
   "nort2626": {
-    "level": "language",
-    "name": "Northern Frisian"
+    "name": "Northern Frisian",
+    "level": "language"
   },
   "nort2627": {
-    "level": "language",
-    "name": "Eastern Low German"
+    "name": "Eastern Low German",
+    "level": "language"
   },
   "nort2641": {
-    "level": "language",
-    "name": "Northern Kurdish"
+    "name": "Northern Kurdish",
+    "level": "language"
   },
   "nort2645": {
-    "level": "language",
-    "name": "Northern Luri"
+    "name": "Northern Luri",
+    "level": "language"
   },
   "nort2671": {
-    "level": "language",
-    "name": "North Saami"
+    "name": "North Saami",
+    "level": "language"
   },
   "nort2690": {
-    "level": "language",
-    "name": "Northern Uzbek"
+    "name": "Northern Uzbek",
+    "level": "language"
   },
   "nort2697": {
-    "level": "language",
-    "name": "North Azerbaijani"
+    "name": "North Azerbaijani",
+    "level": "language"
   },
   "nort2923": {
-    "level": "family",
-    "name": "North Halmahera"
+    "name": "North Halmahera",
+    "level": "family"
   },
   "nort3139": {
-    "level": "language",
-    "name": "Levantine Arabic"
+    "name": "Levantine Arabic",
+    "level": "language"
   },
   "nort3142": {
-    "level": "language",
-    "name": "North Mesopotamian Arabic"
+    "name": "North Mesopotamian Arabic",
+    "level": "language"
   },
   "nort3152": {
-    "level": "family",
-    "name": "Northwest Germanic"
+    "name": "Northwest Germanic",
+    "level": "family"
   },
   "nort3160": {
-    "level": "family",
-    "name": "North Germanic"
+    "name": "North Germanic",
+    "level": "family"
   },
   "nort3175": {
-    "level": "family",
-    "name": "North Sea Germanic"
+    "name": "North Sea Germanic",
+    "level": "family"
   },
   "nort3191": {
-    "level": "family",
-    "name": "North African Arabic"
+    "name": "North African Arabic",
+    "level": "family"
   },
   "nort3385": {
-    "level": "dialect",
-    "name": "Northern Peninsular Mexican Spanish"
+    "name": "Northern Peninsular Mexican Spanish",
+    "level": "dialect"
   },
   "norw1258": {
-    "level": "language",
-    "name": "Norwegian"
+    "name": "Norwegian",
+    "level": "language"
   },
   "norw1259": {
-    "level": "dialect",
-    "name": "Norwegian Bokmål"
+    "name": "Norwegian Bokmål",
+    "level": "dialect"
   },
   "norw1262": {
-    "level": "dialect",
-    "name": "Norwegian Nynorsk"
+    "name": "Norwegian Nynorsk",
+    "level": "dialect"
   },
   "novi1234": {
-    "level": "language",
-    "name": "Novial"
+    "name": "Novial",
+    "level": "language"
   },
   "nubi1253": {
-    "level": "language",
-    "name": "Nubi"
+    "name": "Nubi",
+    "level": "language"
   },
   "nucl1235": {
-    "level": "language",
-    "name": "Eastern Armenian"
+    "name": "Eastern Armenian",
+    "level": "language"
   },
   "nucl1276": {
-    "level": "family",
-    "name": "Nuclear Pashto"
+    "name": "Nuclear Pashto",
+    "level": "family"
   },
   "nucl1301": {
-    "level": "language",
-    "name": "Turkish"
+    "name": "Turkish",
+    "level": "language"
   },
   "nucl1302": {
-    "level": "language",
-    "name": "Georgian"
+    "name": "Georgian",
+    "level": "language"
   },
   "nucl1305": {
-    "level": "language",
-    "name": "Kannada"
+    "name": "Kannada",
+    "level": "language"
   },
   "nucl1310": {
-    "level": "language",
-    "name": "Burmese"
+    "name": "Burmese",
+    "level": "language"
   },
   "nucl1347": {
-    "level": "language",
-    "name": "Wolof"
+    "name": "Wolof",
+    "level": "language"
   },
   "nucl1417": {
-    "level": "language",
-    "name": "Igbo"
+    "name": "Igbo",
+    "level": "language"
   },
   "nucl1460": {
-    "level": "language",
-    "name": "Madurese"
+    "name": "Madurese",
+    "level": "language"
   },
   "nucl1643": {
-    "level": "language",
-    "name": "Japanese"
+    "name": "Japanese",
+    "level": "language"
   },
   "nucl1667": {
-    "level": "family",
-    "name": "Central-Southern Aymara"
+    "name": "Central-Southern Aymara",
+    "level": "family"
   },
   "nucl1710": {
-    "level": "family",
-    "name": "Nuclear-Macro-Je"
+    "name": "Nuclear-Macro-Je",
+    "level": "family"
   },
   "nyan1308": {
-    "level": "language",
-    "name": "Nyanja"
+    "name": "Nyanja",
+    "level": "language"
   },
   "occi1239": {
-    "level": "language",
-    "name": "Occitan"
+    "name": "Occitan",
+    "level": "language"
   },
   "oldc1244": {
-    "level": "language",
-    "name": "Old Chinese"
+    "name": "Old Chinese",
+    "level": "language"
   },
   "olde1238": {
-    "level": "language",
-    "name": "Old English (ca. 450-1100)"
+    "name": "Old English (ca. 450-1100)",
+    "level": "language"
   },
   "oldf1241": {
-    "level": "language",
-    "name": "Old Frisian"
+    "name": "Old Frisian",
+    "level": "language"
   },
   "oldh1241": {
-    "level": "language",
-    "name": "Old High German (ca. 750-1050)"
+    "name": "Old High German (ca. 750-1050)",
+    "level": "language"
   },
   "oldj1239": {
-    "level": "language",
-    "name": "Old Japanese"
+    "name": "Old Japanese",
+    "level": "language"
   },
   "oldl1238": {
-    "level": "language",
-    "name": "Old Latin"
+    "name": "Old Latin",
+    "level": "language"
   },
   "oldn1244": {
-    "level": "language",
-    "name": "Old Norse"
+    "name": "Old Norse",
+    "level": "language"
   },
   "oldp1254": {
-    "level": "language",
-    "name": "Old Persian (ca. 600-400 B.C.)"
+    "name": "Old Persian (ca. 600-400 B.C.)",
+    "level": "language"
   },
   "oldp1257": {
-    "level": "dialect",
-    "name": "Old Portuguese"
+    "name": "Old Portuguese",
+    "level": "dialect"
   },
   "olds1249": {
-    "level": "language",
-    "name": "Old Spanish"
+    "name": "Old Spanish",
+    "level": "language"
   },
   "olds1250": {
-    "level": "language",
-    "name": "Old Saxon"
+    "name": "Old Saxon",
+    "level": "language"
   },
   "oman1239": {
-    "level": "language",
-    "name": "Omani Arabic"
+    "name": "Omani Arabic",
+    "level": "language"
   },
   "oriy1255": {
-    "level": "language",
-    "name": "Odia"
+    "name": "Odia",
+    "level": "language"
   },
   "osca1245": {
-    "level": "language",
-    "name": "Oscan"
+    "name": "Oscan",
+    "level": "language"
   },
   "pahl1241": {
-    "level": "language",
-    "name": "Pahlavi"
+    "name": "Pahlavi",
+    "level": "language"
   },
   "paiw1248": {
-    "level": "language",
-    "name": "Paiwan"
+    "name": "Paiwan",
+    "level": "language"
   },
   "pala1330": {
-    "level": "language",
-    "name": "Pfaelzisch-Lothringisch"
+    "name": "Pfaelzisch-Lothringisch",
+    "level": "language"
   },
   "pale1260": {
-    "level": "language",
-    "name": "Palenquero"
+    "name": "Palenquero",
+    "level": "language"
   },
   "pali1273": {
-    "level": "language",
-    "name": "Pali"
+    "name": "Pali",
+    "level": "language"
   },
   "pama1250": {
-    "level": "family",
-    "name": "Pama-Nyungan"
+    "name": "Pama-Nyungan",
+    "level": "family"
   },
   "pamp1243": {
-    "level": "language",
-    "name": "Pampanga"
+    "name": "Pampanga",
+    "level": "language"
   },
   "pang1290": {
-    "level": "language",
-    "name": "Pangasinan"
+    "name": "Pangasinan",
+    "level": "language"
   },
   "panj1256": {
-    "level": "language",
-    "name": "Eastern Panjabi"
+    "name": "Eastern Panjabi",
+    "level": "language"
   },
   "paok1235": {
-    "level": "language",
-    "name": "Pa'o Karen"
+    "name": "Pa'o Karen",
+    "level": "language"
   },
   "papi1253": {
-    "level": "language",
-    "name": "Papiamento"
+    "name": "Papiamento",
+    "level": "language"
   },
   "para1311": {
-    "level": "language",
-    "name": "Paraguayan Guaraní"
+    "name": "Paraguayan Guaraní",
+    "level": "language"
   },
   "part1239": {
     "name": "Parthian",
     "level": "language"
   },
   "pedi1238": {
-    "level": "language",
-    "name": "Pedi"
+    "name": "Pedi",
+    "level": "language"
   },
   "penn1240": {
-    "level": "language",
-    "name": "Pennsylvania German"
+    "name": "Pennsylvania German",
+    "level": "language"
   },
   "phoe1239": {
-    "level": "language",
-    "name": "Phoenician"
+    "name": "Phoenician",
+    "level": "language"
   },
   "pica1241": {
-    "level": "language",
-    "name": "Picard"
+    "name": "Picard",
+    "level": "language"
   },
   "piem1238": {
-    "level": "language",
-    "name": "Piemontese"
+    "name": "Piemontese",
+    "level": "language"
   },
   "piji1239": {
     "name": "Pijin",
     "level": "language"
   },
   "pipi1250": {
-    "level": "language",
-    "name": "Pipil"
+    "name": "Pipil",
+    "level": "language"
   },
   "pitc1234": {
-    "level": "language",
-    "name": "Pitcairn-Norfolk"
+    "name": "Pitcairn-Norfolk",
+    "level": "language"
   },
   "poli1260": {
-    "level": "language",
-    "name": "Polish"
+    "name": "Polish",
+    "level": "language"
   },
   "pont1253": {
-    "level": "language",
-    "name": "Pontic"
+    "name": "Pontic",
+    "level": "language"
   },
   "port1283": {
-    "level": "language",
-    "name": "Portuguese"
+    "name": "Portuguese",
+    "level": "language"
   },
   "prin1242": {
-    "level": "language",
-    "name": "Principense"
+    "name": "Principense",
+    "level": "language"
   },
   "puer1238": {
-    "level": "dialect",
-    "name": "Puerto Rican Spanish"
+    "name": "Puerto Rican Spanish",
+    "level": "dialect"
   },
   "pula1262": {
     "name": "Pular",
     "level": "language"
   },
   "quec1387": {
-    "level": "family",
-    "name": "Quechuan"
-  },
-  "raja1256": {
-    "level": "family",
-    "name": "Rajasthani"
+    "name": "Quechuan",
+    "level": "family"
   },
   "rakh1245": {
-    "level": "language",
-    "name": "Rakhine"
+    "name": "Rakhine",
+    "level": "language"
   },
   "reja1240": {
     "name": "Rejang",
     "level": "language"
   },
   "riop1234": {
-    "level": "dialect",
-    "name": "Rioplatense Spanish"
+    "name": "Rioplatense Spanish",
+    "level": "dialect"
   },
   "roma1326": {
-    "level": "language",
-    "name": "Romansh"
+    "name": "Romansh",
+    "level": "language"
   },
   "roma1327": {
-    "level": "language",
-    "name": "Romanian"
+    "name": "Romanian",
+    "level": "language"
   },
   "roma1334": {
-    "level": "family",
-    "name": "Romance"
+    "name": "Romance",
+    "level": "family"
   },
   "ronc1236": {
-    "level": "dialect",
-    "name": "Roncalese"
+    "name": "Roncalese",
+    "level": "dialect"
   },
   "ross1234": {
-    "level": "dialect",
-    "name": "Rossellonès"
+    "name": "Rossellonès",
+    "level": "dialect"
   },
   "rund1242": {
-    "level": "language",
-    "name": "Rundi"
+    "name": "Rundi",
+    "level": "language"
   },
   "russ1263": {
-    "level": "language",
-    "name": "Russian"
+    "name": "Russian",
+    "level": "language"
   },
   "russ1264": {
-    "level": "language",
-    "name": "Russia Buriat"
+    "name": "Russia Buriat",
+    "level": "language"
   },
   "rusy1239": {
-    "level": "language",
-    "name": "Rusyn"
+    "name": "Rusyn",
+    "level": "language"
   },
   "saam1281": {
-    "level": "family",
-    "name": "Saami"
+    "name": "Saami",
+    "level": "family"
   },
   "saki1247": {
-    "level": "language",
-    "name": "Sakizaya"
+    "name": "Sakizaya",
+    "level": "language"
   },
   "sali1255": {
-    "level": "family",
-    "name": "Salishan"
+    "name": "Salishan",
+    "level": "family"
   },
   "samo1265": {
-    "level": "dialect",
-    "name": "Samogitian"
+    "name": "Samogitian",
+    "level": "dialect"
   },
   "samo1305": {
-    "level": "language",
-    "name": "Samoan"
+    "name": "Samoan",
+    "level": "language"
   },
   "sana1295": {
-    "level": "language",
-    "name": "Sanaani Arabic"
+    "name": "Sanaani Arabic",
+    "level": "language"
   },
   "sang1328": {
-    "level": "language",
-    "name": "Sango"
+    "name": "Sango",
+    "level": "language"
   },
   "sans1269": {
-    "level": "language",
-    "name": "Sanskrit"
+    "name": "Sanskrit",
+    "level": "language"
   },
   "sant1410": {
-    "level": "language",
-    "name": "Santali"
+    "name": "Santali",
+    "level": "language"
   },
   "saot1239": {
-    "level": "language",
-    "name": "Sãotomense"
+    "name": "Sãotomense",
+    "level": "language"
   },
   "sard1257": {
-    "level": "family",
-    "name": "Southern Romance"
+    "name": "Southern Romance",
+    "level": "family"
   },
   "sasa1249": {
     "name": "Sasak",
     "level": "language"
   },
   "sate1242": {
-    "level": "language",
-    "name": "Ems-Weser Frisian"
+    "name": "Ems-Weser Frisian",
+    "level": "language"
   },
   "scot1243": {
-    "level": "language",
-    "name": "Scots"
+    "name": "Scots",
+    "level": "language"
   },
   "scot1245": {
-    "level": "language",
-    "name": "Scottish Gaelic"
+    "name": "Scottish Gaelic",
+    "level": "language"
   },
   "semi1276": {
-    "level": "family",
-    "name": "Semitic"
+    "name": "Semitic",
+    "level": "family"
   },
   "sera1259": {
-    "level": "language",
-    "name": "Saraiki"
+    "name": "Saraiki",
+    "level": "language"
   },
   "serb1264": {
-    "level": "dialect",
-    "name": "Serbian Standard"
+    "name": "Serbian Standard",
+    "level": "dialect"
   },
   "sere1260": {
     "name": "Sereer",
     "level": "language"
   },
   "shan1277": {
-    "level": "language",
-    "name": "Shan"
+    "name": "Shan",
+    "level": "language"
   },
   "shon1251": {
-    "level": "language",
-    "name": "Shona"
+    "name": "Shona",
+    "level": "language"
   },
   "sich1238": {
-    "level": "language",
-    "name": "Sichuan Yi"
+    "name": "Sichuan Yi",
+    "level": "language"
   },
   "sici1248": {
-    "level": "language",
-    "name": "Sicilian"
+    "name": "Sicilian",
+    "level": "language"
   },
   "sile1253": {
-    "level": "language",
-    "name": "Silesian"
+    "name": "Silesian",
+    "level": "language"
   },
   "sind1272": {
-    "level": "language",
-    "name": "Sindhi"
+    "name": "Sindhi",
+    "level": "language"
   },
   "sinh1246": {
-    "level": "language",
-    "name": "Sinhala"
+    "name": "Sinhala",
+    "level": "language"
   },
   "sini1245": {
-    "level": "family",
-    "name": "Sinitic"
+    "name": "Sinitic",
+    "level": "family"
   },
   "sino1245": {
-    "level": "family",
-    "name": "Sino-Tibetan"
+    "name": "Sino-Tibetan",
+    "level": "family"
   },
   "skan1239": {
-    "level": "dialect",
-    "name": "Skånska"
+    "name": "Skånska",
+    "level": "dialect"
   },
   "slav1255": {
-    "level": "family",
-    "name": "Slavic"
+    "name": "Slavic",
+    "level": "family"
   },
   "slov1268": {
-    "level": "language",
-    "name": "Slovenian"
+    "name": "Slovenian",
+    "level": "language"
   },
   "slov1269": {
-    "level": "language",
-    "name": "Slovak"
+    "name": "Slovak",
+    "level": "language"
   },
   "sogd1245": {
     "name": "Sogdian",
     "level": "language"
   },
   "soma1255": {
-    "level": "language",
-    "name": "Somali"
+    "name": "Somali",
+    "level": "language"
   },
   "soni1259": {
     "name": "Soninke",
     "level": "language"
   },
   "sout2694": {
-    "level": "language",
-    "name": "Southern Altai"
+    "name": "Southern Altai",
+    "level": "language"
   },
   "sout2697": {
-    "level": "language",
-    "name": "South Azerbaijani"
+    "name": "South Azerbaijani",
+    "level": "language"
   },
   "sout2807": {
-    "level": "language",
-    "name": "Southern Sotho"
+    "name": "Southern Sotho",
+    "level": "language"
   },
   "sout2808": {
-    "level": "language",
-    "name": "Sumayela Ndebele"
+    "name": "Sumayela Ndebele",
+    "level": "language"
   },
   "sout3123": {
-    "level": "dialect",
-    "name": "South Levantine Arabic"
+    "name": "South Levantine Arabic",
+    "level": "dialect"
   },
   "sout3147": {
-    "level": "family",
-    "name": "South Slavic"
+    "name": "South Slavic",
+    "level": "family"
   },
   "sout3183": {
-    "level": "family",
-    "name": "Southwestern Shifted Romance"
+    "name": "Southwestern Shifted Romance",
+    "level": "family"
   },
   "sout3331": {
-    "level": "dialect",
-    "name": "Southern African English"
+    "name": "Southern African English",
+    "level": "dialect"
   },
   "sran1240": {
-    "level": "language",
-    "name": "Sranan Tongo"
+    "name": "Sranan Tongo",
+    "level": "language"
   },
   "sril1245": {
-    "level": "language",
-    "name": "Sri Lanka Malay"
+    "name": "Sri Lanka Malay",
+    "level": "language"
   },
   "stan1289": {
-    "level": "language",
-    "name": "Catalan"
+    "name": "Catalan",
+    "level": "language"
   },
   "stan1290": {
-    "level": "language",
-    "name": "French"
+    "name": "French",
+    "level": "language"
   },
   "stan1293": {
-    "level": "language",
-    "name": "English"
+    "name": "English",
+    "level": "language"
   },
   "stan1295": {
-    "level": "language",
-    "name": "German"
+    "name": "German",
+    "level": "language"
   },
   "stan1306": {
-    "level": "language",
-    "name": "Standard Malay"
+    "name": "Standard Malay",
+    "level": "language"
   },
   "stan1318": {
-    "level": "language",
-    "name": "Standard Arabic"
+    "name": "Standard Arabic",
+    "level": "language"
   },
   "stan1323": {
-    "level": "dialect",
-    "name": "Standard Lebanese Arabic"
+    "name": "Standard Lebanese Arabic",
+    "level": "dialect"
   },
   "stan1324": {
-    "level": "dialect",
-    "name": "Standard Moroccan Tamazight"
+    "name": "Standard Moroccan Tamazight",
+    "level": "dialect"
   },
   "suda1236": {
-    "level": "language",
-    "name": "Sudanese Arabic"
+    "name": "Sudanese Arabic",
+    "level": "language"
   },
   "suda1237": {
-    "level": "language",
-    "name": "South Sudanese Creole Arabic"
+    "name": "South Sudanese Creole Arabic",
+    "level": "language"
   },
   "sund1252": {
-    "level": "language",
-    "name": "Sundanese"
+    "name": "Sundanese",
+    "level": "language"
   },
   "susu1250": {
     "name": "Susu",
     "level": "language"
   },
   "swah1253": {
-    "level": "language",
-    "name": "Swahili"
+    "name": "Swahili",
+    "level": "language"
   },
   "swat1243": {
-    "level": "language",
-    "name": "Swati"
+    "name": "Swati",
+    "level": "language"
   },
   "swed1254": {
-    "level": "language",
-    "name": "Swedish"
+    "name": "Swedish",
+    "level": "language"
   },
   "sylh1242": {
-    "level": "language",
-    "name": "Sylheti"
+    "name": "Sylheti",
+    "level": "language"
   },
   "tach1249": {
-    "level": "language",
-    "name": "Chaouia of the Aures"
+    "name": "Chaouia of the Aures",
+    "level": "language"
   },
   "tach1250": {
-    "level": "language",
-    "name": "Tachelhit"
+    "name": "Tachelhit",
+    "level": "language"
   },
   "taga1270": {
-    "level": "language",
-    "name": "Tagalog"
+    "name": "Tagalog",
+    "level": "language"
   },
   "tahi1242": {
-    "level": "language",
-    "name": "Tahitian"
+    "name": "Tahitian",
+    "level": "language"
   },
   "taik1256": {
-    "level": "family",
-    "name": "Tai-Kadai"
+    "name": "Tai-Kadai",
+    "level": "family"
   },
   "taji1245": {
-    "level": "language",
-    "name": "Tajik"
+    "name": "Tajik",
+    "level": "language"
   },
   "taly1247": {
-    "level": "language",
-    "name": "North-Central Talysh"
+    "name": "North-Central Talysh",
+    "level": "language"
   },
   "tami1289": {
-    "level": "language",
-    "name": "Tamil"
+    "name": "Tamil",
+    "level": "language"
   },
   "taro1264": {
-    "level": "language",
-    "name": "Seediq"
+    "name": "Seediq",
+    "level": "language"
   },
   "tart1237": {
-    "level": "language",
-    "name": "Tartessian"
+    "name": "Tartessian",
+    "level": "language"
   },
   "tata1255": {
-    "level": "language",
-    "name": "Tatar"
-  },
-  "tedi1235": {
-    "level": "language",
-    "name": "Tedim Chin"
+    "name": "Tatar",
+    "level": "language"
   },
   "telu1262": {
-    "level": "language",
-    "name": "Telugu"
+    "name": "Telugu",
+    "level": "language"
   },
   "tern1248": {
-    "level": "language",
-    "name": "Ternateño"
+    "name": "Ternateño",
+    "level": "language"
   },
   "tetu1245": {
-    "level": "language",
-    "name": "Tetum"
+    "name": "Tetum",
+    "level": "language"
   },
   "thai1261": {
-    "level": "language",
-    "name": "Thai"
+    "name": "Thai",
+    "level": "language"
   },
   "tibe1272": {
-    "level": "language",
-    "name": "Tibetan"
+    "name": "Tibetan",
+    "level": "language"
   },
   "tigr1271": {
-    "level": "language",
-    "name": "Tigrinya"
+    "name": "Tigrinya",
+    "level": "language"
   },
   "timn1235": {
     "name": "Timne",
     "level": "language"
   },
   "toki1239": {
-    "level": "language",
-    "name": "Toki Pona"
+    "name": "Toki Pona",
+    "level": "language"
   },
   "tokp1240": {
-    "level": "language",
-    "name": "Tok Pisin"
+    "name": "Tok Pisin",
+    "level": "language"
   },
   "tong1325": {
-    "level": "language",
-    "name": "Tonga (Tonga Islands)"
+    "name": "Tonga (Tonga Islands)",
+    "level": "language"
   },
   "tran1282": {
-    "level": "language",
-    "name": "Transalpine Gaulish"
+    "name": "Transalpine Gaulish",
+    "level": "language"
   },
   "tson1249": {
-    "level": "language",
-    "name": "Tsonga"
+    "name": "Tsonga",
+    "level": "language"
   },
   "tswa1253": {
-    "level": "language",
-    "name": "Tswana"
+    "name": "Tswana",
+    "level": "language"
   },
   "tulu1258": {
-    "level": "language",
-    "name": "Tulu"
+    "name": "Tulu",
+    "level": "language"
   },
   "tumb1250": {
-    "level": "language",
-    "name": "Tumbuka"
+    "name": "Tumbuka",
+    "level": "language"
   },
   "tung1282": {
-    "level": "family",
-    "name": "Tungusic"
+    "name": "Tungusic",
+    "level": "family"
   },
   "tuni1259": {
-    "level": "language",
-    "name": "Tunisian Arabic"
+    "name": "Tunisian Arabic",
+    "level": "language"
   },
   "tupi1273": {
-    "level": "language",
-    "name": "Tupinambá"
+    "name": "Tupinambá",
+    "level": "language"
   },
   "tupi1275": {
-    "level": "family",
-    "name": "Tupian"
+    "name": "Tupian",
+    "level": "family"
   },
   "turk1304": {
-    "level": "language",
-    "name": "Turkmen"
+    "name": "Turkmen",
+    "level": "language"
   },
   "turk1311": {
-    "level": "family",
-    "name": "Turkic"
+    "name": "Turkic",
+    "level": "family"
   },
   "tuuu1241": {
-    "level": "family",
-    "name": "Tuu"
+    "name": "Tuu",
+    "level": "family"
   },
   "tuvi1240": {
-    "level": "language",
-    "name": "Tuvinian"
+    "name": "Tuvinian",
+    "level": "language"
   },
   "tyap1238": {
-    "level": "language",
-    "name": "Tyap"
+    "name": "Tyap",
+    "level": "language"
   },
   "udmu1245": {
-    "level": "language",
-    "name": "Udmurt"
+    "name": "Udmurt",
+    "level": "language"
   },
   "uigh1240": {
-    "level": "language",
-    "name": "Uighur"
+    "name": "Uighur",
+    "level": "language"
   },
   "ukra1253": {
-    "level": "language",
-    "name": "Ukrainian"
+    "name": "Ukrainian",
+    "level": "language"
   },
   "umbr1253": {
-    "level": "language",
-    "name": "Umbrian"
+    "name": "Umbrian",
+    "level": "language"
   },
   "uppe1395": {
-    "level": "language",
-    "name": "Upper Sorbian"
+    "name": "Upper Sorbian",
+    "level": "language"
   },
   "uppe1455": {
-    "level": "language",
-    "name": "Upper Guinea Crioulo"
+    "name": "Upper Guinea Crioulo",
+    "level": "language"
   },
   "ural1272": {
-    "level": "family",
-    "name": "Uralic"
+    "name": "Uralic",
+    "level": "family"
   },
   "urdu1245": {
-    "level": "language",
-    "name": "Urdu"
+    "name": "Urdu",
+    "level": "language"
   },
   "utoa1244": {
-    "level": "family",
-    "name": "Uto-Aztecan"
+    "name": "Uto-Aztecan",
+    "level": "family"
   },
   "vale1252": {
-    "level": "dialect",
-    "name": "Valencià"
+    "name": "Valencià",
+    "level": "dialect"
   },
   "vall1258": {
-    "level": "dialect",
-    "name": "Valluno Spanish"
+    "name": "Valluno Spanish",
+    "level": "dialect"
   },
   "vedi1234": {
-    "level": "dialect",
-    "name": "Vedic Sanskrit"
+    "name": "Vedic Sanskrit",
+    "level": "dialect"
   },
   "vend1245": {
-    "level": "language",
-    "name": "Venda"
+    "name": "Venda",
+    "level": "language"
   },
   "vene1258": {
-    "level": "language",
-    "name": "Venetian"
+    "name": "Venetian",
+    "level": "language"
   },
   "vene1262": {
-    "level": "dialect",
-    "name": "Venezuelan Spanish"
+    "name": "Venezuelan Spanish",
+    "level": "dialect"
   },
   "veps1250": {
-    "level": "language",
-    "name": "Veps"
+    "name": "Veps",
+    "level": "language"
   },
   "viet1252": {
-    "level": "language",
-    "name": "Vietnamese"
+    "name": "Vietnamese",
+    "level": "language"
   },
   "vlaa1240": {
-    "level": "language",
-    "name": "Western Flemish"
+    "name": "Western Flemish",
+    "level": "language"
   },
   "vlax1238": {
-    "level": "language",
-    "name": "Vlax Romani"
+    "name": "Vlax Romani",
+    "level": "language"
   },
   "vola1234": {
-    "level": "language",
-    "name": "Volapük"
+    "name": "Volapük",
+    "level": "language"
   },
   "voro1243": {
-    "level": "dialect",
-    "name": "Võro"
+    "name": "Võro",
+    "level": "dialect"
   },
   "voti1245": {
-    "level": "language",
-    "name": "Votic"
+    "name": "Votic",
+    "level": "language"
   },
   "waka1280": {
-    "level": "family",
-    "name": "Wakashan"
+    "name": "Wakashan",
+    "level": "family"
   },
   "wall1255": {
-    "level": "language",
-    "name": "Walloon"
+    "name": "Walloon",
+    "level": "language"
   },
   "wara1300": {
-    "level": "language",
-    "name": "Waray (Philippines)"
+    "name": "Waray (Philippines)",
+    "level": "language"
   },
   "wayu1243": {
-    "level": "language",
-    "name": "Wayuu"
+    "name": "Wayuu",
+    "level": "language"
   },
   "wels1247": {
-    "level": "language",
-    "name": "Welsh"
+    "name": "Welsh",
+    "level": "language"
   },
   "west2339": {
-    "level": "dialect",
-    "name": "Western Asturian"
+    "name": "Western Asturian",
+    "level": "dialect"
   },
   "west2340": {
-    "level": "dialect",
-    "name": "Western Aragonese"
+    "name": "Western Aragonese",
+    "level": "dialect"
   },
   "west2354": {
-    "level": "language",
-    "name": "Western Frisian"
+    "name": "Western Frisian",
+    "level": "language"
   },
   "west2369": {
-    "level": "language",
-    "name": "Western Farsi"
+    "name": "Western Farsi",
+    "level": "language"
   },
   "west2386": {
-    "level": "language",
-    "name": "Western Panjabi"
+    "name": "Western Panjabi",
+    "level": "language"
   },
   "west2721": {
-    "level": "language",
-    "name": "West Central Oromo"
+    "name": "West Central Oromo",
+    "level": "language"
   },
   "west2786": {
-    "level": "family",
-    "name": "West Semitic"
+    "name": "West Semitic",
+    "level": "family"
   },
   "west2792": {
-    "level": "family",
-    "name": "West Slavic"
+    "name": "West Slavic",
+    "level": "family"
   },
   "west2793": {
-    "level": "family",
-    "name": "West Germanic"
+    "name": "West Germanic",
+    "level": "family"
   },
   "wuch1236": {
-    "level": "language",
-    "name": "Wu Chinese"
+    "name": "Wu Chinese",
+    "level": "language"
   },
   "xhos1239": {
-    "level": "language",
-    "name": "Xhosa"
+    "name": "Xhosa",
+    "level": "language"
   },
   "yaku1245": {
-    "level": "language",
-    "name": "Sakha"
+    "name": "Sakha",
+    "level": "language"
   },
   "yong1276": {
-    "level": "language",
-    "name": "Yongbei Zhuang"
+    "name": "Yongbei Zhuang",
+    "level": "language"
   },
   "yoru1245": {
-    "level": "language",
-    "name": "Yoruba"
+    "name": "Yoruba",
+    "level": "language"
   },
   "yuca1254": {
-    "level": "language",
-    "name": "Yucatec Maya"
+    "name": "Yucatec Maya",
+    "level": "language"
   },
   "yuka1259": {
-    "level": "family",
-    "name": "Yukaghir"
+    "name": "Yukaghir",
+    "level": "family"
   },
   "zeeu1238": {
-    "level": "language",
-    "name": "Zeeuws"
+    "name": "Zeeuws",
+    "level": "language"
   },
   "zulu1248": {
-    "level": "language",
-    "name": "Zulu"
+    "name": "Zulu",
+    "level": "language"
+  },
+  "haka1240": {
+    "name": "Haka Chin",
+    "level": "language"
+  },
+  "dogr1250": {
+    "name": "Dogri",
+    "level": "language"
+  },
+  "hary1238": {
+    "name": "Haryanvi",
+    "level": "language"
+  },
+  "jing1260": {
+    "name": "Jingpho",
+    "level": "family"
+  },
+  "lush1249": {
+    "name": "Mizo",
+    "level": "language"
+  },
+  "garo1247": {
+    "name": "Garo",
+    "level": "language"
+  },
+  "kach1280": {
+    "name": "Southern Jinghpaw language",
+    "level": "language"
+  },
+  "raja1256": {
+    "name": "Rajasthani",
+    "level": "family"
+  },
+  "chha1249": {
+    "name": "Chhattisgarhi",
+    "level": "language"
+  },
+  "tedi1235": {
+    "name": "Tedim Chin",
+    "level": "language"
   }
 }
