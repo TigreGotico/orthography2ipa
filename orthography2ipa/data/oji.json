@@ -1,69 +1,67 @@
 {
   "code": "oji",
-  "name": "Ojibwa",
+  "name": "Ojibwe",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "orthography_kind": "native",
+  "quality": "research",
   "graphemes": {
+    "a": [
+      "a"
+    ],
     "aa": [
       "aː"
+    ],
+    "i": [
+      "i"
     ],
     "ii": [
       "iː"
     ],
+    "o": [
+      "o"
+    ],
     "oo": [
       "oː"
-    ],
-    "ch": [
-      "tʃ"
-    ],
-    "sh": [
-      "ʃ"
-    ],
-    "zh": [
-      "ʒ"
-    ],
-    "a": [
-      "ə"
     ],
     "e": [
       "eː"
     ],
-    "i": [
-      "ɪ"
-    ],
-    "o": [
-      "o"
-    ],
     "b": [
       "b"
+    ],
+    "p": [
+      "pʰ"
     ],
     "d": [
       "d"
     ],
+    "t": [
+      "tʰ"
+    ],
     "g": [
       "ɡ"
+    ],
+    "k": [
+      "kʰ"
     ],
     "j": [
       "dʒ"
     ],
+    "ch": [
+      "tʃʰ"
+    ],
     "z": [
       "z"
     ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
     "s": [
-      "s"
+      "sʰ"
     ],
-    "h": [
-      "h"
+    "zh": [
+      "ʒ"
+    ],
+    "sh": [
+      "ʃʰ"
     ],
     "m": [
       "m"
@@ -79,46 +77,87 @@
     ],
     "'": [
       "ʔ"
+    ],
+    "h": [
+      "h"
     ]
   },
+  "allophones": {
+    "b": [
+      "b",
+      "p"
+    ],
+    "d": [
+      "d",
+      "t"
+    ],
+    "ɡ": [
+      "ɡ",
+      "k"
+    ],
+    "dʒ": [
+      "dʒ",
+      "tʃ"
+    ],
+    "z": [
+      "z",
+      "s"
+    ],
+    "ʒ": [
+      "ʒ",
+      "ʃ"
+    ]
+  },
+  "iso639_3": "oji",
+  "glottolog_code": "ojib1241",
+  "wikidata_qid": "Q33875",
+  "notes": "Ojibwe (Anishinaabemowin), Algonquian. PRIMARY INPUT CONTRACT: the double-vowel (Fiero) Latin orthography, the standard teaching/reference system (Nichols & Nyholm 1995; Valentine 2001), NFC. Seven vowels: three short /i a o/ and four long /iː aː oː eː/ — note /eː/ has no short counterpart and is written with the single letter ⟨e⟩ (its length is a fact about the vowel, not spelled with a doubled letter). Obstruents form fortis/lenis pairs: the lenis series ⟨b d g j z zh⟩ is phonemically voiced-or-voiceless-unaspirated depending on context ([b~p], [d~t], [ɡ~k], [dʒ~tʃ], [z~s], [ʒ~ʃ]) while the fortis series ⟨p t k ch s sh⟩ is consistently voiceless and aspirated. ⟨'⟩ is the glottal stop /ʔ/; ⟨h⟩ for /h/ is dialectal (used where some varieties instead have /ʔ/). Nasal vowels are reported for some dialects but are not consistently written in the double-vowel system and are therefore not represented here. WRITING SYSTEMS NOT COVERED: many Ojibwe communities in northern Ontario and Manitoba write with a syllabary historically developed for Cree (devised by James Evans, c. 1840) and adapted for Ojibwe (Great Lakes Algonquian syllabics also exist with limited modern use); this file does not build a syllabics inventory because a per-community, per-dialect syllabics-to-IPA chart was not available with the same confidence as the double-vowel system used here.",
+  "sources": [
+    {
+      "id": "ojibwe_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Ojibwe language",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ojibwe_language",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ojibwe_language",
+      "pages": null,
+      "notes": "Phoneme inventory and double-vowel orthography correspondences."
+    },
+    {
+      "id": "nichols_nyholm1995",
+      "author": "Nichols, John D. & Nyholm, Earl",
+      "year": 1995,
+      "title": "A Concise Dictionary of Minnesota Ojibwe",
+      "publisher": "University of Minnesota Press",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Reference implementation of the double-vowel (Fiero) orthography."
+    },
+    {
+      "id": "valentine2001",
+      "author": "Valentine, J. Randolph",
+      "year": 2001,
+      "title": "Nishnaabemwin Reference Grammar",
+      "publisher": "University of Toronto Press",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Phonology and orthography of the Odawa/Eastern Ojibwe dialect continuum."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Ojibwe_language",
+    "https://en.wikipedia.org/wiki/Ojibwe_writing_systems"
+  ],
   "parent": "x-clade-algi1248",
   "ancestors": [
     {
       "code": "x-clade-algi1248",
       "role": "parent",
       "weight": 1.0,
-      "notes": "Descent per Glottolog classification of Ojibwa (None)."
+      "notes": "Algic — the classification node this language sits under (Ojibwe is Algonquian)."
     }
-  ],
-  "notes": "Skeleton. Algic (Algonquian) language of the Great Lakes written in the Fiero double-vowel Roman orthography. Long vowels are written as doubled letters (aa ii oo) plus e=[eː]; short a=[ə], i=[ɪ]. The lenis/fortis stop contrast is spelled b/p, d/t, g/k and mapped as voiced vs voiceless; fortis length and predictable nasalization (nh) are left unencoded, raising the PER floor.",
-  "iso639_3": "oji",
-  "glottolog_code": null,
-  "sources": [
-    {
-      "id": "oji_glottolog",
-      "author": "Hammarström, H. et al. (Glottolog 5.0)",
-      "year": 2024,
-      "title": "Glottolog: Ojibwa (None)",
-      "publisher": "Max Planck Institute for Evolutionary Anthropology",
-      "url": "https://glottolog.org/resource/languoid/id/None",
-      "pages": null,
-      "notes": "Classification reference for a skeleton-tier entry.",
-      "wikipedia_url": null
-    },
-    {
-      "id": "oji_orthography",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Ojibwe writing systems (double-vowel orthography), Wikipedia",
-      "publisher": "Wikimedia Foundation",
-      "url": "https://en.wikipedia.org/wiki/Ojibwe_writing_systems",
-      "pages": null,
-      "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Ojibwe_writing_systems"
-    }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Ojibwe_language",
-    "https://en.wikipedia.org/wiki/Ojibwe_writing_systems"
   ]
 }

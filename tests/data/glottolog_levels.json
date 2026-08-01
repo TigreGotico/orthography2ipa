@@ -455,6 +455,10 @@
     "name": "Classical Nahuatl",
     "level": "language"
   },
+  "copp1244": {
+    "name": "Inuinnaqtun",
+    "level": "dialect"
+  },
   "copt1239": {
     "name": "Coptic",
     "level": "language"
@@ -509,6 +513,10 @@
   },
   "dagb1246": {
     "name": "Dagbani",
+    "level": "language"
+  },
+  "dako1258": {
+    "name": "Dakota",
     "level": "language"
   },
   "dani1285": {
@@ -585,6 +593,10 @@
   },
   "east2303": {
     "name": "Archaic Finnish Swedish",
+    "level": "language"
+  },
+  "east2534": {
+    "name": "Eastern Canadian Inuktitut",
     "level": "language"
   },
   "east2714": {
@@ -1139,6 +1151,10 @@
     "name": "Lak",
     "level": "language"
   },
+  "lako1247": {
+    "name": "Lakota",
+    "level": "language"
+  },
   "laoo1244": {
     "name": "Lao",
     "level": "language"
@@ -1353,6 +1369,10 @@
   },
   "mode1248": {
     "name": "Modern Greek",
+    "level": "language"
+  },
+  "moha1258": {
+    "name": "Mohawk",
     "level": "language"
   },
   "moks1248": {
@@ -1606,6 +1626,10 @@
   "occi1239": {
     "name": "Occitan",
     "level": "language"
+  },
+  "ojib1241": {
+    "name": "Ojibwa",
+    "level": "family"
   },
   "oldc1244": {
     "name": "Old Chinese",
@@ -1891,6 +1915,10 @@
     "name": "Semitic",
     "level": "family"
   },
+  "sene1264": {
+    "name": "Seneca",
+    "level": "language"
+  },
   "sera1259": {
     "name": "Saraiki",
     "level": "language"
@@ -1941,6 +1969,10 @@
   },
   "sino1245": {
     "name": "Sino-Tibetan",
+    "level": "family"
+  },
+  "siou1252": {
+    "name": "Siouan",
     "level": "family"
   },
   "skan1239": {
