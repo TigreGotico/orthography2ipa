@@ -1,13 +1,13 @@
-# Uruguayan Portuguese (pt-UY) — Riverense / DPU Phonology Reference
+# Uruguayan Portuguese (pt-UY): Riverense / DPU Phonology Reference
 
 **Code**: `pt-UY` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` | **Quality tier**: research | **ISO 639-3**: `por`
-**Sources**: Carvalho (1998), *Variation and diffusion of Uruguayan Portuguese in a bilingual border town*; Rona (1965), *El dialecto fronterizo del Norte del Uruguay*; Hensey (1972), *The Sociolinguistics of the Brazilian-Uruguayan Border*; Elizaincín (1992), *Dialectos en Contacto*; Sturza (2021)
+**Sources**: Carvalho (1998), *Variation and diffusion of Uruguayan Portuguese in a bilingual border town*. Rona (1965), *El dialecto fronterizo del Norte del Uruguay*. Hensey (1972), *The Sociolinguistics of the Brazilian-Uruguayan Border*. Elizaincín (1992), *Dialectos en Contacto*. Sturza (2021)
 
 Uruguayan Portuguese is the Portuguese-based border-contact vernacular of
-northern Uruguay — the Rivera region and the Brazilian frontier. The scholarly
+northern Uruguay, the Rivera region and the Brazilian frontier. The scholarly
 literature names it **Dialectos Portugueses del Uruguay** (DPU, Elizaincín),
-**fronterizo** (Rona), and **Riverense**; speakers themselves call it
+**fronterizo** (Rona), and **Riverense**. Speakers themselves call it
 **portuñol** or *brasilero*. It is **not** Uruguay's national language (that is
 Spanish): it is a rural-origin Portuguese vernacular in intense contact with
 border Spanish, historically the sole language of the border communities and now
@@ -22,7 +22,7 @@ The spec sets `parent = pt-BR` and inherits Brazilian Portuguese through
 choice the read source supports: Carvalho (1998: 646, Figure 1) models the
 community as a **dialectal continuum** whose two poles are *Rural Uruguayan
 Portuguese* (RUP) and *Urban Brazilian Portuguese* (UBP), and states that the
-variety differs from standard Brazilian "mainly in three respects" — retained
+variety differs from standard Brazilian "mainly in three respects", retained
 rural features, Spanish interference, and hybrid forms. The reference/diffusion
 norm toward which Rivera speech moves is urban BP. The **vowel system** is
 inherited unchanged from pt-BR (seven oral vowels /a ɛ e i ɔ o u/ plus the nasal
@@ -36,27 +36,27 @@ set), matching the inventory reported for the variety.
 
 ## Modelled features
 
-1. **Vocalisation of the palatal lateral ⟨lh⟩ /ʎ/ → glide [j]** — the single most
+1. **Vocalisation of the palatal lateral ⟨lh⟩ /ʎ/ → glide [j]**, the single most
    salient rural/focused marker. Rona (1965: 23, via Carvalho 1998: 646) found it
    categorical and proposed the glide as the only phoneme: *"the pronunciation of
    the lateral phoneme as a front glide, as in /mujɛ/ instead of the standard
-   /muʎɛr/"* (Carvalho 1998: 646); local *coié* vs Brazilian *colher* (p. 647).
+   /muʎɛr/"* (Carvalho 1998: 646). Local *coié* vs Brazilian *colher* (p. 647).
    The palatal [ʎ] is the diffusing urban-BP form, kept as the second candidate.
    → *mulher* [muˈjeɾ], *trabalho* [tɾaˈbaju].
-2. **Retention of dental /t d/ before /i/ (no palatalisation)** — *"the maintenance
+2. **Retention of dental /t d/ before /i/ (no palatalisation)**, *"the maintenance
    of the dental stops /d/ and /t/ followed by /i/, a tendency kept probably due
    to Spanish interference"* (Carvalho 1998: 646). The dental realisation was
    *nearly categorical* in Rivera (Rona 1965: 40; Hensey 1972: 60, both via
    Carvalho 1998: 648). Standard-BP palatalisation ([dʒia]/[tʃia]) is an ongoing
    diffusion led by young, higher-status, female speakers (Carvalho 1998: 649,
-   Tables 4–6) — documented here, not made the focused-variety default.
+   Tables 4–6), documented here, not made the focused-variety default.
    → *dia* [ˈdiɐ], *tia* [ˈtiɐ], *partido* [paˈɾtidu].
 3. **Lateral retention of coda /l/ → [l]** (no L-vocalisation to [w] as in urban
-   BP) — *secondary* source (Wikipedia, *Uruguayan Portuguese*), consistent with
+   BP), *secondary* source (Wikipedia, *Uruguayan Portuguese*), consistent with
    the Spanish adstrate. Overrides the inherited pt-BR coda /l/ → [w].
    → *Brasil* [bɾaˈzil], *alto* [ˈaltu].
 4. **Word-initial ⟨r⟩ and ⟨rr⟩ = alveolar trill [r]** (not the guttural/uvular
-   [ʁ] of urban BP) — *secondary* source (Wikipedia), consistent with border
+   [ʁ] of urban BP), *secondary* source (Wikipedia), consistent with border
    Spanish. Intervocalic and coda ⟨r⟩ stay the tap [ɾ].
    → *Rivera* [riˈveɾɐ], *carro* [ˈkaru].
 
@@ -86,17 +86,17 @@ set), matching the inventory reported for the variety.
 
 Input is standard Portuguese orthography (as used for the variety in the
 literature and in written *portuñol*). The spec transcribes the **focused, rural
-local norm** described by Rona, Hensey and Carvalho; the palatalising /
+local norm** described by Rona, Hensey and Carvalho. The palatalising /
 guttural-r urban-BP variants are the diffusion pole of the continuum, documented
 in the notes rather than produced by default.
 
 ## Limitations
 
-- **No gold benchmark**: pt-UY has no scoreboard row; correctness here is by
+- **No gold benchmark**: pt-UY has no scoreboard row. Correctness here is by
   citation, not PER (precedent: `ext-PT-x-barrancos`).
-- Features 3–4 rest on a secondary source (Wikipedia); the two headline features
+- Features 3–4 rest on a secondary source (Wikipedia). The two headline features
   (1–2) are primary (Carvalho 1998, page-cited).
-- Sociolinguistic variation along the RUP↔UBP continuum is real and gradient;
+- Sociolinguistic variation along the RUP↔UBP continuum is real and gradient.
   the spec fixes the focused-local pole and notes the diffusion.
 
 ## Sources

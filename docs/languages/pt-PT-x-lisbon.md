@@ -1,15 +1,15 @@
-# Lisbon / Estremenho European Portuguese (pt-PT-x-lisbon) — Phonology Reference
+# Lisbon / Estremenho European Portuguese (pt-PT-x-lisbon): Phonology Reference
 
 **Code**: `pt-PT-x-lisbon` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` | **Quality tier**: research
-**Sources**: Hristovsky (2008, *Textos Seleccionados* XXIII ENAPL, APL, pp. 239–255); Mateus & d'Andrade (2000, *The Phonology of Portuguese*, p. 19); Cruz-Ferreira (1995, *JIPA* 25:90–94); Cintra (1971, *Boletim de Filologia* 22:81–116); Segura (2013, *Gramática do Português*, Fundação Calouste Gulbenkian)
+**Sources**: Hristovsky (2008, *Textos Seleccionados* XXIII ENAPL, APL, pp. 239–255). Mateus & d'Andrade (2000, *The Phonology of Portuguese*, p. 19). Cruz-Ferreira (1995, *JIPA* 25:90–94). Cintra (1971, *Boletim de Filologia* 22:81–116). Segura (2013, *Gramática do Português*, Fundação Calouste Gulbenkian)
 
 ## A distinct urban variety, not the conservative norm
 
 `pt-PT-x-lisbon` models the speech of Lisbon and the surrounding
 Estremenho (Centro-Litoral) zone as a **distinct urban variety with its own
 phonological innovations**, expressed as a delta on top of the `pt-PT` base.
-The `pt-PT` base is the broad *descriptive* European Portuguese standard; Lisbon
+The `pt-PT` base is the broad *descriptive* European Portuguese standard. Lisbon
 inherits it and adds features that **deviate from the conservative / neutral
 prescriptive norm**, which is traditionally anchored to educated central
 (Coimbra-type) speech.
@@ -26,20 +26,20 @@ therefore **not** encoded as identical to that reference norm.
 
 These broad European Portuguese processes are **inherited unchanged** through
 the `pt-PT` base edge (`graphemes_base`, `allophones_base`,
-`positional_graphemes_base`, and the id-keyed `allophone_rules` overlay); they
+`positional_graphemes_base`, and the id-keyed `allophone_rules` overlay). They
 are the values Lisbon shares with the base standard and are deliberately **not**
 duplicated in this spec:
 
-- **Strong unstressed vowel reduction** — pretonic/final unstressed /e/ → [ɨ]
+- **Strong unstressed vowel reduction**: pretonic/final unstressed /e/ → [ɨ]
   (inherited positional map). The spec keeps explicit unstressed /a/ → [ɐ] and
   /o/ → [u] reduction rows so it reduces the unstressed vowels without inheriting
   the base's open [ɔ]/[a] stressed-nucleus defaults (lexically unpredictable for
   spelling-unmarked stressed `<o>`/`<a>`).
 - **Dark (velarised) coda /l/ → [ɫ]** (`PT_CODA_L_DARK`).
-- **Coda-sibilant *chiado*** — coda /s z/ → [ʃ ʒ] (`PT_CODA_S_HUSH`,
+- **Coda-sibilant *chiado***, coda /s z/ → [ʃ ʒ] (`PT_CODA_S_HUSH`,
   `PT_CODA_Z_HUSH`), with the coda-/s/ voicing sandhi. Lisbon keeps the
   **standard alveolar [z]** for the external prevocalic /s/-sandhi
-  (`estás a ver` → [eˈʃtaz ˈɐ ˈvɛɾ]) — the palatal [ʒ] here is a
+  (`estás a ver` → [eˈʃtaz ˈɐ ˈvɛɾ]), the palatal [ʒ] here is a
   Southern/Azorean feature (Algarve, São Miguel), **not** a Lisbon one.
 
 ## Lisbon innovations modelled
@@ -55,7 +55,7 @@ duplicated in this spec:
 
 The single most characteristic Lisbon feature modelled here is the
 **centralisation of the stressed front mid vowel to [ɐ] before a palatal
-consonant** — the palatals [ʎ ɲ ʃ ʒ] and the digraphs/letters that produce them
+consonant**, the palatals [ʎ ɲ ʃ ʒ] and the digraphs/letters that produce them
 (`<lh>` → ʎ, `<nh>` → ɲ, `<ch>`/`<x>` → ʃ, `<j>`/`<g(e/i)>` → ʒ):
 
 - coelho → **[ˈkoɐʎu]**, espelho → **[eʃˈpɐʎu]**, fecho → **[ˈfɐʃu]**,
@@ -66,27 +66,27 @@ literature (Gonçalves Viana 1883, Cintra 1971, Barbosa 1965, Andrade 1981;
 Barros 1994 for the sociolinguistic distribution *in Lisbon speech*) and reports
 that all these authors agree the vowel /e/ (and /ɛ/) is realised as [ɐ] before a
 palatal segment, as a dissimilatory process. Mateus & d'Andrade (2000:19) list
-stressed [ɐ] as occurring in exactly three contexts — before a palatal consonant
-(*telha* [ˈtɐʎɐ]), before the palatal glide (*lei* [ˈlɐj]) and before a nasal —
+stressed [ɐ] as occurring in exactly three contexts, before a palatal consonant
+(*telha* [ˈtɐʎɐ]), before the palatal glide (*lei* [ˈlɐj]) and before a nasal,
 and treat it as a *derived*, not underlying, vowel. Cruz-Ferreira (1995:92)
 notes that all vowels are raised and advanced before palato-alveolar and palatal
 consonants. **The conservative / central (Coimbra-type = `pt-PT` base) norm keeps
-[e]/[ɛ] in this context** — which is exactly why this is encoded as a Lisbon
+[e]/[ɛ] in this context**, which is exactly why this is encoded as a Lisbon
 delta rather than in the base.
 
 This is implemented by the `LX_STRESSED_E_PREPALATAL` allophone rule
 (`followed_by: "palatal"`), which runs as a post-lexical rescorer **after**
 positional reduction. Because unstressed /e/ has already reduced to [ɨ] by that
-stage, the rule fires only where the vowel still surfaces as [e]/[ɛ] — i.e. the
+stage, the rule fires only where the vowel still surfaces as [e]/[ɛ], i.e. the
 **stressed** (or word-initial) realisation. This makes the rule stress-gated
 without needing a dedicated "stressed-before-palatal" position.
 
 **Scope note (honestly stated).** Hristovsky (2008:239) reports the change for
 /e/ in tonic *and/or* atonic position. The atonic case, however, is variable and
 sociolinguistically graded (Barros 1994): in a broad transcription, unstressed
-pre-palatal /e/ overwhelmingly reduces to [ɨ] — melhor → [mɨˈʎoɾ], fechar →
-[fɨˈʃaɾ], mexer → [mɨˈʃɛɾ] — which is the value the base and the gold data use.
-Only the categorical **stressed** case is modelled; the reduced unstressed value
+pre-palatal /e/ overwhelmingly reduces to [ɨ], melhor → [mɨˈʎoɾ], fechar →
+[fɨˈʃaɾ], mexer → [mɨˈʃɛɾ], which is the value the base and the gold data use.
+Only the categorical **stressed** case is modelled. The reduced unstressed value
 is deliberately left untouched.
 
 ### The `<ei>` → [ɐj] diphthong
@@ -102,17 +102,17 @@ boundary lines running near the Tejo.
 ## Not modelled here
 
 - **Intervocalic voiced-stop spirantisation** (/b d ɡ/ → [β ð ɣ]) is a general
-  EP process, not Lisbon-specific, and is deliberately not encoded — every
+  EP process, not Lisbon-specific, and is deliberately not encoded, every
   available pt gold is broad/phonemic and transcribes the stops (see the `pt-PT`
-  base notes); it belongs to a future narrow-transcription task.
+  base notes). It belongs to a future narrow-transcription task.
 - **Apico-alveolar vs predorsodental sibilant place** (Cintra's primary
   North/South isogloss) is an articulatory distinction invisible to a
-  phoneme-level, orthography-blind engine; the predorsodental value the base
+  phoneme-level, orthography-blind engine. The predorsodental value the base
   produces is what Lisbon uses.
 
 ## Benchmark
 
-`pt-PT-x-lisbon` is scored against two expert-human gold sets — `ep_dialects`
+`pt-PT-x-lisbon` is scored against two expert-human gold sets, `ep_dialects`
 (n = 45) and `clup_dialect` (n = 5). Note that these small, unvalidated gold
 sets are internally inconsistent in exactly the pre-palatal context modelled
 here (e.g. they transcribe *venho* with a plain front vowel), so the pre-palatal

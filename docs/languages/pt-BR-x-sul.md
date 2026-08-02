@@ -1,4 +1,4 @@
-# Sulista / Gaúcho Portuguese (pt-BR-x-sul) — Phonology Reference
+# Sulista / Gaúcho Portuguese (pt-BR-x-sul): Phonology Reference
 
 **Code**: `pt-BR-x-sul` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
@@ -6,9 +6,9 @@
 al. (2014, *ALiB*), Silva (2014, ALFAL XVII), Mateus & d'Andrade (2000),
 Callou & Leite (2001), Silva (2002)
 
-`pt-BR-x-sul` models **Sulista / Gaúcho** Portuguese — the broader Southern
+`pt-BR-x-sul` models **Sulista / Gaúcho** Portuguese, the broader Southern
 Brazilian norm centred on Rio Grande do Sul and Porto Alegre, extending
-loosely across the RS/SC/PR "gauge" — over heterogeneous Italian and German
+loosely across the RS/SC/PR "gauge", over heterogeneous Italian and German
 settler substrata. It is a **delta** spec inheriting the pt-BR base. Nascentes
 (1953:25) grounds the Brazil-wide North/South macro-division on pretonic-vowel
 openness and places this area among the *falares do Sul*.
@@ -18,15 +18,15 @@ openness and places this area among the *falares do Sul*.
 ### 1. Conservative non-palatalisation of /t d/ before /i/
 
 The encoded default keeps **dental** /t d/ before /i/: *tia* → [ˈtiɐ], *dia*
-→ [ˈdiɐ] (no [t͡ʃ]/[d͡ʒ]) — the opposite of the southeastern norm. Modelled
+→ [ˈdiɐ] (no [t͡ʃ]/[d͡ʒ]), the opposite of the southeastern norm. Modelled
 via `positional_graphemes` `t`/`d` `before_i` → [t]/[d]. A generational shift
 toward palatalisation in urban Porto Alegre speech is documented but not the
 modelled default here.
 
-### 2. Alveolar tap/trill /r/ — NOT the posterior [h~x] of the Southeast
+### 2. Alveolar tap/trill /r/: NOT the posterior [h~x] of the Southeast
 
-Onset /r/ surfaces as an alveolar trill/tap [r~ɾ] — the most European-sounding
-Brazilian rhotic — never the glottal/dorsal [h~x] of the São Paulo/Carioca
+Onset /r/ surfaces as an alveolar trill/tap [r~ɾ], the most European-sounding
+Brazilian rhotic, never the glottal/dorsal [h~x] of the São Paulo/Carioca
 norm: *rato* → [ˈratʊ]. Coda /r/ is likewise a **tap**, not dropped or
 posteriorised: *mar* → [ˈmaɾ].
 
@@ -46,7 +46,7 @@ conservative Sulista speech: *verde* → [ˈveɾde] (not [ˈveɾdʒi]).
 [pt-BR-x-pr](pt-BR-x-pr.md) already covers the Curitibano/Paranaense
 conservative-southern profile (same non-palatalisation + final-/e/-retention
 delta, plus a note on the Paraná-interior retroflex /r/). `pt-BR-x-sul` models
-the broader Gaúcho/RS norm the `pr` spec is transitional from; the two specs
+the broader Gaúcho/RS norm the `pr` spec is transitional from. The two specs
 intentionally share most deltas rather than duplicating divergent encodings.
 
 ## Inherited from pt-BR (unchanged)
@@ -59,7 +59,7 @@ the grapheme inventory are inherited and not restated.
 **Heterogeneity.** "Sulista" spans three states (RS/SC/PR) with real internal
 variation (e.g. the Florianópolis coast leans toward Carioca-style chiado
 tendencies per VARSUL data in Silva 2014:5-6). This spec encodes the
-conservative Gaúcho/Porto Alegre-type default; it does not model Florianópolis
+conservative Gaúcho/Porto Alegre-type default. It does not model Florianópolis
 or the Paraná interior separately. Lexical open-mid vowel quality is not
 derivable (a pt-BR-wide engine limit).
 
