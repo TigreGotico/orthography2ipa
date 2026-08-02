@@ -4,8 +4,26 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "m": [
+   "m",
+   "ŋ"
+  ],
+  "ɓ": [
+   "ɓ",
+   "b"
+  ],
+  "ɗ": [
+   "ɗ",
+   "d"
+  ],
+  "ʒ": [
+   "r",
+   "ʒ",
+   "d̠ʒ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "maz",
  "glottolog_code": "cent2144",
  "sources": [
@@ -16,6 +34,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/98",
+   "notes": "Inventory 98 (spa), 60 non-marginal segments, 3 tones."
   }
  ],
  "urls": [
@@ -27,5 +54,73 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-otom1299"
+ "parent": "x-clade-otom1299",
+ "phonemes": [
+  "h",
+  "j",
+  "j̥",
+  "k",
+  "kʰ",
+  "kʷ",
+  "kʷʰ",
+  "kʷʼ",
+  "kʼ",
+  "l",
+  "m",
+  "m̥",
+  "n",
+  "n̥",
+  "p",
+  "pʰ",
+  "r",
+  "s",
+  "sʰ",
+  "sʼ",
+  "t",
+  "ts",
+  "tsʰ",
+  "tsʼ",
+  "tʰ",
+  "tʼ",
+  "t̠ʃ",
+  "t̠ʃʰ",
+  "t̠ʃʼ",
+  "w",
+  "z",
+  "ɓ",
+  "ɗ",
+  "ɡ",
+  "ɡʷ",
+  "ɲ",
+  "ɲ̥",
+  "ʃ",
+  "ʍ",
+  "ʒ",
+  "ʔ",
+  "ˀj",
+  "ˀm",
+  "ˀw",
+  "ˀɲ",
+  "a",
+  "ã",
+  "e",
+  "ẽ",
+  "i",
+  "ĩ",
+  "o",
+  "õ",
+  "u",
+  "ũ",
+  "ɔ",
+  "ə",
+  "ə̃",
+  "ɛ",
+  "ʌ"
+ ],
+ "tone_inventory": {
+  "˥": "PHOIBLE tone segment",
+  "˥˦": "PHOIBLE tone segment",
+  "˩": "PHOIBLE tone segment"
+ },
+ "phoible_id": "98"
 }

@@ -4,8 +4,31 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "r": [
+   "r",
+   "ɽ"
+  ],
+  "χ": [
+   "χ",
+   "x"
+  ],
+  "i": [
+   "i",
+   "ɪ"
+  ],
+  "o": [
+   "o",
+   "ɔ",
+   "u"
+  ],
+  "õ": [
+   "õ",
+   "ɔ̃",
+   "ũ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "cas",
  "glottolog_code": "mose1249",
  "sources": [
@@ -16,6 +39,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/944",
+   "notes": "Inventory 944 (ph), 36 non-marginal segments, 2 marginal excluded."
   }
  ],
  "urls": [
@@ -27,5 +59,44 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "family": "Isolate"
+ "family": "Isolate",
+ "phonemes": [
+  "b",
+  "d",
+  "dʲ",
+  "f",
+  "j",
+  "k",
+  "kʰ",
+  "m",
+  "n",
+  "p",
+  "pʰ",
+  "r",
+  "s",
+  "t",
+  "ts",
+  "tsʰ",
+  "tʲ",
+  "t̠ʃ",
+  "t̠ʃʰ",
+  "w",
+  "ɲ",
+  "ʃ",
+  "ʔ",
+  "χ",
+  "a",
+  "ã",
+  "e",
+  "ẽ",
+  "i",
+  "iː",
+  "ĩ",
+  "ĩː",
+  "o",
+  "õ",
+  "ə",
+  "ə̃"
+ ],
+ "phoible_id": "944"
 }

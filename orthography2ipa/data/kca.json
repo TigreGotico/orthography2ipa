@@ -4,8 +4,87 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "c": [
+   "c",
+   "t̠ʃ"
+  ],
+  "j": [
+   "j",
+   "j̥"
+  ],
+  "kʰ": [
+   "k̟ʰ",
+   "kʰ"
+  ],
+  "l": [
+   "l̥",
+   "l"
+  ],
+  "m": [
+   "m̥",
+   "m"
+  ],
+  "n": [
+   "n",
+   "n̥"
+  ],
+  "r": [
+   "r̥",
+   "r"
+  ],
+  "tʰ": [
+   "t",
+   "tʰ"
+  ],
+  "w": [
+   "w",
+   "ʍ"
+  ],
+  "ŋ": [
+   "ŋ",
+   "ŋ̟",
+   "ŋ̥"
+  ],
+  "ɣ": [
+   "ɣ",
+   "x",
+   "ɣ̟"
+  ],
+  "ɭ": [
+   "ɭ̥",
+   "ɭ"
+  ],
+  "ɲ": [
+   "ɲ",
+   "ɲ̥"
+  ],
+  "ɳ": [
+   "ɳ̥",
+   "ɳ"
+  ],
+  "ʈʂ": [
+   "ʈʂ",
+   "ʈ"
+  ],
+  "ʎ": [
+   "l̥ʲ",
+   "ʎ"
+  ],
+  "e̞": [
+   "e̞",
+   "e̞"
+  ],
+  "ɒ̆": [
+   "ɒ̆",
+   "ə̆"
+  ],
+  "ɵ̞": [
+   "ɵ̞",
+   "ɵ̞"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "kca",
  "glottolog_code": "khan1273",
  "sources": [
@@ -16,6 +95,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/184",
+   "notes": "Inventory 184 (spa), 32 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +115,40 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-ural1272"
+ "parent": "x-clade-ural1272",
+ "phonemes": [
+  "c",
+  "j",
+  "kʰ",
+  "l",
+  "m",
+  "n",
+  "p",
+  "r",
+  "s",
+  "tʰ",
+  "w",
+  "ŋ",
+  "ɣ",
+  "ɭ",
+  "ɲ",
+  "ɳ",
+  "ʃ",
+  "ʈʂ",
+  "ʎ",
+  "a",
+  "e̞",
+  "ĕ̞",
+  "i",
+  "o̞",
+  "ŏ̞",
+  "u",
+  "æ",
+  "ɒ̆",
+  "ɯ",
+  "ɵ̞",
+  "ɵ̞̆",
+  "ʉ"
+ ],
+ "phoible_id": "184"
 }
