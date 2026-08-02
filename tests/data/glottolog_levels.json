@@ -247,6 +247,10 @@
     "name": "Belarusian",
     "level": "language"
   },
+  "bemb1257": {
+    "name": "Bemba (Zambia)",
+    "level": "language"
+  },
   "bena1260": {
     "name": "Bena (Nigeria)",
     "level": "language"
@@ -1159,6 +1163,14 @@
     "name": "Lower Sorbian",
     "level": "language"
   },
+  "luba1249": {
+    "name": "Luba-Lulua",
+    "level": "language"
+  },
+  "luba1250": {
+    "name": "Luba-Katanga",
+    "level": "language"
+  },
   "luxe1241": {
     "name": "Moselle Franconian",
     "level": "language"
@@ -1423,6 +1435,10 @@
     "name": "North Azerbaijani",
     "level": "language"
   },
+  "nort2795": {
+    "name": "Zimbabwean Ndebele",
+    "level": "language"
+  },
   "nort2923": {
     "name": "North Halmahera",
     "level": "family"
@@ -1501,6 +1517,10 @@
   },
   "nucl1347": {
     "name": "Wolof",
+    "level": "language"
+  },
+  "nucl1396": {
+    "name": "Sena",
     "level": "language"
   },
   "nucl1417": {
@@ -2147,6 +2167,10 @@
     "name": "Umbrian",
     "level": "language"
   },
+  "umbu1257": {
+    "name": "Umbundu",
+    "level": "language"
+  },
   "uppe1395": {
     "name": "Upper Sorbian",
     "level": "language"
@@ -2285,6 +2309,10 @@
   },
   "yaku1245": {
     "name": "Sakha",
+    "level": "language"
+  },
+  "yaoo1241": {
+    "name": "Yao",
     "level": "language"
   },
   "yong1276": {
