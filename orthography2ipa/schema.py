@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Literal, Dict, List, Literal, Optional, Tuple, Union
+from typing import Dict, List, Literal, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -318,6 +318,7 @@ class LanguageSpecModel(_Strict):
     inherent_vowel: Optional[str] = None
     optional_marks: Optional[List[str]] = None
     fold_diacritics: Optional[List[str]] = None
+    vowel_graphemes: Optional[List[str]] = None
     collapse_geminates: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")

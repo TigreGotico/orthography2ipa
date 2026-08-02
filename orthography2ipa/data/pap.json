@@ -276,6 +276,24 @@
       "role": "superstrate",
       "weight": 0.35,
       "notes": "Dutch superstrate: Netherlands ruled Curaçao from 1634; Dutch colonial administration contributed vocabulary, and Dutch is still a co-official language. Official Curaçao orthography (2009) reflects phonemic principles distinct from Dutch etymology."
+    },
+    {
+      "code": "fon",
+      "role": "substrate",
+      "weight": 0.12,
+      "notes": "Gbe (Fongbe) substrate: West African population brought via the Atlantic slave trade; argued to underlie TMA marking, serial-verb constructions, and prosodic (pitch-accent) patterning in Papiamentu. Andersen (1974), Fouse (2002); parallel to the Fongbe substrate documented for Haitian Creole (Lefebvre 1998)."
+    },
+    {
+      "code": "ee",
+      "role": "substrate",
+      "weight": 0.04,
+      "notes": "Ewe (Gbe) substrate, alongside Fongbe, from the same West African contact population."
+    },
+    {
+      "code": "es-ES",
+      "role": "adstrate",
+      "weight": 0.2,
+      "notes": "Spanish adstrate/co-lexifier: heavy and ongoing contact via Venezuela/Latin America; Munteanu (1996) argues for a substantial Spanish contribution to the lexifier layer alongside Portuguese, and the Aruban etymological spelling convention leans on Spanish orthographic models."
     }
   ],
   "notes": "Papiamentu (Curaçao/Bonaire) / Papiamento (Aruba). Iberian-based creole; official language of Curaçao, Aruba, and Bonaire. ~330,000 speakers. Two spelling conventions: Curaçao/Bonaire use phonemic orthography (papi-a-men-tu), Aruba uses etymological spelling closer to Spanish/Portuguese. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e and o vary [e]~[ɛ] and [o]~[ɔ]. (2) AFFRICATES: ch=[tʃ], dj=[dʒ]. (3) SIBILANTS: sh=[ʃ], zh=[ʒ], s=[s], z=[z]. (4) PALATAL NASAL: ñ=[ɲ] (from Spanish/Portuguese). (5) LL: renders [j] (from Spanish lateral, reanalysed as glide). (6) DIPHTHONGS: ai/ei/oi/au are phonemic. (7) STRESS: penultimate by default; stress-timed rhythm. One of the best-studied Atlantic creoles with the highest number of L1 speakers per capita in the Caribbean. This spec models the CURAÇAO/BONAIRE phonemic orthography (FPI 2009: ⟨k⟩ not ⟨c⟩, acute ⟨á é í ó ú⟩ for stress mapped to base vowels), not the Aruban etymological spelling.",
