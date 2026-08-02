@@ -1,14 +1,14 @@
-# Conimbricense European Portuguese (pt-PT-x-coimbra) — Phonology Reference
+# Conimbricense European Portuguese (pt-PT-x-coimbra): Phonology Reference
 
 **Code**: `pt-PT-x-coimbra` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
-**Sources**: Portuguese With Leo, "Coimbra tem sotaque?" (native-speaker, **not** academic); Cintra (1971); Mateus & d'Andrade (2000)
+**Sources**: Portuguese With Leo, "Coimbra tem sotaque?" (native-speaker, **not** academic). Cintra (1971). Mateus & d'Andrade (2000)
 
 `pt-PT-x-coimbra` models the European Portuguese of **Coimbra**, the central
 variety widely called *"o sotaque mais neutro de Portugal"*. It is a **delta**
 spec over the broad `pt-PT` base. Its defining property is **conservatism**: it
 keeps the base values that Lisbon/Estremenho innovates away from, and adds only
-one marked local delta — the `[ʒ]` prevocalic external /s/-sandhi.
+one marked local delta, the `[ʒ]` prevocalic external /s/-sandhi.
 
 ## The one modelled delta: `[ʒ]` prevocalic /s/-sandhi
 
@@ -23,15 +23,15 @@ transform `ʒ`), where the `pt-PT` base has `[z]`:
 
 **Variable, `[ʒ]`-pole.** The centre is genuinely variable `[z]`~`[ʒ]`. The
 Coimbra speaker Lúcio (*conimbricense de gema*) answers, asked how he links "os
-olhos": *"Nós faríamos a junção com o som de J"* — while the Lisbon host uses
-`[z]`; Lúcio also says *"esta é uma coisa que varia muito"*. The spec models the
+olhos": *"Nós faríamos a junção com o som de J"*, while the Lisbon host uses
+`[z]`. Lúcio also says *"esta é uma coisa que varia muito"*. The spec models the
 marked local `[ʒ]` pole. The standard/Lisbon literature gives `[z]` (Mateus &
-d'Andrade 2000: ch.2); no page-pinned academic source for the Coimbra
+d'Andrade 2000: ch.2). No page-pinned academic source for the Coimbra
 prevocalic `[ʒ]` was located.
 
 ## Deliberately inherited (Coimbra diverges by *not* innovating)
 
-Coimbra keeps the base values; it is distinguished from Lisbon precisely by the
+Coimbra keeps the base values. It is distinguished from Lisbon precisely by the
 **absence** of the Lisbon innovations:
 
 | Feature | Coimbra (= base) | Lisbon |

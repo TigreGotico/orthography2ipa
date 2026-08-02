@@ -1,11 +1,11 @@
-# Micaelense European Portuguese (pt-PT-x-sao-miguel) — Phonology Reference
+# Micaelense European Portuguese (pt-PT-x-sao-miguel): Phonology Reference
 
 **Code**: `pt-PT-x-sao-miguel` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
-**Sources**: Portuguese With Leo, "Sotaque e expressões dos Açores – São Miguel" + "The 8 accents" (native-speaker, **not** academic); Rogers (1948); Segura (2013)
+**Sources**: Portuguese With Leo, "Sotaque e expressões dos Açores, São Miguel" + "The 8 accents" (native-speaker, **not** academic). Rogers (1948). Segura (2013)
 
 `pt-PT-x-sao-miguel` models the European Portuguese of **São Miguel** (Azores),
-the eastern-Azorean *micaelense* micro-variety — the most idiosyncratic and
+the eastern-Azorean *micaelense* micro-variety, the most idiosyncratic and
 stereotyped Azorean accent. It is split out from the general
 [pt-PT-x-acores](pt-PT-x-acores.md) node (which stays the general / other-islands
 node, **Terceira** as its gold reference) so the micro-variety can be modelled
@@ -16,7 +16,7 @@ precisely without moving the Azorean gold. It is a **delta** over the broad
 
 ### 1. Stressed open-syllable /u/ → [y] fronting
 
-The single most stereotyped micaelense trait — the one that makes the accent
+The single most stereotyped micaelense trait, the one that makes the accent
 *"sound French"* (`SM_U_KEEP_BEFORE_CODA` then `SM_U_FRONTING`):
 
 | Word | pt-PT | pt-PT-x-sao-miguel |
@@ -42,9 +42,9 @@ Same environment as [pt-PT-x-madeira](pt-PT-x-madeira.md) (`SM_L_PALATALISATION`
 
 **Honesty note.** This feature is sourced from the 8-accents overview (São
 Miguel grouped with Madeira, *Filipa → "Flhipa"*) and **not** demonstrated in the
-São Miguel deep-dive itself; it is corroborated by the Madeira deep-dive (where
+São Miguel deep-dive itself. It is corroborated by the Madeira deep-dive (where
 the `-il → -ilh` process is strongly attested: *quilómetro → "quilhómetro"*) and
-by Segura (2013) for the Atlantic islands. The gate is exact — /l/ after any
+by Segura (2013) for the Atlantic islands. The gate is exact, /l/ after any
 other front vowel is untouched (teleférico → tɨlɨˈfɛɾiku).
 
 ### 3. `[ʒ]` prevocalic external /s/-sandhi
@@ -55,19 +55,19 @@ estás a ver → eˈʃta**ʒ** ˈɐ ˈvɛɾ. Overview: the shared Algarvean-Azor
 
 ## Deliberately inherited: "coêlho" (not "coâlho")
 
-São Miguel keeps the **non-centralised** mid vowel before a palatal —
-coelho → **ˈkɔɛʎu** ("coêlho") — where Lisbon centralises to `[ɐ]` (ˈkoɐʎu,
+São Miguel keeps the **non-centralised** mid vowel before a palatal,
+coelho → **ˈkɔɛʎu** ("coêlho"), where Lisbon centralises to `[ɐ]` (ˈkoɐʎu,
 "coâlho") and Madeira likewise has "coâlho". The São Miguel *coêlho* vs the
 Madeiran *coâlho* is the classic island-distinguishing minimal contrast
 (8-accents overview).
 
 ## Not modelled
 
-The very closed o/u vowels (gradient); the **variable** singular ⟨ão⟩ →
-monophthong nasal `[ɐ̃]` (cão → *"cã"*, ladrão → *"ladrã"* — *"às vezes"*; a
-blanket rule would wrongly hit são → `[sɐ̃w]`); the word-final **-R deletion** in
-verbs (comer → *"comê"*, passear → *"passeá"* — cannot be gated to infinitives
-from orthography without also dropping /r/ in mar/cor); *"non"* for não; the
+The very closed o/u vowels (gradient). The **variable** singular ⟨ão⟩ →
+monophthong nasal `[ɐ̃]` (cão → *"cã"*, ladrão → *"ladrã"*, *"às vezes"*; a
+blanket rule would wrongly hit são → `[sɐ̃w]`). The word-final **-R deletion** in
+verbs (comer → *"comê"*, passear → *"passeá"*, cannot be gated to infinitives
+from orthography without also dropping /r/ in mar/cor). *"non"* for não. The
 heavy gerund preference and the Anglo-Azorean *calafão* loan vocabulary
 (lexical / morphosyntactic).
 
@@ -84,7 +84,7 @@ eng.transcribe("azul")        # ɐˈzuɫ    — fronting blocked before coda
 
 ## Sources
 
-- **Portuguese With Leo (with Catarina).** *Sotaque e expressões dos Açores –
+- **Portuguese With Leo (with Catarina).** *Sotaque e expressões dos Açores,
   São Miguel.* YouTube (native-speaker, **not** academic).
   <https://www.youtube.com/watch?v=6IqeBcjK_fk>
 - **Portuguese With Leo.** *The 8 Portuguese accents of Portugal.*
