@@ -9,7 +9,7 @@ orthography into an IPA (International Phonetic Alphabet) transcription.
 ```python
 >>> import orthography2ipa
 >>> orthography2ipa.transcribe("olá mundo", "pt")
-'oˈla ˈmũdu'
+'oˈla ˈmũdu'
 >>> orthography2ipa.transcribe("hello world", "en")
 'hɛlɒ wɔːɹld'
 ```
@@ -78,7 +78,7 @@ pip install orthography2ipa
 ```python
 import orthography2ipa
 
-orthography2ipa.transcribe("olá mundo", "pt")   # 'oˈla ˈmũdu'
+orthography2ipa.transcribe("olá mundo", "pt")   # 'oˈla ˈmũdu'
 orthography2ipa.transcribe("bona nuèit", "oc")  # 'ˈbunɔ ˈnyɛjt'
 
 en = orthography2ipa.get("en-GB")

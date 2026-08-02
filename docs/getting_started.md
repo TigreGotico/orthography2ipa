@@ -8,7 +8,7 @@ sentence sounds before you synthesize it:
 ```python
 >>> import orthography2ipa
 >>> orthography2ipa.transcribe("olá mundo", "pt")
-'oˈla ˈmũdu'
+'oˈla ˈmũdu'
 ```
 
 That's it: `transcribe(text, language_code)` returns an IPA string with
@@ -128,7 +128,7 @@ from orthography2ipa import G2P
 
 engine = G2P("pt-PT")
 result = engine.transcribe_detailed("um café", search="beam", beam_width=4)
-result.ipa                  # 'ˈũ kɐˈfɛ'
+result.ipa                  # 'ˈũ kɐˈfɛ'
 result.words[1].candidates  # ranked IPAPath alternatives for "café"
 ```
 

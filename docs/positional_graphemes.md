@@ -14,7 +14,7 @@ Many languages have graphemes whose pronunciation depends systematically on posi
 Consider Portuguese ⟨s⟩. The flat `graphemes` mapping lists all possibilities:
 
 ```python
-"s": ["s", "z", "ʃ", "ʒ"]
+graphemes = {"s": ["s", "z", "ʃ", "ʒ"]}
 ```
 
 But the distribution is entirely predictable by position:
@@ -139,6 +139,21 @@ rule (⟨c⟩ → /tʃ/ before a front vowel, /k/ otherwise):
 ```
 
 ```python
+from orthography2ipa.registry import _cache
+from orthography2ipa.types import LanguageSpec
+from orthography2ipa import G2P
+
+demo = LanguageSpec(
+    code="x-demo", name="Demo", family="Demo", family_path=(), clade=False,
+    script="Latin",
+    graphemes={"c": ["k"], "e": ["e"], "i": ["i"], "y": ["i"],
+               "a": ["a"], "o": ["o"], "u": ["u"], "é": ["e"]},
+    allophones={},
+    positional_graphemes={"c": {"before_front_vowel": ["tʃ"]}},
+)
+_cache["x-demo"] = demo
+eng = G2P("x-demo")
+
 eng.transcribe_word("ce")   # "tʃe"   before_front_vowel → /tʃ/
 eng.transcribe_word("ci")   # "tʃi"
 eng.transcribe_word("cé")   # "tʃe"   accented front vowel matches too
@@ -196,6 +211,20 @@ but stays [e] elsewhere. One class entry captures it: no per-digraph listing:
 ```
 
 ```python
+from orthography2ipa.registry import _cache
+from orthography2ipa.types import LanguageSpec
+from orthography2ipa import G2P
+
+demo = LanguageSpec(
+    code="x-demo2", name="Demo2", family="Demo", family_path=(), clade=False,
+    script="Latin",
+    graphemes={"e": ["e"], "t": ["t"], "lh": ["ʎ"], "nh": ["ɲ"], "ch": ["ʃ"]},
+    allophones={},
+    positional_graphemes={"e": {"before_palatal": ["ɐ"]}},
+)
+_cache["x-demo2"] = demo
+eng = G2P("x-demo2")
+
 eng.transcribe_word("elh")   # "ɐʎ"   before ⟨lh⟩ (/ʎ/) → ɐ
 eng.transcribe_word("enh")   # "ɐɲ"   before ⟨nh⟩ (/ɲ/) → ɐ
 eng.transcribe_word("ech")   # "ɐʃ"   before ⟨ch⟩ (/ʃ/) → ɐ
@@ -286,7 +315,7 @@ class LanguageSpec:
 ### Resolution method
 
 ```python
-spec.resolve_grapheme(grapheme, position=GraphemePosition.DEFAULT) -> List[str]
+def resolve_grapheme(self, grapheme: str, position: GraphemePosition = GraphemePosition.DEFAULT) -> List[str]: ...
 ```
 
 **Lookup order:**
