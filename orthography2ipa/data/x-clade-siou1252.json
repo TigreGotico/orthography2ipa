@@ -1,27 +1,27 @@
 {
- "code": "x-clade-siou1252",
- "name": "Siouan",
- "script": "Zyyy",
- "quality": "stub",
- "clade": true,
- "graphemes": {},
- "allophones": {},
- "notes": "Classification-only clade node for the Siouan family. Carries no phonology: it is never a data-inheritance source, only a step in the ancestry chain from which `family` is derived.",
- "glottolog_code": "siou1252",
- "sources": [
-  {
-   "id": "glottolog2024",
-   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
-   "year": 2024,
-   "title": "Glottolog 5.0",
-   "publisher": "Max Planck Institute for Evolutionary Anthropology",
-   "url": "https://glottolog.org/"
-  }
- ],
- "urls": [
-  "https://glottolog.org/resource/languoid/id/siou1252"
- ],
- "wikipedia": [
-  "https://en.wikipedia.org/wiki/Siouan_languages"
- ]
+  "code": "x-clade-siou1252",
+  "name": "Siouan",
+  "script": "Unwritten",
+  "script_type": "reconstruction",
+  "quality": "stub",
+  "clade": true,
+  "glottolog_code": "siou1252",
+  "graphemes": {},
+  "allophones": {},
+  "notes": "Siouan (Siouan-Catawban) — a classification node, not a language. It groups its descendants (including the Dakotan languages Dakota and Lakota) and carries no phonology of its own: a clade is a set, not something anyone spoke. Glottolog languoid siou1252 (family level).",
+  "sources": [
+    {
+      "id": "glottolog",
+      "author": "Hammarström, Harald et al.",
+      "year": 2024,
+      "title": "Glottolog 5.3",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/resource/languoid/id/siou1252",
+      "pages": null,
+      "notes": "The classification node."
+    }
+  ],
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Siouan_languages"
+  ]
 }

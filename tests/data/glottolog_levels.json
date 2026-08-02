@@ -5295,6 +5295,10 @@
   "level": "language",
   "name": "Copala Triqui"
  },
+ "copp1244": {
+  "level": "dialect",
+  "name": "Inuinnaqtun"
+ },
  "copt1239": {
   "level": "language",
   "name": "Coptic"
@@ -19642,6 +19646,10 @@
  "oira1263": {
   "level": "language",
   "name": "Oirata"
+ },
+ "ojib1241": {
+  "level": "family",
+  "name": "Ojibwa"
  },
  "ojit1237": {
   "level": "language",
