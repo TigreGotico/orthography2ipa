@@ -6,7 +6,7 @@
   "quality": "stub",
   "iso639_3": "ecy",
   "glottolog_code": "eteo1240",
-  "family": "Unclassified",
+  "family": "Isolate",
   "graphemes": {},
   "allophones": {},
   "notes": "Stub, unclassified. Eteocypriot is a pre-Greek, pre-Indo-European language spoken by a non-Hellenic population of Iron Age Cyprus, attested 10th-4th century BCE, mainly through a small vocabulary preserved in bilingual (Eteocypriot-Greek) inscriptions written in the Cypriot syllabary -- a script descended, via the Cypro-Minoan variant (itself related to Linear A), from the same Aegean syllabic-script family as Linear B. Proposed genetic links to Etruscan, Lemnian, Hurrian, Northwest Semitic and Cypro-Minoan are all unproven; the language remains formally unclassified and became extinct around the 4th century BCE. As with Eteocretan, the syllabary is only partially and inconsistently deciphered for this specific language, so no sign-to-IPA correspondence can be sourced or asserted; fabricating a Cypriot-syllabary sign inventory for a language nobody can read would misrepresent the state of the evidence. `graphemes`/`allophones` are intentionally empty and no `parent`/`ancestors` are set, reflecting the unclassified status rather than forcing the language under Hellenic or any other family.",
