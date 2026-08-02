@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import logging
 from functools import lru_cache
+from importlib.metadata import entry_points
 from typing import TYPE_CHECKING, Dict, List, Optional
 
 from ovos_spec_tools.language import closest_lang
@@ -208,7 +209,6 @@ def get(code: str) -> LanguageSpec:
     Raises:
         KeyError: If the language is not registered.
     """
-    global _cache
     code = _resolve_code(code)
     if code not in _cache:
         _cache[code] = load_json_spec(code)
@@ -281,9 +281,6 @@ def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
     When several plugins claim the same language code, the one with the
     highest :attr:`SyllabifierPlugin.priority` wins.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, "SyllabifierPlugin"] = {}
     eps = entry_points(group="orthography2ipa.syllabify")
     for ep in eps:
@@ -294,7 +291,7 @@ def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
                 if incumbent is None or instance.priority > incumbent.priority:
                     plugins[code] = instance
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load syllabifier plugin %r: %s", ep.name, exc)
             continue
     return plugins
@@ -324,9 +321,6 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
     by priority, lowest first, so a higher-priority plugin sees the lower one's
     work and gets the last word.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, List["RescorerPlugin"]] = {}
     for ep in entry_points(group="orthography2ipa.rescore"):
         try:
@@ -334,7 +328,7 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
             for code in instance.language_codes:
                 plugins.setdefault(code, []).append(instance)
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load rescorer plugin %r: %s", ep.name, exc)
             continue
     for code in plugins:
@@ -387,9 +381,6 @@ _stress_plugins: Optional[Dict[str, "StressPlugin"]] = None
 
 
 def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, "StressPlugin"] = {}
     for ep in entry_points(group="orthography2ipa.stress"):
         try:
@@ -399,7 +390,7 @@ def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
                 if incumbent is None or instance.priority > incumbent.priority:
                     plugins[code] = instance
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load stress plugin %r: %s", ep.name, exc)
             continue
     return plugins
@@ -449,9 +440,6 @@ def _discover_stage(stage: str) -> Dict[str, object]:
     declaration readable and greppable — and it means two packages cannot fight
     over a language, because the spec already said which one it wanted.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     from orthography2ipa.plugins import ENTRY_POINT_GROUPS
 
     found: Dict[str, object] = {}
@@ -459,7 +447,7 @@ def _discover_stage(stage: str) -> Dict[str, object]:
         try:
             found[ep.name] = ep.load()()
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load %s plugin %r: %s", stage, ep.name, exc)
     return found
 
