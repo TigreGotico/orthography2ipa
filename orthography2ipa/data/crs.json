@@ -185,7 +185,7 @@
       "z"
     ]
   },
-  "notes": "Seychellois Creole (Kreol Seselwa), French-lexifier creole of the Seychelles, official alongside English and French since 1981 when the government's national orthography commission (following Bollée's proposals) standardised the current strictly phonemic spelling, later promoted by Lenstiti Kreol (Michaelis & Rosalie, APiCS ch. 56). ⟨ou⟩ = /u/, ⟨r⟩ = /ɣ/, ⟨ng⟩ = /ŋ/, ⟨y⟩ = /j/, mirroring the same French-creole conventions as Haitian Creole's IPN orthography (ht.json). Nasalisation is written by a following ⟨n⟩ after the nasal vowel, chiefly where contrastive, and is handled here the same way as Haitian's ⟨an en on⟩: predictable from a following coda nasal, not a separate grapheme. Ten oral vowels are described in the literature (length is not written); this spec keeps the seven-vowel inventory that the orthography actually distinguishes in writing (a e ɛ i o ɔ u) since vowel length is not spelled.",
+  "notes": "Seychellois Creole (Kreol Seselwa), French-lexifier creole of the Seychelles, official alongside English and French since 1981 when the government's national orthography commission (following Bollée's proposals) standardised the current strictly phonemic spelling, later promoted by Lenstiti Kreol (Michaelis & Rosalie, APiCS ch. 56). ⟨ou⟩ = /u/, ⟨r⟩ = /ɣ/, ⟨ng⟩ = /ŋ/, ⟨y⟩ = /j/, mirroring the same French-creole conventions as Haitian Creole's IPN orthography (ht.json). Nasalisation is written by a following ⟨n⟩ after the nasal vowel, chiefly where contrastive, and is handled here the same way as Haitian's ⟨an en on⟩: predictable from a following coda nasal, not a separate grapheme. Ten oral vowels are described in the literature (length is not written); this spec keeps the seven-vowel inventory that the orthography actually distinguishes in writing (a e ɛ i o ɔ u) since vowel length is not spelled. Besides the French lexifier, APiCS ch. 56 documents an East African Bantu substrate (~35 lexical items, e.g. Swahili-derived 'toto' 'child') and a smaller Malagasy substrate (~25 items, e.g. 'kelkel' 'armpit') carried over from Mauritius, which supplied the settlers who founded Seychelles in 1770; both are wired as `ancestors` contact roles below.",
   "iso639_3": "crs",
   "glottolog_code": "sese1246",
   "wikidata_qid": "Q34015",
@@ -292,7 +292,13 @@
       "code": "x-clade-atla1278",
       "role": "substrate",
       "weight": 0.1,
-      "notes": "Substrate contributions from the enslaved Bantu/West-African population brought to the islands, comparable to the Bantu/Gbe substrate documented for other Indian Ocean and Atlantic French creoles."
+      "notes": "East African Bantu substrate (Swahili, Makua, Yao, Sukuma/Nyamwezi and neighbours) via enslaved people brought to Seychelles/Mauritius; APiCS ch. 56 counts c. 35 Bantu-origin lexical items (e.g. 'toto' 'child' < Swahili)."
+    },
+    {
+      "code": "mg",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Malagasy substrate carried over from Mauritius, where Malagasy-speaking slaves were the majority of the enslaved population through the early-to-mid 18th century before Seychelles was settled from Mauritius in 1770; APiCS ch. 56 lists c. 25 Malagasy-origin loanwords (e.g. 'kelkel' 'armpit', 'kalou' 'pestle')."
     }
   ]
 }
