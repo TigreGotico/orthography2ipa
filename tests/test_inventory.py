@@ -164,6 +164,11 @@ KNOWN_DEAD_RULES = {
     # targets /ʔ/ — can never fire here. It is live in every Arabic lect that
     # keeps /ʔ/; the rule set is Classical Arabic's, inherited unchanged.
     "acy": {"AR_WASL_EPENTHESIS"},
+    # Seychellois Creole levelled French /y/ to /i/ and /ə/ to /e/~/ɛ/ in its
+    # own vowel merger (Michaelis & Rosalie, APiCS ch. 56; Bollée 1977), so
+    # the inherited French front-rounded/schwa nasalisation rules can never
+    # fire here. They are live in fr-FR, which keeps both phonemes.
+    "crs": {"FR_NASAL_y", "FR_NASAL_ə"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)

@@ -175,7 +175,7 @@ _FAMILY_LEVEL_OK = {
     # ISO 639-3 macrolanguages: the language-level languoid does not exist,
     # so the family node IS the correct answer.
     "cr", "din", "eml", "ik", "kr", "kv", "mg", "ff", "ps", "ay", "qu", "sq",
-    "nah", "sc",
+    "nah", "sc", "raj", "kpe",
     # Family / grouping / proto specs — these ARE family nodes by design.
     "afa", "ber", "iir", "ira", "khi", "nic", "sla", "xbr",
     "ta-x-proto-dravidian", "mni-x-proto-kuki-chin",
