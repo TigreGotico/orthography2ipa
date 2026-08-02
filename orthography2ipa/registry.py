@@ -70,6 +70,10 @@ _ALIASES: Dict[str, str] = {
     # itself so the macro-collapse step does not rewrite it.
     "mhr": "mhr",
     "mrj": "mrj",
+    # ``src`` (Logudorese Sardinian) standardizes straight to ``sc`` (the
+    # generic Sardinian macrolanguage spec) under ``langcodes``, which would
+    # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
+    "src": "src",
     # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
     # while the registry also carries their langcodes-preferred siblings
     # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself
