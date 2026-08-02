@@ -87,7 +87,7 @@ phonological rule, and that is a statement about the writing system rather than 
 shortcoming of the engine. The romanization walks around it: Pinyin is rule-readable
 because it is an alphabet.
 
-This is also why the [phoneme inventory](data_model.md#phonemes--the-inventory-stated-directly)
+This is also why the [phoneme inventory](data_model.md#phonemes-the-inventory-stated-directly)
 is declared separately from the graphemes. A language's sounds are not a property
 of its writing system, and `zh-Hani` is the proof: no orthography the rules can
 read, and a complete phonology regardless.

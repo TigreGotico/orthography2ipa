@@ -24,16 +24,22 @@ A mapping from orthographic strings to lists of IPA phoneme strings.
 
 ```python
 # English
-"c":  ["k", "s"]      # /k/ is primary (cat, cup), /s/ secondary (cent, city)
-"th": ["θ", "ð"]      # /θ/ primary (think), /ð/ secondary (the, this)
+english = {
+    "c":  ["k", "s"],      # /k/ is primary (cat, cup), /s/ secondary (cent, city)
+    "th": ["θ", "ð"],      # /θ/ primary (think), /ð/ secondary (the, this)
+}
 
 # Castilian Spanish
-"c":  ["k", "θ"]      # /k/ before a,o,u; /θ/ before e,i
-"ll": ["ʎ", "ʝ"]     # /ʎ/ traditional lleísmo; /ʝ/ yeísmo variant
+castilian = {
+    "c":  ["k", "θ"],      # /k/ before a,o,u; /θ/ before e,i
+    "ll": ["ʎ", "ʝ"],      # /ʎ/ traditional lleísmo; /ʝ/ yeísmo variant
+}
 
 # Portuguese
-"lh": ["ʎ"]           # always /ʎ/: no ambiguity
-"x":  ["ʃ", "ks", "s", "z"]  # highly ambiguous in Portuguese
+portuguese = {
+    "lh": ["ʎ"],                       # always /ʎ/: no ambiguity
+    "x":  ["ʃ", "ks", "s", "z"],       # highly ambiguous in Portuguese
+}
 ```
 
 The ordering matters: the `PhonetokTokenizer`'s beam search treats the first value as the canonical (lowest-scoring) option.
@@ -54,23 +60,23 @@ A mapping from underlying phonemes to their contextual surface realisations (all
 
 ```python
 # English /t/: multiple allophones depending on phonological context
-"t": ["t",   # canonical: word-initial (top, ten)
-      "tʰ",  # aspirated: syllable-initial before stressed vowel
-      "ɾ",   # flap: intervocalic in North American English (butter, water)
-      "ʔ",   # glottal stop: before syllabic /n/ (button, cotton)
-      "t̚"]  # unreleased: word-final (cat, but)
+english_t = ["t",   # canonical: word-initial (top, ten)
+             "tʰ",  # aspirated: syllable-initial before stressed vowel
+             "ɾ",   # flap: intervocalic in North American English (butter, water)
+             "ʔ",   # glottal stop: before syllabic /n/ (button, cotton)
+             "t̚"]  # unreleased: word-final (cat, but)
 
 # Spanish /b/: lenition
-"b": ["b",   # after pause or nasal (burro, un barco)
-      "β"]   # spirantised: all other positions (lobo, el barco)
+spanish_b = ["b",   # after pause or nasal (burro, un barco)
+             "β"]   # spirantised: all other positions (lobo, el barco)
 
 # Spanish /n/: place assimilation
-"n": ["n",   # default alveolar
-      "m",   # before bilabials (un padre → [um padre])
-      "ɱ",   # labiodental before /f/ (enfermo)
-      "n̪",  # dental before /t,d/
-      "ŋ",   # velar before /k,g/ (banco)
-      "ɲ"]   # palatal before /ʎ,ʝ/ (ancho)
+spanish_n = ["n",   # default alveolar
+             "m",   # before bilabials (un padre → [um padre])
+             "ɱ",   # labiodental before /f/ (enfermo)
+             "n̪",  # dental before /t,d/
+             "ŋ",   # velar before /k,g/ (banco)
+             "ɲ"]   # palatal before /ʎ,ʝ/ (ancho)
 ```
 
 The `AllophoneMap` does **not** encode the phonological rules that determine which allophone occurs: it only records *which allophones exist* for distance calculations and phonological inventory analysis. Allophone selection rules would need to be implemented separately by the consumer.

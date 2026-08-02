@@ -55,14 +55,16 @@ the current ordering). See [lattice.md](lattice.md).
 ### `TokenKind`
 
 ```python
+from enum import Enum, auto
+
 class TokenKind(Enum):
-    GRAPHEME     # A linguistically meaningful grapheme from the language's table
-    WHITESPACE   # One or more whitespace characters
-    PUNCTUATION  # Punctuation marks
-    DIGIT        # One or more consecutive digits
-    UNKNOWN      # Characters not matched by any rule
-    BOS          # Beginning-of-sequence sentinel
-    EOS          # End-of-sequence sentinel
+    GRAPHEME    = auto()  # A linguistically meaningful grapheme from the language's table
+    WHITESPACE  = auto()  # One or more whitespace characters
+    PUNCTUATION = auto()  # Punctuation marks
+    DIGIT       = auto()  # One or more consecutive digits
+    UNKNOWN     = auto()  # Characters not matched by any rule
+    BOS         = auto()  # Beginning-of-sequence sentinel
+    EOS         = auto()  # End-of-sequence sentinel
 ```
 
 ### `Token`
@@ -78,6 +80,9 @@ class Token:
 ```
 
 ```python
+import orthography2ipa
+from orthography2ipa.phonetok import PhonetokTokenizer
+
 tok = PhonetokTokenizer(orthography2ipa.get("es"))
 tokens = tok.tokenize("niño")
 
@@ -86,7 +91,7 @@ for t in tokens:
 # Token(GRAPHEME, 'n', [n], pos=0)
 # Token(GRAPHEME, 'i', [i], pos=1)
 # Token(GRAPHEME, 'ñ', [ɲ], pos=2)
-# Token(GRAPHEME, 'o', [o], pos=4)
+# Token(GRAPHEME, 'o', [o|ɔ], pos=3)
 ```
 
 ### `IPAPath`
@@ -113,6 +118,7 @@ The `score` field counts how many "non-canonical" (non-first) IPA choices were m
 from orthography2ipa.phonetok import PhonetokTokenizer
 import orthography2ipa
 
+spec = orthography2ipa.get("es")   # any LanguageSpec from the registry
 tok = PhonetokTokenizer(spec)
 ```
 
@@ -121,7 +127,7 @@ Where `spec` is any `LanguageSpec` from the registry. The tokenizer builds a pre
 ### `tokenize(text)`
 
 ```python
-tokens: List[Token] = tok.tokenize(text)
+def tokenize(self, text: str) -> List[Token]: ...
 ```
 
 Returns all tokens including whitespace and punctuation. Useful for preserving text structure.
@@ -133,14 +139,14 @@ for t in tokens:
     print(f"{t.kind.name:12s}  {t.grapheme!r:8s}  {t.ipa}")
 
 # GRAPHEME      'th'      ('θ', 'ð')
-# GRAPHEME      'e'       ('iː', 'ɛ', 'ə')
+# GRAPHEME      'e'       ('ɛ', 'iː', 'ə')
 # WHITESPACE    ' '       ()
 # GRAPHEME      'c'       ('k', 's')
-# GRAPHEME      'a'       ('æ', 'eɪ', 'ɑː', 'ə')
+# GRAPHEME      'a'       ('æ', 'ɑː', 'eɪ', 'ə', 'ɔː')
 # GRAPHEME      't'       ('t',)
 # WHITESPACE    ' '       ()
 # GRAPHEME      's'       ('s', 'z')
-# GRAPHEME      'a'       ('æ', 'eɪ', 'ɑː', 'ə')
+# GRAPHEME      'a'       ('æ', 'ɑː', 'eɪ', 'ə', 'ɔː')
 # GRAPHEME      't'       ('t',)
 # PUNCTUATION   '.'       ()
 ```
@@ -148,14 +154,16 @@ for t in tokens:
 ### `ipa_beam(text, *, beam_width, expand_allophones, ...)`
 
 ```python
-paths: List[IPAPath] = tok.ipa_beam(
-    text,
-    beam_width=8,             # max number of paths (default 8)
-    expand_allophones=False,  # expand to allophone level (default False)
-    length_norm=False,        # divide the score by path length (default off)
-    diversity=0.0,            # penalise near-duplicate paths (default off)
-    rescorer=None,            # a LatticeRescorer to re-cost candidates
-)
+def ipa_beam(
+    self,
+    text: str,
+    *,
+    beam_width: int = 8,             # max number of paths (default 8)
+    expand_allophones: bool = False, # expand to allophone level (default False)
+    length_norm: bool = False,       # divide the score by path length (default off)
+    diversity: float = 0.0,          # penalise near-duplicate paths (default off)
+    rescorer=None,                   # a LatticeRescorer to re-cost candidates
+) -> List[IPAPath]: ...
 ```
 
 Returns up to `beam_width` paths, sorted by score (most canonical first):

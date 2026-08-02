@@ -10,7 +10,7 @@ That way is SSML's `<phoneme>`, which every TTS frontend already speaks:
 ```python
 >>> from orthography2ipa import G2P
 >>> G2P("pt-PT").transcribe('olá <phoneme ph="ˈɡuɡɫ">Google</phoneme> mundo')
-'oˈla ˈɡuɡɫ ˈmũdu'
+'oˈla ˈɡuɡɫ ˈmũdu'
 ```
 
 `alphabet` is optional; when given it must be `ipa`. Text with no markup is
@@ -59,7 +59,10 @@ Arabic: it is nativised, and /ɪ/ and /ŋ/ are not Arabic phonemes:
 
 ```python
 >>> G2P("ar-SA-x-najd").transcribe('<phoneme ph="ˈmiːtɪŋ">meeting</phoneme>')
-MarkupError: <phoneme ph='ˈmiːtɪŋ'> uses ['ɪ'], which the ar-SA-x-najd spec does not declare.
+Traceback (most recent call last):
+    ...
+orthography2ipa.markup.MarkupError: <phoneme ph='ˈmiːtɪŋ'> uses ['ɪ'], which the ar-SA-x-najd spec does not declare.
+...
 ```
 
 Give the nativised reading instead: /ŋ/ surfaces as [nɡ], and every symbol is then

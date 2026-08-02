@@ -56,6 +56,9 @@ invoked once per word with a `SentenceRescoreContext` and returns that word's
 (possibly rewritten) IPA:
 
 ```python
+from abc import ABC
+from orthography2ipa.sentence import WordSlot, SentenceRescoreContext
+
 class SentenceRescorer(ABC):
     def rescore(self, word: WordSlot, context: SentenceRescoreContext) -> str: ...
 ```
@@ -94,6 +97,8 @@ prove the seam supplies the cross-word visibility and phrase position that
 arbtok's private orchestration needs:
 
 ```python
+from orthography2ipa.sentence import SentenceRescorer
+
 class WaslElision(SentenceRescorer):        # right-word rewrite across a boundary
     def rescore(self, word, context):
         ipa = context.this_word_ipa
