@@ -190,8 +190,8 @@ orthography2ipa.resolve("en-NZ")  # 'en-GB': nearest registered variety
 To browse what's available:
 
 ```python
-orthography2ipa.available_codes()                      # 676 language codes
-orthography2ipa.available_codes(include_clades=True)   # 749: plus the clade nodes
+orthography2ipa.available_codes()                      # language codes
+orthography2ipa.available_codes(include_clades=True)   # plus the classification-only clade nodes
 orthography2ipa.available_families()                   # codes grouped by derived family path
 ```
 

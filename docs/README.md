@@ -7,8 +7,10 @@ evaluate the library for production: and states the accuracy limits up front.
 `orthography2ipa` measures how languages relate to each other across independent
 axes (phonological, reading, spelling, script, genealogical, temporal,
 geographic), and converts orthography to IPA from the same per-language data:
-676 languages plus 73 classification-only clade nodes, all as cited JSON specs
-with no trained weights.
+cited JSON specs with no trained weights, covering hundreds of languages plus
+classification-only clade nodes (run `len(orthography2ipa.available_codes())`
+and `len(orthography2ipa.available_codes(include_clades=True))` for the live
+counts).
 
 ```python
 import orthography2ipa as o2i
