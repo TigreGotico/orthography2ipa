@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.37.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.37.0a2) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.37.0a1...7.37.0a2)
+
+**Merged pull requests:**
+
+- docs: update the language coverage figures [\#661](https://github.com/TigreGotico/orthography2ipa/pull/661) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.37.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.37.0a1) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.36.0a1...7.37.0a1)
