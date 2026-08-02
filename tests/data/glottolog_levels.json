@@ -359,6 +359,10 @@
     "name": "Caviteño",
     "level": "dialect"
   },
+  "cayu1261": {
+    "name": "Cayuga",
+    "level": "language"
+  },
   "cebu1242": {
     "name": "Cebuano",
     "level": "language"
@@ -1677,6 +1681,10 @@
   },
   "oman1239": {
     "name": "Omani Arabic",
+    "level": "language"
+  },
+  "onei1249": {
+    "name": "Oneida",
     "level": "language"
   },
   "oriy1255": {
