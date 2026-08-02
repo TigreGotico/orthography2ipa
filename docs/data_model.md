@@ -81,12 +81,16 @@ The `AllophoneMap` does **not** encode the phonological rules that determine whi
 
 ```python
 class AncestorRole(Enum):
-    PARENT       = "parent"
-    SUBSTRATE    = "substrate"
-    SUPERSTRATE  = "superstrate"
-    ADSTRATE     = "adstrate"
-    LEXIFIER     = "lexifier"
-    CREOLE_BASE  = "creole_base"
+    PARENT          = "parent"
+    PARENT_DIALECT  = "parent_dialect"
+    PROTO_LANGUAGE  = "proto_language"
+    ANCESTOR        = "ancestor"
+    SUBSTRATE       = "substrate"
+    SUPERSTRATE     = "superstrate"
+    ADSTRATE        = "adstrate"
+    LEXIFIER        = "lexifier"
+    CREOLE_BASE     = "creole_base"
+    RELATED         = "related"
 ```
 
 Encodes the **type of historical relationship** between a language and its ancestor.
@@ -94,21 +98,33 @@ Encodes the **type of historical relationship** between a language and its ances
 | Role | Definition | Example |
 |---|---|---|
 | `PARENT` | Primary genetic descent | Latin → Spanish |
+| `PARENT_DIALECT` | Direct dialectal ancestor within the same language | A regional variety descending from a broader standard |
+| `PROTO_LANGUAGE` | Reconstructed common ancestor at the top of a lineage | Proto-Indo-European, Proto-Germanic, Proto-Semitic |
+| `ANCESTOR` | Earlier historical stage of the same lineage that is not the immediate parent | Old Spanish in the ancestry of modern Spanish |
 | `SUBSTRATE` | Language of the pre-existing population | Basque substrate in Castilian |
 | `SUPERSTRATE` | Language of a dominant group, later absorbed | Frankish superstrate in French |
 | `ADSTRATE` | Peer contact influence from a neighbouring language | Arabic adstrate on Ibero-Romance |
 | `LEXIFIER` | Vocabulary source in creole/pidgin formation | Portuguese lexifier of Papiamento |
 | `CREOLE_BASE` | Grammar/structural source in creole formation | West African languages as creole base |
+| `RELATED` | Sister language with shared features but no direct descent | Used for typological comparison rather than inheritance |
 
 ### Linguistic notes
 
 **PARENT**: Every language (except reconstructed proto-languages) should have exactly one PARENT. This is the primary line of descent. The weight is typically 0.7-1.0.
+
+**PARENT_DIALECT**: Direct dialectal ancestor within the same language, for example a regional variety descending from a broader standard.
+
+**PROTO_LANGUAGE**: The reconstructed common ancestor at the top of a lineage, such as Proto-Indo-European, Proto-Germanic, or Proto-Semitic.
+
+**ANCESTOR**: An earlier historical stage of the same lineage that is not the immediate parent, such as Old Spanish in the ancestry of modern Spanish.
 
 **SUBSTRATE**: A substrate is the language of the original population that adopted the incoming language. Substrate effects show up as phonological features that deviate from the parent. The Basque substrate in Castilian is the classic explanation for the *f-* → *h-* sound change (Latin *filium* → Spanish *hijo*). Weight: 0.05-0.30.
 
 **SUPERSTRATE**: A superstrate is a prestige language whose speakers eventually shift to the local language but leave phonological and lexical traces. Frankish (Proto-Germanic) contributed vocabulary and possibly phonological features to Old French. Weight: 0.10-0.40.
 
 **ADSTRATE**: An adstrate is a neighbouring language at roughly equal social status that exerts ongoing influence. Arabic was an adstrate on medieval Ibero-Romance, contributing over 4,000 loanwords to Spanish and Portuguese. Weight: 0.05-0.20.
+
+**RELATED**: A sister language that shares features with the descendant but is not on its line of descent. This role is used for typological comparison rather than inheritance.
 
 ---
 

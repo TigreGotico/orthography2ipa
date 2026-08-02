@@ -1,4 +1,4 @@
-# Transmontano European Portuguese (pt-PT-x-trasosmontes) — Phonology Reference
+# Transmontano European Portuguese (pt-PT-x-trasosmontes): Phonology Reference
 
 **Code**: `pt-PT-x-trasosmontes` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
@@ -8,7 +8,7 @@
 `pt-PT-x-trasosmontes` models the European Portuguese of **Trás-os-Montes e
 Alto Douro** (Bragança, Chaves, Valpaços). Cintra (1971:93) groups it **together
 with [Alto-Minho](pt-PT-x-viana.md)** as a single *grupo transmontano-alto-minhoto*
-— the conservative Northern varieties that alone retain the medieval **four-sibilant
+, the conservative Northern varieties that alone retain the medieval **four-sibilant
 system**. The two specs share the same sibilant deltas. It is a **delta** spec:
 it inherits the whole standard pt-PT system (unstressed vowel reduction, dark
 coda /l/, sandhi) via `graphemes_base` / `allophones_base` and declares only the
@@ -16,7 +16,7 @@ archaic-Northern deltas.
 
 ## Diagnostic features modelled
 
-### 1. Four-sibilant system (Cintra trait 2 — his primary North/South isogloss)
+### 1. Four-sibilant system (Cintra trait 2: his primary North/South isogloss)
 
 Where the rest of Portugal (including standard Lisbon EP) has collapsed the
 medieval sibilants into a single laminal (predorsodental) pair, the
@@ -33,31 +33,31 @@ notation convention):
 | ⟨c⟩(e/i), ⟨ç⟩ | voiceless **laminal** | [s] | paço → **ˈpasu**, cinco → **ˈsinku** |
 | ⟨z⟩ | voiced **laminal** | [z] | cozer → kuˈzeɾ |
 
-The diagnostic **minimal pairs stay distinct**: `passo` [ˈpas̺u] ≠ `paço` [ˈpasu];
+The diagnostic **minimal pairs stay distinct**: `passo` [ˈpas̺u] ≠ `paço` [ˈpasu].
 `coser` [kuˈz̺eɾ] ≠ `cozer` [kuˈzeɾ].
 
-Cintra (1971:93): *"a existência de um sistema de quatro sibilantes — [s̺] e [z̺]
+Cintra (1971:93): *"a existência de um sistema de quatro sibilantes, [s̺] e [z̺]
 ápicoalveolares (correspondentes aos grafemas s e ss) … opondo-se … ao [s] e o
-[z] predorsodentais (correspondentes aos grafemas ce,i, ç e z)"*; note 29 (footnote to the p.93 discussion)
+[z] predorsodentais (correspondentes aos grafemas ce,i, ç e z)"*. Note 29 (footnote to the p.93 discussion)
 fixes the positions: *"[s̺] ápico-alveolar (correspondente a s inicial e final e
 ss interior) … [z̺] ápicoalveolar (correspondente ao s intervocálico)"*. Álvarez
 Pérez (2014:37, §4) confirms from ALEPG data that this conservative four-sibilant
 system is precisely *"the group of dialects that Cintra called Transmontanos and
 Alto-Minhotos"*, and gives the same grapheme/etymology mapping used here.
 
-**Notation.** Cintra's own term is *apico-alveolar* / *"reverso"*; his [s̺]/[z̺]
+**Notation.** Cintra's own term is *apico-alveolar* / *"reverso"*. His [s̺]/[z̺]
 are commonly rendered **[ʂ]/[ʐ]** in modern IPA (the *"s beirão"/"reverso"* is
 acoustically retroflex-like), which is recorded as the surface variant in
-`allophones` — but the Cintra symbols [s̺]/[z̺] are used as the default.
+`allophones`, but the Cintra symbols [s̺]/[z̺] are used as the default.
 
 **Limit.** Preconsonantal coda ⟨s⟩ (`festa`, `gosto`) keeps the inherited pan-EP
 *chiado* [ʃ]: Cintra's note 29 lists the [s̺] positions as *"s inicial e final e
-ss interior"* only, so the preconsonantal palatalisation — a separate process —
+ss interior"* only, so the preconsonantal palatalisation, a separate process,
 is left inherited rather than overridden.
 
-### 2. Northern betacism — /v/ ~ /b/ merger (Cintra trait 1)
+### 2. Northern betacism: /v/ ~ /b/ merger (Cintra trait 1)
 
-The /v/ ~ /b/ opposition is lost; both merge into /b/. Cintra (1971:87):
+The /v/ ~ /b/ opposition is lost. Both merge into /b/. Cintra (1971:87):
 *"o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua
 fusão num fonema único /b/, realizado ora como oclusiva, ora como fricativa (ou
 espirante) b ou β"*. Modelled as allophone rule `PT_NORTH_BETACISM` (`/v/ → [b]`,
@@ -83,7 +83,7 @@ delta (⟨ch⟩ → [tʃ]): `chave → ˈtʃabɨ`. The affricate surfaces in the
 ## Not modelled (deliberately)
 
 Porto's tonic-close-vowel diphthongisation ([e]→[je], [o]→[wo]) is a
-*Baixo-Minho / Douro-Litoral* (baixo-minhoto-duriense) feature; Cintra (1971:93)
+*Baixo-Minho / Douro-Litoral* (baixo-minhoto-duriense) feature. Cintra (1971:93)
 places it in the *other* northern group, so it is **not applied** to the
 transmontano-alto-minhoto varieties.
 
@@ -104,7 +104,7 @@ from the U.Porto CLUP archive with undocumented IPA-column provenance, so
 correctness here rests on the cited sources, not the noisy PER. The
 character-level PER rises (0.4446 → 0.4629) because the gold renders the
 apico-alveolar series inconsistently ([ʃ], [ʂ], plain [s]) while the spec emits
-Cintra's [s̺]/[z̺]; the four-sibilant contrast is nonetheless the correct,
+Cintra's [s̺]/[z̺]. The four-sibilant contrast is nonetheless the correct,
 source-grounded model and is kept per the honesty gate.
 
 ## Sources

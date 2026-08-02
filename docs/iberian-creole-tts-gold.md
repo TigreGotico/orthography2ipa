@@ -150,3 +150,9 @@ python scripts/iberian_creole_tts_gold.py validate           # CI gate (all lect
 ```
 
 `tests/test_iberian_creole_tts_gold.py` runs `validate` in CI.
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*

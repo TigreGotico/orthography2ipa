@@ -122,3 +122,9 @@ colloquial article spelling their literature uses (Cairene/Baghdadi
   their sentences stick to well-attested pan-regional features.
 - text2tashkeel is MSA-only. All dialect tashkeel here is hand-set.
 - The IPA is broad and pre-pausal tanwīn is kept (full style).
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*

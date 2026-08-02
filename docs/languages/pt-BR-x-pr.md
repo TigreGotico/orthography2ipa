@@ -1,12 +1,12 @@
-# Paranaense / Curitibano Portuguese (pt-BR-x-pr) — Phonology Reference
+# Paranaense / Curitibano Portuguese (pt-BR-x-pr): Phonology Reference
 
 **Code**: `pt-BR-x-pr` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
 **Sources**: Noll (2008), Cardoso et al. (2014, *ALiB*), Mateus & d'Andrade
-(2000), Callou & Leite (2001), Silva (2002); Amaral (1920, §6b, for contrast)
+(2000), Callou & Leite (2001), Silva (2002). Amaral (1920, §6b, for contrast)
 
-`pt-BR-x-pr` models **Curitibano / Paranaense** — the Portuguese of Curitiba
-and Paraná — a transitional **Sulista–Paulistano** variety over Slavic and
+`pt-BR-x-pr` models **Curitibano / Paranaense**, the Portuguese of Curitiba
+and Paraná, a transitional **Sulista–Paulistano** variety over Slavic and
 Italian settler substrata. It is a **delta** spec inheriting the pt-BR base
 and overriding the conservative southern features.
 
@@ -26,17 +26,17 @@ Word-final and unstressed /e/ is retained as [e] rather than raised to [i]:
 *verde* → [ˈveɾde] (not [ˈveɾd͡ʒi]). Modelled via `positional_graphemes.e`
 overrides at `word_final` / `posttonic` / `nucleus_unstressed`.
 
-### 3. Alveolar tap coda /r/ — NOT retroflex
+### 3. Alveolar tap coda /r/: NOT retroflex
 
 Coda /r/ is a Sulista-type alveolar tap [ɾ] (*porta* → [ˈpoɾtɐ], *mar* →
 [ˈmaɾ]). The retroflex "r caipira" (Amaral 1920 §6b) is instead characteristic
 of the **northern / interior Paraná hinterland**, which patterns with
-[pt-BR-x-caipira.md](pt-BR-x-caipira.md) — Paraná is dialectologically
+[pt-BR-x-caipira.md](pt-BR-x-caipira.md), Paraná is dialectologically
 heterogeneous, and this spec models the Curitiba capital, not the interior.
 
 ### 4. Non-*chiado* coda /s/
 
-Coda /s/ stays alveolar [s] (*costas* → [ˈkostas]) — neither the Carioca
+Coda /s/ stays alveolar [s] (*costas* → [ˈkostas]), neither the Carioca
 palatal *chiado* nor a Nordestino aspiration [h].
 
 | Word | pt-BR-x-sp | pt-BR-x-pr |
@@ -52,9 +52,9 @@ and the grapheme inventory are inherited and not restated.
 
 ## Known limits (documented, not faked)
 
-**Heterogeneity.** Paraná is not phonologically uniform — Curitiba diverges
+**Heterogeneity.** Paraná is not phonologically uniform, Curitiba diverges
 from the more Caipira-like interior. This spec encodes the Curitibano capital
-norm; the interior is better served by `pt-BR-x-caipira`. Lexical open-mid
+norm. The interior is better served by `pt-BR-x-caipira`. Lexical open-mid
 vowel quality is not derivable (a pt-BR-wide engine limit).
 
 ```python
