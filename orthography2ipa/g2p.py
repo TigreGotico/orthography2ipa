@@ -513,11 +513,20 @@ class G2P:
             # wrapped, and the markup itself is not part of the utterance.
             ipa = apply_transform(ipa, self.dialect_profile,
                                   ortho=" ".join(w.surface for w in words))
+        # Cross-word stages (sandhi, dialect transforms) can splice
+        # combining marks across a word boundary, so re-assert the NFC
+        # output contract on the assembled sentence too — see the same
+        # normalization in ``_transcribe_word``.
+        if ipa:
+            ipa = unicodedata.normalize("NFC", ipa)
 
         final_words = tuple(
-            WordTranscription(word=wt.word, ipa=iw, candidates=wt.candidates,
-                              unmapped=wt.unmapped, coverage=wt.coverage,
-                              confidence=wt.confidence)
+            WordTranscription(
+                word=wt.word,
+                ipa=unicodedata.normalize("NFC", iw) if iw else iw,
+                candidates=wt.candidates,
+                unmapped=wt.unmapped, coverage=wt.coverage,
+                confidence=wt.confidence)
             for wt, iw in zip(transcribed, ipa_words)
         )
         return TranscriptionResult(ipa=ipa, words=final_words,
@@ -608,8 +617,10 @@ class G2P:
         beam_width: int = 8,
     ) -> str:
         """Transcribe a single *word*."""
-        return self._transcribe_word(
-            word, self._width(search, beam_width)).ipa
+        ipa = self._transcribe_word(word, self._width(search, beam_width)).ipa
+        # Output contract: NFC (see the note in _transcribe_word on why the
+        # composition happens here, at the boundary, rather than inline).
+        return unicodedata.normalize("NFC", ipa) if ipa else ipa
 
     def candidates(self, word: str, *, beam_width: int = 8) -> List[IPAPath]:
         """All beam candidates for a single *word*, best first."""
@@ -987,6 +998,15 @@ class G2P:
                 idx = detect_stress(word, self.spec.stress, syllables=sylls)
                 ipa = apply_stress_mark(ipa, self.spec.stress, idx,
                                         syllables=sylls)
+        # NOTE: *not* NFC-composed here. Cross-word sandhi rules (see
+        # transcribe_detailed) still need to run on this per-word IPA, and
+        # at least one declared rule (pt-PT's PT_SCHWA_ELISION) matches a
+        # nasal vowel by its DECOMPOSED shape (base vowel + combining
+        # tilde U+0303) in its right_context regex — composing here first
+        # would make that vowel invisible to the rule and silently disable
+        # it. The NFC output contract is enforced once, at the true
+        # emission boundary, after every cross-word stage has run (see
+        # transcribe_detailed and transcribe_word).
         unmapped, coverage = self._unmapped_chars(word)
         if unmapped:
             self._handle_unmapped(word, unmapped)
