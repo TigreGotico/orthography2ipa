@@ -2338,5 +2338,45 @@
   "zulu1248": {
     "name": "Zulu",
     "level": "language"
+  },
+  "haka1240": {
+    "name": "Haka Chin",
+    "level": "language"
+  },
+  "dogr1250": {
+    "name": "Dogri",
+    "level": "language"
+  },
+  "hary1238": {
+    "name": "Haryanvi",
+    "level": "language"
+  },
+  "jing1260": {
+    "name": "Jingpho",
+    "level": "family"
+  },
+  "lush1249": {
+    "name": "Mizo",
+    "level": "language"
+  },
+  "garo1247": {
+    "name": "Garo",
+    "level": "language"
+  },
+  "kach1280": {
+    "name": "Southern Jinghpaw language",
+    "level": "language"
+  },
+  "raja1256": {
+    "name": "Rajasthani",
+    "level": "family"
+  },
+  "chha1249": {
+    "name": "Chhattisgarhi",
+    "level": "language"
+  },
+  "tedi1235": {
+    "name": "Tedim Chin",
+    "level": "language"
   }
 }
