@@ -4,8 +4,77 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "c": [
+   "ɟ",
+   "c"
+  ],
+  "f": [
+   "β",
+   "ɸ",
+   "v",
+   "f"
+  ],
+  "k": [
+   "ɡ",
+   "k"
+  ],
+  "p": [
+   "p",
+   "b"
+  ],
+  "r̥": [
+   "r̥",
+   "r"
+  ],
+  "t": [
+   "d",
+   "t",
+   "ɖ"
+  ],
+  "tʰ": [
+   "ʈʰ",
+   "tʰ"
+  ],
+  "t̻": [
+   "d̻",
+   "t̻"
+  ],
+  "ɻ": [
+   "ɻ",
+   "ɻ̥"
+  ],
+  "a": [
+   "æ",
+   "a˞",
+   "ɜ",
+   "ã",
+   "a"
+  ],
+  "o̞": [
+   "o̞˞",
+   "o̞",
+   "õ̞",
+   "ɔ"
+  ],
+  "ɛ": [
+   "ɛ̃",
+   "ɛ˞",
+   "ɛ"
+  ],
+  "ɪ": [
+   "ɪ˞",
+   "i",
+   "ɪ̃",
+   "ɪ"
+  ],
+  "ʊ": [
+   "ʊ̃",
+   "ʊ",
+   "ʊ˞"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "kjn",
  "glottolog_code": "kunj1245",
  "sources": [
@@ -16,6 +85,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/46",
+   "notes": "Inventory 46 (spa), 28 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +105,36 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-pama1250"
+ "parent": "x-clade-pama1250",
+ "phonemes": [
+  "c",
+  "cʰ",
+  "f",
+  "j",
+  "k",
+  "kʰ",
+  "l",
+  "m",
+  "n",
+  "n̻",
+  "p",
+  "pʰ",
+  "r̥",
+  "t",
+  "tʰ",
+  "t̻",
+  "t̻ʰ",
+  "w",
+  "ð",
+  "ŋ",
+  "ɣ",
+  "ɲ",
+  "ɻ",
+  "a",
+  "o̞",
+  "ɛ",
+  "ɪ",
+  "ʊ"
+ ],
+ "phoible_id": "46"
 }

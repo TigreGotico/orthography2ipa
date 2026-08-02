@@ -4,8 +4,125 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "b": [
+   "pʲ",
+   "β",
+   "p",
+   "b"
+  ],
+  "d": [
+   "d",
+   "d",
+   "r"
+  ],
+  "k̟": [
+   "ɡ",
+   "k",
+   "ɡ̟",
+   "k̟"
+  ],
+  "lʲ": [
+   "lʲ",
+   "l̥ʲ"
+  ],
+  "lˠ": [
+   "lˠ",
+   "l̥ˠ"
+  ],
+  "m": [
+   "m",
+   "m̥"
+  ],
+  "n": [
+   "n",
+   "n̥"
+  ],
+  "nʲ": [
+   "n̥ʲ",
+   "nʲ"
+  ],
+  "q": [
+   "ɣ",
+   "qχ",
+   "ɢ",
+   "ʁ",
+   "q",
+   "ʀ",
+   "χ"
+  ],
+  "sʲ": [
+   "sʲ",
+   "sʲ",
+   "ʃʲ"
+  ],
+  "t": [
+   "t",
+   "t"
+  ],
+  "tʲ": [
+   "tʲ",
+   "t̠ʃʲ",
+   "tʲ"
+  ],
+  "ŋ": [
+   "ŋ",
+   "ŋ̥"
+  ],
+  "a": [
+   "a̟",
+   "a"
+  ],
+  "aː": [
+   "aː",
+   "a̟ː",
+   "aː",
+   "a̟ː"
+  ],
+  "i": [
+   "i",
+   "ɪ",
+   "i"
+  ],
+  "iː": [
+   "iː",
+   "iː"
+  ],
+  "uː": [
+   "uː",
+   "uː"
+  ],
+  "æ": [
+   "ɛ",
+   "æ",
+   "æ",
+   "e"
+  ],
+  "æː": [
+   "æː",
+   "ɛː",
+   "æː",
+   "ɛː"
+  ],
+  "ɔ": [
+   "o",
+   "ɔ",
+   "ø"
+  ],
+  "ɔː": [
+   "ɔː",
+   "ɔː"
+  ],
+  "ɨː": [
+   "ɨː",
+   "ɨː"
+  ],
+  "ɵ̞ː": [
+   "ɵ̞ː",
+   "ɵ̞ː"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "ket",
  "glottolog_code": "kett1243",
  "sources": [
@@ -16,6 +133,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/2",
+   "notes": "Inventory 2 (spa), 32 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +153,40 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-yeni1252"
+ "parent": "x-clade-yeni1252",
+ "phonemes": [
+  "b",
+  "d",
+  "dʲ",
+  "h",
+  "k̟",
+  "lʲ",
+  "lˠ",
+  "m",
+  "n",
+  "nʲ",
+  "q",
+  "s",
+  "sʲ",
+  "t",
+  "tʲ",
+  "ŋ",
+  "ʔ",
+  "ʝ",
+  "a",
+  "aː",
+  "i",
+  "iː",
+  "uː",
+  "æ",
+  "æː",
+  "ɔ",
+  "ɔː",
+  "ɨ",
+  "ɨː",
+  "ɵ̞",
+  "ɵ̞ː",
+  "ʊ"
+ ],
+ "phoible_id": "2"
 }

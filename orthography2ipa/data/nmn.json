@@ -4,8 +4,81 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "kǀʰ": [
+   "kǀʰ",
+   "qǀʰ"
+  ],
+  "kǁʰ": [
+   "kǁʰ",
+   "qǁʰ"
+  ],
+  "kǂʰ": [
+   "kǂʰ",
+   "qǂʰ"
+  ],
+  "kǃʰ": [
+   "kǃʰ",
+   "qǃʰ"
+  ],
+  "kʘʰ": [
+   "kʘʰ",
+   "qʘʰ"
+  ],
+  "ɡǀkʰ": [
+   "ɡǀkʰ",
+   "ɡǀqʰ"
+  ],
+  "ɡǁkʰ": [
+   "ɡǁkʰ",
+   "ɡǁqʰ"
+  ],
+  "ɡǂkʰ": [
+   "ɡǂkʰ",
+   "ɡǂqʰ"
+  ],
+  "ɡǃkʰ": [
+   "ɡǃkʰ",
+   "ɡǃqʱ"
+  ],
+  "ɡʘkʰ": [
+   "ɡʘkʰ",
+   "ɡʘqʰ"
+  ],
+  "ɢǀ": [
+   "ɢǀ",
+   "ɴǀɢ"
+  ],
+  "ɢǀqʰ": [
+   "ɢǀqʰ",
+   "ɴɢǀqʰ"
+  ],
+  "ɢǁ": [
+   "ɢǁ",
+   "ɴǁɢ"
+  ],
+  "ɢǁqʰ": [
+   "ɢǁqʰ",
+   "ɴɢǁqʰ"
+  ],
+  "ɢǂ": [
+   "ɢǂ",
+   "ɴǂɢ"
+  ],
+  "ɢǃ": [
+   "ɢǃ",
+   "ɴǃɢ"
+  ],
+  "ɢǃqʰ": [
+   "ɢǃqʰ",
+   "ɴɢǃqʰ"
+  ],
+  "ɢʘ": [
+   "ɢʘ",
+   "ɴʘɢ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "nmn",
  "glottolog_code": "huaa1248",
  "sources": [
@@ -16,6 +89,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1379",
+   "notes": "Inventory 1379 (ph), 158 non-marginal segments, 3 tones."
   }
  ],
  "urls": [
@@ -27,5 +109,171 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tuuu1241"
+ "parent": "x-clade-tuuu1241",
+ "phonemes": [
+  "b",
+  "d",
+  "dx",
+  "dʱ",
+  "dʼkxʼ",
+  "d̪",
+  "d̪x",
+  "d̪ʱ",
+  "d̪ʼkxʼ",
+  "f",
+  "h",
+  "k",
+  "kxʼ",
+  "kǀ",
+  "kǀh",
+  "kǀkxʼ",
+  "kǀx",
+  "kǀʔ",
+  "kǀʰ",
+  "kǁ",
+  "kǁh",
+  "kǁkxʼ",
+  "kǁx",
+  "kǁʔ",
+  "kǁʰ",
+  "kǂ",
+  "kǂh",
+  "kǂkxʼ",
+  "kǂx",
+  "kǂʔ",
+  "kǂʰ",
+  "kǃ",
+  "kǃh",
+  "kǃkxʼ",
+  "kǃx",
+  "kǃʔ",
+  "kǃʰ",
+  "kʘ",
+  "kʘh",
+  "kʘkxʼ",
+  "kʘx",
+  "kʘʔ",
+  "kʘʰ",
+  "kʰ",
+  "kʼ",
+  "l",
+  "m",
+  "n̪",
+  "p",
+  "pʰ",
+  "pʼkxʼ",
+  "q",
+  "qǀ",
+  "qǀʼ",
+  "qǁ",
+  "qǁʼ",
+  "qǂ",
+  "qǂʼ",
+  "qǃ",
+  "qǃʼ",
+  "qʘ",
+  "qʘʼ",
+  "qʰ",
+  "qʼ",
+  "s",
+  "t",
+  "tx",
+  "tʰ",
+  "tʼ",
+  "tʼkxʼ",
+  "t̪",
+  "t̪x",
+  "t̪ʰ",
+  "t̪ʼ",
+  "t̪ʼkxʼ",
+  "x",
+  "ŋǀ",
+  "ŋǁ",
+  "ŋǂ",
+  "ŋǃ",
+  "ŋʘ",
+  "ŋ̊ǀ",
+  "ŋ̊ǁ",
+  "ŋ̊ǂ",
+  "ŋ̊ǃ",
+  "ŋ̊ʘ",
+  "ɟ",
+  "ɡ",
+  "ɡǀ",
+  "ɡǀkxʼ",
+  "ɡǀkʰ",
+  "ɡǀx",
+  "ɡǁ",
+  "ɡǁkxʼ",
+  "ɡǁkʰ",
+  "ɡǁx",
+  "ɡǂ",
+  "ɡǂkxʼ",
+  "ɡǂkʰ",
+  "ɡǂx",
+  "ɡǃ",
+  "ɡǃkxʼ",
+  "ɡǃkʰ",
+  "ɡǃx",
+  "ɡʘ",
+  "ɡʘkxʼ",
+  "ɡʘkʰ",
+  "ɡʘx",
+  "ɡʱ",
+  "ɡʼkxʼ",
+  "ɢ",
+  "ɢǀ",
+  "ɢǀqʰ",
+  "ɢǁ",
+  "ɢǁqʰ",
+  "ɢǂ",
+  "ɢǃ",
+  "ɢǃqʰ",
+  "ɢʘ",
+  "ɢʱ",
+  "ɲ",
+  "ɸ",
+  "ʔ",
+  "ʔŋǀ",
+  "ʔŋǁ",
+  "ʔŋǂ",
+  "ʔŋǃ",
+  "ʔŋʘ",
+  "ˀm",
+  "ˀn",
+  "a",
+  "aˤ",
+  "ã",
+  "a̤",
+  "a̰",
+  "aᴱ",
+  "e",
+  "eˤ",
+  "ẽ",
+  "e̤",
+  "ḛ",
+  "i",
+  "iˤ",
+  "ĩ",
+  "i̤",
+  "ḭ",
+  "o",
+  "oˤ",
+  "õ",
+  "o̤",
+  "o̰",
+  "oᴱ",
+  "u",
+  "uˤ",
+  "ũ",
+  "ṳ",
+  "ṵ",
+  "uᴱ"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˧": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1379"
 }
