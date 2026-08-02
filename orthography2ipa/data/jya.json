@@ -1,0 +1,30 @@
+{
+ "code": "jya",
+ "name": "Jiarong",
+ "script": "Zyyy",
+ "quality": "stub",
+ "graphemes": {},
+ "allophones": {},
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. No glottolog_code: Glottolog splits rGyalrong into multiple languages and assigns ISO [jya] to the family-level node jiar1240, which this field may not point at.",
+ "iso639_3": "jya",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/jiar1240"
+ ],
+ "location": {
+  "latitude": 31.6029,
+  "longitude": 102.2288,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-sino1245"
+}
