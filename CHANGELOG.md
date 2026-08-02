@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.41.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.41.0a4) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.41.0a3...7.41.0a4)
+
+**Merged pull requests:**
+
+- data: add med-semitic-berber language specs \(xpu, uga, hbo, jrb, ajt, aju, yhd, rif, gnc\) [\#669](https://github.com/TigreGotico/orthography2ipa/pull/669) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.41.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.41.0a3) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.41.0a2...7.41.0a3)
