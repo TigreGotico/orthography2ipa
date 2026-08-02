@@ -64,7 +64,7 @@ from orthography2ipa.positional import resolve_branches
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
-from orthography2ipa.registry import get, resolve
+from orthography2ipa.registry import get, get_declared_plugins, resolve
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.sentence import (
     Position,
@@ -80,6 +80,7 @@ from orthography2ipa.stress import (
     _syllables_for, apply_stress_mark, cliticless_keys, detect_stress,
     detect_stress_by_weight, syllabify, syllabify_ipa,
 )
+from orthography2ipa.transforms import apply_transform
 from orthography2ipa.types import LanguageSpec
 
 __all__ = [
@@ -249,10 +250,6 @@ class _StagePlugins:
 
     def get(self, stage: str) -> list:
         if stage not in self._cache:
-            from dataclasses import replace
-
-            from orthography2ipa.registry import get_declared_plugins
-
             # The caller's choice overrides the spec's, so resolve against the
             # merged view rather than the spec's own block.
             merged = replace(self._spec, plugins=self._declared)
@@ -354,7 +351,7 @@ class G2P:
         # rebuilds the segment context from the previous pass. `allophone_passes`
         # is 1 for every spec that has not opted in, so the tuple holds exactly
         # one copy and behaviour is byte-identical.
-        n_passes = max(1, getattr(self.spec, "allophone_passes", 1))
+        n_passes = max(1, self.spec.allophone_passes)
         self._allophone_chain: Tuple[LatticeRescorer, ...] = (
             (allophone_rescorer,) * n_passes
             if allophone_rescorer is not None else ()
@@ -420,6 +417,9 @@ class G2P:
         # function words heavily, so the hit rate is high.
         self._syll_cache: Dict[str, List[str]] = {}
         self._lattice_cache: Dict[Tuple[str, int], List[SegmentSlot]] = {}
+        #: Declared prosodic-clitic keys (see :meth:`_is_cliticless`), computed
+        #: once per engine on first use; ``None`` until then.
+        self._cliticless_cache: Optional[frozenset] = None
 
     # ─── public API ──────────────────────────────────────────────────
 
@@ -508,7 +508,6 @@ class G2P:
 
         ipa = " ".join(w for w in ipa_words if w)
         if self.dialect_profile:
-            from orthography2ipa.transforms import apply_transform
             # The spelling the transform reads is the words', normalized — which is
             # also the only spelling there is: a forced word contributes the text it
             # wrapped, and the markup itself is not part of the utterance.
@@ -938,14 +937,12 @@ class G2P:
         and every downstream assembler make the identical decision from one place
         (the keys are cached per engine on first use).
         """
-        cached = getattr(self, "_cliticless_cache", None)
-        if cached is None:
-            cached = cliticless_keys(self.spec)
-            self._cliticless_cache = cached
-        if not cached:
+        if self._cliticless_cache is None:
+            self._cliticless_cache = cliticless_keys(self.spec)
+        if not self._cliticless_cache:
             return False
         return unicodedata.normalize(
-            "NFC", lower_str(word, self.spec.code)) in cached
+            "NFC", lower_str(word, self.spec.code)) in self._cliticless_cache
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
