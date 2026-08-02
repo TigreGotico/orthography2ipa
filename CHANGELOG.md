@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.41.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.41.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.40.0a2...7.41.0a1)
+
+**Merged pull requests:**
+
+- feat: White Hmong \(mww\) research-tier spec + WikiPron gold [\#692](https://github.com/TigreGotico/orthography2ipa/pull/692) ([JarbasAl](https://github.com/JarbasAl))
+- feat: Lexibank/CLDF wordlist gold loader [\#690](https://github.com/TigreGotico/orthography2ipa/pull/690) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add Sardinian dialect specs \(src, sro, sdn\) [\#672](https://github.com/TigreGotico/orthography2ipa/pull/672) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.40.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.40.0a2) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.40.0a1...7.40.0a2)
