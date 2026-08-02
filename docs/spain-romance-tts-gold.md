@@ -204,3 +204,9 @@ vs. recomputed IPA. Reconcile deliberately, never by silencing the check:
   initial L->`[ʎ]`/N->`[ɲ]` palatalisation, distinción `[θ]`, atonic final
   -o>-u, and a four-way sibilant system: re-tagged to the Spain-Romance
   predicates (Frías Conde; García Arias 2003).
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*

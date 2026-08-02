@@ -145,3 +145,9 @@ behaviour, not just isolated-word transcription.
   Cruz-Ferreira 1995's IPA-illustration words (`gato`, `rato`, `mundo`,
   `chato`, `pilha`) so they witness the primary-source gold directly
   (Cintra 1971, Segura 2013, Cruz-Ferreira 1995).
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*

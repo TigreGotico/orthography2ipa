@@ -93,3 +93,9 @@ the phonology belongs in the spec, where it can be read, cited and diffed.
 A lexicon does the same job for a *list* of words rather than one occurrence, and
 is supplied by the caller: nothing is bundled. See
 [`data_model.md`](data_model.md).
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Data model](data_model.md) · [Getting started](getting_started.md) · [Tokenizer](tokenizer.md)*
