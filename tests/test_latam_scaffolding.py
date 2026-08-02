@@ -23,6 +23,13 @@ from orthography2ipa.distance import (
 
 ADSTRATE_STUBS = ["gn", "qu", "ay", "nah", "arn", "yua", "quc"]
 
+# Adstrate nodes that started as bare stubs and have since been described up to
+# a higher quality tier. They keep every adstrate-ancestry invariant below but
+# no longer assert stub tier (quc: K'iche' now carries a cited grapheme/allophone
+# inventory and is a modelled language in its own right, not only a placeholder
+# for Guatemalan Spanish contact studies).
+SKELETON_ADSTRATES = ["quc"]
+
 REGIONAL_STUBS = [
     "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-norte", "es-AR-x-patagonia",
     "es-AR-x-litoral",
@@ -72,13 +79,20 @@ class TestNodesResolve:
         assert spec is not None
         assert spec.code == code
 
-    @pytest.mark.parametrize("code", ADSTRATE_STUBS + REGIONAL_STUBS + NEW_NATIONALS)
+    @pytest.mark.parametrize(
+        "code",
+        [c for c in ADSTRATE_STUBS if c not in SKELETON_ADSTRATES] + REGIONAL_STUBS + NEW_NATIONALS,
+    )
     def test_is_stub_tier(self, code):
         assert get(code).quality is QualityTier.STUB
 
     @pytest.mark.parametrize("code", RESEARCH_REGIONALS)
     def test_is_research_tier(self, code):
         assert get(code).quality is QualityTier.RESEARCH
+
+    @pytest.mark.parametrize("code", SKELETON_ADSTRATES)
+    def test_is_skeleton_tier(self, code):
+        assert get(code).quality is QualityTier.SKELETON
 
     @pytest.mark.parametrize("code", REGIONAL_NODES + NEW_NATIONALS)
     def test_spanish_is_romance(self, code):

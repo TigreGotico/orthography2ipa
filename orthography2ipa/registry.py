@@ -76,6 +76,16 @@ _ALIASES: Dict[str, str] = {
     # bxr/diq/tw/fat above. Both the individual and the macro spec exist
     # and are distinct targets.
     "aju": "aju",
+    # ``als`` (Tosk Albanian) standardizes to ``sq`` (Albanian macrolanguage)
+    # and ``rmy`` (Vlax Romani) standardizes to ``rom`` (Romani macrolanguage).
+    # Both the individual and the macro spec exist and are distinct targets,
+    # so pin each individual code to itself before the macro-collapse step.
+    "als": "als",
+    "rmy": "rmy",
+    # ``src`` (Logudorese Sardinian) standardizes straight to ``sc`` (the
+    # generic Sardinian macrolanguage spec) under ``langcodes``, which would
+    # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
+    "src": "src",
     # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
     # while the registry also carries their langcodes-preferred siblings
     # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself

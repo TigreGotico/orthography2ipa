@@ -4,8 +4,64 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "b": [
+   "b",
+   "p"
+  ],
+  "r": [
+   "r",
+   "ɾ"
+  ],
+  "ɡ": [
+   "ɡ",
+   "ɣ"
+  ],
+  "a": [
+   "a",
+   "ã"
+  ],
+  "aː": [
+   "aː",
+   "ãː"
+  ],
+  "e": [
+   "e",
+   "ɛ",
+   "ẽ",
+   "e",
+   "e̞"
+  ],
+  "eː": [
+   "eː",
+   "ɛː",
+   "e̞ː"
+  ],
+  "iː": [
+   "iː",
+   "ĩː"
+  ],
+  "o": [
+   "o",
+   "ɔ",
+   "o̞"
+  ],
+  "oː": [
+   "oː",
+   "ɔːʉ",
+   "õː",
+   "o̞ː"
+  ],
+  "u": [
+   "u",
+   "ɥ"
+  ],
+  "uː": [
+   "uː",
+   "ɥː"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "bwu",
  "glottolog_code": "buli1254",
  "sources": [
@@ -16,6 +72,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1390",
+   "notes": "Inventory 1390 (ph), 34 non-marginal segments, 2 marginal excluded, 10 tones."
   }
  ],
  "urls": [
@@ -27,5 +92,54 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278"
+ "parent": "x-clade-atla1278",
+ "phonemes": [
+  "b",
+  "d",
+  "d̠ʒ",
+  "f",
+  "j",
+  "k",
+  "kp",
+  "l",
+  "m",
+  "n",
+  "p",
+  "r",
+  "s",
+  "t",
+  "t̠ʃ",
+  "v",
+  "w",
+  "z",
+  "ŋ",
+  "ŋm",
+  "ɡ",
+  "ɡb",
+  "ɲ",
+  "a",
+  "aː",
+  "e",
+  "eː",
+  "i",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uː",
+  "ɘ"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˦˧": "PHOIBLE tone segment",
+  "˦˨": "PHOIBLE tone segment",
+  "˧": "PHOIBLE tone segment",
+  "˧˦˧": "PHOIBLE tone segment",
+  "˧˨": "PHOIBLE tone segment",
+  "˧˨˧": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment",
+  "˨˦": "PHOIBLE tone segment",
+  "˨˧": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1390"
 }

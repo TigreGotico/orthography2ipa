@@ -1,5 +1,44 @@
 # Changelog
 
+## [7.41.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.41.0a2) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.41.0a1...7.41.0a2)
+
+**Merged pull requests:**
+
+- data: orthography wave 1 — 8 stub languages to skeleton [\#691](https://github.com/TigreGotico/orthography2ipa/pull/691) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.41.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.41.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.40.0a2...7.41.0a1)
+
+**Merged pull requests:**
+
+- feat: White Hmong \(mww\) research-tier spec + WikiPron gold [\#692](https://github.com/TigreGotico/orthography2ipa/pull/692) ([JarbasAl](https://github.com/JarbasAl))
+- feat: Lexibank/CLDF wordlist gold loader [\#690](https://github.com/TigreGotico/orthography2ipa/pull/690) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add Sardinian dialect specs \(src, sro, sdn\) [\#672](https://github.com/TigreGotico/orthography2ipa/pull/672) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.40.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.40.0a2) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.40.0a1...7.40.0a2)
+
+## [7.40.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.40.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.39.0a1...7.40.0a1)
+
+**Merged pull requests:**
+
+- feat: PHOIBLE 2.0 phoneme inventories for 1,547 stub specs [\#687](https://github.com/TigreGotico/orthography2ipa/pull/687) ([JarbasAl](https://github.com/JarbasAl))
+- data: add Anatolian/Palaeo-European ancient language specs [\#666](https://github.com/TigreGotico/orthography2ipa/pull/666) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.39.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.39.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.38.0a1...7.39.0a1)
+
+**Merged pull requests:**
+
+- feat: cover every living ISO 639-3 language with Glottolog-backed stub specs [\#686](https://github.com/TigreGotico/orthography2ipa/pull/686) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.38.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.38.0a1) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.37.1a1...7.38.0a1)

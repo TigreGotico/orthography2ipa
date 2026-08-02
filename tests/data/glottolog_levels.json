@@ -879,6 +879,10 @@
   "level": "language",
   "name": "Ana Tinga Dogon"
  },
+ "anat1257": {
+  "level": "family",
+  "name": "Anatolian"
+ },
  "anca1236": {
   "level": "language",
   "name": "Áncá"
@@ -5403,6 +5407,10 @@
   "level": "language",
   "name": "Culina"
  },
+ "cune1239": {
+  "level": "language",
+  "name": "Cuneiform Luwian"
+ },
  "cung1238": {
   "level": "language",
   "name": "Chung"
@@ -8954,6 +8962,10 @@
  "hiri1237": {
   "level": "language",
   "name": "Hiri Motu"
+ },
+ "hitt1242": {
+  "level": "language",
+  "name": "Hittite"
  },
  "hitu1239": {
   "level": "language",
@@ -14551,6 +14563,10 @@
   "level": "language",
   "name": "Dokshi"
  },
+ "lusi1235": {
+  "level": "language",
+  "name": "Lusitanian"
+ },
  "lusi1240": {
   "level": "language",
   "name": "Lusi"
@@ -16258,6 +16274,10 @@
  "merl1237": {
   "level": "language",
   "name": "Merlav"
+ },
+ "mero1237": {
+  "level": "language",
+  "name": "Meroitic"
  },
  "merr1239": {
   "level": "language",
@@ -21375,6 +21395,10 @@
   "level": "language",
   "name": "Rade"
  },
+ "raet1238": {
+  "level": "language",
+  "name": "Raetic"
+ },
  "raha1237": {
   "level": "language",
   "name": "Rahambuu"
@@ -23183,6 +23207,10 @@
   "level": "language",
   "name": "Sibu Melanau"
  },
+ "sica1234": {
+  "level": "language",
+  "name": "Sicana"
+ },
  "sich1238": {
   "level": "language",
   "name": "Sichuan Yi"
@@ -23194,6 +23222,10 @@
  "sici1249": {
   "level": "language",
   "name": "Sìcìté Sénoufo"
+ },
+ "sicu1234": {
+  "level": "language",
+  "name": "Sicula"
  },
  "siee1239": {
   "level": "language",
@@ -27066,6 +27098,10 @@
  "vene1237": {
   "level": "language",
   "name": "Venezuelan Sign Language"
+ },
+ "vene1257": {
+  "level": "language",
+  "name": "Venetic"
  },
  "vene1258": {
   "level": "language",
