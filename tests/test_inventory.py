@@ -199,6 +199,15 @@ KNOWN_DEAD_RULES = {
             "IQ_EMPH_A_BEFORE", "IQ_GILIT_AFFRIC_G_AFTER",
             "IQ_GILIT_AFFRIC_G_BEFORE", "IQ_GILIT_AFFRIC_K_AFTER",
             "IQ_GILIT_AFFRIC_K_BEFORE", "AR_WASL_EPENTHESIS"},
+    # Yevanic (yej) is a stub: its Hebrew-script grapheme table is intentionally
+    # left empty because no sourced letter-by-letter correspondence could be
+    # located (see the spec's notes), so it emits nothing of its own at all.
+    # It still inherits el's allophone rule *set* (parent_dialect), but with
+    # zero graphemes there is no /s/ or /ɣ/ slot for EL_S_VOICING / EL_
+    # GAMMA_FRONTING to match against. Both are live in el, which has the
+    # grapheme table this spec is deliberately missing; revisit once yej gains
+    # a sourced Hebrew-abjad grapheme table.
+    "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
