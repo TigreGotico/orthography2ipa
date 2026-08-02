@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.42.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.42.0a3) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.42.0a2...7.42.0a3)
+
+**Merged pull requests:**
+
+- data: wave 3 — 8 stub languages to skeleton [\#705](https://github.com/TigreGotico/orthography2ipa/pull/705) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.42.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.42.0a2) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.42.0a1...7.42.0a2)
