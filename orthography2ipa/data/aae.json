@@ -17,13 +17,20 @@
     ],
     "ll": [
       "ɣ"
-    ],
-    "g": [
-      "ɣ"
     ]
   },
   "allophones": {},
   "allophone_rules": [
+    {
+      "id": "AAE_G_INTERVOCALIC_FRICATIVE",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɣ",
+      "preceded_by": "vowel",
+      "followed_by": "vowel",
+      "notes": "Intervocalic ⟨g⟩ /ɡ/ lenites to the voiced velar fricative [ɣ] (Wikipedia: Arbëresh language). Expressed as a context rule rather than a blanket grapheme override so the plain plosive /ɡ/ survives word-finally, where AAE_DEVOICE_G still applies."
+    },
     {
       "id": "AAE_DEVOICE_B",
       "phonemes": [

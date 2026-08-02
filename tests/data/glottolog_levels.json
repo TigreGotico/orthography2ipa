@@ -131,12 +131,20 @@
     "name": "Arawakan",
     "level": "family"
   },
+  "arbe1236": {
+    "name": "Arbëreshë Albanian",
+    "level": "language"
+  },
   "arme1241": {
     "name": "Armenic",
     "level": "family"
   },
   "arom1237": {
     "name": "Aromanian",
+    "level": "language"
+  },
+  "arva1236": {
+    "name": "Arvanitika Albanian",
     "level": "language"
   },
   "assa1263": {
@@ -771,6 +779,10 @@
     "name": "Ghanaian Pidgin English",
     "level": "language"
   },
+  "gheg1238": {
+    "name": "Gheg Albanian",
+    "level": "language"
+  },
   "gila1241": {
     "name": "Gilaki",
     "level": "language"
@@ -970,6 +982,14 @@
   "iroq1247": {
     "name": "Iroquoian",
     "level": "family"
+  },
+  "istr1244": {
+    "name": "Istriot",
+    "level": "language"
+  },
+  "istr1245": {
+    "name": "Istro-Romanian",
+    "level": "language"
   },
   "ital1282": {
     "name": "Italian",
@@ -1410,6 +1430,10 @@
   "monn1252": {
     "name": "Mon",
     "level": "language"
+  },
+  "mont1282": {
+    "name": "Montenegrin Standard",
+    "level": "dialect"
   },
   "moro1292": {
     "name": "Moroccan Arabic",
@@ -2213,6 +2237,10 @@
   },
   "tong1325": {
     "name": "Tonga (Tonga Islands)",
+    "level": "language"
+  },
+  "tosk1239": {
+    "name": "Northern Tosk Albanian",
     "level": "language"
   },
   "tran1282": {
