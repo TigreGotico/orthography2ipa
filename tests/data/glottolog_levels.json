@@ -83,6 +83,10 @@
     "name": "Amis",
     "level": "language"
   },
+  "anat1257": {
+    "name": "Anatolian",
+    "level": "family"
+  },
   "anci1242": {
     "name": "Ionic-Attic Ancient Greek",
     "level": "language"
@@ -491,6 +495,10 @@
     "name": "Cuban Spanish",
     "level": "dialect"
   },
+  "cune1239": {
+    "name": "Cuneiform Luwian",
+    "level": "language"
+  },
   "cusc1236": {
     "name": "Cusco Quechua",
     "level": "language"
@@ -857,6 +865,10 @@
   },
   "hiri1237": {
     "name": "Hiri Motu",
+    "level": "language"
+  },
+  "hitt1242": {
+    "name": "Hittite",
     "level": "language"
   },
   "homs1234": {
@@ -1247,6 +1259,10 @@
     "name": "Mizo",
     "level": "language"
   },
+  "lusi1235": {
+    "name": "Lusitanian",
+    "level": "language"
+  },
   "luxe1241": {
     "name": "Moselle Franconian",
     "level": "language"
@@ -1333,6 +1349,10 @@
   },
   "mend1266": {
     "name": "Mende (Sierra Leone)",
+    "level": "language"
+  },
+  "mero1237": {
+    "name": "Meroitic",
     "level": "language"
   },
   "meso1252": {
@@ -1803,6 +1823,10 @@
     "name": "Quechuan",
     "level": "family"
   },
+  "raet1238": {
+    "name": "Raetic",
+    "level": "language"
+  },
   "raja1256": {
     "name": "Rajasthani",
     "level": "family"
@@ -1947,12 +1971,20 @@
     "name": "Mrassu Shor-Tutal",
     "level": "language"
   },
+  "sica1234": {
+    "name": "Sicana",
+    "level": "language"
+  },
   "sich1238": {
     "name": "Sichuan Yi",
     "level": "language"
   },
   "sici1248": {
     "name": "Sicilian",
+    "level": "language"
+  },
+  "sicu1234": {
+    "name": "Sicula",
     "level": "language"
   },
   "sile1253": {
@@ -2309,6 +2341,10 @@
   },
   "vend1245": {
     "name": "Venda",
+    "level": "language"
+  },
+  "vene1257": {
+    "name": "Venetic",
     "level": "language"
   },
   "vene1258": {
