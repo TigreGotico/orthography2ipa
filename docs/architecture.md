@@ -19,7 +19,7 @@ orthography2ipa/
 ├── cli.py               # Command-line interface (entry point)
 ├── plugins/             # Concrete G2P plugin implementations (e.g. Arabic)
 │
-└── data/                # 749 JSON language spec files
+└── data/                # JSON language spec files, one per language/clade (see docs/registry.md for the live count)
     ├── SCHEMA.md        # JSON schema reference
     ├── en-GB.json
     ├── es-ES.json
@@ -305,7 +305,7 @@ The combinatorial explosion from ambiguous graphemes (e.g., English `c` → /k/ 
 
 ### Why lazy loading?
 
-With 749 JSON data files, eager loading would make `import orthography2ipa` slow and memory-heavy. Lazy loading means only the languages actually used in a session are loaded. The registry is a pure dictionary lookup; no disk I/O until `get()` is called.: `registry.get`: `registry.py:68`
+With hundreds of JSON data files, eager loading would make `import orthography2ipa` slow and memory-heavy. Lazy loading means only the languages actually used in a session are loaded. The registry is a pure dictionary lookup; no disk I/O until `get()` is called.: `registry.get`: `registry.py:68`
 
 ---
 
