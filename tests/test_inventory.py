@@ -164,6 +164,20 @@ KNOWN_DEAD_RULES = {
     # targets /ʔ/ — can never fire here. It is live in every Arabic lect that
     # keeps /ʔ/; the rule set is Classical Arabic's, inherited unchanged.
     "acy": {"AR_WASL_EPENTHESIS"},
+    # Seychellois Creole levelled French /y/ to /i/ and /ə/ to /e/~/ɛ/ in its
+    # own vowel merger (Michaelis & Rosalie, APiCS ch. 56; Bollée 1977), so
+    # the inherited French front-rounded/schwa nasalisation rules can never
+    # fire here. They are live in fr-FR, which keeps both phonemes.
+    "crs": {"FR_NASAL_y", "FR_NASAL_ə"},
+    # Yevanic (yej) is a stub: its Hebrew-script grapheme table is intentionally
+    # left empty because no sourced letter-by-letter correspondence could be
+    # located (see the spec's notes), so it emits nothing of its own at all.
+    # It still inherits el's allophone rule *set* (parent_dialect), but with
+    # zero graphemes there is no /s/ or /ɣ/ slot for EL_S_VOICING / EL_
+    # GAMMA_FRONTING to match against. Both are live in el, which has the
+    # grapheme table this spec is deliberately missing; revisit once yej gains
+    # a sourced Hebrew-abjad grapheme table.
+    "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
