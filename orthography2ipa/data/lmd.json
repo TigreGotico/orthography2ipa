@@ -4,8 +4,70 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "c": [
+   "c",
+   "ɟ",
+   "cː"
+  ],
+  "k": [
+   "k",
+   "ɡ",
+   "kː"
+  ],
+  "kʷ": [
+   "kʷ",
+   "ɡʷ",
+   "kʷː"
+  ],
+  "l": [
+   "l",
+   "lː"
+  ],
+  "m": [
+   "m",
+   "mː"
+  ],
+  "n": [
+   "n",
+   "nː"
+  ],
+  "p": [
+   "p",
+   "b",
+   "pː"
+  ],
+  "r": [
+   "r",
+   "rː"
+  ],
+  "t": [
+   "t",
+   "d",
+   "tː"
+  ],
+  "t̪": [
+   "t̪",
+   "t̪ː"
+  ],
+  "ŋ": [
+   "ŋ",
+   "ŋː"
+  ],
+  "ŋʷ": [
+   "ŋʷ",
+   "ŋʷː"
+  ],
+  "ɲ": [
+   "ɲ",
+   "ɲː"
+  ],
+  "ɾ": [
+   "ɾ",
+   "ɾː"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "lmd",
  "glottolog_code": "lumu1239",
  "sources": [
@@ -16,6 +78,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1427",
+   "notes": "Inventory 1427 (ph), 33 non-marginal segments, 2 tones."
   }
  ],
  "urls": [
@@ -27,5 +98,45 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-narr1279"
+ "parent": "x-clade-narr1279",
+ "phonemes": [
+  "c",
+  "j",
+  "k",
+  "kʷ",
+  "l",
+  "m",
+  "n",
+  "p",
+  "r",
+  "t",
+  "t̪",
+  "w",
+  "ŋ",
+  "ŋʷ",
+  "ɲ",
+  "ɽ",
+  "ɾ",
+  "a",
+  "aː",
+  "i",
+  "iː",
+  "u",
+  "uː",
+  "ɔ",
+  "ɔː",
+  "ə",
+  "əː",
+  "ɛ",
+  "ɛː",
+  "ɪ",
+  "ɪː",
+  "ʊ",
+  "ʊː"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1427"
 }

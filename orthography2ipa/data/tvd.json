@@ -5,7 +5,7 @@
  "quality": "stub",
  "graphemes": {},
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "tvd",
  "glottolog_code": "tsuv1239",
  "sources": [
@@ -16,6 +16,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1063",
+   "notes": "Inventory 1063 (ph), 50 non-marginal segments, 2 tones."
   }
  ],
  "urls": [
@@ -27,5 +36,62 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278"
+ "parent": "x-clade-atla1278",
+ "phonemes": [
+  "b",
+  "d",
+  "dz",
+  "d̠ʒ",
+  "f",
+  "h",
+  "hʲ",
+  "hʷ",
+  "j",
+  "jˀ",
+  "k",
+  "kʲ",
+  "kʷ",
+  "l",
+  "lʲ",
+  "m",
+  "n",
+  "nʲ",
+  "p",
+  "s",
+  "t",
+  "ts",
+  "tʲ",
+  "t̠ʃ",
+  "v",
+  "w",
+  "wˀ",
+  "z",
+  "ɓ",
+  "ɗ",
+  "ɟ",
+  "ɡ",
+  "ɡʲ",
+  "ɡʷ",
+  "ʃ",
+  "ʒ",
+  "ʔ",
+  "β̞",
+  "a",
+  "ã",
+  "e",
+  "ẽ",
+  "i",
+  "ĩ",
+  "o",
+  "õ",
+  "u",
+  "ũ",
+  "ɔ",
+  "ɔ̃"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1063"
 }
