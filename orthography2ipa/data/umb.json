@@ -57,7 +57,7 @@
     "w": ["w"],
     "j": ["j"]
   },
-  "notes": "Umbundu, Guthrie R.11, Bantu language of the Ovimbundu of central-southern Angola. Five vowel qualities a/e/i/o/u each with a nasal counterpart (nasality on vowels is contextual, driven by adjacent nasal consonants, not written separately). Prenasalized stops (mb, nd, ndj, ng) are single phonemes. Two-register tone system (H/L): the standard orthography marks tone with an acute accent for high (á) on the first tone-bearing syllable of a word, and a grave accent for low (à); unmarked syllables continue the tone of the preceding syllable. Diacritics are not modelled as separate graphemes here; base-letter mappings are given.",
+  "notes": "Umbundu, Guthrie R.11, Bantu language of the Ovimbundu of central-southern Angola. Five vowel qualities a/e/i/o/u each with a nasal counterpart (nasality on vowels is contextual, driven by adjacent nasal consonants, not written separately). Prenasalized stops (mb, nd, ndj, ng) are single phonemes. Umbundu has an underlying two-level tone system (High/Low; Schadeberg 1990) whose surface realization includes downstep, so the practical orthography marks a first high with an acute accent (á), subsequent downstepped highs with further acute accents, and low tone with a grave accent (à); unmarked syllables continue the tone of the preceding syllable (Omniglot; Schadeberg 1990). Diacritics are not modelled as separate graphemes here; base-letter mappings are given.",
   "sources": [
     {
       "id": "schadeberg1990umbundu",
@@ -65,9 +65,9 @@
       "year": 1990,
       "title": "A Sketch of Umbundu",
       "publisher": "Rüdiger Köppe Verlag",
-      "url": null,
+      "url": "https://archive.org/details/rosettaproject_umb_morsyn-4",
       "pages": null,
-      "notes": "Grammatical sketch of Umbundu."
+      "notes": "Grammatical sketch of Umbundu; primary source for the augment/tone analysis (underlying High/Low tone with H-doubling, H-spreading, and final-lowering rules) and for the prenasalized-consonant and verb-stem facts."
     },
     {
       "id": "umb_wiki",
@@ -79,6 +79,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Umbundu",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "omniglot_umb",
+      "author": "Ager, Simon",
+      "year": 2025,
+      "title": "Umbundu language, alphabet and pronunciation",
+      "publisher": "Omniglot",
+      "url": "https://www.omniglot.com/writing/umbundu.htm",
+      "pages": null,
+      "notes": "Primary source for the three-tone (low/high/downstepped-high) orthographic accent system; corrects a prior two-tone claim."
     }
   ],
   "parent": "x-clade-narr1281",

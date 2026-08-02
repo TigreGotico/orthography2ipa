@@ -86,17 +86,17 @@
     "z": ["z"],
     "zʷ": ["zʷ", "ʐ"]
   },
-  "notes": "Sena (Chisena/Cisena, Nuclear Sena, Guthrie N.44), Bantu language spoken along the lower Zambezi valley in Mozambique (Sofala/Zambezia provinces) and adjoining Malawi. Five vowel qualities a/e/i/o/u. Rich affricate and aspirate inventory: plain vs aspirated stops (p/ph, t/th, k/kh) and a series of affricates (bv, ps, pf, dz, ts, tsh, ch). Implosives [ɓ, ɗ] occur as allophones of /b, d/ in some varieties. Labialized sibilants sw/zw (/sʷ, zʷ/) may surface as retroflex [ʂ, ʐ]. ⟨ng'⟩ marks the bare velar nasal /ŋ/. Prenasalized consonants occur after homorganic nasal noun-class prefixes but are not written as fixed digraphs the way Nguni/Nyanja mb/nd are, since the nasal is a separate morpheme; the language is tonal, unmarked in the standard orthography.",
+  "notes": "Sena (Chisena/Cisena, Nuclear Sena, Guthrie N.44), Bantu language spoken along the lower Zambezi valley in Mozambique (Sofala/Zambezia provinces) and adjoining Malawi. Five vowel qualities a/e/i/o/u. Rich affricate and aspirate inventory: plain vs aspirated stops (p/ph, t/th, k/kh) and a series of affricates (bv, ps, pf, dz, ts, tsh, ch). The voiced bilabial and dental stops are implosive [ɓ, ɗ] by default; plain plosive [b, d] occurs only in a handful of words (Guérois 2024). Labialized sibilants sw/zw (/sʷ, zʷ/) may surface as retroflex [ʂ, ʐ] for some speakers. ⟨ng'⟩ marks the bare velar nasal /ŋ/. Prenasalized consonants occur after homorganic nasal noun-class prefixes but are not written as fixed digraphs the way Nguni/Nyanja mb/nd are, since the nasal is a separate morpheme. Unlike most Bantu languages, Sena has no phonemic tone; it instead has a predictable stress/accent system on the penultimate syllable of the phrasal domain (Guérois 2024), which is not marked in the standard orthography.",
   "sources": [
     {
-      "id": "ngunga2000sena",
-      "author": "Ngunga, Armindo",
-      "year": 2000,
-      "title": "Phonology and Morphology of the Ciyao Verb",
-      "publisher": "CSLI Publications",
-      "url": null,
-      "pages": null,
-      "notes": "Comparative Bantu reference used for the region's phonological conventions (Sena, Yao)."
+      "id": "guerois2024senaideophones",
+      "author": "Guérois, Rozenn",
+      "year": 2024,
+      "title": "Ideophones in Sena (Bantu, Mozambique)",
+      "publisher": "Linguistic Typology at the Crossroads, 4(1): 244-288",
+      "url": "https://typologyatcrossroads.unibo.it/article/view/16685",
+      "pages": "244-288",
+      "notes": "Fieldwork-based description of Sena (Guthrie N.44) phonology, morphology and lexicon; replaces a prior citation that was actually about Ciyao, not Sena."
     },
     {
       "id": "seh_wiki",

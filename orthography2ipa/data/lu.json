@@ -100,6 +100,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Luba-Katanga_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "omniglot_lub",
+      "author": "Ager, Simon",
+      "year": 2025,
+      "title": "Luba-Katanga language and alphabet",
+      "publisher": "Omniglot",
+      "url": "https://www.omniglot.com/writing/lubakatanga.htm",
+      "pages": null,
+      "notes": "Confirms intervocalic/pre-semivowel fricative allophony of b/p ([β]/[ɸ] between vowels, w, and y)."
     }
   ],
   "parent": "x-clade-narr1281",
