@@ -1095,6 +1095,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "plugins": InheritanceMode.OWN_ONLY,
     "optional_marks": InheritanceMode.OWN_ONLY,
     "fold_diacritics": InheritanceMode.OWN_ONLY,
+    "vowel_graphemes": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1318,6 +1319,27 @@ class LanguageSpec:
 
     Empty for every orthography that writes its vowels (the default), which is
     most of them."""
+
+    vowel_graphemes: Tuple[str, ...] = ()
+    """Explicit orthographic vowel-letter declarations that OVERRIDE the
+    closed-inventory answer for Latin/Greek/harakat (see
+    :mod:`orthography2ipa.vowels`).
+
+    The Latin, Greek and Arabic-harakat letter sets are closed inventories:
+    a Latin letter absent from them (⟨w⟩, ⟨y⟩, ⟨r⟩) is a consonant letter by
+    construction, and that is deliberate — Czech syllabic ⟨r⟩ and English
+    ⟨y⟩ must not flip into vowels just because some *other* language's IPA
+    for the same letter happens to be a vowel. But some orthographies really
+    do use a closed-inventory consonant LETTER to spell a vowel — Hmong RPA
+    ⟨w⟩ = /ɨ/, Welsh ⟨w⟩ = /ʊ, w/ — and no per-script hand-list can capture
+    that without breaking the guarantee above.
+
+    ``vowel_graphemes`` is the escape hatch: each entry is a whole grapheme
+    string (matched in full, not by its first character) that this spec
+    declares a vowel letter regardless of what the closed inventory says.
+    Declaring it here is a per-language fact, exactly like ``script_type``
+    or ``optional_marks`` — it changes nothing for any other spec. Empty
+    (the default) is the previous behaviour exactly."""
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""

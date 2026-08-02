@@ -495,6 +495,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         },
         optional_marks=tuple(raw.get("optional_marks", ()) or ()),
         fold_diacritics=tuple(raw.get("fold_diacritics", ()) or ()),
+        vowel_graphemes=tuple(raw.get("vowel_graphemes", ()) or ()),
         collapse_geminates=bool(raw.get("collapse_geminates", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),

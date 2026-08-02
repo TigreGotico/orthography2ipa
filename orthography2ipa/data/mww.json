@@ -5,7 +5,8 @@
  "quality": "stub",
  "graphemes": {},
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. vowel_graphemes declares ⟨w⟩ a vowel letter ahead of time: Hmong RPA spells /ɨ/ with ⟨w⟩, a Latin letter the engine's closed vowel-letter inventory otherwise treats as a consonant (as it must for Czech syllabic ⟨r⟩ and English ⟨y⟩); this stands ready for when a cited RPA grapheme table replaces this stub.",
+ "vowel_graphemes": ["w"],
  "iso639_3": "mww",
  "glottolog_code": "hmon1333",
  "sources": [

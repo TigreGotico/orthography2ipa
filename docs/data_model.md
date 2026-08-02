@@ -176,6 +176,7 @@ class LanguageSpec:
     quality: QualityTier = QualityTier.RESEARCH        # Data maturity tier
     script_type: ScriptType = ScriptType.ALPHABET      # Writing system typology
     inherent_vowel: Optional[str] = None               # For abugidas (e.g. "ə" for Hindi)
+    vowel_graphemes: Tuple[str, ...] = ()              # Closed-inventory letters this spec declares vowels (e.g. Hmong RPA "w")
     iso639_3: Optional[str] = None                     # ISO 639-3 code
     wikidata_qid: Optional[str] = None                 # Wikidata item id: the linked-data hub
     phoible_id: Optional[str] = None                   # PHOIBLE inventory identifier
@@ -242,6 +243,32 @@ orthography2ipa.get("ar-Latn-buckwalter").orthography_kind   # TRANSLITERATION: 
 
 Full treatment, with the reason a romanization is transcribable where the native
 script is not: [orthography_kind.md](orthography_kind.md).
+
+### `vowel_graphemes`: overriding a closed-inventory consonant letter
+
+`orthography2ipa.vowels.grapheme_is_vowel` treats the Latin, Greek and
+Arabic-harakat letter sets as **closed inventories**: a Latin letter absent
+from them (⟨w⟩, ⟨y⟩, ⟨r⟩) is a consonant letter by construction, no matter
+what IPA a spec maps it to. That is deliberate — Czech syllabic ⟨r⟩ and
+English ⟨y⟩ must not become vowels just because their IPA output happens to
+be a vowel elsewhere.
+
+Some orthographies genuinely use one of those closed-inventory consonant
+letters to spell a vowel: Hmong RPA ⟨w⟩ = /ɨ/, Welsh ⟨w⟩ = /ʊ, w/.
+`vowel_graphemes` is the per-spec escape hatch — a tuple of whole grapheme
+strings (matched in full, not by first character) that this spec declares
+vowel letters, overriding the closed-inventory answer:
+
+```python
+import orthography2ipa
+
+orthography2ipa.get("mww").vowel_graphemes   # ("w",)
+```
+
+Empty (the default) is the previous, closed-inventory-only behaviour exactly.
+It is `OWN_ONLY` inherited — a dialect that shares a parent's grapheme table
+does not thereby inherit its parent's script exceptions, exactly like
+`script_type` and `optional_marks`.
 
 ### Derived classification: `family`, `family_path`, `clade`
 
