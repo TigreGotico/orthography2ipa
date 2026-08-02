@@ -36,7 +36,7 @@
     "з": ["z"],
     "и": ["i"],
     "ии": ["iː"],
-    "і": ["ɪ"],
+    "і": ["ɘ"],
     "й": ["j"],
     "к": ["k"],
     "л": ["l"],
@@ -83,7 +83,7 @@
     "z": ["z"],
     "i": ["i"],
     "iː": ["iː"],
-    "ɪ": ["ɪ"],
+    "ɘ": ["ɘ"],
     "j": ["j"],
     "k": ["k"],
     "l": ["l"],
@@ -114,7 +114,7 @@
     "ju": ["ju"],
     "ja": ["ja"]
   },
-  "notes": "Khakas (хакас тілі), a South Siberian Turkic language of the Republic of Khakassia, Russia, written in a Cyrillic alphabet reformed in 1939: the Russian letters plus ⟨ғ⟩ /ɣ/, ⟨і⟩ /ɪ/, ⟨ң⟩ /ŋ/, ⟨ӧ⟩ /ø/, ⟨ӱ⟩ /y/ and the affricate letter ⟨ӌ⟩ /dʒ/. Vowel length is phonemic and written by DOUBLING the vowel letter (аа ее ии оо ӧӧ уу ӱӱ ыы), listed as multigraph keys so maximal-munch matching prefers them over the single short-vowel letters. Vowel harmony (front/back, rounding) operates throughout. ⟨ф ц щ ъ ь⟩ occur mainly in Russian loanwords; the silent hard/soft signs carry no independent segment and are omitted from the grapheme map.",
+  "notes": "Khakas (хакас тілі), a South Siberian Turkic language of the Republic of Khakassia, Russia, written in a Cyrillic alphabet reformed in 1939: the Russian letters plus ⟨ғ⟩ /ɣ/, ⟨і⟩ /ɘ/, ⟨ң⟩ /ŋ/, ⟨ӧ⟩ /ø/, ⟨ӱ⟩ /y/ and the affricate letter ⟨ӌ⟩ /dʒ/. Vowel length is phonemic and written by DOUBLING the vowel letter (аа ее ии оо ӧӧ уу ӱӱ ыы), listed as multigraph keys so maximal-munch matching prefers them over the single short-vowel letters. Vowel harmony (front/back, rounding) operates throughout. ⟨ф ц щ ъ ь⟩ occur mainly in Russian loanwords; the silent hard/soft signs carry no independent segment and are omitted from the grapheme map.",
   "sources": [
     {
       "id": "khakas_wiki",

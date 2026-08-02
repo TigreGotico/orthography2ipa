@@ -62,6 +62,7 @@
     "ч": ["tʃ"],
     "ш": ["ʃ"],
     "щ": ["ʃtʃ"],
+    "ъ": ["ʔ"],
     "ы": ["ɯ"],
     "э": ["e"],
     "ю": ["ju"],
@@ -102,11 +103,12 @@
     "tʃ": ["tʃ"],
     "ʃ": ["ʃ"],
     "ʃtʃ": ["ʃtʃ"],
+    "ʔ": ["ʔ"],
     "ɯ": ["ɯ"],
     "ju": ["ju"],
     "ja": ["ja"]
   },
-  "notes": "Kumyk (къумукъ тил), a Kipchak Turkic language of Dagestan, Russia, written in a Cyrillic alphabet reformed in 1938: the Russian letters plus the digraphs ⟨гъ⟩ /ʁ/, ⟨гь⟩ /h/, ⟨къ⟩ /q/, ⟨нг⟩ /ŋ/ (borrowed from the Caucasian-contact convention shared with Karachay-Balkar/Nogai) and the umlaut letters ⟨оь⟩ /ø/, ⟨уь⟩ /y/. ⟨къ⟩ /q/ alternates with a voiced [ɢ] allophone in complementary distribution, listed as an allophone rather than a separate grapheme. Vowel harmony (front/back, rounding) operates throughout. ⟨ф ц щ ъ ь⟩ occur mainly in Russian loanwords; the silent hard/soft signs are omitted from the grapheme map as they carry no independent segment in native vocabulary.",
+  "notes": "Kumyk (къумукъ тил), a Kipchak Turkic language of Dagestan, Russia, written in a Cyrillic alphabet reformed in 1938: the Russian letters plus the digraphs ⟨гъ⟩ /ʁ/, ⟨гь⟩ /h/, ⟨къ⟩ /q/, ⟨нг⟩ /ŋ/ (borrowed from the Caucasian-contact convention shared with Karachay-Balkar/Nogai) and the umlaut letters ⟨оь⟩ /ø/, ⟨уь⟩ /y/. ⟨къ⟩ /q/ alternates with a voiced [ɢ] allophone in complementary distribution, listed as an allophone rather than a separate grapheme. Vowel harmony (front/back, rounding) operates throughout. ⟨ф ц щ⟩ occur mainly in Russian loanwords. ⟨ъ⟩ marks a glottal stop /ʔ/ in native words (e.g. before a stem-initial vowel) and is kept as its own grapheme; ⟨ь⟩ marks palatalisation of the preceding consonant rather than an independent segment and is omitted from the grapheme map. ⟨дж⟩ /dʒ/ is kept as its own grapheme key (not derived from ⟨д⟩ /d/ + ⟨ж⟩ /ʒ/) because it spells a single post-alveolar affricate phoneme, the same segment written with a dedicated single letter in the closely related South Siberian Turkic Cyrillic alphabets (cf. Khakas ⟨ӌ⟩, Shor ⟨ҷ⟩); Kumyk's 1938 alphabet reused the two-letter Russian digraph convention for this phoneme instead of minting a new letter.",
   "sources": [
     {
       "id": "kumyk_wiki",

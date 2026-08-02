@@ -51,7 +51,7 @@ def test_nogai_salam_hello():
 # actual Khakas alphabet letter is Cyrillic і (U+0456), used here.
 
 def test_khakas_kizi_person():
-    assert _tw("kjh", "кізі") == "kɪzɪ"
+    assert _tw("kjh", "кізі") == "kɘzɘ"
 
 
 # --- Shor (cjs) -----------------------------------------------------------
