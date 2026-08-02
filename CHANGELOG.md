@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.37.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.37.1a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.37.0a2...7.37.1a1)
+
+**Merged pull requests:**
+
+- fix: resolve dev test failures \(glottolog codes, authored family, yej dead rule\) [\#683](https://github.com/TigreGotico/orthography2ipa/pull/683) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.37.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.37.0a2) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.37.0a1...7.37.0a2)
