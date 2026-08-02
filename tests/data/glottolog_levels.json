@@ -1035,6 +1035,10 @@
     "name": "Kazakh",
     "level": "language"
   },
+  "khak1248": {
+    "name": "Khakas",
+    "level": "language"
+  },
   "khas1269": {
     "name": "Khasi",
     "level": "language"
@@ -1122,6 +1126,10 @@
   "kuki1246": {
     "name": "Kuki-Chin",
     "level": "family"
+  },
+  "kumy1244": {
+    "name": "Kumyk",
+    "level": "language"
   },
   "kxaa1236": {
     "name": "Kxa",
@@ -1223,6 +1231,10 @@
     "name": "Luba-Katanga",
     "level": "language"
   },
+  "ludi1246": {
+    "name": "Ludian",
+    "level": "language"
+  },
   "lush1249": {
     "name": "Mizo",
     "level": "language"
@@ -1294,6 +1306,10 @@
   "mara1378": {
     "name": "Marathi",
     "level": "language"
+  },
+  "mari1278": {
+    "name": "Mari",
+    "level": "family"
   },
   "mars1254": {
     "name": "Marshallese",
@@ -1457,6 +1473,10 @@
   },
   "nkoa1234": {
     "name": "N'Ko",
+    "level": "language"
+  },
+  "noga1249": {
+    "name": "Nogai",
     "level": "language"
   },
   "norm1245": {
@@ -1913,6 +1933,10 @@
   },
   "shon1251": {
     "name": "Shona",
+    "level": "language"
+  },
+  "shor1247": {
+    "name": "Mrassu Shor-Tutal",
     "level": "language"
   },
   "sich1238": {
