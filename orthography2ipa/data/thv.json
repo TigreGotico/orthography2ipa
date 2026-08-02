@@ -1,11 +1,138 @@
 {
  "code": "thv",
  "name": "Tahaggart Tamahaq",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "c"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "ɟ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "q": [
+   "q"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "w": [
+   "x"
+  ],
+  "x": [
+   "x"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "â": [
+   "aː"
+  ],
+  "ê": [
+   "eː"
+  ],
+  "î": [
+   "iː"
+  ],
+  "ô": [
+   "oː"
+  ],
+  "û": [
+   "uː"
+  ],
+  "ă": [
+   "ɐ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "š": [
+   "ʃ"
+  ],
+  "ǧ": [
+   "ʒ"
+  ],
+  "ǰ": [
+   "d͡ʒ"
+  ],
+  "ə": [
+   "ə"
+  ],
+  "ɣ": [
+   "ɣ"
+  ],
+  "ḍ": [
+   "dˤ"
+  ],
+  "ḷ": [
+   "lˤ"
+  ],
+  "ṣ": [
+   "sˤ"
+  ],
+  "ṭ": [
+   "tˤ"
+  ],
+  "ẓ": [
+   "zˤ"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (thv.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "thv",
  "glottolog_code": "taha1241",
  "sources": [
@@ -25,6 +152,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/575",
    "notes": "Inventory 575 (upsid), 37 non-marginal segments."
+  },
+  {
+   "id": "omniglot-tamahaq",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (tamahaq.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -76,5 +212,9 @@
   "ɐ",
   "ə"
  ],
- "phoible_id": "575"
+ "phoible_id": "575",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Tahaggart_Tamahaq_language"
+ ]
 }

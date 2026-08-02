@@ -1,9 +1,268 @@
 {
  "code": "siz",
  "name": "Siwi",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "ai": [
+   "ai̯"
+  ],
+  "au": [
+   "au̯"
+  ],
+  "b": [
+   "b"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "ə"
+  ],
+  "f": [
+   "f"
+  ],
+  "f̣": [
+   "fˁ"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "g°": [
+   "ɡʷ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "k°": [
+   "kʷ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "q": [
+   "q"
+  ],
+  "r": [
+   "ɾ"
+  ],
+  "rr": [
+   "rː"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "w": [
+   "w"
+  ],
+  "x": [
+   "χ"
+  ],
+  "x°": [
+   "χʷ"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "č": [
+   "t͡ʃ"
+  ],
+  "ğ": [
+   "ʁ"
+  ],
+  "ğ°": [
+   "ʁʷ"
+  ],
+  "š": [
+   "ʃ"
+  ],
+  "ḅ": [
+   "bˁ"
+  ],
+  "ḍ": [
+   "dˤ"
+  ],
+  "ḥ": [
+   "ħ"
+  ],
+  "ḷ": [
+   "ɫ"
+  ],
+  "ṃ": [
+   "mˁ"
+  ],
+  "ṛ": [
+   "rˁ"
+  ],
+  "ṣ": [
+   "sˤ"
+  ],
+  "ṭ": [
+   "tˤ"
+  ],
+  "ẓ": [
+   "zˤ"
+  ],
+  "’": [
+   "ʕ"
+  ],
+  "ⴰ": [
+   "a"
+  ],
+  "ⴰⵉ": [
+   "ai̯"
+  ],
+  "ⴰⵓ": [
+   "au̯"
+  ],
+  "ⴱ": [
+   "b"
+  ],
+  "ⴱⵯ": [
+   "bˁ"
+  ],
+  "ⴳ": [
+   "ɡ"
+  ],
+  "ⴳⵯ": [
+   "ɡʷ"
+  ],
+  "ⴶ": [
+   "d͡ʒ"
+  ],
+  "ⴷ": [
+   "d"
+  ],
+  "ⴹ": [
+   "dˤ"
+  ],
+  "ⴻ": [
+   "ə"
+  ],
+  "ⴼ": [
+   "f"
+  ],
+  "ⴼⵯ": [
+   "fˁ"
+  ],
+  "ⴽ": [
+   "k"
+  ],
+  "ⴽⵯ": [
+   "kʷ"
+  ],
+  "ⵀ": [
+   "h"
+  ],
+  "ⵃ": [
+   "ħ"
+  ],
+  "ⵄ": [
+   "ʕ"
+  ],
+  "ⵅ": [
+   "χ"
+  ],
+  "ⵅⵯ": [
+   "χʷ"
+  ],
+  "ⵇ": [
+   "q"
+  ],
+  "ⵉ": [
+   "i"
+  ],
+  "ⵍ": [
+   "l"
+  ],
+  "ⵍⵯ": [
+   "ɫ"
+  ],
+  "ⵎ": [
+   "m"
+  ],
+  "ⵎⵯ": [
+   "mˁ"
+  ],
+  "ⵏ": [
+   "n"
+  ],
+  "ⵓ": [
+   "u"
+  ],
+  "ⵔ": [
+   "ɾ"
+  ],
+  "ⵔⵔ": [
+   "rː"
+  ],
+  "ⵕ": [
+   "rˁ"
+  ],
+  "ⵖ": [
+   "ʁ"
+  ],
+  "ⵖⵯ": [
+   "ʁʷ"
+  ],
+  "ⵙ": [
+   "s"
+  ],
+  "ⵚ": [
+   "sˤ"
+  ],
+  "ⵛ": [
+   "ʃ"
+  ],
+  "ⵜ": [
+   "t"
+  ],
+  "ⵞ": [
+   "t͡ʃ"
+  ],
+  "ⵟ": [
+   "tˤ"
+  ],
+  "ⵡ": [
+   "w"
+  ],
+  "ⵢ": [
+   "j"
+  ],
+  "ⵣ": [
+   "z"
+  ],
+  "ⵥ": [
+   "zˤ"
+  ]
+ },
  "allophones": {
   "l": [
    "l",
@@ -14,7 +273,7 @@
    "x"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (siz.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "siz",
  "glottolog_code": "siwi1239",
  "sources": [
@@ -34,6 +293,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1610",
    "notes": "Inventory 1610 (ph), 38 non-marginal segments."
+  },
+  {
+   "id": "omniglot-siwi",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (siwi.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -86,5 +354,9 @@
   "ʊ",
   "ʌ"
  ],
- "phoible_id": "1610"
+ "phoible_id": "1610",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Siwi_language"
+ ]
 }

@@ -1,9 +1,118 @@
 {
  "code": "bot",
  "name": "Bongo",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "c"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "ɛ"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡb"
+  ],
+  "i": [
+   "ɪ"
+  ],
+  "j": [
+   "ɟ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kp": [
+   "kp"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "ᵐb"
+  ],
+  "n": [
+   "n"
+  ],
+  "nd": [
+   "ⁿd"
+  ],
+  "ng": [
+   "ᵑɡ"
+  ],
+  "ngb": [
+   "ᵑᵐɡb"
+  ],
+  "nj": [
+   "ᶮɟ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "ɔ"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "ʊ"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "ä": [
+   "ə"
+  ],
+  "ë": [
+   "e"
+  ],
+  "ï": [
+   "i"
+  ],
+  "ö": [
+   "ɵ"
+  ],
+  "ü": [
+   "u"
+  ],
+  "’b": [
+   "ɓ"
+  ],
+  "’d": [
+   "ɗ"
+  ],
+  "’j": [
+   "ʄ"
+  ],
+  "’ng": [
+   "ŋ"
+  ]
+ },
  "allophones": {
   "b": [
    "bʱ",
@@ -131,7 +240,7 @@
    "ɔ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (bot.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "bot",
  "glottolog_code": "bong1285",
  "sources": [
@@ -151,6 +260,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1196",
    "notes": "Inventory 1196 (ph), 29 non-marginal segments."
+  },
+  {
+   "id": "omniglot-bongo",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (bongo.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -194,5 +312,9 @@
   "ɔ",
   "ɔː"
  ],
- "phoible_id": "1196"
+ "phoible_id": "1196",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Bongo_language"
+ ]
 }

@@ -1,11 +1,171 @@
 {
  "code": "bkm",
  "name": "Kom (Cameroon)",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "'": [
+   "ʔ"
+  ],
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "bv": [
+   "b͡v"
+  ],
+  "bz": [
+   "b͡z"
+  ],
+  "c": [
+   "ʧ"
+  ],
+  "cf": [
+   "ʧ͡f"
+  ],
+  "d": [
+   "d"
+  ],
+  "dv": [
+   "d͡v"
+  ],
+  "dz": [
+   "ʣ"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "fs": [
+   "f͡s"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gh": [
+   "ɣ"
+  ],
+  "gv": [
+   "ɡ͡v"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "ʤ"
+  ],
+  "jv": [
+   "ʤ͡v"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "ᵐb"
+  ],
+  "mz": [
+   "ᵐz"
+  ],
+  "n": [
+   "n"
+  ],
+  "nc": [
+   "ᶮʧ"
+  ],
+  "nd": [
+   "ⁿd"
+  ],
+  "nf": [
+   "ⁿf"
+  ],
+  "ng": [
+   "ᵑɡ"
+  ],
+  "nj": [
+   "ᶮʤ"
+  ],
+  "nk": [
+   "ᵑk"
+  ],
+  "nl": [
+   "ⁿl"
+  ],
+  "ns": [
+   "ⁿs"
+  ],
+  "nt": [
+   "ⁿt"
+  ],
+  "nv": [
+   "ⁿv"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "oe": [
+   "œ"
+  ],
+  "s": [
+   "s"
+  ],
+  "sf": [
+   "s͡f"
+  ],
+  "t": [
+   "t"
+  ],
+  "tf": [
+   "t͡f"
+  ],
+  "ts": [
+   "ʦ"
+  ],
+  "u": [
+   "u"
+  ],
+  "v": [
+   "v"
+  ],
+  "vz": [
+   "v͡z"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zv": [
+   "z͡v"
+  ],
+  "æ": [
+   "æ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ɨ": [
+   "ɨ"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (bkm.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "bkm",
  "glottolog_code": "komc1235",
  "sources": [
@@ -25,6 +185,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/750",
    "notes": "Inventory 750 (aa), 68 non-marginal segments, 7 tones."
+  },
+  {
+   "id": "omniglot-kom",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (kom.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -116,5 +285,9 @@
   "˨": "PHOIBLE tone segment",
   "˨˧": "PHOIBLE tone segment"
  },
- "phoible_id": "750"
+ "phoible_id": "750",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Kom_language"
+ ]
 }

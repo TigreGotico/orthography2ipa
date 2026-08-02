@@ -1,9 +1,271 @@
 {
  "code": "bfj",
  "name": "Bafanji",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "ɑ"
+  ],
+  "b": [
+   "b"
+  ],
+  "ch": [
+   "t͡ʃ"
+  ],
+  "chw": [
+   "t͡ʃʷ"
+  ],
+  "chy": [
+   "t͡ʃʲ"
+  ],
+  "chẅ": [
+   "t͡ʃᶣ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "fw": [
+   "fʷ"
+  ],
+  "fy": [
+   "fʲ"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gw": [
+   "ɣʷ"
+  ],
+  "gy": [
+   "ɣʲ"
+  ],
+  "gẅ": [
+   "ɣᶣ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "k": [
+   "k"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "ky": [
+   "kʲ"
+  ],
+  "kẅ": [
+   "kᶣ"
+  ],
+  "l": [
+   "l"
+  ],
+  "lw": [
+   "lʷ"
+  ],
+  "ly": [
+   "lʲ"
+  ],
+  "lẅ": [
+   "lᶣ"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "ᵐb"
+  ],
+  "mbw": [
+   "ᵐbʷ"
+  ],
+  "mby": [
+   "ᵐbʲ"
+  ],
+  "mbẅ": [
+   "ᵐbʷ"
+  ],
+  "mw": [
+   "mʷ"
+  ],
+  "n": [
+   "n"
+  ],
+  "nch": [
+   "ⁿt͡ʃ"
+  ],
+  "nchw": [
+   "ⁿt͡ʃʷ"
+  ],
+  "nchy": [
+   "ⁿt͡ʃʲ"
+  ],
+  "nd": [
+   "ⁿl"
+  ],
+  "ndw": [
+   "ⁿlʷ"
+  ],
+  "ndẅ": [
+   "ⁿdᶣ"
+  ],
+  "nf": [
+   "ᶬf"
+  ],
+  "nly": [
+   "ⁿdʲ"
+  ],
+  "ns": [
+   "ⁿs"
+  ],
+  "nt": [
+   "ⁿt"
+  ],
+  "ntw": [
+   "ⁿtʷ"
+  ],
+  "nty": [
+   "ⁿtʲ"
+  ],
+  "ntẅ": [
+   "ⁿtᶣ"
+  ],
+  "nw": [
+   "nʷ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "nz": [
+   "ⁿd͡ʒ"
+  ],
+  "nzw": [
+   "ⁿd͡ʒʷ"
+  ],
+  "nzy": [
+   "ⁿd͡ʒʲ"
+  ],
+  "nzẅ": [
+   "ⁿd͡ʒᶣ"
+  ],
+  "nẅ": [
+   "nᶣ"
+  ],
+  "o": [
+   "ɔ"
+  ],
+  "p": [
+   "p"
+  ],
+  "pw": [
+   "pʷ"
+  ],
+  "py": [
+   "pʲ"
+  ],
+  "s": [
+   "s"
+  ],
+  "sw": [
+   "sʷ"
+  ],
+  "sy": [
+   "sʲ"
+  ],
+  "sẅ": [
+   "sᶣ"
+  ],
+  "t": [
+   "t"
+  ],
+  "tw": [
+   "tʷ"
+  ],
+  "ty": [
+   "tʲ"
+  ],
+  "tẅ": [
+   "tᶣ"
+  ],
+  "u": [
+   "u"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zw": [
+   "zʷ"
+  ],
+  "zy": [
+   "zʲ"
+  ],
+  "zẅ": [
+   "zᶣ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ŋchẅ": [
+   "ⁿt͡ʃᶣ"
+  ],
+  "ŋg": [
+   "ᵑɡ"
+  ],
+  "ŋgw": [
+   "ᵑɡʷ"
+  ],
+  "ŋgy": [
+   "ᵑɡʲ"
+  ],
+  "ŋgẅ": [
+   "ᵑɣᶣ"
+  ],
+  "ŋk": [
+   "ᵑk"
+  ],
+  "ŋkw": [
+   "ᵑkʷ"
+  ],
+  "ŋky": [
+   "ᵑkʲ"
+  ],
+  "ŋkẅ": [
+   "ᵑkᶣ"
+  ],
+  "ŋw": [
+   "ŋʷ"
+  ],
+  "ɛ": [
+   "a"
+  ],
+  "ɨ": [
+   "ɨ"
+  ],
+  "ʉ": [
+   "ɯ"
+  ],
+  "ʼ": [
+   "ʔ"
+  ],
+  "ẅ": [
+   "ɥ"
+  ]
+ },
  "allophones": {
   "w": [
    "w",
@@ -19,7 +281,7 @@
    "ɪ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (bfj.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "bfj",
  "glottolog_code": "bafa1249",
  "sources": [
@@ -39,6 +301,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1656",
    "notes": "Inventory 1656 (ph), 49 non-marginal segments, 7 marginal excluded, 3 tones."
+  },
+  {
+   "id": "omniglot-bafanji",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (bafanji.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -107,5 +378,9 @@
   "˧": "PHOIBLE tone segment",
   "˨": "PHOIBLE tone segment"
  },
- "phoible_id": "1656"
+ "phoible_id": "1656",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Bafanji_language"
+ ]
 }

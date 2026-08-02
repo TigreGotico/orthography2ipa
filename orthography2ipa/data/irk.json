@@ -1,9 +1,148 @@
 {
  "code": "irk",
  "name": "Iraqw",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "/": [
+   "ʕ"
+  ],
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "b"
+  ],
+  "ch": [
+   "c"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gw": [
+   "ɡʷ"
+  ],
+  "h": [
+   "h"
+  ],
+  "hh": [
+   "ħ"
+  ],
+  "hl": [
+   "ɬ"
+  ],
+  "i": [
+   "i"
+  ],
+  "ii": [
+   "iː"
+  ],
+  "j": [
+   "ɟ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ng": [
+   "ŋ"
+  ],
+  "ngw": [
+   "ŋʷ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "oo": [
+   "oː"
+  ],
+  "p": [
+   "p"
+  ],
+  "q": [
+   "q"
+  ],
+  "qw": [
+   "qʷʼ"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "sh": [
+   "ʃ"
+  ],
+  "sl": [
+   "ɬ"
+  ],
+  "t": [
+   "t"
+  ],
+  "tl": [
+   "t͡ɫ’"
+  ],
+  "ts": [
+   "t͡s’"
+  ],
+  "u": [
+   "u"
+  ],
+  "uu": [
+   "uː"
+  ],
+  "w": [
+   "w"
+  ],
+  "x": [
+   "x"
+  ],
+  "xw": [
+   "xʷ"
+  ],
+  "y": [
+   "j"
+  ],
+  "ë": [
+   "ə"
+  ],
+  "ʾ": [
+   "ʔ"
+  ],
+  "ʿ": [
+   "ʕ"
+  ]
+ },
  "allophones": {
   "q": [
    "q",
@@ -19,7 +158,7 @@
    "ɓ̥"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (irk.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "irk",
  "glottolog_code": "iraq1241",
  "sources": [
@@ -39,6 +178,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/129",
    "notes": "Inventory 129 (spa), 45 non-marginal segments, 3 tones."
+  },
+  {
+   "id": "omniglot-iraqw",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (iraqw.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -103,5 +251,9 @@
   "˥˩": "PHOIBLE tone segment",
   "˩": "PHOIBLE tone segment"
  },
- "phoible_id": "129"
+ "phoible_id": "129",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Iraqw_language"
+ ]
 }

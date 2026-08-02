@@ -1,9 +1,142 @@
 {
  "code": "xrb",
  "name": "Eastern Karaboro",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "c"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "ɟ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "m͡b"
+  ],
+  "mm": [
+   "mː"
+  ],
+  "mp": [
+   "m͡p"
+  ],
+  "n": [
+   "n"
+  ],
+  "nc": [
+   "n͡c"
+  ],
+  "nd": [
+   "n͡d"
+  ],
+  "ng": [
+   "ᵑɡ"
+  ],
+  "ngb": [
+   "ᵑɡ͡b"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "ty": [
+   "tʲ"
+  ],
+  "u": [
+   "u"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "ã": [
+   "ã"
+  ],
+  "õ": [
+   "õ"
+  ],
+  "ĩ": [
+   "ĩ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ũ": [
+   "ũ"
+  ],
+  "ɔ": [
+   "ɔ"
+  ],
+  "ɔ̃": [
+   "ɔ̃"
+  ],
+  "ɛ": [
+   "ɛ"
+  ],
+  "ɛ̃": [
+   "ɛ̃"
+  ],
+  "ẽ": [
+   "ẽ"
+  ]
+ },
  "allophones": {
   "j": [
    "j̃",
@@ -24,7 +157,7 @@
    "ë"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (xrb.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "xrb",
  "glottolog_code": "east2398",
  "sources": [
@@ -44,6 +177,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/906",
    "notes": "Inventory 906 (ph), 23 non-marginal segments, 3 tones."
+  },
+  {
+   "id": "omniglot-kar",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (kar.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -86,5 +228,9 @@
   "˧": "PHOIBLE tone segment",
   "˨": "PHOIBLE tone segment"
  },
- "phoible_id": "906"
+ "phoible_id": "906",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Eastern_Karaboro_language"
+ ]
 }

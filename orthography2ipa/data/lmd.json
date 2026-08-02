@@ -1,9 +1,85 @@
 {
  "code": "lmd",
  "name": "Lumun",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "c": [
+   "c"
+  ],
+  "e": [
+   "ɛ"
+  ],
+  "i": [
+   "ɪ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ng": [
+   "ŋ"
+  ],
+  "ngw": [
+   "ŋʷ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "ɔ"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "ɾ"
+  ],
+  "rr": [
+   "r"
+  ],
+  "t": [
+   "t"
+  ],
+  "th": [
+   "t̺"
+  ],
+  "u": [
+   "ʊ"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "ä": [
+   "ə"
+  ],
+  "ï": [
+   "i"
+  ],
+  "ü": [
+   "u"
+  ],
+  "’r": [
+   "ɽ"
+  ]
+ },
  "allophones": {
   "c": [
    "c",
@@ -67,7 +143,7 @@
    "ɾː"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (lmd.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "lmd",
  "glottolog_code": "lumu1239",
  "sources": [
@@ -87,6 +163,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1427",
    "notes": "Inventory 1427 (ph), 33 non-marginal segments, 2 tones."
+  },
+  {
+   "id": "omniglot-lumun",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (lumun.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -138,5 +223,9 @@
   "˦": "PHOIBLE tone segment",
   "˨": "PHOIBLE tone segment"
  },
- "phoible_id": "1427"
+ "phoible_id": "1427",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Lumun_language"
+ ]
 }

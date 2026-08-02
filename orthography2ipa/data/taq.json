@@ -1,9 +1,124 @@
 {
  "code": "taq",
  "name": "Tamasheq",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "t͡ʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "o": [
+   "o"
+  ],
+  "q": [
+   "q"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "w": [
+   "w"
+  ],
+  "x": [
+   "x"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "ă": [
+   "æ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "š": [
+   "ʃ"
+  ],
+  "ž": [
+   "ʒ"
+  ],
+  "ǝ": [
+   "ə"
+  ],
+  "ɛ": [
+   "ʕ"
+  ],
+  "ɣ": [
+   "ɣ"
+  ],
+  "ḍ": [
+   "dˤ"
+  ],
+  "ḥ": [
+   "ħ"
+  ],
+  "ḷ": [
+   "lˤ"
+  ],
+  "ṣ": [
+   "sˤ"
+  ],
+  "ṭ": [
+   "tˤ"
+  ],
+  "ẓ": [
+   "zˤ"
+  ],
+  "’": [
+   "ʔ"
+  ]
+ },
  "allophones": {
   "b": [
    "b",
@@ -38,7 +153,7 @@
    "q"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (taq.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "taq",
  "glottolog_code": "tama1365",
  "sources": [
@@ -58,6 +173,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/825",
    "notes": "Inventory 825 (aa), 43 non-marginal segments."
+  },
+  {
+   "id": "omniglot-tamasheq",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (tamasheq.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -115,5 +239,9 @@
   "əː",
   "ə̃"
  ],
- "phoible_id": "825"
+ "phoible_id": "825",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Tamasheq_language"
+ ]
 }

@@ -1,16 +1,113 @@
 {
  "code": "kuj",
  "name": "Kuria",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "β"
+  ],
+  "ch": [
+   "t͡ʃ"
+  ],
+  "e": [
+   "e"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "g": [
+   "ɣ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "ii": [
+   "iː"
+  ],
+  "k": [
+   "k"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "ᵐb"
+  ],
+  "n": [
+   "n"
+  ],
+  "nd": [
+   "n͡d"
+  ],
+  "ng'": [
+   "ŋ"
+  ],
+  "ngg": [
+   "ŋ͡ɡ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "oo": [
+   "oː"
+  ],
+  "r": [
+   "ɾ"
+  ],
+  "rr": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "uu": [
+   "uː"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "ë": [
+   "ɛ"
+  ],
+  "ëë": [
+   "ɛː"
+  ],
+  "ö": [
+   "ɔ"
+  ],
+  "öö": [
+   "ɔː"
+  ]
+ },
  "allophones": {
   "ɣ": [
    "ɣ",
    "r"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (kuj.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "kuj",
  "glottolog_code": "kuri1259",
  "sources": [
@@ -30,6 +127,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/758",
    "notes": "Inventory 758 (aa), 22 non-marginal segments."
+  },
+  {
+   "id": "omniglot-kuria",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (kuria.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -66,5 +172,9 @@
   "ɔ",
   "ɛ"
  ],
- "phoible_id": "758"
+ "phoible_id": "758",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Kuria_language"
+ ]
 }

@@ -1,9 +1,148 @@
 {
  "code": "lch",
  "name": "Luchazi",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "ai": [
+   "aɪ"
+  ],
+  "au": [
+   "aʊ"
+  ],
+  "b": [
+   "b"
+  ],
+  "ch": [
+   "t͡ʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "ɛ"
+  ],
+  "ei": [
+   "eɪ"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "ɪ"
+  ],
+  "ia": [
+   "i̯a"
+  ],
+  "ie": [
+   "i̯e"
+  ],
+  "io": [
+   "i̯o"
+  ],
+  "iu": [
+   "i̯u"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "ᵐb"
+  ],
+  "mp": [
+   "ᵐpʰ"
+  ],
+  "n": [
+   "n"
+  ],
+  "nc": [
+   "ᶮt͡ʃʰ"
+  ],
+  "nd": [
+   "ⁿd"
+  ],
+  "ng": [
+   "ᵑɡ"
+  ],
+  "nj": [
+   "ᶮd͡ʒ"
+  ],
+  "nk": [
+   "ᵑkʰ"
+  ],
+  "nt": [
+   "ⁿtʰ"
+  ],
+  "nts": [
+   "ⁿt͡ʃʰ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "ɔ"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "ɹ"
+  ],
+  "s": [
+   "s"
+  ],
+  "sh": [
+   "ʃ"
+  ],
+  "t": [
+   "t"
+  ],
+  "ts": [
+   "t͡s"
+  ],
+  "u": [
+   "ʊ"
+  ],
+  "ua": [
+   "u̯a"
+  ],
+  "ue": [
+   "u̯e"
+  ],
+  "ui": [
+   "u̯i"
+  ],
+  "uo": [
+   "u̯o"
+  ],
+  "v": [
+   "β"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ]
+ },
  "allophones": {
   "e": [
    "e",
@@ -14,7 +153,7 @@
    "ɔ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (lch.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "lch",
  "glottolog_code": "luch1239",
  "sources": [
@@ -34,6 +173,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/928",
    "notes": "Inventory 928 (ph), 37 non-marginal segments, 5 marginal excluded."
+  },
+  {
+   "id": "omniglot-luchazi",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (luchazi.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -85,5 +233,9 @@
   "ʊ",
   "ʊː"
  ],
- "phoible_id": "928"
+ "phoible_id": "928",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Luchazi_language"
+ ]
 }

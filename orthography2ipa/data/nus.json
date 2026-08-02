@@ -1,9 +1,124 @@
 {
  "code": "nus",
  "name": "Nuer",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "a̱": [
+   "a̤"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "c"
+  ],
+  "d": [
+   "d"
+  ],
+  "dh": [
+   "d̪"
+  ],
+  "e": [
+   "e"
+  ],
+  "e̱": [
+   "e̤"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "i̱": [
+   "i̤"
+  ],
+  "j": [
+   "ɟ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "nh": [
+   "n̪"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "o̱": [
+   "o̤"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "t": [
+   "t"
+  ],
+  "th": [
+   "t̪"
+  ],
+  "u": [
+   "ṳ"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "ä": [
+   "aˈ"
+  ],
+  "ë": [
+   "eˈ"
+  ],
+  "ö": [
+   "oˈ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ɔ": [
+   "ɔ"
+  ],
+  "ɔ̱": [
+   "ɔ̤"
+  ],
+  "ɛ": [
+   "ɛ"
+  ],
+  "ɛ̈": [
+   "ɛˈ"
+  ],
+  "ɛ̱": [
+   "ɛ̤"
+  ],
+  "ɣ": [
+   "ɣ"
+  ]
+ },
  "allophones": {
   "p": [
    "p",
@@ -11,7 +126,7 @@
    "f"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (nus.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "nus",
  "glottolog_code": "nuer1246",
  "sources": [
@@ -31,6 +146,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/968",
    "notes": "Inventory 968 (ph), 48 non-marginal segments."
+  },
+  {
+   "id": "omniglot-nuer",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (nuer.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -93,5 +217,9 @@
   "ʊ̤",
   "ʊ̤ː"
  ],
- "phoible_id": "968"
+ "phoible_id": "968",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Nuer_language"
+ ]
 }

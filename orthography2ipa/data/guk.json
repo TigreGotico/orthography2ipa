@@ -1,9 +1,160 @@
 {
  "code": "guk",
  "name": "Gumuz",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "-": [
+   "ʔ"
+  ],
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "b"
+  ],
+  "b'": [
+   "ɓ"
+  ],
+  "bw": [
+   "bʷ"
+  ],
+  "c": [
+   "c"
+  ],
+  "c'": [
+   "c’"
+  ],
+  "d": [
+   "d"
+  ],
+  "d'": [
+   "ɗ"
+  ],
+  "e": [
+   "e"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gw": [
+   "ɡʷ"
+  ],
+  "h": [
+   "h"
+  ],
+  "hw": [
+   "χʷ"
+  ],
+  "i": [
+   "i"
+  ],
+  "ii": [
+   "iː"
+  ],
+  "j": [
+   "ɟ"
+  ],
+  "k": [
+   "k"
+  ],
+  "k'": [
+   "k’"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "kw'": [
+   "kʼʷ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "o": [
+   "o"
+  ],
+  "oo": [
+   "oː"
+  ],
+  "p": [
+   "p"
+  ],
+  "p'": [
+   "p’"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "s'": [
+   "ts’"
+  ],
+  "sh": [
+   "ʃ"
+  ],
+  "t": [
+   "t"
+  ],
+  "t'": [
+   "t’"
+  ],
+  "ts": [
+   "ts"
+  ],
+  "u": [
+   "u"
+  ],
+  "uu": [
+   "uː"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zh": [
+   "ʒ"
+  ],
+  "ç": [
+   "tʃ"
+  ],
+  "ç'": [
+   "tʃʼ"
+  ],
+  "ñ": [
+   "ɲ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ŋw": [
+   "ŋʷ"
+  ]
+ },
  "allophones": {
   "b": [
    "b",
@@ -46,7 +197,7 @@
    "ɵ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (guk.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "guk",
  "glottolog_code": "gumu1244",
  "sources": [
@@ -66,6 +217,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1475",
    "notes": "Inventory 1475 (ph), 43 non-marginal segments, 1 marginal excluded."
+  },
+  {
+   "id": "omniglot-gumuz",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (gumuz.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -123,5 +283,9 @@
   "u",
   "uː"
  ],
- "phoible_id": "1475"
+ "phoible_id": "1475",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Gumuz_language"
+ ]
 }
