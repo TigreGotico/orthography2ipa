@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.40.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.40.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.39.0a1...7.40.0a1)
+
+**Merged pull requests:**
+
+- feat: PHOIBLE 2.0 phoneme inventories for 1,547 stub specs [\#687](https://github.com/TigreGotico/orthography2ipa/pull/687) ([JarbasAl](https://github.com/JarbasAl))
+- data: add Anatolian/Palaeo-European ancient language specs [\#666](https://github.com/TigreGotico/orthography2ipa/pull/666) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.39.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.39.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.38.0a1...7.39.0a1)
+
+**Merged pull requests:**
+
+- feat: cover every living ISO 639-3 language with Glottolog-backed stub specs [\#686](https://github.com/TigreGotico/orthography2ipa/pull/686) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.38.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.38.0a1) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.37.1a1...7.38.0a1)
@@ -46,19 +63,19 @@
 
 ## [7.35.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.1a1) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.1a1)
 
 **Merged pull requests:**
 
 - fix: register the Gulf-of-Guinea glottolog codes missing from the snapshot [\#675](https://github.com/TigreGotico/orthography2ipa/pull/675) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.0a1)
-
 ## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.0a2)
+
+## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a1)
 
 **Merged pull requests:**
 
