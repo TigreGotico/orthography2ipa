@@ -32,7 +32,7 @@
     "o": ["o"]
   },
   "notes": "Skeleton. Meroitic is its own script, not scored with a Latin placeholder: it is a genuine alphasyllabary (23 signs each in Meroitic Cursive and Meroitic Hieroglyphic variants) deciphered by Griffith (1909-1911) using bilingual Egyptian/Meroitic royal names. Graphemes are given in the standard scholarly transliteration (Hintze, refining Griffith): fifteen consonant signs p b m d t s n r l k q ḫ ẖ w y each carry an inherent vowel /a/ (hence `inherent_vowel`: 'a' and each consonant sign's IPA is written with the vowel already attached, e.g. p -> [pa]), a separate small set of signs ne se te to override the inherent vowel with /e/ or /o/, and four plain vowel signs a e i o supplement or replace the inherent vowel in other positions. Genetic classification is unresolved (Rilly 2004-2016 argues Northern Eastern Sudanic within Nilo-Saharan; Rowan 2006-2015 and Lipiński argue Afroasiatic); Wikipedia categorizes the language as Unclassified, so no `parent` is asserted here and `family` records the unresolved status instead of picking a side.",
-  "family": "Unclassified (Meroitic; disputed Nilo-Saharan or Afroasiatic affiliation)",
+  "family": "Unclassifiable",
   "iso639_3": "xmr",
   "glottolog_code": "mero1237",
   "sources": [
