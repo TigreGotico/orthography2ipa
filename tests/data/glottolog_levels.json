@@ -879,6 +879,10 @@
   "level": "language",
   "name": "Ana Tinga Dogon"
  },
+ "anat1257": {
+  "level": "family",
+  "name": "Anatolian"
+ },
  "anca1236": {
   "level": "language",
   "name": "Áncá"
@@ -4335,6 +4339,10 @@
   "level": "language",
   "name": "Capiznon"
  },
+ "capp1239": {
+  "level": "language",
+  "name": "Cappadocian Greek"
+ },
  "caqu1242": {
   "level": "language",
   "name": "Caquinte"
@@ -5291,6 +5299,10 @@
   "level": "language",
   "name": "Copala Triqui"
  },
+ "copp1244": {
+  "level": "dialect",
+  "name": "Inuinnaqtun"
+ },
  "copt1239": {
   "level": "language",
   "name": "Coptic"
@@ -5390,6 +5402,10 @@
  "culi1244": {
   "level": "language",
   "name": "Culina"
+ },
+ "cune1239": {
+  "level": "language",
+  "name": "Cuneiform Luwian"
  },
  "cung1238": {
   "level": "language",
@@ -6222,6 +6238,10 @@
  "dori1246": {
   "level": "language",
   "name": "Dori'o"
+ },
+ "dori1248": {
+  "level": "dialect",
+  "name": "Doric"
  },
  "doro1266": {
   "level": "language",
@@ -7126,6 +7146,14 @@
  "eten1239": {
   "level": "language",
   "name": "Eten"
+ },
+ "eteo1236": {
+  "level": "language",
+  "name": "Eteocretan"
+ },
+ "eteo1240": {
+  "level": "language",
+  "name": "Eteocypriot"
  },
  "ethi1238": {
   "level": "language",
@@ -8926,6 +8954,10 @@
  "hiri1237": {
   "level": "language",
   "name": "Hiri Motu"
+ },
+ "hitt1242": {
+  "level": "language",
+  "name": "Hittite"
  },
  "hitu1239": {
   "level": "language",
@@ -14519,6 +14551,10 @@
   "level": "language",
   "name": "Dokshi"
  },
+ "lusi1235": {
+  "level": "language",
+  "name": "Lusitanian"
+ },
  "lusi1240": {
   "level": "language",
   "name": "Lusi"
@@ -16227,6 +16263,10 @@
   "level": "language",
   "name": "Merlav"
  },
+ "mero1237": {
+  "level": "language",
+  "name": "Meroitic"
+ },
  "merr1239": {
   "level": "language",
   "name": "Mer"
@@ -17370,6 +17410,10 @@
  "mwim1241": {
   "level": "language",
   "name": "Mwimbi-Muthambi"
+ },
+ "myce1242": {
+  "level": "dialect",
+  "name": "Mycenaean Greek"
  },
  "myen1241": {
   "level": "language",
@@ -19623,6 +19667,10 @@
   "level": "language",
   "name": "Oirata"
  },
+ "ojib1241": {
+  "level": "family",
+  "name": "Ojibwa"
+ },
  "ojit1237": {
   "level": "language",
   "name": "Ojitlán Chinantec"
@@ -21330,6 +21378,10 @@
  "rade1240": {
   "level": "language",
   "name": "Rade"
+ },
+ "raet1238": {
+  "level": "language",
+  "name": "Raetic"
  },
  "raha1237": {
   "level": "language",
@@ -23139,6 +23191,10 @@
   "level": "language",
   "name": "Sibu Melanau"
  },
+ "sica1234": {
+  "level": "language",
+  "name": "Sicana"
+ },
  "sich1238": {
   "level": "language",
   "name": "Sichuan Yi"
@@ -23150,6 +23206,10 @@
  "sici1249": {
   "level": "language",
   "name": "Sìcìté Sénoufo"
+ },
+ "sicu1234": {
+  "level": "language",
+  "name": "Sicula"
  },
  "siee1239": {
   "level": "language",
@@ -26055,6 +26115,10 @@
   "level": "language",
   "name": "Tsaangi"
  },
+ "tsak1248": {
+  "level": "language",
+  "name": "Tsakonian"
+ },
  "tsak1249": {
   "level": "language",
   "name": "Tsakhur"
@@ -27014,6 +27078,10 @@
  "vene1237": {
   "level": "language",
   "name": "Venezuelan Sign Language"
+ },
+ "vene1257": {
+  "level": "language",
+  "name": "Venetic"
  },
  "vene1258": {
   "level": "language",
@@ -28658,6 +28726,10 @@
  "yetf1238": {
   "level": "language",
   "name": "Yetfa"
+ },
+ "yeva1238": {
+  "level": "language",
+  "name": "Yevanic"
  },
  "yeyi1239": {
   "level": "language",

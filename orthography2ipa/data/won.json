@@ -4,8 +4,37 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "a": [
+   "a",
+   "ã"
+  ],
+  "e": [
+   "e",
+   "ẽ"
+  ],
+  "i": [
+   "i",
+   "ĩ"
+  ],
+  "o": [
+   "o",
+   "õ"
+  ],
+  "u": [
+   "u",
+   "ũ"
+  ],
+  "ɔ": [
+   "ɔ",
+   "ɔ̃"
+  ],
+  "ɛ": [
+   "ɛ",
+   "ɛ̃"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "won",
  "glottolog_code": "wong1247",
  "sources": [
@@ -16,6 +45,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1340",
+   "notes": "Inventory 1340 (ph), 22 non-marginal segments, 2 tones."
   }
  ],
  "urls": [
@@ -27,5 +65,34 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278"
+ "parent": "x-clade-atla1278",
+ "phonemes": [
+  "b",
+  "d",
+  "dz",
+  "j",
+  "k",
+  "m",
+  "n",
+  "p",
+  "s",
+  "t",
+  "ts",
+  "w",
+  "ŋ",
+  "ɰ",
+  "ɲ",
+  "a",
+  "e",
+  "i",
+  "o",
+  "u",
+  "ɔ",
+  "ɛ"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1340"
 }
