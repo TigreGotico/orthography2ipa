@@ -95,3 +95,5 @@ read, and a complete phonology regardless.
 ---
 
 **Navigation:** [Docs home](index.md) · [Data model](data_model.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)
+
+*Related: [Data model](data_model.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)*

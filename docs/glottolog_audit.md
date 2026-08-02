@@ -80,3 +80,5 @@ its `parent` at the right clade node: see [adding_a_language.md](adding_a_langua
 ---
 
 **Navigation:** [Docs home](index.md) · [Ancestry](ancestry.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)
+
+*Related: [Ancestry](ancestry.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)*

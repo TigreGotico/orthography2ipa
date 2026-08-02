@@ -73,9 +73,9 @@ es.graphemes["ll"]      # ['ʝ']: modern yeísmo merger of ⟨ll⟩ with ⟨y⟩
 pt_br.graphemes["lh"]   # ['ʎ']
 ```
 
-Digraphs and trigraphs are first-class keys, matched by maximal munch
-(longest orthographic unit first): see [tokenizer.md](tokenizer.md) for
-how that's implemented.
+Digraphs and trigraphs are direct keys in the grapheme map, matched by
+maximal munch (longest orthographic unit first). See
+[tokenizer.md](tokenizer.md) for how that works.
 
 ### Allophone inventories
 
