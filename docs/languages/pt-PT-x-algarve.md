@@ -1,4 +1,4 @@
-# Algarvio Portuguese (pt-PT-x-algarve) — Phonology Reference
+# Algarvio Portuguese (pt-PT-x-algarve): Phonology Reference
 
 **Code**: `pt-PT-x-algarve` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Parent**: `pt-PT`
@@ -7,23 +7,23 @@
 Mateus & d'Andrade (2000), Cunha & Cintra (1984), Boléo (1974)
 
 Algarvio is the southernmost continental European Portuguese dialect (Faro,
-Portimão, Lagos, Sagres). It inherits the full pt-PT base — graphemes,
+Portimão, Lagos, Sagres). It inherits the full pt-PT base, graphemes,
 positional rules and the post-lexical `allophone_rules` (dark coda /l/,
-coda-sibilant chiado) — and declares only its own deltas. See
+coda-sibilant chiado), and declares only its own deltas. See
 [../allophony.md](../allophony.md) for the two-maps model.
 
 ## The defining feature: stressed /u/ → [y]
 
 The most salient and diagnostic Algarvio feature is the fronting of the
 **stressed** labio-velar /u/ to the front rounded vowel **[y]** (as in French
-*tu*, German *über*) — the isogloss by which Cintra (1971) delimits the
+*tu*, German *über*), the isogloss by which Cintra (1971) delimits the
 *Barlavento* Algarvio:
 
-> "a palatalização, em maior ou menor grau, da vogal tónica u" — Cintra (1971)
+> "a palatalização, em maior ou menor grau, da vogal tónica u", Cintra (1971)
 
-Brissos (2014) gives the acoustic forms [tˈyd] *tudo*, [lˈymɨ] *lume*; Segura da
+Brissos (2014) gives the acoustic forms [tˈyd] *tudo*, [lˈymɨ] *lume*. Segura da
 Cruz (1989) devotes a whole study to it ("La palatalisation de [u] dans le
-«Barlavento Algarvio»"). It is **stressed-only** — Lüdtke (1957) and Maia
+«Barlavento Algarvio»"). It is **stressed-only**, Lüdtke (1957) and Maia
 (1975–78, via Cintra 1971 and Brissos 2014) note it does not reach an
 unstressed /u/.
 
@@ -82,17 +82,17 @@ and still fronts.
 
 The Algarve carries the **strongest** form of the Southern `/ʒ/`-for-`/z/`
 external sandhi: a word-final /s/ before a following vowel-initial word surfaces
-`[ʒ]`, not the standard `[z]` — the "Tajaver" pronunciation of *estás a ver*
+`[ʒ]`, not the standard `[z]`, the "Tajaver" pronunciation of *estás a ver*
 → [eˈʃtaʒ ˈɐ ˈvɛɾ], *muitos amigos* → […ʒ ɐˈmiɡuʒ]. Because the Algarve value is
 **categorical** across every word-final position, it is produced by the
 positional `word_final` → [ʒ] map (so it also surfaces before a consonant or
 pause: `estás` → [eˈʃtaʒ]), and no separate prevocalic sandhi rule is needed.
-This feature is shared — more weakly, and prevocalic-only — by São Miguel
-([pt-PT-x-acores](pt-PT-x-acores.md)); it is **variable in Coimbra** and
+This feature is shared, more weakly, and prevocalic-only, by São Miguel
+([pt-PT-x-acores](pt-PT-x-acores.md)). It is **variable in Coimbra** and
 **absent in Lisbon and the North** (which keep [z]). Source: *Portuguese With
 Leo*, "The 8 accents" (native-speaker; [video](https://www.youtube.com/watch?v=pitj0XxYO7I)).
 A page-pinned academic source for the prevocalic-[ʒ] sandhi specifically was not
-located; the [ʒ] voicing of the final sibilant sits within the documented
+located. The [ʒ] voicing of the final sibilant sits within the documented
 southern sibilant behaviour (Cintra 1971; Brissos 2014; Segura da Cruz 1989 for
 the Barlavento).
 
@@ -100,27 +100,27 @@ the Barlavento).
 
 Honest limits, each a documented decision:
 
-- **The wider central-southern chain shift** — Brissos (2014) documents a
+- **The wider central-southern chain shift**: Brissos (2014) documents a
   stressed [a] → [ɛ] fronting in high-vowel/palatal contexts and an [ɔ] → [o̝]
-  raising. These are context-conditioned and only variably categorical;
+  raising. These are context-conditioned and only variably categorical.
   modelling them alongside `ALG_U_FRONTING` risks a cascade collapse of the
   vowel space, so only the categorical /u/ → [y] is realised and the rest is
   documented here.
-- **Apico-alveolar sibilant [s̺]** (older/rural speakers) — an *articulatory*
-  distinction with no phonemic contrast in this variety; Cintra (1971) flags
+- **Apico-alveolar sibilant [s̺]** (older/rural speakers), an *articulatory*
+  distinction with no phonemic contrast in this variety. Cintra (1971) flags
   this class of feature as not phoneme-level simulable, so it is not encoded.
 - **No betacism**: /v/ and /b/ stay distinct (unlike the northern dialects).
 
 ## Note on the ep_dialects gold
 
 The bundled `ep_dialects` expert set is a light, near-standard read that never
-uses [y]; it therefore does not reward the fronting rule. Its PER moves
+uses [y]. It therefore does not reward the fronting rule. Its PER moves
 0.3134 → 0.3152 (+0.0018, within the 0.005 CI epsilon) from a **single**
 sentence ("O Algarve é turístico") where the harness feeds the whole sentence
 to the word-level `transcribe_word` and the space-separated syllabifier
 mis-assigns stress to the /u/ of *turístico*. Transcribed per word the feature
 is correct (`turístico` → [tuˈɾiʃtiku], no fronting). Kept and documented per
-the honesty gate — the divergence is a limit of the sentence-level gold path,
+the honesty gate, the divergence is a limit of the sentence-level gold path,
 not of the cited rule.
 
 ## Sources

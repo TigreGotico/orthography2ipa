@@ -648,7 +648,7 @@ class ScriptType(str, Enum):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# LinguisticSource — bibliographic reference for phonological decisions
+# WeightedDistance — result of a weighted inter-language distance calculation
 # ═══════════════════════════════════════════════════════════════════════════
 
 @dataclass(frozen=True)
@@ -1211,7 +1211,7 @@ class LanguageSpec:
     substrates, superstrates, contact languages, creole origins.
     If empty but parent is set, a default PARENT ancestor is inferred."""
 
-    positional_graphemes: PositionalGrapheme2IPA = None  # type: ignore[assignment]
+    positional_graphemes: Optional[PositionalGrapheme2IPA] = None
     """Optional positional grapheme→IPA overrides.
 
     Maps grapheme keys to dicts of ``{GraphemePosition: [IPA candidates]}``.
