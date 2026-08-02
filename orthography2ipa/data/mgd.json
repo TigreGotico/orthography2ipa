@@ -1,9 +1,196 @@
 {
  "code": "mgd",
  "name": "Moru",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "bw": [
+   "bʷ"
+  ],
+  "c": [
+   "t͡s"
+  ],
+  "cw": [
+   "tsʷ"
+  ],
+  "d": [
+   "d"
+  ],
+  "dr": [
+   "ɖ"
+  ],
+  "drw": [
+   "drʷ"
+  ],
+  "e": [
+   "ɛ"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "gw": [
+   "ɡʷ"
+  ],
+  "gy": [
+   "ɡʲ"
+  ],
+  "h": [
+   "h"
+  ],
+  "hw": [
+   "hʷ"
+  ],
+  "i": [
+   "ɪ"
+  ],
+  "j": [
+   "d͡z"
+  ],
+  "k": [
+   "k"
+  ],
+  "kp": [
+   "k͡p"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "ky": [
+   "kʲ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "ᵐb"
+  ],
+  "mv": [
+   "ᶬv"
+  ],
+  "n": [
+   "n"
+  ],
+  "nd": [
+   "ⁿd"
+  ],
+  "ndr": [
+   "ᶯɖ"
+  ],
+  "ndrw": [
+   "ⁿdrʷ"
+  ],
+  "nj": [
+   "ⁿd͡z"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "ɔ"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "rw": [
+   "rʷ"
+  ],
+  "s": [
+   "s"
+  ],
+  "sw": [
+   "sʷ"
+  ],
+  "t": [
+   "t"
+  ],
+  "tr": [
+   "ʈ"
+  ],
+  "trw": [
+   "trʷ"
+  ],
+  "tw": [
+   "tʷ"
+  ],
+  "u": [
+   "ʊ"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zw": [
+   "zʷ"
+  ],
+  "ä": [
+   "ə"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ŋb": [
+   "ᵑᵐɡ͡b"
+  ],
+  "ŋg": [
+   "ᵑɡ"
+  ],
+  "ŋgw": [
+   "ᵑɡʷ"
+  ],
+  "ŋgy": [
+   "ᵑɡʲ"
+  ],
+  "ŋw": [
+   "ŋʷ"
+  ],
+  "ṛ": [
+   "ɭ"
+  ],
+  "’b": [
+   "ɓ"
+  ],
+  "’bw": [
+   "ɓʷ"
+  ],
+  "’d": [
+   "ɗ"
+  ],
+  "’dw": [
+   "ɗʷ"
+  ],
+  "’w": [
+   "ˀw"
+  ],
+  "’y": [
+   "ˀj"
+  ]
+ },
  "allophones": {
   "b": [
    "b",
@@ -43,7 +230,7 @@
    "ɡʲ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (mgd.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "mgd",
  "glottolog_code": "moru1253",
  "sources": [
@@ -63,6 +250,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1293",
    "notes": "Inventory 1293 (ph), 35 non-marginal segments, 3 tones."
+  },
+  {
+   "id": "omniglot-moru",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (moru.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -117,5 +313,9 @@
   "˧": "PHOIBLE tone segment",
   "˨": "PHOIBLE tone segment"
  },
- "phoible_id": "1293"
+ "phoible_id": "1293",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Moru_language"
+ ]
 }

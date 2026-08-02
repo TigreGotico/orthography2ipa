@@ -1,11 +1,168 @@
 {
  "code": "bqx",
  "name": "Baangi",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "ai": [
+   "ai̯"
+  ],
+  "au": [
+   "au̯"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "tʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "ei": [
+   "ae̯"
+  ],
+  "eu": [
+   "eu̯"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "dʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kp": [
+   "k͡p"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "oi": [
+   "oi̯"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "sh": [
+   "ʃ"
+  ],
+  "t": [
+   "t"
+  ],
+  "ts": [
+   "ʦ"
+  ],
+  "u": [
+   "u"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zh": [
+   "ʒ"
+  ],
+  "ã": [
+   "ã"
+  ],
+  "ãĩ": [
+   "a͠i"
+  ],
+  "õ": [
+   "õ"
+  ],
+  "õĩ": [
+   "o͠i"
+  ],
+  "ĩ": [
+   "ĩ"
+  ],
+  "ũ": [
+   "ũ"
+  ],
+  "ɓ": [
+   "ɓ"
+  ],
+  "ɔ": [
+   "ɔ"
+  ],
+  "ɔi": [
+   "ɔi̯"
+  ],
+  "ɔu": [
+   "ɔu̯"
+  ],
+  "ɔ̃": [
+   "ɔ̃"
+  ],
+  "ɔ̃ĩ": [
+   "ɔ͠i"
+  ],
+  "ɗ": [
+   "ɗ"
+  ],
+  "ẽ": [
+   "ẽ"
+  ],
+  "’": [
+   "ʔ"
+  ],
+  "’w": [
+   "ʔʷ"
+  ],
+  "’y": [
+   "ʔʲ"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (bqx.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "bqx",
  "glottolog_code": "baan1242",
  "sources": [
@@ -25,6 +182,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/741",
    "notes": "Inventory 741 (aa), 55 non-marginal segments, 1 tones."
+  },
+  {
+   "id": "omniglot-kambari",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (kambari.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -97,5 +263,9 @@
  "tone_inventory": {
   "˦": "PHOIBLE tone segment"
  },
- "phoible_id": "741"
+ "phoible_id": "741",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Baangi_language"
+ ]
 }

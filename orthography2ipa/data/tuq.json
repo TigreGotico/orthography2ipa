@@ -1,9 +1,121 @@
 {
  "code": "tuq",
  "name": "Tedaga",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "tʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "g̣": [
+   "ɣ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "dʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zz": [
+   "z"
+  ],
+  "ç": [
+   "ç"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "š": [
+   "ʃ"
+  ],
+  "ɔ": [
+   "ɔ"
+  ],
+  "ə": [
+   "ə"
+  ],
+  "ɛ": [
+   "ɛ"
+  ],
+  "ḍ": [
+   "d"
+  ],
+  "ḷ": [
+   "l"
+  ],
+  "ẹ": [
+   "ɪ"
+  ],
+  "ọ": [
+   "ʊ"
+  ]
+ },
  "allophones": {
   "d": [
    "d",
@@ -18,7 +130,7 @@
    "zˤ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from Hartell 1993, Alphabets of Africa (UNESCO/SIL), extracted via the AfriSpeech/africa-g2p compilation (tuq.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "tuq",
  "glottolog_code": "teda1241",
  "sources": [
@@ -38,6 +150,14 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/828",
    "notes": "Inventory 828 (aa), 35 non-marginal segments."
+  },
+  {
+   "id": "hartell1993-p130",
+   "author": "Hartell, Rhonda L. (ed.)",
+   "year": 1993,
+   "title": "Alphabets of Africa, p. 130",
+   "publisher": "UNESCO/SIL, Dakar",
+   "url": null
   }
  ],
  "urls": [
@@ -87,5 +207,9 @@
   "ʉ",
   "ʊ"
  ],
- "phoible_id": "828"
+ "phoible_id": "828",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Tedaga_language"
+ ]
 }

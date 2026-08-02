@@ -1,11 +1,114 @@
 {
  "code": "myx",
  "name": "Masaaba",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "b"
+  ],
+  "bw": [
+   "bʷ"
+  ],
+  "by": [
+   "bʲ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "f": [
+   "f"
+  ],
+  "fw": [
+   "fʷ"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "i": [
+   "i"
+  ],
+  "ii": [
+   "iː"
+  ],
+  "k": [
+   "k"
+  ],
+  "kh": [
+   "kʰ"
+  ],
+  "l": [
+   "l"
+  ],
+  "lw": [
+   "lʷ"
+  ],
+  "m": [
+   "m"
+  ],
+  "mw": [
+   "mʷ"
+  ],
+  "n": [
+   "n"
+  ],
+  "ng": [
+   "ŋ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "oo": [
+   "oː"
+  ],
+  "p": [
+   "p"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "ts": [
+   "ts"
+  ],
+  "tw": [
+   "tʷ"
+  ],
+  "u": [
+   "u"
+  ],
+  "uu": [
+   "uː"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (myx.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "myx",
  "glottolog_code": "masa1299",
  "sources": [
@@ -25,6 +128,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1367",
    "notes": "Inventory 1367 (ph), 63 non-marginal segments."
+  },
+  {
+   "id": "omniglot-masaaba",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (masaaba.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -102,5 +214,9 @@
   "uː",
   "ɛ̃"
  ],
- "phoible_id": "1367"
+ "phoible_id": "1367",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Masaaba_language"
+ ]
 }

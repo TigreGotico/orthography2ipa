@@ -1,9 +1,142 @@
 {
  "code": "pbi",
  "name": "Parkwa",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "ts"
+  ],
+  "d": [
+   "d"
+  ],
+  "dz": [
+   "dz"
+  ],
+  "e": [
+   "a"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gw": [
+   "ɡʷ"
+  ],
+  "h": [
+   "h"
+  ],
+  "hw": [
+   "hʷ"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "dz"
+  ],
+  "k": [
+   "k"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "mb"
+  ],
+  "n": [
+   "n"
+  ],
+  "nd": [
+   "nd"
+  ],
+  "ndz": [
+   "ndz"
+  ],
+  "nj": [
+   "ndz"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "sh": [
+   "s"
+  ],
+  "sl": [
+   "ɬ"
+  ],
+  "t": [
+   "t"
+  ],
+  "ts": [
+   "ts"
+  ],
+  "u": [
+   "u"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zh": [
+   "z"
+  ],
+  "zl": [
+   "ɮ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ŋg": [
+   "ŋ"
+  ],
+  "ŋgw": [
+   "ŋʷ"
+  ],
+  "ŋw": [
+   "ŋʷ"
+  ],
+  "ɓ": [
+   "ɓ"
+  ],
+  "ɗ": [
+   "ɗ"
+  ],
+  "ə": [
+   "ə"
+  ],
+  "ɨ": [
+   "ə"
+  ]
+ },
  "allophones": {
   "dz": [
    "dz",
@@ -42,7 +175,7 @@
    "ɨ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from Hartell 1993, Alphabets of Africa (UNESCO/SIL), extracted via the AfriSpeech/africa-g2p compilation (pbi.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "pbi",
  "glottolog_code": "park1239",
  "sources": [
@@ -62,6 +195,14 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/808",
    "notes": "Inventory 808 (aa), 35 non-marginal segments."
+  },
+  {
+   "id": "hartell1993-p109",
+   "author": "Hartell, Rhonda L. (ed.)",
+   "year": 1993,
+   "title": "Alphabets of Africa, p. 109",
+   "publisher": "UNESCO/SIL, Dakar",
+   "url": null
   }
  ],
  "urls": [
@@ -111,5 +252,9 @@
   "u",
   "ə"
  ],
- "phoible_id": "808"
+ "phoible_id": "808",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Parkwa_language"
+ ]
 }

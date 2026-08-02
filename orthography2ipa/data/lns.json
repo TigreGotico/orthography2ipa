@@ -1,9 +1,202 @@
 {
  "code": "lns",
  "name": "Lamnso'",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "b"
+  ],
+  "bv": [
+   "b͡v"
+  ],
+  "c": [
+   "ʧ"
+  ],
+  "d": [
+   "d"
+  ],
+  "dz": [
+   "d͡z"
+  ],
+  "e": [
+   "ɛ"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "gh": [
+   "ɣ"
+  ],
+  "ghv": [
+   "ɣ͡v"
+  ],
+  "gv": [
+   "ɡ͡v"
+  ],
+  "gw": [
+   "ɡʷ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "ii": [
+   "iː"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "jw": [
+   "d͡ʒʷ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kf": [
+   "k͡f"
+  ],
+  "kp": [
+   "k͡p"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "ᵐb"
+  ],
+  "mbv": [
+   "ᵐb͡v"
+  ],
+  "mf": [
+   "ᵐf"
+  ],
+  "mt": [
+   "ᵐt"
+  ],
+  "mv": [
+   "m͡v"
+  ],
+  "n": [
+   "n"
+  ],
+  "ndz": [
+   "ⁿd͡z"
+  ],
+  "nj": [
+   "ⁿd͡ʒ"
+  ],
+  "ns": [
+   "ⁿs"
+  ],
+  "nsh": [
+   "ⁿʃ"
+  ],
+  "nt": [
+   "ⁿt"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "ɔ"
+  ],
+  "oo": [
+   "oː"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "ɾ"
+  ],
+  "s": [
+   "s"
+  ],
+  "sh": [
+   "ʃ"
+  ],
+  "shw": [
+   "ʃʷ"
+  ],
+  "t": [
+   "t"
+  ],
+  "ts": [
+   "t͡s"
+  ],
+  "u": [
+   "u"
+  ],
+  "uu": [
+   "uː"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ŋg": [
+   "ᵑɡ"
+  ],
+  "ŋgv": [
+   "ᵑɡ͡v"
+  ],
+  "ŋgw": [
+   "ᵑɡʷ"
+  ],
+  "ŋk": [
+   "ᵑk"
+  ],
+  "ŋsh": [
+   "ᵑʃ"
+  ],
+  "ŋw": [
+   "ŋʷ"
+  ],
+  "ə": [
+   "ə"
+  ],
+  "əə": [
+   "əː"
+  ],
+  "ʼ": [
+   "ʔ"
+  ]
+ },
  "allophones": {
   "b": [
    "b",
@@ -30,7 +223,7 @@
    "ɡv"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (lns.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "lns",
  "glottolog_code": "lamn1239",
  "sources": [
@@ -50,6 +243,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/804",
    "notes": "Inventory 804 (aa), 38 non-marginal segments, 7 tones."
+  },
+  {
+   "id": "omniglot-nso",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (nso.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -111,5 +313,9 @@
   "˨": "PHOIBLE tone segment",
   "˨˥˩": "PHOIBLE tone segment"
  },
- "phoible_id": "804"
+ "phoible_id": "804",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Lamnso%27_language"
+ ]
 }

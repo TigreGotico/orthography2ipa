@@ -1,9 +1,148 @@
 {
  "code": "mdj",
  "name": "Mangbetu",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "K": [
+   "k"
+  ],
+  "N": [
+   "n"
+  ],
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "bh": [
+   "ɓ"
+  ],
+  "d": [
+   "d"
+  ],
+  "dh": [
+   "ɗ"
+  ],
+  "dr": [
+   "d͡r"
+  ],
+  "dy": [
+   "ɡʲ"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "k": [
+   "k"
+  ],
+  "kp": [
+   "k͡p"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "m͡b"
+  ],
+  "n": [
+   "n"
+  ],
+  "nd": [
+   "n͡d"
+  ],
+  "ndj": [
+   "ŋɡʲ"
+  ],
+  "ndr": [
+   "n͡d͡r"
+  ],
+  "ng": [
+   "ŋ͡ɡ"
+  ],
+  "ngb": [
+   "ŋ͡ɡ͡b"
+  ],
+  "nv": [
+   "ɱv"
+  ],
+  "nz": [
+   "n͡z"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "tr": [
+   "t͡r"
+  ],
+  "ts": [
+   "kʲ"
+  ],
+  "u": [
+   "u"
+  ],
+  "v": [
+   "v"
+  ],
+  "vh": [
+   "ⱱ"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ɔ": [
+   "ɔ"
+  ],
+  "ɛ": [
+   "ɛ"
+  ],
+  "ɨ": [
+   "ɪ"
+  ],
+  "ʉ": [
+   "ʊ"
+  ]
+ },
  "allophones": {
   "b": [
    "b",
@@ -62,7 +201,7 @@
    "ʊː"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from Hartell 1993, Alphabets of Africa (UNESCO/SIL), extracted via the AfriSpeech/africa-g2p compilation (mdj.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "mdj",
  "glottolog_code": "mang1394",
  "sources": [
@@ -82,6 +221,14 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/778",
    "notes": "Inventory 778 (aa), 45 non-marginal segments, 2 tones."
+  },
+  {
+   "id": "hartell1993-p84",
+   "author": "Hartell, Rhonda L. (ed.)",
+   "year": 1993,
+   "title": "Alphabets of Africa, p. 84",
+   "publisher": "UNESCO/SIL, Dakar",
+   "url": null
   }
  ],
  "urls": [
@@ -145,5 +292,9 @@
   "˦": "PHOIBLE tone segment",
   "˨": "PHOIBLE tone segment"
  },
- "phoible_id": "778"
+ "phoible_id": "778",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Mangbetu_language"
+ ]
 }

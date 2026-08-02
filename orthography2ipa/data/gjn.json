@@ -1,11 +1,135 @@
 {
  "code": "gjn",
  "name": "Gonja",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "'": [
+   "ʔ"
+  ],
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "b"
+  ],
+  "ch": [
+   "t͡ʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "ii": [
+   "iː"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kp": [
+   "k͡p"
+  ],
+  "kw": [
+   "kʷ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "oo": [
+   "oː"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "sh": [
+   "ʃ"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "uu": [
+   "uː"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ŋm": [
+   "ŋm"
+  ],
+  "ɔ": [
+   "ɔ"
+  ],
+  "ɔɔ": [
+   "ɔː"
+  ],
+  "ɛ": [
+   "ɛ"
+  ],
+  "ɛɛ": [
+   "ɛː"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (gjn.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "gjn",
  "glottolog_code": "gonj1241",
  "sources": [
@@ -25,6 +149,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/724",
    "notes": "Inventory 724 (aa), 37 non-marginal segments, 2 tones."
+  },
+  {
+   "id": "omniglot-gonja",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (gonja.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -80,5 +213,9 @@
   "˦": "PHOIBLE tone segment",
   "˨": "PHOIBLE tone segment"
  },
- "phoible_id": "724"
+ "phoible_id": "724",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Gonja_language"
+ ]
 }

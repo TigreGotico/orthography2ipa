@@ -1,9 +1,202 @@
 {
  "code": "sad",
  "name": "Sandawe",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "aa": [
+   "aː"
+  ],
+  "b": [
+   "b"
+  ],
+  "bp": [
+   "p"
+  ],
+  "c": [
+   "kǀ"
+  ],
+  "ch": [
+   "kǀʰ"
+  ],
+  "c’": [
+   "ᵑǀˀ"
+  ],
+  "d": [
+   "d"
+  ],
+  "dl": [
+   "dʎ̝"
+  ],
+  "dt": [
+   "t"
+  ],
+  "dz": [
+   "dʒ"
+  ],
+  "e": [
+   "e"
+  ],
+  "ee": [
+   "eː"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gc": [
+   "ɡǀ"
+  ],
+  "gk": [
+   "k"
+  ],
+  "gq": [
+   "ɡǃ"
+  ],
+  "gx": [
+   "ɡǁ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "ii": [
+   "iː"
+  ],
+  "k": [
+   "kʰ"
+  ],
+  "kh": [
+   "x"
+  ],
+  "k’": [
+   "k’"
+  ],
+  "l": [
+   "l"
+  ],
+  "lh": [
+   "ɬ"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "nc": [
+   "ŋǀ"
+  ],
+  "nq": [
+   "ŋǃ"
+  ],
+  "nx": [
+   "ŋǁ"
+  ],
+  "o": [
+   "o"
+  ],
+  "oo": [
+   "oː"
+  ],
+  "p": [
+   "pʰ"
+  ],
+  "q": [
+   "kǃ"
+  ],
+  "qh": [
+   "kǃʰ"
+  ],
+  "q’": [
+   "ᵑǃˀ"
+  ],
+  "r": [
+   "ɾ"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "tʰ"
+  ],
+  "tc": [
+   "tʃ"
+  ],
+  "tch": [
+   "tʃʰ"
+  ],
+  "tl": [
+   "t͜ɬ"
+  ],
+  "tl’": [
+   "t͜ɬʼ"
+  ],
+  "ts’": [
+   "tsʼ"
+  ],
+  "u": [
+   "u"
+  ],
+  "uu": [
+   "uː"
+  ],
+  "w": [
+   "w"
+  ],
+  "x": [
+   "kǁ"
+  ],
+  "xh": [
+   "kǁʰ"
+  ],
+  "x’": [
+   "ᵑǁˀ"
+  ],
+  "y": [
+   "j"
+  ],
+  "ã": [
+   "ã"
+  ],
+  "ãã": [
+   "ãː"
+  ],
+  "õ": [
+   "õ"
+  ],
+  "õõ": [
+   "õː"
+  ],
+  "ĩ": [
+   "ĩ"
+  ],
+  "ĩĩ": [
+   "ĩː"
+  ],
+  "ũ": [
+   "ũ"
+  ],
+  "ũũ": [
+   "ũː"
+  ],
+  "ẽ": [
+   "ẽ"
+  ],
+  "ẽẽ": [
+   "ẽː"
+  ],
+  "’": [
+   "ʔ"
+  ]
+ },
  "allophones": {
   "m": [
    "m",
@@ -26,7 +219,7 @@
    "u̥"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (sad.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "sad",
  "glottolog_code": "sand1273",
  "sources": [
@@ -46,6 +239,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1652",
    "notes": "Inventory 1652 (ph), 55 non-marginal segments, 4 marginal excluded, 5 tones."
+  },
+  {
+   "id": "omniglot-sandawe",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (sandawe.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -122,5 +324,9 @@
   "˨": "PHOIBLE tone segment",
   "˩˥": "PHOIBLE tone segment"
  },
- "phoible_id": "1652"
+ "phoible_id": "1652",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Sandawe_language"
+ ]
 }

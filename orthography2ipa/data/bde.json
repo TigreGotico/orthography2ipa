@@ -1,11 +1,102 @@
 {
  "code": "bde",
  "name": "Bade",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "t͡ʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "ɽ"
+  ],
+  "r̃": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ɓ": [
+   "ɓ"
+  ],
+  "ɗ": [
+   "ɗ"
+  ],
+  "ə": [
+   "ɨ"
+  ],
+  "ʼy": [
+   "ʔj"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (bde.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "bde",
  "glottolog_code": "bade1248",
  "sources": [
@@ -25,6 +116,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1437",
    "notes": "Inventory 1437 (ph), 42 non-marginal segments, 4 tones."
+  },
+  {
+   "id": "omniglot-bade",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (bade.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -87,5 +187,9 @@
   "˨": "PHOIBLE tone segment",
   "˨˦": "PHOIBLE tone segment"
  },
- "phoible_id": "1437"
+ "phoible_id": "1437",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Bade_language"
+ ]
 }

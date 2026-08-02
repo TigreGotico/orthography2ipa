@@ -1,11 +1,87 @@
 {
  "code": "lma",
  "name": "East Limba",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "c"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "ň": [
+   "ɲ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ɛ": [
+   "ɛ"
+  ],
+  "ọ": [
+   "ɔ"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (lma.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "lma",
  "glottolog_code": "east2387",
  "sources": [
@@ -16,6 +92,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "omniglot-limba",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (limba.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -27,5 +112,9 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278"
+ "parent": "x-clade-atla1278",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/East_Limba_language"
+ ]
 }

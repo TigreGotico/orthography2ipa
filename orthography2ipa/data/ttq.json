@@ -1,9 +1,136 @@
 {
  "code": "ttq",
  "name": "Tawallammat Tamajaq",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "c"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "q": [
+   "q"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "w": [
+   "w"
+  ],
+  "x": [
+   "x"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "â": [
+   "aː"
+  ],
+  "ê": [
+   "eː"
+  ],
+  "î": [
+   "iː"
+  ],
+  "ô": [
+   "oː"
+  ],
+  "û": [
+   "uː"
+  ],
+  "ă": [
+   "ɐ"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "š": [
+   "ʃ"
+  ],
+  "ǧ": [
+   "d͡ʒ"
+  ],
+  "ǰ": [
+   "ɟ"
+  ],
+  "ə": [
+   "ə"
+  ],
+  "ɣ": [
+   "ɣ"
+  ],
+  "ḍ": [
+   "dˤ"
+  ],
+  "ḷ": [
+   "lˤ"
+  ],
+  "ṣ": [
+   "sˤ"
+  ],
+  "ṭ": [
+   "tˤ"
+  ],
+  "ẓ": [
+   "zˤ"
+  ]
+ },
  "allophones": {
   "d": [
    "d",
@@ -18,7 +145,7 @@
    "zˤ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (ttq.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "ttq",
  "glottolog_code": "tawa1286",
  "sources": [
@@ -38,6 +165,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/824",
    "notes": "Inventory 824 (aa), 37 non-marginal segments."
+  },
+  {
+   "id": "omniglot-tamajaq",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (tamajaq.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -89,5 +225,9 @@
   "ʌ",
   "ʌː"
  ],
- "phoible_id": "824"
+ "phoible_id": "824",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Tawallammat_Tamajaq_language"
+ ]
 }

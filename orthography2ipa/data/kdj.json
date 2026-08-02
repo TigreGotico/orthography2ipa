@@ -1,9 +1,109 @@
 {
  "code": "kdj",
  "name": "Karamojong",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "t͡ʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "i": [
+   "i"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "ky": [
+   "t͡ʃ"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "o"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "th": [
+   "ð"
+  ],
+  "u": [
+   "u"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "ð"
+  ],
+  "æ": [
+   "æ"
+  ],
+  "ö̠": [
+   "ö̠"
+  ],
+  "ü": [
+   "y"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ɑ": [
+   "ɑ"
+  ],
+  "ɔ": [
+   "ɔ"
+  ],
+  "ɛ": [
+   "ɛ"
+  ],
+  "ɪ": [
+   "ɪ"
+  ],
+  "ʊ": [
+   "ʊ"
+  ]
+ },
  "allophones": {
   "n": [
    "n",
@@ -14,7 +114,7 @@
    "s"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (kdj.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "kdj",
  "glottolog_code": "kara1483",
  "sources": [
@@ -34,6 +134,15 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/1351",
    "notes": "Inventory 1351 (ph), 60 non-marginal segments, 6 tones."
+  },
+  {
+   "id": "omniglot-karamojong",
+   "author": "Ager, Simon",
+   "year": 2026,
+   "title": "Omniglot chart (karamojong.xls)",
+   "publisher": "Omniglot",
+   "url": "https://www.omniglot.com/",
+   "notes": "Undated web chart; year is retrieval year, not publication year."
   }
  ],
  "urls": [
@@ -116,5 +225,9 @@
   "˨": "PHOIBLE tone segment",
   "˨˧": "PHOIBLE tone segment"
  },
- "phoible_id": "1351"
+ "phoible_id": "1351",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Karamojong_language"
+ ]
 }

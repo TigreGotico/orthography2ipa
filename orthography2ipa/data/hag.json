@@ -1,16 +1,104 @@
 {
  "code": "hag",
  "name": "Hanga",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "b": [
+   "b"
+  ],
+  "ch": [
+   "t͡ʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "ɛ"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "h": [
+   "h"
+  ],
+  "i": [
+   "ɪ"
+  ],
+  "j": [
+   "d͡ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kp": [
+   "k͡p"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "o": [
+   "ɔ"
+  ],
+  "p": [
+   "p"
+  ],
+  "r": [
+   "d"
+  ],
+  "s": [
+   "s"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "ʊ"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "ŋ": [
+   "ŋ"
+  ],
+  "ŋm": [
+   "ŋ͡m"
+  ]
+ },
  "allophones": {
   "d": [
    "d",
    "r"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from Hartell 1993, Alphabets of Africa (UNESCO/SIL), extracted via the AfriSpeech/africa-g2p compilation (hag.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "hag",
  "glottolog_code": "hang1258",
  "sources": [
@@ -30,6 +118,14 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/728",
    "notes": "Inventory 728 (aa), 29 non-marginal segments."
+  },
+  {
+   "id": "hartell1993-p58",
+   "author": "Hartell, Rhonda L. (ed.)",
+   "year": 1993,
+   "title": "Alphabets of Africa, p. 58",
+   "publisher": "UNESCO/SIL, Dakar",
+   "url": null
   }
  ],
  "urls": [
@@ -73,5 +169,9 @@
   "ɪ",
   "ʊ"
  ],
- "phoible_id": "728"
+ "phoible_id": "728",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Hanga_language"
+ ]
 }

@@ -1,11 +1,144 @@
 {
  "code": "bjo",
  "name": "Mid-Southern Banda",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Latin",
+ "quality": "skeleton",
+ "graphemes": {
+  "a": [
+   "a"
+  ],
+  "ah": [
+   "ɛ"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "tʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "e": [
+   "e"
+  ],
+  "eh": [
+   "e"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "gb": [
+   "ɡ͡b"
+  ],
+  "i": [
+   "i"
+  ],
+  "ih": [
+   "ɨ"
+  ],
+  "j": [
+   "dʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "kp": [
+   "k͡p"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "mb": [
+   "m͡b"
+  ],
+  "mv": [
+   "m͡v"
+  ],
+  "n": [
+   "n"
+  ],
+  "nd": [
+   "n͡d"
+  ],
+  "ng": [
+   "ŋɡ"
+  ],
+  "ngb": [
+   "ŋ͡m͡ɡ͡b"
+  ],
+  "nj": [
+   "n͡dʒ"
+  ],
+  "ny": [
+   "ɲ"
+  ],
+  "nz": [
+   "n͡z"
+  ],
+  "o": [
+   "o"
+  ],
+  "oa": [
+   "oa"
+  ],
+  "oh": [
+   "ɔ"
+  ],
+  "p": [
+   "p"
+  ],
+  "q": [
+   "ʔ"
+  ],
+  "r": [
+   "ɾ"
+  ],
+  "s": [
+   "s"
+  ],
+  "sh": [
+   "ʃ"
+  ],
+  "t": [
+   "t"
+  ],
+  "u": [
+   "u"
+  ],
+  "uh": [
+   "ʉ"
+  ],
+  "v": [
+   "v"
+  ],
+  "vh": [
+   "ṽ"
+  ],
+  "w": [
+   "w"
+  ],
+  "x": [
+   "h"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ],
+  "zh": [
+   "ʒ"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from Hartell 1993, Alphabets of Africa (UNESCO/SIL), extracted via the AfriSpeech/africa-g2p compilation (bjo.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "bjo",
  "glottolog_code": "mids1243",
  "sources": [
@@ -16,6 +149,14 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "hartell1993-p21",
+   "author": "Hartell, Rhonda L. (ed.)",
+   "year": 1993,
+   "title": "Alphabets of Africa, p. 21",
+   "publisher": "UNESCO/SIL, Dakar",
+   "url": null
   }
  ],
  "urls": [
@@ -27,5 +168,9 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278"
+ "parent": "x-clade-atla1278",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Mid-Southern_Banda_language"
+ ]
 }
