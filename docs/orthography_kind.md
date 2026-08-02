@@ -9,7 +9,7 @@ about three different things, and a consumer must be able to tell them apart. Th
 |---|---|---|---|
 | `native` | The language's own writing system | Usually | `zh-Hani` (Han), `ar` (Arabic), `en-GB` (Latin) |
 | `romanization` | An alternative orthography **people actually read and write** | Yes | `zh` (Pinyin, ISO 7098) |
-| `transliteration` | A lossless machine re-encoding of **another script** | No — that absence is the tell | `ar-Latn-buckwalter` |
+| `transliteration` | A lossless machine re-encoding of **another script** | No: that absence is the tell | `ar-Latn-buckwalter` |
 
 ```python
 import orthography2ipa
@@ -33,12 +33,12 @@ The distinction is not cosmetic:
   transcribed by rules when the native script cannot.
 - A **transliteration** is a re-encoding of *another script*, for machines.
   Nobody reads Buckwalter as a language. It inherits every property of the script
-  it re-encodes — including the limits.
+  it re-encodes: including the limits.
 
 ```python
 from orthography2ipa import G2P
 
-G2P("zh").transcribe("beijing")   # 'peitɕiŋ' — Pinyin in, IPA out
+G2P("zh").transcribe("beijing")   # 'peitɕiŋ': Pinyin in, IPA out
 ```
 
 `zh` therefore reads **Pinyin, not Hanzi**, and says so. Converting Han text to
@@ -58,14 +58,14 @@ G2P("ar-Latn-buckwalter").transcribe("kataba")   # ...the same string of IPA
 ```
 
 And re-encoding cannot recover information the script never wrote. Unvocalised
-Buckwalter is exactly as unreadable as unvocalised Arabic — the short vowels are
+Buckwalter is exactly as unreadable as unvocalised Arabic: the short vowels are
 absent from both, and nothing invents them back:
 
 ```python
 from orthography2ipa import G2P
 
 g = G2P("ar-Latn-buckwalter")
-g.transcribe("kataba") != g.transcribe("ktb")   # True — and the bare form has no vowels
+g.transcribe("kataba") != g.transcribe("ktb")   # True: and the bare form has no vowels
 ```
 
 ## The native Han spec is honest about being unreadable
@@ -78,11 +78,11 @@ a gap someone forgot to fill:
 import orthography2ipa
 
 han = orthography2ipa.get("zh-Hani")
-han.graphemes    # {} — there is no grapheme→IPA rule to write
+han.graphemes    # {}: there is no grapheme→IPA rule to write
 han.phonemes     # ...yet the phonology is fully declared
 ```
 
-The input contract for Han text is a **dictionary** — a lexical lookup — not a
+The input contract for Han text is a **dictionary**: a lexical lookup: not a
 phonological rule, and that is a statement about the writing system rather than a
 shortcoming of the engine. The romanization walks around it: Pinyin is rule-readable
 because it is an alphabet.
@@ -95,3 +95,5 @@ read, and a complete phonology regardless.
 ---
 
 **Navigation:** [Docs home](index.md) · [Data model](data_model.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)
+
+*Related: [Data model](data_model.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)*

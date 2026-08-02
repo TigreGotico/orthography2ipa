@@ -2,8 +2,8 @@
 # orthography2ipa
 
 `orthography2ipa` measures **how languages relate to each other** across
-independent axes — phonological, reading, spelling, script, genealogical,
-temporal, geographic — and, from the same per-language data, converts
+independent axes: phonological, reading, spelling, script, genealogical,
+temporal, geographic: and, from the same per-language data, converts
 orthography into an IPA (International Phonetic Alphabet) transcription.
 
 ```python
@@ -14,21 +14,20 @@ orthography into an IPA (International Phonetic Alphabet) transcription.
 'hɛlɒ wɔːɹld'
 ```
 
-676 languages and 73 clade nodes ship with the package
-(`available_codes()` returns the 676; `available_codes(include_clades=True)`
-adds the clades, which are classification-only).
+Languages plus classification-only clade nodes ship with the package.
+`available_codes()` returns the languages; `available_codes(include_clades=True)`
+adds the clades. Run both for the live counts.
 
 ## The relational axes
 
 Two languages can be close on one axis and far apart on another, so no
-single similarity number is honest. Each axis is measured on its own —
-see [distance.md](distance.md):
+single similarity number is honest. Each axis is measured on its own: see [distance.md](distance.md):
 
 | Axis | Question | API |
 |---|---|---|
 | Phonological | Do they use the same sounds? | `inventory_distance`, `allophone_overlap`, `phonological_distance` |
-| Reading | Same *text* — do they sound alike? | `grapheme_divergence` |
-| Spelling | Same *sound* — do they write it alike? | `spelling_divergence` |
+| Reading | Same *text*: do they sound alike? | `grapheme_divergence` |
+| Spelling | Same *sound*: do they write it alike? | `spelling_divergence` |
 | Script | Are the writing systems typologically alike? | `script_distance`, `orthographic_distance` |
 | Genealogical | Do they share ancestors? | `ancestry_similarity`, `ancestry_chain` |
 | Temporal | Were they spoken at the same time? | `timespan`, `temporal_distance` |
@@ -36,22 +35,22 @@ see [distance.md](distance.md):
 
 ## Why this exists, and why it has no model weights
 
-Most G2P (grapheme-to-phoneme) tools are either narrow — one hand-tuned
-rule set bolted onto a specific TTS engine — or heavyweight: a trained
+Most G2P (grapheme-to-phoneme) tools are either narrow: one hand-tuned
+rule set bolted onto a specific TTS engine: or heavyweight: a trained
 sequence model per language, with all the data-collection and retraining
 cost that implies. `orthography2ipa` takes a third path: it is **pure
 data**. Every language is a JSON file describing, in linguistically
 citable terms, which graphemes (letters, digraphs, trigraphs) map to
 which IPA phonemes, and how those phonemes surface as allophones in
-context. A small, shared, language-agnostic engine — tokenizer, beam
-search, stress marking, sandhi — turns that data into transcriptions.
+context. A small, shared, language-agnostic engine: tokenizer, beam
+search, stress marking, sandhi: turns that data into transcriptions.
 Adding a language means writing data, not training a model or writing
 bespoke code.
 
 That design has a direct consequence worth stating up front: the engine
 picks the *statistically most common* pronunciation for an ambiguous
 spelling, not the contextually correct one. There is no language model
-scoring candidates against neighbouring words — see [Honest
+scoring candidates against neighbouring words: see [Honest
 limitations](#honest-limitations-read-this-before-you-trust-a-tier)
 before relying on this for anything where mistakes are costly.
 
@@ -59,10 +58,10 @@ before relying on this for anything where mistakes are costly.
 
 Every language spec keeps two mappings deliberately separate:
 
-- **Graphemes** — which phonemes a *spelling* can represent. English
+- **Graphemes**: which phonemes a *spelling* can represent. English
   ⟨th⟩ → `['θ', 'ð']` (the "thin" vs. "this" sounds).
-- **Allophones** — how a *phoneme* surfaces depending on context. English
-  /t/ → `['t', 'tʰ', 'ʔ', 'ɾ']` — aspirated word-initially, glottalised
+- **Allophones**: how a *phoneme* surfaces depending on context. English
+  /t/ → `['t', 'tʰ', 'ʔ', 'ɾ']`: aspirated word-initially, glottalised
   before a pause, flapped between vowels (American "butter").
 
 Transcription (text → phonemes) uses the grapheme map. Pronunciation
@@ -90,11 +89,11 @@ en.family            # 'Indo-European > Germanic > Northwest Germanic > West Ger
 ```
 
 `family` is derived, not authored: it is the chain of clade nodes above the
-spec in the ancestry graph — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
+spec in the ancestry graph: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
 
 That is the whole mental model: `transcribe()` for the common case,
-`get()` when you want the underlying `LanguageSpec` — grapheme maps,
-allophones, ancestry, quality tier, sources — to build something more
+`get()` when you want the underlying `LanguageSpec`: grapheme maps,
+allophones, ancestry, quality tier, sources: to build something more
 specific on top.
 
 ## Choose your own adventure
@@ -121,7 +120,7 @@ need the plugin ABCs.**
 Read [architecture.md](architecture.md) for how the engine pipeline
 (normalize → tokenize → beam search → stress → sandhi → dialect
 transform) fits together, then look at the step plugins in
-[registry.md](registry.md) — that is the extension point
+[registry.md](registry.md): that is the extension point
 [arbtok](https://github.com/TigreGotico/arbtok) and
 [tugaphone](https://github.com/TigreGotico/tugaphone) build on.
 
@@ -130,10 +129,10 @@ phonemizer.**
 The lattice is the library's headline building block.
 [lattice.md](lattice.md) covers the structured `ipa_lattice` (ranked IPA
 candidates with `-log P` costs per grapheme), the per-word confidence / OOV
-signal, and the `LatticeRescorer` seam — how a downstream engine refines the
+signal, and the `LatticeRescorer` seam: how a downstream engine refines the
 shared beam by re-costing candidates instead of forking a tokenizer.
 
-**I need cross-word context — sandhi, liaison, pausal or phrase-final forms.**
+**I need cross-word context: sandhi, liaison, pausal or phrase-final forms.**
 The word lattice is word-local; the
 [sentence-context seam](sentence_context.md) is the shared cross-word surface.
 `G2P.sentence_lattice(text)` exposes the whole utterance's ranked candidates in
@@ -143,9 +142,9 @@ instead of forking a private sentence orchestrator.
 
 **I want to train an ML / CRF G2P on o2i's structure.**
 o2i ships no trained weights, which makes it a clean *feature provider*.
-[features.md](features.md) covers `G2P.features(text)` — the pure-data,
+[features.md](features.md) covers `G2P.features(text)`: the pure-data,
 JSON-able per-grapheme feature view (class predicates, neighbours, the ranked
-candidate lattice, the confidence signal) — and the **CRF-as-rescorer** pattern:
+candidate lattice, the confidence signal): and the **CRF-as-rescorer** pattern:
 a trained model re-costs the shared lattice as a `LatticeRescorer`, and the
 per-word confidence says where to spend its learned capacity.
 
@@ -154,7 +153,7 @@ per-word confidence says where to spend its learned capacity.
 `research` → `production` actually require, and
 [benchmarks.md](benchmarks.md) plus [scoreboard.md](scoreboard.md) show
 the measured PER (phoneme error rate) per language against
-human-curated gold data — including the honest, currently mediocre
+human-curated gold data: including the honest, currently mediocre
 numbers for several languages.
 
 **I'm doing production-readiness due diligence.**
@@ -162,7 +161,7 @@ numbers for several languages.
 version-guarded surface; [scoreboard.md](scoreboard.md) is the
 unfiltered accuracy table; [link-audit.md](link-audit.md) covers
 citation URL liveness; the license is Apache 2.0. No language currently
-carries the `production` quality tier — see [Honest
+carries the `production` quality tier: see [Honest
 limitations](#honest-limitations-read-this-before-you-trust-a-tier)
 below.
 
@@ -170,17 +169,16 @@ below.
 
 - **Candidate ordering is naive.** When a spelling is ambiguous
   (English ⟨th⟩ could be /θ/ or /ð/), the engine ranks candidates by how
-  common that mapping is across the language generally — it does not
+  common that mapping is across the language generally: it does not
   look at neighbouring words or meaning. Beam search surfaces the
   alternatives; it does not disambiguate them for you.
 - **Some languages have an input contract that is not plain native
   text.** `zh` is a **romanization** spec: it reads Pinyin, not Hanzi, and
   says so (`orthography_kind == ROMANIZATION`). The native `zh-Hani` spec
-  has no grapheme map at all, because a Han character encodes no sound —
-  its input contract is a dictionary (CC-CEDICT), a lexical lookup rather
+  has no grapheme map at all, because a Han character encodes no sound: its input contract is a dictionary (CC-CEDICT), a lexical lookup rather
   than a phonological rule, and this library does not perform it. Tone
   marks are not encoded either. `ko` expects decomposed jamo (ㄱ, ㅏ, ㄴ…), not composed Hangul
-  syllable blocks (가, 는…) — the grapheme map is keyed on individual
+  syllable blocks (가, 는…): the grapheme map is keyed on individual
   jamo, so a Hangul-decomposition step comes first. Check a language's
   `notes` field
   (`orthography2ipa.get(code).notes`) before assuming raw native-script
@@ -188,7 +186,7 @@ below.
 - **PER (phoneme error rate) is genuinely mediocre for several
   languages**, not only the exotic ones: English sits at 0.3494 against
   WikiPron gold (`en-GB`), Tamil at 0.7250, Scottish Gaelic at 0.6203.
-  See the full, unfiltered [scoreboard.md](scoreboard.md) — reported for
+  See the full, unfiltered [scoreboard.md](scoreboard.md): reported for
   honesty, not flattery. Every score is reproducible with
   `python scripts/benchmark.py --scoreboard`, which scores the entire gold
   set of every registered dataset/language pair (no cap), so a row's `N` is
@@ -196,7 +194,7 @@ below.
 - **The gold data itself is a grain of salt.** Reliable G2P gold barely
   exists, so most benchmark datasets are semi-automated,
   dictionary-extracted, community-scraped, or a phonemizer's own output
-  reused as a reference — a low PER against a machine-generated gold means
+  reused as a reference: a low PER against a machine-generated gold means
   "agrees with that tool", not "correct". Read PER as directional, not
   precise, and cross-reference each row's bootstrap `95% CI` (small-`N`
   rows are anecdotes). Every dataset's reliability tier is on the
@@ -207,15 +205,15 @@ below.
   `espeak-derived` rows (`ipa_babylm`, the `phonemizer`-phonemized
   `ipa_childes` languages) are espeak-ng output and the `epitran-derived`
   rows (`vox_communis`, the `epitran`-phonemized `ipa_childes` languages)
-  are epitran output — both are competitors this library
+  are epitran output: both are competitors this library
   benchmarks *against* in [comparison.md](comparison.md). A divergence can
   mean the spec is right and the competitor is wrong, and it still scores as
   a *worse* number there. Such a row can neither qualify a language for a
   production promotion nor block one.
 - **`llm-generated` gold has no error model.** No lexicon, no rules, nothing
-  to attribute an error to — it certifies nothing and diagnoses nothing.
+  to attribute an error to: it certifies nothing and diagnoses nothing.
 - **No language is at `production` tier yet.** Every registered language
-  is at `research` tier or below — it has at least one cited source and
+  is at `research` tier or below: it has at least one cited source and
   usually a benchmark, but has not cleared the volume and accuracy bar
   `quality_tiers.md` defines for production use. Check
   `orthography2ipa.get(code).quality` before depending on a language for
@@ -227,8 +225,8 @@ below.
 | :--- | :--- |
 | [getting_started.md](getting_started.md) | Narrative on-ramp: install → first call → what happened → where next |
 | [architecture.md](architecture.md) | Module layout, pipeline stages, design decisions |
-| [data_model.md](data_model.md) | `LanguageSpec` and every field it carries — including `phonemes`, the inventory stated directly |
-| [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations — and why Pinyin is transcribable where Hanzi is not |
+| [data_model.md](data_model.md) | `LanguageSpec` and every field it carries: including `phonemes`, the inventory stated directly |
+| [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations: and why Pinyin is transcribable where Hanzi is not |
 | [registry.md](registry.md) | Full language registry, code resolution, step plugins |
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
