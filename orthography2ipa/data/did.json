@@ -1,0 +1,128 @@
+{
+ "code": "did",
+ "name": "Didinga",
+ "script": "Zyyy",
+ "quality": "stub",
+ "graphemes": {},
+ "allophones": {
+  "b": [
+   "b",
+   "p̚"
+  ],
+  "d": [
+   "d",
+   "t̚"
+  ],
+  "d̠ʒ": [
+   "d̠ʒ",
+   "t̠ʃ̚"
+  ],
+  "ð": [
+   "ð",
+   "θ"
+  ],
+  "ɡ": [
+   "ɡ",
+   "k̚"
+  ],
+  "ɣ": [
+   "ɣ",
+   "x"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "iso639_3": "did",
+ "glottolog_code": "didi1258",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1431",
+   "notes": "Inventory 1431 (ph), 54 non-marginal segments, 4 tones."
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/didi1258"
+ ],
+ "location": {
+  "latitude": 4.2149,
+  "longitude": 33.6869,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-surm1244",
+ "phonemes": [
+  "b",
+  "d",
+  "d̠ʒ",
+  "d̪",
+  "j",
+  "k",
+  "l",
+  "lː",
+  "m",
+  "mː",
+  "n",
+  "nː",
+  "p",
+  "r",
+  "t̠ʃ",
+  "t̪",
+  "t̺",
+  "v",
+  "w",
+  "ð",
+  "ðː",
+  "ŋ",
+  "ŋː",
+  "ɓ",
+  "ɗ",
+  "ɠ",
+  "ɡ",
+  "ɣ",
+  "ɲ",
+  "ɲː",
+  "ɾ",
+  "ʄ",
+  "ʈ",
+  "ʒ",
+  "ʝ",
+  "β",
+  "a",
+  "aː",
+  "e",
+  "eː",
+  "i",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uː",
+  "ɔ",
+  "ɔː",
+  "ɛ",
+  "ɛː",
+  "ɪ",
+  "ɪː",
+  "ʊ",
+  "ʊː"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˦˨": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment",
+  "˨˦": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1431"
+}

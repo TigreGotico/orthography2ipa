@@ -44,11 +44,15 @@ drive a grapheme-to-IPA engine:
 'oˈla ˈmũdu'
 ```
 
-**676 languages** and **73 clade nodes** ship with the package (749 spec files in
-`orthography2ipa/data/`). `available_codes()` returns the 676 languages, and
-`available_codes(include_clades=True)` returns all 749, spread across 33 top-level
-families from Indo-European to Quechuan, plus reconstructed proto-languages,
-regional dialects and creoles.
+Languages and classification-only clade nodes ship with the package as spec files in
+`orthography2ipa/data/`, spread across top-level families from Indo-European to
+Quechuan, plus reconstructed proto-languages, regional dialects and creoles. The
+count grows over time, so check it live instead of trusting a number in a doc:
+
+```python
+len(orthography2ipa.available_codes())                      # languages only
+len(orthography2ipa.available_codes(include_clades=True))   # languages + clade nodes
+```
 
 New to the library? **[docs/index.md](docs/index.md)** routes you by what you are
 trying to do, and states the known accuracy limits up front.
@@ -256,7 +260,7 @@ orthography2ipa.resolve("pt")      # 'pt-PT': reference variety
 orthography2ipa.resolve("en-NZ")   # 'en-GB': nearest registered
 
 # Discover what's available
-orthography2ipa.available_codes()      # 676 language codes (clades excluded)
+orthography2ipa.available_codes()      # language codes (clades excluded)
 orthography2ipa.available_families()   # codes grouped by derived family path
 ```
 
@@ -408,6 +412,38 @@ Component plugins that slot into the bundled engine's own logic use dedicated
 entry-point groups: per-language syllabifiers register under
 `orthography2ipa.syllabify` (e.g. `silabificador` for Portuguese) and are honoured
 by stress detection automatically.
+
+## AI transparency
+
+Most language specs in this repository were written by large language models
+(Anthropic Claude), directed and reviewed by a human maintainer. This section
+states how that works and why the project accepts it.
+
+**Why.** The registry covers more than 900 language codes. No individual speaks
+them, and no small project can recruit a native-speaker linguist for each one.
+The real alternative to an AI-written spec was never an expert-written spec. It
+was no spec at all.
+
+**How.** A spec is not free-form model output. Every mapping must trace to a
+published description: a reference grammar, a peer-reviewed paper, or a
+university dataset. Wikipedia is a reading path, not a source, and is cited next
+to the reference it points to.
+
+The model reads the sources and encodes them as
+declarative JSON under the authoring rules in
+[docs/adding_a_language.md](docs/adding_a_language.md), which forbid invented
+graphemes, enumerated context, and uncited claims. The engine stays
+language-agnostic, so a spec cannot hide logic. Conformance tests then check the
+structure, and the [benchmarks](#benchmarks) score the output against external
+gold data that the model never wrote.
+
+**What this does not claim.** A cited, AI-written spec is still not
+native-speaker validation. The per-spec `QualityTier` records exactly that, and
+no language currently sits at the `production` tier. If you speak one of these
+languages and a spec is wrong, that is a bug: please
+[open an issue](https://github.com/TigreGotico/orthography2ipa/issues), ideally
+with a citation or a native-speaker judgment. Corrections outrank everything
+else in this repository.
 
 ## Contributing
 

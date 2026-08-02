@@ -1,0 +1,90 @@
+{
+ "code": "bcq",
+ "name": "Bench",
+ "script": "Zyyy",
+ "quality": "stub",
+ "graphemes": {},
+ "allophones": {
+  "p": [
+   "p",
+   "ɸ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "iso639_3": "bcq",
+ "glottolog_code": "benc1235",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1478",
+   "notes": "Inventory 1478 (ph), 34 non-marginal segments, 6 tones."
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/benc1235"
+ ],
+ "location": {
+  "latitude": 7.0468,
+  "longitude": 35.7673,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-gong1255",
+ "phonemes": [
+  "b",
+  "cç",
+  "cçʼ",
+  "d",
+  "h",
+  "j",
+  "k",
+  "kʼ",
+  "l",
+  "m",
+  "n",
+  "p",
+  "pʼ",
+  "r",
+  "s",
+  "t",
+  "ts",
+  "tsʼ",
+  "tʼ",
+  "w",
+  "z",
+  "ɡ",
+  "ʂ",
+  "ʃ",
+  "ʈʂ",
+  "ʈʂʼ",
+  "ʐ",
+  "ʒ",
+  "ʔ",
+  "a",
+  "e",
+  "i",
+  "o",
+  "u"
+ ],
+ "tone_inventory": {
+  "˥": "PHOIBLE tone segment",
+  "˦": "PHOIBLE tone segment",
+  "˧": "PHOIBLE tone segment",
+  "˧˨": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment",
+  "˨˧": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1478"
+}
