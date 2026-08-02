@@ -112,6 +112,30 @@
       "role": "parent",
       "weight": 1.0,
       "notes": "Descent per Glottolog classification of Sea Island Creole English (gull1241)."
+    },
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.65,
+      "notes": "English superstrate/lexifier of Gullah, from the English of Sea Island coastal-Carolina/Georgia planters and traders (Turner 1949)."
+    },
+    {
+      "code": "kg",
+      "role": "substrate",
+      "weight": 0.08,
+      "notes": "Kikongo (Kongo) substrate, one of the West African source languages named by APiCS (survey ch. 13, apics-online.info/surveys/13: 'Fula, Kongo, Mende, Vai, Yoruba') as figuring prominently in the texts, personal names and words Turner (1949) collected; no source ranks it as the largest single contributor."
+    },
+    {
+      "code": "ff",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Fula (Fulani) substrate, named in APiCS survey ch. 13 (apics-online.info/surveys/13); Wikipedia additionally records Gullah speakers who could recite songs and do simple counting in Fulani alongside Mende and Vai (en.wikipedia.org/wiki/Gullah_language)."
+    },
+    {
+      "code": "yo",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Yoruba substrate, named in APiCS survey ch. 13 (apics-online.info/surveys/13) among the West African languages prominent in Turner's (1949) Gullah word/name corpus."
     }
   ],
   "notes": "Skeleton. English-lexifier creole of the South Carolina and Georgia Sea Islands, written in a Latin, largely English-based spelling. Grapheme map uses English digraph conventions (ch, sh, ng; oo [u], ee [i]) but reflects the creole's own phonology where it diverges, notably th realised as a stop [t]/[d]. Gullah has no fixed standard orthography and much text is eye-dialect respelling of English; unstressed-vowel reduction and any prosodic detail are not recoverable and are left unencoded, so a real PER floor is expected.",
@@ -139,6 +163,28 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Gullah_language"
+    },
+    {
+      "id": "turner1949",
+      "author": "Turner, Lorenzo Dow",
+      "year": 1949,
+      "title": "Africanisms in the Gullah Dialect",
+      "publisher": "University of Chicago Press",
+      "url": null,
+      "pages": null,
+      "notes": "Foundational documentation of Gullah's West African substrate: nearly 4,000 items of African origin (loanwords, personal names, story/song fragments) traced to languages including Kongo, Fula, Mende, Vai and Yoruba.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "gul_apics13",
+      "author": "Klein, Thomas B.",
+      "year": 2013,
+      "title": "Gullah (Survey chapter, structure/vocabulary)",
+      "publisher": "In: Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.), Atlas of Pidgin and Creole Language Structures Online, chapter 13, Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://apics-online.info/surveys/13",
+      "pages": null,
+      "notes": "Names Fula, Kongo, Mende, Vai and Yoruba as the West African substrate languages figuring prominently in Turner's (1949) Gullah word/name corpus; does not rank them by lexical contribution.",
+      "wikipedia_url": null
     }
   ],
   "wikipedia": [
