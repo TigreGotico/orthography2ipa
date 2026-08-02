@@ -4108,6 +4108,19 @@
     "limit": null
   },
   {
+    "lang": "mww",
+    "dataset": "wikipron",
+    "n": 489,
+    "per": 0.3444,
+    "per_ci_low": 0.3336,
+    "per_ci_high": 0.3557,
+    "exact_match": 0.0,
+    "quality_tier": "research",
+    "provenance": "crowd-scraped",
+    "harness_version": "1.1",
+    "limit": null
+  },
+  {
     "lang": "my",
     "dataset": "wikipron",
     "n": 7930,
