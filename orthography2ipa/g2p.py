@@ -649,7 +649,7 @@ class G2P:
         if not g_tokens:
             self._lattice_cache[cache_key] = []
             return []
-        contexts = flat_contexts(g_tokens)
+        contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         stressed_syll_idx: Optional[int] = None
         sylls: List[str] = []
@@ -774,7 +774,7 @@ class G2P:
             slots = self.ipa_lattice(word)
             confidence = self.confidence_breakdown(word).value
             g_tokens = self._tokenizer.grapheme_tokens(word)
-            contexts = flat_contexts(g_tokens)
+            contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
             out.append(build_word_features(
                 word, slots, contexts, confidence,
                 self.spec.code, self.spec.script))
@@ -1073,7 +1073,7 @@ class G2P:
         # Flat-run context views: all grapheme tokens of the word stay
         # mutual neighbours (word-splitting already stripped punctuation),
         # so positional resolution matches the engine's neighbour rules.
-        contexts = flat_contexts(g_tokens)
+        contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         # Determine stressed syllable index once (reuse for all vowels)
         stressed_syll_idx: Optional[int] = None
