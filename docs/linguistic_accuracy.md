@@ -46,13 +46,17 @@ This ordering matters because the beam search tokenizer treats the first value a
 
 An empty string `""` is the correct IPA value for a grapheme that is always silent:
 ```python
-"h": [""],   # Spanish h: always silent
-"w": [""],   # French w before a consonant in some words (rare)
+graphemes = {
+    "h": [""],   # Spanish h: always silent
+    "w": [""],   # French w before a consonant in some words (rare)
+}
 ```
 
 Use `"∅"` (null symbol) in allophone maps when a phoneme can be deleted in certain contexts:
 ```python
-"d": ["d", "ð", "∅"],  # Catalan final /d/ can delete in fast speech
+allophones = {
+    "d": ["d", "ð", "∅"],  # Catalan final /d/ can delete in fast speech
+}
 ```
 
 ---
@@ -77,9 +81,9 @@ The first allophone in the list should be the **citation form**: the one you wou
 
 ```python
 # Good
-"t": ["t", "tʰ", "ɾ", "ʔ", "t̚"]  # citation form first
+good = {"t": ["t", "tʰ", "ɾ", "ʔ", "t̚"]}  # citation form first
 # Bad
-"t": ["tʰ", "t", "ɾ", "ʔ", "t̚"]  # aspirated first makes no sense as citation form
+bad = {"t": ["tʰ", "t", "ɾ", "ʔ", "t̚"]}  # aspirated first makes no sense as citation form
 ```
 
 ---
@@ -148,9 +152,11 @@ European Portuguese dramatically reduces unstressed /e/ and /o/ (often to schwa 
 
 Portuguese has phonemic nasal vowels: /ã/, /ẽ/, /ĩ/, /õ/, /ũ/. These are spelled with a tilde (`ã`, `ã`, `õ`) or before `m`/`n` in a closed syllable. The grapheme map must include nasal spellings explicitly:
 ```python
-"ã": ["ã"],
-"an": ["ã"],  # before consonant
-"am": ["ã"],  # before consonant
+graphemes = {
+    "ã": ["ã"],
+    "an": ["ã"],  # before consonant
+    "am": ["ã"],  # before consonant
+}
 ```
 
 ### French

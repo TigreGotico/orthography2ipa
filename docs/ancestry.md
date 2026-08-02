@@ -34,8 +34,10 @@ pt-PT → pt-PT-x-medieval → roa-x-galaicopt → [Ibero-Romance] → la-x-hisp
 `family` is then **derived**, not authored. The loader walks `parent` upwards and collects the clade names it passes, broadest first:
 
 ```python
-get("pt-PT").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
-get("pt-PT").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
+import orthography2ipa
+
+orthography2ipa.get("pt-PT").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
+orthography2ipa.get("pt-PT").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
 Because it is a chain rather than a fixed-depth string, a consumer can ask at any depth: `available_families()` indexes a language under *every* step of its path, so `--family Romance` and `--family Ibero-Romance` both return `pt-PT`.

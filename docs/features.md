@@ -11,7 +11,7 @@ trains on linguistically-grounded features instead of raw character n-grams.
 
 This is a **pure read**: `features()` never affects `transcribe`. It reuses the
 same [lattice](lattice.md) (`ipa_lattice`), the same
-[confidence signal](lattice.md#per-word-confidence) (`confidence_breakdown`),
+[confidence signal](lattice.md#per-word-confidence--oov-signal) (`confidence_breakdown`),
 and the same [`GraphemeContext`](tokenizer.md) predicates: no vowel logic is
 recomputed.
 
