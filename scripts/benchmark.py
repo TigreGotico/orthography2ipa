@@ -270,6 +270,7 @@ _WIKIPRON_FILES = {
     "li":        "lim_latn_broad.tsv",              # Limburgan, ~1128 rows
     "ilo":       "ilo_latn_broad.tsv",              # Iloko, ~1049 rows
     "mi":        "mri_latn_broad.tsv",              # Maori, ~1005 rows
+    "mww":       "mww_latn_broad.tsv",              # White Hmong (RPA), ~492 rows
     "nv":        "nav_latn_broad.tsv",              # Navajo, ~995 rows
     "ckb":       "ckb_arab_broad.tsv",              # Central Kurdish, ~981 rows
     "mh":        "mah_latn_broad.tsv",              # Marshallese, ~960 rows
