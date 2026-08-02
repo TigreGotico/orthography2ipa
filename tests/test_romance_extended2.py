@@ -1420,3 +1420,55 @@ class TestMinhoPortuguese:
             _allophone(self.spec, "d"), "",
             label="Minho d→∅ coda deletion",
         )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Istriot (ist) — Italo-Dalmatian Romance of coastal Istria
+# ─────────────────────────────────────────────────────────────────────────────
+
+@pytest.mark.linguistic
+class TestIstriot:
+    """Istriot — ist.
+
+    Autochthonous Romance language of the southwestern Istrian coast
+    (Rovinj/Rovigno, Vodnjan/Dignano), heavily influenced by Venetian.
+    Classified under Italo-Romance (Italo-Dalmatian), not Eastern Romance.
+    """
+
+    LANGUAGE_CODE = "ist"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request: pytest.FixtureRequest) -> None:
+        """Load Istriot once per class."""
+        request.cls.spec = _load(self.LANGUAGE_CODE)
+
+    def test_family(self) -> None:
+        """Istriot must be classified under Italo-Romance."""
+        assert {"Indo-European", "Romance", "Italo-Romance"} <= set(self.spec.family_path)
+
+    def test_script(self) -> None:
+        """Istriot uses the Latin script."""
+        assert self.spec.script == "Latin"
+
+    def test_c_before_a_hard(self) -> None:
+        """<c> before back/central vowels stays [k]."""
+        pg = self.spec.positional_graphemes.get("c", {})
+        _assert_first(pg.get("default"), "k", label="ist c default")
+
+    def test_c_before_e_soft(self) -> None:
+        """<c> before <e> palatalizes to [tʃ]."""
+        pg = self.spec.positional_graphemes.get("c", {})
+        _assert_first(pg.get("before_e"), "tʃ", label="ist c before e")
+
+    def test_g_before_i_soft(self) -> None:
+        """<g> before <i> palatalizes to [dʒ]."""
+        pg = self.spec.positional_graphemes.get("g", {})
+        _assert_first(pg.get("before_i"), "dʒ", label="ist g before i")
+
+    def test_gn_palatal_nasal(self) -> None:
+        """<gn> spells the palatal nasal [ɲ], same unit as <nj>."""
+        _assert_first(_grapheme(self.spec, "gn"), "ɲ", label="ist gn")
+
+    def test_dz_affricate(self) -> None:
+        """<dz> spells the voiced alveolar affricate [dz]."""
+        _assert_first(_grapheme(self.spec, "dz"), "dz", label="ist dz")

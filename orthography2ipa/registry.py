@@ -70,6 +70,12 @@ _ALIASES: Dict[str, str] = {
     # itself so the macro-collapse step does not rewrite it.
     "mhr": "mhr",
     "mrj": "mrj",
+    # ``als`` (Tosk Albanian) standardizes to ``sq`` (Albanian macrolanguage)
+    # and ``rmy`` (Vlax Romani) standardizes to ``rom`` (Romani macrolanguage).
+    # Both the individual and the macro spec exist and are distinct targets,
+    # so pin each individual code to itself before the macro-collapse step.
+    "als": "als",
+    "rmy": "rmy",
     # ``src`` (Logudorese Sardinian) standardizes straight to ``sc`` (the
     # generic Sardinian macrolanguage spec) under ``langcodes``, which would
     # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
