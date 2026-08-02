@@ -70,6 +70,12 @@ _ALIASES: Dict[str, str] = {
     # itself so the macro-collapse step does not rewrite it.
     "mhr": "mhr",
     "mrj": "mrj",
+    # ``als`` (Tosk Albanian) standardizes to ``sq`` (Albanian macrolanguage)
+    # and ``rmy`` (Vlax Romani) standardizes to ``rom`` (Romani macrolanguage).
+    # Both the individual and the macro spec exist and are distinct targets,
+    # so pin each individual code to itself before the macro-collapse step.
+    "als": "als",
+    "rmy": "rmy",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
