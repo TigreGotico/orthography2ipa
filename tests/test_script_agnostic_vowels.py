@@ -14,6 +14,8 @@ two ways the derivation can go wrong — under-firing (back to the old bug) and
 over-firing (classifying a consonant, or a whole syllable like ⟨ال⟩ → /al/, as a
 vowel, which silently corrupts its neighbours' contexts).
 """
+import dataclasses
+
 import pytest
 
 from orthography2ipa import G2P, get
@@ -214,9 +216,11 @@ def _hmong_rpa_like_spec(vowel_graphemes=()) -> LanguageSpec:
     """A minimal synthetic spec modelling the RPA tone-letter phenomenon:
     a word-final consonant LETTER (here ⟨v⟩/⟨s⟩) marks tone and is silent —
     but only once the engine recognises the preceding ⟨w⟩ as a vowel, since
-    the silencing rule is keyed on ``AFTER_VOWEL``. Not real mww/Hmong RPA
-    data (mww ships as a registry stub with no modelled orthography); this
-    isolates exactly the mechanism ``vowel_graphemes`` fixes."""
+    the silencing rule is keyed on ``AFTER_VOWEL``. Isolates exactly the
+    mechanism ``vowel_graphemes`` fixes, independent of ``get("mww")``'s own
+    (much larger) grapheme table — see
+    :func:`test_mww_vowel_graphemes_override_silences_tone_letter_after_w`
+    below for the same phenomenon against the real spec."""
     return LanguageSpec(
         code="x-test-rpa-tone",
         name="Test RPA-tone-letter spec",
@@ -249,3 +253,29 @@ def test_vowel_graphemes_override_silences_tone_letter_after_w():
     # "kws": ⟨k⟩⟨w⟩⟨s⟩ — the other tone letter, same phenomenon.
     assert tok_without.ipa_best("kws").endswith("s")
     assert not tok_with.ipa_best("kws").endswith("s")
+
+
+def test_mww_vowel_graphemes_override_silences_tone_letter_after_w():
+    """The real White Hmong (RPA) spec, not a synthetic stand-in: ⟨w⟩=/ɨ/ is
+    a bare rhyme, and the tone letter that follows it (⟨v⟩ in ``tswv``, ⟨s⟩
+    in ``kws``) is declared silent ``after_vowel`` in mww's own
+    ``positional_graphemes`` (see mww.json's notes). Without
+    ``vowel_graphemes``, ⟨w⟩ never counts as a vowel, so ``after_vowel``
+    never fires and the tone letter surfaces as a spurious consonant."""
+    spec = get("mww")
+    assert spec.vowel_graphemes == ("w",)
+
+    tok_with = PhonetokTokenizer(spec)
+    tok_without = PhonetokTokenizer(dataclasses.replace(spec, vowel_graphemes=()))
+
+    tswv_with = tok_with.ipa_best("tswv")
+    tswv_without = tok_without.ipa_best("tswv")
+    assert not tswv_with.endswith("v")
+    assert tswv_without.endswith("v")
+    assert tswv_with == tswv_without[:-1]
+
+    kws_with = tok_with.ipa_best("kws")
+    kws_without = tok_without.ipa_best("kws")
+    assert not kws_with.endswith("ʂ")
+    assert kws_without.endswith("ʂ")
+    assert kws_with == kws_without[:-1]
