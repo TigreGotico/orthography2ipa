@@ -51,6 +51,12 @@ _ALIASES: Dict[str, str] = {
     # macro-collapse step can rewrite it.
     "bxr": "bxr",
     "diq": "diq",
+    # ``tw`` (Twi) and ``fat`` (Fante) are individual-language codes that
+    # langcodes' macro=True standardisation collapses into their
+    # macrolanguage ``ak`` (Akan), same class of collision as bxr/diq above.
+    # Both the individual and the macro spec exist and are distinct targets.
+    "tw": "tw",
+    "fat": "fat",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
@@ -61,6 +67,13 @@ _ALIASES: Dict[str, str] = {
     "ajp": "ar-JO",           # South Levantine Arabic (Jordanian/Palestinian)
     "afb": "ar-x-gulf",       # Gulf Arabic
     "acw": "ar-SA-x-hejaz",   # Hijazi Arabic
+    # Dialects named in a private-use subtag. langcodes ignores private-use
+    # content when it measures tag distance, so ``ar-x-najdi`` would otherwise
+    # fall to the nearest bare match (``ar``); pin the spoken adjective to the
+    # spec, whose own token differs (``najdi`` -> ``najd``).
+    "ar-x-najdi": "ar-SA-x-najd",     # Najdi Arabic
+    "ar-x-hejazi": "ar-SA-x-hejaz",   # Hejazi Arabic
+    "ar-x-hijazi": "ar-SA-x-hejaz",   # Hejazi Arabic (alternate romanization)
 }
 
 # Default variant for a bare primary-language tag whose specs are all
@@ -76,6 +89,18 @@ _BARE_DEFAULTS: Dict[str, str] = {
     "it": "it-IT",
     "pt": "pt-PT",
     "ro": "ro-RO",
+}
+
+# Default variety for a region tag whose specs are all sub-regional, so a bare
+# region has no exact spec and langcodes' nearest match would pick whichever
+# private-use sibling sorts first. This is an explicit editorial convention,
+# not a claim in the spec data: Saudi Arabia has several documented varieties
+# (Najdi, Hejazi, ...) and no single standard spoken form, so ``ar-SA`` is
+# steered to Najdi — the variety of the capital region (Riyadh) and the most
+# widely spoken (Ingham, Najdi Arabic, 1994) — rather than asserting that
+# Saudi Arabic *is* Najdi anywhere in the data.
+_REGION_DEFAULTS: Dict[str, str] = {
+    "ar-SA": "ar-SA-x-najd",
 }
 
 try:
@@ -96,7 +121,8 @@ def _resolve_code(code: str) -> str:
        code is not a private-use subtag (``x-`` extension).
     3. Exact match against the registered spec codes.
     4. Curated default variant for a bare primary-language tag
-       (``pt`` → ``pt-PT``).
+       (``pt`` → ``pt-PT``) or a region tag with only sub-regional specs
+       (``ar-SA`` → ``ar-SA-x-najd``).
     5. Nearest registered code by language distance
        (``en-NZ`` → ``en-GB``); no usable match leaves *code* unchanged.
     """
@@ -114,6 +140,8 @@ def _resolve_code(code: str) -> str:
         return code
     if code in _BARE_DEFAULTS:
         return _BARE_DEFAULTS[code]
+    if code in _REGION_DEFAULTS:
+        return _REGION_DEFAULTS[code]
     match = closest_lang(code, available)
     if match:
         _LOG.debug("resolved language code %r to nearest registered %r",

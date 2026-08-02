@@ -1,6 +1,6 @@
 # Ancestry System
 
-The ancestry system models the historical relationships between languages — parent descent, substrate influences, superstrate overlays, and ongoing contact — in a structured, typed way. This data powers phylogenetically-informed distance calculations and enables the package to be used as a digital reference for historical linguistics.
+The ancestry system models the historical relationships between languages: parent descent, substrate influences, superstrate overlays, and ongoing contact: in a structured, typed way. This data powers phylogenetically-informed distance calculations and enables the package to be used as a digital reference for historical linguistics.
 
 ---
 
@@ -8,7 +8,7 @@ The ancestry system models the historical relationships between languages — pa
 
 Purely synchronic phonological comparison (inventory distance, grapheme divergence) misses important information:
 
-1. **Two languages can be phonologically similar for different reasons** — they might share a common ancestor, or they might have converged through contact.
+1. **Two languages can be phonologically similar for different reasons**: they might share a common ancestor, or they might have converged through contact.
 2. **Substrate effects** explain phonological features that deviate from the genetic ancestor. The Basque substrate is the leading explanation for Castilian's *f → h* change; knowing this lets us weight the Basque connection appropriately.
 3. **Creoles and contact languages** cannot be adequately described with a single parent chain.
 4. **Distance metrics improve** when ancestry similarity is factored in alongside synchronic phonological metrics.
@@ -38,7 +38,7 @@ get("pt-PT").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Roman
 get("pt-PT").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
-Because it is a chain rather than a fixed-depth string, a consumer can ask at any depth — `available_families()` indexes a language under *every* step of its path, so `--family Romance` and `--family Ibero-Romance` both return `pt-PT`.
+Because it is a chain rather than a fixed-depth string, a consumer can ask at any depth: `available_families()` indexes a language under *every* step of its path, so `--family Romance` and `--family Ibero-Romance` both return `pt-PT`.
 
 A spec may still carry an explicit `family` string, which wins over the derived one. That escape hatch is for groupings that are not genetic clades: creoles (`Portuguese Creole`), constructed languages, isolates, and unclassified languages.
 
@@ -68,7 +68,7 @@ class Ancestor:
 Primary genetic descent. The normal line of language transmission across generations.
 
 - Every living/attested language should have exactly one PARENT (except reconstructed proto-languages).
-- Weight: 0.70–1.00
+- Weight: 0.70-1.00
 
 ```python
 # Latin → Spanish
@@ -125,7 +125,7 @@ The 700-year Arabic presence on the Iberian Peninsula left a massive lexical foo
 The language providing the majority of vocabulary in a creole or pidgin. In creole linguistics, the lexifier is sometimes called the "superstrate," though the sociolinguistic situation differs from the above.
 
 ```python
-# Portuguese as lexifier of Papiamentu (not currently in registry — example only)
+# Portuguese as lexifier of Papiamentu (not currently in registry: example only)
 Ancestor("pt", AncestorRole.LEXIFIER, 0.65,
          "Portuguese lexifier: core vocabulary")
 ```
@@ -214,10 +214,10 @@ The algorithm:
 
 When adding a new language, consult the historical linguistics literature for:
 
-1. **The primary parent** — usually straightforward (which known language gave rise to this one?)
-2. **Substrate candidates** — what languages were spoken in this area before?
-3. **Superstrate candidates** — were there any conquest/prestige languages that left phonological traces?
-4. **Adstrate candidates** — what neighboring languages have been in continuous contact?
+1. **The primary parent**: usually straightforward (which known language gave rise to this one?)
+2. **Substrate candidates**: what languages were spoken in this area before?
+3. **Superstrate candidates**: were there any conquest/prestige languages that left phonological traces?
+4. **Adstrate candidates**: what neighboring languages have been in continuous contact?
 
 ### Weights should reflect phonological impact, not just historical presence
 
