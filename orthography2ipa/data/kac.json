@@ -64,13 +64,7 @@
       "tsʰ"
     ],
     "j": [
-      "dz"
-    ],
-    "c": [
-      "tɕ"
-    ],
-    "hc": [
-      "tɕʰ"
+      "dʑ"
     ],
     "s": [
       "s"
@@ -104,6 +98,24 @@
     ],
     "y": [
       "j"
+    ],
+    "chy": [
+      "tɕ"
+    ],
+    "gy": [
+      "ɡʲ"
+    ],
+    "ky": [
+      "kʲ"
+    ],
+    "hky": [
+      "kʲʰ"
+    ],
+    "hpy": [
+      "pʲʰ"
+    ],
+    "aw": [
+      "ɔ"
     ]
   },
   "allophones": {
@@ -222,7 +234,7 @@
       "notes": "Sino-Tibetan (Trans-Himalayan). Jingpho belongs to the Jingpho-Sal (Jingpho-Konyak-Bodo / Sal) branch, a SISTER of Kuki-Chin proper -- not a Kuki-Chin daughter (Burling 1983; van Driem 2001; Glottolog 'jing1260' is coordinate with, not under, 'kuki1246') -- so it is not parented to mni-x-proto-kuki-chin."
     }
   ],
-  "notes": "Jingpho (Jinghpaw, Kachin), spoken mainly in Kachin State, Myanmar, and Yunnan, China (as Jingpo). Jingpho-Sal branch of Sino-Tibetan (Burling 1983). Written with a Latin-based alphabet (23 letters) devised by Baptist missionary Ola Hanson from 1890; an unofficial Mon-Burmese-derived system also exists but Latin is the primary/official orthography (Wikipedia; Kurabe 2016). Aspirated stops/affricates are spelled with a preposed ⟨h⟩ digraph (⟨hp ht hk hts hc⟩) rather than a postposed one as in most neighbouring Kuki-Chin orthographies -- this is the orthography's own device for the aspirate series and each digraph earns its key on the same grounds as postposed-h digraphs elsewhere (AGENTS.md test 2). ⟨ny⟩ spells the palatal nasal /ɲ/; ⟨ng⟩ the velar nasal /ŋ/; ⟨j⟩ spells the voiced alveolar affricate /dz/ and ⟨c/hc⟩ the palatal affricate series, per Kurabe (2016). Jingpho has four tones in open syllables and two in closed syllables (Kurabe 2016; Wikipedia); tone diacritics (á a à â) are optional/inconsistently used in ordinary writing, so tone is left unmarked in this grapheme map pending a citable, consistently-applied tone orthography. Diphthong digraphs (ai au oi ui) each spell one syllable nucleus (AGENTS.md test 2). ⟨ts⟩ spells the single alveolar affricate phoneme /ts/, listed in AGENTS.md itself as a canonical passing multigraph, not a stop+fricative cluster.",
+  "notes": "Jingpho (Jinghpaw, Kachin), spoken mainly in Kachin State, Myanmar, and Yunnan, China (as Jingpo). Jingpho-Sal branch of Sino-Tibetan (Burling 1983). Written with a Latin-based alphabet (23 letters) devised by Baptist missionary Ola Hanson from 1890; an unofficial Mon-Burmese-derived system also exists but Latin is the primary/official orthography (Wikipedia; Kurabe 2016). Aspirated stops/affricates are spelled with a preposed ⟨h⟩ digraph (⟨hp ht hk hts hc⟩) rather than a postposed one as in most neighbouring Kuki-Chin orthographies -- this is the orthography's own device for the aspirate series and each digraph earns its key on the same grounds as postposed-h digraphs elsewhere (AGENTS.md test 2). ⟨ny⟩ spells the palatal nasal /ɲ/; ⟨ng⟩ the velar nasal /ŋ/; ⟨j⟩ spells the voiced alveolar affricate /dz/ and ⟨c/hc⟩ the palatal affricate series, per Kurabe (2016). Jingpho has four tones in open syllables and two in closed syllables (Kurabe 2016; Wikipedia); tone diacritics (á a à â) are optional/inconsistently used in ordinary writing, so tone is left unmarked in this grapheme map pending a citable, consistently-applied tone orthography. Diphthong digraphs (ai au oi ui) each spell one syllable nucleus (AGENTS.md test 2). ⟨ts⟩ spells the single alveolar affricate phoneme /ts/, listed in AGENTS.md itself as a canonical passing multigraph, not a stop+fricative cluster. Letter values corrected against Wikipedia's Jinghpaw alphabet table: the palatal affricate is spelled ⟨chy⟩ [tɕ] (no bare ⟨c⟩ letter exists, and no ⟨hc⟩ digraph is attested — an earlier draft's ⟨c⟩/⟨hc⟩ keys were removed as unsupported); ⟨j⟩ is [dʑ]; ⟨hts⟩ [tsʰ]; the palatalized stop series is written ⟨ky gy hky hpy⟩; ⟨aw⟩ spells [ɔ].",
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "kac",

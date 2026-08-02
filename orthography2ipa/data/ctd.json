@@ -57,14 +57,11 @@
     "kh": [
       "kʰ"
     ],
-    "gh": [
-      "kʰ"
-    ],
     "ts": [
-      "ts"
+      "tɕ"
     ],
     "tsh": [
-      "tsʰ"
+      "tɕʰ"
     ],
     "s": [
       "s"
@@ -125,11 +122,11 @@
     "kʰ": [
       "kʰ"
     ],
-    "ts": [
-      "ts"
+    "tɕ": [
+      "tɕ"
     ],
-    "tsʰ": [
-      "tsʰ"
+    "tɕʰ": [
+      "tɕʰ"
     ],
     "s": [
       "s"
@@ -206,7 +203,7 @@
       "notes": "Tedim Chin is a Northern Kuki-Chin language descended from Proto-Kuki-Chin (VanBik 2009)."
     }
   ],
-  "notes": "Tedim Chin (Tedim, Tiddim), spoken in Chin State, Myanmar and diaspora. Northern Kuki-Chin branch, Sino-Tibetan. Written in a Latin-based orthography (an alternative Pau Cin Hau script also exists but is not primary). Doubled vowel letters mark phonemic length, matching the same device documented for the sister language Hakha Chin (cnh). ⟨ph th kh⟩ spell the aspirated stop series; ⟨gh⟩ is a variant spelling attested for aspirated /kʰ/, described by Wikipedia as showing free variation with [x] -- kept as a separate key from ⟨kh⟩/⟨x⟩ because the orthography uses distinct letters for what is phonemically the same segment in variation, not a predictable rule-derivable spelling. ⟨ts tsh⟩ spell the alveolar affricate series; ⟨ng⟩ the velar nasal. Vowel quality /ɛ/ and /ɔ/ (rather than /e/ /o/) follow the mid-vowel values reported by Naw (2013); Wikipedia notes 'ɛ, ɔ may have closer allophones [e, o]', encoded here as allophone-list alternates rather than separate graphemes. Tedim has tonal contrasts (syllable template (C)V(V)(C)T) that Wikipedia itself flags as under-documented ('needs expansion'); tone is left unmarked in this spec pending a citable tone rule. ⟨ts⟩ spells the single alveolar affricate phoneme /ts/, listed in AGENTS.md itself as a canonical passing multigraph, not a stop+fricative cluster.",
+  "notes": "Tedim Chin (Tedim, Tiddim), spoken in Chin State, Myanmar and diaspora. Northern Kuki-Chin branch, Sino-Tibetan. Written in a Latin-based orthography (an alternative Pau Cin Hau script also exists but is not primary). Doubled vowel letters mark phonemic length, matching the same device documented for the sister language Hakha Chin (cnh). ⟨ph th kh⟩ spell the aspirated stop series; /x/ (spelled ⟨x⟩) is reported by Wikipedia to be in free variation with an aspirated velar stop [kʰ], but no source describes a distinct ⟨gh⟩ letter for this, so no ⟨gh⟩ key is asserted here (an earlier draft's ⟨gh⟩ claim was removed as unsupported). ⟨ts tsh⟩ spell the alveolo-palatal affricate series /tɕ tɕʰ/ per Wikipedia's consonant table (corrected from an earlier plain-alveolar [ts]/[tsʰ] reading, which Wikipedia's cited inventory does not support); ⟨ng⟩ the velar nasal. Vowel quality /ɛ/ and /ɔ/ (rather than /e/ /o/) follow the mid-vowel values reported by Naw (2013); Wikipedia notes 'ɛ, ɔ may have closer allophones [e, o]', encoded here as allophone-list alternates rather than separate graphemes. Tedim has tonal contrasts (syllable template (C)V(V)(C)T) that Wikipedia itself flags as under-documented ('needs expansion'); tone is left unmarked in this spec pending a citable tone rule. ⟨ts⟩ spells the single affricate phoneme /tɕ/, listed in AGENTS.md itself as a canonical passing multigraph, not a stop+fricative cluster.",
   "quality": "skeleton",
   "script_type": "alphabet",
   "iso639_3": "ctd",
