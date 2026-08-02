@@ -4335,6 +4335,10 @@
   "level": "language",
   "name": "Capiznon"
  },
+ "capp1239": {
+  "level": "language",
+  "name": "Cappadocian Greek"
+ },
  "caqu1242": {
   "level": "language",
   "name": "Caquinte"
@@ -5291,6 +5295,10 @@
   "level": "language",
   "name": "Copala Triqui"
  },
+ "copp1244": {
+  "level": "dialect",
+  "name": "Inuinnaqtun"
+ },
  "copt1239": {
   "level": "language",
   "name": "Coptic"
@@ -6223,6 +6231,10 @@
   "level": "language",
   "name": "Dori'o"
  },
+ "dori1248": {
+  "level": "dialect",
+  "name": "Doric"
+ },
  "doro1266": {
   "level": "language",
   "name": "Doromu-Koki"
@@ -7126,6 +7138,14 @@
  "eten1239": {
   "level": "language",
   "name": "Eten"
+ },
+ "eteo1236": {
+  "level": "language",
+  "name": "Eteocretan"
+ },
+ "eteo1240": {
+  "level": "language",
+  "name": "Eteocypriot"
  },
  "ethi1238": {
   "level": "language",
@@ -17371,6 +17391,10 @@
   "level": "language",
   "name": "Mwimbi-Muthambi"
  },
+ "myce1242": {
+  "level": "dialect",
+  "name": "Mycenaean Greek"
+ },
  "myen1241": {
   "level": "language",
   "name": "Myene"
@@ -19622,6 +19646,10 @@
  "oira1263": {
   "level": "language",
   "name": "Oirata"
+ },
+ "ojib1241": {
+  "level": "family",
+  "name": "Ojibwa"
  },
  "ojit1237": {
   "level": "language",
@@ -26055,6 +26083,10 @@
   "level": "language",
   "name": "Tsaangi"
  },
+ "tsak1248": {
+  "level": "language",
+  "name": "Tsakonian"
+ },
  "tsak1249": {
   "level": "language",
   "name": "Tsakhur"
@@ -28658,6 +28690,10 @@
  "yetf1238": {
   "level": "language",
   "name": "Yetfa"
+ },
+ "yeva1238": {
+  "level": "language",
+  "name": "Yevanic"
  },
  "yeyi1239": {
   "level": "language",
