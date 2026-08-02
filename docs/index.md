@@ -14,9 +14,9 @@ orthography into an IPA (International Phonetic Alphabet) transcription.
 'hɛlɒ wɔːɹld'
 ```
 
-676 languages and 73 clade nodes ship with the package
-(`available_codes()` returns the 676; `available_codes(include_clades=True)`
-adds the clades, which are classification-only).
+Languages plus classification-only clade nodes ship with the package.
+`available_codes()` returns the languages; `available_codes(include_clades=True)`
+adds the clades. Run both for the live counts.
 
 ## The relational axes
 
