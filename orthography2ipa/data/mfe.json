@@ -115,6 +115,30 @@
       "role": "parent",
       "weight": 1.0,
       "notes": "Descent per Glottolog classification of Morisyen (mori1278)."
+    },
+    {
+      "code": "fr-FR",
+      "role": "lexifier",
+      "weight": 0.65,
+      "notes": "French lexifier: Morisyen (Mauritian Creole) draws the large majority of its vocabulary from 18th-century colonial French. Baker & Kriegel, APiCS ch. 'Morisyen'; Corne (1999) From French to Creole."
+    },
+    {
+      "code": "mg",
+      "role": "substrate",
+      "weight": 0.08,
+      "notes": "Malagasy substrate: enslaved and indentured population brought from Madagascar contributed to the founder population of Isle de France/Mauritius alongside East African and Indian labourers (Baker & Kriegel, APiCS ch. 'Morisyen')."
+    },
+    {
+      "code": "sw",
+      "role": "adstrate",
+      "weight": 0.03,
+      "notes": "East African (Bantu, represented here by Swahili as the closest specced proxy) adstrate: enslaved population drawn from the East African coast during the French colonial period."
+    },
+    {
+      "code": "bho",
+      "role": "adstrate",
+      "weight": 0.05,
+      "notes": "Bhojpuri adstrate: 19th-century indentured Indian labourers (mostly from the Bhojpuri-speaking Gangetic plain) form a large share of the modern Mauritian population and contribute an ongoing contact layer (Baker & Kriegel, APiCS ch. 'Morisyen')."
     }
   ],
   "notes": "Skeleton. French-lexifier creole of Mauritius written in a Latin, largely phonemic orthography. Grapheme map follows the modern conventions: ou [u], ch [ʃ], j [ʒ], z [z], the nasal-vowel digraphs an [ã], on [õ], in [ẽ], and gn [ɲ]. Standardisation of the spelling is recent and older French-etymology spellings still circulate; the phonetic value of contextual variation is not fully recoverable and any prosody is left unencoded, so a PER floor is expected.",
