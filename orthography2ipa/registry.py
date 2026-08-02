@@ -76,6 +76,13 @@ _ALIASES: Dict[str, str] = {
     # so pin each individual code to itself before the macro-collapse step.
     "als": "als",
     "rmy": "rmy",
+    # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
+    # while the registry also carries their langcodes-preferred siblings
+    # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself
+    # so standardisation does not rewrite an exact-file hit, same class of
+    # collision as bxr/diq above.
+    "oji": "oji",
+    "mnk": "mnk",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
