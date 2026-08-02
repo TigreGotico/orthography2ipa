@@ -41,7 +41,7 @@ drive a grapheme-to-IPA engine:
 ```python
 >>> import orthography2ipa
 >>> orthography2ipa.transcribe("olá mundo", "pt")
-'oˈla ˈmũdu'
+'oˈla ˈmũdu'
 ```
 
 Languages and classification-only clade nodes ship with the package as spec files in
@@ -223,7 +223,7 @@ library: [arbtok](https://github.com/TigreGotico/arbtok) for Arabic,
 ```python
 import orthography2ipa
 
-orthography2ipa.transcribe("olá mundo", "pt")     # 'oˈla ˈmũdu'
+orthography2ipa.transcribe("olá mundo", "pt")     # 'oˈla ˈmũdu'
 orthography2ipa.transcribe("hello world", "en")   # 'hɛlɒ wɔːɹld'
 orthography2ipa.transcribe("bona nuèit", "oc")    # 'ˈbunɔ ˈnyɛjt'
 
@@ -232,7 +232,7 @@ from orthography2ipa import G2P
 
 engine = G2P("pt-PT")
 result = engine.transcribe_detailed("um café", search="beam", beam_width=4)
-result.ipa                          # 'ˈũ kɐˈfɛ'
+result.ipa                          # 'ˈũ kɐˈfɛ'
 result.words[1].candidates          # ranked IPAPath alternatives
 ```
 
