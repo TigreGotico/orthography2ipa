@@ -4,7 +4,7 @@ A library for measuring **how languages relate to each other**, and for turning
 their spelling into IPA on the way there.
 
 Two languages can be close on one axis and far apart on another. Galician and
-Portuguese *sound* nearly the same and are written differently; Galician and
+Portuguese *sound* nearly the same and are written differently. Galician and
 Castilian *sound* different and are written alike. A single "language similarity"
 number hides that. `orthography2ipa` keeps the axes apart and measures each one on
 its own:
@@ -23,19 +23,19 @@ its own:
 import orthography2ipa as o2i
 from orthography2ipa.distance import grapheme_divergence, spelling_divergence
 
-gl = o2i.get("gl")                  # Galician, RAG norm — writes /ɲ/ as ⟨ñ⟩, as Castilian does
-glr = o2i.get("gl-x-reintegrado")   # Galician, reintegrationist norm — as ⟨nh⟩, as Portuguese does
+gl = o2i.get("gl")                  # Galician, RAG norm: writes /ɲ/ as ⟨ñ⟩, as Castilian does
+glr = o2i.get("gl-x-reintegrado")   # Galician, reintegrationist norm: as ⟨nh⟩, as Portuguese does
 
-grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233 — reading: same text, same sounds
-spelling_divergence(gl, glr).mean_distance       # 0.0659 — spelling: same sounds, written differently
+grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233: reading: same text, same sounds
+spelling_divergence(gl, glr).mean_distance       # 0.0659: spelling: same sounds, written differently
 ```
 
 The two norms are the same language with the same phonology, and only the spelling
 axis can see what separates them. That is the library: the axes are independent,
 so they are measured independently.
 
-The phonology those axes compare comes from a **per-language data spec** —
-graphemes, allophones, positional rules, ancestry, sources — and the same specs
+The phonology those axes compare comes from a **per-language data spec** (graphemes,
+allophones, positional rules, ancestry, sources), and the same specs
 drive a grapheme-to-IPA engine:
 
 ```python
@@ -44,11 +44,15 @@ drive a grapheme-to-IPA engine:
 'oˈla ˈmũdu'
 ```
 
-**676 languages** and **73 clade nodes** ship with the package (749 spec files in
-`orthography2ipa/data/`; `available_codes()` returns the 676 languages,
-`available_codes(include_clades=True)` all 749), spread across 33 top-level
-families from Indo-European to Quechuan, plus reconstructed proto-languages,
-regional dialects and creoles.
+Languages and classification-only clade nodes ship with the package as spec files in
+`orthography2ipa/data/`, spread across top-level families from Indo-European to
+Quechuan, plus reconstructed proto-languages, regional dialects and creoles. The
+count grows over time, so check it live instead of trusting a number in a doc:
+
+```python
+len(orthography2ipa.available_codes())                      # languages only
+len(orthography2ipa.available_codes(include_clades=True))   # languages + clade nodes
+```
 
 New to the library? **[docs/index.md](docs/index.md)** routes you by what you are
 trying to do, and states the known accuracy limits up front.
@@ -56,41 +60,41 @@ trying to do, and states the known accuracy limits up front.
 ## The engine is data, not weights
 
 Every language is a JSON file describing which graphemes map to which IPA phonemes
-and how those phonemes surface in context. A shared, language-agnostic engine —
-tokenizer, beam search, allophone rules, stress, sandhi — turns that data into
+and how those phonemes surface in context. A shared, language-agnostic engine
+(tokenizer, beam search, allophone rules, stress, sandhi) turns that data into
 transcriptions. There are no trained weights to ship, and adding a language means
 writing cited data, not training a model.
 
 ### Sounds are not a property of spelling
 
-A spec states its **`phonemes`** — the inventory — directly, independently of its
+A spec states its **`phonemes`** (the inventory) directly, independently of its
 graphemes. Most of the world's languages are unwritten or barely written, and a
 logographic script encodes no sound at all, so reading the inventory out of the
 spelling cannot work for either. Proto-Indo-European declares its 30 reconstructed
-phonemes instead of faking an identity orthography to have an inventory; `zh-Hani`
-(Chinese in Han script) has **no grapheme map at all** — there is no rule to write —
+phonemes instead of faking an identity orthography to have an inventory. `zh-Hani`
+(Chinese in Han script) has **no grapheme map at all** (there is no rule to write),
 and a complete phonology regardless.
 
 ```python
 import orthography2ipa
 
 han = orthography2ipa.get("zh-Hani")
-han.graphemes     # {} — honest, not a gap: a Han character encodes no sound
-len(han.phonemes) # 60 — the phonology is known anyway
+han.graphemes     # {}: honest, not a gap: a Han character encodes no sound
+len(han.phonemes) # 60: the phonology is known anyway
 ```
 
 When `phonemes` is absent the inventory is derived from `graphemes`, so nothing
-changes for a spec that says nothing — but that derivation is a *fallback*, not the
+changes for a spec that says nothing: but that derivation is a *fallback*, not the
 definition. The invariant is: **a spec declares graphemes or a phoneme inventory,
 and may not be silent about both.**
 
-A spec also states its **`orthography_kind`** — `native`, `romanization` or
-`transliteration` — because Han characters, Pinyin and Buckwalter ASCII make three
+A spec also states its **`orthography_kind`**: `native`, `romanization` or
+`transliteration`: because Han characters, Pinyin and Buckwalter ASCII make three
 different claims. `zh` is a **romanization**: it reads Pinyin (ISO 7098), not Hanzi,
 and Pinyin's being a plain alphabet is exactly why it is rule-transcribable when the
 native script is not. `ar-Latn-buckwalter` is a **transliteration**: a machine
 re-encoding of the Arabic script with no standards body, lossless against it, and
-inheriting the abjad limit it cannot escape — re-encoding does not recover vowels
+inheriting the abjad limit it cannot escape: re-encoding does not recover vowels
 the script never wrote. See [docs/orthography_kind.md](docs/orthography_kind.md).
 
 ### Two maps, kept apart
@@ -103,15 +107,15 @@ the script never wrote. See [docs/orthography_kind.md](docs/orthography_kind.md)
 The pre-lexical map (orthography → phoneme) is conditioned by
 `positional_graphemes`, vowel-class positions and candidate weights. The
 post-lexical map (phoneme → surface allophone) is applied by declarative
-**`allophone_rules`** — context-conditioned rewrites keyed on syllable position,
+**`allophone_rules`**: context-conditioned rewrites keyed on syllable position,
 stress, word position and neighbouring segments. They compile into a lattice
 rescorer that runs after phoneme selection and before stress and sandhi. Catalan
 uses them for word-final obstruent devoicing (`fred` → `[ˈfɾet]`) and nasal place
-assimilation (`banc` → `[ˈbaŋk]`); see [docs/allophony.md](docs/allophony.md).
+assimilation (`banc` → `[ˈbaŋk]`). See [docs/allophony.md](docs/allophony.md).
 
 ### The pronunciation lattice
 
-When a spelling is ambiguous the engine does not just pick a guess — it builds a
+When a spelling is ambiguous the engine does not just pick a guess: it builds a
 ranked, cost-annotated lattice for the word, and that lattice is what specialised
 phonemizers stand on. For any registered language you get, per grapheme, every IPA
 option it can realise and a `-log P` cost ranking them:
@@ -127,8 +131,8 @@ for slot in tok.ipa_lattice("cough"):
     # ough → [('ɔː', 0.0), ('oʊ', 1.0), ('ʌf', 2.0), ('ɒf', 3.0), ('aʊ', 4.0), ('uː', 5.0)]
 ```
 
-**It tells you when it is unsure.** A per-word confidence — each slot's top-1 vs
-top-2 cost margin folded with grapheme coverage — flags which words a downstream
+**It tells you when it is unsure.** A per-word confidence: each slot's top-1 vs
+top-2 cost margin folded with grapheme coverage: flags which words a downstream
 engine should spend its expensive lexicon or rules on, and which it can take on
 trust:
 
@@ -136,9 +140,9 @@ trust:
 from orthography2ipa import G2P
 
 g = G2P("en-GB")
-g.word_confidence("bar")     # 1.0    — one reading, take it
-g.word_confidence("cough")   # 0.6321 — ambiguous, look closer
-g.word_confidence("bar你")   # 0.75   — one OOV grapheme drops coverage to 3/4
+g.word_confidence("bar")     # 1.0: one reading, take it
+g.word_confidence("cough")   # 0.6321: ambiguous, look closer
+g.word_confidence("bar你")   # 0.75: one OOV grapheme drops coverage to 3/4
 ```
 
 **A downstream engine refines the lattice with a rescorer.** A rule is a
@@ -161,24 +165,24 @@ class RoughOugh(LatticeRescorer):
                                          for c in others]
 
 tok = PhonetokTokenizer(get("en-GB"))
-tok.ipa_best("tough")                        # 'tɔː'  — generic beam
-tok.ipa_best("tough", rescorer=RoughOugh())  # 'tʌf'  — refined
+tok.ipa_best("tough")                        # 'tɔː': generic beam
+tok.ipa_best("tough", rescorer=RoughOugh())  # 'tʌf': refined
 ```
 
 The beam is the **universal fallback**: it produces a defensible transcription for
 every word in every registered language. Refining it with a rescorer is one of two
-supported ways to build a specialised engine on this library; keeping a bespoke
+supported ways to build a specialised engine on this library. Keeping a bespoke
 tokenizer is the other. [arbtok](https://github.com/TigreGotico/arbtok),
 [tugaphone](https://github.com/TigreGotico/tugaphone),
 [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and
 [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer) build on this
-library; see [Refine or fork?](docs/lattice.md#refine-the-lattice-or-fork-the-tokenizer)
+library. See [Refine or fork?](docs/lattice.md#refine-the-lattice-or-fork-the-tokenizer)
 for the trade-offs.
 
 Because the library ships no trained weights it is also a clean *feature provider*
 for an ML G2P: `G2P.features(text)` exposes, per grapheme, the phonological-class
 predicates, word-local neighbours, the ranked `(ipa, cost)` lattice and the
-confidence signal as flat, JSON-able dicts — so a CRF trains on
+confidence signal as flat, JSON-able dicts: so a CRF trains on
 linguistically-grounded features and plugs back in as a `LatticeRescorer`, spending
 its learned capacity where confidence says the base engine is unsure. See
 [Features for ML / CRF G2P](docs/features.md).
@@ -186,7 +190,7 @@ its learned capacity where confidence says the base engine is unsure. See
 ## Families are nodes, not labels
 
 There is no authored `family` string. A family is a **clade node** in the ancestry
-graph — a spec with `"clade": true`, carrying classification and nothing else — and
+graph, a spec with `"clade": true`, carrying classification and nothing else, and
 `spec.family` is *derived* by walking the parent chain up through the clades it
 passes:
 
@@ -199,7 +203,7 @@ orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance >
 
 Because it is a chain and not a fixed-depth label, a consumer can ask at any depth:
 `--family Romance` and `--family Ibero-Romance` both match `pt-BR`. Clade nodes are
-classification-only — never a data source, never inherited from, and excluded from
+classification-only: never a data source, never inherited from, and excluded from
 `available_codes()` by default. An explicit `family` string stays accepted for
 groupings that are *not* genetic clades: creoles, constructed languages, isolates,
 unclassified languages. See [docs/ancestry.md](docs/ancestry.md).
@@ -241,22 +245,22 @@ stress marks (when the spec declares stress rules) → sandhi → dialect transf
 import orthography2ipa
 
 en = orthography2ipa.get("en-GB")
-en.graphemes["th"]    # ['θ', 'ð']              — grapheme → phoneme candidates
-en.allophones["t"]    # ['t', 'tʰ', 'ʔ', 'ɾ']   — phoneme → surface realisations
+en.graphemes["th"]    # ['θ', 'ð']: grapheme → phoneme candidates
+en.allophones["t"]    # ['t', 'tʰ', 'ʔ', 'ɾ']: phoneme → surface realisations
 en.name               # 'British English (RP)'
 en.script             # 'Latin'
 en.family             # 'Indo-European > Germanic > Northwest Germanic > West Germanic'
 
 # Regional variants share ancestry but diverge where pronunciation does
-orthography2ipa.get("pt-BR").graphemes["t"]   # ['t', 't͡ʃ'] — palatalisation before /i/
+orthography2ipa.get("pt-BR").graphemes["t"]   # ['t', 't͡ʃ']: palatalisation before /i/
 
 # Bare tags, ISO 639-3 aliases and near matches all resolve
 orthography2ipa.get("eng").name    # 'British English (RP)'
-orthography2ipa.resolve("pt")      # 'pt-PT' — reference variety
-orthography2ipa.resolve("en-NZ")   # 'en-GB' — nearest registered
+orthography2ipa.resolve("pt")      # 'pt-PT': reference variety
+orthography2ipa.resolve("en-NZ")   # 'en-GB': nearest registered
 
 # Discover what's available
-orthography2ipa.available_codes()      # 676 language codes (clades excluded)
+orthography2ipa.available_codes()      # language codes (clades excluded)
 orthography2ipa.available_families()   # codes grouped by derived family path
 ```
 
@@ -270,16 +274,16 @@ from orthography2ipa.distance import (phonological_distance, spelling_divergence
 pt, es = o2i.get("pt-PT"), o2i.get("es-ES")
 
 d = phonological_distance(pt, es)
-d.combined                              # 0.2062 — sound-level distance: inventory
+d.combined                              # 0.2062: sound-level distance: inventory
                                         #          and allophony, never orthography
 d.inventory.feature_mean                # phoneme-inventory distance
 d.allophone_sim                         # allophone overlap
-d.grapheme.mean_ipa_distance            # 0.1102 — reading divergence; reported here
+d.grapheme.mean_ipa_distance            # 0.1102: reading divergence, reported here
                                         #          but NOT part of `combined`
 
-spelling_divergence(pt, es).mean_distance      # 0.2068 — writing divergence
-ancestry_similarity(pt, es)                    # 0.5304 — shared-ancestor weight
-geographic_distance(pt, es, normalize=False)   # 377.8 — km between the two points
+spelling_divergence(pt, es).mean_distance      # 0.2068: writing divergence
+ancestry_similarity(pt, es)                    # 0.5304: shared-ancestor weight
+geographic_distance(pt, es, normalize=False)   # 377.8: km between the two points
 ```
 
 Every axis, with its caveats, is in [docs/distance.md](docs/distance.md).
@@ -313,31 +317,31 @@ orthography2ipa distance es-ES it-IT --json
 
 Every `LanguageSpec` provides:
 
-1. **Graphemes** — orthographic units (characters, digraphs, trigraphs) mapped to canonical IPA phonemes, and an **`orthography_kind`** saying whether they are the native script, a romanization or a transliteration.
-2. **Phonemes** — the inventory, stated directly; derived from the graphemes only as a fallback.
-3. **Allophones** — each phoneme mapped to its positional/contextual surface realisations.
-4. **Positional graphemes** — context-sensitive overrides (word-initial, intervocalic, before a front vowel, …).
-5. **Allophone rules** — post-lexical `phoneme → surface` rewrites (final devoicing, assimilation, reduction, flapping).
-6. **Ancestry** — weighted multi-ancestor lineage (parent, substrate, superstrate, adstrate, …), through which `family` is derived.
-7. **Sandhi rules** — cross-word phonological processes.
+1. **Graphemes**: orthographic units (characters, digraphs, trigraphs) mapped to canonical IPA phonemes, and an **`orthography_kind`** saying whether they are the native script, a romanization or a transliteration.
+2. **Phonemes**: the inventory, stated directly, or derived from the graphemes only as a fallback.
+3. **Allophones**: each phoneme mapped to its positional/contextual surface realisations.
+4. **Positional graphemes**: context-sensitive overrides (word-initial, intervocalic, before a front vowel, …).
+5. **Allophone rules**: post-lexical `phoneme → surface` rewrites (final devoicing, assimilation, reduction, flapping).
+6. **Ancestry**: weighted multi-ancestor lineage (parent, substrate, superstrate, adstrate, …), through which `family` is derived.
+7. **Sandhi rules**: cross-word phonological processes.
 8. **Stress rules**, **tone inventory** and **word exceptions**, where applicable.
-9. **Orthography standard** — the official published spelling norm, when the language has one.
-10. **Location** and **timespan** — where and when the variety is spoken.
-11. **Provenance** — `QualityTier` (stub → skeleton → research → production), `ScriptType`, bibliographic `sources`, `wikipedia` / `urls`, and cross-reference identifiers (`glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3`).
+9. **Orthography standard**: the official published spelling norm, when the language has one.
+10. **Location** and **timespan**: where and when the variety is spoken.
+11. **Provenance**: `QualityTier` (stub → skeleton → research → production), `ScriptType`, bibliographic `sources`, `wikipedia` / `urls`, and cross-reference identifiers (`glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3`).
 
 Regional varieties get their own `LanguageSpec` linked through ancestry, and
 `graphemes_base` / `allophones_base` inheritance lets a dialect declare only what
 differs from its parent. The full field list is in
-[docs/data_model.md](docs/data_model.md); the authoring reference is
+[docs/data_model.md](docs/data_model.md). The authoring reference is
 [`orthography2ipa/data/SCHEMA.md`](orthography2ipa/data/SCHEMA.md).
 
 ## Benchmarks
 
-The engine is evaluated against the best gold sets available — the
+The engine is evaluated against the best gold sets available: the
 [Portal da Língua Portuguesa lexicon](https://huggingface.co/datasets/TigreGotico/portuguese_phonetic_lexicon),
 WikiPron, Infopédia, CMUdict, the Mirandese gold set, 4CatAc and others. The
 published [scoreboard](docs/scoreboard.md) scores the **entire** gold set of every
-registered dataset/language pair — no cap — so each row's `N` is the real number of
+registered dataset/language pair, with no cap, so each row's `N` is the real number of
 covered gold words, not a sample size. Reproduce any row with
 `python scripts/benchmark.py --scoreboard`.
 
@@ -351,7 +355,7 @@ column, and one of those tiers deserves naming here:
 > The `espeak-derived` rows (`styletts2_phonemes`, `ipa_babylm`, and the
 > `phonemizer`-phonemized `ipa_childes` languages) are espeak-ng output, and the
 > `epitran-derived` rows (the `epitran`-phonemized `ipa_childes` languages) are
-> epitran output — both are competitors this library benchmarks *against* in
+> epitran output: both are competitors this library benchmarks *against* in
 > [comparison.md](docs/comparison.md). Diverging from them can mean we are right
 > and they are wrong, which shows up in those rows as a *worse* score. Such a row
 > can therefore neither qualify a language for a production promotion nor block
@@ -363,17 +367,16 @@ column, and one of those tiers deserves naming here:
 > diagnoses nothing.
 
 Contextual (positional) scoring is still limited, no language currently sits at the
-`production` quality tier, and PER is genuinely mediocre for several languages —
-see
+`production` quality tier, and PER is genuinely mediocre for several languages: see
 [Honest limitations](docs/index.md#honest-limitations-read-this-before-you-trust-a-tier)
 before depending on this for anything accuracy-sensitive. Methodology, per-dataset
 evidence and the full reliability taxonomy are in
 [docs/benchmarks.md](docs/benchmarks.md).
 
 Candidate ordering defaults to rank order (most common pronunciation first). A spec
-can attach per-candidate **weights** — candidate frequencies from cited corpora —
-so the beam favours the corpus-dominant phoneme and a path's score becomes a real
-log-probability; see [candidate scoring](docs/candidate_scoring.md).
+can attach per-candidate **weights** (candidate frequencies from cited corpora), so
+the beam favours the corpus-dominant phoneme and a path's score becomes a real
+log-probability. See [candidate scoring](docs/candidate_scoring.md).
 
 ### Comparison to other G2P systems
 
@@ -387,17 +390,17 @@ lists. No row is cherry-picked.
 
 ## Design principles
 
-- **Independent axes** — phonology, reading, spelling, script, ancestry, time and geography are measured separately, because languages relate along each of them differently.
-- **Linguistically motivated only** — digraphs like English ⟨th⟩, Portuguese ⟨lh⟩ or German ⟨sch⟩ are included because they are standard orthographic units; arbitrary substrings are not.
-- **Graphemes ≠ allophones** — spelling-to-phoneme and phoneme-to-surface are modelled separately.
-- **Classification is a graph** — families are clade nodes on the ancestry chain, not labels on a spec.
-- **Pure data, self-contained logic** — mappings are declarative JSON; the engine never loads external G2P implementations.
-- **Honest numbers** — every benchmark row states where its gold came from and how much it can carry.
+- **Independent axes**: phonology, reading, spelling, script, ancestry, time and geography are measured separately, because languages relate along each of them differently.
+- **Linguistically motivated only**: digraphs like English ⟨th⟩, Portuguese ⟨lh⟩ or German ⟨sch⟩ are included because they are standard orthographic units. Arbitrary substrings are not.
+- **Graphemes ≠ allophones**: spelling-to-phoneme and phoneme-to-surface are modelled separately.
+- **Classification is a graph**: families are clade nodes on the ancestry chain, not labels on a spec.
+- **Pure data, self-contained logic**: mappings are declarative JSON, and the engine never loads external G2P implementations.
+- **Honest numbers**: every benchmark row states where its gold came from and how much it can carry.
 
 ## Building engines on top
 
 `G2PPlugin` and `WordContext` are the base types for richer language-specific
-engines built **on** this library — [arbtok](https://github.com/TigreGotico/arbtok)
+engines built **on** this library: [arbtok](https://github.com/TigreGotico/arbtok)
 (Arabic: contextual rule cascade + tashkeel diacritization) and
 [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese: lexicon, POS and
 regional-accent layers). They consume the spec data, tokenizer and stress machinery
