@@ -51,6 +51,13 @@ _ALIASES: Dict[str, str] = {
     # macro-collapse step can rewrite it.
     "bxr": "bxr",
     "diq": "diq",
+    # ``quz`` (Cusco Quechua) and ``quy`` (Ayacucho Quechua) are individual
+    # -language codes that langcodes' macro=True standardisation collapses
+    # into their macrolanguage ``qu`` (Quechua), same class of collision as
+    # bxr/diq above. Both the individual specs and the macro node exist and
+    # are distinct targets — ``qu`` is only a structural adstrate stub.
+    "quz": "quz",
+    "quy": "quy",
     # ``tw`` (Twi) and ``fat`` (Fante) are individual-language codes that
     # langcodes' macro=True standardisation collapses into their
     # macrolanguage ``ak`` (Akan), same class of collision as bxr/diq above.
