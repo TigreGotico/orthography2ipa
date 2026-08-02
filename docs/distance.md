@@ -437,12 +437,12 @@ gl = o2i.get("gl")                  # RAG norm: /ɲ/ is written ⟨ñ⟩
 glr = o2i.get("gl-x-reintegrado")   # reintegrationist norm: /ɲ/ is written ⟨nh⟩
 
 grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233: they read almost identically
-spelling_divergence(gl, glr).mean_distance       # 0.0659: but they spell differently
+spelling_divergence(gl, glr).mean_distance       # 0.0871: but they spell differently
 
 sd = spelling_divergence(gl, glr)
-sd.shared_phonemes        # 43: phonemes both orthographies can spell
+sd.shared_phonemes        # 44: phonemes both orthographies can spell
 sd.identical_spellings    # 39: spelled exactly alike
-sd.disjoint_spellings     # 2: no shared spelling at all
+sd.disjoint_spellings     # 3: no shared spelling at all
 ```
 
 ### `SpellingDivergence` fields
@@ -457,6 +457,28 @@ sd.disjoint_spellings     # 2: no shared spelling at all
 
 Returns `mean_distance` 1.0 when the two share no phoneme at all. Silent graphemes
 (a grapheme mapping to the empty string) spell no phoneme and contribute nothing.
+
+---
+
+## `orthographic_distance(spec_a, spec_b)`
+
+Combined orthographic distance: `grapheme_divergence` plus a script-typology
+term from `script_distance`. Same-script pairs reduce to plain grapheme
+divergence; cross-script pairs weight in how typologically different the two
+writing systems are (`0.6 * script_distance + 0.4 * grapheme_divergence`).
+
+```python
+import orthography2ipa as o2i
+from orthography2ipa.distance import orthographic_distance
+
+gl = o2i.get("gl")
+glr = o2i.get("gl-x-reintegrado")
+orthographic_distance(gl, glr)   # 0.0233: same script, reduces to grapheme divergence
+
+pt = o2i.get("pt-BR")
+zh = o2i.get("zh-Hani")
+orthographic_distance(pt, zh)    # 0.7: different scripts, script term dominates
+```
 
 ---
 
