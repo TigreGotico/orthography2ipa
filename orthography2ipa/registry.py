@@ -70,6 +70,12 @@ _ALIASES: Dict[str, str] = {
     # itself so the macro-collapse step does not rewrite it.
     "mhr": "mhr",
     "mrj": "mrj",
+    # ``aju`` (Judeo-Moroccan Arabic) is an individual-language code that
+    # langcodes' macro=True standardisation collapses into its
+    # macrolanguage ``jrb`` (Judeo-Arabic), same class of collision as
+    # bxr/diq/tw/fat above. Both the individual and the macro spec exist
+    # and are distinct targets.
+    "aju": "aju",
     # ``als`` (Tosk Albanian) standardizes to ``sq`` (Albanian macrolanguage)
     # and ``rmy`` (Vlax Romani) standardizes to ``rom`` (Romani macrolanguage).
     # Both the individual and the macro spec exist and are distinct targets,

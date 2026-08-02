@@ -169,6 +169,36 @@ KNOWN_DEAD_RULES = {
     # the inherited French front-rounded/schwa nasalisation rules can never
     # fire here. They are live in fr-FR, which keeps both phonemes.
     "crs": {"FR_NASAL_y", "FR_NASAL_ə"},
+    # jrb (Judeo-Arabic macrolanguage node) is metadata-only: graphemes is
+    # intentionally empty pending a sourced Hebrew-script grapheme table (see
+    # its `notes`), so no phoneme -- including /ʔ/ -- is in the inventory yet
+    # and the inherited Classical-Arabic hamzat-al-waṣl rule can never fire.
+    # Same class of dead rule as "acy" above; will resolve itself once a real
+    # grapheme table is added for jrb.
+    "jrb": {"AR_WASL_EPENTHESIS"},
+    # ajt/aju/yhd (Judeo-Tunisian/Moroccan/Iraqi Arabic) are likewise
+    # metadata-only stubs (graphemes: {}) whose single genetic PARENT is
+    # their regional Arabic dialect spec (ar-TN/ar-MA/ar-IQ respectively --
+    # jrb is wired as RELATED, not PARENT, since it is a sociolinguistic
+    # macrolanguage collective, not genetic descent). They inherit that
+    # dialect's full allophone rule set, none of which can fire against an
+    # empty own inventory. Will resolve once a real Hebrew-script grapheme
+    # table is sourced for each code.
+    "ajt": {"AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_TN_MONO_AJ", "AR_TN_MONO_AW", "AR_WASL_EPENTHESIS"},
+    "aju": {"AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+            "AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_GLIDE_WAW_CONSONANTAL", "AR_GLIDE_YA_BEFORE_GEMINATE",
+            "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_YA_GEMINATE_COPY",
+            "MA_SHORT_REDUCE", "AR_WASL_EPENTHESIS"},
+    "yhd": {"AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+            "AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_GLIDE_WAW_CONSONANTAL", "AR_GLIDE_YA_BEFORE_GEMINATE",
+            "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_YA_GEMINATE_COPY",
+            "IQ_EMPH_AA_AFTER", "IQ_EMPH_AA_BEFORE", "IQ_EMPH_A_AFTER",
+            "IQ_EMPH_A_BEFORE", "IQ_GILIT_AFFRIC_G_AFTER",
+            "IQ_GILIT_AFFRIC_G_BEFORE", "IQ_GILIT_AFFRIC_K_AFTER",
+            "IQ_GILIT_AFFRIC_K_BEFORE", "AR_WASL_EPENTHESIS"},
     # Yevanic (yej) is a stub: its Hebrew-script grapheme table is intentionally
     # left empty because no sourced letter-by-letter correspondence could be
     # located (see the spec's notes), so it emits nothing of its own at all.

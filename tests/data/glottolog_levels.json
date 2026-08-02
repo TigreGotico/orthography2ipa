@@ -891,6 +891,10 @@
   "level": "language",
   "name": "Ionic-Attic Ancient Greek"
  },
+ "anci1244": {
+  "level": "language",
+  "name": "Ancient Hebrew"
+ },
  "anci1248": {
   "level": "language",
   "name": "Ancient Ligurian"
@@ -8283,6 +8287,10 @@
   "level": "language",
   "name": "Kotiria"
  },
+ "guan1277": {
+  "level": "language",
+  "name": "Guanche"
+ },
  "guar1292": {
   "level": "language",
   "name": "Guarayu"
@@ -10318,6 +10326,10 @@
  "jude1262": {
   "level": "language",
   "name": "Judeo-Berber"
+ },
+ "jude1263": {
+  "level": "dialect",
+  "name": "Judeo-Tunisian Arabic"
  },
  "jude1264": {
   "level": "language",
@@ -21203,6 +21215,10 @@
   "level": "language",
   "name": "Punan Batu 1"
  },
+ "puni1241": {
+  "level": "language",
+  "name": "Punic"
+ },
  "puno1238": {
   "level": "language",
   "name": "Puno Quechua"
@@ -26554,6 +26570,10 @@
  "ugan1238": {
   "level": "language",
   "name": "Ugandan Sign Language"
+ },
+ "ugar1238": {
+  "level": "language",
+  "name": "Ugaritic"
  },
  "ughe1237": {
   "level": "language",
