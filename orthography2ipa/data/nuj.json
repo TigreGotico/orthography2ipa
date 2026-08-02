@@ -1,0 +1,81 @@
+{
+ "code": "nuj",
+ "name": "Nyole",
+ "script": "Zyyy",
+ "quality": "stub",
+ "graphemes": {},
+ "allophones": {},
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "iso639_3": "nuj",
+ "glottolog_code": "nyol1238",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1447",
+   "notes": "Inventory 1447 (ph), 34 non-marginal segments, 2 tones."
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/nyol1238"
+ ],
+ "location": {
+  "latitude": 0.8807,
+  "longitude": 33.9181,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-atla1278",
+ "phonemes": [
+  "b",
+  "d",
+  "d̠ʒ",
+  "j",
+  "k",
+  "l",
+  "m",
+  "mb",
+  "n",
+  "nd",
+  "n̠d̠ʒ",
+  "p",
+  "r",
+  "s",
+  "t",
+  "t̠ʃ",
+  "w",
+  "x",
+  "ŋ",
+  "ŋɡ",
+  "ɡ",
+  "ɲ",
+  "ɸ",
+  "β",
+  "a",
+  "aː",
+  "e",
+  "eː",
+  "i",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uː"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1447"
+}

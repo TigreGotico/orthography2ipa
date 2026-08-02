@@ -1,33 +1,33 @@
-# Paulistano Portuguese (pt-BR-x-sp) — Phonology Reference
+# Paulistano Portuguese (pt-BR-x-sp): Phonology Reference
 
 **Code**: `pt-BR-x-sp` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
 **Sources**: Barbosa & Albano (2004, *JIPA* 34(2):227–232), Mateus &
-d'Andrade (2000), Callou & Leite (2001), Silva (2002); Amaral (1920, §6b, for
+d'Andrade (2000), Callou & Leite (2001), Silva (2002). Amaral (1920, §6b, for
 contrast)
 
-`pt-BR-x-sp` models **Paulistano** — the urban Portuguese of the city and
+`pt-BR-x-sp` models **Paulistano**, the urban Portuguese of the city and
 metropolitan region of São Paulo, and the reference variety of the
 *Illustrations of the IPA* description of Brazilian Portuguese (Barbosa &
 Albano 2004). It is a **delta** spec that inherits the pt-BR base essentially
-unchanged; Paulistano *is* one of the two prestige southeastern norms on which
+unchanged. Paulistano *is* one of the two prestige southeastern norms on which
 that base is built.
 
 ## Diagnostic features modelled
 
-### 1. Plain tap coda /r/ — NOT retroflex
+### 1. Plain tap coda /r/: NOT retroflex
 
 Paulistano coda /r/ is a plain alveolar tap [ɾ] (*porta* → [ˈpoɾtɐ], *mar* →
-[ˈmaɾ]). The retroflex "r caipira" described by Amaral (1920) §6b —
-*"assemelha-se bastante ao r inglês post-vocálico"* — belongs to the
+[ˈmaɾ]). The retroflex "r caipira" described by Amaral (1920) §6b,
+*"assemelha-se bastante ao r inglês post-vocálico"*, belongs to the
 surrounding **Caipira interior** ([pt-BR-x-caipira.md](pt-BR-x-caipira.md)),
 **not** to the capital. This spec is deliberately the non-retroflex member of
 the São Paulo pair.
 
 ### 2. Non-*chiado* coda /s/
 
-Coda /s/ stays alveolar [s]/[z] by voicing assimilation — *mesmo* → [ˈmesmu],
-*dois* → [ˈdojs] — never the Carioca palatal *chiado* [ʃ]/[ʒ]. This is the
+Coda /s/ stays alveolar [s]/[z] by voicing assimilation, *mesmo* → [ˈmesmu],
+*dois* → [ˈdojs], never the Carioca palatal *chiado* [ʃ]/[ʒ]. This is the
 southeastern-non-Carioca sibilant pattern (Barbosa & Albano 2004).
 
 ### 3. /t d/ palatalisation before /i/ (inherited)
@@ -51,7 +51,7 @@ dropping are all inherited and not restated.
 ## Known limits (documented, not faked)
 
 Lexical open-mid vowel quality of unmarked ⟨o⟩/⟨e⟩ is not derivable from
-spelling; the engine defaults to close [o]/[e] (e.g. *porta* → [ˈpoɾtɐ], not
+spelling. The engine defaults to close [o]/[e] (e.g. *porta* → [ˈpoɾtɐ], not
 [ˈpɔɾtɐ]). This is a pt-BR-wide engine limit, not a Paulistano-specific one.
 
 ```python

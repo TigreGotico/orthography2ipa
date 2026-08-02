@@ -1,8 +1,8 @@
-# Bracarense European Portuguese (pt-PT-x-braga) — Phonology Reference
+# Bracarense European Portuguese (pt-PT-x-braga): Phonology Reference
 
 **Code**: `pt-PT-x-braga` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
-**Sources**: Portuguese With Leo, "Sotaque e expressões de Braga" + "The 8 accents" (native-speaker, **not** academic); Cintra (1971); Segura (2013)
+**Sources**: Portuguese With Leo, "Sotaque e expressões de Braga" + "The 8 accents" (native-speaker, **not** academic). Cintra (1971). Segura (2013)
 
 `pt-PT-x-braga` models the European Portuguese of **Braga** (Minho), a Northern
 variety of Cintra's **Baixo-Minho / Douro-Litoral** diphthongisation zone,
@@ -11,9 +11,9 @@ described natively as **heavier / more strongly Northern than Porto**. It is a
 
 ## Diagnostic features modelled
 
-### 1. Northern betacism — /v/ → [b] (~[β])
+### 1. Northern betacism: /v/ → [b] (~[β])
 
-The /v/~/b/ opposition is lost; both merge in /b/, surfacing as the stop `[b]`
+The /v/~/b/ opposition is lost. Both merge in /b/, surfacing as the stop `[b]`
 or the softer spirant `[β]`. Modelled as the post-lexical allophone rule
 **`BRA_BETACISM`**:
 
@@ -24,11 +24,11 @@ or the softer spirant `[β]`. Modelled as the post-lexical allophone rule
 | vacina | vɐˈsinɐ | **bɐˈsinɐ** |
 
 The Braga speaker Miguel: *"pões o B em vez do V … às vezes é um B mais
-pronunciado, outras vezes é um B mais suave tipo Bou"*; *"no norte diz-se
+pronunciado, outras vezes é um B mais suave tipo Bou"*. *"no norte diz-se
 bácina"* (vacina). Cintra (1971:87) grounds the merger, *"realizado ora como
 oclusiva, ora como fricativa (ou espirante) b ou β"*.
 
-### 2. Tonic-close-vowel diphthongisation — [e] → [je], [o] → [wo]
+### 2. Tonic-close-vowel diphthongisation: [e] → [je], [o] → [wo]
 
 The Cintra Baixo-Minho marker: a **stressed close** mid vowel becomes a rising
 diphthong (`BRA_DIPHTHONGISE_E` / `BRA_DIPHTHONGISE_O`):
@@ -41,13 +41,13 @@ diphthong (`BRA_DIPHTHONGISE_E` / `BRA_DIPHTHONGISE_O`):
 
 Natively attested via *"o quê → o quiê"* (quê `[ke]` → `[kje]`) and *"mieu"*
 (meu) in the 8-accents overview. **Limit** (shared with
-[pt-PT-x-porto](pt-PT-x-porto.md)): gated to the close `[e]`/`[o]`; because
+[pt-PT-x-porto](pt-PT-x-porto.md)): gated to the close `[e]`/`[o]`. Because
 open/close for spelling-unmarked stressed ⟨e⟩/⟨o⟩ is lexical and the base map
 defaults to the *open* allophone, underlying-close words the engine transcribes
-open (cedo, medo) escape the rule — widening to `[ɛ]`/`[ɔ]` would wrongly
+open (cedo, medo) escape the rule, widening to `[ɛ]`/`[ɔ]` would wrongly
 diphthongise genuinely open vowels (café, avó) and is rejected.
 
-### 3. Diphthong preservation — ⟨ou⟩ → [ow], ⟨ei⟩ → [ej]
+### 3. Diphthong preservation: ⟨ou⟩ → [ow], ⟨ei⟩ → [ej]
 
 Kept where Lisbon monophthongises/lowers (`[o]`, `[ɐj]`): pouco → ˈp**ow**ku,
 fevereiro → …ˈɾ**ej**ɾu. Miguel: *"tu dizes OU, dizes vOU ou bOU"*.
@@ -56,7 +56,7 @@ fevereiro → …ˈɾ**ej**ɾu. Miguel: *"tu dizes OU, dizes vOU ou bOU"*.
 
 The northern **open vowels** and **prosodic lengthening** for emphasis (*"abres
 mais o A em cantÁdo"*, *"mais musical, mais cantado"*), the variable word-final
-**paragogic -r** in -ar verbs (*"Faláre", "gostarE"* — *"já não foi tanto"*),
+**paragogic -r** in -ar verbs (*"Faláre", "gostarE"*, *"já não foi tanto"*),
 the *"beim"* (bem) nasal detail, and the morphosyntactic *"vós ides / vinde /
 ide"* are documented but not encoded (gradient / lexical / non-phonological).
 
