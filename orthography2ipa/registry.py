@@ -70,6 +70,10 @@ _ALIASES: Dict[str, str] = {
     # itself so the macro-collapse step does not rewrite it.
     "mhr": "mhr",
     "mrj": "mrj",
+    # ``src`` (Logudorese Sardinian) standardizes straight to ``sc`` (the
+    # generic Sardinian macrolanguage spec) under ``langcodes``, which would
+    # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
+    "src": "src",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
