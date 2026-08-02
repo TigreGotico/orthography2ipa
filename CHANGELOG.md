@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.44.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.44.0a4) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.44.0a3...7.44.0a4)
+
+**Merged pull requests:**
+
+- docs: executable QA pass over README, docs and examples [\#720](https://github.com/TigreGotico/orthography2ipa/pull/720) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.44.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.44.0a3) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.44.0a2...7.44.0a3)
@@ -487,7 +495,6 @@
 - Asian Portuguese-creole TTS gold — Kristang, Sri Lanka, Korlai \(60 rows\) [\#588](https://github.com/TigreGotico/orthography2ipa/pull/588) ([JarbasAl](https://github.com/JarbasAl))
 - feat\(gold\): Basque \(eu family\) TTS gold — 8 lects, 160 rows [\#587](https://github.com/TigreGotico/orthography2ipa/pull/587) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(engine\): multi-pass allophone feeding, hiatus endings, coda-liquid syllabification [\#586](https://github.com/TigreGotico/orthography2ipa/pull/586) ([JarbasAl](https://github.com/JarbasAl))
-- Release 7.23.0a2 [\#585](https://github.com/TigreGotico/orthography2ipa/pull/585) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [7.23.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.23.0a2) (2026-07-16)
 
