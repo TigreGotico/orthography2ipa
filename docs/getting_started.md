@@ -11,7 +11,7 @@ sentence sounds before you synthesize it:
 'oˈla ˈmũdu'
 ```
 
-That's it — `transcribe(text, language_code)` returns an IPA string with
+That's it: `transcribe(text, language_code)` returns an IPA string with
 stress marks (`ˈ`) already placed. The rest of this page walks from that
 one call out to the full API: language specs, the tokenizer underneath
 `transcribe()`, beam search over ambiguous spellings, and the distance
@@ -34,7 +34,7 @@ it into graphemes using the target language's spec, pick the most
 likely IPA phoneme for each grapheme (greedy search by default), attach
 stress marks where the language's spec declares stress rules, apply
 cross-word sandhi if the language has any, and join the result. Every
-step is driven by data in the language's `LanguageSpec` — there's no
+step is driven by data in the language's `LanguageSpec`: there's no
 hidden model behind it.
 
 ```python
@@ -44,15 +44,15 @@ orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnyɛjt'
 
 ## Fetching a language spec directly
 
-`transcribe()` is a convenience wrapper. Most non-trivial use — ranking
-alternatives, inspecting allophones, comparing languages — starts from
+`transcribe()` is a convenience wrapper. Most non-trivial use: ranking
+alternatives, inspecting allophones, comparing languages: starts from
 `get()`, which returns the underlying `LanguageSpec`:
 
 ```python
 import orthography2ipa
 
 en = orthography2ipa.get("en-GB")     # by BCP-47 code
-eng = orthography2ipa.get("eng")      # ISO 639-3 alias — same spec
+eng = orthography2ipa.get("eng")      # ISO 639-3 alias: same spec
 pt_br = orthography2ipa.get("pt-BR")  # regional variety
 ```
 
@@ -61,20 +61,20 @@ each language's JSON file is parsed only the first time it's requested.
 
 ### Grapheme → IPA mappings
 
-Each grapheme key maps to a *list* of possible IPA phonemes — the first
+Each grapheme key maps to a *list* of possible IPA phonemes: the first
 entry is the most common:
 
 ```python
-en.graphemes["th"]      # ['θ', 'ð']   — voiceless vs. voiced dental fricative
+en.graphemes["th"]      # ['θ', 'ð']: voiceless vs. voiced dental fricative
 en.graphemes["c"]       # ['k', 's']
 es = orthography2ipa.get("es-ES")
-es.graphemes["c"]       # ['k', 'θ']   — Castilian /k/ or /θ/
-es.graphemes["ll"]      # ['ʝ']        — modern yeísmo merger of ⟨ll⟩ with ⟨y⟩
+es.graphemes["c"]       # ['k', 'θ']: Castilian /k/ or /θ/
+es.graphemes["ll"]      # ['ʝ']: modern yeísmo merger of ⟨ll⟩ with ⟨y⟩
 pt_br.graphemes["lh"]   # ['ʎ']
 ```
 
 Digraphs and trigraphs are first-class keys, matched by maximal munch
-(longest orthographic unit first) — see [tokenizer.md](tokenizer.md) for
+(longest orthographic unit first): see [tokenizer.md](tokenizer.md) for
 how that's implemented.
 
 ### Allophone inventories
@@ -92,7 +92,7 @@ es.allophones["b"]      # ['b', 'β']
 
 ## Ranking ambiguous spellings with beam search
 
-`transcribe()` uses greedy search — it always takes the single most
+`transcribe()` uses greedy search: it always takes the single most
 likely candidate at each grapheme. When you need the full ranked list
 (useful for debugging a bad transcription, or for downstream re-scoring),
 use `PhonetokTokenizer` directly:
@@ -115,7 +115,7 @@ for path in tok.ipa_beam("through", beam_width=8):
 # ...
 ```
 
-Score is a rank-distance, not a probability — 0.0 is the top candidate,
+Score is a rank-distance, not a probability: 0.0 is the top candidate,
 and each step away from it costs 1.0 per grapheme substitution. This is
 the naive-ordering limitation mentioned in [index.md](index.md#honest-limitations-read-this-before-you-trust-a-tier):
 there's no context beyond the word itself informing the ranking.
@@ -141,16 +141,16 @@ across phoneme inventory, grapheme mapping, and allophone overlap:
 from orthography2ipa.distance import phonological_distance, segment_distance
 
 # Segment-level: how different are two IPA sounds?
-segment_distance("p", "b")   # 0.0426 — differ only in voicing
-segment_distance("p", "a")   # 1.0    — consonant vs. vowel, maximally different
+segment_distance("p", "b")   # 0.0426: differ only in voicing
+segment_distance("p", "a")   # 1.0: consonant vs. vowel, maximally different
 
 # Language-level: how different are two varieties overall?
 pt_pt = orthography2ipa.get("pt-PT")
 dist = phonological_distance(pt_br, pt_pt)
-dist.combined                    # 0.052 — near-identical (inventory + allophony)
+dist.combined                    # 0.052: near-identical (inventory + allophony)
 dist.inventory.feature_mean      # phoneme-inventory distance
 dist.allophone_sim               # allophone-overlap similarity (higher = more similar)
-dist.grapheme.mean_ipa_distance  # grapheme-mapping divergence — reported, NOT scored:
+dist.grapheme.mean_ipa_distance  # grapheme-mapping divergence: reported, NOT scored:
                                  # how a language is spelled is not how it sounds
 ```
 
@@ -183,15 +183,15 @@ codes accepted as aliases:
 ```python
 orthography2ipa.get("por")   # → resolves to the pt-PT spec
 orthography2ipa.get("spa")   # → resolves to the es-ES spec
-orthography2ipa.resolve("pt")     # 'pt-PT' — reference variety for a bare tag
-orthography2ipa.resolve("en-NZ")  # 'en-GB' — nearest registered variety
+orthography2ipa.resolve("pt")     # 'pt-PT': reference variety for a bare tag
+orthography2ipa.resolve("en-NZ")  # 'en-GB': nearest registered variety
 ```
 
 To browse what's available:
 
 ```python
 orthography2ipa.available_codes()                      # 676 language codes
-orthography2ipa.available_codes(include_clades=True)   # 749 — plus the clade nodes
+orthography2ipa.available_codes(include_clades=True)   # 749: plus the clade nodes
 orthography2ipa.available_families()                   # codes grouped by derived family path
 ```
 
@@ -208,9 +208,9 @@ phoneme data:
 ```python
 es = orthography2ipa.get("es-ES")
 es.name      # 'Castilian Spanish'
-es.family    # 'Indo-European > Italic > Romance > Ibero-Romance' — derived, not authored
+es.family    # 'Indo-European > Italic > Romance > Ibero-Romance': derived, not authored
 es.script    # 'Latin'
-es.quality   # QualityTier.RESEARCH — see quality_tiers.md
+es.quality   # QualityTier.RESEARCH: see quality_tiers.md
 es.location  # Location(latitude=40.416944, longitude=-3.703333, source='wikidata', ...)
 
 for anc in es.get_ancestors():
@@ -222,7 +222,7 @@ for anc in es.get_ancestors():
 ```
 
 `family` is the chain of clade nodes above the spec in the ancestry graph, joined
-with `" > "` — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
+with `" > "`: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
 
 ## Handling unknown codes
 
