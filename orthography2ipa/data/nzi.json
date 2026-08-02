@@ -1,0 +1,128 @@
+{
+ "code": "nzi",
+ "name": "Nzima",
+ "script": "Zyyy",
+ "quality": "stub",
+ "graphemes": {},
+ "allophones": {
+  "b": [
+   "b",
+   "ɣ"
+  ],
+  "cç": [
+   "cç",
+   "ɟʝ",
+   "ʃ"
+  ],
+  "cçʷ": [
+   "cçʷ",
+   "ɟʝʷ"
+  ],
+  "f": [
+   "f",
+   "v"
+  ],
+  "k": [
+   "k",
+   "ɡ",
+   "h"
+  ],
+  "kp": [
+   "kp",
+   "ɡb"
+  ],
+  "n": [
+   "n",
+   "l̃"
+  ],
+  "s": [
+   "s",
+   "z"
+  ],
+  "t̪": [
+   "t̪",
+   "d̪"
+  ],
+  "a": [
+   "a",
+   "ɜ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "iso639_3": "nzi",
+ "glottolog_code": "nzim1238",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1399",
+   "notes": "Inventory 1399 (ph), 38 non-marginal segments, 2 tones."
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/nzim1238"
+ ],
+ "location": {
+  "latitude": 5.1785,
+  "longitude": -2.8112,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-atla1278",
+ "phonemes": [
+  "b",
+  "cç",
+  "cçʷ",
+  "d̪",
+  "f",
+  "h",
+  "j",
+  "k",
+  "kp",
+  "l",
+  "m",
+  "n",
+  "s",
+  "t̪",
+  "w",
+  "ŋ",
+  "ɟʝ",
+  "ɟʝʷ",
+  "ɡ",
+  "ɡʷ",
+  "ɲ",
+  "ɲʷ",
+  "ʃ",
+  "ʃʷ",
+  "a",
+  "ã",
+  "e",
+  "i",
+  "ĩ",
+  "o",
+  "u",
+  "ũ",
+  "ɔ",
+  "ɛ",
+  "ɪ",
+  "ɪ̃",
+  "ʊ",
+  "ʊ̃"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1399"
+}

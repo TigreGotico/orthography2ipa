@@ -1,0 +1,181 @@
+{
+ "code": "bav",
+ "name": "Vengo",
+ "script": "Zyyy",
+ "quality": "stub",
+ "graphemes": {},
+ "allophones": {
+  "ʃ": [
+   "ʃ",
+   "t̠ʃ"
+  ],
+  "a": [
+   "a",
+   "ã",
+   "aˑ"
+  ],
+  "e": [
+   "e",
+   "ẽ",
+   "eˑ"
+  ],
+  "i": [
+   "i",
+   "ĩ",
+   "iˑ"
+  ],
+  "o": [
+   "o",
+   "õ",
+   "oˑ"
+  ],
+  "u": [
+   "u",
+   "ũ",
+   "uˑ"
+  ],
+  "ɔ": [
+   "ɔ",
+   "ɔ̃",
+   "ɔˑ"
+  ],
+  "ɔː": [
+   "ɔː",
+   "ɔː"
+  ],
+  "ə": [
+   "ə",
+   "ə̃",
+   "əˑ"
+  ],
+  "ɛ": [
+   "ɛ",
+   "ɛ̃",
+   "ɛˑ"
+  ],
+  "ɨ": [
+   "ɨ",
+   "ɨ̃",
+   "ɨˑ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "iso639_3": "bav",
+ "glottolog_code": "veng1238",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/661",
+   "notes": "Inventory 661 (aa), 73 non-marginal segments, 9 tones."
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/veng1238"
+ ],
+ "location": {
+  "latitude": 6.114,
+  "longitude": 10.4137,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-atla1278",
+ "phonemes": [
+  "b",
+  "bʷ",
+  "d",
+  "dʷ",
+  "d̠ʒ",
+  "f",
+  "fʷ",
+  "j",
+  "jʷ",
+  "k",
+  "kʷ",
+  "l",
+  "lʷ",
+  "m",
+  "mb",
+  "mbʷ",
+  "mʷ",
+  "n",
+  "nd",
+  "ndʷ",
+  "ns",
+  "nsʷ",
+  "nt",
+  "ntʷ",
+  "nz",
+  "nzʷ",
+  "nʷ",
+  "n̠d̠ʒ",
+  "n̠d̠ʒʷ",
+  "n̠ʃ",
+  "n̠ʃʷ",
+  "s",
+  "sʷ",
+  "t",
+  "tʷ",
+  "v",
+  "w",
+  "z",
+  "zʷ",
+  "ŋ",
+  "ŋk",
+  "ŋkʷ",
+  "ŋɡ",
+  "ŋɡʷ",
+  "ŋʷ",
+  "ɡ",
+  "ɡʷ",
+  "ɣ",
+  "ɱf",
+  "ɱfʷ",
+  "ɱv",
+  "ɲ",
+  "ɲʷ",
+  "ʃ",
+  "ʃʷ",
+  "ʔ",
+  "a",
+  "aː",
+  "e",
+  "eː",
+  "i",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uː",
+  "ɔ",
+  "ɔː",
+  "ə",
+  "əː",
+  "ɛ",
+  "ɨ",
+  "ɨː"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˦˧": "PHOIBLE tone segment",
+  "˦˨": "PHOIBLE tone segment",
+  "˧": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment",
+  "˨˦": "PHOIBLE tone segment",
+  "˨˦˧": "PHOIBLE tone segment",
+  "˨˧": "PHOIBLE tone segment",
+  "˩": "PHOIBLE tone segment"
+ },
+ "phoible_id": "661"
+}

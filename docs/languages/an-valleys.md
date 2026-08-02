@@ -1,9 +1,9 @@
-# Pyrenean-valley Aragonese subdialects — Phonology Reference
+# Pyrenean-valley Aragonese subdialects: Phonology Reference
 
 **Codes**: `an-x-ansotano`, `an-x-cheso`, `an-x-chistabin`, `an-x-belsetan`,
 `an-x-tensino` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet)
 **Parent**: `an` (Aragonese) | **Quality tiers**: cheso / chistabín / belsetán =
-research; ansotano / tensino = skeleton
+research. Ansotano / tensino = skeleton
 
 These five specs model the classic High-Aragonese (*altoaragonés*) **Pyrenean
 valley** varieties as thin **delta** specs on the base Aragonese spec
@@ -22,10 +22,10 @@ own deltas.
 
 Aragonese orthography (Grafía de Uesca / Academia norms) is broadly **phonemic**,
 and much of what separates one valley from another is **lexical or
-morphological** — different articles, verb endings, individual etyma — which
+morphological**, different articles, verb endings, individual etyma, which
 surfaces in *spelling*, not in the grapheme→IPA map. A word like Belsetán *feto*
 (< FACTU, vs general *feito*) is already read correctly by the base map because
-it is spelled with ⟨t⟩; there is nothing phoneme-level to add. So these specs
+it is spelled with ⟨t⟩. There is nothing phoneme-level to add. So these specs
 model the handful of genuinely **phonological** deltas and document the
 lexical/morphological distinctiveness in each spec's `notes` rather than faking a
 grapheme rule for it.
@@ -42,33 +42,33 @@ grapheme rule for it.
 
 ## Not modelled (documented in `notes`, deliberately)
 
-- **Cheso** — loss of [tʃ] in a closed etymon set (*itar* < IECTARE, *hermano* <
-  GERMANU: spelled without ⟨ch⟩, so already correct); infinitive final /r/
-  **preserved** even before enclitics (the diagnostic contrast with Ansotano);
-  article *o/a/os/as*; auxiliary *ser*; participle–object agreement.
-- **Ansotano** — retention of intervocalic -d- (*odir*); conservative morphology.
-- **Belsetán** — -CT- → -t- (*feto*), -ULT- → -ut- (*muto*), NOCTE > *nuet*;
-  -LL- → -r- in the pronouns *er, ers* (Gascon-influenced); article
-  *el/la/es/las*; archaic *nusaltros/vusaltros*; atonic strong perfects
+- **Cheso**: loss of [tʃ] in a closed etymon set (*itar* < IECTARE, *hermano* <
+  GERMANU: spelled without ⟨ch⟩, so already correct). Infinitive final /r/
+  **preserved** even before enclitics (the diagnostic contrast with Ansotano).
+  article *o/a/os/as*. Auxiliary *ser*. Participle–object agreement.
+- **Ansotano**: retention of intervocalic -d- (*odir*). Conservative morphology.
+- **Belsetán**: -CT- → -t- (*feto*), -ULT- → -ut- (*muto*), NOCTE > *nuet*.
+  -LL- → -r- in the pronouns *er, ers* (Gascon-influenced). Article
+  *el/la/es/las*. Archaic *nusaltros/vusaltros*. Atonic strong perfects
   (*tenié, trayé, benié*).
-- **Chistabín** — voicing of intervocalic Latin voiceless stops (*caixigo,
-  cadiera, radigón*); article *el/la/es/las*; 1PL verb ending **-m** (Ribagorçan
-  parallel); participles *-au/-iu*; participle–object agreement.
-- **Tensino** — cacuminal ⟨-ch-⟩ [tʃ] where general Aragonese has -ll- (*estach,
-  gricha*); conservation of intervocalic -p-/-t-/-k-; preterite in **-ós**
-  (*puyós, cantós*); the Aragonese conditional in **-arba/-erba/-irba**.
+- **Chistabín**: voicing of intervocalic Latin voiceless stops (*caixigo,
+  cadiera, radigón*). Article *el/la/es/las*. 1PL verb ending **-m** (Ribagorçan
+  parallel). Participles *-au/-iu*. Participle–object agreement.
+- **Tensino**: cacuminal ⟨-ch-⟩ [tʃ] where general Aragonese has -ll- (*estach,
+  gricha*). Conservation of intervocalic -p-/-t-/-k-. Preterite in **-ós**
+  (*puyós, cantós*). The Aragonese conditional in **-arba/-erba/-irba**.
 
 ## Diphthongisation geography (Várvaro, read directly)
 
 Várvaro (1991, *AFA* XLVI-XLVII, *De la escritura al habla: la diptongación de O
 breve tónica en el Alto Aragón*, pp. 245-268) traces the medieval *ué*/*uá*
-isoglosses across exactly these valleys: Hecho shows only *ué* (printed p. 250);
+isoglosses across exactly these valleys: Hecho shows only *ué* (printed p. 250).
 *uá* surfaces in the Valle de Tena and inside the modern *uá* area at Bielsa
-(p. 250); Ansó documents lack *uá* (p. 250); Gistaín shows *ué* (p. 251). This is the one
-primary study read in full for these specs; the per-valley synchronic phonetics
+(p. 250). Ansó documents lack *uá* (p. 250). Gistaín shows *ué* (p. 251). This is the one
+primary study read in full for these specs. The per-valley synchronic phonetics
 were drawn from the Spanish-Wikipedia dialect articles (secondary) and, for
 Chistabín and Tensino, from a directly-read online summary and Vázquez Obrador
-(2021) respectively — see each spec's `sources` for the honest provenance of
+(2021) respectively, see each spec's `sources` for the honest provenance of
 every claim.
 
 ```python
@@ -84,7 +84,7 @@ G2P("an-x-tensino").transcribe_word("ro")       # ɾo       — weak-tap article
 
 - **Kuhn, A. (1935).** *Der hocharagonesische Dialekt.* Revue de Linguistique
   Romane XI: 1-312. (The classic High-Aragonese monograph, foundational for Ansó
-  and Hecho; consulted via secondary summaries, not directly obtainable.)
+  and Hecho. Consulted via secondary summaries, not directly obtainable.)
 - **Badía Margarit, A. M. (1950).** *El habla del valle de Bielsa (Pirineo
   aragonés).* CSIC. (Belsetán geminates and -CT-/-ULT- reductions.)
 - **Nagore Laín, F. (1986).** *El aragonés de Panticosa. Gramática.* Instituto de
