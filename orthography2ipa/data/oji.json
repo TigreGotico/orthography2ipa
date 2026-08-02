@@ -69,6 +69,9 @@
     "n": [
       "n"
     ],
+    "ng": [
+      "ŋ"
+    ],
     "w": [
       "w"
     ],
@@ -106,12 +109,25 @@
     "ʒ": [
       "ʒ",
       "ʃ"
+    ],
+    "i": [
+      "ɪ",
+      "i"
+    ],
+    "a": [
+      "ə",
+      "ʌ",
+      "a"
+    ],
+    "o": [
+      "o",
+      "ʊ"
     ]
   },
   "iso639_3": "oji",
   "glottolog_code": "ojib1241",
   "wikidata_qid": "Q33875",
-  "notes": "Ojibwe (Anishinaabemowin), Algonquian. PRIMARY INPUT CONTRACT: the double-vowel (Fiero) Latin orthography, the standard teaching/reference system (Nichols & Nyholm 1995; Valentine 2001), NFC. Seven vowels: three short /i a o/ and four long /iː aː oː eː/ — note /eː/ has no short counterpart and is written with the single letter ⟨e⟩ (its length is a fact about the vowel, not spelled with a doubled letter). Obstruents form fortis/lenis pairs: the lenis series ⟨b d g j z zh⟩ is phonemically voiced-or-voiceless-unaspirated depending on context ([b~p], [d~t], [ɡ~k], [dʒ~tʃ], [z~s], [ʒ~ʃ]) while the fortis series ⟨p t k ch s sh⟩ is consistently voiceless and aspirated. ⟨'⟩ is the glottal stop /ʔ/; ⟨h⟩ for /h/ is dialectal (used where some varieties instead have /ʔ/). Nasal vowels are reported for some dialects but are not consistently written in the double-vowel system and are therefore not represented here. WRITING SYSTEMS NOT COVERED: many Ojibwe communities in northern Ontario and Manitoba write with a syllabary historically developed for Cree (devised by James Evans, c. 1840) and adapted for Ojibwe (Great Lakes Algonquian syllabics also exist with limited modern use); this file does not build a syllabics inventory because a per-community, per-dialect syllabics-to-IPA chart was not available with the same confidence as the double-vowel system used here.",
+  "notes": "Ojibwe (Anishinaabemowin), Algonquian. PRIMARY INPUT CONTRACT: the double-vowel (Fiero) Latin orthography, the standard teaching/reference system (Nichols & Nyholm 1995; Valentine 2001), NFC. Seven vowels: three short /i a o/ and four long /iː aː oː eː/ — note /eː/ has no short counterpart and is written with the single letter ⟨e⟩ (its length is a fact about the vowel, not spelled with a doubled letter). Obstruents form fortis/lenis pairs: the lenis series ⟨b d g j z zh⟩ is phonemically voiced-or-voiceless-unaspirated depending on context ([b~p], [d~t], [ɡ~k], [dʒ~tʃ], [z~s], [ʒ~ʃ]) while the fortis series ⟨p t k ch s sh⟩ is consistently voiceless and aspirated. ⟨'⟩ is the glottal stop /ʔ/; ⟨h⟩ for /h/ is dialectal (used where some varieties instead have /ʔ/). Nasal vowels are reported for some dialects but are not consistently written in the double-vowel system and are therefore not represented here. WRITING SYSTEMS NOT COVERED: many Ojibwe communities in northern Ontario and Manitoba write with a syllabary historically developed for Cree (devised by James Evans, c. 1840) and adapted for Ojibwe (Great Lakes Algonquian syllabics also exist with limited modern use); this file does not build a syllabics inventory because a per-community, per-dialect syllabics-to-IPA chart was not available with the same confidence as the double-vowel system used here. Short /i a o/ are stated PHONEMICALLY per the Wikipedia Ojibwe-phonology inventory (\"There are three short vowels, /i a o/\"); their usual phonetic realizations — [ɪ], [ə]~[ʌ] and [o]~[ʊ] — are listed in `allophones` rather than substituted for the phonemes, so a narrow transcription remains reachable without the spec claiming [ə] and [ɪ] are the underlying vowels. ⟨ng⟩ is the double-vowel system's digraph for the velar nasal /ŋ/ (Ojibwe writing systems). It earns its key on AGENTS.md §2 test 3: without it the greedy tokenizer matches ⟨n⟩+⟨g⟩ and ⟨bangii⟩ comes out /banɡiː/ instead of /baŋiː/. ⟨l⟩ and ⟨r⟩ are deliberately absent — the double-vowel alphabet (a aa b ch d e g h ' i ii j k m n o oo p s t w y z) excludes them; they occur only in loans, so an unmapped ⟨l⟩ is the honest outcome rather than a guessed value.",
   "sources": [
     {
       "id": "ojibwe_wiki",
