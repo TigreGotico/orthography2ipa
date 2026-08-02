@@ -6,7 +6,7 @@
   "quality": "stub",
   "iso639_3": "ecr",
   "glottolog_code": "eteo1236",
-  "family": "Unclassified",
+  "family": "Isolate",
   "graphemes": {},
   "allophones": {},
   "notes": "Stub, unclassified. Eteocretan is a pre-Greek language of eastern Crete (chiefly Praisos and Dreros), attested in roughly half a dozen clear inscriptions, two of them Eteocretan-Greek bilinguals, dated to the late 7th-3rd century BCE. It is written in the Greek alphabet (archaic Cretan letterforms in the earliest texts, the standard Ionic alphabet later) but the language itself remains untranslated, with no established genetic link to Indo-European, Semitic, or any other classified family; a speculative connection to Minoan is unproven. Because the language is undeciphered no grapheme-to-IPA mapping can be sourced or asserted -- the Greek letters used are known, but what they encoded phonologically in a language nobody can read is not. `graphemes` and `allophones` are intentionally left empty rather than reusing the Greek phonology of the alphabet that merely transcribes it. No `parent`/`ancestors` are set: the language is unclassified, so forcing it under Hellenic or any other clade would assert a genetic relationship the sources explicitly deny.",

@@ -44,11 +44,15 @@ drive a grapheme-to-IPA engine:
 'oˈla ˈmũdu'
 ```
 
-**676 languages** and **73 clade nodes** ship with the package (749 spec files in
-`orthography2ipa/data/`). `available_codes()` returns the 676 languages, and
-`available_codes(include_clades=True)` returns all 749, spread across 33 top-level
-families from Indo-European to Quechuan, plus reconstructed proto-languages,
-regional dialects and creoles.
+Languages and classification-only clade nodes ship with the package as spec files in
+`orthography2ipa/data/`, spread across top-level families from Indo-European to
+Quechuan, plus reconstructed proto-languages, regional dialects and creoles. The
+count grows over time, so check it live instead of trusting a number in a doc:
+
+```python
+len(orthography2ipa.available_codes())                      # languages only
+len(orthography2ipa.available_codes(include_clades=True))   # languages + clade nodes
+```
 
 New to the library? **[docs/index.md](docs/index.md)** routes you by what you are
 trying to do, and states the known accuracy limits up front.
@@ -256,7 +260,7 @@ orthography2ipa.resolve("pt")      # 'pt-PT': reference variety
 orthography2ipa.resolve("en-NZ")   # 'en-GB': nearest registered
 
 # Discover what's available
-orthography2ipa.available_codes()      # 676 language codes (clades excluded)
+orthography2ipa.available_codes()      # language codes (clades excluded)
 orthography2ipa.available_families()   # codes grouped by derived family path
 ```
 

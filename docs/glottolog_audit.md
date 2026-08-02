@@ -26,25 +26,18 @@ or at an unrelated language entirely, corrupts every audit built on top of it.
 
 Counted over the shipped specs (`orthography2ipa/data/*.json`):
 
-| | Count |
-|---|---:|
-| Language specs | 676 |
-| Clade nodes | 73 |
-| Total spec files | 749 |
-| Specs carrying a `glottolog_code` | 587 (520 languages, 67 clades) |
-| Distinct derived family paths | 81 |
-| Top-level families | 33 |
-| Largest family path | `Indo-European > Italic > Romance > Ibero-Romance` (124 languages) |
-
-Regenerate the numbers straight from the data:
+These figures grow as specs are added, so treat any printed number as a
+snapshot and regenerate it from the data rather than trusting a doc:
 
 ```python
 import orthography2ipa
 
-codes = orthography2ipa.available_codes()                       # 676 languages
-clades = set(orthography2ipa.available_codes(include_clades=True)) - set(codes)   # 73
-with_code = [c for c in codes if orthography2ipa.get(c).glottolog_code]           # 520
-families = orthography2ipa.available_families()                                   # 81 paths
+codes = orthography2ipa.available_codes()                                        # languages
+clades = set(orthography2ipa.available_codes(include_clades=True)) - set(codes)  # clade nodes
+with_code = [c for c in codes if orthography2ipa.get(c).glottolog_code]          # languages with a glottolog_code
+families = orthography2ipa.available_families()                                  # codes grouped by family path
+
+len(codes), len(clades), len(codes) + len(clades), len(with_code)
 ```
 
 ## Why the classification path is not a raw Glottolog slice
