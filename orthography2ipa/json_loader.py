@@ -19,7 +19,7 @@ from __future__ import annotations
 import json
 import warnings
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from orthography2ipa.types import (
     AllophoneRule,
@@ -80,14 +80,13 @@ def _nearest_data_ancestor(code: Optional[str]) -> Optional[str]:
     return None
 
 
-def _derive_family_path(parent_code: Optional[str]) -> "Tuple[str, ...]":
+def _derive_family_path(parent_code: Optional[str]) -> Tuple[str, ...]:
     """Return the classification path implied by *parent_code*'s chain.
 
     The path is the names of the clade nodes on the ancestry chain, broadest
     first. Each spec's own ``family_path`` already holds its ancestors' clades,
     so one step of recursion is enough.
     """
-    from typing import Tuple  # noqa: F401 — used in annotation only
     if not parent_code or parent_code not in _specs:
         return ()
     parent = _specs[parent_code]
@@ -137,7 +136,6 @@ _specs: Dict[str, LanguageSpec] = {}
 
 
 def _index_files():
-    global _index
     for lang_file in _DATA_DIR.glob("*.json"):
         lang_code = lang_file.name.split(".json")[0]
         _index[lang_code] = lang_file
@@ -147,7 +145,7 @@ def _index_files():
 # Helpers
 # ═══════════════════════════════════════════════════════════════════════════
 
-def _parse_wikipedia(raw: object) -> "Tuple[str, ...]":
+def _parse_wikipedia(raw: object) -> Tuple[str, ...]:
     """Normalise the JSON ``wikipedia`` field to a tuple of strings.
 
     Accepts:
@@ -155,7 +153,6 @@ def _parse_wikipedia(raw: object) -> "Tuple[str, ...]":
     - ``"https://…"`` (legacy single string) → ``("https://…",)``
     - ``["https://…", …]`` (list) → tuple of those strings
     """
-    from typing import Tuple  # noqa: F401 — used in annotation only
     if raw is None:
         return ()
     if isinstance(raw, str):
@@ -187,8 +184,6 @@ def load_json_spec(code: str) -> LanguageSpec:
     ValueError
         If the JSON is malformed or contains invalid enum values.
     """
-    global _specs
-
     # retrieve from cache
     if code in _specs:
         return _specs[code]
@@ -251,7 +246,6 @@ def load_json_spec(code: str) -> LanguageSpec:
                 is_base_dep = parent in _base_parents
                 if is_base_dep:
                     # Base dependency is required for data inheritance — clear it
-                    import warnings
                     warnings.warn(f"Could not load base '{parent}' (requested by '{code}'): {e}")
                     for field, lang in list(base_field_langs.items()):
                         if lang == parent:
@@ -529,14 +523,12 @@ def load_all_json_specs() -> Dict[str, LanguageSpec]:
     Dict[str, LanguageSpec]
         Mapping of language codes to their specs.
     """
-    global _specs
     for code in _index:
         if code not in _specs:
             try:
                 _specs[code] = load_json_spec(code)
             except (KeyError, ValueError) as e:
                 # Log but don't crash — allows partial loading
-                import warnings
                 warnings.warn(f"Failed to load '{code}': {e}")
     return _specs
 
