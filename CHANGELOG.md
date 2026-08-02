@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.34.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.34.1a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.0a1...7.34.1a1)
+
+**Merged pull requests:**
+
+- fix: refresh stale cy/wikipron CI regression baseline [\#670](https://github.com/TigreGotico/orthography2ipa/pull/670) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.34.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.34.0a1) (2026-08-01)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.33.0a1...7.34.0a1)
