@@ -191,6 +191,10 @@
     "name": "Awadhi",
     "level": "language"
   },
+  "ayac1239": {
+    "name": "Ayacucho Quechua",
+    "level": "language"
+  },
   "ayma1253": {
     "name": "Aymaran",
     "level": "family"
@@ -486,6 +490,10 @@
   "cuba1237": {
     "name": "Cuban Spanish",
     "level": "dialect"
+  },
+  "cusc1236": {
+    "name": "Cusco Quechua",
+    "level": "language"
   },
   "cush1243": {
     "name": "Cushitic",
