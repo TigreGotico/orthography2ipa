@@ -47,6 +47,10 @@
     "name": "Akan",
     "level": "language"
   },
+  "akoo1248": {
+    "name": "Akoose",
+    "level": "language"
+  },
   "alba1267": {
     "name": "Albanian",
     "level": "family"
@@ -213,6 +217,10 @@
   },
   "banj1239": {
     "name": "Banjar",
+    "level": "language"
+  },
+  "basa1284": {
+    "name": "Basa (Cameroon)",
     "level": "language"
   },
   "bash1264": {
@@ -415,6 +423,10 @@
     "name": "Cheyenne",
     "level": "language"
   },
+  "chha1249": {
+    "name": "Chhattisgarhi",
+    "level": "language"
+  },
   "chib1249": {
     "name": "Chibchan",
     "level": "family"
@@ -519,6 +531,10 @@
     "name": "Dinka",
     "level": "family"
   },
+  "dogr1250": {
+    "name": "Dogri",
+    "level": "language"
+  },
   "domi1242": {
     "name": "Dominican Spanish",
     "level": "dialect"
@@ -530,6 +546,10 @@
   "drav1251": {
     "name": "Dravidian",
     "level": "family"
+  },
+  "dual1243": {
+    "name": "Duala",
+    "level": "language"
   },
   "dutc1256": {
     "name": "Dutch",
@@ -623,6 +643,10 @@
     "name": "Ewe",
     "level": "language"
   },
+  "ewon1239": {
+    "name": "Ewondo",
+    "level": "language"
+  },
   "extr1243": {
     "name": "Extremaduran",
     "level": "language"
@@ -703,6 +727,10 @@
     "name": "Ganda",
     "level": "language"
   },
+  "garo1247": {
+    "name": "Garo",
+    "level": "language"
+  },
   "geez1241": {
     "name": "Geez",
     "level": "language"
@@ -771,12 +799,20 @@
     "name": "Haitian",
     "level": "language"
   },
+  "haka1240": {
+    "name": "Haka Chin",
+    "level": "language"
+  },
   "hakk1236": {
     "name": "Hakka Chinese",
     "level": "language"
   },
   "halh1238": {
     "name": "Halh Mongolian",
+    "level": "language"
+  },
+  "hary1238": {
+    "name": "Haryanvi",
     "level": "language"
   },
   "hass1238": {
@@ -935,6 +971,10 @@
     "name": "Javanese",
     "level": "language"
   },
+  "jing1260": {
+    "name": "Jingpho",
+    "level": "family"
+  },
   "kaba1278": {
     "name": "Kabardian",
     "level": "language"
@@ -954,6 +994,10 @@
   "kaby1244": {
     "name": "Kabyle-Atlas Berber",
     "level": "family"
+  },
+  "kach1280": {
+    "name": "Southern Jinghpaw language",
+    "level": "language"
   },
   "kala1399": {
     "name": "Kalaallisut",
@@ -1063,6 +1107,14 @@
     "name": "Kotava",
     "level": "language"
   },
+  "kpel1252": {
+    "name": "Kpelle",
+    "level": "family"
+  },
+  "krio1253": {
+    "name": "Krio",
+    "level": "language"
+  },
   "kuan1247": {
     "name": "Kuanyama",
     "level": "language"
@@ -1169,6 +1221,10 @@
   },
   "luba1250": {
     "name": "Luba-Katanga",
+    "level": "language"
+  },
+  "lush1249": {
+    "name": "Mizo",
     "level": "language"
   },
   "luxe1241": {
@@ -1719,6 +1775,10 @@
     "name": "Quechuan",
     "level": "family"
   },
+  "raja1256": {
+    "name": "Rajasthani",
+    "level": "family"
+  },
   "rakh1245": {
     "name": "Rakhine",
     "level": "language"
@@ -1841,6 +1901,10 @@
   },
   "sere1260": {
     "name": "Sereer",
+    "level": "language"
+  },
+  "sese1246": {
+    "name": "Seselwa Creole French",
     "level": "language"
   },
   "shan1277": {
@@ -2055,6 +2119,10 @@
     "name": "Tatar",
     "level": "language"
   },
+  "tedi1235": {
+    "name": "Tedim Chin",
+    "level": "language"
+  },
   "telu1262": {
     "name": "Telugu",
     "level": "language"
@@ -2190,6 +2258,10 @@
   "utoa1244": {
     "name": "Uto-Aztecan",
     "level": "family"
+  },
+  "vaii1241": {
+    "name": "Vai",
+    "level": "language"
   },
   "vale1252": {
     "name": "Valencià",
@@ -2337,46 +2409,6 @@
   },
   "zulu1248": {
     "name": "Zulu",
-    "level": "language"
-  },
-  "haka1240": {
-    "name": "Haka Chin",
-    "level": "language"
-  },
-  "dogr1250": {
-    "name": "Dogri",
-    "level": "language"
-  },
-  "hary1238": {
-    "name": "Haryanvi",
-    "level": "language"
-  },
-  "jing1260": {
-    "name": "Jingpho",
-    "level": "family"
-  },
-  "lush1249": {
-    "name": "Mizo",
-    "level": "language"
-  },
-  "garo1247": {
-    "name": "Garo",
-    "level": "language"
-  },
-  "kach1280": {
-    "name": "Southern Jinghpaw language",
-    "level": "language"
-  },
-  "raja1256": {
-    "name": "Rajasthani",
-    "level": "family"
-  },
-  "chha1249": {
-    "name": "Chhattisgarhi",
-    "level": "language"
-  },
-  "tedi1235": {
-    "name": "Tedim Chin",
     "level": "language"
   }
 }
