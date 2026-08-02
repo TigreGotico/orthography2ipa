@@ -39,7 +39,11 @@ portuguese = ["silabificador>=2.1.0a1"]
 # pinned rows cannot be reproduced.
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
         "silabificador>=2.1.0a1"]
-# dev-only extra for scripts/compare_systems.py; never a runtime dependency
+# dev-only extra for scripts/compare_systems.py; never a runtime dependency.
+# africa-g2p is NOT listed here: it isn't published on PyPI, so it can't be
+# a pip extra. Install it from a locally built wheel of the upstream
+# checkout (https://github.com/AfriSpeech/africa-g2p) before regenerating the
+# comparison table — see scripts/compare_systems.py's module docstring.
 compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
 
 [project.entry-points."orthography2ipa.syllabify"]
