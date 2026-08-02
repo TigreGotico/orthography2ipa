@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.42.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.42.0a2) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.42.0a1...7.42.0a2)
+
+**Merged pull requests:**
+
+- refactor: readability and maintenance audit — spec layer [\#704](https://github.com/TigreGotico/orthography2ipa/pull/704) ([JarbasAl](https://github.com/JarbasAl))
+- docs: STE readability audit [\#702](https://github.com/TigreGotico/orthography2ipa/pull/702) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.42.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.42.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.41.0a4...7.42.0a1)
+
+**Merged pull requests:**
+
+- feat: add Cayuga and Oneida specs \(cay, one\) [\#678](https://github.com/TigreGotico/orthography2ipa/pull/678) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.41.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.41.0a4) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.41.0a3...7.41.0a4)
