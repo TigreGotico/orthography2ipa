@@ -1,5 +1,20 @@
 # Changelog
 
+## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.0a2)
+
+## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a1)
+
+**Merged pull requests:**
+
+- data: graph-hygiene — cited substrate/superstrate/adstrate roles for jam, fpe, gul, lou [\#665](https://github.com/TigreGotico/orthography2ipa/pull/665) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add Gulf-of-Guinea / Kwa-Bantu-Mande language specs \(kri, vai, kpe, bas, bss, dua, ewo, crs\) [\#664](https://github.com/TigreGotico/orthography2ipa/pull/664) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add Haryanvi, Chhattisgarhi, Dogri, Rajasthani, Garo, Mizo, Jingpho, Hakha Chin, Tedim Chin specs [\#658](https://github.com/TigreGotico/orthography2ipa/pull/658) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add nd, lu, lua, bem, umb, seh, yao Bantu language specs [\#653](https://github.com/TigreGotico/orthography2ipa/pull/653) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.34.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.34.1a1) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.0a1...7.34.1a1)
