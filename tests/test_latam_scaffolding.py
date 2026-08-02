@@ -30,6 +30,13 @@ ADSTRATE_STUBS = ["gn", "qu", "ay", "nah", "arn", "yua", "quc"]
 # for Guatemalan Spanish contact studies).
 SKELETON_ADSTRATES = ["quc"]
 
+# Adstrate nodes promoted all the way to `research` tier: a cited grapheme
+# inventory, sources and a registered gold benchmark now exist (arn:
+# Mapudungun's Alfabeto Mapuche Unificado orthography, checked against the
+# WOLD gold sample), so these are modelled languages, not only placeholders
+# for Spanish contact studies.
+RESEARCH_ADSTRATES = ["arn"]
+
 REGIONAL_STUBS = [
     "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-norte", "es-AR-x-patagonia",
     "es-AR-x-litoral",
@@ -81,12 +88,13 @@ class TestNodesResolve:
 
     @pytest.mark.parametrize(
         "code",
-        [c for c in ADSTRATE_STUBS if c not in SKELETON_ADSTRATES] + REGIONAL_STUBS + NEW_NATIONALS,
+        [c for c in ADSTRATE_STUBS if c not in SKELETON_ADSTRATES and c not in RESEARCH_ADSTRATES]
+        + REGIONAL_STUBS + NEW_NATIONALS,
     )
     def test_is_stub_tier(self, code):
         assert get(code).quality is QualityTier.STUB
 
-    @pytest.mark.parametrize("code", RESEARCH_REGIONALS)
+    @pytest.mark.parametrize("code", RESEARCH_REGIONALS + RESEARCH_ADSTRATES)
     def test_is_research_tier(self, code):
         assert get(code).quality is QualityTier.RESEARCH
 
