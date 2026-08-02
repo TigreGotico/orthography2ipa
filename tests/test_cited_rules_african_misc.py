@@ -495,6 +495,158 @@ def test_ak_tone_is_not_emitted():
 
 
 # ---------------------------------------------------------------------------
+# tw — Twi (inherits the `ak` Asante Twi mapping; Akan Orthography Committee)
+# ---------------------------------------------------------------------------
+
+def test_tw_inherits_the_ak_labialised_velar_reading():
+    """`tw` inherits `ak`'s grapheme table wholesale (Twi is the individual
+    ISO 639-3 code for the same Asante-based unified orthography `ak`
+    describes).  Twi, the language's own name, is therefore [kʷi], exactly as
+    in `ak`."""
+    assert G2P("tw").transcribe_word("twi") == "kʷi"
+
+
+def test_tw_ky_is_a_palatal_affricate():
+    """Inherited from `ak`: "⟨ky gy hy⟩ are the palatal(ised) realisations of
+    underlying /k ɡ h/ before front vowels" (Akan Orthography Committee).
+    kyerɛ 'to show' → [tɕerɛ]."""
+    assert G2P("tw").transcribe_word("kyerɛ") == "tɕerɛ"
+
+
+# ---------------------------------------------------------------------------
+# fat — Fante (Wikipedia, "Fante dialect"; Dolphyne 1988)
+# ---------------------------------------------------------------------------
+
+def test_fat_ts_is_an_alveolar_affricate_distinct_from_t():
+    """"Fante is the only dialect of Twi-Fante to distinguish /ts/ and /dz/
+    from /t/ and /d/" (Wikipedia, Fante dialect).  tsir 'head' opens with the
+    affricate, not a plain /t/."""
+    assert G2P("fat").transcribe_word("tsir").startswith("t͡s")
+
+
+def test_fat_z_letter_spells_the_voiced_affricate():
+    """"the only dialect whose alphabet contains the letter ⟨z⟩" (ibid.),
+    used for the same voiced affricate as ⟨dz⟩."""
+    assert G2P("fat").transcribe_word("ze") == "d͡ze"
+
+
+def test_fat_tw_is_a_palatalised_labialised_affricate_not_kw():
+    """In Fante the ⟨tw dw hw⟩ digraphs spell the labial-palatalised
+    affricates/fricative /tɕʷ dʑʷ ɕʷ/ — unlike `ak`, where the same digraphs
+    spell the labialised velars /kʷ ɡʷ hʷ/ (Wikipedia, Fante dialect)."""
+    assert G2P("fat").transcribe_word("twa") == "tɕʷa"
+
+
+def test_fat_ky_is_shared_unchanged_with_ak():
+    """Fante keeps the Asante ⟨ky⟩ = [tɕ] reading unchanged (inherited via
+    `graphemes_base: ak`)."""
+    assert G2P("fat").transcribe_word("kyerɛ") == "tɕerɛ"
+
+
+# ---------------------------------------------------------------------------
+# gaa — Ga (Kropp Dakubu 1999; Wikipedia "Ga language")
+# ---------------------------------------------------------------------------
+
+def test_gaa_gb_is_a_labial_velar_stop():
+    """"doubly-articulated plosives (/k͡p, ɡ͡b/)" (Wikipedia, Ga language).
+    Gã, the language's own name written ⟨gaa⟩, is not directly testable, but
+    a ⟨gb⟩-initial word is: gbɛ 'road/way' opens with the single
+    doubly-articulated stop, not /ɡ/ + /b/."""
+    assert G2P("gaa").transcribe_word("gbɛ") == "ɡ͡bɛ"
+
+
+def test_gaa_kp_is_a_labial_velar_stop():
+    """Same source: ⟨kp⟩ = /k͡p/.  kpa 'to tie' opens with the doubly
+    articulated voiceless stop."""
+    assert G2P("gaa").transcribe_word("kpa") == "k͡pa"
+
+
+def test_gaa_ny_is_a_palatal_nasal():
+    """"⟨ny⟩ = /ɲ/" digraph correspondence (Wikipedia, Ga language)."""
+    assert G2P("gaa").transcribe_word("nyɛ") == "ɲɛ"
+
+
+def test_gaa_j_is_a_voiced_postalveolar_affricate():
+    """"j = /dʒ/" (Wikipedia, Ga language)."""
+    assert G2P("gaa").transcribe_word("je") == "dʒe"
+
+
+def test_gaa_tone_is_not_emitted():
+    """"Ga has two tones, high and low" but the standard orthography does not
+    mark them, so tone is not modelled here."""
+    out = G2P("gaa").transcribe_word("gaa")
+    assert not any(c in out for c in "˥˦˧˨˩")
+
+
+# ---------------------------------------------------------------------------
+# ada — Dangme/Adangme (Wikipedia "Dangme language"; Apronti 1967)
+# ---------------------------------------------------------------------------
+
+def test_ada_gb_is_a_labial_velar_stop():
+    """"doubly articulated plosives (/k͡p, ɡ͡b/)" (Wikipedia, Dangme
+    language).  gbi 'day' opens with the single doubly-articulated stop."""
+    assert G2P("ada").transcribe_word("gbi") == "ɡ͡bi"
+
+
+def test_ada_ts_is_a_postalveolar_affricate():
+    """"ts = /tʃ/" (ibid.).  tsu 'house' opens with the affricate, not a
+    plain /t/."""
+    assert G2P("ada").transcribe_word("tsu") == "tʃu"
+
+
+def test_ada_j_is_a_voiced_postalveolar_affricate():
+    """"j = /dʒ/" (ibid.)."""
+    assert G2P("ada").transcribe_word("je") == "dʒe"
+
+
+def test_ada_ny_is_a_palatal_nasal():
+    """"ny = /ɲ/" (ibid.)."""
+    assert G2P("ada").transcribe_word("nyɛ") == "ɲɛ"
+
+
+# ---------------------------------------------------------------------------
+# gen — Gen/Mina (Wikipedia "Gen language"; Omniglot)
+# ---------------------------------------------------------------------------
+
+def test_gen_gb_is_a_labial_velar_stop():
+    """Gbe orthographic convention shared with Ewe/Fon: ⟨gb⟩ = /ɡ͡b/.
+    gbe 'language' opens with the single doubly-articulated stop, matching
+    the Gbe-family name itself (Ewegbe, Genɛgbe, Fongbe)."""
+    assert G2P("gen").transcribe_word("gbe") == "ɡ͡be"
+
+
+def test_gen_ny_is_a_palatal_nasal():
+    """Africa-Alphabet convention shared with `ee`: ⟨ny⟩ = /ɲ/."""
+    assert G2P("gen").transcribe_word("nya") == "ɲa"
+
+
+def test_gen_ƒ_is_a_bilabial_fricative_distinct_from_f():
+    """Gen keeps the Ewe/Gbe contrast between ⟨ƒ⟩ /ɸ/ (bilabial) and ⟨f⟩ /f/
+    (labiodental), inherited from the shared Africa-Alphabet orthography."""
+    assert G2P("gen").transcribe_word("ƒe") == "ɸe"
+
+
+# ---------------------------------------------------------------------------
+# aja — Aja/Adja (Wikipedia "Aja language (Benin)")
+# ---------------------------------------------------------------------------
+
+def test_aja_gb_is_a_labial_velar_stop():
+    """Gbe orthographic convention shared with Ewe/Gen/Fon: ⟨gb⟩ = /ɡ͡b/."""
+    assert G2P("aja").transcribe_word("gbe") == "ɡ͡be"
+
+
+def test_aja_ɖ_is_a_retroflex_implosive_stop():
+    """Africa-Alphabet convention shared with `ee`: ⟨ɖ⟩ is its own letter,
+    distinct from plain ⟨d⟩."""
+    assert G2P("aja").transcribe_word("ɖo") == "ɖo"
+
+
+def test_aja_ny_is_a_palatal_nasal():
+    """Africa-Alphabet convention shared with `ee`/`gen`: ⟨ny⟩ = /ɲ/."""
+    assert G2P("aja").transcribe_word("nya") == "ɲa"
+
+
+# ---------------------------------------------------------------------------
 # kr — Kanuri (Standard Kanuri Orthography, 1975; Hutchison)
 # ---------------------------------------------------------------------------
 
@@ -1292,3 +1444,79 @@ def test_iir_satem_shift_gives_a_palatal_sibilant():
     """"Satem shift: PIE palatovelars *ḱ, *ĝ → PII palatal sibilants *ś, *ź."
     The reconstruction *śatam 'hundred' has a palatal sibilant, not a velar."""
     assert G2P("iir").transcribe_word("śatam") == "ɕatam"
+
+
+# ---------------------------------------------------------------------------
+# srr / snk / sus / men / tem / fuf / fuv — West Atlantic and Mande
+# (Senegambia / Guinea / Sierra Leone)
+# ---------------------------------------------------------------------------
+
+def test_srr_double_vowel_is_phonemic_length():
+    """"Five vowels /i e a o u/ contrast length, written by doubling the
+    vowel letter" (Serer Wikipedia orthography table).  The autonym
+    'Seereer' has two doubled vowels, both realised long."""
+    assert G2P("srr").transcribe_word("seereer") == "seːreːr"
+
+
+def test_srr_voiced_implosives_are_distinct_letters():
+    """"Ɓ /ɓ/ (voiced bilabial implosive)" and "Ɗ /ɗ/ (voiced alveolar
+    implosive)" (Serer Wikipedia orthography table).  ɓɗ juxtaposed keeps
+    each implosive distinct from a plain stop."""
+    assert G2P("srr").transcribe_word("ɓɗ") == "ɓɗ"
+
+
+def test_snk_double_vowel_is_phonemic_length():
+    """"Five vowels (i, e, a, o, u) with long variants marked by doubling"
+    (Soninke Wikipedia phonology summary).  The autonym 'Sooninke' has a
+    doubled ⟨oo⟩ realised long."""
+    assert G2P("snk").transcribe_word("sooninke") == "soːninke"
+
+
+def test_snk_c_is_a_palato_alveolar_affricate():
+    """"⟨c⟩ = [tʃ]" (Soninke Wikipedia consonant table), the same
+    West-African convention as Bambara (bm) and Fula (ff)."""
+    assert G2P("snk").transcribe_word("c") == "tʃ"
+
+
+def test_sus_gb_is_a_single_labial_velar_stop():
+    """Attested phoneme /ɡb/ (Susu Wikipedia consonant table) written
+    ⟨gb⟩, following the Guinean national-languages convention shared with
+    Mende (men). Not the sum of g /ɡ/ + b /b/, but one double-articulated
+    segment."""
+    assert G2P("sus").transcribe_word("gb") == "ɡb"
+
+
+def test_men_j_is_a_voiced_affricate_not_a_glide():
+    """"⟨j⟩ = /dʒ/" (Mende Wikipedia alphabet table) — unlike the
+    unrelated Susu (sus), where ⟨j⟩ instead denotes the glide /j/."""
+    assert G2P("men").transcribe_word("j") == "dʒ"
+
+
+def test_men_kp_and_gb_are_labiovelar_stops():
+    """"The digraphs gb and kp represent labiovelar plosives" (Mende
+    Wikipedia). 'kpa' keeps the labiovelar onset as one segment."""
+    assert G2P("men").transcribe_word("kpa") == "kpa"
+
+
+def test_tem_th_is_dental_distinct_from_alveolar_t():
+    """"Temne distinguishes dental and alveolar" stops (Temne Wikipedia
+    phonology summary): ⟨th⟩ = /t̪/ is a distinct grapheme from plain
+    ⟨t⟩ = /t/."""
+    g = G2P("tem")
+    assert g.transcribe_word("th") == "t̪"
+    assert g.transcribe_word("th") != g.transcribe_word("t")
+
+
+def test_fuf_inherits_the_ff_grapheme_table():
+    """Pular (fuf) is the Fouta Djallon variety of Fula and is wired with
+    graphemes_base: "ff" since no source documents a Pular-specific
+    grapheme divergence; 'Pular' transcribes exactly as the shared ff
+    letters predict."""
+    assert G2P("fuf").transcribe_word("pular") == "pular"
+
+
+def test_fuv_inherits_the_ff_grapheme_table():
+    """Nigerian Fulfulde (fuv) is wired with graphemes_base: "ff"; the
+    autonym 'Fulfulde' transcribes exactly as the shared ff letters
+    predict."""
+    assert G2P("fuv").transcribe_word("fulfulde") == "fulfulde"

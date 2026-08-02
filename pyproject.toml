@@ -34,7 +34,11 @@ validation = ["pydantic>=2"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
 # own (pt-PT declares its diphthongs), and this only draws better boundaries.
 portuguese = ["silabificador>=2.1.0a1"]
-test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis"]
+# The gold sets and the benchmark baselines pin engine output produced WITH the
+# Portuguese syllabifier loaded, so the test environment must carry it or the
+# pinned rows cannot be reproduced.
+test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
+        "silabificador>=2.1.0a1"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency
 compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
 

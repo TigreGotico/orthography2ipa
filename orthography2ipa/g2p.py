@@ -35,7 +35,7 @@ from __future__ import annotations
 import logging
 import unicodedata
 from dataclasses import dataclass, replace
-from typing import Callable, List, Optional, Set, Tuple
+from typing import Callable, Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
 from orthography2ipa.features import (
@@ -64,7 +64,7 @@ from orthography2ipa.positional import resolve_branches
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
-from orthography2ipa.registry import get, resolve
+from orthography2ipa.registry import get, get_declared_plugins, resolve
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.sentence import (
     Position,
@@ -77,9 +77,10 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    _syllables_for, apply_stress_mark, detect_stress, detect_stress_by_weight,
-    syllabify, syllabify_ipa,
+    _syllables_for, apply_stress_mark, cliticless_keys, detect_stress,
+    detect_stress_by_weight, syllabify, syllabify_ipa,
 )
+from orthography2ipa.transforms import apply_transform
 from orthography2ipa.types import LanguageSpec
 
 __all__ = [
@@ -249,10 +250,6 @@ class _StagePlugins:
 
     def get(self, stage: str) -> list:
         if stage not in self._cache:
-            from dataclasses import replace
-
-            from orthography2ipa.registry import get_declared_plugins
-
             # The caller's choice overrides the spec's, so resolve against the
             # merged view rather than the spec's own block.
             merged = replace(self._spec, plugins=self._declared)
@@ -354,7 +351,7 @@ class G2P:
         # rebuilds the segment context from the previous pass. `allophone_passes`
         # is 1 for every spec that has not opted in, so the tuple holds exactly
         # one copy and behaviour is byte-identical.
-        n_passes = max(1, getattr(self.spec, "allophone_passes", 1))
+        n_passes = max(1, self.spec.allophone_passes)
         self._allophone_chain: Tuple[LatticeRescorer, ...] = (
             (allophone_rescorer,) * n_passes
             if allophone_rescorer is not None else ()
@@ -410,6 +407,19 @@ class G2P:
         # runs and transcribe() is byte-identical to before this seam existed.
         self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
             normalize_sentence_rescorers(sentence_rescorer))
+        # Per-engine memo of two pure, spec-only computations that the profiler
+        # showed dominate the front-end path: syllabification (the silabificador
+        # plugin is not cheap) and the rules-only pronunciation lattice the
+        # confidence read rebuilds. Both are deterministic functions of the word
+        # and this engine's immutable spec — they never consult the runtime-
+        # mutable lexicon — so a fresh engine gets fresh caches and the results
+        # are byte-identical to computing them each time. Real speech repeats
+        # function words heavily, so the hit rate is high.
+        self._syll_cache: Dict[str, List[str]] = {}
+        self._lattice_cache: Dict[Tuple[str, int], List[SegmentSlot]] = {}
+        #: Declared prosodic-clitic keys (see :meth:`_is_cliticless`), computed
+        #: once per engine on first use; ``None`` until then.
+        self._cliticless_cache: Optional[frozenset] = None
 
     # ─── public API ──────────────────────────────────────────────────
 
@@ -498,7 +508,6 @@ class G2P:
 
         ipa = " ".join(w for w in ipa_words if w)
         if self.dialect_profile:
-            from orthography2ipa.transforms import apply_transform
             # The spelling the transform reads is the words', normalized — which is
             # also the only spelling there is: a forced word contributes the text it
             # wrapped, and the markup itself is not part of the utterance.
@@ -629,16 +638,22 @@ class G2P:
         object a downstream rescorer (B4) or confidence signal (B5) reads.
         """
         keep = 2 ** 31 if beam_width < 0 else beam_width
+        cache_key = (word, keep)
+        cached = self._lattice_cache.get(cache_key)
+        if cached is not None:
+            # SegmentSlot is frozen, so sharing the elements is safe; a fresh
+            # list guards the cache against a caller that mutates the sequence.
+            return list(cached)
         g_tokens = self._tokenizer.grapheme_tokens(word)
         if not g_tokens:
+            self._lattice_cache[cache_key] = []
             return []
-        contexts = flat_contexts(g_tokens)
+        contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         stressed_syll_idx: Optional[int] = None
         sylls: List[str] = []
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
+            sylls = self._syllables_cached(word)
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
@@ -678,11 +693,13 @@ class G2P:
                 if s.candidates
             ]
 
-        return [
+        result = [
             SegmentSlot(grapheme=s.grapheme, span=s.span,
                         candidates=s.candidates[:keep])
             for s in slots
         ]
+        self._lattice_cache[cache_key] = result
+        return list(result)
 
     def word_confidence(self, word: str, *, beam_width: int = 8) -> float:
         """Per-word confidence for *word*, in ``[0.0, 1.0]`` (Workstream B5).
@@ -756,7 +773,7 @@ class G2P:
             slots = self.ipa_lattice(word)
             confidence = self.confidence_breakdown(word).value
             g_tokens = self._tokenizer.grapheme_tokens(word)
-            contexts = flat_contexts(g_tokens)
+            contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
             out.append(build_word_features(
                 word, slots, contexts, confidence,
                 self.spec.code, self.spec.script))
@@ -896,38 +913,36 @@ class G2P:
                 return hit
         return None
 
-    def _cliticless_keys(self) -> frozenset:
-        """The spec's ``stress.cliticless_words`` as a normalized lookup set.
+    def _syllables_cached(self, word: str) -> List[str]:
+        """Syllabify *word* once per engine.
 
-        Cached per engine. Keyed exactly like :meth:`_override_for` — language-
-        aware lowercased and NFC-normalized — so a form listed in the spec's
-        input orthography matches the input word regardless of case or Unicode
-        composition.
+        Syllabification depends only on the word and this engine's fixed
+        stress spec, yet the front-end asks for it several times per word
+        (stress detection and the lattice each need it) and again for every
+        repeat of a function word. The cache collapses all of that to one call;
+        a copy is returned so callers that mutate the list in place (stress
+        assembly appends onsets) never corrupt the cached value.
         """
-        cached = getattr(self, "_cliticless_cache", None)
-        if cached is None:
-            forms = (self.spec.stress.cliticless_words
-                     if self.spec.stress is not None else ())
-            cached = frozenset(
-                unicodedata.normalize("NFC", lower_str(f, self.spec.code))
-                for f in forms
-            )
-            self._cliticless_cache = cached
-        return cached
+        sylls = self._syll_cache.get(word)
+        if sylls is None:
+            diph = self.spec.stress.diphthongs if self.spec.stress else ()
+            sylls = _syllables_for(word, self.lang, diph)
+            self._syll_cache[word] = sylls
+        return list(sylls)
 
     def _is_cliticless(self, word: str) -> bool:
         """Whether *word* is a declared prosodic clitic that takes no stress.
 
-        A clitic leans on an adjacent host and lives inside the host's stress
-        domain, so no word stress is placed on it (Watson 2002, ch. 3). This is
-        an orthographic-form test — it cannot tell a clitic homograph from a
-        full-word one — matching the spec's ``stress.cliticless_words``.
+        Delegates to :func:`orthography2ipa.stress.is_cliticless` so the engine
+        and every downstream assembler make the identical decision from one place
+        (the keys are cached per engine on first use).
         """
-        keys = self._cliticless_keys()
-        if not keys:
+        if self._cliticless_cache is None:
+            self._cliticless_cache = cliticless_keys(self.spec)
+        if not self._cliticless_cache:
             return False
         return unicodedata.normalize(
-            "NFC", lower_str(word, self.spec.code)) in keys
+            "NFC", lower_str(word, self.spec.code)) in self._cliticless_cache
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
@@ -968,8 +983,7 @@ class G2P:
                         ipa, self.spec.stress.max_onset),
                 )
             else:
-                sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                       if self.spec.stress else ())
+                sylls = self._syllables_cached(word)
                 idx = detect_stress(word, self.spec.stress, syllables=sylls)
                 ipa = apply_stress_mark(ipa, self.spec.stress, idx,
                                         syllables=sylls)
@@ -1056,14 +1070,13 @@ class G2P:
         # Flat-run context views: all grapheme tokens of the word stay
         # mutual neighbours (word-splitting already stripped punctuation),
         # so positional resolution matches the engine's neighbour rules.
-        contexts = flat_contexts(g_tokens)
+        contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         # Determine stressed syllable index once (reuse for all vowels)
         stressed_syll_idx: Optional[int] = None
         sylls: List[str] = []
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
+            sylls = self._syllables_cached(word)
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
