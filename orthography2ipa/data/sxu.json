@@ -4,8 +4,67 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "f": [
+   "f",
+   "v"
+  ],
+  "k": [
+   "k",
+   "ɡ",
+   "kʰ"
+  ],
+  "p": [
+   "p",
+   "b",
+   "pʰ"
+  ],
+  "s̪": [
+   "s̪",
+   "z"
+  ],
+  "t̪": [
+   "t̪",
+   "d̪",
+   "t̪ʰ"
+  ],
+  "ʁ̞": [
+   "ʁ̞",
+   "ʁ",
+   "ʁ̥",
+   "ʀ̥",
+   "q"
+  ],
+  "ʃ": [
+   "ʃ",
+   "ʒ"
+  ],
+  "χ": [
+   "χ",
+   "ʁ"
+  ],
+  "oˤː": [
+   "oˤː",
+   "oːɒ̯ˤ"
+  ],
+  "ɑˤː": [
+   "ɑˤː",
+   "ɛːɒ̯ˤ"
+  ],
+  "ɔˤː": [
+   "ɔˤː",
+   "ɔːɒ̯ˤ"
+  ],
+  "ʊˤː": [
+   "ʊˤː",
+   "ʊːɒ̯ˤ"
+  ],
+  "ʌˤː": [
+   "ʌˤː",
+   "ɪːɒ̯"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "sxu",
  "glottolog_code": "uppe1400",
  "sources": [
@@ -16,6 +75,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/2232",
+   "notes": "Inventory 2232 (ph), 35 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +95,43 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-indo1319"
+ "parent": "x-clade-indo1319",
+ "phonemes": [
+  "f",
+  "h",
+  "j",
+  "k",
+  "kʰ",
+  "l̪",
+  "m",
+  "n̪",
+  "p",
+  "s̪",
+  "t̪",
+  "ŋ",
+  "ʁ̞",
+  "ʃ",
+  "ʋ",
+  "χ",
+  "ae̯",
+  "aɵ̯",
+  "eː",
+  "i̩ː",
+  "oˤː",
+  "ɑˤː",
+  "ɔˤː",
+  "ɛ",
+  "ɛː",
+  "ɞ",
+  "ɞʏ̯",
+  "ɪ",
+  "ɵ",
+  "ɵː",
+  "ʉː",
+  "ʊˤː",
+  "ʌ",
+  "ʌː",
+  "ʌˤː"
+ ],
+ "phoible_id": "2232"
 }

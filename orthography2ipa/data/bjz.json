@@ -4,8 +4,41 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "b": [
+   "b",
+   "mb"
+  ],
+  "d": [
+   "d",
+   "nd"
+  ],
+  "d̠ʒ": [
+   "d̠ʒ",
+   "n̠d̠ʒ"
+  ],
+  "k": [
+   "k",
+   "kʰ"
+  ],
+  "t": [
+   "t",
+   "tʰ"
+  ],
+  "ɡ": [
+   "ɡ",
+   "ŋɡ"
+  ],
+  "ɾ": [
+   "ɾ",
+   "l"
+  ],
+  "β": [
+   "β",
+   "w"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "bjz",
  "glottolog_code": "baru1269",
  "sources": [
@@ -16,6 +49,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1039",
+   "notes": "Inventory 1039 (ph), 24 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +69,32 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nucl1709"
+ "parent": "x-clade-nucl1709",
+ "phonemes": [
+  "b",
+  "d",
+  "d̠ʒ",
+  "j",
+  "k",
+  "m",
+  "n",
+  "s",
+  "t",
+  "ɡ",
+  "ɣ",
+  "ɸ",
+  "ɾ",
+  "β",
+  "a",
+  "ã",
+  "e",
+  "ẽ",
+  "i",
+  "ĩ",
+  "o",
+  "õ",
+  "u",
+  "ũ"
+ ],
+ "phoible_id": "1039"
 }

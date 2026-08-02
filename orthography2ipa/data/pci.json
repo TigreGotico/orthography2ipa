@@ -5,7 +5,7 @@
  "quality": "stub",
  "graphemes": {},
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "pci",
  "glottolog_code": "duru1236",
  "sources": [
@@ -16,6 +16,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1777",
+   "notes": "Inventory 1777 (ra), 31 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +36,39 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-drav1251"
+ "parent": "x-clade-drav1251",
+ "phonemes": [
+  "b",
+  "cç",
+  "d̪",
+  "h",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "p",
+  "s",
+  "t̪",
+  "w",
+  "ŋ",
+  "ɖ",
+  "ɟʝ",
+  "ɡ",
+  "ɲ",
+  "ɽ",
+  "ɾ",
+  "ʈ",
+  "a",
+  "aː",
+  "e",
+  "eː",
+  "i",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uː"
+ ],
+ "phoible_id": "1777"
 }

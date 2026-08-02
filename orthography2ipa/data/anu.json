@@ -4,8 +4,34 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "b": [
+   "b",
+   "p"
+  ],
+  "d": [
+   "d",
+   "t"
+  ],
+  "d̪": [
+   "d̪",
+   "t̪"
+  ],
+  "n": [
+   "n",
+   "n̪"
+  ],
+  "ɟ": [
+   "ɟ",
+   "ɟː",
+   "c"
+  ],
+  "ɡ": [
+   "ɡ",
+   "k"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "anu",
  "glottolog_code": "anua1242",
  "sources": [
@@ -16,6 +42,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1165",
+   "notes": "Inventory 1165 (ph), 42 non-marginal segments, 1 marginal excluded, 4 tones."
   }
  ],
  "urls": [
@@ -27,5 +62,56 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nilo1247"
+ "parent": "x-clade-nilo1247",
+ "phonemes": [
+  "b",
+  "c",
+  "d",
+  "d̪",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "p",
+  "r",
+  "t",
+  "t̪",
+  "w",
+  "ŋ",
+  "ɟ",
+  "ɡ",
+  "ɲ",
+  "a",
+  "aː",
+  "e",
+  "eː",
+  "i",
+  "ie",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uo",
+  "uː",
+  "ɔ",
+  "ɔː",
+  "ɛ",
+  "ɛː",
+  "ɪ",
+  "ɪɛ",
+  "ɪː",
+  "ʊ",
+  "ʊɔ",
+  "ʊː",
+  "ʌ",
+  "ʌː"
+ ],
+ "tone_inventory": {
+  "˦": "PHOIBLE tone segment",
+  "˧": "PHOIBLE tone segment",
+  "˨": "PHOIBLE tone segment",
+  "˩˥": "PHOIBLE tone segment"
+ },
+ "phoible_id": "1165"
 }
