@@ -4,8 +4,97 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "k": [
+   "k",
+   "ɣ"
+  ],
+  "kʷ": [
+   "kʷ",
+   "ɣʷ"
+  ],
+  "m": [
+   "m",
+   "w̃"
+  ],
+  "n": [
+   "n",
+   "j̃",
+   "ɾ̃"
+  ],
+  "nː": [
+   "nː",
+   "n̪ː"
+  ],
+  "p": [
+   "p",
+   "β"
+  ],
+  "s": [
+   "s",
+   "sː",
+   "ʃː"
+  ],
+  "t": [
+   "t",
+   "ð",
+   "ɾ"
+  ],
+  "ts": [
+   "ts",
+   "z",
+   "ʒ"
+  ],
+  "tː": [
+   "tː",
+   "t̪ː"
+  ],
+  "tːs": [
+   "tːs",
+   "tːʃ"
+  ],
+  "ŋ": [
+   "ŋ",
+   "w̃"
+  ],
+  "ŋʷ": [
+   "ŋʷ",
+   "w̃"
+  ],
+  "a": [
+   "a",
+   "ã"
+  ],
+  "ai": [
+   "ai",
+   "ãĩ"
+  ],
+  "i": [
+   "i",
+   "ɪ",
+   "ĩ",
+   "ɛ"
+  ],
+  "o": [
+   "o",
+   "õ"
+  ],
+  "u": [
+   "u",
+   "ũ",
+   "o"
+  ],
+  "ɛ": [
+   "ɛ",
+   "ɛ̃"
+  ],
+  "ɨ": [
+   "ɨ",
+   "ɨ̃",
+   "ɪ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "par",
  "glottolog_code": "pana1305",
  "sources": [
@@ -16,6 +105,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/1133",
+   "notes": "Inventory 1133 (ph), 36 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +125,44 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-utoa1244"
+ "parent": "x-clade-utoa1244",
+ "phonemes": [
+  "h",
+  "j",
+  "k",
+  "kʷ",
+  "kʷː",
+  "kː",
+  "m",
+  "mː",
+  "n",
+  "nː",
+  "p",
+  "pː",
+  "s",
+  "t",
+  "ts",
+  "tː",
+  "tːs",
+  "w",
+  "ŋ",
+  "ŋʷ",
+  "ŋʷː",
+  "ŋː",
+  "ʔ",
+  "a",
+  "ai",
+  "aː",
+  "eː",
+  "i",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uː",
+  "ɛ",
+  "ɨ",
+  "ɨː"
+ ],
+ "phoible_id": "1133"
 }

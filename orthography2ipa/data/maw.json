@@ -4,8 +4,26 @@
  "script": "Zyyy",
  "quality": "stub",
  "graphemes": {},
- "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "allophones": {
+  "d": [
+   "d",
+   "r"
+  ],
+  "s": [
+   "s",
+   "h",
+   "ʃ"
+  ],
+  "z": [
+   "z",
+   "ʒ"
+  ],
+  "ɡ": [
+   "ɡ",
+   "ʔ"
+  ]
+ },
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "maw",
  "glottolog_code": "mamp1244",
  "sources": [
@@ -16,6 +34,15 @@
    "title": "Glottolog 5.0",
    "publisher": "Max Planck Institute for Evolutionary Anthropology",
    "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/775",
+   "notes": "Inventory 775 (aa), 32 non-marginal segments."
   }
  ],
  "urls": [
@@ -27,5 +54,40 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278"
+ "parent": "x-clade-atla1278",
+ "phonemes": [
+  "b",
+  "c",
+  "d",
+  "f",
+  "j",
+  "k",
+  "kp",
+  "l",
+  "m",
+  "n",
+  "p",
+  "s",
+  "t",
+  "v",
+  "w",
+  "z",
+  "ŋ",
+  "ŋm",
+  "ɟ",
+  "ɡ",
+  "ɡb",
+  "ɲ",
+  "a",
+  "aː",
+  "e",
+  "eː",
+  "i",
+  "iː",
+  "o",
+  "oː",
+  "u",
+  "uː"
+ ],
+ "phoible_id": "775"
 }
