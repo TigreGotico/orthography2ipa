@@ -866,6 +866,25 @@ def load_ipa_babylm(lang: str, limit: int) -> List[Tuple[str, str]]:
 # - `lexibank/abvd` (Austronesian Basic Vocabulary Database): same problem,
 #   ``Segments`` empty on all 346k rows.
 #
+# 2026-08 audit wave — 21 more candidates inspected, NONE wired. Full verdicts
+# and evidence in docs/benchmarks.md "Rejected candidates". Summary:
+#
+# - `uralex`: ``Segments`` empty on all sampled rows (same as ids/abvd).
+# - `tuled`, `dravlex`, `chaconarawakan`, `felekesemitic`, `hantganbangime`,
+#   `lundgrenomagoa`, `naganorgyalrongic`, `sagartst`, `savelyevturkic`,
+#   `abrahammonpa`, `allenbai`, `bantubvd`, `chindialectsurvey`,
+#   `birchallchapacuran`, `gravinachadic`, `kraftchadic`,
+#   `luangthongkumkaren`, `marrisonnaga`, `mitterhoferbena`: ``Value`` is
+#   itself an IPA/comparative-transcription string (tone marks, IPA-only
+#   symbols, sense-index suffixes, or a fieldworker's normalized transcription
+#   convention applied uniformly across many languages) — not each
+#   language's own writing system, failing the "Form must be real
+#   orthography, not transcription" rule this loader exists to enforce.
+# - `robinsonap`: the one candidate whose ``Value`` genuinely reads as
+#   practical orthography (real digraphs, e.g. ``ng``→``ŋ``). Still not
+#   wired: all 13 languages resolve to `stub`-quality o2i specs with an
+#   EMPTY grapheme table, so there is nothing for a gold row to exercise yet.
+#
 # Two datasets passed inspection and are wired: `northeuralex` (NorthEuraLex,
 # Dellert et al. 2020) and `wold` (World Loanword Database, Haspelmath &
 # Tadmor 2009), both real orthographic ``Value`` + populated ``Segments``.
