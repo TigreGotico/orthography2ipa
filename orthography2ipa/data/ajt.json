@@ -6,18 +6,18 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "jrb",
+  "parent": "ar-TN",
   "ancestors": [
     {
       "code": "jrb",
-      "role": "parent",
-      "weight": 0.5,
-      "notes": "Judeo-Arabic macrolanguage node (ISO 639 jrb)."
+      "role": "related",
+      "weight": 0.3,
+      "notes": "Judeo-Arabic macrolanguage node (ISO 639 jrb): a sociolinguistic/orthographic collective, not genetic descent (see jrb.json notes) -- ajt's single genetic PARENT is ar-TN, matching the engine constraint that every language has at most one PARENT ancestor."
     },
     {
       "code": "ar-TN",
       "role": "parent",
-      "weight": 0.45,
+      "weight": 0.8,
       "notes": "Regional descent: Judeo-Tunisian Arabic is fundamentally a Tunisian Arabic dialect, historically written in Hebrew script."
     },
     {

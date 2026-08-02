@@ -16,29 +16,12 @@ from orthography2ipa.types import QualityTier, AncestorRole
 
 
 @pytest.mark.parametrize("code", [
-    "xpu", "uga", "hbo", "jrb", "ajt", "yhd", "rif", "gnc",
+    "xpu", "uga", "hbo", "jrb", "ajt", "aju", "yhd", "rif", "gnc",
 ])
 def test_new_specs_resolve(code):
     spec = orthography2ipa.get(code)
     assert spec is not None
     assert spec.code == code
-
-
-@pytest.mark.xfail(
-    reason=(
-        "KNOWN ENGINE LIMITATION (not fixed here: data-only constraint on this "
-        "campaign): langcodes.standardize_tag('aju', macro=True) collapses "
-        "'aju' to its ISO macrolanguage 'jrb' before orthography2ipa.registry "
-        "checks for an exact spec match, same class of collision documented "
-        "in registry.py for bxr/diq. The upstream fix is a one-line pin in "
-        "registry.py's _ALIASES table ('aju': 'aju'), matching the existing "
-        "bxr/diq precedent; out of scope for a DATA-ONLY spec-adding pass."
-    ),
-    strict=True,
-)
-def test_aju_resolve_blocked_by_langcodes_macro_collapse():
-    spec = orthography2ipa.get("aju")
-    assert spec.code == "aju"
 
 
 class TestPunicUnderPhoenician:
@@ -89,16 +72,21 @@ class TestJudeoArabicMacronode:
 
     @pytest.mark.parametrize("code,regional_parent", [
         ("ajt", "ar-TN"),
+        ("aju", "ar-MA"),
         ("yhd", "ar-IQ"),
-        # "aju" excluded: blocked by the langcodes macro-collapse xfail above.
     ])
-    def test_dual_parentage(self, code, regional_parent):
+    def test_single_genetic_parent_plus_jrb_related(self, code, regional_parent):
+        # Every o2i language has AT MOST ONE PARENT (engine constraint,
+        # enforced by tests/test_language_integrity.py::test_parent_count_reasonable).
+        # jrb is a sociolinguistic/orthographic macrolanguage collective, not
+        # a genetic ancestor, so it is wired as RELATED rather than PARENT;
+        # the single genetic PARENT is the regional Arabic dialect.
         spec = orthography2ipa.get(code)
-        codes = {a.code for a in spec.get_ancestors(AncestorRole.PARENT)}
-        assert "jrb" in codes
-        assert regional_parent in codes
+        assert spec.parent == regional_parent
+        related = {a.code for a in spec.get_ancestors(AncestorRole.RELATED)}
+        assert "jrb" in related
 
-    @pytest.mark.parametrize("code", ["ajt", "yhd"])
+    @pytest.mark.parametrize("code", ["ajt", "aju", "yhd"])
     def test_hebrew_is_adstrate(self, code):
         spec = orthography2ipa.get(code)
         adstrates = {a.code for a in spec.get_ancestors(AncestorRole.ADSTRATE)}

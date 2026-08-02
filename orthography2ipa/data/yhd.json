@@ -6,18 +6,18 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "jrb",
+  "parent": "ar-IQ",
   "ancestors": [
     {
       "code": "jrb",
-      "role": "parent",
-      "weight": 0.5,
-      "notes": "Judeo-Arabic macrolanguage node (ISO 639 jrb)."
+      "role": "related",
+      "weight": 0.3,
+      "notes": "Judeo-Arabic macrolanguage node (ISO 639 jrb): a sociolinguistic/orthographic collective, not genetic descent (see jrb.json notes) -- yhd's single genetic PARENT is ar-IQ, matching the engine constraint that every language has at most one PARENT ancestor."
     },
     {
       "code": "ar-IQ",
       "role": "parent",
-      "weight": 0.45,
+      "weight": 0.8,
       "notes": "Regional descent: Judeo-Iraqi (Baghdadi Judeo-Arabic) is a qeltu-type Iraqi Arabic dialect, historically written in Hebrew script, distinct from the gilit dialect of Muslim Baghdad that ar-IQ.json describes."
     },
     {
