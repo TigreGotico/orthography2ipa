@@ -74,6 +74,7 @@ __all__ = [
     "is_front_vowel",
     "is_back_vowel",
     "is_palatal_consonant",
+    "is_pharyngealized_consonant",
     "is_nucleus_only",
     "grapheme_is_vowel",
     "grapheme_vowel_axis",
@@ -332,6 +333,34 @@ def is_palatal_consonant(ipa: str) -> bool:
         if s.startswith(aff):
             return True
     return s[0] in _PALATAL_SINGLE
+
+
+#: IPA pharyngealization diacritic (U+02E4, MODIFIER LETTER SMALL REVERSED
+#: GLOTTAL STOP), the standard mark for a "emphatic" / secondarily
+#: pharyngealized consonant (``sˤ dˤ tˤ ðˤ``, and dialectally ``ɮˤ``).
+_PHARYNGEALIZATION = "ˤ"
+
+
+def is_pharyngealized_consonant(ipa: str) -> bool:
+    """Return True if *ipa* denotes a pharyngealized ("emphatic") consonant.
+
+    Purely a feature test: any IPA string carrying the pharyngealization
+    diacritic ``ˤ`` (U+02E4) qualifies, regardless of which base consonant it
+    modifies or which language uses it — Arabic's ``sˤ dˤ tˤ ðˤ`` (and the
+    dialectal lateral fricative ``ɮˤ``) are the best-known instance (Watson
+    2002; Davis 1995), but the predicate itself is language-agnostic: any
+    spec that marks pharyngealized consonants with ``ˤ`` gets the class for
+    free. This is the consonant-side mirror of :func:`is_palatal_consonant`:
+    both classify the *sound* a grapheme maps to, not the script or
+    language, and both back the ``"palatal"`` / ``"emphatic"``
+    allophone-rule neighbour classes.
+
+    Only the first (base) segment plus its diacritics matter, so a phoneme
+    string carrying a further length mark still classifies correctly.
+    """
+    if not ipa:
+        return False
+    return _PHARYNGEALIZATION in ipa
 
 
 def is_front_vowel(ch: str) -> bool:

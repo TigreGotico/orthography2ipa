@@ -200,6 +200,8 @@ def _neighbor_is(
         return gctx.is_back
     if cls == "palatal":
         return gctx.is_palatal
+    if cls == "emphatic":
+        return gctx.is_emphatic
     return False  # unreachable — AllophoneRule validates the vocabulary
 
 
