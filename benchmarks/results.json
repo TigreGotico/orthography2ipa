@@ -3263,6 +3263,19 @@
     "limit": null
   },
   {
+    "lang": "kas",
+    "dataset": "wikipron",
+    "n": 683,
+    "per": 0.3231,
+    "per_ci_low": 0.2965,
+    "per_ci_high": 0.3514,
+    "exact_match": 0.3192,
+    "quality_tier": "research",
+    "provenance": "crowd-scraped",
+    "harness_version": "1.1",
+    "limit": null
+  },
+  {
     "lang": "kaw",
     "dataset": "wikipron",
     "n": 924,
@@ -4323,6 +4336,19 @@
     "per_ci_low": 0.4046,
     "per_ci_high": 0.4625,
     "exact_match": 0.1042,
+    "quality_tier": "research",
+    "provenance": "crowd-scraped",
+    "harness_version": "1.1",
+    "limit": null
+  },
+  {
+    "lang": "new",
+    "dataset": "wikipron",
+    "n": 416,
+    "per": 0.5525,
+    "per_ci_low": 0.534,
+    "per_ci_high": 0.5697,
+    "exact_match": 0.0072,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
@@ -6196,6 +6222,19 @@
     "per_ci_high": 0.4302,
     "exact_match": 0.0773,
     "quality_tier": "skeleton",
+    "provenance": "crowd-scraped",
+    "harness_version": "1.1",
+    "limit": null
+  },
+  {
+    "lang": "shn",
+    "dataset": "wikipron",
+    "n": 2604,
+    "per": 0.3348,
+    "per_ci_low": 0.3281,
+    "per_ci_high": 0.3427,
+    "exact_match": 0.0434,
+    "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": null
