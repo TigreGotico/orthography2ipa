@@ -1228,10 +1228,15 @@ def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     on Hugging Face) — 319 entries for the Barranquenho contact variety
     (``ext-PT-x-barrancos``), a Portuguese–Spanish border speech of Barrancos.
 
-    PROVENANCE — this gold is **LLM-generated** (Claude, conditioned on the
-    published *Convenção Ortográfica do Barranquenho* and descriptive research
-    on the variety), NOT produced by a phonemizer, by orthography2ipa, or by
-    any downstream o2i consumer — so scoring o2i against it is not circular.
+    PROVENANCE — the upstream dataset regrew to ~1.8k rows with a per-row
+    ``provenance_tier`` column. Rows tagged ``engine-verified-convention``
+    are o2i-derived and are EXCLUDED here (circular). The remaining
+    ``dicionario-headword`` rows take their headwords from the published
+    Dicionário de Barranquenho (2025), but the near-zero PER o2i scores
+    against them suggests their IPA column is itself o2i-aligned — treat
+    every number from this dataset as agreement, not correctness, until
+    upstream documents who produced the IPA. The row stays at the lowest
+    reliability tier and can gate nothing.
     It is nonetheless machine-generated and unverified by human phoneticians:
     it is classified at the lowest reliability tier (``machine-generated``) and
     is directional only. See docs/benchmarks.md "Provenance and reliability".
@@ -1248,7 +1253,17 @@ def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     reader = csv.DictReader(text.splitlines())
     for row in reader:
         word = (row.get("barranquenho_orthography") or "").strip()
-        ipa = (row.get("ipa_transcription") or "").strip()
+        # The dataset renamed its IPA column from ``ipa_transcription`` to
+        # ``ipa`` when it grew to 1.8k rows; accept both spellings so a
+        # fresh (uncached) fetch never silently yields zero rows again.
+        ipa = (row.get("ipa") or row.get("ipa_transcription") or "").strip()
+        # Rows tagged ``engine-verified-convention`` were produced by running
+        # o2i itself over the orthographic convention: scoring o2i against
+        # them is circular, so they are excluded from the gold. The
+        # ``navas-attested`` (human, Navas Sanchez-Elez) and
+        # ``dicionario-headword`` tiers remain scorable.
+        if (row.get("provenance_tier") or "").strip() == "engine-verified-convention":
+            continue
         if not word or not ipa:
             continue
         pairs.append((word, ipa))
