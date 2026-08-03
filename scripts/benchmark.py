@@ -465,6 +465,10 @@ _WIKIPRON_FILES = {
     "yux":        "yux_cyrl_narrow.tsv",  # Southern Yukaghir, N=255
     "zom":        "zom_latn_narrow.tsv",  # Zou, N=165
     "zza":        "zza_latn_narrow.tsv",  # Zaza, N=215
+    # --- orthography wave 5: fresh cited grapheme maps wired to their
+    #     upstream WikiPron gold. Scores are honest first-pass baselines.
+    "ug":         "uig_arab_broad.tsv",  # Uyghur, N=2674
+    "dz":         "dzo_tibt_broad.tsv",  # Dzongkha, N=243 (base-letter table only, see data/dz.json notes)
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
