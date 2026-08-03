@@ -76,10 +76,10 @@ class TestForcedPronunciation:
     def test_surrounding_words_are_transcribed_normally(self):
         assert G2P("pt-PT").transcribe(
             'olá <phoneme ph="ˈɡuɡɫ">Google</phoneme> mundo'
-        ) == "oˈla ˈɡuɡɫ ˈmu\u0303du"
+        ) == "oˈla ˈɡuɡɫ ˈmũdu"
 
     def test_untagged_text_is_unaffected(self):
-        assert G2P("pt-PT").transcribe("olá mundo") == "oˈla ˈmu\u0303du"
+        assert G2P("pt-PT").transcribe("olá mundo") == "oˈla ˈmũdu"
 
     def test_forced_ipa_is_not_re_stressed(self):
         """``ph`` places the stress. A caller who wrote no mark meant none."""

@@ -11,48 +11,48 @@
   ],
   "a": [
    "a",
-   "ḁ",
-   "ã"
+   "ḁ",
+   "ã"
   ],
   "aː": [
    "aː",
-   "ãː"
+   "ãː"
   ],
   "e": [
    "e",
    "e̥",
-   "ẽ"
+   "ẽ"
   ],
   "eː": [
    "eː",
-   "ẽː"
+   "ẽː"
   ],
   "i": [
    "i",
    "i̥",
-   "ĩ"
+   "ĩ"
   ],
   "iː": [
    "iː",
-   "ĩː"
+   "ĩː"
   ],
   "o": [
    "o",
    "o̥",
-   "õ"
+   "õ"
   ],
   "oː": [
    "oː",
-   "õː"
+   "õː"
   ],
   "u": [
    "u",
    "u̥",
-   "ũ"
+   "ũ"
   ],
   "uː": [
    "uː",
-   "ũː"
+   "ũː"
   ]
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
