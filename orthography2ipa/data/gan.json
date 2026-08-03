@@ -3,9 +3,173 @@
   "name": "Gan Chinese",
   "script": "Han",
   "script_type": "logographic",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
+  "quality": "skeleton",
+  "graphemes": {
+    "b": [
+      "p"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "d": [
+      "t"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "g": [
+      "k"
+    ],
+    "k": [
+      "kʰ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "h": [
+      "h"
+    ],
+    "z": [
+      "ts"
+    ],
+    "c": [
+      "tsʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "iu": [
+      "y"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "ui": [
+      "ui"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "f": [
+      "f"
+    ],
+    "v": [
+      "v"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tsʰ": [
+      "tsʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "ui": [
+      "ui"
+    ]
+  },
   "parent": "ltc",
   "ancestors": [
     {
@@ -21,7 +185,7 @@
       "notes": "Old Chinese: deeper Sinitic ancestor."
     }
   ],
-  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Gan is written with Chinese characters (Han script). No logographic character-to-phoneme map is claimed here: Chinese characters do not encode pronunciation systematically, so a Han-script G2P for this variety would need either a full character-reading lexicon or a romanised input. INPUT CONTRACT: this spec expects a romanisation as input, not Han characters — for Gan the relevant convention is the Nanchang-based Gan romanisation (as used by the Gan Wikipedia), in the same way that the `zh` spec expects Hanyu Pinyin, `nan` expects Pe̍h-ōe-jī / Tâi-lô, Cantonese expects Jyutping, Hakka expects Pha̍k-fa-sṳ, Mindong expects Bàng-uâ-cê and Wu expects Wugniu. Gan is tonal; tone is carried by the romanisation's diacritics or digits, not by the characters.",
+  "notes": "Gan Chinese romanised input contract: the Nanchang-based romanisation used by the Gan Wikipedia, grounded in Ding 2006's Nanchang dialect description. iu spells the front-rounded vowel /y/ as a single nucleus (test 2). Tone is lexical (7 Nanchang citation tones) and not yet encoded; the stress schema does not apply, tonal-language exemption per quality_tiers.md. No WikiPron gold exists in this romanisation (WikiPron's gan_hani file is Han-character keyed), so the tier stays at skeleton.",
   "iso639_3": "gan",
   "glottolog_code": "ganc1239",
   "wikidata_qid": "Q33475",
@@ -51,6 +215,17 @@
       "wikipedia_url": null,
       "pages": null,
       "notes": "Standard survey of the Sinitic varieties and their historical phonology."
+    },
+    {
+      "id": "ding2006",
+      "author": "Ding, Rushu",
+      "year": 2006,
+      "title": "南昌方言词典 (Nanchang Dialect Dictionary)",
+      "publisher": "Jiangxi People's Publishing House",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": null
     }
   ],
   "timespan": {
@@ -62,5 +237,11 @@
     "longitude": 115.166,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Gan Chinese."
+  },
+  "orthography_standard": {
+    "name": "Gan Wikipedia romanisation",
+    "authority": null,
+    "year": null,
+    "url": null
   }
 }

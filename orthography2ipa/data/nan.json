@@ -3,9 +3,230 @@
   "name": "Southern Min (Minnan)",
   "script": "Han",
   "script_type": "logographic",
-  "quality": "stub",
-  "graphemes": {},
-  "allophones": {},
+  "quality": "skeleton",
+  "graphemes": {
+    "p": [
+      "p"
+    ],
+    "ph": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "m": [
+      "m"
+    ],
+    "t": [
+      "t"
+    ],
+    "th": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "k": [
+      "k"
+    ],
+    "kh": [
+      "kʰ"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "chh": [
+      "tsʰ"
+    ],
+    "ch": [
+      "ts"
+    ],
+    "s": [
+      "s"
+    ],
+    "j": [
+      "dz"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "o͘": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ann": [
+      "ã"
+    ],
+    "inn": [
+      "ĩ"
+    ],
+    "enn": [
+      "ẽ"
+    ],
+    "onn": [
+      "ɔ̃"
+    ],
+    "unn": [
+      "ũ"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "io": [
+      "io"
+    ],
+    "iu": [
+      "iu"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "ue": [
+      "ue"
+    ],
+    "ui": [
+      "ui"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "m": [
+      "m"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tsʰ": [
+      "tsʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "dz": [
+      "dz"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ɔ̃": [
+      "ɔ̃"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "io": [
+      "io"
+    ],
+    "iu": [
+      "iu"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "ue": [
+      "ue"
+    ],
+    "ui": [
+      "ui"
+    ]
+  },
   "parent": "och",
   "ancestors": [
     {
@@ -21,7 +242,7 @@
       "notes": "Middle Chinese supplies Minnan's literary reading layer (文讀) alongside the older colloquial layer."
     }
   ],
-  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Southern Min (Hokkien / Taiwanese / Teochew) is written with Chinese characters (Han script), and also — uniquely among the Sinitic varieties — with a long-established full Latin orthography. No logographic character-to-phoneme map is claimed here: Chinese characters do not encode pronunciation systematically, so a Han-script G2P for this variety would need either a full character-reading lexicon or a romanised input. INPUT CONTRACT: this spec expects a Minnan romanisation as input, not Han characters — Pe̍h-ōe-jī (POJ, the missionary church romanisation) or the official Taiwanese Romanization System (Tâi-lô, 臺灣閩南語羅馬字拼音方案), which are inter-convertible. Compare: `zh` expects Hanyu Pinyin, Cantonese expects Jyutping, Hakka expects Pha̍k-fa-sṳ, Mindong expects Bàng-uâ-cê, Wu expects Wugniu. Minnan has 7-8 tones with pervasive sandhi; tone is written by POJ/Tâi-lô diacritics or digits. A POJ/Tâi-lô grapheme map is the obvious route to promote this spec to Tier A. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode minn1241), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "notes": "Southern Min (Hokkien/Taiwanese) romanised input contract: Pe̍h-ōe-jī (POJ, Douglas 1873), the oldest and most widely attested Minnan romanisation, inter-convertible with the official Taiwanese Romanization System (Tâi-lô). Consonant digraphs ph/th/kh/ch/chh earn their keys by test 1 (aspiration is not a concatenation of the base stop's IPA plus a letter h has no independent /h/ segment there) and ng by test 2 (one nasal segment). Nasalised finals (ann/inn/enn/onn/unn) earn their keys by test 2: POJ's trailing nn spells nasality of the WHOLE syllable nucleus, one phonological feature, not a coda consonant. Tone (7-8 citation tones, marked by diacritics on the nucleus vowel in POJ) is not yet encoded in this skeleton; Minnan tone is lexical/tonal, exempting it from the stress schema per quality_tiers.md. No WikiPron gold exists in this romanisation (WikiPron's nan_hani files are Han-character keyed, a script mismatch with this spec's romanised input contract), so no benchmark is claimed and the tier stays at skeleton.",
   "iso639_3": "nan",
   "glottolog_code": "minn1241",
   "wikidata_qid": "Q36495",
@@ -71,6 +292,17 @@
       "url": "https://phoible.org/",
       "pages": null,
       "notes": "Attested phoneme inventory for glottocode minn1241."
+    },
+    {
+      "id": "poj_standard",
+      "author": "Douglas, Carstairs",
+      "year": 1873,
+      "title": "Chinese-English Dictionary of the Vernacular or Spoken Language of Amoy",
+      "publisher": "Trübner & Co.",
+      "url": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pe%CC%8Dh-%C5%8De-j%C4%AB",
+      "pages": null,
+      "notes": "Source of the Pe̍h-ōe-jī missionary romanisation."
     }
   ],
   "timespan": {
@@ -109,5 +341,11 @@
     "longitude": 118.17,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Min Nan Chinese."
+  },
+  "orthography_standard": {
+    "name": "Pe̍h-ōe-jī (POJ)",
+    "authority": null,
+    "year": 1873,
+    "url": "https://en.wikipedia.org/wiki/Pe%CC%8Dh-%C5%8De-j%C4%AB"
   }
 }

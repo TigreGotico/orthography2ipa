@@ -3,13 +3,195 @@
   "name": "Eastern Min",
   "script": "Han",
   "script_type": "logographic",
-  "quality": "stub",
+  "quality": "skeleton",
   "iso639_3": "cdo",
   "glottolog_code": "mind1253",
   "wikidata_qid": "Q36455",
-  "graphemes": {},
-  "allophones": {},
-  "notes": "Eastern Min (Mìng-dĕ̤ng-ngṳ̄ / Mindong), including the Fuzhou dialect. The grapheme inventory is NOT yet specified and NO logographic map is claimed: Chinese characters do not encode pronunciation segmentally, so a character → IPA table is out of scope for this engine. INPUT CONTRACT: as `zh` requires pinyin, a future Eastern Min spec would require romanised input in Bàng-uâ-cê (Foochow Romanized, 平話字) — the syllable-initial / rime / tone-mark spelling — not Han characters. Until such a spec exists this entry carries metadata only. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode mind1253), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "graphemes": {
+    "b": [
+      "p"
+    ],
+    "p": [
+      "pʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "buo": [
+      "v"
+    ],
+    "d": [
+      "t"
+    ],
+    "t": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "g": [
+      "k"
+    ],
+    "k": [
+      "kʰ"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "h": [
+      "h"
+    ],
+    "c": [
+      "ts"
+    ],
+    "ch": [
+      "tsʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "e̤": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "o̤": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "io": [
+      "io"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "uo": [
+      "uo"
+    ],
+    "ui": [
+      "ui"
+    ]
+  },
+  "allophones": {
+    "p": [
+      "p"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "m": [
+      "m"
+    ],
+    "v": [
+      "v"
+    ],
+    "t": [
+      "t"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "k": [
+      "k"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tsʰ": [
+      "tsʰ"
+    ],
+    "s": [
+      "s"
+    ],
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "ɛ": [
+      "ɛ"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ɔ": [
+      "ɔ"
+    ],
+    "u": [
+      "u"
+    ],
+    "ai": [
+      "ai"
+    ],
+    "au": [
+      "au"
+    ],
+    "ia": [
+      "ia"
+    ],
+    "ie": [
+      "ie"
+    ],
+    "io": [
+      "io"
+    ],
+    "ua": [
+      "ua"
+    ],
+    "uo": [
+      "uo"
+    ],
+    "ui": [
+      "ui"
+    ]
+  },
+  "notes": "Eastern Min (Mìng-dĕ̤ng-ngṳ̄ / Mindong), Fuzhou dialect, romanised input contract: Bàng-uâ-cê (Foochow Romanized, Maclay & Baldwin 1870). e̤/o̤ spell mid-central/back vowels distinct from e/o, each earning its key by test 2 (one vowel quality per spelling, blocked from collapsing onto the plain-letter grapheme). ng is the velar-nasal onset/coda (test 2). Tone is lexical (7 citation tones plus sandhi) and not yet encoded; the stress schema does not apply, tonal-language exemption per quality_tiers.md. No WikiPron gold exists in this romanisation (WikiPron's cdo_hani file is Han-character keyed), so the tier stays at skeleton.",
   "sources": [
     {
       "id": "cdo_wiki",
@@ -31,6 +213,17 @@
       "url": "https://phoible.org/",
       "pages": null,
       "notes": "Attested phoneme inventory for glottocode mind1253."
+    },
+    {
+      "id": "buc_standard",
+      "author": "Maclay, R. S. & Baldwin, C. C.",
+      "year": 1870,
+      "title": "An Alphabetic Dictionary of the Chinese Language in the Foochow Dialect",
+      "publisher": "Methodist Episcopal Mission Press",
+      "url": null,
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Foochow_Romanized",
+      "pages": null,
+      "notes": "Source of the Bàng-uâ-cê (Foochow Romanized) missionary romanisation."
     }
   ],
   "wikipedia": [
@@ -98,5 +291,11 @@
     "longitude": 119.5,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Min Dong Chinese."
+  },
+  "orthography_standard": {
+    "name": "Bàng-uâ-cê (Foochow Romanized)",
+    "authority": null,
+    "year": 1870,
+    "url": "https://en.wikipedia.org/wiki/Foochow_Romanized"
   }
 }
