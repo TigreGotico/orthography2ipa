@@ -65,6 +65,19 @@
   "limit": null
  },
  {
+  "lang": "ady",
+  "dataset": "northeuralex",
+  "n": 928,
+  "per": 0.1745,
+  "per_ci_low": 0.1623,
+  "per_ci_high": 0.1874,
+  "exact_match": 0.4192,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "af",
   "dataset": "wikipron",
   "n": 2076,
@@ -1118,6 +1131,19 @@
   "limit": null
  },
  {
+  "lang": "av",
+  "dataset": "northeuralex",
+  "n": 954,
+  "per": 0.1115,
+  "per_ci_low": 0.1048,
+  "per_ci_high": 0.1187,
+  "exact_match": 0.4193,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "ayl",
   "dataset": "wikipron",
   "n": 156,
@@ -1751,6 +1777,19 @@
   "exact_match": 0.1171,
   "quality_tier": "research",
   "provenance": "crowd-scraped",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
+  "lang": "dar",
+  "dataset": "northeuralex",
+  "n": 1056,
+  "per": 0.0833,
+  "per_ci_low": 0.0768,
+  "per_ci_high": 0.0905,
+  "exact_match": 0.5928,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
   "harness_version": "1.1",
   "limit": null
  },
@@ -3666,6 +3705,32 @@
   "limit": null
  },
  {
+  "lang": "lbe",
+  "dataset": "northeuralex",
+  "n": 1048,
+  "per": 0.0443,
+  "per_ci_low": 0.0382,
+  "per_ci_high": 0.0512,
+  "exact_match": 0.8025,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
+  "lang": "lez",
+  "dataset": "northeuralex",
+  "n": 969,
+  "per": 0.1513,
+  "per_ci_low": 0.1387,
+  "per_ci_high": 0.163,
+  "exact_match": 0.4654,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "lg",
   "dataset": "vox_communis",
   "n": 103345,
@@ -3831,6 +3896,19 @@
   "exact_match": 0.2444,
   "quality_tier": "research",
   "provenance": "crowd-scraped",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
+  "lang": "lv",
+  "dataset": "northeuralex",
+  "n": 1213,
+  "per": 0.2046,
+  "per_ci_low": 0.1962,
+  "per_ci_high": 0.2135,
+  "exact_match": 0.2251,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
   "harness_version": "1.1",
   "limit": null
  },
@@ -6448,6 +6526,19 @@
   "limit": null
  },
  {
+  "lang": "smn",
+  "dataset": "northeuralex",
+  "n": 1055,
+  "per": 0.1755,
+  "per_ci_low": 0.167,
+  "per_ci_high": 0.1853,
+  "exact_match": 0.2787,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "sms",
   "dataset": "northeuralex",
   "n": 1063,
@@ -6968,6 +7059,19 @@
   "limit": null
  },
  {
+  "lang": "udm",
+  "dataset": "northeuralex",
+  "n": 973,
+  "per": 0.2287,
+  "per_ci_low": 0.2165,
+  "per_ci_high": 0.2409,
+  "exact_match": 0.2939,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "ug",
   "dataset": "vox_communis",
   "n": 0,
@@ -7081,6 +7185,19 @@
   "exact_match": 0.2424,
   "quality_tier": "research",
   "provenance": "crowd-scraped",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
+  "lang": "vep",
+  "dataset": "northeuralex",
+  "n": 1004,
+  "per": 0.2276,
+  "per_ci_low": 0.2166,
+  "per_ci_high": 0.2389,
+  "exact_match": 0.2341,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
   "harness_version": "1.1",
   "limit": null
  },
