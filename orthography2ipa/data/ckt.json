@@ -1,9 +1,88 @@
 {
  "code": "ckt",
  "name": "Chukot",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Cyrl",
+ "quality": "research",
+ "graphemes": {
+  "а": [
+   "a"
+  ],
+  "э": [
+   "e"
+  ],
+  "е": [
+   "e"
+  ],
+  "и": [
+   "i"
+  ],
+  "о": [
+   "o"
+  ],
+  "у": [
+   "u"
+  ],
+  "ы": [
+   "ə"
+  ],
+  "й": [
+   "j"
+  ],
+  "в": [
+   "β"
+  ],
+  "р": [
+   "ɹ"
+  ],
+  "л": [
+   "ɬ"
+  ],
+  "м": [
+   "m"
+  ],
+  "н": [
+   "n"
+  ],
+  "ӈ": [
+   "ŋ"
+  ],
+  "п": [
+   "p"
+  ],
+  "т": [
+   "t"
+  ],
+  "к": [
+   "k"
+  ],
+  "к’": [
+   "q"
+  ],
+  "ӄ": [
+   "q"
+  ],
+  "с": [
+   "sʲ"
+  ],
+  "ц": [
+   "ts"
+  ],
+  "ч": [
+   "tɕ"
+  ],
+  "г": [
+   "ɣ"
+  ],
+  "ь": [
+   "ʔ"
+  ],
+  "’": [
+   "ʔ"
+  ],
+  "ъ": [
+   "ʔ"
+  ]
+ },
  "allophones": {
   "j": [
    "ʝ",
@@ -73,7 +152,7 @@
    "ɪ"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Cyrillic literary orthography for Chukchi, codified by Skorik (1961/1968, Grammatika chukotskogo yazyka) and described in Dunn (1999), A Grammar of Chukchi. L represents /ɬ/ (Chukchi has no phonemic plain /l/); V is the labial fricative /β/, corrected from an earlier /w/ assumption against NEL gold evidence (вэлёлгын [βeɫ oɫɣən], вамылкалгын [βaməɫkaɫɣən]); R is /ɹ/ (not the retroflex fricative previously assumed). K followed by an apostrophe (K') is an alternate spelling of the uvular stop /q/ (used interchangeably with the dedicated Q-hook letter in dictionaries lacking the special character), not an ejective -- Chukchi has no ejective series. Э and Е are both /e/ in the sampled gold (no orthographic ɛ/e contrast survives); И is /i/ (not /ɪ/); Ы is /ə/ (plain schwa, no breve). Glottal stop is written with an apostrophe, and in at least one sampled soft-sign form the soft sign itself also renders /ʔ/; both map to /ʔ/ here. Ч renders the alveolo-palatal affricate /tɕ/ (attested in the gold, e.g. мачо [matɕo]). Stress is largely rhythmic/iambic and unmarked in the orthography (Dunn 1999); not rule-encoded pending a positional-stress model -- documented exemption, not an oversight. Vowel harmony (dominant/recessive pairs i~e, u~o, schwa~e) governs vowel choice across a word but is not rule-encoded here; each Cyrillic vowel letter maps to its own phoneme regardless of harmony class. This mapping was revised after a NorthEuraLex error-analysis iteration (30-word gold sample) corrected the V, R, K'/apostrophe, Ы, И, Э, and Ч entries from their initial citation-only guesses.",
  "iso639_3": "ckt",
  "glottolog_code": "chuk1273",
  "sources": [
@@ -93,6 +172,21 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/195",
    "notes": "Inventory 195 (spa), 22 non-marginal segments."
+  },
+  {
+   "id": "dunn1999",
+   "author": "Dunn, Michael John",
+   "year": 1999,
+   "title": "A Grammar of Chukchi",
+   "publisher": "PhD dissertation, Australian National University",
+   "url": "https://openresearch-repository.anu.edu.au/handle/1885/9331"
+  },
+  {
+   "id": "skorik1961",
+   "author": "Skorik, Pyotr Ya.",
+   "year": 1961,
+   "title": "Grammatika chukotskogo yazyka (Grammar of the Chukchi Language), vol. 1",
+   "publisher": "Academy of Sciences, USSR"
   }
  ],
  "urls": [
@@ -129,5 +223,8 @@
   "ɛ",
   "ɪ"
  ],
- "phoible_id": "195"
+ "phoible_id": "195",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Chukchi_language"
+ ]
 }
