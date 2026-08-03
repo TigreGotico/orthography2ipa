@@ -290,12 +290,12 @@
     {
       "id": "GV_SLENDER_FINAL_N",
       "phonemes": ["i", "e"],
-      "surface": "",
+      "surface": "ə",
       "followed_by_phoneme": ["n"],
       "followed_by_2": "word_boundary",
       "mutates_neighbor": "ʲ",
       "mutates_neighbor_side": "following",
-      "notes": "Goidelic slender/broad marking: a written vowel letter (i/e) before a word-final n marks the n as palatalised ('slender') and does not itself surface -- Manx dowin [daunʲ] (Broderick 1984-86, A Handbook of Late Spoken Manx, vol.3; Thomson 1992, 'The Manx Language', in MacAulay (ed.) The Celtic Languages, ch.3). Uses mutates_neighbor: the rule deletes its own slot while palatalising the FOLLOWING slot (the final n) atomically -- see docs/allophony.md."
+      "notes": "Goidelic slender/broad marking: a written vowel letter (i/e) before a word-final n marks the n as palatalised ('slender'). WikiPron/Wiktionary gold shows the marker surfacing as an epenthetic schwa before the palatalised n in the large majority of -in/-ein/-ain finals -- Mannin [manənʲ], aalin [ɛːlinʲ] (with i realised, not schwa, but still non-null), aynin [unənʲ], benrein [benreːnʲ], blein [bleːnʲ], cuishlin [kuʃlʲənʲ], dourin [daurənʲ], glashtin [ɡlaʃtʲənʲ], marin [mɛːrʲənʲ], orrin [orənʲ], shiaghtin [ʃaxtʲənʲ] (WikiPron glv_latn_broad). A minority of forms, notably dowin [daunʲ] and ain [ain] (no palatalisation at all), show no schwa (Broderick 1984-86, A Handbook of Late Spoken Manx, vol.3; Thomson 1992, 'The Manx Language', in MacAulay (ed.) The Celtic Languages, ch.3); this variation is documented, not encoded, since the schwa-bearing form dominates the cited transcriptions. Uses mutates_neighbor: the rule keeps its own slot as [ə] while palatalising the FOLLOWING slot (the final n) atomically -- see docs/allophony.md."
     },
     {
       "id": "GV_SLENDER_ONSET_CONSONANT",
