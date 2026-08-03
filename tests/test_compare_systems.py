@@ -481,6 +481,111 @@ class TestCompareLangWithPycotoviaAndAhotts:
         assert row["o2i_per"] == 0.0
 
 
+class TestAfricaG2pLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "africa_g2p":
+                raise ImportError("no module named africa_g2p")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        cs._africa_pipeline_cache.clear()
+        assert cs.africa_g2p_transcribe("azul", "kab") is None
+
+    def test_present_module_runs_pipeline(self, monkeypatch):
+        class FakePipeline:
+            def __init__(self, lang, output):
+                assert output == "ipa"
+                self.lang = lang
+
+            def run(self, word):
+                return f"ipa-{word}-{self.lang}"
+
+        fake_pkg = type(sys)("africa_g2p")
+        fake_pkg.AfricaPipeline = FakePipeline
+        monkeypatch.setitem(sys.modules, "africa_g2p", fake_pkg)
+        cs._africa_pipeline_cache.clear()
+
+        assert cs.africa_g2p_transcribe("azul", "kab") == "ipa-azul-kab"
+        cs._africa_pipeline_cache.clear()
+
+    def test_unknown_lang_construction_failure_yields_none(self, monkeypatch):
+        class FailingPipeline:
+            def __init__(self, lang, output):
+                raise KeyError(lang)
+
+        fake_pkg = type(sys)("africa_g2p")
+        fake_pkg.AfricaPipeline = FailingPipeline
+        monkeypatch.setitem(sys.modules, "africa_g2p", fake_pkg)
+        cs._africa_pipeline_cache.clear()
+
+        assert cs.africa_g2p_transcribe("x", "zzz") is None
+        cs._africa_pipeline_cache.clear()
+
+    def test_exception_during_run_yields_none(self, monkeypatch):
+        class BoomPipeline:
+            def __init__(self, lang, output):
+                pass
+
+            def run(self, word):
+                raise RuntimeError("boom")
+
+        fake_pkg = type(sys)("africa_g2p")
+        fake_pkg.AfricaPipeline = BoomPipeline
+        monkeypatch.setitem(sys.modules, "africa_g2p", fake_pkg)
+        cs._africa_pipeline_cache.clear()
+
+        assert cs.africa_g2p_transcribe("x", "kab") is None
+        cs._africa_pipeline_cache.clear()
+
+
+class TestCompareLangWithAfricaG2p:
+    def test_kab_row_scores_africa_g2p(self, monkeypatch):
+        pairs = [("azul", "azul")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_kab_dataset",
+            (lambda lang, limit: pairs, ["kab"]))
+        monkeypatch.setitem(
+            cs.LANGS, "kab",
+            {"dataset": ("fake_kab_dataset", "kab"), "espeak": None,
+             "epitran": None, "gruut": None, "africa_g2p": "kab"})
+
+        fake_o2i = FakeEngine({"azul": "azul"})
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(
+            cs, "africa_g2p_transcribe", lambda word, lang: "azul")
+
+        row = cs.compare_lang("kab", limit=10)
+        assert row["africa_g2p_per"] == 0.0
+        assert row["africa_g2p_n"] == 1
+
+    def test_no_africa_g2p_mapping_yields_none(self, monkeypatch):
+        pairs = [("ola", "ola")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_no_afg2p_dataset",
+            (lambda lang, limit: pairs, ["ww"]))
+        monkeypatch.setitem(
+            cs.LANGS, "ww",
+            {"dataset": ("fake_no_afg2p_dataset", "ww"), "espeak": None,
+             "epitran": None, "gruut": None})
+
+        fake_o2i = FakeEngine({"ola": "ola"})
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+
+        row = cs.compare_lang("ww", limit=10)
+        assert row["africa_g2p_per"] is None
+        assert row["africa_g2p_n"] == 0
+
+
 class TestDiscoverCatalanDialectVoices:
     def test_all_bsc_dialect_voices_present(self, monkeypatch):
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
