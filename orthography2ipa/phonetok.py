@@ -45,7 +45,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 from enum import Enum, auto
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, FrozenSet, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
@@ -56,6 +56,7 @@ from orthography2ipa.vowels import (
     is_ipa_vowel,
     is_orthographic_vowel,
     is_palatal_consonant,
+    is_pharyngealized_consonant,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
 
@@ -541,7 +542,7 @@ class GraphemeContext:
     not intended to be constructed directly.
     """
 
-    __slots__ = ("token", "index", "_run", "_run_pos")
+    __slots__ = ("token", "index", "_run", "_run_pos", "_vowel_graphemes")
 
     def __init__(
             self,
@@ -549,6 +550,7 @@ class GraphemeContext:
             index: int,
             run: List["GraphemeContext"],
             run_pos: int,
+            vowel_graphemes: FrozenSet[str] = frozenset(),
     ) -> None:
         self.token = token
         """The wrapped GRAPHEME :class:`Token`."""
@@ -559,6 +561,9 @@ class GraphemeContext:
 
         self._run = run
         self._run_pos = run_pos
+        self._vowel_graphemes = vowel_graphemes
+        """The owning spec's ``vowel_graphemes`` override set (default empty
+        — the previous closed-inventory-only behaviour)."""
 
     # ─── Convenience passthroughs ───────────────────────────────────────
 
@@ -644,7 +649,7 @@ class GraphemeContext:
         Unicode. ``self.ipa`` is the *flat* ``spec.graphemes`` entry, not a
         positionally-resolved realisation, so the positional resolution that
         consults this predicate cannot loop back into itself."""
-        return grapheme_is_vowel(self.grapheme, self.ipa)
+        return grapheme_is_vowel(self.grapheme, self.ipa, self._vowel_graphemes)
 
     @property
     def is_consonant(self) -> bool:
@@ -657,14 +662,14 @@ class GraphemeContext:
         """True if this grapheme is a *front* vowel, in any script
         (:func:`orthography2ipa.vowels.grapheme_vowel_axis`) — the letter for
         Latin/Greek, the spec's IPA elsewhere."""
-        return grapheme_vowel_axis(self.grapheme, self.ipa) == "front"
+        return grapheme_vowel_axis(self.grapheme, self.ipa, self._vowel_graphemes) == "front"
 
     @property
     def is_back(self) -> bool:
         """True if this grapheme is a *back* vowel, in any script
         (:func:`orthography2ipa.vowels.grapheme_vowel_axis`) — the letter for
         Latin/Greek, the spec's IPA elsewhere."""
-        return grapheme_vowel_axis(self.grapheme, self.ipa) == "back"
+        return grapheme_vowel_axis(self.grapheme, self.ipa, self._vowel_graphemes) == "back"
 
     @property
     def is_palatal(self) -> bool:
@@ -677,6 +682,19 @@ class GraphemeContext:
         palatal regardless of their spelling. Used by the ``BEFORE_PALATAL`` /
         ``AFTER_PALATAL`` positions and the ``"palatal"`` allophone-rule class."""
         return bool(self.ipa) and is_palatal_consonant(self.ipa[0])
+
+    @property
+    def is_emphatic(self) -> bool:
+        """True if this grapheme's *primary IPA* is a pharyngealized
+        ("emphatic") consonant (:func:`orthography2ipa.vowels.is_pharyngealized_consonant`).
+
+        Like :attr:`is_palatal`, this reads the sound the grapheme maps to,
+        not its spelling: any IPA carrying the ``ˤ`` diacritic qualifies,
+        so it is a generic feature class — not Arabic-specific — even
+        though Arabic's ``sˤ dˤ tˤ ðˤ`` are its best-known instance (Watson
+        2002; Davis 1995). Used by the ``"emphatic"`` allophone-rule
+        neighbour class (emphasis-spread / tafkhim vowel backing)."""
+        return bool(self.ipa) and is_pharyngealized_consonant(self.ipa[0])
 
     def __repr__(self) -> str:
         return f"GraphemeContext({self.grapheme!r}, index={self.index})"
@@ -698,7 +716,11 @@ class TokenSequence:
 
     __slots__ = ("tokens", "_contexts")
 
-    def __init__(self, tokens: List[Token]) -> None:
+    def __init__(
+            self,
+            tokens: List[Token],
+            vowel_graphemes: FrozenSet[str] = frozenset(),
+    ) -> None:
         self.tokens = tokens
         """The complete token list, exactly as :meth:`tokenize` produced it."""
 
@@ -706,7 +728,8 @@ class TokenSequence:
         run: List[GraphemeContext] = []
         for tok in tokens:
             if tok.kind == TokenKind.GRAPHEME:
-                ctx = GraphemeContext(tok, len(contexts), run, len(run))
+                ctx = GraphemeContext(
+                    tok, len(contexts), run, len(run), vowel_graphemes)
                 run.append(ctx)
                 contexts.append(ctx)
             else:
@@ -732,7 +755,10 @@ class TokenSequence:
         return f"TokenSequence(graphemes={len(self._contexts)})"
 
 
-def flat_contexts(g_tokens: List[Token]) -> List["GraphemeContext"]:
+def flat_contexts(
+        g_tokens: List[Token],
+        vowel_graphemes: FrozenSet[str] = frozenset(),
+) -> List["GraphemeContext"]:
     """Wrap a flat list of GRAPHEME tokens as one contiguous run.
 
     Unlike :class:`TokenSequence` (which starts a new word-local run at
@@ -744,7 +770,7 @@ def flat_contexts(g_tokens: List[Token]) -> List["GraphemeContext"]:
     """
     run: List["GraphemeContext"] = []
     for i, tok in enumerate(g_tokens):
-        run.append(GraphemeContext(tok, i, run, i))
+        run.append(GraphemeContext(tok, i, run, i, vowel_graphemes))
     return run
 
 
@@ -1284,7 +1310,7 @@ class PhonetokTokenizer:
         This is a purely additive convenience layer over :meth:`tokenize`;
         it does not alter tokenisation or IPA expansion.
         """
-        return TokenSequence(self.tokenize(text))
+        return TokenSequence(self.tokenize(text), self.spec.vowel_graphemes)
 
     # ─── Slot resolution / rescoring helpers (shared by beam + lattice) ─
 
@@ -1426,7 +1452,7 @@ class PhonetokTokenizer:
         # Word-local context views over the grapheme tokens: they give
         # each grapheme its neighbours so positional overrides (incl. the
         # vowel-class positions) resolve exactly as the full engine does.
-        seq = TokenSequence(tokens)
+        seq = TokenSequence(tokens, self.spec.vowel_graphemes)
         contexts = seq.graphemes
 
         # Each beam entry: (segments_so_far, cumulative_score)
@@ -1585,7 +1611,7 @@ class PhonetokTokenizer:
         slot shape returned here.
         """
         tokens = self.tokenize(text)
-        contexts = TokenSequence(tokens).graphemes
+        contexts = TokenSequence(tokens, self.spec.vowel_graphemes).graphemes
         allophone_map = self.spec.allophones if expand_allophones else None
         keep = 2 ** 31 if beam_width < 0 else beam_width
 

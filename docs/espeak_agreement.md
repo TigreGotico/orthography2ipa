@@ -1,6 +1,6 @@
 # espeak-ng agreement
 
-Committed symbol-level agreement between orthography2ipa and espeak-ng, for every language where this repo has both a gold-dataset wordlist and espeak-ng has a voice. This is NOT an accuracy benchmark — see `docs/benchmarks.md` for what it means and does not mean. Regenerate with:
+Committed symbol-level agreement between orthography2ipa and espeak-ng, for every language where this repo has both a gold-dataset wordlist and espeak-ng has a voice. This is NOT an accuracy benchmark: see `docs/benchmarks.md` for what it means and does not mean. Regenerate with:
 
 ```bash
 PYTHONPATH=$PWD python scripts/espeak_agreement.py --scoreboard

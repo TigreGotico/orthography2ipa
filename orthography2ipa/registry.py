@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import logging
 from functools import lru_cache
+from importlib.metadata import entry_points
 from typing import TYPE_CHECKING, Dict, List, Optional
 
 from ovos_spec_tools.language import closest_lang
@@ -51,6 +52,62 @@ _ALIASES: Dict[str, str] = {
     # macro-collapse step can rewrite it.
     "bxr": "bxr",
     "diq": "diq",
+    # ``quz`` (Cusco Quechua) and ``quy`` (Ayacucho Quechua) are individual
+    # -language codes that langcodes' macro=True standardisation collapses
+    # into their macrolanguage ``qu`` (Quechua), same class of collision as
+    # bxr/diq above. Both the individual specs and the macro node exist and
+    # are distinct targets — ``qu`` is only a structural adstrate stub.
+    "quz": "quz",
+    "quy": "quy",
+    # ``tw`` (Twi) and ``fat`` (Fante) are individual-language codes that
+    # langcodes' macro=True standardisation collapses into their
+    # macrolanguage ``ak`` (Akan), same class of collision as bxr/diq above.
+    # Both the individual and the macro spec exist and are distinct targets.
+    "tw": "tw",
+    "fat": "fat",
+    # Individual-code specs collapsing into the newly-added Mari macrolanguage
+    # spec: ``mhr`` (Eastern/Meadow Mari) and ``mrj`` (Hill/Western Mari)
+    # standardize to ``chm`` (Mari macrolanguage). Pin each individual code to
+    # itself so the macro-collapse step does not rewrite it.
+    "mhr": "mhr",
+    "mrj": "mrj",
+    # ``aju`` (Judeo-Moroccan Arabic) is an individual-language code that
+    # langcodes' macro=True standardisation collapses into its
+    # macrolanguage ``jrb`` (Judeo-Arabic), same class of collision as
+    # bxr/diq/tw/fat above. Both the individual and the macro spec exist
+    # and are distinct targets.
+    "aju": "aju",
+    # ``als`` (Tosk Albanian) standardizes to ``sq`` (Albanian macrolanguage)
+    # and ``rmy`` (Vlax Romani) standardizes to ``rom`` (Romani macrolanguage).
+    # Both the individual and the macro spec exist and are distinct targets,
+    # so pin each individual code to itself before the macro-collapse step.
+    "als": "als",
+    "rmy": "rmy",
+    # ``src`` (Logudorese Sardinian) standardizes straight to ``sc`` (the
+    # generic Sardinian macrolanguage spec) under ``langcodes``, which would
+    # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
+    "src": "src",
+    # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
+    # while the registry also carries their langcodes-preferred siblings
+    # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself
+    # so standardisation does not rewrite an exact-file hit, same class of
+    # collision as bxr/diq above.
+    "oji": "oji",
+    "mnk": "mnk",
+    # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
+    # macro=True standardisation collapses into its macrolanguage tag ``ks``
+    # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``
+    # already carries a Latin-transliteration research-tier spec; ``kas``
+    # is a distinct, separately-cited spec for the Perso-Arabic native
+    # script. Pin it to itself so the macro-collapse step does not shadow it.
+    "kas": "kas",
+    # ``bcc`` (Southern Balochi) is an ISO 639-3 individual code that
+    # langcodes' macro=True standardisation collapses into its
+    # macrolanguage tag ``bal`` (Balochi) — same collision class as
+    # bxr/diq above. ``bal`` is a newly-added macrolanguage-level spec;
+    # ``bcc`` is a distinct, separately-cited individual-variety spec.
+    # Pin it to itself so the macro-collapse step does not shadow it.
+    "bcc": "bcc",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
@@ -166,7 +223,6 @@ def get(code: str) -> LanguageSpec:
     Raises:
         KeyError: If the language is not registered.
     """
-    global _cache
     code = _resolve_code(code)
     if code not in _cache:
         _cache[code] = load_json_spec(code)
@@ -239,9 +295,6 @@ def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
     When several plugins claim the same language code, the one with the
     highest :attr:`SyllabifierPlugin.priority` wins.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, "SyllabifierPlugin"] = {}
     eps = entry_points(group="orthography2ipa.syllabify")
     for ep in eps:
@@ -252,7 +305,7 @@ def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
                 if incumbent is None or instance.priority > incumbent.priority:
                     plugins[code] = instance
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load syllabifier plugin %r: %s", ep.name, exc)
             continue
     return plugins
@@ -282,9 +335,6 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
     by priority, lowest first, so a higher-priority plugin sees the lower one's
     work and gets the last word.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, List["RescorerPlugin"]] = {}
     for ep in entry_points(group="orthography2ipa.rescore"):
         try:
@@ -292,7 +342,7 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
             for code in instance.language_codes:
                 plugins.setdefault(code, []).append(instance)
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load rescorer plugin %r: %s", ep.name, exc)
             continue
     for code in plugins:
@@ -345,9 +395,6 @@ _stress_plugins: Optional[Dict[str, "StressPlugin"]] = None
 
 
 def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, "StressPlugin"] = {}
     for ep in entry_points(group="orthography2ipa.stress"):
         try:
@@ -357,7 +404,7 @@ def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
                 if incumbent is None or instance.priority > incumbent.priority:
                     plugins[code] = instance
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load stress plugin %r: %s", ep.name, exc)
             continue
     return plugins
@@ -407,9 +454,6 @@ def _discover_stage(stage: str) -> Dict[str, object]:
     declaration readable and greppable — and it means two packages cannot fight
     over a language, because the spec already said which one it wanted.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     from orthography2ipa.plugins import ENTRY_POINT_GROUPS
 
     found: Dict[str, object] = {}
@@ -417,7 +461,7 @@ def _discover_stage(stage: str) -> Dict[str, object]:
         try:
             found[ep.name] = ep.load()()
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load %s plugin %r: %s", stage, ep.name, exc)
     return found
 
