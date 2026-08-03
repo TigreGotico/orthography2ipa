@@ -6396,6 +6396,19 @@
   "limit": null
  },
  {
+  "lang": "skr",
+  "dataset": "wikipron",
+  "n": 306,
+  "per": 0.5473,
+  "per_ci_low": 0.5263,
+  "per_ci_high": 0.5693,
+  "exact_match": 0.0229,
+  "quality_tier": "research",
+  "provenance": "crowd-scraped",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "sl",
   "dataset": "vox_communis",
   "n": 6603,
