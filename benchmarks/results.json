@@ -1541,7 +1541,7 @@
   "per_ci_low": 0.0939,
   "per_ci_high": 0.1176,
   "exact_match": 0.4442,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -1632,7 +1632,7 @@
   "per_ci_low": 0.2959,
   "per_ci_high": 0.3357,
   "exact_match": 0.0126,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -1836,11 +1836,11 @@
   "lang": "dum",
   "dataset": "wikipron",
   "n": 197,
-  "per": 0.3054,
-  "per_ci_low": 0.2783,
-  "per_ci_high": 0.3322,
-  "exact_match": 0.1929,
-  "quality_tier": "skeleton",
+  "per": 0.2822,
+  "per_ci_low": 0.2553,
+  "per_ci_high": 0.3073,
+  "exact_match": 0.2234,
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -2607,7 +2607,7 @@
   "per_ci_low": 0.4211,
   "per_ci_high": 0.4857,
   "exact_match": 0.035,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -3387,7 +3387,7 @@
   "per_ci_low": 0.2651,
   "per_ci_high": 0.3396,
   "exact_match": 0.2774,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -3790,7 +3790,7 @@
   "per_ci_low": 0.1918,
   "per_ci_high": 0.2598,
   "exact_match": 0.2444,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -3894,7 +3894,7 @@
   "per_ci_low": 0.4807,
   "per_ci_high": 0.5244,
   "exact_match": 0.0457,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -6104,7 +6104,7 @@
   "per_ci_low": 0.1678,
   "per_ci_high": 0.1698,
   "exact_match": 0.3088,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "epitran-derived",
   "harness_version": "1.1",
   "limit": null
@@ -7144,7 +7144,7 @@
   "per_ci_low": 0.2703,
   "per_ci_high": 0.3098,
   "exact_match": 0.1762,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
