@@ -6,13 +6,13 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "urj",
+  "parent": "chm",
   "ancestors": [
     {
-      "code": "urj",
+      "code": "chm",
       "role": "parent",
       "weight": 0.9,
-      "notes": "Mari branch of Uralic."
+      "notes": "Mari macrolanguage node (ISO 639-3 chm); Hill/Western Mari is one of its two individual languages."
     }
   ],
   "notes": "Hill Mari / Western Mari (кырык мары), Mari El, Russia. STUB: the grapheme inventory is NOT yet specified. Written in a 34-letter Cyrillic alphabet (Russian letters plus Ӓ, Ӧ, Ӱ, Ӹ) with vowel harmony. The values of the two reduced vowels <ы> and <ӹ> and the extent of semi-palatalisation could not be established with confidence from a citable letter-to-phoneme table, so no grapheme map is claimed rather than guessing.",

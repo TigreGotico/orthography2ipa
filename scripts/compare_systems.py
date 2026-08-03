@@ -50,6 +50,21 @@ comparison target is missing.
   it is not scorable and is intentionally NOT a comparison system here —
   ``ahotts-g2p`` is the text-level G2P port that supersedes it for this
   table.)
+- **africa-g2p**: optional Python library covering ~400 African-language
+  ISO 639-3 codes (AfriSpeech, rule-based G2P derived from Omniglot script charts and Hartell's
+  *Alphabets of Africa*, UNESCO 1993). NOT published on PyPI — it is not
+  part of the ``[compare]`` extra (which must stay pip-installable from
+  PyPI); install it from a locally built wheel of the upstream checkout
+  before running this script, e.g.::
+
+      python -m pip wheel /path/to/africa-g2p --no-deps -w /tmp/afg2p-wheel
+      python -m pip install /tmp/afg2p-wheel/africa_g2p-*.whl
+
+  Imported lazily as ``africa_g2p``; a missing install degrades every
+  ``africa_g2p`` column to ``n/a``, same as every other optional system.
+  Wrapped via ``AfricaPipeline(lang=<iso639_3>, output="ipa").run(word)``;
+  the library's own ``africa_g2p.loader.registry()`` is queried at import
+  time so the set of covered codes is never hand-enumerated here.
 
 Normalization (identical across all four systems, see ``benchmark.normalize``
 and the stress/diacritic handling in ``espeak_agreement.py``):
@@ -186,7 +201,55 @@ LANGS: Dict[str, dict] = {
            "epitran": None, "gruut": None},
     "ro": {"dataset": ("wikipron", "ro"), "espeak": "ro",
            "epitran": "ron-Latn", "gruut": None},
+    # ─── africa-g2p overlap ─────────────────────────────────────────────
+    # Every o2i gold language (see benchmarks/results.json) whose ISO
+    # 639-3 code africa-g2p's own registry() also covers. espeak-ng has
+    # no matching voice for any of these on this machine's install
+    # (checked via ``espeak-ng --voices``, never assumed); epitran/gruut
+    # likewise have no published mapping, so those columns are honestly
+    # ``None`` rather than guessed — africa-g2p is the only comparison
+    # point for these rows today.
+    "arb": {"dataset": ("arabic_tts", "arb"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "cop": {"dataset": ("wikipron", "cop"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "hts": {"dataset": ("wikipron", "hts"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "kab": {"dataset": ("vox_communis", "kab"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "ktz": {"dataset": ("wikipron", "ktz"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "lad": {"dataset": ("wikipron", "lad"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "mfe": {"dataset": ("wikipron", "mfe"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "ngh": {"dataset": ("wikipron", "ngh"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "nup": {"dataset": ("wikipron", "nup"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "tzm": {"dataset": ("wikipron", "tzm"), "espeak": None,
+            "epitran": None, "gruut": None},
 }
+
+#: africa-g2p's own registry of covered ISO 639-3 codes, loaded once
+#: (empty if the library isn't installed) — used to gate ``africa_g2p``
+#: columns per language so an unmapped code degrades to ``n/a`` instead
+#: of raising.
+def _africa_g2p_codes() -> set:
+    try:
+        from africa_g2p.loader import registry
+    except ImportError:
+        return set()
+    try:
+        return set(registry().keys())
+    except Exception:
+        return set()
+
+
+AFRICA_G2P_CODES = _africa_g2p_codes()
+
+for _tag, _cfg in LANGS.items():
+    _cfg.setdefault("africa_g2p", _tag if _tag in AFRICA_G2P_CODES else None)
 
 
 def apply_catalan_dialect_voices(langs: Dict[str, dict]) -> Dict[str, str]:
@@ -390,6 +453,32 @@ def ahotts_transcribe(word: str, cfg: dict) -> Optional[str]:
     return ahotts_unfold_to_ipa(raw) or None
 
 
+# ─── africa-g2p (lazy, optional) ────────────────────────────────────────────
+
+_africa_pipeline_cache: Dict[str, object] = {}
+
+
+def africa_g2p_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with africa-g2p's ``AfricaPipeline`` for the
+    ISO 639-3 *lang* code, or ``None`` if the library is absent, the code
+    isn't in its registry, or it fails on the word."""
+    try:
+        from africa_g2p import AfricaPipeline
+    except ImportError:
+        return None
+    pipe = _africa_pipeline_cache.get(lang)
+    if pipe is None:
+        try:
+            pipe = AfricaPipeline(lang=lang, output="ipa")
+        except Exception:
+            return None
+        _africa_pipeline_cache[lang] = pipe
+    try:
+        return pipe.run(word) or None
+    except Exception:
+        return None
+
+
 # ─── epitran (lazy, optional) ───────────────────────────────────────────────
 
 _epitran_cache: Dict[str, object] = {}
@@ -497,12 +586,14 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
     gruut_rows: List[Tuple[Optional[str], List[str]]] = []
     pycotovia_rows: List[Tuple[Optional[str], List[str]]] = []
     ahotts_rows: List[Tuple[Optional[str], List[str]]] = []
+    africa_g2p_rows: List[Tuple[Optional[str], List[str]]] = []
 
     use_espeak = cfg["espeak"] is not None and espeak_available()
     use_epitran = cfg["epitran"] is not None
     use_gruut = cfg["gruut"] is not None
     use_pycotovia = cfg.get("pycotovia") is not None
     use_ahotts = cfg.get("ahotts") is not None
+    use_africa_g2p = cfg.get("africa_g2p") is not None
 
     espeak_out: Dict[str, Optional[str]] = {}
     if use_espeak:
@@ -533,6 +624,9 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         if use_ahotts:
             ahotts_rows.append(
                 (ahotts_transcribe(word, cfg["ahotts"]), golds))
+        if use_africa_g2p:
+            africa_g2p_rows.append(
+                (africa_g2p_transcribe(word, cfg["africa_g2p"]), golds))
 
     o2i_per, o2i_n = _score(o2i_rows)
     espeak_per, espeak_n = _score(espeak_rows) if use_espeak else (None, 0)
@@ -543,6 +637,8 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
     ahotts_per, ahotts_n = (
         _score(ahotts_rows) if use_ahotts else (None, 0))
     ahotts_version = cfg["ahotts"]["version"] if use_ahotts else None
+    africa_g2p_per, africa_g2p_n = (
+        _score(africa_g2p_rows) if use_africa_g2p else (None, 0))
 
     return {
         "lang": lang,
@@ -562,6 +658,8 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         "ahotts_per": round(ahotts_per, 4) if ahotts_per is not None else None,
         "ahotts_n": ahotts_n,
         "ahotts_version": ahotts_version,
+        "africa_g2p_per": round(africa_g2p_per, 4) if africa_g2p_per is not None else None,
+        "africa_g2p_n": africa_g2p_n,
         "harness_version": HARNESS_VERSION,
         "limit": limit if limit is not None else "full",
         "sampled": limit is None and sample_n is not None,
@@ -691,9 +789,9 @@ def write_comparison(rows: List[dict],
         "## Coverage",
         "",
         "Not every gold language has a mapping for every competitor "
-        "system: espeak-ng, epitran, gruut, pycotovia, and ahotts-g2p "
-        "each cover a different, smaller subset of languages than "
-        "orthography2ipa's 493 language codes. A missing mapping, or a system "
+        "system: espeak-ng, epitran, gruut, pycotovia, ahotts-g2p, and "
+        "africa-g2p each cover a different, smaller subset of languages "
+        "than orthography2ipa's 493 language codes. A missing mapping, or a system "
         "that isn't installed, is reported as `n/a` for that row rather "
         "than skipped or faked — this table never crashes and never "
         "silently drops a system, it just says when it has nothing to "
@@ -729,6 +827,24 @@ def write_comparison(rows: List[dict],
         "(no phoneme output); `ahotts-g2p` is the G2P port that "
         "supersedes it for this table.",
         "",
+        "### africa-g2p coverage (honest limits)",
+        "",
+        "`africa-g2p` (Ghana NLP; rule-based G2P for ~400 African-language "
+        "ISO 639-3 codes, derived from Hartell's *Alphabets of Africa*, "
+        "UNESCO 1993) is not on PyPI, so it is not part of the `[compare]` "
+        "extra — install it from a locally built wheel of the upstream "
+        "checkout before regenerating this table (see the script's "
+        "module docstring). Rows only appear for gold languages BOTH "
+        "orthography2ipa and africa-g2p's own `registry()` cover; as of "
+        "this run that intersection is small (10 languages: `arb`, "
+        "`cop`, `hts`, `kab`, `ktz`, `lad`, `mfe`, `ngh`, `nup`, `tzm`) — "
+        "most of africa-g2p's ~400 codes have no o2i gold registered yet, "
+        "and most o2i gold languages are outside africa-g2p's coverage. "
+        "None of these ten has a matching espeak-ng voice, epitran code, "
+        "or gruut language on this machine either, so africa-g2p is "
+        "currently the only comparison point for these rows — that is "
+        "reported plainly rather than papered over with `n/a` silence.",
+        "",
         "The `N` column is the number of unique gold words for that "
         "language/dataset pair; each system's own scored count can be "
         "slightly lower (a word it failed to transcribe is excluded from "
@@ -753,8 +869,8 @@ def write_comparison(rows: List[dict],
         "espeak-ng. Cherry-picking would make the comparison worthless.",
         "",
         "| Lang | Dataset | N | o2i PER | espeak PER | epitran PER | "
-        "gruut PER | pycotovia PER | ahotts-g2p PER |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|",
+        "gruut PER | pycotovia PER | ahotts-g2p PER | africa-g2p PER |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
         lines.append(
@@ -762,7 +878,8 @@ def write_comparison(rows: List[dict],
             f"{_fmt(row['o2i_per'])} | {_fmt(row['espeak_per'])} | "
             f"{_fmt(row['epitran_per'])} | {_fmt(row['gruut_per'])} | "
             f"{_fmt(row.get('pycotovia_per'))} | "
-            f"{_fmt(row.get('ahotts_per'))} |"
+            f"{_fmt(row.get('ahotts_per'))} | "
+            f"{_fmt(row.get('africa_g2p_per'))} |"
         )
     lines.append("")
     if comparable:
@@ -813,7 +930,8 @@ def main() -> None:
             print(f"{lang:10} espeak={cfg['espeak']} "
                   f"epitran={cfg['epitran']} gruut={cfg['gruut']} "
                   f"pycotovia={cfg.get('pycotovia')} "
-                  f"ahotts={cfg.get('ahotts')}")
+                  f"ahotts={cfg.get('ahotts')} "
+                  f"africa_g2p={cfg.get('africa_g2p')}")
         return
 
     row = compare_lang(args.lang, args.limit)
@@ -821,7 +939,8 @@ def main() -> None:
           f"o2i={_fmt(row['o2i_per'])} espeak={_fmt(row['espeak_per'])} "
           f"epitran={_fmt(row['epitran_per'])} gruut={_fmt(row['gruut_per'])} "
           f"pycotovia={_fmt(row.get('pycotovia_per'))} "
-          f"ahotts={_fmt(row.get('ahotts_per'))}")
+          f"ahotts={_fmt(row.get('ahotts_per'))} "
+          f"africa_g2p={_fmt(row.get('africa_g2p_per'))}")
 
 
 if __name__ == "__main__":

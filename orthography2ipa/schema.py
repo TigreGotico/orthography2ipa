@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Literal, Dict, List, Literal, Optional, Tuple, Union
+from typing import Dict, List, Literal, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -177,16 +177,16 @@ class AllophoneRuleModel(_Strict):
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     followed_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     preceded_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     followed_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
     preceded_by_phoneme: Optional[List[str]] = None
@@ -318,6 +318,7 @@ class LanguageSpecModel(_Strict):
     inherent_vowel: Optional[str] = None
     optional_marks: Optional[List[str]] = None
     fold_diacritics: Optional[List[str]] = None
+    vowel_graphemes: Optional[List[str]] = None
     collapse_geminates: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
