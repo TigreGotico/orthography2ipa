@@ -984,6 +984,24 @@ def load_northeuralex(lang: str, limit: int) -> List[Tuple[str, str]]:
 _WOLD_LANGS: Dict[str, str] = {
     "car": "Kalina",       # Galibi Carib (skeleton)
     "arn": "Mapudungun",   # Mapudungun (stub)
+    # 2026-08 gold-hunting wave 1: remaining WOLD languages cross-referenced
+    # against the o2i spec registry. Of WOLD's other 39 languages, most
+    # already have gold from wikipron/ipadict/etc (English, Dutch, Japanese,
+    # Mandarin, Thai, Vietnamese, Indonesian, Hawaiian, White Hmong, Hausa,
+    # Lower Sorbian, Kildin Saami, ...); several have NO registered o2i spec
+    # at all (Kanuri `knc`, Zinacantan Tzotzil `tzz`, Malagasy `plt`, Old
+    # High German, Selice Romani, Sakha have no ISO/spec match here); and the
+    # rest resolve to `stub` specs with an EMPTY grapheme table (Archi,
+    # Bezhta, Manange, Ket, Oroqen, Ceq Wong, Takia, Gurindji, Yaqui,
+    # Qeqchi, Otomi, Saramaccan, Imbabura Quechua, Hup, Wichi) -- nothing for
+    # a gold row to exercise yet, same reasoning as the Lexibank/robinsonap
+    # rejection above. Only four had BOTH a non-empty grapheme table AND no
+    # existing gold row anywhere in this registry; all four smoke-checked at
+    # ~100% non-empty engine coverage on a 150-row sample:
+    "gwd": "Gawwada",        # Gawwada (skeleton), coverage 150/150
+    "irk": "Iraqw",          # Iraqw (skeleton), coverage 150/150
+    "crs": "SeychellesCreole",   # Seychelles Creole (research), coverage 150/150
+    "rif": "TarifiytBerber",     # Tarifiyt Berber (research), coverage 149/150
 }
 
 

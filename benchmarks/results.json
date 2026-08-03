@@ -1638,6 +1638,19 @@
   "limit": null
  },
  {
+  "lang": "crs",
+  "dataset": "wold",
+  "n": 1874,
+  "per": 0.224,
+  "per_ci_low": 0.2103,
+  "per_ci_high": 0.2394,
+  "exact_match": 0.484,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "cs",
   "dataset": "vox_communis",
   "n": 44942,
@@ -2730,6 +2743,19 @@
   "limit": null
  },
  {
+  "lang": "gwd",
+  "dataset": "wold",
+  "n": 976,
+  "per": 0.0481,
+  "per_ci_low": 0.0419,
+  "per_ci_high": 0.0552,
+  "exact_match": 0.7602,
+  "quality_tier": "skeleton",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
   "lang": "ha",
   "dataset": "vox_communis",
   "n": 3798,
@@ -3090,6 +3116,19 @@
   "exact_match": 0.3971,
   "quality_tier": "research",
   "provenance": "crowd-scraped",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
+  "lang": "irk",
+  "dataset": "wold",
+  "n": 1117,
+  "per": 0.2182,
+  "per_ci_low": 0.2065,
+  "per_ci_high": 0.2297,
+  "exact_match": 0.3205,
+  "quality_tier": "skeleton",
+  "provenance": "lexicon-derived",
   "harness_version": "1.1",
   "limit": null
  },
@@ -5989,6 +6028,19 @@
   "exact_match": 0.0996,
   "quality_tier": "skeleton",
   "provenance": "crowd-scraped",
+  "harness_version": "1.1",
+  "limit": null
+ },
+ {
+  "lang": "rif",
+  "dataset": "wold",
+  "n": 1506,
+  "per": 0.4095,
+  "per_ci_low": 0.398,
+  "per_ci_high": 0.4209,
+  "exact_match": 0.093,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
   "harness_version": "1.1",
   "limit": null
  },
