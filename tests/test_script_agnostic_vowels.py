@@ -14,12 +14,14 @@ two ways the derivation can go wrong — under-firing (back to the old bug) and
 over-firing (classifying a consonant, or a whole syllable like ⟨ال⟩ → /al/, as a
 vowel, which silently corrupts its neighbours' contexts).
 """
+import dataclasses
+
 import pytest
 
 from orthography2ipa import G2P, get
 from orthography2ipa.phonetok import PhonetokTokenizer
 from orthography2ipa.positional import grapheme_positions
-from orthography2ipa.types import GraphemePosition
+from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
     grapheme_is_vowel,
     grapheme_vowel_axis,
@@ -159,3 +161,121 @@ def test_transliteration_symbols_are_never_vowels():
     for grapheme, ipa in spec.graphemes.items():
         if not grapheme[0].isalpha():
             assert not grapheme_is_vowel(grapheme, ipa), grapheme
+
+
+# ── vowel_graphemes: the per-spec override for a closed-inventory letter ───
+#
+# The letter sets are authoritative — a spec's IPA cannot itself promote a
+# Latin consonant letter to a vowel (see the tests above). But some
+# orthographies really do spell a vowel with one of those closed-inventory
+# consonant LETTERS — Hmong RPA ⟨w⟩ = /ɨ/, Welsh ⟨w⟩ = /ʊ, w/ — and no
+# per-script hand-list can capture that without reopening ⟨w⟩/⟨y⟩/⟨r⟩ for
+# every OTHER Latin-script spec too. ``vowel_graphemes`` is the escape hatch:
+# a per-spec declaration, checked before the closed-inventory answer.
+
+
+def test_vowel_graphemes_override_promotes_a_closed_inventory_letter():
+    # Without an override, ⟨w⟩ stays a consonant letter no matter its IPA —
+    # the existing, deliberate guarantee (see
+    # test_latin_letters_keep_the_letter_set_answer above).
+    assert not grapheme_is_vowel("w", ["ɨ"])
+    # The override makes it a vowel — matched as a WHOLE grapheme, not by
+    # first character.
+    assert grapheme_is_vowel("w", ["ɨ"], vowel_overrides=frozenset({"w"}))
+    # A different grapheme is not accidentally promoted by an unrelated
+    # override.
+    assert not grapheme_is_vowel("y", ["ɨ"], vowel_overrides=frozenset({"w"}))
+
+
+def test_vowel_graphemes_override_axis_derives_from_the_ipa():
+    # Without the override, ⟨w⟩'s axis is None (closed-inventory consonant
+    # letter) regardless of its IPA.
+    assert grapheme_vowel_axis("w", ["u"]) is None
+    # With the override, the axis is read off the IPA the spec gives it —
+    # exactly as it is for a non-Latin vowel grapheme.
+    assert grapheme_vowel_axis(
+        "w", ["u"], vowel_overrides=frozenset({"w"})) == "back"
+    assert grapheme_vowel_axis(
+        "w", ["i"], vowel_overrides=frozenset({"w"})) == "front"
+
+
+def test_czech_syllabic_r_is_unaffected_by_an_unrelated_override():
+    """An override for a DIFFERENT grapheme must never leak onto ⟨r⟩ —
+    Czech syllabic ⟨r̩⟩ stays a consonant letter."""
+    assert not grapheme_is_vowel(
+        "r", ["r̩"], vowel_overrides=frozenset({"w"}))
+
+
+def test_real_specs_default_to_no_vowel_grapheme_overrides():
+    """Absent the field, every spec keeps exactly the previous behaviour."""
+    assert get("es").vowel_graphemes == ()
+    assert get("cs").vowel_graphemes == ()
+
+
+def _hmong_rpa_like_spec(vowel_graphemes=()) -> LanguageSpec:
+    """A minimal synthetic spec modelling the RPA tone-letter phenomenon:
+    a word-final consonant LETTER (here ⟨v⟩/⟨s⟩) marks tone and is silent —
+    but only once the engine recognises the preceding ⟨w⟩ as a vowel, since
+    the silencing rule is keyed on ``AFTER_VOWEL``. Isolates exactly the
+    mechanism ``vowel_graphemes`` fixes, independent of ``get("mww")``'s own
+    (much larger) grapheme table — see
+    :func:`test_mww_vowel_graphemes_override_silences_tone_letter_after_w`
+    below for the same phenomenon against the real spec."""
+    return LanguageSpec(
+        code="x-test-rpa-tone",
+        name="Test RPA-tone-letter spec",
+        family="",
+        script="Latn",
+        graphemes={
+            "t": ["t"], "k": ["k"], "s": ["s"], "w": ["ɨ"], "v": ["s"],
+        },
+        allophones={"t": ["t"], "k": ["k"], "s": ["s"], "ɨ": ["ɨ"]},
+        positional_graphemes={
+            "v": {GraphemePosition.AFTER_VOWEL: [""]},
+            "s": {GraphemePosition.AFTER_VOWEL: [""]},
+        },
+        vowel_graphemes=tuple(vowel_graphemes),
+    )
+
+
+def test_vowel_graphemes_override_silences_tone_letter_after_w():
+    """Without the override, ⟨w⟩ is not a vowel letter, ``AFTER_VOWEL`` never
+    fires for the following tone letter, and it keeps a spurious consonant
+    reading. With the override, ⟨w⟩ is a vowel letter, ``AFTER_VOWEL`` fires,
+    and the tone letter goes silent — exactly the mww ⟨w⟩=/ɨ/ fix."""
+    tok_without = PhonetokTokenizer(_hmong_rpa_like_spec())
+    tok_with = PhonetokTokenizer(_hmong_rpa_like_spec(("w",)))
+
+    # "tswv": ⟨t⟩⟨s⟩⟨w⟩⟨v⟩ — the final ⟨v⟩ is the tone letter.
+    assert tok_without.ipa_best("tswv").endswith("s")
+    assert not tok_with.ipa_best("tswv").endswith("s")
+
+    # "kws": ⟨k⟩⟨w⟩⟨s⟩ — the other tone letter, same phenomenon.
+    assert tok_without.ipa_best("kws").endswith("s")
+    assert not tok_with.ipa_best("kws").endswith("s")
+
+
+def test_mww_vowel_graphemes_override_silences_tone_letter_after_w():
+    """The real White Hmong (RPA) spec, not a synthetic stand-in: ⟨w⟩=/ɨ/ is
+    a bare rhyme, and the tone letter that follows it (⟨v⟩ in ``tswv``, ⟨s⟩
+    in ``kws``) is declared silent ``after_vowel`` in mww's own
+    ``positional_graphemes`` (see mww.json's notes). Without
+    ``vowel_graphemes``, ⟨w⟩ never counts as a vowel, so ``after_vowel``
+    never fires and the tone letter surfaces as a spurious consonant."""
+    spec = get("mww")
+    assert spec.vowel_graphemes == ("w",)
+
+    tok_with = PhonetokTokenizer(spec)
+    tok_without = PhonetokTokenizer(dataclasses.replace(spec, vowel_graphemes=()))
+
+    tswv_with = tok_with.ipa_best("tswv")
+    tswv_without = tok_without.ipa_best("tswv")
+    assert not tswv_with.endswith("v")
+    assert tswv_without.endswith("v")
+    assert tswv_with == tswv_without[:-1]
+
+    kws_with = tok_with.ipa_best("kws")
+    kws_without = tok_without.ipa_best("kws")
+    assert not kws_with.endswith("ʂ")
+    assert kws_without.endswith("ʂ")
+    assert kws_with == kws_without[:-1]
