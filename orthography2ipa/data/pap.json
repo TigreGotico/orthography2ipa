@@ -290,6 +290,12 @@
       "notes": "Ewe (Gbe) substrate, alongside Fongbe, from the same West African contact population."
     },
     {
+      "code": "mnk",
+      "role": "substrate",
+      "weight": 0.04,
+      "notes": "Mandinka substrate: Jacobs (2010, 'Upper Guinea origins of Papiamentu', Journal of Pidgin and Creole Languages 25:2) argues Papiamentu descends from a 17th-century Upper Guinea Portuguese-based proto-creole carried to Curaçao by enslaved people and Sephardic traders from the Cape Verde/Guinea-Bissau coast, where Mandinka was a principal substrate language (the same Upper Guinea contact pool documented for Kabuverdianu); this predates and sits alongside the later Gbe (Fon/Ewe) substrate influence from the Curaçao slave trade proper."
+    },
+    {
       "code": "es-ES",
       "role": "adstrate",
       "weight": 0.2,
