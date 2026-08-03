@@ -292,6 +292,8 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `followed_by` | string | no | Next-grapheme class (same value set) |
 | `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |
+| `mutates_neighbor` | string | no | An IPA modifier (e.g. `"ʲ"`) this rule ADDS to an adjacent slot's candidate when it fires — paired with `surface: ""` this is the "marker grapheme" pattern: a letter that deletes itself while palatalising (or otherwise mutating) a neighbour, atomically. Requires `mutates_neighbor_side`. See [allophony](../../docs/allophony.md#marker-graphemes-delete-a-vowel-while-mutating-a-neighbour) and the Manx (`gv`) slender-marking rules. |
+| `mutates_neighbor_side` | string | no | `"preceding"` / `"following"` — which adjacent slot, relative to THIS rule's own anchor grapheme, receives `mutates_neighbor`'s feature. Required together with `mutates_neighbor`. |
 | `notes` | string | no | Provenance / convention notes |
 
 All declared conditions are ANDed; an unset condition is "don't care". A rule

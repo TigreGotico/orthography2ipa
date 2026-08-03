@@ -331,6 +331,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 word=(tuple(ar["word"])
                       if ar.get("word") else None),
                 notes=ar.get("notes", ""),
+                mutates_neighbor=ar.get("mutates_neighbor"),
+                mutates_neighbor_side=ar.get("mutates_neighbor_side"),
             )
             for ar in raw_allophone
         )

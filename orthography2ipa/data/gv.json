@@ -286,6 +286,28 @@
       "tʃ"
     ]
   },
+  "allophone_rules": [
+    {
+      "id": "GV_SLENDER_FINAL_N",
+      "phonemes": ["i", "e"],
+      "surface": "",
+      "followed_by_phoneme": ["n"],
+      "followed_by_2": "word_boundary",
+      "mutates_neighbor": "ʲ",
+      "mutates_neighbor_side": "following",
+      "notes": "Goidelic slender/broad marking: a written vowel letter (i/e) before a word-final n marks the n as palatalised ('slender') and does not itself surface -- Manx dowin [daunʲ] (Broderick 1984-86, A Handbook of Late Spoken Manx, vol.3; Thomson 1992, 'The Manx Language', in MacAulay (ed.) The Celtic Languages, ch.3). Uses mutates_neighbor: the rule deletes its own slot while palatalising the FOLLOWING slot (the final n) atomically -- see docs/allophony.md."
+    },
+    {
+      "id": "GV_SLENDER_ONSET_CONSONANT",
+      "phonemes": ["i", "e"],
+      "surface": "",
+      "preceded_by": "consonant",
+      "followed_by": "vowel",
+      "mutates_neighbor": "ʲ",
+      "mutates_neighbor_side": "preceding",
+      "notes": "Goidelic slender/broad marking, onset case: a written i/e between an onset consonant and a following vowel marks the consonant as palatalised ('slender') and does not itself surface -- Manx giare [ɡʲɛːr], giat [ɡʲat] (Broderick 1984-86; Thomson 1992, ch.3). mutates_neighbor palatalises the PRECEDING slot atomically as the vowel deletes."
+    }
+  ],
   "parent": "cel-x-goidelic",
   "ancestors": [
     {
@@ -301,7 +323,7 @@
       "notes": "English adstrate: heavy influence, English-based orthography"
     }
   ],
-  "notes": "Manx (Gaelg). Isle of Man. Last native speaker (Ned Maddrell) died 1974. Revival since 1970s; ~1,800 speakers (est. 2020). English/Welsh-based orthography descending from Bishop John Phillips' Book of Common Prayer tradition (unlike Irish/Scots Gaelic script). Simplified mutation system vs. Irish/Scots Gaelic. Characteristic digraphs/trigraphs: <gh> word-final/preconsonantal realises [x] (Broderick 1984-86 vol.3; only rarely [ɣ] intervocalically); <çh> /tʃ/ contrasts with <ch> /x/; <sh> /ʃ/; <aa> is predominantly [ɛː] (Broderick), not the older [eː]; word-final <ey> reduces to unstressed [ə] (long [əː] when it is the stressed nucleus, e.g. monosyllables); <nn>/<mm>/<rr> are English-style doubled-consonant spellings marking a preceding short vowel, not gemination, and surface as a single (sometimes palatalised) consonant; <ng> is the velar nasal [ŋ]. Preocclusion of final nasals/liquids (<nn>→[dn], <mm>→[bm]) described for fuller Late Spoken Manx phonetic transcriptions (Broderick 1984-86; Jackson 1955) is NOT attested in the WikiPron/Wiktionary broad-transcription gold used here, which instead shows plain (non-preoccluded) [n]/[m] throughout — the gold reflects a lenited, revival-adjacent register rather than Broderick's narrow phonetic fieldwork transcriptions; preocclusion is therefore documented here rather than encoded, pending a gold source that attests it. Gaelic slender/broad (caol/leathan) consonant marking survives vestigially: an adjacent <i>/<e> can signal a palatalised neighbouring consonant without itself surfacing as a vowel (e.g. giare [ɡʲɛːr], dowin [daunʲ]) — a residual class this spec does not yet model, since it requires a rule that deletes a vowel grapheme while palatalising a non-adjacent phoneme slot, a capability not yet expressible in the allophone_rules condition vocabulary. ⟨eu⟩ is kept as its own grapheme key despite its IPA reading as the concatenation of ⟨e⟩+⟨u⟩'s primary values: it spells a single diphthongal nucleus (WikiPron gold 'eu' [eu], 'feue' [feu]), the same unit-nucleus justification as ⟨ai⟩/⟨aaj⟩ elsewhere in the schema, not an enumerated pair. Refs: Thomson (1992), Broderick (1984-86), Jackson (1955), Wikipedia Manx language orthography tables.",
+  "notes": "Manx (Gaelg). Isle of Man. Last native speaker (Ned Maddrell) died 1974. Revival since 1970s; ~1,800 speakers (est. 2020). English/Welsh-based orthography descending from Bishop John Phillips' Book of Common Prayer tradition (unlike Irish/Scots Gaelic script). Simplified mutation system vs. Irish/Scots Gaelic. Characteristic digraphs/trigraphs: <gh> word-final/preconsonantal realises [x] (Broderick 1984-86 vol.3; only rarely [ɣ] intervocalically); <çh> /tʃ/ contrasts with <ch> /x/; <sh> /ʃ/; <aa> is predominantly [ɛː] (Broderick), not the older [eː]; word-final <ey> reduces to unstressed [ə] (long [əː] when it is the stressed nucleus, e.g. monosyllables); <nn>/<mm>/<rr> are English-style doubled-consonant spellings marking a preceding short vowel, not gemination, and surface as a single (sometimes palatalised) consonant; <ng> is the velar nasal [ŋ]. Preocclusion of final nasals/liquids (<nn>→[dn], <mm>→[bm]) described for fuller Late Spoken Manx phonetic transcriptions (Broderick 1984-86; Jackson 1955) is NOT attested in the WikiPron/Wiktionary broad-transcription gold used here, which instead shows plain (non-preoccluded) [n]/[m] throughout — the gold reflects a lenited, revival-adjacent register rather than Broderick's narrow phonetic fieldwork transcriptions; preocclusion is therefore documented here rather than encoded, pending a gold source that attests it. Gaelic slender/broad (caol/leathan) consonant marking survives vestigially: an adjacent <i>/<e> can signal a palatalised neighbouring consonant without itself surfacing as a vowel (e.g. giare [ɡʲɛːr], dowin [daunʲ]) — modelled by the GV_SLENDER_FINAL_N / GV_SLENDER_ONSET_CONSONANT allophone_rules, using the generic mutates_neighbor mechanism (a rule deletes its own vowel slot while palatalising an adjacent consonant slot atomically; see docs/allophony.md, section 'Marker graphemes'). ⟨eu⟩ is kept as its own grapheme key despite its IPA reading as the concatenation of ⟨e⟩+⟨u⟩'s primary values: it spells a single diphthongal nucleus (WikiPron gold 'eu' [eu], 'feue' [feu]), the same unit-nucleus justification as ⟨ai⟩/⟨aaj⟩ elsewhere in the schema, not an enumerated pair. Refs: Thomson (1992), Broderick (1984-86), Jackson (1955), Wikipedia Manx language orthography tables.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
