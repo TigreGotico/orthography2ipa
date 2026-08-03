@@ -3,7 +3,7 @@
   "name": "Plains Cree",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "â": [
       "aː"
@@ -66,7 +66,7 @@
       "notes": "Descent per Glottolog classification of Plains Cree (plai1258)."
     }
   ],
-  "notes": "Skeleton. Algonquian (Cree) variety of the Canadian plains written in the Standard Roman Orthography. Long vowels carry a circumflex (â ê î ô); c=[ts] (ranging to [tʃ]). Stops and s are underlyingly voiceless but voice intervocalically, which is left unencoded. Preaspiration and predictable allophony are not recovered from spelling, raising the PER floor.",
+  "notes": "Research. Algonquian (Cree) variety of the Canadian plains written in the Standard Roman Orthography. Long vowels carry a circumflex (â ê î ô); c=[ts] (ranging to [tʃ]). Stops and s are underlyingly voiceless but voice intervocalically, which is left unencoded. Preaspiration and predictable allophony are not recovered from spelling, raising the PER floor. Grapheme table checked against Wolfart (1973, 1996): no discrepancy found. Stress is documented rather than encoded as a rule (see `stress.notes`): Wolfart's algorithm assigns stress differently by word length (final in disyllables, antepenultimate in longer words), which this project's single `default_position` cannot express in full; `default_position=-3` covers the common (3+ syllable) case and the 2-syllable exception is left as an honest documented gap rather than a wrong rule.",
   "iso639_3": "crk",
   "glottolog_code": null,
   "sources": [
@@ -82,6 +82,17 @@
       "wikipedia_url": null
     },
     {
+      "id": "wolfart1996",
+      "author": "Wolfart, H. Christoph",
+      "year": 1996,
+      "title": "Sketch of Cree, an Algonquian Language",
+      "publisher": "In: Ives Goddard (ed.), Handbook of North American Indians, vol. 17: Languages. Smithsonian Institution",
+      "url": "https://archive.org/details/rosettaproject_crk_detail-1",
+      "pages": null,
+      "notes": "Reference grammar sketch: verified the Standard Roman Orthography grapheme values and the (word-length-dependent) stress algorithm used for this spec's `stress` block.",
+      "wikipedia_url": null
+    },
+    {
       "id": "crk_orthography",
       "author": "Wikipedia contributors",
       "year": 2024,
@@ -93,6 +104,13 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Plains_Cree"
     }
   ],
+  "stress": {
+    "default_position": -3,
+    "quantity_sensitive": false,
+    "stress_mark": "ˈ",
+    "source": "rules",
+    "notes": "Wolfart (1996, Sketch of Cree) documents that Plains Cree stress is independent of vowel length: 2-syllable words stress the final syllable, while words of 3+ syllables stress the antepenultimate syllable. `default_position=-3` models the longer (and more frequent multi-morpheme) case; the disyllabic exception is not separately encoded (no field expresses a word-length-conditioned rule) and is documented here rather than silently wrong."
+  },
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Plains_Cree",
     "https://en.wikipedia.org/wiki/Cree_language"
