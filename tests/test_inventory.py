@@ -122,6 +122,14 @@ KNOWN_DEAD_RULES = {
         "AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
         "AR_GLIDE_YA_BEFORE_GEMINATE", "AR_GLIDE_YA_GEMINATE_COPY",
         "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_WAW_CONSONANTAL",
+        # Same reason, for the generic arb-level emphasis-spread family
+        # (AR_EMPHASIS_SPREAD_*, engine-generic "emphatic" neighbour class,
+        # Watson 2002; Davis 1995): Maltese emits neither the long vowels
+        # (/aː iː uː/) nor the short /i u/ these target.
+        "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+        "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+        "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+        "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE",
     },
     # Targets /ɪ/, which these specs never emit.
     "pt-BR-x-pr": {"BR_RAISE_FINAL_E"},
@@ -164,6 +172,78 @@ KNOWN_DEAD_RULES = {
     # targets /ʔ/ — can never fire here. It is live in every Arabic lect that
     # keeps /ʔ/; the rule set is Classical Arabic's, inherited unchanged.
     "acy": {"AR_WASL_EPENTHESIS"},
+    # Seychellois Creole levelled French /y/ to /i/ and /ə/ to /e/~/ɛ/ in its
+    # own vowel merger (Michaelis & Rosalie, APiCS ch. 56; Bollée 1977), so
+    # the inherited French front-rounded/schwa nasalisation rules can never
+    # fire here. They are live in fr-FR, which keeps both phonemes.
+    "crs": {"FR_NASAL_y", "FR_NASAL_ə"},
+    # jrb (Judeo-Arabic macrolanguage node) is metadata-only: graphemes is
+    # intentionally empty pending a sourced Hebrew-script grapheme table (see
+    # its `notes`), so no phoneme -- including /ʔ/ -- is in the inventory yet
+    # and the inherited Classical-Arabic hamzat-al-waṣl rule can never fire.
+    # Same class of dead rule as "acy" above; will resolve itself once a real
+    # grapheme table is added for jrb.
+    "jrb": {"AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    # ajt/aju/yhd (Judeo-Tunisian/Moroccan/Iraqi Arabic) are likewise
+    # metadata-only stubs (graphemes: {}) whose single genetic PARENT is
+    # their regional Arabic dialect spec (ar-TN/ar-MA/ar-IQ respectively --
+    # jrb is wired as RELATED, not PARENT, since it is a sociolinguistic
+    # macrolanguage collective, not genetic descent). They inherit that
+    # dialect's full allophone rule set, none of which can fire against an
+    # empty own inventory. Will resolve once a real Hebrew-script grapheme
+    # table is sourced for each code.
+    # ajt/aju/yhd additionally inherit the arb-level, engine-generic
+    # AR_EMPHASIS_SPREAD_* family (the "emphatic" neighbour class, Watson
+    # 2002; Davis 1995) — dead here for the same reason as the rest of the
+    # inherited rule set: empty own inventory, nothing can ever fire.
+    "ajt": {"AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_TN_MONO_AJ", "AR_TN_MONO_AW", "AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    "aju": {"AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+            "AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_GLIDE_WAW_CONSONANTAL", "AR_GLIDE_YA_BEFORE_GEMINATE",
+            "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_YA_GEMINATE_COPY",
+            "MA_SHORT_REDUCE", "AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    "yhd": {"AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+            "AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_GLIDE_WAW_CONSONANTAL", "AR_GLIDE_YA_BEFORE_GEMINATE",
+            "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_YA_GEMINATE_COPY",
+            "IQ_EMPH_AA_AFTER", "IQ_EMPH_AA_BEFORE", "IQ_EMPH_A_AFTER",
+            "IQ_EMPH_A_BEFORE", "IQ_GILIT_AFFRIC_G_AFTER",
+            "IQ_GILIT_AFFRIC_G_BEFORE", "IQ_GILIT_AFFRIC_K_AFTER",
+            "IQ_GILIT_AFFRIC_K_BEFORE", "AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    # Yevanic (yej) is a stub: its Hebrew-script grapheme table is intentionally
+    # left empty because no sourced letter-by-letter correspondence could be
+    # located (see the spec's notes), so it emits nothing of its own at all.
+    # It still inherits el's allophone rule *set* (parent_dialect), but with
+    # zero graphemes there is no /s/ or /ɣ/ slot for EL_S_VOICING / EL_
+    # GAMMA_FRONTING to match against. Both are live in el, which has the
+    # grapheme table this spec is deliberately missing; revisit once yej gains
+    # a sourced Hebrew-abjad grapheme table.
+    "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
