@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.45.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.45.2a1) (2026-08-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.45.1a4...7.45.2a1)
+
+**Merged pull requests:**
+
+- fix: barranquenho\_dict loader schema drift + circular-tier exclusion [\#734](https://github.com/TigreGotico/orthography2ipa/pull/734) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.45.1a4](https://github.com/TigreGotico/orthography2ipa/tree/7.45.1a4) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.45.1a3...7.45.1a4)
@@ -462,20 +470,20 @@
 
 ## [7.24.0a9](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a9) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a7...7.24.0a9)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a8...7.24.0a9)
 
 **Merged pull requests:**
 
 - Release 7.24.0a9 [\#605](https://github.com/TigreGotico/orthography2ipa/pull/605) ([github-actions[bot]](https://github.com/apps/github-actions))
 - chore\(gold\): unify creole TTS gold into one harness \(11 lects\) [\#604](https://github.com/TigreGotico/orthography2ipa/pull/604) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.24.0a7](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a7) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a8...7.24.0a7)
-
 ## [7.24.0a8](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a8) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a6...7.24.0a8)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a7...7.24.0a8)
+
+## [7.24.0a7](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a7) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a6...7.24.0a7)
 
 ## [7.24.0a6](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a6) (2026-07-16)
 
@@ -529,7 +537,6 @@
 - Release 7.23.0a3 [\#594](https://github.com/TigreGotico/orthography2ipa/pull/594) ([github-actions[bot]](https://github.com/apps/github-actions))
 - Historical-Iberia gold: Andalusi Arabic \(xaa\) + Mozarabic \(mxi\) [\#593](https://github.com/TigreGotico/orthography2ipa/pull/593) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(gold\): re-pin spain\_romance rows after stress-inheritance merge race [\#592](https://github.com/TigreGotico/orthography2ipa/pull/592) ([JarbasAl](https://github.com/JarbasAl))
-- feat\(gold\): Atlantic Iberian-creole TTS gold — 5 lects, 100 rows [\#591](https://github.com/TigreGotico/orthography2ipa/pull/591) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.23.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.23.0a2) (2026-07-16)
 
