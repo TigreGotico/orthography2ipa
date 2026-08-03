@@ -985,6 +985,23 @@ _NORTHEURALEX_LANGS: Dict[str, str] = {
     "lv": "lav",    # Latvian (research)
     "smn": "smn",   # Inari Sami (research)
     "vep": "vep",   # Veps (research)
+    # 2026-08 "Siberian double-win" wave: 8 Uralic (+1 Yukaghir) REGISTRY STUBs
+    # that were empty-grapheme placeholders with a cited PHOIBLE phoneme
+    # inventory already in place; this wave adds cited Cyrillic orthographies
+    # (Alhoniemi 1985, Kangasmaa-Minn 1998, Nikolaeva 1999, Riese 2001,
+    # Helimski 1998, Wagner-Nagy 2018, Siegl 2013, Maslova 2003 — see each
+    # spec's `sources`) and reconciles them against the existing PHOIBLE
+    # inventories. Language_ID in cldf/languages.csv equals the o2i code for
+    # all eight (no av->ava-style translation needed here); each smoke-checked
+    # at 150/150 non-empty engine output on a NorthEuraLex sample.
+    "mhr": "mhr",   # Meadow (Eastern) Mari (research)
+    "mrj": "mrj",   # Hill (Western) Mari (research)
+    "kca": "kca",   # Northern Khanty (research)
+    "mns": "mns",   # Northern Mansi (research)
+    "sel": "sel",   # Northern Selkup (research)
+    "nio": "nio",   # Nganasan (research)
+    "enf": "enf",   # Forest Enets (research)
+    "ykg": "ykg",   # Northern Yukaghir (research)
 }
 
 
