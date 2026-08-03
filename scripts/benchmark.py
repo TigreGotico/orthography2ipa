@@ -548,7 +548,7 @@ _VOX_COMMUNIS_FILES: Dict[str, str] = {
         "hu", "id", "ja", "ka", "kab", "kk", "ko", "ky", "lg", "lij", "lt",
         "mk", "ml", "mn", "mr", "mt", "myv", "nl", "or", "pl", "ru", "rw",
         "sah", "sk", "sl", "sq", "sr", "sw", "ta", "th", "tk", "tn", "tr",
-        "tt", "ug", "uk", "uz", "vi", "yo", "yue",
+        "tt", "ug", "uk", "uz", "vi", "yo",
     )
 }
 _VOX_COMMUNIS_FILES.update({
@@ -557,6 +557,18 @@ _VOX_COMMUNIS_FILES.update({
     "sv": "sv-se", "zh": "zh-cn", "hy": "hy-am",
     "fy": "fy-nl", "pa": "pa-in",
 })
+# ``yue`` (Cantonese) is DELIBERATELY not registered here even though the
+# upstream ``yue.tsv`` file exists and loads fine (12.8k rows, live-checked
+# 2026-08). The `yue` spec is a genuine grapheme-inventory STUB (see
+# orthography2ipa/g2p.py get('yue').notes): Cantonese is logographic and
+# has no letter-to-sound mapping without a Jyutping/Yale romanisation step
+# upstream of this library -- exactly like ``zh`` needs pinyin. The
+# vox-communis ``yue.tsv`` ``sentence``/``aligned_sentence`` columns are raw
+# Han characters, so every row transcribes to an empty hypothesis and the
+# harness previously recorded a fake ``per: 1.0, n: 0`` row for it. That
+# was dishonest (n=0 read as "loader is broken", not "this pairing can
+# never score"); removing the registration until a Jyutping/Yale
+# transliteration front-end exists is the honest fix.
 
 
 _4CATAC_BASE = (
