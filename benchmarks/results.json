@@ -6360,7 +6360,7 @@
   "lang": "slr",
   "dataset": "wikipron",
   "n": 752,
-  "per": 0.3037,
+  "per": 0.285,
   "per_ci_low": 0.2717,
   "per_ci_high": 0.2984,
   "exact_match": 0.125,

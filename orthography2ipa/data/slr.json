@@ -33,6 +33,7 @@
    "b"
   ],
   "c": [
+   "ʝ",
    "dʒ"
   ],
   "ç": [
@@ -111,7 +112,7 @@
    "notes": "Descent from Common Turkic (Oghuz branch); Dwyer (2007)"
   }
  ],
- "notes": "Skeleton. Salar (Oghuz Turkic; Qinghai/Gansu, China), in the TIP Latin orthography. Retains Oghuz vowel harmony; heavy Chinese and Amdo Tibetan contact (unencoded adstrate). ⟨c⟩=/ʝ/, ⟨q⟩=/q/ per the samples. CORRECTION while citing: the inherited grapheme table mapped \"c\" to ʰ [ʝ], inconsistent with its own \"ç\"=tʃ entry; the Salar Latin alphabet (Dwyer 2007) follows the Turkish/Uyghur c/ç pattern where ç=/tʃ/ and c is its voiced counterpart /dʒ/ -- fixed here.",
+ "notes": "Skeleton. Salar (Oghuz Turkic; Qinghai/Gansu, China), in the TIP Latin orthography. Retains Oghuz vowel harmony; heavy Chinese and Amdo Tibetan contact (unencoded adstrate). ⟨c⟩=/ʝ/, ⟨q⟩=/q/ per the samples. CORRECTION while citing: the inherited grapheme table mapped \"c\" to ʰ [ʝ], inconsistent with its own \"ç\"=tʃ entry; the Salar Latin alphabet (Dwyer 2007) follows the Turkish/Uyghur c/ç pattern where ç=/tʃ/ and c is its voiced counterpart /dʒ/ -- fixed here. Grapheme ⟨c⟩: the underlying Turkic-pattern phoneme is /dʒ/ (Dwyer 2007), but Dwyer describes pervasive fricativized realization [ʝ~ʑ] in all positions, which the WikiPron gold shows uniformly (caca→ʝɑʝɑ); the primary candidate is therefore the dominant surface [ʝ] with /dʒ/ second.",
  "iso639_3": "slr",
  "glottolog_code": null,
  "sources": [
@@ -137,17 +138,5 @@
   "marked_vowels": [],
   "stress_mark": "ˈ",
   "notes": "Salar, like the other Turkic languages modeled in this project (Chuvash, Tatar, Bashkir), has default word-final stress, with some suffixes and loanwords carrying non-final stress not modeled here. Source: Dwyer, Arienne M. (2007), Salar: A Study in Inner Asian Language Contact Processes, ch. on phonology."
- },
- "allophone_rules": [
-  {
-   "id": "SLR_DZ_INTERVOCALIC_LENITION",
-   "surface": "ʝ",
-   "preceded_by": "vowel",
-   "followed_by": "vowel",
-   "notes": "Intervocalic lenition of /dʒ/ to a voiced palatal fricative [ʝ]. Dwyer 2007 (Salar: A Study in Inner Asian Language Contact Processes) describes lenition of voiced obstruents between vowels; the WikiPron gold consistently shows [ʝ] exactly in intervocalic position (acü, baca, bicin) while the phoneme remains /dʒ/ per the Turkic-pattern orthography.",
-   "phonemes": [
-    "dʒ"
-   ]
-  }
- ]
+ }
 }
