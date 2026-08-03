@@ -1828,6 +1828,78 @@ _ARABIC_TTS_LANGS = _sentence_tts_langs(_ARABIC_TTS_DIR)
 _PORTUGUESE_TTS_LANGS = _sentence_tts_langs(_PORTUGUESE_TTS_DIR)
 
 
+# ─── gold20 — Salesteq/arabic-dialects-gold20 (Hugging Face) ────────────────
+#
+# A SIBLING gold set to ``arabic_tts`` above, published upstream as
+# ``Salesteq/arabic-dialects-gold20`` on Hugging Face: 33 lects × 20
+# sentences, same shape (vocalized ``sentence`` in, broad ``ipa`` gold),
+# plus extra columns (``ipa_o2i`` engine draft, ``features``,
+# ``fable_corrections``, ``verification``, ``judge_agreement``) this loader
+# does not need and ignores. It is registered SEPARATELY, fetched at
+# runtime (never vendored) and cached under CACHE_DIR, because the
+# maintainer asked for this specific published dataset by URL — it is not a
+# vendored copy of ``arabic_tts``, whose local TSVs have since been hand
+# re-audited and diverge from the upstream file row-by-row (see e.g. the
+# ar-EG-020 delta note in ``orthography2ipa/data/gold/arabic_tts/ar-EG.tsv``).
+#
+# PROVENANCE — semi-synthetic: every ``sentence``/``ipa`` pair was drafted
+# by an LLM (the same Claude lineage that authored the o2i Arabic dialect
+# specs this scores against — a near-circular relationship), then
+# spot-checked by a native Arabic speaker who judged the set good. That
+# spot-check is documented context, not a tier upgrade: there is still no
+# lexicon and no rule system behind the gold, so a disagreement cannot be
+# attributed to anything. Tier stays ``llm-generated`` — the same, lowest
+# tier as ``arabic_tts``/``portuguese_tts``/``barranquenho_dict``/
+# ``mirandese_dict``. It gates nothing and certifies nothing. It is
+# registered anyway because for most of these Arabic dialects no other gold
+# exists at all: this is better than the alternative of no signal, not
+# because it clears any quality bar.
+_GOLD20_ARABIC_BASE = (
+    "https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20"
+    "/resolve/main/{lang}.tsv"
+)
+# Upstream file stems that are already valid orthography2ipa lect codes
+# (verified 1:1 against orthography2ipa/data/*.json — every file here has a
+# matching registered spec; nothing was force-mapped and nothing was
+# rejected).
+_GOLD20_ARABIC_LANGS = sorted([
+    "ar", "arb",
+    "ar-AE", "ar-BH", "ar-DZ", "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-JO",
+    "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-MR", "ar-NG", "ar-OM", "ar-PS",
+    "ar-QA", "ar-SA-x-hejaz", "ar-SA-x-najd", "ar-SA-x-qassim",
+    "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya", "ar-SD", "ar-SY", "ar-TD",
+    "ar-TN", "ar-YE",
+    "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi",
+    "ar-x-peninsular",
+])
+
+
+def load_gold20_arabic(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Salesteq/arabic-dialects-gold20 (Hugging Face) — one TSV per lect, 20
+    sentences each, 33 Arabic varieties. Vocalized ``sentence`` column in,
+    broad IPA ``ipa`` column as gold; the ``ipa_o2i``/``features``/
+    ``fable_corrections``/``verification``/``judge_agreement`` columns are
+    ignored by the harness. Semi-synthetic (LLM-drafted by the same Claude
+    lineage that authored the o2i Arabic dialect specs), spot-checked good by
+    a native Arabic speaker; registered because for most of these dialects no
+    other gold exists at all. See the ``gold20_arabic`` provenance note:
+    ``llm-generated``, gates no quality decision.
+    """
+    fname = f"{lang}.tsv"
+    text = _fetch(_GOLD20_ARABIC_BASE.format(lang=lang), f"gold20_arabic_{fname}")
+    pairs: List[Tuple[str, str]] = []
+    reader = csv.DictReader(text.splitlines(), delimiter="\t")
+    for row in reader:
+        sentence = (row.get("sentence") or "").strip()
+        ipa = (row.get("ipa") or "").strip()
+        if not sentence or not ipa:
+            continue
+        pairs.append((sentence, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 _PRIMARY_SOURCES_DIR = os.path.join(
     os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
     "primary_sources",
@@ -1890,6 +1962,7 @@ def _primary_source_langs() -> List[str]:
 DATASETS = {
     "primary_sources": (load_primary_sources, _primary_source_langs()),
     "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
+    "gold20_arabic": (load_gold20_arabic, _GOLD20_ARABIC_LANGS),
     "portuguese_tts": (load_portuguese_tts, _PORTUGUESE_TTS_LANGS),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
@@ -2018,6 +2091,11 @@ PROVENANCE: Dict[str, str] = {
     # `llm-generated` (never `expert-human`) — directional signal only, gates
     # no quality decision (docs/quality_tiers.md).
     "arabic_tts": "llm-generated",
+    "gold20_arabic": "llm-generated",   # Salesteq/arabic-dialects-gold20 (HF):
+    # semi-synthetic (same Claude lineage that authored the o2i Arabic dialect
+    # specs — near-circular), native-speaker spot-checked but that raises
+    # confidence, not tier: no lexicon/rules behind it, so it stays the
+    # lowest, non-gating tier, same as its arabic_tts sibling.
     "portuguese_tts": "llm-generated",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
