@@ -31,6 +31,10 @@ Dataset access:
   fdemelo/ipa-childes-split Hugging Face dataset directly (stdlib only).
 - ``ipa_babylm`` downloads the dev-split CSVs of the
   phonemetransformers/IPA-BabyLM Hugging Face dataset directly (stdlib only).
+- ``northeuralex`` and ``wold`` download ``cldf/forms.csv`` directly from the
+  lexibank/northeuralex and lexibank/wold GitHub repositories (stdlib only).
+- ``kaikki`` downloads per-language Wiktextract JSON-lines dumps directly
+  from kaikki.org (stdlib only).
 
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
@@ -270,6 +274,7 @@ _WIKIPRON_FILES = {
     "li":        "lim_latn_broad.tsv",              # Limburgan, ~1128 rows
     "ilo":       "ilo_latn_broad.tsv",              # Iloko, ~1049 rows
     "mi":        "mri_latn_broad.tsv",              # Maori, ~1005 rows
+    "mww":       "mww_latn_broad.tsv",              # White Hmong (RPA), ~492 rows
     "nv":        "nav_latn_broad.tsv",              # Navajo, ~995 rows
     "ckb":       "ckb_arab_broad.tsv",              # Central Kurdish, ~981 rows
     "mh":        "mah_latn_broad.tsv",              # Marshallese, ~960 rows
@@ -329,6 +334,9 @@ _WIKIPRON_FILES = {
     "pag":       "pag_latn_broad.tsv",              # Pangasinan, ~229 rows
     "ba":        "bak_cyrl_broad.tsv",              # Bashkir, ~208 rows
     "ab":        "abk_cyrl_broad.tsv",              # Abkhazian, ~206 rows
+    "kas":       "kas_arab_broad.tsv",              # Kashmiri (Perso-Arabic), ~751 rows
+    "new":       "new_deva_narrow.tsv",             # Newar (Devanagari, narrow), ~416 rows
+    "shn":       "shn_mymr_broad.tsv",              # Shan (Myanmar script), ~2607 rows
     # --- Arabic spoken dialects (ISO 639-3 codes → o2i lect) ---
     #     WikiPron scrapes six spoken Arabic dialects under their ISO 639-3
     #     codes; each maps onto an existing o2i ``ar-XX`` dialect spec (the
@@ -459,6 +467,13 @@ _WIKIPRON_FILES = {
     "yux":        "yux_cyrl_narrow.tsv",  # Southern Yukaghir, N=255
     "zom":        "zom_latn_narrow.tsv",  # Zou, N=165
     "zza":        "zza_latn_narrow.tsv",  # Zaza, N=215
+    # --- orthography wave 5: fresh cited grapheme maps wired to their
+    #     upstream WikiPron gold. Scores are honest first-pass baselines.
+    "ug":         "uig_arab_broad.tsv",  # Uyghur, N=2674
+    "dz":         "dzo_tibt_broad.tsv",  # Dzongkha, N=243 (base-letter table only, see data/dz.json notes)
+    # --- orthography wave 6: fresh cited grapheme maps wired to their
+    #     upstream WikiPron gold. Scores are honest first-pass baselines.
+    "skr":        "skr_arab_broad.tsv",           # Saraiki, Shahmukhi, N~348
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
@@ -844,6 +859,275 @@ def load_ipa_babylm(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+# Lexibank/CLDF wordlist gold. Lexibank (github.com/lexibank) republishes
+# published comparative wordlists/dictionaries as CLDF (Cross-Linguistic Data
+# Format): one ``cldf/forms.csv`` per dataset, keyed by ``Language_ID`` (the
+# dataset's own language code, resolved via ``cldf/languages.csv``), with a
+# ``Value`` column (the word as originally recorded — real orthography or
+# script) and a ``Segments`` column (space-separated IPA-ish segments, with
+# ``+`` marking a morpheme boundary). Every row cites its source dictionary
+# in the ``Source`` column, so this is compiled/cited lexicographic data, not
+# phonemizer output — ``lexicon-derived``, the same tier as ``cmudict`` and
+# ``portuguese_unified``.
+#
+# Candidates inspected and NOT wired:
+#
+# - `lexibank/ids` (Intercontinental Dictionary Series): ``Segments`` is
+#   EMPTY on every one of its 437k rows (verified by scanning the whole
+#   file) — there is no IPA column to score against at all.
+# - `lexibank/abvd` (Austronesian Basic Vocabulary Database): same problem,
+#   ``Segments`` empty on all 346k rows.
+#
+# 2026-08 audit wave — 21 more candidates inspected, NONE wired. Full verdicts
+# and evidence in docs/benchmarks.md "Rejected candidates". Summary:
+#
+# - `uralex`: ``Segments`` empty on all sampled rows (same as ids/abvd).
+# - `tuled`, `dravlex`, `chaconarawakan`, `felekesemitic`, `hantganbangime`,
+#   `lundgrenomagoa`, `naganorgyalrongic`, `sagartst`, `savelyevturkic`,
+#   `abrahammonpa`, `allenbai`, `bantubvd`, `chindialectsurvey`,
+#   `birchallchapacuran`, `gravinachadic`, `kraftchadic`,
+#   `luangthongkumkaren`, `marrisonnaga`, `mitterhoferbena`: ``Value`` is
+#   itself an IPA/comparative-transcription string (tone marks, IPA-only
+#   symbols, sense-index suffixes, or a fieldworker's normalized transcription
+#   convention applied uniformly across many languages) — not each
+#   language's own writing system, failing the "Form must be real
+#   orthography, not transcription" rule this loader exists to enforce.
+# - `robinsonap`: the one candidate whose ``Value`` genuinely reads as
+#   practical orthography (real digraphs, e.g. ``ng``→``ŋ``). Still not
+#   wired: all 13 languages resolve to `stub`-quality o2i specs with an
+#   EMPTY grapheme table, so there is nothing for a gold row to exercise yet.
+#
+# Two datasets passed inspection and are wired: `northeuralex` (NorthEuraLex,
+# Dellert et al. 2020) and `wold` (World Loanword Database, Haspelmath &
+# Tadmor 2009), both real orthographic ``Value`` + populated ``Segments``.
+_LEXIBANK_RAW_BASE = "https://raw.githubusercontent.com/lexibank/{repo}/master/cldf/"
+
+
+def _lexibank_segments_to_ipa(segments: str) -> str:
+    """Join a CLDF ``Segments`` string ("s ɛ m") into one IPA string,
+    dropping the ``+`` morpheme-boundary marker (the only non-IPA token
+    either wired Lexibank dataset's Segments column contains)."""
+    return "".join(seg for seg in segments.split() if seg != "+")
+
+
+def _load_lexibank(repo: str, language_id: str, limit: int) -> List[Tuple[str, str]]:
+    """Shared CLDF ``forms.csv`` reader for the Lexibank datasets below:
+    filters to one ``Language_ID``, pairs the original-orthography ``Value``
+    with the IPA joined from ``Segments``, skips rows with no segments
+    (unelicited/missing forms) and de-duplicates by (word, ipa).
+    """
+    url = _LEXIBANK_RAW_BASE.format(repo=repo) + "forms.csv"
+    text = _fetch(url, f"lexibank_{repo}_forms.csv")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    reader = csv.DictReader(text.splitlines())
+    for row in reader:
+        if row.get("Language_ID") != language_id:
+            continue
+        word = (row.get("Value") or "").strip()
+        segments = (row.get("Segments") or "").strip()
+        if not word or not segments:
+            continue
+        ipa = _lexibank_segments_to_ipa(segments)
+        if not ipa:
+            continue
+        key = (word, ipa)
+        if key in seen:
+            continue
+        seen.add(key)
+        pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+# orthography2ipa language tag -> NorthEuraLex Language_ID (its own code,
+# which happens to equal the ISO 639-3 code for every language wired here).
+# Restricted to languages whose o2i spec (a) is registered and (b) is a
+# `stub`/`skeleton`-tier spec with a NON-EMPTY grapheme table that the
+# gold can actually exercise — this loader targets the stub-promotion
+# path, not already-`research`/`production` languages. Every entry was
+# smoke-checked: the engine produces non-empty output for a large majority
+# of the language's sampled forms (see docs/benchmarks.md).
+#
+# Excluded despite an ISO/registry match: `yux` (Southern Yukaghir) has a
+# non-empty grapheme table but scored 0/913 non-empty — a script/transliteration
+# mismatch between the spec's grapheme inventory and NorthEuraLex's Cyrillic
+# orthography for this variety, not something a gold row can fix.
+_NORTHEURALEX_LANGS: Dict[str, str] = {
+    "liv": "liv",   # Livonian (skeleton)
+    "sms": "sms",   # Skolt Sami (skeleton)
+    "sjd": "sjd",   # Kildin Sami (skeleton)
+    "yrk": "yrk",   # Tundra Nenets (skeleton)
+    "bua": "bua",   # Buryat (skeleton)
+    "evn": "evn",   # Evenki (skeleton)
+    "niv": "niv",   # Nivkh (skeleton)
+    "ale": "ale",   # Aleut (skeleton)
+    "ain": "ain",   # Hokkaido Ainu (stub)
+    # 2026-08 registration wave: 9 languages with ZERO gold anywhere and a
+    # non-empty grapheme table, each verified against cldf/languages.csv
+    # (not a naive ISO 639-3 lookup — two of these need a code translation,
+    # see below) and smoke-checked at 100/100 non-empty engine output:
+    "udm": "udm",   # Udmurt (research)
+    "ady": "ady",   # Adyghe (research)
+    # o2i `av` is the macrolanguage code; NEL's own Language_ID for Avar is
+    # its ISO 639-3 code "ava" (languages.csv: avar1256, "Avar"), not "av".
+    "av": "ava",    # Avar (research)
+    "lbe": "lbe",   # Lak (research)
+    # NEL's `dar` row is glottocode darg1241, "North-Central Dargwa" — the
+    # same Akusha-based variety the o2i `dar` spec targets ("the literary
+    # standard is based on the Akusha dialect ... this spec targets the
+    # literary Akusha-based standard only"), not a different Dargwa lect.
+    # This gold row completes `dar`'s promotion from `skeleton` to `research`
+    # (sources + a documented stress exemption were already in place).
+    "dar": "dar",   # Dargwa (research, promoted by this wave)
+    "lez": "lez",   # Lezgian (research)
+    # o2i `lv` is the ISO 639-1 code; NEL's own Language_ID for Latvian is
+    # its ISO 639-3 code "lav" (languages.csv: latv1249, "Latvian").
+    "lv": "lav",    # Latvian (research)
+    "smn": "smn",   # Inari Sami (research)
+    "vep": "vep",   # Veps (research)
+}
+
+
+def load_northeuralex(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """NorthEuraLex (lexibank/northeuralex, Dellert et al. 2020): a
+    100+-language comparative wordlist of Northern Eurasia, CLDF ``Value``
+    (dictionary orthography) + ``Segments`` (IPA-ish phonemic transcription,
+    cited per row to its source dictionary in ``Source``). See
+    ``_NORTHEURALEX_LANGS`` for the wired subset and why."""
+    return _load_lexibank("northeuralex", _NORTHEURALEX_LANGS[lang], limit)
+
+
+# orthography2ipa language tag -> WOLD Language_ID (the dataset's own
+# per-language folder/ID name, not an ISO code). Same stub-promotion
+# selection discipline as `_NORTHEURALEX_LANGS`: smoke-checked, non-empty
+# grapheme table, majority non-empty output.
+#
+# Excluded despite an ISO match: WOLD's own `KildinSaami` (`sjd`) romanizes
+# the language differently from NorthEuraLex's Cyrillic forms (scored only
+# 25/1473 non-empty) — NorthEuraLex's `sjd` row above is the one that
+# actually exercises the spec's grapheme table for this language, so WOLD's
+# duplicate entry is left out rather than wired at a token score.
+_WOLD_LANGS: Dict[str, str] = {
+    "car": "Kalina",       # Galibi Carib (skeleton)
+    "arn": "Mapudungun",   # Mapudungun (stub)
+    # 2026-08 gold-hunting wave 1: remaining WOLD languages cross-referenced
+    # against the o2i spec registry. Of WOLD's other 39 languages, most
+    # already have gold from wikipron/ipadict/etc (English, Dutch, Japanese,
+    # Mandarin, Thai, Vietnamese, Indonesian, Hawaiian, White Hmong, Hausa,
+    # Lower Sorbian, Kildin Saami, ...); several have NO registered o2i spec
+    # at all (Kanuri `knc`, Zinacantan Tzotzil `tzz`, Malagasy `plt`, Old
+    # High German, Selice Romani, Sakha have no ISO/spec match here); and the
+    # rest resolve to `stub` specs with an EMPTY grapheme table (Archi,
+    # Bezhta, Manange, Ket, Oroqen, Ceq Wong, Takia, Gurindji, Yaqui,
+    # Qeqchi, Otomi, Saramaccan, Imbabura Quechua, Hup, Wichi) -- nothing for
+    # a gold row to exercise yet, same reasoning as the Lexibank/robinsonap
+    # rejection above. Only four had BOTH a non-empty grapheme table AND no
+    # existing gold row anywhere in this registry; all four smoke-checked at
+    # ~100% non-empty engine coverage on a 150-row sample:
+    "gwd": "Gawwada",        # Gawwada (skeleton), coverage 150/150
+    "irk": "Iraqw",          # Iraqw (skeleton), coverage 150/150
+    "crs": "SeychellesCreole",   # Seychelles Creole (research), coverage 150/150
+    "rif": "TarifiytBerber",     # Tarifiyt Berber (research), coverage 149/150
+}
+
+
+def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """World Loanword Database (lexibank/wold, Haspelmath & Tadmor 2009): a
+    41-language loanword-typology wordlist, CLDF ``Value`` (dictionary
+    orthography) + ``Segments`` (IPA-ish transcription). See
+    ``_WOLD_LANGS`` for the wired subset and why."""
+    return _load_lexibank("wold", _WOLD_LANGS[lang], limit)
+
+
+# ── kaikki.org (Wiktextract) ────────────────────────────────────────────────
+#
+# kaikki.org publishes machine-extracted per-language dumps of Wiktionary
+# ("Wiktextract", Ylonen 2022) as JSON-lines: one object per dictionary
+# entry, with a ``word`` (the headword as written) and a ``sounds`` list of
+# ``{"ipa": "..."}`` objects (often several transcription variants per
+# entry). Same crowd-scraped Wiktionary tier as ``wikipron`` -- this is a
+# different extraction pipeline over the same underlying source, not an
+# independent transcriber.
+#
+# 2026-08 gold-hunting wave 2: targeted at o2i specs with a non-empty
+# grapheme table and ZERO gold anywhere else in this registry. Every
+# wired language was downloaded, filtered to entries with a non-empty
+# ``sounds[].ipa``, and hand-sampled (see docs/benchmarks.md) before
+# wiring. Rejected: Tigrinya (only 28/933 entries carry ``ipa`` -- too
+# thin to be a usable gold set).
+_KAIKKI_BASE = "https://kaikki.org/dictionary/{name}/kaikki.org-dictionary-{name}.jsonl"
+
+# orthography2ipa language tag -> kaikki.org per-language dump directory name.
+_KAIKKI_LANGS: Dict[str, str] = {
+    "jv": "Javanese",   # Javanese (skeleton)
+    "su": "Sundanese",  # Sundanese (skeleton)
+    "lo": "Lao",        # Lao (skeleton)
+    "xh": "Xhosa",      # Xhosa (skeleton)
+}
+
+#: kaikki entries whose ``pos`` is one of these are dictionary metadata
+#: (single-letter/digraph "character" glosses describing an orthographic
+#: symbol, e.g. Xhosa ``hl`` -> /ɬ/), not words -- they would double-count
+#: the same grapheme fact the spec's own table already encodes, so they are
+#: excluded from the gold rather than scored as if they were lexical items.
+_KAIKKI_EXCLUDED_POS = {"character"}
+
+#: Wiktionary mixes scripts for some languages (kaikki's Javanese dump is
+#: majority Aksara Jawa entries even though the o2i ``jv`` spec is Latin-only
+#: romanization) -- restrict to the script the wired spec actually covers.
+#: ``None`` means no filter (the dump is already single-script for that
+#: language, verified during the smoke-check).
+_KAIKKI_WORD_FILTER: Dict[str, "re.Pattern[str]"] = {
+    "jv": re.compile(r"[A-Za-z'\-]+\Z"),
+}
+
+
+def load_kaikki(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """kaikki.org (Wiktextract) per-language Wiktionary extract: pairs the
+    entry ``word`` with the first non-empty ``sounds[].ipa`` transcription,
+    stripping the slash/bracket transcription-type delimiters kaikki wraps
+    around each variant. See ``_KAIKKI_LANGS`` for the wired subset and why."""
+    name = _KAIKKI_LANGS[lang]
+    word_filter = _KAIKKI_WORD_FILTER.get(lang)
+    url = _KAIKKI_BASE.format(name=name)
+    text = _fetch(url, f"kaikki_{name}.jsonl")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            entry = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if entry.get("pos") in _KAIKKI_EXCLUDED_POS:
+            continue
+        word = (entry.get("word") or "").strip()
+        if not word or " " in word:
+            continue
+        if word_filter is not None and not word_filter.match(word):
+            continue
+        ipa = None
+        for sound in entry.get("sounds") or []:
+            raw = (sound.get("ipa") or "").strip()
+            if raw:
+                ipa = raw.strip("/[]")
+                break
+        if not ipa:
+            continue
+        key = (word, ipa)
+        if key in seen:
+            continue
+        seen.add(key)
+        pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
@@ -1077,10 +1361,15 @@ def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     on Hugging Face) — 319 entries for the Barranquenho contact variety
     (``ext-PT-x-barrancos``), a Portuguese–Spanish border speech of Barrancos.
 
-    PROVENANCE — this gold is **LLM-generated** (Claude, conditioned on the
-    published *Convenção Ortográfica do Barranquenho* and descriptive research
-    on the variety), NOT produced by a phonemizer, by orthography2ipa, or by
-    any downstream o2i consumer — so scoring o2i against it is not circular.
+    PROVENANCE — the upstream dataset regrew to ~1.8k rows with a per-row
+    ``provenance_tier`` column. Rows tagged ``engine-verified-convention``
+    are o2i-derived and are EXCLUDED here (circular). The remaining
+    ``dicionario-headword`` rows take their headwords from the published
+    Dicionário de Barranquenho (2025), but the near-zero PER o2i scores
+    against them suggests their IPA column is itself o2i-aligned — treat
+    every number from this dataset as agreement, not correctness, until
+    upstream documents who produced the IPA. The row stays at the lowest
+    reliability tier and can gate nothing.
     It is nonetheless machine-generated and unverified by human phoneticians:
     it is classified at the lowest reliability tier (``machine-generated``) and
     is directional only. See docs/benchmarks.md "Provenance and reliability".
@@ -1097,7 +1386,17 @@ def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     reader = csv.DictReader(text.splitlines())
     for row in reader:
         word = (row.get("barranquenho_orthography") or "").strip()
-        ipa = (row.get("ipa_transcription") or "").strip()
+        # The dataset renamed its IPA column from ``ipa_transcription`` to
+        # ``ipa`` when it grew to 1.8k rows; accept both spellings so a
+        # fresh (uncached) fetch never silently yields zero rows again.
+        ipa = (row.get("ipa") or row.get("ipa_transcription") or "").strip()
+        # Rows tagged ``engine-verified-convention`` were produced by running
+        # o2i itself over the orthographic convention: scoring o2i against
+        # them is circular, so they are excluded from the gold. The
+        # ``navas-attested`` (human, Navas Sanchez-Elez) and
+        # ``dicionario-headword`` tiers remain scorable.
+        if (row.get("provenance_tier") or "").strip() == "engine-verified-convention":
+            continue
         if not word or not ipa:
             continue
         pairs.append((word, ipa))
@@ -1618,6 +1917,78 @@ _ARABIC_TTS_LANGS = _sentence_tts_langs(_ARABIC_TTS_DIR)
 _PORTUGUESE_TTS_LANGS = _sentence_tts_langs(_PORTUGUESE_TTS_DIR)
 
 
+# ─── gold20 — Salesteq/arabic-dialects-gold20 (Hugging Face) ────────────────
+#
+# A SIBLING gold set to ``arabic_tts`` above, published upstream as
+# ``Salesteq/arabic-dialects-gold20`` on Hugging Face: 33 lects × 20
+# sentences, same shape (vocalized ``sentence`` in, broad ``ipa`` gold),
+# plus extra columns (``ipa_o2i`` engine draft, ``features``,
+# ``fable_corrections``, ``verification``, ``judge_agreement``) this loader
+# does not need and ignores. It is registered SEPARATELY, fetched at
+# runtime (never vendored) and cached under CACHE_DIR, because the
+# maintainer asked for this specific published dataset by URL — it is not a
+# vendored copy of ``arabic_tts``, whose local TSVs have since been hand
+# re-audited and diverge from the upstream file row-by-row (see e.g. the
+# ar-EG-020 delta note in ``orthography2ipa/data/gold/arabic_tts/ar-EG.tsv``).
+#
+# PROVENANCE — semi-synthetic: every ``sentence``/``ipa`` pair was drafted
+# by an LLM (the same Claude lineage that authored the o2i Arabic dialect
+# specs this scores against — a near-circular relationship), then
+# spot-checked by a native Arabic speaker who judged the set good. That
+# spot-check is documented context, not a tier upgrade: there is still no
+# lexicon and no rule system behind the gold, so a disagreement cannot be
+# attributed to anything. Tier stays ``llm-generated`` — the same, lowest
+# tier as ``arabic_tts``/``portuguese_tts``/``barranquenho_dict``/
+# ``mirandese_dict``. It gates nothing and certifies nothing. It is
+# registered anyway because for most of these Arabic dialects no other gold
+# exists at all: this is better than the alternative of no signal, not
+# because it clears any quality bar.
+_GOLD20_ARABIC_BASE = (
+    "https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20"
+    "/resolve/main/{lang}.tsv"
+)
+# Upstream file stems that are already valid orthography2ipa lect codes
+# (verified 1:1 against orthography2ipa/data/*.json — every file here has a
+# matching registered spec; nothing was force-mapped and nothing was
+# rejected).
+_GOLD20_ARABIC_LANGS = sorted([
+    "ar", "arb",
+    "ar-AE", "ar-BH", "ar-DZ", "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-JO",
+    "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-MR", "ar-NG", "ar-OM", "ar-PS",
+    "ar-QA", "ar-SA-x-hejaz", "ar-SA-x-najd", "ar-SA-x-qassim",
+    "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya", "ar-SD", "ar-SY", "ar-TD",
+    "ar-TN", "ar-YE",
+    "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi",
+    "ar-x-peninsular",
+])
+
+
+def load_gold20_arabic(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Salesteq/arabic-dialects-gold20 (Hugging Face) — one TSV per lect, 20
+    sentences each, 33 Arabic varieties. Vocalized ``sentence`` column in,
+    broad IPA ``ipa`` column as gold; the ``ipa_o2i``/``features``/
+    ``fable_corrections``/``verification``/``judge_agreement`` columns are
+    ignored by the harness. Semi-synthetic (LLM-drafted by the same Claude
+    lineage that authored the o2i Arabic dialect specs), spot-checked good by
+    a native Arabic speaker; registered because for most of these dialects no
+    other gold exists at all. See the ``gold20_arabic`` provenance note:
+    ``llm-generated``, gates no quality decision.
+    """
+    fname = f"{lang}.tsv"
+    text = _fetch(_GOLD20_ARABIC_BASE.format(lang=lang), f"gold20_arabic_{fname}")
+    pairs: List[Tuple[str, str]] = []
+    reader = csv.DictReader(text.splitlines(), delimiter="\t")
+    for row in reader:
+        sentence = (row.get("sentence") or "").strip()
+        ipa = (row.get("ipa") or "").strip()
+        if not sentence or not ipa:
+            continue
+        pairs.append((sentence, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 _PRIMARY_SOURCES_DIR = os.path.join(
     os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
     "primary_sources",
@@ -1680,6 +2051,7 @@ def _primary_source_langs() -> List[str]:
 DATASETS = {
     "primary_sources": (load_primary_sources, _primary_source_langs()),
     "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
+    "gold20_arabic": (load_gold20_arabic, _GOLD20_ARABIC_LANGS),
     "portuguese_tts": (load_portuguese_tts, _PORTUGUESE_TTS_LANGS),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
@@ -1696,6 +2068,9 @@ DATASETS = {
     "ipa_childes": (load_ipa_childes, sorted(_IPA_CHILDES_FOLDERS)),
     "vox_communis": (load_vox_communis, sorted(_VOX_COMMUNIS_FILES)),
     "ipa_babylm": (load_ipa_babylm, ["en-US"]),
+    "northeuralex": (load_northeuralex, sorted(_NORTHEURALEX_LANGS)),
+    "wold": (load_wold, sorted(_WOLD_LANGS)),
+    "kaikki": (load_kaikki, sorted(_KAIKKI_LANGS)),
 }
 
 
@@ -1806,6 +2181,11 @@ PROVENANCE: Dict[str, str] = {
     # `llm-generated` (never `expert-human`) — directional signal only, gates
     # no quality decision (docs/quality_tiers.md).
     "arabic_tts": "llm-generated",
+    "gold20_arabic": "llm-generated",   # Salesteq/arabic-dialects-gold20 (HF):
+    # semi-synthetic (same Claude lineage that authored the o2i Arabic dialect
+    # specs — near-circular), native-speaker spot-checked but that raises
+    # confidence, not tier: no lexicon/rules behind it, so it stays the
+    # lowest, non-gating tier, same as its arabic_tts sibling.
     "portuguese_tts": "llm-generated",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
@@ -1862,6 +2242,13 @@ PROVENANCE: Dict[str, str] = {
     # anything. Lowest tier; can never gate a promotion.
     "barranquenho_dict": "llm-generated",
     "mirandese_dict": "llm-generated",
+    # Lexibank/CLDF wordlists: every row is compiled from, and cites, a
+    # published source dictionary (the CLDF `Source` column) — human
+    # lexicographers via a published notation, the same class of gold as
+    # `cmudict`/`portuguese_unified`, not a phonemizer's own output.
+    "northeuralex": "lexicon-derived",  # Dellert et al. 2020, NorthEuraLex
+    "wold": "lexicon-derived",          # Haspelmath & Tadmor 2009, WOLD
+    "kaikki": "crowd-scraped",          # kaikki.org Wiktextract (Wiktionary)
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a
