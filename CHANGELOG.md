@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.45.1a3](https://github.com/TigreGotico/orthography2ipa/tree/7.45.1a3) (2026-08-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.45.1a2...7.45.1a3)
+
+**Merged pull requests:**
+
+- data: orthography wave 4 — 10 non-African stub languages [\#729](https://github.com/TigreGotico/orthography2ipa/pull/729) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.45.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.45.1a2) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.45.1a1...7.45.1a2)
@@ -215,19 +223,19 @@
 
 ## [7.35.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.1a1) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.1a1)
 
 **Merged pull requests:**
 
 - fix: register the Gulf-of-Guinea glottolog codes missing from the snapshot [\#675](https://github.com/TigreGotico/orthography2ipa/pull/675) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.0a2)
-
 ## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.0a1)
+
+## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a2)
 
 **Merged pull requests:**
 
@@ -515,7 +523,6 @@
 - fix\(gold\): re-pin spain\_romance rows after stress-inheritance merge race [\#592](https://github.com/TigreGotico/orthography2ipa/pull/592) ([JarbasAl](https://github.com/JarbasAl))
 - feat\(gold\): Atlantic Iberian-creole TTS gold — 5 lects, 100 rows [\#591](https://github.com/TigreGotico/orthography2ipa/pull/591) ([JarbasAl](https://github.com/JarbasAl))
 - Spanish-creole gold round: cbk-zam, pap, pln \(+ Palenquero spec\) [\#590](https://github.com/TigreGotico/orthography2ipa/pull/590) ([JarbasAl](https://github.com/JarbasAl))
-- fix: inherit stress rules through the graphemes-base data edge [\#589](https://github.com/TigreGotico/orthography2ipa/pull/589) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.23.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.23.0a2) (2026-07-16)
 
