@@ -3,8 +3,14 @@
   "name": "Nenets",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
+    "ӑ": [
+      "ə"
+    ],
+    "э̇": [
+      "eː"
+    ],
     "ъ": [
       ""
     ],
@@ -12,7 +18,7 @@
       ""
     ],
     "а": [
-      "a"
+      "ɑ"
     ],
     "б": [
       "b"
@@ -99,7 +105,7 @@
       "ɨ"
     ],
     "э": [
-      "e"
+      "æ"
     ],
     "ю": [
       "ju"
@@ -117,6 +123,102 @@
       "ʔ"
     ]
   },
+  "positional_graphemes": {
+    "е": {
+      "after_consonant": [
+        "e"
+      ]
+    },
+    "ё": {
+      "after_consonant": [
+        "o"
+      ]
+    },
+    "ю": {
+      "after_consonant": [
+        "u"
+      ]
+    },
+    "я": {
+      "after_consonant": [
+        "ɑ"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "YRK_PAL_B",
+      "phonemes": ["b"],
+      "surface": "bʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_V",
+      "phonemes": ["v"],
+      "surface": "vʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_D",
+      "phonemes": ["d"],
+      "surface": "dʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_Z",
+      "phonemes": ["z"],
+      "surface": "zʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_K",
+      "phonemes": ["k"],
+      "surface": "kʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_L",
+      "phonemes": ["l"],
+      "surface": "lʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_M",
+      "phonemes": ["m"],
+      "surface": "mʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_N",
+      "phonemes": ["n"],
+      "surface": "nʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_P",
+      "phonemes": ["p"],
+      "surface": "pʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_R",
+      "phonemes": ["r"],
+      "surface": "rʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_S",
+      "phonemes": ["s"],
+      "surface": "sʲ",
+      "followed_by": "palatal"
+    },
+    {
+      "id": "YRK_PAL_T",
+      "phonemes": ["t"],
+      "surface": "tʲ",
+      "followed_by": "palatal"
+    }
+  ],
   "parent": "x-clade-ural1272",
   "ancestors": [
     {
@@ -126,7 +228,11 @@
       "notes": "Descent per Glottolog classification of Tundra Nenets (nene1249)."
     }
   ],
-  "notes": "Skeleton. Tundra Nenets is a Samoyedic language of the Uralic family, written in an extended Russian Cyrillic alphabet. Beyond the base letters the map covers Ӈ (velar nasal) and the two apostrophe letters that write the glottal-stop phonemes — the single ʼ (voiceless/nasalizable glottal stop) and the double ˮ — both rendered as ʔ; the voiced/nasalized versus voiceless glottal distinction is not separated. Palatalization signalled by the soft sign and by iotated vowels, and vowel length, are only partly recoverable and are left largely unencoded. The reference gold is a narrow transcription, so a substantial PER floor is expected against this broad letter map.",
+  "stress": {
+    "default_position": -1,
+    "stress_mark": "ˈ"
+  },
+  "notes": "Research. Tundra Nenets is a Samoyedic language of the Uralic family, written in an extended Russian Cyrillic alphabet (Salminen 1993, 1997). Beyond the base letters the map covers Ӈ (velar nasal) and the two apostrophe letters that write the glottal-stop phonemes — the single ʼ (voiceless/nasalizable glottal stop) and the double ˮ — both rendered as ʔ; the voiced/nasalized versus voiceless glottal distinction is not separated. ⟨а⟩ is phonetically back [ɑ], ⟨э⟩ is [æ], and the reduced vowel ⟨ӑ⟩ is [ə] (Salminen 1997) — the pre-upgrade map used [a]/[e] and omitted ⟨ӑ⟩ entirely, its single largest source of error. As in Russian, the iotated letters е/ё/ю/я spell a glide+vowel word-initially or after a vowel, but after a consonant they instead spell that consonant's palatalization plus the plain vowel (тибя [tʲibʲɑ], нямю [ɲɑmʲu]); this is modelled with an `after_consonant` positional override on the vowels plus `followed_by: palatal` allophone rules palatalising the preceding consonant. Word stress falls on the last syllable of the (disyllabic-dominant) stem in the sampled forms (Salminen 1997); marked here as final by default. NorthEuraLex's Value field also wraps a lexically-conditioned but currently-unpronounced final consonant in parentheses for some citation forms (e.g. ⟨няʼ(н)⟩) — this is a dictionary citation convention, not part of Nenets orthography, and the bracketed letters are left unmapped rather than modelled as if they were spelling.",
   "iso639_3": "yrk",
   "glottolog_code": null,
   "sources": [
@@ -140,6 +246,17 @@
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
       "wikipedia_url": null
+    },
+    {
+      "id": "salminen1997",
+      "author": "Salminen, Tapani",
+      "year": 1997,
+      "title": "Tundra Nenets Inflection (Mémoires de la Société Finno-Ougrienne 227)",
+      "publisher": "Suomalais-Ugrilainen Seura",
+      "url": null,
+      "pages": null,
+      "notes": "Grammar of Tundra Nenets: Cyrillic orthography, vowel qualities (а=[ɑ], э=[æ], ӑ=[ə]), iotated-vowel palatalization after consonants, and word stress.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tundra_Nenets_language"
     },
     {
       "id": "yrk_orthography",

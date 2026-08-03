@@ -68,7 +68,7 @@
       "kp"
     ],
     "r": [
-      "r"
+      "ɾ"
     ],
     "s": [
       "s"
@@ -193,7 +193,7 @@
       "ɔ"
     ],
     "r": [
-      "r"
+      "ɾ"
     ],
     "s": [
       "s"
@@ -214,7 +214,7 @@
       "j"
     ]
   },
-  "notes": "Standard Yoruba. 3-tone language: high (acute), low (grave), mid (unmarked or macron). P = /kp/ (labial-velar stop); GB = /ɡb/ (labial-velar). Ẹ = /ɛ/; Ọ = /ɔ/; Ṣ = /ʃ/. Nasal vowels marked with 'n' following vowel.",
+  "notes": "Standard Yoruba. 3-tone language: high (acute), low (grave), mid (unmarked or macron). P = /kp/ (labial-velar stop); GB = /ɡb/ (labial-velar). Ẹ = /ɛ/; Ọ = /ɔ/; Ṣ = /ʃ/. Nasal vowels marked with 'n' following vowel. /r/ is phonetically an alveolar tap [ɾ], not a trill (Akinlabi 2004:32; also Bamgboṣe, A. (1966) 'A Grammar of Yoruba', p.7). The wikipron proper-name gold used for benchmarking is written WITHOUT tone/length diacritics in its orthographic column (e.g. 'Egungun') while its IPA column is fully tone- and length-marked ('ēɡṹɡṹ'): tone/nasal-length are not recoverable from that input and are a gold-dataset convention gap, not a spec gap — see docs/languages/yo.md.",
   "sources": [
     {
       "id": "akinlabi2004",
