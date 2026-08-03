@@ -3,7 +3,7 @@
   "name": "Dargwa",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": ["a"],
     "б": ["b"],

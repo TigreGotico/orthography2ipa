@@ -959,6 +959,29 @@ _NORTHEURALEX_LANGS: Dict[str, str] = {
     "niv": "niv",   # Nivkh (skeleton)
     "ale": "ale",   # Aleut (skeleton)
     "ain": "ain",   # Hokkaido Ainu (stub)
+    # 2026-08 registration wave: 9 languages with ZERO gold anywhere and a
+    # non-empty grapheme table, each verified against cldf/languages.csv
+    # (not a naive ISO 639-3 lookup — two of these need a code translation,
+    # see below) and smoke-checked at 100/100 non-empty engine output:
+    "udm": "udm",   # Udmurt (research)
+    "ady": "ady",   # Adyghe (research)
+    # o2i `av` is the macrolanguage code; NEL's own Language_ID for Avar is
+    # its ISO 639-3 code "ava" (languages.csv: avar1256, "Avar"), not "av".
+    "av": "ava",    # Avar (research)
+    "lbe": "lbe",   # Lak (research)
+    # NEL's `dar` row is glottocode darg1241, "North-Central Dargwa" — the
+    # same Akusha-based variety the o2i `dar` spec targets ("the literary
+    # standard is based on the Akusha dialect ... this spec targets the
+    # literary Akusha-based standard only"), not a different Dargwa lect.
+    # This gold row completes `dar`'s promotion from `skeleton` to `research`
+    # (sources + a documented stress exemption were already in place).
+    "dar": "dar",   # Dargwa (research, promoted by this wave)
+    "lez": "lez",   # Lezgian (research)
+    # o2i `lv` is the ISO 639-1 code; NEL's own Language_ID for Latvian is
+    # its ISO 639-3 code "lav" (languages.csv: latv1249, "Latvian").
+    "lv": "lav",    # Latvian (research)
+    "smn": "smn",   # Inari Sami (research)
+    "vep": "vep",   # Veps (research)
 }
 
 
