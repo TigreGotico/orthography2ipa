@@ -94,6 +94,20 @@ _ALIASES: Dict[str, str] = {
     # collision as bxr/diq above.
     "oji": "oji",
     "mnk": "mnk",
+    # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
+    # macro=True standardisation collapses into its macrolanguage tag ``ks``
+    # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``
+    # already carries a Latin-transliteration research-tier spec; ``kas``
+    # is a distinct, separately-cited spec for the Perso-Arabic native
+    # script. Pin it to itself so the macro-collapse step does not shadow it.
+    "kas": "kas",
+    # ``bcc`` (Southern Balochi) is an ISO 639-3 individual code that
+    # langcodes' macro=True standardisation collapses into its
+    # macrolanguage tag ``bal`` (Balochi) — same collision class as
+    # bxr/diq above. ``bal`` is a newly-added macrolanguage-level spec;
+    # ``bcc`` is a distinct, separately-cited individual-variety spec.
+    # Pin it to itself so the macro-collapse step does not shadow it.
+    "bcc": "bcc",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
