@@ -1,141 +1,153 @@
 {
-  "code": "slr",
-  "name": "Salar",
-  "script": "Latin",
-  "script_type": "alphabet",
-  "quality": "research",
-  "graphemes": {
-    "a": [
-      "ɑ"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "ü": [
-      "y"
-    ],
-    "ö": [
-      "ø"
-    ],
-    "ı": [
-      "ɯ"
-    ],
-    "b": [
-      "b"
-    ],
-    "c": [
-      "dʒ"
-    ],
-    "ç": [
-      "tʃ"
-    ],
-    "d": [
-      "d"
-    ],
-    "f": [
-      "f"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "h": [
-      "h"
-    ],
-    "j": [
-      "ʒ"
-    ],
-    "k": [
-      "k"
-    ],
-    "l": [
-      "l"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "ñ": [
-      "ŋ"
-    ],
-    "p": [
-      "p"
-    ],
-    "q": [
-      "q"
-    ],
-    "r": [
-      "r"
-    ],
-    "s": [
-      "s"
-    ],
-    "ş": [
-      "ʃ"
-    ],
-    "t": [
-      "t"
-    ],
-    "v": [
-      "v"
-    ],
-    "w": [
-      "w"
-    ],
-    "x": [
-      "x"
-    ],
-    "y": [
-      "j"
-    ],
-    "z": [
-      "z"
-    ]
-  },
-  "parent": "trk",
-  "ancestors": [
-    {
-      "code": "trk",
-      "role": "parent",
-      "weight": 1.0,
-      "notes": "Descent from Common Turkic (Oghuz branch); Dwyer (2007)"
-    }
+ "code": "slr",
+ "name": "Salar",
+ "script": "Latin",
+ "script_type": "alphabet",
+ "quality": "research",
+ "graphemes": {
+  "a": [
+   "ɑ"
   ],
-  "notes": "Skeleton. Salar (Oghuz Turkic; Qinghai/Gansu, China), in the TIP Latin orthography. Retains Oghuz vowel harmony; heavy Chinese and Amdo Tibetan contact (unencoded adstrate). ⟨c⟩=/ʝ/, ⟨q⟩=/q/ per the samples. CORRECTION while citing: the inherited grapheme table mapped \"c\" to ʰ [ʝ], inconsistent with its own \"ç\"=tʃ entry; the Salar Latin alphabet (Dwyer 2007) follows the Turkish/Uyghur c/ç pattern where ç=/tʃ/ and c is its voiced counterpart /dʒ/ -- fixed here.",
-  "iso639_3": "slr",
-  "glottolog_code": null,
-  "sources": [
-    {
-      "id": "dwyer2007",
-      "author": "Dwyer, Arienne M.",
-      "year": 2007,
-      "title": "Salar: A Study in Inner Asian Language Contact Processes, Part I: Phonology",
-      "publisher": "Harrassowitz Verlag",
-      "url": null,
-      "pages": null,
-      "notes": "Phonology of Salar and its contact history.",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Salar_language"
-    }
+  "e": [
+   "e"
   ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Salar_language"
+  "i": [
+   "i"
   ],
-  "stress": {
-    "default_position": -1,
-    "final_stress_endings": [],
-    "penult_stress_endings": [],
-    "marked_vowels": [],
-    "stress_mark": "ˈ",
-    "notes": "Salar, like the other Turkic languages modeled in this project (Chuvash, Tatar, Bashkir), has default word-final stress, with some suffixes and loanwords carrying non-final stress not modeled here. Source: Dwyer, Arienne M. (2007), Salar: A Study in Inner Asian Language Contact Processes, ch. on phonology."
+  "o": [
+   "o"
+  ],
+  "u": [
+   "u"
+  ],
+  "ü": [
+   "y"
+  ],
+  "ö": [
+   "ø"
+  ],
+  "ı": [
+   "ɯ"
+  ],
+  "b": [
+   "b"
+  ],
+  "c": [
+   "dʒ"
+  ],
+  "ç": [
+   "tʃ"
+  ],
+  "d": [
+   "d"
+  ],
+  "f": [
+   "f"
+  ],
+  "g": [
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
+  "j": [
+   "ʒ"
+  ],
+  "k": [
+   "k"
+  ],
+  "l": [
+   "l"
+  ],
+  "m": [
+   "m"
+  ],
+  "n": [
+   "n"
+  ],
+  "ñ": [
+   "ŋ"
+  ],
+  "p": [
+   "p"
+  ],
+  "q": [
+   "q"
+  ],
+  "r": [
+   "r"
+  ],
+  "s": [
+   "s"
+  ],
+  "ş": [
+   "ʃ"
+  ],
+  "t": [
+   "t"
+  ],
+  "v": [
+   "v"
+  ],
+  "w": [
+   "w"
+  ],
+  "x": [
+   "x"
+  ],
+  "y": [
+   "j"
+  ],
+  "z": [
+   "z"
+  ]
+ },
+ "parent": "trk",
+ "ancestors": [
+  {
+   "code": "trk",
+   "role": "parent",
+   "weight": 1.0,
+   "notes": "Descent from Common Turkic (Oghuz branch); Dwyer (2007)"
   }
+ ],
+ "notes": "Skeleton. Salar (Oghuz Turkic; Qinghai/Gansu, China), in the TIP Latin orthography. Retains Oghuz vowel harmony; heavy Chinese and Amdo Tibetan contact (unencoded adstrate). ⟨c⟩=/ʝ/, ⟨q⟩=/q/ per the samples. CORRECTION while citing: the inherited grapheme table mapped \"c\" to ʰ [ʝ], inconsistent with its own \"ç\"=tʃ entry; the Salar Latin alphabet (Dwyer 2007) follows the Turkish/Uyghur c/ç pattern where ç=/tʃ/ and c is its voiced counterpart /dʒ/ -- fixed here.",
+ "iso639_3": "slr",
+ "glottolog_code": null,
+ "sources": [
+  {
+   "id": "dwyer2007",
+   "author": "Dwyer, Arienne M.",
+   "year": 2007,
+   "title": "Salar: A Study in Inner Asian Language Contact Processes, Part I: Phonology",
+   "publisher": "Harrassowitz Verlag",
+   "url": null,
+   "pages": null,
+   "notes": "Phonology of Salar and its contact history.",
+   "wikipedia_url": "https://en.wikipedia.org/wiki/Salar_language"
+  }
+ ],
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Salar_language"
+ ],
+ "stress": {
+  "default_position": -1,
+  "final_stress_endings": [],
+  "penult_stress_endings": [],
+  "marked_vowels": [],
+  "stress_mark": "ˈ",
+  "notes": "Salar, like the other Turkic languages modeled in this project (Chuvash, Tatar, Bashkir), has default word-final stress, with some suffixes and loanwords carrying non-final stress not modeled here. Source: Dwyer, Arienne M. (2007), Salar: A Study in Inner Asian Language Contact Processes, ch. on phonology."
+ },
+ "allophone_rules": [
+  {
+   "id": "SLR_DZ_INTERVOCALIC_LENITION",
+   "surface": "ʝ",
+   "preceded_by": "vowel",
+   "followed_by": "vowel",
+   "notes": "Intervocalic lenition of /dʒ/ to a voiced palatal fricative [ʝ]. Dwyer 2007 (Salar: A Study in Inner Asian Language Contact Processes) describes lenition of voiced obstruents between vowels; the WikiPron gold consistently shows [ʝ] exactly in intervocalic position (acü, baca, bicin) while the phoneme remains /dʒ/ per the Turkic-pattern orthography.",
+   "phonemes": [
+    "dʒ"
+   ]
+  }
+ ]
 }
