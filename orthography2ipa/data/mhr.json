@@ -4,7 +4,15 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "stub",
-  "parent": "urj",
+  "parent": "chm",
+  "ancestors": [
+    {
+      "code": "chm",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Mari macrolanguage node (ISO 639-3 chm); Eastern/Meadow Mari is one of its two individual languages."
+    }
+  ],
   "graphemes": {},
   "allophones": {},
   "notes": "Meadow Mari / Eastern Mari (олык марий) — Uralic (Mari) language of the Mari El Republic, Russia. Written in a Cyrillic-based Mari alphabet, i.e. the Russian alphabet plus ҥ, ӧ, ӱ (and ӓ in Hill Mari). GRAPHEME INVENTORY NOT YET SPECIFIED: reliable mapping requires modelling the palatalisation/iotation conventions inherited from Cyrillic and the reduced vowel ⟨ы⟩, plus the language's non-initial stress placement. INPUT CONTRACT: input is expected in the Cyrillic Meadow Mari orthography.",
