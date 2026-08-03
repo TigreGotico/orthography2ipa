@@ -3,215 +3,9 @@
   "name": "Wu Chinese",
   "script": "Han",
   "script_type": "logographic",
-  "quality": "skeleton",
-  "graphemes": {
-    "p": [
-      "p"
-    ],
-    "ph": [
-      "pʰ"
-    ],
-    "b": [
-      "b"
-    ],
-    "m": [
-      "m"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "t": [
-      "t"
-    ],
-    "th": [
-      "tʰ"
-    ],
-    "d": [
-      "d"
-    ],
-    "n": [
-      "n"
-    ],
-    "l": [
-      "l"
-    ],
-    "k": [
-      "k"
-    ],
-    "kh": [
-      "kʰ"
-    ],
-    "g": [
-      "ɡ"
-    ],
-    "ng": [
-      "ŋ"
-    ],
-    "h": [
-      "h"
-    ],
-    "c": [
-      "ts"
-    ],
-    "ch": [
-      "tsʰ"
-    ],
-    "z": [
-      "dz"
-    ],
-    "s": [
-      "s"
-    ],
-    "zh": [
-      "ʑ"
-    ],
-    "gn": [
-      "ɲ"
-    ],
-    "y": [
-      "j"
-    ],
-    "w": [
-      "w"
-    ],
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "eu": [
-      "ɤ"
-    ],
-    "ae": [
-      "ɛ"
-    ],
-    "an": [
-      "ã"
-    ],
-    "en": [
-      "ən"
-    ],
-    "on": [
-      "oŋ"
-    ]
-  },
-  "allophones": {
-    "p": [
-      "p"
-    ],
-    "pʰ": [
-      "pʰ"
-    ],
-    "b": [
-      "b"
-    ],
-    "m": [
-      "m"
-    ],
-    "f": [
-      "f"
-    ],
-    "v": [
-      "v"
-    ],
-    "t": [
-      "t"
-    ],
-    "tʰ": [
-      "tʰ"
-    ],
-    "d": [
-      "d"
-    ],
-    "n": [
-      "n"
-    ],
-    "l": [
-      "l"
-    ],
-    "k": [
-      "k"
-    ],
-    "kʰ": [
-      "kʰ"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "ŋ": [
-      "ŋ"
-    ],
-    "h": [
-      "h"
-    ],
-    "ts": [
-      "ts"
-    ],
-    "tsʰ": [
-      "tsʰ"
-    ],
-    "dz": [
-      "dz"
-    ],
-    "s": [
-      "s"
-    ],
-    "ʑ": [
-      "ʑ"
-    ],
-    "ɲ": [
-      "ɲ"
-    ],
-    "j": [
-      "j"
-    ],
-    "w": [
-      "w"
-    ],
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "ɤ": [
-      "ɤ"
-    ],
-    "ɛ": [
-      "ɛ"
-    ],
-    "ã": [
-      "ã"
-    ],
-    "ən": [
-      "ən"
-    ],
-    "oŋ": [
-      "oŋ"
-    ]
-  },
+  "quality": "stub",
+  "graphemes": {},
+  "allophones": {},
   "parent": "ltc",
   "ancestors": [
     {
@@ -227,7 +21,7 @@
       "notes": "Old Chinese: deeper Sinitic ancestor."
     }
   ],
-  "notes": "Wu (Shanghainese, Suzhounese, …) romanised input contract: Wugniu (吳語學堂 scheme), built on Qian Nairong's 2007 Shanghainese phonology. Wu is distinctive for a three-way stop/affricate voicing contrast (voiceless unaspirated / voiceless aspirated / voiced, e.g. p/ph/b), each series a separate cited grapheme (test 2: one laryngeal-setting segment per letter). gn spells the palatal nasal /ɲ/ (test 1: not derivable from g+n, which the language spells differently). Wu tone is lexical with pervasive tone sandhi across whole prosodic words that this skeleton does not yet encode (a sandhi_rules gap, not a stress gap: the stress schema itself does not apply, tonal-language exemption per quality_tiers.md). No WikiPron gold exists in this romanisation (WikiPron's wuu_hani file is Han-character keyed), so the tier stays at skeleton.",
+  "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Wu (Shanghainese, Suzhounese, …) is written with Chinese characters (Han script). No logographic character-to-phoneme map is claimed here: Chinese characters do not encode pronunciation systematically, so a Han-script G2P for this variety would need either a full character-reading lexicon or a romanised input. INPUT CONTRACT: this spec expects a Wu romanisation as input, not Han characters — Wugniu (吳語學堂) romanisation, or the Qian Nairong / Shanghainese Latin schemes — in the same way that `zh` expects Hanyu Pinyin, `nan` expects Pe̍h-ōe-jī / Tâi-lô, Cantonese expects Jyutping, Hakka expects Pha̍k-fa-sṳ and Mindong expects Bàng-uâ-cê. Wu is distinctive for keeping a three-way voicing contrast in its initials and for tone sandhi spanning whole prosodic words; neither is recoverable from Han characters. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode wuch1236), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "wuu",
   "glottolog_code": "wuch1236",
   "wikidata_qid": "Q34290",
@@ -334,11 +128,5 @@
     "longitude": 119.682,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Wu Chinese."
-  },
-  "orthography_standard": {
-    "name": "Wugniu",
-    "authority": "吳語學堂",
-    "year": null,
-    "url": null
   }
 }

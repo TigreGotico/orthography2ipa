@@ -471,7 +471,6 @@ _WIKIPRON_FILES = {
     "dz":         "dzo_tibt_broad.tsv",  # Dzongkha, N=243 (base-letter table only, see data/dz.json notes)
     # --- orthography wave 6: fresh cited grapheme maps wired to their
     #     upstream WikiPron gold. Scores are honest first-pass baselines.
-    "yue":        "yue_latn_standard_broad.tsv",  # Cantonese, Jyutping-romanised, N~546
     "skr":        "skr_arab_broad.tsv",           # Saraiki, Shahmukhi, N~348
 }
 _MIRANDESE_URL = (
