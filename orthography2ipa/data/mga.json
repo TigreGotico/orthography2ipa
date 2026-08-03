@@ -3,7 +3,7 @@
   "name": "Middle Irish (900-1200)",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "x"
@@ -93,7 +93,7 @@
       "notes": "Descent per Glottolog classification of Middle Irish (10-12th century) (midd1360)."
     }
   ],
-  "notes": "Skeleton. Goidelic (Insular Celtic) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels (with the acute marking length), the plain consonant letters, and the lenition digraphs ch/th/ph. The pervasive broad/slender (velarised vs palatalised) consonant contrast is not orthographically recoverable and is left unencoded; consonant lenition was written inconsistently in the manuscripts and only the h-digraphs are captured. Reconstructed phonetic values carry appreciable uncertainty, so a substantial PER floor is expected.",
+  "notes": "Research. Goidelic (Insular Celtic) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels (with the acute marking length), the plain consonant letters, and the lenition digraphs ch/th/ph. The pervasive broad/slender (velarised vs palatalised) consonant contrast is not orthographically recoverable and is left unencoded; consonant lenition was written inconsistently in the manuscripts and only the h-digraphs are captured. Reconstructed phonetic values carry appreciable uncertainty, so a substantial PER floor is expected. Grapheme table checked against Thurneysen (1946): no discrepancy found.",
   "iso639_3": "mga",
   "glottolog_code": null,
   "sources": [
@@ -109,6 +109,17 @@
       "wikipedia_url": null
     },
     {
+      "id": "thurneysen1946",
+      "author": "Thurneysen, Rudolf (trans. D. A. Binchy & Osborn Bergin)",
+      "year": 1946,
+      "title": "A Grammar of Old Irish",
+      "publisher": "Dublin Institute for Advanced Studies",
+      "url": null,
+      "pages": null,
+      "notes": "Standard reference grammar covering Old and Middle Irish; used to verify the grapheme table and to source the fixed word-initial stress rule (the Goidelic pattern, contrasting with Brittonic's fixed penult) encoded in this spec's `stress` block. Already used for `sga` (Old Irish) in the prior sources wave.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Middle_Irish"
+    },
+    {
       "id": "mga_wikipedia",
       "author": "Wikipedia contributors",
       "year": 2024,
@@ -122,5 +133,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Middle_Irish"
-  ]
+  ],
+  "stress": {
+    "default_position": 1,
+    "quantity_sensitive": false,
+    "stress_mark": "ˈ",
+    "source": "rules",
+    "notes": "Middle Irish, like Old Irish, has fixed word-initial stress (Thurneysen 1946, A Grammar of Old Irish): the first syllable of the word is stressed, with pretonic preverbal particles being proclitic (unstressed) rather than shifting the accent. `default_position=1` models the default case; proclitic preverb sequences are not separately handled for lack of a closed enumerable list applicable at the grapheme level."
+  }
 }

@@ -4,7 +4,7 @@
 
 ```
 orthography2ipa/
-├── __init__.py          # Public API — re-exports everything
+├── __init__.py          # Public API: re-exports everything
 ├── version.py           # VERSION_STR source of truth
 ├── types.py             # Core data types: LanguageSpec, Ancestor, AncestorRole, etc.
 ├── registry.py          # Language registry with lazy loading
@@ -19,7 +19,7 @@ orthography2ipa/
 ├── cli.py               # Command-line interface (entry point)
 ├── plugins/             # Concrete G2P plugin implementations (e.g. Arabic)
 │
-└── data/                # 749 JSON language spec files
+└── data/                # JSON language spec files, one per language/clade (see docs/registry.md for the live count)
     ├── SCHEMA.md        # JSON schema reference
     ├── en-GB.json
     ├── es-ES.json
@@ -37,70 +37,70 @@ orthography2ipa/
 
 ### `types.py`
 
-Defines the immutable data model — `types.py:1-634`:
+Defines the immutable data model: `types.py:1-634`:
 
-- `Grapheme2IPA = Dict[str, List[str]]` — orthographic key → list of IPA candidates — `types.py:20`
-- `AllophoneMap = Dict[str, List[str]]` — phoneme → list of surface realisations — `types.py:23`
-- `PositionalGrapheme2IPA` — grapheme → `{GraphemePosition: [IPA]}` — `types.py:26`
-- `GraphemePosition` — enum of 21 positional contexts — `types.py:34`
-- `AncestorRole` — enum of relationship types (PARENT, SUBSTRATE, etc.) — `types.py:142`
-- `QualityTier` — data maturity enum (STUB, SKELETON, RESEARCH, PRODUCTION) — `types.py:174`
-- `ScriptType` — writing system typology enum — `types.py:194`
-- `LinguisticSource` — bibliographic reference dataclass — `types.py:258`
-- `SandhiRule` — cross-word phonological rule dataclass — `types.py:300`
-- `Ancestor` — frozen dataclass linking a code, role, and weight — `types.py:334`
-- `LanguageSpec` — frozen dataclass holding all phonological data for one variety — `types.py:379`
+- `Grapheme2IPA = Dict[str, List[str]]`: orthographic key → list of IPA candidates: `types.py:20`
+- `AllophoneMap = Dict[str, List[str]]`: phoneme → list of surface realisations: `types.py:23`
+- `PositionalGrapheme2IPA`: grapheme → `{GraphemePosition: [IPA]}`: `types.py:26`
+- `GraphemePosition`: enum of 21 positional contexts: `types.py:34`
+- `AncestorRole`: enum of relationship types (PARENT, SUBSTRATE, etc.): `types.py:142`
+- `QualityTier`: data maturity enum (STUB, SKELETON, RESEARCH, PRODUCTION): `types.py:174`
+- `ScriptType`: writing system typology enum: `types.py:194`
+- `LinguisticSource`: bibliographic reference dataclass: `types.py:258`
+- `SandhiRule`: cross-word phonological rule dataclass: `types.py:300`
+- `Ancestor`: frozen dataclass linking a code, role, and weight: `types.py:334`
+- `LanguageSpec`: frozen dataclass holding all phonological data for one variety: `types.py:379`
 
 All types are **frozen** (immutable) to allow safe caching.
 
 ### `registry.py`
 
-Manages language code resolution and lazy loading — `registry.py:1-130`:
+Manages language code resolution and lazy loading: `registry.py:1-130`:
 
-- `_ALIASES` — ISO 639-3 → BCP-47 alias table — `registry.py:18-40`
-- `_resolve_code(code)` — normalises aliases using the table and optional `langcodes` library — `registry.py:49`
-- `get(code)` — resolves aliases, loads JSON spec on demand, caches the `LanguageSpec` — `registry.py:68`
-- `available_codes()` — all registered codes (from JSON files) — `registry.py:85`
-- `available_families()` — codes grouped by language family — `registry.py:120`
-- `get_plugin(code)` — return a G2P plugin for the code, if registered — `registry.py:111`
+- `_ALIASES`: ISO 639-3 → BCP-47 alias table: `registry.py:18-40`
+- `_resolve_code(code)`: normalises aliases using the table and optional `langcodes` library: `registry.py:49`
+- `get(code)`: resolves aliases, loads JSON spec on demand, caches the `LanguageSpec`: `registry.py:68`
+- `available_codes()`: all registered codes (from JSON files): `registry.py:85`
+- `available_families()`: codes grouped by language family: `registry.py:120`
+- `get_plugin(code)`: return a G2P plugin for the code, if registered: `registry.py:111`
 
 Lazy loading means importing `orthography2ipa` is essentially free; only requested languages are loaded.
 
 ### `json_loader.py`
 
-Loads `LanguageSpec` objects from JSON files under `data/` — `json_loader.py:1-295`:
+Loads `LanguageSpec` objects from JSON files under `data/`: `json_loader.py:1-295`:
 
-- `load_json_spec(code)` — load and resolve a single spec with inheritance — `json_loader.py:87`
-- `load_all_json_specs()` — load all specs from the data directory — `json_loader.py:250`
-- `available_json_codes()` — sorted list of all codes with JSON data files — `json_loader.py:270`
+- `load_json_spec(code)`: load and resolve a single spec with inheritance: `json_loader.py:87`
+- `load_all_json_specs()`: load all specs from the data directory: `json_loader.py:250`
+- `available_json_codes()`: sorted list of all codes with JSON data files: `json_loader.py:270`
 
 Inheritance is resolved via `graphemes_base`, `allophones_base`, and `positional_graphemes_base` fields in JSON.
 
 ### `phonetok.py`
 
-A language-agnostic tokenizer that works entirely from a `LanguageSpec` — `phonetok.py:1-400+`:
+A language-agnostic tokenizer that works entirely from a `LanguageSpec`: `phonetok.py:1-400+`:
 
-- `TokenKind` — enum: GRAPHEME, WHITESPACE, PUNCTUATION, DIGIT, UNKNOWN, BOS, EOS — `phonetok.py:66`
-- `Token` — immutable dataclass representing one tokenizer output unit — `phonetok.py:92`
-- `IPAPath` — a scored candidate IPA transcription — `phonetok.py:124`
-- `_GraphemeTrie` — prefix trie built from `spec.graphemes` for O(k) maximal-munch matching — `phonetok.py:188`
-- `GraphemeContext` — a context-aware view over one GRAPHEME token: word-local neighbours (`prev`/`next`/`at`/`neighbors`), character `span`, and class predicates (`is_vowel`/`is_consonant`/`is_front`/`is_back`) delegating to `vowels.py`
-- `TokenSequence` — an indexed view returned by `tokenize_with_context()` wrapping every GRAPHEME token in a `GraphemeContext`
-- `PhonetokTokenizer` — the main class; wraps the trie — `phonetok.py:225`
-  - `tokenize(text)` — produces `List[Token]`
-  - `tokenize_with_context(text)` — produces a `TokenSequence` of context-aware grapheme views
-  - `ipa_beam(text, beam_width)` — beam search over all IPA paths
-  - `ipa_expand(tokens, include_allophones)` — expand tokens into IPA paths with optional allophone substitution
+- `TokenKind`: enum: GRAPHEME, WHITESPACE, PUNCTUATION, DIGIT, UNKNOWN, BOS, EOS: `phonetok.py:66`
+- `Token`: immutable dataclass representing one tokenizer output unit: `phonetok.py:92`
+- `IPAPath`: a scored candidate IPA transcription: `phonetok.py:124`
+- `_GraphemeTrie`: prefix trie built from `spec.graphemes` for O(k) maximal-munch matching: `phonetok.py:188`
+- `GraphemeContext`: a context-aware view over one GRAPHEME token: word-local neighbours (`prev`/`next`/`at`/`neighbors`), character `span`, and class predicates (`is_vowel`/`is_consonant`/`is_front`/`is_back`) delegating to `vowels.py`
+- `TokenSequence`: an indexed view returned by `tokenize_with_context()` wrapping every GRAPHEME token in a `GraphemeContext`
+- `PhonetokTokenizer`: the main class; wraps the trie: `phonetok.py:225`
+  - `tokenize(text)`: produces `List[Token]`
+  - `tokenize_with_context(text)`: produces a `TokenSequence` of context-aware grapheme views
+  - `ipa_beam(text, beam_width)`: beam search over all IPA paths
+  - `ipa_expand(tokens, include_allophones)`: expand tokens into IPA paths with optional allophone substitution
 
 The context model (`GraphemeContext` / `TokenSequence`) is the shared substrate
 on which Workstream B builds the pronunciation lattice and the downstream
 rescorer seam. It gives specialized phonemizers a single, accent-aware token
-context — neighbour access, spans and phonological-class predicates — to build
+context: neighbour access, spans and phonological-class predicates: to build
 on instead of re-rolling per-consumer index arithmetic and private vowel sets.
 
 ### `distance.py`
 
-The relational axes — one function per question, never collapsed into a single
+The relational axes: one function per question, never collapsed into a single
 similarity number. Built on the 21-feature SPE/IPA system. See
 [distance.md](distance.md) for the full catalogue and each axis's caveats.
 
@@ -115,7 +115,7 @@ Phonological:
 - `tone_distance(spec_a, spec_b)` → tone-inventory distance
 - `phoneme_coverage(spec_native, spec_target)` → asymmetric transfer coverage
 
-Orthographic — reading vs spelling, which are inverses of each other:
+Orthographic: reading vs spelling, which are inverses of each other:
 
 - `grapheme_divergence(spec_a, spec_b)` → `GraphemeDivergence` (same text → same sounds?)
 - `spelling_divergence(spec_a, spec_b)` → `SpellingDivergence` (same sounds → same spelling?)
@@ -136,58 +136,57 @@ Combined (when a caller really does want one number):
 
 ### `feats.py`
 
-Distinctive-feature matrix for IPA phones — `feats.py:1-683`:
+Distinctive-feature matrix for IPA phones: `feats.py:1-683`:
 
 Adapted from [PyPhone](https://github.com/lingz/pyphone) (MIT). Encodes a 21-feature SPE/IPA system. Used internally by `distance.py`.
 
-- `vectorize_phones(phones)` — convert IPA string to feature vector — `feats.py:470`
-- `is_vowel_phone(phone)` — check if a phone is a vowel — `feats.py:568`
-- `phonetic_distance(phone_a, phone_b)` — segment-level distance — `feats.py:582`
+- `vectorize_phones(phones)`: convert IPA string to feature vector: `feats.py:470`
+- `is_vowel_phone(phone)`: check if a phone is a vowel: `feats.py:568`
+- `phonetic_distance(phone_a, phone_b)`: segment-level distance: `feats.py:582`
 
 ### `transforms.py`
 
-IPA dialect transform system for Portuguese and Ibero-Romance — `transforms.py:1-1000+`:
+IPA dialect transform system for Portuguese and Ibero-Romance: `transforms.py:1-1000+`:
 
-- `IPARule` — single IPA rewrite rule — `transforms.py:56`
-- `IPAChainShift` — ordered chain of vowel/consonant shifts — `transforms.py:79`
-- `IPALexicalRule` — orthography-conditioned IPA rule — `transforms.py:119`
-- `DialectTransform` — named bundle of rules for a dialect — `transforms.py:145`
-- `debias_lisbon(ipa, ortho)` — de-bias eSpeak PT-PT output to neutral standard — `transforms.py:168`
-- `apply_transform(ipa, profile, ortho)` — apply a dialect profile — `transforms.py:855`
-- `available_profiles()` — list registered dialect profile names — `transforms.py:938`
-- `load_clup_profile(path)` — load a CLUP dialect profile — `transforms.py:972`
-- `DIALECT_PROFILES` — dict of built-in profiles (Northern PT, Galician, Leonese, etc.)
+- `IPARule`: single IPA rewrite rule: `transforms.py:56`
+- `IPAChainShift`: ordered chain of vowel/consonant shifts: `transforms.py:79`
+- `IPALexicalRule`: orthography-conditioned IPA rule: `transforms.py:119`
+- `DialectTransform`: named bundle of rules for a dialect: `transforms.py:145`
+- `debias_lisbon(ipa, ortho)`: de-bias eSpeak PT-PT output to neutral standard: `transforms.py:168`
+- `apply_transform(ipa, profile, ortho)`: apply a dialect profile: `transforms.py:855`
+- `available_profiles()`: list registered dialect profile names: `transforms.py:938`
+- `load_clup_profile(path)`: load a CLUP dialect profile: `transforms.py:972`
+- `DIALECT_PROFILES`: dict of built-in profiles (Northern PT, Galician, Leonese, etc.)
 
 ### `script_distance.py`
 
-Typological distance between writing systems — `script_distance.py:1-250`:
+Typological distance between writing systems: `script_distance.py:1-250`:
 
-- `ScriptFeatures` — typological feature bundle for a writing system — `script_distance.py:30`
-- `SCRIPT_REGISTRY` — built-in registry of script feature bundles
-- `script_distance(a, b)` → float distance between two `ScriptFeatures` — `script_distance.py:191`
-- `script_distance_by_name(a, b)` → float distance by script name strings — `script_distance.py:245`
+- `ScriptFeatures`: typological feature bundle for a writing system: `script_distance.py:30`
+- `SCRIPT_REGISTRY`: built-in registry of script feature bundles
+- `script_distance(a, b)` → float distance between two `ScriptFeatures`: `script_distance.py:191`
+- `script_distance_by_name(a, b)` → float distance by script name strings: `script_distance.py:245`
 
 ### `sandhi.py`
 
-Cross-word-boundary phonological rule engine — `sandhi.py:1-77`:
+Cross-word-boundary phonological rule engine: `sandhi.py:1-77`:
 
-- `SandhiEngine` — applies `SandhiRule` objects across word boundaries — `sandhi.py:32`
+- `SandhiEngine`: applies `SandhiRule` objects across word boundaries: `sandhi.py:32`
 
 ### `lm.py`
 
-Phoneme n-gram language model utilities — `lm.py:1-116`:
+Phoneme n-gram language model utilities: `lm.py:1-116`:
 
-- `phoneme_embeddings(spec)` — 21-feature vectors for all phonemes — `lm.py:22`
-- `build_ngram_lm(words, spec, n)` — build n-gram LM over IPA sequences — `lm.py:49`
-- `perplexity(lm, test_words, spec, n)` — evaluate perplexity — `lm.py:79`
+- `phoneme_embeddings(spec)`: 21-feature vectors for all phonemes: `lm.py:22`
+- `build_ngram_lm(words, spec, n)`: build n-gram LM over IPA sequences: `lm.py:49`
+- `perplexity(lm, test_words, spec, n)`: evaluate perplexity: `lm.py:79`
 
 ### Downstream engines
 
 orthography2ipa is not an engine plugin host. Nothing here discovers or calls a
 "G2P plugin", and the abstract base class that once implied otherwise is gone.
 
-Rich, language-specific engines — **arbtok** (Arabic), **tugaphone** (Portuguese) —
-are **consumers** of this library. They read its spec data, drive its lattice and
+Rich, language-specific engines: **arbtok** (Arabic), **tugaphone** (Portuguese): are **consumers** of this library. They read its spec data, drive its lattice and
 layer their own rescorers on top. That is the opposite direction from a plugin,
 and conflating the two is what made "the plugin system" impossible to reason
 about.
@@ -195,19 +194,19 @@ about.
 What *is* pluggable is a **step**: see `syllabifier_plugin.py` and
 `rescorer_plugin.py`, and the contracts in `conformance.py`.
 
-`WordContext` — the cross-word context an engine passes down — lives in
+`WordContext`: the cross-word context an engine passes down: lives in
 `sentence.py`, with the rest of the cross-word machinery.
 
 
 ### `syllabifier_plugin.py`
 
-Abstract interface for per-language syllabifiers — `syllabifier_plugin.py:1-51`:
+Abstract interface for per-language syllabifiers: `syllabifier_plugin.py:1-51`:
 
-- `SyllabifierPlugin` — abstract base class with `syllabify(word, lang)`, `language_codes`, and `priority` — `syllabifier_plugin.py:28`
+- `SyllabifierPlugin`: abstract base class with `syllabify(word, lang)`, `language_codes`, and `priority`: `syllabifier_plugin.py:28`
 
 The bundled `stress.syllabify` is a naive vowel-group splitter. Languages with a real syllabifier ship it as a plugin (e.g. `silabificador` for Portuguese) and stress detection picks it up automatically.
 
-Plugins are discovered lazily via `importlib.metadata` entry points in the `orthography2ipa.syllabify` group — `registry._discover_syllabifiers` — `registry.py:156`. Discovery runs once, on first call to `registry.get_syllabifier(code)`, and the result is cached at module scope. With no plugins installed, discovery returns an empty mapping and `get_syllabifier()` returns `None` for every code — this package ships no entry points of its own.
+Plugins are discovered lazily via `importlib.metadata` entry points in the `orthography2ipa.syllabify` group: `registry._discover_syllabifiers`: `registry.py:156`. Discovery runs once, on first call to `registry.get_syllabifier(code)`, and the result is cached at module scope. With no plugins installed, discovery returns an empty mapping and `get_syllabifier()` returns `None` for every code: this package ships no entry points of its own.
 
 When several plugins claim the same language code, the one with the highest `priority` wins (default `50`).
 
@@ -222,9 +221,9 @@ where `PortugueseSyllabifier` implements `SyllabifierPlugin` and declares `langu
 
 ### `cli.py`
 
-Command-line interface — `cli.py:1-200+`:
+Command-line interface: `cli.py:1-200+`:
 
-- `main(argv)` — entry point registered as `[project.scripts] orthography2ipa` — `cli.py:180`
+- `main(argv)`: entry point registered as `[project.scripts] orthography2ipa`: `cli.py:180`
 - Subcommands: `list`, `info`, `transcribe`, `distance`
 - All subcommands support `--json` for machine-readable output
 - Imports are deferred to subcommand handlers for fast `--help` / `--version`
@@ -258,8 +257,7 @@ List[IPAPath]  (sorted by score, best first)
 The **rescorer** stage is the downstream-enablement seam: it runs after
 positional/weight resolution and before beam path selection, re-costing
 each grapheme slot as a pure function of the slot and its context. A
-downstream rule cascade — a sun-letter assimilation, a silent-`e` rule —
-can be expressed as a rescorer over the shared lattice instead of a forked
+downstream rule cascade: a sun-letter assimilation, a silent-`e` rule: can be expressed as a rescorer over the shared lattice instead of a forked
 tokenizer, when the rule is a context-conditioned choice among the
 candidates the lattice already carries. See
 [Rescoring the lattice](lattice.md#rescoring-the-lattice) and
@@ -267,7 +265,7 @@ candidates the lattice already carries. See
 when each approach fits. Absent a rescorer, the pipeline is byte-identical.
 
 The **allophony** stage is the built-in rescorer: a spec's declarative
-`allophone_rules` (post-lexical `phoneme → surface` rewrites — final
+`allophone_rules` (post-lexical `phoneme → surface` rewrites: final
 devoicing, place assimilation, reduction, flapping) compile into an
 `AllophoneRescorer` (`allophony.py`) the **engine** appends after any user
 rescorer. In the full engine (`G2P`), the ordered stages are:
@@ -280,7 +278,7 @@ normalize → tokenize → select (positional + weights)
 
 Allophony sits after phoneme selection and before stress/sandhi (it is the
 phoneme-lattice → allophone-lattice stage), and needs the engine's stress
-context, so — like sandhi and stress — it does not run on the standalone
+context, so: like sandhi and stress: it does not run on the standalone
 tokenizer path. It is a no-op for any spec that declares no `allophone_rules`
 (all shipped specs bar the Catalan pilots), keeping the default path
 byte-identical. See [Allophony](allophony.md).
@@ -307,7 +305,7 @@ The combinatorial explosion from ambiguous graphemes (e.g., English `c` → /k/ 
 
 ### Why lazy loading?
 
-With 749 JSON data files, eager loading would make `import orthography2ipa` slow and memory-heavy. Lazy loading means only the languages actually used in a session are loaded. The registry is a pure dictionary lookup; no disk I/O until `get()` is called. — `registry.get` — `registry.py:68`
+With hundreds of JSON data files, eager loading would make `import orthography2ipa` slow and memory-heavy. Lazy loading means only the languages actually used in a session are loaded. The registry is a pure dictionary lookup; no disk I/O until `get()` is called.: `registry.get`: `registry.py:68`
 
 ---
 
