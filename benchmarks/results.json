@@ -3744,6 +3744,20 @@
   "limit": null
  },
  {
+  "lang": "jv",
+  "dataset": "kaikki",
+  "n": 93,
+  "per": 0.2203,
+  "wer": 0.7527,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
+ },
+ {
   "lang": "ka",
   "dataset": "vox_communis",
   "n": 79887,
@@ -4262,6 +4276,20 @@
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
+ },
+ {
+  "lang": "lo",
+  "dataset": "kaikki",
+  "n": 2305,
+  "per": 0.7225,
+  "wer": 1.0,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
  },
  {
   "lang": "lou",
@@ -7085,6 +7113,20 @@
   "limit": null
  },
  {
+  "lang": "su",
+  "dataset": "kaikki",
+  "n": 397,
+  "per": 0.0964,
+  "wer": 0.357,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
+ },
+ {
   "lang": "sv",
   "dataset": "ipa_childes",
   "n": 5202,
@@ -7785,6 +7827,20 @@
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
+ },
+ {
+  "lang": "xh",
+  "dataset": "kaikki",
+  "n": 887,
+  "per": 0.5725,
+  "wer": 0.9989,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
  },
  {
   "lang": "xsl",
