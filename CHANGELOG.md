@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.46.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.46.0a2) (2026-08-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.46.0a1...7.46.0a2)
+
+**Merged pull requests:**
+
+- data: research-promotion sweep 1 — 48 skeletons to research [\#736](https://github.com/TigreGotico/orthography2ipa/pull/736) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.46.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.46.0a1) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.45.2a1...7.46.0a1)
@@ -543,7 +551,6 @@
 **Merged pull requests:**
 
 - Release 7.23.0a3 [\#594](https://github.com/TigreGotico/orthography2ipa/pull/594) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Historical-Iberia gold: Andalusi Arabic \(xaa\) + Mozarabic \(mxi\) [\#593](https://github.com/TigreGotico/orthography2ipa/pull/593) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.23.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.23.0a2) (2026-07-16)
 
