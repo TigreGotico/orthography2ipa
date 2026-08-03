@@ -420,7 +420,7 @@ def _source_word(ctx: RescoreContext) -> str:
     source ``grapheme``; joined in order they give back the orthographic word
     a ``word``-keyed :class:`AllophoneRule` matches against.
     """
-    return "".join((getattr(s, "grapheme", "") or "") for s in ctx.slots)
+    return "".join(s.grapheme or "" for s in ctx.slots)
 
 
 def _is_geminate_aware(rule: AllophoneRule, ipa: str) -> bool:
