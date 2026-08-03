@@ -857,9 +857,13 @@ class AllophoneRule:
         see to nasalise before a coda nasal, while leaving an onset nasal
         alone), ``"front_vowel"``, ``"back_vowel"``, ``"palatal"`` (a palatal /
         palato-alveolar consonant, decided by the neighbour's IPA — the
-        mirror of the ``BEFORE_PALATAL`` position) or ``"word_boundary"``
-        (no neighbour). Predicates delegate to
-        :mod:`orthography2ipa.vowels`.
+        mirror of the ``BEFORE_PALATAL`` position), ``"emphatic"`` (a
+        pharyngealized / "emphatic" consonant, decided by the neighbour's IPA
+        carrying the ``ˤ`` diacritic — a generic feature class, not
+        Arabic-specific, though Arabic's ``sˤ dˤ tˤ ðˤ`` triggering
+        emphasis-spread/tafkhim vowel backing is its best-known instance:
+        Watson 2002; Davis 1995) or ``"word_boundary"`` (no neighbour).
+        Predicates delegate to :mod:`orthography2ipa.vowels`.
     preceded_by_2, followed_by_2 : Optional[str]
         The same neighbour-class vocabulary, tested TWO graphemes away. A
         phonological process often looks past a mute letter: Russian
@@ -950,7 +954,8 @@ class AllophoneRule:
                 f"'onset', 'coda', 'nucleus' or None, "
                 f"got {self.syllable_position!r}")
         _classes = ("vowel", "consonant", "consonant_cluster", "coda",
-                    "coda_nasal", "front_vowel", "back_vowel", "palatal", "word_boundary")
+                    "coda_nasal", "front_vowel", "back_vowel", "palatal",
+                    "emphatic", "word_boundary")
         for attr in ("preceded_by", "followed_by",
                      "preceded_by_2", "followed_by_2"):
             val = getattr(self, attr)

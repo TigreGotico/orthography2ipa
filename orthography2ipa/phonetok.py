@@ -56,6 +56,7 @@ from orthography2ipa.vowels import (
     is_ipa_vowel,
     is_orthographic_vowel,
     is_palatal_consonant,
+    is_pharyngealized_consonant,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
 
@@ -681,6 +682,19 @@ class GraphemeContext:
         palatal regardless of their spelling. Used by the ``BEFORE_PALATAL`` /
         ``AFTER_PALATAL`` positions and the ``"palatal"`` allophone-rule class."""
         return bool(self.ipa) and is_palatal_consonant(self.ipa[0])
+
+    @property
+    def is_emphatic(self) -> bool:
+        """True if this grapheme's *primary IPA* is a pharyngealized
+        ("emphatic") consonant (:func:`orthography2ipa.vowels.is_pharyngealized_consonant`).
+
+        Like :attr:`is_palatal`, this reads the sound the grapheme maps to,
+        not its spelling: any IPA carrying the ``ˤ`` diacritic qualifies,
+        so it is a generic feature class — not Arabic-specific — even
+        though Arabic's ``sˤ dˤ tˤ ðˤ`` are its best-known instance (Watson
+        2002; Davis 1995). Used by the ``"emphatic"`` allophone-rule
+        neighbour class (emphasis-spread / tafkhim vowel backing)."""
+        return bool(self.ipa) and is_pharyngealized_consonant(self.ipa[0])
 
     def __repr__(self) -> str:
         return f"GraphemeContext({self.grapheme!r}, index={self.index})"

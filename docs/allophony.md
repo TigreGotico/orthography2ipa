@@ -405,6 +405,69 @@ raising needs no second pass. Measured blast radius on the full pt-BR WikiPron
 set: the only pass-1→pass-2 differences are the intended `/t d/` affrications
 before a raised final `-Vs`: no other output moves.
 
+## Arabic: emphasis spread (tafkhim) and the generic `"emphatic"` class
+
+Emphasis spread — pharyngealization ("tafkhim") radiating from an emphatic
+consonant onto adjacent vowels, backing `a i u` to `[ɑ ɪ ʊ]` — is Arabic's
+best-known allophonic process (Watson 2002, *The Phonology and Morphology of
+Arabic*, ch. "Emphasis"; Davis 1995, *Linguistic Inquiry* 26(3): feature-
+geometric spread of pharyngealization onto neighbouring vocalic segments).
+`ar` already modelled the low-vowel half of it (`AR_EMPH_BACK_A_*`/
+`AR_EMPH_BACK_AA_*`, plus several dialect-local copies), each keyed on a
+hand-enumerated Arabic phoneme list (`preceded_by_phoneme=["tˤ","dˤ","sˤ",
+"ðˤ","zˤ"]`) — silently missing the lateral emphatics `ɬˤ`/`ɮˤ` some
+dialects (e.g. `ar-SA-x-rijal-alma`) use for ظ/ض, and missing `i`/`u`
+entirely.
+
+Rather than hand-list a fifth/sixth Arabic phoneme, the engine gained a
+generic **`"emphatic"` neighbour class** (`preceded_by`/`followed_by`,
+alongside `"palatal"`/`"front_vowel"`/`"back_vowel"`): true to any IPA
+carrying the pharyngealization diacritic `ˤ` (U+02E4) —
+`vowels.is_pharyngealized_consonant`, the consonant-side mirror of
+`is_palatal_consonant` — never hardcoded to Arabic. Any spec that marks a
+pharyngealized consonant with `ˤ` gets the class for free, including
+laterals it was never enumerated for.
+
+`arb` (Classical/MSA, the root of the whole Arabic family's
+`graphemes_base` chain) declares twelve `AR_EMPHASIS_SPREAD_*` rules on top
+of this class — `a/aː/i/iː/u/uː → ɑ/ɑː/ɪ/ɪː/ʊ/ʊː`, each `preceded_by`/
+`followed_by: "emphatic"` — inherited by every descendant. This is
+deliberately **local** (immediately adjacent vowel only): Watson also
+reports the spread crossing several segments and, in some dialects, being
+*blocked* by an intervening high front vocoid `/i j/` (Watson 2002 §2.4.2) —
+that word-domain, blockable spread needs context beyond one grapheme away
+and is left to future dialect-level work. The pre-existing hardcoded `a/aː`
+rules are **not** redundant with the new ones and were kept: they alone
+reach the `-ayy-`/`-aww-` fused nisba/gemination grapheme (`"َيي"` → `ajj`),
+a single multi-phoneme token the grapheme-class condition cannot see inside
+without a phoneme-neighbour condition alongside it.
+
+### Benchmark effect (honest)
+
+WikiPron Arabic (broad, unpointed-leaning transcription; n=14244): PER
+0.1666 → 0.1721 (**+0.0055**, a regression) — WikiPron does not transcribe
+tafkhim, so a correct narrow backing cannot be rewarded there; the same
+"broad gold ≠ narrow surface" trade-off already documented for the Catalan
+and European Portuguese pilots above.
+
+`primary_sources` (human dialect fieldwork gold): most dialects are
+unchanged (their own pre-existing hardcoded rules already produced the
+before behaviour for the rows they cover). Two move:
+
+| Row | Before | After | Δ |
+|---|---:|---:|---:|
+| ar-EG | 0.2099 | 0.2390 | +0.0291 |
+| ar-SA-x-rijal-alma | 0.1958 | 0.2454 | +0.0496 |
+
+Both are regressions against this gold's own transcription convention, not
+correctness regressions: `ar-SA-x-rijal-alma`'s move is the lateral
+emphatics `ɬˤ`/`ɮˤ` now correctly triggering spread (Watson & Al-Azraqi
+2011:428) where the old hand-enumerated list silently didn't reach them —
+a real gap the generic class closes, reported here rather than hidden. The
+Arabic TTS gold (`orthography2ipa/data/gold/arabic_tts/*.tsv`, o2i-verified
+by construction) was reconciled to the new, cited-correct output across all
+34 lects.
+
 ---
 
 **Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
