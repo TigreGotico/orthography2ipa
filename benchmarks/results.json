@@ -1190,7 +1190,7 @@
   "per_ci_low": 0.2996,
   "per_ci_high": 0.3539,
   "exact_match": 0.2005,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -1229,7 +1229,7 @@
   "per_ci_low": 0.3013,
   "per_ci_high": 0.3676,
   "exact_match": 0.1465,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -3374,7 +3374,7 @@
   "per_ci_low": 0.0459,
   "per_ci_high": 0.0647,
   "exact_match": 0.7398,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -3491,7 +3491,7 @@
   "per_ci_low": 0.1735,
   "per_ci_high": 0.2251,
   "exact_match": 0.3048,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -3556,7 +3556,7 @@
   "per_ci_low": 0.4303,
   "per_ci_high": 0.5539,
   "exact_match": 0.2021,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -6481,7 +6481,7 @@
   "per_ci_low": 0.1521,
   "per_ci_high": 0.2039,
   "exact_match": 0.2847,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
