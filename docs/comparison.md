@@ -65,7 +65,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | pt-PT | portuguese_unified | 3000 | 0.2250 | 0.3669 | 0.4146 | n/a | n/a | n/a | n/a |
 | ro | wikipron | 8978 | 0.0356 | 0.0893 | 0.0378 | n/a | n/a | n/a | n/a |
 | ru | wikipron | 403873 | 0.1451 | 0.3953 | 0.3202 | n/a | n/a | n/a | n/a |
-| sv | wikipron | 5082 | 0.2727 | 0.2580 | 0.3844 | n/a | n/a | n/a | n/a |
+| sv | wikipron | 5082 | 0.2316 | 0.2337 | 0.3689 | n/a | n/a | n/a | n/a |
 | tr | wikipron | 11582 | 0.1232 | 0.2740 | 0.1354 | n/a | n/a | n/a | n/a |
 | tzm | wikipron | 658 | 0.0160 | n/a | n/a | n/a | n/a | n/a | 1.0005 |
 
@@ -92,9 +92,11 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | eu | hitz_basque_ipa | 3113 | 0.1848 | 0.1842 | 0.1588 | 0.1588 |
 | fr | wikipron | 85516 | 0.1643 | 0.1643 | 0.0740 | 0.0749 |
 | nl | wikipron | 45872 | 0.2663 | 0.2621 | 0.1265 | 0.1325 |
-| sv | wikipron | 5082 | 0.2727 | 0.2710 | 0.2580 | 0.2605 |
+| sv | wikipron | 5082 | 0.2316 | stale | 0.2337 | stale |
 
 Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the SAME dictionary is worth bolted onto o2i's rules. `o2i` vs `espeak_rules` is the fairest rules-only comparison; `o2i_lex` vs `espeak` is the fairest dictionary-included comparison.
+
+The `sv` row's `o2i_lex`/`espeak_rules` cells are marked `stale`: they were computed before PER scoring stopped counting the Scandinavian pitch-accent digits ¹/² as segments (see `scripts/benchmark.py`, `_STRESS_MARKS`) and before the Swedish quantity/allophony wave, and refreshing them needs a local espeak-ng rules-only rebuild (`scripts/build_espeak_rules_only.sh`). The `o2i` and `espeak` columns are current under the new scoring — and under it orthography2ipa's rules-only output outscores full espeak-ng on Swedish (0.2316 vs 0.2337).
 
 **Licensing**: espeak-ng's dictsource word lists and the IPA derived from them are GPL. They are used here ONLY at comparison runtime — fetched/built into a local scratch cache (`$ESPEAK_RULES_DATA_PATH`, `.o2i_lex_cache/`), never committed to this repository and never shipped in orthography2ipa's own package or lexicons.
 

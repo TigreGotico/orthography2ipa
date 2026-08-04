@@ -72,10 +72,10 @@ class TestSwedishScandinavian:
         assert _ipa("sv", "katt") == "katː"
 
     def test_short_vowel_before_cluster(self):
-        assert _ipa("sv", "flicka") == "flɪkːa"
+        assert _ipa("sv", "flicka") == "²flɪkːa"
 
     def test_softening_before_front_vowel(self):
-        assert _ipa("sv", "kista") == "ɕɪsta"   # ⟨k⟩ → [ɕ]
+        assert _ipa("sv", "kista") == "²ɕɪsta"   # ⟨k⟩ → [ɕ]
         assert _ipa("sv", "gäst") == "jɛst"     # ⟨g⟩ → [j] before ⟨ä⟩
         assert _ipa("sv", "sjö") == "ɧøː"
 
@@ -95,7 +95,7 @@ class TestSwedishScandinavian:
         assert _ipa("sv-x-rikssvenska", "fars").endswith("ʂ")
 
     def test_pre_r_lowering(self):
-        assert _ipa("sv", "bära") == "bæːra"
+        assert _ipa("sv", "bära") == "²bæːra"
 
     def test_no_final_devoicing(self):
         # Swedish keeps final /b d ɡ/ (unlike German/Catalan)
@@ -167,3 +167,54 @@ class TestComplementaryQuantity:
             graphemes = G2P(lang).spec.graphemes
             for fake in ("bf", "bk", "dp", "fb", "bl", "gm"):
                 assert fake not in graphemes, f"{lang}: {fake!r} is not a grapheme"
+
+
+class TestSwedishBeatEspeakWave:
+    """Riad 2014-cited classes added by the beat-espeak Swedish wave.
+
+    Each pin is a documented example from the rule notes; the guards
+    (mer, vinter, bil) prove the conditions don't overreach.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("sv").transcribe(word)
+
+    def test_short_before_ng_nk_sk(self):
+        assert self._t("säng") == "ˈsɛŋ"
+        assert self._t("lång") == "ˈlɔŋ"
+        assert self._t("sjunga") == "²ɧɵŋa"
+        assert self._t("fisk") == "ˈfɪsk"
+        assert self._t("tänka") == "²tɛŋka"
+
+    def test_long_kept_in_open_syllables(self):
+        assert self._t("bil") == "ˈbiːl"
+        assert self._t("tak") == "ˈtɑːk"
+        assert self._t("hat") == "ˈhɑːt"
+
+    def test_short_diphthong_before_j(self):
+        assert self._t("aj") == "ˈaj"
+        assert self._t("hej") == "ˈhɛj"
+        assert self._t("maj") == "ˈmaj"
+        assert self._t("nöjd") == "ˈnœjd"
+
+    def test_pre_r_lowering_stressed_only(self):
+        assert self._t("bert") == "ˈbært"
+        assert self._t("ärt") == "ˈært"
+        assert self._t("är") == "ˈæːr"
+        assert self._t("lära") == "²læːra"
+        assert self._t("herr") == "ˈhærː"
+        assert self._t("mer") == "ˈmeːr"          # single r, /e/: no lowering
+        assert self._t("vinter") == "ˈvɪntɛr"     # unstressed -er keeps [ɛr]
+
+    def test_unstressed_o_reduction(self):
+        assert self._t("bravo").endswith("vʊ")
+        assert self._t("avokado").endswith("dʊ")
+        assert self._t("afton").endswith("tɔn")   # closed syllable keeps [ɔ]
+        assert self._t("dator").endswith("tɔr")
+
+    def test_accent2_marking(self):
+        assert self._t("vecka").startswith("²")
+        assert self._t("tala").startswith("²")
+        assert self._t("vinter").startswith("ˈ")  # accent 1: plain stress mark
+        assert self._t("bil").startswith("ˈ")     # monosyllable: never accent 2

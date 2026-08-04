@@ -339,6 +339,18 @@ class StressRules:
         coda, so the mark lands on the true onset. Default off: it changes only
         where an existing stress mark is *drawn* (never which nucleus is
         stressed, nor the segments), and only for specs that opt in.
+    accent2_mark : str
+        Pitch-accent 2 marker for the Scandinavian tonal word accents
+        (Swedish/Norwegian). When non-empty, a word whose stress falls on
+        the penult and whose final orthographic letter is in
+        :attr:`accent2_final_letters` is marked with this character instead
+        of :attr:`stress_mark` — the citable first approximation of the
+        accent-2 distribution (Riad 2014: accent 2 needs a post-stress
+        syllable; disyllabic trochees in ⟨-a⟩/⟨-e⟩ are its core class,
+        while antepenult-stressed words keep accent 1). Empty (the
+        default) = no pitch accent, plain stress marking.
+    accent2_final_letters : Tuple[str, ...]
+        The final orthographic letters that select :attr:`accent2_mark`.
     source : str
         Where the stress comes from. ``"rules"`` (the default) means this block —
         declarative data a language owner wrote, that anyone can read, cite and
@@ -365,6 +377,8 @@ class StressRules:
     max_onset: int = 1
     cliticless_words: Tuple[str, ...] = ()
     coda_liquid_capture: bool = False
+    accent2_mark: str = ""
+    accent2_final_letters: Tuple[str, ...] = ()
     source: str = "rules"
     notes: str = ""
 
@@ -892,6 +906,16 @@ class AllophoneRule:
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
         assimilation, which conditions on the following consonant's place).
         Empty = don't care.
+    followed_by_grapheme : Tuple[str, ...]
+        The next slot's *source grapheme* (matched case-insensitively) must
+        be one of these. The positive counterpart of
+        :attr:`followed_by_grapheme_not`, for processes triggered by a
+        letter group whose phoneme hides its cluster nature — Swedish
+        stressed vowels are short before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (historically /ŋɡ
+        ŋk sk/ clusters, Riad 2014), but ⟨ng⟩'s phoneme is the single [ŋ]
+        and ⟨sk⟩'s first candidate the single [ɧ], so the generic
+        consonant-cluster neighbour class cannot see them. Empty = don't
+        care.
     followed_by_grapheme_not : Tuple[str, ...]
         The next slot's *source grapheme* (matched case-insensitively) must
         NOT be one of these. Orthographies mark phonological facts in the
@@ -961,6 +985,7 @@ class AllophoneRule:
     followed_by_phoneme_2: Tuple[str, ...] = ()
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
+    followed_by_grapheme: Tuple[str, ...] = ()
     followed_by_grapheme_not: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
@@ -981,6 +1006,9 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "followed_by_grapheme",
+            tuple(g.lower() for g in self.followed_by_grapheme))
         object.__setattr__(
             self, "followed_by_grapheme_not",
             tuple(g.lower() for g in self.followed_by_grapheme_not))

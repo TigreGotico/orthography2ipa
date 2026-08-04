@@ -110,8 +110,14 @@ CI_SAMPLE_JSON = os.path.join(REPO_ROOT, "benchmarks", "results_ci_sample.json")
 #: mark — leaving it in made every stressed syllable in the gold an unmatched
 #: character, which cost Catalan ~7 PER points of pure notation. The IPA
 #: modifier apostrophe U+02BC is deliberately NOT here: it marks ejectives and
-#: is a real segment.
-_STRESS_MARKS = "ˈˌ'"
+#: is a real segment. The Scandinavian pitch-accent digits ¹/² are stripped
+#: for the same reason as the stress marks: they are word-prosodic, not
+#: segmental, and the one gold set that writes them (wikipron Swedish) marks
+#: them inconsistently — attested accent-2 trochees like ⟨alla⟩ ⟨anka⟩ are
+#: left bare — so scoring them measures the annotators' coverage, not G2P
+#: quality. The engine still emits them (StressRules.accent2_mark); PER just
+#: doesn't score prosody.
+_STRESS_MARKS = "ˈˌ'¹²"
 #: Tie bars are notation, not phonology: t͡s and ts are the same phoneme
 #: string at every transcription tier, so they are stripped from BOTH
 #: sides unconditionally (unlike the narrow diacritics below, which only
