@@ -324,6 +324,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 followed_by_2=ar.get("followed_by_2"),
                 preceded_by_phoneme=tuple(ar.get("preceded_by_phoneme", ())),
                 followed_by_phoneme=tuple(ar.get("followed_by_phoneme", ())),
+                followed_by_grapheme_not=tuple(
+                    ar.get("followed_by_grapheme_not", ())),
                 preceded_by_phoneme_2=tuple(ar.get("preceded_by_phoneme_2", ())),
                 followed_by_phoneme_2=tuple(ar.get("followed_by_phoneme_2", ())),
                 grapheme=(tuple(ar["grapheme"])

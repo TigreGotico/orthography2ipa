@@ -438,6 +438,11 @@ class AllophoneRescorer(LatticeRescorer):
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
                 return False
+        if rule.followed_by_grapheme_not:
+            nxt = ctx.grapheme.next
+            if nxt is not None and nxt.grapheme and \
+                    nxt.grapheme.lower() in rule.followed_by_grapheme_not:
+                return False
         if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2:
             # The grapheme TWO away, by its first IPA candidate. Read from the
             # grapheme layer (not the slot), so it is the underlying phoneme —

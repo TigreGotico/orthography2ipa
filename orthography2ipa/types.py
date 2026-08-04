@@ -892,6 +892,14 @@ class AllophoneRule:
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
         assimilation, which conditions on the following consonant's place).
         Empty = don't care.
+    followed_by_grapheme_not : Tuple[str, ...]
+        The next slot's *source grapheme* (matched case-insensitively) must
+        NOT be one of these. Orthographies mark phonological facts in the
+        spelling of the following letter group — German writes a short vowel
+        before ⟨ss⟩/⟨ck⟩/⟨tz⟩, whose single-consonant phonemes are
+        indistinguishable at the phoneme layer from the plain letters that
+        permit a long vowel — so this is the only layer that can veto such a
+        rule. Empty = don't care.
     grapheme : Optional[Tuple[str, ...]]
         Require the slot's own *source grapheme* to be one of these (matched
         case-insensitively). This lets a rule target a surface shift that
@@ -953,6 +961,7 @@ class AllophoneRule:
     followed_by_phoneme_2: Tuple[str, ...] = ()
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
+    followed_by_grapheme_not: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
     notes: str = ""
@@ -972,6 +981,9 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "followed_by_grapheme_not",
+            tuple(g.lower() for g in self.followed_by_grapheme_not))
         if self.grapheme is not None:
             object.__setattr__(
                 self, "grapheme",

@@ -83,8 +83,16 @@ class TestSwedishScandinavian:
         assert _ipa("sv", "kort").startswith("k")
 
     def test_retroflexion(self):
-        assert _ipa("sv", "barn") == "bɑːɳ"     # rn → [ɳ]
-        assert _ipa("sv", "fars").endswith("ʂ")  # rs → [ʂ]
+        # Retroflexion (rn/rd/rt/rl/rs -> ɳ ɖ ʈ ɭ ʂ) is real in Central Swedish
+        # and is kept as sv-x-rikssvenska's own data (Elert 1994), but applying
+        # it unconditionally in the base "sv" spec actively hurt PER against
+        # the wikipron gold convention, which mostly spells the cluster out
+        # rather than retroflexing it (the beat-espeak-germanic data campaign
+        # measured this directly) -- so base "sv" no longer retroflexes by
+        # default.
+        assert _ipa("sv", "barn") == "barn"
+        assert _ipa("sv-x-rikssvenska", "barn").endswith("ɳ")
+        assert _ipa("sv-x-rikssvenska", "fars").endswith("ʂ")
 
     def test_pre_r_lowering(self):
         assert _ipa("sv", "bära") == "bæːra"
