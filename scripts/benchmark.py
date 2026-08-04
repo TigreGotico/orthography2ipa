@@ -119,6 +119,18 @@ _STRESS_MARKS = "ˈˌ'"
 _TIE_BARS = "͜͡‿"
 
 _NARROW_MARKS = "̝̞̪̺̼̘̙.·()"
+
+#: ASCII "g" (U+0067, keyboard Latin) vs the official IPA voiced velar
+#: plosive ɡ (U+0261, LATIN SMALL LETTER SCRIPT G) — a Unicode confusable,
+#: not a phonemic contrast (IPA Handbook, 1999, §"Consonants": the plosive
+#: symbol is U+0261; ASCII "g" is a font-rendering/keyboard stand-in with
+#: no distinct value anywhere in the Handbook's inventory). Several gold
+#: sets (e.g. NorthEuraLex's CLDF Segments column) were keyed with the
+#: plain ASCII letter, so a transcription that correctly emits ɡ was
+#: being penalised for a typographic accident rather than an error. Folded
+#: UNCONDITIONALLY (both strip_stress states, narrow and broad) because no
+#: registered spec's own phoneme inventory contrasts "g" against "ɡ" —
+#: verified against every data/*.json phonemes list before adding this.
 #: Prosodic/orthographic punctuation carried by sentence-level gold sets
 #: (phrase breaks, commas, full stops). None of it is a phoneme, so scoring it
 #: as one penalises a transcription for text the engine correctly ignores.
@@ -2326,6 +2338,7 @@ def _expand_consonant_length(s: str) -> str:
 
 def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
     s = unicodedata.normalize("NFC", ipa)
+    s = s.replace("g", "ɡ")  # ASCII/IPA confusable fold — see _NARROW_MARKS comment
     if strip_stress:
         for ch in _STRESS_MARKS:
             s = s.replace(ch, "")
