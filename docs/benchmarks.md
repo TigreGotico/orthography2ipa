@@ -914,6 +914,119 @@ gold against a Pinyin-romanization `zh` spec), so it should be added to
 `_IPADICT_UNWIRED` for completeness, but that is a spec/doc-hygiene fix, not
 a gold acquisition, so it is only noted here.
 
+**2026-08 gold-hunting wave 3.** The zero-gold sweep (specs with a
+non-empty grapheme table and no row anywhere in `results.json`) was
+re-run from scratch rather than reused, since it shrinks with every
+wave: 735 zero-gold specs out of 7383 registered codes at the start of
+this wave. The highest-population zero-gold specs (Nepali, Bhojpuri,
+Awadhi, Sindhi, Igbo, Somali, Fula, Chhattisgarhi, Magahi, Oromo,
+Lingala, Shona, Kirundi, Wolof, Konkani, and a few more) were
+cross-referenced against kaikki.org's per-language index (size-checked
+with a `HEAD` request before any download, same as wave 2, nothing
+vendored):
+
+| o2i tag | kaikki language | Spec quality | `N` | coverage | PER | verdict |
+|---|---|---|---:|---:|---:|---|
+| `so` | Somali | research | 200 | 100% | 0.5937 | wired |
+| `om` | Oromo | skeleton | 53 | 100% | 0.5228 | wired |
+| `ne` | Nepali | research | 2051 | 100% | 0.6047 | wired |
+| `kok` | Konkani | research | 830 | 99.6% | 0.4944 | wired |
+
+Sample-audit notes (30 rows hand-checked per language, broad
+transcription, word/IPA pairing spot-checked against the spec's own
+`notes`):
+
+- **`so` (Somali):** clean, single-script (Latin) dump after the
+  `_KAIKKI_WORD_FILTER["so"]` restriction (a handful of loanword/foreign
+  entries were dropped, same rationale as `jv` in wave 2 — no Javanese-style
+  majority-foreign-script problem here, just a minority to filter out).
+  Every sampled word matches its orthography (`dhagax` → `/ˈɖɑ́ɡɑ̀ħ/`,
+  `libaax` → `/lìˈbæ̂ːħ/`). PER is high (0.5937) because kaikki's Somali
+  transcriptions are narrow — tone (high/low pitch accent marks), vowel
+  length, and pharyngeal/epiglottal detail (`caws` gold
+  `/ˈʡ͜ʢǽ͜ʉ̀s/` vs. engine `/ʕaws/`) are marked on nearly every word, none of
+  which the current segmental `so` spec encodes. **FINDING for a future
+  wave:** Somali gold is usable but will stay high-PER until the spec
+  gains tone/length rules; flagged, not fixed here.
+- **`om` (Oromo):** clean, single-script (Latin) dump after the
+  `_KAIKKI_WORD_FILTER["om"]` restriction. Word/IPA pairing checks out
+  (`tokko` → `/ˈtɔ́kkɔ/`, `Waaqa` → `/ˈwɑ́ːkʼɐ/`). Only 53 usable entries
+  (thin, like `jv`'s 93 in wave 2) but every one is scorable. PER is high
+  (0.5228) mostly from tone/stress marks and a few vowel-quality choices
+  (gold's ATR-influenced `ɐ`/`ɔ`/`ɛ` vs. the spec's plain five-vowel
+  output) the current spec doesn't encode. **FINDING for a future wave:**
+  same tone/vowel-quality gap as `so`.
+- **`ne` (Nepali):** by far the largest haul of the wave (2051 scorable
+  entries after de-duplication), Devanagari script matching the spec
+  directly — no script filter needed. Sampled pairs check out
+  (`खतरनाक` → `/kʰʌt̪ʌrnäk/`, `विद्यार्थी` → `/bid̪̚d̪järt̪ʰi/`). PER is
+  high (0.6047) almost entirely from one systematic, single-cause
+  divergence: the `ne` spec inserts a schwa after every final consonant
+  cluster/consonant the gold treats as silent or reduced (`कदर` gold
+  `/kʌd̪ʌr/` vs. engine `/kəd̪ərə/`, `दश` gold `/d̪ʌs/` vs. engine
+  `/d̪əʃə/`), plus a schwa-vs-`ʌ` vowel-quality mismatch throughout.
+  **FINDING for a future wave:** the `ne` spec's schwa-deletion /
+  vowel-reduction rules look substantially incomplete; this gold row is a
+  real regression fixture for that repair, not evidence against wiring it
+  now.
+- **`kok` (Konkani):** clean Devanagari-script haul (830 scorable
+  entries), same script family as the already-wired-elsewhere Devanagari
+  specs. Sampled pairs check out (`आजी` → `/ɑːd͡ʒiː/`, `भाचो` →
+  `/bʰɑːt͡sɔ/`). PER is high (0.4944) from the same final-schwa-insertion
+  pattern as `ne` (`उठप` gold `/uʈʰəp/` vs. engine `/uʈʰəpə/`) plus
+  nasalization the gold marks with a tilde that the spec's segmental
+  output doesn't carry (`अदांव` gold `/ədɑ̃ːʋ/` vs. engine `/əd̪aː̃ʋə/`).
+  **FINDING for a future wave:** same final-schwa gap as `ne` — likely a
+  shared Indo-Aryan-spec fix, not two independent bugs.
+
+None of `so`/`om`/`ne`/`kok` promote tiers from this gold alone. `so`,
+`ne` and `kok` were already at `research` (each already has a cited
+`sources` entry and a `stress` block/exemption) — this wave only adds
+the gold-benchmark row `quality_tiers.md` says `research` should have had
+all along; **note for a future hygiene pass:** several other specs in
+this registry are marked `research` with zero gold anywhere in
+`results.json` (the `test_data_quality.py` guard does not check this for
+`research`, only for `production`), so `so`/`ne`/`kok` were not uniquely
+missing this — the whole tier is under-enforced. `om` stays `skeleton`:
+it has neither a cited source nor a stress block/exemption, which is a
+spec-authoring task out of scope for a gold-only wave.
+
+**Investigated and rejected:**
+
+- **Sindhi (`sd`)** — kaikki.org has a Sindhi dump (874/1771 entries carry
+  `sounds[].ipa`), but every one of those entries is Perso-Arabic or
+  Devanagari script (`زبان`, `त`); the `sd` spec is Latin-script only
+  (Standard Sindhi romanization). Filtering to Latin-script words leaves
+  **zero** entries — the dump has no Latin-script content at all.
+  Rejected: wrong script for this spec, not fixable with a filter (there
+  is nothing to filter *to*).
+- **Santali (`sat`)** — kaikki.org has a Santali dump (537/928 entries
+  carry `sounds[].ipa`), but every entry is in Ol Chiki script
+  (`ᱫᱟᱜ`); the `sat` spec is a Latin romanization. Same problem as `sd`:
+  filtering to Latin-script words leaves zero entries.
+- **Tigrinya (`ti`), re-checked** — unchanged since wave 2: still 28 of
+  933 entries carry `sounds[].ipa`. Stays rejected for the same
+  too-thin reason.
+
+`om`, `ff` (Fula), `ln` (Lingala), `sn` (Shona), `wo` (Wolof), `tw`
+(Twi, via kaikki's `Akan` macrolanguage dump) and `st` (Southern Sotho,
+via kaikki's generic `Sotho` dump) were all checked; `om` was the only
+one of that group with a large enough clean sample after script
+filtering to be worth wiring (53 usable entries vs. single digits to
+low tens for the rest, several of which turned out to be dictionary
+metadata — single-letter "character" entries the existing
+`_KAIKKI_EXCLUDED_POS` filter doesn't catch because their `pos` isn't
+literally `"character"` — rather than real words). Not wired this wave;
+flagged as thin/contaminated candidates a future wave could revisit with
+a tighter word-shape filter.
+
+No kaikki.org dump exists (`HEAD` → 404, checked under the language's
+common name and obvious alternates) for several other high-population
+zero-gold candidates: Bhojpuri, Awadhi, Igbo, Chhattisgarhi, Northern
+Sotho, Kirundi/Rundi, Minangkabau, Kongo, Tsonga, Maithili, Venda and
+Southern Quechua. Noted here so a future wave doesn't re-spend time on
+the same lookup.
+
 ## Rejected candidates
 
 Datasets investigated and excluded due to tool-generated or unclear
