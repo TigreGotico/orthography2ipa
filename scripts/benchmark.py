@@ -33,6 +33,8 @@ Dataset access:
   phonemetransformers/IPA-BabyLM Hugging Face dataset directly (stdlib only).
 - ``northeuralex`` and ``wold`` download ``cldf/forms.csv`` directly from the
   lexibank/northeuralex and lexibank/wold GitHub repositories (stdlib only).
+- ``kaikki`` downloads per-language Wiktextract JSON-lines dumps directly
+  from kaikki.org (stdlib only).
 
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
@@ -997,6 +999,21 @@ _NORTHEURALEX_LANGS: Dict[str, str] = {
     "lv": "lav",    # Latvian (research)
     "smn": "smn",   # Inari Sami (research)
     "vep": "vep",   # Veps (research)
+    # 2026-08 Siberian double-win batch B: Paleosiberian/Tungusic/isolate stubs
+    # promoted from empty REGISTRY STUBs to Cyrillic (mnc: Moellendorff Latin
+    # romanization — see mnc.json notes) grapheme tables, each verified against
+    # cldf/languages.csv (Language_ID == o2i code for all of these) and
+    # smoke-checked for non-empty engine output. `bsk` (Burushaski) was
+    # evaluated and deliberately excluded: its NEL Value column is Berger
+    # (1998) scholarly transcription, not a community orthography — see
+    # bsk.json notes.
+    "ckt": "ckt",   # Chukchi (skeleton)
+    "itl": "itl",   # Itelmen (skeleton)
+    "ket": "ket",   # Ket (skeleton)
+    "gld": "gld",   # Nanai (skeleton)
+    "mnc": "mnc",   # Manchu, Moellendorff romanization (skeleton)
+    "ddo": "ddo",   # Tsez (skeleton)
+    "ess": "ess",   # Central Siberian Yupik (skeleton)
 }
 
 
@@ -1049,6 +1066,93 @@ def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
     orthography) + ``Segments`` (IPA-ish transcription). See
     ``_WOLD_LANGS`` for the wired subset and why."""
     return _load_lexibank("wold", _WOLD_LANGS[lang], limit)
+
+
+# ── kaikki.org (Wiktextract) ────────────────────────────────────────────────
+#
+# kaikki.org publishes machine-extracted per-language dumps of Wiktionary
+# ("Wiktextract", Ylonen 2022) as JSON-lines: one object per dictionary
+# entry, with a ``word`` (the headword as written) and a ``sounds`` list of
+# ``{"ipa": "..."}`` objects (often several transcription variants per
+# entry). Same crowd-scraped Wiktionary tier as ``wikipron`` -- this is a
+# different extraction pipeline over the same underlying source, not an
+# independent transcriber.
+#
+# 2026-08 gold-hunting wave 2: targeted at o2i specs with a non-empty
+# grapheme table and ZERO gold anywhere else in this registry. Every
+# wired language was downloaded, filtered to entries with a non-empty
+# ``sounds[].ipa``, and hand-sampled (see docs/benchmarks.md) before
+# wiring. Rejected: Tigrinya (only 28/933 entries carry ``ipa`` -- too
+# thin to be a usable gold set).
+_KAIKKI_BASE = "https://kaikki.org/dictionary/{name}/kaikki.org-dictionary-{name}.jsonl"
+
+# orthography2ipa language tag -> kaikki.org per-language dump directory name.
+_KAIKKI_LANGS: Dict[str, str] = {
+    "jv": "Javanese",   # Javanese (skeleton)
+    "su": "Sundanese",  # Sundanese (skeleton)
+    "lo": "Lao",        # Lao (skeleton)
+    "xh": "Xhosa",      # Xhosa (skeleton)
+}
+
+#: kaikki entries whose ``pos`` is one of these are dictionary metadata
+#: (single-letter/digraph "character" glosses describing an orthographic
+#: symbol, e.g. Xhosa ``hl`` -> /ɬ/), not words -- they would double-count
+#: the same grapheme fact the spec's own table already encodes, so they are
+#: excluded from the gold rather than scored as if they were lexical items.
+_KAIKKI_EXCLUDED_POS = {"character"}
+
+#: Wiktionary mixes scripts for some languages (kaikki's Javanese dump is
+#: majority Aksara Jawa entries even though the o2i ``jv`` spec is Latin-only
+#: romanization) -- restrict to the script the wired spec actually covers.
+#: ``None`` means no filter (the dump is already single-script for that
+#: language, verified during the smoke-check).
+_KAIKKI_WORD_FILTER: Dict[str, "re.Pattern[str]"] = {
+    "jv": re.compile(r"[A-Za-z'\-]+\Z"),
+}
+
+
+def load_kaikki(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """kaikki.org (Wiktextract) per-language Wiktionary extract: pairs the
+    entry ``word`` with the first non-empty ``sounds[].ipa`` transcription,
+    stripping the slash/bracket transcription-type delimiters kaikki wraps
+    around each variant. See ``_KAIKKI_LANGS`` for the wired subset and why."""
+    name = _KAIKKI_LANGS[lang]
+    word_filter = _KAIKKI_WORD_FILTER.get(lang)
+    url = _KAIKKI_BASE.format(name=name)
+    text = _fetch(url, f"kaikki_{name}.jsonl")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            entry = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if entry.get("pos") in _KAIKKI_EXCLUDED_POS:
+            continue
+        word = (entry.get("word") or "").strip()
+        if not word or " " in word:
+            continue
+        if word_filter is not None and not word_filter.match(word):
+            continue
+        ipa = None
+        for sound in entry.get("sounds") or []:
+            raw = (sound.get("ipa") or "").strip()
+            if raw:
+                ipa = raw.strip("/[]")
+                break
+        if not ipa:
+            continue
+        key = (word, ipa)
+        if key in seen:
+            continue
+        seen.add(key)
+        pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
 
 
 _CMUDICT_URL = (
@@ -1993,6 +2097,7 @@ DATASETS = {
     "ipa_babylm": (load_ipa_babylm, ["en-US"]),
     "northeuralex": (load_northeuralex, sorted(_NORTHEURALEX_LANGS)),
     "wold": (load_wold, sorted(_WOLD_LANGS)),
+    "kaikki": (load_kaikki, sorted(_KAIKKI_LANGS)),
 }
 
 
@@ -2170,6 +2275,7 @@ PROVENANCE: Dict[str, str] = {
     # `cmudict`/`portuguese_unified`, not a phonemizer's own output.
     "northeuralex": "lexicon-derived",  # Dellert et al. 2020, NorthEuraLex
     "wold": "lexicon-derived",          # Haspelmath & Tadmor 2009, WOLD
+    "kaikki": "crowd-scraped",          # kaikki.org Wiktextract (Wiktionary)
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a

@@ -1,11 +1,120 @@
 {
  "code": "gld",
  "name": "Nanai",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Cyrl",
+ "quality": "research",
+ "graphemes": {
+  "а": [
+   "a"
+  ],
+  "ā": [
+   "aː"
+  ],
+  "и": [
+   "i"
+  ],
+  "ō": [
+   "oː"
+  ],
+  "ē": [
+   "əː"
+  ],
+  "б": [
+   "b"
+  ],
+  "в": [
+   "w"
+  ],
+  "г": [
+   "ɡ"
+  ],
+  "д": [
+   "d"
+  ],
+  "е": [
+   "je"
+  ],
+  "ё": [
+   "jo"
+  ],
+  "ж": [
+   "d̠ʒ"
+  ],
+  "з": [
+   "s"
+  ],
+  "й": [
+   "j"
+  ],
+  "к": [
+   "k"
+  ],
+  "л": [
+   "l"
+  ],
+  "м": [
+   "m"
+  ],
+  "н": [
+   "n"
+  ],
+  "ӈ": [
+   "ŋ"
+  ],
+  "о": [
+   "ɔ"
+  ],
+  "п": [
+   "p"
+  ],
+  "р": [
+   "r"
+  ],
+  "с": [
+   "s"
+  ],
+  "т": [
+   "t"
+  ],
+  "у": [
+   "u"
+  ],
+  "ф": [
+   "x"
+  ],
+  "х": [
+   "x"
+  ],
+  "ц": [
+   "t̠ʃ"
+  ],
+  "ч": [
+   "t̠ʃ"
+  ],
+  "ы": [
+   "ɪ"
+  ],
+  "э": [
+   "ə"
+  ],
+  "ю": [
+   "ju"
+  ],
+  "я": [
+   "ja"
+  ],
+  "ъ": [
+   ""
+  ],
+  "ь": [
+   ""
+  ],
+  "ӣ": [
+   "iː"
+  ]
+ },
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Cyrillic literary orthography for Nanai, following Avrorin (1959/1961, Grammatika nanaiskogo yazyka) and the standard Nanai alphabet in use since the 1980s (Stolyarov, ABC-based primers), which extends Russian with Ng (velar nasal) and macron-marked long vowels a-macron/o-macron/e-macron. Nanai has no phonemic voicing contrast in its dental/alveolar series (d/t, s/z, l/r pattern together per Avrorin); ф and х are merged as [x] in native vocabulary, ф being reserved for Russian loans. Vowel harmony conditions vowel choice across a word but is not rule-encoded here (as in evn/Evenki, its closer-studied Tungusic sibling). Word stress is not lexically contrastive/documented as orthography-predictable in the available grammars; left unset as a documented exemption.",
  "iso639_3": "gld",
  "glottolog_code": "nana1257",
  "sources": [
@@ -25,6 +134,20 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/341",
    "notes": "Inventory 341 (upsid), 24 non-marginal segments."
+  },
+  {
+   "id": "avrorin1959",
+   "author": "Avrorin, Valentin A.",
+   "year": 1959,
+   "title": "Grammatika nanaiskogo yazyka, vol. 1",
+   "publisher": "Academy of Sciences, USSR"
+  },
+  {
+   "id": "an1961",
+   "author": "An, S. A.",
+   "year": 1961,
+   "title": "Nanai orthography and primer materials",
+   "publisher": "Uchpedgiz"
   }
  ],
  "urls": [
@@ -63,5 +186,9 @@
   "ɘ",
   "ɪ"
  ],
- "phoible_id": "341"
+ "phoible_id": "341",
+ "script_type": "alphabet",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Nanai_language"
+ ]
 }

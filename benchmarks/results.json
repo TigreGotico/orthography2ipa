@@ -2028,6 +2028,19 @@
   "limit": null
  },
  {
+  "lang": "ckt",
+  "dataset": "northeuralex",
+  "n": 500,
+  "per": 0.1127,
+  "per_ci_low": 0.1,
+  "per_ci_high": 0.1246,
+  "exact_match": 0.524,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": 500
+ },
+ {
   "lang": "cnk",
   "dataset": "wikipron",
   "n": 342,
@@ -2221,6 +2234,19 @@
   "provenance": "lexicon-derived",
   "harness_version": "1.1",
   "limit": null
+ },
+ {
+  "lang": "ddo",
+  "dataset": "northeuralex",
+  "n": 499,
+  "per": 0.1132,
+  "per_ci_low": 0.099,
+  "per_ci_high": 0.1267,
+  "exact_match": 0.5551,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": 500
  },
  {
   "lang": "de",
@@ -2652,6 +2678,19 @@
   "limit": null
  },
  {
+  "lang": "ess",
+  "dataset": "northeuralex",
+  "n": 500,
+  "per": 0.1219,
+  "per_ci_low": 0.1094,
+  "per_ci_high": 0.1358,
+  "exact_match": 0.482,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": 500
+ },
+ {
   "lang": "et",
   "dataset": "ipa_childes",
   "n": 11040,
@@ -3066,6 +3105,19 @@
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
+ },
+ {
+  "lang": "gld",
+  "dataset": "northeuralex",
+  "n": 500,
+  "per": 0.2061,
+  "per_ci_low": 0.1907,
+  "per_ci_high": 0.2198,
+  "exact_match": 0.278,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": 500
  },
  {
   "lang": "gmh",
@@ -3679,6 +3731,19 @@
   "limit": null
  },
  {
+  "lang": "itl",
+  "dataset": "northeuralex",
+  "n": 500,
+  "per": 0.0611,
+  "per_ci_low": 0.05,
+  "per_ci_high": 0.073,
+  "exact_match": 0.764,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": 500
+ },
+ {
   "lang": "izh",
   "dataset": "wikipron",
   "n": 7886,
@@ -3744,6 +3809,20 @@
   "limit": null
  },
  {
+  "lang": "jv",
+  "dataset": "kaikki",
+  "n": 93,
+  "per": 0.2203,
+  "wer": 0.7527,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
+ },
+ {
   "lang": "ka",
   "dataset": "vox_communis",
   "n": 79887,
@@ -3794,6 +3873,19 @@
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
+ },
+ {
+  "lang": "ket",
+  "dataset": "northeuralex",
+  "n": 499,
+  "per": 0.3766,
+  "per_ci_low": 0.3504,
+  "per_ci_high": 0.4011,
+  "exact_match": 0.1884,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": 500
  },
  {
   "lang": "kgp",
@@ -4264,6 +4356,20 @@
   "limit": null
  },
  {
+  "lang": "lo",
+  "dataset": "kaikki",
+  "n": 2305,
+  "per": 0.7225,
+  "wer": 1.0,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
+ },
+ {
   "lang": "lou",
   "dataset": "wikipron",
   "n": 262,
@@ -4548,6 +4654,19 @@
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
+ },
+ {
+  "lang": "mnc",
+  "dataset": "northeuralex",
+  "n": 500,
+  "per": 0.1013,
+  "per_ci_low": 0.0895,
+  "per_ci_high": 0.1137,
+  "exact_match": 0.58,
+  "quality_tier": "research",
+  "provenance": "lexicon-derived",
+  "harness_version": "1.1",
+  "limit": 500
  },
  {
   "lang": "mqs",
@@ -7085,6 +7204,20 @@
   "limit": null
  },
  {
+  "lang": "su",
+  "dataset": "kaikki",
+  "n": 397,
+  "per": 0.0964,
+  "wer": 0.357,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
+ },
+ {
   "lang": "sv",
   "dataset": "ipa_childes",
   "n": 5202,
@@ -7785,6 +7918,20 @@
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
+ },
+ {
+  "lang": "xh",
+  "dataset": "kaikki",
+  "n": 887,
+  "per": 0.5725,
+  "wer": 0.9989,
+  "per_ci_low": null,
+  "limit": null,
+  "per_ci_high": null,
+  "exact_match": null,
+  "quality_tier": "skeleton",
+  "provenance": "crowd-scraped",
+  "harness_version": null
  },
  {
   "lang": "xsl",

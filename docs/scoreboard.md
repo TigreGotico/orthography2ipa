@@ -617,3 +617,7 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | ar-x-mashriqi | gold20_arabic | 20 | 0.0175 | [0.0036, 0.0360] | 0.7500 | research | llm-generated |
 | ar-x-peninsular | gold20_arabic | 20 | 0.0122 | [0.0041, 0.0215] | 0.7000 | research | llm-generated |
 | arb | gold20_arabic | 20 | 0.0190 | [0.0114, 0.0272] | 0.3500 | research | llm-generated |
+| jv | kaikki | 93 | 0.2203 | — | 0.7527 | skeleton | crowd-scraped |
+| lo | kaikki | 2305 | 0.7225 | — | 1.0000 | skeleton | crowd-scraped |
+| su | kaikki | 397 | 0.0964 | — | 0.3570 | skeleton | crowd-scraped |
+| xh | kaikki | 887 | 0.5725 | — | 0.9989 | skeleton | crowd-scraped |
