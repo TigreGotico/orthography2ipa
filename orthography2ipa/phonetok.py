@@ -970,6 +970,13 @@ class PhonetokTokenizer:
 
         self._trie = _GraphemeTrie(self._grapheme_ipa, spec.code)
 
+        # Escape hatches for the two abugida predicates below — see their
+        # docstrings on LanguageSpec for the Thai/Lao motivation.
+        self._dependent_vowels: FrozenSet[str] = frozenset(spec.dependent_vowels)
+        self._preposed_vowels: FrozenSet[str] = frozenset(
+            v.lower() for v in spec.preposed_vowels
+        )
+
     def _supplies_vowel(self, ch: str) -> bool:
         """True if *ch* is a combining mark that supplies a vowel of its own.
 
@@ -983,7 +990,19 @@ class PhonetokTokenizer:
         anusvara to a nasal consonant therefore keeps the inherent vowel with
         no special-casing anywhere in the engine.
         """
-        if unicodedata.category(ch) not in ("Mn", "Mc"):
+        if (
+            unicodedata.category(ch) not in ("Mn", "Mc")
+            and ch not in self._dependent_vowels
+        ):
+            # Category Mn/Mc (combining mark) is the default, script-agnostic
+            # signal that a character is a dependent vowel sign rather than a
+            # base letter. It fails for the Tai scripts: Thai/Lao spacing
+            # vowel signs (⟨า ะ⟩ / ⟨າ ະ⟩) are encoded as category Lo — plain
+            # spacing letters, indistinguishable from a consonant by category
+            # alone. `dependent_vowels` is the spec-level escape hatch (see
+            # LanguageSpec.dependent_vowels) naming the graphemes that are
+            # dependent vowel signs despite their Unicode category; every
+            # other spec leaves it empty and this check is a no-op.
             return False
         ipa_vals = self._grapheme_ipa.get(ch)
         if not ipa_vals:
@@ -1119,6 +1138,81 @@ class PhonetokTokenizer:
 
             # (d) Longest grapheme match (trie)
             gkey = self._trie.longest_match(text, pos)
+            if gkey is not None and gkey in self._preposed_vowels:
+                # Preposed dependent vowel (Thai ⟨เ แ โ ใ ไ⟩, Lao ⟨ເ ແ ໂ ໃ ໄ⟩):
+                # written before the consonant, pronounced after it. ⟨เก⟩ is
+                # /keː/, not */eːk/.
+                #
+                # The token LIST stays in text (written) order — the vowel
+                # token still comes first, at its true position/length, so
+                # every position-dependent consumer downstream (surface
+                # reconstruction in g2p._group_words, stress, syllabification,
+                # span reporting) keeps working on an unmodified invariant:
+                # tokens are monotonic in text position. What changes is which
+                # token carries the IPA: the vowel token is emitted SILENT
+                # (``ipa=()``) and the consonant token's candidates already
+                # have the vowel's reading appended *after* the consonant's —
+                # i.e. pronunciation order lives inside one token's IPA
+                # string, not in token list order.
+                consumed_v = len(gkey)
+                after = pos + consumed_v
+                ckey = self._trie.longest_match(text, after)
+                c_ipa_vals = (
+                    self._grapheme_ipa.get(ckey) if ckey else None
+                )
+                is_c_dependent_vowel = bool(ckey) and (
+                    unicodedata.category(ckey[-1]) in ("Mn", "Mc")
+                    or ckey in self._dependent_vowels
+                    or ckey in self._preposed_vowels
+                )
+                if (
+                    ckey is not None
+                    and c_ipa_vals
+                    and not is_c_dependent_vowel
+                    and not _is_nucleus(c_ipa_vals[0])
+                ):
+                    consumed_c = len(ckey)
+                    post_pos = after + consumed_c
+                    v_ipa_vals = self._grapheme_ipa[gkey]
+
+                    # Circumfix continuation: some Tai vowels are written
+                    # AROUND the consonant — Lao ⟨ເ◌ືອ⟩ /ɯa/ spells one vowel
+                    # with a preposed half (ເ) and a postposed half (ືອ) that,
+                    # together, are one orthographic-and-phonemic unit (Enfield
+                    # 2007). When a dependent vowel grapheme immediately
+                    # follows the consonant here, IT supplies the complete
+                    # nucleus and the preposed half contributes no reading of
+                    # its own (avoiding a doubled vowel, e.g. */eːɯa/ instead
+                    # of /ɯa/) — the postposed grapheme is left for the next
+                    # loop iteration to tokenise normally (ordinary
+                    # maximal-munch multigraph match), which is also what
+                    # keeps its own span/position correct.
+                    pkey = self._trie.longest_match(text, post_pos)
+                    p_ipa_vals = self._grapheme_ipa.get(pkey) if pkey else None
+                    is_circumfix_tail = bool(pkey) and p_ipa_vals and (
+                        unicodedata.category(pkey[0]) in ("Mn", "Mc")
+                        or pkey in self._dependent_vowels
+                    ) and _is_nucleus(p_ipa_vals[0])
+
+                    c_combined = (
+                        c_ipa_vals if is_circumfix_tail else
+                        tuple(c + v for c in c_ipa_vals for v in v_ipa_vals)
+                    )
+
+                    tokens.append(Token(
+                        kind=TokenKind.GRAPHEME, grapheme=gkey,
+                        ipa=(), position=pos, length=consumed_v,
+                    ))
+                    tokens.append(Token(
+                        kind=TokenKind.GRAPHEME, grapheme=ckey,
+                        ipa=c_combined, position=after, length=consumed_c,
+                    ))
+                    pos = post_pos
+                    continue
+                # No consonant follows (word-final preposed vowel, or two
+                # preposed vowels in a row): fall through to ordinary
+                # single-grapheme handling below, which reads gkey normally.
+
             if gkey is not None:
                 # Vowel-gated digraph. A consonant-initial digraph ending in a
                 # high glide letter ⟨u⟩/⟨i⟩ (Romance ⟨gu qu gi ci⟩ …) uses that
@@ -1489,6 +1583,14 @@ class PhonetokTokenizer:
                         weights_for=self.weights_for,
                         allophone_map=allophone_map)
                     g_idx += 1
+                    if not branches:
+                        # A grapheme with no candidates — e.g. a preposed
+                        # dependent vowel token, deliberately silent because
+                        # its reading was folded into the following
+                        # consonant's IPA (see the preposed-vowel branch in
+                        # `tokenize`) — contributes no segment, exactly like a
+                        # rescorer-deleted slot above.
+                        continue
                 beam = self._expand_beam(beam, branches, beam_width)
 
             elif include_special:

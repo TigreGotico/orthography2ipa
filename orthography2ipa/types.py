@@ -1135,6 +1135,8 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "optional_marks": InheritanceMode.OWN_ONLY,
     "fold_diacritics": InheritanceMode.OWN_ONLY,
     "vowel_graphemes": InheritanceMode.OWN_ONLY,
+    "dependent_vowels": InheritanceMode.OWN_ONLY,
+    "preposed_vowels": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1379,6 +1381,46 @@ class LanguageSpec:
     Declaring it here is a per-language fact, exactly like ``script_type``
     or ``optional_marks`` — it changes nothing for any other spec. Empty
     (the default) is the previous behaviour exactly."""
+
+    dependent_vowels: Tuple[str, ...] = ()
+    """Escape hatch for :meth:`PhonetokTokenizer._supplies_vowel` — dependent
+    (matra) vowel signs the inherent-vowel test must recognise even though
+    Unicode does not mark them as combining.
+
+    The inherent-vowel cancellation test that makes ⟨क⟩ read /kə/ but ⟨कि⟩
+    read /ki/ decides "does a dependent vowel sign follow?" from the
+    following character's Unicode general category (``Mn``/``Mc``,
+    combining marks). That works for Devanagari and most Brahmic scripts,
+    where a matra genuinely is a combining mark. It fails for the Tai
+    scripts (Thai, Lao): their spacing dependent vowel signs — Thai ⟨า ะ⟩,
+    Lao ⟨າ ະ⟩ and kin — are Unicode general category ``Lo`` (spacing
+    letter), identical to a base consonant, because Thai/Lao script
+    encoding never gave them combining-mark status. Unicode category is
+    therefore not a reliable script-agnostic signal for "dependent vowel"
+    in every abugida; it is a good default, not a law of nature.
+
+    ``dependent_vowels`` is the same kind of escape hatch as
+    ``vowel_graphemes``: each entry is a whole grapheme string that this
+    spec declares supplies a syllable nucleus for the purpose of inherent-
+    vowel cancellation, regardless of its Unicode category. It changes
+    nothing for a spec that leaves it empty (the default) — Devanagari and
+    every other Mn/Mc-based abugida are unaffected byte-for-byte."""
+
+    preposed_vowels: Tuple[str, ...] = ()
+    """Dependent vowel signs written BEFORE the consonant they attach to but
+    pronounced AFTER it — Thai ⟨เ แ โ ใ ไ⟩, Lao ⟨ເ ແ ໂ ໃ ໄ⟩ (Enfield 2007;
+    Iwasaki & Ingkaphirom, *A Reference Grammar of Thai*, 2005).
+
+    Every other mechanism in this engine (inherent-vowel cancellation,
+    positional graphemes, the beam) assumes a grapheme's reading position
+    in the IPA output matches its position in the text. Preposed vowels
+    break that assumption by construction: ⟨เก⟩ orders the vowel letter
+    first but reads /keː/, consonant first. ``preposed_vowels`` names the
+    graphemes for which :class:`~orthography2ipa.phonetok.PhonetokTokenizer`
+    swaps emission order — it still consumes the vowel grapheme from its
+    written (pre-consonant) position, but appends the consonant's IPA
+    before the vowel's. Empty (the default) leaves every other script
+    untouched."""
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
