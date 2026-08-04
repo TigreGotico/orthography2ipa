@@ -175,16 +175,18 @@
     ],
     "ั": [
       "a"
-    ],
-    "◌ว": [
-      "ua",
-      "w"
-    ],
-    "◌ย": [
-      "aj",
-      "j"
     ]
   },
+  "dependent_vowels": [
+    "า"
+  ],
+  "preposed_vowels": [
+    "เ",
+    "แ",
+    "โ",
+    "ใ",
+    "ไ"
+  ],
   "allophones": {
     "k": [
       "k"
@@ -280,8 +282,18 @@
       "oː"
     ]
   },
-  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. Inherent vowel is /o/ (short). Vowels written around consonants (above, below, before, after). This spec covers consonant letters and common vowel diacritics; full tone calculation requires syllable analysis. Stress exemption: Standard Thai is a tone language (5 tones marked by tone class + tone marks); it has no independent, orthography-predictable lexical stress accent distinct from its tone system, so no stress block is declared. Source: Haas, Thai-English Student's Dictionary (1964); Thai phonology, Wikipedia.",
+  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. Inherent vowel is /o/ (short). Vowels written around consonants (above, below, before, after). This spec covers consonant letters and common vowel diacritics; full tone calculation requires syllable analysis. Stress exemption: Standard Thai is a tone language (5 tones marked by tone class + tone marks); it has no independent, orthography-predictable lexical stress accent distinct from its tone system, so no stress block is declared. Dependent vowel sign ⟨า⟩ is spacing (Unicode category Lo, not a combining mark); ⟨เ แ โ ใ ไ⟩ are preposed — written before the consonant, pronounced after (⟨เก⟩ = /keː/). Source: Haas, Thai-English Student's Dictionary (1964); Iwasaki, S. & Ingkaphirom, P. (2005), A Reference Grammar of Thai, Cambridge University Press; Thai phonology, Wikipedia.",
   "sources": [
+    {
+      "id": "iwasaki2005",
+      "author": "Iwasaki, Shoichi & Ingkaphirom, Preeya",
+      "year": 2005,
+      "title": "A Reference Grammar of Thai",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Source for the preposed-vowel analysis (⟨เ แ โ ใ ไ⟩)."
+    },
     {
       "id": "haas1964",
       "author": "Haas, M.R.",

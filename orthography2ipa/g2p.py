@@ -708,6 +708,12 @@ class G2P:
             SegmentSlot(grapheme=s.grapheme, span=s.span,
                         candidates=s.candidates[:keep])
             for s in slots
+            # The lattice contract reserves empty candidates for deletion:
+            # a silenced marker grapheme (preposed dependent vowel folded
+            # into its consonant) is omitted here exactly as on the
+            # rescorer path, keeping `slot.top` total and confidence
+            # computed over sounding slots only.
+            if s.candidates
         ]
         self._lattice_cache[cache_key] = result
         return list(result)
