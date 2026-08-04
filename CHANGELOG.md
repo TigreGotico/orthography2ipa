@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.51.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.51.0a1) (2026-08-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.50.0a1...7.51.0a1)
+
+**Merged pull requests:**
+
+- feat: gold-hunting wave 2 — Wiktextract [\#769](https://github.com/TigreGotico/orthography2ipa/pull/769) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.50.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.50.0a1) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.49.0a1...7.50.0a1)
@@ -586,10 +594,6 @@
 ## [7.24.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.24.1a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a10...7.24.1a1)
-
-**Merged pull requests:**
-
-- Release 7.24.1a1 [\#609](https://github.com/TigreGotico/orthography2ipa/pull/609) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [7.24.0a10](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a10) (2026-07-16)
 
