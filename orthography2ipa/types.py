@@ -463,6 +463,21 @@ class GraphemePosition(str, Enum):
 
     BEFORE_VOWEL = "before_vowel"
 
+    BEFORE_FINAL_VOWEL = "before_final_vowel"
+    """Before a vowel letter that is ITSELF the word-final grapheme (or is
+    followed only by a single further grapheme the spec's own
+    ``positional_graphemes`` already silences at ``word_final``, e.g. a
+    silent inflectional ``-s``) — a hiatus with an apocopated/mute tail
+    vowel, as opposed to one that survives as a syllable nucleus. Checked
+    BEFORE the generic per-letter ``BEFORE_E``/``BEFORE_VOWEL`` positions,
+    so a spec that defines it can block glide formation specifically when
+    there is nothing left afterward to carry the syllable — e.g. French
+    word-final unmarked ⟨ie⟩ stays [i] (vie [vi], envie [ɑ̃vi], vies [vi])
+    while the SAME ⟨i⟩-before-⟨e⟩ context mid-word still glides when a
+    real coda follows (pied [pje], fiacre [fjakʁ]), because there the
+    following ⟨e⟩ is not the word's last (or last-but-silent) segment and
+    must survive as the syllable's only nucleus (Tranel 1987 §5-6)."""
+
     AFTER_VOWEL = "after_vowel"
 
     BEFORE_CONSONANT = "before_consonant"
