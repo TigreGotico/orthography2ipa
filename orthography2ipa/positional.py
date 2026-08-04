@@ -97,9 +97,62 @@ _AFTER_EXACT: Dict[str, GraphemePosition] = {
 }
 
 
+#: Graphemes that, when word-final and independently silenced by the
+#: spec, are TRANSPARENT grammatical markers rather than a root-final
+#: consonant: adding them never changes how the preceding syllable is
+#: built (French plural/verbal-agreement ``-s``, and its ``-x`` allomorph
+#: — choux, genoux — Tranel 1987 §3, standard French orthography). A
+#: root-final silenced consonant (pied's ``-d``, chat's ``-t``…) is NOT
+#: transparent in this sense: the syllable's nucleus was fixed by the
+#: root before that consonant ever dropped out, so a preceding glide is
+#: still licensed and a following vowel is still needed as the nucleus.
+#: This set is deliberately narrow rather than "any silenced consonant"
+#: to avoid conflating the two (see positional_graphemes rule review for
+#: the ``pied``/``vies`` minimal pair that motivated the distinction).
+_TRANSPARENT_SUFFIX_GRAPHEMES = frozenset({"s", "x"})
+
+
+def _is_word_final_silent(spec: Optional[LanguageSpec], ctx) -> bool:
+    """True if *ctx* is the word-final grapheme, is a transparent suffix
+    grapheme (see :data:`_TRANSPARENT_SUFFIX_GRAPHEMES`), and *spec*
+    already silences it there (an empty candidate in its ``word_final``
+    positional override).
+
+    Used only to decide whether a vowel *before* ``ctx`` is looking at an
+    effectively-silent tail (e.g. the plural ``-s`` in French ``vies``),
+    never to resolve ``ctx`` itself — no recursion, no ordering dependency.
+    """
+    if spec is None or ctx.next is not None:
+        return False
+    if ctx.grapheme not in _TRANSPARENT_SUFFIX_GRAPHEMES:
+        return False
+    pg = getattr(spec, "positional_graphemes", None)
+    if not pg:
+        return False
+    entry = pg.get(ctx.grapheme)
+    if not entry:
+        return False
+    final_candidates = entry.get(GraphemePosition.WORD_FINAL)
+    return bool(final_candidates) and "" in final_candidates
+
+
+def _next_is_terminal_vowel(next_ctx, spec: Optional[LanguageSpec]) -> bool:
+    """True if *next_ctx* is a vowel that is the word's last audible slot:
+    either the absolute last grapheme, or followed only by one further
+    grapheme the spec already silences at ``word_final`` (see
+    :func:`_is_word_final_silent`)."""
+    if next_ctx is None or not next_ctx.is_vowel:
+        return False
+    if next_ctx.next is None:
+        return True
+    tail = next_ctx.next
+    return tail.next is None and _is_word_final_silent(spec, tail)
+
+
 def grapheme_positions(
     ctx,
     *,
+    spec: Optional[LanguageSpec] = None,
     syll_idx: Optional[int] = None,
     stressed_syll_idx: Optional[int] = None,
 ) -> List[GraphemePosition]:
@@ -129,6 +182,14 @@ def grapheme_positions(
     prev_is_v = prev_ctx is not None and prev_ctx.is_vowel
     next_is_v = next_ctx is not None and next_ctx.is_vowel
 
+    # 0. before a vowel that is itself the word's last audible slot (see
+    # _next_is_terminal_vowel) — most specific, checked before the exact
+    # per-letter/class positions below so a spec that declares it can block
+    # e.g. glide formation only when there is nothing left to carry the
+    # syllable's nucleus.
+    if _next_is_terminal_vowel(next_ctx, spec):
+        pos.append(GraphemePosition.BEFORE_FINAL_VOWEL)
+
     # 1. before_X (exact letter) then the front/back vowel *class*.
     if next_ctx is not None:
         nc = base_vowel_letter(next_ctx.grapheme[0])
@@ -151,6 +212,22 @@ def grapheme_positions(
         pos.append(GraphemePosition.WORD_INITIAL)
     if next_ctx is None:
         pos.append(GraphemePosition.WORD_FINAL)
+    _effectively_word_final_vowel = (
+        next_ctx is not None and is_vowel and next_ctx.next is None
+        and _is_word_final_silent(spec, next_ctx)
+    )
+    # NOTE: the WORD_FINAL entry for this "effectively final" case (a vowel
+    # followed only by a transparent suffix grapheme the spec already
+    # silences — French plural -s/-x: "vies") is appended in section 4
+    # below, AFTER nucleus_stressed/nucleus_unstressed, not here. A TRUE
+    # word-final vowel outranks stress (section 2 fires unconditionally
+    # before section 4), but this is a heuristic proxy for finality, not
+    # the real thing — giving it the same priority caused a cross-language
+    # regression (Barranquenho Portuguese clitic "les" [lɛ], stressed, lost
+    # its stress-conditioned vowel quality to the language's word_final
+    # reduction rule). Ranking it below NUCLEUS_STRESSED means a spec's
+    # stress-aware rule wins whenever one is defined, and this only
+    # supplies an answer when nothing more specific does.
 
     # 3. intervocalic (consonants between two vowels)
     if prev_is_v and next_is_v:
@@ -174,6 +251,9 @@ def grapheme_positions(
                 pos.append(GraphemePosition.PRETONIC)
             else:
                 pos.append(GraphemePosition.POSTTONIC)
+
+    if _effectively_word_final_vowel:
+        pos.append(GraphemePosition.WORD_FINAL)
 
     # 5. after/before vowel / consonant context
     if prev_is_v:
@@ -298,7 +378,7 @@ def resolve_branches(
     base_candidates = list(ctx.ipa)
 
     positions = grapheme_positions(
-        ctx, syll_idx=syll_idx, stressed_syll_idx=stressed_syll_idx)
+        ctx, spec=spec, syll_idx=syll_idx, stressed_syll_idx=stressed_syll_idx)
     pos_candidates = positional_candidates(spec, grapheme, positions)
 
     if pos_candidates is None:

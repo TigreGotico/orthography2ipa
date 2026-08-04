@@ -3,7 +3,7 @@
   "name": "Hadza",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "tsh": [
       "tsʰ"
@@ -181,6 +181,16 @@
       "pages": null,
       "notes": "Phonology and practical-orthography reference for the skeleton grapheme map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Hadza_language"
+    },
+    {
+      "id": "hts_miller2008",
+      "author": "Miller, Kirk",
+      "year": 2008,
+      "title": "Hadza Grammar Notes",
+      "publisher": "3rd International Symposium on Khoisan Languages and Linguistics, Riezlern",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive grammar notes on Hadza phonology and the click inventory; the practical orthography modelled here follows the Miller/Anyawire et al. (2013) conventions this work documents."
     }
   ],
   "wikipedia": [

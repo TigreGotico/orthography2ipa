@@ -271,10 +271,15 @@ def test_de_auslautverhaertung_d_minimal_pair():
     Wiese (1996).
 
     The minimal pair that isolates the rule to its position: Bad → [bat] (final
-    ⟨d⟩ devoiced) vs Baden → [badɛn] (the same ⟨d⟩, now medial, stays voiced).
+    ⟨d⟩ devoiced; the vowel here stays short -- a closed monosyllable has no
+    following vowel to trigger open-syllable lengthening, and free vowel length
+    in a closed German monosyllable is not recoverable from spelling alone, a
+    known engine-limit exception) vs Baden → [ˈbaːdən] (the same ⟨d⟩, now medial
+    and in an open syllable, stays voiced; the vowel is long by the
+    open-syllable lengthening rule -- Wiese 1996).
     """
-    assert _t("de-DE", "Bad") == "bat"
-    assert _t("de-DE", "Baden").startswith("bad")
+    assert _t("de-DE", "Bad").lstrip("ˈ") == "bat"
+    assert _t("de-DE", "Baden").lstrip("ˈ").startswith("baː")
 
 
 def test_de_auslautverhaertung_g():
@@ -283,7 +288,7 @@ def test_de_auslautverhaertung_g():
     de-DE notes: "obstruents devoiced word-finally (b→p, d→t, g→k, v→f)."
     Hall (2003).
     """
-    assert _t("de-DE", "Tag") == "tak"
+    assert _t("de-DE", "Tag").lstrip("ˈ") == "tak"
 
 
 def test_de_auslautverhaertung_v():
@@ -296,7 +301,7 @@ def test_de_auslautverhaertung_v():
     onset and stays [v].
     """
     assert _t("de-DE", "brav").endswith("f")
-    assert _t("de-DE", "viel").startswith("v")
+    assert _t("de-DE", "viel").lstrip("ˈ").startswith("v")
 
 
 def test_de_sp_st_word_initial_hushing():
@@ -308,8 +313,8 @@ def test_de_sp_st_word_initial_hushing():
     Minimal pair on the ⟨sp⟩ cluster: Spiel (word-initial → [ʃp]) vs Wespe
     (medial → [sp]).
     """
-    assert _t("de-DE", "Spiel").startswith("ʃp")
-    assert _t("de-DE", "Stein").startswith("ʃt")
+    assert _t("de-DE", "Spiel").lstrip("ˈ").startswith("ʃp")
+    assert _t("de-DE", "Stein").lstrip("ˈ").startswith("ʃt")
     assert "sp" in _t("de-DE", "Wespe")
 
 
