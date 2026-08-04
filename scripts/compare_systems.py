@@ -743,22 +743,26 @@ def build_espeak_lexicon_tsv(o2i_lang: str) -> Optional[str]:
 
 # ─── scoring ─────────────────────────────────────────────────────────────────
 
-def _score(hyps_and_golds: List[Tuple[Optional[str], List[str]]]) -> Tuple[Optional[float], int]:
+def _score(hyps_and_golds: List[Tuple[Optional[str], List[str]]],
+           lang: str = "") -> Tuple[Optional[float], int]:
     """Mean PER over rows with a non-``None`` hypothesis, using
     ``benchmark.normalize``/``benchmark.levenshtein`` (broad, stress
     stripped — matching ``benchmark.py --scoreboard``'s default mode).
     Returns ``(per, covered)``; ``per`` is ``None`` when nothing scored."""
+    extra = benchmark._prosody_marks(lang) if lang else ""
     per_sum, covered = 0.0, 0
     for hyp, golds in hyps_and_golds:
         if not hyp:
             continue
-        hyp_n = benchmark.normalize(hyp, strip_stress=True, broad=True)
+        hyp_n = benchmark.normalize(hyp, strip_stress=True, broad=True, extra_strip=extra)
         if not hyp_n:
             continue
         covered += 1
         per_sum += min(
-            benchmark.levenshtein(hyp_n, benchmark.normalize(g, True, True))
-            / max(len(benchmark.normalize(g, True, True)), 1)
+            benchmark.levenshtein(
+                hyp_n, benchmark.normalize(g, True, True, extra_strip=extra))
+            / max(len(benchmark.normalize(g, True, True,
+                                          extra_strip=extra)), 1)
             for g in golds
         )
     if covered == 0:
@@ -879,21 +883,21 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
                 o2i_lex_rows.append((None, golds))
         orthography2ipa.clear_lexicons()
 
-    o2i_per, o2i_n = _score(o2i_rows)
+    o2i_per, o2i_n = _score(o2i_rows, lang=lang)
     o2i_lex_per, o2i_lex_n = (
-        _score(o2i_lex_rows) if use_o2i_lex else (None, 0))
-    espeak_per, espeak_n = _score(espeak_rows) if use_espeak else (None, 0)
+        _score(o2i_lex_rows, lang=lang) if use_o2i_lex else (None, 0))
+    espeak_per, espeak_n = _score(espeak_rows, lang=lang) if use_espeak else (None, 0)
     espeak_rules_per, espeak_rules_n = (
-        _score(espeak_rules_rows) if use_espeak_rules else (None, 0))
-    epitran_per, epitran_n = _score(epitran_rows) if use_epitran else (None, 0)
-    gruut_per, gruut_n = _score(gruut_rows) if use_gruut else (None, 0)
+        _score(espeak_rules_rows, lang=lang) if use_espeak_rules else (None, 0))
+    epitran_per, epitran_n = _score(epitran_rows, lang=lang) if use_epitran else (None, 0)
+    gruut_per, gruut_n = _score(gruut_rows, lang=lang) if use_gruut else (None, 0)
     pycotovia_per, pycotovia_n = (
-        _score(pycotovia_rows) if use_pycotovia else (None, 0))
+        _score(pycotovia_rows, lang=lang) if use_pycotovia else (None, 0))
     ahotts_per, ahotts_n = (
-        _score(ahotts_rows) if use_ahotts else (None, 0))
+        _score(ahotts_rows, lang=lang) if use_ahotts else (None, 0))
     ahotts_version = cfg["ahotts"]["version"] if use_ahotts else None
     africa_g2p_per, africa_g2p_n = (
-        _score(africa_g2p_rows) if use_africa_g2p else (None, 0))
+        _score(africa_g2p_rows, lang=lang) if use_africa_g2p else (None, 0))
 
     return {
         "lang": lang,

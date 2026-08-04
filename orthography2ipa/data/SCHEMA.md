@@ -292,6 +292,8 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `followed_by` | string | no | Next-grapheme class (same value set) |
 | `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |
+| `followed_by_grapheme` | array | no | Next slot's source grapheme must be one of these (case-insensitive). For processes a letter group triggers while its phoneme hides the cluster (Swedish short vowel before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩) |
+| `followed_by_grapheme_not` | array | no | Next slot's source grapheme must NOT be one of these. For shortness-marking letter groups whose phonemes look like plain single consonants (German ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩) |
 | `mutates_neighbor` | string | no | An IPA modifier (e.g. `"ʲ"`) this rule ADDS to an adjacent slot's candidate when it fires — paired with `surface: ""` this is the "marker grapheme" pattern: a letter that deletes itself while palatalising (or otherwise mutating) a neighbour, atomically. Requires `mutates_neighbor_side`. See [allophony](../../docs/allophony.md#marker-graphemes-delete-a-vowel-while-mutating-a-neighbour) and the Manx (`gv`) slender-marking rules. |
 | `mutates_neighbor_side` | string | no | `"preceding"` / `"following"` — which adjacent slot, relative to THIS rule's own anchor grapheme, receives `mutates_neighbor`'s feature. Required together with `mutates_neighbor`. |
 | `notes` | string | no | Provenance / convention notes |
@@ -324,6 +326,8 @@ spec with no `stress` block gets no stress marks.
 | `penult_stress_endings` | array | no | Word endings that force penultimate stress |
 | `marked_vowels` | array | no | Orthographic vowels whose diacritic marks stress directly |
 | `stress_mark` | string | no | IPA mark to insert (default `"ˈ"`) |
+| `accent2_mark` | string | no | Scandinavian pitch-accent 2 marker (e.g. `"²"`). When set, a penult-stressed word ending in one of `accent2_final_letters` takes this mark instead of `stress_mark` (Riad 2014); empty = no pitch accent |
+| `accent2_final_letters` | array | no | Final orthographic letters selecting `accent2_mark` (e.g. `["a", "e"]`) |
 | `notes` | string | no | Provenance / convention notes |
 
 ## Location Schema

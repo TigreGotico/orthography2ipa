@@ -500,9 +500,73 @@
     "penult_stress_endings": [],
     "marked_vowels": [],
     "stress_mark": "ˈ",
-    "notes": "Germanic initial stress (Riad 2014)."
+    "notes": "Germanic initial stress (Riad 2014). Pitch accent: accent 2 (grave, marked ²) for penult-stressed words in final ⟨-a⟩/⟨-e⟩ — the disyllabic-trochee core class (Riad 2014, ch. 10: accent 2 requires a post-stress syllable; infinitives and weak nouns in -a/-e carry it by default, antepenult-stressed words keep accent 1). Accent 1 left unmarked, matching the wikipron convention.",
+    "accent2_mark": "²",
+    "accent2_final_letters": [
+      "a",
+      "e"
+    ]
   },
   "allophone_rules": [
+    {
+      "id": "SV_PRE_R_LOW_LONG_CLUSTER",
+      "phonemes": [
+        "ɛː"
+      ],
+      "surface": "æ",
+      "stress": "stressed",
+      "followed_by": "consonant_cluster",
+      "followed_by_phoneme": [
+        "r",
+        "rː"
+      ],
+      "notes": "Pre-r lowering under stress (Riad 2014, §3.3): a stressed front mid vowel lowers to [æ] before /r/ — long before a single r (lära [læːra], är [æːr]), short-and-lowered when the r heads a cluster or is itself long (ärt [æʈ/ært], Bert, berg, herr). Unstressed ⟨-er⟩ keeps [ɛr] (vinter), hence the stress gate."
+    },
+    {
+      "id": "SV_PRE_R_LOW_LONG_SINGLE",
+      "phonemes": [
+        "ɛː"
+      ],
+      "surface": "æː",
+      "stress": "stressed",
+      "followed_by_phoneme": [
+        "r",
+        "rː"
+      ],
+      "notes": "Pre-r lowering under stress (Riad 2014, §3.3): a stressed front mid vowel lowers to [æ] before /r/ — long before a single r (lära [læːra], är [æːr]), short-and-lowered when the r heads a cluster or is itself long (ärt [æʈ/ært], Bert, berg, herr). Unstressed ⟨-er⟩ keeps [ɛr] (vinter), hence the stress gate."
+    },
+    {
+      "id": "SV_PRE_R_LOW_E_CLUSTER",
+      "phonemes": [
+        "eː"
+      ],
+      "surface": "æ",
+      "stress": "stressed",
+      "followed_by": "consonant_cluster",
+      "followed_by_phoneme": [
+        "r",
+        "rː"
+      ],
+      "notes": "Pre-r lowering under stress (Riad 2014, §3.3): a stressed front mid vowel lowers to [æ] before /r/ — long before a single r (lära [læːra], är [æːr]), short-and-lowered when the r heads a cluster or is itself long (ärt [æʈ/ært], Bert, berg, herr). Unstressed ⟨-er⟩ keeps [ɛr] (vinter), hence the stress gate."
+    },
+    {
+      "id": "SV_PRE_R_LOW_SHORT",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "æ",
+      "stress": "stressed",
+      "followed_by_phoneme": [
+        "r",
+        "rː",
+        "ʈ",
+        "ɖ",
+        "ɳ",
+        "ɭ",
+        "ʂ"
+      ],
+      "notes": "Pre-r lowering under stress (Riad 2014, §3.3): a stressed front mid vowel lowers to [æ] before /r/ — long before a single r (lära [læːra], är [æːr]), short-and-lowered when the r heads a cluster or is itself long (ärt [æʈ/ært], Bert, berg, herr). Unstressed ⟨-er⟩ keeps [ɛr] (vinter), hence the stress gate."
+    },
     {
       "id": "SV_SHORTEN_A",
       "phonemes": [
@@ -711,6 +775,249 @@
       "grapheme": [
         "ö"
       ]
+    },
+    {
+      "id": "SV_SHORTEN_MG_ɑː",
+      "phonemes": [
+        "ɑː"
+      ],
+      "surface": "a",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_eː",
+      "phonemes": [
+        "eː"
+      ],
+      "surface": "ɛ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_iː",
+      "phonemes": [
+        "iː"
+      ],
+      "surface": "ɪ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_uː",
+      "phonemes": [
+        "uː"
+      ],
+      "surface": "ɔ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_ʉː",
+      "phonemes": [
+        "ʉː"
+      ],
+      "surface": "ɵ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_yː",
+      "phonemes": [
+        "yː"
+      ],
+      "surface": "ʏ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_oː",
+      "phonemes": [
+        "oː"
+      ],
+      "surface": "ɔ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_ɛː",
+      "phonemes": [
+        "ɛː"
+      ],
+      "surface": "ɛ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORTEN_MG_øː",
+      "phonemes": [
+        "øː"
+      ],
+      "surface": "œ",
+      "followed_by_grapheme": [
+        "ng",
+        "nk",
+        "sk"
+      ],
+      "notes": "Complementary quantity before the letter groups ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (Riad 2014, §5: a stressed vowel is short before a consonant cluster; these spell historical /ŋɡ ŋk sk/ clusters whose phonemes — [ŋ], [ŋk], candidate [ɧ] — the generic consonant_cluster neighbour class cannot see): säng [sɛŋ], lång [lɔŋ], sjunga [ɧɵŋa], fisk [fɪsk]."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_ɑː",
+      "phonemes": [
+        "ɑː"
+      ],
+      "surface": "a",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_eː",
+      "phonemes": [
+        "eː"
+      ],
+      "surface": "ɛ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_iː",
+      "phonemes": [
+        "iː"
+      ],
+      "surface": "ɪ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_uː",
+      "phonemes": [
+        "uː"
+      ],
+      "surface": "ɔ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_ʉː",
+      "phonemes": [
+        "ʉː"
+      ],
+      "surface": "ɵ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_yː",
+      "phonemes": [
+        "yː"
+      ],
+      "surface": "ʏ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_oː",
+      "phonemes": [
+        "oː"
+      ],
+      "surface": "ɔ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_ɛː",
+      "phonemes": [
+        "ɛː"
+      ],
+      "surface": "ɛ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_SHORT_BEFORE_J_øː",
+      "phonemes": [
+        "øː"
+      ],
+      "surface": "œ",
+      "followed_by_grapheme": [
+        "j"
+      ],
+      "notes": "A vowel before ⟨j⟩ forms a falling diphthong with a SHORT nucleus (Riad 2014, §2.3: aj, hej, maj, nöjd) — ⟨j⟩ closes the syllable like a consonant cluster for quantity."
+    },
+    {
+      "id": "SV_UNSTRESSED_O_FINAL",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "ʊ",
+      "stress": "unstressed",
+      "word_final": true,
+      "grapheme": [
+        "o"
+      ],
+      "notes": "Unstressed word-final ⟨o⟩ is [ʊ] (Riad 2014, §2.2 vowel reduction: avokado, bravo); a closed unstressed syllable keeps [ɔ] (afton, dator)."
+    },
+    {
+      "id": "SV_UNSTRESSED_O_OPEN",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "ʊ",
+      "stress": "unstressed",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "o"
+      ],
+      "notes": "Unstressed ⟨o⟩ in an open syllable is [ʊ] (Riad 2014, §2.2: allofon, Borås); closed unstressed syllables keep [ɔ]."
     }
   ]
 }
