@@ -18,6 +18,7 @@ language's JSON spec (see `data/SCHEMA.md` for the schema).
 - **ladefoged1999_ame**: Ladefoged, P. (1999). American English. In: *Handbook of the International Phonetic Association*. Cambridge University Press.
 - **cox_palethorpe2007**: Cox, F. & Palethorpe, S. (2007). Australian English. *Journal of the International Phonetic Association*, 37(3), 341-350.
 - **stuartsmith2003**: Stuart-Smith, J. (2003). Glasgow. In: Upton, C. (ed.), *Urban Voices*. Arnold.
+- **carney1994**: Carney, E. (1994). *A Survey of English Spelling*. Routledge. — the canonical orthography-to-sound reference for English; its account of weak-vowel reduction (unstressed vowels realised as /ə/ or /ɪ/) and the regular consonant-digraph/suffix correspondences (e.g. ⟨-tion⟩, ⟨-sion⟩, ⟨-cian⟩ → /ʃən/, /ʒən/) underlies the `nucleus_unstressed` and multi-letter-grapheme rules added to `en-GB.json`.
 
 ### German
 
