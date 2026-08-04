@@ -218,3 +218,27 @@ class TestSwedishBeatEspeakWave:
         assert self._t("tala").startswith("²")
         assert self._t("vinter").startswith("ˈ")  # accent 1: plain stress mark
         assert self._t("bil").startswith("ˈ")     # monosyllable: never accent 2
+
+
+class TestProsodyMarkScoringBoundary:
+    """PER strips pitch-accent digits ONLY for specs that declare them.
+
+    Swedish declares stress.accent2_mark, so ¹/² are unscored prosody there;
+    Yi (ycl) gold writes lexical tone with the same superscripts, and for it
+    they are segments. Blanket-stripping cost ycl +0.076 PER (caught by the
+    benchmark-regression CI gate) — this pins the boundary.
+    """
+
+    def test_prosody_marks_per_language(self):
+        import importlib.util
+        from pathlib import Path
+        spec = importlib.util.spec_from_file_location(
+            "bm", Path(__file__).parent.parent / "scripts" / "benchmark.py")
+        bm = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(bm)
+        assert bm._prosody_marks("sv") == "¹²"
+        assert bm._prosody_marks("ycl") == ""
+        assert bm._prosody_marks("de") == ""
+        assert bm.normalize("²vɛkːa", True, True,
+                            extra_strip="¹²") == "vɛkka"
+        assert bm.normalize("a³³pʰi²¹", True, True) == "a³³pʰi²¹"

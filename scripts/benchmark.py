@@ -111,13 +111,15 @@ CI_SAMPLE_JSON = os.path.join(REPO_ROOT, "benchmarks", "results_ci_sample.json")
 #: character, which cost Catalan ~7 PER points of pure notation. The IPA
 #: modifier apostrophe U+02BC is deliberately NOT here: it marks ejectives and
 #: is a real segment. The Scandinavian pitch-accent digits ¹/² are stripped
-#: for the same reason as the stress marks: they are word-prosodic, not
-#: segmental, and the one gold set that writes them (wikipron Swedish) marks
-#: them inconsistently — attested accent-2 trochees like ⟨alla⟩ ⟨anka⟩ are
-#: left bare — so scoring them measures the annotators' coverage, not G2P
-#: quality. The engine still emits them (StressRules.accent2_mark); PER just
-#: doesn't score prosody.
-_STRESS_MARKS = "ˈˌ'¹²"
+#: too, but ONLY for a language whose spec declares a pitch accent
+#: (``StressRules.accent2_mark`` — see :func:`_prosody_marks`): there they
+#: are word-prosodic, not segmental, and the one gold set that writes them
+#: (wikipron Swedish) marks them inconsistently — attested accent-2 trochees
+#: like ⟨alla⟩ ⟨anka⟩ are left bare — so scoring them measures the
+#: annotators' coverage, not G2P quality. For any other language the digits
+#: stay: Yi (ycl) gold writes lexical TONE with the same superscripts
+#: (²¹, ³³), and those are segments a G2P must produce.
+_STRESS_MARKS = "ˈˌ'"
 #: Tie bars are notation, not phonology: t͡s and ts are the same phoneme
 #: string at every transcription tier, so they are stripped from BOTH
 #: sides unconditionally (unlike the narrow diacritics below, which only
@@ -2387,8 +2389,29 @@ def _expand_consonant_length(s: str) -> str:
     return "".join(out)
 
 
-def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
+def _prosody_marks(lang: str) -> str:
+    """Extra per-language suprasegmental marks PER must not score.
+
+    A spec that declares ``stress.accent2_mark`` (Scandinavian pitch accent)
+    makes ¹/² prosody for that language, unscored on both sides — exactly
+    like the universal stress marks. For every other language the digits are
+    left alone (they are lexical tone in e.g. Yi gold).
+    """
+    try:
+        from orthography2ipa import get
+        st = get(lang).stress
+    except Exception:
+        return ""
+    if st is not None and st.accent2_mark:
+        return "¹²"
+    return ""
+
+
+def normalize(ipa: str, strip_stress: bool, broad: bool,
+              extra_strip: str = "") -> str:
     s = unicodedata.normalize("NFC", ipa)
+    for ch in extra_strip:
+        s = s.replace(ch, "")
     s = s.replace("g", "ɡ")  # ASCII/IPA confusable fold — see _NARROW_MARKS comment
     if strip_stress:
         for ch in _STRESS_MARKS:
@@ -2505,6 +2528,7 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     for word, gold in pairs:
         refs.setdefault(word, []).append(gold)
 
+    extra = _prosody_marks(lang)
     pers: List[float] = []
     wrong, covered = 0, 0
     for word, golds in refs.items():
@@ -2518,7 +2542,8 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
             # it cost Catalan ~7 and English ~16 PER points.
             transcribe = (engine.transcribe if _is_multiword(word)
                           else engine.transcribe_word)
-            hyp = normalize(transcribe(word), strip_stress, broad)
+            hyp = normalize(transcribe(word), strip_stress, broad,
+                            extra_strip=extra)
         except Exception:
             continue
         if not hyp:
@@ -2526,7 +2551,8 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
         covered += 1
         per = min(
             levenshtein(hyp, g) / max(len(g), 1)
-            for g in (normalize(x, strip_stress, broad) for x in golds)
+            for g in (normalize(x, strip_stress, broad, extra_strip=extra)
+                      for x in golds)
         )
         pers.append(per)
         wrong += per > 0
