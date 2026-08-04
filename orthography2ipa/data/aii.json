@@ -3,7 +3,7 @@
   "name": "Assyrian Neo-Aramaic",
   "script": "Syriac",
   "script_type": "abjad",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ܐ": [
       "ʔ"
