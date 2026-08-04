@@ -2,7 +2,7 @@
  "code": "irk",
  "name": "Iraqw",
  "script": "Latin",
- "quality": "skeleton",
+ "quality": "research",
  "graphemes": {
   "/": [
    "ʕ"
@@ -158,7 +158,7 @@
    "ɓ̥"
   ]
  },
- "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (irk.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (irk.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names. Iraqw carries lexical tone (PHOIBLE records 3 tone segments) rather than stress; tone is not orthographically marked and is left unencoded, and there is no separate stress system to model (documented exemption).",
  "iso639_3": "irk",
  "glottolog_code": "iraq1241",
  "sources": [
@@ -187,6 +187,16 @@
    "publisher": "Omniglot",
    "url": "https://www.omniglot.com/",
    "notes": "Undated web chart; year is retrieval year, not publication year."
+  },
+  {
+   "id": "irk_mous1993",
+   "author": "Mous, Maarten",
+   "year": 1993,
+   "title": "A Grammar of Iraqw",
+   "publisher": "Helmut Buske Verlag",
+   "url": "https://archive.org/details/rosettaproject_irk_phon-1",
+   "pages": null,
+   "notes": "The definitive descriptive grammar of Iraqw. Verified against this spec's orthography: the Swahili-based popular orthography with q/x added, ʕ spelled ⟨/⟩, ɬ spelled ⟨sl⟩, ħ spelled ⟨hh⟩ and tɬʼ spelled ⟨tl⟩ all match the grapheme table exactly (glyphs '/','sl','hh','tl' -> ʕ/ɬ/ħ/t͡ɫ' respectively) — no discrepancy found."
   }
  ],
  "urls": [

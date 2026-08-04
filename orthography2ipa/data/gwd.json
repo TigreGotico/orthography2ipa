@@ -2,7 +2,7 @@
  "code": "gwd",
  "name": "Gawwada",
  "script": "Latin",
- "quality": "skeleton",
+ "quality": "research",
  "graphemes": {
   "a": [
    "a"
@@ -105,7 +105,7 @@
   ]
  },
  "allophones": {},
- "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (gwd.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
+ "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (gwd.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names. Gawwada stress is predictable (penultimate-mora weight-sensitive per Tosco) and not separately orthographically marked; left unencoded (documented exemption).",
  "iso639_3": "gwd",
  "glottolog_code": "gaww1239",
  "sources": [
@@ -125,6 +125,16 @@
    "publisher": "Omniglot",
    "url": "https://www.omniglot.com/",
    "notes": "Undated web chart; year is retrieval year, not publication year."
+  },
+  {
+   "id": "gwd_tosco",
+   "author": "Tosco, Mauro",
+   "year": 2021,
+   "title": "A Grammar of Gawwada",
+   "publisher": "Rüdiger Köppe Verlag (Cushitic and Omotic Studies 8)",
+   "url": "https://www.koeppe.de/titel_print_a-grammar-of-gawwada",
+   "pages": null,
+   "notes": "Comprehensive descriptive grammar of Gawwada (Dullay, East Cushitic) covering phonology to information structure; the definitive primary reference, superseding the Omniglot/africa-g2p-compiled chart previously cited alone."
   }
  ],
  "urls": [
