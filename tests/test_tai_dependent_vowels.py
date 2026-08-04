@@ -182,3 +182,30 @@ def test_non_thai_lao_specs_declare_no_dependent_or_preposed_vowels():
         spec = get(code)
         assert spec.dependent_vowels == ()
         assert spec.preposed_vowels == ()
+
+
+class TestSilentSlotLatticeContract:
+    """The lattice contract reserves empty candidates for deletion: a
+    silenced preposed vowel must be omitted from the public lattice, so
+    ``slot.top`` stays total and confidence never zeroes on the words the
+    mechanism fixes (adversarial-review regression pins)."""
+
+    def test_no_empty_candidate_slots_in_lattice(self):
+        from orthography2ipa import G2P
+        for lang, word in (("th", "เก"), ("lo", "ເສືອ"), ("th", "แมว")):
+            for slot in G2P(lang).ipa_lattice(word):
+                assert slot.candidates, (lang, word, slot.grapheme)
+                assert slot.top.ipa  # .top must never raise
+
+    def test_word_confidence_positive_for_preposed_words(self):
+        from orthography2ipa import G2P
+        assert G2P("th").word_confidence("เก") > 0.0
+        assert G2P("lo").word_confidence("ເສືອ") > 0.0
+
+    def test_tokenizer_lattice_matches_contract_too(self):
+        from orthography2ipa import get
+        from orthography2ipa.phonetok import PhonetokTokenizer
+        tok = PhonetokTokenizer(get("th"))
+        lat = tok.ipa_lattice("เก")
+        assert all(s.candidates for s in lat)
+        assert "".join(s.top.ipa for s in lat) == "keː"

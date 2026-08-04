@@ -1744,6 +1744,14 @@ class PhonetokTokenizer:
                 Candidate(ipa=ipa, cost=cost)
                 for ipa, cost in branches[:keep]
             )
+            if not cands:
+                # A silenced marker grapheme (e.g. a preposed dependent vowel
+                # whose reading was folded into its consonant) resolves to no
+                # candidates. The lattice contract reserves empty candidates
+                # for rescorer deletion — the slot is omitted, exactly as on
+                # the rescorer path — so `slot.top` stays total and
+                # word confidence is computed over sounding slots only.
+                continue
             slots.append(SegmentSlot(
                 grapheme=token.grapheme,
                 span=(token.position, token.position + token.length),
