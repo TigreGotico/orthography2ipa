@@ -494,6 +494,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         vowel_graphemes=tuple(raw.get("vowel_graphemes", ()) or ()),
         dependent_vowels=tuple(raw.get("dependent_vowels", ()) or ()),
         preposed_vowels=tuple(raw.get("preposed_vowels", ()) or ()),
+        coda_no_inherent_vowel=bool(raw.get("coda_no_inherent_vowel", False)),
         collapse_geminates=bool(raw.get("collapse_geminates", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),

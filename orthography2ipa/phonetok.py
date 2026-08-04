@@ -976,6 +976,7 @@ class PhonetokTokenizer:
         self._preposed_vowels: FrozenSet[str] = frozenset(
             v.lower() for v in spec.preposed_vowels
         )
+        self._coda_no_inherent_vowel: bool = spec.coda_no_inherent_vowel
 
     def _supplies_vowel(self, ch: str) -> bool:
         """True if *ch* is a combining mark that supplies a vowel of its own.
@@ -1027,6 +1028,28 @@ class PhonetokTokenizer:
         # for kr̩ʂɳə. Syllabicity is marked by a combining diacritic (U+0329
         # below, U+030D above), so scan the whole string rather than the head.
         return _is_nucleus(first)
+
+    def _prev_gives_nucleus(self, prev_tok: Optional[Token]) -> bool:
+        """True if *prev_tok* already supplied the current syllable's vowel.
+
+        Gates :attr:`LanguageSpec.coda_no_inherent_vowel` (the third Tai
+        mechanism, #781's follow-up): a bare consonant immediately after a
+        token that already realised a nucleus — a dependent/preposed vowel
+        sign, or a consonant token whose IPA was itself extended with a
+        vowel (the preposed-vowel merge path) — is closing that syllable,
+        not opening a fresh one, so it gets no inherent vowel of its own.
+        Undecidable sequences (no vowel token at all before the consonant)
+        are not matched here and keep the pre-existing behaviour.
+        """
+        if prev_tok is None or prev_tok.kind != TokenKind.GRAPHEME:
+            return False
+        if (
+            prev_tok.grapheme in self._dependent_vowels
+            or prev_tok.grapheme in self._preposed_vowels
+        ):
+            return True
+        ipa_vals = prev_tok.ipa
+        return bool(ipa_vals) and bool(ipa_vals[0]) and _is_nucleus(ipa_vals[0])
 
     def weights_for(self, grapheme: str) -> Optional[Tuple[float, ...]]:
         """Return the per-candidate weights for *grapheme*, or ``None``.
@@ -1323,10 +1346,20 @@ class PhonetokTokenizer:
                             # C+virama+C falls out as a cluster (conjuncts).
                             consumed += 1
                         elif not (next_ch and self._supplies_vowel(next_ch)):
-                            # Nothing supplies a vowel: the inherent one surfaces.
-                            ipa_vals = tuple(
-                                v + self.spec.inherent_vowel for v in ipa_vals
-                            )
+                            # Nothing supplies a vowel — but if the current
+                            # syllable already got one from the token just
+                            # before this consonant (Tai coda_no_inherent_vowel,
+                            # #781's follow-up), this consonant is closing
+                            # that syllable, not opening its own: leave it
+                            # bare instead of surfacing the inherent vowel.
+                            prev_tok = tokens[-1] if tokens else None
+                            if not (
+                                self._coda_no_inherent_vowel
+                                and self._prev_gives_nucleus(prev_tok)
+                            ):
+                                ipa_vals = tuple(
+                                    v + self.spec.inherent_vowel for v in ipa_vals
+                                )
                         # else: a dependent vowel sign follows and is tokenised on
                         # the next pass, supplying this syllable's vowel instead.
                 tokens.append(Token(
