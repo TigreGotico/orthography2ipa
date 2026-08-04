@@ -56,6 +56,16 @@ Note: ⟨ss⟩ → [s] (voiceless): `passer` [pase].
 
 Doubled consonant letters (`bb`, `dd`, `ff`, `gg`, `ll`, `mm`, `nn`, `pp`, `rr`, `tt`) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987): `Abbeville` [abvil], `Allier` [alje], `Abdallah` [abdala]. The `ill` digraph (after a vowel) keeps its special [ij]/[il] treatment ahead of the generic `ll` digraph via maximal-munch tokenization.
 
+**Irregular ⟨ill⟩ = [il] class**: a small closed set of words keeps ⟨ill⟩ as [il] rather than the [ij] default — `ville`, `mille`, `tranquille` (and `tranquillement`), and the place name `Lille` — handled as `word_exceptions` (Tranel 1987 §4.3).
+
+#### Glide Formation
+
+Word-internal ⟨i⟩ before another vowel letter glides to [j] (`positional_graphemes` `before_vowel` branch, Tranel 1987 §5-6): `pied` [pje], `fiacre` [fjakʁ]. This is distinct from the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs, which already carry [j] unconditionally.
+
+Known trade-off: hiatus is preserved in a small learned/prefixed class (`anti-`, `bi-`, `archi-` compounds, and nouns such as `lion`, `ion`, `chiite`, `biathlon`) where careful speech and the wikipron reference keep [iV] rather than [jV] (Tranel 1987 §5 notes this variation). The rule glides these too — 23 words in the wikipron corpus move away from the reference while 8,097 move toward it. A finer split would need syllable-count or morpheme-boundary knowledge the orthography does not encode.
+
+The glide is blocked when the following vowel is itself the word's last audible slot (the engine-level `before_final_vowel` position) — word-final unmarked ⟨ie⟩ stays [i] rather than gliding into a vowel-less [vj]: `vie` [vi], `envie` [ɑ̃vi], `folie` [fɔli], `Algérie` [alʒeʁi], and the plural `vies` [vi] (⟨s⟩ is a transparent, independently-silenced suffix grapheme — Tranel 1987 §3 — so it doesn't count as "more word left"). This does not affect `pied`/`fiacre`, where the vowel after ⟨i⟩ is followed by a real root-final consonant and still must carry the syllable's nucleus.
+
 ---
 
 ## Vowel System
