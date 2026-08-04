@@ -1113,6 +1113,13 @@ def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
 # ``sounds[].ipa``, and hand-sampled (see docs/benchmarks.md) before
 # wiring. Rejected: Tigrinya (only 28/933 entries carry ``ipa`` -- too
 # thin to be a usable gold set).
+#
+# 2026-08 gold-hunting wave 3: re-ran the zero-gold sweep (it shrank a lot
+# between waves) and checked kaikki.org coverage for the top-tier-by-speakers
+# zero-gold languages. Added: `so` (Somali), `om` (Oromo), `ne` (Nepali),
+# `kok` (Konkani). Re-checked: Tigrinya is UNCHANGED (still 28/933 -- stays
+# rejected), and Sindhi (`sd`) / Santali (`sat`) were investigated and
+# rejected -- see docs/benchmarks.md for both.
 _KAIKKI_BASE = "https://kaikki.org/dictionary/{name}/kaikki.org-dictionary-{name}.jsonl"
 
 # orthography2ipa language tag -> kaikki.org per-language dump directory name.
@@ -1121,6 +1128,10 @@ _KAIKKI_LANGS: Dict[str, str] = {
     "su": "Sundanese",  # Sundanese (skeleton)
     "lo": "Lao",        # Lao (skeleton)
     "xh": "Xhosa",      # Xhosa (skeleton)
+    "so": "Somali",     # Somali (research)
+    "om": "Oromo",      # Oromo (skeleton)
+    "ne": "Nepali",     # Nepali (research)
+    "kok": "Konkani",   # Konkani (research)
 }
 
 #: kaikki entries whose ``pos`` is one of these are dictionary metadata
@@ -1137,6 +1148,11 @@ _KAIKKI_EXCLUDED_POS = {"character"}
 #: language, verified during the smoke-check).
 _KAIKKI_WORD_FILTER: Dict[str, "re.Pattern[str]"] = {
     "jv": re.compile(r"[A-Za-z'\-]+\Z"),
+    # `so` and `om` specs are Latin-only (official orthographies), but their
+    # kaikki dumps carry a handful of non-Latin/loanword entries -- restrict
+    # to the script the spec actually covers, same rationale as `jv`.
+    "so": re.compile(r"[A-Za-z'\-]+\Z"),
+    "om": re.compile(r"[A-Za-z'\-]+\Z"),
 }
 
 

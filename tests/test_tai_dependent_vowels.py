@@ -20,19 +20,23 @@ that Devanagari and friends never exercise, because they never occur there:
    stress, span reporting) stays in TEXT order. See the preposed-vowel
    branch of ``PhonetokTokenizer.tokenize``.
 
-A known, separate, OUT-OF-SCOPE gap these tests do not attempt to fix: a
-bare word-final consonant with nothing after it (no dependent vowel, no
-virama) still gets the inherent vowel from the general abugida rule, which
-is correct for Devanagari/Tamil/Kannada's schwa but wrong for Thai/Lao's
-unmarked closed-syllable convention (⟨ลาว⟩ 'Laos' -> "laːwo" rather than
-"laːw": the coda ⟨ว⟩ gets a spurious inherent vowel). Devanagari-style
-abugidas mark a "dead" final consonant with an explicit virama; Thai/Lao do
-not write one for an ordinary closed monosyllable, so nothing in the
-inherent-vowel test (which only ever looks at the *next* character) can
-tell "coda of this syllable" from "bare consonant, fresh syllable" without
-a third, syllable-boundary-aware mechanism. That is a real, further defect
-but a different one from the two this module fixes; it is not silently
-worked around here.
+3. A third mechanism, added later (``LanguageSpec.coda_no_inherent_vowel``,
+   see its docstring in ``types.py``): a bare consonant that immediately
+   follows a token which already supplied the syllable's nucleus — a
+   dependent/preposed vowel sign — is closing that syllable, not opening a
+   fresh one, and takes no inherent vowel of its own: ⟨ลาว⟩ 'Laos' is
+   "laːw", not *"laːwo" (Iwasaki & Ingkaphirom 2005; Enfield 2007).
+   Word-final unreleased stops ([k̚ t̚ p̚]) are a separate, orthogonal fact,
+   handled by ``allophone_rules`` (``word_final=True``), not by this flag.
+
+   What remains OUT OF SCOPE, deliberately: a bare-consonant sequence with
+   NO vowel sign anywhere before it at all (Thai ⟨คน⟩ /kʰon/ — two
+   consonant letters, no written vowel). Telling "coda of an implicit-o
+   dead syllable" from "onset of a fresh syllable" there needs real
+   syllable-boundary knowledge (a dictionary or statistical syllabifier)
+   this engine does not have. That is a real, further defect but a
+   different, harder one than mechanism 3 above; it is not silently
+   worked around here.
 """
 from __future__ import annotations
 
@@ -209,3 +213,76 @@ class TestSilentSlotLatticeContract:
         lat = tok.ipa_lattice("เก")
         assert all(s.candidates for s in lat)
         assert "".join(s.top.ipa for s in lat) == "keː"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 3. coda_no_inherent_vowel: bare coda after a realised vowel gets no
+#    inherent vowel of its own (the #781 follow-up)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def test_th_and_lo_declare_coda_no_inherent_vowel():
+    assert get("th").coda_no_inherent_vowel is True
+    assert get("lo").coda_no_inherent_vowel is True
+
+
+def test_lo_laos_word_has_no_spurious_final_vowel():
+    # ล/ລ + า/າ (nucleus aː) + ว coda -> laːw, not *laːwo.
+    assert G2P("lo").transcribe("ລາວ") == "laːw"
+
+
+def test_th_laos_loanword_has_no_spurious_final_vowel():
+    assert G2P("th").transcribe("ลาว") == "laːw"
+
+
+def test_th_maak_coda_after_vowel_sign_stays_bare_and_unreleased():
+    # มาก /mâːk/ 'a lot': า supplies the nucleus, ก closes it — no schwa,
+    # and the word-final stop is unreleased per the new allophone rule.
+    assert G2P("th").transcribe("มาก") == "maːk̚"
+
+
+def test_preposed_vowel_words_unaffected_by_coda_rule():
+    # Regression: the new coda rule must not fire on the preposed-vowel
+    # mechanism's own words — its "prev token supplies a nucleus" check
+    # must not misfire on a consonant that received its OWN vowel via the
+    # preposed-vowel merge (there is no following bare consonant here to
+    # even test it against, but the full transcription must stay intact).
+    assert G2P("th").transcribe("เก") == "keː"
+    assert G2P("lo").transcribe("ເສືອ") == "sɯa"
+
+
+def test_ambiguous_bare_consonant_sequence_keeps_prior_behaviour():
+    # นก /nók/ 'bird': no vowel sign precedes either consonant at all, so
+    # the coda rule (which requires a PRECEDING vowel-supplying token) does
+    # not apply — the first consonant still gets its inherent vowel exactly
+    # as before #TAI-CODA. The final stop is still unreleased (independent
+    # allophone rule, word_final-gated only).
+    assert G2P("th").transcribe("นก") == "nok̚"
+
+
+def test_devanagari_and_other_abugidas_unaffected_by_coda_flag():
+    for code in ("hi", "ta", "kn", "ml"):
+        assert get(code).coda_no_inherent_vowel is False
+    # Full non-regression pin, exactly as the preposed/dependent tests above.
+    assert G2P("hi").transcribe("कृष्ण") == "kɾɪʂɳ"
+
+
+class TestCodaRuleLatticeContract:
+    """Same lattice-totality contract the #781 adversarial-review fix pinned
+    for the preposed-vowel mechanism, re-asserted for the coda words."""
+
+    def test_no_empty_candidate_slots_in_lattice(self):
+        for lang, word in (("lo", "ລາວ"), ("th", "ลาว"), ("th", "มาก")):
+            for slot in G2P(lang).ipa_lattice(word):
+                assert slot.candidates, (lang, word, slot.grapheme)
+                assert slot.top.ipa
+
+    def test_word_confidence_positive_for_coda_words(self):
+        assert G2P("lo").word_confidence("ລາວ") > 0.0
+        assert G2P("th").word_confidence("ลาว") > 0.0
+        assert G2P("th").word_confidence("มาก") > 0.0
+
+    def test_tokenizer_lattice_matches_contract_too(self):
+        tok = PhonetokTokenizer(get("lo"))
+        lat = tok.ipa_lattice("ລາວ")
+        assert all(s.candidates for s in lat)
+        assert "".join(s.top.ipa for s in lat) == "laːw"

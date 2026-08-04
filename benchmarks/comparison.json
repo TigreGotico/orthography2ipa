@@ -21,18 +21,26 @@
     "africa_g2p_n": 20,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "ca",
     "dataset": "4catac",
     "n": 160,
-    "o2i_per": 0.1069,
+    "o2i_per": 0.1028,
     "o2i_n": 160,
-    "espeak_per": 0.0451,
+    "o2i_lex_per": 0.0893,
+    "o2i_lex_n": 160,
+    "espeak_per": 0.0403,
     "espeak_n": 160,
     "espeak_voice": "ca",
-    "epitran_per": 0.4664,
+    "espeak_rules_per": 0.1206,
+    "espeak_rules_n": 160,
+    "epitran_per": 0.4641,
     "epitran_n": 160,
     "gruut_per": null,
     "gruut_n": 0,
@@ -51,12 +59,16 @@
     "lang": "ca-x-balear",
     "dataset": "4catac",
     "n": 160,
-    "o2i_per": 0.2033,
+    "o2i_per": 0.2018,
     "o2i_n": 160,
-    "espeak_per": 0.0817,
+    "o2i_lex_per": 0.1882,
+    "o2i_lex_n": 160,
+    "espeak_per": 0.0798,
     "espeak_n": 160,
     "espeak_voice": "ca-ba",
-    "epitran_per": 0.5017,
+    "espeak_rules_per": 0.1413,
+    "espeak_rules_n": 160,
+    "epitran_per": 0.4998,
     "epitran_n": 160,
     "gruut_per": null,
     "gruut_n": 0,
@@ -75,12 +87,16 @@
     "lang": "ca-x-occidental",
     "dataset": "4catac",
     "n": 160,
-    "o2i_per": 0.115,
+    "o2i_per": 0.1114,
     "o2i_n": 160,
-    "espeak_per": 0.0588,
+    "o2i_lex_per": 0.1034,
+    "o2i_lex_n": 160,
+    "espeak_per": 0.0546,
     "espeak_n": 160,
     "espeak_voice": "ca-nw",
-    "epitran_per": 0.4394,
+    "espeak_rules_per": 0.088,
+    "espeak_rules_n": 160,
+    "epitran_per": 0.4374,
     "epitran_n": 160,
     "gruut_per": null,
     "gruut_n": 0,
@@ -99,12 +115,16 @@
     "lang": "ca-x-valencia",
     "dataset": "4catac",
     "n": 160,
-    "o2i_per": 0.0944,
+    "o2i_per": 0.0909,
     "o2i_n": 160,
-    "espeak_per": 0.0515,
+    "o2i_lex_per": 0.0871,
+    "o2i_lex_n": 160,
+    "espeak_per": 0.0476,
     "espeak_n": 160,
     "espeak_voice": "ca-va",
-    "epitran_per": 0.3815,
+    "espeak_rules_per": 0.0798,
+    "espeak_rules_n": 160,
+    "epitran_per": 0.3797,
     "epitran_n": 160,
     "gruut_per": null,
     "gruut_n": 0,
@@ -141,7 +161,11 @@
     "africa_g2p_n": 591,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "cy",
@@ -165,7 +189,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "de",
@@ -173,9 +201,13 @@
     "n": 53011,
     "o2i_per": 0.3265,
     "o2i_n": 53010,
+    "o2i_lex_per": 0.3265,
+    "o2i_lex_n": 53010,
     "espeak_per": 0.2381,
     "espeak_n": 53011,
     "espeak_voice": "de",
+    "espeak_rules_per": 0.2387,
+    "espeak_rules_n": 53011,
     "epitran_per": 0.3083,
     "epitran_n": 53011,
     "gruut_per": null,
@@ -213,7 +245,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "en",
@@ -237,7 +273,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": 0.3592,
+    "o2i_lex_n": 80987,
+    "espeak_rules_per": 0.2147,
+    "espeak_rules_n": 80993
   },
   {
     "lang": "en-US",
@@ -261,7 +301,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": 0.4938,
+    "o2i_lex_n": 126050,
+    "espeak_rules_per": 0.3104,
+    "espeak_rules_n": 126050
   },
   {
     "lang": "es",
@@ -285,7 +329,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "eu",
@@ -293,9 +341,13 @@
     "n": 3113,
     "o2i_per": 0.1848,
     "o2i_n": 3113,
+    "o2i_lex_per": 0.1842,
+    "o2i_lex_n": 3113,
     "espeak_per": 0.1588,
     "espeak_n": 3113,
     "espeak_voice": "eu",
+    "espeak_rules_per": 0.1588,
+    "espeak_rules_n": 3113,
     "epitran_per": null,
     "epitran_n": 0,
     "gruut_per": null,
@@ -333,7 +385,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "fi",
@@ -357,7 +413,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "fr",
@@ -365,9 +425,13 @@
     "n": 85516,
     "o2i_per": 0.1643,
     "o2i_n": 85496,
+    "o2i_lex_per": 0.1643,
+    "o2i_lex_n": 85496,
     "espeak_per": 0.074,
     "espeak_n": 85516,
     "espeak_voice": "fr-fr",
+    "espeak_rules_per": 0.0749,
+    "espeak_rules_n": 85510,
     "epitran_per": 0.228,
     "epitran_n": 85514,
     "gruut_per": null,
@@ -405,7 +469,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "gl",
@@ -429,7 +497,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "hi",
@@ -453,7 +525,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "hts",
@@ -477,7 +553,11 @@
     "africa_g2p_n": 329,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "it",
@@ -501,7 +581,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "kab",
@@ -525,7 +609,11 @@
     "africa_g2p_n": 54546,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "ktz",
@@ -549,7 +637,11 @@
     "africa_g2p_n": 134,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "lad",
@@ -573,7 +665,11 @@
     "africa_g2p_n": 131,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "mfe",
@@ -597,7 +693,11 @@
     "africa_g2p_n": 206,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "ngh",
@@ -621,7 +721,11 @@
     "africa_g2p_n": 263,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "nl",
@@ -629,9 +733,13 @@
     "n": 45872,
     "o2i_per": 0.2663,
     "o2i_n": 45872,
+    "o2i_lex_per": 0.2621,
+    "o2i_lex_n": 45872,
     "espeak_per": 0.1265,
     "espeak_n": 45872,
     "espeak_voice": "nl",
+    "espeak_rules_per": 0.1325,
+    "espeak_rules_n": 45872,
     "epitran_per": 0.2911,
     "epitran_n": 45872,
     "gruut_per": null,
@@ -669,7 +777,11 @@
     "africa_g2p_n": 393,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "pl",
@@ -693,7 +805,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "pt-PT",
@@ -717,7 +833,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": true
+    "sampled": true,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "ro",
@@ -741,7 +861,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "ru",
@@ -765,7 +889,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "sv",
@@ -773,10 +901,14 @@
     "n": 5082,
     "o2i_per": 0.2727,
     "o2i_n": 5076,
+    "o2i_lex_per": 0.271,
+    "o2i_lex_n": 5076,
     "espeak_per": 0.258,
     "espeak_n": 5082,
     "espeak_voice": "sv",
-    "epitran_per": 0.3864,
+    "espeak_rules_per": 0.2605,
+    "espeak_rules_n": 5082,
+    "epitran_per": 0.3844,
     "epitran_n": 5082,
     "gruut_per": null,
     "gruut_n": 0,
@@ -813,7 +945,11 @@
     "africa_g2p_n": 0,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   },
   {
     "lang": "tzm",
@@ -837,6 +973,10 @@
     "africa_g2p_n": 658,
     "harness_version": "1.0",
     "limit": "full",
-    "sampled": false
+    "sampled": false,
+    "o2i_lex_per": null,
+    "o2i_lex_n": 0,
+    "espeak_rules_per": null,
+    "espeak_rules_n": 0
   }
 ]

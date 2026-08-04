@@ -463,6 +463,21 @@ class GraphemePosition(str, Enum):
 
     BEFORE_VOWEL = "before_vowel"
 
+    BEFORE_FINAL_VOWEL = "before_final_vowel"
+    """Before a vowel letter that is ITSELF the word-final grapheme (or is
+    followed only by a single further grapheme the spec's own
+    ``positional_graphemes`` already silences at ``word_final``, e.g. a
+    silent inflectional ``-s``) — a hiatus with an apocopated/mute tail
+    vowel, as opposed to one that survives as a syllable nucleus. Checked
+    BEFORE the generic per-letter ``BEFORE_E``/``BEFORE_VOWEL`` positions,
+    so a spec that defines it can block glide formation specifically when
+    there is nothing left afterward to carry the syllable — e.g. French
+    word-final unmarked ⟨ie⟩ stays [i] (vie [vi], envie [ɑ̃vi], vies [vi])
+    while the SAME ⟨i⟩-before-⟨e⟩ context mid-word still glides when a
+    real coda follows (pied [pje], fiacre [fjakʁ]), because there the
+    following ⟨e⟩ is not the word's last (or last-but-silent) segment and
+    must survive as the syllable's only nucleus (Tranel 1987 §5-6)."""
+
     AFTER_VOWEL = "after_vowel"
 
     BEFORE_CONSONANT = "before_consonant"
@@ -1149,6 +1164,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "vowel_graphemes": InheritanceMode.OWN_ONLY,
     "dependent_vowels": InheritanceMode.OWN_ONLY,
     "preposed_vowels": InheritanceMode.OWN_ONLY,
+    "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1433,6 +1449,43 @@ class LanguageSpec:
     written (pre-consonant) position, but appends the consonant's IPA
     before the vowel's. Empty (the default) leaves every other script
     untouched."""
+
+    coda_no_inherent_vowel: bool = False
+    """The third Tai abugida mechanism (Iwasaki & Ingkaphirom 2005; Enfield
+    2007), scoped out of ``dependent_vowels``/``preposed_vowels`` (#781) as a
+    follow-up: a bare consonant that CLOSES a syllable already given its
+    nucleus by a preceding dependent vowel sign takes no inherent vowel of
+    its own. Thai/Lao write no vowel sign for a syllable coda — ⟨ลาว⟩ (Lao,
+    the country) is ⟨ล⟩+⟨า⟩+⟨ว⟩ = /l/ + /aː/ + /w/-as-coda = /laːw/, not
+    */laːwo/. Without this flag the engine's generic inherent-vowel rule
+    (a bare consonant with nothing supplying a vowel after it gets
+    ``inherent_vowel`` appended) cannot tell that ⟨ว⟩ is a coda rather than
+    a fresh syllable onset, and appends the Lao/Thai inherent vowel to it.
+
+    What makes this decidable without a real syllabifier: when the
+    consonant immediately preceding the current one was itself a dependent
+    vowel sign (``dependent_vowels``, or a preposed vowel's merged nucleus),
+    the current syllable already HAS a nucleus, so a following bare
+    consonant with nothing supplying a vowel of its own cannot be a new
+    onset needing its own inherent vowel — it can only be closing the
+    syllable that already has one. That is exactly the case this flag
+    covers, no more.
+
+    What it deliberately does NOT cover: a bare-consonant sequence with NO
+    vowel sign anywhere before it (e.g. Thai ⟨คน⟩ /kʰon/, two consonant
+    letters and no written vowel at all). Telling "coda of an implicit-o
+    dead syllable" from "onset of a fresh syllable" there needs real
+    syllable-boundary knowledge — a dictionary or a statistical
+    syllabifier — that this engine does not have; #781 named this the same
+    honest limit and it still applies. Such sequences keep their PRE-#781/
+    #TAI-CODA behaviour (inherent vowel surfaces on the first consonant)
+    unchanged.
+
+    Word-final unreleased stops (Thai/Lao dead syllables surfacing [k̚ t̚
+    p̚]) are a separate, orthogonal fact handled by ``allophone_rules``
+    (``word_final=True`` rewrites) — this flag only suppresses the spurious
+    VOWEL; it emits no allophone of its own. Default ``False`` — every
+    other spec is byte-for-byte unaffected."""
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
