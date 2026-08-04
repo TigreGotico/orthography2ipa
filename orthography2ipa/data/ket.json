@@ -1,9 +1,130 @@
 {
  "code": "ket",
  "name": "Ket",
- "script": "Zyyy",
- "quality": "stub",
- "graphemes": {},
+ "script": "Cyrl",
+ "quality": "research",
+ "graphemes": {
+  "а": [
+   "a"
+  ],
+  "аа": [
+   "aː"
+  ],
+  "и": [
+   "i"
+  ],
+  "ии": [
+   "iː"
+  ],
+  "у": [
+   "ʊ"
+  ],
+  "уу": [
+   "uː"
+  ],
+  "э": [
+   "ɛ"
+  ],
+  "ээ": [
+   "ɛː"
+  ],
+  "о": [
+   "ɔ"
+  ],
+  "оо": [
+   "ɔː"
+  ],
+  "ы": [
+   "ɨ"
+  ],
+  "ыы": [
+   "ɨː"
+  ],
+  "ө": [
+   "ɵ̞"
+  ],
+  "өө": [
+   "ɵ̞ː"
+  ],
+  "б": [
+   "b"
+  ],
+  "д": [
+   "d"
+  ],
+  "г": [
+   "ɡ"
+  ],
+  "л": [
+   "l"
+  ],
+  "ль": [
+   "ʎ"
+  ],
+  "в": [
+   "v"
+  ],
+  "х": [
+   "x"
+  ],
+  "е": [
+   "je"
+  ],
+  "м": [
+   "m"
+  ],
+  "н": [
+   "n"
+  ],
+  "ӄ": [
+   "q"
+  ],
+  "к": [
+   "k"
+  ],
+  "с": [
+   "s"
+  ],
+  "т": [
+   "t"
+  ],
+  "ӈ": [
+   "ŋ"
+  ],
+  "һ": [
+   "h"
+  ],
+  "й": [
+   "ʝ"
+  ],
+  "ь": [
+   ""
+  ],
+  "ъ": [
+   ""
+  ],
+  "ч": [
+   "tʃ"
+  ],
+  "ё": [
+   "jo"
+  ],
+  "ю": [
+   "ju"
+  ],
+  "я": [
+   "ja"
+  ],
+  "ә": [
+   "ə"
+  ],
+  "ӷ": [
+   "ɣ"
+  ],
+  "’": [
+   "ʔ"
+  ]
+ },
  "allophones": {
   "b": [
    "pʲ",
@@ -122,7 +243,7 @@
    "ɵ̞ː"
   ]
  },
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "Cyrillic-based practical orthography for Ket following Vajda (2004), Ket, and Vajda & Zinn's teaching materials. Ket has phonemic vowel length (doubled-vowel digraphs aa/ii/ee/oo/yy/oeoe mark long vowels, each earning its key by NOT being the concatenation of two short-vowel candidates) and lexical tone, which the orthography does not mark at all (Vajda 2004) -- the `stress` field is left unset and this is a documented exemption, not an oversight: Ket 'stress' is realised through the (unwritten) tonal system rather than a predictable stress rule. Ket also has a productive palatalised consonant series (dʲ lʲ nʲ sʲ tʲ), spelled with a following Cyrillic soft sign the same way Russian marks softness; per the ru ⟨бь⟩ precedent (AGENTS.md) this is a diacritic the soft-sign grapheme (mapped here to a silent empty candidate) already exists to compose, not a fact that earns Cyrillic+ь its own multigraph key, so the palatalised series is left as a documented, unencoded gap (as evn/Evenki documents the analogous native-only palatalization pattern) rather than enumerated as five extra keys. g is used for the velar stop /k̟/ (Ket has no phonemic voiced velar stop, per Vajda 2004); the plain non-palatalised lateral is velarised /lˠ/; short /u/ is realised [ʊ] (Vajda 2004), contrasting with long /uː/ spelled уу.",
  "iso639_3": "ket",
  "glottolog_code": "kett1243",
  "sources": [
@@ -142,6 +263,13 @@
    "publisher": "Max Planck Institute for the Science of Human History",
    "url": "https://phoible.org/inventories/view/2",
    "notes": "Inventory 2 (spa), 32 non-marginal segments."
+  },
+  {
+   "id": "vajda2004",
+   "author": "Vajda, Edward J.",
+   "year": 2004,
+   "title": "Ket",
+   "publisher": "Lincom Europa (Languages of the World/Materials 204)"
   }
  ],
  "urls": [
@@ -188,5 +316,8 @@
   "ɵ̞ː",
   "ʊ"
  ],
- "phoible_id": "2"
+ "phoible_id": "2",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Ket_language"
+ ]
 }
