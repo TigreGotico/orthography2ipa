@@ -173,7 +173,7 @@ class AllophoneRuleModel(_Strict):
     surface: str
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
-    stress: Optional[Literal["stressed", "unstressed"]] = None
+    stress: Optional[Literal["stressed", "unstressed", "pretonic", "posttonic"]] = None
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",

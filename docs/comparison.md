@@ -40,7 +40,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | ca-x-valencia | 4catac | 160 | 0.0909 | 0.0476 | 0.3797 | n/a | n/a | n/a | n/a |
 | cop | wikipron | 591 | 0.3716 | n/a | n/a | n/a | n/a | n/a | 0.4430 |
 | cy | wikipron | 14811 | 0.2148 | 0.3119 | 0.2259 | n/a | n/a | n/a | n/a |
-| de | wikipron | 53011 | 0.3265 | 0.2381 | 0.3083 | n/a | n/a | n/a | n/a |
+| de | wikipron | 53011 | 0.2103 | 0.2126 | 0.3064 | n/a | n/a | n/a | n/a |
 | el | wikipron | 19108 | 0.0343 | 0.0797 | n/a | n/a | n/a | n/a | n/a |
 | en | wikipron | 80995 | 0.3592 | 0.2092 | 0.8333 | 0.1788 | n/a | n/a | n/a |
 | en-US | cmudict | 126052 | 0.5003 | 0.3048 | n/a | 0.1531 | n/a | n/a | n/a |
@@ -59,7 +59,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | lad | wikipron | 131 | 0.1397 | n/a | n/a | n/a | n/a | n/a | 0.6256 |
 | mfe | wikipron | 206 | 0.2665 | n/a | n/a | n/a | n/a | n/a | 0.3001 |
 | ngh | wikipron | 263 | 0.3663 | n/a | n/a | n/a | n/a | n/a | 0.3961 |
-| nl | wikipron | 45872 | 0.2663 | 0.1265 | 0.2911 | n/a | n/a | n/a | n/a |
+| nl | wikipron | 45872 | 0.1321 | 0.1265 | 0.2911 | n/a | n/a | n/a | n/a |
 | nup | wikipron | 393 | 0.4932 | n/a | n/a | n/a | n/a | n/a | 0.4582 |
 | pl | wikipron | 148992 | 0.0480 | 0.1132 | 0.0633 | n/a | n/a | n/a | n/a |
 | pt-PT | portuguese_unified | 3000 | 0.2250 | 0.3669 | 0.4146 | n/a | n/a | n/a | n/a |
@@ -86,7 +86,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | ca-x-balear | 4catac | 160 | 0.2018 | 0.1882 | 0.0798 | 0.1413 |
 | ca-x-occidental | 4catac | 160 | 0.1114 | 0.1034 | 0.0546 | 0.0880 |
 | ca-x-valencia | 4catac | 160 | 0.0909 | 0.0871 | 0.0476 | 0.0798 |
-| de | wikipron | 53011 | 0.3265 | 0.3265 | 0.2381 | 0.2387 |
+| de | wikipron | 53011 | 0.2103 | stale | 0.2126 | stale |
 | en | wikipron | 80995 | 0.3592 | 0.3592 | 0.2092 | 0.2147 |
 | en-US | cmudict | 126052 | 0.5003 | 0.4938 | 0.3048 | 0.3104 |
 | eu | hitz_basque_ipa | 3113 | 0.1848 | 0.1842 | 0.1588 | 0.1588 |
@@ -96,7 +96,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 
 Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the SAME dictionary is worth bolted onto o2i's rules. `o2i` vs `espeak_rules` is the fairest rules-only comparison; `o2i_lex` vs `espeak` is the fairest dictionary-included comparison.
 
-The `sv` row's `o2i_lex`/`espeak_rules` cells are marked `stale`: they were computed before PER scoring stopped counting the Scandinavian pitch-accent digits ¹/² as segments (see `scripts/benchmark.py`, `_STRESS_MARKS`) and before the Swedish quantity/allophony wave, and refreshing them needs a local espeak-ng rules-only rebuild (`scripts/build_espeak_rules_only.sh`). The `o2i` and `espeak` columns are current under the new scoring — and under it orthography2ipa's rules-only output outscores full espeak-ng on Swedish (0.2316 vs 0.2337).
+The `sv` and `de` rows' `o2i_lex`/`espeak_rules` cells are marked `stale`: they were computed before PER scoring stopped counting the Scandinavian pitch-accent digits ¹/² as segments (see `scripts/benchmark.py`, `_STRESS_MARKS`) and before the Swedish quantity/allophony wave, and refreshing them needs a local espeak-ng rules-only rebuild (`scripts/build_espeak_rules_only.sh`). The `o2i` and `espeak` columns are current under the new scoring — and under it orthography2ipa's rules-only output outscores full espeak-ng on Swedish (0.2316 vs 0.2337) and German (0.2103 vs 0.2126).
 
 **Licensing**: espeak-ng's dictsource word lists and the IPA derived from them are GPL. They are used here ONLY at comparison runtime — fetched/built into a local scratch cache (`$ESPEAK_RULES_DATA_PATH`, `.o2i_lex_cache/`), never committed to this repository and never shipped in orthography2ipa's own package or lexicons.
 

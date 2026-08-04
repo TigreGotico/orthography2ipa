@@ -427,7 +427,22 @@ class AllophoneRescorer(LatticeRescorer):
             stressed = ctx.is_stressed
             if stressed is None:  # no stress context (tokenizer path)
                 return False
-            if (rule.stress == "stressed") != bool(stressed):
+            if rule.stress in ("pretonic", "posttonic"):
+                # Position relative to the stressed syllable, for the many
+                # languages whose reduction differs before vs after the
+                # stress (German unstressed tense vowels are pretonic —
+                # Politik [poli-] — while post-tonic syllables stay lax:
+                # Königin [-nɪɡɪn]).
+                if bool(stressed):
+                    return False
+                if ctx.syll_idx is None or ctx.stressed_syll_idx is None:
+                    return False
+                if rule.stress == "pretonic":
+                    if not ctx.syll_idx < ctx.stressed_syll_idx:
+                        return False
+                elif not ctx.syll_idx > ctx.stressed_syll_idx:
+                    return False
+            elif (rule.stress == "stressed") != bool(stressed):
                 return False
         if rule.syllable_position is not None:
             if _syllable_position(ctx.grapheme) != rule.syllable_position:
