@@ -3,28 +3,68 @@
   "name": "Ulwa",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
-    "ng": ["ŋ"],
-    "aa": ["aː"],
-    "ii": ["iː"],
-    "uu": ["uː"],
-    "a": ["a"],
-    "i": ["i"],
-    "u": ["u"],
-    "p": ["p"],
-    "b": ["b"],
-    "t": ["t"],
-    "d": ["d"],
-    "k": ["k"],
-    "s": ["s"],
-    "h": ["h"],
-    "m": ["m"],
-    "n": ["n"],
-    "l": ["l"],
-    "r": ["r"],
-    "w": ["w"],
-    "y": ["j"]
+    "ng": [
+      "ŋ"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "a": [
+      "a"
+    ],
+    "i": [
+      "i"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "b": [
+      "b"
+    ],
+    "t": [
+      "t"
+    ],
+    "d": [
+      "d"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "l": [
+      "l"
+    ],
+    "r": [
+      "r"
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "j"
+    ]
   },
   "parent": "x-clade-misu1242",
   "ancestors": [
@@ -60,6 +100,16 @@
       "pages": null,
       "notes": "Phonology and practical-orthography reference (Nicaraguan Misumalpan Ulwa).",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Ulwa_language"
+    },
+    {
+      "id": "ulw_green1999",
+      "author": "Green, Thomas Michael",
+      "year": 1999,
+      "title": "A Lexicographic Study of Ulwa",
+      "publisher": "PhD dissertation, MIT",
+      "url": "https://tmgreen.github.io/papers/thesis.pdf",
+      "pages": null,
+      "notes": "Dissertation produced under the Ulwa Language Project (Kenneth Hale et al.), documenting the Miskitu-derived practical orthography (circumflex long vowels, ng, h-digraphs for voiceless sonorants) modelled in this spec."
     }
   ],
   "wikipedia": [

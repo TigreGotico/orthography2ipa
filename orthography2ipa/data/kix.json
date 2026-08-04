@@ -3,7 +3,7 @@
   "name": "Khiamniungan Naga",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -129,7 +129,7 @@
       "notes": "Descent from Sino-Tibetan (Tibeto-Burman, Ao/Konyak group)"
     }
   ],
-  "notes": "Skeleton. Tibeto-Burman (Sino-Tibetan) language of Nagaland/Myanmar, Latin roman orthography. Lexical tone (marked in gold by pitch numerals) is NOT orthographically recoverable and is left unencoded, so a high PER floor is expected. Digraphs ch/sh/ts and aspirate kh/ph/th mapped; vowel-diacritic tone marks are treated as their base vowel.",
+  "notes": "Skeleton. Tibeto-Burman (Sino-Tibetan) language of Nagaland/Myanmar, Latin roman orthography. Lexical tone (marked in gold by pitch numerals) is NOT orthographically recoverable and is left unencoded, so a high PER floor is expected. Digraphs ch/sh/ts and aspirate kh/ph/th mapped; vowel-diacritic tone marks are treated as their base vowel. Khiamniungan is tonal (Weidert 1987); lexical tone, not stress, carries prosodic prominence and is not recoverable from the Latin orthography, so it is left unencoded (documented exemption).",
   "iso639_3": "kix",
   "glottolog_code": null,
   "sources": [
@@ -143,6 +143,16 @@
       "pages": null,
       "notes": "Classification and inventory reference for a stub-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Khiamniungan_Naga_language"
+    },
+    {
+      "id": "kix_phonology",
+      "author": "SEL India contributors",
+      "year": 2021,
+      "title": "Phonology of Khiamniungan",
+      "publisher": "South East Languages of India (SEL India)",
+      "url": "https://selindia.org/wp-content/uploads/2024/08/04_Phonology-of-Khiamniungan.pdf",
+      "pages": null,
+      "notes": "Published phonological description of Khiamniungan Naga (Patkaian), consulted alongside Weidert's (1987) tonal analysis to check the consonant/digraph inventory of the Latin practical orthography modelled here."
     }
   ],
   "wikipedia": [
