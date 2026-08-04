@@ -200,6 +200,8 @@ def _neighbor_is(
         return gctx.is_back
     if cls == "palatal":
         return gctx.is_palatal
+    if cls == "emphatic":
+        return gctx.is_emphatic
     return False  # unreachable — AllophoneRule validates the vocabulary
 
 
@@ -231,7 +233,66 @@ class AllophoneRescorer(LatticeRescorer):
                 if new is None:
                     new = list(slot.candidates)
                 new[idx] = Candidate(ipa=surface, cost=cand.cost)
+        feature = self._neighbor_mutation(context)
+        if feature:
+            base = new if new is not None else list(slot.candidates)
+            mutated: List[Candidate] = []
+            changed = False
+            for cand in base:
+                if cand.ipa and feature not in cand.ipa:
+                    mutated.append(Candidate(ipa=cand.ipa + feature, cost=cand.cost))
+                    changed = True
+                else:
+                    mutated.append(cand)
+            if changed:
+                new = mutated
         return new if new is not None else slot.candidates
+
+    def _neighbor_mutation(self, context: RescoreContext) -> Optional[str]:
+        """The IPA feature (e.g. ``"ʲ"``) THIS slot gains from an adjacent
+        marker grapheme that deletes itself while mutating its neighbour —
+        the ``mutates_neighbor`` / ``mutates_neighbor_side`` rule pair (see
+        :class:`~orthography2ipa.types.AllophoneRule`).
+
+        Evaluated from the AFFECTED slot's own ``rescore()`` call by
+        re-running the *marker's* rule-matching logic against a
+        reconstruction of the marker's own context. This is safe and
+        order-independent: every rescorer sees pre-pass slot state (the
+        module docstring, "Neighbour lookups read the original slots"), so
+        it does not matter whether this slot or the marker's slot is
+        processed first — both read the same unmutated ``context.slots``.
+
+        Stress is approximated from THIS slot's own stress context (not the
+        marker's), since a per-grapheme stress array is not available at
+        this layer — an acceptable approximation for an adjacent grapheme,
+        almost always in the same syllable, and irrelevant to the motivating
+        Goidelic/Slavic marker-grapheme cases, none of which condition on
+        stress.
+        """
+        for step, wanted_side in ((1, "preceding"), (-1, "following")):
+            j = context.index + step
+            if not (0 <= j < len(context.slots)):
+                continue
+            marker_slot = context.slots[j]
+            marker_g = context.grapheme.at(step)
+            if marker_g is None or not marker_slot.candidates:
+                continue
+            marker_ctx = RescoreContext(
+                slot=marker_slot,
+                index=j,
+                slots=context.slots,
+                grapheme=marker_g,
+                syll_idx=context.syll_idx,
+                stressed_syll_idx=context.stressed_syll_idx,
+            )
+            ipa = marker_slot.top.ipa
+            for rule in self.rules:
+                if rule.mutates_neighbor and \
+                        rule.mutates_neighbor_side == wanted_side and \
+                        ipa in rule.phonemes and \
+                        self._matches(rule, marker_ctx):
+                    return rule.mutates_neighbor
+        return None
 
     def _is_geminate_half(self, ipa: str, context: RescoreContext) -> bool:
         """Whether this slot is one half of a written (doubled) geminate.
@@ -377,6 +438,16 @@ class AllophoneRescorer(LatticeRescorer):
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
                 return False
+        if rule.followed_by_grapheme:
+            nxt = ctx.grapheme.next
+            if nxt is None or not nxt.grapheme or \
+                    nxt.grapheme.lower() not in rule.followed_by_grapheme:
+                return False
+        if rule.followed_by_grapheme_not:
+            nxt = ctx.grapheme.next
+            if nxt is not None and nxt.grapheme and \
+                    nxt.grapheme.lower() in rule.followed_by_grapheme_not:
+                return False
         if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2:
             # The grapheme TWO away, by its first IPA candidate. Read from the
             # grapheme layer (not the slot), so it is the underlying phoneme —
@@ -420,7 +491,7 @@ def _source_word(ctx: RescoreContext) -> str:
     source ``grapheme``; joined in order they give back the orthographic word
     a ``word``-keyed :class:`AllophoneRule` matches against.
     """
-    return "".join((getattr(s, "grapheme", "") or "") for s in ctx.slots)
+    return "".join(s.grapheme or "" for s in ctx.slots)
 
 
 def _is_geminate_aware(rule: AllophoneRule, ipa: str) -> bool:

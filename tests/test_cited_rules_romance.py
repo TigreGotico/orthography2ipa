@@ -506,6 +506,36 @@ def test_fr_doubled_consonants_degeminate():
     assert _t("fr-FR", "belle").count("l") == 1
 
 
+def test_fr_glide_formation_keeps_final_ie_nucleus():
+    """Glide formation must never delete a word's only vowel nucleus.
+
+    Word-internal ⟨i⟩ before a vowel glides to [j] (Tranel 1987 §5-6): pied,
+    fiacre. But when the following vowel is the word's last audible slot —
+    word-final ⟨ie⟩, optionally followed by the transparent suffix graphemes
+    ⟨s⟩/⟨x⟩ (Tranel 1987 §3) — the ⟨i⟩ stays [i], because gliding would leave
+    the syllable with no nucleus at all (vie → *[vj]).
+    """
+    assert _t("fr-FR", "pied").startswith("pj")
+    assert _t("fr-FR", "fiacre") == "fjakʁ"
+    for word, expected in [
+        ("vie", "vi"),
+        ("vies", "vi"),
+        ("envie", "ɑ̃vi"),
+        ("folie", "fɔli"),
+        ("algérie", "alʒeʁi"),
+    ]:
+        out = _t("fr-FR", word)
+        assert out == expected, f"{word}: {out!r} != {expected!r}"
+        assert any(c in "aeiouyɑɛœøəɔɥ̃ɑ̃ɛ̃ɔ̃i" for c in out)
+
+
+def test_fr_ill_irregular_word_exceptions():
+    """The closed irregular ⟨ill⟩=[il] class (Tranel 1987 §4.3)."""
+    assert _t("fr-FR", "ville") == "vil"
+    assert _t("fr-FR", "mille") == "mil"
+    assert _t("fr-FR", "tranquille") == "tʁɑ̃kil"
+
+
 @pytest.mark.xfail(
     strict=True,
     reason="FR_LIAISON_Z cites 'les amis → lez‿ami'; engine produces 'lə ami' — "

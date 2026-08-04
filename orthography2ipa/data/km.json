@@ -6,7 +6,7 @@
   "script_type": "abugida",
   "inherent_vowel": "a",
   "iso639_3": "khm",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ក": [
       "k"
@@ -297,5 +297,13 @@
     "longitude": 105.015,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Central Khmer."
+  },
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Khmer word stress is predictable and falls on the final syllable of a word/compound; minor (unstressed) presyllables that precede it are not separately modeled. Source: Huffman, Cambodian System of Writing and Beginning Reader (1970); Khmer language, Wikipedia."
   }
 }
