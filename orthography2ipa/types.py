@@ -901,6 +901,27 @@ class AllophoneRule:
         child dialects. ``None`` / empty = don't care.
     notes : str
         Free-form provenance / convention notes.
+    mutates_neighbor : Optional[str]
+        An IPA modifier/diacritic (e.g. ``"ʲ"``) this rule adds to an
+        ADJACENT slot's candidate when this rule fires — combined with
+        ``surface=""`` this is the "marker grapheme" pattern: a written
+        letter that palatalizes (or otherwise mutates) its neighbour and
+        contributes no segment of its own. Goidelic slender/broad marking
+        (Manx ``giare`` → [ɡʲɛːr]: the ⟨i⟩ of ⟨gia-⟩ palatalizes ⟨g⟩ and does
+        not itself surface) is the motivating case; the mechanism is
+        generic — Slavic/Cyrillic soft-sign palatalization and similar
+        marker-grapheme phenomena in other orthographies fit the same
+        shape. ``None`` (the default) = this rule does not mutate a
+        neighbour. Requires :attr:`mutates_neighbor_side`. See
+        [`docs/allophony.md`](../docs/allophony.md#marker-graphemes)
+        for the worked example and the honest gv WikiPron delta.
+    mutates_neighbor_side : Optional[str]
+        Which adjacent slot receives :attr:`mutates_neighbor`'s feature,
+        relative to THIS rule's own anchor grapheme: ``"preceding"`` (the
+        grapheme before it — the Goidelic case, a trailing slender vowel
+        palatalizing the consonant onset before it) or ``"following"``
+        (the grapheme after it). Required together with
+        :attr:`mutates_neighbor`.
     """
     id: str
     phonemes: Tuple[str, ...]
@@ -920,6 +941,8 @@ class AllophoneRule:
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
     notes: str = ""
+    mutates_neighbor: Optional[str] = None
+    mutates_neighbor_side: Optional[str] = None
 
     def __post_init__(self) -> None:
         if isinstance(self.phonemes, str):
@@ -963,6 +986,17 @@ class AllophoneRule:
                 raise ValueError(
                     f"AllophoneRule {self.id!r}: {attr} must be one of "
                     f"{_classes} or None, got {val!r}")
+        if self.mutates_neighbor_side is not None and \
+                self.mutates_neighbor_side not in ("preceding", "following"):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: mutates_neighbor_side must be "
+                f"'preceding', 'following' or None, "
+                f"got {self.mutates_neighbor_side!r}")
+        if (self.mutates_neighbor is None) != (self.mutates_neighbor_side is None):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: mutates_neighbor and "
+                f"mutates_neighbor_side must be set together (both or "
+                f"neither)")
 
 
 # ═══════════════════════════════════════════════════════════════════════════

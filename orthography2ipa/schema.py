@@ -194,6 +194,17 @@ class AllophoneRuleModel(_Strict):
     grapheme: Optional[List[str]] = None
     word: Optional[List[str]] = None
     notes: str = ""
+    mutates_neighbor: Optional[str] = None
+    mutates_neighbor_side: Optional[Literal["preceding", "following"]] = None
+
+    @model_validator(mode="after")
+    def _mutation_pair(self) -> "AllophoneRuleModel":
+        if (self.mutates_neighbor is None) != (self.mutates_neighbor_side is None):
+            raise ValueError(
+                f"allophone rule '{self.id}': mutates_neighbor and "
+                "mutates_neighbor_side must be set together (both or neither)"
+            )
+        return self
 
 
 class OrthographyStandardModel(_Strict):

@@ -94,6 +94,9 @@ _ALIASES: Dict[str, str] = {
     # collision as bxr/diq above.
     "oji": "oji",
     "mnk": "mnk",
+    # ``haz`` (Hazaragi) has no own spec; the modelled variety lives at
+    # ``fa-x-hazaragi`` (Persian dialect continuum, Mongolic substrate).
+    "haz": "fa-x-hazaragi",
     # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
     # macro=True standardisation collapses into its macrolanguage tag ``ks``
     # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``

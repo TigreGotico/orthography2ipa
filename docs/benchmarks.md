@@ -98,7 +98,7 @@ classification.
 | **machine-generated** | A phonemizer's *own output* reused as the reference. | **Biggest grain of salt.** Low PER = agreement with that tool, not correctness. |
 | **espeak-derived** | A **competitor's** output reused as the reference: espeak-ng, directly or through a wrapper (`ipa_babylm` via G2P+, the `phonemizer`-phonemized `ipa_childes` languages). | **Never gate a quality decision on this.** The row measures *agreement with espeak*: and espeak is a system we benchmark ourselves *against* ([comparison](comparison.md)). Diverging from it can mean we are right and it is wrong, which shows up here as a *worse* score. Quality also varies by language. Judge any divergence against a cited source, never against this number. Kept for its breadth as a directional signal. |
 | **epitran-derived** | A **competitor's** output reused as the reference: [epitran](https://github.com/dmort27/epitran) (the six `epitran`-phonemized `ipa_childes` languages: `de-DE`, `es-ES`, `hr`, `hu`, `id`, `sr`). | **Never gate a quality decision on this**: same reason as `espeak-derived`, and epitran is likewise a system [comparison](comparison.md) scores us against (`epitran_per`). Scoring o2i against epitran's own output and calling it gold would count the same system as both rival and truth. Still diagnostic (epitran is a deterministic rule system, so a disagreement can be traced to a rule and adjudicated against a cited source), but never certifying. |
-| **llm-generated** | The gold was produced by a large language model (`barranquenho_dict`, `mirandese_dict`: Claude, research-conditioned, `arabic_tts`, `portuguese_tts`: LLM-drafted, engine-pinned, literature-audited). | **Worst of all, and never a gate.** An LLM has no lexicon, no G2P model and no rules, therefore **no error model**: it emits plausible-*looking* IPA that can be confidently wrong with no systematic structure, and a disagreement cannot be attributed to anything. Certifies nothing and diagnoses nothing. Read as a curiosity, not as evidence. This is why the GPT-4o-Mini-generated `dsvv-cair` dataset is [rejected outright](#rejected-candidates) rather than wired. |
+| **llm-generated** | The gold was produced by a large language model (`barranquenho_dict`, `mirandese_dict`: Claude, research-conditioned, `arabic_tts`, `portuguese_tts`: LLM-drafted, engine-pinned, literature-audited, `gold20_arabic`: LLM-drafted, native-speaker spot-checked). | **Worst of all, and never a gate.** An LLM has no lexicon, no G2P model and no rules, therefore **no error model**: it emits plausible-*looking* IPA that can be confidently wrong with no systematic structure, and a disagreement cannot be attributed to anything. Certifies nothing and diagnoses nothing. Read as a curiosity, not as evidence. This is why the GPT-4o-Mini-generated `dsvv-cair` dataset is [rejected outright](#rejected-candidates) rather than wired. |
 
 ### Per-dataset classification
 
@@ -111,6 +111,7 @@ stated rather than papered over.
 |---|---|---|---|
 | `primary_sources` | expert-human | The phonologists and dialectologists the specs cite | Example transcriptions copied out of the cited grammars/monographs/theses, one printed page per row (`N=270` across 13 varieties). The most authoritative gold here: and the smallest. Arabic ḥarakāt on the input side are editor-supplied (the sources print transcription, not script). See the dataset README. |
 | `arabic_tts` | llm-generated | **LLM-authored, literature-audited** | Sentence-level TTS gold, one TSV per lect across 33 Arabic varieties (`N=20`/lect). Every IPA line was drafted by a large language model, then **engine-pinned** (aligned to the current o2i output) and audited row-by-row against the phonological literature cited in each row's `notes` column ([docs/arabic-tts-gold.md](arabic-tts-gold.md)). Citation-auditing raises confidence but does **not** create an error model: no lexicon, no rules behind the gold: so the honest tier stays `llm-generated`: directional only, gates nothing. Because the gold is engine-pinned it doubles as a regression fixture (PER≈0 on the pinned engine), so a nonzero PER here flags a spec change, not necessarily an error. |
+| `gold20_arabic` | llm-generated | **LLM (Claude), native-speaker spot-checked** | [`Salesteq/arabic-dialects-gold20`](https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20) on Hugging Face — a SIBLING gold set to `arabic_tts`, same shape (one TSV per lect, `N=20`/lect, 33 Arabic varieties, vocalized `sentence` in, broad `ipa` gold), fetched at runtime and cached (never vendored). Semi-synthetic: every transcription was drafted by the same Claude lineage that authored the o2i Arabic dialect specs it is scored against — a **near-circular** relationship — then **spot-checked by a native Arabic speaker who judged the set good**. That spot-check is documented context, not a tier upgrade: it is not a systematic per-row audit against cited literature (unlike `arabic_tts`'s `fable_corrections` column), so there is still no lexicon and no rule system behind the gold. Registered anyway because for most of these Arabic dialects **no other gold exists at all** — a directional signal is better than none, not evidence the number can be trusted numerically. Tier stays `llm-generated`, the lowest: gates no quality decision, certifies nothing. |
 | `portuguese_tts` | llm-generated | **LLM-authored, literature-audited** | Sentence-level TTS gold, one TSV per lect across European Portuguese standard + 15 regional varieties (`N=20`/lect). Same protocol and caveats as `arabic_tts`: LLM-drafted, engine-pinned, audited against the citations in each row's `notes` ([docs/portuguese-tts-gold.md](portuguese-tts-gold.md)). `llm-generated` tier: directional/regression signal only. |
 | `ep_dialects` | expert-human | TigreGotico team, manual annotation | Internal dialect research, **pending external peer validation**. Sentence-level, `N≈29-45`. |
 | `mirandese_g2p` | expert-human | Native Mirandese speaker | The reference gold and **most trustworthy signal for Mirandese** (row id `mirandese_g2p`, from `TigreGotico/mirandese_g2p`), split by the `dialect` column: central → `mwl` (`N≈205`), sendinese → `mwl-x-sendim` (`N≈11`), raiano → `mwl-x-ifanes` (`N≈2`: an anecdote, read the CI not the point PER). Small-`N`. A separate, more reliable source than any synthetic Mirandese IPA dictionary. |
@@ -126,8 +127,9 @@ stated rather than papered over.
 | `hitz_basque_ipa` | machine-generated | HiTZ **ahoNT / AhoTTS** phonemizer | University-published (HiTZ/UPV-EHU), but the gold **is ahoNT/AhoTTS output**: it was generated by that phonemizer, not human-annotated. So a low PER **for the AhoTTS/ahotts-g2p engine on this row is near-tautological** (a tool scored against its own output). The independent, Wiktionary-sourced `wikipron` `eu` row is the fair comparison for Basque. |
 | `barranquenho_dict` | llm-generated | **LLM (Claude), research-conditioned** | IPA generated by a large language model prompted with the *Convenção Ortográfica do Barranquenho* and descriptive research on the variety: **not** a phonemizer, not orthography2ipa, not any downstream o2i consumer, so scoring o2i against it is **not circular**. But LLM IPA can be plausibly wrong and is **not human-verified**: directional only. |
 | `mirandese_dict` | llm-generated | **LLM (Claude), research-conditioned** | IPA generated by a large language model prompted with the *Convenção Ortográfica da Língua Mirandesa* and sub-dialect descriptions: **not** a phonemizer, not orthography2ipa, not any downstream o2i consumer, so scoring o2i against it is **not circular**. Complementary to the native-speaker `mirandese` gold. LLM IPA is plausibly wrong and **not human-verified**: directional only. |
-| `northeuralex` | lexicon-derived | Cited published dictionaries, compiled by Dellert et al. | [NorthEuraLex](https://github.com/lexibank/northeuralex) (Dellert et al. 2020), 100+-language wordlist. Each CLDF row cites its source dictionary in `Source`. 9 low-resource `stub`/`skeleton`-tier languages wired (`_NORTHEURALEX_LANGS`). See [Lexibank/CLDF wordlist gold](#lexibankcldf-wordlist-gold-northeuralex-wold). |
-| `wold` | lexicon-derived | Cited published dictionaries, compiled by Haspelmath & Tadmor | [World Loanword Database](https://github.com/lexibank/wold) (Haspelmath & Tadmor 2009), 41-language loanword-typology wordlist. 2 `stub`/`skeleton`-tier languages wired (`_WOLD_LANGS`). See [Lexibank/CLDF wordlist gold](#lexibankcldf-wordlist-gold-northeuralex-wold). |
+| `northeuralex` | lexicon-derived | Cited published dictionaries, compiled by Dellert et al. | [NorthEuraLex](https://github.com/lexibank/northeuralex) (Dellert et al. 2020), 100+-language wordlist. Each CLDF row cites its source dictionary in `Source`. 18 languages wired (`_NORTHEURALEX_LANGS`): the original 9 plus a wave of 9 more (`udm`, `ady`, `av`, `lbe`, `dar`, `lez`, `lv`, `smn`, `vep`) that had zero gold anywhere before registration. See [Lexibank/CLDF wordlist gold](#lexibankcldf-wordlist-gold-northeuralex-wold). |
+| `wold` | lexicon-derived | Cited published dictionaries, compiled by Haspelmath & Tadmor | [World Loanword Database](https://github.com/lexibank/wold) (Haspelmath & Tadmor 2009), 41-language loanword-typology wordlist. 6 languages wired (`_WOLD_LANGS`): 4 `stub`/`skeleton`, 2 already `research`. See [Lexibank/CLDF wordlist gold](#lexibankcldf-wordlist-gold-northeuralex-wold). |
+| `kaikki` | crowd-scraped | Wiktionary editors, machine-extracted | [kaikki.org](https://kaikki.org/dictionary/) Wiktextract per-language JSON-lines dumps — a different extraction pipeline over the same Wiktionary source as `wikipron`, not an independent transcriber. 4 languages wired (`_KAIKKI_LANGS`), all zero-gold `skeleton` specs before this registration: `jv` (Javanese, `N=93`, Latin-script entries only — see below), `su` (Sundanese, `N=397`), `lo` (Lao, `N=2305`), `xh` (Xhosa, `N=887`). See [kaikki.org Wiktextract gold](#kaikkiorg-wiktextract-gold-kaikki). |
 
 ## Provenance discipline
 
@@ -795,6 +797,10 @@ wordlist. Same selection discipline:
 |---|---|---|---:|---:|
 | `car` | Galibi Carib (Kalina) | skeleton | 1190 | 0.1578 |
 | `arn` | Mapudungun | stub | 1266 | 0.3114 |
+| `gwd` | Gawwada | skeleton | 976 | 0.0481 |
+| `irk` | Iraqw | skeleton | 1117 | 0.2182 |
+| `crs` | Seychelles Creole | research | 1874 | 0.2240 |
+| `rif` | Tarifiyt Berber | research | 1506 | 0.4095 |
 
 Excluded despite an ISO match: WOLD's own `KildinSaami` (`sjd`) romanizes
 the language differently from NorthEuraLex's Cyrillic forms and scored only
@@ -806,6 +812,107 @@ score.
 Two further Lexibank datasets were inspected and rejected early on, and a
 further audit wave (2026-08) inspected 21 more candidates without wiring any
 of them — see [Rejected candidates](#rejected-candidates).
+
+**2026-08 gold-hunting wave 1** — all 41 WOLD languages cross-referenced
+against the o2i spec registry. Of the 39 not already wired: most already
+have gold from other datasets (wikipron/ipadict/ipa_childes/etc — English,
+Dutch, Japanese, Mandarin, Thai, Vietnamese, Indonesian, Hawaiian, White
+Hmong, Hausa, Lower Sorbian, Kildin Saami, ...); several have no registered
+o2i spec at all (Kanuri, Zinacantan Tzotzil, Malagasy, Old High German,
+Selice Romani, Sakha); the rest resolve to `stub` specs with an EMPTY
+grapheme table (Archi, Bezhta, Manange, Ket, Oroqen, Ceq Wong, Takia,
+Gurindji, Yaqui, Qeqchi, Otomi, Saramaccan, Imbabura Quechua, Hup, Wichi) —
+nothing for a gold row to exercise. Only Gawwada, Iraqw, Seychelles Creole
+and Tarifiyt Berber had both a non-empty grapheme table and no existing gold
+anywhere in the registry; all four smoke-checked at ~100% non-empty engine
+coverage on a 150-row sample and are now wired above.
+
+**FINDING for a future wave:** the `car`/`arn` PER figures in the table above
+(0.1578 / 0.3114) do not match `benchmarks/results.json` (0.0857 / 0.0112) —
+the doc table appears to predate a later re-run of the harness or a spec
+change and was never refreshed. Not fixed here (out of scope: gold
+acquisition only, not spec/doc repair), but flagged for the next
+housekeeping pass.
+
+### kaikki.org Wiktextract gold (`kaikki`)
+
+[kaikki.org](https://kaikki.org/dictionary/) republishes
+[Wiktextract](https://github.com/tatuylonen/wiktextract) (Ylonen 2022)
+machine-extractions of Wiktionary as one JSON-lines file per language: each
+entry carries a `word` (the headword as written), a `pos`, and a `sounds`
+list of `{"ipa": "..."}` objects (often several transcription variants).
+It draws on the same underlying Wiktionary community edits as `wikipron` —
+a different extraction pipeline over the same source, not an independent
+transcriber — so it is tiered `crowd-scraped`, same as `wikipron`.
+
+**2026-08 gold-hunting wave 2** targeted o2i specs with a non-empty
+grapheme table and ZERO gold anywhere in this registry. Candidates were
+cross-referenced against kaikki.org's per-language index; each wired
+language was downloaded, filtered to entries carrying a non-empty
+`sounds[].ipa` (dropping `pos: "character"` rows — single-letter/digraph
+entries that gloss an orthographic symbol, e.g. Xhosa `hl` → /ɬ/, not
+words), hand-sampled, and smoke-checked for ≥70% non-empty engine coverage
+before wiring:
+
+| o2i tag | kaikki language | Spec quality | `N` | coverage | PER |
+|---|---|---|---:|---:|---:|
+| `jv` | Javanese | skeleton | 93 | 100% | 0.2203 |
+| `su` | Sundanese | skeleton | 397 | 99.5% | 0.0964 |
+| `lo` | Lao | skeleton | 2305 | 99.3% | 0.7225 |
+| `xh` | Xhosa | skeleton | 887 | 100% | 0.5725 |
+
+Sample-audit notes (30 rows hand-checked per language, broad-transcription
+IPA, word/IPA pairing spot-checked against the spec's own grapheme
+description in `notes`):
+
+- **`jv` (Javanese):** the kaikki dump is majority **Aksara Jawa** (Javanese
+  script) entries even though the o2i `jv` spec only encodes the Latin
+  romanization — a raw smoke check scored just 77/150 (51%) non-empty,
+  under the 70% gate. Restricting the loader to Latin-script words only
+  (`_KAIKKI_WORD_FILTER["jv"]`) recovers 100% coverage on the 127 Latin
+  entries the dump actually has (93 after word+IPA de-duplication). Sampled
+  pairs (`kurang` → `/ku.raŋ/`, `bantu` → `/ban.t̪u/`) match the spec's
+  documented vowel/consonant inventory.
+- **`su` (Sundanese):** clean, near-total coverage; sampled pairs (`balad`
+  → `/ba.lad/`, `duit` → `/duˈit/, [duˈwit̪]`) agree with the spec's
+  7-vowel description. Best PER of the wave (0.0964).
+- **`lo` (Lao):** coverage is excellent (99.3%), but PER is very high
+  (0.7225) — **not a gold-quality problem**. Sampling shows the `lo` spec
+  currently collapses nearly every vowel to `/o/` regardless of the actual
+  Lao vowel sign (e.g. `ລາວ` gold `/laːw˧˥/` vs. engine `/lowo/`; `ຕາ` gold
+  `/taː˩(˧)/` vs. engine `/to/`), and the gold's tone diacritics (Lao is a
+  six-tone language) are not produced at all. **FINDING for a future
+  wave:** the `lo` spec's vowel-sign mapping looks substantially
+  incomplete/wrong; this gold row is a real regression fixture for that
+  future repair, not evidence against wiring it now (gold acquisition
+  only, no spec fixing in this wave).
+- **`xh` (Xhosa):** coverage is total, but PER is high (0.5725) because
+  kaikki's Xhosa transcriptions are narrow phonetic — vowel length, tone
+  (acute/circumflex marks), prenasalization, and breathy voicing are
+  marked on nearly every syllable (e.g. `impala` gold `/íᵐpaːlá/` vs.
+  engine `/impala/`), none of which the current segmental `xh` spec
+  encodes. **FINDING for a future wave:** Xhosa gold is usable but will
+  stay high-PER until the spec gains tone/length/prenasalization rules;
+  flagged, not fixed here.
+
+Rejected: **Tigrinya** — only 28 of 933 entries in kaikki's Tigrinya dump
+carry a `sounds[].ipa` value, too thin to be a usable gold set.
+
+None of `jv`/`su`/`lo`/`xh` promote to `research` from this gold alone:
+each already has a cited entry in `sources`, but none has a `stress` block
+or a documented stress-exemption in `notes` (Javanese and Sundanese in
+particular have predictable — but currently unencoded — penultimate
+stress), which `quality_tiers.md` also requires for the `research` tier.
+That is a spec-authoring task, out of scope for a gold-only wave.
+
+**FINDING for a future wave:** `open-dict-data/ipa-dict` is fully exhausted
+— every one of its 31 upstream files is either wired (`_IPADICT_FILES`) or
+explicitly rejected with a reason (`_IPADICT_UNWIRED`), **except**
+`zh_hant.txt` (Traditional Chinese), which is documented nowhere. It has the
+same problem as the already-rejected `zh_hans`/`yue` entries (Han-script
+gold against a Pinyin-romanization `zh` spec), so it should be added to
+`_IPADICT_UNWIRED` for completeness, but that is a spec/doc-hygiene fix, not
+a gold acquisition, so it is only noted here.
 
 ## Rejected candidates
 

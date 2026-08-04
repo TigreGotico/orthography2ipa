@@ -468,6 +468,98 @@ Arabic TTS gold (`orthography2ipa/data/gold/arabic_tts/*.tsv`, o2i-verified
 by construction) was reconciled to the new, cited-correct output across all
 34 lects.
 
+## Marker graphemes: delete a vowel while mutating a neighbour
+
+Some orthographies use a vowel letter as a pure diacritic on an ADJACENT
+consonant: it contributes a phonological feature to its neighbour and
+never surfaces as a vowel itself. Goidelic slender/broad (*caol/leathan*)
+marking is the paradigm case: a written ⟨i⟩/⟨e⟩ beside a consonant marks
+that consonant "slender" (palatalized) and is otherwise silent — Manx
+`giare` [ɡʲɛːr] (the ⟨i⟩ of ⟨gia-⟩ palatalizes ⟨g⟩ and does not itself
+surface), `dowin` [daunʲ] (the ⟨i⟩ palatalizes the following word-final
+⟨n⟩) (Broderick 1984-86, *A Handbook of Late Spoken Manx*, vol. 3;
+Thomson 1992, "The Manx Language", in MacAulay (ed.), *The Celtic
+Languages*, ch. 3). The Cyrillic soft sign ⟨ь⟩ and similar Slavic/Uralic
+"soft indicator" letters are the same shape: a grapheme that is itself
+silent but marks the preceding consonant palatalized.
+
+An ordinary `allophone_rules` entry cannot express this: `surface`
+rewrites the rule's OWN matched phoneme, not a different slot. The
+existing two-rule technique used for French/Mirandese nasal vowels (the
+vowel rule keys on the neighbour's `coda_nasal` *class*, the absorb rule
+separately deletes the nasal) does not transfer here, because the
+direction is reversed and the information is asymmetric: the CONSONANT's
+own rule would need to know "will my neighbouring vowel delete itself
+in a marker context", and grapheme-class neighbour lookups
+(`preceded_by`/`followed_by`) read the *pre-rescore* grapheme, not
+whatever a not-yet-run rule on the vowel would decide — there is no
+class the consonant can test that means "my neighbour is about to be a
+silent slender-marker" without duplicating the vowel rule's own
+conditions on the consonant side and keeping the two forever in sync.
+
+`mutates_neighbor` (an IPA modifier string, e.g. `"ʲ"`) combined with
+`mutates_neighbor_side` (`"preceding"` / `"following"`) solves this
+atomically: ONE rule, declared on the marker vowel, both deletes its own
+slot (`surface: ""`) and appends the feature to the named adjacent slot.
+Because both effects come from the same rule firing once, they can never
+go out of sync.
+
+```json
+{
+  "id": "GV_SLENDER_FINAL_N",
+  "phonemes": ["i", "e"],
+  "surface": "",
+  "followed_by_phoneme": ["n"],
+  "followed_by_2": "word_boundary",
+  "mutates_neighbor": "ʲ",
+  "mutates_neighbor_side": "following"
+}
+```
+
+```python
+from orthography2ipa import G2P
+gv = G2P("gv")
+gv.transcribe_word("dowin")   # d a u n ʲ  (i deletes, final n palatalizes)
+gv.transcribe_word("giare")   # ɡ ʲ a r e  (i deletes, onset g palatalizes)
+```
+
+Mechanically, `mutates_neighbor` is evaluated from the AFFECTED slot's own
+rescore pass: the rescorer re-runs the marker's rule-matching logic
+against a reconstruction of the marker's context, reading the shared
+pre-pass slot state — safe and order-independent, exactly like every
+other allophone-rule neighbour lookup (see "Ordering" above). Stress
+conditions on a `mutates_neighbor` rule are approximated from the
+AFFECTED slot's own stress context (a per-grapheme stress array for the
+marker itself is not available at this layer); none of the motivating
+Goidelic/Slavic marker-grapheme cases condition on stress, so this is not
+a practical limitation for them.
+
+The mechanism is language-agnostic: nothing in `allophony.py` names
+Goidelic, Manx, or any language. It is generic wherever a marker
+grapheme deletes itself while contributing a feature to a neighbour —
+Slavic/Cyrillic soft-sign palatalization and comparable Uralic
+orthography conventions fit the identical shape.
+
+### Benchmark effect (honest)
+
+Measured on the committed gold set (PER, lower is better):
+
+| Row | Gold | Rules off | Rules on | Δ |
+|---|---|---:|---:|---:|
+| gv | wikipron (n=690) | 0.3650 | 0.3630 | **−0.0020** |
+
+A small, real improvement, not a sweep of every slender-marking context
+in the gold: the two rules cover the word-final `-in`/`-en` environment
+(`GV_SLENDER_FINAL_N`) and the onset consonant + vowel environment
+(`GV_SLENDER_ONSET_CONSONANT`) that Broderick and Thomson describe and
+that the two example words (`giare`, `dowin`) exercise directly. Several
+WikiPron `-in` entries (e.g. `Mannin` → `manənʲ`) show an epenthetic
+schwa the crowd-scraped gold keeps rather than a fully-deleted vowel;
+those rows are unaffected either way since the rule deletes the vowel
+outright rather than reducing it to schwa — an honest, reported gap
+between two competing "how does the deleted vowel's trace show up"
+analyses, not a regression.
+
 ---
 
 **Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
