@@ -213,6 +213,37 @@ class TestModuleLevelTranscribe:
         assert "G2P" in orthography2ipa.__all__
 
 
+class TestNFCOutputContract:
+    """Engine output is always NFC, matching lexicon.py's is_valid_ipa/is_ipa_string.
+
+    A coda ⟨m/n⟩ slot legitimately emits a bare combining tilde onto the
+    preceding vowel (phonetok.py's _NASAL_TILDE), which without a final
+    composition pass leaves the output decomposed (e.g. 'u' + U+0303
+    instead of the precomposed 'ũ') even though nothing upstream did
+    anything wrong.
+    """
+
+    def test_pt_nasal_vowel_output_is_nfc(self):
+        import unicodedata
+        ipa = transcribe("mundo", "pt")
+        assert unicodedata.is_normalized("NFC", ipa), (
+            f"transcribe output must be NFC, got {ipa!r}"
+        )
+        # The nasal vowel is present and precomposed (U+0169 LATIN SMALL
+        # LETTER U WITH TILDE), not a bare "u" (U+0075) followed by a
+        # trailing combining tilde (U+0303) riding separately in the string.
+        assert "\u0169" in ipa
+        assert "u\u0303" not in ipa
+
+    def test_transcribe_detailed_word_ipa_is_nfc(self):
+        import unicodedata
+        engine = G2P("pt")
+        result = engine.transcribe_detailed("mundo")
+        assert unicodedata.is_normalized("NFC", result.ipa)
+        for wt in result.words:
+            assert unicodedata.is_normalized("NFC", wt.ipa)
+
+
 class TestPositionalSelection:
     """Positional grapheme rules reach the engine output."""
 

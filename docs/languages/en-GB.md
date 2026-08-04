@@ -1,4 +1,4 @@
-# English — British RP (en-GB) & American (en-US) Phonology Reference
+# English: British RP (en-GB) & American (en-US) Phonology Reference
 
 **Codes**: `en-GB`, `en-US`, `en-AU`, `en-CA`, `en-IE`, `en-ZA`, `en-GB-x-scotland`
 **Family**: Indo-European > Germanic > West Germanic | **Script**: Latin (alphabet)
@@ -33,7 +33,7 @@ stress requirement per `docs/quality_tiers.md`.
 | c | [s] | [k] | `city` [sɪti], `cycle` [saɪkl], `cat` [kæt] |
 | g | [dʒ] / [ɡ] | [ɡ] | `gem` [dʒɛm], `gin` [dʒɪn] vs. `get` [ɡɛt], `give` [ɡɪv] |
 
-**Note**: The g-softening has many exceptions — native Germanic words (get, give, girl, gift) retain [ɡ] before e/i. The [dʒ] realization is common in French/Latin loanwords (gem, giraffe, ginger).
+**Note**: The g-softening has many exceptions, native Germanic words (get, give, girl, gift) retain [ɡ] before e/i. The [dʒ] realization is common in French/Latin loanwords (gem, giraffe, ginger).
 
 ### TH: [θ] vs [ð] Distribution
 
@@ -55,8 +55,8 @@ stress requirement per `docs/quality_tiers.md`.
 ### Silent Final E (VCe Pattern)
 
 Word-final orthographic `<e>` after a consonant is not pronounced in Modern
-English; historically it marked the preceding vowel as tense/long (`mat` vs.
-`mate`). Only the deletion half of that alternation is encoded — the engine's
+English. Historically it marked the preceding vowel as tense/long (`mat` vs.
+`mate`). Only the deletion half of that alternation is encoded, the engine's
 positional grapheme model resolves a single grapheme against its own position
 and has no lookback to the preceding vowel nucleus, so the vowel-quality shift
 itself (`mat` [mæt] -> `mate` [meɪt]) is a known engine-limit exception, not
@@ -132,7 +132,7 @@ plain `sion` is conditioned on the preceding token via the engine's
 
 ---
 
-## American English (en-US) — Key Differences from RP
+## American English (en-US): Key Differences from RP
 
 ### Flapping (T/D Tapping)
 
@@ -156,7 +156,7 @@ Encoded as:
 - **Rhotic**: /ɹ/ retained in all positions (`car` [kɑːɹ], `bird` [bɝːd])
 - **LOT-PALM merge**: `lot` and `palm` → [ɑ]
 - **COT-CAUGHT merge**: `cot` and `caught` → [ɑ] (in most accents)
-- **TRAP-BATH**: no split; BATH words use /æ/ (`dance` [dæns])
+- **TRAP-BATH**: no split. BATH words use /æ/ (`dance` [dæns])
 
 ---
 

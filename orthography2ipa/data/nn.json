@@ -24,7 +24,7 @@
   },
   "parent": "no",
   "notes": "Norwegian Nynorsk — minority written standard (~15%). Based on western Norwegian dialects. Alveolar /r/ [r]; less retroflexion than Bokmål/Eastern. More diphthongs preserved from Old Norse: ei, au, øy. Source: Kristoffersen (2000).",
-  "quality": "skeleton",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -64,5 +64,13 @@
     "longitude": 10.71,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Norwegian Nynorsk."
+  },
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Norwegian Nynorsk, like other Norwegian varieties, places primary stress on the first syllable of the (native) root in the great majority of words (Kristoffersen 2000, The Phonology of Norwegian, ch. 9); loanwords and some suffixed forms deviate but are not modeled here."
   }
 }

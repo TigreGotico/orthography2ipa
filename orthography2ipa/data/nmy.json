@@ -3,7 +3,7 @@
   "name": "Namuyi",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -123,7 +123,7 @@
       "notes": "Descent per Glottolog classification of Namuyi (namu1246)."
     }
   ],
-  "notes": "Skeleton. Namuyi is a Qiangic (Sino-Tibetan) language of Sichuan, China, written here in a Latin-based transcription. Base Latin consonants and vowels plus the digraphs ch/sh/ts/ng/ny and aspirates kh/ph/th are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected. Fine allophonic and vowel-quality detail of narrow transcription is only approximately covered.",
+  "notes": "Skeleton. Namuyi is a Qiangic (Sino-Tibetan) language of Sichuan, China, written here in a Latin-based transcription. Base Latin consonants and vowels plus the digraphs ch/sh/ts/ng/ny and aspirates kh/ph/th are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected. Fine allophonic and vowel-quality detail of narrow transcription is only approximately covered. Namuyi is tonal; tone is not marked in the Latin-based transcription used here and is left unencoded, and stress is not a separate contrastive category (documented exemption).",
   "iso639_3": "nmy",
   "glottolog_code": null,
   "sources": [
@@ -148,6 +148,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Namuyi_language"
+    },
+    {
+      "id": "nmy_asianethnology",
+      "author": "Asian Ethnology contributors",
+      "year": 2015,
+      "title": "The Namuyi: Linguistic and Cultural Features",
+      "publisher": "Asian Ethnology",
+      "url": "https://asianethnology.org/article/150248-the-namuyi-linguistic-and-cultural-features/attachment/314162.pdf",
+      "pages": null,
+      "notes": "Published account of Namuyi (Qiangic) phonology (40 consonant initials, 10 vowel qualities) and culture; the closest available published primary pending the in-progress ELDP reference grammar. Consulted to check the Latin-based transcription's consonant/digraph inventory modelled here."
     }
   ],
   "wikipedia": [

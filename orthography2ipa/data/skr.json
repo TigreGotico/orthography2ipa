@@ -3,13 +3,262 @@
   "name": "Saraiki",
   "script": "Arabic",
   "script_type": "abjad",
-  "quality": "stub",
+  "quality": "research",
   "iso639_3": "skr",
   "glottolog_code": "sera1259",
   "wikidata_qid": "Q33902",
-  "graphemes": {},
-  "allophones": {},
-  "notes": "Saraiki (سرائیکی) of Pakistan, written in the Saraiki Shahmukhi alphabet — an extended Perso-Arabic abjad, with additional letters for the implosive consonants ɓ ɗ ʄ ɠ that are the language's most distinctive feature. The grapheme inventory is NOT yet specified. INPUT CONTRACT: as with all Arabic-script languages, short vowels are normally left unwritten, so a correct spec depends either on vowelised (diacritic-bearing) input or on a lexicon; neither is provided here. Metadata only. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode sera1259), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
+  "graphemes": {
+    "ب": [
+      "b"
+    ],
+    "ٻ": [
+      "ɓ"
+    ],
+    "پ": [
+      "p"
+    ],
+    "ت": [
+      "t"
+    ],
+    "ٹ": [
+      "ʈ"
+    ],
+    "ث": [
+      "s"
+    ],
+    "ج": [
+      "dʒ"
+    ],
+    "ڄ": [
+      "ʄ"
+    ],
+    "چ": [
+      "tʃ"
+    ],
+    "ح": [
+      "h"
+    ],
+    "خ": [
+      "x"
+    ],
+    "د": [
+      "d"
+    ],
+    "ڈ": [
+      "ɖ"
+    ],
+    "ڏ": [
+      "ɗ"
+    ],
+    "ذ": [
+      "z"
+    ],
+    "ر": [
+      "r"
+    ],
+    "ڑ": [
+      "ɽ"
+    ],
+    "ز": [
+      "z"
+    ],
+    "ژ": [
+      "ʒ"
+    ],
+    "س": [
+      "s"
+    ],
+    "ش": [
+      "ʃ"
+    ],
+    "ص": [
+      "s"
+    ],
+    "ض": [
+      "z"
+    ],
+    "ط": [
+      "t"
+    ],
+    "ظ": [
+      "z"
+    ],
+    "ع": [
+      "ʔ"
+    ],
+    "غ": [
+      "ɣ"
+    ],
+    "ف": [
+      "f"
+    ],
+    "ق": [
+      "q"
+    ],
+    "ک": [
+      "k"
+    ],
+    "گ": [
+      "ɡ"
+    ],
+    "ڳ": [
+      "ɠ"
+    ],
+    "ل": [
+      "l"
+    ],
+    "م": [
+      "m"
+    ],
+    "ن": [
+      "n"
+    ],
+    "ں": [
+      "̃"
+    ],
+    "و": [
+      "ʋ",
+      "uː",
+      "oː"
+    ],
+    "ہ": [
+      "h"
+    ],
+    "ھ": [
+      "ʰ"
+    ],
+    "ء": [
+      "ʔ"
+    ],
+    "ی": [
+      "j",
+      "iː",
+      "eː"
+    ],
+    "ے": [
+      "eː"
+    ],
+    "ا": [
+      "aː"
+    ]
+  },
+  "allophones": {
+    "b": [
+      "b"
+    ],
+    "ɓ": [
+      "ɓ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "s": [
+      "s"
+    ],
+    "dʒ": [
+      "dʒ"
+    ],
+    "ʄ": [
+      "ʄ"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "h": [
+      "h"
+    ],
+    "x": [
+      "x"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "ɗ": [
+      "ɗ"
+    ],
+    "z": [
+      "z"
+    ],
+    "r": [
+      "r"
+    ],
+    "ɽ": [
+      "ɽ"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "q": [
+      "q"
+    ],
+    "k": [
+      "k"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "ɠ": [
+      "ɠ"
+    ],
+    "l": [
+      "l"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "ɣ": [
+      "ɣ"
+    ],
+    "f": [
+      "f"
+    ],
+    "ʋ": [
+      "ʋ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "oː": [
+      "oː"
+    ],
+    "ʰ": [
+      "ʰ"
+    ],
+    "j": [
+      "j"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "̃": [
+      "̃"
+    ]
+  },
+  "notes": "Saraiki (سرائیکی) Shahmukhi consonant inventory, extending the Urdu-style Perso-Arabic abjad with four implosive letters (ٻ ɓ, ڄ ʄ, ڏ ɗ, ڳ ɠ) that are the language's most distinctive typological feature (Shackle 1976). Each implosive letter earns its key by test 1: its IPA is not derivable by composing a base letter with a diacritic — it is a dedicated grapheme the Anjuman Taraqqi-e-Saraiki standard assigns no other role. Short vowels are not written (abjad); ا و ی carry long-vowel/glide values only, consistent with the input contract of every other abjad spec in this repository (vowelised or lexicon-backed input is a downstream concern). Saraiki word stress is not orthographically predictable and is exempt per quality_tiers.md. Registered against WikiPron's skr_arab_broad gold.",
   "sources": [
     {
       "id": "skr_wiki",
@@ -31,6 +280,17 @@
       "url": "https://phoible.org/",
       "pages": null,
       "notes": "Attested phoneme inventory for glottocode sera1259."
+    },
+    {
+      "id": "shackle1976",
+      "author": "Shackle, Christopher",
+      "year": 1976,
+      "title": "The Siraiki Language of Central Pakistan: A Reference Grammar",
+      "publisher": "School of Oriental and African Studies",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": null
     }
   ],
   "wikipedia": [
@@ -41,7 +301,7 @@
     "a",
     "ae",
     "ai",
-    "ã",
+    "ã",
     "b",
     "bʱ",
     "c",
@@ -50,13 +310,13 @@
     "d̪ʱ",
     "e",
     "ea",
-    "ẽ",
+    "ẽ",
     "f",
     "h",
     "i",
     "ia",
-    "iã",
-    "ĩ",
+    "iã",
+    "ĩ",
     "j",
     "k",
     "kʰ",
@@ -68,7 +328,7 @@
     "nʱ",
     "o",
     "oi",
-    "õ",
+    "õ",
     "p",
     "pʰ",
     "s",
@@ -76,9 +336,9 @@
     "t̪ʰ",
     "u",
     "ua",
-    "uẽ",
+    "uẽ",
     "ui",
-    "ũ",
+    "ũ",
     "v",
     "vʱ",
     "x",
@@ -99,7 +359,7 @@
     "ɣ",
     "ɪ",
     "ɪa",
-    "ɪã",
+    "ɪã",
     "ɪʌ",
     "ɪ̃",
     "ɲ",
@@ -136,5 +396,11 @@
     "longitude": 71.906,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Saraiki."
+  },
+  "orthography_standard": {
+    "name": "Saraiki Shahmukhi",
+    "authority": "Anjuman Taraqqi-e-Saraiki",
+    "year": null,
+    "url": null
   }
 }
