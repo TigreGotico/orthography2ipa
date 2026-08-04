@@ -1970,7 +1970,7 @@
   "per_ci_low": 0.1001,
   "per_ci_high": 0.1636,
   "exact_match": 0.4545,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null
@@ -7365,7 +7365,7 @@
   "per_ci_low": 0.3913,
   "per_ci_high": 0.4086,
   "exact_match": 0.0555,
-  "quality_tier": "skeleton",
+  "quality_tier": "research",
   "provenance": "epitran-derived",
   "harness_version": "1.1",
   "limit": null
