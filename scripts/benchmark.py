@@ -2562,6 +2562,17 @@ def build_scoreboard(limit: Optional[int]) -> List[dict]:
             n, covered, pers, per, wer = evaluate_words(
                 pairs, lang, strip_stress=True, broad=True,
             )
+            if covered == 0:
+                # A zero-coverage result is a broken loader, a dead upstream
+                # or a spec with no scorable graphemes — never a real score.
+                # Recording it would fabricate a per=1.0 row that looks like
+                # a measurement (this exact failure silently produced stale
+                # n=0 rows for tn/ug/yue). Loudly skip instead.
+                print(f"REFUSING to record zero-coverage row: "
+                      f"{dataset_name} lang={lang} (n={n}, covered=0) — "
+                      f"investigate the loader or deregister the language",
+                      file=sys.stderr)
+                continue
             ci_low, ci_high = bootstrap_per_ci(pers)
             rows.append({
                 "lang": lang,
