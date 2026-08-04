@@ -6,7 +6,7 @@
   "script_type": "abugida",
   "inherent_vowel": "o",
   "iso639_3": "tha",
-  "quality": "skeleton",
+  "quality": "research",
   "tone_inventory": {
     "mid_class_no_mark": "mid",
     "mid_class_mai_ek": "low",
@@ -280,7 +280,7 @@
       "oː"
     ]
   },
-  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. Inherent vowel is /o/ (short). Vowels written around consonants (above, below, before, after). This spec covers consonant letters and common vowel diacritics; full tone calculation requires syllable analysis.",
+  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. Inherent vowel is /o/ (short). Vowels written around consonants (above, below, before, after). This spec covers consonant letters and common vowel diacritics; full tone calculation requires syllable analysis. Stress exemption: Standard Thai is a tone language (5 tones marked by tone class + tone marks); it has no independent, orthography-predictable lexical stress accent distinct from its tone system, so no stress block is declared. Source: Haas, Thai-English Student's Dictionary (1964); Thai phonology, Wikipedia.",
   "sources": [
     {
       "id": "haas1964",

@@ -1,4 +1,4 @@
-# German (de-DE) — Phonology Reference
+# German (de-DE): Phonology Reference
 
 **Code**: `de-DE` | **Family**: Indo-European > Germanic > West Germanic | **Script**: Latin (alphabet)
 **Quality tier**: research (deep orthography; production threshold ≤ 0.25 PER at ≥ 500 gold entries) | **Sources**: Wiese (1996), Hall (2003), Mangold (2005), Kohler (1990), Wikipedia German phonology, Wikipedia German orthography
@@ -40,7 +40,7 @@ One of the most important rules in German: **obstruents in coda position (includ
 
 **Note**: `s` at word onset before vowels is voiced [z] (`sagen` [zaːɡən]), voiceless elsewhere.
 
-### Ch — Ach-Laut vs. Ich-Laut
+### Ch: Ach-Laut vs. Ich-Laut
 
 The digraph ⟨ch⟩ has two main realizations conditioned by the preceding
 vowel (Kohler 1990; Wiese 1996):
@@ -67,16 +67,16 @@ vowel (Kohler 1990; Wiese 1996):
 **Known engine-limit exception**: `GraphemePosition` only distinguishes
 `after_a/e/i/o/u` for single-letter vowel graphemes. ⟨ch⟩ following the
 umlauts ä/ö/ü (`Bücher`, `Löcher`) or the diphthong graphemes eu/äu falls
-back to the generic `after_vowel` bucket, which defaults to [ç] — correct
+back to the generic `after_vowel` bucket, which defaults to [ç], correct
 for the umlauts (front vowels) but not encodable as a distinct rule
 without extending the position enum further.
 
 **Known engine-limit exception**: only `word_final` position is computed
 by the tokenizer (no medial-coda syllabification), so Auslautverhärtung
 before a following consonant inside a word (e.g. `Abschied`) is not
-applied; only absolute word-final devoicing is.
+applied. Only absolute word-final devoicing is.
 
-### Sp / St — Positional Assimilation
+### Sp / St: Positional Assimilation
 
 In **word-initial position**, ⟨sp⟩ → [ʃp] and ⟨st⟩ → [ʃt]. In other positions: [sp], [st].
 
@@ -133,7 +133,7 @@ by a glottal stop [ʔ] in careful Standard German, e.g. `Oase` [ʔoˈʔaːzə]
 varieties than in the south, and is commonly absent in colloquial speech
 (Wikipedia German phonology). wikipron-style gold transcriptions used for
 this repository's benchmark do not include it, so it is deliberately not
-inserted — doing so would inflate PER against the gold rather than improve
+inserted, doing so would inflate PER against the gold rather than improve
 accuracy.
 
 ## References
