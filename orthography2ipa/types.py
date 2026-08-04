@@ -648,7 +648,7 @@ class ScriptType(str, Enum):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# LinguisticSource — bibliographic reference for phonological decisions
+# WeightedDistance — result of a weighted inter-language distance calculation
 # ═══════════════════════════════════════════════════════════════════════════
 
 @dataclass(frozen=True)
@@ -857,9 +857,13 @@ class AllophoneRule:
         see to nasalise before a coda nasal, while leaving an onset nasal
         alone), ``"front_vowel"``, ``"back_vowel"``, ``"palatal"`` (a palatal /
         palato-alveolar consonant, decided by the neighbour's IPA — the
-        mirror of the ``BEFORE_PALATAL`` position) or ``"word_boundary"``
-        (no neighbour). Predicates delegate to
-        :mod:`orthography2ipa.vowels`.
+        mirror of the ``BEFORE_PALATAL`` position), ``"emphatic"`` (a
+        pharyngealized / "emphatic" consonant, decided by the neighbour's IPA
+        carrying the ``ˤ`` diacritic — a generic feature class, not
+        Arabic-specific, though Arabic's ``sˤ dˤ tˤ ðˤ`` triggering
+        emphasis-spread/tafkhim vowel backing is its best-known instance:
+        Watson 2002; Davis 1995) or ``"word_boundary"`` (no neighbour).
+        Predicates delegate to :mod:`orthography2ipa.vowels`.
     preceded_by_2, followed_by_2 : Optional[str]
         The same neighbour-class vocabulary, tested TWO graphemes away. A
         phonological process often looks past a mute letter: Russian
@@ -897,6 +901,27 @@ class AllophoneRule:
         child dialects. ``None`` / empty = don't care.
     notes : str
         Free-form provenance / convention notes.
+    mutates_neighbor : Optional[str]
+        An IPA modifier/diacritic (e.g. ``"ʲ"``) this rule adds to an
+        ADJACENT slot's candidate when this rule fires — combined with
+        ``surface=""`` this is the "marker grapheme" pattern: a written
+        letter that palatalizes (or otherwise mutates) its neighbour and
+        contributes no segment of its own. Goidelic slender/broad marking
+        (Manx ``giare`` → [ɡʲɛːr]: the ⟨i⟩ of ⟨gia-⟩ palatalizes ⟨g⟩ and does
+        not itself surface) is the motivating case; the mechanism is
+        generic — Slavic/Cyrillic soft-sign palatalization and similar
+        marker-grapheme phenomena in other orthographies fit the same
+        shape. ``None`` (the default) = this rule does not mutate a
+        neighbour. Requires :attr:`mutates_neighbor_side`. See
+        [`docs/allophony.md`](../docs/allophony.md#marker-graphemes)
+        for the worked example and the honest gv WikiPron delta.
+    mutates_neighbor_side : Optional[str]
+        Which adjacent slot receives :attr:`mutates_neighbor`'s feature,
+        relative to THIS rule's own anchor grapheme: ``"preceding"`` (the
+        grapheme before it — the Goidelic case, a trailing slender vowel
+        palatalizing the consonant onset before it) or ``"following"``
+        (the grapheme after it). Required together with
+        :attr:`mutates_neighbor`.
     """
     id: str
     phonemes: Tuple[str, ...]
@@ -916,6 +941,8 @@ class AllophoneRule:
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
     notes: str = ""
+    mutates_neighbor: Optional[str] = None
+    mutates_neighbor_side: Optional[str] = None
 
     def __post_init__(self) -> None:
         if isinstance(self.phonemes, str):
@@ -950,7 +977,8 @@ class AllophoneRule:
                 f"'onset', 'coda', 'nucleus' or None, "
                 f"got {self.syllable_position!r}")
         _classes = ("vowel", "consonant", "consonant_cluster", "coda",
-                    "coda_nasal", "front_vowel", "back_vowel", "palatal", "word_boundary")
+                    "coda_nasal", "front_vowel", "back_vowel", "palatal",
+                    "emphatic", "word_boundary")
         for attr in ("preceded_by", "followed_by",
                      "preceded_by_2", "followed_by_2"):
             val = getattr(self, attr)
@@ -958,6 +986,17 @@ class AllophoneRule:
                 raise ValueError(
                     f"AllophoneRule {self.id!r}: {attr} must be one of "
                     f"{_classes} or None, got {val!r}")
+        if self.mutates_neighbor_side is not None and \
+                self.mutates_neighbor_side not in ("preceding", "following"):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: mutates_neighbor_side must be "
+                f"'preceding', 'following' or None, "
+                f"got {self.mutates_neighbor_side!r}")
+        if (self.mutates_neighbor is None) != (self.mutates_neighbor_side is None):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: mutates_neighbor and "
+                f"mutates_neighbor_side must be set together (both or "
+                f"neither)")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1095,6 +1134,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "plugins": InheritanceMode.OWN_ONLY,
     "optional_marks": InheritanceMode.OWN_ONLY,
     "fold_diacritics": InheritanceMode.OWN_ONLY,
+    "vowel_graphemes": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1211,7 +1251,7 @@ class LanguageSpec:
     substrates, superstrates, contact languages, creole origins.
     If empty but parent is set, a default PARENT ancestor is inferred."""
 
-    positional_graphemes: PositionalGrapheme2IPA = None  # type: ignore[assignment]
+    positional_graphemes: Optional[PositionalGrapheme2IPA] = None
     """Optional positional grapheme→IPA overrides.
 
     Maps grapheme keys to dicts of ``{GraphemePosition: [IPA candidates]}``.
@@ -1318,6 +1358,27 @@ class LanguageSpec:
 
     Empty for every orthography that writes its vowels (the default), which is
     most of them."""
+
+    vowel_graphemes: Tuple[str, ...] = ()
+    """Explicit orthographic vowel-letter declarations that OVERRIDE the
+    closed-inventory answer for Latin/Greek/harakat (see
+    :mod:`orthography2ipa.vowels`).
+
+    The Latin, Greek and Arabic-harakat letter sets are closed inventories:
+    a Latin letter absent from them (⟨w⟩, ⟨y⟩, ⟨r⟩) is a consonant letter by
+    construction, and that is deliberate — Czech syllabic ⟨r⟩ and English
+    ⟨y⟩ must not flip into vowels just because some *other* language's IPA
+    for the same letter happens to be a vowel. But some orthographies really
+    do use a closed-inventory consonant LETTER to spell a vowel — Hmong RPA
+    ⟨w⟩ = /ɨ/, Welsh ⟨w⟩ = /ʊ, w/ — and no per-script hand-list can capture
+    that without breaking the guarantee above.
+
+    ``vowel_graphemes`` is the escape hatch: each entry is a whole grapheme
+    string (matched in full, not by its first character) that this spec
+    declares a vowel letter regardless of what the closed inventory says.
+    Declaring it here is a per-language fact, exactly like ``script_type``
+    or ``optional_marks`` — it changes nothing for any other spec. Empty
+    (the default) is the previous behaviour exactly."""
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""

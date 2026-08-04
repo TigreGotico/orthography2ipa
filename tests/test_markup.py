@@ -76,10 +76,10 @@ class TestForcedPronunciation:
     def test_surrounding_words_are_transcribed_normally(self):
         assert G2P("pt-PT").transcribe(
             'olá <phoneme ph="ˈɡuɡɫ">Google</phoneme> mundo'
-        ) == "oˈla ˈɡuɡɫ ˈmu\u0303du"
+        ) == "oˈla ˈɡuɡɫ ˈmũdu"
 
     def test_untagged_text_is_unaffected(self):
-        assert G2P("pt-PT").transcribe("olá mundo") == "oˈla ˈmu\u0303du"
+        assert G2P("pt-PT").transcribe("olá mundo") == "oˈla ˈmũdu"
 
     def test_forced_ipa_is_not_re_stressed(self):
         """``ph`` places the stress. A caller who wrote no mark meant none."""
@@ -106,14 +106,20 @@ class TestInventoryGuard:
     """
 
     def test_donor_phonology_is_refused(self):
-        """English /ɪ/ and /ŋ/ are not Arabic phonemes."""
+        """English /ʉ/ and /ŋ/ are not Arabic phonemes.
+
+        (/ɪ/ no longer serves as the donor symbol here: it is now a
+        genuinely declared Najdi allophone — the AR_EMPHASIS_SPREAD_I_*
+        rules back /i/ to [ɪ] next to an emphatic, Watson 2002; Davis 1995
+        — so it would no longer demonstrate an undeclared symbol.)
+        """
         with pytest.raises(MarkupError, match="does not declare"):
             G2P("ar-SA-x-najd").transcribe(
-                '<phoneme ph="ˈmiːtɪŋ">meeting</phoneme>')
+                '<phoneme ph="ˈmiːtʉŋ">meeting</phoneme>')
 
     def test_the_message_names_the_offending_symbol(self):
-        with pytest.raises(MarkupError, match=r"\['ɪ'\]"):
-            G2P("ar-SA-x-najd").transcribe('<phoneme ph="ɪ">x</phoneme>')
+        with pytest.raises(MarkupError, match=r"\['ʉ'\]"):
+            G2P("ar-SA-x-najd").transcribe('<phoneme ph="ʉ">x</phoneme>')
 
     def test_the_nativised_reading_passes(self):
         """[nɡ] for /ŋ/ — every symbol is already in the inventory."""
