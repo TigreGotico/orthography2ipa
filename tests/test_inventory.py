@@ -244,6 +244,16 @@ KNOWN_DEAD_RULES = {
     # grapheme table this spec is deliberately missing; revisit once yej gains
     # a sourced Hebrew-abjad grapheme table.
     "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
+    # vls (West Flemish) declares parent="nl" with its own "graphemes": {} to
+    # inherit nl's table wholesale, but (pre-existing, unrelated to the
+    # Germanic beat-espeak campaign that added these rules) that inheritance
+    # does not actually populate the plain vowel letters a/e/i/o/u for this
+    # spec -- G2P('vls').transcribe(...) already returns empty output for
+    # ordinary words before and after this change. With no 'a'/'e'/'i'/'o'/'u'
+    # slot at all, the open-syllable-lengthening rules inherited from nl can
+    # never fire here.
+    "vls": {"NL_OPEN_SYLLABLE_A", "NL_OPEN_SYLLABLE_E", "NL_OPEN_SYLLABLE_I",
+            "NL_OPEN_SYLLABLE_O", "NL_OPEN_SYLLABLE_U"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)

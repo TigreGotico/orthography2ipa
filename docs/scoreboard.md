@@ -149,7 +149,7 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | da | ipa_childes | 2233 | 0.4800 | [0.4681, 0.4927] | 0.0408 | research | espeak-derived |
 | da | wikipron | 4331 | 0.3435 | [0.3370, 0.3499] | 0.1171 | research | crowd-scraped |
 | dar | northeuralex | 1056 | 0.0691 | [0.0632, 0.0757] | 0.6439 | research | lexicon-derived |
-| de | wikipron | 53010 | 0.3265 | [0.3251, 0.3280] | 0.0563 | research | crowd-scraped |
+| de | wikipron | 53010 | 0.2530 | — | — | research | crowd-scraped |
 | de-CH | wikipron | 448 | 0.5131 | [0.4927, 0.5322] | 0.0357 | research | crowd-scraped |
 | de-DE | ipa_childes | 24857 | 0.3881 | [0.3861, 0.3904] | 0.0356 | research | epitran-derived |
 | de-DE | ipadict | 777785 | 0.3526 | [0.3523, 0.3529] | 0.0166 | research | crowd-scraped |
@@ -362,10 +362,10 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | nhx | wikipron | 145 | 0.1913 | [0.1686, 0.2141] | 0.2207 | skeleton | crowd-scraped |
 | nio | northeuralex | 1024 | 0.1075 | [0.0999, 0.1144] | 0.4375 | research | lexicon-derived |
 | niv | wikipron | 620 | 0.3241 | [0.3032, 0.3453] | 0.2613 | skeleton | crowd-scraped |
-| nl | ipa_childes | 8108 | 0.3459 | [0.3413, 0.3503] | 0.1238 | research | espeak-derived |
-| nl | ipadict | 117869 | 0.2925 | [0.2915, 0.2937] | 0.1092 | research | machine-generated |
-| nl | vox_communis | 26136 | 0.2807 | [0.2768, 0.2846] | 0.1613 | research | epitran-derived |
-| nl | wikipron | 45872 | 0.2663 | [0.2649, 0.2680] | 0.1286 | research | crowd-scraped |
+| nl | ipa_childes | 8108 | 0.2547 | — | — | research | espeak-derived |
+| nl | ipadict | 117869 | 0.1651 | — | — | research | machine-generated |
+| nl | vox_communis | 26136 | 0.2739 | — | — | research | epitran-derived |
+| nl | wikipron | 45872 | 0.1487 | — | — | research | crowd-scraped |
 | nmy | wikipron | 350 | 0.7279 | [0.7138, 0.7432] | 0.0000 | skeleton | crowd-scraped |
 | nn | wikipron | 3829 | 0.4988 | [0.4916, 0.5061] | 0.0486 | research | crowd-scraped |
 | no | wikipron | 1093 | 0.4105 | [0.3983, 0.4223] | 0.0823 | research | crowd-scraped |
@@ -523,10 +523,10 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | srn | wikipron | 702 | 0.0502 | [0.0407, 0.0614] | 0.8376 | research | crowd-scraped |
 | srs | wikipron | 137 | 0.1773 | [0.1521, 0.2039] | 0.2847 | research | crowd-scraped |
 | stq | wikipron | 818 | 0.3862 | [0.3716, 0.4012] | 0.1345 | research | crowd-scraped |
-| sv | ipa_childes | 5202 | 0.3530 | [0.3463, 0.3594] | 0.1603 | research | espeak-derived |
-| sv | ipadict | 21094 | 0.3148 | [0.3122, 0.3174] | 0.0713 | research | lexicon-derived |
-| sv | vox_communis | 19516 | 0.3741 | [0.3714, 0.3768] | 0.0805 | research | epitran-derived |
-| sv | wikipron | 5076 | 0.2727 | [0.2664, 0.2792] | 0.2400 | research | crowd-scraped |
+| sv | ipa_childes | 5202 | 0.3524 | — | — | research | espeak-derived |
+| sv | ipadict | 21094 | 0.3103 | — | — | research | lexicon-derived |
+| sv | vox_communis | 19516 | 0.3408 | — | — | research | epitran-derived |
+| sv | wikipron | 5076 | 0.2657 | — | — | research | crowd-scraped |
 | sw | ipadict | 48308 | 0.2206 | [0.2190, 0.2222] | 0.2044 | research | machine-generated |
 | sw | vox_communis | 48396 | 0.1890 | [0.1873, 0.1905] | 0.2625 | research | epitran-derived |
 | sw | wikipron | 307 | 0.3494 | [0.3230, 0.3750] | 0.1433 | research | crowd-scraped |

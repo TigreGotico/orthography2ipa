@@ -140,6 +140,10 @@
     "ss": [
       "s"
     ],
+    "er": [
+      "ɛʁ",
+      "ɐ"
+    ],
     "tsch": [
       "tʃ"
     ],
@@ -309,6 +313,7 @@
       "ɔʏ"
     ]
   },
+  "collapse_geminates": true,
   "parent": "x-clade-west2793",
   "ancestors": [
     {
@@ -497,6 +502,27 @@
       "default": [
         "st"
       ]
+    },
+    "e": {
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "nucleus_stressed": [
+        "ɛ"
+      ],
+      "default": [
+        "ɛ",
+        "eː",
+        "ə"
+      ]
+    },
+    "er": {
+      "word_final": [
+        "ɐ"
+      ],
+      "default": [
+        "ɛʁ"
+      ]
     }
   },
   "timespan": {
@@ -514,6 +540,14 @@
     "source": "glottolog",
     "notes": "Glottolog's representative point for German."
   },
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Germanic initial stress (Wiese 1996, ch. 8): the great majority of native stems are stressed on the first syllable. Unstressed derivational prefixes (be-, ge-, ver-, ent-, er-, zer-, emp-) and stress-attracting suffixes shift this in a closed set of words; the engine has no morpheme-boundary/prefix-stripping stage, so that shift is a known, documented residual (see notes), not silently faked by a rule that would mis-stress the majority of plain stems."
+  },
   "allophone_rules": [
     {
       "id": "DE_FINAL_IG_SPIRANT",
@@ -529,6 +563,153 @@
         "g"
       ],
       "notes": "word-final ⟨-ig⟩ is [ɪç] (König, ewig). Keyed on the ⟨g⟩ grapheme after final devoicing, so ⟨-ik⟩ (Musik) is untouched"
+    },
+    {
+      "id": "DE_OPEN_SYLLABLE_A",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "aː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "a"
+      ],
+      "notes": "Open-syllable lengthening (Wiese 1996, ch. 3 -- the orthographic single/doubled-consonant vowel-length convention already documented above): Na-me, sa-gen. followed_by_2=vowel excludes a doubled consonant letter, tokenized as two consonant graphemes. Vetoed before the shortness-marking letter groups ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩ (followed_by_grapheme_not): German orthography writes a short vowel before them (Wiese 1996, ch. 3), but their phonemes are single consonants indistinguishable from the plain letters at the phoneme layer.",
+      "stress": "stressed",
+      "followed_by_grapheme_not": [
+        "ss",
+        "ck",
+        "tz",
+        "ng"
+      ]
+    },
+    {
+      "id": "DE_OPEN_SYLLABLE_E",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "eː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "e"
+      ],
+      "notes": "Open-syllable lengthening for stressed e (Wiese 1996); the unstressed nucleus_unstressed candidate is schwa and never surfaces as the plain 'e' -> 'ɛ' candidate this rule targets, so word-final -e/-en schwas are untouched. Vetoed before the shortness-marking letter groups ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩ (followed_by_grapheme_not): German orthography writes a short vowel before them (Wiese 1996, ch. 3), but their phonemes are single consonants indistinguishable from the plain letters at the phoneme layer.",
+      "stress": "stressed",
+      "followed_by_grapheme_not": [
+        "ss",
+        "ck",
+        "tz",
+        "ng"
+      ]
+    },
+    {
+      "id": "DE_OPEN_SYLLABLE_I",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "iː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "i"
+      ],
+      "notes": "Open-syllable lengthening (Wiese 1996): Bi-ber. Vetoed before the shortness-marking letter groups ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩ (followed_by_grapheme_not): German orthography writes a short vowel before them (Wiese 1996, ch. 3), but their phonemes are single consonants indistinguishable from the plain letters at the phoneme layer.",
+      "stress": "stressed",
+      "followed_by_grapheme_not": [
+        "ss",
+        "ck",
+        "tz",
+        "ng"
+      ]
+    },
+    {
+      "id": "DE_OPEN_SYLLABLE_O",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "oː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "o"
+      ],
+      "notes": "Open-syllable lengthening (Wiese 1996): o-ben, Bo-den. Vetoed before the shortness-marking letter groups ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩ (followed_by_grapheme_not): German orthography writes a short vowel before them (Wiese 1996, ch. 3), but their phonemes are single consonants indistinguishable from the plain letters at the phoneme layer.",
+      "stress": "stressed",
+      "followed_by_grapheme_not": [
+        "ss",
+        "ck",
+        "tz",
+        "ng"
+      ]
+    },
+    {
+      "id": "DE_OPEN_SYLLABLE_U",
+      "phonemes": [
+        "ʊ"
+      ],
+      "surface": "uː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "u"
+      ],
+      "notes": "Open-syllable lengthening (Wiese 1996): Blu-me. Vetoed before the shortness-marking letter groups ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩ (followed_by_grapheme_not): German orthography writes a short vowel before them (Wiese 1996, ch. 3), but their phonemes are single consonants indistinguishable from the plain letters at the phoneme layer.",
+      "stress": "stressed",
+      "followed_by_grapheme_not": [
+        "ss",
+        "ck",
+        "tz",
+        "ng"
+      ]
+    },
+    {
+      "id": "DE_OPEN_SYLLABLE_OE",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "øː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "ö"
+      ],
+      "notes": "Open-syllable lengthening for umlaut o (Wiese 1996): Vo-gel-like -oe- stems, e.g. Oe-fen-analogue hoe-ren. Vetoed before the shortness-marking letter groups ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩ (followed_by_grapheme_not): German orthography writes a short vowel before them (Wiese 1996, ch. 3), but their phonemes are single consonants indistinguishable from the plain letters at the phoneme layer.",
+      "stress": "stressed",
+      "followed_by_grapheme_not": [
+        "ss",
+        "ck",
+        "tz",
+        "ng"
+      ]
+    },
+    {
+      "id": "DE_OPEN_SYLLABLE_UE",
+      "phonemes": [
+        "ʏ"
+      ],
+      "surface": "yː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "ü"
+      ],
+      "notes": "Open-syllable lengthening for umlaut u (Wiese 1996). Vetoed before the shortness-marking letter groups ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩ (followed_by_grapheme_not): German orthography writes a short vowel before them (Wiese 1996, ch. 3), but their phonemes are single consonants indistinguishable from the plain letters at the phoneme layer.",
+      "stress": "stressed",
+      "followed_by_grapheme_not": [
+        "ss",
+        "ck",
+        "tz",
+        "ng"
+      ]
     }
   ]
 }
