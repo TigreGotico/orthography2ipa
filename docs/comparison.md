@@ -45,10 +45,10 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | en | wikipron | 80995 | 0.3592 | 0.2092 | 0.8333 | 0.1788 | n/a | n/a | n/a |
 | en-US | cmudict | 126052 | 0.5003 | 0.3048 | n/a | 0.1531 | n/a | n/a | n/a |
 | es | wikipron | 132190 | 0.0879 | 0.1071 | 0.0277 | n/a | n/a | 0.1041 | n/a |
-| eu | hitz_basque_ipa | 3113 | 0.1848 | 0.1588 | n/a | n/a | n/a | 0.0217 | n/a |
+| eu | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | 0.0217 | n/a |
 | eu-wikipron | wikipron | 12022 | 0.0100 | 0.1077 | n/a | n/a | n/a | 0.1713 | n/a |
 | fi | wikipron | 168814 | 0.0539 | 0.2354 | 0.1324 | n/a | n/a | n/a | n/a |
-| fr | wikipron | 85516 | 0.1643 | 0.0740 | 0.2280 | n/a | n/a | n/a | n/a |
+| fr | wikipron | 85516 | 0.1199 | 0.0740 | 0.2280 | n/a | n/a | n/a | n/a |
 | ga | wikipron | 9621 | 0.1837 | 0.5312 | n/a | n/a | n/a | n/a | n/a |
 | gl | wikipron | 8091 | 0.0911 | n/a | n/a | n/a | 0.0898 | n/a | n/a |
 | hi | wikipron | 30379 | 0.1563 | 0.2816 | 0.3323 | n/a | n/a | n/a | n/a |
@@ -59,7 +59,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | lad | wikipron | 131 | 0.1397 | n/a | n/a | n/a | n/a | n/a | 0.6256 |
 | mfe | wikipron | 206 | 0.2665 | n/a | n/a | n/a | n/a | n/a | 0.3001 |
 | ngh | wikipron | 263 | 0.3663 | n/a | n/a | n/a | n/a | n/a | 0.3961 |
-| nl | wikipron | 45872 | 0.1321 | 0.1265 | 0.2911 | n/a | n/a | n/a | n/a |
+| nl | wikipron | 45872 | 0.1262 | 0.1099 | 0.2843 | n/a | n/a | n/a | n/a |
 | nup | wikipron | 393 | 0.4932 | n/a | n/a | n/a | n/a | n/a | 0.4582 |
 | pl | wikipron | 148992 | 0.0480 | 0.1132 | 0.0633 | n/a | n/a | n/a | n/a |
 | pt-PT | portuguese_unified | 3000 | 0.2250 | 0.3669 | 0.4146 | n/a | n/a | n/a | n/a |
@@ -91,7 +91,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | en-US | cmudict | 126052 | 0.5003 | 0.4938 | 0.3048 | 0.3104 |
 | eu | hitz_basque_ipa | 3113 | 0.1848 | 0.1842 | 0.1588 | 0.1588 |
 | fr | wikipron | 85516 | 0.1643 | 0.1643 | 0.0740 | 0.0749 |
-| nl | wikipron | 45872 | 0.2663 | 0.2621 | 0.1265 | 0.1325 |
+| nl | wikipron | 45872 | 0.1262 | 0.2621 | 0.1099 | 0.1325 |
 | sv | wikipron | 5082 | 0.2316 | stale | 0.2337 | stale |
 
 Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the SAME dictionary is worth bolted onto o2i's rules. `o2i` vs `espeak_rules` is the fairest rules-only comparison; `o2i_lex` vs `espeak` is the fairest dictionary-included comparison.
