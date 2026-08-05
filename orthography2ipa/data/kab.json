@@ -580,7 +580,7 @@
         "ŋ",
         "m"
       ],
-      "notes": "Spirantization of /k/ is blocked after any consonant EXCEPT /r/ and /rˤ/: /k/ → [ç] post-vocalically, word-initially, and after /r, rˤ/ (native-speaker judgment; Bedar et al. 2022 do not cover post-/r/ contexts for /k/). The sonorant cases after /l, n, m/ are corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022): /ç/ occlusivizes to [k] after all three sonorants l, n, m. Post-/r/ spirantization is attested in native-speaker verification (taberkant → [ç], not [k])."
+      "notes": "Spirantization of /k/ is blocked after any consonant EXCEPT /r/ and /rˤ/: /k/ → [ç] post-vocalically, word-initially, and after /r, rˤ/ (native-speaker judgment; Bedar et al. 2022 do not cover post-/r/ contexts for /k/). The sonorant cases after /l, n, m/ are corroborated for Chemini Kabyle by Bedar, Quellec & Tifrit (2022): /ç/ occlusivizes to [k] after all three sonorants l, n, m. Post-/r/ spirantization is attested in native-speaker verification (taberkant → [ç], not [k]). GEMINATE /rː, rˤː/ (⟨rr, ṛṛ⟩): blocking of /k/-spirantization after geminate r is included here on the same native-speaker-judgment basis as the singleton-r exception, NOT on direct citation. Corpus audit (Tatoeba Kabyle mono-cleaned, 756,774 rows, unfiltered) confirms the cluster ⟨rrk⟩ is well-attested in spelling — 69 occurrences / 11 unique words, notably rrkel (x40), ḥerrkeɣ (x9), tḥerrkeḍ (x4) — so this is not a marginal orthographic accident; but the corpus is text-only and cannot confirm whether the surface realization is [k] (blocked, as currently modelled) or [ç] (spirantized, by analogy with singleton r). ⟨ṛṛk⟩ (pharyngealized geminate) is unattested in the same corpus (0/756,774) and remains untested rather than assumed. ɣ omitted from this preceded_by list is intentional, not a gap: ⟨ɣk⟩ is unattested both in corpus_audit_2026_07_17 (31,085 samples) and in this later Tatoeba audit (1/756,774, a single non-standard token sqirčaɣk that does not parse as a native stem) — the cluster is too rare/unreal to require a rule either way."
     },
     {
       "id": "KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT",
@@ -650,7 +650,7 @@
         "ŋ",
         "r"
       ],
-      "notes": "Spirantization of /ɡ/ is blocked after any consonant EXCEPT /m/: /ɡ/ → [ʝ] post-vocalically, word-initially, and after /m/; blocked after /r, rˤ/ and all other consonants. Bedar, Quellec & Tifrit (2022) document /mʝ/ → [mʝ] in Chemini Kabyle before /ə, i, a/; before /u/, /ʝ/ instead debuccalizes to [mh], consistently across Chemini, Boghni, and Makouda. The following-vowel conditioning is not modeled by this rule engine (no mechanism for a following-vowel-sensitive exception to a preceding-consonant rule) — see KNOWN LIMITS. The sonorant cases after /l, n/ are corroborated by the same study: /ʝ/ occlusivizes after r, l, n but not after m. Native-speaker verification (MOKRAOUI 2026): argaz → [arɡaz] with hard [g] like French 'garder', NOT [arʝaz]."
+      "notes": "Spirantization of /ɡ/ is blocked after any consonant EXCEPT /m/: /ɡ/ → [ʝ] post-vocalically, word-initially, and after /m/; blocked after /r, rˤ/ and all other consonants. Bedar, Quellec & Tifrit (2022) document /mʝ/ → [mʝ] in Chemini Kabyle before /ə, i, a/; before /u/, /ʝ/ instead debuccalizes to [mh], consistently across Chemini, Boghni, and Makouda. The following-vowel conditioning is not modeled by this rule engine (no mechanism for a following-vowel-sensitive exception to a preceding-consonant rule) — see KNOWN LIMITS. The sonorant cases after /l, n/ are corroborated by the same study: /ʝ/ occlusivizes after r, l, n but not after m. Native-speaker verification (MOKRAOUI 2026): argaz → [arɡaz] with hard [g] like French 'garder', NOT [arʝaz]. GEMINATE /rː, rˤː/ blocking and ɣ-preceding blocking are asserted here on the same categorical-except-m basis as the rest of this rule but have NOT been separately corpus-audited the way k's rrk/ɣk clusters were (see corpus check appended to KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT); corpus_audit_2026_07_17 lists rg and ng as richly attested for the singleton-consonant cases, but ⟨rrg⟩, ⟨ṛṛg⟩ and ⟨ɣg⟩ cluster frequencies are not yet independently verified in this spec. Pending audit."
     },
     {
       "id": "KAB_BLOCK_SPIRANT_K_BEFORE_U",
@@ -993,6 +993,16 @@
       "url": "https://huggingface.co/boffire",
       "pages": null,
       "notes": "Primary (corpus evidence). 31,085 samples / 21,260 unique words from boffire/tatoeba-en-kab, boffire/nllb_en_kab, boffire/kabyle-english-TM, boffire/kabyle-english-translatewiki. Blocked clusters richly attested (rk, lk, nk, fk, tk, rg, ng, zg); exotic clusters (xk, qk, zk, ɣk) unattested."
+    },
+    {
+      "id": "corpus_audit_2026_08_tatoeba_mono",
+      "author": "Anthropic Claude (session audit, requested by MOKRAOUI, Athmane)",
+      "year": 2026,
+      "title": "Cluster attestation check on boffire/tatoeba-kabyle-mono-cleaned for ɣk, rrk, ṛṛk",
+      "publisher": null,
+      "url": "https://huggingface.co/datasets/boffire/tatoeba-kabyle-mono-cleaned",
+      "pages": null,
+      "notes": "Secondary (corpus evidence, orthographic attestation only — no phonetic/audio ground truth). Full unfiltered corpus, 756,774 rows. Findings: ɣk unattested (1/756,774, a non-standard token sqirčaɣk not parsing as a native stem) — corroborates corpus_audit_2026_07_17's independent unattested finding for the same cluster. rrk attested: 69 occurrences / 11 unique words (rrkel x40, ḥerrkeɣ x9, tḥerrkeḍ x4, ḥerrket x4, ḥerrkemt x3, and others), meaning the cluster is real in spelling and not marginal, though the surface pronunciation of the k ([k] vs [ç]) is not settled by this text-only evidence. ṛṛk unattested (0/756,774). rg/ng-type baselines (rk, lk, nk) also recounted and consistent in relative frequency with corpus_audit_2026_07_17's earlier finding that these clusters are richly attested. rg, ṛṛg, ɣg clusters not checked in this pass — flagged as pending in KAB_BLOCK_SPIRANT_G_AFTER_CONSONANT."
     }
   ],
   "wikipedia": [
