@@ -26,7 +26,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "chv",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
       "a"
@@ -241,5 +241,13 @@
     "longitude": 47.16298,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Chuvash."
+  },
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Chuvash, like the other Turkic languages modeled here (Tatar, Bashkir), has default word-final stress; certain suffixes (negation, some case endings) and loanwords carry non-final stress, not modeled here. Source: Krueger (1961), Clark (1998) in Johanson & Csato's The Turkic Languages."
   }
 }

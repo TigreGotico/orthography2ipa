@@ -476,7 +476,7 @@ def test_fr_intervocalic_s_voices():
     fr-FR notes: "INTERVOCALIC s: [z] between vowels within a word." Fouché
     (1959), Tranel (1987).
     """
-    assert _t("fr-FR", "rose") == "ʁɔz"
+    assert _t("fr-FR", "rose") == "ʁoz"  # loi de position: [o] before /z/ (Tranel 1987 §3)
 
 
 def test_fr_e_caduc_silent_word_finally():
@@ -504,6 +504,36 @@ def test_fr_doubled_consonants_degeminate():
     belle: the ⟨ll⟩ digraph yields exactly one [l].
     """
     assert _t("fr-FR", "belle").count("l") == 1
+
+
+def test_fr_glide_formation_keeps_final_ie_nucleus():
+    """Glide formation must never delete a word's only vowel nucleus.
+
+    Word-internal ⟨i⟩ before a vowel glides to [j] (Tranel 1987 §5-6): pied,
+    fiacre. But when the following vowel is the word's last audible slot —
+    word-final ⟨ie⟩, optionally followed by the transparent suffix graphemes
+    ⟨s⟩/⟨x⟩ (Tranel 1987 §3) — the ⟨i⟩ stays [i], because gliding would leave
+    the syllable with no nucleus at all (vie → *[vj]).
+    """
+    assert _t("fr-FR", "pied").startswith("pj")
+    assert _t("fr-FR", "fiacre") == "fjakʁ"
+    for word, expected in [
+        ("vie", "vi"),
+        ("vies", "vi"),
+        ("envie", "ɑ̃vi"),
+        ("folie", "fɔli"),
+        ("algérie", "alʒeʁi"),
+    ]:
+        out = _t("fr-FR", word)
+        assert out == expected, f"{word}: {out!r} != {expected!r}"
+        assert any(c in "aeiouyɑɛœøəɔɥ̃ɑ̃ɛ̃ɔ̃i" for c in out)
+
+
+def test_fr_ill_irregular_word_exceptions():
+    """The closed irregular ⟨ill⟩=[il] class (Tranel 1987 §4.3)."""
+    assert _t("fr-FR", "ville") == "vil"
+    assert _t("fr-FR", "mille") == "mil"
+    assert _t("fr-FR", "tranquille") == "tʁɑ̃kil"
 
 
 @pytest.mark.xfail(
@@ -556,3 +586,35 @@ def test_fr_amateur_cited_transcription():
     final-⟨r⟩ deletion rule strips the suffix's [ʁ].
     """
     assert _t("fr-FR", "amateur") == "amatœʁ"
+
+
+def test_fr_closed_syllable_e_is_open_mid():
+    """⟨e⟩ in a closed syllable is [ɛ], not schwa (Tranel 1987 §4)."""
+    assert _t("fr-FR", "abel") == "abɛl"
+    assert _t("fr-FR", "albert") == "albɛʁ"
+    assert _t("fr-FR", "venir").startswith("və")   # open syllable keeps schwa
+    assert _t("fr-FR", "samedi") == "samədi"
+
+
+def test_fr_loi_de_position_o():
+    """/ɔ/ is close [o] word-finally and before /z/ (Tranel 1987 §3)."""
+    assert _t("fr-FR", "mot") == "mo"
+    assert _t("fr-FR", "chose") == "ʃoz"
+    assert _t("fr-FR", "porte") == "pɔʁt"          # closed syllable stays [ɔ]
+
+
+def test_fr_pronounced_final_s_closed_list():
+    """Tranel 1987 §7's closed list of pronounced final ⟨s⟩."""
+    assert _t("fr-FR", "fils") == "fis"
+    assert _t("fr-FR", "ours") == "uʁs"
+    assert _t("fr-FR", "très") == "tʁɛ"            # regular final s stays silent
+
+
+def test_fr_glide_guard_only_blocks_silent_finals():
+    """before_final_vowel fires only when the final vowel is silenced.
+
+    vie keeps its nucleus (silent e-caduc would be left alone); alicia
+    glides freely (its final ⟨a⟩ is pronounced and carries the nucleus).
+    """
+    assert _t("fr-FR", "vie") == "vi"
+    assert _t("fr-FR", "alicia") == "alisja"

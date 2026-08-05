@@ -305,6 +305,7 @@
       "œʏ"
     ]
   },
+  "collapse_geminates": true,
   "parent": "x-clade-west2793",
   "ancestors": [
     {
@@ -450,5 +451,85 @@
     "longitude": 5.0,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Dutch."
-  }
+  },
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Germanic initial stress default (Booij 1995, ch. 5); the -e(n) verbal/plural ending is unstressed, which is what the open/closed-syllable vowel-length rule and the e -> schwa reduction below need."
+  },
+  "allophone_rules": [
+    {
+      "id": "NL_OPEN_SYLLABLE_A",
+      "phonemes": [
+        "ɑ"
+      ],
+      "surface": "aː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "a"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995, ch. 2): a short vowel letter in an open syllable (single intervocalic consonant, not a doubled/geminate one -- ma-ken not mak-ken) is long. followed_by_2=vowel rules out a doubled consonant letter, since that tokenizes as two consonant graphemes."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_E",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "eː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "e"
+      ],
+      "notes": "Open-syllable lengthening for stressed e (Booij 1995); the unstressed nucleus_unstressed candidate is schwa and is untouched by this rule since it never surfaces as the plain 'e' -> 'ɛ' candidate this rule targets."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_I",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "iː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "i"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995)."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_O",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "oː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "o"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995): lo-pen, wo-nen."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_U",
+      "phonemes": [
+        "ʏ"
+      ],
+      "surface": "y",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "u"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995): u-ren -> [yːrə(n)]/[yrə(n)]; short [ʏ] surfaces only in a closed syllable."
+    }
+  ]
 }
