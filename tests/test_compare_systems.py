@@ -139,6 +139,8 @@ class TestCompareLang:
 
         class FakeModule:
             G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
 
         # espeak: gets one wrong -> PER > 0, worse than o2i
@@ -146,7 +148,7 @@ class TestCompareLang:
         espeak_table = {"ola": "ola", "kasa": "kasa"}
         monkeypatch.setattr(
             cs, "espeak_transcribe",
-            lambda word, voice: espeak_table.get(word))
+            lambda word, voice, data_path=None: espeak_table.get(word))
 
         # epitran: unavailable
         monkeypatch.setattr(cs, "epitran_transcribe", lambda word, code: None)
@@ -176,6 +178,8 @@ class TestCompareLang:
 
         class FakeModule:
             G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
 
         row = cs.compare_lang("yy", limit=10)
@@ -200,6 +204,8 @@ class TestCompareLang:
 
         class FakeModule:
             G2P = staticmethod(lambda lang: RaisingEngine())
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
 
         row = cs.compare_lang("zz", limit=10)
@@ -415,6 +421,8 @@ class TestCompareLangWithPycotoviaAndAhotts:
 
         class FakeModule:
             G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
         monkeypatch.setattr(
             cs, "pycotovia_transcribe", lambda word, lang: "ola")
@@ -442,6 +450,8 @@ class TestCompareLangWithPycotoviaAndAhotts:
 
         class FakeModule:
             G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
         monkeypatch.setattr(
             cs, "ahotts_transcribe", lambda word, cfg: "kajʃˈo")
@@ -473,12 +483,123 @@ class TestCompareLangWithPycotoviaAndAhotts:
             def G2P(lang):
                 seen["lang"] = lang
                 return FakeEngine({"bat": "bat"})
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
 
         row = cs.compare_lang("eu-wikipron", limit=10)
         assert seen["lang"] == "eu"  # g2p override, not the row key
         assert row["lang"] == "eu-wikipron"
         assert row["o2i_per"] == 0.0
+
+
+class TestAfricaG2pLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "africa_g2p":
+                raise ImportError("no module named africa_g2p")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        cs._africa_pipeline_cache.clear()
+        assert cs.africa_g2p_transcribe("azul", "kab") is None
+
+    def test_present_module_runs_pipeline(self, monkeypatch):
+        class FakePipeline:
+            def __init__(self, lang, output):
+                assert output == "ipa"
+                self.lang = lang
+
+            def run(self, word):
+                return f"ipa-{word}-{self.lang}"
+
+        fake_pkg = type(sys)("africa_g2p")
+        fake_pkg.AfricaPipeline = FakePipeline
+        monkeypatch.setitem(sys.modules, "africa_g2p", fake_pkg)
+        cs._africa_pipeline_cache.clear()
+
+        assert cs.africa_g2p_transcribe("azul", "kab") == "ipa-azul-kab"
+        cs._africa_pipeline_cache.clear()
+
+    def test_unknown_lang_construction_failure_yields_none(self, monkeypatch):
+        class FailingPipeline:
+            def __init__(self, lang, output):
+                raise KeyError(lang)
+
+        fake_pkg = type(sys)("africa_g2p")
+        fake_pkg.AfricaPipeline = FailingPipeline
+        monkeypatch.setitem(sys.modules, "africa_g2p", fake_pkg)
+        cs._africa_pipeline_cache.clear()
+
+        assert cs.africa_g2p_transcribe("x", "zzz") is None
+        cs._africa_pipeline_cache.clear()
+
+    def test_exception_during_run_yields_none(self, monkeypatch):
+        class BoomPipeline:
+            def __init__(self, lang, output):
+                pass
+
+            def run(self, word):
+                raise RuntimeError("boom")
+
+        fake_pkg = type(sys)("africa_g2p")
+        fake_pkg.AfricaPipeline = BoomPipeline
+        monkeypatch.setitem(sys.modules, "africa_g2p", fake_pkg)
+        cs._africa_pipeline_cache.clear()
+
+        assert cs.africa_g2p_transcribe("x", "kab") is None
+        cs._africa_pipeline_cache.clear()
+
+
+class TestCompareLangWithAfricaG2p:
+    def test_kab_row_scores_africa_g2p(self, monkeypatch):
+        pairs = [("azul", "azul")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_kab_dataset",
+            (lambda lang, limit: pairs, ["kab"]))
+        monkeypatch.setitem(
+            cs.LANGS, "kab",
+            {"dataset": ("fake_kab_dataset", "kab"), "espeak": None,
+             "epitran": None, "gruut": None, "africa_g2p": "kab"})
+
+        fake_o2i = FakeEngine({"azul": "azul"})
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(
+            cs, "africa_g2p_transcribe", lambda word, lang: "azul")
+
+        row = cs.compare_lang("kab", limit=10)
+        assert row["africa_g2p_per"] == 0.0
+        assert row["africa_g2p_n"] == 1
+
+    def test_no_africa_g2p_mapping_yields_none(self, monkeypatch):
+        pairs = [("ola", "ola")]
+        monkeypatch.setitem(
+            cs.benchmark.DATASETS, "fake_no_afg2p_dataset",
+            (lambda lang, limit: pairs, ["ww"]))
+        monkeypatch.setitem(
+            cs.LANGS, "ww",
+            {"dataset": ("fake_no_afg2p_dataset", "ww"), "espeak": None,
+             "epitran": None, "gruut": None})
+
+        fake_o2i = FakeEngine({"ola": "ola"})
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+
+        row = cs.compare_lang("ww", limit=10)
+        assert row["africa_g2p_per"] is None
+        assert row["africa_g2p_n"] == 0
 
 
 class TestDiscoverCatalanDialectVoices:
@@ -617,7 +738,7 @@ class TestEspeakBatchTranscribe:
         monkeypatch.setattr(cs.subprocess, "run", lambda *a, **k: P())
         calls = []
 
-        def per_word(word, voice):
+        def per_word(word, voice, data_path=None):
             calls.append(word)
             return f"ipa-{word}"
 
@@ -632,7 +753,7 @@ class TestEspeakBatchTranscribe:
 
         monkeypatch.setattr(cs.subprocess, "run", boom)
         monkeypatch.setattr(cs, "espeak_transcribe",
-                            lambda w, v: f"ipa-{w}")
+                            lambda w, v, data_path=None: f"ipa-{w}")
         out = cs.espeak_batch_transcribe(["a", "b"], "es")
         assert out == {"a": "ipa-a", "b": "ipa-b"}
 
@@ -689,3 +810,259 @@ class TestMultiwordDispatch:
             cs.LANGS.pop("xx", None)
         assert calls["transcribe"] == ["una frase curta"]
         assert calls["transcribe_word"] == ["mot"]
+
+
+class TestEspeakRulesAvailability:
+    def test_unavailable_without_env_var(self, monkeypatch):
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", None)
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        assert cs.espeak_rules_available() is False
+
+    def test_unavailable_when_path_missing(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH",
+                            str(tmp_path / "does-not-exist"))
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        assert cs.espeak_rules_available() is False
+
+    def test_unavailable_when_espeak_missing(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(tmp_path))
+        monkeypatch.setattr(cs, "espeak_available", lambda: False)
+        assert cs.espeak_rules_available() is False
+
+    def test_available_when_env_set_and_dir_exists(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(tmp_path))
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        assert cs.espeak_rules_available() is True
+
+
+class TestEspeakDataPathPlumbing:
+    """The espeak_rules column reuses espeak_transcribe/espeak_batch_transcribe
+    with an extra --path=<data_path> flag; these tests assert the flag is
+    actually threaded through to the subprocess command, never silently
+    dropped (which would make espeak_rules identical to plain espeak)."""
+
+    def test_transcribe_passes_path_flag(self, monkeypatch):
+        seen_cmd = {}
+
+        class Proc:
+            returncode = 0
+            stdout = "ˈɔla\n"
+
+        def fake_run(cmd, **kwargs):
+            seen_cmd["cmd"] = cmd
+            return Proc()
+
+        monkeypatch.setattr(cs.subprocess, "run", fake_run)
+        cs.espeak_transcribe("ola", "es", data_path="/rules/only/data")
+        assert "--path=/rules/only/data" in seen_cmd["cmd"]
+
+    def test_transcribe_omits_path_flag_when_none(self, monkeypatch):
+        seen_cmd = {}
+
+        class Proc:
+            returncode = 0
+            stdout = "ˈɔla\n"
+
+        def fake_run(cmd, **kwargs):
+            seen_cmd["cmd"] = cmd
+            return Proc()
+
+        monkeypatch.setattr(cs.subprocess, "run", fake_run)
+        cs.espeak_transcribe("ola", "es")
+        assert not any(str(c).startswith("--path=") for c in seen_cmd["cmd"])
+
+    def test_batch_transcribe_passes_path_flag(self, monkeypatch):
+        seen_cmd = {}
+
+        class Proc:
+            returncode = 0
+            stdout = "ˈɔla\n"
+
+        def fake_run(cmd, **kwargs):
+            seen_cmd["cmd"] = cmd
+            return Proc()
+
+        monkeypatch.setattr(cs.subprocess, "run", fake_run)
+        cs.espeak_batch_transcribe(["ola"], "es", data_path="/rules/only/data")
+        assert "--path=/rules/only/data" in seen_cmd["cmd"]
+
+
+class TestParseEspeakWordlistWords:
+    def test_extracts_plain_words_skips_directives_and_comments(self, tmp_path):
+        (tmp_path / "en_list").write_text(
+            "// a comment line\n"
+            "\n"
+            "b\tbi:\n"                # single-letter "spell it out" entry: skip
+            "_lig\tl,Iga#tS3_\n"      # helper directive: skip
+            "?3 z\tzi:\n"             # conditional directive: skip
+            "the\tD@2\t$only $nounf\n"  # real function word: keep
+            "one\tw02n\t$nounf\n"       # real word: keep
+            "à\t$accent $atend\n",     # accented single char + directive only: skip
+            encoding="utf-8",
+        )
+        words = cs._parse_espeak_wordlist_words(str(tmp_path), "en")
+        assert words == ["one", "the"]
+
+    def test_merges_list_listx_and_extra(self, tmp_path):
+        (tmp_path / "fr_list").write_text("bonjour\tb..\n", encoding="utf-8")
+        (tmp_path / "fr_listx").write_text("monsieur\tm..\n", encoding="utf-8")
+        (tmp_path / "fr_extra").write_text("madame\tm..\n", encoding="utf-8")
+        words = cs._parse_espeak_wordlist_words(str(tmp_path), "fr")
+        assert words == ["bonjour", "madame", "monsieur"]
+
+    def test_missing_files_yield_empty_list(self, tmp_path):
+        assert cs._parse_espeak_wordlist_words(str(tmp_path), "zz") == []
+
+
+class TestBuildEspeakLexiconTsv:
+    def test_returns_none_without_dictsource_path(self, monkeypatch):
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", None)
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        assert cs.build_espeak_lexicon_tsv("en") is None
+
+    def test_returns_none_for_unmapped_language(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", str(tmp_path))
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        assert cs.build_espeak_lexicon_tsv("zz-not-mapped") is None
+
+    def test_builds_and_caches_tsv(self, monkeypatch, tmp_path):
+        dictsource = tmp_path / "dictsource"
+        dictsource.mkdir()
+        (dictsource / "en_list").write_text(
+            "the\tD@2\t$only\nof\t02v\t$only\n", encoding="utf-8")
+        cache_dir = tmp_path / "cache"
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", str(dictsource))
+        monkeypatch.setattr(cs, "O2I_LEX_CACHE_DIR", str(cache_dir))
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        monkeypatch.setitem(
+            cs.LANGS, "en-US-test",
+            {"dataset": ("wikipron", "en-US"), "espeak": "en-us"})
+        monkeypatch.setitem(cs.DICTSOURCE_LANG, "en-US-test", "en")
+
+        calls = []
+
+        def fake_batch(words, voice, data_path=None):
+            calls.append(list(words))
+            return {"the": "ð", "of": "ʌv"}
+
+        monkeypatch.setattr(cs, "espeak_batch_transcribe", fake_batch)
+
+        path = cs.build_espeak_lexicon_tsv("en-US-test")
+        assert path == str(cache_dir / "en-US-test.tsv")
+        content = (cache_dir / "en-US-test.tsv").read_text(encoding="utf-8")
+        assert "of\tʌv" in content
+        assert "the\tð" in content
+        assert len(calls) == 1
+
+        # second call reuses the cache — no second espeak invocation
+        path2 = cs.build_espeak_lexicon_tsv("en-US-test")
+        assert path2 == path
+        assert len(calls) == 1
+
+    def test_no_words_yields_none_and_no_empty_cache_file(self, monkeypatch, tmp_path):
+        dictsource = tmp_path / "dictsource"
+        dictsource.mkdir()
+        (dictsource / "en_list").write_text("// nothing but comments\n",
+                                            encoding="utf-8")
+        cache_dir = tmp_path / "cache"
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", str(dictsource))
+        monkeypatch.setattr(cs, "O2I_LEX_CACHE_DIR", str(cache_dir))
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        monkeypatch.setitem(
+            cs.LANGS, "en-US-test2",
+            {"dataset": ("wikipron", "en-US"), "espeak": "en-us"})
+        monkeypatch.setitem(cs.DICTSOURCE_LANG, "en-US-test2", "en")
+        assert cs.build_espeak_lexicon_tsv("en-US-test2") is None
+        assert not (cache_dir / "en-US-test2.tsv").exists()
+
+
+class TestCompareLangFairComparison2x2:
+    def test_espeak_rules_and_o2i_lex_columns_scored(self, monkeypatch, tmp_path):
+        pairs = [("bat", "bato")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake_2x2": (lambda lang, limit: pairs, ["yy"])})
+        monkeypatch.setitem(
+            cs.LANGS, "yy",
+            {"dataset": ("fake_2x2", "yy"), "espeak": "yy-voice",
+             "epitran": None, "gruut": None})
+        monkeypatch.setitem(cs.DICTSOURCE_LANG, "yy", "yy")
+
+        class FakeEngine:
+            def transcribe_word(self, word):
+                return "bato"  # exact o2i hit, PER 0
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: FakeEngine())
+            registered = {}
+
+            @staticmethod
+            def register_lexicon(code, src):
+                FakeModule.registered[code] = src
+
+            @staticmethod
+            def clear_lexicons():
+                FakeModule.registered.clear()
+
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        monkeypatch.setattr(cs, "espeak_rules_available", lambda: True)
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", "/fake/rules/data")
+        monkeypatch.setattr(
+            cs, "build_espeak_lexicon_tsv",
+            lambda lang: str(tmp_path / "lex.tsv") if lang == "yy" else None)
+
+        def fake_batch(words, voice, data_path=None):
+            if data_path == "/fake/rules/data":
+                return {w: "wrong" for w in words}  # rules-only is worse
+            return {w: "bato" for w in words}
+
+        monkeypatch.setattr(cs, "espeak_batch_transcribe", fake_batch)
+
+        try:
+            row = cs.compare_lang("yy", limit=10)
+        finally:
+            cs.LANGS.pop("yy", None)
+            cs.DICTSOURCE_LANG.pop("yy", None)
+
+        assert row["espeak_per"] == 0.0
+        assert row["espeak_rules_per"] > 0.0
+        assert row["o2i_lex_per"] == 0.0
+        assert FakeModule.registered == {}  # cleared after o2i_lex scoring
+
+    def test_missing_env_vars_yield_n_a_for_both_new_columns(self, monkeypatch):
+        pairs = [("bat", "bato")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake_2x2b": (lambda lang, limit: pairs, ["zz2"])})
+        monkeypatch.setitem(
+            cs.LANGS, "zz2",
+            {"dataset": ("fake_2x2b", "zz2"), "espeak": "zz2-voice",
+             "epitran": None, "gruut": None})
+
+        class FakeEngine:
+            def transcribe_word(self, word):
+                return "bato"
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: FakeEngine())
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
+
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        monkeypatch.setattr(cs, "espeak_rules_available", lambda: False)
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", None)
+        monkeypatch.setattr(cs, "espeak_batch_transcribe",
+                            lambda words, voice, data_path=None:
+                            {w: "bato" for w in words})
+
+        try:
+            row = cs.compare_lang("zz2", limit=10)
+        finally:
+            cs.LANGS.pop("zz2", None)
+
+        assert row["espeak_rules_per"] is None
+        assert row["espeak_rules_n"] == 0
+        assert row["o2i_lex_per"] is None
+        assert row["o2i_lex_n"] == 0
