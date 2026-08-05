@@ -179,6 +179,23 @@
     ],
     "ieuw": [
       "iːw"
+    ],
+    "berg": [
+      "bɛrɣ",
+      "bɛrx"
+    ],
+    "veld": [
+      "vɛld",
+      "vɛlt"
+    ],
+    "kerk": [
+      "kɛrk"
+    ],
+    "brecht": [
+      "brɛxt"
+    ],
+    "isch": [
+      "is"
     ]
   },
   "allophones": {
@@ -327,7 +344,7 @@
       "notes": "French adstrate: centuries of Burgundian/French influence in S. Netherlands; cf. van der Wal (2008)"
     }
   ],
-  "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable. FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally. G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch. H: breathy [ɦ]; fully silent in southern dialects. Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995).",
+  "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable. FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally. G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch. H: breathy [ɦ]; fully silent in southern dialects. Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995). COMPOUND-FINAL SECONDARY STRESS (Booij 1995, ch. 5): non-head members of a compound carry secondary stress and resist the unstressed e -> schwa reduction that a plain unstressed syllable undergoes; the closed set of toponymic/compound-final graphemes ⟨berg⟩/⟨veld⟩/⟨kerk⟩/⟨brecht⟩ is pinned to its unreduced [ɛ] realisation for this reason (Aalbert-style ⟨bert⟩ was left out: wikipron gold is split roughly evenly between [ɛrt] compound forms and [ərt] given-name forms, so no closed rule is safely citable there). ⟨berg⟩/⟨veld⟩ are positionally scoped (positional_graphemes, word_final vs. default) rather than plain unconditional graphemes: a plain grapheme maximal-munch matches inside ordinary inflected forms too (bergen, velden), where the ⟨g⟩/⟨d⟩ is NOT in coda (onset of the following syllable) and must stay voiced per the regular g/d positional rules above -- only word-final ⟨berg⟩/⟨veld⟩ get the devoiced [x]/[t]. ⟨kerk⟩/⟨brecht⟩ need no such split: ⟨k⟩ and ⟨ch⟩ never alternate in Dutch, so the same surface form is correct word-finally and word-internally (kerken, Hubrecht). The adjectival/toponymic suffix ⟨isch⟩ ([-is], ⟨ch⟩ silent, per the existing word-final ⟨sch⟩ -> [s] rule) is likewise pinned as a fixed grapheme rather than derived, since it is a single closed morpheme.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -357,6 +374,22 @@
     "https://nl.wikipedia.org/wiki/Nederlands"
   ],
   "positional_graphemes": {
+    "berg": {
+      "word_final": [
+        "bɛrx"
+      ],
+      "default": [
+        "bɛrɣ"
+      ]
+    },
+    "veld": {
+      "word_final": [
+        "vɛlt"
+      ],
+      "default": [
+        "vɛld"
+      ]
+    },
     "b": {
       "word_final": [
         "p"
@@ -530,6 +563,52 @@
         "u"
       ],
       "notes": "Open-syllable lengthening (Booij 1995): u-ren -> [yːrə(n)]/[yrə(n)]; short [ʏ] surfaces only in a closed syllable."
+    },
+    {
+      "id": "NL_CODA_DEVOICE_G",
+      "phonemes": [
+        "ɣ"
+      ],
+      "surface": "x",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "t",
+        "k",
+        "s",
+        "f",
+        "p",
+        "x"
+      ],
+      "grapheme": [
+        "g"
+      ],
+      "notes": "Regressive devoicing assimilation (Booij 1995, ch. 2 sec. 2.5): Dutch obstruents in coda devoice not only word-finally but also before a following voiceless obstruent within the word, e.g. zeg-t [zɛxt], lieg-t [liːxt], hoog-te [ɦoːxtə]. The existing word_final positional override for ⟨g⟩ handles the absolute-final case; this rule extends the same devoicing to pre-obstruent coda position without touching ⟨g⟩ before a sonorant/vowel (dag-je stays [ɣ]: j is not an obstruent)."
+    },
+    {
+      "id": "NL_UNSTRESSED_TENSE_I_FINAL",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "i",
+      "stress": "unstressed",
+      "word_final": true,
+      "grapheme": [
+        "i"
+      ],
+      "notes": "Unstressed tense vowel (Booij 1995, ch. 2): an unstressed word-final ⟨i⟩ surfaces tense-but-short [i], not lax [ɪ] -- Ali [aːli], Adri [aːdri]. Mirrors the analogous German DE_UNSTRESSED_TENSE_*_FINAL rules (final unstressed high/mid vowels resist laxing)."
+    },
+    {
+      "id": "NL_UNSTRESSED_TENSE_I_HIATUS",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "i",
+      "stress": "unstressed",
+      "followed_by": "vowel",
+      "grapheme": [
+        "i"
+      ],
+      "notes": "Unstressed tense vowel in hiatus (Booij 1995, ch. 2): an unstressed ⟨i⟩ directly before another vowel letter (Aziaat, Ariër, Adriaan, -ië/-iër loanword endings) surfaces tense-but-short [i], not lax [ɪ]; the hiatus context blocks the closed-syllable laxing that a following consonant would trigger."
     }
   ]
 }

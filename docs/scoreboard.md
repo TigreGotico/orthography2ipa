@@ -364,10 +364,10 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | nhx | wikipron | 145 | 0.1913 | [0.1686, 0.2141] | 0.2207 | skeleton | crowd-scraped |
 | nio | northeuralex | 1024 | 0.1075 | [0.0999, 0.1144] | 0.4375 | research | lexicon-derived |
 | niv | wikipron | 620 | 0.3241 | [0.3032, 0.3453] | 0.2613 | skeleton | crowd-scraped |
-| nl | ipa_childes | 8108 | 0.2547 | — | — | research | espeak-derived |
-| nl | ipadict | 117869 | 0.1651 | — | — | research | machine-generated |
-| nl | vox_communis | 26136 | 0.2739 | — | — | research | epitran-derived |
-| nl | wikipron | 45872 | 0.1321 | — | — | research | crowd-scraped |
+| nl | ipa_childes | 8108 | 0.2520 | — | — | research | espeak-derived |
+| nl | ipadict | 117869 | 0.1616 | — | — | research | machine-generated |
+| nl | vox_communis | 26136 | 0.2732 | — | — | research | epitran-derived |
+| nl | wikipron | 45872 | 0.1262 | — | — | research | crowd-scraped |
 | nmy | wikipron | 350 | 0.7279 | [0.7138, 0.7432] | 0.0000 | skeleton | crowd-scraped |
 | nn | wikipron | 3829 | 0.4988 | [0.4916, 0.5061] | 0.0486 | research | crowd-scraped |
 | no | wikipron | 1093 | 0.4105 | [0.3983, 0.4223] | 0.0823 | research | crowd-scraped |

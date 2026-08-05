@@ -586,6 +586,92 @@ class TestDutch:
         _assert_contains(a, "r", "ʁ", label="nl-NL allophone r includes ʁ")
 
 
+class TestDutchBeatEspeakWave:
+    """Booij 1995-cited classes added by the beat-espeak Dutch wave (bare
+    ``nl`` spec: compound-final secondary stress, regressive devoicing
+    assimilation, unstressed tense ⟨i⟩)."""
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("nl").transcribe(word)
+
+    def test_compound_final_secondary_stress_unreduced(self):
+        """⟨berg⟩/⟨veld⟩/⟨kerk⟩/⟨brecht⟩ compound-final members keep [ɛ],
+        they do not reduce to schwa like a plain unstressed syllable
+        (Booij 1995, ch. 5: non-head compound members carry secondary
+        stress). ⟨veld⟩ here is NOT the word's final grapheme (⟨en⟩
+        follows), so its coda ⟨d⟩ stays voiced -- only the vowel is
+        pinned, the devoicing positional split (below) still applies."""
+        assert self._t("Aalstervelden") == "ˈaːlstərvɛldən"
+        assert self._t("Almkerk") == "ˈɑlmkɛrk"
+        assert self._t("Aalbrecht") == "ˈaːlbrɛxt"
+        assert self._t("berg") == "ˈbɛrx"
+
+    def test_berg_veld_positional_scoping_not_maximal_munch(self):
+        """Regression (adversarial review round 1): ⟨berg⟩/⟨veld⟩ must be
+        positionally scoped, not plain unconditional graphemes -- a plain
+        grapheme would maximal-munch match inside ordinary inflected forms
+        like *bergen* (mountains) and *velden* (fields) and wrongly force
+        the word-final devoiced [x]/[t], when these forms are not
+        word-final and gold keeps the intervocalic-onset voiced [ɣ]/[d]."""
+        assert self._t("bergen") == "ˈbɛrɣən"
+        assert self._t("Bergen") == "ˈbɛrɣən"
+        assert self._t("velden") == "ˈvɛldən"
+        assert self._t("veld") == "ˈvɛlt"
+
+    def test_coda_devoicing_extends_to_pre_obstruent(self):
+        """⟨g⟩ devoices to [x] before a following voiceless obstruent
+        within the word, not only word-finally (Booij 1995, ch. 2 sec.
+        2.5: regressive devoicing assimilation)."""
+        assert self._t("zegt") == "ˈzɛxt"
+        assert self._t("liegt") == "ˈliːxt"
+        assert self._t("hoogte") == "ˈɦoːxtə"
+
+    def test_devoicing_does_not_fire_before_sonorant(self):
+        """⟨g⟩ before a sonorant (not an obstruent) stays voiced [ɣ] --
+        the devoicing trigger is specifically a following voiceless
+        obstruent, not any consonant."""
+        assert self._t("dagje") == "ˈdɑɣjə"
+        assert self._t("zeggen") == "ˈzɛɣən"
+        assert self._t("vogel") == "ˈvoːɣəl"
+
+    def test_isch_suffix_is_tense_i_not_lax(self):
+        """The closed adjectival/toponymic suffix ⟨isch⟩ is [-is]
+        (⟨ch⟩ silent, ⟨i⟩ tense-but-short), not [-ɪs]."""
+        assert self._t("Arabisch") == "ˈaːraːbis"
+        assert self._t("Akkadisch") == "ˈɑkaːdis"
+
+    def test_unstressed_final_i_is_tense(self):
+        """An unstressed word-final ⟨i⟩ is tense-but-short [i], not lax
+        [ɪ] (Booij 1995, ch. 2; mirrors de-DE's analogous
+        DE_UNSTRESSED_TENSE_*_FINAL rules)."""
+        assert self._t("Ali") == "ˈaːli"
+        assert self._t("Adri") == "ˈɑdri"
+
+    def test_unstressed_i_in_hiatus_is_tense(self):
+        """An unstressed ⟨i⟩ directly before another vowel letter is
+        tense-but-short [i], not lax [ɪ] -- the hiatus blocks the
+        closed-syllable laxing a following consonant would trigger."""
+        assert self._t("Ariër") == "ˈaːriər"
+        assert self._t("Adriaan") == "ˈɑdriaːn"
+
+    def test_stressed_closed_syllable_i_stays_lax(self):
+        """Guard: the new unstressed-tensing rules must not touch a
+        stressed closed-syllable ⟨i⟩, which stays lax [ɪ]."""
+        assert self._t("kip") == "ˈkɪp"
+        assert self._t("mist") == "ˈmɪst"
+        assert self._t("wit") == "ˈʋɪt"
+
+    def test_open_syllable_length_and_baseline_words_unaffected(self):
+        """Guard: pre-existing open-syllable lengthening and unrelated
+        words are unaffected by the new rules."""
+        assert self._t("water") == "ˈʋaːtər"
+        assert self._t("maken") == "ˈmaːkən"
+        assert self._t("bakken") == "ˈbɑkən"
+        assert self._t("verhaal") == "ˈvɛrɦaːl"
+        assert self._t("gedaan") == "ˈɣeːdaːn"
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # BELGIAN DUTCH / FLEMISH  (nl-BE)
 # ═══════════════════════════════════════════════════════════════════════════
