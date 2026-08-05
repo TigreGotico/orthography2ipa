@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.57.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.57.0a1) (2026-08-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.56.0a3...7.57.0a1)
+
+**Merged pull requests:**
+
+- feat\(ca\): cross-word nasal place assimilation across the four Catalan varieties [\#802](https://github.com/TigreGotico/orthography2ipa/pull/802) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.56.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.56.0a3) (2026-08-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.56.0a2...7.56.0a3)
@@ -634,7 +642,6 @@
 **Merged pull requests:**
 
 - Release 7.29.1a1 [\#628](https://github.com/TigreGotico/orthography2ipa/pull/628) ([github-actions[bot]](https://github.com/apps/github-actions))
-- test: mark diphthong offglide in Basque negation-sandhi expectations [\#627](https://github.com/TigreGotico/orthography2ipa/pull/627) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.29.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.29.0a1) (2026-07-16)
 
