@@ -119,13 +119,13 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | bo | wikipron | 1564 | 0.6716 | [0.6628, 0.6806] | 0.0006 | research | crowd-scraped |
 | br | wikipron | 803 | 0.4105 | [0.3976, 0.4232] | 0.0436 | research | crowd-scraped |
 | bua | wikipron | 140 | 0.3670 | [0.3314, 0.4027] | 0.1000 | skeleton | crowd-scraped |
-| ca | 4catac | 160 | 0.1069 | [0.1010, 0.1128] | 0.0062 | research | expert-human |
+| ca | 4catac | 160 | 0.0986 | n/a | n/a | research | expert-human |
 | ca | ipa_childes | 3813 | 0.2883 | [0.2821, 0.2946] | 0.1621 | research | espeak-derived |
 | ca | vox_communis | 218431 | 0.8119 | [0.8073, 0.8160] | 0.2867 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2596 | [0.2152, 0.3026] | 0.3302 | research | crowd-scraped |
-| ca-x-balear | 4catac | 160 | 0.2033 | [0.1946, 0.2116] | 0.0000 | research | expert-human |
-| ca-x-occidental | 4catac | 160 | 0.1150 | [0.1088, 0.1219] | 0.0000 | research | expert-human |
-| ca-x-valencia | 4catac | 160 | 0.0944 | [0.0883, 0.1004] | 0.0062 | research | expert-human |
+| ca-x-balear | 4catac | 160 | 0.1997 | n/a | n/a | research | expert-human |
+| ca-x-occidental | 4catac | 160 | 0.1026 | n/a | n/a | research | expert-human |
+| ca-x-valencia | 4catac | 160 | 0.0851 | n/a | n/a | research | expert-human |
 | car | wikipron | 232 | 0.3986 | [0.3740, 0.4222] | 0.0172 | skeleton | crowd-scraped |
 | ce | wikipron | 461 | 0.2800 | [0.2613, 0.2991] | 0.2364 | research | crowd-scraped |
 | ceb | wikipron | 3895 | 0.1058 | [0.1017, 0.1095] | 0.5214 | research | crowd-scraped |
@@ -187,10 +187,10 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | et | vox_communis | 35140 | 0.2121 | [0.2103, 0.2139] | 0.1141 | research | epitran-derived |
 | et | wikipron | 2763 | 0.1791 | [0.1732, 0.1854] | 0.3018 | research | crowd-scraped |
 | ett | wikipron | 207 | 0.1555 | [0.1310, 0.1809] | 0.4879 | research | crowd-scraped |
-| eu | hitz_basque_ipa | 3113 | 0.1848 | [0.1779, 0.1916] | 0.3501 | production | machine-generated |
-| eu | ipa_childes | 3969 | 0.1067 | [0.1025, 0.1108] | 0.4825 | production | espeak-derived |
-| eu | vox_communis | 64075 | 0.0529 | [0.0512, 0.0547] | 0.7328 | production | epitran-derived |
-| eu | wikipron | 12008 | 0.0100 | [0.0091, 0.0110] | 0.9405 | production | crowd-scraped |
+| eu | hitz_basque_ipa | 3113 | 0.0984 | [0.0944, 0.1026] | 0.4600 | production | machine-generated |
+| eu | ipa_childes | 3969 | 0.0821 | [0.0783, 0.0862] | 0.6127 | production | espeak-derived |
+| eu | vox_communis | 64075 | 0.0644 | [0.0625, 0.0661] | 0.6549 | production | epitran-derived |
+| eu | wikipron | 12008 | 0.0546 | [0.0532, 0.0561] | 0.6081 | production | crowd-scraped |
 | evn | wikipron | 145 | 0.3026 | [0.2759, 0.3314] | 0.0690 | skeleton | crowd-scraped |
 | ext-PT-x-barrancos | barranquenho_dict | 316 | 0.1053 | [0.0892, 0.1215] | 0.5696 | research | llm-generated |
 | ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000 | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
