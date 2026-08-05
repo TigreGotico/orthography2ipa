@@ -1074,6 +1074,33 @@
       "right_transform": "\\1ð",
       "obligatory": true,
       "notes": "PHRASE-LEVEL (cross-word) SPIRANTIZATION: Catalan lenition of /b d ɡ/ is not word-bounded — inside a phonological phrase an initial /b d ɡ/ surfaces as the approximant [β ð ɣ] whenever the preceding word ends in a continuant (a vowel, glide, liquid or fricative), and stays a stop after a pause, a nasal or another stop (Wheeler 2005 §5.2, §10.5; Recasens 1993): la seva germana [lə ˈseβə ʒərˈmanə], de decidir [ðə ðəsiˈði], es va [əz ˈβa] — but un glop [uŋ ˈɡlɔp] keeps the stop after the nasal. /d/ additionally resists lenition after a lateral, so its left context excludes ⟨l⟩."
+    },
+    {
+      "id": "CA_EXT_NASAL_LABIAL",
+      "name": "external-nasal-assimilation-labial",
+      "left_context": "n$",
+      "right_context": "^[ˈˌ]?[pbmf]",
+      "transform": "m",
+      "obligatory": true,
+      "notes": "PHRASE-LEVEL (cross-word) NASAL PLACE ASSIMILATION: a word-final /n/ assimilates in place to a following labial/labiodental onset across the word boundary, the same homorganic process the language applies word-internally (Wheeler 2005 §5.3, §10.5; Recasens 1993 on homorganic nasal + obstruent clusters): un peu [um ˈpɛw], en Barcelona [əm bərsəˈlonə], deu galls stays unaffected (velar, see CA_EXT_NASAL_VELAR). Mirrors the word-internal CA_NASAL_LABIAL allophone rule, extended across the boundary."
+    },
+    {
+      "id": "CA_EXT_NASAL_VELAR",
+      "name": "external-nasal-assimilation-velar",
+      "left_context": "n$",
+      "right_context": "^[ˈˌ]?[kɡ]",
+      "transform": "ŋ",
+      "obligatory": true,
+      "notes": "PHRASE-LEVEL (cross-word) NASAL PLACE ASSIMILATION: a word-final /n/ assimilates to a following velar onset across the word boundary (Wheeler 2005 §5.3, §10.5; Recasens 1993): un gat [uŋ ˈɡat], cinc pans → CA_EXT_NASAL_LABIAL handles the labial case above. Mirrors the word-internal CA_NASAL_VELAR allophone rule, extended across the boundary."
+    },
+    {
+      "id": "CA_EXT_NASAL_PALATAL",
+      "name": "external-nasal-assimilation-palatal",
+      "left_context": "n$",
+      "right_context": "^[ˈˌ]?(?:ʃ|ʒ|tʃ|dʒ|ʎ)",
+      "transform": "ɲ",
+      "obligatory": true,
+      "notes": "PHRASE-LEVEL (cross-word) NASAL PLACE ASSIMILATION: a word-final /n/ assimilates to a following palatal onset across the word boundary (Wheeler 2005 §5.3, §10.5; Recasens 1993): en Xile [əɲ ˈʃilə]. Mirrors the word-internal CA_NASAL_PALATAL allophone rule, extended across the boundary."
     }
   ],
   "stress": {
