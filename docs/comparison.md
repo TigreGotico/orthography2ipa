@@ -48,7 +48,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | eu | hitz_basque_ipa | 3113 | 0.1848 | 0.1588 | n/a | n/a | n/a | 0.0217 | n/a |
 | eu-wikipron | wikipron | 12022 | 0.0100 | 0.1077 | n/a | n/a | n/a | 0.1713 | n/a |
 | fi | wikipron | 168814 | 0.0539 | 0.2354 | 0.1324 | n/a | n/a | n/a | n/a |
-| fr | wikipron | 85516 | 0.1643 | 0.0740 | 0.2280 | n/a | n/a | n/a | n/a |
+| fr | wikipron | 85516 | 0.1199 | 0.0740 | 0.2280 | n/a | n/a | n/a | n/a |
 | ga | wikipron | 9621 | 0.1837 | 0.5312 | n/a | n/a | n/a | n/a | n/a |
 | gl | wikipron | 8091 | 0.0911 | n/a | n/a | n/a | 0.0898 | n/a | n/a |
 | hi | wikipron | 30379 | 0.1563 | 0.2816 | 0.3323 | n/a | n/a | n/a | n/a |

@@ -423,7 +423,7 @@
     "lang": "fr",
     "dataset": "wikipron",
     "n": 85516,
-    "o2i_per": 0.1643,
+    "o2i_per": 0.1199,
     "o2i_n": 85496,
     "o2i_lex_per": 0.1643,
     "o2i_lex_n": 85496,

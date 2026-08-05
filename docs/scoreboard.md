@@ -203,7 +203,7 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | fi | wikipron | 168808 | 0.0539 | [0.0536, 0.0542] | 0.5027 | production | crowd-scraped |
 | fo | wikipron | 2957 | 0.4597 | [0.4533, 0.4665] | 0.0206 | research | crowd-scraped |
 | fpe | wikipron | 261 | 0.3650 | [0.3509, 0.3795] | 0.0000 | research | crowd-scraped |
-| fr | wikipron | 85494 | 0.1355 | [0.1344, 0.1365] | 0.445 | research | crowd-scraped |
+| fr | wikipron | 85494 | 0.1199 | — | — | research | crowd-scraped |
 | fr-FR | ipa_childes | 9443 | 0.1883 | [0.1840, 0.1928] | 0.4259 | research | espeak-derived |
 | fr-FR | ipadict | 245715 | 0.1894 | [0.1886, 0.1902] | 0.2910 | research | machine-generated |
 | fro | wikipron | 663 | 0.2985 | [0.2833, 0.3141] | 0.1237 | research | crowd-scraped |
