@@ -119,13 +119,13 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | bo | wikipron | 1564 | 0.6716 | [0.6628, 0.6806] | 0.0006 | research | crowd-scraped |
 | br | wikipron | 803 | 0.4105 | [0.3976, 0.4232] | 0.0436 | research | crowd-scraped |
 | bua | wikipron | 140 | 0.3670 | [0.3314, 0.4027] | 0.1000 | skeleton | crowd-scraped |
-| ca | 4catac | 160 | 0.1069 | [0.1010, 0.1128] | 0.0062 | research | expert-human |
+| ca | 4catac | 160 | 0.0986 | n/a | n/a | research | expert-human |
 | ca | ipa_childes | 3813 | 0.2883 | [0.2821, 0.2946] | 0.1621 | research | espeak-derived |
 | ca | vox_communis | 218431 | 0.8119 | [0.8073, 0.8160] | 0.2867 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2596 | [0.2152, 0.3026] | 0.3302 | research | crowd-scraped |
-| ca-x-balear | 4catac | 160 | 0.2033 | [0.1946, 0.2116] | 0.0000 | research | expert-human |
-| ca-x-occidental | 4catac | 160 | 0.1150 | [0.1088, 0.1219] | 0.0000 | research | expert-human |
-| ca-x-valencia | 4catac | 160 | 0.0944 | [0.0883, 0.1004] | 0.0062 | research | expert-human |
+| ca-x-balear | 4catac | 160 | 0.1997 | n/a | n/a | research | expert-human |
+| ca-x-occidental | 4catac | 160 | 0.1026 | n/a | n/a | research | expert-human |
+| ca-x-valencia | 4catac | 160 | 0.0851 | n/a | n/a | research | expert-human |
 | car | wikipron | 232 | 0.3986 | [0.3740, 0.4222] | 0.0172 | skeleton | crowd-scraped |
 | ce | wikipron | 461 | 0.2800 | [0.2613, 0.2991] | 0.2364 | research | crowd-scraped |
 | ceb | wikipron | 3895 | 0.1058 | [0.1017, 0.1095] | 0.5214 | research | crowd-scraped |
