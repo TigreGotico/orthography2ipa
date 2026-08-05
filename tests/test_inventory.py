@@ -252,8 +252,15 @@ KNOWN_DEAD_RULES = {
     # ordinary words before and after this change. With no 'a'/'e'/'i'/'o'/'u'
     # slot at all, the open-syllable-lengthening rules inherited from nl can
     # never fire here.
+    # Same pre-existing "graphemes": {} inheritance gap accounts for the
+    # three rules the beat-espeak Dutch wave added: no 'g' slot means
+    # NL_CODA_DEVOICE_G's /ɣ/ target can't fire, and no 'i' slot means
+    # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
+    # target can't either.
     "vls": {"NL_OPEN_SYLLABLE_A", "NL_OPEN_SYLLABLE_E", "NL_OPEN_SYLLABLE_I",
-            "NL_OPEN_SYLLABLE_O", "NL_OPEN_SYLLABLE_U"},
+            "NL_OPEN_SYLLABLE_O", "NL_OPEN_SYLLABLE_U",
+            "NL_CODA_DEVOICE_G", "NL_UNSTRESSED_TENSE_I_FINAL",
+            "NL_UNSTRESSED_TENSE_I_HIATUS"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
