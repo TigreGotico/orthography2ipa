@@ -173,7 +173,7 @@ class AllophoneRuleModel(_Strict):
     surface: str
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
-    stress: Optional[Literal["stressed", "unstressed"]] = None
+    stress: Optional[Literal["stressed", "unstressed", "pretonic", "posttonic"]] = None
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
@@ -191,6 +191,8 @@ class AllophoneRuleModel(_Strict):
     followed_by_phoneme_2: Optional[List[str]] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
+    followed_by_grapheme: Optional[List[str]] = None
+    followed_by_grapheme_not: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
     word: Optional[List[str]] = None
     notes: str = ""
@@ -250,6 +252,8 @@ class StressRulesModel(_Strict):
     penult_stress_endings: Optional[List[str]] = None
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
+    accent2_mark: str = ""
+    accent2_final_letters: Optional[List[str]] = None
     diphthongs: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
@@ -332,6 +336,7 @@ class LanguageSpecModel(_Strict):
     vowel_graphemes: Optional[List[str]] = None
     dependent_vowels: Optional[List[str]] = None
     preposed_vowels: Optional[List[str]] = None
+    coda_no_inherent_vowel: Optional[bool] = None
     collapse_geminates: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")

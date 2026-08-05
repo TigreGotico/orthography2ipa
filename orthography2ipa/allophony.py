@@ -427,7 +427,22 @@ class AllophoneRescorer(LatticeRescorer):
             stressed = ctx.is_stressed
             if stressed is None:  # no stress context (tokenizer path)
                 return False
-            if (rule.stress == "stressed") != bool(stressed):
+            if rule.stress in ("pretonic", "posttonic"):
+                # Position relative to the stressed syllable, for the many
+                # languages whose reduction differs before vs after the
+                # stress (German unstressed tense vowels are pretonic —
+                # Politik [poli-] — while post-tonic syllables stay lax:
+                # Königin [-nɪɡɪn]).
+                if bool(stressed):
+                    return False
+                if ctx.syll_idx is None or ctx.stressed_syll_idx is None:
+                    return False
+                if rule.stress == "pretonic":
+                    if not ctx.syll_idx < ctx.stressed_syll_idx:
+                        return False
+                elif not ctx.syll_idx > ctx.stressed_syll_idx:
+                    return False
+            elif (rule.stress == "stressed") != bool(stressed):
                 return False
         if rule.syllable_position is not None:
             if _syllable_position(ctx.grapheme) != rule.syllable_position:
@@ -437,6 +452,16 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
+                return False
+        if rule.followed_by_grapheme:
+            nxt = ctx.grapheme.next
+            if nxt is None or not nxt.grapheme or \
+                    nxt.grapheme.lower() not in rule.followed_by_grapheme:
+                return False
+        if rule.followed_by_grapheme_not:
+            nxt = ctx.grapheme.next
+            if nxt is not None and nxt.grapheme and \
+                    nxt.grapheme.lower() in rule.followed_by_grapheme_not:
                 return False
         if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2:
             # The grapheme TWO away, by its first IPA candidate. Read from the

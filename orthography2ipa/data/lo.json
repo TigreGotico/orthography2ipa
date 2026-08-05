@@ -150,6 +150,30 @@
     "ໃ",
     "ໄ"
   ],
+  "coda_no_inherent_vowel": true,
+  "allophone_rules": [
+    {
+      "id": "LO_UNRELEASED_K_CODA",
+      "phonemes": ["k"],
+      "surface": "k̚",
+      "word_final": true,
+      "notes": "Lao final stops are unreleased, like Thai (Enfield 2007, A Grammar of Lao, §2.1): a word-final /k/ coda surfaces [k̚], not a released [k]. Fires only word_final so onset /k/ is unaffected."
+    },
+    {
+      "id": "LO_UNRELEASED_T_CODA",
+      "phonemes": ["t"],
+      "surface": "t̚",
+      "word_final": true,
+      "notes": "Lao final stops are unreleased (Enfield 2007, §2.1): a word-final /t/ coda surfaces [t̚]."
+    },
+    {
+      "id": "LO_UNRELEASED_P_CODA",
+      "phonemes": ["p"],
+      "surface": "p̚",
+      "word_final": true,
+      "notes": "Lao final stops are unreleased (Enfield 2007, §2.1): a word-final /p/ coda surfaces [p̚]."
+    }
+  ],
   "allophones": {
     "k": [
       "k"

@@ -339,6 +339,18 @@ class StressRules:
         coda, so the mark lands on the true onset. Default off: it changes only
         where an existing stress mark is *drawn* (never which nucleus is
         stressed, nor the segments), and only for specs that opt in.
+    accent2_mark : str
+        Pitch-accent 2 marker for the Scandinavian tonal word accents
+        (Swedish/Norwegian). When non-empty, a word whose stress falls on
+        the penult and whose final orthographic letter is in
+        :attr:`accent2_final_letters` is marked with this character instead
+        of :attr:`stress_mark` — the citable first approximation of the
+        accent-2 distribution (Riad 2014: accent 2 needs a post-stress
+        syllable; disyllabic trochees in ⟨-a⟩/⟨-e⟩ are its core class,
+        while antepenult-stressed words keep accent 1). Empty (the
+        default) = no pitch accent, plain stress marking.
+    accent2_final_letters : Tuple[str, ...]
+        The final orthographic letters that select :attr:`accent2_mark`.
     source : str
         Where the stress comes from. ``"rules"`` (the default) means this block —
         declarative data a language owner wrote, that anyone can read, cite and
@@ -365,6 +377,8 @@ class StressRules:
     max_onset: int = 1
     cliticless_words: Tuple[str, ...] = ()
     coda_liquid_capture: bool = False
+    accent2_mark: str = ""
+    accent2_final_letters: Tuple[str, ...] = ()
     source: str = "rules"
     notes: str = ""
 
@@ -462,6 +476,21 @@ class GraphemePosition(str, Enum):
     """default value when after the stressed/tonic syllable."""
 
     BEFORE_VOWEL = "before_vowel"
+
+    BEFORE_FINAL_VOWEL = "before_final_vowel"
+    """Before a vowel letter that is ITSELF the word-final grapheme (or is
+    followed only by a single further grapheme the spec's own
+    ``positional_graphemes`` already silences at ``word_final``, e.g. a
+    silent inflectional ``-s``) — a hiatus with an apocopated/mute tail
+    vowel, as opposed to one that survives as a syllable nucleus. Checked
+    BEFORE the generic per-letter ``BEFORE_E``/``BEFORE_VOWEL`` positions,
+    so a spec that defines it can block glide formation specifically when
+    there is nothing left afterward to carry the syllable — e.g. French
+    word-final unmarked ⟨ie⟩ stays [i] (vie [vi], envie [ɑ̃vi], vies [vi])
+    while the SAME ⟨i⟩-before-⟨e⟩ context mid-word still glides when a
+    real coda follows (pied [pje], fiacre [fjakʁ]), because there the
+    following ⟨e⟩ is not the word's last (or last-but-silent) segment and
+    must survive as the syllable's only nucleus (Tranel 1987 §5-6)."""
 
     AFTER_VOWEL = "after_vowel"
 
@@ -877,6 +906,24 @@ class AllophoneRule:
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
         assimilation, which conditions on the following consonant's place).
         Empty = don't care.
+    followed_by_grapheme : Tuple[str, ...]
+        The next slot's *source grapheme* (matched case-insensitively) must
+        be one of these. The positive counterpart of
+        :attr:`followed_by_grapheme_not`, for processes triggered by a
+        letter group whose phoneme hides its cluster nature — Swedish
+        stressed vowels are short before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (historically /ŋɡ
+        ŋk sk/ clusters, Riad 2014), but ⟨ng⟩'s phoneme is the single [ŋ]
+        and ⟨sk⟩'s first candidate the single [ɧ], so the generic
+        consonant-cluster neighbour class cannot see them. Empty = don't
+        care.
+    followed_by_grapheme_not : Tuple[str, ...]
+        The next slot's *source grapheme* (matched case-insensitively) must
+        NOT be one of these. Orthographies mark phonological facts in the
+        spelling of the following letter group — German writes a short vowel
+        before ⟨ss⟩/⟨ck⟩/⟨tz⟩, whose single-consonant phonemes are
+        indistinguishable at the phoneme layer from the plain letters that
+        permit a long vowel — so this is the only layer that can veto such a
+        rule. Empty = don't care.
     grapheme : Optional[Tuple[str, ...]]
         Require the slot's own *source grapheme* to be one of these (matched
         case-insensitively). This lets a rule target a surface shift that
@@ -938,6 +985,8 @@ class AllophoneRule:
     followed_by_phoneme_2: Tuple[str, ...] = ()
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
+    followed_by_grapheme: Tuple[str, ...] = ()
+    followed_by_grapheme_not: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
     notes: str = ""
@@ -957,6 +1006,12 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "followed_by_grapheme",
+            tuple(g.lower() for g in self.followed_by_grapheme))
+        object.__setattr__(
+            self, "followed_by_grapheme_not",
+            tuple(g.lower() for g in self.followed_by_grapheme_not))
         if self.grapheme is not None:
             object.__setattr__(
                 self, "grapheme",
@@ -966,10 +1021,11 @@ class AllophoneRule:
                 self, "word",
                 tuple(w.lower() for w in self.word))
         if self.stress is not None and self.stress not in (
-                "stressed", "unstressed"):
+                "stressed", "unstressed", "pretonic", "posttonic"):
             raise ValueError(
                 f"AllophoneRule {self.id!r}: stress must be 'stressed', "
-                f"'unstressed' or None, got {self.stress!r}")
+                f"'unstressed', 'pretonic', 'posttonic' or None, "
+                f"got {self.stress!r}")
         if self.syllable_position is not None and self.syllable_position not in (
                 "onset", "coda", "nucleus"):
             raise ValueError(
@@ -1137,6 +1193,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "vowel_graphemes": InheritanceMode.OWN_ONLY,
     "dependent_vowels": InheritanceMode.OWN_ONLY,
     "preposed_vowels": InheritanceMode.OWN_ONLY,
+    "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1421,6 +1478,43 @@ class LanguageSpec:
     written (pre-consonant) position, but appends the consonant's IPA
     before the vowel's. Empty (the default) leaves every other script
     untouched."""
+
+    coda_no_inherent_vowel: bool = False
+    """The third Tai abugida mechanism (Iwasaki & Ingkaphirom 2005; Enfield
+    2007), scoped out of ``dependent_vowels``/``preposed_vowels`` (#781) as a
+    follow-up: a bare consonant that CLOSES a syllable already given its
+    nucleus by a preceding dependent vowel sign takes no inherent vowel of
+    its own. Thai/Lao write no vowel sign for a syllable coda — ⟨ลาว⟩ (Lao,
+    the country) is ⟨ล⟩+⟨า⟩+⟨ว⟩ = /l/ + /aː/ + /w/-as-coda = /laːw/, not
+    */laːwo/. Without this flag the engine's generic inherent-vowel rule
+    (a bare consonant with nothing supplying a vowel after it gets
+    ``inherent_vowel`` appended) cannot tell that ⟨ว⟩ is a coda rather than
+    a fresh syllable onset, and appends the Lao/Thai inherent vowel to it.
+
+    What makes this decidable without a real syllabifier: when the
+    consonant immediately preceding the current one was itself a dependent
+    vowel sign (``dependent_vowels``, or a preposed vowel's merged nucleus),
+    the current syllable already HAS a nucleus, so a following bare
+    consonant with nothing supplying a vowel of its own cannot be a new
+    onset needing its own inherent vowel — it can only be closing the
+    syllable that already has one. That is exactly the case this flag
+    covers, no more.
+
+    What it deliberately does NOT cover: a bare-consonant sequence with NO
+    vowel sign anywhere before it (e.g. Thai ⟨คน⟩ /kʰon/, two consonant
+    letters and no written vowel at all). Telling "coda of an implicit-o
+    dead syllable" from "onset of a fresh syllable" there needs real
+    syllable-boundary knowledge — a dictionary or a statistical
+    syllabifier — that this engine does not have; #781 named this the same
+    honest limit and it still applies. Such sequences keep their PRE-#781/
+    #TAI-CODA behaviour (inherent vowel surfaces on the first consonant)
+    unchanged.
+
+    Word-final unreleased stops (Thai/Lao dead syllables surfacing [k̚ t̚
+    p̚]) are a separate, orthogonal fact handled by ``allophone_rules``
+    (``word_final=True`` rewrites) — this flag only suppresses the spurious
+    VOWEL; it emits no allophone of its own. Default ``False`` — every
+    other spec is byte-for-byte unaffected."""
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""

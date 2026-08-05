@@ -423,8 +423,12 @@ def apply_stress_mark(
     stress_index: int,
     syllables: Optional[Sequence[str]] = None,
     ipa_syllables: Optional[Sequence[str]] = None,
+    mark: Optional[str] = None,
 ) -> str:
     """Insert ``rules.stress_mark`` before the stressed syllable of *ipa*.
+
+    *mark*, when given, replaces ``rules.stress_mark`` as the inserted
+    character (the pitch-accent-2 caller passes ``rules.accent2_mark``).
 
     Parameters
     ----------
@@ -450,7 +454,8 @@ def apply_stress_mark(
 
     Already-marked transcriptions are returned unchanged.
     """
-    if rules.stress_mark in ipa:
+    _mark = mark or rules.stress_mark
+    if _mark in ipa or rules.stress_mark in ipa:
         return ipa
     # The spec's diphthongs split the IPA too, not just the spelling: without
     # them a vowel run is one nucleus, so a HIATUS merges and the mark lands a
@@ -521,12 +526,12 @@ def apply_stress_mark(
             # still vowel-final): the latter falls through to end-anchoring,
             # which lands correctly. A loss BEFORE the stress (initial/medial
             # syncope) overshoots the end and also falls through.
-            ipa_sylls[stress_index] = rules.stress_mark + ipa_sylls[stress_index]
+            ipa_sylls[stress_index] = _mark + ipa_sylls[stress_index]
             return "".join(ipa_sylls)
         offset_from_end = max(1, n_orth - stress_index)
 
     target = max(0, len(ipa_sylls) - offset_from_end)
-    ipa_sylls[target] = rules.stress_mark + ipa_sylls[target]
+    ipa_sylls[target] = _mark + ipa_sylls[target]
     return "".join(ipa_sylls)
 
 

@@ -1002,8 +1002,15 @@ class G2P:
             else:
                 sylls = self._syllables_cached(word)
                 idx = detect_stress(word, self.spec.stress, syllables=sylls)
+                mark = None
+                rules = self.spec.stress
+                if rules.accent2_mark and len(sylls) >= 2:
+                    penult = (idx == len(sylls) - 2) if idx >= 0 else idx == -2
+                    if penult and word and \
+                            word[-1].lower() in rules.accent2_final_letters:
+                        mark = rules.accent2_mark
                 ipa = apply_stress_mark(ipa, self.spec.stress, idx,
-                                        syllables=sylls)
+                                        syllables=sylls, mark=mark)
         # NOTE: *not* NFC-composed here. Cross-word sandhi rules (see
         # transcribe_detailed) still need to run on this per-word IPA, and
         # at least one declared rule (pt-PT's PT_SCHWA_ELISION) matches a
