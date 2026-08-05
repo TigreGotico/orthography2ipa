@@ -1841,3 +1841,117 @@ class TestGermanOpenSyllableLengthVetoes:
         assert "aː" in self._t("sagen")
         assert "aː" in self._t("Name")
         assert "øː" in self._t("König")
+
+
+class TestGermanBeatEspeakWave:
+    """Wiese 1996-cited classes added by the beat-espeak German wave."""
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_dehnungs_h_lengthens_and_silences(self):
+        assert self._t("Bahn") == "ˈbaːn"
+        assert self._t("Sohn") == "ˈzoːn"
+        assert self._t("Uhr") == "ˈuːʁ"
+        assert self._t("ihn") == "ˈiːn"
+        assert self._t("fährt") == "ˈfɛːʁt"
+        # sehen keeps its [h] (dev-level): -ehen elision is not separable
+        # from the pronounced-h before_vowel class (geheim, daher) without
+        # morphology — documented trade-off, not a regression vs dev.
+        assert self._t("sehen") == "ˈzeːhən"
+
+    def test_syllable_initial_h_untouched(self):
+        assert self._t("Haus").startswith("ˈh")
+        assert self._t("hinter").startswith("ˈh")
+
+    def test_unstressed_tense_vowels(self):
+        assert self._t("Auto").endswith("to")
+        assert self._t("Kino").endswith("no")
+        # Pretonic tenseness needs a non-initial stress; Politik keeps
+        # (wrong) initial stress — a documented stress residual, since -ik
+        # varies (Musík vs Grammátik) and is not in the cited suffix set.
+        assert "univɛʁzi" in self._t("Universität")
+
+    def test_lax_kept_in_closed_and_schwa_syllables(self):
+        assert self._t("bitte") == "ˈbɪtə"
+        assert self._t("Mutter") == "ˈmʊtɐ"
+        assert self._t("Musik").endswith("zɪk")
+
+
+class TestGermanStressSuffixesAndTion:
+    """Wiese 1996 ch. 8 stress-attracting suffixes + the -tion grapheme."""
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_final_stress_suffixes(self):
+        assert self._t("Nation").startswith("naˈ")
+        assert "ˈtɛt" in self._t("Universität") or "ˈtɛːt" in self._t("Universität")
+        assert self._t("Partei").startswith("paˈ")
+
+    def test_penult_stress_ieren(self):
+        assert "ˈdiː" in self._t("studieren")
+
+    def test_monosyllables_unaffected(self):
+        assert self._t("frei") == "ˈfʁaɪ"
+        assert self._t("drei") == "ˈdʁaɪ"
+
+    def test_tion_grapheme(self):
+        assert self._t("Nation") == "naˈtsi̯oːn"
+        assert self._t("Funktion").endswith("tsi̯oːn")
+
+    def test_pretonic_tense_posttonic_lax(self):
+        assert "univɛʁzi" in self._t("Universität")   # pretonic i tense
+        assert self._t("Königin") == "ˈkøːnɪɡɪn"      # post-tonic i lax
+
+
+class TestDehnungsHPositional:
+    """Dehnungs-h is silent-lengthening ONLY before a consonant or finally.
+
+    Before a vowel the ⟨h⟩ is a real onset — loanwords (Ahorn, Uhu,
+    Alkohol) and her-/hin- morpheme boundaries (daher, woher, dahin).
+    Adversarial review of the first, unconditional version caught the
+    over-generalization; this pins the boundary.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_h_kept_before_vowel(self):
+        assert self._t("Ahorn") == "ˈaːhɔʁn"
+        assert self._t("Uhu") == "ˈuːhu"
+        assert "h" in self._t("Alkohol")
+        assert "h" in self._t("dahin")
+        assert "h" in self._t("daher")
+        assert "h" in self._t("woher")
+
+    def test_h_silent_before_consonant_and_finally(self):
+        assert self._t("Bahn") == "ˈbaːn"
+        assert self._t("Sohn") == "ˈzoːn"
+        assert self._t("fährt") == "ˈfɛːʁt"
+        assert self._t("Uhr") == "ˈuːʁ"
+
+
+class TestSuffixStressClosedExceptions:
+    """The two closed initial-stress sets the suffix rules would catch.
+
+    Native -sal nominalizer and grammatical -tiv terms are initial-stressed
+    (Wiese 1996 ch. 8; Duden); genuine -iv/-al loanwords keep suffix-final
+    stress. Round-2 adversarial review supplied the counterexample lists.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_sal_and_tiv_initial_stress(self):
+        assert self._t("Schicksal") == "ˈʃɪkzaːl"
+        assert self._t("Genitiv") == "ˈɡeːnitiːf"
+        assert self._t("Akkusativ") == "ˈakuzatiːf"
+
+    def test_loanwords_keep_final_stress(self):
+        assert self._t("Motiv").startswith("moˈ")
+        assert self._t("Kanal").startswith("kaˈ")

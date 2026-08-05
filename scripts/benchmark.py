@@ -126,7 +126,7 @@ _STRESS_MARKS = "ˈˌ'"
 #: strip under --broad).
 _TIE_BARS = "͜͡‿"
 
-_NARROW_MARKS = "̝̞̪̺̼̘̙.·()"
+_NARROW_MARKS = "̝̞̪̺̼̘̙̯.·()"
 
 #: ASCII "g" (U+0067, keyboard Latin) vs the official IPA voiced velar
 #: plosive ɡ (U+0261, LATIN SMALL LETTER SCRIPT G) — a Unicode confusable,

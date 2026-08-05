@@ -1021,10 +1021,11 @@ class AllophoneRule:
                 self, "word",
                 tuple(w.lower() for w in self.word))
         if self.stress is not None and self.stress not in (
-                "stressed", "unstressed"):
+                "stressed", "unstressed", "pretonic", "posttonic"):
             raise ValueError(
                 f"AllophoneRule {self.id!r}: stress must be 'stressed', "
-                f"'unstressed' or None, got {self.stress!r}")
+                f"'unstressed', 'pretonic', 'posttonic' or None, "
+                f"got {self.stress!r}")
         if self.syllable_position is not None and self.syllable_position not in (
                 "onset", "coda", "nucleus"):
             raise ValueError(
