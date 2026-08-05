@@ -146,12 +146,6 @@ def test_en_gb_non_rhotic():
     assert _t("en-GB", "rose").startswith("ɹ")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -tion → [ʃən]; engine now produces [nætɪɒn] for "
-    "nation — the ⟨tion⟩ n-gram is gone, so the ending is spelled out t-i-o-n "
-    "(regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tion_family_sh():
     """TION/SION FAMILY: -tion and -ssion → [ʃən].
 
@@ -164,12 +158,6 @@ def test_en_gb_tion_family_sh():
     assert _t("en-GB", "mission").endswith("ʃən")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -sion → [ʒən]/[ʃən]; engine now produces [vɪzɪɒn] "
-    "for vision and [tɛnsɪɒn] for tension — the ⟨sion⟩ n-gram is gone, so the "
-    "ending is spelled out s-i-o-n (regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_sion_voiced_after_vowel():
     """-sion → [ʒən] after a vowel, [ʃən] after a consonant.
 
@@ -186,12 +174,6 @@ def test_en_gb_sion_voiced_after_vowel():
     assert _t("en-GB", "pension").endswith("ʃən")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -cial → [ʃəl], -cious → [ʃəs]; engine now produces "
-    "[spɛsɪæl] for special and [dɛlɪsɪaʊs] for delicious — the n-grams are gone, "
-    "so the endings are spelled out (regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tial_cial_and_cious_tious():
     """-tial/-cial → [ʃəl]; -cious/-tious → [ʃəs].
 
