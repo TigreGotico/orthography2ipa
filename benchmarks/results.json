@@ -2980,7 +2980,7 @@
   "lang": "fr",
   "dataset": "wikipron",
   "n": 85494,
-  "per": 0.1199,
+  "per": 0.1189,
   "per_ci_low": null,
   "per_ci_high": null,
   "exact_match": null,
