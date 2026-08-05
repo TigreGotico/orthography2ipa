@@ -218,11 +218,6 @@ def test_eu_three_way_sibilant_contrast_surfaces():
     assert bare("eu-x-bizkaiera", "zezen").startswith("s̺")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Hualde et al. (2010: 116) is cited for intervocalic [β ð ɣ]; the "
-           "engine keeps the stops — alaba [alaba], ogia [oɡia]",
-)
 def test_eu_intervocalic_voiced_stops_are_approximants():
     """Standard Basque notes: "Voiced stops /b d ɡ/ are realised as approximants
     [β ð ɣ] intervocalically (Hualde et al. 2010: 116)."
