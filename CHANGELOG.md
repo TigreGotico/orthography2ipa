@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.55.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.55.0a1) (2026-08-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.54.0a2...7.55.0a1)
+
+**Merged pull requests:**
+
+- feat: Swedish beats espeak — quantity, pre-r lowering, pitch accent [\#795](https://github.com/TigreGotico/orthography2ipa/pull/795) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.54.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.54.0a2) (2026-08-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.54.0a1...7.54.0a2)
@@ -617,10 +625,6 @@
 ## [7.28.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.28.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.27.0a1...7.28.0a1)
-
-**Merged pull requests:**
-
-- Release 7.28.0a1 [\#623](https://github.com/TigreGotico/orthography2ipa/pull/623) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [7.27.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.27.0a1) (2026-07-16)
 
