@@ -278,6 +278,18 @@
       "syllable_position": "coda",
       "preceded_by": "vowel",
       "notes": "The coda nasal that triggered vowel nasalisation is absorbed into the nasal vowel; keyed on the nasal vowel so it cannot bleed the rule that makes it."
+    },
+    {
+      "id": "FR_E_CLOSED_CLUSTER",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited French closed-syllable e-rule: Seselwa has no /ə/ — French e-caduc merged into /e/ in the creole (Corne 1977), so there is no schwa for the rule to restore to [ɛ]."
+    },
+    {
+      "id": "FR_E_CLOSED_FINAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited French closed-syllable e-rule: no /ə/ in Seselwa (Corne 1977)."
     }
   ],
   "parent": "fr-FR",

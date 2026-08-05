@@ -137,16 +137,42 @@ def _is_word_final_silent(spec: Optional[LanguageSpec], ctx) -> bool:
 
 
 def _next_is_terminal_vowel(next_ctx, spec: Optional[LanguageSpec]) -> bool:
-    """True if *next_ctx* is a vowel that is the word's last audible slot:
-    either the absolute last grapheme, or followed only by one further
-    grapheme the spec already silences at ``word_final`` (see
-    :func:`_is_word_final_silent`)."""
+    """True if *next_ctx* is a vowel in the word's last audible slot AND
+    the spec silences that vowel there — the nucleus-loss case this
+    position exists for (French ⟨vie⟩: gliding the ⟨i⟩ would leave the
+    silent e-caduc as the only nucleus). A *pronounced* terminal vowel
+    (⟨alicia⟩'s ⟨a⟩) carries the nucleus itself, so gliding before it is
+    safe and this position must NOT fire. The slot counts as terminal
+    when the vowel is the absolute last grapheme or is followed only by
+    one further grapheme the spec already silences at ``word_final``
+    (see :func:`_is_word_final_silent`)."""
     if next_ctx is None or not next_ctx.is_vowel:
+        return False
+    if not _spec_silences_final_vowel(spec, next_ctx.grapheme):
         return False
     if next_ctx.next is None:
         return True
     tail = next_ctx.next
     return tail.next is None and _is_word_final_silent(spec, tail)
+
+
+def _spec_silences_final_vowel(spec: Optional[LanguageSpec],
+                               grapheme: str) -> bool:
+    """Whether *spec* silences vowel *grapheme* word-finally (an empty
+    candidate in its ``word_final`` positional override) — the e-caduc
+    class. Only such a vowel can cause nucleus loss under glide
+    formation; a vowel the spec pronounces finally carries the nucleus
+    itself."""
+    if spec is None:
+        return False
+    pg = getattr(spec, "positional_graphemes", None)
+    if not pg:
+        return False
+    entry = pg.get(grapheme)
+    if not entry:
+        return False
+    final_candidates = entry.get(GraphemePosition.WORD_FINAL)
+    return bool(final_candidates) and "" in final_candidates
 
 
 def grapheme_positions(
