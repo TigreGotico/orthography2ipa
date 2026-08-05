@@ -453,7 +453,8 @@
       ],
       "surface": "t",
       "preceded_by_phoneme": [
-        "l"
+        "l",
+        "lː"
       ],
       "notes": "Spirantization of /t/ is blocked after /l/ in ALL positions (word-medial and word-final). Verified by native speaker on words like weltma [weltma] (not *[welθma]) and tamsulta. Confirmed by Bedar, Quellec & Tifrit (2022) who attest /lθ,lð/ -> [lt,ld] as a general cluster rule in Kabyle, not restricted to word-final position."
     },
