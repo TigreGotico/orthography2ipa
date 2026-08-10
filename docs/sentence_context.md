@@ -163,6 +163,14 @@ lattice rescorers: each pass sees the previous pass's rewrites, while within a
 pass every word reads a stable pre-pass snapshot, so a pass is
 order-independent and deterministic.
 
+`SandhiEngine.apply` is handed the per-word pause flags the tokenizer already
+computes, so a declarative rule stays inside its prosodic domain: nothing joins
+the two words a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*).
+The blocked boundary is the intonational phrase (IP) — what punctuation writes.
+Rules whose real domain is the smaller phonological phrase (φ) are still
+unblocked at a clause-internal φ edge, so this is a lower bound. A sentence
+rescorer sees the same positions through `WordSlot.phrase_position`.
+
 ## Off by default, byte-identical when unused
 
 Nothing here runs unless a caller passes `sentence_rescorer=` to `G2P` (or

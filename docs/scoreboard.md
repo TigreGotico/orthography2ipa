@@ -48,14 +48,14 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ar | wikipron | 14268 | 0.3136 | · | · | · | · | [0.3114, 0.3159] | 0.0444 | research | crowd-scraped |
 | ar | wikipron_ar_diacritized | 14240 | 0.1666 | · | · | · | · | [0.1640, 0.1690] | 0.3215 | research | crowd-scraped |
 | ar-AE | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-AE | gold20_arabic | 20 | 0.0287 | · | · | · | · | [0.0092, 0.0525] | 0.6000 | research | llm-generated |
+| ar-AE | gold20_arabic | 20 | 0.0260 | · | · | · | · | [0.0092, 0.0525] | 0.6000 | research | llm-generated |
 | ar-BH | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-BH | gold20_arabic | 20 | 0.0144 | · | · | · | · | [0.0045, 0.0253] | 0.7000 | research | llm-generated |
 | ar-DZ | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-DZ | gold20_arabic | 20 | 0.0406 | · | · | · | · | [0.0164, 0.0674] | 0.6000 | research | llm-generated |
 | ar-DZ | primary_sources | 1 | 0.7143 | · | · | · | · | [0.7143, 0.7143] | 0.0000 | research | expert-human |
 | ar-EG | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-EG | gold20_arabic | 20 | 0.0220 | · | · | · | · | [0.0054, 0.0438] | 0.6500 | research | llm-generated |
+| ar-EG | gold20_arabic | 20 | 0.0230 | · | · | · | · | [0.0054, 0.0438] | 0.6500 | research | llm-generated |
 | ar-EG | primary_sources | 18 | 0.2099 | · | · | · | · | [0.1294, 0.3113] | 0.2778 | research | expert-human |
 | ar-EG | wikipron | 590 | 0.3689 | · | · | · | · | [0.3541, 0.3826] | 0.0729 | research | crowd-scraped |
 | ar-IQ | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
@@ -71,7 +71,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ar-KW | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-KW | gold20_arabic | 20 | 0.0016 | · | · | · | · | [0.0000, 0.0048] | 0.9500 | research | llm-generated |
 | ar-LB | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-LB | gold20_arabic | 20 | 0.0268 | · | · | · | · | [0.0106, 0.0494] | 0.5000 | research | llm-generated |
+| ar-LB | gold20_arabic | 20 | 0.0258 | · | · | · | · | [0.0106, 0.0494] | 0.5000 | research | llm-generated |
 | ar-LY | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-LY | gold20_arabic | 20 | 0.0122 | · | · | · | · | [0.0047, 0.0208] | 0.6500 | research | llm-generated |
 | ar-LY | primary_sources | 6 | 0.2042 | · | · | · | · | [0.1083, 0.3042] | 0.1667 | research | expert-human |
@@ -164,13 +164,13 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | br | wikipron | 803 | 0.4105 | · | · | · | · | [0.3976, 0.4232] | 0.0436 | research | crowd-scraped |
 | bua | northeuralex | 1174 | 0.0474 | · | · | · | · | [0.0422, 0.0525] | 0.7496 | research | lexicon-derived |
 | bua | wikipron | 140 | 0.3670 | · | · | · | · | [0.3314, 0.4027] | 0.1000 | skeleton | crowd-scraped |
-| ca | 4catac | 160 | 0.0827 | - | - | - | - | [0.0769, 0.0886] | 0.0125 | research | expert-human |
+| ca | 4catac | 160 | 0.0798 | - | - | - | - | [0.0738, 0.0855] | 0.0188 | research | expert-human |
 | ca | ipa_childes | 3813 | 0.2595 | · | · | · | · | [0.2529, 0.2662] | 0.2195 | research | espeak-derived |
 | ca | vox_communis | 218431 | 0.8088 | · | · | · | · | [0.8043, 0.8130] | 0.2946 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2596 | 0.1488 | 0.1289 | 0.5094 | 0.5660 | [0.2152, 0.3026] | 0.3302 | research | crowd-scraped |
-| ca-x-balear | 4catac | 160 | 0.1819 | · | · | · | · | - | - | research | expert-human |
-| ca-x-occidental | 4catac | 160 | 0.0985 | · | · | · | · | - | - | research | expert-human |
-| ca-x-valencia | 4catac | 160 | 0.0803 | · | · | · | · | - | - | research | expert-human |
+| ca-x-balear | 4catac | 160 | 0.1792 | - | - | - | - | [0.1706, 0.1879] | 0.0000 | research | expert-human |
+| ca-x-occidental | 4catac | 160 | 0.0960 | - | - | - | - | [0.0900, 0.1022] | 0.0000 | research | expert-human |
+| ca-x-valencia | 4catac | 160 | 0.0783 | - | - | - | - | [0.0726, 0.0840] | 0.0188 | research | expert-human |
 | car | wikipron | 232 | 0.3986 | · | · | · | · | [0.3740, 0.4222] | 0.0172 | skeleton | crowd-scraped |
 | car | wold | 1191 | 0.0857 | · | · | · | · | [0.0788, 0.0935] | 0.5584 | research | lexicon-derived |
 | ce | wikipron | 461 | 0.2800 | · | · | · | · | [0.2613, 0.2991] | 0.2364 | skeleton | crowd-scraped |

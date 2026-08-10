@@ -48,6 +48,7 @@ from orthography2ipa.inventory import tokenize as inventory_tokenize
 from orthography2ipa.lexicon import get_lexicon
 from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.phonetok import (
+    PAUSE_PUNCTUATION,
     Candidate,
     IPAPath,
     PhonetokTokenizer,
@@ -98,7 +99,10 @@ __all__ = [
 
 _log = logging.getLogger(__name__)
 
-_PAUSE_PUNCTUATION = set(".,;:!?…")
+#: Pause marks across every writing system — see
+#: :data:`orthography2ipa.phonetok.PAUSE_PUNCTUATION` for the named list
+#: and why an ASCII-only set silently exempted every non-Latin script.
+_PAUSE_PUNCTUATION = frozenset(PAUSE_PUNCTUATION)
 
 #: Sentinel ``stressed_syll_idx`` for a prosodic clitic (a word listed in
 #: ``stress.cliticless_words``). It leans on its host and bears no lexical
@@ -520,7 +524,12 @@ class G2P:
             ipa_words = apply_sentence_rescorers(
                 lattice, self._sentence_rescorers)
         if self.apply_sandhi and self._sandhi is not None:
-            ipa_words = self._sandhi.apply(ipa_words)
+            # The pause flags go WITH the words: a sandhi rule applies inside
+            # its prosodic domain, and the punctuation the tokenizer already
+            # read is where the intonational phrase ends (Nespor & Vogel 1986,
+            # *Prosodic Phonology*). Without them every rule crosses a comma.
+            ipa_words = self._sandhi.apply(
+                ipa_words, pausal=[w.pausal for w in words])
 
         # Cross-word phonology that needs code rather than a declarative rule: a
         # final /n/ that assimilates to the next onset, a case ending a pause
@@ -938,8 +947,12 @@ class G2P:
                 flush()
                 if words and any(c in _PAUSE_PUNCTUATION
                                  for c in token.grapheme):
-                    words[-1] = _Word(surface=words[-1].surface,
-                                      pausal=True)
+                    # ``replace``, not a fresh ``_Word``: rebuilding it from
+                    # the surface alone DROPPED ``forced_ipa``, so a
+                    # ``<phoneme>`` forcing standing before punctuation was
+                    # silently discarded and the word was re-derived by the
+                    # beam.
+                    words[-1] = replace(words[-1], pausal=True)
             else:
                 # Reconstruct the *surface* span, not just the grapheme key.
                 # A token may consume more characters than its grapheme names:
