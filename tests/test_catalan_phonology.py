@@ -196,20 +196,154 @@ def test_cross_word_sibilant_degemination(lang, phrase, expected):
 
 
 def test_balearic_does_not_degeminate():
-    """REFUTING CASE — Balearic keeps the /s # s/ boundary.
+    """REFUTING CASE — Balearic does the OPPOSITE of the Central deletion.
 
-    4catac's Balearic annotator writes the great majority of that subset's /s#s/
-    boundaries with regressive assimilation and gemination, [t t͡s], never
-    with deletion: ⟨és sa⟩ [ət ˈt͡sə], ⟨més són⟩ [ˈmet ˈt͡son], ⟨cossos
-    sense⟩ [ˈkɔsot ˈt͡sənsə] (Veny 1982 ch. 4). That affrication is not
-    modelled, but Balearic must NOT inherit the Central deletion instead —
-    which is why the CA_DEGEM_* rules sit on the four descendants and not
-    on their shared ca-x-medieval ancestor.
+    Where Central drops the coda sibilant, Balearic assimilates it
+    regressively and affricates the following one: ⟨és sa⟩ [ˈet t͡sə],
+    ⟨més són⟩ [ˈmet ˈt͡son] (Veny 1982 ch. 4). Whatever the outcome, the
+    left word must NOT simply lose its sibilant, which is why the
+    CA_DEGEM_* rules sit on the four non-Balearic descendants and not on
+    their shared ca-x-medieval ancestor.
     """
-    assert transcribe("és sa clau", "ca-x-balear").split()[0] == "ˈes"
-    assert transcribe("més són", "ca-x-balear").split()[0] == "ˈmes"
-    # ... nor may the ancestor itself have acquired it
+    assert transcribe("és sa clau", "ca-x-balear").split()[0] == "ˈet"
+    assert transcribe("més són", "ca-x-balear").split()[0] == "ˈmet"
+    # ... nor may the ancestor itself have acquired the deletion
     assert transcribe("més són", "ca-x-medieval").split()[0].endswith("s")
+
+
+# ─── Balearic cross-word sibilant affrication ──────────────────────────────
+
+@pytest.mark.parametrize("phrase, expected", [
+    # ── /s # s/, the core class: 4catac Balearic exemplars, one per row.
+    ("és sa", "ˈet t͡sə"),
+    ("més són", "ˈmet ˈt͡son"),
+    ("dos savis", "ˈdot ˈt͡savis"),
+    ("cossos sense", "ˈkosut ˈt͡sɛnsə"),
+    ("es seu", "ət ˈt͡sɛw"),
+    ("mos surten", "ˈmot ˈt͡surtən"),
+    ("des serveis", "dət ˈt͡sɛrvəjs"),
+    ("cantés s'amor", "kəˈntet t͡səˈmo"),
+    ("sentis sàpiga", "ˈsɛntit ˈt͡sapiɣə"),
+    ("destries s'arena", "dəˈstɾiət t͡səˈɾɛnə"),
+    ("arbres se", "ˈarβɾət t͡sə"),
+    ("autors se", "əˈwtot t͡sə"),
+    ("pes sol", "pət ˈt͡sol"),
+    # ── /ʃ # s/ and /s # ʃ/: the same rule, keyed on the CLASS not on ⟨s⟩.
+    ("defineix sa", "dəfiˈnɛt t͡sə"),
+    ("beix serveix", "ˈbɛt t͡səˈrvɛʃ"),
+    ("es xaloc", "ət t͡ʃəˈlok"),
+])
+def test_balearic_cross_word_sibilant_affrication(phrase, expected):
+    """Majorcan regressive place assimilation + affrication of a sibilant
+    cluster across a word boundary.
+
+    A word-final sibilant loses its own oral gesture to the following
+    word-initial sibilant and surfaces as the stop [t]; the initial
+    sibilant is realised as the matching affricate, so the boundary is a
+    long affricate [t.t͡s] (Veny 1982 ch. 4 on Majorcan consonant
+    assimilation; Recasens 1996 on cluster assimilation in Balearic;
+    Wheeler 2005 §10.5 phrase-level assimilation). This is the Balearic
+    counterpart of the Central degemination — the opposite outcome from
+    the same input.
+    """
+    assert transcribe(phrase, "ca-x-balear") == expected
+
+
+@pytest.mark.parametrize("phrase", [
+    # SONORANT + sibilant coda. 4catac writes no affricate at any of these:
+    # the Balearic coda simplifies to the sonorant and no sibilant is left
+    # at the boundary — importants són [impoɾt'an s'on], tens set
+    # [t'en s'ət], dins sa [d'in sə], ports separen [p'ɔɾ səp'aɾən],
+    # servents servits [səɾv'en səɾv'id͡z], ells són ['eʎ s'oŋ],
+    # Deus seguir [d'əw səɣ'i]. This spec does not model that
+    # simplification, so the cluster survives to the boundary here; the
+    # rule's context blocks it anyway and the outcome agrees with the gold.
+    "importants són", "tens set", "dins sa", "ports separen",
+    "ells són", "servents servits", "Deus seguir",
+    # OBSTRUENT + sibilant coda (/ks/, /t͡s/) and a final affricate /t͡ʃ/.
+    # 4catac DOES affricate all of these, but by DELETING the left
+    # obstruent rather than keeping it as [t] — d'albercocs se
+    # [ðəlβəɾk'ɔt t͡sə], trencats sobre [tɾəŋk'a t͡s'ɔβɾə], dits semblava
+    # [d'i t͡səmbl'avə], vaig sentir [v'at t͡s̠ən̪t'i]. Segment deletion is
+    # the broader total-assimilation class, deliberately out of scope; see
+    # the spec notes. These are MISSES, not agreements.
+    "dits semblava", "d'albercocs se", "trencats sobre",
+    "polítics xerraires", "vaig sentir", "mig ximple",
+])
+def test_balearic_affrication_needs_a_plain_postvocalic_sibilant(phrase):
+    """BLOCKING CASES — the rule fires only on a plain sibilant that the
+    engine's surface IPA puts directly after a vowel.
+
+    The rule is a SURFACE rule: it reads the IPA this spec produces for the
+    left word, not an abstract underlying coda. Two different things are
+    being blocked here and the spec notes keep them apart — a sonorant
+    cluster, where the block agrees with the gold, and an obstruent cluster
+    or affricate, where the gold affricates and this rule does not.
+    """
+    out = transcribe(phrase, "ca-x-balear")
+    assert "t͡s" not in out and "t͡ʃ" not in out
+
+
+@pytest.mark.xfail(reason="PRE-EXISTING, NOT specific to this rule: "
+                          "SandhiEngine.apply receives only a flat list of "
+                          "word IPA strings, so the pausal/phrase-position "
+                          "information the engine already computes "
+                          "(_group_words, _word_positions) never reaches the "
+                          "sandhi rules — no cross-word rule of any language "
+                          "is blocked at an intonational-phrase boundary. "
+                          "The fix is a signature change passing the "
+                          "existing pause flags into apply(), plus re-runs "
+                          "of every sandhi language's sentence benchmarks, "
+                          "so it is pinned here, not worked around in this "
+                          "spec.",
+                   strict=True)
+def test_sandhi_should_not_cross_a_phrase_boundary():
+    """A comma ends the phonological phrase; sandhi must not reach across it.
+
+    4catac writes the pause and blocks the assimilation: ⟨d'improvís, se
+    presenta⟩ is [dimpɾov'is | sə pɾəz'en̪tə], ⟨afamats, se'n mengen⟩ is
+    [əfəm'at͡s | səm m'en̠ʒən]. The engine affricates across the comma.
+
+    The defect is SHARED, not Balearic: Central degemination and the
+    Catalan vowel-contact rules cross a comma just the same, so the two
+    control assertions below fail today for exactly the same reason.
+    """
+    assert transcribe("d'improvís, se presenta", "ca-x-balear").startswith(
+        "dimpɾuˈvis ")
+    # ... and the same defect in the rules this one was modelled on
+    assert transcribe("més, són", "ca") == "ˈmes ˈson"
+    assert transcribe("la casa, un dia", "ca") == "lə ˈkazə un ˈdiə"
+
+
+def test_balearic_affrication_is_cross_word_only():
+    """Word-internal ⟨ss⟩ and non-sibilant boundaries are untouched."""
+    assert transcribe("passa", "ca-x-balear") == "ˈpasə"
+    assert transcribe("cossos", "ca-x-balear") == "ˈkosus"
+    # non-sibilant right word
+    assert transcribe("pes turons", "ca-x-balear") == "pəs tuˈɾons"
+    # sibilant right word, non-sibilant left word
+    assert transcribe("cap sol", "ca-x-balear") == "ˈkap ˈsol"
+
+
+@pytest.mark.parametrize("lang", ["ca", "ca-x-occidental", "ca-x-valencia",
+                                  "ca-x-nord", "ca-x-medieval"])
+def test_affrication_does_not_leak_to_other_catalan(lang):
+    """DIALECT-SPECIFIC — declared on ca-x-balear only, never on an ancestor."""
+    ids = {r.id for r in get(lang).sandhi_rules}
+    assert not {i for i in ids if "AFFRIC" in i}
+    assert "t͡s" not in transcribe("és sa clau", lang)
+
+
+def test_balearic_affrication_keeps_the_left_word_pronounceable():
+    """MINIMAL WORD — only the consonant changes; no word loses its nucleus.
+
+    ⟨és⟩/⟨es⟩ are monovocalic and the vowel survives the assimilation
+    ([ˈet], [ət] — never *[t]); the left word can never be emptied because the rule's own
+    context requires the vowel it keeps.
+    """
+    assert transcribe("és sa", "ca-x-balear").split()[0] == "ˈet"
+    assert transcribe("es seu", "ca-x-balear").split()[0] == "ət"
+    assert transcribe("mos surten", "ca-x-balear").split()[0] == "ˈmot"
 
 
 def test_voiced_sibilant_boundary_is_a_known_gap():
