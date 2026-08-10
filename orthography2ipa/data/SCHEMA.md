@@ -252,6 +252,20 @@ the four overridden entries.
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
 
+A sandhi rule applies only within its prosodic domain (Nespor & Vogel 1986,
+*Prosodic Phonology*). Punctuation that writes a pause — a comma, a full stop,
+and their equivalents in every script — closes the intonational phrase (IP),
+and no rule of any language reaches across that break.
+
+The engine blocks at IP boundaries only, and there is no field for it: it is a
+property of the rule type, not a per-rule choice. This is a LOWER BOUND, not
+the full story. Most cross-word rules take the smaller phonological phrase (φ)
+as their domain, and φ boundaries also fall clause-internally where no
+punctuation is written, so IP-only blocking UNDER-restricts. A per-rule
+prosodic domain (`"domain": "phi"` blocking φ-internally too) is a possible
+future refinement; it needs a φ-parser the engine does not have and evidence
+per rule, so it is deliberately not added here.
+
 ## Allophone Rule Schema
 
 `allophone_rules` is the POST-lexical half of the "two maps": an ordered

@@ -94,6 +94,7 @@ __all__ = [
     "lattice_confidence",
     "PhonetokTokenizer",
     "lower_str",
+    "PAUSE_PUNCTUATION",
 ]
 
 
@@ -778,9 +779,108 @@ def flat_contexts(
 # Punctuation / digit detection
 # ═══════════════════════════════════════════════════════════════════════════
 
+#: Punctuation that writes a PAUSE — the mark of an intonational-phrase
+#: boundary. Cross-word phonology (sandhi, liaison) applies inside a
+#: phonological phrase and stops at this break: nothing joins the two words a
+#: pause separates (Nespor & Vogel 1986, *Prosodic Phonology*, on the
+#: intonational phrase). It is therefore a WRITING-SYSTEM fact, not a Latin
+#: one, and every script's pause marks are named here rather than left to an
+#: ASCII set that silently exempts every non-Latin orthography.
+#:
+#: Each entry is named because a set of bare code points cannot be reviewed.
+#: Only marks that end an utterance or a clause are listed: quotation marks,
+#: brackets, hyphens, apostrophes and word SEPARATORS (Ethiopic wordspace,
+#: Tibetan tsheg) are not pauses and stay out.
+PAUSE_PUNCTUATION: Dict[str, str] = {
+    # ── Latin / common ──────────────────────────────────────────────────
+    ".": "FULL STOP",
+    ",": "COMMA",
+    ";": "SEMICOLON",
+    ":": "COLON",
+    "!": "EXCLAMATION MARK",
+    "?": "QUESTION MARK",
+    "\u2026": "HORIZONTAL ELLIPSIS",
+    "\u037E": "GREEK QUESTION MARK",
+    "\u2E2E": "REVERSED QUESTION MARK",
+    # ── Armenian / Hebrew ───────────────────────────────────────────────
+    # Armenian ՛ ՜ ՞ sit INSIDE the word on the stressed vowel and are not
+    # pauses; only the sentence-final ։ is.
+    "\u0589": "ARMENIAN FULL STOP",
+    "\u05C3": "HEBREW PUNCTUATION SOF PASUQ",
+    # ── Arabic script (Arabic, Persian, Urdu) ───────────────────────────
+    "\u060C": "ARABIC COMMA",
+    "\u061B": "ARABIC SEMICOLON",
+    "\u061E": "ARABIC TRIPLE DOT PUNCTUATION MARK",
+    "\u061F": "ARABIC QUESTION MARK",
+    "\u06D4": "ARABIC FULL STOP",
+    # ── Syriac ──────────────────────────────────────────────────────────
+    "\u0700": "SYRIAC END OF PARAGRAPH",
+    "\u0701": "SYRIAC SUPRALINEAR FULL STOP",
+    "\u0702": "SYRIAC SUBLINEAR FULL STOP",
+    "\u0703": "SYRIAC SUPRALINEAR COLON",
+    "\u0704": "SYRIAC SUBLINEAR COLON",
+    # ── N'Ko ────────────────────────────────────────────────────────────
+    "\u07F8": "NKO COMMA",
+    "\u07F9": "NKO EXCLAMATION MARK",
+    # ── Brahmic: danda and its descendants ──────────────────────────────
+    "\u0964": "DEVANAGARI DANDA",
+    "\u0965": "DEVANAGARI DOUBLE DANDA",
+    "\u104A": "MYANMAR SIGN LITTLE SECTION",
+    "\u104B": "MYANMAR SIGN SECTION",
+    "\u17D4": "KHMER SIGN KHAN",
+    "\u17D5": "KHMER SIGN BARIYOOSAN",
+    "\u1944": "LIMBU EXCLAMATION MARK",
+    "\u1945": "LIMBU QUESTION MARK",
+    "\u1C7E": "OL CHIKI PUNCTUATION MUCAAD",
+    "\u1C7F": "OL CHIKI PUNCTUATION DOUBLE MUCAAD",
+    "\uA9C7": "JAVANESE PADA PANGKAT",
+    "\uA9C8": "JAVANESE PADA LINGSA",
+    "\uA9C9": "JAVANESE PADA LUNGSI",
+    "\uAA5D": "CHAM PUNCTUATION DANDA",
+    "\uAA5E": "CHAM PUNCTUATION DOUBLE DANDA",
+    "\uAA5F": "CHAM PUNCTUATION TRIPLE DANDA",
+    "\uABEB": "MEETEI MAYEK CHEIKHEI",
+    # ── Ethiopic ────────────────────────────────────────────────────────
+    # U+1361 ETHIOPIC WORDSPACE separates words, so it is not listed.
+    "\u1362": "ETHIOPIC FULL STOP",
+    "\u1363": "ETHIOPIC COMMA",
+    "\u1364": "ETHIOPIC SEMICOLON",
+    "\u1365": "ETHIOPIC COLON",
+    "\u1367": "ETHIOPIC QUESTION MARK",
+    # ── Other scripts ───────────────────────────────────────────────────
+    "\u166E": "CANADIAN SYLLABICS FULL STOP",
+    "\u1802": "MONGOLIAN COMMA",
+    "\u1803": "MONGOLIAN FULL STOP",
+    "\uA4FE": "LISU PUNCTUATION COMMA",
+    "\uA4FF": "LISU PUNCTUATION FULL STOP",
+    "\uA60D": "VAI COMMA",
+    "\uA60E": "VAI FULL STOP",
+    "\uA60F": "VAI QUESTION MARK",
+    # ── CJK, fullwidth and halfwidth forms ──────────────────────────────
+    "\u3001": "IDEOGRAPHIC COMMA",
+    "\u3002": "IDEOGRAPHIC FULL STOP",
+    "\uFF01": "FULLWIDTH EXCLAMATION MARK",
+    "\uFF0C": "FULLWIDTH COMMA",
+    "\uFF0E": "FULLWIDTH FULL STOP",
+    "\uFF1A": "FULLWIDTH COLON",
+    "\uFF1B": "FULLWIDTH SEMICOLON",
+    "\uFF1F": "FULLWIDTH QUESTION MARK",
+    "\uFF61": "HALFWIDTH IDEOGRAPHIC FULL STOP",
+    "\uFF64": "HALFWIDTH IDEOGRAPHIC COMMA",
+}
+
+#: Character class of every pause mark, spliced into ``_PUNCT_RE`` below.
+#: Generating it from :data:`PAUSE_PUNCTUATION` is what keeps the two in step:
+#: a pause mark the tokenizer does not classify as PUNCTUATION never reaches
+#: the phrase-boundary check at all — it glues to the word instead (the
+#: Arabic comma did exactly that, so ``فِي، البَيْتِ`` elided across its own
+#: comma while the ASCII comma blocked).
+_PAUSE_CLASS = "".join(re.escape(c) for c in sorted(PAUSE_PUNCTUATION))
+
 # Broad punctuation set covering Latin, CJK, and typographic marks.
 _PUNCT_RE = re.compile(
     r"["
+    + _PAUSE_CLASS +
     r"\u0021-\u002F"  # ! " # $ % & ' ( ) * + , - . /
     r"\u003A-\u0040"  # : ; < = > ? @
     r"\u005B-\u0060"  # [ \ ] ^ _ `

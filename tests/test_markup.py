@@ -134,3 +134,36 @@ class TestInventoryGuard:
     def test_the_caller_can_say_they_mean_it(self):
         assert G2P("ar-SA-x-najd", allow_undeclared_phonemes=True).transcribe(
             '<phoneme ph="ˈmiːtɪŋ">meeting</phoneme>') == "ˈmiːtɪŋ"
+
+
+class TestForcingSurvivesPunctuation:
+    """A forced word standing before a pause lost its forcing.
+
+    ``_group_words`` marked the preceding word pausal by REBUILDING it from
+    its surface alone — ``_Word(surface=words[-1].surface, pausal=True)`` —
+    which dropped ``forced_ipa``. A ``<phoneme>`` span followed by a comma or
+    a full stop was therefore silently discarded and the word was re-derived
+    by the beam. ``dataclasses.replace`` keeps every other field.
+    """
+
+    LECT = "ar-SA-x-najd"
+    FORCED = '<phoneme ph="ˈmiːtinɡ">meeting</phoneme>'
+
+    def test_forced_word_before_a_comma_keeps_its_ipa(self):
+        assert G2P(self.LECT).transcribe(
+            self.FORCED + ", بيت").startswith("ˈmiːtinɡ ")
+
+    def test_forced_word_at_the_end_of_a_sentence_keeps_its_ipa(self):
+        assert G2P(self.LECT).transcribe(
+            self.FORCED + ".") == "ˈmiːtinɡ"
+
+    def test_forced_word_before_an_arabic_comma_keeps_its_ipa(self):
+        """The widened pause set must not reintroduce the bug for a script
+        whose comma only started tokenizing as punctuation with it."""
+        assert G2P(self.LECT).transcribe(
+            self.FORCED + "، بيت").startswith("ˈmiːtinɡ ")
+
+    def test_the_forced_word_is_still_marked_pausal(self):
+        words = G2P(self.LECT)._split_words(self.FORCED + ", بيت")
+        assert words[0].forced_ipa == "ˈmiːtinɡ"
+        assert words[0].pausal is True
