@@ -18,6 +18,9 @@ Three concerns live here:
    (``BEFORE_E``) precede their vowel *class* (``BEFORE_FRONT_VOWEL``),
    which precede the generic (``BEFORE_VOWEL``) and finally
    ``DEFAULT`` — this ordering is the exact>class>default precedence.
+   :func:`effective_word_end` answers, once, the "is this slot
+   effectively word-final?" question that several of those positions
+   depend on.
 
 2. :func:`positional_candidates` — consult ``spec.positional_graphemes``
    for a grapheme with a pre-computed position list, returning the first
@@ -41,7 +44,8 @@ non-stress-conditioned position.
 """
 from __future__ import annotations
 
-from typing import Callable, Dict, List, Optional, Sequence, Tuple
+from typing import (Callable, Dict, List, NamedTuple, Optional, Sequence,
+                    Tuple)
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
@@ -53,6 +57,8 @@ from orthography2ipa.vowels import (
 from orthography2ipa.weights import candidate_base_costs
 
 __all__ = [
+    "WordEnd",
+    "effective_word_end",
     "grapheme_positions",
     "positional_candidates",
     "build_branches",
@@ -112,67 +118,92 @@ _AFTER_EXACT: Dict[str, GraphemePosition] = {
 _TRANSPARENT_SUFFIX_GRAPHEMES = frozenset({"s", "x"})
 
 
-def _is_word_final_silent(spec: Optional[LanguageSpec], ctx) -> bool:
-    """True if *ctx* is the word-final grapheme, is a transparent suffix
-    grapheme (see :data:`_TRANSPARENT_SUFFIX_GRAPHEMES`), and *spec*
-    already silences it there (an empty candidate in its ``word_final``
-    positional override).
+class WordEnd(NamedTuple):
+    """Where the word effectively ends, as seen from one grapheme slot.
 
-    Used only to decide whether a vowel *before* ``ctx`` is looking at an
-    effectively-silent tail (e.g. the plural ``-s`` in French ``vies``),
-    never to resolve ``ctx`` itself — no recursion, no ordering dependency.
+    The three flags are the named cases of the single question "is this
+    slot effectively word-final?", and they form a small lattice rather
+    than three independent booleans: ``final_slot`` and
+    ``last_audible_slot`` are mutually exclusive by construction (the
+    first means nothing follows, the second means exactly one transparent
+    suffix follows), and ``silent_final_vowel`` implies one of them (it is
+    the e-caduc reading OF an effectively-final vowel slot, so
+    ``(False, False, True)`` is unreachable). A caller reads the case it
+    needs instead of composing predicates.
     """
-    if spec is None or ctx.next is not None:
-        return False
-    if ctx.grapheme not in _TRANSPARENT_SUFFIX_GRAPHEMES:
-        return False
-    pg = getattr(spec, "positional_graphemes", None)
-    if not pg:
-        return False
-    entry = pg.get(ctx.grapheme)
-    if not entry:
-        return False
-    final_candidates = entry.get(GraphemePosition.WORD_FINAL)
-    return bool(final_candidates) and "" in final_candidates
+
+    #: Nothing at all follows: the slot holds the word's last grapheme.
+    final_slot: bool
+    #: The only thing that follows is a transparent grammatical suffix the
+    #: spec already silences (see
+    #: :data:`_TRANSPARENT_SUFFIX_GRAPHEMES`) — French plural ⟨vies⟩. The
+    #: syllable is built as if the word ended at this slot.
+    last_audible_slot: bool
+    #: The slot itself is a vowel the spec silences word-finally — the
+    #: e-caduc class — sitting in the word's last audible slot. Only such
+    #: a vowel can cause nucleus loss under glide formation (French ⟨vie⟩:
+    #: gliding the ⟨i⟩ would leave the silent e-caduc as the only
+    #: nucleus). A *pronounced* terminal vowel (⟨alicia⟩'s ⟨a⟩) carries
+    #: the nucleus itself, so this case must NOT fire for it.
+    silent_final_vowel: bool
 
 
-def _next_is_terminal_vowel(next_ctx, spec: Optional[LanguageSpec]) -> bool:
-    """True if *next_ctx* is a vowel in the word's last audible slot AND
-    the spec silences that vowel there — the nucleus-loss case this
-    position exists for (French ⟨vie⟩: gliding the ⟨i⟩ would leave the
-    silent e-caduc as the only nucleus). A *pronounced* terminal vowel
-    (⟨alicia⟩'s ⟨a⟩) carries the nucleus itself, so gliding before it is
-    safe and this position must NOT fire. The slot counts as terminal
-    when the vowel is the absolute last grapheme or is followed only by
-    one further grapheme the spec already silences at ``word_final``
-    (see :func:`_is_word_final_silent`)."""
-    if next_ctx is None or not next_ctx.is_vowel:
-        return False
-    if not _spec_silences_final_vowel(spec, next_ctx.grapheme):
-        return False
-    if next_ctx.next is None:
-        return True
-    tail = next_ctx.next
-    return tail.next is None and _is_word_final_silent(spec, tail)
+_NO_WORD_END = WordEnd(final_slot=False, last_audible_slot=False,
+                       silent_final_vowel=False)
 
 
-def _spec_silences_final_vowel(spec: Optional[LanguageSpec],
-                               grapheme: str) -> bool:
-    """Whether *spec* silences vowel *grapheme* word-finally (an empty
-    candidate in its ``word_final`` positional override) — the e-caduc
-    class. Only such a vowel can cause nucleus loss under glide
-    formation; a vowel the spec pronounces finally carries the nucleus
-    itself."""
-    if spec is None:
-        return False
-    pg = getattr(spec, "positional_graphemes", None)
-    if not pg:
-        return False
-    entry = pg.get(grapheme)
-    if not entry:
-        return False
-    final_candidates = entry.get(GraphemePosition.WORD_FINAL)
-    return bool(final_candidates) and "" in final_candidates
+def effective_word_end(ctx, spec: Optional[LanguageSpec]) -> WordEnd:
+    """Classify how the word ends at the slot *ctx*, under *spec*.
+
+    This is the one place that answers "is this slot effectively
+    word-final?"; the linguistic distinctions live inside it as the named
+    cases of :class:`WordEnd`:
+
+    * a **transparent grammatical suffix** (⟨s⟩/⟨x⟩, Tranel 1987 §3) that
+      the spec silences word-finally leaves the preceding slot audibly
+      final — ``last_audible_slot``. A root-final silenced consonant
+      (⟨pied⟩'s ⟨d⟩) is NOT transparent: the nucleus was fixed by the root
+      before that consonant dropped out, which is the ⟨pied⟩/⟨vies⟩
+      minimal pair the narrow suffix set exists for.
+    * a spec-silenced final **vowel** (e-caduc) is the nucleus-loss case —
+      ``silent_final_vowel`` — as opposed to a pronounced terminal vowel,
+      which carries the nucleus itself.
+
+    Only ``spec``'s declared ``word_final`` overrides are read, never a
+    resolved positional result, so there is no recursion and no ordering
+    dependency on the caller.
+    """
+    if ctx is None:
+        return _NO_WORD_END
+
+    positional = spec.positional_graphemes if spec else None
+
+    def silenced_word_finally(grapheme: str) -> bool:
+        """Spec declares an empty candidate for *grapheme* at word_final."""
+        if not positional:
+            return False
+        entry = positional.get(grapheme)
+        if not entry:
+            return False
+        final_candidates = entry.get(GraphemePosition.WORD_FINAL)
+        return bool(final_candidates) and "" in final_candidates
+
+    tail = ctx.next
+    final_slot = tail is None
+    last_audible_slot = (
+        tail is not None
+        and tail.next is None
+        and tail.grapheme in _TRANSPARENT_SUFFIX_GRAPHEMES
+        and silenced_word_finally(tail.grapheme)
+    )
+    silent_final_vowel = (
+        (final_slot or last_audible_slot)
+        and ctx.is_vowel
+        and silenced_word_finally(ctx.grapheme)
+    )
+    return WordEnd(final_slot=final_slot,
+                   last_audible_slot=last_audible_slot,
+                   silent_final_vowel=silent_final_vowel)
 
 
 def grapheme_positions(
@@ -208,12 +239,14 @@ def grapheme_positions(
     prev_is_v = prev_ctx is not None and prev_ctx.is_vowel
     next_is_v = next_ctx is not None and next_ctx.is_vowel
 
-    # 0. before a vowel that is itself the word's last audible slot (see
-    # _next_is_terminal_vowel) — most specific, checked before the exact
-    # per-letter/class positions below so a spec that declares it can block
-    # e.g. glide formation only when there is nothing left to carry the
-    # syllable's nucleus.
-    if _next_is_terminal_vowel(next_ctx, spec):
+    # 0. before a vowel that is itself the word's last audible slot and is
+    # silenced there (the e-caduc case of effective_word_end) — most
+    # specific, checked before the exact per-letter/class positions below so
+    # a spec that declares it can block e.g. glide formation only when there
+    # is nothing left to carry the syllable's nucleus.
+    word_end = effective_word_end(ctx, spec)
+    next_word_end = effective_word_end(next_ctx, spec)
+    if next_word_end.silent_final_vowel:
         pos.append(GraphemePosition.BEFORE_FINAL_VOWEL)
 
     # 1. before_X (exact letter) then the front/back vowel *class*.
@@ -236,12 +269,9 @@ def grapheme_positions(
     # 2. word boundary
     if prev_ctx is None:
         pos.append(GraphemePosition.WORD_INITIAL)
-    if next_ctx is None:
+    if word_end.final_slot:
         pos.append(GraphemePosition.WORD_FINAL)
-    _effectively_word_final_vowel = (
-        next_ctx is not None and is_vowel and next_ctx.next is None
-        and _is_word_final_silent(spec, next_ctx)
-    )
+    effectively_word_final_vowel = is_vowel and word_end.last_audible_slot
     # NOTE: the WORD_FINAL entry for this "effectively final" case (a vowel
     # followed only by a transparent suffix grapheme the spec already
     # silences — French plural -s/-x: "vies") is appended in section 4
@@ -278,7 +308,7 @@ def grapheme_positions(
             else:
                 pos.append(GraphemePosition.POSTTONIC)
 
-    if _effectively_word_final_vowel:
+    if effectively_word_final_vowel:
         pos.append(GraphemePosition.WORD_FINAL)
 
     # 5. after/before vowel / consonant context
