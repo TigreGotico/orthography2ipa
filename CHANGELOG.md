@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.64.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.3a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.2a1...7.64.3a1)
+
+**Merged pull requests:**
+
+- fix\(engine\): sandhi is bounded by the intonational phrase [\#835](https://github.com/TigreGotico/orthography2ipa/pull/835) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.64.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.2a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.1a1...7.64.2a1)
@@ -679,10 +687,6 @@
 ## [7.31.1a3](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a3) (2026-07-30)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.1a2...7.31.1a3)
-
-**Merged pull requests:**
-
-- docs: rewrite README in Simplified Technical English [\#651](https://github.com/TigreGotico/orthography2ipa/pull/651) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.31.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a2) (2026-07-18)
 
