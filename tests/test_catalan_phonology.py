@@ -284,29 +284,17 @@ def test_balearic_affrication_needs_a_plain_postvocalic_sibilant(phrase):
     assert "t͡s" not in out and "t͡ʃ" not in out
 
 
-@pytest.mark.xfail(reason="PRE-EXISTING, NOT specific to this rule: "
-                          "SandhiEngine.apply receives only a flat list of "
-                          "word IPA strings, so the pausal/phrase-position "
-                          "information the engine already computes "
-                          "(_group_words, _word_positions) never reaches the "
-                          "sandhi rules — no cross-word rule of any language "
-                          "is blocked at an intonational-phrase boundary. "
-                          "The fix is a signature change passing the "
-                          "existing pause flags into apply(), plus re-runs "
-                          "of every sandhi language's sentence benchmarks, "
-                          "so it is pinned here, not worked around in this "
-                          "spec.",
-                   strict=True)
 def test_sandhi_should_not_cross_a_phrase_boundary():
     """A comma ends the phonological phrase; sandhi must not reach across it.
 
     4catac writes the pause and blocks the assimilation: ⟨d'improvís, se
     presenta⟩ is [dimpɾov'is | sə pɾəz'en̪tə], ⟨afamats, se'n mengen⟩ is
-    [əfəm'at͡s | səm m'en̠ʒən]. The engine affricates across the comma.
+    [əfəm'at͡s | səm m'en̠ʒən].
 
-    The defect is SHARED, not Balearic: Central degemination and the
-    Catalan vowel-contact rules cross a comma just the same, so the two
-    control assertions below fail today for exactly the same reason.
+    The domain is the phonological phrase, not the word pair (Nespor & Vogel
+    1986, *Prosodic Phonology*), so this is SHARED, not Balearic: the two
+    control assertions below cover Central degemination and the Catalan
+    vowel-contact rules, which the same boundary blocks.
     """
     assert transcribe("d'improvís, se presenta", "ca-x-balear").startswith(
         "dimpɾuˈvis ")
