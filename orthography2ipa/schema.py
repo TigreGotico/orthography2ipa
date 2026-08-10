@@ -321,6 +321,7 @@ class LanguageSpecModel(_Strict):
     allophones_base: Optional[str] = None
     positional_graphemes_base: Optional[str] = None
     word_exceptions_base: Optional[str] = None
+    grammatical_endings_base: Optional[str] = None
 
     # ─── ancestry ───────────────────────────────────────────────────
     parent: Optional[str] = None
@@ -360,6 +361,9 @@ class LanguageSpecModel(_Strict):
 
     # ─── whole-word overrides for a closed irregular set ─────────────
     word_exceptions: Optional[Dict[str, str]] = None
+
+    # ─── suffix morphology: ending → IPA at the effective word end ────
+    grammatical_endings: Optional[Dict[str, str]] = None
 
     @field_validator("graphemes", "allophones")
     @classmethod

@@ -632,6 +632,19 @@
       ]
     }
   },
+  "grammatical_endings": {
+    "tion": "ʃən",
+    "stion": "stʃən",
+    "ssion": "ʃən",
+    "cion": "ʃən",
+    "cian": "ʃən",
+    "tial": "ʃəl",
+    "cial": "ʃəl",
+    "stial": "stʃəl",
+    "tious": "ʃəs",
+    "cious": "ʃəs",
+    "stious": "stʃəs"
+  },
   "word_exceptions": {
     "the": "ðə",
     "be": "biː",

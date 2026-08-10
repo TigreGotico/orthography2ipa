@@ -251,6 +251,18 @@ The test suite validates:
 
 ---
 
+## Suffix morphology (`grammatical_endings`, optional)
+
+When an ending's realisation belongs to the *grammatical ending* rather than to
+the letters that spell it — French mute ⟨-er⟩/⟨-ez⟩, English ⟨-tion⟩ → [ʃən] —
+declare it in `grammatical_endings`, never as a grapheme key (morpheme chunks
+are forbidden grapheme keys; see `AGENTS.md`). The ending is matched at the
+word's effective end only, so word-internal letters are untouched, and
+`word_exceptions` still outranks it. Full contract:
+[`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#grammatical-endings).
+
+---
+
 ## Adding a lexicon overlay (optional)
 
 When grapheme rules cannot reach production accuracy for a deep-orthography

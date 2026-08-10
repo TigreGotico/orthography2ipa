@@ -58,6 +58,21 @@ Doubled consonant letters (`bb`, `dd`, `ff`, `gg`, `ll`, `mm`, `nn`, `pp`, `rr`,
 
 **Irregular ⟨ill⟩ = [il] class**: a small closed set of words keeps ⟨ill⟩ as [il] rather than the [ij] default — `ville`, `mille`, `tranquille` (and `tranquillement`), and the place name `Lille` — handled as `word_exceptions` (Tranel 1987 §4.3).
 
+#### Mute grammatical endings ⟨-er⟩ / ⟨-ez⟩
+
+Word-final ⟨-er⟩ of infinitives and agent nouns is [e], and the 2pl ⟨-ez⟩ is
+[e]: `parler` [paʁle], `manger` [mɑ̃ʒe], `boulanger` [bulɑ̃ʒe], `mangez`
+[mɑ̃ʒe], `nez` [ne], `chez` [ʃe], `assez` [ase] — final-consonant elision in the
+*grammatical ending* (Fouché 1959; Tranel 1987 §3). This is `grammatical_endings`,
+not a grapheme: the same letters inside a word (`personne` [pɛʁsɔn], `version`
+[vɛʁsjɔ̃], `terre` [təʁ]) are ordinary graphemes and stay untouched, and the
+ending still matches behind the transparent plural ⟨-s⟩ (`boulangers` [bulɑ̃ʒe]).
+
+The closed set of nouns and adverbs that keep /ɛʁ/ — `mer`, `fer`, `cher`,
+`ver`, `hier`, `hiver`, `enfer`, `cancer`, `amer`, `super`, and the ⟨-er⟩
+loanwords (`leader`, `container`, `poker`) — stays in `word_exceptions`, which
+outranks the endings; their ⟨-s⟩ plurals are listed there too.
+
 #### Glide Formation
 
 Word-internal ⟨i⟩ before another vowel letter glides to [j] (`positional_graphemes` `before_vowel` branch, Tranel 1987 §5-6): `pied` [pje], `fiacre` [fjakʁ]. This is distinct from the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs, which already carry [j] unconditionally.

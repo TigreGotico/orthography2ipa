@@ -1213,6 +1213,11 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.BASE_MERGE,
+    # Suffix morphology is shared by a dialect that shares its graphemes —
+    # en-US palatalizes ⟨-tion⟩ exactly as en-GB does — so a child opts in
+    # with grammatical_endings_base and overrides per ending, the same
+    # overlay shape word_exceptions uses.
+    "grammatical_endings": InheritanceMode.BASE_MERGE,
     "grapheme_weights": InheritanceMode.NOT_INHERITED,
     "clade": InheritanceMode.OWN_ONLY,
     "family_path": InheritanceMode.OWN_ONLY,
@@ -1668,6 +1673,38 @@ class LanguageSpec:
     polysyllables. Keys are lowercase orthographic word forms; matched
     case-insensitively before positional-beam search. Not inherited
     through ancestry — each spec declares its own block."""
+
+    grammatical_endings: Optional[Dict[str, str]] = None
+    """Word-ending → IPA, for **suffix morphology**: an orthographic
+    ending whose realisation belongs to the grammatical ending rather
+    than to the letter sequence that spells it.
+
+    Two phenomena this exists for:
+
+    * **French mute ⟨-er⟩/⟨-ez⟩.** The infinitive and agent-noun ⟨-er⟩ is
+      [e] (``parler``, ``boulanger``) and the 2pl ⟨-ez⟩ is [e]
+      (``mangez``, ``nez``, ``chez``) — final-consonant elision in the
+      grammatical ending (Fouché 1959; Tranel 1987 §3). The same letters
+      inside a word (``personne``, ``version``, ``terre``) are ordinary
+      graphemes and are untouched; the closed set of nouns that keep
+      /ɛʁ/ (``mer``, ``hiver``) lives in :attr:`word_exceptions`.
+    * **English suffix palatalization.** ⟨-tion⟩ → /ʃən/, ⟨-cious⟩ →
+      /ʃəs/, ⟨-tial⟩ → /ʃəl/ — palatalization of the stem-final coronal
+      before the ``-ion`` suffix (Chomsky & Halle 1968 §4 *The Sound
+      Pattern of English*; surface values per Wells 2008 LPD).
+
+    Keys are lowercase orthographic endings, matched only at the word's
+    *effective* end — the last grapheme tokens, or the last tokens before
+    a transparent grammatical suffix the spec silences (French plural
+    ⟨-s⟩/⟨-x⟩), which is
+    :func:`~orthography2ipa.positional.effective_word_end`'s question.
+    Longest match wins, so ⟨-stion⟩ overrides ⟨-tion⟩. A match replaces
+    the emitted IPA of those trailing tokens only; tokenization of the
+    word's interior is unchanged, which is what separates this from
+    spelling a morpheme as a grapheme key (forbidden — see AGENTS.md).
+
+    Precedence: :attr:`word_exceptions` **>** ``grammatical_endings``
+    **>** :attr:`graphemes` / :attr:`positional_graphemes`."""
 
     def __post_init__(self) -> None:
         # Normalise None to empty dict
