@@ -159,6 +159,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
 import shutil
 import subprocess
@@ -167,6 +168,14 @@ from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
 import benchmark  # noqa: E402  — shared dataset loaders, normalize(), levenshtein()
+
+# epitran logs a WARNING (e.g. "lex_lookup (from flite) is not installed")
+# on every per-word transliterate() call for some backends — harmless (it
+# just means a fallback path is used) but at hundreds of thousands of
+# words per run (e.g. the vox_communis datasets now scored per language,
+# not just the one primary dataset) that's hundreds of thousands of log
+# lines slowing the run down for no diagnostic value here.
+logging.getLogger("epitran").setLevel(logging.ERROR)
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 COMPARISON_MD = os.path.join(REPO_ROOT, "docs", "comparison.md")
@@ -770,21 +779,167 @@ def _score(hyps_and_golds: List[Tuple[Optional[str], List[str]]],
     return per_sum / covered, covered
 
 
-def compare_lang(lang: str, limit: Optional[int]) -> dict:
-    """Run *lang* through every available system on the same gold rows.
-    Returns a row dict with per-system PER (or ``None`` == "n/a").
+#: Datasets whose gold IS a competitor system's own output — scoring that
+#: system against its own generator's output is tautological (it scores
+#: ~0 by construction, not because it is accurate). Rather than silently
+#: reporting ``n/a`` (which reads as "system unavailable"), these cells are
+#: flagged ``same_source`` and rendered as ``same-source`` in the docs — a
+#: different, honest reason for having no comparable number.
+#:
+#: - espeak/espeak_rules are excluded wherever ``benchmark.provenance_for``
+#:   tags the dataset+language ``espeak-derived``.
+#: - epitran is excluded wherever the tier is ``epitran-derived``.
+#: - ahotts-g2p is excluded on ``hitz_basque_ipa`` specifically: that gold
+#:   is HiTZ/Aholab's own ahoNT automatic phonemizer output — the same lab
+#:   that authors AhoTTS (see the module docstring's ahotts-g2p section).
+_AHOTTS_SAME_SOURCE_DATASETS = frozenset({"hitz_basque_ipa"})
 
-    ``limit=None`` scores the FULL gold set (the published run — same
-    no-caps policy as ``benchmark.py --scoreboard``), except where the
-    language config carries an explicit ``sample_n``: gold sets so large
-    that per-word external systems make a full pass impractical (the
-    617k-row Portal lexicon) are scored on a fixed-seed sample of that
-    documented size, and the row says so (``sampled: true``) instead of
-    hiding the cap.
+#: Datasets whose gold text was drafted by the SAME Claude lineage that
+#: authored orthography2ipa's own dialect specs (see benchmark.py's
+#: ``load_arabic_tts``/``load_portuguese_tts``/gold20 provenance notes,
+#: which call this relationship "near-circular"). This is not the general
+#: ``llm-generated`` tier as a whole — Claude drafted every dataset in
+#: that tier, ``mirandese_dict`` and ``barranquenho_dict`` included, so
+#: "which LLM" does not distinguish them. What distinguishes them is
+#: whether o2i's OWN output fed back into the gold:
+#: ``load_mirandese_dict``'s docstring documents that it was "NOT produced
+#: by a phonemizer, by orthography2ipa, or by any downstream o2i
+#: consumer — so scoring o2i against it is not circular", so it stays
+#: OUT of this set. ``barranquenho_dict`` is the opposite case:
+#: ``load_barranquenho_dict``'s docstring says the near-zero PER o2i
+#: scores against it "suggests their IPA column is itself o2i-aligned —
+#: treat every number from this dataset as agreement, not correctness".
+#: It has no ``LANGS`` entry today so no row ever reaches this function
+#: for it, but if it ever gains one it MUST join this set — the loader's
+#: own documentation already calls the comparison circular. Only the
+#: three datasets below currently have both a ``LANGS`` entry and a
+#: documented near-circular relationship with o2i's own rules, so only
+#: they get o2i flagged same-source: scoring o2i against a gold drafted
+#: with the same knowledge that went into o2i's own rules measures
+#: self-agreement, not correctness.
+_O2I_SAME_SOURCE_DATASETS = frozenset({
+    "arabic_tts", "portuguese_tts", "gold20_arabic",
+})
+
+#: Provenance tiers produced by a process independent of any G2P system —
+#: a genuine external reference, not another tool's (or o2i's own) output.
+#: These are the only tiers a "beats espeak" claim can be made from without
+#: a qualifier. See benchmark.RELIABILITY_TIERS for the full tier order.
+_GOLD_TIERS = frozenset({"expert-human", "lexicon-derived", "crowd-scraped"})
+
+#: The remaining tiers: the reference IS another tool's output (or an
+#: LLM's, with no error model at all). A row on one of these measures
+#: agreement with whatever produced the reference, not correctness — see
+#: "Machine-generated-reference rows are agreement, not accuracy" below.
+#: ``machine-generated`` is included here (not just the competitor/LLM
+#: tiers) because in this harness's registered datasets it is ALSO always
+#: another automatic phonemizer's output (e.g. HiTZ's ahoNT for
+#: ``hitz_basque_ipa``) rather than a human- or corpus-derived reference.
+_AGREEMENT_TIERS = frozenset({
+    "machine-generated", "espeak-derived", "epitran-derived", "llm-generated",
+})
+
+
+def _primary_rows(rows: List[dict]) -> List[dict]:
+    """One row per language: the row for that language's CONFIGURED
+    primary dataset (``LANGS[lang]["dataset"]``), which is always first in
+    ``compare_lang``'s output. Used for the top-line aggregate so a
+    language with many registered golds (see ``_robustness_section``
+    instead for the full multi-gold breakdown) is counted exactly once —
+    counting every row would let languages with more registered datasets
+    dominate the aggregate."""
+    primary_by_lang = {
+        lang: cfg["dataset"][0] for lang, cfg in LANGS.items()
+    }
+    out = []
+    for r in rows:
+        if primary_by_lang.get(r["lang"]) == r["dataset"]:
+            out.append(r)
+    return out
+
+
+def _comparable_and_wins(rows: List[dict]) -> Tuple[List[dict], int]:
+    """espeak-comparable rows (both PERs present, neither same-source) from
+    *rows*, and how many of them o2i wins on."""
+    comparable = [
+        r for r in rows
+        if r["o2i_per"] is not None and r["espeak_per"] is not None
+        and not r.get("espeak_same_source") and not r.get("o2i_same_source")
+    ]
+    wins = sum(1 for r in comparable if r["o2i_per"] < r["espeak_per"])
+    return comparable, wins
+
+
+def _same_source_flags(dataset_name: str, loader_lang: str) -> Dict[str, bool]:
+    """Which comparison systems would be scored against their OWN output
+    for this ``(dataset, loader_lang)`` pair — see
+    ``_AHOTTS_SAME_SOURCE_DATASETS``/``_O2I_SAME_SOURCE_DATASETS`` above
+    for the full rules.
+
+    Datasets with no registered ``PROVENANCE`` entry (only possible in
+    tests, which register throwaway fake datasets — every real dataset in
+    ``benchmark.DATASETS`` is enforced to have one) are treated as
+    non-same-source rather than raising.
+    """
+    try:
+        tier = benchmark.provenance_for(dataset_name, loader_lang)
+    except KeyError:
+        tier = None
+    return {
+        "espeak": tier == "espeak-derived",
+        "espeak_rules": tier == "espeak-derived",
+        "epitran": tier == "epitran-derived",
+        "ahotts": dataset_name in _AHOTTS_SAME_SOURCE_DATASETS,
+        "o2i": dataset_name in _O2I_SAME_SOURCE_DATASETS,
+    }
+
+
+def _provenance_tier_or_none(dataset_name: str, loader_lang: str) -> Optional[str]:
+    try:
+        return benchmark.provenance_for(dataset_name, loader_lang)
+    except KeyError:
+        return None
+
+
+def _datasets_for_loader_lang(loader_lang: str) -> List[str]:
+    """Every ``benchmark.DATASETS`` name whose language list includes
+    *loader_lang*, sorted for deterministic row order."""
+    return sorted(
+        name for name, (_loader, langs) in benchmark.DATASETS.items()
+        if loader_lang in langs
+    )
+
+
+def compare_lang(lang: str, limit: Optional[int]) -> List[dict]:
+    """Run *lang* through every available system on EVERY registered gold
+    dataset for its underlying language — not just the one dataset picked
+    for the main scoreboard row. Returns a list of row dicts (one per
+    matching dataset), each with per-system PER (or ``None`` == "n/a", or
+    flagged ``*_same_source`` when a system's own output IS the gold — see
+    ``_same_source_flags``).
+
+    The language's configured ``dataset`` entry is always first in the
+    returned list (keeping existing single-row consumers/ordering
+    unaffected); any additional datasets ``benchmark.DATASETS`` registers
+    for the same loader language follow, sorted by name.
     """
     cfg = LANGS[lang]
-    dataset_name, loader_lang = cfg["dataset"]
+    primary_dataset, loader_lang = cfg["dataset"]
+    dataset_names = [primary_dataset] + [
+        d for d in _datasets_for_loader_lang(loader_lang) if d != primary_dataset
+    ]
+    return [
+        _compare_lang_dataset(lang, cfg, dataset_name, loader_lang, limit)
+        for dataset_name in dataset_names
+    ]
+
+
+def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
+                           loader_lang: str, limit: Optional[int]) -> dict:
+    """Score *lang* against ONE gold dataset (see ``compare_lang`` for the
+    multi-dataset iteration this backs)."""
     loader, _ = benchmark.DATASETS[dataset_name]
+    same_source = _same_source_flags(dataset_name, loader_lang)
     sample_n = cfg.get("sample_n")
     if limit is None:
         effective = sample_n if sample_n is not None else sys.maxsize
@@ -818,12 +973,14 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
     ahotts_rows: List[Tuple[Optional[str], List[str]]] = []
     africa_g2p_rows: List[Tuple[Optional[str], List[str]]] = []
 
-    use_espeak = cfg["espeak"] is not None and espeak_available()
-    use_espeak_rules = cfg["espeak"] is not None and espeak_rules_available()
-    use_epitran = cfg["epitran"] is not None
+    use_espeak = (cfg["espeak"] is not None and espeak_available()
+                  and not same_source["espeak"])
+    use_espeak_rules = (cfg["espeak"] is not None and espeak_rules_available()
+                         and not same_source["espeak_rules"])
+    use_epitran = cfg["epitran"] is not None and not same_source["epitran"]
     use_gruut = cfg["gruut"] is not None
     use_pycotovia = cfg.get("pycotovia") is not None
-    use_ahotts = cfg.get("ahotts") is not None
+    use_ahotts = cfg.get("ahotts") is not None and not same_source["ahotts"]
     use_africa_g2p = cfg.get("africa_g2p") is not None
 
     espeak_out: Dict[str, Optional[str]] = {}
@@ -905,15 +1062,19 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         "n": len(words),
         "o2i_per": round(o2i_per, 4) if o2i_per is not None else None,
         "o2i_n": o2i_n,
+        "o2i_same_source": same_source["o2i"],
         "o2i_lex_per": round(o2i_lex_per, 4) if o2i_lex_per is not None else None,
         "o2i_lex_n": o2i_lex_n,
         "espeak_per": round(espeak_per, 4) if espeak_per is not None else None,
         "espeak_n": espeak_n,
         "espeak_voice": cfg["espeak"],
+        "espeak_same_source": same_source["espeak"],
         "espeak_rules_per": round(espeak_rules_per, 4) if espeak_rules_per is not None else None,
         "espeak_rules_n": espeak_rules_n,
+        "espeak_rules_same_source": same_source["espeak_rules"],
         "epitran_per": round(epitran_per, 4) if epitran_per is not None else None,
         "epitran_n": epitran_n,
+        "epitran_same_source": same_source["epitran"],
         "gruut_per": round(gruut_per, 4) if gruut_per is not None else None,
         "gruut_n": gruut_n,
         "pycotovia_per": round(pycotovia_per, 4) if pycotovia_per is not None else None,
@@ -921,8 +1082,10 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         "ahotts_per": round(ahotts_per, 4) if ahotts_per is not None else None,
         "ahotts_n": ahotts_n,
         "ahotts_version": ahotts_version,
+        "ahotts_same_source": same_source["ahotts"],
         "africa_g2p_per": round(africa_g2p_per, 4) if africa_g2p_per is not None else None,
         "africa_g2p_n": africa_g2p_n,
+        "provenance_tier": _provenance_tier_or_none(dataset_name, loader_lang),
         "harness_version": HARNESS_VERSION,
         "limit": limit if limit is not None else "full",
         "sampled": limit is None and sample_n is not None,
@@ -933,7 +1096,7 @@ def build_comparison(limit: Optional[int]) -> List[dict]:
     rows: List[dict] = []
     for lang in sorted(LANGS):
         try:
-            rows.append(compare_lang(lang, limit))
+            rows.extend(compare_lang(lang, limit))
         except Exception as exc:
             print(f"skip lang={lang}: {exc}", file=sys.stderr)
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
@@ -942,6 +1105,16 @@ def build_comparison(limit: Optional[int]) -> List[dict]:
 
 def _fmt(per: Optional[float]) -> str:
     return f"{per:.4f}" if per is not None else "n/a"
+
+
+def _cell(row: dict, system: str) -> str:
+    """Format one system's cell for *row*, distinguishing an honestly
+    tautological ``same-source`` comparison (the system's own output IS
+    the gold — see ``_same_source_flags``) from a plain ``n/a`` (the
+    system is unavailable or has no mapping for this language)."""
+    if row.get(f"{system}_same_source"):
+        return "same-source"
+    return _fmt(row.get(f"{system}_per"))
 
 
 _CATALAN_DIALECT_LABELS = {
@@ -1015,6 +1188,123 @@ def _catalan_dialect_table_lines(rows: List[dict],
     return lines
 
 
+def _robustness_section(rows: List[dict]) -> List[str]:
+    """For every language scored against espeak on 2+ datasets, report the
+    win/loss split — the mandatory honesty check: a language that beats
+    espeak on one gold and loses on another must show BOTH, not just the
+    flattering row. Languages with only one espeak-comparable dataset (or
+    none) are skipped — there is nothing to reconcile."""
+    by_lang: Dict[str, List[dict]] = {}
+    for r in rows:
+        if (r.get("espeak_same_source") or r.get("o2i_same_source")
+                or r.get("espeak_per") is None):
+            continue
+        by_lang.setdefault(r["lang"], []).append(r)
+
+    lines = ["## Robustness across golds", ""]
+    lines.append(
+        "A system winning on one gold and losing on another for the SAME "
+        "language is real signal, not noise to average away. Every "
+        "language with 2+ espeak-comparable gold datasets is listed "
+        "below with its exact win/loss split (same-source cells excluded "
+        "— they are never comparable, see above)."
+    )
+    lines.append("")
+    multi = {lang: rs for lang, rs in by_lang.items() if len(rs) >= 2}
+    if not multi:
+        lines.append(
+            "No language in this run had 2+ espeak-comparable gold "
+            "datasets."
+        )
+        lines.append("")
+        return lines
+    for lang in sorted(multi):
+        rs = sorted(multi[lang], key=lambda r: r["dataset"])
+        wins = [r["dataset"] for r in rs if r["o2i_per"] < r["espeak_per"]]
+        losses = [r["dataset"] for r in rs if r["o2i_per"] >= r["espeak_per"]]
+        verdict = ("wins on all golds" if not losses else
+                    "loses on all golds" if not wins else
+                    "MIXED — wins on some golds, loses on others")
+        lines.append(f"- **`{lang}`** ({verdict}):")
+        for r in rs:
+            outcome = "o2i wins" if r["dataset"] in wins else "o2i loses"
+            lines.append(
+                f"  - `{r['dataset']}` (n={r['n']}, tier="
+                f"{r.get('provenance_tier') or '?'}): o2i "
+                f"{_fmt(r['o2i_per'])} vs espeak {_fmt(r['espeak_per'])} "
+                f"— {outcome}"
+            )
+    lines.append("")
+    return lines
+
+
+#: How far a fresh `o2i_per` may drift from `benchmarks/results.json`'s
+#: `per` for the same (lang, dataset) before it counts as a disagreement
+#: worth naming rather than rounding noise.
+_SCOREBOARD_DRIFT_TOLERANCE = 0.002
+
+
+def _scoreboard_staleness_note(rows: List[dict]) -> str:
+    """Compare this run's freshly-computed `o2i_per` against the committed
+    `benchmarks/results.json` for every shared (lang, dataset) pair and
+    report the truth, instead of asserting a static "matches the
+    scoreboard" claim that silently goes stale the next time an engine
+    change updates compare_systems.py's numbers without a matching
+    scripts/benchmark.py --scoreboard regeneration for that row (this is
+    exactly what happened to `ca`/`ipa_childes` and `ca`/`vox_communis`
+    after PR #802, which only regenerated `ca`/`4catac`).
+    """
+    try:
+        with open(benchmark.SCOREBOARD_JSON, encoding="utf-8") as fh:
+            scoreboard_rows = json.load(fh)
+    except (OSError, json.JSONDecodeError):
+        return (
+            "`benchmarks/results.json` could not be read in this run — "
+            "the match claim below is unverified."
+        )
+    scoreboard_per = {
+        (r["lang"], r["dataset"]): r.get("per") for r in scoreboard_rows
+    }
+    stale = []
+    for row in rows:
+        key = (row["lang"], row["dataset"])
+        if key not in scoreboard_per:
+            continue
+        sb_per = scoreboard_per[key]
+        o2i_per = row["o2i_per"]
+        if sb_per is None or o2i_per is None:
+            if sb_per != o2i_per:
+                stale.append((row["lang"], row["dataset"], o2i_per, sb_per))
+            continue
+        if abs(sb_per - o2i_per) > _SCOREBOARD_DRIFT_TOLERANCE:
+            stale.append((row["lang"], row["dataset"], o2i_per, sb_per))
+
+    if not stale:
+        return (
+            "The `o2i PER` column here matches "
+            "[`benchmarks/results.json`](../benchmarks/results.json)'s "
+            "`per` for every shared language/dataset pair in this run."
+        )
+    stale.sort()
+    listed = "; ".join(
+        f"`{lang}`/`{dataset}` (here {_fmt(o2i_per)}, results.json "
+        f"{_fmt(sb_per)})"
+        for lang, dataset, o2i_per, sb_per in stale
+    )
+    return (
+        f"The `o2i PER` column here matches "
+        f"[`benchmarks/results.json`](../benchmarks/results.json)'s `per` "
+        f"for most shared language/dataset pairs, EXCEPT the "
+        f"{len(stale)} listed below — those `benchmarks/results.json` "
+        f"rows are stale (a prior PR changed the engine but did not "
+        f"regenerate every affected row there; see e.g. PR #802's "
+        f"`ca`/`4catac`-only regeneration). The numbers in THIS table "
+        f"reflect the current engine via a live run; "
+        f"`benchmarks/results.json` needs a matching regeneration for: "
+        f"{listed}."
+    )
+
+
 def write_comparison(rows: List[dict],
                       catalan_voices: Optional[Dict[str, Optional[str]]] = None) -> None:
     os.makedirs(os.path.dirname(COMPARISON_JSON), exist_ok=True)
@@ -1022,9 +1312,13 @@ def write_comparison(rows: List[dict],
         json.dump(rows, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
 
-    comparable = [r for r in rows if r["o2i_per"] is not None
-                  and r["espeak_per"] is not None]
-    wins = sum(1 for r in comparable if r["o2i_per"] < r["espeak_per"])
+    primary = _primary_rows(rows)
+    gold_primary = [r for r in primary if r.get("provenance_tier") in _GOLD_TIERS]
+    agreement_primary = [r for r in primary
+                          if r.get("provenance_tier") in _AGREEMENT_TIERS]
+    gold_comparable, gold_wins = _comparable_and_wins(gold_primary)
+    agreement_comparable, agreement_wins = _comparable_and_wins(agreement_primary)
+    scoreboard_note = _scoreboard_staleness_note(rows)
 
     lines = [
         "# Comparison to other G2P systems",
@@ -1035,10 +1329,14 @@ def write_comparison(rows: List[dict],
         "datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using "
         "the FULL gold set of every mapped language (no cap — the same "
         "no-caps policy as the scoreboard; the one explicitly-flagged "
-        "exception is the 617k-row Portal lexicon, scored on a "
-        "fixed-seed sample and marked `sampled` in the JSON) — so the "
-        "`o2i PER` column here matches the scoreboard's rows for the "
-        "same language/dataset pair. Regenerate with:",
+        "exception is `pt-PT`, whose 598k-row `portuguese_unified` "
+        "('Portal lexicon') made a per-word-external-system full pass "
+        "impractical, so its config sets a `sample_n` — and because "
+        "`sample_n` is a per-LANGUAGE cap, not a per-dataset one, it "
+        "now applies to every dataset registered for `pt-PT`, not just "
+        "`portuguese_unified`; all of them are marked `sampled` in the "
+        "JSON). "
+        + scoreboard_note + " Regenerate with:",
         "",
         "```bash",
         "pip install '.[compare]'  # epitran, gruut, pycotovia, "
@@ -1131,6 +1429,37 @@ def write_comparison(rows: List[dict],
         "This table includes languages where orthography2ipa **loses** to "
         "espeak-ng. Cherry-picking would make the comparison worthless.",
         "",
+        "**Every gold dataset a language has, not one.** Earlier versions "
+        "of this table picked a single 'battleground' gold per language. "
+        "Multiple rows per language are now committed — one per "
+        "registered gold dataset for that language — so a system winning "
+        "on one gold and losing on another for the SAME language is "
+        "visible here, not hidden by picking the flattering row.",
+        "",
+        "**`same-source` cells**: a cell reads `same-source` (never "
+        "`n/a`) when the gold dataset IS that system's own output — "
+        "e.g. scoring `espeak` against `ipa_babylm` (espeak-derived) or "
+        "`ahotts-g2p` against `hitz_basque_ipa` (HiTZ's own ahoNT "
+        "phonemizer output, same lab as AhoTTS). Scoring a system "
+        "against its own generator is tautological — it would score "
+        "near-zero by construction, not because it is accurate — so "
+        "that comparison is refused rather than reported. The same rule "
+        "applies to **o2i itself**: `arabic_tts`, `portuguese_tts` and "
+        "`gold20_arabic` were drafted by the same Claude lineage that "
+        "authored orthography2ipa's own Arabic/Portuguese dialect specs "
+        "(near-circular per the datasets' provenance notes in "
+        "`scripts/benchmark.py`) — a spec author's own generated gold "
+        "measures self-agreement with the spec, not correctness, so the "
+        "`o2i PER` cell on those rows also reads `same-source`.",
+        "",
+        "**Machine-generated-reference rows are agreement, not "
+        "accuracy.** Rows whose gold is itself another phonemizer's or "
+        "an LLM's output (see each dataset's `provenance_tier` in "
+        "`benchmarks/comparison.json`, and `docs/scoreboard.md`'s "
+        "provenance legend) measure how much a system agrees with the "
+        "tool that generated the gold — not whether either is correct. "
+        "A win on such a row is not a claim of accuracy.",
+        "",
         "| Lang | Dataset | N | o2i PER | espeak PER | epitran PER | "
         "gruut PER | pycotovia PER | ahotts-g2p PER | africa-g2p PER |",
         "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
@@ -1138,24 +1467,46 @@ def write_comparison(rows: List[dict],
     for row in rows:
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {row['n']} | "
-            f"{_fmt(row['o2i_per'])} | {_fmt(row['espeak_per'])} | "
-            f"{_fmt(row['epitran_per'])} | {_fmt(row['gruut_per'])} | "
+            f"{_cell(row, 'o2i')} | {_cell(row, 'espeak')} | "
+            f"{_cell(row, 'epitran')} | {_fmt(row['gruut_per'])} | "
             f"{_fmt(row.get('pycotovia_per'))} | "
-            f"{_fmt(row.get('ahotts_per'))} | "
+            f"{_cell(row, 'ahotts')} | "
             f"{_fmt(row.get('africa_g2p_per'))} |"
         )
     lines.append("")
-    if comparable:
+    lines.append(
+        "Counted over distinct LANGUAGES (one row per language: its "
+        "configured primary gold dataset — see `_primary_rows`), never "
+        "over table rows, and split by whether that primary gold is an "
+        "independent reference or another tool's/LLM's output:"
+    )
+    lines.append("")
+    if gold_comparable:
         lines.append(
-            f"**o2i beats espeak on {wins} of {len(comparable)} "
-            "comparable languages.**"
+            f"- **Gold-tier** (expert-human / lexicon-derived / "
+            f"crowd-scraped primary gold): o2i beats espeak on "
+            f"{gold_wins} of {len(gold_comparable)} comparable languages."
         )
     else:
         lines.append(
-            "No languages were comparable against espeak-ng in this run "
-            "(espeak-ng unavailable or no overlapping mappings)."
+            "- **Gold-tier**: no language's primary gold was "
+            "espeak-comparable in this run."
+        )
+    if agreement_comparable:
+        lines.append(
+            f"- **Agreement-tier** (machine-generated / espeak-derived / "
+            f"epitran-derived / llm-generated primary gold — measures "
+            f"agreement with the generating tool, not accuracy; see "
+            f"\"Honesty\" above): o2i beats espeak on {agreement_wins} of "
+            f"{len(agreement_comparable)} comparable languages."
+        )
+    else:
+        lines.append(
+            "- **Agreement-tier**: no language's primary gold was "
+            "espeak-comparable in this run."
         )
     lines.append("")
+    lines.extend(_robustness_section(rows))
     lex_rows = [r for r in rows if r.get("o2i_lex_per") is not None
                 or r.get("espeak_rules_per") is not None]
     lines.extend([
@@ -1188,8 +1539,8 @@ def write_comparison(rows: List[dict],
             lines.append(
                 f"| {row['lang']} | {row['dataset']} | {row['n']} | "
                 f"{_fmt(row['o2i_per'])} | {_fmt(row.get('o2i_lex_per'))} | "
-                f"{_fmt(row['espeak_per'])} | "
-                f"{_fmt(row.get('espeak_rules_per'))} |"
+                f"{_cell(row, 'espeak')} | "
+                f"{_cell(row, 'espeak_rules')} |"
             )
     else:
         lines.append(
@@ -1255,16 +1606,16 @@ def main() -> None:
                   f"dictsource_lang={DICTSOURCE_LANG.get(lang)}")
         return
 
-    row = compare_lang(args.lang, args.limit)
-    print(f"lang={row['lang']} n={row['n']} "
-          f"o2i={_fmt(row['o2i_per'])} "
-          f"o2i_lex={_fmt(row.get('o2i_lex_per'))} "
-          f"espeak={_fmt(row['espeak_per'])} "
-          f"espeak_rules={_fmt(row.get('espeak_rules_per'))} "
-          f"epitran={_fmt(row['epitran_per'])} gruut={_fmt(row['gruut_per'])} "
-          f"pycotovia={_fmt(row.get('pycotovia_per'))} "
-          f"ahotts={_fmt(row.get('ahotts_per'))} "
-          f"africa_g2p={_fmt(row.get('africa_g2p_per'))}")
+    for row in compare_lang(args.lang, args.limit):
+        print(f"lang={row['lang']} dataset={row['dataset']} n={row['n']} "
+              f"o2i={_fmt(row['o2i_per'])} "
+              f"o2i_lex={_fmt(row.get('o2i_lex_per'))} "
+              f"espeak={_cell(row, 'espeak')} "
+              f"espeak_rules={_cell(row, 'espeak_rules')} "
+              f"epitran={_cell(row, 'epitran')} gruut={_fmt(row['gruut_per'])} "
+              f"pycotovia={_fmt(row.get('pycotovia_per'))} "
+              f"ahotts={_cell(row, 'ahotts')} "
+              f"africa_g2p={_fmt(row.get('africa_g2p_per'))}")
 
 
 if __name__ == "__main__":
