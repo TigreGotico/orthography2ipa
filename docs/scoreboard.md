@@ -120,8 +120,8 @@ The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word
 | br | wikipron | 803 | 0.4105 | [0.3976, 0.4232] | 0.0436 | research | crowd-scraped |
 | bua | wikipron | 140 | 0.3670 | [0.3314, 0.4027] | 0.1000 | skeleton | crowd-scraped |
 | ca | 4catac | 160 | 0.0986 | n/a | n/a | research | expert-human |
-| ca | ipa_childes | 3813 | 0.2883 | [0.2821, 0.2946] | 0.1621 | research | espeak-derived |
-| ca | vox_communis | 218431 | 0.8119 | [0.8073, 0.8160] | 0.2867 | research | epitran-derived |
+| ca | ipa_childes | 3813 | 0.2595 | [0.2529, 0.2662] | 0.2195 | research | espeak-derived |
+| ca | vox_communis | 218431 | 0.8088 | [0.8043, 0.8130] | 0.2946 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2596 | [0.2152, 0.3026] | 0.3302 | research | crowd-scraped |
 | ca-x-balear | 4catac | 160 | 0.1997 | n/a | n/a | research | expert-human |
 | ca-x-occidental | 4catac | 160 | 0.1026 | n/a | n/a | research | expert-human |
