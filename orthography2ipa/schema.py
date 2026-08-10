@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Literal, Dict, List, Literal, Optional, Tuple, Union
+from typing import Dict, List, Literal, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -173,27 +173,40 @@ class AllophoneRuleModel(_Strict):
     surface: str
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
-    stress: Optional[Literal["stressed", "unstressed"]] = None
+    stress: Optional[Literal["stressed", "unstressed", "pretonic", "posttonic"]] = None
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     followed_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     preceded_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     followed_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
+    followed_by_grapheme: Optional[List[str]] = None
+    followed_by_grapheme_not: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
     word: Optional[List[str]] = None
     notes: str = ""
+    mutates_neighbor: Optional[str] = None
+    mutates_neighbor_side: Optional[Literal["preceding", "following"]] = None
+
+    @model_validator(mode="after")
+    def _mutation_pair(self) -> "AllophoneRuleModel":
+        if (self.mutates_neighbor is None) != (self.mutates_neighbor_side is None):
+            raise ValueError(
+                f"allophone rule '{self.id}': mutates_neighbor and "
+                "mutates_neighbor_side must be set together (both or neither)"
+            )
+        return self
 
 
 class OrthographyStandardModel(_Strict):
@@ -239,6 +252,8 @@ class StressRulesModel(_Strict):
     penult_stress_endings: Optional[List[str]] = None
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
+    accent2_mark: str = ""
+    accent2_final_letters: Optional[List[str]] = None
     diphthongs: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
@@ -318,6 +333,10 @@ class LanguageSpecModel(_Strict):
     inherent_vowel: Optional[str] = None
     optional_marks: Optional[List[str]] = None
     fold_diacritics: Optional[List[str]] = None
+    vowel_graphemes: Optional[List[str]] = None
+    dependent_vowels: Optional[List[str]] = None
+    preposed_vowels: Optional[List[str]] = None
+    coda_no_inherent_vowel: Optional[bool] = None
     collapse_geminates: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
