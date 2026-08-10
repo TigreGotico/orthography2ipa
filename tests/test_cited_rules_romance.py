@@ -476,7 +476,7 @@ def test_fr_intervocalic_s_voices():
     fr-FR notes: "INTERVOCALIC s: [z] between vowels within a word." Fouché
     (1959), Tranel (1987).
     """
-    assert _t("fr-FR", "rose") == "ʁɔz"
+    assert _t("fr-FR", "rose") == "ʁoz"  # loi de position: [o] before /z/ (Tranel 1987 §3)
 
 
 def test_fr_e_caduc_silent_word_finally():
@@ -504,6 +504,36 @@ def test_fr_doubled_consonants_degeminate():
     belle: the ⟨ll⟩ digraph yields exactly one [l].
     """
     assert _t("fr-FR", "belle").count("l") == 1
+
+
+def test_fr_glide_formation_keeps_final_ie_nucleus():
+    """Glide formation must never delete a word's only vowel nucleus.
+
+    Word-internal ⟨i⟩ before a vowel glides to [j] (Tranel 1987 §5-6): pied,
+    fiacre. But when the following vowel is the word's last audible slot —
+    word-final ⟨ie⟩, optionally followed by the transparent suffix graphemes
+    ⟨s⟩/⟨x⟩ (Tranel 1987 §3) — the ⟨i⟩ stays [i], because gliding would leave
+    the syllable with no nucleus at all (vie → *[vj]).
+    """
+    assert _t("fr-FR", "pied").startswith("pj")
+    assert _t("fr-FR", "fiacre") == "fjakʁ"
+    for word, expected in [
+        ("vie", "vi"),
+        ("vies", "vi"),
+        ("envie", "ɑ̃vi"),
+        ("folie", "fɔli"),
+        ("algérie", "alʒeʁi"),
+    ]:
+        out = _t("fr-FR", word)
+        assert out == expected, f"{word}: {out!r} != {expected!r}"
+        assert any(c in "aeiouyɑɛœøəɔɥ̃ɑ̃ɛ̃ɔ̃i" for c in out)
+
+
+def test_fr_ill_irregular_word_exceptions():
+    """The closed irregular ⟨ill⟩=[il] class (Tranel 1987 §4.3)."""
+    assert _t("fr-FR", "ville") == "vil"
+    assert _t("fr-FR", "mille") == "mil"
+    assert _t("fr-FR", "tranquille") == "tʁɑ̃kil"
 
 
 @pytest.mark.xfail(
@@ -538,12 +568,6 @@ def test_fr_liaison_n():
     assert "n‿" in _s("fr-FR", "un ami")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="fr-FR notes cite amateur [amatœʁ]; engine produces [amatø] — the "
-    "spec's own 'FINAL CONSONANTS: ... r typically silent word-finally' claim "
-    "deletes the ⟨r⟩ of the -eur suffix, contradicting the cited transcription",
-)
 def test_fr_amateur_cited_transcription():
     """fr-FR notes cite amateur as [amatœʁ].
 
@@ -551,8 +575,98 @@ def test_fr_amateur_cited_transcription():
     (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ] ...)."
     Sources: Fouché (1959), Tranel (1987).
 
-    The denasalisation itself fires (see test_fr_denasalisation_before_vowel);
-    the cited whole-word transcription is not reached, because the blanket
-    final-⟨r⟩ deletion rule strips the suffix's [ʁ].
+    Both halves now hold. The denasalisation fires (see
+    test_fr_denasalisation_before_vowel); the ⟨r⟩ survives because
+    ``word_final`` no longer deletes it by default; and the ⟨eu⟩ opens to
+    [œ] because its syllable (a·ma·teur) is closed.
     """
     assert _t("fr-FR", "amateur") == "amatœʁ"
+
+
+def test_fr_closed_syllable_e_is_open_mid():
+    """⟨e⟩ in a closed syllable is [ɛ], not schwa (Tranel 1987 §4)."""
+    assert _t("fr-FR", "abel") == "abɛl"
+    assert _t("fr-FR", "albert") == "albɛʁ"
+    assert _t("fr-FR", "venir").startswith("və")   # open syllable keeps schwa
+    assert _t("fr-FR", "samedi") == "samədi"
+
+
+def test_fr_loi_de_position_o():
+    """/ɔ/ is close [o] word-finally and before /z/ (Tranel 1987 §3)."""
+    assert _t("fr-FR", "mot") == "mo"
+    assert _t("fr-FR", "chose") == "ʃoz"
+    assert _t("fr-FR", "porte") == "pɔʁt"          # closed syllable stays [ɔ]
+
+
+def test_fr_pronounced_final_s_closed_list():
+    """Tranel 1987 §7's closed list of pronounced final ⟨s⟩."""
+    assert _t("fr-FR", "fils") == "fis"
+    assert _t("fr-FR", "ours") == "uʁs"
+    assert _t("fr-FR", "très") == "tʁɛ"            # regular final s stays silent
+
+
+def test_fr_glide_guard_only_blocks_silent_finals():
+    """before_final_vowel fires only when the final vowel is silenced.
+
+    vie keeps its nucleus (silent e-caduc would be left alone); alicia
+    glides freely (its final ⟨a⟩ is pronounced and carries the nucleus).
+    """
+    assert _t("fr-FR", "vie") == "vi"
+
+
+def test_fr_mute_er_ez_is_morphology_not_orthography():
+    """Word-final ⟨-er⟩/[e] (parler) vs /ɛʁ/ (mer, hiver, super, poker) and
+    ⟨-ez⟩/[e] (mangez, nez) are a MORPHOLOGICAL split — the mute reading
+    belongs to the infinitive/2pl/agent-noun endings, not to the letter
+    sequence (Fouché 1959; Tranel 1987). Modelling it as an ⟨er⟩/⟨ez⟩
+    grapheme key is forbidden (AGENTS.md morpheme-chunk rule) and was
+    reverted after adversarial review: the digraph made ⟨s⟩ in pers-/vers-
+    look intervocalic (personne → *[pɛʁzɔn]) and out-munched ⟨rr⟩
+    degemination (terre → *[tɛʁʁ]). These pins hold the letter-level
+    behaviour and the non-regressions until a morpheme-aware engine
+    context exists (same follow-up as English suffix palatalization).
+    """
+    # mer/cher/hiver come from the word_exceptions final-r-pronounced list
+    # (letter-level final ⟨r⟩ is silent); vers is genuinely letter-level —
+    # its ⟨r⟩ is not word-final, only the transparent ⟨s⟩ after it is.
+    assert _t("fr-FR", "mer") == "mɛʁ"
+    assert _t("fr-FR", "cher") == "ʃɛʁ"
+    assert _t("fr-FR", "vers") == "vɛʁ"
+    assert _t("fr-FR", "hiver") == "ivɛʁ"
+    # the regression classes the reverted digraph broke
+    assert _t("fr-FR", "personne") == "pɛʁsɔn"
+    assert _t("fr-FR", "version") == "vɛʁsjɔ̃"
+    assert "ʁʁ" not in _t("fr-FR", "terre")
+    assert "ʁʁ" not in _t("fr-FR", "pierre")
+    # vie/vies: the transparent-suffix mechanism itself is untouched
+    assert _t("fr-FR", "vie") == "vi"
+    assert _t("fr-FR", "vies") == "vi"
+
+
+def test_fr_y_is_a_vowel_letter():
+    """⟨y⟩ is declared a vowel letter for French (``vowel_graphemes: ["y"]``),
+    overriding the engine's closed Latin vowel-letter inventory (which
+    otherwise treats ⟨y⟩ as a consonant regardless of IPA, as it must for
+    English; see orthography2ipa/vowels.py). This lets ⟨y⟩-spelled nasal
+    vowels correctly absorb a following coda nasal (tympan, nymphe, symphonie
+    — Fouché 1959) and lets the c/g softening BEFORE_FRONT_VOWEL class reach
+    ⟨y⟩ (cycle, cygne — Fouché 1959; Tranel 1987), matching the class-level
+    condition already documented for ⟨e⟩/⟨i⟩.
+
+    ``gymnase`` is deliberately NOT asserted as correct here: real French is
+    [ʒimnaz] (no nasal — ⟨y⟩ before the ⟨mn⟩ cluster stays oral because the
+    nasal consonant is itself followed by another consonant, an onset-cluster
+    context the coda-nasal allophone rule does not distinguish from a true
+    coda). The engine currently produces the nasalised [ʒɛ̃naz] instead — a
+    known, acknowledged gap in the coda_nasal/FR_NASAL_ABSORB context
+    (pre-existing before this ⟨y⟩ fix, not introduced by it), left open
+    rather than papered over with a word_exception for one word. The same
+    ⟨-ymn-⟩ context also swallows the ⟨m⟩ itself once ⟨y⟩ counts as a
+    nasal-absorbing vowel (hymne → [ɛ̃n], real [imn]) — one class, one gap.
+    """
+    assert _t("fr-FR", "tympan") == "tɛ̃pɑ̃"
+    assert _t("fr-FR", "nymphe") == "nɛ̃f"
+    assert _t("fr-FR", "symphonie") == "sɛ̃fɔni"
+    assert _t("fr-FR", "cycle") == "sikl"
+    assert _t("fr-FR", "cygne") == "siɲ"
+    assert _t("fr-FR", "alicia") == "alisja"

@@ -35,7 +35,7 @@ from __future__ import annotations
 import logging
 import unicodedata
 from dataclasses import dataclass, replace
-from typing import Callable, List, Optional, Set, Tuple
+from typing import Callable, Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import UnmappedScriptError
 from orthography2ipa.features import (
@@ -48,6 +48,7 @@ from orthography2ipa.inventory import tokenize as inventory_tokenize
 from orthography2ipa.lexicon import get_lexicon
 from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.phonetok import (
+    PAUSE_PUNCTUATION,
     Candidate,
     IPAPath,
     PhonetokTokenizer,
@@ -60,11 +61,12 @@ from orthography2ipa.phonetok import (
     slot_confidence,
 )
 from orthography2ipa.allophony import compile_allophone_rescorer
-from orthography2ipa.positional import resolve_branches
+from orthography2ipa.positional import (match_grammatical_ending,
+                                        resolve_branches)
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
-from orthography2ipa.registry import get, resolve
+from orthography2ipa.registry import get, get_declared_plugins, resolve
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.sentence import (
     Position,
@@ -77,10 +79,11 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    _syllables_for, apply_stress_mark, detect_stress, detect_stress_by_weight,
-    syllabify, syllabify_ipa,
+    _syllables_for, apply_stress_mark, cliticless_keys, detect_stress,
+    detect_stress_by_weight, syllabify, syllabify_ipa,
 )
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.transforms import apply_transform
+from orthography2ipa.types import GraphemePosition, LanguageSpec
 
 __all__ = [
     "G2P",
@@ -96,7 +99,10 @@ __all__ = [
 
 _log = logging.getLogger(__name__)
 
-_PAUSE_PUNCTUATION = set(".,;:!?…")
+#: Pause marks across every writing system — see
+#: :data:`orthography2ipa.phonetok.PAUSE_PUNCTUATION` for the named list
+#: and why an ASCII-only set silently exempted every non-Latin script.
+_PAUSE_PUNCTUATION = frozenset(PAUSE_PUNCTUATION)
 
 #: Sentinel ``stressed_syll_idx`` for a prosodic clitic (a word listed in
 #: ``stress.cliticless_words``). It leans on its host and bears no lexical
@@ -112,6 +118,31 @@ _CLITIC_NO_STRESS = -1
 #: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
 #: Length and stress marks are not segments, so a run is identical across them.
 _VOWEL_IPA = set("aeiouɑɐɒæɓəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
+
+
+#: Positions whose value depends on syllable aperture. A spec that keys on
+#: none of them never needs a syllabification for their sake.
+_APERTURE_POSITIONS = frozenset({
+    GraphemePosition.OPEN_SYLLABLE,
+    GraphemePosition.CLOSED_SYLLABLE,
+    GraphemePosition.NUCLEUS_STRESSED_OPEN,
+    GraphemePosition.NUCLEUS_STRESSED_CLOSED,
+    GraphemePosition.NUCLEUS_UNSTRESSED_OPEN,
+    GraphemePosition.NUCLEUS_UNSTRESSED_CLOSED,
+})
+
+
+def _syllable_at(syllables: List[str], idx: Optional[int]) -> Optional[str]:
+    """The orthographic syllable at *idx*, or ``None`` when out of range.
+
+    The engine only has syllables when the spec declares stress rules, and
+    :meth:`G2P._map_tokens_to_syllables` may leave a token unplaced; both
+    cases mean "aperture unknown", which is what ``None`` says to
+    :func:`~orthography2ipa.positional.grapheme_positions`.
+    """
+    if idx is None or not syllables or not (0 <= idx < len(syllables)):
+        return None
+    return syllables[idx]
 
 
 def _collapse_geminates(ipa: str) -> str:
@@ -249,10 +280,6 @@ class _StagePlugins:
 
     def get(self, stage: str) -> list:
         if stage not in self._cache:
-            from dataclasses import replace
-
-            from orthography2ipa.registry import get_declared_plugins
-
             # The caller's choice overrides the spec's, so resolve against the
             # merged view rather than the spec's own block.
             merged = replace(self._spec, plugins=self._declared)
@@ -354,7 +381,7 @@ class G2P:
         # rebuilds the segment context from the previous pass. `allophone_passes`
         # is 1 for every spec that has not opted in, so the tuple holds exactly
         # one copy and behaviour is byte-identical.
-        n_passes = max(1, getattr(self.spec, "allophone_passes", 1))
+        n_passes = max(1, self.spec.allophone_passes)
         self._allophone_chain: Tuple[LatticeRescorer, ...] = (
             (allophone_rescorer,) * n_passes
             if allophone_rescorer is not None else ()
@@ -410,6 +437,30 @@ class G2P:
         # runs and transcribe() is byte-identical to before this seam existed.
         self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
             normalize_sentence_rescorers(sentence_rescorer))
+        # Per-engine memo of two pure, spec-only computations that the profiler
+        # showed dominate the front-end path: syllabification (the silabificador
+        # plugin is not cheap) and the rules-only pronunciation lattice the
+        # confidence read rebuilds. Both are deterministic functions of the word
+        # and this engine's immutable spec — they never consult the runtime-
+        # mutable lexicon — so a fresh engine gets fresh caches and the results
+        # are byte-identical to computing them each time. Real speech repeats
+        # function words heavily, so the hit rate is high.
+        self._syll_cache: Dict[str, List[str]] = {}
+        self._lattice_cache: Dict[Tuple[str, int], List[SegmentSlot]] = {}
+        #: Does any grapheme in this spec key on syllable APERTURE? If not,
+        #: the aperture question is never asked: a stress-less spec skips
+        #: syllabification altogether (the most expensive step of the front
+        #: end), and a stress-declaring spec still skips the per-nucleus
+        #: open/closed computation. The feature costs a spec that does not
+        #: declare it nothing, which is what keeps it addable to the
+        #: engine without a cross-language latency bill.
+        self._uses_aperture: bool = any(
+            not _APERTURE_POSITIONS.isdisjoint(entry)
+            for entry in (self.spec.positional_graphemes or {}).values()
+            if entry)
+        #: Declared prosodic-clitic keys (see :meth:`_is_cliticless`), computed
+        #: once per engine on first use; ``None`` until then.
+        self._cliticless_cache: Optional[frozenset] = None
 
     # ─── public API ──────────────────────────────────────────────────
 
@@ -473,7 +524,12 @@ class G2P:
             ipa_words = apply_sentence_rescorers(
                 lattice, self._sentence_rescorers)
         if self.apply_sandhi and self._sandhi is not None:
-            ipa_words = self._sandhi.apply(ipa_words)
+            # The pause flags go WITH the words: a sandhi rule applies inside
+            # its prosodic domain, and the punctuation the tokenizer already
+            # read is where the intonational phrase ends (Nespor & Vogel 1986,
+            # *Prosodic Phonology*). Without them every rule crosses a comma.
+            ipa_words = self._sandhi.apply(
+                ipa_words, pausal=[w.pausal for w in words])
 
         # Cross-word phonology that needs code rather than a declarative rule: a
         # final /n/ that assimilates to the next onset, a case ending a pause
@@ -498,17 +554,25 @@ class G2P:
 
         ipa = " ".join(w for w in ipa_words if w)
         if self.dialect_profile:
-            from orthography2ipa.transforms import apply_transform
             # The spelling the transform reads is the words', normalized — which is
             # also the only spelling there is: a forced word contributes the text it
             # wrapped, and the markup itself is not part of the utterance.
             ipa = apply_transform(ipa, self.dialect_profile,
                                   ortho=" ".join(w.surface for w in words))
+        # Cross-word stages (sandhi, dialect transforms) can splice
+        # combining marks across a word boundary, so re-assert the NFC
+        # output contract on the assembled sentence too — see the same
+        # normalization in ``_transcribe_word``.
+        if ipa:
+            ipa = unicodedata.normalize("NFC", ipa)
 
         final_words = tuple(
-            WordTranscription(word=wt.word, ipa=iw, candidates=wt.candidates,
-                              unmapped=wt.unmapped, coverage=wt.coverage,
-                              confidence=wt.confidence)
+            WordTranscription(
+                word=wt.word,
+                ipa=unicodedata.normalize("NFC", iw) if iw else iw,
+                candidates=wt.candidates,
+                unmapped=wt.unmapped, coverage=wt.coverage,
+                confidence=wt.confidence)
             for wt, iw in zip(transcribed, ipa_words)
         )
         return TranscriptionResult(ipa=ipa, words=final_words,
@@ -599,8 +663,10 @@ class G2P:
         beam_width: int = 8,
     ) -> str:
         """Transcribe a single *word*."""
-        return self._transcribe_word(
-            word, self._width(search, beam_width)).ipa
+        ipa = self._transcribe_word(word, self._width(search, beam_width)).ipa
+        # Output contract: NFC (see the note in _transcribe_word on why the
+        # composition happens here, at the boundary, rather than inline).
+        return unicodedata.normalize("NFC", ipa) if ipa else ipa
 
     def candidates(self, word: str, *, beam_width: int = 8) -> List[IPAPath]:
         """All beam candidates for a single *word*, best first."""
@@ -623,22 +689,37 @@ class G2P:
 
         The lattice is the *pre-lexical* phoneme lattice: it is built
         before stress-mark insertion and cross-word sandhi (which act on
-        the whole utterance), and before any ``word_exceptions`` override.
+        the whole utterance), and before any word-level override —
+        ``word_exceptions`` or the ``grammatical_endings`` tail rewrite.
         Concatenating each slot's top candidate therefore matches the
         engine's chosen pronunciation up to those later stages — it is the
         object a downstream rescorer (B4) or confidence signal (B5) reads.
         """
         keep = 2 ** 31 if beam_width < 0 else beam_width
+        cache_key = (word, keep)
+        cached = self._lattice_cache.get(cache_key)
+        if cached is not None:
+            # SegmentSlot is frozen, so sharing the elements is safe; a fresh
+            # list guards the cache against a caller that mutates the sequence.
+            return list(cached)
         g_tokens = self._tokenizer.grapheme_tokens(word)
         if not g_tokens:
+            self._lattice_cache[cache_key] = []
             return []
-        contexts = flat_contexts(g_tokens)
+        contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         stressed_syll_idx: Optional[int] = None
-        sylls: List[str] = []
+        # Syllabification is needed for TWO independent things: the stress
+        # positions (which need the spec's stress rules) and the aperture
+        # positions (which need only the syllable's own shape). It is
+        # therefore computed unconditionally; a spec with no stress rules
+        # still gets open/closed syllables, and still gets no
+        # nucleus_stressed/unstressed because those stay gated on
+        # ``stressed_syll_idx`` below.
+        sylls: List[str] = (
+            self._syllables_cached(word)
+            if self.spec.stress is not None or self._uses_aperture else [])
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
@@ -658,7 +739,10 @@ class G2P:
                 weights_for=self._tokenizer.weights_for,
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
-                stressed_syll_idx=stressed_syll_idx)
+                stressed_syll_idx=stressed_syll_idx,
+                syllable=(_syllable_at(sylls, syll_for_token[tok_idx])
+                          if self._uses_aperture else None),
+                last_syll_idx=(len(sylls) - 1 if sylls else None))
             tok = g_tokens[tok_idx]
             slots.append(SegmentSlot(
                 grapheme=tok.grapheme,
@@ -678,11 +762,19 @@ class G2P:
                 if s.candidates
             ]
 
-        return [
+        result = [
             SegmentSlot(grapheme=s.grapheme, span=s.span,
                         candidates=s.candidates[:keep])
             for s in slots
+            # The lattice contract reserves empty candidates for deletion:
+            # a silenced marker grapheme (preposed dependent vowel folded
+            # into its consonant) is omitted here exactly as on the
+            # rescorer path, keeping `slot.top` total and confidence
+            # computed over sounding slots only.
+            if s.candidates
         ]
+        self._lattice_cache[cache_key] = result
+        return list(result)
 
     def word_confidence(self, word: str, *, beam_width: int = 8) -> float:
         """Per-word confidence for *word*, in ``[0.0, 1.0]`` (Workstream B5).
@@ -756,7 +848,7 @@ class G2P:
             slots = self.ipa_lattice(word)
             confidence = self.confidence_breakdown(word).value
             g_tokens = self._tokenizer.grapheme_tokens(word)
-            contexts = flat_contexts(g_tokens)
+            contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
             out.append(build_word_features(
                 word, slots, contexts, confidence,
                 self.spec.code, self.spec.script))
@@ -855,8 +947,12 @@ class G2P:
                 flush()
                 if words and any(c in _PAUSE_PUNCTUATION
                                  for c in token.grapheme):
-                    words[-1] = _Word(surface=words[-1].surface,
-                                      pausal=True)
+                    # ``replace``, not a fresh ``_Word``: rebuilding it from
+                    # the surface alone DROPPED ``forced_ipa``, so a
+                    # ``<phoneme>`` forcing standing before punctuation was
+                    # silently discarded and the word was re-derived by the
+                    # beam.
+                    words[-1] = replace(words[-1], pausal=True)
             else:
                 # Reconstruct the *surface* span, not just the grapheme key.
                 # A token may consume more characters than its grapheme names:
@@ -896,38 +992,36 @@ class G2P:
                 return hit
         return None
 
-    def _cliticless_keys(self) -> frozenset:
-        """The spec's ``stress.cliticless_words`` as a normalized lookup set.
+    def _syllables_cached(self, word: str) -> List[str]:
+        """Syllabify *word* once per engine.
 
-        Cached per engine. Keyed exactly like :meth:`_override_for` — language-
-        aware lowercased and NFC-normalized — so a form listed in the spec's
-        input orthography matches the input word regardless of case or Unicode
-        composition.
+        Syllabification depends only on the word and this engine's fixed
+        stress spec, yet the front-end asks for it several times per word
+        (stress detection and the lattice each need it) and again for every
+        repeat of a function word. The cache collapses all of that to one call;
+        a copy is returned so callers that mutate the list in place (stress
+        assembly appends onsets) never corrupt the cached value.
         """
-        cached = getattr(self, "_cliticless_cache", None)
-        if cached is None:
-            forms = (self.spec.stress.cliticless_words
-                     if self.spec.stress is not None else ())
-            cached = frozenset(
-                unicodedata.normalize("NFC", lower_str(f, self.spec.code))
-                for f in forms
-            )
-            self._cliticless_cache = cached
-        return cached
+        sylls = self._syll_cache.get(word)
+        if sylls is None:
+            diph = self.spec.stress.diphthongs if self.spec.stress else ()
+            sylls = _syllables_for(word, self.lang, diph)
+            self._syll_cache[word] = sylls
+        return list(sylls)
 
     def _is_cliticless(self, word: str) -> bool:
         """Whether *word* is a declared prosodic clitic that takes no stress.
 
-        A clitic leans on an adjacent host and lives inside the host's stress
-        domain, so no word stress is placed on it (Watson 2002, ch. 3). This is
-        an orthographic-form test — it cannot tell a clitic homograph from a
-        full-word one — matching the spec's ``stress.cliticless_words``.
+        Delegates to :func:`orthography2ipa.stress.is_cliticless` so the engine
+        and every downstream assembler make the identical decision from one place
+        (the keys are cached per engine on first use).
         """
-        keys = self._cliticless_keys()
-        if not keys:
+        if self._cliticless_cache is None:
+            self._cliticless_cache = cliticless_keys(self.spec)
+        if not self._cliticless_cache:
             return False
         return unicodedata.normalize(
-            "NFC", lower_str(word, self.spec.code)) in keys
+            "NFC", lower_str(word, self.spec.code)) in self._cliticless_cache
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
@@ -943,9 +1037,58 @@ class G2P:
                     word, beam_width=width,
                     expand_allophones=self.expand_allophones,
                     rescorer=self._rescorers or None)
+            paths = self._apply_grammatical_ending(word, paths)
             ipa = paths[0].ipa if paths else word
-            if self.spec.collapse_geminates and ipa:
-                ipa = _collapse_geminates(ipa)
+            ipa = self._finalize_word_ipa(word, ipa, forced_ipa=forced_ipa)
+        if override is not None:
+            ipa = self._finalize_word_ipa(word, ipa, forced_ipa=forced_ipa,
+                                          collapse_geminates=False)
+        # NOTE: *not* NFC-composed here. Cross-word sandhi rules (see
+        # transcribe_detailed) still need to run on this per-word IPA, and
+        # at least one declared rule (pt-PT's PT_SCHWA_ELISION) matches a
+        # nasal vowel by its DECOMPOSED shape (base vowel + combining
+        # tilde U+0303) in its right_context regex — composing here first
+        # would make that vowel invisible to the rule and silently disable
+        # it. The NFC output contract is enforced once, at the true
+        # emission boundary, after every cross-word stage has run (see
+        # transcribe_detailed and transcribe_word).
+        unmapped, coverage = self._unmapped_chars(word)
+        if unmapped:
+            self._handle_unmapped(word, unmapped)
+        # Per-word confidence (B5): a lexicon override is a certain answer
+        # (lattice_conf = 1.0); otherwise read the lattice's weakest-link
+        # slot confidence. Coverage folds the OOV signal in either case.
+        lattice_conf = (
+            1.0 if override is not None
+            else lattice_confidence(self.ipa_lattice(word))
+        )
+        return WordTranscription(
+            word=word,
+            ipa=ipa,
+            candidates=tuple(paths) if width > 1 else (),
+            unmapped=unmapped,
+            coverage=coverage,
+            confidence=lattice_conf * coverage,
+        )
+
+    def _finalize_word_ipa(self, word: str, ipa: str, *,
+                           forced_ipa: Optional[str] = None,
+                           collapse_geminates: bool = True) -> str:
+        """Apply the per-path word-final stages to one beam path's *ipa*.
+
+        These are the stages that turn a raw beam path into the string
+        :meth:`transcribe_word` emits: geminate collapse and stress
+        marking. They are factored out of :meth:`_transcribe_word` so
+        that a caller wanting the top-*k* readings (see
+        :meth:`word_candidates`) runs the SAME pipeline on every path
+        instead of re-implementing it — a second implementation would
+        make candidate 1 disagree with :meth:`transcribe_word`.
+
+        Cross-word stages (sandhi, dialect transform) are NOT applied
+        here: they act on the whole utterance, not on a word.
+        """
+        if collapse_geminates and self.spec.collapse_geminates and ipa:
+            ipa = _collapse_geminates(ipa)
         # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
         # all. A caller who wrote a mark has placed the stress, and one who wrote
         # none has said this word carries none — re-deriving it from the spelling
@@ -968,30 +1111,122 @@ class G2P:
                         ipa, self.spec.stress.max_onset),
                 )
             else:
-                sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                       if self.spec.stress else ())
+                sylls = self._syllables_cached(word)
                 idx = detect_stress(word, self.spec.stress, syllables=sylls)
+                mark = None
+                rules = self.spec.stress
+                if rules.accent2_mark and len(sylls) >= 2:
+                    penult = (idx == len(sylls) - 2) if idx >= 0 else idx == -2
+                    if penult and word and \
+                            word[-1].lower() in rules.accent2_final_letters:
+                        mark = rules.accent2_mark
                 ipa = apply_stress_mark(ipa, self.spec.stress, idx,
-                                        syllables=sylls)
-        unmapped, coverage = self._unmapped_chars(word)
-        if unmapped:
-            self._handle_unmapped(word, unmapped)
-        # Per-word confidence (B5): a lexicon override is a certain answer
-        # (lattice_conf = 1.0); otherwise read the lattice's weakest-link
-        # slot confidence. Coverage folds the OOV signal in either case.
-        lattice_conf = (
-            1.0 if override is not None
-            else lattice_confidence(self.ipa_lattice(word))
-        )
-        confidence = lattice_conf * coverage
-        return WordTranscription(
-            word=word,
-            ipa=ipa,
-            candidates=tuple(paths) if width > 1 else (),
-            unmapped=unmapped,
-            coverage=coverage,
-            confidence=confidence,
-        )
+                                        syllables=sylls, mark=mark)
+        # NOT NFC-composed: see the note in _transcribe_word.
+        return ipa
+
+    def word_candidates(self, word: str, *, k: int = 5,
+                        beam_width: Optional[int] = None) -> List[str]:
+        """The top-*k* full transcriptions of *word*, best first.
+
+        Unlike :meth:`candidates`, which exposes the RAW beam paths (no
+        stress marks, no geminate collapse, no grammatical-ending
+        rewrite, no lexicon override), every string returned here has
+        been through the same word-final pipeline as
+        :meth:`transcribe_word` — geminate collapse, grammatical-ending
+        rewrite, stress marking, and the lexicon/``word_exceptions``
+        override.
+
+        Element 0 is normally ``transcribe_word(word)``, but that is an
+        EMPIRICAL property, not a guarantee. :meth:`transcribe_word`
+        defaults to ``search="greedy"``, which prunes to a single
+        hypothesis at every step; this method runs a real beam of
+        ``max(k, 8)``. A wider beam may reach a cheaper path that greedy
+        pruning discarded, in which case element 0 is the BETTER reading
+        and differs from :meth:`transcribe_word`. Pass
+        ``beam_width=1`` to force the greedy path and make the identity
+        hold by construction, at the cost of getting one candidate.
+
+        The benchmark harness relies on the identity to make oracle@k
+        comparable to the 1-best PER, so it re-checks it on every run
+        and aborts on a mismatch rather than trusting it.
+
+        Duplicates are collapsed (two beam paths often finalize to the
+        same string once stress and geminate collapse have run), so the
+        result may be shorter than *k*. A word with a lexicon or
+        ``word_exceptions`` override has exactly ONE reading — the
+        override — and the list has length 1: no beam is consulted.
+
+        *beam_width* defaults to ``max(k, 8)``; a beam narrower than *k*
+        cannot produce *k* readings.
+
+        Returns an EMPTY list for a word with no pronounceable output
+        (every path finalized to an empty string) — the caller decides
+        what that means rather than receiving a fabricated reading.
+        """
+        if k < 1:
+            raise ValueError(f"k must be >= 1, got {k}")
+        width = max(k, 8) if beam_width is None else beam_width
+        override = self._override_for(word)
+        if override is not None:
+            return [unicodedata.normalize(
+                "NFC", self._finalize_word_ipa(word, override,
+                                               collapse_geminates=False))]
+        if self.spec.has_positional_data():
+            paths = self._positional_beam(word, width)
+        else:
+            paths = self._tokenizer.ipa_beam(
+                word, beam_width=width,
+                expand_allophones=self.expand_allophones,
+                rescorer=self._rescorers or None)
+        paths = self._apply_grammatical_ending(word, paths)
+        raw = [p.ipa for p in paths[:k]] or [word]
+        out: List[str] = []
+        for ipa in raw:
+            final = unicodedata.normalize(
+                "NFC", self._finalize_word_ipa(word, ipa))
+            if final and final not in out:
+                out.append(final)
+        return out
+
+    def _apply_grammatical_ending(
+        self, word: str, paths: List[IPAPath]
+    ) -> List[IPAPath]:
+        """Rewrite each path's tail when *word* ends in a declared
+        ``grammatical_endings`` entry (suffix morphology — French mute
+        ⟨-er⟩/⟨-ez⟩, English ⟨-tion⟩ palatalization; see
+        :attr:`~orthography2ipa.types.LanguageSpec.grammatical_endings`).
+
+        The word is tokenized and searched exactly as before: this stage
+        only replaces the *emitted segments* of the trailing tokens the
+        ending covers, so no interior grapheme sees a different
+        neighbour and no digraph is re-cut. Paths shorter than the
+        matched tail (a rescorer deleted a slot inside it) are left
+        alone rather than mis-spliced.
+
+        Precedence is a consequence of where this sits: whole-word
+        overrides already returned above, so ``word_exceptions`` >
+        ``grammatical_endings`` > the grapheme tables.
+        """
+        if not paths or not self.spec.grammatical_endings:
+            return paths
+        tokens = [t.grapheme for t in self._tokenizer.grapheme_tokens(word)]
+        match = match_grammatical_ending(tokens, self.spec)
+        if match is None:
+            return paths
+        rewritten: List[IPAPath] = []
+        seen = set()
+        for path in paths:
+            if len(path.segments) <= match.tokens:
+                new = path
+            else:
+                new = IPAPath(
+                    segments=path.segments[:-match.tokens] + (match.ipa,),
+                    score=path.score)
+            if new.ipa not in seen:
+                seen.add(new.ipa)
+                rewritten.append(new)
+        return rewritten
 
     def _unmapped_chars(self, word: str) -> Tuple[Tuple[str, ...], float]:
         """Return (unmapped_chars, coverage) for *word*.
@@ -1056,14 +1291,21 @@ class G2P:
         # Flat-run context views: all grapheme tokens of the word stay
         # mutual neighbours (word-splitting already stripped punctuation),
         # so positional resolution matches the engine's neighbour rules.
-        contexts = flat_contexts(g_tokens)
+        contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         # Determine stressed syllable index once (reuse for all vowels)
         stressed_syll_idx: Optional[int] = None
-        sylls: List[str] = []
+        # Syllabification is needed for TWO independent things: the stress
+        # positions (which need the spec's stress rules) and the aperture
+        # positions (which need only the syllable's own shape). It is
+        # therefore computed unconditionally; a spec with no stress rules
+        # still gets open/closed syllables, and still gets no
+        # nucleus_stressed/unstressed because those stay gated on
+        # ``stressed_syll_idx`` below.
+        sylls: List[str] = (
+            self._syllables_cached(word)
+            if self.spec.stress is not None or self._uses_aperture else [])
         if self.spec.stress is not None:
-            sylls = _syllables_for(word, self.lang, self.spec.stress.diphthongs
-                                   if self.spec.stress else ())
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
@@ -1088,7 +1330,10 @@ class G2P:
                 weights_for=self._tokenizer.weights_for,
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
-                stressed_syll_idx=stressed_syll_idx)
+                stressed_syll_idx=stressed_syll_idx,
+                syllable=(_syllable_at(sylls, syll_for_token[tok_idx])
+                          if self._uses_aperture else None),
+                last_syll_idx=(len(sylls) - 1 if sylls else None))
             for tok_idx, ctx in enumerate(contexts)
         ]
         if self._rescorers:

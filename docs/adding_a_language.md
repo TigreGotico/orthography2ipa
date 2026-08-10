@@ -2,13 +2,13 @@
 
 ## Overview
 
-All phonological data — graphemes, allophones, positional graphemes, ancestry,
-sources — lives in standalone JSON files under `orthography2ipa/data/`, one per
+All phonological data: graphemes, allophones, positional graphemes, ancestry,
+sources: lives in standalone JSON files under `orthography2ipa/data/`, one per
 language code. The engine is language-agnostic: adding a language means writing
 cited data, never code. The field-by-field authoring reference is
 [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md); this page is the walkthrough.
 
-A spec must declare **`graphemes` or `phonemes`** — the spelling, the inventory, or
+A spec must declare **`graphemes` or `phonemes`**: the spelling, the inventory, or
 both. It may not be silent about both. "Every language has graphemes" is false: a
 logographic script has no grapheme→IPA rule to write (`zh-Hani` ships an empty map
 on purpose), and an unwritten or reconstructed language has no orthography at all,
@@ -18,7 +18,7 @@ yet both have a phonology. Say which kind of writing the graphemes are with
 Two things a spec does **not** declare:
 
 - **No `family` string.** Classification comes from the clade nodes above the
-  spec in the ancestry graph — set `parent` and `family` derives itself. See
+  spec in the ancestry graph: set `parent` and `family` derives itself. See
   [Classification](#classification-wire-it-into-the-clade-chain) below.
 - **No engine hooks.** If a language needs behaviour the shared engine cannot
   express, that is a gap in the engine or in the spec vocabulary, not a reason
@@ -116,7 +116,7 @@ Python `{**GRAPHEMES_ES, ...}` pattern.
 
 ### Inheritance rules
 
-1. Only explicitly listed entries override the base — everything else is inherited.
+1. Only explicitly listed entries override the base: everything else is inherited.
 2. Inheritance chains are resolved recursively (A inherits B which inherits C).
 3. Circular inheritance is detected and raises `ValueError`.
 4. Each of `graphemes`, `allophones`, and `positional_graphemes` can independently inherit from different bases.
@@ -182,7 +182,7 @@ dataset. For historical languages, ensure the ancestral chain connects back to a
 
 A family is a **clade node**: a spec whose JSON carries `"clade": true`, a
 `name` (`"Ibero-Romance"`), and a `parent` pointing at the next clade up. It is
-classification and nothing else — no graphemes, no allophones, never inherited
+classification and nothing else: no graphemes, no allophones, never inherited
 from, and excluded from `available_codes()` unless `include_clades=True`.
 
 So a new language is classified by pointing its `parent` at the right node, and
@@ -195,7 +195,7 @@ orthography2ipa.get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romanc
 orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
-If the clade the language belongs to has no node yet, add the node — do not
+If the clade the language belongs to has no node yet, add the node: do not
 author a `family` string to route around the missing one. The one case where an
 explicit `family` string is right is a grouping that is *not* a genetic clade:
 creoles, constructed languages, isolates, unclassified languages.
@@ -206,11 +206,11 @@ Beyond the phonology, a spec is the place to record what the language *is*:
 
 | Field | Why it matters |
 |---|---|
-| `sources` | The citation bar for `research` tier — every mapping traceable to a published description |
+| `sources` | The citation bar for `research` tier: every mapping traceable to a published description |
 | `orthography_standard` | The official spelling norm, where one exists: the primary authority for what a grapheme *is* |
-| `location` | Representative point (lat/lon); feeds `geographic_distance` — most meaningful for region-anchored dialects |
+| `location` | Representative point (lat/lon); feeds `geographic_distance`: most meaningful for region-anchored dialects |
 | `timespan` | Attestation period; decays ancestry weights across time |
-| `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references. `wikidata_qid` is the hub — one QID resolves the rest |
+| `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references. `wikidata_qid` is the hub: one QID resolves the rest |
 | `wikipedia`, `urls` | Human-readable references |
 
 ### Step 3: For dialects, use inheritance
@@ -244,10 +244,22 @@ uv run pytest tests/ -v
 The test suite validates:
 
 - All JSON files parse correctly
-- Every spec has its required fields (name, script, and `graphemes` **or** `phonemes` — a spec may not be silent about both)
+- Every spec has its required fields (name, script, and `graphemes` **or** `phonemes`: a spec may not be silent about both)
 - Every `parent` field points to an existing spec
 - Every PARENT-role ancestor exists in the dataset
 - Linguistic accuracy for key languages (Spanish θ, English th, German Auslautverhärtung, etc.)
+
+---
+
+## Suffix morphology (`grammatical_endings`, optional)
+
+When an ending's realisation belongs to the *grammatical ending* rather than to
+the letters that spell it — French mute ⟨-er⟩/⟨-ez⟩, English ⟨-tion⟩ → [ʃən] —
+declare it in `grammatical_endings`, never as a grapheme key (morpheme chunks
+are forbidden grapheme keys; see `AGENTS.md`). The ending is matched at the
+word's effective end only, so word-internal letters are untouched, and
+`word_exceptions` still outranks it. Full contract:
+[`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#grammatical-endings).
 
 ---
 
@@ -255,9 +267,8 @@ The test suite validates:
 
 When grapheme rules cannot reach production accuracy for a deep-orthography
 language, ship a **lexicon**: a sidecar file
-a caller-registered `{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC, never bundled —
-lowercase words, sorted, first-entry-wins), named by the language's resolved
-code (e.g. `en-GB.tsv`). No JSON change and no new spec field are needed — the
+a caller-registered `{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC, never bundled: lowercase words, sorted, first-entry-wins), named by the language's resolved
+code (e.g. `en-GB.tsv`). No JSON change and no new spec field are needed: the
 file is discovered by convention and read lazily on first use. See
 [`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale)
 for the full contract (precedence: inline `word_exceptions` > lexicon > rules).
@@ -295,6 +306,12 @@ Rules to follow when adding one:
 | `nucleus`                 | Generic syllable nucleus    | When stress not distinguished             |
 | `nucleus_stressed`        | Stressed syllable nucleus   | Full vowel quality                        |
 | `nucleus_unstressed`      | Unstressed syllable nucleus | Portuguese ⟨e⟩ → [ɨ]                     |
+| `open_syllable`           | Nucleus, syllable has no coda | French `"eu": {"open_syllable": ["ø"]}` |
+| `closed_syllable`         | Nucleus, syllable has a coda  | French `"eu": {"closed_syllable": ["œ"]}` |
+| `nucleus_stressed_open`   | Stressed **and** open       | Dutch ⟨e⟩ → [eː] in *le·zen*              |
+| `nucleus_stressed_closed` | Stressed **and** closed     | Dutch ⟨e⟩ → [ɛ] in *lek*                  |
+| `nucleus_unstressed_open` | Unstressed **and** open     | Aperture under reduction                  |
+| `nucleus_unstressed_closed` | Unstressed **and** closed | Aperture under reduction                  |
 | `coda`                    | Syllable coda               | Brazilian `"l": {"coda": ["w"]}`          |
 | `pretonic`                | Before stressed syllable    | Pretonic vowel reduction                  |
 | `posttonic`               | After stressed syllable     | Posttonic vowel reduction                 |
@@ -312,12 +329,12 @@ Rules to follow when adding one:
 
 | JSON value    | Description                                                |
 |---------------|------------------------------------------------------------|
-| `parent`      | Primary genetic descent (weight 0.7–1.0)                   |
-| `substrate`   | Pre-existing population language (weight 0.05–0.30)        |
-| `superstrate` | Dominant group language, later absorbed (weight 0.10–0.40) |
-| `adstrate`    | Peer contact influence (weight 0.05–0.20)                  |
-| `lexifier`    | Vocabulary source in creole (weight 0.50–0.80)             |
-| `creole_base` | Grammar source in creole (weight 0.20–0.50)                |
+| `parent`      | Primary genetic descent (weight 0.7-1.0)                   |
+| `substrate`   | Pre-existing population language (weight 0.05-0.30)        |
+| `superstrate` | Dominant group language, later absorbed (weight 0.10-0.40) |
+| `adstrate`    | Peer contact influence (weight 0.05-0.20)                  |
+| `lexifier`    | Vocabulary source in creole (weight 0.50-0.80)             |
+| `creole_base` | Grammar source in creole (weight 0.20-0.50)                |
 
 
 ---
