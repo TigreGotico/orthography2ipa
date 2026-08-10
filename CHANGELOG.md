@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.63.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.63.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.62.0a1...7.63.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): top-k oracle PER — lattice quality vs ranking error [\#830](https://github.com/TigreGotico/orthography2ipa/pull/830) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.62.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.62.0a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.61.0a1...7.62.0a1)
@@ -655,10 +663,6 @@
 ## [7.31.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a2) (2026-07-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.1a1...7.31.1a2)
-
-**Merged pull requests:**
-
-- perf: cache syllabification and confidence lattice per engine [\#645](https://github.com/TigreGotico/orthography2ipa/pull/645) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.31.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a1) (2026-07-17)
 
