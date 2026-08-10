@@ -246,6 +246,7 @@ below.
 | [benchmarks.md](benchmarks.md) | Gold datasets, methodology, how to reproduce a score |
 | [scoreboard.md](scoreboard.md) | Every measured PER/exact-match result |
 | [ranking_error.md](ranking_error.md) | Where the beam holds a better reading and ranks it wrong: per-language cluster tables |
+| [design/morphology_aware_g2p.md](design/morphology_aware_g2p.md) | Proposal: the morphology ceiling o2i accepts (French ⟨-ent⟩, Dutch compounds), and exposing the ambiguity in the lattice |
 | [espeak_agreement.md](espeak_agreement.md) | Agreement analysis against espeak-ng |
 | [comparison.md](comparison.md) | Cross-system PER comparison vs espeak-ng, epitran, gruut |
 | [api_stability.md](api_stability.md) | What is public and version-guarded |
