@@ -168,6 +168,116 @@ def test_cross_word_spirantization():
     assert transcribe("un dia", "ca").split()[1].replace("ˈ", "")[0] == "d"
 
 
+@pytest.mark.parametrize("phrase, expected", [
+    # identical sibilants — degemination, the commonest case in running text
+    ("més són", "ˈme ˈson"),
+    ("les sabates", "lə səˈβatəs"),
+    ("dos savis", "ˈdo ˈsaβis"),
+    ("és seca", "ˈe ˈsɛkə"),
+])
+@pytest.mark.parametrize("lang", ["ca", "ca-x-occidental", "ca-x-valencia",
+                                  "ca-x-nord"])
+def test_cross_word_sibilant_degemination(lang, phrase, expected):
+    """A coda sibilant is deleted before an IDENTICAL word-initial one.
+
+    The phonological phrase has a single sibilant there, not a geminate
+    (Wheeler 2005, *The Phonology of Catalan*, §10.4 consonant deletion in
+    external sandhi; Recasens 1993 §5): ⟨més són⟩ [ˈme ˈson], ⟨dos savis⟩
+    [ˈdo ˈsaβis]. The 4catac expert corpus writes every one of the twenty
+    /s#s/ boundaries in its 160 Central sentences with a single [s].
+
+    Declared per dialect, NOT on the ca-x-medieval ancestor — Balearic does
+    the opposite (see ``test_balearic_does_not_degeminate``). Vowel quality
+    differs between these four, so only the boundary is asserted.
+    """
+    out = transcribe(phrase, lang).replace("ˈ", "").replace("ˌ", "")
+    assert len(out.split()) == 2
+    assert not out.split()[0].endswith("s")
+
+
+def test_balearic_does_not_degeminate():
+    """REFUTING CASE — Balearic keeps the /s # s/ boundary.
+
+    4catac's Balearic annotator writes the great majority of that subset's /s#s/
+    boundaries with regressive assimilation and gemination, [t t͡s], never
+    with deletion: ⟨és sa⟩ [ət ˈt͡sə], ⟨més són⟩ [ˈmet ˈt͡son], ⟨cossos
+    sense⟩ [ˈkɔsot ˈt͡sənsə] (Veny 1982 ch. 4). That affrication is not
+    modelled, but Balearic must NOT inherit the Central deletion instead —
+    which is why the CA_DEGEM_* rules sit on the four descendants and not
+    on their shared ca-x-medieval ancestor.
+    """
+    assert transcribe("és sa clau", "ca-x-balear").split()[0] == "ˈes"
+    assert transcribe("més són", "ca-x-balear").split()[0] == "ˈmes"
+    # ... nor may the ancestor itself have acquired it
+    assert transcribe("més són", "ca-x-medieval").split()[0].endswith("s")
+
+
+def test_voiced_sibilant_boundary_is_a_known_gap():
+    """KNOWN GAP — a /s # z/ boundary is left as a cross-word geminate.
+
+    ⟨dos zeros⟩ comes out [ˈdoz ˈzɛɾus]: CA_FINAL_S_VOICING voices the coda
+    /s/ before the voiced sibilant, and the degemination rules cannot then
+    see the geminate because the sandhi engine matches every context
+    against the ORIGINAL words, not against what an earlier rule produced.
+    A z$ rule is therefore unfirable — word-final devoicing means no word
+    surfaces with a final [z] at match time. Collapsing this needs rule
+    ordering the engine does not offer, so it is pinned, not asserted
+    correct.
+    """
+    assert transcribe("dos zeros", "ca") == "ˈdoz ˈzɛɾus"  # single [z] wanted
+
+
+def test_unlike_sibilants_voice_rather_than_delete():
+    """Before a DIFFERENT sibilant the coda sibilant voices, not deletes.
+
+    ⟨petits juguen⟩ is [pəˈtidz ˈʒuɣən] — /ts # ʒ/ assimilates in voicing
+    (Wheeler 2005 §5.3), which is why the degemination rules are keyed on
+    identical segments only.
+    """
+    assert transcribe("petits juguen", "ca").split()[0].endswith("dz")
+    assert transcribe("els joves", "ca").split()[0] == "əlz"
+
+
+def test_sibilant_degemination_is_sibilant_only():
+    """Stops and nasals do NOT reduce across the boundary.
+
+    Catalan keeps a cross-word stop or nasal geminate long — ⟨tot tancat⟩
+    [ˈtot təŋˈkat], ⟨un nen⟩ [un ˈnɛn] — and the 4catac gold writes both
+    consonants. Extending the deletion to them measurably WORSENS every
+    Catalan 4catac row, so the rule is restricted to sibilants.
+    """
+    assert transcribe("tot tancat", "ca").split()[0].endswith("t")
+    assert transcribe("un nen", "ca").split()[0] == "un"
+    assert transcribe("mil litres", "ca").split()[0].endswith("l")
+
+
+def test_sibilant_degemination_does_not_preempt_voicing():
+    """A coda sibilant before a NON-sibilant still voices, not deletes.
+
+    ⟨els nens⟩ is [əlz ˈnɛns] (Wheeler 2005 §5.3): the deletion rule's
+    right context is voiceless sibilants only, so the voicing rule still
+    owns every other boundary.
+    """
+    assert transcribe("els nens", "ca").split()[0] == "əlz"
+    assert transcribe("coses importants", "ca").split()[0].endswith("z")
+    assert transcribe("tot dia", "ca").split()[0].endswith("d")
+
+
+def test_cross_word_vowel_elision_is_a_known_gap():
+    """KNOWN GAP — cross-word vowel elision is not modelled.
+
+    Catalan elides a word-final unstressed vowel against a vowel-initial
+    next word: ⟨va anar⟩ is [baˈna] in the 4catac gold, and ⟨que es⟩ is
+    [kəs] (Wheeler 2005 §10.1 'vowel contact'). The engine has no surface
+    for deleting a segment conditioned on the NEXT word's first segment
+    across a boundary that the sandhi regexes cannot see as one string, so
+    both vowels survive. This is pinned, not asserted correct: it is the
+    single largest remaining source of PER on the Catalan 4catac rows
+    (162 spurious [ə] insertions on ca alone).
+    """
+    assert transcribe("va anar", "ca") == "ˈba əˈna"  # gold: [baˈna]
+
+
 def test_atonic_function_words_reduce():
     """Clitics are unstressed *words*, so their vowels reduce.
 

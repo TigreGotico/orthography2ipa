@@ -74,6 +74,7 @@ __all__ = [
     "is_front_vowel",
     "is_back_vowel",
     "is_palatal_consonant",
+    "is_pharyngealized_consonant",
     "is_nucleus_only",
     "grapheme_is_vowel",
     "grapheme_vowel_axis",
@@ -334,6 +335,34 @@ def is_palatal_consonant(ipa: str) -> bool:
     return s[0] in _PALATAL_SINGLE
 
 
+#: IPA pharyngealization diacritic (U+02E4, MODIFIER LETTER SMALL REVERSED
+#: GLOTTAL STOP), the standard mark for a "emphatic" / secondarily
+#: pharyngealized consonant (``sˤ dˤ tˤ ðˤ``, and dialectally ``ɮˤ``).
+_PHARYNGEALIZATION = "ˤ"
+
+
+def is_pharyngealized_consonant(ipa: str) -> bool:
+    """Return True if *ipa* denotes a pharyngealized ("emphatic") consonant.
+
+    Purely a feature test: any IPA string carrying the pharyngealization
+    diacritic ``ˤ`` (U+02E4) qualifies, regardless of which base consonant it
+    modifies or which language uses it — Arabic's ``sˤ dˤ tˤ ðˤ`` (and the
+    dialectal lateral fricative ``ɮˤ``) are the best-known instance (Watson
+    2002; Davis 1995), but the predicate itself is language-agnostic: any
+    spec that marks pharyngealized consonants with ``ˤ`` gets the class for
+    free. This is the consonant-side mirror of :func:`is_palatal_consonant`:
+    both classify the *sound* a grapheme maps to, not the script or
+    language, and both back the ``"palatal"`` / ``"emphatic"``
+    allophone-rule neighbour classes.
+
+    Only the first (base) segment plus its diacritics matter, so a phoneme
+    string carrying a further length mark still classifies correctly.
+    """
+    if not ipa:
+        return False
+    return _PHARYNGEALIZATION in ipa
+
+
 def is_front_vowel(ch: str) -> bool:
     """Return True if *ch* is a **front** orthographic vowel letter.
 
@@ -516,19 +545,28 @@ def _unicode_says_vowel(ch: str) -> bool:
     return any(tok in name for tok in _UNICODE_VOWEL_NAME_TOKENS)
 
 
-def grapheme_is_vowel(grapheme: str, ipa=()) -> bool:
+def grapheme_is_vowel(grapheme: str, ipa=(), vowel_overrides=frozenset()) -> bool:
     """True if *grapheme* is an orthographic vowel, in any script.
 
     *ipa* is the grapheme's **flat-table** candidate list (``spec.graphemes``),
     never its positionally-resolved realisation — positional resolution asks
     this question, so answering it from a positional result would be circular.
 
-    Resolution order: the Latin/Greek/harakat letter sets (authoritative for
-    the inventories they close), then the spec's own IPA (nucleus-initial →
-    vowel), then the character's Unicode name. See the section comment above.
+    *vowel_overrides* is a spec's ``vowel_graphemes`` declaration: whole
+    grapheme strings (matched in full, never by first character) that the
+    spec says are vowel letters regardless of what the closed-inventory
+    letter sets say. It is checked FIRST, before the closed-inventory
+    early-out, because it exists precisely to override that answer — Hmong
+    RPA ⟨w⟩ = /ɨ/, a Latin letter the closed inventory would otherwise call
+    a consonant. Without an override, resolution order is: the Latin/Greek/
+    harakat letter sets (authoritative for the inventories they close), then
+    the spec's own IPA (nucleus-initial → vowel), then the character's
+    Unicode name. See the section comment above.
     """
     if not grapheme:
         return False
+    if grapheme in vowel_overrides:
+        return True
     ch = grapheme[0]
     if is_orthographic_vowel(ch):
         return True
@@ -570,7 +608,7 @@ def _ipa_axis(ipa: str):
     return None
 
 
-def grapheme_vowel_axis(grapheme: str, ipa=()):
+def grapheme_vowel_axis(grapheme: str, ipa=(), vowel_overrides=frozenset()):
     """``"front"`` / ``"back"`` / ``None`` for *grapheme*, in any script.
 
     Latin and Greek keep the orthographic letter classification exactly (the
@@ -578,15 +616,24 @@ def grapheme_vowel_axis(grapheme: str, ipa=()):
     non-vowel). Everywhere else the axis is read off the IPA the spec maps the
     grapheme to — ⟨ि⟩ → /ɪ/ is front, ⟨ु⟩ → /ʊ/ is back — so
     ``before_front_vowel`` / ``before_back_vowel`` work outside Latin too.
+
+    *vowel_overrides* mirrors :func:`grapheme_is_vowel`'s parameter of the same
+    name: a grapheme the spec declares a vowel letter (e.g. Hmong RPA ⟨w⟩)
+    skips the closed-inventory letter-axis lookup — which would otherwise
+    return ``None`` for a consonant letter — and its axis is derived from the
+    spec's IPA instead, exactly as it is for non-Latin scripts.
     """
     if not grapheme:
         return None
     ch = grapheme[0]
-    axis = _vowel_axis(ch)
-    if axis is not None:
-        return axis
-    if _closed(ch) or not _is_letter_or_mark(ch):
+    if grapheme not in vowel_overrides:
+        axis = _vowel_axis(ch)
+        if axis is not None:
+            return axis
+        if _closed(ch):
+            return None
+    if not _is_letter_or_mark(ch):
         return None
-    if not grapheme_is_vowel(grapheme, ipa):
+    if not grapheme_is_vowel(grapheme, ipa, vowel_overrides):
         return None
     return _ipa_axis(ipa[0] if ipa else "")

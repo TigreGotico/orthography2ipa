@@ -3,7 +3,7 @@
   "name": "Lashi",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -120,7 +120,7 @@
       "notes": "Descent per Glottolog classification of Lashi (lash1243)."
     }
   ],
-  "notes": "Skeleton. Lashi (Leqi) is a Burmish (Sino-Tibetan) language of Myanmar and Yunnan, written here in a Latin-based transcription. Base Latin consonants and vowels plus digraphs ch/sh/ts/ng/ny, aspirates kh/ph/th and the voiceless lateral hl are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected.",
+  "notes": "Skeleton. Lashi (Leqi) is a Burmish (Sino-Tibetan) language of Myanmar and Yunnan, written here in a Latin-based transcription. Base Latin consonants and vowels plus digraphs ch/sh/ts/ng/ny, aspirates kh/ph/th and the voiceless lateral hl are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected. Lashi is tonal; tone is not orthographically marked in the Latin-based transcription and is left unencoded, and stress is not separately contrastive (documented exemption).",
   "iso639_3": "lsi",
   "glottolog_code": null,
   "sources": [
@@ -145,6 +145,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Lashi_language"
+    },
+    {
+      "id": "lsi_noftz2017",
+      "author": "Noftz, Michael",
+      "year": 2017,
+      "title": "A Literature Review on Segments in Lacid (Lashi)",
+      "publisher": "SEALS / academic literature review",
+      "url": null,
+      "pages": null,
+      "notes": "Literature review consolidating published segmental-phonology descriptions of Lashi (Lacid) across sources (Luce 1985, Huang et al. 1992, Wannemacher 1995-7 as cited in Mann 1998, Yabu 1988); no dedicated reference grammar of Lashi exists, so this review is the closest available primary synthesis and was checked against the consonant/digraph inventory modelled here."
     }
   ],
   "wikipedia": [

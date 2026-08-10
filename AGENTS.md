@@ -233,6 +233,39 @@ No linter or type checker is configured. Code uses `from __future__ import annot
 
 - `[project.scripts]` → `orthography2ipa = orthography2ipa.cli:main` (CLI).
 
+## Maintainability gate (part of every review)
+
+Every PR that touches `orthography2ipa/*.py` answers to these before merge —
+an adversarial review that skips them is incomplete. The engine stays small
+because every addition pays this toll:
+
+- **One concept, one place.** A new rule condition is ONE field, checked in
+  ONE place in the match loop, documented in ONE docstring. If a behavior
+  needs two cooperating helper predicates to express, collapse them into one
+  named function with a single documented contract first — cooperating
+  helpers whose combined semantics live in nobody's head are how the
+  `-ers` regression happened (a vowel-silencing predicate silently
+  generalized to consonant digraphs).
+- **Additions mirror an existing pattern.** A positive condition mirrors its
+  negative twin (`followed_by_grapheme` / `_not`); a new stress value
+  extends the existing conditional; a new position slots into the existing
+  precedence list. If the addition needs a new *shape* of code, that is an
+  architecture change: name it in the PR body and justify it.
+- **No language names in engine code.** Ever. Language facts live in
+  `data/*.json`; the engine consumes declared fields. A closed set in
+  engine code (like the transparent-suffix graphemes) is allowed only when
+  it is a cross-linguistic class with a citation attached at the constant.
+- **Flat beats clever.** The match loop is a flat sequence of independent
+  condition checks; keep it that way. No nested dispatch, no
+  metaprogramming, no condition that reads another condition's result.
+- **Every new field lands in four places or it doesn't land**: `types.py`
+  (dataclass + docstring), `schema.py` (validation), `json_loader.py`
+  (parse), `data/SCHEMA.md` (user docs). Reviewers check all four.
+- **Leave it cleaner.** If a PR's diff touches a function that already
+  smells (three cooperating predicates, a boolean parameter that flips
+  semantics, a >20-line conditional), the PR either cleans it or files the
+  smell explicitly in its body. Silent accretion is a review finding.
+
 ## Conventions (Org hard rules)
 
 - Branches: `dev` for work, `master` for stable. NEVER `main`.
