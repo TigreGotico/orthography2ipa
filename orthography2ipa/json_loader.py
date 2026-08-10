@@ -519,6 +519,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         timespan=timespan,
         stress=stress,
         word_exceptions=merged_base_fields["word_exceptions"] or None,
+        grammatical_endings=merged_base_fields["grammatical_endings"] or None,
         grapheme_weights=own_grapheme_weights or None,
     )
 

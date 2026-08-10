@@ -71,6 +71,8 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `graphemes_base`            | string | no       | Code to inherit graphemes from               |
 | `allophones_base`           | string | no       | Code to inherit allophones from              |
 | `positional_graphemes_base` | string | no       | Code to inherit positional graphemes from    |
+| `word_exceptions_base`      | string | no       | Code to inherit whole-word overrides from    |
+| `grammatical_endings_base`  | string | no       | Code to inherit grammatical endings from     |
 | `quality`                   | string | no       | Data maturity: `"stub"`, `"skeleton"`, `"research"`, `"production"` (default: `"research"`) |
 | `script_type`               | string | no       | Script typology: `"alphabet"`, `"abjad"`, `"abugida"`, `"syllabary"`, `"logographic"`, `"featural"`, `"mixed"`, `"reconstruction"` (default: `"alphabet"`) |
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
@@ -79,6 +81,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |
 | `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
+| `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
@@ -456,6 +459,57 @@ entry covers every digraph producing a palatal (⟨lh⟩→ʎ, ⟨nh⟩→ɲ, �
 class tier (below exact-letter positions, so `"before_i"` wins over
 `"before_palatal"` when the neighbour ⟨i⟩ realises the palatal glide /j/) and are
 likewise inert for any spec that does not declare them.
+
+## Grammatical endings
+
+`grammatical_endings` maps an orthographic **word ending** to the IPA it
+realises, for cases where the realisation belongs to the grammatical ending
+rather than to the letter sequence that spells it — suffix morphology.
+
+```json
+"grammatical_endings": {
+  "er": "e",
+  "ez": "e"
+}
+```
+
+Two phenomena it exists for:
+
+- **French mute ⟨-er⟩ / ⟨-ez⟩.** The infinitive and agent-noun ⟨-er⟩ is [e]
+  (`parler`, `boulanger`, `boulangers`) and the 2pl ⟨-ez⟩ is [e] (`mangez`,
+  and the frozen `nez`, `chez`, `assez`): final-consonant elision in the
+  grammatical ending (Fouché 1959, *Traité de prononciation française*;
+  Tranel 1987 §3).
+- **English suffix palatalization.** ⟨-tion⟩ → /ʃən/, ⟨-cious⟩ → /ʃəs/,
+  ⟨-tial⟩ → /ʃəl/: palatalization of the stem-final coronal before the `-ion`
+  suffix (Chomsky & Halle 1968, *The Sound Pattern of English*; surface values
+  per Wells 2008, *Longman Pronunciation Dictionary*).
+
+Rules of the match:
+
+- **Effective word end only.** The ending must occupy the word's last grapheme
+  tokens, or its last tokens before a *transparent grammatical suffix* the spec
+  already silences word-finally (French plural ⟨-s⟩/⟨-x⟩) — the same question
+  `effective_word_end` answers for positional graphemes. So `boulangers`
+  matches, and the word-internal ⟨er⟩ of `personne`, `version` or `terre`
+  never does.
+- **Token-aligned.** The ending must start where a grapheme token starts. The
+  word is tokenized exactly as it would be without the table, and only the
+  emitted IPA of the trailing tokens is replaced — this is why a morpheme is
+  **not** written as a grapheme key (forbidden, see `AGENTS.md`): a morpheme
+  key would change how the word's interior is cut.
+- **A head is required.** At least one token must precede the ending.
+- **Longest match wins.** English ⟨-stion⟩ → /stʃən/ overrides the ⟨-tion⟩ it
+  contains, so `question` keeps its /t/.
+
+Precedence: `word_exceptions` **>** `grammatical_endings` **>**
+`graphemes` / `positional_graphemes`. The closed set of French nouns that keep
+/ɛʁ/ (`mer`, `hiver`, `super`, and their plurals) therefore stays in
+`word_exceptions` and is unaffected.
+
+Inheritance is `base_merge`, opt-in through `grammatical_endings_base`: a
+dialect that shares its parent's graphemes shares its suffix morphology
+(en-US palatalizes ⟨-tion⟩ exactly as en-GB does) and overrides per ending.
 
 ## Ancestor Role Values
 

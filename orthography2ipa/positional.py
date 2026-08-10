@@ -59,6 +59,8 @@ from orthography2ipa.weights import candidate_base_costs
 __all__ = [
     "WordEnd",
     "effective_word_end",
+    "GrammaticalEnding",
+    "match_grammatical_ending",
     "grapheme_positions",
     "positional_candidates",
     "build_branches",
@@ -204,6 +206,86 @@ def effective_word_end(ctx, spec: Optional[LanguageSpec]) -> WordEnd:
     return WordEnd(final_slot=final_slot,
                    last_audible_slot=last_audible_slot,
                    silent_final_vowel=silent_final_vowel)
+
+
+class GrammaticalEnding(NamedTuple):
+    """A matched ``grammatical_endings`` entry, in token terms.
+
+    ``tokens`` counts the trailing grapheme tokens the match covers —
+    the ending itself plus the transparent grammatical suffix behind it,
+    if any — so the caller replaces exactly that many emitted segments
+    with :attr:`ipa` and never touches the word's interior.
+    """
+
+    #: The orthographic ending as declared in the spec (lowercase).
+    ending: str
+    #: Its IPA realisation, replacing the whole matched tail.
+    ipa: str
+    #: How many trailing grapheme tokens the tail spans.
+    tokens: int
+
+
+class _EndSlot(NamedTuple):
+    """Minimal duck-typed grapheme context for :func:`effective_word_end`.
+
+    The ending matcher works on grapheme *keys*, not on the tokenizer's
+    context objects, but the "is this slot effectively word-final?"
+    question must be answered by the one function that owns it. Two of
+    these slots reproduce exactly the fields it reads."""
+
+    grapheme: str
+    next: Optional["_EndSlot"]
+    is_vowel: bool = False
+
+
+def match_grammatical_ending(
+    graphemes: Sequence[str], spec: Optional[LanguageSpec]
+) -> Optional[GrammaticalEnding]:
+    """Longest ``spec.grammatical_endings`` entry sitting at the word end.
+
+    *graphemes* are the word's grapheme-token keys, in order. A match
+    requires all three of:
+
+    1. **Effectively word-final.** The ending occupies the word's last
+       tokens, or its last tokens before a *transparent grammatical
+       suffix* — the ⟨s⟩/⟨x⟩ the spec already silences word-finally, per
+       :func:`effective_word_end`, which is the single owner of that
+       question. French ``boulangers`` therefore matches ⟨-er⟩ — and so
+       does ``vers``, purely orthographically: this matcher never looks
+       at the lexicon, only at grapheme tokens. ``vers`` keeps /vɛʁ/
+       anyway because ``spec.word_exceptions`` outranks
+       ``grammatical_endings`` and lists ``vers`` explicitly; the matcher
+       itself has no notion of "root" versus "suffix" for a given word.
+    2. **Aligned to token boundaries.** The ending must start where a
+       grapheme token starts, so matching can never split a digraph and
+       never re-tokenizes anything: the word's interior is tokenized
+       exactly as it was without this table.
+    3. **Leaving a head.** At least one token must precede the ending; a
+       word that *is* its ending is a word, not a suffix.
+
+    Longest match wins, which is how a more specific ending (English
+    ⟨-stion⟩) overrides the general one (⟨-tion⟩) it contains.
+    """
+    endings = spec.grammatical_endings if spec else None
+    if not endings or len(graphemes) < 2:
+        return None
+
+    # Trailing transparent grammatical suffix, if the spec declares one.
+    suffix_tokens = 0
+    last = _EndSlot(graphemes[-1].lower(), None)
+    if effective_word_end(_EndSlot(graphemes[-2].lower(), last),
+                          spec).last_audible_slot:
+        suffix_tokens = 1
+
+    end = len(graphemes) - suffix_tokens
+    # Ascending start index => the first hit is the longest ending.
+    for start in range(1, end):
+        candidate = "".join(graphemes[start:end]).lower()
+        ipa = endings.get(candidate)
+        if ipa is not None:
+            return GrammaticalEnding(ending=candidate, ipa=ipa,
+                                     tokens=end - start + suffix_tokens)
+    return None
 
 
 def grapheme_positions(

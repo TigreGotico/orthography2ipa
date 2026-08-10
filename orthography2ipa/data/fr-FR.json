@@ -605,7 +605,26 @@
       ]
     }
   },
+  "grammatical_endings": {
+    "er": "e",
+    "ez": "e"
+  },
   "word_exceptions": {
+    "mers": "mɛʁ",
+    "fers": "fɛʁ",
+    "chers": "ʃɛʁ",
+    "vers": "vɛʁ",
+    "hivers": "ivɛʁ",
+    "enfers": "ɑ̃fɛʁ",
+    "cancers": "kɑ̃sɛʁ",
+    "amers": "amɛʁ",
+    "cuillers": "kɥijɛʁ",
+    "revolvers": "ʁevɔlvɛʁ",
+    "leaders": "lidœʁ",
+    "crackers": "kʁakœʁ",
+    "containers": "kɔ̃tɛnɛʁ",
+    "pokers": "pɔkɛʁ",
+    "supers": "sypɛʁ",
     "le": "lə",
     "de": "də",
     "que": "kə",
@@ -644,6 +663,7 @@
     "cher": "ʃɛʁ",
     "ver": "vɛʁ",
     "hier": "jɛʁ",
+    "hiers": "jɛʁ",
     "hiver": "ivɛʁ",
     "enfer": "ɑ̃fɛʁ",
     "cancer": "kɑ̃sɛʁ",

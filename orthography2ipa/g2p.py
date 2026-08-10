@@ -60,7 +60,8 @@ from orthography2ipa.phonetok import (
     slot_confidence,
 )
 from orthography2ipa.allophony import compile_allophone_rescorer
-from orthography2ipa.positional import resolve_branches
+from orthography2ipa.positional import (match_grammatical_ending,
+                                        resolve_branches)
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
@@ -643,7 +644,8 @@ class G2P:
 
         The lattice is the *pre-lexical* phoneme lattice: it is built
         before stress-mark insertion and cross-word sandhi (which act on
-        the whole utterance), and before any ``word_exceptions`` override.
+        the whole utterance), and before any word-level override —
+        ``word_exceptions`` or the ``grammatical_endings`` tail rewrite.
         Concatenating each slot's top candidate therefore matches the
         engine's chosen pronunciation up to those later stages — it is the
         object a downstream rescorer (B4) or confidence signal (B5) reads.
@@ -975,6 +977,7 @@ class G2P:
                     word, beam_width=width,
                     expand_allophones=self.expand_allophones,
                     rescorer=self._rescorers or None)
+            paths = self._apply_grammatical_ending(word, paths)
             ipa = paths[0].ipa if paths else word
             if self.spec.collapse_geminates and ipa:
                 ipa = _collapse_geminates(ipa)
@@ -1039,6 +1042,45 @@ class G2P:
             coverage=coverage,
             confidence=confidence,
         )
+
+    def _apply_grammatical_ending(
+        self, word: str, paths: List[IPAPath]
+    ) -> List[IPAPath]:
+        """Rewrite each path's tail when *word* ends in a declared
+        ``grammatical_endings`` entry (suffix morphology — French mute
+        ⟨-er⟩/⟨-ez⟩, English ⟨-tion⟩ palatalization; see
+        :attr:`~orthography2ipa.types.LanguageSpec.grammatical_endings`).
+
+        The word is tokenized and searched exactly as before: this stage
+        only replaces the *emitted segments* of the trailing tokens the
+        ending covers, so no interior grapheme sees a different
+        neighbour and no digraph is re-cut. Paths shorter than the
+        matched tail (a rescorer deleted a slot inside it) are left
+        alone rather than mis-spliced.
+
+        Precedence is a consequence of where this sits: whole-word
+        overrides already returned above, so ``word_exceptions`` >
+        ``grammatical_endings`` > the grapheme tables.
+        """
+        if not paths or not self.spec.grammatical_endings:
+            return paths
+        tokens = [t.grapheme for t in self._tokenizer.grapheme_tokens(word)]
+        match = match_grammatical_ending(tokens, self.spec)
+        if match is None:
+            return paths
+        rewritten: List[IPAPath] = []
+        seen = set()
+        for path in paths:
+            if len(path.segments) <= match.tokens:
+                new = path
+            else:
+                new = IPAPath(
+                    segments=path.segments[:-match.tokens] + (match.ipa,),
+                    score=path.score)
+            if new.ipa not in seen:
+                seen.add(new.ipa)
+                rewritten.append(new)
+        return rewritten
 
     def _unmapped_chars(self, word: str) -> Tuple[Tuple[str, ...], float]:
         """Return (unmapped_chars, coverage) for *word*.

@@ -26,6 +26,24 @@ stress requirement per `docs/quality_tiers.md`.
 
 ## Key Positional Rules
 
+### Palatalized suffixes (`grammatical_endings`)
+
+The `-ion` suffix palatalizes the stem-final coronal (Chomsky & Halle 1968;
+surface values per Wells 2008 LPD), so the ending — not the letter sequence —
+carries the [ʃ]:
+
+| Ending | Realization | Examples |
+|---|---|---|
+| ⟨-tion⟩, ⟨-ssion⟩, ⟨-cion⟩, ⟨-cian⟩ | [ʃən] | `nation`, `mission`, `suspicion`, `musician` |
+| ⟨-stion⟩ | [stʃən] | `question`, `digestion` (longest match beats ⟨-tion⟩) |
+| ⟨-tial⟩, ⟨-cial⟩ | [ʃəl] | `martial`, `special` |
+| ⟨-tious⟩, ⟨-cious⟩ | [ʃəs] | `ambitious`, `delicious` |
+
+These are word-ending entries, never grapheme keys: `house` and `mouse` share
+letters with ⟨-cious⟩ but have no suffix, so nothing fires. ⟨-sion⟩ is
+deliberately absent — it is [ʒən] after a vowel (`vision`) and [ʃən] after a
+consonant (`tension`), a context this table does not express.
+
 ### C and G Softening
 
 | Grapheme | Before e/i/y | Elsewhere | Examples |

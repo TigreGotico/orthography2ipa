@@ -4,6 +4,7 @@
   "script": "Latin",
   "graphemes_base": "en-GB",
   "allophones_base": "en-GB",
+  "grammatical_endings_base": "en-GB",
   "allophones": {
     "t": [
       "t",
