@@ -32,7 +32,8 @@ import unicodedata
 from typing import List, Optional, Sequence
 
 from orthography2ipa.allophony import segment_ipa
-from orthography2ipa.types import StressRules
+from orthography2ipa.phonetok import lower_str
+from orthography2ipa.types import LanguageSpec, StressRules
 from orthography2ipa.vowels import is_ipa_vowel, is_orthographic_vowel
 
 __all__ = [
@@ -42,10 +43,46 @@ __all__ = [
     "detect_stress",
     "detect_stress_by_weight",
     "apply_stress_mark",
+    "cliticless_keys",
+    "is_cliticless",
     "LIGHT",
     "HEAVY",
     "SUPERHEAVY",
 ]
+
+
+def cliticless_keys(spec: LanguageSpec) -> frozenset:
+    """The spec's ``stress.cliticless_words`` as a normalized lookup set.
+
+    A prosodic clitic — a definite article, a preposition, a vocative particle —
+    leans on its host and lives inside the host's stress domain, so it carries no
+    word stress of its own (Watson 2002, ch. 3). Which orthographic forms those
+    are is a per-language fact declared in the spec; this turns that declaration
+    into the set every stress consumer tests against.
+
+    Keys are language-aware lowercased and NFC-normalized so a listed form
+    matches the input word regardless of case or Unicode composition — the same
+    normalization word-exception lookup uses, so the two never disagree.
+    """
+    forms = spec.stress.cliticless_words if spec.stress is not None else ()
+    return frozenset(
+        unicodedata.normalize("NFC", lower_str(f, spec.code)) for f in forms
+    )
+
+
+def is_cliticless(word: str, spec: LanguageSpec) -> bool:
+    """Whether *word* is a declared prosodic clitic that takes no word stress.
+
+    An orthographic-form test — it cannot tell a clitic homograph from a full-word
+    one — matching the spec's ``stress.cliticless_words``. Any consumer that places
+    stress per prosodic word (the engine, or a downstream assembler like arbtok)
+    routes through this so a function word is left unstressed exactly once,
+    identically, wherever the decision is made.
+    """
+    keys = cliticless_keys(spec)
+    if not keys:
+        return False
+    return unicodedata.normalize("NFC", lower_str(word, spec.code)) in keys
 
 
 def _is_vowel_char(ch: str) -> bool:
@@ -352,7 +389,6 @@ def detect_stress(
         if index is not None:
             return max(0, min(index, n - 1))
 
-
     # 1. written accent overrides everything
     if rules.marked_vowels:
         marked = set(rules.marked_vowels)
@@ -387,8 +423,12 @@ def apply_stress_mark(
     stress_index: int,
     syllables: Optional[Sequence[str]] = None,
     ipa_syllables: Optional[Sequence[str]] = None,
+    mark: Optional[str] = None,
 ) -> str:
     """Insert ``rules.stress_mark`` before the stressed syllable of *ipa*.
+
+    *mark*, when given, replaces ``rules.stress_mark`` as the inserted
+    character (the pitch-accent-2 caller passes ``rules.accent2_mark``).
 
     Parameters
     ----------
@@ -414,7 +454,8 @@ def apply_stress_mark(
 
     Already-marked transcriptions are returned unchanged.
     """
-    if rules.stress_mark in ipa:
+    _mark = mark or rules.stress_mark
+    if _mark in ipa or rules.stress_mark in ipa:
         return ipa
     # The spec's diphthongs split the IPA too, not just the spelling: without
     # them a vowel run is one nucleus, so a HIATUS merges and the mark lands a
@@ -485,12 +526,12 @@ def apply_stress_mark(
             # still vowel-final): the latter falls through to end-anchoring,
             # which lands correctly. A loss BEFORE the stress (initial/medial
             # syncope) overshoots the end and also falls through.
-            ipa_sylls[stress_index] = rules.stress_mark + ipa_sylls[stress_index]
+            ipa_sylls[stress_index] = _mark + ipa_sylls[stress_index]
             return "".join(ipa_sylls)
         offset_from_end = max(1, n_orth - stress_index)
 
     target = max(0, len(ipa_sylls) - offset_from_end)
-    ipa_sylls[target] = rules.stress_mark + ipa_sylls[target]
+    ipa_sylls[target] = _mark + ipa_sylls[target]
     return "".join(ipa_sylls)
 
 

@@ -355,5 +355,37 @@
     "longitude": 20.46356,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Afrikaans."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "NL_OPEN_SYLLABLE_A",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited Dutch open-syllable lengthening: authored from Booij (1995) for Netherlands Dutch and never verified for Afrikaans, whose vowel quantity/quality system diverged (and whose wikipron convention transcribes it differently). Re-enable only with Afrikaans-specific sourced rules (e.g. Donaldson 1993)."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_E",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited Dutch open-syllable lengthening: authored from Booij (1995) for Netherlands Dutch and never verified for Afrikaans, whose vowel quantity/quality system diverged (and whose wikipron convention transcribes it differently). Re-enable only with Afrikaans-specific sourced rules (e.g. Donaldson 1993)."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_I",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited Dutch open-syllable lengthening: authored from Booij (1995) for Netherlands Dutch and never verified for Afrikaans, whose vowel quantity/quality system diverged (and whose wikipron convention transcribes it differently). Re-enable only with Afrikaans-specific sourced rules (e.g. Donaldson 1993)."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_O",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited Dutch open-syllable lengthening: authored from Booij (1995) for Netherlands Dutch and never verified for Afrikaans, whose vowel quantity/quality system diverged (and whose wikipron convention transcribes it differently). Re-enable only with Afrikaans-specific sourced rules (e.g. Donaldson 1993)."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_U",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited Dutch open-syllable lengthening: authored from Booij (1995) for Netherlands Dutch and never verified for Afrikaans, whose vowel quantity/quality system diverged (and whose wikipron convention transcribes it differently). Re-enable only with Afrikaans-specific sourced rules (e.g. Donaldson 1993)."
+    }
+  ]
 }

@@ -3,7 +3,7 @@
   "name": "Gawri",
   "script": "Arabic",
   "script_type": "abjad",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ٹھ": [
       "ʈʰ"
@@ -183,7 +183,7 @@
       "notes": "Descent per Glottolog classification of Gawri (kala1373)."
     }
   ],
-  "notes": "Skeleton. Gawri (Kalam Kohistani), a Dardic Indo-Aryan language of the Swat and Dir Kohistan valleys of Pakistan, written in an Urdu-based Arabic script. Urdu letter values apply: retroflex ٹ ڈ ڑ, postalveolars چ ج ش ژ, and aspiration/breathiness written with do-chashmi he ھ (mapped both as digraphs and as a bare aspiration mark); the Perso-Arabic loan letters ث ذ ص ض ط ظ fold into s/z/t. Short vowels are written only defectively and vowel length, nasalization and the language's pitch accents are largely unrecoverable, so a high PER floor is expected. Any Gawri-specific extra letters beyond the Urdu set (e.g. for retroflex fricatives) are not mapped.",
+  "notes": "Skeleton. Gawri (Kalam Kohistani), a Dardic Indo-Aryan language of the Swat and Dir Kohistan valleys of Pakistan, written in an Urdu-based Arabic script. Urdu letter values apply: retroflex ٹ ڈ ڑ, postalveolars چ ج ش ژ, and aspiration/breathiness written with do-chashmi he ھ (mapped both as digraphs and as a bare aspiration mark); the Perso-Arabic loan letters ث ذ ص ض ط ظ fold into s/z/t. Short vowels are written only defectively and vowel length, nasalization and the language's pitch accents are largely unrecoverable, so a high PER floor is expected. Any Gawri-specific extra letters beyond the Urdu set (e.g. for retroflex fricatives) are not mapped. Gawri tone/pitch-accent is not marked in the Perso-Arabic practical orthography and is left unencoded; stress is not separately contrastive (documented exemption).",
   "iso639_3": "gwc",
   "glottolog_code": null,
   "sources": [
@@ -208,6 +208,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Gawri_language"
+    },
+    {
+      "id": "gwc_baart2014",
+      "author": "Baart, Joan L. G.; Sagar, Muhammad Zaman",
+      "year": 2014,
+      "title": "The Gawri Language of Kalam and Dir Kohistan",
+      "publisher": "SIL International",
+      "url": "https://www.academia.edu/2900061/The_Gawri_Language_of_Kalam_and_Dir_Kohistan_with_Muhammad_Zaman_Sagar_",
+      "pages": null,
+      "notes": "Descriptive account of Gawri (Kalam Kohistani) phonology and the Perso-Arabic Urdu-based practical orthography devised by the Gawri spelling committee (1995), used to check the Urdu letter-value mapping in this spec."
     }
   ],
   "wikipedia": [
