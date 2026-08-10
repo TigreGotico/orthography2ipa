@@ -219,6 +219,12 @@
       "role": "parent",
       "weight": 0.9,
       "notes": "Descent from Proto-Munda (Austroasiatic)"
+    },
+    {
+      "code": "hi",
+      "role": "adstrate",
+      "weight": 0.06,
+      "notes": "Hindi/Indo-Aryan adstrate: centuries of contact with surrounding Indo-Aryan languages of Jharkhand/Bengal/Odisha, including loanwords absorbed while Santali remained a distinct, unrelated Munda language (Anderson 2008, The Munda Languages; Zide 1969)."
     }
   ],
   "notes": "Santali (Jharkhand, West Bengal, Odisha, Bihar). Austroasiatic, Munda branch — unrelated to IA or Dravidian. Written officially in Ol Chiki script (invented 1925 by Raghunath Murmu); also Latin and Devanagari. Phonemic aspiration in stops; glottalized vowels in checked syllables. No retroflex consonants (unlike IA neighbours).",
