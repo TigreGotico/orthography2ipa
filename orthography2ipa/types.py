@@ -309,7 +309,19 @@ class StressRules:
         onset-maximising split, ``mudarris`` is ``mu-da-rris`` and its penult is
         light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
         penult is heavy, and the stress lands there — ``muˈdarris``, which is
-        the correct form. Only read when :attr:`quantity_sensitive` is set.
+        the correct form.
+
+        Read by the quantity-sensitive cascade, and — when the spec actually
+        declares it (:attr:`max_onset_declared`) — as a hard cap on the
+        orthographic syllabifier's onsets too. The cap outranks the sonority
+        reasoning that otherwise derives the licit onsets: a language owner who
+        writes ``max_onset`` has stated the language's onset size, and that is
+        not something to second-guess.
+    max_onset_declared : bool
+        Whether :attr:`max_onset` came from the spec or is merely the default.
+        The two must be told apart: the default 1 is a *placeholder* and
+        applying it as a cap would force every language to a single-consonant
+        onset, splitting ⟨tr⟩ and ⟨bl⟩. Set by the loader, never by hand.
     cliticless_words : Tuple[str, ...]
         Orthographic forms that carry **no lexical stress** of their own —
         prosodic clitics. A clitic is not an independent phonological word: it
@@ -375,6 +387,7 @@ class StressRules:
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
+    max_onset_declared: bool = False
     cliticless_words: Tuple[str, ...] = ()
     coda_liquid_capture: bool = False
     accent2_mark: str = ""
@@ -1200,6 +1213,18 @@ class InheritanceMode(str, Enum):
     representation that keeps ``spec.graphemes`` a plain ``list[str]``
     map for every existing consumer."""
 
+    BASE_SCALAR = "base_scalar"
+    """Scalar field that follows the ``graphemes_base`` edge. A spec that does
+    not state the field takes the value of the spec it pulls its grapheme table
+    from; stating it (either way) wins.
+
+    Used by ``constrain_onsets``. Whether a grapheme table's onsets are
+    constrained is a property OF that table, so a variety that inherits the
+    table inherits the judgement with it — otherwise ``de-AT`` and ``de-CH``
+    read ``de-DE``'s graphemes while silently syllabifying them by a different
+    rule than ``de-DE`` does, and that split is a language-feature parity gap,
+    which this project treats as a bug."""
+
     OWN_ONLY = "own_only"
     """Identity / bibliographic / classification field that never
     participates in inheritance resolution at all (e.g. ``code``, ``name``,
@@ -1235,6 +1260,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
+    "constrain_onsets": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -1414,6 +1440,42 @@ class LanguageSpec:
     refinement, not a decision. It must reach the same answer by better means, and
     the conformance kit fails it if it does not. See
     :mod:`orthography2ipa.plugins`."""
+
+    constrain_onsets: bool = False
+    """Opt in to phonotactically constrained syllabification. Off by default,
+    and deliberately so.
+
+    The bundled splitter maximises the onset. With this set it maximises it
+    only as far as the language licenses — the shapes documented on
+    ``orthography2ipa.stress._OnsetJudge``, which are calibrated on the
+    Germanic and Romance onset inventories: an obstruent head with a
+    liquid, glide or labial approximant after it, a voiceless sibilant
+    appendix, ⟨kn gn pn⟩, ⟨Cj⟩.
+
+    A language whose onsets exceed that core must NOT set it until it can
+    declare its own inventory. Modern Greek is the clear case: ⟨σμ κτ πτ
+    φτ χτ φθ γν μν βγ βδ⟩ all begin Greek words and are therefore
+    tautosyllabic (a cluster that can begin a word does not split —
+    Malikouti-Drachman, "Greek Phonology", in *Journal of Greek
+    Linguistics* 2001; Holton, Mackridge & Philippaki-Warburton, *Greek: A
+    Comprehensive Grammar*, Routledge 2012, § 1.4), and none of them is
+    reachable from the shapes above. Turning this on for Greek would split
+    every one of them. The same holds for the Slavic and Uralic
+    inventories, which have not been checked.
+
+    Its purpose is the aperture positions: open/closed syllable is only as
+    good as the boundary, so the languages that read aperture need the
+    boundary to be right. Those are the languages that set it.
+
+    It is inherited along the ``graphemes_base`` edge
+    (:attr:`InheritanceMode.BASE_SCALAR`): whether a grapheme table's onsets
+    are constrained is a property of that table, so a variety that pulls the
+    table in gets the judgement with it — ``nl-BE`` from ``nl``, ``de-AT`` and
+    ``de-CH`` from ``de-DE``, ``de-x-bavarian`` from ``de-AT`` in turn. A
+    variety that must NOT inherit says so with an explicit ``false``.
+    ``nl-NL`` is a standalone spec with no ``graphemes_base``, so it declares
+    the flag itself.
+    """
 
     collapse_geminates: bool = False
     """Collapse a doubled consonant letter's phonemes to one.

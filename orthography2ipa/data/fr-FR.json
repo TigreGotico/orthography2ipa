@@ -818,5 +818,6 @@
   ],
   "vowel_graphemes": [
     "y"
-  ]
+  ],
+  "constrain_onsets": true
 }

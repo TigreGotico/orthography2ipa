@@ -45,6 +45,7 @@ non-stress-conditioned position.
 from __future__ import annotations
 
 import bisect
+import unicodedata
 
 from typing import (Callable, Dict, List, NamedTuple, Optional, Sequence,
                     Tuple)
@@ -407,6 +408,16 @@ def _is_open_syllable(
     """
     if not syllable:
         return None
+    while syllable and not (syllable[-1].isalpha()
+                            or unicodedata.combining(syllable[-1])):
+        # A hyphen, an apostrophe or a space is NOT a segment, so it is no
+        # coda: it cannot make an open syllable closed. It is also an
+        # orthographic word boundary, so what stands before it is word-final
+        # and its silent tail comes off with the same rule a true word-final
+        # syllable gets — French *peut-être* is peu(t-)·ê·tre, an OPEN first
+        # syllable, /pø/ and not *[pœ]. Weight never sees the punctuation.
+        syllable = syllable[:-1]
+        word_final = True
     if word_final:
         syllable = _strip_silent_tail(syllable, spec)
     if not syllable or not any(is_orthographic_vowel(ch) for ch in syllable):

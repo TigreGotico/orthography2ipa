@@ -339,6 +339,7 @@ class LanguageSpecModel(_Strict):
     preposed_vowels: Optional[List[str]] = None
     coda_no_inherent_vowel: Optional[bool] = None
     collapse_geminates: Optional[bool] = None
+    constrain_onsets: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
     wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")

@@ -1005,7 +1005,7 @@ class G2P:
         sylls = self._syll_cache.get(word)
         if sylls is None:
             diph = self.spec.stress.diphthongs if self.spec.stress else ()
-            sylls = _syllables_for(word, self.lang, diph)
+            sylls = _syllables_for(word, self.lang, diph, spec=self.spec)
             self._syll_cache[word] = sylls
         return list(sylls)
 
@@ -1373,22 +1373,43 @@ class G2P:
     ) -> List[int]:
         """Map each grapheme token index to its 0-based syllable index.
 
-        Walks syllables left-to-right consuming grapheme characters to
-        assign each token to a syllable.  Falls back to 0 on mismatch.
+        Each token is LOCATED in the syllabified word rather than counted
+        into it. Counting assumed the token stream reconstructs the word
+        character for character, and it does not: the tokenizer emits nothing
+        for a character the spec has no grapheme for, so a word carrying a
+        digit or a hyphen (``102-jährige``, ``1-pentanol``) desynchronised the
+        two and drove every later token into the wrong syllable — which then
+        read as the STRESSED one and gave *jährige* a final ɛ instead of ə.
+        Searching forward from the last match cannot drift: an unmatched
+        character is skipped over instead of shifting everything after it.
+
+        A token that cannot be located at all keeps the syllable of the token
+        before it, which is the nearest true answer available.
         """
         if not sylls:
             return [0] * len(tokens)
-        syll_idx = 0
-        syll_consumed = 0  # chars consumed from current syllable
+        joined = "".join(sylls)
+        # syllable index of each CHARACTER position of the joined word
+        owner: List[int] = []
+        for idx, syll in enumerate(sylls):
+            owner.extend([idx] * len(syll))
+        # A LENGTH-PRESERVING fold: ``str.lower`` can change a string's length
+        # (Turkish ⟨İ⟩ folds to two characters), which would slide every
+        # offset after it against ``owner`` — the same desync this method
+        # exists to fix. Casefolding per character keeps the indices aligned.
+        fold = lambda text: "".join(
+            c.lower() if len(c.lower()) == 1 else c for c in text)
+        folded = fold(joined)
         result: List[int] = []
+        cursor = 0
         for token in tokens:
-            result.append(syll_idx)
-            syll_consumed += len(token.grapheme)
-            while syll_idx < len(sylls) and syll_consumed >= len(sylls[syll_idx]):
-                syll_consumed -= len(sylls[syll_idx])
-                syll_idx += 1
-                if syll_idx >= len(sylls):
-                    break
+            grapheme = token.grapheme
+            at = folded.find(fold(grapheme), cursor) if grapheme else -1
+            if at < 0:
+                result.append(result[-1] if result else 0)
+                continue
+            result.append(owner[at] if at < len(owner) else len(sylls) - 1)
+            cursor = at + len(grapheme)
         return result
 
 
