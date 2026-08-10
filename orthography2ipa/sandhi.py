@@ -16,6 +16,26 @@ Usage
     >>> engine = SandhiEngine(rules)
     >>> engine.apply(["lez", "ami"])
     ['lez‿', 'ami']
+
+Scope: both sides, and one rule per side
+────────────────────────────────────────
+A rule sees the IPA of BOTH words at the boundary and may rewrite either
+side (``transform`` for the left word, ``right_transform`` for the right);
+:meth:`SandhiEngine.apply` resolves the two sides independently, so at most
+one rule fires per side per boundary. Nothing restricts a rule to consonant
+edges: VOWEL CONTACT — the deletion or gliding of one of two vowels meeting
+across a boundary (Wheeler 2005, *The Phonology of Catalan*, §10.1;
+Bonet & Lloret 1998 ch. 5) — is expressed with the same two fields, and the
+declared rules of the Catalan branch are the worked example.
+
+Two rules that must never BOTH fire at one boundary are made mutually
+exclusive **in their contexts**, not by any precedence the engine knows: if
+one deletes a left-word final schwa and the other a right-word initial
+vowel, the second declares a left context that excludes schwa, so only one
+vowel is ever lost. Likewise a rule guards against emptying a word by
+requiring a neighbouring segment in its own pattern (a capture group, or a
+lookahead). Contexts are matched against the ORIGINAL words, so a rewrite
+cannot feed another rule at the same boundary.
 """
 from __future__ import annotations
 
