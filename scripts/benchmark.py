@@ -36,6 +36,13 @@ Dataset access:
 - ``kaikki`` downloads per-language Wiktextract JSON-lines dumps directly
   from kaikki.org (stdlib only).
 
+The scoreboard also reports **oracle PER@k** — the per-word minimum PER
+over the engine's top-k readings — which splits ranking error (right
+answer in the beam, ranked wrong) from model error (right answer absent
+at any k). It is a lattice-quality diagnostic for THIS engine only and
+is never valid input to a cross-system comparison: see
+:class:`OracleResult` and ``docs/benchmarks.md``.
+
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
 docs/scoreboard.md is full-dataset. ``--limit N`` still applies a uniform
@@ -61,7 +68,7 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 # the repository root precedes the installed package so that running the
 # script from a checkout measures THAT checkout
@@ -2436,8 +2443,8 @@ def _is_multiword(entry: str) -> bool:
     """True if *entry* is a phrase/sentence rather than a single word.
 
     Whitespace is the signal: a gold set is either word-level (WikiPron,
-    CMUdict) or sentence-level (4catac, vox_communis), and the scorer
-    must call the matching engine API for each.
+    CMUdict, vox_communis) or sentence-level (4catac, the TTS gold
+    sets), and the scorer must call the matching engine API for each.
     """
     return len(entry.split()) > 1
 
@@ -2512,12 +2519,140 @@ def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
     return pairs
 
 
+#: Top-k cut-offs the oracle metric reports. ``1`` is computed too, purely
+#: as a self-check: oracle@1 must equal the 1-best PER. That identity is
+#: NOT guaranteed by construction — ``transcribe_word`` searches greedily
+#: at width 1 while ``word_candidates`` runs a width-``max(k, 8)`` beam,
+#: and a wider beam is free to find a cheaper path than the greedy one.
+#: The two share every word-final stage, so they agree empirically on
+#: every gold set measured; the run VERIFIES it rather than assuming it,
+#: and aborts if it ever fails. See :func:`assert_oracle_self_check`.
+ORACLE_KS: Tuple[int, ...] = (1, 3, 5)
+
+#: The cut-offs published in the scoreboard row / docs table.
+ORACLE_REPORT_KS: Tuple[int, ...] = (3, 5)
+
+
+class OracleResult:
+    """Top-k oracle PER for one dataset/language row.
+
+    **Read this before using any number here.** Oracle PER@k is the
+    per-word MINIMUM PER over the engine's top-*k* readings, aggregated
+    exactly like the 1-best PER. It is a **lattice-quality diagnostic for
+    orthography2ipa only**:
+
+    - The gap ``per - oracle_per[k]`` is *ranking* error: the right
+      transcription is inside the beam but is not ranked first, so a
+      downstream rescorer (which is what actually consumes our lattice)
+      could recover it. That gap is the rescoring headroom.
+    - What remains at ``oracle_per[k]`` is *model* error: the right
+      transcription is not in the lattice at all, and no amount of
+      reranking will find it. Only new rules/data fix that.
+
+    It MUST NEVER be used in a cross-system comparison or any "beats X"
+    claim. espeak, epitran and every other system we benchmark against
+    emit ONE pronunciation; setting their 1-best against our oracle@k
+    would compare k guesses to one and is simply dishonest. This is why
+    ``scripts/compare_systems.py`` does not read these fields, and why
+    the CI regression gate (``benchmarks/results_ci_sample.json``) stays
+    1-best.
+    """
+
+    __slots__ = ("oracle_per", "oracle_exact", "fallback_words",
+                 "scored_words", "top1_mismatch")
+
+    def __init__(self, oracle_per: Dict[int, float],
+                 oracle_exact: Dict[int, float], fallback_words: int,
+                 scored_words: int, top1_mismatch: int) -> None:
+        #: mean oracle PER keyed by k (k=1 included as the self-check).
+        self.oracle_per = oracle_per
+        #: fraction of words where some top-k candidate EQUALS a gold,
+        #: keyed by k. Read this before saying "the right answer is in
+        #: the beam": ``oracle_per`` improving only means a NEARER wrong
+        #: answer is in the beam, which is a much weaker statement, and
+        #: empirically most of the PER-oracle gain is of that kind.
+        self.oracle_exact = oracle_exact
+        #: words scored with no candidate list available, so the oracle
+        #: fell back to the 1-best hypothesis (sentence-level entries, and
+        #: any word whose candidate call raised). Never a crash, always
+        #: counted.
+        self.fallback_words = fallback_words
+        #: words that got a REAL candidate list (covered minus fallback).
+        #: Zero means the whole row is fallback and its oracle columns
+        #: carry no lattice signal at all — they merely echo the PER.
+        self.scored_words = scored_words
+        #: words whose candidate 0 did not equal the 1-best hypothesis.
+        #: MUST be 0; anything else is an engine bug, not a metric quirk.
+        self.top1_mismatch = top1_mismatch
+
+    def __repr__(self) -> str:  # pragma: no cover — debugging aid
+        return (f"OracleResult(oracle_per={self.oracle_per!r}, "
+                f"oracle_exact={self.oracle_exact!r}, "
+                f"fallback_words={self.fallback_words}, "
+                f"scored_words={self.scored_words}, "
+                f"top1_mismatch={self.top1_mismatch})")
+
+
+def assert_oracle_self_check(dataset: str, lang: str, per: float,
+                             covered: int, oracle: "OracleResult",
+                             epsilon: float = 1e-9) -> None:
+    """Abort the run if the oracle path and the 1-best path disagree.
+
+    Candidate 0 of ``G2P.word_candidates`` is meant to be exactly what
+    ``transcribe_word`` returns, so oracle@1 must equal the PER column.
+    If it does not, the oracle columns describe a DIFFERENT engine than
+    the PER column beside them, and every ranking-vs-model conclusion
+    drawn from the row is wrong.
+
+    This exits non-zero rather than printing a warning: a scoreboard is
+    a committed artifact, and a run that writes a corrupted one while
+    reporting success is worse than a run that fails. A warning above
+    ``exit 0`` is a warning nobody reads.
+    """
+    problems = []
+    if oracle.top1_mismatch:
+        problems.append(
+            f"{oracle.top1_mismatch}/{covered} words where "
+            f"word_candidates()[0] != transcribe_word()")
+    delta = abs(oracle.oracle_per.get(1, per) - per)
+    if delta > epsilon:
+        problems.append(
+            f"oracle@1 {oracle.oracle_per[1]:.6f} != PER {per:.6f} "
+            f"(delta {delta:.2e} > {epsilon:g})")
+    if not problems:
+        return
+    for problem in problems:
+        print(f"ENGINE BUG: {dataset} lang={lang}: {problem}",
+              file=sys.stderr)
+    sys.exit(
+        f"ABORTING: the top-k oracle disagrees with the 1-best path, so "
+        f"the scoreboard would be corrupt. Refusing to write it. Fix "
+        f"G2P.word_candidates / transcribe_word, or rerun with --no-topk "
+        f"to write 1-best columns only.")
+
+
 def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     """Like :func:`evaluate` but also returns the per-word PER list, so
     callers (e.g. :func:`bootstrap_per_ci`) can resample it. The point
     estimates returned here (``n``, ``covered``, ``per``, ``wer``) are
     computed the exact same way as :func:`evaluate` — byte-identical
     scoreboard numbers.
+    """
+    n, covered, pers, per, wer, _oracle = evaluate_words_oracle(
+        pairs, lang, strip_stress, broad, oracle_ks=())
+    return n, covered, pers, per, wer
+
+
+def evaluate_words_oracle(pairs, lang: str, strip_stress: bool, broad: bool,
+                          oracle_ks: Sequence[int] = ORACLE_KS):
+    """:func:`evaluate_words` plus the top-k oracle PER.
+
+    One scoring loop, one normalization, one distance function: passing
+    an empty *oracle_ks* turns the oracle off and the 1-best numbers are
+    byte-identical to the pre-oracle harness. Read :class:`OracleResult`
+    for what the oracle numbers may and may not be used for.
+
+    Returns ``(n, covered, pers, per, wer, oracle_or_None)``.
     """
     from orthography2ipa import G2P
 
@@ -2531,10 +2666,15 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     extra = _prosody_marks(lang)
     pers: List[float] = []
     wrong, covered = 0, 0
+    ks = sorted({int(k) for k in oracle_ks})
+    oracle_sums: Dict[int, float] = {k: 0.0 for k in ks}
+    oracle_exact_counts: Dict[int, int] = {k: 0 for k in ks}
+    fallback_words = 0
+    top1_mismatch = 0
     for word, golds in refs.items():
         try:
             # Pick the API that matches the entry's granularity. Several gold
-            # sets are sentence-level (4catac, vox_communis), and
+            # sets are sentence-level (4catac, the TTS gold sets), and
             # transcribe_word() treats a whole sentence as ONE word: word
             # boundaries vanish, per-word stress collapses to a single mark,
             # and word-final rules (Catalan final-⟨r⟩ deletion, Danish schwa)
@@ -2549,17 +2689,73 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
         if not hyp:
             continue
         covered += 1
-        per = min(
-            levenshtein(hyp, g) / max(len(g), 1)
-            for g in (normalize(x, strip_stress, broad, extra_strip=extra)
-                      for x in golds)
-        )
+        golds_norm = [normalize(x, strip_stress, broad, extra_strip=extra)
+                      for x in golds]
+        golds_set = set(golds_norm)
+
+        def _score(h: str) -> float:
+            """PER of hypothesis *h* against the best of this word's golds."""
+            return min(levenshtein(h, g) / max(len(g), 1) for g in golds_norm)
+
+        per = _score(hyp)
         pers.append(per)
         wrong += per > 0
+
+        if ks:
+            # Oracle: the same _score, over the engine's top-k readings
+            # instead of only its first. Sentence-level gold entries have no
+            # word-level candidate list (the beam is per WORD; composing a
+            # sentence beam out of word beams would invent a ranking the
+            # engine never produces), so they fall back to the 1-best.
+            cands: List[str] = []
+            if not _is_multiword(word):
+                try:
+                    cands = [
+                        normalize(c, strip_stress, broad, extra_strip=extra)
+                        for c in engine.word_candidates(word, k=max(ks))
+                    ]
+                except Exception:
+                    cands = []
+            if not cands:
+                fallback_words += 1
+                cands = [hyp]
+            elif cands[0] != hyp:
+                # Candidate 0 is meant to BE transcribe_word's answer. If it
+                # is not, the two paths disagree and the oracle is measuring
+                # a different engine than the 1-best column. Counted, never
+                # silently smoothed over.
+                top1_mismatch += 1
+            best = float("inf")
+            hit = False
+            for i, k in enumerate(ks):
+                lo = ks[i - 1] if i else 0
+                for cand in cands[lo:k]:
+                    best = min(best, _score(cand))
+                    # EXACT oracle: some top-k candidate IS a gold, not
+                    # merely closer to one. This is the number that
+                    # supports the phrase "the right answer is in the
+                    # beam"; the PER oracle only says "a nearer wrong
+                    # answer is in the beam", which is a much weaker
+                    # claim and empirically the common case.
+                    hit = hit or cand in golds_set
+                oracle_sums[k] += best
+                oracle_exact_counts[k] += hit
     n = len(refs)
     per_sum = sum(pers)
+    oracle = None
+    if ks:
+        oracle = OracleResult(
+            oracle_per={k: (oracle_sums[k] / covered if covered else 1.0)
+                        for k in ks},
+            oracle_exact={k: (oracle_exact_counts[k] / covered
+                              if covered else 0.0)
+                          for k in ks},
+            fallback_words=fallback_words,
+            scored_words=covered - fallback_words,
+            top1_mismatch=top1_mismatch,
+        )
     return n, covered, pers, (per_sum / covered if covered else 1.0), \
-        (wrong / covered if covered else 1.0)
+        (wrong / covered if covered else 1.0), oracle
 
 
 def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
@@ -2614,7 +2810,10 @@ def _quality_tier(lang: str) -> Optional[str]:
         return None
 
 
-def build_scoreboard(limit: Optional[int]) -> List[dict]:
+def build_scoreboard(limit: Optional[int], oracle: bool = False,
+                     only_langs: Optional[Sequence[str]] = None,
+                     only_datasets: Optional[Sequence[str]] = None,
+                     ) -> List[dict]:
     """Run every registered gold dataset/language combination and
     return deterministic scoreboard rows sorted by language tag.
 
@@ -2626,19 +2825,41 @@ def build_scoreboard(limit: Optional[int]) -> List[dict]:
     is applied UNIFORMLY to every language (no per-language cap juggling).
     ``None`` is passed to the loaders as ``sys.maxsize`` so their
     ``len(pairs) >= limit`` / ``pairs[:limit]`` guards become no-ops.
+
+    ``oracle`` adds the top-k oracle PER columns (see
+    :class:`OracleResult` for what they mean and what they must NOT be
+    used for). It defaults to **OFF**, and every caller that wants it
+    says so. The published ``--scoreboard`` run opts in; the CI
+    regression gate (``check_benchmark_regression.py``) and the
+    ``--ci-sample`` baseline do not, because they compare 1-best PER
+    only and would otherwise pay ~1.6x for columns they never read.
+    Defaulting to off is what keeps a future call site from silently
+    inheriting that cost.
+
+    ``only_langs`` / ``only_datasets`` restrict the run to a subset. The
+    full scoreboard is ~10M scored words and takes hours, so a targeted
+    rerun is the practical way to refresh a handful of rows; the caller
+    then MERGES the result into the committed set (see
+    :func:`merge_scoreboard_rows`). A subset run scores each row exactly
+    as the full run does — no row depends on which others ran with it.
     """
     effective = sys.maxsize if limit is None else limit
     rows: List[dict] = []
     for dataset_name, (loader, langs) in DATASETS.items():
+        if only_datasets and dataset_name not in only_datasets:
+            continue
         for lang in langs:
+            if only_langs and lang not in only_langs:
+                continue
             try:
                 pairs = loader(lang, effective)
             except Exception as exc:
                 print(f"skip {dataset_name} lang={lang}: {exc}",
                       file=sys.stderr)
                 continue
-            n, covered, pers, per, wer = evaluate_words(
+            n, covered, pers, per, wer, oracle_res = evaluate_words_oracle(
                 pairs, lang, strip_stress=True, broad=True,
+                oracle_ks=ORACLE_KS if oracle else (),
             )
             if covered == 0:
                 # A zero-coverage result is a broken loader, a dead upstream
@@ -2652,6 +2873,9 @@ def build_scoreboard(limit: Optional[int]) -> List[dict]:
                       file=sys.stderr)
                 continue
             ci_low, ci_high = bootstrap_per_ci(pers)
+            if oracle_res is not None:
+                assert_oracle_self_check(dataset_name, lang, per, covered,
+                                         oracle_res)
             rows.append({
                 "lang": lang,
                 "dataset": dataset_name,
@@ -2665,14 +2889,59 @@ def build_scoreboard(limit: Optional[int]) -> List[dict]:
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
+            if oracle_res is not None:
+                # Diagnostic-only lattice-quality columns. NEVER compare
+                # these to another system's 1-best (see OracleResult).
+                for k in ORACLE_REPORT_KS:
+                    rows[-1][f"oracle_per_top{k}"] = round(
+                        oracle_res.oracle_per[k], 4)
+                    rows[-1][f"oracle_exact_top{k}"] = round(
+                        oracle_res.oracle_exact[k], 4)
+                rows[-1]["oracle_fallback_words"] = oracle_res.fallback_words
+                # Explicit, so no reader (or later edit) has to know that a
+                # row's "n" happens to be `covered`: 0 means the row's
+                # oracle columns carry no lattice signal.
+                rows[-1]["oracle_scored_words"] = oracle_res.scored_words
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows
+
+
+def merge_scoreboard_rows(old: List[dict], new: List[dict]) -> List[dict]:
+    """Overlay freshly-scored *new* rows onto the committed *old* set.
+
+    Keyed on ``(lang, dataset)`` — the scoreboard's identity. A new row
+    REPLACES the old one wholesale (never a field-by-field patch: a row
+    is one measurement, and half-refreshing one would mix two runs).
+    Rows only in *old* are carried through untouched, which is what makes
+    a per-language rerun safe when a full run is impractical.
+    """
+    merged = {(r["lang"], r["dataset"]): r for r in old}
+    for row in new:
+        merged[(row["lang"], row["dataset"])] = row
+    return sorted(merged.values(), key=lambda r: (r["lang"], r["dataset"]))
+
+
+def read_scoreboard_rows() -> List[dict]:
+    """The committed scoreboard rows, or ``[]`` if none are written yet."""
+    if not os.path.exists(SCOREBOARD_JSON):
+        return []
+    with open(SCOREBOARD_JSON, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+#: Indent used for benchmarks/results.json. It is 1, not the 2 every
+#: sibling artifact uses, because that is how the file is committed:
+#: ~80 commits touch it, and reformatting 8k lines to gain a space would
+#: conflict with every one of them in flight for no measurement value.
+#: Normalizing it to 2 is a standalone cleanup, not a rider on a
+#: feature PR.
+SCOREBOARD_JSON_INDENT = 1
 
 
 def write_scoreboard(rows: List[dict]) -> None:
     os.makedirs(os.path.dirname(SCOREBOARD_JSON), exist_ok=True)
     with open(SCOREBOARD_JSON, "w", encoding="utf-8") as fh:
-        json.dump(rows, fh, indent=2, ensure_ascii=False)
+        json.dump(rows, fh, indent=SCOREBOARD_JSON_INDENT, ensure_ascii=False)
         fh.write("\n")
 
     lines = [
@@ -2719,18 +2988,82 @@ def write_scoreboard(rows: List[dict]) -> None:
         f"{BOOTSTRAP_REPS} reps, fixed seed {BOOTSTRAP_SEED}) — see "
         "[`docs/benchmarks.md`](benchmarks.md).",
         "",
-        "| Lang | Dataset | N | PER | 95% CI | Exact match | Quality tier "
-        "| Provenance |",
-        "|---|---|---:|---:|---:|---:|---|---|",
+        "The `Oracle@3` / `Oracle@5` columns are the per-word MINIMUM PER "
+        "over the engine's top-3 / top-5 readings, averaged like `PER`. "
+        "They are an **orthography2ipa-only lattice-quality diagnostic** and "
+        "**must never be used in a cross-system comparison or a \"beats X\" "
+        "claim**: espeak, epitran and every other system benchmarked in "
+        "[`docs/comparison.md`](comparison.md) emit ONE pronunciation, so "
+        "setting their single answer against k of ours compares k guesses to "
+        "one. `scripts/compare_systems.py` therefore does not read these "
+        "columns, and the CI regression gate "
+        "(`benchmarks/results_ci_sample.json`) stays 1-best.",
+        "",
+        "How to read the gap: `PER − Oracle@k` is **ranking error** — some "
+        "reading in the top-k scores better than the one the engine ranked "
+        "first, so a downstream rescorer reading our lattice could recover "
+        "that much. That gap is the **rescoring headroom**, and it is an "
+        "UPPER BOUND no real rescorer reaches: an oracle is allowed to pick "
+        "the best candidate per word after seeing the answer. What is left "
+        "at `Oracle@k` is **model error**: no better reading exists in the "
+        "lattice, and only new rules or data can fix it.",
+        "",
+        "`Oracle@k` improving does NOT mean the correct transcription is in "
+        "the beam — only that a CLOSER one is. The separate "
+        "`OracleX@k` columns are the strict version: the fraction of words "
+        "where some top-k candidate **equals** a gold exactly (compare "
+        "against the `Exact match` column, which is the same measure at "
+        "k=1). Most of the PER-oracle gain is closer-but-still-wrong "
+        "readings, so quote `OracleX@k` for any \"the engine already "
+        "knows the answer\" claim. It is phenomena-neutral either way: it "
+        "says nothing about WHICH phonological phenomenon is wrong.",
+        "",
+        "Oracle cells read `·` when the row has **not been rescored** since "
+        "the oracle columns were added (most rows: a full scoreboard is "
+        "~10M scored words, so rows are refreshed in batches), and `-` when "
+        "the row is **sentence-level** and can never have an oracle: the "
+        "beam is per WORD, and composing a sentence-level beam out of word "
+        "beams would invent a ranking the engine never produces. The two "
+        "are different states and are never merged into one blank.",
+        "",
+        "| Lang | Dataset | N | PER | Oracle@3 | Oracle@5 | OracleX@3 "
+        "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
     ]
     for row in rows:
         tier = row["quality_tier"] or "-"
         prov = row.get("provenance") or "-"
-        ci = f"[{row['per_ci_low']:.4f}, {row['per_ci_high']:.4f}]"
+        # A row scored before the CI column existed carries nulls; a
+        # merged board can hold both generations.
+        lo, hi = row.get("per_ci_low"), row.get("per_ci_high")
+        ci = "-" if lo is None or hi is None else f"[{lo:.4f}, {hi:.4f}]"
+        # Three distinct states, three distinct markers:
+        #   "·"  never rescored since the oracle columns landed
+        #   "-"  rescored, but no word had a real candidate list
+        #        (sentence-level gold: an oracle is impossible, not absent)
+        #   n.nnnn  a real measurement
+        # Collapsing the first two into one blank would let an unrescored
+        # row read as "sentence-level, no ranking error", which is a
+        # conclusion the data does not support.
+        rescored = "oracle_per_top3" in row
+        no_signal = row.get("oracle_scored_words") == 0
+
+        def _oracle(field: str) -> str:
+            if not rescored:
+                return "·"
+            if no_signal:
+                return "-"
+            v = row.get(field)
+            return "·" if v is None else f"{v:.4f}"
+
+        em = row.get("exact_match")
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {row['n']} | "
-            f"{row['per']:.4f} | {ci} | {row['exact_match']:.4f} | {tier} "
-            f"| {prov} |"
+            f"{row['per']:.4f} | {_oracle('oracle_per_top3')} "
+            f"| {_oracle('oracle_per_top5')} "
+            f"| {_oracle('oracle_exact_top3')} "
+            f"| {_oracle('oracle_exact_top5')} | {ci} "
+            f"| {'-' if em is None else f'{em:.4f}'} | {tier} | {prov} |"
         )
     lines.append("")
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)
@@ -2912,6 +3245,14 @@ def main() -> None:
                          f"--limit {CI_SAMPLE_LIMIT} sample used by "
                          "check_benchmark_regression.py (NOT the full "
                          "published scoreboard).")
+    ap.add_argument("--no-topk", action="store_true",
+                    help="Skip the top-k oracle PER columns in "
+                         "--scoreboard. The oracle is ON by default "
+                         "(measured cost: ~1.6x the 1-best run); this is "
+                         "an escape hatch for a fast ad-hoc rerun. The "
+                         "oracle is a lattice-quality diagnostic for THIS "
+                         "engine only and is never valid input to a "
+                         "cross-system comparison.")
     ap.add_argument("--lexicon-report", action="store_true",
                     help="Score rules-only vs with-lexicon PER for every "
                          "language with a registered lexicon and "
@@ -2928,7 +3269,9 @@ def main() -> None:
         return
 
     if args.ci_sample:
-        rows = build_scoreboard(CI_SAMPLE_LIMIT)
+        # 1-best only, deliberately (and by default): the regression gate
+        # compares point-estimate PER and must never drift onto an oracle.
+        rows = build_scoreboard(CI_SAMPLE_LIMIT, oracle=False)
         os.makedirs(os.path.dirname(CI_SAMPLE_JSON), exist_ok=True)
         with open(CI_SAMPLE_JSON, "w", encoding="utf-8") as fh:
             json.dump(rows, fh, indent=2, ensure_ascii=False)
@@ -2939,7 +3282,22 @@ def main() -> None:
         return
 
     if args.scoreboard:
-        rows = build_scoreboard(args.limit)
+        # --lang/--dataset narrow the run to a subset and MERGE the result
+        # into the committed scoreboard; without them the whole board is
+        # rescored from scratch.
+        subset = bool(args.lang or args.dataset)
+        # The published scoreboard is the ONE caller that opts into the
+        # oracle; build_scoreboard defaults it off so the CI gate and any
+        # future call site never inherit the ~1.6x cost by accident.
+        rows = build_scoreboard(
+            args.limit, oracle=not args.no_topk,
+            only_langs=[args.lang] if args.lang else None,
+            only_datasets=[args.dataset] if args.dataset else None,
+        )
+        if subset:
+            print(f"merging {len(rows)} rescored rows into the committed "
+                  f"scoreboard", file=sys.stderr)
+            rows = merge_scoreboard_rows(read_scoreboard_rows(), rows)
         write_scoreboard(rows)
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(SCOREBOARD_MD, REPO_ROOT)} and "
@@ -2957,13 +3315,21 @@ def main() -> None:
         sys.exit(f"{args.dataset} supports: {langs}")
 
     pairs = loader(lang, sys.maxsize if args.limit is None else args.limit)
-    n, covered, per, wer = evaluate(
+    n, covered, _pers, per, wer, oracle_res = evaluate_words_oracle(
         pairs, lang,
         strip_stress=not args.keep_stress,
         broad=not args.narrow,
+        oracle_ks=() if args.no_topk else ORACLE_KS,
     )
-    print(f"{args.dataset} lang={lang} n={n} covered={covered} "
-          f"PER={per:.4f} WER={wer:.4f}")
+    line = (f"{args.dataset} lang={lang} n={n} covered={covered} "
+            f"PER={per:.4f} WER={wer:.4f}")
+    if oracle_res is not None:
+        line += "".join(f" oracle@{k}={oracle_res.oracle_per[k]:.4f}"
+                        f"/x{oracle_res.oracle_exact[k]:.4f}"
+                        for k in ORACLE_REPORT_KS)
+        line += (f" (scored={oracle_res.scored_words} "
+                 f"fallback={oracle_res.fallback_words})")
+    print(line)
 
 
 if __name__ == "__main__":

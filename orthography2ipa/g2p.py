@@ -979,8 +979,56 @@ class G2P:
                     rescorer=self._rescorers or None)
             paths = self._apply_grammatical_ending(word, paths)
             ipa = paths[0].ipa if paths else word
-            if self.spec.collapse_geminates and ipa:
-                ipa = _collapse_geminates(ipa)
+            ipa = self._finalize_word_ipa(word, ipa, forced_ipa=forced_ipa)
+        if override is not None:
+            ipa = self._finalize_word_ipa(word, ipa, forced_ipa=forced_ipa,
+                                          collapse_geminates=False)
+        # NOTE: *not* NFC-composed here. Cross-word sandhi rules (see
+        # transcribe_detailed) still need to run on this per-word IPA, and
+        # at least one declared rule (pt-PT's PT_SCHWA_ELISION) matches a
+        # nasal vowel by its DECOMPOSED shape (base vowel + combining
+        # tilde U+0303) in its right_context regex — composing here first
+        # would make that vowel invisible to the rule and silently disable
+        # it. The NFC output contract is enforced once, at the true
+        # emission boundary, after every cross-word stage has run (see
+        # transcribe_detailed and transcribe_word).
+        unmapped, coverage = self._unmapped_chars(word)
+        if unmapped:
+            self._handle_unmapped(word, unmapped)
+        # Per-word confidence (B5): a lexicon override is a certain answer
+        # (lattice_conf = 1.0); otherwise read the lattice's weakest-link
+        # slot confidence. Coverage folds the OOV signal in either case.
+        lattice_conf = (
+            1.0 if override is not None
+            else lattice_confidence(self.ipa_lattice(word))
+        )
+        return WordTranscription(
+            word=word,
+            ipa=ipa,
+            candidates=tuple(paths) if width > 1 else (),
+            unmapped=unmapped,
+            coverage=coverage,
+            confidence=lattice_conf * coverage,
+        )
+
+    def _finalize_word_ipa(self, word: str, ipa: str, *,
+                           forced_ipa: Optional[str] = None,
+                           collapse_geminates: bool = True) -> str:
+        """Apply the per-path word-final stages to one beam path's *ipa*.
+
+        These are the stages that turn a raw beam path into the string
+        :meth:`transcribe_word` emits: geminate collapse and stress
+        marking. They are factored out of :meth:`_transcribe_word` so
+        that a caller wanting the top-*k* readings (see
+        :meth:`word_candidates`) runs the SAME pipeline on every path
+        instead of re-implementing it — a second implementation would
+        make candidate 1 disagree with :meth:`transcribe_word`.
+
+        Cross-word stages (sandhi, dialect transform) are NOT applied
+        here: they act on the whole utterance, not on a word.
+        """
+        if collapse_geminates and self.spec.collapse_geminates and ipa:
+            ipa = _collapse_geminates(ipa)
         # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
         # all. A caller who wrote a mark has placed the stress, and one who wrote
         # none has said this word carries none — re-deriving it from the spelling
@@ -1014,34 +1062,72 @@ class G2P:
                         mark = rules.accent2_mark
                 ipa = apply_stress_mark(ipa, self.spec.stress, idx,
                                         syllables=sylls, mark=mark)
-        # NOTE: *not* NFC-composed here. Cross-word sandhi rules (see
-        # transcribe_detailed) still need to run on this per-word IPA, and
-        # at least one declared rule (pt-PT's PT_SCHWA_ELISION) matches a
-        # nasal vowel by its DECOMPOSED shape (base vowel + combining
-        # tilde U+0303) in its right_context regex — composing here first
-        # would make that vowel invisible to the rule and silently disable
-        # it. The NFC output contract is enforced once, at the true
-        # emission boundary, after every cross-word stage has run (see
-        # transcribe_detailed and transcribe_word).
-        unmapped, coverage = self._unmapped_chars(word)
-        if unmapped:
-            self._handle_unmapped(word, unmapped)
-        # Per-word confidence (B5): a lexicon override is a certain answer
-        # (lattice_conf = 1.0); otherwise read the lattice's weakest-link
-        # slot confidence. Coverage folds the OOV signal in either case.
-        lattice_conf = (
-            1.0 if override is not None
-            else lattice_confidence(self.ipa_lattice(word))
-        )
-        confidence = lattice_conf * coverage
-        return WordTranscription(
-            word=word,
-            ipa=ipa,
-            candidates=tuple(paths) if width > 1 else (),
-            unmapped=unmapped,
-            coverage=coverage,
-            confidence=confidence,
-        )
+        # NOT NFC-composed: see the note in _transcribe_word.
+        return ipa
+
+    def word_candidates(self, word: str, *, k: int = 5,
+                        beam_width: Optional[int] = None) -> List[str]:
+        """The top-*k* full transcriptions of *word*, best first.
+
+        Unlike :meth:`candidates`, which exposes the RAW beam paths (no
+        stress marks, no geminate collapse, no grammatical-ending
+        rewrite, no lexicon override), every string returned here has
+        been through the same word-final pipeline as
+        :meth:`transcribe_word` — geminate collapse, grammatical-ending
+        rewrite, stress marking, and the lexicon/``word_exceptions``
+        override.
+
+        Element 0 is normally ``transcribe_word(word)``, but that is an
+        EMPIRICAL property, not a guarantee. :meth:`transcribe_word`
+        defaults to ``search="greedy"``, which prunes to a single
+        hypothesis at every step; this method runs a real beam of
+        ``max(k, 8)``. A wider beam may reach a cheaper path that greedy
+        pruning discarded, in which case element 0 is the BETTER reading
+        and differs from :meth:`transcribe_word`. Pass
+        ``beam_width=1`` to force the greedy path and make the identity
+        hold by construction, at the cost of getting one candidate.
+
+        The benchmark harness relies on the identity to make oracle@k
+        comparable to the 1-best PER, so it re-checks it on every run
+        and aborts on a mismatch rather than trusting it.
+
+        Duplicates are collapsed (two beam paths often finalize to the
+        same string once stress and geminate collapse have run), so the
+        result may be shorter than *k*. A word with a lexicon or
+        ``word_exceptions`` override has exactly ONE reading — the
+        override — and the list has length 1: no beam is consulted.
+
+        *beam_width* defaults to ``max(k, 8)``; a beam narrower than *k*
+        cannot produce *k* readings.
+
+        Returns an EMPTY list for a word with no pronounceable output
+        (every path finalized to an empty string) — the caller decides
+        what that means rather than receiving a fabricated reading.
+        """
+        if k < 1:
+            raise ValueError(f"k must be >= 1, got {k}")
+        width = max(k, 8) if beam_width is None else beam_width
+        override = self._override_for(word)
+        if override is not None:
+            return [unicodedata.normalize(
+                "NFC", self._finalize_word_ipa(word, override,
+                                               collapse_geminates=False))]
+        if self.spec.has_positional_data():
+            paths = self._positional_beam(word, width)
+        else:
+            paths = self._tokenizer.ipa_beam(
+                word, beam_width=width,
+                expand_allophones=self.expand_allophones,
+                rescorer=self._rescorers or None)
+        paths = self._apply_grammatical_ending(word, paths)
+        raw = [p.ipa for p in paths[:k]] or [word]
+        out: List[str] = []
+        for ipa in raw:
+            final = unicodedata.normalize(
+                "NFC", self._finalize_word_ipa(word, ipa))
+            if final and final not in out:
+                out.append(final)
+        return out
 
     def _apply_grammatical_ending(
         self, word: str, paths: List[IPAPath]
