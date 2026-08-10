@@ -101,6 +101,9 @@ class TestGraphemePosition(unittest.TestCase):
             "before_palatal", "after_palatal",
             "vocalic", "consonantal",
             "default", "nucleus",
+            "open_syllable", "closed_syllable",
+            "nucleus_stressed_open", "nucleus_stressed_closed",
+            "nucleus_unstressed_open", "nucleus_unstressed_closed",
         }
         actual = {p.value for p in GraphemePosition}
         self.assertEqual(actual, expected)

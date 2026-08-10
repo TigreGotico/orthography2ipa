@@ -306,6 +306,12 @@ Rules to follow when adding one:
 | `nucleus`                 | Generic syllable nucleus    | When stress not distinguished             |
 | `nucleus_stressed`        | Stressed syllable nucleus   | Full vowel quality                        |
 | `nucleus_unstressed`      | Unstressed syllable nucleus | Portuguese ⟨e⟩ → [ɨ]                     |
+| `open_syllable`           | Nucleus, syllable has no coda | French `"eu": {"open_syllable": ["ø"]}` |
+| `closed_syllable`         | Nucleus, syllable has a coda  | French `"eu": {"closed_syllable": ["œ"]}` |
+| `nucleus_stressed_open`   | Stressed **and** open       | Dutch ⟨e⟩ → [eː] in *le·zen*              |
+| `nucleus_stressed_closed` | Stressed **and** closed     | Dutch ⟨e⟩ → [ɛ] in *lek*                  |
+| `nucleus_unstressed_open` | Unstressed **and** open     | Aperture under reduction                  |
+| `nucleus_unstressed_closed` | Unstressed **and** closed | Aperture under reduction                  |
 | `coda`                    | Syllable coda               | Brazilian `"l": {"coda": ["w"]}`          |
 | `pretonic`                | Before stressed syllable    | Pretonic vowel reduction                  |
 | `posttonic`               | After stressed syllable     | Posttonic vowel reduction                 |

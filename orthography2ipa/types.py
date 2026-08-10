@@ -572,6 +572,46 @@ class GraphemePosition(str, Enum):
     NUCLEUS = "nucleus"
     """Generic syllable nucleus (when stress is not distinguished)."""
 
+    OPEN_SYLLABLE = "open_syllable"
+    """Nucleus of a syllable with no coda (CV): the *libre* environment of
+    the Romance *loi de position* and of the Germanic open/closed vowel
+    alternation. E.g. French ⟨eu⟩ → [ø] in *heu·reux* but [œ] in *fleur*;
+    Dutch ⟨e⟩ → [eː] in *le·zen* but [ɛ] in *lek*. Aperture is decided on
+    the spec's own syllabification of the ORTHOGRAPHIC word (a syllable is
+    open when its last character is a vowel letter, after the trailing
+    graphemes the spec itself emits nothing for have been stripped), so
+    it is available only where a syllabification is; a spec that declares
+    none of these keys is never syllabified for their sake and these
+    positions are simply not emitted.
+
+    References: Fougeron & Smith (1993) *Illustrations of the IPA:
+    French* (``fougeron_smith1993``, cited in ``fr-FR``'s ``sources``),
+    which states the loi de position as close-mid e/ø/o in open
+    syllables against open-mid ɛ/œ/ɔ in closed ones; Tranel (1987) *The
+    Sounds of French* ch. 4 (``tranel1987``, same ``sources`` array).
+    The environment is not French-specific — it is where the Germanic
+    open-syllable length alternations are stated too — but those are the
+    two sources this repository actually carries for it."""
+
+    CLOSED_SYLLABLE = "closed_syllable"
+    """Nucleus of a syllable that has a coda (CVC): the *entravé*
+    counterpart of :attr:`OPEN_SYLLABLE`."""
+
+    NUCLEUS_STRESSED_OPEN = "nucleus_stressed_open"
+    """Stressed nucleus in an open syllable — the two conditions the
+    mid-vowel alternations actually key on, jointly. Emitted BEFORE the
+    aperture-only and stress-only positions, so a spec that declares it
+    wins over both."""
+
+    NUCLEUS_STRESSED_CLOSED = "nucleus_stressed_closed"
+    """Stressed nucleus in a closed syllable."""
+
+    NUCLEUS_UNSTRESSED_OPEN = "nucleus_unstressed_open"
+    """Unstressed nucleus in an open syllable."""
+
+    NUCLEUS_UNSTRESSED_CLOSED = "nucleus_unstressed_closed"
+    """Unstressed nucleus in a closed syllable."""
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # AncestorRole

@@ -44,6 +44,8 @@ non-stress-conditioned position.
 """
 from __future__ import annotations
 
+import bisect
+
 from typing import (Callable, Dict, List, NamedTuple, Optional, Sequence,
                     Tuple)
 
@@ -53,6 +55,7 @@ from orthography2ipa.vowels import (
     is_back_vowel,
     is_front_vowel,
     is_ipa_vowel,
+    is_orthographic_vowel,
 )
 from orthography2ipa.weights import candidate_base_costs
 
@@ -256,12 +259,22 @@ def match_grammatical_ending(
        anyway because ``spec.word_exceptions`` outranks
        ``grammatical_endings`` and lists ``vers`` explicitly; the matcher
        itself has no notion of "root" versus "suffix" for a given word.
-    2. **Aligned to token boundaries.** The ending must start where a
-       grapheme token starts, so matching can never split a digraph and
-       never re-tokenizes anything: the word's interior is tokenized
-       exactly as it was without this table.
-    3. **Leaving a head.** At least one token must precede the ending; a
-       word that *is* its ending is a word, not a suffix.
+    2. **Matched on surface letters, replaced by whole tokens.** The
+       ending is looked for in the word's trailing *letters*, then the
+       span it occupies is rounded OUTWARD to whole grapheme tokens.
+       Matching on tokens alone silently missed every ending that starts
+       inside a digraph: French ⟨mm⟩ is one token, so ``comment`` and the
+       whole ⟨-amment⟩/⟨-emment⟩ adverb class could never match ⟨-ment⟩
+       even though the letters are plainly there. Rounding outward keeps
+       the invariant that matters — a match still replaces whole tokens,
+       still never re-tokenizes, and the word's interior is tokenized
+       exactly as it was without this table. It also means a straddling
+       ending's declared IPA stands for the ROUNDED span, i.e. for the
+       straddled token as well; declare such an ending only when that is
+       what you mean (French ⟨-ment⟩ over a degeminating ⟨mm⟩:
+       ``comment`` → [kɔ] + [mɑ̃], not [kɔm] + [mɑ̃]).
+    3. **Leaving a head.** At least one token must precede the rounded
+       span; a word that *is* its ending is a word, not a suffix.
 
     Longest match wins, which is how a more specific ending (English
     ⟨-stion⟩) overrides the general one (⟨-tion⟩) it contains.
@@ -278,14 +291,127 @@ def match_grammatical_ending(
         suffix_tokens = 1
 
     end = len(graphemes) - suffix_tokens
-    # Ascending start index => the first hit is the longest ending.
-    for start in range(1, end):
-        candidate = "".join(graphemes[start:end]).lower()
-        ipa = endings.get(candidate)
-        if ipa is not None:
-            return GrammaticalEnding(ending=candidate, ipa=ipa,
-                                     tokens=end - start + suffix_tokens)
+    # Letter offset at which each candidate token span starts, so a
+    # surface-letter ending can be rounded outward to whole tokens.
+    stem = [g.lower() for g in graphemes[:end]]
+    surface = "".join(stem)
+    starts = []
+    offset = 0
+    for token in stem:
+        starts.append(offset)
+        offset += len(token)
+    if not surface:
+        return None
+    # Ascending letter cut => the first hit is the longest ending. A cut
+    # inside a token rounds OUTWARD to that token's start, and the span
+    # is admissible only while at least one whole token still precedes
+    # it (a word that IS its ending is a word, not a suffix).
+    for cut in range(1, len(surface)):
+        ipa = endings.get(surface[cut:])
+        if ipa is None:
+            continue
+        first = bisect.bisect_right(starts, cut) - 1
+        if first < 1:
+            # This ending's outward-rounded span leaves no head token; a
+            # SHORTER ending later in the scan may still fit, so keep
+            # looking rather than aborting the search.
+            continue
+        return GrammaticalEnding(
+            ending=surface[cut:], ipa=ipa,
+            tokens=end - first + suffix_tokens)
     return None
+
+
+def _silent_word_finally(spec: Optional[LanguageSpec], letters: str) -> bool:
+    """Does *spec* emit nothing for the grapheme *letters* at a word end?
+
+    Two ways a spec can say "mute here", and the engine honours both, so
+    this must too:
+
+    * a ``positional_graphemes`` ``word_final`` entry whose FIRST
+      (canonical) candidate is the empty string — French ⟨s⟩, ⟨t⟩, ⟨x⟩;
+    * a flat ``graphemes`` entry whose first candidate is empty, i.e. the
+      letter is mute *unconditionally* — French ⟨h⟩. Reading only the
+      positional table missed these and made ``beuh``/``chleuh`` look
+      like closed syllables ([bœ] for [bø]).
+
+    A grapheme whose word-final reading is merely *optionally* silent (the
+    empty string ranked second, French ⟨r⟩ since it is pronounced by
+    default) is pronounced by the engine, so it is not silent here either
+    — the two answers cannot drift apart.
+    """
+    if not spec:
+        return False
+    entry = (spec.positional_graphemes or {}).get(letters)
+    if entry:
+        candidates = entry.get(GraphemePosition.WORD_FINAL)
+        if candidates:
+            return candidates[0] == ""
+        default = entry.get(GraphemePosition.DEFAULT)
+        if default:
+            return default[0] == ""
+    flat = (spec.graphemes or {}).get(letters)
+    return bool(flat) and flat[0] == ""
+
+
+#: Longest silent-tail grapheme :func:`_strip_silent_tail` will consider.
+#: Mute word-final graphemes are one or two letters in every spec that has
+#: any (⟨h⟩, ⟨s⟩, ⟨x⟩, ⟨gh⟩); the bound keeps the strip loop O(1) per
+#: syllable instead of scanning the whole grapheme table.
+_MAX_SILENT_TAIL = 3
+
+
+def _strip_silent_tail(syllable: str, spec: Optional[LanguageSpec]) -> str:
+    """Remove the trailing graphemes *spec* emits nothing for.
+
+    Longest grapheme first, so a two-letter mute digraph is not mistaken
+    for its last letter, and repeated so a stack of mute finals (French
+    plural ⟨-s⟩ over a mute ⟨-h⟩) is fully removed.
+    """
+    changed = True
+    while changed and syllable:
+        changed = False
+        for size in range(min(_MAX_SILENT_TAIL, len(syllable)), 0, -1):
+            if _silent_word_finally(spec, syllable[-size:].lower()):
+                syllable = syllable[:-size]
+                changed = True
+                break
+    return syllable
+
+
+def _is_open_syllable(
+    syllable: Optional[str],
+    *,
+    spec: Optional[LanguageSpec] = None,
+    word_final: bool = False,
+) -> Optional[bool]:
+    """Is *syllable* open (no coda)? ``None`` when it cannot be decided.
+
+    Decided orthographically, on the syllable the spec's own syllabifier
+    produced: a syllable is OPEN when its last character is a vowel
+    letter, CLOSED when it is not. This is the same level of description
+    the rest of ``positional_graphemes`` works at (grapheme tokens and
+    their neighbours), and it needs no phonological analysis of the
+    output. A syllable with no vowel letter at all (a syllabified
+    consonant run, or a token the syllabifier could not place) is
+    undecidable and returns ``None`` so no aperture position is emitted.
+
+    Aperture is about a PRONOUNCED coda, so in the word's last syllable
+    the trailing graphemes the spec emits nothing for are stripped before
+    the question is asked (:func:`_strip_silent_tail`): French *heureux*
+    is heu·reux with a mute ⟨x⟩, an OPEN final syllable ([øʁø], not
+    *[øʁœ]); *beuh* is open too, over a mute ⟨h⟩; and *chanteurs* is
+    chan·teurs with a mute ⟨s⟩ over a pronounced ⟨r⟩, still CLOSED. Only
+    the last syllable is treated this way — that is the only place a
+    spec's ``word_final`` entry applies.
+    """
+    if not syllable:
+        return None
+    if word_final:
+        syllable = _strip_silent_tail(syllable, spec)
+    if not syllable or not any(is_orthographic_vowel(ch) for ch in syllable):
+        return None
+    return is_orthographic_vowel(syllable[-1])
 
 
 def grapheme_positions(
@@ -294,6 +420,8 @@ def grapheme_positions(
     spec: Optional[LanguageSpec] = None,
     syll_idx: Optional[int] = None,
     stressed_syll_idx: Optional[int] = None,
+    syllable: Optional[str] = None,
+    last_syll_idx: Optional[int] = None,
 ) -> List[GraphemePosition]:
     """Ordered positions to try for the grapheme wrapped by *ctx*.
 
@@ -312,6 +440,12 @@ def grapheme_positions(
     ``syll_idx``/``stressed_syll_idx`` add the stress-conditioned
     nucleus positions; when ``stressed_syll_idx is None`` (no stress
     context, e.g. the standalone tokenizer) those are omitted.
+
+    ``syllable`` is the orthographic syllable this grapheme sits in. When
+    it is given, the aperture positions
+    (:attr:`~orthography2ipa.types.GraphemePosition.OPEN_SYLLABLE` /
+    ``CLOSED_SYLLABLE`` and their stress-crossed variants) are emitted
+    too; without it they are omitted, exactly like the stress positions.
     """
     pos: List[GraphemePosition] = []
     grapheme = ctx.grapheme
@@ -377,6 +511,30 @@ def grapheme_positions(
     # dʲa) — whose reduction is conditioned on the same stress geometry.
     # Emitting the extra positions is inert unless the spec defines them
     # for that grapheme, so vowel-less digraphs are unaffected.
+    # 4a. syllable aperture (open/closed), on its own and crossed with
+    # stress. The mid-vowel alternations of Romance (loi de position) and
+    # the Germanic open-syllable length alternation key on APERTURE, not on
+    # stress alone, so the crossed positions are emitted first (most
+    # specific), then the aperture-only pair, and only then the
+    # stress-only positions kept below. Aperture is unknown without a
+    # syllabification, so nothing is emitted when *syllable* is None.
+    open_syllable = _is_open_syllable(
+        syllable, spec=spec,
+        word_final=(syll_idx is not None and last_syll_idx is not None
+                    and syll_idx == last_syll_idx))
+    if open_syllable is not None and (is_vowel or _carries_nucleus(ctx)):
+        if stressed_syll_idx is not None and syll_idx is not None:
+            if syll_idx == stressed_syll_idx:
+                pos.append(GraphemePosition.NUCLEUS_STRESSED_OPEN
+                           if open_syllable
+                           else GraphemePosition.NUCLEUS_STRESSED_CLOSED)
+            else:
+                pos.append(GraphemePosition.NUCLEUS_UNSTRESSED_OPEN
+                           if open_syllable
+                           else GraphemePosition.NUCLEUS_UNSTRESSED_CLOSED)
+        pos.append(GraphemePosition.OPEN_SYLLABLE if open_syllable
+                   else GraphemePosition.CLOSED_SYLLABLE)
+
     if stressed_syll_idx is not None and syll_idx is not None and (
             is_vowel or _carries_nucleus(ctx)):
         if syll_idx == stressed_syll_idx:
@@ -488,6 +646,8 @@ def resolve_branches(
     allophone_map: Optional[Dict[str, List[str]]] = None,
     syll_idx: Optional[int] = None,
     stressed_syll_idx: Optional[int] = None,
+    syllable: Optional[str] = None,
+    last_syll_idx: Optional[int] = None,
 ) -> List[Tuple[str, float]]:
     """The full per-grapheme branch resolution both beams share.
 
@@ -511,12 +671,17 @@ def resolve_branches(
         Optional phoneme→allophones map for allophone expansion.
     syll_idx, stressed_syll_idx
         Stress context for nucleus positions; ``None`` when unavailable.
+    syllable
+        The orthographic syllable this grapheme sits in, for the
+        open/closed aperture positions; ``None`` when unavailable.
     """
     grapheme = ctx.grapheme
     base_candidates = list(ctx.ipa)
 
     positions = grapheme_positions(
-        ctx, spec=spec, syll_idx=syll_idx, stressed_syll_idx=stressed_syll_idx)
+        ctx, spec=spec, syll_idx=syll_idx,
+        stressed_syll_idx=stressed_syll_idx, syllable=syllable,
+        last_syll_idx=last_syll_idx)
     pos_candidates = positional_candidates(spec, grapheme, positions)
 
     if pos_candidates is None:

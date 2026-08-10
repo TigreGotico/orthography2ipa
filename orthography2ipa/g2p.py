@@ -83,7 +83,7 @@ from orthography2ipa.stress import (
     detect_stress_by_weight, syllabify, syllabify_ipa,
 )
 from orthography2ipa.transforms import apply_transform
-from orthography2ipa.types import LanguageSpec
+from orthography2ipa.types import GraphemePosition, LanguageSpec
 
 __all__ = [
     "G2P",
@@ -118,6 +118,31 @@ _CLITIC_NO_STRESS = -1
 #: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
 #: Length and stress marks are not segments, so a run is identical across them.
 _VOWEL_IPA = set("aeiouɑɐɒæɓəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
+
+
+#: Positions whose value depends on syllable aperture. A spec that keys on
+#: none of them never needs a syllabification for their sake.
+_APERTURE_POSITIONS = frozenset({
+    GraphemePosition.OPEN_SYLLABLE,
+    GraphemePosition.CLOSED_SYLLABLE,
+    GraphemePosition.NUCLEUS_STRESSED_OPEN,
+    GraphemePosition.NUCLEUS_STRESSED_CLOSED,
+    GraphemePosition.NUCLEUS_UNSTRESSED_OPEN,
+    GraphemePosition.NUCLEUS_UNSTRESSED_CLOSED,
+})
+
+
+def _syllable_at(syllables: List[str], idx: Optional[int]) -> Optional[str]:
+    """The orthographic syllable at *idx*, or ``None`` when out of range.
+
+    The engine only has syllables when the spec declares stress rules, and
+    :meth:`G2P._map_tokens_to_syllables` may leave a token unplaced; both
+    cases mean "aperture unknown", which is what ``None`` says to
+    :func:`~orthography2ipa.positional.grapheme_positions`.
+    """
+    if idx is None or not syllables or not (0 <= idx < len(syllables)):
+        return None
+    return syllables[idx]
 
 
 def _collapse_geminates(ipa: str) -> str:
@@ -422,6 +447,17 @@ class G2P:
         # function words heavily, so the hit rate is high.
         self._syll_cache: Dict[str, List[str]] = {}
         self._lattice_cache: Dict[Tuple[str, int], List[SegmentSlot]] = {}
+        #: Does any grapheme in this spec key on syllable APERTURE? If not,
+        #: the aperture question is never asked: a stress-less spec skips
+        #: syllabification altogether (the most expensive step of the front
+        #: end), and a stress-declaring spec still skips the per-nucleus
+        #: open/closed computation. The feature costs a spec that does not
+        #: declare it nothing, which is what keeps it addable to the
+        #: engine without a cross-language latency bill.
+        self._uses_aperture: bool = any(
+            not _APERTURE_POSITIONS.isdisjoint(entry)
+            for entry in (self.spec.positional_graphemes or {}).values()
+            if entry)
         #: Declared prosodic-clitic keys (see :meth:`_is_cliticless`), computed
         #: once per engine on first use; ``None`` until then.
         self._cliticless_cache: Optional[frozenset] = None
@@ -673,9 +709,17 @@ class G2P:
         contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         stressed_syll_idx: Optional[int] = None
-        sylls: List[str] = []
+        # Syllabification is needed for TWO independent things: the stress
+        # positions (which need the spec's stress rules) and the aperture
+        # positions (which need only the syllable's own shape). It is
+        # therefore computed unconditionally; a spec with no stress rules
+        # still gets open/closed syllables, and still gets no
+        # nucleus_stressed/unstressed because those stay gated on
+        # ``stressed_syll_idx`` below.
+        sylls: List[str] = (
+            self._syllables_cached(word)
+            if self.spec.stress is not None or self._uses_aperture else [])
         if self.spec.stress is not None:
-            sylls = self._syllables_cached(word)
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
@@ -695,7 +739,10 @@ class G2P:
                 weights_for=self._tokenizer.weights_for,
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
-                stressed_syll_idx=stressed_syll_idx)
+                stressed_syll_idx=stressed_syll_idx,
+                syllable=(_syllable_at(sylls, syll_for_token[tok_idx])
+                          if self._uses_aperture else None),
+                last_syll_idx=(len(sylls) - 1 if sylls else None))
             tok = g_tokens[tok_idx]
             slots.append(SegmentSlot(
                 grapheme=tok.grapheme,
@@ -1248,9 +1295,17 @@ class G2P:
 
         # Determine stressed syllable index once (reuse for all vowels)
         stressed_syll_idx: Optional[int] = None
-        sylls: List[str] = []
+        # Syllabification is needed for TWO independent things: the stress
+        # positions (which need the spec's stress rules) and the aperture
+        # positions (which need only the syllable's own shape). It is
+        # therefore computed unconditionally; a spec with no stress rules
+        # still gets open/closed syllables, and still gets no
+        # nucleus_stressed/unstressed because those stay gated on
+        # ``stressed_syll_idx`` below.
+        sylls: List[str] = (
+            self._syllables_cached(word)
+            if self.spec.stress is not None or self._uses_aperture else [])
         if self.spec.stress is not None:
-            sylls = self._syllables_cached(word)
             if len(sylls) > 1:
                 stressed_syll_idx = detect_stress(
                     word, self.spec.stress, syllables=sylls)
@@ -1275,7 +1330,10 @@ class G2P:
                 weights_for=self._tokenizer.weights_for,
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
-                stressed_syll_idx=stressed_syll_idx)
+                stressed_syll_idx=stressed_syll_idx,
+                syllable=(_syllable_at(sylls, syll_for_token[tok_idx])
+                          if self._uses_aperture else None),
+                last_syll_idx=(len(sylls) - 1 if sylls else None))
             for tok_idx, ctx in enumerate(contexts)
         ]
         if self._rescorers:
