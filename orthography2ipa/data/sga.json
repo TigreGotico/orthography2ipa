@@ -3,7 +3,7 @@
   "name": "Old Irish",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "th": [
       "θ"
@@ -120,7 +120,7 @@
       "notes": "Descent from Common/Proto-Celtic via Primitive Irish (Ogham); Thurneysen (1946)"
     }
   ],
-  "notes": "Skeleton. Old Irish (c. 600-900). The pervasive broad/slender (velarised vs palatalised) consonant contrast is conditioned by the flanking vowels and is NOT encoded here, so the engine outputs the broad/default reflex only and a high PER is expected. Lenited spellings th/ch/ph and nasal clusters mb/nd/ng mapped to their fricative/prenasalised reflexes.",
+  "notes": "Skeleton. Old Irish (c. 600-900). The pervasive broad/slender (velarised vs palatalised) consonant contrast is conditioned by the flanking vowels and is NOT encoded here, so the engine outputs the broad/default reflex only and a high PER is expected. Lenited spellings th/ch/ph and nasal clusters mb/nd/ng mapped to their fricative/prenasalised reflexes. Stress exemption: Old Irish stress is fixed on the first syllable of simple words, but verbs show a prototonic/deuterotonic split (stress shifting off a preverb under conjunct/relative marking) that is a morphosyntactic property, not recoverable from the spelling of an isolated word form; no stress block is declared pending a verb-conjugation-aware model. Source: Thurneysen, Rudolf (1946), A Grammar of Old Irish, secs. 36-42.",
   "iso639_3": "sga",
   "glottolog_code": null,
   "sources": [
