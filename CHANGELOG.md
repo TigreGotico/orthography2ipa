@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.58.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.58.0a2) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.58.0a1...7.58.0a2)
+
+**Merged pull requests:**
+
+- refactor\(positional\): consolidate effective-word-end predicates [\#814](https://github.com/TigreGotico/orthography2ipa/pull/814) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.58.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.58.0a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.57.0a3...7.58.0a1)
@@ -636,10 +644,6 @@
 ## [7.30.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.30.0a3) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.0a2...7.30.0a3)
-
-**Merged pull requests:**
-
-- fix\(mxi\): ge/j- onsets are /ɟ/; glide-onset function words stay \[j\] [\#633](https://github.com/TigreGotico/orthography2ipa/pull/633) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.30.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.30.0a2) (2026-07-16)
 
