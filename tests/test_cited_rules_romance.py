@@ -568,12 +568,6 @@ def test_fr_liaison_n():
     assert "n‿" in _s("fr-FR", "un ami")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="fr-FR notes cite amateur [amatœʁ]; engine produces [amatø] — the "
-    "spec's own 'FINAL CONSONANTS: ... r typically silent word-finally' claim "
-    "deletes the ⟨r⟩ of the -eur suffix, contradicting the cited transcription",
-)
 def test_fr_amateur_cited_transcription():
     """fr-FR notes cite amateur as [amatœʁ].
 
@@ -581,9 +575,10 @@ def test_fr_amateur_cited_transcription():
     (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ] ...)."
     Sources: Fouché (1959), Tranel (1987).
 
-    The denasalisation itself fires (see test_fr_denasalisation_before_vowel);
-    the cited whole-word transcription is not reached, because the blanket
-    final-⟨r⟩ deletion rule strips the suffix's [ʁ].
+    Both halves now hold. The denasalisation fires (see
+    test_fr_denasalisation_before_vowel); the ⟨r⟩ survives because
+    ``word_final`` no longer deletes it by default; and the ⟨eu⟩ opens to
+    [œ] because its syllable (a·ma·teur) is closed.
     """
     assert _t("fr-FR", "amateur") == "amatœʁ"
 
