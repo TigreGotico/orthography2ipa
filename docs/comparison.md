@@ -42,13 +42,13 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | cy | wikipron | 14811 | 0.2148 | 0.3119 | 0.2259 | n/a | n/a | n/a | n/a |
 | de | wikipron | 53011 | 0.2103 | 0.2126 | 0.3064 | n/a | n/a | n/a | n/a |
 | el | wikipron | 19108 | 0.0343 | 0.0797 | n/a | n/a | n/a | n/a | n/a |
-| en | wikipron | 80995 | 0.3592 | 0.2092 | 0.8333 | 0.1788 | n/a | n/a | n/a |
-| en-US | cmudict | 126052 | 0.5003 | 0.3048 | n/a | 0.1531 | n/a | n/a | n/a |
+| en | wikipron | 80995 | 0.3531 | 0.2092 | 0.8333 | 0.1788 | n/a | n/a | n/a |
+| en-US | cmudict | 126052 | 0.4976 | 0.3048 | n/a | 0.1531 | n/a | n/a | n/a |
 | es | wikipron | 132190 | 0.0879 | 0.1071 | 0.0277 | n/a | n/a | 0.1041 | n/a |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | 0.0217 | n/a |
 | eu-wikipron | wikipron | 12022 | 0.0100 | 0.1077 | n/a | n/a | n/a | 0.1713 | n/a |
 | fi | wikipron | 168814 | 0.0539 | 0.2354 | 0.1324 | n/a | n/a | n/a | n/a |
-| fr | wikipron | 85516 | 0.1189 | 0.0740 | 0.2280 | n/a | n/a | n/a | n/a |
+| fr | wikipron | 85516 | 0.0951 | 0.0740 | 0.2280 | n/a | n/a | n/a | n/a |
 | ga | wikipron | 9621 | 0.1837 | 0.5312 | n/a | n/a | n/a | n/a | n/a |
 | gl | wikipron | 8091 | 0.0911 | n/a | n/a | n/a | 0.0898 | n/a | n/a |
 | hi | wikipron | 30379 | 0.1563 | 0.2816 | 0.3323 | n/a | n/a | n/a | n/a |
@@ -87,8 +87,8 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | ca-x-occidental | 4catac | 160 | 0.1114 | 0.1034 | 0.0546 | 0.0880 |
 | ca-x-valencia | 4catac | 160 | 0.0909 | 0.0871 | 0.0476 | 0.0798 |
 | de | wikipron | 53011 | 0.2103 | stale | 0.2126 | stale |
-| en | wikipron | 80995 | 0.3592 | 0.3592 | 0.2092 | 0.2147 |
-| en-US | cmudict | 126052 | 0.5003 | 0.4938 | 0.3048 | 0.3104 |
+| en | wikipron | 80995 | 0.3531 | 0.3592 | 0.2092 | 0.2147 |
+| en-US | cmudict | 126052 | 0.4976 | 0.4938 | 0.3048 | 0.3104 |
 | eu | hitz_basque_ipa | 3113 | 0.1848 | 0.1842 | 0.1588 | 0.1588 |
 | fr | wikipron | 85516 | 0.1643 | 0.1643 | 0.0740 | 0.0749 |
 | nl | wikipron | 45872 | 0.1251 | 0.2621 | 0.1099 | 0.1325 |

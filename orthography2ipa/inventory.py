@@ -101,6 +101,9 @@ def _base_emissions(spec: LanguageSpec) -> Set[str]:
     # Word-level overrides hand the engine whole transcriptions, so their IPA
     # never passes through the grapheme table at all.
     emissions.update((spec.word_exceptions or {}).values())
+    # Suffix morphology replaces the word's tail wholesale, so its IPA also
+    # bypasses the grapheme table (see LanguageSpec.grammatical_endings).
+    emissions.update((spec.grammatical_endings or {}).values())
     emissions.update(get_lexicon(spec.code).values())
 
     if spec.stress:

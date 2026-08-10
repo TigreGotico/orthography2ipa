@@ -146,19 +146,13 @@ def test_en_gb_non_rhotic():
     assert _t("en-GB", "rose").startswith("ɹ")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -tion → [ʃən]; engine now produces [nætɪɒn] for "
-    "nation — the ⟨tion⟩ n-gram is gone, so the ending is spelled out t-i-o-n "
-    "(regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tion_family_sh():
     """TION/SION FAMILY: -tion and -ssion → [ʃən].
 
-    en-GB notes: "TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən]
-    (mission, passion; matched via the dedicated `ssion` grapheme so
-    maximal-munch tokenization picks it over `sion`)" (Cruttenden 2014
-    spelling-to-sound correspondence rules).
+    Carried by `grammatical_endings` — suffix morphology, matched at the
+    effective word end, not a grapheme n-gram (Cruttenden 2014
+    spelling-to-sound correspondence rules; Chomsky & Halle 1968 on the
+    palatalization before `-ion`).
     """
     assert _t("en-GB", "nation").endswith("ʃən")
     assert _t("en-GB", "mission").endswith("ʃən")
@@ -186,17 +180,12 @@ def test_en_gb_sion_voiced_after_vowel():
     assert _t("en-GB", "pension").endswith("ʃən")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -cial → [ʃəl], -cious → [ʃəs]; engine now produces "
-    "[spɛsɪæl] for special and [dɛlɪsɪaʊs] for delicious — the n-grams are gone, "
-    "so the endings are spelled out (regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tial_cial_and_cious_tious():
     """-tial/-cial → [ʃəl]; -cious/-tious → [ʃəs].
 
-    en-GB notes: "-tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014
-    spelling-to-sound correspondence rules)."
+    Same mechanism as -tion: `grammatical_endings` entries matched at the
+    effective word end (Cruttenden 2014 spelling-to-sound correspondence
+    rules; Wells 2008 LPD for the surface values).
     """
     assert _t("en-GB", "special").endswith("ʃəl")
     assert _t("en-GB", "delicious").endswith("ʃəs")

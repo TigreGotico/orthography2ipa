@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.59.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.59.1a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.59.0a1...7.59.1a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): heteromorphemic ⟨tj⟩ is two segments, not a palatalized affricate [\#820](https://github.com/TigreGotico/orthography2ipa/pull/820) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.59.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.59.0a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.58.2a1...7.59.0a1)
@@ -647,10 +655,6 @@
 ## [7.30.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.30.2a1) (2026-07-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.1a1...7.30.2a1)
-
-**Merged pull requests:**
-
-- fix: green dev — kab schema/pins, the syllabifier missing from CI, and a stale regression baseline [\#637](https://github.com/TigreGotico/orthography2ipa/pull/637) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.30.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.30.1a1) (2026-07-17)
 
