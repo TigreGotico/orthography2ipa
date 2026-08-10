@@ -50,6 +50,21 @@ comparison target is missing.
   it is not scorable and is intentionally NOT a comparison system here —
   ``ahotts-g2p`` is the text-level G2P port that supersedes it for this
   table.)
+- **africa-g2p**: optional Python library covering ~400 African-language
+  ISO 639-3 codes (AfriSpeech, rule-based G2P derived from Omniglot script charts and Hartell's
+  *Alphabets of Africa*, UNESCO 1993). NOT published on PyPI — it is not
+  part of the ``[compare]`` extra (which must stay pip-installable from
+  PyPI); install it from a locally built wheel of the upstream checkout
+  before running this script, e.g.::
+
+      python -m pip wheel /path/to/africa-g2p --no-deps -w /tmp/afg2p-wheel
+      python -m pip install /tmp/afg2p-wheel/africa_g2p-*.whl
+
+  Imported lazily as ``africa_g2p``; a missing install degrades every
+  ``africa_g2p`` column to ``n/a``, same as every other optional system.
+  Wrapped via ``AfricaPipeline(lang=<iso639_3>, output="ipa").run(word)``;
+  the library's own ``africa_g2p.loader.registry()`` is queried at import
+  time so the set of covered codes is never hand-enumerated here.
 
 Normalization (identical across all four systems, see ``benchmark.normalize``
 and the stress/diacritic handling in ``espeak_agreement.py``):
@@ -69,6 +84,70 @@ and the stress/diacritic handling in ``espeak_agreement.py``):
 PER is computed with ``benchmark.levenshtein(hyp, gold) / len(gold)``,
 taking the best score against any gold variant for a word — exactly the
 metric ``benchmark.evaluate`` uses for orthography2ipa.
+
+Fair-comparison 2x2 (dictionary vs. rules)
+-------------------------------------------
+
+The main table above conflates two very different things espeak-ng ships
+for a language: **letter-to-sound rules** (``dictsource/<lang>_rules``,
+genuinely comparable to o2i's grapheme rules) and **hand-curated word-
+exception lists** (``dictsource/<lang>_list``/``_listx``/``_extra`` —
+a per-word lexicon espeak-ng ships and o2i, by hard rule, never bundles).
+Scoring plain ``espeak`` against plain ``o2i`` therefore compares
+"rules + dictionary" against "rules only" — not a fair fight. Two extra
+optional columns isolate the dictionary's contribution:
+
+- **``espeak_rules``**: espeak-ng run against a *rules-only* dictionary
+  build — the exact same ``dictsource/<lang>_rules`` compiled, but with
+  the ``_list``/``_listx``/``_extra`` word-exception files emptied before
+  compiling. Inspecting the stripped list files (en, fr, de, nl, ca, sv,
+  eu) showed they carry more than proper-noun/loanword exceptions: basic
+  function words and numbers are hand-pronounced there too (English
+  ``the``, ``of``, ``an``, ``and``, ``one``, ``two``; French ``le``,
+  ``la``, ``les``, ``un``, ``une``, ``et``; German ``der``, ``die``,
+  ``das``, ``und``, ``ein(e)``, ``zu``; Dutch ``de``, ``het``, ``een``,
+  ``en``; Swedish ``en``, ``ett``, ``den``, ``det``, ``och``; Catalan
+  ``el``, ``la``, ``els``, ``les``, ``de``, ``i``; Basque ``eta``) — so
+  "rules-only" here means genuinely rules-only: those entries are
+  stripped too, not just the proper-noun exceptions, and this column
+  will visibly score WORSE than plain ``espeak`` on exactly those words.
+  Build the stripped dictionaries with
+  ``scripts/build_espeak_rules_only.sh`` (clones+builds espeak-ng from
+  source into a scratch dir — GPL, never committed — and writes the
+  compiled ``*_dict`` files to an output dir), then point this script at
+  them::
+
+      scripts/build_espeak_rules_only.sh en fr de nl ca sv eu
+      ESPEAK_RULES_DATA_PATH=/path/to/rules-only-data \\
+          PYTHONPATH=$PWD python scripts/compare_systems.py --scoreboard
+
+  Without ``$ESPEAK_RULES_DATA_PATH`` set, ``espeak_rules`` is reported
+  as ``n/a`` for every row, same as any other unavailable system.
+
+- **``o2i_lex``**: orthography2ipa scored WITH a runtime lexicon built
+  from espeak-ng's OWN word-exception list for that language — i.e. o2i
+  gets the same per-word dictionary espeak-ng has, added via o2i's
+  existing (unbundled) lexicon overlay capability
+  (:mod:`orthography2ipa.lexicon`, ``register_lexicon``). The word list
+  is extracted from ``dictsource/<lang>_list``/``_listx``/``_extra``
+  (the words only — NOT the phoneme column, which is espeak-ng's
+  internal ASCII notation, not IPA); each word's IPA is then obtained by
+  actually running normal (non-stripped) ``espeak-ng --ipa -q`` on it,
+  batched and cached to ``.o2i_lex_cache/<lang>.tsv`` (gitignored, never
+  committed — GPL data lives only in that local cache, exactly like
+  espeak-ng itself never ships in this repo). Set
+  ``ESPEAK_DICTSOURCE_PATH`` to an espeak-ng checkout (or its
+  ``dictsource/`` dir directly) to enable it::
+
+      ESPEAK_DICTSOURCE_PATH=/path/to/espeak-ng \\
+          PYTHONPATH=$PWD python scripts/compare_systems.py --scoreboard
+
+  Without ``$ESPEAK_DICTSOURCE_PATH`` set, ``o2i_lex`` is ``n/a`` for
+  every row.
+
+Read together, the four columns ``o2i`` / ``o2i_lex`` / ``espeak`` /
+``espeak_rules`` isolate what each system's RULES contribute versus what
+its DICTIONARY contributes, on the same gold words.
 
 Usage::
 
@@ -94,6 +173,47 @@ COMPARISON_MD = os.path.join(REPO_ROOT, "docs", "comparison.md")
 COMPARISON_JSON = os.path.join(REPO_ROOT, "benchmarks", "comparison.json")
 
 HARNESS_VERSION = "1.0"
+
+# ─── fair-comparison 2x2 (dictionary vs. rules) ─────────────────────────────
+#
+# See the module docstring's "Fair-comparison 2x2" section for the full
+# rationale. Both env vars point at GPL espeak-ng data that is built/cloned
+# to a scratch location by the caller (``scripts/build_espeak_rules_only.sh``
+# for the first one) — this repo never ships or commits any of it.
+
+#: Directory of a *rules-only* compiled espeak-ng data set (word-exception
+#: lists emptied, letter-to-sound rules intact) — see
+#: ``scripts/build_espeak_rules_only.sh``. Unset => ``espeak_rules`` is
+#: ``n/a`` everywhere.
+ESPEAK_RULES_DATA_PATH = os.environ.get("ESPEAK_RULES_DATA_PATH")
+
+#: An espeak-ng checkout (or its ``dictsource/`` dir) whose word-exception
+#: list files are turned into a runtime o2i lexicon for the ``o2i_lex``
+#: column. Unset => ``o2i_lex`` is ``n/a`` everywhere.
+ESPEAK_DICTSOURCE_PATH = os.environ.get("ESPEAK_DICTSOURCE_PATH")
+
+#: Where derived (word -> espeak IPA) lexicon TSVs are cached, keyed by o2i
+#: language tag. GPL-derived data; gitignored, never committed.
+O2I_LEX_CACHE_DIR = os.path.join(REPO_ROOT, ".o2i_lex_cache")
+
+#: o2i language tag -> espeak-ng dictsource base language code, for the
+#: languages this 2x2 currently covers (the "stronghold" rows). Extend as
+#: more languages get an ``espeak`` voice mapping above AND a matching
+#: dictsource file; a tag with no entry here just gets ``o2i_lex == n/a``.
+DICTSOURCE_LANG: Dict[str, str] = {
+    "en-US": "en",
+    "en": "en",
+    "fr": "fr",
+    "de": "de",
+    "nl": "nl",
+    "ca": "ca",
+    "ca-x-balear": "ca",
+    "ca-x-occidental": "ca",
+    "ca-x-valencia": "ca",
+    "sv": "sv",
+    "eu": "eu",
+    "eu-wikipron": "eu",
+}
 
 # ─── language mapping ───────────────────────────────────────────────────────
 #
@@ -186,7 +306,55 @@ LANGS: Dict[str, dict] = {
            "epitran": None, "gruut": None},
     "ro": {"dataset": ("wikipron", "ro"), "espeak": "ro",
            "epitran": "ron-Latn", "gruut": None},
+    # ─── africa-g2p overlap ─────────────────────────────────────────────
+    # Every o2i gold language (see benchmarks/results.json) whose ISO
+    # 639-3 code africa-g2p's own registry() also covers. espeak-ng has
+    # no matching voice for any of these on this machine's install
+    # (checked via ``espeak-ng --voices``, never assumed); epitran/gruut
+    # likewise have no published mapping, so those columns are honestly
+    # ``None`` rather than guessed — africa-g2p is the only comparison
+    # point for these rows today.
+    "arb": {"dataset": ("arabic_tts", "arb"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "cop": {"dataset": ("wikipron", "cop"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "hts": {"dataset": ("wikipron", "hts"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "kab": {"dataset": ("vox_communis", "kab"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "ktz": {"dataset": ("wikipron", "ktz"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "lad": {"dataset": ("wikipron", "lad"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "mfe": {"dataset": ("wikipron", "mfe"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "ngh": {"dataset": ("wikipron", "ngh"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "nup": {"dataset": ("wikipron", "nup"), "espeak": None,
+            "epitran": None, "gruut": None},
+    "tzm": {"dataset": ("wikipron", "tzm"), "espeak": None,
+            "epitran": None, "gruut": None},
 }
+
+#: africa-g2p's own registry of covered ISO 639-3 codes, loaded once
+#: (empty if the library isn't installed) — used to gate ``africa_g2p``
+#: columns per language so an unmapped code degrades to ``n/a`` instead
+#: of raising.
+def _africa_g2p_codes() -> set:
+    try:
+        from africa_g2p.loader import registry
+    except ImportError:
+        return set()
+    try:
+        return set(registry().keys())
+    except Exception:
+        return set()
+
+
+AFRICA_G2P_CODES = _africa_g2p_codes()
+
+for _tag, _cfg in LANGS.items():
+    _cfg.setdefault("africa_g2p", _tag if _tag in AFRICA_G2P_CODES else None)
 
 
 def apply_catalan_dialect_voices(langs: Dict[str, dict]) -> Dict[str, str]:
@@ -257,8 +425,28 @@ def discover_catalan_dialect_voices() -> Dict[str, Optional[str]]:
 _ESPEAK_CHUNK = 500
 
 
-def espeak_batch_transcribe(words: List[str],
-                            voice: str) -> Dict[str, Optional[str]]:
+def espeak_rules_available() -> bool:
+    """``True`` when ``espeak-ng`` is installed AND ``ESPEAK_RULES_DATA_PATH``
+    points at an existing rules-only compiled data directory (see
+    ``scripts/build_espeak_rules_only.sh``)."""
+    return (espeak_available() and bool(ESPEAK_RULES_DATA_PATH)
+            and os.path.isdir(ESPEAK_RULES_DATA_PATH))
+
+
+def _espeak_cmd(voice: str, data_path: Optional[str] = None,
+                 word: Optional[str] = None) -> List[str]:
+    cmd = ["espeak-ng"]
+    if data_path:
+        cmd.append(f"--path={data_path}")
+    cmd += ["-q", "--ipa", "-v", voice]
+    if word is not None:
+        cmd += ["--", word]
+    return cmd
+
+
+def espeak_batch_transcribe(words: List[str], voice: str,
+                            data_path: Optional[str] = None
+                            ) -> Dict[str, Optional[str]]:
     """Transcribe *words* with espeak-ng, one subprocess per chunk of
     ``_ESPEAK_CHUNK`` instead of one per word — the difference between an
     uncapped full-gold run finishing in minutes and taking days.
@@ -275,7 +463,7 @@ def espeak_batch_transcribe(words: List[str],
     batchable = [w for w in words if "\n" not in w]
     for w in words:
         if "\n" in w:
-            out[w] = espeak_transcribe(w, voice)
+            out[w] = espeak_transcribe(w, voice, data_path=data_path)
     for i in range(0, len(batchable), _ESPEAK_CHUNK):
         chunk = batchable[i:i + _ESPEAK_CHUNK]
         lines: Optional[List[str]] = None
@@ -284,7 +472,7 @@ def espeak_batch_transcribe(words: List[str],
                 # NO --stdin flag: with it espeak-ng joins all input lines
                 # into one utterance; reading piped stdin without it emits
                 # one IPA line per input line (the alignment this relies on)
-                ["espeak-ng", "-q", "--ipa", "-v", voice],
+                _espeak_cmd(voice, data_path=data_path),
                 input="\n".join(chunk) + "\n",
                 capture_output=True, text=True,
                 timeout=30 + len(chunk),
@@ -300,7 +488,7 @@ def espeak_batch_transcribe(words: List[str],
             lines = None
         if lines is None:
             for w in chunk:
-                out[w] = espeak_transcribe(w, voice)
+                out[w] = espeak_transcribe(w, voice, data_path=data_path)
         else:
             for w, line in zip(chunk, lines):
                 line = line.strip()
@@ -308,13 +496,20 @@ def espeak_batch_transcribe(words: List[str],
     return out
 
 
-def espeak_transcribe(word: str, voice: str) -> Optional[str]:
-    """Transcribe *word* with espeak-ng, or ``None`` on any failure."""
+def espeak_transcribe(word: str, voice: str,
+                       data_path: Optional[str] = None) -> Optional[str]:
+    """Transcribe *word* with espeak-ng, or ``None`` on any failure.
+
+    *data_path*, when given, is passed as ``--path=<data_path>`` so the
+    caller can point espeak-ng at an alternate compiled data directory
+    (e.g. the rules-only build for the ``espeak_rules`` column) instead of
+    the machine's default install.
+    """
     try:
         proc = subprocess.run(
             # "--" ends option parsing so a gold word starting with "-"
             # is treated as text, not misparsed as an espeak-ng flag
-            ["espeak-ng", "-q", "--ipa", "-v", voice, "--", word],
+            _espeak_cmd(voice, data_path=data_path, word=word),
             capture_output=True, text=True, timeout=30,
         )
     except (OSError, subprocess.TimeoutExpired):
@@ -390,6 +585,32 @@ def ahotts_transcribe(word: str, cfg: dict) -> Optional[str]:
     return ahotts_unfold_to_ipa(raw) or None
 
 
+# ─── africa-g2p (lazy, optional) ────────────────────────────────────────────
+
+_africa_pipeline_cache: Dict[str, object] = {}
+
+
+def africa_g2p_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with africa-g2p's ``AfricaPipeline`` for the
+    ISO 639-3 *lang* code, or ``None`` if the library is absent, the code
+    isn't in its registry, or it fails on the word."""
+    try:
+        from africa_g2p import AfricaPipeline
+    except ImportError:
+        return None
+    pipe = _africa_pipeline_cache.get(lang)
+    if pipe is None:
+        try:
+            pipe = AfricaPipeline(lang=lang, output="ipa")
+        except Exception:
+            return None
+        _africa_pipeline_cache[lang] = pipe
+    try:
+        return pipe.run(word) or None
+    except Exception:
+        return None
+
+
 # ─── epitran (lazy, optional) ───────────────────────────────────────────────
 
 _epitran_cache: Dict[str, object] = {}
@@ -431,24 +652,117 @@ def gruut_transcribe(word: str, lang: str) -> Optional[str]:
         return None
 
 
+# ─── o2i_lex: runtime lexicon built from espeak-ng's own wordlist ──────────
+#
+# See the module docstring's "Fair-comparison 2x2" section. GPL-derived
+# data (espeak-ng's dictsource wordlists, and the IPA transcriptions
+# derived from them) only ever lives under ``O2I_LEX_CACHE_DIR`` — a
+# gitignored local cache, never the repo tree.
+
+def _parse_espeak_wordlist_words(dictsource_dir: str, base_lang: str) -> List[str]:
+    """Extract plain WORDS (not the phoneme column, which is espeak-ng's
+    own internal ASCII phoneme notation — not IPA) from *base_lang*'s
+    ``_list``/``_listx``/``_extra`` dictsource files under
+    *dictsource_dir*.
+
+    Skips: comments (``// ...``), blank lines, directive-only first
+    tokens (``_lig``, ``?3``, ``$nounf`` — letter/ligature helper names
+    and conditional/inflection directives, not words), and single-ASCII-
+    letter entries (espeak-ng's "spell this letter" pronunciations, not
+    real vocabulary words scored in any gold set here).
+    """
+    words = set()
+    for suffix in ("list", "listx", "extra"):
+        path = os.path.join(dictsource_dir, f"{base_lang}_{suffix}")
+        if not os.path.isfile(path):
+            continue
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                line = line.split("//", 1)[0].strip()
+                if not line:
+                    continue
+                tok = line.split()[0]
+                if tok.startswith(("_", "?", "$")):
+                    continue
+                if len(tok) == 1:
+                    continue
+                if not any(ch.isalpha() for ch in tok):
+                    continue
+                words.add(tok.lower())
+    return sorted(words)
+
+
+def _resolve_dictsource_dir(base: str) -> Optional[str]:
+    nested = os.path.join(base, "dictsource")
+    if os.path.isdir(nested):
+        return nested
+    if os.path.isdir(base):
+        return base
+    return None
+
+
+def build_espeak_lexicon_tsv(o2i_lang: str) -> Optional[str]:
+    """Build (or reuse a cached) ``word<TAB>ipa`` lexicon TSV for
+    *o2i_lang*, sourced from espeak-ng's OWN word-exception dictsource
+    list and espeak-ng's OWN (normal, non-stripped) IPA transcription of
+    each listed word — this scores o2i WITH espeak's dictionary
+    knowledge, not espeak against itself.
+
+    Returns ``None`` (=> ``o2i_lex`` is n/a for this language) when
+    ``ESPEAK_DICTSOURCE_PATH`` is unset, *o2i_lang* has no
+    ``DICTSOURCE_LANG`` mapping, espeak-ng isn't installed, or the
+    wordlist is empty.
+    """
+    base_lang = DICTSOURCE_LANG.get(o2i_lang)
+    if base_lang is None or not ESPEAK_DICTSOURCE_PATH or not espeak_available():
+        return None
+    dictsource_dir = _resolve_dictsource_dir(ESPEAK_DICTSOURCE_PATH)
+    if dictsource_dir is None:
+        return None
+    os.makedirs(O2I_LEX_CACHE_DIR, exist_ok=True)
+    cache_path = os.path.join(O2I_LEX_CACHE_DIR, f"{o2i_lang}.tsv")
+    if os.path.isfile(cache_path) and os.path.getsize(cache_path) > 0:
+        return cache_path
+    words = _parse_espeak_wordlist_words(dictsource_dir, base_lang)
+    if not words:
+        return None
+    voice = LANGS[o2i_lang]["espeak"] or base_lang
+    ipa_by_word = espeak_batch_transcribe(words, voice)
+    wrote_any = False
+    with open(cache_path, "w", encoding="utf-8") as fh:
+        for w in words:
+            ipa = ipa_by_word.get(w)
+            if ipa:
+                fh.write(f"{w}\t{ipa}\n")
+                wrote_any = True
+    if not wrote_any:
+        os.remove(cache_path)
+        return None
+    return cache_path
+
+
 # ─── scoring ─────────────────────────────────────────────────────────────────
 
-def _score(hyps_and_golds: List[Tuple[Optional[str], List[str]]]) -> Tuple[Optional[float], int]:
+def _score(hyps_and_golds: List[Tuple[Optional[str], List[str]]],
+           lang: str = "") -> Tuple[Optional[float], int]:
     """Mean PER over rows with a non-``None`` hypothesis, using
     ``benchmark.normalize``/``benchmark.levenshtein`` (broad, stress
     stripped — matching ``benchmark.py --scoreboard``'s default mode).
     Returns ``(per, covered)``; ``per`` is ``None`` when nothing scored."""
+    extra = benchmark._prosody_marks(lang) if lang else ""
     per_sum, covered = 0.0, 0
     for hyp, golds in hyps_and_golds:
         if not hyp:
             continue
-        hyp_n = benchmark.normalize(hyp, strip_stress=True, broad=True)
+        hyp_n = benchmark.normalize(hyp, strip_stress=True, broad=True, extra_strip=extra)
         if not hyp_n:
             continue
         covered += 1
         per_sum += min(
-            benchmark.levenshtein(hyp_n, benchmark.normalize(g, True, True))
-            / max(len(benchmark.normalize(g, True, True)), 1)
+            benchmark.levenshtein(
+                hyp_n, benchmark.normalize(g, True, True, extra_strip=extra))
+            / max(len(benchmark.normalize(g, True, True,
+                                          extra_strip=extra)), 1)
             for g in golds
         )
     if covered == 0:
@@ -488,25 +802,40 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         refs.setdefault(word, []).append(gold)
     words = sorted(refs)
 
+    import orthography2ipa
     from orthography2ipa import G2P
-    engine = G2P(cfg.get("g2p", lang))
+    g2p_code = cfg.get("g2p", lang)
+    orthography2ipa.clear_lexicons()  # defensive: no leftover lexicon from a prior lang
+    engine = G2P(g2p_code)
 
     o2i_rows: List[Tuple[Optional[str], List[str]]] = []
     espeak_rows: List[Tuple[Optional[str], List[str]]] = []
+    espeak_rules_rows: List[Tuple[Optional[str], List[str]]] = []
+    o2i_lex_rows: List[Tuple[Optional[str], List[str]]] = []
     epitran_rows: List[Tuple[Optional[str], List[str]]] = []
     gruut_rows: List[Tuple[Optional[str], List[str]]] = []
     pycotovia_rows: List[Tuple[Optional[str], List[str]]] = []
     ahotts_rows: List[Tuple[Optional[str], List[str]]] = []
+    africa_g2p_rows: List[Tuple[Optional[str], List[str]]] = []
 
     use_espeak = cfg["espeak"] is not None and espeak_available()
+    use_espeak_rules = cfg["espeak"] is not None and espeak_rules_available()
     use_epitran = cfg["epitran"] is not None
     use_gruut = cfg["gruut"] is not None
     use_pycotovia = cfg.get("pycotovia") is not None
     use_ahotts = cfg.get("ahotts") is not None
+    use_africa_g2p = cfg.get("africa_g2p") is not None
 
     espeak_out: Dict[str, Optional[str]] = {}
     if use_espeak:
         espeak_out = espeak_batch_transcribe(words, cfg["espeak"])
+    espeak_rules_out: Dict[str, Optional[str]] = {}
+    if use_espeak_rules:
+        espeak_rules_out = espeak_batch_transcribe(
+            words, cfg["espeak"], data_path=ESPEAK_RULES_DATA_PATH)
+
+    lexicon_tsv = build_espeak_lexicon_tsv(lang)
+    use_o2i_lex = lexicon_tsv is not None
 
     for word in words:
         golds = refs[word]
@@ -523,6 +852,8 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
 
         if use_espeak:
             espeak_rows.append((espeak_out.get(word), golds))
+        if use_espeak_rules:
+            espeak_rules_rows.append((espeak_rules_out.get(word), golds))
         if use_epitran:
             epitran_rows.append((epitran_transcribe(word, cfg["epitran"]), golds))
         if use_gruut:
@@ -533,16 +864,40 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         if use_ahotts:
             ahotts_rows.append(
                 (ahotts_transcribe(word, cfg["ahotts"]), golds))
+        if use_africa_g2p:
+            africa_g2p_rows.append(
+                (africa_g2p_transcribe(word, cfg["africa_g2p"]), golds))
 
-    o2i_per, o2i_n = _score(o2i_rows)
-    espeak_per, espeak_n = _score(espeak_rows) if use_espeak else (None, 0)
-    epitran_per, epitran_n = _score(epitran_rows) if use_epitran else (None, 0)
-    gruut_per, gruut_n = _score(gruut_rows) if use_gruut else (None, 0)
+    if use_o2i_lex:
+        # register_lexicon() calls get_lexicon.cache_clear() itself, so the
+        # engine picks up the sidecar on the very next transcribe call —
+        # no need for a fresh G2P instance.
+        orthography2ipa.register_lexicon(g2p_code, lexicon_tsv)
+        for word in words:
+            golds = refs[word]
+            try:
+                transcribe = (engine.transcribe if len(word.split()) > 1
+                              else engine.transcribe_word)
+                o2i_lex_rows.append((transcribe(word), golds))
+            except Exception:
+                o2i_lex_rows.append((None, golds))
+        orthography2ipa.clear_lexicons()
+
+    o2i_per, o2i_n = _score(o2i_rows, lang=lang)
+    o2i_lex_per, o2i_lex_n = (
+        _score(o2i_lex_rows, lang=lang) if use_o2i_lex else (None, 0))
+    espeak_per, espeak_n = _score(espeak_rows, lang=lang) if use_espeak else (None, 0)
+    espeak_rules_per, espeak_rules_n = (
+        _score(espeak_rules_rows, lang=lang) if use_espeak_rules else (None, 0))
+    epitran_per, epitran_n = _score(epitran_rows, lang=lang) if use_epitran else (None, 0)
+    gruut_per, gruut_n = _score(gruut_rows, lang=lang) if use_gruut else (None, 0)
     pycotovia_per, pycotovia_n = (
-        _score(pycotovia_rows) if use_pycotovia else (None, 0))
+        _score(pycotovia_rows, lang=lang) if use_pycotovia else (None, 0))
     ahotts_per, ahotts_n = (
-        _score(ahotts_rows) if use_ahotts else (None, 0))
+        _score(ahotts_rows, lang=lang) if use_ahotts else (None, 0))
     ahotts_version = cfg["ahotts"]["version"] if use_ahotts else None
+    africa_g2p_per, africa_g2p_n = (
+        _score(africa_g2p_rows, lang=lang) if use_africa_g2p else (None, 0))
 
     return {
         "lang": lang,
@@ -550,9 +905,13 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         "n": len(words),
         "o2i_per": round(o2i_per, 4) if o2i_per is not None else None,
         "o2i_n": o2i_n,
+        "o2i_lex_per": round(o2i_lex_per, 4) if o2i_lex_per is not None else None,
+        "o2i_lex_n": o2i_lex_n,
         "espeak_per": round(espeak_per, 4) if espeak_per is not None else None,
         "espeak_n": espeak_n,
         "espeak_voice": cfg["espeak"],
+        "espeak_rules_per": round(espeak_rules_per, 4) if espeak_rules_per is not None else None,
+        "espeak_rules_n": espeak_rules_n,
         "epitran_per": round(epitran_per, 4) if epitran_per is not None else None,
         "epitran_n": epitran_n,
         "gruut_per": round(gruut_per, 4) if gruut_per is not None else None,
@@ -562,6 +921,8 @@ def compare_lang(lang: str, limit: Optional[int]) -> dict:
         "ahotts_per": round(ahotts_per, 4) if ahotts_per is not None else None,
         "ahotts_n": ahotts_n,
         "ahotts_version": ahotts_version,
+        "africa_g2p_per": round(africa_g2p_per, 4) if africa_g2p_per is not None else None,
+        "africa_g2p_n": africa_g2p_n,
         "harness_version": HARNESS_VERSION,
         "limit": limit if limit is not None else "full",
         "sampled": limit is None and sample_n is not None,
@@ -691,9 +1052,9 @@ def write_comparison(rows: List[dict],
         "## Coverage",
         "",
         "Not every gold language has a mapping for every competitor "
-        "system: espeak-ng, epitran, gruut, pycotovia, and ahotts-g2p "
-        "each cover a different, smaller subset of languages than "
-        "orthography2ipa's 493 language codes. A missing mapping, or a system "
+        "system: espeak-ng, epitran, gruut, pycotovia, ahotts-g2p, and "
+        "africa-g2p each cover a different, smaller subset of languages "
+        "than orthography2ipa's 493 language codes. A missing mapping, or a system "
         "that isn't installed, is reported as `n/a` for that row rather "
         "than skipped or faked — this table never crashes and never "
         "silently drops a system, it just says when it has nothing to "
@@ -729,6 +1090,24 @@ def write_comparison(rows: List[dict],
         "(no phoneme output); `ahotts-g2p` is the G2P port that "
         "supersedes it for this table.",
         "",
+        "### africa-g2p coverage (honest limits)",
+        "",
+        "`africa-g2p` (Ghana NLP; rule-based G2P for ~400 African-language "
+        "ISO 639-3 codes, derived from Hartell's *Alphabets of Africa*, "
+        "UNESCO 1993) is not on PyPI, so it is not part of the `[compare]` "
+        "extra — install it from a locally built wheel of the upstream "
+        "checkout before regenerating this table (see the script's "
+        "module docstring). Rows only appear for gold languages BOTH "
+        "orthography2ipa and africa-g2p's own `registry()` cover; as of "
+        "this run that intersection is small (10 languages: `arb`, "
+        "`cop`, `hts`, `kab`, `ktz`, `lad`, `mfe`, `ngh`, `nup`, `tzm`) — "
+        "most of africa-g2p's ~400 codes have no o2i gold registered yet, "
+        "and most o2i gold languages are outside africa-g2p's coverage. "
+        "None of these ten has a matching espeak-ng voice, epitran code, "
+        "or gruut language on this machine either, so africa-g2p is "
+        "currently the only comparison point for these rows — that is "
+        "reported plainly rather than papered over with `n/a` silence.",
+        "",
         "The `N` column is the number of unique gold words for that "
         "language/dataset pair; each system's own scored count can be "
         "slightly lower (a word it failed to transcribe is excluded from "
@@ -753,8 +1132,8 @@ def write_comparison(rows: List[dict],
         "espeak-ng. Cherry-picking would make the comparison worthless.",
         "",
         "| Lang | Dataset | N | o2i PER | espeak PER | epitran PER | "
-        "gruut PER | pycotovia PER | ahotts-g2p PER |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|",
+        "gruut PER | pycotovia PER | ahotts-g2p PER | africa-g2p PER |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
         lines.append(
@@ -762,7 +1141,8 @@ def write_comparison(rows: List[dict],
             f"{_fmt(row['o2i_per'])} | {_fmt(row['espeak_per'])} | "
             f"{_fmt(row['epitran_per'])} | {_fmt(row['gruut_per'])} | "
             f"{_fmt(row.get('pycotovia_per'))} | "
-            f"{_fmt(row.get('ahotts_per'))} |"
+            f"{_fmt(row.get('ahotts_per'))} | "
+            f"{_fmt(row.get('africa_g2p_per'))} |"
         )
     lines.append("")
     if comparable:
@@ -775,6 +1155,63 @@ def write_comparison(rows: List[dict],
             "No languages were comparable against espeak-ng in this run "
             "(espeak-ng unavailable or no overlapping mappings)."
         )
+    lines.append("")
+    lex_rows = [r for r in rows if r.get("o2i_lex_per") is not None
+                or r.get("espeak_rules_per") is not None]
+    lines.extend([
+        "## Fair-comparison 2x2 (dictionary vs. rules)",
+        "",
+        "The table above conflates espeak-ng's letter-to-sound RULES with "
+        "its hand-curated word-EXCEPTION list (o2i, by hard rule, ships no "
+        "such list). This 2x2 isolates the dictionary's contribution on "
+        "the same gold rows, for the languages where both extra columns "
+        "are wired up (the `DICTSOURCE_LANG`-mapped subset — see the "
+        "script's module docstring for how to enable `espeak_rules` via "
+        "`scripts/build_espeak_rules_only.sh` and `o2i_lex` via "
+        "`$ESPEAK_DICTSOURCE_PATH`):",
+        "",
+        "- `o2i` — orthography2ipa, rules only (unchanged from the main "
+        "table).",
+        "- `o2i_lex` — orthography2ipa + a runtime lexicon built from "
+        "espeak-ng's OWN word-exception list, each word's IPA obtained "
+        "from espeak-ng itself (o2i rules + espeak's dictionary).",
+        "- `espeak` — espeak-ng, rules + its own word-exception dictionary "
+        "(unchanged from the main table).",
+        "- `espeak_rules` — espeak-ng with the word-exception dictionary "
+        "emptied before compiling (rules only).",
+        "",
+        "| Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |",
+        "|---|---|---:|---:|---:|---:|---:|",
+    ])
+    if lex_rows:
+        for row in lex_rows:
+            lines.append(
+                f"| {row['lang']} | {row['dataset']} | {row['n']} | "
+                f"{_fmt(row['o2i_per'])} | {_fmt(row.get('o2i_lex_per'))} | "
+                f"{_fmt(row['espeak_per'])} | "
+                f"{_fmt(row.get('espeak_rules_per'))} |"
+            )
+    else:
+        lines.append(
+            "| _(none)_ | | | | | | |"
+        )
+    lines.append("")
+    lines.append(
+        "Reading the four numbers together: `espeak - espeak_rules` is "
+        "espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the "
+        "SAME dictionary is worth bolted onto o2i's rules. `o2i` vs "
+        "`espeak_rules` is the fairest rules-only comparison; `o2i_lex` "
+        "vs `espeak` is the fairest dictionary-included comparison."
+    )
+    lines.append("")
+    lines.append(
+        "**Licensing**: espeak-ng's dictsource word lists and the IPA "
+        "derived from them are GPL. They are used here ONLY at comparison "
+        "runtime — fetched/built into a local scratch cache "
+        "(`$ESPEAK_RULES_DATA_PATH`, `.o2i_lex_cache/`), never committed "
+        "to this repository and never shipped in orthography2ipa's own "
+        "package or lexicons."
+    )
     lines.append("")
     if catalan_voices is not None:
         lines.extend(_catalan_dialect_table_lines(rows, catalan_voices))
@@ -813,15 +1250,21 @@ def main() -> None:
             print(f"{lang:10} espeak={cfg['espeak']} "
                   f"epitran={cfg['epitran']} gruut={cfg['gruut']} "
                   f"pycotovia={cfg.get('pycotovia')} "
-                  f"ahotts={cfg.get('ahotts')}")
+                  f"ahotts={cfg.get('ahotts')} "
+                  f"africa_g2p={cfg.get('africa_g2p')} "
+                  f"dictsource_lang={DICTSOURCE_LANG.get(lang)}")
         return
 
     row = compare_lang(args.lang, args.limit)
     print(f"lang={row['lang']} n={row['n']} "
-          f"o2i={_fmt(row['o2i_per'])} espeak={_fmt(row['espeak_per'])} "
+          f"o2i={_fmt(row['o2i_per'])} "
+          f"o2i_lex={_fmt(row.get('o2i_lex_per'))} "
+          f"espeak={_fmt(row['espeak_per'])} "
+          f"espeak_rules={_fmt(row.get('espeak_rules_per'))} "
           f"epitran={_fmt(row['epitran_per'])} gruut={_fmt(row['gruut_per'])} "
           f"pycotovia={_fmt(row.get('pycotovia_per'))} "
-          f"ahotts={_fmt(row.get('ahotts_per'))}")
+          f"ahotts={_fmt(row.get('ahotts_per'))} "
+          f"africa_g2p={_fmt(row.get('africa_g2p_per'))}")
 
 
 if __name__ == "__main__":

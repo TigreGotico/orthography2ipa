@@ -143,13 +143,13 @@ def test_tamil_palatal_lenites_between_vowels():
 # ═══════════════════════════════════════════════════════════════════════════
 
 def test_malayalam_inherits_tamil_voicing():
-    assert G2P("ml").transcribe("മരുതം") == "marud̪a\u0303m"
+    assert G2P("ml").transcribe("മരുതം") == "marud̪ãm"
     assert G2P("ml").transcribe("ചട്ട") == "tɕaʈːa"
 
 
 def test_malayalam_overrides_the_palatal_by_id():
     """ml voices ⟨ച⟩ to [dʑ] where ta lenites it to [s] (Asher & Kumari 1997)."""
-    assert G2P("ml").transcribe("വചനം") == "ʋadʑana\u0303m"
+    assert G2P("ml").transcribe("വചനം") == "ʋadʑanãm"
     overrides = {r.id for r in get("ml").allophone_rules
                  if r.id.startswith("TA_VOICE_tɕ")}
     assert overrides
