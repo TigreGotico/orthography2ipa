@@ -1,4 +1,4 @@
-# French (fr-FR) — Phonology Reference
+# French (fr-FR): Phonology Reference
 
 **Code**: `fr-FR` | **Family**: Indo-European > Romance > Gallo-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Orthographic depth**: deep (production threshold ≤ 0.25 PER)
@@ -18,7 +18,7 @@
 | c | [s] | [k] | `ceci` [səsi], `cœur` [kœʁ] |
 | g | [ʒ] | [ɡ] | `général` [ʒeneʁal], `gâteau` [ɡɑto] |
 
-The digraphs ⟨ç⟩ always → [s]; ⟨gu⟩ before e/i → [ɡ] (overrides softening); ⟨ge⟩/⟨gi⟩ digraphs → [ʒ].
+The digraphs ⟨ç⟩ always → [s]. ⟨gu⟩ before e/i → [ɡ] (overrides softening). ⟨ge⟩/⟨gi⟩ digraphs → [ʒ].
 
 #### Silent Word-Final Consonants
 
@@ -56,6 +56,16 @@ Note: ⟨ss⟩ → [s] (voiceless): `passer` [pase].
 
 Doubled consonant letters (`bb`, `dd`, `ff`, `gg`, `ll`, `mm`, `nn`, `pp`, `rr`, `tt`) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987): `Abbeville` [abvil], `Allier` [alje], `Abdallah` [abdala]. The `ill` digraph (after a vowel) keeps its special [ij]/[il] treatment ahead of the generic `ll` digraph via maximal-munch tokenization.
 
+**Irregular ⟨ill⟩ = [il] class**: a small closed set of words keeps ⟨ill⟩ as [il] rather than the [ij] default — `ville`, `mille`, `tranquille` (and `tranquillement`), and the place name `Lille` — handled as `word_exceptions` (Tranel 1987 §4.3).
+
+#### Glide Formation
+
+Word-internal ⟨i⟩ before another vowel letter glides to [j] (`positional_graphemes` `before_vowel` branch, Tranel 1987 §5-6): `pied` [pje], `fiacre` [fjakʁ]. This is distinct from the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs, which already carry [j] unconditionally.
+
+Known trade-off: hiatus is preserved in a small learned/prefixed class (`anti-`, `bi-`, `archi-` compounds, and nouns such as `lion`, `ion`, `chiite`, `biathlon`) where careful speech and the wikipron reference keep [iV] rather than [jV] (Tranel 1987 §5 notes this variation). The rule glides these too — 23 words in the wikipron corpus move away from the reference while 8,097 move toward it. A finer split would need syllable-count or morpheme-boundary knowledge the orthography does not encode.
+
+The glide is blocked when the following vowel is itself the word's last audible slot (the engine-level `before_final_vowel` position) — word-final unmarked ⟨ie⟩ stays [i] rather than gliding into a vowel-less [vj]: `vie` [vi], `envie` [ɑ̃vi], `folie` [fɔli], `Algérie` [alʒeʁi], and the plural `vies` [vi] (⟨s⟩ is a transparent, independently-silenced suffix grapheme — Tranel 1987 §3 — so it doesn't count as "more word left"). This does not affect `pied`/`fiacre`, where the vowel after ⟨i⟩ is followed by a real root-final consonant and still must carry the syllable's nucleus.
+
 ---
 
 ## Vowel System
@@ -90,7 +100,7 @@ Word-final unstressed ⟨e⟩ (e caduc) defaults to silent via a `positional_gra
 | on, om | [ɔ̃] | `bon` [bɔ̃] | |
 | un, um | [œ̃] | `lundi` [lœ̃di] | Merges with [ɛ̃] for many Parisian speakers |
 
-**Denasalization**: Before a vowel within the same word, nasal vowels denasalize and the nasal consonant resurfaces, encoded via `positional_graphemes` `before_vowel` branches: `an`→[an] (`analyse` [analiz]), `am`→[am] (`amateur` [amatœʁ]), `en`→[ɛn], `em`→[ɛm], `in`→[in] (`inutile` [inytil]), `im`→[im] (`imaginer` [imaʒine]), `on`→[ɔn] (`bonasse` [bɔnas]), `om`→[ɔm], `un`→[yn] (`unanime` [ynanim]), `um`→[ym]. The doubled-consonant trigger for denasalization (`immense`, `ennemi`) is not modelled this way because the doubled letter is consumed by the `mm`/`nn` digraph before the positional check on the nasal grapheme runs — a known engine-limit gap, not a missing rule.
+**Denasalization**: Before a vowel within the same word, nasal vowels denasalize and the nasal consonant resurfaces, encoded via `positional_graphemes` `before_vowel` branches: `an`→[an] (`analyse` [analiz]), `am`→[am] (`amateur` [amatœʁ]), `en`→[ɛn], `em`→[ɛm], `in`→[in] (`inutile` [inytil]), `im`→[im] (`imaginer` [imaʒine]), `on`→[ɔn] (`bonasse` [bɔnas]), `om`→[ɔm], `un`→[yn] (`unanime` [ynanim]), `um`→[ym]. The doubled-consonant trigger for denasalization (`immense`, `ennemi`) is not modelled this way because the doubled letter is consumed by the `mm`/`nn` digraph before the positional check on the nasal grapheme runs, a known engine-limit gap, not a missing rule.
 
 **ɛ̃/œ̃ merger**: Fougeron & Smith (1993) document that many speakers, especially in and around Paris, merge /œ̃/ into /ɛ̃/ (`brun`/`brin`, `un`/`hein` become homophonous), while conservative Standard French retains the distinction. Both realizations are kept as allophones of `œ̃` in `allophones` rather than collapsing the phoneme inventory, since Fougeron & Smith still treat /œ̃/ as phonemically distinct for their reference (young Parisian female) speaker.
 
@@ -112,7 +122,7 @@ Liaison is a cross-word sandhi process where a normally silent final consonant i
 
 Tranel (1995) formalises liaison and elision within Optimality Theory as both driven by ONSET satisfaction (syllables prefer an onset consonant): linking consonants and eliding vowels are underlyingly "floating" segments that surface only when doing so yields a better-formed syllable for the following vowel-initial word. Aspirate-h words (`hibou` [ibu]) are lexically vowel-initial but block both liaison (`les hiboux` *[lezibu]) and elision (`le hibou` *[libu]) because they require left-edge alignment between the word boundary and the syllable boundary (ALIGN-LEFT ≫ ONSET), unlike regular vowel-initial words where ONSET dominates alignment.
 
-**Elision** (`le`/`la`/`je`/`de`/`que`/`ne`/`ce`/`se` + vowel-initial word → `l'`/`j'`/`d'`/`qu'`/`n'`/`c'`/`s'`) is already resolved in standard written French — the apostrophe form is the orthographic input — so it requires no additional G2P transform. Liaison is a genuine cross-word sandhi phenomenon and is encoded in `sandhi_rules` (`FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P`, `FR_ENCHAÎNEMENT`). Blocking liaison before h-aspiré words is not currently modelled: `h` maps to the empty string identically for both h-muet (`l'homme`, liaison/elision apply) and h-aspiré (`le héros`, liaison/elision blocked) words, so distinguishing them requires a lexical h-aspiré wordlist, which is out of scope for this pass.
+**Elision** (`le`/`la`/`je`/`de`/`que`/`ne`/`ce`/`se` + vowel-initial word → `l'`/`j'`/`d'`/`qu'`/`n'`/`c'`/`s'`) is already resolved in standard written French, the apostrophe form is the orthographic input, so it requires no additional G2P transform. Liaison is a genuine cross-word sandhi phenomenon and is encoded in `sandhi_rules` (`FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P`, `FR_ENCHAÎNEMENT`). Blocking liaison before h-aspiré words is not currently modelled: `h` maps to the empty string identically for both h-muet (`l'homme`, liaison/elision apply) and h-aspiré (`le héros`, liaison/elision blocked) words, so distinguishing them requires a lexical h-aspiré wordlist, which is out of scope for this pass.
 
 ---
 
@@ -134,10 +144,10 @@ Tranel (1995) formalises liaison and elision within Optimality Theory as both dr
 
 ## Known Engine-Limit Exceptions
 
-- **h-aspiré blocking**: not modelled (see Liaison section above) — needs a lexical wordlist, not encodable purely from orthography.
+- **h-aspiré blocking**: not modelled (see Liaison section above), needs a lexical wordlist, not encodable purely from orthography.
 - **Word-final schwa in monosyllables**: `positional_graphemes` silences word-final `e` by default (e caduc), which is correct for polysyllabic words but incorrectly silences the vowel of one-syllable function words (`le`, `que`, `de`).
 - **Denasalization before doubled nasal letters**: `immense`, `ennemi`-type denasalization (nasal digraph followed by its own doubled consonant) is not triggered because `mm`/`nn` are tokenized as their own digraphs, not exposed as `before_consonant` context on the nasal vowel grapheme.
-- **Loanword/proper-noun irregularity**: transliterated foreign names (`Amsterdam`, `Akram`) and acronyms spelled letter-by-letter dominate the residual wikipron mismatches; these are lexical exceptions rather than encodable grapheme rules.
+- **Loanword/proper-noun irregularity**: transliterated foreign names (`Amsterdam`, `Akram`) and acronyms spelled letter-by-letter dominate the residual wikipron mismatches. These are lexical exceptions rather than encodable grapheme rules.
 
 ---
 
