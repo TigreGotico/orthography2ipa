@@ -442,7 +442,7 @@
       "notes": "une amie → resyllabification"
     }
   ],
-  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. Elision (le/la/je/de/que + vowel → l'/j'/d'/qu') is already resolved in standard orthography (words are written with the apostrophe), so it needs no additional G2P rule. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. GLIDE FORMATION: word-internal ⟨i⟩ before another vowel letter glides to [j] (pied [pje], lion [ljɔ̃], fiacre [fjakʁ]) — positional_graphemes before_vowel branch, Tranel (1987) §5-6 on high-vowel gliding; the plain vowel-letter ⟨i⟩ (unlike the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs already carrying [j]) previously always surfaced as the full vowel. This is blocked (BEFORE_FINAL_VOWEL, an engine-level position, see orthography2ipa/types.py) when the following vowel is itself the word's last audible slot — word-final unmarked ⟨ie⟩ stays [i], not [j+deleted-e]: vie [vi], envie [ɑ̃vi], folie [fɔli], Algérie [alʒeʁi], and the plural vies [vi] (⟨s⟩ is a transparent, independently-silenced suffix grapheme, Tranel 1987 §3) — without this exclusion the glide rule wrongly produces a vowel-less [vj] for the entire closed class of French nouns ending in unstressed ⟨-ie⟩/⟨-ies⟩. ILL EXCEPTION CLASS: ⟨ill⟩ is [ij] by default (fille, famille, bastille) except in a closed irregular set where it stays [il] — ville, mille, tranquille (and tranquillement) and the place name Lille — handled via word_exceptions per Tranel (1987) §4.3's irregular-ill list, since the digraph mapping cannot express a lexical exception to its own default. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995). word_exceptions also carry Tranel 1987 §7's closed list of common words whose final ⟨s⟩ is exceptionally pronounced (fils [fis], os, ours, mars, maïs, tennis, sens...); regular final ⟨s⟩ stays silent, and ambiguous homographs (tous, plus) are deliberately excluded.",
+  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. Elision (le/la/je/de/que + vowel → l'/j'/d'/qu') is already resolved in standard orthography (words are written with the apostrophe), so it needs no additional G2P rule. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. GLIDE FORMATION: word-internal ⟨i⟩ before another vowel letter glides to [j] (pied [pje], lion [ljɔ̃], fiacre [fjakʁ]) — positional_graphemes before_vowel branch, Tranel (1987) §5-6 on high-vowel gliding; the plain vowel-letter ⟨i⟩ (unlike the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs already carrying [j]) previously always surfaced as the full vowel. This is blocked (BEFORE_FINAL_VOWEL, an engine-level position, see orthography2ipa/types.py) when the following vowel is itself the word's last audible slot — word-final unmarked ⟨ie⟩ stays [i], not [j+deleted-e]: vie [vi], envie [ɑ̃vi], folie [fɔli], Algérie [alʒeʁi], and the plural vies [vi] (⟨s⟩ is a transparent, independently-silenced suffix grapheme, Tranel 1987 §3) — without this exclusion the glide rule wrongly produces a vowel-less [vj] for the entire closed class of French nouns ending in unstressed ⟨-ie⟩/⟨-ies⟩. ILL EXCEPTION CLASS: ⟨ill⟩ is [ij] by default (fille, famille, bastille) except in a closed irregular set where it stays [il] — ville, mille, tranquille (and tranquillement) and the place name Lille — handled via word_exceptions per Tranel (1987) §4.3's irregular-ill list, since the digraph mapping cannot express a lexical exception to its own default. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995). word_exceptions also carry Tranel 1987 §7's closed list of common words whose final ⟨s⟩ is exceptionally pronounced (fils [fis], os, ours, mars, maïs, tennis, sens...); regular final ⟨s⟩ stays silent, and ambiguous homographs (tous, plus) are deliberately excluded. MUTE ⟨-er⟩/⟨-ez⟩ ENDINGS: deliberately NOT modelled as grapheme keys. Word-final ⟨-er⟩/[e] (parler) vs /ɛʁ/ (mer, hiver, super, loanwords) and ⟨-ez⟩/[e] (mangez, nez) are a MORPHOLOGICAL split — the mute reading belongs to the infinitive/2pl/agent-noun endings, not to the letter sequence — and morpheme chunks are forbidden grapheme keys (an ⟨er⟩ digraph makes ⟨s⟩ in pers-/vers- look intervocalic → *[pɛʁzɔn], and out-munches ⟨rr⟩ degemination → *[tɛʁʁ]); needs a morpheme-aware engine context (same follow-up as English suffix palatalization). The general word-final ⟨r⟩ silencing above covers the mute class at the letter level; the words whose final ⟨r⟩ IS pronounced (the mer/fer/hiver monosyllable-and-friends set plus English -er loanwords keeping /œʁ/~/ɛʁ/) are lexical exceptions carried in word_exceptions.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -518,10 +518,7 @@
       ]
     },
     "c": {
-      "before_e": [
-        "s"
-      ],
-      "before_i": [
+      "before_front_vowel": [
         "s"
       ],
       "default": [
@@ -529,10 +526,7 @@
       ]
     },
     "g": {
-      "before_e": [
-        "ʒ"
-      ],
-      "before_i": [
+      "before_front_vowel": [
         "ʒ"
       ],
       "default": [
@@ -644,7 +638,23 @@
     "oasis": "ɔazis",
     "sens": "sɑ̃s",
     "lys": "lis",
-    "métis": "metis"
+    "métis": "metis",
+    "mer": "mɛʁ",
+    "fer": "fɛʁ",
+    "cher": "ʃɛʁ",
+    "ver": "vɛʁ",
+    "hier": "jɛʁ",
+    "hiver": "ivɛʁ",
+    "enfer": "ɑ̃fɛʁ",
+    "cancer": "kɑ̃sɛʁ",
+    "super": "sypɛʁ",
+    "amer": "amɛʁ",
+    "cuiller": "kɥijɛʁ",
+    "revolver": "ʁevɔlvɛʁ",
+    "leader": "lidœʁ",
+    "cracker": "kʁakœʁ",
+    "container": "kɔ̃tɛnɛʁ",
+    "poker": "pɔkɛʁ"
   },
   "timespan": {
     "start_year": 1300,
@@ -770,5 +780,8 @@
       ],
       "notes": "Loi de position for /ɔ/ (Tranel 1987 §3): mid back vowel is close [o] in a word-final open syllable (mot [mo], numéro) and before /z/ (rose [ʁoz], chose); open [ɔ] in other closed syllables (bord, botte)."
     }
+  ],
+  "vowel_graphemes": [
+    "y"
   ]
 }
