@@ -134,6 +134,38 @@ is versioned as part of the stable import surface below. A plain
 `WordTranscription(word=..., ipa=...)` keeps `confidence == 1.0`, so existing
 callers are unaffected.
 
+## Finalized top-k readings (additive)
+
+`G2P.word_candidates` (`orthography2ipa.g2p`) returns the top-*k* full
+transcriptions of one word, best first, so a caller that reranks our
+lattice does not have to re-implement the word-final pipeline. It changes
+no existing output: `transcribe`, `transcribe_detailed().ipa`,
+`transcribe_word` and the scoreboard are byte-identical whether or not it
+is called.
+
+- `G2P.word_candidates(word, *, k=5, beam_width=None) -> List[str]`: each
+  string has been through the same word-final stages as `transcribe_word`
+  — geminate collapse, grammatical-ending rewrite, stress marking, and the
+  lexicon/`word_exceptions` override. Duplicates are collapsed, so the
+  result may be shorter than *k*. A word with an override has exactly one
+  reading and no beam is consulted. A word with no pronounceable output
+  returns an empty list.
+- `beam_width` defaults to `max(k, 8)`.
+
+Distinct from `G2P.candidates`, which returns RAW `IPAPath` beam paths with
+none of those stages applied: `candidates("bonjour")[0].ipa` is `bɔnʒu`
+(no nasalization, no stress) where `word_candidates("bonjour")[0]` is
+`bɔ̃ʒu`. Use `candidates` for lattice costs, `word_candidates` for
+readings you intend to compare against a transcription.
+
+**Element 0 is not contractually `transcribe_word(word)`.** It normally is,
+and every gold set measured agrees, but `transcribe_word` defaults to
+greedy width-1 search while this method runs a width-`max(k, 8)` beam, and
+a wider beam may find a cheaper path greedy pruning discarded. Pass
+`beam_width=1` if you need the identity to hold by construction. Consumers
+that depend on it should verify rather than assume — see the benchmark
+harness's `assert_oracle_self_check`.
+
 ## Sentence-context seam (additive)
 
 `G2P` (`orthography2ipa.g2p`) and the `orthography2ipa.sentence` module expose
