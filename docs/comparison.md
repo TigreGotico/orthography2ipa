@@ -59,7 +59,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | lad | wikipron | 131 | 0.1397 | n/a | n/a | n/a | n/a | n/a | 0.6256 |
 | mfe | wikipron | 206 | 0.2665 | n/a | n/a | n/a | n/a | n/a | 0.3001 |
 | ngh | wikipron | 263 | 0.3663 | n/a | n/a | n/a | n/a | n/a | 0.3961 |
-| nl | wikipron | 45872 | 0.1262 | 0.1099 | 0.2843 | n/a | n/a | n/a | n/a |
+| nl | wikipron | 45872 | 0.1251 | 0.1099 | 0.2843 | n/a | n/a | n/a | n/a |
 | nup | wikipron | 393 | 0.4932 | n/a | n/a | n/a | n/a | n/a | 0.4582 |
 | pl | wikipron | 148992 | 0.0480 | 0.1132 | 0.0633 | n/a | n/a | n/a | n/a |
 | pt-PT | portuguese_unified | 3000 | 0.2250 | 0.3669 | 0.4146 | n/a | n/a | n/a | n/a |
@@ -91,7 +91,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | en-US | cmudict | 126052 | 0.5003 | 0.4938 | 0.3048 | 0.3104 |
 | eu | hitz_basque_ipa | 3113 | 0.1848 | 0.1842 | 0.1588 | 0.1588 |
 | fr | wikipron | 85516 | 0.1643 | 0.1643 | 0.0740 | 0.0749 |
-| nl | wikipron | 45872 | 0.1262 | 0.2621 | 0.1099 | 0.1325 |
+| nl | wikipron | 45872 | 0.1251 | 0.2621 | 0.1099 | 0.1325 |
 | sv | wikipron | 5082 | 0.2316 | stale | 0.2337 | stale |
 
 Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the SAME dictionary is worth bolted onto o2i's rules. `o2i` vs `espeak_rules` is the fairest rules-only comparison; `o2i_lex` vs `espeak` is the fairest dictionary-included comparison.
