@@ -263,19 +263,144 @@ def test_sibilant_degemination_does_not_preempt_voicing():
     assert transcribe("tot dia", "ca").split()[0].endswith("d")
 
 
-def test_cross_word_vowel_elision_is_a_known_gap():
-    """KNOWN GAP — cross-word vowel elision is not modelled.
+# ─── Vowel contact across a word boundary ──────────────────────────────────
+#
+# Two vowels do not stand in hiatus across a word boundary inside a
+# phonological phrase. Catalan resolves the contact three ways, and which one
+# applies is decided by the two vowels themselves (Wheeler 2005 §10.1 'vowel
+# contact'; Bonet & Lloret 1998 ch. 5):
+#
+#   1. the word-final unstressed [ə] deletes  (CA_ELIDE_FINAL_SCHWA)
+#   2. failing that, the next word's initial unmarked vowel deletes
+#      (CA_ELIDE_INITIAL_VOWEL)
+#   3. an unmarked initial high vowel glides instead of deleting
+#      (CA_HIATUS_GLIDE_I / CA_HIATUS_GLIDE_U)
+#
+# Exactly one vowel is lost per boundary: rule 1 and rule 2 are mutually
+# exclusive by construction (rule 2's left context is the vowel set minus
+# [ə]), not by any precedence the engine has to know about. And no rule may
+# leave a word without a syllable — the minimal-word guard below.
 
-    Catalan elides a word-final unstressed vowel against a vowel-initial
-    next word: ⟨va anar⟩ is [baˈna] in the 4catac gold, and ⟨que es⟩ is
-    [kəs] (Wheeler 2005 §10.1 'vowel contact'). The engine has no surface
-    for deleting a segment conditioned on the NEXT word's first segment
-    across a boundary that the sandhi regexes cannot see as one string, so
-    both vowels survive. This is pinned, not asserted correct: it is the
-    single largest remaining source of PER on the Catalan 4catac rows
-    (162 spurious [ə] insertions on ca alone).
+
+def test_cross_word_elision_deletes_initial_unstressed_vowel():
+    """⟨va anar⟩: the left word ends in a vowel that is not [ə], so the hiatus
+    is resolved on the right — ⟨anar⟩'s initial [ə] goes. The 4catac gold
+    writes the phrase as one word, [baˈna]; this library keeps the word
+    boundary, and the two are identical segment for segment."""
+    assert transcribe("va anar", "ca") == "ˈba ˈna"
+    assert transcribe("va experimentar", "ca").startswith("ˈba k")
+    assert transcribe("he autoritzat", "ca") == "ˈɛ wtuɾiˈdzat"
+
+
+def test_cross_word_elision_deletes_final_schwa():
+    """A word-final unstressed [ə] deletes before a vowel-initial word.
+
+    All from the 4catac Central gold: sobre el [ˈsoβɾ əl], començava a
+    [kumənˈsaβ ə], troba entre [ˈtɾɔβ ˈen̪tɾə], petita aixella
+    [pəˈtit əˈʃeʎə], tanta aigua [ˈtan̪t ˈajɣwə].
     """
-    assert transcribe("va anar", "ca") == "ˈba əˈna"  # gold: [baˈna]
+    assert transcribe("sobre el", "ca") == "ˈsɔβɾ əl"
+    assert transcribe("començava a", "ca").split()[0].endswith("β")
+    assert transcribe("troba entre", "ca").split()[0] == "ˈtɾɔβ"
+    assert transcribe("petita aixella", "ca").split()[0] == "pəˈtit"
+    assert transcribe("tanta aigua", "ca").split()[0] == "ˈtant"
+
+
+# ─── The minimal-word guard: a rule may not leave a word without a syllable ─
+
+
+def test_elision_never_destroys_a_words_only_vowel():
+    """Hiatus resolution loses a vowel, never a word (Wheeler 2005 §10.1;
+    Bonet & Lloret 1998 ch. 5 on clitic vowels).
+
+    Both elision rules require the target word to keep a nucleus, so a
+    monovocalic article, preposition or conjunction survives intact.
+    """
+    # left rule: the article ⟨la⟩ [lə] has no other vowel to fall back on
+    assert transcribe("la aigua", "ca").split()[0] == "lə"
+    assert transcribe("la a i la e", "ca").split()[0] == "lə"
+    # right rule: ⟨en⟩ [ən]/[en] and ⟨el⟩ keep their vowel
+    assert transcribe("estava en oració", "ca").split()[1] == "ən"
+    assert transcribe("que el", "ca-x-occidental").split()[1] == "el"
+    # ... and a word that is only a vowel is never consumed
+    assert transcribe("va a casa", "ca") == "ˈba ə ˈkazə"
+
+
+def test_glide_never_leaves_a_bare_nonsyllabic_word():
+    """Gliding changes a vowel's syllabicity rather than deleting it, so it
+    is guarded one notch more weakly: a word that is NOTHING but [u] would be
+    left as a bare non-syllabic [w], which is no word at all. The conjunction
+    ⟨o⟩ — [u] after Eastern reduction — therefore stays syllabic."""
+    assert transcribe("O Anna o Eva", "ca") == "u ˈannə u ˈɛβə"
+    # ⟨un⟩ has a consonant after the vowel and still glides, as the gold has it
+    assert transcribe("beure un", "ca").split() == ["ˈbɛwɾə", "wn"]
+
+
+def test_bare_conjunction_i_glides_as_the_gold_writes_it():
+    """The one relaxation of the guard, and it is the expert gold's: all four
+    4catac accents write the bare conjunction ⟨i⟩ as [j] between vowels
+    (pollastre i, i ara)."""
+    assert transcribe("pollastre i", "ca").split()[1] == "j"
+    assert transcribe("de dellà i tanca", "ca").split()[2] == "j"
+
+
+# ─── Blocking, dialects, and isolation ─────────────────────────────────────
+
+
+def test_cross_word_elision_is_blocked_after_a_glide():
+    """A [ə] that closes a diphthong is the syllable's second mora and does
+    not delete: ⟨feia anys⟩ is [ˈfɛjə ˈaɲʃ] in all four 4catac accents, not
+    *[ˈfɛj ˈaɲʃ]."""
+    assert transcribe("feia anys", "ca").split()[0] == "ˈfɛjə"
+
+
+@pytest.mark.parametrize("lang,first", [
+    ("ca", "ˈtɾɔβ"), ("ca-x-balear", "ˈtɾoβ"),
+])
+def test_final_schwa_elision_holds_in_both_schwa_dialects(lang, first):
+    """The Balearic 4catac gold writes the same boundary deletions as the
+    Central one (troba entre [ˈtɾɔβ ˈən̪tɾə], sobre es [ˈsoβɾ əs]), so the
+    schwa half is declared on both reducing dialects."""
+    assert transcribe("troba entre", lang).split()[0] == first
+
+
+def test_final_schwa_elision_is_not_declared_in_the_western_block():
+    """Valencian and North-Western have no word-final [ə], so the schwa half
+    is not declared on them at all — only the initial-vowel elision and the
+    two glide rules are."""
+    for lang in ("ca-x-valencia", "ca-x-occidental"):
+        assert transcribe("troba entre", lang).split()[0][-1] in "aeɛ"
+        ids = {r.id for r in get(lang).sandhi_rules}
+        assert "CA_ELIDE_FINAL_SCHWA" not in ids
+        assert "CA_ELIDE_INITIAL_VOWEL" in ids
+
+
+def test_vowel_contact_is_not_declared_on_old_catalan():
+    """The rules are declared per MODERN dialect, mirroring CA_DEGEM_S, and
+    never on the ca-x-medieval ancestor: the sources on that node describe
+    Old Catalan, and none of them was checked for cross-word vowel contact."""
+    ids = {r.id for r in get("ca-x-medieval").sandhi_rules}
+    assert not [i for i in ids if "ELIDE" in i or "GLIDE" in i]
+    assert transcribe("estava en oració", "ca-x-medieval") == \
+        "eˈstava en oɾasiˈo"
+
+
+def test_vowel_contact_is_a_sentence_effect_only():
+    """A word transcribed ALONE is untouched — elision needs a boundary."""
+    assert transcribe("anar", "ca") == "əˈna"
+    assert transcribe("sobre", "ca") == "ˈsɔβɾə"
+    assert transcribe("un", "ca") == "un"
+    assert transcribe("entre", "ca") == "ˈɛntɾə"
+
+
+def test_vowel_contact_does_not_leak_to_other_languages():
+    """No spec outside the Catalan branch declares vowel contact, so a
+    French V#V boundary is unchanged (French elision is orthographic —
+    ⟨l'ami⟩ — and is not this capability's business)."""
+    assert transcribe("tu as", "fr-FR") == transcribe("tu", "fr-FR") + " " + \
+        transcribe("as", "fr-FR")
+    assert transcribe("la abuela", "es") == transcribe("la", "es") + " " + \
+        transcribe("abuela", "es")
 
 
 def test_atonic_function_words_reduce():
