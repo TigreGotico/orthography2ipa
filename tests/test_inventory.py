@@ -272,7 +272,12 @@ KNOWN_DEAD_RULES = {
 #: that no slot carries, so the whole family is unreachable. A systematic bug in
 #: one rule generator rather than 45 independent ones — allowed by prefix so the
 #: group is visible and so a *new* dead rule outside it still fails.
-KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",)}
+#: Krio inherits en-GB's rules through its lexifier link but declares its own
+#: graphemes, and the creole's vowel system has none of RP's rhotic nuclei
+#: (ɑːɹ, ɜːɹ, ɔːɹ, əɹ …) the coda-/r/ and prevocalic-/r/ rules target, so the
+#: whole English rhoticity family is unreachable here.
+KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
+                       "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R")}
 
 
 @pytest.mark.parametrize("code", ALL_CODES)
