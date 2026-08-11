@@ -49,13 +49,15 @@ def _positions(lang, word, tok_index, *, stressed=None):
 
 def test_aperture_positions_are_emitted_for_a_nucleus():
     # escrimeur → e·scri·meur; the ⟨eu⟩ sits in the closed final syllable.
-    positions = _positions("fr", "escrimeur", 6)
+    # Token 5, not 6: ⟨sc⟩ is one grapheme (Fouché 1959 — [sk] here, [s]
+    # before a front vowel), so it occupies a single token.
+    positions = _positions("fr", "escrimeur", 5)
     assert GP.CLOSED_SYLLABLE in positions
     assert GP.OPEN_SYLLABLE not in positions
 
 
 def test_aperture_positions_precede_the_stress_only_positions():
-    positions = _positions("fr", "escrimeur", 6, stressed=2)
+    positions = _positions("fr", "escrimeur", 5, stressed=2)
     assert positions.index(GP.NUCLEUS_STRESSED_CLOSED) < \
         positions.index(GP.CLOSED_SYLLABLE) < \
         positions.index(GP.NUCLEUS_STRESSED)
