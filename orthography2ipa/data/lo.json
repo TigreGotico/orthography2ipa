@@ -100,43 +100,80 @@
     "ຮ": [
       "h"
     ],
-    "◌າ": [
+    "າ": [
       "aː"
     ],
-    "◌ິ": [
+    "ິ": [
       "i"
     ],
-    "◌ີ": [
+    "ີ": [
       "iː"
     ],
-    "◌ຶ": [
+    "ຶ": [
       "ɯ"
     ],
-    "◌ື": [
+    "ື": [
       "ɯː"
     ],
-    "◌ຸ": [
+    "ຸ": [
       "u"
     ],
-    "◌ູ": [
+    "ູ": [
       "uː"
     ],
-    "ເ◌": [
+    "ເ": [
       "eː"
     ],
-    "ແ◌": [
+    "ແ": [
       "ɛː"
     ],
-    "ໂ◌": [
+    "ໂ": [
       "oː"
     ],
-    "ໃ◌": [
+    "ໃ": [
       "aj"
     ],
-    "ໄ◌": [
+    "ໄ": [
       "aj"
+    ],
+    "ືອ": [
+      "ɯa"
     ]
   },
+  "dependent_vowels": [
+    "າ"
+  ],
+  "preposed_vowels": [
+    "ເ",
+    "ແ",
+    "ໂ",
+    "ໃ",
+    "ໄ"
+  ],
+  "coda_no_inherent_vowel": true,
+  "allophone_rules": [
+    {
+      "id": "LO_UNRELEASED_K_CODA",
+      "phonemes": ["k"],
+      "surface": "k̚",
+      "word_final": true,
+      "notes": "Lao final stops are unreleased, like Thai (Enfield 2007, A Grammar of Lao, §2.1): a word-final /k/ coda surfaces [k̚], not a released [k]. Fires only word_final so onset /k/ is unaffected."
+    },
+    {
+      "id": "LO_UNRELEASED_T_CODA",
+      "phonemes": ["t"],
+      "surface": "t̚",
+      "word_final": true,
+      "notes": "Lao final stops are unreleased (Enfield 2007, §2.1): a word-final /t/ coda surfaces [t̚]."
+    },
+    {
+      "id": "LO_UNRELEASED_P_CODA",
+      "phonemes": ["p"],
+      "surface": "p̚",
+      "word_final": true,
+      "notes": "Lao final stops are unreleased (Enfield 2007, §2.1): a word-final /p/ coda surfaces [p̚]."
+    }
+  ],
   "allophones": {
     "k": [
       "k"
@@ -230,10 +267,23 @@
     ],
     "oː": [
       "oː"
+    ],
+    "ɯa": [
+      "ɯa"
     ]
   },
-  "notes": "Lao (Laotian). Tai-Kadai abugida closely related to Thai script. 6-tone language. Consonants in three classes (low/mid/high) interact with tone marks. Inherent vowel is /o/ (short). Simplified compared to Thai: no ช/ซ/ถ/ท distinctions — Lao merged many Thai letters.",
+  "notes": "Lao (Laotian). Tai-Kadai abugida closely related to Thai script. 6-tone language. Consonants in three classes (low/mid/high) interact with tone marks. Inherent vowel is /o/ (short). Simplified compared to Thai: no ช/ซ/ถ/ท distinctions — Lao merged many Thai letters. Dependent vowel signs ⟨າ ິ ີ ຶ ື ຸ ູ⟩ are spacing (Unicode category Lo for ⟨າ⟩, Mn for the rest); ⟨ເ ແ ໂ ໃ ໄ⟩ are preposed — written before the consonant, pronounced after (⟨ເກ⟩ = /keː/). ⟨ືອ⟩ is a genuine circumfix vowel /ɯa/ paired with a preposed ⟨ເ⟩ (⟨ເສືອ⟩ 'tiger' = /sɯ̌a/). See Enfield, N.J. (2007), A Grammar of Lao, Mouton de Gruyter.",
   "sources": [
+    {
+      "id": "enfield2007",
+      "author": "Enfield, N.J.",
+      "year": 2007,
+      "title": "A Grammar of Lao",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": "Source for the preposed/circumfix dependent-vowel analysis (⟨ເ⟩, ⟨ເ...ືອ⟩)."
+    },
     {
       "id": "lao_wiki",
       "author": "Wikipedia contributors",

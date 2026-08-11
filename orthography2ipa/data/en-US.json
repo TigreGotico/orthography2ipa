@@ -4,6 +4,7 @@
   "script": "Latin",
   "graphemes_base": "en-GB",
   "allophones_base": "en-GB",
+  "grammatical_endings_base": "en-GB",
   "allophones": {
     "t": [
       "t",
@@ -48,7 +49,7 @@
       "notes": "Middle English descent via colonial English"
     }
   ],
-  "notes": "General American (GA) — reference accent for US media/education. RHOTIC: /r/ preserved in all positions. No TRAP-BATH split (bath words = /æ/). LOT-PALM merger: /ɑː/ for both. T-FLAPPING: /t/ → [ɾ] between vowels (butter, water, city). CAUGHT-COT merger common (thought = lot for most speakers). Source: Wells (1982) vol. 3, Ladefoged & Johnson (2011). FLAPPING: /t/ and /d/ → [ɾ] intervocalically in unstressed syllables (butter, ladder, city). RHOTIC: fully rhotic — /r/ preserved in all positions.",
+  "notes": "General American (GA) — reference accent for US media/education. RHOTIC: /r/ preserved in all positions. No TRAP-BATH split (bath words = /æ/). LOT-PALM merger: /ɑː/ for both. T-FLAPPING: /t/ → [ɾ] between vowels (butter, water, city). CAUGHT-COT merger common (thought = lot for most speakers). Source: Wells (1982) vol. 3, Ladefoged & Johnson (2011). FLAPPING: /t/ and /d/ → [ɾ] intervocalically in unstressed syllables (butter, ladder, city). RHOTIC: fully rhotic — /r/ preserved in all positions. GA GOAT is /oʊ/, not the RP /əʊ/ this spec's parent declares (Wells 1982 vol.3 §6.1.4). The RP coda-/r/ deletion this spec inherits is re-declared with no target phonemes (Wells 1982 vol.3 §6.1; Ladefoged & Johnson 2011) — the id-keyed way a dialect states it lacks a parent's process. SUFFIX PALATALIZATION, RHOTIC COLUMN: the three yod-coalescing suffixes this spec inherits end in a coda /r/ that GA keeps, so each is re-declared with the r-coloured schwa [ɚ] in place of the RP [ə]. ENDING \"ture\" is [tʃɚ] (nature, picture, feature) — the coalesced coronal plus GA r-coloured schwa (Wells 2008 LPD; Wells 1982 vol 3 §6.1). ENDING \"sure\" is [ʒɚ] (measure, closure, leisure) — the same, with the voiced coronal (Wells 2008 LPD; Wells 1982 vol 3 §6.1). ENDING \"ssure\" is [ʃɚ] (pressure, fissure) — the same after the voiceless ⟨ss⟩, which longest-match-wins picks over ⟨-sure⟩ (Wells 2008 LPD; Wells 1982 vol 3 §6.1).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -71,6 +72,26 @@
       "url": null,
       "pages": null,
       "notes": "In: Handbook of the International Phonetic Association"
+    },
+    {
+      "id": "ladefoged2011",
+      "author": "Ladefoged, P. & Johnson, K.",
+      "year": 2011,
+      "title": "A Course in Phonetics (6th ed.)",
+      "publisher": "Wadsworth",
+      "url": null,
+      "pages": null,
+      "notes": "General American vowel inventory: LOT-PALM merger and full rhoticity."
+    },
+    {
+      "id": "wells2008",
+      "author": "Wells, J.C.",
+      "year": 2008,
+      "title": "Longman Pronunciation Dictionary (3rd ed.)",
+      "publisher": "Pearson Longman",
+      "url": null,
+      "pages": null,
+      "notes": "Pronunciation authority for the yod-coalesced ⟨-ture⟩/⟨-sure⟩/⟨-ssure⟩ suffixes in both the RP and the GA column."
     }
   ],
   "wikipedia": [
@@ -95,6 +116,18 @@
       "default": [
         "d"
       ]
+    },
+    "o": {
+      "word_final": [
+        "oʊ"
+      ],
+      "default": [
+        "ɒ",
+        "oʊ",
+        "ɔː",
+        "ʌ",
+        "uː"
+      ]
     }
   },
   "timespan": {
@@ -110,5 +143,187 @@
     "source": "wikidata",
     "notes": "the geographic centre of the United States. General American is a media/education reference accent with NO regional home at all — this is the weakest point in the dataset and should be read as such. [Wikidata Q30 P625]"
   },
-  "collapse_geminates": true
+  "collapse_geminates": true,
+  "allophone_rules": [
+    {
+      "id": "EN_US_LOT_PALM_MERGER",
+      "phonemes": [
+        "ɒ"
+      ],
+      "surface": "ɑ",
+      "notes": "LOT-PALM merger: GA has no /ɒ/ - the RP LOT vowel merges with PALM as unrounded /ɑ/ (Wells 1982 vol.3 6.1.3)."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_AR_PRECONS",
+      "phonemes": [],
+      "surface": "ɑː",
+      "notes": "General American is fully rhotic: /r/ is preserved in every position, so the RP coda-/r/ deletion this spec inherits does not apply (Wells 1982 vol.3 §6.1; Ladefoged & Johnson 2011). Declared with no target phonemes, the id-keyed way a dialect states it lacks a parent's process."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_AR_FINAL",
+      "phonemes": [],
+      "surface": "ɑː",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NURSE_PRECONS",
+      "phonemes": [],
+      "surface": "ɜː",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NURSE_FINAL",
+      "phonemes": [],
+      "surface": "ɜː",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_OR_PRECONS",
+      "phonemes": [],
+      "surface": "ɔː",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_OR_FINAL",
+      "phonemes": [],
+      "surface": "ɔː",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_LETTER_PRECONS",
+      "phonemes": [],
+      "surface": "ə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_LETTER_FINAL",
+      "phonemes": [],
+      "surface": "ə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_SQUARE_PRECONS",
+      "phonemes": [],
+      "surface": "ɛə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_SQUARE_FINAL",
+      "phonemes": [],
+      "surface": "ɛə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NEAR_PRECONS",
+      "phonemes": [],
+      "surface": "ɪə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NEAR_FINAL",
+      "phonemes": [],
+      "surface": "ɪə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_PRECONS",
+      "phonemes": [],
+      "surface": "ʊə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_FINAL",
+      "phonemes": [],
+      "surface": "ʊə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_J_PRECONS",
+      "phonemes": [],
+      "surface": "jʊə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_J_FINAL",
+      "phonemes": [],
+      "surface": "jʊə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_FIRE_PRECONS",
+      "phonemes": [],
+      "surface": "aɪə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_FIRE_FINAL",
+      "phonemes": [],
+      "surface": "aɪə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_HOUR_PRECONS",
+      "phonemes": [],
+      "surface": "aʊə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_HOUR_FINAL",
+      "phonemes": [],
+      "surface": "aʊə",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_R_PRECONS",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_R_FINAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Same statement as EN_GB_NONRHOTIC_AR_PRECONS: this lect is rhotic, so it does not have the parent's coda-/r/ deletion."
+    }
+  ],
+  "vowel_graphemes": [
+    "y"
+  ],
+  "graphemes": {
+    "o": [
+      "ɒ",
+      "oʊ",
+      "ɔː",
+      "ʌ",
+      "uː"
+    ],
+    "oa": [
+      "oʊ"
+    ],
+    "oe": [
+      "oʊ",
+      "uː"
+    ],
+    "ow": [
+      "aʊ",
+      "oʊ"
+    ],
+    "eau": [
+      "juː",
+      "oʊ"
+    ],
+    "ough": [
+      "ɔː",
+      "oʊ",
+      "ʌf",
+      "ɒf",
+      "aʊ",
+      "uː"
+    ]
+  },
+  "grammatical_endings": {
+    "ture": "tʃɚ",
+    "sure": "ʒɚ",
+    "ssure": "ʃɚ"
+  }
 }
