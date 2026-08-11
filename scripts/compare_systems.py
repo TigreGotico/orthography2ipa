@@ -164,7 +164,7 @@ import os
 import shutil
 import subprocess
 import sys
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
 import benchmark  # noqa: E402  — shared dataset loaders, normalize(), levenshtein()
@@ -1092,15 +1092,52 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
     }
 
 
-def build_comparison(limit: Optional[int]) -> List[dict]:
+def build_comparison(limit: Optional[int],
+                     only_langs: Optional[Sequence[str]] = None) -> List[dict]:
+    """Score every mapped language against the external systems.
+
+    ``only_langs`` restricts the run to a subset, exactly as
+    ``benchmark.build_scoreboard``'s ``only_langs`` does. A full pass runs
+    every external system over every gold row of 33 languages and takes
+    hours, so a targeted rerun is the practical way to refresh a handful of
+    rows; the caller then MERGES the result into the committed set (see
+    :func:`merge_comparison_rows`). No row depends on which others ran with
+    it, so a subset row is scored identically to a full-run row.
+    """
     rows: List[dict] = []
     for lang in sorted(LANGS):
+        if only_langs is not None and lang not in only_langs:
+            continue
         try:
             rows.extend(compare_lang(lang, limit))
         except Exception as exc:
             print(f"skip lang={lang}: {exc}", file=sys.stderr)
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows
+
+
+def merge_comparison_rows(old: List[dict], new: List[dict]) -> List[dict]:
+    """Overlay freshly-scored *new* rows onto the committed *old* set.
+
+    Keyed on ``(lang, dataset)``, the comparison board's identity, and a new
+    row REPLACES the old one wholesale rather than patching it field by
+    field: a row is one live run against espeak-ng/epitran/gruut, and
+    half-refreshing one would silently mix two runs' numbers. Rows only in
+    *old* are carried through untouched, which is what makes ``--lang``
+    safe. Mirrors :func:`benchmark.merge_scoreboard_rows`.
+    """
+    merged = {(r["lang"], r["dataset"]): r for r in old}
+    for row in new:
+        merged[(row["lang"], row["dataset"])] = row
+    return sorted(merged.values(), key=lambda r: (r["lang"], r["dataset"]))
+
+
+def read_comparison_rows() -> List[dict]:
+    """The committed comparison rows, or ``[]`` if none are written yet."""
+    if not os.path.exists(COMPARISON_JSON):
+        return []
+    with open(COMPARISON_JSON, encoding="utf-8") as fh:
+        return json.load(fh)
 
 
 def _fmt(per: Optional[float]) -> str:
@@ -1589,7 +1626,18 @@ def main() -> None:
     args = ap.parse_args()
 
     if args.scoreboard:
-        rows = build_comparison(args.limit)
+        # --lang narrows the run to one language and MERGES the result into
+        # the committed board; without it the whole board is rescored from
+        # scratch. Before this was wired up, --scoreboard silently IGNORED
+        # --lang and rebuilt all 33 languages — hours of espeak-ng and
+        # epitran subprocesses — which in practice meant a one-language
+        # refresh was never run and rows went stale instead.
+        rows = build_comparison(
+            args.limit, only_langs=[args.lang] if args.lang else None)
+        if args.lang:
+            print(f"merging {len(rows)} rescored rows into the committed "
+                  f"comparison board", file=sys.stderr)
+            rows = merge_comparison_rows(read_comparison_rows(), rows)
         write_comparison(rows, catalan_voices=CATALAN_DIALECT_VOICES)
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(COMPARISON_MD, REPO_ROOT)} and "

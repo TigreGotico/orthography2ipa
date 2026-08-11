@@ -246,6 +246,29 @@ def _capture_coda_liquids(
 # member is a VOICELESS obstruent and not itself a sibilant — ⟨str⟩ ⟨spl⟩
 # ⟨schr⟩ /sxr/ ⟨schw⟩ /sxv/ are onsets; ⟨sdr⟩ is not (voiced), and ⟨ssch⟩ is
 # not (two sibilants), so Dutch *misschien* is mis·schien.
+#
+# ONE SEGMENT THAT IS STILL NO HEAD
+# ────────────────────────────────
+# A single consonant opens a syllable everywhere — with one exception, and it
+# is the weakest possible head: the VELAR NASAL. In the inventories this judge
+# is calibrated on it is a coda-only segment. Booij, *The Phonology of Dutch*,
+# OUP 1995, ch. 2, states that Dutch /ŋ/ occurs only in syllable-final
+# position; Wiese, *The Phonology of German*, OUP 1996, ch. 2, says the same
+# for German. It is also what the Head Law predicts (Vennemann 1988, ch. 1):
+# a head is preferred the greater its consonantal strength, and a nasal at the
+# back of the mouth has the least of it.
+#
+# Without this, a spec whose grapheme table spells /ŋ/ with ONE grapheme —
+# Dutch ⟨ng⟩, ⟨nk⟩ — has that grapheme maximised into the onset, and *angel*
+# comes out a·ngel with an OPEN first syllable, which then feeds the
+# open-syllable length rules the wrong answer ([aː] for [ɑ]). The judgement is
+# made on the run's FIRST segment, so it covers both the bare nasal ⟨ng⟩ /ŋ/
+# and a grapheme spelling a whole cluster that starts with it (⟨nk⟩ /ŋk/).
+
+
+#: The velar nasal, by IPA. Coda-only in the inventories this judge is
+#: calibrated on, so it heads no onset — see the module comment above.
+_VELAR_NASAL = "ŋ"
 
 
 class _OnsetJudge:
@@ -347,6 +370,21 @@ class _OnsetJudge:
         letters = [c for c in grapheme if not unicodedata.combining(c)]
         return len(letters) == 2 and letters[0].lower() == letters[1].lower()
 
+    def _opens_with_velar_nasal(self, grapheme: str) -> bool:
+        """Whether *grapheme*'s first IPA segment is the velar nasal.
+
+        A velar nasal is coda-only in the inventories this judge serves, so
+        no onset may start with one — see the module comment for the
+        citations (Booij 1995, ch. 2; Wiese 1996, ch. 2; Vennemann 1988,
+        ch. 1). Read off the first segment rather than the whole IPA so a
+        grapheme spelling a cluster (Dutch ⟨nk⟩ /ŋk/) is judged too.
+        """
+        ipa = self.ipa_of(grapheme)
+        if not ipa:
+            return False
+        segs = segment_ipa(ipa, _AFFRICATES)
+        return bool(segs) and segs[0].startswith(_VELAR_NASAL)
+
     def _tier(self, grapheme: str) -> int:
         seg = self._segment(grapheme)
         return sonority_class(seg) if seg else SONORITY_UNKNOWN
@@ -375,6 +413,8 @@ class _OnsetJudge:
         # (a) the spec's own cap, before any reasoning of ours
         if self.max_onset is not None and len(units) > self.max_onset:
             return False
+        if self._opens_with_velar_nasal(units[0]):
+            return False    # coda-only segment — see the module comment
         if len(units) == 1:
             return True   # every language licenses a simple onset
         if len(units) > self.MAX_MEMBERS:
@@ -405,8 +445,12 @@ class _OnsetJudge:
             # (Duden, *Die deutsche Rechtschreibung*, 28. Aufl., § 107).
             # Icelandic ⟨hr- hl- hv-⟩ are word-INITIAL and never re-judged.
             return False
-        # RISE — obstruent + liquid or glide
-        if obstruent and t2 >= SONORITY_LIQUID:
+        # RISE — obstruent + liquid (a palatal glide is judged below: an
+        # obstruent + /j/ sequence is heterosyllabic in the continental
+        # Germanic inventories, kat·je and dag·je, not ka·tje — Booij 1995,
+        # ch. 2–3, on the Dutch diminutive ⟨-je⟩ across a morpheme boundary;
+        # Wiese 1996, ch. 2, for German).
+        if obstruent and t2 >= SONORITY_LIQUID and not is_palatal_glide(s2):
             # …except a homorganic coronal stop + lateral. */tl dl/ is the
             # systematic gap in the Germanic and Romance onset inventories,
             # and without it every ``-land`` compound resyllabifies:
@@ -415,11 +459,16 @@ class _OnsetJudge:
                     and place_class(s1) == place_class(s2) == "coronal"):
                 return False
             return True
-        # CJ — any consonant + /j/. Icelandic ⟨mj lj nj rj⟩ (*mjólk*, *ljós*,
-        # *njóta*, *rjúpa*) are onsets over a SONORANT head, which no rising
+        # CJ — a SONORANT + /j/. Icelandic ⟨mj lj nj rj⟩ (*mjólk*, *ljós*,
+        # *njóta*, *rjúpa*) are onsets over a sonorant head, which no rising
         # shape reaches (Árnason, *The Phonology of Icelandic and Faroese*,
-        # OUP 2011, ch. 5).
-        if t2 == SONORITY_GLIDE and is_palatal_glide(s2):
+        # OUP 2011, ch. 5). An OBSTRUENT head is excluded, per the RISE
+        # comment above: continental Germanic cuts kat·je and dag·je. This is
+        # the one place the two Germanic branches part company — Icelandic
+        # ⟨bjór fjall sjá tjald⟩ ARE onsets — so an Icelandic-type spec must
+        # not set ``constrain_onsets`` until this shape is made per-spec.
+        if (t2 == SONORITY_GLIDE and is_palatal_glide(s2)
+                and not obstruent):
             return True
         # CW — obstruent + labial approximant: ⟨kv⟩ ⟨dv⟩ ⟨tv⟩ ⟨kw⟩ ⟨zw⟩
         # /t͡sv/, German ⟨schw⟩ /ʃv/, Swedish and Icelandic ⟨sv⟩, Russian
