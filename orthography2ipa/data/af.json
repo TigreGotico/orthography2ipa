@@ -322,7 +322,7 @@
       "notes": "Cape Malay substrate: some vocabulary; contact with Malay-speaking slaves"
     }
   ],
-  "notes": "Afrikaans. Descended from 17th-century Dutch of VOC settlers (Cape Colony, established 1652). DEFINING CHANGES from Dutch: (1) /v/→/f/ word-initially; /z/→/s/ initially; (2) /ɡ/ initial (Dutch ɣ→ɡ); (3) Loss of grammatical gender, case, verbal agreement; (4) /r/ = uvular [ʀ] or [χ]; (5) New diphthong /œɪ/ (Dutch /œy/); (6) Schwa /ə/ very prominent. Cape Malay substrate: some vocabulary. Khoikhoi substrate: minimal phonological impact; some clicks in code-switching. Source: Donaldson (1993).",
+  "notes": "Afrikaans. Descended from 17th-century Dutch of VOC settlers (Cape Colony, established 1652). DEFINING CHANGES from Dutch: (1) /v/→/f/ word-initially; /z/→/s/ initially; (2) /ɡ/ initial (Dutch ɣ→ɡ); (3) Loss of grammatical gender, case, verbal agreement; (4) /r/ = uvular [ʀ] or [χ]; (5) New diphthong /œɪ/ (Dutch /œy/); (6) Schwa /ə/ very prominent. Cape Malay substrate: some vocabulary. Khoikhoi substrate: minimal phonological impact; some clicks in code-switching. Source: Donaldson (1993). VOWEL LENGTH BEFORE /r/: Afrikaans does not share Dutch's pre-/r/ lengthening of /i y/ and opts out of the inherited rules (see NL_HIGH_TENSE_LENGTHENING_BEFORE_R_I's notes for the gold counts, the Donaldson 1993 citation and the measurement). Dutch-only citations do not legislate for Afrikaans.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -386,6 +386,18 @@
       "phonemes": [],
       "surface": "",
       "notes": "Disabled inherited Dutch open-syllable lengthening: authored from Booij (1995) for Netherlands Dutch and never verified for Afrikaans, whose vowel quantity/quality system diverged (and whose wikipron convention transcribes it differently). Re-enable only with Afrikaans-specific sourced rules (e.g. Donaldson 1993)."
+    },
+    {
+      "id": "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_I",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Afrikaans does NOT lengthen the tense high vowels before /r/, so the two rules inherited from nl (NL_HIGH_TENSE_LENGTHENING_BEFORE_R_I/_Y) are disabled here by re-declaring the ids with no phonemes. The Dutch rule is Booij 1995, ch. 2, a statement about DUTCH and not about its daughter; Afrikaans wikipron gold refutes it outright -- /i/ runs 24 [ir] to 4 [iːr] and /y/ 23 [yr] to 3 [yːr], i.e. 6:1 and 7.7:1 AGAINST lengthening, the mirror image of Dutch (2.0:1 and 2.9:1 FOR). Afrikaans has largely lost contrastive vowel length (Donaldson, *A Grammar of Afrikaans*, Mouton de Gruyter 1993, ch. 1). Measured on af wikipron: inheriting the rules scores PER 0.3655 / WER 0.9041, disabling them 0.3615 / 0.8955. The coda-devoicing rules inherited from nl are KEPT: Afrikaans has final devoicing like Dutch (Donaldson 1993, ch. 1) and af gold agrees -- disabling them scores 0.3639, against 0.3615 with them (measured on the post-#850 tree)."
+    },
+    {
+      "id": "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y",
+      "phonemes": [],
+      "surface": "",
+      "notes": "See NL_HIGH_TENSE_LENGTHENING_BEFORE_R_I above: same refutation by af gold (23 [yr] to 3 [yːr]), same disabling."
     }
   ]
 }

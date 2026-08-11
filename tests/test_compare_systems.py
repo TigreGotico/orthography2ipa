@@ -1565,3 +1565,82 @@ class TestCommittedComparisonJsonCompleteness:
             "same-source — a stale/hand-edited row, not a live rescore: "
             + ", ".join(wrong)
         )
+
+
+class TestScoreboardLangScoping:
+    """``--scoreboard --lang X`` must rebuild ONLY X and keep every other
+    language's committed row.
+
+    Regression guard for a real defect: ``build_comparison`` took no
+    language filter and ``main()`` called it as ``build_comparison(
+    args.limit)``, so ``--scoreboard --lang nl`` silently rescored all 33
+    mapped languages — every external system over every gold row, hours of
+    espeak-ng and epitran subprocesses. The practical effect was that a
+    one-language refresh was never run at all and the board's rows went
+    stale instead (the staleness note in ``docs/comparison.md`` was
+    carrying 20 such rows).
+    """
+
+    def test_build_comparison_only_langs_restricts_the_run(self, monkeypatch):
+        called = []
+
+        def fake_compare_lang(lang, limit):
+            called.append(lang)
+            return [{"lang": lang, "dataset": "d", "o2i_per": 0.1}]
+
+        monkeypatch.setattr(cs, "compare_lang", fake_compare_lang)
+        rows = cs.build_comparison(None, only_langs=["nl"])
+
+        assert called == ["nl"], (
+            f"only_langs=['nl'] must score nl alone, scored: {called}"
+        )
+        assert [r["lang"] for r in rows] == ["nl"]
+
+    def test_build_comparison_without_only_langs_runs_everything(
+            self, monkeypatch):
+        called = []
+        monkeypatch.setattr(
+            cs, "compare_lang",
+            lambda lang, limit: called.append(lang) or [])
+
+        cs.build_comparison(None)
+
+        assert set(called) == set(cs.LANGS), (
+            "omitting only_langs must still rebuild the whole board"
+        )
+
+    def test_merge_keeps_every_other_language_untouched(self):
+        old = [
+            {"lang": "nl", "dataset": "wikipron", "o2i_per": 0.1262},
+            {"lang": "de", "dataset": "wikipron", "o2i_per": 0.2092},
+            {"lang": "fr", "dataset": "wikipron", "o2i_per": 0.1189},
+        ]
+        new = [{"lang": "nl", "dataset": "wikipron", "o2i_per": 0.0902}]
+
+        merged = cs.merge_comparison_rows(old, new)
+
+        by_key = {(r["lang"], r["dataset"]): r for r in merged}
+        assert by_key[("nl", "wikipron")]["o2i_per"] == 0.0902
+        assert by_key[("de", "wikipron")]["o2i_per"] == 0.2092
+        assert by_key[("fr", "wikipron")]["o2i_per"] == 0.1189
+        assert len(merged) == 3
+
+    def test_merge_appends_a_language_with_no_committed_row(self):
+        merged = cs.merge_comparison_rows(
+            [{"lang": "de", "dataset": "wikipron", "o2i_per": 0.2}],
+            [{"lang": "nl", "dataset": "wikipron", "o2i_per": 0.09}],
+        )
+        assert [(r["lang"], r["dataset"]) for r in merged] == [
+            ("de", "wikipron"), ("nl", "wikipron")]
+
+    def test_merge_replaces_a_row_wholesale_not_field_by_field(self):
+        """Half-refreshing a row would mix two live runs' numbers."""
+        old = [{"lang": "nl", "dataset": "wikipron",
+                "o2i_per": 0.1262, "espeak_per": 0.1099, "stale_key": 1}]
+        new = [{"lang": "nl", "dataset": "wikipron",
+                "o2i_per": 0.0902, "espeak_per": 0.1099}]
+
+        merged = cs.merge_comparison_rows(old, new)
+
+        assert merged == new
+        assert "stale_key" not in merged[0]

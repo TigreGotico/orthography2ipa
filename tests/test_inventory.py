@@ -262,10 +262,16 @@ KNOWN_DEAD_RULES = {
     # NL_CODA_DEVOICE_G's /ɣ/ target can't fire, and no 'i' slot means
     # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
     # target can't either.
-    "vls": {"NL_OPEN_SYLLABLE_A", "NL_OPEN_SYLLABLE_E", "NL_OPEN_SYLLABLE_I",
-            "NL_OPEN_SYLLABLE_O", "NL_OPEN_SYLLABLE_U",
-            "NL_CODA_DEVOICE_G", "NL_UNSTRESSED_TENSE_I_FINAL",
-            "NL_UNSTRESSED_TENSE_I_HIATUS"},
+    "vls": {"NL_CODA_DEVOICE_B", "NL_CODA_DEVOICE_D", "NL_CODA_DEVOICE_G",
+            "NL_CODA_DEVOICE_V", "NL_CODA_DEVOICE_Z",
+            "NL_UNSTRESSED_TENSE_I_FINAL", "NL_UNSTRESSED_TENSE_I_HIATUS",
+            "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_U",
+            "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y"},
+    # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
+    # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
+    # voiceless everywhere), so the /z/ member of nl's coda-devoicing series
+    # has no target here. The other members are live.
+    "af": {"NL_CODA_DEVOICE_Z"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)

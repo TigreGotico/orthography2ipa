@@ -624,7 +624,9 @@ class TestDutchBeatEspeakWave:
         within the word, not only word-finally (Booij 1995, ch. 2 sec.
         2.5: regressive devoicing assimilation)."""
         assert self._t("zegt") == "ˈzɛxt"
-        assert self._t("liegt") == "ˈliːxt"
+        # WikiPron gold has no *liegt*; [i] (not [iː]) is the tense-but-SHORT
+        # high vowel of Booij 1995, ch. 2 — long only before /r/ (bier).
+        assert self._t("liegt") == "ˈlixt"
         assert self._t("hoogte") == "ˈɦoːxtə"
 
     def test_devoicing_does_not_fire_before_sonorant(self):
@@ -646,14 +648,14 @@ class TestDutchBeatEspeakWave:
         [ɪ] (Booij 1995, ch. 2; mirrors de-DE's analogous
         DE_UNSTRESSED_TENSE_*_FINAL rules)."""
         assert self._t("Ali") == "ˈaːli"
-        assert self._t("Adri") == "ˈɑdri"
+        assert self._t("Adri") == "ˈaːdri"
 
     def test_unstressed_i_in_hiatus_is_tense(self):
         """An unstressed ⟨i⟩ directly before another vowel letter is
         tense-but-short [i], not lax [ɪ] -- the hiatus blocks the
         closed-syllable laxing a following consonant would trigger."""
         assert self._t("Ariër") == "ˈaːriər"
-        assert self._t("Adriaan") == "ˈɑdriaːn"
+        assert self._t("Adriaan") == "ˈaːdriaːn"
 
     def test_stressed_closed_syllable_i_stays_lax(self):
         """Guard: the new unstressed-tensing rules must not touch a
@@ -678,11 +680,11 @@ class TestDutchBeatEspeakWave:
         onset /j/ kept distinct across the morpheme boundary (Booij
         1995, ch. 2-3), and word-initial ⟨tj-⟩ placenames are [tj] too
         -- WikiPron gold: katje [kɑtjə], potje [pɔtjə], tjalk [tjɑlk],
-        tjonge [tjoːŋə]."""
+        tjonge [tjɔŋə]."""
         assert self._t("katje") == "ˈkɑtjə"
         assert self._t("potje") == "ˈpɔtjə"
         assert self._t("tjalk") == "ˈtjɑlk"
-        assert self._t("tjonge") == "ˈtjoːŋə"
+        assert self._t("tjonge") == "ˈtjɔŋə"
 
     def test_tj_does_not_trigger_open_syllable_lengthening(self):
         """Regression: the old coalesced ⟨tj⟩ digraph counted as a
