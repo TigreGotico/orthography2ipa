@@ -261,6 +261,13 @@ word's effective end only, so word-internal letters are untouched, and
 `word_exceptions` still outranks it. Full contract:
 [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#grammatical-endings).
 
+When the ending has more than one licit reading and the spelling does not say
+which — French verbal ⟨-ent⟩ is mute, nominal ⟨-ent⟩ is [ɑ̃] — do **not** pick
+one and do not reach for a word list. Declare it as an ordered candidate list
+(`"ent": [null, ""]`) so both readings are in the lattice and a downstream
+rescorer can choose: [Ambiguous
+endings](../orthography2ipa/data/SCHEMA.md#ambiguous-endings).
+
 ---
 
 ## Adding a lexicon overlay (optional)

@@ -152,6 +152,23 @@ is called.
   returns an empty list.
 - `beam_width` defaults to `max(k, 8)`.
 
+**Ambiguous grammatical endings widen the result below element 0.** A spec may
+declare an ending as an ordered candidate list (`"ent": [null, ""]`, see
+[SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings)) when
+orthography does not decide between its readings — French verbal ⟨-ent⟩ is the
+case this exists for. Each declared alternative appears as an ADDITIONAL
+reading, ranked below element 0 and never displacing it, so `transcribe`,
+`transcribe_detailed().ipa`, `transcribe_word` and the scoreboard's 1-best
+columns stay byte-identical while `word_candidates` and the oracle columns gain
+the reading a downstream POS-aware rescorer needs. A caller that assumed
+`word_candidates` returns only readings reachable from the grapheme tables must
+stop assuming it; a caller that reads element 0 is unaffected by construction.
+`G2P(lang, expose_ambiguous_endings=False)` turns the injection off for a
+caller that wants only readings the grapheme tables reach — the benchmark
+harness uses it so the scoreboard's oracle columns stay a pure ranking
+diagnostic. It defaults to `True`: exposing the reading the engine cannot
+choose is the point of declaring the ending ambiguous.
+
 Distinct from `G2P.candidates`, which returns RAW `IPAPath` beam paths with
 none of those stages applied: `candidates("bonjour")[0].ipa` is `bɔnʒu`
 (no nasalization, no stress) where `word_candidates("bonjour")[0]` is
