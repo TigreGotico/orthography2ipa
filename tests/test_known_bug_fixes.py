@@ -51,7 +51,8 @@ class TestEnglishDoublingIsNotGemination:
 
     def test_doubled_consonants_collapse(self):
         g = G2P("en-GB")
-        assert g.transcribe_word("summer") == "sʌməɹ"
+        # RP is non-rhotic, so the ⟨er⟩ nucleus is a bare [ə]
+        assert g.transcribe_word("summer") == "sʌmə"
         assert g.transcribe_word("running") == "ɹʌnɪŋ"
         assert g.transcribe_word("happy") == "hæpi"
 
