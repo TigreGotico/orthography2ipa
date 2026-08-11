@@ -57,7 +57,7 @@
     ],
     "o": [
       "ɒ",
-      "oʊ",
+      "əʊ",
       "ɔː",
       "ʌ",
       "uː"
@@ -200,10 +200,10 @@
       ]
     },
     "oa": [
-      "oʊ"
+      "əʊ"
     ],
     "oe": [
-      "oʊ",
+      "əʊ",
       "uː"
     ],
     "oo": [
@@ -217,7 +217,7 @@
     ],
     "ow": [
       "aʊ",
-      "oʊ"
+      "əʊ"
     ],
     "ue": [
       "juː",
@@ -229,14 +229,14 @@
     ],
     "eau": [
       "juː",
-      "oʊ"
+      "əʊ"
     ],
     "igh": [
       "aɪ"
     ],
     "ough": [
       "ɔː",
-      "oʊ",
+      "əʊ",
       "ʌf",
       "ɒf",
       "aʊ",
@@ -446,9 +446,9 @@
     "ɔɪ": [
       "ɔɪ"
     ],
-    "oʊ": [
+    "əʊ": [
       "əʊ",
-      "oʊ"
+      "əʊ"
     ],
     "aʊ": [
       "aʊ",
@@ -464,7 +464,7 @@
       "notes": "Middle English descent"
     }
   ],
-  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule). CANDIDATE WEIGHTS: a few ambiguous graphemes carry per-candidate `weights` (candidate frequencies) so the beam favours the corpus-dominant phoneme rather than the declared-first one — `er` = [ɜːɹ 0.2, əɹ 0.8] (unstressed schwar dominates the lexicon), `gh` = [ɡ 0.03, f 0.12, silent 0.85] (⟨gh⟩ is silent in the vast majority of words: night, though, high, weigh), `ie` = [aɪ 0.4, iː 0.6] (the /iː~i/ realisation of -ie/-ies edges out /aɪ/). Values are approximate frequencies grounded in Gontijo et al. (2003) British-English and Berndt et al. (1987) grapheme-phoneme probability studies, not PER-tuned parameters; graphemes without weights keep uniform rank ordering. See docs/candidate_scoring.md. Suffix spellings (⟨-tion⟩ ⟨-cious⟩ ⟨-tial⟩ …) are morphology, not graphemes: they are not units of the writing system and cannot be stated over phonological classes. English orthography is deep, so a lexicon or a morphological analyser in a downstream consumer of the lattice is the right place for them, not this spec.",
+  "notes": "Received Pronunciation (RP) — traditional prestige accent of England. NON-RHOTIC: /r/ deleted before consonants and word-finally. TRAP-BATH split: BATH words = /ɑː/ (castle, grass, dance). LOT = /ɒ/ (rounded); GOAT = /əʊ/. T-glottaling common in contemporary RP (glottal stop for /t/ word-finally). Source: Wells (1982) vol. 1–2, Cruttenden (2014). C/G SOFTENING: c→[s] and g→[dʒ] before e/i/y (city, gem); exceptions: get, give, girl retain [ɡ]. INTERVOCALIC s: [z] between vowels (rose, nose) but [s] word-initially. TH DISTINCTION: [θ] in content words, [ð] in function words and intervocalically. X WORD-INITIAL: [z] (xylophone) vs [ks] elsewhere. SILENT FINAL E: orthographic word-final <e> after a consonant is not pronounced (mate, hope, time, judge); it historically marked the preceding vowel as tense/long, but that vowel-quality shift is not encoded here because the engine's positional model has no lookback to the preceding nucleus (known engine-limit exception). A small closed class of function words spelled with a genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via `word_exceptions`, since the blanket positional rule cannot distinguish these monosyllables from the regular silent-e pattern. TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən] (mission, passion; matched via the dedicated `ssion` grapheme so maximal-munch tokenization picks it over `sion`), -sion -> [ʒən] after a vowel (vision, division, decision) or [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion` entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context, -tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014 spelling-to-sound correspondence rules). LEXICAL STRESS: word stress is lexically contrastive (record noun vs. record verb) and not reliably orthography-predictable the way Romance penult/final stress endings are, so no declarative `stress` block is encoded (research-tier stress exemption per docs/quality_tiers.md; stress is left to downstream lexical lookup rather than a spelling rule). CANDIDATE WEIGHTS: a few ambiguous graphemes carry per-candidate `weights` (candidate frequencies) so the beam favours the corpus-dominant phoneme rather than the declared-first one — `er` = [ɜːɹ 0.2, əɹ 0.8] (unstressed schwar dominates the lexicon), `gh` = [ɡ 0.03, f 0.12, silent 0.85] (⟨gh⟩ is silent in the vast majority of words: night, though, high, weigh), `ie` = [aɪ 0.4, iː 0.6] (the /iː~i/ realisation of -ie/-ies edges out /aɪ/). Values are approximate frequencies grounded in Gontijo et al. (2003) British-English and Berndt et al. (1987) grapheme-phoneme probability studies, not PER-tuned parameters; graphemes without weights keep uniform rank ordering. See docs/candidate_scoring.md. SUFFIX PALATALIZATION (grammatical_endings, NOT graphemes): the suffix spellings ⟨-tion⟩ ⟨-stion⟩ ⟨-ssion⟩ ⟨-cion⟩ ⟨-cian⟩ ⟨-tial⟩ ⟨-cial⟩ ⟨-stial⟩ ⟨-tious⟩ ⟨-cious⟩ ⟨-stious⟩ are morphology, not units of the writing system, so they are declared in grammatical_endings and never as grapheme keys — a morpheme chunk as a grapheme key re-cuts the word's interior. Each is a cited claim about a suffix's realisation, not a pattern fitted to the score. The palatalization itself is Chomsky & Halle (1968) §4 The Sound Pattern of English: the stem-final coronal palatalizes before the -ion suffix, the surface values are Wells (2008) Longman Pronunciation Dictionary, and Carney (1994) A Survey of English Spelling documents the same correspondences from the orthographic side. Each key, with the source that covers it: ENDING \"tion\" is [ʃən] (nation, station, motion) (Chomsky & Halle 1968 §4; Wells 2008 LPD; Carney 1994). ENDING \"ssion\" is [ʃən] (mission, passion) (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"cion\" is [ʃən] (coercion, suspicion) (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"cian\" is [ʃən] (musician, physician) (Chomsky & Halle 1968 §4; Wells 2008 LPD; Carney 1994). ENDING \"tial\" is [ʃəl] (partial, martial) (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"cial\" is [ʃəl] (special, crucial) (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"tious\" is [ʃəs] (ambitious, cautious) (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"cious\" is [ʃəs] (gracious, delicious) (Chomsky & Halle 1968 §4; Wells 2008 LPD). The ⟨s⟩-initial variants are separate keys because after ⟨s⟩ the coronal surfaces as the affricate [tʃ] rather than plain [ʃ], a bare [sʃ] cluster being phonotactically impossible in English, and longest-match-wins is what lets the longer key override the shorter one it contains: ENDING \"stion\" is [stʃən] (question, congestion) (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"stial\" is [stʃəl] (celestial, bestial) (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"stious\" is [stʃəs] — the ⟨-stious⟩ spelling is vanishingly rare in English, and the key exists so the ⟨s⟩ + coronal generalisation is stated uniformly across the three ⟨-ious⟩/⟨-ion⟩/⟨-ial⟩ families rather than holding for two of them and being silently out-munched by ⟨-tious⟩ in the third (Chomsky & Halle 1968 §4; Wells 2008 LPD). ENDING \"ture\" is [tʃə] (nature, picture, feature) — yod coalescence of the stem-final coronal with the suffix glide (Wells 2008 LPD; Cruttenden 2014 §9.7). ENDING \"sure\" is [ʒə] (measure, closure, leisure) — the same coalescence with a voiced coronal (Wells 2008 LPD; Cruttenden 2014 §9.7). ENDING \"ssure\" is [ʃə] (pressure, fissure) — the same coalescence after the voiceless ⟨ss⟩, and longest-match-wins is what lets it override ⟨-sure⟩ (Wells 2008 LPD; Cruttenden 2014 §9.7). ENDING \"ous\" is [əs] (famous, nervous, dangerous) — the unstressed adjectival suffix reduces to schwa plus [s]; this is suffix vowel reduction, NOT the palatalization the ⟨-ion⟩ family shares, and it is cited separately for that reason (Carney 1994 §II; Wells 2008 LPD). NOT covered on purpose: ⟨-sion⟩, which splits 96 gold [ʒ] against 107 gold [ʃ] on a left-context condition the ending matcher does not yet express, and the inflected ⟨-tions⟩/⟨-sions⟩, which English ⟨-s⟩ does not make transparent to effective_word_end. Both are open items, not silent gaps. English orthography is deep, so the general lexical residue still belongs to a lexicon or a morphological analyser in a downstream consumer of the lattice, not to this spec. WEAK-FORM ARTICLES: the indefinite articles a/an take the reduced weak form /ə/, /ən/ in citation/unstressed use (Wells 1982 vol.1, ch. on weak forms), matching the existing reduced-vowel treatment of \"the\" -> [ðə]; added to word_exceptions alongside it. NON-RHOTIC CODA /r/: RP keeps /r/ only before a vowel, so every rhotic nucleus (ɑːɹ, ɜːɹ, ɔːɹ, əɹ, ɛəɹ, ɪəɹ, ʊəɹ, aɪəɹ, aʊəɹ, and bare ɹ) loses its [ɹ] before a consonant and word-finally; the prevocalic (linking-r) realisation of the same spelling is untouched (Wells 1982 vol. 1 §3.2.2; Cruttenden 2014 §8.7). Stated as `allophone_rules` on the phoneme side, so a rhotic descendant states its rhoticity by re-declaring those ids with no target phonemes. PREVOCALIC ⟨r⟩: where the ⟨r⟩ is the onset of the next syllable the nucleus is the CHECKED vowel, not the long r-coloured one — marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol. 1 §2.2.6; Carney 1994). The condition is ORTHOGRAPHIC, not phonological: the rule reads the next grapheme, and a silent word-final ⟨e⟩ is a vowel letter, so ⟨here⟩ and ⟨sphere⟩ take the checked vowel too — the engine has no 'followed by an AUDIBLE vowel' neighbour class. The ⟨or⟩ member states the ⟨orange⟩/⟨forest⟩/⟨sorry⟩ majority and is wrong for the ⟨ore⟩-derived ⟨story⟩/⟨glory⟩ minority, which the spelling does not separate. GOAT = /əʊ/ in RP. WORD-FINAL VOWEL LETTERS: unstressed word-final ⟨a⟩ is /ə/ (sofa, America, data) and word-final ⟨o⟩ is /əʊ/ (photo, piano, go) — Carney 1994. ⟨y⟩ is declared a vowel letter (`vowel_graphemes`): it is the nucleus of very, myth and happy, and the closed Latin-letter inventory would otherwise call it a consonant, which mis-classifies the neighbour context every rule around it reads. NOT EXPRESSIBLE HERE: magic-e / open-syllable tensing (mate, home, music) needs a nucleus-quality condition the positional model cannot state — the `open_syllable` position exists but its syllabification calls every V.CV nucleus open, so it tenses happy, little and sofa too; and word-final ⟨-s⟩ voicing is inflectional rather than phonological (bus, gas, yes keep [s] where dogs, cars take [z]), so it belongs to the same downstream analyser as the lexical residue.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -537,6 +537,36 @@
       "url": "https://doi.org/10.3758/BF03207663",
       "pages": "1-9",
       "notes": "Grapheme-to-phoneme correspondence probabilities from a 17,310-word corpus. Corroborates the dominant correspondences encoded in the weighted grapheme entries (e.g. `gh` most frequently silent; unstressed `er` = schwar)."
+    },
+    {
+      "id": "carney1994",
+      "author": "Carney, E.",
+      "year": 1994,
+      "title": "A Survey of English Spelling",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Reference description of English spelling-to-sound correspondences; basis for the positional vowel values (word-final ⟨a⟩, ⟨o⟩) and the ⟨Vrr⟩ / ⟨Vr⟩+vowel checked-vowel rule."
+    },
+    {
+      "id": "chomsky_halle1968",
+      "author": "Chomsky, N. & Halle, M.",
+      "year": 1968,
+      "title": "The Sound Pattern of English",
+      "publisher": "Harper & Row",
+      "url": null,
+      "pages": null,
+      "notes": "§4 on palatalization of a stem-final coronal before the -ion suffix: the citation for the ⟨-tion⟩/⟨-cion⟩/⟨-cian⟩/⟨-tial⟩/⟨-cious⟩ grammatical_endings family, and for the affricate outcome after ⟨s⟩."
+    },
+    {
+      "id": "wells2008",
+      "author": "Wells, J.C.",
+      "year": 2008,
+      "title": "Longman Pronunciation Dictionary (3rd ed.)",
+      "publisher": "Pearson Longman",
+      "url": null,
+      "pages": null,
+      "notes": "Surface values for the palatalized suffix endings declared in grammatical_endings, and the pronunciation authority for the yod-coalesced ⟨-ture⟩ [tʃə] and ⟨-sure⟩ [ʒə] / ⟨-ssure⟩ [ʃə] realisations."
     }
   ],
   "wikipedia": [
@@ -630,7 +660,48 @@
         "aɪ",
         "i"
       ]
+    },
+    "a": {
+      "word_final": [
+        "ə"
+      ],
+      "default": [
+        "æ",
+        "ɑː",
+        "eɪ",
+        "ə",
+        "ɔː"
+      ]
+    },
+    "o": {
+      "word_final": [
+        "əʊ"
+      ],
+      "default": [
+        "ɒ",
+        "əʊ",
+        "ɔː",
+        "ʌ",
+        "uː"
+      ]
     }
+  },
+  "grammatical_endings": {
+    "tion": "ʃən",
+    "stion": "stʃən",
+    "ssion": "ʃən",
+    "cion": "ʃən",
+    "cian": "ʃən",
+    "tial": "ʃəl",
+    "cial": "ʃəl",
+    "stial": "stʃəl",
+    "tious": "ʃəs",
+    "cious": "ʃəs",
+    "stious": "stʃəs",
+    "ture": "tʃə",
+    "sure": "ʒə",
+    "ssure": "ʃə",
+    "ous": "əs"
   },
   "word_exceptions": {
     "the": "ðə",
@@ -638,7 +709,9 @@
     "he": "hiː",
     "me": "miː",
     "we": "wiː",
-    "she": "ʃiː"
+    "she": "ʃiː",
+    "a": "ə",
+    "an": "ən"
   },
   "timespan": {
     "start_year": 1500,
@@ -654,5 +727,345 @@
     "source": "glottolog",
     "notes": "Glottolog's representative point for English."
   },
-  "collapse_geminates": true
+  "collapse_geminates": true,
+  "allophone_rules": [
+    {
+      "id": "EN_GB_PREVOCALIC_R_AR_GEMINATE",
+      "phonemes": [
+        "ɑːɹ"
+      ],
+      "surface": "æ",
+      "grapheme": [
+        "ar"
+      ],
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings).",
+      "followed_by_2": "vowel"
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_AR",
+      "phonemes": [
+        "ɑːɹ"
+      ],
+      "surface": "æɹ",
+      "grapheme": [
+        "ar"
+      ],
+      "followed_by": "vowel",
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings)."
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_ER_GEMINATE",
+      "phonemes": [
+        "əɹ"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "er"
+      ],
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings).",
+      "followed_by_2": "vowel"
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_ER",
+      "phonemes": [
+        "əɹ"
+      ],
+      "surface": "ɛɹ",
+      "grapheme": [
+        "er"
+      ],
+      "followed_by": "vowel",
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings)."
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_IR_GEMINATE",
+      "phonemes": [
+        "ɜːɹ"
+      ],
+      "surface": "ɪ",
+      "grapheme": [
+        "ir"
+      ],
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings).",
+      "followed_by_2": "vowel"
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_IR",
+      "phonemes": [
+        "ɜːɹ"
+      ],
+      "surface": "ɪɹ",
+      "grapheme": [
+        "ir"
+      ],
+      "followed_by": "vowel",
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings)."
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_UR_GEMINATE",
+      "phonemes": [
+        "ɜːɹ"
+      ],
+      "surface": "ʌ",
+      "grapheme": [
+        "ur"
+      ],
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings).",
+      "followed_by_2": "vowel"
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_UR",
+      "phonemes": [
+        "ɜːɹ"
+      ],
+      "surface": "ʌɹ",
+      "grapheme": [
+        "ur"
+      ],
+      "followed_by": "vowel",
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings)."
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_OR_GEMINATE",
+      "phonemes": [
+        "ɔːɹ"
+      ],
+      "surface": "ɒ",
+      "grapheme": [
+        "or"
+      ],
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings).",
+      "followed_by_2": "vowel"
+    },
+    {
+      "id": "EN_GB_PREVOCALIC_R_OR",
+      "phonemes": [
+        "ɔːɹ"
+      ],
+      "surface": "ɒɹ",
+      "grapheme": [
+        "or"
+      ],
+      "followed_by": "vowel",
+      "notes": "Before a vowel the ⟨r⟩ is the onset of the next syllable, so the preceding nucleus is the CHECKED (short) vowel, not the long r-coloured one: marry [ˈmæɹi], merry [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi] (Wells 1982 vol.1 §2.2.6 and vol.2 §3.2.2 on the marry/merry/Mary and mirror/nearer/hurry/furry oppositions; Carney 1994 §II.4 on ⟨Vrr⟩ and ⟨Vr⟩+vowel spellings)."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_AR_PRECONS",
+      "phonemes": [
+        "ɑːɹ"
+      ],
+      "surface": "ɑː",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_AR_FINAL",
+      "phonemes": [
+        "ɑːɹ"
+      ],
+      "surface": "ɑː",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NURSE_PRECONS",
+      "phonemes": [
+        "ɜːɹ"
+      ],
+      "surface": "ɜː",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NURSE_FINAL",
+      "phonemes": [
+        "ɜːɹ"
+      ],
+      "surface": "ɜː",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_OR_PRECONS",
+      "phonemes": [
+        "ɔːɹ"
+      ],
+      "surface": "ɔː",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_OR_FINAL",
+      "phonemes": [
+        "ɔːɹ"
+      ],
+      "surface": "ɔː",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_LETTER_PRECONS",
+      "phonemes": [
+        "əɹ"
+      ],
+      "surface": "ə",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_LETTER_FINAL",
+      "phonemes": [
+        "əɹ"
+      ],
+      "surface": "ə",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_SQUARE_PRECONS",
+      "phonemes": [
+        "ɛəɹ"
+      ],
+      "surface": "ɛə",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_SQUARE_FINAL",
+      "phonemes": [
+        "ɛəɹ"
+      ],
+      "surface": "ɛə",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NEAR_PRECONS",
+      "phonemes": [
+        "ɪəɹ"
+      ],
+      "surface": "ɪə",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_NEAR_FINAL",
+      "phonemes": [
+        "ɪəɹ"
+      ],
+      "surface": "ɪə",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_PRECONS",
+      "phonemes": [
+        "ʊəɹ"
+      ],
+      "surface": "ʊə",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_FINAL",
+      "phonemes": [
+        "ʊəɹ"
+      ],
+      "surface": "ʊə",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_J_PRECONS",
+      "phonemes": [
+        "jʊəɹ"
+      ],
+      "surface": "jʊə",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_CURE_J_FINAL",
+      "phonemes": [
+        "jʊəɹ"
+      ],
+      "surface": "jʊə",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_FIRE_PRECONS",
+      "phonemes": [
+        "aɪəɹ"
+      ],
+      "surface": "aɪə",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_FIRE_FINAL",
+      "phonemes": [
+        "aɪəɹ"
+      ],
+      "surface": "aɪə",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_HOUR_PRECONS",
+      "phonemes": [
+        "aʊəɹ"
+      ],
+      "surface": "aʊə",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_HOUR_FINAL",
+      "phonemes": [
+        "aʊəɹ"
+      ],
+      "surface": "aʊə",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched."
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_R_PRECONS",
+      "phonemes": [
+        "ɹ"
+      ],
+      "surface": "",
+      "followed_by": "consonant",
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched. The bare-ɹ members additionally require a non-initial position: a word-initial ⟨r⟩ is an ONSET, and RP deletes coda /r/ only, so ⟨r⟩, ⟨R⟩ and ⟨re⟩ keep their [ɹ] instead of reducing the whole word to nothing.",
+      "word_initial": false
+    },
+    {
+      "id": "EN_GB_NONRHOTIC_R_FINAL",
+      "phonemes": [
+        "ɹ"
+      ],
+      "surface": "",
+      "word_final": true,
+      "notes": "RP is non-rhotic: /r/ survives only before a vowel, so a rhotic nucleus loses its [ɹ] before a consonant and word-finally (Wells 1982 vol.1 §3.2.2; Cruttenden 2014 §8.7). Stated on the phoneme side so the prevocalic (linking-r) realisation of the same spelling is untouched. The bare-ɹ members additionally require a non-initial position: a word-initial ⟨r⟩ is an ONSET, and RP deletes coda /r/ only, so ⟨r⟩, ⟨R⟩ and ⟨re⟩ keep their [ɹ] instead of reducing the whole word to nothing.",
+      "word_initial": false
+    }
+  ],
+  "vowel_graphemes": [
+    "y"
+  ]
 }

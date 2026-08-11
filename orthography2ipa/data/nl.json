@@ -140,10 +140,6 @@
     "sj": [
       "ʃ"
     ],
-    "tj": [
-      "tʲ",
-      "tʃ"
-    ],
     "th": [
       "t"
     ],
@@ -179,6 +175,23 @@
     ],
     "ieuw": [
       "iːw"
+    ],
+    "berg": [
+      "bɛrɣ",
+      "bɛrx"
+    ],
+    "veld": [
+      "vɛld",
+      "vɛlt"
+    ],
+    "kerk": [
+      "kɛrk"
+    ],
+    "brecht": [
+      "brɛxt"
+    ],
+    "isch": [
+      "is"
     ]
   },
   "allophones": {
@@ -305,6 +318,7 @@
       "œʏ"
     ]
   },
+  "collapse_geminates": true,
   "parent": "x-clade-west2793",
   "ancestors": [
     {
@@ -326,7 +340,7 @@
       "notes": "French adstrate: centuries of Burgundian/French influence in S. Netherlands; cf. van der Wal (2008)"
     }
   ],
-  "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable. FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally. G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch. H: breathy [ɦ]; fully silent in southern dialects. Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995).",
+  "notes": "Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL / Flanders. /r/ is highly variable. FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally. G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch. H: breathy [ɦ]; fully silent in southern dialects. Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995). COMPOUND-FINAL SECONDARY STRESS (Booij 1995, ch. 5): non-head members of a compound carry secondary stress and resist the unstressed e -> schwa reduction that a plain unstressed syllable undergoes; the closed set of toponymic/compound-final graphemes ⟨berg⟩/⟨veld⟩/⟨kerk⟩/⟨brecht⟩ is pinned to its unreduced [ɛ] realisation for this reason (Aalbert-style ⟨bert⟩ was left out: wikipron gold is split roughly evenly between [ɛrt] compound forms and [ərt] given-name forms, so no closed rule is safely citable there). ⟨berg⟩/⟨veld⟩ are positionally scoped (positional_graphemes, word_final vs. default) rather than plain unconditional graphemes: a plain grapheme maximal-munch matches inside ordinary inflected forms too (bergen, velden), where the ⟨g⟩/⟨d⟩ is NOT in coda (onset of the following syllable) and must stay voiced per the regular g/d positional rules above -- only word-final ⟨berg⟩/⟨veld⟩ get the devoiced [x]/[t]. ⟨kerk⟩/⟨brecht⟩ need no such split: ⟨k⟩ and ⟨ch⟩ never alternate in Dutch, so the same surface form is correct word-finally and word-internally (kerken, Hubrecht). The adjectival/toponymic suffix ⟨isch⟩ ([-is], ⟨ch⟩ silent, per the existing word-final ⟨sch⟩ -> [s] rule) is likewise pinned as a fixed grapheme rather than derived, since it is a single closed morpheme. HETEROMORPHEMIC ⟨tj⟩ (Booij 1995, ch. 2-3): the digraph ⟨tj⟩ was previously pinned to a single palatalized/affricate segment ([tʲ]/[tʃ]); WikiPron gold shows this is wrong for the overwhelming majority of ⟨tj⟩ words, both the productive diminutive suffix -tje/-etje attached after a stem-final plosive (katje, potje, witje: coda /t/ + suffix onset /j/ across the morpheme boundary, no coalescence) and word-initial ⟨tj-⟩ placenames (Tjalk, Tjonge): [tj], not [tʲ]. The digraph entry was removed so ⟨tj⟩ falls through to the plain ⟨t⟩+⟨j⟩ graphemes, which also fixes a second-order bug: the coalesced digraph was counted as a single intervocalic consonant by the open-syllable-lengthening rule, wrongly lengthening the stem vowel (witje -> *[ʋiːtʲə] instead of [ʋɪtjə]) because tj is phonemically two segments (a closed syllable), not one. A handful of Frisian-influenced placenames (Tjerkgaast, Tjalhuizum) keep an affricate [tʃ] in gold; that minority variant is lexical, not ruled out here. HETEROMORPHEMIC vs TAUTOMORPHEMIC ⟨tj⟩ (word_exceptions, Booij 1995 ch. 2-3 + WikiPron gold): a small closed set of Malay/Indonesian loanwords (ketjap-family: tjap \"seal/brand\", tjappen, tjaffelen, tjanten, tjetten, tjaptjoi, tjauwmin, tjokvol, matjok, nestje) and Frisian-influenced placenames (Tietjerk, Tjalhuizum, Tjerkgaast, Tjerkwerd) keep ⟨tj⟩ as the coalesced affricate [tʃ] the general rule above no longer produces, because in these words ⟨tj⟩ is TAUTOMORPHEMIC (one morpheme, one syllable onset) rather than the productive diminutive/placename-compound boundary the general rule targets. This is a closed irregular set per AGENTS.md 2 (\"a closed irregular set -> word_exceptions; a productive pattern -> the rule layer\"), not a general grapheme rule, since the vast majority of ⟨tj⟩ tokens (diminutives, word-initial placenames like Tjalk/Tjonge) are the plain [tj] sequence. \"ketjap\" and \"tjalk\" were deliberately NOT added: WikiPron records both the [tj] and [tʃ] pronunciation as attested variants of \"ketjap\" (multi-reference scoring already credits either), and \"tjalk\" is genuinely ambiguous at the same lowercased key -- the placename \"Tjalk\" (Friesland) is gold [tj] while the common noun \"tjalk\" (a sailing barge) is gold [tʃ]; a single override cannot satisfy both senses, so the word is left on the general (majority, placename-consistent) rule.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -356,6 +370,22 @@
     "https://nl.wikipedia.org/wiki/Nederlands"
   ],
   "positional_graphemes": {
+    "berg": {
+      "word_final": [
+        "bɛrx"
+      ],
+      "default": [
+        "bɛrɣ"
+      ]
+    },
+    "veld": {
+      "word_final": [
+        "vɛlt"
+      ],
+      "default": [
+        "vɛld"
+      ]
+    },
     "b": {
       "word_final": [
         "p"
@@ -436,6 +466,22 @@
       ]
     }
   },
+  "word_exceptions": {
+    "tietjerk": "ˈtitʃɛrk",
+    "tjalhuizum": "ˈtʃɑlɦœyzʏm",
+    "tjerkgaast": "ˈtʃɛrkɣaːst",
+    "tjerkwerd": "ˈtʃɛrkʋərt",
+    "matjok": "ˈmaːtʃɔk",
+    "nestje": "ˈnɛstʃə",
+    "tjaffelen": "ˈtʃɑfələn",
+    "tjanten": "ˈtʃɑntən",
+    "tjap": "ˈtʃɑp",
+    "tjappen": "ˈtʃɑpən",
+    "tjaptjoi": "ˈtʃɑptʃɔi",
+    "tjauwmin": "ˈtʃɑumɪn",
+    "tjetten": "ˈtʃɛtən",
+    "tjokvol": "ˈtʃɔkfɔl"
+  },
   "timespan": {
     "start_year": 1500,
     "end_year": null
@@ -450,5 +496,132 @@
     "longitude": 5.0,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Dutch."
-  }
+  },
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Germanic initial stress default (Booij 1995, ch. 5); the -e(n) verbal/plural ending is unstressed, which is what the open/closed-syllable vowel-length rule and the e -> schwa reduction below need."
+  },
+  "allophone_rules": [
+    {
+      "id": "NL_OPEN_SYLLABLE_A",
+      "phonemes": [
+        "ɑ"
+      ],
+      "surface": "aː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "a"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995, ch. 2): a short vowel letter in an open syllable (single intervocalic consonant, not a doubled/geminate one -- ma-ken not mak-ken) is long. followed_by_2=vowel rules out a doubled consonant letter, since that tokenizes as two consonant graphemes."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_E",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "eː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "e"
+      ],
+      "notes": "Open-syllable lengthening for stressed e (Booij 1995); the unstressed nucleus_unstressed candidate is schwa and is untouched by this rule since it never surfaces as the plain 'e' -> 'ɛ' candidate this rule targets."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_I",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "iː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "i"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995)."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_O",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "oː",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "o"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995): lo-pen, wo-nen."
+    },
+    {
+      "id": "NL_OPEN_SYLLABLE_U",
+      "phonemes": [
+        "ʏ"
+      ],
+      "surface": "y",
+      "syllable_position": "nucleus",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "grapheme": [
+        "u"
+      ],
+      "notes": "Open-syllable lengthening (Booij 1995): u-ren -> [yːrə(n)]/[yrə(n)]; short [ʏ] surfaces only in a closed syllable."
+    },
+    {
+      "id": "NL_CODA_DEVOICE_G",
+      "phonemes": [
+        "ɣ"
+      ],
+      "surface": "x",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "t",
+        "k",
+        "s",
+        "f",
+        "p",
+        "x"
+      ],
+      "grapheme": [
+        "g"
+      ],
+      "notes": "Regressive devoicing assimilation (Booij 1995, ch. 2 sec. 2.5): Dutch obstruents in coda devoice not only word-finally but also before a following voiceless obstruent within the word, e.g. zeg-t [zɛxt], lieg-t [liːxt], hoog-te [ɦoːxtə]. The existing word_final positional override for ⟨g⟩ handles the absolute-final case; this rule extends the same devoicing to pre-obstruent coda position without touching ⟨g⟩ before a sonorant/vowel (dag-je stays [ɣ]: j is not an obstruent)."
+    },
+    {
+      "id": "NL_UNSTRESSED_TENSE_I_FINAL",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "i",
+      "stress": "unstressed",
+      "word_final": true,
+      "grapheme": [
+        "i"
+      ],
+      "notes": "Unstressed tense vowel (Booij 1995, ch. 2): an unstressed word-final ⟨i⟩ surfaces tense-but-short [i], not lax [ɪ] -- Ali [aːli], Adri [aːdri]. Mirrors the analogous German DE_UNSTRESSED_TENSE_*_FINAL rules (final unstressed high/mid vowels resist laxing)."
+    },
+    {
+      "id": "NL_UNSTRESSED_TENSE_I_HIATUS",
+      "phonemes": [
+        "ɪ"
+      ],
+      "surface": "i",
+      "stress": "unstressed",
+      "followed_by": "vowel",
+      "grapheme": [
+        "i"
+      ],
+      "notes": "Unstressed tense vowel in hiatus (Booij 1995, ch. 2): an unstressed ⟨i⟩ directly before another vowel letter (Aziaat, Ariër, Adriaan, -ië/-iër loanword endings) surfaces tense-but-short [i], not lax [ɪ]; the hiatus context blocks the closed-syllable laxing that a following consonant would trigger."
+    }
+  ],
+  "constrain_onsets": true
 }

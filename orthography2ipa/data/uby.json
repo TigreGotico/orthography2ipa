@@ -3,7 +3,7 @@
   "name": "Ubykh",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "гъ": [
       "ʁ"
@@ -12,7 +12,7 @@
       "qʼ"
     ],
     "кӏ": [
-      "tʃʼ"
+      "kʼ"
     ],
     "лъ": [
       "ɬ"
@@ -165,10 +165,30 @@
       "notes": "Descent per Glottolog classification of Ubykh (ubyk1235)."
     }
   ],
-  "notes": "Skeleton. Ubykh was a Northwest Caucasian language (extinct 1992) famous for one of the largest consonant inventories on record (around eighty consonants) contrasted over only two or three vowels. It had no settled native orthography; where written in Cyrillic it followed the digraph conventions of the neighbouring Circassian languages, which this map adopts — palochka ӏ for the glottal stop and ejectives, and digraphs such as гъ (ʁ), къ (qʼ), лъ/лӏ (ɬ, ɬʼ), хъ (χ) and хь (ħ). Because the many secondary articulations (labialization, palatalization, pharyngealization) and the finer places of articulation cannot be recovered from this letter/digraph set, the inventory is heavily under-encoded and a very high PER floor is expected; the entry is best regarded as approximate.",
+  "notes": "Skeleton. Ubykh was a Northwest Caucasian language (extinct 1992) famous for one of the largest consonant inventories on record (around eighty consonants) contrasted over only two or three vowels. It had no settled native orthography; where written in Cyrillic it followed the digraph conventions of the neighbouring Circassian languages, which this map adopts — palochka ӏ for the glottal stop and ejectives, and digraphs such as гъ (ʁ), къ (qʼ), лъ/лӏ (ɬ, ɬʼ), хъ (χ) and хь (ħ). Because the many secondary articulations (labialization, palatalization, pharyngealization) and the finer places of articulation cannot be recovered from this letter/digraph set, the inventory is heavily under-encoded and a very high PER floor is expected; the entry is best regarded as approximate. Stress exemption: Ubykh word stress is reported as non-phonemic and largely predictable (falling on the final syllable in the great majority of forms), but the primary descriptive sources model it only impressionistically and do not give a spelling-derivable rule robust enough to encode; no stress block is declared. Source: Vogt, Hans (1963), Dictionnaire de la langue oubykh, introduction; Dumezil, Georges (1931), La langue des Oubykhs. Stress exemption: Ubykh word stress is reported as largely predictable (commonly final-syllable) but the primary descriptive sources (Vogt 1963; Dumezil 1931) give no spelling-derivable rule robust enough to encode; no stress block is declared. CORRECTION while citing: the inherited grapheme table mapped кӏ (k + ejective marker) to the ejective postalveolar affricate tʃʼ, duplicating чӏ's value; by the base-letter+ejective-marker pattern used throughout this table (пӏ=pʼ, тӏ=tʼ, цӏ=tsʼ), кӏ must instead be the ejective VELAR STOP kʼ -- fixed here.",
   "iso639_3": "uby",
   "glottolog_code": null,
   "sources": [
+    {
+      "id": "vogt1963",
+      "author": "Vogt, Hans",
+      "year": 1963,
+      "title": "Dictionnaire de la langue oubykh",
+      "publisher": "Instituttet for Sammenlignende Kulturforskning / Adrien Maisonneuve",
+      "url": null,
+      "pages": null,
+      "notes": "Primary lexical/phonological reference for Ubykh, using a Cyrillic-based practical transcription close to the one modeled here."
+    },
+    {
+      "id": "dumezil1931",
+      "author": "Dumezil, Georges",
+      "year": 1931,
+      "title": "La langue des Oubykhs",
+      "publisher": "Librairie Ancienne Honore Champion",
+      "url": null,
+      "pages": null,
+      "notes": "Early grammar and phonological description of Ubykh."
+    },
     {
       "id": "uby_glottolog",
       "author": "Hammarström, H. et al. (Glottolog 5.0)",
