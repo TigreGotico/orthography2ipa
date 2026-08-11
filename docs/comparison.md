@@ -37,87 +37,90 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 
 **Machine-generated-reference rows are agreement, not accuracy.** Rows whose gold is itself another phonemizer's or an LLM's output (see each dataset's `provenance_tier` in `benchmarks/comparison.json`, and `docs/scoreboard.md`'s provenance legend) measure how much a system agrees with the tool that generated the gold — not whether either is correct. A win on such a row is not a claim of accuracy.
 
-| Lang | Dataset | N | o2i PER | espeak PER | epitran PER | gruut PER | pycotovia PER | ahotts-g2p PER | africa-g2p PER |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| arb | arabic_tts | 20 | same-source | n/a | n/a | n/a | n/a | n/a | 0.2836 |
-| arb | gold20_arabic | 20 | same-source | n/a | n/a | n/a | n/a | n/a | 0.2666 |
-| ca | 4catac | 160 | 0.0793 | 0.0403 | 0.4641 | n/a | n/a | n/a | n/a |
-| ca | ipa_childes | 3814 | 0.2595 | same-source | 0.3447 | n/a | n/a | n/a | n/a |
-| ca | vox_communis | 218451 | 0.8088 | 0.8195 | same-source | n/a | n/a | n/a | n/a |
-| ca | wikipron | 106 | 0.2596 | 0.2221 | 0.3518 | n/a | n/a | n/a | n/a |
-| ca-x-balear | 4catac | 160 | 0.1481 | 0.0797 | 0.4998 | n/a | n/a | n/a | n/a |
-| ca-x-occidental | 4catac | 160 | 0.0956 | 0.0497 | 0.4348 | n/a | n/a | n/a | n/a |
-| ca-x-valencia | 4catac | 160 | 0.0774 | 0.0439 | 0.3775 | n/a | n/a | n/a | n/a |
-| cop | wikipron | 591 | 0.3671 | n/a | n/a | n/a | n/a | n/a | 0.4491 |
-| cy | ipa_childes | 4666 | 0.2985 | same-source | 0.3495 | n/a | n/a | n/a | n/a |
-| cy | vox_communis | 18701 | 0.1172 | 0.3005 | same-source | n/a | n/a | n/a | n/a |
-| cy | wikipron | 14811 | 0.1822 | 0.2799 | 0.2170 | n/a | n/a | n/a | n/a |
-| de | wikipron | 53011 | 0.2103 | 0.2126 | 0.3064 | n/a | n/a | n/a | n/a |
-| el | vox_communis | 5994 | 0.2672 | 0.3347 | same-source | n/a | n/a | n/a | n/a |
-| el | wikipron | 19108 | 0.0330 | 0.0785 | n/a | n/a | n/a | n/a | n/a |
-| en | wikipron | 80995 | 0.3585 | 0.2081 | 0.8333 | 0.1776 | n/a | n/a | n/a |
-| en-US | cmudict | 126052 | 0.5003 | 0.3048 | n/a | 0.1531 | n/a | n/a | n/a |
-| en-US | ipa_babylm | 20344 | 0.4766 | same-source | 1.0656 | 0.2788 | n/a | n/a | n/a |
-| en-US | ipa_childes | 18055 | 0.3805 | same-source | n/a | 0.1727 | n/a | n/a | n/a |
-| en-US | ipadict | 125927 | 0.5332 | 0.2954 | n/a | 0.1132 | n/a | n/a | n/a |
-| es | vox_communis | 97715 | 1.2133 | 1.2330 | same-source | n/a | n/a | 1.2117 | n/a |
-| es | wikipron | 132190 | 0.0879 | 0.1071 | 0.0277 | n/a | n/a | 0.1041 | n/a |
-| eu | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | same-source | n/a |
-| eu | ipa_childes | 3969 | 0.0821 | same-source | n/a | n/a | n/a | 0.1396 | n/a |
-| eu | vox_communis | 64077 | 0.0644 | 0.1194 | same-source | n/a | n/a | 0.1280 | n/a |
-| eu | wikipron | 12022 | 0.0546 | 0.1019 | n/a | n/a | n/a | 0.1507 | n/a |
-| eu-wikipron | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | same-source | n/a |
-| eu-wikipron | ipa_childes | 3969 | 0.0821 | same-source | n/a | n/a | n/a | 0.1396 | n/a |
-| eu-wikipron | vox_communis | 64077 | 0.0644 | 0.1194 | same-source | n/a | n/a | 0.1280 | n/a |
-| eu-wikipron | wikipron | 12022 | 0.0546 | 0.1019 | n/a | n/a | n/a | 0.1507 | n/a |
-| fi | ipadict | 92836 | 0.0609 | 0.1995 | 0.1111 | n/a | n/a | n/a | n/a |
-| fi | vox_communis | 13324 | 0.0037 | 0.1843 | same-source | n/a | n/a | n/a | n/a |
-| fi | wikipron | 168814 | 0.0184 | 0.2062 | 0.0963 | n/a | n/a | n/a | n/a |
-| fr | wikipron | 85516 | 0.0748 | 0.0740 | 0.2280 | n/a | n/a | n/a | n/a |
-| ga | ipa_childes | 1612 | 0.2989 | same-source | n/a | n/a | n/a | n/a | n/a |
-| ga | wikipron | 9621 | 0.1834 | 0.5223 | n/a | n/a | n/a | n/a | n/a |
-| gl | vox_communis | 47515 | 0.0771 | n/a | same-source | n/a | 0.0883 | n/a | n/a |
-| gl | wikipron | 8091 | 0.0906 | n/a | n/a | n/a | 0.0883 | n/a | n/a |
-| hi | vox_communis | 13154 | 0.3684 | 0.5184 | same-source | n/a | n/a | n/a | n/a |
-| hi | wikipron | 30379 | 0.1562 | 0.2815 | 0.3322 | n/a | n/a | n/a | n/a |
-| hts | wikipron | 329 | 0.3728 | n/a | n/a | n/a | n/a | n/a | 0.2769 |
-| it | vox_communis | 90366 | 1.1402 | 1.1830 | same-source | n/a | n/a | n/a | n/a |
-| it | wikipron | 82280 | 0.0588 | 0.0722 | 0.0852 | n/a | n/a | n/a | n/a |
-| kab | vox_communis | 54546 | 0.2071 | n/a | same-source | n/a | n/a | n/a | 0.4339 |
-| ktz | wikipron | 134 | 0.3464 | n/a | n/a | n/a | n/a | n/a | 0.3806 |
-| lad | wikipron | 131 | 0.1397 | n/a | n/a | n/a | n/a | n/a | 0.6256 |
-| mfe | wikipron | 206 | 0.1238 | n/a | n/a | n/a | n/a | n/a | 0.3001 |
-| ngh | wikipron | 263 | 0.3655 | n/a | n/a | n/a | n/a | n/a | 0.3958 |
-| nl | ipa_childes | 8108 | 0.2137 | same-source | 0.4454 | n/a | n/a | n/a | n/a |
-| nl | ipadict | 117869 | 0.1616 | 0.1607 | 0.2948 | n/a | n/a | n/a | n/a |
-| nl | vox_communis | 26137 | 0.2925 | 0.3054 | same-source | n/a | n/a | n/a | n/a |
-| nl | wikipron | 45872 | 0.0902 | 0.1099 | 0.2843 | n/a | n/a | n/a | n/a |
-| nup | wikipron | 393 | 0.3979 | n/a | n/a | n/a | n/a | n/a | 0.4582 |
-| pl | ipa_childes | 15524 | 0.2465 | same-source | 0.2453 | n/a | n/a | n/a | n/a |
-| pl | vox_communis | 47615 | 0.0194 | 0.0793 | same-source | n/a | n/a | n/a | n/a |
-| pl | wikipron | 148992 | 0.0480 | 0.1132 | 0.0633 | n/a | n/a | n/a | n/a |
-| pt-PT | ep_dialects | 30 | 0.1185 | 0.3192 | 0.4095 | n/a | n/a | n/a | n/a |
-| pt-PT | ipa_childes | 3000 | 0.2498 | same-source | 0.4027 | n/a | n/a | n/a | n/a |
-| pt-PT | portuguese_tts | 20 | same-source | 0.3336 | 0.4042 | n/a | n/a | n/a | n/a |
-| pt-PT | portuguese_unified | 3000 | 0.2250 | 0.3669 | 0.4146 | n/a | n/a | n/a | n/a |
-| pt-PT | wikipron | 2272 | 0.1346 | 0.2374 | 0.2903 | n/a | n/a | n/a | n/a |
-| ro | vox_communis | 12097 | 0.3282 | 0.4480 | same-source | n/a | n/a | n/a | n/a |
-| ro | wikipron | 8978 | 0.0342 | 0.0825 | 0.0302 | n/a | n/a | n/a | n/a |
-| ru | primary_sources | 36 | 0.1867 | 0.3119 | 0.0744 | n/a | n/a | n/a | n/a |
-| ru | vox_communis | 50547 | 0.3447 | 0.3594 | same-source | n/a | n/a | n/a | n/a |
-| ru | wikipron | 403873 | 0.1451 | 0.3953 | 0.3202 | n/a | n/a | n/a | n/a |
-| sv | ipa_childes | 5202 | 0.3449 | same-source | 0.3576 | n/a | n/a | n/a | n/a |
-| sv | ipadict | 21095 | 0.2583 | 0.2611 | 0.4163 | n/a | n/a | n/a | n/a |
-| sv | vox_communis | 19516 | 0.3428 | 0.3214 | same-source | n/a | n/a | n/a | n/a |
-| sv | wikipron | 5082 | 0.2317 | 0.2337 | 0.3692 | n/a | n/a | n/a | n/a |
-| tr | ipa_childes | 2748 | 0.1372 | same-source | 0.1194 | n/a | n/a | n/a | n/a |
-| tr | vox_communis | 49476 | 0.1614 | 0.3443 | same-source | n/a | n/a | n/a | n/a |
-| tr | wikipron | 11582 | 0.1230 | 0.2739 | 0.1352 | n/a | n/a | n/a | n/a |
-| tzm | wikipron | 658 | 0.0160 | n/a | n/a | n/a | n/a | n/a | 1.0005 |
+| Lang | Dataset | N | o2i PER | espeak PER | espeak-rules-only PER | epitran PER | gruut PER | pycotovia PER | ahotts-g2p PER | africa-g2p PER |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| arb | arabic_tts | 20 | same-source | n/a | n/a | n/a | n/a | n/a | n/a | 0.2836 |
+| arb | gold20_arabic | 20 | same-source | n/a | n/a | n/a | n/a | n/a | n/a | 0.2666 |
+| ca | 4catac | 160 | 0.0793 | 0.0403 | 0.1206 | 0.4641 | n/a | n/a | n/a | n/a |
+| ca | ipa_childes | 3814 | 0.2595 | same-source | same-source | 0.3447 | n/a | n/a | n/a | n/a |
+| ca | vox_communis | 218451 | 0.8088 | 0.8195 | n/a | same-source | n/a | n/a | n/a | n/a |
+| ca | wikipron | 106 | 0.2596 | 0.2221 | n/a | 0.3518 | n/a | n/a | n/a | n/a |
+| ca-x-balear | 4catac | 160 | 0.1481 | 0.0797 | 0.1412 | 0.4998 | n/a | n/a | n/a | n/a |
+| ca-x-occidental | 4catac | 160 | 0.0956 | 0.0497 | 0.0832 | 0.4348 | n/a | n/a | n/a | n/a |
+| ca-x-valencia | 4catac | 160 | 0.0774 | 0.0439 | 0.0762 | 0.3775 | n/a | n/a | n/a | n/a |
+| cop | wikipron | 591 | 0.3671 | n/a | n/a | n/a | n/a | n/a | n/a | 0.4491 |
+| cy | ipa_childes | 4666 | 0.2985 | same-source | same-source | 0.3495 | n/a | n/a | n/a | n/a |
+| cy | vox_communis | 18701 | 0.1172 | 0.3005 | n/a | same-source | n/a | n/a | n/a | n/a |
+| cy | wikipron | 14811 | 0.1822 | 0.2799 | n/a | 0.2170 | n/a | n/a | n/a | n/a |
+| de | wikipron | 53011 | 0.2103 | 0.2126 | n/a | 0.3064 | n/a | n/a | n/a | n/a |
+| el | vox_communis | 5994 | 0.2672 | 0.3347 | n/a | same-source | n/a | n/a | n/a | n/a |
+| el | wikipron | 19108 | 0.0330 | 0.0785 | n/a | n/a | n/a | n/a | n/a | n/a |
+| en | wikipron | 80995 | 0.3585 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | n/a | n/a | n/a |
+| en-GB | wikipron | 81545 | 0.2822 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | n/a | n/a | n/a |
+| en-US | cmudict | 126052 | 0.5003 | 0.3048 | n/a | n/a | 0.1531 | n/a | n/a | n/a |
+| en-US | ipa_babylm | 20344 | 0.4766 | same-source | same-source | 1.0656 | 0.2788 | n/a | n/a | n/a |
+| en-US | ipa_childes | 18055 | 0.3805 | same-source | same-source | n/a | 0.1727 | n/a | n/a | n/a |
+| en-US | ipadict | 125927 | 0.5332 | 0.2954 | n/a | n/a | 0.1132 | n/a | n/a | n/a |
+| es | vox_communis | 97715 | 1.2133 | 1.2330 | n/a | same-source | n/a | n/a | 1.2117 | n/a |
+| es | wikipron | 132190 | 0.0879 | 0.1071 | n/a | 0.0277 | n/a | n/a | 0.1041 | n/a |
+| eu | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | n/a | same-source | n/a |
+| eu | ipa_childes | 3969 | 0.0821 | same-source | same-source | n/a | n/a | n/a | 0.1396 | n/a |
+| eu | vox_communis | 64077 | 0.0644 | 0.1194 | n/a | same-source | n/a | n/a | 0.1280 | n/a |
+| eu | wikipron | 12022 | 0.0546 | 0.1019 | n/a | n/a | n/a | n/a | 0.1507 | n/a |
+| eu-wikipron | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | n/a | same-source | n/a |
+| eu-wikipron | ipa_childes | 3969 | 0.0821 | same-source | same-source | n/a | n/a | n/a | 0.1396 | n/a |
+| eu-wikipron | vox_communis | 64077 | 0.0644 | 0.1194 | n/a | same-source | n/a | n/a | 0.1280 | n/a |
+| eu-wikipron | wikipron | 12022 | 0.0546 | 0.1019 | n/a | n/a | n/a | n/a | 0.1507 | n/a |
+| fi | ipadict | 92836 | 0.0609 | 0.1995 | n/a | 0.1111 | n/a | n/a | n/a | n/a |
+| fi | vox_communis | 13324 | 0.0037 | 0.1843 | n/a | same-source | n/a | n/a | n/a | n/a |
+| fi | wikipron | 168814 | 0.0184 | 0.2062 | n/a | 0.0963 | n/a | n/a | n/a | n/a |
+| fr | wikipron | 85516 | 0.0748 | 0.0740 | 0.0749 | 0.2280 | n/a | n/a | n/a | n/a |
+| ga | ipa_childes | 1612 | 0.2989 | same-source | same-source | n/a | n/a | n/a | n/a | n/a |
+| ga | wikipron | 9621 | 0.1834 | 0.5223 | n/a | n/a | n/a | n/a | n/a | n/a |
+| gl | vox_communis | 47515 | 0.0771 | n/a | n/a | same-source | n/a | 0.0883 | n/a | n/a |
+| gl | wikipron | 8091 | 0.0906 | n/a | n/a | n/a | n/a | 0.0883 | n/a | n/a |
+| hi | vox_communis | 13154 | 0.3684 | 0.5184 | n/a | same-source | n/a | n/a | n/a | n/a |
+| hi | wikipron | 30379 | 0.1562 | 0.2815 | n/a | 0.3322 | n/a | n/a | n/a | n/a |
+| hts | wikipron | 329 | 0.3728 | n/a | n/a | n/a | n/a | n/a | n/a | 0.2769 |
+| it | vox_communis | 90366 | 1.1402 | 1.1830 | n/a | same-source | n/a | n/a | n/a | n/a |
+| it | wikipron | 82280 | 0.0588 | 0.0722 | n/a | 0.0852 | n/a | n/a | n/a | n/a |
+| kab | vox_communis | 54546 | 0.2071 | n/a | n/a | same-source | n/a | n/a | n/a | 0.4339 |
+| ktz | wikipron | 134 | 0.3464 | n/a | n/a | n/a | n/a | n/a | n/a | 0.3806 |
+| lad | wikipron | 131 | 0.1397 | n/a | n/a | n/a | n/a | n/a | n/a | 0.6256 |
+| mfe | wikipron | 206 | 0.1238 | n/a | n/a | n/a | n/a | n/a | n/a | 0.3001 |
+| ngh | wikipron | 263 | 0.3655 | n/a | n/a | n/a | n/a | n/a | n/a | 0.3958 |
+| nl | ipa_childes | 8108 | 0.2137 | same-source | same-source | 0.4454 | n/a | n/a | n/a | n/a |
+| nl | ipadict | 117869 | 0.1616 | 0.1607 | n/a | 0.2948 | n/a | n/a | n/a | n/a |
+| nl | vox_communis | 26137 | 0.2925 | 0.3054 | n/a | same-source | n/a | n/a | n/a | n/a |
+| nl | wikipron | 45872 | 0.0902 | 0.1099 | 0.1160 | 0.2843 | n/a | n/a | n/a | n/a |
+| nup | wikipron | 393 | 0.3979 | n/a | n/a | n/a | n/a | n/a | n/a | 0.4582 |
+| pl | ipa_childes | 15524 | 0.2465 | same-source | same-source | 0.2453 | n/a | n/a | n/a | n/a |
+| pl | vox_communis | 47615 | 0.0194 | 0.0793 | n/a | same-source | n/a | n/a | n/a | n/a |
+| pl | wikipron | 148992 | 0.0480 | 0.1132 | n/a | 0.0633 | n/a | n/a | n/a | n/a |
+| pt-PT | ep_dialects | 30 | 0.1185 | 0.3192 | n/a | 0.4095 | n/a | n/a | n/a | n/a |
+| pt-PT | ipa_childes | 3000 | 0.2498 | same-source | same-source | 0.4027 | n/a | n/a | n/a | n/a |
+| pt-PT | portuguese_tts | 20 | same-source | 0.3336 | n/a | 0.4042 | n/a | n/a | n/a | n/a |
+| pt-PT | portuguese_unified | 3000 | 0.2250 | 0.3669 | n/a | 0.4146 | n/a | n/a | n/a | n/a |
+| pt-PT | wikipron | 2272 | 0.1346 | 0.2374 | n/a | 0.2903 | n/a | n/a | n/a | n/a |
+| ro | vox_communis | 12097 | 0.3282 | 0.4480 | n/a | same-source | n/a | n/a | n/a | n/a |
+| ro | wikipron | 8978 | 0.0342 | 0.0825 | n/a | 0.0302 | n/a | n/a | n/a | n/a |
+| ru | primary_sources | 36 | 0.1867 | 0.3119 | n/a | 0.0744 | n/a | n/a | n/a | n/a |
+| ru | vox_communis | 50547 | 0.3447 | 0.3594 | n/a | same-source | n/a | n/a | n/a | n/a |
+| ru | wikipron | 403873 | 0.1451 | 0.3953 | n/a | 0.3202 | n/a | n/a | n/a | n/a |
+| sv | ipa_childes | 5202 | 0.3449 | same-source | same-source | 0.3576 | n/a | n/a | n/a | n/a |
+| sv | ipadict | 21095 | 0.2583 | 0.2611 | n/a | 0.4163 | n/a | n/a | n/a | n/a |
+| sv | vox_communis | 19516 | 0.3428 | 0.3214 | n/a | same-source | n/a | n/a | n/a | n/a |
+| sv | wikipron | 5082 | 0.2317 | 0.2337 | n/a | 0.3692 | n/a | n/a | n/a | n/a |
+| tr | ipa_childes | 2748 | 0.1372 | same-source | same-source | 0.1194 | n/a | n/a | n/a | n/a |
+| tr | vox_communis | 49476 | 0.1614 | 0.3443 | n/a | same-source | n/a | n/a | n/a | n/a |
+| tr | wikipron | 11582 | 0.1230 | 0.2739 | n/a | 0.1352 | n/a | n/a | n/a | n/a |
+| tzm | wikipron | 658 | 0.0160 | n/a | n/a | n/a | n/a | n/a | n/a | 1.0005 |
+
+**espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh` and the module docstring's "Fair-comparison 2x2" section. 43 row(s) have a stock `espeak` number but no `espeak-rules-only` one yet in this run — deferred, not fabricated (see `scripts/build_espeak_rules_only.sh`): `ru`/`wikipron` (n=403873); `ca`/`vox_communis` (n=218451); `fi`/`wikipron` (n=168814); `pl`/`wikipron` (n=148992); `es`/`wikipron` (n=132190); `en-US`/`cmudict` (n=126052); `en-US`/`ipadict` (n=125927); `nl`/`ipadict` (n=117869); `es`/`vox_communis` (n=97715); `fi`/`ipadict` (n=92836); `it`/`vox_communis` (n=90366); `it`/`wikipron` (n=82280); `eu`/`vox_communis` (n=64077); `eu-wikipron`/`vox_communis` (n=64077); `de`/`wikipron` (n=53011); `ru`/`vox_communis` (n=50547); `tr`/`vox_communis` (n=49476); `pl`/`vox_communis` (n=47615); `hi`/`wikipron` (n=30379); `nl`/`vox_communis` (n=26137); `sv`/`ipadict` (n=21095); `sv`/`vox_communis` (n=19516); `el`/`wikipron` (n=19108); `cy`/`vox_communis` (n=18701); `cy`/`wikipron` (n=14811); `fi`/`vox_communis` (n=13324); `hi`/`vox_communis` (n=13154); `ro`/`vox_communis` (n=12097); `eu`/`wikipron` (n=12022); `eu-wikipron`/`wikipron` (n=12022); `tr`/`wikipron` (n=11582); `ga`/`wikipron` (n=9621); `ro`/`wikipron` (n=8978); `el`/`vox_communis` (n=5994); `sv`/`wikipron` (n=5082); `eu`/`hitz_basque_ipa` (n=3113); `eu-wikipron`/`hitz_basque_ipa` (n=3113); `pt-PT`/`portuguese_unified` (n=3000); `pt-PT`/`wikipron` (n=2272); `ca`/`wikipron` (n=106); `ru`/`primary_sources` (n=36); `pt-PT`/`ep_dialects` (n=30); `pt-PT`/`portuguese_tts` (n=20).
 
 Counted over distinct LANGUAGES (one row per language: its configured primary gold dataset — see `_primary_rows`), never over table rows, and split by whether that primary gold is an independent reference or another tool's/LLM's output:
 
-- **Gold-tier** (expert-human / lexicon-derived / crowd-scraped primary gold): o2i beats espeak on 16 of 23 comparable languages.
+- **Gold-tier** (expert-human / lexicon-derived / crowd-scraped primary gold): o2i beats espeak on 16 of 24 comparable languages.
 - **Agreement-tier** (machine-generated / espeak-derived / epitran-derived / llm-generated primary gold — measures agreement with the generating tool, not accuracy; see "Honesty" above): o2i beats espeak on 1 of 1 comparable languages.
 
 ## Robustness across golds
@@ -195,7 +198,14 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 
 | Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |
 |---|---|---:|---:|---:|---:|---:|
-| _(none)_ | | | | | | |
+| ca | 4catac | 160 | 0.0793 | n/a | 0.0403 | 0.1206 |
+| ca-x-balear | 4catac | 160 | 0.1481 | n/a | 0.0797 | 0.1412 |
+| ca-x-occidental | 4catac | 160 | 0.0956 | n/a | 0.0497 | 0.0832 |
+| ca-x-valencia | 4catac | 160 | 0.0774 | n/a | 0.0439 | 0.0762 |
+| en | wikipron | 80995 | 0.3585 | n/a | 0.2081 | 0.2136 |
+| en-GB | wikipron | 81545 | 0.2822 | n/a | 0.1472 | 0.1540 |
+| fr | wikipron | 85516 | 0.0748 | n/a | 0.0740 | 0.0749 |
+| nl | wikipron | 45872 | 0.0902 | n/a | 0.1099 | 0.1160 |
 
 Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the SAME dictionary is worth bolted onto o2i's rules. `o2i` vs `espeak_rules` is the fairest rules-only comparison; `o2i_lex` vs `espeak` is the fairest dictionary-included comparison.
 
