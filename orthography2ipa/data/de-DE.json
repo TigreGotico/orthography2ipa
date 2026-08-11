@@ -942,5 +942,6 @@
     "imperativ": "ˈɪmperatiːf",
     "komparativ": "ˈkɔmparatiːf",
     "superlativ": "ˈzuːpɐlatiːf"
-  }
+  },
+  "constrain_onsets": true
 }

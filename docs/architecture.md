@@ -204,7 +204,7 @@ Abstract interface for per-language syllabifiers: `syllabifier_plugin.py:1-51`:
 
 - `SyllabifierPlugin`: abstract base class with `syllabify(word, lang)`, `language_codes`, and `priority`: `syllabifier_plugin.py:28`
 
-The bundled `stress.syllabify` is a naive vowel-group splitter. Languages with a real syllabifier ship it as a plugin (e.g. `silabificador` for Portuguese) and stress detection picks it up automatically.
+The bundled `stress.syllabify` is a vowel-group splitter. It maximises the onset; a spec that sets `constrain_onsets` maximises it only as far as the language licenses — the shapes in `_OnsetJudge`, read off the spec's own grapheme→IPA table through the sonority scale in `vowels.py`, under a spec-declared `stress.max_onset` cap where one exists. The shapes are calibrated on Germanic and Romance, so the flag is opt-in: a language whose onset inventory exceeds them (Modern Greek ⟨σμ κτ πτ γν μν βγ βδ⟩ all begin words and never split) leaves it off and gets the unconstrained split. The flag is inherited along the `graphemes_base` edge, so a variety that pulls in a constrained table syllabifies it the same way its base does. Languages with a real syllabifier ship it as a plugin (e.g. `silabificador` for Portuguese) and stress detection picks it up automatically.
 
 Plugins are discovered lazily via `importlib.metadata` entry points in the `orthography2ipa.syllabify` group: `registry._discover_syllabifiers`: `registry.py:156`. Discovery runs once, on first call to `registry.get_syllabifier(code)`, and the result is cached at module scope. With no plugins installed, discovery returns an empty mapping and `get_syllabifier()` returns `None` for every code: this package ships no entry points of its own.
 

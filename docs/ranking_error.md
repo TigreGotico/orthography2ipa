@@ -165,12 +165,20 @@ a rule.
 
 Declared for ⟨e⟩ and for ⟨a o u⟩, measured, reverted: PER `0.1604` →
 `0.1816` (⟨e⟩ only), `0.2282` (⟨a o u⟩), `0.2496` (both). Two reasons,
-both disqualifying: Dutch already lengthens in `allophone_rules`, so the
-positions duplicate a better-targeted rule; and the syllabification
-underneath is not good enough — `_syllables_for` maximises the onset
-without consulting phonotactics, so *elektronisch* comes out
-`e·le·ktro·nisch` with an illegal `ktr` onset and a spurious open `le`.
-It also ignores `stress.max_onset` entirely.
+both disqualifying at the time: Dutch already lengthens in
+`allophone_rules`, so the positions duplicate a better-targeted rule;
+and the syllabification underneath was not good enough —
+`_syllables_for` maximised the onset without consulting phonotactics, so
+*elektronisch* came out `e·le·ktro·nisch` with an illegal `ktr` onset
+and a spurious open `le`. It also ignored `stress.max_onset` entirely.
+
+The second reason no longer holds: the syllabifier now constrains
+onset maximisation by the licit onsets of the language (see
+`_OnsetJudge` in `orthography2ipa/stress.py`), and *elektronisch* is
+`e·lek·tro·nisch`. The Dutch aperture data wave is therefore worth
+re-measuring against the corrected boundaries; the first reason
+(duplication with `allophone_rules`) still stands and has to be
+answered before any of it ships.
 
 ## Known gaps this pass does NOT close
 
@@ -187,11 +195,19 @@ It also ignores `stress.max_onset` entirely.
 
 ## Follow-ups (designs, not built)
 
-1. **A sonority-aware orthographic syllabifier** that honours
-   `stress.max_onset`. Aperture is only as good as the syllable
-   boundary, so this gates Dutch and French ⟨e⟩/⟨o⟩. It also moves
-   stress placement, so it wants its own PR and its own cross-language
-   gate.
+1. ~~**A sonority-aware orthographic syllabifier** that honours
+   `stress.max_onset`.~~ **Built,** for the specs that opt in with
+   `constrain_onsets` (`de-DE`, `nl`, `fr-FR` — the aperture readers).
+   Onset maximisation is constrained by the licit onsets of the language,
+   derived from the spec's own grapheme→IPA table through the sonority
+   scale in `orthography2ipa/vowels.py`, under a spec-declared
+   `stress.max_onset` cap where one exists. *elektronisch* is
+   `e·lek·tro·nisch`, *Monsieur* is `Mon·sieur`, *Abmeldung* is
+   `Ab·mel·dung`. The shapes are calibrated on Germanic and Romance;
+   extending the flag to a language whose onset inventory exceeds them
+   (Greek, the Slavic and Uralic families) needs that inventory declared
+   first. What it unblocks — the French ⟨e⟩/⟨o⟩ and Dutch aperture data
+   waves — is still to do: one PR, one concern.
 2. **A learned rescorer.** Out of scope here, and the diagnosis does not
    call for one yet: every French cluster above is a stateable rule, a
    lexical entry, a morphological fact, or the syllabifier bug. If it is

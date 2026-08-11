@@ -622,5 +622,6 @@
       ],
       "notes": "Unstressed tense vowel in hiatus (Booij 1995, ch. 2): an unstressed ⟨i⟩ directly before another vowel letter (Aziaat, Ariër, Adriaan, -ië/-iër loanword endings) surfaces tense-but-short [i], not lax [ɪ]; the hiatus context blocks the closed-syllable laxing that a following consonant would trigger."
     }
-  ]
+  ],
+  "constrain_onsets": true
 }
