@@ -660,10 +660,22 @@
       "followed_by_phoneme": [
         "p",
         "b",
-        "m",
-        "f"
+        "m"
       ],
-      "notes": "Nasal place assimilation (Recasens 1993; Wheeler 2005 §10.3): /n/ → [m] before a labial consonant."
+      "notes": "Nasal place assimilation to a following BILABIAL: /n/ before /p b m/ surfaces as [m] (Recasens 1993 §4; Wheeler 2005 §10.4; Bonet & Lloret 1998 §3). un pare [umˈpaɾe], en bici, un mes. /f v/ are NOT in this list: a nasal assimilates to the labiodental PLACE there, giving [ɱ], not the bilabial [m] — see CA_NASAL_LABIODENTAL."
+    },
+    {
+      "id": "CA_NASAL_LABIODENTAL",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "ɱ",
+      "followed_by_phoneme": [
+        "f",
+        "v"
+      ],
+      "notes": "Nasal place assimilation to a following LABIODENTAL: a nasal before /f v/ surfaces as the labiodental nasal [ɱ], not as the bilabial [m] (Recasens 1993 §4 — nasal place assimilation in Catalan is TOTAL and includes the labiodental articulation; Wheeler 2005 §10.4, post-lexical nasal place assimilation; Bonet & Lloret 1998 §3). enfadar [əɱfəˈða], confortable [koɱfoɾˈtable], convèncer [koɱˈvɛnse], àmfora [ˈaɱfoɾa]. [ɱ] is already declared in this spec's allophones for both /m/ and /n/; before this rule nothing produced it. Declared on the Old-Catalan node because the process is pan-Catalan — every descendant dialect has it, and no source reports a variety that keeps a bilabial nasal before /f v/."
     },
     {
       "id": "CA_NASAL_VELAR",

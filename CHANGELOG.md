@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.65.2a3](https://github.com/TigreGotico/orthography2ipa/tree/7.65.2a3) (2026-08-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.2a2...7.65.2a3)
+
+**Merged pull requests:**
+
+- data: French wave — nasal blocking, yod, assibilation; reaches espeak parity [\#854](https://github.com/TigreGotico/orthography2ipa/pull/854) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.65.2a2](https://github.com/TigreGotico/orthography2ipa/tree/7.65.2a2) (2026-08-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.2a1...7.65.2a2)
@@ -653,7 +661,6 @@
 - docs: add AI transparency section to README [\#685](https://github.com/TigreGotico/orthography2ipa/pull/685) ([JarbasAl](https://github.com/JarbasAl))
 - feat: add Mandinka \(mnk\) and Min Nan \(nan\) specs — graph-hole wave [\#684](https://github.com/TigreGotico/orthography2ipa/pull/684) ([JarbasAl](https://github.com/JarbasAl))
 - fix: ancestry-graph connectivity audit — dangling refs, orphans, creole strates [\#682](https://github.com/TigreGotico/orthography2ipa/pull/682) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add Americas language specs \(oj/dak/lkt/see/moh/ike/ikt\) [\#663](https://github.com/TigreGotico/orthography2ipa/pull/663) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.37.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.37.1a1) (2026-08-02)
 
