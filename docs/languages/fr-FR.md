@@ -2,8 +2,8 @@
 
 **Code**: `fr-FR` | **Family**: Indo-European > Romance > Gallo-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Orthographic depth**: deep (production threshold ≤ 0.25 PER)
-**Sources**: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995)
-**Benchmark**: wikipron `fra_latn_broad.tsv`, `fr` tag, n=279, PER=0.1559 (see `benchmarks/results.json`)
+**Sources**: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995), Walker (2001)
+**Benchmark**: wikipron `fra_latn_broad.tsv`, `fr` tag, n=85495, PER=0.0882 (see `benchmarks/results.json`)
 
 ---
 
@@ -112,13 +112,83 @@ The glide is blocked when the following vowel is itself the word's last audible 
 | e (unstressed, non-final) | [ə] | `le` [lə] |
 | e (word-final) | silent | `Adèle` [adɛl] (not [adɛlə]) |
 | i, î, ï | [i] | `île` [il] |
-| o (closed) | [o] | `pot` [po] |
-| o (open) | [ɔ] | `sort` [sɔʁ] |
+| o (open syllable) | [o] | `pot` [po] |
+| o (closed syllable) | [ɔ] | `sort` [sɔʁ] |
 | ô | [o] | `côte` [kot] |
 | u, û | [y] | `lune` [lyn] |
 | ou | [u] | `tour` [tuʁ] |
-| eu (closed) | [ø] | `feu` [fø] |
-| eu (open) | [œ] | `peur` [pœʁ] |
+| eu (open syllable) | [ø] | `feu` [fø] |
+| eu (closed syllable) | [œ] | `peur` [pœʁ] |
+
+#### Mid-Vowel Aperture: the *loi de position*
+
+The three mid-vowel pairs /e ɛ/, /ø œ/ and /o ɔ/ are not free: the close-mid
+member belongs to an **open** syllable (*syllabe libre*, no coda) and the
+open-mid member to a **closed** one (*syllabe entravée*). Fougeron & Smith
+(1993) state the law in exactly those terms, and Tranel (1987) ch. 3-4 and
+Walker (2001) ch. 3 give it with its limits. This spec models **standard
+Parisian/northern** French, which is what the wikipron gold transcribes.
+
+| Pair | Open syllable | Closed syllable |
+|:---|:---|:---|
+| /ø œ/ | `heu·reux` [øʁø], `jeu·di` [ʒødi] | `jeune` [ʒœn], `heure` [œʁ], `seule` [sœl] |
+| /o ɔ/ | `mot` [mo], `nu·mé·ro` [nymeʁo] | `bord` [bɔʁ], `botte` [bɔt] |
+| /e ɛ/ | `é·té` [ete], `nu·mé·ro` [nymeʁo] | `sel` [sɛl], `Abel` [abɛl] |
+
+Three points, and one of them is about the engine rather than about French:
+
+- **Aperture is decided ORTHOGRAPHICALLY, and the coda test is a proxy.** The
+  law is about a pronounced coda, but the engine has only letters, so it asks
+  a spelling question instead: strip the graphemes THIS spec declares silent
+  word-finally, then look at what the syllable now ends in. Two consequences
+  worth knowing before trusting an aperture answer:
+  - A final syllable whose only vowel letter is a mute ⟨e⟩ has no nucleus, so
+    it is folded into its predecessor (`positional.merge_nucleusless_final_syllable`,
+    generic and spec-driven): `jeu·ne` becomes one syllable `jeune`, which
+    strips to `jeun` and is CLOSED — [ʒœn], not [ʒø] plus a silent tail. Same
+    for `heure` [œʁ], `veuve` [vœv], `seule` [sœl].
+  - The strip then runs a SECOND time on that merged string, on letters that
+    are no longer word-final in the pronunciation. That is why `meute` [møt]
+    and `heureuse` [øʁøz] come out right for the wrong reason: both strip back
+    to an open `meu`/`reu` because the spec calls word-final ⟨t⟩ and ⟨s⟩ mute,
+    yet the /t/ and the /z/ are both pronounced. The vowel is close-mid in
+    those two words for a real reason (the /z/ exception below; the ⟨t⟩+⟨e⟩
+    shape), not because the syllable is open.
+
+  Where the proxy is simply wrong: a pronounced coda that does not close for
+  the law — an obstruent + liquid cluster, `neutre` [nøtʁ] and `feutre` [føtʁ]
+  come out with [œ] — and a /z/ that is spelled ⟨z⟩ and so cannot be stripped,
+  which is what the rule below exists to catch. Both are known and measured,
+  not hypothetical: 20 types regress corpus-wide, against 232 fixed.
+- **/z/ keeps the vowel close** even in a closed syllable — the standard
+  closing-environment exception, stated for the whole mid series: `rose`
+  [ʁoz], `chose` [ʃoz] (`FR_O_BEFORE_Z`), and `Deleuze` [dəløz], `yeuz` [jøz]
+  (`FR_EU_BEFORE_Z`) — Fouché 1959; Tranel 1987 §3; Walker 2001 ch. 3. The
+  ⟨eu⟩ half is needed only where the /z/ is spelled ⟨z⟩: the far commoner
+  ⟨euse⟩ words (`heureuse`, `creuse`, `chanteuse`) already reach [ø] through
+  the strip described above.
+- **/ʁ/ opens ⟨au⟩**: `Laure` [lɔʁ], `aurore` [ɔʁɔʁ], `restaurant`
+  [ʁɛstɔʁɑ̃], `dinosaure` [dinozɔʁ] — the one systematic exception to the
+  otherwise exceptionless ⟨au⟩ = [o] (`FR_AU_BEFORE_R`; Fouché 1959; Tranel
+  1987 ch. 3; Walker 2001 ch. 3). Learned and foreign spellings resist it
+  (`Saurat`, `nauruan`, `vaurien` keep [o] in the gold): 139 wikipron types
+  move toward the reference, 8 away.
+
+What is deliberately **not** modelled:
+
+- **⟨o⟩ read off syllable aperture.** Generalising open→[o] is the *southern*
+  French pattern (Walker 2001 ch. 3). Standard French keeps [ɔ] in non-final
+  open syllables — `ho·mo·phone` [ɔmɔfɔn], `o·bole` [ɔbɔl], `homme` [ɔm] —
+  so ⟨o⟩ stays on the word-final-open and pre-/z/ rules above. Tried: PER
+  0.0887 → 0.1177, 16,836 wikipron types worse against 447 better.
+- **⟨e⟩ read off syllable aperture.** French ⟨e⟩ is [ɛ] in a *graphically*
+  closed syllable whether or not the coda is pronounced (`met` [mɛ], `mets`
+  [mɛ], `effets` [efɛ]), so it keeps the orthographic `FR_E_CLOSED_CLUSTER` /
+  `FR_E_CLOSED_FINAL` rules. Tried: PER 0.0887 → 0.0903.
+- **⟨eu⟩ opened before /ʁ/**, as the ⟨au⟩ rule does. In an open syllable the
+  quality is lexical rather than positional — `heureux` [øʁø] and `euro`
+  [øʁo] against `fleurette` [flœʁɛt] — which is what Walker (2001) ch. 3 says
+  of non-final syllables. Tried: 103 types better, 112 worse, PER unmoved.
 
 Word-final unstressed ⟨e⟩ (e caduc) defaults to silent via a `positional_graphemes` `word_final` override, matching the modern colloquial elision of the mute e (`Abbeville` [abvil], not [abvilə]). This is correct for polysyllabic words but is a known engine-limit exception for monosyllabic function words (`le`, `que`, `de`), where the schwa is the only syllable nucleus and is grammatically obligatory.
 

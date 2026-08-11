@@ -16,7 +16,8 @@ from orthography2ipa import G2P, get
 from orthography2ipa.phonetok import flat_contexts
 from orthography2ipa.positional import (_is_open_syllable,
                                         grapheme_positions,
-                                        match_grammatical_ending)
+                                        match_grammatical_ending,
+                                        merge_nucleusless_final_syllable)
 from orthography2ipa.types import GraphemePosition as GP
 
 
@@ -189,3 +190,104 @@ def test_shipped_french_endings(word, expected):
 ])
 def test_nominal_ent_keeps_its_nasal_vowel(word):
     assert G2P("fr").transcribe_word(word).endswith("ɑ̃")
+
+
+# ── A nucleus-less final syllable closes the syllable before it ──────────
+
+@pytest.mark.parametrize("syllables,expected", [
+    # French mute ⟨e⟩: jeu·ne is one syllable, and it is CLOSED.
+    (["jeu", "ne"], ["jeune"]),
+    (["eu", "re"], ["eure"]),
+    (["ho", "no", "re"], ["ho", "nore"]),
+    # A mute ⟨e⟩ under a mute plural ⟨s⟩ comes off as one stack.
+    (["jeu", "nes"], ["jeunes"]),
+    # A final syllable that DOES keep a nucleus is left alone…
+    (["heu", "reux"], ["heu", "reux"]),
+    (["fleu", "re", "tte"], ["fleu", "rette"]),
+    # …and a lone syllable has nothing to merge into.
+    (["jeune"], ["jeune"]),
+    ([], []),
+])
+def test_merge_nucleusless_final_syllable(syllables, expected):
+    assert merge_nucleusless_final_syllable(
+        syllables, G2P("fr").spec) == expected
+
+
+def test_merge_needs_a_spec_to_know_what_is_silent():
+    """Without a spec nothing is silent, so nothing merges.
+
+    The merge is spec-driven, never letter-driven: a language that
+    pronounces its final vowels must be left exactly as syllabified.
+    """
+    assert merge_nucleusless_final_syllable(["jeu", "ne"]) == ["jeu", "ne"]
+
+
+@pytest.mark.parametrize("word,expected", [
+    # loi de position: the ⟨e⟩ is mute, so ⟨n⟩/⟨r⟩/⟨v⟩/⟨l⟩ is a CODA and
+    # the ⟨eu⟩ before it is open-mid [œ] (Fougeron & Smith 1993; Tranel
+    # 1987 ch. 3). Before the merge these came out with close-mid [ø].
+    ("jeune", "ʒœn"),
+    ("jeunes", "ʒœn"),
+    ("heure", "œʁ"),
+    ("heures", "œʁ"),
+    ("veuve", "vœv"),
+    ("neuve", "nœv"),
+    ("seule", "sœl"),
+    ("leurre", "lœʁ"),
+    # …while a final syllable with a real nucleus stays OPEN and keeps [ø]:
+    # heu·reux, and ⟨-euse⟩ over a mute ⟨s⟩ + mute ⟨e⟩.
+    ("heureux", "øʁø"),
+    ("heureuse", "øʁøz"),
+    ("chanteuse", "ʃɑ̃tøz"),
+    ("deux", "dø"),
+    ("jeudi", "ʒødi"),
+])
+def test_mute_e_closes_the_syllable_for_eu(word, expected):
+    assert G2P("fr").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    # ⟨au⟩ is [ɔ] before /ʁ/ — the one systematic opening environment for
+    # the mid back vowel in standard French (Fouché 1959; Tranel 1987
+    # ch. 3; Walker 2001 ch. 3).
+    ("laure", "lɔʁ"),
+    ("laures", "lɔʁ"),
+    ("aurore", "ɔʁɔʁ"),
+    ("restaurant", "ʁɛstɔʁɑ̃"),
+    ("dinosaure", "dinozɔʁ"),
+    ("saur", "sɔʁ"),
+    # …and stays [o] everywhere else, including before /z/ (rose) and
+    # word-finally.
+    ("beau", "bo"),
+    ("chaud", "ʃo"),
+    ("cause", "koz"),
+    ("chaussure", "ʃosyʁ"),
+])
+def test_au_is_open_mid_before_r(word, expected):
+    assert G2P("fr").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    # /z/ is the loi de position's closing-environment exception, and it
+    # holds for the whole mid series, not just the back vowel (Fouché 1959;
+    # Tranel 1987 §3; Walker 2001 ch. 3). Where the /z/ is spelled ⟨z⟩ it
+    # cannot be stripped as a mute word-final grapheme, so the syllable
+    # reads CLOSED and needs the explicit rule.
+    ("Deleuze", "dəløz"),
+    # yeuz: the ⟨y⟩ onset is known-wrong (gold jøz); this case pins only the
+    # vowel under test. See the ⟨y⟩-as-vowel-letter follow-up.
+    ("yeuz", "iøz"),
+    # The ⟨o⟩ half of the same exception.
+    ("rose", "ʁoz"),
+    ("chose", "ʃoz"),
+    # ⟨euse⟩ reaches [ø] without the rule (mute ⟨s⟩ over mute ⟨e⟩ strips
+    # back to an open syllable) — the rule must not disturb it.
+    ("creuse", "kʁøz"),
+    ("heureuse", "øʁøz"),
+    ("chanteuse", "ʃɑ̃tøz"),
+    # …and a closed syllable with no /z/ still opens the vowel.
+    ("jeune", "ʒœn"),
+    ("heure", "œʁ"),
+])
+def test_mid_vowel_stays_close_before_z(word, expected):
+    assert G2P("fr").transcribe_word(word) == expected
