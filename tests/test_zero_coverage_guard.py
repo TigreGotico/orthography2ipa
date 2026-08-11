@@ -16,7 +16,12 @@ def test_zero_coverage_row_is_refused(monkeypatch):
     def dead_loader(lang, limit):
         return [("word-with-no-scorable-graphemes", "ipa")]
 
-    def zero_eval(pairs, lang, strip_stress, broad, oracle_ks=()):
+    def zero_eval(pairs, lang, strip_stress, broad, oracle_ks=(),
+                  expose_ambiguous_endings=False):
+        # The board's measurement convention must reach the scorer:
+        # a stub that silently swallowed it would let build_scoreboard
+        # stop threading the flag with nothing noticing.
+        assert expose_ambiguous_endings is False
         return len(pairs), 0, [], 1.0, 1.0, None
 
     monkeypatch.setattr(benchmark, "DATASETS",
@@ -38,7 +43,12 @@ def test_nonzero_coverage_row_is_recorded(monkeypatch):
     def loader(lang, limit):
         return [("a", "a")]
 
-    def one_eval(pairs, lang, strip_stress, broad, oracle_ks=()):
+    def one_eval(pairs, lang, strip_stress, broad, oracle_ks=(),
+                  expose_ambiguous_endings=False):
+        # The board's measurement convention must reach the scorer:
+        # a stub that silently swallowed it would let build_scoreboard
+        # stop threading the flag with nothing noticing.
+        assert expose_ambiguous_endings is False
         return 1, 1, [0.0], 0.0, 0.0, None
 
     monkeypatch.setattr(benchmark, "DATASETS",

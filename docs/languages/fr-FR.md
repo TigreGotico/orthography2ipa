@@ -73,6 +73,22 @@ The closed set of nouns and adverbs that keep /ɛʁ/ — `mer`, `fer`, `cher`,
 loanwords (`leader`, `container`, `poker`) — stays in `word_exceptions`, which
 outranks the endings; their ⟨-s⟩ plurals are listed there too.
 
+#### Ambiguous ending ⟨-ent⟩: both readings, no decision
+
+The 3rd-person-plural inflection ⟨-ent⟩ is mute (`parlent` [paʁl], `munissent`
+[mynis]); the nominal and adjectival ⟨-ent⟩ is [ɑ̃] (`vent`, `dent`, `cent`,
+`argent`, `moment`, `comment`). Nothing in the spelling separates them — it is a
+part-of-speech fact (Fouché 1959; Tranel 1987 §3; Divay & Vitale 1997), and this
+library takes no part-of-speech input.
+
+So French declares the ending as a **deferring candidate list**, `"ent": [null,
+""]`. `null` at element 0 keeps rank 1 exactly where the grapheme tables put it
+— nasal ⟨en⟩ plus a silent ⟨t⟩ — so every 1-best is unchanged (`vent` [vɑ̃],
+`moment` [mɔmɑ̃], `parlent` [paʁlɑ̃]). The mute reading is added below it, where
+`word_candidates`, oracle@k and a downstream POS-aware rescorer can reach it;
+before this it was in no beam at any width. ⟨-ment⟩ is deliberately not declared
+separately: it is the same ambiguity (`dorment` is mute, `moment` is not).
+
 #### Glide Formation
 
 Word-internal ⟨i⟩ before another vowel letter glides to [j] (`positional_graphemes` `before_vowel` branch, Tranel 1987 §5-6): `pied` [pje], `fiacre` [fjakʁ]. This is distinct from the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs, which already carry [j] unconditionally.

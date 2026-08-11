@@ -67,6 +67,7 @@ from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
 from orthography2ipa.registry import get, get_declared_plugins, resolve
+from orthography2ipa.weights import candidate_base_costs
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.sentence import (
     Position,
@@ -355,8 +356,28 @@ class G2P:
         rescorer: RescorerArg = None,
         sentence_rescorer: SentenceRescorerArg = None,
         allow_undeclared_phonemes: bool = False,
+        expose_ambiguous_endings: bool = True,
     ) -> None:
         self.allow_undeclared_phonemes = allow_undeclared_phonemes
+        #: Whether a list-valued ``grammatical_endings`` entry contributes
+        #: its lower-ranked readings to the beam (see
+        #: :attr:`~orthography2ipa.types.LanguageSpec.grammatical_endings`).
+        #: ON by default, because exposing the reading this engine cannot
+        #: choose is the whole point of declaring the ending ambiguous.
+        #:
+        #: The one caller that turns it OFF is the benchmark harness's
+        #: scoreboard run. The board defines ``PER - Oracle@k`` as RANKING
+        #: error — "the engine produced a better reading and mis-ranked it"
+        #: — and a deliberately injected alternative moves that gap by
+        #: construction, since adding candidates can only lower an oracle.
+        #: Left on, any spec could inflate its own headroom by declaring
+        #: more alternatives. So the published oracle columns are measured
+        #: on the beam the engine RANKS, and the movement caused by an
+        #: injected alternative is reported separately as reachability
+        #: (docs/benchmarks.md, "Injected alternatives do not count as
+        #: ranking error"). 1-best is unaffected either way: an
+        #: alternative can never reach rank 1.
+        self.expose_ambiguous_endings = expose_ambiguous_endings
         if on_unmapped not in ("ignore", "log", "raise"):
             raise ValueError(
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
@@ -1207,6 +1228,19 @@ class G2P:
         Precedence is a consequence of where this sits: whole-word
         overrides already returned above, so ``word_exceptions`` >
         ``grammatical_endings`` > the grapheme tables.
+
+        **Ambiguous endings.** A spec may declare an ending's value as an
+        ordered candidate list rather than one string (see
+        :func:`~orthography2ipa.positional.normalize_ending_value`).
+        Element 0 keeps rank 1 — either by rewriting the tail exactly as
+        the string form does, or, when it is ``null``, by deferring to
+        whatever the grapheme tables already produced. Every later
+        element is appended as an ADDITIONAL costed reading of the same
+        tail, ranked below rank 1 by the same rank cost the grapheme
+        candidate lists use (``weights.candidate_base_costs``). So 1-best
+        never moves and the lower readings become reachable to
+        ``word_candidates``, oracle@k and any downstream rescorer — which
+        is the whole point for French verbal ⟨-ent⟩.
         """
         if not paths or not self.spec.grammatical_endings:
             return paths
@@ -1216,16 +1250,42 @@ class G2P:
             return paths
         rewritten: List[IPAPath] = []
         seen = set()
-        for path in paths:
+
+        def _rewrite(path: IPAPath, ipa: str, extra_cost: float) -> IPAPath:
+            """*path* with its matched tail replaced by *ipa*. Paths too
+            short for the tail (a rescorer deleted a slot inside it) are
+            left alone rather than mis-spliced."""
             if len(path.segments) <= match.tokens:
-                new = path
-            else:
-                new = IPAPath(
-                    segments=path.segments[:-match.tokens] + (match.ipa,),
-                    score=path.score)
+                return path
+            return IPAPath(segments=path.segments[:-match.tokens] + (ipa,),
+                           score=path.score + extra_cost)
+
+        for path in paths:
+            new = path if match.ipa is None else _rewrite(path, match.ipa, 0.0)
             if new.ipa not in seen:
                 seen.add(new.ipa)
                 rewritten.append(new)
+        if match.alternatives and rewritten and self.expose_ambiguous_endings:
+            # Rank costs over the declared list, exactly as an ordered
+            # grapheme candidate list is costed: element 0 is free,
+            # element i pays `i`. The alternatives hang off the rank-1
+            # path, so an alternative can never undercut it.
+            costs = candidate_base_costs(
+                (match.ipa if match.ipa is not None else "", *match.alternatives),
+                grapheme=match.ending)
+            # The UNrewritten rank-1 path: an alternative replaces the
+            # same tail rank 1 replaced, so splicing it onto the already
+            # rewritten path would eat the tail twice.
+            base = paths[0]
+            for alt, cost in zip(match.alternatives, costs[1:]):
+                new = _rewrite(base, alt, cost)
+                if new.ipa not in seen:
+                    seen.add(new.ipa)
+                    rewritten.append(new)
+            # Stable sort: the alternatives take their cost-ordered place
+            # among the existing readings, and ties keep beam order. The
+            # rank-1 path is strictly cheapest, so element 0 cannot move.
+            rewritten.sort(key=lambda p: p.score)
         return rewritten
 
     def _unmapped_chars(self, word: str) -> Tuple[Tuple[str, ...], float]:

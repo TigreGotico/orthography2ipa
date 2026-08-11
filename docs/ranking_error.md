@@ -59,6 +59,19 @@ Same sample: top-1 PER `0.1224`, oracle@5 `0.0961`, 310 ranking failures
 `0.0668`, exact match `0.5974` → `0.6179`. The ranking gap fell from
 `0.0269` to `0.0223`.
 
+Every oracle number on this page — like every oracle cell on the
+scoreboard — is measured **without injected alternatives**, i.e. with
+list-valued `grammatical_endings` entries contributing nothing to the
+beam. The single exception is the explicitly labelled
+injected-alternative block under "Verbal ⟨-ent⟩" below, which exists to
+report that movement and is labelled precisely so it cannot be read as
+one of these numbers. That is what makes `PER − Oracle@k` readable as ranking error at
+all: an injected alternative lowers an oracle by construction, so
+folding it in would mark our own diagnostic to our own edit. See
+[`benchmarks.md`](benchmarks.md#injected-alternatives-do-not-count-as-ranking-error);
+the movement ⟨-ent⟩ does cause is reported there, separately, as
+reachability.
+
 For scale: espeak-ng scores `0.0740` on the same row. French does **not**
 beat espeak here and this pass does not claim to — it closes about 28%
 of a `+0.0211` deficit, leaving `+0.0151`.
@@ -125,7 +138,7 @@ wins, 0 losses.
 
 ## Measured and rejected
 
-### Verbal ⟨-ent⟩
+### Verbal ⟨-ent⟩ — rewrite rejected, ambiguity now exposed
 
 A `grammatical_endings` `"ent": ""` entry (3PL inflection is mute:
 *ils parlent* [paʁl]) wins **3844 wikipron/fr types against 254
@@ -154,6 +167,45 @@ It was also actively harmful while the token-alignment defect stood:
 ⟨-emment⟩ adverb class and *comment* → [kɔm], *apparemment* → [apaʁəm],
 **131 losses against 7 wins** in that bucket.
 
+**What ships instead.** Rejecting the rewrite is not the same as
+accepting the output. Part of speech belongs to a downstream rescorer
+(owner ruling: o2i takes no POS input), and a rescorer can only fix what
+the beam contains. It did not contain [paʁl] at any width — a coverage
+hole, not a ranking error. French now declares
+
+```json
+"ent": [null, ""]
+```
+
+a **deferring candidate list**: `null` at element 0 keeps rank 1
+exactly where it was, and the mute reading is added below it. Measured
+on a 300-word sample of the gold-mute ⟨-ent⟩ class, gold-in-top-10 goes
+**0 → 192**, and exact@1 stays **0** — as it must, because o2i is not
+the layer that decides.
+
+> **Injected-alternative movement — NOT ranking error, and not on the
+> scoreboard.** The oracle figures in this indented block are the one
+> place on this page measured WITH the injected alternative exposed
+> (`expose_ambiguous_endings=True`). They are reported as *reachability*
+> and must never be folded into a `PER − Oracle@k` headroom figure, a
+> ranking-failure count, or a cross-system claim — adding candidates to
+> a beam lowers an oracle by construction. On the full 85495-word
+> wikipron/fr row, measured with `expose_ambiguous_endings` off then on:
+> oracle@5 `0.0665` → `0.0627` and OracleX@5 `0.6712` → `0.6888`, while
+> PER `0.0888` and exact match `0.6185` are identical in both modes —
+> which is the proof that an injected reading never reaches rank 1.
+> Oracle@3 does not move at all (`0.0723`), because the mute reading
+> lands at rank 4-5. The scoreboard publishes only the without-injection
+> numbers. See
+> [`benchmarks.md`](benchmarks.md#injected-alternatives-do-not-count-as-ranking-error).
+
+See [SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings).
+
+⟨-ment⟩ is deliberately *not* declared alongside it. It is the same
+ambiguity (*dorment*, *ferment* are mute; *moment*, *comment* are not),
+so shielding it with a longer entry would re-open the coverage hole for
+exactly the verbs this fixes.
+
 ### ⟨o⟩ under the loi de position
 
 Declared and measured: **+4.4 PER points** on wikipron/fr. French ⟨o⟩ is
@@ -181,7 +233,8 @@ It also ignores `stress.max_onset` entirely.
   rewrite runs after the beam and silences the whole ending regardless.
   Only `word_exceptions` (or a loanword-aware layer) can reach them;
   the spec already lists a handful (*revolvers*, *leaders*, *pokers*).
-- **Verbal ⟨-ent⟩**, above: needs part of speech.
+- **Verbal ⟨-ent⟩**, above: needs part of speech, so o2i
+  exposes both readings and ranks neither well.
 - **Compound-internal boundaries**, in both languages: French
   intervocalic ⟨s⟩ in learned compounds, Dutch devoicing.
 

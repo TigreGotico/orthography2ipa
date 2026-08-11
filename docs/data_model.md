@@ -208,7 +208,7 @@ class LanguageSpec:
     stress: Optional[StressRules] = None               # Stress placement rules
     tone_inventory: Optional[Dict[str, str]] = None    # IPA tone mark → label
     word_exceptions: Optional[Dict[str, str]] = None   # Whole-word overrides for an irregular set
-    grammatical_endings: Optional[Dict[str, str]] = None  # Suffix morphology: ending → IPA at the word end
+    grammatical_endings: Optional[Dict[str, EndingValue]] = None  # Suffix morphology: ending → IPA (or an ordered candidate list) at the word end
     orthography_standard: Optional[OrthographyStandard] = None  # Official spelling norm
     location: Optional[Location] = None                # Representative point (lat/lon)
     timespan: Optional[TimeSpan] = None                # Attestation period

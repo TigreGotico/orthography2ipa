@@ -1234,7 +1234,79 @@ some top-k candidate *equals* a gold exactly. That is the `Exact match`
 column generalized from k=1 to k. Measured on the current board, only a
 minority of the PER-oracle gain is exact hits — fr 41.4%, de 25.8% —
 so the PER oracle overstates "the engine already knows the answer" by
-roughly 2x. Use `OracleX@k` for any claim of that shape.
+roughly 2x. Use `OracleX@k` for any claim of that shape. Both shares are
+computed on the board's numbers and therefore **without injected
+alternatives** (see the next section): the ratio is taken over the
+committed row's `PER → Oracle@5` and `Exact match → OracleX@5`, never
+over the injected-alternative figures, which would inflate it.
+
+### Injected alternatives do not count as ranking error
+
+Some oracle movement is not a discovery about the engine. It is a reading the
+data **deliberately injected** into the beam — a list-valued
+`grammatical_endings` entry, which adds a licit reading the spec cannot choose
+between so that a downstream rescorer can (see
+[SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings)). French
+⟨-ent⟩ is the first of these.
+
+**HARD rule: oracle@k movement caused by an injected alternative is reported
+separately, under its own heading, and never counts toward ranking-error
+analysis or any beat-espeak claim.**
+
+**This is enforced by construction, not by discipline.** The scoreboard run
+builds its engine with `G2P(lang, expose_ambiguous_endings=False)`, so a
+list-valued ending contributes nothing to the beam it scores: every oracle cell
+in `docs/scoreboard.md` and `benchmarks/results.json`, for every language and
+every dataset, is measured on the beam the engine RANKS. A row whose language
+declares injected alternatives records which ones it excluded in
+`oracle_injected_alternatives` (`["fr-FR ent"]` on the fr/wikipron row), so the
+exclusion travels with the numbers. That field is derived from the flag the row
+was **scored with**, not from the spec: a row measured with exposure on claims
+no exclusion and leaves the field off, because a provenance field that asserts
+an exclusion the run did not perform is worse than no field at all. 1-best is
+identical either way — an
+alternative can never reach rank 1 — so the `PER` and `Exact match` columns do
+not depend on this choice at all.
+
+To measure the injected movement itself, pass the flag explicitly:
+
+```python
+evaluate_words_oracle(pairs, "fr", strip_stress=True, broad=True,
+                      expose_ambiguous_endings=True)
+```
+
+Reproduced on the full fr/wikipron row (n=85495): `PER 0.0888` and
+`Exact match 0.6185` in BOTH modes; `Oracle@5 0.0665 → 0.0627` and
+`OracleX@5 0.6712 → 0.6888` when the ⟨-ent⟩ alternative is exposed, with
+`Oracle@3` unmoved at `0.0723` because the mute reading lands at rank 4-5. The
+first pair is the accuracy claim, and its invariance is the proof that an
+injected reading never reaches rank 1; the second pair is reachability and
+belongs only under this heading.
+
+The reason is that the two would otherwise be the same number measured
+differently. `PER − Oracle@k` is meant to read as "the engine already produced a
+better answer and mis-ranked it" — a property of the weights that a rescorer
+could realise. An injected alternative moves that gap by *construction*: adding
+candidates to the beam can only lower an oracle, so any spec could raise its own
+oracle arbitrarily by declaring more alternatives, while the 1-best does not
+move and nothing about the ranking got better. Folding it into the headroom
+would be marking our own diagnostic to our own edit.
+
+So, when reporting:
+
+- Give the 1-best columns first, and say they are unchanged. That is the claim
+  an injected alternative is allowed to make.
+- Give the oracle delta under an explicit **injected-alternative oracle
+  movement** heading, naming the ending and the spec that declares it.
+- Do not add it to a `PER − Oracle@k` headroom figure, a ranking-error budget,
+  or a per-phenomenon ranking-failure count.
+- Never carry it into `comparison.md` or any "beats espeak / epitran / X"
+  sentence. Those compare one pronunciation to one pronunciation, and this is
+  the k-inflating case the oracle ban below already exists for.
+
+The value of an injected alternative is *reachability* — the reading exists for
+a rescorer that has the fact we do not. Report it as reachability (for example,
+"gold in top-10 went 0 → 192 of 300 gold-mute types"), not as accuracy.
 
 ### The Oracle@1 self-check
 

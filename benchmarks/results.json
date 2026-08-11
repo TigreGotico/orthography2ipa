@@ -3053,7 +3053,10 @@
   "oracle_per_top5": 0.0665,
   "oracle_exact_top5": 0.6712,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 85495
+  "oracle_scored_words": 85495,
+  "oracle_injected_alternatives": [
+   "fr-FR ent"
+  ]
  },
  {
   "lang": "fr-FR",

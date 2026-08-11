@@ -39,6 +39,7 @@ from orthography2ipa.types import (
     StressRules,
     TimeSpan,
 )
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.weights import split_weighted_graphemes
 
 # Fields resolved via the ``{field}_base`` JSON key + ``{**base, **own}``
@@ -273,6 +274,16 @@ def load_json_spec(code: str) -> LanguageSpec:
     graphemes = merged_base_fields["graphemes"]
     allophones = merged_base_fields["allophones"]
     positional_graphemes = merged_base_fields["positional_graphemes"]
+
+    # Ending values are normalised on every match, so a malformed one
+    # would otherwise surface as a transcription-time error on whichever
+    # word happens to end that way. Fail at load, where the spec is.
+    for ending, value in (merged_base_fields["grammatical_endings"] or {}).items():
+        try:
+            normalize_ending_value(value)
+        except ValueError as e:
+            raise ValueError(
+                f"'{code}': grammatical_endings[{ending!r}]: {e}") from e
 
     # parse ancestors
     try:

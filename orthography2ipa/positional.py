@@ -63,6 +63,7 @@ __all__ = [
     "WordEnd",
     "effective_word_end",
     "GrammaticalEnding",
+    "normalize_ending_value",
     "match_grammatical_ending",
     "grapheme_positions",
     "positional_candidates",
@@ -218,14 +219,67 @@ class GrammaticalEnding(NamedTuple):
     the ending itself plus the transparent grammatical suffix behind it,
     if any — so the caller replaces exactly that many emitted segments
     with :attr:`ipa` and never touches the word's interior.
+
+    :attr:`ipa` is ``None`` for a **deferring** ending: rank 1 is
+    whatever the grapheme tables already produced, and only the
+    :attr:`alternatives` are contributed. See
+    :func:`normalize_ending_value`.
     """
 
     #: The orthographic ending as declared in the spec (lowercase).
     ending: str
-    #: Its IPA realisation, replacing the whole matched tail.
-    ipa: str
+    #: Its rank-1 IPA realisation, replacing the whole matched tail, or
+    #: ``None`` when the ending defers rank 1 to the grapheme tables.
+    ipa: Optional[str]
     #: How many trailing grapheme tokens the tail spans.
     tokens: int
+    #: Lower-ranked licit realisations of the same tail, in declared
+    #: order. Each enters the beam as a costed alternative reading; it
+    #: never displaces rank 1.
+    alternatives: Tuple[str, ...] = ()
+
+
+def normalize_ending_value(
+    value: object,
+) -> Tuple[Optional[str], Tuple[str, ...]]:
+    """Normalise one ``grammatical_endings`` value to ``(rank1, alts)``.
+
+    Three accepted JSON shapes, in increasing order of what they claim:
+
+    * ``"tion": "ʃən"`` — a **string**: one realisation, which rewrites
+      the matched tail. Today's shape, and the only shape that existed
+      before ambiguous endings; unchanged in every respect.
+    * ``"tion": ["ʃən"]`` — a **one-element list**, exactly equivalent
+      to the string. This is the identity that makes the list form a
+      pure superset.
+    * ``"ent": [null, ""]`` — a list whose FIRST element is ``null``:
+      the ending **defers** rank 1 to the grapheme tables and only adds
+      the remaining elements as lower-ranked candidates.
+
+    ``rank1`` is ``None`` exactly for the deferring shape. ``alts`` is
+    everything after element 0, in declared order.
+
+    Only element 0 may be ``null`` — a null alternative would mean "and
+    also this ending may be silent", which is spelled ``""``.
+    """
+    if isinstance(value, str):
+        return value, ()
+    if isinstance(value, (list, tuple)):
+        if not value:
+            raise ValueError("grammatical_endings value must not be an empty list")
+        head = value[0]
+        if head is not None and not isinstance(head, str):
+            raise ValueError(
+                f"grammatical_endings rank-1 value must be a string or null, "
+                f"got {head!r}")
+        for alt in value[1:]:
+            if not isinstance(alt, str):
+                raise ValueError(
+                    f"grammatical_endings alternative must be a string "
+                    f"(use \"\" for a mute reading), got {alt!r}")
+        return head, tuple(value[1:])
+    raise ValueError(
+        f"grammatical_endings value must be a string or a list, got {value!r}")
 
 
 class _EndSlot(NamedTuple):
@@ -277,7 +331,15 @@ def match_grammatical_ending(
        span; a word that *is* its ending is a word, not a suffix.
 
     Longest match wins, which is how a more specific ending (English
-    ⟨-stion⟩) overrides the general one (⟨-tion⟩) it contains.
+    ⟨-stion⟩) overrides the general one (⟨-tion⟩) it contains — and how
+    a longer *deferring* ending (French ⟨-ment⟩, declared ``[null]``)
+    shields its class from a shorter ambiguous one (⟨-ent⟩).
+
+    The matched entry's value is normalised by
+    :func:`normalize_ending_value`, so the returned
+    :class:`GrammaticalEnding` carries a rank-1 realisation (possibly
+    ``None``, meaning "defer to the grapheme tables") plus any
+    lower-ranked alternatives the spec declares.
     """
     endings = spec.grammatical_endings if spec else None
     if not endings or len(graphemes) < 2:
@@ -307,9 +369,9 @@ def match_grammatical_ending(
     # is admissible only while at least one whole token still precedes
     # it (a word that IS its ending is a word, not a suffix).
     for cut in range(1, len(surface)):
-        ipa = endings.get(surface[cut:])
-        if ipa is None:
+        if surface[cut:] not in endings:
             continue
+        rank1, alternatives = normalize_ending_value(endings[surface[cut:]])
         first = bisect.bisect_right(starts, cut) - 1
         if first < 1:
             # This ending's outward-rounded span leaves no head token; a
@@ -317,8 +379,9 @@ def match_grammatical_ending(
             # looking rather than aborting the search.
             continue
         return GrammaticalEnding(
-            ending=surface[cut:], ipa=ipa,
-            tokens=end - first + suffix_tokens)
+            ending=surface[cut:], ipa=rank1,
+            tokens=end - first + suffix_tokens,
+            alternatives=alternatives)
     return None
 
 

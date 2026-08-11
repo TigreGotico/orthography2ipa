@@ -12,11 +12,22 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, fields
 from enum import Enum
-from typing import Dict, FrozenSet, List, Optional, Tuple
+from typing import Dict, FrozenSet, List, Optional, Tuple, Union
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Type aliases
 # ═══════════════════════════════════════════════════════════════════════════
+
+EndingValue = Union[str, List[Optional[str]]]
+"""One :attr:`LanguageSpec.grammatical_endings` value.
+
+A plain string is one realisation that rewrites the matched tail. A list
+is an ORDERED candidate list: element 0 holds rank 1 (``None`` = defer
+rank 1 to the grapheme tables), and later elements are lower-ranked licit
+readings of the same ending, exposed in the lattice for a downstream
+rescorer to choose. Normalised by
+:func:`~orthography2ipa.positional.normalize_ending_value`.
+"""
 
 import copy as _copy
 
@@ -1714,12 +1725,12 @@ class LanguageSpec:
     case-insensitively before positional-beam search. Not inherited
     through ancestry — each spec declares its own block."""
 
-    grammatical_endings: Optional[Dict[str, str]] = None
+    grammatical_endings: Optional[Dict[str, EndingValue]] = None
     """Word-ending → IPA, for **suffix morphology**: an orthographic
     ending whose realisation belongs to the grammatical ending rather
     than to the letter sequence that spells it.
 
-    Two phenomena this exists for:
+    Three phenomena this exists for:
 
     * **French mute ⟨-er⟩/⟨-ez⟩.** The infinitive and agent-noun ⟨-er⟩ is
       [e] (``parler``, ``boulanger``) and the 2pl ⟨-ez⟩ is [e]
@@ -1732,6 +1743,53 @@ class LanguageSpec:
       /ʃəs/, ⟨-tial⟩ → /ʃəl/ — palatalization of the stem-final coronal
       before the ``-ion`` suffix (Chomsky & Halle 1968 §4 *The Sound
       Pattern of English*; surface values per Wells 2008 LPD).
+    * **Morphologically ambiguous ending realisations, exposed for
+      downstream rescoring.** The reference case is French verbal
+      ⟨-ent⟩: the 3PL inflection is mute (*ils parlent* [paʁl]) while
+      the noun/adjective ⟨-ent⟩ is [ɑ̃] (*vent*, *cent*, *moment*)
+      (Fouché 1959, *Traité de prononciation française*; Tranel 1987 §3;
+      Divay & Vitale 1997 for the same ending as the standard worked
+      example of a G2P rule that needs part of speech). The two readings
+      are told apart by part of speech and by nothing orthographic.
+
+      **o2i does not resolve it, and does not accept a POS tag as an
+      input** (owner ruling; ``AGENTS.md`` §4 and §6). Part of speech
+      belongs to the downstream rescorer. What this layer owes instead
+      is that the unchosen reading still EXISTS in the lattice, because
+      a ranking error is downstream-fixable and a coverage hole is not.
+      Before this field accepted candidate lists, [paʁl] was absent from
+      ``word_candidates("parlent")`` at every *k* and every beam width —
+      no rescorer, however good, could recover it.
+
+      An ambiguous ending is declared as an **ordered candidate list** —
+      the discipline :attr:`graphemes` and :attr:`positional_graphemes`
+      already follow, and of which a single-valued ending was the
+      outlier::
+
+          "grammatical_endings": {"ent": [null, ""], "ment": [null]}
+
+      Element 0 is the rank-1 realisation; ``null`` there means "rank 1
+      is whatever the grapheme tables already produce". That is the
+      shape French uses, because ⟨-ent⟩'s nasal reading is ALREADY what
+      nasal ⟨en⟩ + silent ⟨t⟩ yields, so deferring keeps every current
+      1-best AND every current candidate ordering byte-identical while
+      the ending contributes only the missing mute reading. Elements
+      1..n are lower-ranked licit readings, costed by rank exactly as an
+      ordered grapheme list is (:mod:`orthography2ipa.weights`), and
+      they reach :meth:`~orthography2ipa.g2p.G2P.word_candidates`,
+      oracle@k and any ``RescorerPlugin``. A one-element list of a
+      string is exactly equivalent to that string, and ``[null]``
+      declares an ending that is NOT ambiguous — its only effect is
+      longest-match shielding, which is how French ⟨-ment⟩ keeps the
+      adverb class off ⟨-ent⟩.
+
+      Ordering the list is itself a claim. For ⟨-ent⟩ the
+      frequency-honest order (nasal first) is the type-count-dishonest
+      one — 3873 gold-mute types against 287 nasal — and the nasal
+      reading keeps rank 1 because this library feeds TTS, where type
+      counts do not price a mispronounced *vent*. Oracle@k rises; 1-best
+      does not move, by construction. That asymmetry is the intended
+      shape and must not be read as a win on a 1-best number.
 
     Keys are lowercase orthographic endings, matched only at the word's
     *effective* end — the last grapheme tokens, or the last tokens before

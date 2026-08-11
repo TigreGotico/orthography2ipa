@@ -2644,7 +2644,8 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
 
 
 def evaluate_words_oracle(pairs, lang: str, strip_stress: bool, broad: bool,
-                          oracle_ks: Sequence[int] = ORACLE_KS):
+                          oracle_ks: Sequence[int] = ORACLE_KS,
+                          expose_ambiguous_endings: bool = False):
     """:func:`evaluate_words` plus the top-k oracle PER.
 
     One scoring loop, one normalization, one distance function: passing
@@ -2652,11 +2653,28 @@ def evaluate_words_oracle(pairs, lang: str, strip_stress: bool, broad: bool,
     byte-identical to the pre-oracle harness. Read :class:`OracleResult`
     for what the oracle numbers may and may not be used for.
 
+    ``expose_ambiguous_endings`` defaults to **False**, which is the
+    board's convention: injected alternatives stay out of the oracle
+    columns (see the ``G2P`` call below). Pass ``True`` only to measure
+    the injected movement itself — the separate reachability number that
+    docs/benchmarks.md requires to be reported under its own heading and
+    never folded into ranking error. It cannot change the 1-best numbers.
+
     Returns ``(n, covered, pers, per, wer, oracle_or_None)``.
     """
     from orthography2ipa import G2P
 
-    engine = G2P(lang)
+    # ``expose_ambiguous_endings=False``: the board's oracle columns are a
+    # RANKING diagnostic (``PER - Oracle@k`` is defined as ranking error),
+    # and a deliberately injected alternative — a list-valued
+    # ``grammatical_endings`` entry — moves that gap by construction, since
+    # adding candidates to a beam can only lower an oracle. Scoring with
+    # them on would let any spec inflate its own headroom by declaring more
+    # alternatives. The injected movement is real and worth reporting, but
+    # as REACHABILITY and under its own heading: see docs/benchmarks.md,
+    # "Injected alternatives do not count as ranking error". 1-best is
+    # identical either way, so the PER columns are unaffected.
+    engine = G2P(lang, expose_ambiguous_endings=expose_ambiguous_endings)
     # gold sets may carry several valid transcriptions per word
     # (dialect variants); score against all, keep the best
     refs: Dict[str, List[str]] = {}
@@ -2810,9 +2828,38 @@ def _quality_tier(lang: str) -> Optional[str]:
         return None
 
 
+def _injected_alternatives(lang: str, exposed: bool) -> List[str]:
+    """The injected alternatives this row's oracle EXCLUDED, or ``[]``.
+
+    ``["<code> <ending>", ...]`` for every list-valued (ambiguous)
+    ``grammatical_endings`` entry in *lang*'s spec — the readings the
+    spec deliberately injects into the beam for a downstream rescorer.
+
+    ``exposed`` is the ``expose_ambiguous_endings`` value the row was
+    actually SCORED with, and it is a parameter rather than an assumption
+    on purpose. The field is a claim about this measurement ("these
+    readings are not in these numbers"), not about the spec, so when the
+    scoring ran with exposure ON there is nothing to claim and the list
+    is empty. Deriving it from the spec alone let the field keep
+    asserting an exclusion that had stopped happening — which is exactly
+    the failure a provenance field exists to prevent."""
+    if exposed:
+        return []
+    try:
+        from orthography2ipa import get
+        spec = get(lang)
+    except Exception:
+        return []
+    return [f"{spec.code} {ending}"
+            for ending, value in sorted(
+                (spec.grammatical_endings or {}).items())
+            if isinstance(value, list)]
+
+
 def build_scoreboard(limit: Optional[int], oracle: bool = False,
                      only_langs: Optional[Sequence[str]] = None,
                      only_datasets: Optional[Sequence[str]] = None,
+                     expose_ambiguous_endings: bool = False,
                      ) -> List[dict]:
     """Run every registered gold dataset/language combination and
     return deterministic scoreboard rows sorted by language tag.
@@ -2835,6 +2882,13 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
     only and would otherwise pay ~1.6x for columns they never read.
     Defaulting to off is what keeps a future call site from silently
     inheriting that cost.
+
+    ``expose_ambiguous_endings`` is the measurement convention, and the
+    published board uses the default **False** (see
+    :func:`evaluate_words_oracle`). It is threaded through rather than
+    hardcoded so the row's ``oracle_injected_alternatives`` field can be
+    derived from the flag the row was SCORED with — a provenance field
+    that asserts an exclusion the run did not perform is worse than none.
 
     ``only_langs`` / ``only_datasets`` restrict the run to a subset. The
     full scoreboard is ~10M scored words and takes hours, so a targeted
@@ -2860,6 +2914,7 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
             n, covered, pers, per, wer, oracle_res = evaluate_words_oracle(
                 pairs, lang, strip_stress=True, broad=True,
                 oracle_ks=ORACLE_KS if oracle else (),
+                expose_ambiguous_endings=expose_ambiguous_endings,
             )
             if covered == 0:
                 # A zero-coverage result is a broken loader, a dead upstream
@@ -2902,6 +2957,13 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 # row's "n" happens to be `covered`: 0 means the row's
                 # oracle columns carry no lattice signal.
                 rows[-1]["oracle_scored_words"] = oracle_res.scored_words
+                # Which injected alternatives this row's oracle EXCLUDES,
+                # so the exclusion travels with the numbers instead of
+                # living only in prose a later reader may not find.
+                injected = _injected_alternatives(
+                    lang, expose_ambiguous_endings)
+                if injected:
+                    rows[-1]["oracle_injected_alternatives"] = injected
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows
 
@@ -3017,6 +3079,21 @@ def write_scoreboard(rows: List[dict]) -> None:
         "readings, so quote `OracleX@k` for any \"the engine already "
         "knows the answer\" claim. It is phenomena-neutral either way: it "
         "says nothing about WHICH phonological phenomenon is wrong.",
+        "",
+        "Oracle cells EXCLUDE injected alternatives. A spec may declare a "
+        "`grammatical_endings` value as an ordered candidate list, which "
+        "deliberately puts a reading it cannot choose between into the beam "
+        "for a downstream rescorer. Adding candidates can only lower an "
+        "oracle, so scoring with them on would let a spec inflate its own "
+        "`PER − Oracle@k` headroom — the gap this board defines as RANKING "
+        "error — by declaring more alternatives. The run therefore scores "
+        "with them off, and a row whose language declares any records them "
+        "in `oracle_injected_alternatives` in "
+        "[`benchmarks/results.json`](../benchmarks/results.json). `PER` and "
+        "`Exact match` are unaffected either way: an injected alternative can "
+        "never reach rank 1. The movement they do cause is reported "
+        "separately, as reachability, in "
+        "[`docs/benchmarks.md`](benchmarks.md).",
         "",
         "Oracle cells read `·` when the row has **not been rescored** since "
         "the oracle columns were added (most rows: a full scoreboard is "
