@@ -181,7 +181,16 @@ KNOWN_DEAD_RULES = {
     # can never fire. (emission_inventory still lists the rule's /ø/ surface —
     # it unions dead-rule surfaces — so the claim is about targets, not the
     # derived inventory.) FR_AU_BEFORE_R is NOT dead here — crs keeps /o/.
-    "crs": {"FR_NASAL_y", "FR_NASAL_ə", "FR_EU_BEFORE_Z"},
+    # crs replaces fr-FR's grapheme table with its own 28-grapheme Kreol
+    # orthography, which has no ⟨ien⟩/⟨oin⟩ multigraph and no ⟨x⟩: the
+    # nasal-blocking rules for those two spellings have no /jɛ̃/ or /wɛ̃/
+    # to rewrite, and FR_E_CLOSED_MULTIGRAPH has neither a /ə/ target (see
+    # above) nor a single letter spelling a consonant cluster to close a
+    # syllable with. All four are live in fr-FR.
+    "crs": {"FR_NASAL_y", "FR_NASAL_ə", "FR_EU_BEFORE_Z",
+            "FR_NASAL_BLOCK_PREVOCALIC_IEN", "FR_NASAL_BLOCK_GEMINATE_IEN",
+            "FR_NASAL_BLOCK_PREVOCALIC_OIN", "FR_NASAL_BLOCK_GEMINATE_OIN",
+            "FR_E_CLOSED_MULTIGRAPH"},
     # jrb (Judeo-Arabic macrolanguage node) is metadata-only: graphemes is
     # intentionally empty pending a sourced Hebrew-script grapheme table (see
     # its `notes`), so no phoneme -- including /ʔ/ -- is in the inventory yet
@@ -262,10 +271,16 @@ KNOWN_DEAD_RULES = {
     # NL_CODA_DEVOICE_G's /ɣ/ target can't fire, and no 'i' slot means
     # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
     # target can't either.
-    "vls": {"NL_OPEN_SYLLABLE_A", "NL_OPEN_SYLLABLE_E", "NL_OPEN_SYLLABLE_I",
-            "NL_OPEN_SYLLABLE_O", "NL_OPEN_SYLLABLE_U",
-            "NL_CODA_DEVOICE_G", "NL_UNSTRESSED_TENSE_I_FINAL",
-            "NL_UNSTRESSED_TENSE_I_HIATUS"},
+    "vls": {"NL_CODA_DEVOICE_B", "NL_CODA_DEVOICE_D", "NL_CODA_DEVOICE_G",
+            "NL_CODA_DEVOICE_V", "NL_CODA_DEVOICE_Z",
+            "NL_UNSTRESSED_TENSE_I_FINAL", "NL_UNSTRESSED_TENSE_I_HIATUS",
+            "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_U",
+            "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y"},
+    # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
+    # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
+    # voiceless everywhere), so the /z/ member of nl's coda-devoicing series
+    # has no target here. The other members are live.
+    "af": {"NL_CODA_DEVOICE_Z"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)

@@ -298,7 +298,11 @@ def test_punctuation_always_lands_in_the_coda():
     before it."""
     assert syllables("de-DE", "Kaffee-Ersatz") == ["Kaf", "fee-", "Er", "satz"]
     assert syllables("fr-FR", "peut-être") == ["peut-", "ê", "tre"]
-    assert syllables("fr-FR", "d'accord") == ["d'ac", "cord"]
+    # ⟨cc⟩ is one grapheme spelling a single /k/ (French has no phonetic
+    # geminates — Fouché 1959; Tranel 1987 §2), so the /k/ is a whole onset
+    # and the break falls before it: d'a·ccord = /da.kɔʁ/. The apostrophe
+    # still lands in the coda, which is what this test is about.
+    assert syllables("fr-FR", "d'accord") == ["d'a", "ccord"]
 
 
 def test_punctuation_is_transparent_to_syllable_weight():

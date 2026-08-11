@@ -694,3 +694,152 @@ def test_fr_y_is_a_vowel_letter():
     assert _t("fr-FR", "cycle") == "sikl"
     assert _t("fr-FR", "cygne") == "siɲ"
     assert _t("fr-FR", "alicia") == "alisja"
+
+
+# ── espeak-differential wave: rules found by the differential, cited to source ──
+
+
+def test_fr_nasal_blocked_by_a_following_vowel_or_a_doubled_nasal():
+    """⟨ain aim ein ien oin⟩ spell a nasal vowel only when the nasal letter
+    closes the syllable.
+
+    fr-FR notes, NASAL VOWEL BLOCKING: "A vowel letter plus ⟨n⟩ or ⟨m⟩ spells
+    a nasal vowel only when the nasal letter closes the syllable — that is,
+    only when it is neither doubled nor followed by a vowel letter." Sources:
+    Tranel (1987) §3, Walker (2001), Fouché (1959).
+
+    Adversarial: both halves of the minimal pair are asserted, so a rule that
+    simply denasalised these multigraphs everywhere would fail on bien/ancien,
+    and the pre-fix engine (which nasalised everywhere) fails on the -aine/
+    -ienne column.
+    """
+    # blocked — the nasal letter is followed by a vowel letter
+    assert _t("fr-FR", "Africaine") == "afʁikɛn"
+    assert _t("fr-FR", "aimer") == "ɛme"
+    # blocked — the nasal letter is doubled
+    assert _t("fr-FR", "Adrienne") == "adʁjɛn"
+    assert _t("fr-FR", "anciennes") == "ɑ̃sjɛn"
+    # NOT blocked — a consonant or the word edge follows
+    assert _t("fr-FR", "bien") == "bjɛ̃"
+    assert _t("fr-FR", "ancien") == "ɑ̃sjɛ̃"
+
+
+def test_fr_no_paradigm_enumeration_for_3pl_desinences():
+    """A prior draft of this wave added ``aient/èrent/assent/issent/irent/
+    urent`` as single-valued ``grammatical_endings`` on the theory that they
+    were verb-only. Dropped: it enumerated paradigm cells as context-free
+    string endings (forbidden, see test_no_spec_enumerates_a_paradigm) and,
+    with no stem condition, bulldozed the stem vowel of any other verb whose
+    3PL happens to share the letters.
+
+    fr-FR notes, BARE ⟨-ent⟩ 3PL — DOWNSTREAM-RESCORER CEILING. Sources:
+    Divay & Vitale (1997) for why bare ⟨-ent⟩ needs part of speech.
+
+    Adversarial: pins the exact counter-cases the reviewer found — a proper
+    noun that happens to end in the same letters as ``-urent`` (Laurent),
+    and five verbs whose stems the dropped endings clobbered (courent,
+    meurent, paraissent, croissent, puissent). If any of these six endings
+    is ever re-added as a plain-string tail rewrite, this test must fail.
+    """
+    assert _t("fr-FR", "Laurent") == "lɔʁɑ̃"
+    assert _t("fr-FR", "courent") == "kuʁɑ̃"
+    assert _t("fr-FR", "meurent") == "møʁɑ̃"
+    assert _t("fr-FR", "paraissent") == "paʁɛsɑ̃"
+    assert _t("fr-FR", "croissent") == "kʁwasɑ̃"
+    assert _t("fr-FR", "puissent") == "pɥisɑ̃"
+    # honest residual: bare ⟨-ent⟩ still reads [ɑ̃] (Divay & Vitale 1997)
+    assert _t("fr-FR", "abattent") == "abatɑ̃"
+
+
+def test_fr_yod_from_il_after_a_vowel_letter():
+    """After a vowel letter ⟨il⟩/⟨ill⟩ is the glide [j] alone (l mouillé);
+    after a consonant letter it keeps [ij].
+
+    fr-FR notes, YOD FROM ⟨il⟩ AFTER A VOWEL LETTER. Sources: Fouché (1959),
+    Tranel (1987) §5, Walker (2001).
+
+    Adversarial: ``aile`` is the pre-vocalic counter-case — the ⟨l⟩ is an
+    ordinary onset there, so a blanket ⟨ail⟩ → [aj] would fail; ``fille``
+    guards the after-consonant reading the differential must not regress.
+    """
+    assert _t("fr-FR", "travail") == "tʁavaj"
+    assert _t("fr-FR", "soleil") == "sɔlɛj"
+    assert _t("fr-FR", "bouteille") == "butɛj"
+    assert _t("fr-FR", "feuille") == "fœj"
+    assert _t("fr-FR", "ailleurs") == "ajœʁ"
+    assert _t("fr-FR", "aile") == "ɛl"
+    assert _t("fr-FR", "fille") == "fij"
+    assert _t("fr-FR", "famille") == "famij"
+
+
+def test_fr_ti_assibilation_is_suffix_bound():
+    """⟨ti⟩ assibilated to [sj] in the Latinate suffixes only — not after
+    ⟨s⟩, and not in ordinary ⟨ti⟩ before a vowel.
+
+    fr-FR notes, ASSIBILATION OF ⟨ti⟩ IN LEARNED WORDS. Sources: Fouché
+    (1959), Tranel (1987) §3.
+
+    Adversarial: ``question``/``bastion`` and ``pitié`` are the two ways a
+    naive "⟨t⟩ → [s] before ⟨i⟩ + vowel" rule breaks.
+    """
+    assert _t("fr-FR", "nation") == "nasjɔ̃"
+    assert _t("fr-FR", "initial") == "inisjal"
+    assert _t("fr-FR", "partiel") == "paʁsjɛl"
+    assert _t("fr-FR", "patience") == "pasjɑ̃s"
+    assert _t("fr-FR", "question") == "kɛstjɔ̃"
+    assert _t("fr-FR", "bastion") == "bastjɔ̃"
+    assert _t("fr-FR", "pitié") == "pitje"
+
+
+def test_fr_ti_assibilation_is_word_final_not_grapheme():
+    """⟨tion stion tial tiel tience⟩ live in ``grammatical_endings``
+    (word-final-bound), not ``graphemes`` (context-free) — precedent:
+    en-GB.json's own ⟨tion stion tial stial⟩ entries.
+
+    fr-FR notes, ASSIBILATION OF ⟨ti⟩ IN LEARNED WORDS. Sources: Fouché
+    (1959), Tranel (1987) §3.
+
+    Adversarial: as ``graphemes`` keys these fired word-*internally* and
+    broke every word with ⟨-tionn-⟩ or ⟨-tional⟩ material after the suffix
+    (national, dictionnaire, fonctionnaire, traditionnel, révolutionnaire).
+    Pinned here at their correct outputs so a regression to grapheme keys
+    fails immediately.
+    """
+    assert _t("fr-FR", "national") == "natjɔnal"
+    assert _t("fr-FR", "dictionnaire") == "diktjɔnɛʁ"
+    assert _t("fr-FR", "fonctionnaire") == "fɔ̃ktjɔnɛʁ"
+    assert _t("fr-FR", "traditionnel") == "tʁaditjɔnɛl"
+    assert _t("fr-FR", "révolutionnaire") == "ʁevɔlytjɔnɛʁ"
+
+
+def test_fr_doubled_letters_and_sc_cc():
+    """French has no phonetic geminates; ⟨cc⟩ and ⟨sc⟩ soften before a front
+    vowel.
+
+    fr-FR notes, DOUBLE CONSONANT LETTERS AND ⟨sc⟩/⟨cc⟩. Source: Fouché
+    (1959); Tranel (1987) §2 for the absence of geminates.
+
+    Adversarial: ``accord``/``scandale`` are the non-softening halves, so a
+    rule that read ⟨cc⟩ as [ks] and ⟨sc⟩ as [s] unconditionally would fail.
+    """
+    assert _t("fr-FR", "Annick") == "anik"
+    assert _t("fr-FR", "Baalbeck") == "baalbɛk"
+    assert _t("fr-FR", "accent") == "aksɑ̃"
+    assert _t("fr-FR", "accord") == "akɔʁ"
+    assert _t("fr-FR", "Ascension") == "asɑ̃sjɔ̃"
+    assert _t("fr-FR", "scandale") == "skɑ̃dal"
+
+
+def test_fr_closed_syllable_e_before_a_cluster_letter():
+    """A single letter spelling a consonant CLUSTER closes the syllable by
+    itself, so ⟨e⟩ in front of it is [ɛ], not schwa.
+
+    fr-FR notes, FR_E_CLOSED_MULTIGRAPH: "A single letter spelling a
+    consonant CLUSTER closes the syllable by itself (⟨x⟩ = /ks/: Alexandre
+    [alɛksɑ̃dʁ])." Sources: Tranel (1987) §4 (loi de position), Walker (2001).
+
+    Adversarial: ``petit`` keeps its schwa — the ⟨t⟩ is one consonant and the
+    syllable stays open — so a rule that opened every ⟨e⟩ to [ɛ] fails.
+    """
+    assert _t("fr-FR", "Alexandre") == "alɛksɑ̃dʁ"
+    assert _t("fr-FR", "petit") == "pəti"
