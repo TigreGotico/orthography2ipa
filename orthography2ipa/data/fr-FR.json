@@ -442,7 +442,7 @@
       "notes": "une amie → resyllabification"
     }
   ],
-  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. Elision (le/la/je/de/que + vowel → l'/j'/d'/qu') is already resolved in standard orthography (words are written with the apostrophe), so it needs no additional G2P rule. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995).",
+  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. Elision (le/la/je/de/que + vowel → l'/j'/d'/qu') is already resolved in standard orthography (words are written with the apostrophe), so it needs no additional G2P rule. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. GLIDE FORMATION: word-internal ⟨i⟩ before another vowel letter glides to [j] (pied [pje], lion [ljɔ̃], fiacre [fjakʁ]) — positional_graphemes before_vowel branch, Tranel (1987) §5-6 on high-vowel gliding; the plain vowel-letter ⟨i⟩ (unlike the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs already carrying [j]) previously always surfaced as the full vowel. This is blocked (BEFORE_FINAL_VOWEL, an engine-level position, see orthography2ipa/types.py) when the following vowel is itself the word's last audible slot — word-final unmarked ⟨ie⟩ stays [i], not [j+deleted-e]: vie [vi], envie [ɑ̃vi], folie [fɔli], Algérie [alʒeʁi], and the plural vies [vi] (⟨s⟩ is a transparent, independently-silenced suffix grapheme, Tranel 1987 §3) — without this exclusion the glide rule wrongly produces a vowel-less [vj] for the entire closed class of French nouns ending in unstressed ⟨-ie⟩/⟨-ies⟩. ILL EXCEPTION CLASS: ⟨ill⟩ is [ij] by default (fille, famille, bastille) except in a closed irregular set where it stays [il] — ville, mille, tranquille (and tranquillement) and the place name Lille — handled via word_exceptions per Tranel (1987) §4.3's irregular-ill list, since the digraph mapping cannot express a lexical exception to its own default. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995). word_exceptions also carry Tranel 1987 §7's closed list of common words whose final ⟨s⟩ is exceptionally pronounced (fils [fis], os, ours, mars, maïs, tennis, sens...); regular final ⟨s⟩ stays silent, and ambiguous homographs (tous, plus) are deliberately excluded. MUTE ⟨-er⟩/⟨-ez⟩ ENDINGS: deliberately NOT modelled as grapheme keys. ENDING \"er\" is [e] — the infinitive, the -er/-ier adjective and the agent noun lose the final consonant of the grammatical ending (parler, manger, boulanger, and boulangers behind the transparent plural) (Fouché 1959, Traité de prononciation française; Tranel 1987 §3 on final-consonant elision in grammatical endings). ENDING \"ez\" is [e] — the 2pl inflection and the frozen nez/chez/assez, the same elision in the same environment (Fouché 1959; Tranel 1987 §3). Word-final ⟨-er⟩/[e] (parler) vs /ɛʁ/ (mer, hiver, super, loanwords) and ⟨-ez⟩/[e] (mangez, nez) are a MORPHOLOGICAL split — the mute reading belongs to the infinitive/2pl/agent-noun endings, not to the letter sequence — and morpheme chunks are forbidden grapheme keys (an ⟨er⟩ digraph makes ⟨s⟩ in pers-/vers- look intervocalic → *[pɛʁzɔn], and out-munches ⟨rr⟩ degemination → *[tɛʁʁ]); needs a morpheme-aware engine context (same follow-up as English suffix palatalization). The general word-final ⟨r⟩ silencing above covers the mute class at the letter level; the words whose final ⟨r⟩ IS pronounced (the mer/fer/hiver monosyllable-and-friends set plus English -er loanwords keeping /œʁ/~/ɛʁ/) are lexical exceptions carried in word_exceptions. FINAL ⟨r⟩ IS PRONOUNCED: the earlier word_final [\"\"] made silence the DEFAULT for every final ⟨r⟩, which is the inverse of the fact — French word-final ⟨r⟩ is [ʁ] (mer, bonjour, sur, par, hiver, amour, chanteur); it is mute only in the ⟨-er⟩ sequence (infinitives parler, -er/-ier nouns and adjectives boulanger, premier), and that case is already owned by the grammatical_endings ⟨er⟩→[e] rewrite, which runs after the beam and also absorbs the transparent plural ⟨-ers⟩ (Fouché 1959; Tranel 1987 §3). word_final is therefore [\"ʁ\", \"\"] — pronounced first, silence kept as the second beam branch for the monosyllabic-lexical residue. VERBAL ⟨-ent⟩ IS AMBIGUOUS AND IS EXPOSED, NOT DECIDED: the 3rd-person-plural inflection ⟨-ent⟩ is silent (ils parlent [paʁl], munissent [mynis]) while the nominal/adjectival ⟨-ent⟩ is [ɑ̃] (vent, dent, cent, argent, accent, talent, absent, serpent, Occident, Vincent). Verb-vs-noun is not decidable from spelling; it needs part-of-speech, which this layer does not have and (owner ruling) does not accept as an input — that decision belongs to a downstream rescorer. A rewriting ⟨ent⟩→[] entry is still NOT shipped: it wins 3844 wikipron/fr types against 254 losses, but the 254 are far commoner in running text than the inflected verb forms it wins, and this library feeds TTS; the counter-set is also open (Laurent, Florent, Clément), so it cannot go in word_exceptions. (NOTE, two different measurements, do not conflate them: 3844/254 is the ENGINE OUTCOME of the rewrite — types whose 1-best would move toward or away from gold if the rewrite shipped, so it depends on what the rest of the spec already gets right; 3873/287 below is a property of the GOLD ALONE — ⟨-ent⟩ types whose reference transcription is mute versus nasal, counted by string operations with no engine run. The two are close because the spec is mostly right on this class, not because they measure the same thing.) What IS shipped is the deferring candidate list \"ent\": [null, \"\"]. ENDING \"ent\" is [ɑ̃] or mute — both readings are attested for the same spelling, the mute one being the 3PL inflection and the nasal one the noun or adjective (Fouché 1959; Tranel 1987 §3; Divay & Vitale 1997, which uses this very ending as the standard worked example of a grapheme-to-phoneme rule that requires part of speech). Element 0 is null, so rank 1 stays exactly what nasal ⟨en⟩ + silent ⟨t⟩ already produced (every 1-best byte-identical, vent [vɑ̃], moment [mɔmɑ̃], comment [kɔmɑ̃] unchanged), and the mute reading is added below rank 1 — measured at rank 4 for parlent, munissent and vent, rank 5 for moment, dorment and argent, i.e. below the ⟨e⟩ and final-⟨t⟩ branches the beam already carried. LATTICE-HOLE EVIDENCE for \"ent\" (the admissibility bar in SCHEMA.md, 0-in-top-k on gold): on a 300-word random sample of the gold-mute ⟨-ent⟩ class from wikipron/fr (fra_latn_broad), the gold mute reading appeared in word_candidates 0 times out of 300 anywhere in the top 10 before this entry, and 192 times out of 300 after it; exact@1 is 0 before and 0 after, because o2i does not decide. [paʁl] was in no beam at any width, so no downstream rescorer could ever recover it — a coverage hole, not a ranking error. ORDERING BASIS for \"ent\": rank 1 defers to the base path, i.e. to [ɑ̃], the majority reading in running text — the nominal/adjectival class (vent, dent, cent, argent) is far commoner in text than the inflected verb forms, even though gold TYPES run 3873 mute against 287 nasal, and this library feeds TTS, where type counts do not price a mispronounced vent. The mute alternative is gold-attested for the 3PL class and cited (Fouché 1959; Tranel 1987 §3; Divay & Vitale 1997). LOI DE POSITION for ⟨eu⟩: [ø] in an open syllable (heureux, peu, jeu), [œ] in a closed one (fleur, chanteur, jeune) — Fougeron & Smith (1993), loi de position; Tranel (1987) ch. 4. Expressed with the OPEN_SYLLABLE/CLOSED_SYLLABLE positions. The same law is NOT declared for ⟨o⟩ and ⟨e⟩: aperture is decided on the ORTHOGRAPHIC syllable, and French's silent final consonants make that proxy wrong exactly where those two vowels need it (⟨eux⟩ and ⟨o⟩ + silent coda look closed and open respectively when they are not); measured on wikipron/fr the ⟨o⟩ rule cost 4.4 PER points, so it is left out rather than shipped half-right. 2026-08 LOANWORD -ER SNAPSHOT EXTENSION: the English-loan -er/[œʁ]~[ɛʁ] carve-out above (leader, cracker, container, poker, revolver) is a documented instance of an OPEN class, not a closed one — French keeps borrowing English agent-noun -er coinages on an ongoing basis, and proper nouns (surnames, place names) ending -er with gold /ʁ/ are unboundedly open by definition. A full closed-set fix via word_exceptions is therefore not possible without violating the closed-lexical-class rule (AGENTS.md §2). What IS shipped: 56 additional word_exceptions entries — every wikipron fr gold type ending ⟨-er⟩ with a SINGLE, unambiguous gold /ʁ/-final transcription (disagreement across wikipron entries for the same word, e.g. quaker, hamburger, manager, master, panzer, was treated as evidence of genuine synchronic variation and those words were deliberately left OUT rather than picking a transcription arbitrarily). A further 47 candidate types were audited against gold and dropped for a distinct, more specific reason than plain variation: their gold has BOTH an [e]-final and an [œʁ]/[ɛʁ]-final transcription, and the two readings are not free variation of the same word but a VERB–NOUN HOMOGRAPH split — mute-⟨er⟩ infinitive (and 2pl/agent-noun) morphology already covered by the grammatical_endings ⟨er⟩→[e] rewrite above versus the loanword agentive -er nominal reading this carve-out targets. Some are native French verbs (porter, reporter, poster, cacher, ranger, fier); most are English loan STEMS that French freely verbs with its own -er infinitive morphology the moment they are borrowed — denominal-verb formation from an English -er noun/agent borrowing (dealer/\"to deal drugs\", hacker/\"to hack\", zapper, spammer, streamer, scanner, mixer…) — so the SAME orthographic type is simultaneously a noun keeping /œʁʕ/ɛʁ/ (\"un dealer\") and a verb infinitive taking [e] (\"dealer de la drogue\"). A context-free lexical override in word_exceptions cannot express that split: it would silently mispronounce every verbal use of these types. This is a real ceiling of the whole-word-override layer, not an oversight — verb-vs-noun for this class needs part-of-speech, the same gap already documented above for the VERBAL ⟨-ent⟩ class, and is left to a morphology-aware pass / the ambiguity lattice and downstream rescorers rather than resolved by guessing one reading here. The 47 excluded types (with both gold readings) are: biker, bomber, boxer, cacher, carter, clipper, cruiser, dealer, designer, destroyer, driver, ester, fier, flipper, flyer, follower, gaffer, hacker, hamster, kicker, loader, loser, mixer, outsider, pointer, porter, poster, pranker, putter, quinter, ranger, rapper, recorder, reporter, scanner, skipper, spammer, spoiler, sprinter, starter, streamer, supporter, taler, trader, tuner, tweeter, zipper. Proper nouns (Jupiter, Esther, Jennifer, Khmer, Vancouver, Christopher, Miller, Niger, Roger...) were also deliberately left OUT of this pass — the onomastic class is open by construction and no finite word_exceptions list will ever be complete for it; they remain a documented, not a silently missed, gap. This is an ATTESTED-IN-THIS-GOLD-SNAPSHOT extension of the existing carve-out, not a claim of exhaustive coverage: new unambiguous English -er loans and new proper nouns will keep needing individual word_exceptions additions as they are attested in future gold, and the 47 homograph types remain a known gap for whichever future layer gets part-of-speech.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -455,6 +455,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "divay_vitale1997",
+      "author": "Divay, M. & Vitale, A.J.",
+      "year": 1997,
+      "title": "Algorithms for grapheme-phoneme translation for English and French: applications for database searches and speech synthesis",
+      "publisher": "Computational Linguistics 23(4), 495-523",
+      "url": null,
+      "pages": "495-523",
+      "notes": "French verbal \u27e8-ent\u27e9 as the standard worked example of a grapheme-to-phoneme rule that requires part of speech; the citation for declaring the ending ambiguous rather than resolved."
     },
     {
       "id": "tranel1987",
@@ -505,11 +515,20 @@
     "https://fr.wikipedia.org/wiki/Prononciation_du_fran%C3%A7ais"
   ],
   "positional_graphemes": {
-    "c": {
-      "before_e": [
-        "s"
+    "i": {
+      "before_final_vowel": [
+        "i"
       ],
-      "before_i": [
+      "before_vowel": [
+        "j",
+        "i"
+      ],
+      "default": [
+        "i"
+      ]
+    },
+    "c": {
+      "before_front_vowel": [
         "s"
       ],
       "default": [
@@ -517,10 +536,7 @@
       ]
     },
     "g": {
-      "before_e": [
-        "ʒ"
-      ],
-      "before_i": [
+      "before_front_vowel": [
         "ʒ"
       ],
       "default": [
@@ -581,6 +597,7 @@
     },
     "r": {
       "word_final": [
+        "ʁ",
         ""
       ],
       "default": [
@@ -597,9 +614,43 @@
         "e",
         "ɛ"
       ]
+    },
+    "eu": {
+      "open_syllable": [
+        "ø",
+        "œ"
+      ],
+      "closed_syllable": [
+        "œ",
+        "ø"
+      ],
+      "default": [
+        "ø",
+        "œ"
+      ]
     }
   },
+  "grammatical_endings": {
+    "er": "e",
+    "ez": "e",
+    "ent": [null, ""]
+  },
   "word_exceptions": {
+    "mers": "mɛʁ",
+    "fers": "fɛʁ",
+    "chers": "ʃɛʁ",
+    "vers": "vɛʁ",
+    "hivers": "ivɛʁ",
+    "enfers": "ɑ̃fɛʁ",
+    "cancers": "kɑ̃sɛʁ",
+    "amers": "amɛʁ",
+    "cuillers": "kɥijɛʁ",
+    "revolvers": "ʁevɔlvɛʁ",
+    "leaders": "lidœʁ",
+    "crackers": "kʁakœʁ",
+    "containers": "kɔ̃tɛnɛʁ",
+    "pokers": "pɔkɛʁ",
+    "supers": "sypɛʁ",
     "le": "lə",
     "de": "də",
     "que": "kə",
@@ -608,7 +659,104 @@
     "se": "sə",
     "je": "ʒə",
     "me": "mə",
-    "te": "tə"
+    "te": "tə",
+    "ville": "vil",
+    "mille": "mil",
+    "tranquille": "tʁɑ̃kil",
+    "tranquillement": "tʁɑ̃kilmɑ̃",
+    "lille": "lil",
+    "fils": "fis",
+    "os": "ɔs",
+    "ours": "uʁs",
+    "mars": "maʁs",
+    "maïs": "mais",
+    "tennis": "tenis",
+    "virus": "viʁys",
+    "bus": "bys",
+    "autobus": "otobys",
+    "campus": "kɑ̃pys",
+    "cactus": "kaktys",
+    "atlas": "atlas",
+    "hélas": "elɑs",
+    "jadis": "ʒadis",
+    "gratis": "ɡʁatis",
+    "oasis": "ɔazis",
+    "sens": "sɑ̃s",
+    "lys": "lis",
+    "métis": "metis",
+    "mer": "mɛʁ",
+    "fer": "fɛʁ",
+    "cher": "ʃɛʁ",
+    "ver": "vɛʁ",
+    "hier": "jɛʁ",
+    "hiers": "jɛʁ",
+    "hiver": "ivɛʁ",
+    "enfer": "ɑ̃fɛʁ",
+    "cancer": "kɑ̃sɛʁ",
+    "super": "sypɛʁ",
+    "amer": "amɛʁ",
+    "cuiller": "kɥijɛʁ",
+    "revolver": "ʁevɔlvɛʁ",
+    "leader": "lidœʁ",
+    "cracker": "kʁakœʁ",
+    "container": "kɔ̃tɛnɛʁ",
+    "poker": "pɔkɛʁ",
+    "affenpinscher": "afənpinʃəʁ",
+    "afrikander": "afʁikɑ̃dɛʁ",
+    "afrikaner": "afʁikanɛʁ",
+    "angledozer": "ɑ̃ɡlədozœʁ",
+    "aster": "astɛʁ",
+    "blazer": "blazœʁ",
+    "bloomer": "blumœʁ",
+    "boomer": "bumœʁ",
+    "bécher": "beʃɛʁ",
+    "casher": "kaʃɛʁ",
+    "cathéter": "katetɛʁ",
+    "charter": "ʃaʁtɛʁ",
+    "cover": "kɔvœʁ",
+    "dragster": "dʁaɡstœʁ",
+    "drummer": "dʁœmœʁ",
+    "décaweber": "dekavebɛʁ",
+    "déciweber": "desivebɛʁ",
+    "freezer": "fʁizœʁ",
+    "führer": "fyʁœʁ",
+    "gangster": "ɡɑ̃ɡstɛʁ",
+    "gewurztraminer": "ɡəvyʁtstʁaminəʁ",
+    "greeter": "ɡʁitœʁ",
+    "hipster": "ipstœʁ",
+    "hurdler": "œʁdlœʁ",
+    "hyper": "ipɛʁ",
+    "imper": "ɛ̃pɛʁ",
+    "inter": "ɛ̃tɛʁ",
+    "karcher": "kaʁʃɛʁ",
+    "kascher": "kaʃɛʁ",
+    "laser": "lazɛʁ",
+    "liber": "libɛʁ",
+    "mégaweber": "meɡavebɛʁ",
+    "outremer": "utʁəmɛʁ",
+    "peacekeeper": "piskipœʁ",
+    "polder": "pɔldɛʁ",
+    "pétaweber": "petavebɛʁ",
+    "queer": "kwiʁ",
+    "roller": "ʁolœʁ",
+    "scooter": "skutœʁ",
+    "sniper": "snajpœʁ",
+    "snooker": "snukœʁ",
+    "speaker": "spikœʁ",
+    "spencer": "spɛnsɛʁ",
+    "sphincter": "sfɛ̃ktɛʁ",
+    "stathouder": "statudɛʁ",
+    "stripper": "stʁipœʁ",
+    "subwoofer": "səbwufəʁ",
+    "toner": "tɔnɛʁ",
+    "téraweber": "teʁavebɛʁ",
+    "vomer": "vɔmɛʁ",
+    "water": "watɛʁ",
+    "weber": "vebɛʁ",
+    "webmaster": "wɛbmastœʁ",
+    "winchester": "wintʃɛstɛʁ",
+    "woofer": "wufœʁ",
+    "éther": "etɛʁ"
   },
   "timespan": {
     "start_year": 1300,
@@ -681,6 +829,62 @@
       "syllable_position": "coda",
       "notes": "the coda nasal is absorbed into the nasal vowel it created; keyed on the nasal vowel so it cannot bleed the rule that makes it",
       "preceded_by": "vowel"
+    },
+    {
+      "id": "FR_E_CLOSED_CLUSTER",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by": "consonant",
+      "followed_by_2": "consonant",
+      "notes": "⟨e⟩ in a closed syllable is [ɛ], not schwa (Tranel 1987 §4: loi de position — Abel [abɛl], Albert [albɛʁ], mer, sel); e-caduc only occurs in open syllables. Two conditions cover closure: before a consonant cluster, and before a word-final consonant."
+    },
+    {
+      "id": "FR_E_CLOSED_FINAL",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by": "consonant",
+      "followed_by_2": "word_boundary",
+      "notes": "⟨e⟩ in a closed syllable is [ɛ], not schwa (Tranel 1987 §4: loi de position — Abel [abɛl], Albert [albɛʁ], mer, sel); e-caduc only occurs in open syllables. Two conditions cover closure: before a consonant cluster, and before a word-final consonant."
+    },
+    {
+      "id": "FR_O_FINAL_OPEN",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "word_final": true,
+      "notes": "Loi de position for /ɔ/ (Tranel 1987 §3): mid back vowel is close [o] in a word-final open syllable (mot [mo], numéro) and before /z/ (rose [ʁoz], chose); open [ɔ] in other closed syllables (bord, botte)."
+    },
+    {
+      "id": "FR_O_BEFORE_Z",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "followed_by_phoneme": [
+        "z"
+      ],
+      "notes": "Loi de position for /ɔ/ (Tranel 1987 §3): mid back vowel is close [o] in a word-final open syllable (mot [mo], numéro) and before /z/ (rose [ʁoz], chose); open [ɔ] in other closed syllables (bord, botte)."
     }
-  ]
+  ],
+  "vowel_graphemes": [
+    "y"
+  ],
+  "constrain_onsets": true
 }
