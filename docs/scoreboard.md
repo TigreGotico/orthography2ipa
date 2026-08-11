@@ -253,7 +253,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | fi | wikipron | 168808 | 0.0184 | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
 | fo | wikipron | 2957 | 0.4597 | · | · | · | · | [0.4533, 0.4665] | 0.0206 | research | crowd-scraped |
 | fpe | wikipron | 261 | 0.3650 | · | · | · | · | [0.3509, 0.3795] | 0.0000 | research | crowd-scraped |
-| fr | wikipron | 85495 | 0.0891 | 0.0726 | 0.0668 | 0.6613 | 0.6706 | [0.0881, 0.0901] | 0.6179 | research | crowd-scraped |
+| fr | wikipron | 85495 | 0.0888 | 0.0723 | 0.0665 | 0.6619 | 0.6712 | [0.0878, 0.0898] | 0.6185 | research | crowd-scraped |
 | fr-FR | ipa_childes | 9443 | 0.1177 | · | · | · | · | [0.1138, 0.1219] | 0.6278 | research | espeak-derived |
 | fr-FR | ipadict | 245714 | 0.0905 | · | · | · | · | [0.0899, 0.0910] | 0.6173 | research | machine-generated |
 | fro | wikipron | 663 | 0.2985 | · | · | · | · | [0.2833, 0.3141] | 0.1237 | skeleton | crowd-scraped |

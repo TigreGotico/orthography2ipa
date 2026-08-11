@@ -643,6 +643,30 @@ def test_fr_mute_er_ez_is_morphology_not_orthography():
     assert _t("fr-FR", "vies") == "vi"
 
 
+def test_fr_loanword_er_snapshot_extension():
+    """2026-08 word_exceptions extension of the #807 English-loan ⟨-er⟩
+    carve-out (leader, cracker, container, poker, revolver).
+
+    The class is OPEN (French keeps borrowing English agent-noun -er
+    coinages, and proper nouns ending -er are unboundedly open), so this
+    is deliberately NOT a claim of exhaustive coverage — see the fr-FR
+    notes' "2026-08 LOANWORD -ER SNAPSHOT EXTENSION" paragraph. Only
+    wikipron fr gold types with a single, unambiguous /ʁ/-final
+    transcription were added; words with disagreeing wikipron variants
+    (quaker, hamburger, manager, master, panzer...), verb-noun homographs
+    whose gold has BOTH an [e]-final (infinitive/agent-noun morphology)
+    and an [œʁ]/[ɛʁ]-final (loanword nominal) reading (biker, hacker,
+    tuner, dealer, streamer, spammer...), and all proper nouns (Jupiter,
+    Esther, Jennifer, Khmer, Vancouver...) were deliberately left out as
+    a documented, not silently missed, gap.
+    """
+    assert _t("fr-FR", "laser") == "lazɛʁ"
+    assert _t("fr-FR", "gangster") == "ɡɑ̃ɡstɛʁ"
+    assert _t("fr-FR", "cover") == "kɔvœʁ"
+    assert _t("fr-FR", "stripper") == "stʁipœʁ"
+    assert _t("fr-FR", "webmaster") == "wɛbmastœʁ"
+
+
 def test_fr_y_is_a_vowel_letter():
     """⟨y⟩ is declared a vowel letter for French (``vowel_graphemes: ["y"]``),
     overriding the engine's closed Latin vowel-letter inventory (which
