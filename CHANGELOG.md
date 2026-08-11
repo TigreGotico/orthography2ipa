@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.65.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.65.2a1) (2026-08-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.1a1...7.65.2a1)
+
+**Merged pull requests:**
+
+- fix: state RP non-rhoticity and four more English spelling-to-sound rules [\#846](https://github.com/TigreGotico/orthography2ipa/pull/846) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.65.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.65.1a1) (2026-08-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.0a1...7.65.1a1)
@@ -673,25 +681,24 @@
 
 ## [7.35.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.1a1) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.1a1)
 
 **Merged pull requests:**
 
 - fix: register the Gulf-of-Guinea glottolog codes missing from the snapshot [\#675](https://github.com/TigreGotico/orthography2ipa/pull/675) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.0a1)
-
 ## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.0a2)
+
+## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a1)
 
 **Merged pull requests:**
 
 - data: graph-hygiene — cited substrate/superstrate/adstrate roles for jam, fpe, gul, lou [\#665](https://github.com/TigreGotico/orthography2ipa/pull/665) ([JarbasAl](https://github.com/JarbasAl))
 - feat: add Gulf-of-Guinea / Kwa-Bantu-Mande language specs \(kri, vai, kpe, bas, bss, dua, ewo, crs\) [\#664](https://github.com/TigreGotico/orthography2ipa/pull/664) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add Haryanvi, Chhattisgarhi, Dogri, Rajasthani, Garo, Mizo, Jingpho, Hakha Chin, Tedim Chin specs [\#658](https://github.com/TigreGotico/orthography2ipa/pull/658) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.34.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.34.1a1) (2026-08-02)
 
@@ -799,15 +806,15 @@
 
 ## [7.24.0a9](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a9) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a7...7.24.0a9)
-
-## [7.24.0a7](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a7) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a8...7.24.0a7)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a8...7.24.0a9)
 
 ## [7.24.0a8](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a8) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a6...7.24.0a8)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a7...7.24.0a8)
+
+## [7.24.0a7](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a7) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a6...7.24.0a7)
 
 ## [7.24.0a6](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a6) (2026-07-16)
 
