@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.65.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.65.0a1) (2026-08-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.5a1...7.65.0a1)
+
+**Merged pull requests:**
+
+- feat\(engine\): ambiguous grammatical endings enter the lattice [\#844](https://github.com/TigreGotico/orthography2ipa/pull/844) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.64.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.5a1) (2026-08-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.4a2...7.64.5a1)
@@ -654,7 +662,6 @@
 **Merged pull requests:**
 
 - feat: add medieval-modern Hellenic-branch language specs \(tsd, cpg, yej, gmy, ecr, ecy\) [\#667](https://github.com/TigreGotico/orthography2ipa/pull/667) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add turkic-uralic language specs \(kum, nog, kjh, cjs, chm, lud\) [\#656](https://github.com/TigreGotico/orthography2ipa/pull/656) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.35.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.1a1) (2026-08-02)
 
