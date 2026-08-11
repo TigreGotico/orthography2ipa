@@ -671,6 +671,53 @@ class TestDutchBeatEspeakWave:
         assert self._t("verhaal") == "ˈvɛrɦaːl"
         assert self._t("gedaan") == "ˈɣeːdaːn"
 
+    def test_heteromorphemic_tj_stays_two_segments(self):
+        """⟨tj⟩ is not a palatalized/affricate single segment: the
+        productive diminutive suffix -tje/-etje attaches after a
+        stem-final plosive with the stem's coda /t/ and the suffix's
+        onset /j/ kept distinct across the morpheme boundary (Booij
+        1995, ch. 2-3), and word-initial ⟨tj-⟩ placenames are [tj] too
+        -- WikiPron gold: katje [kɑtjə], potje [pɔtjə], tjalk [tjɑlk],
+        tjonge [tjoːŋə]."""
+        assert self._t("katje") == "ˈkɑtjə"
+        assert self._t("potje") == "ˈpɔtjə"
+        assert self._t("tjalk") == "ˈtjɑlk"
+        assert self._t("tjonge") == "ˈtjoːŋə"
+
+    def test_tj_does_not_trigger_open_syllable_lengthening(self):
+        """Regression: the old coalesced ⟨tj⟩ digraph counted as a
+        single intervocalic consonant, wrongly lengthening the stem
+        vowel of -tje diminutives (witje -> *[ʋiːtʲə]). Since ⟨tj⟩ is
+        phonemically two segments (a closed syllable: wit-je, not
+        wi-tje), the stem vowel must stay short: witje [ʋɪtjə], not
+        [ʋiːtʲə]."""
+        assert self._t("witje") == "ˈʋɪtjə"
+        assert self._t("achtjarig") == "ˈɑxtjaːrɪx"
+
+    def test_tautomorphemic_tj_loanwords_pinned_as_exceptions(self):
+        """A small closed set of Malay/Indonesian loanwords and
+        Frisian-influenced placenames keep tautomorphemic ⟨tj⟩ as the
+        coalesced affricate [tʃ] -- the opposite of the general (now
+        majority-correct) [tj] rule above. Pinned in word_exceptions
+        per AGENTS.md 2 (closed irregular set), not the rule layer,
+        since generalizing [tʃ] would break the diminutive/placename
+        majority. WikiPron gold: tjap [tʃɑp], tjokvol [tʃɔkfɔl],
+        Tjerkgaast [tʃɛrkɣaːst]."""
+        assert self._t("tjap") == "ˈtʃɑp"
+        assert self._t("tjokvol") == "ˈtʃɔkfɔl"
+        assert self._t("Tjerkgaast") == "ˈtʃɛrkɣaːst"
+
+    def test_ambiguous_tjalk_and_ketjap_left_on_general_rule(self):
+        """Guard: 'tjalk' is genuinely ambiguous at the same lowercased
+        key -- placename 'Tjalk' is gold [tj], common noun 'tjalk'
+        (sailing barge) is gold [tʃ] -- so no override can satisfy
+        both senses; it stays on the general [tj] rule. 'ketjap' has
+        both [tj] and [tʃ] as attested WikiPron variants, so the
+        general [tj] rule already scores a match without an
+        exception."""
+        assert self._t("tjalk") == "ˈtjɑlk"
+        assert self._t("ketjap") == "ˈkɛtjɑp"
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # BELGIAN DUTCH / FLEMISH  (nl-BE)

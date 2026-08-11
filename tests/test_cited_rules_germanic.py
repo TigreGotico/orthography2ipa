@@ -126,12 +126,6 @@ def test_en_gb_final_e_function_word_exceptions():
     assert _t("en-GB", "she") == "ʃiː"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982): RP is non-rhotic, /r/ deleted word-finally; engine now "
-    "produces [kɑːɹ] for car and [kɑːɹt] for cart — the coda /r/ is retained, so "
-    "RP has regressed to rhotic",
-)
 def test_en_gb_non_rhotic():
     """NON-RHOTIC: /r/ is deleted before a consonant and word-finally.
 
@@ -146,19 +140,13 @@ def test_en_gb_non_rhotic():
     assert _t("en-GB", "rose").startswith("ɹ")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -tion → [ʃən]; engine now produces [nætɪɒn] for "
-    "nation — the ⟨tion⟩ n-gram is gone, so the ending is spelled out t-i-o-n "
-    "(regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tion_family_sh():
     """TION/SION FAMILY: -tion and -ssion → [ʃən].
 
-    en-GB notes: "TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən]
-    (mission, passion; matched via the dedicated `ssion` grapheme so
-    maximal-munch tokenization picks it over `sion`)" (Cruttenden 2014
-    spelling-to-sound correspondence rules).
+    Carried by `grammatical_endings` — suffix morphology, matched at the
+    effective word end, not a grapheme n-gram (Cruttenden 2014
+    spelling-to-sound correspondence rules; Chomsky & Halle 1968 on the
+    palatalization before `-ion`).
     """
     assert _t("en-GB", "nation").endswith("ʃən")
     assert _t("en-GB", "mission").endswith("ʃən")
@@ -166,17 +154,17 @@ def test_en_gb_tion_family_sh():
 
 @pytest.mark.xfail(
     strict=True,
-    reason="Cruttenden (2014): -sion → [ʒən]/[ʃən]; engine now produces [vɪzɪɒn] "
-    "for vision and [tɛnsɪɒn] for tension — the ⟨sion⟩ n-gram is gone, so the "
-    "ending is spelled out s-i-o-n (regression from dropping the enumerated n-grams)",
+    reason="Cruttenden (2014): -sion → [ʒən]/[ʃən]; the engine produces "
+    "[vɪzɪɒn] for vision and [tɛnsɪɒn] for tension. The split is conditioned on "
+    "the segment BEFORE the ending, and `grammatical_endings` carries no "
+    "preceding-segment condition, so the ending is spelled out s-i-o-n",
 )
 def test_en_gb_sion_voiced_after_vowel():
     """-sion → [ʒən] after a vowel, [ʃən] after a consonant.
 
-    en-GB notes: "-sion -> [ʒən] after a vowel (vision, division, decision) or
-    [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion`
-    entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context"
-    (Cruttenden 2014).
+    en-GB notes: "the ⟨-sion⟩ split ([ʒən] after a vowel, [ʃən] after a
+    consonant) needs a preceding-segment condition on `grammatical_endings`,
+    which the ending table does not carry" (Cruttenden 2014).
 
     A true minimal pair on the context, not the grapheme: vision vs tension.
     """
@@ -186,17 +174,12 @@ def test_en_gb_sion_voiced_after_vowel():
     assert _t("en-GB", "pension").endswith("ʃən")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -cial → [ʃəl], -cious → [ʃəs]; engine now produces "
-    "[spɛsɪæl] for special and [dɛlɪsɪaʊs] for delicious — the n-grams are gone, "
-    "so the endings are spelled out (regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tial_cial_and_cious_tious():
     """-tial/-cial → [ʃəl]; -cious/-tious → [ʃəs].
 
-    en-GB notes: "-tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014
-    spelling-to-sound correspondence rules)."
+    Same mechanism as -tion: `grammatical_endings` entries matched at the
+    effective word end (Cruttenden 2014 spelling-to-sound correspondence
+    rules; Wells 2008 LPD for the surface values).
     """
     assert _t("en-GB", "special").endswith("ʃəl")
     assert _t("en-GB", "delicious").endswith("ʃəs")
@@ -248,6 +231,173 @@ def test_en_gb_lot_vowel_is_rounded():
     Isolated on the nucleus: the ⟨o⟩ of lot and dog resolves to the rounded [ɒ].
     """
     assert _t("en-GB", "lot") == "lɒt"
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("car", "kɑː"),        # ɑːɹ, word-final
+    ("park", "pɑːk"),      # ɑːɹ, pre-consonantal
+    ("father", "fæðə"),    # əɹ
+    ("bird", "bɜːd"),      # ɜːɹ
+    ("north", "nɔːθ"),     # ɔːɹ
+    ("care", "kɛə"),       # ɛəɹ
+    ("beer", "bɪə"),       # ɪəɹ
+    ("fire", "faɪə"),      # aɪəɹ, word-final
+    ("flour", "flaʊə"),    # aʊəɹ
+    ("turn", "tɜːn"),      # ɜːɹ from ⟨ur⟩
+    ("tired", "taɪəd"),    # aɪəɹ, pre-consonantal
+])
+def test_en_gb_non_rhotic_covers_every_rhotic_nucleus(word, expected):
+    """NON-RHOTIC CODA /r/ applies to every rhotic nucleus, not just ⟨ar⟩.
+
+    en-GB notes: "RP keeps /r/ only before a vowel, so every rhotic nucleus
+    (ɑːɹ, ɜːɹ, ɔːɹ, əɹ, ɛəɹ, ɪəɹ, ʊəɹ, aɪəɹ, aʊəɹ, and bare ɹ) loses its [ɹ]
+    before a consonant and word-finally."
+    Wells (1982) vol. 1 §3.2.2; Cruttenden (2014) §8.7.
+    """
+    assert _t("en-GB", word) == expected
+
+
+def test_en_gb_linking_r_survives_before_a_vowel():
+    """The same spelling keeps [ɹ] when the ⟨r⟩ is prevocalic.
+
+    The complementary environment of the deletion rule above: RP is non-rhotic,
+    not r-less — /r/ survives before a vowel (Wells 1982 vol. 1 §3.2.2).
+    """
+    assert "ɹ" in _t("en-GB", "caring")
+    assert "ɹ" in _t("en-GB", "carry")
+    assert _t("en-GB", "rose").startswith("ɹ")
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("marry", "mæɹi"),
+    ("merry", "mɛɹi"),
+    ("mirror", "mɪɹɔː"),
+    ("hurry", "hʌɹi"),
+    ("sorry", "sɒɹi"),
+    ("spirit", "spɪɹɪt"),
+])
+def test_en_gb_prevocalic_r_takes_the_checked_vowel(word, expected):
+    """PREVOCALIC ⟨r⟩: the nucleus is the CHECKED vowel, not the long one.
+
+    en-GB notes: "where the ⟨r⟩ is the onset of the next syllable the nucleus
+    is the CHECKED vowel, not the long r-coloured one — marry [ˈmæɹi], merry
+    [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi]."
+    Wells (1982) vol. 1 §2.2.6; Carney (1994).
+    """
+    assert _t("en-GB", word) == expected
+
+
+def test_en_gb_prevocalic_r_shortening_needs_a_following_vowel():
+    """The complementary environment: word-final ⟨rr⟩ keeps the long nucleus.
+
+    ⟨Carr⟩ has no following vowel for the ⟨r⟩ to be an onset of, so the
+    checked-vowel rule must not fire and the nucleus stays [ɑː].
+    """
+    assert _t("en-GB", "carr") == "kɑː"
+
+
+def test_en_gb_goat_is_schwa_initial():
+    """GOAT = /əʊ/ in RP.
+
+    en-GB notes: "LOT = /ɒ/ (rounded); GOAT = /əʊ/."
+    Wells (1982) vol. 1–2; Roach (2004) JIPA.
+    """
+    assert _t("en-GB", "boat") == "bəʊt"
+    assert _t("en-GB", "toe") == "təʊ"
+
+
+def test_en_gb_word_final_vowel_letters():
+    """WORD-FINAL VOWEL LETTERS: ⟨a⟩ → [ə], ⟨o⟩ → [əʊ].
+
+    en-GB notes: "unstressed word-final ⟨a⟩ is /ə/ (sofa, America, data) and
+    word-final ⟨o⟩ is /əʊ/ (photo, piano, go)." Carney (1994).
+
+    Complementary environment: the same letters keep their non-final values in
+    ⟨cat⟩ and ⟨lot⟩ (pinned by test_en_gb_lot_vowel_is_rounded above).
+    """
+    assert _t("en-GB", "sofa") == "səʊfə" or _t("en-GB", "sofa").endswith("ə")
+    assert _t("en-GB", "data").endswith("ə")
+    assert _t("en-GB", "photo").endswith("əʊ")
+    assert _t("en-GB", "go") == "ɡəʊ"
+    assert _t("en-GB", "cat") == "kæt"
+
+
+def test_en_gb_y_is_a_vowel_letter():
+    """⟨y⟩ is declared a vowel letter (`vowel_graphemes`).
+
+    en-GB notes: "⟨y⟩ is declared a vowel letter (`vowel_graphemes`): it is the
+    nucleus of very, myth, happy." Carney (1994) treats ⟨y⟩ as a vowel letter
+    of the English writing system.
+
+    Falsifiable on the neighbour context it feeds: the ⟨r⟩ of ⟨very⟩ is
+    prevocalic, so it is not deleted by the non-rhotic rule.
+    """
+    assert _t("en-GB", "very") == "vɛɹi"
+    assert G2P("en-GB").spec.vowel_graphemes == ("y",)
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("nature", "nætʃə"),
+    ("picture", "pɪktʃə"),
+    ("measure", "miːʒə"),
+    ("pressure", "pɹɛʃə"),
+    ("famous", "fæməs"),
+])
+def test_en_gb_ture_sure_ous_endings(word, expected):
+    """SUFFIX PALATALIZATION: ⟨-ture⟩ [tʃə], ⟨-sure⟩ [ʒə], ⟨-ssure⟩ [ʃə];
+    ⟨-ous⟩ [əs].
+
+    Yod coalescence in the ⟨-ture⟩/⟨-sure⟩ suffixes and the reduced ⟨-ous⟩
+    suffix vowel: Wells (2008) LPD; Cruttenden (2014) §9.7. Carried by
+    `grammatical_endings`, so ⟨-ssure⟩ wins over ⟨-sure⟩ by longest match, the
+    same way ⟨-ssion⟩ wins over ⟨-sion⟩.
+    """
+    assert _t("en-GB", word) == expected
+
+
+# ===========================================================================
+# en-US / rhotic descendants — General American and friends
+# ===========================================================================
+
+
+@pytest.mark.parametrize("code", ["en-US", "en-CA", "en-IE",
+                                  "en-GB-x-scotland"])
+def test_rhotic_descendants_keep_coda_r(code):
+    """A rhotic descendant re-declares the RP deletion ids with no phonemes.
+
+    Each spec's notes state it is rhotic (Wells 1982 vol. 3 §6.1 for GA), and
+    an inherited `allophone_rules` entry can only be disabled by id, so the
+    claim is falsifiable exactly here: coda /r/ must survive.
+    """
+    assert _t(code, "car").endswith("ɹ")
+    assert "ɹ" in _t(code, "park")
+
+
+@pytest.mark.parametrize("code", ["en-AU", "en-ZA"])
+def test_non_rhotic_descendants_inherit_the_deletion(code):
+    """The complementary case: en-AU and en-ZA declare themselves non-rhotic
+    and inherit RP's coda-/r/ deletion unchanged (Wells 1982 vol. 3)."""
+    assert _t(code, "car") == "kɑː"
+
+
+def test_en_us_lot_palm_merger():
+    """LOT-PALM merger: GA has no /ɒ/.
+
+    en-US notes: "LOT-PALM merger: /ɑː/ for both."
+    Wells (1982) vol. 3 §6.1.3; Ladefoged & Johnson (2011).
+    """
+    assert "ɒ" not in _t("en-US", "lot")
+    assert "ɒ" not in _t("en-US", "sofa")
+
+
+def test_en_us_goat_is_o_initial():
+    """GA GOAT is /oʊ/, not the RP /əʊ/ its parent declares.
+
+    en-US notes: "GA GOAT is /oʊ/, not the RP /əʊ/ this spec's parent
+    declares." Wells (1982) vol. 3 §6.1.4.
+    """
+    assert _t("en-US", "boat") == "boʊt"
+    assert _t("en-US", "go") == "ɡoʊ"
 
 
 # ===========================================================================

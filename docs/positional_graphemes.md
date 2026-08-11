@@ -63,6 +63,13 @@ from orthography2ipa.types import GraphemePosition
 | `NUCLEUS` | Generic syllable nucleus | σ_σ | When stress is not distinguished |
 | `NUCLEUS_STRESSED` | Stressed syllable nucleus | σ́_σ | Full vowel quality in stressed position |
 | `NUCLEUS_UNSTRESSED` | Unstressed syllable nucleus | σ_σ̆ | Portuguese ⟨e⟩ → [ɨ], English ⟨a⟩ → [ə] |
+| `OPEN_SYLLABLE` | Nucleus of a syllable with no coda | _]σ, CV | French ⟨eu⟩ → [ø] in *heu·reux* |
+| `CLOSED_SYLLABLE` | Nucleus of a syllable with a coda | _C]σ, CVC | French ⟨eu⟩ → [œ] in *fleur* |
+| `NUCLEUS_STRESSED_OPEN` | Stressed **and** open | σ́(CV) | Romance loi de position under stress |
+| `NUCLEUS_STRESSED_CLOSED` | Stressed **and** closed | σ́(CVC) | Romance loi de position under stress |
+| `NUCLEUS_UNSTRESSED_OPEN` | Unstressed **and** open | σ̆(CV) | Aperture surviving reduction |
+| `NUCLEUS_UNSTRESSED_CLOSED` | Unstressed **and** closed | σ̆(CVC) | Aperture surviving reduction |
+| `BEFORE_FINAL_VOWEL` | Before a vowel that is itself the word's last audible slot | _V# | French ⟨ie⟩ stays [i] (*vie*), blocking glide formation |
 | `CODA` | Syllable coda | _]σ | English dark [ɫ], Korean neutralisation, Brazilian [w] |
 | `PRETONIC` | Before stressed syllable |: | Pretonic vowel reduction |
 | `POSTTONIC` | After stressed syllable |: | Posttonic vowel reduction |
@@ -89,6 +96,35 @@ These positions correspond to standard phonological environments documented in:
 - Kenstowicz, M. (1994). *Phonology in Generative Grammar*. Blackwell.
 - Hayes, B. (2009). *Introductory Phonology*. Wiley-Blackwell.
 - Zsiga, E. (2013). *The Sounds of Language*. Wiley-Blackwell.
+
+### Syllable aperture (open / closed)
+
+`OPEN_SYLLABLE` / `CLOSED_SYLLABLE` and the four
+`NUCLEUS_{STRESSED,UNSTRESSED}_{OPEN,CLOSED}` crossings key a nucleus on
+whether its syllable has a coda. This is the environment the Romance
+*loi de position* is stated in — close-mid /e ø o/ in open syllables
+against open-mid /ɛ œ ɔ/ in closed ones (Fougeron & Smith 1993,
+`fougeron_smith1993`; Tranel 1987 ch. 4, `tranel1987` — both in
+`fr-FR`'s `sources`).
+
+Three things to know before declaring one:
+
+1. **Aperture is decided on the ORTHOGRAPHIC syllable**, from the spec's
+   own syllabifier: a syllable is open when its last character is a vowel
+   letter. In the word's LAST syllable, the trailing graphemes the spec
+   emits nothing for are stripped first — a mute word-final ⟨x⟩ or ⟨h⟩
+   does not close a syllable (*heureux*, *beuh* are open), while a mute
+   ⟨s⟩ over a pronounced ⟨r⟩ does not open one (*chanteurs* is closed).
+2. **The crossed positions outrank both** the aperture-only pair and the
+   stress-only `NUCLEUS_STRESSED` / `NUCLEUS_UNSTRESSED`, which in turn
+   outrank `NUCLEUS` and `DEFAULT`. Declare `nucleus_unstressed` without
+   `nucleus_unstressed_open` and the unstressed rule still wins over
+   aperture, which is usually what a reduction language wants.
+3. **The proxy is only as good as the syllable boundary.** Where the
+   syllabifier maximises onsets without phonotactics it will invent open
+   syllables; measure before shipping. French ⟨o⟩ and every Dutch vowel
+   were declared, measured, and REVERTED for exactly this reason — see
+   [`ranking_error.md`](ranking_error.md).
 
 ---
 

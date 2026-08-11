@@ -1,5 +1,173 @@
 # Changelog
 
+## [7.65.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.65.1a1) (2026-08-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.0a1...7.65.1a1)
+
+**Merged pull requests:**
+
+- fix\(engine\): a nucleus-less final syllable closes the one before it \(fr loi de position\) [\#850](https://github.com/TigreGotico/orthography2ipa/pull/850) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.65.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.65.0a1) (2026-08-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.5a1...7.65.0a1)
+
+**Merged pull requests:**
+
+- feat\(engine\): ambiguous grammatical endings enter the lattice [\#844](https://github.com/TigreGotico/orthography2ipa/pull/844) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.64.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.5a1) (2026-08-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.4a2...7.64.5a1)
+
+**Merged pull requests:**
+
+- fix\(engine\): syllabification respects licit onsets [\#843](https://github.com/TigreGotico/orthography2ipa/pull/843) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.64.4a2](https://github.com/TigreGotico/orthography2ipa/tree/7.64.4a2) (2026-08-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.4a1...7.64.4a2)
+
+**Merged pull requests:**
+
+- data\(fr-FR\): extend loanword -er carve-out with 103 gold-attested types [\#845](https://github.com/TigreGotico/orthography2ipa/pull/845) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.64.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.4a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.3a1...7.64.4a1)
+
+**Merged pull requests:**
+
+- fix\(fr\): shrink the French ranking gap — open/closed-syllable positions + 2 cited data fixes [\#836](https://github.com/TigreGotico/orthography2ipa/pull/836) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.64.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.3a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.2a1...7.64.3a1)
+
+**Merged pull requests:**
+
+- fix\(engine\): sandhi is bounded by the intonational phrase [\#835](https://github.com/TigreGotico/orthography2ipa/pull/835) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.64.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.2a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.1a1...7.64.2a1)
+
+**Merged pull requests:**
+
+- fix\(docs\): re-render scoreboard.md — remove committed conflict markers [\#837](https://github.com/TigreGotico/orthography2ipa/pull/837) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.64.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.1a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.0a1...7.64.1a1)
+
+**Merged pull requests:**
+
+- fix\(ci\): full refresh of the benchmark-regression baseline [\#834](https://github.com/TigreGotico/orthography2ipa/pull/834) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.64.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.63.0a1...7.64.0a1)
+
+**Merged pull requests:**
+
+- feat\(ca-x-balear\): cross-word sibilant affrication — Majorcan regressive assimilation [\#829](https://github.com/TigreGotico/orthography2ipa/pull/829) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.63.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.63.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.62.0a1...7.63.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): top-k oracle PER — lattice quality vs ranking error [\#830](https://github.com/TigreGotico/orthography2ipa/pull/830) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.62.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.62.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.61.0a1...7.62.0a1)
+
+**Merged pull requests:**
+
+- feat\(benchmarks\): system×gold comparison matrix with same-source exclusions [\#818](https://github.com/TigreGotico/orthography2ipa/pull/818) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.61.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.61.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.60.0a1...7.61.0a1)
+
+**Merged pull requests:**
+
+- feat\(ca\): cross-word vowel elision — hiatus resolution at word boundaries [\#826](https://github.com/TigreGotico/orthography2ipa/pull/826) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.60.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.60.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.59.1a1...7.60.0a1)
+
+**Merged pull requests:**
+
+- feat\(engine\): grammatical\_endings — morpheme-aware word-ending realisations [\#823](https://github.com/TigreGotico/orthography2ipa/pull/823) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.59.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.59.1a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.59.0a1...7.59.1a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): heteromorphemic ⟨tj⟩ is two segments, not a palatalized affricate [\#820](https://github.com/TigreGotico/orthography2ipa/pull/820) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.59.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.59.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.58.2a1...7.59.0a1)
+
+**Merged pull requests:**
+
+- feat\(ca\): cross-word resyllabification voicing and sandhi on the Catalan branch [\#819](https://github.com/TigreGotico/orthography2ipa/pull/819) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.58.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.58.2a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.58.1a1...7.58.2a1)
+
+**Merged pull requests:**
+
+- fix\(benchmarks\): regenerate ca rows left stale by \#802 [\#821](https://github.com/TigreGotico/orthography2ipa/pull/821) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.58.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.58.1a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.58.0a2...7.58.1a1)
+
+**Merged pull requests:**
+
+- fix\(scripts\): error\_analysis uses sentence transcription for sentence gold [\#816](https://github.com/TigreGotico/orthography2ipa/pull/816) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.58.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.58.0a2) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.58.0a1...7.58.0a2)
+
+**Merged pull requests:**
+
+- refactor\(positional\): consolidate effective-word-end predicates [\#814](https://github.com/TigreGotico/orthography2ipa/pull/814) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.58.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.58.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.57.0a3...7.58.0a1)
+
+**Merged pull requests:**
+
+- feat\(fr-FR\): y as vowel letter, c/g softening via before\_front\_vowel [\#807](https://github.com/TigreGotico/orthography2ipa/pull/807) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.57.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.57.0a3) (2026-08-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.57.0a2...7.57.0a3)
+
+**Merged pull requests:**
+
+- docs: maintainability gate — clean-code criteria for every engine PR [\#809](https://github.com/TigreGotico/orthography2ipa/pull/809) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.57.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.57.0a2) (2026-08-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.57.0a1...7.57.0a2)
+
+**Merged pull requests:**
+
+- data: beat-espeak Dutch wave — compound secondary stress, coda devoicing, unstressed tense i [\#803](https://github.com/TigreGotico/orthography2ipa/pull/803) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.57.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.57.0a1) (2026-08-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.56.0a3...7.57.0a1)
@@ -502,7 +670,6 @@
 **Merged pull requests:**
 
 - feat: add medieval-modern Hellenic-branch language specs \(tsd, cpg, yej, gmy, ecr, ecy\) [\#667](https://github.com/TigreGotico/orthography2ipa/pull/667) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add turkic-uralic language specs \(kum, nog, kjh, cjs, chm, lud\) [\#656](https://github.com/TigreGotico/orthography2ipa/pull/656) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.35.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.1a1) (2026-08-02)
 
@@ -525,7 +692,6 @@
 - data: graph-hygiene — cited substrate/superstrate/adstrate roles for jam, fpe, gul, lou [\#665](https://github.com/TigreGotico/orthography2ipa/pull/665) ([JarbasAl](https://github.com/JarbasAl))
 - feat: add Gulf-of-Guinea / Kwa-Bantu-Mande language specs \(kri, vai, kpe, bas, bss, dua, ewo, crs\) [\#664](https://github.com/TigreGotico/orthography2ipa/pull/664) ([JarbasAl](https://github.com/JarbasAl))
 - feat: add Haryanvi, Chhattisgarhi, Dogri, Rajasthani, Garo, Mizo, Jingpho, Hakha Chin, Tedim Chin specs [\#658](https://github.com/TigreGotico/orthography2ipa/pull/658) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add nd, lu, lua, bem, umb, seh, yao Bantu language specs [\#653](https://github.com/TigreGotico/orthography2ipa/pull/653) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.34.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.34.1a1) (2026-08-02)
 
@@ -539,10 +705,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.33.0a1...7.34.0a1)
 
-**Merged pull requests:**
-
-- feat: add ancient-austronesian batch language specs [\#657](https://github.com/TigreGotico/orthography2ipa/pull/657) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.33.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.33.0a1) (2026-08-01)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.32.0a1...7.33.0a1)
@@ -551,59 +713,29 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.1a3...7.32.0a1)
 
-**Merged pull requests:**
-
-- feat: add Serer, Soninke, Susu, Mende, Temne, Pular and Nigerian Fulfulde specs [\#655](https://github.com/TigreGotico/orthography2ipa/pull/655) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add tw, fat, gaa, ada, gen, aja \(Ghana/Togo Kwa languages\) [\#654](https://github.com/TigreGotico/orthography2ipa/pull/654) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.31.1a3](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a3) (2026-07-30)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.1a2...7.31.1a3)
-
-**Merged pull requests:**
-
-- docs: rewrite README in Simplified Technical English [\#651](https://github.com/TigreGotico/orthography2ipa/pull/651) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.31.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a2) (2026-07-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.1a1...7.31.1a2)
 
-**Merged pull requests:**
-
-- perf: cache syllabification and confidence lattice per engine [\#645](https://github.com/TigreGotico/orthography2ipa/pull/645) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.31.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.31.1a1) (2026-07-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.31.0a1...7.31.1a1)
-
-**Merged pull requests:**
-
-- fix: resolve Saudi region and dialect Arabic codes to their spec [\#642](https://github.com/TigreGotico/orthography2ipa/pull/642) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.31.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.31.0a1) (2026-07-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.2a1...7.31.0a1)
 
-**Merged pull requests:**
-
-- feat: reusable is\_cliticless / cliticless\_keys stress helpers [\#640](https://github.com/TigreGotico/orthography2ipa/pull/640) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.30.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.30.2a1) (2026-07-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.1a1...7.30.2a1)
 
-**Merged pull requests:**
-
-- fix: green dev — kab schema/pins, the syllabifier missing from CI, and a stale regression baseline [\#637](https://github.com/TigreGotico/orthography2ipa/pull/637) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.30.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.30.1a1) (2026-07-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.0...7.30.1a1)
-
-**Merged pull requests:**
-
-- docs: regenerate the scoreboard, comparison and espeak-agreement boards [\#636](https://github.com/TigreGotico/orthography2ipa/pull/636) ([JarbasAl](https://github.com/JarbasAl))
-- kab : Add better kabyle specs [\#635](https://github.com/TigreGotico/orthography2ipa/pull/635) ([athmanemokraoui](https://github.com/athmanemokraoui))
 
 ## [7.30.0](https://github.com/TigreGotico/orthography2ipa/tree/7.30.0) (2026-07-16)
 
@@ -613,35 +745,17 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.0a2...7.30.0a3)
 
-**Merged pull requests:**
-
-- fix\(mxi\): ge/j- onsets are /ɟ/; glide-onset function words stay \[j\] [\#633](https://github.com/TigreGotico/orthography2ipa/pull/633) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.30.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.30.0a2) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.30.0a1...7.30.0a2)
-
-**Merged pull requests:**
-
-- Release 7.30.0a2 [\#632](https://github.com/TigreGotico/orthography2ipa/pull/632) ([github-actions[bot]](https://github.com/apps/github-actions))
-- docs\(gold\): arbitration notes for the 14 flagged gold20 rows [\#631](https://github.com/TigreGotico/orthography2ipa/pull/631) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.30.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.30.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.29.1a1...7.30.0a1)
 
-**Merged pull requests:**
-
-- Release 7.30.0a1 [\#630](https://github.com/TigreGotico/orthography2ipa/pull/630) ([github-actions[bot]](https://github.com/apps/github-actions))
-- feat: lattice PER — pronunciation-fair phone error rate for ASR evaluation [\#629](https://github.com/TigreGotico/orthography2ipa/pull/629) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.29.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.29.1a1) (2026-07-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.29.0a1...7.29.1a1)
-
-**Merged pull requests:**
-
-- Release 7.29.1a1 [\#628](https://github.com/TigreGotico/orthography2ipa/pull/628) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [7.29.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.29.0a1) (2026-07-16)
 
@@ -685,31 +799,35 @@
 
 ## [7.24.0a9](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a9) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a8...7.24.0a9)
-
-## [7.24.0a8](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a8) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a7...7.24.0a8)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a7...7.24.0a9)
 
 ## [7.24.0a7](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a7) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a6...7.24.0a7)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a8...7.24.0a7)
+
+## [7.24.0a8](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a8) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a6...7.24.0a8)
 
 ## [7.24.0a6](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a6) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a2...7.24.0a6)
-
-## [7.24.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a2) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a4...7.24.0a2)
-
-## [7.24.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a4) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a3...7.24.0a4)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a3...7.24.0a6)
 
 ## [7.24.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a3) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.23.0a4...7.24.0a3)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a4...7.24.0a3)
+
+## [7.24.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a4) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a5...7.24.0a4)
+
+## [7.24.0a5](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a5) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a2...7.24.0a5)
+
+## [7.24.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a2) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.23.0a4...7.24.0a2)
 
 ## [7.23.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.23.0a4) (2026-07-16)
 
@@ -717,11 +835,7 @@
 
 ## [7.24.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a5...7.24.0a1)
-
-## [7.24.0a5](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a5) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.23.0a3...7.24.0a5)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.23.0a3...7.24.0a1)
 
 ## [7.23.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.23.0a3) (2026-07-16)
 
@@ -841,23 +955,23 @@
 
 ## [7.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.15.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a2...7.15.0a1)
-
-## [7.14.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a2) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a1...7.14.0a2)
-
-## [7.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a1) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.14.0a1)
-
-## [7.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.12.0a1) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.13.0a1...7.12.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.13.0a1...7.15.0a1)
 
 ## [7.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.13.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.13.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a1...7.13.0a1)
+
+## [7.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.14.0a2...7.14.0a1)
+
+## [7.14.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a2) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.14.0a2)
+
+## [7.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.12.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.12.0a1)
 
 ## [7.11.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.11.0a2) (2026-07-16)
 
@@ -901,15 +1015,15 @@
 
 ## [7.3.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.2a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.3.2a1)
-
-## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.1a1...7.3.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.1a1...7.3.2a1)
 
 ## [7.3.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.1a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.3.1a1)
+
+## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.0a1)
 
 ## [7.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.2.0a1) (2026-07-15)
 
@@ -1381,15 +1495,15 @@
 
 ## [1.54.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.54.0a1) (2026-07-11)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.52.0a1...1.54.0a1)
-
-## [1.52.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.52.0a1) (2026-07-11)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.53.0a1...1.52.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.53.0a1...1.54.0a1)
 
 ## [1.53.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.53.0a1) (2026-07-11)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.51.0a1...1.53.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.52.0a1...1.53.0a1)
+
+## [1.52.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.52.0a1) (2026-07-11)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/1.51.0a1...1.52.0a1)
 
 ## [1.51.0a1](https://github.com/TigreGotico/orthography2ipa/tree/1.51.0a1) (2026-07-11)
 

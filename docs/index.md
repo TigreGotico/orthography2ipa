@@ -245,6 +245,7 @@ below.
 | [quality_tiers.md](quality_tiers.md) | What `stub`/`skeleton`/`research`/`production` require |
 | [benchmarks.md](benchmarks.md) | Gold datasets, methodology, how to reproduce a score |
 | [scoreboard.md](scoreboard.md) | Every measured PER/exact-match result |
+| [ranking_error.md](ranking_error.md) | Where the beam holds a better reading and ranks it wrong: per-language cluster tables |
 | [espeak_agreement.md](espeak_agreement.md) | Agreement analysis against espeak-ng |
 | [comparison.md](comparison.md) | Cross-system PER comparison vs espeak-ng, epitran, gruut |
 | [api_stability.md](api_stability.md) | What is public and version-guarded |

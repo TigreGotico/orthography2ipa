@@ -77,5 +77,8 @@
     "source": "wikidata",
     "notes": "Australia's representative point. A national variety: weak. [Wikidata Q408 P625]"
   },
-  "collapse_geminates": true
+  "collapse_geminates": true,
+  "vowel_graphemes": [
+    "y"
+  ]
 }

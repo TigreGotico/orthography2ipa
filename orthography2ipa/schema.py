@@ -36,6 +36,7 @@ from pydantic import (
     model_validator,
 )
 
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import (
     OrthographyKind,
     AncestorRole,
@@ -321,6 +322,7 @@ class LanguageSpecModel(_Strict):
     allophones_base: Optional[str] = None
     positional_graphemes_base: Optional[str] = None
     word_exceptions_base: Optional[str] = None
+    grammatical_endings_base: Optional[str] = None
 
     # ─── ancestry ───────────────────────────────────────────────────
     parent: Optional[str] = None
@@ -338,6 +340,7 @@ class LanguageSpecModel(_Strict):
     preposed_vowels: Optional[List[str]] = None
     coda_no_inherent_vowel: Optional[bool] = None
     collapse_geminates: Optional[bool] = None
+    constrain_onsets: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
     wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")
@@ -360,6 +363,32 @@ class LanguageSpecModel(_Strict):
 
     # ─── whole-word overrides for a closed irregular set ─────────────
     word_exceptions: Optional[Dict[str, str]] = None
+
+    # ─── suffix morphology: ending → IPA at the effective word end ────
+    # Ending → realisation. A string is one realisation (today's shape);
+    # a list is an ordered candidate list whose element 0 may be ``null``
+    # to defer rank 1 to the grapheme tables. Full contract:
+    # LanguageSpec.grammatical_endings in types.py.
+    grammatical_endings: Optional[Dict[str, Union[str, List[Optional[str]]]]] = None
+
+    @field_validator("grammatical_endings")
+    @classmethod
+    def _ending_values(cls, v):
+        """Reject list shapes the engine cannot mean.
+
+        ``null`` is only meaningful as element 0 ("rank 1 comes from the
+        grapheme tables"); as an *alternative* it would have to mean "and
+        this ending may also be silent", which is spelled ``""``. An
+        empty list declares an ending with no realisation at all."""
+        if v is not None:
+            for ending, value in v.items():
+                if not ending:
+                    raise ValueError("grammatical_endings keys must be non-empty")
+                try:
+                    normalize_ending_value(value)
+                except ValueError as e:
+                    raise ValueError(f"{ending!r}: {e}") from e
+        return v
 
     @field_validator("graphemes", "allophones")
     @classmethod

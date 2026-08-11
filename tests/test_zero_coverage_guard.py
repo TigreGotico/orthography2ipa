@@ -16,14 +16,19 @@ def test_zero_coverage_row_is_refused(monkeypatch):
     def dead_loader(lang, limit):
         return [("word-with-no-scorable-graphemes", "ipa")]
 
-    def zero_eval(pairs, lang, strip_stress, broad):
-        return len(pairs), 0, [], 1.0, 1.0
+    def zero_eval(pairs, lang, strip_stress, broad, oracle_ks=(),
+                  expose_ambiguous_endings=False):
+        # The board's measurement convention must reach the scorer:
+        # a stub that silently swallowed it would let build_scoreboard
+        # stop threading the flag with nothing noticing.
+        assert expose_ambiguous_endings is False
+        return len(pairs), 0, [], 1.0, 1.0, None
 
     monkeypatch.setattr(benchmark, "DATASETS",
                         {"deadset": (dead_loader, ["xx-dead"])})
     monkeypatch.setattr(benchmark, "PROVENANCE",
                         {"deadset": "llm-generated"})
-    monkeypatch.setattr(benchmark, "evaluate_words", zero_eval)
+    monkeypatch.setattr(benchmark, "evaluate_words_oracle", zero_eval)
 
     err = io.StringIO()
     with contextlib.redirect_stderr(err):
@@ -38,14 +43,19 @@ def test_nonzero_coverage_row_is_recorded(monkeypatch):
     def loader(lang, limit):
         return [("a", "a")]
 
-    def one_eval(pairs, lang, strip_stress, broad):
-        return 1, 1, [0.0], 0.0, 0.0
+    def one_eval(pairs, lang, strip_stress, broad, oracle_ks=(),
+                  expose_ambiguous_endings=False):
+        # The board's measurement convention must reach the scorer:
+        # a stub that silently swallowed it would let build_scoreboard
+        # stop threading the flag with nothing noticing.
+        assert expose_ambiguous_endings is False
+        return 1, 1, [0.0], 0.0, 0.0, None
 
     monkeypatch.setattr(benchmark, "DATASETS",
                         {"liveset": (loader, ["xx-live"])})
     monkeypatch.setattr(benchmark, "PROVENANCE",
                         {"liveset": "llm-generated"})
-    monkeypatch.setattr(benchmark, "evaluate_words", one_eval)
+    monkeypatch.setattr(benchmark, "evaluate_words_oracle", one_eval)
 
     rows = [r for r in benchmark.build_scoreboard(5)
             if r["dataset"] == "liveset"]

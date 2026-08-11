@@ -12,11 +12,22 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, fields
 from enum import Enum
-from typing import Dict, FrozenSet, List, Optional, Tuple
+from typing import Dict, FrozenSet, List, Optional, Tuple, Union
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Type aliases
 # ═══════════════════════════════════════════════════════════════════════════
+
+EndingValue = Union[str, List[Optional[str]]]
+"""One :attr:`LanguageSpec.grammatical_endings` value.
+
+A plain string is one realisation that rewrites the matched tail. A list
+is an ORDERED candidate list: element 0 holds rank 1 (``None`` = defer
+rank 1 to the grapheme tables), and later elements are lower-ranked licit
+readings of the same ending, exposed in the lattice for a downstream
+rescorer to choose. Normalised by
+:func:`~orthography2ipa.positional.normalize_ending_value`.
+"""
 
 import copy as _copy
 
@@ -309,7 +320,19 @@ class StressRules:
         onset-maximising split, ``mudarris`` is ``mu-da-rris`` and its penult is
         light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
         penult is heavy, and the stress lands there — ``muˈdarris``, which is
-        the correct form. Only read when :attr:`quantity_sensitive` is set.
+        the correct form.
+
+        Read by the quantity-sensitive cascade, and — when the spec actually
+        declares it (:attr:`max_onset_declared`) — as a hard cap on the
+        orthographic syllabifier's onsets too. The cap outranks the sonority
+        reasoning that otherwise derives the licit onsets: a language owner who
+        writes ``max_onset`` has stated the language's onset size, and that is
+        not something to second-guess.
+    max_onset_declared : bool
+        Whether :attr:`max_onset` came from the spec or is merely the default.
+        The two must be told apart: the default 1 is a *placeholder* and
+        applying it as a cap would force every language to a single-consonant
+        onset, splitting ⟨tr⟩ and ⟨bl⟩. Set by the loader, never by hand.
     cliticless_words : Tuple[str, ...]
         Orthographic forms that carry **no lexical stress** of their own —
         prosodic clitics. A clitic is not an independent phonological word: it
@@ -375,6 +398,7 @@ class StressRules:
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
+    max_onset_declared: bool = False
     cliticless_words: Tuple[str, ...] = ()
     coda_liquid_capture: bool = False
     accent2_mark: str = ""
@@ -571,6 +595,46 @@ class GraphemePosition(str, Enum):
 
     NUCLEUS = "nucleus"
     """Generic syllable nucleus (when stress is not distinguished)."""
+
+    OPEN_SYLLABLE = "open_syllable"
+    """Nucleus of a syllable with no coda (CV): the *libre* environment of
+    the Romance *loi de position* and of the Germanic open/closed vowel
+    alternation. E.g. French ⟨eu⟩ → [ø] in *heu·reux* but [œ] in *fleur*;
+    Dutch ⟨e⟩ → [eː] in *le·zen* but [ɛ] in *lek*. Aperture is decided on
+    the spec's own syllabification of the ORTHOGRAPHIC word (a syllable is
+    open when its last character is a vowel letter, after the trailing
+    graphemes the spec itself emits nothing for have been stripped), so
+    it is available only where a syllabification is; a spec that declares
+    none of these keys is never syllabified for their sake and these
+    positions are simply not emitted.
+
+    References: Fougeron & Smith (1993) *Illustrations of the IPA:
+    French* (``fougeron_smith1993``, cited in ``fr-FR``'s ``sources``),
+    which states the loi de position as close-mid e/ø/o in open
+    syllables against open-mid ɛ/œ/ɔ in closed ones; Tranel (1987) *The
+    Sounds of French* ch. 4 (``tranel1987``, same ``sources`` array).
+    The environment is not French-specific — it is where the Germanic
+    open-syllable length alternations are stated too — but those are the
+    two sources this repository actually carries for it."""
+
+    CLOSED_SYLLABLE = "closed_syllable"
+    """Nucleus of a syllable that has a coda (CVC): the *entravé*
+    counterpart of :attr:`OPEN_SYLLABLE`."""
+
+    NUCLEUS_STRESSED_OPEN = "nucleus_stressed_open"
+    """Stressed nucleus in an open syllable — the two conditions the
+    mid-vowel alternations actually key on, jointly. Emitted BEFORE the
+    aperture-only and stress-only positions, so a spec that declares it
+    wins over both."""
+
+    NUCLEUS_STRESSED_CLOSED = "nucleus_stressed_closed"
+    """Stressed nucleus in a closed syllable."""
+
+    NUCLEUS_UNSTRESSED_OPEN = "nucleus_unstressed_open"
+    """Unstressed nucleus in an open syllable."""
+
+    NUCLEUS_UNSTRESSED_CLOSED = "nucleus_unstressed_closed"
+    """Unstressed nucleus in a closed syllable."""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1160,6 +1224,18 @@ class InheritanceMode(str, Enum):
     representation that keeps ``spec.graphemes`` a plain ``list[str]``
     map for every existing consumer."""
 
+    BASE_SCALAR = "base_scalar"
+    """Scalar field that follows the ``graphemes_base`` edge. A spec that does
+    not state the field takes the value of the spec it pulls its grapheme table
+    from; stating it (either way) wins.
+
+    Used by ``constrain_onsets``. Whether a grapheme table's onsets are
+    constrained is a property OF that table, so a variety that inherits the
+    table inherits the judgement with it — otherwise ``de-AT`` and ``de-CH``
+    read ``de-DE``'s graphemes while silently syllabifying them by a different
+    rule than ``de-DE`` does, and that split is a language-feature parity gap,
+    which this project treats as a bug."""
+
     OWN_ONLY = "own_only"
     """Identity / bibliographic / classification field that never
     participates in inheritance resolution at all (e.g. ``code``, ``name``,
@@ -1195,6 +1271,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
+    "constrain_onsets": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -1213,6 +1290,11 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.BASE_MERGE,
+    # Suffix morphology is shared by a dialect that shares its graphemes —
+    # en-US palatalizes ⟨-tion⟩ exactly as en-GB does — so a child opts in
+    # with grammatical_endings_base and overrides per ending, the same
+    # overlay shape word_exceptions uses.
+    "grammatical_endings": InheritanceMode.BASE_MERGE,
     "grapheme_weights": InheritanceMode.NOT_INHERITED,
     "clade": InheritanceMode.OWN_ONLY,
     "family_path": InheritanceMode.OWN_ONLY,
@@ -1369,6 +1451,42 @@ class LanguageSpec:
     refinement, not a decision. It must reach the same answer by better means, and
     the conformance kit fails it if it does not. See
     :mod:`orthography2ipa.plugins`."""
+
+    constrain_onsets: bool = False
+    """Opt in to phonotactically constrained syllabification. Off by default,
+    and deliberately so.
+
+    The bundled splitter maximises the onset. With this set it maximises it
+    only as far as the language licenses — the shapes documented on
+    ``orthography2ipa.stress._OnsetJudge``, which are calibrated on the
+    Germanic and Romance onset inventories: an obstruent head with a
+    liquid, glide or labial approximant after it, a voiceless sibilant
+    appendix, ⟨kn gn pn⟩, ⟨Cj⟩.
+
+    A language whose onsets exceed that core must NOT set it until it can
+    declare its own inventory. Modern Greek is the clear case: ⟨σμ κτ πτ
+    φτ χτ φθ γν μν βγ βδ⟩ all begin Greek words and are therefore
+    tautosyllabic (a cluster that can begin a word does not split —
+    Malikouti-Drachman, "Greek Phonology", in *Journal of Greek
+    Linguistics* 2001; Holton, Mackridge & Philippaki-Warburton, *Greek: A
+    Comprehensive Grammar*, Routledge 2012, § 1.4), and none of them is
+    reachable from the shapes above. Turning this on for Greek would split
+    every one of them. The same holds for the Slavic and Uralic
+    inventories, which have not been checked.
+
+    Its purpose is the aperture positions: open/closed syllable is only as
+    good as the boundary, so the languages that read aperture need the
+    boundary to be right. Those are the languages that set it.
+
+    It is inherited along the ``graphemes_base`` edge
+    (:attr:`InheritanceMode.BASE_SCALAR`): whether a grapheme table's onsets
+    are constrained is a property of that table, so a variety that pulls the
+    table in gets the judgement with it — ``nl-BE`` from ``nl``, ``de-AT`` and
+    ``de-CH`` from ``de-DE``, ``de-x-bavarian`` from ``de-AT`` in turn. A
+    variety that must NOT inherit says so with an explicit ``false``.
+    ``nl-NL`` is a standalone spec with no ``graphemes_base``, so it declares
+    the flag itself.
+    """
 
     collapse_geminates: bool = False
     """Collapse a doubled consonant letter's phonemes to one.
@@ -1668,6 +1786,85 @@ class LanguageSpec:
     polysyllables. Keys are lowercase orthographic word forms; matched
     case-insensitively before positional-beam search. Not inherited
     through ancestry — each spec declares its own block."""
+
+    grammatical_endings: Optional[Dict[str, EndingValue]] = None
+    """Word-ending → IPA, for **suffix morphology**: an orthographic
+    ending whose realisation belongs to the grammatical ending rather
+    than to the letter sequence that spells it.
+
+    Three phenomena this exists for:
+
+    * **French mute ⟨-er⟩/⟨-ez⟩.** The infinitive and agent-noun ⟨-er⟩ is
+      [e] (``parler``, ``boulanger``) and the 2pl ⟨-ez⟩ is [e]
+      (``mangez``, ``nez``, ``chez``) — final-consonant elision in the
+      grammatical ending (Fouché 1959; Tranel 1987 §3). The same letters
+      inside a word (``personne``, ``version``, ``terre``) are ordinary
+      graphemes and are untouched; the closed set of nouns that keep
+      /ɛʁ/ (``mer``, ``hiver``) lives in :attr:`word_exceptions`.
+    * **English suffix palatalization.** ⟨-tion⟩ → /ʃən/, ⟨-cious⟩ →
+      /ʃəs/, ⟨-tial⟩ → /ʃəl/ — palatalization of the stem-final coronal
+      before the ``-ion`` suffix (Chomsky & Halle 1968 §4 *The Sound
+      Pattern of English*; surface values per Wells 2008 LPD).
+    * **Morphologically ambiguous ending realisations, exposed for
+      downstream rescoring.** The reference case is French verbal
+      ⟨-ent⟩: the 3PL inflection is mute (*ils parlent* [paʁl]) while
+      the noun/adjective ⟨-ent⟩ is [ɑ̃] (*vent*, *cent*, *moment*)
+      (Fouché 1959, *Traité de prononciation française*; Tranel 1987 §3;
+      Divay & Vitale 1997 for the same ending as the standard worked
+      example of a G2P rule that needs part of speech). The two readings
+      are told apart by part of speech and by nothing orthographic.
+
+      **o2i does not resolve it, and does not accept a POS tag as an
+      input** (owner ruling; ``AGENTS.md`` §4 and §6). Part of speech
+      belongs to the downstream rescorer. What this layer owes instead
+      is that the unchosen reading still EXISTS in the lattice, because
+      a ranking error is downstream-fixable and a coverage hole is not.
+      Before this field accepted candidate lists, [paʁl] was absent from
+      ``word_candidates("parlent")`` at every *k* and every beam width —
+      no rescorer, however good, could recover it.
+
+      An ambiguous ending is declared as an **ordered candidate list** —
+      the discipline :attr:`graphemes` and :attr:`positional_graphemes`
+      already follow, and of which a single-valued ending was the
+      outlier::
+
+          "grammatical_endings": {"ent": [null, ""], "ment": [null]}
+
+      Element 0 is the rank-1 realisation; ``null`` there means "rank 1
+      is whatever the grapheme tables already produce". That is the
+      shape French uses, because ⟨-ent⟩'s nasal reading is ALREADY what
+      nasal ⟨en⟩ + silent ⟨t⟩ yields, so deferring keeps every current
+      1-best AND every current candidate ordering byte-identical while
+      the ending contributes only the missing mute reading. Elements
+      1..n are lower-ranked licit readings, costed by rank exactly as an
+      ordered grapheme list is (:mod:`orthography2ipa.weights`), and
+      they reach :meth:`~orthography2ipa.g2p.G2P.word_candidates`,
+      oracle@k and any ``RescorerPlugin``. A one-element list of a
+      string is exactly equivalent to that string, and ``[null]``
+      declares an ending that is NOT ambiguous — its only effect is
+      longest-match shielding, which is how French ⟨-ment⟩ keeps the
+      adverb class off ⟨-ent⟩.
+
+      Ordering the list is itself a claim. For ⟨-ent⟩ the
+      frequency-honest order (nasal first) is the type-count-dishonest
+      one — 3873 gold-mute types against 287 nasal — and the nasal
+      reading keeps rank 1 because this library feeds TTS, where type
+      counts do not price a mispronounced *vent*. Oracle@k rises; 1-best
+      does not move, by construction. That asymmetry is the intended
+      shape and must not be read as a win on a 1-best number.
+
+    Keys are lowercase orthographic endings, matched only at the word's
+    *effective* end — the last grapheme tokens, or the last tokens before
+    a transparent grammatical suffix the spec silences (French plural
+    ⟨-s⟩/⟨-x⟩), which is
+    :func:`~orthography2ipa.positional.effective_word_end`'s question.
+    Longest match wins, so ⟨-stion⟩ overrides ⟨-tion⟩. A match replaces
+    the emitted IPA of those trailing tokens only; tokenization of the
+    word's interior is unchanged, which is what separates this from
+    spelling a morpheme as a grapheme key (forbidden — see AGENTS.md).
+
+    Precedence: :attr:`word_exceptions` **>** ``grammatical_endings``
+    **>** :attr:`graphemes` / :attr:`positional_graphemes`."""
 
     def __post_init__(self) -> None:
         # Normalise None to empty dict

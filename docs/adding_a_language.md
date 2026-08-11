@@ -251,6 +251,25 @@ The test suite validates:
 
 ---
 
+## Suffix morphology (`grammatical_endings`, optional)
+
+When an ending's realisation belongs to the *grammatical ending* rather than to
+the letters that spell it — French mute ⟨-er⟩/⟨-ez⟩, English ⟨-tion⟩ → [ʃən] —
+declare it in `grammatical_endings`, never as a grapheme key (morpheme chunks
+are forbidden grapheme keys; see `AGENTS.md`). The ending is matched at the
+word's effective end only, so word-internal letters are untouched, and
+`word_exceptions` still outranks it. Full contract:
+[`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#grammatical-endings).
+
+When the ending has more than one licit reading and the spelling does not say
+which — French verbal ⟨-ent⟩ is mute, nominal ⟨-ent⟩ is [ɑ̃] — do **not** pick
+one and do not reach for a word list. Declare it as an ordered candidate list
+(`"ent": [null, ""]`) so both readings are in the lattice and a downstream
+rescorer can choose: [Ambiguous
+endings](../orthography2ipa/data/SCHEMA.md#ambiguous-endings).
+
+---
+
 ## Adding a lexicon overlay (optional)
 
 When grapheme rules cannot reach production accuracy for a deep-orthography
@@ -294,6 +313,12 @@ Rules to follow when adding one:
 | `nucleus`                 | Generic syllable nucleus    | When stress not distinguished             |
 | `nucleus_stressed`        | Stressed syllable nucleus   | Full vowel quality                        |
 | `nucleus_unstressed`      | Unstressed syllable nucleus | Portuguese ⟨e⟩ → [ɨ]                     |
+| `open_syllable`           | Nucleus, syllable has no coda | French `"eu": {"open_syllable": ["ø"]}` |
+| `closed_syllable`         | Nucleus, syllable has a coda  | French `"eu": {"closed_syllable": ["œ"]}` |
+| `nucleus_stressed_open`   | Stressed **and** open       | Dutch ⟨e⟩ → [eː] in *le·zen*              |
+| `nucleus_stressed_closed` | Stressed **and** closed     | Dutch ⟨e⟩ → [ɛ] in *lek*                  |
+| `nucleus_unstressed_open` | Unstressed **and** open     | Aperture under reduction                  |
+| `nucleus_unstressed_closed` | Unstressed **and** closed | Aperture under reduction                  |
 | `coda`                    | Syllable coda               | Brazilian `"l": {"coda": ["w"]}`          |
 | `pretonic`                | Before stressed syllable    | Pretonic vowel reduction                  |
 | `posttonic`               | After stressed syllable     | Posttonic vowel reduction                 |

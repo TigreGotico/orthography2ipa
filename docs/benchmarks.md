@@ -1197,6 +1197,184 @@ uncertainty rather than as a false-precision leaderboard entry:
   and is a signal to grow the gold set before trusting a narrow slice
   of PER movement as a real regression or improvement.
 
+### Top-k oracle PER (lattice quality vs ranking error)
+
+A single PER number answers "was the first guess right". It cannot say
+*why* a wrong guess was wrong. Two very different failures hide behind
+one score:
+
+- **Ranking error** — a BETTER reading than the one the engine ranked
+  first is somewhere in the top-k. Nothing is missing from the language
+  data; the weights ordered the beam badly. This is recoverable
+  downstream: consumers of the lattice rescore it.
+- **Model error** — no better reading exists in the lattice at any
+  depth. No reranking can find one. Only new rules or new data fix this.
+
+**Oracle PER@k** separates the two. It is the per-word *minimum* PER
+over the engine's top-k readings, averaged exactly like the 1-best PER
+(same normalization, same edit distance, same multi-gold rule). So:
+
+    PER − Oracle@k   = ranking error  (the rescoring headroom)
+    Oracle@k         = model error    (what rules/data must fix)
+
+The columns `Oracle@3` and `Oracle@5` are in `docs/scoreboard.md` and
+`benchmarks/results.json` (`oracle_per_top3`, `oracle_per_top5`).
+
+**The headroom is an upper bound, not a forecast.** An oracle picks the
+best candidate per word *after seeing the gold*. No real rescorer has
+that information, so `PER − Oracle@k` is the ceiling on what any
+reranking could ever buy, and a deployed rescorer will realize some
+fraction of it. Quote it as a ceiling.
+
+**A better reading is not the right reading.** `Oracle@k` dropping means
+a CLOSER candidate is in the beam — closer in edit distance, and usually
+still wrong. The strict version is the **`OracleX@k`** columns
+(`oracle_exact_top3`, `oracle_exact_top5`): the fraction of words where
+some top-k candidate *equals* a gold exactly. That is the `Exact match`
+column generalized from k=1 to k. Measured on the current board, only a
+minority of the PER-oracle gain is exact hits — fr 41.4%, de 25.8% —
+so the PER oracle overstates "the engine already knows the answer" by
+roughly 2x. Use `OracleX@k` for any claim of that shape. Both shares are
+computed on the board's numbers and therefore **without injected
+alternatives** (see the next section): the ratio is taken over the
+committed row's `PER → Oracle@5` and `Exact match → OracleX@5`, never
+over the injected-alternative figures, which would inflate it.
+
+### Injected alternatives do not count as ranking error
+
+Some oracle movement is not a discovery about the engine. It is a reading the
+data **deliberately injected** into the beam — a list-valued
+`grammatical_endings` entry, which adds a licit reading the spec cannot choose
+between so that a downstream rescorer can (see
+[SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings)). French
+⟨-ent⟩ is the first of these.
+
+**HARD rule: oracle@k movement caused by an injected alternative is reported
+separately, under its own heading, and never counts toward ranking-error
+analysis or any beat-espeak claim.**
+
+**This is enforced by construction, not by discipline.** The scoreboard run
+builds its engine with `G2P(lang, expose_ambiguous_endings=False)`, so a
+list-valued ending contributes nothing to the beam it scores: every oracle cell
+in `docs/scoreboard.md` and `benchmarks/results.json`, for every language and
+every dataset, is measured on the beam the engine RANKS. A row whose language
+declares injected alternatives records which ones it excluded in
+`oracle_injected_alternatives` (`["fr-FR ent"]` on the fr/wikipron row), so the
+exclusion travels with the numbers. That field is derived from the flag the row
+was **scored with**, not from the spec: a row measured with exposure on claims
+no exclusion and leaves the field off, because a provenance field that asserts
+an exclusion the run did not perform is worse than no field at all. 1-best is
+identical either way — an
+alternative can never reach rank 1 — so the `PER` and `Exact match` columns do
+not depend on this choice at all.
+
+To measure the injected movement itself, pass the flag explicitly:
+
+```python
+evaluate_words_oracle(pairs, "fr", strip_stress=True, broad=True,
+                      expose_ambiguous_endings=True)
+```
+
+Reproduced on the full fr/wikipron row (n=85495): `PER 0.0888` and
+`Exact match 0.6185` in BOTH modes; `Oracle@5 0.0665 → 0.0627` and
+`OracleX@5 0.6712 → 0.6888` when the ⟨-ent⟩ alternative is exposed, with
+`Oracle@3` unmoved at `0.0723` because the mute reading lands at rank 4-5. The
+first pair is the accuracy claim, and its invariance is the proof that an
+injected reading never reaches rank 1; the second pair is reachability and
+belongs only under this heading.
+
+The reason is that the two would otherwise be the same number measured
+differently. `PER − Oracle@k` is meant to read as "the engine already produced a
+better answer and mis-ranked it" — a property of the weights that a rescorer
+could realise. An injected alternative moves that gap by *construction*: adding
+candidates to the beam can only lower an oracle, so any spec could raise its own
+oracle arbitrarily by declaring more alternatives, while the 1-best does not
+move and nothing about the ranking got better. Folding it into the headroom
+would be marking our own diagnostic to our own edit.
+
+So, when reporting:
+
+- Give the 1-best columns first, and say they are unchanged. That is the claim
+  an injected alternative is allowed to make.
+- Give the oracle delta under an explicit **injected-alternative oracle
+  movement** heading, naming the ending and the spec that declares it.
+- Do not add it to a `PER − Oracle@k` headroom figure, a ranking-error budget,
+  or a per-phenomenon ranking-failure count.
+- Never carry it into `comparison.md` or any "beats espeak / epitran / X"
+  sentence. Those compare one pronunciation to one pronunciation, and this is
+  the k-inflating case the oracle ban below already exists for.
+
+The value of an injected alternative is *reachability* — the reading exists for
+a rescorer that has the fact we do not. Report it as reachability (for example,
+"gold in top-10 went 0 → 192 of 300 gold-mute types"), not as accuracy.
+
+### The Oracle@1 self-check
+
+The readings come from `G2P.word_candidates`, which runs every beam path
+through the same word-final pipeline as `transcribe_word` — geminate
+collapse, grammatical-ending rewrite, stress marking, lexicon override.
+Element 0 is therefore normally `transcribe_word`'s own answer, which is
+what makes Oracle@1 equal the PER column.
+
+That identity is **not guaranteed by construction**: `transcribe_word`
+defaults to greedy width-1 search, while `word_candidates` runs a
+width-`max(k, 8)` beam, and a wider beam may reach a cheaper path that
+greedy pruning discarded. The two agree on every gold set measured, but
+the harness verifies rather than assumes: it computes Oracle@1 on every
+run, and if it differs from PER — or if any word's candidate 0 differs
+from its 1-best — the run prints `ENGINE BUG` and **exits non-zero
+without writing the scoreboard**. A corrupt committed artifact reported
+as success is worse than a failed run.
+
+**Oracle@k is a diagnostic for this engine only. It must never appear
+in a cross-system comparison or a "beats X" claim.** espeak-ng, epitran
+and every other system in [`comparison.md`](comparison.md) emit ONE
+pronunciation. Setting their single answer against the best of k of ours
+compares k guesses to one, and any conclusion drawn from it is an
+artifact of the k. `scripts/compare_systems.py` does not read these
+fields, and the CI regression gate
+(`benchmarks/results_ci_sample.json`) stays 1-best.
+
+Two more limits worth stating plainly:
+
+- **Word-level only.** The beam is per word. Sentence-level gold sets
+  (`4catac` and the TTS gold sets — note `vox_communis` is *word*-level
+  and does get an oracle) get none: the columns read `-` and
+  `oracle_scored_words` is `0`. Composing a sentence-level beam out of
+  word beams would invent a ranking the engine never produces, so the
+  harness refuses to.
+- **`·` is not `-`.** A cell reads `·` when the row has not been
+  rescored since the oracle columns were added, and `-` when the row is
+  sentence-level and can never have one. A full scoreboard is ~10M
+  scored words, so most rows are still `·` and get refreshed in batches.
+  The two states are never merged into one blank: an unrescored row must
+  not read as "no ranking error".
+- **Phenomena-neutral.** The gap says a better reading was mis-ranked.
+  It does not say *which* phonological phenomenon is involved. Use
+  [`error_analysis.py`](../scripts/error_analysis.py) for that.
+
+Cost, measured on `fr` WikiPron (85k words, beam width 8): **1.63x** the
+1-best run in a cold process (2.04s vs 1.25s over a 3000-word probe,
+reproduced across runs). That is cheap enough that `--scoreboard` opts
+in; `--no-topk` turns it off for a fast ad-hoc rerun.
+
+`build_scoreboard(..., oracle=...)` defaults to **off**, and each caller
+opts in explicitly. The CI regression gate
+(`check_benchmark_regression.py`) and the `--ci-sample` baseline compare
+1-best PER only, and would otherwise pay 1.6x across every row for
+columns they never read.
+
+Because a full scoreboard is ~10M scored words, rows can be refreshed a
+few at a time and merged into the committed board:
+
+```bash
+PYTHONPATH=$PWD python scripts/benchmark.py --scoreboard \
+    --dataset wikipron --lang fr
+```
+
+A subset run scores each row exactly as the full run does; the rows it
+did not touch are carried through unchanged.
+
 ### Rules-only vs with-lexicon PER (lexicon overlay)
 
 Languages that ship an optional lexicon overlay

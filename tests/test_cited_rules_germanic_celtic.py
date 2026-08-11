@@ -1118,12 +1118,6 @@ def test_en_us_caught_cot_merger():
     assert thought[1:-1] == lot[1:-1]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982) vol. 3 claims Australian English is non-rhotic; en-AU "
-    "produces [kɑːɹ] for car — the en-GB parent is non-rhotic ([kɑː]), so the "
-    "dialect spec has actively introduced a rhotic ⟨r⟩",
-)
 def test_en_au_non_rhotic():
     """Australian English is non-rhotic.
 
@@ -1250,11 +1244,6 @@ def test_en_ie_th_stopping():
     assert _t("en-IE", "think").startswith("t̪")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982) vol. 3 claims South African English is non-rhotic; en-ZA "
-    "produces [kɑːɹ] for car, where the en-GB parent gives the non-rhotic [kɑː]",
-)
 def test_en_za_non_rhotic():
     """South African English is non-rhotic.
 

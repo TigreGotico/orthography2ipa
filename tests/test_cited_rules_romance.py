@@ -568,12 +568,6 @@ def test_fr_liaison_n():
     assert "n‿" in _s("fr-FR", "un ami")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="fr-FR notes cite amateur [amatœʁ]; engine produces [amatø] — the "
-    "spec's own 'FINAL CONSONANTS: ... r typically silent word-finally' claim "
-    "deletes the ⟨r⟩ of the -eur suffix, contradicting the cited transcription",
-)
 def test_fr_amateur_cited_transcription():
     """fr-FR notes cite amateur as [amatœʁ].
 
@@ -581,9 +575,10 @@ def test_fr_amateur_cited_transcription():
     (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ] ...)."
     Sources: Fouché (1959), Tranel (1987).
 
-    The denasalisation itself fires (see test_fr_denasalisation_before_vowel);
-    the cited whole-word transcription is not reached, because the blanket
-    final-⟨r⟩ deletion rule strips the suffix's [ʁ].
+    Both halves now hold. The denasalisation fires (see
+    test_fr_denasalisation_before_vowel); the ⟨r⟩ survives because
+    ``word_final`` no longer deletes it by default; and the ⟨eu⟩ opens to
+    [œ] because its syllable (a·ma·teur) is closed.
     """
     assert _t("fr-FR", "amateur") == "amatœʁ"
 
@@ -617,4 +612,85 @@ def test_fr_glide_guard_only_blocks_silent_finals():
     glides freely (its final ⟨a⟩ is pronounced and carries the nucleus).
     """
     assert _t("fr-FR", "vie") == "vi"
+
+
+def test_fr_mute_er_ez_is_morphology_not_orthography():
+    """Word-final ⟨-er⟩/[e] (parler) vs /ɛʁ/ (mer, hiver, super, poker) and
+    ⟨-ez⟩/[e] (mangez, nez) are a MORPHOLOGICAL split — the mute reading
+    belongs to the infinitive/2pl/agent-noun endings, not to the letter
+    sequence (Fouché 1959; Tranel 1987). Modelling it as an ⟨er⟩/⟨ez⟩
+    grapheme key is forbidden (AGENTS.md morpheme-chunk rule) and was
+    reverted after adversarial review: the digraph made ⟨s⟩ in pers-/vers-
+    look intervocalic (personne → *[pɛʁzɔn]) and out-munched ⟨rr⟩
+    degemination (terre → *[tɛʁʁ]). These pins hold the letter-level
+    behaviour and the non-regressions until a morpheme-aware engine
+    context exists (same follow-up as English suffix palatalization).
+    """
+    # mer/cher/hiver come from the word_exceptions final-r-pronounced list
+    # (letter-level final ⟨r⟩ is silent); vers is genuinely letter-level —
+    # its ⟨r⟩ is not word-final, only the transparent ⟨s⟩ after it is.
+    assert _t("fr-FR", "mer") == "mɛʁ"
+    assert _t("fr-FR", "cher") == "ʃɛʁ"
+    assert _t("fr-FR", "vers") == "vɛʁ"
+    assert _t("fr-FR", "hiver") == "ivɛʁ"
+    # the regression classes the reverted digraph broke
+    assert _t("fr-FR", "personne") == "pɛʁsɔn"
+    assert _t("fr-FR", "version") == "vɛʁsjɔ̃"
+    assert "ʁʁ" not in _t("fr-FR", "terre")
+    assert "ʁʁ" not in _t("fr-FR", "pierre")
+    # vie/vies: the transparent-suffix mechanism itself is untouched
+    assert _t("fr-FR", "vie") == "vi"
+    assert _t("fr-FR", "vies") == "vi"
+
+
+def test_fr_loanword_er_snapshot_extension():
+    """2026-08 word_exceptions extension of the #807 English-loan ⟨-er⟩
+    carve-out (leader, cracker, container, poker, revolver).
+
+    The class is OPEN (French keeps borrowing English agent-noun -er
+    coinages, and proper nouns ending -er are unboundedly open), so this
+    is deliberately NOT a claim of exhaustive coverage — see the fr-FR
+    notes' "2026-08 LOANWORD -ER SNAPSHOT EXTENSION" paragraph. Only
+    wikipron fr gold types with a single, unambiguous /ʁ/-final
+    transcription were added; words with disagreeing wikipron variants
+    (quaker, hamburger, manager, master, panzer...), verb-noun homographs
+    whose gold has BOTH an [e]-final (infinitive/agent-noun morphology)
+    and an [œʁ]/[ɛʁ]-final (loanword nominal) reading (biker, hacker,
+    tuner, dealer, streamer, spammer...), and all proper nouns (Jupiter,
+    Esther, Jennifer, Khmer, Vancouver...) were deliberately left out as
+    a documented, not silently missed, gap.
+    """
+    assert _t("fr-FR", "laser") == "lazɛʁ"
+    assert _t("fr-FR", "gangster") == "ɡɑ̃ɡstɛʁ"
+    assert _t("fr-FR", "cover") == "kɔvœʁ"
+    assert _t("fr-FR", "stripper") == "stʁipœʁ"
+    assert _t("fr-FR", "webmaster") == "wɛbmastœʁ"
+
+
+def test_fr_y_is_a_vowel_letter():
+    """⟨y⟩ is declared a vowel letter for French (``vowel_graphemes: ["y"]``),
+    overriding the engine's closed Latin vowel-letter inventory (which
+    otherwise treats ⟨y⟩ as a consonant regardless of IPA, as it must for
+    English; see orthography2ipa/vowels.py). This lets ⟨y⟩-spelled nasal
+    vowels correctly absorb a following coda nasal (tympan, nymphe, symphonie
+    — Fouché 1959) and lets the c/g softening BEFORE_FRONT_VOWEL class reach
+    ⟨y⟩ (cycle, cygne — Fouché 1959; Tranel 1987), matching the class-level
+    condition already documented for ⟨e⟩/⟨i⟩.
+
+    ``gymnase`` is deliberately NOT asserted as correct here: real French is
+    [ʒimnaz] (no nasal — ⟨y⟩ before the ⟨mn⟩ cluster stays oral because the
+    nasal consonant is itself followed by another consonant, an onset-cluster
+    context the coda-nasal allophone rule does not distinguish from a true
+    coda). The engine currently produces the nasalised [ʒɛ̃naz] instead — a
+    known, acknowledged gap in the coda_nasal/FR_NASAL_ABSORB context
+    (pre-existing before this ⟨y⟩ fix, not introduced by it), left open
+    rather than papered over with a word_exception for one word. The same
+    ⟨-ymn-⟩ context also swallows the ⟨m⟩ itself once ⟨y⟩ counts as a
+    nasal-absorbing vowel (hymne → [ɛ̃n], real [imn]) — one class, one gap.
+    """
+    assert _t("fr-FR", "tympan") == "tɛ̃pɑ̃"
+    assert _t("fr-FR", "nymphe") == "nɛ̃f"
+    assert _t("fr-FR", "symphonie") == "sɛ̃fɔni"
+    assert _t("fr-FR", "cycle") == "sikl"
+    assert _t("fr-FR", "cygne") == "siɲ"
     assert _t("fr-FR", "alicia") == "alisja"

@@ -39,10 +39,16 @@ from orthography2ipa.types import (
     StressRules,
     TimeSpan,
 )
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.weights import split_weighted_graphemes
 
 # Fields resolved via the ``{field}_base`` JSON key + ``{**base, **own}``
 # dict merge (graphemes, allophones, positional_graphemes).
+_BASE_SCALAR_FIELDS: tuple = tuple(
+    f for f, mode in FIELD_INHERITANCE.items()
+    if mode is InheritanceMode.BASE_SCALAR
+)
+
 _BASE_MERGE_FIELDS: tuple = tuple(
     f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.BASE_MERGE
 )
@@ -270,9 +276,31 @@ def load_json_spec(code: str) -> LanguageSpec:
             }
         else:
             merged_base_fields[field] = own_value
+    # BASE_SCALAR fields follow the graphemes_base edge: a spec that does not
+    # state one takes the value of the spec whose grapheme table it pulls in.
+    # Resolution is transitive because the base spec was itself resolved when
+    # it was loaded (de-x-bavarian → de-AT → de-DE).
+    base_scalars: Dict[str, object] = {}
+    _grapheme_base_lang = base_field_langs.get("graphemes")
+    for field in _BASE_SCALAR_FIELDS:
+        if field in raw:
+            base_scalars[field] = raw[field]
+        elif _grapheme_base_lang and _grapheme_base_lang in _specs:
+            base_scalars[field] = getattr(_specs[_grapheme_base_lang], field)
+
     graphemes = merged_base_fields["graphemes"]
     allophones = merged_base_fields["allophones"]
     positional_graphemes = merged_base_fields["positional_graphemes"]
+
+    # Ending values are normalised on every match, so a malformed one
+    # would otherwise surface as a transcription-time error on whichever
+    # word happens to end that way. Fail at load, where the spec is.
+    for ending, value in (merged_base_fields["grammatical_endings"] or {}).items():
+        try:
+            normalize_ending_value(value)
+        except ValueError as e:
+            raise ValueError(
+                f"'{code}': grammatical_endings[{ending!r}]: {e}") from e
 
     # parse ancestors
     try:
@@ -438,6 +466,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             superheavy_final_attracts=bool(
                 raw_stress.get("superheavy_final_attracts", True)),
             max_onset=int(raw_stress.get("max_onset", 1)),
+            max_onset_declared="max_onset" in raw_stress,
             cliticless_words=tuple(raw_stress.get("cliticless_words", ())),
             coda_liquid_capture=bool(
                 raw_stress.get("coda_liquid_capture", False)),
@@ -502,6 +531,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         preposed_vowels=tuple(raw.get("preposed_vowels", ()) or ()),
         coda_no_inherent_vowel=bool(raw.get("coda_no_inherent_vowel", False)),
         collapse_geminates=bool(raw.get("collapse_geminates", False)),
+        constrain_onsets=bool(base_scalars.get("constrain_onsets", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),
         wikidata_qid=raw.get("wikidata_qid"),
@@ -519,6 +549,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         timespan=timespan,
         stress=stress,
         word_exceptions=merged_base_fields["word_exceptions"] or None,
+        grammatical_endings=merged_base_fields["grammatical_endings"] or None,
         grapheme_weights=own_grapheme_weights or None,
     )
 

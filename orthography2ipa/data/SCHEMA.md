@@ -71,6 +71,8 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `graphemes_base`            | string | no       | Code to inherit graphemes from               |
 | `allophones_base`           | string | no       | Code to inherit allophones from              |
 | `positional_graphemes_base` | string | no       | Code to inherit positional graphemes from    |
+| `word_exceptions_base`      | string | no       | Code to inherit whole-word overrides from    |
+| `grammatical_endings_base`  | string | no       | Code to inherit grammatical endings from     |
 | `quality`                   | string | no       | Data maturity: `"stub"`, `"skeleton"`, `"research"`, `"production"` (default: `"research"`) |
 | `script_type`               | string | no       | Script typology: `"alphabet"`, `"abjad"`, `"abugida"`, `"syllabary"`, `"logographic"`, `"featural"`, `"mixed"`, `"reconstruction"` (default: `"alphabet"`) |
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
@@ -79,6 +81,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |
 | `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
+| `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
@@ -248,6 +251,20 @@ the four overridden entries.
 | `transform`    | string | yes      | Replacement pattern                  |
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
+
+A sandhi rule applies only within its prosodic domain (Nespor & Vogel 1986,
+*Prosodic Phonology*). Punctuation that writes a pause — a comma, a full stop,
+and their equivalents in every script — closes the intonational phrase (IP),
+and no rule of any language reaches across that break.
+
+The engine blocks at IP boundaries only, and there is no field for it: it is a
+property of the rule type, not a per-rule choice. This is a LOWER BOUND, not
+the full story. Most cross-word rules take the smaller phonological phrase (φ)
+as their domain, and φ boundaries also fall clause-internally where no
+punctuation is written, so IP-only blocking UNDER-restricts. A per-rule
+prosodic domain (`"domain": "phi"` blocking φ-internally too) is a possible
+future refinement; it needs a φ-parser the engine does not have and evidence
+per rule, so it is deliberately not added here.
 
 ## Allophone Rule Schema
 
@@ -456,6 +473,170 @@ entry covers every digraph producing a palatal (⟨lh⟩→ʎ, ⟨nh⟩→ɲ, �
 class tier (below exact-letter positions, so `"before_i"` wins over
 `"before_palatal"` when the neighbour ⟨i⟩ realises the palatal glide /j/) and are
 likewise inert for any spec that does not declare them.
+
+## Grammatical endings
+
+`grammatical_endings` maps an orthographic **word ending** to the IPA it
+realises, for cases where the realisation belongs to the grammatical ending
+rather than to the letter sequence that spells it — suffix morphology.
+
+```json
+"grammatical_endings": {
+  "er": "e",
+  "ez": "e"
+}
+```
+
+Three phenomena it exists for:
+
+- **French mute ⟨-er⟩ / ⟨-ez⟩.** The infinitive and agent-noun ⟨-er⟩ is [e]
+  (`parler`, `boulanger`, `boulangers`) and the 2pl ⟨-ez⟩ is [e] (`mangez`,
+  and the frozen `nez`, `chez`, `assez`): final-consonant elision in the
+  grammatical ending (Fouché 1959, *Traité de prononciation française*;
+  Tranel 1987 §3).
+- **English suffix palatalization.** ⟨-tion⟩ → /ʃən/, ⟨-cious⟩ → /ʃəs/,
+  ⟨-tial⟩ → /ʃəl/: palatalization of the stem-final coronal before the `-ion`
+  suffix (Chomsky & Halle 1968, *The Sound Pattern of English*; surface values
+  per Wells 2008, *Longman Pronunciation Dictionary*).
+- **A morphologically ambiguous ending, exposed for downstream rescoring.**
+  See [Ambiguous endings](#ambiguous-endings) below.
+
+**Every ending is a cited linguistic claim about a suffix's realisation, never
+a PER-chasing pattern.** This applies to every key, single-valued and
+list-valued alike, and it is the same prohibition that keeps n-grams out of
+`graphemes`: an ending earns its place from a published source — a paper or a
+reference grammar — that states how that suffix is realised. Corpus frequency
+supports the *ordering* of a list value, but a frequency count on its own is
+not a citation and never licenses a key. An ending added because it moved the
+score, with the source found afterwards or not at all, is rejected.
+
+Two mechanical gates enforce this (`tests/test_grammatical_endings.py`): every
+declared ending must be named in its spec's `notes`, and that passage must
+carry a citation traceable to the spec's `sources` array.
+
+Rules of the match:
+
+- **Effective word end only.** The ending must occupy the word's last grapheme
+  tokens, or its last tokens before a *transparent grammatical suffix* the spec
+  already silences word-finally (French plural ⟨-s⟩/⟨-x⟩) — the same question
+  `effective_word_end` answers for positional graphemes. So `boulangers`
+  matches, and the word-internal ⟨er⟩ of `personne`, `version` or `terre`
+  never does.
+- **Token-aligned.** The ending must start where a grapheme token starts. The
+  word is tokenized exactly as it would be without the table, and only the
+  emitted IPA of the trailing tokens is replaced — this is why a morpheme is
+  **not** written as a grapheme key (forbidden, see `AGENTS.md`): a morpheme
+  key would change how the word's interior is cut.
+- **A head is required.** At least one token must precede the ending.
+- **Longest match wins.** English ⟨-stion⟩ → /stʃən/ overrides the ⟨-tion⟩ it
+  contains, so `question` keeps its /t/.
+
+Precedence: `word_exceptions` **>** `grammatical_endings` **>**
+`graphemes` / `positional_graphemes`. The closed set of French nouns that keep
+/ɛʁ/ (`mer`, `hiver`, `super`, and their plurals) therefore stays in
+`word_exceptions` and is unaffected.
+
+Inheritance is `base_merge`, opt-in through `grammatical_endings_base`: a
+dialect that shares its parent's graphemes shares its suffix morphology
+(en-US palatalizes ⟨-tion⟩ exactly as en-GB does) and overrides per ending.
+
+### Ambiguous endings
+
+Some endings have more than one licit reading and orthography does not say
+which. French verbal ⟨-ent⟩ is the reference case: the 3PL inflection is mute
+(*ils parlent* [paʁl]) while the noun or adjective is [ɑ̃] (*vent*, *cent*,
+*moment*). The two are separated by part of speech and by nothing spelled.
+
+**o2i does not decide, and does not accept a POS tag as an input.** That
+decision belongs to a downstream rescorer. What this layer owes is that the
+reading it cannot choose still **exists in the lattice**, because a ranking
+error is downstream-fixable and a missing candidate is not. Before this, [paʁl]
+was in no French beam at any width.
+
+An ambiguous ending is therefore declared as an **ordered candidate list** —
+the same discipline `graphemes` and `positional_graphemes` already use:
+
+```json
+"grammatical_endings": {
+  "ent": [null, ""]
+}
+```
+
+- **Element 0 is rank 1.** A string there rewrites the matched tail exactly as
+  the plain-string form does, so `["ʃən"]` is exactly `"ʃən"`.
+- **`null` at element 0 means "defer".** Rank 1 stays whatever the grapheme
+  tables already produced, and the entry contributes only the alternatives.
+  French uses this shape because the nasal reading of ⟨-ent⟩ is already what
+  nasal ⟨en⟩ + silent ⟨t⟩ yields — deferring keeps every 1-best *and* every
+  existing candidate ordering byte-identical.
+- **Elements 1..n are lower-ranked licit readings.** Each becomes an extra
+  costed path, ranked by declaration order with the same rank cost an ordered
+  grapheme list gets, so it reaches `word_candidates`, oracle@k and any
+  rescorer plugin — and can never displace rank 1.
+- **`null` is only valid at element 0.** As an alternative it would have to
+  mean "this ending may also be silent", which is written `""`. An empty list
+  is rejected.
+
+`[null]` alone declares an ending that is *not* ambiguous: it rewrites nothing
+and adds nothing, and its only effect is longest-match shielding — a way to keep
+a longer, unambiguous ending off a shorter ambiguous one.
+
+Ordering the list is a claim, and it should be made on what the consumer pays
+for. French keeps the nasal reading at rank 1 even though gold *types* run
+3873 mute to 287 nasal, because this library feeds TTS, where type counts do
+not price a mispronounced *vent*. The consequence is deliberate: oracle@k
+improves and 1-best does not move. That is the intended shape of the change,
+not a disappointing result — and the oracle movement it causes is kept OUT of
+the published scoreboard entirely, because that board defines `PER − Oracle@k`
+as ranking error. See [benchmarks.md](../../docs/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error).
+
+#### Admissibility: a proven lattice hole, never a guess
+
+**A list-valued ending is admissible only where the missing reading is a
+demonstrated lattice hole, shown with gold evidence.** The bar is the
+**0-in-top-k test**: take a sample of the gold types that carry the missing
+reading, run `word_candidates` at a generous *k* and beam width, and show the
+gold reading appears **0 times anywhere in the top k**. That is what separates
+a *coverage* hole — which nothing downstream can repair, and which this
+mechanism exists for — from a *ranking* error, which any downstream rescorer
+already fixes without a spec change. French ⟨-ent⟩ cleared it at 0/300 in the
+top 10.
+
+Declaring a list because a reading "also exists", or "might help", or to raise
+an oracle column, is **forbidden**. An unproven alternative costs beam width and
+inflates our own diagnostic while fixing nothing (see
+[benchmarks.md](../../docs/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error)). If the reading is already
+reachable at any *k*, the fix belongs in weights or in a downstream rescorer,
+not here.
+
+Record the evidence where the data lives: the sample size, the measured
+0-in-top-k result, and the source of the gold, in the spec's `notes` beside the
+ending.
+
+#### Not a paradigm table
+
+A list value states the **attested realisations of one spelled ending**, ordered
+by frequency and cited. It is not a place to enumerate a paradigm.
+
+**Adding ending keys shaped like a conjugation or declension table is
+forbidden**, and it is forbidden by the same clause that forbids morpheme
+chunks as grapheme keys (see `AGENTS.md`: morphology belongs to a downstream
+consumer, and the package ships no word lists, stem lists or vocabularies).
+Concretely, a key earns its place only if it is a *spelling* that a reader can
+see at the end of a word and that has its own attested realisation. Enumerating
+`ons`, `ez`, `ent`, `ais`, `ait`, `aient`, `èrent`, `assions`… because they are
+the cells of a verb paradigm is a lexicon of morphology written in the schema's
+notation, and it is rejected on sight — even though each individual key would
+match orthographically.
+
+The two tests to apply, both of which must pass:
+
+1. **Is it a spelling fact?** State the entry without naming a part of speech,
+   a tense, a person, a number, a gender or a case. If the justification cannot
+   survive that, it is morphology and it does not belong here.
+2. **Is the ordering cited?** Each list must carry a frequency claim traceable
+   to a source or a measurement on gold — not an intuition about which reading
+   "feels" more common.
 
 ## Ancestor Role Values
 
