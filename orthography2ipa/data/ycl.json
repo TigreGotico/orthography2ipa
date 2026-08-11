@@ -3,7 +3,7 @@
   "name": "Lolopo",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -117,7 +117,7 @@
       "notes": "Descent per Glottolog classification of Lolopo (lolo1259)."
     }
   ],
-  "notes": "Skeleton. Lolopo (Central Yi) is a Loloish (Sino-Tibetan) language of Yunnan, China. Its primary script is the Yi syllabary; this entry maps a Latin-based transcription, covering base Latin consonants and vowels plus digraphs ch/sh/ts/ng/ny and aspirates kh/ph/th. The three lexical tones (low 21, mid 33, high 55) are not recovered by the romanization and are left unencoded, so an elevated PER floor is expected.",
+  "notes": "Skeleton. Lolopo (Central Yi) is a Loloish (Sino-Tibetan) language of Yunnan, China. Its primary script is the Yi syllabary; this entry maps a Latin-based transcription, covering base Latin consonants and vowels plus digraphs ch/sh/ts/ng/ny and aspirates kh/ph/th. The three lexical tones (low 21, mid 33, high 55) are not recovered by the romanization and are left unencoded, so an elevated PER floor is expected. Lolopo is tonal; tone is not marked in the Latin-based transcription used here and is left unencoded, and stress is not a separate contrastive category (documented exemption).",
   "iso639_3": "ycl",
   "glottolog_code": null,
   "sources": [
@@ -142,6 +142,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Lolopo_language"
+    },
+    {
+      "id": "ycl_merrifield2012",
+      "author": "Merrifield, Scott",
+      "year": 2012,
+      "title": "Yáo'ān Central Yi Phonology",
+      "publisher": "SIL International",
+      "url": "https://www.sil.org/resources/publications/entry/48227",
+      "pages": null,
+      "notes": "Descriptive phonology of the Yao'an variety of Central Yi/Lolopo, alongside Judi Merrifield's (2010) Yao'an Lolo Grammar Sketch; consulted to check the Latin-based transcription's digraph/aspirate conventions modelled here."
     }
   ],
   "wikipedia": [
