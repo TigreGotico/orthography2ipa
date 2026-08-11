@@ -218,19 +218,19 @@ def test_balearic_does_not_degeminate():
     ("és sa", "ˈet t͡sə"),
     ("més són", "ˈmet ˈt͡son"),
     ("dos savis", "ˈdot ˈt͡savis"),
-    ("cossos sense", "ˈkosut ˈt͡sɛnsə"),
-    ("es seu", "ət ˈt͡sɛw"),
+    ("cossos sense", "ˈkosot ˈt͡sənsə"),
+    ("es seu", "ət ˈt͡səw"),
     ("mos surten", "ˈmot ˈt͡surtən"),
-    ("des serveis", "dət ˈt͡sɛrvəjs"),
+    ("des serveis", "dət ˈt͡sərvəjs"),
     ("cantés s'amor", "kəˈntet t͡səˈmo"),
-    ("sentis sàpiga", "ˈsɛntit ˈt͡sapiɣə"),
-    ("destries s'arena", "dəˈstɾiət t͡səˈɾɛnə"),
+    ("sentis sàpiga", "ˈsəntit ˈt͡sapiɣə"),
+    ("destries s'arena", "dəˈstɾiət t͡səˈɾənə"),
     ("arbres se", "ˈarβɾət t͡sə"),
     ("autors se", "əˈwtot t͡sə"),
     ("pes sol", "pət ˈt͡sol"),
     # ── /ʃ # s/ and /s # ʃ/: the same rule, keyed on the CLASS not on ⟨s⟩.
-    ("defineix sa", "dəfiˈnɛt t͡sə"),
-    ("beix serveix", "ˈbɛt t͡səˈrvɛʃ"),
+    ("defineix sa", "dəfiˈnət t͡sə"),
+    ("beix serveix", "ˈbət t͡səˈrvəʃ"),
     ("es xaloc", "ət t͡ʃəˈlok"),
 ])
 def test_balearic_cross_word_sibilant_affrication(phrase, expected):
@@ -297,7 +297,7 @@ def test_sandhi_should_not_cross_a_phrase_boundary():
     vowel-contact rules, which the same boundary blocks.
     """
     assert transcribe("d'improvís, se presenta", "ca-x-balear").startswith(
-        "dimpɾuˈvis ")
+        "dimpɾoˈvis ")
     # ... and the same defect in the rules this one was modelled on
     assert transcribe("més, són", "ca") == "ˈmes ˈson"
     assert transcribe("la casa, un dia", "ca") == "lə ˈkazə un ˈdiə"
@@ -306,11 +306,19 @@ def test_sandhi_should_not_cross_a_phrase_boundary():
 def test_balearic_affrication_is_cross_word_only():
     """Word-internal ⟨ss⟩ and non-sibilant boundaries are untouched."""
     assert transcribe("passa", "ca-x-balear") == "ˈpasə"
-    assert transcribe("cossos", "ca-x-balear") == "ˈkosus"
+    # Majorcan does not raise unstressed /o/ (Wheeler 2005 §2.3; Llompart
+    # & Simonet 2018), so the atonic ⟨o⟩ stays [o] — the point here is
+    # only that no affricate appears word-internally.
+    assert transcribe("cossos", "ca-x-balear") == "ˈkosos"
     # non-sibilant right word
     assert transcribe("pes turons", "ca-x-balear") == "pəs tuˈɾons"
-    # sibilant right word, non-sibilant left word
-    assert transcribe("cap sol", "ca-x-balear") == "ˈkap ˈsol"
+    # Sibilant right word, non-sibilant left word: the AFFRICATION rule does
+    # not fire (its left context needs a post-vocalic sibilant). The coda
+    # STOP does assimilate totally to the following consonant, which is the
+    # separate Majorcan process BALEAR_TOTAL_ASSIM_* models (Wheeler 2005
+    # §10.4; Veny 1982 ch. 4) — [ˈkas ˈsol], with no affricate anywhere.
+    assert transcribe("cap sol", "ca-x-balear") == "ˈkas ˈsol"
+    assert "t͡s" not in transcribe("cap sol", "ca-x-balear")
 
 
 @pytest.mark.parametrize("lang", ["ca", "ca-x-occidental", "ca-x-valencia",
@@ -544,11 +552,12 @@ def test_atonic_function_words_reduce():
     # 1. UNSTRESSED VOWEL REDUCTION — Eastern only (Recasens 1996; Veny 1982)
     ("casa",   "kazə",   "kaza",    "kazɛ",   "kazə"),
     ("tenir",  "təni",   "teniɾ",   "teni",   "təni"),
-    # 2. unstressed ⟨o⟩ → [u] in Central AND Majorcan Balearic (mallorquí),
-    #    but not in the non-reducing Western block (Valencian, North-Western).
-    #    Veny 1982 ch. 4; Recasens 1996; the ca-x-balear-010/011 arbitration
-    #    (euros [ˈɛwɾus], torrent [tuˈrent]).
-    ("xocolata", "ʃukulatə", "tʃokolata", "tʃokolatɛ", "ʃukulatə"),
+    # 2. unstressed ⟨o⟩ → [u] in CENTRAL, but not in the non-reducing Western
+    #    block (Valencian, North-Western) and NOT in Majorcan either: mallorquí
+    #    has the FOUR-vowel unstressed system [ə i o u], reducing /o ɔ/ to [o]
+    #    and keeping /o/ distinct from /u/ (Wheeler 2005 §2.3; Veny 1982 ch. 4;
+    #    Llompart & Simonet 2018).
+    ("xocolata", "ʃukulatə", "tʃokolata", "tʃokolatɛ", "ʃokolatə"),
     # 3. word-final ⟨-r⟩ — kept ONLY in Valencian (Veny 1982 ch. 3)
     ("cantar", "kənta",  "kantaɾ",  "kanta",  "kənta"),
 ])
@@ -620,12 +629,15 @@ def test_valencian_affricate_and_western_x():
     assert transcribe("marxar", "ca-x-occidental").endswith("tʃa")
 
 
-def test_balearic_raises_unstressed_o():
-    """Majorcan Balearic (mallorquí) reduces ⟨a⟩/⟨e⟩ to [ə] AND raises
-    unstressed ⟨o⟩ to [u], like the rest of Eastern Catalan (Veny 1982 ch. 4;
-    Recasens 1996; the ca-x-balear-010/011 arbitration: euros [ˈɛwɾus],
-    torrent [tuˈrent])."""
-    assert "ʃukuˈlatə" == transcribe("xocolata", "ca-x-balear")
+def test_majorcan_reduces_unstressed_o_to_o_not_u():
+    """Majorcan (mallorquí) has a FOUR-vowel unstressed system, not three.
+
+    ⟨a e ɛ⟩ centralise to [ə] as everywhere in the Eastern block, but /o ɔ/
+    reduce to [o] and are NOT raised to [u], so /o/ and /u/ stay distinct as
+    in the West (Wheeler 2005 §2.3; Veny 1982 ch. 4; Llompart & Simonet
+    2018). Central, which does raise, is the contrast case on the same word.
+    """
+    assert "ʃokoˈlatə" == transcribe("xocolata", "ca-x-balear")
     assert "ʃukuˈlatə" == transcribe("xocolata", "ca")
     assert "ə" in transcribe("casa", "ca-x-balear")
 
