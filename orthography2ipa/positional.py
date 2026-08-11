@@ -443,6 +443,52 @@ def _strip_silent_tail(syllable: str, spec: Optional[LanguageSpec]) -> str:
     return syllable
 
 
+def merge_nucleusless_final_syllable(
+    syllables: Sequence[str],
+    spec: Optional[LanguageSpec] = None,
+) -> List[str]:
+    """Fold a final syllable with no audible nucleus into the one before.
+
+    A syllabifier works on LETTERS, so it happily emits a final syllable
+    whose only vowel letter the spec itself silences — French *jeu·ne*,
+    *eu·re*, *ho·no·re*, where the ⟨e⟩ is mute. That string is not a
+    syllable: with no nucleus to carry, its consonants are the CODA of the
+    syllable before it, which is therefore CLOSED. Left unmerged it looks
+    open, and the mid-vowel alternations keyed on
+    :attr:`~orthography2ipa.types.GraphemePosition.OPEN_SYLLABLE` read it
+    the wrong way round — *jeune* came out [ʒøn] for [ʒœn], *heure* [øʁ]
+    for [œʁ] (the *loi de position*: Fougeron & Smith 1993; Tranel 1987
+    ch. 3-4, which state the alternation over PHONETIC syllable shape).
+
+    Silence is asked of the spec (:func:`_strip_silent_tail`), so a
+    language that pronounces its final vowels is never touched and no
+    language is named here.
+
+    THE APPROXIMATION, stated plainly: this is orthographic bookkeeping,
+    not a phonetic coda test. What comes off is what the spec calls mute
+    WORD-FINALLY, and :func:`_is_open_syllable` then applies that same
+    strip a second time to the merged string — to letters that are no
+    longer word-final once the syllables are joined. French *meute* [møt]
+    and *heureuse* [øʁøz] therefore strip back to an open *meu*/*reu* and
+    get the right vowel for the wrong reason, since /t/ and /z/ are both
+    pronounced there. A pronounced coda that the spec does not silence
+    still closes (*neutre* → *neutr*), which is right for *jeune* and
+    wrong for the obstruent+liquid class the *loi de position* exempts.
+
+    Returns a new list; the input is not modified.
+    """
+    result = list(syllables)
+    if len(result) < 2:
+        return result
+    core = result[-1]
+    while core and not (core[-1].isalpha() or unicodedata.combining(core[-1])):
+        core = core[:-1]
+    core = _strip_silent_tail(core, spec)
+    if core and any(is_orthographic_vowel(ch) for ch in core):
+        return result
+    return result[:-2] + [result[-2] + result[-1]]
+
+
 def _is_open_syllable(
     syllable: Optional[str],
     *,
@@ -460,9 +506,14 @@ def _is_open_syllable(
     consonant run, or a token the syllabifier could not place) is
     undecidable and returns ``None`` so no aperture position is emitted.
 
-    Aperture is about a PRONOUNCED coda, so in the word's last syllable
-    the trailing graphemes the spec emits nothing for are stripped before
-    the question is asked (:func:`_strip_silent_tail`): French *heureux*
+    Aperture is about a PRONOUNCED coda, and the closest this can get to
+    one without a phonological analysis is to drop what the spec itself
+    calls mute: in the word's last syllable the trailing graphemes the
+    spec emits nothing for are stripped before the question is asked
+    (:func:`_strip_silent_tail`). It is an approximation of the coda, not
+    the coda — see :func:`merge_nucleusless_final_syllable` for where it
+    is known to give the right answer for the wrong reason. French
+    *heureux*
     is heu·reux with a mute ⟨x⟩, an OPEN final syllable ([øʁø], not
     *[øʁœ]); *beuh* is open too, over a mute ⟨h⟩; and *chanteurs* is
     chan·teurs with a mute ⟨s⟩ over a pronounced ⟨r⟩, still CLOSED. Only
@@ -495,7 +546,7 @@ def grapheme_positions(
     syll_idx: Optional[int] = None,
     stressed_syll_idx: Optional[int] = None,
     syllable: Optional[str] = None,
-    last_syll_idx: Optional[int] = None,
+    syllable_final: Optional[bool] = None,
 ) -> List[GraphemePosition]:
     """Ordered positions to try for the grapheme wrapped by *ctx*.
 
@@ -515,8 +566,17 @@ def grapheme_positions(
     nucleus positions; when ``stressed_syll_idx is None`` (no stress
     context, e.g. the standalone tokenizer) those are omitted.
 
-    ``syllable`` is the orthographic syllable this grapheme sits in. When
-    it is given, the aperture positions
+    ``syllable``/``syllable_final`` are the aperture context, and the
+    caller owns both: ``syllable`` is the string this grapheme's syllable
+    contributes a nucleus to, ``syllable_final`` says whether that string
+    ends the word (so its silent tail comes off — see
+    :func:`_is_open_syllable`). ``syllable=None`` means "no
+    syllabification", and no aperture position is emitted. Callers that
+    merge syllables for aperture (:func:`merge_nucleusless_final_syllable`)
+    must report finality in the MERGED list, which is why this is a flag
+    and not an index comparison the callee could do itself.
+
+    When ``syllable`` is given, the aperture positions
     (:attr:`~orthography2ipa.types.GraphemePosition.OPEN_SYLLABLE` /
     ``CLOSED_SYLLABLE`` and their stress-crossed variants) are emitted
     too; without it they are omitted, exactly like the stress positions.
@@ -593,9 +653,7 @@ def grapheme_positions(
     # stress-only positions kept below. Aperture is unknown without a
     # syllabification, so nothing is emitted when *syllable* is None.
     open_syllable = _is_open_syllable(
-        syllable, spec=spec,
-        word_final=(syll_idx is not None and last_syll_idx is not None
-                    and syll_idx == last_syll_idx))
+        syllable, spec=spec, word_final=bool(syllable_final))
     if open_syllable is not None and (is_vowel or _carries_nucleus(ctx)):
         if stressed_syll_idx is not None and syll_idx is not None:
             if syll_idx == stressed_syll_idx:
@@ -721,7 +779,7 @@ def resolve_branches(
     syll_idx: Optional[int] = None,
     stressed_syll_idx: Optional[int] = None,
     syllable: Optional[str] = None,
-    last_syll_idx: Optional[int] = None,
+    syllable_final: Optional[bool] = None,
 ) -> List[Tuple[str, float]]:
     """The full per-grapheme branch resolution both beams share.
 
@@ -745,9 +803,11 @@ def resolve_branches(
         Optional phoneme→allophones map for allophone expansion.
     syll_idx, stressed_syll_idx
         Stress context for nucleus positions; ``None`` when unavailable.
-    syllable
-        The orthographic syllable this grapheme sits in, for the
-        open/closed aperture positions; ``None`` when unavailable.
+    syllable, syllable_final
+        Aperture context, both owned by the caller: the syllable string
+        this grapheme sits in, and whether that string ends the word.
+        ``syllable=None`` means "no syllabification" and emits no aperture
+        position. See :func:`grapheme_positions`.
     """
     grapheme = ctx.grapheme
     base_candidates = list(ctx.ipa)
@@ -755,7 +815,7 @@ def resolve_branches(
     positions = grapheme_positions(
         ctx, spec=spec, syll_idx=syll_idx,
         stressed_syll_idx=stressed_syll_idx, syllable=syllable,
-        last_syll_idx=last_syll_idx)
+        syllable_final=syllable_final)
     pos_candidates = positional_candidates(spec, grapheme, positions)
 
     if pos_candidates is None:

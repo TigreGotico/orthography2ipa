@@ -62,6 +62,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import (match_grammatical_ending,
+                                        merge_nucleusless_final_syllable,
                                         resolve_branches)
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
@@ -133,17 +134,59 @@ _APERTURE_POSITIONS = frozenset({
 })
 
 
-def _syllable_at(syllables: List[str], idx: Optional[int]) -> Optional[str]:
-    """The orthographic syllable at *idx*, or ``None`` when out of range.
+class _ApertureView:
+    """The syllable list APERTURE reads, and how to index it.
 
-    The engine only has syllables when the spec declares stress rules, and
-    :meth:`G2P._map_tokens_to_syllables` may leave a token unplaced; both
-    cases mean "aperture unknown", which is what ``None`` says to
-    :func:`~orthography2ipa.positional.grapheme_positions`.
+    Aperture and stress want two different lists. Stress needs the
+    syllabifier's own output. Aperture needs it with any nucleus-less
+    final syllable folded away (French mute ⟨e⟩: *jeu·ne* is one closed
+    syllable), which shifts the last index and changes which syllable is
+    word-final. This holds the merged list and the index remapping in one
+    place so the two beams cannot drift apart.
+
+    ``enabled`` is the spec's ``_uses_aperture``: when the spec declares
+    no aperture key nothing is merged, ``syllable()`` answers ``None``
+    ("no aperture context") and ``is_final()`` falls back to plain
+    last-index arithmetic, exactly as before syllable merging existed.
     """
-    if idx is None or not syllables or not (0 <= idx < len(syllables)):
-        return None
-    return syllables[idx]
+
+    __slots__ = ("syllables", "_merged", "_enabled")
+
+    def __init__(self, syllables: List[str], spec, *, enabled: bool):
+        self._enabled = enabled
+        self.syllables = (merge_nucleusless_final_syllable(syllables, spec)
+                          if enabled else syllables)
+        self._merged = len(self.syllables) < len(syllables)
+
+    def _index(self, idx: Optional[int]) -> Optional[int]:
+        """*idx*, a syllable index of the RAW list, remapped onto this one.
+
+        :meth:`G2P._map_tokens_to_syllables` may leave a token unplaced
+        (``None``), which stays unplaced here.
+        """
+        if idx is None:
+            return None
+        if self._merged:
+            idx = min(idx, len(self.syllables) - 1)
+        if not (0 <= idx < len(self.syllables)):
+            return None
+        return idx
+
+    def syllable(self, idx: Optional[int]) -> Optional[str]:
+        """The syllable string aperture should judge, or ``None``."""
+        if not self._enabled:
+            return None
+        i = self._index(idx)
+        return None if i is None else self.syllables[i]
+
+    def is_final(self, idx: Optional[int]) -> Optional[bool]:
+        """Does *idx*'s syllable end the word IN THIS list?
+
+        Word-final is the one place a silent tail comes off, so this must
+        be answered after the merge, never by comparing raw indices.
+        """
+        i = self._index(idx)
+        return None if i is None else i == len(self.syllables) - 1
 
 
 def _collapse_geminates(ipa: str) -> str:
@@ -750,6 +793,9 @@ class G2P:
                 stressed_syll_idx = _CLITIC_NO_STRESS
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
 
+        aperture = _ApertureView(sylls, self.spec,
+                                 enabled=self._uses_aperture)
+
         allophone_map = (
             self.spec.allophones if self.expand_allophones else None)
 
@@ -761,9 +807,8 @@ class G2P:
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
                 stressed_syll_idx=stressed_syll_idx,
-                syllable=(_syllable_at(sylls, syll_for_token[tok_idx])
-                          if self._uses_aperture else None),
-                last_syll_idx=(len(sylls) - 1 if sylls else None))
+                syllable=aperture.syllable(syll_for_token[tok_idx]),
+                syllable_final=aperture.is_final(syll_for_token[tok_idx]))
             tok = g_tokens[tok_idx]
             slots.append(SegmentSlot(
                 grapheme=tok.grapheme,
@@ -1377,6 +1422,9 @@ class G2P:
         # Map each grapheme token index to its syllable index
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
 
+        aperture = _ApertureView(sylls, self.spec,
+                                 enabled=self._uses_aperture)
+
         allophone_map = self.spec.allophones if self.expand_allophones else None
         beam: List[Tuple[List[str], float]] = [([], 0.0)]
 
@@ -1391,9 +1439,8 @@ class G2P:
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
                 stressed_syll_idx=stressed_syll_idx,
-                syllable=(_syllable_at(sylls, syll_for_token[tok_idx])
-                          if self._uses_aperture else None),
-                last_syll_idx=(len(sylls) - 1 if sylls else None))
+                syllable=aperture.syllable(syll_for_token[tok_idx]),
+                syllable_final=aperture.is_final(syll_for_token[tok_idx]))
             for tok_idx, ctx in enumerate(contexts)
         ]
         if self._rescorers:

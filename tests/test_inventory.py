@@ -175,8 +175,13 @@ KNOWN_DEAD_RULES = {
     # Seychellois Creole levelled French /y/ to /i/ and /ə/ to /e/~/ɛ/ in its
     # own vowel merger (Michaelis & Rosalie, APiCS ch. 56; Bollée 1977), so
     # the inherited French front-rounded/schwa nasalisation rules can never
-    # fire here. They are live in fr-FR, which keeps both phonemes.
-    "crs": {"FR_NASAL_y", "FR_NASAL_ə"},
+    # fire here. They are live in fr-FR, which keeps both phonemes. The same
+    # merger took the front-rounded mid vowels: crs has no /œ/ PHONEME target
+    # (⟨eu⟩ is [e]~[ɛ] here), so the inherited loi-de-position rule on /œ/
+    # can never fire. (emission_inventory still lists the rule's /ø/ surface —
+    # it unions dead-rule surfaces — so the claim is about targets, not the
+    # derived inventory.) FR_AU_BEFORE_R is NOT dead here — crs keeps /o/.
+    "crs": {"FR_NASAL_y", "FR_NASAL_ə", "FR_EU_BEFORE_Z"},
     # jrb (Judeo-Arabic macrolanguage node) is metadata-only: graphemes is
     # intentionally empty pending a sourced Hebrew-script grapheme table (see
     # its `notes`), so no phoneme -- including /ʔ/ -- is in the inventory yet

@@ -255,9 +255,9 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | fi | wikipron | 168808 | 0.0184 | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
 | fo | wikipron | 2957 | 0.4597 | · | · | · | · | [0.4533, 0.4665] | 0.0206 | research | crowd-scraped |
 | fpe | wikipron | 261 | 0.3650 | · | · | · | · | [0.3509, 0.3795] | 0.0000 | research | crowd-scraped |
-| fr | wikipron | 85495 | 0.0888 | 0.0723 | 0.0665 | 0.6619 | 0.6712 | [0.0878, 0.0898] | 0.6185 | research | crowd-scraped |
-| fr-FR | ipa_childes | 9443 | 0.1177 | · | · | · | · | [0.1138, 0.1219] | 0.6278 | research | espeak-derived |
-| fr-FR | ipadict | 245714 | 0.0905 | · | · | · | · | [0.0899, 0.0910] | 0.6173 | research | machine-generated |
+| fr | wikipron | 85495 | 0.0882 | 0.0718 | 0.0662 | 0.6637 | 0.6724 | [0.0872, 0.0892] | 0.6207 | research | crowd-scraped |
+| fr-FR | ipa_childes | 9443 | 0.1181 | 0.0908 | 0.0858 | 0.6972 | 0.7109 | [0.1143, 0.1223] | 0.6259 | research | espeak-derived |
+| fr-FR | ipadict | 245714 | 0.0902 | 0.0763 | 0.0688 | 0.6407 | 0.6467 | [0.0896, 0.0907] | 0.6184 | research | machine-generated |
 | fro | wikipron | 663 | 0.2985 | · | · | · | · | [0.2833, 0.3141] | 0.1237 | skeleton | crowd-scraped |
 | fy | vox_communis | 10743 | 0.3396 | · | · | · | · | [0.3350, 0.3441] | 0.1164 | research | epitran-derived |
 | fy | wikipron | 1091 | 0.2484 | · | · | · | · | [0.2382, 0.2590] | 0.1916 | research | crowd-scraped |
