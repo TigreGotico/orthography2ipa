@@ -85,7 +85,8 @@ def test_fr_no_regression(fr, word, expected):
     ("mission", "mɪʃən"),
     ("special", "spɛʃəl"),
     ("gracious", "ɡɹæʃəs"),
-    ("martial", "mɑːɹʃəl"),
+    # RP is non-rhotic: the ⟨ar⟩ nucleus loses its [ɹ] before the ⟨t⟩
+    ("martial", "mɑːʃəl"),
     # longest match wins: ⟨-stion⟩ keeps the /t/ as the affricate onset
     ("question", "kwɛstʃən"),
     # same for ⟨-stial⟩/⟨-stious⟩: the ⟨t⟩ after ⟨s⟩ is not palatalized to
