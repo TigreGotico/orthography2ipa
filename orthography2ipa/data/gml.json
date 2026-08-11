@@ -3,7 +3,7 @@
   "name": "Middle Low German",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "sch": [
       "ʃ"
@@ -108,7 +108,7 @@
       "notes": "Descent per Glottolog classification of Middle Low German (midd1318)."
     }
   ],
-  "notes": "Skeleton. West Germanic (Ingvaeonic/Low Saxon) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels, doubled long vowels, the digraphs sch [ʃ], ch [x], ng and ck, and the plain consonants with v and w both mapped to [v]. Middle Low German spelling was not standardised across the Hanseatic writing tradition; vowel length and quality were marked inconsistently and are largely left unencoded, so a notable PER floor is expected.",
+  "notes": "Research. West Germanic (Ingvaeonic/Low Saxon) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels, doubled long vowels, the digraphs sch [ʃ], ch [x], ng and ck, and the plain consonants with v and w both mapped to [v]. Middle Low German spelling was not standardised across the Hanseatic writing tradition; vowel length and quality were marked inconsistently and are largely left unencoded, so a notable PER floor is expected. Grapheme table checked against Lasch (1914): no discrepancy found.",
   "iso639_3": "gml",
   "glottolog_code": null,
   "sources": [
@@ -124,6 +124,17 @@
       "wikipedia_url": null
     },
     {
+      "id": "lasch1914",
+      "author": "Lasch, Agathe",
+      "year": 1914,
+      "title": "Mittelniederdeutsche Grammatik",
+      "publisher": "Niemeyer, Halle",
+      "url": "https://archive.org/details/mittelniederdeut00lasc",
+      "pages": null,
+      "notes": "Standard reference grammar of Middle Low German; used to verify the grapheme table and to source the root-initial stress rule (the ordinary West Germanic pattern) encoded in this spec's `stress` block.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Middle_Low_German"
+    },
+    {
       "id": "gml_wikipedia",
       "author": "Wikipedia contributors",
       "year": 2024,
@@ -137,5 +148,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Middle_Low_German"
-  ]
+  ],
+  "stress": {
+    "default_position": 1,
+    "quantity_sensitive": false,
+    "stress_mark": "ˈ",
+    "source": "rules",
+    "notes": "Middle Low German, like other West Germanic varieties of its period, keeps the inherited Common Germanic fixed root-initial stress (Lasch 1914). `default_position=1` (first syllable) models this; stress-neutral prefixes and loanwords are not separately handled for lack of a documented closed list in the sources consulted."
+  }
 }

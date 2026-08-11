@@ -1,4 +1,4 @@
-# Italian (it-IT) — Phonology Reference
+# Italian (it-IT): Phonology Reference
 
 **Code**: `it-IT` | **Family**: Indo-European > Romance > Italo-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Sources**: Lepschy & Lepschy (1988), Maiden (1995), Rogers & d'Arcangeli (2004)
@@ -22,21 +22,21 @@ Examples:
 The ⟨i⟩ in `ci`, `gi` before another vowel is a graphemic marker only (not pronounced as [i]):
 - `cielo` → [ˈtʃɛːlo], not [ˈtʃiɛːlo]
 
-### SC — Affrication Before Front Vowels
+### SC: Affrication Before Front Vowels
 
 | Environment | Realization | Examples |
 |:---|:---:|:---|
 | Before e/i | [ʃ] | `scena` [ˈʃɛːna], `scivolare` [ʃivoˈlaːɾe] |
 | Elsewhere | [sk] | `scala` [ˈskala], `scoperta` [skoˈpɛrta] |
 
-### GL — Lateral Palatalization
+### GL: Lateral Palatalization
 
 | Environment | Realization | Examples |
 |:---|:---:|:---|
 | Before i (⟨gli⟩) | [ʎ] | `gli` [ʎi], `figlio` [ˈfiʎʎo] |
 | Elsewhere | [ɡl] | `glottale` [ɡlotˈtaːle] |
 
-### S — Voicing
+### S: Voicing
 
 | Environment | Realization | Examples |
 |:---|:---:|:---|
@@ -45,9 +45,9 @@ The ⟨i⟩ in `ci`, `gi` before another vowel is a graphemic marker only (not p
 | Before voiced consonant | [z] | `svelto` [ˈzvɛlto] |
 | Elsewhere | [s] | `pasta` [ˈpasta] |
 
-**Note**: Intervocalic voicing is standard in northern/central Italian; southern varieties maintain [s] throughout.
+**Note**: Intervocalic voicing is standard in northern/central Italian. Southern varieties maintain [s] throughout.
 
-### Z — Initial vs. Medial
+### Z: Initial vs. Medial
 
 | Environment | Realization | Examples |
 |:---|:---:|:---|
@@ -85,7 +85,7 @@ Italian has 7 vowel phonemes (5 in unstressed position):
 | ɔ | ✓ | — | `forte` [ˈfɔrte] |
 | u | ✓ | ✓ | `luna` [ˈluːna] |
 
-**Vowel length**: stressed open syllables have long vowels; stressed closed syllables have short vowels.
+**Vowel length**: stressed open syllables have long vowels. Stressed closed syllables have short vowels.
 
 ---
 

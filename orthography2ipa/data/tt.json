@@ -32,7 +32,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "tat",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
       "a"

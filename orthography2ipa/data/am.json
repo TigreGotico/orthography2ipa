@@ -6,7 +6,7 @@
   "script_type": "abugida",
   "inherent_vowel": "ə",
   "iso639_3": "amh",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ሀ": [
       "hə"
@@ -729,7 +729,7 @@
       "p"
     ]
   },
-  "notes": "Amharic Ethiopic (Ge'ez) script. Abugida where each character encodes consonant + vowel; 7 vowel orders per consonant row. Ejectives: Tʼ, Čʼ, Pʼ, Tsʼ are phonemic. The 6th order (ə-vowel) is the inherent vowel. Ä, ʕ (Ayin) present in traditional script but may be realized as /ʔ/ or silent in colloquial speech.",
+  "notes": "Amharic Ethiopic (Ge'ez) script. Abugida where each character encodes consonant + vowel; 7 vowel orders per consonant row. Ejectives: Tʼ, Čʼ, Pʼ, Tsʼ are phonemic. The 6th order (ə-vowel) is the inherent vowel. Ä, ʕ (Ayin) present in traditional script but may be realized as /ʔ/ or silent in colloquial speech. Stress exemption: Amharic has no phonemically contrastive word stress; prominence is weak/variable and is not marked by or predictable from the Ge'ez abugida modeled here; no stress block is declared. Source: Leslau, Reference Grammar of Amharic (1995).",
   "sources": [
     {
       "id": "leslau1995",
