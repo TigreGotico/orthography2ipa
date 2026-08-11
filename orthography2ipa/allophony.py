@@ -181,6 +181,8 @@ def _neighbor_is(
         return gctx is None
     if gctx is None:
         return False
+    if cls == "any":
+        return True
     if cls == "vowel":
         return gctx.is_vowel
     if cls == "consonant":
@@ -453,6 +455,11 @@ class AllophoneRescorer(LatticeRescorer):
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
                 return False
+        if rule.preceded_by_grapheme:
+            prv = ctx.grapheme.prev
+            if prv is None or not prv.grapheme or \
+                    prv.grapheme.lower() not in rule.preceded_by_grapheme:
+                return False
         if rule.followed_by_grapheme:
             nxt = ctx.grapheme.next
             if nxt is None or not nxt.grapheme or \
@@ -487,6 +494,19 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         if rule.followed_by_2 is not None:
             if not _neighbor_is(rule.followed_by_2, ctx.grapheme.at(2), 1):
+                return False
+        if rule.preceded_by_3 is not None:
+            if not _neighbor_is(rule.preceded_by_3, ctx.grapheme.at(-3), -1):
+                return False
+        if rule.preceded_by_surface_phoneme_2:
+            j = ctx.index - 2
+            if j < 0:
+                return False
+            two_back = ctx.slots[j]
+            if not two_back.candidates or not two_back.top.ipa:
+                return False
+            boundary = segment_ipa(two_back.top.ipa, self._atoms)[-1]
+            if boundary not in rule.preceded_by_surface_phoneme_2:
                 return False
         if rule.grapheme is not None:
             g = ctx.grapheme.grapheme
@@ -609,6 +629,9 @@ def _rule_atoms(rules: Sequence[AllophoneRule]) -> Tuple[str, ...]:
         atoms.update(rule.phonemes or ())
         atoms.update(rule.preceded_by_phoneme or ())
         atoms.update(rule.followed_by_phoneme or ())
+        atoms.update(rule.preceded_by_phoneme_2 or ())
+        atoms.update(rule.followed_by_phoneme_2 or ())
+        atoms.update(rule.preceded_by_surface_phoneme_2 or ())
         if rule.surface:
             atoms.add(rule.surface)
     return tuple(sorted((a for a in atoms if len(a) > 1),

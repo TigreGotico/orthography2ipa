@@ -964,12 +964,64 @@ class AllophoneRule:
         ⟨ь⟩ that follows it is word-final, and the ⟨ь⟩ itself is silent
         (``followed_by_phoneme=["ʲ"]`` + ``followed_by_2="word_boundary"``).
         Without it a spec has to enumerate the consonant × soft-vowel product
-        as spellings, which is a design violation.
+        as spellings, which is a design violation. The vocabulary includes
+        ``"any"`` — matches any existing neighbour grapheme regardless of
+        class, the "there IS a grapheme here" test (as opposed to
+        ``"word_boundary"``, which tests the opposite). Before ``"any"``
+        existed, a rule that only cared *whether* a grapheme stood two away
+        (not what class it was) had to be declared as a redundant
+        vowel/consonant PAIR — see ``EN_GB_ED_SYNCOPE_AFTER_V`` /
+        ``_AFTER_C`` in ``en-GB.json``, kept as two rules for that historical
+        reason even though ``"any"`` would now collapse them to one.
+    preceded_by_3 : Optional[str]
+        The same neighbour-class vocabulary (including ``"any"``), tested
+        THREE graphemes away. English past-tense ⟨-ed⟩ needs this for its
+        "is there a stem in front of the ending" gate: ``fed``/``ted`` are
+        monosyllables whose ⟨ed⟩ IS the stem, not the suffix, and the
+        stem-final consonant sits only ONE grapheme before the mute ⟨e⟩
+        (⟨preceded_by_2⟩ from the ⟨d⟩) — always present, so it cannot tell
+        a real stem from none. The grapheme BEFORE that stem consonant
+        (⟨preceded_by_3⟩ from the ⟨d⟩) exists only when there is an actual
+        stem (``used``, ``watched``) and not in the three-letter monosyllables
+        (Cruttenden 2014, § 4.3 treats ⟨-ed⟩ as the past/participial suffix,
+        which by definition attaches to something).
     preceded_by_phoneme, followed_by_phoneme : Tuple[str, ...]
         The chosen phoneme of the previous / next lattice slot must be one of
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
         assimilation, which conditions on the following consonant's place).
         Empty = don't care.
+    preceded_by_phoneme_2, followed_by_phoneme_2 : Tuple[str, ...]
+        Like :attr:`preceded_by_phoneme`/:attr:`followed_by_phoneme` but two
+        graphemes away, read from the GRAPHEME layer's first declared
+        candidate — the UNDERLYING phoneme, known before any rule has run
+        (Russian ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩ after it stands
+        before a soft vowel; that is a fact about the ⟨т⟩'s underlying
+        identity, not about what it surfaces as). Empty = don't care.
+    preceded_by_surface_phoneme_2 : Tuple[str, ...]
+        Like :attr:`preceded_by_phoneme_2` but reads the LATTICE SLOT two
+        positions back — the resolved, pre-this-rescorer SURFACE candidate
+        (:attr:`~orthography2ipa.rescorer.RescoreContext.slots`\\
+        ``[index - 2].top``), not the grapheme's first declared candidate.
+        Needed whenever the underlying/declared candidate order disagrees
+        with the actually-selected surface: English ⟨-ed⟩ devoicing must
+        see whether the STEM ends in a voiced or voiceless consonant as
+        actually pronounced — ``used``/``closed``/``pleased``/``breathed``
+        already resolve their stem-final ⟨s⟩/⟨th⟩ to voiced [z]/[ð] by
+        ordinary intervocalic weighting before this rule ever runs, but
+        ⟨s⟩'s and ⟨th⟩'s first DECLARED candidate is the voiceless member
+        ([s], [θ]), which is a lie about this word (Cruttenden 2014, § 4.3:
+        the devoicing trigger is the stem's actual final segment). Empty =
+        don't care.
+    preceded_by_grapheme : Tuple[str, ...]
+        The previous slot's *source grapheme* (matched case-insensitively)
+        must be one of these — the backward counterpart of
+        :attr:`followed_by_grapheme`. A rule often needs to know which
+        LETTER stands before it even though that letter spells nothing, and
+        the phoneme layer cannot report a silent neighbour: English
+        ⟨-ed⟩ devoices to [t] after a voiceless stem (*walked*) but the
+        trigger is only the past-tense ending, so the ⟨d⟩ must see the
+        mute ⟨e⟩ before it and not fire in *food* (Cruttenden 2014,
+        § 4.3). Empty = don't care.
     followed_by_grapheme : Tuple[str, ...]
         The next slot's *source grapheme* (matched case-insensitively) must
         be one of these. The positive counterpart of
@@ -1045,10 +1097,13 @@ class AllophoneRule:
     followed_by: Optional[str] = None
     preceded_by_2: Optional[str] = None
     followed_by_2: Optional[str] = None
+    preceded_by_3: Optional[str] = None
     preceded_by_phoneme_2: Tuple[str, ...] = ()
     followed_by_phoneme_2: Tuple[str, ...] = ()
+    preceded_by_surface_phoneme_2: Tuple[str, ...] = ()
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
+    preceded_by_grapheme: Tuple[str, ...] = ()
     followed_by_grapheme: Tuple[str, ...] = ()
     followed_by_grapheme_not: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
@@ -1070,6 +1125,12 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "preceded_by_surface_phoneme_2",
+            tuple(self.preceded_by_surface_phoneme_2))
+        object.__setattr__(
+            self, "preceded_by_grapheme",
+            tuple(g.lower() for g in self.preceded_by_grapheme))
         object.__setattr__(
             self, "followed_by_grapheme",
             tuple(g.lower() for g in self.followed_by_grapheme))
@@ -1098,9 +1159,9 @@ class AllophoneRule:
                 f"got {self.syllable_position!r}")
         _classes = ("vowel", "consonant", "consonant_cluster", "coda",
                     "coda_nasal", "front_vowel", "back_vowel", "palatal",
-                    "emphatic", "word_boundary")
+                    "emphatic", "word_boundary", "any")
         for attr in ("preceded_by", "followed_by",
-                     "preceded_by_2", "followed_by_2"):
+                     "preceded_by_2", "followed_by_2", "preceded_by_3"):
             val = getattr(self, attr)
             if val is not None and val not in _classes:
                 raise ValueError(

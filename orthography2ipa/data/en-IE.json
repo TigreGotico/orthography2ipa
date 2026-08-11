@@ -217,5 +217,6 @@
   ],
   "vowel_graphemes": [
     "y"
-  ]
+  ],
+  "word_exceptions_base": "en-GB"
 }
