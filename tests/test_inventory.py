@@ -181,7 +181,16 @@ KNOWN_DEAD_RULES = {
     # can never fire. (emission_inventory still lists the rule's /ø/ surface —
     # it unions dead-rule surfaces — so the claim is about targets, not the
     # derived inventory.) FR_AU_BEFORE_R is NOT dead here — crs keeps /o/.
-    "crs": {"FR_NASAL_y", "FR_NASAL_ə", "FR_EU_BEFORE_Z"},
+    # crs replaces fr-FR's grapheme table with its own 28-grapheme Kreol
+    # orthography, which has no ⟨ien⟩/⟨oin⟩ multigraph and no ⟨x⟩: the
+    # nasal-blocking rules for those two spellings have no /jɛ̃/ or /wɛ̃/
+    # to rewrite, and FR_E_CLOSED_MULTIGRAPH has neither a /ə/ target (see
+    # above) nor a single letter spelling a consonant cluster to close a
+    # syllable with. All four are live in fr-FR.
+    "crs": {"FR_NASAL_y", "FR_NASAL_ə", "FR_EU_BEFORE_Z",
+            "FR_NASAL_BLOCK_PREVOCALIC_IEN", "FR_NASAL_BLOCK_GEMINATE_IEN",
+            "FR_NASAL_BLOCK_PREVOCALIC_OIN", "FR_NASAL_BLOCK_GEMINATE_OIN",
+            "FR_E_CLOSED_MULTIGRAPH"},
     # jrb (Judeo-Arabic macrolanguage node) is metadata-only: graphemes is
     # intentionally empty pending a sourced Hebrew-script grapheme table (see
     # its `notes`), so no phoneme -- including /ʔ/ -- is in the inventory yet
