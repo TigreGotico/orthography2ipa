@@ -1644,3 +1644,113 @@ class TestScoreboardLangScoping:
 
         assert merged == new
         assert "stale_key" not in merged[0]
+
+
+class TestEspeakRulesCoverageNote:
+    """``_espeak_rules_coverage_note`` names rows that have a stock
+    ``espeak`` number but no ``espeak-rules-only`` one yet — the
+    staleness-style machinery for the new permanent column, extended
+    exactly the way ``_scoreboard_staleness_note`` reports o2i drift."""
+
+    def test_all_covered_reports_clean(self):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 10,
+             "espeak_per": 0.07, "espeak_same_source": False,
+             "espeak_rules_per": 0.08, "espeak_rules_same_source": False},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert note == (
+            "Every row with a stock `espeak` number also carries an "
+            "`espeak-rules-only` one in this run."
+        )
+
+    def test_missing_row_is_named_with_its_n(self):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 10,
+             "espeak_per": 0.07, "espeak_same_source": False,
+             "espeak_rules_per": 0.08, "espeak_rules_same_source": False},
+            {"lang": "ca", "dataset": "vox_communis", "n": 218451,
+             "espeak_per": 0.8195, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_same_source": False},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert "1 row(s)" in note
+        assert "`ca`/`vox_communis` (n=218451)" in note
+
+    def test_no_espeak_number_at_all_is_not_flagged_missing(self):
+        """A row with NO stock espeak number either (no voice mapping, or
+        espeak-ng unavailable) has nothing to compare against — it must
+        not be reported as a missing espeak-rules-only row, since that
+        would fabricate an expectation the row can never meet."""
+        rows = [
+            {"lang": "arb", "dataset": "arabic_tts", "n": 5,
+             "espeak_per": None, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_same_source": False},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert "also carries an" in note
+
+    def test_same_source_espeak_row_is_not_flagged_missing(self):
+        rows = [
+            {"lang": "en-US", "dataset": "ipa_babylm", "n": 100,
+             "espeak_per": 0.0, "espeak_same_source": True,
+             "espeak_rules_per": None, "espeak_rules_same_source": True},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert "also carries an" in note
+
+
+class TestWriteComparisonEspeakRulesColumn:
+    """The main comparison table renders an ``espeak-rules-only`` column
+    for every row, alongside the existing ``espeak`` and ``epitran``
+    columns — the schema/rendering change this PR adds on top of the
+    already-wired ``espeak_rules_per`` scoring."""
+
+    def test_header_and_populated_cell_rendered(self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 2,
+             "o2i_per": 0.05, "o2i_n": 2,
+             "espeak_per": 0.07, "espeak_n": 2, "espeak_same_source": False,
+             "espeak_rules_per": 0.08, "espeak_rules_n": 2,
+             "espeak_rules_same_source": False,
+             "epitran_per": 0.2, "epitran_n": 2,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+        ]
+        monkeypatch.setitem(cs.LANGS, "fr", {"dataset": ("wikipron", "fr")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+
+        cs.write_comparison(rows)
+
+        text = md_path.read_text(encoding="utf-8")
+        assert "espeak-rules-only PER" in text
+        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | 0.0800 | 0.2000" in text
+
+    def test_missing_cell_renders_n_a_not_blank(self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 2,
+             "o2i_per": 0.05, "o2i_n": 2,
+             "espeak_per": 0.07, "espeak_n": 2, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_n": 0,
+             "espeak_rules_same_source": False,
+             "epitran_per": None, "epitran_n": 0,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+        ]
+        monkeypatch.setitem(cs.LANGS, "fr", {"dataset": ("wikipron", "fr")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+
+        cs.write_comparison(rows)
+
+        text = md_path.read_text(encoding="utf-8")
+        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | n/a | n/a" in text
+        assert ("1 row(s) have a stock `espeak` number but no "
+                "`espeak-rules-only`") in text

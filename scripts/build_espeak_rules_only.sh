@@ -28,6 +28,19 @@
 # Requires: git, and a C build toolchain (autoconf/automake/libtool/
 # pkg-config + the espeak-ng build deps — see espeak-ng's own
 # docs/building.md for platform-specific package names).
+#
+# Version pin: cloned/built at the ``1.52.0`` tag (not the default
+# branch). Upstream espeak-ng removed ``autogen.sh``/autotools from
+# master in favor of a CMake-only build, so an unpinned ``--depth 1``
+# clone of the default branch breaks this script's autotools build step
+# outright. ``1.52.0`` still ships ``autogen.sh`` and is the exact
+# version every published `espeak_rules`/`espeak-rules-only` number on
+# this comparison board was measured against (see
+# ``scripts/compare_systems.py``'s comparison board) — pinning keeps
+# those numbers reproducible AND keeps the build working. Override with
+# ``ESPEAK_RULES_TAG`` if a different pinned version is ever needed
+# (re-measure the board after changing it — a different espeak-ng
+# version is not a drop-in replacement for comparison purposes).
 set -euo pipefail
 
 LANGS=("$@")
@@ -35,6 +48,7 @@ if [ "${#LANGS[@]}" -eq 0 ]; then
     LANGS=(en fr de nl ca sv eu)
 fi
 
+TAG="${ESPEAK_RULES_TAG:-1.52.0}"
 WORK="${ESPEAK_RULES_WORK:-$(mktemp -d -t espeak-rules-only.XXXXXX)}"
 OUT="${ESPEAK_RULES_ONLY_DIR:-$(pwd)/.espeak_rules_only}"
 REPO="$WORK/espeak-ng"
@@ -42,14 +56,28 @@ REPO="$WORK/espeak-ng"
 echo "work dir:   $WORK"
 echo "output dir: $OUT"
 echo "languages:  ${LANGS[*]}"
+echo "espeak-ng tag: $TAG"
 
 if [ ! -d "$REPO" ]; then
-    echo "cloning espeak-ng (GPL, scratch-only, never committed)..."
-    git clone --depth 1 https://github.com/espeak-ng/espeak-ng.git "$REPO"
+    echo "cloning espeak-ng $TAG (GPL, scratch-only, never committed)..."
+    git clone --depth 1 --branch "$TAG" \
+        https://github.com/espeak-ng/espeak-ng.git "$REPO"
+else
+    checked_out="$(git -C "$REPO" describe --tags --exact-match 2>/dev/null || echo unknown)"
+    if [ "$checked_out" != "$TAG" ]; then
+        echo "warning: reusing existing checkout at $REPO, which is at" \
+             "'$checked_out', not the pinned '$TAG' — delete \$ESPEAK_RULES_WORK" \
+             "and re-run to rebuild against the pinned tag." >&2
+    fi
 fi
 
 BIN="$REPO/src/espeak-ng"
 if [ ! -x "$BIN" ]; then
+    [ -x "$REPO/autogen.sh" ] || {
+        echo "error: $TAG has no autogen.sh (upstream master is" \
+             "CMake-only); use a tag <= 1.52.0" >&2
+        exit 1
+    }
     echo "building espeak-ng..."
     (
         cd "$REPO"

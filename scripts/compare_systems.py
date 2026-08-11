@@ -244,6 +244,14 @@ LANGS: Dict[str, dict] = {
                "epitran": "eng-Latn", "gruut": "en-us"},
     "en": {"dataset": ("wikipron", "en"), "espeak": "en-gb",
            "epitran": "eng-Latn", "gruut": "en-gb"},
+    # o2i's separate "en-GB" spec/gold (a DIFFERENT wikipron pull than the
+    # "en" row above — see wikipron's own "en" vs "en-GB" locale split in
+    # benchmark.py's DATASETS; the two gold sets are similar size but not
+    # identical rows, which is why espeak's PER differs by several points
+    # between the "en" and "en-GB" rows on this board — not measurement
+    # noise, two different gold files).
+    "en-GB": {"dataset": ("wikipron", "en-GB"), "espeak": "en-gb",
+              "epitran": "eng-Latn", "gruut": "en-gb"},
     "es": {"dataset": ("wikipron", "es"), "espeak": "es",
            "epitran": "spa-Latn", "gruut": "es",
            "ahotts": {"lang": "es", "version": "classic"}},
@@ -1342,6 +1350,47 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
     )
 
 
+def _espeak_rules_coverage_note(rows: List[dict]) -> str:
+    """Name every row that has a stock ``espeak`` number (so it COULD, in
+    principle, also carry an ``espeak-rules-only`` one) but no
+    ``espeak_rules_per`` in this run — instead of letting those cells sit
+    as silent ``n/a``.
+
+    The ``espeak-rules-only`` column is a permanent part of this board
+    (see the module docstring's "Fair-comparison 2x2" section and
+    ``scripts/build_espeak_rules_only.sh``), but populating it requires a
+    locally-built rules-only espeak-ng data dir
+    (``$ESPEAK_RULES_DATA_PATH``) and a live re-measurement — rows that
+    have not been re-measured yet (most commonly the large ones, 200k+
+    gold words, deferred because a full engine + espeak pass over them is
+    expensive) stay ``n/a`` there honestly rather than getting a
+    fabricated or copied-from-a-PR-body number.
+    """
+    missing = [
+        (r["lang"], r["dataset"], r["n"])
+        for r in rows
+        if r.get("espeak_per") is not None
+        and not r.get("espeak_same_source")
+        and r.get("espeak_rules_per") is None
+        and not r.get("espeak_rules_same_source")
+    ]
+    if not missing:
+        return (
+            "Every row with a stock `espeak` number also carries an "
+            "`espeak-rules-only` one in this run."
+        )
+    missing.sort(key=lambda t: (-t[2], t[0], t[1]))
+    listed = "; ".join(
+        f"`{lang}`/`{dataset}` (n={n})" for lang, dataset, n in missing
+    )
+    return (
+        f"{len(missing)} row(s) have a stock `espeak` number but no "
+        f"`espeak-rules-only` one yet in this run — deferred, not "
+        f"fabricated (see `scripts/build_espeak_rules_only.sh`): "
+        f"{listed}."
+    )
+
+
 def write_comparison(rows: List[dict],
                       catalan_voices: Optional[Dict[str, Optional[str]]] = None) -> None:
     os.makedirs(os.path.dirname(COMPARISON_JSON), exist_ok=True)
@@ -1356,6 +1405,7 @@ def write_comparison(rows: List[dict],
     gold_comparable, gold_wins = _comparable_and_wins(gold_primary)
     agreement_comparable, agreement_wins = _comparable_and_wins(agreement_primary)
     scoreboard_note = _scoreboard_staleness_note(rows)
+    espeak_rules_note = _espeak_rules_coverage_note(rows)
 
     lines = [
         "# Comparison to other G2P systems",
@@ -1497,19 +1547,31 @@ def write_comparison(rows: List[dict],
         "tool that generated the gold — not whether either is correct. "
         "A win on such a row is not a claim of accuracy.",
         "",
-        "| Lang | Dataset | N | o2i PER | espeak PER | epitran PER | "
-        "gruut PER | pycotovia PER | ahotts-g2p PER | africa-g2p PER |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| Lang | Dataset | N | o2i PER | espeak PER | espeak-rules-only "
+        "PER | epitran PER | gruut PER | pycotovia PER | ahotts-g2p PER | "
+        "africa-g2p PER |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {row['n']} | "
             f"{_cell(row, 'o2i')} | {_cell(row, 'espeak')} | "
+            f"{_cell(row, 'espeak_rules')} | "
             f"{_cell(row, 'epitran')} | {_fmt(row['gruut_per'])} | "
             f"{_fmt(row.get('pycotovia_per'))} | "
             f"{_cell(row, 'ahotts')} | "
             f"{_fmt(row.get('africa_g2p_per'))} |"
         )
+    lines.append("")
+    lines.append(
+        "**espeak-rules-only coverage.** `espeak-rules-only` (the "
+        "`espeak_rules_per` field) is a permanent column on this board: "
+        "espeak-ng compiled from its own letter-to-sound rules with "
+        "every per-language word-exception list "
+        "(`_list`/`_listx`/`_extra`) emptied first — see "
+        "`scripts/build_espeak_rules_only.sh` and the module docstring's "
+        "\"Fair-comparison 2x2\" section. " + espeak_rules_note
+    )
     lines.append("")
     lines.append(
         "Counted over distinct LANGUAGES (one row per language: its "
