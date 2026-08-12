@@ -5,7 +5,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "mon",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
       "a"
@@ -201,7 +201,7 @@
       "ɛ"
     ]
   },
-  "notes": "Khalkha Mongolian in Cyrillic script (Mongolia). 7-vowel system with vowel harmony (masculine: a, o, u; feminine: e, ö, ü; neutral: i). Ö = /ø/; Ü = /y/; О = /ɔ/; У = /ʊ/. V → /w/ natively, /v/ in loanwords. Г → /ɣ/ intervocalically.",
+  "notes": "Khalkha Mongolian in Cyrillic script (Mongolia). 7-vowel system with vowel harmony (masculine: a, o, u; feminine: e, ö, ü; neutral: i). Ö = /ø/; Ü = /y/; О = /ɔ/; У = /ʊ/. V → /w/ natively, /v/ in loanwords. Г → /ɣ/ intervocalically. Stress exemption: Khalkha Mongolian word prominence is weak and non-contrastive (commonly analyzed as first-syllable but phonetically inconsistent and never contrastive), and it is not marked by or predictable from the Cyrillic orthography modeled here; no stress block is declared. Source: Mongolian language, Wikipedia; Svantesson et al., The Phonology of Mongolian (2005).",
   "sources": [
     {
       "id": "mongolian_wiki",
