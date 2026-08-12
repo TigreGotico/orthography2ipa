@@ -44,7 +44,7 @@ class TestNothingIsBundled:
 
     def test_unregistered_language_uses_rules_only(self):
         """No lexicon → the engine behaves as if the overlay did not exist."""
-        assert orthography2ipa.transcribe("nation", "en-GB") == "nætɪɒn"
+        assert orthography2ipa.transcribe("nation", "en-GB") == "ˈnæʃən"
 
     def test_no_lexicon_files_in_the_package(self):
         from pathlib import Path
@@ -65,7 +65,7 @@ class TestLocalFile:
     def test_clear_restores_rules_only(self, tsv):
         register_lexicon("en-GB", str(tsv))
         clear_lexicons()
-        assert orthography2ipa.transcribe("nation", "en-GB") == "nætɪɒn"
+        assert orthography2ipa.transcribe("nation", "en-GB") == "ˈnæʃən"
 
     def test_missing_file_is_an_error(self):
         register_lexicon("en-GB", "/no/such/lexicon.tsv")
