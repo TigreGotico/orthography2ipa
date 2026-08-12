@@ -3,7 +3,7 @@
   "name": "South Slavey",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "tł'": [
       "tɬʼ"
@@ -150,7 +150,7 @@
       "notes": "Descent per Glottolog classification of South Slavey (sout2959)."
     }
   ],
-  "notes": "Skeleton. Northern Athabaskan (Dene) language of the Northwest Territories in its practical Roman orthography. Lateral affricates and fricative (tł, tł', ł=[ɬ]), the affricate series ts/ts'/dz and ch/ch'/j, and ejectives written with a following apostrophe are mapped, along with gh=[ɣ] and th=[θ]. Lexical tone (high/low) and vowel nasalization, which this orthography marks inconsistently or not at all, are left unencoded, giving a substantial PER floor.",
+  "notes": "Skeleton. Northern Athabaskan (Dene) language of the Northwest Territories in its practical Roman orthography. Lateral affricates and fricative (tł, tł', ł=[ɬ]), the affricate series ts/ts'/dz and ch/ch'/j, and ejectives written with a following apostrophe are mapped, along with gh=[ɣ] and th=[θ]. Lexical tone (high/low) and vowel nasalization, which this orthography marks inconsistently or not at all, are left unencoded, giving a substantial PER floor. South Slavey is tonal (high tone marked with an acute accent per Rice 1989, low tone unmarked); this skeleton-derived spec does not yet encode the tone diacritic, and stress is not a separate contrastive category (documented exemption pending a future tone-marking pass).",
   "iso639_3": "xsl",
   "glottolog_code": null,
   "sources": [
@@ -175,6 +175,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Slavey_language"
+    },
+    {
+      "id": "xsl_rice1989",
+      "author": "Rice, Keren",
+      "year": 1989,
+      "title": "A Grammar of Slave",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": "Comprehensive descriptive grammar covering the Slave (Slavey) dialect continuum including South Slavey; consulted to check the practical orthography's lateral affricate/fricative (tł, tł', ł), affricate series and ejective-apostrophe conventions modelled here."
     }
   ],
   "wikipedia": [
