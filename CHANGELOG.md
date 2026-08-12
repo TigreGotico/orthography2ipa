@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.66.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.66.1a1) (2026-08-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.66.0a5...7.66.1a1)
+
+**Merged pull requests:**
+
+- fix\(gl\): cited Galician lenition, nasal assimilation and diphthong rules — both gl rows now beat Cotovia [\#873](https://github.com/TigreGotico/orthography2ipa/pull/873) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.66.0a5](https://github.com/TigreGotico/orthography2ipa/tree/7.66.0a5) (2026-08-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.66.0a4...7.66.0a5)
@@ -677,7 +685,6 @@
 
 - feat: White Hmong \(mww\) research-tier spec + WikiPron gold [\#692](https://github.com/TigreGotico/orthography2ipa/pull/692) ([JarbasAl](https://github.com/JarbasAl))
 - feat: Lexibank/CLDF wordlist gold loader [\#690](https://github.com/TigreGotico/orthography2ipa/pull/690) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add Sardinian dialect specs \(src, sro, sdn\) [\#672](https://github.com/TigreGotico/orthography2ipa/pull/672) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.40.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.40.0a2) (2026-08-02)
 
