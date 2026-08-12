@@ -51,6 +51,8 @@ fi
 TAG="${ESPEAK_RULES_TAG:-1.52.0}"
 WORK="${ESPEAK_RULES_WORK:-$(mktemp -d -t espeak-rules-only.XXXXXX)}"
 OUT="${ESPEAK_RULES_ONLY_DIR:-$(pwd)/.espeak_rules_only}"
+DATA="$OUT/espeak-ng-data"
+MANIFEST="$OUT/rules_only_manifest.tsv"
 REPO="$WORK/espeak-ng"
 
 echo "work dir:   $WORK"
@@ -92,21 +94,37 @@ if [ ! -x "$BIN" ]; then
     exit 1
 fi
 
+rm -rf "$OUT"
+mkdir -p "$DATA"
+# espeak-ng's --path=<dir> looks for <dir>/espeak-ng-data, so the compiled
+# data has to sit one level BELOW the directory the caller passes. Writing it
+# flat into $OUT (as this script used to) made every `--path=$OUT` call fall
+# back to the machine's default install WITHOUT an error, which silently
+# scored stock espeak-ng in the `espeak_rules` column.
+cp -r "$REPO/espeak-ng-data/." "$DATA/"
+
+# The copy above is the STOCK compiled data for EVERY language. Only the
+# languages recompiled below are actually rules-only, so record exactly which
+# ones were stripped, and how many exception lines came out. compare_systems.py
+# refuses to publish an `espeak_rules` number for a language that is not in
+# this manifest — without it, an unlisted language reads as stock and the
+# column silently reports espeak-ng twice.
 echo "stripping word-exception lists (keeping *_rules) for: ${LANGS[*]}"
+: > "$MANIFEST"
+printf '# lang\tstripped_exception_lines\tespeak_ng_tag=%s\n' "$TAG" >> "$MANIFEST"
 for lang in "${LANGS[@]}"; do
+    total=0
     for suffix in list listx extra; do
         f="$REPO/dictsource/${lang}_${suffix}"
         if [ -f "$f" ]; then
             n=$(wc -l < "$f")
+            total=$((total + n))
             echo "  emptying $f ($n lines)"
             : > "$f"
         fi
     done
+    printf '%s\t%s\n' "$lang" "$total" >> "$MANIFEST"
 done
-
-rm -rf "$OUT"
-mkdir -p "$OUT"
-cp -r "$REPO/espeak-ng-data/." "$OUT/"
 
 echo "recompiling stripped dictionaries..."
 (
@@ -118,6 +136,7 @@ echo "recompiling stripped dictionaries..."
 )
 
 echo
-echo "done. Rules-only espeak-ng data written to: $OUT"
+echo "done. Rules-only espeak-ng data written to: $DATA"
+echo "manifest: $MANIFEST"
 echo "Run the comparison with:"
 echo "  ESPEAK_RULES_DATA_PATH=$OUT PYTHONPATH=\$PWD python scripts/compare_systems.py --scoreboard"

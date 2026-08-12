@@ -222,6 +222,7 @@ DICTSOURCE_LANG: Dict[str, str] = {
     "sv": "sv",
     "eu": "eu",
     "eu-wikipron": "eu",
+    "es": "es",
 }
 
 # ─── language mapping ───────────────────────────────────────────────────────
@@ -453,6 +454,175 @@ def espeak_rules_available() -> bool:
     ``scripts/build_espeak_rules_only.sh``)."""
     return (espeak_available() and bool(ESPEAK_RULES_DATA_PATH)
             and os.path.isdir(ESPEAK_RULES_DATA_PATH))
+
+
+#: Written by ``scripts/build_espeak_rules_only.sh`` into the rules-only
+#: output dir: one ``lang<TAB>stripped_exception_lines`` row per language the
+#: build ACTUALLY stripped and recompiled.
+ESPEAK_RULES_MANIFEST = "rules_only_manifest.tsv"
+
+
+def read_espeak_rules_manifest(root: str) -> Optional[Dict[str, int]]:
+    """``{dictsource_lang: stripped_exception_lines}`` for a rules-only build,
+    or ``None`` when the directory carries no manifest at all."""
+    path = os.path.join(root, ESPEAK_RULES_MANIFEST)
+    if not os.path.isfile(path):
+        return None
+    out: Dict[str, int] = {}
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            if line.startswith("#") or not line.strip():
+                continue
+            parts = line.rstrip("\n").split("\t")
+            if len(parts) >= 2:
+                try:
+                    out[parts[0]] = int(parts[1])
+                except ValueError:
+                    continue
+    return out
+
+
+def _dictsource_lang_for(lang: str, voice: Optional[str]) -> Optional[str]:
+    """The espeak-ng ``dictsource/<x>_rules`` language behind a board row."""
+    mapped = DICTSOURCE_LANG.get(lang)
+    if mapped:
+        return mapped
+    if voice:
+        # "ca-ba" -> "ca"; a plain voice name is already the dictsource lang
+        return voice.split("-", 1)[0]
+    return None
+
+
+def assert_espeak_rules_built_for(lang: str, voice: Optional[str]) -> str:
+    """Verify PER LANGUAGE that ``$ESPEAK_RULES_DATA_PATH`` really is a
+    rules-only build for *lang*, and raise if it is not.
+
+    The build script copies espeak-ng's STOCK compiled data for every
+    language and then recompiles only the ones it was asked for, so a
+    directory being present says nothing about the language being scored.
+    Before this check, running the board for a language the build had not
+    stripped scored **stock espeak-ng in both the ``espeak`` and the
+    ``espeak_rules`` column** and published the two identical numbers as if
+    they were a rules-vs-dictionary contrast. That is worse than no number,
+    so it is an exception rather than a silent ``n/a``: a fabricated
+    comparison cannot be distinguished from a real one after the fact.
+
+    Two independent gates, because either alone can be fooled:
+
+    1. the build manifest must list the language (a directory with no
+       manifest predates this check and cannot be trusted at all); and
+    2. if the manifest says exception lines were stripped, the compiled
+       ``<lang>_dict`` must actually DIFFER from the installed stock one —
+       proof the strip-and-recompile took effect. A manifest entry with
+       zero stripped lines is a legitimate no-op (some languages ship no
+       ``_list``/``_listx``/``_extra`` at all) and is allowed through.
+
+    Returns the resolved dictsource language on success.
+    """
+    root = ESPEAK_RULES_DATA_PATH or ""
+    ds_lang = _dictsource_lang_for(lang, voice)
+    remedy = (f"rebuild with: scripts/build_espeak_rules_only.sh "
+              f"{ds_lang or lang}   (then re-point $ESPEAK_RULES_DATA_PATH "
+              f"at the output dir)")
+    if ds_lang is None:
+        raise RuntimeError(
+            f"espeak_rules: no dictsource language known for '{lang}' — add "
+            f"it to DICTSOURCE_LANG before scoring the column for this row")
+
+    manifest = read_espeak_rules_manifest(root)
+    if manifest is None:
+        raise RuntimeError(
+            f"espeak_rules: $ESPEAK_RULES_DATA_PATH ({root}) has no "
+            f"{ESPEAK_RULES_MANIFEST}, so there is no evidence any language "
+            f"in it is rules-only. {remedy}")
+    if ds_lang not in manifest:
+        raise RuntimeError(
+            f"espeak_rules: '{lang}' needs dictsource language '{ds_lang}', "
+            f"which this rules-only build did NOT strip (manifest lists: "
+            f"{', '.join(sorted(manifest)) or 'nothing'}). Scoring it would "
+            f"report STOCK espeak-ng in the espeak_rules column. {remedy}")
+
+    if manifest[ds_lang] > 0:
+        built = os.path.join(root, "espeak-ng-data", f"{ds_lang}_dict")
+        stock = _stock_espeak_dict(ds_lang)
+        # Gate 2 can only compare what it can find. When either side is
+        # missing it proves nothing, and a check that quietly proves nothing
+        # is how the fabricated es row survived review in the first place —
+        # so say so out loud, and let a caller demand it actually ran.
+        if not os.path.isfile(built):
+            _rules_gate_inconclusive(
+                f"espeak_rules: cannot verify '{ds_lang}' — the manifest says "
+                f"{manifest[ds_lang]} exception lines were stripped but "
+                f"{built} does not exist, so the "
+                f"differs-from-stock check did not run. {remedy}")
+        elif stock is None:
+            _rules_gate_inconclusive(
+                f"espeak_rules: cannot verify '{ds_lang}' — no INSTALLED "
+                f"{ds_lang}_dict could be located to compare {built} against, "
+                f"so the differs-from-stock check did not run. The manifest "
+                f"gate still passed. Set $ESPEAK_RULES_STRICT=1 to treat this "
+                f"as an error.")
+        elif _file_digest(built) == _file_digest(stock):
+            raise RuntimeError(
+                f"espeak_rules: {built} is byte-identical to the stock "
+                f"{stock} even though the manifest says "
+                f"{manifest[ds_lang]} exception lines were stripped — the "
+                f"recompile did not take effect. {remedy}")
+    return ds_lang
+
+
+#: When set, an INCONCLUSIVE differs-from-stock check is an error rather than
+#: a warning. Off by default so a machine whose espeak-ng install layout this
+#: script cannot introspect can still produce the (manifest-gated) column.
+ESPEAK_RULES_STRICT = bool(os.environ.get("ESPEAK_RULES_STRICT"))
+
+
+def _rules_gate_inconclusive(message: str) -> None:
+    """Report that the differs-from-stock gate could not be evaluated.
+
+    Raises under ``$ESPEAK_RULES_STRICT``, warns loudly otherwise. Never
+    silent: the whole point of the gate is that an unverified
+    ``espeak_rules`` number is indistinguishable from a fabricated one.
+    """
+    if ESPEAK_RULES_STRICT:
+        raise RuntimeError(message)
+    print(f"WARNING: {message}", file=sys.stderr)
+
+
+def _file_digest(path: str) -> str:
+    import hashlib
+    with open(path, "rb") as fh:
+        return hashlib.md5(fh.read()).hexdigest()
+
+
+def _stock_espeak_dict(ds_lang: str) -> Optional[str]:
+    """Path to the INSTALLED (stock) compiled dictionary for *ds_lang*, or
+    ``None`` when the install layout cannot be located."""
+    exe = shutil.which("espeak-ng")
+    if not exe:
+        return None
+    prefix = os.path.dirname(os.path.dirname(os.path.realpath(exe)))
+    roots = []
+    # espeak-ng itself is the authority: `--version` prints "Data at: <dir>".
+    # Ask it first, then fall back to the usual install layouts.
+    try:
+        proc = subprocess.run([exe, "--version"], capture_output=True,
+                              text=True, timeout=10)
+        for chunk in (proc.stdout or "").split("Data at:")[1:]:
+            roots.append(chunk.strip().splitlines()[0].strip())
+    except (OSError, subprocess.TimeoutExpired, IndexError):
+        pass
+    roots += [os.environ.get("ESPEAK_DATA_PATH", ""),
+              os.path.join(prefix, "share", "espeak-ng-data"),
+              "/usr/share/espeak-ng-data",
+              "/usr/local/share/espeak-ng-data"]
+    for root in roots:
+        if not root:
+            continue
+        candidate = os.path.join(root, f"{ds_lang}_dict")
+        if os.path.isfile(candidate):
+            return candidate
+    return None
 
 
 def _espeak_cmd(voice: str, data_path: Optional[str] = None,
@@ -990,6 +1160,9 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
                   and not same_source["espeak"])
     use_espeak_rules = (cfg["espeak"] is not None and espeak_rules_available()
                          and not same_source["espeak_rules"])
+    if use_espeak_rules:
+        # Raises rather than degrading to n/a: see assert_espeak_rules_built_for.
+        assert_espeak_rules_built_for(lang, cfg["espeak"])
     use_epitran = cfg["epitran"] is not None and not same_source["epitran"]
     use_gruut = cfg["gruut"] is not None
     use_pycotovia = cfg.get("pycotovia") is not None

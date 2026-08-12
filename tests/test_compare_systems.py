@@ -987,6 +987,114 @@ class TestBuildEspeakLexiconTsv:
         assert not (cache_dir / "en-US-test2.tsv").exists()
 
 
+class TestEspeakRulesBuildVerification:
+    """The espeak_rules column must never silently score STOCK espeak-ng.
+
+    build_espeak_rules_only.sh copies espeak-ng's stock compiled data for
+    EVERY language and recompiles only the ones it was asked for, so the
+    directory existing says nothing about the language being scored. These
+    gates exist because a real published board row was fabricated that way:
+    the es row read 'espeak 0.1071 / espeak_rules 0.1071' when both numbers
+    were stock, because the build's default language list has no es.
+    """
+
+    def _manifest(self, tmp_path, body):
+        root = tmp_path / "rules"
+        (root / "espeak-ng-data").mkdir(parents=True)
+        if body is not None:
+            (root / cs.ESPEAK_RULES_MANIFEST).write_text(body, encoding="utf-8")
+        return root
+
+    def test_no_manifest_at_all_raises(self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, None)
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        with pytest.raises(RuntimeError, match="no rules_only_manifest"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_language_absent_from_manifest_raises(self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nfr\t100\n")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        with pytest.raises(RuntimeError, match="did NOT strip"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_stripped_but_dict_identical_to_stock_raises(
+            self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        built = root / "espeak-ng-data" / "es_dict"
+        built.write_bytes(b"IDENTICAL")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"IDENTICAL")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        with pytest.raises(RuntimeError, match="byte-identical"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_stripped_and_dict_differs_passes(self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"RULES ONLY")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"STOCK WITH LIST")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+
+    def test_zero_stripped_lines_is_a_legitimate_no_op(
+            self, monkeypatch, tmp_path):
+        """A language shipping no _list/_listx/_extra has nothing to strip, so
+        an identical dict is honest there and must NOT raise."""
+        root = self._manifest(tmp_path, "# lang\tn\nes\t0\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"SAME")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"SAME")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+
+    def test_unresolvable_stock_path_warns_instead_of_passing_silently(
+            self, monkeypatch, tmp_path, capsys):
+        """Gate 2 is INCONCLUSIVE when no stock dict can be located. It must
+        say so; a check that quietly proves nothing is what let the
+        fabricated es row through."""
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"RULES ONLY")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: None)
+        monkeypatch.setattr(cs, "ESPEAK_RULES_STRICT", False)
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+        assert "did not run" in capsys.readouterr().err
+
+    def test_unresolvable_stock_path_raises_under_strict(
+            self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"RULES ONLY")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: None)
+        monkeypatch.setattr(cs, "ESPEAK_RULES_STRICT", True)
+        with pytest.raises(RuntimeError, match="did not run"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_missing_built_dict_is_also_inconclusive(
+            self, monkeypatch, tmp_path, capsys):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"STOCK")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        monkeypatch.setattr(cs, "ESPEAK_RULES_STRICT", False)
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+        assert "does not exist" in capsys.readouterr().err
+
+    def test_dialect_voice_resolves_to_its_dictsource_language(
+            self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nca\t18873\n")
+        (root / "espeak-ng-data" / "ca_dict").write_bytes(b"RULES ONLY")
+        stock = tmp_path / "stock_ca_dict"
+        stock.write_bytes(b"STOCK")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        assert cs.assert_espeak_rules_built_for("ca-x-balear", "ca-ba") == "ca"
+
+
 class TestCompareLangFairComparison2x2:
     def test_espeak_rules_and_o2i_lex_columns_scored(self, monkeypatch, tmp_path):
         pairs = [("bat", "bato")]
@@ -1018,13 +1126,20 @@ class TestCompareLangFairComparison2x2:
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
         monkeypatch.setattr(cs, "espeak_rules_available", lambda: True)
-        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", "/fake/rules/data")
+        # A rules-only dir is only trusted when its build manifest names the
+        # language (assert_espeak_rules_built_for), so the fixture writes one.
+        rules_dir = tmp_path / "rules"
+        (rules_dir / "espeak-ng-data").mkdir(parents=True)
+        (rules_dir / cs.ESPEAK_RULES_MANIFEST).write_text(
+            "# lang\tstripped_exception_lines\n yy\t0\n".replace(" ", ""),
+            encoding="utf-8")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(rules_dir))
         monkeypatch.setattr(
             cs, "build_espeak_lexicon_tsv",
             lambda lang: str(tmp_path / "lex.tsv") if lang == "yy" else None)
 
         def fake_batch(words, voice, data_path=None):
-            if data_path == "/fake/rules/data":
+            if data_path == str(rules_dir):
                 return {w: "wrong" for w in words}  # rules-only is worse
             return {w: "bato" for w in words}
 
