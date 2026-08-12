@@ -1569,8 +1569,21 @@ def _espeak_rules_coverage_note(rows: List[dict]) -> str:
     )
 
 
-def write_comparison(rows: List[dict],
-                      catalan_voices: Optional[Dict[str, Optional[str]]] = None) -> None:
+def write_comparison(
+        rows: List[dict],
+        catalan_voices: Optional[Dict[str, Optional[str]]] = CATALAN_DIALECT_VOICES,
+) -> None:
+    """Write the comparison board (JSON) and the rendered document (Markdown).
+
+    *catalan_voices* defaults to the resolved :data:`CATALAN_DIALECT_VOICES`
+    rather than to ``None`` because the document is rewritten WHOLE on every
+    call, including a single-language ``--lang`` refresh that rescored none of
+    the Catalan rows. With a ``None`` default, any caller that simply did not
+    think about Catalan silently DELETED the committed "Catalan dialects vs
+    espeak (BSC)" section from the published document — a partial rerun must
+    never be able to drop a section it did not touch. Pass ``None`` explicitly
+    to suppress the section on purpose.
+    """
     os.makedirs(os.path.dirname(COMPARISON_JSON), exist_ok=True)
     with open(COMPARISON_JSON, "w", encoding="utf-8") as fh:
         json.dump(rows, fh, indent=2, ensure_ascii=False)

@@ -254,7 +254,9 @@ class StressRules:
     1. A syllable containing a ``marked_vowels`` character is stressed.
     2. A word ending in one of ``final_stress_endings`` is oxytone.
     3. A word ending in one of ``penult_stress_endings`` is paroxytone.
-    4. Otherwise ``default_position`` applies.
+    4. A word ending in one of ``antepenult_stress_endings`` is
+       proparoxytone.
+    5. Otherwise ``default_position`` applies.
 
     Parameters
     ----------
@@ -269,6 +271,19 @@ class StressRules:
         (Portuguese ``-r``, ``-l``, ``-z``, ``-im``, ``-ão`` …).
     penult_stress_endings : Tuple[str, ...]
         Endings that force penultimate stress when the default differs.
+    antepenult_stress_endings : Tuple[str, ...]
+        Endings that force ANTEPENULTIMATE stress — the third syllable from
+        the end. The end-anchored twin of :attr:`penult_stress_endings`, for
+        the suffix classes whose stress lands two syllables before the word
+        edge rather than one: English ``-ity`` (aˈbility), ``-ify``
+        (ˈclassify), ``-ography`` (phoˈtography), ``-ology`` (biˈology).
+        These are two-syllable suffixes whose stress-attracting behaviour is
+        the SAME "one syllable before the suffix" relation the one-syllable
+        suffixes in :attr:`penult_stress_endings` express — the position
+        differs only because the suffix is longer (Fudge 1984, *English
+        Word-Stress*, ch. 3-4, on pre-stressed suffix classes). Clamped into
+        the word, so a disyllable that matches falls back to its first
+        syllable.
     marked_vowels : Tuple[str, ...]
         Vowel characters whose written accent marks the stressed
         syllable (``á é í ó ú â ê ô ã õ``).
@@ -392,6 +407,7 @@ class StressRules:
     default_position: int = -2
     final_stress_endings: Tuple[str, ...] = ()
     penult_stress_endings: Tuple[str, ...] = ()
+    antepenult_stress_endings: Tuple[str, ...] = ()
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()

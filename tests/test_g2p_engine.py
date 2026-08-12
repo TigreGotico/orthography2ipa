@@ -94,8 +94,8 @@ class TestStressIntegration:
         assert "ˈ" not in engine.transcribe("falar")
 
     def test_language_without_stress_rules_unmarked(self):
-        engine = G2P("en-GB")
-        assert "ˈ" not in engine.transcribe("hello")
+        engine = G2P("fr-FR")
+        assert "ˈ" not in engine.transcribe("bonjour")
 
     def test_marked_vowels_are_graphemes(self):
         """Stress-marked vowels a spec declares must be transcribable."""
@@ -158,15 +158,18 @@ class TestWordExceptionStressRouting:
         assert engine.transcribe_word("de") == "də"
         assert engine.transcribe_word("que") == "kə"
 
-    def test_en_gb_word_exceptions_unaffected(self):
-        """en-GB has no stress block either: same guarantee."""
+    def test_en_gb_word_exceptions_are_stress_routed(self):
+        """en-GB declares a stress block, so a word_exceptions override goes
+        through the same stress-marking path as the search result — except for
+        a declared clitic, which by definition carries no word stress."""
         engine = G2P("en-GB")
-        assert engine.spec.stress is None
-        expected = {
-            "the": "ðə", "be": "biː", "he": "hiː",
-            "me": "miː", "we": "wiː", "she": "ʃiː",
-        }
-        for word, ipa in expected.items():
+        assert engine.spec.stress is not None
+        marked = {"be": "ˈbiː", "he": "ˈhiː", "me": "ˈmiː",
+                  "we": "ˈwiː", "she": "ˈʃiː"}
+        for word, ipa in marked.items():
+            assert engine.transcribe_word(word) == ipa
+        # weak-form articles are declared cliticless_words: no stress mark
+        for word, ipa in {"the": "ðə", "a": "ə", "an": "ən"}.items():
             assert engine.transcribe_word(word) == ipa
 
 

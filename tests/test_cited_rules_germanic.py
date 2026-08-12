@@ -14,7 +14,22 @@ from orthography2ipa.g2p import G2P
 
 
 def _t(code, word):
-    return G2P(code).transcribe_word(word)
+    """Transcribe *word*, without the leading word-stress mark.
+
+    These tests pin SEGMENTAL claims — which phoneme a grapheme yields in a
+    given environment. Where the stress mark falls is a separate claim, pinned
+    by ``tests/test_stress.py`` and by
+    ``tests/test_english_stress_reduction.py``, so it is stripped here rather
+    than repeated in every expected string.
+
+    The strip is unconditional rather than scoped to one language because
+    EVERY assertion in this file is segmental: the German half already
+    stripped the mark call-by-call, and a per-language strip would just be
+    the same rule written twice. Nothing here asserts the presence, absence
+    or position of a stress mark, so nothing here can be weakened by
+    removing it — a test that needs the mark belongs in the stress files.
+    """
+    return G2P(code).transcribe_word(word).lstrip("ˈ")
 
 
 # ===========================================================================
@@ -271,7 +286,10 @@ def test_en_gb_linking_r_survives_before_a_vowel():
 @pytest.mark.parametrize("word,expected", [
     ("marry", "mæɹi"),
     ("merry", "mɛɹi"),
-    ("mirror", "mɪɹɔː"),
+    # unstressed second syllable: the ⟨or⟩ nucleus reduces to /ə/ and RP's
+    # non-rhotic rule then deletes the coda [ɹ] — Wells 2008 LPD gives
+    # ˈmɪɹə (Cruttenden 2014 §9.4 on the weak vowel of an unstressed syllable)
+    ("mirror", "mɪɹə"),
     ("hurry", "hʌɹi"),
     ("sorry", "sɒɹi"),
     ("spirit", "spɪɹɪt"),
@@ -581,8 +599,8 @@ def test_de_auslautverhaertung_d_minimal_pair():
     and in an open syllable, stays voiced; the vowel is long by the
     open-syllable lengthening rule -- Wiese 1996).
     """
-    assert _t("de-DE", "Bad").lstrip("ˈ") == "bat"
-    assert _t("de-DE", "Baden").lstrip("ˈ").startswith("baː")
+    assert _t("de-DE", "Bad") == "bat"
+    assert _t("de-DE", "Baden").startswith("baː")
 
 
 def test_de_auslautverhaertung_g():
@@ -591,7 +609,7 @@ def test_de_auslautverhaertung_g():
     de-DE notes: "obstruents devoiced word-finally (b→p, d→t, g→k, v→f)."
     Hall (2003).
     """
-    assert _t("de-DE", "Tag").lstrip("ˈ") == "tak"
+    assert _t("de-DE", "Tag") == "tak"
 
 
 def test_de_auslautverhaertung_v():
@@ -604,7 +622,7 @@ def test_de_auslautverhaertung_v():
     onset and stays [v].
     """
     assert _t("de-DE", "brav").endswith("f")
-    assert _t("de-DE", "viel").lstrip("ˈ").startswith("v")
+    assert _t("de-DE", "viel").startswith("v")
 
 
 def test_de_sp_st_word_initial_hushing():
@@ -616,8 +634,8 @@ def test_de_sp_st_word_initial_hushing():
     Minimal pair on the ⟨sp⟩ cluster: Spiel (word-initial → [ʃp]) vs Wespe
     (medial → [sp]).
     """
-    assert _t("de-DE", "Spiel").lstrip("ˈ").startswith("ʃp")
-    assert _t("de-DE", "Stein").lstrip("ˈ").startswith("ʃt")
+    assert _t("de-DE", "Spiel").startswith("ʃp")
+    assert _t("de-DE", "Stein").startswith("ʃt")
     assert "sp" in _t("de-DE", "Wespe")
 
 

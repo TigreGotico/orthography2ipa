@@ -462,6 +462,8 @@ def load_json_spec(code: str) -> LanguageSpec:
             default_position=int(raw_stress.get("default_position", -2)),
             final_stress_endings=tuple(raw_stress.get("final_stress_endings", ())),
             penult_stress_endings=tuple(raw_stress.get("penult_stress_endings", ())),
+            antepenult_stress_endings=tuple(
+                raw_stress.get("antepenult_stress_endings", ())),
             marked_vowels=tuple(raw_stress.get("marked_vowels", ())),
             stress_mark=raw_stress.get("stress_mark", "ˈ"),
             accent2_mark=raw_stress.get("accent2_mark", ""),
