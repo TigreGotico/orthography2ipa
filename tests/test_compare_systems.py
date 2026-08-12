@@ -254,7 +254,7 @@ class TestBuildAndWriteComparison(object):
         # crowd-scraped (gold-tier), so they land in the gold-tier count.
         assert "Gold-tier" in text
         assert "o2i beats espeak on 1 of 2 comparable languages" in text
-        assert "| bb |" in text  # honest: the losing row is still listed
+        assert "### bb" in text  # honest: the losing row is still listed
         assert "n/a" in text  # missing systems reported as n/a
 
         data = json_path.read_text(encoding="utf-8")
@@ -1476,7 +1476,8 @@ class TestWriteComparisonSameSourceRendering:
 
         text = md_path.read_text(encoding="utf-8")
         assert "same-source" in text
-        assert "| aa | d | 2 | 0.1000 | same-source |" in text
+        assert "### aa" in text
+        assert "| d | 2 | 0.1000 | same-source |" in text
 
 
 class TestO2iSameSourceExclusion:
@@ -1803,6 +1804,139 @@ class TestScoreboardLangScoping:
         assert "stale_key" not in merged[0]
 
 
+class TestWinnerColumn:
+    """``_winner`` names the lowest-PER system on a row, calls a near-tie
+    ``tie`` rather than a spurious four-decimal win, and never lets a
+    same-source cell win (it is not a real comparison)."""
+
+    def test_clear_winner_named(self):
+        row = {"o2i_per": 0.10, "espeak_per": 0.30}
+        assert cs._winner(row) == "o2i"
+
+    def test_other_system_wins(self):
+        row = {"o2i_per": 0.30, "espeak_per": 0.10}
+        assert cs._winner(row) == "espeak"
+
+    def test_tie_within_tolerance(self):
+        row = {"o2i_per": 0.1000, "espeak_per": 0.1005}
+        assert cs._winner(row) == "tie"
+
+    def test_just_outside_tolerance_is_not_a_tie(self):
+        row = {"o2i_per": 0.1000, "espeak_per": 0.1020}
+        assert cs._winner(row) == "o2i"
+
+    def test_same_source_cell_never_wins(self):
+        # espeak's own-generated gold scores near-zero by construction;
+        # it must not be crowned "winner" over a real o2i number.
+        row = {"o2i_per": 0.20, "espeak_per": 0.0,
+               "espeak_same_source": True}
+        assert cs._winner(row) == "o2i"
+
+    def test_no_comparable_systems_is_na(self):
+        row = {"o2i_per": None, "espeak_per": None}
+        assert cs._winner(row) == "n/a"
+
+    def test_espeak_rules_label_used(self):
+        row = {"o2i_per": 0.5, "espeak_rules_per": 0.1}
+        assert cs._winner(row) == "espeak rules-only"
+
+
+class TestLeaderboardSummary:
+    """``_leaderboard_summary`` is the compact per-language standings
+    block at the top of the doc — built from each language's PRIMARY
+    gold row only, one line per language."""
+
+    def test_o2i_number_one_names_runner_up(self, monkeypatch):
+        rows = [
+            {"lang": "it", "dataset": "wikipron", "n": 10,
+             "o2i_per": 0.04, "espeak_per": 0.07},
+        ]
+        monkeypatch.setitem(cs.LANGS, "it", {"dataset": ("wikipron", "it")})
+        text = "\n".join(cs._leaderboard_summary(rows))
+        assert "**it** — o2i #1 (beats espeak)" in text
+
+    def test_o2i_not_first_names_the_winner_and_o2i_rank(self, monkeypatch):
+        rows = [
+            {"lang": "en-US", "dataset": "cmudict", "n": 10,
+             "o2i_per": 0.50, "espeak_per": 0.30},
+        ]
+        monkeypatch.setitem(
+            cs.LANGS, "en-US", {"dataset": ("cmudict", "en-US")})
+        text = "\n".join(cs._leaderboard_summary(rows))
+        assert "**en-US** — espeak #1, o2i #2" in text
+
+    def test_only_primary_row_counted_per_language(self, monkeypatch):
+        # A language with several registered golds must produce exactly
+        # ONE leaderboard line, for its configured primary dataset.
+        rows = [
+            {"lang": "ca", "dataset": "4catac", "n": 10,
+             "o2i_per": 0.06, "espeak_per": 0.04},
+            {"lang": "ca", "dataset": "wikipron", "n": 5,
+             "o2i_per": 0.25, "espeak_per": 0.22},
+        ]
+        monkeypatch.setitem(cs.LANGS, "ca", {"dataset": ("4catac", "ca")})
+        lines = cs._leaderboard_summary(rows)
+        ca_lines = [l for l in lines if l.startswith("- **ca**")]
+        assert len(ca_lines) == 1
+
+
+class TestDetailsBlockPresence:
+    """The stale/coverage notes must survive the reorganization as a
+    clearly separated, collapsible section at the bottom of the doc —
+    honesty content is reorganized, never deleted."""
+
+    def test_details_block_wraps_the_staleness_and_coverage_notes(
+            self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "aa", "dataset": "d", "n": 2,
+             "o2i_per": 0.1, "o2i_n": 2,
+             "espeak_per": 0.3, "espeak_n": 2,
+             "epitran_per": None, "epitran_n": 0,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+        ]
+        monkeypatch.setitem(cs.LANGS, "aa", {"dataset": ("d", "aa")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+
+        cs.write_comparison(rows)
+
+        text = md_path.read_text(encoding="utf-8")
+        assert "<details>" in text
+        assert "</details>" in text
+        details = text.split("<details>", 1)[1].split("</details>", 1)[0]
+        assert "espeak-rules-only coverage" in details or \
+            "espeak-rules-only" in details
+        assert "Regenerate" in details
+        # The details block comes AFTER the main results table, not
+        # before it — data first, methodology after.
+        assert text.index("### aa") < text.index("<details>")
+
+    def test_stale_note_still_names_the_row(self, tmp_path, monkeypatch):
+        # Regression guard: the honest per-row staleness naming
+        # (results.json vs a fresh live run) must still be reachable in
+        # the regenerated doc, just relocated into the details block.
+        rows = [
+            {"lang": "aa", "dataset": "d", "n": 2, "o2i_per": 0.5},
+        ]
+        monkeypatch.setattr(
+            cs.benchmark, "SCOREBOARD_JSON", "/nonexistent/path.json")
+        note = cs._scoreboard_staleness_note(rows)
+        assert "could not be read" in note
+
+        monkeypatch.setitem(cs.LANGS, "aa", {"dataset": ("d", "aa")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+        cs.write_comparison(rows)
+        text = md_path.read_text(encoding="utf-8")
+        assert note in text
+
+
 class TestEspeakRulesCoverageNote:
     """``_espeak_rules_coverage_note`` names rows that have a stock
     ``espeak`` number but no ``espeak-rules-only`` one yet — the
@@ -1884,10 +2018,18 @@ class TestWriteComparisonEspeakRulesColumn:
         cs.write_comparison(rows)
 
         text = md_path.read_text(encoding="utf-8")
-        assert "espeak-rules-only PER" in text
-        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | 0.0800 | 0.2000" in text
+        assert "espeak rules-only" in text
+        assert "### fr" in text
+        assert "| wikipron | 2 | 0.0500 | 0.0700 | 0.0800 | 0.2000" in text
 
     def test_missing_cell_renders_n_a_not_blank(self, tmp_path, monkeypatch):
+        # Two rows for the same language: "wikipron" has no epitran number
+        # while "cmudict" does, so the epitran column is NOT all-n/a for
+        # the "fr" group and stays in the table — letting us pin that the
+        # wikipron row's own missing epitran cell renders "n/a", not a
+        # blank or an omitted cell. espeak_rules_per is None on BOTH rows,
+        # so that column IS all-n/a for the group and is dropped per the
+        # per-group column-omission rule.
         rows = [
             {"lang": "fr", "dataset": "wikipron", "n": 2,
              "o2i_per": 0.05, "o2i_n": 2,
@@ -1895,6 +2037,15 @@ class TestWriteComparisonEspeakRulesColumn:
              "espeak_rules_per": None, "espeak_rules_n": 0,
              "espeak_rules_same_source": False,
              "epitran_per": None, "epitran_n": 0,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+            {"lang": "fr", "dataset": "cmudict", "n": 3,
+             "o2i_per": 0.06, "o2i_n": 3,
+             "espeak_per": 0.08, "espeak_n": 3, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_n": 0,
+             "espeak_rules_same_source": False,
+             "epitran_per": 0.3, "epitran_n": 3,
              "gruut_per": None, "gruut_n": 0,
              "provenance_tier": "crowd-scraped",
              "harness_version": "1.0", "limit": 10},
@@ -1908,6 +2059,12 @@ class TestWriteComparisonEspeakRulesColumn:
         cs.write_comparison(rows)
 
         text = md_path.read_text(encoding="utf-8")
-        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | n/a | n/a" in text
-        assert ("1 row(s) have a stock `espeak` number but no "
+        assert "### fr" in text
+        assert "| wikipron | 2 | 0.0500 | 0.0700 | n/a |" in text
+        assert "| cmudict | 3 | 0.0600 | 0.0800 | 0.3000 |" in text
+        # espeak_rules had no data at all for this group -> column dropped,
+        # not shown as a wall of n/a.
+        fr_section = text.split("### fr", 1)[1].split("###", 1)[0]
+        assert "espeak rules-only" not in fr_section
+        assert ("2 row(s) have a stock `espeak` number but no "
                 "`espeak-rules-only`") in text
