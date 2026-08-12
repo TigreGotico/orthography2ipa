@@ -77,8 +77,8 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | fr | wikipron | 85516 | 0.0673 | 0.0740 | 0.0751 | 0.2280 | n/a | n/a | n/a | n/a |
 | ga | ipa_childes | 1612 | 0.2989 | same-source | same-source | n/a | n/a | n/a | n/a | n/a |
 | ga | wikipron | 9621 | 0.1834 | 0.5223 | n/a | n/a | n/a | n/a | n/a | n/a |
-| gl | vox_communis | 47515 | 0.0771 | n/a | n/a | same-source | n/a | 0.0883 | n/a | n/a |
-| gl | wikipron | 8091 | 0.0906 | n/a | n/a | n/a | n/a | 0.0883 | n/a | n/a |
+| gl | vox_communis | 47515 | 0.0643 | n/a | n/a | same-source | n/a | 0.0883 | n/a | n/a |
+| gl | wikipron | 8091 | 0.0804 | n/a | n/a | n/a | n/a | 0.0883 | n/a | n/a |
 | hi | vox_communis | 13154 | 0.3684 | 0.5184 | n/a | same-source | n/a | n/a | n/a | n/a |
 | hi | wikipron | 30379 | 0.1562 | 0.2815 | n/a | 0.3322 | n/a | n/a | n/a | n/a |
 | hts | wikipron | 329 | 0.3728 | n/a | n/a | n/a | n/a | n/a | n/a | 0.2769 |
