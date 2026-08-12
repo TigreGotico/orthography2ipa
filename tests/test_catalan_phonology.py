@@ -419,7 +419,11 @@ def test_cross_word_elision_deletes_initial_unstressed_vowel():
     boundary, and the two are identical segment for segment."""
     assert transcribe("va anar", "ca") == "ˈba ˈna"
     assert transcribe("va experimentar", "ca").startswith("ˈba k")
-    assert transcribe("he autoritzat", "ca") == "ˈɛ wtuɾiˈdzat"
+    # ⟨he⟩ (haver, 1sg) is close [ˈe], not [ˈɛ] — the 4catac Central gold
+    # writes it that way in both of its tokens (He baixat [e βəʃˈad], no he
+    # autoritzat [nˈo ˈe wtuɾidzˈat]). Listed in word_exceptions with the
+    # rest of the closed-class auxiliary forms; see test_catalan_espeak_wave2.
+    assert transcribe("he autoritzat", "ca") == "ˈe wtuɾiˈdzat"
 
 
 def test_cross_word_elision_deletes_final_schwa():
@@ -520,7 +524,10 @@ def test_vowel_contact_is_a_sentence_effect_only():
     assert transcribe("anar", "ca") == "əˈna"
     assert transcribe("sobre", "ca") == "ˈsɔβɾə"
     assert transcribe("un", "ca") == "un"
-    assert transcribe("entre", "ca") == "ˈɛntɾə"
+    # Close [e]: coda /nt/ is not one of Fabra's (1906) opening contexts —
+    # see CA_E_CLOSE_BEFORE_CODA_NT and test_catalan_espeak_wave2. The 4catac
+    # Central gold writes entre ['en̪tɾə] and centre [s'en̪tɾə].
+    assert transcribe("entre", "ca") == "ˈentɾə"
 
 
 def test_vowel_contact_does_not_leak_to_other_languages():
