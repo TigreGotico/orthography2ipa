@@ -254,7 +254,12 @@ LANGS: Dict[str, dict] = {
               "epitran": "eng-Latn", "gruut": "en-gb"},
     "es": {"dataset": ("wikipron", "es"), "espeak": "es",
            "epitran": "spa-Latn", "gruut": "es",
-           "ahotts": {"lang": "es", "version": "classic"}},
+           "ahotts": {"lang": "es", "version": "classic"},
+           # Cotovia's own Spanish mode (pycotovia.Phonemizer(lang="es"))
+           # — Cotovia is a Galician/Spanish system per Univ. de Vigo/GTM,
+           # so this row is its Spanish-mode showing, alongside the
+           # Galician "gl" row's native-mode showing.
+           "pycotovia": "es"},
     # sample_n: the unified pt gold is ~116k pt-PT words; epitran/gruut transcribe
     # word-by-word in-process and cannot batch, so a full pass is days of
     # wall clock. Scored on a fixed-seed (loader SAMPLE_SEED) sample of
@@ -1411,8 +1416,8 @@ def write_comparison(rows: List[dict],
         "# Comparison to other G2P systems",
         "",
         "Committed cross-system comparison: orthography2ipa vs "
-        "**espeak-ng**, **epitran**, **gruut**, **pycotovia** (Galician), "
-        "and **ahotts-g2p** (Basque & Spanish) on the same gold "
+        "**espeak-ng**, **epitran**, **gruut**, **pycotovia** (Galician & "
+        "Spanish), and **ahotts-g2p** (Basque & Spanish) on the same gold "
         "datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using "
         "the FULL gold set of every mapped language (no cap — the same "
         "no-caps policy as the scoreboard; the one explicitly-flagged "
