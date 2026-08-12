@@ -41,13 +41,13 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | arb | arabic_tts | 20 | same-source | n/a | n/a | n/a | n/a | n/a | n/a | 0.2836 |
 | arb | gold20_arabic | 20 | same-source | n/a | n/a | n/a | n/a | n/a | n/a | 0.2666 |
-| ca | 4catac | 160 | 0.0793 | 0.0403 | 0.1206 | 0.4641 | n/a | n/a | n/a | n/a |
-| ca | ipa_childes | 3814 | 0.2595 | same-source | same-source | 0.3447 | n/a | n/a | n/a | n/a |
-| ca | vox_communis | 218451 | 0.8088 | 0.8195 | n/a | same-source | n/a | n/a | n/a | n/a |
-| ca | wikipron | 106 | 0.2596 | 0.2221 | n/a | 0.3518 | n/a | n/a | n/a | n/a |
-| ca-x-balear | 4catac | 160 | 0.1481 | 0.0797 | 0.1412 | 0.4998 | n/a | n/a | n/a | n/a |
-| ca-x-occidental | 4catac | 160 | 0.0956 | 0.0497 | 0.0832 | 0.4348 | n/a | n/a | n/a | n/a |
-| ca-x-valencia | 4catac | 160 | 0.0774 | 0.0439 | 0.0762 | 0.3775 | n/a | n/a | n/a | n/a |
+| ca | 4catac | 160 | 0.0643 | 0.0403 | 0.1206 | 0.4641 | n/a | n/a | n/a | n/a |
+| ca | ipa_childes | 3814 | 0.2579 | same-source | same-source | 0.3447 | n/a | n/a | n/a | n/a |
+| ca | vox_communis | 218451 | 0.8055 | 0.8195 | 0.8168 | same-source | n/a | n/a | n/a | n/a |
+| ca | wikipron | 106 | 0.2565 | 0.2221 | 0.2798 | 0.3518 | n/a | n/a | n/a | n/a |
+| ca-x-balear | 4catac | 160 | 0.1471 | 0.0797 | 0.1419 | 0.4998 | n/a | n/a | n/a | n/a |
+| ca-x-occidental | 4catac | 160 | 0.0944 | 0.0497 | 0.0832 | 0.4348 | n/a | n/a | n/a | n/a |
+| ca-x-valencia | 4catac | 160 | 0.0759 | 0.0439 | 0.0762 | 0.3775 | n/a | n/a | n/a | n/a |
 | cop | wikipron | 591 | 0.3671 | n/a | n/a | n/a | n/a | n/a | n/a | 0.4491 |
 | cy | ipa_childes | 4666 | 0.2985 | same-source | same-source | 0.3495 | n/a | n/a | n/a | n/a |
 | cy | vox_communis | 18701 | 0.1172 | 0.3005 | n/a | same-source | n/a | n/a | n/a | n/a |
@@ -116,7 +116,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | tr | wikipron | 11582 | 0.1230 | 0.2739 | n/a | 0.1352 | n/a | n/a | n/a | n/a |
 | tzm | wikipron | 658 | 0.0160 | n/a | n/a | n/a | n/a | n/a | n/a | 1.0005 |
 
-**espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh` and the module docstring's "Fair-comparison 2x2" section. 43 row(s) have a stock `espeak` number but no `espeak-rules-only` one yet in this run — deferred, not fabricated (see `scripts/build_espeak_rules_only.sh`): `ru`/`wikipron` (n=403873); `ca`/`vox_communis` (n=218451); `fi`/`wikipron` (n=168814); `pl`/`wikipron` (n=148992); `es`/`wikipron` (n=132190); `en-US`/`cmudict` (n=126052); `en-US`/`ipadict` (n=125927); `nl`/`ipadict` (n=117869); `es`/`vox_communis` (n=97715); `fi`/`ipadict` (n=92836); `it`/`vox_communis` (n=90366); `it`/`wikipron` (n=82280); `eu`/`vox_communis` (n=64077); `eu-wikipron`/`vox_communis` (n=64077); `de`/`wikipron` (n=53011); `ru`/`vox_communis` (n=50547); `tr`/`vox_communis` (n=49476); `pl`/`vox_communis` (n=47615); `hi`/`wikipron` (n=30379); `nl`/`vox_communis` (n=26137); `sv`/`ipadict` (n=21095); `sv`/`vox_communis` (n=19516); `el`/`wikipron` (n=19108); `cy`/`vox_communis` (n=18701); `cy`/`wikipron` (n=14811); `fi`/`vox_communis` (n=13324); `hi`/`vox_communis` (n=13154); `ro`/`vox_communis` (n=12097); `eu`/`wikipron` (n=12022); `eu-wikipron`/`wikipron` (n=12022); `tr`/`wikipron` (n=11582); `ga`/`wikipron` (n=9621); `ro`/`wikipron` (n=8978); `el`/`vox_communis` (n=5994); `sv`/`wikipron` (n=5082); `eu`/`hitz_basque_ipa` (n=3113); `eu-wikipron`/`hitz_basque_ipa` (n=3113); `pt-PT`/`portuguese_unified` (n=3000); `pt-PT`/`wikipron` (n=2272); `ca`/`wikipron` (n=106); `ru`/`primary_sources` (n=36); `pt-PT`/`ep_dialects` (n=30); `pt-PT`/`portuguese_tts` (n=20).
+**espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh` and the module docstring's "Fair-comparison 2x2" section. 41 row(s) have a stock `espeak` number but no `espeak-rules-only` one yet in this run — deferred, not fabricated (see `scripts/build_espeak_rules_only.sh`): `ru`/`wikipron` (n=403873); `fi`/`wikipron` (n=168814); `pl`/`wikipron` (n=148992); `es`/`wikipron` (n=132190); `en-US`/`cmudict` (n=126052); `en-US`/`ipadict` (n=125927); `nl`/`ipadict` (n=117869); `es`/`vox_communis` (n=97715); `fi`/`ipadict` (n=92836); `it`/`vox_communis` (n=90366); `it`/`wikipron` (n=82280); `eu`/`vox_communis` (n=64077); `eu-wikipron`/`vox_communis` (n=64077); `de`/`wikipron` (n=53011); `ru`/`vox_communis` (n=50547); `tr`/`vox_communis` (n=49476); `pl`/`vox_communis` (n=47615); `hi`/`wikipron` (n=30379); `nl`/`vox_communis` (n=26137); `sv`/`ipadict` (n=21095); `sv`/`vox_communis` (n=19516); `el`/`wikipron` (n=19108); `cy`/`vox_communis` (n=18701); `cy`/`wikipron` (n=14811); `fi`/`vox_communis` (n=13324); `hi`/`vox_communis` (n=13154); `ro`/`vox_communis` (n=12097); `eu`/`wikipron` (n=12022); `eu-wikipron`/`wikipron` (n=12022); `tr`/`wikipron` (n=11582); `ga`/`wikipron` (n=9621); `ro`/`wikipron` (n=8978); `el`/`vox_communis` (n=5994); `sv`/`wikipron` (n=5082); `eu`/`hitz_basque_ipa` (n=3113); `eu-wikipron`/`hitz_basque_ipa` (n=3113); `pt-PT`/`portuguese_unified` (n=3000); `pt-PT`/`wikipron` (n=2272); `ru`/`primary_sources` (n=36); `pt-PT`/`ep_dialects` (n=30); `pt-PT`/`portuguese_tts` (n=20).
 
 Counted over distinct LANGUAGES (one row per language: its configured primary gold dataset — see `_primary_rows`), never over table rows, and split by whether that primary gold is an independent reference or another tool's/LLM's output:
 
@@ -128,9 +128,9 @@ Counted over distinct LANGUAGES (one row per language: its configured primary go
 A system winning on one gold and losing on another for the SAME language is real signal, not noise to average away. Every language with 2+ espeak-comparable gold datasets is listed below with its exact win/loss split (same-source cells excluded — they are never comparable, see above).
 
 - **`ca`** (MIXED — wins on some golds, loses on others):
-  - `4catac` (n=160, tier=expert-human): o2i 0.0793 vs espeak 0.0403 — o2i loses
-  - `vox_communis` (n=218451, tier=epitran-derived): o2i 0.8088 vs espeak 0.8195 — o2i wins
-  - `wikipron` (n=106, tier=crowd-scraped): o2i 0.2596 vs espeak 0.2221 — o2i loses
+  - `4catac` (n=160, tier=expert-human): o2i 0.0643 vs espeak 0.0403 — o2i loses
+  - `vox_communis` (n=218451, tier=epitran-derived): o2i 0.8055 vs espeak 0.8195 — o2i wins
+  - `wikipron` (n=106, tier=crowd-scraped): o2i 0.2565 vs espeak 0.2221 — o2i loses
 - **`cy`** (wins on all golds):
   - `vox_communis` (n=18701, tier=epitran-derived): o2i 0.1172 vs espeak 0.3005 — o2i wins
   - `wikipron` (n=14811, tier=crowd-scraped): o2i 0.1822 vs espeak 0.2799 — o2i wins
@@ -198,10 +198,12 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 
 | Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |
 |---|---|---:|---:|---:|---:|---:|
-| ca | 4catac | 160 | 0.0793 | n/a | 0.0403 | 0.1206 |
-| ca-x-balear | 4catac | 160 | 0.1481 | n/a | 0.0797 | 0.1412 |
-| ca-x-occidental | 4catac | 160 | 0.0956 | n/a | 0.0497 | 0.0832 |
-| ca-x-valencia | 4catac | 160 | 0.0774 | n/a | 0.0439 | 0.0762 |
+| ca | 4catac | 160 | 0.0643 | n/a | 0.0403 | 0.1206 |
+| ca | vox_communis | 218451 | 0.8055 | n/a | 0.8195 | 0.8168 |
+| ca | wikipron | 106 | 0.2565 | n/a | 0.2221 | 0.2798 |
+| ca-x-balear | 4catac | 160 | 0.1471 | n/a | 0.0797 | 0.1419 |
+| ca-x-occidental | 4catac | 160 | 0.0944 | n/a | 0.0497 | 0.0832 |
+| ca-x-valencia | 4catac | 160 | 0.0759 | n/a | 0.0439 | 0.0762 |
 | en | wikipron | 80995 | 0.3585 | n/a | 0.2081 | 0.2136 |
 | en-GB | wikipron | 81545 | 0.2822 | n/a | 0.1472 | 0.1540 |
 | fr | wikipron | 85516 | 0.0748 | n/a | 0.0740 | 0.0749 |
@@ -219,7 +221,7 @@ All three BSC dialect voices (`ca-ba`, `ca-nw`, `ca-va`) were found on this mach
 
 | Dialect | o2i spec | espeak voice | N | o2i PER | espeak PER |
 |---|---|---|---:|---:|---:|
-| central | ca | ca | 106 | 0.2596 | 0.2221 |
-| balear | ca-x-balear | ca-ba | 160 | 0.1481 | 0.0797 |
-| valencian | ca-x-valencia | ca-va | 160 | 0.0774 | 0.0439 |
-| occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.0956 | 0.0497 |
+| central | ca | ca | 106 | 0.2565 | 0.2221 |
+| balear | ca-x-balear | ca-ba | 160 | 0.1471 | 0.0797 |
+| valencian | ca-x-valencia | ca-va | 160 | 0.0759 | 0.0439 |
+| occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.0944 | 0.0497 |

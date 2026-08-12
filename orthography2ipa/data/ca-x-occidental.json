@@ -141,7 +141,10 @@
       "surface": "a",
       "word_final": true,
       "stress": "stressed",
-      "notes": "The lleidatà hallmark opens word-final unstressed ⟨-a⟩ to [ɛ] (porta [ˈpɔɾtɛ], dia [ˈðiɛ]), which the positional rule applies to every word-final ⟨a⟩. But a STRESSED final ⟨-a⟩ — a monosyllable like pa [ˈpa], va [ˈba], or an oxytone — does not lower: the opening is a property of the reduced, unstressed final vowel only (Recasens 1996; Veny 1982 ch. 3). This rule restores [a] on a stressed word-final ⟨a⟩ that the positional rule over-lowered (the ca-x-occidental-010 arbitration: pa stays [ˈpa], engine over-lowered to [ˈpɛ])."
+      "notes": "The lleidatà hallmark opens word-final unstressed ⟨-a⟩ to [ɛ] (porta [ˈpɔɾtɛ], dia [ˈðiɛ]), which the positional rule applies to every word-final ⟨a⟩. But a STRESSED final ⟨-a⟩ — a monosyllable like pa [ˈpa], va [ˈba], or an oxytone — does not lower: the opening is a property of the reduced, unstressed final vowel only (Recasens 1996; Veny 1982 ch. 3). This rule restores [a] on a stressed word-final ⟨a⟩ that the positional rule over-lowered (the ca-x-occidental-010 arbitration: pa stays [ˈpa], engine over-lowered to [ˈpɛ]). The ``grapheme`` gate is what keeps this rule to its stated job: without it the rule matched ANY word-final stressed [ɛ] and so rewrote the ⟨è⟩ words too — cafè [kaˈfɛ] came out [kaˈfa], bè [ˈbɛ] as [ˈba], and the same for què, perquè, cinquè. A written ⟨è⟩ states the aperture of its own vowel (IEC 2016 ch. 3; Wheeler 2005 §3.1) and is never the reduced final ⟨-a⟩ this rule is about, so the source grapheme is the condition the rule always needed.",
+      "grapheme": [
+        "a"
+      ]
     },
     {
       "id": "NW_OPEN_O",
@@ -526,6 +529,16 @@
       "right_transform": "w",
       "obligatory": true,
       "notes": "VOWEL CONTACT across a word boundary — GLIDE FORMATION, the [u] half of CA_HIATUS_GLIDE_I. A word-initial unstressed [u] after a vowel-final word surfaces as [w] — engine output, verified: beure un → [ˈbɛwɾə wn], sobte un → [ˈsoptə wn] (Wheeler 2005, *The Phonology of Catalan*, §10.1 'vowel contact'; Bonet & Lloret 1998, *Fonologia catalana*, ch. 5 on hiatus resolution and clitic vowels.).\nMINIMAL WORD. The context also guarantees the process cannot leave a word without a syllable: hiatus resolution in Catalan loses a vowel, never a word (Wheeler 2005, *The Phonology of Catalan*, §10.1 'vowel contact'; Bonet & Lloret 1998, *Fonologia catalana*, ch. 5 on hiatus resolution and clitic vowels. on clitic vowels and minimal-word behaviour). The lookahead requires a following segment, so a word that is nothing but [u] keeps its syllable: the conjunction ⟨o⟩, which the Eastern reduction realises as [u], stays syllabic in O Anna o Eva → [u ˈannə u ˈɛβə] instead of collapsing to a bare [w]. ⟨un⟩ has a consonant after the vowel and still glides, as the gold has it.\nThe MIRROR process on the LEFT side of the boundary — a word-final unstressed [i]/[u] gliding before a vowel-initial word (trobo adjectius [ˈtɾoβw ədʒəkˈtiws], deixo amor [ˈdeʃw əˈmor]) — is deliberately NOT declared: the Western accents write it with a non-syllabic diacritic on the original vowel quality ([ˈtɾoβo̯], [ˈðejʃo̯]) rather than as a plain glide, so one rule cannot state it for all four, and declaring the Eastern form measurably worsens the Valencian and North-Western rows."
+    },
+    {
+      "id": "CA_CLITIC_GLIDE_I_BEFORE_VOWEL",
+      "name": "monosyllabic-clitic-i-glides-before-vowel",
+      "left_context": "^i$",
+      "right_context": "^[ˈˌ]?[aeiouəɛɔɐ]",
+      "transform": "j",
+      "right_transform": null,
+      "obligatory": true,
+      "notes": "A monosyllabic clitic whose whole form is [i] — the conjunction ⟨i⟩ and the adverbial pronoun ⟨hi⟩ — is syllabified into the following word as the glide [j] when that word begins with a vowel: hi havia [j əˈβiə], hi ha [j ˈa], i arribo [j əˈriβu], i ara [j ˈaɾə]. Wheeler 2005 ch. 12 (the syllabification of pronominal clitics) and ch. 11 (phrasal vowel sandhi); Bonet & Lloret 1998 ch. 5. The trigger is the FOLLOWING vowel, not a preceding one — which is what distinguishes this rule from the inherited CA_HIATUS_GLIDE_I, whose left context requires a preceding vowel and which therefore misses on hi ha, príncep i el and utterance-initial I arribo. ⟨i⟩ and ⟨hi⟩ are members of the spec's ``cliticless_words`` closed class (IEC 2016 §6.2). Confirmed in ALL FOUR 4catac dialect transcriptions (Central, Balearic, North-Western, Valencian), so it is declared on every dialect spec rather than on Central alone."
     }
   ]
 }
