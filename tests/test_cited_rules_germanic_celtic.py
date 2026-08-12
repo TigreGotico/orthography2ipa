@@ -1126,7 +1126,7 @@ def test_en_au_non_rhotic():
 
     Isolated on the word-final ⟨r⟩, against the non-rhotic en-GB parent.
     """
-    assert _t("en-AU", "car") == "kɑː"
+    assert _bare("en-AU", "car") == "kɑː"
 
 
 @pytest.mark.xfail(
@@ -1250,7 +1250,7 @@ def test_en_za_non_rhotic():
     en-ZA notes: "South African English. Non-rhotic."
     Source: Wells (1982) vol. 3.
     """
-    assert _t("en-ZA", "car") == "kɑː"
+    assert _bare("en-ZA", "car") == "kɑː"
 
 
 def test_en_scotland_rhotic():

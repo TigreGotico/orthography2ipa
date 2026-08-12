@@ -341,6 +341,7 @@ spec with no `stress` block gets no stress marks.
 | `default_position` | int | no | Default stressed syllable. Negative counts from the end (`-1` oxytone, `-2` paroxytone — the default, down to `-4`); positive counts from the start (`1` first syllable, `2` second). `0` is invalid. |
 | `final_stress_endings` | array | no | Word endings that force final stress |
 | `penult_stress_endings` | array | no | Word endings that force penultimate stress |
+| `antepenult_stress_endings` | array | no | Word endings that force antepenultimate stress (the end-anchored twin of `penult_stress_endings`, for two-syllable pre-stressed suffixes such as English `-ity`, `-ography`) |
 | `marked_vowels` | array | no | Orthographic vowels whose diacritic marks stress directly |
 | `stress_mark` | string | no | IPA mark to insert (default `"ˈ"`) |
 | `accent2_mark` | string | no | Scandinavian pitch-accent 2 marker (e.g. `"²"`). When set, a penult-stressed word ending in one of `accent2_final_letters` takes this mark instead of `stress_mark` (Riad 2014); empty = no pitch accent |

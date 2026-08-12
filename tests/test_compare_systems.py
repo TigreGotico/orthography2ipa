@@ -260,6 +260,48 @@ class TestBuildAndWriteComparison(object):
         data = json_path.read_text(encoding="utf-8")
         assert '"lang": "aa"' in data
 
+    def test_partial_regen_keeps_the_catalan_section(self, tmp_path,
+                                                       monkeypatch):
+        """A single-language refresh rewrites the WHOLE document, so a
+        section it did not rescore must survive it.
+
+        ``write_comparison`` defaults ``catalan_voices`` to the resolved
+        module constant precisely so a caller that never thought about
+        Catalan cannot delete the committed "Catalan dialects vs espeak
+        (BSC)" section — which is exactly what a ``--lang en`` regen did
+        while the default was ``None``.
+        """
+        def row(lang, per):
+            return {"lang": lang, "dataset": "4catac", "n": 2,
+                    "o2i_per": per, "o2i_n": 2,
+                    "espeak_per": 0.2, "espeak_n": 2,
+                    "epitran_per": None, "epitran_n": 0,
+                    "gruut_per": None, "gruut_n": 0,
+                    "provenance_tier": "expert-human",
+                    "harness_version": "1.0", "limit": 10}
+
+        rows = [row(t, 0.1) for t in cs._CATALAN_DIALECT_LABELS]
+        rows.append({"lang": "en", "dataset": "wikipron", "n": 2,
+                     "o2i_per": 0.3, "o2i_n": 2,
+                     "espeak_per": 0.2, "espeak_n": 2,
+                     "epitran_per": None, "epitran_n": 0,
+                     "gruut_per": None, "gruut_n": 0,
+                     "provenance_tier": "crowd-scraped",
+                     "harness_version": "1.0", "limit": 10})
+        for r in rows:
+            monkeypatch.setitem(cs.LANGS, r["lang"],
+                                {"dataset": (r["dataset"], r["lang"])})
+        md_path = tmp_path / "comparison.md"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON",
+                            str(tmp_path / "comparison.json"))
+
+        # the shape of a partial refresh: no catalan_voices argument at all
+        cs.write_comparison(rows)
+
+        assert "## Catalan dialects vs espeak (BSC)" in md_path.read_text(
+            encoding="utf-8")
+
     def test_no_comparable_languages_does_not_crash(self, tmp_path,
                                                       monkeypatch):
         rows = [

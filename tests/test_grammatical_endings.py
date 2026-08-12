@@ -79,31 +79,31 @@ def test_fr_no_regression(fr, word, expected):
 
 # ── English: suffix palatalization ────────────────────────────────────
 @pytest.mark.parametrize("word,expected", [
-    ("nation", "næʃən"),
-    ("station", "stæʃən"),
-    ("motion", "mɒʃən"),
-    ("mission", "mɪʃən"),
-    ("special", "spɛʃəl"),
-    ("gracious", "ɡɹæʃəs"),
+    ("nation", "ˈnæʃən"),
+    ("station", "ˈstæʃən"),
+    ("motion", "ˈmɒʃən"),
+    ("mission", "ˈmɪʃən"),
+    ("special", "ˈspɛʃəl"),
+    ("gracious", "ˈɡɹæʃəs"),
     # RP is non-rhotic: the ⟨ar⟩ nucleus loses its [ɹ] before the ⟨t⟩
-    ("martial", "mɑːʃəl"),
+    ("martial", "ˈmɑːʃəl"),
     # longest match wins: ⟨-stion⟩ keeps the /t/ as the affricate onset
-    ("question", "kwɛstʃən"),
+    ("question", "ˈkwɛstʃən"),
     # same for ⟨-stial⟩/⟨-stious⟩: the ⟨t⟩ after ⟨s⟩ is not palatalized to
     # [ʃ] alone, since a bare [sʃ] cluster is phonotactically impossible
     # (Chomsky & Halle 1968; Wells 2008 LPD)
-    ("celestial", "sɛlɛstʃəl"),
-    ("bestial", "bɛstʃəl"),
+    ("celestial", "ˈsɛlɛstʃəl"),
+    ("bestial", "ˈbɛstʃəl"),
 ])
 def test_en_palatalized_suffixes(en, word, expected):
     assert en.transcribe(word) == expected
 
 
 @pytest.mark.parametrize("word,expected", [
-    ("house", "haʊz"),
-    ("mouse", "maʊz"),
-    ("louse", "laʊz"),
-    ("rouse", "ɹaʊz"),
+    ("house", "ˈhaʊz"),
+    ("mouse", "ˈmaʊz"),
+    ("louse", "ˈlaʊz"),
+    ("rouse", "ˈɹaʊz"),
 ])
 def test_en_ous_words_unchanged(en, word, expected):
     """The #808 breakage class: ⟨-ous⟩/⟨-ouse⟩ words share letters with
@@ -113,7 +113,7 @@ def test_en_ous_words_unchanged(en, word, expected):
 
 
 def test_en_us_inherits_endings(en_us):
-    assert en_us.transcribe("nation") == "næʃən"
+    assert en_us.transcribe("nation") == "ˈnæʃən"
     assert "ʃ" not in en_us.transcribe("house")
 
 
@@ -198,7 +198,7 @@ def test_en_endings_have_no_alternatives(en):
     one reading of the tail, no added candidates."""
     for word in ("nation", "question", "gracious"):
         assert all("ʃ" in c or "stʃ" in c for c in en.word_candidates(word, k=10))
-    assert en.word_candidates("nation", k=10)[0] == "næʃən"
+    assert en.word_candidates("nation", k=10)[0] == "ˈnæʃən"
 
 
 # ── value-shape semantics ─────────────────────────────────────────────

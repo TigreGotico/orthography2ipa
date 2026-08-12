@@ -1,6 +1,6 @@
 # Comparison to other G2P systems
 
-Committed cross-system comparison: orthography2ipa vs **espeak-ng**, **epitran**, **gruut**, **pycotovia** (Galician & Spanish), and **ahotts-g2p** (Basque & Spanish) on the same gold datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using the FULL gold set of every mapped language (no cap — the same no-caps policy as the scoreboard; the one explicitly-flagged exception is `pt-PT`, whose 598k-row `portuguese_unified` ('Portal lexicon') made a per-word-external-system full pass impractical, so its config sets a `sample_n` — and because `sample_n` is a per-LANGUAGE cap, not a per-dataset one, it now applies to every dataset registered for `pt-PT`, not just `portuguese_unified`; all of them are marked `sampled` in the JSON). The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for most shared language/dataset pairs, EXCEPT the 15 listed below — those `benchmarks/results.json` rows are stale (a prior PR changed the engine but did not regenerate every affected row there; see e.g. PR #802's `ca`/`4catac`-only regeneration). The numbers in THIS table reflect the current engine via a live run; `benchmarks/results.json` needs a matching regeneration for: `cop`/`wikipron` (here 0.3671, results.json 0.3716); `cy`/`wikipron` (here 0.1822, results.json 0.2134); `en`/`wikipron` (here 0.3585, results.json 0.3135); `en-US`/`cmudict` (here 0.5003, results.json 0.4517); `en-US`/`ipa_babylm` (here 0.4766, results.json 0.4331); `en-US`/`ipa_childes` (here 0.3805, results.json 0.3316); `en-US`/`ipadict` (here 0.5332, results.json 0.4823); `kab`/`vox_communis` (here 0.2071, results.json 0.2304); `mfe`/`wikipron` (here 0.1238, results.json 0.2665); `nl`/`ipadict` (here 0.1616, results.json 0.1767); `nup`/`wikipron` (here 0.3979, results.json 0.4932); `pl`/`ipa_childes` (here 0.2465, results.json 0.2715); `pt-PT`/`ipa_childes` (here 0.2498, results.json 0.2477); `pt-PT`/`wikipron` (here 0.1346, results.json 0.0903); `ro`/`vox_communis` (here 0.3282, results.json 0.3411). Regenerate with:
+Committed cross-system comparison: orthography2ipa vs **espeak-ng**, **epitran**, **gruut**, **pycotovia** (Galician & Spanish), and **ahotts-g2p** (Basque & Spanish) on the same gold datasets/loaders as [`docs/scoreboard.md`](scoreboard.md), using the FULL gold set of every mapped language (no cap — the same no-caps policy as the scoreboard; the one explicitly-flagged exception is `pt-PT`, whose 598k-row `portuguese_unified` ('Portal lexicon') made a per-word-external-system full pass impractical, so its config sets a `sample_n` — and because `sample_n` is a per-LANGUAGE cap, not a per-dataset one, it now applies to every dataset registered for `pt-PT`, not just `portuguese_unified`; all of them are marked `sampled` in the JSON). The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for most shared language/dataset pairs, EXCEPT the 10 listed below — those `benchmarks/results.json` rows are stale (a prior PR changed the engine but did not regenerate every affected row there; see e.g. PR #802's `ca`/`4catac`-only regeneration). The numbers in THIS table reflect the current engine via a live run; `benchmarks/results.json` needs a matching regeneration for: `cop`/`wikipron` (here 0.3671, results.json 0.3716); `cy`/`wikipron` (here 0.1822, results.json 0.2134); `kab`/`vox_communis` (here 0.2071, results.json 0.2304); `mfe`/`wikipron` (here 0.1238, results.json 0.2665); `nl`/`ipadict` (here 0.1616, results.json 0.1767); `nup`/`wikipron` (here 0.3979, results.json 0.4932); `pl`/`ipa_childes` (here 0.2465, results.json 0.2715); `pt-PT`/`ipa_childes` (here 0.2498, results.json 0.2477); `pt-PT`/`wikipron` (here 0.1346, results.json 0.0903); `ro`/`vox_communis` (here 0.3282, results.json 0.3411). Regenerate with:
 
 ```bash
 pip install '.[compare]'  # epitran, gruut, pycotovia, ahotts-g2p — dev-only extra
@@ -55,12 +55,14 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | de | wikipron | 53011 | 0.2103 | 0.2126 | n/a | 0.3064 | n/a | n/a | n/a | n/a |
 | el | vox_communis | 5994 | 0.2672 | 0.3347 | n/a | same-source | n/a | n/a | n/a | n/a |
 | el | wikipron | 19108 | 0.0330 | 0.0785 | n/a | n/a | n/a | n/a | n/a | n/a |
-| en | wikipron | 80995 | 0.3585 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | n/a | n/a | n/a |
-| en-GB | wikipron | 81545 | 0.2822 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | n/a | n/a | n/a |
-| en-US | cmudict | 126052 | 0.5003 | 0.3048 | n/a | n/a | 0.1531 | n/a | n/a | n/a |
-| en-US | ipa_babylm | 20344 | 0.4766 | same-source | same-source | 1.0656 | 0.2788 | n/a | n/a | n/a |
-| en-US | ipa_childes | 18055 | 0.3805 | same-source | same-source | n/a | 0.1727 | n/a | n/a | n/a |
-| en-US | ipadict | 125927 | 0.5332 | 0.2954 | n/a | n/a | 0.1132 | n/a | n/a | n/a |
+| en | wikipron | 80995 | 0.2927 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | n/a | n/a | n/a |
+| en-GB | ipa_childes | 11447 | 0.3321 | same-source | same-source | n/a | 0.2876 | n/a | n/a | n/a |
+| en-GB | ipadict | 65119 | 0.2516 | same-source | same-source | n/a | 0.1910 | n/a | n/a | n/a |
+| en-GB | wikipron | 81545 | 0.2605 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | n/a | n/a | n/a |
+| en-US | cmudict | 126052 | 0.4268 | 0.3048 | 0.3104 | n/a | 0.1531 | n/a | n/a | n/a |
+| en-US | ipa_babylm | 20344 | 0.4180 | same-source | same-source | 1.0656 | 0.2788 | n/a | n/a | n/a |
+| en-US | ipa_childes | 18055 | 0.3220 | same-source | same-source | n/a | 0.1727 | n/a | n/a | n/a |
+| en-US | ipadict | 125927 | 0.4576 | 0.2954 | 0.3020 | n/a | 0.1132 | n/a | n/a | n/a |
 | es | vox_communis | 97715 | 1.2097 | 1.2330 | 1.2247 | same-source | n/a | 1.2139 | 1.2117 | n/a |
 | es | wikipron | 132190 | 0.0797 | 0.1071 | 0.1066 | 0.0277 | n/a | 0.1108 | 0.1041 | n/a |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | n/a | same-source | n/a |
@@ -116,7 +118,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | tr | wikipron | 11582 | 0.1230 | 0.2739 | n/a | 0.1352 | n/a | n/a | n/a | n/a |
 | tzm | wikipron | 658 | 0.0160 | n/a | n/a | n/a | n/a | n/a | n/a | 1.0005 |
 
-**espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh` and the module docstring's "Fair-comparison 2x2" section. 37 row(s) have a stock `espeak` number but no `espeak-rules-only` one yet in this run — deferred, not fabricated (see `scripts/build_espeak_rules_only.sh`): `ru`/`wikipron` (n=403873); `fi`/`wikipron` (n=168814); `pl`/`wikipron` (n=148992); `en-US`/`cmudict` (n=126052); `en-US`/`ipadict` (n=125927); `nl`/`ipadict` (n=117869); `fi`/`ipadict` (n=92836); `eu`/`vox_communis` (n=64077); `eu-wikipron`/`vox_communis` (n=64077); `de`/`wikipron` (n=53011); `ru`/`vox_communis` (n=50547); `tr`/`vox_communis` (n=49476); `pl`/`vox_communis` (n=47615); `hi`/`wikipron` (n=30379); `nl`/`vox_communis` (n=26137); `sv`/`ipadict` (n=21095); `sv`/`vox_communis` (n=19516); `el`/`wikipron` (n=19108); `cy`/`vox_communis` (n=18701); `cy`/`wikipron` (n=14811); `fi`/`vox_communis` (n=13324); `hi`/`vox_communis` (n=13154); `ro`/`vox_communis` (n=12097); `eu`/`wikipron` (n=12022); `eu-wikipron`/`wikipron` (n=12022); `tr`/`wikipron` (n=11582); `ga`/`wikipron` (n=9621); `ro`/`wikipron` (n=8978); `el`/`vox_communis` (n=5994); `sv`/`wikipron` (n=5082); `eu`/`hitz_basque_ipa` (n=3113); `eu-wikipron`/`hitz_basque_ipa` (n=3113); `pt-PT`/`portuguese_unified` (n=3000); `pt-PT`/`wikipron` (n=2272); `ru`/`primary_sources` (n=36); `pt-PT`/`ep_dialects` (n=30); `pt-PT`/`portuguese_tts` (n=20).
+**espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh` and the module docstring's "Fair-comparison 2x2" section. 35 row(s) have a stock `espeak` number but no `espeak-rules-only` one yet in this run — deferred, not fabricated (see `scripts/build_espeak_rules_only.sh`): `ru`/`wikipron` (n=403873); `fi`/`wikipron` (n=168814); `pl`/`wikipron` (n=148992); `nl`/`ipadict` (n=117869); `fi`/`ipadict` (n=92836); `eu`/`vox_communis` (n=64077); `eu-wikipron`/`vox_communis` (n=64077); `de`/`wikipron` (n=53011); `ru`/`vox_communis` (n=50547); `tr`/`vox_communis` (n=49476); `pl`/`vox_communis` (n=47615); `hi`/`wikipron` (n=30379); `nl`/`vox_communis` (n=26137); `sv`/`ipadict` (n=21095); `sv`/`vox_communis` (n=19516); `el`/`wikipron` (n=19108); `cy`/`vox_communis` (n=18701); `cy`/`wikipron` (n=14811); `fi`/`vox_communis` (n=13324); `hi`/`vox_communis` (n=13154); `ro`/`vox_communis` (n=12097); `eu`/`wikipron` (n=12022); `eu-wikipron`/`wikipron` (n=12022); `tr`/`wikipron` (n=11582); `ga`/`wikipron` (n=9621); `ro`/`wikipron` (n=8978); `el`/`vox_communis` (n=5994); `sv`/`wikipron` (n=5082); `eu`/`hitz_basque_ipa` (n=3113); `eu-wikipron`/`hitz_basque_ipa` (n=3113); `pt-PT`/`portuguese_unified` (n=3000); `pt-PT`/`wikipron` (n=2272); `ru`/`primary_sources` (n=36); `pt-PT`/`ep_dialects` (n=30); `pt-PT`/`portuguese_tts` (n=20).
 
 Counted over distinct LANGUAGES (one row per language: its configured primary gold dataset — see `_primary_rows`), never over table rows, and split by whether that primary gold is an independent reference or another tool's/LLM's output:
 
@@ -138,8 +140,8 @@ A system winning on one gold and losing on another for the SAME language is real
   - `vox_communis` (n=5994, tier=epitran-derived): o2i 0.2672 vs espeak 0.3347 — o2i wins
   - `wikipron` (n=19108, tier=crowd-scraped): o2i 0.0330 vs espeak 0.0785 — o2i wins
 - **`en-US`** (loses on all golds):
-  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.5003 vs espeak 0.3048 — o2i loses
-  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.5332 vs espeak 0.2954 — o2i loses
+  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.4268 vs espeak 0.3048 — o2i loses
+  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.4576 vs espeak 0.2954 — o2i loses
 - **`es`** (wins on all golds):
   - `vox_communis` (n=97715, tier=epitran-derived): o2i 1.2097 vs espeak 1.2330 — o2i wins
   - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0797 vs espeak 0.1071 — o2i wins
@@ -204,8 +206,10 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | ca-x-balear | 4catac | 160 | 0.1471 | n/a | 0.0797 | 0.1419 |
 | ca-x-occidental | 4catac | 160 | 0.0944 | n/a | 0.0497 | 0.0832 |
 | ca-x-valencia | 4catac | 160 | 0.0759 | n/a | 0.0439 | 0.0762 |
-| en | wikipron | 80995 | 0.3585 | n/a | 0.2081 | 0.2136 |
-| en-GB | wikipron | 81545 | 0.2822 | n/a | 0.1472 | 0.1540 |
+| en | wikipron | 80995 | 0.2927 | n/a | 0.2081 | 0.2136 |
+| en-GB | wikipron | 81545 | 0.2605 | n/a | 0.1472 | 0.1540 |
+| en-US | cmudict | 126052 | 0.4268 | n/a | 0.3048 | 0.3104 |
+| en-US | ipadict | 125927 | 0.4576 | n/a | 0.2954 | 0.3020 |
 | es | vox_communis | 97715 | 1.2097 | n/a | 1.2330 | 1.2247 |
 | es | wikipron | 132190 | 0.0797 | n/a | 0.1071 | 0.1066 |
 | fr | wikipron | 85516 | 0.0673 | n/a | 0.0740 | 0.0751 |
