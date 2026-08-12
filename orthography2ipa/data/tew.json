@@ -3,7 +3,7 @@
   "name": "Tewa (USA)",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "kw": [
       "kʷ"
@@ -108,7 +108,7 @@
       "notes": "Descent per Glottolog classification of Rio Grande Tewa (tewa1260)."
     }
   ],
-  "notes": "Skeleton. Kiowa-Tanoan (Tewa) language of the Rio Grande pueblos of New Mexico in a practical Roman orthography. Aspirated stops (ph th kh), ejectives with a following apostrophe, labialized kw/gw, v=[β] and the affricates ts/ch are mapped. Tewa is tonal with contrastive vowel nasalization; tone and nasalization are not reliably recovered from this spelling and are left unencoded, raising the PER floor.",
+  "notes": "Skeleton. Kiowa-Tanoan (Tewa) language of the Rio Grande pueblos of New Mexico in a practical Roman orthography. Aspirated stops (ph th kh), ejectives with a following apostrophe, labialized kw/gw, v=[β] and the affricates ts/ch are mapped. Tewa is tonal with contrastive vowel nasalization; tone and nasalization are not reliably recovered from this spelling and are left unencoded, raising the PER floor. Tewa has a three-tone system rather than contrastive stress; descriptions of Tewa consistently omit tonal distinctions from the orthography, so tone is left unencoded here (documented exemption).",
   "iso639_3": "tew",
   "glottolog_code": null,
   "sources": [
@@ -133,6 +133,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Tewa_language"
+    },
+    {
+      "id": "tew_kroskrity1993",
+      "author": "Kroskrity, Paul V.",
+      "year": 1993,
+      "title": "Language, History, and Identity: Ethnolinguistic Studies of the Arizona Tewa",
+      "publisher": "University of Arizona Press",
+      "url": null,
+      "pages": null,
+      "notes": "Comprehensive ethnolinguistic study of Arizona Tewa phonology and grammar, drawing on Kroskrity & Speirs's fieldwork (1965-2006); consulted alongside Speirs's 1963 practical orthography to check the aspirate/ejective/labialized-consonant conventions modelled here."
     }
   ],
   "wikipedia": [
