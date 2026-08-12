@@ -74,7 +74,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | fi | ipadict | 92836 | 0.0609 | 0.1995 | n/a | 0.1111 | n/a | n/a | n/a | n/a |
 | fi | vox_communis | 13324 | 0.0037 | 0.1843 | n/a | same-source | n/a | n/a | n/a | n/a |
 | fi | wikipron | 168814 | 0.0184 | 0.2062 | n/a | 0.0963 | n/a | n/a | n/a | n/a |
-| fr | wikipron | 85516 | 0.0748 | 0.0740 | 0.0749 | 0.2280 | n/a | n/a | n/a | n/a |
+| fr | wikipron | 85516 | 0.0673 | 0.0740 | 0.0751 | 0.2280 | n/a | n/a | n/a | n/a |
 | ga | ipa_childes | 1612 | 0.2989 | same-source | same-source | n/a | n/a | n/a | n/a | n/a |
 | ga | wikipron | 9621 | 0.1834 | 0.5223 | n/a | n/a | n/a | n/a | n/a | n/a |
 | gl | vox_communis | 47515 | 0.0771 | n/a | n/a | same-source | n/a | 0.0883 | n/a | n/a |
@@ -120,7 +120,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 
 Counted over distinct LANGUAGES (one row per language: its configured primary gold dataset — see `_primary_rows`), never over table rows, and split by whether that primary gold is an independent reference or another tool's/LLM's output:
 
-- **Gold-tier** (expert-human / lexicon-derived / crowd-scraped primary gold): o2i beats espeak on 16 of 24 comparable languages.
+- **Gold-tier** (expert-human / lexicon-derived / crowd-scraped primary gold): o2i beats espeak on 17 of 24 comparable languages.
 - **Agreement-tier** (machine-generated / espeak-derived / epitran-derived / llm-generated primary gold — measures agreement with the generating tool, not accuracy; see "Honesty" above): o2i beats espeak on 1 of 1 comparable languages.
 
 ## Robustness across golds
@@ -206,7 +206,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | ca-x-valencia | 4catac | 160 | 0.0759 | n/a | 0.0439 | 0.0762 |
 | en | wikipron | 80995 | 0.3585 | n/a | 0.2081 | 0.2136 |
 | en-GB | wikipron | 81545 | 0.2822 | n/a | 0.1472 | 0.1540 |
-| fr | wikipron | 85516 | 0.0748 | n/a | 0.0740 | 0.0749 |
+| fr | wikipron | 85516 | 0.0673 | n/a | 0.0740 | 0.0751 |
 | it | vox_communis | 90366 | 1.1378 | n/a | 1.1830 | 1.1773 |
 | it | wikipron | 82280 | 0.0441 | n/a | 0.0722 | 0.0769 |
 | nl | wikipron | 45872 | 0.0902 | n/a | 0.1099 | 0.1160 |

@@ -143,8 +143,12 @@ class WordEnd(NamedTuple):
     final_slot: bool
     #: The only thing that follows is a transparent grammatical suffix the
     #: spec already silences (see
-    #: :data:`_TRANSPARENT_SUFFIX_GRAPHEMES`) — French plural ⟨vies⟩. The
-    #: syllable is built as if the word ended at this slot.
+    #: :data:`_TRANSPARENT_SUFFIX_GRAPHEMES`) — French plural ⟨vies⟩,
+    #: ⟨mots⟩. The syllable is built as if the word ended at this slot, and
+    #: the slot answers ``word_final`` whether it holds a vowel or a
+    #: consonant: French final-consonant deletion reaches the root-final
+    #: consonant through the silent plural exactly as it reaches a vowel
+    #: (⟨petit⟩/⟨petits⟩ both [pəti], Tranel 1987 §3).
     last_audible_slot: bool
     #: The slot itself is a vowel the spec silences word-finally — the
     #: e-caduc class — sitting in the word's last audible slot. Only such
@@ -621,10 +625,21 @@ def grapheme_positions(
         pos.append(GraphemePosition.WORD_INITIAL)
     if word_end.final_slot:
         pos.append(GraphemePosition.WORD_FINAL)
-    effectively_word_final_vowel = is_vowel and word_end.last_audible_slot
-    # NOTE: the WORD_FINAL entry for this "effectively final" case (a vowel
-    # followed only by a transparent suffix grapheme the spec already
-    # silences — French plural -s/-x: "vies") is appended in section 4
+    # The word must keep a segment. A spec's word_final entry is usually a
+    # SILENCING one, so promoting the slot in front of a transparent suffix
+    # can delete the last thing the word had left: ⟨DS⟩, ⟨ts⟩ and ⟨ps⟩ are
+    # a silenced consonant plus a silenced suffix and nothing else, and
+    # they came out as the empty string. The floor is the word's first
+    # slot: with nothing audible before it, the promotion has no root left
+    # to be final to, which is not the ⟨petit⟩/⟨petits⟩ fact this position
+    # states (Tranel 1987 §3 is about a ROOT-final consonant). Same shape
+    # as the BEFORE_FINAL_VOWEL exclusion in section 0 — a named guard on
+    # a heuristic position, not a new kind of condition.
+    effectively_word_final = word_end.last_audible_slot and prev_ctx is not None
+    # NOTE: the WORD_FINAL entry for this "effectively final" case (a
+    # grapheme followed only by a transparent suffix grapheme the spec
+    # already silences — French plural -s/-x: "vies", "mots") is appended
+    # in section 4
     # below, AFTER nucleus_stressed/nucleus_unstressed, not here. A TRUE
     # word-final vowel outranks stress (section 2 fires unconditionally
     # before section 4), but this is a heuristic proxy for finality, not
@@ -680,7 +695,7 @@ def grapheme_positions(
             else:
                 pos.append(GraphemePosition.POSTTONIC)
 
-    if effectively_word_final_vowel:
+    if effectively_word_final:
         pos.append(GraphemePosition.WORD_FINAL)
 
     # 5. after/before vowel / consonant context
