@@ -903,12 +903,16 @@ class TestManx:
     # ── Long vowel digraphs ──────────────────────────────────────────────────
 
     def test_aa_maps_to_long_e(self):
-        """⟨aa⟩ in Manx maps to /eː/ — a distinctive Manx sound correspondence.
+        """⟨aa⟩ in Manx maps to /ɛː/ — a distinctive Manx sound correspondence.
 
         Manx ⟨aa⟩ does NOT simply mean 'long a'. The historical vowel shifted
-        to /eː/, reflecting the development from Common Goidelic to Manx.
+        away from plain /aː/, reflecting the development from Common Goidelic
+        to Manx. Broderick's Late Spoken Manx material (and the WikiPron
+        broad-transcription gold) show the predominant realisation as /ɛː/,
+        with /eː/ as a secondary variant (e.g. before certain consonant
+        clusters).
         """
-        _assert_first(_grapheme(self.spec, "aa"), "eː", label="gv:aa→eː")
+        _assert_first(_grapheme(self.spec, "aa"), "ɛː", label="gv:aa→ɛː")
 
     def test_ee_maps_to_long_close_front(self):
         """⟨ee⟩ maps to /iː/ (long close front vowel)."""
@@ -926,16 +930,20 @@ class TestManx:
         _assert_contains(vals, "a", "æ", label="gv:a variants")
 
     def test_e_maps_to_open_mid_front(self):
-        """⟨e⟩ maps to /ɛ/ (open-mid front unrounded)."""
-        _assert_first(_grapheme(self.spec, "e"), "ɛ", label="gv:e→ɛ")
+        """⟨e⟩ primary realisation is /e/ (close-mid front unrounded), with
+        /ɛ/ (open-mid) as a secondary variant. The WikiPron broad-
+        transcription gold shows plain /e/ as dominant."""
+        _assert_first(_grapheme(self.spec, "e"), "e", label="gv:e→e")
 
     def test_i_primary_is_near_close(self):
-        """⟨i⟩ primary realisation is /ɪ/ (near-close near-front)."""
-        _assert_first(_grapheme(self.spec, "i"), "ɪ", label="gv:i primary=ɪ")
+        """⟨i⟩ primary realisation is /i/ (close front), with /ɪ/
+        (near-close) and /ə/ (unstressed reduction) as secondary variants."""
+        _assert_first(_grapheme(self.spec, "i"), "i", label="gv:i primary=i")
 
     def test_o_maps_to_open_mid_back(self):
-        """⟨o⟩ maps to /ɔ/ (open-mid back rounded)."""
-        _assert_first(_grapheme(self.spec, "o"), "ɔ", label="gv:o→ɔ")
+        """⟨o⟩ primary realisation is /o/ (close-mid back rounded), with
+        /ɔ/ (open-mid) as a secondary variant."""
+        _assert_first(_grapheme(self.spec, "o"), "o", label="gv:o→o")
 
     def test_u_includes_near_close_back_and_mid_back(self):
         """⟨u⟩ has both /ʊ/ (near-close back) and /ɤ/ (close-mid back unrounded)."""
@@ -949,8 +957,11 @@ class TestManx:
         _assert_first(_grapheme(self.spec, "ch"), "x", label="gv:ch→x")
 
     def test_gh_maps_to_voiced_velar_fricative(self):
-        """⟨gh⟩ maps to /ɣ/ (voiced velar fricative) in Manx."""
-        _assert_first(_grapheme(self.spec, "gh"), "ɣ", label="gv:gh→ɣ")
+        """⟨gh⟩ primary realisation is /x/ (voiceless velar fricative), the
+        dominant Late Spoken Manx and WikiPron-gold realisation (word-final
+        and preconsonantal), with /ɣ/ (voiced) as a secondary, mostly
+        intervocalic variant."""
+        _assert_first(_grapheme(self.spec, "gh"), "x", label="gv:gh→x")
 
     def test_sh_maps_to_postalveolar_fricative(self):
         """⟨sh⟩ maps to /ʃ/ (voiceless postalveolar fricative)."""
