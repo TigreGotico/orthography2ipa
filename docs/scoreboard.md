@@ -311,9 +311,9 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | is | ipa_childes | 4106 | 0.3859 | · | · | · | · | [0.3801, 0.3914] | 0.0412 | research | espeak-derived |
 | is | ipadict | 60642 | 0.2690 | · | · | · | · | [0.2678, 0.2702] | 0.0628 | research | lexicon-derived |
 | is | wikipron | 10093 | 0.2470 | · | · | · | · | [0.2438, 0.2501] | 0.1231 | research | crowd-scraped |
-| it | vox_communis | 90332 | 1.1402 | · | · | · | · | [1.1316, 1.1485] | 0.3244 | research | epitran-derived |
-| it | wikipron | 82276 | 0.0588 | 0.0269 | 0.0166 | 0.8006 | 0.8775 | [0.0582, 0.0595] | 0.6430 | research | crowd-scraped |
-| it-IT | ipa_childes | 4583 | 0.2423 | · | · | · | · | [0.2368, 0.2480] | 0.1933 | research | espeak-derived |
+| it | vox_communis | 90332 | 1.1378 | 1.1079 | 1.1012 | 0.4258 | 0.4502 | [1.1292, 1.1461] | 0.3426 | research | epitran-derived |
+| it | wikipron | 82276 | 0.0441 | 0.0209 | 0.0131 | 0.8399 | 0.9054 | [0.0435, 0.0446] | 0.6955 | research | crowd-scraped |
+| it-IT | ipa_childes | 4583 | 0.2341 | 0.2056 | 0.2012 | 0.2638 | 0.2784 | [0.2289, 0.2395] | 0.1942 | research | espeak-derived |
 | itl | northeuralex | 500 | 0.0611 | · | · | · | · | [0.0500, 0.0730] | 0.7640 | research | lexicon-derived |
 | izh | wikipron | 7886 | 0.0346 | · | · | · | · | [0.0332, 0.0361] | 0.7332 | research | crowd-scraped |
 | ja | ipadict | 115495 | 0.3676 | · | · | · | · | [0.3660, 0.3691] | 0.1418 | research | lexicon-derived |
