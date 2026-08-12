@@ -281,6 +281,15 @@ KNOWN_DEAD_RULES = {
     # voiceless everywhere), so the /z/ member of nl's coda-devoicing series
     # has no target here. The other members are live.
     "af": {"NL_CODA_DEVOICE_Z"},
+    # The two Manila-Bay Chabacano stubs are declared as pure genealogy:
+    # "graphemes": {} and "allophones": {}, with es-ES as the lexifier
+    # ancestor. Rules travel down that lexifier link but the inventory does
+    # not, so EVERY rule es-ES declares arrives here with no slot to match
+    # (the same shape as the "kri" case above). Both stubs say in their own
+    # notes that a variety-specific grapheme map is still to be derived from
+    # Sippola (2013); these entries go away when it is.
+    "cbk-x-cavite": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
+    "cbk-x-ternate": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)

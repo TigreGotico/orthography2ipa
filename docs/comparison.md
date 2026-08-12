@@ -61,8 +61,8 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | en-US | ipa_babylm | 20344 | 0.4766 | same-source | same-source | 1.0656 | 0.2788 | n/a | n/a | n/a |
 | en-US | ipa_childes | 18055 | 0.3805 | same-source | same-source | n/a | 0.1727 | n/a | n/a | n/a |
 | en-US | ipadict | 125927 | 0.5332 | 0.2954 | n/a | n/a | 0.1132 | n/a | n/a | n/a |
-| es | vox_communis | 97715 | 1.2133 | 1.2330 | n/a | same-source | n/a | 1.2139 | 1.2117 | n/a |
-| es | wikipron | 132190 | 0.0879 | 0.1071 | n/a | 0.0277 | n/a | 0.1108 | 0.1041 | n/a |
+| es | vox_communis | 97715 | 1.2097 | 1.2330 | 1.2247 | same-source | n/a | 1.2139 | 1.2117 | n/a |
+| es | wikipron | 132190 | 0.0797 | 0.1071 | 0.1066 | 0.0277 | n/a | 0.1108 | 0.1041 | n/a |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | n/a | n/a | n/a | n/a | same-source | n/a |
 | eu | ipa_childes | 3969 | 0.0821 | same-source | same-source | n/a | n/a | n/a | 0.1396 | n/a |
 | eu | vox_communis | 64077 | 0.0644 | 0.1194 | n/a | same-source | n/a | n/a | 0.1280 | n/a |
@@ -116,7 +116,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | tr | wikipron | 11582 | 0.1230 | 0.2739 | n/a | 0.1352 | n/a | n/a | n/a | n/a |
 | tzm | wikipron | 658 | 0.0160 | n/a | n/a | n/a | n/a | n/a | n/a | 1.0005 |
 
-**espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh` and the module docstring's "Fair-comparison 2x2" section. 39 row(s) have a stock `espeak` number but no `espeak-rules-only` one yet in this run — deferred, not fabricated (see `scripts/build_espeak_rules_only.sh`): `ru`/`wikipron` (n=403873); `fi`/`wikipron` (n=168814); `pl`/`wikipron` (n=148992); `es`/`wikipron` (n=132190); `en-US`/`cmudict` (n=126052); `en-US`/`ipadict` (n=125927); `nl`/`ipadict` (n=117869); `es`/`vox_communis` (n=97715); `fi`/`ipadict` (n=92836); `eu`/`vox_communis` (n=64077); `eu-wikipron`/`vox_communis` (n=64077); `de`/`wikipron` (n=53011); `ru`/`vox_communis` (n=50547); `tr`/`vox_communis` (n=49476); `pl`/`vox_communis` (n=47615); `hi`/`wikipron` (n=30379); `nl`/`vox_communis` (n=26137); `sv`/`ipadict` (n=21095); `sv`/`vox_communis` (n=19516); `el`/`wikipron` (n=19108); `cy`/`vox_communis` (n=18701); `cy`/`wikipron` (n=14811); `fi`/`vox_communis` (n=13324); `hi`/`vox_communis` (n=13154); `ro`/`vox_communis` (n=12097); `eu`/`wikipron` (n=12022); `eu-wikipron`/`wikipron` (n=12022); `tr`/`wikipron` (n=11582); `ga`/`wikipron` (n=9621); `ro`/`wikipron` (n=8978); `el`/`vox_communis` (n=5994); `sv`/`wikipron` (n=5082); `eu`/`hitz_basque_ipa` (n=3113); `eu-wikipron`/`hitz_basque_ipa` (n=3113); `pt-PT`/`portuguese_unified` (n=3000); `pt-PT`/`wikipron` (n=2272); `ru`/`primary_sources` (n=36); `pt-PT`/`ep_dialects` (n=30); `pt-PT`/`portuguese_tts` (n=20).
+**espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh` and the module docstring's "Fair-comparison 2x2" section. 37 row(s) have a stock `espeak` number but no `espeak-rules-only` one yet in this run — deferred, not fabricated (see `scripts/build_espeak_rules_only.sh`): `ru`/`wikipron` (n=403873); `fi`/`wikipron` (n=168814); `pl`/`wikipron` (n=148992); `en-US`/`cmudict` (n=126052); `en-US`/`ipadict` (n=125927); `nl`/`ipadict` (n=117869); `fi`/`ipadict` (n=92836); `eu`/`vox_communis` (n=64077); `eu-wikipron`/`vox_communis` (n=64077); `de`/`wikipron` (n=53011); `ru`/`vox_communis` (n=50547); `tr`/`vox_communis` (n=49476); `pl`/`vox_communis` (n=47615); `hi`/`wikipron` (n=30379); `nl`/`vox_communis` (n=26137); `sv`/`ipadict` (n=21095); `sv`/`vox_communis` (n=19516); `el`/`wikipron` (n=19108); `cy`/`vox_communis` (n=18701); `cy`/`wikipron` (n=14811); `fi`/`vox_communis` (n=13324); `hi`/`vox_communis` (n=13154); `ro`/`vox_communis` (n=12097); `eu`/`wikipron` (n=12022); `eu-wikipron`/`wikipron` (n=12022); `tr`/`wikipron` (n=11582); `ga`/`wikipron` (n=9621); `ro`/`wikipron` (n=8978); `el`/`vox_communis` (n=5994); `sv`/`wikipron` (n=5082); `eu`/`hitz_basque_ipa` (n=3113); `eu-wikipron`/`hitz_basque_ipa` (n=3113); `pt-PT`/`portuguese_unified` (n=3000); `pt-PT`/`wikipron` (n=2272); `ru`/`primary_sources` (n=36); `pt-PT`/`ep_dialects` (n=30); `pt-PT`/`portuguese_tts` (n=20).
 
 Counted over distinct LANGUAGES (one row per language: its configured primary gold dataset — see `_primary_rows`), never over table rows, and split by whether that primary gold is an independent reference or another tool's/LLM's output:
 
@@ -141,8 +141,8 @@ A system winning on one gold and losing on another for the SAME language is real
   - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.5003 vs espeak 0.3048 — o2i loses
   - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.5332 vs espeak 0.2954 — o2i loses
 - **`es`** (wins on all golds):
-  - `vox_communis` (n=97715, tier=epitran-derived): o2i 1.2133 vs espeak 1.2330 — o2i wins
-  - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0879 vs espeak 0.1071 — o2i wins
+  - `vox_communis` (n=97715, tier=epitran-derived): o2i 1.2097 vs espeak 1.2330 — o2i wins
+  - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0797 vs espeak 0.1071 — o2i wins
 - **`eu`** (wins on all golds):
   - `hitz_basque_ipa` (n=3113, tier=machine-generated): o2i 0.0984 vs espeak 0.1204 — o2i wins
   - `vox_communis` (n=64077, tier=epitran-derived): o2i 0.0644 vs espeak 0.1194 — o2i wins
@@ -206,6 +206,8 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | ca-x-valencia | 4catac | 160 | 0.0759 | n/a | 0.0439 | 0.0762 |
 | en | wikipron | 80995 | 0.3585 | n/a | 0.2081 | 0.2136 |
 | en-GB | wikipron | 81545 | 0.2822 | n/a | 0.1472 | 0.1540 |
+| es | vox_communis | 97715 | 1.2097 | n/a | 1.2330 | 1.2247 |
+| es | wikipron | 132190 | 0.0797 | n/a | 0.1071 | 0.1066 |
 | fr | wikipron | 85516 | 0.0673 | n/a | 0.0740 | 0.0751 |
 | it | vox_communis | 90366 | 1.1378 | n/a | 1.1830 | 1.1773 |
 | it | wikipron | 82280 | 0.0441 | n/a | 0.0722 | 0.0769 |
