@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.69.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.69.0a2) (2026-08-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.69.0a1...7.69.0a2)
+
+**Merged pull requests:**
+
+- refactor: restructure comparison harness for maintainability \(no behavior change\) [\#890](https://github.com/TigreGotico/orthography2ipa/pull/890) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.69.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.69.0a1) (2026-08-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.68.0a2...7.69.0a1)
@@ -753,10 +761,6 @@
 ## [7.39.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.39.0a1) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.38.0a1...7.39.0a1)
-
-**Merged pull requests:**
-
-- feat: cover every living ISO 639-3 language with Glottolog-backed stub specs [\#686](https://github.com/TigreGotico/orthography2ipa/pull/686) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.38.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.38.0a1) (2026-08-02)
 
