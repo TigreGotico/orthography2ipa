@@ -6,48 +6,50 @@ Every number is a **PER (Phoneme Error Rate)**: lower is better, `0.0000` is a p
 
 ## Leaderboard
 
-One line per language: the best system on its primary gold, and where o2i lands.
+One line per language: the best system on its primary gold, and where o2i lands. **Ranking policy: lexicon-free only** — a system's bundled per-word exception dictionary/lexicon never counts toward "winner", on the fair-comparison principle that o2i, by hard rule, ships no such lexicon of its own (see "How to read this" below for the full rationale and the per-engine disposition).
 
 - **same-source** — the gold IS that system's own output; excluded from ranking, never a "winner".
 - **n/a** — the system has no mapping, or isn't installed, for this language.
+- **(lexicon)** — a lexicon-backed stock value: shown on the board for information, never ranked. Its rules-only sibling column (or the engine's own audited-lexicon-free stock value) is what actually competes for "winner".
 - **tie** — two or more systems within 0.001 PER of the best; named, never a bare "tie".
 - **rules-only** — the system with its bundled dictionary/lexicon disabled, scored on rules alone (see "How to read this" below).
-- **#N** — N-th place by PER on that row; `#1` is the winner.
+- **#N** — N-th place by PER on that row, RANKED OVER THE LEXICON-FREE WORLD; `#1` is the winner.
+- **"... with its lexicon scores N — informational"** — a lexicon-backed stock value that would have scored lowest of all systems on this row, named so it is never hidden — just not counted as the winner.
 
 - **arb (Classical Arabic)** — o2i not scored: this gold was drafted by o2i's own lineage — see same-source (africa-g2p #1 among the rest)
-- **ca (Catalan)** — espeak #1, o2i #2, o2i #1 on rules-only
-- **ca-x-balear (Balearic Catalan)** — espeak #1, o2i #3
-- **ca-x-occidental (North-Western Catalan)** — espeak #1, o2i #3
-- **ca-x-valencia (Valencian)** — espeak #1, o2i #2, tied #1 on rules-only
+- **ca (Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0403 — informational)
+- **ca-x-balear (Balearic Catalan)** — espeak rules-only #1, o2i #2 (espeak with its lexicon scores 0.0797 — informational)
+- **ca-x-occidental (North-Western Catalan)** — espeak rules-only #1, o2i #2 (espeak with its lexicon scores 0.0497 — informational)
+- **ca-x-valencia (Valencian)** — tie (espeak rules-only, o2i) #1 (espeak with its lexicon scores 0.0439 — informational)
 - **cop (Coptic (Sahidic))** — o2i #1 (beats africa-g2p)
 - **cy (Welsh)** — o2i #1 (beats epitran)
-- **de (German)** — o2i #1 (beats espeak)
+- **de (German)** — o2i #1 (beats espeak rules-only)
 - **el (Modern Greek)** — o2i #1 (beats espeak rules-only)
-- **en (English)** — gruut #1, o2i #5
-- **en-GB (British English (RP))** — espeak #1, o2i #5
-- **en-US (American English (General American))** — gruut rules-only #1, o2i #4
+- **en (English)** — espeak rules-only #1, o2i #3 (gruut with its lexicon scores 0.1776 — informational)
+- **en-GB (British English (RP))** — espeak rules-only #1, o2i #3 (espeak with its lexicon scores 0.1472 — informational)
+- **en-US (American English (General American))** — gruut rules-only #1, o2i #3
 - **es (Spanish)** — epitran #1, o2i #2
-- **eu (Basque (Euskara))** — o2i #1 (beats espeak)
+- **eu (Basque (Euskara))** — o2i #1 (beats espeak rules-only)
 - **eu-wikipron (Basque (Euskara), wikipron-primary variant)** — o2i #1 (beats espeak rules-only)
 - **fi (Finnish)** — o2i #1 (beats epitran)
-- **fr (French)** — o2i #1 (beats espeak)
+- **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
 - **gl (Galician)** — o2i #1 (beats pycotovia)
-- **hi (Hindi)** — o2i #1 (beats espeak)
+- **hi (Hindi)** — o2i #1 (beats espeak rules-only)
 - **hts (Hadza)** — o2i #1 (beats africa-g2p)
-- **it (Italian)** — o2i #1 (beats espeak)
+- **it (Italian)** — o2i #1 (beats espeak rules-only)
 - **kab (Kabyle)** — o2i #1 (beats africa-g2p)
 - **ktz (Juǀʼhoan)** — o2i #1 (beats africa-g2p)
 - **lad (Ladino (Judeo-Spanish))** — o2i #1 (beats africa-g2p)
 - **mfe (Morisyen)** — o2i #1 (beats africa-g2p)
 - **ngh (Nǁng)** — o2i #1 (beats africa-g2p)
-- **nl (Dutch)** — o2i #1 (beats espeak)
+- **nl (Dutch)** — o2i #1 (beats espeak rules-only)
 - **nup (Nupe)** — o2i #1 (beats africa-g2p)
 - **pl (Polish)** — o2i #1 (beats epitran)
 - **pt-PT (European Portuguese)** — o2i #1 (beats espeak rules-only)
 - **ro (Romanian)** — o2i #1 (beats epitran)
 - **ru (Russian)** — o2i #1 (beats epitran)
-- **sv (Swedish)** — o2i #1 (beats espeak)
+- **sv (Swedish)** — o2i #1 (beats espeak rules-only)
 - **tr (Turkish)** — o2i #1 (beats epitran)
 - **tzm (Central Atlas Tamazight)** — o2i #1 (beats africa-g2p)
 
@@ -62,30 +64,30 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### ca (Catalan)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0643 | 0.0403 | 0.1206 | 0.4641 | espeak |
+| 4catac | 160 | 0.0643 | 0.0403 | 0.1206 | 0.4641 | o2i |
 | ipa_childes | 3814 | 0.2579 | same-source | same-source | 0.3447 | o2i |
 | vox_communis | 218451 | 0.8055 | 0.8195 | 0.8168 | same-source | no system is usable on this gold |
-| wikipron | 106 | 0.2565 | 0.2221 | 0.2798 | 0.3518 | espeak |
+| wikipron | 106 | 0.2565 | 0.2221 | 0.2798 | 0.3518 | o2i |
 
 ### ca-x-balear (Balearic Catalan)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.1471 | 0.0797 | 0.1419 | 0.4998 | espeak |
+| 4catac | 160 | 0.1471 | 0.0797 | 0.1419 | 0.4998 | espeak rules-only |
 
 ### ca-x-occidental (North-Western Catalan)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0944 | 0.0497 | 0.0832 | 0.4348 | espeak |
+| 4catac | 160 | 0.0944 | 0.0497 | 0.0832 | 0.4348 | espeak rules-only |
 
 ### ca-x-valencia (Valencian)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0759 | 0.0439 | 0.0762 | 0.3775 | espeak |
+| 4catac | 160 | 0.0759 | 0.0439 | 0.0762 | 0.3775 | tie (espeak rules-only, o2i) |
 
 ### cop (Coptic (Sahidic))
 
@@ -95,7 +97,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### cy (Welsh)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ipa_childes | 4666 | 0.2985 | same-source | same-source | 0.3495 | o2i |
 | vox_communis | 18701 | 0.1172 | 0.3005 | 0.3016 | same-source | o2i |
@@ -103,50 +105,50 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### de (German)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | wikipron | 53011 | 0.2103 | 0.2126 | 0.2132 | 0.3064 | o2i |
 
 ### el (Modern Greek)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | vox_communis | 5994 | 0.2672 | 0.3347 | 0.3247 | same-source | o2i |
 | wikipron | 19108 | 0.0330 | 0.0785 | 0.0765 | n/a | o2i |
 
 ### en (English)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | gruut | gruut rules-only | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| wikipron | 80995 | 0.2927 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | gruut |
+| wikipron | 80995 | 0.2927 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
 
 ### en-GB (British English (RP))
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | gruut | gruut rules-only | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| ipa_childes | 11447 | 0.3321 | same-source | same-source | n/a | 0.2876 | 0.3313 | gruut |
+| ipa_childes | 11447 | 0.3321 | same-source | same-source | n/a | 0.2876 | 0.3313 | tie (gruut rules-only, o2i) |
 | ipadict | 65119 | 0.2516 | same-source | same-source | n/a | same-source | 0.2325 | gruut rules-only |
-| wikipron | 81545 | 0.2605 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak |
+| wikipron | 81545 | 0.2605 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
 
 ### en-US (American English (General American))
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | gruut | gruut rules-only | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
 | cmudict | 126052 | 0.4268 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
-| ipa_babylm | 20344 | 0.4180 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | gruut |
-| ipa_childes | 18055 | 0.3220 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut |
+| ipa_babylm | 20344 | 0.4180 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | gruut rules-only |
+| ipa_childes | 18055 | 0.3220 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
 | ipadict | 125927 | 0.4576 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
 
 ### es (Spanish)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | pycotovia | ahotts-g2p | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | pycotovia | ahotts-g2p | Winner |
 |---|---|---|---|---|---|---|---|---|
 | vox_communis | 97715 | 1.2097 | 1.2330 | 1.2247 | same-source | 1.2139 | 1.2117 | no system is usable on this gold |
 | wikipron | 132190 | 0.0797 | 0.1071 | 0.1066 | 0.0277 | 0.1108 | 0.1041 | epitran |
 
 ### eu (Basque (Euskara))
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | ahotts-g2p | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | ahotts-g2p | Winner |
 |---|---|---|---|---|---|---|---|
 | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | 0.1204 | n/a | same-source | o2i |
 | ipa_childes | 3969 | 0.0821 | same-source | same-source | n/a | 0.1396 | o2i |
@@ -155,7 +157,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### eu-wikipron (Basque (Euskara), wikipron-primary variant)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | ahotts-g2p | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | ahotts-g2p | Winner |
 |---|---|---|---|---|---|---|---|
 | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | 0.1204 | n/a | same-source | o2i |
 | ipa_childes | 3969 | 0.0821 | same-source | same-source | n/a | 0.1396 | o2i |
@@ -164,7 +166,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### fi (Finnish)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ipadict | 92836 | 0.0609 | 0.1995 | 0.1991 | 0.1111 | o2i |
 | vox_communis | 13324 | 0.0037 | 0.1843 | 0.1838 | same-source | o2i |
@@ -172,13 +174,13 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### fr (French)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | wikipron | 85516 | 0.0673 | 0.0740 | 0.0749 | 0.2280 | o2i |
 
 ### ga (Irish)
 
-| Dataset | N | o2i | espeak | espeak rules-only | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | Winner |
 |---|---|---|---|---|---|
 | ipa_childes | 1612 | 0.2989 | same-source | same-source | o2i |
 | wikipron | 9621 | 0.1834 | 0.5223 | 0.5100 | o2i |
@@ -192,7 +194,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### hi (Hindi)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | vox_communis | 13154 | 0.3684 | 0.5184 | 0.5178 | same-source | o2i |
 | wikipron | 30379 | 0.1562 | 0.2815 | 0.2819 | 0.3322 | o2i |
@@ -205,7 +207,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### it (Italian)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | vox_communis | 90366 | 1.1378 | 1.1830 | 1.1739 | same-source | no system is usable on this gold |
 | wikipron | 82280 | 0.0441 | 0.0722 | 0.0767 | 0.0852 | o2i |
@@ -242,10 +244,10 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### nl (Dutch)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ipa_childes | 8108 | 0.2137 | same-source | same-source | 0.4454 | o2i |
-| ipadict | 117869 | 0.1767 | 0.1607 | 0.1653 | 0.2948 | espeak |
+| ipadict | 117869 | 0.1767 | 0.1607 | 0.1653 | 0.2948 | espeak rules-only |
 | vox_communis | 26137 | 0.2925 | 0.3054 | 0.2986 | same-source | o2i |
 | wikipron | 45872 | 0.0902 | 0.1099 | 0.1160 | 0.2843 | o2i |
 
@@ -257,7 +259,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### pl (Polish)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ipa_childes | 15524 | 0.2465 | same-source | same-source | 0.2453 | epitran |
 | vox_communis | 47615 | 0.0194 | 0.0793 | 0.0782 | same-source | o2i |
@@ -265,24 +267,24 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### pt-PT (European Portuguese)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ep_dialects | 30 | 0.1185 | 0.3192 | 0.3225 | 0.4095 | o2i |
 | ipa_childes | 3000 | 0.2498 | same-source | same-source | 0.4027 | o2i |
-| portuguese_tts | 20 | same-source | 0.3336 | 0.3331 | 0.4042 | tie (espeak, espeak rules-only) |
+| portuguese_tts | 20 | same-source | 0.3336 | 0.3331 | 0.4042 | espeak rules-only |
 | portuguese_unified | 3000 | 0.2245 | 0.3669 | 0.3631 | 0.4146 | o2i |
 | wikipron | 2272 | 0.1346 | 0.2374 | 0.2373 | 0.2903 | o2i |
 
 ### ro (Romanian)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | vox_communis | 12097 | 0.3332 | 0.4480 | 0.4477 | same-source | o2i |
 | wikipron | 8978 | 0.0198 | 0.0825 | 0.0761 | 0.0302 | o2i |
 
 ### ru (Russian)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | primary_sources | 36 | 0.1867 | 0.3119 | 0.3033 | 0.0744 | epitran |
 | vox_communis | 50547 | 0.3447 | 0.3594 | 0.3501 | same-source | o2i |
@@ -290,7 +292,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### sv (Swedish)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ipa_childes | 5202 | 0.3449 | same-source | same-source | 0.3576 | o2i |
 | ipadict | 21095 | 0.2583 | 0.2611 | 0.2653 | 0.4163 | o2i |
@@ -299,7 +301,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### tr (Turkish)
 
-| Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ipa_childes | 2748 | 0.1372 | same-source | same-source | 0.1194 | epitran |
 | vox_communis | 49476 | 0.1614 | 0.3443 | 0.3438 | same-source | o2i |
@@ -323,7 +325,11 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **pycotovia** — audited: its lexicon is closed to function-word stress tables (a small, fixed, rule-grade set, not a general word dictionary), so there is no general-purpose lexicon to disable and no rules-only column is needed.
 - **ahotts-g2p** — audited: it ships an HDIC dictionary (1,990 expansion entries; 103 TF_MRK words whose phonetic transcription is supplied directly by the dictionary; 1,065 per-word allophone-exception and 293 stress-marked entries), but those entries hit only 1.5% of the `eu` wikipron gold and 2.6% of `hitz_basque_ipa`, so a rules-only column would move the number by a fraction of a percent — recorded here rather than given a column.
 
-**Winner column.** The lowest PER on the row, by name; ties (within 0.001 PER) name every system tied for best rather than a bare `tie`. `same-source` cells never win — they are not real comparisons. When even the best PER on a row exceeds 0.8, the cell says "no system is usable on this gold" instead of naming a misleadingly precise "winner" among systems that are all failing it.
+**Ranking policy: lexicon-free only.** Anything with a lexicon does not count as a winner. The Winner column and the leaderboard rank over LEXICON-FREE values only: each engine's rules-only variant where one exists (`espeak_rules`, `gruut_rules`), its stock value where the engine is audited lexicon-free (epitran's rule/mapping tables, pycotovia's closed function-word stress table, africa-g2p's rule-based G2P), and ahotts-g2p's stock value — its HDIC dictionary hits only 1.5%/2.6% of the `eu`/`hitz_basque_ipa` gold, an explicit documented exception, not an oversight (see the per-engine disposition above). A lexicon-BACKED stock value — plain `espeak`, plain `gruut`, and (once it lands) a `transphone`-style tokenizer column — is EXCLUDED from ranking entirely, on the fair-comparison principle that o2i, by hard rule, ships no bundled word-exception lexicon of its own: ranking o2i's rules against another system's rules-plus-dictionary is not a fair fight (see the module docstring's "Fair-comparison 2x2" section, which this policy generalizes from a side table into the primary ranking). This is a deliberate ranking policy, not hidden data — the lexicon-backed columns stay right there on the board, marked `(lexicon)`, for anyone who wants the dictionary-included picture; the leaderboard just also names, as an informational aside, whenever a lexicon-backed value would have scored lowest of all (`espeak with its lexicon scores N — informational`) — visible, never counted.
+
+**Symmetric alternative (not implemented).** The fair-comparison principle cuts both ways: a lexicon-BACKED ranking tier is equally possible, PROVIDED o2i is given the same per-word lexicon the competitor ships (exactly what `o2i_lex` in the "Fair-comparison 2x2" section below already does for espeak-ng's dictionary, on the languages that 2x2 covers). That tier is not wired into the Winner column or leaderboard today — extending it to every lexicon-backed system/language pair on this board, and rendering it as a second ranked tier rather than a side table, is future work.
+
+**Winner column.** The lowest PER on the row IN THE LEXICON-FREE WORLD (see "Ranking policy" above), by name; ties (within 0.001 PER) name every system tied for best rather than a bare `tie`. `same-source` cells never win — they are not real comparisons. When even the best PER on a row exceeds 0.8, the cell says "no system is usable on this gold" instead of naming a misleadingly precise "winner" among systems that are all failing it.
 
 **`same-source` cells.** A cell reads `same-source` (never `n/a`) when the gold dataset IS that system's own output — e.g. scoring `espeak` against `ipa_babylm` (espeak-derived), `ahotts-g2p` against `hitz_basque_ipa` (HiTZ's own phonemizer output, same lab as AhoTTS), or `gruut` (dictionary lookup, not `gruut_rules`) against `cmudict`/`ipadict` (gruut's `en-US` lexicon is CMUdict-derived — see above). Scoring a system against its own generator would score near-zero by construction, not because it is accurate, so that comparison is refused. The same rule applies to o2i itself on `arabic_tts`, `portuguese_tts`, and `gold20_arabic` — gold drafted by the same Claude lineage that wrote orthography2ipa's own Arabic/Portuguese specs.
 

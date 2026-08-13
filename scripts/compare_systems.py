@@ -1747,12 +1747,18 @@ def _lang_heading(lang: str) -> str:
 #: column order. ``o2i`` is always first and always shown; the rest are
 #: dropped per-language-group when every row in that group is ``n/a`` for
 #: them (see ``_group_present_systems``).
+#: Column labels. ``espeak``/``gruut`` are marked ``(lexicon)`` because
+#: their stock number includes a bundled per-word exception dictionary o2i,
+#: by hard rule, never ships — see the "Ranking policy: lexicon-free only"
+#: section of the module docstring and the "How to read this" doc section.
+#: They stay ON the board for information; they are simply never ranked
+#: (see ``_RULES_ONLY_SUBSTITUTES``/``_rules_only_values``/``_winner``).
 _SYSTEMS: List[Tuple[str, str]] = [
     ("o2i", "o2i"),
-    ("espeak", "espeak"),
+    ("espeak", "espeak (lexicon)"),
     ("espeak_rules", "espeak rules-only"),
     ("epitran", "epitran"),
-    ("gruut", "gruut"),
+    ("gruut", "gruut (lexicon)"),
     ("gruut_rules", "gruut rules-only"),
     ("pycotovia", "pycotovia"),
     ("ahotts", "ahotts-g2p"),
@@ -1824,13 +1830,35 @@ _RULES_ONLY_SUBSTITUTES = {"espeak": "espeak_rules", "gruut": "gruut_rules"}
 
 
 def _rules_only_values(row: dict) -> Dict[str, float]:
-    """*row*'s comparable PERs in the "rules-only world": every system in
-    ``_RULES_ONLY_SUBSTITUTES`` is replaced by its rules-only variant
-    (dropped entirely if that variant has no number — never silently
-    falls back to the stock number, which would defeat the point), and
-    every other system keeps its normal :func:`_system_value`. The
-    standalone ``espeak_rules``/``gruut_rules`` keys are skipped here
-    since they are already represented via the substitution."""
+    """*row*'s comparable PERs in the LEXICON-FREE world — the world the
+    Winner column and the leaderboard actually rank over (owner
+    directive: "anything with a lexicon doesn't count as a winner").
+    Every system in ``_RULES_ONLY_SUBSTITUTES`` (currently ``espeak``,
+    ``gruut``) is replaced by its rules-only variant, dropped entirely
+    if that variant has no number — this NEVER silently falls back to
+    the lexicon-backed stock number, which would defeat the point and
+    let a lexicon sneak back into the ranking. Every other system
+    (``epitran``, ``pycotovia``, ``ahotts``, ``africa_g2p``) keeps its
+    normal :func:`_system_value`, because each is audited lexicon-free
+    already — see the per-engine disposition in the module docstring /
+    "How to read this" doc section:
+
+    - ``epitran`` — a rule/mapping-based transliterator for the
+      languages this board scores, not a lexicon lookup.
+    - ``pycotovia`` — audited: its lexicon is closed to a small, fixed,
+      rule-grade function-word stress table, not a general word
+      dictionary.
+    - ``ahotts`` — audited: its HDIC dictionary hits only 1.5% of the
+      `eu` wikipron gold and 2.6% of `hitz_basque_ipa`, so it is
+      effectively lexicon-free for ranking purposes; this is an explicit
+      documented exception, not an oversight.
+    - ``africa_g2p`` — rule-based G2P, no bundled per-word dictionary.
+
+    The standalone ``espeak_rules``/``gruut_rules`` keys are skipped
+    here since they are already represented via the substitution. When a
+    ``transphone``-style lexicon-backed tokenizer column lands, it joins
+    ``_RULES_ONLY_SUBSTITUTES`` (or is dropped from ranking entirely if
+    it has no rules-only variant) rather than being ranked as-is."""
     out: Dict[str, float] = {}
     for key, _label in _SYSTEMS:
         if key in ("espeak_rules", "gruut_rules"):
@@ -1844,6 +1872,46 @@ def _rules_only_values(row: dict) -> Dict[str, float]:
     return out
 
 
+def _lexicon_free_label(key: str) -> str:
+    """The display label for *key* AS RANKED in the lexicon-free world:
+    a system in ``_RULES_ONLY_SUBSTITUTES`` is ranked under its
+    rules-only variant's label (e.g. ``espeak`` ranks as "espeak
+    rules-only"), never under its lexicon-backed stock label — the
+    stock label must never appear as a ranking winner."""
+    labels = dict(_SYSTEMS)
+    if key in _RULES_ONLY_SUBSTITUTES:
+        return labels[_RULES_ONLY_SUBSTITUTES[key]]
+    return labels[key]
+
+
+def _labeled_lexicon_free_values(row: dict) -> Dict[str, float]:
+    """:func:`_rules_only_values` re-keyed by display label (via
+    :func:`_lexicon_free_label`) for callers that rank by name, e.g.
+    :func:`_winner`."""
+    return {_lexicon_free_label(k): v for k, v in _rules_only_values(row).items()}
+
+
+def _lexicon_backed_informational_note(row: dict, ranked_best: float) -> str:
+    """Informational note naming a LEXICON-BACKED stock value (``espeak``
+    or ``gruut``) that would have won had it been ranked — never
+    silently dropped, just never counted. Empty string when no
+    lexicon-backed stock value beats *ranked_best* (the actual,
+    lexicon-free winner)."""
+    #: Bare engine name (not the "(lexicon)"-suffixed column label) so the
+    #: aside reads "espeak with its lexicon scores N", not the redundant
+    #: "espeak (lexicon) with its lexicon scores N".
+    bare_names = {"espeak": "espeak", "gruut": "gruut"}
+    candidates = []
+    for key in _RULES_ONLY_SUBSTITUTES:  # "espeak", "gruut"
+        v = _system_value(row, key)  # stock (lexicon-backed) value
+        if v is not None and v < ranked_best - _WINNER_TIE_TOLERANCE:
+            candidates.append((v, bare_names[key]))
+    if not candidates:
+        return ""
+    v, label = min(candidates)
+    return f" ({label} with its lexicon scores {v:.4f} — informational)"
+
+
 def _ranked_winners(values: Dict[str, float]) -> List[str]:
     """Every key in *values* within ``_WINNER_TIE_TOLERANCE`` of the best
     (lowest) value — a single-element list is an outright win, more than
@@ -1855,17 +1923,23 @@ def _ranked_winners(values: Dict[str, float]) -> List[str]:
 
 
 def _winner(row: dict) -> str:
-    """The name of the best (lowest-PER) system on *row*, naming every
-    system tied for best when two or more are within
-    ``_WINNER_TIE_TOLERANCE`` of it (``tie (o2i, espeak)``, never a bare
-    ``tie``). Same-source cells never win — they are not real
-    comparisons. When even the best PER exceeds
+    """The name of the best (lowest-PER) system on *row*, RANKED OVER THE
+    LEXICON-FREE WORLD ONLY (owner directive: a lexicon-backed stock
+    value never counts as a winner — see :func:`_rules_only_values`).
+    Names every system tied for best when two or more are within
+    ``_WINNER_TIE_TOLERANCE`` of it (``tie (o2i, espeak rules-only)``,
+    never a bare ``tie``). Same-source cells never win — they are not
+    real comparisons. When even the best PER exceeds
     ``_NO_SYSTEM_USABLE_THRESHOLD``, says so instead of naming a
-    "winner" among systems that are all effectively failing this gold."""
-    labels = dict(_SYSTEMS)
-    values = {labels[k]: v for k, v in
-              {key: _system_value(row, key) for key, _ in _SYSTEMS}.items()
-              if v is not None}
+    "winner" among systems that are all effectively failing this gold.
+
+    A lexicon-backed stock value (``espeak``/``gruut``) that would have
+    scored lowest of all is NOT surfaced here — it stays visible in its
+    own table column (marked ``(lexicon)``), and the leaderboard line
+    for this row's language adds an informational aside about it (see
+    :func:`_lexicon_backed_informational_note`); the Winner cell itself
+    only ever names a lexicon-free result."""
+    values = _labeled_lexicon_free_values(row)
     if not values:
         return "n/a"
     winners = _ranked_winners(values)
@@ -1874,47 +1948,61 @@ def _winner(row: dict) -> str:
     return f"tie ({', '.join(sorted(winners))})" if len(winners) > 1 else winners[0]
 
 
+def _winner_label_str(winners: List[str]) -> str:
+    """``X`` for an outright win, ``tie (A, B)`` for two or more within
+    ``_WINNER_TIE_TOLERANCE`` — the exact same rendering rule
+    :func:`_winner` uses for the table's Winner column, so the
+    leaderboard line and the Winner cell can never contradict each
+    other on the same row."""
+    return f"tie ({', '.join(sorted(winners))})" if len(winners) > 1 else winners[0]
+
+
 def _leaderboard_line(lang: str, primary_row: dict) -> str:
     """One human-readable leaderboard line for *lang*'s primary gold row:
-    who wins, and where o2i lands relative to them. Kept short and
-    scannable — this is the summary a reader checks first, before the
-    per-language tables below."""
+    who wins, and where o2i lands relative to them. RANKED OVER THE
+    LEXICON-FREE WORLD ONLY (see :func:`_winner`/:func:`_rules_only_values`
+    — a lexicon-backed espeak/gruut stock value never counts as a
+    winner), and TIE-AWARE via :func:`_ranked_winners`/
+    ``_WINNER_TIE_TOLERANCE`` — the exact same tie rule the table's
+    Winner column uses, so the two can never disagree about whether a
+    row is a tie (a bare ``sorted(...)[0]`` here previously called a
+    within-tolerance row an outright "o2i #1" while the Winner column
+    correctly rendered "tie (..., o2i)" for the identical row). When a
+    lexicon-backed stock value would have scored lowest of all systems,
+    an informational aside names it and its score
+    (:func:`_lexicon_backed_informational_note`) — visible, never
+    hidden, just not ranked. Kept short and scannable — this is the
+    summary a reader checks first, before the per-language tables
+    below."""
     disp = _lang_heading(lang)
-    values = {
-        key: _system_value(primary_row, key) for key, _ in _SYSTEMS
-    }
-    values = {k: v for k, v in values.items() if v is not None}
+    values = _rules_only_values(primary_row)
     if not values:
         return f"**{disp}** — no comparable systems for this gold"
+    labeled = {_lexicon_free_label(k): v for k, v in values.items()}
     ranked = sorted(values.items(), key=lambda kv: kv[1])
-    labels = dict(_SYSTEMS)
-    winner_key, _ = ranked[0]
-    winner_label = labels[winner_key]
+    winner_val = ranked[0][1]
+    tie_winners = _ranked_winners(labeled)
+    aside = _lexicon_backed_informational_note(primary_row, winner_val)
     if "o2i" not in values:
+        winner_str = _winner_label_str(tie_winners)
         if primary_row.get("o2i_same_source"):
             return (f"**{disp}** — o2i not scored: this gold was drafted "
                      f"by o2i's own lineage — see same-source "
-                     f"({winner_label} #1 among the rest)")
-        return f"**{disp}** — {winner_label} #1 (o2i not scored on this gold)"
+                     f"({winner_str} #1 among the rest){aside}")
+        return (f"**{disp}** — {winner_str} #1 "
+                f"(o2i not scored on this gold){aside}")
     if min(values.values()) > _NO_SYSTEM_USABLE_THRESHOLD:
         return f"**{disp}** — no system is usable on this gold"
+    if "o2i" in tie_winners:
+        if len(tie_winners) == 1:
+            if len(ranked) > 1:
+                runner_up = _lexicon_free_label(ranked[1][0])
+                return f"**{disp}** — o2i #1 (beats {runner_up}){aside}"
+            return f"**{disp}** — o2i #1{aside}"
+        return f"**{disp}** — {_winner_label_str(tie_winners)} #1{aside}"
+    winner_str = _winner_label_str(tie_winners)
     o2i_rank = next(i for i, (k, _v) in enumerate(ranked, 1) if k == "o2i")
-    if o2i_rank == 1:
-        if len(ranked) > 1:
-            runner_up = labels[ranked[1][0]]
-            return f"**{disp}** — o2i #1 (beats {runner_up})"
-        return f"**{disp}** — o2i #1"
-    note = ""
-    if o2i_rank > 1:
-        rules_values = _rules_only_values(primary_row)
-        # len > 1 required: o2i being the ONLY system with a rules-only
-        # number is not a win over anything, just an absence of rivals.
-        if "o2i" in rules_values and len(rules_values) > 1:
-            rules_winners = _ranked_winners(rules_values)
-            if "o2i" in rules_winners:
-                note = (", o2i #1 on rules-only" if len(rules_winners) == 1
-                         else ", tied #1 on rules-only")
-    return (f"**{disp}** — {winner_label} #1, o2i #{o2i_rank}{note}")
+    return f"**{disp}** — {winner_str} #1, o2i #{o2i_rank}{aside}"
 
 
 def _leaderboard_summary(rows: List[dict]) -> List[str]:
@@ -1925,13 +2013,23 @@ def _leaderboard_summary(rows: List[dict]) -> List[str]:
     by_lang = {r["lang"]: r for r in primary}
     lines = ["## Leaderboard", "", (
         "One line per language: the best system on its primary gold, "
-        "and where o2i lands."
+        "and where o2i lands. **Ranking policy: lexicon-free only** — "
+        "a system's bundled per-word exception dictionary/lexicon never "
+        "counts toward \"winner\", on the fair-comparison principle that "
+        "o2i, by hard rule, ships no such lexicon of its own (see "
+        "\"How to read this\" below for the full rationale and the "
+        "per-engine disposition)."
     ), "", (
         "- **same-source** — the gold IS that system's own output; "
         "excluded from ranking, never a \"winner\"."
     ), (
         "- **n/a** — the system has no mapping, or isn't installed, for "
         "this language."
+    ), (
+        "- **(lexicon)** — a lexicon-backed stock value: shown on the "
+        "board for information, never ranked. Its rules-only sibling "
+        "column (or the engine's own audited-lexicon-free stock value) "
+        "is what actually competes for \"winner\"."
     ), (
         "- **tie** — two or more systems within "
         f"{_WINNER_TIE_TOLERANCE} PER of the best; named, never a bare "
@@ -1941,7 +2039,13 @@ def _leaderboard_summary(rows: List[dict]) -> List[str]:
         "lexicon disabled, scored on rules alone (see \"How to read "
         "this\" below)."
     ), (
-        "- **#N** — N-th place by PER on that row; `#1` is the winner."
+        "- **#N** — N-th place by PER on that row, RANKED OVER THE "
+        "LEXICON-FREE WORLD; `#1` is the winner."
+    ), (
+        "- **\"... with its lexicon scores N — informational\"** — a "
+        "lexicon-backed stock value that would have scored lowest of "
+        "all systems on this row, named so it is never hidden — just "
+        "not counted as the winner."
     ), ""]
     for lang in sorted(by_lang):
         lines.append(f"- {_leaderboard_line(lang, by_lang[lang])}")
@@ -2280,7 +2384,46 @@ def write_comparison(
         "move the number by a fraction of a percent — recorded here "
         "rather than given a column.",
         "",
-        "**Winner column.** The lowest PER on the row, by name; ties "
+        "**Ranking policy: lexicon-free only.** Anything with a "
+        "lexicon does not count as a winner. The Winner column and the "
+        "leaderboard rank over LEXICON-FREE values only: each engine's "
+        "rules-only variant where one exists (`espeak_rules`, "
+        "`gruut_rules`), its stock value where the engine is audited "
+        "lexicon-free (epitran's rule/mapping tables, pycotovia's "
+        "closed function-word stress table, africa-g2p's rule-based "
+        "G2P), and ahotts-g2p's stock value — its HDIC dictionary hits "
+        "only 1.5%/2.6% of the `eu`/`hitz_basque_ipa` gold, an explicit "
+        "documented exception, not an oversight (see the per-engine "
+        "disposition above). A lexicon-BACKED stock value — plain "
+        "`espeak`, plain `gruut`, and (once it lands) a "
+        "`transphone`-style tokenizer column — is EXCLUDED from ranking "
+        "entirely, on the fair-comparison principle that o2i, by hard "
+        "rule, ships no bundled word-exception lexicon of its own: "
+        "ranking o2i's rules against another system's rules-plus-"
+        "dictionary is not a fair fight (see the module docstring's "
+        "\"Fair-comparison 2x2\" section, which this policy generalizes "
+        "from a side table into the primary ranking). This is a "
+        "deliberate ranking policy, not hidden data — the lexicon-"
+        "backed columns stay right there on the board, marked "
+        "`(lexicon)`, for anyone who wants the dictionary-included "
+        "picture; the leaderboard just also names, as an informational "
+        "aside, whenever a lexicon-backed value would have scored "
+        "lowest of all (`espeak with its lexicon scores N — "
+        "informational`) — visible, never counted.",
+        "",
+        "**Symmetric alternative (not implemented).** The fair-"
+        "comparison principle cuts both ways: a lexicon-BACKED ranking "
+        "tier is equally possible, PROVIDED o2i is given the same "
+        "per-word lexicon the competitor ships (exactly what `o2i_lex` "
+        "in the \"Fair-comparison 2x2\" section below already does for "
+        "espeak-ng's dictionary, on the languages that 2x2 covers). That "
+        "tier is not wired into the Winner column or leaderboard today "
+        "— extending it to every lexicon-backed system/language pair on "
+        "this board, and rendering it as a second ranked tier rather "
+        "than a side table, is future work.",
+        "",
+        "**Winner column.** The lowest PER on the row IN THE LEXICON-"
+        "FREE WORLD (see \"Ranking policy\" above), by name; ties "
         f"(within {_WINNER_TIE_TOLERANCE} PER) name every system tied "
         "for best rather than a bare `tie`. `same-source` cells never "
         "win — they are not real comparisons. When even the best PER on "
