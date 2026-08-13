@@ -45,7 +45,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **nup (Nupe)** — o2i #1 (beats africa-g2p)
 - **pl (Polish)** — o2i #1 (beats epitran)
 - **pt-PT (European Portuguese)** — o2i #1 (beats espeak rules-only)
-- **ro (Romanian)** — epitran #1, o2i #2
+- **ro (Romanian)** — o2i #1 (beats epitran)
 - **ru (Russian)** — o2i #1 (beats epitran)
 - **sv (Swedish)** — o2i #1 (beats espeak)
 - **tr (Turkish)** — o2i #1 (beats epitran)
@@ -277,8 +277,8 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 | Dataset | N | o2i | espeak | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| vox_communis | 12097 | 0.3282 | 0.4480 | 0.4477 | same-source | o2i |
-| wikipron | 8978 | 0.0342 | 0.0825 | 0.0761 | 0.0302 | epitran |
+| vox_communis | 12097 | 0.3332 | 0.4480 | 0.4477 | same-source | o2i |
+| wikipron | 8978 | 0.0198 | 0.0825 | 0.0761 | 0.0302 | o2i |
 
 ### ru (Russian)
 
@@ -387,8 +387,8 @@ A system winning on one gold and losing on another for the SAME language is real
   - `portuguese_unified` (n=3000, tier=lexicon-derived): o2i 0.2245 vs espeak 0.3669 — o2i wins
   - `wikipron` (n=2272, tier=crowd-scraped): o2i 0.1346 vs espeak 0.2374 — o2i wins
 - **`ro`** (wins on all golds):
-  - `vox_communis` (n=12097, tier=epitran-derived): o2i 0.3282 vs espeak 0.4480 — o2i wins
-  - `wikipron` (n=8978, tier=crowd-scraped): o2i 0.0342 vs espeak 0.0825 — o2i wins
+  - `vox_communis` (n=12097, tier=epitran-derived): o2i 0.3332 vs espeak 0.4480 — o2i wins
+  - `wikipron` (n=8978, tier=crowd-scraped): o2i 0.0198 vs espeak 0.0825 — o2i wins
 - **`ru`** (wins on all golds):
   - `primary_sources` (n=36, tier=expert-human): o2i 0.1867 vs espeak 0.3119 — o2i wins
   - `vox_communis` (n=50547, tier=epitran-derived): o2i 0.3447 vs espeak 0.3594 — o2i wins
@@ -453,8 +453,8 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | pt-PT | portuguese_tts | 20 | same-source | n/a | 0.3336 | 0.3331 |
 | pt-PT | portuguese_unified | 3000 | 0.2245 | n/a | 0.3669 | 0.3631 |
 | pt-PT | wikipron | 2272 | 0.1346 | n/a | 0.2374 | 0.2373 |
-| ro | vox_communis | 12097 | 0.3282 | n/a | 0.4480 | 0.4477 |
-| ro | wikipron | 8978 | 0.0342 | n/a | 0.0825 | 0.0761 |
+| ro | vox_communis | 12097 | 0.3332 | n/a | 0.4480 | 0.4477 |
+| ro | wikipron | 8978 | 0.0198 | n/a | 0.0825 | 0.0761 |
 | ru | primary_sources | 36 | 0.1867 | n/a | 0.3119 | 0.3033 |
 | ru | vox_communis | 50547 | 0.3447 | n/a | 0.3594 | 0.3501 |
 | ru | wikipron | 403873 | 0.1451 | n/a | 0.3953 | 0.3975 |

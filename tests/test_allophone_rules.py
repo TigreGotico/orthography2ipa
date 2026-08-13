@@ -397,3 +397,49 @@ class TestOffsetContext:
         assert _ipa("uk", "Ізмір") == "izʲmʲir"
         # ⟨знання⟩ keeps a plain ⟨з⟩: the ⟨н⟩ after it is not softened by ⟨а⟩
         assert _ipa("uk", "знання") == "znanʲːa"
+
+
+class TestRequiresOtherNucleus:
+    """A vowel-deleting rule must not empty the word of its only nucleus.
+
+    Every prosodic word contains at least one syllable (Hayes 2009; Blevins
+    1995), so ``requires_other_nucleus`` gates a ``surface: ""`` rule on some
+    OTHER slot carrying a vowel. Romanian's asyllabic word-final ⟨i⟩ is the
+    motivating case (Chitoran 2002).
+    """
+
+    def test_the_loader_keeps_the_field(self):
+        """Dropped at load time, the rule would fire on monosyllables too."""
+        rule = next(r for r in get("ro-RO").allophone_rules
+                    if r.id == "RO_FINAL_I_ASYLLABIC")
+        assert rule.requires_other_nucleus is True
+
+    def test_the_rule_fires_when_the_word_has_another_nucleus(self):
+        assert _ipa("ro-RO", "lupi") == "lupʲ"
+        assert _ipa("ro-RO", "pomi") == "pomʲ"
+
+    def test_the_rule_is_blocked_on_a_monosyllable(self):
+        assert _ipa("ro-RO", "și") == "ʃi"
+        assert _ipa("ro-RO", "zi") == "zi"
+
+    def test_a_syllabic_consonant_counts_as_a_nucleus(self):
+        """Czech ⟨vlk⟩ and Serbian ⟨prst⟩ are vowel-less WORDS.
+
+        Reading only ``is_ipa_vowel`` would call them nucleus-less and let a
+        vowel-deleting rule empty them. The nucleus test must accept a
+        syllabic consonant, exactly as ``is_nucleus_only`` does.
+        """
+        rule = AllophoneRule(id="DROP_E", phonemes=("e",), surface="",
+                             word_final=True, requires_other_nucleus=True)
+        spec = _spec({"e": ["e"], "v": ["v"], "l": ["l̩"], "k": ["k"]},
+                     (rule,))
+        # ⟨l⟩ is syllabic: the word HAS another nucleus, so ⟨e⟩ deletes.
+        assert _tok_best(spec, "vlke") == "vl̩k"
+        # No nucleus anywhere else: ⟨e⟩ must survive.
+        assert _tok_best(spec, "vke") == "vke"
+
+    def test_a_word_with_no_nucleus_at_all_keeps_its_vowel(self):
+        rule = AllophoneRule(id="DROP_E", phonemes=("e",), surface="",
+                             word_final=True, requires_other_nucleus=True)
+        spec = _spec({"e": ["e"], "k": ["k"]}, (rule,))
+        assert _tok_best(spec, "ke") == "ke"

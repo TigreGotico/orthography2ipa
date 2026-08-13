@@ -1013,6 +1013,17 @@ class AllophoneRule:
         (Russian ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩ after it stands
         before a soft vowel; that is a fact about the ⟨т⟩'s underlying
         identity, not about what it surfaces as). Empty = don't care.
+    requires_other_nucleus : Optional[bool]
+        Require (``True``) — or forbid (``False``) — that some OTHER slot
+        in the word carries a syllable nucleus. A rule that DELETES a
+        vowel (``surface: ""``) must not empty the word of its only
+        nucleus: every prosodic word contains at least one syllable
+        (Hayes 2009, ch. 13; Blevins 1995, "The syllable in phonological
+        theory"). Romanian's asyllabic word-final ⟨i⟩ is the motivating
+        case — a desinence, so ⟨lupi⟩ is [lupʲ] but the monosyllables
+        ⟨și⟩ [ʃi], ⟨fi⟩ [fi], ⟨zi⟩ [zi] keep a full vowel because they
+        have no other nucleus (Chitoran 2002, ch. 5). ``None`` = don't
+        care.
     preceded_by_surface_phoneme_2 : Tuple[str, ...]
         Like :attr:`preceded_by_phoneme_2` but reads the LATTICE SLOT two
         positions back — the resolved, pre-this-rescorer SURFACE candidate
@@ -1117,6 +1128,7 @@ class AllophoneRule:
     preceded_by_phoneme_2: Tuple[str, ...] = ()
     followed_by_phoneme_2: Tuple[str, ...] = ()
     preceded_by_surface_phoneme_2: Tuple[str, ...] = ()
+    requires_other_nucleus: Optional[bool] = None
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
     preceded_by_grapheme: Tuple[str, ...] = ()
