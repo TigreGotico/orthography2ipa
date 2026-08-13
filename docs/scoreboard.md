@@ -293,7 +293,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | hsb | vox_communis | 5811 | 0.3199 | · | · | · | · | [0.3150, 0.3244] | 0.0905 | research | epitran-derived |
 | hsb | wikipron | 1126 | 0.2186 | · | · | · | · | [0.2073, 0.2303] | 0.2629 | research | crowd-scraped |
 | ht | wikipron | 1691 | 0.0302 | · | · | · | · | [0.0262, 0.0346] | 0.8669 | research | crowd-scraped |
-| hts | wikipron | 326 | 0.3728 | · | · | · | · | [0.3440, 0.4027] | 0.1472 | skeleton | crowd-scraped |
+| hts | wikipron | 329 | 0.0650 | 0.0650 | 0.0650 | 0.8693 | 0.8693 | [0.0417, 0.0881] | 0.8693 | research | crowd-scraped |
 | hu | ipa_childes | 4776 | 0.1506 | · | · | · | · | [0.1465, 0.1550] | 0.3549 | research | epitran-derived |
 | hu | vox_communis | 76381 | 0.1222 | · | · | · | · | [0.1198, 0.1247] | 0.5142 | research | epitran-derived |
 | huu | wikipron | 437 | 0.0827 | · | · | · | · | [0.0726, 0.0930] | 0.5446 | research | crowd-scraped |
