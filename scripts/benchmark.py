@@ -52,6 +52,38 @@ few loaders keep an intrinsic, language-agnostic infrastructure bound that
 ``--limit`` cannot lift (e.g. ``hitz_basque_ipa`` pages the HF rows API and
 stops at ``_HITZ_BASQUE_MAX_PARAGRAPHS`` rather than pulling the full
 1.67M-row set) — these are documented in docs/benchmarks.md.
+
+Where things live
+-----------------
+
+The module reads top to bottom as fetch -> load -> provenance -> score ->
+render. Each section carries a ``# ─── name ───`` header:
+
+``dataset loaders``
+    One ``load_<name>(lang, limit) -> [GoldPair, ...]`` per gold source.
+    Uniform signature on purpose: that is what lets :data:`DATASETS`
+    register them all interchangeably. Each loader's docstring records
+    where its IPA came from — that provenance is the reason to trust or
+    distrust every number derived from it, so it belongs with the loader.
+``DATASETS``
+    The registry. Adding a gold set = write a loader + add one entry here
+    + record its :data:`PROVENANCE` tier. Nothing else needs to change.
+``provenance / reliability tiers``
+    :data:`RELIABILITY_TIERS`, :data:`PROVENANCE`, and
+    :func:`can_gate_promotion` — which golds are trustworthy enough to FAIL
+    a build on, and which may only report drift. A gold that is another
+    tool's output can never gate.
+``metric``
+    :func:`normalize` (the one comparison space every system is scored in),
+    :func:`levenshtein`, :func:`align`, and the :func:`evaluate` family.
+    ``compare_systems.py`` imports these so its numbers are directly
+    comparable to the scoreboard's.
+``build_scoreboard`` / ``write_scoreboard``
+    Sweep every registered dataset/language, then render
+    docs/scoreboard.md + benchmarks/results.json.
+``lexicon-overlay report``
+    The separate rules-only-vs-with-lexicon board (``--lexicon-report``);
+    it writes its own docs page and never touches the main scoreboard.
 """
 from __future__ import annotations
 
@@ -68,7 +100,13 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import (Callable, Dict, Iterator, List, Optional, Sequence,
+                    Tuple)
+
+#: A gold entry: (orthographic word or sentence, reference IPA). Every
+#: ``load_*`` dataset loader returns a list of these, and every scoring
+#: function consumes them — the one shape the whole harness is built on.
+GoldPair = Tuple[str, str]
 
 # the repository root precedes the installed package so that running the
 # script from a checkout measures THAT checkout
@@ -2149,7 +2187,19 @@ def _primary_source_langs() -> List[str]:
     })
 
 
-DATASETS = {
+#: A dataset loader: ``loader(lang, limit) -> [GoldPair, ...]``. ``limit``
+#: is a row cap (``sys.maxsize`` for "no cap"); a loader that cannot serve
+#: *lang* returns an empty list rather than raising.
+DatasetLoader = Callable[[str, int], List[GoldPair]]
+
+#: THE dataset registry: ``{name: (loader, [language, ...])}``. Every gold
+#: set the harness can score is reachable from here and nowhere else — the
+#: CLI's ``--dataset`` choices, ``build_scoreboard``'s sweep, and
+#: ``compare_systems.LANGS``' dataset references all read this one table, so
+#: registering a loader here is the whole job of adding a dataset. Every
+#: entry must also have a ``PROVENANCE`` tier (enforced below): a gold with
+#: no recorded provenance cannot be read honestly.
+DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "primary_sources": (load_primary_sources, _primary_source_langs()),
     "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
     "gold20_arabic": (load_gold20_arabic, _GOLD20_ARABIC_LANGS),
@@ -2645,7 +2695,9 @@ def assert_oracle_self_check(dataset: str, lang: str, per: float,
         f"to write 1-best columns only.")
 
 
-def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
+def evaluate_words(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
+                   broad: bool
+                   ) -> Tuple[int, int, List[float], float, float]:
     """Like :func:`evaluate` but also returns the per-word PER list, so
     callers (e.g. :func:`bootstrap_per_ci`) can resample it. The point
     estimates returned here (``n``, ``covered``, ``per``, ``wer``) are
@@ -2657,9 +2709,12 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     return n, covered, pers, per, wer
 
 
-def evaluate_words_oracle(pairs, lang: str, strip_stress: bool, broad: bool,
+def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
+                          strip_stress: bool, broad: bool,
                           oracle_ks: Sequence[int] = ORACLE_KS,
-                          expose_ambiguous_endings: bool = False):
+                          expose_ambiguous_endings: bool = False
+                          ) -> Tuple[int, int, List[float], float, float,
+                                     Optional["OracleResult"]]:
     """:func:`evaluate_words` plus the top-k oracle PER.
 
     One scoring loop, one normalization, one distance function: passing
@@ -2790,7 +2845,12 @@ def evaluate_words_oracle(pairs, lang: str, strip_stress: bool, broad: bool,
         (wrong / covered if covered else 1.0), oracle
 
 
-def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
+def evaluate(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
+             broad: bool) -> Tuple[int, int, float, float]:
+    """Score *pairs* and return just the point estimates
+    ``(n, covered, per, wer)`` — :func:`evaluate_words` without the per-word
+    PER list. Same numbers, one scoring loop; see :func:`evaluate_words_oracle`
+    for the single implementation all three wrappers share."""
     n, covered, _pers, per, wer = evaluate_words(
         pairs, lang, strip_stress, broad)
     return n, covered, per, wer
@@ -3182,7 +3242,7 @@ _LEXICON_REPORT_TAGS: Dict[str, List[str]] = {
 
 
 @contextlib.contextmanager
-def _lexicon_disabled():
+def _lexicon_disabled() -> Iterator[None]:
     """Temporarily force every G2P engine onto the rules-only path.
 
     Swaps ``get_lexicon`` (bound both in ``orthography2ipa.lexicon`` and, by
@@ -3205,7 +3265,7 @@ def _lexicon_disabled():
         _g2p.get_lexicon = orig
 
 
-def _score_pairs(pairs, lang: str) -> Tuple[int, float]:
+def _score_pairs(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
     n, covered, _pers, per, _wer = evaluate_words(
         pairs, lang, strip_stress=True, broad=True)
     return covered, per

@@ -4,6 +4,27 @@ All comparison systems are mocked — no network, no real espeak-ng,
 epitran, gruut, pycotovia, or ahotts-g2p required. Covers the PER math, the
 "beats espeak" tally, the "unavailable system -> n/a, never a crash"
 contract, and the Catalan-dialect espeak voice discovery/fallback logic.
+
+Two shared doubles do most of the work; reach for these before writing a
+new one:
+
+:class:`FakeEngine`
+    Stands in for ``orthography2ipa.G2P`` with a fixed word -> IPA table, so
+    o2i's PER on a test row is an exact, hand-computable number.
+:func:`install_fake_o2i`
+    Puts a ``FakeEngine`` (or any stub engine) into ``sys.modules`` as the
+    ``orthography2ipa`` module, which is what ``compare_lang`` actually
+    imports. Its ``on_register``/``on_clear`` hooks observe the
+    process-global lexicon registry for the contamination-ordering tests.
+
+The remaining hand-rolled fake modules are the cases those hooks cannot
+express — capturing the language code ``G2P`` was constructed with, and
+accumulating registered lexicons on the class itself.
+
+Individual comparison engines are stubbed by monkeypatching the module-level
+``cs.<engine>_transcribe`` function. That works because
+:data:`compare_systems.PER_WORD_ENGINES` resolves engines BY NAME at call
+time rather than holding function objects.
 """
 import json
 import os
@@ -26,6 +47,30 @@ class FakeEngine:
         if word not in self.table:
             raise KeyError(word)
         return self.table[word]
+
+
+def install_fake_o2i(monkeypatch, engine, *, on_register=None, on_clear=None):
+    """Swap the real ``orthography2ipa`` module for a stub whose ``G2P``
+    returns *engine*.
+
+    Almost every ``compare_lang`` test needs this. ``_compare_lang_dataset``
+    imports ``orthography2ipa`` itself rather than taking it as an argument,
+    so replacing the entry in ``sys.modules`` is the only way to pin o2i to a
+    known, fixed set of hypotheses and get a PER we can assert exactly.
+
+    *on_register* / *on_clear* observe the process-global lexicon registry
+    calls. Tests use them to assert the ORDER of operations — notably the
+    tugaphone contamination regression, where the bug was not a wrong number
+    but a lexicon being registered too early.
+    """
+    class FakeModule:
+        G2P = staticmethod(lambda lang: engine)
+        clear_lexicons = staticmethod(on_clear or (lambda: None))
+        register_lexicon = staticmethod(
+            on_register or (lambda code, src: None))
+
+    monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+    return FakeModule
 
 
 class TestScoreHelper:
@@ -138,11 +183,7 @@ class TestCompareLang:
         # o2i: perfect on both words -> PER 0.0
         fake_o2i = FakeEngine({"ola": "ola", "kasa": "kaza"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
 
         # espeak: gets one wrong -> PER > 0, worse than o2i
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
@@ -177,11 +218,7 @@ class TestCompareLang:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
 
         row = cs.compare_lang("yy", limit=10)[0]
         assert row["espeak_per"] is None
@@ -203,11 +240,7 @@ class TestCompareLang:
             def transcribe_word(self, word):
                 raise RuntimeError("boom")
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: RaisingEngine())
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, RaisingEngine())
 
         row = cs.compare_lang("zz", limit=10)[0]
         assert row["o2i_per"] is None
@@ -472,11 +505,7 @@ class TestCompareLangWithPycotoviaAndAhotts:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(
             cs, "pycotovia_transcribe", lambda word, lang: "ola")
 
@@ -501,11 +530,7 @@ class TestCompareLangWithPycotoviaAndAhotts:
 
         fake_o2i = FakeEngine({"kaixo": "kaiʃo"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(
             cs, "ahotts_transcribe", lambda word, cfg: "kajʃˈo")
 
@@ -620,11 +645,7 @@ class TestCompareLangWithAfricaG2p:
 
         fake_o2i = FakeEngine({"azul": "azul"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(
             cs, "africa_g2p_transcribe", lambda word, lang: "azul")
 
@@ -644,11 +665,7 @@ class TestCompareLangWithAfricaG2p:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
 
         row = cs.compare_lang("ww", limit=10)[0]
         assert row["africa_g2p_per"] is None
@@ -875,14 +892,9 @@ class TestCompareLangWithFamilySystems:
     is what distinguishes them from a genuinely independent competitor like
     epitran/gruut."""
 
-    def _fake_o2i_module(self, table):
-        fake_o2i = FakeEngine(table)
-
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        return FakeModule
+    def _install_o2i(self, monkeypatch, table):
+        """Pin o2i to a fixed word -> IPA *table* for this test."""
+        return install_fake_o2i(monkeypatch, FakeEngine(table))
 
     def test_arbtok_scores_on_independent_gold(self, monkeypatch):
         pairs = [("كتاب", "kitaːb")]
@@ -893,9 +905,7 @@ class TestCompareLangWithFamilySystems:
             cs.LANGS, "arb",
             {"dataset": ("fake_indep_ar", "arb"), "espeak": None,
              "epitran": None, "gruut": None, "arbtok": "arb"})
-        monkeypatch.setitem(
-            sys.modules, "orthography2ipa",
-            self._fake_o2i_module({"كتاب": "kitaːb"}))
+        self._install_o2i(monkeypatch, {"كتاب": "kitaːb"})
         monkeypatch.setattr(cs, "arbtok_transcribe",
                              lambda word, lang: "kitaːb")
         monkeypatch.setattr(cs, "arbtok_stock_transcribe",
@@ -914,9 +924,7 @@ class TestCompareLangWithFamilySystems:
             cs.LANGS, "arb",
             {"dataset": ("arabic_tts", "arb"), "espeak": None,
              "epitran": None, "gruut": None, "arbtok": "arb"})
-        monkeypatch.setitem(
-            sys.modules, "orthography2ipa",
-            self._fake_o2i_module({"كتاب": "kitaːb"}))
+        self._install_o2i(monkeypatch, {"كتاب": "kitaːb"})
         monkeypatch.setattr(cs, "arbtok_transcribe",
                              lambda word, lang: "kitaːb")
 
@@ -934,9 +942,7 @@ class TestCompareLangWithFamilySystems:
             cs.LANGS, "pt-PT",
             {"dataset": ("portuguese_tts", "pt-PT"), "espeak": None,
              "epitran": None, "gruut": None, "tugaphone": "pt-PT"})
-        monkeypatch.setitem(
-            sys.modules, "orthography2ipa",
-            self._fake_o2i_module({"casa": "ˈkazɐ"}))
+        self._install_o2i(monkeypatch, {"casa": "ˈkazɐ"})
         monkeypatch.setattr(cs, "tugaphone_transcribe",
                              lambda word, lang: "ˈkazɐ")
 
@@ -957,9 +963,7 @@ class TestCompareLangWithFamilySystems:
             cs.LANGS, "mwl",
             {"dataset": ("portuguese_tts", "mwl"), "espeak": None,
              "epitran": None, "gruut": None, "mwl_phonemizer": "mwl"})
-        monkeypatch.setitem(
-            sys.modules, "orthography2ipa",
-            self._fake_o2i_module({"siempre": "ˈsjẽpɾɨ"}))
+        self._install_o2i(monkeypatch, {"siempre": "ˈsjẽpɾɨ"})
         monkeypatch.setattr(cs, "mwl_transcribe",
                              lambda word, lang: "ˈsjẽpɾɨ")
 
@@ -976,9 +980,7 @@ class TestCompareLangWithFamilySystems:
             cs.LANGS, "mwl",
             {"dataset": ("mirandese_g2p", "mwl"), "espeak": None,
              "epitran": None, "gruut": None, "mwl_phonemizer": "mwl"})
-        monkeypatch.setitem(
-            sys.modules, "orthography2ipa",
-            self._fake_o2i_module({"siempre": "ˈsjẽpɾɨ"}))
+        self._install_o2i(monkeypatch, {"siempre": "ˈsjẽpɾɨ"})
         monkeypatch.setattr(cs, "mwl_transcribe",
                              lambda word, lang: "ˈsjẽpɾɨ")
 
@@ -998,9 +1000,7 @@ class TestCompareLangWithFamilySystems:
             {"dataset": ("barranquenho_dict", "ext-PT-x-barrancos"),
              "espeak": None, "epitran": None, "gruut": None,
              "barranquenho": "ext-PT-x-barrancos"})
-        monkeypatch.setitem(
-            sys.modules, "orthography2ipa",
-            self._fake_o2i_module({"casa": "ˈkazɐ"}))
+        self._install_o2i(monkeypatch, {"casa": "ˈkazɐ"})
         monkeypatch.setattr(cs, "barranquenho_transcribe",
                              lambda word, lang: "ˈkazɐ")
 
@@ -1720,12 +1720,7 @@ class TestCompareLangFairComparison2x2:
             def transcribe_word(self, word):
                 return "bato"
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: FakeEngine())
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, FakeEngine())
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
         monkeypatch.setattr(cs, "espeak_rules_available", lambda: False)
         monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", None)
@@ -1768,11 +1763,7 @@ class TestCompareLangMultiDataset:
 
         fake_o2i = FakeEngine({"ola": "ola", "kasa": "kaza"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
 
         try:
             rows = cs.compare_lang("mm", limit=10)
@@ -1799,11 +1790,7 @@ class TestCompareLangMultiDataset:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
 
         try:
             rows = cs.compare_lang("oo", limit=10)
@@ -1835,11 +1822,7 @@ class TestSameSourceExclusion:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
         # If espeak were actually invoked, this would return a "perfect"
         # score, proving the exclusion is what keeps the cell empty.
@@ -1872,11 +1855,7 @@ class TestSameSourceExclusion:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(
             cs, "epitran_transcribe", lambda word, code: "ola")
 
@@ -1902,11 +1881,7 @@ class TestSameSourceExclusion:
 
         fake_o2i = FakeEngine({"kaixo": "kaiʃo"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(
             cs, "ahotts_transcribe", lambda word, cfg: "kajʃˈo")
 
@@ -1932,11 +1907,7 @@ class TestSameSourceExclusion:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
         monkeypatch.setattr(
             cs, "espeak_batch_transcribe",
@@ -1968,11 +1939,7 @@ class TestSameSourceExclusion:
 
             fake_o2i = FakeEngine({"ola": "ola"})
 
-            class FakeModule:
-                G2P = staticmethod(lambda lang: fake_o2i)
-                clear_lexicons = staticmethod(lambda: None)
-                register_lexicon = staticmethod(lambda code, src: None)
-            monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+            install_fake_o2i(monkeypatch, fake_o2i)
             monkeypatch.setattr(cs, "gruut_transcribe",
                                  lambda word, lang: "ola")
             monkeypatch.setattr(cs, "gruut_rules_only_available",
@@ -2008,11 +1975,7 @@ class TestSameSourceExclusion:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(cs, "gruut_transcribe", lambda word, lang: "olo")
         monkeypatch.setattr(cs, "gruut_rules_only_available",
                              lambda lang: True)
@@ -2115,11 +2078,7 @@ class TestO2iSameSourceExclusion:
 
         fake_o2i = FakeEngine({"kaifa": "kajfa"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
 
         try:
             row = cs.compare_lang("ar-EG", limit=10)[0]
@@ -2155,11 +2114,7 @@ class TestO2iSameSourceExclusion:
 
         fake_o2i = FakeEngine({"ola": "ola"})
 
-        class FakeModule:
-            G2P = staticmethod(lambda lang: fake_o2i)
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
-        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        install_fake_o2i(monkeypatch, fake_o2i)
 
         try:
             row = cs.compare_lang("mwl", limit=10)[0]
