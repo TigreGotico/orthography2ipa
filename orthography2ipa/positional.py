@@ -47,8 +47,8 @@ from __future__ import annotations
 import bisect
 import unicodedata
 
-from typing import (Callable, Dict, List, NamedTuple, Optional, Sequence,
-                    Tuple)
+from typing import (Callable, Dict, FrozenSet, List, NamedTuple, Optional,
+                    Sequence, Tuple)
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
@@ -549,6 +549,7 @@ def grapheme_positions(
     spec: Optional[LanguageSpec] = None,
     syll_idx: Optional[int] = None,
     stressed_syll_idx: Optional[int] = None,
+    secondary_syll_idxs: FrozenSet[int] = frozenset(),
     syllable: Optional[str] = None,
     syllable_final: Optional[bool] = None,
 ) -> List[GraphemePosition]:
@@ -569,6 +570,11 @@ def grapheme_positions(
     ``syll_idx``/``stressed_syll_idx`` add the stress-conditioned
     nucleus positions; when ``stressed_syll_idx is None`` (no stress
     context, e.g. the standalone tokenizer) those are omitted.
+    ``secondary_syll_idxs`` are the syllables carrying SECONDARY stress
+    (see :func:`~orthography2ipa.stress.secondary_stress_positions`); they
+    get ``nucleus_secondary`` instead of ``nucleus_unstressed``, so a
+    spec's reduction entry no longer reaches them. Empty by default, so a
+    spec that does not declare ``stress.secondary_stress`` is unaffected.
 
     ``syllable``/``syllable_final`` are the aperture context, and the
     caller owns both: ``syllable`` is the string this grapheme's syllable
@@ -675,7 +681,13 @@ def grapheme_positions(
                 pos.append(GraphemePosition.NUCLEUS_STRESSED_OPEN
                            if open_syllable
                            else GraphemePosition.NUCLEUS_STRESSED_CLOSED)
-            else:
+            # A secondary foot head takes NEITHER crossed pair: it is not
+            # the main stress, and it is not weak either, so the UNSTRESSED
+            # pair (the reduction entry) must not reach it. No crossed
+            # secondary×aperture position exists — the level itself (below)
+            # is the condition, and a spec that needs aperture under
+            # secondary stress states it on the aperture-only positions.
+            elif syll_idx not in secondary_syll_idxs:
                 pos.append(GraphemePosition.NUCLEUS_UNSTRESSED_OPEN
                            if open_syllable
                            else GraphemePosition.NUCLEUS_UNSTRESSED_CLOSED)
@@ -687,7 +699,15 @@ def grapheme_positions(
         if syll_idx == stressed_syll_idx:
             pos.append(GraphemePosition.NUCLEUS_STRESSED)
         else:
-            pos.append(GraphemePosition.NUCLEUS_UNSTRESSED)
+            # Prominence LEVEL: a secondary foot head is stressed, just not
+            # the main accent, so it gets its own position and never
+            # nucleus_unstressed (Liberman & Prince 1977; Hayes 1995 ch. 3).
+            # PRETONIC/POSTTONIC below are about POSITION relative to the
+            # main stress, a different fact, and are emitted either way.
+            if syll_idx in secondary_syll_idxs:
+                pos.append(GraphemePosition.NUCLEUS_SECONDARY)
+            else:
+                pos.append(GraphemePosition.NUCLEUS_UNSTRESSED)
             if syll_idx < stressed_syll_idx:
                 if syll_idx == stressed_syll_idx - 1:
                     pos.append(GraphemePosition.FIRST_PRETONIC)
@@ -793,6 +813,7 @@ def resolve_branches(
     allophone_map: Optional[Dict[str, List[str]]] = None,
     syll_idx: Optional[int] = None,
     stressed_syll_idx: Optional[int] = None,
+    secondary_syll_idxs: FrozenSet[int] = frozenset(),
     syllable: Optional[str] = None,
     syllable_final: Optional[bool] = None,
 ) -> List[Tuple[str, float]]:
@@ -816,8 +837,10 @@ def resolve_branches(
         ``None`` (typically ``PhonetokTokenizer.weights_for``).
     allophone_map
         Optional phoneme→allophones map for allophone expansion.
-    syll_idx, stressed_syll_idx
+    syll_idx, stressed_syll_idx, secondary_syll_idxs
         Stress context for nucleus positions; ``None`` when unavailable.
+        ``secondary_syll_idxs`` is empty unless the spec declares
+        ``stress.secondary_stress``. See :func:`grapheme_positions`.
     syllable, syllable_final
         Aperture context, both owned by the caller: the syllable string
         this grapheme sits in, and whether that string ends the word.
@@ -829,7 +852,8 @@ def resolve_branches(
 
     positions = grapheme_positions(
         ctx, spec=spec, syll_idx=syll_idx,
-        stressed_syll_idx=stressed_syll_idx, syllable=syllable,
+        stressed_syll_idx=stressed_syll_idx,
+        secondary_syll_idxs=secondary_syll_idxs, syllable=syllable,
         syllable_final=syllable_final)
     pos_candidates = positional_candidates(spec, grapheme, positions)
 

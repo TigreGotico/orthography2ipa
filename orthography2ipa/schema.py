@@ -268,6 +268,7 @@ class StressRulesModel(_Strict):
     max_onset: int = Field(default=1, ge=1, le=3)
     cliticless_words: Optional[List[str]] = None
     coda_liquid_capture: bool = False
+    secondary_stress: Literal["", "alternating"] = ""
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 

@@ -127,10 +127,46 @@ def test_noun_verb_stress_pairs_are_a_documented_ceiling():
     assert detect_stress("record", rules) == 0   # the noun reading
 
 
-def test_secondary_stress_is_not_modelled(en):
-    """The engine's stress is binary, so a syllable carrying SECONDARY stress
-    is treated as fully weak (Cruttenden 2014 §10.3). ⟨combination⟩ is
-    ˌkɒmbɪˈneɪʃən in RP; the engine has no way to protect that first vowel
-    once the accent moves off it — which is why the one-syllable pre-stressed
-    suffixes are deliberately not declared."""
-    assert "ˌ" not in en.transcribe_word("combination")
+def test_secondary_stress_protects_the_initial_vowel(en):
+    """English keeps a full vowel under SECONDARY stress (Cruttenden 2014
+    §10.3), and the spec now declares the alternating level that says so
+    (Liberman & Prince 1977; Hayes 1995 ch. 3). ⟨combination⟩ is
+    ˌkɒmbɪˈneɪʃən in RP: the accent moves off the first syllable and the
+    vowel there stays [ɒ] instead of reducing."""
+    out = en.transcribe_word("combination")
+    assert out.startswith("ˌkɒ")
+    assert "ˈ" in out
+    assert get("en-GB").stress.secondary_stress == "alternating"
+
+
+def test_one_syllable_pre_stressed_suffixes_place_the_penult(en):
+    """Fudge's one-syllable pre-stressed suffixes -ic/-ics/-ion/-ions put the
+    accent on the PENULT (Fudge 1984, ch. 3). Declarable only with the
+    secondary level in place: without it the rule cost 0.0059 PER over its own
+    words on the en-GB wikipron gold, with it it gains 0.0031."""
+    rules = get("en-GB").stress
+    assert rules.penult_stress_endings == ("ic", "ics", "ion", "ions")
+    assert detect_stress("atomic", rules) == 1          # a-to-mic
+    assert detect_stress("combination", rules) == 2     # com-bi-na-tion
+    assert en.transcribe_word("atomic") == "əˈtɒmɪk"
+
+
+def test_no_room_for_a_foot_leaves_the_word_binary(en):
+    """A main stress on the second syllable has no syllable two positions to
+    its left, so nothing is promoted — the engine does not invent a level it
+    cannot derive. ⟨vacation⟩ stays unmarked for secondary stress, and its
+    initial vowel reduces: a known and declared miss (RP ˌveɪˈkeɪʃən)."""
+    out = en.transcribe_word("vacation")
+    assert "ˌ" not in out
+    assert out.startswith("v\u0259")
+
+
+def test_remaining_pre_stressed_suffixes_are_a_measured_ceiling():
+    """-ial/-ious/-ian/-ient/-ience are Fudge's same class and the stress they
+    place is right, but each is PER-NEGATIVE on the en-GB wikipron gold even
+    with secondary stress (-ian 0.2979\u21920.3387 over 1,421 words), because the
+    engine then gives the newly full syllables the wrong vowel quality. They
+    stay undeclared until that is fixed."""
+    rules = get("en-GB").stress
+    for ending in ("ial", "ious", "ian", "ient", "ience"):
+        assert ending not in rules.penult_stress_endings

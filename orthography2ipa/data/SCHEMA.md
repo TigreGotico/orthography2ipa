@@ -347,6 +347,7 @@ spec with no `stress` block gets no stress marks.
 | `stress_mark` | string | no | IPA mark to insert (default `"ˈ"`) |
 | `accent2_mark` | string | no | Scandinavian pitch-accent 2 marker (e.g. `"²"`). When set, a penult-stressed word ending in one of `accent2_final_letters` takes this mark instead of `stress_mark` (Riad 2014); empty = no pitch accent |
 | `accent2_final_letters` | array | no | Final orthographic letters selecting `accent2_mark` (e.g. `["a", "e"]`) |
+| `secondary_stress` | string | no | Second prominence level below the main word accent. `""` (default) = the binary system, nothing changes. `"alternating"` = binary feet built leftward from the main stress, so every second syllable before it is a foot head (Liberman & Prince 1977; Hayes 1995 ch. 3): English ˌcombiˈnation, reˌsponsiˈbility. A foot head is NOT unstressed — it takes the `nucleus_secondary` position instead of `nucleus_unstressed`, so the spec's reduction entries no longer reach it, and `ˌ` is written before it |
 | `notes` | string | no | Provenance / convention notes |
 
 ## Location Schema
@@ -425,6 +426,7 @@ matching the `GraphemePosition` enum:
 | `"onset"`                   | `GraphemePosition.ONSET`                   |
 | `"nucleus_stressed"`        | `GraphemePosition.NUCLEUS_STRESSED`        |
 | `"nucleus_unstressed"`      | `GraphemePosition.NUCLEUS_UNSTRESSED`      |
+| `"nucleus_secondary"`       | `GraphemePosition.NUCLEUS_SECONDARY`       |
 | `"coda"`                    | `GraphemePosition.CODA`                    |
 | `"word_initial"`            | `GraphemePosition.WORD_INITIAL`            |
 | `"word_final"`              | `GraphemePosition.WORD_FINAL`              |

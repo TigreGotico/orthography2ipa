@@ -313,6 +313,7 @@ Rules to follow when adding one:
 | `nucleus`                 | Generic syllable nucleus    | When stress not distinguished             |
 | `nucleus_stressed`        | Stressed syllable nucleus   | Full vowel quality                        |
 | `nucleus_unstressed`      | Unstressed syllable nucleus | Portuguese ⟨e⟩ → [ɨ]                     |
+| `nucleus_secondary`       | Nucleus under SECONDARY stress — a foot head that is not the main accent. Emitted only when the spec declares `stress.secondary_stress`, and emitted INSTEAD OF `nucleus_unstressed`, so a reduction entry no longer reaches it | English ⟨o⟩ keeps [ɒ] in ˌcombiˈnation |
 | `open_syllable`           | Nucleus, syllable has no coda | French `"eu": {"open_syllable": ["ø"]}` |
 | `closed_syllable`         | Nucleus, syllable has a coda  | French `"eu": {"closed_syllable": ["œ"]}` |
 | `nucleus_stressed_open`   | Stressed **and** open       | Dutch ⟨e⟩ → [eː] in *le·zen*              |

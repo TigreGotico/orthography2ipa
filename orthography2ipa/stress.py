@@ -52,6 +52,9 @@ __all__ = [
     "detect_stress",
     "detect_stress_by_weight",
     "apply_stress_mark",
+    "secondary_stress_positions",
+    "SECONDARY_ALTERNATING",
+    "SECONDARY_MARK",
     "cliticless_keys",
     "is_cliticless",
     "LIGHT",
@@ -885,6 +888,76 @@ def detect_stress(
     return max(0, n + pos)
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# Secondary stress — a second prominence level below the main word accent
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Word prominence is not a stressed/unstressed switch. A metrical grid has
+# levels: syllables are grouped into FEET, every foot has a head, and one of
+# those heads is promoted to carry the word accent. The other heads are still
+# metrically strong — that is secondary stress (Liberman & Prince 1977, "On
+# Stress and Linguistic Rhythm", Linguistic Inquiry 8; Hayes 1995, *Metrical
+# Stress Theory*, ch. 2-3).
+#
+# The engine models exactly one placement rule, the one a spelling can support:
+# BINARY FEET BUILT LEFTWARD FROM THE MAIN STRESS (Hayes 1995 ch. 3, binary
+# quantity-insensitive foot construction). Every second syllable to the left of
+# the main stress is a foot head. Nothing is guessed from morphology, and no
+# language is named here: a spec opts in with ``stress.secondary_stress``.
+
+SECONDARY_ALTERNATING = "alternating"
+
+#: IPA secondary-stress mark (U+02CC), written before a secondary foot head.
+SECONDARY_MARK = "ˌ"
+
+#: IPA length marks. They belong to the vowel BEFORE them, never to what
+#: follows, so a syllable division that leaves one at the head of a syllable
+#: has cut inside a long vowel.
+_LENGTH_MARKS = "ːˑ"
+
+
+def _prefix_mark(syll: str, mark: str) -> str:
+    """*syll* with *mark* written before its first real segment.
+
+    The naive splitter is a vowel-group splitter over the IPA, so a long
+    vowel can be cut in half: ``sɜːkʌmləkjuːʃən`` divides as
+    ``sɜ|ːkʌm|lə|kju|ːʃən``, and a mark prefixed blindly lands INSIDE the
+    vowel — ``sɜˌːkʌm…``, which claims a syllable starts with half a
+    nucleus. A length mark or a combining diacritic at the head of a
+    syllable always belongs to the preceding vowel, so the stress mark goes
+    after it and the audible syllable still gets marked at its true onset:
+    ``sɜːˌkʌm…``.
+    """
+    i = 0
+    while i < len(syll) and (syll[i] in _LENGTH_MARKS
+                            or unicodedata.combining(syll[i])):
+        i += 1
+    return syll[:i] + mark + syll[i:]
+
+
+def secondary_stress_positions(
+    n_syllables: int,
+    stress_index: int,
+    rules: StressRules,
+) -> frozenset:
+    """The syllable indices that carry SECONDARY stress, as a 0-based set.
+
+    Empty unless the spec declares ``stress.secondary_stress``. For the
+    ``"alternating"`` mode the heads of the binary feet built leftward from
+    *stress_index* are returned — ``stress_index - 2``, ``- 4``, … down to 0
+    (Hayes 1995 ch. 3). A main stress on the first or second syllable leaves
+    no room for a foot and yields the empty set, and so does a
+    ``stress_index`` the engine could not place (a negative, end-anchored
+    value, or a clitic sentinel): a level below the main accent is only
+    definable relative to a known main accent.
+    """
+    if rules.secondary_stress != SECONDARY_ALTERNATING:
+        return frozenset()
+    if stress_index is None or stress_index < 0 or n_syllables < 3:
+        return frozenset()
+    return frozenset(range(stress_index % 2, stress_index - 1, 2))
+
+
 def apply_stress_mark(
     ipa: str,
     rules: StressRules,
@@ -892,6 +965,7 @@ def apply_stress_mark(
     syllables: Optional[Sequence[str]] = None,
     ipa_syllables: Optional[Sequence[str]] = None,
     mark: Optional[str] = None,
+    secondary_indices: Sequence[int] = (),
 ) -> str:
     """Insert ``rules.stress_mark`` before the stressed syllable of *ipa*.
 
@@ -913,6 +987,12 @@ def apply_stress_mark(
     syllables : Optional[Sequence[str]]
         Pre-computed orthographic syllables matching *stress_index*;
         needed only for non-negative ``stress_index`` conversion.
+    secondary_indices : Sequence[int]
+        Syllable indices carrying SECONDARY stress (from
+        :func:`secondary_stress_positions`), counted the same way as
+        *stress_index*. Each is prefixed with ``ˌ`` in the same pass. A
+        secondary index that resolves onto the main-stress syllable is
+        dropped — one syllable carries one level.
     ipa_syllables : Optional[Sequence[str]]
         Pre-computed syllables OF THE IPA, concatenating to *ipa*. A
         quantity-sensitive caller has already divided the transcription (that
@@ -994,12 +1074,33 @@ def apply_stress_mark(
             # still vowel-final): the latter falls through to end-anchoring,
             # which lands correctly. A loss BEFORE the stress (initial/medial
             # syncope) overshoots the end and also falls through.
-            ipa_sylls[stress_index] = _mark + ipa_sylls[stress_index]
+            for sec in secondary_indices:
+                if 0 <= sec < len(ipa_sylls) and sec != stress_index:
+                    ipa_sylls[sec] = _prefix_mark(ipa_sylls[sec],
+                                                  SECONDARY_MARK)
+            ipa_sylls[stress_index] = _prefix_mark(
+                ipa_sylls[stress_index], _mark)
             return "".join(ipa_sylls)
         offset_from_end = max(1, n_orth - stress_index)
 
+    def _target(index: int) -> int:
+        """The IPA-syllable slot *index* lands on, by the same anchoring the
+        main stress used — so the two levels can never disagree about where a
+        syllable is."""
+        if index < 0:
+            return max(0, len(ipa_sylls) + index)
+        n = len(syllables) if syllables is not None else len(ipa_sylls)
+        return max(0, len(ipa_sylls) - max(1, n - index))
+
     target = max(0, len(ipa_sylls) - offset_from_end)
-    ipa_sylls[target] = _mark + ipa_sylls[target]
+    marked = {target}
+    for sec in secondary_indices:
+        sec_target = _target(sec)
+        if sec_target not in marked:
+            marked.add(sec_target)
+            ipa_sylls[sec_target] = _prefix_mark(ipa_sylls[sec_target],
+                                                 SECONDARY_MARK)
+    ipa_sylls[target] = _prefix_mark(ipa_sylls[target], _mark)
     return "".join(ipa_sylls)
 
 
