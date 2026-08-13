@@ -244,7 +244,7 @@
     ]
   },
   "parent": "ira",
-  "notes": "Tehran standard. Many Arabic emphatic/pharyngeal consonants have merged with plain counterparts. 6-vowel system: /ɒː, æ, e, o, iː, uː/.",
+  "notes": "Tehran standard. Many Arabic emphatic/pharyngeal consonants have merged with plain counterparts. 6-vowel system: /ɒː, æ, e, o, iː, uː/ (Windfuhr 1979/2009; Majidi & Ternes 1991 JIPA illustration; Toosarvandani 2004). GOLD-CONVENTION DIVERGENCE: the WikiPron 'fa' gold set transcribes long ā with plain 'a'/'aː' and the rhotic with plain 'r' rather than the tap 'ɾ', and omits the word-initial glottal onset this spec supplies for vowel-initial words (e.g. gold 'آری'→'aːreː' vs this spec's phonemically correct 'ʔɒːɾ(iː)'). That WikiPron convention matches an older/transliteration-flavored broad transcription, not the phonetic value described by the cited standard references, so this spec intentionally does NOT chase it — see tests/test_fa_convention.py. Separately, WikiPron entries also carry short vowels that are simply unwritten in Perso-Arabic orthography (an abjad); no G2P over bare script can recover these without a pronunciation lexicon, which is out of scope here.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -277,6 +277,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "majidi1991",
+      "author": "Majidi, M.-R. & Ternes, E.",
+      "year": 1991,
+      "title": "Persian (Farsi)",
+      "publisher": "Journal of the International Phonetic Association 21(2), Illustrations of the IPA",
+      "url": null,
+      "pages": "96-97",
+      "notes": "JIPA illustration confirming the six-vowel Tehrani inventory /i, e, æ, ɒ, o, u/ with phonetic backing/length on ɒː, iː, uː."
     }
   ],
   "wikipedia": [
