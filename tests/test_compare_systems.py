@@ -254,7 +254,7 @@ class TestBuildAndWriteComparison(object):
         # crowd-scraped (gold-tier), so they land in the gold-tier count.
         assert "Gold-tier" in text
         assert "o2i beats espeak on 1 of 2 comparable languages" in text
-        assert "| bb |" in text  # honest: the losing row is still listed
+        assert "### bb" in text  # honest: the losing row is still listed
         assert "n/a" in text  # missing systems reported as n/a
 
         data = json_path.read_text(encoding="utf-8")
@@ -1442,6 +1442,112 @@ class TestSameSourceExclusion:
         assert row["espeak_same_source"] is False
         assert row["espeak_per"] == 0.0
 
+    def test_gruut_excluded_on_cmudict_and_ipadict(self, monkeypatch):
+        # B1: gruut's bundled en-US lexicon is CMUdict-derived (124,392
+        # words, 98.2% coverage of both cmudict and ipadict) — scoring
+        # gruut's dictionary LOOKUP against CMUdict-sourced gold is
+        # circular, not G2P accuracy, exactly like espeak-vs-its-own-
+        # exception-list or ahotts-vs-hitz_basque_ipa above.
+        for dataset_name in ("cmudict", "ipadict"):
+            pairs = [("ola", "ola")]
+            monkeypatch.setattr(
+                cs.benchmark, "DATASETS",
+                {dataset_name: (lambda lang, limit: pairs, ["en-US"])})
+            monkeypatch.setitem(
+                cs.LANGS, "en-US",
+                {"dataset": (dataset_name, "en-US"), "espeak": None,
+                 "epitran": None, "gruut": "en-us"})
+
+            fake_o2i = FakeEngine({"ola": "ola"})
+
+            class FakeModule:
+                G2P = staticmethod(lambda lang: fake_o2i)
+                clear_lexicons = staticmethod(lambda: None)
+                register_lexicon = staticmethod(lambda code, src: None)
+            monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+            monkeypatch.setattr(cs, "gruut_transcribe",
+                                 lambda word, lang: "ola")
+            monkeypatch.setattr(cs, "gruut_rules_only_available",
+                                 lambda lang: True)
+            monkeypatch.setattr(cs, "gruut_rules_only_transcribe",
+                                 lambda word, lang: "ruleola")
+
+            try:
+                row = cs.compare_lang("en-US", limit=10)[0]
+            finally:
+                cs.LANGS.pop("en-US", None)
+
+            assert row["gruut_per"] is None, dataset_name
+            assert row["gruut_n"] == 0, dataset_name
+            assert row["gruut_same_source"] is True, dataset_name
+            assert cs._cell(row, "gruut") == "same-source", dataset_name
+            # gruut_rules bypasses the lexicon entirely, so it is NOT
+            # same-source even on cmudict/ipadict — it still measures
+            # something real (the g2p fallback model's own accuracy).
+            assert row["gruut_rules_per"] is not None, dataset_name
+
+    def test_gruut_not_excluded_on_wikipron(self, monkeypatch):
+        # The independent en/en-GB wikipron rows are NOT CMUdict-sourced
+        # and must stay a real (non-same-source) comparison.
+        pairs = [("ola", "olo")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"wikipron": (lambda lang, limit: pairs, ["en"])})
+        monkeypatch.setitem(
+            cs.LANGS, "en",
+            {"dataset": ("wikipron", "en"), "espeak": None,
+             "epitran": None, "gruut": "en-us"})
+
+        fake_o2i = FakeEngine({"ola": "ola"})
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
+        monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
+        monkeypatch.setattr(cs, "gruut_transcribe", lambda word, lang: "olo")
+        monkeypatch.setattr(cs, "gruut_rules_only_available",
+                             lambda lang: True)
+        monkeypatch.setattr(cs, "gruut_rules_only_transcribe",
+                             lambda word, lang: "olo")
+
+        try:
+            row = cs.compare_lang("en", limit=10)[0]
+        finally:
+            cs.LANGS.pop("en", None)
+
+        assert row["gruut_same_source"] is False
+        assert row["gruut_per"] == 0.0
+
+
+class TestGruutRulesOnly:
+    """gruut_rules_only_transcribe disables gruut's lexicon lookup at the
+    settings level so every word falls through to its own g2p fallback
+    model — mirrors espeak_rules's dictionary-emptied idea."""
+
+    def test_rules_only_produces_different_output_than_lexicon(self):
+        # A real, not mocked, check that the mechanism actually works:
+        # gruut's en-US lexicon has an irregular entry for "colonel"
+        # (/kɜːrnl/-ish); with the lexicon disabled, the g2p fallback
+        # must read it off the spelling instead, producing something
+        # DIFFERENT from the dictionary pronunciation.
+        try:
+            import gruut  # noqa: F401
+        except ImportError:
+            import pytest
+            pytest.skip("gruut not installed")
+        with_lexicon = cs.gruut_transcribe("colonel", "en_US")
+        rules_only = cs.gruut_rules_only_transcribe("colonel", "en_US")
+        assert with_lexicon is not None
+        assert rules_only is not None
+        assert with_lexicon != rules_only
+
+    def test_unavailable_without_gruut(self, monkeypatch):
+        monkeypatch.setitem(sys.modules, "gruut", None)
+        monkeypatch.delitem(sys.modules, "gruut.text_processor",
+                             raising=False)
+        assert cs.gruut_rules_only_transcribe("hello", "en_US") is None
+
 
 class TestCellFormatting:
     def test_cell_shows_same_source_not_na(self):
@@ -1476,7 +1582,8 @@ class TestWriteComparisonSameSourceRendering:
 
         text = md_path.read_text(encoding="utf-8")
         assert "same-source" in text
-        assert "| aa | d | 2 | 0.1000 | same-source |" in text
+        assert "### aa" in text
+        assert "| d | 2 | 0.1000 | same-source |" in text
 
 
 class TestO2iSameSourceExclusion:
@@ -1660,6 +1767,52 @@ class TestCommittedDocsMatchesFreshStalenessNote:
         )
 
 
+class TestScoreboardStalenessNoteSampledVsGenuine:
+    """B3: pt-PT's PER gap against benchmarks/results.json is NOT
+    staleness — scripts/compare_systems.py scores a fixed-seed `sample_n`
+    SUBSET while scripts/benchmark.py scores the FULL gold (same seed,
+    different word count), so the two will never converge by
+    regenerating either side. The note must say so distinctly from a
+    genuine drift row, which DOES mean "go regenerate the stale side"."""
+
+    def test_sampled_row_gets_the_different_reason_not_stale(
+            self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "pt-PT", "dataset": "wikipron", "n": 2272,
+             "o2i_per": 0.1346, "sampled": True},
+        ]
+        sb_path = tmp_path / "results.json"
+        sb_path.write_text(json.dumps([
+            {"lang": "pt-PT", "dataset": "wikipron", "per": 0.0903,
+             "n": 56891},
+        ]), encoding="utf-8")
+        monkeypatch.setattr(cs.benchmark, "SCOREBOARD_JSON", str(sb_path))
+
+        note = cs._scoreboard_staleness_note(rows)
+
+        assert "not staleness" in note or "DIFFERENT reason" in note
+        assert "pt-PT" in note
+        assert "56891" in note
+        assert "regenerating either side will not reconcile" in note
+
+    def test_genuine_drift_row_still_calls_it_stale(self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "xx", "dataset": "d", "n": 100,
+             "o2i_per": 0.50, "sampled": False},
+        ]
+        sb_path = tmp_path / "results.json"
+        sb_path.write_text(json.dumps([
+            {"lang": "xx", "dataset": "d", "per": 0.10, "n": 100},
+        ]), encoding="utf-8")
+        monkeypatch.setattr(cs.benchmark, "SCOREBOARD_JSON", str(sb_path))
+
+        note = cs._scoreboard_staleness_note(rows)
+
+        assert "stale" in note
+        assert "xx" in note
+        assert "not staleness" not in note
+
+
 class TestCommittedComparisonJsonCompleteness:
     """Mechanical guard against a partial regeneration: every row actually
     committed to benchmarks/comparison.json must carry a provenance_tier
@@ -1803,6 +1956,232 @@ class TestScoreboardLangScoping:
         assert "stale_key" not in merged[0]
 
 
+class TestWinnerColumn:
+    """``_winner`` names the lowest-PER system on a row, calls a near-tie
+    ``tie`` rather than a spurious four-decimal win, and never lets a
+    same-source cell win (it is not a real comparison)."""
+
+    def test_clear_winner_named(self):
+        row = {"o2i_per": 0.10, "espeak_per": 0.30}
+        assert cs._winner(row) == "o2i"
+
+    def test_other_system_wins(self):
+        row = {"o2i_per": 0.30, "espeak_per": 0.10}
+        assert cs._winner(row) == "espeak"
+
+    def test_tie_within_tolerance(self):
+        # Tie cells must NAME who tied, never a bare "tie" — readability
+        # blocker: a reader should not have to open the row to see who.
+        row = {"o2i_per": 0.1000, "espeak_per": 0.1005}
+        assert cs._winner(row) == "tie (espeak, o2i)"
+
+    def test_no_system_usable_above_threshold(self):
+        # Even the best PER on the row is worse than the "is anyone
+        # usable here" threshold — naming a precise "winner" among
+        # systems that are all effectively failing the gold is
+        # misleading, so the cell says so instead.
+        row = {"o2i_per": 1.2, "espeak_per": 1.1}
+        assert cs._winner(row) == "no system is usable on this gold"
+
+    def test_just_outside_tolerance_is_not_a_tie(self):
+        row = {"o2i_per": 0.1000, "espeak_per": 0.1020}
+        assert cs._winner(row) == "o2i"
+
+    def test_same_source_cell_never_wins(self):
+        # espeak's own-generated gold scores near-zero by construction;
+        # it must not be crowned "winner" over a real o2i number.
+        row = {"o2i_per": 0.20, "espeak_per": 0.0,
+               "espeak_same_source": True}
+        assert cs._winner(row) == "o2i"
+
+    def test_no_comparable_systems_is_na(self):
+        row = {"o2i_per": None, "espeak_per": None}
+        assert cs._winner(row) == "n/a"
+
+    def test_espeak_rules_label_used(self):
+        row = {"o2i_per": 0.5, "espeak_rules_per": 0.1}
+        assert cs._winner(row) == "espeak rules-only"
+
+
+class TestRulesOnlyLeaderboardNote:
+    """B2 regression guard: 'o2i #1 on rules-only' must be computed by
+    re-ranking ALL systems with their rules-only variant substituted in
+    (not just checking o2i against espeak_rules in isolation), and must
+    honour _WINNER_TIE_TOLERANCE. Pinned against the exact rows a
+    reviewer caught this wrong on: es and ro wrongly claimed the note
+    (epitran actually still wins both under rules-only substitution);
+    ca-x-valencia is a tie, not an outright o2i win."""
+
+    def test_epitran_still_wins_under_rules_substitution_no_false_note(
+            self, monkeypatch):
+        # es/wikipron: o2i=0.0797, espeak_rules=0.1066, epitran=0.0277.
+        # epitran (no rules-only variant, keeps its stock value) is still
+        # the best PER even after espeak is replaced by espeak_rules, so
+        # o2i must NOT get an "on rules-only" note here.
+        row = {"lang": "es", "dataset": "wikipron", "n": 10,
+               "o2i_per": 0.0797, "espeak_per": 0.1071,
+               "espeak_rules_per": 0.1066, "epitran_per": 0.0277}
+        monkeypatch.setitem(cs.LANGS, "es", {"dataset": ("wikipron", "es")})
+        lines = cs._leaderboard_summary([row])
+        bullet = next(l for l in lines if l.startswith("- **es"))
+        assert bullet == "- **es (Spanish)** — epitran #1, o2i #2"
+
+    def test_epitran_still_wins_ro_no_false_note(self, monkeypatch):
+        row = {"lang": "ro", "dataset": "wikipron", "n": 10,
+               "o2i_per": 0.0342, "espeak_per": 0.0825,
+               "espeak_rules_per": 0.0761, "epitran_per": 0.0302}
+        monkeypatch.setitem(cs.LANGS, "ro", {"dataset": ("wikipron", "ro")})
+        lines = cs._leaderboard_summary([row])
+        bullet = next(l for l in lines if l.startswith("- **ro"))
+        assert bullet == "- **ro (Romanian)** — epitran #1, o2i #2"
+
+    def test_tie_under_rules_substitution(self, monkeypatch):
+        # ca-x-valencia/4catac: o2i=0.0759, espeak_rules=0.0762 (within
+        # tolerance of o2i) — a TIE in the rules-only world, not an
+        # outright "o2i #1 on rules-only" win.
+        row = {"lang": "ca-x-valencia", "dataset": "4catac", "n": 10,
+               "o2i_per": 0.0759, "espeak_per": 0.0439,
+               "espeak_rules_per": 0.0762, "epitran_per": 0.3775}
+        monkeypatch.setitem(
+            cs.LANGS, "ca-x-valencia", {"dataset": ("4catac", "ca-x-valencia")})
+        text = "\n".join(cs._leaderboard_summary([row]))
+        assert "tied #1 on rules-only" in text
+
+    def test_genuine_rules_only_win_still_noted(self, monkeypatch):
+        # ca/4catac: o2i clearly beats espeak_rules AND every other
+        # system once rules are substituted in — the note IS warranted.
+        row = {"lang": "ca", "dataset": "4catac", "n": 10,
+               "o2i_per": 0.0643, "espeak_per": 0.0403,
+               "espeak_rules_per": 0.1206, "epitran_per": 0.4641}
+        monkeypatch.setitem(cs.LANGS, "ca", {"dataset": ("4catac", "ca")})
+        text = "\n".join(cs._leaderboard_summary([row]))
+        assert "o2i #1 on rules-only" in text
+        assert "tied" not in text
+
+
+class TestLeaderboardSummary:
+    """``_leaderboard_summary`` is the compact per-language standings
+    block at the top of the doc — built from each language's PRIMARY
+    gold row only, one line per language."""
+
+    def test_o2i_number_one_names_runner_up(self, monkeypatch):
+        rows = [
+            {"lang": "it", "dataset": "wikipron", "n": 10,
+             "o2i_per": 0.04, "espeak_per": 0.07},
+        ]
+        monkeypatch.setitem(cs.LANGS, "it", {"dataset": ("wikipron", "it")})
+        text = "\n".join(cs._leaderboard_summary(rows))
+        assert "**it (Italian)** — o2i #1 (beats espeak)" in text
+
+    def test_o2i_not_first_names_the_winner_and_o2i_rank(self, monkeypatch):
+        rows = [
+            {"lang": "en-US", "dataset": "cmudict", "n": 10,
+             "o2i_per": 0.50, "espeak_per": 0.30},
+        ]
+        monkeypatch.setitem(
+            cs.LANGS, "en-US", {"dataset": ("cmudict", "en-US")})
+        text = "\n".join(cs._leaderboard_summary(rows))
+        assert ("**en-US (American English (General American))** — "
+                "espeak #1, o2i #2") in text
+        # o2i is the ONLY system with a rules-only number here (no
+        # espeak_rules_per at all) — that is an absence of rivals, not a
+        # win, so no "o2i #1 on rules-only" note must be appended.
+        assert "rules-only" not in text.split("en-US", 1)[1].split("\n", 1)[0]
+
+    def test_only_primary_row_counted_per_language(self, monkeypatch):
+        # A language with several registered golds must produce exactly
+        # ONE leaderboard line, for its configured primary dataset.
+        rows = [
+            {"lang": "ca", "dataset": "4catac", "n": 10,
+             "o2i_per": 0.06, "espeak_per": 0.04},
+            {"lang": "ca", "dataset": "wikipron", "n": 5,
+             "o2i_per": 0.25, "espeak_per": 0.22},
+        ]
+        monkeypatch.setitem(cs.LANGS, "ca", {"dataset": ("4catac", "ca")})
+        lines = cs._leaderboard_summary(rows)
+        ca_lines = [l for l in lines if l.startswith("- **ca ")]
+        assert len(ca_lines) == 1
+
+
+class TestDetailsBlockPresence:
+    """The stale/coverage notes must survive the reorganization as a
+    clearly separated, collapsible section at the bottom of the doc —
+    honesty content is reorganized, never deleted."""
+
+    def test_details_block_wraps_the_staleness_and_coverage_notes(
+            self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "aa", "dataset": "d", "n": 2,
+             "o2i_per": 0.1, "o2i_n": 2,
+             "espeak_per": 0.3, "espeak_n": 2,
+             "epitran_per": None, "epitran_n": 0,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+        ]
+        monkeypatch.setitem(cs.LANGS, "aa", {"dataset": ("d", "aa")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+
+        cs.write_comparison(rows)
+
+        text = md_path.read_text(encoding="utf-8")
+        assert "<details>" in text
+        assert "</details>" in text
+        details = text.split("<details>", 1)[1].split("</details>", 1)[0]
+        assert "espeak-rules-only coverage" in details or \
+            "espeak-rules-only" in details
+        assert "Regenerate" in details
+        # The details block comes AFTER the main results table, not
+        # before it — data first, methodology after.
+        assert text.index("### aa") < text.index("<details>")
+
+    def test_stale_note_still_names_the_row(self, tmp_path, monkeypatch):
+        # Regression guard: the honest per-row staleness naming
+        # (results.json vs a fresh live run) must still be reachable in
+        # the regenerated doc, just relocated into the details block.
+        rows = [
+            {"lang": "aa", "dataset": "d", "n": 2, "o2i_per": 0.5},
+        ]
+        monkeypatch.setattr(
+            cs.benchmark, "SCOREBOARD_JSON", "/nonexistent/path.json")
+        note = cs._scoreboard_staleness_note(rows)
+        assert "could not be read" in note
+
+        monkeypatch.setitem(cs.LANGS, "aa", {"dataset": ("d", "aa")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+        cs.write_comparison(rows)
+        text = md_path.read_text(encoding="utf-8")
+        assert note in text
+
+
+class TestFairComparison2x2SameSourceRendering:
+    """B4 regression guard: the 2x2 table's `o2i` column used
+    `_fmt(row['o2i_per'])` instead of `_cell(row, 'o2i')`, leaking a
+    same-source row's raw (near-zero-by-construction) PER as if it were
+    a real number — e.g. pt-PT/portuguese_tts showed `0.0000` instead of
+    `same-source`."""
+
+    def test_same_source_o2i_row_renders_same_source_not_zero(self):
+        rows = [
+            {"lang": "pt-PT", "dataset": "portuguese_tts", "n": 20,
+             "o2i_per": 0.0, "o2i_same_source": True,
+             "o2i_lex_per": None,
+             "espeak_per": 0.3336, "espeak_same_source": False,
+             "espeak_rules_per": 0.3331, "espeak_rules_same_source": False},
+        ]
+        lines = cs._fair_comparison_2x2_lines(rows)
+        text = "\n".join(lines)
+        row_line = next(l for l in lines if l.startswith("| pt-PT |"))
+        assert "same-source" in row_line
+        assert "0.0000" not in row_line
+
+
 class TestEspeakRulesCoverageNote:
     """``_espeak_rules_coverage_note`` names rows that have a stock
     ``espeak`` number but no ``espeak-rules-only`` one yet — the
@@ -1884,10 +2263,18 @@ class TestWriteComparisonEspeakRulesColumn:
         cs.write_comparison(rows)
 
         text = md_path.read_text(encoding="utf-8")
-        assert "espeak-rules-only PER" in text
-        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | 0.0800 | 0.2000" in text
+        assert "espeak rules-only" in text
+        assert "### fr" in text
+        assert "| wikipron | 2 | 0.0500 | 0.0700 | 0.0800 | 0.2000" in text
 
     def test_missing_cell_renders_n_a_not_blank(self, tmp_path, monkeypatch):
+        # Two rows for the same language: "wikipron" has no epitran number
+        # while "cmudict" does, so the epitran column is NOT all-n/a for
+        # the "fr" group and stays in the table — letting us pin that the
+        # wikipron row's own missing epitran cell renders "n/a", not a
+        # blank or an omitted cell. espeak_rules_per is None on BOTH rows,
+        # so that column IS all-n/a for the group and is dropped per the
+        # per-group column-omission rule.
         rows = [
             {"lang": "fr", "dataset": "wikipron", "n": 2,
              "o2i_per": 0.05, "o2i_n": 2,
@@ -1895,6 +2282,15 @@ class TestWriteComparisonEspeakRulesColumn:
              "espeak_rules_per": None, "espeak_rules_n": 0,
              "espeak_rules_same_source": False,
              "epitran_per": None, "epitran_n": 0,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+            {"lang": "fr", "dataset": "cmudict", "n": 3,
+             "o2i_per": 0.06, "o2i_n": 3,
+             "espeak_per": 0.08, "espeak_n": 3, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_n": 0,
+             "espeak_rules_same_source": False,
+             "epitran_per": 0.3, "epitran_n": 3,
              "gruut_per": None, "gruut_n": 0,
              "provenance_tier": "crowd-scraped",
              "harness_version": "1.0", "limit": 10},
@@ -1908,6 +2304,12 @@ class TestWriteComparisonEspeakRulesColumn:
         cs.write_comparison(rows)
 
         text = md_path.read_text(encoding="utf-8")
-        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | n/a | n/a" in text
-        assert ("1 row(s) have a stock `espeak` number but no "
+        assert "### fr" in text
+        assert "| wikipron | 2 | 0.0500 | 0.0700 | n/a |" in text
+        assert "| cmudict | 3 | 0.0600 | 0.0800 | 0.3000 |" in text
+        # espeak_rules had no data at all for this group -> column dropped,
+        # not shown as a wall of n/a.
+        fr_section = text.split("### fr", 1)[1].split("###", 1)[0]
+        assert "espeak rules-only" not in fr_section
+        assert ("2 row(s) have a stock `espeak` number but no "
                 "`espeak-rules-only`") in text

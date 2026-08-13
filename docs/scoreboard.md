@@ -185,16 +185,16 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ckt | northeuralex | 500 | 0.1127 | · | · | · | · | [0.1000, 0.1246] | 0.5240 | research | lexicon-derived |
 | cnk | wikipron | 342 | 0.5202 | · | · | · | · | [0.5042, 0.5368] | 0.0000 | skeleton | crowd-scraped |
 | co | wikipron | 459 | 0.1972 | · | · | · | · | [0.1796, 0.2148] | 0.3813 | research | crowd-scraped |
-| cop | wikipron | 591 | 0.3716 | · | · | · | · | [0.3522, 0.3906] | 0.0863 | research | crowd-scraped |
+| cop | wikipron | 591 | 0.3671 | 0.3671 | 0.3671 | 0.1032 | 0.1032 | [0.3476, 0.3864] | 0.1032 | research | crowd-scraped |
 | cri | primary_sources | 13 | 0.2147 | · | · | · | · | [0.1243, 0.3116] | 0.2308 | research | expert-human |
 | crk | wikipron | 159 | 0.3174 | · | · | · | · | [0.2959, 0.3357] | 0.0126 | research | crowd-scraped |
 | crs | wold | 1874 | 0.2114 | · | · | · | · | [0.1980, 0.2262] | 0.5139 | research | lexicon-derived |
 | cs | vox_communis | 44942 | 0.1098 | · | · | · | · | [0.1067, 0.1131] | 0.5522 | research | epitran-derived |
 | csb | wikipron | 2825 | 0.1663 | · | · | · | · | [0.1594, 0.1734] | 0.3816 | research | crowd-scraped |
 | cv | vox_communis | 11102 | 1.1466 | · | · | · | · | [1.1252, 1.1670] | 0.0189 | skeleton | epitran-derived |
-| cy | ipa_childes | 4662 | 0.2985 | · | · | · | · | [0.2909, 0.3060] | 0.2731 | research | espeak-derived |
-| cy | vox_communis | 18701 | 0.1172 | · | · | · | · | [0.1154, 0.1191] | 0.4203 | research | epitran-derived |
-| cy | wikipron | 14467 | 0.2134 | · | · | · | · | [0.2104, 0.2165] | 0.3073 | research | crowd-scraped |
+| cy | ipa_childes | 4662 | 0.2985 | 0.2770 | 0.2762 | 0.3048 | 0.3065 | [0.2909, 0.3060] | 0.2731 | research | espeak-derived |
+| cy | vox_communis | 18701 | 0.1172 | 0.0539 | 0.0474 | 0.6762 | 0.7070 | [0.1154, 0.1191] | 0.4203 | research | epitran-derived |
+| cy | wikipron | 14760 | 0.1822 | 0.1481 | 0.1434 | 0.4140 | 0.4318 | [0.1794, 0.1851] | 0.3264 | research | crowd-scraped |
 | da | ipa_childes | 2233 | 0.4800 | · | · | · | · | [0.4681, 0.4927] | 0.0408 | research | espeak-derived |
 | da | wikipron | 4331 | 0.3435 | · | · | · | · | [0.3370, 0.3499] | 0.1171 | research | crowd-scraped |
 | dar | northeuralex | 1056 | 0.0691 | · | · | · | · | [0.0632, 0.0757] | 0.6439 | research | lexicon-derived |
@@ -322,7 +322,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | jam | wikipron | 382 | 0.2806 | · | · | · | · | [0.2503, 0.3102] | 0.4005 | research | crowd-scraped |
 | jv | kaikki | 93 | 0.2203 | · | · | · | · | - | - | skeleton | crowd-scraped |
 | ka | vox_communis | 79887 | 0.2337 | · | · | · | · | [0.2329, 0.2345] | 0.0725 | research | epitran-derived |
-| kab | vox_communis | 54546 | 0.2304 | · | · | · | · | [0.2290, 0.2319] | 0.1597 | research | epitran-derived |
+| kab | vox_communis | 54546 | 0.2071 | 0.2071 | 0.2071 | 0.1829 | 0.1829 | [0.2059, 0.2084] | 0.1829 | research | epitran-derived |
 | kas | wikipron | 683 | 0.3231 | · | · | · | · | [0.2965, 0.3514] | 0.3192 | research | crowd-scraped |
 | kaw | wikipron | 924 | 0.1474 | · | · | · | · | [0.1364, 0.1579] | 0.4632 | skeleton | crowd-scraped |
 | kca | northeuralex | 863 | 0.0232 | · | · | · | · | [0.0194, 0.0274] | 0.8517 | research | lexicon-derived |
@@ -377,7 +377,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mcm | primary_sources | 33 | 0.1146 | · | · | · | · | [0.0707, 0.1642] | 0.5758 | research | expert-human |
 | mdf | wikipron | 330 | 0.2212 | · | · | · | · | [0.2024, 0.2383] | 0.2485 | research | crowd-scraped |
 | mdh | wikipron | 205 | 0.0793 | · | · | · | · | [0.0643, 0.0948] | 0.6146 | skeleton | crowd-scraped |
-| mfe | wikipron | 206 | 0.2665 | · | · | · | · | [0.2342, 0.2980] | 0.3107 | skeleton | crowd-scraped |
+| mfe | wikipron | 206 | 0.1238 | 0.1238 | 0.1238 | 0.5485 | 0.5485 | [0.0992, 0.1487] | 0.5485 | research | crowd-scraped |
 | mga | wikipron | 328 | 0.5030 | · | · | · | · | [0.4807, 0.5244] | 0.0457 | research | crowd-scraped |
 | mh | wikipron | 947 | 0.4410 | · | · | · | · | [0.4272, 0.4554] | 0.0285 | research | crowd-scraped |
 | mhr | northeuralex | 992 | 0.1869 | · | · | · | · | [0.1798, 0.1942] | 0.1250 | research | lexicon-derived |
@@ -434,7 +434,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | no | wikipron | 1093 | 0.4105 | · | · | · | · | [0.3983, 0.4223] | 0.0823 | research | crowd-scraped |
 | non | wikipron | 270 | 0.2387 | · | · | · | · | [0.2173, 0.2638] | 0.2778 | research | crowd-scraped |
 | nrf | wikipron | 142 | 0.6380 | · | · | · | · | [0.5889, 0.6885] | 0.0282 | research | crowd-scraped |
-| nup | wikipron | 393 | 0.4932 | · | · | · | · | [0.4697, 0.5148] | 0.1450 | research | crowd-scraped |
+| nup | wikipron | 393 | 0.3979 | 0.3979 | 0.3979 | 0.1501 | 0.1501 | [0.3787, 0.4165] | 0.1501 | research | crowd-scraped |
 | nv | wikipron | 989 | 0.3080 | · | · | · | · | [0.2969, 0.3180] | 0.0940 | research | crowd-scraped |
 | ny | wikipron | 1564 | 0.3431 | · | · | · | · | [0.3345, 0.3528] | 0.0774 | research | crowd-scraped |
 | oc | wikipron | 675 | 0.1620 | · | · | · | · | [0.1482, 0.1744] | 0.3970 | research | crowd-scraped |
@@ -456,9 +456,9 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | pdc | wikipron | 405 | 0.3482 | · | · | · | · | [0.3304, 0.3682] | 0.0889 | research | crowd-scraped |
 | phl | wikipron | 2173 | 0.3287 | · | · | · | · | [0.3222, 0.3355] | 0.0318 | skeleton | crowd-scraped |
 | pjt | wikipron | 125 | 0.0027 | · | · | · | · | [0.0000, 0.0080] | 0.9920 | research | crowd-scraped |
-| pl | ipa_childes | 15523 | 0.2715 | · | · | · | · | [0.2684, 0.2747] | 0.1891 | research | espeak-derived |
-| pl | vox_communis | 47615 | 0.0194 | · | · | · | · | [0.0188, 0.0200] | 0.8533 | research | epitran-derived |
-| pl | wikipron | 148990 | 0.0480 | · | · | · | · | [0.0476, 0.0484] | 0.6633 | research | crowd-scraped |
+| pl | ipa_childes | 15523 | 0.2465 | 0.2382 | 0.2380 | 0.1906 | 0.1906 | [0.2433, 0.2495] | 0.1891 | research | espeak-derived |
+| pl | vox_communis | 47615 | 0.0194 | 0.0130 | 0.0127 | 0.9038 | 0.9064 | [0.0188, 0.0200] | 0.8533 | research | epitran-derived |
+| pl | wikipron | 148990 | 0.0480 | 0.0464 | 0.0463 | 0.6722 | 0.6727 | [0.0476, 0.0484] | 0.6633 | research | crowd-scraped |
 | pms | wikipron | 899 | 0.1660 | · | · | · | · | [0.1558, 0.1770] | 0.3560 | skeleton | crowd-scraped |
 | pox | wikipron | 314 | 0.3410 | · | · | · | · | [0.3205, 0.3624] | 0.1306 | skeleton | crowd-scraped |
 | ppl | wikipron | 185 | 0.1322 | · | · | · | · | [0.1104, 0.1534] | 0.4486 | research | crowd-scraped |
@@ -548,8 +548,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | qu | ipa_childes | 1850 | 0.4421 | · | · | · | · | [0.4322, 0.4519] | 0.0676 | stub | espeak-derived |
 | rgn | wikipron | 261 | 0.3369 | · | · | · | · | [0.3079, 0.3689] | 0.0996 | skeleton | crowd-scraped |
 | rif | wold | 1506 | 0.4095 | · | · | · | · | [0.3980, 0.4209] | 0.0930 | research | lexicon-derived |
-| ro | vox_communis | 12097 | 0.3411 | · | · | · | · | [0.3274, 0.3557] | 0.4598 | production | epitran-derived |
-| ro | wikipron | 8977 | 0.0356 | · | · | · | · | [0.0341, 0.0373] | 0.7664 | production | crowd-scraped |
+| ro | vox_communis | 12097 | 0.3282 | 0.3277 | 0.3275 | 0.5095 | 0.5104 | [0.3144, 0.3422] | 0.5079 | production | epitran-derived |
+| ro | wikipron | 8977 | 0.0342 | 0.0335 | 0.0332 | 0.7755 | 0.7768 | [0.0327, 0.0360] | 0.7735 | production | crowd-scraped |
 | ro-RO | ipa_childes | 2311 | 0.2684 | · | · | · | · | [0.2606, 0.2761] | 0.1791 | production | espeak-derived |
 | ro-RO | ipadict | 72375 | 0.0491 | · | · | · | · | [0.0484, 0.0497] | 0.6954 | production | lexicon-derived |
 | roa-x-galaicopt | portuguese_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
