@@ -1957,41 +1957,60 @@ class TestScoreboardLangScoping:
 
 
 class TestWinnerColumn:
-    """``_winner`` names the lowest-PER system on a row, calls a near-tie
-    ``tie`` rather than a spurious four-decimal win, and never lets a
-    same-source cell win (it is not a real comparison)."""
+    """``_winner`` ranks over the LEXICON-FREE world only (owner
+    directive: "anything with a lexicon doesn't count as a winner") —
+    a lexicon-backed ``espeak``/``gruut`` STOCK value never counts, only
+    its rules-only variant (or nothing, if no rules-only number exists
+    for that row). Also: calls a near-tie ``tie`` rather than a spurious
+    four-decimal win, and never lets a same-source cell win (it is not a
+    real comparison)."""
 
     def test_clear_winner_named(self):
         row = {"o2i_per": 0.10, "espeak_per": 0.30}
         assert cs._winner(row) == "o2i"
 
-    def test_other_system_wins(self):
+    def test_stock_espeak_never_wins_even_when_lowest(self):
+        # Mutation-resistant: espeak's LEXICON-BACKED stock value (0.10)
+        # is lower than o2i's (0.30), but with no espeak_rules_per given
+        # espeak has no lexicon-free representation at all — it must be
+        # DROPPED from ranking, not silently fall back to stock. o2i,
+        # the only remaining lexicon-free system, wins uncontested.
+        # (If the lexicon exclusion in _rules_only_values is deleted or
+        # bypassed, this assertion flips to "espeak" and fails.)
         row = {"o2i_per": 0.30, "espeak_per": 0.10}
-        assert cs._winner(row) == "espeak"
+        assert cs._winner(row) == "o2i"
+
+    def test_espeak_rules_only_wins_over_o2i(self):
+        # espeak's RULES-ONLY variant (lexicon-free) genuinely beats o2i
+        # — this is the one way "espeak" can appear as a winner: always
+        # under its rules-only label, never the bare lexicon-backed one.
+        row = {"o2i_per": 0.30, "espeak_per": 0.05, "espeak_rules_per": 0.10}
+        assert cs._winner(row) == "espeak rules-only"
 
     def test_tie_within_tolerance(self):
         # Tie cells must NAME who tied, never a bare "tie" — readability
         # blocker: a reader should not have to open the row to see who.
-        row = {"o2i_per": 0.1000, "espeak_per": 0.1005}
-        assert cs._winner(row) == "tie (espeak, o2i)"
+        row = {"o2i_per": 0.1000, "espeak_rules_per": 0.1005}
+        assert cs._winner(row) == "tie (espeak rules-only, o2i)"
 
     def test_no_system_usable_above_threshold(self):
         # Even the best PER on the row is worse than the "is anyone
         # usable here" threshold — naming a precise "winner" among
         # systems that are all effectively failing the gold is
         # misleading, so the cell says so instead.
-        row = {"o2i_per": 1.2, "espeak_per": 1.1}
+        row = {"o2i_per": 1.2, "espeak_rules_per": 1.1}
         assert cs._winner(row) == "no system is usable on this gold"
 
     def test_just_outside_tolerance_is_not_a_tie(self):
-        row = {"o2i_per": 0.1000, "espeak_per": 0.1020}
+        row = {"o2i_per": 0.1000, "espeak_rules_per": 0.1020}
         assert cs._winner(row) == "o2i"
 
     def test_same_source_cell_never_wins(self):
-        # espeak's own-generated gold scores near-zero by construction;
-        # it must not be crowned "winner" over a real o2i number.
-        row = {"o2i_per": 0.20, "espeak_per": 0.0,
-               "espeak_same_source": True}
+        # espeak-ng's own-generated gold scores near-zero by
+        # construction; it must not be crowned "winner" over a real o2i
+        # number, even under its rules-only label.
+        row = {"o2i_per": 0.20, "espeak_rules_per": 0.0,
+               "espeak_rules_same_source": True}
         assert cs._winner(row) == "o2i"
 
     def test_no_comparable_systems_is_na(self):
@@ -2002,22 +2021,39 @@ class TestWinnerColumn:
         row = {"o2i_per": 0.5, "espeak_rules_per": 0.1}
         assert cs._winner(row) == "espeak rules-only"
 
+    def test_lexicon_free_engines_rank_at_stock_value(self):
+        # epitran/pycotovia/ahotts/africa_g2p are audited lexicon-free —
+        # they rank at their normal stock value, no substitution needed.
+        row = {"o2i_per": 0.30, "epitran_per": 0.05}
+        assert cs._winner(row) == "epitran"
 
-class TestRulesOnlyLeaderboardNote:
-    """B2 regression guard: 'o2i #1 on rules-only' must be computed by
-    re-ranking ALL systems with their rules-only variant substituted in
-    (not just checking o2i against espeak_rules in isolation), and must
-    honour _WINNER_TIE_TOLERANCE. Pinned against the exact rows a
-    reviewer caught this wrong on: es and ro wrongly claimed the note
+    def test_gruut_stock_never_wins_even_when_lowest(self):
+        # Same mutation-resistance guard as espeak, for gruut.
+        row = {"o2i_per": 0.30, "gruut_per": 0.05}
+        assert cs._winner(row) == "o2i"
+
+    def test_gruut_rules_only_wins_under_its_own_label(self):
+        row = {"o2i_per": 0.30, "gruut_per": 0.02, "gruut_rules_per": 0.10}
+        assert cs._winner(row) == "gruut rules-only"
+
+
+class TestLeaderboardLexiconFreeRanking:
+    """B2/board-semantics regression guard: the Winner column and the
+    leaderboard rank over the LEXICON-FREE world (re-ranking ALL systems
+    with rules-only variants substituted in, not just checking o2i
+    against espeak_rules in isolation), honour _WINNER_TIE_TOLERANCE,
+    and surface a lexicon-backed value that WOULD have won as a named,
+    non-ranking informational aside — never silently. Pinned against the
+    exact rows a reviewer caught the predecessor of this logic getting
+    wrong on: es and ro wrongly claimed an "on rules-only" note
     (epitran actually still wins both under rules-only substitution);
-    ca-x-valencia is a tie, not an outright o2i win."""
+    ca-x-valencia is a tie, not an outright o2i win; ca is a genuine o2i
+    #1 flip once espeak's lexicon is excluded from ranking."""
 
-    def test_epitran_still_wins_under_rules_substitution_no_false_note(
-            self, monkeypatch):
+    def test_epitran_still_wins_under_rules_substitution(self, monkeypatch):
         # es/wikipron: o2i=0.0797, espeak_rules=0.1066, epitran=0.0277.
         # epitran (no rules-only variant, keeps its stock value) is still
-        # the best PER even after espeak is replaced by espeak_rules, so
-        # o2i must NOT get an "on rules-only" note here.
+        # the best PER even after espeak is replaced by espeak_rules.
         row = {"lang": "es", "dataset": "wikipron", "n": 10,
                "o2i_per": 0.0797, "espeak_per": 0.1071,
                "espeak_rules_per": 0.1066, "epitran_per": 0.0277}
@@ -2026,7 +2062,7 @@ class TestRulesOnlyLeaderboardNote:
         bullet = next(l for l in lines if l.startswith("- **es"))
         assert bullet == "- **es (Spanish)** — epitran #1, o2i #2"
 
-    def test_epitran_still_wins_ro_no_false_note(self, monkeypatch):
+    def test_epitran_still_wins_ro(self, monkeypatch):
         row = {"lang": "ro", "dataset": "wikipron", "n": 10,
                "o2i_per": 0.0342, "espeak_per": 0.0825,
                "espeak_rules_per": 0.0761, "epitran_per": 0.0302}
@@ -2037,56 +2073,127 @@ class TestRulesOnlyLeaderboardNote:
 
     def test_tie_under_rules_substitution(self, monkeypatch):
         # ca-x-valencia/4catac: o2i=0.0759, espeak_rules=0.0762 (within
-        # tolerance of o2i) — a TIE in the rules-only world, not an
-        # outright "o2i #1 on rules-only" win.
+        # _WINNER_TIE_TOLERANCE of o2i) — a TIE in the lexicon-free
+        # ranking. Regression guard for the reviewed bug: a bare
+        # sorted(...)[0] in _leaderboard_line called this row an
+        # outright "o2i #1", while _winner() correctly rendered
+        # "tie (espeak rules-only, o2i)" for the SAME row — the two
+        # must never contradict. This exact-equality assertion FAILS
+        # against that pre-fix renderer (which produces
+        # "o2i #1 (beats espeak rules-only)"), unlike the previous
+        # tautological `"tie" in bullet or "o2i #1" in bullet` check.
         row = {"lang": "ca-x-valencia", "dataset": "4catac", "n": 10,
                "o2i_per": 0.0759, "espeak_per": 0.0439,
                "espeak_rules_per": 0.0762, "epitran_per": 0.3775}
         monkeypatch.setitem(
             cs.LANGS, "ca-x-valencia", {"dataset": ("4catac", "ca-x-valencia")})
         text = "\n".join(cs._leaderboard_summary([row]))
-        assert "tied #1 on rules-only" in text
+        bullet = next(l for l in text.splitlines()
+                       if l.startswith("- **ca-x-valencia"))
+        assert bullet == (
+            "- **ca-x-valencia (Valencian)** — "
+            "tie (espeak rules-only, o2i) #1 "
+            "(espeak with its lexicon scores 0.0439 — informational)"
+        )
+        # The Winner column (_winner) and this leaderboard line must
+        # agree on tie-ness for the identical row.
+        assert cs._winner(row) == "tie (espeak rules-only, o2i)"
 
-    def test_genuine_rules_only_win_still_noted(self, monkeypatch):
+    def test_ca_o2i_flips_to_number_one_once_espeak_lexicon_excluded(
+            self, monkeypatch):
         # ca/4catac: o2i clearly beats espeak_rules AND every other
-        # system once rules are substituted in — the note IS warranted.
+        # system once espeak's lexicon-backed stock value (0.0403, the
+        # actual board-committed number) is EXCLUDED from ranking — this
+        # is the flip the owner directive names explicitly. Mutation-
+        # resistant: if the exclusion of stock espeak is ever removed,
+        # espeak (0.0403) beats o2i (0.0643) and this assertion fails.
         row = {"lang": "ca", "dataset": "4catac", "n": 10,
                "o2i_per": 0.0643, "espeak_per": 0.0403,
                "espeak_rules_per": 0.1206, "epitran_per": 0.4641}
         monkeypatch.setitem(cs.LANGS, "ca", {"dataset": ("4catac", "ca")})
         text = "\n".join(cs._leaderboard_summary([row]))
-        assert "o2i #1 on rules-only" in text
-        assert "tied" not in text
+        bullet = next(l for l in text.splitlines()
+                       if l.startswith("- **ca "))
+        assert "o2i #1" in bullet
+        assert "espeak #1" not in bullet
+
+    def test_lexicon_backed_winner_surfaced_as_informational_aside(
+            self, monkeypatch):
+        # When the lexicon-backed stock value would have scored lowest
+        # of all systems, it must still be NAMED (never hidden) as an
+        # informational aside — just not counted as the ranked winner.
+        row = {"lang": "ca", "dataset": "4catac", "n": 10,
+               "o2i_per": 0.0643, "espeak_per": 0.0403,
+               "espeak_rules_per": 0.1206, "epitran_per": 0.4641}
+        monkeypatch.setitem(cs.LANGS, "ca", {"dataset": ("4catac", "ca")})
+        text = "\n".join(cs._leaderboard_summary([row]))
+        bullet = next(l for l in text.splitlines()
+                       if l.startswith("- **ca "))
+        assert "informational" in bullet
+        assert "0.0403" in bullet
+
+    def test_no_aside_when_no_lexicon_backed_value_would_have_won(
+            self, monkeypatch):
+        # o2i already beats even espeak's stock lexicon-backed value —
+        # nothing informational to add.
+        row = {"lang": "de", "dataset": "wikipron", "n": 10,
+               "o2i_per": 0.02, "espeak_per": 0.05,
+               "espeak_rules_per": 0.09}
+        monkeypatch.setitem(cs.LANGS, "de", {"dataset": ("wikipron", "de")})
+        text = "\n".join(cs._leaderboard_summary([row]))
+        bullet = next(l for l in text.splitlines()
+                       if l.startswith("- **de "))
+        assert "informational" not in bullet
 
 
 class TestLeaderboardSummary:
     """``_leaderboard_summary`` is the compact per-language standings
     block at the top of the doc — built from each language's PRIMARY
-    gold row only, one line per language."""
+    gold row only, one line per language, ranked over the lexicon-free
+    world (see ``TestLeaderboardLexiconFreeRanking``)."""
 
     def test_o2i_number_one_names_runner_up(self, monkeypatch):
+        # epitran is audited lexicon-free, so it stays a real rival even
+        # with no espeak_rules_per given (espeak itself is excluded).
+        rows = [
+            {"lang": "it", "dataset": "wikipron", "n": 10,
+             "o2i_per": 0.04, "espeak_per": 0.07, "epitran_per": 0.09},
+        ]
+        monkeypatch.setitem(cs.LANGS, "it", {"dataset": ("wikipron", "it")})
+        text = "\n".join(cs._leaderboard_summary(rows))
+        assert "**it (Italian)** — o2i #1 (beats epitran)" in text
+
+    def test_o2i_number_one_alone_when_no_lexicon_free_rival(
+            self, monkeypatch):
+        # espeak has only a lexicon-backed stock value on this row (no
+        # espeak_rules_per) — it is EXCLUDED from ranking entirely, not
+        # silently kept as a rival, so o2i stands alone as #1.
         rows = [
             {"lang": "it", "dataset": "wikipron", "n": 10,
              "o2i_per": 0.04, "espeak_per": 0.07},
         ]
         monkeypatch.setitem(cs.LANGS, "it", {"dataset": ("wikipron", "it")})
         text = "\n".join(cs._leaderboard_summary(rows))
-        assert "**it (Italian)** — o2i #1 (beats espeak)" in text
+        assert "**it (Italian)** — o2i #1" in text
+        assert "beats" not in text.split("it (Italian)", 1)[1].split("\n", 1)[0]
 
     def test_o2i_not_first_names_the_winner_and_o2i_rank(self, monkeypatch):
         rows = [
             {"lang": "en-US", "dataset": "cmudict", "n": 10,
-             "o2i_per": 0.50, "espeak_per": 0.30},
+             "o2i_per": 0.50, "espeak_per": 0.30,
+             "espeak_rules_per": 0.35},
         ]
         monkeypatch.setitem(
             cs.LANGS, "en-US", {"dataset": ("cmudict", "en-US")})
         text = "\n".join(cs._leaderboard_summary(rows))
         assert ("**en-US (American English (General American))** — "
-                "espeak #1, o2i #2") in text
-        # o2i is the ONLY system with a rules-only number here (no
-        # espeak_rules_per at all) — that is an absence of rivals, not a
-        # win, so no "o2i #1 on rules-only" note must be appended.
-        assert "rules-only" not in text.split("en-US", 1)[1].split("\n", 1)[0]
+                "espeak rules-only #1, o2i #2") in text
+        # espeak's stock (lexicon-backed) 0.30 beats both o2i (0.50) AND
+        # espeak_rules (0.35) — it must surface as a named informational
+        # aside, never silently.
+        bullet = text.split("en-US", 1)[1].split("\n", 1)[0]
+        assert "informational" in bullet
+        assert "0.3000" in bullet
 
     def test_only_primary_row_counted_per_language(self, monkeypatch):
         # A language with several registered golds must produce exactly
