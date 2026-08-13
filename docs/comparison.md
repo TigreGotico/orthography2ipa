@@ -1,6 +1,6 @@
 # Comparison to other G2P systems
 
-This table shows how well orthography2ipa (o2i) predicts IPA pronunciation compared to seven other G2P systems, on the same gold word lists, language by language.
+This table shows how well orthography2ipa (o2i) predicts IPA pronunciation compared to eleven other G2P systems (including the four o2i-downstream family engines — arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer), on the same gold word lists, language by language.
 
 Every number is a **PER (Phoneme Error Rate)**: lower is better, `0.0000` is a perfect match, and it CAN exceed `1.0` when a system's output is much longer or shorter than the gold (more edits than the gold has phonemes).
 
@@ -16,6 +16,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **#N** — N-th place by PER on that row, RANKED OVER THE LEXICON-FREE WORLD; `#1` is the winner.
 - **"... with its lexicon scores N — informational"** — a lexicon-backed stock value that would have scored lowest of all systems on this row, named so it is never hidden — just not counted as the winner.
 
+- **ar** — tie (arbtok, o2i) #1
 - **arb (Classical Arabic)** — o2i not scored: this gold was drafted by o2i's own lineage — see same-source (africa-g2p #1 among the rest)
 - **ca (Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0403 — informational)
 - **ca-x-balear (Balearic Catalan)** — espeak rules-only #1, o2i #2 (espeak with its lexicon scores 0.0797 — informational)
@@ -31,6 +32,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **es (Spanish)** — epitran #1, o2i #2
 - **eu (Basque (Euskara))** — o2i #1 (beats espeak rules-only)
 - **eu-wikipron (Basque (Euskara), wikipron-primary variant)** — o2i #1 (beats espeak rules-only)
+- **ext-PT-x-barrancos** — primary gold has no comparable systems (same-source); see the per-language table below for a comparison on a secondary gold
 - **fi (Finnish)** — o2i #1 (beats epitran)
 - **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
@@ -42,25 +44,51 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **ktz (Juǀʼhoan)** — o2i #1 (beats africa-g2p)
 - **lad (Ladino (Judeo-Spanish))** — o2i #1 (beats africa-g2p)
 - **mfe (Morisyen)** — o2i #1 (beats africa-g2p)
+- **mwl** — tie (mwl_phonemizer, o2i) #1
 - **ngh (Nǁng)** — o2i #1 (beats africa-g2p)
 - **nl (Dutch)** — o2i #1 (beats espeak rules-only)
 - **nup (Nupe)** — o2i #1 (beats africa-g2p)
 - **pl (Polish)** — o2i #1 (beats epitran)
-- **pt-PT (European Portuguese)** — o2i #1 (beats espeak rules-only)
+- **pt-PT (European Portuguese)** — o2i #1 (beats espeak rules-only) (tugaphone with its lexicon scores 0.1887 — informational)
 - **ro (Romanian)** — o2i #1 (beats epitran)
 - **ru (Russian)** — o2i #1 (beats epitran)
 - **sv (Swedish)** — o2i #1 (beats espeak rules-only)
 - **tr (Turkish)** — o2i #1 (beats epitran)
 - **tzm (Central Atlas Tamazight)** — o2i #1 (beats africa-g2p)
 
+## The o2i family
+
+orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi rules per language variety — that several TigreGotico projects build directly on top of, adding what the shared lattice deliberately leaves to the caller (lexicons, diacritization, dialect selection, normalization). These are FIRST-CLASS to this board, not "other G2P systems" being compared against o2i as competitors:
+
+*Versions pinned: the family rows above were produced with arbtok 0.0.0a57, tugaphone 1.0.0a2, g2p_barranquenho 0.1.2a3, mwl_phonemizer 2.1.0a2 — every one of these exact versions is published on PyPI as a pre-release alpha (verified with `pip index versions <pkg> --pre`), so the number is reproducible from a plain `pip install --pre <pkg>==<version>` even on generating environments that installed a local/editable checkout at the same version instead.*
+
+- **[arbtok](https://github.com/TigreGotico/arbtok)** — adds Arabic diacritization, dialect lexicons, nativized loanwords, and code-switch handling on top of the shared `ar`/`arb` lattice (the RANKED `arbtok` column below runs with both bundled lexicons off for a fair lexicon-free comparison — see `arbtok (lexicon)` for the full-featured stock number).
+- **[tugaphone](https://github.com/TigreGotico/tugaphone)** — adds the curated `tugalex` pronunciation lexicon, sense-based homograph marking, and cross-dialect contact-language handling on top of the Portuguese-family lattice.
+- **[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `ext-PT-x-barrancos` lattice.
+- **[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer)** — adds Mirandese dialect selection, an optional native-speaker lexicon overlay, and CRF correction on top of the `mwl` lattice.
+
+**Reading a family row: headroom, not a loss.** Where a family system's PER beats bare o2i's on a row that is NOT `same-source` (see below — same-source rows are refused as a comparison point, exactly like every other system on this board), that gap is a concrete demonstration of what the shared `orthography2ipa` specs could still absorb into the base lattice — a diacritizer pass, a closed-class lexicon, a dialect rule — not evidence o2i "lost" to a competitor. Where a family row instead ties o2i exactly, that is equally informative: it means the family member's extra stages are not (yet, or not on this gold) adding anything the base lattice does not already do on its own.
+
+**Measurement stays unchanged.** Every family row is scored under the exact same discipline as every other system on this board: the SAME `same-source` refusal when a family engine would be scored against gold drawn from o2i's own lineage (see "How to read this" below — all four family engines are built on o2i's lattice, so they inherit o2i's own same-source exposure 1:1); the SAME lexicon-vs-rules-only discipline — g2p_barranquenho and mwl_phonemizer's lexicon-free DEFAULT configuration are ranked normally; arbtok's DEFAULT is lexicon-backed (a 145,890-entry stem lexicon plus a per-lect dialect lexicon, both on), so the ranked `arbtok` column is a deliberately NON-default configuration (`lexicon=None, dialect_lexicon=False`) leaving only the rule path plus a 22-entry closed demonstrative-pronoun exception table with no independent toggle, while the unmodified stock number is shown separately as the informational `arbtok (lexicon)` column; tugaphone's always-on `tugalex` lexicon has no public disable switch at all, so it is excluded from the lexicon-free Winner/leaderboard ranking the same way — and the SAME honest reporting either way, a family engine beating o2i is reported as loudly as a tie.
+
 ## Results by language
+
+### ar
+
+| Dataset | N | o2i | gruut (lexicon) | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
+|---|---|---|---|---|---|---|---|---|---|
+| arabic_tts | 20 | same-source | n/a | same-source | same-source | same-source | same-source | same-source | n/a |
+| gold20_arabic | 20 | same-source | n/a | same-source | same-source | same-source | same-source | same-source | n/a |
+| ipadict | 2319 | 0.3073 | same-source | 0.1727 | 0.1693 | n/a | n/a | n/a | arbtok |
+| wikipron | 2735 | 0.2514 | n/a | 0.1543 | 0.1472 | n/a | n/a | n/a | arbtok |
+| wikipron_ar_diacritized | 2717 | 0.1788 | n/a | 0.1781 | 0.1781 | n/a | n/a | n/a | tie (arbtok, o2i) |
 
 ### arb (Classical Arabic)
 
-| Dataset | N | o2i | africa-g2p | Winner |
-|---|---|---|---|---|
-| arabic_tts | 20 | same-source | 0.2836 | africa-g2p |
-| gold20_arabic | 20 | same-source | 0.2666 | africa-g2p |
+| Dataset | N | o2i | africa-g2p | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
+|---|---|---|---|---|---|---|---|---|---|
+| arabic_tts | 20 | same-source | 0.2836 | same-source | same-source | same-source | same-source | same-source | africa-g2p |
+| gold20_arabic | 20 | same-source | 0.2666 | same-source | same-source | same-source | same-source | same-source | africa-g2p |
 
 ### ca (Catalan)
 
@@ -164,6 +192,14 @@ One line per language: the best system on its primary gold, and where o2i lands.
 | vox_communis | 64077 | 0.0644 | 0.1194 | 0.1190 | same-source | 0.1280 | o2i |
 | wikipron | 12022 | 0.0546 | 0.1019 | 0.0986 | n/a | 0.1507 | o2i |
 
+### ext-PT-x-barrancos
+
+| Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
+|---|---|---|---|---|---|---|---|---|
+| barranquenho_dict | 1508 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
+| portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
+| primary_sources | 10 | 0.2801 | n/a | n/a | n/a | 0.2801 | n/a | tie (g2p_barranquenho, o2i) |
+
 ### fi (Finnish)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
@@ -236,6 +272,14 @@ One line per language: the best system on its primary gold, and where o2i lands.
 |---|---|---|---|---|
 | wikipron | 206 | 0.1238 | 0.3001 | o2i |
 
+### mwl
+
+| Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
+|---|---|---|---|---|---|---|---|---|
+| mirandese_dict | 990 | 0.0401 | n/a | n/a | n/a | n/a | 0.0401 | tie (mwl_phonemizer, o2i) |
+| mirandese_g2p | 205 | 0.1317 | n/a | n/a | n/a | n/a | 0.1317 | tie (mwl_phonemizer, o2i) |
+| portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
+
 ### ngh (Nǁng)
 
 | Dataset | N | o2i | africa-g2p | Winner |
@@ -267,13 +311,13 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 ### pt-PT (European Portuguese)
 
-| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
-|---|---|---|---|---|---|---|
-| ep_dialects | 30 | 0.1185 | 0.3192 | 0.3225 | 0.4095 | o2i |
-| ipa_childes | 3000 | 0.2498 | same-source | same-source | 0.4027 | o2i |
-| portuguese_tts | 20 | same-source | 0.3336 | 0.3331 | 0.4042 | espeak rules-only |
-| portuguese_unified | 3000 | 0.2245 | 0.3669 | 0.3631 | 0.4146 | o2i |
-| wikipron | 2272 | 0.1346 | 0.2374 | 0.2373 | 0.2903 | o2i |
+| Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ep_dialects | 30 | 0.1185 | 0.3192 | 0.3225 | 0.4095 | n/a | n/a | 0.1185 | n/a | n/a | o2i |
+| ipa_childes | 3000 | 0.2498 | same-source | same-source | 0.4027 | n/a | n/a | 0.2496 | n/a | n/a | o2i |
+| portuguese_tts | 20 | same-source | 0.3336 | 0.3331 | 0.4042 | same-source | same-source | same-source | same-source | same-source | espeak rules-only |
+| portuguese_unified | 3000 | 0.2245 | 0.3669 | 0.3631 | 0.4146 | n/a | n/a | 0.1887 | n/a | n/a | o2i |
+| wikipron | 2272 | 0.1346 | 0.2374 | 0.2373 | 0.2903 | n/a | n/a | 0.1341 | n/a | n/a | o2i |
 
 ### ro (Romanian)
 
@@ -502,7 +546,7 @@ Not every gold language has a mapping for every competitor system: espeak-ng, ep
 
 ### Staleness
 
-The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for every shared language/dataset pair that used the same word count. 2 more row(s) differ for a DIFFERENT reason — not staleness: this board's `sample_n` config scores a fixed-seed SUBSET of the gold, while `benchmarks/results.json` scores the FULL gold. Same seed, different sample size, so a different PER is expected and regenerating either side will not reconcile them: `pt-PT`/`ipa_childes` (here 0.2498 on 3000 sampled words, results.json 0.2477 on the full 3846); `pt-PT`/`wikipron` (here 0.1346 on 2272 sampled words, results.json 0.0903 on the full 56891).
+The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for most shared language/dataset pairs, EXCEPT the 3 listed below — those `benchmarks/results.json` rows are stale (a prior PR changed the engine but did not regenerate every affected row there; see e.g. PR #802's `ca`/`4catac`-only regeneration). The numbers in THIS table reflect the current engine via a live run; `benchmarks/results.json` needs a matching regeneration for: `ext-PT-x-barrancos`/`barranquenho_dict` (here 0.0045, results.json 0.1053); `mwl`/`mirandese_dict` (here 0.0401, results.json 0.2665); `mwl`/`mirandese_g2p` (here 0.1317, results.json 0.1404). 5 more row(s) differ for a DIFFERENT reason — not staleness: this board's `sample_n` config scores a fixed-seed SUBSET of the gold, while `benchmarks/results.json` scores the FULL gold. Same seed, different sample size, so a different PER is expected and regenerating either side will not reconcile them: `ar`/`ipadict` (here 0.3073 on 2319 sampled words, results.json 0.3768 on the full 857160); `ar`/`wikipron` (here 0.2514 on 2735 sampled words, results.json 0.3136 on the full 14268); `ar`/`wikipron_ar_diacritized` (here 0.1788 on 2717 sampled words, results.json 0.1666 on the full 14240); `pt-PT`/`ipa_childes` (here 0.2498 on 3000 sampled words, results.json 0.2477 on the full 3846); `pt-PT`/`wikipron` (here 0.1346 on 2272 sampled words, results.json 0.0903 on the full 56891).
 
 **espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh`. Every row with a stock `espeak` number also carries an `espeak-rules-only` one in this run.
 
