@@ -120,7 +120,16 @@ Three things to know before declaring one:
    outrank `NUCLEUS` and `DEFAULT`. Declare `nucleus_unstressed` without
    `nucleus_unstressed_open` and the unstressed rule still wins over
    aperture, which is usually what a reduction language wants.
-3. **The proxy is only as good as the syllable boundary.** Where the
+3. **A secondary-stressed nucleus takes neither pair.** When a spec
+   declares `stress.secondary_stress`, a syllable that is a secondary
+   foot head emits `nucleus_secondary` and NO unstressed position —
+   neither `nucleus_unstressed` nor its aperture pair — because such a
+   syllable is not weak (Liberman & Prince 1977; Hayes 1995 ch. 3). A
+   spec that declares nothing for `nucleus_secondary` therefore falls
+   through to the grapheme's default mapping, which is the full-quality
+   vowel, and its reduction entries keep applying to the level-0
+   syllables only. Specs without the declaration are unaffected.
+4. **The proxy is only as good as the syllable boundary.** Where the
    syllabifier maximises onsets without phonotactics it will invent open
    syllables; measure before shipping. French ⟨o⟩ and every Dutch vowel
    were declared, measured, and REVERTED for exactly this reason — see

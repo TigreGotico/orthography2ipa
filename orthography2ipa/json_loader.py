@@ -478,6 +478,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             cliticless_words=tuple(raw_stress.get("cliticless_words", ())),
             coda_liquid_capture=bool(
                 raw_stress.get("coda_liquid_capture", False)),
+            secondary_stress=str(raw_stress.get("secondary_stress", "") or ""),
             source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )

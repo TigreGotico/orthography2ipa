@@ -90,7 +90,8 @@ class TestGraphemePosition(unittest.TestCase):
         expected = {
             "word_initial", "word_final",
             "intervocalic", "intervocalic_cross_word",
-            "onset", "nucleus_stressed", "nucleus_unstressed", "coda",
+            "onset", "nucleus_stressed", "nucleus_unstressed",
+            "nucleus_secondary", "coda",
             "first_pretonic", "pretonic", "posttonic",
             "before_vowel", "before_final_vowel", "after_vowel",
             "before_consonant", "after_consonant",

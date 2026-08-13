@@ -389,6 +389,37 @@ class StressRules:
         default) = no pitch accent, plain stress marking.
     accent2_final_letters : Tuple[str, ...]
         The final orthographic letters that select :attr:`accent2_mark`.
+    secondary_stress : str
+        Whether the language has a SECOND degree of prominence below the main
+        word stress, and by which rule it is placed. Word stress is not a
+        binary stressed/unstressed switch: a metrical grid has levels, and a
+        syllable can be metrically strong (a foot head) without carrying the
+        word's main accent (Liberman & Prince 1977, *On Stress and Linguistic
+        Rhythm*, LI 8; Hayes 1995, *Metrical Stress Theory*, ch. 2-3).
+
+        Values:
+
+        ``""``
+            (default) no second level. The engine's prominence stays binary
+            and nothing changes for the spec.
+        ``"alternating"``
+            binary feet built LEFTWARD from the main stress: the second
+            syllable before it, the fourth, and so on, are foot heads and
+            carry secondary stress (Hayes 1995 ch. 3 on binary, quantity-
+            insensitive foot construction; ˌcombiˈnation, ˌrepreˈsentative).
+            A main stress on the first or second syllable leaves nothing to
+            build, so nothing is marked.
+
+        What the level *does* is not cosmetic. A secondary-stressed syllable
+        is **not unstressed**, so it stops matching the spec's
+        ``nucleus_unstressed`` (and ``nucleus_unstressed_open`` /
+        ``nucleus_unstressed_closed``) entries and matches
+        ``nucleus_secondary`` instead; a reduction rule written for weak
+        syllables therefore no longer reduces it. Position relative to the
+        main stress (``pretonic`` / ``posttonic``) is a different fact and is
+        still emitted. When a spec declares this,
+        :func:`~orthography2ipa.stress.apply_stress_mark` also writes the
+        secondary mark ``ˌ`` before those syllables.
     source : str
         Where the stress comes from. ``"rules"`` (the default) means this block —
         declarative data a language owner wrote, that anyone can read, cite and
@@ -419,6 +450,7 @@ class StressRules:
     coda_liquid_capture: bool = False
     accent2_mark: str = ""
     accent2_final_letters: Tuple[str, ...] = ()
+    secondary_stress: str = ""
     source: str = "rules"
     notes: str = ""
 
@@ -494,6 +526,17 @@ class GraphemePosition(str, Enum):
     """Syllable nucleus position (typically a vowel).
     E.g., reduced vowels in unstressed nuclei — Portuguese ⟨e⟩ → [ɨ]
     vs. [ɛ] in stressed nucleus; English ⟨a⟩ → [ə] in unstressed."""
+
+    NUCLEUS_SECONDARY = "nucleus_secondary"
+    """Nucleus of a syllable carrying SECONDARY stress — a foot head that is
+    not the main word accent (Liberman & Prince 1977; Hayes 1995 ch. 3).
+    Emitted only for a spec that declares
+    :attr:`~orthography2ipa.types.StressRules.secondary_stress`, and emitted
+    INSTEAD OF :attr:`NUCLEUS_UNSTRESSED` (and instead of the unstressed
+    aperture pair), because such a syllable is not weak: English keeps its
+    vowel full under secondary stress — ˌcombiˈnation, not *ˌkəmbiˈnation.
+    A spec that declares nothing for it falls through to the grapheme's
+    default mapping, which is the full-quality vowel."""
 
     CODA = "coda"
     """Syllable coda position (end of syllable).

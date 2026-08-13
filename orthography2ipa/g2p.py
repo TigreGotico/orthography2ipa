@@ -82,7 +82,8 @@ from orthography2ipa.sentence import (
 )
 from orthography2ipa.stress import (
     _syllables_for, apply_stress_mark, cliticless_keys, detect_stress,
-    detect_stress_by_weight, syllabify, syllabify_ipa,
+    detect_stress_by_weight, secondary_stress_positions, syllabify,
+    syllabify_ipa,
 )
 from orthography2ipa.transforms import apply_transform
 from orthography2ipa.types import GraphemePosition, LanguageSpec
@@ -773,6 +774,7 @@ class G2P:
         contexts = flat_contexts(g_tokens, self.spec.vowel_graphemes)
 
         stressed_syll_idx: Optional[int] = None
+        secondary_syll_idxs: frozenset = frozenset()
         # Syllabification is needed for TWO independent things: the stress
         # positions (which need the spec's stress rules) and the aperture
         # positions (which need only the syllable's own shape). It is
@@ -791,6 +793,12 @@ class G2P:
                 stressed_syll_idx = 0
             if self._is_cliticless(word):
                 stressed_syll_idx = _CLITIC_NO_STRESS
+            # Prominence LEVEL 2. Empty unless the spec declares
+            # ``stress.secondary_stress``; a clitic has no main stress, so
+            # nothing below it either (the sentinel is negative and
+            # ``secondary_stress_positions`` returns the empty set).
+            secondary_syll_idxs = secondary_stress_positions(
+                len(sylls), stressed_syll_idx, self.spec.stress)
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
 
         aperture = _ApertureView(sylls, self.spec,
@@ -807,6 +815,7 @@ class G2P:
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
                 stressed_syll_idx=stressed_syll_idx,
+                secondary_syll_idxs=secondary_syll_idxs,
                 syllable=aperture.syllable(syll_for_token[tok_idx]),
                 syllable_final=aperture.is_final(syll_for_token[tok_idx]))
             tok = g_tokens[tok_idx]
@@ -1186,8 +1195,10 @@ class G2P:
                     if penult and word and \
                             word[-1].lower() in rules.accent2_final_letters:
                         mark = rules.accent2_mark
-                ipa = apply_stress_mark(ipa, self.spec.stress, idx,
-                                        syllables=sylls, mark=mark)
+                ipa = apply_stress_mark(
+                    ipa, self.spec.stress, idx, syllables=sylls, mark=mark,
+                    secondary_indices=sorted(secondary_stress_positions(
+                        len(sylls), idx, self.spec.stress)))
         # NOT NFC-composed: see the note in _transcribe_word.
         return ipa
 
@@ -1400,6 +1411,7 @@ class G2P:
 
         # Determine stressed syllable index once (reuse for all vowels)
         stressed_syll_idx: Optional[int] = None
+        secondary_syll_idxs: frozenset = frozenset()
         # Syllabification is needed for TWO independent things: the stress
         # positions (which need the spec's stress rules) and the aperture
         # positions (which need only the syllable's own shape). It is
@@ -1418,6 +1430,12 @@ class G2P:
                 stressed_syll_idx = 0  # monosyllable → always stressed
             if self._is_cliticless(word):
                 stressed_syll_idx = _CLITIC_NO_STRESS
+            # Prominence LEVEL 2. Empty unless the spec declares
+            # ``stress.secondary_stress``; a clitic has no main stress, so
+            # nothing below it either (the sentinel is negative and
+            # ``secondary_stress_positions`` returns the empty set).
+            secondary_syll_idxs = secondary_stress_positions(
+                len(sylls), stressed_syll_idx, self.spec.stress)
 
         # Map each grapheme token index to its syllable index
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
@@ -1439,6 +1457,7 @@ class G2P:
                 allophone_map=allophone_map,
                 syll_idx=syll_for_token[tok_idx],
                 stressed_syll_idx=stressed_syll_idx,
+                secondary_syll_idxs=secondary_syll_idxs,
                 syllable=aperture.syllable(syll_for_token[tok_idx]),
                 syllable_final=aperture.is_final(syll_for_token[tok_idx]))
             for tok_idx, ctx in enumerate(contexts)

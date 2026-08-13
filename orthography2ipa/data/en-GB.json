@@ -577,6 +577,26 @@
       "url": null,
       "pages": null,
       "notes": "Orthography-driven classification of English suffixes by their effect on stress placement (auto-stressed, pre-stressed 1/2, stress-neutral); the citation for the antepenult_stress_endings class and for the Germanic stem-initial default."
+    },
+    {
+      "id": "liberman_prince1977",
+      "author": "Liberman, M. & Prince, A.",
+      "year": 1977,
+      "title": "On Stress and Linguistic Rhythm",
+      "publisher": "Linguistic Inquiry 8(2), 249-336",
+      "url": null,
+      "pages": null,
+      "notes": "Word prominence is a relative, multi-level structure, not a stressed/unstressed switch — the basis of the secondary-stress level this spec declares."
+    },
+    {
+      "id": "hayes1995",
+      "author": "Hayes, B.",
+      "year": 1995,
+      "title": "Metrical Stress Theory: Principles and Case Studies",
+      "publisher": "University of Chicago Press",
+      "url": null,
+      "pages": null,
+      "notes": "Binary, quantity-insensitive foot construction (ch. 3) — the rule behind stress.secondary_stress = \"alternating\"."
     }
   ],
   "wikipedia": [
@@ -1223,11 +1243,18 @@
       "onomy",
       "ocracy"
     ],
+    "penult_stress_endings": [
+      "ic",
+      "ics",
+      "ion",
+      "ions"
+    ],
     "cliticless_words": [
       "the",
       "a",
       "an"
     ],
-    "notes": "English word stress is only PARTLY predictable from spelling, and this block states the predictable part, nothing more. DEFAULT = FIRST SYLLABLE (default_position 1): the Germanic stem-initial stress pattern that English inherited and that still governs the unsuffixed native vocabulary (Fudge 1984, English Word-Stress, ch. 1-2; Cruttenden 2014, Gimson's Pronunciation of English 8th ed. §10.4, on the early placement of English word accent). ANTEPENULT_STRESS_ENDINGS = Fudge's PRE-STRESSED suffix classes whose suffix is TWO orthographic syllables long, so 'the syllable before the suffix' is the antepenult of the whole word (Fudge 1984, ch. 3-4): -ical (ˈcritical), -ity/-ities (aˈbility), -ify/-ifies (ˈclassify), -iency (efˈficiency), -ular (ˈregular), -graphy/-logy/-ometer/-onomy/-ocracy (phoˈtography, biˈology, therˈmometer, aˈstronomy, deˈmocracy). NOT DECLARED, and why: (a) the ONE-syllable pre-stressed suffixes -ic, -ion, -ial, -ious, -ian, -ient place stress on the PENULT, which is correct (Fudge 1984, ch. 3), but the engine has no SECONDARY stress, so moving the accent rightwards in a long word makes the engine treat the initial syllable as fully weak and reduce a vowel that English keeps full under secondary stress (ˌcombiˈnation) — declaring them is a net loss until secondary stress exists (Cruttenden 2014 §10.3); (b) the AUTO-STRESSED suffixes -ee/-eer/-ese/-ette/-oon/-esque/-ade/-ique carry the stress themselves (Fudge 1984, ch. 3), but the orthographic syllabifier counts the mute ⟨e⟩ of -ese/-ette/-esque/-ade/-ique as a nucleus, so the end-anchored offset they need is not the one the spelling yields; (c) -ary/-ory/-acy need stress FOUR syllables from the end, a position no ending field expresses; (d) the WEAK-INITIAL IAMBS — an unaccented first syllable followed by the accented one: the Latinate and Greek prefixes aˈlarm, supˈport, aˈgain, aˈround, beˈcause (Fudge 1984, ch. 5, on the prefix classes) and the unprefixed loanwords that share the shape, guiˈtar, maˈchine, poˈlice. The stem-initial default gets these backwards, stressing the prefix and reducing the stem vowel that English keeps full: ⟨guitar⟩ comes out ˈɡuːtə. Measured on the en-GB wikipron gold, 3,948 of the 72,495 polysyllabic entries (5.4%) are schwa-initial iambs of this shape. Skipping a listed prefix would need a new engine mechanism, and by (a) above the accuracy it buys is not cashable as reduction until secondary stress exists, so the class is stated here as a known cost of the default rather than worked around; (e) NOUN/VERB stress pairs (ˈrecord vs reˈcord) are lexical and part-of-speech conditioned, not orthographic, and are a documented ceiling of any spelling rule (Cruttenden 2014 §10.7; Wells 2008 LPD). CLITICLESS_WORDS: the weak-form articles the/a/an, which word_exceptions already gives their reduced /ðə ə ən/ shapes — a weak form is by definition unstressed, so the stress placer must not then mark it (Cruttenden 2014 §9.2 on weak forms; Wells 1982 vol. 1)."
+    "secondary_stress": "alternating",
+    "notes": "English word stress is only PARTLY predictable from spelling, and this block states the predictable part, nothing more. DEFAULT = FIRST SYLLABLE (default_position 1): the Germanic stem-initial stress pattern that English inherited and that still governs the unsuffixed native vocabulary (Fudge 1984, English Word-Stress, ch. 1-2; Cruttenden 2014, Gimson's Pronunciation of English 8th ed. §10.4, on the early placement of English word accent). ANTEPENULT_STRESS_ENDINGS = Fudge's PRE-STRESSED suffix classes whose suffix is TWO orthographic syllables long, so 'the syllable before the suffix' is the antepenult of the whole word (Fudge 1984, ch. 3-4): -ical (ˈcritical), -ity/-ities (aˈbility), -ify/-ifies (ˈclassify), -iency (efˈficiency), -ular (ˈregular), -graphy/-logy/-ometer/-onomy/-ocracy (phoˈtography, biˈology, therˈmometer, aˈstronomy, deˈmocracy). PENULT_STRESS_ENDINGS = the ONE-syllable pre-stressed suffixes, which place the accent on the PENULT (Fudge 1984, ch. 3): -ic/-ics (aˈtomic, phoˈnetics) and -ion/-ions (ˌcombiˈnation, ˌeduˈcation). They are declarable only now that the block declares SECONDARY_STRESS: moving the accent rightwards in a long word used to leave the initial syllable fully weak, reducing a vowel English keeps full under secondary stress (ˌcombiˈnation) — measured on the en-GB wikipron gold, the class alone COST 0.0059 PER over its own 6,845 words and gains 0.0031 with the level in place. SECONDARY_STRESS = alternating: binary feet built leftward from the main stress (Liberman & Prince 1977; Hayes 1995 ch. 3), the rhythmic alternation English states as ˌcombiˈnation, reˌsponsiˈbility, ˌnatioˈnality (Cruttenden 2014 §10.3). A secondary foot head is not weak, so the reduction entries below no longer reach it. KNOWN MIS-SEATING: the feet are counted leftward from the main stress, so in a five-syllable word stressed on the penult the head lands on the SECOND syllable — ciˌviliˈzation and orˌganiˈzation, where Hayes' left-to-right construction gives the INITIAL syllable the secondary stress (ˌorganiˈzation). The level is seated one syllable late in that parity, which is a smaller error than having no level at all (measured net-positive on every en row) but is not the right analysis.\n\nNOT DECLARED, and why: (a) the remaining one-syllable pre-stressed suffixes -ial, -ious, -ian, -ient, -ience are Fudge's same class and place the accent correctly, but MEASURED on the en-GB wikipron gold each is PER-NEGATIVE even with secondary stress (-ian 0.2979→0.3387 over 1,421 words, -ial 0.2591→0.2745 over 437, -ious 0.2498→0.2614 over 300; -ians/-ient/-ience move inside the noise of 23/70/39 words). The stress they place is right; what the engine gets wrong is the vowel quality it then gives the newly full syllables, so the class stays out until that is fixed rather than being bought with a loss; (b) the AUTO-STRESSED suffixes -ee/-eer/-ese/-ette/-oon/-esque/-ade/-ique carry the stress themselves (Fudge 1984, ch. 3), but the orthographic syllabifier counts the mute ⟨e⟩ of -ese/-ette/-esque/-ade/-ique as a nucleus, so the end-anchored offset they need is not the one the spelling yields; (c) -ary/-ory/-acy need stress FOUR syllables from the end, a position no ending field expresses; (d) the WEAK-INITIAL IAMBS — an unaccented first syllable followed by the accented one: the Latinate and Greek prefixes aˈlarm, supˈport, aˈgain, aˈround, beˈcause (Fudge 1984, ch. 5, on the prefix classes) and the unprefixed loanwords that share the shape, guiˈtar, maˈchine, poˈlice. The stem-initial default gets these backwards, stressing the prefix and reducing the stem vowel that English keeps full: ⟨guitar⟩ comes out ˈɡuːtə. Measured on the en-GB wikipron gold, 3,948 of the 72,495 polysyllabic entries (5.4%) are schwa-initial iambs of this shape. Skipping a listed prefix would need a new engine mechanism, and by (a) above the accuracy it buys is not cashable as reduction until secondary stress exists, so the class is stated here as a known cost of the default rather than worked around; (e) NOUN/VERB stress pairs (ˈrecord vs reˈcord) are lexical and part-of-speech conditioned, not orthographic, and are a documented ceiling of any spelling rule (Cruttenden 2014 §10.7; Wells 2008 LPD). CLITICLESS_WORDS: the weak-form articles the/a/an, which word_exceptions already gives their reduced /ðə ə ən/ shapes — a weak form is by definition unstressed, so the stress placer must not then mark it (Cruttenden 2014 §9.2 on weak forms; Wells 1982 vol. 1)."
   }
 }
