@@ -220,19 +220,22 @@ def test_balearic_does_not_degeminate():
     ("dos savis", "ˈdot ˈt͡savis"),
     ("cossos sense", "ˈkosot ˈt͡sənsə"),
     ("es seu", "ət ˈt͡səw"),
-    ("mos surten", "ˈmot ˈt͡surtən"),
-    ("des serveis", "dət ˈt͡sərvəjs"),
+    ("mos surten", "ˈmot ˈt͡suɾtən"),
+    ("des serveis", "dət ˈt͡səɾvəjs"),
     ("cantés s'amor", "kəˈntet t͡səˈmo"),
     ("sentis sàpiga", "ˈsəntit ˈt͡sapiɣə"),
     ("destries s'arena", "dəˈstɾiət t͡səˈɾənə"),
-    ("arbres se", "ˈarβɾət t͡sə"),
+    ("arbres se", "ˈaɾβɾət t͡sə"),
     ("autors se", "əˈwtot t͡sə"),
     ("pes sol", "pət ˈt͡sol"),
     # ── /ʃ # s/ and /s # ʃ/: the same rule, keyed on the CLASS not on ⟨s⟩.
     ("defineix sa", "dəfiˈnət t͡sə"),
-    ("beix serveix", "ˈbət t͡səˈrvəʃ"),
+    ("beix serveix", "ˈbət t͡səˈɾvəʃ"),
     ("es xaloc", "ət t͡ʃəˈlok"),
 ])
+# Four of the expectations above carry a coda [ɾ] where they used to carry
+# [r] (surten, serveis, arbres, serveix). That is the Balearic coda-tap
+# statement of test_catalan_dialect_margins.py, not a change to this rule.
 def test_balearic_cross_word_sibilant_affrication(phrase, expected):
     """Majorcan regressive place assimilation + affrication of a sibilant
     cluster across a word boundary.
@@ -455,9 +458,42 @@ def test_elision_never_destroys_a_words_only_vowel():
     assert transcribe("la a i la e", "ca").split()[0] == "lə"
     # right rule: ⟨en⟩ [ən]/[en] and ⟨el⟩ keep their vowel
     assert transcribe("estava en oració", "ca").split()[1] == "ən"
-    assert transcribe("que el", "ca-x-occidental").split()[1] == "el"
+    assert transcribe("que el", "ca").split()[1] == "əl"
+    assert transcribe("que el", "ca-x-balear").split()[1] == "əl"
+    # the same probe on a WESTERN spec, on a monovocalic word that is NOT the
+    # article — ⟨en⟩ — so the guard is still exercised there. ⟨el⟩ cannot be
+    # the Western probe any more; see
+    # test_the_western_article_is_the_one_licensed_vowelless_clitic.
+    assert transcribe("estava en oració", "ca-x-occidental").split()[1] == "en"
     # ... and a word that is only a vowel is never consumed
     assert transcribe("va a casa", "ca") == "ˈba ə ˈkazə"
+
+
+def test_the_western_article_is_the_one_licensed_vowelless_clitic():
+    """The ONE licensed exception to the guard above, stated explicitly
+    rather than folded into it.
+
+    The guard exists because a general hiatus rule must not silently strip
+    a word to nothing. CA_ELIDE_EL is not a general hiatus rule: it is a
+    closed-class sandhi rule anchored on the whole word ⟨el⟩/⟨els⟩ and
+    declared on the two Western specs only. The licence is that Catalan
+    orthography ITSELF writes this word without a vowel — ⟨l'⟩ is the same
+    article, not a different one — and the resulting proclitic attaches to
+    the following word rather than standing alone (Wheeler 2005 ch. 4 on
+    the article's allomorphs and §11.2 on elision in external sandhi;
+    Bonet & Lloret 1998 ch. 5 on clitic vowel deletion; IEC 2016 §6.2
+    lists ⟨el/els⟩ among the atonic monosyllables). The 4catac
+    North-Western and Valencian gold write the phrase that way in all 18
+    of its V+⟨el⟩ tokens.
+
+    Nothing else is licensed: every other monovocalic function word keeps
+    its nucleus in the Western specs too, which the ⟨en⟩ probe above
+    pins.
+    """
+    assert transcribe("que el", "ca-x-occidental").split()[1] == "l"
+    assert transcribe("que el", "ca-x-valencia").split()[1] == "l"
+    # and the Eastern specs, where the rule is NOT declared, keep the vowel
+    assert transcribe("que el", "ca").split()[1] == "əl"
 
 
 def test_glide_never_leaves_a_bare_nonsyllabic_word():

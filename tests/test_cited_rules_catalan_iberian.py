@@ -177,12 +177,11 @@ def test_ca_word_ending_in_a_falling_diphthong_is_oxytone():
     assert bare("ca", "avui").startswith("ə")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="phrase-level spirantization matches the /d/ of the affricate /dʒ/ "
-           "and yields [ðʒeˈɾmana] for la germana; the cited Valencian form is "
-           "the intact affricate [dʒeɾˈma]",
-)
+# Was xfail(strict) — the phrase-level spirantization rule matched the /d/ of
+# the affricate /dʒ/ and produced *[ðʒeˈɾmana]. Fixed by the dialect-margins
+# wave: CA_EXT_SPIRANT_D's right context now guards against ⟨dʒ⟩, because
+# post-vocalic spirantization targets the voiced STOPS /b d ɡ/ (Wheeler 2005
+# §5.2) and never the affricate. See tests/test_catalan_dialect_margins.py.
 def test_ca_valencian_affricate_survives_phrase_level_spirantization():
     """Valencian notes (Wheeler 2005 §5.1; Veny 1982 ch. 3; AVL 2006): "the
     affricate [dʒ] for ⟨j⟩ and ⟨g⟩ before a front vowel (germà [dʒeɾˈma])".

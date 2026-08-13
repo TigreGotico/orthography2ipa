@@ -77,6 +77,8 @@ that actually discriminate the Romance lects of Spain:
 | `velar_nasal` | ipa | `[ŋ]` present: Galician coda -n / ⟨nh⟩, Catalan ⟨ng⟩ |
 | `sibilant_voicing` | ipa | `[z]` or `[ʒ]` present: the voiced-sibilant contrast (present in Catalan, absent in Galician) |
 | `rhotic` | ipa | a trill `[r]` (excludes the ubiquitous tap `[ɾ]`) |
+| `rhotic_tap` | ipa | a tap `[ɾ]` — the neutralised coda rhotic of Balearic and Valencian, the counterpart axis to `rhotic` |
+| `postalveolar_affricate` | ipa | `[tʃ]`/`[dʒ]` — the Western reflex of ⟨j⟩/⟨g+e,i⟩, where Eastern has `[ʒ]` |
 | `sandhi` | both | a cross-word junction: vowel-final before vowel-initial (elision/liaison), or ⟨s⟩-final before a voiced onset (final-s voicing) |
 
 The `orth`/`ipa`/`both` split mirrors the other gold sets: an axis whose
