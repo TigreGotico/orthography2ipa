@@ -278,14 +278,37 @@ class TestSpanishES:
     def test_diphthong_ua(self):
         _assert_first(_grapheme(self._spec, "ua"), "wa", "es-ES ua")
 
+    # Falling diphthongs take a NON-SYLLABIC VOWEL offglide [i̯ u̯], not the
+    # consonantal glide [j w] the rising diphthongs above take: Hualde 2005
+    # ch. 4, RAE/ASALE NGLE Fonetica y fonologia 2011 ch. 8. eu (Basque)
+    # already writes its falling diphthongs this way in this repo.
     def test_diphthong_ai(self):
-        _assert_first(_grapheme(self._spec, "ai"), "aj", "es-ES ai")
+        _assert_first(_grapheme(self._spec, "ai"), "ai̯", "es-ES ai")
 
     def test_diphthong_ei(self):
-        _assert_first(_grapheme(self._spec, "ei"), "ej", "es-ES ei")
+        _assert_first(_grapheme(self._spec, "ei"), "ei̯", "es-ES ei")
+
+    def test_diphthong_oi(self):
+        _assert_first(_grapheme(self._spec, "oi"), "oi̯", "es-ES oi")
 
     def test_diphthong_au(self):
-        _assert_first(_grapheme(self._spec, "au"), "aw", "es-ES au")
+        _assert_first(_grapheme(self._spec, "au"), "au̯", "es-ES au")
+
+    def test_diphthong_eu(self):
+        _assert_first(_grapheme(self._spec, "eu"), "eu̯", "es-ES eu")
+
+    # The written accent marks STRESS, not hiatus: a tilde on the open
+    # nucleus leaves the rising diphthong intact (nacion, Adrian, despues).
+    # Only a tilde on the HIGH vowel breaks it (dia, buho) - which is why
+    # there is no <ia>/<ue> accented-high-vowel grapheme.
+    def test_diphthong_io_accented(self):
+        _assert_first(_grapheme(self._spec, "i\u00f3"), "jo", "es-ES i\u00f3")
+
+    def test_diphthong_ia_accented(self):
+        _assert_first(_grapheme(self._spec, "i\u00e1"), "ja", "es-ES i\u00e1")
+
+    def test_diphthong_ue_accented(self):
+        _assert_first(_grapheme(self._spec, "u\u00e9"), "we", "es-ES u\u00e9")
 
     def test_diphthong_iu(self):
         _assert_first(_grapheme(self._spec, "iu"), "ju", "es-ES iu")
@@ -2225,9 +2248,129 @@ class TestIberianIsoglosses:
         eu = _load("eu")
         d_es_pt = phonological_distance(es, pt)
         d_es_eu = phonological_distance(es, eu)
-        assert d_es_pt.inventory.jaccard <= d_es_eu.inventory.jaccard, (
-            f"d(es,pt)={d_es_pt.inventory.jaccard:.3f} should be <= d(es,eu)={d_es_eu.inventory.jaccard:.3f}"
+        # FEATURE distance, not raw Jaccard. Jaccard is set identity over
+        # symbols, and on that measure Basque is the CLOSER of the two -
+        # es and eu share the five-vowel system, the apical /s̱/, /x/, /ɲ/,
+        # /ʎ/ and the /ɾ/-/r/ contrast, while pt adds nine oral plus five
+        # nasal vowels es has none of. That is a real areal fact, not a
+        # defect: the "Spanish is closer to Portuguese" claim this test
+        # makes is a FEATURAL one (Penny 2002; Hualde 2005), and
+        # feature_mean is where it holds. It used to pass on Jaccard only
+        # because es and pt happened to spell their falling-diphthong
+        # offglides the same way ([aj]/[aw]); once es-ES adopted the
+        # non-syllabic-vowel notation its sibling spec eu already used
+        # ([ai̯]/[au̯]), the symbol overlap flipped and exposed what the
+        # measure had really been comparing.
+        assert d_es_pt.inventory.feature_mean <= d_es_eu.inventory.feature_mean, (
+            f"d(es,pt)={d_es_pt.inventory.feature_mean:.3f} should be <= "
+            f"d(es,eu)={d_es_eu.inventory.feature_mean:.3f}"
         )
+
+
+def _ES():
+    """A fresh es-ES engine (word-level API; the module has no bare
+    transcribe_word)."""
+    return orthography2ipa.G2P("es-ES")
+
+
+class TestSpanishPhonologicalRules:
+    """Word-level gates for the cited es-ES rules of the Spanish wave."""
+
+    # --- Rising diphthong survives the tilde on the open nucleus ---------
+    @pytest.mark.parametrize("word,expected", [
+        ("naci\u00f3n", "na\u02c8\u03b8jon"),
+        ("asunci\u00f3n", "asu\u02c8n\u03b8jon"),
+        ("adri\u00e1n", "a\u02c8dɾjan"),
+        ("despu\u00e9s", "de\u02c8spwes"),
+        ("cu\u00e1nto", "\u02c8kwanto"),
+    ])
+    def test_accented_nucleus_keeps_rising_diphthong(self, word, expected):
+        assert _ES().transcribe_word(word) == expected
+
+    @pytest.mark.parametrize("word,expected", [
+        ("d\u00eda", "\u02c8dia"),
+        ("b\u00faho", "\u02c8buo"),
+        ("p\u00faa", "\u02c8pua"),
+    ])
+    def test_tilde_on_high_vowel_still_breaks_the_diphthong(self, word, expected):
+        """The counter-case: <\u00ed>/<\u00fa> mark HIATUS and must stay two nuclei."""
+        assert _ES().transcribe_word(word) == expected
+
+    # --- Falling diphthong = vowel + non-syllabic vowel ------------------
+    @pytest.mark.parametrize("word,expected", [
+        ("aire", "\u02c8ai\u032f\u027ee"),
+        ("peine", "\u02c8pei\u032fne"),
+        ("boina", "\u02c8boi\u032fna"),
+        ("causa", "\u02c8kau\u032fsa"),
+    ])
+    def test_falling_diphthong_offglide(self, word, expected):
+        assert _ES().transcribe_word(word) == expected
+
+    # --- Vibrante m\u00faltiple after a heterosyllabic coronal ---------------
+    @pytest.mark.parametrize("word,expected", [
+        ("enrique", "e\u02c8nrike"),
+        ("honra", "\u02c8onra"),
+        ("israel", "i\u02c8srael"),
+        ("alrededor", "alre\u00f0e\u02c8\u00f0o\u027e"),
+    ])
+    def test_trill_after_coronal(self, word, expected):
+        assert _ES().transcribe_word(word) == expected
+
+    @pytest.mark.parametrize("word", ["tres", "padre", "abrir", "pobre", "cromo"])
+    def test_obstruent_liquid_onsets_keep_the_tap(self, word):
+        """Counter-case: /p b t d k \u0261 f/ + rhotic onsets are untouched."""
+        out = _ES().transcribe_word(word)
+        assert "r" not in out.replace("\u027e", ""), out
+
+    # --- Nasal place assimilation (labial branch) ------------------------
+    @pytest.mark.parametrize("word,expected", [
+        ("inmaculada", "immaku\u02c8la\u00f0a"),
+        ("envase", "e\u02c8mbase"),
+        ("\u00e1nfora", "\u02c8anfo\u027ea"),
+    ])
+    def test_nasal_labial_assimilation(self, word, expected):
+        assert _ES().transcribe_word(word) == expected
+
+    @pytest.mark.parametrize("word", ["antes", "naranja", "ancla", "onda"])
+    def test_nasal_before_non_labial_is_untouched(self, word):
+        """Counter-case: only the LABIAL branch is asserted."""
+        assert "m" not in _ES().transcribe_word(word)
+
+    # --- Prevocalic high vowel is the NEXT syllable's onset, not an offglide
+    @pytest.mark.parametrize("word,expected", [
+        ("Daiana", "da\u02c8jana"),
+        ("baiana", "ba\u02c8jana"),
+        ("Mireia", "mi\u02c8\u027eeja"),
+        ("Malaui", "ma\u02c8lawi"),
+        ("alau\u00ed", "ala\u02c8wi"),
+    ])
+    def test_prevocalic_high_vowel_is_an_onset_glide(self, word, expected):
+        """Counter-case for the falling-diphthong rule: in Da-ia-na the <i>
+        opens the next syllable, so it is the consonantal glide [j] and the
+        stress falls on THAT syllable - it is not a coda offglide [i̯]."""
+        assert _ES().transcribe_word(word) == expected
+
+    # --- The RAE hiatus class the accented-nucleus rule must not swallow
+    @pytest.mark.parametrize("word,expected", [
+        ("i\u00f3n", "\u02c8ion"),
+        ("i\u00f3nico", "\u02c8ioniko"),
+        ("gui\u00f3n", "\u0261i\u02c8on"),
+        ("pri\u00f3n", "p\u027ei\u02c8on"),
+        ("ru\u00e1n", "ru\u02c8an"),
+    ])
+    def test_rae_hiatus_class_keeps_two_nuclei(self, word, expected):
+        assert _ES().transcribe_word(word) == expected
+
+    @pytest.mark.parametrize("word,expected", [
+        ("distingui\u00f3", "disti\u02c8n\u0261jo"),
+        ("guiones", "\u02c8\u0261jones"),
+        ("guion", "\u02c8\u0261jon"),
+    ])
+    def test_rae_hiatus_class_does_not_leak_to_the_paradigm(self, word, expected):
+        """The closed list is six NOUNS. Everything else - inflections, and
+        the -iar/-uar verb forms RAE lists alongside them - keeps the rising
+        diphthong, which is what both golds want (677 gold words vs 23)."""
+        assert _ES().transcribe_word(word) == expected
 
 
 # ═══════════════════════════════════════════════════════════════════════════
