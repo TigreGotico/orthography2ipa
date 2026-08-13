@@ -434,6 +434,20 @@ _WIKIPRON_FILES = {
     "gul":        "gul_latn_broad.tsv",  # Sea Island Creole English, N=304
     "gwc":        "gwc_arab_broad.tsv",  # Gawri, N=208
     "hil":        "hil_latn_broad.tsv",  # Hiligaynon, N=473
+    # Hadza. 335 rows / 329 unique headwords, of which 52 are NOT words: the
+    # scrape ingested the source's ALPHABET TABLE alongside its lexicon, so
+    # ⟨cc⟩, ⟨Nq⟩, ⟨Tlh⟩ etc. appear as headwords glossed with the single
+    # phoneme the letter spells. 26 of those 52 are transcribed in a
+    # DIFFERENT notation from the same gold's word rows: the alphabet rows
+    # write the clicks with superscript modifiers (ᵏǀ, ᵑǀʔ) and the lateral
+    # with U+1DF06 (𝼆), while every word row writes the same segments with a
+    # tie bar (k͜ǀ, ŋ͜ǀˀ, c͜ʎ̥˔). `normalize` strips tie bars but not ᵏ/ᵑ/𝼆, so
+    # no spec can match both conventions at once and ~0.35 PER on those rows
+    # is a notation floor, not an error. They are NOT excluded: dropping the
+    # rows a spec finds inconvenient is how a scoreboard stops measuring
+    # anything. Teaching `normalize` to fold the two click notations together
+    # is the real fix and belongs in its own PR, scored across every click
+    # language (ktz, hts, nmn) at once.
     "hts":        "hts_latn_broad.tsv",  # Hadza, N=335
     "huu":        "huu_latn_narrow.tsv",  # Murui Huitoto, N=440
     "kgp":        "kgp_latn_broad.tsv",  # Kaingang, N=107

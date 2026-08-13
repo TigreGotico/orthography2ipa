@@ -83,7 +83,7 @@ This table includes languages where orthography2ipa **loses** to espeak-ng. Cher
 | gl | wikipron | 8091 | 0.0804 | n/a | n/a | n/a | n/a | 0.0883 | n/a | n/a |
 | hi | vox_communis | 13154 | 0.3684 | 0.5184 | n/a | same-source | n/a | n/a | n/a | n/a |
 | hi | wikipron | 30379 | 0.1562 | 0.2815 | n/a | 0.3322 | n/a | n/a | n/a | n/a |
-| hts | wikipron | 329 | 0.3728 | n/a | n/a | n/a | n/a | n/a | n/a | 0.2769 |
+| hts | wikipron | 329 | 0.0650 | n/a | n/a | n/a | n/a | n/a | n/a | 0.2769 |
 | it | vox_communis | 90366 | 1.1378 | 1.1830 | 1.1773 | same-source | n/a | n/a | n/a | n/a |
 | it | wikipron | 82280 | 0.0441 | 0.0722 | 0.0769 | 0.0852 | n/a | n/a | n/a | n/a |
 | kab | vox_communis | 54546 | 0.2071 | n/a | n/a | same-source | n/a | n/a | n/a | 0.4339 |
