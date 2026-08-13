@@ -127,19 +127,17 @@ def test_ca_nasal_palatal_assimilation_word_internally():
     assert bare("ca", "àngel") == "aɲʒəl"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="CA_NASAL_PALATAL cites the cross-word case un jutge [uɲ ˈdʒudʒə]; "
-           "the engine applies the rule word-internally only and produces "
-           "[ˈun ˈʒudʒə] — the nasal keeps its alveolar place across the "
-           "word boundary",
-)
 def test_ca_nasal_palatal_assimilation_across_a_word_boundary():
-    """CA_NASAL_PALATAL: "Nasal place assimilation to a PALATO-ALVEOLAR
-    (Recasens 1993; Wheeler 2005 §10.3): /n/ → [ɲ] before /ʃ ʒ tʃ dʒ ʎ/ —
-    àngel [ˈaɲʒəl], un jutge [uɲ ˈdʒudʒə], any llunyà [ˈaɲ ʎuˈɲa]."
+    """CA_EXT_NASAL_PALATAL: "Nasal place assimilation to a PALATO-ALVEOLAR
+    (Recasens 1993; Wheeler 2005 §5.3, §10.3, §10.5): /n/ → [ɲ] before /ʃ ʒ
+    tʃ dʒ ʎ/ — àngel [ˈaɲʒəl], un jutge [uɲ ˈdʒudʒə], any llunyà [ˈaɲ ʎuˈɲa]."
+
+    Was strict-xfail: the word-internal CA_NASAL_PALATAL allophone rule did
+    not extend across the word boundary. CA_EXT_NASAL_PALATAL (a sandhi_rule
+    on ca-x-medieval, inherited by every Catalan variety) closes the gap.
     """
     assert phrase("ca", "un jutge")[0].endswith("ɲ")
+    assert phrase("ca", "any llunyà")[0].endswith("ɲ")
 
 
 @pytest.mark.xfail(
@@ -197,6 +195,45 @@ def test_ca_valencian_affricate_survives_phrase_level_spirantization():
     assert phrase("ca-x-valencia", "la germana")[1].lstrip("ˈ").startswith("dʒ")
 
 
+class TestCaExternalNasalAssimilation:
+    """CA_EXT_NASAL_LABIAL / CA_EXT_NASAL_VELAR: a word-final /n/ assimilates
+    in place to a following labial or velar onset across the word boundary
+    (Wheeler 2005 §5.3, §10.5; Recasens 1993), mirroring the word-internal
+    CA_NASAL_LABIAL / CA_NASAL_VELAR allophone rules (un peu [um ˈpɛw],
+    en Barcelona [əm bərsəˈlonə], un gat [uŋ ˈɡat]).
+
+    Checked on all four living dialects — the rule lives on ca-x-medieval
+    and is inherited by every descendant.
+    """
+
+    @pytest.mark.parametrize(
+        "lang", ["ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia"]
+    )
+    def test_labial_assimilation(self, lang):
+        assert phrase(lang, "un peu")[0] == "um"
+
+    @pytest.mark.parametrize(
+        "lang", ["ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia"]
+    )
+    def test_velar_assimilation(self, lang):
+        assert phrase(lang, "un gat")[0] == "uŋ"
+
+    def test_labial_assimilation_before_a_word_initial_m(self):
+        """en mig [əm ˈmitʃ]: a following /m/ onset is labial too."""
+        assert phrase("ca", "en mig")[0] == "əm"
+
+    def test_no_assimilation_before_a_vowel(self):
+        """The rule is consonant-conditioned only: a following vowel leaves
+        the final /n/ alveolar (un amic [un əˈmik])."""
+        assert phrase("ca", "un amic")[0] == "un"
+
+    def test_no_assimilation_of_a_final_consonant_other_than_n(self):
+        """Only /n/ is the target (matching the word-internal CA_NASAL_*
+        rules, which are /n/-only): a final /m/ before a velar onset is left
+        alone (menjar gelat keeps its final ⟨r⟩-less /m/, not [ŋ])."""
+        assert not phrase("ca", "vam guanyar")[0].endswith("ŋ")
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Basque
 # ═══════════════════════════════════════════════════════════════════════════
@@ -218,11 +255,6 @@ def test_eu_three_way_sibilant_contrast_surfaces():
     assert bare("eu-x-bizkaiera", "zezen").startswith("s̺")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Hualde et al. (2010: 116) is cited for intervocalic [β ð ɣ]; the "
-           "engine keeps the stops — alaba [alaba], ogia [oɡia]",
-)
 def test_eu_intervocalic_voiced_stops_are_approximants():
     """Standard Basque notes: "Voiced stops /b d ɡ/ are realised as approximants
     [β ð ɣ] intervocalically (Hualde et al. 2010: 116)."
