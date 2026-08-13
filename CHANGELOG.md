@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.67.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.67.0a3) (2026-08-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.67.0a2...7.67.0a3)
+
+**Merged pull requests:**
+
+- docs\(compare\): human-readable comparison.md + full board regen [\#871](https://github.com/TigreGotico/orthography2ipa/pull/871) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.67.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.67.0a2) (2026-08-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.67.0a1...7.67.0a2)
@@ -734,7 +742,6 @@
 
 - docs: add AI transparency section to README [\#685](https://github.com/TigreGotico/orthography2ipa/pull/685) ([JarbasAl](https://github.com/JarbasAl))
 - feat: add Mandinka \(mnk\) and Min Nan \(nan\) specs — graph-hole wave [\#684](https://github.com/TigreGotico/orthography2ipa/pull/684) ([JarbasAl](https://github.com/JarbasAl))
-- fix: ancestry-graph connectivity audit — dangling refs, orphans, creole strates [\#682](https://github.com/TigreGotico/orthography2ipa/pull/682) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.37.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.37.1a1) (2026-08-02)
 
