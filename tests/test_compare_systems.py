@@ -655,6 +655,514 @@ class TestCompareLangWithAfricaG2p:
         assert row["africa_g2p_n"] == 0
 
 
+class TestArbtokLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "arbtok.plugin":
+                raise ImportError("no module named arbtok.plugin")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        cs._arbtok_plugin_cache.clear()
+        assert cs.arbtok_transcribe("كتاب", "arb") is None
+
+    def test_present_module_transcribes(self, monkeypatch):
+        class FakePlugin:
+            def __init__(self, lang, lexicon=None, dialect_lexicon=True):
+                self.lang = lang
+                # arbtok_transcribe (the RANKED column) must construct
+                # with both bundled lexicons off — see
+                # test_arbtok_transcribe_constructs_plugin_lexicon_free
+                # for the dedicated audit of this.
+                assert lexicon is None
+                assert dialect_lexicon is False
+
+            def transcribe(self, word):
+                return f"ipa-{word}-{self.lang}"
+
+        fake_pkg = type(sys)("arbtok.plugin")
+        fake_pkg.ArbtokG2PPlugin = FakePlugin
+        monkeypatch.setitem(sys.modules, "arbtok.plugin", fake_pkg)
+        cs._arbtok_plugin_cache.clear()
+
+        assert cs.arbtok_transcribe("كتاب", "arb") == "ipa-كتاب-arb"
+        cs._arbtok_plugin_cache.clear()
+
+    def test_exception_during_transcribe_yields_none(self, monkeypatch):
+        class BoomPlugin:
+            def __init__(self, lang, lexicon=None, dialect_lexicon=True):
+                pass
+
+            def transcribe(self, word):
+                raise RuntimeError("boom")
+
+        fake_pkg = type(sys)("arbtok.plugin")
+        fake_pkg.ArbtokG2PPlugin = BoomPlugin
+        monkeypatch.setitem(sys.modules, "arbtok.plugin", fake_pkg)
+        cs._arbtok_plugin_cache.clear()
+
+        assert cs.arbtok_transcribe("x", "arb") is None
+        cs._arbtok_plugin_cache.clear()
+
+
+class TestTugaphoneLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "tugaphone":
+                raise ImportError("no module named tugaphone")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        cs._tugaphone_instance = None
+        assert cs.tugaphone_transcribe("casa", "pt-PT") is None
+
+    def test_present_module_phonemizes(self, monkeypatch):
+        class FakeTugaPhonemizer:
+            def phonemize_sentence(self, sentence, lang="pt-PT"):
+                return f"ipa-{sentence}-{lang}"
+
+        fake_pkg = type(sys)("tugaphone")
+        fake_pkg.TugaPhonemizer = FakeTugaPhonemizer
+        monkeypatch.setitem(sys.modules, "tugaphone", fake_pkg)
+        cs._tugaphone_instance = None
+
+        assert cs.tugaphone_transcribe("casa", "pt-PT") == "ipa-casa-pt-PT"
+        cs._tugaphone_instance = None
+
+    def test_exception_during_phonemize_yields_none(self, monkeypatch):
+        class BoomTugaPhonemizer:
+            def phonemize_sentence(self, sentence, lang="pt-PT"):
+                raise RuntimeError("boom")
+
+        fake_pkg = type(sys)("tugaphone")
+        fake_pkg.TugaPhonemizer = BoomTugaPhonemizer
+        monkeypatch.setitem(sys.modules, "tugaphone", fake_pkg)
+        cs._tugaphone_instance = None
+
+        assert cs.tugaphone_transcribe("x", "pt-PT") is None
+        cs._tugaphone_instance = None
+
+
+class TestBarranquenhoLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "g2p_barranquenho":
+                raise ImportError("no module named g2p_barranquenho")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        assert cs.barranquenho_transcribe("casa", "ext-PT-x-barrancos") is None
+
+    def test_present_module_transcribes(self, monkeypatch):
+        fake_pkg = type(sys)("g2p_barranquenho")
+        fake_pkg.transcribe = lambda word: ["k", "a", "z", "ɐ"]
+        monkeypatch.setitem(sys.modules, "g2p_barranquenho", fake_pkg)
+
+        assert (cs.barranquenho_transcribe("casa", "ext-PT-x-barrancos")
+                == "kazɐ")
+
+    def test_exception_during_transcribe_yields_none(self, monkeypatch):
+        def boom(word):
+            raise RuntimeError("boom")
+
+        fake_pkg = type(sys)("g2p_barranquenho")
+        fake_pkg.transcribe = boom
+        monkeypatch.setitem(sys.modules, "g2p_barranquenho", fake_pkg)
+
+        assert cs.barranquenho_transcribe("x", "ext-PT-x-barrancos") is None
+
+
+class TestMwlPhonemizerLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "mwl_phonemizer":
+                raise ImportError("no module named mwl_phonemizer")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        assert cs.mwl_transcribe("siempre", "mwl") is None
+
+    def test_present_module_phonemizes(self, monkeypatch):
+        fake_pkg = type(sys)("mwl_phonemizer")
+        fake_pkg.phonemize = lambda word, dialect="mwl": f"ipa-{word}-{dialect}"
+        monkeypatch.setitem(sys.modules, "mwl_phonemizer", fake_pkg)
+
+        assert cs.mwl_transcribe("siempre", "mwl") == "ipa-siempre-mwl"
+
+    def test_exception_during_phonemize_yields_none(self, monkeypatch):
+        def boom(word, dialect="mwl"):
+            raise RuntimeError("boom")
+
+        fake_pkg = type(sys)("mwl_phonemizer")
+        fake_pkg.phonemize = boom
+        monkeypatch.setitem(sys.modules, "mwl_phonemizer", fake_pkg)
+
+        assert cs.mwl_transcribe("x", "mwl") is None
+
+
+class TestTugaphoneLexiconContaminationRegression:
+    """C1 regression: ``tugaphone_transcribe`` -> ``TugaPhonemizer.
+    phonemize_sentence`` -> ``tugaphone.lattice_core._ensure_lexicon()``
+    calls ``orthography2ipa.register_lexicon()`` — a PROCESS-GLOBAL
+    mutation keyed on the SAME lect code o2i's own engine uses. Before the
+    fix, tugaphone was scored INSIDE the same per-word loop as o2i, so
+    from word 2 onward o2i's own column was secretly o2i+tugalex, not
+    bare o2i.
+
+    Uses REAL ``tugaphone`` and REAL ``orthography2ipa`` (skipped, not
+    mocked, if either is unavailable) — the bug lives one layer BELOW
+    ``compare_systems.py``'s own code, in tugaphone's global lexicon
+    registration, so a mocked ``tugaphone_transcribe`` cannot exercise it
+    at all; every other test in this file mocks the family transcribe
+    functions and is structurally blind to this class of bug."""
+
+    def test_o2i_per_identical_with_and_without_tugaphone_wired(
+            self, monkeypatch):
+        pytest.importorskip("tugaphone")
+        import orthography2ipa
+        orthography2ipa.clear_lexicons()
+
+        # Words picked to include cases tugalex covers (so the pre-fix
+        # bug actually changes o2i's transcription, not just risks it).
+        words = ["esquisito", "campanário", "obrigado", "cristão", "gato"]
+        engine = orthography2ipa.G2P("pt-PT")
+        gold_pairs = [(w, engine.transcribe_word(w)) for w in words]
+        orthography2ipa.clear_lexicons()
+
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake_pt_dataset": (lambda lang, limit: gold_pairs,
+                                  ["pt-PT"])})
+
+        base_cfg = {"dataset": ("fake_pt_dataset", "pt-PT"), "espeak": None,
+                    "epitran": None, "gruut": None}
+        monkeypatch.setitem(cs.LANGS, "pt-PT", dict(base_cfg))
+        clean_row = cs.compare_lang("pt-PT", limit=10)[0]
+
+        monkeypatch.setitem(
+            cs.LANGS, "pt-PT",
+            dict(base_cfg, tugaphone="pt-PT"))
+        wired_row = cs.compare_lang("pt-PT", limit=10)[0]
+
+        # The bug this guards: with tugaphone wired, o2i's own column
+        # measurably changed (0.0 clean -> nonzero contaminated) because
+        # tugaphone's global register_lexicon() call leaked into o2i's
+        # own engine mid-loop.
+        assert clean_row["o2i_per"] == 0.0
+        assert wired_row["o2i_per"] == clean_row["o2i_per"], (
+            f"o2i_per changed from {clean_row['o2i_per']} (no tugaphone) "
+            f"to {wired_row['o2i_per']} (tugaphone wired) — tugaphone's "
+            f"register_lexicon() call is leaking into o2i's own scoring")
+        orthography2ipa.clear_lexicons()
+
+
+class TestCompareLangWithFamilySystems:
+    """The family systems' same-source discipline: they are built directly
+    on o2i's own lattice, so they inherit o2i's exact same-source exposure
+    on the o2i-lineage-gold datasets (``_O2I_SAME_SOURCE_DATASETS``) — this
+    is what distinguishes them from a genuinely independent competitor like
+    epitran/gruut."""
+
+    def _fake_o2i_module(self, table):
+        fake_o2i = FakeEngine(table)
+
+        class FakeModule:
+            G2P = staticmethod(lambda lang: fake_o2i)
+            clear_lexicons = staticmethod(lambda: None)
+            register_lexicon = staticmethod(lambda code, src: None)
+        return FakeModule
+
+    def test_arbtok_scores_on_independent_gold(self, monkeypatch):
+        pairs = [("كتاب", "kitaːb")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake_indep_ar": (lambda lang, limit: pairs, ["arb"])})
+        monkeypatch.setitem(
+            cs.LANGS, "arb",
+            {"dataset": ("fake_indep_ar", "arb"), "espeak": None,
+             "epitran": None, "gruut": None, "arbtok": "arb"})
+        monkeypatch.setitem(
+            sys.modules, "orthography2ipa",
+            self._fake_o2i_module({"كتاب": "kitaːb"}))
+        monkeypatch.setattr(cs, "arbtok_transcribe",
+                             lambda word, lang: "kitaːb")
+        monkeypatch.setattr(cs, "arbtok_stock_transcribe",
+                             lambda word, lang: "kitaːb")
+
+        row = cs.compare_lang("arb", limit=10)[0]
+        assert row["arbtok_per"] == 0.0
+        assert row["arbtok_same_source"] is False
+
+    def test_arbtok_refuses_o2i_lineage_gold_as_same_source(self, monkeypatch):
+        pairs = [("كتاب", "kitaːb")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"arabic_tts": (lambda lang, limit: pairs, ["arb"])})
+        monkeypatch.setitem(
+            cs.LANGS, "arb",
+            {"dataset": ("arabic_tts", "arb"), "espeak": None,
+             "epitran": None, "gruut": None, "arbtok": "arb"})
+        monkeypatch.setitem(
+            sys.modules, "orthography2ipa",
+            self._fake_o2i_module({"كتاب": "kitaːb"}))
+        monkeypatch.setattr(cs, "arbtok_transcribe",
+                             lambda word, lang: "kitaːb")
+
+        row = cs.compare_lang("arb", limit=10)[0]
+        assert row["arbtok_per"] is None
+        assert row["arbtok_same_source"] is True
+
+    def test_tugaphone_refuses_o2i_lineage_gold_as_same_source(
+            self, monkeypatch):
+        pairs = [("casa", "ˈkazɐ")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"portuguese_tts": (lambda lang, limit: pairs, ["pt-PT"])})
+        monkeypatch.setitem(
+            cs.LANGS, "pt-PT",
+            {"dataset": ("portuguese_tts", "pt-PT"), "espeak": None,
+             "epitran": None, "gruut": None, "tugaphone": "pt-PT"})
+        monkeypatch.setitem(
+            sys.modules, "orthography2ipa",
+            self._fake_o2i_module({"casa": "ˈkazɐ"}))
+        monkeypatch.setattr(cs, "tugaphone_transcribe",
+                             lambda word, lang: "ˈkazɐ")
+
+        row = cs.compare_lang("pt-PT", limit=10)[0]
+        # Bug this guards: tugaphone wraps o2i's own lattice, so scoring it
+        # against o2i-lineage gold (portuguese_tts) must be refused exactly
+        # like o2i itself is, not silently scored as a real 0.0.
+        assert row["tugaphone_per"] is None
+        assert row["tugaphone_same_source"] is True
+
+    def test_mwl_phonemizer_refuses_o2i_lineage_gold_as_same_source(
+            self, monkeypatch):
+        pairs = [("siempre", "ˈsjẽpɾɨ")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"portuguese_tts": (lambda lang, limit: pairs, ["mwl"])})
+        monkeypatch.setitem(
+            cs.LANGS, "mwl",
+            {"dataset": ("portuguese_tts", "mwl"), "espeak": None,
+             "epitran": None, "gruut": None, "mwl_phonemizer": "mwl"})
+        monkeypatch.setitem(
+            sys.modules, "orthography2ipa",
+            self._fake_o2i_module({"siempre": "ˈsjẽpɾɨ"}))
+        monkeypatch.setattr(cs, "mwl_transcribe",
+                             lambda word, lang: "ˈsjẽpɾɨ")
+
+        row = cs.compare_lang("mwl", limit=10)[0]
+        assert row["mwl_phonemizer_per"] is None
+        assert row["mwl_phonemizer_same_source"] is True
+
+    def test_mwl_phonemizer_scores_on_independent_gold(self, monkeypatch):
+        pairs = [("siempre", "ˈsjẽpɾɨ")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"mirandese_g2p": (lambda lang, limit: pairs, ["mwl"])})
+        monkeypatch.setitem(
+            cs.LANGS, "mwl",
+            {"dataset": ("mirandese_g2p", "mwl"), "espeak": None,
+             "epitran": None, "gruut": None, "mwl_phonemizer": "mwl"})
+        monkeypatch.setitem(
+            sys.modules, "orthography2ipa",
+            self._fake_o2i_module({"siempre": "ˈsjẽpɾɨ"}))
+        monkeypatch.setattr(cs, "mwl_transcribe",
+                             lambda word, lang: "ˈsjẽpɾɨ")
+
+        row = cs.compare_lang("mwl", limit=10)[0]
+        assert row["mwl_phonemizer_per"] == 0.0
+        assert row["mwl_phonemizer_same_source"] is False
+
+    def test_barranquenho_refuses_o2i_lineage_gold_as_same_source(
+            self, monkeypatch):
+        pairs = [("casa", "ˈkazɐ")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"barranquenho_dict": (lambda lang, limit: pairs,
+                                    ["ext-PT-x-barrancos"])})
+        monkeypatch.setitem(
+            cs.LANGS, "ext-PT-x-barrancos",
+            {"dataset": ("barranquenho_dict", "ext-PT-x-barrancos"),
+             "espeak": None, "epitran": None, "gruut": None,
+             "barranquenho": "ext-PT-x-barrancos"})
+        monkeypatch.setitem(
+            sys.modules, "orthography2ipa",
+            self._fake_o2i_module({"casa": "ˈkazɐ"}))
+        monkeypatch.setattr(cs, "barranquenho_transcribe",
+                             lambda word, lang: "ˈkazɐ")
+
+        row = cs.compare_lang("ext-PT-x-barrancos", limit=10)[0]
+        assert row["barranquenho_per"] is None
+        assert row["barranquenho_same_source"] is True
+
+    def test_tugaphone_excluded_from_lexicon_free_ranking(self):
+        # tugaphone's tugalex lexicon has no public disable toggle (see the
+        # module note by tugaphone_transcribe), so — the espeak discipline —
+        # it must never contribute to the lexicon-free Winner/leaderboard
+        # ranking even when it has a real, non-same-source PER.
+        row = {"o2i_per": 0.20, "tugaphone_per": 0.05,
+               "tugaphone_same_source": False}
+        values = cs._rules_only_values(row)
+        assert "tugaphone" not in values
+
+    def test_barranquenho_is_ranked_lexicon_free(self):
+        # g2p_barranquenho carries no per-word lexicon at all, so — unlike
+        # tugaphone — it contributes to the lexicon-free ranking when not
+        # same-source.
+        row = {"o2i_per": 0.20,
+               "barranquenho_per": 0.10, "barranquenho_same_source": False}
+        values = cs._rules_only_values(row)
+        assert values["barranquenho"] == 0.10
+
+    def test_arbtok_ranked_column_included_stock_column_excluded(self):
+        # C2/C7 fix: arbtok's DEFAULT configuration is lexicon-backed
+        # (145,890-entry stem lexicon + dialect lexicon), so the RANKED
+        # "arbtok" column and the informational "arbtok_stock" column are
+        # now two DIFFERENT numbers from two different plugin configs
+        # (see arbtok_transcribe/arbtok_stock_transcribe). Only the
+        # ranked, lexicon-free one may contribute to the ranking.
+        row = {"o2i_per": 0.20,
+               "arbtok_per": 0.05, "arbtok_same_source": False,
+               "arbtok_stock_per": 0.01, "arbtok_stock_same_source": False}
+        values = cs._rules_only_values(row)
+        assert values["arbtok"] == 0.05
+        assert "arbtok_stock" not in values
+
+    def test_arbtok_transcribe_constructs_plugin_lexicon_free(
+            self, monkeypatch):
+        # Real-config audit: arbtok_transcribe must construct
+        # ArbtokG2PPlugin with BOTH bundled lexicons explicitly disabled,
+        # not rely on (wrong) defaults. Captures the actual constructor
+        # kwargs rather than asserting on compare_systems.py's own
+        # documentation, which is exactly the gap that let C2 (arbtok
+        # scored lexicon-backed while documented/labeled lexicon-free)
+        # ship undetected.
+        captured = {}
+
+        class FakePlugin:
+            def __init__(self, lang, lexicon, dialect_lexicon):
+                captured["lang"] = lang
+                captured["lexicon"] = lexicon
+                captured["dialect_lexicon"] = dialect_lexicon
+
+            def transcribe(self, word):
+                return "ipa"
+
+        fake_pkg = type(sys)("arbtok.plugin")
+        fake_pkg.ArbtokG2PPlugin = FakePlugin
+        monkeypatch.setitem(sys.modules, "arbtok.plugin", fake_pkg)
+        cs._arbtok_plugin_cache.clear()
+
+        cs.arbtok_transcribe("كتاب", "arb")
+
+        assert captured["lexicon"] is None
+        assert captured["dialect_lexicon"] is False
+        cs._arbtok_plugin_cache.clear()
+
+    def test_arbtok_stock_transcribe_uses_default_plugin_config(
+            self, monkeypatch):
+        # The informational stock column must use arbtok's UNMODIFIED
+        # defaults (whatever they are) — it exists specifically to show
+        # the full-featured, lexicon-backed number, so it must not
+        # secretly strip the lexicon like the ranked column does.
+        captured = {}
+
+        class FakePlugin:
+            def __init__(self, lang):
+                captured["lang"] = lang
+                captured["called_with_only_lang"] = True
+
+            def transcribe(self, word):
+                return "ipa"
+
+        fake_pkg = type(sys)("arbtok.plugin")
+        fake_pkg.ArbtokG2PPlugin = FakePlugin
+        fake_lexicon_pkg = type(sys)("arbtok.lexicon")
+
+        class LexiconUnavailable(RuntimeError):
+            pass
+
+        class FakeStemLexicon:
+            @property
+            def entries(self):
+                return {"fake": "entry"}  # pre-flight succeeds
+
+        fake_lexicon_pkg.LexiconUnavailable = LexiconUnavailable
+        fake_lexicon_pkg.StemLexicon = FakeStemLexicon
+        monkeypatch.setitem(sys.modules, "arbtok.plugin", fake_pkg)
+        monkeypatch.setitem(sys.modules, "arbtok.lexicon", fake_lexicon_pkg)
+        cs._arbtok_stock_plugin_cache.clear()
+
+        result = cs.arbtok_stock_transcribe("كتاب", "arb")
+
+        assert captured["called_with_only_lang"] is True
+        assert result == "ipa"
+        cs._arbtok_stock_plugin_cache.clear()
+
+    def test_arbtok_stock_transcribe_lets_lexicon_unavailable_propagate(
+            self, monkeypatch):
+        # C3 round 2: a fake ArbtokG2PPlugin peer that raises
+        # LexiconUnavailable directly from transcribe() is FALSE GREEN —
+        # the REAL arbtok swallows every diacritizer exception internally
+        # (arbtok/plugin.py's _diacritize: blanket
+        # ``except Exception: return text``), so LexiconUnavailable never
+        # actually reaches transcribe()'s caller; a mock that raises
+        # there doesn't exercise the real failure path at all. This test
+        # uses the REAL arbtok package (skipped if unavailable) and
+        # forces a REAL fetch failure by breaking
+        # ``arbtok.lexicon.resolve_source`` — the actual function
+        # ``StemLexicon.entries`` calls — so the pre-flight in
+        # ``arbtok_stock_transcribe`` (which calls
+        # ``StemLexicon().entries`` directly, bypassing arbtok's own
+        # swallow-everything diacritizer path entirely) is what must
+        # catch this, not arbtok itself.
+        pytest.importorskip("arbtok")
+        import arbtok.lexicon as real_lexicon
+
+        def broken_resolve_source(source):
+            raise OSError("simulated lexicon fetch failure")
+
+        monkeypatch.setattr(real_lexicon, "resolve_source",
+                             broken_resolve_source)
+        cs._arbtok_stock_plugin_cache.clear()
+
+        with pytest.raises(real_lexicon.LexiconUnavailable):
+            cs.arbtok_stock_transcribe("كتاب", "arb")
+        cs._arbtok_stock_plugin_cache.clear()
+
+    def test_arbtok_transcribe_ranked_column_survives_broken_stock_lexicon(
+            self, monkeypatch):
+        # Sanity: the RANKED column (lexicon=None) must be unaffected by
+        # a broken stem lexicon — it never touches StemLexicon at all.
+        pytest.importorskip("arbtok")
+        import arbtok.lexicon as real_lexicon
+
+        def broken_resolve_source(source):
+            raise OSError("simulated lexicon fetch failure")
+
+        monkeypatch.setattr(real_lexicon, "resolve_source",
+                             broken_resolve_source)
+        cs._arbtok_plugin_cache.clear()
+
+        result = cs.arbtok_transcribe("كتاب", "arb")
+
+        assert result is not None
+        cs._arbtok_plugin_cache.clear()
+
+
 class TestDiscoverCatalanDialectVoices:
     def test_all_bsc_dialect_voices_present(self, monkeypatch):
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
@@ -2035,6 +2543,30 @@ class TestWinnerColumn:
     def test_gruut_rules_only_wins_under_its_own_label(self):
         row = {"o2i_per": 0.30, "gruut_per": 0.02, "gruut_rules_per": 0.10}
         assert cs._winner(row) == "gruut rules-only"
+
+
+class TestLexiconBackedInformationalNoteCoversFamily:
+    """C6: _lexicon_backed_informational_note previously only knew about
+    espeak/gruut (via _RULES_ONLY_SUBSTITUTES) — tugaphone's and
+    arbtok_stock's lexicon-backed wins were silently uncited even though
+    both are excluded from ranking exactly like stock espeak/gruut."""
+
+    def test_tugaphone_lexicon_win_is_disclosed(self):
+        row = {"tugaphone_per": 0.1887}
+        note = cs._lexicon_backed_informational_note(row, ranked_best=0.1951)
+        assert "tugaphone with its lexicon scores 0.1887" in note
+
+    def test_arbtok_stock_lexicon_win_is_disclosed(self):
+        row = {"arbtok_stock_per": 0.01, "arbtok_stock_same_source": False}
+        note = cs._lexicon_backed_informational_note(row, ranked_best=0.05)
+        assert "arbtok with its lexicon scores 0.0100" in note
+
+    def test_same_source_lexicon_column_is_not_cited(self):
+        # A same-source arbtok_stock cell is not a real number — must
+        # never be cited as "would have won".
+        row = {"arbtok_stock_per": 0.0, "arbtok_stock_same_source": True}
+        note = cs._lexicon_backed_informational_note(row, ranked_best=0.05)
+        assert note == ""
 
 
 class TestLeaderboardLexiconFreeRanking:

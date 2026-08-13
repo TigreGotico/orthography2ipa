@@ -3,7 +3,9 @@
 
 Runs the SAME gold word/IPA pairs used by ``scripts/benchmark.py`` through
 several systems — orthography2ipa, espeak-ng, epitran, gruut, pycotovia,
-and ahotts-g2p — and scores every system with the exact same normalization
+ahotts-g2p, africa-g2p, and the o2i-downstream family (arbtok, tugaphone,
+g2p_barranquenho, mwl_phonemizer) — and scores every system with the exact
+same normalization
 and PER metric (``benchmark.normalize`` / ``benchmark.levenshtein``), so
 the numbers are directly comparable to the committed scoreboard.
 
@@ -65,8 +67,25 @@ comparison target is missing.
   Wrapped via ``AfricaPipeline(lang=<iso639_3>, output="ipa").run(word)``;
   the library's own ``africa_g2p.loader.registry()`` is queried at import
   time so the set of covered codes is never hand-enumerated here.
+- **o2i-downstream family** (arbtok, tugaphone, g2p_barranquenho,
+  mwl_phonemizer): TigreGotico repos built directly on this repo's own
+  ``orthography2ipa.G2P`` lattice, imported lazily and scored under the
+  SAME lazy-import + n/a-degrade discipline as every optional system
+  above. Because they share o2i's lattice, they ALSO share o2i's
+  same-source exposure on gold drafted from the same knowledge that
+  informed o2i's own rules (see ``_O2I_SAME_SOURCE_DATASETS`` and the
+  module note by ``arbtok_transcribe`` for the full per-engine lexicon
+  audit — arbtok's tiny closed-class ``WORD_EXCEPTIONS``, tugaphone's
+  always-on ``tugalex`` lexicon excluded from ranking like stock
+  ``espeak``, g2p_barranquenho and mwl_phonemizer both lexicon-free by
+  default). They are wired in anyway because a family member can still
+  be a real comparison point against a gold that is genuinely
+  independent of o2i (e.g. mwl_phonemizer vs. the native-speaker
+  ``mirandese_g2p`` gold, or arbtok vs. the diacritized-WikiPron ``ar``
+  gold below) — and because "n/a" on a row that HAS a downstream engine
+  is itself information the owner asked not to drop.
 
-Normalization (identical across all four systems, see ``benchmark.normalize``
+Normalization (identical across every system above, see ``benchmark.normalize``
 and the stress/diacritic handling in ``espeak_agreement.py``):
 
 1. NFC-normalize.
@@ -158,6 +177,7 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import importlib.metadata
 import json
 import logging
 import os
@@ -266,7 +286,13 @@ LANGS: Dict[str, dict] = {
     # wall clock. Scored on a fixed-seed (loader SAMPLE_SEED) sample of
     # 3000 — an EXPLICIT, row-flagged sample, not a silent cap.
     "pt-PT": {"dataset": ("portuguese_unified", "pt-PT"), "espeak": "pt",
-              "epitran": "por-Latn", "gruut": "pt", "sample_n": 3000},
+              "epitran": "por-Latn", "gruut": "pt", "sample_n": 3000,
+              # tugaphone: not o2i-same-source (portuguese_unified is
+              # independent of o2i's own gold-generation, unlike
+              # portuguese_tts) but its curated tugalex lexicon is always
+              # on — see the "lexicon disposition" note above
+              # arbtok_transcribe/tugaphone_transcribe/etc.
+              "tugaphone": "pt-PT"},
     "fr": {"dataset": ("wikipron", "fr"), "espeak": "fr-fr",
            "epitran": "fra-Latn", "gruut": "fr"},
     "de": {"dataset": ("wikipron", "de"), "espeak": "de",
@@ -323,6 +349,30 @@ LANGS: Dict[str, dict] = {
                        "epitran": "cat-Latn", "gruut": None},
     "gl": {"dataset": ("wikipron", "gl"), "espeak": None,
            "epitran": None, "gruut": None, "pycotovia": "gl"},
+    # Mirandese (mwl): scored against ``mirandese_g2p`` — a native-speaker,
+    # human-collected gold that is a SEPARATE source from o2i (see
+    # benchmark.load_mirandese's docstring), so this row is a real
+    # comparison for BOTH o2i and mwl_phonemizer, not same-source. o2i's
+    # own ``mwl`` spec is what mwl_phonemizer's lattice stage runs on, so
+    # the two will tend to agree on cases the shared lattice handles the
+    # same way — that is expected, not a bug; mwl_phonemizer's own stages
+    # (dialect selection, syllabification, punctuation handling) are what
+    # can still diverge it from raw o2i.
+    "mwl": {"dataset": ("mirandese_g2p", "mwl"), "espeak": None,
+            "epitran": None, "gruut": None, "mwl_phonemizer": "mwl"},
+    # Barranquenho (ext-PT-x-barrancos): the ONLY registered gold,
+    # ``barranquenho_dict``, is documented same-source for o2i (see
+    # ``_O2I_SAME_SOURCE_DATASETS`` above) — its own loader docstring says
+    # the IPA column "suggests their IPA column is itself o2i-aligned:
+    # treat every number from this dataset as agreement, not correctness".
+    # g2p_barranquenho is built directly on o2i's own
+    # ext-PT-x-barrancos spec, so it inherits the exact same exposure —
+    # wired in and correctly flagged same-source (see
+    # ``_same_source_flags``'s "barranquenho" key) rather than silently
+    # dropped or, worse, presented as a real comparison.
+    "ext-PT-x-barrancos": {"dataset": ("barranquenho_dict", "ext-PT-x-barrancos"),
+                            "espeak": None, "epitran": None, "gruut": None,
+                            "barranquenho": "ext-PT-x-barrancos"},
     "cy": {"dataset": ("wikipron", "cy"), "espeak": "cy",
            "epitran": "cym-Latn", "gruut": None},
     "ga": {"dataset": ("wikipron", "ga"), "espeak": "ga",
@@ -338,7 +388,46 @@ LANGS: Dict[str, dict] = {
     # ``None`` rather than guessed — africa-g2p is the only comparison
     # point for these rows today.
     "arb": {"dataset": ("arabic_tts", "arb"), "espeak": None,
-            "epitran": None, "gruut": None},
+            "epitran": None, "gruut": None,
+            # arbtok: same-source on this row (arabic_tts is in
+            # _ARBTOK_SAME_SOURCE_DATASETS, same as o2i itself — see the
+            # module note by arbtok_transcribe). Kept wired in anyway so a
+            # genuinely independent Arabic gold (if one lands — see
+            # scripts/benchmark.py's Arabic-gold provenance notes) scores
+            # both o2i and arbtok for real, without further code changes.
+            "arbtok": "arb"},
+    # INDEPENDENT Arabic gold: benchmark.load_wikipron_ar_diacritized's IPA
+    # column is WikiPron/Wiktionary's own — not o2i-lineage, not
+    # machine-pinned to o2i output like arabic_tts/gold20_arabic are — so
+    # THIS row, unlike "arb" above, is a real comparison point for both
+    # o2i and arbtok. See that loader's docstring for why the row exists
+    # at all: raw WikiPron Arabic headwords carry NO harakat (0/3000
+    # sampled), so scoring against them unmodified would measure "can't
+    # vowelize unvocalized text", not phonemization quality; the loader
+    # restores harakat on the INPUT (not the gold) with text2tashkeel
+    # before scoring. Caveat, disclosed rather than hidden: text2tashkeel
+    # is itself a TigreGotico tool, and arbtok's own default pipeline
+    # (``diacritize=True``) uses the SAME diacritizer internally — so a
+    # diacritization error the two share is not this row's independence
+    # signal, only the underlying IPA gold's is. Still a strictly fairer,
+    # strictly more independent comparison than "arb" above.
+    # C4 reproducibility: the diacritized INPUT text is cached to a TSV
+    # by benchmark.load_wikipron_ar_diacritized (CACHE_DIR-scoped, not
+    # committed to this repo — it is a derived artifact of a specific
+    # text2tashkeel model run, not gold data). Pin the model version
+    # actually used to generate the currently-committed board's cache
+    # here rather than leaving it silently unpinned: text2tashkeel
+    # 0.3.0a1 (rawi default model), recorded at generation time via
+    # ``importlib.metadata.version("text2tashkeel")``. Delete the cached
+    # TSV to force re-diacritization if this version note and the
+    # installed version drift apart.
+    # sample_n: raw wikipron ``ar`` is ~17.5k words and arbtok/o2i score
+    # in-process, per-word (arbtok additionally runs the ONNX diacritizer
+    # on every word for the raw-wikipron and diacritized rows) — a full
+    # pass is impractical wall clock, same rationale as pt-PT above. An
+    # EXPLICIT, row-flagged sample of 3000, not a silent cap.
+    "ar": {"dataset": ("wikipron_ar_diacritized", "ar"), "espeak": None,
+           "epitran": None, "gruut": None, "arbtok": "ar", "sample_n": 3000},
     "cop": {"dataset": ("wikipron", "cop"), "espeak": None,
             "epitran": None, "gruut": None},
     "hts": {"dataset": ("wikipron", "hts"), "espeak": None,
@@ -803,6 +892,210 @@ def africa_g2p_transcribe(word: str, lang: str) -> Optional[str]:
         return None
 
 
+# ─── o2i-downstream family (arbtok, tugaphone, g2p_barranquenho,
+#     mwl_phonemizer) — lazy, optional ────────────────────────────────────────
+#
+# All four are TigreGotico repos built directly on this repo's own lattice
+# (orthography2ipa.G2P), so they are never a truly independent comparison
+# point against o2i-lineage gold — see the ``_O2I_SAME_SOURCE_DATASETS``
+# additions below for exactly which rows that applies to. They are wired in
+# anyway (owner directive: "dont forget our downstream in benchmarks too")
+# because a family member can still legitimately be compared against a
+# GENUINELY independent gold (e.g. mwl_phonemizer vs. the native-speaker
+# ``mirandese_g2p`` set) or against each other, and because "n/a" on a row
+# that has a downstream engine is itself information.
+#
+# Per-engine lexicon disposition (the espeak discipline, audited per package
+# rather than assumed):
+#
+# - **arbtok** — audit correction: arbtok's DEFAULT configuration is NOT
+#   lexicon-free. ``ArbtokG2PPlugin.__init__`` defaults to
+#   ``lexicon=DEFAULT_LEXICON`` (``hf://TigreGotico/arabic-stem-lexicon``,
+#   145,890 entries) AND ``dialect_lexicon=True`` (a per-lect closed-class
+#   function-word lexicon) both ON. The RANKED ``arbtok`` column
+#   therefore constructs the plugin explicitly with both disabled
+#   (``lexicon=None, dialect_lexicon=False`` — see
+#   ``arbtok_transcribe``), leaving only the rule path plus
+#   ``arbtok.dialects.WORD_EXCEPTIONS`` — a 22-entry closed set of
+#   MSA/Classical demonstrative-pronoun irregular readings (silent
+#   letters) with no independent toggle, small enough to stay in the same
+#   audited-acceptable category as pycotovia's closed function-word
+#   table. The STOCK (default-configured, lexicon-backed) number is
+#   reported separately and purely informationally as ``arbtok_stock``
+#   (board column "arbtok (lexicon)") — never ranked, exactly like stock
+#   ``espeak``/``gruut``/``tugaphone``.
+# - **tugaphone** — ``TugaPhonemizer`` always registers the curated
+#   ``tugalex`` lexicon for the target lect before phonemizing
+#   (``lattice_core._ensure_lexicon``, called unconditionally from
+#   ``phonemize_sentence``); there is no public toggle to disable it. Same
+#   disposition as stock ``espeak``: reported "(lexicon)", left on the board
+#   for information, excluded from the lexicon-free Winner/leaderboard
+#   ranking (see ``_LEXICON_EXCLUDED_FROM_RANKING`` below) rather than
+#   silently ranked with an undisclosed lexicon on.
+# - **g2p_barranquenho** — no bundled per-word lexicon; ``transcribe()`` is
+#   pure lattice + rule stages. Lexicon-free, scored as-is.
+# - **mwl_phonemizer** — ``MirandesePhonemizer`` carries an optional
+#   native-speaker lexicon overlay and CRF corrector, both OFF by default
+#   (``use_crf=False``) and the overlay only consulted when
+#   ``phonemize(..., lookup=True)``. The module-level ``phonemize()``
+#   convenience function used here calls neither, so scoring is pure lattice
+#   output — lexicon-free by construction, no extra flag needed.
+
+
+def _installed_version(dist_name: str) -> Optional[str]:
+    """The installed distribution version for *dist_name* (e.g.
+    ``"arbtok"``), or ``None`` if it is not installed / not resolvable as
+    a distribution (editable/local checkouts still report a version via
+    their build backend — this is NOT a proxy for "installed from
+    PyPI"). Recorded per row (``<system>_version``, same pattern as
+    ``ahotts_version``) so a committed board number is reproducible
+    against a known engine version, not silently unpinned."""
+    try:
+        return importlib.metadata.version(dist_name)
+    except importlib.metadata.PackageNotFoundError:
+        return None
+
+
+def arbtok_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with arbtok's ``ArbtokG2PPlugin`` for the Arabic
+    *lang* variety, LEXICON-FREE (``lexicon=None, dialect_lexicon=False``),
+    or ``None`` if the library is absent or fails on the word.
+
+    Audit correction: arbtok's DEFAULTS are NOT lexicon-free —
+    ``ArbtokG2PPlugin.__init__`` defaults ``lexicon=DEFAULT_LEXICON``
+    (``hf://TigreGotico/arabic-stem-lexicon``, 145,890 entries) and
+    ``dialect_lexicon=True`` (a per-lect closed-class function-word
+    lexicon). This is the fair-comparison RANKED column — the espeak
+    discipline applied correctly this time: both bundled lexicons
+    disabled, so only the rule path plus the 22-entry
+    ``WORD_EXCEPTIONS`` closed set (not independently toggleable, and
+    small enough to stay audited-acceptable — see the module note above)
+    remain. The full-lexicon STOCK number is reported separately, purely
+    informationally, by ``arbtok_stock_transcribe`` below."""
+    try:
+        from arbtok.plugin import ArbtokG2PPlugin
+    except ImportError:
+        return None
+    plugin = _arbtok_plugin_cache.get(lang)
+    if plugin is None:
+        try:
+            plugin = ArbtokG2PPlugin(lang=lang, lexicon=None,
+                                      dialect_lexicon=False)
+        except Exception:
+            return None
+        _arbtok_plugin_cache[lang] = plugin
+    try:
+        return plugin.transcribe(word) or None
+    except Exception:
+        return None
+
+
+def arbtok_stock_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with arbtok's STOCK (default-configured)
+    ``ArbtokG2PPlugin`` — the full 145,890-entry stem lexicon and the
+    per-lect dialect lexicon both ON, exactly as a caller gets with no
+    arguments. Informational only (see the ``(lexicon)`` column
+    disposition below the module docstring); never ranked.
+
+    C3: an HF lexicon fetch failure must never silently degrade to a
+    bare-lattice result that LOOKS like a real, lexicon-backed score (a
+    fetch failure scoring identically to "no lexicon configured" would
+    be indistinguishable from a genuine lexicon-free run — a lie by
+    omission).
+
+    C3 correction (round 2): ``arbtok.lexicon.LexiconUnavailable`` does
+    NOT propagate out of ``ArbtokG2PPlugin.transcribe`` — arbtok's own
+    ``_diacritize`` wraps diacritizer construction AND every diacritize
+    call in a blanket ``except Exception: return text`` (arbtok/
+    plugin.py), so a broken lexicon degrades to bare-lattice output
+    INSIDE arbtok itself before this function ever sees an exception. An
+    ``except LexiconUnavailable: raise`` here was therefore dead code —
+    unreachable, confirmed by a reviewer probe with a broken lexicon path
+    that returned bare-lattice output with no raise. Fixed harness-side,
+    since arbtok's own swallow is by design and not something to patch
+    around: PRE-FLIGHT the lexicon directly, bypassing arbtok's
+    diacritizer entirely, once per cached plugin, BEFORE any word is
+    scored — ``StemLexicon(DEFAULT_LEXICON).entries`` raises
+    ``LexiconUnavailable`` on its own fetch/parse failure with no
+    swallowing anywhere in its own path (see
+    ``arbtok.lexicon.StemLexicon.entries``). This still lets the run
+    crash on a fetch failure instead of silently publishing a
+    lexicon-labeled number that is secretly lexicon-free."""
+    try:
+        from arbtok.plugin import ArbtokG2PPlugin
+        from arbtok.lexicon import LexiconUnavailable, StemLexicon
+    except ImportError:
+        return None
+    plugin = _arbtok_stock_plugin_cache.get(lang)
+    if plugin is None:
+        StemLexicon().entries  # pre-flight: raises LexiconUnavailable, uncaught
+        plugin = ArbtokG2PPlugin(lang=lang)  # stock defaults
+        _arbtok_stock_plugin_cache[lang] = plugin
+    try:
+        return plugin.transcribe(word) or None
+    except LexiconUnavailable:
+        raise
+    except Exception:
+        return None
+
+
+_arbtok_stock_plugin_cache: Dict[str, object] = {}
+
+
+_arbtok_plugin_cache: Dict[str, object] = {}
+
+
+def tugaphone_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with tugaphone's ``TugaPhonemizer`` for the
+    Portuguese *lang* dialect, or ``None`` if the library is absent or fails
+    on the word."""
+    try:
+        from tugaphone import TugaPhonemizer
+    except ImportError:
+        return None
+    global _tugaphone_instance
+    if _tugaphone_instance is None:
+        _tugaphone_instance = TugaPhonemizer()
+    try:
+        return _tugaphone_instance.phonemize_sentence(word, lang=lang) or None
+    except Exception:
+        return None
+
+
+_tugaphone_instance = None
+
+
+def barranquenho_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with g2p_barranquenho's ``transcribe``, or ``None``
+    if the library is absent or fails on the word. *lang* is accepted for a
+    uniform call signature but unused — g2p_barranquenho scores a single
+    fixed variety (``ext-PT-x-barrancos``)."""
+    try:
+        from g2p_barranquenho import transcribe
+    except ImportError:
+        return None
+    try:
+        phones = transcribe(word)
+        return "".join(phones) if phones else None
+    except Exception:
+        return None
+
+
+def mwl_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with mwl_phonemizer's module-level ``phonemize()``
+    for the Mirandese *lang* dialect (lattice-only: no lexicon overlay, no
+    CRF — see the module disposition note above), or ``None`` if the
+    library is absent or fails on the word."""
+    try:
+        from mwl_phonemizer import phonemize
+    except ImportError:
+        return None
+    try:
+        return phonemize(word, dialect=lang) or None
+    except Exception:
+        return None
+
+
 # ─── epitran (lazy, optional) ───────────────────────────────────────────────
 
 _epitran_cache: Dict[str, object] = {}
@@ -1065,7 +1358,18 @@ _GRUUT_SAME_SOURCE_DATASETS = frozenset({"cmudict", "ipadict"})
 #: self-agreement, not correctness.
 _O2I_SAME_SOURCE_DATASETS = frozenset({
     "arabic_tts", "portuguese_tts", "gold20_arabic",
+    # barranquenho_dict joins per this docstring's own instruction above:
+    # load_barranquenho_dict's docstring documents its IPA column as itself
+    # o2i-aligned, so scoring o2i (or g2p_barranquenho, which is built
+    # directly on o2i's ext-PT-x-barrancos spec) against it is circular.
+    "barranquenho_dict",
 })
+
+#: arbtok is built directly on o2i's own Arabic lattice AND its
+#: code-switched-Arabic gold text is machine-pinned to o2i's own output
+#: (see docs/benchmarks.md "Provenance"), so it shares o2i's same-source
+#: exposure 1:1 — same datasets, same reason.
+_ARBTOK_SAME_SOURCE_DATASETS = _O2I_SAME_SOURCE_DATASETS
 
 #: Provenance tiers produced by a process independent of any G2P system —
 #: a genuine external reference, not another tool's (or o2i's own) output.
@@ -1138,6 +1442,16 @@ def _same_source_flags(dataset_name: str, loader_lang: str) -> Dict[str, bool]:
         "ahotts": dataset_name in _AHOTTS_SAME_SOURCE_DATASETS,
         "gruut": dataset_name in _GRUUT_SAME_SOURCE_DATASETS,
         "o2i": dataset_name in _O2I_SAME_SOURCE_DATASETS,
+        "arbtok": dataset_name in _ARBTOK_SAME_SOURCE_DATASETS,
+        "arbtok_stock": dataset_name in _ARBTOK_SAME_SOURCE_DATASETS,
+        "barranquenho": dataset_name in _O2I_SAME_SOURCE_DATASETS,
+        # tugaphone and mwl_phonemizer are likewise built directly on o2i's
+        # own lattice (TugaPhonemizer/MirandesePhonemizer both instantiate
+        # orthography2ipa.G2P internally), so they inherit the exact same
+        # circularity exposure on the o2i-lineage-gold datasets as arbtok
+        # and g2p_barranquenho do — see _O2I_SAME_SOURCE_DATASETS.
+        "tugaphone": dataset_name in _O2I_SAME_SOURCE_DATASETS,
+        "mwl_phonemizer": dataset_name in _O2I_SAME_SOURCE_DATASETS,
     }
 
 
@@ -1220,6 +1534,11 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
     pycotovia_rows: List[Tuple[Optional[str], List[str]]] = []
     ahotts_rows: List[Tuple[Optional[str], List[str]]] = []
     africa_g2p_rows: List[Tuple[Optional[str], List[str]]] = []
+    arbtok_rows: List[Tuple[Optional[str], List[str]]] = []
+    arbtok_stock_rows: List[Tuple[Optional[str], List[str]]] = []
+    tugaphone_rows: List[Tuple[Optional[str], List[str]]] = []
+    barranquenho_rows: List[Tuple[Optional[str], List[str]]] = []
+    mwl_phonemizer_rows: List[Tuple[Optional[str], List[str]]] = []
 
     use_espeak = (cfg["espeak"] is not None and espeak_available()
                   and not same_source["espeak"])
@@ -1239,6 +1558,19 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
     use_pycotovia = cfg.get("pycotovia") is not None
     use_ahotts = cfg.get("ahotts") is not None and not same_source["ahotts"]
     use_africa_g2p = cfg.get("africa_g2p") is not None
+    use_arbtok = (cfg.get("arbtok") is not None
+                  and not same_source["arbtok"])
+    # arbtok_stock (informational-only) is gated on cfg["arbtok"] too — it
+    # is the same language mapping, just the DEFAULT-configured plugin
+    # instead of arbtok_transcribe's lexicon-free one.
+    use_arbtok_stock = (cfg.get("arbtok") is not None
+                         and not same_source["arbtok_stock"])
+    use_tugaphone = (cfg.get("tugaphone") is not None
+                      and not same_source["tugaphone"])
+    use_barranquenho = (cfg.get("barranquenho") is not None
+                         and not same_source["barranquenho"])
+    use_mwl_phonemizer = (cfg.get("mwl_phonemizer") is not None
+                           and not same_source["mwl_phonemizer"])
 
     espeak_out: Dict[str, Optional[str]] = {}
     if use_espeak:
@@ -1284,6 +1616,36 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
         if use_africa_g2p:
             africa_g2p_rows.append(
                 (africa_g2p_transcribe(word, cfg["africa_g2p"]), golds))
+        if use_arbtok:
+            arbtok_rows.append((arbtok_transcribe(word, cfg["arbtok"]), golds))
+        if use_arbtok_stock:
+            arbtok_stock_rows.append(
+                (arbtok_stock_transcribe(word, cfg["arbtok"]), golds))
+        if use_barranquenho:
+            barranquenho_rows.append(
+                (barranquenho_transcribe(word, cfg["barranquenho"]), golds))
+        if use_mwl_phonemizer:
+            mwl_phonemizer_rows.append(
+                (mwl_transcribe(word, cfg["mwl_phonemizer"]), golds))
+
+    if use_tugaphone:
+        # C1 fix: tugaphone_transcribe -> TugaPhonemizer.phonemize_sentence
+        # -> tugaphone.lattice_core._ensure_lexicon() calls
+        # orthography2ipa.register_lexicon(lect, ...) — a PROCESS-GLOBAL
+        # mutation keyed on the SAME lect code o2i's own ``engine`` above
+        # uses. Interleaving tugaphone calls into the o2i loop (the
+        # original bug) meant every o2i score from word 2 onward was
+        # secretly o2i+tugalex, not bare o2i — measured contamination:
+        # pt-PT/ep_dialects o2i PER dropped from 0.1185 (clean) to 0.1072
+        # (with tugalex leaking in). Running tugaphone in its OWN pass,
+        # strictly AFTER the o2i loop above has already collected every
+        # o2i_rows entry, and clearing the lexicon registry immediately
+        # after, means the mutation can no longer reach o2i's scoring.
+        for word in words:
+            golds = refs[word]
+            tugaphone_rows.append(
+                (tugaphone_transcribe(word, cfg["tugaphone"]), golds))
+        orthography2ipa.clear_lexicons()
 
     if use_o2i_lex:
         # register_lexicon() calls get_lexicon.cache_clear() itself, so the
@@ -1317,6 +1679,16 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
     ahotts_version = cfg["ahotts"]["version"] if use_ahotts else None
     africa_g2p_per, africa_g2p_n = (
         _score(africa_g2p_rows, lang=lang) if use_africa_g2p else (None, 0))
+    arbtok_per, arbtok_n = (
+        _score(arbtok_rows, lang=lang) if use_arbtok else (None, 0))
+    arbtok_stock_per, arbtok_stock_n = (
+        _score(arbtok_stock_rows, lang=lang) if use_arbtok_stock else (None, 0))
+    tugaphone_per, tugaphone_n = (
+        _score(tugaphone_rows, lang=lang) if use_tugaphone else (None, 0))
+    barranquenho_per, barranquenho_n = (
+        _score(barranquenho_rows, lang=lang) if use_barranquenho else (None, 0))
+    mwl_phonemizer_per, mwl_phonemizer_n = (
+        _score(mwl_phonemizer_rows, lang=lang) if use_mwl_phonemizer else (None, 0))
 
     return {
         "lang": lang,
@@ -1350,6 +1722,29 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
         "ahotts_same_source": same_source["ahotts"],
         "africa_g2p_per": round(africa_g2p_per, 4) if africa_g2p_per is not None else None,
         "africa_g2p_n": africa_g2p_n,
+        "arbtok_per": round(arbtok_per, 4) if arbtok_per is not None else None,
+        "arbtok_n": arbtok_n,
+        "arbtok_same_source": same_source["arbtok"],
+        "arbtok_stock_per": round(arbtok_stock_per, 4) if arbtok_stock_per is not None else None,
+        "arbtok_stock_n": arbtok_stock_n,
+        "arbtok_stock_same_source": same_source["arbtok_stock"],
+        "arbtok_version": (_installed_version("arbtok")
+                            if (use_arbtok or use_arbtok_stock) else None),
+        "tugaphone_per": round(tugaphone_per, 4) if tugaphone_per is not None else None,
+        "tugaphone_n": tugaphone_n,
+        "tugaphone_same_source": same_source["tugaphone"],
+        "tugaphone_version": (_installed_version("tugaphone")
+                               if use_tugaphone else None),
+        "barranquenho_per": round(barranquenho_per, 4) if barranquenho_per is not None else None,
+        "barranquenho_n": barranquenho_n,
+        "barranquenho_same_source": same_source["barranquenho"],
+        "barranquenho_version": (_installed_version("g2p_barranquenho")
+                                  if use_barranquenho else None),
+        "mwl_phonemizer_per": round(mwl_phonemizer_per, 4) if mwl_phonemizer_per is not None else None,
+        "mwl_phonemizer_n": mwl_phonemizer_n,
+        "mwl_phonemizer_same_source": same_source["mwl_phonemizer"],
+        "mwl_phonemizer_version": (_installed_version("mwl_phonemizer")
+                                    if use_mwl_phonemizer else None),
         "provenance_tier": _provenance_tier_or_none(dataset_name, loader_lang),
         "harness_version": HARNESS_VERSION,
         "limit": limit if limit is not None else "full",
@@ -1763,12 +2158,37 @@ _SYSTEMS: List[Tuple[str, str]] = [
     ("pycotovia", "pycotovia"),
     ("ahotts", "ahotts-g2p"),
     ("africa_g2p", "africa-g2p"),
+    # o2i-downstream family (arbtok, tugaphone, g2p_barranquenho,
+    # mwl_phonemizer) — see the lexicon-disposition note by
+    # arbtok_transcribe/tugaphone_transcribe/barranquenho_transcribe/
+    # mwl_transcribe for the audit behind each one's ranking treatment.
+    ("arbtok", "arbtok"),
+    ("arbtok_stock", "arbtok (lexicon)"),
+    ("tugaphone", "tugaphone (lexicon)"),
+    ("barranquenho", "g2p_barranquenho"),
+    ("mwl_phonemizer", "mwl_phonemizer"),
 ]
 
 #: Systems whose cell can legitimately read ``same-source`` instead of a
 #: number or ``n/a`` — see ``_cell``.
 _SAME_SOURCE_SYSTEMS = {"o2i", "espeak", "espeak_rules", "epitran", "ahotts",
-                         "gruut"}
+                         "gruut", "arbtok", "arbtok_stock", "barranquenho",
+                         "tugaphone", "mwl_phonemizer"}
+
+#: Family systems with an always-on lexicon and no public toggle to
+#: disable it — ``tugaphone`` (audited: no toggle exists at all — see the
+#: module note by ``tugaphone_transcribe``) — plus ``arbtok_stock``, the
+#: PURELY INFORMATIONAL duplicate of the ``arbtok`` column with arbtok's
+#: default (lexicon-backed) configuration; the RANKED ``arbtok`` column
+#: is a separate, genuinely lexicon-free run (``lexicon=None,
+#: dialect_lexicon=False`` — see ``arbtok_transcribe``), so
+#: ``arbtok_stock`` is excluded here rather than substituted. Shown on
+#: the board with a real PER for information; NEVER contributes to the
+#: lexicon-free Winner/leaderboard ranking, the same treatment stock
+#: ``espeak``/``gruut`` get via ``_RULES_ONLY_SUBSTITUTES`` — but unlike
+#: those two, there is no ``_rules``-suffixed variant to substitute in,
+#: so both members here are dropped from ``_rules_only_values`` outright.
+_LEXICON_EXCLUDED_FROM_RANKING = {"tugaphone", "arbtok_stock"}
 
 #: Two PERs within this margin of each other count as a tie for the
 #: winner column, not a spurious four-decimal-place "win".
@@ -1863,6 +2283,8 @@ def _rules_only_values(row: dict) -> Dict[str, float]:
     for key, _label in _SYSTEMS:
         if key in ("espeak_rules", "gruut_rules"):
             continue
+        if key in _LEXICON_EXCLUDED_FROM_RANKING:
+            continue
         if key in _RULES_ONLY_SUBSTITUTES:
             v = _system_value(row, _RULES_ONLY_SUBSTITUTES[key])
         else:
@@ -1891,21 +2313,39 @@ def _labeled_lexicon_free_values(row: dict) -> Dict[str, float]:
     return {_lexicon_free_label(k): v for k, v in _rules_only_values(row).items()}
 
 
+#: Every lexicon-backed value this board reports PURELY informationally
+#: (never ranked) — {the row field it lives in: the bare engine name for
+#: the aside prose}. Covers two distinct shapes: ``espeak``/``gruut``
+#: (a stock lexicon-backed column that has a SEPARATE ranked rules-only
+#: substitute, e.g. ``espeak_rules``) and ``tugaphone``/``arbtok_stock``
+#: (a column excluded from ranking outright — either because there is no
+#: public toggle to strip the lexicon at all (tugaphone), or because it
+#: duplicates a SEPARATE already-lexicon-free ranked column under a
+#: different key (``arbtok_stock`` vs the ranked ``arbtok``)). C6: this
+#: dict is the single source of truth for "which columns can win an
+#: informational aside" — adding a new lexicon-backed system here is
+#: enough, no separate case needed per call site.
+_LEXICON_BACKED_INFORMATIONAL_COLUMNS: Dict[str, str] = {
+    "espeak": "espeak",
+    "gruut": "gruut",
+    "tugaphone": "tugaphone",
+    "arbtok_stock": "arbtok",
+}
+
+
 def _lexicon_backed_informational_note(row: dict, ranked_best: float) -> str:
-    """Informational note naming a LEXICON-BACKED stock value (``espeak``
-    or ``gruut``) that would have won had it been ranked — never
-    silently dropped, just never counted. Empty string when no
-    lexicon-backed stock value beats *ranked_best* (the actual,
-    lexicon-free winner)."""
-    #: Bare engine name (not the "(lexicon)"-suffixed column label) so the
-    #: aside reads "espeak with its lexicon scores N", not the redundant
-    #: "espeak (lexicon) with its lexicon scores N".
-    bare_names = {"espeak": "espeak", "gruut": "gruut"}
+    """Informational note naming a LEXICON-BACKED stock value (see
+    ``_LEXICON_BACKED_INFORMATIONAL_COLUMNS``) that would have won had it
+    been ranked — never silently dropped, just never counted. Empty
+    string when no lexicon-backed stock value beats *ranked_best* (the
+    actual, lexicon-free winner)."""
     candidates = []
-    for key in _RULES_ONLY_SUBSTITUTES:  # "espeak", "gruut"
-        v = _system_value(row, key)  # stock (lexicon-backed) value
+    for key, label in _LEXICON_BACKED_INFORMATIONAL_COLUMNS.items():
+        v = row.get(f"{key}_per")  # stock (lexicon-backed) value, raw
+        if key in _SAME_SOURCE_SYSTEMS and row.get(f"{key}_same_source"):
+            continue  # a same-source cell is not a real number to cite
         if v is not None and v < ranked_best - _WINNER_TIE_TOLERANCE:
-            candidates.append((v, bare_names[key]))
+            candidates.append((v, label))
     if not candidates:
         return ""
     v, label = min(candidates)
@@ -1957,7 +2397,8 @@ def _winner_label_str(winners: List[str]) -> str:
     return f"tie ({', '.join(sorted(winners))})" if len(winners) > 1 else winners[0]
 
 
-def _leaderboard_line(lang: str, primary_row: dict) -> str:
+def _leaderboard_line(lang: str, primary_row: dict,
+                       other_rows: Optional[List[dict]] = None) -> str:
     """One human-readable leaderboard line for *lang*'s primary gold row:
     who wins, and where o2i lands relative to them. RANKED OVER THE
     LEXICON-FREE WORLD ONLY (see :func:`_winner`/:func:`_rules_only_values`
@@ -1977,6 +2418,16 @@ def _leaderboard_line(lang: str, primary_row: dict) -> str:
     disp = _lang_heading(lang)
     values = _rules_only_values(primary_row)
     if not values:
+        # C-plausible: don't flatly say "no comparable systems" when a
+        # NON-primary registered dataset for this language DOES have a
+        # real (non-same-source) comparison — that reads as contradicting
+        # the per-language table right below it. Point there instead.
+        if other_rows and any(
+                _rules_only_values(r) for r in other_rows
+                if r is not primary_row):
+            return (f"**{disp}** — primary gold has no comparable "
+                    f"systems (same-source); see the per-language table "
+                    f"below for a comparison on a secondary gold")
         return f"**{disp}** — no comparable systems for this gold"
     labeled = {_lexicon_free_label(k): v for k, v in values.items()}
     ranked = sorted(values.items(), key=lambda kv: kv[1])
@@ -2011,6 +2462,9 @@ def _leaderboard_summary(rows: List[dict]) -> List[str]:
     — one line per language, not one per table row."""
     primary = _primary_rows(rows)
     by_lang = {r["lang"]: r for r in primary}
+    all_rows_by_lang: Dict[str, List[dict]] = {}
+    for r in rows:
+        all_rows_by_lang.setdefault(r["lang"], []).append(r)
     lines = ["## Leaderboard", "", (
         "One line per language: the best system on its primary gold, "
         "and where o2i lands. **Ranking policy: lexicon-free only** — "
@@ -2048,8 +2502,145 @@ def _leaderboard_summary(rows: List[dict]) -> List[str]:
         "not counted as the winner."
     ), ""]
     for lang in sorted(by_lang):
-        lines.append(f"- {_leaderboard_line(lang, by_lang[lang])}")
+        lines.append(f"- {_leaderboard_line(lang, by_lang[lang], all_rows_by_lang.get(lang))}")
     lines.append("")
+    return lines
+
+
+#: {system key: (repo name, one-line "what it adds over base o2i")} for
+#: the o2i-downstream family section below. Order is display order.
+_O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
+    ("arbtok", "arbtok",
+     "Arabic diacritization, dialect lexicons, nativized loanwords, and "
+     "code-switch handling on top of the shared `ar`/`arb` lattice "
+     "(the RANKED `arbtok` column below runs with both bundled "
+     "lexicons off for a fair lexicon-free comparison — see `arbtok "
+     "(lexicon)` for the full-featured stock number)"),
+    ("tugaphone", "tugaphone",
+     "the curated `tugalex` pronunciation lexicon, sense-based homograph "
+     "marking, and cross-dialect contact-language handling on top of the "
+     "Portuguese-family lattice"),
+    ("barranquenho", "g2p_barranquenho",
+     "the Barranquenho (Spanish/Portuguese contact variety) rule layer "
+     "on top of the `ext-PT-x-barrancos` lattice"),
+    ("mwl_phonemizer", "mwl_phonemizer",
+     "Mirandese dialect selection, an optional native-speaker lexicon "
+     "overlay, and CRF correction on top of the `mwl` lattice"),
+]
+
+
+#: {row field: display name} for the family-version pin sentence below —
+#: parallel to the espeak-ng version pin in the "Rules-only columns"
+#: section ("espeak-ng 1.52.0 pinned").
+_FAMILY_VERSION_FIELDS: List[Tuple[str, str]] = [
+    ("arbtok_version", "arbtok"),
+    ("tugaphone_version", "tugaphone"),
+    ("barranquenho_version", "g2p_barranquenho"),
+    ("mwl_phonemizer_version", "mwl_phonemizer"),
+]
+
+
+def _family_versions_note(rows: List[dict]) -> str:
+    """One sentence naming the exact PyPI-published version of each o2i
+    family engine the COMMITTED rows were actually produced with —
+    reproducibility parallel to the espeak-ng version pin ("espeak-ng
+    1.52.0 pinned") in the "Rules-only columns" section below. Reads the
+    version straight off the rows themselves (``<system>_version``, set
+    at scoring time via ``importlib.metadata.version()`` — see
+    ``_installed_version``), so it can never drift out of sync with what
+    actually produced the committed numbers. Empty string if no row
+    carries any family version yet (e.g. none of the family systems were
+    installed when the board was last regenerated)."""
+    versions: Dict[str, str] = {}
+    for row in rows:
+        for field, label in _FAMILY_VERSION_FIELDS:
+            v = row.get(field)
+            if v and label not in versions:
+                versions[label] = v
+    if not versions:
+        return ""
+    parts = ", ".join(f"{label} {versions[label]}"
+                       for _field, label in _FAMILY_VERSION_FIELDS
+                       if label in versions)
+    return (f"*Versions pinned: the family rows above were produced with "
+            f"{parts} — every one of these exact versions is published "
+            f"on PyPI as a pre-release alpha (verified with `pip index "
+            f"versions <pkg> --pre`), so the number is reproducible from "
+            f"a plain `pip install --pre <pkg>==<version>` even on "
+            f"generating environments that installed a local/editable "
+            f"checkout at the same version instead.*")
+
+
+def _o2i_family_section(rows: List[dict]) -> List[str]:
+    """A dedicated, FIRST-CLASS section for the o2i-downstream family
+    (owner directive: "arbtok tugaphone and all o2i downstreams need to
+    show in docs as first class, they show how o2i can be improved
+    further") — distinct from the "other G2P systems" framing the rest of
+    this document uses for espeak/epitran/gruut/etc., which are genuinely
+    external projects o2i is compared AGAINST. The family is not that: it
+    is built directly on o2i's own lattice, so a family member's win over
+    bare o2i is not a competitor beating this project — it is a
+    downstream feature (a lexicon, a dialect rule, a normalization pass)
+    o2i itself does not yet carry, made visible as measured headroom.
+    Measurement rigor is unchanged from the rest of the document: same
+    same-source labels, same lexicon-ranking exclusion for tugaphone, same
+    honest numbers whichever way they land — only the FRAMING differs."""
+    lines = [
+        "## The o2i family",
+        "",
+        "orthography2ipa is a shared lattice — a grapheme table plus "
+        "allophone/sandhi rules per language variety — that several "
+        "TigreGotico projects build directly on top of, adding what the "
+        "shared lattice deliberately leaves to the caller (lexicons, "
+        "diacritization, dialect selection, normalization). These are "
+        "FIRST-CLASS to this board, not \"other G2P systems\" being "
+        "compared against o2i as competitors:",
+        "",
+    ]
+    version_note = _family_versions_note(rows)
+    if version_note:
+        lines.extend([version_note, ""])
+    for key, repo, delta in _O2I_FAMILY_REPOS:
+        lines.append(
+            f"- **[{repo}](https://github.com/TigreGotico/{repo})** — adds "
+            f"{delta}.")
+    lines.extend([
+        "",
+        "**Reading a family row: headroom, not a loss.** Where a family "
+        "system's PER beats bare o2i's on a row that is NOT `same-source` "
+        "(see below — same-source rows are refused as a comparison "
+        "point, exactly like every other system on this board), that gap "
+        "is a concrete demonstration of what the shared `orthography2ipa` "
+        "specs could still absorb into the base lattice — a diacritizer "
+        "pass, a closed-class lexicon, a dialect rule — not evidence o2i "
+        "\"lost\" to a competitor. Where a family row instead ties o2i "
+        "exactly, that is equally informative: it means the family "
+        "member's extra stages are not (yet, or not on this gold) adding "
+        "anything the base lattice does not already do on its own.",
+        "",
+        "**Measurement stays unchanged.** Every family row is scored "
+        "under the exact same discipline as every other system on this "
+        "board: the SAME `same-source` refusal when a family engine "
+        "would be scored against gold drawn from o2i's own lineage (see "
+        "\"How to read this\" below — all four family engines are built "
+        "on o2i's lattice, so they inherit o2i's own same-source exposure "
+        "1:1); the SAME lexicon-vs-rules-only discipline — g2p_barranquenho "
+        "and mwl_phonemizer's lexicon-free DEFAULT configuration are "
+        "ranked normally; arbtok's DEFAULT is lexicon-backed (a "
+        "145,890-entry stem lexicon plus a per-lect dialect lexicon, "
+        "both on), so the ranked `arbtok` column is a deliberately "
+        "NON-default configuration (`lexicon=None, "
+        "dialect_lexicon=False`) leaving only the rule path plus a "
+        "22-entry closed demonstrative-pronoun exception table with no "
+        "independent toggle, while the unmodified stock number is shown "
+        "separately as the informational `arbtok (lexicon)` column; "
+        "tugaphone's always-on `tugalex` lexicon has no public disable "
+        "switch at all, so it is excluded from the lexicon-free "
+        "Winner/leaderboard ranking the same way — and the SAME honest "
+        "reporting either way, a family engine beating o2i is reported "
+        "as loudly as a tie.",
+        "",
+    ])
     return lines
 
 
@@ -2318,8 +2909,10 @@ def write_comparison(
         "# Comparison to other G2P systems",
         "",
         "This table shows how well orthography2ipa (o2i) predicts IPA "
-        "pronunciation compared to seven other G2P systems, on the same "
-        "gold word lists, language by language.",
+        "pronunciation compared to eleven other G2P systems (including the "
+        "four o2i-downstream family engines — arbtok, tugaphone, "
+        "g2p_barranquenho, mwl_phonemizer), on the same gold word lists, "
+        "language by language.",
         "",
         "Every number is a **PER (Phoneme Error Rate)**: lower is "
         "better, `0.0000` is a perfect match, and it CAN exceed `1.0` "
@@ -2328,6 +2921,7 @@ def write_comparison(
         "",
     ]
     lines.extend(_leaderboard_summary(rows))
+    lines.extend(_o2i_family_section(rows))
     lines.extend(_render_language_tables(rows))
     lines.extend([
         "## How to read this",
@@ -2555,6 +3149,10 @@ def main() -> None:
                   f"pycotovia={cfg.get('pycotovia')} "
                   f"ahotts={cfg.get('ahotts')} "
                   f"africa_g2p={cfg.get('africa_g2p')} "
+                  f"arbtok={cfg.get('arbtok')} "
+                  f"tugaphone={cfg.get('tugaphone')} "
+                  f"barranquenho={cfg.get('barranquenho')} "
+                  f"mwl_phonemizer={cfg.get('mwl_phonemizer')} "
                   f"dictsource_lang={DICTSOURCE_LANG.get(lang)}")
         return
 
@@ -2568,7 +3166,11 @@ def main() -> None:
               f"gruut_rules={_fmt(row.get('gruut_rules_per'))} "
               f"pycotovia={_fmt(row.get('pycotovia_per'))} "
               f"ahotts={_cell(row, 'ahotts')} "
-              f"africa_g2p={_fmt(row.get('africa_g2p_per'))}")
+              f"africa_g2p={_fmt(row.get('africa_g2p_per'))} "
+              f"arbtok={_cell(row, 'arbtok')} "
+              f"tugaphone={_cell(row, 'tugaphone')} "
+              f"barranquenho={_cell(row, 'barranquenho')} "
+              f"mwl_phonemizer={_cell(row, 'mwl_phonemizer')}")
 
 
 if __name__ == "__main__":
