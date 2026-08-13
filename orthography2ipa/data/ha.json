@@ -100,6 +100,33 @@
       "ʔj"
     ]
   },
+  "positional_graphemes": {
+    "a": {
+      "word_initial": [
+        "ʔa"
+      ]
+    },
+    "e": {
+      "word_initial": [
+        "ʔe"
+      ]
+    },
+    "i": {
+      "word_initial": [
+        "ʔi"
+      ]
+    },
+    "o": {
+      "word_initial": [
+        "ʔo"
+      ]
+    },
+    "u": {
+      "word_initial": [
+        "ʔu"
+      ]
+    }
+  },
   "allophones": {
     "a": [
       "a"
@@ -187,7 +214,7 @@
       "ʔʲ"
     ]
   },
-  "notes": "Hausa in Latin script (Boko). Implosives: Ɓ = /ɓ/, Ɗ = /ɗ/. Ƙ = ejective /kʼ/. Ts = ejective /tsʼ/. Ƴ = palatal glottal. 2-tone language (high, low) with falling contour. Long vowels written doubled.",
+  "notes": "Hausa in Latin script (Boko). Implosives: Ɓ = /ɓ/, Ɗ = /ɗ/. Ƙ = ejective /kʼ/. Ts = ejective /tsʼ/. Ƴ = palatal glottal. 2-tone language (high, low) with falling contour. Long vowels written doubled. Word-initial vowels take an obligatory epenthetic glottal-stop onset (Hausa disallows vowel-initial syllables): Newman, P. (2000) 'The Hausa Language: An Encyclopedic Reference Grammar', Yale University Press, sect. 2.2. This is encoded via positional_graphemes (word_initial). The wikipron proper-name gold used for benchmarking is written WITHOUT tone/length diacritics in its orthographic column (e.g. 'Rogo') while its IPA column is fully tone- and length-marked ('ɽóóɡò'), and Hausa's two rhotic phonemes (trilled /r/, retroflex flap /ɽ/) have merged in Boko spelling to plain 'r' with no orthographic cue to which one a given word uses: both are gold-dataset convention gaps unrecoverable from this input, not spec gaps — see docs/languages/ha.md.",
   "sources": [
     {
       "id": "newman2000",

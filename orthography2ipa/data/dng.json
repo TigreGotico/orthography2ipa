@@ -3,7 +3,7 @@
   "name": "Dungan",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
       "a"
@@ -129,7 +129,7 @@
       "notes": "Descent per Glottolog classification of Dungan (dung1253)."
     }
   ],
-  "notes": "Skeleton. Dungan is a Sinitic (Sino-Tibetan) language — a Mandarin variety of the Central Asian Dungan people — written in a Cyrillic alphabet with the extra letters ә, ў, ү, ң and җ. Letters are mapped to approximate phonemic values (aspirated/unaspirated stop pairs б/п, г/к, д/т; retroflex and alveolo-palatal series). The three-to-four lexical tones are not marked in the orthography and are left unencoded, so an elevated PER floor is expected. Contextual e/je and o/jo readings are only approximately covered.",
+  "notes": "Skeleton. Dungan is a Sinitic (Sino-Tibetan) language — a Mandarin variety of the Central Asian Dungan people — written in a Cyrillic alphabet with the extra letters ә, ў, ү, ң and җ. Letters are mapped to approximate phonemic values (aspirated/unaspirated stop pairs б/п, г/к, д/т; retroflex and alveolo-palatal series). The three-to-four lexical tones are not marked in the orthography and are left unencoded, so an elevated PER floor is expected. Contextual e/je and o/jo readings are only approximately covered. Stress exemption: Dungan is a Mandarin-derived Sinitic variety and its prominence is carried by its (unwritten, per this spec's existing notes) lexical tones rather than a separate stress accent; no stress block is declared. Source: Dungan language, Wikipedia.",
   "iso639_3": "dng",
   "glottolog_code": null,
   "sources": [
