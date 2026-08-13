@@ -19,9 +19,9 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **ar** — tie (arbtok, o2i) #1
 - **arb (Classical Arabic)** — o2i not scored: this gold was drafted by o2i's own lineage — see same-source (africa-g2p #1 among the rest)
 - **ca (Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0403 — informational)
-- **ca-x-balear (Balearic Catalan)** — espeak rules-only #1, o2i #2 (espeak with its lexicon scores 0.0797 — informational)
-- **ca-x-occidental (North-Western Catalan)** — espeak rules-only #1, o2i #2 (espeak with its lexicon scores 0.0497 — informational)
-- **ca-x-valencia (Valencian)** — tie (espeak rules-only, o2i) #1 (espeak with its lexicon scores 0.0439 — informational)
+- **ca-x-balear (Balearic Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0797 — informational)
+- **ca-x-occidental (North-Western Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0497 — informational)
+- **ca-x-valencia (Valencian)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0439 — informational)
 - **cop (Coptic (Sahidic))** — o2i #1 (beats africa-g2p)
 - **cy (Welsh)** — o2i #1 (beats epitran)
 - **de (German)** — o2i #1 (beats espeak rules-only)
@@ -94,28 +94,28 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0643 | 0.0403 | 0.1206 | 0.4641 | o2i |
-| ipa_childes | 3814 | 0.2579 | same-source | same-source | 0.3447 | o2i |
-| vox_communis | 218451 | 0.8055 | 0.8195 | 0.8168 | same-source | no system is usable on this gold |
+| 4catac | 160 | 0.0642 | 0.0403 | 0.1206 | 0.4641 | o2i |
+| ipa_childes | 3814 | 0.2576 | same-source | same-source | 0.3447 | o2i |
+| vox_communis | 218451 | 0.8053 | 0.8195 | 0.8168 | same-source | no system is usable on this gold |
 | wikipron | 106 | 0.2565 | 0.2221 | 0.2798 | 0.3518 | o2i |
 
 ### ca-x-balear (Balearic Catalan)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.1471 | 0.0797 | 0.1419 | 0.4998 | espeak rules-only |
+| 4catac | 160 | 0.1360 | 0.0797 | 0.1419 | 0.4998 | o2i |
 
 ### ca-x-occidental (North-Western Catalan)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0944 | 0.0497 | 0.0832 | 0.4348 | espeak rules-only |
+| 4catac | 160 | 0.0822 | 0.0497 | 0.0832 | 0.4348 | o2i |
 
 ### ca-x-valencia (Valencian)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0759 | 0.0439 | 0.0762 | 0.3775 | tie (espeak rules-only, o2i) |
+| 4catac | 160 | 0.0677 | 0.0439 | 0.0762 | 0.3775 | o2i |
 
 ### cop (Coptic (Sahidic))
 
@@ -392,8 +392,8 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 A system winning on one gold and losing on another for the SAME language is real signal, not noise to average away. Every language with 2+ espeak-comparable gold datasets is listed below with its exact win/loss split (same-source cells excluded — they are never comparable, see above).
 
 - **`ca`** (MIXED — wins on some golds, loses on others):
-  - `4catac` (n=160, tier=expert-human): o2i 0.0643 vs espeak 0.0403 — o2i loses
-  - `vox_communis` (n=218451, tier=epitran-derived): o2i 0.8055 vs espeak 0.8195 — o2i wins
+  - `4catac` (n=160, tier=expert-human): o2i 0.0642 vs espeak 0.0403 — o2i loses
+  - `vox_communis` (n=218451, tier=epitran-derived): o2i 0.8053 vs espeak 0.8195 — o2i wins
   - `wikipron` (n=106, tier=crowd-scraped): o2i 0.2565 vs espeak 0.2221 — o2i loses
 - **`cy`** (wins on all golds):
   - `vox_communis` (n=18701, tier=epitran-derived): o2i 0.1172 vs espeak 0.3005 — o2i wins
@@ -462,12 +462,12 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 
 | Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |
 |---|---|---:|---:|---:|---:|---:|
-| ca | 4catac | 160 | 0.0643 | n/a | 0.0403 | 0.1206 |
-| ca | vox_communis | 218451 | 0.8055 | n/a | 0.8195 | 0.8168 |
+| ca | 4catac | 160 | 0.0642 | n/a | 0.0403 | 0.1206 |
+| ca | vox_communis | 218451 | 0.8053 | n/a | 0.8195 | 0.8168 |
 | ca | wikipron | 106 | 0.2565 | n/a | 0.2221 | 0.2798 |
-| ca-x-balear | 4catac | 160 | 0.1471 | n/a | 0.0797 | 0.1419 |
-| ca-x-occidental | 4catac | 160 | 0.0944 | n/a | 0.0497 | 0.0832 |
-| ca-x-valencia | 4catac | 160 | 0.0759 | n/a | 0.0439 | 0.0762 |
+| ca-x-balear | 4catac | 160 | 0.1360 | n/a | 0.0797 | 0.1419 |
+| ca-x-occidental | 4catac | 160 | 0.0822 | n/a | 0.0497 | 0.0832 |
+| ca-x-valencia | 4catac | 160 | 0.0677 | n/a | 0.0439 | 0.0762 |
 | cy | vox_communis | 18701 | 0.1172 | n/a | 0.3005 | 0.3016 |
 | cy | wikipron | 14811 | 0.1822 | n/a | 0.2799 | 0.2709 |
 | de | wikipron | 53011 | 0.2103 | n/a | 0.2126 | 0.2132 |
@@ -527,9 +527,9 @@ All three BSC dialect voices (`ca-ba`, `ca-nw`, `ca-va`) were found on this mach
 | Dialect | o2i spec | espeak voice | N | o2i PER | espeak PER |
 |---|---|---|---:|---:|---:|
 | central | ca | ca | 106 | 0.2565 | 0.2221 |
-| balear | ca-x-balear | ca-ba | 160 | 0.1471 | 0.0797 |
-| valencian | ca-x-valencia | ca-va | 160 | 0.0759 | 0.0439 |
-| occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.0944 | 0.0497 |
+| balear | ca-x-balear | ca-ba | 160 | 0.1360 | 0.0797 |
+| valencian | ca-x-valencia | ca-va | 160 | 0.0677 | 0.0439 |
+| occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.0822 | 0.0497 |
 
 <details>
 <summary>Coverage, staleness notes, and how to regenerate this table</summary>
