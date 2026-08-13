@@ -178,20 +178,25 @@ class AllophoneRuleModel(_Strict):
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     followed_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     preceded_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     followed_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
+    preceded_by_3: Optional[Literal[
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
+    preceded_by_surface_phoneme_2: Optional[List[str]] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
+    preceded_by_grapheme: Optional[List[str]] = None
     followed_by_grapheme: Optional[List[str]] = None
     followed_by_grapheme_not: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
@@ -251,6 +256,7 @@ class StressRulesModel(_Strict):
     default_position: int = -2
     final_stress_endings: Optional[List[str]] = None
     penult_stress_endings: Optional[List[str]] = None
+    antepenult_stress_endings: Optional[List[str]] = None
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
     accent2_mark: str = ""
@@ -276,6 +282,7 @@ class StressRulesModel(_Strict):
         return v
 
     @field_validator("final_stress_endings", "penult_stress_endings",
+                     "antepenult_stress_endings",
                      "marked_vowels", "cliticless_words")
     @classmethod
     def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:

@@ -55,8 +55,12 @@ unset is "don't care"):
 | `word_initial` / `word_final` | `true` / `false` | the grapheme is (not) at the word edge |
 | `stress` | `"stressed"` / `"unstressed"` | the grapheme's syllable carries (not) primary stress: engine path only |
 | `syllable_position` | `"onset"` / `"coda"` / `"nucleus"` | a vowel is a nucleus; a consonant before a vowel is an onset, else a coda (maximal-onset heuristic) |
-| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"consonant_cluster"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA: see `is_palatal_consonant`; `"consonant_cluster"`: see below) |
+| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"consonant_cluster"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"`, `"any"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA: see `is_palatal_consonant`; `"consonant_cluster"`: see below; `"any"` = a grapheme exists there, regardless of class — the opposite test of `"word_boundary"`) |
+| `preceded_by_2` / `followed_by_2` | same vocabulary as above, incl. `"any"` | the grapheme TWO away matches that class — for a process that looks past a mute letter |
+| `preceded_by_3` | same vocabulary as above, incl. `"any"` | the grapheme THREE away matches that class — e.g. "is there a real stem before a short C-e-C ending" (`preceded_by_3: "any"`, English ⟨-ed⟩) |
 | `preceded_by_phoneme` / `followed_by_phoneme` | list of IPA strings | the previous / next lattice slot's **chosen phoneme** is one of them |
+| `preceded_by_phoneme_2` / `followed_by_phoneme_2` | list of IPA strings | the grapheme TWO away's **first declared candidate** (the underlying phoneme, known before any rule runs) is one of them |
+| `preceded_by_surface_phoneme_2` | list of IPA strings | the lattice slot TWO positions back's **resolved surface candidate** (post positional/weight resolution, pre-this-rule) is one of them — use this instead of `preceded_by_phoneme_2` whenever the declared candidate order can disagree with what actually gets selected (English ⟨-ed⟩ devoicing must see the stem's ACTUAL final consonant, not its citation-form voicing) |
 
 This small vocabulary expresses the common post-lexical processes:
 

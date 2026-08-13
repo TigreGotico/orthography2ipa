@@ -260,6 +260,48 @@ class TestBuildAndWriteComparison(object):
         data = json_path.read_text(encoding="utf-8")
         assert '"lang": "aa"' in data
 
+    def test_partial_regen_keeps_the_catalan_section(self, tmp_path,
+                                                       monkeypatch):
+        """A single-language refresh rewrites the WHOLE document, so a
+        section it did not rescore must survive it.
+
+        ``write_comparison`` defaults ``catalan_voices`` to the resolved
+        module constant precisely so a caller that never thought about
+        Catalan cannot delete the committed "Catalan dialects vs espeak
+        (BSC)" section — which is exactly what a ``--lang en`` regen did
+        while the default was ``None``.
+        """
+        def row(lang, per):
+            return {"lang": lang, "dataset": "4catac", "n": 2,
+                    "o2i_per": per, "o2i_n": 2,
+                    "espeak_per": 0.2, "espeak_n": 2,
+                    "epitran_per": None, "epitran_n": 0,
+                    "gruut_per": None, "gruut_n": 0,
+                    "provenance_tier": "expert-human",
+                    "harness_version": "1.0", "limit": 10}
+
+        rows = [row(t, 0.1) for t in cs._CATALAN_DIALECT_LABELS]
+        rows.append({"lang": "en", "dataset": "wikipron", "n": 2,
+                     "o2i_per": 0.3, "o2i_n": 2,
+                     "espeak_per": 0.2, "espeak_n": 2,
+                     "epitran_per": None, "epitran_n": 0,
+                     "gruut_per": None, "gruut_n": 0,
+                     "provenance_tier": "crowd-scraped",
+                     "harness_version": "1.0", "limit": 10})
+        for r in rows:
+            monkeypatch.setitem(cs.LANGS, r["lang"],
+                                {"dataset": (r["dataset"], r["lang"])})
+        md_path = tmp_path / "comparison.md"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON",
+                            str(tmp_path / "comparison.json"))
+
+        # the shape of a partial refresh: no catalan_voices argument at all
+        cs.write_comparison(rows)
+
+        assert "## Catalan dialects vs espeak (BSC)" in md_path.read_text(
+            encoding="utf-8")
+
     def test_no_comparable_languages_does_not_crash(self, tmp_path,
                                                       monkeypatch):
         rows = [
@@ -987,6 +1029,114 @@ class TestBuildEspeakLexiconTsv:
         assert not (cache_dir / "en-US-test2.tsv").exists()
 
 
+class TestEspeakRulesBuildVerification:
+    """The espeak_rules column must never silently score STOCK espeak-ng.
+
+    build_espeak_rules_only.sh copies espeak-ng's stock compiled data for
+    EVERY language and recompiles only the ones it was asked for, so the
+    directory existing says nothing about the language being scored. These
+    gates exist because a real published board row was fabricated that way:
+    the es row read 'espeak 0.1071 / espeak_rules 0.1071' when both numbers
+    were stock, because the build's default language list has no es.
+    """
+
+    def _manifest(self, tmp_path, body):
+        root = tmp_path / "rules"
+        (root / "espeak-ng-data").mkdir(parents=True)
+        if body is not None:
+            (root / cs.ESPEAK_RULES_MANIFEST).write_text(body, encoding="utf-8")
+        return root
+
+    def test_no_manifest_at_all_raises(self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, None)
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        with pytest.raises(RuntimeError, match="no rules_only_manifest"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_language_absent_from_manifest_raises(self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nfr\t100\n")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        with pytest.raises(RuntimeError, match="did NOT strip"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_stripped_but_dict_identical_to_stock_raises(
+            self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        built = root / "espeak-ng-data" / "es_dict"
+        built.write_bytes(b"IDENTICAL")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"IDENTICAL")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        with pytest.raises(RuntimeError, match="byte-identical"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_stripped_and_dict_differs_passes(self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"RULES ONLY")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"STOCK WITH LIST")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+
+    def test_zero_stripped_lines_is_a_legitimate_no_op(
+            self, monkeypatch, tmp_path):
+        """A language shipping no _list/_listx/_extra has nothing to strip, so
+        an identical dict is honest there and must NOT raise."""
+        root = self._manifest(tmp_path, "# lang\tn\nes\t0\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"SAME")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"SAME")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+
+    def test_unresolvable_stock_path_warns_instead_of_passing_silently(
+            self, monkeypatch, tmp_path, capsys):
+        """Gate 2 is INCONCLUSIVE when no stock dict can be located. It must
+        say so; a check that quietly proves nothing is what let the
+        fabricated es row through."""
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"RULES ONLY")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: None)
+        monkeypatch.setattr(cs, "ESPEAK_RULES_STRICT", False)
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+        assert "did not run" in capsys.readouterr().err
+
+    def test_unresolvable_stock_path_raises_under_strict(
+            self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        (root / "espeak-ng-data" / "es_dict").write_bytes(b"RULES ONLY")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: None)
+        monkeypatch.setattr(cs, "ESPEAK_RULES_STRICT", True)
+        with pytest.raises(RuntimeError, match="did not run"):
+            cs.assert_espeak_rules_built_for("es", "es")
+
+    def test_missing_built_dict_is_also_inconclusive(
+            self, monkeypatch, tmp_path, capsys):
+        root = self._manifest(tmp_path, "# lang\tn\nes\t424\n")
+        stock = tmp_path / "stock_es_dict"
+        stock.write_bytes(b"STOCK")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        monkeypatch.setattr(cs, "ESPEAK_RULES_STRICT", False)
+        assert cs.assert_espeak_rules_built_for("es", "es") == "es"
+        assert "does not exist" in capsys.readouterr().err
+
+    def test_dialect_voice_resolves_to_its_dictsource_language(
+            self, monkeypatch, tmp_path):
+        root = self._manifest(tmp_path, "# lang\tn\nca\t18873\n")
+        (root / "espeak-ng-data" / "ca_dict").write_bytes(b"RULES ONLY")
+        stock = tmp_path / "stock_ca_dict"
+        stock.write_bytes(b"STOCK")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(root))
+        monkeypatch.setattr(cs, "_stock_espeak_dict", lambda lang: str(stock))
+        assert cs.assert_espeak_rules_built_for("ca-x-balear", "ca-ba") == "ca"
+
+
 class TestCompareLangFairComparison2x2:
     def test_espeak_rules_and_o2i_lex_columns_scored(self, monkeypatch, tmp_path):
         pairs = [("bat", "bato")]
@@ -1018,13 +1168,20 @@ class TestCompareLangFairComparison2x2:
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
         monkeypatch.setattr(cs, "espeak_rules_available", lambda: True)
-        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", "/fake/rules/data")
+        # A rules-only dir is only trusted when its build manifest names the
+        # language (assert_espeak_rules_built_for), so the fixture writes one.
+        rules_dir = tmp_path / "rules"
+        (rules_dir / "espeak-ng-data").mkdir(parents=True)
+        (rules_dir / cs.ESPEAK_RULES_MANIFEST).write_text(
+            "# lang\tstripped_exception_lines\n yy\t0\n".replace(" ", ""),
+            encoding="utf-8")
+        monkeypatch.setattr(cs, "ESPEAK_RULES_DATA_PATH", str(rules_dir))
         monkeypatch.setattr(
             cs, "build_espeak_lexicon_tsv",
             lambda lang: str(tmp_path / "lex.tsv") if lang == "yy" else None)
 
         def fake_batch(words, voice, data_path=None):
-            if data_path == "/fake/rules/data":
+            if data_path == str(rules_dir):
                 return {w: "wrong" for w in words}  # rules-only is worse
             return {w: "bato" for w in words}
 
@@ -1644,3 +1801,113 @@ class TestScoreboardLangScoping:
 
         assert merged == new
         assert "stale_key" not in merged[0]
+
+
+class TestEspeakRulesCoverageNote:
+    """``_espeak_rules_coverage_note`` names rows that have a stock
+    ``espeak`` number but no ``espeak-rules-only`` one yet — the
+    staleness-style machinery for the new permanent column, extended
+    exactly the way ``_scoreboard_staleness_note`` reports o2i drift."""
+
+    def test_all_covered_reports_clean(self):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 10,
+             "espeak_per": 0.07, "espeak_same_source": False,
+             "espeak_rules_per": 0.08, "espeak_rules_same_source": False},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert note == (
+            "Every row with a stock `espeak` number also carries an "
+            "`espeak-rules-only` one in this run."
+        )
+
+    def test_missing_row_is_named_with_its_n(self):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 10,
+             "espeak_per": 0.07, "espeak_same_source": False,
+             "espeak_rules_per": 0.08, "espeak_rules_same_source": False},
+            {"lang": "ca", "dataset": "vox_communis", "n": 218451,
+             "espeak_per": 0.8195, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_same_source": False},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert "1 row(s)" in note
+        assert "`ca`/`vox_communis` (n=218451)" in note
+
+    def test_no_espeak_number_at_all_is_not_flagged_missing(self):
+        """A row with NO stock espeak number either (no voice mapping, or
+        espeak-ng unavailable) has nothing to compare against — it must
+        not be reported as a missing espeak-rules-only row, since that
+        would fabricate an expectation the row can never meet."""
+        rows = [
+            {"lang": "arb", "dataset": "arabic_tts", "n": 5,
+             "espeak_per": None, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_same_source": False},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert "also carries an" in note
+
+    def test_same_source_espeak_row_is_not_flagged_missing(self):
+        rows = [
+            {"lang": "en-US", "dataset": "ipa_babylm", "n": 100,
+             "espeak_per": 0.0, "espeak_same_source": True,
+             "espeak_rules_per": None, "espeak_rules_same_source": True},
+        ]
+        note = cs._espeak_rules_coverage_note(rows)
+        assert "also carries an" in note
+
+
+class TestWriteComparisonEspeakRulesColumn:
+    """The main comparison table renders an ``espeak-rules-only`` column
+    for every row, alongside the existing ``espeak`` and ``epitran``
+    columns — the schema/rendering change this PR adds on top of the
+    already-wired ``espeak_rules_per`` scoring."""
+
+    def test_header_and_populated_cell_rendered(self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 2,
+             "o2i_per": 0.05, "o2i_n": 2,
+             "espeak_per": 0.07, "espeak_n": 2, "espeak_same_source": False,
+             "espeak_rules_per": 0.08, "espeak_rules_n": 2,
+             "espeak_rules_same_source": False,
+             "epitran_per": 0.2, "epitran_n": 2,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+        ]
+        monkeypatch.setitem(cs.LANGS, "fr", {"dataset": ("wikipron", "fr")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+
+        cs.write_comparison(rows)
+
+        text = md_path.read_text(encoding="utf-8")
+        assert "espeak-rules-only PER" in text
+        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | 0.0800 | 0.2000" in text
+
+    def test_missing_cell_renders_n_a_not_blank(self, tmp_path, monkeypatch):
+        rows = [
+            {"lang": "fr", "dataset": "wikipron", "n": 2,
+             "o2i_per": 0.05, "o2i_n": 2,
+             "espeak_per": 0.07, "espeak_n": 2, "espeak_same_source": False,
+             "espeak_rules_per": None, "espeak_rules_n": 0,
+             "espeak_rules_same_source": False,
+             "epitran_per": None, "epitran_n": 0,
+             "gruut_per": None, "gruut_n": 0,
+             "provenance_tier": "crowd-scraped",
+             "harness_version": "1.0", "limit": 10},
+        ]
+        monkeypatch.setitem(cs.LANGS, "fr", {"dataset": ("wikipron", "fr")})
+        md_path = tmp_path / "comparison.md"
+        json_path = tmp_path / "comparison.json"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
+
+        cs.write_comparison(rows)
+
+        text = md_path.read_text(encoding="utf-8")
+        assert "| fr | wikipron | 2 | 0.0500 | 0.0700 | n/a | n/a" in text
+        assert ("1 row(s) have a stock `espeak` number but no "
+                "`espeak-rules-only`") in text

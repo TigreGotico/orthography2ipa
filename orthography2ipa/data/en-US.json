@@ -127,6 +127,9 @@
         "ɔː",
         "ʌ",
         "uː"
+      ],
+      "nucleus_unstressed": [
+        "ə"
       ]
     }
   },
@@ -325,5 +328,6 @@
     "ture": "tʃɚ",
     "sure": "ʒɚ",
     "ssure": "ʃɚ"
-  }
+  },
+  "word_exceptions_base": "en-GB"
 }

@@ -818,7 +818,8 @@ def detect_stress(
 
     Precedence: written accents (``rules.marked_vowels``) →
     ``final_stress_endings`` → ``penult_stress_endings`` →
-    ``rules.default_position``. Monosyllables are inherently stressed.
+    ``antepenult_stress_endings`` → ``rules.default_position``.
+    Monosyllables are inherently stressed.
 
     Parameters
     ----------
@@ -869,7 +870,13 @@ def detect_stress(
         if lowered.endswith(ending):
             return n - 2
 
-    # 4. default position, clamped into the word.
+    # 4. forced proparoxytone endings — the end-anchored twin of rule 3,
+    #    for the two-syllable pre-stressed suffixes (English -ity, -ography).
+    for ending in sorted(rules.antepenult_stress_endings, key=len, reverse=True):
+        if lowered.endswith(ending):
+            return max(0, n - 3)
+
+    # 5. default position, clamped into the word.
     #    Positive values anchor from the start (1 = first syllable).
     #    Negative values anchor from the end (existing behaviour).
     pos = rules.default_position

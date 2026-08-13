@@ -14,7 +14,22 @@ from orthography2ipa.g2p import G2P
 
 
 def _t(code, word):
-    return G2P(code).transcribe_word(word)
+    """Transcribe *word*, without the leading word-stress mark.
+
+    These tests pin SEGMENTAL claims — which phoneme a grapheme yields in a
+    given environment. Where the stress mark falls is a separate claim, pinned
+    by ``tests/test_stress.py`` and by
+    ``tests/test_english_stress_reduction.py``, so it is stripped here rather
+    than repeated in every expected string.
+
+    The strip is unconditional rather than scoped to one language because
+    EVERY assertion in this file is segmental: the German half already
+    stripped the mark call-by-call, and a per-language strip would just be
+    the same rule written twice. Nothing here asserts the presence, absence
+    or position of a stress mark, so nothing here can be weakened by
+    removing it — a test that needs the mark belongs in the stress files.
+    """
+    return G2P(code).transcribe_word(word).lstrip("ˈ")
 
 
 # ===========================================================================
@@ -271,7 +286,10 @@ def test_en_gb_linking_r_survives_before_a_vowel():
 @pytest.mark.parametrize("word,expected", [
     ("marry", "mæɹi"),
     ("merry", "mɛɹi"),
-    ("mirror", "mɪɹɔː"),
+    # unstressed second syllable: the ⟨or⟩ nucleus reduces to /ə/ and RP's
+    # non-rhotic rule then deletes the coda [ɹ] — Wells 2008 LPD gives
+    # ˈmɪɹə (Cruttenden 2014 §9.4 on the weak vowel of an unstressed syllable)
+    ("mirror", "mɪɹə"),
     ("hurry", "hʌɹi"),
     ("sorry", "sɒɹi"),
     ("spirit", "spɪɹɪt"),
@@ -355,6 +373,159 @@ def test_en_gb_ture_sure_ous_endings(word, expected):
     assert _t("en-GB", word) == expected
 
 
+# ── ⟨-ed⟩ / ⟨-s⟩ allomorphy and velar nasal assimilation ─────────────
+
+
+@pytest.mark.parametrize("word,ending", [
+    # [ɪd] after an alveolar plosive
+    ("wanted", "tɪd"),
+    ("ended", "dɪd"),
+    # [t] after any other voiceless consonant
+    ("walked", "kt"),
+    ("missed", "st"),
+    ("packed", "kt"),
+    # [d] elsewhere
+    ("played", "eɪd"),
+    ("loved", "vd"),
+])
+def test_en_gb_ed_allomorphy(word, ending):
+    """⟨-ed⟩ is [ɪd] after /t d/, [t] after other voiceless, [d] elsewhere.
+
+    en-GB EN_GB_ED_EPENTHESIS / EN_GB_ED_SYNCOPE / EN_GB_ED_DEVOICING notes:
+    "English past-tense / past-participle ⟨-ed⟩ has three regular allomorphs
+    conditioned by the final segment of the stem: [ɪd] after an alveolar
+    plosive (wanted, ended), [t] after any other voiceless consonant (walked,
+    missed), and [d] elsewhere (played, loved). Cruttenden 2014, § 4.3;
+    Wells 2008 LPD gives the same three surface values."
+
+    All three branches are pinned together: the ending is the only thing that
+    differs between them, so a rule that swallowed one branch into another
+    would break at least one row.
+    """
+    assert _t("en-GB", word).endswith(ending)
+
+
+@pytest.mark.parametrize("word,ending", [
+    ("dogs", "ɡz"),
+    ("beds", "dz"),
+    ("films", "mz"),
+])
+def test_en_gb_final_s_voices_after_voiced_consonant(word, ending):
+    """Word-final ⟨-s⟩ after a voiced consonant is [z].
+
+    en-GB EN_GB_FINAL_S_VOICING notes: "Word-final ⟨-s⟩ after a voiced
+    consonant is [z], not [s]: dogs, beds, films (Cruttenden 2014,
+    § 4.3 on the voicing agreement of the ⟨-s⟩ ending; Wells 2008 LPD)."
+    """
+    assert _t("en-GB", word).endswith(ending)
+
+
+@pytest.mark.parametrize("word", ["cats", "bus", "this"])
+def test_en_gb_final_s_stays_voiceless(word):
+    """The complementary environment of EN_GB_FINAL_S_VOICING.
+
+    ⟨cats⟩ pins the voiceless-consonant environment; ⟨bus⟩ and ⟨this⟩ pin the
+    deliberate restriction the same note states — "after a vowel the spelling
+    is ambiguous between the ending (sees, boys) and a stem-final ⟨s⟩ (bus,
+    gas, this, us), and telling them apart needs morphology this engine
+    deliberately does not have" — so a later widening of the rule to all
+    vowels would fail here rather than silently voice ⟨bus⟩.
+    """
+    assert _t("en-GB", word).endswith("s")
+
+
+def test_en_gb_velar_nasal_assimilation_is_not_shipped():
+    """EN_GB_VELAR_NASAL_ASSIMILATION was dropped in PR #856's fix round.
+
+    The rule was unconditioned and fired across morpheme boundaries where
+    broad transcription conventions keep [n] (``unkind``, ``increase``,
+    ``pancake`` — the negative prefix ``un-`` and the ``in-``/``pan-``
+    boundary are not the tautosyllabic, single-morpheme environment
+    Cruttenden 2014, § 9.4 describes for ``think``/``bank``/``uncle``).
+    Cruttenden treats the cross-boundary case as optional/casual-speech
+    assimilation, not obligatory broad-transcription fact, and the rule's
+    measured benchmark contribution was marginal (LOO -0.0007) — not worth
+    the false positives without a citable boundary-aware condition.
+    """
+    assert "ŋ" not in _t("en-GB", "unkind")
+    assert "ŋ" not in _t("en-GB", "increase")
+    assert "ŋ" not in _t("en-GB", "pancake")
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("fed", "fɛd"), ("ted", "tɛd"), ("bed", "bɛd"), ("led", "lɛd"),
+    ("red", "ɹɛd"), ("wed", "wɛd"), ("zed", "zɛd"), ("ped", "pɛd"),
+    ("sed", "sɛd"), ("shed", "ʃɛd"),
+])
+def test_en_gb_stem_ed_monosyllables_are_not_past_tense(word, expected):
+    """The ⟨ed⟩ of a monosyllabic STEM is not the past-tense ending.
+
+    en-GB notes: "Whether a given ⟨ed⟩ IS that ending is a lexical fact, not
+    an orthographic one — Carney 1994, ch. 3 treats the ⟨ed⟩ spelling as
+    ambiguous between the ending and a stem the letters simply spell — and
+    this engine has no morphology to decide it." The three ⟨-ed⟩ rules
+    (EPENTHESIS, SYNCOPE, DEVOICING) each require ``preceded_by_2``/
+    ``preceded_by_3="any"`` — a real stem grapheme standing before the
+    stem-final consonant — which is what now keeps these three-letter
+    /Cɛd/ monosyllables out WITHOUT a ``word_exceptions`` carve-out: there
+    is nothing before the single stem consonant to satisfy the gate.
+
+    The complementary environment of the ⟨-ed⟩ allomorphy tests above: same
+    final four letters, no syncope and no devoicing.
+    """
+    assert _t("en-GB", word) == expected
+
+
+@pytest.mark.xfail(
+    reason=(
+        "Known residual, PR #856 fix round: obstruent+liquid cluster-onset "
+        "monosyllables whose /Cɛd/ IS the stem (bled, bred, cred, fled, "
+        "pled, shred, sled, sped) still mis-syncope, because the stem "
+        "grapheme immediately before the mute <e> (a consonant) is "
+        "indistinguishable, at the grapheme-class level, from a genuine "
+        "polysyllabic stem's final consonant before the same ending — both "
+        "read as 'consonant' two graphemes back. Unlike the plain /Cɛd/ "
+        "monosyllables above, this class has no citable phonological "
+        "condition to close it (deliberately not enumerated in "
+        "word_exceptions — see PR body residual list)."
+    ),
+    strict=True,
+)
+@pytest.mark.parametrize("word,expected", [
+    ("bled", "blɛd"), ("bred", "bɹɛd"), ("cred", "kɹɛd"),
+    ("fled", "flɛd"), ("pled", "plɛd"), ("shred", "ʃɹɛd"),
+    ("sled", "slɛd"), ("sped", "spɛd"),
+])
+def test_en_gb_cluster_onset_ed_monosyllables_are_a_known_residual(
+        word, expected):
+    """Documented hole, not a regression to chase: see docstring above."""
+    assert _t("en-GB", word) == expected
+
+
+@pytest.mark.parametrize("word,ending", [
+    ("pleased", "zd"), ("breathed", "ðd"),
+])
+def test_en_gb_ed_devoicing_reads_the_surface_stem_not_the_declared_candidate(
+        word, ending):
+    """A voiced-resolving stem consonant must NOT trigger devoicing.
+
+    en-GB EN_GB_ED_DEVOICING notes: the voicing trigger is read as the
+    resolved SURFACE phoneme of the stem-final slot (``preceded_by_surface_
+    phoneme_2``), not that grapheme's first declared candidate — ⟨s⟩'s and
+    ⟨th⟩'s first declared candidate is voiceless ([s], [θ]), but both
+    resolve voiced ([z], [ð]) intervocalically in ``pleased``/``breathed``
+    before this rule ever runs (Cruttenden 2014, § 4.3).
+    """
+    assert _t("en-GB", word).endswith(ending)
+
+
+def test_en_gb_ed_devoicing_fires_after_an_affricate_stem():
+    """⟨watch⟩ ends in the affricate [tʃ] — devoicing must see it as ONE
+    segment two graphemes back, not split it into [t] + [ʃ] and miss the
+    match (Cruttenden 2014, § 4.3, [t] after any voiceless consonant)."""
+    assert _t("en-GB", "watched").endswith("tʃt")
+
+
 # ===========================================================================
 # en-US / rhotic descendants — General American and friends
 # ===========================================================================
@@ -428,8 +599,8 @@ def test_de_auslautverhaertung_d_minimal_pair():
     and in an open syllable, stays voiced; the vowel is long by the
     open-syllable lengthening rule -- Wiese 1996).
     """
-    assert _t("de-DE", "Bad").lstrip("ˈ") == "bat"
-    assert _t("de-DE", "Baden").lstrip("ˈ").startswith("baː")
+    assert _t("de-DE", "Bad") == "bat"
+    assert _t("de-DE", "Baden").startswith("baː")
 
 
 def test_de_auslautverhaertung_g():
@@ -438,7 +609,7 @@ def test_de_auslautverhaertung_g():
     de-DE notes: "obstruents devoiced word-finally (b→p, d→t, g→k, v→f)."
     Hall (2003).
     """
-    assert _t("de-DE", "Tag").lstrip("ˈ") == "tak"
+    assert _t("de-DE", "Tag") == "tak"
 
 
 def test_de_auslautverhaertung_v():
@@ -451,7 +622,7 @@ def test_de_auslautverhaertung_v():
     onset and stays [v].
     """
     assert _t("de-DE", "brav").endswith("f")
-    assert _t("de-DE", "viel").lstrip("ˈ").startswith("v")
+    assert _t("de-DE", "viel").startswith("v")
 
 
 def test_de_sp_st_word_initial_hushing():
@@ -463,8 +634,8 @@ def test_de_sp_st_word_initial_hushing():
     Minimal pair on the ⟨sp⟩ cluster: Spiel (word-initial → [ʃp]) vs Wespe
     (medial → [sp]).
     """
-    assert _t("de-DE", "Spiel").lstrip("ˈ").startswith("ʃp")
-    assert _t("de-DE", "Stein").lstrip("ˈ").startswith("ʃt")
+    assert _t("de-DE", "Spiel").startswith("ʃp")
+    assert _t("de-DE", "Stein").startswith("ʃt")
     assert "sp" in _t("de-DE", "Wespe")
 
 
