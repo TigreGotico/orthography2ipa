@@ -2843,6 +2843,53 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "member's extra stages are not (yet, or not on this gold) adding "
         "anything the base lattice does not already do on its own.",
         "",
+        "**Headroom is not automatically absorbable: the measured `ar` "
+        "case.** \"Headroom\" above says a family gap shows what the base "
+        "lattice *could* absorb. For the two independent Arabic rows "
+        "(`ipadict`, raw `wikipron`) that reading has been tested "
+        "directly and it does NOT hold — the entire arbtok margin is its "
+        "neural diacritizer, which is a model, not a rule, and therefore "
+        "not portable into a grapheme lattice at all. The ablation, run "
+        "over the same word sets and the same scorer as the board rows "
+        "(`ArbtokG2PPlugin(lang=\"ar\", lexicon=None, "
+        "dialect_lexicon=False)`, one stage disabled at a time):",
+        "",
+        "| arbtok config | ipadict PER | wikipron PER |",
+        "|---|---|---|",
+        "| full (the ranked column) | 0.1727 | 0.1543 |",
+        "| `diacritize=False` | 0.3073 | 0.2547 |",
+        "| `stress=False` | 0.1727 | 0.1543 |",
+        "| `nativize=False` | 0.1727 | 0.1543 |",
+        "| `fusion=False` | 0.1721 | 0.1540 |",
+        "| `arabizi=False` | 0.1727 | 0.1543 |",
+        "| bare o2i, for reference | 0.3073 | 0.2514 |",
+        "",
+        "Turning the diacritizer off collapses arbtok onto o2i exactly "
+        "(ipadict 0.3073, the bare-o2i number to four places) or slightly "
+        "BEHIND it (wikipron 0.2547 vs o2i's 0.2514); every other stage "
+        "moves the score by at most 0.0006. Word-for-word, "
+        "diacritizer-off arbtok and o2i emit byte-identical output on "
+        "98.1% (ipadict) and 94.4% (wikipron) of words, and on the "
+        "remainder arbtok is net even (10 better / 10 worse) and net "
+        "worse (4 better / 63 worse) respectively — i.e. the shared "
+        "lattice has no residual rule-shaped deficit for a port to "
+        "recover. The gap is a vocalization gap and nothing else: neither "
+        "gold's headwords carry any harakat (0 of 2319 and 0 of 2735), "
+        "and 71% (ipadict) / 55% (wikipron) of o2i's total edit distance "
+        "is INSERTION of a short vowel the orthography simply does not "
+        "write, with most of the consonant insertions being gemination "
+        "the absent shadda does not write either. This is the "
+        "honest ceiling for a rule-based lattice on undiacritized Arabic "
+        "input, and it is why `ar`'s spec documents a fully-diacritized "
+        "input contract rather than pretending to guess: the "
+        "`wikipron_ar_diacritized` row, where harakat are restored on the "
+        "INPUT before scoring, is where the two systems are compared with "
+        "that ceiling lifted — and there they tie. That row carries its "
+        "own caveat: the diacritized input is restored by "
+        "`text2tashkeel`, the same diacritizer arbtok's default pipeline "
+        "uses internally, so a diacritization error the two systems "
+        "share is not an independence signal.",
+        "",
         "**Measurement stays unchanged.** Every family row is scored "
         "under the exact same discipline as every other system on this "
         "board: the SAME `same-source` refusal when a family engine "
