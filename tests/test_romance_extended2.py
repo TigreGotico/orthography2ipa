@@ -419,13 +419,56 @@ class TestRomanian:
 
     # --- Romanian diphthongs ---
 
-    def test_diphthong_ia(self) -> None:
-        """Digraph <ia> maps to [ja] — falling diphthong."""
-        _assert_contains(_grapheme(self.spec, "ia"), "ja", label="ia→ja")
+    def test_prevocalic_i_is_a_glide_word_initially(self) -> None:
+        """Word-initial <i> before a vowel is the glide [j] (Chitoran 2002)."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("iarnă") == "jarnə"
+        assert g2p.transcribe_word("ied") == "jed"
 
-    def test_diphthong_ie(self) -> None:
-        """Digraph <ie> maps to [je]."""
-        _assert_contains(_grapheme(self.spec, "ie"), "je", label="ie→je")
+    def test_prevocalic_i_is_a_glide_after_a_vowel(self) -> None:
+        """Post-vocalic <i> is the glide [j], in a falling diphthong or an onset."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("baie") == "baje"
+        assert g2p.transcribe_word("doi") == "doj"
+        assert g2p.transcribe_word("copii") == "kopij"
+
+    def test_prevocalic_i_stays_syllabic_after_a_consonant(self) -> None:
+        """Post-consonantal <i> before a vowel stands in hiatus, not a glide."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("România") == "romɨnia"
+        assert g2p.transcribe_word("familie") == "familie"
+
+    def test_final_i_is_asyllabic(self) -> None:
+        """The word-final desinence <i> palatalizes the consonant and deletes."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("lupi") == "lupʲ"
+        assert g2p.transcribe_word("ochi") == "okʲ"
+        assert g2p.transcribe_word("vezi") == "vezʲ"
+
+    def test_final_i_stays_syllabic_without_another_nucleus(self) -> None:
+        """A monosyllable keeps its only vowel: <și> is [ʃi], not [ʃʲ]."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("și") == "ʃi"
+        assert g2p.transcribe_word("fi") == "fi"
+
+    def test_a_glide_never_leaves_the_word_without_a_nucleus(self) -> None:
+        """<ii> is [ij]: gliding both would produce a word with no nucleus."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("ii") == "ij"
+        assert g2p.transcribe_word("copiii") == "kopiij"
+
+    def test_final_i_stays_syllabic_after_muta_cum_liquida(self) -> None:
+        """After an obstruent+liquid onset the final <i> must be syllabic."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("noștri") == "noʃtri"
+        assert g2p.transcribe_word("acri") == "akri"
+
+    def test_initial_e_is_je_in_the_cited_closed_class(self) -> None:
+        """Pronouns and <a fi> forms have [je]; other <e>-initial words do not."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("este") == "jeste"
+        assert g2p.transcribe_word("el") == "jel"
+        assert g2p.transcribe_word("elev") == "elev"
 
     def test_diphthong_ea(self) -> None:
         """Digraph <ea> maps to [e̯a] — non-syllabic e before a."""

@@ -43,7 +43,7 @@ from typing import List, Optional, Sequence, Tuple
 from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.types import AllophoneRule
-from orthography2ipa.vowels import is_ipa_vowel
+from orthography2ipa.vowels import is_ipa_vowel, SYLLABIC_MARKS
 
 __all__ = [
     "AllophoneRescorer",
@@ -205,6 +205,33 @@ def _neighbor_is(
     if cls == "emphatic":
         return gctx.is_emphatic
     return False  # unreachable — AllophoneRule validates the vocabulary
+
+
+def _has_other_nucleus(ctx: RescoreContext) -> bool:
+    """Whether some slot OTHER than this one carries a syllable nucleus.
+
+    A vowel-deleting rule (``surface: ""``) must not leave the word without
+    a nucleus: every prosodic word contains at least one syllable (Hayes
+    2009, ch. 13; Blevins 1995). Read from the lattice slots' top
+    candidates, like every other neighbour lookup in this module.
+
+    A nucleus is a vowel **or a syllabic consonant** — Czech ⟨vlk⟩ [vl̩k],
+    ⟨krk⟩ [kr̩k] and Serbian ⟨prst⟩ [pr̩st] are words with no vowel at all,
+    and calling them nucleus-less would let a vowel-deleting rule empty
+    them. This is the same reading
+    :func:`~orthography2ipa.vowels.is_nucleus_only` takes of
+    :data:`~orthography2ipa.vowels.SYLLABIC_MARKS`.
+    """
+    for j, slot in enumerate(ctx.slots):
+        if j == ctx.index or not slot.candidates:
+            continue
+        ipa = slot.top.ipa
+        if not ipa:
+            continue
+        if any(is_ipa_vowel(seg[0]) or any(m in seg for m in SYLLABIC_MARKS)
+               for seg in segment_ipa(ipa)):
+            return True
+    return False
 
 
 class AllophoneRescorer(LatticeRescorer):
@@ -514,6 +541,9 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         if rule.word is not None:
             if _source_word(ctx).lower() not in rule.word:
+                return False
+        if rule.requires_other_nucleus is not None:
+            if rule.requires_other_nucleus != _has_other_nucleus(ctx):
                 return False
         return True
 

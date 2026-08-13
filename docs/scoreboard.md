@@ -548,10 +548,10 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | qu | ipa_childes | 1850 | 0.4421 | · | · | · | · | [0.4322, 0.4519] | 0.0676 | stub | espeak-derived |
 | rgn | wikipron | 261 | 0.3369 | · | · | · | · | [0.3079, 0.3689] | 0.0996 | skeleton | crowd-scraped |
 | rif | wold | 1506 | 0.4095 | · | · | · | · | [0.3980, 0.4209] | 0.0930 | research | lexicon-derived |
-| ro | vox_communis | 12097 | 0.3282 | 0.3277 | 0.3275 | 0.5095 | 0.5104 | [0.3144, 0.3422] | 0.5079 | production | epitran-derived |
-| ro | wikipron | 8977 | 0.0342 | 0.0335 | 0.0332 | 0.7755 | 0.7768 | [0.0327, 0.0360] | 0.7735 | production | crowd-scraped |
-| ro-RO | ipa_childes | 2311 | 0.2684 | · | · | · | · | [0.2606, 0.2761] | 0.1791 | production | espeak-derived |
-| ro-RO | ipadict | 72375 | 0.0491 | · | · | · | · | [0.0484, 0.0497] | 0.6954 | production | lexicon-derived |
+| ro | vox_communis | 12097 | 0.3332 | 0.3326 | 0.3324 | 0.4967 | 0.4976 | [0.3195, 0.3471] | 0.4951 | production | epitran-derived |
+| ro | wikipron | 8977 | 0.0198 | 0.0192 | 0.0189 | 0.8852 | 0.8865 | [0.0186, 0.0212] | 0.8830 | production | crowd-scraped |
+| ro-RO | ipa_childes | 2311 | 0.2644 | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
+| ro-RO | ipadict | 72375 | 0.0359 | 0.0354 | 0.0352 | 0.7367 | 0.7376 | [0.0354, 0.0364] | 0.7344 | production | lexicon-derived |
 | roa-x-galaicopt | portuguese_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ru | primary_sources | 36 | 0.1867 | · | · | · | · | [0.1265, 0.2463] | 0.3611 | research | expert-human |
 | ru | vox_communis | 48386 | 0.3446 | · | · | · | · | [0.3432, 0.3460] | 0.0238 | research | epitran-derived |

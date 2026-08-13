@@ -363,6 +363,7 @@ def load_json_spec(code: str) -> LanguageSpec:
                 followed_by_phoneme_2=tuple(ar.get("followed_by_phoneme_2", ())),
                 preceded_by_surface_phoneme_2=tuple(
                     ar.get("preceded_by_surface_phoneme_2", ())),
+                requires_other_nucleus=ar.get("requires_other_nucleus"),
                 grapheme=(tuple(ar["grapheme"])
                           if ar.get("grapheme") else None),
                 word=(tuple(ar["word"])
