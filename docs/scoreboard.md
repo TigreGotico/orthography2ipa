@@ -647,7 +647,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | xaa | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | xal | wikipron | 318 | 0.2813 | · | · | · | · | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
 | xh | kaikki | 887 | 0.5725 | · | · | · | · | - | - | skeleton | crowd-scraped |
-| xsl | wikipron | 146 | 0.7022 | · | · | · | · | [0.6755, 0.7311] | 0.0000 | skeleton | crowd-scraped |
+| xsl | wikipron | 146 | 0.0330 | 0.0291 | 0.0291 | 0.8836 | 0.8836 | [0.0190, 0.0489] | 0.8699 | research | crowd-scraped |
 | ycl | wikipron | 111 | 0.0108 | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
 | yi | wikipron | 4051 | 0.4089 | · | · | · | · | [0.4030, 0.4145] | 0.0348 | research | crowd-scraped |
 | ykg | northeuralex | 813 | 0.3940 | · | · | · | · | [0.3824, 0.4065] | 0.0369 | research | lexicon-derived |
