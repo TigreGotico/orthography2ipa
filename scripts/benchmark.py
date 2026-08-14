@@ -664,9 +664,44 @@ _VOX_COMMUNIS_FILES: Dict[str, str] = {
 _VOX_COMMUNIS_FILES.update({
     "es": "es", "it": "it", "ro": "ro",       # bare tags resolve via registry
     "pt-BR": "pt",                            # region-untagged; see note above
-    "sv": "sv-se", "zh": "zh-cn", "hy": "hy-am",
+    "sv": "sv-se", "hy": "hy-am",
     "fy": "fy-nl", "pa": "pa-in",
 })
+#: Non-speech / no-coverage placeholders in the ``phonemized_sentence``
+#: phone tier. ``spn`` (MFA "spoken noise", reused by VoxCommunis as the
+#: lexicon-miss marker) is the ONLY one that may be filtered.
+#:
+#: The obvious siblings — ``sil``, ``sp``, ``nsn``, ``noise`` — are
+#: deliberately NOT listed, because in these files they occur almost
+#: entirely as GENUINE transcriptions of real words, and filtering on the
+#: phone string alone would silently delete them: Welsh ``sul`` → /sil/
+#: (336 rows), Amharic ``ሲል`` → /sil/, Bulgarian ``сп`` → /sp/, Tamil
+#: ``ஸ்ப்`` → /sp/, Korean ``실`` → /sil/, Punjabi ``ਸੀਲ`` → /sil/.
+#:
+#: 61 rows across seven files additionally have the marker on BOTH tiers
+#: (word ``sil`` → phones ``sil``), which does look like an aligner
+#: placeholder leaking into the orthography. Those are left in too: the
+#: identity test is not safe either, because Turkish ``sil`` ("wipe",
+#: imperative of *silmek*) is a real word genuinely pronounced [sil]. 61
+#: rows out of ~2.6M is far below the noise floor of an
+#: ``epitran-derived`` row, and no filter separates the leak from the real
+#: word without a per-language lexicon.
+#:
+#: See :func:`load_vox_communis` for why ``spn`` in particular can never be
+#: scored.
+_VOX_COMMUNIS_NON_SPEECH = frozenset({"spn"})
+# ``zh`` (Mandarin) is DELIBERATELY not registered here either, for exactly
+# the reason spelled out for ``yue`` below and already recorded for the
+# ipa-dict ``zh_*``/``yue`` files in docs/benchmarks.md ("Rejected
+# candidates"): the o2i ``zh`` spec is a PINYIN spec, while
+# ``zh-cn.tsv``'s ``aligned_sentence`` column is Han characters
+# (``盘固 草 为 禾 本科 …``). Every single row therefore transcribes to the
+# empty string, and the board carried a meaningless ``per: 1.0`` row for
+# ``zh`` built entirely out of "hypothesis is empty, so the whole gold is a
+# deletion". That is not a Mandarin score; it is the absence of a
+# hanzi→pinyin front-end, measured in the units of a phone error rate. The
+# registration comes back the day such a front-end exists.
+#
 # ``yue`` (Cantonese) is DELIBERATELY not registered here even though the
 # upstream ``yue.tsv`` file exists and loads fine (12.8k rows, live-checked
 # 2026-08). The `yue` spec is a genuine grapheme-inventory STUB (see
@@ -1678,6 +1713,27 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
     do not match. Alignment artifacts (underscores, stray apostrophes) are
     stripped from the phone side.
 
+    ``spn`` TOKENS ARE DROPPED. ``spn`` is the Montreal Forced Aligner's
+    "spoken noise" symbol, which the VoxCommunis pipeline also emits for any
+    word its lexicon could not cover: the phone tier records the literal
+    three-character string ``spn`` in place of that word's phones. It is a
+    coverage hole marker, not a transcription. Scoring it as gold is not
+    merely noisy, it is unbounded: PER is normalised by the GOLD length, so
+    a real 10-segment word scored against the 3-character ``spn`` yields a
+    per-word PER above 3. Whole languages were driven past PER 1.0 by this
+    alone (``ab`` 46.5% of tokens ``spn``, ``kk`` 59.4%, ``cv`` 31.3%,
+    ``ba`` 15.1%, ``it`` 12.5%, ``sr`` 9.6% — measured over the cached
+    TSVs, 2026-08). Dropping the token is the only honest reading: the
+    dataset is telling us it has no gold for that word.
+
+    ``spn`` is the ONLY token filtered. The obvious siblings do occur in
+    these files, but as genuine transcriptions of real words — Welsh
+    ``sul`` → /sil/ (336 rows), Amharic ``ሲል``, Bulgarian ``сп``, Tamil
+    ``ஸ்ப்``, Korean ``실``, Punjabi ``ਸੀਲ`` — so filtering on the phone
+    string would delete real gold. See ``_VOX_COMMUNIS_NON_SPEECH`` for
+    the 61 identity rows (word and phones both ``sil``/``sp``) that are
+    also left alone, and why.
+
     PROVENANCE — classified ``epitran-derived`` (the competitor tier): the
     phone tier's lexicons are built with Epitran — a scored competitor in
     docs/comparison.md — alongside XPF/Charsiu, so a disagreement here
@@ -1701,7 +1757,7 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
             continue
         for word, phone in zip(words, phones):
             word = word.strip(".,;:!?\u00bf\u00a1\"'()")
-            if not word or not phone:
+            if not word or not phone or phone in _VOX_COMMUNIS_NON_SPEECH:
                 continue
             key = word.lower()
             if key in seen:
