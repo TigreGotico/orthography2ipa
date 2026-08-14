@@ -218,10 +218,10 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | en-GB | ipa_childes | 11446 | 0.3320 | 0.2744 | 0.2481 | 0.1716 | 0.1977 | [0.3280, 0.3358] | 0.1258 | research | espeak-derived |
 | en-GB | ipadict | 65118 | 0.2506 | 0.1957 | 0.1697 | 0.2996 | 0.3394 | [0.2490, 0.2522] | 0.2154 | research | espeak-derived |
 | en-GB | wikipron | 81537 | 0.2593 | 0.2032 | 0.1764 | 0.3023 | 0.3486 | [0.2579, 0.2608] | 0.2258 | research | crowd-scraped |
-| en-US | cmudict | 126050 | 0.4261 | 0.3669 | 0.3423 | 0.1105 | 0.1224 | [0.4247, 0.4274] | 0.0816 | research | lexicon-derived |
-| en-US | ipa_babylm | 20107 | 0.4176 | 0.3298 | 0.3006 | 0.3084 | 0.3516 | [0.4100, 0.4252] | 0.2107 | research | espeak-derived |
-| en-US | ipa_childes | 18054 | 0.3217 | 0.2337 | 0.2057 | 0.3244 | 0.3656 | [0.3178, 0.3253] | 0.2291 | research | espeak-derived |
-| en-US | ipadict | 125925 | 0.4571 | 0.3802 | 0.3533 | 0.1086 | 0.1217 | [0.4555, 0.4587] | 0.0774 | research | lexicon-derived |
+| en-US | cmudict | 126050 | 0.3736 | 0.3138 | 0.2863 | 0.1533 | 0.1750 | [0.3723, 0.3749] | 0.1086 | research | lexicon-derived |
+| en-US | ipa_babylm | 20107 | 0.3954 | 0.3318 | 0.3035 | 0.2936 | 0.3337 | [0.3883, 0.4025] | 0.2205 | research | espeak-derived |
+| en-US | ipa_childes | 18054 | 0.3123 | 0.2446 | 0.2163 | 0.3002 | 0.3387 | [0.3085, 0.3158] | 0.2261 | research | espeak-derived |
+| en-US | ipadict | 125925 | 0.3285 | 0.2599 | 0.2297 | 0.2145 | 0.2499 | [0.3271, 0.3299] | 0.1474 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.1073 | · | · | · | · | [0.0996, 0.1146] | 0.4606 | research | lexicon-derived |
 | enm | wikipron | 6466 | 0.3035 | · | · | · | · | [0.2995, 0.3077] | 0.1032 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0338 | · | · | · | · | [0.0330, 0.0346] | 0.7502 | production | machine-generated |
