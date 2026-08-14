@@ -1,12 +1,12 @@
 # Lexicon-overlay scoreboard
 
-Rules-only vs with-lexicon PER for every language with a caller-registered lexicon (never bundled — see [`docs/data_model.md`](data_model.md) and [`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the overlay must *improve* PER without letting the underlying grapheme rules rot behind lexicon coverage. Same gold, scored twice — once with `get_lexicon` stubbed to `{}` (rules-only) and once with the sidecar active. Regenerate with:
+Rules-only vs with-lexicon PER for every language with a caller-registered lexicon (never bundled: see [`docs/data_model.md`](data_model.md) and [`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the overlay must *improve* PER without letting the underlying grapheme rules rot behind lexicon coverage. Same gold, scored twice: once with `get_lexicon` stubbed to `{}` (rules-only) and once with the sidecar active. Regenerate with:
 
 ```bash
 PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report
 ```
 
-`PER (covered)` columns restrict scoring to the gold words the lexicon actually contains — where the overlay can act — so the covered-subset delta is the lexicon's own accuracy vs the rules on the *same* words. The `full` columns dilute that by every gold word outside the (deliberately capped, top-frequency) pilot lexicon; a full production lexicon belongs downstream (see [`docs/adding_a_language.md`](adding_a_language.md)).
+`PER (covered)` columns restrict scoring to the gold words the lexicon actually contains: where the overlay can act: so the covered-subset delta is the lexicon's own accuracy vs the rules on the *same* words. The `full` columns dilute that by every gold word outside the (deliberately capped, top-frequency) pilot lexicon; a full production lexicon belongs downstream (see [`docs/adding_a_language.md`](adding_a_language.md)).
 
 | Lexicon | Lang | Gold | Entries | N (full) | PER rules-only (full) | PER +lexicon (full) | N (covered) | PER rules-only (covered) | PER +lexicon (covered) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|

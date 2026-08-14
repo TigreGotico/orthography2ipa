@@ -218,7 +218,25 @@
       "code": "en-GB",
       "role": "lexifier",
       "weight": 0.7,
-      "notes": "English is the lexifier; the substrate is West African (largely Akan)."
+      "notes": "English (via British English, Hiberno-English and Scots dialects of 17th-century slaveholders and overseers) is the lexifier of Jamaican Patois."
+    },
+    {
+      "code": "ak",
+      "role": "substrate",
+      "weight": 0.15,
+      "notes": "Akan (Twi) substrate, the largest single African contributor: se 'that' < Ashanti Twi, duppy 'ghost' < Twi dupon, obeah < Ashanti Twi Ɔbayi (Cassidy & Le Page 1980; en.wikipedia.org/wiki/Jamaican_Patois)."
+    },
+    {
+      "code": "ig",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Igbo substrate: unu 'you (pl.)' < Igbo (Cassidy & Le Page 1980; en.wikipedia.org/wiki/Jamaican_Patois)."
+    },
+    {
+      "code": "yo",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Yoruba substrate: de 'to be (at a location)' < Yoruba (Cassidy & Le Page 1980; en.wikipedia.org/wiki/Jamaican_Patois)."
     }
   ],
   "notes": "Jamaican Patois (Jumiekan Kryuol) written in the Cassidy/JLU orthography (Cassidy 1961; standardised by the Jamaican Language Unit, UWI Mona, 2002). Phonemic by design: short vowels i e a o u; long vowels doubled (ii, aa, uu); diphthongs <ie> <uo> <ai> <ou>; <ch>=/tʃ/, <j>=/dʒ/, <sh>=/ʃ/, <zh>=/ʒ/, <ng>=/ŋ/. Nasal vowels are written with a following -hn (e.g. kyaahn); that convention and the palatalised <ky>/<gy> onsets are not modelled here. /h/ is variable across Jamaica. Note: much Patois is also written in ad-hoc English-based spelling, which this spec does NOT cover — Cassidy/JLU input is assumed.",
