@@ -120,7 +120,7 @@ stated rather than papered over.
 | `portuguese_unified` | lexicon-derived | Infopédia + Portal da Língua Portuguesa + pt.wiktionary.org (convention-normalized merge) | Single Portuguese gold (`TigreGotico/portuguese-unified-pronunciation-lexicon`, ~598k rows / 122k words, CC BY-SA 4.0), replacing the three separate golds it merges. One region per registered tag (see `_PT_UNIFIED_REGIONS`). `ipa_narrow` is scored. Untagged plain-`pt` rows are excluded. The Infopédia/Portal majority is dictionary/semi-automated lexicography and the Wiktionary minority is crowd-scraped: directional, not peer-validated ground truth. |
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`. The transform adds artifacts. |
 | `ipadict` | **per-language** (see below) | Depends on the file: human dictionaries, Wiktionary scrapes, rule scripts, **espeak** | The only mixed-provenance dataset here: ipa-dict is a *collection* of independently sourced files, so each row carries the tier of the file it was scored against, not a dataset-wide tier. Full per-language table in [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). |
-| `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size. Some entries are editor-rule output, not attested. Multiple valid variants per word. |
+| `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size. Some entries are editor-rule output, not attested. Multiple valid variants per word. **On a few small-community tags the IPA column is not editor-typed at all but the output of a Wiktionary Lua module, which makes those rows a reproduction test rather than an accuracy test: see [Module-generated WikiPron rows](#module-generated-wikipron-rows).** |
 | `wikipron_ar_diacritized` | crowd-scraped | Wiktionary editors + `text2tashkeel` input restoration | Same Arabic gold IPA as `wikipron`. Only the INPUT word is machine-diacritized (~2% DER noise floor). Diagnostic for the vowelized-Arabic rules. Certifies nothing beyond the raw row. See [Arabic with tashkeel restored](#arabic-with-tashkeel-restored-wikipron_ar_diacritized). |
 | `ipa_childes` | **per-language** (see below) | Depends on the language: `phonemizer` (espeak-ng), `epitran`, or `pinyin_to_ipa` | Mixed-provenance like `ipadict`: the IPA-CHILDES card names a **different phonemizing tool per language**, so each row carries the tier its own tool earns: `espeak-derived`, `epitran-derived`, or `machine-generated` for Mandarin's `pinyin_to_ipa` table. Full per-language tool table in [IPA-CHILDES split](#ipa-childes-split-ipa_childes). |
 | `ipa_babylm` | espeak-derived | G2P+ with the `phonemizer` backend (= espeak-ng), `en-us` | BabyLM 2024 corpora phonemized by [G2P+](https://github.com/codebyzeb/g2p-plus), which is a wrapper over `phonemizer`/`epitran`. The conversion notebook ([codebyzeb/babylm-ipa](https://github.com/codebyzeb/babylm-ipa)) calls the `phonemizer` backend, which requires espeak-ng. So this is espeak output: it can neither qualify nor block English. |
@@ -232,6 +232,35 @@ seseo/gheada). The harness scores against all of them and keeps the
 best match.
 
 Core wired tags: `gl`, `es`, `pt`, `pt-BR`, `en`, `en-GB`.
+
+#### Module-generated WikiPron rows
+
+On a large tag the IPA column is what Wiktionary editors typed. On a small
+one it often is not. Several languages have a per-language Lua generator
+(`Module:<code>-IPA`) that the entries invoke through a bare pronunciation
+template, so the "gold" for that tag is that module's output, scraped.
+
+This is the `hitz_basque_ipa` problem in a `crowd-scraped` row: a low PER
+there measures **agreement with the generator, not accuracy**, and the
+scoreboard's provenance column does not say so, because the tier is set
+per dataset and `wikipron` as a whole is genuinely crowd-scraped.
+
+Two rows are known to be affected, both wired by the small-wikipron sweep:
+
+| tag | what the gold actually is | how to read the row |
+|---|---|---|
+| `tew` (Tewa, `N=106`) | **entirely** `Module:tew-IPA` output — every headword carries a bare `{{tew-IPA}}` and no hand-typed IPA | **`PER 0.0000` certifies reproduction of `Module:tew-IPA` on 106 words, not accuracy.** The spec was built from the same Martinez (1982) orthography and Sutton (2014) values the module cites, and cross-checked against the module, so engine and gold share a source. |
+| `nmy` (Namuyi, `N=354`) | a **mix** of hand-typed IPA and `Module:nmy-IPA` output | Weaker form of the same caveat: part of the row is a reproduction test. The residual error is dominated by unwritten vowel nasalisation, which is a real gap either way. |
+
+Neither row may be used to certify Tewa or Namuyi accuracy, and neither
+belongs in a cross-system comparison. What they do certify is that the
+spec implements the published orthography consistently — which is the
+claim the spec makes, and is worth measuring, under its own name.
+
+A per-language provenance override (`PROVENANCE_BY_LANG["wikipron"]`) would
+let the scoreboard carry this in the provenance column instead of only in
+prose. That is a `scripts/benchmark.py` change and is proposed, not made,
+here.
 
 ### Arabic with tashkeel restored (`wikipron_ar_diacritized`)
 
