@@ -55,6 +55,7 @@ from orthography2ipa.phonetok import (
     SegmentSlot,
     Token,
     TokenKind,
+    constrain_nasal_carriers,
     flat_contexts,
     lattice_confidence,
     lower_str,
@@ -1479,6 +1480,8 @@ class G2P:
             per_token_branches = [
                 [(c.ipa, c.cost) for c in s.candidates] for s in rescored
             ]
+
+        constrain_nasal_carriers(per_token_branches)
 
         for branches in per_token_branches:
             if not branches:

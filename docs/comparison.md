@@ -247,7 +247,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | vox_communis | 13154 | 0.3684 | 0.5184 | 0.5178 | same-source | o2i |
-| wikipron | 30379 | 0.1562 | 0.2815 | 0.2819 | 0.3322 | o2i |
+| wikipron | 30379 | 0.1277 | 0.2815 | 0.2819 | 0.3322 | o2i |
 
 ### hts (Hadza)
 
@@ -435,7 +435,7 @@ A system winning on one gold and losing on another for the SAME language is real
   - `wikipron` (n=168814, tier=crowd-scraped): o2i 0.0184 vs espeak 0.2062 — o2i wins
 - **`hi`** (wins on all golds):
   - `vox_communis` (n=13154, tier=epitran-derived): o2i 0.3684 vs espeak 0.5184 — o2i wins
-  - `wikipron` (n=30379, tier=crowd-scraped): o2i 0.1562 vs espeak 0.2815 — o2i wins
+  - `wikipron` (n=30379, tier=crowd-scraped): o2i 0.1277 vs espeak 0.2815 — o2i wins
 - **`it`** (wins on all golds):
   - `vox_communis` (n=90366, tier=epitran-derived): o2i 1.1378 vs espeak 1.1830 — o2i wins
   - `wikipron` (n=82280, tier=crowd-scraped): o2i 0.0441 vs espeak 0.0722 — o2i wins
@@ -505,7 +505,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | fr | wikipron | 85516 | 0.0673 | n/a | 0.0740 | 0.0749 |
 | ga | wikipron | 9621 | 0.1834 | n/a | 0.5223 | 0.5100 |
 | hi | vox_communis | 13154 | 0.3684 | n/a | 0.5184 | 0.5178 |
-| hi | wikipron | 30379 | 0.1562 | n/a | 0.2815 | 0.2819 |
+| hi | wikipron | 30379 | 0.1277 | n/a | 0.2815 | 0.2819 |
 | it | vox_communis | 90366 | 1.1378 | n/a | 1.1830 | 1.1739 |
 | it | wikipron | 82280 | 0.0441 | n/a | 0.0722 | 0.0767 |
 | nl | ipadict | 117869 | 0.1767 | n/a | 0.1607 | 0.1653 |
