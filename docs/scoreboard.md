@@ -209,7 +209,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | dum | wikipron | 197 | 0.2822 | · | · | · | · | [0.2553, 0.3073] | 0.2234 | research | crowd-scraped |
 | dv | vox_communis | 18253 | 0.3384 | · | · | · | · | [0.3254, 0.3511] | 0.4344 | research | epitran-derived |
 | dv | wikipron | 1539 | 0.0908 | · | · | · | · | [0.0837, 0.0986] | 0.6602 | research | crowd-scraped |
-| dz | wikipron | 229 | 0.8142 | · | · | · | · | [0.7799, 0.8471] | 0.0000 | research | crowd-scraped |
+| dz | wikipron | 230 | 0.3470 | 0.3441 | 0.3441 | 0.2087 | 0.2087 | [0.3131, 0.3818] | 0.2087 | research | crowd-scraped |
 | ee | wikipron | 247 | 0.4687 | · | · | · | · | [0.4472, 0.4879] | 0.0648 | research | crowd-scraped |
 | egy | wikipron | 2092 | 0.6327 | · | · | · | · | [0.6260, 0.6393] | 0.0000 | stub | crowd-scraped |
 | el | vox_communis | 5993 | 0.2672 | · | · | · | · | [0.2629, 0.2713] | 0.1188 | research | epitran-derived |
