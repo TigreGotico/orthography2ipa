@@ -592,10 +592,10 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | srs | wikipron | 137 | 0.1773 | · | · | · | · | [0.1521, 0.2039] | 0.2847 | research | crowd-scraped |
 | stq | wikipron | 818 | 0.3862 | · | · | · | · | [0.3716, 0.4012] | 0.1345 | research | crowd-scraped |
 | su | kaikki | 397 | 0.0964 | · | · | · | · | - | - | skeleton | crowd-scraped |
-| sv | ipa_childes | 5202 | 0.3449 | · | · | · | · | - | - | research | espeak-derived |
-| sv | ipadict | 21094 | 0.2583 | · | · | · | · | - | - | research | lexicon-derived |
-| sv | vox_communis | 19516 | 0.3428 | · | · | · | · | - | - | research | epitran-derived |
-| sv | wikipron | 5076 | 0.2317 | 0.1570 | 0.1454 | 0.4309 | 0.4529 | [0.2258, 0.2380] | 0.3381 | research | crowd-scraped |
+| sv | ipa_childes | 5202 | 0.3476 | 0.2555 | 0.2470 | 0.2614 | 0.2762 | [0.3415, 0.3544] | 0.1728 | research | espeak-derived |
+| sv | ipadict | 21094 | 0.2427 | 0.1752 | 0.1637 | 0.2900 | 0.3069 | [0.2401, 0.2452] | 0.2103 | research | lexicon-derived |
+| sv | vox_communis | 19516 | 0.3735 | 0.2161 | 0.2066 | 0.2453 | 0.2677 | [0.3709, 0.3761] | 0.0801 | research | epitran-derived |
+| sv | wikipron | 5076 | 0.2414 | 0.1668 | 0.1555 | 0.4222 | 0.4441 | [0.2351, 0.2482] | 0.3339 | research | crowd-scraped |
 | sw | ipadict | 48308 | 0.2206 | · | · | · | · | [0.2190, 0.2222] | 0.2044 | research | machine-generated |
 | sw | vox_communis | 48396 | 0.1890 | · | · | · | · | [0.1873, 0.1905] | 0.2625 | research | epitran-derived |
 | sw | wikipron | 307 | 0.3494 | · | · | · | · | [0.3230, 0.3750] | 0.1433 | research | crowd-scraped |
