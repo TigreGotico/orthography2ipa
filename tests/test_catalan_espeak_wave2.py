@@ -249,16 +249,28 @@ def test_que_elision_covers_the_whole_eastern_block():
                                   "ca-x-occidental", "ca-x-valencia"])
 @pytest.mark.parametrize("phrase,index", [
     ("on hi ha", 1),
-    ("príncep i el", 1),
+    ("príncep i arriba", 1),
     ("i arribo", 0),
 ])
 def test_clitic_i_glides_before_a_vowel_in_every_dialect(lang, phrase, index):
     """The trigger is the FOLLOWING vowel, not a preceding one — which is
     what the inherited CA_HIATUS_GLIDE_I could not see (its left context
-    requires a preceding vowel, so it misses ⟨on hi ha⟩, ⟨príncep i el⟩ and
-    an utterance-initial ⟨I arribo⟩). Wheeler 2005 ch. 11-12; Bonet & Lloret
-    1998 ch. 5. All four 4catac dialect golds agree, so the rule is declared
-    on every dialect spec."""
+    requires a preceding vowel, so it misses ⟨on hi ha⟩, ⟨príncep i
+    arriba⟩ and an utterance-initial ⟨I arribo⟩). Wheeler 2005 ch. 11-12;
+    Bonet & Lloret 1998 ch. 5. All four 4catac dialect golds agree, so the
+    rule is declared on every dialect spec.
+
+    The second probe used to be ⟨príncep i el⟩ and was changed
+    DELIBERATELY. The Western specs now elide the article's vowel after a
+    vowel (CA_ELIDE_EL), so ⟨el⟩ presents nothing to glide into, and the
+    4catac North-Western gold writes that very phrase — el príncep i el
+    rei — as [... i l ˈrej], with the ⟨i⟩ syllabic. Gliding it there
+    produced *[j l ˈrej], two words with no nucleus between them. The
+    clitic rule is unchanged in substance; only the probe moved off the
+    one right-hand word that is now a counter-case. See
+    tests/test_catalan_dialect_margins.py::
+    test_the_i_clitic_keeps_a_nucleus_when_the_article_elides.
+    """
     assert transcribe(phrase, lang).split()[index] == "j"
 
 

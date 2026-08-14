@@ -194,6 +194,7 @@ class AllophoneRuleModel(_Strict):
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
     preceded_by_surface_phoneme_2: Optional[List[str]] = None
+    requires_other_nucleus: Optional[bool] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
     preceded_by_grapheme: Optional[List[str]] = None
@@ -267,6 +268,7 @@ class StressRulesModel(_Strict):
     max_onset: int = Field(default=1, ge=1, le=3)
     cliticless_words: Optional[List[str]] = None
     coda_liquid_capture: bool = False
+    secondary_stress: Literal["", "alternating"] = ""
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 

@@ -108,6 +108,19 @@
         "grosses"
       ],
       "notes": "Valencian carries open-mid [ɔ] in 'gros/grossa' where the default gives close [o] (AVL 2006; Recasens 1991; the ca-x-valencia-003 arbitration: grosses [ˈɡɾɔses])."
+    },
+    {
+      "id": "CA_NASAL_PALATAL",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "ɲ",
+      "followed_by_phoneme": [
+        "ʃ",
+        "ʒ",
+        "ʎ"
+      ],
+      "notes": "WESTERN override of the inherited pan-Catalan CA_NASAL_PALATAL (same id, so it REPLACES the ca-x-medieval rule rather than adding to it): /n/ assimilates to a following palato-alveolar FRICATIVE or to the palatal lateral — enxampar-hi [aɲ ˈʃ...], any llunyà [ˈaɲ ʎuˈɲa] — but NOT to the AFFRICATES [tʃ dʒ]. Nasal place assimilation copies the place of the following consonant's CLOSURE (Recasens 1993 on Catalan nasal assimilation; Wheeler 2005 §10.3), and the closure phase of Catalan /tʃ dʒ/ is alveolar/dental, not palatal — so the nasal stays alveolar. This matters in Western Catalan specifically, because Western is the branch that realises ⟨j⟩/⟨g+e,i⟩ as the affricate [dʒ] where Eastern has the plain fricative [ʒ]: mengen [ˈmendʒen], enxampar [antʃamˈpa], un jutge [un ˈdʒudʒe]. The Eastern specs keep the inherited rule unchanged, where the same words have a fricative and DO palatalise the nasal (àngel [ˈaɲʒəl])."
     }
   ],
   "stress": {
@@ -436,6 +449,24 @@
   },
   "sandhi_rules": [
     {
+      "id": "CA_ELIDE_ELS",
+      "name": "atonic-article-vowel-elision-after-vowel-els",
+      "left_context": "[aeiouɛɔəɐ]$",
+      "right_context": "^els$",
+      "right_transform": "ls",
+      "obligatory": true,
+      "notes": "Plural counterpart of CA_ELIDE_EL; see that rule's note for the phenomenon and its sources."
+    },
+    {
+      "id": "CA_ELIDE_EL",
+      "name": "atonic-article-vowel-elision-after-vowel-el",
+      "left_context": "[aeiouɛɔəɐ]$",
+      "right_context": "^el$",
+      "right_transform": "l",
+      "obligatory": true,
+      "notes": "ELISION OF THE ATONIC VOWEL of the proclitic masculine article / accusative clitic ⟨el⟩ ⟨els⟩ after a vowel-final word (Wheeler 2005 §11.2 'elision' and ch. 4 on the article's allomorphs; Bonet & Lloret 1998 ch. 5 on clitic vowel deletion; IEC 2016 §6.2 lists ⟨el/els⟩ among the atonic monosyllables). The article has no vowel of its own to defend: written ⟨l'⟩ before a vowel-initial word is the same allomorph, and after a vowel the support vowel is equally unnecessary — que el tap [ke l ˈtab], ningú el veu [niŋˈɡu l ˈβɛw], i el rei [i l ˈrej], voleu que els hòmens [ke lz ˈɔmens]. CLOSED CLASS by construction: the right context is the WHOLE word anchored at both ends, so only the two-segment clitic itself matches and no lexical word beginning in the same segments is touched (el·la, elefant, elzevir keep their vowel). The left context is a vowel: after a consonant the vowel is the only thing making the clitic pronounceable and it stays (amb el tap, per els). The engine already blocks every sandhi rule across a pause, so the elision cannot reach over an intonational-phrase boundary.\nRELATION TO THE MINIMAL-WORD GUARD. The pan-Catalan hiatus rules (CA_ELIDE_INITIAL_VOWEL and the final-schwa rule) refuse to strip a word to nothing, and tests/test_catalan_phonology.py pins that. This rule is the ONE licensed exception and it is not a hiatus rule: it is closed-class, anchored on the whole word, and the licence is that Catalan ORTHOGRAPHY itself writes this article without a vowel — ⟨l'⟩ is the same article, not a different one (Wheeler 2005 ch. 4) — and the resulting proclitic attaches to the following word rather than standing alone. Every other monovocalic function word keeps its nucleus in these specs: estava en oració [asˈtaβa en oɾasiˈo]."
+    },
+    {
       "id": "CA_DEGEM_S",
       "name": "cross-word-sibilant-degemination-s",
       "left_context": "s$",
@@ -487,11 +518,20 @@
       "id": "CA_CLITIC_GLIDE_I_BEFORE_VOWEL",
       "name": "monosyllabic-clitic-i-glides-before-vowel",
       "left_context": "^i$",
-      "right_context": "^[ˈˌ]?[aeiouəɛɔɐ]",
+      "right_context": "^(?!(?:[ˈˌ]?els?)$)[ˈˌ]?[aeiouəɛɔɐ]",
       "transform": "j",
       "right_transform": null,
       "obligatory": true,
-      "notes": "A monosyllabic clitic whose whole form is [i] — the conjunction ⟨i⟩ and the adverbial pronoun ⟨hi⟩ — is syllabified into the following word as the glide [j] when that word begins with a vowel: hi havia [j əˈβiə], hi ha [j ˈa], i arribo [j əˈriβu], i ara [j ˈaɾə]. Wheeler 2005 ch. 12 (the syllabification of pronominal clitics) and ch. 11 (phrasal vowel sandhi); Bonet & Lloret 1998 ch. 5. The trigger is the FOLLOWING vowel, not a preceding one — which is what distinguishes this rule from the inherited CA_HIATUS_GLIDE_I, whose left context requires a preceding vowel and which therefore misses on hi ha, príncep i el and utterance-initial I arribo. ⟨i⟩ and ⟨hi⟩ are members of the spec's ``cliticless_words`` closed class (IEC 2016 §6.2). Confirmed in ALL FOUR 4catac dialect transcriptions (Central, Balearic, North-Western, Valencian), so it is declared on every dialect spec rather than on Central alone."
+      "notes": "A monosyllabic clitic whose whole form is [i] — the conjunction ⟨i⟩ and the adverbial pronoun ⟨hi⟩ — is syllabified into the following word as the glide [j] when that word begins with a vowel: hi havia [j əˈβiə], hi ha [j ˈa], i arribo [j əˈriβu], i ara [j ˈaɾə]. Wheeler 2005 ch. 12 (the syllabification of pronominal clitics) and ch. 11 (phrasal vowel sandhi); Bonet & Lloret 1998 ch. 5. The trigger is the FOLLOWING vowel, not a preceding one — which is what distinguishes this rule from the inherited CA_HIATUS_GLIDE_I, whose left context requires a preceding vowel and which therefore misses on hi ha, príncep i el and utterance-initial I arribo. ⟨i⟩ and ⟨hi⟩ are members of the spec's ``cliticless_words`` closed class (IEC 2016 §6.2). Confirmed in ALL FOUR 4catac dialect transcriptions (Central, Balearic, North-Western, Valencian), so it is declared on every dialect spec rather than on Central alone.\nWESTERN NARROWING (this spec only): the right context excludes the clitic ⟨el⟩/⟨els⟩. There is nothing to glide into there — CA_ELIDE_EL removes that word's vowel at the very same boundary — and the sandhi engine resolves the two sides of a boundary INDEPENDENTLY, against the original words, so without the exclusion both rules fire and i el rei comes out as *[j l ˈrej]: two words, no syllable nucleus between them. With it the phrase is [i l ˈrej], which is how the 4catac North-Western gold writes it — the ⟨i⟩ keeps its nucleus and the article loses its own (Wheeler 2005 ch. 4 and §11.2; Bonet & Lloret 1998 ch. 5). Before any other vowel-initial word the clitic glides exactly as before: i ara [j ˈaɾa], i això."
+    },
+    {
+      "id": "CA_EXT_NASAL_PALATAL",
+      "name": "external-nasal-palatalisation-western",
+      "left_context": "n$",
+      "right_context": "^[ˈˌ]?(?:ʃ|ʒ|ʎ)",
+      "transform": "ɲ",
+      "obligatory": true,
+      "notes": "WESTERN override of the inherited CA_EXT_NASAL_PALATAL (same id, so it REPLACES it): the cross-word counterpart of this spec's CA_NASAL_PALATAL override — see that rule for the phenomenon and its sources. A word-final /n/ palatalises before a following palato-alveolar FRICATIVE or palatal lateral, but not before the affricates [tʃ dʒ], whose closure is alveolar: un jutge [un ˈdʒudʒe] in Western, against Eastern [uɲ ˈʒudʒə] where the same word begins with a fricative."
     }
   ]
 }

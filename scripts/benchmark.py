@@ -52,6 +52,38 @@ few loaders keep an intrinsic, language-agnostic infrastructure bound that
 ``--limit`` cannot lift (e.g. ``hitz_basque_ipa`` pages the HF rows API and
 stops at ``_HITZ_BASQUE_MAX_PARAGRAPHS`` rather than pulling the full
 1.67M-row set) — these are documented in docs/benchmarks.md.
+
+Where things live
+-----------------
+
+The module reads top to bottom as fetch -> load -> provenance -> score ->
+render. Each section carries a ``# ─── name ───`` header:
+
+``dataset loaders``
+    One ``load_<name>(lang, limit) -> [GoldPair, ...]`` per gold source.
+    Uniform signature on purpose: that is what lets :data:`DATASETS`
+    register them all interchangeably. Each loader's docstring records
+    where its IPA came from — that provenance is the reason to trust or
+    distrust every number derived from it, so it belongs with the loader.
+``DATASETS``
+    The registry. Adding a gold set = write a loader + add one entry here
+    + record its :data:`PROVENANCE` tier. Nothing else needs to change.
+``provenance / reliability tiers``
+    :data:`RELIABILITY_TIERS`, :data:`PROVENANCE`, and
+    :func:`can_gate_promotion` — which golds are trustworthy enough to FAIL
+    a build on, and which may only report drift. A gold that is another
+    tool's output can never gate.
+``metric``
+    :func:`normalize` (the one comparison space every system is scored in),
+    :func:`levenshtein`, :func:`align`, and the :func:`evaluate` family.
+    ``compare_systems.py`` imports these so its numbers are directly
+    comparable to the scoreboard's.
+``build_scoreboard`` / ``write_scoreboard``
+    Sweep every registered dataset/language, then render
+    docs/scoreboard.md + benchmarks/results.json.
+``lexicon-overlay report``
+    The separate rules-only-vs-with-lexicon board (``--lexicon-report``);
+    it writes its own docs page and never touches the main scoreboard.
 """
 from __future__ import annotations
 
@@ -68,7 +100,13 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import (Callable, Dict, Iterator, List, Optional, Sequence,
+                    Tuple)
+
+#: A gold entry: (orthographic word or sentence, reference IPA). Every
+#: ``load_*`` dataset loader returns a list of these, and every scoring
+#: function consumes them — the one shape the whole harness is built on.
+GoldPair = Tuple[str, str]
 
 # the repository root precedes the installed package so that running the
 # script from a checkout measures THAT checkout
@@ -134,6 +172,37 @@ _STRESS_MARKS = "ˈˌ'"
 _TIE_BARS = "͜͡‿"
 
 _NARROW_MARKS = "̝̞̪̺̻̼̘̙̯.·()"
+
+#: Click accompaniment notation: a click's release/manner accompaniment
+#: (velar ⟨k⟩, nasal ⟨ŋ⟩) is conventionally written either as a full IPA
+#: letter immediately before the click letter (kǀ, ŋǃ) OR with the same
+#: accompaniment carried by a dedicated superscript modifier letter in the
+#: same slot (ᵏǀ, ᵑǃ) -- both are attested, interchangeable transcription
+#: conventions for the SAME segment sequence, not a phonemic contrast (IPA
+#: Chart 2015, superscript-modifier-letter convention; Ladefoged &
+#: Maddieson, *The Sounds of the World's Languages*, 1996, ch.8 "Clicks",
+#: pp.246-260, describing accompaniments transcribed either way with no
+#: distinction implied). Folded ONLY when the modifier letter sits directly
+#: next to one of the five IPA click letters (_CLICK_LETTERS), COMBINING
+#: MARKS ON THE MODIFIER (e.g. a combining ring below for voicelessness,
+#: ᵑ̊) allowed to ride along: ᵏ/ᵑ anywhere else (e.g. the common Bantuist
+#: prenasalized-stop notation ᵑg/ᵐb) is a different, unrelated convention
+#: and must not be touched. ʘ/ǀ/ǁ/ǃ/ǂ are five distinct click TYPES
+#: (different active articulators) and are never folded into each other.
+#: Applied AFTER the final whitespace join (some gold sets space-separate
+#: phonemes, putting the modifier and its click letter on opposite sides
+#: of a space -- e.g. "ᵑ ǂ" -- which must still fold).
+_CLICK_LETTERS = "ǀǁǃǂʘ"
+_CLICK_ACCOMPANIMENT_SUPERSCRIPTS = {"ᵏ": "k", "ᵑ": "ŋ"}
+#: U+1DF06 (𝼆, "LATIN SMALL LETTER TURNED Y WITH BELT") is NOT a click
+#: letter and is never folded into one. It is a ligature-style shorthand
+#: for the voiceless palatal lateral fricative ʎ̥˔ (Unicode 13.0, 2021 --
+#: analogous to how ɬ is a dedicated letter for the voiceless alveolar
+#: lateral fricative). The Hadza wikipron alphabet-table rows write the
+#: Hadza "tl" lateral affricate as bare 𝼆, while the corresponding word
+#: rows write the SAME segment tie-barred as c͜ʎ̥˔ (see the "hts" registry
+#: comment below) -- so the fold target is ʎ̥˔, not ǁ.
+_NOTATIONAL_LETTER_ALIASES = {"𝼆": "ʎ̥˔"}
 
 #: ASCII "g" (U+0067, keyboard Latin) vs the official IPA voiced velar
 #: plosive ɡ (U+0261, LATIN SMALL LETTER SCRIPT G) — a Unicode confusable,
@@ -437,17 +506,15 @@ _WIKIPRON_FILES = {
     # Hadza. 335 rows / 329 unique headwords, of which 52 are NOT words: the
     # scrape ingested the source's ALPHABET TABLE alongside its lexicon, so
     # ⟨cc⟩, ⟨Nq⟩, ⟨Tlh⟩ etc. appear as headwords glossed with the single
-    # phoneme the letter spells. 26 of those 52 are transcribed in a
+    # phoneme the letter spells. 26 of those 52 were transcribed in a
     # DIFFERENT notation from the same gold's word rows: the alphabet rows
-    # write the clicks with superscript modifiers (ᵏǀ, ᵑǀʔ) and the lateral
-    # with U+1DF06 (𝼆), while every word row writes the same segments with a
-    # tie bar (k͜ǀ, ŋ͜ǀˀ, c͜ʎ̥˔). `normalize` strips tie bars but not ᵏ/ᵑ/𝼆, so
-    # no spec can match both conventions at once and ~0.35 PER on those rows
-    # is a notation floor, not an error. They are NOT excluded: dropping the
-    # rows a spec finds inconvenient is how a scoreboard stops measuring
-    # anything. Teaching `normalize` to fold the two click notations together
-    # is the real fix and belongs in its own PR, scored across every click
-    # language (ktz, hts, nmn) at once.
+    # write the clicks with superscript modifiers (ᵏǀ, ᵑǀʔ) and the "tl"
+    # lateral affricate with U+1DF06 (𝼆), while every word row writes the
+    # same segments with a tie bar (k͜ǀ, ŋ͜ǀˀ, c͜ʎ̥˔). `normalize` now folds
+    # both notational variants together
+    # (_CLICK_ACCOMPANIMENT_SUPERSCRIPTS for the clicks,
+    # _NOTATIONAL_LETTER_ALIASES for 𝼆 -> ʎ̥˔, alongside the tie-bar strip
+    # it already did), so the two conventions score as the same segments.
     "hts":        "hts_latn_broad.tsv",  # Hadza, N=335
     "huu":        "huu_latn_narrow.tsv",  # Murui Huitoto, N=440
     "kgp":        "kgp_latn_broad.tsv",  # Kaingang, N=107
@@ -2149,7 +2216,19 @@ def _primary_source_langs() -> List[str]:
     })
 
 
-DATASETS = {
+#: A dataset loader: ``loader(lang, limit) -> [GoldPair, ...]``. ``limit``
+#: is a row cap (``sys.maxsize`` for "no cap"); a loader that cannot serve
+#: *lang* returns an empty list rather than raising.
+DatasetLoader = Callable[[str, int], List[GoldPair]]
+
+#: THE dataset registry: ``{name: (loader, [language, ...])}``. Every gold
+#: set the harness can score is reachable from here and nowhere else — the
+#: CLI's ``--dataset`` choices, ``build_scoreboard``'s sweep, and
+#: ``compare_systems.LANGS``' dataset references all read this one table, so
+#: registering a loader here is the whole job of adding a dataset. Every
+#: entry must also have a ``PROVENANCE`` tier (enforced below): a gold with
+#: no recorded provenance cannot be read honestly.
+DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "primary_sources": (load_primary_sources, _primary_source_langs()),
     "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
     "gold20_arabic": (load_gold20_arabic, _GOLD20_ARABIC_LANGS),
@@ -2444,13 +2523,24 @@ def normalize(ipa: str, strip_stress: bool, broad: bool,
         s = s.replace(ch, "")
     for ch in _TIE_BARS:
         s = s.replace(ch, "")
+    for alt, canon in _NOTATIONAL_LETTER_ALIASES.items():
+        s = s.replace(alt, canon)
     s = _expand_consonant_length(s)
     if broad:
         decomposed = unicodedata.normalize("NFD", s)
         s = unicodedata.normalize(
             "NFC", "".join(c for c in decomposed if c not in _NARROW_MARKS))
     # comparison is segmentation-free: some gold sets space-separate phonemes
-    return "".join(s.split())
+    s = "".join(s.split())
+    # Click-accompaniment superscript fold runs AFTER the whitespace join:
+    # some gold sets space-separate phonemes, putting the modifier and its
+    # click letter on opposite sides of a space (e.g. "ᵑ ǂ"), which must
+    # still fold. Combining marks on the modifier (e.g. a combining ring
+    # below for voicelessness, ᵑ̊) ride along with it via \1.
+    for mod, letter in _CLICK_ACCOMPANIMENT_SUPERSCRIPTS.items():
+        s = re.sub(mod + "([̀-ͯ]*)(?=[" + _CLICK_LETTERS + "])",
+                   letter + r"\1", s)
+    return s
 
 
 def _is_multiword(entry: str) -> bool:
@@ -2645,7 +2735,9 @@ def assert_oracle_self_check(dataset: str, lang: str, per: float,
         f"to write 1-best columns only.")
 
 
-def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
+def evaluate_words(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
+                   broad: bool
+                   ) -> Tuple[int, int, List[float], float, float]:
     """Like :func:`evaluate` but also returns the per-word PER list, so
     callers (e.g. :func:`bootstrap_per_ci`) can resample it. The point
     estimates returned here (``n``, ``covered``, ``per``, ``wer``) are
@@ -2657,9 +2749,12 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
     return n, covered, pers, per, wer
 
 
-def evaluate_words_oracle(pairs, lang: str, strip_stress: bool, broad: bool,
+def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
+                          strip_stress: bool, broad: bool,
                           oracle_ks: Sequence[int] = ORACLE_KS,
-                          expose_ambiguous_endings: bool = False):
+                          expose_ambiguous_endings: bool = False
+                          ) -> Tuple[int, int, List[float], float, float,
+                                     Optional["OracleResult"]]:
     """:func:`evaluate_words` plus the top-k oracle PER.
 
     One scoring loop, one normalization, one distance function: passing
@@ -2790,7 +2885,12 @@ def evaluate_words_oracle(pairs, lang: str, strip_stress: bool, broad: bool,
         (wrong / covered if covered else 1.0), oracle
 
 
-def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
+def evaluate(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
+             broad: bool) -> Tuple[int, int, float, float]:
+    """Score *pairs* and return just the point estimates
+    ``(n, covered, per, wer)`` — :func:`evaluate_words` without the per-word
+    PER list. Same numbers, one scoring loop; see :func:`evaluate_words_oracle`
+    for the single implementation all three wrappers share."""
     n, covered, _pers, per, wer = evaluate_words(
         pairs, lang, strip_stress, broad)
     return n, covered, per, wer
@@ -3182,7 +3282,7 @@ _LEXICON_REPORT_TAGS: Dict[str, List[str]] = {
 
 
 @contextlib.contextmanager
-def _lexicon_disabled():
+def _lexicon_disabled() -> Iterator[None]:
     """Temporarily force every G2P engine onto the rules-only path.
 
     Swaps ``get_lexicon`` (bound both in ``orthography2ipa.lexicon`` and, by
@@ -3205,7 +3305,7 @@ def _lexicon_disabled():
         _g2p.get_lexicon = orig
 
 
-def _score_pairs(pairs, lang: str) -> Tuple[int, float]:
+def _score_pairs(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
     n, covered, _pers, per, _wer = evaluate_words(
         pairs, lang, strip_stress=True, broad=True)
     return covered, per
