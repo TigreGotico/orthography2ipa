@@ -99,7 +99,7 @@
       "β"
     ],
     "w": [
-      "w"
+      "ɰ"
     ],
     "x": [
       "x"
@@ -224,7 +224,7 @@
   "iso639_3": "ewe",
   "glottolog_code": "ewee1241",
   "wikidata_qid": "Q30005",
-  "notes": "Ewe (Eʋegbe), Gbe (Atlantic-Congo), Ghana and Togo. Latin alphabet with the Africa Alphabet letters ɖ ƒ ɣ ŋ ɔ ɛ ʋ and the digraphs dz gb kp ny ts. Contrasts the bilabial fricatives ƒ /ɸ/ and ʋ /β/ with the labiodentals f /f/ and v /v/. Doubly-articulated stops gb /ɡ͡b/ and kp /k͡p/. Vowels a e ɛ i o ɔ u; nasalised vowels are written with a following ⟨n⟩ and are not separate graphemes. TONE: Ewe is a tonal language, but tone is written only where disambiguation requires it (acute, grave, caron, circumflex); the standard orthography is otherwise toneless, so no tone is emitted here and accented vowels are not listed.",
+  "notes": "Ewe (Eʋegbe), Gbe (Atlantic-Congo), Ghana and Togo. Latin alphabet with the Africa Alphabet letters ɖ ƒ ɣ ŋ ɔ ɛ ʋ and the digraphs dz gb kp ny ts. Contrasts the bilabial fricatives ƒ /ɸ/ and ʋ /β/ with the labiodentals f /f/ and v /v/. Doubly-articulated stops gb /ɡ͡b/ and kp /k͡p/. Vowels a e ɛ i o ɔ u; nasalised vowels are written with a following ⟨n⟩ and are not separate graphemes. TONE: Ewe is a tonal language, but tone is written only where disambiguation requires it (acute, grave, caron, circumflex); the standard orthography is otherwise toneless, so no tone is emitted here and accented vowels are not listed. GRAPHEME ⟨w⟩: Ewe has no true labio-velar glide; ⟨w⟩ spells the velar approximant /ɰ/ throughout (Ansre 1961; Duthie, A.S. (1996), Introducing Ewe Linguistic Patterns, Ghana Universities Press; WikiPron ewe_latn_broad gold: wò [ɰò], awu [àɰù], Xawa [xáɰà], miawo [mìàɰó] -- 100% of gold tokens containing ⟨w⟩ realise it as ɰ, none as [w]).",
   "sources": [
     {
       "id": "ansre1961",

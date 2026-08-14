@@ -3,7 +3,7 @@
   "name": "Hunsrik (Riograndenser Hunsrückisch)",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "sch": [
       "ʃ"
@@ -117,7 +117,7 @@
       "notes": "Brazilian Portuguese adstrate: loan phonology and code-switching"
     }
   ],
-  "notes": "Skeleton. Hunsrik/Riograndenser Hunsrückisch (West-Central German variety of southern Brazil), written in the standardised SWR/Wikipedia Hunsrik orthography. Rhine-Franconian reflexes: initial fortis lenition (t for d, p for b) and ⟨aa⟩=/ɔː/; long Brazilian Portuguese adstrate.",
+  "notes": "Skeleton. Hunsrik/Riograndenser Hunsrückisch (West-Central German variety of southern Brazil), written in the standardised SWR/Wikipedia Hunsrik orthography. Rhine-Franconian reflexes: initial fortis lenition (t for d, p for b) and ⟨aa⟩=/ɔː/; long Brazilian Portuguese adstrate. Stress exemption: Hunsrik (Riograndenser Hunsrückisch) inherits Central German root/initial stress patterns, but no dedicated instrumental study of its stress placement independent of German is available; no stress block is declared pending such a study. Source: Altenhofen, Cléo Vilson (1996), Hunsrückisch in Rio Grande do Sul.",
   "iso639_3": "hrx",
   "glottolog_code": null,
   "sources": [
