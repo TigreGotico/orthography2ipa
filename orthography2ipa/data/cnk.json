@@ -3,7 +3,7 @@
   "name": "Khumi Chin",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -117,7 +117,7 @@
       "notes": "Descent per Glottolog classification of Khumi Chin (khum1248)."
     }
   ],
-  "notes": "Skeleton. Khumi Chin is a Kuki-Chin (Sino-Tibetan) language of the Chin Hills and Bangladesh, written in a Latin-based orthography. Base Latin consonants and vowels plus digraphs ch/sh/ng/ny, aspirates kh/ph/th and the voiceless lateral hl are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected.",
+  "notes": "Skeleton. Khumi Chin is a Kuki-Chin (Sino-Tibetan) language of the Chin Hills and Bangladesh, written in a Latin-based orthography. Base Latin consonants and vowels plus digraphs ch/sh/ng/ny, aspirates kh/ph/th and the voiceless lateral hl are mapped. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected. Khumi Chin tone is not orthographically recoverable in the practical spelling and is left unencoded; stress is not lexically contrastive (documented exemption).",
   "iso639_3": "cnk",
   "glottolog_code": null,
   "sources": [
@@ -142,6 +142,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Khumi_language"
+    },
+    {
+      "id": "cnk_peterson2008",
+      "author": "Peterson, David A.",
+      "year": 2008,
+      "title": "Bangladesh Khumi verbal classifiers and Kuki-Chin 'chiming'",
+      "publisher": "Linguistics of the Tibeto-Burman Area 31.1",
+      "url": "http://sealang.net/archives/ltba/pdf/LTBA-31.1.109.pdf",
+      "pages": null,
+      "notes": "Descriptive study of Khumi (Kuki-Chin) grammar and phonology by the language's principal documenter; consulted for the consonant inventory and digraph conventions of the Latin-based practical orthography modelled here."
     }
   ],
   "wikipedia": [
