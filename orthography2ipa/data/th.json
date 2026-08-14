@@ -6,7 +6,7 @@
   "script_type": "abugida",
   "inherent_vowel": "o",
   "iso639_3": "tha",
-  "quality": "skeleton",
+  "quality": "research",
   "tone_inventory": {
     "mid_class_no_mark": "mid",
     "mid_class_mai_ek": "low",
@@ -175,16 +175,42 @@
     ],
     "ั": [
       "a"
-    ],
-    "◌ว": [
-      "ua",
-      "w"
-    ],
-    "◌ย": [
-      "aj",
-      "j"
     ]
   },
+  "dependent_vowels": [
+    "า"
+  ],
+  "preposed_vowels": [
+    "เ",
+    "แ",
+    "โ",
+    "ใ",
+    "ไ"
+  ],
+  "coda_no_inherent_vowel": true,
+  "allophone_rules": [
+    {
+      "id": "TH_UNRELEASED_K_CODA",
+      "phonemes": ["k"],
+      "surface": "k̚",
+      "word_final": true,
+      "notes": "Thai final stops are unreleased (Iwasaki & Ingkaphirom 2005, A Reference Grammar of Thai, §1.3.2): a word-final /k/ coda surfaces [k̚], not a released [k]. Fires only word_final so onset /k/ (กา [kā]) is unaffected."
+    },
+    {
+      "id": "TH_UNRELEASED_T_CODA",
+      "phonemes": ["t"],
+      "surface": "t̚",
+      "word_final": true,
+      "notes": "Thai final stops are unreleased (Iwasaki & Ingkaphirom 2005, §1.3.2): a word-final /t/ coda surfaces [t̚]. Fires only when the grapheme's phoneme is already plain /t/ (ต/ด via their base mapping); the many other letters Thai orthography neutralises to a /t/ coda (ท ธ ถ จ ช ซ ศ ษ ส ...) keep their onset value word-finally — coda neutralisation is a separate, not-yet-implemented mechanism."
+    },
+    {
+      "id": "TH_UNRELEASED_P_CODA",
+      "phonemes": ["p"],
+      "surface": "p̚",
+      "word_final": true,
+      "notes": "Thai final stops are unreleased (Iwasaki & Ingkaphirom 2005, §1.3.2): a word-final /p/ coda surfaces [p̚]."
+    }
+  ],
   "allophones": {
     "k": [
       "k"
@@ -280,8 +306,18 @@
       "oː"
     ]
   },
-  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. Inherent vowel is /o/ (short). Vowels written around consonants (above, below, before, after). This spec covers consonant letters and common vowel diacritics; full tone calculation requires syllable analysis.",
+  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. Inherent vowel is /o/ (short). Vowels written around consonants (above, below, before, after). This spec covers consonant letters and common vowel diacritics; full tone calculation requires syllable analysis. Stress exemption: Standard Thai is a tone language (5 tones marked by tone class + tone marks); it has no independent, orthography-predictable lexical stress accent distinct from its tone system, so no stress block is declared. Dependent vowel sign ⟨า⟩ is spacing (Unicode category Lo, not a combining mark); ⟨เ แ โ ใ ไ⟩ are preposed — written before the consonant, pronounced after (⟨เก⟩ = /keː/). Source: Haas, Thai-English Student's Dictionary (1964); Iwasaki, S. & Ingkaphirom, P. (2005), A Reference Grammar of Thai, Cambridge University Press; Thai phonology, Wikipedia.",
   "sources": [
+    {
+      "id": "iwasaki2005",
+      "author": "Iwasaki, Shoichi & Ingkaphirom, Preeya",
+      "year": 2005,
+      "title": "A Reference Grammar of Thai",
+      "publisher": "Cambridge University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Source for the preposed-vowel analysis (⟨เ แ โ ใ ไ⟩)."
+    },
     {
       "id": "haas1964",
       "author": "Haas, M.R.",

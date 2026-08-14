@@ -6,7 +6,7 @@
   "script_type": "abugida",
   "inherent_vowel": "a",
   "iso639_3": "mya",
-  "quality": "skeleton",
+  "quality": "research",
   "tone_inventory": {
     "creaky": "low creaky",
     "plain": "level",
@@ -244,7 +244,7 @@
       "ɔ"
     ]
   },
-  "notes": "Burmese Myanmar script abugida. 4-tone system (creaky low, level/plain, high falling, checked glottal). Inherent vowel is /a/. The script has 33 base consonant letters; many Sanskrit-derived letters have merged in pronunciation. သ = dental fricative /θ/. Tone and vowel quality interact with final consonants. This spec gives base consonant correspondences; full G2P requires syllable structure analysis.",
+  "notes": "Burmese Myanmar script abugida. 4-tone system (creaky low, level/plain, high falling, checked glottal). Inherent vowel is /a/. The script has 33 base consonant letters; many Sanskrit-derived letters have merged in pronunciation. သ = dental fricative /θ/. Tone and vowel quality interact with final consonants. This spec gives base consonant correspondences; full G2P requires syllable structure analysis. Stress exemption: Burmese word prominence is carried by its 4-tone system rather than a separate lexical stress accent, and the tones themselves are not fully recoverable from the base consonant/vowel letters modeled here; no stress block is declared. Source: Okell, A Reference Grammar of Colloquial Burmese (1969).",
   "sources": [
     {
       "id": "okell1969",
