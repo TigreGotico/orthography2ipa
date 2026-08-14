@@ -293,7 +293,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | hsb | vox_communis | 5811 | 0.3199 | · | · | · | · | [0.3150, 0.3244] | 0.0905 | research | epitran-derived |
 | hsb | wikipron | 1126 | 0.2186 | · | · | · | · | [0.2073, 0.2303] | 0.2629 | research | crowd-scraped |
 | ht | wikipron | 1691 | 0.0302 | · | · | · | · | [0.0262, 0.0346] | 0.8669 | research | crowd-scraped |
-| hts | wikipron | 329 | 0.0650 | 0.0650 | 0.0650 | 0.8693 | 0.8693 | [0.0417, 0.0881] | 0.8693 | research | crowd-scraped |
+| hts | wikipron | 329 | 0.0224 | 0.0224 | 0.0224 | 0.9240 | 0.9240 | [0.0125, 0.0349] | 0.9240 | research | crowd-scraped |
 | hu | ipa_childes | 4776 | 0.1506 | · | · | · | · | [0.1465, 0.1550] | 0.3549 | research | epitran-derived |
 | hu | vox_communis | 76381 | 0.1222 | · | · | · | · | [0.1198, 0.1247] | 0.5142 | research | epitran-derived |
 | huu | wikipron | 437 | 0.0827 | · | · | · | · | [0.0726, 0.0930] | 0.5446 | research | crowd-scraped |
@@ -344,7 +344,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | kok | kaikki | 830 | 0.4944 | · | · | · | · | [0.4759, 0.5121] | 0.0217 | research | crowd-scraped |
 | krl | wikipron | 641 | 0.0959 | · | · | · | · | [0.0876, 0.1040] | 0.4930 | research | crowd-scraped |
 | kru | wikipron | 187 | 0.1993 | · | · | · | · | [0.1735, 0.2251] | 0.3048 | research | crowd-scraped |
-| ktz | wikipron | 134 | 0.3451 | · | · | · | · | [0.2879, 0.4102] | 0.3731 | research | crowd-scraped |
+| ktz | wikipron | 134 | 0.3464 | 0.3464 | 0.3464 | 0.3731 | 0.3731 | [0.2889, 0.4102] | 0.3731 | research | crowd-scraped |
 | ku | wikipron | 2147 | 0.1440 | · | · | · | · | [0.1391, 0.1488] | 0.2795 | research | crowd-scraped |
 | kv | wikipron | 906 | 0.1570 | · | · | · | · | [0.1457, 0.1698] | 0.4912 | research | crowd-scraped |
 | kw | wikipron | 602 | 0.2521 | · | · | · | · | [0.2360, 0.2686] | 0.2226 | research | crowd-scraped |
@@ -419,7 +419,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nds | wikipron | 307 | 0.4340 | · | · | · | · | [0.4046, 0.4625] | 0.1042 | research | crowd-scraped |
 | ne | kaikki | 2051 | 0.6047 | · | · | · | · | [0.5932, 0.6159] | 0.0205 | research | crowd-scraped |
 | new | wikipron | 416 | 0.4371 | · | · | · | · | [0.4145, 0.4588] | 0.0769 | research | crowd-scraped |
-| ngh | wikipron | 263 | 0.3663 | · | · | · | · | [0.3381, 0.3964] | 0.1521 | skeleton | crowd-scraped |
+| ngh | wikipron | 263 | 0.3655 | 0.3655 | 0.3655 | 0.1521 | 0.1521 | [0.3374, 0.3958] | 0.1521 | skeleton | crowd-scraped |
 | nhg | wikipron | 295 | 0.2367 | · | · | · | · | [0.2157, 0.2573] | 0.1898 | skeleton | crowd-scraped |
 | nhx | wikipron | 145 | 0.1913 | · | · | · | · | [0.1686, 0.2141] | 0.2207 | skeleton | crowd-scraped |
 | nio | northeuralex | 1024 | 0.1075 | · | · | · | · | [0.0999, 0.1144] | 0.4375 | research | lexicon-derived |
@@ -661,5 +661,5 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | zh | ipa_childes | 4717 | 0.5167 | · | · | · | · | [0.5125, 0.5209] | 0.0087 | research | machine-generated |
 | zh | vox_communis | 121 | 2.0964 | · | · | · | · | [1.9504, 2.2645] | 0.0000 | research | epitran-derived |
 | zom | wikipron | 134 | 0.5448 | · | · | · | · | [0.5159, 0.5731] | 0.0000 | skeleton | crowd-scraped |
-| zu | wikipron | 1754 | 0.4359 | · | · | · | · | [0.4287, 0.4424] | 0.0063 | research | crowd-scraped |
+| zu | wikipron | 1754 | 0.4287 | 0.4287 | 0.4287 | 0.0063 | 0.0063 | [0.4215, 0.4352] | 0.0063 | research | crowd-scraped |
 | zza | wikipron | 196 | 0.3606 | · | · | · | · | [0.3278, 0.3924] | 0.1122 | skeleton | crowd-scraped |

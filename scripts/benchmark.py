@@ -173,6 +173,37 @@ _TIE_BARS = "͜͡‿"
 
 _NARROW_MARKS = "̝̞̪̺̻̼̘̙̯.·()"
 
+#: Click accompaniment notation: a click's release/manner accompaniment
+#: (velar ⟨k⟩, nasal ⟨ŋ⟩) is conventionally written either as a full IPA
+#: letter immediately before the click letter (kǀ, ŋǃ) OR with the same
+#: accompaniment carried by a dedicated superscript modifier letter in the
+#: same slot (ᵏǀ, ᵑǃ) -- both are attested, interchangeable transcription
+#: conventions for the SAME segment sequence, not a phonemic contrast (IPA
+#: Chart 2015, superscript-modifier-letter convention; Ladefoged &
+#: Maddieson, *The Sounds of the World's Languages*, 1996, ch.8 "Clicks",
+#: pp.246-260, describing accompaniments transcribed either way with no
+#: distinction implied). Folded ONLY when the modifier letter sits directly
+#: next to one of the five IPA click letters (_CLICK_LETTERS), COMBINING
+#: MARKS ON THE MODIFIER (e.g. a combining ring below for voicelessness,
+#: ᵑ̊) allowed to ride along: ᵏ/ᵑ anywhere else (e.g. the common Bantuist
+#: prenasalized-stop notation ᵑg/ᵐb) is a different, unrelated convention
+#: and must not be touched. ʘ/ǀ/ǁ/ǃ/ǂ are five distinct click TYPES
+#: (different active articulators) and are never folded into each other.
+#: Applied AFTER the final whitespace join (some gold sets space-separate
+#: phonemes, putting the modifier and its click letter on opposite sides
+#: of a space -- e.g. "ᵑ ǂ" -- which must still fold).
+_CLICK_LETTERS = "ǀǁǃǂʘ"
+_CLICK_ACCOMPANIMENT_SUPERSCRIPTS = {"ᵏ": "k", "ᵑ": "ŋ"}
+#: U+1DF06 (𝼆, "LATIN SMALL LETTER TURNED Y WITH BELT") is NOT a click
+#: letter and is never folded into one. It is a ligature-style shorthand
+#: for the voiceless palatal lateral fricative ʎ̥˔ (Unicode 13.0, 2021 --
+#: analogous to how ɬ is a dedicated letter for the voiceless alveolar
+#: lateral fricative). The Hadza wikipron alphabet-table rows write the
+#: Hadza "tl" lateral affricate as bare 𝼆, while the corresponding word
+#: rows write the SAME segment tie-barred as c͜ʎ̥˔ (see the "hts" registry
+#: comment below) -- so the fold target is ʎ̥˔, not ǁ.
+_NOTATIONAL_LETTER_ALIASES = {"𝼆": "ʎ̥˔"}
+
 #: ASCII "g" (U+0067, keyboard Latin) vs the official IPA voiced velar
 #: plosive ɡ (U+0261, LATIN SMALL LETTER SCRIPT G) — a Unicode confusable,
 #: not a phonemic contrast (IPA Handbook, 1999, §"Consonants": the plosive
@@ -475,17 +506,15 @@ _WIKIPRON_FILES = {
     # Hadza. 335 rows / 329 unique headwords, of which 52 are NOT words: the
     # scrape ingested the source's ALPHABET TABLE alongside its lexicon, so
     # ⟨cc⟩, ⟨Nq⟩, ⟨Tlh⟩ etc. appear as headwords glossed with the single
-    # phoneme the letter spells. 26 of those 52 are transcribed in a
+    # phoneme the letter spells. 26 of those 52 were transcribed in a
     # DIFFERENT notation from the same gold's word rows: the alphabet rows
-    # write the clicks with superscript modifiers (ᵏǀ, ᵑǀʔ) and the lateral
-    # with U+1DF06 (𝼆), while every word row writes the same segments with a
-    # tie bar (k͜ǀ, ŋ͜ǀˀ, c͜ʎ̥˔). `normalize` strips tie bars but not ᵏ/ᵑ/𝼆, so
-    # no spec can match both conventions at once and ~0.35 PER on those rows
-    # is a notation floor, not an error. They are NOT excluded: dropping the
-    # rows a spec finds inconvenient is how a scoreboard stops measuring
-    # anything. Teaching `normalize` to fold the two click notations together
-    # is the real fix and belongs in its own PR, scored across every click
-    # language (ktz, hts, nmn) at once.
+    # write the clicks with superscript modifiers (ᵏǀ, ᵑǀʔ) and the "tl"
+    # lateral affricate with U+1DF06 (𝼆), while every word row writes the
+    # same segments with a tie bar (k͜ǀ, ŋ͜ǀˀ, c͜ʎ̥˔). `normalize` now folds
+    # both notational variants together
+    # (_CLICK_ACCOMPANIMENT_SUPERSCRIPTS for the clicks,
+    # _NOTATIONAL_LETTER_ALIASES for 𝼆 -> ʎ̥˔, alongside the tie-bar strip
+    # it already did), so the two conventions score as the same segments.
     "hts":        "hts_latn_broad.tsv",  # Hadza, N=335
     "huu":        "huu_latn_narrow.tsv",  # Murui Huitoto, N=440
     "kgp":        "kgp_latn_broad.tsv",  # Kaingang, N=107
@@ -2494,13 +2523,24 @@ def normalize(ipa: str, strip_stress: bool, broad: bool,
         s = s.replace(ch, "")
     for ch in _TIE_BARS:
         s = s.replace(ch, "")
+    for alt, canon in _NOTATIONAL_LETTER_ALIASES.items():
+        s = s.replace(alt, canon)
     s = _expand_consonant_length(s)
     if broad:
         decomposed = unicodedata.normalize("NFD", s)
         s = unicodedata.normalize(
             "NFC", "".join(c for c in decomposed if c not in _NARROW_MARKS))
     # comparison is segmentation-free: some gold sets space-separate phonemes
-    return "".join(s.split())
+    s = "".join(s.split())
+    # Click-accompaniment superscript fold runs AFTER the whitespace join:
+    # some gold sets space-separate phonemes, putting the modifier and its
+    # click letter on opposite sides of a space (e.g. "ᵑ ǂ"), which must
+    # still fold. Combining marks on the modifier (e.g. a combining ring
+    # below for voicelessness, ᵑ̊) ride along with it via \1.
+    for mod, letter in _CLICK_ACCOMPANIMENT_SUPERSCRIPTS.items():
+        s = re.sub(mod + "([̀-ͯ]*)(?=[" + _CLICK_LETTERS + "])",
+                   letter + r"\1", s)
+    return s
 
 
 def _is_multiword(entry: str) -> bool:

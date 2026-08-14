@@ -239,7 +239,7 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 
 | Dataset | N | o2i | africa-g2p | Winner |
 |---|---|---|---|---|
-| wikipron | 329 | 0.0650 | 0.2769 | o2i |
+| wikipron | 329 | 0.0224 | 0.2414 | o2i |
 
 ### it (Italian)
 
