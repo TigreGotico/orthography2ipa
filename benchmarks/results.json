@@ -2201,15 +2201,21 @@
  {
   "lang": "cv",
   "dataset": "vox_communis",
-  "n": 11102,
-  "per": 1.1466,
-  "per_ci_low": 1.1252,
-  "per_ci_high": 1.167,
-  "exact_match": 0.0189,
-  "quality_tier": "skeleton",
+  "n": 6779,
+  "per": 0.1264,
+  "per_ci_low": 0.123,
+  "per_ci_high": 0.1295,
+  "exact_match": 0.3999,
+  "quality_tier": "research",
   "provenance": "epitran-derived",
   "harness_version": "1.1",
-  "limit": null
+  "limit": null,
+  "oracle_per_top3": 0.1053,
+  "oracle_exact_top3": 0.4507,
+  "oracle_per_top5": 0.1048,
+  "oracle_exact_top5": 0.4529,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 6779
  },
  {
   "lang": "cy",

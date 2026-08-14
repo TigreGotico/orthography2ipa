@@ -191,7 +191,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | crs | wold | 1874 | 0.2114 | · | · | · | · | [0.1980, 0.2262] | 0.5139 | research | lexicon-derived |
 | cs | vox_communis | 44942 | 0.1098 | · | · | · | · | [0.1067, 0.1131] | 0.5522 | research | epitran-derived |
 | csb | wikipron | 2825 | 0.1663 | · | · | · | · | [0.1594, 0.1734] | 0.3816 | research | crowd-scraped |
-| cv | vox_communis | 11102 | 1.1466 | · | · | · | · | [1.1252, 1.1670] | 0.0189 | skeleton | epitran-derived |
+| cv | vox_communis | 6779 | 0.1264 | 0.1053 | 0.1048 | 0.4507 | 0.4529 | [0.1230, 0.1295] | 0.3999 | research | epitran-derived |
 | cy | ipa_childes | 4662 | 0.2985 | 0.2770 | 0.2762 | 0.3048 | 0.3065 | [0.2909, 0.3060] | 0.2731 | research | espeak-derived |
 | cy | vox_communis | 18701 | 0.1172 | 0.0539 | 0.0474 | 0.6762 | 0.7070 | [0.1154, 0.1191] | 0.4203 | research | epitran-derived |
 | cy | wikipron | 14760 | 0.1822 | 0.1481 | 0.1434 | 0.4140 | 0.4318 | [0.1794, 0.1851] | 0.3264 | research | crowd-scraped |
