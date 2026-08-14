@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.71.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.0a1) (2026-08-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.70.3a2...7.71.0a1)
+
+**Merged pull requests:**
+
+- feat\(compare\): lexicon-backed comparison tier on gold filtered against every compared lexicon [\#901](https://github.com/TigreGotico/orthography2ipa/pull/901) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.70.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.70.3a2) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.70.3a1...7.70.3a2)
@@ -759,10 +767,6 @@
 ## [7.42.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.42.0a2) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.42.0a1...7.42.0a2)
-
-**Merged pull requests:**
-
-- refactor: readability and maintenance audit — spec layer [\#704](https://github.com/TigreGotico/orthography2ipa/pull/704) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.42.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.42.0a1) (2026-08-02)
 
