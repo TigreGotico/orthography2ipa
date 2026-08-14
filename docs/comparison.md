@@ -176,10 +176,10 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| cmudict | 126052 | 0.4268 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
-| ipa_babylm | 20344 | 0.4180 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | gruut rules-only |
-| ipa_childes | 18055 | 0.3220 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
-| ipadict | 125927 | 0.4576 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
+| cmudict | 126052 | 0.3736 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
+| ipa_babylm | 20344 | 0.3954 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | gruut rules-only |
+| ipa_childes | 18055 | 0.3123 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
+| ipadict | 125927 | 0.3285 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
 
 ### es (Spanish)
 
@@ -416,8 +416,8 @@ A system winning on one gold and losing on another for the SAME language is real
   - `vox_communis` (n=5994, tier=epitran-derived): o2i 0.2672 vs espeak 0.3347 — o2i wins
   - `wikipron` (n=19108, tier=crowd-scraped): o2i 0.0330 vs espeak 0.0785 — o2i wins
 - **`en-US`** (loses on all golds):
-  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.4268 vs espeak 0.3048 — o2i loses
-  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.4576 vs espeak 0.2954 — o2i loses
+  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.3736 vs espeak 0.3048 — o2i loses
+  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.3285 vs espeak 0.2954 — o2i loses
 - **`es`** (wins on all golds):
   - `vox_communis` (n=97715, tier=epitran-derived): o2i 1.2097 vs espeak 1.2330 — o2i wins
   - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0797 vs espeak 0.1071 — o2i wins
@@ -489,8 +489,8 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | el | wikipron | 19108 | 0.0330 | n/a | 0.0785 | 0.0765 |
 | en | wikipron | 80995 | 0.2917 | 0.2849 | 0.2081 | 0.2136 |
 | en-GB | wikipron | 81545 | 0.2605 | n/a | 0.1472 | 0.1540 |
-| en-US | cmudict | 126052 | 0.4268 | n/a | 0.3048 | 0.3104 |
-| en-US | ipadict | 125927 | 0.4576 | n/a | 0.2954 | 0.3020 |
+| en-US | cmudict | 126052 | 0.3736 | n/a | 0.3048 | 0.3104 |
+| en-US | ipadict | 125927 | 0.3285 | n/a | 0.2954 | 0.3020 |
 | es | vox_communis | 97715 | 1.2097 | n/a | 1.2330 | 1.2247 |
 | es | wikipron | 132190 | 0.0797 | n/a | 0.1071 | 0.1066 |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | n/a | 0.1204 | 0.1204 |
