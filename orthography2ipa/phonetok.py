@@ -75,6 +75,71 @@ _NASAL_CARRIERS = frozenset(
     # ɐ̃w̃ / ɐ̃j̃ from ⟨ão ãe õe⟩)
     "wjɥɰ"
 )
+#: Trailing suprasegmental marks that sit AFTER the vowel they modify and
+#: must not be mistaken for the vowel itself when checking whether a
+#: segment can carry the nasal tilde (``aː`` is a long ORAL vowel, not the
+#: consonant-shaped thing ``"ː"`` looks like in isolation).
+_LENGTH_MARKS = frozenset("ːˑ")
+
+
+def _carrier_split_index(seg: str) -> int:
+    """Index right after *seg*'s base vowel/glide character.
+
+    Walks back over trailing length marks (``ː``/``ˑ``) and any other
+    non-tilde combining diacritic (stress, breathiness, etc.), so a long
+    or otherwise modified vowel like ``aː`` or ``a̤ː`` is split after its
+    base vowel ``a``, not after the trailing mark. Returns ``0`` for an
+    empty or all-diacritic segment.
+    """
+    j = len(seg)
+    while j > 0 and (seg[j - 1] in _LENGTH_MARKS or
+                      (seg[j - 1] != _NASAL_TILDE and
+                       unicodedata.combining(seg[j - 1]))):
+        j -= 1
+    return j
+
+
+def _carrier_tail(seg: str) -> str:
+    """The character a following nasal tilde would actually attach to.
+
+    See :func:`_carrier_split_index`. Returns ``""`` for an empty or
+    all-diacritic segment.
+    """
+    j = _carrier_split_index(seg)
+    return seg[j - 1] if j > 0 else ""
+
+
+def _splice_nasal_tilde(segs: List[str]) -> List[str]:
+    """Insert the nasal tilde into its carrier segment in IPA normal form.
+
+    Nasalisation marks the VOWEL, and length is a property that follows
+    it: canonical IPA and every gold this engine is measured against
+    write a long nasalised vowel as ``ũː`` (tilde on the base vowel,
+    length mark after), never as ``uː̃`` (tilde trailing the length
+    mark). Appending the tilde as its own trailing segment — which is
+    what the beam's segment-per-slot bookkeeping does by default —
+    produces the latter, wrong order whenever the carrier is long or
+    otherwise diacritic-marked. This splices the tilde into the last
+    non-empty segment right after its base vowel/glide
+    (:func:`_carrier_split_index`) instead, and appends an empty
+    placeholder for the tilde's own slot so ``segments`` stays one entry
+    per grapheme token. A short, plain vowel (``j == len(seg)``) is
+    unaffected: the tilde simply becomes the segment's last character,
+    same as appending it did before.
+    """
+    new_segs = list(segs)
+    for i in range(len(new_segs) - 1, -1, -1):
+        seg = new_segs[i]
+        if not seg:
+            continue
+        j = _carrier_split_index(seg)
+        new_segs[i] = seg[:j] + _NASAL_TILDE + seg[j:]
+        new_segs.append("")
+        return new_segs
+    # No prior non-empty segment to attach to (defensive path; the guard
+    # in _expand_beam means this is not reachable via a validated carrier).
+    new_segs.append(_NASAL_TILDE)
+    return new_segs
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
@@ -90,6 +155,7 @@ __all__ = [
     "GraphemeContext",
     "TokenSequence",
     "flat_contexts",
+    "constrain_nasal_carriers",
     "slot_confidence",
     "lattice_confidence",
     "PhonetokTokenizer",
@@ -976,6 +1042,77 @@ class _GraphemeTrie:
         return best
 
 
+def constrain_nasal_carriers(
+        slot_branches: List[List[Tuple[str, float]]],
+) -> List[List[Tuple[str, float]]]:
+    """Push the nasal-carrier requirement back onto the preceding slot.
+
+    A slot whose ONLY reading is the bare combining tilde (a coda ⟨ں⟩ /
+    ⟨m n⟩ nasalisation slot) cannot be realised unless the segment before
+    it is an oral vowel or a glide — that is the guard in
+    :meth:`PhonetokTokenizer._expand_beam`. The guard is a BIGRAM
+    constraint, but it is only evaluated once the previous slot has
+    already been chosen, so a narrow beam can commit to a non-carrier
+    reading and then have no legal continuation at all. Urdu's
+    hamza-on-waw plurals are exactly that shape: ⟨ؤ⟩ resolves to /ʔ/ at
+    cost 0 and to /o/ at cost 1, so a width-1 (greedy) search takes /ʔ/
+    and is then stuck, while a width-8 search keeps /o/ alive and returns
+    the legal *aːnsəõ*. The two paths disagreed, which is precisely the
+    ``word_candidates()[0] != transcribe_word()`` divergence.
+
+    Resolving the constraint HERE — before any pruning — makes it
+    search-width independent: each candidate predecessor slot simply loses
+    the readings that cannot carry the tilde, provided it keeps at least
+    one that can. An empty (deleted) reading is always kept: it
+    contributes no segment, so the carrier can be supplied by a slot
+    further left — and because a deletable slot means the ACTUAL carrier
+    might land on whichever slot precedes it, the filter walks back past
+    every such deletable slot (not just the immediate predecessor) until
+    it reaches one that cannot delete itself. A slot with an oral
+    fallback beside the tilde is left alone — there the runtime guard
+    (:meth:`PhonetokTokenizer._expand_beam`) has a legal alternative and
+    no backwards pressure is needed.
+
+    A shape that is NOT covered by construction: a chain where the
+    deletable slot sits behind another non-deletable, non-carrier slot
+    that has no oral fallback of its own (e.g. two stacked silent
+    letters between the vowel and the tilde, where the outer one cannot
+    itself resolve to an oral vowel). No language spec shipped with this
+    package has that shape — verified by an exhaustive search over every
+    deletable-grapheme pair in every tilde-bearing language's inventory,
+    not just spot-checked — so it is left undocumented as a test case
+    rather than carrying a speculative ``xfail``; add one if such a
+    shape is ever added to a spec.
+
+    Emitted IPA normal form: nasalisation marks the base VOWEL, with any
+    length mark following it (``ũː``), never the reverse (``uː̃``, tilde
+    trailing the length mark) — see :func:`_splice_nasal_tilde`, which
+    performs the actual insertion once :meth:`PhonetokTokenizer.
+    _expand_beam` accepts a tilde branch; this function only decides
+    which branches survive, not how the accepted tilde is written.
+
+    Mutates and returns *slot_branches*.
+    """
+    for idx in range(1, len(slot_branches)):
+        branches = slot_branches[idx]
+        if not branches or any(ipa != _NASAL_TILDE for ipa, _ in branches):
+            continue
+        j = idx - 1
+        while j >= 0:
+            prev = slot_branches[j]
+            if not prev:
+                break
+            has_empty = any(not ipa for ipa, _ in prev)
+            kept = [(ipa, cost) for ipa, cost in prev
+                    if not ipa or _carrier_tail(ipa) in _NASAL_CARRIERS]
+            if kept and len(kept) != len(prev):
+                slot_branches[j] = kept
+            if not has_empty:
+                break
+            j -= 1
+    return slot_branches
+
+
 def _path_similarity(a: IPAPath, b: IPAPath) -> float:
     """Fraction of aligned segments two equal-length paths share (0..1).
 
@@ -1769,10 +1906,18 @@ class PhonetokTokenizer:
         # resulting branches by grapheme position. Absent a rescorer this is
         # skipped entirely so the default path stays byte-identical.
         rescorers = normalize_rescorers(rescorer)
-        rescored_branches: Optional[List[List[Tuple[str, float]]]] = None
         if rescorers:
-            rescored_branches = self._rescored_branches(
+            slot_branches = self._rescored_branches(
                 tokens, contexts, rescorers, allophone_map=allophone_map)
+        else:
+            slot_branches = [
+                resolve_branches(
+                    self.spec, ctx,
+                    weights_for=self.weights_for,
+                    allophone_map=allophone_map)
+                for ctx in contexts
+            ]
+        constrain_nasal_carriers(slot_branches)
 
         g_idx = 0
         for token in tokens:
@@ -1780,27 +1925,16 @@ class PhonetokTokenizer:
                 # Stress/sandhi are engine-only (no sentence context here),
                 # so the stress-conditioned nucleus positions are omitted;
                 # every other position agrees with G2P per word.
-                if rescored_branches is not None:
-                    branches = rescored_branches[g_idx]
-                    g_idx += 1
-                    if not branches:
-                        # Rescorer deleted this slot: it contributes no
-                        # segment, leaving the running hypotheses untouched.
-                        continue
-                else:
-                    branches = resolve_branches(
-                        self.spec, contexts[g_idx],
-                        weights_for=self.weights_for,
-                        allophone_map=allophone_map)
-                    g_idx += 1
-                    if not branches:
-                        # A grapheme with no candidates — e.g. a preposed
-                        # dependent vowel token, deliberately silent because
-                        # its reading was folded into the following
-                        # consonant's IPA (see the preposed-vowel branch in
-                        # `tokenize`) — contributes no segment, exactly like a
-                        # rescorer-deleted slot above.
-                        continue
+                branches = slot_branches[g_idx]
+                g_idx += 1
+                if not branches:
+                    # No candidates — a rescorer deleted the slot, or the
+                    # grapheme is deliberately silent (e.g. a preposed
+                    # dependent vowel token whose reading was folded into
+                    # the following consonant's IPA, see the preposed-vowel
+                    # branch in `tokenize`). Either way it contributes no
+                    # segment and leaves the hypotheses untouched.
+                    continue
                 beam = self._expand_beam(beam, branches, beam_width)
 
             elif include_special:
@@ -2098,6 +2232,13 @@ class PhonetokTokenizer:
         as a plain consonant) wins instead. This suppresses only the invalid
         tilde-on-consonant / double-tilde; every branch that lands on a vowel
         is untouched, so all pre-existing behaviour is byte-identical.
+
+        A valid tilde branch is not appended as its own trailing segment:
+        :func:`_splice_nasal_tilde` inserts it into the carrier segment
+        right after the base vowel, so a long nasalised vowel comes out in
+        IPA normal form (``ũː``, nasalisation on the vowel, length after)
+        rather than with the tilde trailing the length mark (``uː̃``,
+        which every downstream gold and citation writes as the former).
         """
         new_beam: List[Tuple[List[str], float]] = []
         for segs, sc in beam:
@@ -2106,10 +2247,12 @@ class PhonetokTokenizer:
                     tail = ""
                     for seg in reversed(segs):
                         if seg:
-                            tail = seg[-1]
+                            tail = _carrier_tail(seg)
                             break
                     if tail not in _NASAL_CARRIERS:
                         continue
+                    new_beam.append((_splice_nasal_tilde(segs), sc + cost))
+                    continue
                 new_beam.append((segs + [ipa], sc + cost))
         if not new_beam:
             # Every branch was a guarded tilde with no valid carrier and no
@@ -2118,7 +2261,10 @@ class PhonetokTokenizer:
             # oral consonant fallback so this is not reached in practice).
             for segs, sc in beam:
                 for ipa, cost in branches:
-                    new_beam.append((segs + [ipa], sc + cost))
+                    if ipa == _NASAL_TILDE:
+                        new_beam.append((_splice_nasal_tilde(segs), sc + cost))
+                    else:
+                        new_beam.append((segs + [ipa], sc + cost))
         # Sort by score, keep top beam_width
         new_beam.sort(key=lambda x: x[1])
         return new_beam[:beam_width]
