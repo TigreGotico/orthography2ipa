@@ -553,6 +553,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ro-RO | ipa_childes | 2311 | 0.2644 | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
 | ro-RO | ipadict | 72375 | 0.0359 | 0.0354 | 0.0352 | 0.7367 | 0.7376 | [0.0354, 0.0364] | 0.7344 | production | lexicon-derived |
 | roa-x-galaicopt | portuguese_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ru | alphacep_ru_book | 6175 | 0.2381 | 0.1253 | 0.0863 | 0.3142 | 0.4993 | [0.2352, 0.2408] | 0.0666 | research | machine-generated |
 | ru | primary_sources | 36 | 0.1867 | 0.1267 | 0.1267 | 0.5833 | 0.5833 | [0.1265, 0.2463] | 0.3611 | research | expert-human |
 | ru | vox_communis | 50537 | 0.3488 | 0.2441 | 0.2029 | 0.1253 | 0.2154 | [0.3474, 0.3501] | 0.0237 | research | epitran-derived |
 | ru | wikipron | 403870 | 0.1449 | 0.1089 | 0.1047 | 0.3644 | 0.3661 | [0.1445, 0.1453] | 0.3294 | research | crowd-scraped |
