@@ -38,6 +38,7 @@ from typing import Dict, FrozenSet, List, Sequence, Set, Tuple
 
 from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.lexicon import get_lexicon
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
 
 __all__ = [
@@ -101,6 +102,19 @@ def _base_emissions(spec: LanguageSpec) -> Set[str]:
     # Word-level overrides hand the engine whole transcriptions, so their IPA
     # never passes through the grapheme table at all.
     emissions.update((spec.word_exceptions or {}).values())
+    # Suffix morphology replaces the word's tail wholesale, so its IPA also
+    # bypasses the grapheme table (see LanguageSpec.grammatical_endings).
+    # An ambiguous ending declares an ordered candidate LIST, and every
+    # element of it can surface — the lower-ranked ones through
+    # ``word_candidates``/a rescorer rather than through 1-best — so the
+    # whole list is an emission source. A deferring rank 1 (``None``)
+    # emits nothing of its own: rank 1 comes from the grapheme table,
+    # which is already counted.
+    for value in (spec.grammatical_endings or {}).values():
+        rank1, alternatives = normalize_ending_value(value)
+        if rank1 is not None:
+            emissions.add(rank1)
+        emissions.update(alternatives)
     emissions.update(get_lexicon(spec.code).values())
 
     if spec.stress:
