@@ -4,14 +4,14 @@
   "glottolog_code": "nucl1310",
   "script": "Myanmar",
   "script_type": "abugida",
-  "inherent_vowel": "a",
+  "inherent_vowel": "a̰",
   "iso639_3": "mya",
   "quality": "research",
   "tone_inventory": {
-    "creaky": "low creaky",
-    "plain": "level",
-    "heavy": "high falling",
-    "stopped": "checked (glottal)"
+    "creaky": "high, slightly falling, creaky/tense phonation — written ⟨့⟩, or by the vowel sign ⟨ိ ု⟩",
+    "low": "low, slightly rising, modal phonation — written by the bare rhyme, or ⟨ာ ီ ူ ေ⟩",
+    "high": "high falling, breathy phonation — written ⟨း⟩, or by the vowel sign ⟨ဲ ော⟩",
+    "checked": "short, closed by [ʔ]; no tone contrast — written with a final stop letter + asat ⟨်⟩"
   },
   "graphemes": {
     "က": [
@@ -42,6 +42,9 @@
       "z"
     ],
     "ည": [
+      "ɲ"
+    ],
+    "ဉ": [
       "ɲ"
     ],
     "ဋ": [
@@ -93,7 +96,7 @@
       "j"
     ],
     "ရ": [
-      "ɹ"
+      "j"
     ],
     "လ": [
       "l"
@@ -113,43 +116,601 @@
     "အ": [
       "ʔ"
     ],
-    "◌ာ": [
-      "a"
+    "ဿ": [
+      "θ"
     ],
-    "◌ိ": [
-      "ɪʔ",
-      "i"
+    "ကျ": [
+      "tɕ"
     ],
-    "◌ီ": [
-      "i"
+    "ကြ": [
+      "tɕ"
     ],
-    "◌ု": [
-      "ʊʔ",
-      "u"
+    "ချ": [
+      "tɕʰ"
     ],
-    "◌ူ": [
-      "u"
+    "ခြ": [
+      "tɕʰ"
     ],
-    "◌ဲ": [
-      "ɛ"
+    "ဂျ": [
+      "dʑ"
     ],
-    "◌ေ": [
-      "e"
+    "ဂြ": [
+      "dʑ"
     ],
-    "◌ဝ": [
-      "o"
+    "ဃျ": [
+      "dʑ"
     ],
-    "◌ော": [
-      "ɔ"
+    "ဃြ": [
+      "dʑ"
     ],
-    "◌ုိ": [
-      "o"
+    "ငျ": [
+      "ɲ"
     ],
-    "◌ိုင": [
-      "ajŋ"
+    "ငြ": [
+      "ɲ"
     ],
-    "◌ေါ": [
-      "ɔ"
+    "ငှ": [
+      "ŋ̊"
+    ],
+    "ညှ": [
+      "ɲ̊"
+    ],
+    "ဉှ": [
+      "ɲ̊"
+    ],
+    "ဏှ": [
+      "n̥"
+    ],
+    "နှ": [
+      "n̥"
+    ],
+    "ပျ": [
+      "pj"
+    ],
+    "ပြ": [
+      "pj"
+    ],
+    "ပျှ": [
+      "pʰj"
+    ],
+    "ဖျ": [
+      "pʰj"
+    ],
+    "ဖြ": [
+      "pʰj"
+    ],
+    "ဗျ": [
+      "bj"
+    ],
+    "ဗြ": [
+      "bj"
+    ],
+    "ဗျှ": [
+      "pʰj"
+    ],
+    "ဘျ": [
+      "bj"
+    ],
+    "ဘြ": [
+      "bj"
+    ],
+    "ဘျှ": [
+      "pʰj"
+    ],
+    "မျ": [
+      "mj"
+    ],
+    "မြ": [
+      "mj"
+    ],
+    "မှ": [
+      "m̥"
+    ],
+    "မျှ": [
+      "m̥j"
+    ],
+    "ယှ": [
+      "ʃ"
+    ],
+    "ရှ": [
+      "ʃ"
+    ],
+    "လျ": [
+      "lj"
+    ],
+    "လြ": [
+      "lj"
+    ],
+    "လှ": [
+      "l̥"
+    ],
+    "လျှ": [
+      "ʃ"
+    ],
+    "ဝှ": [
+      "ʍ"
+    ],
+    "သျ": [
+      "θj"
+    ],
+    "သြ": [
+      "θj"
+    ],
+    "ဟျ": [
+      "hj"
+    ],
+    "ဟြ": [
+      "hj"
+    ],
+    "ဟှ": [
+      "h"
+    ],
+    "ဠျ": [
+      "lj"
+    ],
+    "ဠြ": [
+      "lj"
+    ],
+    "ဠှ": [
+      "l̥"
+    ],
+    "ဠျှ": [
+      "ʃ"
+    ],
+    "ဿျ": [
+      "θj"
+    ],
+    "ဿြ": [
+      "θj"
+    ],
+    "ဣ": [
+      "ʔḭ"
+    ],
+    "ဤ": [
+      "ʔì"
+    ],
+    "ဥ": [
+      "ʔṵ"
+    ],
+    "ဦ": [
+      "ʔù"
+    ],
+    "ဧ": [
+      "ʔè"
+    ],
+    "ဩ": [
+      "ʔɔ́"
+    ],
+    "ဪ": [
+      "ʔɔ̀"
+    ],
+    "င့်": [
+      "ɪ̰ɴ"
+    ],
+    "င်": [
+      "ɪ̀ɴ"
+    ],
+    "င်း": [
+      "ɪ́ɴ"
+    ],
+    "ဉ့်": [
+      "ɪ̰ɴ"
+    ],
+    "ဉ်": [
+      "ɪ̀ɴ"
+    ],
+    "ဉ်း": [
+      "ɪ́ɴ"
+    ],
+    "န့်": [
+      "a̰ɴ"
+    ],
+    "န်": [
+      "àɴ"
+    ],
+    "န်း": [
+      "áɴ"
+    ],
+    "မ့်": [
+      "a̰ɴ"
+    ],
+    "မ်": [
+      "àɴ"
+    ],
+    "မ်း": [
+      "áɴ"
+    ],
+    "ဏ့်": [
+      "a̰ɴ"
+    ],
+    "ဏ်": [
+      "àɴ"
+    ],
+    "ဏ်း": [
+      "áɴ"
+    ],
+    "ံ့": [
+      "a̰ɴ"
+    ],
+    "ံ": [
+      "àɴ"
+    ],
+    "ံး": [
+      "áɴ"
+    ],
+    "ိန့်": [
+      "ḛɪɴ"
+    ],
+    "ိန်": [
+      "èɪɴ"
+    ],
+    "ိန်း": [
+      "éɪɴ"
+    ],
+    "ိမ့်": [
+      "ḛɪɴ"
+    ],
+    "ိမ်": [
+      "èɪɴ"
+    ],
+    "ိမ်း": [
+      "éɪɴ"
+    ],
+    "ိံ့": [
+      "ḛɪɴ"
+    ],
+    "ိံ": [
+      "èɪɴ"
+    ],
+    "ိံး": [
+      "éɪɴ"
+    ],
+    "ုန့်": [
+      "o̰ʊɴ"
+    ],
+    "ုန်": [
+      "òʊɴ"
+    ],
+    "ုန်း": [
+      "óʊɴ"
+    ],
+    "ုမ့်": [
+      "o̰ʊɴ"
+    ],
+    "ုမ်": [
+      "òʊɴ"
+    ],
+    "ုမ်း": [
+      "óʊɴ"
+    ],
+    "ုံ့": [
+      "o̰ʊɴ"
+    ],
+    "ုံ": [
+      "òʊɴ"
+    ],
+    "ုံး": [
+      "óʊɴ"
+    ],
+    "ောင့်": [
+      "a̰ʊɴ"
+    ],
+    "ောင်": [
+      "àʊɴ"
+    ],
+    "ောင်း": [
+      "áʊɴ"
+    ],
+    "ေါင့်": [
+      "a̰ʊɴ"
+    ],
+    "ေါင်": [
+      "àʊɴ"
+    ],
+    "ေါင်း": [
+      "áʊɴ"
+    ],
+    "ိုင့်": [
+      "a̰ɪɴ"
+    ],
+    "ိုင်": [
+      "àɪɴ"
+    ],
+    "ိုင်း": [
+      "áɪɴ"
+    ],
+    "ွန့်": [
+      "ʊ̰ɴ"
+    ],
+    "ွန်": [
+      "ʊ̀ɴ"
+    ],
+    "ွန်း": [
+      "ʊ́ɴ"
+    ],
+    "ွမ့်": [
+      "ʊ̰ɴ"
+    ],
+    "ွမ်": [
+      "ʊ̀ɴ"
+    ],
+    "ွမ်း": [
+      "ʊ́ɴ"
+    ],
+    "ွင့်": [
+      "wɪ̰ɴ"
+    ],
+    "ွင်": [
+      "wɪ̀ɴ"
+    ],
+    "ွင်း": [
+      "wɪ́ɴ"
+    ],
+    "ေ့": [
+      "ḛ"
+    ],
+    "ေ": [
+      "è"
+    ],
+    "ေး": [
+      "é"
+    ],
+    "ွေ့": [
+      "wḛ"
+    ],
+    "ွေ": [
+      "wè"
+    ],
+    "ွေး": [
+      "wé"
+    ],
+    "ော့်": [
+      "ɔ̰"
+    ],
+    "ော်": [
+      "ɔ̀"
+    ],
+    "ော်း": [
+      "ɔ̀"
+    ],
+    "ေါ့်": [
+      "ɔ̰"
+    ],
+    "ေါ်": [
+      "ɔ̀"
+    ],
+    "ေါ်း": [
+      "ɔ̀"
+    ],
+    "ို့": [
+      "o̰"
+    ],
+    "ို": [
+      "ò"
+    ],
+    "ိုး": [
+      "ó"
+    ],
+    "ိုယ့်": [
+      "o̰"
+    ],
+    "ိုယ်": [
+      "ò"
+    ],
+    "ိုယ်း": [
+      "ó"
+    ],
+    "ိုလ့်": [
+      "o̰"
+    ],
+    "ိုလ်": [
+      "ò"
+    ],
+    "ိုလ်း": [
+      "ó"
+    ],
+    "ွို့": [
+      "wo̰"
+    ],
+    "ွို": [
+      "wò"
+    ],
+    "ွိုး": [
+      "wó"
+    ],
+    "ည်": [
+      "ì",
+      "è",
+      "ɛ̀"
+    ],
+    "ည့်": [
+      "ḭ",
+      "ḛ"
+    ],
+    "ည်း": [
+      "í",
+      "ɛ́",
+      "é"
+    ],
+    "ာ": [
+      "à"
+    ],
+    "ား": [
+      "á"
+    ],
+    "ာ့": [
+      "a̰"
+    ],
+    "ါ": [
+      "à"
+    ],
+    "ါး": [
+      "á"
+    ],
+    "ါ့": [
+      "a̰"
+    ],
+    "ိ": [
+      "ḭ"
+    ],
+    "ီ": [
+      "ì"
+    ],
+    "ီး": [
+      "í"
+    ],
+    "ု": [
+      "ṵ"
+    ],
+    "ူ": [
+      "ù"
+    ],
+    "ူး": [
+      "ú"
+    ],
+    "ဲ": [
+      "ɛ́"
+    ],
+    "ဲ့": [
+      "ɛ̰"
+    ],
+    "ယ်": [
+      "ɛ̀"
+    ],
+    "ော": [
+      "ɔ́"
+    ],
+    "ော့": [
+      "ɔ̰"
+    ],
+    "ေါ": [
+      "ɔ́"
+    ],
+    "ေါ့": [
+      "ɔ̰"
+    ],
+    "ွ": [
+      "wa̰"
+    ],
+    "ွာ": [
+      "wà"
+    ],
+    "ွား": [
+      "wá"
+    ],
+    "ွါ": [
+      "wà"
+    ],
+    "ွါး": [
+      "wá"
+    ],
+    "ွဲ": [
+      "wɛ́"
+    ],
+    "ွယ်": [
+      "wɛ̀"
+    ],
+    "ွိ": [
+      "wḭ"
+    ],
+    "ွီ": [
+      "wì"
+    ],
+    "လ်": [
+      "l"
+    ],
+    "က်": [
+      "ɛʔ"
+    ],
+    "ဂ်": [
+      "ɛʔ"
+    ],
+    "ခ်": [
+      "ɛʔ"
+    ],
+    "စ်": [
+      "ɪʔ"
+    ],
+    "ဇ်": [
+      "ɪʔ"
+    ],
+    "ဆ်": [
+      "ɪʔ"
+    ],
+    "ဈ်": [
+      "ɪʔ"
+    ],
+    "တ်": [
+      "aʔ"
+    ],
+    "ပ်": [
+      "aʔ"
+    ],
+    "ဋ်": [
+      "aʔ"
+    ],
+    "ဌ်": [
+      "aʔ"
+    ],
+    "ဍ်": [
+      "aʔ"
+    ],
+    "ဎ်": [
+      "aʔ"
+    ],
+    "ထ်": [
+      "aʔ"
+    ],
+    "ဒ်": [
+      "aʔ"
+    ],
+    "ဓ်": [
+      "aʔ"
+    ],
+    "ဖ်": [
+      "aʔ"
+    ],
+    "ဗ်": [
+      "aʔ"
+    ],
+    "ဘ်": [
+      "aʔ"
+    ],
+    "သ်": [
+      "aʔ"
+    ],
+    "ိတ်": [
+      "eɪʔ"
+    ],
+    "ိပ်": [
+      "eɪʔ"
+    ],
+    "ိက်": [
+      "eɪʔ"
+    ],
+    "ုတ်": [
+      "oʊʔ"
+    ],
+    "ုပ်": [
+      "oʊʔ"
+    ],
+    "ွတ်": [
+      "ʊʔ"
+    ],
+    "ွပ်": [
+      "ʊʔ"
+    ],
+    "ွက်": [
+      "wɛʔ"
+    ],
+    "ွစ်": [
+      "wɪʔ"
+    ],
+    "ောက်": [
+      "aʊʔ"
+    ],
+    "ိုက်": [
+      "aɪʔ"
     ]
   },
   "allophones": {
@@ -165,6 +726,9 @@
     "ŋ": [
       "ŋ"
     ],
+    "ŋ̊": [
+      "ŋ̊"
+    ],
     "s": [
       "s"
     ],
@@ -174,8 +738,23 @@
     "z": [
       "z"
     ],
+    "ʃ": [
+      "ʃ"
+    ],
+    "tɕ": [
+      "tɕ"
+    ],
+    "tɕʰ": [
+      "tɕʰ"
+    ],
+    "dʑ": [
+      "dʑ"
+    ],
     "ɲ": [
       "ɲ"
+    ],
+    "ɲ̊": [
+      "ɲ̊"
     ],
     "t": [
       "t"
@@ -189,6 +768,9 @@
     "n": [
       "n"
     ],
+    "n̥": [
+      "n̥"
+    ],
     "p": [
       "p"
     ],
@@ -201,17 +783,23 @@
     "m": [
       "m"
     ],
+    "m̥": [
+      "m̥"
+    ],
     "j": [
       "j"
-    ],
-    "ɹ": [
-      "ɹ"
     ],
     "l": [
       "l"
     ],
+    "l̥": [
+      "l̥"
+    ],
     "w": [
       "w"
+    ],
+    "ʍ": [
+      "ʍ"
     ],
     "θ": [
       "θ"
@@ -222,6 +810,9 @@
     "ʔ": [
       "ʔ"
     ],
+    "ɴ": [
+      "ɴ"
+    ],
     "a": [
       "a"
     ],
@@ -231,21 +822,40 @@
     "u": [
       "u"
     ],
-    "ɛ": [
-      "ɛ"
-    ],
     "e": [
       "e"
     ],
     "o": [
       "o"
     ],
+    "ɛ": [
+      "ɛ"
+    ],
     "ɔ": [
       "ɔ"
+    ],
+    "ɪ": [
+      "ɪ"
+    ],
+    "ʊ": [
+      "ʊ"
+    ],
+    "ə": [
+      "ə"
     ]
   },
-  "notes": "Burmese Myanmar script abugida. 4-tone system (creaky low, level/plain, high falling, checked glottal). Inherent vowel is /a/. The script has 33 base consonant letters; many Sanskrit-derived letters have merged in pronunciation. သ = dental fricative /θ/. Tone and vowel quality interact with final consonants. This spec gives base consonant correspondences; full G2P requires syllable structure analysis. Stress exemption: Burmese word prominence is carried by its 4-tone system rather than a separate lexical stress accent, and the tones themselves are not fully recoverable from the base consonant/vowel letters modeled here; no stress block is declared. Source: Okell, A Reference Grammar of Colloquial Burmese (1969).",
+  "notes": "Burmese in the Myanmar script, standard (Yangon) pronunciation. The spec models the syllable as ONSET + RHYME. An onset is a consonant letter, optionally with a medial sign: the palatal medial ⟨ျ⟩/⟨ြ⟩ turns the velars into palato-alveolar affricates (⟨ကျ⟩ [tɕ], ⟨ချ⟩ [tɕʰ], ⟨ဂျ⟩ [dʑ]) and leaves a /j/ glide on the labials (⟨မျ⟩ [mj]), while ha-hto ⟨ှ⟩ makes the sonorant it attaches to voiceless (⟨မှ⟩ [m̥], ⟨လှ⟩ [l̥], ⟨ရှ⟩ [ʃ]) (Watkins 2001; Wheatley 1990). ⟨ရ⟩ has merged with ⟨ယ⟩ to /j/ in the standard language. A rhyme is written as a unit — an optional vowel sign, an optional final consonant letter carrying the asat ⟨်⟩, and an optional tone mark — and is listed here as one grapheme, because the vowel it spells is not predictable from its parts: the only codas Burmese permits are [ʔ] and nasalisation, so every final stop letter neutralises to [ʔ] and every final nasal letter to a nasalised rhyme, with the preceding vowel shifted (⟨ကန်⟩ [kàɴ] but ⟨ကင်⟩ [kɪ̀ɴ], ⟨ကတ်⟩ [kaʔ] but ⟨ကက်⟩ [kɛʔ] and ⟨ကစ်⟩ [kɪʔ]). Tone is orthographic: unmarked is low, ⟨့⟩ is creaky, ⟨း⟩ is high, and in the open ⟨a i u⟩ series the choice of vowel sign carries it instead (⟨ကိ⟩ [kḭ], ⟨ကီ⟩ [kì], ⟨ကီး⟩ [kí]); checked syllables have no tone contrast. Nasalisation is written ⟨ɴ⟩ here, the notation of the Burmese descriptive tradition; ⟨ɰ̃⟩ is the same segment in other sources. ⟨ည်⟩ is the one rhyme with no settled standard value and is given three candidates /ì/ ~ /è/ ~ /ɛ̀/. Two things the orthography does not determine are left unmodelled: the minor-syllable reduction that makes a bare consonant letter [Cə] instead of [Ca̰] in some polysyllables, and the word-internal voicing sandhi that voices a syllable-initial voiceless obstruent after an unchecked syllable — both are lexically conditioned and a bare consonant letter is spelled identically either way. Stress exemption: word prominence is carried by the tone system rather than a separate lexical stress accent; no stress block is declared.",
   "sources": [
+    {
+      "id": "watkins2001",
+      "author": "Watkins, J. W.",
+      "year": 2001,
+      "title": "Burmese (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 31(2), 291-295",
+      "url": "https://doi.org/10.1017/S0025100301002122",
+      "pages": "291-295",
+      "notes": "Standard description of the Burmese inventory, rhymes and four tones; edition not consulted for this spec."
+    },
     {
       "id": "okell1969",
       "author": "Okell, J.",
@@ -254,18 +864,28 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Edition not consulted for this spec."
+    },
+    {
+      "id": "wheatley1990",
+      "author": "Wheatley, J. K.",
+      "year": 1990,
+      "title": "Burmese, in B. Comrie (ed.), The World's Major Languages",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "pages": null,
+      "notes": "Edition not consulted for this spec."
     },
     {
       "id": "burmese_wiki",
       "author": "Wikipedia contributors",
       "year": 2024,
-      "title": "Burmese language",
+      "title": "Burmese alphabet; Burmese phonology",
       "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Burmese_language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Burmese_language",
+      "url": "https://en.wikipedia.org/wiki/Burmese_alphabet",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Burmese_alphabet",
       "pages": null,
-      "notes": null
+      "notes": "Rhyme-by-rhyme orthography-to-IPA tables; the source actually read when building this grapheme table."
     }
   ],
   "parent": "sit",
@@ -305,5 +925,221 @@
     "longitude": 93.9665,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Burmese."
-  }
+  },
+  "dependent_vowels": [
+    "ောင့်",
+    "ောင်း",
+    "ေါင့်",
+    "ေါင်း",
+    "ိုင့်",
+    "ိုင်း",
+    "ိုယ့်",
+    "ိုယ်း",
+    "ိုလ့်",
+    "ိုလ်း",
+    "ိန့်",
+    "ိန်း",
+    "ိမ့်",
+    "ိမ်း",
+    "ုန့်",
+    "ုန်း",
+    "ုမ့်",
+    "ုမ်း",
+    "ောင်",
+    "ေါင်",
+    "ိုင်",
+    "ွန့်",
+    "ွန်း",
+    "ွမ့်",
+    "ွမ်း",
+    "ွင့်",
+    "ွင်း",
+    "ော့်",
+    "ော်း",
+    "ေါ့်",
+    "ေါ်း",
+    "ိုယ်",
+    "ိုလ်",
+    "ွို့",
+    "ွိုး",
+    "ောက်",
+    "ိုက်",
+    "င့်",
+    "င်း",
+    "ဉ့်",
+    "ဉ်း",
+    "န့်",
+    "န်း",
+    "မ့်",
+    "မ်း",
+    "ဏ့်",
+    "ဏ်း",
+    "ိန်",
+    "ိမ်",
+    "ိံ့",
+    "ိံး",
+    "ုန်",
+    "ုမ်",
+    "ုံ့",
+    "ုံး",
+    "ွန်",
+    "ွမ်",
+    "ွင်",
+    "ွေ့",
+    "ွေး",
+    "ော်",
+    "ေါ်",
+    "ို့",
+    "ိုး",
+    "ွို",
+    "ည့်",
+    "ည်း",
+    "ော့",
+    "ေါ့",
+    "ွား",
+    "ွါး",
+    "ွယ်",
+    "ိတ်",
+    "ိပ်",
+    "ိက်",
+    "ုတ်",
+    "ုပ်",
+    "ွတ်",
+    "ွပ်",
+    "ွက်",
+    "ွစ်",
+    "င်",
+    "ဉ်",
+    "န်",
+    "မ်",
+    "ဏ်",
+    "ံ့",
+    "ံး",
+    "ိံ",
+    "ုံ",
+    "ေ့",
+    "ေး",
+    "ွေ",
+    "ို",
+    "ည်",
+    "ား",
+    "ာ့",
+    "ါး",
+    "ါ့",
+    "ီး",
+    "ူး",
+    "ဲ့",
+    "ယ်",
+    "ော",
+    "ေါ",
+    "ွာ",
+    "ွါ",
+    "ွဲ",
+    "ွိ",
+    "ွီ",
+    "လ်",
+    "က်",
+    "ဂ်",
+    "ခ်",
+    "စ်",
+    "ဇ်",
+    "ဆ်",
+    "ဈ်",
+    "တ်",
+    "ပ်",
+    "ဋ်",
+    "ဌ်",
+    "ဍ်",
+    "ဎ်",
+    "ထ်",
+    "ဒ်",
+    "ဓ်",
+    "ဖ်",
+    "ဗ်",
+    "ဘ်",
+    "သ်",
+    "ံ",
+    "ေ",
+    "ာ",
+    "ါ",
+    "ိ",
+    "ီ",
+    "ု",
+    "ူ",
+    "ဲ",
+    "ွ"
+  ],
+  "allophone_rules": [
+    {
+      "id": "MY_SANDHI_VOICE_K",
+      "phonemes": [
+        "k",
+        "kʰ"
+      ],
+      "surface": "ɡ",
+      "word_initial": false,
+      "preceded_by": "vowel",
+      "syllable_position": "onset",
+      "notes": "Burmese word-internal voicing sandhi: a syllable-initial voiceless obstruent is voiced when the syllable before it inside the same word is unchecked, i.e. ends in a vowel or in nasalisation (Wheatley 1990; Watkins 2001). It is what makes the compound of ကင် and ပွန်း [kɪ̀ɴbʊ́ɴ]. Aspirated and unaspirated onsets both voice, and the aspiration is lost. A checked syllable (one closed by [ʔ]) blocks it, and so does a word boundary. The process is productive but not exceptionless — many lexicalised compounds keep the voiceless onset — and the orthography does not record which."
+    },
+    {
+      "id": "MY_SANDHI_VOICE_TC",
+      "phonemes": [
+        "tɕ",
+        "tɕʰ"
+      ],
+      "surface": "dʑ",
+      "word_initial": false,
+      "preceded_by": "vowel",
+      "syllable_position": "onset",
+      "notes": "Burmese word-internal voicing sandhi: a syllable-initial voiceless obstruent is voiced when the syllable before it inside the same word is unchecked, i.e. ends in a vowel or in nasalisation (Wheatley 1990; Watkins 2001). It is what makes the compound of ကင် and ပွန်း [kɪ̀ɴbʊ́ɴ]. Aspirated and unaspirated onsets both voice, and the aspiration is lost. A checked syllable (one closed by [ʔ]) blocks it, and so does a word boundary. The process is productive but not exceptionless — many lexicalised compounds keep the voiceless onset — and the orthography does not record which."
+    },
+    {
+      "id": "MY_SANDHI_VOICE_S",
+      "phonemes": [
+        "s",
+        "sʰ"
+      ],
+      "surface": "z",
+      "word_initial": false,
+      "preceded_by": "vowel",
+      "syllable_position": "onset",
+      "notes": "Burmese word-internal voicing sandhi: a syllable-initial voiceless obstruent is voiced when the syllable before it inside the same word is unchecked, i.e. ends in a vowel or in nasalisation (Wheatley 1990; Watkins 2001). It is what makes the compound of ကင် and ပွန်း [kɪ̀ɴbʊ́ɴ]. Aspirated and unaspirated onsets both voice, and the aspiration is lost. A checked syllable (one closed by [ʔ]) blocks it, and so does a word boundary. The process is productive but not exceptionless — many lexicalised compounds keep the voiceless onset — and the orthography does not record which."
+    },
+    {
+      "id": "MY_SANDHI_VOICE_T",
+      "phonemes": [
+        "t",
+        "tʰ"
+      ],
+      "surface": "d",
+      "word_initial": false,
+      "preceded_by": "vowel",
+      "syllable_position": "onset",
+      "notes": "Burmese word-internal voicing sandhi: a syllable-initial voiceless obstruent is voiced when the syllable before it inside the same word is unchecked, i.e. ends in a vowel or in nasalisation (Wheatley 1990; Watkins 2001). It is what makes the compound of ကင် and ပွန်း [kɪ̀ɴbʊ́ɴ]. Aspirated and unaspirated onsets both voice, and the aspiration is lost. A checked syllable (one closed by [ʔ]) blocks it, and so does a word boundary. The process is productive but not exceptionless — many lexicalised compounds keep the voiceless onset — and the orthography does not record which."
+    },
+    {
+      "id": "MY_SANDHI_VOICE_P",
+      "phonemes": [
+        "p",
+        "pʰ"
+      ],
+      "surface": "b",
+      "word_initial": false,
+      "preceded_by": "vowel",
+      "syllable_position": "onset",
+      "notes": "Burmese word-internal voicing sandhi: a syllable-initial voiceless obstruent is voiced when the syllable before it inside the same word is unchecked, i.e. ends in a vowel or in nasalisation (Wheatley 1990; Watkins 2001). It is what makes the compound of ကင် and ပွန်း [kɪ̀ɴbʊ́ɴ]. Aspirated and unaspirated onsets both voice, and the aspiration is lost. A checked syllable (one closed by [ʔ]) blocks it, and so does a word boundary. The process is productive but not exceptionless — many lexicalised compounds keep the voiceless onset — and the orthography does not record which."
+    },
+    {
+      "id": "MY_SANDHI_VOICE_TH",
+      "phonemes": [
+        "θ"
+      ],
+      "surface": "ð",
+      "word_initial": false,
+      "preceded_by": "vowel",
+      "syllable_position": "onset",
+      "notes": "Burmese word-internal voicing sandhi: a syllable-initial voiceless obstruent is voiced when the syllable before it inside the same word is unchecked, i.e. ends in a vowel or in nasalisation (Wheatley 1990; Watkins 2001). It is what makes the compound of ကင် and ပွန်း [kɪ̀ɴbʊ́ɴ]. Aspirated and unaspirated onsets both voice, and the aspiration is lost. A checked syllable (one closed by [ʔ]) blocks it, and so does a word boundary. The process is productive but not exceptionless — many lexicalised compounds keep the voiceless onset — and the orthography does not record which."
+    }
+  ]
 }

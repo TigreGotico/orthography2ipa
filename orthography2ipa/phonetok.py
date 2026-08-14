@@ -278,7 +278,7 @@ _VIRAMA_COMBINING_CLASS = 9
 
 
 def _is_subjoined_letter_cluster(grapheme: str) -> bool:
-    """True when *grapheme* is a base letter followed by SUBJOINED LETTERS.
+    """True when *grapheme* is a base letter followed by ONSET CONSONANT marks.
 
     A subjoined letter is a full consonant that Unicode encodes as a
     combining mark so it stacks under its base — Tibetan U+0F90..U+0FBC
@@ -286,9 +286,15 @@ def _is_subjoined_letter_cluster(grapheme: str) -> bool:
     therefore a consonant LETTER, not a bare mark, and takes the inherent
     vowel: ⟨ཀྲ⟩ is [ʈɑ].
 
+    A MEDIAL consonant sign is the same thing under another name: Myanmar
+    U+103B..U+103E (``MYANMAR CONSONANT SIGN MEDIAL YA`` …) add a glide or a
+    laryngeal feature to the onset the base letter opens, so ⟨ကျ⟩ is a
+    consonant cluster [tɕ] that still needs the inherent vowel ([tɕa̰]), not
+    a bare mark.
+
     Decided from the Unicode NAME rather than a codepoint range, so it
-    generalises to any script that encodes subjoined letters, and it
-    deliberately does NOT match the modifier marks that share the shape
+    generalises to any script that encodes subjoined letters or medials, and
+    it deliberately does NOT match the modifier marks that share the shape
     (``… SIGN NUKTA``, anusvara, visarga), whose inherent-vowel behaviour
     is a separate question this predicate must not answer.
     """
@@ -297,7 +303,11 @@ def _is_subjoined_letter_cluster(grapheme: str) -> bool:
     if unicodedata.category(grapheme[0]) in ("Mn", "Mc"):
         return False
     tail = grapheme[1:]
-    return all("SUBJOINED LETTER" in unicodedata.name(ch, "") for ch in tail)
+    return all(
+        "SUBJOINED LETTER" in unicodedata.name(ch, "")
+        or "CONSONANT SIGN MEDIAL" in unicodedata.name(ch, "")
+        for ch in tail
+    )
 
 
 def _is_virama(ch: str) -> bool:
@@ -1234,10 +1244,38 @@ class PhonetokTokenizer:
         # Escape hatches for the two abugida predicates below — see their
         # docstrings on LanguageSpec for the Thai/Lao motivation.
         self._dependent_vowels: FrozenSet[str] = frozenset(spec.dependent_vowels)
+        #: Declared dependent-vowel graphemes longer than one character, by
+        #: descending length — the lengths ``_supplies_vowel_at`` must try
+        #: before falling back to the single-character test.
+        self._dependent_vowel_spans: Tuple[int, ...] = tuple(sorted(
+            {len(v) for v in self._dependent_vowels if len(v) > 1}, reverse=True
+        ))
         self._preposed_vowels: FrozenSet[str] = frozenset(
             v.lower() for v in spec.preposed_vowels
         )
         self._coda_no_inherent_vowel: bool = spec.coda_no_inherent_vowel
+
+    def _supplies_vowel_at(self, text: str, pos: int) -> bool:
+        """True if the grapheme starting at *pos* supplies a syllable nucleus.
+
+        A dependent vowel sign is not always one character. A Burmese RHYME is
+        written as a unit — an optional vowel sign, an optional final
+        consonant carrying the asat ⟨်⟩, and an optional tone mark — and it
+        is the unit that carries the nucleus: ⟨ကန်⟩ is [kàɴ], not *[ka̰nà].
+        Only the whole ⟨န်⟩ says so; its first character alone is the letter
+        ⟨န⟩, an ordinary /n/. Multi-character entries in
+        :attr:`LanguageSpec.dependent_vowels` name such units, and the longest
+        one matching at *pos* decides. Specs that declare only
+        single-character dependent vowels reach the fallback unchanged.
+        """
+        if pos >= len(text):
+            return False
+        for span in self._dependent_vowel_spans:
+            key = text[pos:pos + span]
+            if key in self._dependent_vowels:
+                ipa_vals = self._grapheme_ipa.get(key)
+                return bool(ipa_vals and ipa_vals[0] and _is_nucleus(ipa_vals[0]))
+        return self._supplies_vowel(text[pos])
 
     def _supplies_vowel(self, ch: str) -> bool:
         """True if *ch* is a combining mark that supplies a vowel of its own.
@@ -1653,7 +1691,7 @@ class PhonetokTokenizer:
                             # Virama — bare consonant; consume the mark so that
                             # C+virama+C falls out as a cluster (conjuncts).
                             consumed += 1
-                        elif not (next_ch and self._supplies_vowel(next_ch)):
+                        elif not self._supplies_vowel_at(text, next_pos):
                             # Nothing supplies a vowel — but if the current
                             # syllable already got one from the token just
                             # before this consonant (Tai coda_no_inherent_vowel,
