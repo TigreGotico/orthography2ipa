@@ -21,7 +21,7 @@ The three sub-dialects are the classical division (Vasconcelos 1900): the
 **Central** norm on which the orthography is built, the **Northern/Raiano**
 speech of the plateau border, and the **Southern Sendinês** of Vila de Sendim.
 
-## The sibilant system — the hallmark
+## The sibilant system: the hallmark
 
 Mirandese preserves the medieval Ibero-Romance sibilant richness that
 standard Portuguese and Spanish collapsed. The library models a **four-way+
@@ -37,7 +37,7 @@ contrast**:
 | ⟨j⟩, ⟨g⟩ (before e/i) | /ʒ/ | voiced postalveolar |
 | ⟨ch⟩ | /t͡ʃ/ | voiceless postalveolar **affricate** (still an affricate, unlike modern European Portuguese, which deaffricated it to /ʃ/) |
 
-**Notation convention.** The crucial phonemic opposition is *apical*
+**Notation convention.** The key phonemic opposition is *apical*
 (⟨s⟩) versus *dorso-dental* (⟨c, ç, z⟩). The library writes only the apical
 series with the IPA retracted diacritic (`s̺`, `z̺`) and leaves the
 dorso-dental series **plain** (`s`, `z`). This is IPA-standard, keeps the
@@ -46,25 +46,25 @@ contrast fully explicit, and matches the convention of the expert
 `◌̻` diacritic). ⟨ç⟩ is a fricative, not the Asturian affricate /t͡s/, and it
 occurs word-finally (`rapaç`, `lhuç`) where Portuguese would spell `-z`.
 
-⟨j⟩ is always /ʒ/ (West Iberian) — never the Asturian palatal /ʝ/. The letter
+⟨j⟩ is always /ʒ/ (West Iberian), never the Asturian palatal /ʝ/. The letter
 ⟨y⟩, by contrast, is the glide /j/ (`ye` → [je]).
 
 ## Leonese features
 
 - **Initial-l palatalisation.** Word-initial ⟨l⟩ before a vowel is /ʎ/
   (`luç` → [ˈʎus]), per Convenção § L. Bare /l/ survives word-initially only
-  in loanwords, proper nouns and the article — a documented residual limit,
+  in loanwords, proper nouns and the article, a documented residual limit,
   not modelled positionally.
 - **⟨lh⟩ = /ʎ/, ⟨nh⟩ = /ɲ/** in all positions.
 - **Leonese diphthongs.** Latin short Ĕ → ⟨iê/ie⟩ = [je],
   Latin short Ŏ → ⟨uô/uo⟩ = [wo] (`tierra` → [ˈtjerɐ], `puorta` →
   [ˈpwoɾtɐ]). Mirandese has a single intermediate mid /e o/ quality
   ("menos abertos que os nossos"; the ⟨ie⟩ nucleus lies between [i] and [e]
-  — Vasconcelos, *Estudos de Philologia Mirandesa* v1 §§2,4,10, pp.178-183),
-  so the diphthongs are **close**; open [jɛ]/[wɔ] are non-contrastive
+, Vasconcelos, *Estudos de Philologia Mirandesa* v1 §§2,4,10, pp.178-183),
+  so the diphthongs are **close**. Open [jɛ]/[wɔ] are non-contrastive
   allophonic variants. This matches the human gold majority
   (`rabielho` → [rɐˈβjeʎu], `squierdo` → [ˈs̺kjeɾdu]).
-- **Intervocalic /l/ and /n/ preserved** (inherited from the parent) — the
+- **Intervocalic /l/ and /n/ preserved** (inherited from the parent), the
   defining Leonese retention that distinguishes the group from Portuguese.
 
 ### The ⟨Vnh⟩ trigraphs
@@ -79,13 +79,13 @@ vowel + /ɲ/), so `danho` → [ˈdaɲu] and `canhona` → [kaˈɲonɐ].
 The Portuguese adstrate shows up as **unstressed-vowel reduction**:
 unstressed /a/ → [ɐ], pretonic/final /e/ → [ɨ], unstressed /o/ → [u]
 (`abandono` → [ɐbɐ̃ˈdonu]). Nasal-vowel digraphs realise /ɐ̃ ẽ ĩ õ ũ/ before
-a consonant or at a word boundary; before a vowel they are oral vowel + /n/.
+a consonant or at a word boundary. Before a vowel they are oral vowel + /n/.
 Stress follows the Convenção § Acento: paroxytone by default, with the
 oxytone-attracting endings `-r -l -z -ç -in -un -on -is -us -ns -ão` and any
 written accent overriding.
 
 The spec transcribes /u/ as **[u]**. The `mirandese_g2p` gold instead writes it
-narrowly as the centralised **[ʉ]** — and does so for *both* stressed ⟨u/ú⟩
+narrowly as the centralised **[ʉ]**, and does so for *both* stressed ⟨u/ú⟩
 (`brúzio` → [ˈbɾʉziʉ], `bufanda` → [bʉˈfãdɐ]) and reduced final ⟨-o⟩
 (`bagaroso` → [bɐɣɐˈɾoz̺ʉ]). Because [ʉ] there is the transcriber's realisation
 symbol for /u/ generally, not a distinct vowel in complementary distribution,
@@ -100,7 +100,7 @@ assimilates in place to a following **labial** ([m]) or **velar** ([ŋ]) stop
 
 Second, **intervocalic /b/ spirantisation** (⟨b⟩ → [β] between vowels):
 `haber` → [ɐˈβeɾ], `rabudo` → [rɐˈβudu], `nuobo` → [ˈnwoβu]. This is the
-general Ibero-Romance lenition of voiced stops — /b d ɡ/ surface as the
+general Ibero-Romance lenition of voiced stops, /b d ɡ/ surface as the
 fricatives/approximants [β ð ɣ] everywhere **except** after a pause or a nasal
 (Mateus & d'Andrade 2000:11; Ferreira & Raposo 1999; the [Mirandese Wikipedia
 phonology](https://en.wikipedia.org/wiki/Mirandese_language#Consonants):
@@ -109,12 +109,12 @@ rule requires a preceding vowel (word-initial ⟨b⟩ keeps the stop:
 `bibal` → [biˈβal]).
 
 **Pre-consonantal nasalisation.** A nasal digraph ⟨an en in on un⟩ (⟨am…⟩)
-before *any* stop — voiceless or voiced ⟨mb nd ng nt…⟩ — nasalises the vowel
+before *any* stop, voiceless or voiced ⟨mb nd ng nt…⟩, nasalises the vowel
 and the nasal is absorbed, the following stop retained: `brando` → [ˈbɾɐ̃du],
 `quando` → [ˈkwɐ̃du], `bufanda` → [buˈfɐ̃dɐ], `lhéngua` → [ˈʎẽɡwɐ],
 `ambos` → [ˈɐ̃bus̺], `sendo` → [ˈs̺ẽdu]. Stressed open [ɛ ɔ] raise to
 close-mid nasal [ẽ õ]. This is the inherited Ibero-Romance nasal-vowel +
-absorption behaviour and matches the human gold on every nasal+stop word;
+absorption behaviour and matches the human gold on every nasal+stop word.
 the earlier oral ⟨mb nd ng⟩ digraph treatment was contradicted by the gold
 and removed.
 
@@ -123,17 +123,17 @@ The rule is applied **per phoneme**, on the evidence of the expert-human
 excluded):
 
 - **/b/ → [β]**: spirant-dominant (β:9 / b:5), so it is rewritten. It is a net
-  win on the human gold (PER 0.1901 → 0.1851); the residual over-spirantised
+  win on the human gold (PER 0.1901 → 0.1851). The residual over-spirantised
   loans (`brabo`, `alternatibo`) are the lexical variability the downstream
   `mwl_phonemizer` can condition on.
 - **/ɡ/ → [ɣ]**: already spirantised intervocalically at the
   `positional_graphemes` layer (`mogadouro` → [muɣɐˈdowɾu]), so it needs **no**
-  allophone rule; adding one only misfires after a diphthong glide (`eigual` →
+  allophone rule. Adding one only misfires after a diphthong glide (`eigual` →
   gold stop [ɐjˈɡwal]).
-- **/d/**: intervocalic /d/ is **stop-dominant** in the gold (d:13 / ð:7) — the
+- **/d/**: intervocalic /d/ is **stop-dominant** in the gold (d:13 / ð:7), the
   documented Asturleonese conservatism/occlusion of /d/, and why the Wikipedia
   wording is hedged ("may be"). It keeps its positional default [d] (`nada` →
-  [ˈnadɐ]); [ð] stays only an `allophones` inventory / lattice candidate,
+  [ˈnadɐ]). [ð] stays only an `allophones` inventory / lattice candidate,
   realisable by the downstream `mwl_phonemizer` where lexical conditioning is
   available.
 
@@ -145,40 +145,40 @@ Spirantisation is **pan-Mirandese**: the sub-dialects inherit the /b/ rule via
 Sub-dialect specs inherit the full Central system (`graphemes_base = mwl`) and
 declare only their **deltas**:
 
-- **Sendinês (`mwl-x-sendim`)** — two documented changes:
+- **Sendinês (`mwl-x-sendim`)**: two documented changes:
   1. **Monophthongisation**: ⟨iê/ie⟩ → /i/, ⟨uô/uo⟩ → /u/ (`puorta` →
      [ˈpuɾtɐ]).
-  2. **Depalatalisation**: /ʎ/ → /l/ — words other dialects say with ⟨lh⟩ are
-     said with /l/ (`lhado` → [ˈladu], `alhá` → [ɐˈla]); word-initial ⟨l⟩ is
+  2. **Depalatalisation**: /ʎ/ → /l/, words other dialects say with ⟨lh⟩ are
+     said with /l/ (`lhado` → [ˈladu], `alhá` → [ɐˈla]). Word-initial ⟨l⟩ is
      likewise plain /l/. The Primeiro Aditamento (2000) permits Sendinese
      writers to spell word-initial ⟨l-⟩.
-- **Ifanês (`mwl-x-ifanes`)** — the Northern/Raiano speech of the raia-sêcca
+- **Ifanês (`mwl-x-ifanes`)**: the Northern/Raiano speech of the raia-sêcca
   villages (Paradela, Ifanes, Constantim, Cicouro, S. Martinho de Angueira).
   It is **phonologically identical to Central** in the modeled grapheme→IPA
-  register — a documented **negative result**, not an untested assumption.
+  register, a documented **negative result**, not an untested assumption.
   Vasconcelos surveys the Raiano villages one by one (EPM Vol. II, § "II.
   Mirandês raiano") and states plainly that the speech of S. Martinho keeps the
   Leonese diphthongs (`tierra`, `cielo`) and mid outcomes (`nobe`, `bono`,
-  `posto`, `osso`) exactly as Central, and — transcribing a Padre Nosso
-  specimen — that it *"não offerece differenças phoneticas em relação á do
-  centro"*; the differences from Central are *"morphologicas (em pequeno
+  `posto`, `osso`) exactly as Central, and, transcribing a Padre Nosso
+  specimen, that it *"não offerece differenças phoneticas em relação á do
+  centro"*. The differences from Central are *"morphologicas (em pequeno
   número) e lexicologicas"* (Constantim likewise *"não differe, senão no
   vocabulário"*). In Vol. I (pp.219-220) he adds that raiano `tierra` *"concorda
   com o mirandês normal"*, reserving the monophthong /i/ for Sendinês. Both
-  Central and Raiano keep the diphthongs [je]/[wo] and /ʎ/; only Sendinês
+  Central and Raiano keep the diphthongs [je]/[wo] and /ʎ/. Only Sendinês
   diverges. The Raiano gold corroborates it (`fuogo` → [ˈfwo.ʊ], diphthong
-  retained; contrast the Sendinês [u]). The attested Raiano distinctives are
+  retained. Contrast the Sendinês [u]). The attested Raiano distinctives are
   lexical and morphosyntactic, not segmental: local adverb/pronoun forms at
   Ifanes (`pa-lhina`, `aquina`, `quina` for Central `alhi`/`eiqui`; `calhe`
   "street"), the demonstratives `esto`/`aquesto` and lexemes `tolho`,
-  `lureiro`, `frol` at S. Martinho, and the raia connective `antonces` — none of
+  `lureiro`, `frol` at S. Martinho, and the raia connective `antonces`, none of
   which change a grapheme→phoneme mapping. The spec therefore inherits the full
   Central system unchanged and declares no deltas.
 
 ## Input contract
 
 Input is Mirandese text in the **official orthography** (Convenção 1999).
-Feed written ⟨lh⟩, ⟨nh⟩, ⟨iê/uô⟩, ⟨ç⟩ as spelled; the accents that mark stress
+Feed written ⟨lh⟩, ⟨nh⟩, ⟨iê/uô⟩, ⟨ç⟩ as spelled. The accents that mark stress
 (´) and the nasal tilde (˜) are respected.
 
 ## Benchmarks
@@ -193,7 +193,7 @@ Measured against `TigreGotico/mirandese_g2p` (expert-human, small-`n`):
 The /b/-spirantisation rule *lowers* the central-Mirandese PER (the largest,
 most trustworthy row). The Sendinês row nudges up because its one
 intervocalic-/b/ token, `lhobo`, is transcribed with a stop [ˈlobʊ] in the
-`n = 11` gold — small-`n` lexical variability, not a Sendinês-specific block on
+`n = 11` gold, small-`n` lexical variability, not a Sendinês-specific block on
 a pan-Ibero-Romance process. Residual error is otherwise dominated by
 gold-notation choices the rules cannot and should not chase: the transcriber's
 centralised final vowel [ʉ] for unstressed final ⟨-o⟩ (see below), and the
@@ -203,20 +203,20 @@ lexically variable /d/ occlusion (see Allophony above).
 
 - **Ferreira, M. B. & Raposo, D. (coords.) (1999).** *Convenção Ortográfica
   da Língua Mirandesa.* Câmara Municipal de Miranda do Douro / Centro de
-  Linguística da Universidade de Lisboa. — the official orthography (§ L,
+  Linguística da Universidade de Lisboa., the official orthography (§ L,
   § Sibilantes, § Ditongos, § Nasalidade, § Acento).
 - **Ferreira, M. B. & Raposo, D. (coords.) (2000).** *Primeiro Aditamento à
-  Convenção Ortográfica da Língua Mirandesa.* — Sendinês provisions.
+  Convenção Ortográfica da Língua Mirandesa.*, Sendinês provisions.
 - **Vasconcelos, J. Leite de (1900).** *Estudos de Philologia Mirandesa
-  (Vol. I).* Imprensa Nacional, Lisboa. — foundational description of the
-  sibilant system and the sub-dialect division (pp.172-173); raiano `tierra`
+  (Vol. I).* Imprensa Nacional, Lisboa., foundational description of the
+  sibilant system and the sub-dialect division (pp.172-173). Raiano `tierra`
   agrees with the central norm (pp.219-220).
 - **Vasconcelos, J. Leite de (1901).** *Estudos de Philologia Mirandesa
-  (Vol. II).* Imprensa Nacional, Lisboa. — § "II. Mirandês raiano" (pp.28-31):
-  the Raiano villages offer no phonetic differences from Central; their
+  (Vol. II).* Imprensa Nacional, Lisboa., § "II. Mirandês raiano" (pp.28-31):
+  the Raiano villages offer no phonetic differences from Central. Their
   divergences are morphological and lexical.
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
-  Oxford University Press. — reference for the shared Ibero-Romance processes
+  Oxford University Press., reference for the shared Ibero-Romance processes
   (nasal place assimilation, spirantisation) and the adstrate reduction.
 
 ---

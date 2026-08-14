@@ -1,6 +1,6 @@
 # Spain-Romance TTS gold set
 
-`orthography2ipa/data/gold/spain_romance_tts/<code>.tsv` — 20 phonetically
+`orthography2ipa/data/gold/spain_romance_tts/<code>.tsv`: 20 phonetically
 diverse, register-appropriate, literature-justified sentences for each of the
 Romance lects of Spain: Castilian and its regional accents, Galician,
 Asturleonese, Aragonese, Catalan/Valencian, Aranese Occitan, and the
@@ -9,10 +9,10 @@ Asturleonese of the Zamora border, Ladino). Built to validate the TTS voice of
 each lect (synthesize each sentence, ASR/listen, compare against the gold IPA)
 and to regression-pin sentence-level o2i behaviour.
 
-Each lect is written in its **own** orthographic convention — Galician RAG or
+Each lect is written in its **own** orthographic convention: Galician RAG or
 reintegrado per lect, Asturian ALLA, Aragonese Academia, Catalan IEC/AVL,
 Aranese per its attested convention, medieval stages period-spelled, Ladino in
-its Latin convention — so a row is simply the sentence a TTS receives. There is
+its Latin convention: so a row is simply the sentence a TTS receives. There is
 no separate `raw`/undiacritized column and no diacritization-gap check
 (contrast the Arabic gold set, whose input contract is fully vocalized text).
 
@@ -25,8 +25,8 @@ rebase-friendly.
 
 > The Spanish-lexified creoles `pap` (Papiamento), `cbk-zam` (Chavacano) and
 > `pln` (Palenquero) are **not** Iberian Romance and were moved out of this set
-> into the unified creole harness — `scripts/iberian_creole_tts_gold.py`,
-> `docs/iberian-creole-tts-gold.md` — which models the creole-specific axes
+> into the unified creole harness: `scripts/iberian_creole_tts_gold.py`,
+> `docs/iberian-creole-tts-gold.md`: which models the creole-specific axes
 > (prenasalised onsets, coda sibilants, the tx/dj affricates) rather than the
 > distinción/seseo/yeísmo axes below.
 
@@ -48,7 +48,7 @@ TSV, tab-separated, UTF-8, header row:
 The `ipa` column is exactly what o2i emits for `sentence` under that lect. The
 validator recomputes it and fails on any mismatch. When o2i is wrong, **fix the
 spec** (cited, against the lect's `sources`) or respell the sentence to a word
-the literature attests — **never hand-edit the `ipa` column**. A gold that has
+the literature attests: **never hand-edit the `ipa` column**. A gold that has
 been silently patched to mask a spec bug is worse than no gold. Any correction
 is recorded in `notes` with the source id that grounds it. Spec-vs-literature
 gaps lead the PR body; they never bend the gold.
@@ -62,21 +62,23 @@ that actually discriminate the Romance lects of Spain:
 
 | tag | verified by | fires when |
 |---|---|---|
-| `distincion` | both | a ⟨c(e/i)⟩/⟨z⟩/⟨ç⟩ grapheme **and** a `[θ]` in the ipa — the /θ/ kept distinct from /s/ (distinción; also the ceceo reflex) |
-| `seseo` | both | a ⟨c(e/i)⟩/⟨z⟩/⟨ç⟩ grapheme **and** `[s]` with **no** `[θ]` in the ipa — ⟨c z⟩ merged to `[s]` (seseo) |
-| `lateral_palatal` | both | a ⟨ll⟩/⟨lh⟩ grapheme **and** `[ʎ]` present — the palatal lateral retained (ll/y distinguished) |
-| `yeismo` | both | a ⟨ll⟩ or prevocalic ⟨y⟩ grapheme **and** `[ʝ]` with **no** `[ʎ]` — ll/y merged to `[ʝ]` (yeísmo) |
+| `distincion` | both | a ⟨c(e/i)⟩/⟨z⟩/⟨ç⟩ grapheme **and** a `[θ]` in the ipa: the /θ/ kept distinct from /s/ (distinción; also the ceceo reflex) |
+| `seseo` | both | a ⟨c(e/i)⟩/⟨z⟩/⟨ç⟩ grapheme **and** `[s]` with **no** `[θ]` in the ipa: ⟨c z⟩ merged to `[s]` (seseo) |
+| `lateral_palatal` | both | a ⟨ll⟩/⟨lh⟩ grapheme **and** `[ʎ]` present: the palatal lateral retained (ll/y distinguished) |
+| `yeismo` | both | a ⟨ll⟩ or prevocalic ⟨y⟩ grapheme **and** `[ʝ]` with **no** `[ʎ]`: ll/y merged to `[ʝ]` (yeísmo) |
 | `palatal_nasal` | ipa | `[ɲ]` present (⟨ñ nh ny⟩) |
-| `palatal_initial` | both | a word begins with ⟨ll lh ñ nh⟩ **and** `[ʎ]`/`[ɲ]` present — Asturleonese initial L-/N- palatalisation |
-| `gheada` | both | a /g/-phoneme grapheme (⟨ga go gu⟩, ⟨gue gui⟩, ⟨g⟩+liquid) **and** a `[ħ]`/`[h]` in *onset* position — the Galician gheada reflex of /g/ |
-| `coda_s_aspiration` | both | a coda ⟨s⟩ grapheme **and** an `[h]` in *coda* position — southern aspiration/weakening of /s/ |
-| `diphthong_ie_ue` | both | a ⟨ie⟩ or (non-⟨qu/gu⟩) ⟨ue uo⟩ grapheme **and** a realised glide+mid `[je we wo]` — Romance tonic diphthongisation |
-| `final_u` | both | a word ends in a full ⟨u⟩ vowel (preceded by a consonant) **and** an ipa word ends in `[u]` — Asturleonese atonic final -o>-u raising / masculine metaphony |
-| `open_mid` | ipa | `[ɛ]` or `[ɔ]` present — the 7-vowel open-mid contrast (Galician/Catalan/Asturleonese) |
-| `schwa` | ipa | `[ə]` present — Catalan atonic schwa reduction |
-| `velar_nasal` | ipa | `[ŋ]` present — Galician coda -n / ⟨nh⟩, Catalan ⟨ng⟩ |
-| `sibilant_voicing` | ipa | `[z]` or `[ʒ]` present — the voiced-sibilant contrast (present in Catalan, absent in Galician) |
+| `palatal_initial` | both | a word begins with ⟨ll lh ñ nh⟩ **and** `[ʎ]`/`[ɲ]` present: Asturleonese initial L-/N- palatalisation |
+| `gheada` | both | a /g/-phoneme grapheme (⟨ga go gu⟩, ⟨gue gui⟩, ⟨g⟩+liquid) **and** a `[ħ]`/`[h]` in *onset* position: the Galician gheada reflex of /g/ |
+| `coda_s_aspiration` | both | a coda ⟨s⟩ grapheme **and** an `[h]` in *coda* position: southern aspiration/weakening of /s/ |
+| `diphthong_ie_ue` | both | a ⟨ie⟩ or (non-⟨qu/gu⟩) ⟨ue uo⟩ grapheme **and** a realised glide+mid `[je we wo]`: Romance tonic diphthongisation |
+| `final_u` | both | a word ends in a full ⟨u⟩ vowel (preceded by a consonant) **and** an ipa word ends in `[u]`: Asturleonese atonic final -o>-u raising / masculine metaphony |
+| `open_mid` | ipa | `[ɛ]` or `[ɔ]` present: the 7-vowel open-mid contrast (Galician/Catalan/Asturleonese) |
+| `schwa` | ipa | `[ə]` present: Catalan atonic schwa reduction |
+| `velar_nasal` | ipa | `[ŋ]` present: Galician coda -n / ⟨nh⟩, Catalan ⟨ng⟩ |
+| `sibilant_voicing` | ipa | `[z]` or `[ʒ]` present: the voiced-sibilant contrast (present in Catalan, absent in Galician) |
 | `rhotic` | ipa | a trill `[r]` (excludes the ubiquitous tap `[ɾ]`) |
+| `rhotic_tap` | ipa | a tap `[ɾ]` — the neutralised coda rhotic of Balearic and Valencian, the counterpart axis to `rhotic` |
+| `postalveolar_affricate` | ipa | `[tʃ]`/`[dʒ]` — the Western reflex of ⟨j⟩/⟨g+e,i⟩, where Eastern has `[ʒ]` |
 | `sandhi` | both | a cross-word junction: vowel-final before vowel-initial (elision/liaison), or ⟨s⟩-final before a voiced onset (final-s voicing) |
 
 The `orth`/`ipa`/`both` split mirrors the other gold sets: an axis whose
@@ -103,7 +105,7 @@ An axis a lect genuinely lacks is left off its rows, and the absence is stated
 in the row's `notes` where relevant. Standard `gl` has no gheada (/g/ stays
 `[ɡ]`), no yeísmo (⟨ll⟩ keeps the lateral `[ʎ]`), no Romance diphthongisation
 (`fronte`/`torce`, not `fuente`/`tuerce`), and no voiced sibilants (the
-Galician side of the Catalan/Galician `sibilant_voicing` contrast) — these are
+Galician side of the Catalan/Galician `sibilant_voicing` contrast): these are
 recorded, never faked. A gheada-realising Galician sub-lect exercises `gheada`
 where its spec produces the reflex.
 
@@ -130,14 +132,14 @@ own register:
 12. phone
 13. greeting pair
 14. proverb
-15–20. coverage rows filling the phonetic tags a lect's frames 1–14 left
+15-20. coverage rows filling the phonetic tags a lect's frames 1-14 left
 uncovered (strong rhotic, palatals, open-mid, velar nasal, and the lect's own
-discriminative axes — distinción/seseo, yeísmo, diphthongisation, final -u).
+discriminative axes: distinción/seseo, yeísmo, diphthongisation, final -u).
 
 ## Register rule
 
 Each lect uses its **genuine** regional lexicon and morphology **where the
-literature the spec cites attests it** — never an invented shibboleth, never
+literature the spec cites attests it**: never an invented shibboleth, never
 Castilian-with-an-accent. Galician draws on `mercar`, `paxaro`, `rúa`;
 Asturleonese Sanabrese keeps `cuostan`, `buonas`, `you`, `ye`; Aragonese uses
 its Academia forms; Catalan/Valencian its IEC/AVL register. When a regional
@@ -148,24 +150,24 @@ standard rather than guess.
 
 Iberian Romance phonology lives at the word boundary: vowel elision/liaison and
 `/s/` voicing across a junction are what a TTS most often gets wrong. Sentences
-are authored to be **sandhi-rich** — most rows carry at least one `sandhi`
-junction — so the gold exercises connected-speech behaviour, not just
+are authored to be **sandhi-rich**: most rows carry at least one `sandhi`
+junction: so the gold exercises connected-speech behaviour, not just
 isolated-word transcription.
 
 ## Procedure (how to add sentences)
 
-1. `python scripts/spain_romance_tts_gold.py checklist <lect>` — prints the
+1. `python scripts/spain_romance_tts_gold.py checklist <lect>`: prints the
    dialect-discriminative feature checklist and which tags the current gold
    already covers.
 2. Author 20 sentences over the frames + coverage rows in the lect's genuine
    orthography, grounding the lexicon in the literature the lect's spec cites.
    Reuse words the spec's own primary-source gold attests so a row doubles as a
    primary-source witness.
-3. `python scripts/spain_romance_tts_gold.py draft <lect> <textfile>` — machine
+3. `python scripts/spain_romance_tts_gold.py draft <lect> <textfile>`: machine
    first-draft: o2i IPA + auto-tagged feature axes. Author the `gloss_en` and
    the `notes` citation id by hand.
 4. Verify the IPA against the spec's phoneme mappings and sources. If o2i is
-   wrong, **fix the spec** (cited) — never hand-edit the IPA column.
+   wrong, **fix the spec** (cited): never hand-edit the IPA column.
 5. `python scripts/spain_romance_tts_gold.py validate` must pass
    (`tests/test_spain_romance_tts_gold.py` runs it in CI).
 
@@ -181,7 +183,7 @@ vs. recomputed IPA. Reconcile deliberately, never by silencing the check:
    line), re-verify the feature tags against the new IPA, and note the spec
    change with its source id. The gold moves *with* the corrected spec.
 2. **Is the new transcription wrong** (a regression the spec edit introduced)?
-   Then the gold caught a real bug — fix the spec, do not touch the gold.
+   Then the gold caught a real bug: fix the spec, do not touch the gold.
 3. **Is it a genuine spec-vs-literature gap** (the engine cannot yet reach the
    attested form)? Lead the PR body with it, respell the sentence to a form the
    spec transcribes correctly *and* the literature attests, and keep the gap on
@@ -196,11 +198,17 @@ vs. recomputed IPA. Reconcile deliberately, never by silencing the check:
 - **gl** (Galician, RAG standard): distinción kept (no seseo), palatal lateral
   `[ʎ]` kept (no yeísmo), 7-vowel open-mid `[ɛ ɔ]`, phonemic velar nasal `[ŋ]`
   (coda -n and the ⟨nh⟩ grapheme, `unha`), `[ʃ]` from historical sibilants, and
-  gheada honestly absent in the standard — a gheada sub-lect exercises the axis
+  gheada honestly absent in the standard: a gheada sub-lect exercises the axis
   where its spec produces `[ħ]` (Regueira 1996; Freixeiro Mato 1998; Carballo
   Calero 1979).
 - **ast-x-sanabria** (Sanabrese Asturleonese): migrated from the Portuguese
   gold set (it is a Spain-territory lect). Tonic Ŏ>/wo/ (`cuostan`, `buonas`),
   initial L->`[ʎ]`/N->`[ɲ]` palatalisation, distinción `[θ]`, atonic final
-  -o>-u, and a four-way sibilant system — re-tagged to the Spain-Romance
+  -o>-u, and a four-way sibilant system: re-tagged to the Spain-Romance
   predicates (Frías Conde; García Arias 2003).
+
+---
+
+**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
+
+*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*
