@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.70.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.70.3a1) (2026-08-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.70.2a1...7.70.3a1)
+
+**Merged pull requests:**
+
+- fix\(benchmark\): stop scoring the aligner's spn coverage-hole marker as vox\_communis gold [\#902](https://github.com/TigreGotico/orthography2ipa/pull/902) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.70.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.70.2a1) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.70.1a2...7.70.2a1)
@@ -751,7 +759,6 @@
 **Merged pull requests:**
 
 - refactor: readability and maintenance audit — spec layer [\#704](https://github.com/TigreGotico/orthography2ipa/pull/704) ([JarbasAl](https://github.com/JarbasAl))
-- docs: STE readability audit [\#702](https://github.com/TigreGotico/orthography2ipa/pull/702) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.42.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.42.0a1) (2026-08-02)
 
@@ -807,15 +814,15 @@
 
 ## [7.35.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.1a1) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.1a1)
-
-## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.1a1)
 
 ## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.0a2)
+
+## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a1)
 
 ## [7.34.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.34.1a1) (2026-08-02)
 
