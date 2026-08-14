@@ -1096,6 +1096,41 @@ provenance:
 | **CELEX2 (de/nl/en)** | EXCLUDED: proprietary | LDC license (LDC96L14), not freely downloadable. |
 | **GlobalPhone** | EXCLUDED: ELRA license | Per-language ELRA licenses. Not freely downloadable. |
 
+## Known finding: the nukta digraphs and the inherent vowel
+
+Not a dataset issue — an engine one, recorded here because it is measured
+against these golds and is deliberately NOT fixed in the PR that found it.
+
+The tokenizer decides whether a grapheme key is a bare combining mark, and
+therefore whether it takes the abugida inherent vowel, from the key's LAST
+character. That is right for a key that IS a mark (anusvara `ং`) and wrong
+for a key that merely ENDS in one. Two key shapes end in a mark:
+
+* a **conjunct stack** — a letter plus SUBJOINED LETTERS, which Unicode
+  encodes as combining marks (Tibetan `ཀྲ` = `ཀ` + U+0FB2). A subjoined
+  letter is a letter, so the key is a consonant letter and must take the
+  inherent vowel. This case IS fixed; `dz` depends on it.
+* a **nukta digraph** — a letter plus a modifier sign (`क़` = `क` +
+  U+093C DEVANAGARI SIGN NUKTA), in `hi bn as gu awa bho mr ne or pa kok
+  mai km`. These keys get no inherent vowel today, so `क़लम` is `qləm`
+  where the schwa-deletion rules should have been given a schwa to decide
+  about (`qələm`).
+
+The nukta half looks like the same bug and is not the same fix: giving
+those keys the inherent vowel moves the fleet in both directions, and on a
+same-session, same-cache differential against the current engine the
+row-weighted net is NEGATIVE — `hi`/`wikipron` gains while `bn`/`vox_communis`
+(32 651 rows) and `as` lose more. Whether the added vowel is right depends
+on each Brahmic spec's own schwa-deletion coverage, which is a per-spec data
+question, not a tokenizer question. It needs its own PR, with per-spec
+schwa rules landing alongside the engine change rather than after it.
+
+Beware, when measuring it, that several committed board rows for these
+languages predate a gold-cache refresh: `bn`/`vox_communis`, `or`/`ipadict`
+and `ne`/`kaikki` all move on an UNMODIFIED tree. Any differential must
+re-run both sides in one session against one cache, or it will read that
+drift as a result.
+
 ## Diagnosing a language
 
 The scoreboard tells you *that* a language scores badly. It does not tell

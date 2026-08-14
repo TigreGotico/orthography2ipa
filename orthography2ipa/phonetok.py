@@ -210,6 +210,30 @@ _MAX_DECOMPOSED_COMBOS = 4
 _VIRAMA_COMBINING_CLASS = 9
 
 
+
+def _is_subjoined_letter_cluster(grapheme: str) -> bool:
+    """True when *grapheme* is a base letter followed by SUBJOINED LETTERS.
+
+    A subjoined letter is a full consonant that Unicode encodes as a
+    combining mark so it stacks under its base — Tibetan U+0F90..U+0FBC
+    (``TIBETAN SUBJOINED LETTER KA`` …). A key spelling such a stack is
+    therefore a consonant LETTER, not a bare mark, and takes the inherent
+    vowel: ⟨ཀྲ⟩ is [ʈɑ].
+
+    Decided from the Unicode NAME rather than a codepoint range, so it
+    generalises to any script that encodes subjoined letters, and it
+    deliberately does NOT match the modifier marks that share the shape
+    (``… SIGN NUKTA``, anusvara, visarga), whose inherent-vowel behaviour
+    is a separate question this predicate must not answer.
+    """
+    if len(grapheme) < 2:
+        return False
+    if unicodedata.category(grapheme[0]) in ("Mn", "Mc"):
+        return False
+    tail = grapheme[1:]
+    return all("SUBJOINED LETTER" in unicodedata.name(ch, "") for ch in tail)
+
+
 def _is_virama(ch: str) -> bool:
     """True if ``ch`` is a virama/halant — a mark that suppresses the
     inherent vowel of the consonant it follows."""
@@ -1151,6 +1175,29 @@ class PhonetokTokenizer:
         ipa_vals = prev_tok.ipa
         return bool(ipa_vals) and bool(ipa_vals[0]) and _is_nucleus(ipa_vals[0])
 
+    def _silenced_before_consonant(self, gkey: str) -> bool:
+        """True when the spec itself gives *gkey* NO realisation before a
+        consonant — ``positional_graphemes[gkey]["before_consonant"] == [""]``.
+
+        Such a grapheme is a SILENT LETTER in that position, and a silent
+        letter carries no inherent vowel: the Tibetan prefixed letters
+        (⟨ག ད བ མ འ⟩, van Driem 1998 ch. 2) are written before the root of
+        their own syllable and are not pronounced at all, so ⟨གསུམ⟩ is [sum]
+        — the ⟨ག⟩ contributes neither a consonant nor a vowel. Appending the
+        inherent vowel first and silencing the consonant afterwards left the
+        vowel behind as a phantom nucleus, which then made the ROOT look like
+        a coda under :attr:`LanguageSpec.coda_no_inherent_vowel`.
+
+        Only an unconditional single empty candidate counts: a spec that
+        lists a real reading alongside the empty one has not decided the
+        letter is silent here, and its inherent vowel stays.
+        """
+        entry = self.spec.positional_graphemes.get(gkey)
+        if not entry:
+            return False
+        candidates = entry.get(GraphemePosition.BEFORE_CONSONANT)
+        return bool(candidates) and list(candidates) == [""]
+
     def weights_for(self, grapheme: str) -> Optional[Tuple[float, ...]]:
         """Return the per-candidate weights for *grapheme*, or ``None``.
 
@@ -1435,9 +1482,33 @@ class PhonetokTokenizer:
                 # own — বাংলা *baŋɔla for baŋla. So gate on the grapheme's
                 # Unicode category, and use the IPA only to tell a consonant
                 # letter from a vowel letter.
+                #
+                # A CONJUNCT STACK is the exception: a letter plus one or more
+                # SUBJOINED LETTERS, which Unicode encodes as combining marks
+                # (Tibetan ⟨ཀྲ⟩ = ཀ + U+0FB2 TIBETAN SUBJOINED LETTER RA, an
+                # Mn). Reading the category off the key's LAST character called
+                # the whole stack a bare mark and dropped its vowel, so
+                # ⟨ཀྲ⟩ came out *[ʈ] for [ʈɑ]. A subjoined LETTER is a
+                # letter, so such a key is a consonant letter and takes the
+                # inherent vowel like any other.
+                #
+                # The exception is deliberately narrow: it asks Unicode whether
+                # the trailing mark is a subjoined LETTER, not merely whether
+                # the key is longer than one character. A letter plus a NUKTA
+                # (⟨क़⟩ = क + U+093C DEVANAGARI SIGN NUKTA) has the same shape
+                # but is a different thing — the nukta modifies the letter it
+                # sits on instead of adding a consonant to a stack — and
+                # whether those keys should take the inherent vowel is a
+                # question about the Brahmic specs' own schwa handling, with
+                # its own fleet-wide cost. They keep their existing behaviour
+                # here so this change has one blast radius; the finding is
+                # recorded in docs/benchmarks.md for its own PR.
                 if self.spec.inherent_vowel and ipa_vals:
                     first_ipa = ipa_vals[0]
-                    is_mark = unicodedata.category(gkey[-1]) in ("Mn", "Mc")
+                    is_mark = (
+                        unicodedata.category(gkey[-1]) in ("Mn", "Mc")
+                        and not _is_subjoined_letter_cluster(gkey)
+                    )
                     if first_ipa and not is_mark and not _is_nucleus(first_ipa):
                         next_pos = pos + consumed
                         next_ch = text[next_pos] if next_pos < n else ""
@@ -1453,9 +1524,15 @@ class PhonetokTokenizer:
                             # that syllable, not opening its own: leave it
                             # bare instead of surfacing the inherent vowel.
                             prev_tok = tokens[-1] if tokens else None
-                            if not (
-                                self._coda_no_inherent_vowel
-                                and self._prev_gives_nucleus(prev_tok)
+                            if (
+                                not (
+                                    self._coda_no_inherent_vowel
+                                    and self._prev_gives_nucleus(prev_tok)
+                                )
+                                and not (
+                                    next_ch
+                                    and self._silenced_before_consonant(gkey)
+                                )
                             ):
                                 ipa_vals = tuple(
                                     v + self.spec.inherent_vowel for v in ipa_vals
