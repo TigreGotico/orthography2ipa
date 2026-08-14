@@ -2907,3 +2907,615 @@ class TestWriteComparisonEspeakRulesColumn:
         assert "espeak rules-only" not in fr_section
         assert ("2 row(s) have a stock `espeak` number but no "
                 "`espeak-rules-only`") in text
+
+
+# ─── lexicon-backed tier ────────────────────────────────────────────────────
+#
+# The tier's whole validity rests on ONE thing: each engine's key set must
+# be its REAL lookup keys, matched with that engine's OWN lookup-time
+# normalization. These tests therefore hit the extractors against small
+# fixtures shaped like each engine's real data, then the union filter, the
+# residual-gold guard, and the renderer's separation from the primary
+# leaderboard.
+
+
+def _fake_module(name, **attrs):
+    """A throwaway module object for sys.modules-based import doubles."""
+    import types
+    mod = types.ModuleType(name)
+    for key, value in attrs.items():
+        setattr(mod, key, value)
+    return mod
+
+
+class TestEspeakLexiconKeys:
+    def test_extracts_lowercased_headwords_from_dictsource(
+            self, monkeypatch, tmp_path):
+        (tmp_path / "en_list").write_text(
+            "the      D@\n"
+            "Paris    p'ariIs   // a proper noun\n"
+            "_lig     ligature\n"
+            "$nounf   directive\n"
+            "a        01\n"
+            "// comment only\n",
+            encoding="utf-8")
+        (tmp_path / "en_extra").write_text("Extra  Ekstr@\n", encoding="utf-8")
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", str(tmp_path))
+        monkeypatch.setattr(cs, "espeak_available", lambda: False)
+
+        keys = cs.espeak_lexicon_keys("en", {})
+
+        # Headwords only, lowercased; directives, comments and the
+        # single-letter "spell this letter" entries are not vocabulary.
+        assert keys.keys == frozenset({"the", "paris", "extra"})
+        assert keys.provenance["engine"] == "espeak-ng"
+        assert keys.provenance["count"] == 3
+        # Machine-independent: an absolute scratch-clone path in the
+        # provenance would land in the committed doc and make it
+        # unreproducible on another machine.
+        assert str(tmp_path) not in keys.provenance["source"]
+
+    def test_no_dictsource_path_means_no_key_set(self, monkeypatch):
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", None)
+        assert cs.espeak_lexicon_keys("en", {}) is None
+
+    def test_unmapped_language_means_no_key_set(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", str(tmp_path))
+        assert cs.espeak_lexicon_keys("xx-unmapped", {}) is None
+
+
+class TestGruutLexiconKeys:
+    def _make_db(self, tmp_path, words):
+        import sqlite3
+        path = tmp_path / "lexicon.db"
+        con = sqlite3.connect(path)
+        con.execute("CREATE TABLE word_phonemes "
+                    "(id INTEGER, word TEXT, pron_order INTEGER, "
+                    "phonemes TEXT, role TEXT)")
+        for i, word in enumerate(words):
+            con.execute("INSERT INTO word_phonemes VALUES (?,?,?,?,?)",
+                        (i, word, 0, "x", ""))
+        con.commit()
+        con.close()
+        return path
+
+    def test_extracts_word_column_from_lexicon_db(self, monkeypatch, tmp_path):
+        self._make_db(tmp_path, ["the", "the", "Paris"])
+        monkeypatch.setitem(
+            sys.modules, "gruut_lang_en",
+            _fake_module("gruut_lang_en",
+                          __file__=str(tmp_path / "__init__.py")))
+
+        keys = cs.gruut_lexicon_keys("en-us", {})
+
+        assert keys.keys == frozenset({"the", "paris"})
+        assert keys.provenance["engine"] == "gruut"
+
+    def test_missing_language_package_means_no_key_set(self, monkeypatch):
+        monkeypatch.setitem(sys.modules, "gruut_lang_zz", None)
+        assert cs.gruut_lexicon_keys("zz", {}) is None
+
+
+class TestTugaphoneLexiconKeys:
+    def test_extracts_tugalex_headwords_for_the_lects_region(
+            self, monkeypatch):
+        class FakeLexicon:
+            def get_ipa_map(self, region):
+                assert region == "lbx"
+                return {"Casa": "ˈka·zɐ", "pão": "ˈpɐ̃w"}
+
+        monkeypatch.setitem(sys.modules, "tugalex",
+                            _fake_module("tugalex", TugaLexicon=FakeLexicon))
+        monkeypatch.setitem(
+            sys.modules, "tugaphone.registry",
+            _fake_module("tugaphone.registry",
+                          resolve_lect=lambda lang: "pt-PT",
+                          lexicon_region=lambda lect: "lbx"))
+
+        keys = cs.tugaphone_lexicon_keys("pt-PT", {"tugaphone": "pt-PT"})
+
+        # Matched on o2i's OWN lexicon key (NFC + language-aware lower) —
+        # tugalex entries are consumed through register_lexicon, so a
+        # case-sensitive match would readmit every capitalised headword.
+        assert "casa" in keys.keys
+        assert "pão" in keys.keys
+        assert keys.provenance["count"] == 2
+
+    def test_lect_without_a_region_has_no_key_set(self, monkeypatch):
+        monkeypatch.setitem(sys.modules, "tugalex",
+                            _fake_module("tugalex", TugaLexicon=object))
+        monkeypatch.setitem(
+            sys.modules, "tugaphone.registry",
+            _fake_module("tugaphone.registry",
+                          resolve_lect=lambda lang: "pt-XX",
+                          lexicon_region=lambda lect: None))
+        assert cs.tugaphone_lexicon_keys("pt-XX", {"tugaphone": "pt-XX"}) is None
+
+
+class TestArbtokStockLexiconKeys:
+    def _install(self, monkeypatch, stems, dialect, source_path="/tmp/x.tsv"):
+        class FakeStem:
+            entries = stems
+
+        class FakeDialect:
+            def __init__(self, lang):
+                self.lang = lang
+
+            @property
+            def entries(self):
+                return dialect
+
+        monkeypatch.setitem(
+            sys.modules, "arbtok.lexicon",
+            _fake_module("arbtok.lexicon",
+                          DEFAULT_LEXICON="hf://Org/repo/ar-stems.tsv",
+                          StemLexicon=FakeStem,
+                          resolve_source=lambda src: source_path))
+        monkeypatch.setitem(
+            sys.modules, "arbtok.dialect_lexicon",
+            _fake_module("arbtok.dialect_lexicon", DialectLexicon=FakeDialect))
+
+    def test_unions_stem_and_dialect_lexicons_and_records_revision(
+            self, monkeypatch):
+        self._install(
+            monkeypatch,
+            stems={"كتاب": "كِتَاب"},
+            dialect={"كي": "كِي"},
+            source_path="/cache/hub/datasets--Org--repo/snapshots/deadbeef/"
+                        "ar-stems.tsv")
+
+        keys = cs.arbtok_stock_lexicon_keys("ar", {"arbtok": "ar-MA"})
+
+        assert keys.keys == frozenset({"كتاب", "كي"})
+        assert keys.provenance["revision"] == "deadbeef"
+        assert "ar-MA" in keys.provenance["source"]
+
+    def test_unmapped_language_has_no_key_set(self, monkeypatch):
+        assert cs.arbtok_stock_lexicon_keys("fr", {"arbtok": None}) is None
+
+
+class TestO2iLexLexiconKeys:
+    def test_reads_the_registered_overlays_own_words(
+            self, monkeypatch, tmp_path):
+        tsv = tmp_path / "en.tsv"
+        tsv.write_text("The\tðə\nParis\tˈpæɹɪs\n", encoding="utf-8")
+        monkeypatch.setattr(cs, "build_espeak_lexicon_tsv",
+                             lambda lang: str(tsv))
+
+        keys = cs.o2i_lex_lexicon_keys("en", {})
+
+        # o2i participates symmetrically: its own overlay is filtered out
+        # of the residual gold like everyone else's lexicon.
+        assert keys.keys == frozenset({"the", "paris"})
+
+    def test_absent_overlay_has_no_key_set(self, monkeypatch):
+        monkeypatch.setattr(cs, "build_espeak_lexicon_tsv", lambda lang: None)
+        assert cs.o2i_lex_lexicon_keys("en", {}) is None
+
+
+class TestNoLexiconEngines:
+    def test_lattice_only_engines_declare_an_empty_key_set(self):
+        keys = cs._no_lexicon_keys("pt-PT", {})
+        assert keys.keys == frozenset()
+        assert keys.provenance["count"] == 0
+
+    def test_hf_revision_of_non_hf_path_is_none(self):
+        assert cs._hf_revision_of("/data/local/ar-stems.tsv") is None
+
+
+class TestLexiconKeysCaching:
+    def test_second_call_reads_the_cache_instead_of_re_extracting(
+            self, monkeypatch, tmp_path):
+        monkeypatch.setattr(cs, "LEXICON_KEY_CACHE_DIR", str(tmp_path))
+        calls = []
+
+        def extractor(lang, cfg):
+            calls.append(lang)
+            return cs.LexiconKeys(frozenset({"casa"}), {
+                "engine": "fake", "source": "fixture", "version": "1.2.3",
+                "count": 1, "normalization": "NFC + lowercase"})
+
+        monkeypatch.setattr(cs, "_fixture_keys", extractor, raising=False)
+        spec = cs.LexiconTierEngine("espeak", "fake (stock)",
+                                     "_fixture_keys", "_nfc_lower_keyed")
+
+        first = cs.lexicon_keys_for(spec, "pt-PT", {})
+        second = cs.lexicon_keys_for(spec, "pt-PT", {})
+
+        assert calls == ["pt-PT"]
+        assert first.keys == second.keys == frozenset({"casa"})
+        # Provenance survives the round trip — a published tier number must
+        # be able to name the exact lexicon version it was filtered against.
+        assert second.provenance["version"] == "1.2.3"
+
+    def test_absent_source_is_not_cached_as_an_empty_lexicon(
+            self, monkeypatch, tmp_path):
+        monkeypatch.setattr(cs, "LEXICON_KEY_CACHE_DIR", str(tmp_path))
+        monkeypatch.setattr(cs, "_fixture_keys", lambda lang, cfg: None,
+                             raising=False)
+        spec = cs.LexiconTierEngine("espeak", "fake (stock)",
+                                     "_fixture_keys", "_nfc_lower_keyed")
+
+        assert cs.lexicon_keys_for(spec, "pt-PT", {}) is None
+        assert not list(tmp_path.iterdir())
+
+
+def _tier_fixture(monkeypatch, tmp_path, keys_by_engine, words,
+                  results=None, min_gold=None):
+    """Wire a two-engine tier over *words* with fixed lexicon key sets."""
+    monkeypatch.setattr(cs, "LEXICON_KEY_CACHE_DIR", str(tmp_path))
+    specs = []
+    for i, (engine, keyset) in enumerate(keys_by_engine.items()):
+        name = f"_fixture_keys_{i}"
+        monkeypatch.setattr(
+            cs, name,
+            lambda lang, cfg, keyset=keyset: cs.LexiconKeys(
+                frozenset(keyset),
+                {"engine": engine, "source": f"fixture:{engine}",
+                 "version": "0", "count": len(keyset),
+                 "normalization": "NFC + lowercase"}),
+            raising=False)
+        specs.append(cs.LexiconTierEngine(engine, f"{engine} (stock)", name,
+                                           "_nfc_lower_keyed"))
+    monkeypatch.setattr(cs, "LEXICON_TIER_ENGINES", specs)
+    if min_gold is not None:
+        monkeypatch.setattr(cs, "LEXICON_TIER_MIN_GOLD", min_gold)
+    if results is None:
+        results = {s.key: [(w, [w]) for w in words] for s in specs}
+    return cs._lexicon_tier_for_row("xx", {}, words, results)
+
+
+class TestLexiconTierUnionFilter:
+    def test_gold_is_filtered_against_the_union_of_every_lexicon(
+            self, monkeypatch, tmp_path):
+        words = ["alpha", "beta", "gamma", "delta"]
+        tier = _tier_fixture(
+            monkeypatch, tmp_path,
+            {"espeak": {"alpha"}, "gruut": {"beta"}}, words, min_gold=1)
+
+        # UNION, not intersection: a word in ANY compared lexicon is a
+        # lookup for that engine and must not be scored for anyone.
+        assert tier["filtered_n"] == 2
+        assert tier["lexicon_hits"] == {"espeak": 1, "gruut": 1}
+        assert tier["n"] == 4
+
+    def test_per_is_computed_on_the_residual_gold_only(
+            self, monkeypatch, tmp_path):
+        words = ["alpha", "beta"]
+        # espeak is perfect on the word its own lexicon covers and wrong on
+        # the residual one: a tier that failed to filter would report 0.0.
+        results = {
+            "espeak": [("alpha", ["alpha"]), ("xxxx", ["beta"])],
+            "gruut": [("zzzzz", ["alpha"]), ("beta", ["beta"])],
+        }
+        tier = _tier_fixture(monkeypatch, tmp_path,
+                             {"espeak": {"alpha"}, "gruut": set()},
+                             words, results=results, min_gold=1)
+
+        assert tier["filtered_n"] == 1
+        assert tier["per"]["espeak"] > 0.0
+        assert tier["per"]["gruut"] == 0.0
+        assert cs._lexicon_tier_winner(tier) == "gruut (stock)"
+
+
+class TestLexiconTierResidualGuard:
+    def test_row_below_the_minimum_is_marked_insufficient_not_ranked(
+            self, monkeypatch, tmp_path):
+        words = [f"w{i}" for i in range(60)]
+        tier = _tier_fixture(monkeypatch, tmp_path,
+                             {"espeak": set(words[:20]), "gruut": set()},
+                             words)
+
+        assert tier["filtered_n"] == 40
+        assert tier["insufficient_residual_gold"] is True
+        assert tier["per"] == {}
+        assert cs._lexicon_tier_winner(tier) == "insufficient residual gold (< 50)"
+
+    def test_row_at_the_minimum_is_ranked(self, monkeypatch, tmp_path):
+        words = [f"w{i}" for i in range(60)]
+        tier = _tier_fixture(monkeypatch, tmp_path,
+                             {"espeak": set(words[:10]), "gruut": set()},
+                             words)
+
+        assert tier["filtered_n"] == 50
+        assert tier["insufficient_residual_gold"] is False
+        assert tier["per"]["espeak"] == 0.0
+
+
+class TestLexiconTierEngineGate:
+    def test_one_engine_is_not_a_comparison(self, monkeypatch, tmp_path):
+        assert _tier_fixture(monkeypatch, tmp_path, {"espeak": set()},
+                             ["alpha"], min_gold=1) is None
+
+    def test_engine_whose_lexicon_cannot_be_enumerated_is_dropped(
+            self, monkeypatch, tmp_path):
+        # The bug this guards: keeping such an engine in the tier with an
+        # empty filter would publish its raw dictionary-lookup number as if
+        # it had generalized.
+        monkeypatch.setattr(cs, "LEXICON_KEY_CACHE_DIR", str(tmp_path))
+        monkeypatch.setattr(cs, "_fixture_none", lambda lang, cfg: None,
+                             raising=False)
+        monkeypatch.setattr(
+            cs, "_fixture_some",
+            lambda lang, cfg: cs.LexiconKeys(frozenset(), {
+                "engine": "g", "source": "s", "version": "0", "count": 0,
+                "normalization": "NFC + lowercase"}),
+            raising=False)
+        monkeypatch.setattr(cs, "LEXICON_TIER_ENGINES", [
+            cs.LexiconTierEngine("espeak", "espeak (stock)", "_fixture_none",
+                                  "_nfc_lower_keyed"),
+            cs.LexiconTierEngine("gruut", "gruut (stock)", "_fixture_some",
+                                  "_nfc_lower_keyed"),
+        ])
+        words = ["alpha"]
+        results = {"espeak": [("alpha", ["alpha"])],
+                   "gruut": [("alpha", ["alpha"])]}
+
+        # Only gruut survives -> fewer than two engines -> no tier at all.
+        assert cs._lexicon_tier_for_row("xx", {}, words, results) is None
+
+
+class TestLexiconTierRendering:
+    def _rows(self):
+        return [
+            {"lang": "pt-PT", "dataset": "ep_dialects", "n": 100,
+             "o2i_per": 0.10, "o2i_n": 100, "o2i_same_source": False,
+             "espeak_per": 0.20, "espeak_n": 100,
+             "espeak_same_source": False,
+             "espeak_rules_per": 0.30, "espeak_rules_n": 100,
+             "espeak_rules_same_source": False,
+             "tugaphone_per": 0.05, "tugaphone_n": 100,
+             "tugaphone_same_source": False,
+             "provenance_tier": "expert-human", "harness_version": "1.0",
+             "limit": "full",
+             "lexicon_tier": {
+                 "engines": ["espeak", "tugaphone"],
+                 "n": 100, "filtered_n": 70,
+                 "insufficient_residual_gold": False, "min_gold": 50,
+                 "lexicon_hits": {"espeak": 10, "tugaphone": 25},
+                 "lexicon_sizes": {"espeak": 500, "tugaphone": 90000},
+                 "provenance": {
+                     "espeak": {"engine": "espeak-ng", "source": "dictsource",
+                                 "version": "1.52.0", "count": 500,
+                                 "normalization": "NFC + lowercase"},
+                     "tugaphone": {"engine": "tugaphone (tugalex)",
+                                    "source": "tugalex", "version": "0.9",
+                                    "count": 90000,
+                                    "normalization": "o2i lexicon key"},
+                 },
+                 "per": {"espeak": 0.2500, "tugaphone": 0.1500},
+                 "per_n": {"espeak": 70, "tugaphone": 70},
+             }},
+        ]
+
+    def test_tier_has_its_own_labelled_section_and_winner(self):
+        lines = cs._lexicon_backed_tier_lines(self._rows())
+        text = "\n".join(lines)
+
+        assert ("## Lexicon-backed tier — gold filtered against all "
+                "compared lexicons") in text
+        assert "| 100 | 70 |" in text
+        assert "tugaphone (stock)" in text
+        assert "10 (of 500 entries)" in text
+        assert "25 (of 90000 entries)" in text
+        assert "version `1.52.0`" in text
+
+    def test_tier_never_leaks_into_the_primary_leaderboard(
+            self, monkeypatch, tmp_path):
+        rows = self._rows()
+        monkeypatch.setitem(cs.LANGS, "pt-PT",
+                            {"dataset": ("ep_dialects", "pt-PT")})
+        md_path = tmp_path / "comparison.md"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON",
+                             str(tmp_path / "comparison.json"))
+
+        cs.write_comparison(rows, catalan_voices=None)
+        text = md_path.read_text(encoding="utf-8")
+
+        leaderboard = text.split("## Leaderboard", 1)[1].split("##", 1)[0]
+        # The primary ranking is lexicon-FREE: espeak ranks as its
+        # rules-only twin and no "(stock)" tier label may appear.
+        assert "(stock)" not in leaderboard
+        assert "o2i #1 (beats espeak rules-only)" in leaderboard
+        # And the tier section sits below, on its own.
+        assert text.index("## Leaderboard") < text.index(
+            "## Lexicon-backed tier")
+
+    def test_winner_column_ignores_the_tier_block_entirely(self):
+        row = self._rows()[0]
+        # tugaphone wins the tier (0.15) but is lexicon-backed, so the
+        # primary Winner column must still rank the lexicon-free world.
+        assert cs._lexicon_tier_winner(row["lexicon_tier"]) == \
+            "tugaphone (stock)"
+        assert cs._winner(row) == "o2i"
+
+    def test_no_tier_rows_render_no_section(self):
+        assert cs._lexicon_backed_tier_lines(
+            [{"lang": "fr", "dataset": "wikipron", "lexicon_tier": None}]) == []
+
+
+class TestEspeakLexiconKeysVoiceFallback:
+    def test_row_without_a_dictsource_table_entry_uses_its_espeak_voice(
+            self, monkeypatch, tmp_path):
+        (tmp_path / "pt_list").write_text("casa  kaz@\n", encoding="utf-8")
+        monkeypatch.setattr(cs, "ESPEAK_DICTSOURCE_PATH", str(tmp_path))
+        monkeypatch.setattr(cs, "espeak_available", lambda: False)
+
+        # pt-PT is not in DICTSOURCE_LANG; dropping it from the tier over
+        # that would leave tugaphone unopposed on the only language where
+        # two lexicon-carrying engines actually meet.
+        keys = cs.espeak_lexicon_keys("pt-PT", {"espeak": "pt"})
+
+        assert keys.keys == frozenset({"casa"})
+
+
+class TestLexiconTierExtractionIsGated:
+    def test_a_row_that_cannot_have_a_tier_extracts_nothing(
+            self, monkeypatch, tmp_path):
+        # arbtok's extraction fetches a 145k-entry lexicon over the
+        # network; a single-engine row must never pay that cost.
+        monkeypatch.setattr(cs, "LEXICON_KEY_CACHE_DIR", str(tmp_path))
+        calls = []
+        monkeypatch.setattr(cs, "_fixture_counted",
+                             lambda lang, cfg: calls.append(lang),
+                             raising=False)
+        monkeypatch.setattr(cs, "LEXICON_TIER_ENGINES", [
+            cs.LexiconTierEngine("arbtok_stock", "arbtok (stock)",
+                                  "_fixture_counted", "_arbtok_lexicon_key"),
+            cs.LexiconTierEngine("espeak", "espeak (stock)",
+                                  "_fixture_counted", "_nfc_lower_keyed"),
+        ])
+
+        assert cs._lexicon_tier_for_row(
+            "ar", {}, ["كتاب"], {"arbtok_stock": [("k", ["k"])]}) is None
+        assert calls == []
+
+
+class TestLexiconTierSentenceGold:
+    def test_a_sentence_containing_a_looked_up_word_is_filtered_out(
+            self, monkeypatch, tmp_path):
+        words = ["bom dia como está", "o gato dorme", "chove muito hoje"]
+        tier = _tier_fixture(monkeypatch, tmp_path,
+                             {"espeak": {"dia"}, "tugaphone": {"gato"}},
+                             words, min_gold=1)
+
+        # A lexicon is consulted per WORD inside a sentence: matching only
+        # whole entries would score both sentences as lexicon-free.
+        assert tier["filtered_n"] == 1
+        assert tier["lexicon_hits"] == {"espeak": 1, "tugaphone": 1}
+
+
+class TestO2iLexOverlayIsActuallyConsulted:
+    """C1 regression: the ``o2i_lex`` overlay was registered under the
+    CONFIGURED code while ``G2P._override_for`` looks it up under the
+    RESOLVED lect (``G2P("en").lang == "en-GB"``), so the overlay was
+    never consulted and every published ``o2i_lex`` number was silently
+    plain o2i."""
+
+    def test_o2i_lex_differs_from_o2i_when_the_overlay_covers_gold(
+            self, monkeypatch, tmp_path):
+        pairs = [("colonel", "ˈkɜːnəl")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake_en": (lambda lang, limit: pairs, ["en"])})
+        monkeypatch.setitem(
+            cs.LANGS, "en",
+            {"dataset": ("fake_en", "en"), "espeak": None, "epitran": None,
+             "gruut": None})
+
+        registered = {}
+
+        class AliasEngine:
+            """A G2P whose configured code ("en") resolves to "en-GB" —
+            the exact alias shape the bug hid in."""
+
+            lang = "en-GB"
+
+            def transcribe_word(self, word):
+                entry = registered.get(self.lang, {}).get(word)
+                return entry if entry is not None else "WRONG"
+
+        def on_register(code, source):
+            registered[code] = {"colonel": "ˈkɜːnəl"}
+
+        install_fake_o2i(monkeypatch, AliasEngine(), on_register=on_register,
+                          on_clear=lambda: registered.clear())
+        tsv = tmp_path / "en.tsv"
+        tsv.write_text("colonel\tˈkɜːnəl\n", encoding="utf-8")
+        monkeypatch.setattr(cs, "build_espeak_lexicon_tsv",
+                             lambda lang: str(tsv))
+
+        row = cs.compare_lang("en", limit=10)[0]
+
+        # Registered under the RESOLVED lect, so the overlay is reachable.
+        assert row["o2i_lex_per"] == 0.0
+        assert row["o2i_per"] > 0.0
+        assert row["o2i_lex_per"] != row["o2i_per"]
+
+    def test_lexicon_code_is_the_engines_resolved_lect(self):
+        class Engine:
+            lang = "en-GB"
+
+        assert cs._o2i_lexicon_code(Engine(), "en") == "en-GB"
+        assert cs._o2i_lexicon_code(object(), "en") == "en"
+
+
+class TestEspeakWordlistLeadingConditionals:
+    """C2 regression: espeak-ng writes a conditional BEFORE the headword
+    (``?3 accursed ...``), and skipping those lines dropped 288 English /
+    210 Portuguese headwords straight back into the tier's residual gold
+    as words espeak-ng really does look up."""
+
+    def test_a_conditional_entry_keeps_its_headword(
+            self, monkeypatch, tmp_path):
+        (tmp_path / "en_list").write_text(
+            "?3 accursed   @k3:sId\n"
+            "?!2 pretence  prI'tEns\n"
+            "$nounf        directive\n"
+            "_lig          ligature\n"
+            "plain         pleIn\n",
+            encoding="utf-8")
+
+        words = cs._parse_espeak_wordlist_words(str(tmp_path), "en")
+
+        assert words == ["accursed", "plain", "pretence"]
+
+
+class TestLexiconKeysFingerprintCoversEveryVersion:
+    """C3 regression: a version left out of the fingerprint reads a stale
+    key set back AND publishes the stale version string beside it."""
+
+    def _fingerprint(self):
+        spec = cs.LexiconTierEngine("gruut", "gruut (stock)",
+                                     "gruut_lexicon_keys", "_nfc_lower_keyed")
+        return cs._lexicon_keys_fingerprint(spec, "en")
+
+    def test_bumping_the_gruut_package_version_changes_the_fingerprint(
+            self, monkeypatch):
+        before = self._fingerprint()
+        real = cs._installed_version
+        monkeypatch.setattr(
+            cs, "_installed_version",
+            lambda dist: "99.0.0" if dist == "gruut_lang_en" else real(dist))
+        assert self._fingerprint() != before
+
+    def test_bumping_the_espeak_version_changes_the_fingerprint(
+            self, monkeypatch):
+        before = self._fingerprint()
+        monkeypatch.setattr(cs, "_espeak_version", lambda: "99.99.99")
+        assert self._fingerprint() != before
+
+
+class TestLexiconCoversPunctuatedSentences:
+    """C4 regression: splitting a sentence on whitespace alone left
+    ``Olá,`` attached to its comma, which matches no lexicon key."""
+
+    def test_a_punctuated_sentence_word_still_counts_as_covered(
+            self, monkeypatch, tmp_path):
+        words = ["Olá, amigos", "chove muito"]
+        tier = _tier_fixture(monkeypatch, tmp_path,
+                             {"espeak": {"olá"}, "tugaphone": set()},
+                             words, min_gold=1)
+
+        assert tier["filtered_n"] == 1
+        assert tier["lexicon_hits"]["espeak"] == 1
+
+
+class TestO2iLexProvenanceNamesTheRunningTree:
+    """C5 regression: the provenance recorded the INSTALLED wheel's
+    version, not the tree the run actually imported."""
+
+    def test_provenance_version_is_the_imported_modules_version(
+            self, monkeypatch, tmp_path):
+        tsv = tmp_path / "en.tsv"
+        tsv.write_text("the\tðə\n", encoding="utf-8")
+        monkeypatch.setattr(cs, "build_espeak_lexicon_tsv",
+                             lambda lang: str(tsv))
+        monkeypatch.setattr(cs, "_running_o2i_version", lambda: "9.9.9-tree")
+        monkeypatch.setattr(cs, "_installed_version",
+                             lambda dist: "0.0.1-wheel")
+
+        keys = cs.o2i_lex_lexicon_keys("en", {})
+
+        assert keys.provenance["version"] == "9.9.9-tree"

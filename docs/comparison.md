@@ -60,7 +60,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi rules per language variety — that several TigreGotico projects build directly on top of, adding what the shared lattice deliberately leaves to the caller (lexicons, diacritization, dialect selection, normalization). These are FIRST-CLASS to this board, not "other G2P systems" being compared against o2i as competitors:
 
-*Versions pinned: the family rows above were produced with arbtok 0.0.0a57, tugaphone 1.0.0a2, g2p_barranquenho 0.1.2a3, mwl_phonemizer 2.1.0a2 — every one of these exact versions is published on PyPI as a pre-release alpha (verified with `pip index versions <pkg> --pre`), so the number is reproducible from a plain `pip install --pre <pkg>==<version>` even on generating environments that installed a local/editable checkout at the same version instead.*
+*Versions pinned: the family rows above were produced with arbtok 0.0.0a57, tugaphone 1.2.1a1, g2p_barranquenho 0.1.2a3, mwl_phonemizer 2.1.0a2 — every one of these exact versions is published on PyPI as a pre-release alpha (verified with `pip index versions <pkg> --pre`), so the number is reproducible from a plain `pip install --pre <pkg>==<version>` even on generating environments that installed a local/editable checkout at the same version instead.*
 
 - **[arbtok](https://github.com/TigreGotico/arbtok)** — adds Arabic diacritization, dialect lexicons, nativized loanwords, and code-switch handling on top of the shared `ar`/`arb` lattice (the RANKED `arbtok` column below runs with both bundled lexicons off for a fair lexicon-free comparison — see `arbtok (lexicon)` for the full-featured stock number).
 - **[tugaphone](https://github.com/TigreGotico/tugaphone)** — adds the curated `tugalex` pronunciation lexicon, sense-based homograph marking, and cross-dialect contact-language handling on top of the Portuguese-family lattice.
@@ -162,7 +162,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| wikipron | 80995 | 0.2927 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
+| wikipron | 80995 | 0.2917 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
 
 ### en-GB (British English (RP))
 
@@ -385,7 +385,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 **Ranking policy: lexicon-free only.** Anything with a lexicon does not count as a winner. The Winner column and the leaderboard rank over LEXICON-FREE values only: each engine's rules-only variant where one exists (`espeak_rules`, `gruut_rules`), its stock value where the engine is audited lexicon-free (epitran's rule/mapping tables, pycotovia's closed function-word stress table, africa-g2p's rule-based G2P), and ahotts-g2p's stock value — its HDIC dictionary hits only 1.5%/2.6% of the `eu`/`hitz_basque_ipa` gold, an explicit documented exception, not an oversight (see the per-engine disposition above). A lexicon-BACKED stock value — plain `espeak`, plain `gruut`, and (once it lands) a `transphone`-style tokenizer column — is EXCLUDED from ranking entirely, on the fair-comparison principle that o2i, by hard rule, ships no bundled word-exception lexicon of its own: ranking o2i's rules against another system's rules-plus-dictionary is not a fair fight (see the module docstring's "Fair-comparison 2x2" section, which this policy generalizes from a side table into the primary ranking). This is a deliberate ranking policy, not hidden data — the lexicon-backed columns stay right there on the board, marked `(lexicon)`, for anyone who wants the dictionary-included picture; the leaderboard just also names, as an informational aside, whenever a lexicon-backed value would have scored lowest of all (`espeak with its lexicon scores N — informational`) — visible, never counted.
 
-**Symmetric alternative (not implemented).** The fair-comparison principle cuts both ways: a lexicon-BACKED ranking tier is equally possible, PROVIDED o2i is given the same per-word lexicon the competitor ships (exactly what `o2i_lex` in the "Fair-comparison 2x2" section below already does for espeak-ng's dictionary, on the languages that 2x2 covers). That tier is not wired into the Winner column or leaderboard today — extending it to every lexicon-backed system/language pair on this board, and rendering it as a second ranked tier rather than a side table, is future work.
+**Symmetric alternative: the lexicon-backed tier.** The fair-comparison principle cuts both ways, so the board also carries a SECOND ranking where every engine keeps its lexicon on and o2i takes part on the same terms (as `o2i_lex`, o2i plus espeak-ng's own word list) — see "Lexicon-backed tier" below. It is scored on gold FILTERED against the union of every compared engine's lexicon, so it measures generalization beyond those lexicons rather than test-set lookup. It is a separate table with its own winner column and never feeds this leaderboard or the Winner column above.
 
 **Winner column.** The lowest PER on the row IN THE LEXICON-FREE WORLD (see "Ranking policy" above), by name; ties (within 0.001 PER) name every system tied for best rather than a bare `tie`. `same-source` cells never win — they are not real comparisons. When even the best PER on a row exceeds 0.8, the cell says "no system is usable on this gold" instead of naming a misleadingly precise "winner" among systems that are all failing it.
 
@@ -487,7 +487,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | de | wikipron | 53011 | 0.2103 | n/a | 0.2126 | 0.2132 |
 | el | vox_communis | 5994 | 0.2672 | n/a | 0.3347 | 0.3247 |
 | el | wikipron | 19108 | 0.0330 | n/a | 0.0785 | 0.0765 |
-| en | wikipron | 80995 | 0.2927 | n/a | 0.2081 | 0.2136 |
+| en | wikipron | 80995 | 0.2917 | 0.2849 | 0.2081 | 0.2136 |
 | en-GB | wikipron | 81545 | 0.2605 | n/a | 0.1472 | 0.1540 |
 | en-US | cmudict | 126052 | 0.4268 | n/a | 0.3048 | 0.3104 |
 | en-US | ipadict | 125927 | 0.4576 | n/a | 0.2954 | 0.3020 |
@@ -531,6 +531,34 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the SAME dictionary is worth bolted onto o2i's rules. `o2i` vs `espeak_rules` is the fairest rules-only comparison; `o2i_lex` vs `espeak` is the fairest dictionary-included comparison.
 
 **Licensing**: espeak-ng's dictsource word lists and the IPA derived from them are GPL. They are used here ONLY at comparison runtime — fetched/built into a local scratch cache (`$ESPEAK_RULES_DATA_PATH`, `.o2i_lex_cache/`), never committed to this repository and never shipped in orthography2ipa's own package or lexicons.
+
+## Lexicon-backed tier — gold filtered against all compared lexicons
+
+This is a SECOND, separate ranking, and it never feeds the leaderboard or the Winner column above. Here every engine runs in its STOCK configuration — lexicons ON, exactly as a caller gets it with no arguments — and o2i takes part on the same terms, as `o2i_lex` (o2i plus espeak-ng's own word list). Ranking stock engines on the raw gold would measure nothing but dictionary size: a gold word that sits in an engine's lexicon is a lookup, not a prediction. So the gold is FILTERED first — every entry present in ANY compared engine's lexicon for that language is removed, the same words removed for every engine — and what remains is scored. The tier therefore measures how well each stock system GENERALIZES beyond the lexicons it ships, not how much of this particular test set it already knows. `N` is the original gold size, `filtered N` what survived the union filter; below 50 residual words a row is reported as insufficient rather than ranked on noise.
+
+| Language | Gold | N | filtered N | o2i + espeak lexicon | espeak-ng (stock) | gruut (stock) | tugaphone (stock) | Winner |
+|---|---|---|---|---|---|---|---|---|
+| en (English) | `wikipron` | 80995 | 44126 | 0.3078 | 0.2425 | 0.2529 | n/a | espeak-ng (stock) |
+| pt-PT (European Portuguese) | `ep_dialects` | 30 | 0 | n/a | n/a | n/a | n/a | insufficient residual gold (< 50) |
+| pt-PT (European Portuguese) | `portuguese_unified` | 3000 | 1952 | n/a | 0.3685 | n/a | 0.2202 | tugaphone (stock) |
+| pt-PT (European Portuguese) | `wikipron` | 2272 | 1788 | n/a | 0.2352 | n/a | 0.1400 | tugaphone (stock) |
+
+**What the filter removed.** Per row, how many of the gold's words each compared engine's lexicon already contained (the union of these is what was filtered out), and how large that lexicon is:
+
+| Language | Gold | o2i + espeak lexicon | espeak-ng (stock) | gruut (stock) | tugaphone (stock) |
+|---|---|---|---|---|---|
+| en (English) | `wikipron` | 3527 (of 4716 entries) | 3527 (of 4716 entries) | 36472 (of 124392 entries) | n/a |
+| pt-PT (European Portuguese) | `ep_dialects` | n/a | 23 (of 1692 entries) | n/a | 30 (of 53150 entries) |
+| pt-PT (European Portuguese) | `portuguese_unified` | n/a | 15 (of 1692 entries) | n/a | 1044 (of 53150 entries) |
+| pt-PT (European Portuguese) | `wikipron` | n/a | 57 (of 1692 entries) | n/a | 434 (of 53150 entries) |
+
+**Where each key set came from.** Every lexicon is enumerated from the engine's OWN lookup data, and each gold word is matched against it with the same normalization that engine applies at lookup time (an over-narrow match would silently readmit looked-up words into the residual gold):
+
+- **espeak-ng (stock) — espeak-ng dictsource en_(list|listx|extra)** — version `1.52.0`, matched as NFC + lowercase.
+- **espeak-ng (stock) — espeak-ng dictsource pt_(list|listx|extra)** — version `1.52.0`, matched as NFC + lowercase.
+- **gruut (stock) — gruut_lang_en/lexicon.db (word_phonemes.word)** — version `2.0.1`, matched as NFC + lowercase.
+- **o2i + espeak lexicon — .o2i_lex_cache/en.tsv** — version `7.70.1a2`, matched as o2i lexicon key (NFC + language-aware lower).
+- **tugaphone (stock) — tugalex.TugaLexicon().get_ipa_map(region='lbx')** — version `2.0.1a1`, matched as o2i lexicon key (NFC + language-aware lower).
 
 ## Catalan dialects vs espeak (BSC)
 
