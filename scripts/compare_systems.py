@@ -4,7 +4,7 @@
 Runs the SAME gold word/IPA pairs used by ``scripts/benchmark.py`` through
 several systems — orthography2ipa, espeak-ng, epitran, gruut, pycotovia,
 ahotts-g2p, africa-g2p, and the o2i-downstream family (arbtok, tugaphone,
-g2p_barranquenho, mwl_phonemizer) — and scores every system with the exact
+g2p_barranquenho, mwl_phonemizer, udarnik) — and scores every system with the exact
 same normalization
 and PER metric (``benchmark.normalize`` / ``benchmark.levenshtein``), so
 the numbers are directly comparable to the committed scoreboard.
@@ -67,8 +67,23 @@ comparison target is missing.
   Wrapped via ``AfricaPipeline(lang=<iso639_3>, output="ipa").run(word)``;
   the library's own ``africa_g2p.loader.registry()`` is queried at import
   time so the set of covered codes is never hand-enumerated here.
+- **udarnik**: optional Python library covering Russian (``ru``), the
+  o2i-downstream engine that supplies the lexical stress the ``ru`` spec
+  says it cannot find. Needs ``stressonnx`` and its Russian accentuation
+  model, which downloads into the standard Hugging Face cache on first
+  use; call the column's plugin once before a timed run if that matters.
+  Not part of the ``[compare]`` extra while it is unpublished — install
+  it from a checkout the same way ``africa-g2p`` is installed above.
+  Imported lazily; a missing install degrades the ``udarnik`` column to
+  ``n/a``, and so does a missing stress model — but only because the
+  column builds its OWN stressonnx injector with ``fallback=False``.
+  udarnik's ``strict_stress=True`` does NOT suffice on its own: the
+  injector it would build leaves ``fallback=True``, and stressonnx then
+  swaps in the next backend of the ``ru`` chain instead of raising, so
+  strict never fires and a substitute accentuator's output would be
+  published under udarnik's name. See ``udarnik_transcribe``.
 - **o2i-downstream family** (arbtok, tugaphone, g2p_barranquenho,
-  mwl_phonemizer): TigreGotico repos built directly on this repo's own
+  mwl_phonemizer, udarnik): TigreGotico repos built directly on this repo's own
   ``orthography2ipa.G2P`` lattice, imported lazily and scored under the
   SAME lazy-import + n/a-degrade discipline as every optional system
   above. Because they share o2i's lattice, they ALSO share o2i's
@@ -78,7 +93,8 @@ comparison target is missing.
   audit — arbtok's tiny closed-class ``WORD_EXCEPTIONS``, tugaphone's
   always-on ``tugalex`` lexicon excluded from ranking like stock
   ``espeak``, g2p_barranquenho and mwl_phonemizer both lexicon-free by
-  default). They are wired in anyway because a family member can still
+  default, udarnik with no word->IPA lexicon but a disclosed accent/
+  omograph dictionary inside its stressonnx backend). They are wired in anyway because a family member can still
   be a real comparison point against a gold that is genuinely
   independent of o2i (e.g. mwl_phonemizer vs. the native-speaker
   ``mirandese_g2p`` gold, or arbtok vs. the diacritized-WikiPron ``ar``
@@ -346,7 +362,7 @@ LANGS: Dict[str, dict] = {
     "sv": {"dataset": ("wikipron", "sv"), "espeak": "sv",
            "epitran": "swe-Latn", "gruut": "sv"},
     "ru": {"dataset": ("wikipron", "ru"), "espeak": "ru",
-           "epitran": "rus-Cyrl", "gruut": "ru"},
+           "epitran": "rus-Cyrl", "gruut": "ru", "udarnik": "ru"},
     "pl": {"dataset": ("wikipron", "pl"), "espeak": "pl",
            "epitran": "pol-Latn", "gruut": None},
     "el": {"dataset": ("wikipron", "el"), "espeak": "el",
@@ -935,9 +951,9 @@ def africa_g2p_transcribe(word: str, lang: str) -> Optional[str]:
 
 
 # ─── o2i-downstream family (arbtok, tugaphone, g2p_barranquenho,
-#     mwl_phonemizer) — lazy, optional ────────────────────────────────────────
+#     mwl_phonemizer, udarnik) — lazy, optional ────────────────────────────────────────
 #
-# All four are TigreGotico repos built directly on this repo's own lattice
+# All five are TigreGotico repos built directly on this repo's own lattice
 # (orthography2ipa.G2P), so they are never a truly independent comparison
 # point against o2i-lineage gold — see the ``_O2I_SAME_SOURCE_DATASETS``
 # additions below for exactly which rows that applies to. They are wired in
@@ -1125,6 +1141,77 @@ def barranquenho_transcribe(word: str, lang: str) -> Optional[str]:
     try:
         phones = transcribe(word)
         return "".join(phones) if phones else None
+    except Exception:
+        return None
+
+
+#: One plugin per language, built lazily. ``UdarnikG2PPlugin`` holds the
+#: stressonnx session and an instance-local copy of the o2i spec, so it is
+#: reused rather than rebuilt per word.
+_udarnik_plugin_cache: Dict[str, object] = {}
+
+
+def udarnik_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with udarnik — orthography2ipa's Russian phonology
+    driven by a stressonnx-placed lexical accent — or ``None`` if the
+    library is absent or fails on the word.
+
+    Lexicon disposition: ranked, and effectively lexicon-free with a
+    DISCLOSED exception. ``UdarnikG2PPlugin`` defaults to ``lexicon=None``,
+    so there is no word->IPA layer to turn off the way
+    ``arbtok_transcribe`` turns arbtok's two off. What udarnik adds over
+    bare o2i is a stressonnx accentuator: a PREPROCESSING model that
+    restores orthography Russian does not write (the position of the free
+    lexical stress), not a lookup that answers the transcription. That is
+    the disposition the board already gives arbtok's ONNX diacritizer.
+
+    The exception, measured rather than assumed: the default ``ruaccent``
+    backend is not purely neural. It consults an accent dictionary
+    (110,826 entries) and an omograph dictionary (19,740) BEFORE its
+    models, so a word present there gets a looked-up stress. Against the
+    ``alphacep_ru_book`` gold that is 11.21% of unique words in the accent
+    dictionary and 4.89% in the omograph dictionary (13.94% in either).
+    Those are the SHIPPED dictionary sizes; ruaccent additionally patches
+    in three hardcoded entries at load time (``о``/``О`` and ``коса``),
+    which is why a live ``len()`` reads 110,828 and 19,741.
+    Those dictionaries carry STRESS POSITIONS, not pronunciations — the
+    phonology below the mark is entirely o2i's — so this is the same
+    "effectively lexicon-free, exception documented" treatment the board
+    gives ahotts-g2p, not the lexicon tier. A reviewer who disagrees
+    should move the column, not delete the note.
+
+    Strictness is enforced HERE rather than by asking udarnik for it,
+    because ``strict_stress=True`` alone does NOT guarantee it.
+    ``StressonnxInjector`` leaves ``fallback=True``, and stressonnx's
+    ``_execute`` catches ``ModelDownloadError``/``ModelLoadError`` and
+    walks the ``ru`` chain (``ruaccent`` -> ``silero`` -> ``simple``, all
+    of which cover Russian) without ever raising — so ``strict`` sees no
+    exception and a missing ``ruaccent`` would publish a DIFFERENT
+    accentuator's output under udarnik's name. Building the injector here
+    with ``fallback=False`` is what makes the failure reach ``strict`` and
+    the column read ``n/a``. The backend is deliberately left unpinned
+    (``prefer="best"``): the point is that the chain cannot be crossed
+    SILENTLY, not that one backend is hardcoded into the board.
+    """
+    try:
+        from udarnik import UdarnikG2PPlugin
+        from udarnik.stress import StressonnxInjector
+    except ImportError:
+        return None
+    plugin = _udarnik_plugin_cache.get(lang)
+    if plugin is None:
+        try:
+            plugin = UdarnikG2PPlugin(
+                lang=lang,
+                strict_stress=True,
+                injector=StressonnxInjector(lang=lang, prefer="best",
+                                            fallback=False, strict=True),
+            )
+        except Exception:
+            return None
+        _udarnik_plugin_cache[lang] = plugin
+    try:
+        return plugin.transcribe(word) or None
     except Exception:
         return None
 
@@ -2137,6 +2224,11 @@ def _same_source_flags(dataset_name: str, loader_lang: str) -> Dict[str, bool]:
         # and g2p_barranquenho do — see _O2I_SAME_SOURCE_DATASETS.
         "tugaphone": dataset_name in _O2I_SAME_SOURCE_DATASETS,
         "mwl_phonemizer": dataset_name in _O2I_SAME_SOURCE_DATASETS,
+        # udarnik transcribes THROUGH orthography2ipa.G2P — everything
+        # below the stress mark is o2i's own lattice — so it carries the
+        # same circularity exposure on o2i-lineage golds as the rest of
+        # the family.
+        "udarnik": dataset_name in _O2I_SAME_SOURCE_DATASETS,
     }
 
 
@@ -2286,6 +2378,8 @@ PER_WORD_ENGINES: List[PerWordEngine] = [
                   same_source_key="barranquenho"),
     PerWordEngine("mwl_phonemizer", "mwl_phonemizer", "mwl_transcribe",
                   same_source_key="mwl_phonemizer"),
+    PerWordEngine("udarnik", "udarnik", "udarnik_transcribe",
+                  same_source_key="udarnik"),
 ]
 
 
@@ -2521,7 +2615,7 @@ def _build_row(lang: str, cfg: dict, dataset_name: str, loader_lang: str,
     - five engines carry a ``_version``, and they do NOT all get it the same
       way: ``ahotts_version`` is read from the ``LANGS`` config (it names
       which AhoTTS model generation was scored, not an installed package),
-      while ``arbtok``/``tugaphone``/``barranquenho``/``mwl_phonemizer``
+      while ``arbtok``/``tugaphone``/``barranquenho``/``mwl_phonemizer``/``udarnik``
       read theirs from :func:`_installed_version`. The other engines record
       no version at all;
     - ``arbtok_version`` covers BOTH arbtok columns, since they are one
@@ -2596,6 +2690,10 @@ def _build_row(lang: str, cfg: dict, dataset_name: str, loader_lang: str,
         "mwl_phonemizer_n": n("mwl_phonemizer"),
         "mwl_phonemizer_same_source": same_source["mwl_phonemizer"],
         "mwl_phonemizer_version": version("mwl_phonemizer", "mwl_phonemizer"),
+        "udarnik_per": per("udarnik"),
+        "udarnik_n": n("udarnik"),
+        "udarnik_same_source": same_source["udarnik"],
+        "udarnik_version": version("udarnik", "udarnik"),
         # The lexicon-backed tier lives in ONE nested key, deliberately: it is
         # a SECOND, separately-labelled ranking (stock configs, gold filtered
         # against every compared lexicon — see the tier section above), and
@@ -3050,13 +3148,14 @@ _SYSTEMS: List[Tuple[str, str]] = [
     ("tugaphone", "tugaphone (lexicon)"),
     ("barranquenho", "g2p_barranquenho"),
     ("mwl_phonemizer", "mwl_phonemizer"),
+    ("udarnik", "udarnik"),
 ]
 
 #: Systems whose cell can legitimately read ``same-source`` instead of a
 #: number or ``n/a`` — see ``_cell``.
 _SAME_SOURCE_SYSTEMS = {"o2i", "espeak", "espeak_rules", "epitran", "ahotts",
                          "gruut", "arbtok", "arbtok_stock", "barranquenho",
-                         "tugaphone", "mwl_phonemizer"}
+                         "tugaphone", "mwl_phonemizer", "udarnik"}
 
 #: Family systems with an always-on lexicon and no public toggle to
 #: disable it — ``tugaphone`` (audited: no toggle exists at all — see the
@@ -3156,6 +3255,22 @@ def _rules_only_values(row: dict) -> Dict[str, float]:
       effectively lexicon-free for ranking purposes; this is an explicit
       documented exception, not an oversight.
     - ``africa_g2p`` — rule-based G2P, no bundled per-word dictionary.
+    - ``udarnik`` — audited: no word->IPA lexicon (``lexicon=None`` by
+      default), but its stressonnx ``ruaccent`` backend consults a
+      110,826-entry accent dictionary and a 19,740-entry omograph
+      dictionary before its models, covering 11.21% and 4.89% of unique
+      ``alphacep_ru_book`` words (13.94% in either). Ranked as
+      effectively lexicon-free on the ``ahotts`` precedent, because what
+      those dictionaries carry is a STRESS POSITION, not a
+      pronunciation — the phonology below the mark is o2i's own, so they
+      cannot answer a transcription the way a pronunciation lexicon
+      does. Recorded honestly: this coverage is several times ahotts'
+      1.5%/2.6%, so it is the weakest "effectively lexicon-free" claim
+      on the board and the most likely to be overturned. If a reviewer
+      judges a stress dictionary to be lexical knowledge for ranking
+      purposes, the fix is to move the column into the lexicon tier —
+      the numbers to make that call are stated here rather than left to
+      be rediscovered.
 
     The standalone ``espeak_rules``/``gruut_rules`` keys are skipped
     here since they are already represented via the substitution. When a
@@ -3409,6 +3524,18 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
     ("mwl_phonemizer", "mwl_phonemizer",
      "Mirandese dialect selection, an optional native-speaker lexicon "
      "overlay, and CRF correction on top of the `mwl` lattice"),
+    ("udarnik", "udarnik",
+     "a stressonnx-placed lexical accent on top of the `ru` lattice — "
+     "Russian stress is free and unwritten, and the spec's own notes name "
+     "its positional guess as the main source of its error, so supplying "
+     "the real stress is what conditions akanje and ikanje correctly "
+     "(no word->IPA lexicon: udarnik defaults to none. Its stressonnx "
+     "`ruaccent` backend does consult a 110,826-entry accent dictionary "
+     "and a 19,740-entry omograph dictionary before its models — 11.21% "
+     "and 4.89% of unique `alphacep_ru_book` words respectively — but "
+     "those hold STRESS POSITIONS, not pronunciations, so the column is "
+     "ranked as effectively lexicon-free with the exception documented, "
+     "the same treatment ahotts-g2p gets)"),
 ]
 
 
@@ -3420,6 +3547,7 @@ _FAMILY_VERSION_FIELDS: List[Tuple[str, str]] = [
     ("tugaphone_version", "tugaphone"),
     ("barranquenho_version", "g2p_barranquenho"),
     ("mwl_phonemizer_version", "mwl_phonemizer"),
+    ("udarnik_version", "udarnik"),
 ]
 
 
@@ -3552,7 +3680,7 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "under the exact same discipline as every other system on this "
         "board: the SAME `same-source` refusal when a family engine "
         "would be scored against gold drawn from o2i's own lineage (see "
-        "\"How to read this\" below — all four family engines are built "
+        "\"How to read this\" below — all five family engines are built "
         "on o2i's lattice, so they inherit o2i's own same-source exposure "
         "1:1); the SAME lexicon-vs-rules-only discipline — g2p_barranquenho "
         "and mwl_phonemizer's lexicon-free DEFAULT configuration are "
@@ -3962,9 +4090,10 @@ def write_comparison(
         "# Comparison to other G2P systems",
         "",
         "This table shows how well orthography2ipa (o2i) predicts IPA "
-        "pronunciation compared to eleven other G2P systems (including the "
-        "four o2i-downstream family engines — arbtok, tugaphone, "
-        "g2p_barranquenho, mwl_phonemizer), on the same gold word lists, "
+        "pronunciation compared to twelve other G2P systems (including the "
+        "five o2i-downstream family engines — arbtok, tugaphone, "
+        "g2p_barranquenho, mwl_phonemizer, udarnik), on the same gold "
+        "word lists, "
         "language by language.",
         "",
         "Every number is a **PER (Phoneme Error Rate)**: lower is "
