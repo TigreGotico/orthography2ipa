@@ -503,15 +503,6 @@
       "notes": "Spirantization of /d/ is blocked after /m/ (e.g., θamda 'pond' → [θamda], not [θamða]). Corroborated for Chemini and Aït Mengellat Kabyle by Bedar, Quellec & Tifrit (2022): /mð/ → [md]. Boghni and Makouda do not show this occlusivization (spirantization survives: [mð]); this spec follows the Chemini/Aït Mengellat pattern."
     },
     {
-      "id": "KAB_BLOCK_SPIRANT_D_WORD_INITIAL",
-      "phonemes": [
-        "d"
-      ],
-      "surface": "d",
-      "word_initial": true,
-      "notes": "Word-initial /d/ remains a stop [d]. In Kabyle, word-initial /d/ occurs almost exclusively as the preverb d- (e.g., d-ittun) or the directional clitic -d- when hyphenated (e.g., iyi-d-), both of which retain the stop pronunciation. Supported by Kossmann & Stroomer (1997) p.469: in Riffian, word-initial b, d, g are not spirantized; extended to Kabyle /d/ by native-speaker judgment (MOKRAOUI 2026 verification sessions). NOTE: This rule does NOT apply to /k/ — word-initial lexical /k/ in Kabyle spirantizes to [ç] in lexical words (kra, kečč, kcem, kteb → [çræ, çət͡ʃː, çcem, çteb] per standard phonology). The loanword kullec [kulːəʃ] must be handled via a lexical exception list. Clitic /k/ (kem, kent, k- + voyelle) retains stop [k] but is a morphological exception that should be handled at the engine/rescorer level, not via a blanket phonological rule."
-    },
-    {
       "id": "KAB_BLOCK_SPIRANT_K_AFTER_CONSONANT",
       "phonemes": [
         "k"
