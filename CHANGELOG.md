@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.71.6a2](https://github.com/TigreGotico/orthography2ipa/tree/7.71.6a2) (2026-08-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.6a1...7.71.6a2)
+
 ## [7.71.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.6a1) (2026-08-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.5a1...7.71.6a1)
@@ -764,10 +768,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.44.0a1...7.44.0a2)
 
-**Merged pull requests:**
-
-- feat: Lexibank gold expansion audit — 21 candidates, none wired \(uralex/robinsonap notable\) [\#718](https://github.com/TigreGotico/orthography2ipa/pull/718) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.44.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.44.0a1) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.43.0a3...7.44.0a1)
@@ -1178,7 +1178,11 @@
 
 ## [7.3.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.2a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.2a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.3.2a1)
+
+## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.2.0a1...7.3.0a1)
 
 ## [7.2.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.2.0a1) (2026-07-15)
 
@@ -1186,11 +1190,7 @@
 
 ## [7.3.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.1a1) (2026-07-15)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.3.0a1...7.3.1a1)
-
-## [7.3.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.3.0a1) (2026-07-15)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.3.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.1.1a2...7.3.1a1)
 
 ## [7.1.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.1.1a2) (2026-07-15)
 
