@@ -1141,6 +1141,15 @@ class AllophoneRule:
         surface it rewrites and lets every other process (reduction, sandhi,
         rhotic choice, affrication) run normally, so it inherits cleanly to
         child dialects. ``None`` / empty = don't care.
+    append : str
+        IPA appended to the matched phoneme instead of replacing it, so the
+        realisation is ``phoneme + append`` and one rule can state an
+        insertion for a whole class of targets at once. Epenthesis is the
+        motivating process: the inserted vowel is the same wherever it goes,
+        while the segment it attaches to is any member of a class, and a
+        fixed :attr:`surface` string can only name one of them. Mutually
+        exclusive with :attr:`surface`; empty (the default) = this rule
+        rewrites rather than inserts.
     notes : str
         Free-form provenance / convention notes.
     mutates_neighbor : Optional[str]
@@ -1167,7 +1176,8 @@ class AllophoneRule:
     """
     id: str
     phonemes: Tuple[str, ...]
-    surface: str
+    surface: str = ""
+    append: str = ""
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
     stress: Optional[str] = None
@@ -1226,6 +1236,11 @@ class AllophoneRule:
             object.__setattr__(
                 self, "word",
                 tuple(w.lower() for w in self.word))
+        if self.surface and self.append:
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: surface and append are "
+                f"mutually exclusive — a rule either rewrites the phoneme "
+                f"or inserts material next to it")
         if self.stress is not None and self.stress not in (
                 "stressed", "unstressed", "pretonic", "posttonic"):
             raise ValueError(
@@ -1413,6 +1428,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
+    "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1629,6 +1645,21 @@ class LanguageSpec:
     ``nl-NL`` is a standalone spec with no ``graphemes_base``, so it declares
     the flag itself.
     """
+
+    doubled_letters_geminate: bool = True
+    """Whether two adjacent identical consonant letters spell ONE long segment.
+
+    The allophony pass protects a geminate from being split: a rule fired by
+    material outside it may not rewrite a single half. That protection assumes
+    the orthography writes gemination by doubling, which most do. A
+    consonantal-skeleton transliteration does not: Egyptological ⟨bbr⟩ is a
+    three-radical root b-b-r whose two ⟨b⟩ are separate consonant slots, and the
+    reading convention puts a vowel between them. Declaring ``false`` says the
+    doubling is two segments, so a rule may act on either.
+
+    Distinct from :attr:`collapse_geminates`, which is about English-style
+    doubling that spells a single SHORT consonant and merges the two phonemes
+    after transcription."""
 
     collapse_geminates: bool = False
     """Collapse a doubled consonant letter's phonemes to one.

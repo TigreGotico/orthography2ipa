@@ -121,6 +121,35 @@ another within a sweep. That is why the vowel rule keys on `coda_nasal` (a
 absorb rule keys on the slot. Reverse them and the absorb bleeds the
 nasalisation: the vowel rule finds an empty next slot and never fires.
 
+## Inserting instead of rewriting: `append`
+
+A rule normally names the `surface` its target becomes. Epenthesis does not fit
+that shape: the inserted segment is the same wherever it goes, while the segment
+it attaches to is any member of a class, and one fixed `surface` string can only
+name one of them. `append` states the insertion instead — the realisation is
+`phoneme + append`, so a single rule covers the whole class:
+
+```json
+{"id": "EGY_EPEN_INITIAL", "phonemes": ["b", "p", "f", "m", "n", "t", "k"],
+ "append": "ɛ", "word_initial": true, "followed_by": "consonant"}
+```
+
+That is the Egyptological reading of Egyptian, where the script writes no
+vowels and the convention supplies one to break the consonant string: ⟨nfr⟩ is
+read [nɛfɛr] (see [languages/egy.md](languages/egy.md)). `append` and `surface`
+are mutually exclusive — a rule either rewrites its target or inserts next to
+it.
+
+## Doubled letters that are not geminates
+
+The pass protects a geminate from being split: a rule fired by material outside
+it may not rewrite one half and leave a heterorganic cluster behind. That
+assumes the orthography writes gemination by doubling the letter, which most
+do. A consonantal skeleton does not — Egyptological ⟨bbr⟩ is the three-radical
+root b-b-r, and the reading convention puts a vowel between the two ⟨b⟩. A spec
+says so with `doubled_letters_geminate: false`, and the protection is off for
+that language.
+
 Rules are **pure data**: no code in specs. See
 [`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema)
 for the JSON shape.

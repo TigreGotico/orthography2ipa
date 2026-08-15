@@ -246,14 +246,15 @@ there measures **agreement with the generator, not accuracy**, and the
 scoreboard's provenance column does not say so, because the tier is set
 per dataset and `wikipron` as a whole is genuinely crowd-scraped.
 
-Two rows are known to be affected, both wired by the small-wikipron sweep:
+Three rows are known to be affected, two of them wired by the small-wikipron sweep:
 
 | tag | what the gold actually is | how to read the row |
 |---|---|---|
 | `tew` (Tewa, `N=106`) | **entirely** `Module:tew-IPA` output — every headword carries a bare `{{tew-IPA}}` and no hand-typed IPA | **`PER 0.0000` certifies reproduction of `Module:tew-IPA` on 106 words, not accuracy.** The spec was built from the same Martinez (1982) orthography and Sutton (2014) values the module cites, and cross-checked against the module, so engine and gold share a source. |
 | `nmy` (Namuyi, `N=354`) | a **mix** of hand-typed IPA and `Module:nmy-IPA` output | Weaker form of the same caveat: part of the row is a reproduction test. The residual error is dominated by unwritten vowel nasalisation, which is a real gap either way. |
+| `egy` (Ancient Egyptian, `N=2185`) | mostly `Module:egy-pron` output, invoked through `{{egy-pr}}`, plus hand-typed reconstructions on the same headwords | **`PER 0.0183` certifies reproduction of the codified Egyptological reading convention on 2185 words, not accuracy** — the convention is a way of saying the words aloud, not a reconstruction of how Egyptian sounded, and the spec encodes it from the same published guidelines the module implements. Not comparison-eligible. See [languages/egy.md](languages/egy.md). |
 
-Neither row may be used to certify Tewa or Namuyi accuracy, and neither
+No such row may be used to certify a language's accuracy, and none
 belongs in a cross-system comparison. What they do certify is that the
 spec implements the published orthography consistently — which is the
 claim the spec makes, and is worth measuring, under its own name.

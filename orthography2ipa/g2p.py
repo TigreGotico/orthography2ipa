@@ -438,7 +438,9 @@ class G2P:
         user_rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
             rescorer)
         allophone_rescorer = (
-            compile_allophone_rescorer(self.spec.allophone_rules)
+            compile_allophone_rescorer(
+                self.spec.allophone_rules,
+                self.spec.doubled_letters_geminate)
             if apply_allophony else None
         )
         self._allophone_rescorer = allophone_rescorer
