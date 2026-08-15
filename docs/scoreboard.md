@@ -162,7 +162,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | bjb | wikipron | 136 | 0.1021 | · | · | · | · | [0.0773, 0.1261] | 0.5956 | skeleton | crowd-scraped |
 | bn | vox_communis | 32651 | 0.4338 | · | · | · | · | [0.4251, 0.4434] | 0.1737 | research | epitran-derived |
 | bn | wikipron | 6424 | 0.3244 | · | · | · | · | [0.3186, 0.3302] | 0.1219 | research | crowd-scraped |
-| bo | wikipron | 1564 | 0.6716 | · | · | · | · | [0.6628, 0.6806] | 0.0006 | skeleton | crowd-scraped |
+| bo | wikipron | 1564 | 0.3785 | 0.3718 | 0.3715 | 0.2174 | 0.2174 | [0.3606, 0.3962] | 0.2174 | research | crowd-scraped |
 | br | wikipron | 803 | 0.4105 | · | · | · | · | [0.3976, 0.4232] | 0.0436 | research | crowd-scraped |
 | bua | northeuralex | 1174 | 0.0474 | · | · | · | · | [0.0422, 0.0525] | 0.7496 | research | lexicon-derived |
 | bua | wikipron | 140 | 0.3670 | · | · | · | · | [0.3314, 0.4027] | 0.1000 | skeleton | crowd-scraped |
@@ -209,7 +209,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | dum | wikipron | 197 | 0.2822 | · | · | · | · | [0.2553, 0.3073] | 0.2234 | research | crowd-scraped |
 | dv | vox_communis | 18253 | 0.3384 | · | · | · | · | [0.3254, 0.3511] | 0.4344 | research | epitran-derived |
 | dv | wikipron | 1539 | 0.0908 | · | · | · | · | [0.0837, 0.0986] | 0.6602 | research | crowd-scraped |
-| dz | wikipron | 230 | 0.3470 | 0.3441 | 0.3441 | 0.2087 | 0.2087 | [0.3131, 0.3818] | 0.2087 | research | crowd-scraped |
+| dz | wikipron | 230 | 0.3392 | 0.3378 | 0.3378 | 0.2087 | 0.2087 | [0.3050, 0.3710] | 0.2087 | research | crowd-scraped |
 | ee | wikipron | 247 | 0.4687 | · | · | · | · | [0.4472, 0.4879] | 0.0648 | research | crowd-scraped |
 | egy | wikipron | 2092 | 0.6327 | · | · | · | · | [0.6260, 0.6393] | 0.0000 | stub | crowd-scraped |
 | el | vox_communis | 5993 | 0.2672 | · | · | · | · | [0.2629, 0.2713] | 0.1188 | research | epitran-derived |
