@@ -5,7 +5,7 @@ which one wins. By default that decision is *positional* order: the first
 IPA listed for a grapheme is the canonical form and gets beam cost `0`,
 the second gets `+1`, and so on (see
 [tokenizer.md](tokenizer.md#ipa-ambiguity-and-beam-search)). This is a
-reasonable default — list the most common pronunciation first — but it is
+reasonable default: list the most common pronunciation first: but it is
 a coarse, integer, rank-only signal.
 
 **Candidate weights** let a spec attach real candidate *frequencies* to a
@@ -19,10 +19,10 @@ the beam into a probabilistic lattice.
 A grapheme's value in a language spec may be written in **either** form:
 
 ```jsonc
-// plain list — today's shape, unchanged
+// plain list: today's shape, unchanged
 "c": ["k", "s"]
 
-// weighted object — new, optional
+// weighted object: new, optional
 "th": { "ipa": ["θ", "ð"], "weights": [0.7, 0.3] }
 ```
 
@@ -40,12 +40,12 @@ form. Every existing consumer keeps seeing `spec.graphemes` as a plain
 
 | grapheme value | candidate *i* beam cost |
 | --- | --- |
-| plain list | `float(i)` — rank `0, 1, 2, …` |
+| plain list | `float(i)`: rank `0, 1, 2, …` |
 | weighted object | `-log(pᵢ)`, where `pᵢ = weightᵢ / Σ weight` |
 
 Because beam cost is **additive** over a word's graphemes, using `-log(p)`
 makes a whole path's cost the negative log of the product of its
-candidate probabilities — a sequence log-probability. Lower weight →
+candidate probabilities: a sequence log-probability. Lower weight →
 higher cost → the candidate falls later in the beam.
 
 **Absent weights == today.** A grapheme with no weights uses the rank
@@ -53,11 +53,11 @@ cost `0, 1, 2, …`, which is *byte-identical* to the behaviour that
 predates this feature. Every spec that uses only plain lists produces
 exactly the same transcriptions and the same scoreboard numbers as before.
 
-The same normalisation and cost function feed **both** beam paths — the
+The same normalisation and cost function feed **both** beam paths: the
 standalone `PhonetokTokenizer.ipa_beam` and the engine's positional beam
-in `g2p.py` — so they never disagree about a grapheme's costs. (Weights
+in `g2p.py`: so they never disagree about a grapheme's costs. (Weights
 apply to the flat grapheme table; a grapheme resolved by a
-`positional_graphemes` override keeps rank ordering — per-position weights
+`positional_graphemes` override keeps rank ordering: per-position weights
 are a separate, later layer.)
 
 ## Defensive handling of malformed weights
@@ -71,7 +71,7 @@ can never crash transcription or silently drop a candidate:
 - the weight sum is `0`.
 
 A single **zero** weight (with a positive sum elsewhere) is *kept*: its
-probability is floored to `1e-6` so its cost is large but finite — the
+probability is floored to `1e-6` so its cost is large but finite: the
 candidate is strongly disfavoured yet still reachable.
 
 ## Inheritance
@@ -83,9 +83,9 @@ candidate is strongly disfavoured yet still reachable.
 but **not** its weights, so its transcription stays byte-identical to
 rank ordering until it declares its own weights. Two reasons:
 
-1. Candidate frequency is *variety-specific* corpus data — the relative
+1. Candidate frequency is *variety-specific* corpus data: the relative
    frequency of ⟨ou⟩ → /aʊ/ vs /uː/ in en-GB is not the same statistic as
-   in en-US — so a child must cite its own, not silently inherit.
+   in en-US: so a child must cite its own, not silently inherit.
 2. It preserves the byte-identical guarantee for every inheriting child.
 
 Within one spec a grapheme's IPA list and its weights live together in
@@ -97,7 +97,7 @@ as a unit.
 Weights must be justifiable candidate frequencies from cited corpora
 (recorded in the spec's `sources` / `notes`), never PER-tuned parameters.
 The first weighted spec is **en-GB** (see its `notes`), grounded in
-Gontijo, Gontijo & Shillcock (2003), *Grapheme–phoneme probabilities in
+Gontijo, Gontijo & Shillcock (2003), *Grapheme-phoneme probabilities in
 British English*, and Berndt, Reggia & Mitchum (1987), *Empirically
 derived probabilities for grapheme-to-phoneme correspondences in English*.
 

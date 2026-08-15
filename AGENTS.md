@@ -233,6 +233,81 @@ No linter or type checker is configured. Code uses `from __future__ import annot
 
 - `[project.scripts]` → `orthography2ipa = orthography2ipa.cli:main` (CLI).
 
+## Maintainability gate (part of every review)
+
+Every PR that touches `orthography2ipa/*.py` answers to these before merge —
+an adversarial review that skips them is incomplete. The engine stays small
+because every addition pays this toll:
+
+- **One concept, one place.** A new rule condition is ONE field, checked in
+  ONE place in the match loop, documented in ONE docstring. If a behavior
+  needs two cooperating helper predicates to express, collapse them into one
+  named function with a single documented contract first — cooperating
+  helpers whose combined semantics live in nobody's head are how the
+  `-ers` regression happened (a vowel-silencing predicate silently
+  generalized to consonant digraphs).
+- **Additions mirror an existing pattern.** A positive condition mirrors its
+  negative twin (`followed_by_grapheme` / `_not`); a new stress value
+  extends the existing conditional; a new position slots into the existing
+  precedence list. If the addition needs a new *shape* of code, that is an
+  architecture change: name it in the PR body and justify it.
+- **No language names in engine code.** Ever. Language facts live in
+  `data/*.json`; the engine consumes declared fields. A closed set in
+  engine code (like the transparent-suffix graphemes) is allowed only when
+  it is a cross-linguistic class with a citation attached at the constant.
+- **Flat beats clever.** The match loop is a flat sequence of independent
+  condition checks; keep it that way. No nested dispatch, no
+  metaprogramming, no condition that reads another condition's result.
+- **Every new field lands in four places or it doesn't land**: `types.py`
+  (dataclass + docstring), `schema.py` (validation), `json_loader.py`
+  (parse), `data/SCHEMA.md` (user docs). Reviewers check all four.
+- **Leave it cleaner.** If a PR's diff touches a function that already
+  smells (three cooperating predicates, a boolean parameter that flips
+  semantics, a >20-line conditional), the PR either cleans it or files the
+  smell explicitly in its body. Silent accretion is a review finding.
+
+### Lattice-ambiguity gate
+
+First, the rule that governs every ending, list-valued or not: **every ending
+is a cited linguistic claim about a suffix's realisation, never a PER-chasing
+pattern.** A key earns its place from a published source — a paper or a
+reference grammar — that states how the suffix is realised. Corpus frequency
+supports a list's *ordering*; a frequency count alone is not a citation. This
+is the same prohibition that keeps n-grams out of `graphemes`, and it is
+enforced mechanically: every declared ending must be named in its spec's
+`notes` with a citation traceable to that spec's `sources`.
+
+A **list-valued `grammatical_endings` entry** injects a reading into the beam
+that the spec cannot choose between (see
+[`SCHEMA.md`](orthography2ipa/data/SCHEMA.md#ambiguous-endings)). It is the one
+sanctioned way morphological ambiguity reaches the lattice, and it is exactly
+the shape a lexicon or a paradigm table would take if it were smuggled in. So
+an adversarial review of any PR that adds or widens one **must verify all
+three**, and say in writing that it did:
+
+1. **The lattice hole is proven.** The PR shows the **0-in-top-k**
+   measurement on gold — the missing reading absent from `word_candidates` at a
+   generous *k* and beam width, over a named sample — and the post-change
+   reachability number. A reading that was already reachable at some *k* is a
+   ranking problem; it is fixed with weights or downstream, and the entry is
+   rejected.
+2. **The ordering is cited.** Which reading holds rank 1 is a frequency claim.
+   It carries a source or a measurement on gold, in the spec's `notes` beside
+   the ending. "It felt more common" is a rejection.
+3. **The oracle delta is segregated.** Oracle@k movement from an injected
+   alternative is reported under its own heading, is not folded into any
+   ranking-error headroom or per-phenomenon failure count, and appears in no
+   beat-espeak or cross-system claim (see
+   [`benchmarks.md`](docs/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error)).
+   A PR that reports it as a PER-headroom win is rejected on that alone.
+
+Two mechanical gates back this up and must stay green:
+`tests/test_grammatical_endings.py` asserts every list-valued ending is
+documented with its evidence in its spec's `notes`, and caps how many a single
+spec may declare. Raising that cap is an **amendment to this file**, argued
+here first — the cap exists so paradigm enumeration hits a tripwire instead of
+accreting one plausible entry at a time.
+
 ## Conventions (Org hard rules)
 
 - Branches: `dev` for work, `master` for stable. NEVER `main`.
