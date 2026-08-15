@@ -204,7 +204,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | de-DE | ipa_childes | 24857 | 0.3881 | · | · | · | · | [0.3861, 0.3904] | 0.0356 | research | epitran-derived |
 | de-DE | ipadict | 777785 | 0.3526 | · | · | · | · | [0.3523, 0.3529] | 0.0166 | research | crowd-scraped |
 | dlm | wikipron | 180 | 0.2648 | · | · | · | · | [0.2371, 0.2944] | 0.1833 | skeleton | crowd-scraped |
-| dng | wikipron | 269 | 0.6650 | · | · | · | · | [0.6514, 0.6788] | 0.0000 | skeleton | crowd-scraped |
+| dng | wikipron | 269 | 0.4087 | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
 | dsb | wikipron | 2010 | 0.1487 | · | · | · | · | [0.1408, 0.1564] | 0.4522 | research | crowd-scraped |
 | dum | wikipron | 197 | 0.2822 | · | · | · | · | [0.2553, 0.3073] | 0.2234 | research | crowd-scraped |
 | dv | vox_communis | 18253 | 0.3384 | · | · | · | · | [0.3254, 0.3511] | 0.4344 | research | epitran-derived |
