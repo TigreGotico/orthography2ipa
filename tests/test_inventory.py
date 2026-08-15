@@ -110,8 +110,17 @@ def test_multi_character_segments_stay_whole():
 #: the spec does not use — and each needs a language owner to say what the rule
 #: *should* target, which is not a mechanical fix. Listed rather than skipped so
 #: they stay visible, and so no NEW dead rule can be added without failing here.
-_RU_REDUCED_DEAD = {
-    "RU_DEIOTA_jə", "RU_DEIOTA_jɪ", "RU_DEIOTA_jʊ", "RU_HARD_BACK_jɪ",
+#: Оканье and its after-soft-consonant counterpart еканье keep unstressed
+#: /o e a/ distinct, so the Northern lects never emit the standard's reduced
+#: [ɪ] or [ə] in the iotated slots — ⟨я⟩ is [ja] and ⟨е⟩ is [(j)e] there, not
+#: [jɪ]/[jə]. The de-iotation and hard-backing rules that target those two
+#: candidates therefore have nothing to fire on. This is the okanje system
+#: doing what it is defined to do, not a gap: the rule set is the standard
+#: language's, inherited whole, and it is live in every akanje lect.
+#: ``RU_DEIOTA_jʊ`` is NOT dead here — okanje is about the non-high vowels,
+#: so ⟨ю⟩/⟨у⟩ keep the base [jʊ]/[ʊ] readings.
+_RU_OKANJE_DEAD = {
+    "RU_DEIOTA_jə", "RU_DEIOTA_jɪ", "RU_HARD_BACK_jɪ",
 }
 
 KNOWN_DEAD_RULES = {
@@ -155,13 +164,15 @@ KNOWN_DEAD_RULES = {
     # positional readings, so the vowel the rule targets is never emitted.
     # Fixed by the positional-inheritance default in #348, which revives it.
     "da-x-copenhagen": {"DA_SHORTEN_A"},
-    # The southern Russian lects have their own unstressed-vowel system and
-    # never emit the standard reduced /ɪ ə ʊ/, so the de-iotation rules that
-    # target them are inert here. They inherit correctly for every lect that
-    # does reduce; the rule set is the standard language's, not theirs.
-    "ru-x-don": _RU_REDUCED_DEAD,
-    "ru-x-kursk-orel": _RU_REDUCED_DEAD,
-    "ru-x-southern": _RU_REDUCED_DEAD,
+    # The southern Russian lects used to be listed here, on the reading that
+    # they had "their own unstressed-vowel system". They did not: they had no
+    # positional table at all, because the spec carried a standalone grapheme
+    # table with no `graphemes_base` and so inherited nothing positional. They
+    # reduce now — akanje IS reduction — and all four rules are live there
+    # again. The okanje North is the real case of this shape.
+    "ru-x-northern": _RU_OKANJE_DEAD,
+    "ru-x-vologda": _RU_OKANJE_DEAD,
+    "ru-x-arkhangelsk": _RU_OKANJE_DEAD,
     # Sendinês monophthongises the Leonese rising diphthongs (⟨ie⟩→[i],
     # ⟨uo⟩→[u]), so the [jɛ]/[wo] nuclei the inherited Mirandese diphthong-
     # nasalisation rules target never surface here. The rules are live in the
