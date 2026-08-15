@@ -6865,6 +6865,19 @@
   },
   {
     "lang": "ru",
+    "dataset": "coruss_ru",
+    "n": 999,
+    "per": 0.3456,
+    "per_ci_low": 0.3342,
+    "per_ci_high": 0.3569,
+    "exact_match": 0.0631,
+    "quality_tier": "research",
+    "provenance": "expert-human",
+    "harness_version": "1.1",
+    "limit": 1000
+  },
+  {
+    "lang": "ru",
     "dataset": "primary_sources",
     "n": 36,
     "per": 0.1867,
