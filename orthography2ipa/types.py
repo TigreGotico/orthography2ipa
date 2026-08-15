@@ -1067,6 +1067,15 @@ class AllophoneRule:
         ⟨și⟩ [ʃi], ⟨fi⟩ [fi], ⟨zi⟩ [zi] keep a full vowel because they
         have no other nucleus (Chitoran 2002, ch. 5). ``None`` = don't
         care.
+    followed_by_nucleus : Optional[bool]
+        Require (``True``) — or forbid (``False``) — that a syllable
+        nucleus occurs LATER in the word than this slot. This is the
+        final-syllable predicate: ``False`` selects the last nucleus of
+        the word, ``True`` every earlier one. Distinct from
+        :attr:`requires_other_nucleus`, which is direction-blind and asks
+        only whether some other slot anywhere in the word is a nucleus.
+        Non-final reduction and final-syllable strengthening both need
+        the direction. ``None`` = don't care.
     preceded_by_surface_phoneme_2 : Tuple[str, ...]
         Like :attr:`preceded_by_phoneme_2` but reads the LATTICE SLOT two
         positions back — the resolved, pre-this-rescorer SURFACE candidate
@@ -1172,6 +1181,7 @@ class AllophoneRule:
     followed_by_phoneme_2: Tuple[str, ...] = ()
     preceded_by_surface_phoneme_2: Tuple[str, ...] = ()
     requires_other_nucleus: Optional[bool] = None
+    followed_by_nucleus: Optional[bool] = None
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
     preceded_by_grapheme: Tuple[str, ...] = ()

@@ -234,6 +234,42 @@ def _has_other_nucleus(ctx: RescoreContext) -> bool:
     return False
 
 
+def _has_later_nucleus(ctx: RescoreContext) -> bool:
+    """Whether a syllable nucleus occurs LATER in the word than this slot.
+
+    The final-syllable predicate. Reduction of non-final vowels and
+    strengthening of the final one are both extremely common and both need
+    the DIRECTION that :func:`_has_other_nucleus` deliberately throws away:
+    the last nucleus of a word is exactly the one with no nucleus after it.
+    Reads the lattice slots' top candidates and counts a syllabic consonant
+    as a nucleus, like every other neighbour lookup in this module.
+    """
+    for slot in ctx.slots[ctx.index + 1:]:
+        if not slot.candidates:
+            continue
+        ipa = slot.top.ipa
+        if not ipa:
+            continue
+        if any(_is_nucleus_segment(seg) for seg in segment_ipa(ipa)):
+            return True
+    return False
+
+
+def _is_nucleus_segment(seg: str) -> bool:
+    """Whether one segmented IPA symbol is a syllable nucleus.
+
+    The base letter is read from the DECOMPOSED form, because a segment
+    can arrive precomposed: a tone language writes its vowels with the
+    accent baked in, so ``í`` is the single codepoint U+00ED and its
+    first character is not the vowel letter ``i`` at all. Testing the
+    composed first character silently answers "not a vowel" for every
+    accented nucleus.
+    """
+    base = unicodedata.normalize("NFD", seg)
+    return bool(base) and (is_ipa_vowel(base[0])
+                           or any(m in seg for m in SYLLABIC_MARKS))
+
+
 class AllophoneRescorer(LatticeRescorer):
     """A :class:`LatticeRescorer` compiled from a spec's ``allophone_rules``.
 
@@ -544,6 +580,9 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         if rule.requires_other_nucleus is not None:
             if rule.requires_other_nucleus != _has_other_nucleus(ctx):
+                return False
+        if rule.followed_by_nucleus is not None:
+            if rule.followed_by_nucleus != _has_later_nucleus(ctx):
                 return False
         return True
 

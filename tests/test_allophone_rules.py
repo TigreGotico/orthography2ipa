@@ -443,3 +443,45 @@ class TestRequiresOtherNucleus:
                              word_final=True, requires_other_nucleus=True)
         spec = _spec({"e": ["e"], "k": ["k"]}, (rule,))
         assert _tok_best(spec, "ke") == "ke"
+
+
+class TestFollowedByNucleus:
+    """A rule can ask whether a nucleus comes LATER in the word.
+
+    ``requires_other_nucleus`` is direction-blind — it fires on the last vowel
+    of a polysyllable just as readily as on the first — so it cannot express
+    the final-syllable environment that non-final reduction needs. South
+    Slavey is the motivating case: /i/ has a lax alternant everywhere except
+    the word's last nucleus.
+    """
+
+    def test_the_loader_keeps_the_field(self):
+        """json_loader builds AllophoneRule from an explicit key list; a field
+        missing from that list is dropped at LOAD time and the rule silently
+        matches on its other conditions alone."""
+        rule = next(r for r in get("xsl").allophone_rules
+                    if r.id == "xsl_i_lax_non_final")
+        assert rule.followed_by_nucleus is True, (
+            "the final-syllable condition was dropped at load time — the rule "
+            "now laxes every /i/ in the language, final ones included"
+        )
+
+    def test_non_final_nucleus_reduces(self):
+        assert _ipa("xsl", "lidí") == "ɮɪ̀tí"
+        assert _ipa("xsl", "ɂejide") == "ʔɛ̀tʃɪ̀tɛ̀"
+
+    def test_the_last_nucleus_does_not(self):
+        assert _ipa("xsl", "dih") == "tìh"
+        assert _ipa("xsl", "ti") == "tʰì"
+
+    def test_it_looks_forward_only(self):
+        """⟨ɂetthíghá⟩ has a nucleus on BOTH sides of its ⟨í⟩ and reduces,
+        while ⟨líbarí⟩'s final ⟨í⟩ has one only behind it and does not — the
+        exact contrast a direction-blind predicate collapses."""
+        assert _ipa("xsl", "ɂetthíghá") == "ʔɛ̀tθʰɪ́ɣá"
+        assert _ipa("xsl", "líbarí") == "ɮɪ́pàrí"
+
+    def test_it_reaches_past_intervening_consonants(self):
+        """⟨dihcho⟩ reduces across ⟨hch⟩: the predicate looks for the next
+        NUCLEUS, not the next segment."""
+        assert _ipa("xsl", "dihcho") == "tɪ̀ʰtʃʰò"
