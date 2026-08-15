@@ -187,6 +187,10 @@ class TestCompareLang:
 
         # espeak: gets one wrong -> PER > 0, worse than o2i
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        # A local $ESPEAK_RULES_DATA_PATH build (as used by the board-regen
+        # skill) would otherwise be probed for this mock language "xx" and
+        # raise, since no real rules-only manifest lists it.
+        monkeypatch.setattr(cs, "espeak_rules_available", lambda: False)
         espeak_table = {"ola": "ola", "kasa": "kasa"}
         monkeypatch.setattr(
             cs, "espeak_transcribe",
@@ -1909,6 +1913,10 @@ class TestSameSourceExclusion:
 
         install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        # A local $ESPEAK_RULES_DATA_PATH build (as used by the board-regen
+        # skill) would otherwise be probed for this mock language "rr" and
+        # raise, since no real rules-only manifest lists it.
+        monkeypatch.setattr(cs, "espeak_rules_available", lambda: False)
         monkeypatch.setattr(
             cs, "espeak_batch_transcribe",
             lambda words, voice, data_path=None: {w: "ola" for w in words})
