@@ -90,9 +90,10 @@ class TestGraphemePosition(unittest.TestCase):
         expected = {
             "word_initial", "word_final",
             "intervocalic", "intervocalic_cross_word",
-            "onset", "nucleus_stressed", "nucleus_unstressed", "coda",
+            "onset", "nucleus_stressed", "nucleus_unstressed",
+            "nucleus_secondary", "coda",
             "first_pretonic", "pretonic", "posttonic",
-            "before_vowel", "after_vowel",
+            "before_vowel", "before_final_vowel", "after_vowel",
             "before_consonant", "after_consonant",
             "before_a", "before_e", "before_i", "before_o", "before_u",
             "after_a", "after_e", "after_i", "after_o", "after_u",
@@ -101,6 +102,9 @@ class TestGraphemePosition(unittest.TestCase):
             "before_palatal", "after_palatal",
             "vocalic", "consonantal",
             "default", "nucleus",
+            "open_syllable", "closed_syllable",
+            "nucleus_stressed_open", "nucleus_stressed_closed",
+            "nucleus_unstressed_open", "nucleus_unstressed_closed",
         }
         actual = {p.value for p in GraphemePosition}
         self.assertEqual(actual, expected)
