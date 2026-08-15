@@ -3,8 +3,35 @@
   "name": "Kildin Sami",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
+    "а̄": [
+      "aː"
+    ],
+    "э̄": [
+      "eː"
+    ],
+    "ы̄": [
+      "ɨː"
+    ],
+    "о̄": [
+      "oː"
+    ],
+    "я̄": [
+      "jaː"
+    ],
+    "ю̄": [
+      "juː"
+    ],
+    "е̄": [
+      "jeː"
+    ],
+    "ӣ": [
+      "iː"
+    ],
+    "ӯ": [
+      "uː"
+    ],
     "ъ": [
       ""
     ],
@@ -144,7 +171,11 @@
       "notes": "Descent per Glottolog classification of Kildin Saami (kild1236)."
     }
   ],
-  "notes": "Skeleton. Kildin Sami is a Kola (Eastern) Saami language of the Uralic family, written in an extended Cyrillic alphabet. The map covers the base Cyrillic letters plus the language-specific graphemes: Ӈ (velar nasal), the voiceless-sonorant letters Ӆ Ӎ Ӊ Ҏ, the voiceless glide Ҋ, and Һ (marking preaspiration). Iotated Е Ё Ю Я are given their glide+vowel reading. Suprasegmental palatalization (signalled by Ь/Ҍ and by Ӓ/Ӭ), preaspiration length and distinctive vowel length are not reliably recoverable from the spelling and are left unencoded, so a raised PER floor is expected.",
+  "stress": {
+    "default_position": 1,
+    "stress_mark": "ˈ"
+  },
+  "notes": "Research. Kildin Sami is a Kola (Eastern) Saami language of the Uralic family, written in an extended Cyrillic alphabet (Kert 1971 orthography, revised 1980s). The map covers the base Cyrillic letters plus the language-specific graphemes: Ӈ (velar nasal), the voiceless-sonorant letters Ӆ Ӎ Ӊ Ҏ, the voiceless glide Ҋ, and Һ (marking preaspiration). Iotated Е Ё Ю Я are given their glide+vowel reading. Vowel length is written with a combining macron over the base vowel letter (а̄ э̄ ы̄ о̄ я̄ ю̄ е̄) or, for и/у, with the dedicated precomposed letters Ӣ/Ӯ; both are modelled as long vowels here (Kert 1971), which is the largest single source of the pre-upgrade PER gap. Word stress is fixed on the first syllable (Kert 1971). Suprasegmental palatalization signalled by Ь/Ҍ/Ъ is mostly orthographically silent in the sampled gold (it marks a preceding consonant's place/manner distinction lexically rather than adding a segment) and is left unencoded as a known engine-limit gap; the one exception observed (⟨хь⟩ realising as a single palatalised [çː]) is a closed pattern too small to justify a general rule from this sample and is not yet modelled.",
   "iso639_3": "sjd",
   "glottolog_code": null,
   "sources": [
@@ -158,6 +189,17 @@
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
       "wikipedia_url": null
+    },
+    {
+      "id": "kert1971",
+      "author": "Kert, Georgij M.",
+      "year": 1971,
+      "title": "Саамский язык (Кильдинский диалект): Фонетика, морфология, синтаксис (The Sami Language, Kildin Dialect: Phonetics, Morphology, Syntax)",
+      "publisher": "Nauka",
+      "url": null,
+      "pages": null,
+      "notes": "Grammar and orthography reference for Kildin Sami: the extended Cyrillic alphabet, macron vowel length, and fixed initial word stress.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kildin_Sami_language"
     },
     {
       "id": "sjd_orthography",
