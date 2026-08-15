@@ -54,7 +54,7 @@ def test_nl_g_onset_voiced_coda_voiceless():
 
     Minimal pair on ⟨g⟩ alone: gaan (onset) vs dag (coda).
     """
-    assert _t("nl", "gaan").startswith("ɣ")
+    assert _bare("nl", "gaan").startswith("ɣ")
     assert _t("nl", "dag").endswith("x")
 
 
@@ -64,7 +64,7 @@ def test_nl_h_is_breathy():
     nl notes: "H: breathy [ɦ]; fully silent in southern dialects."
     van Oostendorp (2000).
     """
-    assert _t("nl", "huis").startswith("ɦ")
+    assert _bare("nl", "huis").startswith("ɦ")
 
 
 def test_nl_nl_northern_g_is_voiced_fricative():
@@ -108,7 +108,7 @@ def test_nl_be_alveolar_r():
     nl-BE notes: "Alveolar /r/ [r] in most varieties (vs. NL uvular [ʀ])."
     Source: König & van der Auwera (1994).
     """
-    assert _t("nl-BE", "rood").startswith("r")
+    assert _bare("nl-BE", "rood").startswith("r")
 
 
 # ===========================================================================
@@ -226,7 +226,7 @@ def test_de_bavarian_pf_cluster_preserved():
     de-x-bavarian notes: "pf- cluster fully preserved."
     Source: König & van der Auwera (1994).
     """
-    assert _t("de-x-bavarian", "Pfand").startswith("pf")
+    assert _bare("de-x-bavarian", "Pfand").startswith("pf")
 
 
 @pytest.mark.xfail(
@@ -1118,12 +1118,6 @@ def test_en_us_caught_cot_merger():
     assert thought[1:-1] == lot[1:-1]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982) vol. 3 claims Australian English is non-rhotic; en-AU "
-    "produces [kɑːɹ] for car — the en-GB parent is non-rhotic ([kɑː]), so the "
-    "dialect spec has actively introduced a rhotic ⟨r⟩",
-)
 def test_en_au_non_rhotic():
     """Australian English is non-rhotic.
 
@@ -1132,7 +1126,7 @@ def test_en_au_non_rhotic():
 
     Isolated on the word-final ⟨r⟩, against the non-rhotic en-GB parent.
     """
-    assert _t("en-AU", "car") == "kɑː"
+    assert _bare("en-AU", "car") == "kɑː"
 
 
 @pytest.mark.xfail(
@@ -1250,18 +1244,13 @@ def test_en_ie_th_stopping():
     assert _t("en-IE", "think").startswith("t̪")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982) vol. 3 claims South African English is non-rhotic; en-ZA "
-    "produces [kɑːɹ] for car, where the en-GB parent gives the non-rhotic [kɑː]",
-)
 def test_en_za_non_rhotic():
     """South African English is non-rhotic.
 
     en-ZA notes: "South African English. Non-rhotic."
     Source: Wells (1982) vol. 3.
     """
-    assert _t("en-ZA", "car") == "kɑː"
+    assert _bare("en-ZA", "car") == "kɑː"
 
 
 def test_en_scotland_rhotic():
