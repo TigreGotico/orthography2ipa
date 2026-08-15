@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.71.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.4a1) (2026-08-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.3a1...7.71.4a1)
+
+**Merged pull requests:**
+
+- fix\(engine\): make the nasal-carrier constraint search-width independent \(ur oracle divergence\) + full board regen [\#911](https://github.com/TigreGotico/orthography2ipa/pull/911) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.71.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.3a1) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.2a1...7.71.3a1)
@@ -751,10 +759,6 @@
 ## [7.44.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.44.0a1) (2026-08-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.43.0a3...7.44.0a1)
-
-**Merged pull requests:**
-
-- feat: cited African orthographies for 290 stub specs \(Omniglot/Hartell via africa-g2p\) [\#714](https://github.com/TigreGotico/orthography2ipa/pull/714) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.43.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.43.0a3) (2026-08-02)
 
