@@ -2272,6 +2272,150 @@ def _primary_source_langs() -> List[str]:
     })
 
 
+# ─── alphacep/biggest-ru-book-cleanup (Russian) ────────────────────────────
+#
+# Notation: a Latin-letter segment code per Russian phoneme. Plain
+# consonants are the code letter itself; a trailing ``j`` on a consonant
+# marks palatalization (``tj`` = /tʲ/); vowels carry a trailing stress digit
+# (``1`` = stressed, ``0`` = unstressed). Enumerated exhaustively over the
+# cached ``dev`` split (1291 rows, 314 raw segment tokens before
+# stripping, 48 distinct phoneme codes once trailing sentence punctuation
+# is stripped from word/segment-group edges the same way
+# ``load_vox_communis`` strips it) — every code below is one of those 48;
+# none were guessed.
+_ALPHACEP_RU_CONSONANTS: Dict[str, str] = {
+    "b": "b", "c": "t͡s", "ch": "t͡ɕ", "d": "d", "f": "f", "g": "ɡ",
+    "h": "x", "k": "k", "l": "ɫ", "m": "m", "n": "n", "p": "p", "r": "r",
+    "s": "s", "sch": "ɕː", "sh": "ʂ", "t": "t", "v": "v", "z": "z",
+    "zh": "ʐ", "j": "j",
+}
+_ALPHACEP_RU_VOWELS: Dict[str, str] = {
+    "a": "a", "e": "e", "i": "i", "o": "o", "u": "u", "y": "ɨ",
+}
+#: Palatalization on ``ch``/``sch``/``zh``/``sh`` is not marked with a
+#: trailing ``j`` in the source data (they are inherently soft/hard in
+#: Russian and the annotation does not append ``j`` to them) — only the
+#: single-letter and ``j``-final codes below take the ``Cj`` softening
+#: pattern, confirmed against the segment inventory (``sch``, ``sh``, ``zh``
+#: never co-occur with a trailing extra ``j``).
+_ALPHACEP_RU_PALATALIZABLE = frozenset("bdfghklmnprstvz")
+
+#: ``l`` is the one consonant whose palatalized counterpart is not the
+#: plain IPA symbol plus ``ʲ``: Russian hard /ɫ/ (velarized "dark" l) and
+#: soft /lʲ/ are two distinct places of articulation, not the same
+#: consonant with an added secondary articulation — ``lj`` -> ``ɫʲ`` would
+#: notate a velarized-AND-palatalized lateral that does not occur in
+#: Russian. Every other ``Cj`` code keeps the generic base-IPA + ``ʲ``
+#: rule.
+_ALPHACEP_RU_PALATALIZED_OVERRIDES: Dict[str, str] = {"l": "lʲ"}
+
+#: Punctuation the source data glues onto the edge of a word's phone group
+#: (sentence punctuation, quotes, parens) — none of it is a phoneme.
+_ALPHACEP_RU_PUNCT = ".,;:!?¡¿\"'()«»…-—:"
+
+
+def _alphacep_ru_strip_punct(token: str) -> str:
+    return token.strip(_ALPHACEP_RU_PUNCT)
+
+
+def _alphacep_ru_segment_to_ipa(seg: str) -> Optional[str]:
+    """Map one underscore-delimited segment code to IPA, or ``None`` if the
+    segment is punctuation left over after group-level stripping (a stray
+    quote/dash glued to an interior segment by the source annotation)."""
+    seg = _alphacep_ru_strip_punct(seg)
+    if not seg:
+        return None
+    if seg[-1].isdigit():
+        base, stress = seg[:-1], seg[-1]
+        ipa = _ALPHACEP_RU_VOWELS.get(base)
+        if ipa is None:
+            return None
+        return ("ˈ" if stress == "1" else "") + ipa
+    if (len(seg) >= 2 and seg[-1] == "j"
+            and seg[:-1] in _ALPHACEP_RU_PALATALIZABLE):
+        base = seg[:-1]
+        override = _ALPHACEP_RU_PALATALIZED_OVERRIDES.get(base)
+        if override is not None:
+            return override
+        base_ipa = _ALPHACEP_RU_CONSONANTS.get(base)
+        if base_ipa is None:
+            return None
+        return base_ipa + "ʲ"
+    return _ALPHACEP_RU_CONSONANTS.get(seg)
+
+
+def load_alphacep_ru_book(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """alphacep/biggest-ru-book-cleanup (Hugging Face, dataset repo): a
+    cleaned phone-level re-annotation of its5Q/biggest-ru-book (Russian
+    audiobook TTS data). Rows are ``wav|sentence|phones``, where ``phones``
+    is one underscore-joined segment group per whitespace-tokenized
+    ``sentence`` word — rows are split into word-level (word, IPA) pairs the
+    same way ``load_vox_communis`` does; a row whose word/group counts do
+    not match is guarded against and skipped, though the cached ``dev``
+    split has none. Only the cached ``dev`` split is read (fetched via
+    ``huggingface_hub.hf_hub_download``, which resolves from the local HF
+    cache and does not re-download a file already present there).
+
+    PRODUCTION METHOD — this gold is MORPHOPHONEMIC / accentuator-driven,
+    not a surface-phonetic transcription: it is grapheme-faithful (no
+    vowel reduction — unstressed vowels keep their full quality, e.g.
+    молчал → m_o0_l_ch_a1_l with an unreduced [o], never akanje [ɐ]/[ə]) and
+    it writes genitive-ending ⟨г⟩ as [g] rather than the spoken [v]
+    (298/300 его-suffix rows checked carry [g], confirming this is a fixed
+    orthography-driven rule of the annotation pipeline, not a transcription
+    error). o2i's Russian output is surface-phonetic (it reduces unstressed
+    vowels and realizes genitive ⟨г⟩ as [v]), so PER against this gold will
+    show systematic, EXPECTED disagreement on exactly those two phenomena —
+    that is a notation mismatch between two legitimate conventions, not a
+    model error, and it must not be "fixed" by adding akanje/г-devoicing
+    exceptions to o2i to chase this one gold's convention.
+
+    PROVENANCE — classified ``machine-generated``: the phone tier is an
+    automatic accentuator/G2P annotation over its5Q/biggest-ru-book, not a
+    hand-transcribed or lexicon-derived gold. Directional signal only; see
+    ``docs/quality_tiers.md`` — this tier cannot gate a promotion.
+    """
+    if lang != "ru":
+        return []
+    from huggingface_hub import hf_hub_download
+    path = hf_hub_download(
+        repo_id="alphacep/biggest-ru-book-cleanup",
+        filename="metadata-phones-ids.csv.dev",
+        repo_type="dataset",
+    )
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            line = line.rstrip("\n")
+            parts = line.split("|")
+            if len(parts) < 3:
+                continue
+            sentence, phones_field = parts[1], parts[2]
+            words = sentence.split()
+            groups = phones_field.split()
+            if len(words) != len(groups):
+                continue
+            for word, group in zip(words, groups):
+                word = _alphacep_ru_strip_punct(word)
+                if not word:
+                    continue
+                ipa_segs = [_alphacep_ru_segment_to_ipa(seg)
+                            for seg in group.split("_")]
+                ipa_segs = [s for s in ipa_segs if s]
+                if not ipa_segs:
+                    continue
+                ipa = "".join(ipa_segs)
+                key = word.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                pairs.append((word, ipa))
+                if len(pairs) >= limit:
+                    return pairs
+    return pairs
+
+
 #: A dataset loader: ``loader(lang, limit) -> [GoldPair, ...]``. ``limit``
 #: is a row cap (``sys.maxsize`` for "no cap"); a loader that cannot serve
 #: *lang* returns an empty list rather than raising.
@@ -2307,6 +2451,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "northeuralex": (load_northeuralex, sorted(_NORTHEURALEX_LANGS)),
     "wold": (load_wold, sorted(_WOLD_LANGS)),
     "kaikki": (load_kaikki, sorted(_KAIKKI_LANGS)),
+    "alphacep_ru_book": (load_alphacep_ru_book, ["ru"]),
 }
 
 
@@ -2485,6 +2630,11 @@ PROVENANCE: Dict[str, str] = {
     "northeuralex": "lexicon-derived",  # Dellert et al. 2020, NorthEuraLex
     "wold": "lexicon-derived",          # Haspelmath & Tadmor 2009, WOLD
     "kaikki": "crowd-scraped",          # kaikki.org Wiktextract (Wiktionary)
+    # alphacep/biggest-ru-book-cleanup: automatic accentuator/G2P annotation
+    # over its5Q/biggest-ru-book, not hand-transcribed or lexicon-derived.
+    # Also morphophonemic (no vowel reduction, ⟨г⟩=[g]) rather than
+    # surface-phonetic — see load_alphacep_ru_book's docstring.
+    "alphacep_ru_book": "machine-generated",
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a
