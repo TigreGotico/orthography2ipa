@@ -409,7 +409,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mwl-x-sendim | mirandese_g2p | 11 | 0.3914 | · | · | · | · | [0.2347, 0.5405] | 0.1818 | research | expert-human |
 | mwl-x-sendim | portuguese_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | mww | wikipron | 489 | 0.3644 | · | · | · | · | - | - | research | crowd-scraped |
-| my | wikipron | 7930 | 0.6804 | · | · | · | · | [0.6767, 0.6838] | 0.0000 | skeleton | crowd-scraped |
+| my | wikipron | 7941 | 0.1926 | 0.1899 | 0.1898 | 0.4440 | 0.4440 | [0.1878, 0.1974] | 0.4381 | research | crowd-scraped |
 | myv | vox_communis | 6446 | 0.0958 | · | · | · | · | [0.0933, 0.0988] | 0.3888 | research | epitran-derived |
 | nap | wikipron | 198 | 0.2802 | · | · | · | · | [0.2551, 0.3042] | 0.1162 | research | crowd-scraped |
 | nb | ipa_childes | 3176 | 0.4077 | · | · | · | · | [0.4000, 0.4157] | 0.0828 | research | espeak-derived |

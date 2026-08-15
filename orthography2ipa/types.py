@@ -1711,7 +1711,14 @@ class LanguageSpec:
     spec declares supplies a syllable nucleus for the purpose of inherent-
     vowel cancellation, regardless of its Unicode category. It changes
     nothing for a spec that leaves it empty (the default) — Devanagari and
-    every other Mn/Mc-based abugida are unaffected byte-for-byte."""
+    every other Mn/Mc-based abugida are unaffected byte-for-byte.
+
+    An entry may be longer than one character, which is what the Myanmar
+    script needs: a Burmese RHYME is written as a unit (an optional vowel
+    sign, an optional final consonant letter carrying the asat ⟨်⟩, and an
+    optional tone mark) and it is the whole unit that supplies the nucleus —
+    ⟨ကန်⟩ is [kàɴ], while its first character alone is the ordinary letter
+    ⟨န⟩ /n/. The longest entry matching at the position decides."""
 
     preposed_vowels: Tuple[str, ...] = ()
     """Dependent vowel signs written BEFORE the consonant they attach to but
