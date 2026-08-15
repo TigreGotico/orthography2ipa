@@ -192,6 +192,10 @@ Each section below carries a ``# ─── name ───`` header:
 ``o2i_lex``
     Builds the runtime lexicon for the ``o2i_lex`` column from espeak-ng's
     own wordlist.
+``lexicon-backed tier``
+    ``LEXICON_TIER_ENGINES`` and the per-engine lexicon KEY extractors: the
+    second, separately-ranked tier where every engine keeps its lexicon on
+    and the gold is filtered against the union of all of them.
 ``scoring``
     ``_score`` — the shared PER metric, identical for every system.
 ``same-source policy``
@@ -210,13 +214,18 @@ Each section below carries a ``# ─── name ───`` header:
 from __future__ import annotations
 
 import argparse
+import hashlib
+import importlib
 import importlib.metadata
 import json
 import logging
 import os
+import re
 import shutil
+import sqlite3
 import subprocess
 import sys
+import unicodedata
 from typing import Any, Dict, List, NamedTuple, Optional, Sequence, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -1240,11 +1249,19 @@ def _parse_espeak_wordlist_words(dictsource_dir: str, base_lang: str) -> List[st
     ``_list``/``_listx``/``_extra`` dictsource files under
     *dictsource_dir*.
 
-    Skips: comments (``// ...``), blank lines, directive-only first
-    tokens (``_lig``, ``?3``, ``$nounf`` — letter/ligature helper names
-    and conditional/inflection directives, not words), and single-ASCII-
-    letter entries (espeak-ng's "spell this letter" pronunciations, not
-    real vocabulary words scored in any gold set here).
+    Skips: comments (``// ...``), blank lines, directive tokens
+    (``_lig``, ``$nounf`` — letter/ligature helper names and inflection
+    directives, not words), and single-character entries (espeak-ng's
+    "spell this letter" pronunciations, not real vocabulary words scored
+    in any gold set here).
+
+    Conditionals (``?3``, ``?!2``) are written BEFORE the headword —
+    ``?3 accursed  ...`` is a real entry for "accursed", conditional on
+    dictionary variant 3 — so a leading conditional is STEPPED OVER, not
+    treated as the word. Skipping such lines outright (the original bug)
+    dropped 288 English and 210 Portuguese headwords, every one of which
+    then leaked back into the lexicon-backed tier's "residual" gold as a
+    word espeak-ng actually looks up (``pretence``, ``defragment``, …).
     """
     words = set()
     for suffix in ("list", "listx", "extra"):
@@ -1256,8 +1273,14 @@ def _parse_espeak_wordlist_words(dictsource_dir: str, base_lang: str) -> List[st
                 line = line.split("//", 1)[0].strip()
                 if not line:
                     continue
-                tok = line.split()[0]
-                if tok.startswith(("_", "?", "$")):
+                tokens = line.split()
+                # step over any leading conditional; the headword follows
+                while tokens and tokens[0].startswith("?"):
+                    tokens = tokens[1:]
+                if not tokens:
+                    continue
+                tok = tokens[0]
+                if tok.startswith(("_", "$")):
                     continue
                 if len(tok) == 1:
                     continue
@@ -1314,6 +1337,618 @@ def build_espeak_lexicon_tsv(o2i_lang: str) -> Optional[str]:
         os.remove(cache_path)
         return None
     return cache_path
+
+
+# ─── lexicon-backed tier: each engine's ACTUAL lookup keys ──────────────────
+#
+# WHY THIS SECTION EXISTS: the primary leaderboard ranks a LEXICON-FREE
+# world (see "ranking policy" below) — a system's bundled per-word
+# dictionary never counts toward a win, because o2i by hard rule ships
+# none. That answers "whose rules are better". It does NOT answer the
+# other half of the owner's question: with every engine in its STOCK
+# configuration, lexicons ON, who is better?
+#
+# Scored naively, that second question is worthless: every gold word that
+# happens to sit in an engine's lexicon is a lookup, not a prediction, and
+# the winner is simply whoever shipped the bigger dictionary overlapping
+# this particular gold. So the tier FILTERS the gold first — every entry
+# present in ANY compared engine's lexicon for that language is removed —
+# and ranks the stock engines on what is left. That residual measures
+# generalization BEYOND the lexicons, which is the only thing a
+# lexicon-backed comparison can honestly measure.
+#
+# The load-bearing part is extraction: each engine's key set must be its
+# REAL lookup keys, and each gold word must be matched against them with
+# the SAME normalization that engine applies at lookup time. An
+# over-narrow match (e.g. comparing a raw gold word against lowercased
+# keys) silently readmits lookup words into the "residual" and quietly
+# turns the tier back into a dictionary-size contest. Each extractor
+# below therefore states its normalization and where the keys came from,
+# and every extraction is cached WITH its provenance.
+
+#: Where extracted lexicon key sets are cached, one JSON per
+#: (engine, language, source fingerprint). Under ``.benchmark_cache``
+#: (gitignored) because some of these key sets are derived from data this
+#: repo must never carry: espeak-ng's GPL dictsource wordlists, and
+#: arbtok's corpus-mined HF stem lexicon.
+LEXICON_KEY_CACHE_DIR = os.path.join(REPO_ROOT, ".benchmark_cache",
+                                     "lexicon_keys")
+
+#: Below this many residual gold words, a tier row is reported as
+#: "insufficient residual gold" instead of ranked: a PER over a couple of
+#: dozen words is noise, and naming a winner on it would be exactly the
+#: misleading precision ``_NO_SYSTEM_USABLE_THRESHOLD`` exists to refuse
+#: at the other end of the scale.
+LEXICON_TIER_MIN_GOLD = 50
+
+
+class LexiconKeys(NamedTuple):
+    """One engine's lookup keys for one language, plus how they were got.
+
+    ``keys``
+        The engine's ACTUAL lookup keys, already put through that engine's
+        own lookup-time normalization — so a gold word normalized the same
+        way can be tested with a plain ``in``.
+    ``provenance``
+        ``{"engine", "source", "version", "count", "normalization"}`` —
+        recorded next to the cached key set and rendered into the doc, so
+        a published tier number names the exact lexicon it was filtered
+        against rather than "some lexicon, at some version".
+    """
+
+    keys: frozenset
+    provenance: dict
+
+
+def _nfc_lower(word: str) -> str:
+    """NFC + ``str.lower()`` — the normalization espeak-ng's dictsource
+    lookup and gruut's lexicon lookup both effectively apply (both store
+    lowercase headwords and fold the input before lookup)."""
+    return unicodedata.normalize("NFC", word).lower()
+
+
+def _o2i_lexicon_code(engine: Any, fallback: str) -> str:
+    """The code an o2i sidecar lexicon must be registered/looked up under:
+    the engine's RESOLVED lect. ``G2P("en").lang`` is ``en-GB``, and that
+    is the code ``_override_for`` consults — see :func:`_o2i_lex_pass` for
+    the bug this exists to prevent."""
+    return getattr(engine, "lang", None) or fallback
+
+
+def _o2i_lexicon_key(word: str, lect: str) -> str:
+    """The key o2i itself uses for a sidecar-lexicon lookup:
+    ``NFC(lower_str(word, code))`` — see ``G2P._override_for``. Used for
+    BOTH o2i-lexicon-driven columns (``o2i_lex``, and ``tugaphone``,
+    whose tugalex entries are registered through the very same
+    ``register_lexicon`` pathway), so the filter matches what those
+    engines really look up, language-aware casing included."""
+    try:
+        from orthography2ipa.phonetok import lower_str
+        return unicodedata.normalize("NFC", lower_str(word, lect))
+    except Exception:
+        return _nfc_lower(word)
+
+
+def _arbtok_lexicon_key(word: str, lect: str) -> str:
+    """arbtok's lookup key: ``arbtok.tokenizer.normalize_unicode`` (NFC +
+    canonical consonant/shadda/vowel ordering) and nothing else — see
+    ``LatticeDiacritizer.diacritize_word``, which looks the NORMALIZED
+    word up directly. Deliberately does NOT strip diacritics: arbtok's
+    keys are undiacritized surface forms, so a diacritized gold word does
+    not hit the lexicon, and pretending it does would over-filter the
+    residual gold."""
+    try:
+        from arbtok.tokenizer import normalize_unicode
+        return normalize_unicode(word)
+    except Exception:
+        return unicodedata.normalize("NFC", word)
+
+
+def _no_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
+    """An engine that HAS no lexicon in its stock configuration, stated
+    positively rather than by omission — ``g2p_barranquenho``
+    (``transcribe()`` is pure lattice + rule stages) and
+    ``mwl_phonemizer`` (its native-speaker overlay and CRF corrector are
+    both off unless the caller asks). They join the tier under their stock
+    config trivially: an empty key set filters nothing, and their tier
+    number is the same number their primary-board column carries."""
+    return LexiconKeys(frozenset(), {
+        "engine": "(none)",
+        "source": "no bundled lexicon in the stock configuration",
+        "version": None,
+        "count": 0,
+        "normalization": "n/a",
+    })
+
+
+def espeak_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
+    """espeak-ng's stock per-word exception headwords for *lang*.
+
+    Source: the SAME ``dictsource/<lang>_list``/``_listx``/``_extra``
+    files ``scripts/build_espeak_rules_only.sh`` empties to build the
+    ``espeak_rules`` column. The o2i_lex overlay and this filter share
+    :func:`_parse_espeak_wordlist_words`, so they always agree on the
+    extracted headwords; the rules-only build empties the whole file,
+    a strict superset of what this parser extracts (it also drops
+    directives and single-character entries).
+    Requires ``$ESPEAK_DICTSOURCE_PATH``; ``None`` (=> this engine cannot
+    join the tier) without it.
+
+    Normalization: ``_nfc_lower`` — the parser already lowercases the
+    headwords, and espeak-ng folds case before dictionary lookup.
+    """
+    # Same mapping the espeak_rules gate uses (DICTSOURCE_LANG first, then
+    # the row's espeak voice), NOT DICTSOURCE_LANG alone: that table only
+    # covers the 2x2's stronghold languages, and a row whose espeak voice
+    # IS a dictsource language (pt, ar, …) must still get its real key set
+    # rather than being dropped from the tier over a missing table entry.
+    base_lang = _dictsource_lang_for(lang, cfg.get("espeak"))
+    if base_lang is None or not ESPEAK_DICTSOURCE_PATH:
+        return None
+    dictsource_dir = _resolve_dictsource_dir(ESPEAK_DICTSOURCE_PATH)
+    if dictsource_dir is None:
+        return None
+    words = _parse_espeak_wordlist_words(dictsource_dir, base_lang)
+    if not words:
+        return None
+    return LexiconKeys(frozenset(_nfc_lower(w) for w in words), {
+        "engine": "espeak-ng",
+        # Machine-INDEPENDENT: the concrete $ESPEAK_DICTSOURCE_PATH root is
+        # a local scratch clone whose absolute path would differ per
+        # machine and make the committed doc unreproducible.
+        "source": f"espeak-ng dictsource {base_lang}_(list|listx|extra)",
+        "version": _espeak_version(),
+        "count": len(words),
+        "normalization": "NFC + lowercase",
+    })
+
+
+def _espeak_version() -> Optional[str]:
+    """``espeak-ng --version``'s version token, or ``None``."""
+    if not espeak_available():
+        return None
+    try:
+        out = subprocess.run(["espeak-ng", "--version"], capture_output=True,
+                             text=True, timeout=30).stdout
+    except Exception:
+        return None
+    for tok in out.split():
+        if tok[:1].isdigit():
+            return tok
+    return out.strip() or None
+
+
+def _gruut_lexicon_db(lang: str) -> Optional[str]:
+    """Path to the ``lexicon.db`` gruut would consult for *lang*, or
+    ``None``. gruut ships one data package per BASE language
+    (``gruut_lang_en`` serves both ``en-us`` and ``en-gb``), so the base
+    tag is what selects the package."""
+    base = lang.split("-")[0]
+    try:
+        module = importlib.import_module(f"gruut_lang_{base}")
+    except Exception:
+        return None
+    root = os.path.dirname(getattr(module, "__file__", "") or "")
+    path = os.path.join(root, "lexicon.db")
+    return path if os.path.isfile(path) else None
+
+
+def gruut_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
+    """gruut's bundled lexicon headwords for *lang*.
+
+    Source: the ``word`` column of ``word_phonemes`` in the language
+    package's ``lexicon.db`` — the exact table
+    ``TextProcessorSettings.lookup_phonemes`` reads, and the exact lookup
+    the ``gruut_rules`` column disables. Normalization: ``_nfc_lower``
+    (gruut stores lowercase headwords and casefolds the token before
+    lookup).
+    """
+    path = _gruut_lexicon_db(lang)
+    if path is None:
+        return None
+    try:
+        con = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+        try:
+            words = [row[0] for row in
+                     con.execute("SELECT DISTINCT word FROM word_phonemes")]
+        finally:
+            con.close()
+    except Exception:
+        return None
+    if not words:
+        return None
+    return LexiconKeys(frozenset(_nfc_lower(w) for w in words if w), {
+        "engine": "gruut",
+        "source": (f"gruut_lang_{lang.split('-')[0]}/lexicon.db "
+                   f"(word_phonemes.word)"),
+        "version": _installed_version(f"gruut_lang_{lang.split('-')[0]}"),
+        "count": len(words),
+        "normalization": "NFC + lowercase",
+    })
+
+
+def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
+    """tugaphone's always-on ``tugalex`` headwords for *lang*.
+
+    Source: ``tugalex.TugaLexicon().get_ipa_map(region=...)`` for the
+    region ``tugaphone.registry.lexicon_region`` maps this lect to — the
+    SAME call ``tugaphone.lattice_core._write_lexicon`` makes to
+    materialise the TSV it then hands to ``register_lexicon``, so these
+    are literally the keys tugaphone registers. Normalization:
+    :func:`_o2i_lexicon_key`, because the lookup that consumes them is
+    o2i's own ``_override_for``.
+    """
+    tugaphone_lang = cfg.get("tugaphone")
+    if tugaphone_lang is None:
+        return None
+    try:
+        from tugalex import TugaLexicon
+        from tugaphone.registry import lexicon_region, resolve_lect
+    except ImportError:
+        return None
+    try:
+        lect = resolve_lect(tugaphone_lang)
+        region = lexicon_region(lect)
+        if region is None:
+            return None
+        ipa_map = TugaLexicon().get_ipa_map(region=region)
+    except Exception:
+        return None
+    if not ipa_map:
+        return None
+    return LexiconKeys(
+        frozenset(_o2i_lexicon_key(w, lect) for w in ipa_map), {
+            "engine": "tugaphone (tugalex)",
+            "source": f"tugalex.TugaLexicon().get_ipa_map(region={region!r})",
+            "version": _installed_version("tugalex"),
+            "count": len(ipa_map),
+            "normalization": "o2i lexicon key (NFC + language-aware lower)",
+        })
+
+
+def _hf_revision_of(path: str) -> Optional[str]:
+    """The commit sha in a ``huggingface_hub`` snapshot path
+    (``.../snapshots/<sha>/<file>``), or ``None`` for a non-HF path."""
+    parts = os.path.abspath(path).split(os.sep)
+    if "snapshots" in parts:
+        i = parts.index("snapshots")
+        if i + 1 < len(parts):
+            return parts[i + 1]
+    return None
+
+
+def arbtok_stock_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
+    """arbtok's STOCK lookup keys for *lang*: the HF stem lexicon UNION
+    the lect's closed-class dialect lexicon (with its inherited
+    ancestors) — the two maps ``LatticeDiacritizer`` consults, in that
+    order, before its model.
+
+    Source: ``arbtok.lexicon.StemLexicon(DEFAULT_LEXICON).entries``
+    (``hf://TigreGotico/arabic-stem-lexicon/ar-stems.tsv``; the resolved
+    snapshot's commit sha is recorded as the revision) and
+    ``arbtok.dialect_lexicon.DialectLexicon(lang).entries``.
+    Normalization: :func:`_arbtok_lexicon_key`, i.e. arbtok's own
+    ``normalize_unicode`` and nothing more — the same key
+    ``diacritize_word`` looks up.
+    """
+    if cfg.get("arbtok") is None:
+        return None
+    try:
+        from arbtok.lexicon import DEFAULT_LEXICON, StemLexicon, resolve_source
+        from arbtok.dialect_lexicon import DialectLexicon
+    except ImportError:
+        return None
+    try:
+        stem = StemLexicon()
+        entries = dict(stem.entries)
+        stem_n = len(entries)
+        revision = _hf_revision_of(str(resolve_source(DEFAULT_LEXICON)))
+        dialect = DialectLexicon(cfg["arbtok"]).entries
+    except Exception:
+        return None
+    keys = {_arbtok_lexicon_key(w, lang) for w in entries}
+    keys |= {_arbtok_lexicon_key(w, lang) for w in dialect}
+    return LexiconKeys(frozenset(keys), {
+        "engine": "arbtok (stock)",
+        "source": (f"{DEFAULT_LEXICON} ({stem_n} stems) + bundled "
+                   f"dialect lexicon for {cfg['arbtok']} ({len(dialect)} "
+                   f"entries)"),
+        "version": _installed_version("arbtok"),
+        "revision": revision,
+        "count": len(keys),
+        "normalization": "arbtok normalize_unicode (NFC + diacritic order)",
+    })
+
+
+def _running_o2i_version() -> Optional[str]:
+    """The version of the orthography2ipa actually IMPORTED for this run,
+    not the one pip has installed. The harness runs against the working
+    tree via ``PYTHONPATH``, so ``importlib.metadata`` reports whatever
+    wheel happens to be installed in the venv (measured: 7.58.2a1 while
+    the tree under test was 7.70.1a2) — a provenance line naming a version
+    that did not produce the number is a lie in the committed doc."""
+    try:
+        return getattr(importlib.import_module("orthography2ipa"),
+                       "__version__", None) or _installed_version(
+            "orthography2ipa")
+    except Exception:
+        return _installed_version("orthography2ipa")
+
+
+def _resolved_o2i_lect(code: str) -> str:
+    """``G2P(code).lang`` — the lect an o2i alias resolves to — or *code*
+    itself when o2i cannot be consulted."""
+    try:
+        from orthography2ipa import G2P
+        return G2P(code).lang
+    except Exception:
+        return code
+
+
+def o2i_lex_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
+    """The keys of the runtime lexicon the ``o2i_lex`` column registers —
+    espeak-ng's own wordlist, transcribed by espeak-ng (see
+    :func:`build_espeak_lexicon_tsv`). o2i participates in this tier on
+    exactly the terms it imposes on everyone else: its overlay is
+    filtered out of the residual gold too, symmetrically.
+
+    Normalization: :func:`_o2i_lexicon_key` (o2i's own lookup key).
+    """
+    path = build_espeak_lexicon_tsv(lang)
+    if path is None:
+        return None
+    # The SAME resolved lect the overlay is registered under (see
+    # _o2i_lexicon_code): keying the filter on the alias would normalize
+    # with a different lect's casing rules than the lookup uses.
+    g2p_code = _resolved_o2i_lect(cfg.get("g2p", lang))
+    words = []
+    try:
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                parts = line.rstrip("\n").split("\t")
+                if len(parts) == 2 and parts[0]:
+                    words.append(parts[0])
+    except OSError:
+        return None
+    if not words:
+        return None
+    return LexiconKeys(
+        frozenset(_o2i_lexicon_key(w, g2p_code) for w in words), {
+            "engine": "o2i + espeak-ng wordlist",
+            "source": os.path.relpath(path, REPO_ROOT),
+            "version": _running_o2i_version(),
+            "count": len(words),
+            "normalization": "o2i lexicon key (NFC + language-aware lower)",
+        })
+
+
+class LexiconTierEngine(NamedTuple):
+    """One STOCK-configured engine in the lexicon-backed tier.
+
+    ``key``
+        The row/system key whose already-computed per-word results this
+        tier re-scores on the filtered gold. It is deliberately the SAME
+        key the primary board uses (``espeak``, ``gruut``, ``tugaphone``,
+        ``arbtok_stock``, ``o2i_lex``): the tier never re-runs an engine,
+        it re-scores the very hypotheses the primary pass produced, so a
+        tier number can never come from a differently-configured run than
+        the column it sits next to.
+    ``label``
+        Display label — always names the STOCK configuration, so a tier
+        winner can never be mistaken for a lexicon-free result.
+    ``keys_name`` / ``normalize_name``
+        Module-level function names, resolved BY NAME at call time for
+        the same reason :class:`PerWordEngine` does it: a test double
+        installed with ``monkeypatch.setattr`` must take effect.
+    """
+
+    key: str
+    label: str
+    keys_name: str
+    normalize_name: str
+
+
+#: Every engine that may appear in the lexicon-backed tier, in column
+#: order. Membership is "engines whose STOCK configuration is what the
+#: tier compares" — that includes the two engines with NO lexicon
+#: (barranquenho, mwl_phonemizer), which enter trivially with an empty
+#: key set; in practice they only ever surface where their language also
+#: carries a second tier engine (see ``_LEXICON_TIER_MIN_ENGINES``).
+LEXICON_TIER_ENGINES: List[LexiconTierEngine] = [
+    LexiconTierEngine("o2i_lex", "o2i + espeak lexicon",
+                      "o2i_lex_lexicon_keys", "_o2i_lexicon_key"),
+    LexiconTierEngine("espeak", "espeak-ng (stock)",
+                      "espeak_lexicon_keys", "_nfc_lower_keyed"),
+    LexiconTierEngine("gruut", "gruut (stock)",
+                      "gruut_lexicon_keys", "_nfc_lower_keyed"),
+    LexiconTierEngine("tugaphone", "tugaphone (stock)",
+                      "tugaphone_lexicon_keys", "_o2i_lexicon_key"),
+    LexiconTierEngine("arbtok_stock", "arbtok (stock)",
+                      "arbtok_stock_lexicon_keys", "_arbtok_lexicon_key"),
+    LexiconTierEngine("barranquenho", "g2p_barranquenho (stock)",
+                      "_no_lexicon_keys", "_nfc_lower_keyed"),
+    LexiconTierEngine("mwl_phonemizer", "mwl_phonemizer (stock)",
+                      "_no_lexicon_keys", "_nfc_lower_keyed"),
+]
+
+#: A tier row needs at least this many engines with real numbers to be
+#: worth publishing — a "comparison" of one engine against itself is not
+#: one, and the filtering only means anything when there is something to
+#: compare after it.
+_LEXICON_TIER_MIN_ENGINES = 2
+
+
+def _nfc_lower_keyed(word: str, lang: str) -> str:
+    """:func:`_nfc_lower` with the uniform ``(word, lang)`` signature the
+    tier's normalizers are called with; the language is genuinely unused
+    for the engines that fold case ASCII-style."""
+    return _nfc_lower(word)
+
+
+def _lexicon_keys_cache_path(spec: LexiconTierEngine, lang: str,
+                             fingerprint: str) -> str:
+    """Cache file for one (engine, language, source fingerprint). The
+    fingerprint is IN THE FILENAME rather than checked after loading, so
+    a changed engine version or lexicon path can never read back a stale
+    key set — it simply misses the cache."""
+    safe = lang.replace(os.sep, "_")
+    return os.path.join(LEXICON_KEY_CACHE_DIR,
+                        f"{spec.key}-{safe}-{fingerprint}.json")
+
+
+def _lexicon_keys_fingerprint(spec: LexiconTierEngine, lang: str) -> str:
+    """A short hash of everything that would change an extraction's
+    result WITHOUT changing its (engine, language) identity: the
+    configured source roots and the harness version."""
+    # Everything that changes an extraction's RESULT (or its recorded
+    # provenance) without changing its (engine, language) identity. A
+    # version left out here reads a stale key set back from cache AND
+    # publishes the stale version string beside it, which is worse than a
+    # stale number: the doc would name a lexicon version that never
+    # produced it.
+    material = "|".join([
+        spec.key, lang, HARNESS_VERSION,
+        ESPEAK_DICTSOURCE_PATH or "", _espeak_version() or "",
+        _installed_version(f"gruut_lang_{lang.split('-')[0]}") or "",
+        _installed_version("gruut") or "",
+        _installed_version("arbtok") or "",
+        _installed_version("tugalex") or "",
+        _running_o2i_version() or "",
+    ])
+    return hashlib.sha1(material.encode("utf-8")).hexdigest()[:12]
+
+
+def lexicon_keys_for(spec: LexiconTierEngine, lang: str,
+                     cfg: dict) -> Optional[LexiconKeys]:
+    """*spec*'s lookup keys for *lang*, cached under
+    :data:`LEXICON_KEY_CACHE_DIR` with their provenance.
+
+    A cache MISS extracts and writes; a cache HIT is used as-is. Returns
+    ``None`` when this engine has no lexicon source for this language at
+    all (no mapping, library absent, ``$ESPEAK_DICTSOURCE_PATH`` unset) —
+    which excludes it from the tier rather than pretending its lexicon is
+    empty. That distinction matters: an ABSENT lexicon must never be
+    filtered as if it were an empty one, or every word it would have
+    looked up stays in the "residual" gold and the tier silently measures
+    lookup again.
+    """
+    fingerprint = _lexicon_keys_fingerprint(spec, lang)
+    path = _lexicon_keys_cache_path(spec, lang, fingerprint)
+    if os.path.isfile(path):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                blob = json.load(fh)
+            return LexiconKeys(frozenset(blob["keys"]), blob["provenance"])
+        except Exception:
+            pass  # a corrupt cache re-extracts, never fails the run
+    extracted = globals()[spec.keys_name](lang, cfg)
+    if extracted is None:
+        return None
+    os.makedirs(LEXICON_KEY_CACHE_DIR, exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump({"provenance": extracted.provenance,
+                   "keys": sorted(extracted.keys)}, fh, ensure_ascii=False)
+    os.replace(tmp, path)
+    return extracted
+
+
+#: Everything that is not a word character, an apostrophe or a hyphen —
+#: the separators a gold sentence's words are written with. Splitting on
+#: whitespace alone (the original bug) left "Olá," attached to its comma,
+#: which matches no lexicon key and defeated the sentence filter.
+_ENTRY_SEPARATORS = re.compile(r"[^\w'\u2019-]+", re.UNICODE)
+
+
+def _entry_tokens(entry: str) -> List[str]:
+    """The words inside a gold *entry*, punctuation stripped."""
+    return [t for t in _ENTRY_SEPARATORS.split(entry) if t]
+
+
+def _lexicon_covers(entry: str, normalize, keys: frozenset,
+                    lang: str) -> bool:
+    """Whether a lexicon whose *keys* these are contributes ANY lookup to
+    this gold *entry*.
+
+    Most gold entries are single words, where this is a plain key test.
+    Some are whole SENTENCES (``ep_dialects``, ``4catac``), and a lexicon
+    is consulted per word inside them — so a sentence containing even one
+    looked-up word is partly a lookup and must leave the residual gold
+    too. Testing only the whole entry (the obvious implementation) would
+    score every sentence row as if no lexicon had been consulted at all,
+    which is exactly the silent readmission this tier exists to prevent.
+    """
+    if normalize(entry, lang) in keys:
+        return True
+    return any(normalize(token, lang) in keys
+               for token in _entry_tokens(entry))
+
+
+def _lexicon_tier_for_row(lang: str, cfg: dict, words: Sequence[str],
+                          results: Dict[str, "ScoredPairs"]) -> Optional[dict]:
+    """The lexicon-backed tier block for one board row, or ``None`` when
+    this row has fewer than :data:`_LEXICON_TIER_MIN_ENGINES` stock
+    engines to compare.
+
+    Re-scores the ALREADY-COMPUTED stock hypotheses (``results``, whose
+    lists are aligned with *words*) on the gold MINUS the union of every
+    compared engine's lexicon keys. Nothing is re-run: the tier is a
+    different SCORING of the same pass, so it cannot drift from the
+    primary board's columns.
+    """
+    # Cheap gate FIRST: extraction can fetch a 145k-entry lexicon over the
+    # network (arbtok), so a row that cannot possibly have a tier must not
+    # pay for it.
+    candidates = [s for s in LEXICON_TIER_ENGINES if results.get(s.key)]
+    if len(candidates) < _LEXICON_TIER_MIN_ENGINES:
+        return None
+    extracted: Dict[str, LexiconKeys] = {}
+    compared: List[LexiconTierEngine] = []
+    for spec in candidates:
+        keys = lexicon_keys_for(spec, lang, cfg)
+        if keys is None:
+            # Its lexicon could not be enumerated, so its lookups cannot be
+            # filtered out — ranking it here would publish exactly the
+            # dictionary-lookup number this tier exists to remove. Dropped,
+            # not silently included with an empty filter.
+            continue
+        extracted[spec.key] = keys
+        compared.append(spec)
+    if len(compared) < _LEXICON_TIER_MIN_ENGINES:
+        return None
+    hits = {k: 0 for k in extracted}
+    keep: List[int] = []
+    for i, word in enumerate(words):
+        excluded = False
+        for spec in compared:
+            keys = extracted[spec.key]
+            normalize = globals()[spec.normalize_name]
+            if _lexicon_covers(word, normalize, keys.keys, lang):
+                hits[spec.key] += 1
+                excluded = True
+        if not excluded:
+            keep.append(i)
+    insufficient = len(keep) < LEXICON_TIER_MIN_GOLD
+    per: Dict[str, Optional[float]] = {}
+    per_n: Dict[str, int] = {}
+    if not insufficient:
+        for spec in compared:
+            pairs = [results[spec.key][i] for i in keep]
+            value, covered = _score(pairs, lang=lang)
+            per[spec.key] = _r(value)
+            per_n[spec.key] = covered
+    return {
+        "engines": [s.key for s in compared],
+        "n": len(words),
+        "filtered_n": len(keep),
+        "insufficient_residual_gold": insufficient,
+        "min_gold": LEXICON_TIER_MIN_GOLD,
+        "lexicon_hits": hits,
+        "lexicon_sizes": {k: v.provenance.get("count") for k, v in extracted.items()},
+        "provenance": {k: v.provenance for k, v in extracted.items()},
+        "per": per,
+        "per_n": per_n,
+    }
 
 
 # ─── scoring ─────────────────────────────────────────────────────────────────
@@ -1747,11 +2382,22 @@ def _o2i_lex_pass(o2i_module: Any, engine: Any, g2p_code: str,
     """Re-score every word with espeak-ng's own wordlist registered as an
     o2i lexicon — the ``o2i_lex`` half of the fair-comparison 2x2 (see the
     module docstring). The registry is cleared again afterwards so the
-    overlay cannot leak into the next language."""
+    overlay cannot leak into the next language.
+
+    Registered under the engine's RESOLVED lect (``engine.lang``), not the
+    configured *g2p_code*: ``G2P("en")`` resolves to ``en-GB``, and
+    ``G2P._override_for`` looks the sidecar up with ``get_lexicon(self.lang)``
+    — i.e. under the resolved code. Registering under the alias made the
+    overlay unreachable, so every published ``o2i_lex`` number was silently
+    plain o2i (measured: the ``en``/``wikipron`` row was identical to
+    ``o2i_per`` to four decimals). This affects every alias where
+    ``G2P(code).lang != code`` — en, fr, de, es, it.
+    """
     # register_lexicon() calls get_lexicon.cache_clear() itself, so the
     # engine picks up the sidecar on the very next transcribe call —
     # no need for a fresh G2P instance.
-    o2i_module.register_lexicon(g2p_code, lexicon_tsv)
+    o2i_module.register_lexicon(_o2i_lexicon_code(engine, g2p_code),
+                                lexicon_tsv)
     out = _o2i_pass(engine, words, refs)
     o2i_module.clear_lexicons()
     return out
@@ -1849,15 +2495,19 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
         for key, pairs in results.items()
     }
     ran = {s.key for s in enabled}
+    # The lexicon-backed tier RE-SCORES the passes above on a filtered gold;
+    # it never re-runs an engine (see _lexicon_tier_for_row).
+    tier = _lexicon_tier_for_row(lang, cfg, words, results)
     return _build_row(lang, cfg, dataset_name, loader_lang, limit, words,
-                      same_source, scores, ran)
+                      same_source, scores, ran, tier)
 
 
 def _build_row(lang: str, cfg: dict, dataset_name: str, loader_lang: str,
                limit: Optional[int], words: Sequence[str],
                same_source: Dict[str, bool],
                scores: Dict[str, Tuple[Optional[float], int]],
-               ran: set) -> dict:
+               ran: set,
+               lexicon_tier: Optional[dict] = None) -> dict:
     """Assemble one comparison board row.
 
     Written out key by key ON PURPOSE rather than generated from
@@ -1946,6 +2596,14 @@ def _build_row(lang: str, cfg: dict, dataset_name: str, loader_lang: str,
         "mwl_phonemizer_n": n("mwl_phonemizer"),
         "mwl_phonemizer_same_source": same_source["mwl_phonemizer"],
         "mwl_phonemizer_version": version("mwl_phonemizer", "mwl_phonemizer"),
+        # The lexicon-backed tier lives in ONE nested key, deliberately: it is
+        # a SECOND, separately-labelled ranking (stock configs, gold filtered
+        # against every compared lexicon — see the tier section above), and
+        # nesting it means no primary-board consumer, ranking helper or
+        # renderer can pick a tier number up by accident while iterating the
+        # flat "<system>_per" schema. ``None`` when the row has fewer than
+        # two stock engines to compare.
+        "lexicon_tier": lexicon_tier,
         "provenance_tier": _provenance_tier_or_none(dataset_name, loader_lang),
         "harness_version": HARNESS_VERSION,
         "limit": limit if limit is not None else "full",
@@ -2943,6 +3601,129 @@ def _render_language_tables(rows: List[dict]) -> List[str]:
     return lines
 
 
+def _lexicon_tier_label(key: str) -> str:
+    """The STOCK-configuration display label for tier column *key*."""
+    return next(s.label for s in LEXICON_TIER_ENGINES if s.key == key)
+
+
+def _lexicon_tier_winner(tier: dict) -> str:
+    """The tier's winner cell: the lowest PER among the STOCK engines on
+    the FILTERED gold, tie-aware on the same ``_WINNER_TIE_TOLERANCE`` the
+    primary Winner column uses.
+
+    Never reuses :func:`_winner`, and never returns a lexicon-free label:
+    a tier winner is always named under its stock label, so a reader
+    cannot carry a tier result back into the primary leaderboard by
+    mistake.
+    """
+    if tier.get("insufficient_residual_gold"):
+        return f"insufficient residual gold (< {tier['min_gold']})"
+    values = {_lexicon_tier_label(k): v for k, v in tier.get("per", {}).items()
+              if v is not None}
+    if len(values) < _LEXICON_TIER_MIN_ENGINES:
+        return "n/a"
+    if min(values.values()) > _NO_SYSTEM_USABLE_THRESHOLD:
+        return "no system is usable on this gold"
+    return _winner_label_str(_ranked_winners(values))
+
+
+def _lexicon_backed_tier_lines(rows: List[dict]) -> List[str]:
+    """The lexicon-backed tier section — a SECOND, separate ranking that
+    never mixes with the primary lexicon-free leaderboard above.
+
+    Every engine keeps its lexicon ON (its stock configuration), and the
+    gold is filtered first: every entry present in ANY compared engine's
+    lexicon for that language is removed before scoring. Rows are listed
+    with their original and residual N and the per-engine lexicon-hit
+    counts, so the size of the filter is visible next to the numbers it
+    produced.
+    """
+    tier_rows = [r for r in rows if r.get("lexicon_tier")]
+    if not tier_rows:
+        return []
+    columns: List[str] = [
+        s.key for s in LEXICON_TIER_ENGINES
+        if any(s.key in r["lexicon_tier"]["engines"] for r in tier_rows)
+    ]
+    lines = [
+        "## Lexicon-backed tier — gold filtered against all compared lexicons",
+        "",
+        "This is a SECOND, separate ranking, and it never feeds the "
+        "leaderboard or the Winner column above. Here every engine runs "
+        "in its STOCK configuration — lexicons ON, exactly as a caller "
+        "gets it with no arguments — and o2i takes part on the same "
+        "terms, as `o2i_lex` (o2i plus espeak-ng's own word list). "
+        "Ranking stock engines on the raw gold would measure nothing but "
+        "dictionary size: a gold word that sits in an engine's lexicon "
+        "is a lookup, not a prediction. So the gold is FILTERED first — "
+        "every entry present in ANY compared engine's lexicon for that "
+        "language is removed, the same words removed for every engine — "
+        "and what remains is scored. The tier therefore measures how "
+        "well each stock system GENERALIZES beyond the lexicons it "
+        "ships, not how much of this particular test set it already "
+        "knows. `N` is the original gold size, `filtered N` what "
+        f"survived the union filter; below {LEXICON_TIER_MIN_GOLD} "
+        "residual words a row is reported as insufficient rather than "
+        "ranked on noise.",
+        "",
+    ]
+    header = (["Language", "Gold", "N", "filtered N"]
+              + [_lexicon_tier_label(k) for k in columns] + ["Winner"])
+    lines.append("| " + " | ".join(header) + " |")
+    lines.append("|" + "---|" * len(header))
+    for row in sorted(tier_rows, key=lambda r: (r["lang"], r["dataset"])):
+        tier = row["lexicon_tier"]
+        cells = [_lang_heading(row["lang"]), f"`{row['dataset']}`",
+                 str(tier["n"]), str(tier["filtered_n"])]
+        for key in columns:
+            cells.append(_fmt(tier.get("per", {}).get(key))
+                         if key in tier["engines"] else "n/a")
+        cells.append(_lexicon_tier_winner(tier))
+        lines.append("| " + " | ".join(cells) + " |")
+    lines.extend([
+        "",
+        "**What the filter removed.** Per row, how many of the gold's "
+        "words each compared engine's lexicon already contained (the "
+        "union of these is what was filtered out), and how large that "
+        "lexicon is:",
+        "",
+    ])
+    hit_header = ["Language", "Gold"] + [_lexicon_tier_label(k) for k in columns]
+    lines.append("| " + " | ".join(hit_header) + " |")
+    lines.append("|" + "---|" * len(hit_header))
+    for row in sorted(tier_rows, key=lambda r: (r["lang"], r["dataset"])):
+        tier = row["lexicon_tier"]
+        cells = [_lang_heading(row["lang"]), f"`{row['dataset']}`"]
+        for key in columns:
+            if key not in tier["engines"]:
+                cells.append("n/a")
+                continue
+            size = tier["lexicon_sizes"].get(key)
+            cells.append(f"{tier['lexicon_hits'].get(key, 0)} "
+                         f"(of {size} entries)")
+        lines.append("| " + " | ".join(cells) + " |")
+    lines.extend(["", "**Where each key set came from.** Every lexicon is "
+                  "enumerated from the engine's OWN lookup data, and each "
+                  "gold word is matched against it with the same "
+                  "normalization that engine applies at lookup time (an "
+                  "over-narrow match would silently readmit looked-up "
+                  "words into the residual gold):", ""])
+    seen: Dict[str, dict] = {}
+    for row in tier_rows:
+        for key, prov in row["lexicon_tier"]["provenance"].items():
+            seen.setdefault(f"{_lexicon_tier_label(key)} — {prov.get('source')}",
+                            prov)
+    for label in sorted(seen):
+        prov = seen[label]
+        bits = [f"version `{prov['version']}`"] if prov.get("version") else []
+        if prov.get("revision"):
+            bits.append(f"revision `{prov['revision']}`")
+        bits.append(f"matched as {prov.get('normalization')}")
+        lines.append(f"- **{label}** — {', '.join(bits)}.")
+    lines.append("")
+    return lines
+
+
 def _fair_comparison_2x2_lines(rows: List[dict]) -> List[str]:
     """The dictionary-vs-rules 2x2 section: isolates espeak-ng's
     word-exception dictionary from its letter-to-sound rules on the same
@@ -3277,16 +4058,16 @@ def write_comparison(
         "lowest of all (`espeak with its lexicon scores N — "
         "informational`) — visible, never counted.",
         "",
-        "**Symmetric alternative (not implemented).** The fair-"
-        "comparison principle cuts both ways: a lexicon-BACKED ranking "
-        "tier is equally possible, PROVIDED o2i is given the same "
-        "per-word lexicon the competitor ships (exactly what `o2i_lex` "
-        "in the \"Fair-comparison 2x2\" section below already does for "
-        "espeak-ng's dictionary, on the languages that 2x2 covers). That "
-        "tier is not wired into the Winner column or leaderboard today "
-        "— extending it to every lexicon-backed system/language pair on "
-        "this board, and rendering it as a second ranked tier rather "
-        "than a side table, is future work.",
+        "**Symmetric alternative: the lexicon-backed tier.** The fair-"
+        "comparison principle cuts both ways, so the board also carries "
+        "a SECOND ranking where every engine keeps its lexicon on and "
+        "o2i takes part on the same terms (as `o2i_lex`, o2i plus "
+        "espeak-ng's own word list) — see \"Lexicon-backed tier\" below. "
+        "It is scored on gold FILTERED against the union of every "
+        "compared engine's lexicon, so it measures generalization beyond "
+        "those lexicons rather than test-set lookup. It is a separate "
+        "table with its own winner column and never feeds this "
+        "leaderboard or the Winner column above.",
         "",
         "**Winner column.** The lowest PER on the row IN THE LEXICON-"
         "FREE WORLD (see \"Ranking policy\" above), by name; ties "
@@ -3368,6 +4149,7 @@ def write_comparison(
     ])
     lines.extend(_robustness_section(rows))
     lines.extend(_fair_comparison_2x2_lines(rows))
+    lines.extend(_lexicon_backed_tier_lines(rows))
     if catalan_voices is not None:
         lines.extend(_catalan_dialect_table_lines(rows, catalan_voices))
     lines.extend(_details_block_lines(rows, scoreboard_note, espeak_rules_note,

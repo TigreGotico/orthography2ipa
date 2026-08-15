@@ -120,7 +120,7 @@ stated rather than papered over.
 | `portuguese_unified` | lexicon-derived | Infopédia + Portal da Língua Portuguesa + pt.wiktionary.org (convention-normalized merge) | Single Portuguese gold (`TigreGotico/portuguese-unified-pronunciation-lexicon`, ~598k rows / 122k words, CC BY-SA 4.0), replacing the three separate golds it merges. One region per registered tag (see `_PT_UNIFIED_REGIONS`). `ipa_narrow` is scored. Untagged plain-`pt` rows are excluded. The Infopédia/Portal majority is dictionary/semi-automated lexicography and the Wiktionary minority is crowd-scraped: directional, not peer-validated ground truth. |
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`. The transform adds artifacts. |
 | `ipadict` | **per-language** (see below) | Depends on the file: human dictionaries, Wiktionary scrapes, rule scripts, **espeak** | The only mixed-provenance dataset here: ipa-dict is a *collection* of independently sourced files, so each row carries the tier of the file it was scored against, not a dataset-wide tier. Full per-language table in [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). |
-| `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size. Some entries are editor-rule output, not attested. Multiple valid variants per word. |
+| `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size. Some entries are editor-rule output, not attested. Multiple valid variants per word. **On a few small-community tags the IPA column is not editor-typed at all but the output of a Wiktionary Lua module, which makes those rows a reproduction test rather than an accuracy test: see [Module-generated WikiPron rows](#module-generated-wikipron-rows).** |
 | `wikipron_ar_diacritized` | crowd-scraped | Wiktionary editors + `text2tashkeel` input restoration | Same Arabic gold IPA as `wikipron`. Only the INPUT word is machine-diacritized (~2% DER noise floor). Diagnostic for the vowelized-Arabic rules. Certifies nothing beyond the raw row. See [Arabic with tashkeel restored](#arabic-with-tashkeel-restored-wikipron_ar_diacritized). |
 | `ipa_childes` | **per-language** (see below) | Depends on the language: `phonemizer` (espeak-ng), `epitran`, or `pinyin_to_ipa` | Mixed-provenance like `ipadict`: the IPA-CHILDES card names a **different phonemizing tool per language**, so each row carries the tier its own tool earns: `espeak-derived`, `epitran-derived`, or `machine-generated` for Mandarin's `pinyin_to_ipa` table. Full per-language tool table in [IPA-CHILDES split](#ipa-childes-split-ipa_childes). |
 | `ipa_babylm` | espeak-derived | G2P+ with the `phonemizer` backend (= espeak-ng), `en-us` | BabyLM 2024 corpora phonemized by [G2P+](https://github.com/codebyzeb/g2p-plus), which is a wrapper over `phonemizer`/`epitran`. The conversion notebook ([codebyzeb/babylm-ipa](https://github.com/codebyzeb/babylm-ipa)) calls the `phonemizer` backend, which requires espeak-ng. So this is espeak output: it can neither qualify nor block English. |
@@ -232,6 +232,35 @@ seseo/gheada). The harness scores against all of them and keeps the
 best match.
 
 Core wired tags: `gl`, `es`, `pt`, `pt-BR`, `en`, `en-GB`.
+
+#### Module-generated WikiPron rows
+
+On a large tag the IPA column is what Wiktionary editors typed. On a small
+one it often is not. Several languages have a per-language Lua generator
+(`Module:<code>-IPA`) that the entries invoke through a bare pronunciation
+template, so the "gold" for that tag is that module's output, scraped.
+
+This is the `hitz_basque_ipa` problem in a `crowd-scraped` row: a low PER
+there measures **agreement with the generator, not accuracy**, and the
+scoreboard's provenance column does not say so, because the tier is set
+per dataset and `wikipron` as a whole is genuinely crowd-scraped.
+
+Two rows are known to be affected, both wired by the small-wikipron sweep:
+
+| tag | what the gold actually is | how to read the row |
+|---|---|---|
+| `tew` (Tewa, `N=106`) | **entirely** `Module:tew-IPA` output — every headword carries a bare `{{tew-IPA}}` and no hand-typed IPA | **`PER 0.0000` certifies reproduction of `Module:tew-IPA` on 106 words, not accuracy.** The spec was built from the same Martinez (1982) orthography and Sutton (2014) values the module cites, and cross-checked against the module, so engine and gold share a source. |
+| `nmy` (Namuyi, `N=354`) | a **mix** of hand-typed IPA and `Module:nmy-IPA` output | Weaker form of the same caveat: part of the row is a reproduction test. The residual error is dominated by unwritten vowel nasalisation, which is a real gap either way. |
+
+Neither row may be used to certify Tewa or Namuyi accuracy, and neither
+belongs in a cross-system comparison. What they do certify is that the
+spec implements the published orthography consistently — which is the
+claim the spec makes, and is worth measuring, under its own name.
+
+A per-language provenance override (`PROVENANCE_BY_LANG["wikipron"]`) would
+let the scoreboard carry this in the provenance column instead of only in
+prose. That is a `scripts/benchmark.py` change and is proposed, not made,
+here.
 
 ### Arabic with tashkeel restored (`wikipron_ar_diacritized`)
 
@@ -583,15 +612,47 @@ single-token span the more conservative unit to score in isolation.
 with per-utterance phone strings whose lexicons were built with **Epitran,
 the XPF Corpus, Charsiu and custom dictionaries** (partially hand-corrected
 by VoxCommunis, but not attributably per row). One small TSV per language.
-71 language tags are wired (every per-language file with a matching spec,
-plus a few regionalised aliases: `sv-se`→`sv`, `zh-cn`→`zh`, `hy-am`→`hy`,
+69 language tags are wired (every per-language file with a matching spec,
+plus a few regionalised aliases: `sv-se`→`sv`, `hy-am`→`hy`,
 `fy-nl`→`fy`, `pa-in`→`pa`, and the region-untagged `pt` file under `pt-BR`,
-the same policy as the WikiPron generic-pt row).
+the same policy as the WikiPron generic-pt row). `zh-cn` and `yue` are
+deliberately **not** wired — see [Rejected candidates](#rejected-candidates).
 
 The `phonemized_sentence` column is space-separated phones with `|` between
 words, aligned with the whitespace-tokenized `aligned_sentence`. Rows are
 split into word-level pairs like `ipa_childes`, skipping token-count
 mismatches and stripping alignment artifacts.
+
+**`spn` tokens are dropped, not scored.** `spn` is the Montreal Forced
+Aligner's "spoken noise" symbol, which the VoxCommunis pipeline reuses for
+any word its lexicon could not cover: the phone tier records the literal
+string `spn` in place of that word's phones. It is a coverage-hole marker,
+not a transcription, and scoring it is not merely noisy but **unbounded** —
+PER normalises by the *gold* length, so one real 10-segment word scored
+against a 3-character `spn` contributes a per-word PER above 3. Whole
+languages were pushed past PER 1.0 by this alone. Share of `spn` tokens in
+the affected files (measured 2026-08): `kk` 59.4%, `ab` 46.5%, `cv` 31.3%,
+`ba` 15.1%, `it` 12.5%, `sr` 9.6%, `es` 2.9%, `ca` 2.1%.
+
+`spn` is the **only** token filtered. The obvious siblings (`sil`, `sp`,
+`nsn`, `noise`) do occur, but overwhelmingly as *genuine transcriptions of
+real words* — Welsh `sul` → /sil/ (336 rows), Amharic `ሲል`, Bulgarian
+`сп`, Tamil `ஸ்ப்`, Korean `실`, Punjabi `ਸੀਲ` — so filtering on the phone
+string would delete real gold. A further 61 rows across seven files carry
+the marker on both tiers (word `sil` → phones `sil`), which does look like
+an aligner placeholder leaking into the orthography; those are left in as
+well, because the identity test is not safe either — Turkish `sil`
+("wipe") is a real word genuinely pronounced [sil]. 61 rows out of ~2.6M
+is far below the noise floor of an `epitran-derived` row.
+
+**Known upstream contamination, `sr`.** 35.8% of Serbian tokens carry a
+spurious word-initial `z` in the Charsiu-derived phone tier (`не` →
+`znɛ`, `и` → `zi`, `а` → `za`). It is never doubled on words that
+genuinely start with `з`, so it is an upstream lexicon artifact, not a
+transcription convention. It is *not* filtered — there is no way to
+distinguish it from a real word-initial /z/ without guessing — and it
+inflates the `sr` row by roughly 0.04 PER (0.3298 → 0.2949 with the artifact
+removed by hand). Read the `sr` vox_communis row with that offset in mind.
 
 **Tier: `epitran-derived`**: Epitran is a scored competitor in
 [comparison.md](comparison.md), so a disagreement here measures divergence
@@ -1062,10 +1123,46 @@ provenance:
 | **ipa-dict `fr_QC.txt`** | EXCLUDED: no spec | No Québécois French spec is registered. The file is also qc-ipa script output over `fr_FR` ("highly experimental"). |
 | **ipa-dict `tts.txt`** | EXCLUDED: no spec | Isan / Northeastern Thai. No `tts` spec, and the `th` spec is a different language. |
 | **ipa-dict `zh_*`, `yue`** | EXCLUDED: untranscribable | Well-sourced golds (Unihan/KFCD, KFCD Pingyam), but Han script is lexical: no G2P without a dictionary: and the `zh` spec is a pinyin/romanization spec. An engine gap, not a gold problem. The former third member of this row, `ko` (Korean Wiktionary), is WIRED now: Hangul syllable blocks canonically decompose to the `ko` spec's conjoining-jamo graphemes. |
+| **vox_communis `zh-cn.tsv`** | **DE-REGISTERED: untranscribable** | Same disposition as the ipa-dict `zh_*`/`yue` row above, and as this dataset's own `yue.tsv`. The o2i `zh` spec is a **pinyin** spec; `zh-cn.tsv`'s `aligned_sentence` column is Han characters (`盘固 草 为 禾 本科 …`). Every row transcribed to the empty string, so the board carried a `vox_communis` `zh` row of exactly `per: 1.0` composed entirely of "hypothesis empty, whole gold is a deletion". That is not a Mandarin score — it is the absence of a hanzi→pinyin front-end, reported in the units of a phone error rate. An engine gap, not a gold problem; the registration returns when such a front-end exists. (`ja` is deliberately kept: kana rows transcribe, only the kanji minority go empty, so its row still carries signal.) |
 | **Lexique 3.82 (French)** | EXCLUDED: complex notation | Data is human-curated (Boris New / Christophe Pallier, CNRS) and CC BY-SA 4.0, but uses a custom phonemic notation (not X-SAMPA, not IPA): `§`=ɔ̃, `°`=schwa-variant, `5`=ɛ̃, `8`=œ̃ etc.: not covered by `scriptconv.notation.xsampa_to_ipa`. A dedicated Lexique converter would be a clean follow-up. WikiPron `fra` is used in the interim. |
 | **NST Swedish/Norwegian lexicons (Språkbanken/NB)** | EXCLUDED: no programmatic download | Authoritative SAMPA lexicons for sv/nb/da from Nasjonalbiblioteket. Human-curated. However no stable raw-download URL suitable for `urllib.request`. The portal serves interactive/catalogue pages. WikiPron Scandinavian TSVs used instead. |
 | **CELEX2 (de/nl/en)** | EXCLUDED: proprietary | LDC license (LDC96L14), not freely downloadable. |
 | **GlobalPhone** | EXCLUDED: ELRA license | Per-language ELRA licenses. Not freely downloadable. |
+
+## Known finding: the nukta digraphs and the inherent vowel
+
+Not a dataset issue — an engine one, recorded here because it is measured
+against these golds and is deliberately NOT fixed in the PR that found it.
+
+The tokenizer decides whether a grapheme key is a bare combining mark, and
+therefore whether it takes the abugida inherent vowel, from the key's LAST
+character. That is right for a key that IS a mark (anusvara `ং`) and wrong
+for a key that merely ENDS in one. Two key shapes end in a mark:
+
+* a **conjunct stack** — a letter plus SUBJOINED LETTERS, which Unicode
+  encodes as combining marks (Tibetan `ཀྲ` = `ཀ` + U+0FB2). A subjoined
+  letter is a letter, so the key is a consonant letter and must take the
+  inherent vowel. This case IS fixed; `dz` depends on it.
+* a **nukta digraph** — a letter plus a modifier sign (`क़` = `क` +
+  U+093C DEVANAGARI SIGN NUKTA), in `hi bn as gu awa bho mr ne or pa kok
+  mai km`. These keys get no inherent vowel today, so `क़लम` is `qləm`
+  where the schwa-deletion rules should have been given a schwa to decide
+  about (`qələm`).
+
+The nukta half looks like the same bug and is not the same fix: giving
+those keys the inherent vowel moves the fleet in both directions, and on a
+same-session, same-cache differential against the current engine the
+row-weighted net is NEGATIVE — `hi`/`wikipron` gains while `bn`/`vox_communis`
+(32 651 rows) and `as` lose more. Whether the added vowel is right depends
+on each Brahmic spec's own schwa-deletion coverage, which is a per-spec data
+question, not a tokenizer question. It needs its own PR, with per-spec
+schwa rules landing alongside the engine change rather than after it.
+
+Beware, when measuring it, that several committed board rows for these
+languages predate a gold-cache refresh: `bn`/`vox_communis`, `or`/`ipadict`
+and `ne`/`kaikki` all move on an UNMODIFIED tree. Any differential must
+re-run both sides in one session against one cache, or it will read that
+drift as a result.
 
 ## Diagnosing a language
 

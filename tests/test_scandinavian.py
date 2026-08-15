@@ -83,16 +83,56 @@ class TestSwedishScandinavian:
         assert _ipa("sv", "kort").startswith("k")
 
     def test_retroflexion(self):
-        # Retroflexion (rn/rd/rt/rl/rs -> ɳ ɖ ʈ ɭ ʂ) is real in Central Swedish
-        # and is kept as sv-x-rikssvenska's own data (Elert 1994), but applying
-        # it unconditionally in the base "sv" spec actively hurt PER against
-        # the wikipron gold convention, which mostly spells the cluster out
-        # rather than retroflexing it (the beat-espeak-germanic data campaign
-        # measured this directly) -- so base "sv" no longer retroflexes by
-        # default.
-        assert _ipa("sv", "barn") == "barn"
+        # Retroflexion (rt/rd/rn/rs/rl -> ʈ ɖ ɳ ʂ ɭ, the /r/ absorbed) is the
+        # cited Central Swedish behaviour (Riad 2014 ch. 4; Engstrand 1999
+        # p. 141; Elert 1970) and the lexicon-derived gold agrees throughout:
+        # Folkets lexikon (KTH, via ipa-dict, n=21095) gives barn /bɑːɳ/,
+        # bord /buːɖ/, kort /kɔʈː/, fars /faʂː/, sorl /soːɭ/, pärla /²pɛːɭa/.
+        #
+        # An earlier revision removed it from base "sv" because it costs PER
+        # against the wikipron gold, which spells the cluster out in 390 of
+        # its 580 r+coronal rows. That gold is one provenance tier lower
+        # (crowd-scraped vs lexicon-derived), is internally split on this very
+        # feature, and was the only sv gold weighed at the time.
+        assert _ipa("sv", "barn") == "baɳ"
+        assert _ipa("sv", "kort") == "kɔʈ"
+        assert _ipa("sv", "bord") == "bɔɖ"
+        assert _ipa("sv", "fars") == "faʂ"
+        # <rl> retroflexes on the gold's own terms: sorl /soːɭ/, pärla
+        # /²pɛːɭa/. NOT asserted on "karl", where Folkets lexikon has
+        # /kɑːr/ -- the final <l> is dropped there rather than retroflexed,
+        # a lexical irregularity these rules do not model (they give
+        # [kaɭ]).
+        assert _ipa("sv", "sorl") == "sɔɭ"
+        assert _ipa("sv", "pärla") == "²pæɭa"
         assert _ipa("sv-x-rikssvenska", "barn").endswith("ɳ")
         assert _ipa("sv-x-rikssvenska", "fars").endswith("ʂ")
+
+    def test_retroflexion_spreads_through_the_coronal_cluster(self):
+        # Riad 2014 ch. 4: every dental after the /r/ retroflexes, not just
+        # the first -- Folkets lexikon: första /²fœʂʈa/.
+        assert _ipa("sv", "första") == "²fœʂʈa"
+        assert _ipa("sv", "värst") == "væʂʈ"
+        # /s/ cascades like the stops: barnsben /²bɑːɳʂbeːn/,
+        # blyerts /²blyːɛʈʂ/, bortse /²bɔʈʂeːr/.
+        assert _ipa("sv", "barnsben") == "baɳʂbɛn"
+        assert _ipa("sv", "blyerts") == "blʏæʈʂ"
+
+    def test_retroflexion_needs_a_single_r_and_a_coronal(self):
+        # Counter-cases the rule must NOT touch.
+        # (a) /r/ before a non-coronal keeps its [r]: Folkets lexikon
+        #     korp /kɔrːp/, park /parːk/, storm /stɔrːm/, arm /arːm/.
+        for word in ("korp", "park", "storm", "arm"):
+            assert "r" in _ipa("sv", word), word
+            assert not (set("ʈɖɳʂɭ") & set(_ipa("sv", word))), word
+        # (b) a geminate <rr> does not feed retroflexion: the KTH lexicon
+        #     keeps [rː] + plain coronal in 10 of its 11 <rr>+coronal rows
+        #     (Norrland /nɔrːland/, borrning /bɔrːnɪŋ/).
+        assert _ipa("sv", "norrland") == "nɔrːland"
+        # (c) a coronal cluster with no /r/ anywhere is untouched.
+        assert _ipa("sv", "kista") == "²ɕɪsta"
+        assert _ipa("sv", "gäst") == "jɛst"
+        assert _ipa("sv", "hund") == "hɵnd"
 
     def test_pre_r_lowering(self):
         assert _ipa("sv", "bära") == "²bæːra"
@@ -199,8 +239,10 @@ class TestSwedishBeatEspeakWave:
         assert self._t("nöjd") == "ˈnœjd"
 
     def test_pre_r_lowering_stressed_only(self):
-        assert self._t("bert") == "ˈbært"
-        assert self._t("ärt") == "ˈært"
+        # The lowered vowel feeds retroflexion, exactly as Riad 2014 §3.3
+        # writes them: ärt [æʈ], Bert [bæʈ] (Folkets lexikon: ärt /äʈː/).
+        assert self._t("bert") == "ˈbæʈ"
+        assert self._t("ärt") == "ˈæʈ"
         assert self._t("är") == "ˈæːr"
         assert self._t("lära") == "²læːra"
         assert self._t("herr") == "ˈhærː"

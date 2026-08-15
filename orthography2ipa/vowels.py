@@ -281,8 +281,18 @@ def is_ipa_vowel(ch: str) -> bool:
 
     Comparison is case-insensitive: *ch* is lowercased before the
     lookup, so callers do not need to lowercase it themselves.
+
+    A vowel carrying a diacritic that Unicode also encodes precomposed is the
+    same vowel: ⟨à⟩ (U+00E0) is /a/ with a tone mark, not a new vocoid. The
+    membership table lists base symbols, so a precomposed character is
+    canonically decomposed and retried on its base before the answer is "no".
     """
-    return bool(ch) and ch.lower() in _IPA_VOWELS
+    if not ch:
+        return False
+    if ch.lower() in _IPA_VOWELS:
+        return True
+    base = unicodedata.normalize("NFD", ch)
+    return base != ch and base[0].lower() in _IPA_VOWELS
 
 
 # ═══════════════════════════════════════════════════════════════════════════
