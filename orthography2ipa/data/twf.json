@@ -3,7 +3,7 @@
   "name": "Northern Tiwa",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "kw": [
       "kʷ"
@@ -108,7 +108,7 @@
       "notes": "Descent per Glottolog classification of Taos Northern Tiwa (nort1550)."
     }
   ],
-  "notes": "Skeleton. Kiowa-Tanoan (Tiwa) language of Taos Pueblo, New Mexico, in a practical Roman orthography. Aspirated stops (ph th kh), ejectives written with a following apostrophe, kw=[kʷ] and the affricates ts/ch are mapped. Taos has a rich system of lexical tone and vowel nasalization that this orthography marks incompletely; tone and nasalization are left unencoded, giving a high PER floor.",
+  "notes": "Skeleton. Kiowa-Tanoan (Tiwa) language of Taos Pueblo, New Mexico, in a practical Roman orthography. Aspirated stops (ph th kh), ejectives written with a following apostrophe, kw=[kʷ] and the affricates ts/ch are mapped. Taos has a rich system of lexical tone and vowel nasalization that this orthography marks incompletely; tone and nasalization are left unencoded, giving a high PER floor. Taos (Northern Tiwa) has three degrees of stress and three tones per Trager (1946); neither is marked in the practical orthography modelled here and both are left unencoded (documented exemption).",
   "iso639_3": "twf",
   "glottolog_code": null,
   "sources": [
@@ -133,6 +133,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Taos_language"
+    },
+    {
+      "id": "twf_trager1946",
+      "author": "Trager, George L.",
+      "year": 1946,
+      "title": "An Outline of Taos Grammar",
+      "publisher": "in Linguistic Structures of Native America (Hoijer et al., eds.)",
+      "url": null,
+      "pages": null,
+      "notes": "The foundational structuralist description of Taos (Northern Tiwa) phonology and grammar; the practical orthography modelled here follows Trager's (1948) subsequent orthographic conventions (aspirate stops, apostrophe ejectives, kw)."
     }
   ],
   "wikipedia": [
