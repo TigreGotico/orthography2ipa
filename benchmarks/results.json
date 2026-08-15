@@ -3514,15 +3514,21 @@
  {
   "lang": "gwc",
   "dataset": "wikipron",
-  "n": 161,
-  "per": 0.6659,
-  "per_ci_low": 0.64,
-  "per_ci_high": 0.6924,
-  "exact_match": 0.0,
-  "quality_tier": "skeleton",
+  "n": 165,
+  "per": 0.4282,
+  "per_ci_low": 0.3992,
+  "per_ci_high": 0.4568,
+  "exact_match": 0.0242,
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
-  "limit": null
+  "limit": null,
+  "oracle_per_top3": 0.4049,
+  "oracle_exact_top3": 0.0242,
+  "oracle_per_top5": 0.3916,
+  "oracle_exact_top5": 0.0242,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 165
  },
  {
   "lang": "gwd",
