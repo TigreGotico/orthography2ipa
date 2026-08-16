@@ -37,8 +37,15 @@ portuguese = ["silabificador>=2.1.0a1"]
 # The gold sets and the benchmark baselines pin engine output produced WITH the
 # Portuguese syllabifier loaded, so the test environment must carry it or the
 # pinned rows cannot be reproduced.
+# rarfile reads the CoRuSS dictionaries, which the corpus publishes only as a
+# RAR archive. It needs an extraction backend on PATH, and in practice that
+# means unrar or unar: the bsdtar backend truncates its read of this archive,
+# so a host carrying only bsdtar counts as having none. Without one the CoRuSS
+# loader raises, build_scoreboard skips that row and the archive-backed tests
+# skip, exactly as the cmudict/scriptconv row does when scriptconv is absent —
+# the row is defended locally rather than in CI.
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
-        "silabificador>=2.1.0a1"]
+        "silabificador>=2.1.0a1", "huggingface_hub", "rarfile"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
 # africa-g2p is NOT listed here: it isn't published on PyPI, so it can't be
 # a pip extra. Install it from a locally built wheel of the upstream

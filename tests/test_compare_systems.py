@@ -49,6 +49,43 @@ class FakeEngine:
         return self.table[word]
 
 
+def _fake_udarnik(transcribe, *, on_build=None, on_injector=None):
+    """Stub ``udarnik`` + ``udarnik.stress`` modules recording the kwargs both
+    the plugin and its injector were constructed with.
+
+    Those kwargs ARE the contract under test for this engine: ``fallback=False``
+    on the injector is the only thing that makes a missing stress model reach
+    ``strict`` (see ``udarnik_transcribe``), so the double captures them rather
+    than only the transcription. Returns ``(module, stress_module)``; both must
+    be installed in ``sys.modules``."""
+    module = type(sys)("udarnik")
+    stress_module = type(sys)("udarnik.stress")
+
+    class FakeInjector:
+        def __init__(self, **kwargs):
+            if on_injector is not None:
+                on_injector(kwargs)
+
+    class FakePlugin:
+        def __init__(self, **kwargs):
+            if on_build is not None:
+                on_build(kwargs)
+
+        def transcribe(self, word):
+            return transcribe(word)
+
+    module.UdarnikG2PPlugin = FakePlugin
+    stress_module.StressonnxInjector = FakeInjector
+    return module, stress_module
+
+
+def _install_fake_udarnik(monkeypatch, transcribe, **kw):
+    module, stress_module = _fake_udarnik(transcribe, **kw)
+    monkeypatch.setitem(sys.modules, "udarnik", module)
+    monkeypatch.setitem(sys.modules, "udarnik.stress", stress_module)
+    return module
+
+
 def install_fake_o2i(monkeypatch, engine, *, on_register=None, on_clear=None):
     """Swap the real ``orthography2ipa`` module for a stub whose ``G2P``
     returns *engine*.
@@ -187,6 +224,10 @@ class TestCompareLang:
 
         # espeak: gets one wrong -> PER > 0, worse than o2i
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        # A local $ESPEAK_RULES_DATA_PATH build (as used by the board-regen
+        # skill) would otherwise be probed for this mock language "xx" and
+        # raise, since no real rules-only manifest lists it.
+        monkeypatch.setattr(cs, "espeak_rules_available", lambda: False)
         espeak_table = {"ola": "ola", "kasa": "kasa"}
         monkeypatch.setattr(
             cs, "espeak_transcribe",
@@ -827,6 +868,260 @@ class TestMwlPhonemizerLazyImport:
         monkeypatch.setitem(sys.modules, "mwl_phonemizer", fake_pkg)
 
         assert cs.mwl_transcribe("x", "mwl") is None
+
+
+class TestUdarnikLazyImport:
+    """The ``udarnik`` column: the o2i ``ru`` lattice with a stressonnx-placed
+    lexical accent. Same lazy-import + n/a-degrade discipline as every other
+    optional engine, plus the two things specific to this one — the plugin is
+    built ONCE per language (it holds an ONNX session), and it is built with
+    ``strict_stress=True`` so a missing stress model reads ``n/a`` instead of
+    reporting bare o2i's baseline under udarnik's name."""
+
+    @pytest.fixture(autouse=True)
+    def _clear_cache(self):
+        cs._udarnik_plugin_cache.clear()
+        yield
+        cs._udarnik_plugin_cache.clear()
+
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "udarnik":
+                raise ImportError("no module named udarnik")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        assert cs.udarnik_transcribe("молоко", "ru") is None
+
+    def test_present_module_transcribes(self, monkeypatch):
+        _install_fake_udarnik(monkeypatch, lambda w: f"ipa-{w}")
+        assert cs.udarnik_transcribe("молоко", "ru") == "ipa-молоко"
+
+    def test_exception_during_transcribe_yields_none(self, monkeypatch):
+        def boom(word):
+            raise RuntimeError("boom")
+
+        _install_fake_udarnik(monkeypatch, boom)
+        assert cs.udarnik_transcribe("x", "ru") is None
+
+    def test_constructor_failure_yields_none_without_caching(self,
+                                                             monkeypatch):
+        """Whatever makes the plugin unbuildable must degrade the column, not
+        crash the run, and must not leave a half-built plugin in the cache.
+
+        This does NOT claim a missing model raises here — the stressonnx
+        pipeline is lazy and loads nothing at construction time. That path is
+        covered against the real library in
+        :class:`TestUdarnikStrictAgainstRealStressonnx`."""
+        module = type(sys)("udarnik")
+        stress_module = type(sys)("udarnik.stress")
+
+        def explode(**kwargs):
+            raise RuntimeError("unbuildable")
+
+        module.UdarnikG2PPlugin = explode
+        stress_module.StressonnxInjector = lambda **kw: object()
+        monkeypatch.setitem(sys.modules, "udarnik", module)
+        monkeypatch.setitem(sys.modules, "udarnik.stress", stress_module)
+
+        assert cs.udarnik_transcribe("молоко", "ru") is None
+        assert cs._udarnik_plugin_cache == {}
+
+    def test_injector_is_built_with_fallback_disabled(self, monkeypatch):
+        """The defect this guards is silent and severe: ``strict_stress=True``
+        alone does NOT make a missing model fail. udarnik's
+        ``StressonnxInjector`` defaults to ``fallback=True``, and stressonnx
+        then walks the ``ru`` chain (ruaccent -> silero -> simple) internally
+        without raising, so ``strict`` never fires and a DIFFERENT accentuator's
+        output gets published under udarnik's name. Only ``fallback=False``
+        makes the failure reach ``strict``."""
+        injectors = []
+        _install_fake_udarnik(monkeypatch, lambda w: f"ipa-{w}",
+                              on_injector=injectors.append)
+
+        cs.udarnik_transcribe("молоко", "ru")
+
+        assert injectors[0]["fallback"] is False
+        assert injectors[0]["strict"] is True
+        assert injectors[0]["lang"] == "ru"
+
+    def test_plugin_is_given_the_strict_injector(self, monkeypatch):
+        """Built strictly and then not passed would be a no-op fix."""
+        builds = []
+        _install_fake_udarnik(monkeypatch, lambda w: f"ipa-{w}",
+                              on_build=builds.append)
+
+        cs.udarnik_transcribe("молоко", "ru")
+
+        assert builds[0]["injector"] is not None
+
+    def test_plugin_is_built_once_per_language(self, monkeypatch):
+        """It holds an ONNX session; rebuilding it per word would make the
+        column cost minutes instead of seconds."""
+        builds = []
+        _install_fake_udarnik(monkeypatch, lambda w: f"ipa-{w}",
+                              on_build=builds.append)
+
+        for word in ("молоко", "замок", "город"):
+            cs.udarnik_transcribe(word, "ru")
+
+        assert len(builds) == 1
+
+    def test_built_with_strict_stress(self, monkeypatch):
+        """Without ``strict_stress`` a missing model degrades silently to bare
+        o2i output, and the board would then publish the BASELINE under
+        udarnik's name — a wrong number that looks entirely fine."""
+        builds = []
+        _install_fake_udarnik(monkeypatch, lambda w: f"ipa-{w}",
+                              on_build=builds.append)
+
+        cs.udarnik_transcribe("молоко", "ru")
+
+        assert builds[0]["strict_stress"] is True
+        assert builds[0]["lang"] == "ru"
+
+    def test_empty_output_yields_none(self, monkeypatch):
+        _install_fake_udarnik(monkeypatch, lambda w: "")
+        assert cs.udarnik_transcribe("x", "ru") is None
+
+
+class TestUdarnikRegistration:
+    """The registry wiring, checked positively rather than by the column
+    happening to appear: a mapping for ``ru``, a ranked (NOT lexicon-tier)
+    display column, and the o2i-lineage same-source flag."""
+
+    def test_ru_has_a_udarnik_mapping(self):
+        assert cs.LANGS["ru"]["udarnik"] == "ru"
+
+    def test_registered_as_a_per_word_engine(self):
+        spec = next(e for e in cs.PER_WORD_ENGINES if e.key == "udarnik")
+        assert spec.cfg_key == "udarnik"
+        assert spec.transcribe_name == "udarnik_transcribe"
+        assert spec.same_source_key == "udarnik"
+
+    def test_only_russian_is_mapped(self):
+        """udarnik is a Russian engine; a mapping anywhere else would be a
+        fabricated column."""
+        mapped = {code for code, cfg in cs.LANGS.items()
+                  if cfg.get("udarnik") is not None}
+        assert mapped == {"ru"}
+
+    def test_same_source_on_o2i_lineage_gold(self):
+        """It transcribes THROUGH orthography2ipa.G2P, so it inherits o2i's
+        circularity exposure exactly as the rest of the family does."""
+        for dataset in sorted(cs._O2I_SAME_SOURCE_DATASETS):
+            flags = cs._same_source_flags(dataset, "ru")
+            assert flags["udarnik"] == flags["o2i"], dataset
+
+    def test_ranked_not_lexicon_tier(self):
+        """udarnik defaults to ``lexicon=None``. The stressonnx accentuator
+        restores unwritten orthography before the lattice runs — the same
+        disposition the board gives arbtok's diacritizer — so this column is
+        ranked, and must NOT be excluded from the lexicon-free ranking or
+        given a lexicon-tier entry.
+
+        The two negative assertions are true of any unregistered name, so the
+        positive one carries the test: udarnik must actually REACH the
+        lexicon-free ranking, which is what "ranked" means operationally."""
+        assert "udarnik" not in cs._LEXICON_EXCLUDED_FROM_RANKING
+        assert "udarnik" not in {e.key for e in cs.LEXICON_TIER_ENGINES}
+
+        row = {"udarnik_per": 0.2350, "udarnik_n": 6175,
+               "udarnik_same_source": False}
+        assert "udarnik" in cs._rules_only_values(row)
+
+    def test_dictionary_exception_is_disclosed_with_numbers(self):
+        """The ranked placement rests on a measured claim about ruaccent's
+        accent/omograph dictionaries. If someone deletes the disclosure the
+        placement becomes an undisclosed lexicon, so the numbers are pinned
+        where the audit list can be read."""
+        audit = cs._rules_only_values.__doc__
+        assert "udarnik" in audit
+        assert "110,826" in audit and "19,740" in audit
+        assert "11.21%" in audit and "4.89%" in audit
+
+    def test_has_a_display_column_and_can_read_same_source(self):
+        assert ("udarnik", "udarnik") in cs._SYSTEMS
+        assert "udarnik" in cs._SAME_SOURCE_SYSTEMS
+
+    def test_version_is_pinned_in_the_family_note(self):
+        assert ("udarnik_version", "udarnik") in cs._FAMILY_VERSION_FIELDS
+
+
+class TestUdarnikStrictAgainstRealStressonnx:
+    """The strict guarantee, exercised against the REAL udarnik + stressonnx
+    rather than a stub of them.
+
+    Every other test in this file stubs the engine module, which is right for
+    the n/a-degrade contract but structurally cannot catch the defect that
+    matters here: the strict/fallback interaction lives INSIDE stressonnx's
+    ``_execute``, so a stubbed udarnik would pass no matter what
+    ``udarnik_transcribe`` passes. This drives a real ``ModelLoadError`` out of
+    a real backend and asserts the column reads ``n/a``.
+
+    Skipped where the optional engine is not installed — udarnik is
+    unpublished and deliberately outside the ``[compare]`` extra, the same
+    status africa-g2p has."""
+
+    @pytest.fixture(autouse=True)
+    def _clear_cache(self):
+        cs._udarnik_plugin_cache.clear()
+        yield
+        cs._udarnik_plugin_cache.clear()
+
+    def test_model_load_error_degrades_to_none(self, monkeypatch):
+        """Only ``ruaccent`` is broken here, and the rest of the chain WORKS.
+
+        That asymmetry is the whole test. A double that kills every backend
+        passes with or without the fix, because the exhausted chain raises
+        anyway — it proves nothing. Leaving silero/simple healthy reproduces
+        the real deployment: the accentuator udarnik is supposed to be using
+        is gone, a different one is ready to answer, and the column must
+        refuse rather than publish it."""
+        pytest.importorskip("udarnik")
+        pipeline = pytest.importorskip("stressonnx.pipeline")
+        errors = pytest.importorskip("stressonnx.errors")
+
+        def backend_for(self, lang, model, resolved):
+            def run(text):
+                if resolved == "ruaccent":
+                    raise errors.ModelLoadError("ruaccent",
+                                                OSError("corrupt cache"))
+                return "молоко\u0301"        # a healthy substitute answering
+            return (lang, resolved), run
+
+        monkeypatch.setattr(pipeline.StressPipeline, "_backend", backend_for)
+
+        assert cs.udarnik_transcribe("молоко", "ru") is None
+
+    def test_fallback_chain_would_have_masked_it(self, monkeypatch):
+        """The negative result that proves the first test is testing something:
+        with ``fallback=True`` (udarnik's default, what this PR overrides) the
+        SAME dead ruaccent silently yields a different backend's output instead
+        of failing. That is the number that would have shipped."""
+        pipeline = pytest.importorskip("stressonnx.pipeline")
+        errors = pytest.importorskip("stressonnx.errors")
+
+        tried = []
+
+        def backend_for(self, lang, model, resolved):
+            tried.append(resolved)
+
+            def run(text):
+                if resolved == "ruaccent":
+                    raise errors.ModelLoadError("ruaccent", OSError("corrupt cache"))
+                return text
+            return (lang, resolved), run
+
+        monkeypatch.setattr(pipeline.StressPipeline, "_backend", backend_for)
+
+        pipe = pipeline.StressPipeline()
+        pipe.stress("молоко", "ru", fallback=True, prefer="best")
+
+        assert "ruaccent" in tried and len(tried) > 1
 
 
 class TestTugaphoneLexiconContaminationRegression:
@@ -1909,6 +2204,10 @@ class TestSameSourceExclusion:
 
         install_fake_o2i(monkeypatch, fake_o2i)
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
+        # A local $ESPEAK_RULES_DATA_PATH build (as used by the board-regen
+        # skill) would otherwise be probed for this mock language "rr" and
+        # raise, since no real rules-only manifest lists it.
+        monkeypatch.setattr(cs, "espeak_rules_available", lambda: False)
         monkeypatch.setattr(
             cs, "espeak_batch_transcribe",
             lambda words, voice, data_path=None: {w: "ola" for w in words})

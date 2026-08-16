@@ -1447,7 +1447,9 @@ _FETCH_ATTEMPTS = 3
 _FETCH_BACKOFF_SECONDS = 1.5
 
 
-def _fetch(url: str, name: str) -> str:
+def _fetch_file(url: str, name: str) -> str:
+    """Download *url* to ``CACHE_DIR/name`` once and return the path. Binary
+    safe, so archives can be cached the same way text files are."""
     os.makedirs(CACHE_DIR, exist_ok=True)
     dest = os.path.join(CACHE_DIR, name)
     if not os.path.exists(dest):
@@ -1463,7 +1465,11 @@ def _fetch(url: str, name: str) -> str:
                     time.sleep(_FETCH_BACKOFF_SECONDS * attempt)
         if last_exc is not None:
             raise last_exc
-    with open(dest, encoding="utf-8", errors="replace") as fh:
+    return dest
+
+
+def _fetch(url: str, name: str) -> str:
+    with open(_fetch_file(url, name), encoding="utf-8", errors="replace") as fh:
         return fh.read()
 
 
@@ -2272,6 +2278,376 @@ def _primary_source_langs() -> List[str]:
     })
 
 
+# ─── alphacep/biggest-ru-book-cleanup (Russian) ────────────────────────────
+#
+# Notation: a Latin-letter segment code per Russian phoneme. Plain
+# consonants are the code letter itself; a trailing ``j`` on a consonant
+# marks palatalization (``tj`` = /tʲ/); vowels carry a trailing stress digit
+# (``1`` = stressed, ``0`` = unstressed). Enumerated exhaustively over the
+# cached ``dev`` split (1291 rows, 314 raw segment tokens before
+# stripping, 48 distinct phoneme codes once trailing sentence punctuation
+# is stripped from word/segment-group edges the same way
+# ``load_vox_communis`` strips it) — every code below is one of those 48;
+# none were guessed.
+_ALPHACEP_RU_CONSONANTS: Dict[str, str] = {
+    "b": "b", "c": "t͡s", "ch": "t͡ɕ", "d": "d", "f": "f", "g": "ɡ",
+    "h": "x", "k": "k", "l": "ɫ", "m": "m", "n": "n", "p": "p", "r": "r",
+    "s": "s", "sch": "ɕː", "sh": "ʂ", "t": "t", "v": "v", "z": "z",
+    "zh": "ʐ", "j": "j",
+}
+_ALPHACEP_RU_VOWELS: Dict[str, str] = {
+    "a": "a", "e": "e", "i": "i", "o": "o", "u": "u", "y": "ɨ",
+}
+#: Palatalization on ``ch``/``sch``/``zh``/``sh`` is not marked with a
+#: trailing ``j`` in the source data (they are inherently soft/hard in
+#: Russian and the annotation does not append ``j`` to them) — only the
+#: single-letter and ``j``-final codes below take the ``Cj`` softening
+#: pattern, confirmed against the segment inventory (``sch``, ``sh``, ``zh``
+#: never co-occur with a trailing extra ``j``).
+_ALPHACEP_RU_PALATALIZABLE = frozenset("bdfghklmnprstvz")
+
+#: ``l`` is the one consonant whose palatalized counterpart is not the
+#: plain IPA symbol plus ``ʲ``: Russian hard /ɫ/ (velarized "dark" l) and
+#: soft /lʲ/ are two distinct places of articulation, not the same
+#: consonant with an added secondary articulation — ``lj`` -> ``ɫʲ`` would
+#: notate a velarized-AND-palatalized lateral that does not occur in
+#: Russian. Every other ``Cj`` code keeps the generic base-IPA + ``ʲ``
+#: rule.
+_ALPHACEP_RU_PALATALIZED_OVERRIDES: Dict[str, str] = {"l": "lʲ"}
+
+#: Punctuation the source data glues onto the edge of a word's phone group
+#: (sentence punctuation, quotes, parens) — none of it is a phoneme.
+_ALPHACEP_RU_PUNCT = ".,;:!?¡¿\"'()«»…-—:"
+
+
+def _alphacep_ru_strip_punct(token: str) -> str:
+    return token.strip(_ALPHACEP_RU_PUNCT)
+
+
+def _alphacep_ru_segment_to_ipa(seg: str) -> Optional[str]:
+    """Map one underscore-delimited segment code to IPA, or ``None`` if the
+    segment is punctuation left over after group-level stripping (a stray
+    quote/dash glued to an interior segment by the source annotation)."""
+    seg = _alphacep_ru_strip_punct(seg)
+    if not seg:
+        return None
+    if seg[-1].isdigit():
+        base, stress = seg[:-1], seg[-1]
+        ipa = _ALPHACEP_RU_VOWELS.get(base)
+        if ipa is None:
+            return None
+        return ("ˈ" if stress == "1" else "") + ipa
+    if (len(seg) >= 2 and seg[-1] == "j"
+            and seg[:-1] in _ALPHACEP_RU_PALATALIZABLE):
+        base = seg[:-1]
+        override = _ALPHACEP_RU_PALATALIZED_OVERRIDES.get(base)
+        if override is not None:
+            return override
+        base_ipa = _ALPHACEP_RU_CONSONANTS.get(base)
+        if base_ipa is None:
+            return None
+        return base_ipa + "ʲ"
+    return _ALPHACEP_RU_CONSONANTS.get(seg)
+
+
+def load_alphacep_ru_book(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """alphacep/biggest-ru-book-cleanup (Hugging Face, dataset repo): a
+    cleaned phone-level re-annotation of its5Q/biggest-ru-book (Russian
+    audiobook TTS data). Rows are ``wav|sentence|phones``, where ``phones``
+    is one underscore-joined segment group per whitespace-tokenized
+    ``sentence`` word — rows are split into word-level (word, IPA) pairs the
+    same way ``load_vox_communis`` does; a row whose word/group counts do
+    not match is guarded against and skipped, though the cached ``dev``
+    split has none. Only the cached ``dev`` split is read (fetched via
+    ``huggingface_hub.hf_hub_download``, which resolves from the local HF
+    cache and does not re-download a file already present there).
+
+    PRODUCTION METHOD — this gold is MORPHOPHONEMIC / accentuator-driven,
+    not a surface-phonetic transcription: it is grapheme-faithful (no
+    vowel reduction — unstressed vowels keep their full quality, e.g.
+    молчал → m_o0_l_ch_a1_l with an unreduced [o], never akanje [ɐ]/[ə]) and
+    it writes genitive-ending ⟨г⟩ as [g] rather than the spoken [v]
+    (298/300 его-suffix rows checked carry [g], confirming this is a fixed
+    orthography-driven rule of the annotation pipeline, not a transcription
+    error). o2i's Russian output is surface-phonetic (it reduces unstressed
+    vowels and realizes genitive ⟨г⟩ as [v]), so PER against this gold will
+    show systematic, EXPECTED disagreement on exactly those two phenomena —
+    that is a notation mismatch between two legitimate conventions, not a
+    model error, and it must not be "fixed" by adding akanje/г-devoicing
+    exceptions to o2i to chase this one gold's convention.
+
+    PROVENANCE — classified ``machine-generated``: the phone tier is an
+    automatic accentuator/G2P annotation over its5Q/biggest-ru-book, not a
+    hand-transcribed or lexicon-derived gold. Directional signal only; see
+    ``docs/quality_tiers.md`` — this tier cannot gate a promotion.
+    """
+    if lang != "ru":
+        return []
+    from huggingface_hub import hf_hub_download
+    path = hf_hub_download(
+        repo_id="alphacep/biggest-ru-book-cleanup",
+        filename="metadata-phones-ids.csv.dev",
+        repo_type="dataset",
+    )
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            line = line.rstrip("\n")
+            parts = line.split("|")
+            if len(parts) < 3:
+                continue
+            sentence, phones_field = parts[1], parts[2]
+            words = sentence.split()
+            groups = phones_field.split()
+            if len(words) != len(groups):
+                continue
+            for word, group in zip(words, groups):
+                word = _alphacep_ru_strip_punct(word)
+                if not word:
+                    continue
+                ipa_segs = [_alphacep_ru_segment_to_ipa(seg)
+                            for seg in group.split("_")]
+                ipa_segs = [s for s in ipa_segs if s]
+                if not ipa_segs:
+                    continue
+                ipa = "".join(ipa_segs)
+                key = word.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                pairs.append((word, ipa))
+                if len(pairs) >= limit:
+                    return pairs
+    return pairs
+
+
+# ─── CoRuSS phonetic dictionary (Russian) ──────────────────────────────────
+#
+# Notation: the SPbU lab's own ASCII scheme, described by the corpus site as
+# "analogous to the SAMPA set" but NOT X-SAMPA — the two disagree on most of
+# the symbols that matter here (``Q`` is /ɨ/ not /ɒ/, ``C`` is /t͡ɕ/ not /ç/,
+# ``D`` is voiced ⟨ц⟩ not /ð/, ``G`` is voiced ⟨ч⟩ not /ɣ/, ``h`` is /ɣ/ not
+# /h/, ``I`` is a vowel-context diacritic not /ɪ/, and ``:`` marks a
+# palatal environment rather than length). Running it through
+# ``scriptconv.notation.xsampa_to_ipa`` would therefore mistranscribe the
+# majority of its distinctive symbols, so the tables below are the corpus's
+# own documented set, transcribed from the conventions page
+# (https://russpeech.spbu.ru/transkrip.htm) and checked to cover every
+# symbol that actually occurs in the archive.
+#
+# Vowels are written as a base letter plus up to three optional context
+# diacritics, in this order: ``:`` after or between palatalized consonants,
+# ``I`` before a palatalized consonant, ``#`` excessive duration. Consonants
+# are their Latin transliteration plus an optional ``'`` for palatalization
+# and an optional ``#``.
+_CORUSS_VOWELS: Dict[str, str] = {
+    "a": "a", "o": "o", "e": "ɛ", "i": "i", "u": "u", "Q": "ɨ", "@": "ə",
+}
+#: The ``:`` diacritic is a COARTICULATION mark, not a phoneme distinction,
+#: for every vowel but ⟨э⟩: a fronted [ä]/[ö]/[ʉ] after a soft consonant is
+#: the same phoneme as its plain counterpart and o2i does not notate the
+#: fronting, so writing it into the gold would charge every soft-consonant
+#: vowel token as an error. ⟨э⟩ is the exception, because the hard/soft
+#: split there is the [ɛ] ~ [e] distinction o2i's own Russian inventory
+#: makes (⟨это⟩ ˈɛtə vs ⟨лес⟩ ˈlʲes). ``I`` and ``#`` carry no phoneme
+#: distinction at all and are dropped from every vowel.
+_CORUSS_VOWELS_AFTER_SOFT: Dict[str, str] = {"e": "e"}
+_CORUSS_CONSONANTS: Dict[str, str] = {
+    "b": "b", "p": "p", "d": "d", "t": "t", "k": "k", "g": "ɡ", "f": "f",
+    "v": "v", "s": "s", "z": "z", "m": "m", "n": "n", "r": "r", "j": "j",
+    "l": "ɫ", "x": "x", "h": "ɣ", "c": "t͡s", "D": "d͡z", "C": "t͡ɕ",
+    "G": "d͡ʑ", "S": "ʂ", "Z": "ʐ", "$": "ɕː",
+}
+#: Consonants that take the ``C'`` palatalization mark. The conventions
+#: page is the criterion for what a symbol means, so ``c'``, ``S'`` and
+#: ``C'`` (19 occurrences between them) are rejected as annotation slips:
+#: ⟨ц ш ч⟩ are unpaired for palatalization in Russian, the page gives them
+#: no palatalized form, and there is nothing to map them to that would not
+#: be a guess. ``Z'`` goes the other way for the same reason — the page
+#: DOES define it, as the voiced counterpart of ⟨щ⟩ — so it is honoured;
+#: see _CORUSS_PALATALIZED_OVERRIDES.
+_CORUSS_PALATALIZABLE = frozenset("bpdtkgfvszmnrlx")
+#: Hard ⟨л⟩ is velarized /ɫ/ and soft ⟨ль⟩ is /lʲ/ — two distinct Russian
+#: consonants, not one consonant plus a secondary articulation, so ``l'``
+#: cannot go through the generic base + ``ʲ`` rule (``ɫʲ`` is not a Russian
+#: segment). Same reasoning as ``load_alphacep_ru_book``.
+#:
+#: ``Z'`` takes the value the conventions page assigns it, voiced ⟨щ⟩
+#: /ʑː/, rather than the palatalized ⟨ж⟩ its shape suggests (/ʐʲ/ is not a
+#: Russian segment either way). Worth knowing about the gold: all 16 rows
+#: that use it spell ⟨ж⟩ or ⟨з⟩ and none spell ⟨щ⟩. Three of them —
+#: ⟨выезжать⟩, ⟨приезжай⟩, ⟨дождём⟩ — are the genuine old-Moscow long soft
+#: /ʑː/ for ⟨зж⟩/⟨жд⟩; the rest (⟨живёт⟩, ⟨даже⟩, ⟨ружья⟩, ⟨ежедневно⟩ …)
+#: are annotator readings that standard Russian would write with plain
+#: /ʐ/. That is a property of this gold, recorded rather than corrected:
+#: the loader's job is fidelity to the documented convention, and at ~0.1%
+#: of rows it is far below the noise floor of a 0.35 PER anyway.
+_CORUSS_PALATALIZED_OVERRIDES: Dict[str, str] = {"l": "lʲ", "Z": "ʑː"}
+
+#: ``  word [transcription]  count`` — the per-file trailing tally line
+#: (``1981/0``) has no bracket and simply fails to match.
+_CORUSS_ROW = re.compile(r"^\s*(\S+)\s+\[([^\]]*)\]\s*\d*\s*$")
+_CORUSS_CYRILLIC = frozenset("абвгдеёжзийклмнопрстуфхцчшщъыьэюя")
+_CORUSS_VOWEL_LETTERS = frozenset("аеёиоуыэюя")
+
+
+def _coruss_to_ipa(trans: str) -> Optional[str]:
+    """Map one CoRuSS transcription to IPA, or ``None`` if it contains a
+    symbol the conventions page does not define (annotation slips: stray
+    ``+``, Latin ``O``/``U``/``V``/``w``, punctuation, single Cyrillic
+    letters typed into the Latin field). Undefined symbols reject the whole
+    row rather than being dropped from it — a silently shortened reference
+    would score as a deletion error against a correct hypothesis."""
+    out: List[str] = []
+    i, n = 0, len(trans)
+    while i < n:
+        ch = trans[i]
+        # Round brackets mark a weakly realized segment the annotator still
+        # heard (⟨Брежнев⟩ [br'e:Zn'e:(f)] — a devoiced but present final
+        # stop). The segment is real; only the bracket is notation.
+        if ch in "()":
+            i += 1
+            continue
+        if ch in _CORUSS_VOWELS:
+            j = i + 1
+            after_soft = j < n and trans[j] == ":"
+            j += after_soft
+            j += j < n and trans[j] == "I"
+            j += j < n and trans[j] == "#"
+            out.append(_CORUSS_VOWELS_AFTER_SOFT[ch] if after_soft
+                       and ch in _CORUSS_VOWELS_AFTER_SOFT
+                       else _CORUSS_VOWELS[ch])
+            i = j
+            continue
+        if ch in _CORUSS_CONSONANTS:
+            j = i + 1
+            if j < n and trans[j] == "'":
+                override = _CORUSS_PALATALIZED_OVERRIDES.get(ch)
+                if override is None and ch not in _CORUSS_PALATALIZABLE:
+                    return None
+                out.append(override or _CORUSS_CONSONANTS[ch] + "ʲ")
+                j += 1
+            else:
+                out.append(_CORUSS_CONSONANTS[ch])
+            j += j < n and trans[j] == "#"
+            i = j
+            continue
+        return None
+    return "".join(out) or None
+
+
+def _coruss_anchor_stress(word: str, ipa: str) -> str:
+    """Move the orthographic stress mark onto the IPA.
+
+    CoRuSS marks stress on the ORTHOGRAPHIC side only — ``+`` follows the
+    stressed vowel letter — and leaves the transcription unmarked, so the
+    mark has to be re-anchored to be comparable with o2i's ``ˈ``. It is
+    placed before the IPA vowel at the same ordinal position as the marked
+    orthographic vowel, and only when the two vowel counts agree: this is
+    surface-phonetic transcription of colloquial speech, where a vowel is
+    often simply gone (⟨Алекса+ндровна⟩ [l'iksan@] has four vowels for
+    five letters), and there is no defensible way to say which vowel
+    survived. Unanchorable rows keep an unmarked reference; the board
+    strips stress from both sides anyway (``--keep-stress`` is off by
+    default), so this only affects stress-aware reruns.
+    """
+    if word.count("+") != 1:
+        return ipa
+    letters = [c for c in word.lower() if c in _CORUSS_CYRILLIC or c == "+"]
+    try:
+        rank = sum(1 for c in letters[:letters.index("+")]
+                   if c in _CORUSS_VOWEL_LETTERS)
+    except ValueError:
+        return ipa
+    positions = [k for k, c in enumerate(ipa) if is_ipa_vowel(c)]
+    if len(positions) != sum(1 for c in letters
+                             if c in _CORUSS_VOWEL_LETTERS) or rank < 1:
+        return ipa
+    cut = positions[rank - 1]
+    return ipa[:cut] + "ˈ" + ipa[cut:]
+
+
+def load_coruss_ru(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """CoRuSS phonetic dictionary (Corpus of Russian Colloquial Speech, the
+    phonetics lab of Saint Petersburg State University; Kachkovskaia et al.
+    2016, "CoRuSS: a corpus of Russian spontaneous speech", LREC).
+
+    The published dictionaries (``slovari.rar``, fetched once into
+    ``CACHE_DIR``) hold one ``word [transcription] count`` row per attested
+    realization, over three sub-corpora: ``READ`` (read speech), ``MONO``
+    (monologues) and ``DICT``. A wordform realized several different ways
+    contributes SEVERAL rows, and all of them are kept — the harness scores
+    a hypothesis against the best of a word's references, so the corpus's
+    pronunciation variation is used as multi-reference gold rather than
+    being collapsed to an arbitrary winner.
+
+    Rows are rejected, never patched, when the orthographic side is a
+    cross-word coalescence (``если_они``, ``потому=что``: the conventions
+    page defines these composite wordforms, and their transcriptions carry
+    sandhi a word-level G2P cannot produce), a truncated fragment
+    (``Инфо+рм-``), an unreadable legacy encoding (a handful of very
+    high-variance filler words), or when the transcription contains a
+    symbol the conventions page does not define.
+
+    PRODUCTION METHOD — HUMAN-ANNOTATED and SURFACE-PHONETIC. The lab
+    transcribed the acoustic signal directly, explicitly suppressing the
+    transcriber's lexical and grammatical knowledge, so a row records what
+    a speaker actually said in unscripted conversation, not what a
+    dictionary says the word is. Colloquial speech reduces far harder than
+    the careful speech behind a pronunciation lexicon: whole syllables
+    disappear (⟨Александровна⟩ [l'iksan@], ⟨Волгоград⟩ [vodgrat]), and no
+    G2P can or should predict that. PER against this gold is therefore a
+    FLOOR on Russian error, and a much higher one than against a
+    careful-speech reference — it must be read as the distance to
+    spontaneous-speech surface forms, and compared only against other runs
+    on this same dataset, never against a lexicon gold's number. Nothing
+    here licenses adding reduction rules to o2i to close that gap: the
+    variation is speaker- and context-specific, and fitting it would be
+    gold-fitting.
+
+    PROVENANCE — ``expert-human``: expert phonetic transcription by a
+    university phonetics lab, from audio, with no engine in the loop.
+    """
+    if lang != "ru":
+        return []
+    import rarfile  # optional; skip the row when unavailable
+    archive = _fetch_file(
+        "https://russpeech.spbu.ru/SLOVARI/slovari.rar", "coruss_slovari.rar")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    with rarfile.RarFile(archive) as rf:
+        for name in sorted(n for n in rf.namelist() if not n.endswith("/")):
+            text = rf.read(name).decode("cp1251", errors="replace")
+            for line in text.splitlines():
+                row = _CORUSS_ROW.match(line)
+                if row is None:
+                    continue
+                word, trans = row.group(1), row.group(2)
+                # ``^`` marks a secondary-stress vowel and is not part of
+                # the spelling; ``+`` is kept for stress anchoring below.
+                word = word.replace("^", "")
+                if ("_" in word or "=" in word or word.endswith("-")
+                        or word.startswith("-")):
+                    continue
+                spelling = word.replace("+", "").replace("-", "")
+                if not spelling or not all(c in _CORUSS_CYRILLIC
+                                           for c in spelling.lower()):
+                    continue
+                ipa = _coruss_to_ipa(trans)
+                if ipa is None:
+                    continue
+                ipa = _coruss_anchor_stress(word, ipa)
+                word = word.replace("+", "")
+                if (word, ipa) in seen:
+                    continue
+                seen.add((word, ipa))
+                pairs.append((word, ipa))
+                if len(pairs) >= limit:
+                    return pairs
+    return pairs
+
+
 #: A dataset loader: ``loader(lang, limit) -> [GoldPair, ...]``. ``limit``
 #: is a row cap (``sys.maxsize`` for "no cap"); a loader that cannot serve
 #: *lang* returns an empty list rather than raising.
@@ -2307,6 +2683,8 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "northeuralex": (load_northeuralex, sorted(_NORTHEURALEX_LANGS)),
     "wold": (load_wold, sorted(_WOLD_LANGS)),
     "kaikki": (load_kaikki, sorted(_KAIKKI_LANGS)),
+    "alphacep_ru_book": (load_alphacep_ru_book, ["ru"]),
+    "coruss_ru": (load_coruss_ru, ["ru"]),
 }
 
 
@@ -2485,6 +2863,16 @@ PROVENANCE: Dict[str, str] = {
     "northeuralex": "lexicon-derived",  # Dellert et al. 2020, NorthEuraLex
     "wold": "lexicon-derived",          # Haspelmath & Tadmor 2009, WOLD
     "kaikki": "crowd-scraped",          # kaikki.org Wiktextract (Wiktionary)
+    # alphacep/biggest-ru-book-cleanup: automatic accentuator/G2P annotation
+    # over its5Q/biggest-ru-book, not hand-transcribed or lexicon-derived.
+    # Also morphophonemic (no vowel reduction, ⟨г⟩=[g]) rather than
+    # surface-phonetic — see load_alphacep_ru_book's docstring.
+    "alphacep_ru_book": "machine-generated",
+    # CoRuSS: expert phonetic transcription of recorded speech by the SPbU
+    # phonetics lab, no engine in the loop. Surface-phonetic and
+    # colloquial, so its PER floor is far above a careful-speech gold's --
+    # see load_coruss_ru's docstring.
+    "coruss_ru": "expert-human",
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a
