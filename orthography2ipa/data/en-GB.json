@@ -35,6 +35,9 @@
     "h": [
       "h"
     ],
+    "kh": [
+      "k"
+    ],
     "i": [
       "ɪ",
       "iː",
@@ -126,6 +129,9 @@
         0.85
       ]
     },
+    "gg": [
+      "ɡ"
+    ],
     "gn": [
       "n"
     ],
@@ -144,6 +150,9 @@
     ],
     "sc": [
       "s"
+    ],
+    "sch": [
+      "sk"
     ],
     "sh": [
       "ʃ"
@@ -206,6 +215,9 @@
       "əʊ",
       "uː"
     ],
+    "oi": [
+      "ɔɪ"
+    ],
     "oo": [
       "uː",
       "ʊ"
@@ -245,6 +257,14 @@
     "ar": [
       "ɑːɹ"
     ],
+    "au": [
+      "ɔː",
+      "ɑː",
+      "ɒ"
+    ],
+    "aw": [
+      "ɔː"
+    ],
     "er": {
       "ipa": [
         "ɜːɹ",
@@ -255,11 +275,21 @@
         0.8
       ]
     },
+    "eu": [
+      "juː"
+    ],
+    "ew": [
+      "juː",
+      "uː"
+    ],
     "ir": [
       "ɜːɹ"
     ],
     "or": [
       "ɔːɹ"
+    ],
+    "oy": [
+      "ɔɪ"
     ],
     "ur": [
       "ɜːɹ"
@@ -612,6 +642,9 @@
       "before_i": [
         "s"
       ],
+      "before_y": [
+        "s"
+      ],
       "default": [
         "k"
       ]
@@ -622,8 +655,11 @@
         "ɡ"
       ],
       "before_i": [
-        "dʒ",
-        "ɡ"
+        "ɡ",
+        "dʒ"
+      ],
+      "before_y": [
+        "dʒ"
       ],
       "default": [
         "ɡ"
@@ -665,6 +701,9 @@
       ]
     },
     "e": {
+      "before_mute_e": [
+        "iː"
+      ],
       "word_final": [
         ""
       ],
@@ -678,6 +717,9 @@
       ]
     },
     "y": {
+      "before_mute_e": [
+        "aɪ"
+      ],
       "word_initial": [
         "j"
       ],
@@ -695,6 +737,9 @@
       ]
     },
     "a": {
+      "before_mute_e": [
+        "eɪ"
+      ],
       "word_final": [
         "ə"
       ],
@@ -710,6 +755,9 @@
       ]
     },
     "o": {
+      "before_mute_e": [
+        "əʊ"
+      ],
       "word_final": [
         "əʊ"
       ],
@@ -725,8 +773,18 @@
       ]
     },
     "u": {
+      "before_mute_e": [
+        "juː",
+        "uː"
+      ],
       "nucleus_unstressed": [
         "ə"
+      ],
+      "default": [
+        "ʌ",
+        "juː",
+        "uː",
+        "ʊ"
       ]
     },
     "or": {
@@ -737,6 +795,70 @@
     "ar": {
       "nucleus_unstressed": [
         "əɹ"
+      ]
+    },
+    "i": {
+      "before_vowel": [
+        "i"
+      ],
+      "word_final": [
+        "i"
+      ],
+      "before_mute_e": [
+        "aɪ"
+      ],
+      "default": [
+        "ɪ",
+        "iː",
+        "aɪ"
+      ]
+    },
+    "h": {
+      "word_final": [
+        ""
+      ],
+      "default": [
+        "h"
+      ]
+    },
+    "aw": {
+      "before_vowel": [
+        "əw"
+      ],
+      "default": [
+        "ɔː"
+      ]
+    },
+    "au": {
+      "before_vowel": [
+        "aʊ"
+      ],
+      "default": [
+        "ɔː",
+        "ɑː",
+        "ɒ"
+      ]
+    },
+    "sc": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ],
+      "before_y": [
+        "s"
+      ],
+      "default": [
+        "sk"
+      ]
+    },
+    "ng": {
+      "before_final_vowel": [
+        "ndʒ"
+      ],
+      "default": [
+        "ŋ"
       ]
     }
   },
@@ -765,7 +887,32 @@
     "we": "wiː",
     "she": "ʃiː",
     "a": "ə",
-    "an": "ən"
+    "an": "ən",
+    "have": "hæv",
+    "give": "ɡɪv",
+    "live": "lɪv",
+    "love": "lʌv",
+    "above": "əˈbʌv",
+    "glove": "ɡlʌv",
+    "dove": "dʌv",
+    "shove": "ʃʌv",
+    "come": "kʌm",
+    "some": "sʌm",
+    "done": "dʌn",
+    "none": "nʌn",
+    "gone": "ɡɒn",
+    "one": "wʌn",
+    "once": "wʌns",
+    "were": "wɜː",
+    "there": "ðɛə",
+    "where": "wɛə",
+    "move": "muːv",
+    "prove": "pruːv",
+    "lose": "luːz",
+    "whose": "huːz",
+    "do": "duː",
+    "does": "dʌz",
+    "doing": "ˈduːɪŋ"
   },
   "timespan": {
     "start_year": 1500,
@@ -1222,6 +1369,117 @@
       ],
       "notes": "Word-final ⟨-s⟩ after a voiced consonant is [z], not [s]: dogs, beds, films (Cruttenden 2014, § 4.3 on the voicing agreement of the ⟨-s⟩ ending; Wells 2008 LPD). Restricted to a preceding voiced CONSONANT: after a vowel the spelling is ambiguous between the ending (sees, boys) and a stem-final ⟨s⟩ (bus, gas, this, us), and telling them apart needs morphology this engine deliberately does not have. The sibilants [z ʒ dʒ] are likewise excluded: they take the [ɪz] allomorph (roses, bridges), which is a different branch. The ending is spelled with a bare final ⟨s⟩, so the rule also requires nothing to follow that letter: ⟨-se⟩ words (else, false, manse) keep [s], their ⟨s⟩ belonging to the stem and not to the ending.",
       "followed_by": "word_boundary"
+    },
+    {
+      "id": "EN_GB_ES_EPENTHESIS",
+      "phonemes": [
+        "ɛ",
+        "ə",
+        "iː"
+      ],
+      "surface": "ɪ",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_2": "word_boundary",
+      "preceded_by_phoneme": [
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "tʃ",
+        "dʒ",
+        "ɡ"
+      ],
+      "preceded_by_2": "vowel",
+      "notes": "English ⟨-s⟩ (plural, 3sg possessive-less) has the same three regular allomorphs as ⟨-ed⟩, conditioned by the final segment of the stem: [ɪz] after a sibilant (roses, cases, bridges), [s] after any other voiceless consonant (hopes, cats), and [z] elsewhere (scales, dogs) — Cruttenden 2014, § 4.3 on the voicing agreement of the ⟨-s⟩ ending; Wells 2008 LPD. These rules are the ⟨-Ces⟩ branch, where the mute ⟨e⟩ of the stem stands between the stem consonant and the ending: the existing EN_GB_FINAL_S_VOICING sees only a bare final ⟨s⟩ and cannot read past that ⟨e⟩. The stem shape required here (a vowel, one consonant, the ⟨e⟩) is the same ⟨VCe⟩ pattern the before_mute_e nucleus position states. This rule is the [ɪz] branch: after a sibilant the vowel is kept (as [ɪ]), because the two sibilants could not otherwise be told apart. [ɡ] is listed alongside the sibilants because the neighbour condition reads ⟨g⟩'s first declared candidate, the hard [ɡ], while a ⟨g⟩ standing before this mute ⟨e⟩ is always the soft [dʒ] (ages, pages, bridges, wages)."
+    },
+    {
+      "id": "EN_GB_ES_SYNCOPE",
+      "phonemes": [
+        "ɛ",
+        "ə",
+        "iː"
+      ],
+      "surface": "",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_2": "word_boundary",
+      "preceded_by": "consonant",
+      "preceded_by_2": "vowel",
+      "notes": "English ⟨-s⟩ (plural, 3sg possessive-less) has the same three regular allomorphs as ⟨-ed⟩, conditioned by the final segment of the stem: [ɪz] after a sibilant (roses, cases, bridges), [s] after any other voiceless consonant (hopes, cats), and [z] elsewhere (scales, dogs) — Cruttenden 2014, § 4.3 on the voicing agreement of the ⟨-s⟩ ending; Wells 2008 LPD. These rules are the ⟨-Ces⟩ branch, where the mute ⟨e⟩ of the stem stands between the stem consonant and the ending: the existing EN_GB_FINAL_S_VOICING sees only a bare final ⟨s⟩ and cannot read past that ⟨e⟩. The stem shape required here (a vowel, one consonant, the ⟨e⟩) is the same ⟨VCe⟩ pattern the before_mute_e nucleus position states. This rule is the syncope shared by the [s] and [z] branches: outside the sibilant environment the mute ⟨e⟩ spells no vowel at all. Ordered after EN_GB_ES_EPENTHESIS, which claims that environment first."
+    },
+    {
+      "id": "EN_GB_ES_VOICING_AFTER_MUTE_E",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "z",
+      "grapheme": [
+        "s"
+      ],
+      "word_final": true,
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_surface_phoneme_2": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "ð",
+        "m",
+        "n",
+        "ŋ",
+        "l",
+        "ɹ"
+      ],
+      "notes": "English ⟨-s⟩ (plural, 3sg possessive-less) has the same three regular allomorphs as ⟨-ed⟩, conditioned by the final segment of the stem: [ɪz] after a sibilant (roses, cases, bridges), [s] after any other voiceless consonant (hopes, cats), and [z] elsewhere (scales, dogs) — Cruttenden 2014, § 4.3 on the voicing agreement of the ⟨-s⟩ ending; Wells 2008 LPD. These rules are the ⟨-Ces⟩ branch, where the mute ⟨e⟩ of the stem stands between the stem consonant and the ending: the existing EN_GB_FINAL_S_VOICING sees only a bare final ⟨s⟩ and cannot read past that ⟨e⟩. The stem shape required here (a vowel, one consonant, the ⟨e⟩) is the same ⟨VCe⟩ pattern the before_mute_e nucleus position states. This rule is the [z] branch, read two graphemes back past the syncopated ⟨e⟩ — the same past-the-mute-⟨e⟩ reach EN_GB_ED_DEVOICING already uses for ⟨-ed⟩."
+    },
+    {
+      "id": "EN_GB_ES_VOICING_AFTER_EPENTHESIS",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "z",
+      "grapheme": [
+        "s"
+      ],
+      "word_final": true,
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "notes": "English ⟨-s⟩ (plural, 3sg possessive-less) has the same three regular allomorphs as ⟨-ed⟩, conditioned by the final segment of the stem: [ɪz] after a sibilant (roses, cases, bridges), [s] after any other voiceless consonant (hopes, cats), and [z] elsewhere (scales, dogs) — Cruttenden 2014, § 4.3 on the voicing agreement of the ⟨-s⟩ ending; Wells 2008 LPD. These rules are the ⟨-Ces⟩ branch, where the mute ⟨e⟩ of the stem stands between the stem consonant and the ending: the existing EN_GB_FINAL_S_VOICING sees only a bare final ⟨s⟩ and cannot read past that ⟨e⟩. The stem shape required here (a vowel, one consonant, the ⟨e⟩) is the same ⟨VCe⟩ pattern the before_mute_e nucleus position states. This rule voices the ⟨s⟩ of the [ɪz] branch. The trigger is the stem-final sibilant read two graphemes back, past the ⟨e⟩ that EN_GB_ES_EPENTHESIS has just realised as [ɪ] — the only environment in which that ⟨e⟩ keeps a vowel at all.",
+      "preceded_by_surface_phoneme_2": [
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "tʃ",
+        "dʒ"
+      ]
+    },
+    {
+      "id": "EN_GB_OING_HIATUS",
+      "phonemes": [
+        "ɔɪ"
+      ],
+      "surface": "əʊɪ",
+      "grapheme": [
+        "oi"
+      ],
+      "followed_by_grapheme": [
+        "ng"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "⟨oi⟩ is the CHOICE diphthong almost without exception (oil, coin, join, voice, avoid) — Carney 1994 on the ⟨oi⟩/⟨oy⟩ correspondence. The systematic exception is not a spelling fact but a morphological one: word-final ⟨-oing⟩ is the ⟨-ing⟩ suffix attached to a stem that already ended in ⟨o⟩, so the two letters belong to different morphemes and stay in hiatus — going, echoing, shoeing, toing. The condition is the same shape the ⟨-ed⟩ rules use: the ending's own grapheme immediately after, and nothing after that. The rule restores the HIATUS only; which vowel the stem then takes is the stem's own business, and for the ⟨do⟩ family that vowel is lexically GOOSE rather than GOAT (doing, and the prefixed undoing / redoing / outdoing, which stay wrong because the prefix puts them outside the closed set word_exceptions can hold)."
     }
   ],
   "vowel_graphemes": [
