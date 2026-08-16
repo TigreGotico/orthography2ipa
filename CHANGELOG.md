@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.72.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.72.0a1) (2026-08-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.10a1...7.72.0a1)
+
+**Merged pull requests:**
+
+- feat: read the Russian stress acute \(U+0301\) as a written accent [\#936](https://github.com/TigreGotico/orthography2ipa/pull/936) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.71.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.10a1) (2026-08-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.9a1...7.71.10a1)
@@ -744,10 +752,6 @@
 ## [7.46.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.46.0a3) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.46.0a2...7.46.0a3)
-
-**Merged pull requests:**
-
-- data: worst-PER fix wave 1 [\#739](https://github.com/TigreGotico/orthography2ipa/pull/739) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.46.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.46.0a2) (2026-08-03)
 
