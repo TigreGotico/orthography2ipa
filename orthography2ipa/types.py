@@ -367,6 +367,13 @@ class StressRules:
         orthographic rule and cannot see syntax, so a homograph that is a clitic
         in one reading and a full word in another (Gulf ``يَا`` — vocative
         particle vs. the verb *yā* 'came') is destressed in every occurrence.
+
+        A written stress mark outranks the class: where the spec declares a
+        silent stress mark and the input carries it, the caller has named the
+        stressed syllable outright and the form keeps that stress (Russian во́
+        against clitic во). This is the one whole-word lookup matched on the
+        raw word rather than the mark-stripped key, because it is the one that
+        answers the same question the mark does.
     coda_liquid_capture : bool
         Opt-in sonority-based syllabification for the stress-mark splitter. The
         bundled splitter is onset-maximising and hands a whole medial consonant

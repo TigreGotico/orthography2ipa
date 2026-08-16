@@ -141,6 +141,61 @@ class TestRussianStressMarkInput:
 
 
 @pytest.mark.linguistic
+class TestRussianClitics:
+    """Simple prepositions and the particle clitics carry no word stress.
+
+    A simple preposition is proclitic and же/ли/ль/бы/б are enclitic: each
+    leans on its host and falls inside the host's stress domain, so none of
+    them is an independent prosodic word (claim is standard, e.g. Timberlake
+    2004, A Reference Grammar of Russian; edition not consulted). The gold
+    sets cannot be cited for this: the WikiPron Russian gold writes no stress
+    mark on any word at all, and for these forms it lists the full-vowel
+    reading (во [vo]) beside the reduced ones.
+    """
+
+    @pytest.mark.parametrize("word", [
+        "в", "во", "на", "за", "под", "над", "из", "изо", "от", "ото",
+        "до", "у", "к", "ко", "с", "со", "по", "о", "об", "обо",
+        "не", "ни", "же", "ль", "ли", "бы", "б",
+    ])
+    def test_clitic_has_no_stress_mark(self, word):
+        assert "ˈ" not in _t("ru", word)
+        assert "ˌ" not in _t("ru", word)
+
+    def test_preposition_v_is_bare_devoiced_f(self):
+        assert _t("ru", "в") == "f"
+
+    def test_negation_particle_reduces_like_an_unstressed_syllable(self):
+        assert _t("ru", "не") == "nʲɪ"
+
+    def test_ordinary_monosyllable_keeps_its_stress(self):
+        assert _t("ru", "а") == "ˈa"
+        assert _t("ru", "кот").startswith("ˈ")
+
+    def test_full_prosodic_words_are_untouched(self):
+        # надо is excluded (homograph of predicative на́до), and the
+        # compound prepositions are full words.
+        for word in ("надо", "через", "перед", "замок"):
+            assert "ˈ" in _t("ru", word)
+
+    @pytest.mark.parametrize("lang", ["ru-x-moscow", "ru-x-southern",
+                                      "ru-x-northern"])
+    def test_dialects_inherit_the_clitic_class(self, lang):
+        assert "ˈ" not in _t(lang, "во")
+
+    def test_a_written_acute_outranks_the_clitic_class(self):
+        """A clitic listed here is the UNSTRESSED reading. Where the input
+        writes the acute the word is being cited as stressed — the mark is
+        the answer and the clitic class must not erase it (the retraction
+        spellings за́ городом and на́ пол write the mark on the preposition
+        itself)."""
+        assert _t("ru", "во́") == "ˈvo"
+        assert _t("ru", "на́") == "ˈna"
+        assert _t("ru", "за́") == "ˈza"
+        assert _t("ru", "во") == "və"
+
+
+@pytest.mark.linguistic
 class TestUkrainianPhonology:
 
     def test_dark_l(self):
