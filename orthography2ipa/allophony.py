@@ -270,6 +270,11 @@ def _is_nucleus_segment(seg: str) -> bool:
                            or any(m in seg for m in SYLLABIC_MARKS))
 
 
+def _applied(rule: AllophoneRule, ipa: str) -> str:
+    """What *ipa* becomes when *rule* fires: a rewrite or an insertion."""
+    return ipa + rule.append if rule.append else rule.surface
+
+
 class AllophoneRescorer(LatticeRescorer):
     """A :class:`LatticeRescorer` compiled from a spec's ``allophone_rules``.
 
@@ -282,11 +287,13 @@ class AllophoneRescorer(LatticeRescorer):
     can skip it cheaply.
     """
 
-    __slots__ = ("rules", "_atoms")
+    __slots__ = ("rules", "_atoms", "_doubling_is_geminate")
 
-    def __init__(self, rules: Sequence[AllophoneRule]) -> None:
+    def __init__(self, rules: Sequence[AllophoneRule],
+                 doubled_letters_geminate: bool = True) -> None:
         self.rules = tuple(rules)
         self._atoms = _rule_atoms(self.rules)
+        self._doubling_is_geminate = doubled_letters_geminate
 
     def rescore(
         self, slot: "SegmentSlot", context: RescoreContext,
@@ -378,6 +385,8 @@ class AllophoneRescorer(LatticeRescorer):
         must not be swept up — so a slot whose phoneme contains a vowel is
         never a geminate half.
         """
+        if not self._doubling_is_geminate:
+            return False
         if not ipa or any(is_ipa_vowel(seg[0]) for seg in segment_ipa(ipa)):
             return False
         own_g = (context.grapheme.grapheme or "").lower()
@@ -418,7 +427,7 @@ class AllophoneRescorer(LatticeRescorer):
                     # Alhoody 2020). Only a rule conditioned on the twin itself
                     # (a genuine gemination process, e.g. Tamil ⟨க்க⟩→[kː]) may.
                     continue
-                return rule.surface
+                return _applied(rule, ipa)
         segments = segment_ipa(ipa, self._atoms)
         if len(segments) <= 1:
             return None
@@ -448,7 +457,7 @@ class AllophoneRescorer(LatticeRescorer):
                     and seg in rule.phonemes \
                     and _matches_segment(rule, seg_ctx) \
                     and self._matches_slot(rule, context):
-                return rule.surface
+                return _applied(rule, seg)
         return None
 
     def _matches(self, rule: AllophoneRule, ctx: RescoreContext) -> bool:
@@ -703,12 +712,15 @@ def _rule_atoms(rules: Sequence[AllophoneRule]) -> Tuple[str, ...]:
         atoms.update(rule.preceded_by_surface_phoneme_2 or ())
         if rule.surface:
             atoms.add(rule.surface)
+        if rule.append:
+            atoms.add(rule.append)
     return tuple(sorted((a for a in atoms if len(a) > 1),
                         key=len, reverse=True))
 
 
 def compile_allophone_rescorer(
     rules: Sequence[AllophoneRule],
+    doubled_letters_geminate: bool = True,
 ) -> Optional[AllophoneRescorer]:
     """Compile ``allophone_rules`` into a rescorer, or ``None`` if empty.
 
@@ -718,4 +730,4 @@ def compile_allophone_rescorer(
     rules = tuple(rules or ())
     if not rules:
         return None
-    return AllophoneRescorer(rules)
+    return AllophoneRescorer(rules, doubled_letters_geminate)

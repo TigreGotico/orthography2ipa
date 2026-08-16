@@ -131,6 +131,12 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [kab.md](kab.md) | Kabyle / Taqbaylit (Northern Berber; Berber Latin alphabet, gemination-conditioned spirantization, emphatics) |
 
+### Egyptian
+
+| Doc | Languages covered |
+|:---|:---|
+| [egy.md](egy.md) | Ancient Egyptian — Egyptological transliteration in, the conventional Egyptological reading out (weak consonants as vowels, the supplied ⟨e⟩); the reconstruction is deliberately out of scope |
+
 ### Indo-Aryan
 
 | Doc | Languages covered |

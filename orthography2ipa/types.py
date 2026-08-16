@@ -367,6 +367,13 @@ class StressRules:
         orthographic rule and cannot see syntax, so a homograph that is a clitic
         in one reading and a full word in another (Gulf ``يَا`` — vocative
         particle vs. the verb *yā* 'came') is destressed in every occurrence.
+
+        A written stress mark outranks the class: where the spec declares a
+        silent stress mark and the input carries it, the caller has named the
+        stressed syllable outright and the form keeps that stress (Russian во́
+        against clitic во). This is the one whole-word lookup matched on the
+        raw word rather than the mark-stripped key, because it is the one that
+        answers the same question the mark does.
     coda_liquid_capture : bool
         Opt-in sonority-based syllabification for the stress-mark splitter. The
         bundled splitter is onset-maximising and hands a whole medial consonant
@@ -1141,6 +1148,15 @@ class AllophoneRule:
         surface it rewrites and lets every other process (reduction, sandhi,
         rhotic choice, affrication) run normally, so it inherits cleanly to
         child dialects. ``None`` / empty = don't care.
+    append : str
+        IPA appended to the matched phoneme instead of replacing it, so the
+        realisation is ``phoneme + append`` and one rule can state an
+        insertion for a whole class of targets at once. Epenthesis is the
+        motivating process: the inserted vowel is the same wherever it goes,
+        while the segment it attaches to is any member of a class, and a
+        fixed :attr:`surface` string can only name one of them. Mutually
+        exclusive with :attr:`surface`; empty (the default) = this rule
+        rewrites rather than inserts.
     notes : str
         Free-form provenance / convention notes.
     mutates_neighbor : Optional[str]
@@ -1167,7 +1183,8 @@ class AllophoneRule:
     """
     id: str
     phonemes: Tuple[str, ...]
-    surface: str
+    surface: str = ""
+    append: str = ""
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
     stress: Optional[str] = None
@@ -1226,6 +1243,11 @@ class AllophoneRule:
             object.__setattr__(
                 self, "word",
                 tuple(w.lower() for w in self.word))
+        if self.surface and self.append:
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: surface and append are "
+                f"mutually exclusive — a rule either rewrites the phoneme "
+                f"or inserts material next to it")
         if self.stress is not None and self.stress not in (
                 "stressed", "unstressed", "pretonic", "posttonic"):
             raise ValueError(
@@ -1413,6 +1435,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
+    "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
@@ -1630,6 +1653,21 @@ class LanguageSpec:
     the flag itself.
     """
 
+    doubled_letters_geminate: bool = True
+    """Whether two adjacent identical consonant letters spell ONE long segment.
+
+    The allophony pass protects a geminate from being split: a rule fired by
+    material outside it may not rewrite a single half. That protection assumes
+    the orthography writes gemination by doubling, which most do. A
+    consonantal-skeleton transliteration does not: Egyptological ⟨bbr⟩ is a
+    three-radical root b-b-r whose two ⟨b⟩ are separate consonant slots, and the
+    reading convention puts a vowel between them. Declaring ``false`` says the
+    doubling is two segments, so a rule may act on either.
+
+    Distinct from :attr:`collapse_geminates`, which is about English-style
+    doubling that spells a single SHORT consonant and merges the two phonemes
+    after transcription."""
+
     collapse_geminates: bool = False
     """Collapse a doubled consonant letter's phonemes to one.
 
@@ -1765,7 +1803,10 @@ class LanguageSpec:
     consonant with nothing supplying a vowel of its own cannot be a new
     onset needing its own inherent vowel — it can only be closing the
     syllable that already has one. That is exactly the case this flag
-    covers, no more.
+    covers, no more. A written coda may be more than one letter, so the
+    search looks back across bare consonants: the Tibetan post-suffix
+    ⟨ས⟩ stands after the suffix ⟨ག ང བ མ⟩, and in ⟨ཁམས⟩ the nucleus is
+    two letters behind it.
 
     What it deliberately does NOT cover: a bare-consonant sequence with NO
     vowel sign anywhere before it (e.g. Thai ⟨คน⟩ /kʰon/, two consonant

@@ -300,7 +300,8 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 |---|---|---|---|
 | `id` | string | yes | Unique rule identifier (id-keyed inheritance overlay, like `sandhi_rules`) |
 | `phonemes` | string \| array | yes | Target underlying phoneme(s); a bare string is accepted |
-| `surface` | string | yes | Surface realisation the matched phoneme is rewritten to |
+| `surface` | string | yes, unless `append` | Surface realisation the matched phoneme is rewritten to |
+| `append` | string | no | IPA inserted AFTER the matched phoneme, which is otherwise left alone, so one rule states an insertion for a whole class of targets — what epenthesis needs, since a fixed `surface` can only name one target's output. Mutually exclusive with `surface`. See [allophony](../../docs/allophony.md#inserting-instead-of-rewriting-append) and the Egyptian (`egy`) reading convention |
 | `word_initial` | bool | no | Require (or, if `false`, forbid) word-initial position |
 | `word_final` | bool | no | Require (or forbid) word-final position |
 | `stress` | string | no | `"stressed"` / `"unstressed"` — engine path only (needs stress context) |
@@ -478,6 +479,27 @@ entry covers every digraph producing a palatal (⟨lh⟩→ʎ, ⟨nh⟩→ɲ, �
 class tier (below exact-letter positions, so `"before_i"` wins over
 `"before_palatal"` when the neighbour ⟨i⟩ realises the palatal glide /j/) and are
 likewise inert for any spec that does not declare them.
+
+`"after_vowel"` reads the neighbour's **nucleus**, not its spelling, so in an
+abugida it also matches after a consonant LETTER whose inherent vowel still
+stands: Tibetan ⟨ལག⟩ is [lak], where ⟨ག⟩ closes the syllable ⟨ལ⟩ opened
+rather than opening one of its own, and no vowel letter is written between
+them. Only a spec that declares `inherent_vowel` matches this way, and a
+letter whose inherent vowel was suppressed — one inside a subjoined stack, or
+one the spec silences with `"before_consonant": [""]` — does not carry a
+nucleus and does not trigger it. Such a neighbour is a consonant letter as
+well, so `"after_consonant"` is still offered for the same slot, one tier
+below `"after_vowel"`.
+
+Declaring `"after_vowel"` for a grapheme is also what tells the engine the
+letter can **close** a syllable. `coda_no_inherent_vowel` uses that
+declaration to bound its search for the syllable's nucleus: it looks back
+past letters the spec describes post-vocalically — which for Tibetan is the
+suffix set ⟨ག ང ད ན བ མ འ ར ལ ས⟩, so the post-suffix ⟨ས⟩ of ⟨ཁམས⟩ finds the
+nucleus two letters behind it — and stops at any other letter. A spec that
+declares no post-vocalic reading at all (Thai, Lao) keeps the one-token
+behaviour, which is what stops the search from deleting the unwritten vowel
+of a following syllable's onset.
 
 ## Grammatical endings
 

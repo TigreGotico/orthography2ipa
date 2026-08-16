@@ -74,7 +74,7 @@ from orthography2ipa.types import GraphemePosition
 | `PRETONIC` | Before stressed syllable |: | Pretonic vowel reduction |
 | `POSTTONIC` | After stressed syllable |: | Posttonic vowel reduction |
 | `BEFORE_VOWEL` | Before any vowel | _V | Consonant allophony before vowels |
-| `AFTER_VOWEL` | After any vowel | V_ | Post-vocalic consonant changes |
+| `AFTER_VOWEL` | After any vowel, written or inherent | V_ | Post-vocalic consonant changes; in an abugida, after a consonant letter whose inherent vowel still stands (Tibetan ⟨ལག⟩ [lak]) |
 | `BEFORE_CONSONANT` | Before any consonant | _C | Pre-consonantal changes |
 | `AFTER_CONSONANT` | After any consonant | C_ | Post-consonantal changes |
 | `BEFORE_A` | Before ⟨a⟩ | _a | Velar softening contexts |

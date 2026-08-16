@@ -1245,6 +1245,12 @@ def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
 # wiring. Rejected: Tigrinya (only 28/933 entries carry ``ipa`` -- too
 # thin to be a usable gold set).
 #
+# Tetum (`tet`) was checked against kaikki.org and REJECTED: the Tetum dump has
+# 686 entries and exactly 3 of them carry a `sounds[].ipa`, an order of
+# magnitude thinner than the Tigrinya set already rejected below. WikiPron has
+# no Tetum scrape either (no `tet_latn_*.tsv` upstream), so the language's gold
+# is the primary-source set mined from its own reference grammar instead.
+#
 # 2026-08 gold-hunting wave 3: re-ran the zero-gold sweep (it shrank a lot
 # between waves) and checked kaikki.org coverage for the top-tier-by-speakers
 # zero-gold languages. Added: `so` (Somali), `om` (Oromo), `ne` (Nepali),

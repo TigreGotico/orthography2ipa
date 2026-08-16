@@ -324,7 +324,7 @@ Rules to follow when adding one:
 | `pretonic`                | Before stressed syllable    | Pretonic vowel reduction                  |
 | `posttonic`               | After stressed syllable     | Posttonic vowel reduction                 |
 | `before_vowel`            | Before any vowel            | Consonant allophony                       |
-| `after_vowel`             | After any vowel             | Post-vocalic changes                      |
+| `after_vowel`             | After any vowel, written or inherent | Post-vocalic changes; in an abugida also after a consonant letter carrying its inherent vowel |
 | `before_consonant`        | Before any consonant        | Pre-consonantal changes                   |
 | `after_consonant`         | After any consonant         | Post-consonantal changes                  |
 | `before_a` .. `before_u`  | Before specific vowel       | Velar softening contexts                  |

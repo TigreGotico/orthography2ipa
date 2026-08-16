@@ -1,6 +1,6 @@
 # Comparison to other G2P systems
 
-This table shows how well orthography2ipa (o2i) predicts IPA pronunciation compared to eleven other G2P systems (including the four o2i-downstream family engines — arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer), on the same gold word lists, language by language.
+This table shows how well orthography2ipa (o2i) predicts IPA pronunciation compared to twelve other G2P systems (including the five o2i-downstream family engines — arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer, udarnik), on the same gold word lists, language by language.
 
 Every number is a **PER (Phoneme Error Rate)**: lower is better, `0.0000` is a perfect match, and it CAN exceed `1.0` when a system's output is much longer or shorter than the gold (more edits than the gold has phonemes).
 
@@ -66,6 +66,7 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 - **[tugaphone](https://github.com/TigreGotico/tugaphone)** — adds the curated `tugalex` pronunciation lexicon, sense-based homograph marking, and cross-dialect contact-language handling on top of the Portuguese-family lattice.
 - **[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `ext-PT-x-barrancos` lattice.
 - **[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer)** — adds Mirandese dialect selection, an optional native-speaker lexicon overlay, and CRF correction on top of the `mwl` lattice.
+- **[udarnik](https://github.com/TigreGotico/udarnik)** — adds a stressonnx-placed lexical accent on top of the `ru` lattice — Russian stress is free and unwritten, and the spec's own notes name its positional guess as the main source of its error, so supplying the real stress is what conditions akanje and ikanje correctly (no word->IPA lexicon: udarnik defaults to none. Its stressonnx `ruaccent` backend does consult a 110,826-entry accent dictionary and a 19,740-entry omograph dictionary before its models — 11.21% and 4.89% of unique `alphacep_ru_book` words respectively — but those hold STRESS POSITIONS, not pronunciations, so the column is ranked as effectively lexicon-free with the exception documented, the same treatment ahotts-g2p gets).
 
 **Reading a family row: headroom, not a loss.** Where a family system's PER beats bare o2i's on a row that is NOT `same-source` (see below — same-source rows are refused as a comparison point, exactly like every other system on this board), that gap is a concrete demonstration of what the shared `orthography2ipa` specs could still absorb into the base lattice — a diacritizer pass, a closed-class lexicon, a dialect rule — not evidence o2i "lost" to a competitor. Where a family row instead ties o2i exactly, that is equally informative: it means the family member's extra stages are not (yet, or not on this gold) adding anything the base lattice does not already do on its own.
 
@@ -83,7 +84,7 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 
 Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, the bare-o2i number to four places) or slightly BEHIND it (wikipron 0.2547 vs o2i's 0.2514); every other stage moves the score by at most 0.0006. Word-for-word, diacritizer-off arbtok and o2i emit byte-identical output on 98.1% (ipadict) and 94.4% (wikipron) of words, and on the remainder arbtok is net even (10 better / 10 worse) and net worse (4 better / 63 worse) respectively — i.e. the shared lattice has no residual rule-shaped deficit for a port to recover. The gap is a vocalization gap and nothing else: neither gold's headwords carry any harakat (0 of 2319 and 0 of 2735), and 71% (ipadict) / 55% (wikipron) of o2i's total edit distance is INSERTION of a short vowel the orthography simply does not write, with most of the consonant insertions being gemination the absent shadda does not write either. This is the honest ceiling for a rule-based lattice on undiacritized Arabic input, and it is why `ar`'s spec documents a fully-diacritized input contract rather than pretending to guess: the `wikipron_ar_diacritized` row, where harakat are restored on the INPUT before scoring, is where the two systems are compared with that ceiling lifted — and there they tie. That row carries its own caveat: the diacritized input is restored by `text2tashkeel`, the same diacritizer arbtok's default pipeline uses internally, so a diacritization error the two systems share is not an independence signal.
 
-**Measurement stays unchanged.** Every family row is scored under the exact same discipline as every other system on this board: the SAME `same-source` refusal when a family engine would be scored against gold drawn from o2i's own lineage (see "How to read this" below — all four family engines are built on o2i's lattice, so they inherit o2i's own same-source exposure 1:1); the SAME lexicon-vs-rules-only discipline — g2p_barranquenho and mwl_phonemizer's lexicon-free DEFAULT configuration are ranked normally; arbtok's DEFAULT is lexicon-backed (a 145,890-entry stem lexicon plus a per-lect dialect lexicon, both on), so the ranked `arbtok` column is a deliberately NON-default configuration (`lexicon=None, dialect_lexicon=False`) leaving only the rule path plus a 22-entry closed demonstrative-pronoun exception table with no independent toggle, while the unmodified stock number is shown separately as the informational `arbtok (lexicon)` column; tugaphone's always-on `tugalex` lexicon has no public disable switch at all, so it is excluded from the lexicon-free Winner/leaderboard ranking the same way — and the SAME honest reporting either way, a family engine beating o2i is reported as loudly as a tie.
+**Measurement stays unchanged.** Every family row is scored under the exact same discipline as every other system on this board: the SAME `same-source` refusal when a family engine would be scored against gold drawn from o2i's own lineage (see "How to read this" below — all five family engines are built on o2i's lattice, so they inherit o2i's own same-source exposure 1:1); the SAME lexicon-vs-rules-only discipline — g2p_barranquenho and mwl_phonemizer's lexicon-free DEFAULT configuration are ranked normally; arbtok's DEFAULT is lexicon-backed (a 145,890-entry stem lexicon plus a per-lect dialect lexicon, both on), so the ranked `arbtok` column is a deliberately NON-default configuration (`lexicon=None, dialect_lexicon=False`) leaving only the rule path plus a 22-entry closed demonstrative-pronoun exception table with no independent toggle, while the unmodified stock number is shown separately as the informational `arbtok (lexicon)` column; tugaphone's always-on `tugalex` lexicon has no public disable switch at all, so it is excluded from the lexicon-free Winner/leaderboard ranking the same way — and the SAME honest reporting either way, a family engine beating o2i is reported as loudly as a tie.
 
 ## Results by language
 
@@ -344,8 +345,10 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
+| alphacep_ru_book | 6175 | 0.2395 | 0.3249 | 0.3133 | 0.1008 | epitran |
+| coruss_ru | 9527 | 0.3584 | 0.4206 | 0.4311 | 0.2939 | epitran |
 | primary_sources | 36 | 0.1867 | 0.3119 | 0.3033 | 0.0744 | epitran |
-| vox_communis | 50547 | 0.3488 | 0.3594 | 0.3503 | same-source | o2i |
+| vox_communis | 50517 | 0.3481 | 0.3578 | 0.3487 | same-source | tie (espeak rules-only, o2i) |
 | wikipron | 403873 | 0.1449 | 0.3953 | 0.3976 | 0.3202 | o2i |
 
 ### sv (Swedish)
@@ -454,8 +457,10 @@ A system winning on one gold and losing on another for the SAME language is real
   - `vox_communis` (n=12097, tier=epitran-derived): o2i 0.3332 vs espeak 0.4480 — o2i wins
   - `wikipron` (n=8978, tier=crowd-scraped): o2i 0.0198 vs espeak 0.0825 — o2i wins
 - **`ru`** (wins on all golds):
+  - `alphacep_ru_book` (n=6175, tier=machine-generated): o2i 0.2395 vs espeak 0.3249 — o2i wins
+  - `coruss_ru` (n=9527, tier=expert-human): o2i 0.3584 vs espeak 0.4206 — o2i wins
   - `primary_sources` (n=36, tier=expert-human): o2i 0.1867 vs espeak 0.3119 — o2i wins
-  - `vox_communis` (n=50547, tier=epitran-derived): o2i 0.3488 vs espeak 0.3594 — o2i wins
+  - `vox_communis` (n=50517, tier=epitran-derived): o2i 0.3481 vs espeak 0.3578 — o2i wins
   - `wikipron` (n=403873, tier=crowd-scraped): o2i 0.1449 vs espeak 0.3953 — o2i wins
 - **`sv`** (MIXED — wins on some golds, loses on others):
   - `ipadict` (n=21095, tier=lexicon-derived): o2i 0.2583 vs espeak 0.2611 — o2i wins
@@ -467,7 +472,7 @@ A system winning on one gold and losing on another for the SAME language is real
 
 ## Fair-comparison 2x2 (dictionary vs. rules)
 
-The table above conflates espeak-ng's letter-to-sound RULES with its hand-curated word-EXCEPTION list (o2i, by hard rule, ships no such list). This 2x2 isolates the dictionary's contribution on the same gold rows, for the languages where both extra columns are wired up (the `DICTSOURCE_LANG`-mapped subset — see the script's module docstring for how to enable `espeak_rules` via `scripts/build_espeak_rules_only.sh` and `o2i_lex` via `$ESPEAK_DICTSOURCE_PATH`). The dictionary is not a one-way upgrade: across every row with both numbers, espeak-ng's rules-only column actually BEATS stock (dictionary-included) espeak-ng on 28 of 51 rows — the word-exception list sometimes makes espeak-ng WORSE (e.g. letter-spelling acronyms getting a dictionary hit that is wrong for the gold's convention), not always better.
+The table above conflates espeak-ng's letter-to-sound RULES with its hand-curated word-EXCEPTION list (o2i, by hard rule, ships no such list). This 2x2 isolates the dictionary's contribution on the same gold rows, for the languages where both extra columns are wired up (the `DICTSOURCE_LANG`-mapped subset — see the script's module docstring for how to enable `espeak_rules` via `scripts/build_espeak_rules_only.sh` and `o2i_lex` via `$ESPEAK_DICTSOURCE_PATH`). The dictionary is not a one-way upgrade: across every row with both numbers, espeak-ng's rules-only column actually BEATS stock (dictionary-included) espeak-ng on 29 of 53 rows — the word-exception list sometimes makes espeak-ng WORSE (e.g. letter-spelling acronyms getting a dictionary hit that is wrong for the gold's convention), not always better.
 
 - `o2i` — orthography2ipa, rules only (unchanged from the main table).
 - `o2i_lex` — orthography2ipa + a runtime lexicon built from espeak-ng's OWN word-exception list, each word's IPA obtained from espeak-ng itself (o2i rules + espeak's dictionary).
@@ -519,8 +524,10 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | pt-PT | wikipron | 2272 | 0.1346 | n/a | 0.2374 | 0.2373 |
 | ro | vox_communis | 12097 | 0.3332 | n/a | 0.4480 | 0.4477 |
 | ro | wikipron | 8978 | 0.0198 | n/a | 0.0825 | 0.0761 |
+| ru | alphacep_ru_book | 6175 | 0.2395 | n/a | 0.3249 | 0.3133 |
+| ru | coruss_ru | 9527 | 0.3584 | n/a | 0.4206 | 0.4311 |
 | ru | primary_sources | 36 | 0.1867 | n/a | 0.3119 | 0.3033 |
-| ru | vox_communis | 50547 | 0.3488 | n/a | 0.3594 | 0.3503 |
+| ru | vox_communis | 50517 | 0.3481 | n/a | 0.3578 | 0.3487 |
 | ru | wikipron | 403873 | 0.1449 | n/a | 0.3953 | 0.3976 |
 | sv | ipadict | 21095 | 0.2583 | n/a | 0.2611 | 0.2653 |
 | sv | vox_communis | 19516 | 0.3428 | n/a | 0.3214 | 0.3195 |
