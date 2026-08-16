@@ -1,18 +1,18 @@
 # Finding a language's phonology documentation
 
 `orthography2ipa` registers 350+ language and dialect codes, but only a
-handful have a hand-written prose page here — the rest are documented
+handful have a hand-written prose page here, the rest are documented
 entirely by their JSON spec (graphemes, allophones, sources, `notes`).
 Both are legitimate ways to answer "how does this library handle
 language X":
 
 1. **A hand-written page exists** for a language when someone has
-   written up the phonological reasoning in prose — useful when a
+   written up the phonological reasoning in prose, useful when a
    language has enough irregularity or contested analysis that a
    grapheme table alone doesn't explain the *why*. These pages are
    listed by family below.
 2. **No hand-written page exists** for most languages. That's normal,
-   not a gap to apologize for — the JSON spec itself is the source of
+   not a gap to apologize for, the JSON spec itself is the source of
    truth, and it's fully self-describing:
 
    ```python
@@ -34,7 +34,7 @@ language X":
 If you're checking whether a language is trustworthy enough to depend
 on, the `quality` field and the language's row (if any) in
 [../scoreboard.md](../scoreboard.md) matter more than whether a prose
-page exists — see [../quality_tiers.md](../quality_tiers.md) for what
+page exists, see [../quality_tiers.md](../quality_tiers.md) for what
 each tier actually certifies.
 
 ## Hand-written pages, by family
@@ -76,7 +76,7 @@ each tier actually certifies.
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 | [an-valleys.md](an-valleys.md) | Pyrenean-valley Aragonese: Cheso (`an-x-cheso`), Ansotano (`an-x-ansotano`), Belsetán (`an-x-belsetan`), Chistabín (`an-x-chistabin`), Tensino (`an-x-tensino`) — geminates ⟨l·l⟩/⟨n·n⟩, final-r deletion, no-epenthesis ⟨ix⟩, ro/ra tap article |
 
-#### Latin American Spanish — regional scaffolding (stub tier, no prose page yet)
+#### Latin American Spanish: regional scaffolding (stub tier, no prose page yet)
 
 Every Latin American national variety plus the major regional dialect
 zones of Lipski's (1994) classification (as summarised in Lipski's own
@@ -85,7 +85,7 @@ have at least a **stub** spec, so the ancestry / phonological-distance
 metrics resolve for the whole family. Stubs model only the pan-LatAm
 baseline (seseo, yeísmo) and carry a weighted ancestry chain
 `es-ES-x-medieval → es-ES → es-419 → country → region` plus the relevant
-indigenous adstrate; dialect-specific phonology is deliberately deferred.
+indigenous adstrate. Dialect-specific phonology is deliberately deferred.
 
 | Country | Regional stubs (`es-XX-x-…`) | Indigenous adstrate(s) |
 |:---|:---|:---|
@@ -100,7 +100,7 @@ indigenous adstrate; dialect-specific phonology is deliberately deferred.
 
 New national stubs: Honduras (`es-HN`), El Salvador (`es-SV`, Nawat/Pipil
 adstrate). Indigenous contact languages are themselves structural adstrate
-stubs (`gn`, `qu`, `ay`, `nah`, `arn`, `yua`, `quc`) — metadata only, no
+stubs (`gn`, `qu`, `ay`, `nah`, `arn`, `yua`, `quc`), metadata only, no
 phonology claimed (the `afa.json` pattern).
 
 ### Asturleonese
@@ -131,6 +131,12 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [kab.md](kab.md) | Kabyle / Taqbaylit (Northern Berber; Berber Latin alphabet, gemination-conditioned spirantization, emphatics) |
 
+### Egyptian
+
+| Doc | Languages covered |
+|:---|:---|
+| [egy.md](egy.md) | Ancient Egyptian — Egyptological transliteration in, the conventional Egyptological reading out (weak consonants as vowels, the supplied ⟨e⟩); the reconstruction is deliberately out of scope |
+
 ### Indo-Aryan
 
 | Doc | Languages covered |
@@ -156,7 +162,7 @@ phonology claimed (the `afa.json` pattern).
 | [eo.md](eo.md) | Esperanto in detail — **production tier** (shallow, ≤0.15) |
 
 If the language you need isn't in any table above, it doesn't have a
-prose page yet — go straight to its JSON spec via `orthography2ipa.get(code)`
+prose page yet, go straight to its JSON spec via `orthography2ipa.get(code)`
 as shown earlier, and consider contributing a page alongside a spec
 improvement (see [../adding_a_language.md](../adding_a_language.md)).
 
