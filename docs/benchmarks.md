@@ -109,7 +109,7 @@ stated rather than papered over.
 
 | Dataset | Tier | IPA produced by | Notes / grain of salt |
 |---|---|---|---|
-| `primary_sources` | expert-human | The phonologists and dialectologists the specs cite | Example transcriptions copied out of the cited grammars/monographs/theses, one printed page per row (`N=270` across 13 varieties). The most authoritative gold here: and the smallest. Arabic ḥarakāt on the input side are editor-supplied (the sources print transcription, not script). See the dataset README. |
+| `primary_sources` | expert-human | The phonologists and dialectologists the specs cite | Example transcriptions copied out of the cited grammars/monographs/theses, one printed page per row (`N=664` across 36 varieties). The most authoritative gold here: and the smallest. Arabic ḥarakāt on the input side are editor-supplied (the sources print transcription, not script). See the dataset README. |
 | `arabic_tts` | llm-generated | **LLM-authored, literature-audited** | Sentence-level TTS gold, one TSV per lect across 33 Arabic varieties (`N=20`/lect). Every IPA line was drafted by a large language model, then **engine-pinned** (aligned to the current o2i output) and audited row-by-row against the phonological literature cited in each row's `notes` column ([docs/arabic-tts-gold.md](arabic-tts-gold.md)). Citation-auditing raises confidence but does **not** create an error model: no lexicon, no rules behind the gold: so the honest tier stays `llm-generated`: directional only, gates nothing. Because the gold is engine-pinned it doubles as a regression fixture (PER≈0 on the pinned engine), so a nonzero PER here flags a spec change, not necessarily an error. |
 | `gold20_arabic` | llm-generated | **LLM (Claude), native-speaker spot-checked** | [`Salesteq/arabic-dialects-gold20`](https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20) on Hugging Face — a SIBLING gold set to `arabic_tts`, same shape (one TSV per lect, `N=20`/lect, 33 Arabic varieties, vocalized `sentence` in, broad `ipa` gold), fetched at runtime and cached (never vendored). Semi-synthetic: every transcription was drafted by the same Claude lineage that authored the o2i Arabic dialect specs it is scored against — a **near-circular** relationship — then **spot-checked by a native Arabic speaker who judged the set good**. That spot-check is documented context, not a tier upgrade: it is not a systematic per-row audit against cited literature (unlike `arabic_tts`'s `fable_corrections` column), so there is still no lexicon and no rule system behind the gold. Registered anyway because for most of these Arabic dialects **no other gold exists at all** — a directional signal is better than none, not evidence the number can be trusted numerically. Tier stays `llm-generated`, the lowest: gates no quality decision, certifies nothing. |
 | `portuguese_tts` | llm-generated | **LLM-authored, literature-audited** | Sentence-level TTS gold, one TSV per lect across European Portuguese standard + 15 regional varieties (`N=20`/lect). Same protocol and caveats as `arabic_tts`: LLM-drafted, engine-pinned, audited against the citations in each row's `notes` ([docs/portuguese-tts-gold.md](portuguese-tts-gold.md)). `llm-generated` tier: directional/regression signal only. |
@@ -175,7 +175,20 @@ the IPA* word lists for Ukrainian (Pompino-Marschall, Steriopolo & Żygis 2017),
 Russian (Yanushevskaya & Bunčić 2015), European Portuguese (Cruz-Ferreira 1995) and
 Brazilian Portuguese (Barbosa & Albano 2004): the last two cited by the `pt-PT` and
 `pt-BR` specs themselves. the Castilian (Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté 2003) and Argentine
-(Coloma 2018) Spanish Illustrations. 270 rows, 13 varieties.
+(Coloma 2018) Spanish Illustrations, and the phonology chapter of
+Williams-van Klinken, Hajek & Nordlinger (2002) for Tetun Dili. 664 rows, 36
+varieties.
+
+The Tetun Dili rows are the whole gold that language has, and they are read
+strictly as a faithfulness check: the grammar they come from is also the source
+the `tet` spec is written from, so they measure whether the engine reproduces
+what that grammar says, never whether the grammar is right. Fourteen of the rows print no
+spelling of their own — the thirteen-item stress inventory, which the grammar gives
+in transcription only, and one /ʎ/ example — so their orthography is written out
+with the grammar's own conventions and flagged `editor-supplied`. Every row was
+transcribed from a render of the printed page, not from the PDF's text layer,
+which mangles the IPA and flattens the trill/tap distinction the grammar does
+make in transcription.
 
 Each row carries the source id, the **printed** page (not the PDF page index: they diverge, and `sources.json` records the offset per source), the source's own
 notation verbatim, whether the source wrote it broad `/…/` or narrow `[…]`, and a
@@ -1125,6 +1138,7 @@ provenance:
 | **ipa-dict `tts.txt`** | EXCLUDED: no spec | Isan / Northeastern Thai. No `tts` spec, and the `th` spec is a different language. |
 | **ipa-dict `zh_*`, `yue`** | EXCLUDED: untranscribable | Well-sourced golds (Unihan/KFCD, KFCD Pingyam), but Han script is lexical: no G2P without a dictionary: and the `zh` spec is a pinyin/romanization spec. An engine gap, not a gold problem. The former third member of this row, `ko` (Korean Wiktionary), is WIRED now: Hangul syllable blocks canonically decompose to the `ko` spec's conjoining-jamo graphemes. |
 | **vox_communis `zh-cn.tsv`** | **DE-REGISTERED: untranscribable** | Same disposition as the ipa-dict `zh_*`/`yue` row above, and as this dataset's own `yue.tsv`. The o2i `zh` spec is a **pinyin** spec; `zh-cn.tsv`'s `aligned_sentence` column is Han characters (`盘固 草 为 禾 本科 …`). Every row transcribed to the empty string, so the board carried a `vox_communis` `zh` row of exactly `per: 1.0` composed entirely of "hypothesis empty, whole gold is a deletion". That is not a Mandarin score — it is the absence of a hanzi→pinyin front-end, reported in the units of a phone error rate. An engine gap, not a gold problem; the registration returns when such a front-end exists. (`ja` is deliberately kept: kana rows transcribe, only the kanji minority go empty, so its row still carries signal.) |
+| **kaikki.org Tetum** | **REJECTED: too thin** | 3 of 686 entries in the Tetum dump carry a `sounds[].ipa` value, thinner still than the already-rejected Tigrinya set. WikiPron has no Tetum scrape either, so `tet` is scored on the primary-source rows mined from its own reference grammar. |
 | **Lexique 3.82 (French)** | EXCLUDED: complex notation | Data is human-curated (Boris New / Christophe Pallier, CNRS) and CC BY-SA 4.0, but uses a custom phonemic notation (not X-SAMPA, not IPA): `§`=ɔ̃, `°`=schwa-variant, `5`=ɛ̃, `8`=œ̃ etc.: not covered by `scriptconv.notation.xsampa_to_ipa`. A dedicated Lexique converter would be a clean follow-up. WikiPron `fra` is used in the interim. |
 | **NST Swedish/Norwegian lexicons (Språkbanken/NB)** | EXCLUDED: no programmatic download | Authoritative SAMPA lexicons for sv/nb/da from Nasjonalbiblioteket. Human-curated. However no stable raw-download URL suitable for `urllib.request`. The portal serves interactive/catalogue pages. WikiPron Scandinavian TSVs used instead. |
 | **CELEX2 (de/nl/en)** | EXCLUDED: proprietary | LDC license (LDC96L14), not freely downloadable. |

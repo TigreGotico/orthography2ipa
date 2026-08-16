@@ -606,6 +606,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ta | vox_communis | 136376 | 0.1795 | · | · | · | · | [0.1782, 0.1806] | 0.1219 | research | epitran-derived |
 | ta | wikipron | 10093 | 0.4251 | · | · | · | · | [0.4219, 0.4286] | 0.0184 | research | crowd-scraped |
 | te | wikipron | 5101 | 0.1044 | · | · | · | · | [0.1007, 0.1081] | 0.5156 | research | crowd-scraped |
+| tet | primary_sources | 55 | 0.0683 | 0.0520 | 0.0483 | 0.7636 | 0.7818 | [0.0405, 0.0985] | 0.7091 | research | expert-human |
 | tew | wikipron | 106 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
 | tft | wikipron | 293 | 0.1041 | · | · | · | · | [0.0827, 0.1265] | 0.6792 | skeleton | crowd-scraped |
 | tg | wikipron | 3245 | 0.0296 | · | · | · | · | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
