@@ -3,8 +3,17 @@
   "name": "Skolt Sami",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
+    "ǧǧ": [
+      "ɟɟʝʲ"
+    ],
+    "ǯǯ": [
+      "ddʒ"
+    ],
+    "ʒʒ": [
+      "ddz"
+    ],
     "â": [
       "ɐ"
     ],
@@ -17,8 +26,14 @@
     "ǥ": [
       "ɣ"
     ],
+    "ǧ": [
+      "ɟ"
+    ],
     "ǩ": [
       "kʲ"
+    ],
+    "ǯ": [
+      "dʒ"
     ],
     "ŋ": [
       "ŋ"
@@ -31,6 +46,9 @@
     ],
     "ž": [
       "ʒ"
+    ],
+    "ʒ": [
+      "dz"
     ],
     "å": [
       "ɔ"
@@ -114,7 +132,11 @@
       "notes": "Descent per Glottolog classification of Skolt Saami (skol1241)."
     }
   ],
-  "notes": "Skeleton. Skolt Sami is an Eastern Saami language of the Uralic family, written since 1973 in a Latin orthography rich in special letters. The map covers the base Latin letters and the language-specific graphemes: â (near-open central vowel), õ (close-mid central vowel), ä and å, the caron letters č š ž, the barred/hooked consonants đ (ð), ǥ (ɣ) and ǩ (palatalized k), and ŋ. The orthography also marks suprasegmental palatalization with a prime (ˊ/ʹ) and encodes consonant-gradation quantity distinctions; these palatalization marks and length contrasts are not captured by this single-symbol map and are left unencoded, raising the PER floor.",
+  "stress": {
+    "default_position": 1,
+    "stress_mark": "ˈ"
+  },
+  "notes": "Research. Skolt Sami is an Eastern Saami language of the Uralic family, written since 1973 (Feist 2010, Moshnikoff et al.) in a Latin orthography rich in special letters. The map covers the base Latin letters and the language-specific graphemes: â (near-open central vowel), õ (close-mid central vowel), ä and å, the caron letters č š ž, the barred/hooked consonants đ (ð), ǥ (ɣ) and ǩ (palatalized k), ŋ, and the doubled affricates ǧǧ/ǯǯ/ʒʒ, which the orthography always writes geminate and which realise as [ɟɟʝʲ]/[ddʒ]/[ddz] (single ǧ/ǯ/ʒ are given a non-geminate fallback). Word stress is fixed on the first syllable (Feist 2010). Two suprasegmental facts documented in the source grammars are known engine-limit gaps, not orthography gaps: (1) the acute accent ´ before a consonant cluster and the apostrophe ' mark the language's productive consonant-gradation palatalization/quantity alternation, whose surface realisation depends on the whole following cluster (testing confirmed a literal ´→ʲ mapping raises PER, since the mark's effect is cluster-wide, not a fixed one-to-one insertion); (2) Skolt Sami phonetically inserts an echo/epenthetic vowel after a word-final consonant or cluster, matching the word's vowel harmony, that the orthography never spells at all — there is no grapheme to attach that insertion to. Both are left unencoded here.",
   "iso639_3": "sms",
   "glottolog_code": null,
   "sources": [
@@ -138,6 +160,17 @@
       "url": "https://en.wikipedia.org/wiki/Skolt_Sami_language",
       "pages": null,
       "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Skolt_Sami_language"
+    },
+    {
+      "id": "feist2010",
+      "author": "Feist, Timothy",
+      "year": 2010,
+      "title": "A grammar of Skolt Saami",
+      "publisher": "University of Manchester (PhD thesis)",
+      "url": null,
+      "pages": null,
+      "notes": "Grammar describing the 1973 orthography, fixed initial word stress, the acute-accent/apostrophe consonant-gradation marking, and the geminate affricates ǧǧ/ǯǯ/ʒʒ.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Skolt_Sami_language"
     }
   ],

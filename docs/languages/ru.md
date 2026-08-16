@@ -1,4 +1,4 @@
-# Russian (ru) — Phonology Reference
+# Russian (ru): Phonology Reference
 
 **Code**: `ru` | **Family**: Indo-European > Slavic > East Slavic | **Script**: Cyrillic (alphabet)
 **Quality tier**: research | **Sources**: Avanesov (1956), Jones & Ward (1969), Padgett (2002), Timberlake (2004), Padgett & Tabain (2005)
@@ -7,17 +7,17 @@
 
 ## Known limitation: stress is not orthographically marked
 
-Russian word stress is **lexical and free** — it is not predictable from
+Russian word stress is **lexical and free**, it is not predictable from
 spelling and standard orthography does not mark it. The spec therefore
 carries no `stress` block (the research-tier exemption for languages
 whose stress is not orthography-predictable applies here). Consequently
 the pretonic/posttonic/nucleus-unstressed vowel-reduction rules below are
-only reachable when the caller supplies pre-stressed input; on ordinary
+only reachable when the caller supplies pre-stressed input. On ordinary
 unmarked spelling the engine cannot locate the stressed syllable, so
 every vowel falls through to its unstressed-agnostic default form. This
 is the dominant source of PER against unmarked gold sets (WikiPron's
 `rus_cyrl_narrow.tsv`) and is why this spec is capped at `research`, not
-`production` — closing this gap requires either a stress dictionary or
+`production`, closing this gap requires either a stress dictionary or
 accepting pre-accented input, not further grapheme-rule tuning.
 
 ---
@@ -65,7 +65,7 @@ e.g. word-finally) plus 75 iotated-vowel CV digraphs (each of the 15
 consonants × е/и/я/ё/ю). Coda devoicing is extended to the palatalized
 voiced obstruents, but only for the bare soft-sign digraphs (бь→пʲ,
 вь→фʲ, дь→тʲ, зь→сʲ) so a word like `гвоздь` "nail" devoices its final
-дь to [tʲ] — it is **not** applied to the iotated-vowel CV digraphs
+дь to [tʲ], it is **not** applied to the iotated-vowel CV digraphs
 (e.g. дя, зе), since those always resolve to a consonant immediately
 followed by a vowel and are therefore never in coda position.
 
@@ -83,7 +83,7 @@ In grammatical endings `-ого`/`-его`, the letter г is pronounced [v]:
 
 ## Vowel Reduction (Akan'ye)
 
-Unstressed vowels in Russian undergo **systematic reduction** — one of the most important phonological features.
+Unstressed vowels in Russian undergo **systematic reduction**, one of the most important phonological features.
 
 ### О Reduction
 
@@ -101,7 +101,7 @@ Unstressed vowels in Russian undergo **systematic reduction** — one of the mos
 | 1st pretonic | [ɐ] | `сады` [sɐˈdɨ] |
 | Other unstressed | [ə] | `садовник` [sɐˈdovnʲɪk] |
 
-### И/Е After Hard Consonants (Akan'ye variant — Ikan'ye)
+### И/Е After Hard Consonants (Akan'ye variant: Ikan'ye)
 
 | Vowel | After hard consonant (unstressed) | Example |
 |:---:|:---:|:---|
@@ -118,7 +118,7 @@ The vowels е, ё, ю, я are **iotated** (preceded by [j]) when:
 3. **After ъ or ь** (hard/soft sign): `объект` [ɐbˈjekt]
 
 After a consonant, they signal palatalization of that consonant only (no [j] prefix):
-- `няня` [ˈnʲanʲə] — н is palatalized, no [j]
+- `няня` [ˈnʲanʲə], н is palatalized, no [j]
 
 ---
 
@@ -145,10 +145,10 @@ Russian has two sets of sibilants:
 - Padgett, J. (2002). *Russian vowel reduction and dialectology*. UC Santa Cruz.
 - Timberlake, A. (2004). *A Reference Grammar of Russian*. Cambridge University Press.
 - Padgett, J. & Tabain, M. (2005). *Adaptive Dispersion Theory and Phonological Vowel Reduction in Russian*. Phonetica.
-- Wikipedia: [Russian phonology](https://en.wikipedia.org/wiki/Russian_phonology) — confirms akanye/ikanye mergers, pretonic vs. further-unstressed reduction targets, post-soft-consonant merger to [ɪ], and regressive voicing assimilation (cites Jones & Ward 1969, Timberlake 2004).
-- Wikipedia: [Vowel reduction in Russian](https://en.wikipedia.org/wiki/Vowel_reduction_in_Russian) — worked examples with IPA for е/и reduction after hard vs. soft consonants.
-- Wikipedia: [Akanye](https://en.wikipedia.org/wiki/Akanye) — confirms pretonic [ɐ]/[ʌ] vs. further-unstressed [ə], and that ikanye is treated as a phonologically distinct process from akanye (cites Padgett & Tabain 2005).
-- [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) README — confirms Russian was scraped only in narrow transcription, which is why the `ru` gold benchmark row uses `rus_cyrl_narrow.tsv`.
+- Wikipedia: [Russian phonology](https://en.wikipedia.org/wiki/Russian_phonology), confirms akanye/ikanye mergers, pretonic vs. further-unstressed reduction targets, post-soft-consonant merger to [ɪ], and regressive voicing assimilation (cites Jones & Ward 1969, Timberlake 2004).
+- Wikipedia: [Vowel reduction in Russian](https://en.wikipedia.org/wiki/Vowel_reduction_in_Russian), worked examples with IPA for е/и reduction after hard vs. soft consonants.
+- Wikipedia: [Akanye](https://en.wikipedia.org/wiki/Akanye), confirms pretonic [ɐ]/[ʌ] vs. further-unstressed [ə], and that ikanye is treated as a phonologically distinct process from akanye (cites Padgett & Tabain 2005).
+- [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) README, confirms Russian was scraped only in narrow transcription, which is why the `ru` gold benchmark row uses `rus_cyrl_narrow.tsv`.
 
 ---
 

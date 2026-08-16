@@ -67,6 +67,80 @@ class TestRussianPhonology:
 
 
 @pytest.mark.linguistic
+class TestRussianStressMarkInput:
+    """Combining acute (U+0301) in the input names the stressed syllable.
+
+    Russian stress is free and not written in running text, so the spec falls
+    back to a statistical default. Dictionaries, textbooks and children's
+    books do write it, with a combining acute over the stressed vowel
+    (Timberlake 2004; edition not consulted). Where the input carries that
+    mark it is the answer, and the akanje/ikanje reduction contexts follow
+    from it.
+    """
+
+    ACUTE = "́"
+
+    def test_minimal_pair_is_distinguished(self):
+        assert _t("ru", "за́мок") == "ˈzamək"
+        assert _t("ru", "замо́к") == "zɐˈmok"
+        assert _t("ru", "за́мок") != _t("ru", "замо́к")
+
+    def test_reduction_follows_the_marked_stress(self):
+        assert _t("ru", "вода́") == "vɐˈda"
+        assert _t("ru", "молоко́") == "məɫɐˈko"
+
+    def test_mark_is_silent(self):
+        assert self.ACUTE not in _t("ru", "вода́")
+        assert "´" not in _t("ru", "вода́")
+
+    def test_unmarked_input_is_unaffected(self):
+        assert _t("ru", "замок") == "ˈzamək"
+        assert _t("ru", "вода") == "ˈvodə"
+
+    def test_yo_still_carries_stress(self):
+        assert _t("ru", "ёлка") == "ˈjoɫkə"
+
+    def test_the_mark_survives_normalisation(self):
+        """Cyrillic has no precomposed acute, so NFC cannot swallow the mark.
+
+        Both normalisation forms are the same code point sequence — assert
+        that, then transcribe the sequence once. A composing script would
+        need the two forms handled separately; this one does not.
+        """
+        import unicodedata
+        assert unicodedata.normalize("NFC", "замо́к") == "замо́к"
+        assert unicodedata.normalize("NFD", "замо́к") == "замо́к"
+        assert "замо́к"[3:5] == "о" + self.ACUTE
+        assert _t("ru", "замо́к") == "zɐˈmok"
+
+    def test_word_exceptions_are_found_through_the_mark(self):
+        """Whole-word data is keyed on bare orthography — a mark must not
+        hide the lookup. его/того/кого are the genitive-in-[v] class, and
+        they carry the acute word-finally, exactly where it would."""
+        assert _t("ru", "его́") == _t("ru", "его") == "jɪˈvo"
+        assert _t("ru", "того́") == _t("ru", "того") == "tɐˈvo"
+        assert _t("ru", "кого́") == _t("ru", "кого") == "kɐˈvo"
+        assert _t("ru", "ничего́") == _t("ru", "ничего") == "nʲɪtɕɪˈvo"
+
+    def test_grammatical_endings_are_found_through_the_mark(self):
+        """The ⟨-ого⟩ genitive rewrite is keyed the same way. A mark inside
+        the matched tail (большо́го) and one before it (но́вого) both leave
+        the rewrite intact."""
+        assert _t("ru", "большо́го") == _t("ru", "большого")
+        assert _t("ru", "молодо́го") == _t("ru", "молодого")
+        assert _t("ru", "большо́го").endswith("və")
+        assert _t("ru", "но́вого") == "ˈnovəvə"
+
+    @pytest.mark.parametrize("code", ["ru-x-moscow", "ru-x-northern",
+                                      "ru-x-southern", "ru-x-siberian"])
+    def test_dialects_inherit_the_behaviour(self, code):
+        assert _t(code, "за́мок") != _t(code, "замо́к")
+        assert _t(code, "замо́к").startswith("za") or \
+            _t(code, "замо́к").startswith("zɐ")
+        assert "ˈmok" in _t(code, "замо́к")
+
+
+@pytest.mark.linguistic
 class TestUkrainianPhonology:
 
     def test_dark_l(self):
