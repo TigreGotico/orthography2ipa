@@ -8056,6 +8056,25 @@
   "limit": null
  },
  {
+  "lang": "tet",
+  "dataset": "primary_sources",
+  "n": 55,
+  "per": 0.0683,
+  "per_ci_low": 0.0405,
+  "per_ci_high": 0.0985,
+  "exact_match": 0.7091,
+  "quality_tier": "research",
+  "provenance": "expert-human",
+  "harness_version": "1.1",
+  "limit": null,
+  "oracle_per_top3": 0.052,
+  "oracle_exact_top3": 0.7636,
+  "oracle_per_top5": 0.0483,
+  "oracle_exact_top5": 0.7818,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 55
+ },
+ {
   "lang": "tew",
   "dataset": "wikipron",
   "n": 106,
