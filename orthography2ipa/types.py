@@ -1765,7 +1765,10 @@ class LanguageSpec:
     consonant with nothing supplying a vowel of its own cannot be a new
     onset needing its own inherent vowel — it can only be closing the
     syllable that already has one. That is exactly the case this flag
-    covers, no more.
+    covers, no more. A written coda may be more than one letter, so the
+    search looks back across bare consonants: the Tibetan post-suffix
+    ⟨ས⟩ stands after the suffix ⟨ག ང བ མ⟩, and in ⟨ཁམས⟩ the nucleus is
+    two letters behind it.
 
     What it deliberately does NOT cover: a bare-consonant sequence with NO
     vowel sign anywhere before it (e.g. Thai ⟨คน⟩ /kʰon/, two consonant

@@ -734,6 +734,31 @@ def grapheme_positions(
         if prev_ctx.is_palatal:
             pos.append(GraphemePosition.AFTER_PALATAL)
         pos.append(GraphemePosition.AFTER_VOWEL)
+    elif (prev_ctx is not None and spec is not None and spec.inherent_vowel
+            and _carries_nucleus(prev_ctx)):
+        # The previous grapheme is a consonant LETTER of an abugida whose
+        # inherent vowel was not suppressed. There is a vowel between it
+        # and this grapheme even though none was written, so this slot is
+        # after a vowel in every sense a rule can mean: Tibetan ⟨ལག⟩ is
+        # [lak], the ⟨ག⟩ closing the syllable ⟨ལ⟩ opened rather than
+        # opening one of its own. A letter whose inherent vowel IS
+        # suppressed — a subjoined stack, a silenced prefix — does not
+        # carry a nucleus and does not match. Restricted to abugidas
+        # because only there does an unwritten vowel follow a consonant
+        # letter by default; elsewhere a vowel inside a grapheme's IPA is
+        # a mater lectionis or a CV unit, whose neighbour position the
+        # specs already state for themselves.
+        #
+        # BOTH positions are emitted, most specific first. The neighbour is
+        # a consonant letter that happens to carry a vowel, so it is after
+        # a consonant as much as after a vowel, and a spec that keys
+        # after_consonant on such a letter must keep reaching its entry —
+        # emitting only AFTER_VOWEL here would silently take that entry
+        # away from it.
+        pos.append(GraphemePosition.AFTER_VOWEL)
+        if prev_ctx.is_palatal:
+            pos.append(GraphemePosition.AFTER_PALATAL)
+        pos.append(GraphemePosition.AFTER_CONSONANT)
     elif prev_ctx is not None:
         # Preceding grapheme is a consonant: the palatal class (decided by
         # its IPA) is more specific than the generic AFTER_CONSONANT.

@@ -1328,6 +1328,55 @@ class PhonetokTokenizer:
         # below, U+030D above), so scan the whole string rather than the head.
         return _is_nucleus(first)
 
+    def _declares_postvocalic_reading(self, gkey: str) -> bool:
+        """True when the spec gives *gkey* its own reading AFTER a vowel.
+
+        This is the data's way of saying a letter can close a syllable: a
+        spec writes ``positional_graphemes[gkey]["after_vowel"]`` for the
+        letters that follow a nucleus, which for Tibetan is exactly the
+        suffix set ⟨ག ང ད ན བ མ འ ར ལ ས⟩ and for Dzongkha its own
+        smaller one. A letter with no such entry is never described
+        post-vocalically by its spec, so nothing licenses reading it as
+        part of a coda.
+        """
+        entry = self.spec.positional_graphemes.get(gkey)
+        return bool(entry) and GraphemePosition.AFTER_VOWEL in entry
+
+    def _syllable_has_nucleus(self, tokens: Sequence[Token]) -> bool:
+        """True if the syllable being built already has its vowel.
+
+        :meth:`_prev_gives_nucleus` reads only the token before, which is
+        enough while a syllable has at most one coda letter. A written coda
+        may be longer: the Tibetan post-suffix ⟨ས⟩ stands after the suffix
+        ⟨ག ང བ མ⟩, so in ⟨ཁམས⟩ the letter before it is the coda ⟨མ⟩ and the
+        nucleus lies one further back.
+
+        The walk back is bounded by the spec's OWN coda declaration, and
+        that bound is the whole point. Only a letter the spec describes
+        post-vocalically (:meth:`_declares_postvocalic_reading`) is
+        transparent here; anything else stops the search. Without the
+        bound this asks "is there a vowel anywhere behind me", and in a
+        script that writes a syllable's vowel nowhere at all the answer is
+        yes for a letter that is really the ONSET of the next syllable:
+        Thai ⟨เอกชน⟩ and Lao ⟨ພຸດທະ⟩ would lose the implicit vowel of
+        their second syllable and collapse into consonant runs the
+        phonotactics forbid. Neither spec declares any post-vocalic
+        reading, so for them the search stops at the first letter and the
+        pre-existing one-token behaviour stands.
+        """
+        for tok in reversed(tokens):
+            if self._prev_gives_nucleus(tok):
+                return True
+            if tok.kind != TokenKind.GRAPHEME:
+                return False
+            ipa_vals = tok.ipa
+            first = ipa_vals[0] if ipa_vals else ""
+            if (first and not _is_nucleus(first)
+                    and self._declares_postvocalic_reading(tok.grapheme)):
+                continue          # a declared coda letter: look further back
+            return False
+        return False
+
     def _prev_gives_nucleus(self, prev_tok: Optional[Token]) -> bool:
         """True if *prev_tok* already supplied the current syllable's vowel.
 
@@ -1698,11 +1747,10 @@ class PhonetokTokenizer:
                             # #781's follow-up), this consonant is closing
                             # that syllable, not opening its own: leave it
                             # bare instead of surfacing the inherent vowel.
-                            prev_tok = tokens[-1] if tokens else None
                             if (
                                 not (
                                     self._coda_no_inherent_vowel
-                                    and self._prev_gives_nucleus(prev_tok)
+                                    and self._syllable_has_nucleus(tokens)
                                 )
                                 and not (
                                     next_ch
