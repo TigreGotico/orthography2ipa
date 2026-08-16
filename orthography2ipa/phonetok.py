@@ -45,7 +45,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 from enum import Enum, auto
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, FrozenSet, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
@@ -56,6 +56,7 @@ from orthography2ipa.vowels import (
     is_ipa_vowel,
     is_orthographic_vowel,
     is_palatal_consonant,
+    is_pharyngealized_consonant,
 )
 from orthography2ipa.positional import build_branches, resolve_branches
 
@@ -74,6 +75,71 @@ _NASAL_CARRIERS = frozenset(
     # ɐ̃w̃ / ɐ̃j̃ from ⟨ão ãe õe⟩)
     "wjɥɰ"
 )
+#: Trailing suprasegmental marks that sit AFTER the vowel they modify and
+#: must not be mistaken for the vowel itself when checking whether a
+#: segment can carry the nasal tilde (``aː`` is a long ORAL vowel, not the
+#: consonant-shaped thing ``"ː"`` looks like in isolation).
+_LENGTH_MARKS = frozenset("ːˑ")
+
+
+def _carrier_split_index(seg: str) -> int:
+    """Index right after *seg*'s base vowel/glide character.
+
+    Walks back over trailing length marks (``ː``/``ˑ``) and any other
+    non-tilde combining diacritic (stress, breathiness, etc.), so a long
+    or otherwise modified vowel like ``aː`` or ``a̤ː`` is split after its
+    base vowel ``a``, not after the trailing mark. Returns ``0`` for an
+    empty or all-diacritic segment.
+    """
+    j = len(seg)
+    while j > 0 and (seg[j - 1] in _LENGTH_MARKS or
+                      (seg[j - 1] != _NASAL_TILDE and
+                       unicodedata.combining(seg[j - 1]))):
+        j -= 1
+    return j
+
+
+def _carrier_tail(seg: str) -> str:
+    """The character a following nasal tilde would actually attach to.
+
+    See :func:`_carrier_split_index`. Returns ``""`` for an empty or
+    all-diacritic segment.
+    """
+    j = _carrier_split_index(seg)
+    return seg[j - 1] if j > 0 else ""
+
+
+def _splice_nasal_tilde(segs: List[str]) -> List[str]:
+    """Insert the nasal tilde into its carrier segment in IPA normal form.
+
+    Nasalisation marks the VOWEL, and length is a property that follows
+    it: canonical IPA and every gold this engine is measured against
+    write a long nasalised vowel as ``ũː`` (tilde on the base vowel,
+    length mark after), never as ``uː̃`` (tilde trailing the length
+    mark). Appending the tilde as its own trailing segment — which is
+    what the beam's segment-per-slot bookkeeping does by default —
+    produces the latter, wrong order whenever the carrier is long or
+    otherwise diacritic-marked. This splices the tilde into the last
+    non-empty segment right after its base vowel/glide
+    (:func:`_carrier_split_index`) instead, and appends an empty
+    placeholder for the tilde's own slot so ``segments`` stays one entry
+    per grapheme token. A short, plain vowel (``j == len(seg)``) is
+    unaffected: the tilde simply becomes the segment's last character,
+    same as appending it did before.
+    """
+    new_segs = list(segs)
+    for i in range(len(new_segs) - 1, -1, -1):
+        seg = new_segs[i]
+        if not seg:
+            continue
+        j = _carrier_split_index(seg)
+        new_segs[i] = seg[:j] + _NASAL_TILDE + seg[j:]
+        new_segs.append("")
+        return new_segs
+    # No prior non-empty segment to attach to (defensive path; the guard
+    # in _expand_beam means this is not reachable via a validated carrier).
+    new_segs.append(_NASAL_TILDE)
+    return new_segs
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
@@ -89,10 +155,12 @@ __all__ = [
     "GraphemeContext",
     "TokenSequence",
     "flat_contexts",
+    "constrain_nasal_carriers",
     "slot_confidence",
     "lattice_confidence",
     "PhonetokTokenizer",
     "lower_str",
+    "PAUSE_PUNCTUATION",
 ]
 
 
@@ -206,6 +274,40 @@ _MAX_DECOMPOSED_COMBOS = 4
 #: Myanmar, …). Testing the class rather than enumerating codepoints keeps the
 #: abugida model script-agnostic: a script the library has never seen works.
 _VIRAMA_COMBINING_CLASS = 9
+
+
+
+def _is_subjoined_letter_cluster(grapheme: str) -> bool:
+    """True when *grapheme* is a base letter followed by ONSET CONSONANT marks.
+
+    A subjoined letter is a full consonant that Unicode encodes as a
+    combining mark so it stacks under its base — Tibetan U+0F90..U+0FBC
+    (``TIBETAN SUBJOINED LETTER KA`` …). A key spelling such a stack is
+    therefore a consonant LETTER, not a bare mark, and takes the inherent
+    vowel: ⟨ཀྲ⟩ is [ʈɑ].
+
+    A MEDIAL consonant sign is the same thing under another name: Myanmar
+    U+103B..U+103E (``MYANMAR CONSONANT SIGN MEDIAL YA`` …) add a glide or a
+    laryngeal feature to the onset the base letter opens, so ⟨ကျ⟩ is a
+    consonant cluster [tɕ] that still needs the inherent vowel ([tɕa̰]), not
+    a bare mark.
+
+    Decided from the Unicode NAME rather than a codepoint range, so it
+    generalises to any script that encodes subjoined letters or medials, and
+    it deliberately does NOT match the modifier marks that share the shape
+    (``… SIGN NUKTA``, anusvara, visarga), whose inherent-vowel behaviour
+    is a separate question this predicate must not answer.
+    """
+    if len(grapheme) < 2:
+        return False
+    if unicodedata.category(grapheme[0]) in ("Mn", "Mc"):
+        return False
+    tail = grapheme[1:]
+    return all(
+        "SUBJOINED LETTER" in unicodedata.name(ch, "")
+        or "CONSONANT SIGN MEDIAL" in unicodedata.name(ch, "")
+        for ch in tail
+    )
 
 
 def _is_virama(ch: str) -> bool:
@@ -541,7 +643,7 @@ class GraphemeContext:
     not intended to be constructed directly.
     """
 
-    __slots__ = ("token", "index", "_run", "_run_pos")
+    __slots__ = ("token", "index", "_run", "_run_pos", "_vowel_graphemes")
 
     def __init__(
             self,
@@ -549,6 +651,7 @@ class GraphemeContext:
             index: int,
             run: List["GraphemeContext"],
             run_pos: int,
+            vowel_graphemes: FrozenSet[str] = frozenset(),
     ) -> None:
         self.token = token
         """The wrapped GRAPHEME :class:`Token`."""
@@ -559,6 +662,9 @@ class GraphemeContext:
 
         self._run = run
         self._run_pos = run_pos
+        self._vowel_graphemes = vowel_graphemes
+        """The owning spec's ``vowel_graphemes`` override set (default empty
+        — the previous closed-inventory-only behaviour)."""
 
     # ─── Convenience passthroughs ───────────────────────────────────────
 
@@ -644,7 +750,7 @@ class GraphemeContext:
         Unicode. ``self.ipa`` is the *flat* ``spec.graphemes`` entry, not a
         positionally-resolved realisation, so the positional resolution that
         consults this predicate cannot loop back into itself."""
-        return grapheme_is_vowel(self.grapheme, self.ipa)
+        return grapheme_is_vowel(self.grapheme, self.ipa, self._vowel_graphemes)
 
     @property
     def is_consonant(self) -> bool:
@@ -657,14 +763,14 @@ class GraphemeContext:
         """True if this grapheme is a *front* vowel, in any script
         (:func:`orthography2ipa.vowels.grapheme_vowel_axis`) — the letter for
         Latin/Greek, the spec's IPA elsewhere."""
-        return grapheme_vowel_axis(self.grapheme, self.ipa) == "front"
+        return grapheme_vowel_axis(self.grapheme, self.ipa, self._vowel_graphemes) == "front"
 
     @property
     def is_back(self) -> bool:
         """True if this grapheme is a *back* vowel, in any script
         (:func:`orthography2ipa.vowels.grapheme_vowel_axis`) — the letter for
         Latin/Greek, the spec's IPA elsewhere."""
-        return grapheme_vowel_axis(self.grapheme, self.ipa) == "back"
+        return grapheme_vowel_axis(self.grapheme, self.ipa, self._vowel_graphemes) == "back"
 
     @property
     def is_palatal(self) -> bool:
@@ -677,6 +783,19 @@ class GraphemeContext:
         palatal regardless of their spelling. Used by the ``BEFORE_PALATAL`` /
         ``AFTER_PALATAL`` positions and the ``"palatal"`` allophone-rule class."""
         return bool(self.ipa) and is_palatal_consonant(self.ipa[0])
+
+    @property
+    def is_emphatic(self) -> bool:
+        """True if this grapheme's *primary IPA* is a pharyngealized
+        ("emphatic") consonant (:func:`orthography2ipa.vowels.is_pharyngealized_consonant`).
+
+        Like :attr:`is_palatal`, this reads the sound the grapheme maps to,
+        not its spelling: any IPA carrying the ``ˤ`` diacritic qualifies,
+        so it is a generic feature class — not Arabic-specific — even
+        though Arabic's ``sˤ dˤ tˤ ðˤ`` are its best-known instance (Watson
+        2002; Davis 1995). Used by the ``"emphatic"`` allophone-rule
+        neighbour class (emphasis-spread / tafkhim vowel backing)."""
+        return bool(self.ipa) and is_pharyngealized_consonant(self.ipa[0])
 
     def __repr__(self) -> str:
         return f"GraphemeContext({self.grapheme!r}, index={self.index})"
@@ -698,7 +817,11 @@ class TokenSequence:
 
     __slots__ = ("tokens", "_contexts")
 
-    def __init__(self, tokens: List[Token]) -> None:
+    def __init__(
+            self,
+            tokens: List[Token],
+            vowel_graphemes: FrozenSet[str] = frozenset(),
+    ) -> None:
         self.tokens = tokens
         """The complete token list, exactly as :meth:`tokenize` produced it."""
 
@@ -706,7 +829,8 @@ class TokenSequence:
         run: List[GraphemeContext] = []
         for tok in tokens:
             if tok.kind == TokenKind.GRAPHEME:
-                ctx = GraphemeContext(tok, len(contexts), run, len(run))
+                ctx = GraphemeContext(
+                    tok, len(contexts), run, len(run), vowel_graphemes)
                 run.append(ctx)
                 contexts.append(ctx)
             else:
@@ -732,7 +856,10 @@ class TokenSequence:
         return f"TokenSequence(graphemes={len(self._contexts)})"
 
 
-def flat_contexts(g_tokens: List[Token]) -> List["GraphemeContext"]:
+def flat_contexts(
+        g_tokens: List[Token],
+        vowel_graphemes: FrozenSet[str] = frozenset(),
+) -> List["GraphemeContext"]:
     """Wrap a flat list of GRAPHEME tokens as one contiguous run.
 
     Unlike :class:`TokenSequence` (which starts a new word-local run at
@@ -744,7 +871,7 @@ def flat_contexts(g_tokens: List[Token]) -> List["GraphemeContext"]:
     """
     run: List["GraphemeContext"] = []
     for i, tok in enumerate(g_tokens):
-        run.append(GraphemeContext(tok, i, run, i))
+        run.append(GraphemeContext(tok, i, run, i, vowel_graphemes))
     return run
 
 
@@ -752,9 +879,108 @@ def flat_contexts(g_tokens: List[Token]) -> List["GraphemeContext"]:
 # Punctuation / digit detection
 # ═══════════════════════════════════════════════════════════════════════════
 
+#: Punctuation that writes a PAUSE — the mark of an intonational-phrase
+#: boundary. Cross-word phonology (sandhi, liaison) applies inside a
+#: phonological phrase and stops at this break: nothing joins the two words a
+#: pause separates (Nespor & Vogel 1986, *Prosodic Phonology*, on the
+#: intonational phrase). It is therefore a WRITING-SYSTEM fact, not a Latin
+#: one, and every script's pause marks are named here rather than left to an
+#: ASCII set that silently exempts every non-Latin orthography.
+#:
+#: Each entry is named because a set of bare code points cannot be reviewed.
+#: Only marks that end an utterance or a clause are listed: quotation marks,
+#: brackets, hyphens, apostrophes and word SEPARATORS (Ethiopic wordspace,
+#: Tibetan tsheg) are not pauses and stay out.
+PAUSE_PUNCTUATION: Dict[str, str] = {
+    # ── Latin / common ──────────────────────────────────────────────────
+    ".": "FULL STOP",
+    ",": "COMMA",
+    ";": "SEMICOLON",
+    ":": "COLON",
+    "!": "EXCLAMATION MARK",
+    "?": "QUESTION MARK",
+    "\u2026": "HORIZONTAL ELLIPSIS",
+    "\u037E": "GREEK QUESTION MARK",
+    "\u2E2E": "REVERSED QUESTION MARK",
+    # ── Armenian / Hebrew ───────────────────────────────────────────────
+    # Armenian ՛ ՜ ՞ sit INSIDE the word on the stressed vowel and are not
+    # pauses; only the sentence-final ։ is.
+    "\u0589": "ARMENIAN FULL STOP",
+    "\u05C3": "HEBREW PUNCTUATION SOF PASUQ",
+    # ── Arabic script (Arabic, Persian, Urdu) ───────────────────────────
+    "\u060C": "ARABIC COMMA",
+    "\u061B": "ARABIC SEMICOLON",
+    "\u061E": "ARABIC TRIPLE DOT PUNCTUATION MARK",
+    "\u061F": "ARABIC QUESTION MARK",
+    "\u06D4": "ARABIC FULL STOP",
+    # ── Syriac ──────────────────────────────────────────────────────────
+    "\u0700": "SYRIAC END OF PARAGRAPH",
+    "\u0701": "SYRIAC SUPRALINEAR FULL STOP",
+    "\u0702": "SYRIAC SUBLINEAR FULL STOP",
+    "\u0703": "SYRIAC SUPRALINEAR COLON",
+    "\u0704": "SYRIAC SUBLINEAR COLON",
+    # ── N'Ko ────────────────────────────────────────────────────────────
+    "\u07F8": "NKO COMMA",
+    "\u07F9": "NKO EXCLAMATION MARK",
+    # ── Brahmic: danda and its descendants ──────────────────────────────
+    "\u0964": "DEVANAGARI DANDA",
+    "\u0965": "DEVANAGARI DOUBLE DANDA",
+    "\u104A": "MYANMAR SIGN LITTLE SECTION",
+    "\u104B": "MYANMAR SIGN SECTION",
+    "\u17D4": "KHMER SIGN KHAN",
+    "\u17D5": "KHMER SIGN BARIYOOSAN",
+    "\u1944": "LIMBU EXCLAMATION MARK",
+    "\u1945": "LIMBU QUESTION MARK",
+    "\u1C7E": "OL CHIKI PUNCTUATION MUCAAD",
+    "\u1C7F": "OL CHIKI PUNCTUATION DOUBLE MUCAAD",
+    "\uA9C7": "JAVANESE PADA PANGKAT",
+    "\uA9C8": "JAVANESE PADA LINGSA",
+    "\uA9C9": "JAVANESE PADA LUNGSI",
+    "\uAA5D": "CHAM PUNCTUATION DANDA",
+    "\uAA5E": "CHAM PUNCTUATION DOUBLE DANDA",
+    "\uAA5F": "CHAM PUNCTUATION TRIPLE DANDA",
+    "\uABEB": "MEETEI MAYEK CHEIKHEI",
+    # ── Ethiopic ────────────────────────────────────────────────────────
+    # U+1361 ETHIOPIC WORDSPACE separates words, so it is not listed.
+    "\u1362": "ETHIOPIC FULL STOP",
+    "\u1363": "ETHIOPIC COMMA",
+    "\u1364": "ETHIOPIC SEMICOLON",
+    "\u1365": "ETHIOPIC COLON",
+    "\u1367": "ETHIOPIC QUESTION MARK",
+    # ── Other scripts ───────────────────────────────────────────────────
+    "\u166E": "CANADIAN SYLLABICS FULL STOP",
+    "\u1802": "MONGOLIAN COMMA",
+    "\u1803": "MONGOLIAN FULL STOP",
+    "\uA4FE": "LISU PUNCTUATION COMMA",
+    "\uA4FF": "LISU PUNCTUATION FULL STOP",
+    "\uA60D": "VAI COMMA",
+    "\uA60E": "VAI FULL STOP",
+    "\uA60F": "VAI QUESTION MARK",
+    # ── CJK, fullwidth and halfwidth forms ──────────────────────────────
+    "\u3001": "IDEOGRAPHIC COMMA",
+    "\u3002": "IDEOGRAPHIC FULL STOP",
+    "\uFF01": "FULLWIDTH EXCLAMATION MARK",
+    "\uFF0C": "FULLWIDTH COMMA",
+    "\uFF0E": "FULLWIDTH FULL STOP",
+    "\uFF1A": "FULLWIDTH COLON",
+    "\uFF1B": "FULLWIDTH SEMICOLON",
+    "\uFF1F": "FULLWIDTH QUESTION MARK",
+    "\uFF61": "HALFWIDTH IDEOGRAPHIC FULL STOP",
+    "\uFF64": "HALFWIDTH IDEOGRAPHIC COMMA",
+}
+
+#: Character class of every pause mark, spliced into ``_PUNCT_RE`` below.
+#: Generating it from :data:`PAUSE_PUNCTUATION` is what keeps the two in step:
+#: a pause mark the tokenizer does not classify as PUNCTUATION never reaches
+#: the phrase-boundary check at all — it glues to the word instead (the
+#: Arabic comma did exactly that, so ``فِي، البَيْتِ`` elided across its own
+#: comma while the ASCII comma blocked).
+_PAUSE_CLASS = "".join(re.escape(c) for c in sorted(PAUSE_PUNCTUATION))
+
 # Broad punctuation set covering Latin, CJK, and typographic marks.
 _PUNCT_RE = re.compile(
     r"["
+    + _PAUSE_CLASS +
     r"\u0021-\u002F"  # ! " # $ % & ' ( ) * + , - . /
     r"\u003A-\u0040"  # : ; < = > ? @
     r"\u005B-\u0060"  # [ \ ] ^ _ `
@@ -824,6 +1050,77 @@ class _GraphemeTrie:
             if node.grapheme_key is not None:
                 best = node.grapheme_key
         return best
+
+
+def constrain_nasal_carriers(
+        slot_branches: List[List[Tuple[str, float]]],
+) -> List[List[Tuple[str, float]]]:
+    """Push the nasal-carrier requirement back onto the preceding slot.
+
+    A slot whose ONLY reading is the bare combining tilde (a coda ⟨ں⟩ /
+    ⟨m n⟩ nasalisation slot) cannot be realised unless the segment before
+    it is an oral vowel or a glide — that is the guard in
+    :meth:`PhonetokTokenizer._expand_beam`. The guard is a BIGRAM
+    constraint, but it is only evaluated once the previous slot has
+    already been chosen, so a narrow beam can commit to a non-carrier
+    reading and then have no legal continuation at all. Urdu's
+    hamza-on-waw plurals are exactly that shape: ⟨ؤ⟩ resolves to /ʔ/ at
+    cost 0 and to /o/ at cost 1, so a width-1 (greedy) search takes /ʔ/
+    and is then stuck, while a width-8 search keeps /o/ alive and returns
+    the legal *aːnsəõ*. The two paths disagreed, which is precisely the
+    ``word_candidates()[0] != transcribe_word()`` divergence.
+
+    Resolving the constraint HERE — before any pruning — makes it
+    search-width independent: each candidate predecessor slot simply loses
+    the readings that cannot carry the tilde, provided it keeps at least
+    one that can. An empty (deleted) reading is always kept: it
+    contributes no segment, so the carrier can be supplied by a slot
+    further left — and because a deletable slot means the ACTUAL carrier
+    might land on whichever slot precedes it, the filter walks back past
+    every such deletable slot (not just the immediate predecessor) until
+    it reaches one that cannot delete itself. A slot with an oral
+    fallback beside the tilde is left alone — there the runtime guard
+    (:meth:`PhonetokTokenizer._expand_beam`) has a legal alternative and
+    no backwards pressure is needed.
+
+    A shape that is NOT covered by construction: a chain where the
+    deletable slot sits behind another non-deletable, non-carrier slot
+    that has no oral fallback of its own (e.g. two stacked silent
+    letters between the vowel and the tilde, where the outer one cannot
+    itself resolve to an oral vowel). No language spec shipped with this
+    package has that shape — verified by an exhaustive search over every
+    deletable-grapheme pair in every tilde-bearing language's inventory,
+    not just spot-checked — so it is left undocumented as a test case
+    rather than carrying a speculative ``xfail``; add one if such a
+    shape is ever added to a spec.
+
+    Emitted IPA normal form: nasalisation marks the base VOWEL, with any
+    length mark following it (``ũː``), never the reverse (``uː̃``, tilde
+    trailing the length mark) — see :func:`_splice_nasal_tilde`, which
+    performs the actual insertion once :meth:`PhonetokTokenizer.
+    _expand_beam` accepts a tilde branch; this function only decides
+    which branches survive, not how the accepted tilde is written.
+
+    Mutates and returns *slot_branches*.
+    """
+    for idx in range(1, len(slot_branches)):
+        branches = slot_branches[idx]
+        if not branches or any(ipa != _NASAL_TILDE for ipa, _ in branches):
+            continue
+        j = idx - 1
+        while j >= 0:
+            prev = slot_branches[j]
+            if not prev:
+                break
+            has_empty = any(not ipa for ipa, _ in prev)
+            kept = [(ipa, cost) for ipa, cost in prev
+                    if not ipa or _carrier_tail(ipa) in _NASAL_CARRIERS]
+            if kept and len(kept) != len(prev):
+                slot_branches[j] = kept
+            if not has_empty:
+                break
+            j -= 1
+    return slot_branches
 
 
 def _path_similarity(a: IPAPath, b: IPAPath) -> float:
@@ -944,6 +1241,42 @@ class PhonetokTokenizer:
 
         self._trie = _GraphemeTrie(self._grapheme_ipa, spec.code)
 
+        # Escape hatches for the two abugida predicates below — see their
+        # docstrings on LanguageSpec for the Thai/Lao motivation.
+        self._dependent_vowels: FrozenSet[str] = frozenset(spec.dependent_vowels)
+        #: Declared dependent-vowel graphemes longer than one character, by
+        #: descending length — the lengths ``_supplies_vowel_at`` must try
+        #: before falling back to the single-character test.
+        self._dependent_vowel_spans: Tuple[int, ...] = tuple(sorted(
+            {len(v) for v in self._dependent_vowels if len(v) > 1}, reverse=True
+        ))
+        self._preposed_vowels: FrozenSet[str] = frozenset(
+            v.lower() for v in spec.preposed_vowels
+        )
+        self._coda_no_inherent_vowel: bool = spec.coda_no_inherent_vowel
+
+    def _supplies_vowel_at(self, text: str, pos: int) -> bool:
+        """True if the grapheme starting at *pos* supplies a syllable nucleus.
+
+        A dependent vowel sign is not always one character. A Burmese RHYME is
+        written as a unit — an optional vowel sign, an optional final
+        consonant carrying the asat ⟨်⟩, and an optional tone mark — and it
+        is the unit that carries the nucleus: ⟨ကန်⟩ is [kàɴ], not *[ka̰nà].
+        Only the whole ⟨န်⟩ says so; its first character alone is the letter
+        ⟨န⟩, an ordinary /n/. Multi-character entries in
+        :attr:`LanguageSpec.dependent_vowels` name such units, and the longest
+        one matching at *pos* decides. Specs that declare only
+        single-character dependent vowels reach the fallback unchanged.
+        """
+        if pos >= len(text):
+            return False
+        for span in self._dependent_vowel_spans:
+            key = text[pos:pos + span]
+            if key in self._dependent_vowels:
+                ipa_vals = self._grapheme_ipa.get(key)
+                return bool(ipa_vals and ipa_vals[0] and _is_nucleus(ipa_vals[0]))
+        return self._supplies_vowel(text[pos])
+
     def _supplies_vowel(self, ch: str) -> bool:
         """True if *ch* is a combining mark that supplies a vowel of its own.
 
@@ -957,7 +1290,19 @@ class PhonetokTokenizer:
         anusvara to a nasal consonant therefore keeps the inherent vowel with
         no special-casing anywhere in the engine.
         """
-        if unicodedata.category(ch) not in ("Mn", "Mc"):
+        if (
+            unicodedata.category(ch) not in ("Mn", "Mc")
+            and ch not in self._dependent_vowels
+        ):
+            # Category Mn/Mc (combining mark) is the default, script-agnostic
+            # signal that a character is a dependent vowel sign rather than a
+            # base letter. It fails for the Tai scripts: Thai/Lao spacing
+            # vowel signs (⟨า ะ⟩ / ⟨າ ະ⟩) are encoded as category Lo — plain
+            # spacing letters, indistinguishable from a consonant by category
+            # alone. `dependent_vowels` is the spec-level escape hatch (see
+            # LanguageSpec.dependent_vowels) naming the graphemes that are
+            # dependent vowel signs despite their Unicode category; every
+            # other spec leaves it empty and this check is a no-op.
             return False
         ipa_vals = self._grapheme_ipa.get(ch)
         if not ipa_vals:
@@ -982,6 +1327,100 @@ class PhonetokTokenizer:
         # for kr̩ʂɳə. Syllabicity is marked by a combining diacritic (U+0329
         # below, U+030D above), so scan the whole string rather than the head.
         return _is_nucleus(first)
+
+    def _declares_postvocalic_reading(self, gkey: str) -> bool:
+        """True when the spec gives *gkey* its own reading AFTER a vowel.
+
+        This is the data's way of saying a letter can close a syllable: a
+        spec writes ``positional_graphemes[gkey]["after_vowel"]`` for the
+        letters that follow a nucleus, which for Tibetan is exactly the
+        suffix set ⟨ག ང ད ན བ མ འ ར ལ ས⟩ and for Dzongkha its own
+        smaller one. A letter with no such entry is never described
+        post-vocalically by its spec, so nothing licenses reading it as
+        part of a coda.
+        """
+        entry = self.spec.positional_graphemes.get(gkey)
+        return bool(entry) and GraphemePosition.AFTER_VOWEL in entry
+
+    def _syllable_has_nucleus(self, tokens: Sequence[Token]) -> bool:
+        """True if the syllable being built already has its vowel.
+
+        :meth:`_prev_gives_nucleus` reads only the token before, which is
+        enough while a syllable has at most one coda letter. A written coda
+        may be longer: the Tibetan post-suffix ⟨ས⟩ stands after the suffix
+        ⟨ག ང བ མ⟩, so in ⟨ཁམས⟩ the letter before it is the coda ⟨མ⟩ and the
+        nucleus lies one further back.
+
+        The walk back is bounded by the spec's OWN coda declaration, and
+        that bound is the whole point. Only a letter the spec describes
+        post-vocalically (:meth:`_declares_postvocalic_reading`) is
+        transparent here; anything else stops the search. Without the
+        bound this asks "is there a vowel anywhere behind me", and in a
+        script that writes a syllable's vowel nowhere at all the answer is
+        yes for a letter that is really the ONSET of the next syllable:
+        Thai ⟨เอกชน⟩ and Lao ⟨ພຸດທະ⟩ would lose the implicit vowel of
+        their second syllable and collapse into consonant runs the
+        phonotactics forbid. Neither spec declares any post-vocalic
+        reading, so for them the search stops at the first letter and the
+        pre-existing one-token behaviour stands.
+        """
+        for tok in reversed(tokens):
+            if self._prev_gives_nucleus(tok):
+                return True
+            if tok.kind != TokenKind.GRAPHEME:
+                return False
+            ipa_vals = tok.ipa
+            first = ipa_vals[0] if ipa_vals else ""
+            if (first and not _is_nucleus(first)
+                    and self._declares_postvocalic_reading(tok.grapheme)):
+                continue          # a declared coda letter: look further back
+            return False
+        return False
+
+    def _prev_gives_nucleus(self, prev_tok: Optional[Token]) -> bool:
+        """True if *prev_tok* already supplied the current syllable's vowel.
+
+        Gates :attr:`LanguageSpec.coda_no_inherent_vowel` (the third Tai
+        mechanism, #781's follow-up): a bare consonant immediately after a
+        token that already realised a nucleus — a dependent/preposed vowel
+        sign, or a consonant token whose IPA was itself extended with a
+        vowel (the preposed-vowel merge path) — is closing that syllable,
+        not opening a fresh one, so it gets no inherent vowel of its own.
+        Undecidable sequences (no vowel token at all before the consonant)
+        are not matched here and keep the pre-existing behaviour.
+        """
+        if prev_tok is None or prev_tok.kind != TokenKind.GRAPHEME:
+            return False
+        if (
+            prev_tok.grapheme in self._dependent_vowels
+            or prev_tok.grapheme in self._preposed_vowels
+        ):
+            return True
+        ipa_vals = prev_tok.ipa
+        return bool(ipa_vals) and bool(ipa_vals[0]) and _is_nucleus(ipa_vals[0])
+
+    def _silenced_before_consonant(self, gkey: str) -> bool:
+        """True when the spec itself gives *gkey* NO realisation before a
+        consonant — ``positional_graphemes[gkey]["before_consonant"] == [""]``.
+
+        Such a grapheme is a SILENT LETTER in that position, and a silent
+        letter carries no inherent vowel: the Tibetan prefixed letters
+        (⟨ག ད བ མ འ⟩, van Driem 1998 ch. 2) are written before the root of
+        their own syllable and are not pronounced at all, so ⟨གསུམ⟩ is [sum]
+        — the ⟨ག⟩ contributes neither a consonant nor a vowel. Appending the
+        inherent vowel first and silencing the consonant afterwards left the
+        vowel behind as a phantom nucleus, which then made the ROOT look like
+        a coda under :attr:`LanguageSpec.coda_no_inherent_vowel`.
+
+        Only an unconditional single empty candidate counts: a spec that
+        lists a real reading alongside the empty one has not decided the
+        letter is silent here, and its inherent vowel stays.
+        """
+        entry = self.spec.positional_graphemes.get(gkey)
+        if not entry:
+            return False
+        candidates = entry.get(GraphemePosition.BEFORE_CONSONANT)
+        return bool(candidates) and list(candidates) == [""]
 
     def weights_for(self, grapheme: str) -> Optional[Tuple[float, ...]]:
         """Return the per-candidate weights for *grapheme*, or ``None``.
@@ -1093,6 +1532,81 @@ class PhonetokTokenizer:
 
             # (d) Longest grapheme match (trie)
             gkey = self._trie.longest_match(text, pos)
+            if gkey is not None and gkey in self._preposed_vowels:
+                # Preposed dependent vowel (Thai ⟨เ แ โ ใ ไ⟩, Lao ⟨ເ ແ ໂ ໃ ໄ⟩):
+                # written before the consonant, pronounced after it. ⟨เก⟩ is
+                # /keː/, not */eːk/.
+                #
+                # The token LIST stays in text (written) order — the vowel
+                # token still comes first, at its true position/length, so
+                # every position-dependent consumer downstream (surface
+                # reconstruction in g2p._group_words, stress, syllabification,
+                # span reporting) keeps working on an unmodified invariant:
+                # tokens are monotonic in text position. What changes is which
+                # token carries the IPA: the vowel token is emitted SILENT
+                # (``ipa=()``) and the consonant token's candidates already
+                # have the vowel's reading appended *after* the consonant's —
+                # i.e. pronunciation order lives inside one token's IPA
+                # string, not in token list order.
+                consumed_v = len(gkey)
+                after = pos + consumed_v
+                ckey = self._trie.longest_match(text, after)
+                c_ipa_vals = (
+                    self._grapheme_ipa.get(ckey) if ckey else None
+                )
+                is_c_dependent_vowel = bool(ckey) and (
+                    unicodedata.category(ckey[-1]) in ("Mn", "Mc")
+                    or ckey in self._dependent_vowels
+                    or ckey in self._preposed_vowels
+                )
+                if (
+                    ckey is not None
+                    and c_ipa_vals
+                    and not is_c_dependent_vowel
+                    and not _is_nucleus(c_ipa_vals[0])
+                ):
+                    consumed_c = len(ckey)
+                    post_pos = after + consumed_c
+                    v_ipa_vals = self._grapheme_ipa[gkey]
+
+                    # Circumfix continuation: some Tai vowels are written
+                    # AROUND the consonant — Lao ⟨ເ◌ືອ⟩ /ɯa/ spells one vowel
+                    # with a preposed half (ເ) and a postposed half (ືອ) that,
+                    # together, are one orthographic-and-phonemic unit (Enfield
+                    # 2007). When a dependent vowel grapheme immediately
+                    # follows the consonant here, IT supplies the complete
+                    # nucleus and the preposed half contributes no reading of
+                    # its own (avoiding a doubled vowel, e.g. */eːɯa/ instead
+                    # of /ɯa/) — the postposed grapheme is left for the next
+                    # loop iteration to tokenise normally (ordinary
+                    # maximal-munch multigraph match), which is also what
+                    # keeps its own span/position correct.
+                    pkey = self._trie.longest_match(text, post_pos)
+                    p_ipa_vals = self._grapheme_ipa.get(pkey) if pkey else None
+                    is_circumfix_tail = bool(pkey) and p_ipa_vals and (
+                        unicodedata.category(pkey[0]) in ("Mn", "Mc")
+                        or pkey in self._dependent_vowels
+                    ) and _is_nucleus(p_ipa_vals[0])
+
+                    c_combined = (
+                        c_ipa_vals if is_circumfix_tail else
+                        tuple(c + v for c in c_ipa_vals for v in v_ipa_vals)
+                    )
+
+                    tokens.append(Token(
+                        kind=TokenKind.GRAPHEME, grapheme=gkey,
+                        ipa=(), position=pos, length=consumed_v,
+                    ))
+                    tokens.append(Token(
+                        kind=TokenKind.GRAPHEME, grapheme=ckey,
+                        ipa=c_combined, position=after, length=consumed_c,
+                    ))
+                    pos = post_pos
+                    continue
+                # No consonant follows (word-final preposed vowel, or two
+                # preposed vowels in a row): fall through to ordinary
+                # single-grapheme handling below, which reads gkey normally.
+
             if gkey is not None:
                 # Vowel-gated digraph. A consonant-initial digraph ending in a
                 # high glide letter ⟨u⟩/⟨i⟩ (Romance ⟨gu qu gi ci⟩ …) uses that
@@ -1192,9 +1706,33 @@ class PhonetokTokenizer:
                 # own — বাংলা *baŋɔla for baŋla. So gate on the grapheme's
                 # Unicode category, and use the IPA only to tell a consonant
                 # letter from a vowel letter.
+                #
+                # A CONJUNCT STACK is the exception: a letter plus one or more
+                # SUBJOINED LETTERS, which Unicode encodes as combining marks
+                # (Tibetan ⟨ཀྲ⟩ = ཀ + U+0FB2 TIBETAN SUBJOINED LETTER RA, an
+                # Mn). Reading the category off the key's LAST character called
+                # the whole stack a bare mark and dropped its vowel, so
+                # ⟨ཀྲ⟩ came out *[ʈ] for [ʈɑ]. A subjoined LETTER is a
+                # letter, so such a key is a consonant letter and takes the
+                # inherent vowel like any other.
+                #
+                # The exception is deliberately narrow: it asks Unicode whether
+                # the trailing mark is a subjoined LETTER, not merely whether
+                # the key is longer than one character. A letter plus a NUKTA
+                # (⟨क़⟩ = क + U+093C DEVANAGARI SIGN NUKTA) has the same shape
+                # but is a different thing — the nukta modifies the letter it
+                # sits on instead of adding a consonant to a stack — and
+                # whether those keys should take the inherent vowel is a
+                # question about the Brahmic specs' own schwa handling, with
+                # its own fleet-wide cost. They keep their existing behaviour
+                # here so this change has one blast radius; the finding is
+                # recorded in docs/benchmarks.md for its own PR.
                 if self.spec.inherent_vowel and ipa_vals:
                     first_ipa = ipa_vals[0]
-                    is_mark = unicodedata.category(gkey[-1]) in ("Mn", "Mc")
+                    is_mark = (
+                        unicodedata.category(gkey[-1]) in ("Mn", "Mc")
+                        and not _is_subjoined_letter_cluster(gkey)
+                    )
                     if first_ipa and not is_mark and not _is_nucleus(first_ipa):
                         next_pos = pos + consumed
                         next_ch = text[next_pos] if next_pos < n else ""
@@ -1202,11 +1740,26 @@ class PhonetokTokenizer:
                             # Virama — bare consonant; consume the mark so that
                             # C+virama+C falls out as a cluster (conjuncts).
                             consumed += 1
-                        elif not (next_ch and self._supplies_vowel(next_ch)):
-                            # Nothing supplies a vowel: the inherent one surfaces.
-                            ipa_vals = tuple(
-                                v + self.spec.inherent_vowel for v in ipa_vals
-                            )
+                        elif not self._supplies_vowel_at(text, next_pos):
+                            # Nothing supplies a vowel — but if the current
+                            # syllable already got one from the token just
+                            # before this consonant (Tai coda_no_inherent_vowel,
+                            # #781's follow-up), this consonant is closing
+                            # that syllable, not opening its own: leave it
+                            # bare instead of surfacing the inherent vowel.
+                            if (
+                                not (
+                                    self._coda_no_inherent_vowel
+                                    and self._syllable_has_nucleus(tokens)
+                                )
+                                and not (
+                                    next_ch
+                                    and self._silenced_before_consonant(gkey)
+                                )
+                            ):
+                                ipa_vals = tuple(
+                                    v + self.spec.inherent_vowel for v in ipa_vals
+                                )
                         # else: a dependent vowel sign follows and is tokenised on
                         # the next pass, supplying this syllable's vowel instead.
                 tokens.append(Token(
@@ -1284,7 +1837,7 @@ class PhonetokTokenizer:
         This is a purely additive convenience layer over :meth:`tokenize`;
         it does not alter tokenisation or IPA expansion.
         """
-        return TokenSequence(self.tokenize(text))
+        return TokenSequence(self.tokenize(text), self.spec.vowel_graphemes)
 
     # ─── Slot resolution / rescoring helpers (shared by beam + lattice) ─
 
@@ -1426,7 +1979,7 @@ class PhonetokTokenizer:
         # Word-local context views over the grapheme tokens: they give
         # each grapheme its neighbours so positional overrides (incl. the
         # vowel-class positions) resolve exactly as the full engine does.
-        seq = TokenSequence(tokens)
+        seq = TokenSequence(tokens, self.spec.vowel_graphemes)
         contexts = seq.graphemes
 
         # Each beam entry: (segments_so_far, cumulative_score)
@@ -1439,10 +1992,18 @@ class PhonetokTokenizer:
         # resulting branches by grapheme position. Absent a rescorer this is
         # skipped entirely so the default path stays byte-identical.
         rescorers = normalize_rescorers(rescorer)
-        rescored_branches: Optional[List[List[Tuple[str, float]]]] = None
         if rescorers:
-            rescored_branches = self._rescored_branches(
+            slot_branches = self._rescored_branches(
                 tokens, contexts, rescorers, allophone_map=allophone_map)
+        else:
+            slot_branches = [
+                resolve_branches(
+                    self.spec, ctx,
+                    weights_for=self.weights_for,
+                    allophone_map=allophone_map)
+                for ctx in contexts
+            ]
+        constrain_nasal_carriers(slot_branches)
 
         g_idx = 0
         for token in tokens:
@@ -1450,19 +2011,16 @@ class PhonetokTokenizer:
                 # Stress/sandhi are engine-only (no sentence context here),
                 # so the stress-conditioned nucleus positions are omitted;
                 # every other position agrees with G2P per word.
-                if rescored_branches is not None:
-                    branches = rescored_branches[g_idx]
-                    g_idx += 1
-                    if not branches:
-                        # Rescorer deleted this slot: it contributes no
-                        # segment, leaving the running hypotheses untouched.
-                        continue
-                else:
-                    branches = resolve_branches(
-                        self.spec, contexts[g_idx],
-                        weights_for=self.weights_for,
-                        allophone_map=allophone_map)
-                    g_idx += 1
+                branches = slot_branches[g_idx]
+                g_idx += 1
+                if not branches:
+                    # No candidates — a rescorer deleted the slot, or the
+                    # grapheme is deliberately silent (e.g. a preposed
+                    # dependent vowel token whose reading was folded into
+                    # the following consonant's IPA, see the preposed-vowel
+                    # branch in `tokenize`). Either way it contributes no
+                    # segment and leaves the hypotheses untouched.
+                    continue
                 beam = self._expand_beam(beam, branches, beam_width)
 
             elif include_special:
@@ -1585,7 +2143,7 @@ class PhonetokTokenizer:
         slot shape returned here.
         """
         tokens = self.tokenize(text)
-        contexts = TokenSequence(tokens).graphemes
+        contexts = TokenSequence(tokens, self.spec.vowel_graphemes).graphemes
         allophone_map = self.spec.allophones if expand_allophones else None
         keep = 2 ** 31 if beam_width < 0 else beam_width
 
@@ -1616,6 +2174,14 @@ class PhonetokTokenizer:
                 Candidate(ipa=ipa, cost=cost)
                 for ipa, cost in branches[:keep]
             )
+            if not cands:
+                # A silenced marker grapheme (e.g. a preposed dependent vowel
+                # whose reading was folded into its consonant) resolves to no
+                # candidates. The lattice contract reserves empty candidates
+                # for rescorer deletion — the slot is omitted, exactly as on
+                # the rescorer path — so `slot.top` stays total and
+                # word confidence is computed over sounding slots only.
+                continue
             slots.append(SegmentSlot(
                 grapheme=token.grapheme,
                 span=(token.position, token.position + token.length),
@@ -1752,6 +2318,13 @@ class PhonetokTokenizer:
         as a plain consonant) wins instead. This suppresses only the invalid
         tilde-on-consonant / double-tilde; every branch that lands on a vowel
         is untouched, so all pre-existing behaviour is byte-identical.
+
+        A valid tilde branch is not appended as its own trailing segment:
+        :func:`_splice_nasal_tilde` inserts it into the carrier segment
+        right after the base vowel, so a long nasalised vowel comes out in
+        IPA normal form (``ũː``, nasalisation on the vowel, length after)
+        rather than with the tilde trailing the length mark (``uː̃``,
+        which every downstream gold and citation writes as the former).
         """
         new_beam: List[Tuple[List[str], float]] = []
         for segs, sc in beam:
@@ -1760,10 +2333,12 @@ class PhonetokTokenizer:
                     tail = ""
                     for seg in reversed(segs):
                         if seg:
-                            tail = seg[-1]
+                            tail = _carrier_tail(seg)
                             break
                     if tail not in _NASAL_CARRIERS:
                         continue
+                    new_beam.append((_splice_nasal_tilde(segs), sc + cost))
+                    continue
                 new_beam.append((segs + [ipa], sc + cost))
         if not new_beam:
             # Every branch was a guarded tilde with no valid carrier and no
@@ -1772,7 +2347,10 @@ class PhonetokTokenizer:
             # oral consonant fallback so this is not reached in practice).
             for segs, sc in beam:
                 for ipa, cost in branches:
-                    new_beam.append((segs + [ipa], sc + cost))
+                    if ipa == _NASAL_TILDE:
+                        new_beam.append((_splice_nasal_tilde(segs), sc + cost))
+                    else:
+                        new_beam.append((segs + [ipa], sc + cost))
         # Sort by score, keep top beam_width
         new_beam.sort(key=lambda x: x[1])
         return new_beam[:beam_width]
