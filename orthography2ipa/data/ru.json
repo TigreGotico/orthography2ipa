@@ -514,7 +514,36 @@
       "ё",
       "́"
     ],
-    "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). Dictionaries, textbooks and children's texts mark the free stress with a combining acute (U+0301) on the stressed vowel (Timberlake 2004; edition not consulted); when the input carries that mark it names the stressed syllable outright and the reduction contexts follow from it, so it transcribes to nothing and only places stress. The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced."
+    "cliticless_words": [
+      "в",
+      "во",
+      "на",
+      "за",
+      "под",
+      "над",
+      "из",
+      "изо",
+      "от",
+      "ото",
+      "до",
+      "у",
+      "к",
+      "ко",
+      "с",
+      "со",
+      "по",
+      "о",
+      "об",
+      "обо",
+      "не",
+      "ни",
+      "же",
+      "ль",
+      "ли",
+      "бы",
+      "б"
+    ],
+    "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). Dictionaries, textbooks and children's texts mark the free stress with a combining acute (U+0301) on the stressed vowel (Timberlake 2004; edition not consulted); when the input carries that mark it names the stressed syllable outright and the reduction contexts follow from it, so it transcribes to nothing and only places stress. The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced. CLITICS: cliticless_words lists the closed class of Russian prosodic clitics — the simple (primary) prepositions \u0432/\u0432\u043e, \u043d\u0430, \u0437\u0430, \u043f\u043e\u0434, \u043d\u0430\u0434, \u0438\u0437/\u0438\u0437\u043e, \u043e\u0442/\u043e\u0442\u043e, \u0434\u043e, \u0443, \u043a/\u043a\u043e, \u0441/\u0441\u043e, \u043f\u043e, \u043e/\u043e\u0431/\u043e\u0431\u043e, the proclitic particles \u043d\u0435 and \u043d\u0438, and the enclitic particles \u0436\u0435, \u043b\u0438/\u043b\u044c, \u0431\u044b/\u0431. A simple preposition is proclitic and a particle of this class is enclitic: neither is an independent phonological word, both fall inside the host's stress domain and carry no word stress of their own (claim is standard, e.g. Timberlake 2004, A Reference Grammar of Russian, prosody; Comrie & Corbett 1993, The Slavonic Languages, Russian chapter; edition not consulted). The rule rests on those descriptions and not on the benchmark golds: the WikiPron Russian gold writes no stress mark on ANY word, so it cannot adjudicate stress either way, and for these forms it lists the full-vowel reading beside the reduced ones (\u0432\u043e = [vo], [v\u0250], [v\u0259]). LIMITATION: with no stress anywhere in the word the reduction cascade falls through to its weakest degree, so an isolated clitic surfaces with schwa \u2014 \u043d\u0430 = [n\u0259] where pretonic [n\u0250] is the better isolated guess, a proclitic being immediately pretonic to its host in the ordinary case. That is a property of the reduction cascade without a stress anchor, tracked separately. This is a purely orthographic class and cannot see syntax, so the stressed homographs are destressed too: the interjections \u043e! and \u043d\u0430!, the letter names \u0443 and \u0441, the musical note \u0434\u043e, and the phrase-level retraction of stress ONTO a preposition in fixed collocations (\u0437\u0430\u0301 \u0433\u043e\u0440\u043e\u0434\u043e\u043c, \u043d\u0430\u0301 \u043f\u043e\u043b) \u2014 that retraction is a property of the whole prepositional phrase, not of the isolated word this engine transcribes, and stays out of scope. Compound and derived prepositions (\u043f\u0435\u0440\u0435\u0434, \u0447\u0435\u0440\u0435\u0437, \u043e\u043a\u043e\u043b\u043e, \u043c\u0435\u0436\u0434\u0443) are full prosodic words, bear their own stress, and are deliberately excluded. Vocalized \u27e8\u043d\u0430\u0434\u043e\u27e9 is excluded as well, on evidence rather than omission: it is a homograph of the frequent stressed predicative \u043d\u0430\u0301\u0434\u043e 'it is necessary', and the WikiPron gold carries both readings ([nad\u0250] and [n\u0259d\u0250]) while the Alphacep gold has only the stressed one."
   },
   "allophone_rules": [
     {

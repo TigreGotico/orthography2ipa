@@ -1054,13 +1054,18 @@ class G2P:
     def _unmarked(self, word: str) -> str:
         """*word* without the silent stress marks the spec declares.
 
-        Whole-word data — ``word_exceptions``, the sidecar lexicon,
-        ``grammatical_endings``, ``cliticless_words`` — is keyed on bare
+        Whole-word data that supplies SEGMENTS — ``word_exceptions``, the
+        sidecar lexicon, ``grammatical_endings`` — is keyed on bare
         orthography, because that is how the language is written. A caller
         who marks the stress is answering a different question (WHERE the
         accent falls), and must not thereby miss the lookup: его́ is его.
         Stress detection has already read the mark by the time any of these
         run, so removing it here loses nothing.
+
+        ``cliticless_words`` is deliberately NOT keyed this way: it answers
+        the where-is-the-accent question itself, by suppressing the stress
+        entirely, so a stripped mark there would discard the caller's answer
+        rather than preserve it (see :meth:`_is_cliticless`).
         """
         if not self._silent_stress_marks:
             return word
@@ -1119,9 +1124,19 @@ class G2P:
             self._cliticless_cache = cliticless_keys(self.spec)
         if not self._cliticless_cache:
             return False
+        # A written stress mark outranks the class. The other whole-word
+        # lookups are keyed on bare orthography because they supply SEGMENTS
+        # and the mark only answers where the accent falls; this one answers
+        # that same question, in the opposite direction, so stripping the mark
+        # here would silently discard the caller's answer — во́ is the stressed
+        # citation of a form that is unstressed as a clitic, and the retraction
+        # spellings за́ городом and на́ пол write the mark on the preposition
+        # itself. Matching on the raw word keeps this in step with
+        # :func:`orthography2ipa.stress.is_cliticless`, which never strips.
+        if any(m in word for m in self._silent_stress_marks):
+            return False
         return unicodedata.normalize(
-            "NFC", lower_str(self._unmarked(word),
-                             self.spec.code)) in self._cliticless_cache
+            "NFC", lower_str(word, self.spec.code)) in self._cliticless_cache
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
