@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.71.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.9a1) (2026-08-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.8a3...7.71.9a1)
+
+**Merged pull requests:**
+
+- fix: isolate mocked compare\_systems tests from ESPEAK\_RULES\_DATA\_PATH [\#931](https://github.com/TigreGotico/orthography2ipa/pull/931) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.71.8a3](https://github.com/TigreGotico/orthography2ipa/tree/7.71.8a3) (2026-08-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.8a2...7.71.8a3)
@@ -745,17 +753,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.45.2a1...7.46.0a1)
 
-**Merged pull requests:**
-
-- feat: emphatic class + Arabic emphasis-spread allophony [\#732](https://github.com/TigreGotico/orthography2ipa/pull/732) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.45.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.45.2a1) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.45.1a4...7.45.2a1)
-
-**Merged pull requests:**
-
-- fix: barranquenho\_dict loader schema drift + circular-tier exclusion [\#734](https://github.com/TigreGotico/orthography2ipa/pull/734) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.45.1a4](https://github.com/TigreGotico/orthography2ipa/tree/7.45.1a4) (2026-08-03)
 
