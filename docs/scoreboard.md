@@ -43,7 +43,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | an | wikipron | 902 | 0.0643 | · | · | · | · | [0.0579, 0.0708] | 0.6563 | research | crowd-scraped |
 | ang | wikipron | 54696 | 0.2104 | · | · | · | · | [0.2092, 0.2117] | 0.1545 | research | crowd-scraped |
 | aot | wikipron | 181 | 0.1367 | · | · | · | · | [0.1160, 0.1588] | 0.4475 | skeleton | crowd-scraped |
-| apw | wikipron | 145 | 0.6191 | · | · | · | · | [0.5920, 0.6435] | 0.0138 | skeleton | crowd-scraped |
+| apw | wikipron | 147 | 0.3171 | 0.3101 | 0.3101 | 0.2449 | 0.2449 | [0.2740, 0.3623] | 0.2449 | research | crowd-scraped |
 | ar | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar | gold20_arabic | 20 | 0.0051 | · | · | · | · | [0.0010, 0.0102] | 0.8000 | research | llm-generated |
 | ar | ipadict | 857160 | 0.3768 | · | · | · | · | [0.3766, 0.3770] | 0.0030 | research | machine-generated |
