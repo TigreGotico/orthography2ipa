@@ -98,6 +98,10 @@ def _base_emissions(spec: LanguageSpec) -> Set[str]:
     for rule in (spec.allophone_rules or ()):
         if rule.surface:
             emissions.add(rule.surface)
+        if rule.append:
+            # An inserting rule emits the inserted segment; the phoneme it
+            # attaches to is already an emission of the grapheme table.
+            emissions.add(rule.append)
 
     # Word-level overrides hand the engine whole transcriptions, so their IPA
     # never passes through the grapheme table at all.

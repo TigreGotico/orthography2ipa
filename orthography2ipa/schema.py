@@ -171,7 +171,8 @@ class AllophoneRuleModel(_Strict):
 
     id: str = Field(min_length=1)
     phonemes: Union[str, List[str]]
-    surface: str
+    surface: str = ""
+    append: str = ""
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
     stress: Optional[Literal["stressed", "unstressed", "pretonic", "posttonic"]] = None
@@ -206,6 +207,15 @@ class AllophoneRuleModel(_Strict):
     notes: str = ""
     mutates_neighbor: Optional[str] = None
     mutates_neighbor_side: Optional[Literal["preceding", "following"]] = None
+
+    @model_validator(mode="after")
+    def _surface_or_append(self) -> "AllophoneRuleModel":
+        if self.surface and self.append:
+            raise ValueError(
+                f"allophone rule '{self.id}': surface and append are "
+                "mutually exclusive"
+            )
+        return self
 
     @model_validator(mode="after")
     def _mutation_pair(self) -> "AllophoneRuleModel":
@@ -350,6 +360,7 @@ class LanguageSpecModel(_Strict):
     preposed_vowels: Optional[List[str]] = None
     coda_no_inherent_vowel: Optional[bool] = None
     collapse_geminates: Optional[bool] = None
+    doubled_letters_geminate: Optional[bool] = None
     constrain_onsets: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")

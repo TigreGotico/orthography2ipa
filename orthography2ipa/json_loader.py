@@ -341,7 +341,8 @@ def load_json_spec(code: str) -> LanguageSpec:
             AllophoneRule(
                 id=ar["id"],
                 phonemes=ar["phonemes"],
-                surface=ar["surface"],
+                surface=ar.get("surface", ""),
+                append=ar.get("append", ""),
                 word_initial=ar.get("word_initial"),
                 word_final=ar.get("word_final"),
                 stress=ar.get("stress"),
@@ -541,6 +542,8 @@ def load_json_spec(code: str) -> LanguageSpec:
         preposed_vowels=tuple(raw.get("preposed_vowels", ()) or ()),
         coda_no_inherent_vowel=bool(raw.get("coda_no_inherent_vowel", False)),
         collapse_geminates=bool(raw.get("collapse_geminates", False)),
+        doubled_letters_geminate=bool(
+            raw.get("doubled_letters_geminate", True)),
         constrain_onsets=bool(base_scalars.get("constrain_onsets", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),

@@ -2407,12 +2407,12 @@
   {
     "lang": "egy",
     "dataset": "wikipron",
-    "n": 531,
-    "per": 0.6072,
-    "per_ci_low": 0.5924,
-    "per_ci_high": 0.6233,
-    "exact_match": 0.0,
-    "quality_tier": "stub",
+    "n": 532,
+    "per": 0.0117,
+    "per_ci_low": 0.0081,
+    "per_ci_high": 0.0157,
+    "exact_match": 0.9323,
+    "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 1000

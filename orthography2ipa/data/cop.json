@@ -277,5 +277,49 @@
     "longitude": 31.2053,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Coptic."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "EGY_EPEN_INITIAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Coptic does not use the Egyptological reading convention it would otherwise inherit from its Egyptian parent: it is written in its own alphabet, which spells vowels, so there is no unvocalised consonant string to break and no weak consonant to read as a vowel. Declared with no target phonemes, the spec's way of saying that a parent's process is absent here."
+    },
+    {
+      "id": "EGY_EPEN_RUN_THIRD",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Absent in Coptic, as EGY_EPEN_INITIAL."
+    },
+    {
+      "id": "EGY_EPEN_BEFORE_FINAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Absent in Coptic, as EGY_EPEN_INITIAL."
+    },
+    {
+      "id": "EGY_LONE_CONSONANT",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Absent in Coptic, as EGY_EPEN_INITIAL."
+    },
+    {
+      "id": "EGY_HIATUS_A",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Absent in Coptic, as EGY_EPEN_INITIAL."
+    },
+    {
+      "id": "EGY_HIATUS_I",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Absent in Coptic, as EGY_EPEN_INITIAL."
+    },
+    {
+      "id": "EGY_HIATUS_U",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Absent in Coptic, as EGY_EPEN_INITIAL."
+    }
+  ]
 }
