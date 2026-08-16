@@ -527,6 +527,14 @@ class G2P:
         #: Declared prosodic-clitic keys (see :meth:`_is_cliticless`), computed
         #: once per engine on first use; ``None`` until then.
         self._cliticless_cache: Optional[frozenset] = None
+        #: Graphemes this spec declares as stress marks that emit nothing —
+        #: a written accent whose only job is to say WHERE the stress is
+        #: (the Russian combining acute). Stress detection reads them; every
+        #: whole-word key is spelled without them (see :meth:`_unmarked`).
+        self._silent_stress_marks: str = "".join(
+            ch for ch in (self.spec.stress.marked_vowels if self.spec.stress
+                          else ())
+            if ch in self.spec.graphemes and not any(self.spec.graphemes[ch]))
 
     # ─── public API ──────────────────────────────────────────────────
 
@@ -1043,6 +1051,21 @@ class G2P:
                 current.append(token.grapheme + tail)
         flush()
 
+    def _unmarked(self, word: str) -> str:
+        """*word* without the silent stress marks the spec declares.
+
+        Whole-word data — ``word_exceptions``, the sidecar lexicon,
+        ``grammatical_endings``, ``cliticless_words`` — is keyed on bare
+        orthography, because that is how the language is written. A caller
+        who marks the stress is answering a different question (WHERE the
+        accent falls), and must not thereby miss the lookup: его́ is его.
+        Stress detection has already read the mark by the time any of these
+        run, so removing it here loses nothing.
+        """
+        if not self._silent_stress_marks:
+            return word
+        return word.translate({ord(c): None for c in self._silent_stress_marks})
+
     def _override_for(self, word: str) -> Optional[str]:
         """Whole-word IPA override for *word*, or ``None`` to fall to rules.
 
@@ -1055,7 +1078,7 @@ class G2P:
         :mod:`orthography2ipa.lexicon`); a language with no sidecar gets an
         empty map here, so its behaviour is byte-identical to before E3.
         """
-        key = lower_str(word, self.spec.code)
+        key = lower_str(self._unmarked(word), self.spec.code)
         exceptions = self.spec.word_exceptions
         if exceptions:
             inline = exceptions.get(key)
@@ -1097,7 +1120,8 @@ class G2P:
         if not self._cliticless_cache:
             return False
         return unicodedata.normalize(
-            "NFC", lower_str(word, self.spec.code)) in self._cliticless_cache
+            "NFC", lower_str(self._unmarked(word),
+                             self.spec.code)) in self._cliticless_cache
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
@@ -1302,7 +1326,22 @@ class G2P:
         if not paths or not self.spec.grammatical_endings:
             return paths
         tokens = [t.grapheme for t in self._tokenizer.grapheme_tokens(word)]
-        match = match_grammatical_ending(tokens, self.spec)
+        marks = self._silent_stress_marks
+        if not marks:
+            match = match_grammatical_ending(tokens, self.spec)
+        else:
+            # Endings are declared in bare orthography, so a stress mark
+            # anywhere in the tail must not hide the ending. Match on the
+            # unmarked token sequence, then widen the span back over the
+            # original tokens — the mark's own segment is empty, so it is
+            # spliced away with the rest of the tail.
+            kept = [i for i, g in enumerate(tokens)
+                    if not (len(g) == 1 and g in marks)]
+            match = match_grammatical_ending([tokens[i] for i in kept],
+                                             self.spec)
+            if match is not None and match.tokens:
+                match = match._replace(
+                    tokens=len(tokens) - kept[-match.tokens])
         if match is None:
             return paths
         rewritten: List[IPAPath] = []

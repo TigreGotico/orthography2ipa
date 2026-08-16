@@ -131,6 +131,9 @@
     ],
     "щь": [
       "ɕː"
+    ],
+    "́": [
+      ""
     ]
   },
   "allophones": {
@@ -508,9 +511,10 @@
   "stress": {
     "default_position": -2,
     "marked_vowels": [
-      "ё"
+      "ё",
+      "́"
     ],
-    "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced."
+    "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). Dictionaries, textbooks and children's texts mark the free stress with a combining acute (U+0301) on the stressed vowel (Timberlake 2004; edition not consulted); when the input carries that mark it names the stressed syllable outright and the reduction contexts follow from it, so it transcribes to nothing and only places stress. The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced."
   },
   "allophone_rules": [
     {
