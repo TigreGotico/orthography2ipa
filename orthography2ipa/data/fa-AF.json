@@ -85,7 +85,7 @@
       "notes": "Pashto adstrate: some phonological and lexical influence"
     }
   ],
-  "notes": "Dari (دری) — Afghan Persian; official language of Afghanistan. CONSERVATIVE VOWEL SYSTEM: retains Classical values; NO Tehran vowel shift (ā = [aː] not [ɒː]; a = [a] not [æ]). /q/ → [q] maintained as uvular (not merged with ɣ). /ħ/ → [ħ] maintained in careful speech (Arabic ح). /ʕ/ → [ʕ] maintained in Arabic loanwords (more than Tehran). Pashto adstrate: some retroflex-influenced articulation in some speakers. Hazaragi variety (Hazara people): Mongolian substrate (see fa-x-hazaragi). Kabul Dari is the prestige/media standard.",
+  "notes": "Dari (دری) — Afghan Persian; official language of Afghanistan. CONSERVATIVE VOWEL SYSTEM: retains Classical values; NO Tehran vowel shift (ā = [aː] not [ɒː]; a = [a] not [æ]). /q/ → [q] maintained as uvular (not merged with ɣ). /ħ/ → [ħ] maintained in careful speech (Arabic ح). /ʕ/ → [ʕ] maintained in Arabic loanwords (more than Tehran). Pashto adstrate: some retroflex-influenced articulation in some speakers. Hazaragi variety (Hazara people): Mongolian substrate (see fa-x-hazaragi). Kabul Dari is the prestige/media standard. Primary reference: Farhadi 1955 (Kabuli Dari grammar) confirms the conservative vowel system and majhul eː/oː retention encoded above.",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -118,6 +118,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "farhadi1955",
+      "author": "Farhadi, A.G.R.",
+      "year": 1955,
+      "title": "Le persan parlé en Afghanistan (Grammaire du kaboli)",
+      "publisher": "Klincksieck",
+      "url": null,
+      "pages": null,
+      "notes": "Primary descriptive grammar of Kabuli Dari: conservative vowel system (no Tehran ā-backing/a-fronting), retention of majhul eː/oː, w~v realisation of و."
     }
   ],
   "wikipedia": [
