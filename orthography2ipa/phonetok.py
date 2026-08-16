@@ -277,6 +277,18 @@ _VIRAMA_COMBINING_CLASS = 9
 
 
 
+#: Combining marks that move their base letter between the consonant
+#: REGISTERS of a two-series abugida. They rewrite which inherent vowel the
+#: letter carries, never whether it carries one, so a key spelling one is a
+#: consonant letter. Named rather than ranged, and listed exhaustively
+#: because Unicode gives register shifters no shared name element the way it
+#: does subjoined letters and medials.
+_REGISTER_SHIFTER_NAMES = frozenset((
+    "KHMER SIGN MUUSIKATOAN",
+    "KHMER SIGN TRIISAP",
+))
+
+
 def _is_subjoined_letter_cluster(grapheme: str) -> bool:
     """True when *grapheme* is a base letter followed by ONSET CONSONANT marks.
 
@@ -292,11 +304,19 @@ def _is_subjoined_letter_cluster(grapheme: str) -> bool:
     consonant cluster [tɕ] that still needs the inherent vowel ([tɕa̰]), not
     a bare mark.
 
+    A REGISTER SHIFTER is the third: Khmer ``MUUSIKATOAN`` ⟨៉⟩ and
+    ``TRIISAP`` ⟨៊⟩ move the base letter between the a-series and the
+    o-series, which changes which inherent vowel the letter carries and
+    never whether it carries one. ⟨ប៉⟩ is the consonant letter [p] with
+    inherent â, so ⟨ប៉ង⟩ is [pɑːŋ]; read as a bare mark it lost its
+    nucleus and came out *[pŋɔː].
+
     Decided from the Unicode NAME rather than a codepoint range, so it
-    generalises to any script that encodes subjoined letters or medials, and
-    it deliberately does NOT match the modifier marks that share the shape
-    (``… SIGN NUKTA``, anusvara, visarga), whose inherent-vowel behaviour
-    is a separate question this predicate must not answer.
+    generalises to any script that encodes subjoined letters, medials or
+    register shifters, and it deliberately does NOT match the modifier
+    marks that share the shape (``… SIGN NUKTA``, anusvara, visarga),
+    whose inherent-vowel behaviour is a separate question this predicate
+    must not answer.
     """
     if len(grapheme) < 2:
         return False
@@ -306,6 +326,7 @@ def _is_subjoined_letter_cluster(grapheme: str) -> bool:
     return all(
         "SUBJOINED LETTER" in unicodedata.name(ch, "")
         or "CONSONANT SIGN MEDIAL" in unicodedata.name(ch, "")
+        or unicodedata.name(ch, "") in _REGISTER_SHIFTER_NAMES
         for ch in tail
     )
 

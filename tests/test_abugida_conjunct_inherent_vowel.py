@@ -111,3 +111,16 @@ def test_a_partly_subjoined_key_is_not_a_stack():
     """
     spec = _spec(graphemes={"ཀྲཾ": ["ʈ"]})
     assert _ipa(spec, "ཀྲཾ") == "ʈ"
+
+
+def test_a_register_shifter_keeps_the_inherent_vowel():
+    """A letter plus a REGISTER SHIFTER is a consonant letter too.
+
+    Khmer ⟨៊⟩ triisap and ⟨៉⟩ muusikatoan move their base between the
+    a-series and the o-series, which decides WHICH inherent vowel the letter
+    carries and never whether it carries one. Read as bare marks they took
+    the base's nucleus away, so ⟨ប៉ង⟩ came out *[pŋɔː] for [pɑːŋ].
+    """
+    spec = _spec(graphemes={"ប៉": ["p"], "ស៊": ["s"]})
+    assert _ipa(spec, "ប៉") == "pɑ"
+    assert _ipa(spec, "ស៊") == "sɑ"

@@ -335,8 +335,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | kl | wikipron | 1580 | 0.1765 | · | · | · | · | [0.1695, 0.1842] | 0.2753 | research | crowd-scraped |
 | kld | wikipron | 515 | 0.0552 | · | · | · | · | [0.0459, 0.0647] | 0.7398 | research | crowd-scraped |
 | klj | wikipron | 155 | 0.3031 | · | · | · | · | [0.2651, 0.3396] | 0.2774 | research | crowd-scraped |
-| km | ipadict | 3257 | 0.6351 | · | · | · | · | [0.6299, 0.6410] | 0.0000 | skeleton | lexicon-derived |
-| km | wikipron | 6620 | 0.6155 | · | · | · | · | [0.6110, 0.6202] | 0.0002 | skeleton | crowd-scraped |
+| km | ipadict | 3261 | 0.3338 | 0.3242 | 0.3240 | 0.1518 | 0.1521 | [0.3263, 0.3421] | 0.1389 | research | lexicon-derived |
+| km | wikipron | 6628 | 0.1922 | 0.1817 | 0.1811 | 0.5083 | 0.5122 | [0.1863, 0.1983] | 0.4664 | research | crowd-scraped |
 | kn | wikipron | 1706 | 0.2709 | · | · | · | · | [0.2612, 0.2790] | 0.1782 | research | crowd-scraped |
 | ko | ipadict | 62447 | 0.2319 | · | · | · | · | [0.2309, 0.2328] | 0.0830 | research | crowd-scraped |
 | ko | vox_communis | 6124 | 0.0963 | · | · | · | · | [0.0933, 0.0993] | 0.4853 | research | epitran-derived |
