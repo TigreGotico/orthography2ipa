@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Literal, Dict, List, Literal, Optional, Tuple, Union
+from typing import Dict, List, Literal, Optional, Tuple, Union
 
 from pydantic import (
     BaseModel,
@@ -36,6 +36,7 @@ from pydantic import (
     model_validator,
 )
 
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import (
     OrthographyKind,
     AncestorRole,
@@ -170,30 +171,60 @@ class AllophoneRuleModel(_Strict):
 
     id: str = Field(min_length=1)
     phonemes: Union[str, List[str]]
-    surface: str
+    surface: str = ""
+    append: str = ""
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
-    stress: Optional[Literal["stressed", "unstressed"]] = None
+    stress: Optional[Literal["stressed", "unstressed", "pretonic", "posttonic"]] = None
     syllable_position: Optional[Literal["onset", "coda", "nucleus"]] = None
     preceded_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     followed_by: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal", "front_vowel",
-        "back_vowel", "palatal", "word_boundary"]] = None
+        "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     preceded_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     followed_by_2: Optional[Literal[
         "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
-        "front_vowel", "back_vowel", "palatal", "word_boundary"]] = None
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
+    preceded_by_3: Optional[Literal[
+        "vowel", "consonant", "consonant_cluster", "coda", "coda_nasal",
+        "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
+    preceded_by_surface_phoneme_2: Optional[List[str]] = None
+    requires_other_nucleus: Optional[bool] = None
+    followed_by_nucleus: Optional[bool] = None
     preceded_by_phoneme: Optional[List[str]] = None
     followed_by_phoneme: Optional[List[str]] = None
+    preceded_by_grapheme: Optional[List[str]] = None
+    followed_by_grapheme: Optional[List[str]] = None
+    followed_by_grapheme_not: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
     word: Optional[List[str]] = None
     notes: str = ""
+    mutates_neighbor: Optional[str] = None
+    mutates_neighbor_side: Optional[Literal["preceding", "following"]] = None
+
+    @model_validator(mode="after")
+    def _surface_or_append(self) -> "AllophoneRuleModel":
+        if self.surface and self.append:
+            raise ValueError(
+                f"allophone rule '{self.id}': surface and append are "
+                "mutually exclusive"
+            )
+        return self
+
+    @model_validator(mode="after")
+    def _mutation_pair(self) -> "AllophoneRuleModel":
+        if (self.mutates_neighbor is None) != (self.mutates_neighbor_side is None):
+            raise ValueError(
+                f"allophone rule '{self.id}': mutates_neighbor and "
+                "mutates_neighbor_side must be set together (both or neither)"
+            )
+        return self
 
 
 class OrthographyStandardModel(_Strict):
@@ -237,14 +268,18 @@ class StressRulesModel(_Strict):
     default_position: int = -2
     final_stress_endings: Optional[List[str]] = None
     penult_stress_endings: Optional[List[str]] = None
+    antepenult_stress_endings: Optional[List[str]] = None
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
+    accent2_mark: str = ""
+    accent2_final_letters: Optional[List[str]] = None
     diphthongs: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = Field(default=1, ge=1, le=3)
     cliticless_words: Optional[List[str]] = None
     coda_liquid_capture: bool = False
+    secondary_stress: Literal["", "alternating"] = ""
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 
@@ -260,6 +295,7 @@ class StressRulesModel(_Strict):
         return v
 
     @field_validator("final_stress_endings", "penult_stress_endings",
+                     "antepenult_stress_endings",
                      "marked_vowels", "cliticless_words")
     @classmethod
     def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:
@@ -306,6 +342,7 @@ class LanguageSpecModel(_Strict):
     allophones_base: Optional[str] = None
     positional_graphemes_base: Optional[str] = None
     word_exceptions_base: Optional[str] = None
+    grammatical_endings_base: Optional[str] = None
 
     # ─── ancestry ───────────────────────────────────────────────────
     parent: Optional[str] = None
@@ -318,7 +355,13 @@ class LanguageSpecModel(_Strict):
     inherent_vowel: Optional[str] = None
     optional_marks: Optional[List[str]] = None
     fold_diacritics: Optional[List[str]] = None
+    vowel_graphemes: Optional[List[str]] = None
+    dependent_vowels: Optional[List[str]] = None
+    preposed_vowels: Optional[List[str]] = None
+    coda_no_inherent_vowel: Optional[bool] = None
     collapse_geminates: Optional[bool] = None
+    doubled_letters_geminate: Optional[bool] = None
+    constrain_onsets: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
     wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")
@@ -341,6 +384,32 @@ class LanguageSpecModel(_Strict):
 
     # ─── whole-word overrides for a closed irregular set ─────────────
     word_exceptions: Optional[Dict[str, str]] = None
+
+    # ─── suffix morphology: ending → IPA at the effective word end ────
+    # Ending → realisation. A string is one realisation (today's shape);
+    # a list is an ordered candidate list whose element 0 may be ``null``
+    # to defer rank 1 to the grapheme tables. Full contract:
+    # LanguageSpec.grammatical_endings in types.py.
+    grammatical_endings: Optional[Dict[str, Union[str, List[Optional[str]]]]] = None
+
+    @field_validator("grammatical_endings")
+    @classmethod
+    def _ending_values(cls, v):
+        """Reject list shapes the engine cannot mean.
+
+        ``null`` is only meaningful as element 0 ("rank 1 comes from the
+        grapheme tables"); as an *alternative* it would have to mean "and
+        this ending may also be silent", which is spelled ``""``. An
+        empty list declares an ending with no realisation at all."""
+        if v is not None:
+            for ending, value in v.items():
+                if not ending:
+                    raise ValueError("grammatical_endings keys must be non-empty")
+                try:
+                    normalize_ending_value(value)
+                except ValueError as e:
+                    raise ValueError(f"{ending!r}: {e}") from e
+        return v
 
     @field_validator("graphemes", "allophones")
     @classmethod
