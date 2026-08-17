@@ -366,7 +366,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | lmy | wikipron | 129 | 0.1695 | · | · | · | · | [0.1484, 0.1915] | 0.2558 | skeleton | crowd-scraped |
 | lo | kaikki | 2302 | 0.5443 | · | · | · | · | - | - | skeleton | crowd-scraped |
 | lou | wikipron | 262 | 0.1953 | · | · | · | · | [0.1679, 0.2236] | 0.5115 | skeleton | crowd-scraped |
-| lsi | wikipron | 96 | 0.6245 | · | · | · | · | [0.5932, 0.6559] | 0.0000 | skeleton | crowd-scraped |
+| lsi | wikipron | 96 | 0.4727 | · | · | · | · | [0.4541, 0.4904] | 0.0000 | research | crowd-scraped |
 | lt | vox_communis | 28971 | 0.3907 | · | · | · | · | [0.3892, 0.3923] | 0.0103 | research | epitran-derived |
 | lt | wikipron | 440 | 0.3901 | · | · | · | · | [0.3730, 0.4068] | 0.0682 | research | crowd-scraped |
 | lut | wikipron | 135 | 0.2259 | · | · | · | · | [0.1918, 0.2598] | 0.2444 | research | crowd-scraped |
