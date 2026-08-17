@@ -472,6 +472,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             accent2_mark=raw_stress.get("accent2_mark", ""),
             accent2_final_letters=tuple(raw_stress.get("accent2_final_letters", ())),
             diphthongs=tuple(raw_stress.get("diphthongs", ())),
+            vowel_letters=tuple(raw_stress.get("vowel_letters", ())),
             quantity_sensitive=bool(raw_stress.get("quantity_sensitive", False)),
             superheavy_final_attracts=bool(
                 raw_stress.get("superheavy_final_attracts", True)),

@@ -911,6 +911,13 @@ def _syllables_for(
                     type(plugin).__name__, word, exc)
     if spec is None and lang:
         spec = _spec_for(lang)
+    # Read before the phonotactics guard below can drop the spec: which
+    # letters are nuclei is the language's own statement and is independent
+    # of whether its onset inventory has been checked.
+    vowels = None
+    if spec is not None and spec.stress is not None \
+            and spec.stress.vowel_letters:
+        vowels = {v.lower() for v in spec.stress.vowel_letters}
     max_onset = None
     if spec is not None and not spec.constrain_onsets:
         # The spec has not opted in: its onset inventory has not been checked
@@ -921,7 +928,7 @@ def _syllables_for(
     if spec is not None and spec.stress is not None \
             and spec.stress.max_onset_declared:
         max_onset = spec.stress.max_onset
-    return syllabify(word, diphthongs=diphthongs, spec=spec,
+    return syllabify(word, vowels=vowels, diphthongs=diphthongs, spec=spec,
                      max_onset=max_onset)
 
 

@@ -305,6 +305,21 @@ class StressRules:
         keeps ``ciu-tat`` and ``ai-gua`` intact while splitting ``te-ni-a``.
         Empty (the default) preserves the merge-the-whole-run behaviour, so
         every spec that does not declare it is unaffected.
+    vowel_letters : Tuple[str, ...]
+        The letters this orthography uses as syllable NUCLEI, for the bundled
+        syllabifier. Left empty (the default) the splitter falls back to a
+        cross-linguistic vowel test that reads a letter's shape, and that test
+        counts ⟨y⟩ and ⟨w⟩ as vowels because some orthographies use them so.
+        Where a language does not — Xhosa ⟨y⟩ is /j/ and ⟨w⟩ is /w/, both
+        onsets — the run ⟨oya⟩ collapses into a single nucleus, the syllable
+        count drops, and every position the count feeds (stress, and the
+        ``nucleus_stressed`` entries that hang off it) lands on the wrong
+        vowel or on two at once.
+
+        Declaring the set states the language's own answer and nothing else
+        changes: the letters listed are nuclei, every other letter is not.
+        A spec that does not declare it keeps the shape-based test exactly as
+        before.
     quantity_sensitive : bool
         Stress is placed by **syllable weight**, not by an orthographic
         ending. A quantity-sensitive system reads the *transcription* — a
@@ -464,6 +479,7 @@ class StressRules:
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
+    vowel_letters: Tuple[str, ...] = ()
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
