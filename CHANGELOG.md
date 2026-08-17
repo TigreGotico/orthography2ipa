@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.75.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.7a1) (2026-08-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.6a1...7.75.7a1)
+
+**Merged pull requests:**
+
+- fix\(twf\): map Taos \(Northern Tiwa\) from Trager's practical orthography [\#973](https://github.com/TigreGotico/orthography2ipa/pull/973) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.75.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.6a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.5a1...7.75.6a1)
@@ -737,10 +745,6 @@
 ## [7.51.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.51.1a1) (2026-08-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.51.0a4...7.51.1a1)
-
-**Merged pull requests:**
-
-- fix: n=0 gold rows + data: sources wave 4 [\#776](https://github.com/TigreGotico/orthography2ipa/pull/776) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.51.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.51.0a4) (2026-08-04)
 
