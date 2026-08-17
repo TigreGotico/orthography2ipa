@@ -12,6 +12,9 @@
     "◌̀": "low"
   },
   "graphemes": {
+    "'": [
+      "ʔ"
+    ],
     "a": [
       "a"
     ],
@@ -58,7 +61,7 @@
       "k"
     ],
     "kh": [
-      "x"
+      "χ"
     ],
     "l": [
       "l"
@@ -107,6 +110,9 @@
     ],
     "y": [
       "j"
+    ],
+    "’": [
+      "ʔ"
     ]
   },
   "allophones": {
@@ -155,9 +161,6 @@
     "k": [
       "k"
     ],
-    "x": [
-      "x"
-    ],
     "l": [
       "l"
     ],
@@ -205,9 +208,76 @@
     ],
     "j": [
       "j"
+    ],
+    "χ": [
+      "χ"
+    ],
+    "ʔ": [
+      "ʔ"
+    ],
+    "ɽ": [
+      "ɽ"
     ]
   },
-  "notes": "Somali in official Latin orthography (1972). C = pharyngeal /ʕ/; X = pharyngeal /ħ/; DH = retroflex /ɖ/; Q = uvular /q/; KH = velar fricative /x/. Vowel length is phonemic (doubled letters). Tone is high/low marked only in formal contexts. The language has two noun genders and grammatical tone.",
+  "positional_graphemes": {
+    "a": {
+      "word_initial": [
+        "ʔa"
+      ]
+    },
+    "aa": {
+      "word_initial": [
+        "ʔaː"
+      ]
+    },
+    "e": {
+      "word_initial": [
+        "ʔe"
+      ]
+    },
+    "ee": {
+      "word_initial": [
+        "ʔeː"
+      ]
+    },
+    "i": {
+      "word_initial": [
+        "ʔi"
+      ]
+    },
+    "ii": {
+      "word_initial": [
+        "ʔiː"
+      ]
+    },
+    "o": {
+      "word_initial": [
+        "ʔo"
+      ]
+    },
+    "oo": {
+      "word_initial": [
+        "ʔoː"
+      ]
+    },
+    "u": {
+      "word_initial": [
+        "ʔu"
+      ]
+    },
+    "uu": {
+      "word_initial": [
+        "ʔuː"
+      ]
+    },
+    "dh": {
+      "intervocalic": [
+        "ɽ",
+        "ɖ"
+      ]
+    }
+  },
+  "notes": "Somali in the official Latin orthography (1972). C = pharyngeal /ʕ/; X = pharyngeal /ħ/; DH = retroflex /ɖ/, an intervocalic retroflex flap [ɽ] (Wikipedia, Somali language: \"pronounced as a retroflex flap [ɽ] when it occurs intervocalically\"; Mohamed 2013 hedges it to \"sometimes pronounced as a flap\", so the stop is kept as the second candidate). Q = uvular /q/; KH = uvular fricative /χ/, confined to Arabic loans (Mohamed 2013: \"The sound /χ/ is a voiceless uvular fricative and is represented as <kh>\"). Vowel length is phonemic and written by doubling the vowel letter. The apostrophe writes /ʔ/ (Mohamed 2013: \"The sound /ʔ/ is a glottal stop, written as <’>\"), and a WORD-INITIAL glottal stop is pronounced but never written: every orthographically vowel-initial word gets a prosthetic [ʔ] onset (Mohamed 2013, p.10: \"the word initial glottal stop <'> - [ʔ] is also not shown\"; and \"When a Somali word begins with a vowel, a glottal is inserted before the vowel, in order to provide onset to the syllable ... <ey> 'dog' is transcribed and pronounced as [ʔey]\"). That prosthesis is encoded in positional_graphemes rather than in the flat grapheme table so it fires only at the word edge. TWO THINGS THE ORTHOGRAPHY DOES NOT WRITE and this transcriber therefore cannot recover. (1) TONE: Somali is a pitch-accent language whose high/low accent carries gender, number and case, and the 1972 orthography leaves it unmarked; it is not derivable from spelling. (2) VOWEL HARMONY: the ten vowel qualities fall into two [±ATR] harmonic sets, and the orthography writes one letter per pair — as the Wikipedia article puts it, it \"does not distinguish between the two harmonic variants of each vowel\" — so the harmonic value of a root is lexical, not orthographic. The spec emits the plain five-quality set /a e i o u/ and their long counterparts. Narrow-transcription gold sets that write both tone and the ATR-distinct cardinal vowels (ɑ ɪ ɔ ɛ ʊ æ) score those unwritten distinctions as segment errors; that cost is notation, not a transcriber defect.",
   "sources": [
     {
       "id": "saeed1999",
@@ -229,11 +299,33 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Somali_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "mohamed2013",
+      "author": "Mohamed, Ahmed",
+      "year": 2013,
+      "title": "An Overview of the Interface Between Aspects of Somali Phonology and Morphology: A Resource Guide for ESL Teachers",
+      "publisher": "St. Cloud State University (MA thesis)",
+      "url": "http://orthographyclearinghouse.org/theses/mohamedAnOverviewtheInterfacebetweenAspectsofSomaliPhonologyandMorphology.pdf",
+      "pages": "10",
+      "notes": "Consulted for the glottal-stop facts, the /χ/ value of <kh>, and the intervocalic <dh> flap. Page 10 verified for the word-initial-glottal-stop statement; the other quotes are from the consonant-inventory and syllable-structure sections, whose page numbers the PDF text layer does not carry."
+    },
+    {
+      "id": "somali_latin_alphabet_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Somali Latin alphabet",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Somali_Latin_alphabet",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Somali_Latin_alphabet",
+      "pages": null,
+      "notes": "Letter table: ' = /ʔ/, KH = /χ/, DH = /ɖ/, C = /ʕ/, X = /ħ/, Q = /q/, SH = /ʃ/; long vowels written by doubling. \"Tone is not marked and a word-initial glottal stop is also not shown.\""
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Somali_language",
-    "https://so.wikipedia.org/wiki/Af_Soomaali"
+    "https://so.wikipedia.org/wiki/Af_Soomaali",
+    "https://en.wikipedia.org/wiki/Somali_Latin_alphabet"
   ],
   "timespan": {
     "start_year": 1972,
