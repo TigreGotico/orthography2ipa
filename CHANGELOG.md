@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.72.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.72.3a2) (2026-08-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.72.3a1...7.72.3a2)
+
+**Merged pull requests:**
+
+- Read Egyptian in the Egyptological transliteration convention [\#938](https://github.com/TigreGotico/orthography2ipa/pull/938) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.72.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.72.3a1) (2026-08-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.72.2a1...7.72.3a1)
@@ -745,10 +753,6 @@
 ## [7.46.0a6](https://github.com/TigreGotico/orthography2ipa/tree/7.46.0a6) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.46.0a5...7.46.0a6)
-
-**Merged pull requests:**
-
-- data: Persian dialect round [\#746](https://github.com/TigreGotico/orthography2ipa/pull/746) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.46.0a5](https://github.com/TigreGotico/orthography2ipa/tree/7.46.0a5) (2026-08-03)
 
