@@ -1166,6 +1166,50 @@ Sotho, Kirundi/Rundi, Minangkabau, Kongo, Tsonga, Maithili, Venda and
 Southern Quechua. Noted here so a future wave doesn't re-spend time on
 the same lookup.
 
+#### What the Konkani (`kok`) residual is made of
+
+The Konkani gold is hand-typed, not module output. Entries carry
+dialect-tagged variants that no generator would produce — `मामा` has a
+Goud-Saraswat reading `[mɑːmɑː]` beside a Roman-Catholic `[mɑːm]`, and
+`आपव्चे` carries four readings across two varieties — so the row is an
+accuracy test rather than a reproduction test, and none of the
+[Module-generated](#module-generated-wikipron-rows) caveats apply.
+
+Two of the gold's conventions are not encoded in the spec, deliberately,
+because encoding them would fit the gold rather than describe Konkani.
+
+The gold writes the low vowel as `ɑ`. Over the 830 scored words, `⟨ा⟩` is
+transcribed with `ɑ` 411 times against `a` 14 times (counted by regex
+over the normalized gold of every word containing `⟨ा⟩`), so the
+choice is uniform, but it is a notation choice: the published Konkani
+inventories write the phoneme `/a/`. The spec keeps `aː`. Rewriting every
+`a` to `ɑ` in the engine's output would take the row from PER 0.2245 to
+0.1591 — 0.065 of the residual is this symbol and nothing else.
+
+The gold reads `⟨फ⟩` as `[f]` in 34 words and `[pʰ]` in 10. The split is
+lexical — `[f]` sits in the Portuguese stratum (`फोटो`, `फिलिप`,
+`फार्मास`) and `[pʰ]` in the inherited one (`फिरप`, `फुटप`) — and nothing
+in the orthography distinguishes them, so both readings stay in the
+lattice with `pʰ` first. Reordering to `f` would buy 0.013 PER on this
+lexicon and assert nothing about the language.
+
+The affricate series is the largest genuinely unrecoverable contrast.
+Konkani has phonemic `/ts dz/` beside `/tʃ dʒ/`, and Devanagari writes
+both with `⟨च⟩` and `⟨ज⟩`. Almeida's conditioning — the affricate
+spirantizes except word-initially, in gemination and after a nasal — does
+not hold in this gold: `[z]` occurs 5 times word-initially against 10
+times elsewhere, and affricates outnumber it in both positions. It is
+therefore encoded as a second candidate per grapheme, not as a rule.
+
+Taking an oracle over the five contrasts the orthography does not
+determine (`e`/`ɛ`, `o`/`ɔ`, `tʃ`/`ts`, `dʒ`/`dz`, `pʰ`/`f`) — for each
+word, the substitution mask minimizing edit distance to the gold — puts
+the floor for this row at PER 0.1543. The board's Oracle@5 of 0.1339
+is the same quantity measured through the engine's own beam. Of the
+residual edit operations at PER 0.2245, 6.1% involve a schwa (1093 edit
+operations over 5224 gold segments, 67 of them touching `ə`, counted by
+`difflib` opcode over combining-mark-grouped segments).
+
 ## Rejected candidates
 
 Datasets investigated and excluded due to tool-generated or unclear
