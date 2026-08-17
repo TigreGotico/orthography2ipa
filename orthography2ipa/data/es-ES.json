@@ -29,7 +29,7 @@
   "name": "Castilian Spanish",
   "script": "Latin",
   "parent": "es-ES-x-medieval",
-  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. (9) DIPHTHONGS ARE ASYMMETRIC: a rising diphthong has a consonantal onglide ([j w] — nación [naˈθjon], cuando [ˈkwando]) while a falling diphthong has a non-syllabic VOWEL offglide ([i̯ u̯] — aire [ˈai̯ɾe], causa [ˈkau̯sa]), per Hualde (2005 ch. 4) and RAE/ASALE NGLE Fonética y fonología (2011 ch. 8). The written accent marks stress, not hiatus: a tilde on the OPEN vowel leaves the rising diphthong intact (⟨ió⟩ in nación, ⟨iá⟩ in Adrián, ⟨ué⟩ in después), and only a tilde on the HIGH vowel signals hiatus (día, búho, continúo) — which is why ⟨iá ié ió uá ué uó⟩ are graphemes here and ⟨ía íe úa …⟩ deliberately are not. (10) VIBRANTE MÚLTIPLE: the /r/–/ɾ/ contrast is intervocalic only; in onset after a heterosyllabic /l n s/ only the trill occurs (alrededor, honra, Israel). (11) NASAL ASSIMILATION: a coda nasal is bilabial [m] before a labial (inmaculada [immakuˈlaða]). Sources: Quilis (1999), Penny (2002), Hualde (2014).",
+  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. (9) DIPHTHONGS ARE ASYMMETRIC: a rising diphthong has a consonantal onglide ([j w] — nación [naˈθjon], cuando [ˈkwando]) while a falling diphthong has a non-syllabic VOWEL offglide ([i̯ u̯] — aire [ˈai̯ɾe], causa [ˈkau̯sa]), per Hualde (2005 ch. 4) and RAE/ASALE NGLE Fonética y fonología (2011 ch. 8). The written accent marks stress, not hiatus: a tilde on the OPEN vowel leaves the rising diphthong intact (⟨ió⟩ in nación, ⟨iá⟩ in Adrián, ⟨ué⟩ in después), and only a tilde on the HIGH vowel signals hiatus (día, búho, continúo) — which is why ⟨iá ié ió uá ué uó⟩ are graphemes here and ⟨ía íe úa …⟩ deliberately are not. (10) VIBRANTE MÚLTIPLE: the /r/–/ɾ/ contrast is intervocalic only; in onset after a heterosyllabic /l n s/ only the trill occurs (alrededor, honra, Israel). (11) NASAL ASSIMILATION: a coda nasal is bilabial [m] before a labial (inmaculada [immakuˈlaða]). (12) WORD-INITIAL ⟨hie-, hia-, hio-⟩: the etymological silent ⟨h⟩ leaves a prevocalic high front vocoid in absolute word-initial position, where Spanish strengthens it to the palatal obstruent /ʝ/ rather than the glide [j]: hielo [ˈʝelo], hierba [ˈʝeɾba], hierro [ˈʝero], hiato [ˈʝato]. The orthography itself records this: the RAE admits the doublets yerba/hierba, yedra/hiedra and yero/hiero, i.e. the same word spelt with ⟨ye-⟩, which can only be /ʝe/. The strengthening is positional, not lexical — after a vowel the vocoid stays a glide (antihielo [antiˈjelo], contrahierba [kontɾaˈjeɾba]), which is why these are word-initial positional graphemes and not plain graphemes (Hualde 2005; Navarro Tomás 1977; RAE/ASALE NGLE Fonética y fonología 2011). (13) ⟨tx⟩ = /tʃ/: an unassimilated Basque graphotactic sequence that Spanish keeps in Basque-origin lexis and proper names — pintxo, txakolí, txapela, Arantxa, Getxo, Etxebarria. ⟨tx⟩ is not a native Spanish sequence, so no Spanish word is affected; without the entry ⟨x⟩ takes its own /ks/ value and yields the impossible *[ˈpintkso]. The value is Basque ⟨tx⟩ = /tʃ/ (Hualde & Ortiz de Urbina 2003), confirmed from the Spanish side by the RAE hispanicisation chapela ← Basque txapela, which renders the same sequence as ⟨ch⟩. (14) ⟨ý⟩: not modern RAE orthography, but it occurs in Spanish toponyms and surnames (Aýna, Ýñiguez) and in transliterated names (Almatý). It is listed with the vocalic value of ⟨y⟩ purely so the letter is not dropped; it makes no claim about accentuation and is deliberately absent from marked_vowels. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
   "sources": [
     {
       "id": "hualde2005",
@@ -85,6 +85,16 @@
       "title": "Tratado de fonología y fonética españolas",
       "publisher": "Gredos",
       "notes": "Instrumental description of the same phenomena; used here to corroborate nasal assimilation and the vibrant distribution."
+    },
+    {
+      "id": "hualde2003basque",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": "Cited for the value of the Basque digraph ⟨tx⟩ = /tʃ/, which Spanish keeps unchanged in Basque-origin lexis and proper names. Pages not verified."
     }
   ],
   "wikipedia": [
@@ -200,6 +210,9 @@
     "t": [
       "t"
     ],
+    "tx": [
+      "tʃ"
+    ],
     "v": [
       "b"
     ],
@@ -212,6 +225,9 @@
     ],
     "y": [
       "ʝ",
+      "i"
+    ],
+    "ý": [
       "i"
     ],
     "z": [
@@ -553,6 +569,54 @@
       ],
       "default": [
         "wo"
+      ]
+    },
+    "hia": {
+      "word_initial": [
+        "ʝa"
+      ],
+      "default": [
+        "ja"
+      ]
+    },
+    "hiá": {
+      "word_initial": [
+        "ʝa"
+      ],
+      "default": [
+        "ja"
+      ]
+    },
+    "hie": {
+      "word_initial": [
+        "ʝe"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "hié": {
+      "word_initial": [
+        "ʝe"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "hio": {
+      "word_initial": [
+        "ʝo"
+      ],
+      "default": [
+        "jo"
+      ]
+    },
+    "hió": {
+      "word_initial": [
+        "ʝo"
+      ],
+      "default": [
+        "jo"
       ]
     }
   },
