@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.72.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.72.5a1) (2026-08-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.72.4a1...7.72.5a1)
+
+**Merged pull requests:**
+
+- fix: read Lacid \(lsi\) from its published alphabet chart [\#950](https://github.com/TigreGotico/orthography2ipa/pull/950) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.72.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.72.4a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.72.3a2...7.72.4a1)
@@ -741,10 +749,6 @@
 ## [7.46.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.46.1a2) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.46.1a1...7.46.1a2)
-
-**Merged pull requests:**
-
-- data: orthography wave 5 — 10 stub languages with cited grapheme maps [\#751](https://github.com/TigreGotico/orthography2ipa/pull/751) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.46.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.46.1a1) (2026-08-03)
 
