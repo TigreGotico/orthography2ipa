@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.73.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.73.0a1) (2026-08-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.72.6a1...7.73.0a1)
+
+**Merged pull requests:**
+
+- feat: encode the English VCe split digraph and the missing digraphs [\#942](https://github.com/TigreGotico/orthography2ipa/pull/942) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.72.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.72.6a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.72.5a1...7.72.6a1)
@@ -748,10 +756,6 @@
 ## [7.46.1a3](https://github.com/TigreGotico/orthography2ipa/tree/7.46.1a3) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.46.1a2...7.46.1a3)
-
-**Merged pull requests:**
-
-- data: sources wave 2 [\#754](https://github.com/TigreGotico/orthography2ipa/pull/754) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.46.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.46.1a2) (2026-08-03)
 
