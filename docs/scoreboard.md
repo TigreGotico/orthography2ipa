@@ -623,7 +623,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | tr | wikipron | 11579 | 0.1232 | · | · | · | · | [0.1204, 0.1259] | 0.4476 | research | crowd-scraped |
 | tru | wikipron | 168 | 0.4867 | · | · | · | · | [0.4668, 0.5067] | 0.0000 | skeleton | crowd-scraped |
 | tt | vox_communis | 22497 | 0.4216 | · | · | · | · | [0.4173, 0.4258] | 0.0129 | skeleton | epitran-derived |
-| twf | wikipron | 132 | 0.5506 | · | · | · | · | [0.5227, 0.5792] | 0.0000 | skeleton | crowd-scraped |
+| twf | wikipron | 135 | 0.0240 | 0.0221 | 0.0221 | 0.9111 | 0.9111 | [0.0103, 0.0412] | 0.8963 | research | crowd-scraped |
 | tzm | wikipron | 658 | 0.0160 | · | · | · | · | [0.0101, 0.0225] | 0.9483 | skeleton | crowd-scraped |
 | uby | wikipron | 1317 | 0.0247 | 0.0214 | 0.0209 | 0.9043 | 0.9043 | [0.0201, 0.0300] | 0.8998 | research | crowd-scraped |
 | udm | northeuralex | 973 | 0.2110 | · | · | · | · | [0.1989, 0.2233] | 0.3350 | research | lexicon-derived |

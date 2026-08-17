@@ -272,7 +272,7 @@ belongs in a cross-system comparison. What they do certify is that the
 spec implements the published orthography consistently — which is the
 claim the spec makes, and is worth measuring, under its own name.
 
-#### Languages with no community orthography (`uby`)
+#### Languages scored against a published spelling convention (`uby`, `twf`)
 
 A related but distinct case: the gold is hand-typed, so it is not a
 generator's output, but the *input* column is not a community spelling
@@ -289,6 +289,26 @@ one difference in its favour: the IPA is editor-typed, so the row still
 measures whether the engine converts the spelling the way a human applying
 the convention does — including the hand-written inconsistencies, which
 put a floor under the residual error.
+
+Taos (`twf`) belongs to the same class and is the stronger row of the two.
+Its headwords are spelled in the practical orthography of Trager (1948) and
+its IPA is editor-typed — the Wiktionary entries carry a literal
+`{{IPA|twf|/…/}}`, with no pronunciation module in the loop — so the row
+measures the same thing the `uby` row does: whether the engine applies the
+published convention the way a human applying it does. The `PER 0.0240`
+therefore certifies **reproduction of Trager's 1948 convention on 135
+words**, not accuracy about Taos as spoken, and the residual error is
+almost entirely hand-typed inconsistency in the gold rather than rule
+error.
+
+What separates Taos from Ubykh is that Taos is a living community language
+and its orthography was taught to its speakers, so the convention is one
+people actually write in rather than an editorial scheme imposed on an
+extinct language. That makes the row more than a self-consistency check.
+It does not make it accuracy: Trager's letters are Americanist, several
+of his analytic choices have documented alternatives (the 1946 unit-phoneme
+reading of the aspirates and ejectives, for one), and the row cannot
+adjudicate between them. Not comparison-eligible.
 
 A per-language provenance override (`PROVENANCE_BY_LANG["wikipron"]`) would
 let the scoreboard carry this in the provenance column instead of only in
