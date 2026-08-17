@@ -26,18 +26,19 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "chv",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
-      "a"
+      "ɑ"
     ],
-    "ă": [
+    "ӑ": [
       "ə"
     ],
     "б": [
       "b"
     ],
     "в": [
+      "ʋ",
       "v"
     ],
     "г": [
@@ -47,10 +48,13 @@
       "d"
     ],
     "е": [
-      "je"
+      "e"
     ],
     "ё": [
       "jo"
+    ],
+    "ӗ": [
+      "ɘ"
     ],
     "ж": [
       "ʒ"
@@ -88,17 +92,23 @@
     "с": [
       "s"
     ],
+    "ҫ": [
+      "ɕ"
+    ],
     "т": [
       "t"
     ],
     "у": [
       "u"
     ],
+    "ӳ": [
+      "y"
+    ],
     "ф": [
       "f"
     ],
     "х": [
-      "x"
+      "χ"
     ],
     "ц": [
       "ts"
@@ -110,10 +120,16 @@
       "ʃ"
     ],
     "щ": [
-      "ʃtʃ"
+      "ɕː"
+    ],
+    "ъ": [
+      ""
     ],
     "ы": [
       "ɯ"
+    ],
+    "ь": [
+      "ʲ"
     ],
     "э": [
       "e"
@@ -122,48 +138,105 @@
       "ju"
     ],
     "я": [
-      "ja"
-    ],
-    "ĕ": [
-      "ə"
+      "jɑ"
     ]
   },
   "allophones": {
-    "a": [
+    "ɑ": [
+      "ɑ",
       "a"
     ],
     "ə": [
-      "ə"
+      "ə",
+      "ɤ",
+      "ɒ"
     ],
-    "b": [
-      "b"
-    ],
-    "v": [
-      "v"
-    ],
-    "ɡ": [
-      "ɡ"
-    ],
-    "d": [
-      "d"
+    "ɘ": [
+      "ɘ",
+      "ø",
+      "ɛ"
     ],
     "e": [
-      "e"
-    ],
-    "ʒ": [
-      "ʒ"
-    ],
-    "z": [
-      "z"
+      "e",
+      "ɛ"
     ],
     "i": [
       "i"
     ],
-    "j": [
-      "j"
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "y": [
+      "y"
+    ],
+    "ɯ": [
+      "ɯ"
+    ],
+    "p": [
+      "p",
+      "b"
+    ],
+    "t": [
+      "t",
+      "d"
     ],
     "k": [
-      "k"
+      "k",
+      "ɡ"
+    ],
+    "s": [
+      "s",
+      "z"
+    ],
+    "ʃ": [
+      "ʃ",
+      "ʒ"
+    ],
+    "ɕ": [
+      "ɕ",
+      "ʑ"
+    ],
+    "tʃ": [
+      "tʃ",
+      "dʒ"
+    ],
+    "ts": [
+      "ts",
+      "dz"
+    ],
+    "χ": [
+      "χ",
+      "x",
+      "ɣ"
+    ],
+    "ʋ": [
+      "ʋ",
+      "w",
+      "v"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "z": [
+      "z"
+    ],
+    "ʒ": [
+      "ʒ"
+    ],
+    "f": [
+      "f"
+    ],
+    "j": [
+      "j"
     ],
     "l": [
       "l"
@@ -174,44 +247,11 @@
     "n": [
       "n"
     ],
-    "o": [
-      "o"
-    ],
-    "p": [
-      "p"
-    ],
     "r": [
       "r"
-    ],
-    "s": [
-      "s"
-    ],
-    "t": [
-      "t"
-    ],
-    "u": [
-      "u"
-    ],
-    "f": [
-      "f"
-    ],
-    "x": [
-      "x"
-    ],
-    "ts": [
-      "ts"
-    ],
-    "tʃ": [
-      "tʃ"
-    ],
-    "ʃ": [
-      "ʃ"
-    ],
-    "ɯ": [
-      "ɯ"
     ]
   },
-  "notes": "Chuvash — the most divergent Turkic language (Oghur branch). Ă/Ĕ = reduced vowel /ə/. Lacks many pan-Turkic features.",
+  "notes": "Chuvash — the most divergent Turkic language (Oghur branch), written in a 37-letter Cyrillic alphabet: the 33 Russian letters plus Ӑ, Ӗ, Ҫ and Ӳ. Vowels split into full /a e i o u ɯ y/ and the two REDUCED vowels ӑ and ӗ, which differ from the rest in quantity, reduce towards schwa and are often dropped outright in fast speech; Dobrovolsky (1999) states the split as full /i y e ɨ u a/ vs reduced /ĕ ă/, the latter corresponding phonologically to Turkish /œ o/ — ĕ to the front /œ/ and ă to the back /o/. ӑ is the back and ӗ the front member of the reduced pair, mirroring the back~front harmony of а~е, ы~и and у~ӳ; а is accordingly the back low vowel [ɑ]. Ҫ is /ɕ/ and Х is the uvular fricative /χ/; в is the approximant /ʋ/ (~[w]), with [v] in Russian loans. Two allophonic processes are recorded in the allophone table rather than in the 1-best transcription, because they are surface realisation and not orthographic correspondence: stops, sibilants and affricates are voiceless fortis but become lenis intervocalically and after liquids, nasals and semivowels, and consonants palatalise before the front vowels е, ӗ, и, ӳ. The VoxCommunis/Epitran-derived gold used on the board writes neither process, and writes no palatalisation for ⟨ь⟩ either; that is its lexicon convention, not evidence against the rules. It also writes the reduced vowels ⟨ӑ ӗ⟩ as ⟨ʌ ɛ⟩ where the descriptive literature uses schwa-type symbols, a notation mismatch that is not chased here.",
   "sources": [
     {
       "id": "chuvash_wiki",
@@ -223,6 +263,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Chuvash_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "dobrovolsky1999",
+      "author": "Dobrovolsky, Michael",
+      "year": 1999,
+      "title": "The phonetics of Chuvash stress: implications for phonology",
+      "publisher": "Proceedings of the 14th International Congress of Phonetic Sciences (ICPhS99), San Francisco",
+      "url": "https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS1999/papers/p14_0539.pdf",
+      "wikipedia_url": null,
+      "pages": "539-542",
+      "notes": "Full vs reduced vowel split and the last-full-vowel stress rule (p. 539); phonetic evidence that reduced vowels are stressless."
     }
   ],
   "wikipedia": [
@@ -241,5 +292,23 @@
     "longitude": 47.16298,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Chuvash."
+  },
+  "stress": {
+    "default_position": -1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Chuvash stress falls on the last FULL vowel of the word; if the word contains no full vowel (only the reduced ӑ/ӗ), stress falls on the first vowel. Dobrovolsky (1999), 'The phonetics of Chuvash stress: implications for phonology', ICPhS99 San Francisco, p. 539, gives the rule as 'stress the last full vowel of a word; if there are no full vowels, stress the first vowel of the word', citing it as the rule commonly given in Chuvash grammars and in western sources, and reports phonetic evidence that the reduced vowels are in fact stressless throughout. The reduced-vowel skip is NOT modelled: the stress schema can express counting positions but not 'skip a declared class of nuclei', so the declared final position is an approximation that is right for every word whose last vowel is full and wrong for one ending in ӑ/ӗ. Certain suffixes and loanwords carry non-final stress and are likewise not modelled."
+  },
+  "positional_graphemes": {
+    "е": {
+      "word_initial": [
+        "je"
+      ],
+      "default": [
+        "e"
+      ]
+    }
   }
 }

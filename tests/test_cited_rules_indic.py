@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import pytest
 
+from orthography2ipa import emission_inventory, get, phoneme_inventory
 from orthography2ipa.g2p import G2P
 
 
@@ -711,3 +712,116 @@ def test_iir_voiced_aspirates_preserved():
     assert g2p.transcribe_word("bʱ") == "bʱ"
     assert g2p.transcribe_word("dʱ") == "dʱ"
     assert g2p.transcribe_word("gʱ") == "ɡʱ"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ne — Standard (eastern) Nepali
+# Sources declared by the spec: Khatiwada (2009), Bandhu et al. (1971),
+# Pokharel (1989), Masica (1991), Cardona & Jain (2003), Matthews (1984).
+# ═══════════════════════════════════════════════════════════════════════════
+
+def test_ne_affricates_are_alveolar_not_palato_alveolar():
+    """'AFFRICATES THAT ARE ALVEOLAR /ts tsʰ dz dzʱ/, not palato-alveolar'
+    (ne notes; Khatiwada 2009: 375).
+
+    ⟨चार⟩ 'four' is Khatiwada's own illustration word for /ts/.
+    """
+    ipa = G2P("ne").transcribe_word("चार")
+    assert ipa.startswith("ts")
+    assert "tʃ" not in ipa
+
+
+def test_ne_has_a_single_sibilant():
+    """'Nepali has exactly two contrastive fricatives, /s/ and /ɦ/ … so
+    written श, ष and स all read /s/' (ne notes; Khatiwada 2009: 376)."""
+    g = G2P("ne")
+    for word in ("आकाश", "भाषा", "सात"):
+        ipa = g.transcribe_word(word)
+        assert "ʃ" not in ipa and "ʂ" not in ipa, (word, ipa)
+        assert "s" in ipa, (word, ipa)
+
+
+def test_ne_h_is_voiced():
+    """'exactly two contrastive fricatives, /s/ and /ɦ/' (ne notes;
+    Khatiwada 2009: 373 chart, 376) — ⟨ह⟩ is /ɦ/, not /h/."""
+    assert G2P("ne").transcribe_word("हात").startswith("ɦ")
+
+
+def test_ne_has_no_vowel_length_contrast():
+    """'NO LENGTH CONTRAST — the script's long/short ⟨इ ई⟩ and ⟨उ ऊ⟩ pairs
+    are an orthographic inheritance with no counterpart in the spoken
+    language' (ne notes; Khatiwada 2009: 378).
+
+    Asserted on the emitted INVENTORY, not on a handful of words: a length
+    mark reachable from any grapheme, positional reading or allophone —
+    the visarga ⟨ः⟩ is the one that got in — is a length contrast the spec
+    denies having, and it reaches anything reading the inventory (a TTS
+    tokenizer) even when no benchmark word happens to expose it.
+    """
+    spec = get("ne")
+    for name, inventory in (("emission", emission_inventory(spec)),
+                            ("phoneme", phoneme_inventory(spec))):
+        long_units = [u for u in inventory if "ː" in u]
+        assert not long_units, (name, long_units)
+    g = G2P("ne")
+    assert g.transcribe_word("ईरान") == g.transcribe_word("इरान")
+    for word in ("पानी", "तारा", "नेपाली", "खाना", "दुःख", "पुनः"):
+        assert "ː" not in g.transcribe_word(word), word
+
+
+def test_ne_inherent_vowel_is_open_mid_back_not_schwa():
+    """'The inherent vowel is /ʌ/, not the schwa [ə] of the older
+    descriptions' (ne notes; Khatiwada 2009: 377)."""
+    assert G2P("ne").transcribe_word("जल") == "dzʌl"
+
+
+def test_ne_low_vowel_is_central():
+    """'The low vowel is central, written here [ä]' (ne notes;
+    Khatiwada 2009: 377, '/a/ is a central vowel in Nepali')."""
+    assert G2P("ne").transcribe_word("तारा") == "t̪ärä"
+
+
+def test_ne_anusvara_is_a_homorganic_nasal():
+    """'Anusvara is a homorganic nasal, not a free-standing /n/'
+    (NE_ANUSVARA_VELAR; Khatiwada 2009: 373, 377)."""
+    g = G2P("ne")
+    assert g.transcribe_word("संगीत") == "sʌŋɡit̪"
+    assert g.transcribe_word("संस्कृत") == "sʌnskrit̪"
+    assert g.transcribe_word("इंडिया").startswith("iɳɖ")
+
+
+def test_ne_va_reads_w_not_v():
+    """'व reads /w/: Nepali has no /v/ or /ʋ/ phoneme' (ne notes;
+    Khatiwada 2009: 373)."""
+    ipa = G2P("ne").transcribe_word("परिवार")
+    assert "ʋ" not in ipa and "v" not in ipa
+    assert "w" in ipa
+
+
+def test_ne_ksha_conjunct_keeps_its_inherent_vowel():
+    """⟨क्ष⟩ is a consonant cluster, so the abugida still gives it the
+    inherent vowel when no matra cancels it: क्षमा is [ktsʰʌmä], never a
+    ⟦tsʰm⟧ onset no Nepali syllable allows."""
+    assert G2P("ne").transcribe_word("क्षमा") == "ktsʰʌmä"
+
+
+def test_ne_aspirates_have_homorganic_fricative_allophones():
+    """'the voiced and voiceless aspirated labials and velars can also be
+    realized as the corresponding homorganic fricatives' (Khatiwada 2009:
+    376) — [ɸ β x ɣ] are declared for /pʰ bʱ kʰ ɡʱ/."""
+    allophones = get("ne").allophones
+    assert "ɸ" in allophones["pʰ"]
+    assert "β" in allophones["bʱ"]
+    assert "x" in allophones["kʰ"]
+    assert "ɣ" in allophones["ɡʱ"]
+
+
+def test_ne_rhotic_is_phonemic_r_everywhere_it_is_written():
+    """The grapheme table is phonemic in the rhotic: ⟨र⟩ and the vocalic
+    ⟨ऋ ृ⟩ both read /r/, with the tap [ɾ] declared as its allophone —
+    '[r] and [ɾ] are two allophones of /r/' (Khatiwada 2009: 374 n. 3),
+    the positional split itself being described on p. 377."""
+    g = G2P("ne")
+    assert g.transcribe_word("ऋषि") == "risi"
+    assert g.transcribe_word("संस्कृत") == "sʌnskrit̪"
+    assert "ɾ" in get("ne").allophones["r"]
