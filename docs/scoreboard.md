@@ -417,7 +417,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nb | wikipron | 2725 | 0.3522 | · | · | · | · | [0.3424, 0.3611] | 0.1413 | research | crowd-scraped |
 | nci | wikipron | 839 | 0.1200 | · | · | · | · | [0.1130, 0.1273] | 0.2884 | research | crowd-scraped |
 | nds | wikipron | 307 | 0.4340 | · | · | · | · | [0.4046, 0.4625] | 0.1042 | research | crowd-scraped |
-| ne | kaikki | 2052 | 0.5988 | 0.5988 | 0.5988 | 0.0219 | 0.0219 | [0.5874, 0.6105] | 0.0219 | research | crowd-scraped |
+| ne | kaikki | 2052 | 0.1191 | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
 | new | wikipron | 416 | 0.4077 | 0.4077 | 0.4077 | 0.0865 | 0.0865 | [0.3855, 0.4280] | 0.0865 | research | crowd-scraped |
 | ngh | wikipron | 263 | 0.3655 | 0.3655 | 0.3655 | 0.1521 | 0.1521 | [0.3374, 0.3958] | 0.1521 | skeleton | crowd-scraped |
 | nhg | wikipron | 295 | 0.2367 | · | · | · | · | [0.2157, 0.2573] | 0.1898 | skeleton | crowd-scraped |
