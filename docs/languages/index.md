@@ -155,6 +155,12 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [fi.md](fi.md) | Finnish in detail — **production tier** (shallow, ≤0.15) |
 
+### Austroasiatic
+
+| Doc | Languages covered |
+|:---|:---|
+| [vi.md](vi.md) | Vietnamese (Hanoi) in detail — rime-level mapping, velar fronting and labial-velar finals, and the library's first tone-emitting spec |
+
 ### Constructed
 
 | Doc | Languages covered |
@@ -187,7 +193,7 @@ rather than a specific language, start here:
 | Vowel harmony | fi, hu, tr, ko | family docs |
 | Geminate consonants | it, fi, hu, ja, kab | [it-IT.md](it-IT.md), [kab.md](kab.md) |
 | Spirantization (lax stop → fricative) | kab | [kab.md](kab.md) |
-| Tone / pitch accent | sv, zh, ja, ko, vi | — |
+| Tone / pitch accent | sv, zh, ja, ko, vi | [vi.md](vi.md) (tone emitted from the orthography) |
 | Liaison / sandhi | fr, pt, sa | [fr-FR.md](fr-FR.md) |
 | Tashkeel-dependent input | ar, ar-SY, ar-LB, ar-JO, ar-PS, ar-IQ, ar-IQ-x-qeltu, ar-MA, ar-DZ, ar-TN, ar-LY, ar-MR, ar-YE, ar-SD | [ar.md](ar.md), [ar-x-levantine.md](ar-x-levantine.md), [ar-IQ.md](ar-IQ.md), [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
 | gilit/qəltu qaf split ([ɡ] vs [q]) | ar-IQ, ar-IQ-x-qeltu | [ar-IQ.md](ar-IQ.md) |
