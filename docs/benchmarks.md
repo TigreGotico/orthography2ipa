@@ -315,6 +315,29 @@ let the scoreboard carry this in the provenance column instead of only in
 prose. That is a `scripts/benchmark.py` change and is proposed, not made,
 here.
 
+#### Variety mismatch (`fa`)
+
+A third kind: the gold is neither a generator's output nor missing a
+community orthography, but it targets a different variety of the language
+than the spec does. The wikipron `fa` set (`fas_arab_broad`, `N=9279`) is
+predominantly a Classical / Early New Persian reading, scraped from
+Wiktionary; the `fa` spec here targets the modern Tehran standard. Over the
+gold's 62914 segments, the classical markers (⟨aː eː oː r w xʷ⟩) dominate the
+modern ones (⟨ɒː ɾ v t̪ʰ kʲ⟩) by roughly an order of magnitude, and of the cache's
+10312 rows, 208 carry a modern marker against 7506 carrying a classical one,
+20 with both. The `fa | wikipron` row on the scoreboard therefore certifies
+how well the spec reproduces that Classical/Early New Persian reading
+convention, not modern Iranian Persian pronunciation accuracy — see the
+`fa.json` grapheme notes for the full count breakdown.
+
+The `fa | ipadict` row (`fa.txt`, `N=7695`) carries its own caveat already
+documented in the [ipa-dict source table](#ipa-dict-pronunciation-dictionaries-ipadict)
+below: the source repository describes `fa.txt` as machine-generated from
+Wiktionary plus PersPred "and a great deal of guesswork", and its own README
+calls it "extremely experimental". A PER improvement against that row is a
+comparison against an experimental machine-generated file, not a
+gold-standard one.
+
 ### Arabic with tashkeel restored (`wikipron_ar_diacritized`)
 
 Written Arabic omits the short vowels (harakat): 0 of the ~14k raw
