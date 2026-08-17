@@ -805,9 +805,9 @@ class TestAranese:
     Key distinguishing features:
     - <u> → [y] — Gallo-Romance front rounded vowel (like French, unlike Spanish).
     - <a> → [a, ɔ] — contextual back-raising.
-    - <o> → [u, ɔ] — Occitan o-raising.
+    - <o> → [u]; the open [ɔ] is spelled <ò>.
     - <h> is phonemic in Aranese (retained from Latin, lost in Castilian/Catalan).
-    - <f> → [f, h] — f-aspiration before some vowels.
+    - <f> → [f]; Gascon's F- > h is in the spelling, not in the letter value.
     - Betacism: b/d/g have fricative allophones.
     - Word-initial <r> → [r] (trill).
     """
@@ -835,10 +835,13 @@ class TestAranese:
         """<a> → [a, ɔ] — a may raise to [ɔ] in certain positions."""
         _assert_contains(_grapheme(self.spec, "a"), "a", "ɔ", label="Aranese a")
 
-    def test_o_has_raised_allophone(self) -> None:
-        """<o> → [u, ɔ] — Occitan o-raising; [u] is the primary realisation."""
-        vals = _grapheme(self.spec, "o")
-        _assert_contains(vals, "u", "ɔ", label="Aranese o")
+    def test_o_is_only_u(self) -> None:
+        """<o> → [u]. The classical norm spells the open [ɔ] as <ò>, so the
+        unmarked letter carries one value and the contrast lives in the
+        accent (Wikipedia, Aranese dialect, vowel table: o/ó = [u], ò = [ɔ])."""
+        _assert_contains(_grapheme(self.spec, "o"), "u", label="Aranese o")
+        assert "ɔ" not in _grapheme(self.spec, "o")
+        _assert_contains(_grapheme(self.spec, "ò"), "ɔ", label="Aranese ò")
 
     def test_i_maps_i(self) -> None:
         """<i> → [i]."""
@@ -852,9 +855,12 @@ class TestAranese:
 
     # --- f-aspiration ---
 
-    def test_f_has_h_allophone(self) -> None:
-        """<f> allophone includes [h] — f-aspiration before some vowels."""
-        _assert_contains(_allophone(self.spec, "f"), "h", label="Aranese f→h allophone")
+    def test_f_is_never_read_as_h(self) -> None:
+        """<f> is [f] and nothing else. Gascon's Latin F- > /h/ is recorded in
+        the SPELLING (focus > huec, ferrum > hèr), so reading the surviving
+        letter <f> as [h] would apply the sound change a second time."""
+        assert "h" not in _allophone(self.spec, "f")
+        assert "h" not in _grapheme(self.spec, "f")
 
     def test_f_has_f_allophone(self) -> None:
         """<f> retains [f] as primary realisation."""
