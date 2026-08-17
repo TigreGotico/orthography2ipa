@@ -585,7 +585,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | smn | northeuralex | 1055 | 0.1600 | · | · | · | · | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
 | sms | northeuralex | 1063 | 0.4133 | · | · | · | · | [0.4018, 0.4248] | 0.0226 | research | lexicon-derived |
 | sms | wikipron | 105 | 0.2003 | · | · | · | · | [0.1463, 0.2581] | 0.5905 | skeleton | crowd-scraped |
-| so | kaikki | 230 | 0.5816 | 0.5800 | 0.5800 | 0.0565 | 0.0565 | [0.5544, 0.6099] | 0.0522 | research | crowd-scraped |
+| so | kaikki | 230 | 0.5849 | 0.5746 | 0.5746 | 0.0565 | 0.0565 | [0.5592, 0.6129] | 0.0435 | research | crowd-scraped |
 | sq | vox_communis | 11745 | 0.1474 | · | · | · | · | [0.1448, 0.1501] | 0.3047 | research | epitran-derived |
 | sq | wikipron | 4900 | 0.0965 | · | · | · | · | [0.0928, 0.1003] | 0.5606 | research | crowd-scraped |
 | sr | ipa_childes | 9838 | 0.4244 | · | · | · | · | [0.4213, 0.4275] | 0.0327 | research | epitran-derived |

@@ -282,8 +282,9 @@ def test_so_vowel_initial_word_takes_a_prosthetic_glottal_stop():
     """"When a Somali word begins with a vowel, a glottal is inserted before
     the vowel, in order to provide onset to the syllable.  Therefore, a Somali
     words like <ey> 'dog' is transcribed and pronounced as [ʔey]" (Mohamed
-    2013), the same source's word-list example."""
-    assert G2P("so").transcribe_word("ey") == "ʔej"
+    2013), the same source's word-list example.  The same source's diphthong
+    section gives ⟨ey⟩ the value [ei], so the prosthesis lands on [ʔei]."""
+    assert G2P("so").transcribe_word("ey") == "ʔei"
 
 
 def test_so_prosthetic_glottal_stop_precedes_a_long_initial_vowel():
@@ -319,6 +320,71 @@ def test_so_tone_is_never_emitted():
     orthography leaves it unmarked, so no tone mark can be recovered from
     spelling.  inan 'boy' carries a high accent no spelling records."""
     assert G2P("so").transcribe_word("inan") == "ʔinan"
+
+
+def test_so_short_diphthongs_end_in_a_vocalic_offglide():
+    """"Somali has five short and five long diphthongs", written ⟨ay aw ey oy
+    ow⟩, with ⟨aw⟩ "pronounced like the English diphthong [au]" and ⟨ey⟩ "like
+    the English [ei]" (Mohamed 2013, "Diphthongs").  The second element is a
+    vowel, not the consonant /j w/: caws 'grass' and awr 'camel' are Mohamed's
+    own ⟨aw⟩ examples, gurey 'left handed' his ⟨ey⟩ example."""
+    engine = G2P("so")
+    assert engine.transcribe_word("caws") == "\u0295aus"
+    assert engine.transcribe_word("awr") == "\u0294aur"
+    assert engine.transcribe_word("gurey") == "\u0261urei"
+    assert engine.transcribe_word("cayn") == "\u0295ain"
+    assert engine.transcribe_word("kow") == "kou"
+
+
+def test_so_long_diphthongs_keep_the_offglide_after_a_long_vowel():
+    """"The long Somali diphthongs, then, are ⟨aay⟩, ⟨eey⟩, ⟨ooy⟩, ⟨aaw⟩, and
+    ⟨oow⟩" (Mohamed 2013).  The doubled vowel letter is the nucleus and the
+    glide letter is still the offglide: Xasanoow → [...noːu], hooyooy → [hoːjoːi]."""
+    engine = G2P("so")
+    assert engine.transcribe_word("hooyooy") == "ho\u02d0jo\u02d0i"
+    assert engine.transcribe_word("canabeey") == "\u0295anabe\u02d0i"
+
+
+def test_so_intervocalic_y_and_w_stay_consonants():
+    """The offglide reading is coda-bound.  Between two vowels ⟨y⟩ and ⟨w⟩ are
+    the onset of the following syllable, not the tail of a diphthong: hooyo
+    'mother' → [ho\u02d0jo] and iyo 'and' → [\u0294ijo], never *[ho\u02d0oijo]."""
+    engine = G2P("so")
+    assert engine.transcribe_word("hooyo") == "ho\u02d0jo"
+    assert engine.transcribe_word("iyo") == "\u0294ijo"
+    assert engine.transcribe_word("aayo") == "\u0294a\u02d0jo"
+
+
+def test_so_intervocalic_voiced_stops_offer_a_spirantized_second_candidate():
+    """Armstrong 1964, as reported by Bruhn: "Somali /g/ sometimes appears as
+    [\u0263] between vowels" and "/d/ often lenites to [\u00f0] between vowels".  The
+    process is variable, so the stop stays the primary reading and the
+    fricative is offered as an alternative, never the other way round."""
+    engine = G2P("so")
+    assert engine.transcribe_word("magan") == "ma\u0261an"
+    alts = engine.word_candidates("magan", k=3)
+    assert any("\u0263" in a for a in alts), alts
+    assert alts[0] == "ma\u0261an"
+
+
+def test_so_spirantization_does_not_leak_out_of_the_intervocalic_slot():
+    """Lenition is environment-bound: a word-initial or post-consonantal voiced
+    stop keeps its stop value.  gabadh 'girl' → [\u0261aba\u0256] with a plosive onset."""
+    engine = G2P("so")
+    assert engine.transcribe_word("gabadh").startswith("\u0261")
+    assert "\u03b2" not in engine.transcribe_word("bir")
+    assert "\u00f0" not in engine.transcribe_word("dad")
+    # And where it does apply, the variable fricative never outranks the stop.
+    assert engine.word_candidates("toban", k=3)[0] == "toban"
+    assert engine.word_candidates("badan", k=3)[0] == "badan"
+    # /b/ is word-final, never intervocalic, in dab 'fire' and kab 'shoe'
+    # (Gabbard's own bare-form datum for the [b]/[\u03b2] alternation):
+    # neither word may offer a spirantized [\u03b2] candidate. This is what
+    # the ``intervocalic`` key exists to prevent; a mutation that widens the
+    # /b d \u0261/ rules from ``intervocalic`` to ``after_vowel`` makes both
+    # leak a word-final [\u03b2] candidate and must fail this assertion.
+    assert not any("\u03b2" in c for c in engine.word_candidates("dab", k=3))
+    assert not any("\u03b2" in c for c in engine.word_candidates("kab", k=3))
 
 
 def test_so_harmonic_vowel_pairs_are_not_distinguished():
