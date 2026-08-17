@@ -275,7 +275,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | grc | wikipron | 58095 | 0.1889 | · | · | · | · | [0.1877, 0.1902] | 0.2560 | research | crowd-scraped |
 | gu | wikipron | 4082 | 0.1842 | 0.1840 | 0.1839 | 0.3025 | 0.3028 | [0.1793, 0.1892] | 0.3025 | research | crowd-scraped |
 | gul | wikipron | 207 | 0.4674 | · | · | · | · | [0.4374, 0.4977] | 0.0580 | skeleton | crowd-scraped |
-| guw | wikipron | 595 | 0.5643 | · | · | · | · | [0.5499, 0.5781] | 0.0017 | research | crowd-scraped |
+| guw | wikipron | 595 | 0.4359 | 0.4196 | 0.4168 | 0.0034 | 0.0034 | [0.4241, 0.4473] | 0.0034 | research | crowd-scraped |
 | gv | wikipron | 690 | 0.3623 | · | · | · | · | [0.3451, 0.3784] | 0.1551 | research | crowd-scraped |
 | gwc | wikipron | 165 | 0.4282 | 0.4049 | 0.3916 | 0.0242 | 0.0242 | [0.3992, 0.4568] | 0.0242 | research | crowd-scraped |
 | gwd | wold | 976 | 0.0481 | · | · | · | · | [0.0419, 0.0552] | 0.7602 | skeleton | lexicon-derived |
