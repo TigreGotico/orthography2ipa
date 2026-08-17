@@ -33,7 +33,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | acm | wikipron | 97 | 0.4249 | · | · | · | · | [0.3792, 0.4681] | 0.1031 | skeleton | crowd-scraped |
 | ady | northeuralex | 928 | 0.1684 | · | · | · | · | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |
 | af | wikipron | 2076 | 0.3615 | 0.3155 | 0.3114 | 0.1301 | 0.1325 | [0.3520, 0.3711] | 0.1045 | research | crowd-scraped |
-| aii | wikipron | 4836 | 0.5655 | · | · | · | · | [0.5622, 0.5688] | 0.0002 | skeleton | crowd-scraped |
+| aii | wikipron | 4836 | 0.3765 | 0.3287 | 0.3063 | 0.0463 | 0.0567 | [0.3720, 0.3811] | 0.0209 | research | crowd-scraped |
 | ain | northeuralex | 858 | 0.0200 | · | · | · | · | [0.0161, 0.0243] | 0.8811 | research | lexicon-derived |
 | akk | wikipron | 671 | 0.0144 | · | · | · | · | [0.0109, 0.0178] | 0.9046 | skeleton | crowd-scraped |
 | ale | northeuralex | 896 | 0.3993 | · | · | · | · | [0.3858, 0.4144] | 0.0826 | skeleton | lexicon-derived |
