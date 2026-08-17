@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.75.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.5a1) (2026-08-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.4a1...7.75.5a1)
+
+**Merged pull requests:**
+
+- fix\(so\): supply the unwritten Somali glottal stops, /χ/ for kh, and the intervocalic dh flap [\#968](https://github.com/TigreGotico/orthography2ipa/pull/968) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.75.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.4a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.3a1...7.75.4a1)
@@ -737,17 +745,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.51.0a2...7.51.0a3)
 
-**Merged pull requests:**
-
-- data: NEL convention fixes \(g/ɡ confusable fold\) [\#772](https://github.com/TigreGotico/orthography2ipa/pull/772) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.51.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.51.0a2) (2026-08-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.51.0a1...7.51.0a2)
-
-**Merged pull requests:**
-
-- data: Siberian double-win batch B \(Paleosiberian+\) [\#771](https://github.com/TigreGotico/orthography2ipa/pull/771) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.51.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.51.0a1) (2026-08-03)
 
