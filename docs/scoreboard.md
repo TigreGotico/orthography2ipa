@@ -279,8 +279,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | gv | wikipron | 690 | 0.3623 | · | · | · | · | [0.3451, 0.3784] | 0.1551 | research | crowd-scraped |
 | gwc | wikipron | 165 | 0.4282 | 0.4049 | 0.3916 | 0.0242 | 0.0242 | [0.3992, 0.4568] | 0.0242 | research | crowd-scraped |
 | gwd | wold | 976 | 0.0481 | · | · | · | · | [0.0419, 0.0552] | 0.7602 | skeleton | lexicon-derived |
-| ha | vox_communis | 3798 | 0.1245 | · | · | · | · | [0.1150, 0.1342] | 0.5690 | research | epitran-derived |
-| ha | wikipron | 1857 | 0.5469 | · | · | · | · | [0.5414, 0.5521] | 0.0000 | research | crowd-scraped |
+| ha | vox_communis | 3719 | 0.1129 | 0.0466 | 0.0389 | 0.7760 | 0.8193 | [0.1082, 0.1176] | 0.4937 | research | epitran-derived |
+| ha | wikipron | 1857 | 0.5397 | 0.5248 | 0.5240 | 0.0022 | 0.0022 | [0.5343, 0.5448] | 0.0022 | research | crowd-scraped |
 | haw | wikipron | 2145 | 0.0408 | · | · | · | · | [0.0371, 0.0445] | 0.7711 | research | crowd-scraped |
 | he | primary_sources | 33 | 0.2141 | · | · | · | · | [0.1459, 0.2834] | 0.3636 | research | expert-human |
 | he | wikipron | 2872 | 0.3620 | · | · | · | · | [0.3560, 0.3677] | 0.0369 | research | crowd-scraped |
