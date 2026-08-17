@@ -161,6 +161,12 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [vi.md](vi.md) | Vietnamese (Hanoi) in detail — rime-level mapping, velar fronting and labial-velar finals, and the library's first tone-emitting spec |
 
+### Niger-Congo
+
+| Doc | Languages covered |
+|:---|:---|
+| [yo.md](yo.md) | Yoruba in detail — three level tones (mid marked, not bare), the five nasal vowels and why ⟨en⟩/⟨on⟩ are not among them |
+
 ### Constructed
 
 | Doc | Languages covered |
