@@ -386,8 +386,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mk | vox_communis | 10753 | 0.0228 | · | · | · | · | [0.0217, 0.0238] | 0.8410 | research | epitran-derived |
 | ml | vox_communis | 6685 | 0.3090 | · | · | · | · | [0.2922, 0.3264] | 0.0966 | research | epitran-derived |
 | ml | wikipron | 9464 | 0.2984 | · | · | · | · | [0.2951, 0.3017] | 0.0531 | research | crowd-scraped |
-| mn | vox_communis | 15602 | 0.3593 | · | · | · | · | [0.3568, 0.3620] | 0.0438 | skeleton | epitran-derived |
-| mn | wikipron | 3521 | 0.5597 | · | · | · | · | [0.5530, 0.5665] | 0.0165 | skeleton | crowd-scraped |
+| mn | vox_communis | 15592 | 0.2054 | 0.1613 | 0.1594 | 0.2762 | 0.2830 | [0.2031, 0.2077] | 0.1840 | research | epitran-derived |
+| mn | wikipron | 3528 | 0.1584 | 0.1512 | 0.1508 | 0.3311 | 0.3325 | [0.1531, 0.1636] | 0.3194 | research | crowd-scraped |
 | mnc | northeuralex | 500 | 0.1013 | · | · | · | · | [0.0895, 0.1137] | 0.5800 | research | lexicon-derived |
 | mns | northeuralex | 992 | 0.1024 | · | · | · | · | [0.0958, 0.1091] | 0.4597 | research | lexicon-derived |
 | mqs | wikipron | 790 | 0.0495 | · | · | · | · | [0.0424, 0.0561] | 0.7823 | skeleton | crowd-scraped |
