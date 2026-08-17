@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.75.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.3a1) (2026-08-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.2a1...7.75.3a1)
+
+**Merged pull requests:**
+
+- fix: write the stress mark at the syllable's true onset [\#956](https://github.com/TigreGotico/orthography2ipa/pull/956) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.75.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.2a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.1a1...7.75.2a1)
@@ -744,10 +752,6 @@
 ## [7.50.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.50.0a1) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.49.0a1...7.50.0a1)
-
-**Merged pull requests:**
-
-- feat: gold20 Arabic-dialect gold \(llm-generated tier, 33 lects\) [\#767](https://github.com/TigreGotico/orthography2ipa/pull/767) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.49.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.49.0a1) (2026-08-03)
 
