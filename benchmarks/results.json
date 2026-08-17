@@ -229,15 +229,21 @@
  {
   "lang": "apw",
   "dataset": "wikipron",
-  "n": 145,
-  "per": 0.6191,
-  "per_ci_low": 0.592,
-  "per_ci_high": 0.6435,
-  "exact_match": 0.0138,
-  "quality_tier": "skeleton",
+  "n": 147,
+  "per": 0.3171,
+  "per_ci_low": 0.274,
+  "per_ci_high": 0.3623,
+  "exact_match": 0.2449,
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
-  "limit": null
+  "limit": null,
+  "oracle_per_top3": 0.3101,
+  "oracle_exact_top3": 0.2449,
+  "oracle_per_top5": 0.3101,
+  "oracle_exact_top5": 0.2449,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 147
  },
  {
   "lang": "ar",
