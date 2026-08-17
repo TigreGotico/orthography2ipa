@@ -247,8 +247,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ext-PT-x-barrancos | barranquenho_dict | 316 | 0.1053 | · | · | · | · | [0.0892, 0.1215] | 0.5696 | research | llm-generated |
 | ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ext-PT-x-barrancos | primary_sources | 10 | 0.2801 | · | · | · | · | [0.1363, 0.4286] | 0.3000 | research | expert-human |
-| fa | ipadict | 7695 | 0.4816 | · | · | · | · | [0.4791, 0.4842] | 0.0003 | research | machine-generated |
-| fa | wikipron | 9279 | 0.5471 | · | · | · | · | [0.5443, 0.5497] | 0.0011 | research | crowd-scraped |
+| fa | ipadict | 7695 | 0.2566 | 0.2334 | 0.2278 | 0.1173 | 0.1201 | [0.2534, 0.2600] | 0.1059 | research | machine-generated |
+| fa | wikipron | 9279 | 0.3946 | 0.3744 | 0.3704 | 0.0177 | 0.0178 | [0.3914, 0.3975] | 0.0170 | research | crowd-scraped |
 | fax | wikipron | 655 | 0.1236 | · | · | · | · | [0.1121, 0.1348] | 0.4992 | research | crowd-scraped |
 | fi | ipadict | 92836 | 0.0628 | · | · | · | · | [0.0623, 0.0632] | 0.4902 | production | machine-generated |
 | fi | vox_communis | 13324 | 0.0037 | · | · | · | · | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
