@@ -89,6 +89,7 @@ _BEFORE_EXACT: Dict[str, GraphemePosition] = {
     "i": GraphemePosition.BEFORE_I,
     "o": GraphemePosition.BEFORE_O,
     "u": GraphemePosition.BEFORE_U,
+    "y": GraphemePosition.BEFORE_Y,
     # Cyrillic plain vowel letters map onto the same exact-letter axes so
     # positional keys like before_o work for Cyrillic-script specs
     # (Ukrainian ⟨в⟩ → [w] before rounded vowels). The iotated letters
@@ -123,6 +124,52 @@ _AFTER_EXACT: Dict[str, GraphemePosition] = {
 #: to avoid conflating the two (see positional_graphemes rule review for
 #: the ``pied``/``vies`` minimal pair that motivated the distinction).
 _TRANSPARENT_SUFFIX_GRAPHEMES = frozenset({"s", "x"})
+
+
+#: Graphemes that may follow a word-final mute ⟨e⟩ without ending the
+#: ⟨VCe⟩ pattern: the English inflectional ⟨-s⟩ (plural, 3sg) and ⟨-d⟩
+#: (past/participle). ⟨hope⟩, ⟨hopes⟩ and ⟨hoped⟩ state one and the same
+#: fact about the ⟨o⟩ — the suffix attaches outside the stem and cannot
+#: reach back into its nucleus.
+_MUTE_E_INFLECTIONS = frozenset({"s", "d"})
+
+
+#: Multi-letter consonant graphemes that may still stand in the ⟨C⟩ slot of
+#: ⟨VCe⟩. Almost none can: a digraph in that slot is normally the mark of a
+#: CHECKED vowel, not a free one (⟨ck⟩ is the doubling allograph — ⟨wicked⟩,
+#: ⟨packed⟩; ⟨sh⟩, ⟨ch⟩, ⟨tch⟩, ⟨ss⟩ take the epenthetic ⟨-es⟩ rather than a
+#: mute ⟨e⟩ — ⟨wishes⟩, ⟨watches⟩). ⟨th⟩ is the exception that really does
+#: carry the pattern, and does so consistently: bathe, breathe, soothe,
+#: lathe, loathe, clothe, seethe, scythe, tithe, writhe. ⟨ng⟩ is deliberately
+#: NOT here — ⟨-nge⟩ is free only after ⟨a⟩ (change, range, strange) and
+#: checked everywhere else (hinge, cringe, sponge, plunge), so it states no
+#: length fact at all.
+_MUTE_E_CONSONANT_DIGRAPHS = frozenset({"th"})
+
+
+def _is_mute_e_slot(ctx) -> bool:
+    """True when *ctx* holds the word-final mute ⟨e⟩ of a ⟨VCe⟩ pattern.
+
+    Word-final counts a single inflectional suffix as transparent (see
+    :data:`_MUTE_E_INFLECTIONS`). The slot before the ⟨e⟩ must be exactly
+    one consonant grapheme — a single letter, or one of the digraphs that
+    genuinely carry the pattern (:data:`_MUTE_E_CONSONANT_DIGRAPHS`) — and a
+    vowel grapheme must precede that. That is the ⟨VCe⟩ shape itself.
+    """
+    if ctx is None or ctx.grapheme != "e":
+        return False
+    tail = ctx.next
+    if tail is not None and (
+            tail.next is not None
+            or tail.grapheme not in _MUTE_E_INFLECTIONS):
+        return False
+    cons = ctx.prev
+    if cons is None or cons.is_vowel:
+        return False
+    if len(cons.grapheme) > 1 and cons.grapheme not in _MUTE_E_CONSONANT_DIGRAPHS:
+        return False
+    nucleus = cons.prev
+    return nucleus is not None and nucleus.is_vowel
 
 
 class WordEnd(NamedTuple):
@@ -714,6 +761,17 @@ def grapheme_positions(
                 pos.append(GraphemePosition.PRETONIC)
             else:
                 pos.append(GraphemePosition.POSTTONIC)
+
+    # 4b. nucleus of the ⟨VCe⟩ split digraph. Ranked BELOW the
+    # stress-conditioned nucleus positions on purpose: the long ⟨VCe⟩
+    # value is a fact about a stressed nucleus, and an unstressed final
+    # syllable reduces whatever its spelling (⟨climate⟩, ⟨palace⟩,
+    # ⟨private⟩, ⟨purpose⟩ against ⟨climb⟩, ⟨place⟩, ⟨prime⟩). A spec's
+    # reduction entry must therefore keep reaching those syllables. It
+    # still outranks every per-letter and default position below, which
+    # is what makes ⟨time⟩ aɪ rather than the ɪ they would give.
+    if is_vowel and next_ctx is not None and _is_mute_e_slot(next_ctx.next):
+        pos.append(GraphemePosition.BEFORE_MUTE_E)
 
     if effectively_word_final:
         pos.append(GraphemePosition.WORD_FINAL)
