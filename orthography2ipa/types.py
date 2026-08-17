@@ -1474,6 +1474,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_passes": InheritanceMode.NOT_INHERITED,
     "tone_inventory": InheritanceMode.OWN_ONLY,
+    "tone_marks_syllable_final": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
     "wikipedia": InheritanceMode.OWN_ONLY,
     "urls": InheritanceMode.OWN_ONLY,
@@ -1915,6 +1916,15 @@ class LanguageSpec:
     tone_inventory: Optional[Dict[str, str]] = None
     """Optional tone inventory: IPA tone mark → label
     (e.g. ``{"˥": "high", "˧˥": "rising"}``)."""
+
+    tone_marks_syllable_final: bool = False
+    """Whether tone marks dock at the end of their syllable.
+
+    Set it when the orthography writes tone as a diacritic on the nucleus
+    letter: the grapheme table then yields the mark inside the rime
+    (⟨ōng⟩ → ``o³³ŋ``) where IPA writes it after the rime (``oŋ³³``).
+    See :func:`~orthography2ipa.tone.dock_tone_marks`. Orthographies that
+    spell tone in the slot it is transcribed in leave it off."""
 
     sources: Tuple["LinguisticSource", ...] = field(default_factory=tuple)
     """Bibliographic references supporting the phonological decisions in this spec."""
