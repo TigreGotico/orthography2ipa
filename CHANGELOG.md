@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.75.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.1a1) (2026-08-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.0a1...7.75.1a1)
+
+**Merged pull requests:**
+
+- fix\(ne\): read Nepali from the IPA Illustration instead of a Hindi template [\#958](https://github.com/TigreGotico/orthography2ipa/pull/958) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.75.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.0a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.74.1a1...7.75.0a1)
@@ -744,10 +752,6 @@
 ## [7.48.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.48.0a2) (2026-08-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.48.0a1...7.48.0a2)
-
-**Merged pull requests:**
-
-- data: orthography wave 6 [\#762](https://github.com/TigreGotico/orthography2ipa/pull/762) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.48.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.48.0a1) (2026-08-03)
 
