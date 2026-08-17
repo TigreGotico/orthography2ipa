@@ -227,12 +227,12 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | eo | ipadict | 23245 | 0.0338 | · | · | · | · | [0.0330, 0.0346] | 0.7502 | production | machine-generated |
 | eo | wikipron | 41245 | 0.0569 | · | · | · | · | [0.0559, 0.0579] | 0.7491 | production | crowd-scraped |
 | es | vox_communis | 97607 | 1.2097 | 1.2063 | 1.2049 | 0.2958 | 0.3011 | [1.2017, 1.2171] | 0.2890 | production | epitran-derived |
-| es | wikipron | 132188 | 0.0797 | 0.0359 | 0.0339 | 0.7161 | 0.7300 | [0.0793, 0.0803] | 0.4600 | production | crowd-scraped |
+| es | wikipron | 132188 | 0.0797 | 0.0358 | 0.0338 | 0.7165 | 0.7305 | [0.0792, 0.0802] | 0.4604 | production | crowd-scraped |
 | es-AR | primary_sources | 29 | 0.0138 | 0.0069 | 0.0069 | 0.9655 | 0.9655 | [0.0000, 0.0345] | 0.9310 | research | expert-human |
-| es-ES | ipa_childes | 13155 | 0.0816 | 0.0578 | 0.0554 | 0.6949 | 0.7062 | [0.0793, 0.0835] | 0.5919 | production | epitran-derived |
-| es-ES | ipadict | 595896 | 0.0295 | 0.0271 | 0.0239 | 0.7530 | 0.7803 | [0.0294, 0.0296] | 0.7315 | production | machine-generated |
+| es-ES | ipa_childes | 13155 | 0.0813 | 0.0576 | 0.0552 | 0.6953 | 0.7067 | [0.0791, 0.0833] | 0.5924 | production | epitran-derived |
+| es-ES | ipadict | 595896 | 0.0295 | 0.0271 | 0.0239 | 0.7530 | 0.7803 | [0.0294, 0.0297] | 0.7314 | production | machine-generated |
 | es-ES | primary_sources | 41 | 0.0272 | 0.0272 | 0.0272 | 0.8780 | 0.8780 | [0.0081, 0.0520] | 0.8780 | production | expert-human |
-| es-MX | ipadict | 595885 | 0.0397 | 0.0369 | 0.0321 | 0.6686 | 0.7082 | [0.0395, 0.0398] | 0.6460 | research | machine-generated |
+| es-MX | ipadict | 595885 | 0.0397 | 0.0369 | 0.0322 | 0.6686 | 0.7081 | [0.0396, 0.0399] | 0.6459 | research | machine-generated |
 | ess | northeuralex | 500 | 0.1219 | · | · | · | · | [0.1094, 0.1358] | 0.4820 | research | lexicon-derived |
 | et | ipa_childes | 11040 | 0.2770 | · | · | · | · | [0.2737, 0.2803] | 0.1369 | research | espeak-derived |
 | et | vox_communis | 35140 | 0.2121 | · | · | · | · | [0.2104, 0.2139] | 0.1141 | research | epitran-derived |
