@@ -272,6 +272,24 @@ belongs in a cross-system comparison. What they do certify is that the
 spec implements the published orthography consistently — which is the
 claim the spec makes, and is worth measuring, under its own name.
 
+#### Languages with no community orthography (`uby`)
+
+A related but distinct case: the gold is hand-typed, so it is not a
+generator's output, but the *input* column is not a community spelling
+either. Ubykh has been extinct since 1992 and was never written by its
+speakers. Every Ubykh headword on Wiktionary is spelled in an
+Abkhaz-based Cyrillic system published as the [Wiktionary Ubykh entry
+guidelines](https://en.wiktionary.org/wiki/Wiktionary:Ubykh_entry_guidelines),
+whose alphabet table gives the letter-to-IPA correspondence directly.
+
+The `uby` row therefore certifies **reproduction of that published
+convention, not accuracy about Ubykh as spoken**, and the spec's grapheme
+map is that table. This is the same reading as the `egy` row above, with
+one difference in its favour: the IPA is editor-typed, so the row still
+measures whether the engine converts the spelling the way a human applying
+the convention does — including the hand-written inconsistencies, which
+put a floor under the residual error.
+
 A per-language provenance override (`PROVENANCE_BY_LANG["wikipron"]`) would
 let the scoreboard carry this in the provenance column instead of only in
 prose. That is a `scripts/benchmark.py` change and is proposed, not made,

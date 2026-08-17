@@ -272,8 +272,26 @@ def is_orthographic_vowel(ch: str) -> bool:
 
     Comparison is case-insensitive: *ch* is lowercased before the
     lookup, so callers do not need to lowercase it themselves.
+
+    A Latin vowel letter carrying a diacritic is the same vowel letter:
+    ⟨ư⟩ (U+01B0) is ⟨u⟩ with a horn and ⟨ế⟩ (U+1EBF) is ⟨e⟩ under a
+    circumflex and a tone mark. The membership table cannot enumerate
+    every precomposed form — Vietnamese alone writes sixty-seven of them —
+    so a character outside it is canonically decomposed and its base
+    retried, the same fallback :func:`is_ipa_vowel` already applies.
+
+    The retry is deliberately restricted to a Latin ``a e i o u`` base.
+    Cyrillic ⟨й⟩ decomposes to ⟨и⟩ plus a breve but is a glide, and is
+    excluded from the table on purpose; an unrestricted fallback would
+    silently readmit it.
     """
-    return bool(ch) and ch.lower() in _ORTHOGRAPHIC_VOWELS
+    if not ch:
+        return False
+    lowered = ch.lower()
+    if lowered in _ORTHOGRAPHIC_VOWELS:
+        return True
+    base = unicodedata.normalize("NFD", lowered)
+    return base != lowered and base[0] in "aeiou"
 
 
 def is_ipa_vowel(ch: str) -> bool:

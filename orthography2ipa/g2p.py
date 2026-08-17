@@ -86,6 +86,7 @@ from orthography2ipa.stress import (
     detect_stress_by_weight, secondary_stress_positions, syllabify,
     syllabify_ipa,
 )
+from orthography2ipa.tone import dock_tone_marks
 from orthography2ipa.transforms import apply_transform
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 
@@ -1206,6 +1207,8 @@ class G2P:
         """
         if collapse_geminates and self.spec.collapse_geminates and ipa:
             ipa = _collapse_geminates(ipa)
+        if self.spec.tone_marks_syllable_final and ipa:
+            ipa = dock_tone_marks(ipa, self.spec.phonemes or ())
         # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
         # all. A caller who wrote a mark has placed the stress, and one who wrote
         # none has said this word carries none — re-deriving it from the spelling

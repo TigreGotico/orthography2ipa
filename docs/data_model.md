@@ -207,6 +207,7 @@ class LanguageSpec:
     allophone_rules: Tuple[AllophoneRule, ...] = ()    # Post-lexical phoneme → surface rewrites
     stress: Optional[StressRules] = None               # Stress placement rules
     tone_inventory: Optional[Dict[str, str]] = None    # IPA tone mark → label
+    tone_marks_syllable_final: bool = False            # dock tone at the syllable end
     word_exceptions: Optional[Dict[str, str]] = None   # Whole-word overrides for an irregular set
     grammatical_endings: Optional[Dict[str, EndingValue]] = None  # Suffix morphology: ending → IPA (or an ordered candidate list) at the word end
     orthography_standard: Optional[OrthographyStandard] = None  # Official spelling norm
