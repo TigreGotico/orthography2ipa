@@ -222,15 +222,15 @@ def test_balearic_does_not_degeminate():
     ("es seu", "ət ˈt͡səw"),
     ("mos surten", "ˈmot ˈt͡suɾtən"),
     ("des serveis", "dət ˈt͡səɾvəjs"),
-    ("cantés s'amor", "kəˈntet t͡səˈmo"),
+    ("cantés s'amor", "kənˈtet t͡səˈmo"),
     ("sentis sàpiga", "ˈsəntit ˈt͡sapiɣə"),
-    ("destries s'arena", "dəˈstɾiət t͡səˈɾənə"),
+    ("destries s'arena", "dəsˈtɾiət t͡səˈɾənə"),
     ("arbres se", "ˈaɾβɾət t͡sə"),
-    ("autors se", "əˈwtot t͡sə"),
+    ("autors se", "əwˈtot t͡sə"),
     ("pes sol", "pət ˈt͡sol"),
     # ── /ʃ # s/ and /s # ʃ/: the same rule, keyed on the CLASS not on ⟨s⟩.
     ("defineix sa", "dəfiˈnət t͡sə"),
-    ("beix serveix", "ˈbət t͡səˈɾvəʃ"),
+    ("beix serveix", "ˈbət t͡səɾˈvəʃ"),
     ("es xaloc", "ət t͡ʃəˈlok"),
 ])
 # Four of the expectations above carry a coda [ɾ] where they used to carry
@@ -552,7 +552,7 @@ def test_vowel_contact_is_not_declared_on_old_catalan():
     ids = {r.id for r in get("ca-x-medieval").sandhi_rules}
     assert not [i for i in ids if "ELIDE" in i or "GLIDE" in i]
     assert transcribe("estava en oració", "ca-x-medieval") == \
-        "eˈstava en oɾasiˈo"
+        "esˈtava en oɾasiˈo"
 
 
 def test_vowel_contact_is_a_sentence_effect_only():
@@ -686,16 +686,15 @@ def test_majorcan_reduces_unstressed_o_to_o_not_u():
 
 
 def test_stress_mark_placement_is_onset_maximising():
-    """A known limitation, pinned so it cannot drift silently.
+    """The mark sits at the onset the language licenses, not before the coda.
 
-    The bundled IPA syllabifier gives a whole consonant cluster to the
-    following onset, so the stress mark of ⟨germana⟩ lands before the coda
-    ⟨r⟩ rather than after it. The SEGMENTS are right — and the benchmark
-    strips stress marks from both sides — but a consumer that needs
-    syllable-accurate marks needs a real syllabifier plugin.
+    ⟨germana⟩ is ger-ma-na: /rm/ opens no syllable, so the ⟨r⟩ closes the
+    first one and the mark goes after it. A licit complex onset keeps the
+    mark before the whole cluster (⟨cabra⟩ ca-bra).
     """
-    assert transcribe("germana", "ca") == "ʒəˈrmanə"   # not "ʒərˈmanə"
+    assert transcribe("germana", "ca") == "ʒərˈmanə"
     assert transcribe("germana", "ca").replace("ˈ", "") == "ʒərmanə"
+    assert transcribe("cabra", "ca") == "ˈkaβɾə"
 
 
 # ─── Genealogy: the Old-Catalan common core ────────────────────────────────
@@ -725,7 +724,7 @@ def test_old_catalan_is_data_bearing_not_a_clade():
     core = get("ca-x-medieval")
     assert not core.clade
     assert core.graphemes and core.allophone_rules and core.sandhi_rules
-    assert transcribe("cantar", "ca-x-medieval") == "kaˈntaɾ"
+    assert transcribe("cantar", "ca-x-medieval") == "kanˈtaɾ"
 
 
 def test_central_innovations_do_not_leak_into_the_other_varieties():

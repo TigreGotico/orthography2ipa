@@ -277,6 +277,8 @@ class StressRulesModel(_Strict):
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = Field(default=1, ge=1, le=3)
+    onset_clusters: Optional[List[str]] = None
+    constrain_mark_onsets: bool = True
     cliticless_words: Optional[List[str]] = None
     coda_liquid_capture: bool = False
     secondary_stress: Literal["", "alternating"] = ""

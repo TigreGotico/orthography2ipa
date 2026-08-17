@@ -2279,9 +2279,9 @@ class TestSpanishPhonologicalRules:
     # --- Rising diphthong survives the tilde on the open nucleus ---------
     @pytest.mark.parametrize("word,expected", [
         ("naci\u00f3n", "na\u02c8\u03b8jon"),
-        ("asunci\u00f3n", "asu\u02c8n\u03b8jon"),
+        ("asunci\u00f3n", "asun\u02c8\u03b8jon"),
         ("adri\u00e1n", "a\u02c8dɾjan"),
-        ("despu\u00e9s", "de\u02c8spwes"),
+        ("despu\u00e9s", "des\u02c8pwes"),
         ("cu\u00e1nto", "\u02c8kwanto"),
     ])
     def test_accented_nucleus_keeps_rising_diphthong(self, word, expected):
@@ -2308,9 +2308,9 @@ class TestSpanishPhonologicalRules:
 
     # --- Vibrante m\u00faltiple after a heterosyllabic coronal ---------------
     @pytest.mark.parametrize("word,expected", [
-        ("enrique", "e\u02c8nrike"),
+        ("enrique", "en\u02c8rike"),
         ("honra", "\u02c8onra"),
-        ("israel", "i\u02c8srael"),
+        ("israel", "is\u02c8rael"),
         ("alrededor", "alre\u00f0e\u02c8\u00f0o\u027e"),
     ])
     def test_trill_after_coronal(self, word, expected):
@@ -2325,7 +2325,7 @@ class TestSpanishPhonologicalRules:
     # --- Nasal place assimilation (labial branch) ------------------------
     @pytest.mark.parametrize("word,expected", [
         ("inmaculada", "immaku\u02c8la\u00f0a"),
-        ("envase", "e\u02c8mbase"),
+        ("envase", "em\u02c8base"),
         ("\u00e1nfora", "\u02c8anfo\u027ea"),
     ])
     def test_nasal_labial_assimilation(self, word, expected):
@@ -2362,7 +2362,7 @@ class TestSpanishPhonologicalRules:
         assert _ES().transcribe_word(word) == expected
 
     @pytest.mark.parametrize("word,expected", [
-        ("distingui\u00f3", "disti\u02c8n\u0261jo"),
+        ("distingui\u00f3", "distin\u02c8\u0261jo"),
         ("guiones", "\u02c8\u0261jones"),
         ("guion", "\u02c8\u0261jon"),
     ])

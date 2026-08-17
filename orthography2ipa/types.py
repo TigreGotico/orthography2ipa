@@ -348,6 +348,21 @@ class StressRules:
         The two must be told apart: the default 1 is a *placeholder* and
         applying it as a cap would force every language to a single-consonant
         onset, splitting ⟨tr⟩ and ⟨bl⟩. Set by the loader, never by hand.
+    onset_clusters : Tuple[str, ...]
+        The language's complex onsets, in IPA. Declared, they decide every
+        complex onset the stress marker judges, in place of the built-in
+        sonority shapes — which are calibrated on Germanic, Slavic and Romance
+        and are wrong in both directions elsewhere: Greek opens words with
+        ⟨κτ πτ σμ⟩, which no shape licenses, and Spanish opens none with /s/ +
+        stop, which the sibilant appendix licenses for everyone. A simple
+        onset and a rise onto a glide stay licit under any inventory and need
+        no entry here. Left empty, the built-in shapes decide.
+    constrain_mark_onsets : bool
+        Whether the stress mark's syllable division consults onset
+        phonotactics at all. Clear it for a language the built-in shapes get
+        wrong and whose own inventory is not written down yet — Khmer, whose
+        subscript consonants make onsets no sonority scale predicts. The mark
+        then falls where a plain vowel-group split puts it.
     cliticless_words : Tuple[str, ...]
         Orthographic forms that carry **no lexical stress** of their own —
         prosodic clitics. A clitic is not an independent phonological word: it
@@ -453,6 +468,8 @@ class StressRules:
     superheavy_final_attracts: bool = True
     max_onset: int = 1
     max_onset_declared: bool = False
+    onset_clusters: Tuple[str, ...] = ()
+    constrain_mark_onsets: bool = True
     cliticless_words: Tuple[str, ...] = ()
     coda_liquid_capture: bool = False
     accent2_mark: str = ""
